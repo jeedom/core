@@ -82,7 +82,7 @@ var LinearRegressionAngleIndicator = /** @class */ (function (_super) {
      * @since        7.0.0
      * @product      highstock
      * @requires     stock/indicators/indicators
-     * @requires     stock/indicators/linearregressionangle
+     * @requires  stock/indicators/regressions
      * @optionparent plotOptions.linearregressionangle
      */
     LinearRegressionAngleIndicator.defaultOptions = merge(LinearRegressionIndicator.defaultOptions, {
@@ -113,7 +113,7 @@ export default LinearRegressionAngleIndicator;
  * @product   highstock
  * @excluding dataParser,dataURL
  * @requires  stock/indicators/indicators
- * @requires  stock/indicators/linearregressionangle
+ * @requires  stock/indicators/regressions
  * @apioption series.linearregressionangle
  */
 ''; // to include the above in the js output

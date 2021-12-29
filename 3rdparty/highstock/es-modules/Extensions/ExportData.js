@@ -338,7 +338,7 @@ Chart.prototype.setUpKeyToAxis = function () {
  * @return {Array<Array<(number|string)>>}
  *         The current chart data
  *
- * @fires Highcharts.Chart#event:exportData
+ * @emits Highcharts.Chart#event:exportData
  */
 Chart.prototype.getDataRows = function (multiLevelHeaders) {
     var hasParallelCoords = this.hasParallelCoordinates, time = this.time, csvOptions = ((this.options.exporting && this.options.exporting.csv) || {}), xAxis, xAxes = this.xAxis, rows = {}, rowArr = [], dataRows, topLevelColumnTitles = [], columnTitles = [], columnTitleObj, i, x, xTitle, langOptions = this.options.lang, exportDataOptions = langOptions.exportData, categoryHeader = exportDataOptions.categoryHeader, categoryDatetimeHeader = exportDataOptions.categoryDatetimeHeader, 
@@ -397,7 +397,8 @@ Chart.prototype.getDataRows = function (multiLevelHeaders) {
             !xAxis.categories &&
             !series.keyToAxis) {
             if (series.pointArrayMap) {
-                var pointArrayMapCheck = series.pointArrayMap.filter(function (p) { return p === 'x'; });
+                var pointArrayMapCheck = series.pointArrayMap
+                    .filter(function (p) { return p === 'x'; });
                 if (pointArrayMapCheck.length) {
                     series.pointArrayMap.unshift('x');
                     return series.pointArrayMap;
@@ -613,7 +614,7 @@ Chart.prototype.getCSV = function (useLocalDecimalPoint) {
  * @return {string}
  *         HTML representation of the data.
  *
- * @fires Highcharts.Chart#event:afterGetTable
+ * @emits Highcharts.Chart#event:afterGetTable
  */
 Chart.prototype.getTable = function (useLocalDecimalPoint) {
     var serialize = function (node) {
@@ -835,7 +836,7 @@ function getBlobFromContent(content, type) {
         nav.userAgent.indexOf('Chrome') < 0), domurl = win.URL || win.webkitURL || win;
     try {
         // MS specific
-        if (nav.msSaveOrOpenBlob && win.MSBlobBuilder) {
+        if ((nav.msSaveOrOpenBlob) && win.MSBlobBuilder) {
             var blob = new win.MSBlobBuilder();
             blob.append(content);
             return blob.getBlob('image/svg+xml');
@@ -851,6 +852,7 @@ function getBlobFromContent(content, type) {
         // Ignore
     }
 }
+/* eslint-disable valid-jsdoc */
 /**
  * Generates a data URL of CSV for local download in the browser. This is the
  * default action for a click on the 'Download CSV' button.
@@ -904,7 +906,7 @@ Chart.prototype.downloadXLS = function () {
  *
  * @function Highcharts.Chart#viewData
  *
- * @fires Highcharts.Chart#event:afterViewData
+ * @emits Highcharts.Chart#event:afterViewData
  */
 Chart.prototype.viewData = function () {
     this.toggleDataTable(true);
@@ -931,7 +933,7 @@ Chart.prototype.toggleDataTable = function (show) {
         this.dataTableDiv.style.display = show ? 'block' : 'none';
         // Generate the data table
         if (show) {
-            this.dataTableDiv.innerHTML = '';
+            this.dataTableDiv.innerHTML = AST.emptyHTML;
             var ast = new AST([this.getTableAST()]);
             ast.addToDOM(this.dataTableDiv);
             fireEvent(this, 'afterViewData', this.dataTableDiv);
@@ -949,9 +951,11 @@ Chart.prototype.toggleDataTable = function (show) {
         lang.viewData &&
         lang.hideData &&
         menuItems &&
-        exportDivElements &&
-        exportDivElements.length) {
-        AST.setElementHTML(exportDivElements[menuItems.indexOf('viewData')], this.isDataTableVisible ? lang.hideData : lang.viewData);
+        exportDivElements) {
+        var exportDivElement = exportDivElements[menuItems.indexOf('viewData')];
+        if (exportDivElement) {
+            AST.setElementHTML(exportDivElement, this.isDataTableVisible ? lang.hideData : lang.viewData);
+        }
     }
 };
 // Add "Download CSV" to the exporting menu.

@@ -21,7 +21,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import palette from '../../Core/Color/Palette.js';
 import Series from '../../Core/Series/Series.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 import U from '../../Core/Utilities.js';
@@ -70,7 +69,8 @@ var LineSeries = /** @class */ (function (_super) {
      * @function Highcharts.Series#drawGraph
      */
     LineSeries.prototype.drawGraph = function () {
-        var series = this, options = this.options, graphPath = (this.gappedPath || this.getGraphPath).call(this), styledMode = this.chart.styledMode, props = [[
+        var series = this, options = this.options, graphPath = (this.gappedPath || this.getGraphPath).call(this), styledMode = this.chart.styledMode;
+        var props = [[
                 'graph',
                 'highcharts-graph'
             ]];
@@ -78,13 +78,15 @@ var LineSeries = /** @class */ (function (_super) {
         if (!styledMode) {
             props[0].push((options.lineColor ||
                 this.color ||
-                palette.neutralColor20 // when colorByPoint = true
+                "#cccccc" /* neutralColor20 */ // when colorByPoint = true
             ), options.dashStyle);
         }
         props = series.getZonesGraphs(props);
         // Draw the graph
         props.forEach(function (prop, i) {
-            var graphKey = prop[0], graph = series[graphKey], verb = graph ? 'animate' : 'attr', attribs;
+            var graphKey = prop[0];
+            var attribs, graph = series[graphKey];
+            var verb = graph ? 'animate' : 'attr';
             if (graph) {
                 graph.endX = series.preventGraphAnimation ?
                     null :
@@ -151,10 +153,11 @@ var LineSeries = /** @class */ (function (_super) {
      * @private
      */
     LineSeries.prototype.getGraphPath = function (points, nullsAsZeroes, connectCliffs) {
-        var series = this, options = series.options, step = options.step, reversed, graphPath = [], xMap = [], gap;
+        var series = this, options = series.options, graphPath = [], xMap = [];
+        var gap, step = options.step;
         points = points || series.points;
         // Bottom of a stack is reversed
-        reversed = points.reversed;
+        var reversed = points.reversed;
         if (reversed) {
             points.reverse();
         }
@@ -170,9 +173,9 @@ var LineSeries = /** @class */ (function (_super) {
         points = this.getValidPoints(points, false, !(options.connectNulls && !nullsAsZeroes && !connectCliffs));
         // Build the line
         points.forEach(function (point, i) {
-            var plotX = point.plotX, plotY = point.plotY, lastPoint = points[i - 1], 
+            var plotX = point.plotX, plotY = point.plotY, lastPoint = points[i - 1];
             // the path to this point from the previous
-            pathToPoint;
+            var pathToPoint;
             if ((point.leftCliff || (lastPoint && lastPoint.rightCliff)) &&
                 !connectCliffs) {
                 gap = true; // ... and continue

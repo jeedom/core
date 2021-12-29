@@ -12,37 +12,47 @@
 'use strict';
 import H from '../../Core/Globals.js';
 import U from '../../Core/Utilities.js';
-var addEvent = U.addEvent, extend = U.extend;
-/* eslint-disable no-invalid-this, valid-jsdoc */
+var addEvent = U.addEvent;
+/* *
+ *
+ *  Class
+ *
+ * */
 /**
  * @private
- * @class
  */
-var EventProvider = function () {
-    this.eventRemovers = [];
-};
-extend(EventProvider.prototype, {
+var EventProvider = /** @class */ (function () {
+    /* *
+     *
+     *  Constructor
+     *
+     * */
+    function EventProvider() {
+        this.eventRemovers = [];
+    }
     /**
      * Add an event to an element and keep track of it for later removal.
      * Same args as Highcharts.addEvent.
      * @private
-     * @return {Function}
      */
-    addEvent: function () {
+    EventProvider.prototype.addEvent = function () {
         var remover = addEvent.apply(H, arguments);
         this.eventRemovers.push(remover);
         return remover;
-    },
+    };
     /**
      * Remove all added events.
      * @private
-     * @return {void}
      */
-    removeAddedEvents: function () {
-        this.eventRemovers.forEach(function (remover) {
-            remover();
-        });
+    EventProvider.prototype.removeAddedEvents = function () {
+        this.eventRemovers.forEach(function (remover) { return remover(); });
         this.eventRemovers = [];
-    }
-});
+    };
+    return EventProvider;
+}());
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default EventProvider;

@@ -16,7 +16,6 @@ var addEvent = U.addEvent, fireEvent = U.fireEvent, objectEach = U.objectEach, p
  *
  * @private
  * @mixin
- * @memberOf Annotation
  */
 var eventEmitterMixin = {
     /**
@@ -108,11 +107,19 @@ var eventEmitterMixin = {
             prevChartY = e.chartY;
         }, H.isTouchDevice ? { passive: false } : void 0);
         emitter.removeMouseUp = addEvent(H.doc, H.isTouchDevice ? 'touchend' : 'mouseup', function (e) {
+            // Sometimes the target is the annotation and sometimes its the
+            // controllable
+            var annotation = pick(emitter.target && emitter.target.annotation, emitter.target);
+            if (annotation) {
+                // Keep annotation selected after dragging control point
+                annotation.cancelClick = emitter.hasDragged;
+            }
             emitter.cancelClick = emitter.hasDragged;
             emitter.hasDragged = false;
             emitter.chart.hasDraggedAnnotation = false;
             // ControlPoints vs Annotation:
-            fireEvent(pick(emitter.target, emitter), 'afterUpdate');
+            fireEvent(pick(annotation, // #15952
+            emitter), 'afterUpdate');
             emitter.onMouseUp(e);
         }, H.isTouchDevice ? { passive: false } : void 0);
     },

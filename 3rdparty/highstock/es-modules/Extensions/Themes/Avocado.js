@@ -12,27 +12,56 @@
  *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
  *
  * */
-import H from '../../Core/Globals.js';
+'use strict';
 import D from '../../Core/DefaultOptions.js';
 var setOptions = D.setOptions;
-H.theme = {
-    colors: ['#F3E796', '#95C471', '#35729E', '#251735'],
-    colorAxis: {
-        maxColor: '#05426E',
-        minColor: '#F3E796'
-    },
-    plotOptions: {
-        map: {
-            nullColor: '#FCFEFE'
+/* *
+ *
+ *  Theme
+ *
+ * */
+var AvocadoTheme;
+(function (AvocadoTheme) {
+    /* *
+     *
+     *  Constants
+     *
+     * */
+    AvocadoTheme.options = {
+        colors: ['#F3E796', '#95C471', '#35729E', '#251735'],
+        colorAxis: {
+            maxColor: '#05426E',
+            minColor: '#F3E796'
+        },
+        plotOptions: {
+            map: {
+                nullColor: '#FCFEFE'
+            }
+        },
+        navigator: {
+            maskFill: 'rgba(170, 205, 170, 0.5)',
+            series: {
+                color: '#95C471',
+                lineColor: '#35729E'
+            }
         }
-    },
-    navigator: {
-        maskFill: 'rgba(170, 205, 170, 0.5)',
-        series: {
-            color: '#95C471',
-            lineColor: '#35729E'
-        }
+    };
+    /* *
+     *
+     *  Functions
+     *
+     * */
+    /**
+     * Apply the theme.
+     */
+    function apply() {
+        setOptions(AvocadoTheme.options);
     }
-};
-// Apply the theme
-setOptions(H.theme);
+    AvocadoTheme.apply = apply;
+})(AvocadoTheme || (AvocadoTheme = {}));
+/* *
+ *
+ *  Default Export
+ *
+ * */
+export default AvocadoTheme;

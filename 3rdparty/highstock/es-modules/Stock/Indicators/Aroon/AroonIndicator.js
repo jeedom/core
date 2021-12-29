@@ -19,7 +19,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import MultipleLinesMixin from '../../../Mixins/MultipleLines.js';
+import MultipleLinesComposition from '../MultipleLinesComposition.js';
 import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
 var SMAIndicator = SeriesRegistry.seriesTypes.sma;
 import U from '../../../Core/Utilities.js';
@@ -166,15 +166,13 @@ var AroonIndicator = /** @class */ (function (_super) {
     return AroonIndicator;
 }(SMAIndicator));
 extend(AroonIndicator.prototype, {
+    areaLinesNames: [],
     linesApiNames: ['aroonDown'],
     nameBase: 'Aroon',
     pointArrayMap: ['y', 'aroonDown'],
-    pointValKey: 'y',
-    drawGraph: MultipleLinesMixin.drawGraph,
-    getTranslatedLinesNames: MultipleLinesMixin.getTranslatedLinesNames,
-    toYData: MultipleLinesMixin.toYData,
-    translate: MultipleLinesMixin.translate
+    pointValKey: 'y'
 });
+MultipleLinesComposition.compose(AroonIndicator);
 SeriesRegistry.registerSeriesType('aroon', AroonIndicator);
 /* *
  *

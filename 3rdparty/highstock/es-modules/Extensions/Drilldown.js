@@ -22,7 +22,6 @@ import H from '../Core/Globals.js';
 var noop = H.noop;
 import D from '../Core/DefaultOptions.js';
 var defaultOptions = D.defaultOptions;
-import palette from '../Core/Color/Palette.js';
 import Point from '../Core/Series/Point.js';
 import Series from '../Core/Series/Series.js';
 import SeriesRegistry from '../Core/Series/SeriesRegistry.js';
@@ -226,7 +225,7 @@ defaultOptions.drilldown = {
         /** @ignore-option */
         cursor: 'pointer',
         /** @ignore-option */
-        color: palette.highlightColor100,
+        color: "#003399" /* highlightColor100 */,
         /** @ignore-option */
         fontWeight: 'bold',
         /** @ignore-option */
@@ -250,7 +249,7 @@ defaultOptions.drilldown = {
      */
     activeDataLabelStyle: {
         cursor: 'pointer',
-        color: palette.highlightColor100,
+        color: "#003399" /* highlightColor100 */,
         fontWeight: 'bold',
         textDecoration: 'underline'
     },
@@ -319,7 +318,7 @@ defaultOptions.drilldown = {
          * @sample {highmaps} highcharts/drilldown/drillupbutton/
          *         Button theming
          *
-         * @type      {object}
+         * @type      {Object}
          * @since     3.0.8
          * @product   highcharts highmaps
          * @apioption drilldown.drillUpButton.theme
@@ -521,7 +520,7 @@ Chart.prototype.addSingleSeriesAsDrilldown = function (point, ddOptions) {
         // no graphic in line series with markers disabled
         bBox: point.graphic ? point.graphic.getBBox() : {},
         color: point.isNull ?
-            new Color(colorProp.color).setOpacity(0).get() :
+            Color.parse(colorProp.color).setOpacity(0).get() :
             colorProp.color,
         lowerSeriesOptions: ddOptions,
         pointOptions: oldSeries.options.data[pointIndex],
@@ -586,7 +585,7 @@ Chart.prototype.getDrilldownBackText = function () {
     if (drilldownLevels && drilldownLevels.length > 0) { // #3352, async loading
         lastLevel = drilldownLevels[drilldownLevels.length - 1];
         lastLevel.series = lastLevel.seriesOptions;
-        return format(this.options.lang.drillUpText, lastLevel);
+        return format(this.options.lang.drillUpText || '', lastLevel);
     }
 };
 Chart.prototype.showDrillUpButton = function () {
@@ -726,8 +725,13 @@ addEvent(Chart, 'afterInit', function () {
 });
 // Shift the drillUpButton to make the space for resetZoomButton, #8095.
 addEvent(Chart, 'afterShowResetZoom', function () {
-    var chart = this, bbox = chart.resetZoomButton && chart.resetZoomButton.getBBox(), buttonOptions = chart.options.drilldown && chart.options.drilldown.drillUpButton;
-    if (this.drillUpButton && bbox && buttonOptions && buttonOptions.position && buttonOptions.position.x) {
+    var chart = this, bbox = chart.resetZoomButton && chart.resetZoomButton.getBBox(), buttonOptions = (chart.options.drilldown &&
+        chart.options.drilldown.drillUpButton);
+    if (this.drillUpButton &&
+        bbox &&
+        buttonOptions &&
+        buttonOptions.position &&
+        buttonOptions.position.x) {
         this.drillUpButton.align({
             x: buttonOptions.position.x - bbox.width - 10,
             y: buttonOptions.position.y,
@@ -1149,7 +1153,7 @@ addEvent(Point, 'afterSetState', function () {
 // After zooming out, shift the drillUpButton to the previous position, #8095.
 addEvent(Chart, 'selection', function (event) {
     if (event.resetSelection === true && this.drillUpButton) {
-        var buttonOptions = this.options.drilldown && this.options.drilldown.drillUpButton;
+        var buttonOptions = (this.options.drilldown && this.options.drilldown.drillUpButton);
         if (buttonOptions && buttonOptions.position) {
             this.drillUpButton.align({
                 x: buttonOptions.position.x,

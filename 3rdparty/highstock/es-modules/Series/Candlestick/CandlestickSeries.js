@@ -23,7 +23,6 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import D from '../../Core/DefaultOptions.js';
 var defaultOptions = D.defaultOptions;
-import palette from '../../Core/Color/Palette.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var _a = SeriesRegistry.seriesTypes, ColumnSeries = _a.column, OHLCSeries = _a.ohlc;
 import U from '../../Core/Utilities.js';
@@ -47,7 +46,7 @@ var CandlestickSeries = /** @class */ (function (_super) {
     function CandlestickSeries() {
         /* *
          *
-         * Static properties
+         * Static Properties
          *
          * */
         var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -96,7 +95,6 @@ var CandlestickSeries = /** @class */ (function (_super) {
      *
      * @private
      * @function Highcharts.seriesTypes.candlestick#drawPoints
-     * @return {void}
      */
     CandlestickSeries.prototype.drawPoints = function () {
         var series = this, points = series.points, chart = series.chart, reversedYAxis = series.yAxis.reversed;
@@ -163,9 +161,10 @@ var CandlestickSeries = /** @class */ (function (_super) {
         });
         /* eslint-enable valid-jsdoc */
     };
+    CandlestickSeries.defaultOptions = merge(OHLCSeries.defaultOptions, defaultOptions.plotOptions, 
     /**
-     * A candlestick chart is a style of financial chart used to describe price
-     * movements over time.
+     * A candlestick chart is a style of financial chart used to describe
+     * price movements over time.
      *
      * @sample stock/demo/candlestick/
      *         Candlestick chart
@@ -175,7 +174,7 @@ var CandlestickSeries = /** @class */ (function (_super) {
      * @product      highstock
      * @optionparent plotOptions.candlestick
      */
-    CandlestickSeries.defaultOptions = merge(OHLCSeries.defaultOptions, defaultOptions.plotOptions, {
+    {
         /**
          * The specific line color for up candle sticks. The default is to
          * inherit the general `lineColor` setting.
@@ -188,12 +187,6 @@ var CandlestickSeries = /** @class */ (function (_super) {
          * @product   highstock
          * @apioption plotOptions.candlestick.upLineColor
          */
-        /**
-         * @type      {Highcharts.DataGroupingApproximationValue|Function}
-         * @default   ohlc
-         * @product   highstock
-         * @apioption plotOptions.candlestick.dataGrouping.approximation
-         */
         states: {
             /**
              * @extends plotOptions.column.states.hover
@@ -201,16 +194,14 @@ var CandlestickSeries = /** @class */ (function (_super) {
              */
             hover: {
                 /**
-                 * The pixel width of the line/border around the candlestick.
+                 * The pixel width of the line/border around the
+                 * candlestick.
                  *
                  * @product highstock
                  */
                 lineWidth: 2
             }
         },
-        /**
-         * @extends plotOptions.ohlc.tooltip
-         */
         tooltip: defaultOptions.plotOptions.ohlc.tooltip,
         /**
          * @type    {number|null}
@@ -232,7 +223,7 @@ var CandlestickSeries = /** @class */ (function (_super) {
          * @default #000000
          * @product highstock
          */
-        lineColor: palette.neutralColor100,
+        lineColor: "#000000" /* neutralColor100 */,
         /**
          * The pixel width of the candlestick line/border. Defaults to `1`.
          *
@@ -257,8 +248,8 @@ var CandlestickSeries = /** @class */ (function (_super) {
          * @type    {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
          * @default #ffffff
          * @product highstock
-         */
-        upColor: palette.backgroundColor,
+        */
+        upColor: "#ffffff" /* backgroundColor */,
         /**
          * @product highstock
          */

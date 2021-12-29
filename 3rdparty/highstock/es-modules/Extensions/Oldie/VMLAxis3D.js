@@ -49,7 +49,11 @@ var VMLAxis3D = /** @class */ (function () {
         var axis = this, vml = axis.vml;
         if (vml) {
             var el_1;
-            ['backFrame', 'bottomFrame', 'sideFrame'].forEach(function (prop) {
+            [
+                'backFrame',
+                'bottomFrame',
+                'sideFrame'
+            ].forEach(function (prop) {
                 el_1 = vml[prop];
                 if (el_1) {
                     vml[prop] = el_1.destroy();

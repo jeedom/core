@@ -88,9 +88,6 @@ var NATRIndicator = /** @class */ (function (_super) {
     });
     return NATRIndicator;
 }(ATRIndicator));
-extend(NATRIndicator.prototype, {
-    requiredIndicators: ['atr']
-});
 SeriesRegistry.registerSeriesType('natr', NATRIndicator);
 /* *
  *
@@ -107,6 +104,7 @@ export default NATRIndicator;
  * @product   highstock
  * @excluding dataParser, dataURL
  * @requires  stock/indicators/indicators
+ * @requires  stock/indicators/atr
  * @requires  stock/indicators/natr
  * @apioption series.natr
  */

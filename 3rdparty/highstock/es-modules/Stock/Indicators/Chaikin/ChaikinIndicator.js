@@ -19,7 +19,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import RequiredIndicatorMixin from '../../../Mixins/IndicatorRequired.js';
 import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
 import '../AD/ADIndicator.js'; // For historic reasons, AD i built into Chaikin
 var _a = SeriesRegistry.seriesTypes, AD = _a.ad, EMAIndicator = _a.ema;
@@ -42,6 +41,11 @@ var correctFloat = U.correctFloat, extend = U.extend, merge = U.merge, error = U
 var ChaikinIndicator = /** @class */ (function (_super) {
     __extends(ChaikinIndicator, _super);
     function ChaikinIndicator() {
+        /* *
+         *
+         *  Static Properties
+         *
+         * */
         var _this = _super !== null && _super.apply(this, arguments) || this;
         /* *
          *
@@ -58,13 +62,6 @@ var ChaikinIndicator = /** @class */ (function (_super) {
      *  Functions
      *
      * */
-    ChaikinIndicator.prototype.init = function () {
-        var args = arguments, ctx = this;
-        RequiredIndicatorMixin.isParentLoaded(EMAIndicator, 'ema', ctx.type, function (indicator) {
-            indicator.prototype.init.apply(ctx, args);
-            return;
-        });
-    };
     ChaikinIndicator.prototype.getValues = function (series, params) {
         var periods = params.periods, period = params.period, 
         // Accumulation Distribution Line data
@@ -115,8 +112,7 @@ var ChaikinIndicator = /** @class */ (function (_super) {
     };
     /**
      * Chaikin Oscillator. This series requires the `linkedTo` option to
-     * be set and should be loaded after the `stock/indicators/indicators.js`
-     * and `stock/indicators/ema.js`.
+     * be set and should be loaded after the `stock/indicators/indicators.js`.
      *
      * @sample {highstock} stock/indicators/chaikin
      *         Chaikin Oscillator
@@ -128,7 +124,6 @@ var ChaikinIndicator = /** @class */ (function (_super) {
      *               pointInterval, pointIntervalUnit, pointPlacement,
      *               pointRange, pointStart, showInNavigator, stacking
      * @requires     stock/indicators/indicators
-     * @requires     stock/indicators/ema
      * @requires     stock/indicators/chaikin
      * @optionparent plotOptions.chaikin
      */
@@ -186,7 +181,6 @@ export default ChaikinIndicator;
  *            navigatorOptions, pointInterval, pointIntervalUnit,
  *            pointPlacement, pointRange, pointStart, stacking, showInNavigator
  * @requires  stock/indicators/indicators
- * @requires  stock/indicators/ema
  * @requires  stock/indicators/chaikin
  * @apioption series.chaikin
  */

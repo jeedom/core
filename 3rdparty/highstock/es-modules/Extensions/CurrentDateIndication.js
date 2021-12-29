@@ -11,8 +11,7 @@
  * */
 'use strict';
 import Axis from '../Core/Axis/Axis.js';
-import Palette from '../Core/Color/Palette.js';
-import PlotLineOrBand from '../Core/Axis/PlotLineOrBand.js';
+import PlotLineOrBand from '../Core/Axis/PlotLineOrBand/PlotLineOrBand.js';
 import U from '../Core/Utilities.js';
 var addEvent = U.addEvent, merge = U.merge, wrap = U.wrap;
 /**
@@ -34,7 +33,7 @@ var addEvent = U.addEvent, merge = U.merge, wrap = U.wrap;
  * @apioption xAxis.currentDateIndicator
  */
 var defaultOptions = {
-    color: Palette.highlightColor20,
+    color: "#ccd6eb" /* highlightColor20 */,
     width: 2,
     /**
      * @declare Highcharts.AxisCurrentDateIndicatorLabelOptions
@@ -42,7 +41,7 @@ var defaultOptions = {
     label: {
         /**
          * Format of the label. This options is passed as the fist argument to
-         * [dateFormat](/class-reference/Highcharts#.dateFormat) function.
+         * [dateFormat](/class-reference/Highcharts.Time#dateFormat) function.
          *
          * @type      {string}
          * @default   %a, %b %d %Y, %H:%M

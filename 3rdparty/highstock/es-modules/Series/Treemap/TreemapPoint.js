@@ -23,7 +23,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import DrawPointMixin from '../../Mixins/DrawPoint.js';
+import DrawPointComposition from '../DrawPointComposition.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var Point = SeriesRegistry.series.prototype.pointClass, _a = SeriesRegistry.seriesTypes, PiePoint = _a.pie.prototype.pointClass, ScatterPoint = _a.scatter.prototype.pointClass;
 import U from '../../Core/Utilities.js';
@@ -96,9 +96,9 @@ var TreemapPoint = /** @class */ (function (_super) {
     return TreemapPoint;
 }(ScatterPoint));
 extend(TreemapPoint.prototype, {
-    draw: DrawPointMixin.drawPoint,
     setVisible: PiePoint.prototype.setVisible
 });
+DrawPointComposition.compose(TreemapPoint);
 /* *
  *
  *  Default Export

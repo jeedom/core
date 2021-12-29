@@ -24,7 +24,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import H from '../../Core/Globals.js';
-import NodesMixin from '../../Mixins/Nodes.js';
+import NodesComposition from '../NodesComposition.js';
 import Point from '../../Core/Series/Point.js';
 import Series from '../../Core/Series/Series.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
@@ -497,12 +497,12 @@ extend(NetworkgraphSeries.prototype, {
      * links.
      * @private
      */
-    createNode: NodesMixin.createNode,
+    createNode: NodesComposition.createNode,
     destroy: function () {
         if (this.layout) {
             this.layout.removeElementFromCollection(this, this.layout.series);
         }
-        NodesMixin.destroy.call(this);
+        NodesComposition.destroy.call(this);
     },
     /* eslint-disable no-invalid-this, valid-jsdoc */
     /**
@@ -534,7 +534,7 @@ extend(NetworkgraphSeries.prototype, {
      */
     generatePoints: function () {
         var node, i;
-        NodesMixin.generatePoints.apply(this, arguments);
+        NodesComposition.generatePoints.apply(this, arguments);
         // In networkgraph, it's fine to define stanalone nodes, create
         // them:
         if (this.options.nodes) {
@@ -789,7 +789,7 @@ var NetworkgraphPoint = /** @class */ (function (_super) {
     return NetworkgraphPoint;
 }(Series.prototype.pointClass));
 extend(NetworkgraphPoint.prototype, {
-    setState: NodesMixin.setNodeState,
+    setState: NodesComposition.setNodeState,
     /**
      * Basic `point.init()` and additional styles applied when
      * `series.draggable` is enabled.
@@ -812,7 +812,6 @@ extend(NetworkgraphPoint.prototype, {
      * Return degree of a node. If node has no connections, it still has
      * deg=1.
      * @private
-     * @return {number}
      */
     getDegree: function () {
         var deg = this.isNode ?
@@ -824,7 +823,6 @@ extend(NetworkgraphPoint.prototype, {
     /**
      * Get presentational attributes of link connecting two nodes.
      * @private
-     * @return {Highcharts.SVGAttributes}
      */
     getLinkAttributes: function () {
         var linkOptions = this.series.options.link, pointOptions = this.options;
@@ -952,7 +950,6 @@ extend(NetworkgraphPoint.prototype, {
      * @param {boolean|Partial<Highcharts.AnimationOptionsObject>} [animation=false]
      *        Whether to apply animation, and optionally animation
      *        configuration.
-     * @return {void}
      */
     remove: function (redraw, animation) {
         var point = this, series = point.series, nodesOptions = series.options.nodes || [], index, i = nodesOptions.length;
@@ -1009,7 +1006,6 @@ extend(NetworkgraphPoint.prototype, {
      * Destroy point. If it's a node, remove all links coming out of this
      * node. Then remove point from the layout.
      * @private
-     * @return {void}
      */
     destroy: function () {
         if (this.isNode) {
@@ -1072,7 +1068,7 @@ export default NetworkgraphSeries;
  *     }]
  *  ```
  *
- * @type      {Array<Object|Array|Number>}
+ * @type      {Array<Object|Array|number>}
  * @extends   series.line.data
  * @excluding drilldown,marker,x,y,draDrop
  * @sample    {highcharts} highcharts/chart/reflow-true/

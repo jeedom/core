@@ -25,19 +25,17 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import Color from '../../Core/Color/Color.js';
 var color = Color.parse;
-import ColorMapMixin from '../../Mixins/ColorMapSeries.js';
-var colorMapSeriesMixin = ColorMapMixin.colorMapSeriesMixin;
+import ColorMapMixin from '../ColorMapMixin.js';
 import H from '../../Core/Globals.js';
 var noop = H.noop;
-import LegendSymbolMixin from '../../Mixins/LegendSymbol.js';
-import palette from '../../Core/Color/Palette.js';
+import LegendSymbol from '../../Core/Legend/LegendSymbol.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var Series = SeriesRegistry.series, _a = SeriesRegistry.seriesTypes, ColumnSeries = _a.column, HeatmapSeries = _a.heatmap, ScatterSeries = _a.scatter;
 import TreemapAlgorithmGroup from './TreemapAlgorithmGroup.js';
 import TreemapPoint from './TreemapPoint.js';
 import TreemapUtilities from './TreemapUtilities.js';
-import TreeSeriesMixin from '../../Mixins/TreeSeries.js';
-var getColor = TreeSeriesMixin.getColor, getLevelOptions = TreeSeriesMixin.getLevelOptions, updateRootId = TreeSeriesMixin.updateRootId;
+import TU from '../TreeUtilities.js';
+var getColor = TU.getColor, getLevelOptions = TU.getLevelOptions, updateRootId = TU.updateRootId;
 import U from '../../Core/Utilities.js';
 var addEvent = U.addEvent, correctFloat = U.correctFloat, defined = U.defined, error = U.error, extend = U.extend, fireEvent = U.fireEvent, isArray = U.isArray, isObject = U.isObject, isString = U.isString, merge = U.merge, pick = U.pick, stableSort = U.stableSort;
 import './TreemapComposition.js';
@@ -251,11 +249,11 @@ var TreemapSeries = /** @class */ (function (_super) {
      * @private
      * @function Highcharts.Series#calculateChildrenAreas
      *
-     * @param {object} node
-     *        The node which is parent to the children.
+     * @param {Object} node
+     * The node which is parent to the children.
      *
-     * @param {object} area
-     *        The rectangular area of the parent.
+     * @param {Object} area
+     * The rectangular area of the parent.
      */
     TreemapSeries.prototype.calculateChildrenAreas = function (parent, area) {
         var series = this, options = series.options, mapOptionsToLevel = series.mapOptionsToLevel, level = mapOptionsToLevel[parent.level + 1], algorithm = pick((series[(level && level.layoutAlgorithm)] &&
@@ -463,7 +461,7 @@ var TreemapSeries = /** @class */ (function (_super) {
      * @param {Array<string>} [existingIds]
      *        List of all point ids.
      *
-     * @return {object}
+     * @return {Object}
      *         Map from parent id to children index in data.
      */
     TreemapSeries.prototype.getListOfParents = function (data, existingIds) {
@@ -510,9 +508,7 @@ var TreemapSeries = /** @class */ (function (_super) {
     TreemapSeries.prototype.init = function (chart, options) {
         var series = this, setOptionsEvent;
         // If color series logic is loaded, add some properties
-        if (colorMapSeriesMixin) {
-            this.colorAttribs = colorMapSeriesMixin.colorAttribs;
-        }
+        this.colorAttribs = ColorMapMixin.SeriesMixin.colorAttribs;
         setOptionsEvent = addEvent(series, 'setOptions', function (event) {
             var options = event.userOptions;
             if (defined(options.allowDrillToNode) &&
@@ -593,7 +589,8 @@ var TreemapSeries = /** @class */ (function (_super) {
         return attr;
     };
     TreemapSeries.prototype.renderTraverseUpButton = function (rootId) {
-        var series = this, nodeMap = series.nodeMap, node = nodeMap[rootId], name = node.name, buttonOptions = series.options.traverseUpButton, backText = pick(buttonOptions.text, name, '◁ Back'), attr, states;
+        var series = this, nodeMap = series.nodeMap, node = nodeMap[rootId], name = node.name, buttonOptions = series.options
+            .traverseUpButton, backText = pick(buttonOptions.text, name, '◁ Back'), attr, states;
         if (rootId === '' || (series.is('sunburst') &&
             series.tree.children.length === 1 &&
             rootId === series.tree.children[0].id)) {
@@ -704,7 +701,7 @@ var TreemapSeries = /** @class */ (function (_super) {
      * @param {boolean} [redraw=true]
      * Wether to redraw the chart or not.
      *
-     * @param {object} [eventArguments]
+     * @param {Object} [eventArguments]
      * Arguments to be accessed in event handler.
      *
      * @param {string} [eventArguments.newRootId]
@@ -716,14 +713,14 @@ var TreemapSeries = /** @class */ (function (_super) {
      * @param {boolean} [eventArguments.redraw]
      * Wether to redraw the chart after.
      *
-     * @param {object} [eventArguments.series]
+     * @param {Object} [eventArguments.series]
      * The series to update the root of.
      *
      * @param {string} [eventArguments.trigger]
      * The action which triggered the event. Undefined if the setRootNode is
      * called directly.
      *
-     * @fires Highcharts.Series#event:setRootNode
+     * @emits Highcharts.Series#event:setRootNode
      */
     TreemapSeries.prototype.setRootNode = function (id, redraw, eventArguments) {
         var series = this, eventArgs = extend({
@@ -736,16 +733,15 @@ var TreemapSeries = /** @class */ (function (_super) {
          * The default functionality of the setRootNode event.
          *
          * @private
-         * @param {object} args The event arguments.
+         * @param {Object} args The event arguments.
          * @param {string} args.newRootId Id of the new root.
          * @param {string} args.previousRootId Id of the previous root.
          * @param {boolean} args.redraw Wether to redraw the chart after.
-         * @param {object} args.series The series to update the root of.
+         * @param {Object} args.series The series to update the root of.
          * @param {string} [args.trigger=undefined] The action which
          * triggered the event. Undefined if the setRootNode is called
          * directly.
-         * @return {void}
-         */
+             */
         var defaultFn = function (args) {
             var series = args.series;
             // Store previous and new root ids on the series.
@@ -960,10 +956,11 @@ var TreemapSeries = /** @class */ (function (_super) {
          * additional properties `newRootId`, `previousRootId`, `redraw` and
          * `trigger`.
          *
-         * @type {function}
-         * @default undefined
          * @sample {highcharts} highcharts/plotoptions/treemap-events-setrootnode/
          *         Alert update information on setRootNode event.
+         *
+         * @type {Function}
+         * @default undefined
          * @since 7.0.3
          * @product highcharts
          * @apioption plotOptions.treemap.events.setRootNode
@@ -1305,7 +1302,7 @@ var TreemapSeries = /** @class */ (function (_super) {
          *
          * @type {Highcharts.ColorString}
          */
-        borderColor: palette.neutralColor10,
+        borderColor: "#e6e6e6" /* neutralColor10 */,
         /**
          * The width of the border surrounding each tree map item.
          */
@@ -1334,7 +1331,7 @@ var TreemapSeries = /** @class */ (function (_super) {
                 /**
                  * The border color for the hovered state.
                  */
-                borderColor: palette.neutralColor40,
+                borderColor: "#999999" /* neutralColor40 */,
                 /**
                  * Brightness for the hovered point. Defaults to 0 if the
                  * heatmap series is loaded first, otherwise 0.1.
@@ -1367,7 +1364,7 @@ extend(TreemapSeries.prototype, {
     buildKDTree: noop,
     colorKey: 'colorValue',
     directTouch: true,
-    drawLegendSymbol: LegendSymbolMixin.drawRectangle,
+    drawLegendSymbol: LegendSymbol.drawRectangle,
     getExtremesFromAll: true,
     getSymbol: noop,
     optionalAxis: 'colorAxis',
@@ -1435,7 +1432,7 @@ export default TreemapSeries;
  *
  * @type      {Array<number|null|*>}
  * @extends   series.heatmap.data
- * @excluding x, y
+ * @excluding x, y, pointPadding
  * @product   highcharts
  * @apioption series.treemap.data
  */

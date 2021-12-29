@@ -23,8 +23,8 @@ symbols.flag = function (x, y, w, h, options) {
 /**
  * Create the circlepin and squarepin icons with anchor.
  * @private
- * @param {string} shape - circle or square
- * @return {void}
+ * @param {string} shape
+ * circle or square
  */
 function createPinSymbol(shape) {
     symbols[(shape + 'pin')] = function (x, y, w, h, options) {

@@ -10,7 +10,7 @@
 'use strict';
 import Annotation from './Annotations.js';
 import Chart from '../../Core/Chart/Chart.js';
-import chartNavigationMixin from '../../Mixins/Navigation.js';
+import ChartNavigationComposition from '../../Core/Chart/ChartNavigationComposition.js';
 import F from '../../Core/FormatUtilities.js';
 var format = F.format;
 import H from '../../Core/Globals.js';
@@ -105,10 +105,9 @@ var bindingsUtils = {
      * Annotation to be updated
      */
     updateRectSize: function (event, annotation) {
-        var chart = annotation.chart, options = annotation.options.typeOptions, coords = chart.pointer.getCoordinates(event), coordsX = chart.navigationBindings.utils.getAssignedAxis(coords.xAxis), coordsY = chart.navigationBindings.utils.getAssignedAxis(coords.yAxis), width, height;
-        if (coordsX && coordsY) {
-            width = coordsX.value - options.point.x;
-            height = options.point.y - coordsY.value;
+        var chart = annotation.chart, options = annotation.options.typeOptions, xAxis = isNumber(options.xAxis) && chart.xAxis[options.xAxis], yAxis = isNumber(options.yAxis) && chart.yAxis[options.yAxis];
+        if (xAxis && yAxis) {
+            var x = xAxis.toValue(event[xAxis.horiz ? 'chartX' : 'chartY']), y = yAxis.toValue(event[yAxis.horiz ? 'chartX' : 'chartY']), width = x - options.point.x, height = options.point.y - y;
             annotation.update({
                 typeOptions: {
                     background: {
@@ -134,7 +133,7 @@ var bindingsUtils = {
      */
     getAssignedAxis: function (coords) {
         return coords.filter(function (coord) {
-            var axisMin = coord.axis.min, axisMax = coord.axis.max, 
+            var extremes = coord.axis.getExtremes(), axisMin = extremes.min, axisMax = extremes.max, 
             // Correct axis edges when axis has series
             // with pointRange (like column)
             minPointOffset = pick(coord.axis.minPointOffset, 0);
@@ -201,7 +200,9 @@ var NavigationBindings = /** @class */ (function () {
         [].forEach.call(bindingsContainer, function (subContainer) {
             navigation.eventsToUnbind.push(addEvent(subContainer, 'click', function (event) {
                 var bindings = navigation.getButtonEvents(subContainer, event);
-                if (bindings && bindings.button.className.indexOf('highcharts-disabled-btn') === -1) {
+                if (bindings &&
+                    bindings.button.className
+                        .indexOf('highcharts-disabled-btn') === -1) {
                     navigation.bindingsButtonClick(bindings.button, bindings.events, event);
                 }
             }));
@@ -231,9 +232,11 @@ var NavigationBindings = /** @class */ (function () {
      */
     NavigationBindings.prototype.initUpdate = function () {
         var navigation = this;
-        chartNavigationMixin.addUpdate(function (options) {
+        ChartNavigationComposition
+            .compose(this.chart).navigation
+            .addUpdate(function (options) {
             navigation.update(options);
-        }, this.chart);
+        });
     };
     /**
      * Hook for click on a button, method selcts/unselects buttons,
@@ -245,15 +248,19 @@ var NavigationBindings = /** @class */ (function () {
      * @param {Highcharts.HTMLDOMElement} [button]
      *        Clicked button
      *
-     * @param {object} events
+     * @param {Object} events
      *        Events passed down from bindings (`init`, `start`, `step`, `end`)
      *
      * @param {Highcharts.PointerEventObject} clickEvent
      *        Browser's click event
      */
     NavigationBindings.prototype.bindingsButtonClick = function (button, events, clickEvent) {
-        var navigation = this, chart = navigation.chart;
+        var navigation = this, chart = navigation.chart, svgContainer = chart.renderer.boxWrapper;
+        var shouldEventBeFired = true;
         if (navigation.selectedButtonElement) {
+            if (navigation.selectedButtonElement.classList === button.classList) {
+                shouldEventBeFired = false;
+            }
             fireEvent(navigation, 'deselectButton', { button: navigation.selectedButtonElement });
             if (navigation.nextEvent) {
                 // Remove in-progress annotations adders:
@@ -264,15 +271,24 @@ var NavigationBindings = /** @class */ (function () {
                 navigation.mouseMoveEvent = navigation.nextEvent = false;
             }
         }
-        navigation.selectedButton = events;
-        navigation.selectedButtonElement = button;
-        fireEvent(navigation, 'selectButton', { button: button });
-        // Call "init" event, for example to open modal window
-        if (events.init) {
-            events.init.call(navigation, button, clickEvent);
+        if (shouldEventBeFired) {
+            navigation.selectedButton = events;
+            navigation.selectedButtonElement = button;
+            fireEvent(navigation, 'selectButton', { button: button });
+            // Call "init" event, for example to open modal window
+            if (events.init) {
+                events.init.call(navigation, button, clickEvent);
+            }
+            if (events.start || events.steps) {
+                chart.renderer.boxWrapper.addClass(PREFIX + 'draw-mode');
+            }
         }
-        if (events.start || events.steps) {
-            chart.renderer.boxWrapper.addClass(PREFIX + 'draw-mode');
+        else {
+            chart.stockTools && chart.stockTools.toggleButtonAciveClass(button);
+            svgContainer.removeClass(PREFIX + 'draw-mode');
+            navigation.nextEvent = false;
+            navigation.mouseMoveEvent = false;
+            navigation.selectedButton = null;
         }
     };
     /**
@@ -291,15 +307,24 @@ var NavigationBindings = /** @class */ (function () {
      */
     NavigationBindings.prototype.bindingsChartClick = function (chart, clickEvent) {
         chart = this.chart;
-        var navigation = this, selectedButton = navigation.selectedButton, svgContainer = chart.renderer.boxWrapper;
-        // Click outside popups, should close them and deselect the annotation
-        if (navigation.activeAnnotation &&
-            !clickEvent.activeAnnotation &&
-            // Element could be removed in the child action, e.g. button
-            clickEvent.target.parentNode &&
-            // TO DO: Polyfill for IE11?
-            !closestPolyfill(clickEvent.target, '.' + PREFIX + 'popup')) {
-            fireEvent(navigation, 'closePopup');
+        var navigation = this, activeAnnotation = navigation.activeAnnotation, selectedButton = navigation.selectedButton, svgContainer = chart.renderer.boxWrapper;
+        if (activeAnnotation) {
+            // Click outside popups, should close them and deselect the
+            // annotation
+            if (!activeAnnotation.cancelClick && // #15729
+                !clickEvent.activeAnnotation &&
+                // Element could be removed in the child action, e.g. button
+                clickEvent.target.parentNode &&
+                // TO DO: Polyfill for IE11?
+                !closestPolyfill(clickEvent.target, '.' + PREFIX + 'popup')) {
+                fireEvent(navigation, 'closePopup');
+            }
+            else if (activeAnnotation.cancelClick) {
+                // Reset cancelClick after the other event handlers have run
+                setTimeout(function () {
+                    activeAnnotation.cancelClick = false;
+                }, 0);
+            }
         }
         if (!selectedButton || !selectedButton.start) {
             return;
@@ -331,8 +356,7 @@ var NavigationBindings = /** @class */ (function () {
                 navigation.stepIndex++;
                 if (selectedButton.steps[navigation.stepIndex]) {
                     // If we have more steps, bind them one by one:
-                    navigation.mouseMoveEvent = navigation.nextEvent =
-                        selectedButton.steps[navigation.stepIndex];
+                    navigation.mouseMoveEvent = navigation.nextEvent = selectedButton.steps[navigation.stepIndex];
                 }
                 else {
                     fireEvent(navigation, 'deselectButton', { button: navigation.selectedButtonElement });
@@ -455,10 +479,10 @@ var NavigationBindings = /** @class */ (function () {
          * @param {string} key
          *        Option name, for example "visible" or "x", "y"
          *
-         * @param {object} parentEditables
+         * @param {Object} parentEditables
          *        Editables from NavigationBindings.annotationsEditable
          *
-         * @param {object} parent
+         * @param {Object} parent
          *        Where new options will be assigned
          */
         function traverse(option, key, parentEditables, parent) {
@@ -499,7 +523,9 @@ var NavigationBindings = /** @class */ (function () {
                         parent[key] = nextParent;
                     }
                     objectEach(option, function (nestedOption, nestedKey) {
-                        traverse(nestedOption, nestedKey, key === 0 ? parentEditables : nestedEditables[key], nextParent);
+                        traverse(nestedOption, nestedKey, key === 0 ?
+                            parentEditables :
+                            nestedEditables[key], nextParent);
                     });
                 }
                 else {
@@ -538,14 +564,14 @@ var NavigationBindings = /** @class */ (function () {
      *
      * @function Highcharts.NavigationBindings#getClickedClassNames
      *
-     * @param {Highcharts.HTMLDOMElement}
-     *        Container that event is bound to.
+     * @param {Highcharts.HTMLDOMElement} container
+     * Container that event is bound to.
      *
      * @param {global.Event} event
-     *        Browser's event.
+     * Browser's event.
      *
      * @return {Array<Array<string, Highcharts.HTMLDOMElement>>}
-     *         Array of class names with corresponding elements
+     * Array of class names with corresponding elements
      */
     NavigationBindings.prototype.getClickedClassNames = function (container, event) {
         var element = event.target, classNames = [], elemClassName;
@@ -581,7 +607,7 @@ var NavigationBindings = /** @class */ (function () {
      * @param {global.Event} event
      *        Browser's event.
      *
-     * @return {object}
+     * @return {Object}
      *         Object with events (init, start, steps, and end)
      */
     NavigationBindings.prototype.getButtonEvents = function (container, event) {
@@ -649,6 +675,7 @@ var NavigationBindings = /** @class */ (function () {
         },
         // Simple shapes:
         circle: ['shapes'],
+        ellipse: ['shapes'],
         verticalLine: [],
         label: ['labelOptions'],
         // Measure
@@ -665,7 +692,9 @@ var NavigationBindings = /** @class */ (function () {
     // Define non editable fields per annotation, for example Rectangle inherits
     // options from Measure, but crosshairs are not available
     NavigationBindings.annotationsNonEditable = {
-        rectangle: ['crosshairX', 'crosshairY', 'label']
+        rectangle: ['crosshairX', 'crosshairY', 'labelOptions'],
+        ellipse: ['labelOptions'],
+        circle: ['labelOptions']
     };
     return NavigationBindings;
 }());
@@ -738,10 +767,10 @@ function selectableAnnotation(annotationType) {
                         if (annotation.options.type === 'measure') {
                             // Manually disable crooshars according to
                             // stroke width of the shape:
-                            typeOptions.crosshairY.enabled =
-                                typeOptions.crosshairY.strokeWidth !== 0;
-                            typeOptions.crosshairX.enabled =
-                                typeOptions.crosshairX.strokeWidth !== 0;
+                            typeOptions.crosshairY.enabled = (typeOptions.crosshairY
+                                .strokeWidth !== 0);
+                            typeOptions.crosshairX.enabled = (typeOptions.crosshairX
+                                .strokeWidth !== 0);
                         }
                         annotation.update(config);
                     }
@@ -778,7 +807,6 @@ setOptions({
          * Configure the Popup strings in the chart. Requires the
          * `annotations.js` or `annotations-advanced.src.js` module to be
          * loaded.
-         *
          * @since   7.0.0
          * @product highcharts highstock
          */
@@ -792,6 +820,7 @@ setOptions({
                 simpleShapes: 'Simple shapes',
                 lines: 'Lines',
                 circle: 'Circle',
+                ellipse: 'Ellipse',
                 rectangle: 'Rectangle',
                 label: 'Label',
                 shapeOptions: 'Shape options',
@@ -852,9 +881,16 @@ setOptions({
          * - `end`: last event to be called after last step event
          *
          * @type         {Highcharts.Dictionary<Highcharts.NavigationBindingsOptionsObject>|*}
-         * @sample       stock/stocktools/stocktools-thresholds
-         *               Custom bindings in Highcharts Stock
+         *
+         * @sample {highstock} stock/stocktools/stocktools-thresholds
+         *               Custom bindings
+         * @sample {highcharts} highcharts/annotations/bindings/
+         *               Simple binding
+         * @sample {highcharts} highcharts/annotations/bindings-custom-annotation/
+         *               Custom annotation binding
+         *
          * @since        7.0.0
+         * @requires     modules/annotations
          * @product      highcharts highstock
          */
         bindings: {
@@ -888,22 +924,18 @@ setOptions({
                                 },
                                 r: 5
                             }]
-                    }, navigation
-                        .annotationsOptions, navigation
-                        .bindings
-                        .circleAnnotation
+                    }, navigation.annotationsOptions, navigation.bindings.circleAnnotation
                         .annotationsOptions));
                 },
                 /** @ignore-option */
                 steps: [
                     function (e, annotation) {
                         var mockPointOpts = annotation.options.shapes[0]
-                            .point, inverted = this.chart.inverted, x, y, distance;
+                            .point, distance;
                         if (isNumber(mockPointOpts.xAxis) &&
                             isNumber(mockPointOpts.yAxis)) {
-                            x = this.chart.xAxis[mockPointOpts.xAxis]
-                                .toPixels(mockPointOpts.x);
-                            y = this.chart.yAxis[mockPointOpts.yAxis]
+                            var inverted = this.chart.inverted, x = this.chart.xAxis[mockPointOpts.xAxis]
+                                .toPixels(mockPointOpts.x), y = this.chart.yAxis[mockPointOpts.yAxis]
                                 .toPixels(mockPointOpts.y);
                             distance = Math.max(Math.sqrt(Math.pow(inverted ? y - e.chartX : x - e.chartX, 2) +
                                 Math.pow(inverted ? x - e.chartY : y - e.chartY, 2)), 5);
@@ -913,6 +945,47 @@ setOptions({
                                     r: distance
                                 }]
                         });
+                    }
+                ]
+            },
+            ellipseAnnotation: {
+                className: 'highcharts-ellipse-annotation',
+                start: function (e) {
+                    var coords = this.chart.pointer.getCoordinates(e), coordsX = this.utils.getAssignedAxis(coords.xAxis), coordsY = this.utils.getAssignedAxis(coords.yAxis), navigation = this.chart.options.navigation;
+                    if (!coordsX || !coordsY) {
+                        return;
+                    }
+                    return this.chart.addAnnotation(merge({
+                        langKey: 'ellipse',
+                        type: 'basicAnnotation',
+                        shapes: [
+                            {
+                                type: 'ellipse',
+                                xAxis: coordsX.axis.options.index,
+                                yAxis: coordsY.axis.options.index,
+                                points: [{
+                                        x: coordsX.value,
+                                        y: coordsY.value
+                                    }, {
+                                        x: coordsX.value,
+                                        y: coordsY.value
+                                    }],
+                                ry: 1
+                            }
+                        ]
+                    }, navigation.annotationsOptions, navigation.bindings.ellipseAnnotation
+                        .annotationOptions));
+                },
+                steps: [
+                    function (e, annotation) {
+                        var target = annotation.shapes[0], position = target.getAbsolutePosition(target.points[1]);
+                        target.translatePoint(e.chartX - position.x, e.chartY - position.y, 1);
+                        target.redraw(false);
+                    },
+                    function (e, annotation) {
+                        var target = annotation.shapes[0], position = target.getAbsolutePosition(target.points[0]), position2 = target.getAbsolutePosition(target.points[1]), newR = target.getDistanceFromLine(position, position2, e.chartX, e.chartY), yAxis = target.getYAxis(), newRY = Math.abs(yAxis.toValue(0) - yAxis.toValue(newR));
+                        target.setYRadius(newRY);
+                        target.redraw(false);
                     }
                 ]
             },
@@ -943,7 +1016,8 @@ setOptions({
                                     { xAxis: xAxis, yAxis: yAxis, x: x, y: y },
                                     { xAxis: xAxis, yAxis: yAxis, x: x, y: y },
                                     { xAxis: xAxis, yAxis: yAxis, x: x, y: y },
-                                    { xAxis: xAxis, yAxis: yAxis, x: x, y: y }
+                                    { xAxis: xAxis, yAxis: yAxis, x: x, y: y },
+                                    { command: 'Z' }
                                 ]
                             }]
                     }, navigation
@@ -1020,7 +1094,7 @@ setOptions({
          * from a different server.
          *
          * @type      {string}
-         * @default   https://code.highcharts.com/9.1.2/gfx/stock-icons/
+         * @default   https://code.highcharts.com/9.3.2/gfx/stock-icons/
          * @since     7.1.3
          * @apioption navigation.iconsURL
          */
@@ -1076,6 +1150,7 @@ setOptions({
          * @extends   annotations
          * @exclude   crookedLine, elliottWave, fibonacci, infinityLine,
          *            measure, pitchfork, tunnel, verticalLine, basicAnnotation
+         * @requires     modules/annotations
          * @apioption navigation.annotationsOptions
          */
         annotationsOptions: {
@@ -1100,34 +1175,31 @@ addEvent(Chart, 'render', function () {
             if (chart.navigationBindings &&
                 chart.navigationBindings.container &&
                 chart.navigationBindings.container[0]) {
-                // Get the HTML element coresponding to the
-                // className taken from StockToolsBindings.
-                var buttonNode = chart.navigationBindings.container[0].querySelectorAll('.' + key);
+                // Get the HTML element coresponding to the className taken
+                // from StockToolsBindings.
+                var buttonNode = chart.navigationBindings.container[0]
+                    .querySelectorAll('.' + key);
                 if (buttonNode) {
-                    if (value.noDataState === 'normal') {
-                        buttonNode.forEach(function (button) {
-                            // If button has noDataState: 'normal',
-                            // and has disabledClassName,
-                            // remove this className.
-                            if (button.className.indexOf(disabledClassName) !== -1) {
+                    for (var i = 0; i < buttonNode.length; i++) {
+                        var button = buttonNode[i], cls = button.className;
+                        if (value.noDataState === 'normal') {
+                            // If button has noDataState: 'normal', and has
+                            // disabledClassName, remove this className.
+                            if (cls.indexOf(disabledClassName) !== -1) {
                                 button.classList.remove(disabledClassName);
                             }
-                        });
-                    }
-                    else if (!buttonsEnabled_1) {
-                        buttonNode.forEach(function (button) {
-                            if (button.className.indexOf(disabledClassName) === -1) {
+                        }
+                        else if (!buttonsEnabled_1) {
+                            if (cls.indexOf(disabledClassName) === -1) {
                                 button.className += ' ' + disabledClassName;
                             }
-                        });
-                    }
-                    else {
-                        buttonNode.forEach(function (button) {
+                        }
+                        else {
                             // Enable all buttons by deleting the className.
-                            if (button.className.indexOf(disabledClassName) !== -1) {
+                            if (cls.indexOf(disabledClassName) !== -1) {
                                 button.classList.remove(disabledClassName);
                             }
-                        });
+                        }
                     }
                 }
             }

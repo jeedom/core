@@ -80,6 +80,7 @@ H.layouts.packedbubble = extendClass(Reingold, {
             });
         }
     },
+    // #14439, new stable check.
     isStable: function () {
         var tempDiff = Math.abs(this.prevSystemTemperature -
             this.systemTemperature);

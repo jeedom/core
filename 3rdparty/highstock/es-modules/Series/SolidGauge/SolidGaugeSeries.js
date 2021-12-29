@@ -23,7 +23,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import LegendSymbolMixin from '../../Mixins/LegendSymbol.js';
+import LegendSymbol from '../../Core/Legend/LegendSymbol.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var _a = SeriesRegistry.seriesTypes, GaugeSeries = _a.gauge, pieProto = _a.pie.prototype;
 import SolidGaugeAxis from '../../Core/Axis/SolidGaugeAxis.js';
@@ -267,7 +267,7 @@ var SolidGaugeSeries = /** @class */ (function (_super) {
     return SolidGaugeSeries;
 }(GaugeSeries));
 extend(SolidGaugeSeries.prototype, {
-    drawLegendSymbol: LegendSymbolMixin.drawRectangle
+    drawLegendSymbol: LegendSymbol.drawRectangle
 });
 SeriesRegistry.registerSeriesType('solidgauge', SolidGaugeSeries);
 /* *

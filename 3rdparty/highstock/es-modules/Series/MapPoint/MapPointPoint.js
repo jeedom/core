@@ -24,7 +24,7 @@ var __extends = (this && this.__extends) || (function () {
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var ScatterSeries = SeriesRegistry.seriesTypes.scatter;
 import U from '../../Core/Utilities.js';
-var merge = U.merge;
+var isNumber = U.isNumber, merge = U.merge;
 /* *
  *
  *  Class
@@ -56,6 +56,10 @@ var MapPointPoint = /** @class */ (function (_super) {
             merge(options, this.series.chart.fromLatLonToPoint(options)) :
             options);
         return _super.prototype.applyOptions.call(this, mergedOptions, x);
+    };
+    MapPointPoint.prototype.isValid = function () {
+        return Boolean(this.options.geometry ||
+            (isNumber(this.x) && isNumber(this.y)));
     };
     return MapPointPoint;
 }(ScatterSeries.prototype.pointClass));

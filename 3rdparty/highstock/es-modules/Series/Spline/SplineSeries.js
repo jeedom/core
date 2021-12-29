@@ -62,14 +62,6 @@ var SplineSeries = /** @class */ (function (_super) {
      *
      * @private
      * @function Highcharts.seriesTypes.spline#getPointSpline
-     *
-     * @param {Array<Highcharts.Point>}
-     *
-     * @param {Highcharts.Point} point
-     *
-     * @param {number} i
-     *
-     * @return {Highcharts.SVGPathArray}
      */
     SplineSeries.prototype.getPointSpline = function (points, point, i) {
         var 

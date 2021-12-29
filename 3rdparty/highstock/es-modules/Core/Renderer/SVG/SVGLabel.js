@@ -39,7 +39,7 @@ var SVGLabel = /** @class */ (function (_super) {
     __extends(SVGLabel, _super);
     /* *
      *
-     *  Constructors
+     *  Constructor
      *
      * */
     function SVGLabel(renderer, str, x, y, shape, anchorX, anchorY, useHTML, baseline, className) {
@@ -60,7 +60,9 @@ var SVGLabel = /** @class */ (function (_super) {
         if (className) {
             _this.addClass('highcharts-' + className);
         }
-        _this.text = renderer.text('', 0, 0, useHTML).attr({ zIndex: 1 });
+        // Create the text element. An undefined text content prevents redundant
+        // box calculation (#16121)
+        _this.text = renderer.text(void 0, 0, 0, useHTML).attr({ zIndex: 1 });
         // Validate the shape argument
         var hasBGImage;
         if (typeof shape === 'string') {
@@ -132,7 +134,8 @@ var SVGLabel = /** @class */ (function (_super) {
                 }
             });
             this.text.css(textStyles_1);
-            var isWidth = 'width' in textStyles_1, isFontStyle = ('fontSize' in textStyles_1 || 'fontWeight' in textStyles_1);
+            var isWidth = 'width' in textStyles_1, isFontStyle = ('fontSize' in textStyles_1 ||
+                'fontWeight' in textStyles_1);
             // Update existing text, box (#9400, #12163)
             if (isFontStyle) {
                 this.updateTextPadding();
@@ -194,33 +197,6 @@ var SVGLabel = /** @class */ (function (_super) {
     };
     SVGLabel.prototype.heightSetter = function (value) {
         this.heightSetting = value;
-    };
-    // Event handling. In case of useHTML, we need to make sure that events
-    // are captured on the span as well, and that mouseenter/mouseleave
-    // between the SVG group and the HTML span are not treated as real
-    // enter/leave events. #13310.
-    SVGLabel.prototype.on = function (eventType, handler) {
-        var label = this;
-        var text = label.text;
-        var span = text && text.element.tagName === 'SPAN' ? text : void 0;
-        var selectiveHandler;
-        if (span) {
-            selectiveHandler = function (e) {
-                if ((eventType === 'mouseenter' ||
-                    eventType === 'mouseleave') &&
-                    e.relatedTarget instanceof Element &&
-                    (
-                    // #14110
-                    label.element.compareDocumentPosition(e.relatedTarget) & Node.DOCUMENT_POSITION_CONTAINED_BY ||
-                        span.element.compareDocumentPosition(e.relatedTarget) & Node.DOCUMENT_POSITION_CONTAINED_BY)) {
-                    return;
-                }
-                handler.call(label.element, e);
-            };
-            span.on(eventType, selectiveHandler);
-        }
-        SVGElement.prototype.on.call(label, eventType, selectiveHandler || handler);
-        return label;
     };
     /*
      * After the text element is added, get the desired size of the border
@@ -325,13 +301,15 @@ var SVGLabel = /** @class */ (function (_super) {
                     this.renderer.symbol(this.symbolKey) :
                     this.renderer.rect();
                 box.addClass(// Don't use label className for buttons
-                (this.className === 'button' ? '' : 'highcharts-label-box') +
-                    (this.className ? ' highcharts-' + this.className + '-box' : ''));
+                (this.className === 'button' ?
+                    '' : 'highcharts-label-box') +
+                    (this.className ?
+                        ' highcharts-' + this.className + '-box' : ''));
                 box.add(this);
             }
             crispAdjust = this.getCrispAdjust();
             attribs.x = crispAdjust;
-            attribs.y = (this.baseline ? -this.baselineOffset : 0) + crispAdjust;
+            attribs.y = ((this.baseline ? -this.baselineOffset : 0) + crispAdjust);
             // Apply the box attributes
             attribs.width = Math.round(this.width);
             attribs.height = Math.round(this.height);
@@ -353,8 +331,7 @@ var SVGLabel = /** @class */ (function (_super) {
         if (defined(this.widthSetting) &&
             this.bBox &&
             (this.textAlign === 'center' || this.textAlign === 'right')) {
-            textX += { center: 0.5, right: 1 }[this.textAlign] *
-                (this.widthSetting - this.bBox.width);
+            textX += { center: 0.5, right: 1 }[this.textAlign] * (this.widthSetting - this.bBox.width);
         }
         // update if anything changed
         if (textX !== text.x || textY !== text.y) {
@@ -380,7 +357,9 @@ var SVGLabel = /** @class */ (function (_super) {
         var padding = this.padding;
         var paddingLeft = pick(this.paddingLeft, padding);
         var paddingRight = pick(this.paddingRight, padding);
-        return (this.widthSetting || this.bBox.width || 0) + paddingLeft + paddingRight;
+        return ((this.widthSetting || this.bBox.width || 0) +
+            paddingLeft +
+            paddingRight);
     };
     SVGLabel.prototype.xSetter = function (value) {
         this.x = value; // for animation getter
@@ -401,7 +380,12 @@ var SVGLabel = /** @class */ (function (_super) {
      *  Static Properties
      *
      * */
-    SVGLabel.emptyBBox = { width: 0, height: 0, x: 0, y: 0 };
+    SVGLabel.emptyBBox = {
+        width: 0,
+        height: 0,
+        x: 0,
+        y: 0
+    };
     /**
      * For labels, these CSS properties are applied to the `text` node directly.
      *
@@ -416,4 +400,9 @@ var SVGLabel = /** @class */ (function (_super) {
     ];
     return SVGLabel;
 }(SVGElement));
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default SVGLabel;

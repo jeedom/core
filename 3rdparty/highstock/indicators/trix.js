@@ -1,5 +1,5 @@
 /*
- Highstock JS v9.1.2 (2021-06-16)
+ Highstock JS v9.3.2 (2021-11-29)
 
  Indicator series type for Highcharts Stock
 
@@ -7,8 +7,7 @@
 
  License: www.highcharts.com/license
 */
-'use strict';(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/indicators/trix",["highcharts","highcharts/modules/stock"],function(b){a(b);a.Highcharts=b;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function b(a,d,c,f){a.hasOwnProperty(d)||(a[d]=f.apply(null,c))}a=a?a._modules:{};b(a,"Mixins/IndicatorRequired.js",[a["Core/Utilities.js"]],function(a){var d=a.error;return{isParentLoaded:function(a,
-f,b,h,k){if(a)return h?h(a):!0;d(k||this.generateMessage(b,f));return!1},generateMessage:function(a,b){return'Error: "'+a+'" indicator type requires "'+b+'" indicator loaded before. Please read docs: https://api.highcharts.com/highstock/plotOptions.'+a}}});b(a,"Stock/Indicators/TRIX/TRIXIndicator.js",[a["Mixins/IndicatorRequired.js"],a["Core/Series/SeriesRegistry.js"],a["Core/Utilities.js"]],function(a,b,c){var f=this&&this.__extends||function(){var a=function(b,e){a=Object.setPrototypeOf||{__proto__:[]}instanceof
-Array&&function(a,b){a.__proto__=b}||function(a,b){for(var e in b)b.hasOwnProperty(e)&&(a[e]=b[e])};return a(b,e)};return function(b,e){function d(){this.constructor=b}a(b,e);b.prototype=null===e?Object.create(e):(d.prototype=e.prototype,new d)}}(),d=b.seriesTypes.tema,h=c.correctFloat,k=c.merge;c=function(c){function g(){var a=null!==c&&c.apply(this,arguments)||this;a.data=void 0;a.options=void 0;a.points=void 0;return a}f(g,c);g.prototype.init=function(){var e=arguments,c=this;a.isParentLoaded(b.seriesTypes.tema,
-"tema",c.type,function(a){a.prototype.init.apply(c,e)})};g.prototype.getTemaPoint=function(a,b,c,d){if(d>b)return[a[d-3],0!==c.prevLevel3?h(c.level3-c.prevLevel3)/c.prevLevel3*100:null]};g.defaultOptions=k(d.defaultOptions);return g}(d);b.registerSeriesType("trix",c);"";return c});b(a,"masters/indicators/trix.src.js",[],function(){})});
+'use strict';(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/indicators/trix",["highcharts","highcharts/modules/stock"],function(b){a(b);a.Highcharts=b;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function b(a,e,b,f){a.hasOwnProperty(e)||(a[e]=f.apply(null,b))}a=a?a._modules:{};b(a,"Stock/Indicators/TRIX/TRIXIndicator.js",[a["Core/Series/SeriesRegistry.js"],a["Core/Utilities.js"]],
+function(a,e){var b=this&&this.__extends||function(){var a=function(d,c){a=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(a,c){a.__proto__=c}||function(a,c){for(var d in c)c.hasOwnProperty(d)&&(a[d]=c[d])};return a(d,c)};return function(d,c){function b(){this.constructor=d}a(d,c);d.prototype=null===c?Object.create(c):(b.prototype=c.prototype,new b)}}(),f=a.seriesTypes.tema,g=e.correctFloat,h=e.merge;e=function(a){function d(){var c=null!==a&&a.apply(this,arguments)||this;c.data=void 0;
+c.options=void 0;c.points=void 0;return c}b(d,a);d.prototype.getTemaPoint=function(a,d,b,e){if(e>d)return[a[e-3],0!==b.prevLevel3?g(b.level3-b.prevLevel3)/b.prevLevel3*100:null]};d.defaultOptions=h(f.defaultOptions);return d}(f);a.registerSeriesType("trix",e);"";return e});b(a,"masters/indicators/trix.src.js",[],function(){})});
 //# sourceMappingURL=trix.js.map

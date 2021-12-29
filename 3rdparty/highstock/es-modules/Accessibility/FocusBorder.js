@@ -10,103 +10,134 @@
  *
  * */
 'use strict';
-import Chart from '../Core/Chart/Chart.js';
-import H from '../Core/Globals.js';
-import SVGElement from '../Core/Renderer/SVG/SVGElement.js';
 import SVGLabel from '../Core/Renderer/SVG/SVGLabel.js';
 import U from '../Core/Utilities.js';
-var addEvent = U.addEvent, extend = U.extend, pick = U.pick;
-/* eslint-disable no-invalid-this, valid-jsdoc */
-// Attributes that trigger a focus border update
-var svgElementBorderUpdateTriggers = [
-    'x', 'y', 'transform', 'width', 'height', 'r', 'd', 'stroke-width'
-];
-/**
- * Add hook to destroy focus border if SVG element is destroyed, unless
- * hook already exists.
- * @private
- * @param el Element to add destroy hook to
- */
-function addDestroyFocusBorderHook(el) {
-    if (el.focusBorderDestroyHook) {
-        return;
-    }
-    var origDestroy = el.destroy;
-    el.destroy = function () {
-        if (el.focusBorder && el.focusBorder.destroy) {
-            el.focusBorder.destroy();
-        }
-        return origDestroy.apply(el, arguments);
-    };
-    el.focusBorderDestroyHook = origDestroy;
-}
-/**
- * Remove hook from SVG element added by addDestroyFocusBorderHook, if
- * existing.
- * @private
- * @param el Element to remove destroy hook from
- */
-function removeDestroyFocusBorderHook(el) {
-    if (!el.focusBorderDestroyHook) {
-        return;
-    }
-    el.destroy = el.focusBorderDestroyHook;
-    delete el.focusBorderDestroyHook;
-}
-/**
- * Add hooks to update the focus border of an element when the element
- * size/position is updated, unless already added.
- * @private
- * @param el Element to add update hooks to
- * @param updateParams Parameters to pass through to addFocusBorder when updating.
- */
-function addUpdateFocusBorderHooks(el) {
-    var updateParams = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        updateParams[_i - 1] = arguments[_i];
-    }
-    if (el.focusBorderUpdateHooks) {
-        return;
-    }
-    el.focusBorderUpdateHooks = {};
-    svgElementBorderUpdateTriggers.forEach(function (trigger) {
-        var setterKey = trigger + 'Setter';
-        var origSetter = el[setterKey] || el._defaultSetter;
-        el.focusBorderUpdateHooks[setterKey] = origSetter;
-        el[setterKey] = function () {
-            var ret = origSetter.apply(el, arguments);
-            el.addFocusBorder.apply(el, updateParams);
-            return ret;
-        };
-    });
-}
-/**
- * Remove hooks from SVG element added by addUpdateFocusBorderHooks, if
- * existing.
- * @private
- * @param el Element to remove update hooks from
- */
-function removeUpdateFocusBorderHooks(el) {
-    if (!el.focusBorderUpdateHooks) {
-        return;
-    }
-    Object.keys(el.focusBorderUpdateHooks).forEach(function (setterKey) {
-        var origSetter = el.focusBorderUpdateHooks[setterKey];
-        if (origSetter === el._defaultSetter) {
-            delete el[setterKey];
-        }
-        else {
-            el[setterKey] = origSetter;
-        }
-    });
-    delete el.focusBorderUpdateHooks;
-}
-/*
- * Add focus border functionality to SVGElements. Draws a new rect on top of
- * element around its bounding box. This is used by multiple components.
- */
-extend(SVGElement.prototype, {
+var addEvent = U.addEvent, pick = U.pick;
+/* *
+ *
+ *  Composition
+ *
+ * */
+var FocusBorderComposition;
+(function (FocusBorderComposition) {
+    /* *
+     *
+     *  Declarations
+     *
+     * */
+    /* *
+     *
+     *  Constants
+     *
+     * */
+    var composedClasses = [];
+    // Attributes that trigger a focus border update
+    var svgElementBorderUpdateTriggers = [
+        'x', 'y', 'transform', 'width', 'height', 'r', 'd', 'stroke-width'
+    ];
+    /* *
+     *
+     *  Functions
+     *
+     * */
+    /* eslint-disable valid-jsdoc */
     /**
+     * @private
+     */
+    function compose(ChartClass, SVGElementClass) {
+        if (composedClasses.indexOf(ChartClass) === -1) {
+            composedClasses.push(ChartClass);
+            var chartProto = ChartClass.prototype;
+            chartProto.renderFocusBorder = chartRenderFocusBorder;
+            chartProto.setFocusToElement = chartSetFocusToElement;
+        }
+        if (composedClasses.indexOf(SVGElementClass) === -1) {
+            composedClasses.push(SVGElementClass);
+            var svgElementProto = SVGElementClass.prototype;
+            svgElementProto.addFocusBorder = svgElementAddFocusBorder;
+            svgElementProto.removeFocusBorder = svgElementRemoveFocusBorder;
+        }
+    }
+    FocusBorderComposition.compose = compose;
+    /**
+     * Redraws the focus border on the currently focused element.
+     *
+     * @private
+     * @function Highcharts.Chart#renderFocusBorder
+     */
+    function chartRenderFocusBorder() {
+        var focusElement = this.focusElement, focusBorderOptions = this.options.accessibility.keyboardNavigation.focusBorder;
+        if (focusElement) {
+            focusElement.removeFocusBorder();
+            if (focusBorderOptions.enabled) {
+                focusElement.addFocusBorder(focusBorderOptions.margin, {
+                    stroke: focusBorderOptions.style.color,
+                    strokeWidth: focusBorderOptions.style.lineWidth,
+                    r: focusBorderOptions.style.borderRadius
+                });
+            }
+        }
+    }
+    /**
+     * Set chart's focus to an SVGElement. Calls focus() on it, and draws the
+     * focus border. This is used by multiple components.
+     *
+     * @private
+     * @function Highcharts.Chart#setFocusToElement
+     *
+     * @param {Highcharts.SVGElement} svgElement
+     * Element to draw the border around.
+     *
+     * @param {SVGDOMElement|HTMLDOMElement} [focusElement]
+     * If supplied, it draws the border around svgElement and sets the focus to
+     * focusElement.
+     */
+    function chartSetFocusToElement(svgElement, focusElement) {
+        var focusBorderOptions = this.options.accessibility.keyboardNavigation.focusBorder, browserFocusElement = focusElement || svgElement.element;
+        // Set browser focus if possible
+        if (browserFocusElement &&
+            browserFocusElement.focus) {
+            // If there is no focusin-listener, add one to work around Edge
+            // where Narrator is not reading out points despite calling focus().
+            if (!(browserFocusElement.hcEvents &&
+                browserFocusElement.hcEvents.focusin)) {
+                addEvent(browserFocusElement, 'focusin', function () { });
+            }
+            browserFocusElement.focus();
+            // Hide default focus ring
+            if (focusBorderOptions.hideBrowserFocusOutline) {
+                browserFocusElement.style.outline = 'none';
+            }
+        }
+        if (this.focusElement) {
+            this.focusElement.removeFocusBorder();
+        }
+        this.focusElement = svgElement;
+        this.renderFocusBorder();
+    }
+    /**
+     * Add hook to destroy focus border if SVG element is destroyed, unless
+     * hook already exists.
+     * @private
+     * @param el Element to add destroy hook to
+     */
+    function svgElementAddDestroyFocusBorderHook(el) {
+        if (el.focusBorderDestroyHook) {
+            return;
+        }
+        var origDestroy = el.destroy;
+        el.destroy = function () {
+            if (el.focusBorder && el.focusBorder.destroy) {
+                el.focusBorder.destroy();
+            }
+            return origDestroy.apply(el, arguments);
+        };
+        el.focusBorderDestroyHook = origDestroy;
+    }
+    /**
+     * Add focus border functionality to SVGElements. Draws a new rect on top of
+     * element around its bounding box. This is used by multiple components.
+     *
      * @private
      * @function Highcharts.SVGElement#addFocusBorder
      *
@@ -114,7 +145,7 @@ extend(SVGElement.prototype, {
      *
      * @param {SVGAttributes} attribs
      */
-    addFocusBorder: function (margin, attribs) {
+    function svgElementAddFocusBorder(margin, attribs) {
         // Allow updating by just adding new border
         if (this.focusBorder) {
             this.removeFocusBorder();
@@ -127,17 +158,11 @@ extend(SVGElement.prototype, {
         // For text elements, apply x and y offset, #11397.
         /**
          * @private
-         * @function
-         *
-         * @param {Highcharts.SVGElement} text
-         *
-         * @return {TextAnchorCorrectionObject}
          */
         function getTextAnchorCorrection(text) {
             var posXCorrection = 0, posYCorrection = 0;
             if (text.attr('text-anchor') === 'middle') {
-                posXCorrection = H.isFirefox && text.rotation ? 0.25 : 0.5;
-                posYCorrection = H.isFirefox && !text.rotation ? 0.75 : 0.5;
+                posXCorrection = posYCorrection = 0.5;
             }
             else if (!text.rotation) {
                 posYCorrection = 0.75;
@@ -190,75 +215,88 @@ extend(SVGElement.prototype, {
                 'stroke-width': attribs && attribs.strokeWidth
             });
         }
-        addUpdateFocusBorderHooks(this, margin, attribs);
-        addDestroyFocusBorderHook(this);
-    },
+        avgElementAddUpdateFocusBorderHooks(this, margin, attribs);
+        svgElementAddDestroyFocusBorderHook(this);
+    }
     /**
+     * Add hooks to update the focus border of an element when the element
+     * size/position is updated, unless already added.
+     * @private
+     * @param el Element to add update hooks to
+     * @param updateParams Parameters to pass through to addFocusBorder when updating.
+     */
+    function avgElementAddUpdateFocusBorderHooks(el) {
+        var updateParams = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            updateParams[_i - 1] = arguments[_i];
+        }
+        if (el.focusBorderUpdateHooks) {
+            return;
+        }
+        el.focusBorderUpdateHooks = {};
+        svgElementBorderUpdateTriggers.forEach(function (trigger) {
+            var setterKey = trigger + 'Setter';
+            var origSetter = el[setterKey] || el._defaultSetter;
+            el.focusBorderUpdateHooks[setterKey] = origSetter;
+            el[setterKey] = function () {
+                var ret = origSetter.apply(el, arguments);
+                el.addFocusBorder.apply(el, updateParams);
+                return ret;
+            };
+        });
+    }
+    /**
+     * Remove hook from SVG element added by addDestroyFocusBorderHook, if
+     * existing.
+     * @private
+     * @param el Element to remove destroy hook from
+     */
+    function svgElementRemoveDestroyFocusBorderHook(el) {
+        if (!el.focusBorderDestroyHook) {
+            return;
+        }
+        el.destroy = el.focusBorderDestroyHook;
+        delete el.focusBorderDestroyHook;
+    }
+    /**
+     * Add focus border functionality to SVGElements. Draws a new rect on top of
+     * element around its bounding box. This is used by multiple components.
      * @private
      * @function Highcharts.SVGElement#removeFocusBorder
      */
-    removeFocusBorder: function () {
-        removeUpdateFocusBorderHooks(this);
-        removeDestroyFocusBorderHook(this);
+    function svgElementRemoveFocusBorder() {
+        svgElementRemoveUpdateFocusBorderHooks(this);
+        svgElementRemoveDestroyFocusBorderHook(this);
         if (this.focusBorder) {
             this.focusBorder.destroy();
             delete this.focusBorder;
         }
     }
-});
-/**
- * Redraws the focus border on the currently focused element.
- *
- * @private
- * @function Highcharts.Chart#renderFocusBorder
- */
-Chart.prototype.renderFocusBorder = function () {
-    var focusElement = this.focusElement, focusBorderOptions = this.options.accessibility.keyboardNavigation.focusBorder;
-    if (focusElement) {
-        focusElement.removeFocusBorder();
-        if (focusBorderOptions.enabled) {
-            focusElement.addFocusBorder(focusBorderOptions.margin, {
-                stroke: focusBorderOptions.style.color,
-                strokeWidth: focusBorderOptions.style.lineWidth,
-                r: focusBorderOptions.style.borderRadius
-            });
+    /**
+     * Remove hooks from SVG element added by addUpdateFocusBorderHooks, if
+     * existing.
+     * @private
+     * @param el Element to remove update hooks from
+     */
+    function svgElementRemoveUpdateFocusBorderHooks(el) {
+        if (!el.focusBorderUpdateHooks) {
+            return;
         }
+        Object.keys(el.focusBorderUpdateHooks).forEach(function (setterKey) {
+            var origSetter = el.focusBorderUpdateHooks[setterKey];
+            if (origSetter === el._defaultSetter) {
+                delete el[setterKey];
+            }
+            else {
+                el[setterKey] = origSetter;
+            }
+        });
+        delete el.focusBorderUpdateHooks;
     }
-};
-/**
- * Set chart's focus to an SVGElement. Calls focus() on it, and draws the focus
- * border. This is used by multiple components.
+})(FocusBorderComposition || (FocusBorderComposition = {}));
+/* *
  *
- * @private
- * @function Highcharts.Chart#setFocusToElement
+ *  Default Export
  *
- * @param {Highcharts.SVGElement} svgElement
- *        Element to draw the border around.
- *
- * @param {SVGDOMElement|HTMLDOMElement} [focusElement]
- *        If supplied, it draws the border around svgElement and sets the focus
- *        to focusElement.
- */
-Chart.prototype.setFocusToElement = function (svgElement, focusElement) {
-    var focusBorderOptions = this.options.accessibility.keyboardNavigation.focusBorder, browserFocusElement = focusElement || svgElement.element;
-    // Set browser focus if possible
-    if (browserFocusElement &&
-        browserFocusElement.focus) {
-        // If there is no focusin-listener, add one to work around Edge issue
-        // where Narrator is not reading out points despite calling focus().
-        if (!(browserFocusElement.hcEvents &&
-            browserFocusElement.hcEvents.focusin)) {
-            addEvent(browserFocusElement, 'focusin', function () { });
-        }
-        browserFocusElement.focus();
-        // Hide default focus ring
-        if (focusBorderOptions.hideBrowserFocusOutline) {
-            browserFocusElement.style.outline = 'none';
-        }
-    }
-    if (this.focusElement) {
-        this.focusElement.removeFocusBorder();
-    }
-    this.focusElement = svgElement;
-    this.renderFocusBorder();
-};
+ * */
+export default FocusBorderComposition;

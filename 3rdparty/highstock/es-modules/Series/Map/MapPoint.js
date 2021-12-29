@@ -21,8 +21,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import ColorMapMixin from '../../Mixins/ColorMapSeries.js';
-var colorMapPointMixin = ColorMapMixin.colorMapPointMixin;
+import ColorMapMixin from '../ColorMapMixin.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var ScatterSeries = SeriesRegistry.seriesTypes.scatter;
 import U from '../../Core/Utilities.js';
@@ -53,6 +52,22 @@ var MapPoint = /** @class */ (function (_super) {
      *
      * */
     /* eslint-disable valid-jsdoc */
+    // Get the projected path based on the geometry. May also be called on
+    // mapData options (not point instances), hence static.
+    MapPoint.getProjectedPath = function (point, projection) {
+        if (!point.projectedPath) {
+            if (projection && point.geometry) {
+                // Always true when given GeoJSON coordinates
+                projection.hasCoordinates = true;
+                point.projectedPath = projection.path(point.geometry);
+                // SVG path given directly in point options
+            }
+            else {
+                point.projectedPath = point.path;
+            }
+        }
+        return point.projectedPath || [];
+    };
     /**
      * Extend the Point object to split paths.
      * @private
@@ -65,11 +80,6 @@ var MapPoint = /** @class */ (function (_super) {
             mapPoint = typeof mapKey !== 'undefined' &&
                 series.mapMap[mapKey];
             if (mapPoint) {
-                // This applies only to bubbles
-                if (series.xyFromShape) {
-                    point.x = mapPoint._midX;
-                    point.y = mapPoint._midY;
-                }
                 extend(point, mapPoint); // copy over properties
             }
             else {
@@ -103,17 +113,20 @@ var MapPoint = /** @class */ (function (_super) {
      * @function Highcharts.Point#zoomTo
      */
     MapPoint.prototype.zoomTo = function () {
-        var point = this, series = point.series;
-        series.xAxis.setExtremes(point._minX, point._maxX, false);
-        series.yAxis.setExtremes(point._minY, point._maxY, false);
-        series.chart.redraw();
+        var point = this;
+        var chart = point.series.chart;
+        if (chart.mapView && point.bounds) {
+            chart.mapView.fitToBounds(point.bounds, void 0, false);
+            point.series.isDirty = true;
+            chart.redraw();
+        }
     };
     return MapPoint;
 }(ScatterSeries.prototype.pointClass));
 extend(MapPoint.prototype, {
-    dataLabelOnNull: colorMapPointMixin.dataLabelOnNull,
-    isValid: colorMapPointMixin.isValid,
-    moveToTopOnHover: colorMapPointMixin.moveToTopOnHover
+    dataLabelOnNull: ColorMapMixin.PointMixin.dataLabelOnNull,
+    isValid: ColorMapMixin.PointMixin.isValid,
+    moveToTopOnHover: ColorMapMixin.PointMixin.moveToTopOnHover
 });
 /* *
  *

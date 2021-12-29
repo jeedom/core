@@ -13,8 +13,8 @@ import BrokenAxis from './BrokenAxis.js';
 import GridAxis from './GridAxis.js';
 import Tree from '../../Gantt/Tree.js';
 import TreeGridTick from './TreeGridTick.js';
-import mixinTreeSeries from '../../Mixins/TreeSeries.js';
-var getLevelOptions = mixinTreeSeries.getLevelOptions;
+import TU from '../../Series/TreeUtilities.js';
+var getLevelOptions = TU.getLevelOptions;
 import U from '../Utilities.js';
 var addEvent = U.addEvent, find = U.find, fireEvent = U.fireEvent, isArray = U.isArray, isObject = U.isObject, isString = U.isString, merge = U.merge, pick = U.pick, wrap = U.wrap;
 /**
@@ -95,7 +95,7 @@ var TreeGridAxis;
      *
      * @param {number} numberOfSeries
      *
-     * @return {object}
+     * @return {Object}
      * Returns an object containing categories, mapOfIdToNode,
      * mapOfPosToGridNode, and tree.
      *
@@ -105,7 +105,8 @@ var TreeGridAxis;
      * @todo Add unit-tests.
      */
     function getTreeGridFromData(data, uniqueNames, numberOfSeries) {
-        var categories = [], collapsedNodes = [], mapOfIdToNode = {}, uniqueNamesEnabled = typeof uniqueNames === 'boolean' ? uniqueNames : false;
+        var categories = [], collapsedNodes = [], mapOfIdToNode = {}, uniqueNamesEnabled = typeof uniqueNames === 'boolean' ?
+            uniqueNames : false;
         var mapOfPosToGridNode = {}, posIterator = -1;
         // Build the tree from the series data.
         var treeParams = {
@@ -125,7 +126,9 @@ var TreeGridAxis;
             },
             // Before the children has been created.
             before: function (node) {
-                var data = isObject(node.data, true) ? node.data : {}, name = isString(data.name) ? data.name : '', parentNode = mapOfIdToNode[node.parent], parentGridNode = (isObject(parentNode, true) ?
+                var data = isObject(node.data, true) ?
+                    node.data :
+                    {}, name = isString(data.name) ? data.name : '', parentNode = mapOfIdToNode[node.parent], parentGridNode = (isObject(parentNode, true) ?
                     mapOfPosToGridNode[parentNode.pos] :
                     null), hasSameName = function (x) {
                     return x.name === name;
@@ -222,8 +225,8 @@ var TreeGridAxis;
     /**
      * Builds the tree of categories and calculates its positions.
      * @private
-     * @param {object} e Event object
-     * @param {object} e.target The chart instance which the event was fired on.
+     * @param {Object} e Event object
+     * @param {Object} e.target The chart instance which the event was fired on.
      * @param {object[]} e.target.axes The axes of the chart.
      */
     function onBeforeRender(e) {
@@ -234,8 +237,8 @@ var TreeGridAxis;
             var options = axis.options || {}, labelOptions = options.labels, uniqueNames = options.uniqueNames, max = options.max, 
             // Check whether any of series is rendering for the first
             // time, visibility has changed, or its data is dirty, and
-            // only then update. #10570, #10580
-            // Also check if mapOfPosToGridNode exists. #10887
+            // only then update. #10570, #10580. Also check if
+            // mapOfPosToGridNode exists. #10887
             isDirty = (!axis.treeGrid.mapOfPosToGridNode ||
                 axis.series.some(function (series) {
                     return !series.hasRendered ||
@@ -251,13 +254,15 @@ var TreeGridAxis;
                         (s.options.data || []).forEach(function (data) {
                             // For using keys - rebuild the data structure
                             if (s.options.keys && s.options.keys.length) {
-                                data = s.pointClass.prototype.optionsToObject.call({ series: s }, data);
+                                data = s.pointClass.prototype
+                                    .optionsToObject
+                                    .call({ series: s }, data);
                                 s.pointClass.setGanttPointAliases(data);
                             }
                             if (isObject(data, true)) {
                                 // Set series index on data. Removed again
                                 // after use.
-                                data.seriesIndex = numberOfSeries;
+                                data.seriesIndex = (numberOfSeries);
                                 arr.push(data);
                             }
                         });
@@ -284,17 +289,20 @@ var TreeGridAxis;
                 treeGrid = getTreeGridFromData(data, uniqueNames || false, (uniqueNames === true) ? numberOfSeries : 1);
                 // Assign values to the axis.
                 axis.categories = treeGrid.categories;
-                axis.treeGrid.mapOfPosToGridNode = treeGrid.mapOfPosToGridNode;
+                axis.treeGrid.mapOfPosToGridNode = (treeGrid.mapOfPosToGridNode);
                 axis.hasNames = true;
                 axis.treeGrid.tree = treeGrid.tree;
                 // Update yData now that we have calculated the y values
                 axis.series.forEach(function (series) {
                     var axisData = (series.options.data || []).map(function (d) {
-                        if (isArray(d) && series.options.keys && series.options.keys.length) {
+                        if (isArray(d) &&
+                            series.options.keys &&
+                            series.options.keys.length) {
                             // Get the axisData from the data array used to
                             // build the treeGrid where has been modified
                             data.forEach(function (point) {
-                                if (d.indexOf(point.x) >= 0 && d.indexOf(point.x2) >= 0) {
+                                if (d.indexOf(point.x) >= 0 &&
+                                    d.indexOf(point.x2) >= 0) {
                                     d = point;
                                 }
                             });
@@ -396,10 +404,11 @@ var TreeGridAxis;
                             axis.brokenAxis.setBreaks(breaks, false);
                             // remove the node from the axis collapsedNodes
                             if (axis.treeGrid.collapsedNodes) {
-                                axis.treeGrid.collapsedNodes = axis.treeGrid.collapsedNodes.filter(function (n) {
-                                    return node.collapseStart !== n.collapseStart ||
-                                        node.collapseEnd !== n.collapseEnd;
-                                });
+                                axis.treeGrid.collapsedNodes = axis.treeGrid
+                                    .collapsedNodes
+                                    .filter(function (n) { return ((node.collapseStart !==
+                                    n.collapseStart) ||
+                                    node.collapseEnd !== n.collapseEnd); });
                             }
                         }
                     });
@@ -668,7 +677,7 @@ var TreeGridAxis;
          * @param {Highcharts.Axis} axis
          * The axis to check against.
          *
-         * @param {object} node
+         * @param {Object} node
          * The node to check if is collapsed.
          *
          * @param {number} pos

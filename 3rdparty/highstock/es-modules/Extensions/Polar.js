@@ -161,8 +161,10 @@ if (seriesTypes.spline) {
             }
             else { // curve from last point to this
                 connectors = this.getConnectors(segment, i, true, this.connectEnds);
-                var rightContX = connectors.prevPointCont && connectors.prevPointCont.rightContX;
-                var rightContY = connectors.prevPointCont && connectors.prevPointCont.rightContY;
+                var rightContX = connectors.prevPointCont &&
+                    connectors.prevPointCont.rightContX;
+                var rightContY = connectors.prevPointCont &&
+                    connectors.prevPointCont.rightContY;
                 ret = [
                     'C',
                     isNumber(rightContX) ? rightContX : connectors.plotX,
@@ -186,7 +188,8 @@ if (seriesTypes.spline) {
     // #6430 Areasplinerange series use unwrapped getPointSpline method, so
     // we need to set this method again.
     if (seriesTypes.areasplinerange) {
-        seriesTypes.areasplinerange.prototype.getPointSpline = seriesTypes.spline.prototype.getPointSpline;
+        seriesTypes.areasplinerange.prototype
+            .getPointSpline = seriesTypes.spline.prototype.getPointSpline;
     }
 }
 /**
@@ -306,7 +309,7 @@ wrap(seriesTypes.line.prototype, 'getGraphPath', function (proceed, points) {
     return ret;
 });
 var polarAnimate = function (proceed, init) {
-    var series = this, chart = this.chart, animation = this.options.animation, group = this.group, markerGroup = this.markerGroup, center = this.xAxis.center, plotLeft = chart.plotLeft, plotTop = chart.plotTop, attribs, paneInnerR, graphic, shapeArgs, r, innerR;
+    var series = this, chart = this.chart, animation = this.options.animation, group = this.group, markerGroup = this.markerGroup, center = this.xAxis && this.xAxis.center, plotLeft = chart.plotLeft, plotTop = chart.plotTop, attribs, paneInnerR, graphic, shapeArgs, r, innerR;
     // Specific animation for polar charts
     if (chart.polar) {
         if (series.isRadialBar) {
@@ -704,7 +707,8 @@ addEvent(Chart, 'getAxes', function () {
     if (!this.pane) {
         this.pane = [];
     }
-    splat(this.options.pane).forEach(function (paneOptions) {
+    this.options.pane = splat(this.options.pane);
+    this.options.pane.forEach(function (paneOptions) {
         new Pane(// eslint-disable-line no-new
         paneOptions, this);
     }, this);

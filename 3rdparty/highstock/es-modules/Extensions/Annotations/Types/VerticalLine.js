@@ -73,7 +73,7 @@ var VerticalLine = /** @class */ (function (_super) {
                 VerticalLine.connectorFirstPoint,
                 VerticalLine.connectorSecondPoint
             ]
-        }), false);
+        }), 0);
         typeOptions.connector = connector.options;
     };
     VerticalLine.prototype.addLabels = function () {

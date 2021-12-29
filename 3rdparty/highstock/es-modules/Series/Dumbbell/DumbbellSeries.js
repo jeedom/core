@@ -26,7 +26,6 @@ var colProto = ColumnSeries.prototype;
 import DumbbellPoint from './DumbbellPoint.js';
 import H from '../../Core/Globals.js';
 var noop = H.noop;
-import palette from '../../Core/Color/Palette.js';
 import Series from '../../Core/Series/Series.js';
 var seriesProto = Series.prototype;
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
@@ -138,7 +137,6 @@ var DumbbellSeries = /** @class */ (function (_super) {
      *
      * @param {Highcharts.Point} point The point to inspect.
      *
-     * @return {void}
      */
     DumbbellSeries.prototype.drawConnector = function (point) {
         var series = this, animationLimit = pick(series.options.animationLimit, 250), verb = point.connector && series.chart.pointCount < animationLimit ?
@@ -181,7 +179,6 @@ var DumbbellSeries = /** @class */ (function (_super) {
      *
      * @param {Highcharts.Series} this The series of points.
      *
-     * @return {void}
      */
     DumbbellSeries.prototype.translate = function () {
         // Calculate shapeargs
@@ -206,7 +203,6 @@ var DumbbellSeries = /** @class */ (function (_super) {
      *
      * @param {Highcharts.Series} this The series of points.
      *
-     * @return {void}
      */
     DumbbellSeries.prototype.drawPoints = function () {
         var series = this, chart = series.chart, pointLength = series.points.length, seriesLowColor = series.lowColor = series.options.lowColor, i = 0, lowerGraphicColor, point, zoneColor;
@@ -320,7 +316,7 @@ var DumbbellSeries = /** @class */ (function (_super) {
          * @since 8.0.0
          * @product   highcharts highstock
          */
-        lowColor: palette.neutralColor80,
+        lowColor: "#333333" /* neutralColor80 */,
         /**
          * Color of the line that connects the dumbbell point's values.
          * By default it is the series' color.
@@ -461,7 +457,7 @@ export default DumbbellSeries;
  *
  * @type        {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
  * @since       8.0.0
- * @default     ${palette.neutralColor80}
+ * @default     #333333
  * @product     highcharts highstock
  * @apioption   series.dumbbell.data.lowColor
  */

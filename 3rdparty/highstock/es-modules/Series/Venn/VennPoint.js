@@ -1,8 +1,20 @@
 /* *
  *
- *  Imports
+ *  Experimental Highcharts module which enables visualization of a Venn
+ *  diagram.
+ *
+ *  (c) 2016-2021 Highsoft AS
+ *  Authors: Jon Arild Nygard
+ *
+ *  Layout algorithm by Ben Frederickson:
+ *  https://www.benfrederickson.com/better-venn-diagrams/
+ *
+ *  License: www.highcharts.com/license
+ *
+ *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
  *
  * */
+'use strict';
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -16,7 +28,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import DrawPointMixin from '../../Mixins/DrawPoint.js';
+import DrawPointComposition from '../DrawPointComposition.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var ScatterSeries = SeriesRegistry.seriesTypes.scatter;
 import U from '../../Core/Utilities.js';
@@ -50,15 +62,12 @@ var VennPoint = /** @class */ (function (_super) {
         return isNumber(this.value);
     };
     VennPoint.prototype.shouldDraw = function () {
-        var point = this;
         // Only draw points with single sets.
-        return !!point.shapeArgs;
+        return !!this.shapeArgs;
     };
     return VennPoint;
 }(ScatterSeries.prototype.pointClass));
-extend(VennPoint.prototype, {
-    draw: DrawPointMixin.drawPoint
-});
+DrawPointComposition.compose(VennPoint);
 /* *
  *
  *  Default Export

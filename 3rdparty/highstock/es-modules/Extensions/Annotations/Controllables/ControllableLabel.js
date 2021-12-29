@@ -58,7 +58,7 @@ var ControllableLabel = /** @class */ (function () {
         this.point = ControllableMixin.point;
         this.rotate = ControllableMixin.rotate;
         this.scale = ControllableMixin.scale;
-        this.setControlPointsVisibility = ControllableMixin.setControlPointsVisibility;
+        this.setControlPointsVisibility = (ControllableMixin.setControlPointsVisibility);
         this.shouldBeDrawn = ControllableMixin.shouldBeDrawn;
         this.transform = ControllableMixin.transform;
         this.transformPoint = ControllableMixin.transformPoint;
@@ -273,10 +273,6 @@ var ControllableLabel = /** @class */ (function () {
     };
     /**
      * Returns the label position relative to its anchor.
-     *
-     * @param {Highcharts.AnnotationAnchorObject} anchor
-     *
-     * @return {Highcharts.PositionObject|null}
      */
     ControllableLabel.prototype.position = function (anchor) {
         var item = this.graphic, chart = this.annotation.chart, point = this.points[0], itemOptions = this.options, anchorAbsolutePosition = anchor.absolutePosition, anchorRelativePosition = anchor.relativePosition;
@@ -293,7 +289,8 @@ var ControllableLabel = /** @class */ (function () {
                     plotY: anchorRelativePosition.y,
                     negative: point.negative,
                     ttBelow: point.ttBelow,
-                    h: (anchorRelativePosition.height || anchorRelativePosition.width)
+                    h: (anchorRelativePosition.height ||
+                        anchorRelativePosition.width)
                 });
             }
             else if (itemOptions.positioner) {

@@ -8,10 +8,9 @@
  *
  * */
 'use strict';
-import Palette from '../Color/Palette.js';
 /* *
  *
- *  Constants
+ *  API Options
  *
  * */
 /**
@@ -948,7 +947,7 @@ var ChartDefaults = {
      *
      * @type {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
      */
-    borderColor: Palette.highlightColor80,
+    borderColor: "#335cad" /* highlightColor80 */,
     /**
      * The pixel width of the outer chart border.
      *
@@ -987,7 +986,7 @@ var ChartDefaults = {
      *
      * @type {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
      */
-    backgroundColor: Palette.backgroundColor,
+    backgroundColor: "#ffffff" /* backgroundColor */,
     /**
      * The background color or gradient for the plot area.
      *
@@ -1044,7 +1043,7 @@ var ChartDefaults = {
      *
      * @type {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
      */
-    plotBorderColor: Palette.neutralColor20
+    plotBorderColor: "#cccccc" /* neutralColor20 */
 };
 /* *
  *

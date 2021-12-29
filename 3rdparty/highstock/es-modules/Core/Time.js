@@ -17,9 +17,13 @@ var defined = U.defined, error = U.error, extend = U.extend, isObject = U.isObje
  *  Constants
  *
  * */
-var hasNewSafariBug = (H.isSafari && Intl && Intl.DateTimeFormat.prototype.formatRange);
+var hasNewSafariBug = H.isSafari &&
+    win.Intl &&
+    win.Intl.DateTimeFormat.prototype.formatRange;
 // To do: Remove this when we no longer need support for Safari < v14.1
-var hasOldSafariBug = (H.isSafari && Intl && !Intl.DateTimeFormat.prototype.formatRange);
+var hasOldSafariBug = H.isSafari &&
+    win.Intl &&
+    !win.Intl.DateTimeFormat.prototype.formatRange;
 /* *
  *
  *  Class
@@ -162,7 +166,8 @@ var Time = /** @class */ (function () {
             // time
             if (unit === 'Milliseconds' ||
                 unit === 'Seconds' ||
-                (unit === 'Minutes' && this.getTimezoneOffset(date) % 3600000 === 0) // #13961
+                (unit === 'Minutes' &&
+                    this.getTimezoneOffset(date) % 3600000 === 0) // #13961
             ) {
                 return date['setUTC' + unit](value);
             }
@@ -179,8 +184,8 @@ var Time = /** @class */ (function () {
         }
         // UTC time with no timezone handling
         if (this.useUTC ||
-            (hasNewSafariBug && unit === 'FullYear') // leap calculation in UTC only
-        ) {
+            // leap calculation in UTC only
+            (hasNewSafariBug && unit === 'FullYear')) {
             return date['setUTC' + unit](value);
         }
         // Else, local time
@@ -196,7 +201,6 @@ var Time = /** @class */ (function () {
      *
      * @param {Highcharts.TimeOptions} options
      *
-     * @return {void}
      */
     Time.prototype.update = function (options) {
         var useUTC = pick(options && options.useUTC, true), time = this;
@@ -279,7 +283,7 @@ var Time = /** @class */ (function () {
      *         A getTimezoneOffset function
      */
     Time.prototype.timezoneOffsetFunction = function () {
-        var time = this, options = this.options, moment = options.moment || win.moment;
+        var time = this, options = this.options, getTimezoneOffset = options.getTimezoneOffset, moment = options.moment || win.moment;
         if (!this.useUTC) {
             return function (timestamp) {
                 return new Date(timestamp.toString()).getTimezoneOffset() * 60000;
@@ -298,9 +302,9 @@ var Time = /** @class */ (function () {
             }
         }
         // If not timezone is set, look for the getTimezoneOffset callback
-        if (this.useUTC && options.getTimezoneOffset) {
+        if (this.useUTC && getTimezoneOffset) {
             return function (timestamp) {
-                return options.getTimezoneOffset(timestamp.valueOf()) * 60000;
+                return getTimezoneOffset(timestamp.valueOf()) * 60000;
             };
         }
         // Last, use the `timezoneOffset` option if set
@@ -434,8 +438,10 @@ var Time = /** @class */ (function () {
      * Resolve legacy formats of dateTimeLabelFormats (strings and arrays) into
      * an object.
      * @private
-     * @param {string|Array<T>|Highcharts.Dictionary<T>} f - General format description
-     * @return {Highcharts.Dictionary<T>} - The object definition
+     * @param {string|Array<T>|Highcharts.Dictionary<T>} f
+     * General format description
+     * @return {Highcharts.Dictionary<T>}
+     * The object definition
      */
     Time.prototype.resolveDTLFormat = function (f) {
         if (!isObject(f, true)) { // check for string or array
@@ -467,6 +473,7 @@ var Time = /** @class */ (function () {
      * @param {number} [startOfWeek=1]
      *
      * @return {Highcharts.AxisTickPositionsArray}
+     * Time positions
      */
     Time.prototype.getTimeTicks = function (normalizedInterval, min, max, startOfWeek) {
         var time = this, Date = time.Date, tickPositions = [], higherRanks = {}, 
@@ -596,9 +603,81 @@ var Time = /** @class */ (function () {
         });
         return tickPositions;
     };
+    /**
+     * Get the optimal date format for a point, based on a range.
+     *
+     * @private
+     * @function Highcharts.Time#getDateFormat
+     *
+     * @param {number} range
+     *        The time range
+     *
+     * @param {number} timestamp
+     *        The timestamp of the date
+     *
+     * @param {number} startOfWeek
+     *        An integer representing the first day of the week, where 0 is
+     *        Sunday.
+     *
+     * @param {Highcharts.Dictionary<string>} dateTimeLabelFormats
+     *        A map of time units to formats.
+     *
+     * @return {string}
+     *         The optimal date format for a point.
+     */
+    Time.prototype.getDateFormat = function (range, timestamp, startOfWeek, dateTimeLabelFormats) {
+        var dateStr = this.dateFormat('%m-%d %H:%M:%S.%L', timestamp), blank = '01-01 00:00:00.000', strpos = {
+            millisecond: 15,
+            second: 12,
+            minute: 9,
+            hour: 6,
+            day: 3
+        };
+        var format, n, lastN = 'millisecond'; // for sub-millisecond data, #4223
+        for (n in timeUnits) { // eslint-disable-line guard-for-in
+            // If the range is exactly one week and we're looking at a
+            // Sunday/Monday, go for the week format
+            if (range === timeUnits.week &&
+                +this.dateFormat('%w', timestamp) === startOfWeek &&
+                dateStr.substr(6) === blank.substr(6)) {
+                n = 'week';
+                break;
+            }
+            // The first format that is too great for the range
+            if (timeUnits[n] > range) {
+                n = lastN;
+                break;
+            }
+            // If the point is placed every day at 23:59, we need to show
+            // the minutes as well. #2637.
+            if (strpos[n] &&
+                dateStr.substr(strpos[n]) !== blank.substr(strpos[n])) {
+                break;
+            }
+            // Weeks are outside the hierarchy, only apply them on
+            // Mondays/Sundays like in the first condition
+            if (n !== 'week') {
+                lastN = n;
+            }
+        }
+        if (n) {
+            format = this.resolveDTLFormat(dateTimeLabelFormats[n]).main;
+        }
+        return format;
+    };
     return Time;
 }());
+/* *
+ *
+ * Default export
+ *
+ * */
 export default Time;
+/* *
+ *
+ * API Declarations
+ *
+ * */
 /**
  * Normalized interval.
  *
@@ -655,8 +734,8 @@ export default Time;
  * In case of loading the library from a `script` tag,
  * this option is not needed, it will be loaded from there by default.
  *
- * @type {function}
- * @since 8.2.0
+ * @type      {Function}
+ * @since     8.2.0
  * @apioption time.moment
  */
 ''; // keeps doclets above in JS file

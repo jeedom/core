@@ -22,7 +22,6 @@ H.dragNodesMixin = {
      * @private
      * @param {Highcharts.Point} point The point that event occured.
      * @param {Highcharts.PointerEventObject} event Browser event, before normalization.
-     * @return {void}
      */
     onMouseDown: function (point, event) {
         var normalizedEvent = this.chart.pointer.normalize(event);
@@ -42,7 +41,6 @@ H.dragNodesMixin = {
      * @param {global.Event} event Browser event, before normalization.
      * @param {Highcharts.Point} point The point that event occured.
      *
-     * @return {void}
      */
     onMouseMove: function (point, event) {
         if (point.fixedPosition && point.inDragMode) {
@@ -68,7 +66,6 @@ H.dragNodesMixin = {
      *
      * @private
      * @param {Highcharts.Point} point The point that event occured.
-     * @return {void}
      */
     onMouseUp: function (point, event) {
         if (point.fixedPosition) {
@@ -92,7 +89,6 @@ H.dragNodesMixin = {
      *
      * @private
      * @param {Highcharts.Point} point The point that should show halo.
-     * @return {void}
      */
     redrawHalo: function (point) {
         if (point && this.halo) {

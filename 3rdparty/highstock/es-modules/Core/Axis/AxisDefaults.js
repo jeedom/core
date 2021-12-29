@@ -8,7 +8,6 @@
  *
  * */
 'use strict';
-import Palette from '../Color/Palette.js';
 /* *
  *
  *  Namespace
@@ -429,7 +428,7 @@ var AxisDefaults;
          * same axis.
          *
          * For an overview of the replacement codes, see
-         * [dateFormat](/class-reference/Highcharts#.dateFormat).
+         * [dateFormat](/class-reference/Highcharts.Time#dateFormat).
          *
          * Defaults to:
          * ```js
@@ -523,9 +522,9 @@ var AxisDefaults;
          * In Highcharts Stock, `endOnTick` is always `false` when the navigator
          * is enabled, to prevent jumpy scrolling.
          *
-         * @sample {highcharts} highcharts/chart/reflow-true/
-         *         True by default
          * @sample {highcharts} highcharts/yaxis/endontick/
+         *         True by default
+         * @sample {highcharts} highcharts/yaxis/endontick-false/
          *         False
          * @sample {highstock} stock/demo/basic-line/
          *         True by default
@@ -967,7 +966,7 @@ var AxisDefaults;
              */
             style: {
                 /** @internal */
-                color: Palette.neutralColor60,
+                color: "#666666" /* neutralColor60 */,
                 /** @internal */
                 cursor: 'default',
                 /** @internal */
@@ -1032,8 +1031,6 @@ var AxisDefaults;
          *         Y axis max on logarithmic axis
          * @sample {highstock} stock/xaxis/min-max/
          *         Fixed min and max on X axis
-         * @sample {highmaps} maps/axis/min-max/
-         *         Pre-zoomed to a specific area
          *
          * @type      {number|null}
          * @apioption xAxis.max
@@ -1088,8 +1085,6 @@ var AxisDefaults;
          *         -50 with startOnTick true by default
          * @sample {highstock} stock/xaxis/min-max/
          *         Set min and max on X axis
-         * @sample {highmaps} maps/axis/min-max/
-         *         Pre-zoomed to a specific area
          *
          * @type      {number|null}
          * @apioption xAxis.min
@@ -1241,8 +1236,6 @@ var AxisDefaults;
          *         Minimum range of 5
          * @sample {highstock} stock/xaxis/minrange/
          *         Max zoom of 6 months overrides user selections
-         * @sample {highmaps} maps/axis/minrange/
-         *         Minimum range of 1000
          *
          * @type      {number}
          * @apioption xAxis.minRange
@@ -1808,7 +1801,7 @@ var AxisDefaults;
              */
             style: {
                 /** @internal */
-                color: Palette.neutralColor60
+                color: "#666666" /* neutralColor60 */
             }
         },
         /**
@@ -1925,7 +1918,7 @@ var AxisDefaults;
          * @type    {Highcharts.ColorType}
          * @default #f2f2f2
          */
-        minorGridLineColor: Palette.neutralColor5,
+        minorGridLineColor: "#f2f2f2" /* neutralColor5 */,
         /**
          * Width of the minor, secondary grid lines.
          *
@@ -1951,7 +1944,7 @@ var AxisDefaults;
          * @type    {Highcharts.ColorType}
          * @default #999999
          */
-        minorTickColor: Palette.neutralColor40,
+        minorTickColor: "#999999" /* neutralColor40 */,
         /**
          * The color of the line marking the axis itself.
          *
@@ -1972,7 +1965,7 @@ var AxisDefaults;
          * @type    {Highcharts.ColorType}
          * @default #ccd6eb
          */
-        lineColor: Palette.highlightColor20,
+        lineColor: "#ccd6eb" /* highlightColor20 */,
         /**
          * The width of the line marking the axis itself.
          *
@@ -2009,7 +2002,7 @@ var AxisDefaults;
          * @type    {Highcharts.ColorType}
          * @default #e6e6e6
          */
-        gridLineColor: Palette.neutralColor10,
+        gridLineColor: "#e6e6e6" /* neutralColor10 */,
         /**
          * The width of the grid lines extending the ticks across the plot area.
          * Defaults to 1 on the Y axis and 0 on the X axis, except for 3d
@@ -2067,7 +2060,7 @@ var AxisDefaults;
          * @type    {Highcharts.ColorType}
          * @default #ccd6eb
          */
-        tickColor: Palette.highlightColor20
+        tickColor: "#ccd6eb" /* highlightColor20 */
         // tickWidth: 1
     };
     /**
@@ -2227,9 +2220,9 @@ var AxisDefaults;
          * @see [type](#chart.panning.type)
          *
          *
-         * @sample {highcharts} highcharts/chart/reflow-true/
-         *         True by default
          * @sample {highcharts} highcharts/yaxis/endontick/
+         *         True by default
+         * @sample {highcharts} highcharts/yaxis/endontick-false/
          *         False
          * @sample {highstock} stock/demo/basic-line/
          *         True by default
@@ -2382,8 +2375,6 @@ var AxisDefaults;
          *         Y axis max on logarithmic axis
          * @sample {highstock} stock/yaxis/min-max/
          *         Fixed min and max on Y axis
-         * @sample {highmaps} maps/axis/min-max/
-         *         Pre-zoomed to a specific area
          *
          * @apioption yAxis.max
          */
@@ -2394,8 +2385,6 @@ var AxisDefaults;
          *         -50 with startOnTick true by default
          * @sample {highstock} stock/yaxis/min-max/
          *         Fixed min and max on Y axis
-         * @sample {highmaps} maps/axis/min-max/
-         *         Pre-zoomed to a specific area
          *
          * @apioption yAxis.min
          */
@@ -2438,6 +2427,28 @@ var AxisDefaults;
          * @product   highstock
          * @apioption yAxis.scrollbar.margin
          */
+        /* eslint-disable highcharts/doclet-apioption-last */
+        /**
+         * Defines the position of the scrollbar. By default, it is positioned
+         * on the opposite of the main axis (right side of the chart).
+         * However, in the case of RTL languages could be set to `false`
+         * which positions the scrollbar on the left.
+         *
+         * Works only for vertical axes.
+         * This means yAxis in a non-inverted chart and xAxis in the inverted.
+         *
+         * @sample stock/yaxis/scrollbar-opposite/
+         *         A scrollbar not on the opposite side
+         *
+         * @type      {boolean}
+         * @default   true
+         * @since 9.3.0
+         *
+         * @apioption yAxis.scrollbar.opposite
+         * @apioption xAxis.scrollbar.opposite
+         *
+         */
+        /* eslint-enable highcharts/doclet-apioption-last */
         /**
          * Whether to show the scrollbar when it is fully zoomed out at max
          * range. Setting it to `false` on the Y axis makes the scrollbar stay
@@ -2839,7 +2850,7 @@ var AxisDefaults;
              */
             style: {
                 /** @internal */
-                color: Palette.neutralColor100,
+                color: "#000000" /* neutralColor100 */,
                 /** @internal */
                 fontSize: '11px',
                 /** @internal */

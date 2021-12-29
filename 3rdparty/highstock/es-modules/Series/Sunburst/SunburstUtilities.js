@@ -39,7 +39,7 @@ var SunburstUtilities;
      * @private
      * @function calculateLevelSizes
      *
-     * @param {object} levelOptions
+     * @param {Object} levelOptions
      * Map of level to its options.
      *
      * @param {Highcharts.Dictionary<number>} params
@@ -58,7 +58,8 @@ var SunburstUtilities;
             levelsNotIncluded = Object.keys(result).filter(function (k) {
                 return levels.indexOf(+k) === -1;
             });
-            diffRadius = remainingSize = isNumber(p.diffRadius) ? p.diffRadius : 0;
+            diffRadius = remainingSize = isNumber(p.diffRadius) ?
+                p.diffRadius : 0;
             // Convert percentage to pixels.
             // Calculate the remaining size to divide between "weight" levels.
             // Calculate total weight to use in convertion from weight to

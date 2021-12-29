@@ -10,18 +10,35 @@
  *
  * */
 'use strict';
-import H from '../../Core/Globals.js';
 import AST from '../../Core/Renderer/HTML/AST.js';
-var doc = H.doc;
 import DOMElementProvider from './DOMElementProvider.js';
-import HTMLUtilities from './HTMLUtilities.js';
-var setElAttrs = HTMLUtilities.setElAttrs, visuallyHideElement = HTMLUtilities.visuallyHideElement;
+import H from '../../Core/Globals.js';
+var doc = H.doc;
+import HU from './HTMLUtilities.js';
+var addClass = HU.addClass, visuallyHideElement = HU.visuallyHideElement;
+import U from '../../Core/Utilities.js';
+var attr = U.attr;
+/* *
+ *
+ *  Class
+ *
+ * */
 var Announcer = /** @class */ (function () {
+    /* *
+     *
+     *  Constructor
+     *
+     * */
     function Announcer(chart, type) {
         this.chart = chart;
         this.domElementProvider = new DOMElementProvider();
         this.announceRegion = this.addAnnounceRegion(type);
     }
+    /* *
+     *
+     *  Functions
+     *
+     * */
     Announcer.prototype.destroy = function () {
         this.domElementProvider.destroyCreatedElements();
     };
@@ -34,34 +51,41 @@ var Announcer = /** @class */ (function () {
             clearTimeout(this.clearAnnouncementRegionTimer);
         }
         this.clearAnnouncementRegionTimer = setTimeout(function () {
-            _this.announceRegion.innerHTML = '';
+            _this.announceRegion.innerHTML = AST.emptyHTML;
             delete _this.clearAnnouncementRegionTimer;
         }, 1000);
     };
     Announcer.prototype.addAnnounceRegion = function (type) {
-        var chartContainer = this.chart.announcerContainer || this.createAnnouncerContainer();
-        var div = this.domElementProvider.createElement('div');
-        setElAttrs(div, {
+        var chartContainer = (this.chart.announcerContainer || this.createAnnouncerContainer()), div = this.domElementProvider.createElement('div');
+        attr(div, {
             'aria-hidden': false,
             'aria-live': type
         });
-        visuallyHideElement(div);
+        if (this.chart.styledMode) {
+            addClass(div, 'highcharts-visually-hidden');
+        }
+        else {
+            visuallyHideElement(div);
+        }
         chartContainer.appendChild(div);
         return div;
     };
     Announcer.prototype.createAnnouncerContainer = function () {
-        var chart = this.chart;
-        var container = doc.createElement('div');
-        setElAttrs(container, {
+        var chart = this.chart, container = doc.createElement('div');
+        attr(container, {
             'aria-hidden': false,
-            style: 'position:relative',
             'class': 'highcharts-announcer-container'
         });
+        container.style.position = 'relative';
         chart.renderTo.insertBefore(container, chart.renderTo.firstChild);
         chart.announcerContainer = container;
         return container;
     };
     return Announcer;
 }());
-H.Announcer = Announcer;
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default Announcer;

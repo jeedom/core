@@ -10,7 +10,6 @@
 'use strict';
 import H from './Globals.js';
 var isTouchDevice = H.isTouchDevice;
-import Palette from './Color/Palette.js';
 /* *
  *
  *  Constant
@@ -98,6 +97,8 @@ var ScrollbarDefaults = {
      * @since 1.2.5
      */
     minWidth: 6,
+    /** @ignore-option */
+    opposite: true,
     /**
      * Whether to show or hide the scrollbar when the scrolled content is
      * zoomed out to it full extent.
@@ -119,7 +120,7 @@ var ScrollbarDefaults = {
      *
      * @type {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
      */
-    barBackgroundColor: Palette.neutralColor20,
+    barBackgroundColor: "#cccccc" /* neutralColor20 */,
     /**
      * The width of the bar's border.
      *
@@ -132,7 +133,7 @@ var ScrollbarDefaults = {
      *
      * @type {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
      */
-    barBorderColor: Palette.neutralColor20,
+    barBorderColor: "#cccccc" /* neutralColor20 */,
     /**
      * The color of the small arrow inside the scrollbar buttons.
      *
@@ -141,7 +142,7 @@ var ScrollbarDefaults = {
      *
      * @type {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
      */
-    buttonArrowColor: Palette.neutralColor80,
+    buttonArrowColor: "#333333" /* neutralColor80 */,
     /**
      * The color of scrollbar buttons.
      *
@@ -150,7 +151,7 @@ var ScrollbarDefaults = {
      *
      * @type {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
      */
-    buttonBackgroundColor: Palette.neutralColor10,
+    buttonBackgroundColor: "#e6e6e6" /* neutralColor10 */,
     /**
      * The color of the border of the scrollbar buttons.
      *
@@ -159,7 +160,7 @@ var ScrollbarDefaults = {
      *
      * @type {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
      */
-    buttonBorderColor: Palette.neutralColor20,
+    buttonBorderColor: "#cccccc" /* neutralColor20 */,
     /**
      * The border width of the scrollbar buttons.
      *
@@ -172,7 +173,7 @@ var ScrollbarDefaults = {
      *
      * @type {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
      */
-    rifleColor: Palette.neutralColor80,
+    rifleColor: "#333333" /* neutralColor80 */,
     /**
      * The color of the track background.
      *
@@ -181,7 +182,7 @@ var ScrollbarDefaults = {
      *
      * @type {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
      */
-    trackBackgroundColor: Palette.neutralColor5,
+    trackBackgroundColor: "#f2f2f2" /* neutralColor5 */,
     /**
      * The color of the border of the scrollbar track.
      *
@@ -190,7 +191,7 @@ var ScrollbarDefaults = {
      *
      * @type {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
      */
-    trackBorderColor: Palette.neutralColor5,
+    trackBorderColor: "#f2f2f2" /* neutralColor5 */,
     /**
      * The corner radius of the border of the scrollbar track.
      *

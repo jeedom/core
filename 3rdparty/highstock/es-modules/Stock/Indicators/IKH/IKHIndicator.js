@@ -336,16 +336,14 @@ var IKHIndicator = /** @class */ (function (_super) {
                     }
                     else {
                         // Compare middle point of the section
-                        concatArrIndex =
-                            sectionPoints[x].plotY > sectionNextPoints[x].plotY ? 0 : 1;
+                        concatArrIndex = (sectionPoints[x].plotY > sectionNextPoints[x].plotY) ? 0 : 1;
                         points[concatArrIndex] = points[concatArrIndex].concat(sectionPoints);
                         nextPoints[concatArrIndex] = nextPoints[concatArrIndex].concat(sectionNextPoints);
                     }
                 }
                 else {
                     // Compare first point of the section
-                    concatArrIndex =
-                        sectionPoints[0].plotY > sectionNextPoints[0].plotY ? 0 : 1;
+                    concatArrIndex = (sectionPoints[0].plotY > sectionNextPoints[0].plotY) ? 0 : 1;
                     points[concatArrIndex] = points[concatArrIndex].concat(sectionPoints);
                     nextPoints[concatArrIndex] = nextPoints[concatArrIndex].concat(sectionNextPoints);
                 }
@@ -402,7 +400,8 @@ var IKHIndicator = /** @class */ (function (_super) {
             indicator.nextPoints);
             if (spanA && spanA.length) {
                 spanA[0][0] = 'L';
-                path = SeriesRegistry.seriesTypes.sma.prototype.getGraphPath.call(indicator, points);
+                path = SeriesRegistry.seriesTypes.sma.prototype.getGraphPath
+                    .call(indicator, points);
                 spanAarr = spanA.slice(0, path.length);
                 for (var i = spanAarr.length - 1; i >= 0; i--) {
                     path.push(spanAarr[i]);
@@ -410,7 +409,8 @@ var IKHIndicator = /** @class */ (function (_super) {
             }
         }
         else {
-            path = SeriesRegistry.seriesTypes.sma.prototype.getGraphPath.apply(indicator, arguments);
+            path = SeriesRegistry.seriesTypes.sma.prototype.getGraphPath
+                .apply(indicator, arguments);
         }
         return path;
     };

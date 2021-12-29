@@ -18,14 +18,10 @@
  *
  * @private
  * @function GLVertexBuffer
- *
  * @param {WebGLContext} gl
- *        the context in which to create the buffer
- *
+ * the context in which to create the buffer
  * @param {GLShader} shader
- *        the shader to use
- *
- * @return {*}
+ * the shader to use
  */
 function GLVertexBuffer(gl, shader, dataComponents
 /* , type */
@@ -101,7 +97,8 @@ function GLVertexBuffer(gl, shader, dataComponents
      * @param drawMode {String} - the draw mode
      */
     function render(from, to, drawMode) {
-        var length = preAllocated ? preAllocated.length : data.length;
+        var length = preAllocated ?
+            preAllocated.length : data.length;
         if (!buffer) {
             return false;
         }
@@ -113,6 +110,9 @@ function GLVertexBuffer(gl, shader, dataComponents
         }
         if (!to || to > length) {
             to = length;
+        }
+        if (from >= to) {
+            return false;
         }
         drawMode = drawMode || 'points';
         gl.drawArrays(gl[drawMode.toUpperCase()], from / components, (to - from) / components);

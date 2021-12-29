@@ -23,7 +23,7 @@ var SeriesRegistry;
 (function (SeriesRegistry) {
     /* *
      *
-     *  Static Properties
+     *  Properties
      *
      * */
     /**
@@ -33,7 +33,7 @@ var SeriesRegistry;
     SeriesRegistry.seriesTypes = H.seriesTypes;
     /* *
      *
-     *  Static Functions
+     *  Functions
      *
      * */
     /* eslint-disable valid-jsdoc */
@@ -112,8 +112,7 @@ var SeriesRegistry;
         SeriesRegistry.seriesTypes[type].prototype.type = type;
         // Create the point class if needed
         if (pointProto) {
-            SeriesRegistry.seriesTypes[type].prototype.pointClass =
-                extendClass(Point, pointProto);
+            SeriesRegistry.seriesTypes[type].prototype.pointClass = extendClass(Point, pointProto);
         }
         return SeriesRegistry.seriesTypes[type];
     }
@@ -122,13 +121,7 @@ var SeriesRegistry;
 })(SeriesRegistry || (SeriesRegistry = {}));
 /* *
  *
- *  Compatibility
- *
- * */
-H.seriesType = SeriesRegistry.seriesType;
-/* *
- *
- *  Export
+ *  Default Export
  *
  * */
 export default SeriesRegistry;

@@ -12,6 +12,94 @@
 'use strict';
 import U from '../Core/Utilities.js';
 var find = U.find;
+/* *
+ *
+ *  Class
+ *
+ * */
+/**
+ * Define a keyboard navigation handler for use with a
+ * Highcharts.AccessibilityComponent instance. This functions as an abstraction
+ * layer for keyboard navigation, and defines a map of keyCodes to handler
+ * functions.
+ *
+ * @requires module:modules/accessibility
+ *
+ * @sample highcharts/accessibility/custom-component
+ *         Custom accessibility component
+ *
+ * @class
+ * @name Highcharts.KeyboardNavigationHandler
+ *
+ * @param {Highcharts.Chart} chart
+ * The chart this module should act on.
+ *
+ * @param {Highcharts.KeyboardNavigationHandlerOptionsObject} options
+ * Options for the keyboard navigation handler.
+ */
+var KeyboardNavigationHandler = /** @class */ (function () {
+    /* *
+     *
+     *  Constructor
+     *
+     * */
+    function KeyboardNavigationHandler(chart, options) {
+        this.chart = chart;
+        this.keyCodeMap = options.keyCodeMap || [];
+        this.validate = options.validate;
+        this.init = options.init;
+        this.terminate = options.terminate;
+        // Response enum
+        this.response = {
+            success: 1,
+            prev: 2,
+            next: 3,
+            noHandler: 4,
+            fail: 5 // Handler failed
+        };
+    }
+    /* *
+     *
+     *  Functions
+     *
+     * */
+    /* eslint-disable valid-jsdoc */
+    /**
+     * Find handler function(s) for key code in the keyCodeMap and run it.
+     *
+     * @function KeyboardNavigationHandler#run
+     * @param {global.KeyboardEvent} e
+     * @return {number} Returns a response code indicating whether the run was
+     *      a success/fail/unhandled, or if we should move to next/prev module.
+     */
+    KeyboardNavigationHandler.prototype.run = function (e) {
+        var keyCode = e.which || e.keyCode;
+        var response = this.response.noHandler;
+        var handlerCodeSet = find(this.keyCodeMap, function (codeSet) {
+            return codeSet[0].indexOf(keyCode) > -1;
+        });
+        if (handlerCodeSet) {
+            response = handlerCodeSet[1].call(this, keyCode, e);
+        }
+        else if (keyCode === 9) {
+            // Default tab handler, move to next/prev module
+            response = this.response[e.shiftKey ? 'prev' : 'next'];
+        }
+        return response;
+    };
+    return KeyboardNavigationHandler;
+}());
+/* *
+ *
+ *  Default Export
+ *
+ * */
+export default KeyboardNavigationHandler;
+/* *
+ *
+ *  API Declarations
+ *
+ * */
 /**
  * Options for the keyboard navigation handler.
  *
@@ -37,65 +125,4 @@ var find = U.find;
 * @name Highcharts.KeyboardNavigationHandlerOptionsObject#validate
 * @type {Function|undefined}
 */
-/* eslint-disable no-invalid-this, valid-jsdoc */
-/**
- * Define a keyboard navigation handler for use with a
- * Highcharts.AccessibilityComponent instance. This functions as an abstraction
- * layer for keyboard navigation, and defines a map of keyCodes to handler
- * functions.
- *
- * @requires module:modules/accessibility
- *
- * @sample highcharts/accessibility/custom-component
- *         Custom accessibility component
- *
- * @class
- * @name Highcharts.KeyboardNavigationHandler
- *
- * @param {Highcharts.Chart} chart
- * The chart this module should act on.
- *
- * @param {Highcharts.KeyboardNavigationHandlerOptionsObject} options
- * Options for the keyboard navigation handler.
- */
-function KeyboardNavigationHandler(chart, options) {
-    this.chart = chart;
-    this.keyCodeMap = options.keyCodeMap || [];
-    this.validate = options.validate;
-    this.init = options.init;
-    this.terminate = options.terminate;
-    // Response enum
-    this.response = {
-        success: 1,
-        prev: 2,
-        next: 3,
-        noHandler: 4,
-        fail: 5 // Handler failed
-    };
-}
-KeyboardNavigationHandler.prototype = {
-    /**
-     * Find handler function(s) for key code in the keyCodeMap and run it.
-     *
-     * @function KeyboardNavigationHandler#run
-     * @param {global.KeyboardEvent} e
-     * @return {number} Returns a response code indicating whether the run was
-     *      a success/fail/unhandled, or if we should move to next/prev module.
-     */
-    run: function (e) {
-        var keyCode = e.which || e.keyCode;
-        var response = this.response.noHandler;
-        var handlerCodeSet = find(this.keyCodeMap, function (codeSet) {
-            return codeSet[0].indexOf(keyCode) > -1;
-        });
-        if (handlerCodeSet) {
-            response = handlerCodeSet[1].call(this, keyCode, e);
-        }
-        else if (keyCode === 9) {
-            // Default tab handler, move to next/prev module
-            response = this.response[e.shiftKey ? 'prev' : 'next'];
-        }
-        return response;
-    }
-};
-export default KeyboardNavigationHandler;
+(''); // keeps doclets above in JS file

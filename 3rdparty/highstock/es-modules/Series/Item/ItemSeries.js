@@ -216,9 +216,9 @@ var ItemSeries = /** @class */ (function (_super) {
     ItemSeries.prototype.getSlots = function () {
         var center = this.center, diameter = center[2], innerSize = center[3], row, slots = this.slots, x, y, rowRadius, rowLength, colCount, increment, angle, col, itemSize = 0, rowCount, fullAngle = (this.endAngleRad - this.startAngleRad), itemCount = Number.MAX_VALUE, finalItemCount, rows, testRows, rowsOption = this.options.rows, 
         // How many rows (arcs) should be used
-        rowFraction = (diameter - innerSize) / diameter, isCircle = fullAngle % (2 * Math.PI) === 0;
+        rowFraction = (diameter - innerSize) / diameter, isCircle = fullAngle % (2 * Math.PI) === 0, total = this.total || 0;
         // Increase the itemSize until we find the best fit
-        while (itemCount > this.total + (rows && isCircle ? rows.length : 0)) {
+        while (itemCount > total + (rows && isCircle ? rows.length : 0)) {
             finalItemCount = itemCount;
             // Reset
             slots.length = 0;
@@ -272,8 +272,7 @@ var ItemSeries = /** @class */ (function (_super) {
          * @private
          * @param {Highcharts.ItemRowContainerObject} item
          * Wrapped object with angle and row
-         * @return {void}
-         */
+             */
         function cutOffRow(item) {
             if (overshoot > 0) {
                 item.row.colCount--;
@@ -492,7 +491,7 @@ export default ItemSeries;
  *
  * @type      {Array<number|Array<string,(number|null)>|null|*>}
  * @extends   series.pie.data
- * @excludes  sliced
+ * @exclude   sliced
  * @product   highcharts
  * @apioption series.item.data
  */

@@ -102,6 +102,7 @@ var StackItem = /** @class */ (function () {
                 r: options.borderRadius || 0,
                 text: str,
                 rotation: options.rotation,
+                // set default padding to 5 as it is in datalabels #12308
                 padding: pick(options.padding, 5),
                 visibility: 'hidden' // hidden until setOffset is called
             };
@@ -158,7 +159,8 @@ var StackItem = /** @class */ (function () {
                 }
                 else {
                     boxOffsetX = chart.inverted ?
-                        (isNegative ? bBox.width + padding : -padding) : bBox.width / 2;
+                        (isNegative ? bBox.width + padding : -padding) :
+                        bBox.width / 2;
                 }
             }
             boxOffsetY = chart.inverted ?
@@ -203,29 +205,14 @@ var StackItem = /** @class */ (function () {
     /**
      * @private
      * @function Highcharts.StackItem#getStackBox
-     *
-     * @param {Highcharts.Chart} chart
-     *
-     * @param {Highcharts.StackItem} stackItem
-     *
-     * @param {number} x
-     *
-     * @param {number} y
-     *
-     * @param {number} xWidth
-     *
-     * @param {number} h
-     *
-     * @param {Highcharts.Axis} axis
-     *
-     * @return {Highcharts.BBoxObject}
      */
     StackItem.prototype.getStackBox = function (chart, stackItem, x, y, xWidth, h, axis) {
         var reversed = stackItem.axis.reversed, inverted = chart.inverted, axisPos = axis.height + axis.pos -
             (inverted ? chart.plotLeft : chart.plotTop), neg = (stackItem.isNegative && !reversed) ||
             (!stackItem.isNegative && reversed); // #4056
         return {
-            x: inverted ? (neg ? y - axis.right : y - h + axis.pos - chart.plotLeft) :
+            x: inverted ?
+                (neg ? y - axis.right : y - h + axis.pos - chart.plotLeft) :
                 x + chart.xAxis[0].transB - chart.plotLeft,
             y: inverted ?
                 axis.height - x - xWidth :
@@ -459,11 +446,6 @@ Series.prototype.percentStacker = function (pointExtremes, stack, i) {
  *
  * @private
  * @function Highcharts.Series#getStackIndicator
- * @param {Highcharts.StackItemIndicatorObject|undefined} stackIndicator
- * @param {number} x
- * @param {number} index
- * @param {string} [key]
- * @return {Highcharts.StackItemIndicatorObject}
  */
 Series.prototype.getStackIndicator = function (stackIndicator, x, index, key) {
     // Update stack indicator, when:

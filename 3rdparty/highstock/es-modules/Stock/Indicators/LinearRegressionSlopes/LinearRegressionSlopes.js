@@ -72,7 +72,7 @@ var LinearRegressionSlopesIndicator = /** @class */ (function (_super) {
      * @since        7.0.0
      * @product      highstock
      * @requires     stock/indicators/indicators
-     * @requires     stock/indicators/linearregression
+     * @requires  stock/indicators/regressions
      * @optionparent plotOptions.linearregressionslope
      */
     LinearRegressionSlopesIndicator.defaultOptions = merge(LinearRegressionIndicator.defaultOptions);
@@ -98,7 +98,7 @@ export default LinearRegressionSlopesIndicator;
  * @product   highstock
  * @excluding dataParser,dataURL
  * @requires  stock/indicators/indicators
- * @requires  stock/indicators/linearregressionslope
+ * @requires  stock/indicators/regressions
  * @apioption series.linearregressionslope
  */
 ''; // to include the above in the js output

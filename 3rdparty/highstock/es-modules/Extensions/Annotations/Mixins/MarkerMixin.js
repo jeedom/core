@@ -136,7 +136,8 @@ var markerMixin = {
     setItemMarkers: function (item) {
         var itemOptions = item.options, chart = item.chart, defs = chart.options.defs, fill = itemOptions.fill, color = defined(fill) && fill !== 'none' ?
             fill :
-            itemOptions.stroke, setMarker = function (markerType) {
+            itemOptions.stroke;
+        var setMarker = function (markerType) {
             var markerId = itemOptions[markerType], def, predefinedMarker, key, marker;
             if (markerId) {
                 for (key in defs) { // eslint-disable-line guard-for-in
@@ -152,13 +153,13 @@ var markerMixin = {
                 }
                 if (predefinedMarker) {
                     marker = item[markerType] = chart.renderer
-                        .addMarker((itemOptions.id || uniqueKey()) + '-' +
-                        markerId, merge(predefinedMarker, { color: color }));
+                        .addMarker((itemOptions.id || uniqueKey()) + '-' + markerId, merge(predefinedMarker, { color: color }));
                     item.attr(markerType, marker.getAttribute('id'));
                 }
             }
         };
-        ['markerStart', 'markerEnd'].forEach(setMarker);
+        ['markerStart', 'markerEnd']
+            .forEach(setMarker);
     }
 };
 addEvent(Chart, 'afterGetContainer', function () {

@@ -48,8 +48,7 @@ H.networkgraphIntegrations = {
          * `plotX` and `plotY` position.
          *
          * @private
-         * @return {void}
-         */
+             */
         barycenter: function () {
             var gravitationalConstant = this.options.gravitationalConstant, xFactor = this.barycenter.xFactor, yFactor = this.barycenter.yFactor;
             // To consider:
@@ -79,8 +78,7 @@ H.networkgraphIntegrations = {
          *        Force calcualated in `repulsiveForceFunction`
          * @param {Highcharts.PositionObject} distance
          *        Distance between two nodes e.g. `{x, y}`
-         * @return {void}
-         */
+             */
         repulsive: function (node, force, distanceXY) {
             var factor = force * this.diffTemperature / node.mass / node.degree;
             if (!node.fixedPosition) {
@@ -101,8 +99,7 @@ H.networkgraphIntegrations = {
          *        Force calcualated in `repulsiveForceFunction`
          * @param {Highcharts.PositionObject} distance
          *        Distance between two nodes e.g. `{x, y}`
-         * @return {void}
-         */
+             */
         attractive: function (link, force, distanceXY) {
             var massFactor = link.getMass(), translatedX = -distanceXY.x * force * this.diffTemperature, translatedY = -distanceXY.y * force * this.diffTemperature;
             if (!link.fromNode.fixedPosition) {
@@ -148,8 +145,7 @@ H.networkgraphIntegrations = {
          * @private
          * @param {Highcharts.NetworkgraphLayout} layout layout object
          * @param {Highcharts.Point} node node that should be translated
-         * @return {void}
-         */
+             */
         integrate: function (layout, node) {
             var friction = -layout.options.friction, maxSpeed = layout.options.maxSpeed, prevX = node.prevX, prevY = node.prevY, 
             // Apply friciton:
@@ -174,10 +170,7 @@ H.networkgraphIntegrations = {
         /**
          * Estiamte the best possible distance between two nodes, making graph
          * readable.
-         *
          * @private
-         * @param {Highcharts.NetworkgraphLayout} layout layout object
-         * @return {number}
          */
         getK: function (layout) {
             return Math.pow(layout.box.width * layout.box.height / layout.nodes.length, 0.5);
@@ -232,8 +225,7 @@ H.networkgraphIntegrations = {
          * position. Later, in `integrate()` forces are applied on nodes.
          *
          * @private
-         * @return {void}
-         */
+             */
         barycenter: function () {
             var gravitationalConstant = this.options.gravitationalConstant, xFactor = this.barycenter.xFactor, yFactor = this.barycenter.yFactor;
             this.nodes.forEach(function (node) {
@@ -258,8 +250,7 @@ H.networkgraphIntegrations = {
          *        Force calcualated in `repulsiveForceFunction`
          * @param {Highcharts.PositionObject} distanceXY
          *        Distance between two nodes e.g. `{x, y}`
-         * @return {void}
-         */
+             */
         repulsive: function (node, force, distanceXY, distanceR) {
             node.dispX +=
                 (distanceXY.x / distanceR) * force / node.degree;
@@ -280,8 +271,7 @@ H.networkgraphIntegrations = {
          * @param {Highcharts.PositionObject} distanceXY
          *        Distance between two nodes e.g. `{x, y}`
          * @param {number} distanceR
-         * @return {void}
-         */
+             */
         attractive: function (link, force, distanceXY, distanceR) {
             var massFactor = link.getMass(), translatedX = (distanceXY.x / distanceR) * force, translatedY = (distanceXY.y / distanceR) * force;
             if (!link.fromNode.fixedPosition) {
@@ -328,8 +318,7 @@ H.networkgraphIntegrations = {
          *        Layout object
          * @param {Highcharts.Point} node
          *        Node that should be translated
-         * @return {void}
-         */
+             */
         integrate: function (layout, node) {
             var distanceR;
             node.dispX +=
@@ -350,10 +339,7 @@ H.networkgraphIntegrations = {
         /**
          * Estiamte the best possible distance between two nodes, making graph
          * readable.
-         *
          * @private
-         * @param {object} layout layout object
-         * @return {number}
          */
         getK: function (layout) {
             return Math.pow(layout.box.width * layout.box.height / layout.nodes.length, 0.3);

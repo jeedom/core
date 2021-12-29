@@ -19,8 +19,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import multipleLinesMixin from '../../../Mixins/MultipleLines.js';
-import requiredIndicator from '../../../Mixins/IndicatorRequired.js';
+import MultipleLinesComposition from '../MultipleLinesComposition.js';
 import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
 var AroonIndicator = SeriesRegistry.seriesTypes.aroon;
 import U from '../../../Core/Utilities.js';
@@ -43,6 +42,11 @@ var AROON = SeriesRegistry.seriesTypes.aroon;
 var AroonOscillatorIndicator = /** @class */ (function (_super) {
     __extends(AroonOscillatorIndicator, _super);
     function AroonOscillatorIndicator() {
+        /* *
+         *
+         *  Static Properties
+         *
+         * */
         var _this = _super !== null && _super.apply(this, arguments) || this;
         /* *
          *
@@ -77,13 +81,6 @@ var AroonOscillatorIndicator = /** @class */ (function (_super) {
             yData: yData
         };
     };
-    AroonOscillatorIndicator.prototype.init = function () {
-        var args = arguments, ctx = this;
-        requiredIndicator.isParentLoaded(AROON, 'aroon', ctx.type, function (indicator) {
-            indicator.prototype.init.apply(ctx, args);
-            return;
-        });
-    };
     /**
      * Aroon Oscillator. This series requires the `linkedTo` option to be set
      * and should be loaded after the `stock/indicators/indicators.js` and
@@ -111,12 +108,13 @@ var AroonOscillatorIndicator = /** @class */ (function (_super) {
     });
     return AroonOscillatorIndicator;
 }(AroonIndicator));
-extend(AroonOscillatorIndicator.prototype, merge(multipleLinesMixin, {
+extend(AroonOscillatorIndicator.prototype, {
     nameBase: 'Aroon Oscillator',
+    linesApiNames: [],
     pointArrayMap: ['y'],
-    pointValKey: 'y',
-    linesApiNames: []
-}));
+    pointValKey: 'y'
+});
+MultipleLinesComposition.compose(AroonIndicator);
 SeriesRegistry.registerSeriesType('aroonoscillator', AroonOscillatorIndicator);
 /* *
  *
