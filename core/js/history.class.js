@@ -18,6 +18,7 @@
 
 jeedom.history = function() {};
 jeedom.history.chart = [];
+jeedom.history.chartDrawTime = 500
 
 jeedom.history.get = function(_params) {
   var paramsRequired = ['cmd_id', 'dateStart', 'dateEnd'];
@@ -565,7 +566,7 @@ jeedom.history.drawChart = function(_params) {
             plotOptions: {
               series: {
                 animation: {
-                  duration: (getUrlVars('report') == 1) ? 0 : 750
+                  duration: (getUrlVars('report') == 1) ? 0 : jeedom.history.chartDrawTime
                 }
               },
               pie: {
@@ -773,7 +774,7 @@ jeedom.history.drawChart = function(_params) {
             plotOptions: {
               series: {
                 animation: {
-                  duration: (getUrlVars('report') == 1) ? 0 : 750
+                  duration: (getUrlVars('report') == 1) ? 0 : jeedom.history.chartDrawTime
                 },
                 events: {
                   legendItemClick: function(event) {
@@ -1361,7 +1362,7 @@ jeedom.history.chartDone = function(_chartId) {
           setChartOptions(_chartId)
         }
       }
-    }, (getUrlVars('report') == 1) ? 0 : 750)
+    }, (getUrlVars('report') == 1) ? 0 : jeedom.history.chartDrawTime)
   } catch (error) {
     console.error(error)
   }
