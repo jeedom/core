@@ -244,20 +244,22 @@ jeedom.log.autoupdate = function(_params) {
         }
       }
 
+      var $brutlogcheck = $('#brutlogcheck')
+
       var colorMe = false
-      var isAuto = (jeeFrontEnd.log.$rawLogCheck.attr('autoswitch') == 1) ? true : false
+      var isAuto = ($brutlogcheck.attr('autoswitch') == 1) ? true : false
       var isLong = (log.length > jeedom.log.coloredThreshold) ? true : false
 
-      if (!jeeFrontEnd.log.$rawLogCheck.is(':checked') && !isLong) {
+      if (!$brutlogcheck.is(':checked') && !isLong) {
         colorMe = true
-      } else if (isLong && !isAuto && !jeeFrontEnd.log.$rawLogCheck.is(':checked')) {
+      } else if (isLong && !isAuto && !$brutlogcheck.is(':checked')) {
         colorMe = true
       } else if (isLong && isAuto && _params.callNumber == 1) {
         colorMe = false
-        jeeFrontEnd.log.$rawLogCheck.prop('checked', true)
+        $brutlogcheck.prop('checked', true)
       } else if (!isLong && isAuto && _params.callNumber == 1) {
         colorMe = true
-        jeeFrontEnd.log.$rawLogCheck.prop('checked', false)
+        $brutlogcheck.prop('checked', false)
       }
 
       if (colorMe) {
