@@ -335,10 +335,12 @@ $(function() {
           zIndex: 9999,
           className: 'widget-context-menu',
           callback: function(key, options, event) {
-            if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
-              window.open('index.php?v=d&p=widgets&id=' + options.commands[key].id).focus()
-            } else {
-              jeeP.printWidget(options.commands[key].id)
+            if (!jeedomUtils.checkPageModified()) {
+              if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
+                window.open('index.php?v=d&p=widgets&id=' + options.commands[key].id).focus()
+              } else {
+                jeeP.printWidget(options.commands[key].id)
+              }
             }
           },
           items: contextmenuitems

@@ -288,14 +288,16 @@ $(function() {
             zIndex: 9999,
             className: 'interact-context-menu',
             callback: function(key, options, event) {
-              if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
-                var url = 'index.php?v=d&p=interact&id=' + options.commands[key].id
-                if (window.location.hash != '') {
-                  url += window.location.hash
+              if (!jeedomUtils.checkPageModified()) {
+                if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
+                  var url = 'index.php?v=d&p=interact&id=' + options.commands[key].id
+                  if (window.location.hash != '') {
+                    url += window.location.hash
+                  }
+                  window.open(url).focus()
+                } else {
+                  jeeP.printInteract(options.commands[key].id)
                 }
-                window.open(url).focus()
-              } else {
-                jeeP.printInteract(options.commands[key].id)
               }
             },
             items: contextmenuitems
