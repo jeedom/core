@@ -7,12 +7,6 @@ if (!jeeFrontEnd.view) {
     init: function() {
       window.jeeP = this
     },
-    highcharts_load_callback: function(_chartId) {
-      jeedom.history.chart[_chartId].chart.redraw()
-    },
-    setAxisScales_Callback: function(_chartId) {
-      jeedom.history.chart[_chartId].chart.redraw()
-    },
   }
 }
 

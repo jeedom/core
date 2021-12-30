@@ -37,12 +37,6 @@ if (!jeeFrontEnd.plan) {
         }
       }
     },
-    highcharts_load_callback: function(_chartId) {
-      jeedom.history.chart[_chartId].chart.redraw()
-    },
-    setAxisScales_Callback: function(_chartId) {
-      jeedom.history.chart[_chartId].chart.redraw()
-    },
     createNewDesign: function() {
       bootbox.prompt("{{Nom du design ?}}", function(result) {
         if (result !== null) {

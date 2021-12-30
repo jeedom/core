@@ -102,10 +102,6 @@ if (!jeeFrontEnd.md_history) {
         'left': this.modal.css('left')
       })
     },
-    highcharts_load_callback: function() {
-    },
-    setAxisScales_Callback: function() {
-    },
     resizeHighChartModal: function() {
       if (!jeedom.history.chart[this.__el__]) return
       if (!this.$divGraph || !jeedom.history.chart[this.__el__].chart) return

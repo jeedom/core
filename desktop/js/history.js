@@ -55,10 +55,7 @@ if (!jeeFrontEnd.history) {
         jeedom.history.chart[this.__el__].chart.setSize(this.$divGraph.width(), this.__chartHeight__)
       }
     },
-    highcharts_load_callback: function(_chartId) {
-      this.setChartOptions()
-    },
-    setAxisScales_Callback: function(_chartId) {
+    highcharts_done_callback: function(_chartId) {
       this.setChartOptions()
     },
     /*
@@ -129,7 +126,8 @@ if (!jeeFrontEnd.history) {
             } catch (error) {}
           })
         }
-        jeedom.history.setAxisScales(this.__el__, {redraw: true})
+        jeedom.history.chart[this.__el__].doing = 0
+        jeedom.history.chartDone(this.__el__)
         return
       }
 
