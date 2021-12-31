@@ -187,14 +187,14 @@ function jeedom_displayObjectGroup($object=-1) {
 			
 			<div role="tabpanel" class="tab-pane" id="historytab">
 				<div id="div_alertRemoveHistory"></div>
-				<a class="btn btn-danger btn-sm floatingbar" id="bt_emptyRemoveHistory"><i class="fas fa-times"></i> {{Vider}}</a>
+
 				<table class="table table-condensed table-bordered tablesorter" id="table_removeHistory">
 					<thead>
 						<tr>
 							<th>{{Date}}</th>
 							<th>{{Type}}</th>
 							<th>{{ID}}</th>
-							<th>{{Nom}}</th>
+							<th>{{Nom}} <a class="btn btn-danger btn-sm pull-right" id="bt_emptyRemoveHistory"><i class="fas fa-times"></i> {{Vider}}</a></th>
 						</tr>
 					</thead>
 					<tbody>
