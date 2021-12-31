@@ -14,8 +14,6 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
- var _debug = false
-
 jeedom.history = function() {};
 jeedom.history.chart = [];
 jeedom.history.chartDrawTime = 500
@@ -389,7 +387,7 @@ jeedom.history.drawChart = function(_params) {
             //default min/max set earlier in series
             //.doing initialized at 1 when chart created with first curve
             var thisId = event.target.userOptions._jeeId
-            if (_debug) console.log('__event__ load: ' + thisId)
+            jeeFrontEnd.debug(3, 'thisId: ' + thisId, 'event:', event)
 
             setTimeout(function() {
               try {
@@ -398,7 +396,7 @@ jeedom.history.drawChart = function(_params) {
             }, 0)
           },
           redraw: function(event) {
-            if (_debug) console.log('__event__ redraw')
+            jeeFrontEnd.debug(3, event)
             if (this.chartWidth > 710) {
               this.update({
                 rangeSelector: {
@@ -427,7 +425,7 @@ jeedom.history.drawChart = function(_params) {
             }
           },
           render: function(event) {
-            if (_debug) console.log('__event__ render')
+            jeeFrontEnd.debug(3, event)
             //shift dotted zones clipPaths to ensure no overlapping step mode:
             var solidClip = null;
             $('.highcharts-zone-graph-0.customSolidZone').each(function() {
@@ -442,7 +440,7 @@ jeedom.history.drawChart = function(_params) {
           },
           addSeries: function(event) {
             var thisId = this._jeeId
-            if (_debug) console.log('__event__ addSeries: ' + thisId)
+            jeeFrontEnd.debug(3, 'thisId: ' + thisId + ' event: ' + event)
 
             if (jeedom.history.chart[thisId].doing > 0) { //chart not done, loading several series at once:
               jeedom.history.chart[thisId].doing += 1
@@ -1306,9 +1304,8 @@ jeedom.history.initLegendContextMenu = function(_chartId) {
 HighCharts events callbacks on load / addSeries / selection
 Decrement .doing and call chartDone when .doing == 0
 */
-jeedom.history.chartCallback  = function(_chartId, _options) {
-  if (_debug) console.log('____ chartCallback: ' + _chartId + ' doing: ' + jeedom.history.chart[_chartId].doing)
-  if (isset(_options) && isset(_options.type) && _debug) console.log('option type: ' + _options.type)
+jeedom.history.chartCallback = function(_chartId, _options) {
+  jeeFrontEnd.debug(3, '_chartId: ' + _chartId, 'doing: ' + jeedom.history.chart[_chartId].doing, '_options:', _options)
 
   if (_chartId === undefined || !isset(_options)) return false
   if (jeedom.history.chart[_chartId].type == 'pie') return false
@@ -1326,17 +1323,17 @@ jeedom.history.chartCallback  = function(_chartId, _options) {
 
   //Is done ?
   if (jeedom.history.chart[_chartId].doing == 0) {
-    if (_debug) console.log('____ chartCallback: doing 0, call chartDone!')
     jeedom.history.chartDone(_chartId)
     return true
   }
 }
 
+
 /*
 Once chart is done
 */
 jeedom.history.chartDone = function(_chartId) {
-  if (_debug) console.log('____ chartDone: ' + jeedom.history.chart[_chartId].doing)
+  jeeFrontEnd.debug(2, '_chartId: ' + _chartId + ' doing: ' + jeedom.history.chart[_chartId].doing)
 
   if (_chartId === undefined) return false
   if (jeedom.history.chart[_chartId].doing > 0) return false
@@ -1358,7 +1355,7 @@ jeedom.history.chartDone = function(_chartId) {
         })
 
         if (isset(jeeFrontEnd[jeedom.history.chart[_chartId].mode]) && typeof jeeFrontEnd[jeedom.history.chart[_chartId].mode].highcharts_done_callback === "function") {
-          if (_debug) console.log('----> highcharts_done_callback')
+          jeeFrontEnd.debug(3, 'call highcharts_done_callback()')
           jeeFrontEnd[jeedom.history.chart[_chartId].mode].highcharts_done_callback(_chartId)
         }
 
@@ -1373,12 +1370,11 @@ jeedom.history.chartDone = function(_chartId) {
 Set each existing yAxis scale according to chart yAxisScaling and yAxisByUnit
 */
 jeedom.history.setAxisScales = function(_chartId, _options) {
-  if (_debug) console.log('____ setAxisScales: ' + _chartId + ' doing: ' + jeedom.history.chart[_chartId].doing)
-  if (isset(_options) && isset(_options.type) && _debug) console.log('option type: ' + _options.type)
-
   if (_chartId === undefined) return false
   if (jeedom.history.chart[_chartId].type == 'pie') return false
   var chart = jeedom.history.chart[_chartId].chart
+
+  jeeFrontEnd.debug(2, '_chartId: ' + _chartId,  '_options:', _options, 'yAxisScaling: ' + jeedom.history.chart[_chartId].yAxisScaling, 'yAxisByUnit: ' + jeedom.history.chart[_chartId].yAxisByUnit)
 
   //All done with render false, redraw at end if in _options
 
@@ -1419,11 +1415,11 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
       units[unit].axis.push(axis.userOptions.id)
 
       if (axis.series[0].data.length > 0) {
-        var mathMin = Math.min.apply(Math, axis.series[0].data.map(function (key) {return key.y}))
-        var mathMax = Math.max.apply(Math, axis.series[0].data.map(function (key) {return key.y}))
+        var mathMin = Math.min.apply(Math, axis.series[0].data.filter(x => x !== null).map(function (key) {return key.y}))
+        var mathMax = Math.max.apply(Math, axis.series[0].data.filter(x => x !== null).map(function (key) {return key.y}))
       } else if (axis.series[0].points) {
-        var mathMin = Math.min.apply(Math, axis.series[0].points.map(function (key) {return key.y}))
-        var mathMax = Math.max.apply(Math, axis.series[0].points.map(function (key) {return key.y}))
+        var mathMin = Math.min.apply(Math, axis.series[0].points.filter(x => x !== null).map(function (key) {return key.y}))
+        var mathMax = Math.max.apply(Math, axis.series[0].points.filter(x => x !== null).map(function (key) {return key.y}))
       }
       if (mathMin < units[unit].min) units[unit].min = mathMin
       if (mathMax > units[unit].max) units[unit].max = mathMax
@@ -1447,7 +1443,7 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
     var softMax = 0
     var mathMax
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
-      mathMax = Math.max.apply(Math, axis.series[0].data.map(function(key) { return key.y }))
+      mathMax = Math.max.apply(Math, axis.series[0].data.filter(x => x !== null).map(function(key) { return key.y }))
       if (mathMax > softMax) softMax = mathMax
     })
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
@@ -1478,19 +1474,19 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
       }
       units[unit].axis.push(axis.userOptions.id)
       if (axis.series[0].data.length > 0) {
-        var mathMin = Math.min.apply(Math, axis.series[0].data.map(function (key) {return key.options.y}))
-        var mathMax = Math.max.apply(Math, axis.series[0].data.map(function (key) {return key.options.y}))
+        var mathMin = Math.min.apply(Math, axis.series[0].data.filter(x => x !== null).map(function (key) {return key.options.y}))
+        var mathMax = Math.max.apply(Math, axis.series[0].data.filter(x => x !== null).map(function (key) {return key.options.y}))
       } else if (axis.series[0].points) {
-        var mathMin = Math.min.apply(Math, axis.series[0].points.map(function (key) {return key.y}))
-        var mathMax = Math.max.apply(Math, axis.series[0].points.map(function (key) {return key.y}))
+        var mathMin = Math.min.apply(Math, axis.series[0].points.filter(x => x !== null).map(function (key) {return key.y}))
+        var mathMax = Math.max.apply(Math, axis.series[0].points.filter(x => x !== null).map(function (key) {return key.y}))
       }
 
       if (mathMin < units[unit].min) units[unit].min = mathMin
       if (mathMax > units[unit].max) units[unit].max = mathMax
 
       if (jeedom.history.chart[_chartId].comparing && axis.series[1]) {
-        cmin = Math.min.apply(Math, axis.series[1].data.map(function(key) { return key.y }))
-        cmax = Math.max.apply(Math, axis.series[1].data.map(function(key) { return key.y }))
+        cmin = Math.min.apply(Math, axis.series[1].data.filter(x => x !== null).map(function(key) { return key.y }))
+        cmax = Math.max.apply(Math, axis.series[1].data.filter(x => x !== null).map(function(key) { return key.y }))
         if (cmin < units[unit].min) units[unit].min = cmin
         if (cmax > units[unit].max) units[unit].max = cmax
       }
@@ -1516,16 +1512,16 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
       axisId = axis.userOptions.id
       if (!axisId) axisId = 0
       if (axis.series[0].data.length > 0) {
-        var min = Math.min.apply(Math, axis.series[0].data.map(function (key) {return key.options.y}))
-        var max = Math.max.apply(Math, axis.series[0].data.map(function (key) {return key.options.y}))
+        var min = Math.min.apply(Math, axis.series[0].data.filter(x => x !== null).map(function (key) {return key.options.y}))
+        var max = Math.max.apply(Math, axis.series[0].data.filter(x => x !== null).map(function (key) {return key.options.y}))
       } else if (axis.series[0].points) {
-        var min = Math.min.apply(Math, axis.series[0].points.map(function (key) {return key.y}))
-        var max = Math.max.apply(Math, axis.series[0].points.map(function (key) {return key.y}))
+        var min = Math.min.apply(Math, axis.series[0].points.filter(x => x !== null).map(function (key) {return key.y}))
+        var max = Math.max.apply(Math, axis.series[0].points.filter(x => x !== null).map(function (key) {return key.y}))
       }
 
       if (jeedom.history.chart[_chartId].comparing && axis.series[1]) {
-        var cmin = Math.min.apply(Math, axis.series[1].data.map(function(key) { return key.y }))
-        var cmax = Math.max.apply(Math, axis.series[1].data.map(function(key) { return key.y }))
+        var cmin = Math.min.apply(Math, axis.series[1].data.filter(x => x !== null).map(function(key) { return key.y }))
+        var cmax = Math.max.apply(Math, axis.series[1].data.filter(x => x !== null).map(function(key) { return key.y }))
         if (cmin < min) min = cmin
         if (cmax > max) max = cmax
       }
@@ -1540,6 +1536,8 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
       axis.setExtremes(min / 1.005, max * 1.005, false)
     })
   }
+
+  jeeFrontEnd.debug(4, '_chartId: ' + _chartId, 'units:', units)
 
   /*
   Set axis visible / color.
