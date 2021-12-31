@@ -424,8 +424,9 @@ $("#bt_removeObject").on('click', function(event) {
   $.hideAlert()
   bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + $('.objectDisplayCard.active .name').text().trim() + '</span> ?', function(result) {
     if (result) {
+      var removeId = $('.objectDisplayCard.active').attr('data-object_id')
       jeedom.object.remove({
-        id: $('.objectDisplayCard.active').attr('data-object_id'),
+        id: removeId,
         error: function(error) {
           $.fn.showAlert({
             message: error.message,
@@ -434,6 +435,12 @@ $("#bt_removeObject").on('click', function(event) {
         },
         success: function() {
           modifyWithoutSave = false
+          $('#bt_gotoDashboard').siblings('ul').find('li').each(function() {
+            var href = $(this).find('a').attr('href')
+            if (href.includes('dashboard&object_id=' + removeId)) {
+              $(this).remove()
+            }
+          })
           jeedomUtils.loadPage('index.php?v=d&p=object&removeSuccessFull=1')
         }
       })
