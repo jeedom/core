@@ -77,7 +77,6 @@ Nous avons ajouté une confirmation du mot de passe de backup cloud pour préven
 - Changement au niveau de l'api, auparavant "tolérante" si vous arriviez avec la clef du Core en indiquant plugin XXXXX. Ce n'est plus le cas, vous devez arriver avec la clef correspondante au plugin.
 - En api http vous pouviez indiquer un nom de plugin en type, ce n'est plus possible. Le type correspondant au type de la demande (scenario, eqLogic, cmd, etc.) doit correspondre au plugin. Par exemple pour le plugin virtuel vous aviez ``type=virtual`` dans l'url il faut maintenant remplacer par ``plugin=virtual&type=event``.
 - Renforcement des sessions : Passage en sha256 avec 64 caractères en mode strict.
-- Le cookie de "rester connecté" (3 mois max) est maintenant "one shot", renouvelé à chaque utilisation.
 
 L'équipe Jeedom a bien conscience que ces changements peuvent avoir un impact et être gênant pour vous mais nous ne pouvons transiger sur la sécurité.
 Les plugins doivent respecter les recommandations sur l'arborescence des dossiers et fichiers : [Doc](https://doc.jeedom.com/fr_FR/dev/plugin_template).
