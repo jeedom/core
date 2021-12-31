@@ -50,6 +50,35 @@ jeephp2js = {
   __description: 'Jeedom namespace for data transfer php -> js through sendVarToJS(). Could be emptied on loadPage()',
 }
 
+/*
+debug js frontEnd
+*/
+jeeFrontEnd._debug = false
+jeeFrontEnd.debug = function(_level, _msg) {
+  if (jeeFrontEnd._debug >= _level) {
+    var dirMe = false
+    var e = new Error('dummy');
+    var stack = e.stack
+
+    if (stack.startsWith('Error:')) { //Chrome
+      dirMe = true
+      var call = stack.split('\n')[2].split('at ')[1].split(' (')[0]
+      if (call.startsWith('Function.')) call = call.split('Function.')[1]
+      var callAdrr = stack.split('\n')[2].split('getResource.php?file=')[1].split('&md5')[0]
+    } else { //Firefox
+      var call = stack.split('\n')[1].split('@')[0]
+      var callAdrr = stack.split('\n')[1].split('getResource.php?file=')[1].split('&md5')[0]
+    }
+
+    console.groupCollapsed('debug ' + _level + ' |', call + '() from: ' + callAdrr)
+    for (var i=1; i<arguments.length; i++) {
+      console.log(arguments[i])
+    }
+    (dirMe) ? console.dir(arguments.callee.caller) : console.log(arguments.callee.caller)
+    console.groupEnd()
+  }
+}
+
 var Highcharts
 
 if (!isset(jeedom.cache.getConfiguration)) {
