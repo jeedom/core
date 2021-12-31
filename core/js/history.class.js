@@ -1433,8 +1433,8 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
       axis.update({
         softMin: 0,
         softMax: null,
-        min: null,
-        max: units[unit].max,
+        min: units[unit].min > 0 ? 0 : units[unit].min,
+        max: units[unit].max < 0 ? 0 : units[unit].max,
         tickPositions: null
       }, false)
       axis.setExtremes(null,  units[unit].max * 1.005, false)
