@@ -2581,11 +2581,11 @@
         "Inactifs": "Inattivo",
         "Export CSV": "Esportazione CSV",
         "Rechercher | nom | id | :not(nom": "Rechercher | nom | id | :not(nom",
-        "Vider": "Vuota",
         "Date": "Data",
         "Type": "Tipo",
         "ID": "ID",
-        "Nom": "Nome"
+        "Nom": "Nome",
+        "Vider": "Vuota"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",

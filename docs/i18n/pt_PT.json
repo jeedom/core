@@ -1383,7 +1383,6 @@
         "dans l'url il faut maintenant remplacer par": "no url, agora é necessário substituir por",
         "Renforcement des sessions": "Reforço de sessões",
         "Passage en sha256 avec 64 caractères en mode strict": "Mude para sha256 com 64 caracteres em modo estrito",
-        "Le cookie de \"rester connecté\" (3 mois max) est maintenant \"one shot\", renouvelé à chaque utilisation": "O cookie \"fique conectado\" (3 meses no máximo) agora é \"one shot\", renovado a cada uso",
         "L'équipe Jeedom a bien conscience que ces changements peuvent avoir un impact et être gênant pour vous mais nous ne pouvons transiger sur la sécurité": "A equipe da Jeedom está ciente de que essas mudanças podem ter um impacto e ser embaraçosas para você, mas não podemos comprometer a segurança",
         "Les plugins doivent respecter les recommandations sur l'arborescence des dossiers et fichiers": "Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pastas e arquivos",
         "Changelog Jeedom V4.1": "Registro de alterações Jeedom V4.1",

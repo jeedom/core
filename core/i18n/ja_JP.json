@@ -2581,11 +2581,11 @@
         "Inactifs": "不活発",
         "Export CSV": "CSVエクスポート",
         "Rechercher | nom | id | :not(nom": "Rechercher | nom | id | :not(nom",
-        "Vider": "空",
         "Date": "日付",
         "Type": "タイプ",
         "ID": "ID",
-        "Nom": "表題"
+        "Nom": "表題",
+        "Vider": "空"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
