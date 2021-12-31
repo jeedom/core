@@ -47,11 +47,13 @@ sendVarToJS([
 ]);
 */
 jeephp2js = {
-  __description: 'Jeedom namespace for data transfer php -> js through sendVarToJS(). Could be emptied on loadPage()',
+  __description: 'Jeedom namespace for data transfer php -> js through sendVarToJS(). Emptied on loadPage()',
 }
 
 /*
-debug js frontEnd
+Debug js frontEnd
+Accept any number of argument
+@example : jeeFrontEnd.debug(3, '_chartId: ' + _chartId, 'doing: ' + jeedom.history.chart[_chartId].doing, '_options:', _options)
 */
 jeeFrontEnd._debug = false
 jeeFrontEnd.debug = function(_level, _msg) {
