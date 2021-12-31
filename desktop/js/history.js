@@ -316,10 +316,12 @@ $('#bt_displayCalculHistory').on('click', function() {
 $('#bt_configureCalculHistory').on('click', function() {
   $('#md_modal').dialog({
     title: "{{Configuration des formules de calcul}}",
-    beforeClose: function(event, ui) {
-      jeeP.setCalculList()
-    }
   }).load('index.php?v=d&modal=history.calcul').dialog('open')
+
+  $('#md_modal').on('dialogbeforeclose', function(event, ui) {
+    jeeP.setCalculList()
+    $(this).off('dialogbeforeclose')
+  })
 })
 $('#bt_openCmdHistoryConfigure').on('click', function() {
   $('#md_modal').dialog({
