@@ -157,7 +157,7 @@ $(function() {
 })
 
 //handle resizing:
-$(window).resize(function() {
+$('#md_modal2').on('dialogresize', function() {
   clearTimeout(jeeFrontEnd.md_history.resizeDone)
   jeeFrontEnd.md_history.resizeDone = setTimeout(function() { jeeFrontEnd.md_history.resizeDn() }, 100)
 })

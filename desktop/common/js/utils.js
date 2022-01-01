@@ -582,6 +582,7 @@ jeedomUtils.initJeedomModals = function() {
     },
     beforeClose: function(event, ui) {
       emptyModal('md_modal2')
+      $('#md_modal2').off('dialogresize')
     }
   })
 
