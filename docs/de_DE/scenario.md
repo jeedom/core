@@ -119,12 +119,12 @@ Hier sind die verschiedenen Arten von Blöcken verfügbar :
 
 Jeder Block hat seine Optionen, um besser damit umzugehen :
 
-- Auf der Linken :
+- Links :
     - Mit dem bidirektionalen Pfeil können Sie einen Block oder eine Aktion verschieben, um sie im Szenario neu anzuordnen.
     - Das Auge reduziert eine Blockade (*Zusammenbruch*) um seine visuelle Wirkung zu reduzieren. Strg Klick auf das Auge verkleinert sie oder zeigt sie alle an.
     - Mit dem Kontrollkästchen können Sie den Block vollständig deaktivieren, ohne ihn zu löschen. Es wird daher nicht ausgeführt.
 
-- Auf der rechten Seite :
+- Rechts :
     - Mit dem Symbol Kopieren können Sie den Block kopieren, um eine Kopie an einer anderen Stelle zu erstellen. Strg Klicken Sie auf das Symbol, um den Block zu schneiden (kopieren und löschen).
     - Mit dem Symbol Einfügen können Sie eine Kopie des Blocks einfügen, der zuvor nach dem Block kopiert wurde, für den Sie diese Funktion verwenden.  Strg Klicken Sie auf das Symbol, um den Block durch den kopierten Block zu ersetzen.
     - Das Symbol - ermöglicht es Ihnen, den Block mit einer Bestätigungsanforderung zu löschen. Strg Klicken löscht den Block ohne Bestätigung.
