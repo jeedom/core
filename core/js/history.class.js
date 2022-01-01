@@ -1351,7 +1351,7 @@ jeedom.history.chartDone = function(_chartId) {
     setTimeout(function() {
     if (!jeedom.history.chart[_chartId].comparing) {
         jeedom.history.chart[_chartId].chart.setSize(null, null, false)
-        jeedom.history.setAxisScales(_chartId, {redraw: true})
+        jeedom.history.setAxisScales(_chartId)
         jeedom.history.chart[_chartId].chart.update({
           chart: {
             animation: true,
@@ -1359,7 +1359,7 @@ jeedom.history.chartDone = function(_chartId) {
           tooltip: {
             enabled: true,
           },
-        })
+        }) //last redraw!
 
         if (isset(jeeFrontEnd[jeedom.history.chart[_chartId].mode]) && typeof jeeFrontEnd[jeedom.history.chart[_chartId].mode].highcharts_done_callback === "function") {
           jeeFrontEnd.debug(3, 'call highcharts_done_callback()')
