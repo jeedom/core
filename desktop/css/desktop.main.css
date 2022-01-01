@@ -4111,9 +4111,18 @@ Desktop
     ry: var(--border-radius);
     stroke: transparent;
   }
-  div.chartContainer .highcharts-button.highcharts-button-pressed > rect {
+  div.chartContainer .highcharts-button.highcharts-button-pressed > rect,
+  div.chartContainer .highcharts-button.highcharts-button-pressed span {
     stroke: transparent;
     fill: var(--objectBkgd-color) !important;
+    color: var(--objectTxt-color) !important;
+  }
+  div.chartContainer .highcharts-button.highcharts-button-hover span,
+  div.chartContainer .highcharts-button.highcharts-button-normal span{
+    color: var(--link-color) !important;
+  }
+  div.chartContainer div.highcharts-button span {
+    pointer-events: none;
   }
   div.chartContainer .highcharts-button.highcharts-button-pressed > text {
     stroke: transparent;
