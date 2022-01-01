@@ -47,14 +47,19 @@ Se você exibir um gráfico na página de histórico, terá acesso a várias op�
 > **Dica**
 >
 > Para evitar qualquer erro de manuseio, essas opções salvas nos comandos só ficam ativas quando uma única curva é exibida.
+> 
+Na parte superior onde as curvas são exibidas, também existem várias opções :
 
-No espaço onde as curvas são exibidas, também existem várias opções :
+À esquerda:
 
 - **Ampliação** : Uma área de atalho que permite ajustar o zoom horizontal para a duração desejada, se os dados forem carregados.
-- **yAxis visível** : Permite-lhe ocultar ou mostrar todos os eixos verticais.
-- **Escala yAxis** : Permite ativar ou não a escala de cada eixo vertical independentemente dos demais.
-- **Você** : Permite agrupar a escala das curvas e eixos verticais de acordo com sua unidade. Todas as curvas com a mesma unidade terão a mesma escala.
-- **Monitorando** : Permite-lhe desactivar o realce da curva quando é apresentado um valor no cursor do rato. Por exemplo, quando duas curvas não têm seus valores ao mesmo tempo.
+
+A direita:
+
+- **Eixos verticais visíveis** : Permite-lhe ocultar ou mostrar todos os eixos verticais.
+- **Escala do eixo vertical** : Permite ativar ou não a escala de cada eixo vertical independentemente dos demais.
+- **Agrupamento de eixos verticais por unidades** : Permite agrupar a escala das curvas e eixos verticais de acordo com sua unidade. Todas as curvas com a mesma unidade terão a mesma escala.
+- **Opacidade das curvas sob o mouse** : Permite-lhe desactivar o realce da curva quando é apresentado um valor no cursor do rato. Por exemplo, quando duas curvas não têm seus valores ao mesmo tempo.
 
 Sob as curvas, você também pode usar o menu contextual em cada legenda para isolar uma curva, exibir / ocultar seu eixo, alterar sua cor, ...
 

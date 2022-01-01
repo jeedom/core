@@ -124,7 +124,7 @@ Cada bloco tem suas opções para lidar melhor com eles :
     - O olho reduz um bloqueio (*colapso*) para reduzir seu impacto visual. Ctrl Clique no olho reduz ou exibe todos eles.
     - A caixa de seleção permite desativar completamente o bloco sem excluí-lo. Portanto, não será executado.
 
-- À direita :
+- A direita :
     - O ícone Copiar permite copiar o bloco para fazer uma cópia em outro lugar. Ctrl Clique no ícone corta o bloco (copie e exclua).
     - O ícone Colar permite colar uma cópia do bloco copiado anteriormente após o bloco no qual você usa esta função.  Ctrl Clique no ícone substitui o bloco pelo bloco copiado.
     - O ícone - permite excluir o bloco, com uma solicitação de confirmação. Ctrl Clique exclui o bloco sem confirmação.
