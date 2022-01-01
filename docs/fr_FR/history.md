@@ -47,14 +47,19 @@ Si vous affichez un graphique par la page historique, vous avez accès à plusie
 > **Tip**
 >
 > Pour éviter toutes erreur de manipulation, ces options sauvegardées dans les commandes sont active seulement quand une seule courbe est affichée.
+> 
+Dans la partie haute où s'affichent les courbes, il y également plusieurs options :
 
-Dans l'espace où s'affichent les courbes, il y également plusieurs options :
+Sur la gauche:
 
 - **Zoom** : Une zone de raccourcis permettant de régler le zoom horizontal sur la durée souhaitée, si les données sont chargées.
-- **yAxis Visible** : Permet de cacher ou afficher tous les axes verticaux.
-- **yAxis Scaling** : Permet d'activer ou non la mise à l'échelle de chaque axe vertical indépendamment des autres.
-- **U** : Permet de grouper l'échelle des courbes et axes verticaux en fonction de leur unité. Toutes les courbes de même unité auront la même échelle.
-- **Tracking** : Permet de désactiver la mise en surbrillance de la courbe quand une valeur est affichée au curseur de la souris. Par exemple quand deux courbes n'ont pas leurs valeurs aux même moments.
+
+Sur la droite:
+
+- **Axes verticaux visibles** : Permet de cacher ou afficher tous les axes verticaux.
+- **Echelle des axes verticaux** : Permet d'activer ou non la mise à l'échelle de chaque axe vertical indépendamment des autres.
+- **Groupement des axes verticaux par unités** : Permet de grouper l'échelle des courbes et axes verticaux en fonction de leur unité. Toutes les courbes de même unité auront la même échelle.
+- **Opacité des courbes sous la souris** : Permet de désactiver la mise en surbrillance de la courbe quand une valeur est affichée au curseur de la souris. Par exemple quand deux courbes n'ont pas leurs valeurs aux même moments.
 
 Sous les courbes, vous pouvez aussi utiliser le menu contextuel sur chaque légende pour isoler une courbe, afficher/cacher son axe, changer sa couleur, ...
 
