@@ -107,13 +107,12 @@ var EMAIndicator = /** @class */ (function (_super) {
      * `linkedTo` option to be set.
      *
      * @sample stock/indicators/ema
-     *         Exponential moving average indicator
+     * Exponential moving average indicator
      *
      * @extends      plotOptions.sma
      * @since        6.0.0
      * @product      highstock
      * @requires     stock/indicators/indicators
-     * @requires     stock/indicators/ema
      * @optionparent plotOptions.ema
      */
     EMAIndicator.defaultOptions = merge(SMAIndicator.defaultOptions, {
@@ -150,7 +149,6 @@ export default EMAIndicator;
  * @product   highstock
  * @excluding dataParser, dataURL
  * @requires  stock/indicators/indicators
- * @requires  stock/indicators/ema
  * @apioption series.ema
  */
 ''; // adds doclet above to the transpiled file

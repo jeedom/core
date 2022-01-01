@@ -316,6 +316,9 @@ function addEditviewZone(_viewZone) {
     div += '<option value="1">{{Largeur}} 1</option>'
     div += '</select>'
     if (init(_viewZone.type, 'widget') == 'graph') {
+      div += '<span class="viewZoneAttr form-control" style="width: auto; background: transparent !important;">{{Hauteur}} (px)</span>'
+      div += '<input class="viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="height" style="width : 150px;">'
+
       div += '<select class="viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="dateRange" style="width : 200px;">'
       div += '<option value="30 min">{{30 min}}</option>'
       div += '<option value="1 hour">{{1 heure}}</option>'
@@ -500,7 +503,7 @@ function addGraphService(_viewData) {
   tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="graphType">'
   tr += '<option value="line">{{Ligne}}</option>'
   tr += '<option value="area">{{Aire}}</option>'
-  tr += '<option value="column">{{Colonne}}</option>'
+  tr += '<option value="column">{{Barre}}</option>'
   tr += '<option value="pie">{{Camembert}}</option>'
   tr += '</select>'
   tr += '</td>'

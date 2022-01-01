@@ -23,20 +23,22 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import Axis from '../../Core/Axis/Axis.js';
 import Chart from '../../Core/Chart/Chart.js';
-import palette from '../../Core/Color/Palette.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var _a = SeriesRegistry.seriesTypes, ColumnSeries = _a.column, LineSeries = _a.line;
 import U from '../../Core/Utilities.js';
-var arrayMax = U.arrayMax, arrayMin = U.arrayMin, correctFloat = U.correctFloat, extend = U.extend, merge = U.merge, objectEach = U.objectEach, pick = U.pick;
+var arrayMax = U.arrayMax, arrayMin = U.arrayMin, correctFloat = U.correctFloat, extend = U.extend, isNumber = U.isNumber, merge = U.merge, objectEach = U.objectEach, pick = U.pick;
 import WaterfallAxis from '../../Core/Axis/WaterfallAxis.js';
 import WaterfallPoint from './WaterfallPoint.js';
 import '../../Core/DefaultOptions.js';
 /**
  * Returns true if the key is a direct property of the object.
  * @private
- * @param {*} obj - Object with property to test
- * @param {string} key - Property key to test
- * @return {boolean} - Whether it is a direct property
+ * @param {*} obj
+ * Object with property to test
+ * @param {string} key
+ * Property key to test
+ * @return {boolean}
+ * Whether it is a direct property
  */
 function ownProp(obj, key) {
     return Object.hasOwnProperty.call(obj, key);
@@ -96,23 +98,24 @@ var WaterfallSeries = /** @class */ (function (_super) {
     };
     // Translate data points from raw values
     WaterfallSeries.prototype.translate = function () {
-        var series = this, options = series.options, yAxis = series.yAxis, len, i, points, point, shapeArgs, y, yValue, previousY, previousIntermediate, range, minPointLength = pick(options.minPointLength, 5), halfMinPointLength = minPointLength / 2, threshold = options.threshold, stacking = options.stacking, tooltipY, actualStack = yAxis.waterfall.stacks[series.stackKey], actualStackX, dummyStackItem, total, pointY, yPos, hPos;
+        var series = this, options = series.options, yAxis = series.yAxis, y, minPointLength = pick(options.minPointLength, 5), halfMinPointLength = minPointLength / 2, threshold = options.threshold || 0, previousY = threshold, previousIntermediate = threshold, stacking = options.stacking, actualStack = yAxis.waterfall.stacks[series.stackKey], total, yPos, hPos;
         // run column series translate
         ColumnSeries.prototype.translate.apply(series);
-        previousY = previousIntermediate = threshold;
-        points = series.points;
-        for (i = 0, len = points.length; i < len; i++) {
-            // cache current point object
-            point = points[i];
-            yValue = series.processedYData[i];
-            shapeArgs = point.shapeArgs;
-            range = [0, yValue];
-            pointY = point.y;
+        var points = series.points;
+        for (var i = 0; i < points.length; i++) {
+            var point = points[i];
+            var yValue = series.processedYData[i];
+            var shapeArgs = point.shapeArgs;
+            if (!shapeArgs || !isNumber(yValue)) {
+                continue;
+            }
+            var range = [0, yValue];
+            var pointY = point.y;
             // code responsible for correct positions of stacked points
             // starts here
             if (stacking) {
                 if (actualStack) {
-                    actualStackX = actualStack[i];
+                    var actualStackX = actualStack[i];
                     if (stacking === 'overlap') {
                         total =
                             actualStackX.stackState[actualStackX.stateIndex--];
@@ -167,11 +170,11 @@ var WaterfallSeries = /** @class */ (function (_super) {
                         yPos = y;
                         hPos = y - pointY;
                     }
-                    point.below = yPos <= pick(threshold, 0);
-                    shapeArgs.y = yAxis.translate(yPos, 0, 1, 0, 1);
+                    point.below = yPos <= threshold;
+                    shapeArgs.y = yAxis.translate(yPos, false, true, false, true) || 0;
                     shapeArgs.height = Math.abs(shapeArgs.y -
-                        yAxis.translate(hPos, 0, 1, 0, 1));
-                    dummyStackItem = yAxis.waterfall.dummyStackItem;
+                        (yAxis.translate(hPos, false, true, false, true) || 0));
+                    var dummyStackItem = yAxis.waterfall.dummyStackItem;
                     if (dummyStackItem) {
                         dummyStackItem.x = i;
                         dummyStackItem.label = actualStack[i].label;
@@ -181,14 +184,13 @@ var WaterfallSeries = /** @class */ (function (_super) {
             }
             else {
                 // up points
-                y =
-                    Math.max(previousY, previousY + pointY) + range[0];
-                shapeArgs.y =
-                    yAxis.translate(y, 0, 1, 0, 1);
+                y = Math.max(previousY, previousY + pointY) + range[0];
+                shapeArgs.y = yAxis.translate(y, false, true, false, true) || 0;
                 // sum points
                 if (point.isSum) {
-                    shapeArgs.y = yAxis.translate(range[1], 0, 1, 0, 1);
-                    shapeArgs.height = Math.min(yAxis.translate(range[0], 0, 1, 0, 1), yAxis.len) - shapeArgs.y; // #4256
+                    shapeArgs.y = yAxis.translate(range[1], false, true, false, true) || 0;
+                    shapeArgs.height = Math.min(yAxis.translate(range[0], false, true, false, true) || 0, yAxis.len) - shapeArgs.y; // #4256
+                    point.below = range[1] <= threshold;
                 }
                 else if (point.isIntermediateSum) {
                     if (pointY >= 0) {
@@ -205,19 +207,20 @@ var WaterfallSeries = /** @class */ (function (_super) {
                         hPos ^= yPos;
                         yPos ^= hPos;
                     }
-                    shapeArgs.y = yAxis.translate(yPos, 0, 1, 0, 1);
+                    shapeArgs.y = yAxis.translate(yPos, false, true, false, true) || 0;
                     shapeArgs.height = Math.abs(shapeArgs.y -
-                        Math.min(yAxis.translate(hPos, 0, 1, 0, 1), yAxis.len));
+                        Math.min(yAxis.translate(hPos, false, true, false, true) || 0, yAxis.len));
                     previousIntermediate += range[1];
+                    point.below = yPos <= threshold;
                     // If it's not the sum point, update previous stack end position
                     // and get shape height (#3886)
                 }
                 else {
                     shapeArgs.height = yValue > 0 ?
-                        yAxis.translate(previousY, 0, 1, 0, 1) - shapeArgs.y :
-                        yAxis.translate(previousY, 0, 1, 0, 1) - yAxis.translate(previousY - yValue, 0, 1, 0, 1);
+                        (yAxis.translate(previousY, false, true, false, true) || 0) - shapeArgs.y :
+                        (yAxis.translate(previousY, false, true, false, true) || 0) - (yAxis.translate(previousY - yValue, false, true, false, true) || 0);
                     previousY += yValue;
-                    point.below = previousY < pick(threshold, 0);
+                    point.below = previousY < threshold;
                 }
                 // #3952 Negative sum or intermediate sum not rendered correctly
                 if (shapeArgs.height < 0) {
@@ -226,10 +229,10 @@ var WaterfallSeries = /** @class */ (function (_super) {
                 }
             }
             point.plotY = shapeArgs.y =
-                Math.round(shapeArgs.y) - (series.borderWidth % 2) / 2;
+                Math.round(shapeArgs.y || 0) - (series.borderWidth % 2) / 2;
             // #3151
             shapeArgs.height =
-                Math.max(Math.round(shapeArgs.height), 0.001);
+                Math.max(Math.round(shapeArgs.height || 0), 0.001);
             point.yBottom = shapeArgs.y + shapeArgs.height;
             if (shapeArgs.height <= minPointLength && !point.isNull) {
                 shapeArgs.height = minPointLength;
@@ -249,13 +252,17 @@ var WaterfallSeries = /** @class */ (function (_super) {
                 point.minPointLengthOffset = 0;
             }
             // Correct tooltip placement (#3014)
-            tooltipY =
-                point.plotY + (point.negative ? shapeArgs.height : 0);
-            if (series.chart.inverted) {
-                point.tooltipPos[0] = yAxis.len - tooltipY;
+            var tooltipY = point.plotY + (point.negative ? shapeArgs.height : 0);
+            if (point.below) { // #15334
+                point.plotY += shapeArgs.height;
             }
-            else {
-                point.tooltipPos[1] = tooltipY;
+            if (point.tooltipPos) {
+                if (series.chart.inverted) {
+                    point.tooltipPos[0] = yAxis.len - tooltipY;
+                }
+                else {
+                    point.tooltipPos[1] = tooltipY;
+                }
             }
         }
     };
@@ -583,7 +590,7 @@ var WaterfallSeries = /** @class */ (function (_super) {
          * @since   3.0
          * @product highcharts
          */
-        lineColor: palette.neutralColor80,
+        lineColor: "#333333" /* neutralColor80 */,
         /**
          * A name for the dash style to use for the line connecting the columns
          * of the waterfall series. Possible values: Dash, DashDot, Dot,
@@ -608,7 +615,7 @@ var WaterfallSeries = /** @class */ (function (_super) {
          * @since   3.0
          * @product highcharts
          */
-        borderColor: palette.neutralColor80,
+        borderColor: "#333333" /* neutralColor80 */,
         states: {
             hover: {
                 lineWidthPlus: 0 // #3126

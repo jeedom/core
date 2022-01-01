@@ -896,7 +896,6 @@
         "dans l'url il faut maintenant remplacer par": "dans l'url il faut maintenant remplacer par",
         "Renforcement des sessions": "Renforcement des sessions",
         "Passage en sha256 avec 64 caractères en mode strict": "Passage en sha256 avec 64 caractères en mode strict",
-        "Le cookie de \"rester connecté\" (3 mois max) est maintenant \"one shot\", renouvelé à chaque utilisation": "Le cookie de \"rester connecté\" (3 mois max) est maintenant \"one shot\", renouvelé à chaque utilisation",
         "L'équipe Jeedom a bien conscience que ces changements peuvent avoir un impact et être gênant pour vous mais nous ne pouvons transiger sur la sécurité": "L'équipe Jeedom a bien conscience que ces changements peuvent avoir un impact et être gênant pour vous mais nous ne pouvons transiger sur la sécurité",
         "Doc": "Doc",
         "Les plugins doivent respecter les recommandations sur l'arborescence des dossiers et fichiers": "Les plugins doivent respecter les recommandations sur l'arborescence des dossiers et fichiers",

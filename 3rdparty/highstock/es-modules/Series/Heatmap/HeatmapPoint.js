@@ -21,12 +21,10 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import ColorMapMixin from '../../Mixins/ColorMapSeries.js';
-var colorMapPointMixin = ColorMapMixin.colorMapPointMixin;
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var ScatterPoint = SeriesRegistry.seriesTypes.scatter.prototype.pointClass;
 import U from '../../Core/Utilities.js';
-var clamp = U.clamp, extend = U.extend, pick = U.pick;
+var clamp = U.clamp, defined = U.defined, extend = U.extend, pick = U.pick;
 /* *
  *
  *  Class
@@ -60,7 +58,8 @@ var HeatmapPoint = /** @class */ (function (_super) {
      */
     HeatmapPoint.prototype.applyOptions = function (options, x) {
         var point = _super.prototype.applyOptions.call(this, options, x);
-        point.formatPrefix = point.isNull || point.value === null ? 'null' : 'point';
+        point.formatPrefix = point.isNull || point.value === null ?
+            'null' : 'point';
         return point;
     };
     HeatmapPoint.prototype.getCellAttributes = function () {
@@ -73,19 +72,18 @@ var HeatmapPoint = /** @class */ (function (_super) {
             y1: clamp(Math.round((yAxis.translate(point.y - yPad, false, true, false, true) || 0)), -yAxis.len, 2 * yAxis.len),
             y2: clamp(Math.round((yAxis.translate(point.y + yPad, false, true, false, true) || 0)), -yAxis.len, 2 * yAxis.len)
         };
+        var dimensions = [['width', 'x'], ['height', 'y']];
         // Handle marker's fixed width, and height values including border
         // and pointPadding while calculating cell attributes.
-        [['width', 'x'], ['height', 'y']].forEach(function (dimension) {
+        dimensions.forEach(function (dimension) {
             var prop = dimension[0], direction = dimension[1];
             var start = direction + '1', end = direction + '2';
             var side = Math.abs(cellAttr[start] - cellAttr[end]), borderWidth = markerOptions &&
-                markerOptions.lineWidth || 0, plotPos = Math.abs(cellAttr[start] + cellAttr[end]) / 2;
-            if (markerOptions[prop] &&
-                markerOptions[prop] < side) {
-                cellAttr[start] = plotPos - (markerOptions[prop] / 2) -
-                    (borderWidth / 2);
-                cellAttr[end] = plotPos + (markerOptions[prop] / 2) +
-                    (borderWidth / 2);
+                markerOptions.lineWidth || 0, plotPos = Math.abs(cellAttr[start] + cellAttr[end]) / 2, widthOrHeight = markerOptions && markerOptions[prop];
+            if (defined(widthOrHeight) && widthOrHeight < side) {
+                var halfCellSize = widthOrHeight / 2 + borderWidth / 2;
+                cellAttr[start] = plotPos - halfCellSize;
+                cellAttr[end] = plotPos + halfCellSize;
             }
             // Handle pointPadding
             if (pointPadding) {
@@ -134,8 +132,9 @@ var HeatmapPoint = /** @class */ (function (_super) {
     return HeatmapPoint;
 }(ScatterPoint));
 extend(HeatmapPoint.prototype, {
-    dataLabelOnNull: colorMapPointMixin.dataLabelOnNull,
-    moveToTopOnHover: colorMapPointMixin.moveToTopOnHover
+    dataLabelOnNull: true,
+    moveToTopOnHover: true,
+    ttBelow: false
 });
 /* *
  *

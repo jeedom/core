@@ -438,8 +438,7 @@ try {
 	}
 
 	if (file_exists(__DIR__ . '/../.htaccess_custom')) {
-		shell_exec('sudo rm ' . __DIR__ . '/../.htaccess');
-		shell_exec('sudo cp ' . __DIR__ . '/../.htaccess_custom ' . __DIR__ . '/../.htaccess');
+		shell_exec('sudo rm ' . __DIR__ . '/../.htaccess;sudo cp ' . __DIR__ . '/../.htaccess_custom ' . __DIR__ . '/../.htaccess');
 	}
 
 	cache::set('hour', strtotime('UTC'));

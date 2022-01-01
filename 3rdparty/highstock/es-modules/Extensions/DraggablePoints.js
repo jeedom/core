@@ -19,7 +19,7 @@ import Series from '../Core/Series/Series.js';
 import SeriesRegistry from '../Core/Series/SeriesRegistry.js';
 var seriesTypes = SeriesRegistry.seriesTypes;
 import U from '../Core/Utilities.js';
-var addEvent = U.addEvent, clamp = U.clamp, merge = U.merge, objectEach = U.objectEach, pick = U.pick;
+var addEvent = U.addEvent, clamp = U.clamp, isNumber = U.isNumber, merge = U.merge, objectEach = U.objectEach, pick = U.pick;
 /**
  * Flip a side property, used with resizeRect. If input side is "left", return
  * "right" etc.
@@ -242,7 +242,7 @@ if (seriesTypes.columnrange) {
             resize: true,
             resizeSide: 'bottom',
             handlePositioner: function (point) {
-                var bBox = point.shapeArgs || point.graphic.getBBox();
+                var bBox = (point.shapeArgs || point.graphic.getBBox());
                 return {
                     x: bBox.x || 0,
                     y: (bBox.y || 0) + (bBox.height || 0)
@@ -268,7 +268,7 @@ if (seriesTypes.columnrange) {
             resize: true,
             resizeSide: 'top',
             handlePositioner: function (point) {
-                var bBox = point.shapeArgs || point.graphic.getBBox();
+                var bBox = (point.shapeArgs || point.graphic.getBBox());
                 return {
                     x: bBox.x || 0,
                     y: bBox.y || 0
@@ -710,7 +710,6 @@ if (seriesTypes.xrange) {
  * @private
  * @param {string} type
  *        Unsupported series type
- * @return {void}
  */
 function (type) {
     if (seriesTypes[type]) {
@@ -1218,7 +1217,7 @@ function hasDraggedPastSensitivity(e, chart, sensitivity) {
  * @param {Highcharts.SVGElement} [guideBox]
  *        The guide box to take snapshot of.
  *
- * @return {object}
+ * @return {Object}
  *         Snapshot object. Point properties are placed in a hashmap with IDs as
  *         keys.
  */
@@ -1366,7 +1365,7 @@ function initDragDrop(e, point) {
  * @private
  * @function getNewPoints
  *
- * @param {object} dragDropData
+ * @param {Object} dragDropData
  *        A chart's dragDropData with drag/drop origin information, and info on
  *        which points are being dragged.
  *
@@ -1545,7 +1544,7 @@ Chart.prototype.setGuideBoxState = function (state, options) {
  * @private
  * @function Highcharts.Point#getDropValues
  *
- * @param {object} origin
+ * @param {Object} origin
  *        Mouse position (chartX/Y) and point props at current data values.
  *        Point props should be organized per point.id in a hashmap.
  *
@@ -1630,12 +1629,20 @@ Series.prototype.getGuideBox = function (points) {
     var chart = this.chart, minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity, changed;
     // Find bounding box of all points
     points.forEach(function (point) {
-        var bBox = point.graphic && point.graphic.getBBox() || point.shapeArgs;
-        if (bBox && (bBox.width || bBox.height || bBox.x || bBox.y)) {
+        var bBox = (point.graphic && point.graphic.getBBox() || point.shapeArgs);
+        if (bBox) {
+            var plotX2 = void 0;
+            var x2 = point.x2;
+            if (isNumber(x2)) {
+                plotX2 = point.series.xAxis.translate(x2, false, false, false, true);
+            }
+            // Avoid a 0 min when some of the points being dragged are
+            // completely outside the plot
+            var skipBBox = !(bBox.width || bBox.height || bBox.x || bBox.y);
             changed = true;
-            minX = Math.min(point.plotX || 0, bBox.x || 0, minX);
-            maxX = Math.max((bBox.x || 0) + (bBox.width || 0), maxX);
-            minY = Math.min(point.plotY || 0, bBox.y || 0, minY);
+            minX = Math.min(point.plotX || 0, plotX2 || 0, skipBBox ? Infinity : bBox.x || 0, minX);
+            maxX = Math.max(point.plotX || 0, plotX2 || 0, (bBox.x || 0) + (bBox.width || 0), maxX);
+            minY = Math.min(point.plotY || 0, skipBBox ? Infinity : bBox.y || 0, minY);
             maxY = Math.max((bBox.y || 0) + (bBox.height || 0), maxY);
         }
     });
@@ -1807,7 +1814,7 @@ Chart.prototype.hideDragHandles = function () {
  * @private
  * @function countProps
  *
- * @param {object} obj
+ * @param {Object} obj
  *        The object to count.
  *
  * @return {number}

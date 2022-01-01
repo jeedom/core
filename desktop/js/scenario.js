@@ -194,14 +194,16 @@ $(function() {
             zIndex: 9999,
             className: 'scenario-context-menu',
             callback: function(key, options, event) {
-              if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
-                var url = 'index.php?v=d&p=scenario&id=' + options.commands[key].id
-                if (window.location.hash != '') {
-                  url += window.location.hash
+              if (!jeedomUtils.checkPageModified()) {
+                if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
+                  var url = 'index.php?v=d&p=scenario&id=' + options.commands[key].id
+                  if (window.location.hash != '') {
+                    url += window.location.hash
+                  }
+                  window.open(url).focus()
+                } else {
+                  printScenario(options.commands[key].id)
                 }
-                window.open(url).focus()
-              } else {
-                printScenario(options.commands[key].id)
               }
             },
             items: contextmenuitems
@@ -249,18 +251,28 @@ $("#bt_addScenario").off('click').on('click', function(event) {
 })
 $("#bt_changeAllScenarioState").off('click').on('click', function() {
   var el = $(this)
-  jeedom.config.save({
-    configuration: {
-      enableScenario: el.attr('data-state')
-    },
-    error: function(error) {
-      $.fn.showAlert({
-        message: error.message,
-        level: 'danger'
+  if (el.attr('data-state') == 0) {
+    var msg = '{{Êtes-vous sûr de vouloir désactiver les scénarios ?}}'
+  } else {
+    var msg = '{{Êtes-vous sûr de vouloir activer les scénarios ?}}'
+  }
+
+  bootbox.confirm(msg, function(result) {
+    if (result) {
+      jeedom.config.save({
+        configuration: {
+          enableScenario: el.attr('data-state')
+        },
+        error: function(error) {
+          $.fn.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function() {
+          jeedomUtils.loadPage('index.php?v=d&p=scenario')
+        }
       })
-    },
-    success: function() {
-      jeedomUtils.loadPage('index.php?v=d&p=scenario')
     }
   })
 })

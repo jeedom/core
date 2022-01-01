@@ -11,6 +11,11 @@
 import Fx from './Fx.js';
 import U from '../Utilities.js';
 var defined = U.defined, getStyle = U.getStyle, isArray = U.isArray, isNumber = U.isNumber, isObject = U.isObject, merge = U.merge, objectEach = U.objectEach, pick = U.pick;
+/* *
+ *
+ *  Functions
+ *
+ * */
 /**
  * Set the global animation to either a given value, or fall back to the given
  * chart's animation option.
@@ -67,10 +72,8 @@ function animObject(animation) {
  *        The numeric value.
  */
 function getDeferredAnimation(chart, animation, series) {
-    var labelAnimation = animObject(animation);
-    var s = series ? [series] : chart.series;
-    var defer = 0;
-    var duration = 0;
+    var labelAnimation = animObject(animation), s = series ? [series] : chart.series;
+    var defer = 0, duration = 0;
     s.forEach(function (series) {
         var seriesAnim = animObject(series.options.animation);
         defer = animation && defined(animation.defer) ?
@@ -189,4 +192,9 @@ var animationExports = {
     setAnimation: setAnimation,
     stop: stop
 };
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default animationExports;

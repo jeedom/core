@@ -19,7 +19,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import RequiredIndicatorMixin from '../../../Mixins/IndicatorRequired.js';
 import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
 var StochasticIndicator = SeriesRegistry.seriesTypes.stochastic;
 var seriesTypes = SeriesRegistry.seriesTypes;
@@ -43,13 +42,6 @@ var SlowStochasticIndicator = /** @class */ (function (_super) {
         _this.points = void 0;
         return _this;
     }
-    SlowStochasticIndicator.prototype.init = function () {
-        var args = arguments, ctx = this;
-        RequiredIndicatorMixin.isParentLoaded(seriesTypes.stochastic, 'stochastic', ctx.type, function (indicator) {
-            indicator.prototype.init.apply(ctx, args);
-            return;
-        });
-    };
     SlowStochasticIndicator.prototype.getValues = function (series, params) {
         var periods = params.periods, fastValues = seriesTypes.stochastic.prototype.getValues.call(this, series, params), slowValues = {
             values: [],

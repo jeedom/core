@@ -25,8 +25,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import LegendSymbolMixin from '../../Mixins/LegendSymbol.js';
-import palette from '../../Core/Color/Palette.js';
+import LegendSymbol from '../../Core/Legend/LegendSymbol.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var _a = SeriesRegistry.seriesTypes, ColumnSeries = _a.column, LineSeries = _a.line;
 import SVGElement from '../../Core/Renderer/SVG/SVGElement.js';
@@ -125,22 +124,19 @@ var TimelineSeries = /** @class */ (function (_super) {
         });
     };
     TimelineSeries.prototype.distributeDL = function () {
-        var series = this, dataLabelsOptions = series.options.dataLabels, options, pointDLOptions, newOptions = {}, visibilityIndex = 1, distance = dataLabelsOptions.distance;
-        series.points.forEach(function (point) {
-            if (point.visible && !point.isNull) {
-                options = point.options;
-                pointDLOptions = point.options.dataLabels;
-                if (!series.hasRendered) {
-                    point.userDLOptions =
-                        merge({}, pointDLOptions);
-                }
-                newOptions[series.chart.inverted ? 'x' : 'y'] =
-                    dataLabelsOptions.alternate && visibilityIndex % 2 ?
-                        -distance : distance;
-                options.dataLabels = merge(newOptions, point.userDLOptions);
+        var series = this, dataLabelsOptions = series.options.dataLabels;
+        var visibilityIndex = 1;
+        if (dataLabelsOptions) {
+            var distance_1 = dataLabelsOptions.distance || 0;
+            series.points.forEach(function (point) {
+                var _a;
+                point.options.dataLabels = merge((_a = {},
+                    _a[series.chart.inverted ? 'x' : 'y'] = dataLabelsOptions.alternate && visibilityIndex % 2 ?
+                        -distance_1 : distance_1,
+                    _a), point.userDLOptions);
                 visibilityIndex++;
-            }
-        });
+            });
+        }
     };
     TimelineSeries.prototype.generatePoints = function () {
         var series = this;
@@ -337,11 +333,11 @@ var TimelineSeries = /** @class */ (function (_super) {
              *         Alternate disabled
              */
             alternate: true,
-            backgroundColor: palette.backgroundColor,
+            backgroundColor: "#ffffff" /* backgroundColor */,
             borderWidth: 1,
-            borderColor: palette.neutralColor40,
+            borderColor: "#999999" /* neutralColor40 */,
             borderRadius: 3,
-            color: palette.neutralColor80,
+            color: "#333333" /* neutralColor80 */,
             /**
              * The color of the line connecting the data label to the point.
              * The default color is the same as the point's color.
@@ -435,7 +431,7 @@ var TimelineSeries = /** @class */ (function (_super) {
 }(LineSeries));
 extend(TimelineSeries.prototype, {
     // Use a simple symbol from LegendSymbolMixin
-    drawLegendSymbol: LegendSymbolMixin.drawRectangle,
+    drawLegendSymbol: LegendSymbol.drawRectangle,
     // Use a group of trackers from TrackerMixin
     drawTracker: ColumnSeries.prototype.drawTracker,
     pointClass: TimelinePoint,

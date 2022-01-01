@@ -45,7 +45,8 @@ var Pitchfork = /** @class */ (function (_super) {
         };
     };
     Pitchfork.findEdgePoint = function (point, firstAnglePoint, secondAnglePoint) {
-        var angle = Math.atan2(secondAnglePoint.plotY - firstAnglePoint.plotY, secondAnglePoint.plotX - firstAnglePoint.plotX), distance = 1e7;
+        var angle = Math.atan2((secondAnglePoint.plotY -
+            firstAnglePoint.plotY), secondAnglePoint.plotX - firstAnglePoint.plotX), distance = 1e7;
         return {
             x: point.plotX + distance * Math.cos(angle),
             y: point.plotY + distance * Math.sin(angle)
@@ -80,21 +81,21 @@ var Pitchfork = /** @class */ (function (_super) {
                 this.points[0],
                 Pitchfork.middleLineEdgePoint
             ]
-        }, false);
+        }, 0);
         this.initShape({
             type: 'path',
             points: [
                 this.points[1],
                 Pitchfork.topLineEdgePoint
             ]
-        }, false);
+        }, 1);
         this.initShape({
             type: 'path',
             points: [
                 this.points[2],
                 Pitchfork.bottomLineEdgePoint
             ]
-        }, false);
+        }, 2);
     };
     Pitchfork.prototype.addBackgrounds = function () {
         var shapes = this.shapes, typeOptions = this.options.typeOptions;
@@ -122,7 +123,7 @@ var Pitchfork = /** @class */ (function (_super) {
                     };
                 }
             ]
-        }));
+        }), 3);
         var outerBackground = this.initShape(merge(typeOptions.outerBackground, {
             type: 'path',
             points: [
@@ -131,7 +132,7 @@ var Pitchfork = /** @class */ (function (_super) {
                 shapes[2].points[1],
                 this.points[2]
             ]
-        }));
+        }), 4);
         typeOptions.innerBackground = innerBackground.options;
         typeOptions.outerBackground = outerBackground.options;
     };

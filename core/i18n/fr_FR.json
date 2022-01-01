@@ -2581,11 +2581,11 @@
         "Inactifs": "Inactifs",
         "Export CSV": "Export CSV",
         "Rechercher | nom | id | :not(nom": "Rechercher | nom | id | :not(nom",
-        "Vider": "Vider",
         "Date": "Date",
         "Type": "Type",
         "ID": "ID",
-        "Nom": "Nom"
+        "Nom": "Nom",
+        "Vider": "Vider"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
@@ -2684,6 +2684,7 @@
         "Êtes-vous sûr de vouloir supprimer la vue": "Êtes-vous sûr de vouloir supprimer la vue",
         "Le nom de la viewZone ne peut être vide": "Le nom de la viewZone ne peut être vide",
         "Largeur": "Largeur",
+        "Hauteur": "Hauteur",
         "30 min": "30 min",
         "1 heure": "1 heure",
         "Jour": "Jour",
@@ -2708,7 +2709,7 @@
         "Variation": "Variation",
         "Ligne": "Ligne",
         "Aire": "Aire",
-        "Colonne": "Colonne",
+        "Barre": "Barre",
         "Camembert": "Camembert",
         "Aucun groupement": "Aucun groupement",
         "Somme par heure": "Somme par heure",
@@ -3045,6 +3046,8 @@
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Log d'exécution du scénario",
         "Nom du scénario": "Nom du scénario",
+        "Êtes-vous sûr de vouloir désactiver les scénarios ?": "Êtes-vous sûr de vouloir désactiver les scénarios ?",
+        "Êtes-vous sûr de vouloir activer les scénarios ?": "Êtes-vous sûr de vouloir activer les scénarios ?",
         "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?",
         "Logs des scénarios supprimés.": "Logs des scénarios supprimés.",
         "Vue d'ensemble des scénarios": "Vue d'ensemble des scénarios",

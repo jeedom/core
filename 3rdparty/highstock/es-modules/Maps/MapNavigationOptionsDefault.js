@@ -17,6 +17,9 @@ var extend = U.extend;
  *
  * */
 /**
+ * The `mapNavigation` option handles buttons for navigation in addition to
+ * mousewheel and doubleclick handlers for map zooming.
+ *
  * @product      highmaps
  * @optionparent mapNavigation
  */

@@ -22,7 +22,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import RequiredIndicatorMixin from '../../../Mixins/IndicatorRequired.js';
 import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
 var SMAIndicator = SeriesRegistry.seriesTypes.sma;
 import U from '../../../Core/Utilities.js';
@@ -44,6 +43,11 @@ var correctFloat = U.correctFloat, defined = U.defined, extend = U.extend, isArr
 var DisparityIndexIndicator = /** @class */ (function (_super) {
     __extends(DisparityIndexIndicator, _super);
     function DisparityIndexIndicator() {
+        /* *
+         *
+         *  Static Properties
+         *
+         * */
         var _this = _super !== null && _super.apply(this, arguments) || this;
         /* *
          *
@@ -65,13 +69,9 @@ var DisparityIndexIndicator = /** @class */ (function (_super) {
         var args = arguments, ctx = this, // Disparity Index indicator
         params = args[1].params, // options.params
         averageType = params && params.average ? params.average : void 0;
-        ctx.averageIndicator =
-            SeriesRegistry.seriesTypes[averageType] || SMAIndicator;
-        // Check if the required average indicator modules is loaded
-        RequiredIndicatorMixin.isParentLoaded(ctx.averageIndicator, averageType, ctx.type, function (indicator) {
-            indicator.prototype.init.apply(ctx, args);
-            return;
-        });
+        ctx.averageIndicator = SeriesRegistry
+            .seriesTypes[averageType] || SMAIndicator;
+        ctx.averageIndicator.prototype.init.apply(ctx, args);
     };
     DisparityIndexIndicator.prototype.calculateDisparityIndex = function (curPrice, periodAverage) {
         return correctFloat(curPrice - periodAverage) / periodAverage * 100;
@@ -126,10 +126,12 @@ var DisparityIndexIndicator = /** @class */ (function (_super) {
         params: {
             /**
              * The average used to calculate the Disparity Index indicator.
-             * By default it uses SMA. To use other averages, e.g. EMA,
-             * the `stock/indicators/ema.js` file needs to be loaded.
+             * By default it uses SMA, with EMA as an option. To use other
+             * averages, e.g. TEMA, the `stock/indicators/tema.js` file needs to
+             * be loaded.
              *
-             * If value is different than ema|dema|tema|wma, then sma is used.
+             * If value is different than `ema`, `dema`, `tema` or `wma`,
+             * then sma is used.
              */
             average: 'sma',
             index: 3
@@ -154,6 +156,11 @@ SeriesRegistry.registerSeriesType('disparityindex', DisparityIndexIndicator);
  *
  * */
 export default DisparityIndexIndicator;
+/* *
+ *
+ *  API Options
+ *
+ * */
 /**
  * The Disparity Index indicator series.
  * If the [type](#series.disparityindex.type) option is not

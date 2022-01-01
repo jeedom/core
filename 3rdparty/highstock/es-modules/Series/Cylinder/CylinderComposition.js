@@ -86,8 +86,24 @@ rendererProto.getCylinderFront = function (topPath, bottomPath) {
         var move = bottomPath[0], curve1 = bottomPath[1], curve2 = bottomPath[2];
         if (move[0] === 'M' && curve1[0] === 'C' && curve2[0] === 'C') {
             path.push(['L', curve2[5], curve2[6]]);
-            path.push(['C', curve2[3], curve2[4], curve2[1], curve2[2], curve1[5], curve1[6]]);
-            path.push(['C', curve1[3], curve1[4], curve1[1], curve1[2], move[1], move[2]]);
+            path.push([
+                'C',
+                curve2[3],
+                curve2[4],
+                curve2[1],
+                curve2[2],
+                curve1[5],
+                curve1[6]
+            ]);
+            path.push([
+                'C',
+                curve1[3],
+                curve1[4],
+                curve1[1],
+                curve1[2],
+                move[1],
+                move[2]
+            ]);
         }
     }
     path.push(['Z']);
@@ -123,8 +139,24 @@ rendererProto.getCylinderBack = function (topPath, bottomPath) {
         var curve2 = bottomPath[2], curve3 = bottomPath[3], curve4 = bottomPath[4];
         if (curve2[0] === 'C' && curve3[0] === 'C' && curve4[0] === 'C') {
             path.push(['L', curve4[5], curve4[6]]);
-            path.push(['C', curve4[3], curve4[4], curve4[1], curve4[2], curve3[5], curve3[6]]);
-            path.push(['C', curve3[3], curve3[4], curve3[1], curve3[2], curve2[5], curve2[6]]);
+            path.push([
+                'C',
+                curve4[3],
+                curve4[4],
+                curve4[1],
+                curve4[2],
+                curve3[5],
+                curve3[6]
+            ]);
+            path.push([
+                'C',
+                curve3[3],
+                curve3[4],
+                curve3[1],
+                curve3[2],
+                curve2[5],
+                curve2[6]
+            ]);
         }
     }
     path.push(['Z']);

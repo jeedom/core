@@ -10,6 +10,11 @@
  *
  * */
 'use strict';
+/* *
+ *
+ * Constants
+ *
+ * */
 // Experimental, disabled by default, not exposed in API
 var options = {
     sonification: {
@@ -31,4 +36,9 @@ var options = {
         }
     }
 };
+/* *
+ *
+ * Default Export
+ *
+ * */
 export default options;

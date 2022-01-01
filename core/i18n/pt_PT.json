@@ -2581,11 +2581,11 @@
         "Inactifs": "Inativo",
         "Export CSV": "Exportação de CSV",
         "Rechercher | nom | id | :not(nom": "Pesquisa | nome | id | : não (nome",
-        "Vider": "Vazio",
         "Date": "Data",
         "Type": "Tipo",
         "ID": "EU IRIA",
-        "Nom": "Nome"
+        "Nom": "Nome",
+        "Vider": "Vazio"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -2684,6 +2684,7 @@
         "Êtes-vous sûr de vouloir supprimer la vue": "Tem certeza de que deseja excluir o ponto de vista",
         "Le nom de la viewZone ne peut être vide": "O nome do Viewzone não pode estar vazio",
         "Largeur": "Largura",
+        "Hauteur": "Altura",
         "30 min": "30 minutos",
         "1 heure": "1 hora",
         "Jour": "Dia",
@@ -2708,7 +2709,7 @@
         "Variation": "Mudança",
         "Ligne": "Linha",
         "Aire": "área",
-        "Colonne": "Coluna",
+        "Barre": "Fechado",
         "Camembert": "Queijo Camembert",
         "Aucun groupement": "Nenhum grupo",
         "Somme par heure": "Soma por hora",
@@ -3045,6 +3046,8 @@
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Log execução do script",
         "Nom du scénario": "Nome do cenário",
+        "Êtes-vous sûr de vouloir désactiver les scénarios ?": "Tem certeza de que deseja desativar os cenários?",
+        "Êtes-vous sûr de vouloir activer les scénarios ?": "Tem certeza de que deseja habilitar cenários?",
         "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Tem certeza de que deseja excluir todos os logs de cenário?",
         "Logs des scénarios supprimés.": "Logs de cenários excluídos",
         "Vue d'ensemble des scénarios": "Visão geral dos cenários",

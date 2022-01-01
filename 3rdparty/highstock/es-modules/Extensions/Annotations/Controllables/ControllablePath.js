@@ -53,7 +53,7 @@ var ControllablePath = /** @class */ (function () {
         this.point = ControllableMixin.point;
         this.rotate = ControllableMixin.rotate;
         this.scale = ControllableMixin.scale;
-        this.setControlPointsVisibility = ControllableMixin.setControlPointsVisibility;
+        this.setControlPointsVisibility = (ControllableMixin.setControlPointsVisibility);
         this.setMarkers = MarkerMixin.setItemMarkers;
         this.transform = ControllableMixin.transform;
         this.transformPoint = ControllableMixin.transformPoint;
@@ -110,7 +110,8 @@ var ControllablePath = /** @class */ (function () {
             null;
     };
     ControllablePath.prototype.shouldBeDrawn = function () {
-        return (ControllableMixin.shouldBeDrawn.call(this) || Boolean(this.options.d));
+        return (ControllableMixin.shouldBeDrawn.call(this) ||
+            Boolean(this.options.d));
     };
     ControllablePath.prototype.render = function (parent) {
         var options = this.options, attrs = this.attrsFromOptions(options);

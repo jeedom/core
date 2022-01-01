@@ -1,5 +1,5 @@
 /*
- Highstock JS v9.1.2 (2021-06-16)
+ Highstock JS v9.3.2 (2021-11-29)
 
  Parabolic SAR Indicator for Highcharts Stock
 

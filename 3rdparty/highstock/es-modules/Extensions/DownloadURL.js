@@ -99,8 +99,8 @@ var downloadURL = Highcharts.downloadURL = function (dataURL, filename) {
         }
     }
 };
-var exports = {
+var DownloadURL = {
     dataURLtoBlob: dataURLtoBlob,
     downloadURL: downloadURL
 };
-export default exports;
+export default DownloadURL;

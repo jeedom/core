@@ -2581,11 +2581,11 @@
         "Inactifs": "Inactifs",
         "Export CSV": "Export CSV",
         "Rechercher | nom | id | :not(nom": "Rechercher | nom | id | :not(nom",
-        "Vider": "Abisin",
         "Date": "Kencan",
         "Type": "Jenis",
         "ID": "ID",
-        "Nom": "Nama"
+        "Nom": "Nama",
+        "Vider": "Abisin"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
@@ -2684,6 +2684,7 @@
         "Êtes-vous sûr de vouloir supprimer la vue": "Apakah Anda yakin ingin menghapus pandangan",
         "Le nom de la viewZone ne peut être vide": "Nama Viewzone tidak boleh kosong",
         "Largeur": "Largeur",
+        "Hauteur": "Hauteur",
         "30 min": "30 min",
         "1 heure": "1 jam",
         "Jour": "Hari",
@@ -2708,7 +2709,7 @@
         "Variation": "Perubahan",
         "Ligne": "Baris",
         "Aire": "Daerah",
-        "Colonne": "Kolom",
+        "Barre": "Barre",
         "Camembert": "Keju Camembert",
         "Aucun groupement": "Tidak ada kelompok",
         "Somme par heure": "Somme par heure",
@@ -3045,6 +3046,8 @@
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Log eksekusi script",
         "Nom du scénario": "Nom du scénario",
+        "Êtes-vous sûr de vouloir désactiver les scénarios ?": "Êtes-vous sûr de vouloir désactiver les scénarios ?",
+        "Êtes-vous sûr de vouloir activer les scénarios ?": "Êtes-vous sûr de vouloir activer les scénarios ?",
         "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?",
         "Logs des scénarios supprimés.": "Logs des scénarios supprimés",
         "Vue d'ensemble des scénarios": "Vue d'ensemble des scénarios",

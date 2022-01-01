@@ -22,11 +22,9 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import Color from '../../Core/Color/Color.js';
-import ColorMapMixin from '../../Mixins/ColorMapSeries.js';
-var colorMapSeriesMixin = ColorMapMixin.colorMapSeriesMixin;
+import ColorMapMixin from '../ColorMapMixin.js';
 import HeatmapPoint from './HeatmapPoint.js';
-import LegendSymbolMixin from '../../Mixins/LegendSymbol.js';
-import palette from '../../Core/Color/Palette.js';
+import LegendSymbol from '../../Core/Legend/LegendSymbol.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var Series = SeriesRegistry.series, _a = SeriesRegistry.seriesTypes, ColumnSeries = _a.column, ScatterSeries = _a.scatter;
 import SVGRenderer from '../../Core/Renderer/SVG/SVGRenderer.js';
@@ -87,11 +85,25 @@ var HeatmapSeries = /** @class */ (function (_super) {
             this.points.forEach(function (point) {
                 if (point.graphic) {
                     point.graphic[_this.chart.styledMode ? 'css' : 'animate'](_this.colorAttribs(point));
+                    // @todo
+                    // Applying the border radius here is not optimal. It should
+                    // be set in the shapeArgs or returned from `markerAttribs`.
+                    // However, Series.drawPoints does not pick up markerAttribs
+                    // to be passed over to `renderer.symbol`. Also, image
+                    // symbols are not positioned by their top left corner like
+                    // other symbols are. This should be refactored, then we
+                    // could save ourselves some tests for .hasImage etc. And
+                    // the evaluation of borderRadius would be moved to
+                    // `markerAttribs`.
                     if (_this.options.borderRadius) {
                         point.graphic.attr({
                             r: _this.options.borderRadius
                         });
                     }
+                    // Saving option for reapplying later
+                    // when changing point's states (#16165)
+                    (point.shapeArgs || {}).r = _this.options.borderRadius;
+                    (point.shapeArgs || {}).d = point.graphic.pathArray;
                     if (point.value === null) { // #15708
                         point.graphic.addClass('highcharts-null-point');
                     }
@@ -157,10 +169,10 @@ var HeatmapSeries = /** @class */ (function (_super) {
                 y: point.plotY
             };
         }
-        // Setting width and height attributes on image does not affect
-        // on its dimensions.
+        // Setting width and height attributes on image does not affect on its
+        // dimensions.
         if (state) {
-            seriesStateOptions = seriesMarkerOptions.states[state] || {};
+            seriesStateOptions = (seriesMarkerOptions.states[state] || {});
             pointStateOptions = pointMarkerOptions.states &&
                 pointMarkerOptions.states[state] || {};
             [['width', 'x'], ['height', 'y']].forEach(function (dimension) {
@@ -184,9 +196,11 @@ var HeatmapSeries = /** @class */ (function (_super) {
     HeatmapSeries.prototype.pointAttribs = function (point, state) {
         var series = this, attr = Series.prototype.pointAttribs.call(series, point, state), seriesOptions = series.options || {}, plotOptions = series.chart.options.plotOptions || {}, seriesPlotOptions = plotOptions.series || {}, heatmapPlotOptions = plotOptions.heatmap || {}, stateOptions, brightness, 
         // Get old properties in order to keep backward compatibility
-        borderColor = seriesOptions.borderColor ||
+        borderColor = (point && point.options.borderColor) ||
+            seriesOptions.borderColor ||
             heatmapPlotOptions.borderColor ||
-            seriesPlotOptions.borderColor, borderWidth = seriesOptions.borderWidth ||
+            seriesPlotOptions.borderColor, borderWidth = (point && point.options.borderWidth) ||
+            seriesOptions.borderWidth ||
             heatmapPlotOptions.borderWidth ||
             seriesPlotOptions.borderWidth ||
             attr['stroke-width'];
@@ -361,10 +375,12 @@ var HeatmapSeries = /** @class */ (function (_super) {
          *
          * @type {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
          */
-        nullColor: palette.neutralColor3,
+        nullColor: "#f7f7f7" /* neutralColor3 */,
         dataLabels: {
             formatter: function () {
-                return this.point.value;
+                var numberFormatter = this.series.chart.numberFormatter;
+                var value = this.point.value;
+                return isNumber(value) ? numberFormatter(value, -1) : '';
             },
             inside: true,
             verticalAlign: 'middle',
@@ -544,20 +560,20 @@ extend(HeatmapSeries.prototype, {
      * @private
      */
     alignDataLabel: ColumnSeries.prototype.alignDataLabel,
-    axisTypes: colorMapSeriesMixin.axisTypes,
-    colorAttribs: colorMapSeriesMixin.colorAttribs,
-    colorKey: colorMapSeriesMixin.colorKey,
+    axisTypes: ColorMapMixin.SeriesMixin.axisTypes,
+    colorAttribs: ColorMapMixin.SeriesMixin.colorAttribs,
+    colorKey: ColorMapMixin.SeriesMixin.colorKey,
     directTouch: true,
     /**
      * @private
      */
-    drawLegendSymbol: LegendSymbolMixin.drawRectangle,
+    drawLegendSymbol: LegendSymbol.drawRectangle,
     getExtremesFromAll: true,
     getSymbol: Series.prototype.getSymbol,
-    parallelArrays: colorMapSeriesMixin.parallelArrays,
+    parallelArrays: ColorMapMixin.SeriesMixin.parallelArrays,
     pointArrayMap: ['y', 'value'],
     pointClass: HeatmapPoint,
-    trackerGroups: colorMapSeriesMixin.trackerGroups
+    trackerGroups: ColorMapMixin.SeriesMixin.trackerGroups
 });
 SeriesRegistry.registerSeriesType('heatmap', HeatmapSeries);
 /* *

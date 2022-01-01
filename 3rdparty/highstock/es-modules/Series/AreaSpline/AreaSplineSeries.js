@@ -24,7 +24,7 @@ var __extends = (this && this.__extends) || (function () {
 import AreaSeries from '../Area/AreaSeries.js';
 var areaProto = AreaSeries.prototype;
 import SplineSeries from '../Spline/SplineSeries.js';
-import LegendSymbolMixin from '../../Mixins/LegendSymbol.js';
+import LegendSymbol from '../../Core/Legend/LegendSymbol.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 import U from '../../Core/Utilities.js';
 var extend = U.extend, merge = U.merge;
@@ -102,7 +102,7 @@ extend(AreaSplineSeries.prototype, {
     getGraphPath: areaProto.getGraphPath,
     getStackPoints: areaProto.getStackPoints,
     drawGraph: areaProto.drawGraph,
-    drawLegendSymbol: LegendSymbolMixin.drawRectangle
+    drawLegendSymbol: LegendSymbol.drawRectangle
 });
 SeriesRegistry.registerSeriesType('areaspline', AreaSplineSeries);
 /* *

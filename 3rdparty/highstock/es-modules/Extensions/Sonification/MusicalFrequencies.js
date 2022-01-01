@@ -10,6 +10,11 @@
  *
  * */
 'use strict';
+/* *
+ *
+ *  Constants
+ *
+ * */
 var frequencies = [
     16.351597831287414,
     17.323914436054505,
@@ -109,4 +114,9 @@ var frequencies = [
     3951.066410048992,
     4186.009044809578 // C8
 ];
+/* *
+ *
+ *  Default export
+ *
+ * */
 export default frequencies;

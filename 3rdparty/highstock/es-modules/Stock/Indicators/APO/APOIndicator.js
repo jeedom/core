@@ -20,7 +20,6 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 var EMAIndicator = SeriesRegistry.seriesTypes.ema;
-import RequiredIndicatorMixin from '../../../Mixins/IndicatorRequired.js';
 import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
 import U from '../../../Core/Utilities.js';
 var extend = U.extend, merge = U.merge, error = U.error;
@@ -41,22 +40,27 @@ var extend = U.extend, merge = U.merge, error = U.error;
 var APOIndicator = /** @class */ (function (_super) {
     __extends(APOIndicator, _super);
     function APOIndicator() {
+        /* *
+         *
+         *  Static Properties
+         *
+         * */
         var _this = _super !== null && _super.apply(this, arguments) || this;
         /* *
-        *
-        *  Properties
-        *
-        * */
+         *
+         *  Properties
+         *
+         * */
         _this.data = void 0;
         _this.options = void 0;
         _this.points = void 0;
         return _this;
     }
     /* *
-    *
-    *  Functions
-    *
-    * */
+     *
+     *  Functions
+     *
+     * */
     APOIndicator.prototype.getValues = function (series, params) {
         var periods = params.periods, index = params.index, 
         // 0- date, 1- Absolute price oscillator
@@ -97,17 +101,9 @@ var APOIndicator = /** @class */ (function (_super) {
             yData: yData
         };
     };
-    APOIndicator.prototype.init = function () {
-        var args = arguments, ctx = this;
-        RequiredIndicatorMixin.isParentLoaded(EMAIndicator, 'ema', ctx.type, function (indicator) {
-            indicator.prototype.init.apply(ctx, args);
-            return;
-        });
-    };
     /**
      * Absolute Price Oscillator. This series requires the `linkedTo` option to
-     * be set and should be loaded after the `stock/indicators/indicators.js`
-     * and `stock/indicators/ema.js`.
+     * be set and should be loaded after the `stock/indicators/indicators.js`.
      *
      * @sample {highstock} stock/indicators/apo
      *         Absolute Price Oscillator
@@ -119,7 +115,6 @@ var APOIndicator = /** @class */ (function (_super) {
      *               pointInterval, pointIntervalUnit, pointPlacement,
      *               pointRange, pointStart, showInNavigator, stacking
      * @requires     stock/indicators/indicators
-     * @requires     stock/indicators/ema
      * @requires     stock/indicators/apo
      * @optionparent plotOptions.apo
      */
@@ -166,7 +161,6 @@ export default APOIndicator;
  *            navigatorOptions, pointInterval, pointIntervalUnit,
  *            pointPlacement, pointRange, pointStart, showInNavigator, stacking
  * @requires  stock/indicators/indicators
- * @requires  stock/indicators/ema
  * @requires  stock/indicators/apo
  * @apioption series.apo
  */

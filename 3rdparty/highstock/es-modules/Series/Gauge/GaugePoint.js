@@ -60,7 +60,7 @@ var GaugePoint = /** @class */ (function (_super) {
 }(Point));
 /* *
  *
- *  Default export
+ *  Default Export
  *
  * */
 export default GaugePoint;

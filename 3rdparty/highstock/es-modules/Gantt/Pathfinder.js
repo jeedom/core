@@ -448,7 +448,8 @@ var Pathfinder = /** @class */ (function () {
                     // For Gantt series the connect could be
                     // defined as a dependency
                     if (ganttPointOptions && ganttPointOptions.dependency) {
-                        ganttPointOptions.connect = ganttPointOptions.dependency;
+                        ganttPointOptions.connect = ganttPointOptions
+                            .dependency;
                     }
                     var to, connects = (point.options &&
                         point.options.connect &&
@@ -548,7 +549,7 @@ var Pathfinder = /** @class */ (function () {
      *
      * @function Highcharts.Pathfinder#getChartObstacles
      *
-     * @param {object} options
+     * @param {Object} options
      *        Options for the calculation. Currenlty only
      *        options.algorithmMargin.
      *
@@ -604,7 +605,7 @@ var Pathfinder = /** @class */ (function () {
      * @param {Array<object>} obstacles
      *        An array of obstacles to inspect.
      *
-     * @return {object}
+     * @return {Object}
      *         The calculated metrics, as an object with maxHeight and maxWidth
      *         properties.
      */
@@ -728,11 +729,11 @@ extend(Point.prototype, /** @lends Point.prototype */ {
      *        The radius of the marker, to calculate the additional distance to
      *        the center of the marker.
      *
-     * @param {object} anchor
+     * @param {Object} anchor
      *        The anchor point of the path and marker as an object with x/y
      *        properties.
      *
-     * @return {object}
+     * @return {Object}
      *         The marker vector as an object with x/y properties.
      */
     getMarkerVector: function (radians, markerRadius, anchor) {

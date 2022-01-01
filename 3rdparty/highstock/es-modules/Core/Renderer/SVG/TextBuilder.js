@@ -10,7 +10,7 @@
 'use strict';
 import AST from '../HTML/AST.js';
 import H from '../../Globals.js';
-var doc = H.doc, SVG_NS = H.SVG_NS;
+var doc = H.doc, SVG_NS = H.SVG_NS, win = H.win;
 import U from '../../Utilities.js';
 var attr = U.attr, isString = U.isString, objectEach = U.objectEach, pick = U.pick;
 /* *
@@ -45,11 +45,9 @@ var TextBuilder = /** @class */ (function () {
      * @return {void}.
      */
     TextBuilder.prototype.buildSVG = function () {
-        var wrapper = this.svgElement;
-        var textNode = wrapper.element, renderer = wrapper.renderer, textStr = pick(wrapper.textStr, '').toString(), hasMarkup = textStr.indexOf('<') !== -1, childNodes = textNode.childNodes, textCache, i = childNodes.length, tempParent = this.width && !wrapper.added && renderer.box;
-        var regexMatchBreaks = /<br.*?>/g;
-        // The buildText code is quite heavy, so if we're not changing something
-        // that affects the text, skip it (#6113).
+        var wrapper = this.svgElement, textNode = wrapper.element, renderer = wrapper.renderer, textStr = pick(wrapper.textStr, '').toString(), hasMarkup = textStr.indexOf('<') !== -1, childNodes = textNode.childNodes, tempParent = this.width && !wrapper.added && renderer.box, regexMatchBreaks = /<br.*?>/g, 
+        // The buildText code is quite heavy, so if we're not changing
+        // something that affects the text, skip it (#6113).
         textCache = [
             textStr,
             this.ellipsis,
@@ -65,7 +63,7 @@ var TextBuilder = /** @class */ (function () {
         wrapper.textCache = textCache;
         delete wrapper.actualWidth;
         // Remove old text
-        while (i--) {
+        for (var i = childNodes.length; i--;) {
             textNode.removeChild(childNodes[i]);
         }
         // Simple strings, add text directly and return
@@ -114,13 +112,26 @@ var TextBuilder = /** @class */ (function () {
      *
      * @private
      *
-     * @return {void}
      */
     TextBuilder.prototype.modifyDOM = function () {
         var _this = this;
         var wrapper = this.svgElement;
         var x = attr(wrapper.element, 'x');
         wrapper.firstLineMetrics = void 0;
+        // Remove empty tspans (including breaks) from the beginning because
+        // SVG's getBBox doesn't count empty lines. The use case is tooltip
+        // where the header is empty. By doing this in the DOM rather than in
+        // the AST, we can inspect the textContent directly and don't have to
+        // recurse down to look for valid content.
+        var firstChild;
+        while ((firstChild = wrapper.element.firstChild)) {
+            if (/^[\s\u200B]*$/.test(firstChild.textContent || ' ')) {
+                wrapper.element.removeChild(firstChild);
+            }
+            else {
+                break;
+            }
+        }
         // Modify hard line breaks by applying the rendered line height
         [].forEach.call(wrapper.element.querySelectorAll('tspan.highcharts-br'), function (br, i) {
             if (br.nextSibling && br.previousSibling) { // #5261
@@ -217,7 +228,7 @@ var TextBuilder = /** @class */ (function () {
         var modifyChildren = (function (node) {
             var childNodes = [].slice.call(node.childNodes);
             childNodes.forEach(function (childNode) {
-                if (childNode.nodeType === Node.TEXT_NODE) {
+                if (childNode.nodeType === win.Node.TEXT_NODE) {
                     modifyTextNode(childNode, node);
                 }
                 else {
@@ -243,7 +254,7 @@ var TextBuilder = /** @class */ (function () {
     TextBuilder.prototype.getLineHeight = function (node) {
         var fontSizeStyle;
         // If the node is a text node, use its parent
-        var element = node.nodeType === Node.TEXT_NODE ?
+        var element = (node.nodeType === win.Node.TEXT_NODE) ?
             node.parentElement :
             node;
         if (!this.renderer.styledMode) {
@@ -265,21 +276,18 @@ var TextBuilder = /** @class */ (function () {
      *
      * @param {ASTNode[]} nodes The AST nodes
      *
-     * @return {void}
      */
     TextBuilder.prototype.modifyTree = function (nodes) {
         var _this = this;
         var modifyChild = function (node, i) {
-            var tagName = node.tagName;
-            var styledMode = _this.renderer.styledMode;
-            var attributes = node.attributes || {};
+            var _a = node.attributes, attributes = _a === void 0 ? {} : _a, children = node.children, tagName = node.tagName, styledMode = _this.renderer.styledMode;
             // Apply styling to text tags
             if (tagName === 'b' || tagName === 'strong') {
                 if (styledMode) {
                     attributes['class'] = 'highcharts-strong'; // eslint-disable-line dot-notation
                 }
                 else {
-                    attributes.style = 'font-weight:bold;' + (attributes.style || '');
+                    attributes.style = ('font-weight:bold;' + (attributes.style || ''));
                 }
             }
             else if (tagName === 'i' || tagName === 'em') {
@@ -287,13 +295,14 @@ var TextBuilder = /** @class */ (function () {
                     attributes['class'] = 'highcharts-emphasized'; // eslint-disable-line dot-notation
                 }
                 else {
-                    attributes.style = 'font-style:italic;' + (attributes.style || '');
+                    attributes.style = ('font-style:italic;' + (attributes.style || ''));
                 }
             }
             // Modify attributes
             if (isString(attributes.style)) {
                 attributes.style = attributes.style.replace(/(;| |^)color([ :])/, '$1fill$2');
             }
+            // Handle breaks
             if (tagName === 'br') {
                 attributes['class'] = 'highcharts-br'; // eslint-disable-line dot-notation
                 node.textContent = '\u200B'; // zero-width space
@@ -303,29 +312,28 @@ var TextBuilder = /** @class */ (function () {
                     nextNode.textContent =
                         nextNode.textContent.replace(/^ +/gm, '');
                 }
+                // If an anchor has direct text node children, the text is unable to
+                // wrap because there is no `getSubStringLength` function on the
+                // element. Therefore we need to wrap the child text node or nodes
+                // in a tspan. #16173.
+            }
+            else if (tagName === 'a' &&
+                children &&
+                children.some(function (child) { return child.tagName === '#text'; })) {
+                node.children = [{ children: children, tagName: 'tspan' }];
             }
             if (tagName !== '#text' && tagName !== 'a') {
                 node.tagName = 'tspan';
             }
             node.attributes = attributes;
             // Recurse
-            if (node.children) {
-                node.children
+            if (children) {
+                children
                     .filter(function (c) { return c.tagName !== '#text'; })
                     .forEach(modifyChild);
             }
         };
         nodes.forEach(modifyChild);
-        // Remove empty spans from the beginning because SVG's getBBox doesn't
-        // count empty lines. The use case is tooltip where the header is empty.
-        while (nodes[0]) {
-            if (nodes[0].tagName === 'tspan' && !nodes[0].children) {
-                nodes.splice(0, 1);
-            }
-            else {
-                break;
-            }
-        }
     };
     /*
      * Truncate the text node contents to a given length. Used when the css

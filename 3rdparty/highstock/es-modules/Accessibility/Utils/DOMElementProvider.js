@@ -13,38 +13,50 @@
 'use strict';
 import H from '../../Core/Globals.js';
 var doc = H.doc;
-import HTMLUtilities from './HTMLUtilities.js';
-var removeElement = HTMLUtilities.removeElement;
-import U from '../../Core/Utilities.js';
-var extend = U.extend;
-/* eslint-disable no-invalid-this, valid-jsdoc */
+import HU from './HTMLUtilities.js';
+var removeElement = HU.removeElement;
+/* *
+ *
+ *  Class
+ *
+ * */
 /**
  * @private
- * @class
  */
-var DOMElementProvider = function () {
-    this.elements = [];
-};
-extend(DOMElementProvider.prototype, {
+var DOMElementProvider = /** @class */ (function () {
+    /* *
+     *
+     *  Constructor
+     *
+     * */
+    function DOMElementProvider() {
+        this.elements = [];
+    }
     /**
      * Create an element and keep track of it for later removal.
      * Same args as document.createElement
      * @private
      */
-    createElement: function () {
+    DOMElementProvider.prototype.createElement = function () {
         var el = doc.createElement.apply(doc, arguments);
         this.elements.push(el);
         return el;
-    },
+    };
     /**
      * Destroy all created elements, removing them from the DOM.
      * @private
      */
-    destroyCreatedElements: function () {
+    DOMElementProvider.prototype.destroyCreatedElements = function () {
         this.elements.forEach(function (element) {
             removeElement(element);
         });
         this.elements = [];
-    }
-});
+    };
+    return DOMElementProvider;
+}());
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default DOMElementProvider;

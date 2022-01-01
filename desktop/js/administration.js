@@ -41,7 +41,7 @@ $(function() {
     $('a[href="#' + getUrlVars('panel') + '"]').click()
   }
 
-  initPickers()
+  jeedomUtils.dateTimePickerInit()
   printConvertColor()
   setTimeout(function() {
     updateTooltips()
@@ -64,7 +64,7 @@ $('#in_searchConfig').keyup(function() {
   $.clearDivContent('searchResult')
   if (search == '') {
     $('.nav-tabs.nav-primary, .tab-content').show()
-    initPickers()
+    jeedomUtils.dateTimePickerInit()
     updateTooltips()
     return
   }
@@ -109,7 +109,7 @@ $('#in_searchConfig').keyup(function() {
       }
     }
   })
-  initPickers()
+  jeedomUtils.dateTimePickerInit()
   initSearchLinks()
   updateTooltips()
 })
@@ -131,25 +131,10 @@ function updateTooltips() {
 }
 $('#bt_resetConfigSearch').on('click', function() {
   $('#in_searchConfig').val('').keyup()
-  initPickers()
+  jeedomUtils.dateTimePickerInit()
 })
 
-//DateTimePickers and Spinners
-function initPickers() {
-  $('input.isdatepicker').datetimepicker('destroy')
-  $('.xdsoft_datetimepicker').remove()
-  $('input.isdatepicker').datetimepicker({
-    datepicker: false,
-    format: 'H:i',
-    step: 10
-  })
-  $('input[type="number"]').spinner({
-    icons: {
-      down: "ui-icon-triangle-1-s",
-      up: "ui-icon-triangle-1-n"
-    }
-  })
-}
+jeedomUtils.initSpinners()
 
 var _configReload_
 //load configuration settings

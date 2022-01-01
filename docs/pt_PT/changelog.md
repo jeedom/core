@@ -77,7 +77,6 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 - Mudança no nível da API, anteriormente "tolerante" se você chegou com a chave do núcleo indicando o plugin XXXXX. Este não é mais o caso, você deve chegar com a chave correspondente ao plugin.
 - Na API http, você pode indicar um nome de plugin em tipo, isso não é mais possível. O tipo correspondente ao tipo de solicitação (cenário, eqLogic, cmd, etc.) deve corresponder ao plugin. Por exemplo, para o plugin virtual que você tinha ````type=virtual```` no url, agora é necessário substituir por ````plugin=virtualEtype=event````.
 - Reforço de sessões : Mude para sha256 com 64 caracteres em modo estrito.
-- O cookie "fique conectado" (3 meses no máximo) agora é "one shot", renovado a cada uso.
 
 A equipe da Jeedom está ciente de que essas mudanças podem ter um impacto e ser embaraçosas para você, mas não podemos comprometer a segurança.
 Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pastas e arquivos : [Doc](https://doc.jeedom.com/pt_PT/dev/plugin_template).

@@ -85,7 +85,8 @@ function rotate3D(x, y, z, angles) {
  * @requires highcharts-3d
  */
 function perspective3D(coordinate, origin, distance) {
-    var projection = ((distance > 0) && (distance < Number.POSITIVE_INFINITY)) ?
+    var projection = ((distance > 0) &&
+        (distance < Number.POSITIVE_INFINITY)) ?
         distance / (coordinate.z + origin.z + distance) :
         1;
     return {
@@ -119,9 +120,8 @@ H.perspective3D = perspective3D;
  */
 function perspective(points, chart, insidePlotArea, useInvertedPersp) {
     var options3d = chart.options.chart.options3d, 
-    /* The useInvertedPersp argument is used for
-     * inverted charts with already inverted elements,
-     * such as dataLabels or tooltip positions.
+    /* The useInvertedPersp argument is used for inverted charts with
+     * already inverted elements, such as dataLabels or tooltip positions.
      */
     inverted = pick(useInvertedPersp, insidePlotArea ? chart.inverted : false), origin = {
         x: chart.plotWidth / 2,

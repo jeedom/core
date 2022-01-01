@@ -77,7 +77,7 @@ var GanttPoint = /** @class */ (function (_super) {
      * @private
      * @function Highcharts.Point#applyOptions
      *
-     * @param {object} options
+     * @param {Object} options
      *        The point options
      *
      * @param {number} x

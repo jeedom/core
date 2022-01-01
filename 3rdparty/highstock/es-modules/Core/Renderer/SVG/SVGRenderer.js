@@ -12,7 +12,6 @@ import AST from '../HTML/AST.js';
 import Color from '../../Color/Color.js';
 import H from '../../Globals.js';
 var charts = H.charts, deg2rad = H.deg2rad, doc = H.doc, isFirefox = H.isFirefox, isMS = H.isMS, isWebKit = H.isWebKit, noop = H.noop, SVG_NS = H.SVG_NS, symbolSizes = H.symbolSizes, win = H.win;
-import Palette from '../../Color/Palette.js';
 import RendererRegistry from '../RendererRegistry.js';
 import SVGElement from './SVGElement.js';
 import SVGLabel from './SVGLabel.js';
@@ -194,7 +193,7 @@ var SVGRenderer = /** @class */ (function () {
         this.url = this.getReferenceURL();
         // Add description
         var desc = this.createElement('desc').add();
-        desc.element.appendChild(doc.createTextNode('Created with Highcharts 9.1.2'));
+        desc.element.appendChild(doc.createTextNode('Created with Highcharts 9.3.2'));
         renderer.defs = this.createElement('defs').add();
         renderer.allowHTML = allowHTML;
         renderer.forExport = forExport;
@@ -385,6 +384,7 @@ var SVGRenderer = /** @class */ (function () {
      * @function Highcharts.SVGRenderer#destroy
      *
      * @return {null}
+     * Pass through value.
      */
     SVGRenderer.prototype.destroy = function () {
         var renderer = this, rendererDefs = renderer.defs;
@@ -533,11 +533,11 @@ var SVGRenderer = /** @class */ (function () {
         if (!styledMode) {
             // Normal state - prepare the attributes
             normalState = merge({
-                fill: Palette.neutralColor3,
-                stroke: Palette.neutralColor20,
+                fill: "#f7f7f7" /* neutralColor3 */,
+                stroke: "#cccccc" /* neutralColor20 */,
                 'stroke-width': 1,
                 style: {
-                    color: Palette.neutralColor80,
+                    color: "#333333" /* neutralColor80 */,
                     cursor: 'pointer',
                     fontWeight: 'normal'
                 }
@@ -548,15 +548,15 @@ var SVGRenderer = /** @class */ (function () {
             delete normalState.style;
             // Hover state
             hoverState = merge(normalState, {
-                fill: Palette.neutralColor10
+                fill: "#e6e6e6" /* neutralColor10 */
             }, AST.filterUserAttributes(hoverState || {}));
             hoverStyle = hoverState.style;
             delete hoverState.style;
             // Pressed state
             pressedState = merge(normalState, {
-                fill: Palette.highlightColor10,
+                fill: "#e6ebf5" /* highlightColor10 */,
                 style: {
-                    color: Palette.neutralColor100,
+                    color: "#000000" /* neutralColor100 */,
                     fontWeight: 'bold'
                 }
             }, AST.filterUserAttributes(pressedState || {}));
@@ -565,7 +565,7 @@ var SVGRenderer = /** @class */ (function () {
             // Disabled state
             disabledState = merge(normalState, {
                 style: {
-                    color: Palette.neutralColor20
+                    color: "#cccccc" /* neutralColor20 */
                 }
             }, AST.filterUserAttributes(disabledState || {}));
             disabledStyle = disabledState.style;
@@ -980,14 +980,18 @@ var SVGRenderer = /** @class */ (function () {
                 el.setAttribute('hc-svg-href', src);
             }
         };
-        // optional properties
-        if (arguments.length > 1) {
-            extend(attribs, {
-                x: x,
-                y: y,
-                width: width,
-                height: height
-            });
+        // Optional properties (#11756)
+        if (isNumber(x)) {
+            attribs.x = x;
+        }
+        if (isNumber(y)) {
+            attribs.y = y;
+        }
+        if (isNumber(width)) {
+            attribs.width = width;
+        }
+        if (isNumber(height)) {
+            attribs.height = height;
         }
         var elemWrapper = this.createElement('image').attr(attribs), onDummyLoad = function (e) {
             setSVGImageSource(elemWrapper.element, src);
@@ -1038,6 +1042,7 @@ var SVGRenderer = /** @class */ (function () {
      * Additional options, depending on the actual symbol drawn.
      *
      * @return {Highcharts.SVGElement}
+     * SVG symbol.
      */
     SVGRenderer.prototype.symbol = function (symbol, x, y, width, height, options) {
         var ren = this, imageRegex = /^url\((.*?)\)$/, isImage = imageRegex.test(symbol), sym = (!isImage && (this.symbols[symbol] ? symbol : 'circle')), 
@@ -1254,13 +1259,13 @@ var SVGRenderer = /** @class */ (function () {
             attribs.text = str;
         }
         var wrapper = renderer.createElement('text').attr(attribs);
-        if (!useHTML) {
+        if (!useHTML || (renderer.forExport && !renderer.allowHTML)) {
             wrapper.xSetter = function (value, key, element) {
                 var tspans = element.getElementsByTagName('tspan'), parentVal = element.getAttribute(key);
                 for (var i = 0, tspan = void 0; i < tspans.length; i++) {
                     tspan = tspans[i];
-                    // If the x values are equal, the tspan represents a
-                    // linebreak
+                    // If the x values are equal, the tspan represents a line
+                    // break
                     if (tspan.getAttribute(key) === parentVal) {
                         tspan.setAttribute(key, value);
                     }
@@ -1323,14 +1328,6 @@ var SVGRenderer = /** @class */ (function () {
      *
      * @private
      * @function Highcharts.SVGRenderer#rotCorr
-     *
-     * @param {number} baseline
-     *
-     * @param {number} rotation
-     *
-     * @param {boolean} [alterY]
-     *
-     * @param {Highcharts.PositionObject}
      */
     SVGRenderer.prototype.rotCorr = function (baseline, rotation, alterY) {
         var y = baseline;
@@ -1634,7 +1631,6 @@ var SVGRenderer = /** @class */ (function () {
      *
      * @private
      * @function Highcharts.SVGRenderer#alignElements
-     * @return {void}
      */
     SVGRenderer.prototype.alignElements = function () {
         this.alignedObjects.forEach(function (el) { return el.align(); });
@@ -1782,7 +1778,7 @@ export default SVGRenderer;
 * The shadow color.
 * @name    Highcharts.ShadowOptionsObject#color
 * @type    {Highcharts.ColorString|undefined}
-* @default ${palette.neutralColor100}
+* @default #000000
 */ /**
 * The horizontal offset from the element.
 *

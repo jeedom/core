@@ -111,7 +111,7 @@ var Pie3DSeries = /** @class */ (function (_super) {
             series.data.forEach(function (point) {
                 var shapeArgs = point.shapeArgs, r = shapeArgs.r, 
                 // #3240 issue with datalabels for 0 and null values
-                a1 = (shapeArgs.alpha || options3d_1.alpha) * deg2rad, b1 = (shapeArgs.beta || options3d_1.beta) * deg2rad, a2 = (shapeArgs.start + shapeArgs.end) / 2, labelPosition = point.labelPosition, connectorPosition = labelPosition.connectorPosition, yOffset = (-r * (1 - Math.cos(a1)) * Math.sin(a2)), xOffset = r * (Math.cos(b1) - 1) * Math.cos(a2);
+                a1 = ((shapeArgs.alpha || options3d_1.alpha) * deg2rad), b1 = ((shapeArgs.beta || options3d_1.beta) * deg2rad), a2 = ((shapeArgs.start + shapeArgs.end) / 2), labelPosition = point.labelPosition, connectorPosition = (labelPosition.connectorPosition), yOffset = (-r * (1 - Math.cos(a1)) * Math.sin(a2)), xOffset = r * (Math.cos(b1) - 1) * Math.cos(a2);
                 // Apply perspective on label positions
                 [
                     labelPosition.natural,

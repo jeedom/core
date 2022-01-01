@@ -188,7 +188,7 @@ var MACDIndicator = /** @class */ (function (_super) {
         this.zones = histogramZones;
     };
     MACDIndicator.prototype.getValues = function (series, params) {
-        var indexToShift = params.longPeriod - params.shortPeriod, // #14197
+        var indexToShift = (params.longPeriod - params.shortPeriod), // #14197
         j = 0, MACD = [], xMACD = [], yMACD = [], signalLine = [], shortEMA, longEMA, i;
         if (series.xData.length <
             params.longPeriod + params.signalPeriod) {
@@ -265,7 +265,7 @@ var MACDIndicator = /** @class */ (function (_super) {
     /**
      * Moving Average Convergence Divergence (MACD). This series requires
      * `linkedTo` option to be set and should be loaded after the
-     * `stock/indicators/indicators.js` and `stock/indicators/ema.js`.
+     * `stock/indicators/indicators.js`.
      *
      * @sample stock/indicators/macd
      *         MACD indicator
@@ -370,7 +370,6 @@ var MACDIndicator = /** @class */ (function (_super) {
 }(SMAIndicator));
 extend(MACDIndicator.prototype, {
     nameComponents: ['longPeriod', 'shortPeriod', 'signalPeriod'],
-    requiredIndicators: ['ema'],
     // "y" value is treated as Histogram data
     pointArrayMap: ['y', 'signal', 'MACD'],
     parallelArrays: ['x', 'y', 'signal', 'MACD'],

@@ -50,7 +50,9 @@ symbols.arc = function (x, y, w, h, options) {
     if (options && options.rounded) {
         var r = options.r || w, smallR = (r - (options.innerR || 0)) / 2, outerArcStart = path[0], innerArcStart = path[2];
         if (outerArcStart[0] === 'M' && innerArcStart[0] === 'L') {
-            var x1 = outerArcStart[1], y1 = outerArcStart[2], x2 = innerArcStart[1], y2 = innerArcStart[2], roundStart = ['A', smallR, smallR, 0, 1, 1, x1, y1], roundEnd = ['A', smallR, smallR, 0, 1, 1, x2, y2];
+            var x1 = outerArcStart[1], y1 = outerArcStart[2], x2 = innerArcStart[1], y2 = innerArcStart[2], roundStart = [
+                'A', smallR, smallR, 0, 1, 1, x1, y1
+            ], roundEnd = ['A', smallR, smallR, 0, 1, 1, x2, y2];
             // Replace the line segment and the last close segment
             path[2] = roundEnd;
             path[4] = roundStart;

@@ -89,7 +89,9 @@ var GanttSeries = /** @class */ (function (_super) {
     GanttSeries.prototype.drawPoint = function (point, verb) {
         var series = this, seriesOpts = series.options, renderer = series.chart.renderer, shapeArgs = point.shapeArgs, plotY = point.plotY, graphic = point.graphic, state = point.selected && 'select', cutOff = seriesOpts.stacking && !seriesOpts.borderRadius, diamondShape;
         if (point.options.milestone) {
-            if (isNumber(plotY) && point.y !== null && point.visible !== false) {
+            if (isNumber(plotY) &&
+                point.y !== null &&
+                point.visible !== false) {
                 diamondShape = renderer.symbols.diamond(shapeArgs.x || 0, shapeArgs.y || 0, shapeArgs.width || 0, shapeArgs.height || 0);
                 if (graphic) {
                     graphic[verb]({
@@ -153,12 +155,12 @@ var GanttSeries = /** @class */ (function (_super) {
             headerFormat: '<span style="font-size: 10px">{series.name}</span><br/>',
             pointFormat: null,
             pointFormatter: function () {
-                var point = this, series = point.series, tooltip = series.chart.tooltip, xAxis = series.xAxis, formats = series.tooltipOptions.dateTimeLabelFormats, startOfWeek = xAxis.options.startOfWeek, ttOptions = series.tooltipOptions, format = ttOptions.xDateFormat, start, end, milestone = point.options.milestone, retVal = '<b>' + (point.name || point.yCategory) + '</b>';
+                var point = this, series = point.series, xAxis = series.xAxis, formats = series.tooltipOptions.dateTimeLabelFormats, startOfWeek = xAxis.options.startOfWeek, ttOptions = series.tooltipOptions, format = ttOptions.xDateFormat, start, end, milestone = point.options.milestone, retVal = '<b>' + (point.name || point.yCategory) + '</b>';
                 if (ttOptions.pointFormat) {
                     return point.tooltipFormatter(ttOptions.pointFormat);
                 }
-                if (!format) {
-                    format = splat(tooltip.getDateFormat(xAxis.closestPointRange, point.start, startOfWeek, formats))[0];
+                if (!format && isNumber(point.start)) {
+                    format = series.chart.time.getDateFormat(xAxis.closestPointRange, point.start, startOfWeek, formats || {});
                 }
                 start = series.chart.time.dateFormat(format, point.start);
                 end = series.chart.time.dateFormat(format, point.end);
@@ -197,8 +199,6 @@ var GanttSeries = /** @class */ (function (_super) {
     return GanttSeries;
 }(XRangeSeries));
 extend(GanttSeries.prototype, {
-    // Keyboard navigation, don't use nearest vertical mode
-    keyboardMoveVertical: false,
     pointArrayMap: ['start', 'end', 'y'],
     pointClass: GanttPoint,
     setData: Series.prototype.setData

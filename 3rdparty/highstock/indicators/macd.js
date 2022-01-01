@@ -1,5 +1,5 @@
 /*
- Highstock JS v9.1.2 (2021-06-16)
+ Highstock JS v9.3.2 (2021-11-29)
 
  Indicator series type for Highcharts Stock
 
@@ -16,5 +16,5 @@ k.seriesTypes.sma.prototype.destroy.apply(this,arguments)};c.prototype.drawGraph
 this.graphmacd&&this.options.macdLine.zones.length&&this.graphmacd.hide();this.zones=a};c.prototype.getValues=function(a,b){var c=b.longPeriod-b.shortPeriod,d=0,e=[],h=[],f=[];if(!(a.xData.length<b.longPeriod+b.signalPeriod)){var g=k.seriesTypes.ema.prototype.getValues(a,{period:b.shortPeriod,index:b.index});var m=k.seriesTypes.ema.prototype.getValues(a,{period:b.longPeriod,index:b.index});g=g.values;m=m.values;for(a=0;a<=g.length;a++)l(m[a])&&l(m[a][1])&&l(g[a+c])&&l(g[a+c][0])&&e.push([g[a+c][0],
 0,null,g[a+c][1]-m[a][1]]);for(a=0;a<e.length;a++)h.push(e[a][0]),f.push([0,null,e[a][3]]);b=k.seriesTypes.ema.prototype.getValues({xData:h,yData:f},{period:b.signalPeriod,index:2});b=b.values;for(a=0;a<e.length;a++)e[a][0]>=b[0][0]&&(e[a][2]=b[d][1],f[a]=[0,b[d][1],e[a][3]],null===e[a][3]?(e[a][1]=0,f[a][0]=0):(e[a][1]=r(e[a][3]-b[d][1]),f[a][0]=r(e[a][3]-b[d][1])),d++);return{values:e,xData:h,yData:f}}};c.defaultOptions=n(q.defaultOptions,{params:{shortPeriod:12,longPeriod:26,signalPeriod:9,period:26},
 signalLine:{zones:[],styles:{lineWidth:1,lineColor:void 0}},macdLine:{zones:[],styles:{lineWidth:1,lineColor:void 0}},threshold:0,groupPadding:.1,pointPadding:.1,crisp:!1,states:{hover:{halo:{size:0}}},tooltip:{pointFormat:'<span style="color:{point.color}">\u25cf</span> <b> {series.name}</b><br/>Value: {point.MACD}<br/>Signal: {point.signal}<br/>Histogram: {point.y}<br/>'},dataGrouping:{approximation:"averages"},minPointLength:0});return c}(q);u(d.prototype,{nameComponents:["longPeriod","shortPeriod",
-"signalPeriod"],requiredIndicators:["ema"],pointArrayMap:["y","signal","MACD"],parallelArrays:["x","y","signal","MACD"],pointValKey:"y",markerAttribs:t,getColumnMetrics:b.seriesTypes.column.prototype.getColumnMetrics,crispCol:b.seriesTypes.column.prototype.crispCol,drawPoints:b.seriesTypes.column.prototype.drawPoints});k.registerSeriesType("macd",d);"";return d});h(b,"masters/indicators/macd.src.js",[],function(){})});
+"signalPeriod"],pointArrayMap:["y","signal","MACD"],parallelArrays:["x","y","signal","MACD"],pointValKey:"y",markerAttribs:t,getColumnMetrics:b.seriesTypes.column.prototype.getColumnMetrics,crispCol:b.seriesTypes.column.prototype.crispCol,drawPoints:b.seriesTypes.column.prototype.drawPoints});k.registerSeriesType("macd",d);"";return d});h(b,"masters/indicators/macd.src.js",[],function(){})});
 //# sourceMappingURL=macd.js.map

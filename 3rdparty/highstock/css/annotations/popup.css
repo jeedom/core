@@ -19,8 +19,9 @@
 }
 
 .highcharts-popup {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
   background-color: #fff;
-  color: #666;
+  color: #666666;
   display: none;
   font-size: 0.876em;
   max-height: 90%;
@@ -52,6 +53,7 @@
 
 .highcharts-popup input {
   border: 1px solid #e6e6e6;
+  border-radius: 0.3rem;
   padding: 5px;
   width: 100%;
 }
@@ -108,8 +110,8 @@
 .highcharts-bindings-wrapper ul.highcharts-indicator-list,
 .highcharts-indicator-list {
   float: left;
-  color: #666;
-  height: calc(100% - 70px);
+  color: #666666;
+  height: calc(100% - 150px);
   width: 100%;
   overflow-x: hidden;
   margin: 0px;
@@ -128,7 +130,7 @@
 }
 
 .highcharts-indicator-list li:hover {
-  background-color: #e6ebf5;
+  background-color: #e6e6e6;
 }
 
 .highcharts-tab-item {
@@ -142,7 +144,7 @@
 }
 
 .highcharts-tab-item.highcharts-tab-item-active {
-  background-color: #e6ebf5;
+  background-color: #e6e6e6;
 }
 
 .highcharts-tab-item-content {
@@ -175,14 +177,15 @@
 .highcharts-popup button:hover,
 .highcharts-popup button.highcharts-annotation-edit-button:hover,
 .highcharts-popup button.highcharts-annotation-remove-button:hover {
-  background-color: #e6ebf5;
+  background-color: #e6e6e6;
+  cursor: pointer;
 }
 
 .highcharts-popup button {
   float: right;
   border: none;
   background: #f7f7f7;
-  color: #666;
+  color: #666666;
   margin-left: 5px;
   margin-top: 12px;
 }
@@ -192,7 +195,7 @@
 }
 
 .highcharts-tab-disabled {
-  color: #ccc;
+  color: #cccccc;
 }
 
 /* annotation edit small popup */
@@ -233,4 +236,41 @@
 .highcharts-indicator-title {
   float: left;
   padding-bottom: 15px;
+}
+
+.highcharts-input-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.highcharts-input-search-indicators-label {
+  text-align: center;
+  font-weight: bold;
+  color: #000000;
+  margin-top: 0.5rem;
+}
+
+input.highcharts-input-search-indicators {
+  width: 80%;
+  margin: 0 auto;
+  float: none;
+  border-color: #949494;
+}
+
+.highcharts-popup a.clear-filter-button {
+  margin: 0 auto;
+  display: none;
+  color: #335cad;
+  background-color: #fff;
+  border: 1px solid #335cad;
+  margin-top: 10px;
+}
+
+.highcharts-popup a.clear-filter-button:hover {
+  color: #fff;
+  background-color: #335cad;
+  cursor: pointer;
 }

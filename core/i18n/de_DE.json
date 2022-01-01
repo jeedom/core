@@ -2581,11 +2581,11 @@
         "Inactifs": "Inaktiv",
         "Export CSV": "CSV-Export",
         "Rechercher | nom | id | :not(nom": "Suche | Name | ID | : nicht (Name",
-        "Vider": "Leer",
         "Date": "Datum",
         "Type": "Typ",
         "ID": "Identifikation",
-        "Nom": "Name"
+        "Nom": "Name",
+        "Vider": "Leer"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -2684,6 +2684,7 @@
         "Êtes-vous sûr de vouloir supprimer la vue": "Möchten Sie die Ansicht wirklich löschen?",
         "Le nom de la viewZone ne peut être vide": "Der Name der ViewZone darf nicht leer sein",
         "Largeur": "Breite",
+        "Hauteur": "Höhe",
         "30 min": "30 Minuten",
         "1 heure": "1 Stunde",
         "Jour": "Tag",
@@ -2708,7 +2709,7 @@
         "Variation": "Wertänderung",
         "Ligne": "Linie",
         "Aire": "Fläche",
-        "Colonne": "Spalte",
+        "Barre": "Abgesperrt",
         "Camembert": "Camembert",
         "Aucun groupement": "Keine Gruppe",
         "Somme par heure": "Summe pro Stunde",
@@ -3045,6 +3046,8 @@
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Ausführungs Protokoll des Szenarios",
         "Nom du scénario": "Szenarioname",
+        "Êtes-vous sûr de vouloir désactiver les scénarios ?": "Möchten Sie Szenarien wirklich deaktivieren?",
+        "Êtes-vous sûr de vouloir activer les scénarios ?": "Möchten Sie Szenarien wirklich aktivieren?",
         "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Möchten Sie wirklich alle Szenarioprotokolle löschen?",
         "Logs des scénarios supprimés.": "Protokolle gelöschter Szenarien",
         "Vue d'ensemble des scénarios": "Überblick über Szenarien",

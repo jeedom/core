@@ -22,8 +22,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import MultipleLinesMixin from '../../../Mixins/MultipleLines.js';
-import palette from '../../../Core/Color/Palette.js';
+import MultipleLinesComposition from '../MultipleLinesComposition.js';
 import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
 var SMAIndicator = SeriesRegistry.seriesTypes.sma;
 import U from '../../../Core/Utilities.js';
@@ -45,7 +44,19 @@ var correctFloat = U.correctFloat, extend = U.extend, isArray = U.isArray, merge
 var DMIIndicator = /** @class */ (function (_super) {
     __extends(DMIIndicator, _super);
     function DMIIndicator() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        /* *
+         *
+         *  Static Properties
+         *
+         * */
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        /* *
+         *
+         *  Properties
+         *
+         * */
+        _this.options = void 0;
+        return _this;
     }
     /* *
      *
@@ -175,12 +186,15 @@ var DMIIndicator = /** @class */ (function (_super) {
             enabled: false
         },
         tooltip: {
-            pointFormat: '<span style="color: {point.color}">\u25CF</span><b> {series.name}</b><br/>' +
+            pointFormat: '<span style="color: {point.color}">' +
+                '\u25CF</span><b> {series.name}</b><br/>' +
                 '<span style="color: {point.color}">DX</span>: {point.y}<br/>' +
-                '<span style="color: {point.series.options.plusDILine.styles.lineColor}">+DI</span>' +
-                ': {point.plusDI}<br/>' +
-                '<span style="color: {point.series.options.minusDILine.styles.lineColor}">-DI</span>' +
-                ': {point.minusDI}<br/>'
+                '<span style="color: ' +
+                '{point.series.options.plusDILine.styles.lineColor}">' +
+                '+DI</span>: {point.plusDI}<br/>' +
+                '<span style="color: ' +
+                '{point.series.options.minusDILine.styles.lineColor}">' +
+                '-DI</span>: {point.minusDI}<br/>'
         },
         /**
          * +DI line options.
@@ -199,7 +213,7 @@ var DMIIndicator = /** @class */ (function (_super) {
                  *
                  * @type {Highcharts.ColorString}
                  */
-                lineColor: palette.positiveColor // green-ish
+                lineColor: "#06b535" /* positiveColor */ // green-ish
             }
         },
         /**
@@ -219,7 +233,7 @@ var DMIIndicator = /** @class */ (function (_super) {
                  *
                  * @type {Highcharts.ColorString}
                  */
-                lineColor: palette.negativeColor // red-ish
+                lineColor: "#f21313" /* negativeColor */ // red-ish
             }
         },
         dataGrouping: {
@@ -229,16 +243,14 @@ var DMIIndicator = /** @class */ (function (_super) {
     return DMIIndicator;
 }(SMAIndicator));
 extend(DMIIndicator.prototype, {
+    areaLinesNames: [],
     nameBase: 'DMI',
+    linesApiNames: ['plusDILine', 'minusDILine'],
     pointArrayMap: ['y', 'plusDI', 'minusDI'],
     parallelArrays: ['x', 'y', 'plusDI', 'minusDI'],
-    pointValKey: 'y',
-    linesApiNames: ['plusDILine', 'minusDILine'],
-    drawGraph: MultipleLinesMixin.drawGraph,
-    getTranslatedLinesNames: MultipleLinesMixin.getTranslatedLinesNames,
-    translate: MultipleLinesMixin.translate,
-    toYData: MultipleLinesMixin.toYData
+    pointValKey: 'y'
 });
+MultipleLinesComposition.compose(DMIIndicator);
 SeriesRegistry.registerSeriesType('dmi', DMIIndicator);
 /* *
  *

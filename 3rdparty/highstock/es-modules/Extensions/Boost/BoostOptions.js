@@ -65,8 +65,8 @@ import '../../Core/Globals.js';
  * a significant speed improvment in charts with a very high
  * amount of series.
  *
- * @type      {number|null}
- * @default   null
+ * @type      {number}
+ * @default   50
  * @apioption boost.seriesThreshold
  */
 /**

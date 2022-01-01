@@ -82,22 +82,25 @@ var Tunnel = /** @class */ (function (_super) {
                 },
                 this.points[3]
             ]
-        }), false);
+        }), 0);
         this.options.typeOptions.line = line.options;
     };
     Tunnel.prototype.addBackground = function () {
         var background = this.initShape(merge(this.options.typeOptions.background, {
             type: 'path',
             points: this.points.slice()
-        }));
+        }), 1);
         this.options.typeOptions.background = background.options;
     };
     /**
      * Translate start or end ("left" or "right") side of the tunnel.
      * @private
-     * @param {number} dx - the amount of x translation
-     * @param {number} dy - the amount of y translation
-     * @param {boolean} [end] - whether to translate start or end side
+     * @param {number} dx
+     * the amount of x translation
+     * @param {number} dy
+     * the amount of y translation
+     * @param {boolean} [end]
+     * whether to translate start or end side
      */
     Tunnel.prototype.translateSide = function (dx, dy, end) {
         var topIndex = Number(end), bottomIndex = topIndex === 0 ? 3 : 2;
@@ -107,12 +110,14 @@ var Tunnel = /** @class */ (function (_super) {
     /**
      * Translate height of the tunnel.
      * @private
-     * @param {number} dh - the amount of height translation
+     * @param {number} dh
+     * the amount of height translation
      */
     Tunnel.prototype.translateHeight = function (dh) {
         this.translatePoint(0, dh, 2);
         this.translatePoint(0, dh, 3);
-        this.options.typeOptions.height = this.points[3].y - this.points[0].y;
+        this.options.typeOptions.height = this.points[3].y -
+            this.points[0].y;
     };
     return Tunnel;
 }(CrookedLine));
@@ -128,8 +133,6 @@ Tunnel.prototype.defaultOptions = merge(CrookedLine.prototype.defaultOptions,
  */
 {
     typeOptions: {
-        xAxis: 0,
-        yAxis: 0,
         /**
          * Background options.
          *
@@ -187,7 +190,7 @@ Tunnel.prototype.defaultOptions = merge(CrookedLine.prototype.defaultOptions,
                     visiblePlotOnly: true
                 })) {
                     var translation = this.mouseMoveToTranslation(e);
-                    target.translateSide(translation.x, translation.y, this.index);
+                    target.translateSide(translation.x, translation.y, !!this.index);
                     target.redraw(false);
                 }
             }

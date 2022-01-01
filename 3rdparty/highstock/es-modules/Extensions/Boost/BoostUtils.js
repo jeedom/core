@@ -194,8 +194,6 @@ function eachAsync(arr, fn, finalFunc, chunkSize, i, noTimeout) {
  *
  * @private
  * @function hasWebGLSupport
- *
- * @return {boolean}
  */
 function hasWebGLSupport() {
     var i = 0, canvas, contexts = ['webgl', 'experimental-webgl', 'moz-webgl', 'webkit-3d'], context = false;
@@ -221,10 +219,6 @@ function hasWebGLSupport() {
  *
  * @private
  * @function pointDrawHandler
- *
- * @param {Function} proceed
- *
- * @return {*}
  */
 function pointDrawHandler(proceed) {
     var enabled = true, renderer;

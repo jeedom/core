@@ -77,6 +77,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
     return
   }
 
+  $(window).off('resize')
   jeedomUtils.closeJeedomMenu()
   window.toastr.clear()
 
@@ -455,6 +456,7 @@ jeedomUtils.setBackgroundImage = function(_path) {
       _path = jeedom.theme['interface::background::tools']
     }
 
+    if (!jeedomUtils._elBackground) jeedomUtils._elBackground = $('#backgroundforJeedom')
     if (_path.substring(0, 4) == 'core') {
       jeedomUtils._elBackground.removeClass('custom')
       _path += mode + '.jpg'
@@ -941,6 +943,26 @@ jeedomUtils.datePickerInit = function() {
   }
   datePickerRegional.dateFormat = "yy-mm-dd"
   $('.in_datepicker').datepicker(datePickerRegional)
+}
+
+jeedomUtils.dateTimePickerInit = function(_step) {
+  $('input.isdatepicker').datetimepicker('destroy')
+  $('.xdsoft_datetimepicker').remove()
+  if (!isset(_step)) _step = 10
+  $('input.isdatepicker').datetimepicker({
+    datepicker: false,
+    format: 'H:i',
+    step: _step
+  })
+}
+
+jeedomUtils.initSpinners = function() {
+  $('input[type="number"]').spinner({
+    icons: {
+      down: "ui-icon-triangle-1-s",
+      up: "ui-icon-triangle-1-n"
+    }
+  })
 }
 
 jeedomUtils.datePickerDestroy = function() {

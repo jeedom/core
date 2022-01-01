@@ -72,7 +72,7 @@ var CrookedLine = /** @class */ (function (_super) {
                     return target.annotation.points[i];
                 };
             })
-        }), false);
+        }), 0);
         typeOptions.line = shape.options;
     };
     return CrookedLine;
@@ -161,8 +161,10 @@ CrookedLine.prototype.defaultOptions = merge(Annotation.prototype.defaultOptions
                     var translation = this.mouseMoveToTranslation(e);
                     target.translatePoint(translation.x, translation.y, this.index);
                     // Update options:
-                    target.options.typeOptions.points[this.index].x = target.points[this.index].x;
-                    target.options.typeOptions.points[this.index].y = target.points[this.index].y;
+                    target.options.typeOptions
+                        .points[this.index].x = target.points[this.index].x;
+                    target.options.typeOptions
+                        .points[this.index].y = target.points[this.index].y;
                     target.redraw(false);
                 }
             }

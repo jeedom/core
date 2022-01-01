@@ -10,16 +10,37 @@
  *
  * */
 'use strict';
-import Chart from '../../Core/Chart/Chart.js';
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+import A from '../../Core/Animation/AnimationUtilities.js';
+var animObject = A.animObject;
 import H from '../../Core/Globals.js';
-import Legend from '../../Core/Legend.js';
+import Legend from '../../Core/Legend/Legend.js';
 import U from '../../Core/Utilities.js';
-var addEvent = U.addEvent, extend = U.extend, find = U.find, fireEvent = U.fireEvent, isNumber = U.isNumber;
+var addEvent = U.addEvent, fireEvent = U.fireEvent, isNumber = U.isNumber, pick = U.pick, syncTimeout = U.syncTimeout;
 import AccessibilityComponent from '../AccessibilityComponent.js';
 import KeyboardNavigationHandler from '../KeyboardNavigationHandler.js';
-import HTMLUtilities from '../Utils/HTMLUtilities.js';
-var removeElement = HTMLUtilities.removeElement, stripHTMLTags = HTMLUtilities.stripHTMLTagsFromString;
-/* eslint-disable no-invalid-this, valid-jsdoc */
+import CU from '../Utils/ChartUtilities.js';
+var getChartTitle = CU.getChartTitle;
+import HU from '../Utils/HTMLUtilities.js';
+var stripHTMLTags = HU.stripHTMLTagsFromString, addClass = HU.addClass, removeClass = HU.removeClass;
+/* *
+ *
+ *  Functions
+ *
+ * */
+/* eslint-disable valid-jsdoc */
 /**
  * @private
  */
@@ -38,37 +59,11 @@ function shouldDoLegendA11y(chart) {
         !(chart.colorAxis && chart.colorAxis.length) &&
         legendA11yOptions.enabled !== false);
 }
-/**
- * Highlight legend item by index.
+/* *
  *
- * @private
- * @function Highcharts.Chart#highlightLegendItem
+ *  Class
  *
- * @param {number} ix
- *
- * @return {boolean}
- */
-Chart.prototype.highlightLegendItem = function (ix) {
-    var items = this.legend.allItems, oldIx = this.accessibility &&
-        this.accessibility.components.legend.highlightedLegendItemIx;
-    if (items[ix]) {
-        if (isNumber(oldIx) && items[oldIx]) {
-            fireEvent(items[oldIx].legendGroup.element, 'mouseout');
-        }
-        scrollLegendToItem(this.legend, ix);
-        this.setFocusToElement(items[ix].legendItem, items[ix].a11yProxyElement);
-        fireEvent(items[ix].legendGroup.element, 'mouseover');
-        return true;
-    }
-    return false;
-};
-// Keep track of pressed state for legend items
-addEvent(Legend, 'afterColorizeItem', function (e) {
-    var chart = this.chart, a11yOptions = chart.options.accessibility, legendItem = e.item;
-    if (a11yOptions.enabled && legendItem && legendItem.a11yProxyElement) {
-        legendItem.a11yProxyElement.setAttribute('aria-pressed', e.visible ? 'true' : 'false');
-    }
-});
+ * */
 /**
  * The LegendComponent class
  *
@@ -76,24 +71,42 @@ addEvent(Legend, 'afterColorizeItem', function (e) {
  * @class
  * @name Highcharts.LegendComponent
  */
-var LegendComponent = function () { };
-LegendComponent.prototype = new AccessibilityComponent();
-extend(LegendComponent.prototype, /** @lends Highcharts.LegendComponent */ {
+var LegendComponent = /** @class */ (function (_super) {
+    __extends(LegendComponent, _super);
+    function LegendComponent() {
+        /* *
+         *
+         *  Properties
+         *
+         * */
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.highlightedLegendItemIx = NaN;
+        return _this;
+    }
+    /* *
+     *
+     *  Functions
+     *
+     * */
+    /* eslint-disable valid-jsdoc */
     /**
      * Init the component
      * @private
      */
-    init: function () {
+    LegendComponent.prototype.init = function () {
         var component = this;
-        this.proxyElementsList = [];
         this.recreateProxies();
         // Note: Chart could create legend dynamically, so events can not be
         // tied to the component's chart's current legend.
+        // @todo 1. attach component to created legends
+        // @todo 2. move listeners to composition and access `this.component`
         this.addEvent(Legend, 'afterScroll', function () {
             if (this.chart === component.chart) {
-                component.updateProxiesPositions();
+                component.proxyProvider.updateGroupProxyElementPositions('legend');
                 component.updateLegendItemProxyVisibility();
-                this.chart.highlightLegendItem(component.highlightedLegendItemIx);
+                if (component.highlightedLegendItemIx > -1) {
+                    this.chart.highlightLegendItem(component.highlightedLegendItemIx);
+                }
             }
         });
         this.addEvent(Legend, 'afterPositionItem', function (e) {
@@ -101,79 +114,118 @@ extend(LegendComponent.prototype, /** @lends Highcharts.LegendComponent */ {
                 component.updateProxyPositionForItem(e.item);
             }
         });
-    },
-    /**
-     * @private
-     */
-    updateLegendItemProxyVisibility: function () {
-        var legend = this.chart.legend, items = legend.allItems || [], curPage = legend.currentPage || 1, clipHeight = legend.clipHeight || 0;
-        items.forEach(function (item) {
-            var itemPage = item.pageIx || 0, y = item._legendItemPos ? item._legendItemPos[1] : 0, h = item.legendItem ? Math.round(item.legendItem.getBBox().height) : 0, hide = y + h - legend.pages[itemPage] > clipHeight || itemPage !== curPage - 1;
-            if (item.a11yProxyElement) {
-                item.a11yProxyElement.style.visibility = hide ?
-                    'hidden' : 'visible';
+        this.addEvent(Legend, 'afterRender', function () {
+            if (this.chart === component.chart &&
+                this.chart.renderer &&
+                component.recreateProxies()) {
+                syncTimeout(function () { return component.proxyProvider
+                    .updateGroupProxyElementPositions('legend'); }, animObject(pick(this.chart.renderer.globalAnimation, true)).duration);
             }
         });
-    },
+    };
     /**
-     * The legend needs updates on every render, in order to update positioning
-     * of the proxy overlays.
+     * Update visibility of legend items when using paged legend
+     * @private
      */
-    onChartRender: function () {
-        if (shouldDoLegendA11y(this.chart)) {
-            this.updateProxiesPositions();
-        }
-        else {
+    LegendComponent.prototype.updateLegendItemProxyVisibility = function () {
+        var chart = this.chart;
+        var legend = chart.legend;
+        var items = legend.allItems || [];
+        var curPage = legend.currentPage || 1;
+        var clipHeight = legend.clipHeight || 0;
+        items.forEach(function (item) {
+            if (item.a11yProxyElement) {
+                var hasPages = legend.pages && legend.pages.length;
+                var proxyEl = item.a11yProxyElement.element;
+                var hide = false;
+                if (hasPages) {
+                    var itemPage = item.pageIx || 0;
+                    var y = item._legendItemPos ? item._legendItemPos[1] : 0;
+                    var h = item.legendItem ?
+                        Math.round(item.legendItem.getBBox().height) :
+                        0;
+                    hide = y + h - legend.pages[itemPage] > clipHeight ||
+                        itemPage !== curPage - 1;
+                }
+                if (hide) {
+                    if (chart.styledMode) {
+                        addClass(proxyEl, 'highcharts-a11y-invisible');
+                    }
+                    else {
+                        proxyEl.style.visibility = 'hidden';
+                    }
+                }
+                else {
+                    removeClass(proxyEl, 'highcharts-a11y-invisible');
+                    proxyEl.style.visibility = '';
+                }
+            }
+        });
+    };
+    /**
+     * @private
+     */
+    LegendComponent.prototype.onChartRender = function () {
+        if (!shouldDoLegendA11y(this.chart)) {
             this.removeProxies();
         }
-    },
+    };
     /**
      * @private
      */
-    onChartUpdate: function () {
-        this.updateLegendTitle();
-    },
-    /**
-     * @private
-     */
-    updateProxiesPositions: function () {
-        for (var _i = 0, _a = this.proxyElementsList; _i < _a.length; _i++) {
-            var _b = _a[_i], element = _b.element, posElement = _b.posElement;
-            this.updateProxyButtonPosition(element, posElement);
+    LegendComponent.prototype.highlightAdjacentLegendPage = function (direction) {
+        var chart = this.chart;
+        var legend = chart.legend;
+        var curPageIx = legend.currentPage || 1;
+        var newPageIx = curPageIx + direction;
+        var pages = legend.pages || [];
+        if (newPageIx > 0 && newPageIx <= pages.length) {
+            var len = legend.allItems.length;
+            for (var i = 0; i < len; ++i) {
+                if (legend.allItems[i].pageIx + 1 === newPageIx) {
+                    var res = chart.highlightLegendItem(i);
+                    if (res) {
+                        this.highlightedLegendItemIx = i;
+                    }
+                    return;
+                }
+            }
         }
-    },
+    };
     /**
      * @private
      */
-    updateProxyPositionForItem: function (item) {
-        var proxyRef = find(this.proxyElementsList, function (ref) { return ref.item === item; });
-        if (proxyRef) {
-            this.updateProxyButtonPosition(proxyRef.element, proxyRef.posElement);
+    LegendComponent.prototype.updateProxyPositionForItem = function (item) {
+        if (item.a11yProxyElement) {
+            item.a11yProxyElement.refreshPosition();
         }
-    },
+    };
     /**
+     * Returns false if legend a11y is disabled and proxies were not created,
+     * true otherwise.
      * @private
      */
-    recreateProxies: function () {
+    LegendComponent.prototype.recreateProxies = function () {
         this.removeProxies();
         if (shouldDoLegendA11y(this.chart)) {
             this.addLegendProxyGroup();
-            this.addLegendListContainer();
             this.proxyLegendItems();
             this.updateLegendItemProxyVisibility();
+            this.updateLegendTitle();
+            return true;
         }
-    },
+        return false;
+    };
     /**
      * @private
      */
-    removeProxies: function () {
-        removeElement(this.legendProxyGroup);
-        this.proxyElementsList = [];
-    },
+    LegendComponent.prototype.removeProxies = function () {
+        this.proxyProvider.removeGroup('legend');
+    };
     /**
      * @private
      */
-    updateLegendTitle: function () {
+    LegendComponent.prototype.updateLegendTitle = function () {
         var chart = this.chart;
         var legendTitle = stripHTMLTags((chart.legend &&
             chart.legend.options.title &&
@@ -181,37 +233,31 @@ extend(LegendComponent.prototype, /** @lends Highcharts.LegendComponent */ {
             '').replace(/<br ?\/?>/g, ' '));
         var legendLabel = chart.langFormat('accessibility.legend.legendLabel' + (legendTitle ? '' : 'NoTitle'), {
             chart: chart,
-            legendTitle: legendTitle
+            legendTitle: legendTitle,
+            chartTitle: getChartTitle(chart)
         });
-        if (this.legendProxyGroup) {
-            this.legendProxyGroup.setAttribute('aria-label', legendLabel);
-        }
-    },
+        this.proxyProvider.updateGroupAttrs('legend', {
+            'aria-label': legendLabel
+        });
+    };
     /**
      * @private
      */
-    addLegendProxyGroup: function () {
-        var a11yOptions = this.chart.options.accessibility, groupRole = a11yOptions.landmarkVerbosity === 'all' ?
+    LegendComponent.prototype.addLegendProxyGroup = function () {
+        var a11yOptions = this.chart.options.accessibility;
+        var groupRole = a11yOptions.landmarkVerbosity === 'all' ?
             'region' : null;
-        this.legendProxyGroup = this.addProxyGroup({
+        this.proxyProvider.addGroup('legend', 'ul', {
+            // Filled by updateLegendTitle, to keep up to date without
+            // recreating group
             'aria-label': '_placeholder_',
             role: groupRole
         });
-    },
+    };
     /**
      * @private
      */
-    addLegendListContainer: function () {
-        if (this.legendProxyGroup) {
-            var container = this.legendListContainer = this.createElement('ul');
-            container.style.listStyle = 'none';
-            this.legendProxyGroup.appendChild(container);
-        }
-    },
-    /**
-     * @private
-     */
-    proxyLegendItems: function () {
+    LegendComponent.prototype.proxyLegendItems = function () {
         var component = this, items = (this.chart.legend &&
             this.chart.legend.allItems || []);
         items.forEach(function (item) {
@@ -219,41 +265,39 @@ extend(LegendComponent.prototype, /** @lends Highcharts.LegendComponent */ {
                 component.proxyLegendItem(item);
             }
         });
-    },
+    };
     /**
      * @private
-     * @param {Highcharts.BubbleLegend|Point|Highcharts.Series} item
+     * @param {Highcharts.BubbleLegendItem|Point|Highcharts.Series} item
      */
-    proxyLegendItem: function (item) {
-        if (!item.legendItem || !item.legendGroup || !this.legendListContainer) {
+    LegendComponent.prototype.proxyLegendItem = function (item) {
+        if (!item.legendItem || !item.legendGroup) {
             return;
         }
         var itemLabel = this.chart.langFormat('accessibility.legend.legendItem', {
             chart: this.chart,
             itemName: stripHTMLTags(item.name),
             item: item
-        }), attribs = {
+        });
+        var attribs = {
             tabindex: -1,
             'aria-pressed': item.visible,
             'aria-label': itemLabel
-        }, 
+        };
         // Considers useHTML
-        proxyPositioningElement = item.legendGroup.div ?
-            item.legendItem : item.legendGroup;
-        var listItem = this.createElement('li');
-        this.legendListContainer.appendChild(listItem);
-        item.a11yProxyElement = this.createProxyButton(item.legendItem, listItem, attribs, proxyPositioningElement);
-        this.proxyElementsList.push({
-            item: item,
-            element: item.a11yProxyElement,
-            posElement: proxyPositioningElement
-        });
-    },
+        var proxyPositioningElement = item.legendGroup.div ?
+            item.legendItem :
+            item.legendGroup;
+        item.a11yProxyElement = this.proxyProvider.addProxyElement('legend', {
+            click: item.legendItem,
+            visual: proxyPositioningElement.element
+        }, attribs);
+    };
     /**
      * Get keyboard navigation handler for this component.
-     * @return {Highcharts.KeyboardNavigationHandler}
+     * @private
      */
-    getKeyboardNavigation: function () {
+    LegendComponent.prototype.getKeyboardNavigation = function () {
         var keys = this.keyCodes, component = this, chart = this.chart;
         return new KeyboardNavigationHandler(chart, {
             keyCodeMap: [
@@ -271,6 +315,14 @@ extend(LegendComponent.prototype, /** @lends Highcharts.LegendComponent */ {
                         }
                         return component.onKbdClick(this);
                     }
+                ],
+                [
+                    [keys.pageDown, keys.pageUp],
+                    function (keyCode) {
+                        var direction = keyCode === keys.pageDown ? 1 : -1;
+                        component.highlightAdjacentLegendPage(direction);
+                        return this.response.success;
+                    }
                 ]
             ],
             validate: function () {
@@ -280,10 +332,11 @@ extend(LegendComponent.prototype, /** @lends Highcharts.LegendComponent */ {
                 return component.onKbdNavigationInit(direction);
             },
             terminate: function () {
+                component.highlightedLegendItemIx = -1;
                 chart.legend.allItems.forEach(function (item) { return item.setState('', true); });
             }
         });
-    },
+    };
     /**
      * @private
      * @param {Highcharts.KeyboardNavigationHandler} keyboardNavigationHandler
@@ -291,7 +344,7 @@ extend(LegendComponent.prototype, /** @lends Highcharts.LegendComponent */ {
      * @return {number}
      * Response code
      */
-    onKbdArrowKey: function (keyboardNavigationHandler, keyCode) {
+    LegendComponent.prototype.onKbdArrowKey = function (keyboardNavigationHandler, keyCode) {
         var keys = this.keyCodes, response = keyboardNavigationHandler.response, chart = this.chart, a11yOptions = chart.options.accessibility, numItems = chart.legend.allItems.length, direction = (keyCode === keys.left || keyCode === keys.up) ? -1 : 1;
         var res = chart.highlightLegendItem(this.highlightedLegendItemIx + direction);
         if (res) {
@@ -305,25 +358,23 @@ extend(LegendComponent.prototype, /** @lends Highcharts.LegendComponent */ {
         }
         // No wrap, move
         return response[direction > 0 ? 'next' : 'prev'];
-    },
+    };
     /**
      * @private
      * @param {Highcharts.KeyboardNavigationHandler} keyboardNavigationHandler
-     * @return {number}
-     * Response code
+     * @return {number} Response code
      */
-    onKbdClick: function (keyboardNavigationHandler) {
+    LegendComponent.prototype.onKbdClick = function (keyboardNavigationHandler) {
         var legendItem = this.chart.legend.allItems[this.highlightedLegendItemIx];
         if (legendItem && legendItem.a11yProxyElement) {
-            fireEvent(legendItem.a11yProxyElement, 'click');
+            legendItem.a11yProxyElement.click();
         }
         return keyboardNavigationHandler.response.success;
-    },
+    };
     /**
      * @private
-     * @return {boolean|undefined}
      */
-    shouldHaveLegendNavigation: function () {
+    LegendComponent.prototype.shouldHaveLegendNavigation = function () {
         var chart = this.chart, legendOptions = chart.options.legend || {}, hasLegend = chart.legend && chart.legend.allItems, hasColorAxis = chart.colorAxis && chart.colorAxis.length, legendA11yOptions = (legendOptions.accessibility || {});
         return !!(hasLegend &&
             chart.legend.display &&
@@ -331,15 +382,97 @@ extend(LegendComponent.prototype, /** @lends Highcharts.LegendComponent */ {
             legendA11yOptions.enabled &&
             legendA11yOptions.keyboardNavigation &&
             legendA11yOptions.keyboardNavigation.enabled);
-    },
+    };
     /**
      * @private
      * @param {number} direction
      */
-    onKbdNavigationInit: function (direction) {
+    LegendComponent.prototype.onKbdNavigationInit = function (direction) {
         var chart = this.chart, lastIx = chart.legend.allItems.length - 1, ixToHighlight = direction > 0 ? 0 : lastIx;
         chart.highlightLegendItem(ixToHighlight);
         this.highlightedLegendItemIx = ixToHighlight;
+    };
+    return LegendComponent;
+}(AccessibilityComponent));
+/* *
+ *
+ *  Class Namespace
+ *
+ * */
+(function (LegendComponent) {
+    /* *
+     *
+     *  Declarations
+     *
+     * */
+    /* *
+     *
+     *  Constants
+     *
+     * */
+    var composedClasses = [];
+    /* *
+     *
+     *  Functions
+     *
+     * */
+    /* eslint-disable valid-jsdoc */
+    /**
+     * Highlight legend item by index.
+     * @private
+     */
+    function chartHighlightLegendItem(ix) {
+        var items = this.legend.allItems;
+        var oldIx = this.accessibility &&
+            this.accessibility.components.legend.highlightedLegendItemIx;
+        var itemToHighlight = items[ix];
+        if (itemToHighlight) {
+            if (isNumber(oldIx) && items[oldIx]) {
+                fireEvent(items[oldIx].legendGroup.element, 'mouseout');
+            }
+            scrollLegendToItem(this.legend, ix);
+            var legendItemProp = itemToHighlight.legendItem;
+            var proxyBtn = itemToHighlight.a11yProxyElement &&
+                itemToHighlight.a11yProxyElement.buttonElement;
+            if (legendItemProp && legendItemProp.element && proxyBtn) {
+                this.setFocusToElement(legendItemProp, proxyBtn);
+            }
+            if (itemToHighlight.legendGroup) {
+                fireEvent(itemToHighlight.legendGroup.element, 'mouseover');
+            }
+            return true;
+        }
+        return false;
     }
-});
+    /**
+     * @private
+     */
+    function compose(ChartClass, LegendClass) {
+        if (composedClasses.indexOf(ChartClass) === -1) {
+            composedClasses.push(ChartClass);
+            var chartProto = ChartClass.prototype;
+            chartProto.highlightLegendItem = chartHighlightLegendItem;
+        }
+        if (composedClasses.indexOf(LegendClass) === -1) {
+            composedClasses.push(LegendClass);
+            addEvent(LegendClass, 'afterColorizeItem', legendOnAfterColorizeItem);
+        }
+    }
+    LegendComponent.compose = compose;
+    /**
+     * Keep track of pressed state for legend items.
+     * @private
+     */
+    function legendOnAfterColorizeItem(e) {
+        var chart = this.chart, a11yOptions = chart.options.accessibility, legendItem = e.item;
+        if (a11yOptions.enabled && legendItem && legendItem.a11yProxyElement) {
+            legendItem.a11yProxyElement.buttonElement.setAttribute('aria-pressed', e.visible ? 'true' : 'false');
+        }
+    }
+})(LegendComponent || (LegendComponent = {}));
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default LegendComponent;

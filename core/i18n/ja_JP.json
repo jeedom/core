@@ -2581,11 +2581,11 @@
         "Inactifs": "不活発",
         "Export CSV": "CSVエクスポート",
         "Rechercher | nom | id | :not(nom": "Rechercher | nom | id | :not(nom",
-        "Vider": "空",
         "Date": "日付",
         "Type": "タイプ",
         "ID": "ID",
-        "Nom": "表題"
+        "Nom": "表題",
+        "Vider": "空"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
@@ -2684,6 +2684,7 @@
         "Êtes-vous sûr de vouloir supprimer la vue": "ビューを削除してもよろしいですか",
         "Le nom de la viewZone ne peut être vide": "ViewZone名は空にできません",
         "Largeur": "幅",
+        "Hauteur": "Hauteur",
         "30 min": "30分",
         "1 heure": "1時間",
         "Jour": "日",
@@ -2708,7 +2709,7 @@
         "Variation": "変更",
         "Ligne": "ライン",
         "Aire": "エリア",
-        "Colonne": "コラム",
+        "Barre": "Barre",
         "Camembert": "カマンベール",
         "Aucun groupement": "何のグループません",
         "Somme par heure": "Somme par heure",
@@ -3045,6 +3046,8 @@
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "スクリプトの実行をログに記録します",
         "Nom du scénario": "Nom du scénario",
+        "Êtes-vous sûr de vouloir désactiver les scénarios ?": "Êtes-vous sûr de vouloir désactiver les scénarios ?",
+        "Êtes-vous sûr de vouloir activer les scénarios ?": "Êtes-vous sûr de vouloir activer les scénarios ?",
         "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?",
         "Logs des scénarios supprimés.": "Logs des scénarios supprimés",
         "Vue d'ensemble des scénarios": "Vue d'ensemble des scénarios",
