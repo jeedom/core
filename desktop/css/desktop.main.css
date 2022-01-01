@@ -4547,6 +4547,9 @@ Desktop
     margin-left: 0;
     margin-top: 0;
   }
+  .form-group .ui-spinner {
+    width: 100%;
+  }
 
   /* Designs */
   .nav>li>a:focus,
