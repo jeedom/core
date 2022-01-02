@@ -138,7 +138,7 @@ function setModal() {
       modal.data( {'width':modal.width(), 'height':modal.height(), 'top':modal.css('top'), 'left':modal.css('left')} )
       resizeHighChartModal()
     }
-    modal.resize(function() {
+    $('#md_modal2').on('dialogresize', function() {
       clearTimeout(resizeDone);
       resizeDone = setTimeout(resizeDn, 100);
     })
