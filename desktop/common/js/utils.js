@@ -559,6 +559,7 @@ jeedomUtils.initJeedomModals = function() {
     beforeClose: function(event, ui) {
       $(this).parent('.ui-dialog').removeClass('summaryActionMain')
       emptyModal('md_modal')
+      $('#md_modal').off('dialogresize')
     }
   })
 
@@ -604,6 +605,7 @@ jeedomUtils.initJeedomModals = function() {
     },
     beforeClose: function(event, ui) {
       emptyModal('md_modal3')
+      $('#md_modal3').off('dialogresize')
     }
   })
 
