@@ -157,7 +157,7 @@ $(function() {
 })
 
 //handle resizing:
-$('#md_modal2').on('dialogresize', function() {
+jeeFrontEnd.md_history.modal.on('dialogresize', function() {
   clearTimeout(jeeFrontEnd.md_history.resizeDone)
   jeeFrontEnd.md_history.resizeDone = setTimeout(function() { jeeFrontEnd.md_history.resizeDn() }, 100)
 })
@@ -165,15 +165,8 @@ $('#md_modal2').on('dialogresize', function() {
 //Modal buttons:
 jeeFrontEnd.md_history.$pageContainer.on({
   'click': function(event) {
-    jeeFrontEnd.md_history.modal = false
-    if ($('#md_modal').is(':visible')) {
-      jeeFrontEnd.md_history.modal = $('#md_modal')
-    } else if ($('#md_modal2').is(':visible')) {
-      jeeFrontEnd.md_history.modal = $('#md_modal2')
-    }
-    if (jeeFrontEnd.md_history.modal !== false) {
-      jeeFrontEnd.md_history.modal.dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + jeephp2js.cmd_id + '&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open')
-    }
+    var modal = $(this).parents('.ui-dialog-content.ui-widget-content')
+    modal.dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + jeephp2js.cmd_id + '&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open')
   }
 }, '#bt_validChangeDate')
 
