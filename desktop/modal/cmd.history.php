@@ -94,15 +94,8 @@ $(function() {
 function setModal() {
   if (done == 0 || noChart) {
     $('#bt_validChangeDate').on('click', function() {
-      var modal = false;
-      if ($('#md_modal').is(':visible')) {
-        modal = $('#md_modal')
-      } else if ($('#md_modal2').is(':visible')) {
-        modal = $('#md_modal2')
-      }
-      if (modal !== false) {
-        modal.dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id='+cmd_id+'&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open')
-      }
+      var modal = $(this).parents('.ui-dialog-content.ui-widget-content')
+      modal.dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id='+cmd_id+'&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open')
     })
 
     $('#bt_openInHistory').on('click', function() {
@@ -138,7 +131,7 @@ function setModal() {
       modal.data( {'width':modal.width(), 'height':modal.height(), 'top':modal.css('top'), 'left':modal.css('left')} )
       resizeHighChartModal()
     }
-    $('#md_modal2').on('dialogresize', function() {
+    modal.on('dialogresize', function() {
       clearTimeout(resizeDone);
       resizeDone = setTimeout(resizeDn, 100);
     })
