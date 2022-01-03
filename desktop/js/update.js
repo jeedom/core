@@ -275,7 +275,7 @@ if (!jeeFrontEnd.update) {
       this._UpdateObserver_ = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
           if (mutation.type == 'childList' && mutation.removedNodes.length >= 1) {
-            this.cleanUpdateLog()
+            jeeFrontEnd.update.cleanUpdateLog()
           }
         })
       })
