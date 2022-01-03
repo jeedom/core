@@ -264,7 +264,7 @@ $(function() {
     "progressBar": true,
     "onclick": function() {
       window.toastr.clear()
-      $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&p=message&ajax=1').dialog('open')
+      $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&modal=message.display').dialog('open')
     }
   }
   jeedomUtils.toastrUIoptions = {
@@ -720,7 +720,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
 
   $('#bt_messageModal').on('click',function() {
     jeedomUtils.closeModal('md_modal')
-    $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&p=message&ajax=1').dialog('open')
+    $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&modal=message.display').dialog('open')
   })
   $('#bt_jsErrorModal').on('click',function() {
     jeedomUtils.closeModal('md_modal')
