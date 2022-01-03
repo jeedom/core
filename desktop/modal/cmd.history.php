@@ -95,7 +95,7 @@ function setModal() {
       md_modal.dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id='+cmd_id+'&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open')
     })
 
-    $('#bt_openInHistory').on('click', function() {
+    $('#bt_openInHistory').off('click').on('click', function() {
       jeedomUtils.loadPage('index.php?v=d&p=history&cmd_id=' + cmd_id)
     });
 
