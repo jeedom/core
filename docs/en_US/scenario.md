@@ -249,13 +249,13 @@ You can use any of the following symbols for comparisons under conditions :
 - ``<=`` : Less than or equal to.
 - ``!=`` : Different from, is not equal to.
 - ``matches`` : Contains. Ex : ``[Salle de bain][Hydrometrie][etat] matches "/humide/"``.
-- ``not ( …​ matches …​)`` : Does not contain. Ex :  ``not([Salle de bain][Hydrometrie][etat] matches "/humide/")``.
+- ``not(…​ matches …​)`` : Does not contain. Ex :  ``not([Salle de bain][Hydrometrie][etat] matches "/humide/")``.
 
 You can combine any comparison with the following operators :
 
-- ``&&`` / ``ET`` / ``et`` / ``AND`` / ``and`` : et,
-- ``||`` / ``OU`` / ``ou`` / ``OR`` / ``or`` : ou,
-- ``^`` / ``XOR`` / ``xor`` : or exclusive.
+- ``&&`` : and. It is also possible to use : ``ET`` / ``et`` / ``AND`` / ``and`` but may not work well with some php functions.
+- ``||`` : or. It is also possible to use : ``OU`` / ``ou`` / ``OR`` / ``or`` but may not work well with some php functions.
+- ``xor``  : or exclusive. It is also possible to use : ``XOR`` / ``^`` but may not work well with some php functions.
 
 ### Tags
 

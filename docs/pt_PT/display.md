@@ -37,7 +37,7 @@ Para cada objeto, próximo ao seu rótulo, dois botões estão disponíveis.
 Em cada equipamento encontramos :
 
 - UMA **caixa de seleção** para selecionar o equipamento (você pode selecionar vários). Se pelo menos um dispositivo estiver selecionado, você terá botões de ação que aparecem no canto superior esquerdo para **retirar**, Retorna **visível**/**invisível**,  **ativo**/**Inativo** equipamento selecionado.
-- L'**Eu iria** equipamento.
+- L'**identificação** equipamento.
 - O **tipo** equipamento : Identificador do plug-in ao qual ele pertence.
 - O **último nome** equipamento.
 - **Inativo** (pequena cruz) : Significa que o equipamento está inativo (se não estiver lá, o equipamento está ativo).
