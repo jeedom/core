@@ -6,7 +6,7 @@ include_file('core', 'authentification', 'php');
 global $JEEDOM_INTERNAL_CONFIG;
 global $jeedom_theme;
 $jeedom_theme = jeedom::getThemeConfig();
-$configs = array_merge($jeedom_theme, config::byKeys(array('language', 'jeedom::firstUse')));
+$configs = array_merge($jeedom_theme, config::byKeys(array('language', 'jeedom::firstUse', 'debugFrontEnd', 'debugFrontEndVerbose')));
 if (isConnect()) {
 	$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
 	if (count($homePage) == 2) {
@@ -250,7 +250,9 @@ function setTheme() {
 	<?php
 	sendVarToJS([
 		'jeeFrontEnd.language' => $configs['language'],
-		'jeedom.theme' => $jeedom_theme
+		'jeedom.theme' => $jeedom_theme,
+		'jeeFrontEnd._debug' => empty($configs['debugFrontEnd']) ? "-1" : $configs['debugFrontEnd'],
+		'jeeFrontEnd._debugVerbose' => empty($configs['debugFrontEndVerbose']) ? 0 : intval($configs['debugFrontEndVerbose'])
 	]);
 	if (!isConnect()) {
 		include_file('desktop', 'connection', 'php');

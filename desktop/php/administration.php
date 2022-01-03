@@ -804,6 +804,28 @@ user::isBan();
 				<form class="form-horizontal">
 					<div id="div_actionOnMessage"></div>
 				</form>
+
+				<form class="form-horizontal">
+					<fieldset>
+						<legend>{{Debug}}</legend>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6 control-label">{{Debug Front-End js}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Active la sortie en console d'informations de debuggage en fonction du niveau de Verbose.}}"></i></sup>
+							</label>
+							<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
+								<select class="form-control configKey" data-l1key="debugFrontEnd" data-reload="1" >';
+						        	<option value="-1">Disable</option>
+						        	<option value="1">Enable</option>
+						    	</select>
+							</div>
+							<label class="col-lg-1 col-md-2 col-sm-2 col-xs-6 control-label">{{Verbose}}</label>
+							<div class="col-lg-1 col-md-2 col-sm-3 col-xs-6">
+								<input type="number" class="configKey form-control" data-l1key="debugFrontEndVerbose" min="0" max="15" step="1" data-reload="1" />
+							</div>
+						</div>
+					</fieldset>
+				</form>
+
 				<ul class="nav nav-tabs" role="tablist">
 					<li role="presentation" class="active"><a href="#log_alertes" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> {{Alertes}}</a></li>
 					<li role="presentation"><a href="#log_log" role="tab" data-toggle="tab"><i class="fas fa-file"></i> {{Logs}}</a></li>
