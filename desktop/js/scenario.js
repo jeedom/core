@@ -108,8 +108,10 @@ if (!jeeFrontEnd.scenario) {
       message += '<div class="col-xs-3">'
       message += '  <select class="conditionAttr form-control" data-l1key="next">'
       message += '    <option value="">{{rien}}</option>'
-      message += '    <option value="ET">{{et}}</option>'
-      message += '    <option value="OU">{{ou}}</option>'
+      message += '    <option value="&&">&& (AND)</option>'
+      message += '    <option value="||">|| (OR)</option>'
+      if (jeeFrontEnd.language == "fr_FR") message += '    <option value="ET">{{et}}</option>'
+      if (jeeFrontEnd.language == "fr_FR") message += '    <option value="OU">{{ou}}</option>'
       message += '  </select>'
       message += '</div>'
       message += '</div>'
@@ -2466,4 +2468,3 @@ jeeP.bt_redo.off('click').on('click', function() {
     jeeP.PREV_FOCUS = null
   }
 })
-
