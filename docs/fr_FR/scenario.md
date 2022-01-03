@@ -253,9 +253,9 @@ Vous pouvez utiliser n’importe lequel des symboles suivants pour les comparais
 
 Vous pouvez combiner n’importe quelle comparaison avec les opérateurs suivants :
 
-- ``&&`` : et. Il est aussi possible d'utiliser : ``ET`` / ``et`` / ``AND`` / ``and`` mais peut ne pas fonctionner correctment avec certaines fonctions php,
-- ``||`` : ou. Il est aussi possible d'utiliser : ``OU`` / ``ou`` / ``OR`` / ``or`` mais peut ne pas fonctionner correctment avec certaines fonctions php,
-- ``xor``  : ou exclusif. Il est aussi possible d'utiliser : ``XOR`` / ``^`` mais peut ne pas fonctionner correctment avec certaines fonctions php.
+- ``&&`` : et. Il est aussi possible d'utiliser : ``ET`` / ``et`` / ``AND`` / ``and`` mais peut ne pas fonctionner correctement avec certaines fonctions php.
+- ``||`` : ou. Il est aussi possible d'utiliser : ``OU`` / ``ou`` / ``OR`` / ``or`` mais peut ne pas fonctionner correctement avec certaines fonctions php.
+- ``xor``  : ou exclusif. Il est aussi possible d'utiliser : ``XOR`` / ``^`` mais peut ne pas fonctionner correctement avec certaines fonctions php.
 
 ### Les tags
 
