@@ -14,7 +14,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
- var _debug = false
+var _debug = false
 
 jeedom.history = function() {};
 jeedom.history.chart = [];
@@ -386,6 +386,7 @@ jeedom.history.drawChart = function(_params) {
         },
         events: {
           load: function(event) {
+            this.setSize(undefined, undefined, false)
             //default min/max set earlier in series
             //.doing initialized at 1 when chart created with first curve
             var thisId = event.target.userOptions._jeeId
@@ -1693,6 +1694,7 @@ jeedom.history.toggleYaxisVisible = function(_chartId) {
 Remove all series/yAxis from chart:
 */
 jeedom.history.emptyChart = function(_chartId) {
+  if (jeedom.history.chart[_chartId] === undefined) return false
   jeedom.history.chart[_chartId].chart.series.forEach(function(series) {
     series.remove(false)
   })
