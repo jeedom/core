@@ -37,7 +37,7 @@ Para cada objeto, junto a su etiqueta, hay dos botones disponibles.
 En cada equipo encontramos :
 
 - UN **casilla de verificación** para seleccionar el equipo (puede seleccionar varios). Si se selecciona al menos un dispositivo, tiene botones de acción que aparecen en la esquina superior izquierda para **eliminar**, regreso **visible**/ /**invisible**,  **activo**/ /**Inactivo** equipo seleccionado.
-- L'**identificación** equipo.
+- L'**carné de identidad** equipo.
 - Los **tipo** equipo : Identificador del complemento al que pertenece.
 - Los **apellido** equipo.
 - **Inactivo** (pequeña cruz) : Significa que el equipo está inactivo (si no está allí, el equipo está activo).
