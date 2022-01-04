@@ -12,7 +12,6 @@ Nesta guia, encontramos informações gerais sobre o Jeedom :
 - **Nome do seu Jeedom** : Identifique seu Jeedom, especialmente no mercado. Pode ser reutilizado em cenários ou para identificar um backup.
 - **Língua** : Idioma usado no seu Jeedom.
 - **Sistema** : Tipo de hardware no qual o sistema em que o Jeedom é executado está instalado.
-- **Gerar traduções** : Gere traduções, cuidado, isso pode tornar seu sistema mais lento. Opção especialmente útil para desenvolvedores.
 - **Data e hora** : Escolha o seu fuso horário. Você pode clicar em **Sincronização Time Force** para restaurar a hora errada exibida no canto superior direito.
 - **Servidor de tempo opcional** : Indica qual servidor de horário deve ser usado se você clicar em **Sincronização Time Force** (ser reservado para especialistas).
 - **Ignorar verificar o tempo** : diz ao Jeedom para não verificar se o tempo é consistente entre si e o sistema em que está sendo executado. Pode ser útil, por exemplo, se você não conectar o Jeedom à Internet e ele não tiver uma bateria PSTN no equipamento usado.

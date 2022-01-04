@@ -12,7 +12,6 @@ In this tab we find general information about Jeedom :
 - **Name of your Jeedom** : Identify your Jeedom, especially in the Market. It can be reused in scenarios or to identify a backup.
 - **Language** : Language used in your Jeedom.
 - **System** : Type of hardware on which the system where your Jeedom runs is installed.
-- **Generate translations** : Generate translations, beware, this can slow down your system. Option especially useful for developers.
 - **Date and time** : Choose your time zone. You can click on **Force Time Synchronization** to restore the wrong time displayed at the top right.
 - **Optional Time Server** : Indicates which time server should be used if you click on **Force Time Synchronization** (to be reserved for experts).
 - **Ignore time checking** : tells Jeedom not to check if the time is consistent between itself and the system it is running on. May be useful for example, if you do not connect Jeedom to the Internet and it does not have a PSTN battery on the equipment used.
