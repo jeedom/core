@@ -12,7 +12,6 @@ Dans cet onglet on retrouve des informations générales sur Jeedom :
 - **Nom de votre Jeedom** : Permet d’identifier votre Jeedom, notamment dans le Market. Il peut être réutilisé dans les scénarios ou permettre d’identifier une sauvegarde.
 - **Langue** : Langue utilisée dans votre Jeedom.
 - **Système** : Type de matériel sur lequel est installé le système où votre Jeedom tourne.
-- **Générer les traductions** : Permet de générer les traductions, attention, cela peut ralentir votre système. Option surtout utile pour les développeurs.
 - **Date et heure** : Choix de votre fuseau horaire. Vous pouvez cliquer sur **Forcer la synchronisation de l’heure** pour rétablir une mauvaise heure affichée en haut à droite.
 - **Serveur de temps optionnel** : Indique quel serveur de temps doit être utilisé si vous cliquez sur **Forcer la synchronisation de l’heure** (à réserver aux experts).
 - **Ignorer la vérification de l’heure** : indique à Jeedom de ne pas vérifier si l’heure est cohérente entre lui-même et le système sur lequel il tourne. Peut être utile par exemple, si vous ne connectez pas Jeedom à Internet et qu’il n’a pas de pile RTC sur le matériel utilisé.
