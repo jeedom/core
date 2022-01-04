@@ -12,7 +12,6 @@ Auf dieser Registerkarte finden Sie allgemeine Informationen zu Jeedom :
 - **Name deines Jeedom** : Identifizieren Sie Ihre Freiheit, besonders auf dem Markt. Es kann in Szenarien oder zur Identifizierung eines Backups wiederverwendet werden.
 - **Sprache** : Sprache, die in Ihrem Jeedom verwendet wird.
 - **Systeme** : Art der Hardware, auf der das System installiert ist, auf dem Ihr Jeedom ausgeführt wird.
-- **Übersetzungen generieren** : Generieren Sie Übersetzungen, Vorsicht, dies kann Ihr System verlangsamen. Option besonders nützlich für Entwickler.
 - **Datum und Uhrzeit** : Wählen Sie Ihre Zeitzone. Sie können auf klicken **Zeit-Synchronisation erzwingen** um die oben rechts angezeigte falsche Zeit wiederherzustellen.
 - **Zeitserver optional** : Gibt an, welcher Zeitserver verwendet werden soll, wenn Sie auf klicken **Zeit-Synchronisation erzwingen** (Experten vorbehalten sein).
 - **Die Überprüfung der Zeit ignorieren** : weist Jeedom an, nicht zu überprüfen, ob die Zeit zwischen sich und dem System, auf dem es ausgeführt wird, konsistent ist. Dies kann beispielsweise nützlich sein, wenn Sie Jeedom nicht mit dem Internet verbinden und das verwendete Gerät keine PSTN-Batterie enthält.

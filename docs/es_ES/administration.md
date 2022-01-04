@@ -12,7 +12,6 @@ En esta pestaña encontramos información general sobre Jeedom :
 - **Nombre de tu Jeedom** : Identifica tu Jeedom, especialmente en el mercado. Se puede reutilizar en escenarios o para identificar una copia de seguridad.
 - **Lengua** : Lenguaje usado en tu Jeedom.
 - **Sistema** : Tipo de hardware en el que está instalado el sistema donde se ejecuta su Jeedom.
-- **Generar traducciones** : Genere traducciones, tenga cuidado, esto puede ralentizar su sistema. Opción especialmente útil para desarrolladores.
 - **Dia y hora** : Elige tu zona horaria. Puedes hacer clic en **Forzar la sincronización de la hora** para restaurar la hora incorrecta que se muestra en la esquina superior derecha.
 - **Servidor horario opcional** : Indica qué servidor horario debe usarse si hace clic en **Forzar la sincronización de la hora** (ser reservado para expertos).
 - **Ignorar verificación horaria** : le dice a Jeedom que no verifique si el tiempo es consistente entre sí mismo y el sistema en el que se ejecuta. Puede ser útil, por ejemplo, si no conecta Jeedom a Internet y no tiene una batería PSTN en el equipo utilizado.
