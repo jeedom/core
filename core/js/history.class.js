@@ -1210,8 +1210,7 @@ jeedom.history.initLegendContextMenu = function(_chartId) {
       if (jeedom.history.chart[chart._jeeId].type == 'pie') return false
       if (jeedom.history.chart[chart._jeeId].comparing) return false
 
-      var seriesName = $($trigger[0]).find('text').text()
-      var serieId = chart.series.filter(key => key.name == seriesName)[0].index
+      var serieId = $trigger.attr('class').split('highcharts-series-')[1].split(' ')[0]
       var cmdId = chart.series[serieId].userOptions.id
       var axis = chart.get(cmdId)
       var contextmenuitems = {}
