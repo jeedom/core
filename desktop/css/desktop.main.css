@@ -2986,7 +2986,7 @@ Desktop
   body[data-page="update"] #div_pageContainer div.progressbarContainer:not(.hidden) + .nav-tabs + .tab-content {
     height: calc(100vh - 220px) !important;
   }
-  body[data-page="administration"] .tab-content .tab-content {
+  body[data-page="administration"] #div_pageContainer .tab-content .tab-content {
     height: unset !important;
   }
   #div_mainContainer table.tablesorter > thead {
