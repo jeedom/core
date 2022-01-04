@@ -1353,7 +1353,7 @@ jeedom.history.chartDone = function(_chartId) {
 
   try {
     setTimeout(function() {
-    if (!jeedom.history.chart[_chartId].comparing) {
+    if (isset(jeedom.history.chart[_chartId]) && !jeedom.history.chart[_chartId].comparing) {
         jeedom.history.chart[_chartId].chart.setSize(undefined, undefined, false)
         jeedom.history.setAxisScales(_chartId)
         jeedom.history.chart[_chartId].chart.update({
