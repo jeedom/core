@@ -926,7 +926,7 @@ Desktop
     overflow: hidden auto;
     padding-right: 0 !important;
     font-size: 13px;
-    max-height: calc(100vh - 60px);
+    max-height: calc(100vh - 100px);
   }
   #div_displayLogList ul > li > a {
     padding: 2px !important;
