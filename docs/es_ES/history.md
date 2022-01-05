@@ -47,14 +47,19 @@ Si muestra un gráfico a través de la página del historial, tiene acceso a var
 > **Propina**
 >
 > Para evitar cualquier error de manejo, estas opciones guardadas en los comandos solo están activas cuando se muestra una sola curva.
+> 
+En la parte superior donde se muestran las curvas, también hay varias opciones :
 
-En el espacio donde se muestran las curvas, también hay varias opciones :
+A la izquierda:
 
 - **Zoom** : Un área de acceso directo que le permite ajustar el zoom horizontal a la duración deseada, si los datos están cargados.
-- **yAxis visible** : Le permite ocultar o mostrar todos los ejes verticales.
-- **Escala de eje y** : Permite activar o no el escalado de cada eje vertical independientemente de los demás.
-- **U** : Permite agrupar la escala de curvas y ejes verticales según su unidad. Todas las curvas con la misma unidad tendrán la misma escala.
-- **Seguimiento** : Le permite desactivar el resaltado de la curva cuando se muestra un valor en el cursor del mouse. Por ejemplo, cuando dos curvas no tienen sus valores al mismo tiempo.
+
+Sobre la derecha:
+
+- **Ejes verticales visibles** : Le permite ocultar o mostrar todos los ejes verticales.
+- **Escala de eje vertical** : Permite activar o no el escalado de cada eje vertical independientemente de los demás.
+- **Agrupación de ejes verticales por unidades** : Permite agrupar la escala de curvas y ejes verticales según su unidad. Todas las curvas con la misma unidad tendrán la misma escala.
+- **Opacidad de las curvas debajo del mouse** : Le permite desactivar el resaltado de la curva cuando se muestra un valor en el cursor del mouse. Por ejemplo, cuando dos curvas no tienen sus valores al mismo tiempo.
 
 Debajo de las curvas, también puede usar el menú contextual en cada leyenda para aislar una curva, mostrar / ocultar su eje, cambiar su color, ...
 

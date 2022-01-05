@@ -47,14 +47,19 @@ If you display a graph via the history page, you have access to several display 
 > **Tip**
 >
 > To avoid any handling error, these options saved in the commands are only active when a single curve is displayed.
+> 
+In the upper part where the curves are displayed, there are also several options :
 
-In the space where the curves are displayed, there are also several options :
+On the left:
 
 - **Zoom** : A shortcut area allowing you to adjust the horizontal zoom to the desired duration, if the data is loaded.
-- **yAxis Visible** : Allows you to hide or display all vertical axes.
-- **yAxis Scaling** : Allows you to activate or not the scaling of each vertical axis independently of the others.
-- **U** : Allows to group the scale of curves and vertical axes according to their unit. All curves with the same unit will have the same scale.
-- **Tracking** : Allows you to deactivate the highlighting of the curve when a value is displayed at the mouse cursor. For example when two curves do not have their values at the same times.
+
+On the right:
+
+- **Visible vertical axes** : Allows you to hide or display all vertical axes.
+- **Vertical axis scale** : Allows you to activate or not the scaling of each vertical axis independently of the others.
+- **Grouping of vertical axes by units** : Allows to group the scale of curves and vertical axes according to their unit. All curves with the same unit will have the same scale.
+- **Opacity of the curves under the mouse** : Allows you to deactivate the highlighting of the curve when a value is displayed at the mouse cursor. For example when two curves do not have their values at the same times.
 
 Under the curves, you can also use the contextual menu on each legend to isolate a curve, display / hide its axis, change its color, ...
 

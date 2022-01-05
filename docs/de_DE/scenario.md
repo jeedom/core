@@ -249,13 +249,13 @@ Sie können eines der folgenden Symbole für Vergleiche unter Bedingungen verwen
 - ``<=`` : Kleiner als oder gleich.
 - ``!=`` : Anders als, ist nicht gleich.
 - ``matches`` : Enthält. Ex : ``[Salle de bain][Hydrometrie][etat] matches "/.humide/."``.
-- ``not ( …​ matches …​)`` : Enthält nicht. Ex :  ``not([Salle de bain][Hydrometrie][etat] matches "/.humide/.")``.
+- ``not(…​ matches …​)`` : Enthält nicht. Ex :  ``not([Salle de bain][Hydrometrie][etat] matches "/.humide/.")``.
 
 Sie können jeden Vergleich mit den folgenden Operatoren kombinieren :
 
-- ``&&`` /. ``ET`` /. ``et`` /. ``AND`` /. ``and`` : et,
-- ``||`` /. ``OU`` /. ``ou`` /. ``OR`` /. ``or`` : ou,
-- ``^`` /. ``XOR`` /. ``xor`` : oder exklusiv.
+- ``&&`` : und. Es ist auch möglich zu verwenden : ``ET`` /. ``et`` /. ``AND`` /. ``and`` funktioniert aber möglicherweise nicht gut mit einigen PHP-Funktionen.
+- ``||`` : oder. Es ist auch möglich zu verwenden : ``OU`` /. ``ou`` /. ``OR`` /. ``or`` funktioniert aber möglicherweise nicht gut mit einigen PHP-Funktionen.
+- ``xor``  : oder exklusiv. Es ist auch möglich zu verwenden : ``XOR`` /. ``^`` funktioniert aber möglicherweise nicht gut mit einigen PHP-Funktionen.
 
 ### Tags
 

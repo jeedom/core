@@ -5,6 +5,19 @@ Primeiro, aqui estão as especificações (JSON RPC 2.0) :
 
 O acesso à API é via URL : *URL\_JEEDOM*/core/api/jeeApi.php
 
+Aqui está um exemplo de configuração de um objeto Json que pode ser usado no corpo de uma solicitação feita por um agente HTTP:
+`` json
+{
+    "jsonrpc": "2.0",
+    "id": "007",
+    "method": "event::changes",
+    "params": {
+        "apikey": "{{apikey}}",
+        "datetime": "0"
+    }
+}
+`` ''
+
 Divers
 ======
 
@@ -31,7 +44,7 @@ config::byKey
 
 Retorna um valor de configuração.
 
-Configurações :
+Configurações Json :
 
 -   chave de cadeia : chave do valor de configuração a retornar
 
@@ -44,7 +57,7 @@ config::save
 
 Salva um valor de configuração
 
-Configurações :
+Configurações Json :
 
 -   valor da string : valor a registrar
 
@@ -60,7 +73,7 @@ event::changes
 
 Retorna a lista de alterações desde a data / hora passada no parâmetro (deve estar em microssegundos). Você também terá na resposta a data e hora atual do Jeedom (a ser reutilizado para a consulta a seguir)
 
-Configurações :
+Configurações Json :
 
 -   int datetime
 
@@ -72,7 +85,7 @@ plugin::listPlugin
 
 Retorna a lista de todos os plugins
 
-Configurações :
+Configurações Json :
 
 -   int activationOnly = 0 (retorna apenas a lista de plugins ativados)
 
@@ -96,7 +109,7 @@ jeeObject::fullById
 
 Retorna um objeto com todo o seu equipamento e, para cada equipamento, todos os seus comandos e seus estados (para comandos do tipo info)
 
-Configurações :
+Configurações Json :
 
 -   int id
 

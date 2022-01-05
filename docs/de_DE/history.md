@@ -47,14 +47,19 @@ Wenn Sie ein Diagramm über die Verlaufsseite anzeigen, haben Sie über dem Diag
 > **Trinkgeld**
 >
 > Um Handhabungsfehler zu vermeiden, sind diese in den Befehlen gespeicherten Optionen nur aktiv, wenn eine einzelne Kurve angezeigt wird.
+> 
+Im oberen Teil, wo die Kurven angezeigt werden, gibt es auch mehrere Optionen :
 
-In dem Bereich, in dem die Kurven angezeigt werden, gibt es auch mehrere Optionen :
+Auf der Linken:
 
 - **Zoomen** : Ein Shortcut-Bereich, mit dem Sie den horizontalen Zoom auf die gewünschte Dauer einstellen können, wenn die Daten geladen sind.
-- **yAchse sichtbar** : Ermöglicht das Ausblenden oder Anzeigen aller vertikalen Achsen.
-- **y-Achsen-Skalierung** : Ermöglicht Ihnen, die Skalierung jeder vertikalen Achse unabhängig von den anderen zu aktivieren oder nicht.
-- **U** : Ermöglicht die Gruppierung der Skalierung von Kurven und vertikalen Achsen nach ihrer Einheit. Alle Kurven mit der gleichen Einheit haben den gleichen Maßstab.
-- **Verfolgung** : Hiermit können Sie die Hervorhebung der Kurve deaktivieren, wenn ein Wert am Mauszeiger angezeigt wird. Zum Beispiel, wenn zwei Kurven nicht gleichzeitig ihre Werte haben.
+
+Auf der rechten Seite:
+
+- **Sichtbare vertikale Achsen** : Ermöglicht das Ausblenden oder Anzeigen aller vertikalen Achsen.
+- **Skalierung der vertikalen Achse** : Ermöglicht Ihnen, die Skalierung jeder vertikalen Achse unabhängig von den anderen zu aktivieren oder nicht.
+- **Gruppierung der vertikalen Achsen nach Einheiten** : Ermöglicht die Gruppierung der Skalierung von Kurven und vertikalen Achsen nach ihrer Einheit. Alle Kurven mit der gleichen Einheit haben den gleichen Maßstab.
+- **Deckkraft der Kurven unter der Maus** : Hiermit können Sie die Hervorhebung der Kurve deaktivieren, wenn ein Wert am Mauszeiger angezeigt wird. Zum Beispiel, wenn zwei Kurven nicht gleichzeitig ihre Werte haben.
 
 Unter den Kurven können Sie auch das Kontextmenü jeder Legende verwenden, um eine Kurve zu isolieren, ihre Achse anzuzeigen / auszublenden, ihre Farbe zu ändern, ...
 
