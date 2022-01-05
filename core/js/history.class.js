@@ -14,7 +14,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
- var _debug = false
+var _debug = false
 
 jeedom.history = function() {};
 jeedom.history.chart = [];
@@ -386,6 +386,7 @@ jeedom.history.drawChart = function(_params) {
         },
         events: {
           load: function(event) {
+            this.setSize(undefined, undefined, false)
             //default min/max set earlier in series
             //.doing initialized at 1 when chart created with first curve
             var thisId = event.target.userOptions._jeeId
@@ -1209,8 +1210,7 @@ jeedom.history.initLegendContextMenu = function(_chartId) {
       if (jeedom.history.chart[chart._jeeId].type == 'pie') return false
       if (jeedom.history.chart[chart._jeeId].comparing) return false
 
-      var seriesName = $($trigger[0]).find('text').text()
-      var serieId = chart.series.filter(key => key.name == seriesName)[0].index
+      var serieId = $trigger.attr('class').split('highcharts-series-')[1].split(' ')[0]
       var cmdId = chart.series[serieId].userOptions.id
       var axis = chart.get(cmdId)
       var contextmenuitems = {}
@@ -1353,7 +1353,7 @@ jeedom.history.chartDone = function(_chartId) {
 
   try {
     setTimeout(function() {
-    if (!jeedom.history.chart[_chartId].comparing) {
+    if (isset(jeedom.history.chart[_chartId]) && !jeedom.history.chart[_chartId].comparing) {
         jeedom.history.chart[_chartId].chart.setSize(undefined, undefined, false)
         jeedom.history.setAxisScales(_chartId)
         jeedom.history.chart[_chartId].chart.update({
@@ -1693,6 +1693,7 @@ jeedom.history.toggleYaxisVisible = function(_chartId) {
 Remove all series/yAxis from chart:
 */
 jeedom.history.emptyChart = function(_chartId) {
+  if (jeedom.history.chart[_chartId] === undefined) return false
   jeedom.history.chart[_chartId].chart.series.forEach(function(series) {
     series.remove(false)
   })

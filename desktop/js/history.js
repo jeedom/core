@@ -104,7 +104,6 @@ $('#bt_openCmdHistoryConfigure').on('click', function() {
 })
 
 //Right options:
-
 $('#sel_groupingType').off('change').on('change', function(event) {
   if (event.isTrigger == 3) return
   if (__lastId__ == null) return
@@ -424,7 +423,7 @@ function addChart(_cmd_id, _action, _options) {
     compare: 0,
     success: function(data) {
       if (isset(data.error)) {
-        $('.li_history[data-cmd_id=' + _cmd_id + ']').removeClass('active')
+        $('.li_history[data-cmd_id="' + _cmd_id + '"]').removeClass('active')
         return
       }
       __lastId__ = _cmd_id
