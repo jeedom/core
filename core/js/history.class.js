@@ -367,6 +367,7 @@ jeedom.history.drawChart = function(_params) {
       //jeedom default chart params:
       var charts = {
         zoomType: 'xy',
+        marginTop: 40, //ensure same top space for buttons with or without rangeSelector
         resetZoomButton: {
           position: {
             x: 0,
@@ -413,19 +414,6 @@ jeedom.history.drawChart = function(_params) {
                   dropdown: 'always'
                 }
               }, false)
-            }
-
-            if (this._jeeButtons) {
-              var xTheshold = (this.chartWidth - this.rangeSelector.buttons[6].translateX) + this.rangeSelector.buttons[6].width
-              if (xTheshold < 210) {
-                this._jeeButtons.forEach(function(button, i) {
-                  button.hide()
-                })
-              } else {
-                this._jeeButtons.forEach(function(button, i) {
-                  button.show()
-                })
-              }
             }
           },
           render: function(event) {
@@ -841,6 +829,7 @@ jeedom.history.drawChart = function(_params) {
               selected: dateRange,
               inputEnabled: false,
               x: 0,
+              y: -35,
               enabled: _params.showTimeSelector
             },
             legend: legend,
@@ -1055,6 +1044,8 @@ jeedom.history.initChart = function(_chartId) {
     3: disabled
   */
 
+  var xStart = (jeedom.history.chart[thisId].rangeSelector === undefined ? -15 : 0)
+
   //Tracking button:
   jeedom.history.chart[thisId].btTracking = jeedom.history.chart[thisId].chart.renderer.button('<i class="fas fa-hand-pointer"></i>', null, null, null, null, null, null, null, null, true)
   .attr({
@@ -1070,7 +1061,7 @@ jeedom.history.initChart = function(_chartId) {
   .add()
   .align({
     align: 'right',
-    x: -50,
+    x: xStart-50,
     y: 5
   }, false, null)
   if (jeedom.history.default.tracking) {
@@ -1103,7 +1094,7 @@ jeedom.history.initChart = function(_chartId) {
   .add()
   .align({
     align: 'right',
-    x: -80,
+    x: xStart-80,
     y: 5
   }, false, null)
   if (jeedom.history.default.yAxisByUnit) {
@@ -1129,7 +1120,7 @@ jeedom.history.initChart = function(_chartId) {
   .add()
   .align({
     align: 'right',
-    x: -110,
+    x: xStart-110,
     y: 5
   }, false, null)
   if (jeedom.history.default.yAxisScaling) {
@@ -1156,7 +1147,7 @@ jeedom.history.initChart = function(_chartId) {
   .add()
   .align({
     align: 'right',
-    x: -140,
+    x: xStart-140,
     y: 5
   }, false, null)
   if (jeedom.history.default.yAxisVisible) {
