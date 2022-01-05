@@ -127,6 +127,7 @@ try {
 		'support',
 		'backup',
 		'script/tunnel',
+		'node_modules',
 		'.git',
 		'.log',
 		'core/config/common.config.php',
