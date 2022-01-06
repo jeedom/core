@@ -110,6 +110,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   delete window.jeeP
   printEqLogic = undefined
   if (jeedomUtils.OBSERVER !== null) jeedomUtils.OBSERVER.disconnect()
+  $('body').off('changeThemeEvent')
 
   if (_url.indexOf('#') == -1) {
     var url = _url+'&ajax=1'
