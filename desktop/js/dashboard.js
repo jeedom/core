@@ -480,7 +480,7 @@ $('#categoryfilter li a').on('mousedown', function(event) {
   event.preventDefault()
   var checkbox = $(this).find('.catFilterKey')
   if (!checkbox) return
-  if (event.which == 2) {
+  if (event.which == 2 || event.originalEvent.ctrlKey) {
     if ($('.catFilterKey:checked').length == 1 && checkbox.is(":checked")) {
       $('#categoryfilter li .catFilterKey').prop("checked", true)
     } else {
