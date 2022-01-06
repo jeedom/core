@@ -146,7 +146,7 @@ if (!jeeFrontEnd.history) {
         compare: 0,
         success: function(data) {
           if (isset(data.error)) {
-            $('.li_history[data-cmd_id=' + _cmd_id + ']').removeClass('active')
+            $('.li_history[data-cmd_id="' + _cmd_id + '"]').removeClass('active')
             return
           }
           jeeP.__lastId__ = _cmd_id
