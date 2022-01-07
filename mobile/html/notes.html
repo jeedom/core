@@ -1,0 +1,24 @@
+<div class="notes_menu">
+	<div class="row">
+		<div class="col-xs-6">
+			<a class="ui-btn clr-btn-info waves-effect waves-button waves-effect waves-button ui-mini" id="bt_noteManagerAdd"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
+		</div>
+		<div class="col-xs-6">
+			<a class="ui-btn clr-btn-success waves-effect waves-button waves-effect waves-button ui-mini" id="bt_noteManagerSave"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+		</div>
+	</div>
+	<div class="row" style='margin-top : 10px;'>
+		<div class="col-xs-6">
+			<a class="ui-btn clr-btn-danger waves-effect waves-button waves-effect waves-button ui-mini" id="bt_noteManagerRemove"><i class="fas fa-trash"></i> {{Supprimer}}</a>
+		</div>
+	</div>
+
+	<div id="div_noteManagerDisplay">
+		<input class="noteAttr form-control" data-l1key="id" style="display:none;" disabled/>
+		<input class="noteAttr form-control" data-l1key="name" placeholder="{{Titre}}"/>
+		<br/>
+      	<textarea id="pre_note" class="noteAttr form-control" data-l1key="text" placeholder="{{Texte}}"></textarea>
+    </div>
+</div>
+
+<script src="core/php/getJS.php?file=mobile/js/notes.js"></script>

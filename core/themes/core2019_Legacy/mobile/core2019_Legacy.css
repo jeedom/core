@@ -152,17 +152,6 @@ p.state,
   color: var(--link-color);
 }
 
-.clr-btn-red,
-.clr-btn-red:hover {
-  color: var(--sc-lightTxt-color) !important;
-  background-color: var(--al-danger-color) !important;
-}
-.ui-btn.clr-btn-deep-orange,
-.ui-btn.clr-btn-deep-orange:hover {
-  color: var(--link-color) !important;
-  background-color: var(--al-warning-color) !important;
-}
-
 .iconCmd:hover {
   opacity: 0.75;
 }
