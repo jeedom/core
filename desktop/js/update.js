@@ -359,7 +359,7 @@ if (!jeeFrontEnd.update) {
           newLogText += line + '\n'
           this._pre_updateInfo_clean.value(newLogText)
           if ($('[href="#log"]').parent().hasClass('active')) {
-            $('#log').scrollTop(1E10)
+            $('#log').parents('.tab-content').scrollTop(1E10)
           }
           this.prevUpdateText = currentUpdateText
           if (jeeP.progress == 100) {
