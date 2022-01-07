@@ -318,13 +318,13 @@ jeedom.object.summaryUpdate = function(_params) {
               icon = decodeURIComponent(summarySpan.attr('data-icon')).replaceAll('+', ' ')
             }
             summarySpan.find('i').remove()
-            summarySpan.show().prepend(icon)
+            summarySpan.prepend(icon).show()
 
             //update number:
             if (_params[i]['keys'][key]['value'] == 0 && summarySpan.attr('data-hidenulnumber') == '1') {
               keySpan.empty()
             } else {
-              keySpan.empty().append(_params[i]['keys'][key]['value']).show();
+              keySpan.empty().append(_params[i]['keys'][key]['value']).show()
             }
           } catch(e) {}
         }
@@ -349,12 +349,12 @@ jeedom.object.summaryUpdate = function(_params) {
     global: false,
     success: function(result) {
       for (var i in result) {
-        objects[i].object.replaceWith($(result[i].html));
+        objects[i].object.replaceWith($(result[i].html))
         if ($('.objectSummary' + i).closest('.objectSummaryHide') != []) {
           if ($(result[i].html).html() == '') {
-            $('.objectSummary' + i).closest('.objectSummaryHide').hide();
+            $('.objectSummary' + i).closest('.objectSummaryHide').hide()
           } else {
-            $('.objectSummary' + i).closest('.objectSummaryHide').show();
+            $('.objectSummary' + i).closest('.objectSummaryHide').show()
           }
         }
       }

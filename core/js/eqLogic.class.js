@@ -559,7 +559,13 @@ jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
           animation: false,
           marker: {
             enabled: false
-          }
+          },
+          dataGrouping: {
+            approximation: 'high',
+            enabled: true,
+            forced: true,
+            groupPixelWidth: 2
+          },
         }],
         exporting: {
           enabled: false

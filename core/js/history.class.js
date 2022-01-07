@@ -14,8 +14,6 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-var _debug = false
-
 jeedom.history = function() {};
 jeedom.history.chart = [];
 jeedom.history.chartDrawTime = 500
@@ -367,6 +365,7 @@ jeedom.history.drawChart = function(_params) {
       //jeedom default chart params:
       var charts = {
         zoomType: 'xy',
+        marginTop: 40, //ensure same top space for buttons with or without rangeSelector
         resetZoomButton: {
           position: {
             x: 0,
@@ -390,8 +389,6 @@ jeedom.history.drawChart = function(_params) {
             //default min/max set earlier in series
             //.doing initialized at 1 when chart created with first curve
             var thisId = event.target.userOptions._jeeId
-            if (_debug) console.log('__event__ load: ' + thisId)
-
             setTimeout(function() {
               try {
                 jeedom.history.chartCallback(thisId, {type: 'load'})
@@ -399,7 +396,6 @@ jeedom.history.drawChart = function(_params) {
             }, 0)
           },
           redraw: function(event) {
-            if (_debug) console.log('__event__ redraw')
             if (this.rangeSelector === undefined) return true
             if (this.chartWidth > 550 && this.rangeSelector.options.dropdown != 'never') {
               this.update({
@@ -414,22 +410,8 @@ jeedom.history.drawChart = function(_params) {
                 }
               }, false)
             }
-
-            if (this._jeeButtons) {
-              var xTheshold = (this.chartWidth - this.rangeSelector.buttons[6].translateX) + this.rangeSelector.buttons[6].width
-              if (xTheshold < 210) {
-                this._jeeButtons.forEach(function(button, i) {
-                  button.hide()
-                })
-              } else {
-                this._jeeButtons.forEach(function(button, i) {
-                  button.show()
-                })
-              }
-            }
           },
           render: function(event) {
-            if (_debug) console.log('__event__ render')
             //shift dotted zones clipPaths to ensure no overlapping step mode:
             var solidClip = null;
             $('.highcharts-zone-graph-0.customSolidZone').each(function() {
@@ -444,8 +426,6 @@ jeedom.history.drawChart = function(_params) {
           },
           addSeries: function(event) {
             var thisId = this._jeeId
-            if (_debug) console.log('__event__ addSeries: ' + thisId)
-
             if (jeedom.history.chart[thisId].doing > 0) { //chart not done, loading several series at once:
               jeedom.history.chart[thisId].doing += 1
             } else {                                      //chart done (-1), loading another series later:
@@ -841,6 +821,7 @@ jeedom.history.drawChart = function(_params) {
               selected: dateRange,
               inputEnabled: false,
               x: 0,
+              y: -35,
               enabled: _params.showTimeSelector
             },
             legend: legend,
@@ -1055,6 +1036,8 @@ jeedom.history.initChart = function(_chartId) {
     3: disabled
   */
 
+  var xStart = (jeedom.history.chart[thisId].rangeSelector === undefined ? -15 : 0)
+
   //Tracking button:
   jeedom.history.chart[thisId].btTracking = jeedom.history.chart[thisId].chart.renderer.button('<i class="fas fa-hand-pointer"></i>', null, null, null, null, null, null, null, null, true)
   .attr({
@@ -1070,7 +1053,7 @@ jeedom.history.initChart = function(_chartId) {
   .add()
   .align({
     align: 'right',
-    x: -50,
+    x: xStart-50,
     y: 5
   }, false, null)
   if (jeedom.history.default.tracking) {
@@ -1103,7 +1086,7 @@ jeedom.history.initChart = function(_chartId) {
   .add()
   .align({
     align: 'right',
-    x: -80,
+    x: xStart-80,
     y: 5
   }, false, null)
   if (jeedom.history.default.yAxisByUnit) {
@@ -1129,7 +1112,7 @@ jeedom.history.initChart = function(_chartId) {
   .add()
   .align({
     align: 'right',
-    x: -110,
+    x: xStart-110,
     y: 5
   }, false, null)
   if (jeedom.history.default.yAxisScaling) {
@@ -1156,7 +1139,7 @@ jeedom.history.initChart = function(_chartId) {
   .add()
   .align({
     align: 'right',
-    x: -140,
+    x: xStart-140,
     y: 5
   }, false, null)
   if (jeedom.history.default.yAxisVisible) {
@@ -1315,9 +1298,6 @@ HighCharts events callbacks on load / addSeries / selection
 Decrement .doing and call chartDone when .doing == 0
 */
 jeedom.history.chartCallback  = function(_chartId, _options) {
-  if (_debug) console.log('____ chartCallback: ' + _chartId + ' doing: ' + jeedom.history.chart[_chartId].doing)
-  if (isset(_options) && isset(_options.type) && _debug) console.log('option type: ' + _options.type)
-
   if (_chartId === undefined || !isset(_options)) return false
   if (jeedom.history.chart[_chartId].type == 'pie') return false
 
@@ -1334,7 +1314,6 @@ jeedom.history.chartCallback  = function(_chartId, _options) {
 
   //Is done ?
   if (jeedom.history.chart[_chartId].doing == 0) {
-    if (_debug) console.log('____ chartCallback: doing 0, call chartDone!')
     jeedom.history.chartDone(_chartId)
     return true
   }
@@ -1344,8 +1323,6 @@ jeedom.history.chartCallback  = function(_chartId, _options) {
 Once chart is done
 */
 jeedom.history.chartDone = function(_chartId) {
-  if (_debug) console.log('____ chartDone: ' + jeedom.history.chart[_chartId].doing)
-
   if (_chartId === undefined) return false
   if (jeedom.history.chart[_chartId].doing > 0) return false
   var chart = jeedom.history.chart[_chartId].chart
@@ -1366,7 +1343,6 @@ jeedom.history.chartDone = function(_chartId) {
         }) //last redraw!
 
         if (typeof setChartOptions === "function") {
-          if (_debug) console.log('----> setChartOptions')
           setChartOptions(_chartId)
         }
       }
@@ -1380,9 +1356,6 @@ jeedom.history.chartDone = function(_chartId) {
 Set each existing yAxis scale according to chart yAxisScaling and yAxisByUnit
 */
 jeedom.history.setAxisScales = function(_chartId, _options) {
-  if (_debug) console.log('____ setAxisScales: ' + _chartId + ' doing: ' + jeedom.history.chart[_chartId].doing)
-  if (isset(_options) && isset(_options.type) && _debug) console.log('option type: ' + _options.type)
-
   if (_chartId === undefined) return false
   if (jeedom.history.chart[_chartId].type == 'pie') return false
   var chart = jeedom.history.chart[_chartId].chart
