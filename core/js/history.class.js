@@ -525,8 +525,8 @@ jeedom.history.drawChart = function(_params) {
           data: [{
             y: data.result.data[data.result.data.length - 1][1],
             name: (isset(_params.option.name)) ? _params.option.name + ' ' + data.result.unite : data.result.history_name + ' ' + data.result.unite,
+            color: _params.option.graphColor
           }],
-          color: _params.option.graphColor
         };
         if (!isset(jeedom.history.chart[_params.el]) || (isset(_params.newGraph) && _params.newGraph == true)) {
           jeedom.history.chart[_params.el] = {};
