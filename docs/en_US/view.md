@@ -4,6 +4,8 @@
 Views allow you to create custom views.
 It is not as powerful as the designs but it allows in a few minutes to have a more personalized display than the Dashboard, with equipment of different objects, graphics, or controls.
 
+{% include lightbox.html src="../images/doc-view_01.jpg" data="View" title="View" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+
 > **Tip**
 >
 > You can choose the default view in your profile when clicking on the view menu.
@@ -77,6 +79,8 @@ When you press the button **Add curve**, Jeedom displays the list of historical 
 - **Staircase** : Displays the staircase curve.
 - **Stack** : Stacks the curve with the other type curves.
 - **Variation** : Only draw variations with the previous value.
+
+{% include lightbox.html src="../images/doc-view_02.jpg" data="View" title="Pie Graph" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 > **Tip**
 >

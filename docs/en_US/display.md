@@ -3,6 +3,8 @@
 
 This page allows you to gather on a single page the different elements configured on your Jeedom. It also gives access to functions for organizing equipment and controls, to their advanced configuration and to display configuration possibilities.
 
+{% include lightbox.html src="../images/doc-display_01.jpg" data="Display" title="Display" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+
 ## Informations
 
 On the top of the page, we find :

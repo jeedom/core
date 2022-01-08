@@ -4,6 +4,8 @@
 Las vistas le permiten crear vistas personalizadas.
 No es tan potente como los diseños, pero permite en pocos minutos tener una pantalla más personalizada que el Tablero, con equipos de diferentes objetos, gráficos o controles.
 
+{% include lightbox.html src="../images/doc-view_01.jpg" data="View" title="View" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+
 > **Propina**
 >
 > Puede elegir la vista predeterminada en su perfil al hacer clic en el menú de vista.
@@ -77,6 +79,8 @@ Cuando presionas el botón **Agregar curva**, Jeedom muestra la lista de pedidos
 - **Escalera** : Muestra la curva de la escalera.
 - **Apilar** : Apila la curva con las curvas de otro tipo.
 - **Variación** : Solo dibuja variaciones con el valor anterior.
+
+{% include lightbox.html src="../images/doc-view_02.jpg" data="View" title="Pie Graph" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 > **Propina**
 >

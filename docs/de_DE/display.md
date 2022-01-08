@@ -3,6 +3,8 @@
 
 Auf dieser Seite können Sie die verschiedenen Elemente, die in Ihrem Jeedom konfiguriert sind, auf einer einzigen Seite zusammenfassen. Es bietet auch Zugriff auf Funktionen zum Organisieren von Geräten und Steuerungen, auf deren erweiterte Konfiguration und zum Anzeigen von Konfigurationsmöglichkeiten.
 
+{% include lightbox.html src="../.images/.doc-display_01.jpg" data="Display" title="Display" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+
 ## Informations
 
 Oben auf der Seite finden wir :
