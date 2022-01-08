@@ -6,7 +6,7 @@
 Le dashboard est une des pages principales de Jeedom, il affiche un compte-rendu de toute votre domotique.
 Ce compte-rendu (contrairement aux vues et designs) est auto-généré par Jeedom, et comprend l'ensemble des objets visibles et leurs équipements.
 
-![Dashboard](../images/doc-dashboard-legends.png)
+{% include lightbox.html src="../images/doc-dashboard-legends.png" data="Dashboard" title="Dashboard" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 - 1 : Menu principal de Jeedom.
 - 2 : Résumé global [Documentation sur les résumés.](/fr_FR/concept/summary).
