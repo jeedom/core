@@ -6,7 +6,7 @@
 El tablero es una de las páginas principales de Jeedom, muestra un informe de toda su domótica.
 Este informe (a diferencia de las vistas y los diseños) es autogenerado por Jeedom e incluye todos los objetos visibles y sus equipos.
 
-{% include lightbox.html src="../images/doc-dashboard-legends.png" data="Dashboard" title="Dashboard" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+{% include lightbox.html src="images/doc-dashboard-legends.png" data="Dashboard" title="Dashboard" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 - 1 : Menú principal de Jeedom.
 - 2 : Resumen global [Documentación abstracta.](/es_ES/concept/summary).

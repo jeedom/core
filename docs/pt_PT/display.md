@@ -3,7 +3,7 @@
 
 Esta página permite reunir em uma única página os diferentes elementos configurados no seu Jeedom. Também fornece acesso a funções para organizar equipamentos e controles, a sua configuração avançada e a exibir possibilidades de configuração.
 
-{% include lightbox.html src="../images/doc-display_01.jpg" data="Display" title="Display" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+{% include lightbox.html src="images/doc-display_01.jpg" data="Display" title="Display" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 ## Informations
 

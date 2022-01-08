@@ -6,7 +6,7 @@
 O painel é uma das páginas principais do Jeedom, ele exibe um relatório de toda a sua automação residencial.
 Este relatório (diferente das visualizações e designs) é gerado automaticamente pela Jeedom e inclui todos os objetos visíveis e seus equipamentos.
 
-{% include lightbox.html src="../images/doc-dashboard-legends.png" data="Dashboard" title="Dashboard" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+{% include lightbox.html src="images/doc-dashboard-legends.png" data="Dashboard" title="Dashboard" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 - 1 : Menu principal do Jeedom.
 - 2 : Resumo Global [Documentação abstrata.](/pt_PT/concept/summary).

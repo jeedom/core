@@ -4,7 +4,7 @@
 As visualizações permitem criar visualizações personalizadas.
 Não é tão poderoso quanto os designs, mas permite em poucos minutos uma exibição mais personalizada que o Dashboard, com equipamentos de diferentes objetos, gráficos ou controles.
 
-{% include lightbox.html src="../images/doc-view_01.jpg" data="View" title="View" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+{% include lightbox.html src="images/doc-view_01.jpg" data="View" title="View" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 > **Dica**
 >
@@ -80,7 +80,7 @@ Quando você pressiona o botão **Adicionar curva**, O Jeedom exibe a lista de c
 - **Pilha** : Empilha a curva com as outras curvas de tipo.
 - **Variação** : Desenhar apenas variações com o valor anterior.
 
-{% include lightbox.html src="../images/doc-view_02.jpg" data="View" title="Pie Graph" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+{% include lightbox.html src="images/doc-view_02.jpg" data="View" title="Pie Graph" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 > **Dica**
 >
