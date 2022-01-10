@@ -1304,6 +1304,7 @@ Desktop
 
   [data-page="dashboard"] #dashOverviewPrev .topPreview .name {
     max-width: 100%;
+    height: 22px;
   }
 
   [data-page="dashboard"] #div_displayObject {
@@ -4547,7 +4548,7 @@ Desktop
     margin-left: 0;
     margin-top: 0;
   }
-  .form-group div[class*="col-"] > .ui-spinner {
+  .form-group .ui-spinner {
     width: 100%;
   }
 
