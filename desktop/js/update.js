@@ -562,7 +562,7 @@ function cleanUpdateLog() {
       newLogText += line + '\n'
       _pre_updateInfo_clean.value(newLogText)
       if ($('[href="#log"]').parent().hasClass('active')) {
-        $('#log').scrollTop(1E10)
+        $('#log').parents('.tab-content').scrollTop(1E10)
       }
       prevUpdateText = currentUpdateText
       if (progress == 100) {

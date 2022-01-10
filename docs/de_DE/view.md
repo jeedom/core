@@ -4,6 +4,8 @@
 Mit Ansichten können Sie benutzerdefinierte Ansichten erstellen.
 Es ist nicht so leistungsfähig wie die Designs, ermöglicht jedoch in wenigen Minuten eine individuellere Anzeige als das Dashboard mit Geräten für verschiedene Objekte, Grafiken oder Steuerelemente.
 
+{% include lightbox.html src="images/doc-view_01.jpg" data="View" title="View" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+
 > **Trinkgeld**
 >
 > Sie können die Standardansicht in Ihrem Profil auswählen, wenn Sie auf das Ansichtsmenü klicken.
@@ -77,6 +79,8 @@ Wenn Sie die Taste drücken **Kurve hinzufügen**, Jeedom zeigt die Liste der hi
 - **Treppe** : Zeigt die Treppenkurve an.
 - **Stapel** : Stapelt die Kurve mit den anderen Kurventypen.
 - **Variation** : Zeichnen Sie nur Variationen mit dem vorherigen Wert.
+
+{% include lightbox.html src="images/doc-view_02.jpg" data="View" title="Pie Graph" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 > **Trinkgeld**
 >

@@ -4,6 +4,8 @@
 Les Vues permettent de créer des affichages personnalisés.
 Ce n’est pas aussi puissant que les designs mais cela permet en quelques minutes d’avoir un affichage plus personnalisé que le Dashboard, avec des équipements d'objets différents, des graphiques, ou des commandes.
 
+{% include lightbox.html src="images/doc-view_01.jpg" data="View" title="View" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+
 > **Tip**
 >
 > Vous pouvez dans votre profil choisir la Vue par défaut lors du clic sur le menu des Vues.
@@ -77,6 +79,8 @@ Quand vous pressez le bouton **Ajouter courbe**, Jeedom affiche la liste des com
 - **Escalier** : Affiche la courbe en escalier.
 - **Empiler** : Empile la courbe avec les autres courbes de type.
 - **Variation** : Dessine seulement les variations avec la valeur précédente.
+
+{% include lightbox.html src="images/doc-view_02.jpg" data="View" title="Pie Graph" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 > **Tip**
 >
