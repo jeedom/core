@@ -81,6 +81,8 @@ Nous avons ajouté une confirmation du mot de passe de backup cloud pour préven
 L'équipe Jeedom a bien conscience que ces changements peuvent avoir un impact et être gênant pour vous mais nous ne pouvons transiger sur la sécurité.
 Les plugins doivent respecter les recommandations sur l'arborescence des dossiers et fichiers : [Doc](https://doc.jeedom.com/fr_FR/dev/plugin_template).
 
+[Blog: Introduction Jeedom 4.2 : la sécurité](https://blog.jeedom.com/6165-introduction-jeedom-4-2-la-securite/)
+
 # Changelog Jeedom V4.1
 
 ## 4.1.28
