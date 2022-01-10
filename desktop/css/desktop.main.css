@@ -1117,12 +1117,6 @@ Desktop
     transition-property: padding;
     transition: 0.5s
   }
-  .objectPreview:hover .topPreview > .name > i {
-    color: var(--link-color);
-    padding-right: 15px;
-    transition-property: padding;
-    transition: 0.5s
-  }
   .objectPreview:hover .topPreview {
     box-shadow: 0 10px 15px 0 rgba(0,0,0,0.2);
   }
