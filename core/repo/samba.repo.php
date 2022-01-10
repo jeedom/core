@@ -211,7 +211,6 @@ class repo_samba {
 		$cmd .= self::makeSambaCommand('cd ' . config::byKey('samba::backup::folder') . ';get ' . $_backup);
 		com_shell::execute($cmd);
 		com_shell::execute(system::getCmdSudo() . 'chmod 777 -R ' . $backup_dir . '/*');
-		jeedom::restore('backup/' . $_backup, true);
 	}
 
 	public static function downloadCore($_path) {
