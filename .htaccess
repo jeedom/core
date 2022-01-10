@@ -79,6 +79,7 @@ RedirectMatch 403 (?i)^.*\/vendor\/.*$
 RedirectMatch 403 (?i)^.*\/plugin_info\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.webp).)*$
 RedirectMatch 403 (?i)^.*\/ressources\/.*$
 RedirectMatch 403 (?i)^.*\/resources\/.*$
+RedirectMatch 403 (?i)^.*\/data/records\/.*\/((?!\.m3u8|\.mp4|\.ts).)*$
 
 
 # Right on file
