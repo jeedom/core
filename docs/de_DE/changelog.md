@@ -83,6 +83,10 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 
 # Changelog Jeedom V4.1
 
+## 4.1.28
+
+- Harmonisierung von Widget-Vorlagen für Aktions-/Standardbefehle
+
 ## 4.1.27
 
 - Korrektur einer Sicherheitsverletzung danke @Maxime Rinaudo und @Antoine Cervoise von Synacktiv (www.synacktiv.com)

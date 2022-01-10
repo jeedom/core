@@ -83,6 +83,10 @@ The plugins must respect the recommendations on the tree structure of folders an
 
 # Changelog Jeedom V4.1
 
+## 4.1.28
+
+- Harmonization of widget templates for action / default commands
+
 ## 4.1.27
 
 - Correction of a security breach thank you @Maxime Rinaudo and @Antoine Cervoise from Synacktiv (www.synacktiv.com)

@@ -83,6 +83,10 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 
 # Registro de cambios Jeedom V4.1
 
+## 4.1.28
+
+- Armonización de plantillas de widgets para comandos de acción / predeterminados
+
 ## 4.1.27
 
 - Corrección de una brecha de seguridad gracias @Maxime Rinaudo y @Antoine Cervoise de Synacktiv (www.synacktiv.com)

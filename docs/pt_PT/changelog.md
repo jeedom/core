@@ -83,6 +83,10 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 
 # Registro de alterações Jeedom V4.1
 
+## 4.1.28
+
+- Harmonização de modelos de widget para comandos de ação / padrão
+
 ## 4.1.27
 
 - Correção de uma violação de segurança, obrigado @Maxime Rinaudo e @Antoine Cervoise da Synacktiv (www.synacktiv.com)
