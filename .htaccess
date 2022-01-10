@@ -79,6 +79,7 @@ RedirectMatch 403 (?i)^.*\/vendor\/.*$
 RedirectMatch 403 (?i)^.*\/plugin_info\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.webp).)*$
 RedirectMatch 403 (?i)^.*\/ressources\/.*$
 RedirectMatch 403 (?i)^.*\/resources\/.*$
+RedirectMatch 403 (?i)^.*\/data/records\/.*\/((?!\.m3u8|\.mp4|\.ts).)*$
 
 
 # Right on file
@@ -87,7 +88,7 @@ Order Allow,Deny
 
 # Allow all :
 
-<FilesMatch ".*\.(css|map|js|jpeg|jpg|png|php|html|svg|woff|woff2|ttf|m3u8|ts|ico|gif|webp|mp3|aac)$">
+<FilesMatch ".*\.(css|map|js|jpeg|jpg|png|php|html|svg|woff|woff2|ttf|m3u8|ts|ico|gif|webp|mp3|aac|mp4)$">
     Order Allow,Deny
     Allow from all
 </FilesMatch>
