@@ -83,6 +83,10 @@ Les plugins doivent respecter les recommandations sur l'arborescence des dossier
 
 # Changelog Jeedom V4.1
 
+## 4.1.28
+
+- Harmonisation des templates de widgets pour commandes action/défaut
+
 ## 4.1.27
 
 - Correction d'une faille de sécurité merci @Maxime Rinaudo et @Antoine Cervoise de Synacktiv (www.synacktiv.com)
