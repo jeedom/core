@@ -87,7 +87,7 @@ Order Allow,Deny
 
 # Allow all :
 
-<FilesMatch ".*\.(css|map|js|jpeg|jpg|png|php|html|svg|woff|woff2|ttf|m3u8|ts|ico|gif|webp|mp3|aac)$">
+<FilesMatch ".*\.(css|map|js|jpeg|jpg|png|php|html|svg|woff|woff2|ttf|m3u8|ts|ico|gif|webp|mp3|aac|mp4)$">
     Order Allow,Deny
     Allow from all
 </FilesMatch>
