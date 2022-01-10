@@ -1297,8 +1297,10 @@ Desktop
   }
 
   [data-page="dashboard"] #dashOverviewPrev .topPreview .name {
-    max-width: 100%;
+    max-width: 103%;
     height: 22px;
+    width: 103%;
+    font-size: 15px;
   }
 
   [data-page="dashboard"] #div_displayObject {
