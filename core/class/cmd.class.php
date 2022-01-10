@@ -1269,6 +1269,7 @@ class cmd {
 			if ($widgetHelp == '') {
 				return '<em>' . __('Aucun paramètre optionnel disponible.', __FILE__) . '</em>.';
 			} else {
+				$widgetHelp = strip_tags($widgetHelp, '<div>');
 				if ($isCorewidget) {
 					return translate::exec($widgetHelp, 'core/template/widgets.html');
 				} else {
