@@ -81,6 +81,8 @@ Hemos agregado una confirmación de la contraseña de la copia de seguridad en l
 El equipo de Jeedom es consciente de que estos cambios pueden tener un impacto y ser embarazosos para usted, pero no podemos comprometer la seguridad.
 Los complementos deben respetar las recomendaciones sobre la estructura de árbol de carpetas y archivos : [Doc](https://doc.jeedom.com/es_ES/dev/plugin_template).
 
+[Blog: Jeedom 4 introducción.2 : la seguridad](https://blog.jeedom.com/6165-introduction-jeedom-4-2-la-securite/)
+
 # Registro de cambios Jeedom V4.1
 
 ## 4.1.28

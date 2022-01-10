@@ -81,6 +81,8 @@ Wir haben eine Bestätigung des Cloud-Backup-Passworts hinzugefügt, um Eingabef
 Das Jeedom-Team ist sich bewusst, dass diese Änderungen Auswirkungen haben und für Sie peinlich sein können, aber wir können keine Kompromisse bei der Sicherheit eingehen.
 Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien respektieren : [Dokument](https://doc.jeedom.com/de_DE/dev/plugin_template).
 
+[Blog: Jeedom 4 Einführung.2 : Sicherheit](https://blog.jeedom.com/6165-introduction-jeedom-4-2-la-securite/)
+
 # Changelog Jeedom V4.1
 
 ## 4.1.28

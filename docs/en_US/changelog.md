@@ -81,6 +81,8 @@ We have added a confirmation of the cloud backup password to prevent entry error
 The Jeedom team is well aware that these changes can have an impact and be embarrassing for you, but we cannot compromise on safety.
 The plugins must respect the recommendations on the tree structure of folders and files : [Doc](https://doc.jeedom.com/en_US/dev/plugin_template).
 
+[Blog: Jeedom 4 introduction.2 : Security](https://blog.jeedom.com/6165-introduction-jeedom-4-2-la-securite/)
+
 # Changelog Jeedom V4.1
 
 ## 4.1.28
