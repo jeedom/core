@@ -81,7 +81,13 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 A equipe da Jeedom está ciente de que essas mudanças podem ter um impacto e ser embaraçosas para você, mas não podemos comprometer a segurança.
 Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pastas e arquivos : [Doc](https://doc.jeedom.com/pt_PT/dev/plugin_template).
 
+[Blog: Jeedom 4 introdução.2 : Segurança](https://blog.jeedom.com/6165-introduction-jeedom-4-2-la-securite/)
+
 # Registro de alterações Jeedom V4.1
+
+## 4.1.28
+
+- Harmonização de modelos de widget para comandos de ação / padrão
 
 ## 4.1.27
 
