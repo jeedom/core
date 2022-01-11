@@ -24,12 +24,12 @@ if (!is_object($planHeader)) {
   throw new Exception('Impossible de trouver le plan');
 }
 sendVarToJS([
-  'jeephp2js.planHeader_id' => $planHeader->getId(),
-  'jeephp2js.planHeader' => utils::o2a($planHeader)
+  'jeephp2js.md_planHeaderConfigure_Id' => $planHeader->getId(),
+  'jeephp2js.md_planHeaderConfigure_planHeader' => utils::o2a($planHeader)
 ]);
 ?>
 
-<div id="div_alertPlanHeaderConfigure"></div>
+<div id="div_alertPlanHeaderConfigure" data-modalType="md_planHeaderConfigure"></div>
 <ul class="nav nav-tabs" role="tablist">
   <li role="presentation" class="active"><a href="#main" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-cog"></i> {{Général}}</a></li>
   <li role="presentation"><a href="#components" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-cubes"></i> {{Composants}}</a></li>
@@ -195,20 +195,20 @@ $('#bt_chooseIcon').on('click', function() {
 
 $('#bt_uploadImage').fileupload({
   replaceFileInput: false,
-  url: 'core/ajax/plan.ajax.php?action=uploadImage&id=' + jeephp2js.planHeader_id,
+  url: 'core/ajax/plan.ajax.php?action=uploadImage&id=' + jeephp2js.md_planHeaderConfigure_Id,
   dataType: 'json',
   done: function(e, data) {
     if (data.result.state != 'ok') {
       $('#div_alertPlanHeaderConfigure').showAlert({message: data.result.result, level: 'danger'})
       return
     }
-    jeedomUtils.loadPage('index.php?v=d&p=plan&plan_id=' + jeephp2js.planHeader_id)
+    jeedomUtils.loadPage('index.php?v=d&p=plan&plan_id=' + jeephp2js.md_planHeaderConfigure_Id)
   }
 })
 
 $('#bt_removeBackgroundImage').on('click', function() {
   jeedom.plan.removeImageHeader({
-    planHeader_id: jeephp2js.planHeader_id,
+    planHeader_id: jeephp2js.md_planHeaderConfigure_Id,
     error: function(error) {
       $('#div_alertPlanHeaderConfigure').showAlert({message: error.message, level: 'danger'});
     },
@@ -227,12 +227,12 @@ $('#bt_saveConfigurePlanHeader').on('click', function() {
     success: function() {
       $('#div_alertPlanHeaderConfigure').showAlert({message: '{{Design sauvegardé}}', level: 'success'})
       $('#div_pageContainer').data('editOption.state', false)
-      jeedomUtils.loadPage('index.php?v=d&p=plan&plan_id=' + jeephp2js.planHeader_id)
+      jeedomUtils.loadPage('index.php?v=d&p=plan&plan_id=' + jeephp2js.md_planHeaderConfigure_Id)
     }
   })
 })
 
-if (isset(jeephp2js.planHeader_id) && jeephp2js.planHeader_id != '') {
-  $('#div_planHeaderConfigure').setValues(jeephp2js.planHeader, '.planHeaderAttr')
+if (isset(jeephp2js.md_planHeaderConfigure_Id) && jeephp2js.md_planHeaderConfigure_Id != '') {
+  $('#div_planHeaderConfigure').setValues(jeephp2js.md_planHeaderConfigure_planHeader, '.planHeaderAttr')
 }
 </script>

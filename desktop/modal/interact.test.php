@@ -20,7 +20,7 @@ if (!isConnect('admin')) {
 }
 ?>
 
-<div id="div_alertInteractTest"></div>
+<div id="div_alertInteractTest" data-modalType="md_interactTest"></div>
 <form class="form-horizontal" onsubmit="return false;">
   <div class="input-group input-group-sm" style="width: 100%">
     <span class="input-group-addon" style="width: 100px">{{Demande}}</span>

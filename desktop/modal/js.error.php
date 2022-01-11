@@ -20,22 +20,24 @@ if (!isConnect()) {
 }
 ?>
 
-<div class="input-group pull-right" style="display:inline-flex">
-  <span class="input-group-btn">
-    <a class="btn btn-default btn-sm" id="bt_refreshJSError"><i class="fas fa-sync icon-white"></i> {{Rafraichir}}</a><a class="btn btn-danger roundedRight btn-sm" id="bt_clearJSError"><i class="far fa-trash-alt icon-white"></i> {{Vider}}</a>
-  </span>
+<div id="md_jsError" data-modalType="md_jsError">
+  <div class="input-group pull-right" style="display:inline-flex">
+    <span class="input-group-btn">
+      <a class="btn btn-default btn-sm" id="bt_refreshJSError"><i class="fas fa-sync icon-white"></i> {{Rafraichir}}</a><a class="btn btn-danger roundedRight btn-sm" id="bt_clearJSError"><i class="far fa-trash-alt icon-white"></i> {{Vider}}</a>
+    </span>
+  </div>
+  <table class="table table-condensed table-bordered tablesorter" id="table_jsError" style="margin-top: 5px;">
+    <thead>
+      <tr>
+        <th>{{Fichier}}</th>
+        <th>{{Ligne}}</th>
+        <th>{{Message}}</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
 </div>
-<table class="table table-condensed table-bordered tablesorter" id="table_jsError" style="margin-top: 5px;">
-  <thead>
-    <tr>
-      <th>{{Fichier}}</th>
-      <th>{{Ligne}}</th>
-      <th>{{Message}}</th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
 
 <script>
 function refreshJsError() {

@@ -22,13 +22,13 @@ if (!isConnect()) {
 $objectId = init('object_id');
 
 sendVarToJS([
-  'objectId' => $objectId,
-  'selectIcon' => init('selectIcon', 0),
-  'colorIcon' => init('colorIcon', 0)
+  'jeephp2js.md_iconSelector_objectId' => $objectId,
+  'jeephp2js.md_iconSelector_selectIcon' => init('selectIcon', 0),
+  'jeephp2js.md_iconSelector_colorIcon' => init('colorIcon', 0)
 ]);
 ?>
 
-<div style="display: none;" id="div_iconSelectorAlert"></div>
+<div style="display: none;" id="div_iconSelectorAlert" data-modalType="md_iconSelector"></div>
 
 <ul class="nav nav-tabs" role="tablist">
   <?php if (!$objectId) { ?>
@@ -278,8 +278,8 @@ sendVarToJS([
     $('.iconSel i').removeClass('icon_green icon_blue icon_orange icon_red icon_yellow').addClass($(this).value())
   })
 
-  if (selectIcon != "0") {
-    var iconClasses = selectIcon.split('.')
+  if (jeephp2js.md_iconSelector_selectIcon != "0") {
+    var iconClasses = jeephp2js.md_iconSelector_selectIcon.split('.')
     if (iconClasses[1].substr(0, 2) === 'fa') {
       iconClasses[1] = 'font-awesome5';
     } else if (iconClasses[1] === 'icon') {
@@ -292,8 +292,8 @@ sendVarToJS([
       }
     })
     setTimeout(function() {
-      if (colorIcon != "0") {
-        $('#sel_colorIcon').value(colorIcon)
+      if (jeephp2js.md_iconSelector_colorIcon != "0") {
+        $('#sel_colorIcon').value(jeephp2js.md_iconSelector_colorIcon)
       }
       elem = $('div.divIconSel.iconSelected')
       if (elem.position()) {

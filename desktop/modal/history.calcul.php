@@ -20,7 +20,7 @@ if (!isConnect()) {
 }
 ?>
 
-<div id="div_alertHistoryCalcul"></div>
+<div id="div_alertHistoryCalcul" data-modalType="md_historyCalcul"></div>
 <span class="label label-info" id="span_lastUpdateCheck"></span>
 <div class="input-group pull-right" style="display:inline-flex">
 	<a class='btn btn-success roundedLeft' id="bt_addCalculHistory"><i class="fas fa-plus"></i> {{Ajouter}}</a>

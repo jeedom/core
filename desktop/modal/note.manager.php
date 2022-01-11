@@ -19,10 +19,10 @@ if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
 $id = init('id', '');
-sendVarToJs('note_id', $id);
+sendVarToJs('jeephp2js.md_noteManagemer_noteId', $id);
 ?>
 
-<div style="display: none;" id="div_noteManagementAlert"></div>
+<div style="display: none;" id="div_noteManagerAlert" data-modalType="md_noteManagemer"></div>
 <div class="row row-overflow">
   <div id="div_notes" class="col-lg-2 col-md-3 col-sm-4" style="overflow-y:auto;overflow-x:hidden;">
     <div class="bs-sidebar">
@@ -53,7 +53,7 @@ sendVarToJs('note_id', $id);
 function updateNoteList(){
   jeedom.note.all({
     error: function(error) {
-      $('#div_noteManagementAlert').showAlert({message: error.message, level: 'danger'})
+      $('#div_noteManagerAlert').showAlert({message: error.message, level: 'danger'})
     },
     success: function(notes) {
       var note = $('#div_noteManagerDisplay').getValues('.noteAttr')[0]
@@ -80,7 +80,7 @@ $('#ul_noteList').on('click','.li_noteDisplay',function() {
   jeedom.note.byId({
     id : $(this).attr('data-id'),
     error: function(error) {
-      $('#div_noteManagementAlert').showAlert({message: error.message, level: 'danger'})
+      $('#div_noteManagerAlert').showAlert({message: error.message, level: 'danger'})
     },
     success: function(note) {
       $('#div_noteManagerDisplay .noteAttr').value('')
@@ -95,10 +95,10 @@ $('#bt_noteManagerSave').on('click',function() {
   jeedom.note.save({
     note : note,
     error: function(error) {
-      $('#div_noteManagementAlert').showAlert({message: error.message, level: 'danger'})
+      $('#div_noteManagerAlert').showAlert({message: error.message, level: 'danger'})
     },
     success: function(note) {
-      $('#div_noteManagementAlert').showAlert({message: '{{Note sauvegardée avec succès}}', level: 'success'})
+      $('#div_noteManagerAlert').showAlert({message: '{{Note sauvegardée avec succès}}', level: 'success'})
       $('#div_noteManagerDisplay').setValues(note, '.noteAttr')
       updateNoteList()
     }
@@ -112,10 +112,10 @@ $('#bt_noteManagerRemove').on('click',function() {
     jeedom.note.remove({
       id : note.id,
       error: function(error) {
-        $('#div_noteManagementAlert').showAlert({message: error.message, level: 'danger'})
+        $('#div_noteManagerAlert').showAlert({message: error.message, level: 'danger'})
       },
       success: function(notes) {
-        $('#div_noteManagementAlert').showAlert({message: '{{Note supprimée avec succès}}', level: 'success'})
+        $('#div_noteManagerAlert').showAlert({message: '{{Note supprimée avec succès}}', level: 'success'})
         $('#div_noteManagerDisplay .noteAttr').value('')
         updateNoteList()
       }
@@ -126,9 +126,9 @@ $('#bt_noteManagerRemove').on('click',function() {
 $(function() {
   updateNoteList()
   jeedomUtils.taAutosize()
-  if (note_id != '') {
+  if (jeephp2js.md_noteManagemer_noteId != '') {
     setTimeout(function(){
-      $('li.li_noteDisplay[data-id="'+note_id+'"]').trigger('click')
+      $('li.li_noteDisplay[data-id="'+jeephp2js.md_noteManagemer_noteId+'"]').trigger('click')
     }, 500)
   }
 })

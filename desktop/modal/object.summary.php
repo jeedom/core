@@ -20,7 +20,7 @@ if (!isConnect()) {
 }
 ?>
 
-<div id="div_alertObjectSummary"></div>
+<div id="div_alertObjectSummary" data-modalType="md_objectSummary"></div>
 <a class="btn btn-success pull-right btn-sm" id="bt_saveSummaryObject"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 <table id="table_ObjectSummary" class="table table-bordered table-condensed tablesorter stickyHead">
   <thead>

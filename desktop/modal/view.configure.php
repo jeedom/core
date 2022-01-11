@@ -24,11 +24,12 @@ if (!is_object($view)) {
   throw new Exception('Impossible de trouver la vue');
 }
 sendVarToJS([
-  'id' => $view->getId(),
-  'view' => utils::o2a($view)
+  'jeephp2js.md_viewConfigure_Id' => $view->getId(),
+  'jeephp2js.md_viewConfigure_View' => utils::o2a($view)
 ]);
+
 ?>
-<div id="div_alertViewConfigure"></div>
+<div id="div_alertViewConfigure" data-modalType="md_viewConfigure"></div>
 
 <div id="div_viewConfigure">
   <form class="form-horizontal">
@@ -131,7 +132,7 @@ $('#bt_saveConfigureView').on('click', function() {
   })
 })
 
-if (isset(id) && id != '') {
-  $('#div_viewConfigure').setValues(view, '.viewAttr')
+if (isset(jeephp2js.md_viewConfigure_Id) && jeephp2js.md_viewConfigure_Id != '') {
+  $('#div_viewConfigure').setValues(jeephp2js.md_viewConfigure_View, '.viewAttr')
 }
 </script>

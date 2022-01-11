@@ -20,7 +20,7 @@ if (!isConnect()) {
 }
 ?>
 
-<div id="div_alertModalSearch"></div>
+<div id="div_alertModalSearch" data-modalType="md_search"></div>
 <a id="bt_getHelpModal" class="cursor" style="position: absolute;right: 10px;top: 5px;" title="{{Aide}}"><i class="fas fa-question-circle" ></i></a>
 <!-- Search engine UI -->
 <form class="form-horizontal shadowed">

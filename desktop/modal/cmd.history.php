@@ -26,7 +26,7 @@ $id = init('id');
 if (trim($id) == '') {
   $id = init('showId');
 }
-sendVarToJs('jeephp2js.cmd_id', $id);
+sendVarToJs('jeephp2js.md_history_cmdId', $id);
 ?>
 
 
@@ -147,7 +147,7 @@ if (!jeeFrontEnd.md_history) {
 (function() {
   var jeeM = jeeFrontEnd.md_history
   $.hideAlert()
-  jeeM.init(jeephp2js.cmd_id)
+  jeeM.init(jeephp2js.md_history_cmdId)
 
   $(function() {
     jeedomUtils.datePickerInit()
@@ -162,13 +162,13 @@ if (!jeeFrontEnd.md_history) {
   //Modal buttons:
   jeeM.$pageContainer.on({
     'click': function(event) {
-      jeeM.md_modal.dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + jeephp2js.cmd_id + '&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open')
+      jeeM.md_modal.dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + jeephp2js.md_history_cmdId + '&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open')
     }
   }, '#bt_validChangeDate')
 
   jeeM.$pageContainer.on({
     'click': function(event) {
-      jeedomUtils.loadPage('index.php?v=d&p=history&cmd_id=' + jeephp2js.cmd_id)
+      jeedomUtils.loadPage('index.php?v=d&p=history&cmd_id=' + jeephp2js.md_history_cmdId)
     }
   }, '#bt_openInHistory')
 })()

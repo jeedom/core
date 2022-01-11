@@ -19,12 +19,12 @@ if (!isConnect()) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
 sendVarToJS([
-  'dataStore_type' => init('type'),
-  'dataStore_link_id' => init('link_id', -1)
+  'jeephp2js.md_dataStoreManagement_type' => init('type'),
+  'jeephp2js.md_dataStoreManagement_linkId' => init('link_id', -1)
 ]);
 ?>
 
-<div style="display: none;" id="div_dataStoreManagementAlert"></div>
+<div style="display: none;" id="div_dataStoreManagementAlert" data-modalType="md_dataStoreManagement"></div>
 
 <a class="btn btn-xs btn-success pull-right" id="bt_dataStoreManagementAdd" style="margin-bottom: 5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
 <a class="btn btn-xs pull-right" id="bt_dataStoreManagementRefresh" style="margin-bottom: 5px;"><i class="fas fa-sync-alt"></i> {{Rafraichir}}</a>
@@ -97,9 +97,9 @@ sendVarToJS([
       jeedom.dataStore.save({
         id: tr.attr('data-dataStore_id'),
         value: tr.find('.value').value(),
-        type: dataStore_type,
+        type: jeephp2js.md_dataStoreManagement_type,
         key: tr.find('.key').value(),
-        link_id: dataStore_link_id,
+        link_id: jeephp2js.md_dataStoreManagement_linkId,
         error: function(error) {
           $('#div_dataStoreManagementAlert').showAlert({
             message: error.message,
@@ -190,7 +190,7 @@ sendVarToJS([
 
   function refreshDataStoreMangementTable() {
     jeedom.dataStore.all({
-      type: dataStore_type,
+      type: jeephp2js.md_dataStoreManagement_type,
       usedBy: 1,
       error: function(error) {
         $('#div_dataStoreManagementAlert').showAlert({

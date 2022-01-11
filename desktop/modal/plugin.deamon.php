@@ -30,6 +30,7 @@ if (count($deamon_info) == 0) {
 }
 $refresh = array();
 ?>
+
 <table class="table table-bordered">
   <thead>
     <tr>

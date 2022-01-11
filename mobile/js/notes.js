@@ -7,7 +7,7 @@ function initNotes(note_id) {
     jeedom.note.byId({
       id: note_id,
       error: function(error) {
-        $('#div_noteManagementAlert').showAlert({message: error.message, level: 'danger'})
+        $.fn.showAlert({message: error.message, level: 'danger'})
       },
       success: function(note) {
         $('#div_noteManagerDisplay .noteAttr').value('')
@@ -51,10 +51,10 @@ function initNotes(note_id) {
     jeedom.note.save({
       note : note,
       error: function(error) {
-        $('#div_noteManagementAlert').showAlert({message: error.message, level: 'danger'})
+        $.fn.showAlert({message: error.message, level: 'danger'})
       },
       success: function(note) {
-        $('#div_noteManagementAlert').showAlert({message: '{{Note sauvegardée avec succès}}', level: 'success'})
+        $.fn.showAlert({message: '{{Note sauvegardée avec succès}}', level: 'success'})
         $('#div_noteManagerDisplay').setValues(note, '.noteAttr')
         updateNoteList()
       }
@@ -68,10 +68,10 @@ function initNotes(note_id) {
       jeedom.note.remove({
         id : note.id,
         error: function(error) {
-          $('#div_noteManagementAlert').showAlert({message: error.message, level: 'danger'})
+          $.fn.showAlert({message: error.message, level: 'danger'})
         },
         success: function(notes) {
-          $('#div_noteManagementAlert').showAlert({message: '{{Note supprimée avec succès}}', level: 'success'})
+          $.fn.showAlert({message: '{{Note supprimée avec succès}}', level: 'success'})
           $('#div_noteManagerDisplay .noteAttr').value('')
           updateNoteList()
         }

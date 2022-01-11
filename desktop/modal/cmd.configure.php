@@ -27,16 +27,16 @@ global $JEEDOM_INTERNAL_CONFIG;
 $cmdInfo = jeedom::toHumanReadable(utils::o2a($cmd));
 $cmdInfo['eqLogicName'] = $cmd->getEqLogic()->getName();
 sendVarToJS([
-  'cmdInfo' => $cmdInfo,
-  'cmdInfoSearchString' => urlencode(str_replace('#', '', $cmd->getHumanName())),
-  'cmdInfoString' => $cmd->getHumanName()
+  'jeephp2js.md_cmdConfigure_cmdInfo' => $cmdInfo,
+  'jeephp2js.md_cmdConfigure_cmdInfoSearchString' => urlencode(str_replace('#', '', $cmd->getHumanName())),
+  'jeephp2js.md_cmdConfigure_cmdInfoString' => $cmd->getHumanName()
 ]);
 $cmd_widgetDashboard = cmd::availableWidget('dashboard');
 $cmd_widgetMobile = cmd::availableWidget('mobile');
 $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 ?>
 
-<div style="display: none;" id="md_displayCmdConfigure"></div>
+<div style="display: none;" id="md_displayCmdConfigure" data-modalType="md_cmdConfigure"></div>
 <div class="input-group pull-right" style="display:inline-flex">
   <span class="input-group-btn">
     <a class="btn btn-default roundedLeft btn-sm" id="bt_cmdConfigureTest"><i class="fas fa-rss"></i> {{Tester}}
@@ -841,8 +841,8 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 
     //modal title:
     var title = '{{Configuration commande}}'
-    title += ' : ' + cmdInfo.eqLogicName
-    title += ' <span class="cmdName">[' + cmdInfo.name + '] <em>(' + cmdInfo.type + ')</em></span>'
+    title += ' : ' + jeephp2js.md_cmdConfigure_cmdInfo.eqLogicName
+    title += ' <span class="cmdName">[' + jeephp2js.md_cmdConfigure_cmdInfo.name + '] <em>(' + jeephp2js.md_cmdConfigure_cmdInfo.type + ')</em></span>'
     $('#cmdConfigureTab').parents('.ui-dialog').find('.ui-dialog-title').html(title)
     if ($('#eqLogicConfigureTab').length) {
       $('#cmdConfigureTab').parents('.ui-dialog').css('top', "50px")
@@ -975,28 +975,28 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     $('#table_widgetParametersCmd tbody').append(tr)
   })
 
-  if (cmdInfo.configuration && (!cmdInfo.configuration.repeatEventManagement || cmdInfo.configuration.repeatEventManagement == 'auto')) {
-    cmdInfo.configuration.repeatEventManagement = 'never';
+  if (jeephp2js.md_cmdConfigure_cmdInfo.configuration && (!jeephp2js.md_cmdConfigure_cmdInfo.configuration.repeatEventManagement || jeephp2js.md_cmdConfigure_cmdInfo.configuration.repeatEventManagement == 'auto')) {
+    jeephp2js.md_cmdConfigure_cmdInfo.configuration.repeatEventManagement = 'never';
   }
-  $('#div_displayCmdConfigure').setValues(cmdInfo, '.cmdAttr')
+  $('#div_displayCmdConfigure').setValues(jeephp2js.md_cmdConfigure_cmdInfo, '.cmdAttr')
 
   $('#bt_cmdConfigureRawObject').off('click').on('click', function() {
     $('#md_modal3').dialog({
       title: "{{Informations}}"
-    }).load('index.php?v=d&modal=object.display&class=cmd&id=' + cmdInfo.id).dialog('open')
+    }).load('index.php?v=d&modal=object.display&class=cmd&id=' + jeephp2js.md_cmdConfigure_cmdInfo.id).dialog('open')
   })
 
   $('#bt_cmdConfigureGraph').on('click', function() {
     $('#md_modal3').dialog({
       title: "{{Graphique des liens}}"
-    }).load('index.php?v=d&modal=graph.link&filter_type=cmd&filter_id=' + cmdInfo.id).dialog('open')
+    }).load('index.php?v=d&modal=graph.link&filter_type=cmd&filter_id=' + jeephp2js.md_cmdConfigure_cmdInfo.id).dialog('open')
   })
 
   $('#bt_influxDelete').off('click').on('click', function() {
     bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\'InfluxDB}}', function(result) {
       if (result) {
         jeedom.cmd.dropInflux({
-          cmd_id: cmdInfo.id,
+          cmd_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
           error: function(error) {
             $('#md_displayCmdConfigure').showAlert({
               message: error.message,
@@ -1018,7 +1018,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     bootbox.confirm('{{Êtes-vous sûr de vouloir envoyer tout l\'historique de cette commande à InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute.}}', function(result) {
       if (result) {
         jeedom.cmd.historyInflux({
-          cmd_id: cmdInfo.id,
+          cmd_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
           error: function(error) {
             $('#md_displayCmdConfigure').showAlert({
               message: error.message,
@@ -1040,15 +1040,15 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     jeedom.cmd.getSelectModal({
       cmd: {
         type: 'info',
-        subType: cmdInfo.subType
+        subType: jeephp2js.md_cmdConfigure_cmdInfo.subType
       }
     }, function(result) {
       var target_id = result.cmd.id
       var name = result.human
-      bootbox.confirm('{{Êtes-vous sûr de vouloir copier l\'historique de}} <strong>' + cmdInfo.name + '</strong> {{vers}} <strong>' + name + '</strong> ? {{Il est conseillé de vider l\'historique de la commande}} : <strong>' + name + '</strong> {{avant la copie}}', function(result) {
+      bootbox.confirm('{{Êtes-vous sûr de vouloir copier l\'historique de}} <strong>' + jeephp2js.md_cmdConfigure_cmdInfo.name + '</strong> {{vers}} <strong>' + name + '</strong> ? {{Il est conseillé de vider l\'historique de la commande}} : <strong>' + name + '</strong> {{avant la copie}}', function(result) {
         if (result) {
           jeedom.history.copyHistoryToCmd({
-            source_id: cmdInfo.id,
+            source_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
             target_id: target_id,
             error: function(error) {
               $('#md_displayCmdConfigure').showAlert({
@@ -1071,16 +1071,16 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
   $('#bt_cmdConfigureReplaceMeBy').off('click').on('click', function() {
     jeedom.cmd.getSelectModal({
       cmd: {
-        type: cmdInfo.type,
-        subType: cmdInfo.subType
+        type: jeephp2js.md_cmdConfigure_cmdInfo.type,
+        subType: jeephp2js.md_cmdConfigure_cmdInfo.subType
       }
     }, function(result) {
       var target_id = result.cmd.id
       var name = result.human
-      bootbox.confirm('{{Êtes-vous sûr de vouloir remplacer}} <strong>' + cmdInfoString + '</strong> {{par}} : <br/><strong>' + name + '</strong> ?', function(result) {
+      bootbox.confirm('{{Êtes-vous sûr de vouloir remplacer}} <strong>' + jeephp2js.md_cmdConfigure_cmdInfoString + '</strong> {{par}} : <br/><strong>' + name + '</strong> ?', function(result) {
         if (result) {
           jeedom.cmd.replaceCmd({
-            source_id: cmdInfo.id,
+            source_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
             target_id: target_id,
             error: function(error) {
               $('#md_displayCmdConfigure').showAlert({
@@ -1103,17 +1103,17 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
   $('#bt_cmdConfigureReplaceByMe').off('click').on('click', function() {
     jeedom.cmd.getSelectModal({
       cmd: {
-        type: cmdInfo.type,
-        subType: cmdInfo.subType
+        type: jeephp2js.md_cmdConfigure_cmdInfo.type,
+        subType: jeephp2js.md_cmdConfigure_cmdInfo.subType
       }
     }, function(result) {
       var target_id = result.cmd.id
       var name = result.human
-      bootbox.confirm('{{Êtes-vous sûr de vouloir remplacer l\'ID}} <strong>' + name + '</strong> {{par}} : <br/><strong>' + cmdInfoString + '</strong> ?', function(result) {
+      bootbox.confirm('{{Êtes-vous sûr de vouloir remplacer l\'ID}} <strong>' + name + '</strong> {{par}} : <br/><strong>' + jeephp2js.md_cmdConfigure_cmdInfoString + '</strong> ?', function(result) {
         if (result) {
           jeedom.cmd.replaceCmd({
             source_id: target_id,
-            target_id: cmdInfo.id,
+            target_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
             error: function(error) {
               $('#md_displayCmdConfigure').showAlert({
                 message: error.message,
@@ -1137,11 +1137,11 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     if (target_id == null) {
       return
     }
-    bootbox.confirm('{{Êtes-vous sûr de vouloir remplacer la commande}} id : <strong>' + target_id + '</strong> {{par}} : <br/><strong>' + cmdInfoString + '</strong> ?', function(result) {
+    bootbox.confirm('{{Êtes-vous sûr de vouloir remplacer la commande}} id : <strong>' + target_id + '</strong> {{par}} : <br/><strong>' + jeephp2js.md_cmdConfigure_cmdInfoString + '</strong> ?', function(result) {
       if (result) {
         jeedom.cmd.replaceCmd({
           source_id: target_id,
-          target_id: cmdInfo.id,
+          target_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
           error: function(error) {
             $('#md_displayCmdConfigure').showAlert({
               message: error.message,
@@ -1160,21 +1160,21 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
   })
 
 
-  if (isset(cmdInfo.configuration.actionCheckCmd) && $.isArray(cmdInfo.configuration.actionCheckCmd) && cmdInfo.configuration.actionCheckCmd.length != null) {
-    for (var i in cmdInfo.configuration.actionCheckCmd) {
-      addActionCmd(cmdInfo.configuration.actionCheckCmd[i], 'actionCheckCmd', '{{Action}}')
+  if (isset(jeephp2js.md_cmdConfigure_cmdInfo.configuration.actionCheckCmd) && $.isArray(jeephp2js.md_cmdConfigure_cmdInfo.configuration.actionCheckCmd) && jeephp2js.md_cmdConfigure_cmdInfo.configuration.actionCheckCmd.length != null) {
+    for (var i in jeephp2js.md_cmdConfigure_cmdInfo.configuration.actionCheckCmd) {
+      addActionCmd(jeephp2js.md_cmdConfigure_cmdInfo.configuration.actionCheckCmd[i], 'actionCheckCmd', '{{Action}}')
     }
   }
 
-  if (isset(cmdInfo.configuration.jeedomPreExecCmd) && $.isArray(cmdInfo.configuration.jeedomPreExecCmd) && cmdInfo.configuration.jeedomPreExecCmd.length != null) {
-    for (var i in cmdInfo.configuration.jeedomPreExecCmd) {
-      addActionCmd(cmdInfo.configuration.jeedomPreExecCmd[i], 'actionPreExecCmd', '{{Action}}')
+  if (isset(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPreExecCmd) && $.isArray(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPreExecCmd) && jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPreExecCmd.length != null) {
+    for (var i in jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPreExecCmd) {
+      addActionCmd(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPreExecCmd[i], 'actionPreExecCmd', '{{Action}}')
     }
   }
 
-  if (isset(cmdInfo.configuration.jeedomPostExecCmd) && $.isArray(cmdInfo.configuration.jeedomPostExecCmd) && cmdInfo.configuration.jeedomPostExecCmd.length != null) {
-    for (var i in cmdInfo.configuration.jeedomPostExecCmd) {
-      addActionCmd(cmdInfo.configuration.jeedomPostExecCmd[i], 'actionPostExecCmd', '{{Action}}')
+  if (isset(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPostExecCmd) && $.isArray(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPostExecCmd) && jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPostExecCmd.length != null) {
+    for (var i in jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPostExecCmd) {
+      addActionCmd(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPostExecCmd[i], 'actionPostExecCmd', '{{Action}}')
     }
   }
   jeedomUtils.taAutosize()
@@ -1337,7 +1337,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     }
     $('#md_cmdConfigureSelectMultiple').dialog({
       title: "{{Appliquer ce widget à}}"
-    }).load('index.php?v=d&modal=cmd.selectMultiple&cmd_id=' + cmdInfo.id, function() {
+    }).load('index.php?v=d&modal=cmd.selectMultiple&cmd_id=' + jeephp2js.md_cmdConfigure_cmdInfo.id, function() {
       jeedomUtils.initTableSorter()
       $('#bt_cmdConfigureSelectMultipleAlertToogle').off('click').on('click', function() {
         var state = false
@@ -1392,18 +1392,18 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
   $('#bt_cmdConfigureLogRealTime').off('click').on('click', function() {
     $('#md_modal3').dialog({
       title: "{{Logs}}"
-    }).load('index.php?v=d&modal=log.display&log=event&search=' + cmdInfoSearchString).dialog('open')
+    }).load('index.php?v=d&modal=log.display&log=event&search=' + jeephp2js.md_cmdConfigure_cmdInfoSearchString).dialog('open')
   })
 
   $('#bt_cmdConfigureShowHistory').off('click').on('click', function() {
     $('#md_modal3').dialog({
       title: "Historique"
-    }).load('index.php?v=d&modal=cmd.history&id=' + cmdInfo.id).dialog('open')
+    }).load('index.php?v=d&modal=cmd.history&id=' + jeephp2js.md_cmdConfigure_cmdInfo.id).dialog('open')
   })
 
   $('#bt_cmdConfigureTest').off('click').on('click', function() {
     jeedom.cmd.test({
-      id: cmdInfo.id,
+      id: jeephp2js.md_cmdConfigure_cmdInfo.id,
       alert: '#md_displayCmdConfigure'
     })
   })

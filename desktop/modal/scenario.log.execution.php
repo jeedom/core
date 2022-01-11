@@ -22,10 +22,10 @@ $scenario = scenario::byId(init('scenario_id'));
 if (!is_object($scenario)) {
   throw new Exception(__('Aucun scénario ne correspondant à :', __FILE__) . ' ' . init('scenario_id'));
 }
-sendVarToJs('scenarioLog_scenario_id', init('scenario_id'));
+sendVarToJs('jeephp2js.md_scenarioLog_scId', init('scenario_id'));
 ?>
 
-<div style="display: none;width : 100%" id="div_alertScenarioLog"></div>
+<div style="display: none;width : 100%" id="div_alertScenarioLog" data-modalType="md_scenarioLog"></div>
 <?php echo '<span style="font-weight: bold;">' . $scenario->getHumanName(true, false, true) . '</span>'; ?>
 <div class="input-group pull-right">
   <span class="input-group-btn" style="display: inline;">
@@ -49,7 +49,7 @@ $rawLogCheck.on('click').on('click', function () {
 
   var scroll = $('#pre_scenariolog').scrollTop()
   jeedom.log.autoupdate({
-    log: 'scenarioLog/scenario'+scenarioLog_scenario_id+'.log',
+    log: 'scenarioLog/scenario'+jeephp2js.md_scenarioLog_scId+'.log',
     display: $('#pre_scenariolog'),
     search: $('#in_scenarioLogSearch'),
     control: $('#bt_scenarioLogStopStart'),
@@ -60,7 +60,7 @@ $rawLogCheck.on('click').on('click', function () {
 
 
 jeedom.log.autoupdate({
-  log: 'scenarioLog/scenario'+scenarioLog_scenario_id+'.log',
+  log: 'scenarioLog/scenario'+jeephp2js.md_scenarioLog_scId+'.log',
   display: $('#pre_scenariolog'),
   search: $('#in_scenarioLogSearch'),
   control: $('#bt_scenarioLogStopStart')
@@ -72,7 +72,7 @@ $('#bt_resetScenarioLogSearch').on('click', function () {
 
 $('#bt_scenarioLogEmpty').on('click', function() {
   jeedom.scenario.emptyLog({
-    id: scenarioLog_scenario_id,
+    id: jeephp2js.md_scenarioLog_scId,
     error: function(error) {
       $('#div_alertScenarioLog').showAlert({message: error.message, level: 'danger'})
     },

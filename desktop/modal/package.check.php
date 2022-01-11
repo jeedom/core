@@ -52,7 +52,7 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt ')) > 0) {
 }
 ?>
 
-<div style="display: none;" id="div_packageCheckAlert"></div>
+<div style="display: none;" id="div_packageCheckAlert" data-modalType="md_packageCheck"></div>
 <div class="input-group pull-right" style="display:inline-flex">
   <span class="input-group-btn">
     <a id="bt_refreshPackage" class="btn btn-sm btn-default roundedLeft"><i class="fas fa-sync"></i> {{Rafraichir}}

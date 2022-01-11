@@ -20,7 +20,7 @@ if (!isConnect()) {
 }
 ?>
 
-<div id="div_alertScenarioSummary"></div>
+<div id="div_alertScenarioSummary" data-modalType="md_scenarioSummary"></div>
 <div class="input-group pull-right" style="display:inline-flex">
   <span class="input-group-btn">
     <a class="btn btn-xs roundedLeft" id="bt_refreshSummaryScenario"><i class="fas fa-refresh"></i> {{Rafraîchir}}

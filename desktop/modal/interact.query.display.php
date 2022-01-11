@@ -22,13 +22,12 @@ if (init('interactDef_id') == '') {
   throw new Exception('{{Interact Def ID ne peut être vide}}');
 }
 $interactQueries = interactQuery::byInteractDefId(init('interactDef_id'));
-sendVarToJS('interactDisplay_interactDef_id', init('interactDef_id'));
 if (count($interactQueries) == 0) {
   throw new Exception('{{Aucune phrase trouvée}}');
 }
 ?>
 
-<div style="display: none;" id="md_displayInteractQueryAlert"></div>
+<div style="display: none;" id="md_displayInteractQueryAlert" data-modalType="md_displayInteractQuery"></div>
 <table class="table table-bordered table-condensed" id="table_interactQuery" style="width:100%">
   <thead>
     <tr>
