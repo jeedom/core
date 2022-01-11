@@ -150,7 +150,7 @@ Les plugins doivent respecter les recommandations sur l'arborescence des dossier
 
 - Debian 10 Buster
 
-### 4.1 Nouveautés / Améliorations
+### 4.1 : Nouveautés / Améliorations
 
 - **Synthèse** : Ajout d'une nouvelle page **Accueil → Synthèse** proposant une synthèse visuelle globale des pièces, avec accès rapide aux résumés.
 - **Recherche** : Ajout d'un moteur de recherche dans **Outils → Recherche**.
