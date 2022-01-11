@@ -150,7 +150,7 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 
 - Debian 10 Buster
 
-### 4.1 Neuigkeiten / Verbesserungen
+### 4.1 : Neuigkeiten / Verbesserungen
 
 - **Synthese** : Neue Seite hinzufügen **Home → Zusammenfassung** Bietet eine globale visuelle Zusammenfassung der Teile mit schnellem Zugriff auf Zusammenfassungen.
 - **Forschung** : Hinzufügen einer Suchmaschine in **Extras → Suchen**.

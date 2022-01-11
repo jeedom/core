@@ -150,7 +150,7 @@ The plugins must respect the recommendations on the tree structure of folders an
 
 - Debian 10 Buster
 
-### 4.1 News / Improvements
+### 4.1 : News / Improvements
 
 - **Synthesis** : New page **Home → Synthesis** offering a global visual summary of the parts, with quick access to summaries.
 - **Research** : Add of a search engine in **Tools → Search**.
