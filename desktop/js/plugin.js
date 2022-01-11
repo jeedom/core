@@ -612,7 +612,7 @@ $('#div_plugin_toggleState').on({
 }, '.togglePlugin')
 
 $("#bt_savePluginConfig").on('click', function(event) {
-  jeeP.savePluginConfig()
+  jeeFrontEnd.plugin.savePluginConfig()
   return false
 })
 
