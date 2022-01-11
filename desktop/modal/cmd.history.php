@@ -78,8 +78,8 @@ if (!jeeFrontEnd.md_history) {
         this.md_modal.width(datas.width-26).height(datas.height-40)
         this.resizeHighChartModal()
       } else if ($(window).width() > 860) {
-        width = 800
-        height = 560
+        var width = 800
+        var height = 560
         this.modal
           .width(width)
           .height(height)

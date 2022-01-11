@@ -40,15 +40,14 @@ jeeFrontEnd = {
 }
 
 /*
+Jeedom namespace for data transfer php -> js through sendVarToJS(). Emptied on loadPage()
 @php:
 sendVarToJS([
   'jeephp2js.myjsvar1' => init('type', ''),
   'jeephp2js.myjsvar2' => config::byKey('enableCustomCss')
 ]);
 */
-jeephp2js = {
-  __description: 'Jeedom namespace for data transfer php -> js through sendVarToJS(). Emptied on loadPage()',
-}
+jeephp2js = {}
 
 /*
 Debug js frontEnd

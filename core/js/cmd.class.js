@@ -956,7 +956,7 @@ jeedom.cmd.displayActionsOption = function(_params) {
 };
 
 jeedom.cmd.normalizeName = function(_tagname) {
-  cmdName = _tagname.toLowerCase().trim()
+  var cmdName = _tagname.toLowerCase().trim()
   var cmdTests = []
   var cmdType = null
   var cmdList = {
