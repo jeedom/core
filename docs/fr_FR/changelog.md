@@ -1,3 +1,21 @@
+# Changelog Jeedom V4.3
+
+## 4.3.0
+
+### 4.3 : Pré-requis
+
+- Debian 10 Buster
+- Php 7.3
+
+### 4.3 : Nouveautés / Améliorations
+
+-
+
+### 4.3 : WebApp
+
+- Intégration des Notes.
+
+
 # Changelog Jeedom V4.2
 
 ## 4.2.0
@@ -81,7 +99,13 @@ Nous avons ajouté une confirmation du mot de passe de backup cloud pour préven
 L'équipe Jeedom a bien conscience que ces changements peuvent avoir un impact et être gênant pour vous mais nous ne pouvons transiger sur la sécurité.
 Les plugins doivent respecter les recommandations sur l'arborescence des dossiers et fichiers : [Doc](https://doc.jeedom.com/fr_FR/dev/plugin_template).
 
+[Blog: Introduction Jeedom 4.2 : la sécurité](https://blog.jeedom.com/6165-introduction-jeedom-4-2-la-securite/)
+
 # Changelog Jeedom V4.1
+
+## 4.1.28
+
+- Harmonisation des templates de widgets pour commandes action/défaut
 
 ## 4.1.27
 
@@ -144,7 +168,7 @@ Les plugins doivent respecter les recommandations sur l'arborescence des dossier
 
 - Debian 10 Buster
 
-### 4.1 Nouveautés / Améliorations
+### 4.1 : Nouveautés / Améliorations
 
 - **Synthèse** : Ajout d'une nouvelle page **Accueil → Synthèse** proposant une synthèse visuelle globale des pièces, avec accès rapide aux résumés.
 - **Recherche** : Ajout d'un moteur de recherche dans **Outils → Recherche**.
