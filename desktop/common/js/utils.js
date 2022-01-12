@@ -1056,7 +1056,7 @@ jeedomUtils.rgbToHex = function(r, g, b) {
     if (r.endsWith(')')){
       r = r.replace(')', '')
     }
-    strAr = r.split(',')
+    var strAr = r.split(',')
     r = parseInt(strAr[0].trim())
     g = parseInt(strAr[1].trim())
     b = parseInt(strAr[2].trim())
