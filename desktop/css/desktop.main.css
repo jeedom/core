@@ -1870,6 +1870,7 @@ Desktop
   }
   .context-menu-root .context-menu-item i {
     color: var(--txt-color) !important;
+    top: 7px;
   }
   .context-menu-root .context-menu-item span {
     font-weight: normal !important;
