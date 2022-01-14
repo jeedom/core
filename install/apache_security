@@ -5,7 +5,7 @@ AllowOverride All
 
 <IfModule mod_headers.c>
 Header set X-Content-Type-Options "nosniff"
-Header set X-Frame-Options "DENY"
+Header set X-Frame-Options "sameorigin"
 Header set X-XSS-Protection "1; mode=block"
 Header unset X-Powered-By
 Header set Referrer-Policy: strict-origin-when-cross-origin
