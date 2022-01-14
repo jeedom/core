@@ -2887,7 +2887,7 @@
         "Configuration de la commande": "Set Controle"
     },
     "desktop\/js\/report.js": {
-        "Aucun aperçu possible en pdf": "Nenhum pode visualizar pdf"
+        "Le fichier PDF ne peut pas être visualisé dans ce navigateur, veuillez le télécharger.": "O arquivo PDF não pode ser visualizado neste navegador, faça o download"
     },
     "desktop\/js\/migrate.js": {
         "Aucune clé USB trouvée. Veuillez insérer une clé USB.": "Nenhuma chave USB encontrada. Insira um stick USB",

@@ -2887,7 +2887,7 @@
         "Configuration de la commande": "Befehl Konfiguration"
     },
     "desktop\/js\/report.js": {
-        "Aucun aperçu possible en pdf": "Keine Vorschau im PDF möglich"
+        "Le fichier PDF ne peut pas être visualisé dans ce navigateur, veuillez le télécharger.": "Die PDF-Datei kann in diesem Browser nicht angezeigt werden, bitte laden Sie sie herunter"
     },
     "desktop\/js\/migrate.js": {
         "Aucune clé USB trouvée. Veuillez insérer une clé USB.": "Kein USB-Stick gefunden. Bitte stecken Sie einen USB-Stick ein",

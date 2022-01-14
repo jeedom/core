@@ -2887,7 +2887,7 @@
         "Configuration de la commande": "Command setup"
     },
     "desktop\/js\/report.js": {
-        "Aucun aperçu possible en pdf": "No preview possible in pdf"
+        "Le fichier PDF ne peut pas être visualisé dans ce navigateur, veuillez le télécharger.": "The PDF file cannot be viewed in this browser, please download it"
     },
     "desktop\/js\/migrate.js": {
         "Aucune clé USB trouvée. Veuillez insérer une clé USB.": "No USB key found. Please insert a USB stick",

@@ -2887,7 +2887,7 @@
         "Configuration de la commande": "設定された制御"
     },
     "desktop\/js\/report.js": {
-        "Aucun aperçu possible en pdf": "PDFではプレビューできません"
+        "Le fichier PDF ne peut pas être visualisé dans ce navigateur, veuillez le télécharger.": "Le fichier PDF ne peut pas être visualisé dans ce navigateur, veuillez le télécharger"
     },
     "desktop\/js\/migrate.js": {
         "Aucune clé USB trouvée. Veuillez insérer une clé USB.": "Aucune clé USB trouvée. Veuillez insérer une clé USB",
