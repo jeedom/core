@@ -77,8 +77,9 @@ function getReport(_type, _id, _report) {
       var extension = $('#div_reportForm .reportAttr[data-l1key=extension]').value()
       if (extension != 'pdf') {
         $('#div_imgreport').append('<img class="img-responsive" src="core/php/downloadFile.php?pathfile=data/report/' + type + '/' + id + '/' + filename + '.' + extension + '" />')
-      } else {
-        $('#div_imgreport').append('{{Aucun aperçu possible en pdf}}')
+      }
+      else {
+        $('#div_imgreport').append('<object data="core/php/downloadFile.php?pathfile=data/report/' + type+'/'+id+'/'+filename+'.'+extension+'" type="application/pdf" style="width:90%;height:800px;">{{Le fichier PDF ne peut pas être visualisé dans ce navigateur, veuillez le télécharger.}}</object>')
       }
       $('#currentReport').html('<i class="fas fa-clipboard-check"></i> ' + filename + ' (' + type + ')')
     }
