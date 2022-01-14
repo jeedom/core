@@ -150,7 +150,7 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 
 - Debian 10 Buster
 
-### 4.1 Noticias / Mejoras
+### 4.1 : Noticias / Mejoras
 
 - **Síntesis** : Agregar una nueva página **Inicio → Resumen** Ofrece un resumen visual global de las partes, con acceso rápido a resúmenes.
 - **Investigación** : Adición de un motor de búsqueda en **Herramientas → Buscar**.
