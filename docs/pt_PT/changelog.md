@@ -150,7 +150,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 
 - Debian 10 Buster
 
-### 4.1 Notícias / Melhorias
+### 4.1 : Notícias / Melhorias
 
 - **Síntese** : Adicionando uma nova página **Home → Resumo** oferecendo um resumo visual global das peças, com acesso rápido aos resumos.
 - **Pesquisa** : Adição de um mecanismo de pesquisa em **Ferramentas → Pesquisa**.
