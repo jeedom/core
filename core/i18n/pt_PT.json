@@ -1742,7 +1742,7 @@
         "Si le niveau de charge passe en dessous de (%)": "Se o nível de carga cair abaixo de (%)",
         "Danger": "Perigo",
         "Scénario à éxecuter lors de la création d'un équipement": "Cenário a ser executado ao criar um item de equipamento",
-        "Ce scénario sera lancé pour chaque nouvelle création d'équipement. Le tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement crée.": "Este cenário será lançado a cada criação de novo equipamento. O tag eqLogic_id será passado para o cenário e conterá o id do equipamento criado",
+        "Ce scénario sera lancé pour chaque nouvelle création d'équipement. Le tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement créé.": "Este cenário será lançado a cada criação de novo equipamento. O tag eqLogic_id será passado para o cenário e conterá o id do equipamento criado",
         "Historique des commandes": "Histórico de pedidos",
         "Afficher les statistiques sur les widgets": "Mostrar estatísticas sobre os widgets",
         "Période de calcul pour min, max, moyenne": "Período de cálculo para min, max, média",

@@ -23,6 +23,7 @@
 - **Resumos** : Possibilidade de nunca mostrar o número à direita do ícone, ou apenas se for positivo.
 - **Resumos** : A alteração do parâmetro de resumo na configuração e nos objetos agora está visível, sem esperar por uma alteração no valor de resumo.
 - **Resumos** : Agora é possível configurar [ações em resumos](/pt_PT/concept/summary#Actions sur résumés) (ctrl + clique em um resumo) graças aos virtuais.
+- **Relatório** : Visualizar arquivos PDF.
 - **Tipos de equipamento** : [Nova página](/pt_PT/core/4.2/types) **Ferramentas → Tipos de equipamento** permitindo que tipos genéricos sejam atribuídos a dispositivos e comandos, com suporte para tipos dedicados a plug-ins instalados (ver [Doc dev](https://doc.jeedom.com/pt_PT/dev/core4.2)).
 - **Seleção de ilustrações** : Nova janela global para a escolha de ilustrações *(ícones, imagens, planos de fundo)*.
 - **Exibir mesa** : Adição de um botão à direita da pesquisa nas páginas *Objetos* *Cenários* *Interações* *Widgets* e *Plugins* para mudar para o modo de mesa. Isso é armazenado por um cookie ou em **Configurações → Sistema → Configuração / Interface, Opções**. Os plugins podem usar esta nova função do Core. Vejo [Doc dev](https://doc.jeedom.com/pt_PT/dev/core4.2).

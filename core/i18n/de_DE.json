@@ -1742,7 +1742,7 @@
         "Si le niveau de charge passe en dessous de (%)": "Wenn der Ladezustand unter (%) fällt",
         "Danger": "Gefahr",
         "Scénario à éxecuter lors de la création d'un équipement": "Szenario, das beim Erstellen eines Ausrüstungsgegenstands ausgeführt werden soll",
-        "Ce scénario sera lancé pour chaque nouvelle création d'équipement. Le tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement crée.": "Dieses Szenario wird für jede neue Ausrüstungserstellung gestartet. Das Tag eqLogic_id wird an das Szenario übergeben und enthält die ID der erstellten Ausrüstung",
+        "Ce scénario sera lancé pour chaque nouvelle création d'équipement. Le tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement créé.": "Dieses Szenario wird für jede neue Ausrüstungserstellung gestartet. Das Tag eqLogic_id wird an das Szenario übergeben und enthält die ID der erstellten Ausrüstung",
         "Historique des commandes": "Bestellhistorie",
         "Afficher les statistiques sur les widgets": "Zeige Statistiken über Widgets",
         "Période de calcul pour min, max, moyenne": "Berechnungszeitraum für min, max, Durchschnitt",
