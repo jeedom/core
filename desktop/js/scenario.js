@@ -1045,6 +1045,15 @@ if (!jeeFrontEnd.scenario) {
       }
       return retour
     },
+    updateAccordionName: function() {
+      $('a.accordion-toggle').each(function() {
+        var name = $(this).attr('data-groupname')
+        var num = $(this).parents('div.panel').find('div.scenarioDisplayCard').length
+        var newName = name + ' - ' + num + ' scénario'
+        if (num > 1) newName += 's'
+        $(this).text(newName)
+      })
+    },
     //Undo management
     reloadStack: function(loadStack) {
       $('#div_scenarioElement').empty()
@@ -1321,7 +1330,6 @@ $('#bt_resetInsideScenarioSearch').on('click', function() {
 $(function() {
   try {
     $.contextMenu('destroy', $('.nav.nav-tabs'))
-
     jeedom.scenario.allOrderedByGroupObjectName({
       asGroup: 1,
       error: function(error) {
@@ -1379,6 +1387,164 @@ $(function() {
     })
   } catch (err) {}
 })
+
+//general context menu
+$(function() {
+  try {
+    $.contextMenu({
+    selector: "#accordionScenario .scenarioDisplayCard",
+    build: function($trigger) {
+      var scGroups = []
+      Object.keys(jeephp2js.scenarioListGroup).forEach(function(key) {
+        scGroups.push(jeephp2js.scenarioListGroup[key].group)
+      })
+
+      var scId = $trigger.attr('data-scenario_id')
+      var isActive = !$trigger.hasClass('inactive')
+
+      var contextmenuitems = {}
+      contextmenuitems['scId'] = {'name': 'id: ' + scId, 'id': 'scId', 'disabled': true}
+      if (isActive) {
+        contextmenuitems['disable'] = {'name': '{{Rendre inactif}}', 'id': 'disable', 'icon': 'fas fa-toggle-on'}
+      } else {
+        contextmenuitems['enable'] = {'name': '{{Rendre actif}}', 'id': 'enable', 'icon': 'fas fa-toggle-off'}
+      }
+
+      //group submenu:
+      var idx = 0
+      var items = {}
+      items['group_none'] = {
+        'name': '{{Aucun}}',
+        'id': 'group_none',
+        'jType': 'group'
+      }
+      scGroups.forEach(function(grpName) {
+        if (grpName != '') {
+          items[grpName] = {
+            'name': grpName,
+            'id': 'group_' + idx,
+            'jType': 'group'
+          }
+          idx += 1
+        }
+      })
+      contextmenuitems['groups'] = {
+        'name': '{{Groupe}}',
+        'items': items
+      }
+
+      //parent submenu
+      var items = {}
+      items[0] = {
+        'name': '<span class="label labelObjectHuman">None</span>',
+        'id': 'parent_0',
+        'jType': 'parent',
+        'jId': '',
+        'jHumanName': '{{Aucun}}',
+        'isHtmlName': true,
+      }
+      var idx = 1
+      for (var parent of jeephp2js.objectList) {
+        items[idx] = {
+          'name': parent.tag,
+          'id': 'parent_' + idx,
+          'jType': 'parent',
+          'jId': parent.id,
+          'jHumanName': parent.humanName,
+          'isHtmlName': true,
+        }
+        idx += 1
+      }
+      contextmenuitems['parents'] = {
+        'name': '{{Objet parent}}',
+        'items': items
+      }
+
+      return {
+        callback: function(key, options) {
+          if (options.commands[key].jType == 'group') {
+            if (key == 'group_none') key = null
+            var scenario = {
+              id: scId,
+              group: key
+            }
+            jeedom.scenario.save({
+              scenario : scenario,
+              error: function(error) {
+                $.fn.showAlert({message: error.message, level: 'danger'})
+              },
+              success: function(data) {
+                $('.scenarioDisplayCard[data-scenario_id="' + data.id + '"]').appendTo($('div.scenarioListContainer[data-groupName="' + key + '"]'))
+                jeeP.updateAccordionName()
+              }
+            })
+            return true
+          }
+
+          if (options.commands[key].jType == 'parent') {
+            var humanName = options.commands[key].jHumanName
+            var objectId = options.commands[key].jId
+            if (key == '0') {
+              humanName = '<span class="label labelObjectHuman">None</span>'
+            }
+            var scenario = {
+              id: scId,
+              object_id: objectId
+            }
+            jeedom.scenario.save({
+              scenario : scenario,
+              error: function(error) {
+                $.fn.showAlert({message: error.message, level: 'danger'})
+              },
+              success: function(data) {
+                $('.scenarioDisplayCard[data-scenario_id="' + data.id + '"]').find('.name .label').replaceWith(humanName)
+                $('.scenarioDisplayCard[data-scenario_id="' + data.id + '"]').find('.name .label i').remove()
+              }
+            })
+            return true
+          }
+
+          if (key == 'disable') {
+            var scenario = {
+              id: scId,
+              isActive: "0"
+            }
+            jeedom.scenario.save({
+              scenario : scenario,
+              error: function(error) {
+                $.fn.showAlert({message: error.message, level: 'danger'})
+              },
+              success: function(data) {
+                $('.scenarioDisplayCard[data-scenario_id="' + data.id + '"]').addClass('inactive')
+              }
+            })
+            return true
+          }
+
+          if (key == 'enable') {
+            var scenario = {
+              id: scId,
+              isActive: "1"
+            }
+            jeedom.scenario.save({
+              scenario : scenario,
+              error: function(error) {
+                $.fn.showAlert({message: error.message, level: 'danger'})
+              },
+              success: function(data) {
+                $('.scenarioDisplayCard[data-scenario_id="' + data.id + '"]').removeClass('inactive')
+              }
+            })
+            return true
+          }
+        },
+        items: contextmenuitems
+      }
+    }
+  })
+  } catch (err) {}
+})
+
 
 /* ---------Scenario Management UI---------- */
 var tab = null
