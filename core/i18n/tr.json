@@ -1742,7 +1742,7 @@
         "Si le niveau de charge passe en dessous de (%)": "Si le niveau de charge passe en dessous de (%)",
         "Danger": "Tehlike",
         "Scénario à éxecuter lors de la création d'un équipement": "Scénario à éxecuter lors de la création d'un équipement",
-        "Ce scénario sera lancé pour chaque nouvelle création d'équipement. Le tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement crée.": "Ce scénario sera lancé pour chaque nouvelle création d'équipement. Le tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement crée",
+        "Ce scénario sera lancé pour chaque nouvelle création d'équipement. Le tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement créé.": "Ce scénario sera lancé pour chaque nouvelle création d'équipement. Le tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement crée",
         "Historique des commandes": "Historique des commandes",
         "Afficher les statistiques sur les widgets": "Widget istatistiklerini görüntüle",
         "Période de calcul pour min, max, moyenne": "Période de calcul pour min, max, moyenne",
@@ -2581,11 +2581,11 @@
         "Inactifs": "Inactifs",
         "Export CSV": "Export CSV",
         "Rechercher | nom | id | :not(nom": "Rechercher | nom | id | :not(nom",
-        "Vider": "Boşalt",
         "Date": "Tarih",
         "Type": "Çeşit",
         "ID": "Kimlik",
-        "Nom": "İsim"
+        "Nom": "İsim",
+        "Vider": "Boşalt"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
@@ -2684,6 +2684,7 @@
         "Êtes-vous sûr de vouloir supprimer la vue": "Görünümü silmekden eminmisiniz",
         "Le nom de la viewZone ne peut être vide": "ViewZone'nun ismi boş olmayacak",
         "Largeur": "Largeur",
+        "Hauteur": "Hauteur",
         "30 min": "30 dak",
         "1 heure": "1 saat",
         "Jour": "Gün",
@@ -2708,7 +2709,7 @@
         "Variation": "Varyasyon",
         "Ligne": "Hat",
         "Aire": "Alan",
-        "Colonne": "Sütun",
+        "Barre": "Barre",
         "Camembert": "Yuvarlak grafik",
         "Aucun groupement": "Hiçbir gruplama",
         "Somme par heure": "Somme par heure",
@@ -2886,7 +2887,7 @@
         "Configuration de la commande": "Komutanın ayarları"
     },
     "desktop\/js\/report.js": {
-        "Aucun aperçu possible en pdf": "Pdf olarak önizlenim mevcut değil"
+        "Le fichier PDF ne peut pas être visualisé dans ce navigateur, veuillez le télécharger.": "Le fichier PDF ne peut pas être visualisé dans ce navigateur, veuillez le télécharger"
     },
     "desktop\/js\/migrate.js": {
         "Aucune clé USB trouvée. Veuillez insérer une clé USB.": "Aucune clé USB trouvée. Veuillez insérer une clé USB",
@@ -3045,6 +3046,8 @@
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Senaryonun çalışma logu",
         "Nom du scénario": "Nom du scénario",
+        "Êtes-vous sûr de vouloir désactiver les scénarios ?": "Êtes-vous sûr de vouloir désactiver les scénarios ?",
+        "Êtes-vous sûr de vouloir activer les scénarios ?": "Êtes-vous sûr de vouloir activer les scénarios ?",
         "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?",
         "Logs des scénarios supprimés.": "Logs des scénarios supprimés",
         "Vue d'ensemble des scénarios": "Vue d'ensemble des scénarios",
