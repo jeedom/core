@@ -18,8 +18,10 @@
 
 if (!jeeFrontEnd.object) {
   jeeFrontEnd.object = {
+    objectList: Array(),
     init: function() {
       window.jeeP = this
+      this.getObjectList()
     },
     printObject: function(_id) {
       $.hideAlert()
@@ -310,6 +312,48 @@ if (!jeeFrontEnd.object) {
       tab.empty()
       if (nbr > 0) tab.append('(' + nbr + ')')
     },
+    //-> context menu functions
+    reOrderChilds: function(_cardId) {
+      $('div.objectDisplayCard[data-father_id="' + _cardId + '"]').each(function() {
+        $('div.objectDisplayCard[data-object_id="' + _cardId + '"]').after($(this))
+        var recId = $(this).attr('data-object_id')
+        if ($('div.objectDisplayCard[data-father_id="' + recId + '"]')) jeeFrontEnd.object.reOrderChilds(recId)
+      })
+    },
+    getObjectList: function(_reorder=false) {
+      jeedom.object.all({
+        onlyVisible: 0,
+        noCache: true,
+        error: function(error) {
+          $.fn.showAlert({message: error.message, level: 'danger'})
+        },
+        success: function(data) {
+          jeeFrontEnd.object.objectList = Array()
+          var decay
+          data.forEach(function(object) {
+            decay = object.configuration.parentNumber
+            jeeFrontEnd.object.objectList.push({
+              id: object.id,
+              name: object.name,
+              father_id: object.father_id,
+              hideOnOverview: object.configuration.hideOnOverview,
+              hideOnDashboard: object.configuration.hideOnDashboard,
+              parentNumber: object.configuration.parentNumber,
+              tag: '<span class="label" style="background-color:' + object.display.tagColor + ' ;color:' + object.display.tagTextColor + '">' + '\u00A0\u00A0\u00A0'.repeat(decay) + object.name + '</span>'
+            })
+          })
+
+          if (_reorder) {
+            var $objectContainer = $('#objectPanel .objectListContainer')
+            data.forEach(function(object) {
+              decay = parseInt(jeeFrontEnd.object.objectList.filter(x => x.id == object.id)[0].parentNumber)
+              $objectContainer.find('.objectDisplayCard[data-object_id="' + object.id + '"] .name .hiddenAsCard').text('\u00A0\u00A0\u00A0'.repeat(decay))
+              $objectContainer.append($objectContainer.find('.objectDisplayCard[data-object_id="' + object.id + '"]'))
+            })
+          }
+        }
+      })
+    }
   }
 }
 
@@ -369,54 +413,244 @@ $('#bt_resetObjectSearch').on('click', function() {
 //context menu
 $(function() {
   try {
-    $.contextMenu('destroy', $('.nav.nav-tabs'))
-    jeedom.object.all({
-      onlyVisible: 0,
-      error: function(error) {
-        $.fn.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function(_objects) {
-        if (_objects.length == 0) return
-
-        var contextmenuitems = {}
-        var ob, decay
-        for (var i = 0; i < _objects.length; i++) {
-          ob = _objects[i]
-          decay = 0
-          if (isset(ob.configuration) && isset(ob.configuration.parentNumber)) {
-            decay = ob.configuration.parentNumber
-          }
-          contextmenuitems[i] = {
-            'name': '\u00A0\u00A0\u00A0'.repeat(decay) + ob.name,
-            'id': ob.id
-          }
+    $.contextMenu({
+    selector: '.nav.nav-tabs',
+    build: function($trigger) {
+      var thisObjectId = $('span.objectAttr[data-l1key="id"]').text()
+      var contextmenuitems = {}
+      var idx = 0
+      for (var object of jeeP.objectList) {
+        contextmenuitems[idx] = {
+          'name': thisObjectId == object.id ? '\u3009' + object.tag : object.tag,
+          'disabled': thisObjectId == object.id ? true : false,
+          'id': object.id,
+          'jType': 'after',
+          'jId': object.id,
+          'isHtmlName': true,
         }
-
-        $('.nav.nav-tabs').contextMenu({
-          selector: 'li',
-          autoHide: true,
-          zIndex: 9999,
-          className: 'object-context-menu',
-          callback: function(key, options, event) {
-            if (!jeedomUtils.checkPageModified()) {
-              if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
-                var url = 'index.php?v=d&p=object&id=' + options.commands[key].id
-                if (window.location.hash != '') {
-                  url += window.location.hash
-                }
-                window.open(url).focus()
-              } else {
-                jeeP.printObject(options.commands[key].id)
-              }
-            }
-          },
-          items: contextmenuitems
-        })
+        idx += 1
       }
-    })
+      return {
+        callback: function(key, options, event) {
+          if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
+            var url = 'index.php?v=d&p=object&id=' + options.commands[key].id
+            if (window.location.hash != '') {
+              url += window.location.hash
+            }
+            window.open(url).focus()
+          } else {
+            jeeP.printObject(options.commands[key].id)
+          }
+        },
+        items: contextmenuitems
+      }
+    }
+  })
+  } catch (err) {}
+})
+
+//general context menu
+$(function() {
+  try {
+    $.contextMenu({
+    selector: "#objectPanel .objectDisplayCard",
+    build: function($trigger) {
+      var thisObjectId = $trigger.attr('data-object_id')
+      var thisFatherId = $trigger.attr('data-father_id')
+      var isActive = !$trigger.hasClass('inactive')
+
+      //id, visible:
+      var contextmenuitems = {}
+      contextmenuitems['thisObjectId'] = {'name': 'id: ' + thisObjectId, 'id': 'thisObjectId', 'disabled': true}
+      if (isActive) {
+        contextmenuitems['hide'] = {'name': '{{Rendre invisible}}', 'id': 'hide', 'icon': 'fas fa-toggle-on'}
+      } else {
+        contextmenuitems['show'] = {'name': '{{Rendre visible}}', 'id': 'show', 'icon': 'fas fa-toggle-off'}
+      }
+
+      //configuration hideOnDashboard, hideOnOverview:
+      var thisObjectFromList = jeeP.objectList.filter(x => x.id == thisObjectId)[0]
+      if (thisObjectFromList.hideOnOverview == '0') {
+        contextmenuitems['hideSynthesis'] = {'name': '{{Rendre invisible sur la Synthèse}}', 'id': 'hideSynthesis', 'icon': 'fas fa-toggle-on'}
+      } else {
+        contextmenuitems['showSynthesis'] = {'name': '{{Rendre visible sur la Synthèse}}', 'id': 'showSynthesis', 'icon': 'fas fa-toggle-off'}
+      }
+      if (thisObjectFromList.hideOnDashboard == '0') {
+        contextmenuitems['hideDashboard'] = {'name': '{{Rendre invisible sur le Dashboard}}', 'id': 'hideDashboard', 'icon': 'fas fa-toggle-on'}
+      } else {
+        contextmenuitems['showDashboard'] = {'name': '{{Rendre visible sur le Dashboard}}', 'id': 'showDashboard', 'icon': 'fas fa-toggle-off'}
+      }
+
+      //parent submenu:
+      var parentItems = {}
+      parentItems[0] = {
+        'name': '<span class="label labelObjectHuman">None</span>',
+        'disabled': (thisFatherId == '') ? true : false,
+        'jType': 'parent',
+        'jId': '',
+        'isHtmlName': true,
+      }
+      var idx = 1
+      for (var object of jeeP.objectList) {
+        parentItems[idx] = {
+          'name': thisFatherId == object.id ? '\u3009' + object.tag : object.tag,
+          'disabled': (thisObjectId == object.id) ? true : false,
+          'jType': 'parent',
+          'jId': object.id,
+          'isHtmlName': true,
+        }
+        idx += 1
+      }
+      contextmenuitems['parents'] = {
+        'name': '{{Objet parent}}',
+        'items': parentItems
+      }
+
+      //position after submenu:
+      var afterItems = {}
+      for (var object of jeeP.objectList) {
+        afterItems[idx] = {
+          'name': object.tag,
+          'disabled': (thisFatherId != object.father_id || thisObjectId == object.id) ? true : false,
+          'jType': 'after',
+          'jId': object.id,
+          'isHtmlName': true,
+        }
+        idx += 1
+      }
+      contextmenuitems['after'] = {
+        'name': '{{Positionner après}}',
+        'items': afterItems
+      }
+
+      return {
+        callback: function(key, options) {
+          if (options.commands[key].jType == 'parent') {
+            var objectId = options.commands[key].jId
+            var object = {
+              id: thisObjectId,
+              father_id: objectId
+            }
+            jeedom.object.save({
+              object: object,
+              error: function(error) {
+                $.fn.showAlert({message: error.message, level: 'danger'})
+              },
+              success: function(data) {
+                var $object = $('.objectDisplayCard[data-object_id="' + data.id + '"]')
+                var span = '<span class="hiddenAsCard">' + '&nbsp;&nbsp;&nbsp;'.repeat(data.configuration.parentNumber) + '</span>' + data.name
+                $object.find('.name').empty().append(span)
+                $object.attr('data-father_id', objectId)
+                jeeP.getObjectList(true)
+              }
+            })
+            return true
+          }
+
+          if (options.commands[key].jType == 'after') {
+            var objectId = options.commands[key].jId
+
+            //move them so we can store them in right order and setOrder()
+            var afterPosition = $('.objectDisplayCard[data-object_id="' + objectId + '"]').attr('data-position')
+            $('.objectDisplayCard[data-position="' + afterPosition + '"]').after($('.objectDisplayCard[data-object_id="' + thisObjectId + '"]'))
+             jeeP.reOrderChilds(thisObjectId)
+
+            var objects = []
+            $('div.objectDisplayCard').each(function() {
+              objects.push($(this).attr('data-object_id'))
+            })
+
+            jeedom.object.setOrder({
+              objects: objects,
+              error: function(error) {
+                $.fn.showAlert({message: error.message, level: 'danger'})
+              },
+              success: function() {
+                jeeP.getObjectList(true)
+              }
+            })
+            return true
+          }
+
+          if (key == 'hide') {
+            var object = {
+              id: thisObjectId,
+              isVisible: "0"
+            }
+            jeedom.object.save({
+              object : object,
+              error: function(error) {
+                $.fn.showAlert({message: error.message, level: 'danger'})
+              },
+              success: function(data) {
+                $('.objectDisplayCard[data-object_id="' + data.id + '"]').addClass('inactive')
+              }
+            })
+            return true
+          }
+
+          if (key == 'show') {
+            var object = {
+              id: thisObjectId,
+              isVisible: "1"
+            }
+            jeedom.object.save({
+              object : object,
+              error: function(error) {
+                $.fn.showAlert({message: error.message, level: 'danger'})
+              },
+              success: function(data) {
+                $('.objectDisplayCard[data-object_id="' + data.id + '"]').removeClass('inactive')
+              }
+            })
+            return true
+          }
+
+          //hide on synthesis / dashboard:
+          if (key == 'hideSynthesis') {
+            var object = {
+              id: thisObjectId,
+              configuration: {hideOnOverview: "1"}
+            }
+            thisObjectFromList.hideOnOverview = "1"
+          }
+
+          if (key == 'showSynthesis') {
+            var object = {
+              id: thisObjectId,
+              configuration: {hideOnOverview: "0"}
+            }
+            thisObjectFromList.hideOnOverview = "0"
+          }
+
+          if (key == 'hideDashboard') {
+            var object = {
+              id: thisObjectId,
+              configuration: {hideOnDashboard: "1"}
+            }
+            thisObjectFromList.hideOnDashboard = "1"
+          }
+
+          if (key == 'showDashboard') {
+            var object = {
+              id: thisObjectId,
+              configuration: {hideOnDashboard: "0"}
+            }
+            thisObjectFromList.hideOnDashboard = "0"
+          }
+          jeedom.object.save({
+            object : object,
+            error: function(error) {
+              $.fn.showAlert({message: error.message, level: 'danger'})
+            },
+            success: function(data) {}
+          })
+          return true
+        },
+        items: contextmenuitems
+      }
+    }
+  })
   } catch (err) {}
 })
 

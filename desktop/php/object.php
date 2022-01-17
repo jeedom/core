@@ -4,6 +4,7 @@ if (!isConnect('admin')) {
 }
 $allObject = jeeObject::buildTree(null, false);
 $config_objSummary = config::byKey('object:summary');
+
 sendVarToJS([
 	'jeephp2js.selectId' => init('id', '-1'),
 	'jeephp2js.configObjSummary' => $config_objSummary
@@ -52,7 +53,8 @@ $synthToActions = array(
 					$class = '';
 					if (jeedom::getThemeConfig()['theme_displayAsTable'] == 1) $class = ' displayAsTable';
 					foreach ($allObject as $object) {
-						$echo .= '<div class="objectDisplayCard cursor'.$class.'" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="far blank"></i>') . '\'>';
+						$classViz = $object->getIsVisible() ? '' : ' inactive';
+						$echo .= '<div class="objectDisplayCard cursor'.$class.$classViz.'" data-object_id="' . $object->getId() . '" data-position="' . $object->getPosition() . '" data-father_id="' . $object->getFather_id() . '"  data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="far blank"></i>') . '\'>';
 						$echo .= $object->getDisplay('icon', '<i class="far blank"></i>');
 						$echo .= "<br/>";
 						$echo .= '<span class="name" style="background:'.$object->getDisplay('tagColor').';color:'.$object->getDisplay('tagTextColor').'">';
@@ -109,9 +111,7 @@ $synthToActions = array(
 							<div class="form-group">
 								<label class="col-sm-3 control-label">{{Options}}</label>
 								<div class="col-sm-7">
-									<label class="checkbox-inline"><input type="checkbox" class="objectAttr" data-l1key="isVisible" checked/>{{Visible}}
-										<!-- <sup><i class="fas fa-question-circle tooltips" title="{{Rendre cet objet visible ou non.}}"></i></sup> -->
-									</label>
+									<label class="checkbox-inline"><input type="checkbox" class="objectAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
 								</div>
 							</div>
 							<div class="form-group">
@@ -203,32 +203,33 @@ $synthToActions = array(
 								$plugins = plugin::listPlugin(true);
 								foreach ($plugins as $plugin) {
 									$specialAttributes = $plugin->getSpecialAttributes();
-									if(!isset($specialAttributes['object']) || !is_array($specialAttributes['object']) || count($specialAttributes['object']) == 0){
+									if (!isset($specialAttributes['object']) || !is_array($specialAttributes['object']) || count($specialAttributes['object']) == 0) {
 										continue;
 									}
-									echo '<legend><i class="fas fa-users-cog"></i> {{Informations complémentaires demandées par}} '.$plugin->getName().'</legend>';
+									$spAttr = '<legend><i class="fas fa-users-cog"></i> {{Informations complémentaires demandées par}} '.$plugin->getName().'</legend>';
 									foreach ($specialAttributes['object'] as $key => $config) {
-										echo '<div class="form-group">';
-										echo '<label class="col-sm-3 control-label">'.$config['name'][translate::getLanguage()].'</label>';
-										echo '<div class="col-sm-7">';
+										$spAttr .= '<div class="form-group">';
+										$spAttr .= '<label class="col-sm-3 control-label">'.$config['name'][translate::getLanguage()].'</label>';
+										$spAttr .= '<div class="col-sm-7">';
 										switch ($config['type']) {
 											case 'input':
-											echo '<input class="form-control objectAttr" data-l1key="configuration" data-l2key="plugin::'.$plugin->getId().'::'.$key.'"/>';
-											break;
+												$spAttr .= '<input class="form-control objectAttr" data-l1key="configuration" data-l2key="plugin::'.$plugin->getId().'::'.$key.'"/>';
+												break;
 											case 'number':
-											echo '<input type="number" class="form-control objectAttr" data-l1key="configuration" data-l2key="plugin::'.$plugin->getId().'::'.$key.'" min="'.(isset($config['min']) ? $config['min'] : '').'" max="'.(isset($config['max']) ? $config['max'] : '').'" />';
-											break;
+												$spAttr .= '<input type="number" class="form-control objectAttr" data-l1key="configuration" data-l2key="plugin::'.$plugin->getId().'::'.$key.'" min="'.(isset($config['min']) ? $config['min'] : '').'" max="'.(isset($config['max']) ? $config['max'] : '').'" />';
+												break;
 											case 'select':
-											echo '<select class="form-control objectAttr" data-l1key="configuration" data-l2key="plugin::'.$plugin->getId().'::'.$key.'">';
-											foreach ($config['values'] as $value) {
-												echo '<option value="'.$value['value'].'">'.$value['name'].'</option>';
-											}
-											echo '</select>';
-											break;
+												$spAttr .= '<select class="form-control objectAttr" data-l1key="configuration" data-l2key="plugin::'.$plugin->getId().'::'.$key.'">';
+												foreach ($config['values'] as $value) {
+													$spAttr .= '<option value="'.$value['value'].'">'.$value['name'].'</option>';
+												}
+												$spAttr .= '</select>';
+												break;
 										}
-										echo '</div>';
-										echo '</div>';
+										$spAttr .= '</div>';
+										$spAttr .= '</div>';
 									}
+									echo $spAttr;
 								}
 							} catch (\Exception $e) {
 
