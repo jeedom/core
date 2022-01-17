@@ -684,8 +684,10 @@ class jeeObject {
 		if (is_numeric($this->getFather_id()) && $this->getFather_id() == $this->getId()) {
 			throw new Exception(__('L\'objet ne peut pas être son propre parent', __FILE__));
 		}
+
 		$this->checkTreeConsistency();
 		$this->setConfiguration('parentNumber', $this->parentNumber());
+
 		if ($this->getConfiguration('tagColor') == '') {
 			$this->setConfiguration('tagColor', '#000000');
 		}
@@ -707,7 +709,19 @@ class jeeObject {
 			$this->setCache('summaryHtmldashboard', '');
 			$this->setCache('summaryHtmlmobile', '');
 		}
-		return DB::save($this, $_direct);
+
+		$return = DB::save($this, $_direct);
+
+		//check childs parentNumber consistency:
+		foreach (($this->getChild(false)) as $child) {
+			$currentPnum = $child->getConfiguration('parentNumber');
+			$newPnum =  $child->parentNumber();
+			if ($currentPnum != $newPnum) {
+				$child->setConfiguration('parentNumber', $newPnum);
+				$child->save($_direct);
+			}
+		}
+		return $return;
 	}
 
 	public function getChild($_visible = true) {

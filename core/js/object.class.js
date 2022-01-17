@@ -87,7 +87,7 @@ jeedom.object.all = function(_params) {
     return;
   }
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  if (isset(jeedom.object.cache.all) && !isset(_params.onlyHasEqLogic)) {
+  if (isset(jeedom.object.cache.all) && !isset(_params.onlyHasEqLogic) && init(params.noCache, false) == false) {
     params.success(jeedom.object.cache.all);
     return;
   }
