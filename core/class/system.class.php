@@ -401,13 +401,6 @@ class system {
 			$count++;
 			$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
 		}
-		if ($_foreground) {
-			echo shell_exec(self::getCmdSudo() . " apt update 2>&1");
-		} else {
-			$cmd .= self::getCmdSudo() . " apt update\n";
-			$count++;
-			$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
-		}
 		if (isset($_packages['pre-install'])) {
 			if (isset($_packages['pre-install']['script'])) {
 				if ($_foreground) {
@@ -420,6 +413,13 @@ class system {
 					$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
 				}
 			}
+		}
+		if ($_foreground) {
+			echo shell_exec(self::getCmdSudo() . " apt update 2>&1");
+		} else {
+			$cmd .= self::getCmdSudo() . " apt update\n";
+			$count++;
+			$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
 		}
 		$has_something_todo = false;
 		foreach ($return as $package => $info) {
