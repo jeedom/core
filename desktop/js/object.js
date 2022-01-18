@@ -270,6 +270,9 @@ function loadObjectConfiguration(_id) {
       $('.objectAttr').value('')
       $('.objectAttr[data-l1key=father_id] option').show()
       $('#summarytab input[type=checkbox]').value(0)
+      if (!isset(data.configuration['info::type'])) {
+        data.configuration['info::type'] = 'room'
+      }
       $('.object').setValues(data, '.objectAttr')
 
       if (!isset(data.configuration.hideOnOverview)) {

@@ -501,7 +501,7 @@
         "Commandes": "Comandos",
         "Paramètres d'affichage de chaque commande.<br>Pour l'affichage en disposition standard, l'ordre des commandes est modifiable par glisser-déposer.": "Configuración de pantalla para cada comando. <br> Para la visualización en diseño estándar, el orden de los comandos se puede modificar arrastrando y soltando",
         "Type générique": "Tipo genérico",
-        "Widget": "Widget",
+        "Widget": "Widgets",
         "Afficher le nom": "Mostrar el nombre",
         "Afficher le nom ET l\\'icône": "Mostrar nombre e ícono",
         "Afficher les statistiques": "Mostrar estadísticas",
@@ -758,7 +758,7 @@
         "En": "En",
         "si": "Si",
         "Pendant plus de": "Por más de",
-        "Widget": "Widget",
+        "Widget": "Widgets",
         "Appliquer à": "Aplicar",
         "Afficher le nom": "Mostrar el nombre",
         "Afficher le nom ET l'icône": "Mostrar el nombre y el icono",
@@ -971,7 +971,7 @@
         "Barre": "Cerrada",
         "Couleur": "Color",
         "Hauteur fixe (px)": "Altura fija (px)",
-        "Widget": "Widget",
+        "Widget": "Widgets",
         "Defaut": "General",
         "Transparent": "Transparente",
         "Paramètres optionnels sur la tuile": "Parámetros opcionales en la teja",
@@ -1742,7 +1742,7 @@
         "Si le niveau de charge passe en dessous de (%)": "Si el nivel de carga cae por debajo de (%)",
         "Danger": "Peligro",
         "Scénario à éxecuter lors de la création d'un équipement": "Escenario a ejecutar al crear un equipo",
-        "Ce scénario sera lancé pour chaque nouvelle création d'équipement. Le tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement crée.": "Este escenario se lanzará para cada nueva creación de equipos. La etiqueta eqLogic_id se pasará al escenario y contendrá la identificación del equipo creado",
+        "Ce scénario sera lancé pour chaque nouvelle création d'équipement. Le tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement créé.": "Este escenario se lanzará para cada nueva creación de equipos. La etiqueta eqLogic_id se pasará al escenario y contendrá la identificación del equipo creado",
         "Historique des commandes": "Historial de pedidos",
         "Afficher les statistiques sur les widgets": "Ver las estadísticas de los widgets",
         "Période de calcul pour min, max, moyenne": "Período de cálculo para min, max, promedio",
@@ -2887,7 +2887,7 @@
         "Configuration de la commande": "Configuración del comando"
     },
     "desktop\/js\/report.js": {
-        "Aucun aperçu possible en pdf": "Sin vista previa disponible en pdf"
+        "Le fichier PDF ne peut pas être visualisé dans ce navigateur, veuillez le télécharger.": "El archivo PDF no se puede ver en este navegador, descárguelo"
     },
     "desktop\/js\/migrate.js": {
         "Aucune clé USB trouvée. Veuillez insérer une clé USB.": "No se encontró llave USB. Inserte una memoria USB",

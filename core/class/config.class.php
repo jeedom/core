@@ -285,8 +285,7 @@ class config {
 	public static function getGenericTypes($_coreOnly = false) {
 		$types = array(
 			'byType',
-			'byFamily
-		'
+			'byFamily'
 		);
 
 		foreach ((jeedom::getConfiguration('cmd::generic_type')) as $key => $info) {

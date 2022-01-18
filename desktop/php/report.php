@@ -92,7 +92,7 @@ $report_path = __DIR__ . '/../../data/report/';
 				<br/>
 				<div class="input-group floatingbar" style="display:inline-flex;">
 					<div class="input-group-btn">
-						<a class="btn btn-success btn-sm roundedLeftt" id="bt_download"><i class="fas fa-download"></i> {{Télécharger}}
+						<a class="btn btn-success btn-sm roundedLeft" id="bt_download"><i class="fas fa-download"></i> {{Télécharger}}
 						</a><a class="btn btn-warning btn-sm" id="bt_remove"><i class="fa fa-minus-circle"></i> {{Supprimer}}
 						</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeAll"><i class="fas fa-trash"></i> {{Tout supprimer}}</a>
 					</div>

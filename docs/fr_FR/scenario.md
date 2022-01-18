@@ -263,7 +263,7 @@ Un tag est remplacé lors de l’exécution du scénario par sa valeur. Vous pou
 
 > **Tip**
 >
-> Pour avoir les zéros initiaux à l’affichage, il faut utiliser la fonction Date(). Voir [ici](http://php.net/manual/fr/function.date.php).
+> Pour avoir les zéros initiaux à l’affichage, il faut utiliser la fonction Date(). Voir [ici](https://www.php.net/manual/fr/datetime.format.php).
 
 - ``#seconde#`` : Seconde courante (sans les zéros initiaux, ex : 6 pour 08:07:06).
 - ``#hour#`` : Heure courante au format 24h (sans les zéros initiaux). Ex : 8 pour 08:07:06 ou 17 pour 17:15.
@@ -349,11 +349,11 @@ Plusieurs fonctions sont disponibles pour les équipements :
 - ``lastScenarioExecution(scenario)`` : Donne la durée en secondes depuis le dernier lancement du scénario.
     0 : Le scénario n'existe pas
 
-- ``collectDate(cmd,[format])`` : Renvoie la date de la dernière collecte de données pour la commande placée en paramètre, le 2ème paramètre optionnel permet de spécifier le format de retour (détails [ici](http://php.net/manual/fr/function.date.php)).
+- ``collectDate(cmd,[format])`` : Renvoie la date de la dernière collecte de données pour la commande placée en paramètre, le 2ème paramètre optionnel permet de spécifier le format de retour (détails [ici](https://www.php.net/manual/fr/datetime.format.php)).
     -1 : La commande est introuvable,
     -2 : La commande n’est pas de type info.
 
-- ``valueDate(cmd,[format])`` : Renvoie la date de la dernière valeur connue pour la commande placée en paramètre, le 2ème paramètre optionnel permet de spécifier le format de retour (détails [ici](http://php.net/manual/fr/function.date.php)).
+- ``valueDate(cmd,[format])`` : Renvoie la date de la dernière valeur connue pour la commande placée en paramètre, le 2ème paramètre optionnel permet de spécifier le format de retour (détails [ici](https://www.php.net/manual/fr/datetime.format.php)).
     -1 : La commande est introuvable,
     -2 : La commande n’est pas de type info.
 
@@ -368,7 +368,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
 
 - ``name(type,commande)`` : Permet de récupérer le nom de la commande, de l’équipement ou de l’objet. Type : cmd, eqLogic ou object.
 
-- ``lastCommunication(equipment,[format])`` : Renvoie la date de la dernière communication pour l'équipement donné en paramètre, le 2ème paramètre optionnel permet de spécifier le format de retour (détails [ici](http://php.net/manual/fr/function.date.php)). Un retour de -1 signifie que l’équipement est introuvable.
+- ``lastCommunication(equipment,[format])`` : Renvoie la date de la dernière communication pour l'équipement donné en paramètre, le 2ème paramètre optionnel permet de spécifier le format de retour (détails [ici](https://www.php.net/manual/fr/datetime.format.php)). Un retour de -1 signifie que l’équipement est introuvable.
 
 - ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Renvoie une couleur calculée par rapport à une valeur dans l'intervalle couleur_debut/couleur_fin. La valeur doit être comprise entre valeur_min et valeur_max.
 

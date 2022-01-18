@@ -82,8 +82,14 @@ try {
 		$pathfile = jeedom::getTmpFolder('downloads') . '/archive.tar.gz';
 	}
 	$path_parts = pathinfo($pathfile);
-	header('Content-Type: application/octet-stream');
-	header('Content-Disposition: attachment; filename=' . $path_parts['basename']);
+	if ($path_parts['extension'] == 'pdf') {
+		header('Content-Type: application/pdf');
+		header('Content-Disposition: inline; filename=' . $path_parts['basename']);
+	}
+	else {
+		header('Content-Type: application/octet-stream');
+		header('Content-Disposition: attachment; filename=' . $path_parts['basename']);
+	}
 	readfile($pathfile);
 	if (file_exists(jeedom::getTmpFolder('downloads') . '/archive.tar.gz')) {
 		unlink(jeedom::getTmpFolder('downloads') . '/archive.tar.gz');
