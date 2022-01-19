@@ -111,7 +111,7 @@ include_file('3rdparty', 'jquery.tablesorter/_jeedom/pager-custom-constrols', 'j
       //timeline:
       $tr .= '<td>';
       $tr .= '<input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" '.(($cmd->getConfiguration('timeline::enable')) ? 'checked' : '').' />';
-      $tr .= ' <input class="cmdAttr input-xs form-control" data-l1key="configuration" data-l2key="timeline::folder" value="'.$cmd->getConfiguration('timeline::folder').'" style="width:80%;display:inline-block" placeholer="{{Dossier}}"/>';
+      $tr .= ' <input class="cmdAttr input-xs form-control" data-l1key="configuration" data-l2key="timeline::folder" value="'.$cmd->getConfiguration('timeline::folder').'" style="width:80%;display:inline-block" />';
       $tr .= '</td>';
 
       //Invert:
@@ -243,6 +243,13 @@ function setTableParser() {
     })
     return false
   })
+
+  $('#table_cmdConfigureHistory input[data-l2key="timeline::folder"]').each(function() {
+    if ($(this).val() == '') {
+      $(this).attr('placeholder', '{{Dossier}}')
+    }
+  })
+
 }
 
 $(function() {
