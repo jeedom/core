@@ -853,7 +853,6 @@
         "Lissage": "Smoothing",
         "Purge": "Purge",
         "Action": "Action",
-        "Dossier": "Folder",
         "Moyenne": "Average",
         "Minimum": "Minimum",
         "Maximum": "Maximum",
@@ -869,7 +868,8 @@
         "Jamais": "Never",
         "Configuration de la commande": "Command setup",
         "Exporter la commande": "Export the command",
-        "Modifications sauvegardées avec succès": "Changes successfully saved"
+        "Modifications sauvegardées avec succès": "Changes successfully saved",
+        "Dossier": "Folder"
     },
     "desktop\/modal\/scenario.jsonEdit.php": {
         "Aucun scénario ne correspondant à :": "No scenario corresponding to:",

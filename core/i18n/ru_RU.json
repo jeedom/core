@@ -853,7 +853,6 @@
         "Lissage": "Lissage",
         "Purge": "Purge",
         "Action": "Действие",
-        "Dossier": "запись",
         "Moyenne": "Средний",
         "Minimum": "Минимум",
         "Maximum": "Максимум",
@@ -869,7 +868,8 @@
         "Jamais": "Никогда",
         "Configuration de la commande": "управляющий набор",
         "Exporter la commande": "Экспортировать заказ",
-        "Modifications sauvegardées avec succès": "Изменения успешно сохранены"
+        "Modifications sauvegardées avec succès": "Изменения успешно сохранены",
+        "Dossier": "запись"
     },
     "desktop\/modal\/scenario.jsonEdit.php": {
         "Aucun scénario ne correspondant à :": "Нет сценария, соответствующего:",
