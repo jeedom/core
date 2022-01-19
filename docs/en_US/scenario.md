@@ -263,7 +263,7 @@ A tag is replaced during the execution of the scenario by its value. You can use
 
 > **Tip**
 >
-> To have the leading zeros displayed, use the Date () function. See [here](http://php.net/manual/fr/function.date.php).
+> To have the leading zeros displayed, use the Date () function. See [here](https://www.php.net/manual/fr/datetime.format.php).
 
 - ``#seconde#`` : Current second (without leading zeros, ex : 6 for 08:07:06).
 - ``#hour#`` : Current time in 24h format (without leading zeros). Ex : 8 for 08:07:06 or 17 for 17:15.
@@ -349,11 +349,11 @@ Several functions are available for the equipment :
 - ``lastScenarioExecution(scenario)`` : Gives the duration in seconds since the last launch of the scenario.
     0 : The scenario does not exist
 
-- ``collectDate(cmd,[format])`` : Returns the date of the last data collection for the command placed as a parameter, the 2nd optional parameter is used to specify the return format (details [here](http://php.net/manual/fr/function.date.php)).
+- ``collectDate(cmd,[format])`` : Returns the date of the last data collection for the command placed as a parameter, the 2nd optional parameter is used to specify the return format (details [here](https://www.php.net/manual/fr/datetime.format.php)).
     -1 : The command could not be found,
     -2 : The command is not of type info.
 
-- ``valueDate(cmd,[format])`` : Returns the date of the last known value for the command placed as a parameter, the 2nd optional parameter is used to specify the return format (details [here](http://php.net/manual/fr/function.date.php)).
+- ``valueDate(cmd,[format])`` : Returns the date of the last known value for the command placed as a parameter, the 2nd optional parameter is used to specify the return format (details [here](https://www.php.net/manual/fr/datetime.format.php)).
     -1 : The command could not be found,
     -2 : The command is not of type info.
 
@@ -368,7 +368,7 @@ Several functions are available for the equipment :
 
 - ``name(type,commande)`` : Used to retrieve the name of the command, equipment or object. Type : cmd, eqLogic or object.
 
-- ``lastCommunication(equipment,[format])`` : Returns the date of the last communication for the device given as a parameter, the 2nd optional parameter is used to specify the return format (details [here](http://php.net/manual/fr/function.date.php)). A return of -1 means that the equipment cannot be found.
+- ``lastCommunication(equipment,[format])`` : Returns the date of the last communication for the device given as a parameter, the 2nd optional parameter is used to specify the return format (details [here](https://www.php.net/manual/fr/datetime.format.php)). A return of -1 means that the equipment cannot be found.
 
 - ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Returns a color calculated relative to a value in the interval color_start / color_end. The value must be between min_value and max_value.
 
