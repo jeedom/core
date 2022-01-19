@@ -202,19 +202,7 @@ $('.cmdAttr').on('change click', function() {
   $(this).closest('tr').attr('data-change', '1')
 })
 
-$('#bt_canceltimeline').on('click', function() {
-  $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function() {
-    $(this).prop('checked', false)
-    $(this).closest('tr').attr('data-change','1')
-  })
-})
 
-$('#bt_applytimeline').on('click', function() {
-  $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function() {
-    $(this).prop('checked', true)
-    $(this).closest('tr').attr('data-change','1')
-  })
-})
 
 $('select[data-l2key="historyPurge"]').on('change', function(){
   $tableCmdConfigureHistory.trigger('updateCell', [$(this).parent()])
@@ -237,7 +225,23 @@ function setTableParser() {
       if (s == '-2 years') return 730
       if (s == '-3 years') return 1095
     },
-    type: 'numeric'
+    type: 'numeric',
+  })
+
+  $('#bt_canceltimeline').on('mousedown', function(event) {
+    $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function() {
+      $(this).prop('checked', false)
+      $(this).closest('tr').attr('data-change','1')
+    })
+    return false
+  })
+
+  $('#bt_applytimeline').on('mousedown', function(event) {
+    $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function() {
+      $(this).prop('checked', true)
+      $(this).closest('tr').attr('data-change','1')
+    })
+    return false
   })
 }
 
