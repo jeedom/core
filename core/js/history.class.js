@@ -971,7 +971,7 @@ jeedom.history.drawChart = function(_params) {
                 x: 0
               },
               navigator: {
-                enabled: true
+                enabled: _params.showNavigator,
               }
             }, false)
             //add axis to chart:
