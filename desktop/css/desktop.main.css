@@ -2334,10 +2334,11 @@ Desktop
     margin-top: 14px;
     height: 100%;
     top: 0;
+    z-index: 12;
   }
   #timelineContainer div.type {
     width: 30%;
-    display: inline-block
+    display: inline-block;
   }
   #timelineContainer div.html {
     width: 70%;
