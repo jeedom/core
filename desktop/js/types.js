@@ -314,7 +314,7 @@ $('.bt_resetCmdsTypes').on('click', function(event) {
 //Auto apply
 $('.bt_queryCmdsTypes').off('click').on('click', function() {
   var genFamilyId = $(this).closest('div.eqlogicSortable').attr('data-id')
-  var genFamily = jeeP.gen_families[genFamilyId]
+  var genFamily = gen_families[genFamilyId]
 
   //Get selected eqLogics and all their cmd data:
   var queryEqIds = {}
