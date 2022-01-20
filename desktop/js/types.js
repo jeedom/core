@@ -22,7 +22,6 @@ if (!jeeFrontEnd.types) {
       window.jeeP = this
       this.generics = jeephp2js.generics
       this.gen_families = jeephp2js.gen_families
-
       this.genericsByFamily = {}
       for (var i in this.gen_families) {
         this.genericsByFamily[this.gen_families[i]] = {}
@@ -409,8 +408,8 @@ $('.bt_resetCmdsTypes').on('click', function(event) {
 
 //Auto apply
 $('.bt_queryCmdsTypes').off('click').on('click', function() {
-  var genFamily = $(this).closest('div.eqlogicSortable').attr('data-id')
-  genFamily = jeeP.gen_families[genFamily]
+  var genFamilyId = $(this).closest('div.eqlogicSortable').attr('data-id')
+  var genFamily = jeeP.gen_families[genFamilyId]
 
   //Get selected eqLogics and all their cmd data:
   var queryEqIds = {}
@@ -496,7 +495,7 @@ $('.bt_queryCmdsTypes').off('click').on('click', function() {
   }).dialog('open')
 
   var container = $('#md_applyCmdsTypes .maincontainer')
-  container.attr('data-generic', genFamily)
+  container.attr('data-generic', genFamilyId)
   var inner = '<br/>'
   var eqName, cmdName, thisCmd, thisClass, select
   for (var _id in queryEqIds) {
@@ -538,14 +537,14 @@ $('#md_applyCmdsTypes').on({
 
 $('#bt_applyCmdsTypes').off('click').on('click', function() {
   var container = $('#md_applyCmdsTypes .maincontainer')
-  var genFamily = container.attr('data-generic')
+  var genFamilyId = container.attr('data-generic')
   var queryEq, genericName
   container.find('.queryCmd').each(function() {
     queryEq = $(this)
     if ($(this).find('.cb_selCmd').is(':checked')) {
       genericName = $(this).find('.modalCmdGenericSelect option:selected').text()
-      if (genericName != '{{Aucun}}') genericName = genFamily + jeephp2js.typeStringSep + genericName
-      $('div.eqlogicSortable[data-id="' + genFamily + '"] li.cmd[data-id="' + $(this).attr('data-id') + '"]').attr({
+      if (genericName != '{{Aucun}}') genericName = genFamilyId + jeephp2js.typeStringSep + genericName
+      $('div.eqlogicSortable[data-id="' + genFamilyId + '"] li.cmd[data-id="' + $(this).attr('data-id') + '"]').attr({
         'data-changed': '1',
         'data-generic': $(this).find('.modalCmdGenericSelect').val()
       }).find('span.genericType').text(genericName)
