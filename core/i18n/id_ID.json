@@ -195,7 +195,7 @@
         "Mobile masqué": "Mobile masqué",
         "Options": "Pilihan",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "Apakah Anda yakin ingin menghapus \\ 's objek",
-        "Modification sauvegardées avec succès": "Modification sauvegardées avec succès"
+        "Modification sauvegardée avec succès": "Modification sauvegardée avec succès"
     },
     "desktop\/modal\/planHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
@@ -1161,7 +1161,7 @@
         "La demande ne peut être vide": "Permintaan tidak boleh kosong"
     },
     "desktop\/modal\/cmd.selectMultiple.php": {
-        "Aucune commande trouvées": "Aucune commande trouvées",
+        "Aucune commande trouvée": "Aucune commande trouvée",
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Inverser": "Membalikkan",
         "Valider": "Mengesahkan",
@@ -1196,7 +1196,7 @@
         "Sauvegarder": "Menyimpan",
         "Type": "Jenis",
         "Nom": "Nama",
-        "Modification sauvegardées avec succès": "Modification sauvegardées avec succès"
+        "Modification sauvegardée avec succès": "Modification sauvegardée avec succès"
     },
     "desktop\/modal\/plan.configure.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
@@ -1388,7 +1388,7 @@
         "Utilisateurs": "Pengguna",
         "Moteur de tâches": "Mesin tugas",
         "Personnalisation avancée": "Kustomisasi canggih",
-        "Editeur de fichier": "Editeur de fichier",
+        "Editeur de fichiers": "Editeur de fichiers",
         "Redémarrer": "Mulai lagi",
         "Eteindre": "Mematikan",
         "Préférences": "Préférences",
@@ -1671,7 +1671,7 @@
         "IP": "IP",
         "Mac": "Mac",
         "Désactiver la gestion du réseau par": "Désactiver la gestion du réseau par",
-        "Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)": "Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)",
+        "Masque IP local (uniquement pour des installations type docker, sous la forme 192.168.1.*)": "Masque IP local (uniquement pour des installations type docker, sous la forme 192.168.1.*)",
         "Gestion DNS": "Gestion DNS",
         "Attention : cette fonctionnalité n\\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le": "Attention : cette fonctionnalité n\\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le",
         "Utiliser les DNS": "Utiliser les DNS",

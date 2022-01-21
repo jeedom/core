@@ -195,7 +195,7 @@
         "Mobile masqué": "非表示のモバイル",
         "Options": "オプション",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "オブジェクトを削除してもよろしいですか",
-        "Modification sauvegardées avec succès": "変更が保存されました"
+        "Modification sauvegardée avec succès": "Modification sauvegardée avec succès"
     },
     "desktop\/modal\/planHeader.configure.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
@@ -1161,7 +1161,7 @@
         "La demande ne peut être vide": "リクエストを空にすることはできません"
     },
     "desktop\/modal\/cmd.selectMultiple.php": {
-        "Aucune commande trouvées": "注文が見つかりません",
+        "Aucune commande trouvée": "Aucune commande trouvée",
         "401 - Accès non autorisé": "401-不正アクセス",
         "Inverser": "逆",
         "Valider": "検証",
@@ -1196,7 +1196,7 @@
         "Sauvegarder": "セーブ",
         "Type": "タイプ",
         "Nom": "表題",
-        "Modification sauvegardées avec succès": "変更が保存されました"
+        "Modification sauvegardée avec succès": "Modification sauvegardée avec succès"
     },
     "desktop\/modal\/plan.configure.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
@@ -1388,7 +1388,7 @@
         "Utilisateurs": "ユーザー",
         "Moteur de tâches": "タスクエンジン",
         "Personnalisation avancée": "高度なカスタマイズ",
-        "Editeur de fichier": "Editeur de fichier",
+        "Editeur de fichiers": "Editeur de fichiers",
         "Redémarrer": "再起動",
         "Eteindre": "オフスイッチ",
         "Préférences": "好み",
@@ -1671,7 +1671,7 @@
         "IP": "IP",
         "Mac": "マック",
         "Désactiver la gestion du réseau par": "ネットワーク管理を無効にする",
-        "Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)": "ローカルIPマスク（ドッカータイプのインストールでのみ、192.168.1の形式で使用できます。*）",
+        "Masque IP local (uniquement pour des installations type docker, sous la forme 192.168.1.*)": "Masque IP local (uniquement pour des installations type docker, sous la forme 192.168.1.*)",
         "Gestion DNS": "Gestion DNS",
         "Attention : cette fonctionnalité n\\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le": "注：この機能は、コミュニティサービスパックでは使用できません（サービスパックのプロファイルページで参照してください",
         "Utiliser les DNS": "DNSを使用する",

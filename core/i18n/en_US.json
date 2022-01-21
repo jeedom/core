@@ -195,7 +195,7 @@
         "Mobile masqué": "Hidden mobile",
         "Options": "Options",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "Are you sure you want to delete the object",
-        "Modification sauvegardées avec succès": "Changes successfully saved"
+        "Modification sauvegardée avec succès": "Change saved successfully"
     },
     "desktop\/modal\/planHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -1161,7 +1161,7 @@
         "La demande ne peut être vide": "The request cannot be empty"
     },
     "desktop\/modal\/cmd.selectMultiple.php": {
-        "Aucune commande trouvées": "No command found",
+        "Aucune commande trouvée": "No commands found",
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Inverser": "Invert",
         "Valider": "Validate",
@@ -1196,7 +1196,7 @@
         "Sauvegarder": "Save",
         "Type": "Type",
         "Nom": "Name",
-        "Modification sauvegardées avec succès": "Changes successfully saved"
+        "Modification sauvegardée avec succès": "Change saved successfully"
     },
     "desktop\/modal\/plan.configure.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -1388,7 +1388,7 @@
         "Utilisateurs": "Users",
         "Moteur de tâches": "Task engine",
         "Personnalisation avancée": "Advanced customization",
-        "Editeur de fichier": "File editor",
+        "Editeur de fichiers": "File editor",
         "Redémarrer": "Restart",
         "Eteindre": "Turn off",
         "Préférences": "Preferences",
@@ -1671,7 +1671,7 @@
         "IP": "IPs",
         "Mac": "Mac",
         "Désactiver la gestion du réseau par": "Disable the network management by",
-        "Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)": "Local IP mask (useful only for docker type installations, in the form 192.168.1. *)",
+        "Masque IP local (uniquement pour des installations type docker, sous la forme 192.168.1.*)": "Local IP mask (only for docker type installations, in the form 192.168.1.*)",
         "Gestion DNS": "DNS management",
         "Attention : cette fonctionnalité n\\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le": "Please note: this feature is not available in the community service pack (see your service pack on your profile page on the",
         "Utiliser les DNS": "Use DNS",
@@ -1928,7 +1928,7 @@
         "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "WARNING : these operations are risky, you may lose access to your system and to",
         "L'équipe": "Team",
         "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "reserves the right to refuse any support Request in case of mishandling",
-        "Editeur de fichiers": "File Editor",
+        "Editeur de fichiers": "File editor",
         "Ouvrir": "Open",
         "Administration Système": "System Administration",
         "Interface d’administration système.": "System administration interface",

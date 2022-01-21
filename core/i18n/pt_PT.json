@@ -195,7 +195,7 @@
         "Mobile masqué": "Celular oculto",
         "Options": "Opções",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "Tem certeza de que deseja excluir o objeto 's \\",
-        "Modification sauvegardées avec succès": "Alterações salvas com sucesso"
+        "Modification sauvegardée avec succès": "Alteração salva com sucesso"
     },
     "desktop\/modal\/planHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -1161,7 +1161,7 @@
         "La demande ne peut être vide": "O pedido não pode estar vazio"
     },
     "desktop\/modal\/cmd.selectMultiple.php": {
-        "Aucune commande trouvées": "Nenhum pedido encontrado",
+        "Aucune commande trouvée": "Nenhum comando encontrado",
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Inverser": "Inverter",
         "Valider": "Validar",
@@ -1196,7 +1196,7 @@
         "Sauvegarder": "Salvar",
         "Type": "Tipo",
         "Nom": "Nome",
-        "Modification sauvegardées avec succès": "Alterações salvas com sucesso"
+        "Modification sauvegardée avec succès": "Alteração salva com sucesso"
     },
     "desktop\/modal\/plan.configure.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -1388,7 +1388,7 @@
         "Utilisateurs": "Usuários",
         "Moteur de tâches": "Mecanismo de tarefas",
         "Personnalisation avancée": "A personalização avançada",
-        "Editeur de fichier": "Editor de arquivos",
+        "Editeur de fichiers": "Editor de arquivos",
         "Redémarrer": "Restart",
         "Eteindre": "Desligar",
         "Préférences": "Preferências",
@@ -1671,7 +1671,7 @@
         "IP": "IP",
         "Mac": "MAC",
         "Désactiver la gestion du réseau par": "Desative o gerenciamento de rede por",
-        "Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)": "Máscara IP local (útil apenas para instalações do tipo docker, no formato 192.168.1. *)",
+        "Masque IP local (uniquement pour des installations type docker, sous la forme 192.168.1.*)": "Máscara IP local (somente para instalações do tipo docker, no formato 192.168.1.*)",
         "Gestion DNS": "Gerenciamento de DNS",
         "Attention : cette fonctionnalité n\\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le": "Observe: esse recurso não está disponível no service pack comunitário (consulte o service pack na página do seu perfil na",
         "Utiliser les DNS": "Use DNS",
@@ -1928,7 +1928,7 @@
         "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "AVISO: essas operações são arriscadas, você pode perder o acesso ao seu sistema e",
         "L'équipe": "A equipe",
         "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "reserva-se o direito de recusar qualquer solicitação de suporte em caso de manuseio inadequado",
-        "Editeur de fichiers": "Editor de arquivo",
+        "Editeur de fichiers": "Editor de arquivos",
         "Ouvrir": "Abrir",
         "Administration Système": "Administração do sistema",
         "Interface d’administration système.": "Interface de administração do sistema",
