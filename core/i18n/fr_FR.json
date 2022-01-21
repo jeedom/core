@@ -1161,7 +1161,7 @@
         "La demande ne peut être vide": "La demande ne peut être vide"
     },
     "desktop\/modal\/cmd.selectMultiple.php": {
-        "Aucune commande trouvées": "Aucune commande trouvées",
+        "Aucune commande trouvée": "Aucune commande trouvée",
         "401 - Accès non autorisé": "401 - Accès non autorisé",
         "Inverser": "Inverser",
         "Valider": "Valider",
@@ -1196,7 +1196,7 @@
         "Sauvegarder": "Sauvegarder",
         "Type": "Type",
         "Nom": "Nom",
-        "Modification sauvegardées avec succès": "Modification sauvegardées avec succès"
+        "Modification sauvegardée avec succès": "Modification sauvegardée avec succès"
     },
     "desktop\/modal\/plan.configure.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
@@ -1374,7 +1374,7 @@
         "Widgets": "Widgets",
         "Types d'équipement": "Types d'équipement",
         "Notes": "Notes",
-        "Testeur expression": "Testeur expression",
+        "Testeur expressions": "Testeur expressions",
         "Variables": "Variables",
         "Recherche": "Recherche",
         "Plugins": "Plugins",
@@ -1388,7 +1388,7 @@
         "Utilisateurs": "Utilisateurs",
         "Moteur de tâches": "Moteur de tâches",
         "Personnalisation avancée": "Personnalisation avancée",
-        "Editeur de fichier": "Editeur de fichier",
+        "Editeur de fichiers": "Editeur de fichiers",
         "Redémarrer": "Redémarrer",
         "Eteindre": "Eteindre",
         "Préférences": "Préférences",
@@ -1671,7 +1671,7 @@
         "IP": "IP",
         "Mac": "Mac",
         "Désactiver la gestion du réseau par": "Désactiver la gestion du réseau par",
-        "Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)": "Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)",
+        "Masque IP local (uniquement pour des installations type docker, sous la forme 192.168.1.*)": "Masque IP local (uniquement pour des installations type docker, sous la forme 192.168.1.*)",
         "Gestion DNS": "Gestion DNS",
         "Attention : cette fonctionnalité n\\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le": "Attention : cette fonctionnalité n\\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le",
         "Utiliser les DNS": "Utiliser les DNS",
