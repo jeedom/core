@@ -25,7 +25,7 @@ if(is_object($cmd)){
   $listeCmds = cmd::byTypeSubType(init('type'), init('subtype'));
 }
 if(!is_array($listeCmds) || count($listeCmds) == 0){
-  throw new Exception(__('Aucune commande trouvées',__FILE__));
+  throw new Exception(__('Aucune commande trouvée',__FILE__));
 }
 ?>
 

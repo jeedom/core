@@ -468,7 +468,7 @@ function setTheme() {
 												<li><a href="index.php?v=d&p=cron"><i class="fas fa-tasks warning"></i> {{Moteur de tâches}}</a></li>
 												<li><a href="index.php?v=d&p=editor&type=custom"><i class="fas fa-pencil-alt warning"></i> {{Personnalisation avancée}}</a></li>
 												<?php if (isConnect('admin')) {
-													echo '<li class="cursor"><a href="index.php?v=d&p=editor"><i class="fas fa-folder-open warning"></i> {{Editeur de fichier}}</a></li>';
+													echo '<li class="cursor"><a href="index.php?v=d&p=editor"><i class="fas fa-folder-open warning"></i> {{Editeur de fichiers}}</a></li>';
 												} ?>
 												<li class="divider"></li>
 												<?php if (jeedom::isCapable('sudo') && isConnect('admin')) {

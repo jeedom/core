@@ -119,7 +119,7 @@ $('#bt_saveMassEdit').off('click').on('click',function() {
       $('#div_alertMassEdit').showAlert({message: error.message, level: 'danger'})
     },
     success : function(data) {
-      $('#div_alertMassEdit').showAlert({message: '{{Modification sauvegardées avec succès}}', level: 'success'})
+      $('#div_alertMassEdit').showAlert({message: '{{Modification sauvegardée avec succès}}', level: 'success'})
     }
   })
 })
