@@ -173,7 +173,7 @@ $('#bt_saveSummaryObject').off('click').on('click',function() {
       $('#div_alertObjectSummary').showAlert({message: error.message, level: 'danger'})
     },
     success : function(data) {
-      $('#div_alertObjectSummary').showAlert({message: '{{Modification sauvegardées avec succès}}', level: 'success'})
+      $('#div_alertObjectSummary').showAlert({message: '{{Modification sauvegardée avec succès}}', level: 'success'})
 
       //update object page list:
       var $objectContainer = $('#objectPanel .objectListContainer')
