@@ -29,15 +29,15 @@ try {
 	echo "***************Start of Jeedom backup at " . date('Y-m-d H:i:s') . "***************\n";
 	
 	try {
-		echo "Envoi l'évènement de début de sauvegarde...";
+		echo "Send begin backup event...";
 		jeedom::event('begin_backup', true);
 		echo "OK\n";
 	} catch (Exception $e) {
-		echo '***ERREUR*** ' . $e->getMessage();
+		echo '***ERROR*** ' . $e->getMessage();
 	}
 	
 	try {
-		echo 'Vérification des droits sur les fichiers...';
+		echo 'Checking files rights...';
 		jeedom::cleanFileSystemRight();
 		echo "OK\n";
 	} catch (Exception $e) {
@@ -51,7 +51,7 @@ try {
 		mkdir($backup_dir, 0770, true);
 	}
 	if (!is_writable($backup_dir)) {
-		throw new Exception('Impossible d\'accéder au dossier de sauvegarde. Veuillez vérifier les droits : ' . $backup_dir);
+		throw new Exception('Can\'t access backup folder. Check rights: ' . $backup_dir);
 	}
 	$replace_name = array(
 		'&' => '',
@@ -77,7 +77,7 @@ try {
 		}
 	}
 	
-	echo "Vérification de la base de données...";
+	echo "Checking  database...";
 	if(isset($CONFIG['db']['unix_socket'])) {
 		system("mysqlcheck --socket=" . $CONFIG['db']['unix_socket'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'] . ' --auto-repair --silent');
 	} else {
@@ -85,7 +85,7 @@ try {
 	}
 	echo "OK" . "\n";
 	
-	echo 'Sauvegarde la base de données...';
+	echo 'Backing up database...';
 	if (file_exists($jeedom_dir . "/DB_backup.sql")) {
 		unlink($jeedom_dir . "/DB_backup.sql");
 		if (file_exists($jeedom_dir . "/DB_backup.sql")) {
@@ -93,7 +93,7 @@ try {
 		}
 	}
 	if (file_exists($jeedom_dir . "/DB_backup.sql")) {
-		throw new Exception('Impossible de supprimer la sauvegarde de la base de données. Vérifiez les droits');
+		throw new Exception('can\'t delete database backup. Check rights');
 	}
 	if(isset($CONFIG['db']['unix_socket'])) {
 		system("mysqldump --socket=" . $CONFIG['db']['unix_socket'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'] . "  > " . $jeedom_dir . "/DB_backup.sql", $rc);
@@ -101,14 +101,14 @@ try {
 		system("mysqldump --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'] . "  > " . $jeedom_dir . "/DB_backup.sql", $rc);
 	}
 	if ($rc != 0) {
-		throw new Exception('Echec durant la sauvegarde de la base de données. Vérifiez que mysqldump est présent. Code retourné : ' . $rc);
+		throw new Exception('Backing up database failed. Check mysqldump installation. Code: ' . $rc);
 	}
 	if (filemtime($jeedom_dir . "/DB_backup.sql") < (strtotime('now') - 1200)) {
-		throw new Exception('Echec durant la sauvegarde de la base de données. Date du fichier de sauvegarde de la base trop vieux. Vérifiez les droits');
+		throw new Exception('Backing up database failed. Backup file too old, check rights.');
 	}
 	echo "OK" . "\n";
 	
-	echo "Persistance du cache : \n";
+	echo "Cache persistence: \n";
 	try {
 		cache::persist();
 		echo "OK" . "\n";
@@ -116,7 +116,7 @@ try {
 		echo $e->getMessage();
 	}
 	
-	echo 'Création de  l\'archive...';
+	echo 'Creating archive...';
 	
 	$excludes = array(
 		'tmp',
@@ -146,10 +146,10 @@ try {
 	echo "OK" . "\n";
 	
 	if (!file_exists($backup_dir . '/' . $backup_name)) {
-		throw new Exception('Echec du backup. Impossible de trouver : ' . $backup_dir . '/' . $backup_name);
+		throw new Exception('Backup failed. Can\'t find: ' . $backup_dir . '/' . $backup_name);
 	}
 	
-	echo 'Nettoyage de l\'ancienne sauvegarde...';
+	echo 'Cleaning old backup...';
 	shell_exec('find "' . $backup_dir . '" -name "*.gz" -mtime +' . config::byKey('backup::keepDays') . ' -delete');
 	echo "OK" . "\n";
 	
@@ -177,7 +177,7 @@ try {
 		}
 	}
 	
-	echo 'Limitation de la taille des sauvegardes à ' . config::byKey('backup::maxSize') . " Mo...\n";
+	echo 'Limiting backup size to ' . config::byKey('backup::maxSize') . " Mb...\n";
 	$max_size = config::byKey('backup::maxSize') * 1024 * 1024;
 	$i = 0;
 	while (getDirectorySize($backup_dir) > $max_size) {
@@ -211,24 +211,24 @@ try {
 			}
 		}
 		if ($older['file'] === null) {
-			echo 'Erreur : aucun fichier à supprimer quand le dossier fait : ' . getDirectorySize($backup_dir) . "\n";
+			echo 'Error, no file to delete while folder size is: ' . getDirectorySize($backup_dir) . "\n";
 		}
-		echo "Supprime : " . $older['file'] . "\n";
+		echo "Delete: " . $older['file'] . "\n";
 		if (!unlink($older['file'])) {
 			$i = 50;
 		}
 		$i++;
 		if ($i > 50) {
-			echo "Plus de 50 sauvegardes supprimées. J'arrête.\n";
+			echo "More than 50 backup deleted, stopping.\n";
 			break;
 		}
 	}
 	echo "OK" . "\n";
 	
-	echo "Nom de la sauvegarde : " . $backup_dir . '/' . $backup_name . "\n";
+	echo "Backup name: " . $backup_dir . '/' . $backup_name . "\n";
 	
 	try {
-		echo 'Vérification des droits sur les fichiers...';
+		echo 'Checking files rights...';
 		jeedom::cleanFileSystemRight();
 		echo "OK\n";
 	} catch (Exception $e) {
@@ -236,18 +236,18 @@ try {
 	}
 	
 	try {
-		echo 'Envoi l\'évènement de fin de sauvegarde...';
+		echo 'Send end backup event...';
 		jeedom::event('end_backup');
 		echo "OK\n";
 	} catch (Exception $e) {
 		echo '***ERREUR*** ' . $e->getMessage();
 	}
-	echo "Durée de la sauvegarde : " . (strtotime('now') - $starttime) . "s\n";
-	echo "***************Fin de la sauvegarde de Jeedom***************\n";
+	echo "Backup operation duration: " . (strtotime('now') - $starttime) . "s\n";
+	echo "***************Jeedom backup end***************\n";
 	echo "[END BACKUP SUCCESS]\n";
 } catch (Exception $e) {
-	echo 'Erreur durant la sauvegarde : ' . br2nl($e->getMessage());
-	echo 'Détails : ' . print_r($e->getTrace(), true);
+	echo 'Error during backup: ' . br2nl($e->getMessage());
+	echo 'Details : ' . print_r($e->getTrace(), true);
 	echo "[END BACKUP ERROR]\n";
 	throw $e;
 }
