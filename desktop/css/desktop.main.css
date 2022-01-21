@@ -1449,6 +1449,12 @@ Desktop
     font-size: 38px !important;
     font-weight: 900;
   }
+  div.objectListContainer .objectDisplayCard:not(.displayAsTable) .objectSummaryContainer {
+    position: relative;
+    top: -15px;
+    line-height: 22px;
+  }
+
   .objectDisplayCard i {
     font-size: 38px !important;
   }
