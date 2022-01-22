@@ -1412,14 +1412,26 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
       units[unit].axis.push(axis.userOptions.id)
 
       if (axis.series[0].data.length > 0) {
-        var mathMin = Math.min.apply(Math, axis.series[0].data.filter(x => x.y !== null).map(function (key) {return key.y}))
-        var mathMax = Math.max.apply(Math, axis.series[0].data.filter(x => x.y !== null).map(function (key) {return key.y}))
+        var mathMin = Math.min.apply(Math, axis.series[0].data.filter(x => x.y !== null).map(function (key) { return key.y }))
+        var mathMax = Math.max.apply(Math, axis.series[0].data.filter(x => x.y !== null).map(function (key) { return key.y }))
       } else if (axis.series[0].points) {
-        var mathMin = Math.min.apply(Math, axis.series[0].points.filter(x => x.y !== null).map(function (key) {return key.y}))
-        var mathMax = Math.max.apply(Math, axis.series[0].points.filter(x => x.y !== null).map(function (key) {return key.y}))
+        var mathMin = Math.min.apply(Math, axis.series[0].points.filter(x => x.y !== null).map(function (key) { return key.y }))
+        var mathMax = Math.max.apply(Math, axis.series[0].points.filter(x => x.y !== null).map(function (key) { return key.y }))
       }
       if (mathMin < units[unit].min) units[unit].min = mathMin
       if (mathMax > units[unit].max) units[unit].max = mathMax
+
+      if (jeedom.history.chart[_chartId].comparing && axis.series[1]) {
+        if (axis.series[0].data.length > 0) {
+          cmin = Math.min.apply(Math, axis.series[1].data.filter(x => x !== null).map(function(key) { return key.y }))
+          cmax = Math.max.apply(Math, axis.series[1].data.filter(x => x !== null).map(function(key) { return key.y }))
+        } else if (axis.series[0].points) {
+          cmin = Math.min.apply(Math, axis.series[1].points.filter(x => x !== null).map(function(key) { return key.y }))
+          cmax = Math.max.apply(Math, axis.series[1].points.filter(x => x !== null).map(function(key) { return key.y }))
+        }
+        if (cmin < units[unit].min) units[unit].min = cmin
+        if (cmax > units[unit].max) units[unit].max = cmax
+      }
     })
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
       unit = axis.series[0].userOptions.unite
@@ -1470,20 +1482,26 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
         }
       }
       units[unit].axis.push(axis.userOptions.id)
+
       if (axis.series[0].data.length > 0) {
-        var mathMin = Math.min.apply(Math, axis.series[0].data.filter(x => x !== null).map(function (key) {return key.options.y}))
-        var mathMax = Math.max.apply(Math, axis.series[0].data.filter(x => x !== null).map(function (key) {return key.options.y}))
+        var mathMin = Math.min.apply(Math, axis.series[0].data.filter(x => x !== null).map(function (key) { return key.options.y }))
+        var mathMax = Math.max.apply(Math, axis.series[0].data.filter(x => x !== null).map(function (key) { return key.options.y }))
       } else if (axis.series[0].points) {
-        var mathMin = Math.min.apply(Math, axis.series[0].points.filter(x => x !== null).map(function (key) {return key.y}))
-        var mathMax = Math.max.apply(Math, axis.series[0].points.filter(x => x !== null).map(function (key) {return key.y}))
+        var mathMin = Math.min.apply(Math, axis.series[0].points.filter(x => x !== null).map(function (key) { return key.y }))
+        var mathMax = Math.max.apply(Math, axis.series[0].points.filter(x => x !== null).map(function (key) { return key.y }))
       }
 
       if (mathMin < units[unit].min) units[unit].min = mathMin
       if (mathMax > units[unit].max) units[unit].max = mathMax
 
       if (jeedom.history.chart[_chartId].comparing && axis.series[1]) {
-        cmin = Math.min.apply(Math, axis.series[1].data.filter(x => x !== null).map(function(key) { return key.y }))
-        cmax = Math.max.apply(Math, axis.series[1].data.filter(x => x !== null).map(function(key) { return key.y }))
+        if (axis.series[0].data.length > 0) {
+          cmin = Math.min.apply(Math, axis.series[1].data.filter(x => x !== null).map(function(key) { return key.y }))
+          cmax = Math.max.apply(Math, axis.series[1].data.filter(x => x !== null).map(function(key) { return key.y }))
+        } else if (axis.series[0].points) {
+          cmin = Math.min.apply(Math, axis.series[1].points.filter(x => x !== null).map(function(key) { return key.y }))
+          cmax = Math.max.apply(Math, axis.series[1].points.filter(x => x !== null).map(function(key) { return key.y }))
+        }
         if (cmin < units[unit].min) units[unit].min = cmin
         if (cmax > units[unit].max) units[unit].max = cmax
       }
@@ -1509,16 +1527,21 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
       axisId = axis.userOptions.id
       if (!axisId) axisId = 0
       if (axis.series[0].data.length > 0) {
-        var min = Math.min.apply(Math, axis.series[0].data.filter(x => x !== null).map(function (key) {return key.options.y}))
-        var max = Math.max.apply(Math, axis.series[0].data.filter(x => x !== null).map(function (key) {return key.options.y}))
+        var min = Math.min.apply(Math, axis.series[0].data.filter(x => x !== null).map(function (key) { return key.options.y }))
+        var max = Math.max.apply(Math, axis.series[0].data.filter(x => x !== null).map(function (key) { return key.options.y }))
       } else if (axis.series[0].points) {
-        var min = Math.min.apply(Math, axis.series[0].points.filter(x => x !== null).map(function (key) {return key.y}))
-        var max = Math.max.apply(Math, axis.series[0].points.filter(x => x !== null).map(function (key) {return key.y}))
+        var min = Math.min.apply(Math, axis.series[0].points.filter(x => x !== null).map(function (key) { return key.y }))
+        var max = Math.max.apply(Math, axis.series[0].points.filter(x => x !== null).map(function (key) { return key.y }))
       }
 
       if (jeedom.history.chart[_chartId].comparing && axis.series[1]) {
-        var cmin = Math.min.apply(Math, axis.series[1].data.filter(x => x !== null).map(function(key) { return key.y }))
-        var cmax = Math.max.apply(Math, axis.series[1].data.filter(x => x !== null).map(function(key) { return key.y }))
+        if (axis.series[0].data.length > 0) {
+          cmin = Math.min.apply(Math, axis.series[1].data.filter(x => x !== null).map(function(key) { return key.y }))
+          cmax = Math.max.apply(Math, axis.series[1].data.filter(x => x !== null).map(function(key) { return key.y }))
+        } else if (axis.series[0].points) {
+          cmin = Math.min.apply(Math, axis.series[1].points.filter(x => x !== null).map(function(key) { return key.y }))
+          cmax = Math.max.apply(Math, axis.series[1].points.filter(x => x !== null).map(function(key) { return key.y }))
+        }
         if (cmin < min) min = cmin
         if (cmax > max) max = cmax
       }

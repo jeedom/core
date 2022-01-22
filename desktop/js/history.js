@@ -230,6 +230,7 @@ if (!jeeFrontEnd.history) {
             success: function(data) {
               jeedom.history.chart[self.__el__].chart.xAxis[0].setExtremes(null, null, false)
               jeedom.history.chart[self.__el__].chart.redraw()
+              jeedom.history.setAxisScales(self.__el__, {redraw: true})
             }
           })
         }
