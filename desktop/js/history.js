@@ -608,6 +608,7 @@ function compareChart(_cmd_id) {
         success: function(data) {
           jeedom.history.chart[__el__].chart.xAxis[0].setExtremes(null, null, false)
           jeedom.history.chart[__el__].chart.redraw()
+          jeedom.history.setAxisScales(__el__, {redraw: true})
         }
       })
     }
