@@ -9,7 +9,10 @@
 
 ### 4.3 : Nouveautés / Améliorations
 
--
+- **Outils / Scénarios** : Ajout d'un menu contextuel sur un scénario pour rendre actif/inactif, changer de groupe, changer d'objet parent.
+- **Outils / Objets** : Ajout d'un menu contextuel sur un objet pour gérer la visbilité, changer d'objet parent, et déplacer.
+
+- **Optimisation** : jeeFrontEnd{}, jeephp2js{}, corrections de bugs mineures et optimisations.
 
 ### 4.3 : WebApp
 
