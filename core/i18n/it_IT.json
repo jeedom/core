@@ -1414,6 +1414,7 @@
         "Principal": "Primario",
         "Timelines": "Timelines",
         "Rafraîchir": "Aggiorna",
+        "Supprimer": "Supprimer",
         "Configuration": "Configurazione"
     },
     "desktop\/php\/reboot.php": {
@@ -2881,6 +2882,7 @@
         "Sélectionner un mot-clé": "Seleziona una parola chiave"
     },
     "desktop\/js\/timeline.js": {
+        "Evènement de la timeline supprimé avec succès": "Evènement de la timeline supprimé avec succès",
         "Configuration de l'historique des commandes": "Controlli di configurazione Storia",
         "Log d'exécution du scénario": "Registro di esecuzione della scena",
         "Historique": "Storico",

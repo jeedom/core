@@ -1414,6 +1414,7 @@
         "Principal": "Principal",
         "Timelines": "Timelines",
         "Rafraîchir": "Rafraîchir",
+        "Supprimer": "Supprimer",
         "Configuration": "Configuration"
     },
     "desktop\/php\/reboot.php": {
@@ -2881,6 +2882,7 @@
         "Sélectionner un mot-clé": "Sélectionner un mot-clé"
     },
     "desktop\/js\/timeline.js": {
+        "Evènement de la timeline supprimé avec succès": "Evènement de la timeline supprimé avec succès",
         "Configuration de l'historique des commandes": "Configuration de l'historique des commandes",
         "Log d'exécution du scénario": "Log d'exécution du scénario",
         "Historique": "Historique",

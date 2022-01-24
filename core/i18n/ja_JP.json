@@ -1414,6 +1414,7 @@
         "Principal": "主要",
         "Timelines": "Timelines",
         "Rafraîchir": "クール",
+        "Supprimer": "Supprimer",
         "Configuration": "コンフィギュレーション"
     },
     "desktop\/php\/reboot.php": {
@@ -2881,6 +2882,7 @@
         "Sélectionner un mot-clé": "キーワードを選択"
     },
     "desktop\/js\/timeline.js": {
+        "Evènement de la timeline supprimé avec succès": "Evènement de la timeline supprimé avec succès",
         "Configuration de l'historique des commandes": "歴史Configurationフォームのコントロール",
         "Log d'exécution du scénario": "スクリプトの実行をログに記録します",
         "Historique": "歴史的",
