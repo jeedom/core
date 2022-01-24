@@ -480,6 +480,11 @@ class network {
 	}
 
 	public static function cron5() {
+		if (config::byKey('dns::token') != '' && config::byKey('market::allowDNS') == 1 && !network::test('external')) {
+			log::add('network', 'error', __('Accès externe non ok, redémarrage du dns Jeedom', __FILE__));
+			self::dns_stop();
+			self::dns_start();
+		}
 		if (config::byKey('network::disableMangement') == 1) {
 			return;
 		}
