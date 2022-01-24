@@ -30,7 +30,7 @@ $('#bt_removeTimelineEvent').on('click', function() {
     },
     success: function(data) {
       $.fn.showAlert({
-        message: '{{Evènement de la timeline supprimé avec succès}}',
+        message: '{{Evènements de la timeline supprimés avec succès}}',
         level: 'success'
       })
       displayTimeline()
