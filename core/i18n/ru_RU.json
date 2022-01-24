@@ -1414,6 +1414,7 @@
         "Principal": "Principal",
         "Timelines": "Timelines",
         "Rafraîchir": "Обновить",
+        "Supprimer": "Supprimer",
         "Configuration": "Конфигурация"
     },
     "desktop\/php\/reboot.php": {
@@ -2881,6 +2882,7 @@
         "Sélectionner un mot-clé": "Выберите ключевое слово"
     },
     "desktop\/js\/timeline.js": {
+        "Evènement de la timeline supprimé avec succès": "Evènement de la timeline supprimé avec succès",
         "Configuration de l'historique des commandes": "управления История конфигурации",
         "Log d'exécution du scénario": "Журнал запуска скрипта",
         "Historique": "История",

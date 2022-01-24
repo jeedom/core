@@ -1414,6 +1414,7 @@
         "Principal": "Principal",
         "Timelines": "Timelines",
         "Rafraîchir": "Dingin",
+        "Supprimer": "Supprimer",
         "Configuration": "Konfigurasi"
     },
     "desktop\/php\/reboot.php": {
@@ -2881,6 +2882,7 @@
         "Sélectionner un mot-clé": "Pilih kata kunci"
     },
     "desktop\/js\/timeline.js": {
+        "Evènement de la timeline supprimé avec succès": "Evènement de la timeline supprimé avec succès",
         "Configuration de l'historique des commandes": "Kontrol Sejarah Konfigurasi",
         "Log d'exécution du scénario": "Log eksekusi script",
         "Historique": "Historis",
