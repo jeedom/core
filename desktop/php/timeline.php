@@ -18,14 +18,15 @@ $date = array(
 					$options .= '<optgroup label="{{Timelines}}">';
 					foreach ((timeline::listFolder()) as $folder) {
 						if ($folder == 'main') continue;
-						$options .= '<option value="'.$folder.'">'.$folder.'</option>';
+						$options .= '<option value="' . $folder . '">' . $folder . '</option>';
 					}
 					$options .= '</optgroup>';
 					echo $options;
 					?>
 				</select>
 				<a class="btn btn-sm btn-success" id="bt_refreshTimeline"><i class="fas fa-sync"></i> {{Rafraîchir}}</a>
-					<?php if (isConnect('admin')) { ?>
+				<?php if (isConnect('admin')) { ?>
+					<a type="text" class="btn btn-sm btn-danger" id="bt_removeTimelineEvent"><i class="fas fa-trash"></i> {{Supprimer}}</a>
 					<a id="bt_openCmdHistoryConfigure" class="btn btn-default btn-sm roundedRight"><i class="fas fa-cogs"></i> {{Configuration}}</a>
 				<?php } ?>
 			</span>

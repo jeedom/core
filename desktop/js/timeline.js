@@ -20,6 +20,24 @@ $(function() {
   displayTimeline()
 })
 
+$('#bt_removeTimelineEvent').on('click', function() {
+  jeedom.timeline.deleteAll({
+    error: function(error) {
+      $.fn.showAlert({
+        message: error.message,
+        level: 'danger'
+      })
+    },
+    success: function(data) {
+      $.fn.showAlert({
+        message: '{{Evènement de la timeline supprimé avec succès}}',
+        level: 'success'
+      })
+      displayTimeline()
+    }
+  })
+})
+
 $('#bt_openCmdHistoryConfigure').on('click', function() {
   $('#md_modal').dialog({
     title: "{{Configuration de l'historique des commandes}}"
