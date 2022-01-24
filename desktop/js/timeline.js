@@ -171,6 +171,24 @@ $('#sel_timelineFolder').off('change').on('change', function() {
   jeeP.displayTimeline()
 })
 
+$('#bt_removeTimelineEvent').on('click', function() {
+  jeedom.timeline.deleteAll({
+    error: function(error) {
+      $.fn.showAlert({
+        message: error.message,
+        level: 'danger'
+      })
+    },
+    success: function(data) {
+      $.fn.showAlert({
+        message: '{{Evènements de la timeline supprimés avec succès}}',
+        level: 'success'
+      })
+      jeeP.displayTimeline()
+    }
+  })
+})
+
 $('#bt_tabTimeline').on('click', function() {
   $.hideAlert()
   jeeP.displayTimeline()
