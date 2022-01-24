@@ -195,7 +195,7 @@
         "Mobile masqué": "Verstecktes Handy",
         "Options": "Optionen",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "Möchten Sie das Objekt wirklich löschen?",
-        "Modification sauvegardées avec succès": "Änderungen erfolgreich gespeichert"
+        "Modification sauvegardée avec succès": "Änderung erfolgreich gespeichert"
     },
     "desktop\/modal\/planHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -853,7 +853,6 @@
         "Lissage": "Glätten",
         "Purge": "Spülen",
         "Action": "Aktion",
-        "Dossier": "Rekord",
         "Moyenne": "Durchschnitt",
         "Minimum": "Minimum",
         "Maximum": "Maximal",
@@ -869,7 +868,8 @@
         "Jamais": "Noch nie",
         "Configuration de la commande": "Befehl Konfiguration",
         "Exporter la commande": "Exportieren Sie die Bestellung",
-        "Modifications sauvegardées avec succès": "Änderungen erfolgreich gespeichert"
+        "Modifications sauvegardées avec succès": "Änderungen erfolgreich gespeichert",
+        "Dossier": "Rekord"
     },
     "desktop\/modal\/scenario.jsonEdit.php": {
         "Aucun scénario ne correspondant à :": "Kein Szenario entsprechend:",
@@ -1161,7 +1161,7 @@
         "La demande ne peut être vide": "Die Anfrage darf nicht leer sein"
     },
     "desktop\/modal\/cmd.selectMultiple.php": {
-        "Aucune commande trouvées": "Keine Bestellungen gefunden",
+        "Aucune commande trouvée": "Keine Befehle gefunden",
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Inverser": "Umgekehrt",
         "Valider": "Validate",
@@ -1196,7 +1196,7 @@
         "Sauvegarder": "Speichern",
         "Type": "Typ",
         "Nom": "Name",
-        "Modification sauvegardées avec succès": "Änderungen erfolgreich gespeichert"
+        "Modification sauvegardée avec succès": "Änderung erfolgreich gespeichert"
     },
     "desktop\/modal\/plan.configure.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -1388,7 +1388,7 @@
         "Utilisateurs": "Benutzer",
         "Moteur de tâches": "Cron-System",
         "Personnalisation avancée": "Erweiterte Anpassung",
-        "Editeur de fichier": "Dateieditor",
+        "Editeur de fichiers": "Datei-Editor",
         "Redémarrer": "Neu starten",
         "Eteindre": "Ausschalten",
         "Préférences": "Vorlieben",
@@ -1671,7 +1671,7 @@
         "IP": "IPs",
         "Mac": "MAC",
         "Désactiver la gestion du réseau par": "Deaktivieren der Netzwerk management von",
-        "Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)": "Lokale IP-Maske (nur für Docker-Installationen in der Form 192.168.1 nützlich. *)",
+        "Masque IP local (uniquement pour des installations type docker, sous la forme 192.168.1.*)": "Lokale IP-Maske (nur für Docker-Installationen im Format 192.168.1.*)",
         "Gestion DNS": "DNS-Verwaltung",
         "Attention : cette fonctionnalité n\\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le": "Bitte beachten Sie: Diese Funktion ist im Community Service Pack nicht verfügbar (siehe Ihr Service Pack auf Ihrer Profilseite auf der",
         "Utiliser les DNS": "DNS benutzen",

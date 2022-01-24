@@ -664,7 +664,7 @@ user::isBan();
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-xs-6 control-label">{{Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)}}</label>
+									<label class="col-xs-6 control-label">{{Masque IP local (uniquement pour des installations type docker, sous la forme 192.168.1.*)}}</label>
 									<div class="col-xs-6">
 										<input type="text" class="configKey form-control" data-l1key="network::localip" />
 									</div>
@@ -1150,10 +1150,12 @@ user::isBan();
 								<input type="text" class="configKey form-control inputPassword" data-l1key="cmdInfluxPass">
 							</div>
 						</div>
-						<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Actions}}</label>
-						<div class="col-xs-6">
-							<a class="btn btn-default btn-sm" id="bt_influxDelete"><i class="fas fa-trash"></i> {{Supprimer}}</a>
-							<a class="btn btn-default btn-sm" id="bt_influxHistory"><i class="fas fas fa-history"></i> {{Envoyer Historique}}</a>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Actions}}</label>
+							<div class="col-xs-6">
+								<a class="btn btn-default btn-sm" id="bt_influxDelete"><i class="fas fa-trash"></i> {{Supprimer}}</a>
+								<a class="btn btn-default btn-sm" id="bt_influxHistory"><i class="fas fas fa-history"></i> {{Envoyer Historique}}</a>
+							</div>
 						</div>
 					</fieldset>
 				</form>

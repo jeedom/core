@@ -111,7 +111,7 @@ include_file('3rdparty', 'jquery.tablesorter/_jeedom/pager-custom-constrols', 'j
       //timeline:
       $tr .= '<td>';
       $tr .= '<input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" '.(($cmd->getConfiguration('timeline::enable')) ? 'checked' : '').' />';
-      $tr .= ' <input class="cmdAttr input-xs form-control" data-l1key="configuration" data-l2key="timeline::folder" value="'.$cmd->getConfiguration('timeline::folder').'" style="width:80%;display:inline-block" placeholer="{{Dossier}}"/>';
+      $tr .= ' <input class="cmdAttr input-xs form-control" data-l1key="configuration" data-l2key="timeline::folder" value="'.$cmd->getConfiguration('timeline::folder').'" style="width:80%;display:inline-block" />';
       $tr .= '</td>';
 
       //Invert:
@@ -202,20 +202,6 @@ $('.cmdAttr').on('change click', function() {
   $(this).closest('tr').attr('data-change', '1')
 })
 
-$('#bt_canceltimeline').on('click', function() {
-  $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function() {
-    $(this).prop('checked', false)
-    $(this).closest('tr').attr('data-change','1')
-  })
-})
-
-$('#bt_applytimeline').on('click', function() {
-  $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function() {
-    $(this).prop('checked', true)
-    $(this).closest('tr').attr('data-change','1')
-  })
-})
-
 $('select[data-l2key="historyPurge"]').on('change', function(){
   $tableCmdConfigureHistory.trigger('updateCell', [$(this).parent()])
 })
@@ -238,6 +224,27 @@ function setTableParser() {
       if (s == '-3 years') return 1095
     },
     type: 'numeric'
+  })
+  $('#bt_canceltimeline').on('mousedown', function(event) {
+    $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function() {
+      $(this).prop('checked', false)
+      $(this).closest('tr').attr('data-change','1')
+    })
+    return false
+  })
+
+  $('#bt_applytimeline').on('mousedown', function(event) {
+    $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function() {
+      $(this).prop('checked', true)
+      $(this).closest('tr').attr('data-change','1')
+    })
+    return false
+  })
+
+  $('#table_cmdConfigureHistory input[data-l2key="timeline::folder"]').each(function() {
+    if ($(this).val() == '') {
+      $(this).attr('placeholder', '{{Dossier}}')
+    }
   })
 }
 

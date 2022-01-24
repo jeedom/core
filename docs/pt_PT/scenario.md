@@ -263,7 +263,7 @@ Uma tag é substituída durante a execução do cenário por seu valor. Você po
 
 > **Dica**
 >
-> Para exibir os zeros à esquerda, use a função Data (). Veja [aqui](http://php.net/manual/fr/function.date.php).
+> Para exibir os zeros à esquerda, use a função Data (). Veja [aqui](https://www.php.net/manual/fr/datetime.format.php).
 
 - ``#seconde#`` : Segundo atual (sem zeros à esquerda, ex : 6 para 08:07:06).
 - ``#hour#`` : Hora atual no formato 24h (sem zeros à esquerda)). Ex : 8 para 08:07:06 ou 17 para 17:15.
@@ -349,11 +349,11 @@ Várias funções estão disponíveis para o equipamento :
 - ``lastScenarioExecution(scenario)`` : Dá a duração em segundos desde o último lançamento do cenário.
     0 : O cenário não existe
 
-- ``collectDate(cmd,[format])`` : Retorna a data da última coleta de dados para o comando colocado como parâmetro, o 2º parâmetro opcional é usado para especificar o formato de retorno (detalhes [aqui](http://php.net/manual/fr/function.date.php)).
+- ``collectDate(cmd,[format])`` : Retorna a data da última coleta de dados para o comando colocado como parâmetro, o 2º parâmetro opcional é usado para especificar o formato de retorno (detalhes [aqui](https://www.php.net/manual/fr/datetime.format.php)).
     -1 : Não foi possível encontrar o comando,
     -2 : O comando não é do tipo info.
 
-- ``valueDate(cmd,[format])`` : Devolve a data do último valor conhecido para o comando colocado como parâmetro, o 2º parâmetro opcional é usado para especificar o formato de retorno (detalhes [aqui](http://php.net/manual/fr/function.date.php)).
+- ``valueDate(cmd,[format])`` : Devolve a data do último valor conhecido para o comando colocado como parâmetro, o 2º parâmetro opcional é usado para especificar o formato de retorno (detalhes [aqui](https://www.php.net/manual/fr/datetime.format.php)).
     -1 : Não foi possível encontrar o comando,
     -2 : O comando não é do tipo info.
 
@@ -368,7 +368,7 @@ Várias funções estão disponíveis para o equipamento :
 
 - ``name(type,commande)`` : Usado para recuperar o nome do pedido, equipamento ou objeto. Tipo : cmd, eqLogic ou objeto.
 
-- ``lastCommunication(equipment,[format])`` : Retorna a data da última comunicação para o dispositivo dado como parâmetro, o 2º parâmetro opcional é usado para especificar o formato de retorno (detalhes [aqui](http://php.net/manual/fr/function.date.php)). Um retorno de -1 significa que o equipamento não pode ser encontrado.
+- ``lastCommunication(equipment,[format])`` : Retorna a data da última comunicação para o dispositivo dado como parâmetro, o 2º parâmetro opcional é usado para especificar o formato de retorno (detalhes [aqui](https://www.php.net/manual/fr/datetime.format.php)). Um retorno de -1 significa que o equipamento não pode ser encontrado.
 
 - ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Retorna uma cor calculada em relação a um valor no intervalo color_start / color_end. O valor deve estar entre min_value e max_value.
 

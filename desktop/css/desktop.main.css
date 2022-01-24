@@ -1449,6 +1449,12 @@ Desktop
     font-size: 38px !important;
     font-weight: 900;
   }
+  div.objectListContainer .objectDisplayCard:not(.displayAsTable) .objectSummaryContainer {
+    position: relative;
+    top: -15px;
+    line-height: 22px;
+  }
+
   .objectDisplayCard i {
     font-size: 38px !important;
   }
@@ -2334,10 +2340,11 @@ Desktop
     margin-top: 14px;
     height: 100%;
     top: 0;
+    z-index: 12;
   }
   #timelineContainer div.type {
     width: 30%;
-    display: inline-block
+    display: inline-block;
   }
   #timelineContainer div.html {
     width: 70%;
@@ -4545,7 +4552,7 @@ Desktop
     margin-left: 0;
     margin-top: 0;
   }
-  .form-group div[class*="col-"] > .ui-spinner {
+  .form-group .ui-spinner {
     width: 100%;
   }
 

@@ -195,7 +195,7 @@
         "Mobile masqué": "Mobile masqué",
         "Options": "Opzioni",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "Sei sicuro di voler eliminare l'oggetto",
-        "Modification sauvegardées avec succès": "Modification sauvegardées avec succès"
+        "Modification sauvegardée avec succès": "Modification sauvegardée avec succès"
     },
     "desktop\/modal\/planHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
@@ -853,7 +853,6 @@
         "Lissage": "Lissage",
         "Purge": "Purge",
         "Action": "Azione",
-        "Dossier": "Record",
         "Moyenne": "Media",
         "Minimum": "Minimo",
         "Maximum": "Massimo",
@@ -869,7 +868,8 @@
         "Jamais": "Mai",
         "Configuration de la commande": "Impostazione comando",
         "Exporter la commande": "Exporter la commande",
-        "Modifications sauvegardées avec succès": "Modifications sauvegardées avec succès"
+        "Modifications sauvegardées avec succès": "Modifications sauvegardées avec succès",
+        "Dossier": "Record"
     },
     "desktop\/modal\/scenario.jsonEdit.php": {
         "Aucun scénario ne correspondant à :": "Aucun scénario ne correspondant à :",
@@ -1161,7 +1161,7 @@
         "La demande ne peut être vide": "La domanda non può essere vuota"
     },
     "desktop\/modal\/cmd.selectMultiple.php": {
-        "Aucune commande trouvées": "Aucune commande trouvées",
+        "Aucune commande trouvée": "Aucune commande trouvée",
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
         "Inverser": "Inverti",
         "Valider": "Convalidare",
@@ -1196,7 +1196,7 @@
         "Sauvegarder": "Salva",
         "Type": "Tipo",
         "Nom": "Nome",
-        "Modification sauvegardées avec succès": "Modification sauvegardées avec succès"
+        "Modification sauvegardée avec succès": "Modification sauvegardée avec succès"
     },
     "desktop\/modal\/plan.configure.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
@@ -1388,7 +1388,7 @@
         "Utilisateurs": "Nome utente",
         "Moteur de tâches": "Motore attività",
         "Personnalisation avancée": "Personalizzazione avanzata",
-        "Editeur de fichier": "Editeur de fichier",
+        "Editeur de fichiers": "Editeur de fichiers",
         "Redémarrer": "Riavvia",
         "Eteindre": "Spegni",
         "Préférences": "Preferenze",
@@ -1671,7 +1671,7 @@
         "IP": "IP",
         "Mac": "Mac",
         "Désactiver la gestion du réseau par": "Disabilita la gestione della rete di",
-        "Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)": "Maschera IP locale (utile solo per installazioni di tipo docker, nel formato 192.168.1. *)",
+        "Masque IP local (uniquement pour des installations type docker, sous la forme 192.168.1.*)": "Masque IP local (uniquement pour des installations type docker, sous la forme 192.168.1.*)",
         "Gestion DNS": "Gestion DNS",
         "Attention : cette fonctionnalité n\\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le": "Nota: questa funzione non è disponibile nel service pack della comunità (vedere il service pack nella pagina del profilo sul",
         "Utiliser les DNS": "Usa DNS",
