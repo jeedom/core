@@ -5086,6 +5086,17 @@ Desktop
     .displayTableRight {
       display: none !important;
     }
+    div[class*="DisplayCard"].displayAsTable .name,
+    div.objectDisplayCard.displayAsTable:not(:hover) .name,
+    div.interactDisplayCard.displayAsTable:not(:hover) .name {
+      width: 100vw;
+      min-width: 100vw;
+      max-width: 100vw !important;
+    }
+    div[class*="DisplayCard"].displayAsTable:not(.widgetsDisplayCard) .name .label {
+      width: calc(100vw - 340px);
+      max-width: 200px !important;
+    }
   }
 
   @media screen and (max-width: 992px) {
