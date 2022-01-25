@@ -1414,6 +1414,7 @@
         "Principal": "Main",
         "Timelines": "Timelines",
         "Rafraîchir": "Refresh",
+        "Supprimer": "To delete",
         "Configuration": "Configuration"
     },
     "desktop\/php\/reboot.php": {
@@ -2881,6 +2882,7 @@
         "Sélectionner un mot-clé": "Select a keyword"
     },
     "desktop\/js\/timeline.js": {
+        "Evènements de la timeline supprimés avec succès": "Timeline events deleted successfully",
         "Configuration de l'historique des commandes": "Commands history setup",
         "Log d'exécution du scénario": "Scenario execution log",
         "Historique": "History",
@@ -4153,6 +4155,7 @@
         "La commande de démarrage du DNS est introuvable": "DNS start command not found",
         "La commande de statut du DNS est introuvable": "DNS status command not found",
         "La commande d\\'arrêt du DNS est introuvable": "DNS stop command not found",
+        "Accès externe non ok, redémarrage du dns Jeedom": "External access not ok, Jeedom dns restart",
         "Souci réseau détecté, redémarrage du réseau. Aucune gateway de trouvée": "Network issue detected, network restart. No gateway found",
         "Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping :": "Network issue detected, network restart. The gateway does not respond to ping:"
     },

@@ -1414,6 +1414,7 @@
         "Principal": "主要",
         "Timelines": "Timelines",
         "Rafraîchir": "クール",
+        "Supprimer": "Supprimer",
         "Configuration": "コンフィギュレーション"
     },
     "desktop\/php\/reboot.php": {
@@ -2881,6 +2882,7 @@
         "Sélectionner un mot-clé": "キーワードを選択"
     },
     "desktop\/js\/timeline.js": {
+        "Evènements de la timeline supprimés avec succès": "Evènements de la timeline supprimés avec succès",
         "Configuration de l'historique des commandes": "歴史Configurationフォームのコントロール",
         "Log d'exécution du scénario": "スクリプトの実行をログに記録します",
         "Historique": "歴史的",
@@ -4153,6 +4155,7 @@
         "La commande de démarrage du DNS est introuvable": "La commande de démarrage du DNS est introuvable",
         "La commande de statut du DNS est introuvable": "La commande de statut du DNS est introuvable",
         "La commande d\\'arrêt du DNS est introuvable": "La commande d\\'arrêt du DNS est introuvable",
+        "Accès externe non ok, redémarrage du dns Jeedom": "Accès externe non ok, redémarrage du dns Jeedom",
         "Souci réseau détecté, redémarrage du réseau. Aucune gateway de trouvée": "Souci réseau détecté, redémarrage du réseau. Aucune gateway de trouvée",
         "Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping :": "Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping :"
     },

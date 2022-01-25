@@ -1414,6 +1414,7 @@
         "Principal": "Principal",
         "Timelines": "Cronologías",
         "Rafraîchir": "Refrescar",
+        "Supprimer": "Borrar",
         "Configuration": "Configuración"
     },
     "desktop\/php\/reboot.php": {
@@ -2881,6 +2882,7 @@
         "Sélectionner un mot-clé": "Seleccionar una palabra clave"
     },
     "desktop\/js\/timeline.js": {
+        "Evènements de la timeline supprimés avec succès": "Eventos de la línea de tiempo eliminados con éxito",
         "Configuration de l'historique des commandes": "Configuración del historial de comandos",
         "Log d'exécution du scénario": "Log de ejecución de la escena",
         "Historique": "Historial",
@@ -4153,6 +4155,7 @@
         "La commande de démarrage du DNS est introuvable": "Comando de inicio DNS no encontrado",
         "La commande de statut du DNS est introuvable": "Comando de estado DNS no encontrado",
         "La commande d\\'arrêt du DNS est introuvable": "Comando de detención de DNS no encontrado",
+        "Accès externe non ok, redémarrage du dns Jeedom": "El acceso externo no está bien, Jeedom dns reinicia",
         "Souci réseau détecté, redémarrage du réseau. Aucune gateway de trouvée": "Problema de red detectado, reinicio de red. No se encontró puerta de enlace",
         "Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping :": "Problema de red detectado, reinicio de red. La puerta de enlace no responde al ping:"
     },
