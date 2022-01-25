@@ -26,12 +26,13 @@ jeeFrontEnd = {
   __description: 'Global object where each Core page register its own functions and variable in its sub-object name.',
   jeedom_firstUse: '',
   language: '',
+  userProfils: {},
+  planEditOption: {state: false, snap: false, grid: false, gridSize: false, highlight: true},
+  //loadPage history:
   PREVIOUS_PAGE: null,
   PREVIOUS_LOCATION: null,
   NO_POPSTAT: false,
   modifyWithoutSave: false,
-  userProfils: {},
-  planEditOption: {state: false, snap: false, grid: false, gridSize: false, highlight: true},
   //@index.php
   serverDatetime: null,
   clientServerDiffDatetime: null,

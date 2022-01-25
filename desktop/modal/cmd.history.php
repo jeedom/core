@@ -145,8 +145,8 @@ if (!jeeFrontEnd.md_history) {
 }
 
 (function() {
-  var jeeM = jeeFrontEnd.md_history
   $.hideAlert()
+  var jeeM = jeeFrontEnd.md_history
   jeeM.init(jeephp2js.md_history_cmdId)
 
   $(function() {
