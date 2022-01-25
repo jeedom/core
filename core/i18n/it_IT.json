@@ -2882,7 +2882,7 @@
         "Sélectionner un mot-clé": "Seleziona una parola chiave"
     },
     "desktop\/js\/timeline.js": {
-        "Evènement de la timeline supprimé avec succès": "Evènement de la timeline supprimé avec succès",
+        "Evènements de la timeline supprimés avec succès": "Evènements de la timeline supprimés avec succès",
         "Configuration de l'historique des commandes": "Controlli di configurazione Storia",
         "Log d'exécution du scénario": "Registro di esecuzione della scena",
         "Historique": "Storico",
@@ -4155,6 +4155,7 @@
         "La commande de démarrage du DNS est introuvable": "Comando di avvio DNS non trovato",
         "La commande de statut du DNS est introuvable": "Comando stato DNS non trovato",
         "La commande d\\'arrêt du DNS est introuvable": "Comando di arresto DNS non trovato",
+        "Accès externe non ok, redémarrage du dns Jeedom": "Accès externe non ok, redémarrage du dns Jeedom",
         "Souci réseau détecté, redémarrage du réseau. Aucune gateway de trouvée": "Souci réseau détecté, redémarrage du réseau. Aucune gateway de trouvée",
         "Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping :": "Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping :"
     },
