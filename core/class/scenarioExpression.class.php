@@ -915,6 +915,13 @@ class scenarioExpression {
 		return false;
 	}
 
+	public static function triggeringValue(&$_scenario = null) {
+		if ($_scenario !== null) {
+			return $_scenario->getRealTriggeringValue();
+		}
+		return false;
+	}
+
 	public static function round($_value, $_decimal = 0) {
 		$_value = self::setTags($_value);
 		try {
@@ -1244,6 +1251,8 @@ class scenarioExpression {
 						$replace2[$replace_string] = self::trigger($arguments[0], $_scenario);
 					} elseif ($function == 'triggerValue') {
 						$replace2[$replace_string] = self::triggerValue($_scenario);
+					} elseif ($function == 'triggeringValue') {
+						$replace2[$replace_string] = self::triggeringValue($_scenario);
 					} elseif ($function == 'tag') {
 						if (!isset($arguments[0])) {
 							$arguments[0] = '';

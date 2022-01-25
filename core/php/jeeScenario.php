@@ -47,7 +47,7 @@ if (init('scenarioElement_id') != '') {
 				die();
 			}
 		}
-		$scenario->execute(init('trigger'), init('message'));
+		$scenario->execute(init('trigger'), base64_decode(init('value')), init('message'));
 	} catch (Exception $e) {
 		log::add('scenario', 'error', __('Scenario  :', __FILE__) . ' ' . $scenario->getHumanName() . '. ' . __('Erreur :', __FILE__) . ' ' . $e->getMessage());
 		$scenario->setState('error');

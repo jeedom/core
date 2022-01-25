@@ -42,6 +42,7 @@ class scenario {
 	private $_elements = array();
 	private $_changeState = false;
 	private $_realTrigger = '';
+	private $_realTriggeringValue = '';
 	private $_return = true;
 	private $_tags = array();
 	private $_do = true;
@@ -289,7 +290,7 @@ class scenario {
 	 * @param type $_forceSyncMode
 	 * @return boolean
 	 */
-	public static function check($_event = null, $_forceSyncMode = false, $_generic = null, $_object = null) {
+	public static function check($_event = null, $_forceSyncMode = false, $_generic = null, $_object = null, $_value = null) {
 		if (config::byKey('enableScenario') != 1) {
 			return;
 		}
@@ -319,7 +320,7 @@ class scenario {
 							} else {
 								$message .= ' genericType(' . $_generic . ')' . ' from ' . $_event->getHumanName();
 							}
-							$scenario->launch($trigger, $message, $_forceSyncMode);
+							$scenario->launch($trigger, $_value, $message, $_forceSyncMode);
 						}
 					}
 				}
@@ -349,7 +350,7 @@ class scenario {
 
 		if (count($scenarios) > 0) {
 			foreach ($scenarios as $scenario_) {
-				$scenario_->launch($trigger, $message, $_forceSyncMode);
+				$scenario_->launch($trigger, $_value, $message, $_forceSyncMode);
 			}
 		}
 		return true;
@@ -754,7 +755,7 @@ class scenario {
 	 * @param type $_forceSyncMode
 	 * @return boolean
 	 */
-	public function launch($_trigger = '', $_message = '', $_forceSyncMode = false) {
+	public function launch($_trigger = '', $_value = '', $_message = '', $_forceSyncMode = false) {
 		if (config::byKey('enableScenario') != 1 || $this->getIsActive() != 1) {
 			return false;
 		}
@@ -791,7 +792,7 @@ class scenario {
 		$this->setCache(array('startingTime' => strtotime('now'), 'state' => 'starting'));
 		if ($this->getConfiguration('syncmode') == 1 || $_forceSyncMode) {
 			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenarioSync']['txt']);
-			return $this->execute($_trigger, $_message);
+			return $this->execute($_trigger, $_value, $_message);
 		} else {
 			if (count($this->getTags()) != '') {
 				$this->setCache('tags', $this->getTags());
@@ -799,6 +800,7 @@ class scenario {
 			$cmd = __DIR__ . '/../../core/php/jeeScenario.php ';
 			$cmd .= ' scenario_id=' . $this->getId();
 			$cmd .= ' trigger=' . escapeshellarg($_trigger);
+			$cmd .= ' value=' . base64_encode($_value);
 			$cmd .= ' "message=' . escapeshellarg(sanitizeAccent($_message)) . '"';
 			$cmd .= ' >> ' . log::getPathToLog('scenario_execution') . ' 2>&1 &';
 			system::php($cmd);
@@ -811,7 +813,7 @@ class scenario {
 	 * @param type $_message
 	 * @return type
 	 */
-	public function execute($_trigger = '', $_message = '') {
+	public function execute($_trigger = '', $_value = '', $_message = '') {
 		if (config::byKey('enableScenario') != 1) {
 			return;
 		}
@@ -839,7 +841,7 @@ class scenario {
 
 		$cmd = cmd::byId(str_replace('#', '', $_trigger));
 		if (is_object($cmd)) {
-			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('déclenché par :', __FILE__) . ' ' . $cmd->getHumanName());
+			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('déclenché par :', __FILE__) . ' #' . $cmd->getHumanName() . __('#, valeur :', __FILE__) . ' [' . $_value . ']');
 			if ($this->getConfiguration('timeline::enable')) {
 				$timeline = new timeline();
 				$timeline->setType('scenario');
@@ -850,7 +852,7 @@ class scenario {
 				$timeline->save();
 			}
 		} else {
-			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('déclenché par :', __FILE__) . ' ' . $_trigger);
+			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('déclenché par :', __FILE__) . ' #' . $_trigger . __('#, valeur :', __FILE__) . ' [' . $_value . ']');
 			if ($this->getConfiguration('timeline::enable')) {
 				$timeline = new timeline();
 				$timeline->setType('scenario');
@@ -873,6 +875,7 @@ class scenario {
 		$this->setState('in progress');
 		$this->setPID(getmypid());
 		$this->setRealTrigger($_trigger);
+		$this->setRealTriggeringValue($_value);
 		foreach (($this->getElement()) as $element) {
 			if (!$this->getDo()) {
 				break;
@@ -2011,11 +2014,27 @@ class scenario {
 	}
 	/**
 	 *
+	 * @return type
+	 */
+	public function getRealTriggeringValue() {
+		return $this->_realTriggeringValue;
+	}
+	/**
+	 *
 	 * @param type $_realTrigger
 	 * @return $this
 	 */
 	public function setRealTrigger($_realTrigger) {
 		$this->_realTrigger = $_realTrigger;
+		return $this;
+	}
+	/**
+	 *
+	 * @param type $_realTriggeringValue
+	 * @return $this
+	 */
+	public function setRealTriggeringValue($_realTriggeringValue) {
+		$this->_realTriggeringValue = $_realTriggeringValue;
 		return $this;
 	}
 	/**
