@@ -1324,9 +1324,9 @@ class eqLogic {
 			unset($return['display']);
 		}
 		if ($_withCmd) {
-			$return['cmd'] = array();
+			$return['commands'] = array();
 			foreach (($this->getCmd()) as $cmd) {
-				$return['cmd'][] = $cmd->export();
+				$return['commands'][] = $cmd->export();
 			}
 		}
 		return $return;
