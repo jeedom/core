@@ -1443,7 +1443,7 @@ function checkAndFixCron($_cron) {
 	$arrays = explode(' ', $return);
 	if (count($arrays) > 5) {
 		unset($arrays[5]);
-		$return = implode($arrays, ' ');
+		$return = implode(' ', $arrays);
 	}
 	return $return;
 }

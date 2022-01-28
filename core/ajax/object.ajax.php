@@ -160,7 +160,7 @@ try {
 			}
 		}
 		ksort($html);
-		return implode($html);
+		return implode('', $html);
 	}
 	if (init('action') == 'toHtml') {
 		if (init('id') == '' || init('id') == 'all' || is_json(init('id'))) {
