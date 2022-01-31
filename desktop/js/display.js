@@ -466,25 +466,23 @@ $('.bt_setIsEnable').on('click', function() {
   })
 })
 
-$('#bt_removeHistory').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Historique des suppressions}}"
-  }).load('index.php?v=d&modal=remove.history').dialog('open')
-})
-
 $('#bt_emptyRemoveHistory').on('click', function() {
-  jeedom.emptyRemoveHistory({
-    error: function(error) {
-      $('#div_alertRemoveHistory').showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      $('#table_removeHistory tbody').empty()
-      $('#div_alertRemoveHistory').showAlert({
-        message: '{{Historique vidé avec succès}}',
-        level: 'success'
+  bootbox.confirm('{{Êtes-vous sûr de vouloir vider l\'historique de suppression ?}}', function(result) {
+    if (result) {
+      jeedom.emptyRemoveHistory({
+        error: function(error) {
+          $('#div_alertRemoveHistory').showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          $('#table_removeHistory tbody').empty()
+          $('#div_alertRemoveHistory').showAlert({
+            message: '{{Historique vidé avec succès}}',
+            level: 'success'
+          })
+        }
       })
     }
   })
