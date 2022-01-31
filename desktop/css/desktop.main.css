@@ -745,6 +745,7 @@ Desktop
   }
 div.div_viewZone legend.lg_viewZone {
   padding: unset !important;
+  margin: 5px !important;
 }
 
 /* ____________________DASHBOARD */
@@ -1801,8 +1802,9 @@ div.div_viewZone legend.lg_viewZone {
   }
 
   .div_rowZones {
-    background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+    background-color: rgb(var(--bg-color)) !important;
     border-radius: var(--border-radius) !important;
+    margin-bottom: 10px !important;
   }
 
   .viewZone{
@@ -1811,10 +1813,6 @@ div.div_viewZone legend.lg_viewZone {
     font-size: 13px;
     line-height: 20px;
     background: rgb(var(--bg-color));
-  }
-
-  .div_rowZones {
-    background-color: rgb(var(--bg-color)) !important;
   }
 
   .view-link-widget,
