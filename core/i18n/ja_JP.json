@@ -2582,11 +2582,11 @@
         "Inactifs": "不活発",
         "Export CSV": "CSVエクスポート",
         "Rechercher | nom | id | :not(nom": "Rechercher | nom | id | :not(nom",
+        "Vider": "空",
         "Date": "日付",
         "Type": "タイプ",
         "ID": "ID",
-        "Nom": "表題",
-        "Vider": "空"
+        "Nom": "表題"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
@@ -2745,7 +2745,7 @@
         "Configuration de l'équipement": "機器構成",
         "Configuration de la commande": "設定された制御",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "この機器をすべて削除してもよろしいですか？",
-        "Historique des suppressions": "削除履歴",
+        "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?",
         "Historique vidé avec succès": "履歴が空になりました"
     },
     "desktop\/js\/overview.js": {

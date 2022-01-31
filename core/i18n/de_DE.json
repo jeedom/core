@@ -2582,11 +2582,11 @@
         "Inactifs": "Inaktiv",
         "Export CSV": "CSV-Export",
         "Rechercher | nom | id | :not(nom": "Suche | Name | ID | : nicht (Name",
+        "Vider": "Leer",
         "Date": "Datum",
         "Type": "Typ",
         "ID": "Identifikation",
-        "Nom": "Name",
-        "Vider": "Leer"
+        "Nom": "Name"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -2745,7 +2745,7 @@
         "Configuration de l'équipement": "Gerätekonfiguration",
         "Configuration de la commande": "Befehl Konfiguration",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Möchten Sie wirklich alle diese Geräte löschen?",
-        "Historique des suppressions": "Löschverlauf",
+        "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Möchten Sie den Löschverlauf wirklich löschen?",
         "Historique vidé avec succès": "Die Geschichte wurde erfolgreich geleert"
     },
     "desktop\/js\/overview.js": {

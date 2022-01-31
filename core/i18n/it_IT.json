@@ -2582,11 +2582,11 @@
         "Inactifs": "Inattivo",
         "Export CSV": "Esportazione CSV",
         "Rechercher | nom | id | :not(nom": "Rechercher | nom | id | :not(nom",
+        "Vider": "Vuota",
         "Date": "Data",
         "Type": "Tipo",
         "ID": "ID",
-        "Nom": "Nome",
-        "Vider": "Vuota"
+        "Nom": "Nome"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
@@ -2745,7 +2745,7 @@
         "Configuration de l'équipement": "Configurazione dell'apparecchiatura",
         "Configuration de la commande": "Impostazione comando",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Sei sicuro di voler eliminare tutta questa attrezzatura?",
-        "Historique des suppressions": "Cronologia delle cancellazioni",
+        "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?",
         "Historique vidé avec succès": "La storia si è svuotata con successo"
     },
     "desktop\/js\/overview.js": {

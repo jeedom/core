@@ -2582,11 +2582,11 @@
         "Inactifs": "Inactifs",
         "Export CSV": "Export CSV",
         "Rechercher | nom | id | :not(nom": "Rechercher | nom | id | :not(nom",
+        "Vider": "Vider",
         "Date": "Date",
         "Type": "Type",
         "ID": "ID",
-        "Nom": "Nom",
-        "Vider": "Vider"
+        "Nom": "Nom"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
@@ -2745,7 +2745,7 @@
         "Configuration de l'équipement": "Configuration de l'équipement",
         "Configuration de la commande": "Configuration de la commande",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Êtes-vous sûr de vouloir supprimer tous ces équipements ?",
-        "Historique des suppressions": "Historique des suppressions",
+        "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?",
         "Historique vidé avec succès": "Historique vidé avec succès"
     },
     "desktop\/js\/overview.js": {

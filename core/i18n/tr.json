@@ -2582,11 +2582,11 @@
         "Inactifs": "Inactifs",
         "Export CSV": "Export CSV",
         "Rechercher | nom | id | :not(nom": "Rechercher | nom | id | :not(nom",
+        "Vider": "Boşalt",
         "Date": "Tarih",
         "Type": "Çeşit",
         "ID": "Kimlik",
-        "Nom": "İsim",
-        "Vider": "Boşalt"
+        "Nom": "İsim"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
@@ -2745,7 +2745,7 @@
         "Configuration de l'équipement": "Cihazın ayarları",
         "Configuration de la commande": "Komutanın ayarları",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Etes-vous sûr de vouloir supprimer tous ces équipements ?",
-        "Historique des suppressions": "Historique des suppressions",
+        "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?",
         "Historique vidé avec succès": "Historique vidé avec succès"
     },
     "desktop\/js\/overview.js": {
