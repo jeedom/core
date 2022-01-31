@@ -461,8 +461,10 @@ jeedom.eqLogic.initGraphInfo = function(_eqLogicId) {
   var divGraph = $('div.eqLogic[data-eqlogic_id=' + _eqLogicId + '] div.eqlogicbackgraph')
   if (divGraph.length) {
     var cmdId = divGraph.data('cmdid')
-    jeedom.eqLogic.drawGraphInfo(cmdId)
     $('div.eqLogic[data-eqlogic_id=' + _eqLogicId + '] div.cmd-widget[data-cmd_id="' + cmdId + '"] .cmdName').prepend('• ')
+    setTimeout(function() {
+      jeedom.eqLogic.drawGraphInfo(cmdId)
+    }, 5)
   }
 }
 

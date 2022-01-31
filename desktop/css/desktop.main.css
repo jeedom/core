@@ -743,6 +743,9 @@ Desktop
   [data-page="profils"] legend:not(.no-bordered) {
     border-left: 2.5px solid var(--logo-primary-color);
   }
+div.div_viewZone legend.lg_viewZone {
+  padding: unset !important;
+}
 
 /* ____________________DASHBOARD */
   body[data-coloredcats="0"] div.eqLogic-widget .widget-name,
