@@ -1,5 +1,13 @@
 # Changelog Jeedom V4.2
 
+## 4.2.8
+
+- Bugfix UI : Home automation summary, clear deletion history.
+- Bugfix UI : Option *Do not display anymore* on the modal *first-user*.
+- Bugfix UI : Curve in background tiles on a View.
+- Bugfix UI : Histories, axis scale when zoomed out.
+- Bugfix Core : Check Apache mod_alias.
+
 ## 4.2.0
 
 ### 4.2 : Prerequisites

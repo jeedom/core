@@ -1,5 +1,13 @@
 # Changelog Jeedom V4.2
 
+## 4.2.8
+
+- IU de correção de bug : Resumo de automação residencial, histórico de exclusão claro.
+- IU de correção de bug : Opção *Não exibir mais* no modal *primeiro usuário*.
+- IU de correção de bug : Curva em blocos de fundo em uma vista.
+- IU de correção de bug : Históricos, escala de eixo quando reduzido.
+- Núcleo de correção de bugs : Verifique o mod_alias do Apache.
+
 ## 4.2.0
 
 ### 4.2 : Pré-requisitos

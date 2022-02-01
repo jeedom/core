@@ -1,5 +1,13 @@
 # Changelog Jeedom V4.2
 
+## 4.2.8
+
+- Bugfix-Benutzeroberfläche : Zusammenfassung der Hausautomation, Löschen des Löschverlaufs.
+- Bugfix-Benutzeroberfläche : Möglichkeit *Nicht mehr anzeigen* auf dem Modal *Erstbenutzer*.
+- Bugfix-Benutzeroberfläche : Kurve in Hintergrundkacheln in einer Ansicht.
+- Bugfix-Benutzeroberfläche : Historien, Achsenskalierung beim Verkleinern.
+- Bugfix-Kern : Überprüfen Sie Apache mod_alias.
+
 ## 4.2.0
 
 ### 4.2 : Voraussetzungen

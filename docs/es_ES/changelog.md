@@ -1,5 +1,13 @@
 # Registro de cambios Jeedom V4.2
 
+## 4.2.8
+
+- Interfaz de usuario de corrección de errores : Resumen de domótica, borrar historial de eliminación.
+- Interfaz de usuario de corrección de errores : Opción *No mostrar* en el modal *primer usuario*.
+- Interfaz de usuario de corrección de errores : Curva en mosaicos de fondo en una vista.
+- Interfaz de usuario de corrección de errores : Historiales, escala del eje cuando se aleja.
+- Núcleo de corrección de errores : Compruebe Apache mod_alias.
+
 ## 4.2.0
 
 ### 4.2 : Prerrequisitos
