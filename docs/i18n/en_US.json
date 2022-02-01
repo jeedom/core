@@ -1263,6 +1263,7 @@
         "sur la modale": "on the modal",
         "Courbe en fond de tuiles sur une Vue": "Curve in background tiles on a View",
         "Historiques, échelle des axes au dezoom": "Histories, axis scale when zoomed out",
+        "Historiques, empilement sur les Vues": "Histories, Stacking on Views",
         "Bugfix Core": "Bugfix Core",
         "Check Apache mod_alias": "Check Apache mod_alias",
         "4.2.0": "4.2.0",

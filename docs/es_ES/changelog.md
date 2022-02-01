@@ -6,6 +6,7 @@
 - Interfaz de usuario de corrección de errores : Opción *No mostrar* en el modal *primer usuario*.
 - Interfaz de usuario de corrección de errores : Curva en mosaicos de fondo en una vista.
 - Interfaz de usuario de corrección de errores : Historiales, escala del eje cuando se aleja.
+- Interfaz de usuario de corrección de errores : Historiales, apilamiento en vistas.
 - Núcleo de corrección de errores : Compruebe Apache mod_alias.
 
 ## 4.2.0

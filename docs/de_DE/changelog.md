@@ -6,6 +6,7 @@
 - Bugfix-Benutzeroberfläche : Möglichkeit *Nicht mehr anzeigen* auf dem Modal *Erstbenutzer*.
 - Bugfix-Benutzeroberfläche : Kurve in Hintergrundkacheln in einer Ansicht.
 - Bugfix-Benutzeroberfläche : Historien, Achsenskalierung beim Verkleinern.
+- Bugfix-Benutzeroberfläche : Historien, Ansichten stapeln.
 - Bugfix-Kern : Überprüfen Sie Apache mod_alias.
 
 ## 4.2.0

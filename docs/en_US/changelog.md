@@ -6,6 +6,7 @@
 - Bugfix UI : Option *Do not display anymore* on the modal *first-user*.
 - Bugfix UI : Curve in background tiles on a View.
 - Bugfix UI : Histories, axis scale when zoomed out.
+- Bugfix UI : Histories, Stacking on Views.
 - Bugfix Core : Check Apache mod_alias.
 
 ## 4.2.0
