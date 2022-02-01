@@ -474,7 +474,7 @@ class system {
 	}
 
 	public static function installPackageInProgress($_plugin = '') {
-		if (count(self::ps('dpkg')) > 0 || count(self::ps('apt ')) > 0) {
+		if (count(self::ps('dpkg ')) > 0 || count(self::ps('apt ')) > 0) {
 			return true;
 		}
 		$progress_file = '/tmp/jeedom_install_in_progress';
