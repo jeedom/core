@@ -1,5 +1,13 @@
 # Changelog Jeedom V4.2
 
+## 4.2.8
+
+- Bugfix UI : Résumé domotique, vider l'historique de suppression.
+- Bugfix UI : Option *Ne plus afficher* sur la modale *first user*.
+- Bugfix UI : Courbe en fond de tuiles sur une Vue.
+- Bugfix UI : Historiques, échelle des axes au dezoom.
+- Bugfix Core : Check Apache mod_alias.
+
 ## 4.2.0
 
 ### 4.2 : Pré-requis
