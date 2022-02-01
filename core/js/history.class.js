@@ -362,7 +362,7 @@ jeedom.history.drawChart = function(_params) {
         delete jeedom.history.chart[_params.el]
       }
 
-      //jeedom default chart params:
+      //___________________________jeedom default chart params:
       var charts = {
         zoomType: 'xy',
         marginTop: 40, //ensure same top space for buttons with or without rangeSelector
@@ -728,21 +728,13 @@ jeedom.history.drawChart = function(_params) {
           axisOpposite = !parseInt(_params.option.graphScale)
         }
 
-        //new first curve:
+        //______________new first curve:
         if (!isset(jeedom.history.chart[_params.el]) || (isset(_params.newGraph) && _params.newGraph == true)) {
           jeedom.history.chart[_params.el] = {}
           jeedom.history.chart[_params.el].cmd = new Array()
           jeedom.history.chart[_params.el].color = seriesNumber - 1
           jeedom.history.chart[_params.el].nbTimeline = 1
           jeedom.history.chart[_params.el].yAxisScaling = true
-
-          //set min max to overide 0->max default HighChart:
-          var yMin = null
-          var yMax = null
-          if (jeedom.history.chart[_params.el].yAxisScaling) {
-            yMin = Math.min.apply(Math, series.data.map(function (i) {return i[1]})) / 1.005
-            yMax = Math.max.apply(Math, series.data.map(function (i) {return i[1]})) * 1.005
-          }
 
           //dateRange buttons config:
           var dateRange = ['all', '30 min', '1 hour', '1 day', '7 days', '1 month', '1 year'].indexOf(_params.dateRange)
@@ -834,8 +826,6 @@ jeedom.history.drawChart = function(_params) {
             },
             yAxis: [{
               id: _params.cmd_id,
-              min: yMin,
-              max: yMax,
               showEmpty: false,
               gridLineWidth: 0,
               minPadding: 0.001,
@@ -930,20 +920,10 @@ jeedom.history.drawChart = function(_params) {
                 enabled: false
               }
             }, false)
-          } else {
+          } else if (_params.option.graphStack != 1) {
             //add new yAxis:
-            //set min max to overide 0->max default HighChart:
-            var yMin = undefined
-            var yMax = undefined
-            if (jeedom.history.chart[_params.el].yAxisScaling) {
-              yMin = Math.min.apply(Math, series.data.map(function (i) {return i[1]})) / 1.005
-              yMax = Math.max.apply(Math, series.data.map(function (i) {return i[1]})) * 1.005
-            }
-
             var yAxis = {
               id: _params.cmd_id,
-              min: yMin,
-              max: yMax,
               showEmpty: false,
               gridLineWidth: 0,
               minPadding: 0.001,
@@ -1330,7 +1310,7 @@ jeedom.history.chartDone = function(_chartId) {
 
   try {
     setTimeout(function() {
-    if (isset(jeedom.history.chart[_chartId]) && !jeedom.history.chart[_chartId].comparing) {
+      if (isset(jeedom.history.chart[_chartId]) && !jeedom.history.chart[_chartId].comparing) {
         jeedom.history.chart[_chartId].chart.setSize(undefined, undefined, false)
         jeedom.history.setAxisScales(_chartId)
         jeedom.history.chart[_chartId].chart.update({
@@ -1423,14 +1403,18 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
       unit = axis.series[0].userOptions.unite
       if (unit == '') unit = axis.userOptions.id
-      axis.update({
-        softMin: 0,
-        softMax: null,
-        min: units[unit].min > 0 ? 0 : units[unit].min,
-        max: units[unit].max < 0 ? 0 : units[unit].max,
-        tickPositions: null
-      }, false)
-      axis.setExtremes(null,  units[unit].max * 1.005, false)
+      if (axis.stacking.stacksTouched == 0) {
+        axis.update({
+          softMin: null,
+          softMax: null,
+          min: units[unit].min > 0 ? 0 : units[unit].min,
+          max: units[unit].max < 0 ? 0 : units[unit].max,
+          tickPositions: null
+        }, false)
+        axis.setExtremes(null,  units[unit].max * 1.005, false)
+      } else {
+        axis.setExtremes(null, null, false, false)
+      }
     })
   }
 
@@ -1443,14 +1427,18 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
       if (mathMax > softMax) softMax = mathMax
     })
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
-      axis.update({
-        softMin: 0,
-        softMax: softMax / 1.005,
-        min: null,
-        max: null,
-        tickPositions: null
-      }, false)
-      axis.setExtremes(null, null, false)
+      if (axis.stacking.stacksTouched == 0) {
+        axis.update({
+          softMin: 0,
+          softMax: softMax / 1.005,
+          min: null,
+          max: null,
+          tickPositions: null
+        }, false)
+        axis.setExtremes(null, null, false)
+      } else {
+        axis.setExtremes(null, null, false, false)
+      }
     })
   }
 
@@ -1496,14 +1484,18 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
       unit = axis.series[0].userOptions.unite
       if (unit == '') unit = axis.userOptions.id
-      axis.update({
-        softMin: null,
-        softMax: null,
-        min: null,
-        max: null,
-        tickPositions: null
-      }, false)
-      axis.setExtremes(units[unit].min / 1.005,  units[unit].max * 1.005, false)
+      if (axis.stacking.stacksTouched == 0) {
+        axis.update({
+          softMin: null,
+          softMax: null,
+          min: null,
+          max: null,
+          tickPositions: null
+        }, false)
+        axis.setExtremes(units[unit].min / 1.005,  units[unit].max * 1.005, false)
+      } else {
+        axis.setExtremes(null, null, false, false)
+      }
     })
   }
 
@@ -1533,14 +1525,18 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
         if (cmax > max) max = cmax
       }
 
-      axis.update({
-        softMin: null,
-        softMax: null,
-        min: null,
-        max: null,
-        tickPositions: null
-      }, false)
-      axis.setExtremes(min / 1.005, max * 1.005, false)
+      if (axis.stacking.stacksTouched == 0) {
+        axis.update({
+          softMin: null,
+          softMax: null,
+          min: null,
+          max: null,
+          tickPositions: null
+        }, false)
+        axis.setExtremes(min / 1.005, max * 1.005, false)
+      } else {
+        axis.setExtremes(null, null, false, false)
+      }
     })
   }
 
