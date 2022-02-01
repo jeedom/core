@@ -1371,7 +1371,7 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
     xAxis[0] dataMin/dataMan : full dateRange
     */
     if (isset(_options.extremeXmin) && isset(_options.extremeXmax)) {
-      chart.xAxis[0].setExtremes(_options.extremeXmin, _options.extremeXmax, false)
+      chart.xAxis[0].setExtremes(_options.extremeXmin, _options.extremeXmax, true) // redraw now for right min/max later
     }
 
     if (isset(_options.resetDateRange) && _options.resetDateRange == true) {
