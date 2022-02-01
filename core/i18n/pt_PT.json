@@ -2582,11 +2582,11 @@
         "Inactifs": "Inativo",
         "Export CSV": "Exportação de CSV",
         "Rechercher | nom | id | :not(nom": "Pesquisa | nome | id | : não (nome",
+        "Vider": "Vazio",
         "Date": "Data",
         "Type": "Tipo",
         "ID": "EU IRIA",
-        "Nom": "Nome",
-        "Vider": "Vazio"
+        "Nom": "Nome"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -2745,7 +2745,7 @@
         "Configuration de l'équipement": "Configuração do equipamento",
         "Configuration de la commande": "Set Controle",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Etes-vous sûr de vouloir supprimer tous ces équipements ?",
-        "Historique des suppressions": "Histórico de exclusão",
+        "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Tem certeza de que deseja limpar o histórico de exclusão?",
         "Historique vidé avec succès": "Histórico esvaziado com sucesso"
     },
     "desktop\/js\/overview.js": {
