@@ -364,11 +364,16 @@ try {
 		if (init('dateStart') != '') {
 			$dateStart = init('dateStart');
 		}
+
 		if (init('dateEnd') != '') {
 			$dateEnd = init('dateEnd');
 			if ($dateEnd == date('Y-m-d')) {
 				$dateEnd = date('Y-m-d H:i:s');
 			}
+		}
+
+      	if (config::byKey('history::allowFuture', 'core', 0) == '0' && strtotime($dateEnd) > strtotime('now')) {
+			$dateEnd = date('Y-m-d H:i:s');
 		}
 
 		if ($dateStart == '' && init('dateRange') == '') {
