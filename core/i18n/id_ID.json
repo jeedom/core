@@ -1764,6 +1764,8 @@
         "1 an": "1 tahun",
         "2 ans": "2 ans",
         "3 ans": "3 ans",
+        "Autoriser les dates dans le futur": "Autoriser les dates dans le futur",
+        "Autorise l'affichage d'historique avec des dates dans le futur.": "Autorise l'affichage d'historique avec des dates dans le futur",
         "Push": "Dorongan",
         "URL de push globale": "URL Dorong global",
         "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes.<br>Vous pouvez utiliser les tags suivants :<br>#value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes.<br>Vous pouvez utiliser les tags suivants :<br>#value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)",

@@ -7,7 +7,10 @@
 - Interfaz de usuario de corrección de errores : Curva en mosaicos de fondo en una vista.
 - Interfaz de usuario de corrección de errores : Historiales, escala del eje cuando se aleja.
 - Interfaz de usuario de corrección de errores : Historiales, apilamiento en vistas.
+- Interfaz de usuario de corrección de errores : Visualización del nombre de usuario al eliminar.
 - Núcleo de corrección de errores : Compruebe Apache mod_alias.
+
+- Mejora : Opción en configuración para autorizar fechas a futuro en las historias.
 
 ## 4.2.0
 

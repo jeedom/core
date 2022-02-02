@@ -7,7 +7,10 @@
 - IU de correção de bug : Curva em blocos de fundo em uma vista.
 - IU de correção de bug : Históricos, escala de eixo quando reduzido.
 - IU de correção de bug : Históricos, empilhamento em visualizações.
+- IU de correção de bug : Exibição do nome de usuário ao excluir.
 - Núcleo de correção de bugs : Verifique o mod_alias do Apache.
+
+- Melhoria : Opção na configuração para autorizar datas futuras nos históricos.
 
 ## 4.2.0
 

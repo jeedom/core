@@ -7,7 +7,10 @@
 - Bugfix-Benutzeroberfläche : Kurve in Hintergrundkacheln in einer Ansicht.
 - Bugfix-Benutzeroberfläche : Historien, Achsenskalierung beim Verkleinern.
 - Bugfix-Benutzeroberfläche : Historien, Ansichten stapeln.
+- Bugfix-Benutzeroberfläche : Anzeige des Benutzernamens beim Löschen.
 - Bugfix-Kern : Überprüfen Sie Apache mod_alias.
+
+- Verbesserung : Option in der Konfiguration, um Daten in der Zukunft in den Historien zu autorisieren.
 
 ## 4.2.0
 

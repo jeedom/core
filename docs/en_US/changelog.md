@@ -7,7 +7,10 @@
 - Bugfix UI : Curve in background tiles on a View.
 - Bugfix UI : Histories, axis scale when zoomed out.
 - Bugfix UI : Histories, Stacking on Views.
+- Bugfix UI : User name display when deleting.
 - Bugfix Core : Check Apache mod_alias.
+
+- Improvement : Option in configuration to authorize dates in the future on the histories.
 
 ## 4.2.0
 
