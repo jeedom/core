@@ -1104,6 +1104,14 @@ user::isBan();
 								</select>
 							</div>
 						</div>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Autoriser les dates dans le futur}}
+                            	<sup><i class="fas fa-question-circle" tooltip="{{Autorise l'affichage d'historique avec des dates dans le futur.}}"></i></sup>
+                            </label>
+							<div class="col-lg-1 col-md-2 col-sm-5 col-xs-6">
+								<input type="checkbox" class="configKey" data-l1key="history::allowFuture" />
+							</div>
+						</div>
 					</fieldset>
 				</form>
 

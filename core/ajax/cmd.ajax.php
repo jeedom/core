@@ -371,6 +371,10 @@ try {
 			}
 		}
 
+		if (config::byKey('history::allowFuture', 'core', 0) == '0' && strtotime($dateEnd) > strtotime('now')) {
+			$dateEnd = date('Y-m-d H:i:s');
+		}
+
 		if ($dateStart == '' && init('dateRange') == '') {
 			$dateStart =  init('startDate', date('Y-m-d', strtotime(config::byKey('history::defautShowPeriod') . ' ' . date('Y-m-d'))));
 		}
