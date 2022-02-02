@@ -389,8 +389,6 @@ jeedom.history.drawChart = function(_params) {
             //default min/max set earlier in series
             //.doing initialized at 1 when chart created with first curve
             var thisId = event.target.userOptions._jeeId
-            jeeFrontEnd.debug(7, 'thisId: ' + thisId, 'event:', event)
-
             setTimeout(function() {
               try {
                 jeedom.history.chartCallback(thisId, {type: 'load'})
@@ -398,7 +396,6 @@ jeedom.history.drawChart = function(_params) {
             }, 0)
           },
           redraw: function(event) {
-            jeeFrontEnd.debug(7, event)
             if (this.rangeSelector === undefined) return true
             if (this.chartWidth > 550 && this.rangeSelector.options.dropdown != 'never') {
               this.update({
@@ -415,7 +412,6 @@ jeedom.history.drawChart = function(_params) {
             }
           },
           render: function(event) {
-            jeeFrontEnd.debug(7, event)
             //shift dotted zones clipPaths to ensure no overlapping step mode:
             var solidClip = null;
             $('.highcharts-zone-graph-0.customSolidZone').each(function() {
@@ -430,8 +426,6 @@ jeedom.history.drawChart = function(_params) {
           },
           addSeries: function(event) {
             var thisId = this._jeeId
-            jeeFrontEnd.debug(7, 'thisId: ' + thisId + ' event: ' + event)
-
             if (jeedom.history.chart[thisId].doing > 0) { //chart not done, loading several series at once:
               jeedom.history.chart[thisId].doing += 1
             } else {                                      //chart done (-1), loading another series later:
@@ -1283,8 +1277,6 @@ HighCharts events callbacks on load / addSeries / selection
 Decrement .doing and call chartDone when .doing == 0
 */
 jeedom.history.chartCallback = function(_chartId, _options) {
-  jeeFrontEnd.debug(5, '_chartId: ' + _chartId, 'doing: ' + jeedom.history.chart[_chartId].doing, '_options:', _options)
-
   if (_chartId === undefined || !isset(_options)) return false
   if (jeedom.history.chart[_chartId].type == 'pie') return false
 
@@ -1310,8 +1302,6 @@ jeedom.history.chartCallback = function(_chartId, _options) {
 Once chart is done
 */
 jeedom.history.chartDone = function(_chartId) {
-  jeeFrontEnd.debug(5, '_chartId: ' + _chartId + ' doing: ' + jeedom.history.chart[_chartId].doing)
-
   if (_chartId === undefined) return false
   if (jeedom.history.chart[_chartId].doing > 0) return false
   var chart = jeedom.history.chart[_chartId].chart
@@ -1332,7 +1322,6 @@ jeedom.history.chartDone = function(_chartId) {
         }) //last redraw!
 
         if (isset(jeeFrontEnd[jeedom.history.chart[_chartId].mode]) && typeof jeeFrontEnd[jeedom.history.chart[_chartId].mode].highcharts_done_callback === "function") {
-          jeeFrontEnd.debug(5, 'call highcharts_done_callback()')
           jeeFrontEnd[jeedom.history.chart[_chartId].mode].highcharts_done_callback(_chartId)
         }
       }
@@ -1349,8 +1338,6 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
   if (_chartId === undefined) return false
   if (jeedom.history.chart[_chartId].type == 'pie') return false
   var chart = jeedom.history.chart[_chartId].chart
-
-  jeeFrontEnd.debug(5, '_chartId: ' + _chartId,  '_options:', _options, 'yAxisScaling: ' + jeedom.history.chart[_chartId].yAxisScaling, 'yAxisByUnit: ' + jeedom.history.chart[_chartId].yAxisByUnit)
 
   //All done with render false, redraw at end if in _options
 
@@ -1551,8 +1538,6 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
       }
     })
   }
-
-  jeeFrontEnd.debug(5, '_chartId: ' + _chartId, 'units:', units)
 
   /*
   Set axis visible / color.

@@ -115,7 +115,6 @@ if (!jeeFrontEnd.history) {
       }
     },
     addChart: function(_cmd_id, _action, _options) {
-      jeeFrontEnd.debug(3, '_action: ' + _action, '_cmd_id: ' + _cmd_id, _options)
       if (_action == 0) { //Remove series
         if (isset(jeedom.history.chart[this.__el__]) && isset(jeedom.history.chart[this.__el__].chart) && isset(jeedom.history.chart[this.__el__].chart.series)) {
           $(jeedom.history.chart[this.__el__].chart.series).each(function(i, serie) {

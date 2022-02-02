@@ -94,6 +94,7 @@ if (!jeeFrontEnd.overview) {
           try {
             self.$summaryContainer.empty().packery('destroy')
           } catch (e) {}
+
           _title = $.parseHTML('<span>' + _title + '</span>')
           jeeP.$modal.parent('.ui-dialog').find('span.ui-dialog-title').empty().append(_title)
           jeeP.$modal.dialog('open')

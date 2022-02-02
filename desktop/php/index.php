@@ -250,9 +250,7 @@ function setTheme() {
 	<?php
 	sendVarToJS([
 		'jeeFrontEnd.language' => $configs['language'],
-		'jeedom.theme' => $jeedom_theme,
-		'jeeFrontEnd._debug' => empty($configs['debugFrontEnd']) ? "-1" : $configs['debugFrontEnd'],
-		'jeeFrontEnd._debugVerbose' => empty($configs['debugFrontEndVerbose']) ? 0 : intval($configs['debugFrontEndVerbose'])
+		'jeedom.theme' => $jeedom_theme
 	]);
 	if (!isConnect()) {
 		include_file('desktop', 'connection', 'php');

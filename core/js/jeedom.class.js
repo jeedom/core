@@ -50,60 +50,6 @@ sendVarToJS([
 */
 jeephp2js = {}
 
-/*
-Debug js frontEnd
-Accept any number of argument
-@example : jeeFrontEnd.debug(3, '_chartId: ' + _chartId, 'doing: ' + jeedom.history.chart[_chartId].doing, '_options:', _options)
-Verbose:
-0 - 2: user actions
-3 - 4: front end functions
-5 - 7: classes functions
-*/
-jeeFrontEnd.debug = function(_level, _msg) {
-  if (jeeFrontEnd._debug == "1" && jeeFrontEnd._debugVerbose >= _level) {
-    try {
-
-      var e = new Error('dummy')
-      var stack = e.stack
-
-      var dirMe = false
-      if (stack.startsWith('Error:')) { //Chrome
-        dirMe = true
-        var call = stack.split('\n')[2].split('at ')[1].split(' (')[0]
-        if (call.startsWith('Function.')) call = call.split('Function.')[1]
-        var callAdrr = stack.split('\n')[2].split('getResource.php?file=')[1].split('&md5')[0]
-      } else { //Firefox
-        var call = stack.split('\n')[1].split('@')[0]
-        var callAdrr = stack.split('\n')[1].split('getResource.php?file=')[1].split('&md5')[0]
-      }
-      call = call.replace('/<', '')
-
-      console.groupCollapsed('debug ' + _level + ' |', call + '() from: ' + callAdrr)
-
-      for (var i=1; i<arguments.length; i++) {
-        console.log(arguments[i])
-      }
-
-      var func = arguments.callee.caller
-      //in js mode strict, no caller / function name:
-      if (!func) {
-        if (call === "function") {
-          func = call
-        } else {
-          var f = 'jeeFrontEnd.' + callAdrr.split('js/')[1].split('.js')[0] + '.' + call
-          f = eval(f)
-          if (typeof f === "function") func = f
-        }
-      }
-      (dirMe) ? console.dir(func) : console.log(func)
-
-      console.groupEnd()
-    } catch (error) {
-      console.error(error)
-    }
-  }
-}
-
 var Highcharts
 
 if (!isset(jeedom.cache.getConfiguration)) {
