@@ -9,6 +9,8 @@
 - Bugfix UI : Historiques, empilement sur les Vues.
 - Bugfix Core : Check Apache mod_alias.
 
+- Amélioration : Option en configuration pour autoriser les dates dans le futur sur les historiques.
+
 ## 4.2.0
 
 ### 4.2 : Pré-requis
