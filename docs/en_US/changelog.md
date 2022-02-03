@@ -5,9 +5,11 @@
 - Bugfix UI : Home automation summary, clear deletion history.
 - Bugfix UI : Option *Do not display anymore* on the modal *first-user*.
 - Bugfix UI : Curve in background tiles on a View.
-- Bugfix UI : Histories, axis scale when zoomed out.
+- Bugfix UI : Histories, scale of axes when de-zoomed.
 - Bugfix UI : Histories, Stacking on Views.
 - Bugfix UI : User name display when deleting.
+- Bugfix UI : Options for displaying numbers without *icon if null*.
+
 - Bugfix Core : Check Apache mod_alias.
 
 - Improvement : Option in configuration to authorize dates in the future on the histories.

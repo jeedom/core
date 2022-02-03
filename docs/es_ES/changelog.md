@@ -5,9 +5,11 @@
 - Interfaz de usuario de corrección de errores : Resumen de domótica, borrar historial de eliminación.
 - Interfaz de usuario de corrección de errores : Opción *No mostrar* en el modal *primer usuario*.
 - Interfaz de usuario de corrección de errores : Curva en mosaicos de fondo en una vista.
-- Interfaz de usuario de corrección de errores : Historiales, escala del eje cuando se aleja.
+- Interfaz de usuario de corrección de errores : Historias, escala de ejes cuando se reduce el zoom.
 - Interfaz de usuario de corrección de errores : Historiales, apilamiento en vistas.
 - Interfaz de usuario de corrección de errores : Visualización del nombre de usuario al eliminar.
+- Interfaz de usuario de corrección de errores : Opciones para mostrar números sin *icono si es nulo*.
+
 - Núcleo de corrección de errores : Compruebe Apache mod_alias.
 
 - Mejora : Opción en configuración para autorizar fechas a futuro en las historias.
