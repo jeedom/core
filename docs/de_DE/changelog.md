@@ -5,9 +5,11 @@
 - Bugfix-Benutzeroberfläche : Zusammenfassung der Hausautomation, Löschen des Löschverlaufs.
 - Bugfix-Benutzeroberfläche : Möglichkeit *Nicht mehr anzeigen* auf dem Modal *Erstbenutzer*.
 - Bugfix-Benutzeroberfläche : Kurve in Hintergrundkacheln in einer Ansicht.
-- Bugfix-Benutzeroberfläche : Historien, Achsenskalierung beim Verkleinern.
+- Bugfix-Benutzeroberfläche : Historien, Achsenskalierung beim Entzoomen.
 - Bugfix-Benutzeroberfläche : Historien, Ansichten stapeln.
 - Bugfix-Benutzeroberfläche : Anzeige des Benutzernamens beim Löschen.
+- Bugfix-Benutzeroberfläche : Optionen zum Anzeigen von Zahlen ohne *Symbol, wenn null*.
+
 - Bugfix-Kern : Überprüfen Sie Apache mod_alias.
 
 - Verbesserung : Option in der Konfiguration, um Daten in der Zukunft in den Historien zu autorisieren.

@@ -5,9 +5,11 @@
 - IU de correção de bug : Resumo de automação residencial, histórico de exclusão claro.
 - IU de correção de bug : Opção *Não exibir mais* no modal *primeiro usuário*.
 - IU de correção de bug : Curva em blocos de fundo em uma vista.
-- IU de correção de bug : Históricos, escala de eixo quando reduzido.
+- IU de correção de bug : Histórias, escala de eixos quando reduzido.
 - IU de correção de bug : Históricos, empilhamento em visualizações.
 - IU de correção de bug : Exibição do nome de usuário ao excluir.
+- IU de correção de bug : Opções para exibir números sem *ícone se nulo*.
+
 - Núcleo de correção de bugs : Verifique o mod_alias do Apache.
 
 - Melhoria : Opção na configuração para autorizar datas futuras nos históricos.
