@@ -116,6 +116,7 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
         <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="allowZoom" >
       </div>
     </div>
+
     <div class="form-group link_type link_graph">
       <label class="col-lg-4 control-label">{{Période}}</label>
       <div class="col-lg-2">
@@ -159,6 +160,7 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
         <input type="checkbox" class="planAttr" checked data-l1key="display" data-l2key="transparentBackground" >
       </div>
     </div>
+
     <div class="form-group link_type link_plan link_view">
       <label class="col-lg-4 control-label">{{Nom}}</label>
       <div class="col-lg-2">
@@ -434,12 +436,11 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
           <div id="div_planConfigureActionoff"></div>
         </div>
       </div>
-    </fieldset>
-  </form>
+  </fieldset>
+</form>
 
-  <script>
+<script>
   var plan_configure_plan = null
-
   $('.planAttr[data-l1key=configuration][data-l2key=zone_mode]').on('change', function() {
     $('.zone_mode').hide()
     $('.zone_mode.zone_'+$(this).value()).show()
@@ -548,7 +549,7 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
 
   $('#bt_uploadImagePlan').fileupload({
     replaceFileInput: false,
-    url: 'core/ajax/plan.ajax.php?action=uploadImagePlan&id=' + id,
+    url: 'core/ajax/plan.ajax.php?action=uploadImagePlan&id=' + jeephp2js.md_planConfigure_Id,
     dataType: 'json',
     done: function(e, data) {
       if (data.result.state != 'ok') {
@@ -585,7 +586,7 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
   //load and set settings (call before any change event set):
   if (isset(jeephp2js.md_planConfigure_Id) && jeephp2js.md_planConfigure_Id != '') {
     jeedom.plan.byId({
-      id : jeephp2js.md_planConfigure_Id,
+      id: jeephp2js.md_planConfigure_Id,
       error: function(error) {
         $('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'})
       },
@@ -630,8 +631,6 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
     })
   }
 
-
-
   function setPlanUI_Events() {
     //background : not default if transparent:
     $('#fd_planConfigure').on('change','.planAttr[data-l1key=display][data-l2key=background-transparent]', function() {
@@ -663,7 +662,6 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
     })
   }
 
-
   function save() {
     var plans = $('#fd_planConfigure').getValues('.planAttr')
     if (plans[0].link_type == 'text') {
@@ -686,7 +684,7 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
       success: function() {
         $('#div_alertPlanConfigure').showAlert({message: '{{Design sauvegardé}}', level: 'success'})
         jeedom.plan.byId({
-          id : plans[0].id,
+          id: plans[0].id,
           error: function(error) {
             $('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'})
           },
@@ -694,7 +692,7 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
             if (plan_configure_plan.plan.link_type == 'summary' && plan_configure_plan !== null && plan_configure_plan.plan.link_id) {
               $('.div_displayObject .summary-widget[data-summary_id=' + plan_configure_plan.plan.link_id + ']').remove()
             }
-            displayObject(plan.plan, plan.html, false)
+            jeeFrontEnd.plan.displayObject(plan.plan, plan.html, false)
             $('#fd_planConfigure').closest("div.ui-dialog-content").dialog("close")
           }
         })
