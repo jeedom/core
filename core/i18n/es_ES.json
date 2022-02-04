@@ -1764,6 +1764,8 @@
         "1 an": "1 año",
         "2 ans": "2 años",
         "3 ans": "3 años",
+        "Autoriser les dates dans le futur": "Permitir fechas en el futuro",
+        "Autorise l'affichage d'historique avec des dates dans le futur.": "Permite la visualización del historial con fechas en el futuro",
         "Push": "Empuje",
         "URL de push globale": "Url de push global",
         "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes.<br>Vous pouvez utiliser les tags suivants :<br>#value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "Ponga aquí la URL para llamar al actualizar el valor de los comandos. <br> Puede usar las siguientes etiquetas: <br> # valor # (valor del pedido), # cmd_id # (ID del pedido) y # cmd_name # (nombre del pedido)",

@@ -36,7 +36,7 @@
     }
 
     mySlider#id#.on('end', function(values, handle) {
-      jeedom.cmd.execute({id: '#id#', value: {slider: values[handle].replace('#unite#', '')}})
+      jeedom.cmd.execute({id: '#id#', value: {slider: values[handle].replace('#unite#', '').trim()}})
     })
 
     $('.cmd[data-cmd_id=#id#] .iconCmd').on('click', function() {

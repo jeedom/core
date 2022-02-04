@@ -37,7 +37,7 @@
     })
 
     mySlider#id#.on('end', function(values, handle) {
-      jeedom.cmd.execute({id: '#id#', value: {slider: values[handle].replace('#unite#', '')}})
+      jeedom.cmd.execute({id: '#id#', value: {slider: values[handle].replace('#unite#', '').trim()}})
     })
 
     jeedom.cmd.update['#id#'] = function(_options) {
