@@ -4,6 +4,8 @@
 
 - Amélioration : Nouvelles options sur les graphiques en Design pour échelle et groupement des axes Y.
 
+- Bugfix Core : Page update indique *en cours* sur *END UPDATE ERROR* (log update).
+
 ## 4.2.8
 
 - Bugfix UI : Résumé domotique, vider l'historique de suppression.
