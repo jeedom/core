@@ -1227,6 +1227,8 @@
         "Mois": "月",
         "Année": "年",
         "Tous": "全て",
+        "Echelles axes Y indépendantes": "Echelles axes Y indépendantes",
+        "Grouper axes Y par unité": "Grouper axes Y par unité",
         "Afficher la légende": "キャプションを表示",
         "Afficher le navigateur": "ブラウザを表示",
         "Afficher le sélecteur de période": "期間セレクターを表示",

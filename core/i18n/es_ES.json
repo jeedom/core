@@ -1227,6 +1227,8 @@
         "Mois": "Mes",
         "Année": "Año",
         "Tous": "Todos",
+        "Echelles axes Y indépendantes": "Escalas independientes del eje Y",
+        "Grouper axes Y par unité": "Agrupar ejes Y por unidad",
         "Afficher la légende": "Mostrar la leyenda",
         "Afficher le navigateur": "Mostrar el navegador",
         "Afficher le sélecteur de période": "Mostrar el selector de período",

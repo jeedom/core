@@ -1227,6 +1227,8 @@
         "Mois": "Monat",
         "Année": "Jahr",
         "Tous": "Alle",
+        "Echelles axes Y indépendantes": "Unabhängige Skalierung der Y-Achse",
+        "Grouper axes Y par unité": "Y-Achsen nach Einheit gruppieren",
         "Afficher la légende": "Bildunterschrift anzeigen",
         "Afficher le navigateur": "Browser anzeigen",
         "Afficher le sélecteur de période": "Periodenauswahl anzeigen",

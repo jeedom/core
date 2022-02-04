@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.2
 
+## 4.2.9
+
+- Improvement : New options on Design charts for scale and Y axis grouping.
+
 ## 4.2.8
 
 - Bugfix UI : Home automation summary, clear deletion history.

@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.2
 
+## 4.2.9
+
+- Melhoria : Novas opções em gráficos de design para agrupamento de escala e eixo Y.
+
 ## 4.2.8
 
 - IU de correção de bug : Resumo de automação residencial, histórico de exclusão claro.

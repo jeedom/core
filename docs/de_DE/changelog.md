@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.2
 
+## 4.2.9
+
+- Verbesserung : Neue Optionen in Design-Diagrammen für Skalierung und Gruppierung der Y-Achse.
+
 ## 4.2.8
 
 - Bugfix-Benutzeroberfläche : Zusammenfassung der Hausautomation, Löschen des Löschverlaufs.

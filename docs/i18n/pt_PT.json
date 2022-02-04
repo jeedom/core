@@ -1255,6 +1255,9 @@
     "changelog.md": {
         "Répéter les valeurs identiques (Oui": "Repita valores idênticos (Sim",
         "Changelog Jeedom V4.2": "Changelog Jeedom V4.2",
+        "4.2.9": "4.2.9",
+        "Amélioration": "Melhoria",
+        "Nouvelles options sur les graphiques en Design pour échelle et groupement des axes Y": "Novas opções em gráficos de design para agrupamento de escala e eixo Y",
         "4.2.8": "4.2.8",
         "Bugfix UI": "IU de correção de bug",
         "Résumé domotique, vider l'historique de suppression": "Resumo de automação residencial, histórico de exclusão claro",
@@ -1269,7 +1272,6 @@
         "Options d'affichage des nombres sans": "Opções para exibir números sem",
         "Bugfix Core": "Núcleo de correção de bugs",
         "Check Apache mod_alias": "Verifique o mod_alias do Apache",
-        "Amélioration": "Melhoria",
         "Option en configuration pour autoriser les dates dans le futur sur les historiques": "Opção na configuração para autorizar datas futuras nos históricos",
         "4.2.0": "4.2.0",
         "Pré-requis": "Pré-requisitos",

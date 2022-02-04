@@ -1,5 +1,9 @@
 # Registro de cambios Jeedom V4.2
 
+## 4.2.9
+
+- Mejora : Nuevas opciones en gráficos de diseño para escala y agrupación del eje Y.
+
 ## 4.2.8
 
 - Interfaz de usuario de corrección de errores : Resumen de domótica, borrar historial de eliminación.

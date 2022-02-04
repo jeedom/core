@@ -1227,6 +1227,8 @@
         "Mois": "месяц",
         "Année": "год",
         "Tous": "все",
+        "Echelles axes Y indépendantes": "Echelles axes Y indépendantes",
+        "Grouper axes Y par unité": "Grouper axes Y par unité",
         "Afficher la légende": "Показать подпись",
         "Afficher le navigateur": "Показать браузер",
         "Afficher le sélecteur de période": "Показать период выбора",
