@@ -4,6 +4,8 @@
 
 - Improvement : New options on Design charts for scale and Y axis grouping.
 
+- Bugfix Core : Page update indicates *In progress* on *END UPDATE ERROR* (log update).
+
 ## 4.2.8
 
 - Bugfix UI : Home automation summary, clear deletion history.
@@ -40,7 +42,7 @@
 - **Summaries** : Possibility to define a different icon when the summary is null (no shutters open, no light on, etc).
 - **Summaries** : Possibility to never display the number to the right of the icon, or only if it is positive.
 - **Summaries** : The change of summary parameter in configuration and on objects is now visible, without waiting for a change in summary value.
-- **Summaries** : It is now possible to configure [actions on summaries](/en_US/concept/summary#Actions sur résumés) (ctrl + click on a summary) thanks to the virtual ones.
+- **Summaries** : It is now possible to configure [actions on summaries](/en_US/concept/summary#Actions on résumés) (ctrl + click on a summary) thanks to the virtual ones.
 - **Report** : Preview PDF files.
 - **Types of equipment** : [New page](/en_US/core/4.2/types) **Tools → Equipment types** allowing generic types to be assigned to devices and commands, with support for types dedicated to installed plugins (see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.2)).
 - **Selection of illustrations** : New global window for the choice of illustrations *(icons, images, backgrounds)*.
