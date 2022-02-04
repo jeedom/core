@@ -91,7 +91,7 @@ try {
 		</center>
 
 		<?php
-		if (config::byKey('jeedom::firstUse') == 1 && $find_jeeasy) {
+		if (config::byKey('jeedom::firstUse') == 1) {
 			$divButton = '<br><br>';
 			$divButton .= '<div class="row">';
 			$divButton .= '<div class="col-xs-12">';

@@ -1764,6 +1764,8 @@
         "1 an": "1 tahun",
         "2 ans": "2 ans",
         "3 ans": "3 ans",
+        "Autoriser les dates dans le futur": "Autoriser les dates dans le futur",
+        "Autorise l'affichage d'historique avec des dates dans le futur.": "Autorise l'affichage d'historique avec des dates dans le futur",
         "Push": "Dorongan",
         "URL de push globale": "URL Dorong global",
         "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes.<br>Vous pouvez utiliser les tags suivants :<br>#value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes.<br>Vous pouvez utiliser les tags suivants :<br>#value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)",
@@ -2582,11 +2584,11 @@
         "Inactifs": "Inactifs",
         "Export CSV": "Export CSV",
         "Rechercher | nom | id | :not(nom": "Rechercher | nom | id | :not(nom",
+        "Vider": "Abisin",
         "Date": "Kencan",
         "Type": "Jenis",
         "ID": "ID",
-        "Nom": "Nama",
-        "Vider": "Abisin"
+        "Nom": "Nama"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
@@ -2745,7 +2747,7 @@
         "Configuration de l'équipement": "Konfigurasi peralatan",
         "Configuration de la commande": "Set Kontrol",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Etes-vous sûr de vouloir supprimer tous ces équipements ?",
-        "Historique des suppressions": "Historique des suppressions",
+        "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?",
         "Historique vidé avec succès": "Historique vidé avec succès"
     },
     "desktop\/js\/overview.js": {

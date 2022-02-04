@@ -1764,6 +1764,8 @@
         "1 an": "1 year",
         "2 ans": "2 years",
         "3 ans": "3 years",
+        "Autoriser les dates dans le futur": "Allow dates in the future",
+        "Autorise l'affichage d'historique avec des dates dans le futur.": "Allows history display with dates in the future",
         "Push": "Push",
         "URL de push globale": "Global push URL",
         "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes.<br>Vous pouvez utiliser les tags suivants :<br>#value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "Put here the URL to call when updating the value of the commands. <br> You can use the following tags: <br> #value# (command value), #cmd_id# (command id) and #cmd_name# (command name)",
@@ -2582,11 +2584,11 @@
         "Inactifs": "Inactive",
         "Export CSV": "CSV export",
         "Rechercher | nom | id | :not(nom": "Search | name | id | :not(name",
+        "Vider": "Clear",
         "Date": "Dated",
         "Type": "Type",
         "ID": "ID",
-        "Nom": "Name",
-        "Vider": "Clear"
+        "Nom": "Name"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -2745,7 +2747,7 @@
         "Configuration de l'équipement": "Equipment configuration",
         "Configuration de la commande": "Command setup",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Are you sure you want to delete all of this equipment?",
-        "Historique des suppressions": "Deletion history",
+        "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Are you sure you want to clear the deletion history?",
         "Historique vidé avec succès": "History emptied successfully"
     },
     "desktop\/js\/overview.js": {

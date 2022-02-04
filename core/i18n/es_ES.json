@@ -1764,6 +1764,8 @@
         "1 an": "1 año",
         "2 ans": "2 años",
         "3 ans": "3 años",
+        "Autoriser les dates dans le futur": "Permitir fechas en el futuro",
+        "Autorise l'affichage d'historique avec des dates dans le futur.": "Permite la visualización del historial con fechas en el futuro",
         "Push": "Empuje",
         "URL de push globale": "Url de push global",
         "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes.<br>Vous pouvez utiliser les tags suivants :<br>#value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "Ponga aquí la URL para llamar al actualizar el valor de los comandos. <br> Puede usar las siguientes etiquetas: <br> # valor # (valor del pedido), # cmd_id # (ID del pedido) y # cmd_name # (nombre del pedido)",
@@ -2582,11 +2584,11 @@
         "Inactifs": "Inactivo",
         "Export CSV": "Exportar CSV",
         "Rechercher | nom | id | :not(nom": "Buscar | nombre | id | : sin nombre",
+        "Vider": "Vacío",
         "Date": "Fecha",
         "Type": "Tipo",
         "ID": "IDENTIFICACIÓN",
-        "Nom": "Nombre",
-        "Vider": "Vacío"
+        "Nom": "Nombre"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -2745,7 +2747,7 @@
         "Configuration de l'équipement": "Configuración del equipo",
         "Configuration de la commande": "Configuración del comando",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "¿Estás seguro de que deseas eliminar todo este equipo?",
-        "Historique des suppressions": "Historial de borrado",
+        "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "¿Está seguro de que desea borrar el historial de eliminación?",
         "Historique vidé avec succès": "EL histórico se vació con éxito"
     },
     "desktop\/js\/overview.js": {
