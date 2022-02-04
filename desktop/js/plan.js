@@ -1379,6 +1379,8 @@ function displayObject(_plan, _html, _noRender) {
             showNavigator: init(_plan.display.showNavigator, true),
             enableExport: false,
             global: false,
+            yAxisScaling: init(_plan.display.yAxisScaling, false),
+            yAxisByUnit: init(_plan.display.yAxisByUnit, false),
             success: function() {
               done -= 1
               if (done == 0) {

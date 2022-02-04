@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.2
 
+## 4.2.9
+
+- Amélioration : Nouvelles options sur les graphiques en Design pour échelle et groupement des axes Y.
+
 ## 4.2.8
 
 - Bugfix UI : Résumé domotique, vider l'historique de suppression.
