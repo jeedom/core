@@ -485,7 +485,7 @@ class network {
 			if (!network::test('external')) {
 				sleep(rand(20, 60));
 				if (!network::test('external')) {
-					log::add('network', 'error', __('Accès externe non ok, redémarrage du dns Jeedom', __FILE__));
+					log::add('network', 'warning', __('Accès externe non ok, redémarrage du dns Jeedom', __FILE__));
 					self::dns_stop();
 					self::dns_start();
 				}
