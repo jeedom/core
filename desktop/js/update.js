@@ -350,7 +350,7 @@ if (!jeeFrontEnd.update) {
           }
         }
         nextLine = nextLine.trim()
-        if (replaceLogLines.includes(nextLine)) {
+        if (this.replaceLogLines.includes(nextLine)) {
           line += ' | OK'
           lines[i + offset] = ''
         }
