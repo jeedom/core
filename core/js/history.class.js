@@ -887,7 +887,11 @@ jeedom.history.drawChart = function(_params) {
           jeedom.history.chart[_params.el].containerId = jeedom.history.chart[_params.el].chart.container.id
           jeedom.history.chart[_params.el].chart._jeeId = _params.el //else only in useroptions
           jeedom.history.chart[_params.el].doing = 1
-          jeedom.history.initChart(_params.el)
+
+          var options = {default: {}}
+          if (isset(_params.yAxisScaling) && _params.yAxisScaling != '') options.default.yAxisScaling = _params.yAxisScaling
+          if (isset(_params.yAxisByUnit) && _params.yAxisByUnit != '') options.default.yAxisByUnit = _params.yAxisByUnit
+          jeedom.history.initChart(_params.el, options)
         } else {
           //set options for comparison serie:
           if (comparisonSerie == 1) {
@@ -986,27 +990,24 @@ Hicharts events calls
 yAxis scaling
 */
 
-jeedom.history.initChart = function(_chartId) {
+jeedom.history.initChart = function(_chartId, _options) {
   var thisId = _chartId
   jeedom.history.chart[thisId].comparing = false
   jeedom.history.chart[thisId].zoom = false
   jeedom.history.chart[thisId].mode = jeedom.getPageType(true)
 
   jeedom.history.default = {
-    tracking: true,
-    yAxisByUnit: true,
+    yAxisVisible: true,
     yAxisScaling: true,
-    yAxisVisible: true
+    yAxisByUnit: true,
+    tracking: true
   }
 
   if (jeedom.history.chart[thisId].type == 'pie') return false
   if (getUrlVars('v') != 'm') jeedom.history.initLegendContextMenu(_chartId)
 
-  //default:
-  if (jeedom.history.chart[thisId].mode == 'plan') {
-    jeedom.history.default.yAxisScaling = false
-    jeedom.history.default.yAxisByUnit = false
-  }
+  if (isset(_options.default.yAxisScaling)) jeedom.history.default.yAxisScaling = Boolean(Number(_options.default.yAxisScaling))
+  if (isset(_options.default.yAxisByUnit)) jeedom.history.default.yAxisByUnit = Boolean(Number(_options.default.yAxisByUnit))
 
   /*
   HichCharts button states (undocumented):

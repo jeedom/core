@@ -130,6 +130,19 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
         </select>
       </div>
     </div>
+
+    <div class="form-group link_type link_graph">
+      <label class="col-lg-4 control-label">{{Echelles axes Y indépendantes}}</label>
+      <div class="col-lg-2">
+        <input type="checkbox" checked class="planAttr" data-l1key="display" data-l2key="yAxisScaling" >
+      </div>
+    </div>
+    <div class="form-group link_type link_graph">
+      <label class="col-lg-4 control-label">{{Grouper axes Y par unité}}</label>
+      <div class="col-lg-2">
+        <input type="checkbox" checked class="planAttr" data-l1key="display" data-l2key="yAxisByUnit" >
+      </div>
+    </div>
     <div class="form-group link_type link_graph">
       <label class="col-lg-4 control-label">{{Afficher la légende}}</label>
       <div class="col-lg-2">
