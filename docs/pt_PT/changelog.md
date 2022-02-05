@@ -4,6 +4,7 @@
 
 - IU de correção de bug : Corrigido o widget padrão numérico (cmdName muito longo).
 - IU de correção de bug : Passando variáveis css *--url-iconsDark* e *--url-iconsLight* em absoluto (Bug Safari MacOS).
+- IU de correção de bug : Posição das notificações em *centro superior*.
 
 - Melhoria : Novas opções em gráficos de design para agrupamento de escala e eixo Y.
 

@@ -4,6 +4,7 @@
 
 - Bugfix UI : Fixed numeric default widget (cmdName too long).
 - Bugfix UI : Passing css variables *--url-iconsDark* and *--url-iconsLight* in absolute (Bug Safari MacOS).
+- Bugfix UI : Position of notifications in *top center*.
 
 - Improvement : New options on Design charts for scale and Y axis grouping.
 
