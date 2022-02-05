@@ -3,7 +3,7 @@
 ## 4.2.9
 
 - Bugfix UI : Correction widget numeric default (cmdName trop long).
-- Bugfix UI : Passage des variables css *--url-iconsDark* et *--url-iconsLight* en absolue.
+- Bugfix UI : Passage des variables css *--url-iconsDark* et *--url-iconsLight* en absolue (Bug Safari MacOS).
 
 - Amélioration : Nouvelles options sur les graphiques en Design pour échelle et groupement des axes Y.
 
