@@ -2,9 +2,15 @@
 
 ## 4.2.9
 
+- Interfaz de usuario de corrección de errores : Se corrigió el widget predeterminado numérico (cmdName demasiado largo)).
+- Interfaz de usuario de corrección de errores : Pasar variables css *--url-iconsDark* y *--url-iconsLight* en absoluto (Bug Safari MacOS).
+
 - Mejora : Nuevas opciones en gráficos de diseño para escala y agrupación del eje Y.
 
+- Núcleo de corrección de errores : Paso predeterminado para widgets *Control deslizante* a la 1.
 - Núcleo de corrección de errores : La actualización de la página indica *en curso* seguro *FIN DE ACTUALIZAR ERROR* (actualización de registro).
+
+- Centro : Actualización de biblioteca *elFinder* 2.1.59 -> 2.1.60
 
 ## 4.2.8
 

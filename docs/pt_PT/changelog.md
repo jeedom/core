@@ -2,9 +2,15 @@
 
 ## 4.2.9
 
+- IU de correção de bug : Corrigido o widget padrão numérico (cmdName muito longo).
+- IU de correção de bug : Passando variáveis css *--url-iconsDark* e *--url-iconsLight* em absoluto (Bug Safari MacOS).
+
 - Melhoria : Novas opções em gráficos de design para agrupamento de escala e eixo Y.
 
+- Núcleo de correção de bugs : Etapa padrão para widgets *Controle deslizante* em 1.
 - Núcleo de correção de bugs : A atualização da página indica *Em andamento* sobre *ERRO DE ATUALIZAÇÃO* (atualização de log).
+
+- Testemunho : Atualização de biblioteca *elFinder* 2.1.59 -> 2.1.60
 
 ## 4.2.8
 
