@@ -47,8 +47,8 @@ colors Dark Mobile
   --cat-other-color: 58, 90, 85;
   --cat-scenario-color: 55, 55, 62;
 
-  --url-iconsDark: url(../img/ui-icons-black.png);
-  --url-iconsLight: url(../img/ui-icons-white.png);
+  --url-iconsDark: url(/desktop/img/ui-icons-black.png);
+  --url-iconsLight: url(/desktop/img/ui-icons-white.png);
 
   --lb-info-color: rgb(80, 160, 180);
   --lb-yellow-color: rgb(210, 180, 0);
