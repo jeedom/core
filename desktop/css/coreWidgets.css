@@ -28,7 +28,7 @@ Desktop
     z-index: 1;
   }
 
-  .eqLogic-widget div.cmd-widget {
+  div.eqLogic-widget div.cmd-widget {
     position: relative;
     padding: 0;
     min-width: 70px;
@@ -55,6 +55,11 @@ Desktop
     position: relative;
     display: table;
     text-align: center;
+  }
+
+  div.cmd-widget .cmdName {
+    font-size: 12px;
+    font-weight: 400;
   }
 
   div.cmd-widget div[class^="content"] {
@@ -487,19 +492,26 @@ Desktop
   }
 
 /* ____________________others */
-  div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="default"] {
-    text-align: center;
-    margin: 0 5px;
-  }
-  div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="default"] .state {
-    width: 90px;
-  }
   .cmd-widget.widget-hygrothermographe {
     width: 220px;
     height: 220px;
     margin: 0 5px;
   }
 
+  div.arcgauge {
+    text-align: center;
+    margin: 0 5px;
+  }
+  div.arcgauge .state {
+    width: 90px;
+  }
+
+  div.arcgauge .cmdName {
+    display: block;
+    max-width: 80px;
+    max-height: 14px;
+    overflow: hidden;
+  }
   div.arcgauge .gauge,
   div.arcgauge .gaugeValue {
     position: absolute;
@@ -522,7 +534,7 @@ Desktop
     transform-origin: 42px 42px;
     transform: scale(0.94) rotate(-180deg);
   }
-  .arcgauge .cmdStats {
+  div..arcgauge .cmdStats {
     position: relative;
     top: 5px;
   }
@@ -607,6 +619,22 @@ Desktop
     width: 25px;
   }
 
+  .shuttergauge .noUi-pips {
+    top: 5px;
+    left: -12px;
+  }
+  .shuttergauge .noUi-marker.noUi-marker-vertical.noUi-marker-large {
+    height: 1.15px;
+    width: 10px;
+  }
+  .shuttergauge .noUi-marker.noUi-marker-vertical.noUi-marker-normal {
+    height: 1.15px;
+    width: 5px;
+  }
+  .shuttergauge .noUi-value.noUi-value-vertical.noUi-value-large {
+    left: 5px;
+  }
+
   .shuttergauge .timeCmd {
     bottom: 1px;
     margin-left: -15px !important;
@@ -629,32 +657,32 @@ Desktop
   }
 
 /* ____________________Compass */
-  .widget-compass-container {
+  div.cmd-widget.widget-compass .widget-compass-container {
     position: relative;
     width: 80px;
     height: 80px;
     margin-bottom: 5px;
     text-align: center;
   }
-  .widget-compass-container * {
+  div.cmd-widget.widget-compass .widget-compass-container * {
     position: absolute;
   }
-  .widget-compass .value {
+  div.cmd-widget.widget-compass .value {
     position: absolute;
     top: 48px;
   }
-  .widget-compass .state {
+  div.cmd-widget.widget-compass .state {
     font-size: 16px !important;
     font-weight: bold;
     position: relative;
     top: 25px;
   }
-  .widget-compass .winDir {
+  div.cmd-widget.widget-compass .winDir {
     font-size: 11px !important;
     position: relative;
     top: 28px;
   }
-  .widget-compass-outline {
+  div.cmd-widget.widget-compass .widget-compass-outline {
     top: 0;
     right: 0;
     bottom: 0;
@@ -664,14 +692,14 @@ Desktop
     border-bottom: 6px solid var(--al-info-color);
     border-radius: 50%;
   }
-  .widget-compass-needle-placer {
+  div.cmd-widget.widget-compass .widget-compass-needle-placer {
     position: absolute;
     margin-top: -3px;
     margin-left: -3px;
     width: 86px;
     height: 86px;
   }
-  .widget-compass-needle {
+  div.cmd-widget.widget-compass .widget-compass-needle {
     position: relative;
     width: 0px;
     height: 0px;
@@ -689,7 +717,7 @@ Desktop
 
   @keyframes jeedomWidgetRainWaterAnimation{from{background-position:0 0}to{background-position:100000% 0}}
 
-  .widget-rain-water {
+  div.cmd-widget.widget-rain .widget-rain-water {
     position: absolute;
     bottom: 0px;
     width: 100%;
@@ -698,7 +726,7 @@ Desktop
     animation: jeedomWidgetRainWaterAnimation 3000s linear infinite;
   }
 
-  .widget-rain-container {
+  div.cmd-widget.widget-rain .widget-rain-container {
     background: url(../../core/template/mobile/cmd.info.numeric.rain/marker.svg) no-repeat;
     background-size: cover;
     position: relative;
@@ -706,7 +734,7 @@ Desktop
     z-index: 20;
   }
 
-  .widget-rain-container .plage {
+  div.cmd-widget.widget-rain .widget-rain-container .plage {
     position: absolute;
     bottom: 5px;
     right: 5%;
@@ -714,7 +742,7 @@ Desktop
     z-index: 2;
   }
 
-  .widget-rain-main {
+  div.cmd-widget.widget-rain .widget-rain-main {
     overflow: hidden;
     width: 80px;
     z-index: 0;
