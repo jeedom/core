@@ -4572,15 +4572,27 @@ div.div_viewZone legend.lg_viewZone {
     display: inline-block;
     padding: 5px !important;
   }
+
   #toast-container {
     width: 33%;
   }
   #toast-container > div {
-    width: auto;
+    width: auto !important;
     color: var(--linkHoverLight-color);
     border-radius: var(--border-radius) ;
     box-shadow: none;
   }
+  #toast-container.toast-top-left,
+  #toast-container.toast-top-center,
+  #toast-container.toast-top-right {
+    top: 60px;
+  }
+  #toast-container.toast-top-center {
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   #toast-container > div.toast-info {
     background-color: var(--al-info-color);
   }
