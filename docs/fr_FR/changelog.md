@@ -2,9 +2,15 @@
 
 ## 4.2.9
 
+- Bugfix UI : Correction widget numeric default (cmdName trop long).
+- Bugfix UI : Passage des variables css *--url-iconsDark* et *--url-iconsLight* en absolue.
+
 - Amélioration : Nouvelles options sur les graphiques en Design pour échelle et groupement des axes Y.
 
+- Bugfix Core : Step par défaut des widgets *Slider* à 1.
 - Bugfix Core : Page update indique *en cours* sur *END UPDATE ERROR* (log update).
+
+- Core : Mise à jour de la lib *elFinder* 2.1.59 -> 2.1.60
 
 ## 4.2.8
 
