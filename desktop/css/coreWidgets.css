@@ -502,6 +502,9 @@ Desktop
     text-align: center;
     margin: 0 5px;
   }
+  div.arcgauge .content-sm  {
+    position: relative;
+  }
   div.arcgauge .state {
     width: 90px;
   }
@@ -515,7 +518,7 @@ Desktop
   div.arcgauge .gauge,
   div.arcgauge .gaugeValue {
     position: absolute;
-    top: 16px;
+    top: 0;
     left: 0;
     width: 84px;
     height: 45px;
