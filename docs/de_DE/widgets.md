@@ -105,7 +105,7 @@ Die Widgets-Seite, auf die über das Menü zugegriffen werden kann **Extras → 
 
 Es gibt zwei Arten von benutzerdefinierten Widgets :
 
-- Widgets *Kern* vorlagenbasiert. Diese Widgets werden vom Jeedom Core verwaltet und daher vom Entwicklungsteam überwacht. Ihre Kompatibilität ist mit zukünftigen Entwicklungen von Jeedom gewährleistet.
+- Widgets *Ader* vorlagenbasiert. Diese Widgets werden vom Jeedom Core verwaltet und daher vom Entwicklungsteam überwacht. Ihre Kompatibilität ist mit zukünftigen Entwicklungen von Jeedom gewährleistet.
 - Widgets *Dritte* basierend auf Benutzercode. Im Gegensatz zu Core-Widgets hat das Jeedom-Entwicklungsteam keine Kontrolle über den in diese Widgets eingefügten Code. Die Kompatibilität mit zukünftigen Entwicklungen kann nicht garantiert werden. Diese Widgets müssen daher vom Benutzer gepflegt werden.
 
 ### Gestion
@@ -113,7 +113,7 @@ Es gibt zwei Arten von benutzerdefinierten Widgets :
 ![Widgets](./images/widgets.png)
 
 Sie haben vier Möglichkeiten :
-- **Hinzufügen** : Ermöglicht das Hinzufügen eines Widgets *Kern*.
+- **Hinzufügen** : Ermöglicht das Hinzufügen eines Widgets *Ader*.
 - **Importieren** : Ermöglicht das Importieren eines Widgets als zuvor exportierte JSON-Datei.
 - **Codiert** : Rufen Sie die Widget-Bearbeitungsseite auf *Dritte*.
 - **Ersatz** : Öffnet ein Fenster, in dem Sie ein Widget auf allen Geräten, die es verwenden, durch ein anderes ersetzen können.
