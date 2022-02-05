@@ -1260,6 +1260,8 @@
         "Correction widget numeric default (cmdName trop long": "Fixed numeric default widget (cmdName too long",
         "Passage des variables css": "Passing css variables",
         "en absolue (Bug Safari MacOS": "in absolute (Bug Safari MacOS",
+        "top center": "top center",
+        "Position des notifications en": "Position of notifications in",
         "Amélioration": "Improvement",
         "Nouvelles options sur les graphiques en Design pour échelle et groupement des axes Y": "New options on Design charts for scale and Y axis grouping",
         "Bugfix Core": "Bugfix Core",

@@ -4,6 +4,7 @@
 
 - Interfaz de usuario de corrección de errores : Se corrigió el widget predeterminado numérico (cmdName demasiado largo)).
 - Interfaz de usuario de corrección de errores : Pasar variables css *--url-iconsDark* y *--url-iconsLight* en absoluto (Bug Safari MacOS).
+- Interfaz de usuario de corrección de errores : Posición de las notificaciones en *centro Superior*.
 
 - Mejora : Nuevas opciones en gráficos de diseño para escala y agrupación del eje Y.
 

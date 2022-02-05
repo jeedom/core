@@ -1260,6 +1260,8 @@
         "Correction widget numeric default (cmdName trop long": "Numerisches Standard-Widget behoben (cmdName zu lang",
         "Passage des variables css": "Übergeben von CSS-Variablen",
         "en absolue (Bug Safari MacOS": "absolut (Bug Safari MacOS",
+        "top center": "oben in der Mitte",
+        "Position des notifications en": "Position der Benachrichtigungen in",
         "Amélioration": "Verbesserung",
         "Nouvelles options sur les graphiques en Design pour échelle et groupement des axes Y": "Neue Optionen in Design-Diagrammen für Skalierung und Gruppierung der Y-Achse",
         "Bugfix Core": "Bugfix-Kern",
