@@ -105,7 +105,7 @@ La página de Widgets, accesible desde el menú **Herramientas → Widgets**, le
 
 Hay dos tipos de widgets personalizados :
 
-- Widgets *Centro* basado en plantillas. Estos widgets son administrados por Jeedom Core y, por lo tanto, monitoreados por el equipo de desarrollo. Su compatibilidad está asegurada con futuras evoluciones de Jeedom.
+- Widgets *Núcleo* basado en plantillas. Estos widgets son administrados por Jeedom Core y, por lo tanto, monitoreados por el equipo de desarrollo. Su compatibilidad está asegurada con futuras evoluciones de Jeedom.
 - Widgets *Tercero* basado en el código de usuario. A diferencia de los widgets Core, el equipo de desarrollo de Jeedom no tiene control sobre el código insertado en estos widgets, su compatibilidad con desarrollos futuros no está garantizada. Por lo tanto, el usuario debe mantener estos widgets.
 
 ### Gestion
@@ -113,7 +113,7 @@ Hay dos tipos de widgets personalizados :
 ![Widgets](./images/widgets.png)
 
 Tienes cuatro opciones :
-- **Añadir** : Le permite agregar un widget *Centro*.
+- **Añadir** : Le permite agregar un widget *Núcleo*.
 - **Importar** : Le permite importar un widget como un archivo json previamente exportado.
 - **Codificado** : Accede a la página de edición del widget *Tercero*.
 - **Reemplazo** : Abre una ventana que le permite reemplazar un widget por otro en todos los dispositivos que lo usan.
