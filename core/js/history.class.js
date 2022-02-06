@@ -122,7 +122,7 @@ jeedom.history.changePoint = function(_params) {
       });
       var serie = null;
       for (var i in jeedom.history.chart) {
-        serie = jeedom.history.chart[i].chart.get(_params.cmd_id);
+        serie = jeedom.history.chart[i].chart.series.filter(v => v.userOptions.id == _params.cmd_id.toString())[0]
         if (serie != null && serie != undefined) {
           serie.remove();
           serie = null;
@@ -163,6 +163,11 @@ jeedom.history.modalchangePoint = function(event, _this, _params) {
   if ($('#md_modal2').is(':visible')) return
   if ($('#md_modal1').is(':visible')) return
   if (jeedom.history.chart[_this.series.chart._jeeId].comparing) return
+
+  if (isset(_params.cmd.display.groupingType) && _params.cmd.display.groupingType != '') {
+    bootbox.alert('{{Impossible de modifier une valeur sur une courbe avec groupement}}' + ' (' + _params.cmd.display.groupingType + ')')
+    return
+  }
 
   var id = _this.series.userOptions.id
   var datetime = Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', _this.x)
@@ -989,7 +994,6 @@ Chart legend context menu
 Hicharts events calls
 yAxis scaling
 */
-
 jeedom.history.initChart = function(_chartId, _options) {
   var thisId = _chartId
   jeedom.history.chart[thisId].comparing = false
