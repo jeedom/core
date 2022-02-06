@@ -6,10 +6,11 @@
 - Bugfix-Benutzeroberfläche : Übergeben von CSS-Variablen *--url-iconsDark* und *--url-iconsLight* absolut (Bug Safari MacOS).
 - Bugfix-Benutzeroberfläche : Position der Benachrichtigungen in *oben in der Mitte*.
 
-- Verbesserung : Neue Optionen in Design-Diagrammen für Skalierung und Gruppierung der Y-Achse.
-
 - Bugfix-Kern : Standardschritt für Widgets *Schieberegler* um 1.
 - Bugfix-Kern : Seitenaktualisierung zeigt an *In Bearbeitung* an *ENDE UPDATE-FEHLER* (Protokollaktualisierung).
+- Bugfix-Kern : Änderung des Wertes einer Geschichte.
+
+- Verbesserung : Neue Optionen in Design-Diagrammen für Skalierung und Gruppierung der Y-Achse.
 
 - Kern : Lib-Update *elFinder* 2.1.59 -> 2.1.60
 

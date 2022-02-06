@@ -3314,6 +3314,7 @@
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "La valeur a été éditée avec succès",
+        "Impossible de modifier une valeur sur une courbe avec groupement": "Impossible de modifier une valeur sur une courbe avec groupement",
         "Edition de la série :": "Edition de la série :",
         "et du point de": "et du point de",
         "valeur :": "valeur :",

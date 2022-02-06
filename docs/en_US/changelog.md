@@ -6,10 +6,11 @@
 - Bugfix UI : Passing css variables *--url-iconsDark* and *--url-iconsLight* in absolute (Bug Safari MacOS).
 - Bugfix UI : Position of notifications in *top center*.
 
-- Improvement : New options on Design charts for scale and Y axis grouping.
-
 - Bugfix Core : Default step for widgets *Slider* at 1.
 - Bugfix Core : Page update indicates *In progress* on *END UPDATE ERROR* (log update).
+- Bugfix Core : Modification of value of a history.
+
+- Improvement : New options on Design charts for scale and Y axis grouping.
 
 - Core : Lib update *elFinder* 2.1.59 -> 2.1.60
 

@@ -3314,6 +3314,7 @@
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "O valor foi editado com sucesso",
+        "Impossible de modifier une valeur sur une courbe avec groupement": "Não é possível modificar um valor em uma curva com agrupamento",
         "Edition de la série :": "Série Edição:",
         "et du point de": "e o ponto de",
         "valeur :": "valor:",
