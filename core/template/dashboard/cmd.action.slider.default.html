@@ -30,7 +30,7 @@
       $(mySlider#id#.target).find('.noUi-connect').style('background', '#color#', 'important')
     }
 
-    mySlider#id#.on('end', function(values, handle) {
+    mySlider#id#.on('change', function(values, handle) {
       jeedom.cmd.execute({id: '#id#', value: {slider: values[handle].replace('#unite#', '').trim()}})
     })
 
