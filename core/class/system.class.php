@@ -533,9 +533,9 @@ class system {
 				if (version_compare(self::getOsVersion(), '11', '>=')) {
 					return '';
 				}
-				return self::getCmdSudo() . ' pip2 install --upgrade ' . $_package;
+				return self::getCmdSudo() . ' pip2 install --force-reinstall --ignore-installed --upgrade ' . $_package;
 			case 'pip3':
-				return self::getCmdSudo() . ' pip3 install --upgrade ' . $_package;
+				return self::getCmdSudo() . ' pip3 install --force-reinstall --ignore-installed --upgrade ' . $_package;
 			case 'npm':
 				if (strpos($_package, '/') === false) {
 					return self::getCmdSudo() . ' npm install --force -g ' . $_package;
