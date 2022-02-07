@@ -26,6 +26,7 @@ $(function() {
 
   var options = {
     url: 'core/php/editor.connector.php',
+    baseUrl: '3rdparty/elfinder/',
     cssAutoLoad: false,
     lang: lang,
     startPathHash: hash,
