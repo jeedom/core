@@ -9,6 +9,7 @@
 - Núcleo de corrección de errores : Paso predeterminado para widgets *Control deslizante* a la 1.
 - Núcleo de corrección de errores : La actualización de la página indica *en curso* seguro *FIN DE ACTUALIZAR ERROR* (actualización de registro).
 - Núcleo de corrección de errores : Modificación de valor de un historial.
+- Núcleo de corrección de errores : problemas solucionados con la instalación de dependencias de python
 
 - Mejora : Nuevas opciones en gráficos de diseño para escala y agrupación del eje Y.
 

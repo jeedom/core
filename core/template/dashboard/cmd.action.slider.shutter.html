@@ -40,7 +40,7 @@
       $(mySlider#id#.target).find('.noUi-connect').style('background', '#color#', 'important')
     }
 
-    mySlider#id#.on('end', function(values, handle) {
+    mySlider#id#.on('change', function(values, handle) {
       var cmd = $('.cmd[data-cmd_uid=#uid#]')
       if ('#invert#' == '1') {
         var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')

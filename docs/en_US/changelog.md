@@ -9,6 +9,7 @@
 - Bugfix Core : Default step for widgets *Slider* at 1.
 - Bugfix Core : Page update indicates *In progress* on *END UPDATE ERROR* (log update).
 - Bugfix Core : Modification of value of a history.
+- Bugfix Core : fixed issues with installing python dependencies
 
 - Improvement : New options on Design charts for scale and Y axis grouping.
 

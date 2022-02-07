@@ -280,7 +280,8 @@ Desktop
   }
   div.cmd-widget .slider .noUi-connects {
     background: var(--el-defaultColor) !important;
-    border-radius: 0
+    border-radius: 0;
+    cursor: pointer;
   }
   div.cmd-widget .slider.noUi-horizontal .noUi-connects {
     height: 5px;
