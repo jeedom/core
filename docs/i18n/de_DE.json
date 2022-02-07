@@ -1270,6 +1270,7 @@
         "Page update indique": "Seitenaktualisierung zeigt an",
         "log update": "Protokollaktualisierung",
         "Modification de valeur d'un historique": "Änderung des Wertes einer Geschichte",
+        "correction de soucis sur l'installation des dépendances python": "Probleme beim Installieren von Python-Abhängigkeiten behoben",
         "Amélioration": "Verbesserung",
         "Nouvelles options sur les graphiques en Design pour échelle et groupement des axes Y": "Neue Optionen in Design-Diagrammen für Skalierung und Gruppierung der Y-Achse",
         "Mise à jour de la lib": "Lib-Update",

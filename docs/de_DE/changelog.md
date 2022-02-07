@@ -9,6 +9,7 @@
 - Bugfix-Kern : Standardschritt für Widgets *Schieberegler* um 1.
 - Bugfix-Kern : Seitenaktualisierung zeigt an *In Bearbeitung* an *ENDE UPDATE-FEHLER* (Protokollaktualisierung).
 - Bugfix-Kern : Änderung des Wertes einer Geschichte.
+- Bugfix-Kern : Probleme beim Installieren von Python-Abhängigkeiten behoben
 
 - Verbesserung : Neue Optionen in Design-Diagrammen für Skalierung und Gruppierung der Y-Achse.
 
