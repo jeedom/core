@@ -1227,6 +1227,8 @@
         "Mois": "Mois",
         "Année": "Année",
         "Tous": "Tous",
+        "Echelles axes Y indépendantes": "Echelles axes Y indépendantes",
+        "Grouper axes Y par unité": "Grouper axes Y par unité",
         "Afficher la légende": "Afficher la légende",
         "Afficher le navigateur": "Afficher le navigateur",
         "Afficher le sélecteur de période": "Afficher le sélecteur de période",
@@ -3312,6 +3314,7 @@
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "La valeur a été éditée avec succès",
+        "Impossible de modifier une valeur sur une courbe avec groupement": "Impossible de modifier une valeur sur une courbe avec groupement",
         "Edition de la série :": "Edition de la série :",
         "et du point de": "et du point de",
         "valeur :": "valeur :",

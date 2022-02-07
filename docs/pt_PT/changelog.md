@@ -1,5 +1,19 @@
 # Changelog Jeedom V4.2
 
+## 4.2.9
+
+- IU de correção de bug : Corrigido o widget padrão numérico (cmdName muito longo).
+- IU de correção de bug : Passando variáveis css *--url-iconsDark* e *--url-iconsLight* em absoluto (Bug Safari MacOS).
+- IU de correção de bug : Posição das notificações em *centro superior*.
+
+- Núcleo de correção de bugs : Etapa padrão para widgets *Controle deslizante* em 1.
+- Núcleo de correção de bugs : A atualização da página indica *Em andamento* sobre *ERRO DE ATUALIZAÇÃO* (atualização de log).
+- Núcleo de correção de bugs : Modificação do valor de um histórico.
+
+- Melhoria : Novas opções em gráficos de design para agrupamento de escala e eixo Y.
+
+- Testemunho : Atualização de biblioteca *elFinder* 2.1.59 -> 2.1.60
+
 ## 4.2.8
 
 - IU de correção de bug : Resumo de automação residencial, histórico de exclusão claro.
@@ -36,7 +50,7 @@
 - **Resumos** : Possibilidade de definir um ícone diferente quando o resumo for nulo (sem venezianas abertas, sem luz acesa, etc).
 - **Resumos** : Possibilidade de nunca mostrar o número à direita do ícone, ou apenas se for positivo.
 - **Resumos** : A alteração do parâmetro de resumo na configuração e nos objetos agora está visível, sem esperar por uma alteração no valor de resumo.
-- **Resumos** : Agora é possível configurar [ações em resumos](/pt_PT/concept/summary#Actions sur résumés) (ctrl + clique em um resumo) graças aos virtuais.
+- **Resumos** : Agora é possível configurar [ações em resumos](/pt_PT/concept/summary#Actions sobre résumés) (ctrl + clique em um resumo) graças aos virtuais.
 - **Relatório** : Visualizar arquivos PDF.
 - **Tipos de equipamento** : [Nova página](/pt_PT/core/4.2/types) **Ferramentas → Tipos de equipamento** permitindo que tipos genéricos sejam atribuídos a dispositivos e comandos, com suporte para tipos dedicados a plug-ins instalados (ver [Doc dev](https://doc.jeedom.com/pt_PT/dev/core4.2)).
 - **Seleção de ilustrações** : Nova janela global para a escolha de ilustrações *(ícones, imagens, planos de fundo)*.

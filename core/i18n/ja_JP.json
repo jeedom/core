@@ -1227,6 +1227,8 @@
         "Mois": "月",
         "Année": "年",
         "Tous": "全て",
+        "Echelles axes Y indépendantes": "Echelles axes Y indépendantes",
+        "Grouper axes Y par unité": "Grouper axes Y par unité",
         "Afficher la légende": "キャプションを表示",
         "Afficher le navigateur": "ブラウザを表示",
         "Afficher le sélecteur de période": "期間セレクターを表示",
@@ -3312,6 +3314,7 @@
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "値が正常に編集されています",
+        "Impossible de modifier une valeur sur une courbe avec groupement": "Impossible de modifier une valeur sur une courbe avec groupement",
         "Edition de la série :": "シリーズ版：",
         "et du point de": "とのポイント",
         "valeur :": "値：",

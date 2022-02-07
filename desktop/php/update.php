@@ -40,7 +40,7 @@ if ($coreRemoteVersion >= '4.2' && $distrib == 'debian') {
 }
 
 $logUpdate = log::get('update', 0, -1);
-if ( (!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE SUCCESS') ) {
+if ( (!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE') ) {
 	sendVarToJS('isUpdating', '0');
 } else {
 	sendVarToJS('isUpdating', '1');

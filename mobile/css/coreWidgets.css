@@ -39,6 +39,12 @@ Mobile WebApp
     transform-origin: 42px 42px;
     transform: scale(0.94) rotate(-180deg);
   }
+  div.arcgauge .cmdName {
+    display: block;
+    max-width: 100%;
+    max-height: 14px;
+    overflow: hidden;
+  }
   div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="default"] {
     height: unset;
   }
@@ -321,32 +327,32 @@ Mobile WebApp
   }
 
 /* ____________________Compass */
-  .widget-compass-container {
+  div.cmd-widget.widget-compass .widget-compass-container {
     position: relative;
     top: 6px;
     width: 80px;
     height: 80px;
     margin-bottom: 18px;
   }
-  .widget-compass-container * {
+  div.cmd-widget.widget-compass .widget-compass-container * {
     position: absolute;
   }
-  .widget-compass .value {
+  div.cmd-widget.widget-compass .value {
     position: absolute;
     top: 48px;
   }
-  .widget-compass .state {
+  div.cmd-widget.widget-compass .state {
     font-size: 16px !important;
     font-weight: bold;
     position: relative;
     top: 24px;
   }
-  .widget-compass .winDir {
+  div.cmd-widget.widget-compass .winDir {
     font-size: 11px !important;
     position: relative;
     top: 21px;
   }
-  .widget-compass-outline {
+  div.cmd-widget.widget-compass .widget-compass-outline {
     top: 0;
     right: 0;
     bottom: 0;
@@ -356,14 +362,14 @@ Mobile WebApp
     border-bottom: 6px solid var(--al-info-color);
     border-radius: 50%;
   }
-  .widget-compass-needle-placer {
+  div.cmd-widget.widget-compass .widget-compass-needle-placer {
     position: absolute;
     margin-top: -3px;
     margin-left: -3px;
     width: 86px;
     height: 86px;
   }
-  .widget-compass-needle {
+  div.cmd-widget.widget-compass .widget-compass-needle {
     position: relative;
     width: 0px;
     height: 0px;
@@ -380,7 +386,7 @@ Mobile WebApp
 
   @keyframes jeedomWidgetRainWaterAnimation{from{background-position:0 0}to{background-position:100000% 0}}
 
-  .widget-rain-water {
+  div.cmd-widget.widget-rain .widget-rain-water {
     position: absolute;
     bottom: 0px;
     width: 100%;
@@ -389,7 +395,7 @@ Mobile WebApp
     animation: jeedomWidgetRainWaterAnimation 3000s linear infinite;
   }
 
-  .widget-rain-container {
+  div.cmd-widget.widget-rain .widget-rain-container {
     background: url(../../core/template/mobile/cmd.info.numeric.rain/marker.svg) no-repeat;
     background-size: cover;
     position: relative;
@@ -397,7 +403,7 @@ Mobile WebApp
     z-index: 20;
   }
 
-  .widget-rain-container .plage {
+  div.cmd-widget.widget-rain .widget-rain-container .plage {
     position: absolute;
     bottom: 5px;
     right: 5%;
@@ -405,7 +411,7 @@ Mobile WebApp
     z-index: 2;
   }
 
-  .widget-rain-main {
+  div.cmd-widget.widget-rain .widget-rain-main {
     overflow: hidden;
     width: 80px;
     z-index: 0;

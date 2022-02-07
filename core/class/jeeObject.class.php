@@ -984,11 +984,16 @@ class jeeObject {
 				if ($allowDisplayZero == 0 && $result == 0) {
 					$style = 'display:none;';
 				}
-				$icon = $value['icon'];
-				if (!isset($value['iconnul'])) {
-					$value['iconnul'] = $value['icon'];
-					$value['hidenumber'] = 0;
-					$value['hidenulnumber'] = 0;
+				if (!isset($def[$key]['hidenumber'])) {
+					$def[$key]['hidenumber'] = 0;
+				}
+				if (!isset($def[$key]['hidenulnumber'])) {
+					$def[$key]['hidenulnumber'] = 0;
+				}
+
+				$icon = $def[$key]['icon'];
+				if (!isset($def[$key]['iconnul']) || $def[$key]['iconnul'] == '') {
+					$def[$key]['iconnul'] = $def[$key]['icon'];
 				} else {
 					if ($result == 0) $icon = $value['iconnul'];
 				}
