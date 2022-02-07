@@ -312,10 +312,9 @@ jeedom.object.summaryUpdate = function(_params) {
           }
           try {
             //update icon and value:
+            icon = decodeURIComponent(summarySpan.attr('data-icon')).replaceAll('+', ' ')
             if (_params[i]['keys'][key]['value'] == 0 && summarySpan.attr('data-iconnul') != '') {
               icon = decodeURIComponent(summarySpan.attr('data-iconnul')).replaceAll('+', ' ')
-            } else {
-              icon = decodeURIComponent(summarySpan.attr('data-icon')).replaceAll('+', ' ')
             }
             summarySpan.find('i').remove()
             summarySpan.prepend(icon).show()

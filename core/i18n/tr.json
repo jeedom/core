@@ -1227,6 +1227,8 @@
         "Mois": "Ay",
         "Année": "Sene",
         "Tous": "Hepsi",
+        "Echelles axes Y indépendantes": "Echelles axes Y indépendantes",
+        "Grouper axes Y par unité": "Grouper axes Y par unité",
         "Afficher la légende": "Açıklama göster",
         "Afficher le navigateur": "Tarayıcıyı göster",
         "Afficher le sélecteur de période": "Dönem seçici göster",
@@ -3312,6 +3314,7 @@
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "Değer başarıyla düzenlendi",
+        "Impossible de modifier une valeur sur une courbe avec groupement": "Impossible de modifier une valeur sur une courbe avec groupement",
         "Edition de la série :": "Serinin düzeblenmesi :",
         "et du point de": "ve noktadan",
         "valeur :": "değer :",

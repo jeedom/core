@@ -1227,6 +1227,8 @@
         "Mois": "месяц",
         "Année": "год",
         "Tous": "все",
+        "Echelles axes Y indépendantes": "Echelles axes Y indépendantes",
+        "Grouper axes Y par unité": "Grouper axes Y par unité",
         "Afficher la légende": "Показать подпись",
         "Afficher le navigateur": "Показать браузер",
         "Afficher le sélecteur de période": "Показать период выбора",
@@ -3312,6 +3314,7 @@
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "Значение было успешно изменено",
+        "Impossible de modifier une valeur sur une courbe avec groupement": "Impossible de modifier une valeur sur une courbe avec groupement",
         "Edition de la série :": "Серия издания:",
         "et du point de": "и точка",
         "valeur :": "значение:",

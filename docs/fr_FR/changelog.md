@@ -1,5 +1,20 @@
 # Changelog Jeedom V4.2
 
+## 4.2.9
+
+- Bugfix UI : Correction widget numeric default (cmdName trop long).
+- Bugfix UI : Passage des variables css *--url-iconsDark* et *--url-iconsLight* en absolue (Bug Safari MacOS).
+- Bugfix UI : Position des notifications en *top center*.
+
+- Bugfix Core : Step par défaut des widgets *Slider* à 1.
+- Bugfix Core : Page update indique *en cours* sur *END UPDATE ERROR* (log update).
+- Bugfix Core : Modification de valeur d'un historique.
+- Bugfix Core : correction de soucis sur l'installation des dépendances python
+
+- Amélioration : Nouvelles options sur les graphiques en Design pour échelle et groupement des axes Y.
+
+- Core : Mise à jour de la lib *elFinder* 2.1.59 -> 2.1.60
+
 ## 4.2.8
 
 - Bugfix UI : Résumé domotique, vider l'historique de suppression.

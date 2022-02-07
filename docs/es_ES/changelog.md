@@ -1,5 +1,19 @@
 # Registro de cambios Jeedom V4.2
 
+## 4.2.9
+
+- Interfaz de usuario de corrección de errores : Se corrigió el widget predeterminado numérico (cmdName demasiado largo)).
+- Interfaz de usuario de corrección de errores : Pasar variables css *--url-iconsDark* y *--url-iconsLight* en absoluto (Bug Safari MacOS).
+- Interfaz de usuario de corrección de errores : Posición de las notificaciones en *centro Superior*.
+
+- Núcleo de corrección de errores : Paso predeterminado para widgets *Control deslizante* a la 1.
+- Núcleo de corrección de errores : La actualización de la página indica *en curso* seguro *FIN DE ACTUALIZAR ERROR* (actualización de registro).
+- Núcleo de corrección de errores : Modificación de valor de un historial.
+
+- Mejora : Nuevas opciones en gráficos de diseño para escala y agrupación del eje Y.
+
+- Centro : Actualización de biblioteca *elFinder* 2.1.59 -> 2.1.60
+
 ## 4.2.8
 
 - Interfaz de usuario de corrección de errores : Resumen de domótica, borrar historial de eliminación.
@@ -36,7 +50,7 @@
 - **Resúmenes** : Posibilidad de definir un icono diferente cuando el resumen es nulo (sin persianas abiertas, sin luz encendida, etc).
 - **Resúmenes** : Posibilidad de no mostrar nunca el número a la derecha del icono, o solo si es positivo.
 - **Resúmenes** : El cambio del parámetro de resumen en la configuración y en los objetos ahora es visible, sin esperar un cambio en el valor de resumen.
-- **Resúmenes** : Ahora es posible configurar [acciones sobre resúmenes](/es_ES/concept/summary#Actions sur résumés) (ctrl + clic en un resumen) gracias a los virtuales.
+- **Resúmenes** : Ahora es posible configurar [acciones sobre resúmenes](/es_ES/concept/summary#Actions seguro résumés) (ctrl + clic en un resumen) gracias a los virtuales.
 - **Relación** : Vista previa de archivos PDF.
 - **Tipos de equipo** : [Nueva página](/es_ES/core/4.2/types) **Herramientas → Tipos de equipos** permitiendo la asignación de tipos genéricos a dispositivos y comandos, con soporte para tipos dedicados a complementos instalados (ver [Doc dev](https://doc.jeedom.com/es_ES/dev/core4.2)).
 - **Selección de ilustraciones** : Nueva ventana global para la elección de ilustraciones *(iconos, imágenes, fondos)*.

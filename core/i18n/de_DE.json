@@ -1227,6 +1227,8 @@
         "Mois": "Monat",
         "Année": "Jahr",
         "Tous": "Alle",
+        "Echelles axes Y indépendantes": "Unabhängige Skalierung der Y-Achse",
+        "Grouper axes Y par unité": "Y-Achsen nach Einheit gruppieren",
         "Afficher la légende": "Bildunterschrift anzeigen",
         "Afficher le navigateur": "Browser anzeigen",
         "Afficher le sélecteur de période": "Periodenauswahl anzeigen",
@@ -3312,6 +3314,7 @@
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "Der Wert wurde erfolgreich bearbeitet",
+        "Impossible de modifier une valeur sur une courbe avec groupement": "Ein Wert auf einer Kurve mit Gruppierung kann nicht geändert werden",
         "Edition de la série :": "Ausgabe der Reihe:",
         "et du point de": "und dem Punkt",
         "valeur :": "Wert :",

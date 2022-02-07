@@ -63,7 +63,9 @@ echo '<script>REPO_LIST = []</script>';
 									</div>
 									<div class="form-group">
 										<div class="col-sm-6 col-xs-12">
-											<a class="btn btn-success" id="bt_downloadBackup" style="width:100%;"><i class="fas fa-cloud-download-alt"></i> {{Télécharger la sauvegarde}}</a>
+											<?php if (substr(0, 1, config::byKey('backup::path')) != '/') { ?>
+												<a class="btn btn-success" id="bt_downloadBackup" style="width:100%;"><i class="fas fa-cloud-download-alt"></i> {{Télécharger la sauvegarde}}</a>
+											<?php } ?>
 										</div>
 										<div class="col-sm-6 col-xs-12">
 											<span class="btn btn-default btn-file" style="width:100%;">

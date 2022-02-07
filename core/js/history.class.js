@@ -122,7 +122,7 @@ jeedom.history.changePoint = function(_params) {
       });
       var serie = null;
       for (var i in jeedom.history.chart) {
-        serie = jeedom.history.chart[i].chart.get(_params.cmd_id);
+        serie = jeedom.history.chart[i].chart.series.filter(v => v.userOptions.id == _params.cmd_id.toString())[0]
         if (serie != null && serie != undefined) {
           serie.remove();
           serie = null;
@@ -163,6 +163,11 @@ jeedom.history.modalchangePoint = function(event, _this, _params) {
   if ($('#md_modal2').is(':visible')) return
   if ($('#md_modal1').is(':visible')) return
   if (jeedom.history.chart[_this.series.chart._jeeId].comparing) return
+
+  if (isset(_params.cmd.display.groupingType) && _params.cmd.display.groupingType != '') {
+    bootbox.alert('{{Impossible de modifier une valeur sur une courbe avec groupement}}' + ' (' + _params.cmd.display.groupingType + ')')
+    return
+  }
 
   var id = _this.series.userOptions.id
   var datetime = Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', _this.x)
@@ -887,7 +892,11 @@ jeedom.history.drawChart = function(_params) {
           jeedom.history.chart[_params.el].containerId = jeedom.history.chart[_params.el].chart.container.id
           jeedom.history.chart[_params.el].chart._jeeId = _params.el //else only in useroptions
           jeedom.history.chart[_params.el].doing = 1
-          jeedom.history.initChart(_params.el)
+          
+          var options = {default: {}}
+          if (isset(_params.yAxisScaling) && _params.yAxisScaling != '') options.default.yAxisScaling = _params.yAxisScaling
+          if (isset(_params.yAxisByUnit) && _params.yAxisByUnit != '') options.default.yAxisByUnit = _params.yAxisByUnit
+          jeedom.history.initChart(_params.el, options)
         } else {
           //set options for comparison serie:
           if (comparisonSerie == 1) {
@@ -985,28 +994,24 @@ Chart legend context menu
 Hicharts events calls
 yAxis scaling
 */
-
-jeedom.history.initChart = function(_chartId) {
+jeedom.history.initChart = function(_chartId, _options) {
   var thisId = _chartId
   jeedom.history.chart[thisId].comparing = false
   jeedom.history.chart[thisId].zoom = false
   jeedom.history.chart[thisId].mode = jeedom.getPageType(true)
 
   jeedom.history.default = {
-    tracking: true,
-    yAxisByUnit: true,
+    yAxisVisible: true,
     yAxisScaling: true,
-    yAxisVisible: true
+    yAxisByUnit: true,
+    tracking: true
   }
 
   if (jeedom.history.chart[thisId].type == 'pie') return false
   if (getUrlVars('v') != 'm') jeedom.history.initLegendContextMenu(_chartId)
 
-  //default:
-  if (jeedom.history.chart[thisId].mode == 'plan') {
-    jeedom.history.default.yAxisScaling = false
-    jeedom.history.default.yAxisByUnit = false
-  }
+  if (isset(_options.default.yAxisScaling)) jeedom.history.default.yAxisScaling = Boolean(Number(_options.default.yAxisScaling))
+  if (isset(_options.default.yAxisByUnit)) jeedom.history.default.yAxisByUnit = Boolean(Number(_options.default.yAxisByUnit))
 
   /*
   HichChart button states (undocumented):
