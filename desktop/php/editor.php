@@ -62,7 +62,6 @@ if ($lang != 'en') {
 	echo '<script src="' . $plufinSrc . '"></script>';
 }
 
-
 include_file("desktop", "editor", "js");
 ?>
 

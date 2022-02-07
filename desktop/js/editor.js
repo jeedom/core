@@ -185,6 +185,7 @@ $(function() {
 
   var options = {
     url: 'core/php/editor.connector.php',
+    baseUrl: '3rdparty/elfinder/',
     cssAutoLoad: false,
     lang: jeeFrontEnd.language.substring(0, 2),
     startPathHash: jeeP.hashRoot,
