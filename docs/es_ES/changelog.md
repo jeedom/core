@@ -1,5 +1,9 @@
 # Registro de cambios Jeedom V4.2
 
+## 4.2.10
+
+- Núcleo de corrección de errores : Actualizar valor al hacer clic en el rango de widgets *Control deslizante*.
+
 ## 4.2.9
 
 - Interfaz de usuario de corrección de errores : Se corrigió el widget predeterminado numérico (cmdName demasiado largo)).
@@ -9,7 +13,7 @@
 - Núcleo de corrección de errores : Paso predeterminado para widgets *Control deslizante* a la 1.
 - Núcleo de corrección de errores : La actualización de la página indica *en curso* seguro *FIN DE ACTUALIZAR ERROR* (actualización de registro).
 - Núcleo de corrección de errores : Modificación de valor de un historial.
-- Núcleo de corrección de errores : problemas solucionados con la instalación de dependencias de python
+- Núcleo de corrección de errores : Problemas solucionados con la instalación de dependencias de python.
 
 - Mejora : Nuevas opciones en gráficos de diseño para escala y agrupación del eje Y.
 

@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.2
 
+## 4.2.10
+
+- Bugfix Core : Update value on click on the range of widgets *Slider*.
+
 ## 4.2.9
 
 - Bugfix UI : Fixed numeric default widget (cmdName too long).
@@ -9,7 +13,7 @@
 - Bugfix Core : Default step for widgets *Slider* at 1.
 - Bugfix Core : Page update indicates *In progress* on *END UPDATE ERROR* (log update).
 - Bugfix Core : Modification of value of a history.
-- Bugfix Core : fixed issues with installing python dependencies
+- Bugfix Core : Fixed issues with installing python dependencies.
 
 - Improvement : New options on Design charts for scale and Y axis grouping.
 

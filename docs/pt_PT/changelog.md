@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.2
 
+## 4.2.10
+
+- Núcleo de correção de bugs : Atualizar valor ao clicar no intervalo de widgets *Controle deslizante*.
+
 ## 4.2.9
 
 - IU de correção de bug : Corrigido o widget padrão numérico (cmdName muito longo).
@@ -9,7 +13,7 @@
 - Núcleo de correção de bugs : Etapa padrão para widgets *Controle deslizante* em 1.
 - Núcleo de correção de bugs : A atualização da página indica *Em andamento* sobre *ERRO DE ATUALIZAÇÃO* (atualização de log).
 - Núcleo de correção de bugs : Modificação do valor de um histórico.
-- Núcleo de correção de bugs : problemas corrigidos com a instalação de dependências python
+- Núcleo de correção de bugs : Problemas corrigidos com a instalação de dependências python.
 
 - Melhoria : Novas opções em gráficos de design para agrupamento de escala e eixo Y.
 
