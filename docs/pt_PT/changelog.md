@@ -6,10 +6,12 @@
 - IU de correção de bug : Passando variáveis css *--url-iconsDark* e *--url-iconsLight* em absoluto (Bug Safari MacOS).
 - IU de correção de bug : Posição das notificações em *centro superior*.
 
-- Melhoria : Novas opções em gráficos de design para agrupamento de escala e eixo Y.
-
 - Núcleo de correção de bugs : Etapa padrão para widgets *Controle deslizante* em 1.
 - Núcleo de correção de bugs : A atualização da página indica *Em andamento* sobre *ERRO DE ATUALIZAÇÃO* (atualização de log).
+- Núcleo de correção de bugs : Modificação do valor de um histórico.
+- Núcleo de correção de bugs : problemas corrigidos com a instalação de dependências python
+
+- Melhoria : Novas opções em gráficos de design para agrupamento de escala e eixo Y.
 
 - Testemunho : Atualização de biblioteca *elFinder* 2.1.59 -> 2.1.60
 

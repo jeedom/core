@@ -3314,6 +3314,7 @@
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "Nilai telah berhasil diedit",
+        "Impossible de modifier une valeur sur une courbe avec groupement": "Impossible de modifier une valeur sur une courbe avec groupement",
         "Edition de la série :": "Seri Edition:",
         "et du point de": "dan titik",
         "valeur :": "Nilai",

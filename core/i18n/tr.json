@@ -3314,6 +3314,7 @@
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "Değer başarıyla düzenlendi",
+        "Impossible de modifier une valeur sur une courbe avec groupement": "Impossible de modifier une valeur sur une courbe avec groupement",
         "Edition de la série :": "Serinin düzeblenmesi :",
         "et du point de": "ve noktadan",
         "valeur :": "değer :",
