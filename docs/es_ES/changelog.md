@@ -2,6 +2,8 @@
 
 ## 4.2.10
 
+- Interfaz de usuario de corrección de errores : Posición en el resumen domótico de objetos de nueva creación.
+
 - Núcleo de corrección de errores : Actualizar valor al hacer clic en el rango de widgets *Control deslizante*.
 
 ## 4.2.9

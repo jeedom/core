@@ -2,6 +2,8 @@
 
 ## 4.2.10
 
+- IU de correção de bug : Posição no resumo de automação residencial de objetos recém-criados.
+
 - Núcleo de correção de bugs : Atualizar valor ao clicar no intervalo de widgets *Controle deslizante*.
 
 ## 4.2.9

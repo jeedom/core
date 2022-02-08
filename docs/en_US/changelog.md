@@ -2,6 +2,8 @@
 
 ## 4.2.10
 
+- Bugfix UI : Position on the home automation summary of newly created objects.
+
 - Bugfix Core : Update value on click on the range of widgets *Slider*.
 
 ## 4.2.9

@@ -2,6 +2,8 @@
 
 ## 4.2.10
 
+- Bugfix-Benutzeroberfläche : Position auf der Home-Automation-Zusammenfassung neu erstellter Objekte.
+
 - Bugfix-Kern : Aktualisieren Sie den Wert beim Klicken auf den Bereich der Widgets *Schieberegler*.
 
 ## 4.2.9
