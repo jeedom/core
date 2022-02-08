@@ -6,7 +6,7 @@ global $JEEDOM_INTERNAL_CONFIG;
 $nbEqlogic = 0;
 $nbCmd = 0;
 global $display_objects;
-$display_objects = jeeObject::all(false, true);
+$display_objects = jeeObject::buildTree(null, false);
 global $display_eqlogics;
 $display_eqlogics = array();
 global $display_cmds;

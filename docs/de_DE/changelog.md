@@ -1,5 +1,12 @@
 # Changelog Jeedom V4.2
 
+## 4.2.10
+
+- Bugfix-Benutzeroberfläche : Position auf der Home-Automation-Zusammenfassung neu erstellter Objekte.
+
+- Bugfix-Kern : Aktualisieren Sie den Wert beim Klicken auf den Bereich der Widgets *Schieberegler*.
+- Bugfix-Kern : Bearbeiten einer leeren Datei (0b).
+
 ## 4.2.9
 
 - Bugfix-Benutzeroberfläche : Numerisches Standard-Widget behoben (cmdName zu lang).
@@ -9,7 +16,7 @@
 - Bugfix-Kern : Standardschritt für Widgets *Schieberegler* um 1.
 - Bugfix-Kern : Seitenaktualisierung zeigt an *In Bearbeitung* an *ENDE UPDATE-FEHLER* (Protokollaktualisierung).
 - Bugfix-Kern : Änderung des Wertes einer Geschichte.
-- Bugfix-Kern : Probleme beim Installieren von Python-Abhängigkeiten behoben
+- Bugfix-Kern : Probleme beim Installieren von Python-Abhängigkeiten behoben.
 
 - Verbesserung : Neue Optionen in Design-Diagrammen für Skalierung und Gruppierung der Y-Achse.
 
