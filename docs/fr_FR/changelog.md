@@ -2,6 +2,8 @@
 
 ## 4.2.10
 
+- Bugfix UI : Position sur le résumé domotique des objets nouvellement crées.
+
 - Bugfix Core : Update de valeur au clic sur le range des widgets *Slider*.
 
 ## 4.2.9
