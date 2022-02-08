@@ -152,6 +152,7 @@ $(function() {
             },
             save : function(textarea, editor) {
               textarea.value = this.myCodeMirror.getValue()
+              killTooltips()
               //this.myCodeMirror = null
             }
           }
@@ -179,6 +180,14 @@ $(function() {
   }
 
   _elfInstance = $('#elfinder').elfinder(options).elfinder('instance')
+  _elfInstance.mimesCanMakeEmpty = {
+    "text/css": "css",
+    "text/html": "html",
+    "text/javascript": "js",
+    "application/javascript": "js",
+    "text/plain": "txt",
+    "text/x-php": "php"
+  }
 
   $('#elfinder').css("height", $(window).height() - 50)
   $('.ui-state-default.elfinder-navbar.ui-resizable').css('height', '100%')
