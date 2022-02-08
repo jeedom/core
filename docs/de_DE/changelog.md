@@ -5,6 +5,7 @@
 - Bugfix-Benutzeroberfläche : Position auf der Home-Automation-Zusammenfassung neu erstellter Objekte.
 
 - Bugfix-Kern : Aktualisieren Sie den Wert beim Klicken auf den Bereich der Widgets *Schieberegler*.
+- Bugfix-Kern : Bearbeiten einer leeren Datei (0b).
 
 ## 4.2.9
 

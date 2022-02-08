@@ -5,6 +5,7 @@
 - IU de correção de bug : Posição no resumo de automação residencial de objetos recém-criados.
 
 - Núcleo de correção de bugs : Atualizar valor ao clicar no intervalo de widgets *Controle deslizante*.
+- Núcleo de correção de bugs : Editando arquivo vazio (0b).
 
 ## 4.2.9
 

@@ -5,6 +5,7 @@
 - Interfaz de usuario de corrección de errores : Posición en el resumen domótico de objetos de nueva creación.
 
 - Núcleo de corrección de errores : Actualizar valor al hacer clic en el rango de widgets *Control deslizante*.
+- Núcleo de corrección de errores : Editando archivo vacío (0b).
 
 ## 4.2.9
 

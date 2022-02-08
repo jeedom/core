@@ -5,6 +5,7 @@
 - Bugfix UI : Position on the home automation summary of newly created objects.
 
 - Bugfix Core : Update value on click on the range of widgets *Slider*.
+- Bugfix Core : Editing empty file (0b).
 
 ## 4.2.9
 

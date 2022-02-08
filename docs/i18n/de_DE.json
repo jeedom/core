@@ -1260,6 +1260,7 @@
         "Position sur le résumé domotique des objets nouvellement crées": "Position auf der Home-Automation-Zusammenfassung neu erstellter Objekte",
         "Bugfix Core": "Bugfix-Kern",
         "Update de valeur au clic sur le range des widgets": "Aktualisieren Sie den Wert beim Klicken auf den Bereich der Widgets",
+        "Edition de fichier vide (0b": "Bearbeiten einer leeren Datei (0b",
         "4.2.9": "4.2.9",
         "Correction widget numeric default (cmdName trop long": "Numerisches Standard-Widget behoben (cmdName zu lang",
         "Passage des variables css": "Übergeben von CSS-Variablen",
