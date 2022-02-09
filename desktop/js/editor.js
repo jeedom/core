@@ -194,6 +194,14 @@ $(function() {
     sound: false,
     sort: 'kindDirsFirst',
     sortDirect: 'kindDirsFirst',
+    mimesCanMakeEmpty: {
+      "text/css": "css",
+      "text/html": "html",
+      "text/javascript": "js",
+      "application/javascript": "js",
+      "text/plain": "txt",
+      "text/x-php": "php"
+    },
     contextmenu: {
       cwd: ['reload', 'back', '|', 'upload', 'mkdir', 'mkfile', 'paste', '|', 'info'],
       files: ['cmdedit', 'edit', '|', 'rename' ,'|', 'getfile' , 'download', '|', 'copy', 'cut', 'paste', 'duplicate', '|','rm', '|', 'archive', 'extract', '|', 'info', 'places']
@@ -238,6 +246,8 @@ $(function() {
       edit: {
         editors: [
           {
+            //mimes : ['text/html', 'text/javascript', 'application/javascript'],
+            //exts  : ['htm', 'html', 'xhtml', 'js'],
             info : {
               name : '{{Editer}}'
             },
@@ -311,6 +321,7 @@ $(function() {
             },
             save : function(textarea, editor) {
               textarea.value = this.myCodeMirror.getValue()
+              jeeP.killTooltips()
               //this.myCodeMirror = null
             }
           }
