@@ -212,9 +212,13 @@ step_8_jeedom_customization() {
   echo "${JAUNE}Commence l'étape 8 personnalisation de jeedom${NORMAL}"
   cp ${WEBSERVER_HOME}/install/apache_security /etc/apache2/conf-available/security.conf
   sed -i -e "s%WEBSERVER_HOME%${WEBSERVER_HOME}%g" /etc/apache2/conf-available/security.conf
+
+  cp ${WEBSERVER_HOME}/install/apache_remoteip /etc/apache2/conf-available/remoteip.conf
+  sed -i -e "s%WEBSERVER_HOME%${WEBSERVER_HOME}%g" /etc/apache2/conf-available/remoteip.conf
   
   rm /etc/apache2/conf-enabled/security.conf > /dev/null 2>&1
   ln -s /etc/apache2/conf-available/security.conf /etc/apache2/conf-enabled/
+  ln -s /etc/apache2/conf-available/remoteip.conf /etc/apache2/conf-enabled/
   
   cp ${WEBSERVER_HOME}/install/apache_default /etc/apache2/sites-available/000-default.conf
   sed -i -e "s%WEBSERVER_HOME%${WEBSERVER_HOME}%g" /etc/apache2/sites-available/000-default.conf
@@ -249,6 +253,7 @@ step_8_jeedom_customization() {
   
   a2dismod status
   a2enmod headers
+  a2enmod remoteip
   service_action restart apache2 > /dev/null 2>&1
   
   echo "vm.swappiness = 10" >>  /etc/sysctl.conf

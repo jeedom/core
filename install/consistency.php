@@ -441,6 +441,11 @@ try {
 		shell_exec('sudo rm ' . __DIR__ . '/../.htaccess;sudo cp ' . __DIR__ . '/../.htaccess_custom ' . __DIR__ . '/../.htaccess');
 	}
 
+	if (!file_exists('/etc/apache2/conf-enabled/remoteip.conf')) {
+		shell_exec('sudo cp ' . __DIR__ . '/apache_remoteip /etc/apache2/conf-enabled/remoteip.conf');
+		echo "Update remoteip config file, you need to restart jeedom";
+	}
+
 	cache::set('hour', strtotime('UTC'));
 } catch (Exception $e) {
 	echo "\nError : ";
