@@ -974,6 +974,7 @@ class jeeObject {
 			if ($this->getConfiguration('summary::hide::' . $_version . '::' . $key, 0) == 1) {
 				continue;
 			}
+
 			$result = $this->getSummary($key);
 			if ($result !== null) {
 				$style = '';
@@ -993,6 +994,7 @@ class jeeObject {
 
 				$icon =  $value['icon'];
 				if (!isset($value['iconnul']) ||  $value['iconnul'] == '') {
+
 					$value['iconnul'] = $value['icon'];
 				} else {
 					if ($result == 0) $icon = $value['iconnul'];
