@@ -1,6 +1,6 @@
 # Changelog Jeedom V4.2
 
-## 4.2.10
+## 4.2.11
 
 - Bugfix-Benutzeroberfläche : Position auf der Home-Automation-Zusammenfassung neu erstellter Objekte.
 - Bugfix-Benutzeroberfläche : Problem mit der 3D-Designanzeige behoben
@@ -8,6 +8,7 @@
 - Bugfix-Kern : Neue nicht definierte Zusammenfassungseigenschaften.
 - Bugfix-Kern : Aktualisieren Sie den Wert beim Klicken auf den Bereich der Widgets *Schieberegler*.
 - Bugfix-Kern : Bearbeiten einer leeren Datei (0b).
+- Bugfix-Kern : Behebung eines Problems bei der Erkennung der realen IP des Clients durch das jeedom dns, ein Neustart der Box wird nach dem Ende des Updates empfohlen, damit dieses aktiviert wird
 
 ## 4.2.9
 

@@ -1,6 +1,6 @@
 # Changelog Jeedom V4.2
 
-## 4.2.10
+## 4.2.11
 
 - IU de correção de bug : Posição no resumo de automação residencial de objetos recém-criados.
 - IU de correção de bug : problema de exibição de design 3D corrigido
@@ -8,6 +8,7 @@
 - Núcleo de correção de bugs : Novas propriedades de resumo indefinidas.
 - Núcleo de correção de bugs : Atualizar valor ao clicar no intervalo de widgets *Controle deslizante*.
 - Núcleo de correção de bugs : Editando arquivo vazio (0b).
+- Núcleo de correção de bugs : correção de um problema de detecção do ip real do cliente através do jeedom dns, recomenda-se reiniciar a caixa após o final da atualização para que esta seja ativada
 
 ## 4.2.9
 
