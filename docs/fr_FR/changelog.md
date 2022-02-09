@@ -3,6 +3,7 @@
 ## 4.2.10
 
 - Bugfix UI : Position sur le résumé domotique des objets nouvellement crées.
+- Bugfix UI : correction du soucis d'affichage des design 3D
 
 - Bugfix Core : Nouvelles propriétés de résumés non définie.
 - Bugfix Core : Update de valeur au clic sur le range des widgets *Slider*.
