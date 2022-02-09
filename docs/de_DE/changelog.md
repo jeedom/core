@@ -3,7 +3,9 @@
 ## 4.2.10
 
 - Bugfix-Benutzeroberfläche : Position auf der Home-Automation-Zusammenfassung neu erstellter Objekte.
+- Bugfix-Benutzeroberfläche : Problem mit der 3D-Designanzeige behoben
 
+- Bugfix-Kern : Neue nicht definierte Zusammenfassungseigenschaften.
 - Bugfix-Kern : Aktualisieren Sie den Wert beim Klicken auf den Bereich der Widgets *Schieberegler*.
 - Bugfix-Kern : Bearbeiten einer leeren Datei (0b).
 
