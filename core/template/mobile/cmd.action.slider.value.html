@@ -24,18 +24,18 @@
       }
 
       mySlider#id#.on('update', function(values, handle) {
-        var value = values[handle]
-        if (values[handle]) {
-          if (parseInt(values[handle]) == parseFloat(values[handle])) {
-            $inputNumber#id#.val(parseInt(values[handle]))
+        var value = values[handle].replace('#unite#', '').trim()
+        if (value) {
+          if (parseInt(values[handle]) == parseFloat(value)) {
+            $inputNumber#id#.val(parseInt(value))
           } else {
-            $inputNumber#id#.val(parseFloat(values[handle]))
+            $inputNumber#id#.val(parseFloat(value))
           }
         }
       })
 
       mySlider#id#.on('change', function(values, handle) {
-        jeedom.cmd.execute({id: '#id#', value: {slider: values[handle]}})
+        jeedom.cmd.execute({id: '#id#', value: {slider: values[handle].replace('#unite#', '').trim()}})
       })
     }
 
