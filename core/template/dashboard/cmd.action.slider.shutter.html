@@ -41,12 +41,13 @@
     }
 
     mySlider#id#.on('change', function(values, handle) {
+      var value = values[handle].replace('#unite#', '').trim()
       var cmd = $('.cmd[data-cmd_uid=#uid#]')
       if ('#invert#' == '1') {
         var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
-        jeedom.cmd.execute({id: '#id#', value: {slider: maxValue - values[handle]}})
+        jeedom.cmd.execute({id: '#id#', value: {slider: maxValue - value}})
       } else {
-        jeedom.cmd.execute({id: '#id#', value: {slider: values[handle]}})
+        jeedom.cmd.execute({id: '#id#', value: {slider: value}})
       }
     })
 
