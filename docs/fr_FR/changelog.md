@@ -4,6 +4,7 @@
 
 - Bugfix UI : Position sur le résumé domotique des objets nouvellement crées.
 
+- Bugfix Core : Nouvelles propriétés de résumés non définie.
 - Bugfix Core : Update de valeur au clic sur le range des widgets *Slider*.
 - Bugfix Core : Edition de fichier vide (0b).
 
