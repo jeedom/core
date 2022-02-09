@@ -1,6 +1,6 @@
 # Changelog Jeedom V4.2
 
-## 4.2.10
+## 4.2.11
 
 - Bugfix UI : Position sur le résumé domotique des objets nouvellement crées.
 - Bugfix UI : correction du soucis d'affichage des design 3D
@@ -8,6 +8,7 @@
 - Bugfix Core : Nouvelles propriétés de résumés non définie.
 - Bugfix Core : Update de valeur au clic sur le range des widgets *Slider*.
 - Bugfix Core : Edition de fichier vide (0b).
+- Bugfix Core : correction d'un soucis de detection de l'ip réel du client a travers les dns jeedom, un redemarrage de la box est recommandé suite à la fin de la mise à jour pour que cela s'active
 
 ## 4.2.9
 
