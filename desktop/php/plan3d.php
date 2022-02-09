@@ -24,9 +24,7 @@ if (is_object($plan3dHeader)) {
 }
 ?>
 
-<div class="row <?php if (init('fullscreen') != 1) {
-					echo 'row-overflow';
-				}	?>">
+<div class="row" style="height: 100%">
 	<div class="col-lg-10" style="height: 100%" id="div_colPlan3d">
 		<div class="div_background3d" style="height: 100%">
 			<div class="container-fluid" id="div_display3d" style="position: relative;padding:0;user-select: none;-khtml-user-select: none;-o-user-select: none;-moz-user-select: -moz-none;-webkit-user-select: none;height: 100%">

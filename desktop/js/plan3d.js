@@ -26,7 +26,10 @@ if (getUrlVars('fullscreen') == '1') {
   $('#div_mainContainer').css('margin-top', '-50px');
   $('#wrap').css('margin-bottom', '0px');
   $('#div_colPlan3d').height($('html').height());
+}else{
+  $('#div_colPlan3d').height($('html').height() - 50);
 }
+
 var container, scene, camera, renderer, controls;
 var SCREEN_WIDTH = $('#div_display3d').width();
 var SCREEN_HEIGHT = $('#div_display3d').height();
