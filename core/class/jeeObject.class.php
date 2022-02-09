@@ -970,10 +970,11 @@ class jeeObject {
 		$virtual = eqLogic::byLogicalId('summary' . $this->getId(), 'virtual');
 		$return = '<span class="objectSummaryContainer objectSummary' . $this->getId() . '" data-version="' . $_version . '">';
 		$def = config::byKey('object:summary');
-		foreach ($def as $key => $value) {
+		foreach ($def as $key => &$value) {
 			if ($this->getConfiguration('summary::hide::' . $_version . '::' . $key, 0) == 1) {
 				continue;
 			}
+
 			$result = $this->getSummary($key);
 			if ($result !== null) {
 				$style = '';
@@ -984,16 +985,15 @@ class jeeObject {
 				if ($allowDisplayZero == 0 && $result == 0) {
 					$style = 'display:none;';
 				}
-				if (!isset($def[$key]['hidenumber'])) {
-					$def[$key]['hidenumber'] = 0;
+				if (!isset($value['hidenumber'])) {
+					$value['hidenumber'] = 0;
 				}
-				if (!isset($def[$key]['hidenulnumber'])) {
-					$def[$key]['hidenulnumber'] = 0;
+				if (!isset($value['hidenulnumber'])) {
+					$value['hidenulnumber'] = 0;
 				}
-
-				$icon = $def[$key]['icon'];
-				if (!isset($def[$key]['iconnul']) || $def[$key]['iconnul'] == '') {
-					$def[$key]['iconnul'] = $def[$key]['icon'];
+				$icon =  $value['icon'];
+				if (!isset($value['iconnul']) ||  $value['iconnul'] == '') {
+					$value['iconnul'] = $value['icon'];
 				} else {
 					if ($result == 0) $icon = $value['iconnul'];
 				}

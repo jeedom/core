@@ -1,5 +1,14 @@
 # Changelog Jeedom V4.2
 
+## 4.2.10
+
+- IU de correção de bug : Posição no resumo de automação residencial de objetos recém-criados.
+- IU de correção de bug : problema de exibição de design 3D corrigido
+
+- Núcleo de correção de bugs : Novas propriedades de resumo indefinidas.
+- Núcleo de correção de bugs : Atualizar valor ao clicar no intervalo de widgets *Controle deslizante*.
+- Núcleo de correção de bugs : Editando arquivo vazio (0b).
+
 ## 4.2.9
 
 - IU de correção de bug : Corrigido o widget padrão numérico (cmdName muito longo).
@@ -9,6 +18,7 @@
 - Núcleo de correção de bugs : Etapa padrão para widgets *Controle deslizante* em 1.
 - Núcleo de correção de bugs : A atualização da página indica *Em andamento* sobre *ERRO DE ATUALIZAÇÃO* (atualização de log).
 - Núcleo de correção de bugs : Modificação do valor de um histórico.
+- Núcleo de correção de bugs : Problemas corrigidos com a instalação de dependências python.
 
 - Melhoria : Novas opções em gráficos de design para agrupamento de escala e eixo Y.
 
