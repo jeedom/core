@@ -3,7 +3,9 @@
 ## 4.2.10
 
 - Bugfix UI : Position on the home automation summary of newly created objects.
+- Bugfix UI : fixed 3D design display issue
 
+- Bugfix Core : New undefined summary properties.
 - Bugfix Core : Update value on click on the range of widgets *Slider*.
 - Bugfix Core : Editing empty file (0b).
 

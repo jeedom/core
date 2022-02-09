@@ -3,7 +3,9 @@
 ## 4.2.10
 
 - IU de correção de bug : Posição no resumo de automação residencial de objetos recém-criados.
+- IU de correção de bug : problema de exibição de design 3D corrigido
 
+- Núcleo de correção de bugs : Novas propriedades de resumo indefinidas.
 - Núcleo de correção de bugs : Atualizar valor ao clicar no intervalo de widgets *Controle deslizante*.
 - Núcleo de correção de bugs : Editando arquivo vazio (0b).
 
