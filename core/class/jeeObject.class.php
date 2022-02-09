@@ -991,10 +991,8 @@ class jeeObject {
 				if (!isset($value['hidenulnumber'])) {
 					$value['hidenulnumber'] = 0;
 				}
-
 				$icon =  $value['icon'];
 				if (!isset($value['iconnul']) ||  $value['iconnul'] == '') {
-
 					$value['iconnul'] = $value['icon'];
 				} else {
 					if ($result == 0) $icon = $value['iconnul'];
