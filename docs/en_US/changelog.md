@@ -1,5 +1,14 @@
 # Changelog Jeedom V4.2
 
+## 4.2.10
+
+- Bugfix UI : Position on the home automation summary of newly created objects.
+- Bugfix UI : fixed 3D design display issue
+
+- Bugfix Core : New undefined summary properties.
+- Bugfix Core : Update value on click on the range of widgets *Slider*.
+- Bugfix Core : Editing empty file (0b).
+
 ## 4.2.9
 
 - Bugfix UI : Fixed numeric default widget (cmdName too long).
@@ -9,6 +18,7 @@
 - Bugfix Core : Default step for widgets *Slider* at 1.
 - Bugfix Core : Page update indicates *In progress* on *END UPDATE ERROR* (log update).
 - Bugfix Core : Modification of value of a history.
+- Bugfix Core : Fixed issues with installing python dependencies.
 
 - Improvement : New options on Design charts for scale and Y axis grouping.
 

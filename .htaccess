@@ -46,6 +46,7 @@ DirectoryIndex index.php
 </IfModule>
 
 
+
 <IfModule mod_alias.c>
     # Right on folder
     RedirectMatch 403 (?i)^.*\/3rdparty\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.webp|\.css|\.css.map|\.js|\.js.map|\.woff|\.woff2|\.ttf|\.svg).)*$
