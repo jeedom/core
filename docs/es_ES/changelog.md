@@ -1,6 +1,6 @@
 # Registro de cambios Jeedom V4.2
 
-## 4.2.10
+## 4.2.11
 
 - Interfaz de usuario de corrección de errores : Posición en el resumen domótico de objetos de nueva creación.
 - Interfaz de usuario de corrección de errores : Problema de visualización de diseño 3D solucionado
@@ -8,6 +8,7 @@
 - Núcleo de corrección de errores : Nuevas propiedades de resumen no definidas.
 - Núcleo de corrección de errores : Actualizar valor al hacer clic en el rango de widgets *Control deslizante*.
 - Núcleo de corrección de errores : Editando archivo vacío (0b).
+- Núcleo de corrección de errores : corrección de un problema de detección de la ip real del cliente a través del jeedom dns, se recomienda reiniciar la caja después de finalizar la actualización para que esta se active
 
 ## 4.2.9
 
