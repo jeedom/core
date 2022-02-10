@@ -1422,12 +1422,7 @@
     "desktop\/php\/reboot.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Redémarrage": "Reanudar",
-        "Merci de patienter...": "Por favor espera",
-        "Êtes-vous sûr de vouloir redémarrer le système ?": "¿Seguro que quieres reiniciar el sistema?",
-        "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard.": "está de nuevo operativo. Serás redirigido a tu panel de control",
-        "n\\'a pas encore redémarré, nous continuons cependant de tester son retour.": "aún no se ha reiniciado, sin embargo, continuamos probando su retorno",
-        "N\\'hésitez pas à la débrancher\/rebrancher électriquement.": "No dude en desconectarlo\/volver a conectarlo eléctricamente",
-        "est en cours de redémarrage.": "se está reiniciando"
+        "Merci de patienter...": "Espere por favor"
     },
     "desktop\/php\/plugin.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -3048,6 +3043,13 @@
         "Sauvegarde rapatrier avec succès": "Copia de seguridad recuperada con éxito",
         "L\\'opération est réussie": "Operación realizada con éxito",
         "L\\'opération a échoué": "La operación falló"
+    },
+    "desktop\/js\/reboot.js": {
+        "Êtes-vous sûr de vouloir redémarrer le système ?": "¿Está seguro de que desea reiniciar el sistema?",
+        "Impossible de trouver la box suite au redemarrage ...": "No se puede encontrar la caja después de reiniciar",
+        "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard. cela peux prendre environs 30 secondes.": "vuelve a estar operativa. Será redirigido a su tablero. puede tardar unos 30 segundos",
+        "Merci de patienter...": "Espere por favor",
+        "est en cours de redémarrage.": "se está reiniciando"
     },
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Log de ejecución del escenario",

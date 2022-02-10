@@ -1422,12 +1422,7 @@
     "desktop\/php\/reboot.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
         "Redémarrage": "再起動",
-        "Merci de patienter...": "お待ちください",
-        "Êtes-vous sûr de vouloir redémarrer le système ?": "システムを再起動してもよろしいですか？",
-        "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard.": "再び動作します。ダッシュボードにリダイレクトされます。",
-        "n\\'a pas encore redémarré, nous continuons cependant de tester son retour.": "まだ再起動していませんが、引き続きテストを行っています。",
-        "N\\'hésitez pas à la débrancher\/rebrancher électriquement.": "電気的に切断\/再接続することをheしないでください。",
-        "est en cours de redémarrage.": "再起動中です。"
+        "Merci de patienter...": "お待ちください"
     },
     "desktop\/php\/plugin.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
@@ -3048,6 +3043,13 @@
         "Sauvegarde rapatrier avec succès": "Sauvegarde rapatrier avec succès",
         "L\\'opération est réussie": "操作は成功しました",
         "L\\'opération a échoué": "操作に失敗しました"
+    },
+    "desktop\/js\/reboot.js": {
+        "Êtes-vous sûr de vouloir redémarrer le système ?": "Êtes-vous sûr de vouloir redémarrer le système ?",
+        "Impossible de trouver la box suite au redemarrage ...": "Impossible de trouver la box suite au redemarrage",
+        "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard. cela peux prendre environs 30 secondes.": "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard. cela peux prendre environs 30 secondes",
+        "Merci de patienter...": "Merci de patienter",
+        "est en cours de redémarrage.": "est en cours de redémarrage"
     },
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "スクリプトの実行をログに記録します",

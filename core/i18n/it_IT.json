@@ -1422,12 +1422,7 @@
     "desktop\/php\/reboot.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
         "Redémarrage": "Nuovo inizio",
-        "Merci de patienter...": "Per favore aspetta",
-        "Êtes-vous sûr de vouloir redémarrer le système ?": "Sei sicuro di voler riavviare il sistema?",
-        "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard.": "è di nuovo operativo. Verrai reindirizzato alla tua dashboard",
-        "n\\'a pas encore redémarré, nous continuons cependant de tester son retour.": "non è ancora stato riavviato, tuttavia continuiamo a testare il suo ritorno",
-        "N\\'hésitez pas à la débrancher\/rebrancher électriquement.": "Non esitate a scollegarlo \/ ricollegarlo elettricamente",
-        "est en cours de redémarrage.": "viene riavviato"
+        "Merci de patienter...": "Per favore aspetta"
     },
     "desktop\/php\/plugin.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
@@ -3048,6 +3043,13 @@
         "Sauvegarde rapatrier avec succès": "Sauvegarde rapatrier avec succès",
         "L\\'opération est réussie": "L'operazione è andata a buon fine",
         "L\\'opération a échoué": "Operazione fallita"
+    },
+    "desktop\/js\/reboot.js": {
+        "Êtes-vous sûr de vouloir redémarrer le système ?": "Êtes-vous sûr de vouloir redémarrer le système ?",
+        "Impossible de trouver la box suite au redemarrage ...": "Impossible de trouver la box suite au redemarrage",
+        "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard. cela peux prendre environs 30 secondes.": "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard. cela peux prendre environs 30 secondes",
+        "Merci de patienter...": "Merci de patienter",
+        "est en cours de redémarrage.": "est en cours de redémarrage"
     },
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Registro di esecuzione della scena",
