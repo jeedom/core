@@ -3,16 +3,16 @@
 ## 4.2.11
 
 - Bugfix UI : Position on the home automation summary of newly created objects.
-- Bugfix UI : fixed 3D design display issue
+- Bugfix UI : 3D Design display issues.
 
 - Bugfix Core : New undefined summary properties.
 - Bugfix Core : Update value on click on the range of widgets *Slider*.
 - Bugfix Core : Editing empty file (0b).
-- Bugfix Core : correction of a problem of detection of the real ip of the client through the jeedom dns, a restart of the box is recommended following the end of the update for this to be activated
+- Bugfix Core : Concerns of detecting the real IP of the client through the Jeedom DNS. A restart of the box is recommended following the update for this to activate.
 
 ## 4.2.9
 
-- Bugfix UI : Fixed numeric default widget (cmdName too long).
+- Bugfix UI : Widget fix *numeric default* (cmdName too long).
 - Bugfix UI : Passing css variables *--url-iconsDark* and *--url-iconsLight* in absolute (Bug Safari MacOS).
 - Bugfix UI : Position of notifications in *top center*.
 

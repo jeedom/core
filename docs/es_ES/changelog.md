@@ -3,16 +3,16 @@
 ## 4.2.11
 
 - Interfaz de usuario de corrección de errores : Posición en el resumen domótico de objetos de nueva creación.
-- Interfaz de usuario de corrección de errores : Problema de visualización de diseño 3D solucionado
+- Interfaz de usuario de corrección de errores : Problemas de visualización de diseño 3D.
 
 - Núcleo de corrección de errores : Nuevas propiedades de resumen no definidas.
 - Núcleo de corrección de errores : Actualizar valor al hacer clic en el rango de widgets *Control deslizante*.
 - Núcleo de corrección de errores : Editando archivo vacío (0b).
-- Núcleo de corrección de errores : corrección de un problema de detección de la ip real del cliente a través del jeedom dns, se recomienda reiniciar la caja después de finalizar la actualización para que esta se active
+- Núcleo de corrección de errores : Inquietudes de detectar la IP real del cliente a través del DNS de Jeedom. Se recomienda reiniciar la caja después de la actualización para que esta se active.
 
 ## 4.2.9
 
-- Interfaz de usuario de corrección de errores : Se corrigió el widget predeterminado numérico (cmdName demasiado largo)).
+- Interfaz de usuario de corrección de errores : Corrección de widgets *predeterminado numérico* (cmdName demasiado largo).
 - Interfaz de usuario de corrección de errores : Pasar variables css *--url-iconsDark* y *--url-iconsLight* en absoluto (Bug Safari MacOS).
 - Interfaz de usuario de corrección de errores : Posición de las notificaciones en *centro Superior*.
 
