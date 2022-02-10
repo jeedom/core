@@ -1,5 +1,8 @@
 # Registro de cambios Jeedom V4.2
 
+- Núcleo de corrección de errores : Curva de mosaico con valor negativo.
+- Núcleo de corrección de errores : Error 403 al reiniciar.
+
 ## 4.2.11
 
 - Interfaz de usuario de corrección de errores : Posición en el resumen domótico de objetos de nueva creación.

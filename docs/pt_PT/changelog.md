@@ -1,5 +1,8 @@
 # Changelog Jeedom V4.2
 
+- Núcleo de correção de bugs : Curva de ladrilhos com valor negativo.
+- Núcleo de correção de bugs : Erro 403 na reinicialização.
+
 ## 4.2.11
 
 - IU de correção de bug : Posição no resumo de automação residencial de objetos recém-criados.

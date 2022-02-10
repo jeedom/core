@@ -1,5 +1,8 @@
 # Changelog Jeedom V4.2
 
+- Bugfix-Kern : Kachelkurve mit negativem Wert.
+- Bugfix-Kern : 403 Fehler beim Neustart.
+
 ## 4.2.11
 
 - Bugfix-Benutzeroberfläche : Position auf der Home-Automation-Zusammenfassung neu erstellter Objekte.

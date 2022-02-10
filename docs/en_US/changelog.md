@@ -1,5 +1,8 @@
 # Changelog Jeedom V4.2
 
+- Bugfix Core : Tile curve with negative value.
+- Bugfix Core : 403 error on reboot.
+
 ## 4.2.11
 
 - Bugfix UI : Position on the home automation summary of newly created objects.
