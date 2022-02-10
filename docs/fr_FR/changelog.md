@@ -1,5 +1,8 @@
 # Changelog Jeedom V4.2
 
+- Bugfix Core : Courbe de tuile avec valeur négative.
+- Bugfix Core : Erreur 403 au reboot.
+
 ## 4.2.11
 
 - Bugfix UI : Position sur le résumé domotique des objets nouvellement crées.
