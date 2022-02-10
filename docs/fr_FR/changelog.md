@@ -3,16 +3,16 @@
 ## 4.2.11
 
 - Bugfix UI : Position sur le résumé domotique des objets nouvellement crées.
-- Bugfix UI : correction du soucis d'affichage des design 3D
+- Bugfix UI : Soucis d'affichage des Design 3D.
 
 - Bugfix Core : Nouvelles propriétés de résumés non définie.
 - Bugfix Core : Update de valeur au clic sur le range des widgets *Slider*.
 - Bugfix Core : Edition de fichier vide (0b).
-- Bugfix Core : correction d'un soucis de detection de l'ip réel du client a travers les dns jeedom, un redemarrage de la box est recommandé suite à la fin de la mise à jour pour que cela s'active
+- Bugfix Core : Soucis de détection de l'IP réelle du client à travers les DNS Jeedom. Un redémarrage de la box est recommandé suite à la mise à jour pour que cela s'active.
 
 ## 4.2.9
 
-- Bugfix UI : Correction widget numeric default (cmdName trop long).
+- Bugfix UI : Correction widget *numeric default* (cmdName trop long).
 - Bugfix UI : Passage des variables css *--url-iconsDark* et *--url-iconsLight* en absolue (Bug Safari MacOS).
 - Bugfix UI : Position des notifications en *top center*.
 
