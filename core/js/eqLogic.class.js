@@ -510,8 +510,8 @@ jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
       var values = result.data.map(function(elt) {
         return elt[1]
       })
-      var minValue = Math.min.apply(null, values)
-      var maxValue = Math.max.apply(null, values)
+      var minValue = result.cmd.subType == 'binary' ? 0 : Math.min.apply(null, values)
+      var maxValue = result.cmd.subType == 'binary' ? 1.1 : Math.max.apply(null, values) * 1.01
       result.data.push([now, result.data.slice(-1)[0][1]])
       drawEqEl.empty().highcharts({
         chart: {
@@ -522,7 +522,7 @@ jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
           spacingBottom: 0,
           spacingLeft: 0,
           plotBorderWidth: 0,
-          margin: [0, 0, 0, 0]
+          margin: minValue < 0 ? [35, 0, 5, 0] : [35, 0, 0, 0]
         },
         title: {
           text: ''
@@ -543,8 +543,9 @@ jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
         },
         yAxis: {
           visible: false,
-          min: result.cmd.subType == 'binary' ? 0 : minValue,
-          max: result.cmd.subType == 'binary' ? 1 : maxValue + ((maxValue - minValue) / 5)
+          min: minValue,
+          max: maxValue,
+          tickPositions: [minValue, maxValue]
         },
         plotOptions: {
           column: {
@@ -566,7 +567,7 @@ jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
             approximation: 'high',
             enabled: true,
             forced: true,
-            groupPixelWidth: 2
+            groupPixelWidth: 0.5
           },
         }],
         exporting: {
