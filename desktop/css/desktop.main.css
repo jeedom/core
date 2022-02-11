@@ -1562,11 +1562,24 @@ div.div_viewZone legend.lg_viewZone {
     width: 75px !important;
     padding-top: 5px;
   }
-
-  div.eqLogicThumbnailContainer div.cursor > center > img,
-  div.eqLogicThumbnailContainer div.cursor img {
+  div.eqLogicThumbnailContainer div.cursor div {
+    height: 100px;
+    display: flex;
+  }
+  div.eqLogicThumbnailContainer div.cursor div img {
+    margin: auto;
+  }
+  div.eqLogicThumbnailContainer div.cursor > center > img {
     width: 75px !important;
     height: auto !important;
+    padding-top: 15px;
+  }
+  div.eqLogicThumbnailContainer div.cursor img {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: 100px !important;
+    width: auto !important;
+    max-width: 100px !important;
     padding-top: 15px;
   }
   div.eqLogicDisplayCard {
@@ -2119,7 +2132,10 @@ div.div_viewZone legend.lg_viewZone {
     margin: 0 !important;
     padding: 0 !important;
   }
-  div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable > img {
+  div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable div {
+    display:contents;
+  }
+  div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable img {
     max-width: 24px !important;
     min-height: 24px !important;
     height: 24px !important;
