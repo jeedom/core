@@ -281,7 +281,6 @@ jeedom.refreshMessageNumber = function() {
     },
     success: function(_number) {
       jeedom.MESSAGE_NUMBER = _number;
-      if ($.mobile) $('.span_nbMessage').html(_number)
       if (_number == 0 || _number == '0') {
         $('#span_nbMessage').hide()
       } else {
@@ -293,6 +292,7 @@ jeedom.refreshMessageNumber = function() {
 
 jeedom.UPDATE_NUMBER
 jeedom.refreshUpdateNumber = function() {
+  if (jeedom.update == undefined) return //mobile
   jeedom.update.number({
     error: function(error) {
       $.fn.showAlert({

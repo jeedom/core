@@ -319,24 +319,20 @@ function isset() {
   return!0
 }
 
-var serverDatetime
-var clientServerDiffDatetime
-var serverTZoffsetMin
-var jeedom_langage
 var user_id
 var user_login
 var plugins
-var userProfils
 var deviceInfo
 var defaultMobilePage = null
 
 jeedomUtils.initApplication = function(_reinit) {
+  jeedomUtils.refreshMessageNumber()
   $.ajax({
     type: 'POST',
     url: 'core/ajax/jeedom.ajax.php',
     data: {
       action: 'getInfoApplication',
-      auth : getUrlVars('auth'),
+      auth: getUrlVars('auth'),
     },
     dataType: 'json',
     error: function (request, status, error) {
@@ -344,9 +340,8 @@ jeedomUtils.initApplication = function(_reinit) {
     },
     success: function (data) {
       jeedom.theme = data.result
-      jeedom_langage = data.result.langage
-      jeeFrontEnd.language = data.result.langage
-      
+      jeeFrontEnd.language = data.result.language
+
       jeedomUtils.insertHeader("apple-touch-icon",jeedom.theme.product_icon, "128x128")
       jeedomUtils.insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, "256x256")
       jeedomUtils.insertHeader("apple-touch-icon-precomposed",jeedom.theme.product_icon, "256x256")
@@ -372,14 +367,14 @@ jeedomUtils.initApplication = function(_reinit) {
         jeedomUtils.loadModal(false)
         jeedomUtils.loadPanel(false)
         /*************Initialisation environement********************/
-        serverDatetime  = data.result.serverDatetime
-        var clientDatetime = new Date()
-        clientServerDiffDatetime = serverDatetime*1000 - clientDatetime.getTime()
-        serverTZoffsetMin = data.result.serverTZoffsetMin
+        jeeFrontEnd.serverDatetime  = data.result.serverDatetime
+        jeeFrontEnd.clientDatetime = new Date()
+        jeeFrontEnd.clientServerDiffDatetime = jeeFrontEnd.serverDatetime * 1000 - jeeFrontEnd.clientDatetime.getTime()
+        jeeFrontEnd.serverTZoffsetMin = data.result.serverTZoffsetMin
         user_id = data.result.user_id
         user_login = data.result.user_login
         plugins = data.result.plugins
-        userProfils = data.result.userProfils
+        jeeFrontEnd.userProfils = data.result.userProfils
         jeedom.init()
         var include = []
         if (typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' && Object.keys(jeedom.theme.css).length > 0) {
@@ -393,19 +388,19 @@ jeedomUtils.initApplication = function(_reinit) {
         if (typeof jeedom.theme.theme_changeAccordingTime == undefined) {
           jeedom.theme.theme_changeAccordingTime = "0"
         }
-        
+
         if (typeof jeedom.theme['interface::advance::coloredIcons'] != 'undefined' && jeedom.theme['interface::advance::coloredIcons'] == '1') {
           $('body').attr('data-coloredIcons', 1)
         } else {
           $('body').attr('data-coloredIcons', 0)
         }
-        
+
         if (typeof jeedom.theme['interface::advance::coloredcats'] != 'undefined' && jeedom.theme['interface::advance::coloredcats'] == '1') {
           $('body').attr('data-coloredcats', 1)
         } else {
           $('body').attr('data-coloredcats', 0)
         }
-        
+
         //set theme
         var widget_shadow = true
         var useAdvance = 0
@@ -434,13 +429,13 @@ jeedomUtils.initApplication = function(_reinit) {
           $('#jQMnDColor').attr('href', themeCSS).attr('data-nochange',1)
         }
         $('#jQMnDColor').attr('href', themeCSS)
-        
+
         jeedomUtils.changeThemeAuto()
         jeedomUtils.checkThemechange()
         if (widget_shadow) {
           jeedomUtils.insertHeader("stylesheet", themeShadowCSS, null, null, 'shadows_theme_css', 'text/css')
         }
-        
+
         //custom:
         if (isset(data.result.custom) && data.result.custom != null) {
           if (isset(data.result.custom.css) && data.result.custom.css) {
@@ -450,27 +445,27 @@ jeedomUtils.initApplication = function(_reinit) {
             include.push('mobile/custom/custom.js')
           }
         }
-        
+
         jeedomUtils.triggerThemechange()
         for(var i in plugins){
           if (plugins[i].eventjs == 1) {
             include.push('plugins/'+plugins[i].id+'/mobile/js/event.js')
           }
         }
-        
+
         $.get("core/php/icon.inc.php", function (data) {
           $("head").append(data)
           $.include(include, function() {
             deviceInfo = getDeviceType()
             jeedom.object.summaryUpdate([{object_id:'global'}])
-            
+
             if (APP_MODE) {
               jeedomUtils.loadPage('home', 'Accueil')
             } else {
               if (getUrlVars('p') == 'view') {
                 jeedomUtils.loadPage('view', 'Vue',getUrlVars('view_id'));
-              } else if (isset(userProfils) && userProfils != null && isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home') {
-                var res = userProfils.homePageMobile.split("::")
+              } else if (isset(jeeFrontEnd.userProfils) && jeeFrontEnd.userProfils != null && isset(jeeFrontEnd.userProfils.homePageMobile) && jeeFrontEnd.userProfils.homePageMobile != 'home') {
+                var res = jeeFrontEnd.userProfils.homePageMobile.split("::")
                 if (res[0] == 'core') {
                   switch (res[1]) {
                     case 'overview':
@@ -478,15 +473,15 @@ jeedomUtils.initApplication = function(_reinit) {
                     jeedomUtils.loadPage(defaultMobilePage)
                     break
                     case 'dashboard':
-                    defaultMobilePage = ['equipment', userProfils.defaultMobileObjectName, userProfils.defaultMobileObject]
+                    defaultMobilePage = ['equipment', jeeFrontEnd.userProfils.defaultMobileObjectName, jeeFrontEnd.userProfils.defaultMobileObject]
                     jeedomUtils.loadPage(defaultMobilePage)
                     break
                     case 'plan':
                     defaultMobilePage = null
-                    window.location.href = 'index.php?v=d&p=plan&plan_id=' + userProfils.defaultMobilePlan
+                    window.location.href = 'index.php?v=d&p=plan&plan_id=' + jeeFrontEnd.userProfils.defaultMobilePlan
                     break
                     case 'view':
-                    defaultMobilePage = ['view', userProfils.defaultMobileViewName, userProfils.defaultMobileView]
+                    defaultMobilePage = ['view', jeeFrontEnd.userProfils.defaultMobileViewName, jeeFrontEnd.userProfils.defaultMobileView]
                     jeedomUtils.loadPage(defaultMobilePage)
                     break
                   }
@@ -497,7 +492,7 @@ jeedomUtils.initApplication = function(_reinit) {
                 jeedomUtils.loadPage('home', '{{Accueil}}')
               }
             }
-            
+
             if (APP_MODE) {
               $('#pagecontainer').css('padding-top',0)
             } else {
@@ -505,7 +500,6 @@ jeedomUtils.initApplication = function(_reinit) {
             }
           })
         })
-        jeedomUtils.refreshMessageNumber()
       }
     }
   })
@@ -526,7 +520,7 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
   if (!isset(_dialog) || !_dialog) {
     PAGE_HISTORY.push({page : _page, title : _title,option : _option, plugin : _plugin})
   }
-  
+
   $.showLoading()
   $('#searchContainer').hide()
   try {
@@ -534,7 +528,7 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
     $('#bottompanel_mainoption').panel('close')
     $('.ui-popup').popup('close')
   } catch (e) {
-    
+
   }
   if (isset(_title)) {
     if (!isset(_dialog) || !_dialog) {
@@ -560,6 +554,7 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
     })
     return
   }
+
   var page = 'index.php?v=m&ajax=1'
   if (isset(_dialog) && _dialog) {
     page += '&modal='+_page
@@ -577,7 +572,7 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
   if (init(_plugin) != '') {
     page += '&m=' + _plugin
   }
-  
+
   if (isset(_dialog) && _dialog) {
     $('#popupDialog .content').load(page, function() {
       var functionName = ''
@@ -617,7 +612,7 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
       } else {
         functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase()
       }
-      
+
       if ('function' == typeof (window[functionName])) {
         if (init(_option) != '') {
           window[functionName](_option)
@@ -638,7 +633,7 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
       $('#page').fadeIn(400)
     })
   }
-  
+
   setTimeout(function() {
     if ($.active == 0) $.hideLoading()
   }, 1500)
@@ -715,7 +710,7 @@ jeedomUtils.refreshMessageNumber = function() {
 
 jeedomUtils.notify = function(_title, _text) {
   new $.nd2Toast({
-    message :  _title+'. '+_text,
+    message :  _title + ':  ' + _text,
     ttl : 3000
   })
 }
@@ -766,6 +761,4 @@ function panel(_name, _callback) {
 function setBackgroundImage(_path){
   jeedomUtils.setBackgroundImage(_path)
 }
-
-//deprecated, remove v4.3
 var page = jeedomUtils.loadPage
