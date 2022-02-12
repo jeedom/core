@@ -21,7 +21,7 @@ function redirectIP(){
       new ping(ip, function (status, e) {
           console.log(status);
           if(redirect == 100){
-            $('#div_reboot_jeedom_texte').empty().html('<h6><?php echo config::byKey("product_name"); ?> {{Impossible de trouver la box suite au redemarrage ...}}</h6>');
+            $('#div_reboot_jeedom_texte').empty().html('<h6><?php echo config::byKey("product_name"); ?> {{Impossible de trouver la box suite au redémarrage ...}}</h6>');
           }else{
             if(status == 'timeout'){
               $('#progressbar_reboot').width(redirect+'%');
@@ -29,7 +29,7 @@ function redirectIP(){
                 redirectIP();
               }, 2000);
             }else if(status == 'responded'){
-              $('#div_reboot_jeedom_texte').empty().html('<h6><?php echo config::byKey("product_name"); ?> {{est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard. cela peux prendre environs 30 secondes.}}</h6>');
+              $('#div_reboot_jeedom_texte').empty().html('<h6><?php echo config::byKey("product_name"); ?> {{est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard. Cela peut prendre environ 30 secondes.}}</h6>');
               $('#progressbar_reboot').addClass('progress-bar-success').removeClass('progress-bar-danger');
               $('#progressbar_reboot').width('75%');
               setTimeout("$('#progressbar_reboot').width('100%');", 29500);
