@@ -3046,8 +3046,8 @@
     },
     "desktop\/js\/reboot.js": {
         "Êtes-vous sûr de vouloir redémarrer le système ?": "¿Está seguro de que desea reiniciar el sistema?",
-        "Impossible de trouver la box suite au redemarrage ...": "No se puede encontrar la caja después de reiniciar",
-        "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard. cela peux prendre environs 30 secondes.": "vuelve a estar operativa. Será redirigido a su tablero. puede tardar unos 30 segundos",
+        "Impossible de trouver la box suite au redémarrage ...": "No se puede encontrar la caja después de reiniciar",
+        "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard. Cela peut prendre environ 30 secondes.": "vuelve a estar operativa. Será redirigido a su tablero. Puede tardar unos 30 segundos",
         "Merci de patienter...": "Espere por favor",
         "est en cours de redémarrage.": "se está reiniciando"
     },

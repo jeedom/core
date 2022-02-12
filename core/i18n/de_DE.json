@@ -3046,8 +3046,8 @@
     },
     "desktop\/js\/reboot.js": {
         "Êtes-vous sûr de vouloir redémarrer le système ?": "Möchten Sie das System wirklich neu starten?",
-        "Impossible de trouver la box suite au redemarrage ...": "Kann die Box nach Neustart nicht finden",
-        "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard. cela peux prendre environs 30 secondes.": "ist wieder betriebsbereit. Sie werden zu Ihrem Dashboard weitergeleitet. es kann etwa 30 Sekunden dauern",
+        "Impossible de trouver la box suite au redémarrage ...": "Kann die Box nach Neustart nicht finden",
+        "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard. Cela peut prendre environ 30 secondes.": "ist wieder betriebsbereit. Sie werden zu Ihrem Dashboard weitergeleitet. Es kann etwa 30 Sekunden dauern",
         "Merci de patienter...": "Warten Sie mal",
         "est en cours de redémarrage.": "wird neu gestartet"
     },
