@@ -27,7 +27,6 @@ if (!jeeFrontEnd.massedit) {
       this._filterType_ = $('#sel_FilterByType').value()
       this._editIds_ = []
       this.setEdit()
-      $('.selectEditKey').change()
     },
     resetUI: function() {
       $('#filter').empty()
@@ -242,6 +241,7 @@ jeeFrontEnd.massedit.init()
 
 $(function() {
   jeeFrontEnd.massedit.postInit()
+  $('.selectEditKey').trigger('change')
 })
 
 //change filter type:

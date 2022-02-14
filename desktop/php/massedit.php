@@ -29,6 +29,7 @@ foreach($typePossibilities as &$item) {
 }
 foreach($typePossibilities as &$item) {
   foreach($item as &$key) {
+    if (!isset($key[0])) continue;
     if (!is_string($key[0])) {
       uksort($key, function ($a, $b) {
         $a = strtolower($a);
