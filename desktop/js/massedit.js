@@ -30,6 +30,7 @@ $('#sel_FilterByType').off('change').on('change', function() {
   resetUI()
   _filterType_ = $(this).value()
   setEdit()
+  $('.selectEditKey').trigger('change')
 })
 
 function resetUI() {
