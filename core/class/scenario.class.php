@@ -289,7 +289,7 @@ class scenario {
 	 * @param type $_forceSyncMode
 	 * @return boolean
 	 */
-	public static function check($_event = null, $_forceSyncMode = false, $_generic = null, $_object = null) {
+	public static function check($_event = null, $_forceSyncMode = false, $_generic = null, $_object = null, $_value = null) {
 		if (config::byKey('enableScenario') != 1) {
 			return;
 		}
