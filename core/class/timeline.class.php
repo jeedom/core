@@ -196,6 +196,9 @@ class timeline {
       if ($cmd->getType() == 'action') {
         $return['html'] = '<div class="tml-cmd" data-id="' . $this->getLink_id() . '">';
         $return['html'] .= '<span>' . $name . ' <i class="fas fa-cogs pull-right cursor bt_configureCmd" title="'.__('Configuration de la commande',__FILE__).'"></i></span>';
+
+        $return['html'] .= '<i class="icon-blank pull-right"></i>';
+        if ($return['folder'] != 'main') $return['html'] .= ' <span class="tml-folder pull-right">' . $return['folder'] . '</span>';
         $return['html'] .= '</div>';
       } else {
         $class = 'info';
