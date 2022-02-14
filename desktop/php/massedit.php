@@ -13,7 +13,9 @@ global $excludeParams;
 $excludeParams = [];
 $excludeParams['eqLogic'] = ['order', 'display', 'comment'];
 $excludeParams['eqLogic']['configuration'] = ['createtime', 'updatetime', 'batterytime'];
+$excludeParams['cmd'] = [];
 $excludeParams['scenario'] = ['description', 'display', 'trigger', 'scenarioElement'];
+$excludeParams['object'] = [];
 
 //scan DB for keys, values, jsonValues:
 global $typePossibilities;
@@ -43,6 +45,7 @@ sendVarToJS('jeephp2js.typePossibilities', $typePossibilities);
 function scanDB($_table) {
   global $excludeParams;
   global $typePossibilities;
+  global $CONFIG;
   $typePossibilities[$_table] = [];
   $className = $_table;
   if ($_table == 'object') $className = 'jeeObject';

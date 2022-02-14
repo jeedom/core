@@ -249,6 +249,7 @@ $('#sel_FilterByType').off('change').on('change', function() {
   jeeP.resetUI()
   jeeP._filterType_ = $(this).value()
   jeeP.setEdit()
+  $('.selectEditKey').trigger('change')
 })
 
 //add filter:
