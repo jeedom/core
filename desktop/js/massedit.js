@@ -22,7 +22,7 @@ var _editIds_ = []
 $(function() {
   _filterType_ = $('#sel_FilterByType').value()
   setEdit()
-  $('.selectEditKey').change()
+  $('.selectEditKey').trigger('change')
 })
 
 //change filter type:
