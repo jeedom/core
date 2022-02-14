@@ -574,7 +574,7 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
 
   $('#bt_uploadImagePlan').fileupload({
     replaceFileInput: false,
-    url: 'core/ajax/plan.ajax.php?action=uploadImagePlan&id=' + id,
+    url: 'core/ajax/plan.ajax.php?action=uploadImagePlan&id=' + jeephp2js.md_planConfigure_Id,
     dataType: 'json',
     done: function(e, data) {
       if (data.result.state != 'ok') {
@@ -612,9 +612,9 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
   })
 
   //load and set settings (call before any change event set):
-  if (isset(id) && id != '') {
+  if (isset(jeephp2js.md_planConfigure_Id) && jeephp2js.md_planConfigure_Id != '') {
     jeedom.plan.byId({
-      id: id,
+      id: jeephp2js.md_planConfigure_Id,
       error: function(error) {
         $('#div_alertPlanConfigure').showAlert({
           message: error.message,
@@ -735,7 +735,7 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
             if (plan_configure_plan.plan.link_type == 'summary' && plan_configure_plan !== null && plan_configure_plan.plan.link_id) {
               $('.div_displayObject .summary-widget[data-summary_id=' + plan_configure_plan.plan.link_id + ']').remove()
             }
-            displayObject(plan.plan, plan.html, false)
+            jeeFrontEnd.plan.displayObject(plan.plan, plan.html, false)
             $('#fd_planConfigure').closest("div.ui-dialog-content").dialog("close")
           }
         })
