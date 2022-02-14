@@ -300,7 +300,7 @@ class scenario {
 			if (is_object($_event)) {
 				$scenarios1 = self::byTrigger($_event->getId());
 				$trigger = '#' . $_event->getId() . '#';
-				$message = $GLOBALS['JEEDOM_SCLOG_TEXT']['startAutoOnEvent']['txt'] . $_event->getHumanName();
+				$message = $GLOBALS['JEEDOM_SCLOG_TEXT']['startAutoOnEvent']['txt'] . $_event->getHumanName() . ' => ' . $_value . ')';
 			} else {
 				$scenarios1 = self::byTrigger($_event);
 				$trigger = $_event;
