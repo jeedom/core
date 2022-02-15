@@ -300,11 +300,17 @@ class scenario {
 			if (is_object($_event)) {
 				$scenarios1 = self::byTrigger($_event->getId());
 				$trigger = '#' . $_event->getId() . '#';
-				$message = $GLOBALS['JEEDOM_SCLOG_TEXT']['startAutoOnEvent']['txt'] . $_event->getHumanName() . ' => ' . $_value;
+				$message = $GLOBALS['JEEDOM_SCLOG_TEXT']['startAutoOnEvent']['txt'] . $_event->getHumanName();
+				if ($_value !== null) {
+					$message .= ' (' . $_value . ')';
+				}
 			} else {
 				$scenarios1 = self::byTrigger($_event);
 				$trigger = $_event;
 				$message = $GLOBALS['JEEDOM_SCLOG_TEXT']['startOnEvent']['txt'] . ' : #' . $_event . '#';
+				if ($_value !== null) {
+					$message .= ' (' . $_value . ')';
+				}
 			}
 
 			//cmd generic trigger:
