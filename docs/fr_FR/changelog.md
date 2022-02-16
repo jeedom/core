@@ -1,5 +1,7 @@
 # Changelog Jeedom V4.2
 
+## 4.2.12
+
 - Bugfix Core : Courbe de tuile avec valeur négative.
 - Bugfix Core : Erreur 403 au reboot.
 
