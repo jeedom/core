@@ -2,8 +2,14 @@
 
 ## 4.2.12
 
+- Bugfix UI : Affichage du dossier d'une action sur la Timeline.
+
+- Bugfix Core : Affichage de la clé API de chaque plugin en page de configuration.
+- Bugfix Core : Ajout option *Heure* sur un graphique en Design.
 - Bugfix Core : Courbe de tuile avec valeur négative.
 - Bugfix Core : Erreur 403 au reboot.
+
+- Amélioration : Affichage de la valeur du déclencheur dans le log de scénario.
 
 ## 4.2.11
 

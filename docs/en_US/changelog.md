@@ -1,7 +1,13 @@
 # Changelog Jeedom V4.2
 
+- Bugfix UI : Displaying an action's folder on the Timeline.
+
+- Bugfix Core : Display of the API key of each plugin on the configuration page.
+- Bugfix Core : Add option *Time* on a chart in Design.
 - Bugfix Core : Tile curve with negative value.
 - Bugfix Core : 403 error on reboot.
+
+- Improvement : Display of the trigger value in the scenario log.
 
 ## 4.2.11
 
