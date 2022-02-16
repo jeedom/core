@@ -1,5 +1,7 @@
 # Changelog Jeedom V4.2
 
+## 4.2.12
+
 - Bugfix UI : Displaying an action's folder on the Timeline.
 
 - Bugfix Core : Display of the API key of each plugin on the configuration page.

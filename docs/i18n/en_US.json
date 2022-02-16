@@ -1255,6 +1255,7 @@
     "changelog.md": {
         "Répéter les valeurs identiques (Oui": "Repeat identical values (Yes",
         "Changelog Jeedom V4.2": "Changelog Jeedom V4.2",
+        "4.2.12": "4.2.12",
         "Bugfix UI": "Bugfix UI",
         "Affichage du dossier d'une action sur la Timeline": "Displaying an action's folder on the Timeline",
         "Bugfix Core": "Bugfix Core",
