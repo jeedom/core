@@ -1222,6 +1222,7 @@
         "Autoriser la fenêtre de zoom": "Zoomfenster zulassen",
         "Période": "Zeit",
         "30min": "30 Minuten",
+        "Heure": "Zeit",
         "Jour": "Tag",
         "Semaine": "Woche",
         "Mois": "Monat",
@@ -1422,12 +1423,7 @@
     "desktop\/php\/reboot.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Redémarrage": "Wiederaufnahme",
-        "Merci de patienter...": "Bitte warten",
-        "Êtes-vous sûr de vouloir redémarrer le système ?": "Möchten Sie das System wirklich neu starten?",
-        "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard.": "ist wieder betriebsbereit. Sie werden zu Ihrem Dashboard weitergeleitet",
-        "n\\'a pas encore redémarré, nous continuons cependant de tester son retour.": "wurde noch nicht neu gestartet, wir testen jedoch weiterhin die Rückkehr",
-        "N\\'hésitez pas à la débrancher\/rebrancher électriquement.": "Zögern Sie nicht, es elektrisch zu trennen \/ wieder anzuschließen",
-        "est en cours de redémarrage.": "wird neu gestartet"
+        "Merci de patienter...": "Bitte warten"
     },
     "desktop\/php\/plugin.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -1505,7 +1501,7 @@
         "Nom": "Name",
         "Version installée": "Installierte Version",
         "Dernière version": "Neueste Version",
-        "Dernière mise à jour": "Letztes Update",
+        "Mise à jour faite le": "Update durchgeführt am",
         "Options": "Optionen",
         "Actions": "Aktionen",
         "Log :": "Protokoll:",
@@ -3048,6 +3044,13 @@
         "Sauvegarde rapatrier avec succès": "Backup erfolgreich abrufen",
         "L\\'opération est réussie": "Die Operation ist erfolgreich",
         "L\\'opération a échoué": "Operation fehlgeschlagen"
+    },
+    "desktop\/js\/reboot.js": {
+        "Êtes-vous sûr de vouloir redémarrer le système ?": "Möchten Sie das System wirklich neu starten?",
+        "Impossible de trouver la box suite au redémarrage ...": "Kann die Box nach Neustart nicht finden",
+        "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard. Cela peut prendre environ 30 secondes.": "ist wieder betriebsbereit. Sie werden zu Ihrem Dashboard weitergeleitet. Es kann etwa 30 Sekunden dauern",
+        "Merci de patienter...": "Warten Sie mal",
+        "est en cours de redémarrage.": "wird neu gestartet"
     },
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Ausführungs Protokoll des Szenarios",

@@ -1106,8 +1106,8 @@ user::isBan();
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Autoriser les dates dans le futur}}
-                            	<sup><i class="fas fa-question-circle" tooltip="{{Autorise l'affichage d'historique avec des dates dans le futur.}}"></i></sup>
-                            </label>
+								<sup><i class="fas fa-question-circle" tooltip="{{Autorise l'affichage d'historique avec des dates dans le futur.}}"></i></sup>
+							</label>
 							<div class="col-lg-1 col-md-2 col-sm-5 col-xs-6">
 								<input type="checkbox" class="configKey" data-l1key="history::allowFuture" />
 							</div>
@@ -2000,14 +2000,11 @@ user::isBan();
 						if (init('rescue', 0) == 0) {
 							$div = '';
 							foreach ((plugin::listPlugin(true)) as $plugin) {
-								if (config::byKey('api', $plugin->getId()) == '') {
-									continue;
-								}
 								$div .=  '<div class="form-group">';
 								$div .= '<label class="col-xs-12 control-label pull-left">{{Clé API}} : ' . $plugin->getName() . '</label>';
 								$div .= '<div class="col-lg-4 col-md-3 col-sm-4 col-xs-12">';
 								$div .= '<div class="input-group">';
-								$div .= '<input class="span_apikey roundedLeft form-control" readonly value="' . config::byKey('api', $plugin->getId()) . '" />';
+								$div .= '<input class="span_apikey roundedLeft form-control" readonly value="' . jeedom::getApiKey($plugin->getId()) . '" />';
 								$div .= '<span class="input-group-btn">';
 								$div .= '<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="' . $plugin->getId() . '"><i class="fas fa-sync"></i></a>';
 								$div .= '</span>';

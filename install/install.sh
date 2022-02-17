@@ -66,7 +66,7 @@ step_2_mainpackage() {
   add-apt-repository non-free
   apt-get update
   apt_install ntp ca-certificates unzip curl sudo cron
-  apt-get -y install locate tar telnet wget logrotate fail2ban dos2unix ntpdate htop iotop vim iftop smbclient
+  apt-get -o Dpkg::Options::="--force-confdef" -y install locate tar telnet wget logrotate fail2ban dos2unix ntpdate htop iotop vim iftop smbclient
   apt-get -y install usermod
   apt-get -y install visudo
   apt-get -y install git python python-pip

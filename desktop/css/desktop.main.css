@@ -77,6 +77,10 @@ Desktop
     content: " ";
     white-space: pre;
   }
+  i.icon-blank {
+    width: 14px;
+    margin: 4px;
+  }
 
   .disabled {
     pointer-events: none;

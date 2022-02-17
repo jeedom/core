@@ -13,7 +13,9 @@ global $excludeParams;
 $excludeParams = [];
 $excludeParams['eqLogic'] = ['order', 'display', 'comment'];
 $excludeParams['eqLogic']['configuration'] = ['createtime', 'updatetime', 'batterytime'];
+$excludeParams['cmd'] = [];
 $excludeParams['scenario'] = ['description', 'display', 'trigger', 'scenarioElement'];
+$excludeParams['object'] = [];
 
 //scan DB for keys, values, jsonValues:
 global $typePossibilities;
@@ -27,6 +29,7 @@ foreach($typePossibilities as &$item) {
 }
 foreach($typePossibilities as &$item) {
   foreach($item as &$key) {
+    if (!isset($key[0])) continue;
     if (!is_string($key[0])) {
       uksort($key, function ($a, $b) {
         $a = strtolower($a);
@@ -43,6 +46,7 @@ sendVarToJS('typePossibilities', $typePossibilities);
 function scanDB($_table) {
   global $excludeParams;
   global $typePossibilities;
+  global $CONFIG;
   $typePossibilities[$_table] = [];
   $className = $_table;
   if ($_table == 'object') $className = 'jeeObject';
