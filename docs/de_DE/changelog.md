@@ -1,5 +1,7 @@
 # Changelog Jeedom V4.2
 
+## 4.2.12
+
 - Bugfix-Benutzeroberfläche : Anzeigen des Ordners einer Aktion auf der Timeline.
 
 - Bugfix-Kern : Anzeige des API-Schlüssels jedes Plugins auf der Konfigurationsseite.

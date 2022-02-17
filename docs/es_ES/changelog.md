@@ -1,5 +1,7 @@
 # Registro de cambios Jeedom V4.2
 
+## 4.2.12
+
 - Interfaz de usuario de corrección de errores : Mostrar la carpeta de una acción en la línea de tiempo.
 
 - Núcleo de corrección de errores : Visualización de la clave API de cada complemento en la página de configuración.
