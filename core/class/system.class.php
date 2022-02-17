@@ -243,11 +243,13 @@ class system {
 					self::$_installPackage[$_type][mb_strtolower($key)] = array(
 						'version' => $value['version']
 					);
-				}
-				foreach ($datas['dependencies']['npm']['dependencies'] as $key => $value) {
-					self::$_installPackage[$_type][mb_strtolower($key)] = array(
-						'version' => $value['version']
-					);
+					if (isset($value['dependencies'])) {
+						foreach ($value['dependencies'] as $key2 => $value2) {
+							self::$_installPackage[$_type][mb_strtolower($key2)] = array(
+								'version' => $value2['version']
+							);
+						}
+					}
 				}
 				break;
 			case 'yarn':
