@@ -1,7 +1,15 @@
 # Changelog Jeedom V4.2
 
+## 4.2.12
+
+- Bugfix-Benutzeroberfläche : Anzeigen des Ordners einer Aktion auf der Timeline.
+
+- Bugfix-Kern : Anzeige des API-Schlüssels jedes Plugins auf der Konfigurationsseite.
+- Bugfix-Kern : Option hinzufügen *Zeit* auf einem Diagramm in Design.
 - Bugfix-Kern : Kachelkurve mit negativem Wert.
 - Bugfix-Kern : 403 Fehler beim Neustart.
+
+- Verbesserung : Anzeige des Auslösewerts im Szenarioprotokoll.
 
 ## 4.2.11
 

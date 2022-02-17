@@ -1222,6 +1222,7 @@
         "Autoriser la fenêtre de zoom": "Permitir janela de zoom",
         "Période": "Período",
         "30min": "30 minutos",
+        "Heure": "Tempo",
         "Jour": "Dia",
         "Semaine": "Semana",
         "Mois": "Mês",
@@ -1500,7 +1501,7 @@
         "Nom": "Nome",
         "Version installée": "Versão instalada",
         "Dernière version": "Versão mais recente",
-        "Dernière mise à jour": "Última atualização",
+        "Mise à jour faite le": "Atualização feita em",
         "Options": "Opções",
         "Actions": "Estoque",
         "Log :": "Log:",
@@ -3046,8 +3047,8 @@
     },
     "desktop\/js\/reboot.js": {
         "Êtes-vous sûr de vouloir redémarrer le système ?": "Tem certeza de que deseja reiniciar o sistema?",
-        "Impossible de trouver la box suite au redemarrage ...": "Não foi possível encontrar a caixa após reiniciar",
-        "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard. cela peux prendre environs 30 secondes.": "está operacional novamente. Você será redirecionado para o seu painel. pode demorar cerca de 30 segundos",
+        "Impossible de trouver la box suite au redémarrage ...": "Não foi possível encontrar a caixa após reiniciar",
+        "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard. Cela peut prendre environ 30 secondes.": "está operacional novamente. Você será redirecionado para o seu painel. Pode demorar cerca de 30 segundos",
         "Merci de patienter...": "Por favor, aguarde",
         "est en cours de redémarrage.": "está sendo reiniciado"
     },

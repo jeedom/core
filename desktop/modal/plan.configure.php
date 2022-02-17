@@ -32,12 +32,12 @@ sendVarToJS('id', $plan->getId());
     <legend>{{Général}}
       <a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigurePlan'><i class="fas fa-check"></i> {{Sauvegarder}}</a>
     </legend>
-    <input type="text"  class="planAttr form-control" data-l1key="id" style="display: none;"/>
-    <input type="text"  class="planAttr form-control" data-l1key="link_type" style="display: none;"/>
+    <input type="text" class="planAttr form-control" data-l1key="id" style="display: none;" />
+    <input type="text" class="planAttr form-control" data-l1key="link_type" style="display: none;" />
     <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone link_summary">
       <label class="col-lg-4 control-label">{{Profondeur}}</label>
       <div class="col-lg-2">
-        <select class="form-control planAttr" data-l1key="css" data-l2key="z-index" >
+        <select class="form-control planAttr" data-l1key="css" data-l2key="z-index">
           <option value="999">{{Niveau 0}}</option>
           <option value="1000" selected>{{Niveau 1}}</option>
           <option value="1001">{{Niveau 2}}</option>
@@ -48,7 +48,7 @@ sendVarToJS('id', $plan->getId());
     <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone link_summary">
       <label class="col-lg-4 control-label">{{Position X}}<sub>px</sub></label>
       <div class="col-lg-2">
-        <input type="text" class="planAttr form-control" data-l1key="position" data-l2key="left" placeholder="0"/>
+        <input type="text" class="planAttr form-control" data-l1key="position" data-l2key="left" placeholder="0" />
       </div>
       <label class="col-lg-2 control-label">{{Position Y}}<sub>px</sub></label>
       <div class="col-lg-2">
@@ -62,7 +62,7 @@ sendVarToJS('id', $plan->getId());
       </div>
       <label class="col-lg-2 control-label">{{Hauteur}}<sub>px</sub></label>
       <div class="col-lg-2">
-        <input type="text" class="planAttr form-control" data-l1key="display" data-l2key="height" placeholder="100"/>
+        <input type="text" class="planAttr form-control" data-l1key="display" data-l2key="height" placeholder="100" />
       </div>
     </div>
     <div class="form-group link_type link_eqLogic link_cmd link_scenario">
@@ -70,7 +70,7 @@ sendVarToJS('id', $plan->getId());
         <sup><i class="fas fa-question-circle" title="{{Facteur de zoom. Ex : Réduire de moitié : 0.5, Doubler : 2}}"></i></sup>
       </label>
       <div class="col-lg-2">
-        <input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom" placeholder="1.2"/>
+        <input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom" placeholder="1.2" />
         <sup class="danger"><i class="fas fa-exclamation-circle" title="{{Attention : cette option crée des problèmes de placement sur les bords du design.}}"></i></sup>
       </div>
     </div>
@@ -88,7 +88,7 @@ sendVarToJS('id', $plan->getId());
       <label class="col-lg-4 control-label">{{Image}}</label>
       <div class="col-lg-8">
         <span class="btn btn-default btn-file">
-          <i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImagePlan" type="file" name="file" style="display: inline-block;">
+          <i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input id="bt_uploadImagePlan" type="file" name="file" style="display: inline-block;">
         </span>
       </div>
     </div>
@@ -102,7 +102,7 @@ sendVarToJS('id', $plan->getId());
       <label class="col-lg-4 control-label">{{Caméra}}</label>
       <div class="col-lg-3">
         <div class="input-group">
-          <input type="text" class="planAttr form-control roundedLeft" data-l1key="configuration" data-l2key="camera"/>
+          <input type="text" class="planAttr form-control roundedLeft" data-l1key="configuration" data-l2key="camera" />
           <span class="input-group-btn">
             <a class="btn btn-default roundedRight" id="bt_planConfigureSelectCamera"><i class="fas fa-list-alt"></i></a>
           </span>
@@ -112,7 +112,7 @@ sendVarToJS('id', $plan->getId());
     <div class="form-group link_type link_image display_mode display_mode_camera" style="display:none;">
       <label class="col-lg-4 control-label">{{Autoriser la fenêtre de zoom}}</label>
       <div class="col-lg-2">
-        <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="allowZoom" >
+        <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="allowZoom">
       </div>
     </div>
     <div class="form-group link_type link_graph">
@@ -120,6 +120,7 @@ sendVarToJS('id', $plan->getId());
       <div class="col-lg-2">
         <select class="planAttr form-control" data-l1key="display" data-l2key="dateRange">
           <option value="30 min">{{30min}}</option>
+          <option value="1 hour">{{Heure}}</option>
           <option value="1 day">{{Jour}}</option>
           <option value="7 days" selected>{{Semaine}}</option>
           <option value="1 month">{{Mois}}</option>
@@ -131,43 +132,43 @@ sendVarToJS('id', $plan->getId());
     <div class="form-group link_type link_graph">
       <label class="col-lg-4 control-label">{{Echelles axes Y indépendantes}}</label>
       <div class="col-lg-2">
-        <input type="checkbox" checked class="planAttr" data-l1key="display" data-l2key="yAxisScaling" >
+        <input type="checkbox" checked class="planAttr" data-l1key="display" data-l2key="yAxisScaling">
       </div>
     </div>
     <div class="form-group link_type link_graph">
       <label class="col-lg-4 control-label">{{Grouper axes Y par unité}}</label>
       <div class="col-lg-2">
-        <input type="checkbox" checked class="planAttr" data-l1key="display" data-l2key="yAxisByUnit" >
+        <input type="checkbox" checked class="planAttr" data-l1key="display" data-l2key="yAxisByUnit">
       </div>
     </div>
     <div class="form-group link_type link_graph">
       <label class="col-lg-4 control-label">{{Afficher la légende}}</label>
       <div class="col-lg-2">
-        <input type="checkbox" checked class="planAttr" data-l1key="display" data-l2key="showLegend" >
+        <input type="checkbox" checked class="planAttr" data-l1key="display" data-l2key="showLegend">
       </div>
     </div>
     <div class="form-group link_type link_graph">
       <label class="col-lg-4 control-label">{{Afficher le navigateur}}</label>
       <div class="col-lg-2">
-        <input type="checkbox" checked class="planAttr" data-l1key="display" data-l2key="showNavigator" >
+        <input type="checkbox" checked class="planAttr" data-l1key="display" data-l2key="showNavigator">
       </div>
     </div>
     <div class="form-group link_type link_graph">
       <label class="col-lg-4 control-label">{{Afficher le sélecteur de période}}</label>
       <div class="col-lg-2">
-        <input type="checkbox" class="planAttr" checked data-l1key="display" data-l2key="showTimeSelector" >
+        <input type="checkbox" class="planAttr" checked data-l1key="display" data-l2key="showTimeSelector">
       </div>
     </div>
     <div class="form-group link_type link_graph">
       <label class="col-lg-4 control-label">{{Afficher la barre de défilement}}</label>
       <div class="col-lg-2">
-        <input type="checkbox" class="planAttr" checked data-l1key="display" data-l2key="showScrollbar" >
+        <input type="checkbox" class="planAttr" checked data-l1key="display" data-l2key="showScrollbar">
       </div>
     </div>
     <div class="form-group link_type link_graph">
       <label class="col-lg-4 control-label">{{Fond transparent}}</label>
       <div class="col-lg-2">
-        <input type="checkbox" class="planAttr" checked data-l1key="display" data-l2key="transparentBackground" >
+        <input type="checkbox" class="planAttr" checked data-l1key="display" data-l2key="transparentBackground">
       </div>
     </div>
     <div class="form-group link_type link_plan link_view">
@@ -220,7 +221,7 @@ sendVarToJS('id', $plan->getId());
         <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir une icône}}</a>
       </div>
       <div class="col-lg-2">
-        <div class="planAttr" data-l1key="display" data-l2key="icon" ></div>
+        <div class="planAttr" data-l1key="display" data-l2key="icon"></div>
       </div>
     </div>
     <div class="form-group link_type link_eqLogic">
@@ -262,7 +263,7 @@ sendVarToJS('id', $plan->getId());
     <div class="form-group link_type link_plan link_view link_text link_summary link_eqLogic link_cmd">
       <label class="col-lg-4 control-label">{{Arrondis}} <sub>px</sub></label>
       <div class="col-lg-2">
-        <input class="form-control planAttr" data-l1key="css" data-l2key="border-radius" placeholder="10px"/>
+        <input class="form-control planAttr" data-l1key="css" data-l2key="border-radius" placeholder="10px" />
       </div>
     </div>
     <div class="form-group link_type link_plan link_view link_text link_graph link_summary link_eqLogic link_cmd">
@@ -278,20 +279,20 @@ sendVarToJS('id', $plan->getId());
         <sup><i class="fas fa-question-circle tooltips" title="{{Valeur entre 0 et 1. Une couleur de fond doit être définie.}}"></i></sup>
       </label>
       <div class="col-lg-2">
-        <input type="number" min="0" max="1" class="form-control planAttr" data-l1key="css" data-l2key="opacity" placeholder="0,75"/>
+        <input type="number" min="0" max="1" class="form-control planAttr" data-l1key="css" data-l2key="opacity" placeholder="0,75" />
       </div>
     </div>
     <div class="form-group link_type link_plan link_view link_text link_summary link_eqLogic link_cmd">
       <label class="col-lg-4 control-label">{{CSS personnalisé}} <sub>css</sub></label>
       <div class="col-lg-8">
-        <input class="planAttr form-control" data-l1key="display" data-l2key="css" placeholder="font-weight: bold;"/>
+        <input class="planAttr form-control" data-l1key="display" data-l2key="css" placeholder="font-weight: bold;" />
         <sup class="danger"><i class="fas fa-exclamation-circle" title="{{Attention : peut être source de problèmes.}}"></i></sup>
       </div>
     </div>
     <div class="form-group link_type link_plan link_view link_text link_summary link_eqLogic link_cmd">
       <label class="col-lg-4 control-label">{{Appliquer le css personnalisé sur}} <sub>selecteur css</sub></label>
       <div class="col-lg-2">
-        <input class="planAttr form-control" data-l1key="display" data-l2key="cssApplyOn" placeholder="*"/>
+        <input class="planAttr form-control" data-l1key="display" data-l2key="cssApplyOn" placeholder="*" />
       </div>
     </div>
     <div class="link_eqLogic">
@@ -323,13 +324,13 @@ sendVarToJS('id', $plan->getId());
           $eQs .= $cmd->getHumanName();
           $eQs .= '</td>';
           $eQs .= '<td>';
-          $eQs .= '<input type="checkbox" class="planAttr" data-l1key="display" data-l2key="cmdHideName" data-l3key="'.$cmd->getId().'" />';
+          $eQs .= '<input type="checkbox" class="planAttr" data-l1key="display" data-l2key="cmdHideName" data-l3key="' . $cmd->getId() . '" />';
           $eQs .= '</td>';
           $eQs .= '<td>';
-          $eQs .= '<input type="checkbox" class="planAttr" data-l1key="display" data-l2key="cmdHide" data-l3key="'.$cmd->getId().'" />';
+          $eQs .= '<input type="checkbox" class="planAttr" data-l1key="display" data-l2key="cmdHide" data-l3key="' . $cmd->getId() . '" />';
           $eQs .= '</td>';
           $eQs .= '<td>';
-          $eQs .= '<input type="checkbox" class="planAttr" data-l1key="display" data-l2key="cmdTransparentBackground" data-l3key="'.$cmd->getId().'" />';
+          $eQs .= '<input type="checkbox" class="planAttr" data-l1key="display" data-l2key="cmdTransparentBackground" data-l3key="' . $cmd->getId() . '" />';
           $eQs .= '</td>';
           $eQs .= '</tr>';
         }
@@ -393,72 +394,72 @@ sendVarToJS('id', $plan->getId());
           <label class="col-lg-4 control-label">{{Equipement}}</label>
           <div class="col-lg-3">
             <div class="input-group">
-              <input type="text" class="planAttr form-control roundedLeft" data-l1key="configuration" data-l2key="eqLogic"/>
+              <input type="text" class="planAttr form-control roundedLeft" data-l1key="configuration" data-l2key="eqLogic" />
               <span class="input-group-btn">
                 <a class="btn btn-default roundedRight" id="bt_planConfigureAddEqLogic"><i class="fas fa-list-alt"></i></a>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-4 control-label">{{Afficher au survol}}</label>
-            <div class="col-lg-2">
-              <input type="checkbox" checked class="planAttr" data-l1key="configuration" data-l2key="showOnFly" >
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-4 control-label">{{Afficher sur un clic}}</label>
-            <div class="col-lg-2">
-              <input type="checkbox" checked class="planAttr" data-l1key="configuration" data-l2key="showOnClic" >
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-4 control-label">{{Position}}</label>
-            <div class="col-lg-2">
-              <select class="planAttr form-control" data-l1key="configuration" data-l2key="position" >
-                <option value="">{{Défaut}}</option>
-                <option value="top:0px;">{{Haut}}</option>
-                <option value="left:0px;">{{Gauche}}</option>
-                <option value="bottom:0px;">{{Bas}}</option>
-                <option value="right:0px;">{{Droite}}</option>
-                <option value="top:0px;left:0px;">{{Haut Gauche}}</option>
-                <option value="top:0px;right:0px;">{{Haut Droite}}</option>
-                <option value="bottom:0px;left:0px">{{Bas Gauche}}</option>
-                <option value="bottom:0px;right:0px">{{Bas Droite}}</option>
-              </select>
             </div>
           </div>
         </div>
-        <div class="zone_mode zone_binary" style="display: none;">
-          <div class="form-group">
-            <label class="col-lg-4 control-label">{{Information binaire}}</label>
-            <div class="col-lg-3">
-              <input type="text" class="planAttr form-control" data-l1key="configuration" data-l2key="binary_info"/>
-            </div>
-            <div class="col-lg-3">
-              <a class="btn btn-default" id="bt_planConfigureSelectBinary"><i class="fas fa-list-alt"></i></a>
-            </div>
+        <div class="form-group">
+          <label class="col-lg-4 control-label">{{Afficher au survol}}</label>
+          <div class="col-lg-2">
+            <input type="checkbox" checked class="planAttr" data-l1key="configuration" data-l2key="showOnFly">
           </div>
-          <legend>{{Action on}}<a class="btn btn-success pull-right btn-xs bt_planConfigurationAction" data-type="on"><i class="fas fa-plus"></i></a></legend>
-          <div id="div_planConfigureActionon"></div>
-
-          <legend>{{Action off}}<a class="btn btn-success pull-right btn-xs bt_planConfigurationAction" data-type="off"><i class="fas fa-plus"></i></a></legend>
-          <div id="div_planConfigureActionoff"></div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-4 control-label">{{Afficher sur un clic}}</label>
+          <div class="col-lg-2">
+            <input type="checkbox" checked class="planAttr" data-l1key="configuration" data-l2key="showOnClic">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-4 control-label">{{Position}}</label>
+          <div class="col-lg-2">
+            <select class="planAttr form-control" data-l1key="configuration" data-l2key="position">
+              <option value="">{{Défaut}}</option>
+              <option value="top:0px;">{{Haut}}</option>
+              <option value="left:0px;">{{Gauche}}</option>
+              <option value="bottom:0px;">{{Bas}}</option>
+              <option value="right:0px;">{{Droite}}</option>
+              <option value="top:0px;left:0px;">{{Haut Gauche}}</option>
+              <option value="top:0px;right:0px;">{{Haut Droite}}</option>
+              <option value="bottom:0px;left:0px">{{Bas Gauche}}</option>
+              <option value="bottom:0px;right:0px">{{Bas Droite}}</option>
+            </select>
+          </div>
         </div>
       </div>
-    </fieldset>
-  </form>
+      <div class="zone_mode zone_binary" style="display: none;">
+        <div class="form-group">
+          <label class="col-lg-4 control-label">{{Information binaire}}</label>
+          <div class="col-lg-3">
+            <input type="text" class="planAttr form-control" data-l1key="configuration" data-l2key="binary_info" />
+          </div>
+          <div class="col-lg-3">
+            <a class="btn btn-default" id="bt_planConfigureSelectBinary"><i class="fas fa-list-alt"></i></a>
+          </div>
+        </div>
+        <legend>{{Action on}}<a class="btn btn-success pull-right btn-xs bt_planConfigurationAction" data-type="on"><i class="fas fa-plus"></i></a></legend>
+        <div id="div_planConfigureActionon"></div>
 
-  <script>
+        <legend>{{Action off}}<a class="btn btn-success pull-right btn-xs bt_planConfigurationAction" data-type="off"><i class="fas fa-plus"></i></a></legend>
+        <div id="div_planConfigureActionoff"></div>
+      </div>
+    </div>
+  </fieldset>
+</form>
+
+<script>
   var plan_configure_plan = null
 
   $('.planAttr[data-l1key=configuration][data-l2key=zone_mode]').on('change', function() {
     $('.zone_mode').hide()
-    $('.zone_mode.zone_'+$(this).value()).show()
+    $('.zone_mode.zone_' + $(this).value()).show()
   })
 
   $('.planAttr[data-l1key=configuration][data-l2key=display_mode]').on('change', function() {
     $('.display_mode').hide()
-    $('.display_mode.display_mode_'+$(this).value()).show()
+    $('.display_mode.display_mode_' + $(this).value()).show()
   })
 
   $('.bt_planConfigurationAction').on('click', function() {
@@ -467,7 +468,7 @@ sendVarToJS('id', $plan->getId());
 
   $('#fd_planConfigure').on({
     'click': function(event) {
-      $(this).closest('.' +  $(this).attr('data-type')).remove()
+      $(this).closest('.' + $(this).attr('data-type')).remove()
     }
   }, '.bt_removeAction')
 
@@ -475,7 +476,11 @@ sendVarToJS('id', $plan->getId());
     'click': function(event) {
       var type = $(this).attr('data-type')
       var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]')
-      jeedom.cmd.getSelectModal({cmd: {type: 'action'}}, function(result) {
+      jeedom.cmd.getSelectModal({
+        cmd: {
+          type: 'action'
+        }
+      }, function(result) {
         el.value(result.human);
         jeedom.cmd.displayActionOption(el.value(), '', function(html) {
           el.closest('.' + type).find('.actionOptions').html(html)
@@ -485,7 +490,7 @@ sendVarToJS('id', $plan->getId());
     }
   }, '.listCmdAction')
 
-  $('body').off('focusout','.expressionAttr[data-l1key=cmd]').on('focusout','.expressionAttr[data-l1key=cmd]', function(event) {
+  $('body').off('focusout', '.expressionAttr[data-l1key=cmd]').on('focusout', '.expressionAttr[data-l1key=cmd]', function(event) {
     var type = $(this).attr('data-type')
     var el = $(this)
     jeedom.cmd.displayActionOption(el.value(), '', function(html) {
@@ -494,9 +499,11 @@ sendVarToJS('id', $plan->getId());
     })
   })
 
-  $('body').off('click','.bt_selectOtherActionExpression').on('click','.bt_selectOtherActionExpression', function(event) {
+  $('body').off('click', '.bt_selectOtherActionExpression').on('click', '.bt_selectOtherActionExpression', function(event) {
     var expression = $(this).closest('.expression')
-    jeedom.getSelectActionModal({scenario : true}, function(result) {
+    jeedom.getSelectActionModal({
+      scenario: true
+    }, function(result) {
       expression.find('.expressionAttr[data-l1key=cmd]').value(result.human)
       jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=cmd]').value(), '', function(html) {
         expression.find('.actionOptions').html(html)
@@ -545,14 +552,22 @@ sendVarToJS('id', $plan->getId());
 
   $('#bt_planConfigureSelectCamera').on('click', function() {
     var el = $(this)
-    jeedom.eqLogic.getSelectModal({eqLogic: {eqType_name: 'camera'}}, function(result) {
+    jeedom.eqLogic.getSelectModal({
+      eqLogic: {
+        eqType_name: 'camera'
+      }
+    }, function(result) {
       el.parent().parent().find('.planAttr[data-l1key=configuration][data-l2key=camera]').value(result.human)
     })
   })
 
   $('#bt_planConfigureSelectBinary').on('click', function() {
     var el = $(this)
-    jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
+    jeedom.cmd.getSelectModal({
+      cmd: {
+        type: 'info'
+      }
+    }, function(result) {
       el.parent().parent().find('.planAttr[data-l1key=configuration][data-l2key=binary_info]').value(result.human)
     })
   })
@@ -563,13 +578,16 @@ sendVarToJS('id', $plan->getId());
     dataType: 'json',
     done: function(e, data) {
       if (data.result.state != 'ok') {
-        $('#div_alertPlanConfigure').showAlert({message: data.result.result, level: 'danger'})
+        $('#div_alertPlanConfigure').showAlert({
+          message: data.result.result,
+          level: 'danger'
+        })
         return
       }
       if (isset(data.result.result.filepath)) {
         var filePath = data.result.result.filepath
         filePath = '/data/plan/' + filePath.split('/data/plan/')[1]
-        $('.planImg img').attr('src',filePath).show()
+        $('.planImg img').attr('src', filePath).show()
       } else {
         $('.planImg img').hide()
       }
@@ -586,8 +604,8 @@ sendVarToJS('id', $plan->getId());
 
   $('#bt_saveConfigurePlan').on('click', function() {
     var check = $('input[data-l2key="font-size"]')
-    if (check.length && check.val() != '' && !check.val().endsWith('%') ) {
-      check.val(check.val()+'%')
+    if (check.length && check.val() != '' && !check.val().endsWith('%')) {
+      check.val(check.val() + '%')
     }
 
     save()
@@ -596,9 +614,12 @@ sendVarToJS('id', $plan->getId());
   //load and set settings (call before any change event set):
   if (isset(id) && id != '') {
     jeedom.plan.byId({
-      id : id,
+      id: id,
       error: function(error) {
-        $('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'})
+        $('#div_alertPlanConfigure').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
       },
       success: function(plan) {
         plan_configure_plan = plan
@@ -606,17 +627,17 @@ sendVarToJS('id', $plan->getId());
         $('#fd_planConfigure').setValues(plan.plan, '.planAttr')
         if (isset(plan.plan.configuration.action_on)) {
           for (var i in plan.plan.configuration.action_on) {
-            addActionPlanConfigure(plan.plan.configuration.action_on[i],'on')
+            addActionPlanConfigure(plan.plan.configuration.action_on[i], 'on')
           }
         }
         if (isset(plan.plan.configuration.action_off)) {
           for (var i in plan.plan.configuration.action_off) {
-            addActionPlanConfigure(plan.plan.configuration.action_off[i],'off')
+            addActionPlanConfigure(plan.plan.configuration.action_off[i], 'off')
           }
         }
         if (isset(plan.plan.configuration.action_other)) {
           for (var i in plan.plan.configuration.action_other) {
-            addActionPlanConfigure(plan.plan.configuration.action_other[i],'other')
+            addActionPlanConfigure(plan.plan.configuration.action_other[i], 'other')
           }
         }
         if (plan.plan.link_type == 'image') {
@@ -645,14 +666,14 @@ sendVarToJS('id', $plan->getId());
 
   function setPlanUI_Events() {
     //background : not default if transparent:
-    $('#fd_planConfigure').on('change','.planAttr[data-l1key=display][data-l2key=background-transparent]', function() {
+    $('#fd_planConfigure').on('change', '.planAttr[data-l1key=display][data-l2key=background-transparent]', function() {
       if ($(this).value() == 1) {
         $('.planAttr[data-l1key=display][data-l2key=background-defaut]').prop('checked', false)
       }
     })
 
     //background: not default/transparent if colored:
-    $('#fd_planConfigure').on('change','.planAttr[data-l1key=css][data-l2key=background-color]', function() {
+    $('#fd_planConfigure').on('change', '.planAttr[data-l1key=css][data-l2key=background-color]', function() {
       if ($(this).value() != '#000000') {
         $('.planAttr[data-l1key=display][data-l2key=background-defaut]').prop('checked', false)
         $('.planAttr[data-l1key=display][data-l2key=background-transparent]').prop('checked', false)
@@ -660,14 +681,14 @@ sendVarToJS('id', $plan->getId());
     })
 
     //background: not transparent if default
-    $('#fd_planConfigure').on('change','.planAttr[data-l1key=display][data-l2key=background-defaut]', function() {
+    $('#fd_planConfigure').on('change', '.planAttr[data-l1key=display][data-l2key=background-defaut]', function() {
       if ($(this).value() == 1) {
         $('.planAttr[data-l1key=display][data-l2key=background-transparent]').prop('checked', false)
       }
     })
 
     //text: not default if colored:
-    $('#fd_planConfigure').on('change','.planAttr[data-l1key=css][data-l2key=color]', function() {
+    $('#fd_planConfigure').on('change', '.planAttr[data-l1key=css][data-l2key=color]', function() {
       if ($(this).value() != '#000000') {
         $('.planAttr[data-l1key=display][data-l2key=color-defaut]').prop('checked', false)
       }
@@ -692,14 +713,23 @@ sendVarToJS('id', $plan->getId());
     jeedom.plan.save({
       plans: plans,
       error: function(error) {
-        $('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'})
+        $('#div_alertPlanConfigure').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
       },
       success: function() {
-        $('#div_alertPlanConfigure').showAlert({message: '{{Design sauvegardé}}', level: 'success'})
+        $('#div_alertPlanConfigure').showAlert({
+          message: '{{Design sauvegardé}}',
+          level: 'success'
+        })
         jeedom.plan.byId({
-          id : plans[0].id,
+          id: plans[0].id,
           error: function(error) {
-            $('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'})
+            $('#div_alertPlanConfigure').showAlert({
+              message: error.message,
+              level: 'danger'
+            })
           },
           success: function(plan) {
             if (plan_configure_plan.plan.link_type == 'summary' && plan_configure_plan !== null && plan_configure_plan.plan.link_id) {

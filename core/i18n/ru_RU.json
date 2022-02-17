@@ -1222,6 +1222,7 @@
         "Autoriser la fenêtre de zoom": "Разрешить масштабирование окна",
         "Période": "период",
         "30min": "30мин",
+        "Heure": "Heure",
         "Jour": "день",
         "Semaine": "неделя",
         "Mois": "месяц",
@@ -1500,7 +1501,7 @@
         "Nom": "Имя",
         "Version installée": "Version installée",
         "Dernière version": "Dernière version",
-        "Dernière mise à jour": "Dernière mise à jour",
+        "Mise à jour faite le": "Mise à jour faite le",
         "Options": "Опции",
         "Actions": "акции",
         "Log :": "Log :",
@@ -3046,8 +3047,8 @@
     },
     "desktop\/js\/reboot.js": {
         "Êtes-vous sûr de vouloir redémarrer le système ?": "Êtes-vous sûr de vouloir redémarrer le système ?",
-        "Impossible de trouver la box suite au redemarrage ...": "Impossible de trouver la box suite au redemarrage",
-        "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard. cela peux prendre environs 30 secondes.": "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard. cela peux prendre environs 30 secondes",
+        "Impossible de trouver la box suite au redémarrage ...": "Impossible de trouver la box suite au redemarrage",
+        "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard. Cela peut prendre environ 30 secondes.": "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard. Cela peut prendre environ 30 secondes",
         "Merci de patienter...": "Merci de patienter",
         "est en cours de redémarrage.": "est en cours de redémarrage"
     },

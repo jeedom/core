@@ -1222,6 +1222,7 @@
         "Autoriser la fenêtre de zoom": "ズームウィンドウを許可",
         "Période": "期間",
         "30min": "30分",
+        "Heure": "Heure",
         "Jour": "日",
         "Semaine": "週",
         "Mois": "月",
@@ -1500,7 +1501,7 @@
         "Nom": "表題",
         "Version installée": "インストール済みバージョン",
         "Dernière version": "最新バージョン",
-        "Dernière mise à jour": "Dernière mise à jour",
+        "Mise à jour faite le": "Mise à jour faite le",
         "Options": "オプション",
         "Actions": "株式",
         "Log :": "ログ：",
@@ -3046,8 +3047,8 @@
     },
     "desktop\/js\/reboot.js": {
         "Êtes-vous sûr de vouloir redémarrer le système ?": "Êtes-vous sûr de vouloir redémarrer le système ?",
-        "Impossible de trouver la box suite au redemarrage ...": "Impossible de trouver la box suite au redemarrage",
-        "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard. cela peux prendre environs 30 secondes.": "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard. cela peux prendre environs 30 secondes",
+        "Impossible de trouver la box suite au redémarrage ...": "Impossible de trouver la box suite au redemarrage",
+        "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard. Cela peut prendre environ 30 secondes.": "est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard. Cela peut prendre environ 30 secondes",
         "Merci de patienter...": "Merci de patienter",
         "est en cours de redémarrage.": "est en cours de redémarrage"
     },

@@ -1,7 +1,15 @@
 # Registro de cambios Jeedom V4.2
 
+## 4.2.12
+
+- Interfaz de usuario de corrección de errores : Mostrar la carpeta de una acción en la línea de tiempo.
+
+- Núcleo de corrección de errores : Visualización de la clave API de cada complemento en la página de configuración.
+- Núcleo de corrección de errores : Añadir opción *Hora* en un gráfico en Diseño.
 - Núcleo de corrección de errores : Curva de mosaico con valor negativo.
 - Núcleo de corrección de errores : Error 403 al reiniciar.
+
+- Mejora : Visualización del valor de activación en el registro de escenarios.
 
 ## 4.2.11
 

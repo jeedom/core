@@ -1,7 +1,15 @@
 # Changelog Jeedom V4.2
 
+## 4.2.12
+
+- IU de correção de bug : Exibindo a pasta de uma ação na linha do tempo.
+
+- Núcleo de correção de bugs : Exibição da chave de API de cada plugin na página de configuração.
+- Núcleo de correção de bugs : Adicionar opção *Tempo* em um gráfico em Design.
 - Núcleo de correção de bugs : Curva de ladrilhos com valor negativo.
 - Núcleo de correção de bugs : Erro 403 na reinicialização.
+
+- Melhoria : Exibição do valor do gatilho no log do cenário.
 
 ## 4.2.11
 
