@@ -239,6 +239,11 @@ class system {
 						'version' => $datas['dependencies']['yarn']['version']
 					);
 				}
+				foreach ($datas['dependencies'] as $key => $value) {
+					self::$_installPackage[$_type][mb_strtolower($key)] = array(
+						'version' => $value['version']
+					);
+				}
 				foreach ($datas['dependencies']['npm']['dependencies'] as $key => $value) {
 					self::$_installPackage[$_type][mb_strtolower($key)] = array(
 						'version' => $value['version']
