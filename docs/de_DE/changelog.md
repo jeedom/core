@@ -1,18 +1,29 @@
 # Changelog Jeedom V4.2
 
+## 4.2.12
+
+- Bugfix-Benutzeroberfläche : Anzeigen des Ordners einer Aktion auf der Timeline.
+
+- Bugfix-Kern : Anzeige des API-Schlüssels jedes Plugins auf der Konfigurationsseite.
+- Bugfix-Kern : Option hinzufügen *Zeit* auf einem Diagramm in Design.
+- Bugfix-Kern : Kachelkurve mit negativem Wert.
+- Bugfix-Kern : 403 Fehler beim Neustart.
+
+- Verbesserung : Anzeige des Auslösewerts im Szenarioprotokoll.
+
 ## 4.2.11
 
 - Bugfix-Benutzeroberfläche : Position auf der Home-Automation-Zusammenfassung neu erstellter Objekte.
-- Bugfix-Benutzeroberfläche : Problem mit der 3D-Designanzeige behoben
+- Bugfix-Benutzeroberfläche : Probleme mit der 3D-Design-Anzeige.
 
 - Bugfix-Kern : Neue nicht definierte Zusammenfassungseigenschaften.
 - Bugfix-Kern : Aktualisieren Sie den Wert beim Klicken auf den Bereich der Widgets *Schieberegler*.
 - Bugfix-Kern : Bearbeiten einer leeren Datei (0b).
-- Bugfix-Kern : Behebung eines Problems bei der Erkennung der realen IP des Clients durch das jeedom dns, ein Neustart der Box wird nach dem Ende des Updates empfohlen, damit dieses aktiviert wird
+- Bugfix-Kern : Bedenken hinsichtlich der Erkennung der echten IP des Clients durch das Jeedom-DNS. Zur Aktivierung empfiehlt sich nach dem Update ein Neustart der Box.
 
 ## 4.2.9
 
-- Bugfix-Benutzeroberfläche : Numerisches Standard-Widget behoben (cmdName zu lang).
+- Bugfix-Benutzeroberfläche : Widget-Fix *numerische Vorgabe* (cmdName zu lang).
 - Bugfix-Benutzeroberfläche : Übergeben von CSS-Variablen *--url-iconsDark* und *--url-iconsLight* absolut (Bug Safari MacOS).
 - Bugfix-Benutzeroberfläche : Position der Benachrichtigungen in *oben in der Mitte*.
 

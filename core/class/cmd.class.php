@@ -1705,7 +1705,7 @@ class cmd {
 		$events = array();
 		if (!$repeat) {
 			$this->setCache(array('value' => $value, 'valueDate' => $this->getValueDate()));
-			scenario::check($this, false, $this->getGeneric_type(), $object);
+			scenario::check($this, false, $this->getGeneric_type(), $object, $value);
 			$level = $this->checkAlertLevel($value);
 			$events[] = array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'alertLevel' => $level);
 			$foundInfo = false;

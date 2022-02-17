@@ -1,18 +1,29 @@
 # Changelog Jeedom V4.2
 
+## 4.2.12
+
+- IU de correção de bug : Exibindo a pasta de uma ação na linha do tempo.
+
+- Núcleo de correção de bugs : Exibição da chave de API de cada plugin na página de configuração.
+- Núcleo de correção de bugs : Adicionar opção *Tempo* em um gráfico em Design.
+- Núcleo de correção de bugs : Curva de ladrilhos com valor negativo.
+- Núcleo de correção de bugs : Erro 403 na reinicialização.
+
+- Melhoria : Exibição do valor do gatilho no log do cenário.
+
 ## 4.2.11
 
 - IU de correção de bug : Posição no resumo de automação residencial de objetos recém-criados.
-- IU de correção de bug : problema de exibição de design 3D corrigido
+- IU de correção de bug : Problemas de exibição de design 3D.
 
 - Núcleo de correção de bugs : Novas propriedades de resumo indefinidas.
 - Núcleo de correção de bugs : Atualizar valor ao clicar no intervalo de widgets *Controle deslizante*.
 - Núcleo de correção de bugs : Editando arquivo vazio (0b).
-- Núcleo de correção de bugs : correção de um problema de detecção do ip real do cliente através do jeedom dns, recomenda-se reiniciar a caixa após o final da atualização para que esta seja ativada
+- Núcleo de correção de bugs : Preocupações de detectar o IP real do cliente através do DNS Jeedom. Uma reinicialização da caixa é recomendada após a atualização para que isso seja ativado.
 
 ## 4.2.9
 
-- IU de correção de bug : Corrigido o widget padrão numérico (cmdName muito longo).
+- IU de correção de bug : Correção de widget *padrão numérico* (cmdName muito longo).
 - IU de correção de bug : Passando variáveis css *--url-iconsDark* e *--url-iconsLight* em absoluto (Bug Safari MacOS).
 - IU de correção de bug : Posição das notificações em *centro superior*.
 
