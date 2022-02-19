@@ -1175,6 +1175,8 @@ class scenarioExpression {
 	}
 
 	public static function setTags($_expression, &$_scenario = null, $_quote = false, $_nbCall = 0) {
+		/* ALLI 2022-02-17 */
+		$_expression= trim( $_expression ); 
 		if (config::byKey('expression::autoQuote', 'core', 1) == 0) {
 			$_quote = false;
 		}
