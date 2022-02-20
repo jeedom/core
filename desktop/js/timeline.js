@@ -161,6 +161,41 @@ $(function() {
   jeeP.displayTimeline()
 })
 
+//searching
+$('#in_searchTimeline').keyup(function() {
+  var search = $(this).value()
+  if (search == '') {
+    $('#timelineContainer > ul > li').show()
+    return
+  }
+  search = jeedomUtils.normTextLower(search)
+  var not = search.startsWith(":not(")
+  if (not) {
+    search = search.replace(':not(', '')
+  }
+  $('#timelineContainer > ul > li').hide()
+  var match, text
+  $('#timelineContainer > ul > li').each(function() {
+    match = false
+    text = jeedomUtils.normTextLower($(this).find('.tml-cmd').text())
+    if (text.includes(search)) {
+      match = true
+    }
+    text = jeedomUtils.normTextLower($(this).find('.type').text())
+    if (text.includes(search)) {
+      match = true
+    }
+
+    if (not) match = !match
+    if (match) {
+      $(this).show()
+    }
+  })
+})
+$('#bt_resetTimelineSearch').on('click', function() {
+  $('#in_searchTimeline').val('').keyup()
+})
+
 $('#bt_openCmdHistoryConfigure').on('click', function() {
   $('#md_modal').dialog({
     title: "{{Configuration de l'historique des commandes}}"

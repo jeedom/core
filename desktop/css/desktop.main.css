@@ -2237,6 +2237,15 @@ div.div_viewZone legend.lg_viewZone {
   }
 
 /* ______Timeline cards / history */
+  #timelineBar {
+    display: inline-flex;
+    width: calc(100% - 17px);
+    position: fixed;
+    z-index: 200;
+    padding: 5px 4px 5px 8px !important;
+    margin: 0 7px;
+    background: rgba(var(--panel-bg-color), var(--opacity));
+  }
   #timelineContainer .html .tml-cmd > span >span i {
     color: var(--linkHoverLight-color) !important;
   }
@@ -2355,17 +2364,6 @@ div.div_viewZone legend.lg_viewZone {
   #timelineContainer div.html {
     width: 70%;
     display: inline-block
-  }
-
-  #timelineOptions {
-    position: fixed;
-    text-align: right;
-    top: 55px;
-    right: 10px;
-    padding: 5px;
-    height: 40px !important;
-    z-index: 15;
-    background: rgba(var(--panel-bg-color), var(--opacity));
   }
 
   body[data-page="history"] #div_mainContainer {
@@ -4920,6 +4918,7 @@ div.div_viewZone legend.lg_viewZone {
     color: var(--al-primary-color) !important;
   }
 
+  .noCorner,
   .input-group .btn,
   .input-group input,
   .input-group select,
