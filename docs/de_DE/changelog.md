@@ -1,5 +1,8 @@
 # Changelog Jeedom V4.2
 
+## 4.2.13
+
+- Verbesserung : Erstellung von API-Schlüsseln standardmäßig inaktiv (wenn die Erstellungsanfrage nicht vom Plugin kommt)
 - Bugfix-Benutzeroberfläche : Möglichkeit *Auf dem Desktop verstecken* Zusammenfassungen.
 
 ## 4.2.12

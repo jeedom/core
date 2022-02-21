@@ -1255,6 +1255,9 @@
     "changelog.md": {
         "Répéter les valeurs identiques (Oui": "Repita valores idénticos (Sí",
         "Changelog Jeedom V4.2": "Registro de cambios Jeedom V4.2",
+        "4.2.13": "4.2.13",
+        "Amélioration": "Mejora",
+        "Création des clef api par defaut en inactif (si la demande de création ne vient pas du plugin": "Creación de claves api por defecto inactivas (si la solicitud de creación no proviene del complemento",
         "Masquer en desktop": "Ocultar en el escritorio",
         "Bugfix UI": "Interfaz de usuario de corrección de errores",
         "des résumés": "resúmenes",
@@ -1266,7 +1269,6 @@
         "sur un graphique en Design": "en un gráfico en Diseño",
         "Courbe de tuile avec valeur négative": "Curva de mosaico con valor negativo",
         "Erreur 403 au reboot": "Error 403 al reiniciar",
-        "Amélioration": "Mejora",
         "Affichage de la valeur du déclencheur dans le log de scénario": "Visualización del valor de activación en el registro de escenarios",
         "4.2.11": "4.2.11",
         "Position sur le résumé domotique des objets nouvellement crées": "Posición en el resumen domótico de objetos de nueva creación",
