@@ -1,5 +1,7 @@
 # Changelog Jeedom V4.2
 
+- Bugfix UI : Option *Masquer en desktop* des résumés.
+
 ## 4.2.12
 
 - Bugfix UI : Affichage du dossier d'une action sur la Timeline.
