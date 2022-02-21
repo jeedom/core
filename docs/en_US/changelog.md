@@ -1,5 +1,7 @@
 # Changelog Jeedom V4.2
 
+- Bugfix UI : Option *Hide on desktop* summaries.
+
 ## 4.2.12
 
 - Bugfix UI : Displaying an action's folder on the Timeline.
