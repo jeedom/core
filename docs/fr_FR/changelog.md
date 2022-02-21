@@ -1,5 +1,10 @@
 # Changelog Jeedom V4.2
 
+
+## 4.2.13
+
+- Amélioration : Création des clef api par defaut en inactif (si la demande de création ne vient pas du plugin)
+
 ## 4.2.12
 
 - Bugfix UI : Affichage du dossier d'une action sur la Timeline.

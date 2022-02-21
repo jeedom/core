@@ -2004,7 +2004,7 @@ user::isBan();
 								$div .= '<label class="col-xs-12 control-label pull-left">{{Clé API}} : ' . $plugin->getName() . '</label>';
 								$div .= '<div class="col-lg-4 col-md-3 col-sm-4 col-xs-12">';
 								$div .= '<div class="input-group">';
-								$div .= '<input class="span_apikey roundedLeft form-control" readonly value="' . jeedom::getApiKey($plugin->getId()) . '" />';
+								$div .= '<input class="span_apikey roundedLeft form-control" readonly value="' . jeedom::getApiKey($plugin->getId(), 'disable') . '" />';
 								$div .= '<span class="input-group-btn">';
 								$div .= '<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="' . $plugin->getId() . '"><i class="fas fa-sync"></i></a>';
 								$div .= '</span>';
