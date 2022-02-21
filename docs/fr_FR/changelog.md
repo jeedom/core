@@ -2,8 +2,9 @@
 
 ## 4.2.13
 
-- Amélioration : Création des clef api par defaut en inactif (si la demande de création ne vient pas du plugin)
+- Amélioration : Création des clef api par defaut en inactif (si la demande de création ne vient pas du plugin).
 - Bugfix UI : Option *Masquer en desktop* des résumés.
+- Bugfix UI : Historiques: Respect des échelles lors du zoom.
 
 ## 4.2.12
 
