@@ -1,5 +1,7 @@
 # Registro de cambios Jeedom V4.2
 
+- Interfaz de usuario de corrección de errores : Opción *Ocultar en el escritorio* resúmenes.
+
 ## 4.2.12
 
 - Interfaz de usuario de corrección de errores : Mostrar la carpeta de una acción en la línea de tiempo.

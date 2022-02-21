@@ -1,5 +1,7 @@
 # Changelog Jeedom V4.2
 
+- Bugfix-Benutzeroberfläche : Möglichkeit *Auf dem Desktop verstecken* Zusammenfassungen.
+
 ## 4.2.12
 
 - Bugfix-Benutzeroberfläche : Anzeigen des Ordners einer Aktion auf der Timeline.
