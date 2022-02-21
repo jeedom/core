@@ -1,9 +1,9 @@
 # Changelog Jeedom V4.2
 
-
 ## 4.2.13
 
 - Amélioration : Création des clef api par defaut en inactif (si la demande de création ne vient pas du plugin)
+- Bugfix UI : Option *Masquer en desktop* des résumés.
 
 ## 4.2.12
 
