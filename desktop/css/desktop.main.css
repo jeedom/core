@@ -3046,6 +3046,15 @@ div.div_viewZone legend.lg_viewZone {
     width: calc(100% - 50px);
   }
 
+  #table_message {
+    table-layout: fixed;
+    word-wrap:break-word;
+  }
+
+  #table_message td. {
+    height: unset;
+  }
+
   #table_dataStore {
     width: 100% !important;
   }

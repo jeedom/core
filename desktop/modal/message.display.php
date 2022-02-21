@@ -50,9 +50,9 @@ if ($selectPlugin != '') {
     <thead>
       <tr>
         <th data-sorter="false" data-filter="false"></th>
-        <th style="width:150px;min-width:100px;">{{Date et heure}}</th>
+        <th>{{Date et heure}}</th>
         <th>{{Source}}</th>
-        <th>{{Description}}</th>
+        <th data-sorter="false" data-filter="false">{{Description}}</th>
         <th data-sorter="false" data-filter="false">{{Action}}</th>
         <th>{{Occurrences}}</th>
       </tr>
@@ -77,6 +77,16 @@ if ($selectPlugin != '') {
 </div>
 
 <script>
+  "use strict"
+
+  $(function() {
+    $.hideAlert()
+    jeedomUtils.initTableSorter()
+    $('#table_message')[0].config.widgetOptions.resizable_widths = ['50px', '140px', '100px', '', '90px', '120px']
+    $('#table_message').trigger('applyWidgets')
+      .trigger('resizableReset')
+  })
+
   $("#sel_plugin").on('change', function(event) {
     $('#md_modal').dialog({
       title: "{{Centre de Messages}}"
