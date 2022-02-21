@@ -2,8 +2,9 @@
 
 ## 4.2.13
 
-- Improvement : Creation of api keys by default inactive (if the creation request does not come from the plugin)
+- Improvement : Creation of api keys by default inactive (if the creation request does not come from the plugin).
 - Bugfix UI : Option *Hide on desktop* summaries.
+- Bugfix UI : Historiques: Respect scales when zooming.
 
 ## 4.2.12
 
