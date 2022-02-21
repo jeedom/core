@@ -1,5 +1,7 @@
 # Changelog Jeedom V4.2
 
+- IU de correção de bug : Opção *Ocultar na área de trabalho* resumos.
+
 ## 4.2.12
 
 - IU de correção de bug : Exibindo a pasta de uma ação na linha do tempo.
