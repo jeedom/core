@@ -704,7 +704,7 @@ class jeedom {
 		$backups = ls($backup_dir, '*.tar.gz', false, array('files', 'quiet', 'datetime_asc'));
 		$return = array();
 		foreach ($backups as $backup) {
-			$return[$backup_dir . '/' . $backup] = $backup;
+			$return[$backup_dir . '/' . $backup] = $backup . ' (' . sizeFormat(filesize($backup_dir . '/' . $backup)) . ')';
 		}
 		return $return;
 	}
