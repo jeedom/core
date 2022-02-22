@@ -1,6 +1,10 @@
 # Registro de cambios Jeedom V4.2
 
+## 4.2.13
+
+- Mejora : Creación de claves api por defecto inactivas (si la solicitud de creación no proviene del complemento).
 - Interfaz de usuario de corrección de errores : Opción *Ocultar en el escritorio* resúmenes.
+- Interfaz de usuario de corrección de errores : Historiques: Respetar las escalas al hacer zoom.
 
 ## 4.2.12
 
