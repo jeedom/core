@@ -131,6 +131,7 @@ try {
 		'.git',
 		'.log',
 		'core/config/common.config.php',
+		'/var/www/html/data/imgOs/',
 		config::byKey('backup::path'),
 	);
 	

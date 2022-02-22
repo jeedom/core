@@ -36,7 +36,7 @@ class history {
 		$cmd_ids = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 		foreach ($cmd_ids as $cmd_id) {
 			$cmd = cmd::byId($cmd_id['cmd_id']);
-			if (!is_object($cmd)) {
+			if (!is_object($cmd) || $cmd->getType() != 'info') {
 				continue;
 			}
 			$values = array(
@@ -879,7 +879,7 @@ class history {
 				if (count($matches[1]) != count($cmd_history)) {
 					continue;
 				}
-				$datetime = floatval(strtotime($datetime.' UTC'));
+				$datetime = floatval(strtotime($datetime . ' UTC'));
 				$calcul = template_replace($cmd_history, $_strcalcul);
 				if ($_noCalcul) {
 					$value[$datetime] = $calcul;

@@ -538,7 +538,7 @@ Desktop
     transform-origin: 42px 42px;
     transform: scale(0.94) rotate(-180deg);
   }
-  div..arcgauge .cmdStats {
+  div.arcgauge .cmdStats {
     position: relative;
     top: 5px;
   }
