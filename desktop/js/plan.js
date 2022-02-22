@@ -761,8 +761,16 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
 }
 
 if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
+  //Handle auto hide context menu
+  $('#div_pageContainer').on({
+    'mouseleave': function(event) {
+      $(this).fadeOut().trigger('contextmenu:hide')
+    }
+  }, '.context-menu-root')
+
   jeeP.contextMenu = $.contextMenu({
     selector: '#div_pageContainer',
+    appendTo: 'div#div_pageContainer',
     zIndex: 9999,
     events: {
       show: function(opt) {
@@ -1131,6 +1139,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
   $.contextMenu({
     selector: '.div_displayObject > .eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.text-widget,.view-link-widget,.graph-widget,.image-widget,.zone-widget,.summary-widget',
     zIndex: 9999,
+    appendTo: 'div#div_pageContainer',
     events: {
       show: function(opt) {
         $.contextMenu.setInputValues(opt, this.data())

@@ -410,11 +410,19 @@ $('#bt_resetObjectSearch').on('click', function() {
   $('#in_searchObject').val('').keyup()
 })
 
+//Handle auto hide context menu
+$('#div_pageContainer').on({
+  'mouseleave': function(event) {
+    $(this).fadeOut().trigger('contextmenu:hide')
+  }
+}, '.context-menu-root')
+
 //context menu
 $(function() {
   try {
     $.contextMenu({
     selector: '.nav.nav-tabs',
+    appendTo: 'div#div_pageContainer',
     build: function($trigger) {
       var thisObjectId = $('span.objectAttr[data-l1key="id"]').text()
       var contextmenuitems = {}
@@ -454,6 +462,7 @@ $(function() {
   try {
     $.contextMenu({
     selector: "#objectPanel .objectDisplayCard",
+    appendTo: 'div#div_pageContainer',
     build: function($trigger) {
       var thisObjectId = $trigger.attr('data-object_id')
       var thisFatherId = $trigger.attr('data-father_id')

@@ -1326,7 +1326,15 @@ $('#bt_resetInsideScenarioSearch').on('click', function() {
   }
 })
 
-//contextMenu
+
+//Handle auto hide context menu
+$('#div_pageContainer').on({
+  'mouseleave': function(event) {
+    $(this).fadeOut().trigger('contextmenu:hide')
+  }
+}, '.context-menu-root')
+
+//tabs context menu
 $(function() {
   try {
     $.contextMenu('destroy', $('.nav.nav-tabs'))
@@ -1364,7 +1372,7 @@ $(function() {
         if (Object.entries(contextmenuitems).length > 0 && contextmenuitems.constructor === Object) {
           $.contextMenu({
             selector: '.nav.nav-tabs li',
-            autoHide: true,
+            appendTo: 'div#div_pageContainer',
             zIndex: 9999,
             className: 'scenario-context-menu',
             callback: function(key, options, event) {
@@ -1393,6 +1401,7 @@ $(function() {
   try {
     $.contextMenu({
     selector: "#accordionScenario .scenarioDisplayCard",
+    appendTo: 'div#div_pageContainer',
     build: function($trigger) {
       var scGroups = []
       Object.keys(jeephp2js.scenarioListGroup).forEach(function(key) {

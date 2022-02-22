@@ -251,9 +251,18 @@ $('.eqLogicSortable').sortable({
   }
 }).disableSelection()
 
+
+//Handle auto hide context menu
+$('#div_pageContainer').on({
+  'mouseleave': function(event) {
+    $(this).fadeOut().trigger('contextmenu:hide')
+  }
+}, '.context-menu-root')
+
 //Contextmenu Equipments:
 $.contextMenu({
   selector: "li.eqLogic",
+  appendTo: 'div#div_pageContainer',
   build: function($trigger) {
     $trigger.addClass('hover')
     var eqGeneric = $trigger.closest('.eqlogicSortable').attr('data-id')
@@ -314,6 +323,7 @@ Object.keys(jeeP.genericsByFamily).forEach(key => {
 })
 $.contextMenu({
   selector: "li.cmd",
+  appendTo: 'div#div_pageContainer',
   build: function($trigger) {
     $trigger.addClass('hover')
     var eqGeneric = $trigger.closest('.eqlogicSortable').attr('data-id')
