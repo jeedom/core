@@ -446,28 +446,32 @@ class jeedom {
 		system::php($cmd);
 	}
 
-	public static function getApiKey($_plugin = 'core') {
+	public static function getApiKey($_plugin = 'core', $_mode = 'enable') {
 		if ($_plugin == 'core') {
 			if (config::byKey('api') == '') {
 				config::save('api', config::genKey());
+				config::save('api::api::mode', $_mode, 'core');
 			}
 			return config::byKey('api');
 		}
 		if ($_plugin == 'apipro') {
 			if (config::byKey('apipro') == '') {
 				config::save('apipro', config::genKey());
+				config::save('api::apipro::mode', $_mode, 'core');
 			}
 			return config::byKey('apipro');
 		}
 		if ($_plugin == 'apitts') {
 			if (config::byKey('apitts') == '') {
 				config::save('apitts', config::genKey());
+				config::save('api::apitts::mode', $_mode, 'core');
 			}
 			return config::byKey('apitts');
 		}
 		if ($_plugin == 'apimarket') {
 			if (config::byKey('apimarket') == '') {
 				config::save('apimarket', config::genKey());
+				config::save('api::apimarket::mode', $_mode, 'core');
 			}
 			return config::byKey('apimarket');
 		}
@@ -478,6 +482,7 @@ class jeedom {
 				return '';
 			}
 			config::save('api', config::genKey(), $_plugin);
+			config::save('api::' . $_plugin . '::mode', $_mode, 'core');
 		}
 		return config::byKey('api', $_plugin);
 	}
@@ -699,7 +704,7 @@ class jeedom {
 		$backups = ls($backup_dir, '*.tar.gz', false, array('files', 'quiet', 'datetime_asc'));
 		$return = array();
 		foreach ($backups as $backup) {
-			$return[$backup_dir . '/' . $backup] = $backup;
+			$return[$backup_dir . '/' . $backup] = $backup . ' (' . sizeFormat(filesize($backup_dir . '/' . $backup)) . ')';
 		}
 		return $return;
 	}
