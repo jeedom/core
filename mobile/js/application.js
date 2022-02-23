@@ -342,17 +342,23 @@ jeedomUtils.initApplication = function(_reinit) {
       jeedom.theme = data.result
       jeeFrontEnd.language = data.result.language
 
-      jeedomUtils.insertHeader("apple-touch-icon",jeedom.theme.product_icon, "128x128")
-      jeedomUtils.insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, "256x256")
-      jeedomUtils.insertHeader("apple-touch-icon-precomposed",jeedom.theme.product_icon, "256x256")
-      jeedomUtils.insertHeader("shortcut icon",jeedom.theme.product_icon, "128x128")
-      jeedomUtils.insertHeader("icon",jeedom.theme.product_icon, "128x128")
-      jeedomUtils.insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, null, "(device-width: 320px)")
-      jeedomUtils.insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, null, "(device-width: 320px) and (-webkit-device-pixel-ratio: 2)")
-      jeedomUtils.insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, null, "(device-width: 768px) and (orientation: portrait)")
-      jeedomUtils.insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, null, "(device-width: 768px) and (orientation: landscape)")
-      jeedomUtils.insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, null, "(device-width: 1536px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)")
-      jeedomUtils.insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, null, "(device-width: 1536px)  and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)")
+      if (jeedom.theme.product_icon_apple) {
+        var icon_apple = jeedom.theme.product_icon_apple
+      } else {
+        var icon_apple = jeedom.theme.product_icon
+      }
+      jeedomUtils.insertHeader("apple-touch-icon", icon_apple, "128x128")
+      jeedomUtils.insertHeader("apple-touch-startup-image", icon_apple, "256x256")
+      jeedomUtils.insertHeader("apple-touch-icon-precomposed", icon_apple, "256x256")
+      jeedomUtils.insertHeader("shortcut icon", icon_apple, "128x128")
+      jeedomUtils.insertHeader("icon", icon_apple, "128x128")
+      jeedomUtils.insertHeader("apple-touch-startup-image", icon_apple, null, "(device-width: 320px)")
+      jeedomUtils.insertHeader("apple-touch-startup-image", icon_apple, null, "(device-width: 320px) and (-webkit-device-pixel-ratio: 2)")
+      jeedomUtils.insertHeader("apple-touch-startup-image", icon_apple, null, "(device-width: 768px) and (orientation: portrait)")
+      jeedomUtils.insertHeader("apple-touch-startup-image", icon_apple, null, "(device-width: 768px) and (orientation: landscape)")
+      jeedomUtils.insertHeader("apple-touch-startup-image", icon_apple, null, "(device-width: 1536px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)")
+      jeedomUtils.insertHeader("apple-touch-startup-image", icon_apple, null, "(device-width: 1536px)  and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)")
+
       if (data.state != 'ok' || (isset(data.result.connected) && data.result.connected == false)) {
         jeedomUtils.loadModal(false)
         jeedomUtils.loadPanel(false)
@@ -761,4 +767,7 @@ function panel(_name, _callback) {
 function setBackgroundImage(_path){
   jeedomUtils.setBackgroundImage(_path)
 }
+
+//deprecated, remove v4.4
 var page = jeedomUtils.loadPage
+
