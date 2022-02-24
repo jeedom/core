@@ -981,11 +981,13 @@ class jeeObject {
 	}
 
 	public function getHtmlSummary($_version = 'dashboard') {
+      	$dbVersion = $_version == 'dashboard' ? 'desktop' : $_version;
 		$virtual = eqLogic::byLogicalId('summary' . $this->getId(), 'virtual');
 		$return = '<span class="objectSummaryContainer objectSummary' . $this->getId() . '" data-version="' . $_version . '">';
 		$def = config::byKey('object:summary');
+
 		foreach ($def as $key => &$value) {
-			if ($this->getConfiguration('summary::hide::' . $_version . '::' . $key, 0) == 1) {
+			if ($this->getConfiguration('summary::hide::' . $dbVersion . '::' . $key, 0) == 1) {
 				continue;
 			}
 			$result = $this->getSummary($key);
