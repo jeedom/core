@@ -302,7 +302,7 @@ class repo_market {
 		if (config::byKey('market::cloud::backup::password') != config::byKey('market::cloud::backup::password_confirmation')) {
 			throw new Exception(__('Le mot de passe du backup cloud n\'est pas identique à la confirmation', __FILE__));
 		}
-		$limit = 3900;
+		$limit = 3700;
 		self::backup_createFolderIsNotExist();
 		$filesystem = self::backup_flysystem();
 		$folders = $filesystem->getAdapter()->listContents('/webdav/' . config::byKey('market::username'));
