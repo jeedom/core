@@ -972,7 +972,7 @@ class jeeObject {
 		$return = '<span class="objectSummaryContainer objectSummary' . $this->getId() . '" data-version="' . $_version . '">';
 		$def = config::byKey('object:summary');
 		foreach ($def as $key => &$value) {
-			if ($this->getConfiguration('summary::hide::' . $$dbVersion . '::' . $key, 0) == 1) {
+			if ($this->getConfiguration('summary::hide::' . $dbVersion . '::' . $key, 0) == 1) {
 				continue;
 			}
 
