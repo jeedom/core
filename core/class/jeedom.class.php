@@ -51,6 +51,7 @@ class jeedom {
 			'default_bootstrap_theme_night',
 			'product_name',
 			'product_icon',
+			'product_icon_apple',
 			'product_image',
 			'enableCustomCss',
 			'mobile_theme_color',
