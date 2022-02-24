@@ -1,6 +1,12 @@
 # Registro de cambios Jeedom V4.2
 
+## 4.2.13
+
+- Mejora : Creación de claves api por defecto inactivas (si la solicitud de creación no proviene del complemento).
+- Mejora : tamaño de copia de seguridad agregado en la página de administración de copias de seguridad
+- Núcleo de corrección de errores : solucionó un problema de tamaño de copia de seguridad con el complemento Atlas
 - Interfaz de usuario de corrección de errores : Opción *Ocultar en el escritorio* resúmenes.
+- Interfaz de usuario de corrección de errores : Historiques: Respetar las escalas al hacer zoom.
 
 ## 4.2.12
 

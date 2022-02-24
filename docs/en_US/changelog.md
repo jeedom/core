@@ -1,6 +1,12 @@
 # Changelog Jeedom V4.2
 
+## 4.2.13
+
+- Improvement : Creation of api keys by default inactive (if the creation request does not come from the plugin).
+- Improvement : added backup size on backup management page
+- Bugfix Core : fixed a backup size issue with the Atlas plugin
 - Bugfix UI : Option *Hide on desktop* summaries.
+- Bugfix UI : Historiques: Respect scales when zooming.
 
 ## 4.2.12
 

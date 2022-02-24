@@ -1,6 +1,12 @@
 # Changelog Jeedom V4.2
 
+## 4.2.13
+
+- Melhoria : Criação de chaves de API por padrão inativa (se a solicitação de criação não vier do plugin).
+- Melhoria : tamanho de backup adicionado na página de gerenciamento de backup
+- Núcleo de correção de bugs : corrigiu um problema de tamanho de backup com o plugin Atlas
 - IU de correção de bug : Opção *Ocultar na área de trabalho* resumos.
+- IU de correção de bug : Historiques: Respeite as escalas ao aplicar zoom.
 
 ## 4.2.12
 

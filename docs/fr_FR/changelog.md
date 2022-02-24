@@ -1,6 +1,12 @@
 # Changelog Jeedom V4.2
 
+## 4.2.13
+
+- Amélioration : Création des clef api par defaut en inactif (si la demande de création ne vient pas du plugin).
+- Amélioration : ajout de la taille des sauvegardes sur la page de gestion des sauvegardes
+- Bugfix Core : correction d'un soucis de taille de backup avec le plugin Atlas
 - Bugfix UI : Option *Masquer en desktop* des résumés.
+- Bugfix UI : Historiques: Respect des échelles lors du zoom.
 
 ## 4.2.12
 
