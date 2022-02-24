@@ -34,20 +34,20 @@ foreach ($virtual->getCmd() as $cmd) {
   $removeCmd[] = $cmd->getId();
 }
 sendVarToJS([
-  'summary_cmd_to_remove' => $removeCmd,
-  'edqlogicHtml' => urlencode($virtual->toHtml('dashboard'))
+  'jeephp2js.md_summaryAction_cmdToRemove' => $removeCmd,
+  'jeephp2js.md_summaryAction__eqHtml' => urlencode($virtual->toHtml('dashboard'))
 ]);
 ?>
 
-<div id="div_summaryAction"></div>
+<div id="div_summaryAction" data-modalType="md_summaryAction"></div>
 
 <script>
   var $divSummaryAction = $('#div_summaryAction')
 
   //remove commands prior to DOM injection:
-  var $eqLogic = $(decodeURIComponent(edqlogicHtml.replace(/\+/g, ' ')))
-  for (var i in summary_cmd_to_remove) {
-    $eqLogic.find('.cmd.cmd-widget[data-cmd_id='+summary_cmd_to_remove[i]+']').remove()
+  var $eqLogic = $(decodeURIComponent(jeephp2js.md_summaryAction__eqHtml.replace(/\+/g, ' ')))
+  for (var i in jeephp2js.md_summaryAction_cmdToRemove) {
+    $eqLogic.find('.cmd.cmd-widget[data-cmd_id='+jeephp2js.md_summaryAction_cmdToRemove[i]+']').remove()
   }
   //eqLogic UI:
   $eqLogic.find('.widget-name').remove()

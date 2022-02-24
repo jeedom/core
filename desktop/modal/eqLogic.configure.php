@@ -23,12 +23,12 @@ if (!is_object($eqLogic)) {
   throw new Exception('{{EqLogic non trouvé :}}' . ' ' . init('eqLogic_id'));
 }
 sendVarToJS([
-  'eqLogicInfo' => utils::o2a($eqLogic),
-  'eqLogicInfoSearchString' => urlencode(str_replace('#', '', $eqLogic->getHumanName()))
+  'jeephp2js.md_eqLogicConfigure_Info' => utils::o2a($eqLogic),
+  'jeephp2js.md_eqLogicConfigure_InfoSearchString' => urlencode(str_replace('#', '', $eqLogic->getHumanName()))
 ]);
 ?>
 
-<div style="display: none;" id="md_displayEqLogicConfigure"></div>
+<div style="display: none;" id="md_displayEqLogicConfigure" data-modalType="md_eqLogicConfigure"></div>
 <div class="input-group pull-right" style="display:inline-flex">
   <span class="input-group-btn">
     <a class="btn btn-default roundedLeft btn-sm" id="bt_eqLogicConfigureLogRealTime"><i class="far fa-file"></i> {{Log}}
@@ -493,6 +493,7 @@ sendVarToJS([
     </div>
   </div>
 </div>
+
 <script>
   $(function() {
     //check if coming from clicking on battery in eqanalyse:
@@ -502,8 +503,8 @@ sendVarToJS([
 
     //modal title:
     var title = "{{Configuration de l'équipement}}"
-    title += ' : ' + eqLogicInfo.name
-    title += ' <span class="cmdName"><em>(' + eqLogicInfo.eqType_name + ')</em></span>'
+    title += ' : ' + jeephp2js.md_eqLogicConfigure_Info.name
+    title += ' <span class="cmdName"><em>(' + jeephp2js.md_eqLogicConfigure_Info.eqType_name + ')</em></span>'
     $('#eqLogicConfigureTab').parents('.ui-dialog').find('.ui-dialog-title').html(title)
 
     //check some values:
@@ -619,12 +620,12 @@ sendVarToJS([
     }
   })
 
-  $('#div_displayEqLogicConfigure').setValues(eqLogicInfo, '.eqLogicAttr')
+  $('#div_displayEqLogicConfigure').setValues(jeephp2js.md_eqLogicConfigure_Info, '.eqLogicAttr')
 
   $('#bt_eqLogicConfigureGraph').on('click', function() {
     $('#md_modal2').dialog({
       title: "{{Graphique des liens}}"
-    }).load('index.php?v=d&modal=graph.link&filter_type=eqLogic&filter_id=' + eqLogicInfo.id).dialog('open')
+    }).load('index.php?v=d&modal=graph.link&filter_type=eqLogic&filter_id=' + jeephp2js.md_eqLogicConfigure_Info.id).dialog('open')
   })
 
   $('#table_widgetParameters').on('click', '.removeWidgetParameter', function() {
@@ -640,7 +641,7 @@ sendVarToJS([
   $('#bt_eqLogicConfigureRawObject').off('click').on('click', function() {
     $('#md_modal2').dialog({
       title: "{{Informations brutes}}"
-    }).load('index.php?v=d&modal=object.display&class=eqLogic&id=' + eqLogicInfo.id).dialog('open')
+    }).load('index.php?v=d&modal=object.display&class=eqLogic&id=' + jeephp2js.md_eqLogicConfigure_Info.id).dialog('open')
   })
 
   $('#bt_addWidgetParameters').off().on('click', function() {
@@ -778,14 +779,14 @@ sendVarToJS([
   $('#bt_eqLogicConfigureLogRealTime').off('click').on('click', function() {
     $('#md_modal2').dialog({
       title: "{{Logs}}"
-    }).load('index.php?v=d&modal=log.display&log=event&search=' + eqLogicInfoSearchString).dialog('open')
+    }).load('index.php?v=d&modal=log.display&log=event&search=' + jeephp2js.md_eqLogicConfigure_InfoSearchString).dialog('open')
   })
 
   $('#bt_resetbattery').on('click', function() {
     bootbox.confirm('{{Avez-vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\'hui}}', function(result) {
       if (result) {
         var eqLogic = {}
-        eqLogic['id'] = eqLogicInfo.id
+        eqLogic['id'] = jeephp2js.md_eqLogicConfigure_Info.id
         eqLogic['configuration'] = {}
         var today = new Date()
         var dd = today.getDate()

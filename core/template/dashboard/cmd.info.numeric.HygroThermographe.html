@@ -80,7 +80,7 @@
   <script>
     //stats:
     if ('#generic_type#' == 'HUMIDITY') {
-      var html = $('.cmd[data-cmd_id=#id#]').find('.cmdStats').html()
+      let html = $('.cmd[data-cmd_id=#id#]').find('.cmdStats').html()
       if (!html.includes('#')) {
         $('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe:first .history[data-type=humidity] .cmdStats').html(html)
       } else {

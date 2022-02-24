@@ -5,9 +5,8 @@ if (!isConnect('admin')) {
 global $JEEDOM_INTERNAL_CONFIG;
 
 sendVarToJS([
-  'sel_plugin_id' => init('id', '-1'),
-  'jeedomVersion' => jeedom::version(),
-  'pluginCategories' => $JEEDOM_INTERNAL_CONFIG['plugin']['category']
+  'jeephp2js.selPluginId' => init('id', '-1'),
+  'jeephp2js.pluginCategories' => $JEEDOM_INTERNAL_CONFIG['plugin']['category']
 ]);
 $plugins_list = plugin::listPlugin(false, true);
 ?>

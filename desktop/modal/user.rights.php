@@ -23,10 +23,10 @@ $user = user::byId(init('id'));
 if (!is_object($user)) {
   throw new Exception(__('Impossible de trouver l\'utilisateur :', __FILE__) . ' ' . init('id'));
 }
-sendVarToJs('user_rights', utils::o2a($user));
+sendVarToJs('jeephp2js.md_userRights_rights', utils::o2a($user));
 ?>
 
-<div style="display: none;" id="div_userRightAlert"></div>
+<div style="display: none;" id="div_userRightAlert" data-modalType="md_userRights"></div>
 <a class="btn btn-success pull-right" id="bt_usersRightsSave"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 <ul class="nav nav-tabs" role="tablist">
   <li role="presentation" class="active"><a href="#tab_eqLogic" aria-controls="tab_eqLogic" role="tab" data-toggle="tab"><i class="fas fa-th"></i> {{Equipements}}</a></li>
@@ -257,7 +257,7 @@ sendVarToJs('user_rights', utils::o2a($user));
 </div>
 
 <script>
-  $('#div_tabUserRights').setValues(user_rights, '.userAttr')
+  $('#div_tabUserRights').setValues(jeephp2js.md_userRights_rights, '.userAttr')
   jeedomUtils.initTableSorter()
 
   $("#bt_usersRightsSave").on('click', function(event) {

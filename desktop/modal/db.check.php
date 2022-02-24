@@ -22,7 +22,7 @@ $database = json_decode(file_get_contents(__DIR__.'/../../install/database.json'
 $result = DB::compareDatabase($database);
 ?>
 
-<div style="display: none;" id="div_dbCheckAlert"></div>
+<div style="display: none;" id="div_dbCheckAlert" data-modalType="md_dbCheck"></div>
 <a class="btn btn-warning pull-right bt_correctTable" data-table="all"><i class="fas fa-screwdriver"></i> {{Corriger tout}}</a>
 <br/><br/>
 <table class="table table-condensed">

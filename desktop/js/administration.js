@@ -16,8 +16,382 @@
 
 "use strict"
 
-var actionOptions = []
-var $divConfig = $('#config')
+if (!jeeFrontEnd.administration) {
+  jeeFrontEnd.administration = {
+    configReload: null,
+    init: function() {
+      this.actionOptions = []
+      this.$divConfig = $('#config')
+      window.jeeP = this
+
+      //Back to tab:
+      var _url = window.location.href
+      if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').html() != undefined) {
+        $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').trigger('click')
+      }
+    },
+    updateTooltips: function() {
+      //management of tooltip with search engine. In scenarios, tooltips are specially created with tooltip attribute and copied as title to keep track of it!
+      $('[tooltip]:not(.tooltipstered)').each(function() {
+        $(this).attr('title', $(this).attr('tooltip'))
+      })
+      $('[tooltip]:not(.tooltipstered)').tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
+    },
+    initSearchLinks: function() {
+      $('#searchResult a[role="searchTabLink"]').on('click', function() {
+        var tabId = $(this).attr('href')
+        $('#bt_resetConfigSearch').trigger('click')
+        $('ul.nav-primary > li > a[href="' + tabId + '"]').trigger('click')
+      })
+    },
+    //-> summary
+    printObjectSummary: function() {
+      $.ajax({
+        type: "POST",
+        url: "core/ajax/config.ajax.php",
+        data: {
+          action: "getKey",
+          key: 'object:summary'
+        },
+        dataType: 'json',
+        error: function(request, status, error) {
+          handleAjaxError(request, status, error)
+        },
+        success: function(data) {
+          if (data.state != 'ok') {
+            $.fn.showAlert({
+              message: data.result,
+              level: 'danger'
+            })
+            return
+          }
+          $('#table_objectSummary tbody').empty()
+          for (var i in data.result) {
+            if (isset(data.result[i].key) && data.result[i].key == '') {
+              continue
+            }
+            if (!isset(data.result[i].name)) {
+              continue
+            }
+            if (!isset(data.result[i].key)) {
+              data.result[i].key = i.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\s/g, '')
+            }
+            jeeP.addObjectSummary(data.result[i])
+          }
+          jeeFrontEnd.modifyWithoutSave = false
+        }
+      })
+    },
+    addObjectSummary: function(_summary) {
+      var tr = '<tr class="objectSummary">'
+      tr += '<td><input class="objectSummaryAttr form-control input-sm" data-l1key="key" /></td>'
+
+      tr += '<td><input class="objectSummaryAttr form-control input-sm" data-l1key="name" /></td>'
+
+      tr += '<td><select class="form-control objectSummaryAttr input-sm" data-l1key="calcul">'
+      tr += '<option value="sum">{{Somme}}</option>'
+      tr += '<option value="avg">{{Moyenne}}</option>'
+      tr += '<option value="text">{{Texte}}</option>'
+      tr += '</select></td>'
+
+      tr += '<td><a class="objectSummaryAction btn btn-sm" data-l1key="chooseIcon"><i class="fas fa-flag"></i><span class="hidden-1280"> {{Icône}}</span></a>'
+      tr += '<span class="objectSummaryAttr" data-l1key="icon"></span></td>'
+
+      tr += '<td><a class="objectSummaryAction btn btn-sm" data-l1key="chooseIconNul"><i class="fas fa-flag"></i><span class="hidden-1280"> {{Icône}}</span></a>'
+      tr += '<span class="objectSummaryAttr" data-l1key="iconnul"></span></td>'
+
+      tr += '<td><input class="objectSummaryAttr form-control input-sm" data-l1key="unit" /></td>'
+
+      tr += '<td class="center"><input type="checkbox" class="objectSummaryAttr warning" data-l1key="hidenumber" /></td>'
+
+      tr += '<td class="center"><input type="checkbox" class="objectSummaryAttr" data-l1key="hidenulnumber" /></td>'
+
+      tr += '<td><select class="objectSummaryAttr input-sm" data-l1key="count">'
+      tr += '<option value="">{{Aucun}}</option>'
+      tr += '<option value="binary">{{Binaire}}</option>'
+      tr += '</select></td>'
+
+      tr += '<td class="center"><input type="checkbox" class="objectSummaryAttr" data-l1key="allowDisplayZero" /></td>'
+
+      tr += '<td class="center"><input class="objectSummaryAttr form-control input-sm" data-l1key="ignoreIfCmdOlderThan" /></td>'
+      tr += ''
+      tr += '<td>'
+      if (isset(_summary) && isset(_summary.key) && _summary.key != '') {
+        tr += '<a class="btn btn-success btn-sm objectSummaryAction" data-l1key="createVirtual"><i class="fas fa-puzzle-piece"></i><span class="hidden-1280"> {{Créer virtuel}}</span></a>'
+      }
+      tr += '</td>'
+
+      tr += '<td><a class="objectSummaryAction cursor" data-l1key="remove"><i class="fas fa-minus-circle"></i></a></td>'
+
+      tr += '</tr>'
+      $('#table_objectSummary tbody').append(tr)
+      if (isset(_summary)) {
+        $('#table_objectSummary tbody tr').last().setValues(_summary, '.objectSummaryAttr')
+      }
+      if (isset(_summary) && isset(_summary.key) && _summary.key != '') {
+        $('#table_objectSummary tbody tr:last .objectSummaryAttr[data-l1key=key]').attr('disabled', 'disabled')
+      }
+      jeeFrontEnd.modifyWithoutSave = true
+    },
+    saveObjectSummary: function() {
+      var summary = {}
+      var temp = $('#table_objectSummary tbody tr').getValues('.objectSummaryAttr')
+      for (var i in temp) {
+        if (temp[i].key == '') {
+          temp[i].key = temp[i].name
+        }
+        temp[i].key = temp[i].key.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\%/g, '').replace(/\s/g, '').replace(/\./g, '')
+        summary[temp[i].key] = temp[i]
+      }
+      var value = {
+        'object:summary': summary
+      }
+      $.ajax({
+        type: "POST",
+        url: "core/ajax/config.ajax.php",
+        data: {
+          action: 'addKey',
+          value: json_encode(value)
+        },
+        dataType: 'json',
+        error: function(request, status, error) {
+          handleAjaxError(request, status, error)
+        },
+        success: function(data) {
+          if (data.state != 'ok') {
+            $.fn.showAlert({
+              message: data.result,
+              level: 'danger'
+            })
+            return
+          }
+          jeeP.printObjectSummary()
+          jeeFrontEnd.modifyWithoutSave = false
+        }
+      })
+    },
+    //-> action on message
+    loadActionOnMessage: function() {
+      $('#div_actionOnMessage').empty()
+      jeedom.config.load({
+        configuration: 'actionOnMessage',
+        error: function(error) {
+          $.fn.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          if (data == '' || typeof data != 'object') return
+          jeeP.actionOptions = []
+          for (var i in data) {
+            jeeP.addActionOnMessage(data[i])
+          }
+          jeedom.cmd.displayActionsOption({
+            params: jeeP.actionOptions,
+            async: false,
+            error: function(error) {
+              $.fn.showAlert({
+                message: error.message,
+                level: 'danger'
+              })
+            },
+            success: function(data) {
+              for (var i in data) {
+                $('#' + data[i].id).append(data[i].html.html)
+              }
+              jeedomUtils.taAutosize()
+            }
+          })
+        }
+      })
+    },
+    addActionOnMessage: function(_action) {
+      if (!isset(_action)) {
+        _action = {}
+      }
+      if (!isset(_action.options)) {
+        _action.options = {}
+      }
+      var div = '<div class="expression actionOnMessage">'
+      div += '<input class="expressionAttr" data-l1key="type" style="display : none;" value="action">'
+      div += '<div class="form-group ">'
+      div += '<label class="col-sm-2 control-label">Action</label>'
+      div += '<div class="col-sm-1">'
+      div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour desactiver l\'action}}" />'
+      div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" title="{{Cocher pour que la commande s\'éxecute en parrallele des autres actions}}" />'
+      div += '</div>'
+      div += '<div class="col-sm-4">'
+      div += '<div class="input-group">'
+      div += '<span class="input-group-btn">'
+      div += '<a class="btn btn-default bt_removeAction btn-sm roundedLeft"><i class="fas fa-minus-circle"></i></a>'
+      div += '</span>'
+      div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" />'
+      div += '<span class="input-group-btn">'
+      div += '<a class="btn btn-default btn-sm listAction" title="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></a>'
+      div += '<a class="btn btn-default btn-sm listCmdAction roundedRight" title="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i></a>'
+      div += '</span>'
+      div += '</div>'
+      div += '</div>'
+      var actionOption_id = jeedomUtils.uniqId()
+      div += '<div class="col-sm-5 actionOptions" id="' + actionOption_id + '"></div>'
+      div += '</div>'
+      $('#div_actionOnMessage').append(div)
+      $('#div_actionOnMessage .actionOnMessage').last().setValues(_action, '.expressionAttr')
+      jeeP.actionOptions.push({
+        expression: init(_action.cmd, ''),
+        options: _action.options,
+        id: actionOption_id
+      })
+
+      jeedom.scenario.setAutoComplete({
+        parent: $('#div_actionOnMessage'),
+        type: 'cmd'
+      })
+    },
+    //-> cache
+    flushCache: function() {
+      jeedom.cache.flush({
+        error: function(error) {
+          $.fn.showAlert({
+            message: data.result,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          jeeP.updateCacheStats()
+          $.fn.showAlert({
+            message: '{{Cache vidé}}',
+            level: 'success'
+          })
+        }
+      })
+    },
+    flushWidgetCache: function() {
+      jeedom.cache.flushWidget({
+        error: function(error) {
+          $.fn.showAlert({
+            message: data.result,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          jeeP.updateCacheStats()
+          $.fn.showAlert({
+            message: '{{Cache vidé}}',
+            level: 'success'
+          })
+        }
+      })
+    },
+    cleanCache: function() {
+      jeedom.cache.clean({
+        error: function(error) {
+          $.fn.showAlert({
+            message: data.result,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          jeeP.updateCacheStats()
+          $.fn.showAlert({
+            message: '{{Cache nettoyé}}',
+            level: 'success'
+          })
+        }
+      })
+    },
+    updateCacheStats: function() {
+      jeedom.cache.stats({
+        error: function(error) {
+          $.fn.showAlert({
+            message: data.result,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          $('#span_cacheObject').html(data.count)
+        }
+      })
+    },
+    //-> color convertion
+    printConvertColor: function() {
+      $.ajax({
+        type: "POST",
+        url: "core/ajax/config.ajax.php",
+        data: {
+          action: "getKey",
+          key: 'convertColor'
+        },
+        dataType: 'json',
+        error: function(request, status, error) {
+          handleAjaxError(request, status, error)
+        },
+        success: function(data) {
+          if (data.state != 'ok') {
+            $.fn.showAlert({
+              message: data.result,
+              level: 'danger'
+            })
+            return
+          }
+          $('#table_convertColor tbody').empty()
+          for (var color in data.result) {
+            jeeP.addConvertColor(color, data.result[color])
+          }
+          jeeFrontEnd.modifyWithoutSave = false
+        }
+      })
+    },
+    addConvertColor: function(_color, _html) {
+      var tr = '<tr>'
+      tr += '<td>'
+      tr += '<input class="color form-control input-sm" value="' + init(_color) + '"/>'
+      tr += '</td>'
+      tr += '<td>'
+      tr += '<input type="color" class="html form-control input-sm" value="' + init(_html) + '" />'
+      tr += '</td>'
+      tr += '<td>'
+      tr += '<i class="fas fa-minus-circle removeConvertColor cursor"></i>'
+      tr += '</td>'
+      tr += '</tr>'
+      $('#table_convertColor tbody').append(tr)
+      jeeFrontEnd.modifyWithoutSave = true
+    },
+    saveConvertColor: function() {
+      var value = {}
+      var colors = {}
+      $('#table_convertColor tbody tr').each(function() {
+        colors[$(this).find('.color').value()] = $(this).find('.html').value()
+      });
+      value.convertColor = colors
+      $.ajax({
+        type: "POST",
+        url: "core/ajax/config.ajax.php",
+        data: {
+          action: 'addKey',
+          value: json_encode(value)
+        },
+        dataType: 'json',
+        error: function(request, status, error) {
+          handleAjaxError(request, status, error)
+        },
+        success: function(data) {
+          if (data.state != 'ok') {
+            $.fn.showAlert({
+              message: data.result,
+              level: 'danger'
+            })
+            return
+          }
+          jeeFrontEnd.modifyWithoutSave = false
+        }
+      })
+    },
+  }
+}
+
+jeeFrontEnd.administration.init()
 
 document.onkeydown = function(event) {
   if (jeedomUtils.getOpenedModal()) return
@@ -29,12 +403,6 @@ document.onkeydown = function(event) {
   }
 }
 
-//select tab:
-var _url = window.location.href
-if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').html() != undefined) {
-  $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').trigger('click')
-}
-
 $(function() {
   $.showLoading()
   if (getUrlVars('panel') != false) {
@@ -42,13 +410,13 @@ $(function() {
   }
 
   jeedomUtils.dateTimePickerInit()
-  printConvertColor()
+  jeedomUtils.initSpinners()
+  jeeP.printConvertColor()
   setTimeout(function() {
-    updateTooltips()
-    modifyWithoutSave = false
+    jeeP.updateTooltips()
+    jeeFrontEnd.modifyWithoutSave = false
   }, 500)
 })
-
 
 //searching
 $('#in_searchConfig').keyup(function() {
@@ -65,7 +433,7 @@ $('#in_searchConfig').keyup(function() {
   if (search == '') {
     $('.nav-tabs.nav-primary, .tab-content').show()
     jeedomUtils.dateTimePickerInit()
-    updateTooltips()
+    jeeP.updateTooltips()
     return
   }
   if (search.length < 3) return
@@ -110,33 +478,15 @@ $('#in_searchConfig').keyup(function() {
     }
   })
   jeedomUtils.dateTimePickerInit()
-  initSearchLinks()
-  updateTooltips()
+  jeeP.initSearchLinks()
+  jeeP.updateTooltips()
 })
 
-function initSearchLinks() {
-  $('#searchResult a[role="searchTabLink"]').on('click', function() {
-    var tabId = $(this).attr('href')
-    $('#bt_resetConfigSearch').trigger('click')
-    $('ul.nav-primary > li > a[href="' + tabId + '"]').trigger('click')
-  })
-}
-
-function updateTooltips() {
-  //management of tooltip with search engine. In scenarios, tooltips are specially created with tooltip attribute and copied as title to keep track of it!
-  $('[tooltip]:not(.tooltipstered)').each(function() {
-    $(this).attr('title', $(this).attr('tooltip'))
-  })
-  $('[tooltip]:not(.tooltipstered)').tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
-}
 $('#bt_resetConfigSearch').on('click', function() {
   $('#in_searchConfig').val('').keyup()
   jeedomUtils.dateTimePickerInit()
 })
 
-jeedomUtils.initSpinners()
-
-var _configReload_
 //load configuration settings
 jeedom.config.load({
   configuration: $('#config').getValues('.configKey:not(.noSet)')[0],
@@ -150,21 +500,21 @@ jeedom.config.load({
     $('#config').setValues(data, '.configKey')
     $('.configKey[data-l1key="market::allowDNS"]').trigger('change')
     $('.configKey[data-l1key="ldap:enable"]').trigger('change')
-    loadActionOnMessage()
+    jeeP.loadActionOnMessage()
 
     if (jeedom.theme['interface::background::dashboard'] != '/data/backgrounds/config_dashboard.jpg') $('a.bt_removeBackgroundImage[data-page=dashboard]').addClass('disabled')
     if (jeedom.theme['interface::background::analysis'] != '/data/backgrounds/config_analysis.jpg') $('a.bt_removeBackgroundImage[data-page=analysis]').addClass('disabled')
     if (jeedom.theme['interface::background::tools'] != '/data/backgrounds/config_tools.jpg') $('a.bt_removeBackgroundImage[data-page=tools]').addClass('disabled')
-    modifyWithoutSave = false
+    jeeFrontEnd.modifyWithoutSave = false
 
-    _configReload_ = $('#config').getValues('.configKey[data-reload="1"]')[0]
+    jeeP.configReload = $('#config').getValues('.configKey[data-reload="1"]')[0]
   }
 })
 
 $("#bt_saveGeneraleConfig").off('click').on('click', function(event) {
   $.hideAlert()
-  saveConvertColor()
-  saveObjectSummary()
+  jeeP.saveConvertColor()
+  jeeP.saveObjectSummary()
   var config = $('#config').getValues('.configKey')[0]
   config.actionOnMessage = json_encode($('#div_actionOnMessage .actionOnMessage').getValues('.expressionAttr'))
   jeedom.config.save({
@@ -187,8 +537,8 @@ $("#bt_saveGeneraleConfig").off('click').on('click', function(event) {
         success: function(data) {
           var reloadPage = false
           try {
-            for (var key in _configReload_) {
-              if (_configReload_[key] != data[key]) {
+            for (var key in jeeP.configReload) {
+              if (jeeP.configReload[key] != data[key]) {
                 reloadPage = true
                 break
               }
@@ -206,16 +556,16 @@ $("#bt_saveGeneraleConfig").off('click').on('click', function(event) {
             window.location.reload(true)
           } else {
             $('#config').setValues(data, '.configKey')
-            loadActionOnMessage()
-            modifyWithoutSave = false
+            jeeP.loadActionOnMessage()
+            jeeFrontEnd.modifyWithoutSave = false
             setTimeout(function() {
-              modifyWithoutSave = false
+              jeeFrontEnd.modifyWithoutSave = false
             }, 1000)
             $.fn.showAlert({
               message: '{{Sauvegarde réussie}}',
               level: 'success'
             })
-            _configReload_ = $('#config').getValues('.configKey[data-reload="1"]')[0]
+            jeeP.configReload = $('#config').getValues('.configKey[data-reload="1"]')[0]
           }
         }
       })
@@ -223,11 +573,9 @@ $("#bt_saveGeneraleConfig").off('click').on('click', function(event) {
   })
 })
 
-$divConfig.off('change', '.configKey').on('change', '.configKey:visible', function() {
-  modifyWithoutSave = true
+jeeP.$divConfig.off('change', '.configKey').on('change', '.configKey:visible', function() {
+  jeeFrontEnd.modifyWithoutSave = true
 })
-
-
 
 /**************************GENERAL***********************************/
 $('#bt_forceSyncHour').on('click', function() {
@@ -336,7 +684,7 @@ $('.bt_uploadImage').each(function() {
         return
       }
       $('a.bt_removeBackgroundImage[data-page=' + $(this).attr('data-page') + ']').removeClass('disabled')
-      _configReload_['imageChanged'] = 1
+      jeeP.configReload['imageChanged'] = 1
       $.fn.showAlert({
         message: '{{Image enregistrée et configurée}}',
         level: 'success'
@@ -345,7 +693,7 @@ $('.bt_uploadImage').each(function() {
   })
 })
 
-$divConfig.on({
+jeeP.$divConfig.on({
   'click': function(event) {
     var dataPage = $(this).attr('data-page')
     bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cette image de fond ?}}', function(result) {
@@ -360,7 +708,7 @@ $divConfig.on({
           },
           success: function() {
             $('a.bt_removeBackgroundImage[data-page=' + dataPage + ']').addClass('disabled')
-            _configReload_['imageChanged'] = 1
+            jeeP.configReload['imageChanged'] = 1
             $.fn.showAlert({
               message: '{{Image supprimée}}',
               level: 'success'
@@ -373,7 +721,7 @@ $divConfig.on({
 }, '.bt_removeBackgroundImage')
 
 /**************************NETWORK***********************************/
-$divConfig.on({
+jeeP.$divConfig.on({
   'change': function(event) {
     setTimeout(function() {
       if ($('.configKey[data-l1key="market::allowDNS"]').value() == 1 && $('.configKey[data-l1key="network::disableMangement"]').value() == 0) {
@@ -433,7 +781,7 @@ $('#bt_restartDns').on('click', function() {
           })
         },
         success: function(data) {
-          modifyWithoutSave = false
+          jeeFrontEnd.modifyWithoutSave = false
           jeedomUtils.loadPage('index.php?v=d&p=administration&panel=config_network')
         }
       })
@@ -460,7 +808,7 @@ $('#bt_haltDns').on('click', function() {
           })
         },
         success: function(data) {
-          modifyWithoutSave = false
+          jeeFrontEnd.modifyWithoutSave = false
           jeedomUtils.loadPage('index.php?v=d&p=administration&panel=config_network')
         }
       })
@@ -486,7 +834,7 @@ $('#bt_removeTimelineEvent').on('click', function() {
   })
 })
 
-$divConfig.on({
+jeeP.$divConfig.on({
   'change': function(event) {
     $('.logEngine').hide()
     if ($(this).value() == '') return
@@ -495,96 +843,16 @@ $divConfig.on({
 }, '.configKey[data-l1key="log::engine"]')
 
 $('#bt_addActionOnMessage').on('click', function() {
-  addActionOnMessage()
+  jeeP.addActionOnMessage()
 })
 
-function loadActionOnMessage() {
-  $('#div_actionOnMessage').empty()
-  jeedom.config.load({
-    configuration: 'actionOnMessage',
-    error: function(error) {
-      $.fn.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      if (data == '' || typeof data != 'object') return
-      actionOptions = []
-      for (var i in data) {
-        addActionOnMessage(data[i])
-      }
-      jeedom.cmd.displayActionsOption({
-        params: actionOptions,
-        async: false,
-        error: function(error) {
-          $.fn.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          for (var i in data) {
-            $('#' + data[i].id).append(data[i].html.html)
-          }
-          jeedomUtils.taAutosize()
-        }
-      })
-    }
-  })
-}
-
-function addActionOnMessage(_action) {
-  if (!isset(_action)) {
-    _action = {}
-  }
-  if (!isset(_action.options)) {
-    _action.options = {}
-  }
-  var div = '<div class="expression actionOnMessage">'
-  div += '<input class="expressionAttr" data-l1key="type" style="display : none;" value="action">'
-  div += '<div class="form-group ">'
-  div += '<label class="col-sm-2 control-label">Action</label>'
-  div += '<div class="col-sm-1">'
-  div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour desactiver l\'action}}" />'
-  div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" title="{{Cocher pour que la commande s\'éxecute en parrallele des autres actions}}" />'
-  div += '</div>'
-  div += '<div class="col-sm-4">'
-  div += '<div class="input-group">'
-  div += '<span class="input-group-btn">'
-  div += '<a class="btn btn-default bt_removeAction btn-sm roundedLeft"><i class="fas fa-minus-circle"></i></a>'
-  div += '</span>'
-  div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" />'
-  div += '<span class="input-group-btn">'
-  div += '<a class="btn btn-default btn-sm listAction" title="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></a>'
-  div += '<a class="btn btn-default btn-sm listCmdAction roundedRight" title="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i></a>'
-  div += '</span>'
-  div += '</div>'
-  div += '</div>'
-  var actionOption_id = jeedomUtils.uniqId()
-  div += '<div class="col-sm-5 actionOptions" id="' + actionOption_id + '"></div>'
-  div += '</div>'
-  $('#div_actionOnMessage').append(div)
-  $('#div_actionOnMessage .actionOnMessage').last().setValues(_action, '.expressionAttr')
-  actionOptions.push({
-    expression: init(_action.cmd, ''),
-    options: _action.options,
-    id: actionOption_id
-  })
-
-  jeedom.scenario.setAutoComplete({
-    parent: $('#div_actionOnMessage'),
-    type: 'cmd'
-  })
-}
-
-$divConfig.on({
+jeeP.$divConfig.on({
   'click': function(event) {
     $(this).closest('.actionOnMessage').remove()
   }
 }, '.bt_removeAction')
 
-$divConfig.on({
+jeeP.$divConfig.on({
   'focusout': function(event) {
     var expression = $(this).closest('.actionOnMessage').getValues('.expressionAttr')
     var el = $(this)
@@ -597,7 +865,7 @@ $divConfig.on({
   }
 }, '.cmdAction.expressionAttr[data-l1key=cmd]')
 
-$divConfig.on({
+jeeP.$divConfig.on({
   'click': function(event) {
     var el = $(this).closest('.actionOnMessage').find('.expressionAttr[data-l1key=cmd]')
     jeedom.cmd.getSelectModal({
@@ -614,7 +882,7 @@ $divConfig.on({
   }
 }, '.listCmdAction')
 
-$divConfig.on({
+jeeP.$divConfig.on({
   'click': function(event) {
     var el = $(this).closest('.actionOnMessage').find('.expressionAttr[data-l1key=cmd]')
     jeedom.getSelectActionModal({}, function(result) {
@@ -652,10 +920,10 @@ $('.bt_selectWarnMeCmd').on('click', function() {
 
 /**************************SUMMARIES***********************************/
 $('#bt_addObjectSummary').on('click', function() {
-  addObjectSummary()
+  jeeP.addObjectSummary()
 })
 
-$divConfig.on({
+jeeP.$divConfig.on({
   'click': function(event) {
     var objectSummary = $(this).closest('.objectSummary')
     var _icon = false
@@ -676,11 +944,11 @@ $divConfig.on({
       icon: icon,
       color: color
     })
-    modifyWithoutSave = true
+    jeeFrontEnd.modifyWithoutSave = true
   }
 }, '.objectSummary .objectSummaryAction[data-l1key=chooseIcon]')
 
-$divConfig.on({
+jeeP.$divConfig.on({
   'click': function(event) {
     var objectSummary = $(this).closest('.objectSummary')
     var _icon = false
@@ -701,18 +969,18 @@ $divConfig.on({
       icon: icon,
       color: color
     })
-    modifyWithoutSave = true
+    jeeFrontEnd.modifyWithoutSave = true
   }
 }, '.objectSummary .objectSummaryAction[data-l1key=chooseIconNul]')
 
-$divConfig.on({
+jeeP.$divConfig.on({
   'click': function(event) {
     $(this).closest('.objectSummary').remove()
-    modifyWithoutSave = true
+    jeeFrontEnd.modifyWithoutSave = true
   }
 }, '.objectSummary .objectSummaryAction[data-l1key=remove]')
 
-$divConfig.on({
+jeeP.$divConfig.on({
   'click': function(event) {
     var objectSummary = $(this).closest('.objectSummary')
     $.ajax({
@@ -743,7 +1011,7 @@ $divConfig.on({
   }
 }, '.objectSummary .objectSummaryAction[data-l1key=createVirtual]')
 
-$divConfig.on({
+jeeP.$divConfig.on({
   'dblclick': function(event) {
     $(this).value('')
   }
@@ -758,141 +1026,13 @@ $("#table_objectSummary").sortable({
   forcePlaceholderSize: true
 })
 
-printObjectSummary()
+jeeP.printObjectSummary()
 
-$divConfig.on({
+jeeP.$divConfig.on({
   'change': function(event) {
-    modifyWithoutSave = true
+    jeeFrontEnd.modifyWithoutSave = true
   }
 }, '.objectSummaryAttr')
-
-function printObjectSummary() {
-  $.ajax({
-    type: "POST",
-    url: "core/ajax/config.ajax.php",
-    data: {
-      action: "getKey",
-      key: 'object:summary'
-    },
-    dataType: 'json',
-    error: function(request, status, error) {
-      handleAjaxError(request, status, error)
-    },
-    success: function(data) {
-      if (data.state != 'ok') {
-        $.fn.showAlert({
-          message: data.result,
-          level: 'danger'
-        })
-        return
-      }
-      $('#table_objectSummary tbody').empty()
-      for (var i in data.result) {
-        if (isset(data.result[i].key) && data.result[i].key == '') {
-          continue
-        }
-        if (!isset(data.result[i].name)) {
-          continue
-        }
-        if (!isset(data.result[i].key)) {
-          data.result[i].key = i.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\s/g, '')
-        }
-        addObjectSummary(data.result[i])
-      }
-      modifyWithoutSave = false
-    }
-  })
-}
-
-function addObjectSummary(_summary) {
-  var tr = '<tr class="objectSummary">'
-  tr += '<td><input class="objectSummaryAttr form-control input-sm" data-l1key="key" /></td>'
-
-  tr += '<td><input class="objectSummaryAttr form-control input-sm" data-l1key="name" /></td>'
-
-  tr += '<td><select class="form-control objectSummaryAttr input-sm" data-l1key="calcul">'
-  tr += '<option value="sum">{{Somme}}</option>'
-  tr += '<option value="avg">{{Moyenne}}</option>'
-  tr += '<option value="text">{{Texte}}</option>'
-  tr += '</select></td>'
-
-  tr += '<td><a class="objectSummaryAction btn btn-sm" data-l1key="chooseIcon"><i class="fas fa-flag"></i><span class="hidden-1280"> {{Icône}}</span></a>'
-  tr += '<span class="objectSummaryAttr" data-l1key="icon"></span></td>'
-
-  tr += '<td><a class="objectSummaryAction btn btn-sm" data-l1key="chooseIconNul"><i class="fas fa-flag"></i><span class="hidden-1280"> {{Icône}}</span></a>'
-  tr += '<span class="objectSummaryAttr" data-l1key="iconnul"></span></td>'
-
-  tr += '<td><input class="objectSummaryAttr form-control input-sm" data-l1key="unit" /></td>'
-
-  tr += '<td class="center"><input type="checkbox" class="objectSummaryAttr warning" data-l1key="hidenumber" /></td>'
-
-  tr += '<td class="center"><input type="checkbox" class="objectSummaryAttr" data-l1key="hidenulnumber" /></td>'
-
-  tr += '<td><select class="objectSummaryAttr input-sm" data-l1key="count">'
-  tr += '<option value="">{{Aucun}}</option>'
-  tr += '<option value="binary">{{Binaire}}</option>'
-  tr += '</select></td>'
-
-  tr += '<td class="center"><input type="checkbox" class="objectSummaryAttr" data-l1key="allowDisplayZero" /></td>'
-
-  tr += '<td class="center"><input class="objectSummaryAttr form-control input-sm" data-l1key="ignoreIfCmdOlderThan" /></td>'
-  tr += ''
-  tr += '<td>'
-  if (isset(_summary) && isset(_summary.key) && _summary.key != '') {
-    tr += '<a class="btn btn-success btn-sm objectSummaryAction" data-l1key="createVirtual"><i class="fas fa-puzzle-piece"></i><span class="hidden-1280"> {{Créer virtuel}}</span></a>'
-  }
-  tr += '</td>'
-
-  tr += '<td><a class="objectSummaryAction cursor" data-l1key="remove"><i class="fas fa-minus-circle"></i></a></td>'
-
-  tr += '</tr>'
-  $('#table_objectSummary tbody').append(tr)
-  if (isset(_summary)) {
-    $('#table_objectSummary tbody tr').last().setValues(_summary, '.objectSummaryAttr')
-  }
-  if (isset(_summary) && isset(_summary.key) && _summary.key != '') {
-    $('#table_objectSummary tbody tr:last .objectSummaryAttr[data-l1key=key]').attr('disabled', 'disabled')
-  }
-  modifyWithoutSave = true
-}
-
-function saveObjectSummary() {
-  var summary = {}
-  var temp = $('#table_objectSummary tbody tr').getValues('.objectSummaryAttr')
-  for (var i in temp) {
-    if (temp[i].key == '') {
-      temp[i].key = temp[i].name
-    }
-    temp[i].key = temp[i].key.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\%/g, '').replace(/\s/g, '').replace(/\./g, '')
-    summary[temp[i].key] = temp[i]
-  }
-  var value = {
-    'object:summary': summary
-  }
-  $.ajax({
-    type: "POST",
-    url: "core/ajax/config.ajax.php",
-    data: {
-      action: 'addKey',
-      value: json_encode(value)
-    },
-    dataType: 'json',
-    error: function(request, status, error) {
-      handleAjaxError(request, status, error)
-    },
-    success: function(data) {
-      if (data.state != 'ok') {
-        $.fn.showAlert({
-          message: data.result,
-          level: 'danger'
-        })
-        return
-      }
-      printObjectSummary()
-      modifyWithoutSave = false
-    }
-  })
-}
 
 /**************************EQUIPMENT***********************************/
 $('#bt_influxDelete').off('click').on('click', function() {
@@ -939,11 +1079,11 @@ $('#bt_influxHistory').off('click').on('click', function() {
 
 /**************************INTERACT***********************************/
 $('#bt_addColorConvert').on('click', function() {
-  addConvertColor()
+  jeeP.addConvertColor()
 })
 
 /**************************SECURITY***********************************/
-$divConfig.on({
+jeeP.$divConfig.on({
   'change': function(event) {
     if ($(this).value() == 1) {
       $('#div_config_ldap').show()
@@ -963,7 +1103,7 @@ $("#bt_testLdapConnection").on('click', function(event) {
       })
     },
     success: function() {
-      modifyWithoutSave = false
+      jeeFrontEnd.modifyWithoutSave = false
       $.ajax({
         type: 'POST',
         url: 'core/ajax/user.ajax.php',
@@ -1008,7 +1148,7 @@ $('#bt_removeBanIp').on('click', function() {
 })
 
 /**************************UPDATES / MARKET***********************************/
-$divConfig.off('change', '.enableRepository').on('change', '.enableRepository', function() {
+jeeP.$divConfig.off('change', '.enableRepository').on('change', '.enableRepository', function() {
   if ($(this).value() == 1) {
     $('.repositoryConfiguration' + $(this).attr('data-repo')).show()
   } else {
@@ -1037,7 +1177,7 @@ $('.testRepoConnection').on('click', function() {
         },
         success: function(data) {
           $('#config').setValues(data, '.configKey')
-          modifyWithoutSave = false
+          jeeFrontEnd.modifyWithoutSave = false
           jeedom.repo.test({
             repo: repo,
             error: function(error) {
@@ -1060,7 +1200,7 @@ $('.testRepoConnection').on('click', function() {
 })
 
 /**************************CACHE***********************************/
-$divConfig.on({
+jeeP.$divConfig.on({
   'change': function(event) {
     $('.cacheEngine').hide()
     if ($(this).value() == '') return
@@ -1070,90 +1210,22 @@ $divConfig.on({
 
 $("#bt_cleanCache").on('click', function(event) {
   $.hideAlert()
-  cleanCache()
+  jeeP.cleanCache()
 })
 
 $("#bt_flushCache").on('click', function(event) {
   $.hideAlert()
   bootbox.confirm('{{Attention ceci est une opération risquée (vidage du cache), Confirmez vous vouloir la faire ?}}', function(result) {
     if (result) {
-      flushCache()
+      jeeP.flushCache()
     }
   })
 })
 
 $("#bt_flushWidgetCache").on('click', function(event) {
   $.hideAlert()
-  flushWidgetCache()
+  jeeP.flushWidgetCache()
 })
-
-function flushCache() {
-  jeedom.cache.flush({
-    error: function(error) {
-      $.fn.showAlert({
-        message: data.result,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      updateCacheStats()
-      $.fn.showAlert({
-        message: '{{Cache vidé}}',
-        level: 'success'
-      })
-    }
-  })
-}
-
-function flushWidgetCache() {
-  jeedom.cache.flushWidget({
-    error: function(error) {
-      $.fn.showAlert({
-        message: data.result,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      updateCacheStats()
-      $.fn.showAlert({
-        message: '{{Cache vidé}}',
-        level: 'success'
-      })
-    }
-  })
-}
-
-function cleanCache() {
-  jeedom.cache.clean({
-    error: function(error) {
-      $.fn.showAlert({
-        message: data.result,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      updateCacheStats()
-      $.fn.showAlert({
-        message: '{{Cache nettoyé}}',
-        level: 'success'
-      })
-    }
-  })
-}
-
-function updateCacheStats() {
-  jeedom.cache.stats({
-    error: function(error) {
-      $.fn.showAlert({
-        message: data.result,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      $('#span_cacheObject').html(data.count)
-    }
-  })
-}
 
 /**************************API***********************************/
 $(".bt_regenerate_api").on('click', function(event) {
@@ -1262,92 +1334,12 @@ $('#bt_cleanDatabase').off('click').on('click', function() {
   })
 })
 
-
-
-
-
 /********************Convertion************************/
-function printConvertColor() {
-  $.ajax({
-    type: "POST",
-    url: "core/ajax/config.ajax.php",
-    data: {
-      action: "getKey",
-      key: 'convertColor'
-    },
-    dataType: 'json',
-    error: function(request, status, error) {
-      handleAjaxError(request, status, error)
-    },
-    success: function(data) {
-      if (data.state != 'ok') {
-        $.fn.showAlert({
-          message: data.result,
-          level: 'danger'
-        })
-        return
-      }
-      $('#table_convertColor tbody').empty()
-      for (var color in data.result) {
-        addConvertColor(color, data.result[color])
-      }
-      modifyWithoutSave = false
-    }
-  })
-}
-
-function addConvertColor(_color, _html) {
-  var tr = '<tr>'
-  tr += '<td>'
-  tr += '<input class="color form-control input-sm" value="' + init(_color) + '"/>'
-  tr += '</td>'
-  tr += '<td>'
-  tr += '<input type="color" class="html form-control input-sm" value="' + init(_html) + '" />'
-  tr += '</td>'
-  tr += '<td>'
-  tr += '<i class="fas fa-minus-circle removeConvertColor cursor"></i>'
-  tr += '</td>'
-  tr += '</tr>'
-  $('#table_convertColor tbody').append(tr)
-  modifyWithoutSave = true
-}
-
 $('#table_convertColor tbody').off('click', '.removeConvertColor').on('click', '.removeConvertColor', function() {
   $(this).closest('tr').remove()
 })
 
-function saveConvertColor() {
-  var value = {}
-  var colors = {}
-  $('#table_convertColor tbody tr').each(function() {
-    colors[$(this).find('.color').value()] = $(this).find('.html').value()
-  });
-  value.convertColor = colors
-  $.ajax({
-    type: "POST",
-    url: "core/ajax/config.ajax.php",
-    data: {
-      action: 'addKey',
-      value: json_encode(value)
-    },
-    dataType: 'json',
-    error: function(request, status, error) {
-      handleAjaxError(request, status, error)
-    },
-    success: function(data) {
-      if (data.state != 'ok') {
-        $.fn.showAlert({
-          message: data.result,
-          level: 'danger'
-        })
-        return
-      }
-      modifyWithoutSave = false
-    }
-  })
-}
-
-/*CMD color*/
+//CMD color
 $('.bt_resetColor').on('click', function() {
   var el = $(this);
   jeedom.getConfiguration({

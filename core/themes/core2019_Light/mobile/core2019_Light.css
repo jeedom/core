@@ -82,17 +82,6 @@ a.action.ui-btn {
 	color: var(--linkHoverLight-color) !important;
 }
 
-.clr-btn-red,
-.clr-btn-red:hover {
-	color: var(--sc-lightTxt-color) !important;
-	background-color: var(--al-danger-color) !important;
-}
-.ui-btn.clr-btn-deep-orange,
-.ui-btn.clr-btn-deep-orange:hover {
-	color: var(--link-color) !important;
-	background-color: var(--al-warning-color) !important;
-}
-
 .cmd:hover {
 	color: var(--linkHover-color) !important;
 }

@@ -30,6 +30,7 @@ if (count($deamon_info) == 0) {
 }
 $refresh = array();
 ?>
+
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -183,7 +184,7 @@ refreshDeamonInfo()
 
 $('.bt_startDeamon').on('click', function() {
   clearTimeout(timeout_refreshDeamonInfo)
-  savePluginConfig({
+  jeeFrontEnd.plugin.savePluginConfig({
     relaunchDeamon : false,
     success : function() {
       jeedom.plugin.deamonStart({

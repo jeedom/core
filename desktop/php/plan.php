@@ -11,7 +11,7 @@ foreach ($planHeaders as $planHeader_select) {
 	}
 	$planHeadersSendToJS[] = array('id' => $planHeader_select->getId(), 'name' => $planHeader_select->getName());
 }
-sendVarToJS('planHeader', $planHeadersSendToJS);
+sendVarToJS('jeephp2js.planHeader', $planHeadersSendToJS);
 if (init('plan_id') == '') {
 	foreach ($planHeaders as $planHeader_select) {
 		if (!$planHeader_select->hasRight('r')) {
@@ -38,9 +38,9 @@ if (!is_object($planHeader) && count($planHeaders) > 0) {
 }
 if (!is_object($planHeader)) {
 	echo '<div class="alert alert-warning">{{Aucun design n\'existe, cliquez}}' . ' <a id="bt_createNewDesign" class="cursor label alert-info">{{ici}} </a> {{pour en créer un.}}</div>';
-	sendVarToJS('planHeader_id', -1);
+	sendVarToJS('jeephp2js.planHeader_id', -1);
 } else {
-	sendVarToJS('planHeader_id', $planHeader->getId());
+	sendVarToJS('jeephp2js.planHeader_id', $planHeader->getId());
 }
 ?>
 

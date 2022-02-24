@@ -22,7 +22,7 @@ global $JEEDOM_INTERNAL_CONFIG;
 $select = array('dashboard' => '','mobile'=>'');
 $seld = array();
 foreach ((cmd::availableWidget('dashboard')) as $type => $value) {
-  if(!isset($JEEDOM_INTERNAL_CONFIG['cmd']['type'][$type])){
+  if (!isset($JEEDOM_INTERNAL_CONFIG['cmd']['type'][$type])) {
     continue;
   }
   foreach ($value as $subtype => $value2) {
@@ -41,7 +41,7 @@ sort($seld);
 $select['dashboard'] = implode('',$seld);
 $selm = array();
 foreach ((cmd::availableWidget('mobile')) as $type => $value) {
-  if(!isset($JEEDOM_INTERNAL_CONFIG['cmd']['type'][$type])){
+  if (!isset($JEEDOM_INTERNAL_CONFIG['cmd']['type'][$type])) {
     continue;
   }
   foreach ($value as $subtype => $value2) {
@@ -60,7 +60,7 @@ sort($selm);
 $select['mobile'] = implode('',$selm);
 ?>
 
-<div id="form_widgetReplace">
+<div id="form_widgetReplace" data-modalType="md_widgetReplace">
   <div style="display: none;" id="md_widgetReplaceAlert"></div>
   <legend><i class="fas fa-desktop"></i> {{Dashboard}}</legend>
   <form class="form-horizontal">

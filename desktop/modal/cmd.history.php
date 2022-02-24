@@ -26,7 +26,7 @@ $id = init('id');
 if (trim($id) == '') {
   $id = init('showId');
 }
-sendVarToJs('cmd_id', $id);
+sendVarToJs('jeephp2js.md_history_cmdId', $id);
 ?>
 
 
@@ -49,121 +49,127 @@ sendVarToJs('cmd_id', $id);
 </div>
 
 <script>
-delete jeedom.history.chart['div_modalGraph']
-var cmdIds = cmd_id.split('-')
-cmdIds = $.unique(cmdIds)
-cmdIds = cmdIds.filter(Boolean)
+if (!jeeFrontEnd.md_history) {
+  jeeFrontEnd.md_history = {
+    __el__: 'div_modalGraph',
+    done: null,
+    loadIds: null,
+    resizeDone: null,
+    init: function(_cmdIds) {
+      this.$divGraph = $('#' + this.__el__)
+      this.$divGraph.css('position', 'relative').css('width', '100%')
 
-$('#div_modalGraph').css('position', 'relative').css('width', '100%')
-//remove any previously loaded history:
-jeedom.history.emptyChart('div_modalGraph')
+      this.$pageContainer = $('#md_history')
+      this.resizeDone = null
+      delete jeedom.history.chart[this.__el__]
+      $.clearDivContent(this.__el__)
 
+      this.md_modal = $('#md_history').parents('.ui-dialog-content.ui-widget-content')
+      this.modal = this.md_modal.parents('.ui-dialog.ui-resizable')
 
-var $pageContainer = $('#md_history')
-var md_modal = $pageContainer .parents('.ui-dialog-content.ui-widget-content')
-var modal = md_modal.parents('.ui-dialog.ui-resizable')
+      _cmdIds = $.unique(_cmdIds.split('-'))
+      this.loadIds = _cmdIds.filter(Boolean)
+      this.done = _cmdIds.length
 
-var divHighChart = $('#div_modalGraph')
-var chart = null
-
-$.hideAlert()
-jeedomUtils.datePickerInit()
-
-$(function() {
-  //check previous size/pos:
-  var modalData = modal.data()
-  if (modalData && modalData.width && modalData.height && modalData.top && modalData.left) {
-    modal.width(modalData.width).height(modalData.height).css({'top': modalData.top, 'left': modalData.left})
-    md_modal.width(modalData.width-26).height(modalData.height-40)
-    resizeHighChartModal()
-  } else if ($(window).width() > 860) {
-    width = 800
-    height = 560
-    modal.width(width).height(height)
-    modal.position({
-      my: "center",
-      at: "center",
-      of: window
-    })
-    md_modal.width(width-26).height(height-40)
-  }
-
-  //draw cmds:
-  var _showLegend = (cmdIds.length > 1) ? true : false
-  var done = cmdIds.length
-  cmdIds.forEach(function(cmd_id) {
-    jeedom.history.drawChart({
-      cmd_id: cmd_id,
-      el: 'div_modalGraph',
-      dateRange : 'all',
-      dateStart : $('#in_startDate').value(),
-      dateEnd :  $('#in_endDate').value(),
-      newGraph : false,
-      showLegend : _showLegend,
-      height : jQuery(window).height() - 270,
-      success: function(data) {
-        done -= 1
-        if (done == 0) setModal()
+      //check previous size/pos:
+      var datas = this.modal.data()
+      if (datas && datas.width && datas.height && datas.top && datas.left) {
+        this.modal.width(datas.width).height(datas.height).css({'top': datas.top, 'left': datas.left})
+        this.md_modal.width(datas.width-26).height(datas.height-40)
+        this.resizeHighChartModal()
+      } else if ($(window).width() > 860) {
+        var width = 800
+        var height = 560
+        this.modal
+          .width(width)
+          .height(height)
+          .position({
+            my: "center",
+            at: "center",
+            of: window
+          })
+        this.md_modal.width(width-26).height(height-40)
       }
-    })
-  })
-})
 
+      self = this
+      this.loadIds.forEach(function(cmd_id) {
+        jeedom.history.drawChart({
+          cmd_id: cmd_id,
+          el: self.__el__,
+          dateRange: 'all',
+          dateStart: $('#in_startDate').value(),
+          dateEnd:  $('#in_endDate').value(),
+          newGraph: false,
+          showLegend: (self.loadIds.length > 1) ? true : false,
+          height: jQuery(window).height() - 270,
+          success: function(data) {
+            self.done -= 1
+            if (self.done == 0) self.setModal()
+          }
+        })
+      })
+    },
+    resizeDn: function() {
+      this.modal.data({
+        'width': this.modal.width(),
+        'height': this.modal.height(),
+        'top': this.modal.css('top'),
+        'left': this.modal.css('left')
+      })
+      this.resizeHighChartModal()
+    },
+    resizeHighChartModal: function() {
+      if (!jeedom.history.chart[this.__el__]) return
+      jeedom.history.chart[this.__el__].chart.setSize(this.md_modal.width(), this.md_modal.height() - this.md_modal.find('#md_history .row').height()-10)
+    },
+    setModal: function() {
+      //store size/pos:
+      this.modal.find('.ui-draggable-handle').on('mouseup', function(event) {
+        jeeFrontEnd.md_history.modal.data({
+          'width':jeeFrontEnd.md_history.modal.width(),
+          'height':jeeFrontEnd.md_history.modal.height(),
+          'top':jeeFrontEnd.md_history.modal.css('top'),
+          'left':jeeFrontEnd.md_history.modal.css('left')
+        })
+      })
 
-function resizeHighChartModal() {
-  if (!divHighChart || !chart) return
-  chart.setSize(md_modal.width(), md_modal.height() - md_modal.find('.md_history .row').height()-10)
-}
-
-function setModal() {
-  chart = divHighChart.highcharts()
-
-  //only one history loaded:
-  if (cmdIds.length == 1) {
-    if (chart) {
-      modal.find('.ui-dialog-title').html(modal.find('.ui-dialog-title').html() + ' : ' + chart.series[0].name)
+      //only one history loaded:
+      if (this.loadIds.length == 1) {
+        if (isset(jeedom.history.chart[this.__el__]) && isset(jeedom.history.chart[this.__el__].chart)) {
+          this.modal.find('.ui-dialog-title').html(this.modal.find('.ui-dialog-title').html() + ' : ' + jeedom.history.chart[this.__el__].chart.series[0].name)
+        }
+      }
+      this.resizeHighChartModal()
     }
   }
-  resizeHighChartModal()
 }
 
-//handle resizing:
-var resizeDone = null
-function resizeDn() {
-  modal.data({
-    'width': modal.width(),
-    'height': modal.height(),
-    'top': modal.css('top'),
-    'left': modal.css('left')
+(function() {
+  $.hideAlert()
+  var jeeM = jeeFrontEnd.md_history
+  jeeM.init(jeephp2js.md_history_cmdId)
+
+  $(function() {
+    jeedomUtils.datePickerInit()
   })
-  resizeHighChartModal()
-}
-md_modal.on('dialogresize', function() {
-  clearTimeout(resizeDone)
-  resizeDone = setTimeout(resizeDn, 100)
-})
 
-//store size/pos:
-modal.find('.ui-draggable-handle').on('mouseup', function(event) {
-  modal.data({
-    'width': modal.width(),
-    'height': modal.height(),
-    'top': modal.css('top'),
-    'left': modal.css('left')
+  //handle resizing:
+  jeeM.md_modal.on('dialogresize', function() {
+    clearTimeout(jeeM.resizeDone)
+    jeeM.resizeDone = setTimeout(function() { jeeM.resizeDn() }, 100)
   })
-})
 
-//Modal buttons:
-$pageContainer.on({
-  'click': function(event) {
-    md_modal.dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + cmd_id + '&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open')
-  }
-}, '#bt_validChangeDate')
+  //Modal buttons:
+  jeeM.$pageContainer.on({
+    'click': function(event) {
+      jeeM.md_modal.dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + jeephp2js.md_history_cmdId + '&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open')
+    }
+  }, '#bt_validChangeDate')
 
-$pageContainer.on({
-  'click': function(event) {
-    jeedomUtils.loadPage('index.php?v=d&p=history&cmd_id=' + cmd_id)
-  }
-}, '#bt_openInHistory')
-
+  jeeM.$pageContainer.on({
+    'click': function(event) {
+      jeedomUtils.loadPage('index.php?v=d&p=history&cmd_id=' + jeephp2js.md_history_cmdId)
+    }
+  }, '#bt_openInHistory')
+})()
 </script>

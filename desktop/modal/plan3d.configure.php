@@ -30,10 +30,10 @@ if (!is_object($plan3d)) {
   $plan3d->save();
 }
 $link = $plan3d->getLink();
-sendVarToJS('id', $plan3d->getId());
+sendVarToJS('jeephp2js.md_plan3dConfigure_Id', $plan3d->getId());
 ?>
 
-<div id="div_alertPlan3dConfigure"></div>
+<div id="div_alertPlan3dConfigure" data-modalType="md_plan3dConfigure"></div>
 <form class="form-horizontal">
   <fieldset id="fd_plan3dConfigure">
     <legend>{{Général}}
@@ -478,13 +478,13 @@ $('#bt_removeConfigurePlan3d').on('click', function() {
   })
 })
 
-if (isset(id) && id != '') {
+if (isset(jeephp2js.md_plan3dConfigure_Id) && jeephp2js.md_plan3dConfigure_Id != '') {
   $.ajax({
     type: "POST",
     url: "core/ajax/plan3d.ajax.php",
     data: {
       action: "get",
-      id: id
+      id: jeephp2js.md_plan3dConfigure_Id
     },
     dataType: 'json',
     error: function(request, status, error) {

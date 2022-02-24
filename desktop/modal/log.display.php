@@ -19,8 +19,8 @@ if (!isConnect('admin')) {
   throw new Exception('401 Unauthorized');
 }
 sendVarToJS([
-  'log_display_name' => init('log', 'event'),
-  'log_default_search' => init('search', '')
+  'jeephp2js.md_logDislay_Name' => init('log', 'event'),
+  'jeephp2js.md_logDislay_defaultSearch' => init('search', '')
 ]);
 
 if(init('log','event') == 'event'){
@@ -33,20 +33,22 @@ if(init('log','event') == 'event'){
 }
 ?>
 
-<div class="input-group pull-right">
-  <span class="input-group-btn" style="display: inline;">
-    <span class="label-sm">{{Log brut}}</span>
-    <input type="checkbox" id="brutlogcheck" autoswitch="1"/>
-    <i id="brutlogicon" class="fas fa-exclamation-circle icon_orange"></i>
-    <input class="input-sm roundedLeft" id="in_eventLogSearch" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
-    <a class="btn btn-warning btn-sm" data-state="1" id="bt_eventLogStopStart"><i class="fas fa-pause"></i> {{Pause}}
-    </a><a class="btn btn-success btn-sm" id="bt_logdisplaydownloadLog"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}
-    </a><a class="btn btn-warning btn-sm" id="bt_logdisplayclearLog"><i class="fas fa-times"></i> {{Vider}}
-    </a><a class="btn btn-danger roundedRight btn-sm" id="bt_logdisplayremoveLog"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>
-  </span>
+<div id="md_logDislay" data-modalType="md_logDislay">
+  <div class="input-group pull-right">
+    <span class="input-group-btn" style="display: inline;">
+      <span class="label-sm">{{Log brut}}</span>
+      <input type="checkbox" id="brutlogcheck" autoswitch="1"/>
+      <i id="brutlogicon" class="fas fa-exclamation-circle icon_orange"></i>
+      <input class="input-sm roundedLeft" id="in_eventLogSearch" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
+      <a class="btn btn-warning btn-sm" data-state="1" id="bt_eventLogStopStart"><i class="fas fa-pause"></i> {{Pause}}
+      </a><a class="btn btn-success btn-sm" id="bt_logdisplaydownloadLog"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}
+      </a><a class="btn btn-warning btn-sm" id="bt_logdisplayclearLog"><i class="fas fa-times"></i> {{Vider}}
+      </a><a class="btn btn-danger roundedRight btn-sm" id="bt_logdisplayremoveLog"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>
+    </span>
+  </div>
+  <br/><br/>
+  <pre id='pre_eventlog' style='overflow: auto; height: calc(100% - 90px);width:100%;'></pre>
 </div>
-<br/><br/>
-<pre id='pre_eventlog' style='overflow: auto; height: calc(100% - 90px);width:100%;'></pre>
 
 <script>
 var $rawLogCheck = $('#brutlogcheck')
@@ -55,7 +57,7 @@ $rawLogCheck.on('click').on('click', function () {
 
   var scroll = $('#pre_eventlog').scrollTop()
   jeedom.log.autoupdate({
-    log: log_display_name,
+    log: jeephp2js.md_logDislay_Name,
     display: $('#pre_eventlog'),
     search: $('#in_eventLogSearch'),
     control: $('#bt_eventLogStopStart'),
@@ -65,8 +67,8 @@ $rawLogCheck.on('click').on('click', function () {
 })
 
 jeedom.log.autoupdate({
-  log: log_display_name,
-  default_search: log_default_search,
+  log: jeephp2js.md_logDislay_Name,
+  default_search: jeephp2js.md_logDislay_defaultSearch,
   display: $('#pre_eventlog'),
   search: $('#in_eventLogSearch'),
   control: $('#bt_eventLogStopStart')
@@ -74,17 +76,17 @@ jeedom.log.autoupdate({
 
 $("#bt_logdisplayclearLog").on('click', function(event) {
   jeedom.log.clear({
-    log: log_display_name
+    log: jeephp2js.md_logDislay_Name
   })
 })
 
 $("#bt_logdisplayremoveLog").on('click', function(event) {
   jeedom.log.remove({
-    log: log_display_name
+    log: jeephp2js.md_logDislay_Name
   })
 })
 
 $('#bt_logdisplaydownloadLog').click(function() {
-  window.open('core/php/downloadFile.php?pathfile=log/' + log_display_name, "_blank", null)
+  window.open('core/php/downloadFile.php?pathfile=log/' + jeephp2js.md_logDislay_Name, "_blank", null)
 })
 </script>

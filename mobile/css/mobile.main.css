@@ -69,6 +69,7 @@
 
   html,
   body,
+  #pagecontainer,
   textarea {
     scrollbar-color: var(--txt-color) var(--sc-form-color) !important;
     scrollbar-width: thin;
@@ -108,8 +109,9 @@
   }
   #backgroundforJeedom > div {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: calc(100vw + var(--objectBackgroundBlur) * 2);
+    height: calc(100vh + var(--objectBackgroundBlur) * 2);
+    left: calc(0px - var(--objectBackgroundBlur));
     opacity: var(--bkg-opacity-light);
     background-size: cover !important;
     background-position: right bottom !important;
@@ -856,6 +858,30 @@
     font-size: 16px !important;
   }
 
+  .ui-btn.clr-btn-red,
+  .ui-btn.clr-btn-red:hover,
+  .ui-btn.clr-btn-danger,
+  .ui-btn.clr-btn-danger:hover {
+    color: var(--sc-lightTxt-color) !important;
+    background-color: var(--al-danger-color) !important;
+  }
+  .ui-btn.clr-btn-info,
+  .ui-btn.clr-btn-info:hover {
+    color: var(--sc-lightTxt-color) !important;
+    background-color: var(--al-info-color) !important;
+  }
+  .ui-btn.clr-btn-success,
+  .ui-btn.clr-btn-success:hover {
+    color: var(--sc-lightTxt-color) !important;
+    background-color: var(--al-success-color) !important;
+  }
+  .ui-btn.clr-btn-deep-orange,
+  .ui-btn.clr-btn-deep-orange:hover,
+  .ui-btn.clr-btn-warning,
+  .ui-btn.clr-btn-warning:hover {
+    color: var(--link-color) !important;
+    background-color: var(--al-warning-color) !important;
+  }
 /* analyse equipment */
   #div_displayBattery {
     margin-bottom: 40px !important;
@@ -1053,9 +1079,10 @@
   .ui-table-columntoggle-btn,
   .ui-table,
   #pre_globallog,
-  #pre_scenariolog {
+  #pre_scenariolog,
+  #pre_note {
     color: var(--txt-color) !important;
-    background: rgb(var(--bg-color));
+    background: rgb(var(--bg-color)) ;
   }
   #pre_globallog,
   #pre_scenariolog {
@@ -1097,6 +1124,21 @@
   }
   #pre_scenariolog > label.danger
     color: var(--al-danger-color) !important;
+  }
+
+  [data-page="notes"] #page {
+    height: calc(100vh - 90px);
+    overflow: hidden;
+  }
+  #pre_note.ui-input-text {
+    min-height: calc(100vh - 235px) !important;
+    width: 100%;
+    position: absolute;
+    margin-top: -20px;
+    border: none;
+    font-weight: normal !important;
+    font-family: "roboto" !important;
+    text-shadow: none;
   }
 
 /*___________________________________________________________TIMELINE */

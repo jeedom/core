@@ -16,8 +16,140 @@
 
 "use strict"
 
-var actionOptions = []
-var $interactListContainer = $('.interactListContainer')
+if (!jeeFrontEnd.interact) {
+  jeeFrontEnd.interact = {
+    init: function() {
+      window.jeeP = this
+      this.actionOptions = []
+    },
+    printInteract: function(_id) {
+      $.hideAlert()
+      $('#div_conf').show()
+      $('#interactThumbnailDisplay').hide()
+      $('.interactDisplayCard').removeClass('active')
+      $('.interactDisplayCard[data-interact_id=' + _id + ']').addClass('active')
+      jeedom.interact.get({
+        id: _id,
+        success: function(data) {
+          jeeP.actionOptions = []
+          $('#div_action').empty()
+          $('.interactAttr').value('')
+          $('.interact').setValues(data, '.interactAttr')
+          $('.interactAttr[data-l1key=filtres][data-l2key=type]').prop('selected', false)
+          $('.interactAttr[data-l1key=filtres][data-l2key=subtype]').prop('selected', false)
+          $('.interactAttr[data-l1key=filtres][data-l2key=unite]').prop('selected', false)
+          $('.interactAttr[data-l1key=filtres][data-l2key=object]').prop('selected', false)
+          $('.interactAttr[data-l1key=filtres][data-l2key=plugin]').prop('selected', false)
+          $('.interactAttr[data-l1key=filtres][data-l2key=category]').prop('selected', false)
+          if (isset(data.filtres) && isset(data.filtres.type) && $.isPlainObject(data.filtres.type)) {
+            for (var i in data.filtres.type) {
+              if (data.filtres.type[i] == 1) $('.interactAttr[data-l1key=filtres][data-l2key=type][data-l3key=' + i + ']').prop('selected', true)
+            }
+          }
+          if (isset(data.filtres) && isset(data.filtres.subtype) && $.isPlainObject(data.filtres.subtype)) {
+            for (var i in data.filtres.subtype) {
+              if (data.filtres.subtype[i] == 1) $('.interactAttr[data-l1key=filtres][data-l2key=subtype][data-l3key=' + i + ']').prop('selected', true)
+            }
+          }
+          if (isset(data.filtres) && isset(data.filtres.unite) && $.isPlainObject(data.filtres.unite)) {
+            for (var i in data.filtres.unite) {
+              if (data.filtres.unite[i] == 1) $('.interactAttr[data-l1key=filtres][data-l2key=unite][data-l3key="' + i + '"]').prop('selected', true)
+            }
+          }
+          if (isset(data.filtres) && isset(data.filtres.object) && $.isPlainObject(data.filtres.object)) {
+            for (var i in data.filtres.object) {
+              if (data.filtres.object[i] == 1) $('.interactAttr[data-l1key=filtres][data-l2key=object][data-l3key=' + i + ']').prop('selected', true)
+            }
+          }
+          if (isset(data.filtres) && isset(data.filtres.plugin) && $.isPlainObject(data.filtres.plugin)) {
+            for (var i in data.filtres.plugin) {
+              if (data.filtres.plugin[i] == 1) $('.interactAttr[data-l1key=filtres][data-l2key=plugin][data-l3key=' + i + ']').prop('selected', true)
+            }
+          }
+          if (isset(data.filtres) && isset(data.filtres.category) && $.isPlainObject(data.filtres.category)) {
+            for (var i in data.filtres.category) {
+              if (data.filtres.category[i] == 1) $('.interactAttr[data-l1key=filtres][data-l2key=category][data-l3key=' + i + ']').prop('selected', true)
+            }
+          }
+          if (isset(data.actions.cmd) && $.isArray(data.actions.cmd) && data.actions.cmd.length != null) {
+            for (var i in data.actions.cmd) {
+              jeeP.addAction(data.actions.cmd[i], 'action', '{{Action}}');
+            }
+          }
+          jeedomUtils.taAutosize()
+
+          var hash = window.location.hash
+          jeedomUtils.addOrUpdateUrl('id', data.id)
+          if (hash == '') {
+            $('.nav-tabs a[href="#generaltab"]').click()
+          } else {
+            window.location.hash = hash
+          }
+
+          jeedom.cmd.displayActionsOption({
+            params: jeeP.actionOptions,
+            async: false,
+            error: function(error) {
+              $.fn.showAlert({
+                message: error.message,
+                level: 'danger'
+              })
+            },
+            success: function(data) {
+              for (var i in data) {
+                if (data[i].html != '') {
+                  $('#' + data[i].id).append(data[i].html.html)
+                }
+              }
+              jeedomUtils.taAutosize()
+            }
+          })
+
+          $('#div_pageContainer').off('change', '.interactAttr').on('change', '.interactAttr:visible', function() {
+            jeeFrontEnd.modifyWithoutSave = true
+          })
+          $('#div_pageContainer').off('mousedown', 'select option.interactAttr').on('mousedown', 'select option.interactAttr:visible', function() {
+            jeeFrontEnd.modifyWithoutSave = true
+          })
+          jeeFrontEnd.modifyWithoutSave = false
+        }
+      })
+    },
+    addAction: function(_action, _type, _name) {
+      if (!isset(_action)) {
+        _action = {}
+      }
+      if (!isset(_action.options)) {
+        _action.options = {}
+      }
+      var div = '<div class="' + _type + '">'
+      div += '<div class="form-group ">'
+      div += '<div class="col-sm-5">'
+      div += '<div class="input-group input-group-sm">'
+      div += '<span class="input-group-btn">'
+      div += '<a class="btn btn-default btn-sm bt_removeAction roundedLeft" data-type="' + _type + '"><i class="fas fa-minus-circle"></i></a>'
+      div += '</span>'
+      div += '<input class="expressionAttr form-control cmdAction input-sm" data-l1key="cmd" data-type="' + _type + '" />'
+      div += '<span class="input-group-btn">'
+      div += '<a class="btn btn-default btn-sm listAction"" data-type="' + _type + '" title="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></a>'
+      div += '<a class="btn btn-default btn-sm listCmdAction roundedRight" data-type="' + _type + '"><i class="fas fa-list-alt"></i></a>'
+      div += '</span>'
+      div += '</div>'
+      div += '</div>'
+      var actionOption_id = jeedomUtils.uniqId()
+      div += '<div class="col-sm-7 actionOptions" id="' + actionOption_id + '"></div>'
+      $('#div_' + _type).append(div)
+      $('#div_' + _type + ' .' + _type + '').last().setValues(_action, '.expressionAttr')
+      jeeP.actionOptions.push({
+        expression: init(_action.cmd, ''),
+        options: _action.options,
+        id: actionOption_id
+      })
+    },
+  }
+}
+
+jeeFrontEnd.interact.init()
 
 document.onkeydown = function(event) {
   if (jeedomUtils.getOpenedModal()) return
@@ -32,6 +164,12 @@ document.onkeydown = function(event) {
 
 $(function() {
   $('sub.itemsNumber').html('(' + $('.interactDisplayCard').length + ')')
+
+  if (is_numeric(getUrlVars('id'))) {
+    if ($('.interactDisplayCard[data-interact_id=' + getUrlVars('id') + ']').length != 0) {
+      $('.interactDisplayCard[data-interact_id=' + getUrlVars('id') + ']').click()
+    }
+  }
 })
 
 //searching
@@ -81,7 +219,6 @@ $('#bt_closeAll').off('click').on('click', function() {
     $(this).click()
   })
 })
-
 
 //contextMenu:
 $(function() {
@@ -159,7 +296,7 @@ $(function() {
                   }
                   window.open(url).focus()
                 } else {
-                  printInteract(options.commands[key].id)
+                  jeeP.printInteract(options.commands[key].id)
                 }
               }
             },
@@ -211,7 +348,7 @@ $('#bt_chooseIcon').on('click', function() {
   }, {
     icon: _icon
   })
-  modifyWithoutSave = true
+  jeeFrontEnd.modifyWithoutSave = true
 })
 
 $('.interactAttr[data-l1key=display][data-l2key=icon]').on('dblclick', function() {
@@ -245,7 +382,7 @@ $('.interactDisplayCard').off('click').on('click', function(event) {
     var url = '/index.php?v=d&p=interact&id=' + $(this).attr('data-interact_id')
     window.open(url).focus()
   } else {
-    printInteract($(this).attr('data-interact_id'))
+    jeeP.printInteract($(this).attr('data-interact_id'))
   }
 })
 $('.interactDisplayCard').off('mouseup').on('mouseup', function(event) {
@@ -275,19 +412,13 @@ $('#bt_duplicate').on('click', function() {
           })
         },
         success: function(data) {
-          modifyWithoutSave = false;
+          jeeFrontEnd.modifyWithoutSave = false;
           jeedomUtils.loadPage('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1')
         }
       })
     }
   })
 })
-
-if (is_numeric(getUrlVars('id'))) {
-  if ($('.interactDisplayCard[data-interact_id=' + getUrlVars('id') + ']').length != 0) {
-    $('.interactDisplayCard[data-interact_id=' + getUrlVars('id') + ']').click();
-  }
-}
 
 $('#bt_testInteract,#bt_testInteract2').on('click', function() {
   $('#md_modal').dialog({
@@ -397,7 +528,7 @@ $("#bt_addInteract,#bt_addInteract2").on('click', function() {
           })
         },
         success: function(data) {
-          modifyWithoutSave = false;
+          jeeFrontEnd.modifyWithoutSave = false;
           jeedomUtils.loadPage('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1')
         }
       })
@@ -418,7 +549,7 @@ $("#bt_removeInteract").on('click', function() {
           })
         },
         success: function() {
-          modifyWithoutSave = false
+          jeeFrontEnd.modifyWithoutSave = false
           jeedomUtils.loadPage('index.php?v=d&p=interact&removeSuccessFull=1')
         }
       })
@@ -427,8 +558,8 @@ $("#bt_removeInteract").on('click', function() {
 })
 
 $('#bt_addAction').off('click').on('click', function() {
-  addAction({}, 'action', '{{Action}}')
-  modifyWithoutSave = true
+  jeeP.addAction({}, 'action', '{{Action}}')
+  jeeFrontEnd.modifyWithoutSave = true
 })
 
 $('#div_conf').on({
@@ -497,132 +628,6 @@ $('#div_conf').on({
   'click': function(event) {
     var type = $(this).attr('data-type')
     $(this).closest('.' + type).remove()
-    modifyWithoutSave = true
+    jeeFrontEnd.modifyWithoutSave = true
   }
 }, '.bt_removeAction')
-
-function printInteract(_id) {
-  $.hideAlert()
-  $('#div_conf').show()
-  $('#interactThumbnailDisplay').hide()
-  $('.interactDisplayCard').removeClass('active')
-  $('.interactDisplayCard[data-interact_id=' + _id + ']').addClass('active')
-  jeedom.interact.get({
-    id: _id,
-    success: function(data) {
-      actionOptions = []
-      $('#div_action').empty()
-      $('.interactAttr').value('')
-      $('.interact').setValues(data, '.interactAttr')
-      $('.interactAttr[data-l1key=filtres][data-l2key=type]').prop('selected', false)
-      $('.interactAttr[data-l1key=filtres][data-l2key=subtype]').prop('selected', false)
-      $('.interactAttr[data-l1key=filtres][data-l2key=unite]').prop('selected', false)
-      $('.interactAttr[data-l1key=filtres][data-l2key=object]').prop('selected', false)
-      $('.interactAttr[data-l1key=filtres][data-l2key=plugin]').prop('selected', false)
-      $('.interactAttr[data-l1key=filtres][data-l2key=category]').prop('selected', false)
-      if (isset(data.filtres) && isset(data.filtres.type) && $.isPlainObject(data.filtres.type)) {
-        for (var i in data.filtres.type) {
-          if (data.filtres.type[i] == 1) $('.interactAttr[data-l1key=filtres][data-l2key=type][data-l3key=' + i + ']').prop('selected', true)
-        }
-      }
-      if (isset(data.filtres) && isset(data.filtres.subtype) && $.isPlainObject(data.filtres.subtype)) {
-        for (var i in data.filtres.subtype) {
-          if (data.filtres.subtype[i] == 1) $('.interactAttr[data-l1key=filtres][data-l2key=subtype][data-l3key=' + i + ']').prop('selected', true)
-        }
-      }
-      if (isset(data.filtres) && isset(data.filtres.unite) && $.isPlainObject(data.filtres.unite)) {
-        for (var i in data.filtres.unite) {
-          if (data.filtres.unite[i] == 1) $('.interactAttr[data-l1key=filtres][data-l2key=unite][data-l3key="' + i + '"]').prop('selected', true)
-        }
-      }
-      if (isset(data.filtres) && isset(data.filtres.object) && $.isPlainObject(data.filtres.object)) {
-        for (var i in data.filtres.object) {
-          if (data.filtres.object[i] == 1) $('.interactAttr[data-l1key=filtres][data-l2key=object][data-l3key=' + i + ']').prop('selected', true)
-        }
-      }
-      if (isset(data.filtres) && isset(data.filtres.plugin) && $.isPlainObject(data.filtres.plugin)) {
-        for (var i in data.filtres.plugin) {
-          if (data.filtres.plugin[i] == 1) $('.interactAttr[data-l1key=filtres][data-l2key=plugin][data-l3key=' + i + ']').prop('selected', true)
-        }
-      }
-      if (isset(data.filtres) && isset(data.filtres.category) && $.isPlainObject(data.filtres.category)) {
-        for (var i in data.filtres.category) {
-          if (data.filtres.category[i] == 1) $('.interactAttr[data-l1key=filtres][data-l2key=category][data-l3key=' + i + ']').prop('selected', true)
-        }
-      }
-      if (isset(data.actions.cmd) && $.isArray(data.actions.cmd) && data.actions.cmd.length != null) {
-        for (var i in data.actions.cmd) {
-          addAction(data.actions.cmd[i], 'action', '{{Action}}');
-        }
-      }
-      jeedomUtils.taAutosize()
-
-      var hash = window.location.hash
-      jeedomUtils.addOrUpdateUrl('id', data.id)
-      if (hash == '') {
-        $('.nav-tabs a[href="#generaltab"]').click()
-      } else {
-        window.location.hash = hash
-      }
-
-      jeedom.cmd.displayActionsOption({
-        params: actionOptions,
-        async: false,
-        error: function(error) {
-          $.fn.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          for (var i in data) {
-            if (data[i].html != '') {
-              $('#' + data[i].id).append(data[i].html.html)
-            }
-          }
-          jeedomUtils.taAutosize()
-        }
-      })
-
-      $('#div_pageContainer').off('change', '.interactAttr').on('change', '.interactAttr:visible', function() {
-        modifyWithoutSave = true
-      })
-      $('#div_pageContainer').off('mousedown', 'select option.interactAttr').on('mousedown', 'select option.interactAttr:visible', function() {
-        modifyWithoutSave = true
-      })
-      modifyWithoutSave = false
-    }
-  })
-}
-
-function addAction(_action, _type, _name) {
-  if (!isset(_action)) {
-    _action = {}
-  }
-  if (!isset(_action.options)) {
-    _action.options = {}
-  }
-  var div = '<div class="' + _type + '">'
-  div += '<div class="form-group ">'
-  div += '<div class="col-sm-5">'
-  div += '<div class="input-group input-group-sm">'
-  div += '<span class="input-group-btn">'
-  div += '<a class="btn btn-default btn-sm bt_removeAction roundedLeft" data-type="' + _type + '"><i class="fas fa-minus-circle"></i></a>'
-  div += '</span>'
-  div += '<input class="expressionAttr form-control cmdAction input-sm" data-l1key="cmd" data-type="' + _type + '" />'
-  div += '<span class="input-group-btn">'
-  div += '<a class="btn btn-default btn-sm listAction"" data-type="' + _type + '" title="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></a>'
-  div += '<a class="btn btn-default btn-sm listCmdAction roundedRight" data-type="' + _type + '"><i class="fas fa-list-alt"></i></a>'
-  div += '</span>'
-  div += '</div>'
-  div += '</div>'
-  var actionOption_id = jeedomUtils.uniqId()
-  div += '<div class="col-sm-7 actionOptions" id="' + actionOption_id + '"></div>'
-  $('#div_' + _type).append(div)
-  $('#div_' + _type + ' .' + _type + '').last().setValues(_action, '.expressionAttr')
-  actionOptions.push({
-    expression: init(_action.cmd, ''),
-    options: _action.options,
-    id: actionOption_id
-  })
-}

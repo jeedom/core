@@ -6,7 +6,7 @@ $rootObjects = jeeObject::rootObject(true);
 
 function buildJsTree($_object){
   $childs = $_object->getChild();
-  if(count($childs) == 0){
+  if (count($childs) == 0) {
     return;
   }
   echo '<ul>';

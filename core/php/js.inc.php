@@ -16,7 +16,6 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 require_once __DIR__ . '/../php/utils.inc.php';
-include_file('core', 'jeedom', 'class.js');
 include_file('core', 'private', 'class.js');
 include_file('core', 'eqLogic', 'class.js');
 include_file('core', 'cmd', 'class.js');

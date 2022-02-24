@@ -2582,11 +2582,11 @@
         "Inactifs": "Inactifs",
         "Export CSV": "Export CSV",
         "Rechercher | nom | id | :not(nom": "Rechercher | nom | id | :not(nom",
-        "Vider": "Boşalt",
         "Date": "Tarih",
         "Type": "Çeşit",
         "ID": "Kimlik",
-        "Nom": "İsim"
+        "Nom": "İsim",
+        "Vider": "Boşalt"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",

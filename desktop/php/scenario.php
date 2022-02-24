@@ -38,20 +38,20 @@ function jeedom_displayScenarioGroup($_group='', $_index=-1) {
 	$thisDiv .= '<div class="panel panel-default">';
 	$thisDiv .= '<div class="panel-heading">';
 	$thisDiv .= '<h3 class="panel-title">';
-	$thisDiv .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="'.$href.'">' . $groupName . ' - ';
+	$thisDiv .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" data-groupName="' . $groupName . '" aria-expanded="false" href="'.$href.'">' . $groupName . ' - ';
 	$c = count($scenarios[$groupName]);
 	$thisDiv .= $c. ($c > 1 ? ' scénarios' : ' scénario').'</a>';
 	$thisDiv .= '</h3>';
 	$thisDiv .= '</div>';
 	$thisDiv .= '<div id="'.$id.'" class="panel-collapse collapse">';
 	$thisDiv .= '<div class="panel-body">';
-	$thisDiv .= '<div class="scenarioListContainer">';
+	$thisDiv .= '<div class="scenarioListContainer" data-groupName="' . $groupName . '">';
 	foreach ($scenarios[$groupName] as $scenario) {
 		$inactive = ($scenario->getIsActive()) ? '' : 'inactive';
 		$thisDiv .= '<div class="scenarioDisplayCard cursor '.$inactive.'" data-scenario_id="' . $scenario->getId() . '">';
-		if($scenario->getDisplay('icon') != ''){
+		if ($scenario->getDisplay('icon') != '') {
 			$thisDiv .= '<span>'.$scenario->getDisplay('icon').'</span>';
-		}else{
+		} else {
 			$thisDiv .= '<span><i class="icon noicon jeedom-clap_cinema"></i></span>';
 		}
 		$thisDiv .= "<br>";
@@ -71,7 +71,22 @@ function jeedom_displayScenarioGroup($_group='', $_index=-1) {
 	return $thisDiv;
 }
 
-sendVarToJs('initSearch', init('search', 0));
+$objectList = jeeObject::buildTree(null, false);
+$parentList = array();
+foreach ($objectList as $parent) {
+	array_push($parentList, [
+		'name' => $parent->getName(),
+		'id' => $parent->getId(),
+		'humanName' => $parent->getHumanName(true, true, true, true),
+		'tag' => $parent->getHumanName(true, true)
+	]);
+}
+
+sendVarToJS([
+	'jeephp2js.initSearch' => init('search', 0),
+	'jeephp2js.scenarioListGroup' => $scenarioListGroup,
+	'jeephp2js.objectList' => $parentList
+]);
 ?>
 
 <div class="row row-overflow">

@@ -20,7 +20,7 @@ if (!isConnect('admin')) {
 }
 ?>
 
-<div id="div_alertExpressionTest"></div>
+<div id="div_alertExpressionTest" data-modalType="md_expressionTest"></div>
 <form class="form-horizontal" onsubmit="return false;">
   <div class="input-group input-group-sm" style="width: 100%">
     <span class="input-group-addon roundedLeft" style="width: 100px"><i class="fas fa-random"></i>  {{Test}}</span>

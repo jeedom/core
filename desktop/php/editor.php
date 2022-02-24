@@ -24,8 +24,8 @@ if (init('type', '') == 'custom') {
 }
 
 sendVarToJS([
-	'editorType' => init('type', ''),
-	'customActive' => config::byKey('enableCustomCss')
+	'jeephp2js.editorType' => init('type', ''),
+	'jeephp2js.customActive' => config::byKey('enableCustomCss')
 ]);
 
 //Core CodeMirror:
@@ -61,7 +61,6 @@ if ($lang != 'en') {
 	$plufinSrc = '3rdparty/elfinder/js/i18n/elfinder.' . $lang . '.js';
 	echo '<script src="' . $plufinSrc . '"></script>';
 }
-
 
 include_file("desktop", "editor", "js");
 ?>

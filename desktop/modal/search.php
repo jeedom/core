@@ -20,7 +20,7 @@ if (!isConnect()) {
 }
 ?>
 
-<div id="div_alertModalSearch"></div>
+<div id="div_alertModalSearch" data-modalType="md_search"></div>
 <a id="bt_getHelpModal" class="cursor" style="position: absolute;right: 10px;top: 5px;" title="{{Aide}}"><i class="fas fa-question-circle" ></i></a>
 <!-- Search engine UI -->
 <form class="form-horizontal shadowed">
@@ -212,540 +212,553 @@ if (!isConnect()) {
 </div>
 
 <script>
-var tableScSearch = $('#table_ScenarioSearch')
-var tablePlanSearch = $('#table_DesignSearch')
-var tableViewSearch = $('#table_ViewSearch')
-var tableInteractSearch = $('#table_InteractSearch')
-var tableEqlogicSearch = $('#table_EqlogicSearch')
-var tableCmdSearch = $('#table_CmdSearch')
-var tableNoteSearch = $('#table_NoteSearch')
-var tableStore = [tableScSearch, tablePlanSearch, tableViewSearch, tableInteractSearch, tableEqlogicSearch, tableCmdSearch, tableNoteSearch]
+if (!jeeFrontEnd.md_search) {
+  jeeFrontEnd.md_search = {
+    init: function() {
+      this.tableScSearch = $('#table_ScenarioSearch')
+      this.tablePlanSearch = $('#table_DesignSearch')
+      this.tableViewSearch = $('#table_ViewSearch')
+      this.tableInteractSearch = $('#table_InteractSearch')
+      this.tableEqlogicSearch = $('#table_EqlogicSearch')
+      this.tableCmdSearch = $('#table_CmdSearch')
+      this.tableNoteSearch = $('#table_NoteSearch')
+      this.tableStore = [
+        this.tableScSearch,
+        this.tablePlanSearch,
+        this.tableViewSearch,
+        this.tableInteractSearch,
+        this.tableEqlogicSearch,
+        this.tableCmdSearch,
+        this.tableNoteSearch
+      ]
 
-jeedomUtils.initTableSorter()
-tableStore.forEach(function(table){
-  table[0].config.widgetOptions.resizable_widths = ['', '100px', '100px']
-  table.trigger('applyWidgets')
-  table.trigger('resizableReset')
-  table.trigger('sorton', [[[0,0]]])
-})
-jeedomUtils.initTooltips()
-/* ------            Search UI            -------*/
-function emptyResultTables() {
-  $('#div_alertModalSearch').hide()
-  tableStore.forEach(function(table){
-    table.find('tbody').empty()
-  })
-}
-
-//search type selector:
-$('#sel_searchByType').change(function() {
-  emptyResultTables()
-  $('#searchByTypes > div.searchType').hide()
-  var option = $(this).find('option:selected').val()
-  var div = $('#searchByTypes > div[data-searchType="'+option+'"')
-  div.show()
-  var dataFilter = Array.from(div.attr('data-tableFilter'), x => parseInt(x))
-  for (var i in tableStore) {
-    var table = tableStore[i]
-    if (dataFilter[i] == 1) table.parent().show()
-    else table.parent().hide()
-  }
-})
-
-$('.bt_selectEqLogic').on('click', function() {
-  jeedom.eqLogic.getSelectModal({}, function(result) {
-    $('#in_searchFor_equipment').value(result.human)
-    $('#in_searchFor_equipment').attr('data-id', result.id)
-    searchFor()
-  })
-})
-
-$('.bt_selectCommand').on('click', function() {
-  jeedom.cmd.getSelectModal({},function (result) {
-    $('#in_searchFor_command').value(result.human)
-    $('#in_searchFor_command').attr('data-id', result.cmd.id)
-    searchFor()
-   })
-})
-
-$('.bt_selectGeneric').on('click', function() {
-  jeedom.config.getGenericTypeModal({type: 'all', object: false}, function(result) {
-    $('#in_searchFor_string').value(result.id)
-  })
-})
-
-//Push the button!
-$('#in_searchFor_plugin').change(function() {
-  searchFor()
-})
-$('#in_searchFor_variable').change(function() {
-  searchFor()
-})
-$('#bt_search').off().on('click',function() {
-  searchFor()
-})
-$('#in_searchFor_string, #in_searchFor_id').on('keypress', function(event) {
-  if (event.which === 13) {
-    searchFor()
-  }
-})
-
-function searchFor() {
-  emptyResultTables()
-  var searchType = $('#sel_searchByType').find('option:selected').val()
-  var searchFor = $('#in_searchFor_'+searchType).val().toLowerCase()
-  if (searchFor != '') {
-    window['searchFor_'+searchType](searchFor)
-  }
-}
-
-/* ------            Searching            -------*/
-function searchFor_variable(_searchFor) {
-  jeedom.dataStore.byTypeLinkIdKey({
-    type: 'scenario',
-    linkId: -1,
-    key: _searchFor,
-    usedBy: 1,
-    error: function(error) {
-      $('#div_dataStoreManagementAlert').showAlert({message: error.message, level: 'danger'});
+      jeedomUtils.initTableSorter()
+      this.tableStore.forEach(function(table) {
+        table[0].config.widgetOptions.resizable_widths = ['', '100px', '100px']
+        table.trigger('applyWidgets')
+        table.trigger('resizableReset')
+        table.trigger('sorton', [[[0,0]]])
+      })
+      jeedomUtils.initTooltips()
     },
-    success: function(result) {
-      scenarioResult = []
-      interactResult = []
-      eqlogicResult = []
-      cmdResult = []
-      for (var i in result) {
-        for (var sc in result[i].usedBy.scenario) {
-          scenarioResult.push({'humanName':result[i].usedBy.scenario[sc]['humanNameTag'], 'id':result[i].usedBy.scenario[sc]['id']})
-        }
-        for (var sc in result[i].usedBy.interactDef) {
-          interactResult.push({'humanName':result[i].usedBy.interactDef[sc]['humanName'], 'id':result[i].usedBy.interactDef[sc]['id']})
-        }
-        for (var sc in result[i].usedBy.eqLogic) {
-          eqlogicResult.push({'humanName':result[i].usedBy.eqLogic[sc]['humanName'], 'id':result[i].usedBy.eqLogic[sc]['link']})
-        }
-        for (var sc in result[i].usedBy.cmd) {
-          cmdResult.push({'humanName':result[i].usedBy.cmd[sc]['humanName'], 'id':result[i].usedBy.cmd[sc]['id']})
-        }
-      }
-      showScenariosResult(scenarioResult)
-      showInteractsResult(interactResult)
-      showEqlogicsResult(eqlogicResult)
-      showCmdsResult(cmdResult)
-    }
-  })
-}
-
-function searchFor_plugin(_searchFor) {
-  jeedom.eqLogic.byType({
-    type: _searchFor,
-    error: function(error) {
-      $('#div_alertModalSearch').showAlert({message: error.message, level: 'danger'})
+    emptyResultTables: function() {
+      $('#div_alertModalSearch').hide()
+      this.tableStore.forEach(function(table){
+        table.find('tbody').empty()
+      })
     },
-    success: function(result) {
-      for (var eq in result) {
-        searchFor_equipment('', result[eq].id)
+    searchFor: function() {
+      this.emptyResultTables()
+      var searchType = $('#sel_searchByType').find('option:selected').val()
+      var thisSearch = $('#in_searchFor_' + searchType).val().toLowerCase()
+      if (thisSearch != '') {
+        this['searchFor_' + searchType](thisSearch)
       }
-    }
-  })
-}
-
-function searchFor_equipment(_searchFor, _byId=false) {
-  if (!_byId) {
-    var eQiD = $('#in_searchFor_equipment').attr('data-id')
-  } else {
-    var eQiD = _byId
-  }
-
-  jeedom.eqLogic.usedBy({
-    id : eQiD,
-    error: function(error) {
-      $('#div_alertModalSearch').showAlert({message: error.message, level: 'danger'})
     },
-    success: function(result) {
-      for (var i in result.scenario) {
-        showScenariosResult({'humanName':result.scenario[i].humanNameTag, 'id':result.scenario[i].linkId}, false)
-      }
-      for (var i in result.plan) {
-        showPlansResult({'humanName':result.plan[i].name, 'id':result.plan[i].id}, false)
-      }
-      for (var i in result.view) {
-        showViewsResult({'humanName':result.view[i].name, 'id':result.view[i].id}, false)
-      }
-      for (var i in result.interactDef) {
-        showInteractsResult({'humanName':result.interactDef[i].humanName, 'id':result.interactDef[i].linkId}, false)
-      }
-      for (var i in result.eqLogic) {
-        showEqlogicsResult({'humanName':result.eqLogic[i].humanName, 'id':result.eqLogic[i].link}, false)
-      }
-      for (var i in result.cmd) {
-        showCmdsResult({'humanName':result.cmd[i].humanName, 'id':result.cmd[i].linkId}, false)
-      }
-      jeedom.eqLogic.getCmd({
-        id : eQiD,
+    /* ------            Searching            -------*/
+    searchFor_variable: function(_searchFor) {
+      self = this
+      jeedom.dataStore.byTypeLinkIdKey({
+        type: 'scenario',
+        linkId: -1,
+        key: _searchFor,
+        usedBy: 1,
+        error: function(error) {
+          $('#div_dataStoreManagementAlert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function(result) {
+          scenarioResult = []
+          interactResult = []
+          eqlogicResult = []
+          cmdResult = []
+          for (var i in result) {
+            for (var sc in result[i].usedBy.scenario) {
+              scenarioResult.push({'humanName':result[i].usedBy.scenario[sc]['humanNameTag'], 'id':result[i].usedBy.scenario[sc]['id']})
+            }
+            for (var sc in result[i].usedBy.interactDef) {
+              interactResult.push({'humanName':result[i].usedBy.interactDef[sc]['humanName'], 'id':result[i].usedBy.interactDef[sc]['id']})
+            }
+            for (var sc in result[i].usedBy.eqLogic) {
+              eqlogicResult.push({'humanName':result[i].usedBy.eqLogic[sc]['humanName'], 'id':result[i].usedBy.eqLogic[sc]['link']})
+            }
+            for (var sc in result[i].usedBy.cmd) {
+              cmdResult.push({'humanName':result[i].usedBy.cmd[sc]['humanName'], 'id':result[i].usedBy.cmd[sc]['id']})
+            }
+          }
+          self.showScenariosResult(scenarioResult)
+          self.showInteractsResult(interactResult)
+          self.showEqlogicsResult(eqlogicResult)
+          self.showCmdsResult(cmdResult)
+        }
+      })
+    },
+    searchFor_plugin: function(_searchFor) {
+      self = this
+      jeedom.eqLogic.byType({
+        type: _searchFor,
         error: function(error) {
           $('#div_alertModalSearch').showAlert({message: error.message, level: 'danger'})
         },
         success: function(result) {
-          for (var i in result) {
-            searchFor_command('', result[i].id)
+          for (var eq in result) {
+            self.searchFor_equipment('', result[eq].id)
           }
         }
       })
-    }
-  })
-}
-
-function searchFor_command(_searchFor, _byId=false) {
-  if (!_byId) {
-    var cmdId = $('#in_searchFor_command').attr('data-id')
-  } else {
-    var cmdId = _byId
-  }
-
-  jeedom.cmd.usedBy({
-    id : cmdId,
-    error: function(error) {
-      $('#div_alertModalSearch').showAlert({message: error.message, level: 'danger'})
     },
-    success: function(result) {
-      for (var i in result.scenario) {
-        showScenariosResult({'humanName':result.scenario[i].humanNameTag, 'id':result.scenario[i].linkId}, false)
+    searchFor_equipment: function(_searchFor, _byId=false) {
+      if (!_byId) {
+        var eQiD = $('#in_searchFor_equipment').attr('data-id')
+      } else {
+        var eQiD = _byId
       }
-      for (var i in result.plan) {
-        showPlansResult({'humanName':result.plan[i].name, 'id':result.plan[i].id}, false)
-      }
-      for (var i in result.view) {
-        showViewsResult({'humanName':result.view[i].name, 'id':result.view[i].id}, false)
-      }
-      for (var i in result.interactDef) {
-        showInteractsResult({'humanName':result.interactDef[i].humanName, 'id':result.interactDef[i].linkId}, false)
-      }
-      for (var i in result.eqLogic) {
-        showEqlogicsResult({'humanName':result.eqLogic[i].humanName, 'id':result.eqLogic[i].link}, false)
-      }
-      for (var i in result.cmd) {
-        showCmdsResult({'humanName':result.cmd[i].humanName, 'id':result.cmd[i].linkId}, false)
-      }
-    }
-  })
-}
 
-function searchFor_string(_searchFor) {
-  jeedom.getStringUsedBy({
-    search : _searchFor,
-    error: function(error) {
-      $('#div_alertModalSearch').showAlert({message: error.message, level: 'danger'})
+      self = this
+      jeedom.eqLogic.usedBy({
+        id: eQiD,
+        error: function(error) {
+          $('#div_alertModalSearch').showAlert({message: error.message, level: 'danger'})
+        },
+        success: function(result) {
+          for (var i in result.scenario) {
+            self.showScenariosResult({'humanName':result.scenario[i].humanNameTag, 'id':result.scenario[i].linkId}, false)
+          }
+          for (var i in result.plan) {
+            self.showPlansResult({'humanName':result.plan[i].name, 'id':result.plan[i].id}, false)
+          }
+          for (var i in result.view) {
+            self.showViewsResult({'humanName':result.view[i].name, 'id':result.view[i].id}, false)
+          }
+          for (var i in result.interactDef) {
+            self.showInteractsResult({'humanName':result.interactDef[i].humanName, 'id':result.interactDef[i].linkId}, false)
+          }
+          for (var i in result.eqLogic) {
+            self.showEqlogicsResult({'humanName':result.eqLogic[i].humanName, 'id':result.eqLogic[i].link}, false)
+          }
+          for (var i in result.cmd) {
+            self.showCmdsResult({'humanName':result.cmd[i].humanName, 'id':result.cmd[i].linkId}, false)
+          }
+          jeedom.eqLogic.getCmd({
+            id: eQiD,
+            error: function(error) {
+              $('#div_alertModalSearch').showAlert({message: error.message, level: 'danger'})
+            },
+            success: function(result) {
+              for (var i in result) {
+                self.searchFor_command('', result[i].id)
+              }
+            }
+          })
+        }
+      })
     },
-    success: function(result) {
-      for (var i in result.scenario) {
-        showScenariosResult({'humanName':result.scenario[i].humanNameTag, 'id':result.scenario[i].linkId}, false)
+    searchFor_command: function(_searchFor, _byId=false) {
+      if (!_byId) {
+        var cmdId = $('#in_searchFor_command').attr('data-id')
+      } else {
+        var cmdId = _byId
       }
-      for (var i in result.interactDef) {
-        showInteractsResult({'humanName':result.interactDef[i].humanName, 'id':result.interactDef[i].linkId}, false)
-      }
-      for (var i in result.eqLogic) {
-        showEqlogicsResult({'humanName':result.eqLogic[i].humanName, 'id':result.eqLogic[i].link}, false)
-      }
-      for (var i in result.cmd) {
-        showCmdsResult({'humanName':result.cmd[i].humanName, 'id':result.cmd[i].linkId}, false)
-      }
-      for (var i in result.note) {
-        showNotesResult({'humanName':result.note[i].humanName, 'id':result.note[i].linkId}, false)
-      }
-    }
-  })
-}
 
-function searchFor_id(_searchFor) {
-  jeedom.getIdUsedBy({
-    search : _searchFor,
-    error: function(error) {
-      $('#div_alertModalSearch').showAlert({message: error.message, level: 'danger'})
+      self = this
+      jeedom.cmd.usedBy({
+        id: cmdId,
+        error: function(error) {
+          $('#div_alertModalSearch').showAlert({message: error.message, level: 'danger'})
+        },
+        success: function(result) {
+          for (var i in result.scenario) {
+            self.showScenariosResult({'humanName':result.scenario[i].humanNameTag, 'id':result.scenario[i].linkId}, false)
+          }
+          for (var i in result.plan) {
+            self.showPlansResult({'humanName':result.plan[i].name, 'id':result.plan[i].id}, false)
+          }
+          for (var i in result.view) {
+            self.showViewsResult({'humanName':result.view[i].name, 'id':result.view[i].id}, false)
+          }
+          for (var i in result.interactDef) {
+            self.showInteractsResult({'humanName':result.interactDef[i].humanName, 'id':result.interactDef[i].linkId}, false)
+          }
+          for (var i in result.eqLogic) {
+            self.showEqlogicsResult({'humanName':result.eqLogic[i].humanName, 'id':result.eqLogic[i].link}, false)
+          }
+          for (var i in result.cmd) {
+            self.showCmdsResult({'humanName':result.cmd[i].humanName, 'id':result.cmd[i].linkId}, false)
+          }
+        }
+      })
     },
-    success: function(result) {
-      for (var i in result.scenario) {
-        showScenariosResult({'humanName':result.scenario[i].humanNameTag, 'id':result.scenario[i].linkId}, false)
-      }
-      for (var i in result.plan) {
-        showPlansResult({'humanName':result.plan[i].name, 'id':result.plan[i].id}, false)
-      }
-      for (var i in result.view) {
-        showViewsResult({'humanName':result.view[i].name, 'id':result.view[i].id}, false)
-      }
-      for (var i in result.interactDef) {
-        showInteractsResult({'humanName':result.interactDef[i].humanName, 'id':result.interactDef[i].linkId}, false)
-      }
-      for (var i in result.eqLogic) {
-        showEqlogicsResult({'humanName':result.eqLogic[i].humanName, 'id':result.eqLogic[i].link}, false)
-      }
-      for (var i in result.cmd) {
-        showCmdsResult({'humanName':result.cmd[i].humanName, 'id':result.cmd[i].linkId}, false)
-      }
-      for (var i in result.note) {
-        showNotesResult({'humanName':result.note[i].humanName, 'id':result.note[i].linkId}, false)
-      }
-    }
-  })
-}
-
-/* ------            Search results display            -------*/
-//display result in scenario table:
-function showScenariosResult(_scenarios, _empty=true) {
-  if (!Array.isArray(_scenarios)) _scenarios = [_scenarios]
-  for (var i in _scenarios) {
-    if (tableScSearch.find('.scenario[data-id="'+_scenarios[i].id+'"]').length) return
-    var tr = '<tr class="scenario" data-id="' + _scenarios[i].id + '">'
-    tr += '<td>'
-    tr += '<span>'+_scenarios[i].humanName+'</span>'
-    tr += '</td>'
-
-    tr += '<td>'
-    tr += '<span class="label label-info">'+_scenarios[i].id+'</span>'
-    tr += '</td>'
-
-    tr += '<td>'
-    tr += '<a class="btn btn-xs btn-default tooltips bt_openLog" title="{{Voir les logs}}"><i class="far fa-file"></i></a> '
-    tr += '<a class="btn btn-xs btn-success tooltips bt_openScenario" target="_blank" title="{{Aller sur la page du scénario.}}"><i class="fa fa-arrow-circle-right"></i></a>'
-    tr += '</td>'
-
-    tr += '</tr>'
-    tableScSearch.find('tbody').append(tr)
-    tableScSearch.trigger("update")
-    jeedomUtils.initTooltips(tableScSearch)
-  }
-}
-
-//display result in design table:
-function showPlansResult(_plans, _empty=true) {
-  if (!Array.isArray(_plans)) _plans = [_plans]
-  for (var i in _plans) {
-    if (tablePlanSearch.find('.plan[data-id="'+_plans[i].id+'"]').length) return
-    var tr = '<tr class="plan" data-id="' + _plans[i].id + '">'
-    tr += '<td>'
-    tr += '<span>'+_plans[i].humanName+'</span>'
-    tr += '</td>'
-
-    tr += '<td>'
-    tr += '<span class="label label-info">'+_plans[i].id+'</span>'
-    tr += '</td>'
-
-    tr += '<td>'
-    tr += '<a class="btn btn-xs btn-success tooltips bt_openDesign" target="_blank" title="{{Aller sur le design.}}"><i class="fa fa-arrow-circle-right"></i></a>'
-    tr += '</td>'
-
-    tr += '</tr>'
-    tablePlanSearch.find('tbody').append(tr)
-    tablePlanSearch.trigger("update")
-    jeedomUtils.initTooltips(tablePlanSearch)
-  }
-}
-
-//display result in view table:
-function showViewsResult(_views, _empty=true) {
-  if (!Array.isArray(_views)) _views = [_views]
-  for (var i in _views) {
-    if (tableViewSearch.find('.view[data-id="'+_views[i].id+'"]').length) return
-    var tr = '<tr class="view" data-id="' + _views[i].id + '">'
-    tr += '<td>'
-    tr += '<span>'+_views[i].humanName+'</span>'
-    tr += '</td>'
-
-    tr += '<td>'
-    tr += '<span class="label label-info">'+_views[i].id+'</span>'
-    tr += '</td>'
-
-    tr += '<td>'
-    tr += '<a class="btn btn-xs btn-success tooltips bt_openView" target="_blank" title="{{Aller sur la vue.}}"><i class="fa fa-arrow-circle-right"></i></a>'
-    tr += '</td>'
-
-    tr += '</tr>'
-    tableViewSearch.find('tbody').append(tr)
-    tableViewSearch.trigger("update")
-    jeedomUtils.initTooltips(tableViewSearch)
-  }
-}
-
-//display result in interact table:
-function showInteractsResult(_Interacts, _empty=true) {
-  if (!Array.isArray(_Interacts)) _Interacts = [_Interacts]
-  for (var i in _Interacts) {
-    if (tableInteractSearch.find('.view[data-id="'+_Interacts[i].id+'"]').length) return
-    var tr = '<tr class="view" data-id="' + _Interacts[i].id + '">'
-    tr += '<td>'
-    tr += '<span>'+_Interacts[i].humanName+'</span>'
-    tr += '</td>'
-
-    tr += '<td>'
-    tr += '<span class="label label-info">'+_Interacts[i].id+'</span>'
-    tr += '</td>'
-
-    tr += '<td>'
-    tr += '<a class="btn btn-xs btn-success tooltips bt_openInteract" target="_blank" title="{{Aller sur l\'interaction.}}"><i class="fa fa-arrow-circle-right"></i></a>'
-    tr += '</td>'
-
-    tr += '</tr>'
-    tableInteractSearch.find('tbody').append(tr)
-    tableInteractSearch.trigger("update")
-    jeedomUtils.initTooltips(tableInteractSearch)
-  }
-}
-
-//display result in cmd table:
-function showEqlogicsResult(_Eqlogics, _empty=true) {
-  if (!Array.isArray(_Eqlogics)) _Eqlogics = [_Eqlogics]
-  for (var i in _Eqlogics) {
-    if (tableEqlogicSearch.find('.view[data-id="'+_Eqlogics[i].id+'"]').length) return
-    var tr = '<tr class="view" data-id="' + _Eqlogics[i].id + '">'
-    var id = _Eqlogics[i].id.split('=').pop()
-    tr += '<td>'
-    tr += '<span>'+_Eqlogics[i].humanName+'</span>'
-    tr += '</td>'
-
-    tr += '<td>'
-    tr += '<span class="label label-info">'+id+'</span>'
-    tr += '</td>'
-
-    tr += '<td>'
-    tr += '<a class="btn btn-xs btn-success tooltips bt_openEqlogic" target="_blank" title="{{Aller sur l\'équipement.}}"><i class="fa fa-arrow-circle-right"></i></a>'
-    tr += '</td>'
-
-    tr += '</tr>'
-    tableEqlogicSearch.find('tbody').append(tr)
-    tableEqlogicSearch.trigger("update")
-    jeedomUtils.initTooltips(tableEqlogicSearch)
-  }
-}
-
-//display result in cmd table:
-function showCmdsResult(_Cmds, _empty=true) {
-  if (!Array.isArray(_Cmds)) _Cmds = [_Cmds]
-  for (var i in _Cmds) {
-    if (tableCmdSearch.find('.view[data-id="'+_Cmds[i].id+'"]').length) return
-    var tr = '<tr class="view" data-id="' + _Cmds[i].id + '">'
-    tr += '<td>'
-    tr += '<span>'+_Cmds[i].humanName+'</span>'
-    tr += '</td>'
-
-    tr += '<td>'
-    tr += '<span class="label label-info">'+_Cmds[i].id+'</span>'
-    tr += '</td>'
-
-    tr += '<td>'
-    tr += '<a class="btn btn-xs btn-success tooltips bt_openCmd" target="_blank" title="{{Ouvrir configuration de la commande.}}"><i class="fas fa-cog"></i></a>'
-    tr += '</td>'
-
-    tr += '</tr>'
-    tableCmdSearch.find('tbody').append(tr)
-    tableCmdSearch.trigger("update")
-    jeedomUtils.initTooltips(tableCmdSearch)
-  }
-}
-
-//display result in note table:
-function showNotesResult(_Notes, _empty=true) {
-  if (!Array.isArray(_Notes)) _Notes = [_Notes]
-  for (var i in _Notes) {
-    if (tableNoteSearch.find('.view[data-id="'+_Notes[i].id+'"]').length) return
-    var tr = '<tr class="view" data-id="' + _Notes[i].id + '">'
-    tr += '<td>'
-    tr += '<span>'+_Notes[i].humanName+'</span>'
-    tr += '</td>'
-
-    tr += '<td>'
-    tr += '<span class="label label-info">'+_Notes[i].id+'</span>'
-    tr += '</td>'
-
-    tr += '<td>'
-    tr += '<a class="btn btn-xs btn-success tooltips bt_openNote" target="_blank" title="{{Ouvrir la note.}}"><i class="fa fa-arrow-circle-right"></i></a>'
-    tr += '</td>'
-
-    tr += '</tr>'
-    tableNoteSearch.find('tbody').append(tr)
-    tableNoteSearch.trigger("update")
-    jeedomUtils.initTooltips(tableNoteSearch)
-  }
-}
-
-/* ------            Search results Tables Actions            -------*/
-$('#table_ScenarioSearch').on({
-  'click': function(event) {
-    var tr = $(this).closest('tr')
-    $('#md_modal2').dialog({title: "{{Log d'exécution du scénario}}"}).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + tr.attr('data-id')).dialog('open')
-  }
-}, '.bt_openLog')
-
-$('#table_ScenarioSearch').on({
-  'click': function(event) {
-    var tr = $(this).closest('tr')
-    var searchType = $('#sel_searchByType').find('option:selected').val()
-    var url = 'index.php?v=d&p=scenario&id=' + tr.attr('data-id')
-    if (searchType != 'plugin') {
-      var searchFor = $('#in_searchFor_'+searchType).val()
-      url += '&search=' + encodeURI(searchFor.replace('#', ''))
-    }
-    window.open(url).focus()
-  }
-}, '.bt_openScenario')
-
-$('#table_DesignSearch').on({
-  'click': function(event) {
-    var tr = $(this).closest('tr')
-    var url = 'index.php?v=d&p=plan&plan_id=' + tr.attr('data-id')
-    window.open(url).focus()
-  }
-}, '.bt_openDesign')
-
-$('#table_ViewSearch').on({
-  'click': function(event) {
-    var tr = $(this).closest('tr')
-    var url = 'index.php?v=d&p=view&view_id=' + tr.attr('data-id')
-    window.open(url).focus()
-  }
-}, '.bt_openView')
-
-$('#table_InteractSearch').on({
-  'click': function(event) {
-    var tr = $(this).closest('tr')
-    var url = 'index.php?v=d&p=interact&id=' + tr.attr('data-id')
-    window.open(url).focus()
-  }
-}, '.bt_openInteract')
-
-$('#table_EqlogicSearch').on({
-  'click': function(event) {
-    var tr = $(this).closest('tr')
-    var url = tr.attr('data-id')
-    window.open(url).focus()
-  }
-}, '.bt_openEqlogic')
-
-$('#table_CmdSearch').on({
-  'click': function(event) {
-    var tr = $(this).closest('tr')
-    $('#md_modal2').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + tr.attr('data-id')).dialog('open')
-  }
-}, '.bt_openCmd')
-
-$('#table_NoteSearch').on({
-  'click': function(event) {
-    var tr = $(this).closest('tr')
-    var url = 'index.php?v=d&p=modaldisplay&loadmodal=note.manager&title=Notes&id='+tr.attr('data-id')
-    window.open(url).focus()
-  }
-}, '.bt_openNote')
-
-/* Help button */
-$('#bt_getHelpModal').on('click',function() {
-  jeedom.getDocumentationUrl({
-    page: 'search',
-    theme: $('body').attr('data-theme'),
-    error: function(error) {
-    $.fn.showAlert({message: error.message, level: 'danger'})
+    searchFor_string: function(_searchFor) {
+      self = this
+      jeedom.getStringUsedBy({
+        search: _searchFor,
+        error: function(error) {
+          $('#div_alertModalSearch').showAlert({message: error.message, level: 'danger'})
+        },
+        success: function(result) {
+          for (var i in result.scenario) {
+            self.showScenariosResult({'humanName':result.scenario[i].humanNameTag, 'id':result.scenario[i].linkId}, false)
+          }
+          for (var i in result.interactDef) {
+            self.showInteractsResult({'humanName':result.interactDef[i].humanName, 'id':result.interactDef[i].linkId}, false)
+          }
+          for (var i in result.eqLogic) {
+            self.showEqlogicsResult({'humanName':result.eqLogic[i].humanName, 'id':result.eqLogic[i].link}, false)
+          }
+          for (var i in result.cmd) {
+            self.showCmdsResult({'humanName':result.cmd[i].humanName, 'id':result.cmd[i].linkId}, false)
+          }
+          for (var i in result.note) {
+            self.showNotesResult({'humanName':result.note[i].humanName, 'id':result.note[i].linkId}, false)
+          }
+        }
+      })
     },
-    success: function(url) {
-    window.open(url,'_blank')
+    searchFor_id: function(_searchFor) {
+      self = this
+      jeedom.getIdUsedBy({
+        search: _searchFor,
+        error: function(error) {
+          $('#div_alertModalSearch').showAlert({message: error.message, level: 'danger'})
+        },
+        success: function(result) {
+          for (var i in result.scenario) {
+            self.showScenariosResult({'humanName':result.scenario[i].humanNameTag, 'id':result.scenario[i].linkId}, false)
+          }
+          for (var i in result.plan) {
+            self.showPlansResult({'humanName':result.plan[i].name, 'id':result.plan[i].id}, false)
+          }
+          for (var i in result.view) {
+            self.showViewsResult({'humanName':result.view[i].name, 'id':result.view[i].id}, false)
+          }
+          for (var i in result.interactDef) {
+            self.showInteractsResult({'humanName':result.interactDef[i].humanName, 'id':result.interactDef[i].linkId}, false)
+          }
+          for (var i in result.eqLogic) {
+            self.showEqlogicsResult({'humanName':result.eqLogic[i].humanName, 'id':result.eqLogic[i].link}, false)
+          }
+          for (var i in result.cmd) {
+            self.showCmdsResult({'humanName':result.cmd[i].humanName, 'id':result.cmd[i].linkId}, false)
+          }
+          for (var i in result.note) {
+            self.showNotesResult({'humanName':result.note[i].humanName, 'id':result.note[i].linkId}, false)
+          }
+        }
+      })
+    },
+    /* ------            Search results display            -------*/
+    //display result in scenario table:
+    showScenariosResult: function(_scenarios, _empty=true) {
+      if (!Array.isArray(_scenarios)) _scenarios = [_scenarios]
+      for (var i in _scenarios) {
+        if (this.tableScSearch.find('.scenario[data-id="'+_scenarios[i].id+'"]').length) return
+        var tr = '<tr class="scenario" data-id="' + _scenarios[i].id + '">'
+        tr += '<td>'
+        tr += '<span>'+_scenarios[i].humanName+'</span>'
+        tr += '</td>'
+
+        tr += '<td>'
+        tr += '<span class="label label-info">'+_scenarios[i].id+'</span>'
+        tr += '</td>'
+
+        tr += '<td>'
+        tr += '<a class="btn btn-xs btn-default tooltips bt_openLog" title="{{Voir les logs}}"><i class="far fa-file"></i></a> '
+        tr += '<a class="btn btn-xs btn-success tooltips bt_openScenario" target="_blank" title="{{Aller sur la page du scénario.}}"><i class="fa fa-arrow-circle-right"></i></a>'
+        tr += '</td>'
+
+        tr += '</tr>'
+        this.tableScSearch.find('tbody').append(tr)
+        this.tableScSearch.trigger("update")
+        jeedomUtils.initTooltips(this.tableScSearch)
+      }
+    },
+    //display result in design table:
+    showPlansResult: function(_plans, _empty=true) {
+      if (!Array.isArray(_plans)) _plans = [_plans]
+      for (var i in _plans) {
+        if (this.tablePlanSearch.find('.plan[data-id="'+_plans[i].id+'"]').length) return
+        var tr = '<tr class="plan" data-id="' + _plans[i].id + '">'
+        tr += '<td>'
+        tr += '<span>'+_plans[i].humanName+'</span>'
+        tr += '</td>'
+
+        tr += '<td>'
+        tr += '<span class="label label-info">'+_plans[i].id+'</span>'
+        tr += '</td>'
+
+        tr += '<td>'
+        tr += '<a class="btn btn-xs btn-success tooltips bt_openDesign" target="_blank" title="{{Aller sur le design.}}"><i class="fa fa-arrow-circle-right"></i></a>'
+        tr += '</td>'
+
+        tr += '</tr>'
+        this.tablePlanSearch.find('tbody').append(tr)
+        this.tablePlanSearch.trigger("update")
+        jeedomUtils.initTooltips(this.tablePlanSearch)
+      }
+    },
+    //display result in view table:
+    showViewsResult: function(_views, _empty=true) {
+      if (!Array.isArray(_views)) _views = [_views]
+      for (var i in _views) {
+        if (this.tableViewSearch.find('.view[data-id="'+_views[i].id+'"]').length) return
+        var tr = '<tr class="view" data-id="' + _views[i].id + '">'
+        tr += '<td>'
+        tr += '<span>'+_views[i].humanName+'</span>'
+        tr += '</td>'
+
+        tr += '<td>'
+        tr += '<span class="label label-info">'+_views[i].id+'</span>'
+        tr += '</td>'
+
+        tr += '<td>'
+        tr += '<a class="btn btn-xs btn-success tooltips bt_openView" target="_blank" title="{{Aller sur la vue.}}"><i class="fa fa-arrow-circle-right"></i></a>'
+        tr += '</td>'
+
+        tr += '</tr>'
+        this.tableViewSearch.find('tbody').append(tr)
+        this.tableViewSearch.trigger("update")
+        jeedomUtils.initTooltips(this.tableViewSearch)
+      }
+    },
+    //display result in interact table:
+    showInteractsResult: function(_Interacts, _empty=true) {
+      if (!Array.isArray(_Interacts)) _Interacts = [_Interacts]
+      for (var i in _Interacts) {
+        if (this.tableInteractSearch.find('.view[data-id="'+_Interacts[i].id+'"]').length) return
+        var tr = '<tr class="view" data-id="' + _Interacts[i].id + '">'
+        tr += '<td>'
+        tr += '<span>'+_Interacts[i].humanName+'</span>'
+        tr += '</td>'
+
+        tr += '<td>'
+        tr += '<span class="label label-info">'+_Interacts[i].id+'</span>'
+        tr += '</td>'
+
+        tr += '<td>'
+        tr += '<a class="btn btn-xs btn-success tooltips bt_openInteract" target="_blank" title="{{Aller sur l\'interaction.}}"><i class="fa fa-arrow-circle-right"></i></a>'
+        tr += '</td>'
+
+        tr += '</tr>'
+        this.tableInteractSearch.find('tbody').append(tr)
+        this.tableInteractSearch.trigger("update")
+        jeedomUtils.initTooltips(this.tableInteractSearch)
+      }
+    },
+    //display result in cmd table:
+    showEqlogicsResult: function(_Eqlogics, _empty=true) {
+      if (!Array.isArray(_Eqlogics)) _Eqlogics = [_Eqlogics]
+      for (var i in _Eqlogics) {
+        if (this.tableEqlogicSearch.find('.view[data-id="'+_Eqlogics[i].id+'"]').length) return
+        var tr = '<tr class="view" data-id="' + _Eqlogics[i].id + '">'
+        var id = _Eqlogics[i].id.split('=').pop()
+        tr += '<td>'
+        tr += '<span>'+_Eqlogics[i].humanName+'</span>'
+        tr += '</td>'
+
+        tr += '<td>'
+        tr += '<span class="label label-info">'+id+'</span>'
+        tr += '</td>'
+
+        tr += '<td>'
+        tr += '<a class="btn btn-xs btn-success tooltips bt_openEqlogic" target="_blank" title="{{Aller sur l\'équipement.}}"><i class="fa fa-arrow-circle-right"></i></a>'
+        tr += '</td>'
+
+        tr += '</tr>'
+        this.tableEqlogicSearch.find('tbody').append(tr)
+        this.tableEqlogicSearch.trigger("update")
+        jeedomUtils.initTooltips(this.tableEqlogicSearch)
+      }
+    },
+    //display result in cmd table:
+    showCmdsResult: function(_Cmds, _empty=true) {
+      if (!Array.isArray(_Cmds)) _Cmds = [_Cmds]
+      for (var i in _Cmds) {
+        if (this.tableCmdSearch.find('.view[data-id="'+_Cmds[i].id+'"]').length) return
+        var tr = '<tr class="view" data-id="' + _Cmds[i].id + '">'
+        tr += '<td>'
+        tr += '<span>'+_Cmds[i].humanName+'</span>'
+        tr += '</td>'
+
+        tr += '<td>'
+        tr += '<span class="label label-info">'+_Cmds[i].id+'</span>'
+        tr += '</td>'
+
+        tr += '<td>'
+        tr += '<a class="btn btn-xs btn-success tooltips bt_openCmd" target="_blank" title="{{Ouvrir configuration de la commande.}}"><i class="fas fa-cog"></i></a>'
+        tr += '</td>'
+
+        tr += '</tr>'
+        this.tableCmdSearch.find('tbody').append(tr)
+        this.tableCmdSearch.trigger("update")
+        jeedomUtils.initTooltips(this.tableCmdSearch)
+      }
+    },
+    //display result in note table:
+    showNotesResult: function(_Notes, _empty=true) {
+      if (!Array.isArray(_Notes)) _Notes = [_Notes]
+      for (var i in _Notes) {
+        if (this.tableNoteSearch.find('.view[data-id="'+_Notes[i].id+'"]').length) return
+        var tr = '<tr class="view" data-id="' + _Notes[i].id + '">'
+        tr += '<td>'
+        tr += '<span>'+_Notes[i].humanName+'</span>'
+        tr += '</td>'
+
+        tr += '<td>'
+        tr += '<span class="label label-info">'+_Notes[i].id+'</span>'
+        tr += '</td>'
+
+        tr += '<td>'
+        tr += '<a class="btn btn-xs btn-success tooltips bt_openNote" target="_blank" title="{{Ouvrir la note.}}"><i class="fa fa-arrow-circle-right"></i></a>'
+        tr += '</td>'
+
+        tr += '</tr>'
+        this.tableNoteSearch.find('tbody').append(tr)
+        this.tableNoteSearch.trigger("update")
+        jeedomUtils.initTooltips(this.tableNoteSearch)
+      }
+    },
+  }
+}
+
+
+/* ------            Search UI            -------*/
+(function() {
+  $.hideAlert()
+  var jeeM = jeeFrontEnd.md_search
+  jeeM.init()
+
+  //search type selector:
+  $('#sel_searchByType').change(function() {
+    jeeM.emptyResultTables()
+    $('#searchByTypes > div.searchType').hide()
+    var option = $(this).find('option:selected').val()
+    var div = $('#searchByTypes > div[data-searchType="'+option+'"')
+    div.show()
+    var dataFilter = Array.from(div.attr('data-tableFilter'), x => parseInt(x))
+    for (var i in jeeM.tableStore) {
+      var table = jeeM.tableStore[i]
+      if (dataFilter[i] == 1) table.parent().show()
+      else table.parent().hide()
     }
   })
-})
+
+  $('.bt_selectEqLogic').on('click', function() {
+    jeedom.eqLogic.getSelectModal({}, function(result) {
+      $('#in_searchFor_equipment').value(result.human)
+      $('#in_searchFor_equipment').attr('data-id', result.id)
+      jeeM.searchFor()
+    })
+  })
+
+  $('.bt_selectCommand').on('click', function() {
+    jeedom.cmd.getSelectModal({},function (result) {
+      $('#in_searchFor_command').value(result.human)
+      $('#in_searchFor_command').attr('data-id', result.cmd.id)
+      jeeM.searchFor()
+     })
+  })
+
+  $('.bt_selectGeneric').on('click', function() {
+    jeedom.config.getGenericTypeModal({type: 'all', object: false}, function(result) {
+      $('#in_searchFor_string').value(result.id)
+    })
+  })
+
+  //Push the button!
+  $('#in_searchFor_plugin').change(function() {
+    jeeM.searchFor()
+  })
+  $('#in_searchFor_variable').change(function() {
+    jeeM.searchFor()
+  })
+  $('#bt_search').off().on('click',function() {
+    jeeM.searchFor()
+  })
+  $('#in_searchFor_string, #in_searchFor_id').on('keypress', function(event) {
+    if (event.which === 13) {
+      jeeM.searchFor()
+    }
+  })
+
+  /* ------            Search results Tables Actions            -------*/
+  $('#table_ScenarioSearch').on({
+    'click': function(event) {
+      var tr = $(this).closest('tr')
+      $('#md_modal2').dialog({title: "{{Log d'exécution du scénario}}"}).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + tr.attr('data-id')).dialog('open')
+    }
+  }, '.bt_openLog')
+
+  $('#table_ScenarioSearch').on({
+    'click': function(event) {
+      var tr = $(this).closest('tr')
+      var searchType = $('#sel_searchByType').find('option:selected').val()
+      var url = 'index.php?v=d&p=scenario&id=' + tr.attr('data-id')
+      if (searchType != 'plugin') {
+        var searchFor = $('#in_searchFor_'+searchType).val()
+        url += '&search=' + encodeURI(searchFor.replace('#', ''))
+      }
+      window.open(url).focus()
+    }
+  }, '.bt_openScenario')
+
+  $('#table_DesignSearch').on({
+    'click': function(event) {
+      var tr = $(this).closest('tr')
+      var url = 'index.php?v=d&p=plan&plan_id=' + tr.attr('data-id')
+      window.open(url).focus()
+    }
+  }, '.bt_openDesign')
+
+  $('#table_ViewSearch').on({
+    'click': function(event) {
+      var tr = $(this).closest('tr')
+      var url = 'index.php?v=d&p=view&view_id=' + tr.attr('data-id')
+      window.open(url).focus()
+    }
+  }, '.bt_openView')
+
+  $('#table_InteractSearch').on({
+    'click': function(event) {
+      var tr = $(this).closest('tr')
+      var url = 'index.php?v=d&p=interact&id=' + tr.attr('data-id')
+      window.open(url).focus()
+    }
+  }, '.bt_openInteract')
+
+  $('#table_EqlogicSearch').on({
+    'click': function(event) {
+      var tr = $(this).closest('tr')
+      var url = tr.attr('data-id')
+      window.open(url).focus()
+    }
+  }, '.bt_openEqlogic')
+
+  $('#table_CmdSearch').on({
+    'click': function(event) {
+      var tr = $(this).closest('tr')
+      $('#md_modal2').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + tr.attr('data-id')).dialog('open')
+    }
+  }, '.bt_openCmd')
+
+  $('#table_NoteSearch').on({
+    'click': function(event) {
+      var tr = $(this).closest('tr')
+      var url = 'index.php?v=d&p=modaldisplay&loadmodal=note.manager&title=Notes&id='+tr.attr('data-id')
+      window.open(url).focus()
+    }
+  }, '.bt_openNote')
+
+  /* Help button */
+  $('#bt_getHelpModal').on('click',function() {
+    jeedom.getDocumentationUrl({
+      page: 'search',
+      theme: $('body').attr('data-theme'),
+      error: function(error) {
+      $.fn.showAlert({message: error.message, level: 'danger'})
+      },
+      success: function(url) {
+      window.open(url,'_blank')
+      }
+    })
+  })
+})()
 </script>

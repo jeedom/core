@@ -19,13 +19,13 @@ if (!isConnect('admin')) {
   throw new Exception('401 Unauthorized');
 }
 sendVarToJS([
-  'prerenderGraph' => config::byKey('graphlink::prerender', 'core', 10),
-  'renderGraph' => config::byKey('graphlink::render', 'core', 3000)
+  'jeephp2js.md_graphLink_prerender' => config::byKey('graphlink::prerender', 'core', 10),
+  'jeephp2js.md_graphLink_render' => config::byKey('graphlink::render', 'core', 3000)
 ]);
 ?>
 
 <script type="text/javascript" src="3rdparty/vivagraph/vivagraph.min.js"></script>
-<div id="div_alertGraphLink"></div>
+<div id="div_alertGraphLink" data-modalType="md_graphLink"></div>
 <div id="div_graphLinkRenderer" style="height:100%;width: 100%;"></div>
 
 <script>
@@ -153,7 +153,7 @@ function render() {
   var renderer = Viva.Graph.View.renderer(graph, {
     layout: layout,
     graphics: graphics,
-    prerender: parseInt(prerenderGraph),
+    prerender: parseInt(jeephp2js.md_graphLink_prerender),
     renderLinks: true,
     container: document.getElementById('div_graphLinkRenderer')
   })
@@ -162,6 +162,6 @@ function render() {
     renderer.pause()
     renderer.reset()
     jeedomUtils.initTooltips()
-  }, parseInt(renderGraph))
+  }, parseInt(jeephp2js.md_graphLink_render))
 }
 </script>

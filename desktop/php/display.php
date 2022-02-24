@@ -25,7 +25,7 @@ foreach ($display_objects as $object) {
 	}
 	$nbEqlogic += count($display_eqlogics[$object->getId()]);
 }
-sendVarToJs('_nbCmd_', $nbCmd);
+sendVarToJs('jeephp2js.nbCmd', $nbCmd);
 $remove_history = jeedom::getRemovehistory();
 $plugin_enable = config::getPluginEnable();
 

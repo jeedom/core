@@ -32,16 +32,16 @@ foreach ($cmds as $cmd) {
 }
 //eqLogic setter:
 sendVarToJS([
-  'eqLogicInfo' => utils::o2a($eqLogic),
-  'eqLogicWidgetPossibility' => $eqLogic->widgetPossibility('custom::optionalParameters'),
-  'allCmdsInfo' => $allCmds
+  'jeephp2js.md_eqLogicDashEdit_eqInfo' => utils::o2a($eqLogic),
+  'jeephp2js.md_eqLogicDashEdit_eqWidgetPossibility' => $eqLogic->widgetPossibility('custom::optionalParameters'),
+  'jeephp2js.md_eqLogicDashEdit_allCmdsInfo' => $allCmds
 ]);
 
 $cmd_widgetDashboard = cmd::availableWidget('dashboard');
 $cmd_widgetMobile = cmd::availableWidget('mobile');
 ?>
 
-<div style="display: none;" id="md_displayEqLogicConfigure"></div>
+<div style="display: none;" id="md_displayEqLogicConfigure" data-modalType="md_eqLogicDashEdit"></div>
 <div id="div_displayEqLogicConfigure">
   <div style="margin: 0 -13px; overflow: hidden;">
     <!-- Global parameters -->
@@ -68,6 +68,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
       <div class="panel-heading">
         <h3 class="panel-title">
           <a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#optParams">{{Affichage}}</a>
+          <sup class="pull-right"><i class="fas fa-question-circle" title="{{Paramètres de la tuile. Courbe d'historique et paramètres optionnels.}}"></i></sup>
         </h3>
       </div>
       <div id="optParams" class="panel-collapse collapse">
@@ -398,13 +399,13 @@ $(function() {
   setModal()
 
   //display options:
-  if (eqLogicWidgetPossibility == 1) $('#panel_optParams').show()
-  $('#div_displayEqLogicConfigure').setValues(eqLogicInfo, '.eqLogicAttr')
+  if (jeephp2js.md_eqLogicDashEdit_eqWidgetPossibility == 1) $('#panel_optParams').show()
+  $('#div_displayEqLogicConfigure').setValues(jeephp2js.md_eqLogicDashEdit_eqInfo, '.eqLogicAttr')
 
   var $panelCmds = $('#panel_cmds')
   $panelCmds.find('.cmdConfig').each(function() {
     var id = $(this).data('id')
-    var cmdInfo = allCmdsInfo[id]
+    var cmdInfo = jeephp2js.md_eqLogicDashEdit_allCmdsInfo[id]
     if (cmdInfo.widgetPossibilityDashboard == true) $(this).find('.widgetPossibilityDashboard').show()
     if (cmdInfo.widgetPossibilityMobile == true) $(this).find('.widgetPossibilityMobile').show()
     $panelCmds.setValues(cmdInfo, '.cmdAttr'+id)

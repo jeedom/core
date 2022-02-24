@@ -2,7 +2,7 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-echo '<script>REPO_LIST = []</script>';
+$repoList = [];
 ?>
 
 <div id="backup">
@@ -63,7 +63,7 @@ echo '<script>REPO_LIST = []</script>';
 									</div>
 									<div class="form-group">
 										<div class="col-sm-6 col-xs-12">
-											<?php if (substr(config::byKey('backup::path'), 0, 1) != '/') { ?>
+											<?php if (substr(0, 1, config::byKey('backup::path')) != '/') { ?>
 												<a class="btn btn-success" id="bt_downloadBackup" style="width:100%;"><i class="fas fa-cloud-download-alt"></i> {{Télécharger la sauvegarde}}</a>
 											<?php } ?>
 										</div>
@@ -119,9 +119,6 @@ echo '<script>REPO_LIST = []</script>';
 						$div .= '<select class="form-control sel_restoreCloudBackup" data-repo="' . $rkey . '">';
 						$div .= '<option>{{Chargement...}}</option>';
 						$div .= '</select>';
-						$div .= '<script>';
-						$div .= 'REPO_LIST.push("' . $rkey . '");';
-						$div .= '</script>';
 						$div .= '</div>';
 						$div .= '</div>';
 						$div .= '<div class="form-group">';
@@ -134,6 +131,7 @@ echo '<script>REPO_LIST = []</script>';
 						$div .= '</form>';
 						$div .= '</div>';
 						$div .= '</div>';
+						array_push($repoList,$rkey);
 						echo $div;
 					}
 					?>
@@ -157,4 +155,7 @@ echo '<script>REPO_LIST = []</script>';
 	</div>
 </div>
 
-<?php include_file("desktop", "backup", "js"); ?>
+<?php
+sendVarToJs('jeephp2js.repoList', $repoList);
+include_file("desktop", "backup", "js");
+?>

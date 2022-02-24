@@ -6,7 +6,7 @@ include_file('core', 'authentification', 'php');
 global $JEEDOM_INTERNAL_CONFIG;
 global $jeedom_theme;
 $jeedom_theme = jeedom::getThemeConfig();
-$configs = array_merge($jeedom_theme, config::byKeys(array('language', 'jeedom::firstUse')));
+$configs = array_merge($jeedom_theme, config::byKeys(array('language', 'jeedom::firstUse', 'debugFrontEnd', 'debugFrontEndVerbose')));
 if (isConnect()) {
 	$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
 	if (count($homePage) == 2) {
@@ -145,14 +145,7 @@ function setTheme() {
 	<meta name="author" content="">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<script>
-		var clientDatetime = new Date();
-		var clientServerDiffDatetime = (<?php echo microtime(TRUE); ?> * 1000) - clientDatetime.getTime();
-		var serverTZoffsetMin = <?php echo getTZoffsetMin() ?>;
-		var serverDatetime = <?php echo getmicrotime(); ?>;
-		JEEDOM_PRODUCT_NAME = '<?php echo $configs['product_name'] ?>';
-		JEEDOM_AJAX_TOKEN = '';
-	</script>
+
 	<?php
 	include_file('core', 'icon.inc', 'php');
 	include_file('3rdparty', 'roboto/roboto', 'css');
@@ -161,16 +154,30 @@ function setTheme() {
 	include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'css');
 	include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
 	include_file('3rdparty', 'jquery/jquery.min', 'js');
+	include_file('3rdparty', 'jquery.utils/jquery.utils', 'js');
+
+	include_file('core', 'jeedom', 'class.js');
+	?>
+	<script>
+		jeeFrontEnd.jeedomVersion = '<?php echo jeedom::version() ?>';
+		jeeFrontEnd.clientDatetime = new Date();
+		jeeFrontEnd.clientServerDiffDatetime = (<?php echo microtime(TRUE); ?> * 1000) - jeeFrontEnd.clientDatetime.getTime();
+		jeeFrontEnd.serverTZoffsetMin = <?php echo getTZoffsetMin() ?>;
+		jeeFrontEnd.serverDatetime = <?php echo getmicrotime(); ?>;
+		JEEDOM_PRODUCT_NAME = '<?php echo $configs['product_name'] ?>';
+		JEEDOM_AJAX_TOKEN = '';
+	</script>
+	<?php
+	include_file('core', 'core', 'js');
+	include_file('core', 'js.inc', 'php');
+
 	include_file('3rdparty', 'nouislider/nouislider', 'js');
 	include_file('3rdparty', 'nouislider/nouislider', 'css');
-	include_file('3rdparty', 'jquery.utils/jquery.utils', 'js');
-	include_file('core', 'core', 'js');
 	include_file('3rdparty', 'bootstrap/bootstrap.min', 'js');
 	include_file('3rdparty', 'jquery.ui/jquery-ui.min', 'js');
 	include_file('3rdparty', 'jquery.ui/jquery.ui.datepicker.fr', 'js');
 	include_file('3rdparty', 'jquery.ui-touch-punch/jquery.ui.touch-punch.min', 'js');
 	include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'js');
-	include_file('core', 'js.inc', 'php');
 	include_file('3rdparty', 'bootbox/bootbox.min', 'js');
 	include_file('3rdparty', 'highstock/highstock', 'js');
 	include_file('3rdparty', 'highstock/highcharts-more', 'js');
@@ -242,18 +249,18 @@ function setTheme() {
 	</div>
 	<?php
 	sendVarToJS([
-		'jeedom_langage' => $configs['language'],
+		'jeeFrontEnd.language' => $configs['language'],
 		'jeedom.theme' => $jeedom_theme
 	]);
 	if (!isConnect()) {
 		include_file('desktop', 'connection', 'php');
 	} else {
 		sendVarToJS([
-			'userProfils' => $_SESSION['user']->getOptions(),
+			'jeeFrontEnd.userProfils' => $_SESSION['user']->getOptions(),
 			'user_id' => $_SESSION['user']->getId(),
-			'user_isAdmin' => isConnect('admin'),
+ 			'user_isAdmin' => isConnect('admin'),
 			'user_login' => $_SESSION['user']->getLogin(),
-			'jeedom_firstUse' => $configs['jeedom::firstUse']
+			'jeeFrontEnd.jeedom_firstUse' => $configs['jeedom::firstUse']
 		]);
 		if (isset($eventjs_plugin) && count($eventjs_plugin) > 0) {
 			foreach ($eventjs_plugin as $value) {

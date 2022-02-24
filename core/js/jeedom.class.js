@@ -15,11 +15,41 @@
  */
 
 function jeedom() {}
+jeedom.__description = 'All js methods per Jeedom class. Handles front-end <-> ajax <-> php classes.'
 jeedom.cache = [];
 jeedom.display = {};
 jeedom.connect = 0;
 jeedom.theme = {};
 jeedom.changes_timeout = null;
+
+jeeFrontEnd = {
+  __description: 'Global object where each Core page register its own functions and variable in its sub-object name.',
+  jeedom_firstUse: '',
+  language: '',
+  userProfils: {},
+  planEditOption: {state: false, snap: false, grid: false, gridSize: false, highlight: true},
+  //loadPage history:
+  PREVIOUS_PAGE: null,
+  PREVIOUS_LOCATION: null,
+  NO_POPSTAT: false,
+  modifyWithoutSave: false,
+  //@index.php
+  serverDatetime: null,
+  clientServerDiffDatetime: null,
+  serverDatetime: null,
+  serverTZoffsetMin: null,
+}
+
+/*
+Jeedom namespace for data transfer php -> js through sendVarToJS(). Emptied on loadPage()
+@php:
+sendVarToJS([
+  'jeephp2js.myjsvar1' => init('type', ''),
+  'jeephp2js.myjsvar2' => config::byKey('enableCustomCss')
+]);
+*/
+jeephp2js = {}
+
 var Highcharts
 
 if (!isset(jeedom.cache.getConfiguration)) {
@@ -93,7 +123,7 @@ jeedom.changes = function() {
 }
 
 jeedom.init = function() {
-  jeedom.datetime = serverDatetime;
+  jeedom.datetime = jeeFrontEnd.serverDatetime;
   jeedom.display.version = 'desktop';
   if ($.mobile) {
     jeedom.display.version = 'mobile';
@@ -251,7 +281,6 @@ jeedom.refreshMessageNumber = function() {
     },
     success: function(_number) {
       jeedom.MESSAGE_NUMBER = _number;
-      if ($.mobile) $('.span_nbMessage').html(_number)
       if (_number == 0 || _number == '0') {
         $('#span_nbMessage').hide()
       } else {
@@ -263,6 +292,7 @@ jeedom.refreshMessageNumber = function() {
 
 jeedom.UPDATE_NUMBER
 jeedom.refreshUpdateNumber = function() {
+  if (jeedom.update == undefined) return //mobile
   jeedom.update.number({
     error: function(error) {
       $.fn.showAlert({

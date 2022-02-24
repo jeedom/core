@@ -19,10 +19,10 @@ if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
 $id = init('id', '');
-sendVarToJs('note_id', $id);
+sendVarToJs('jeephp2js.md_noteManagemer_noteId', $id);
 ?>
 
-<div style="display: none;" id="div_noteManagementAlert"></div>
+<div style="display: none;" id="div_noteManagerAlert" data-modalType="md_noteManager"></div>
 <div class="row row-overflow">
   <div id="div_notes" class="col-lg-2 col-md-3 col-sm-4" style="overflow-y:auto;overflow-x:hidden;">
     <div class="bs-sidebar">
@@ -50,86 +50,98 @@ sendVarToJs('note_id', $id);
 </div>
 
 <script>
-function updateNoteList(){
-  jeedom.note.all({
-    error: function(error) {
-      $('#div_noteManagementAlert').showAlert({message: error.message, level: 'danger'})
+if (!jeeFrontEnd.md_noteManager) {
+  jeeFrontEnd.md_noteManager = {
+    init: function() {
+      this.updateNoteList()
     },
-    success: function(notes) {
-      var note = $('#div_noteManagerDisplay').getValues('.noteAttr')[0]
-      var ul = ''
-      for (var i in notes) {
-        ul += '<li class="cursor li_noteDisplay" data-id="'+notes[i].id+'"><a>'+notes[i].name+'</a></li>'
-      }
-      $('#ul_noteList').empty().append(ul)
-      if(note.id != ''){
-        $('.li_noteDisplay[data-id='+note.id+']').addClass('active')
-      }
-    }
-  })
+    updateNoteList: function() {
+      jeedom.note.all({
+        error: function(error) {
+          $('#div_noteManagerAlert').showAlert({message: error.message, level: 'danger'})
+        },
+        success: function(notes) {
+          var note = $('#div_noteManagerDisplay').getValues('.noteAttr')[0]
+          var ul = ''
+          for (var i in notes) {
+            ul += '<li class="cursor li_noteDisplay" data-id="' + notes[i].id + '"><a>' + notes[i].name + '</a></li>'
+          }
+          $('#ul_noteList').empty().append(ul)
+          if (note.id != '') {
+            $('.li_noteDisplay[data-id=' + note.id + ']').addClass('active')
+          }
+        }
+      })
+    },
+  }
 }
 
-$('#bt_noteManagerAdd').on('click',function() {
-  $('#div_noteManagerDisplay .noteAttr').value('')
-  $('#ul_noteList li.active').removeClass('active')
-})
+(function() {
+  $.hideAlert()
+  var jeeM = jeeFrontEnd.md_noteManager
+  jeeM.init()
 
-$('#ul_noteList').on('click','.li_noteDisplay',function() {
-  $('.li_noteDisplay').removeClass('active')
-  $(this).addClass('active')
-  jeedom.note.byId({
-    id : $(this).attr('data-id'),
-    error: function(error) {
-      $('#div_noteManagementAlert').showAlert({message: error.message, level: 'danger'})
-    },
-    success: function(note) {
-      $('#div_noteManagerDisplay .noteAttr').value('')
-      $('#div_noteManagerDisplay').setValues(note, '.noteAttr')
-      jeedomUtils.taAutosize()
+  $(function() {
+    jeedomUtils.taAutosize()
+    if (jeephp2js.md_noteManagemer_noteId != '') {
+      setTimeout(function(){
+        $('li.li_noteDisplay[data-id="' + jeephp2js.md_noteManagemer_noteId + '"]').trigger('click')
+      }, 500)
     }
   })
-})
 
-$('#bt_noteManagerSave').on('click',function() {
-  var note = $('#div_noteManagerDisplay').getValues('.noteAttr')[0]
-  jeedom.note.save({
-    note : note,
-    error: function(error) {
-      $('#div_noteManagementAlert').showAlert({message: error.message, level: 'danger'})
-    },
-    success: function(note) {
-      $('#div_noteManagementAlert').showAlert({message: '{{Note sauvegardée avec succès}}', level: 'success'})
-      $('#div_noteManagerDisplay').setValues(note, '.noteAttr')
-      updateNoteList()
-    }
+  $('#bt_noteManagerAdd').on('click',function() {
+    $('#div_noteManagerDisplay .noteAttr').value('')
+    $('#ul_noteList li.active').removeClass('active')
   })
-})
 
-$('#bt_noteManagerRemove').on('click',function() {
-  var note = $('#div_noteManagerDisplay').getValues('.noteAttr')[0]
-  var r = confirm('{{Voulez-vous vraiment supprimer la note :}}' + ' ' + note.name + ' ?')
-  if (r == true) {
-    jeedom.note.remove({
-      id : note.id,
+  $('#ul_noteList').on('click','.li_noteDisplay',function() {
+    $('.li_noteDisplay').removeClass('active')
+    $(this).addClass('active')
+    jeedom.note.byId({
+      id : $(this).attr('data-id'),
       error: function(error) {
-        $('#div_noteManagementAlert').showAlert({message: error.message, level: 'danger'})
+        $('#div_noteManagerAlert').showAlert({message: error.message, level: 'danger'})
       },
-      success: function(notes) {
-        $('#div_noteManagementAlert').showAlert({message: '{{Note supprimée avec succès}}', level: 'success'})
+      success: function(note) {
         $('#div_noteManagerDisplay .noteAttr').value('')
-        updateNoteList()
+        $('#div_noteManagerDisplay').setValues(note, '.noteAttr')
+        jeedomUtils.taAutosize()
       }
     })
-  }
-})
+  })
 
-$(function() {
-  updateNoteList()
-  jeedomUtils.taAutosize()
-  if (note_id != '') {
-    setTimeout(function(){
-      $('li.li_noteDisplay[data-id="'+note_id+'"]').trigger('click')
-    }, 500)
-  }
-})
+  $('#bt_noteManagerSave').on('click',function() {
+    var note = $('#div_noteManagerDisplay').getValues('.noteAttr')[0]
+    jeedom.note.save({
+      note : note,
+      error: function(error) {
+        $('#div_noteManagerAlert').showAlert({message: error.message, level: 'danger'})
+      },
+      success: function(note) {
+        $('#div_noteManagerAlert').showAlert({message: '{{Note sauvegardée avec succès}}', level: 'success'})
+        $('#div_noteManagerDisplay').setValues(note, '.noteAttr')
+        jeeM.updateNoteList()
+      }
+    })
+  })
+
+  $('#bt_noteManagerRemove').on('click',function() {
+    var note = $('#div_noteManagerDisplay').getValues('.noteAttr')[0]
+    var r = confirm('{{Voulez-vous vraiment supprimer la note :}}' + ' ' + note.name + ' ?')
+    if (r == true) {
+      jeedom.note.remove({
+        id : note.id,
+        error: function(error) {
+          $('#div_noteManagerAlert').showAlert({message: error.message, level: 'danger'})
+        },
+        success: function(notes) {
+          $('#div_noteManagerAlert').showAlert({message: '{{Note supprimée avec succès}}', level: 'success'})
+          $('#div_noteManagerDisplay .noteAttr').value('')
+          jeeM.updateNoteList()
+        }
+      })
+    }
+  })
+})()
 </script>

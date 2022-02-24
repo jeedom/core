@@ -21,7 +21,7 @@ if (!isConnect()) {
 $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
 ?>
 
-<div class="col-lg-12">
+<div id="md_about" class="col-lg-12" data-modalType="md_about">
   <form class="form-horizontal col-lg-12">
     <br/>
     <div class="center">
@@ -48,7 +48,7 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
       <a class="btn btn-xs" id="bt_firstUse" target="_blank"><i class="fas fa-image"></i> {{Guide de démarrage}}</a>
       <br><br>
     </div>
-    
+
     <div class="form-group">
       <div class="center label-info">
         <span class="label">{{Auteur(s)}}</span>
@@ -59,7 +59,7 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
         <br><br>
       </div>
     </div>
-    
+
     <div class="form-group">
       <div class="center label-info">
         <span class="label">Licence</span>
@@ -68,7 +68,7 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
         <textarea readonly class="form-control" style="resize:none!important; min-height:15em; padding:5px; height:15em;"><?php echo $licenceText ?></textarea>
       </div>
     </div>
-    
+
     <div class="form-group">
       <div class="center">
         <br>

@@ -124,8 +124,9 @@ Desktop
   }
   #backgroundforJeedom > div {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: calc(100vw + var(--objectBackgroundBlur) * 2);
+    height: calc(100vh + var(--objectBackgroundBlur) * 2);
+    left: calc(0px - var(--objectBackgroundBlur));
     opacity: var(--bkg-opacity-light);
     background-size: cover !important;
     background-position: right bottom !important;
@@ -2236,6 +2237,15 @@ div.div_viewZone legend.lg_viewZone {
   }
 
 /* ______Timeline cards / history */
+  #timelineBar {
+    display: inline-flex;
+    width: calc(100% - 17px);
+    position: fixed;
+    z-index: 200;
+    padding: 5px 4px 5px 8px !important;
+    margin: 0 7px;
+    background: rgba(var(--panel-bg-color), var(--opacity));
+  }
   #timelineContainer .html .tml-cmd > span >span i {
     color: var(--linkHoverLight-color) !important;
   }
@@ -2354,17 +2364,6 @@ div.div_viewZone legend.lg_viewZone {
   #timelineContainer div.html {
     width: 70%;
     display: inline-block
-  }
-
-  #timelineOptions {
-    position: fixed;
-    text-align: right;
-    top: 55px;
-    right: 10px;
-    padding: 5px;
-    height: 40px !important;
-    z-index: 15;
-    background: rgba(var(--panel-bg-color), var(--opacity));
   }
 
   body[data-page="history"] #div_mainContainer {
@@ -2914,26 +2913,21 @@ div.div_viewZone legend.lg_viewZone {
   select.disabled,
   input.disabled,
   input[disabled],
-  select[disabled] {
-    cursor: not-allowed !important;
-    opacity: 0.65;
-  }
-
-  select:disabled,
-  input:disabled {
-    opacity: 0.7 !important;
-  }
-
+  select[disabled],
   .disabled .btn:not(.enabled),
   .disabled input:not(.enabled),
+  .disabled input[type=checkbox]:not(.enabled),
   .disabled button:not(.enabled),
   .disabled span:not(.enabled),
   .disabled button:not(.enabled) i,
-  .disabled a:not(.enabled) > i {
+  .disabled a:not(.enabled) > i,
+  select:disabled,
+  input:disabled {
     cursor: not-allowed !important;
-    filter: alpha(opacity=65);
-    opacity: .65;
+    opacity: 0.7;
+    filter: alpha(opacity=70);
   }
+
   a.disabled,
   a.disabled > i {
     cursor: default !important;
@@ -3050,6 +3044,15 @@ div.div_viewZone legend.lg_viewZone {
 /* ____________________TABLES */
   [data-device="mobile"][data-type="plugin"] .table.table-bordered.table-condensed {
     width: calc(100% - 50px);
+  }
+
+  #table_message {
+    table-layout: fixed;
+    word-wrap:break-word;
+  }
+
+  #table_message td. {
+    height: unset;
   }
 
   #table_dataStore {
@@ -4924,6 +4927,7 @@ div.div_viewZone legend.lg_viewZone {
     color: var(--al-primary-color) !important;
   }
 
+  .noCorner,
   .input-group .btn,
   .input-group input,
   .input-group select,

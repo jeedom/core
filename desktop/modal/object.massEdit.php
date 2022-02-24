@@ -36,10 +36,10 @@ foreach (explode('|',init('fields')) as &$field) {
   }
   $fields[] = $data;
 }
-sendVarToJs('edit_type',$type);
+sendVarToJs('jeephp2js.md_objectMassEdit_type',$type);
 ?>
 
-<div id="div_alertMassEdit"></div>
+<div id="div_alertMassEdit" data-modalType="md_objectMassEdit"></div>
 <a class="btn btn-success btn-xs pull-right" id="bt_saveMassEdit"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 <table class="table table-condensed tablesorter" id="table_massEdit">
   <thead>
@@ -113,7 +113,7 @@ jeedomUtils.initTableSorter()
 
 $('#bt_saveMassEdit').off('click').on('click',function() {
   jeedom.massEditSave({
-    type : edit_type,
+    type : jeephp2js.md_objectMassEdit_type,
     objects : $('#table_massEdit .editObject').getValues('.editObjectAttr'),
     error: function(error) {
       $('#div_alertMassEdit').showAlert({message: error.message, level: 'danger'})

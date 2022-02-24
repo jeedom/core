@@ -16,18 +16,222 @@
 
 "use strict"
 
-var $tableCron = $('#table_cron')
-printCron()
-printListener()
-jeedomUtils.initTableSorter(false)
-$tableCron[0].config.widgetOptions.resizable_widths = ['50px', '65px', '52px', '100px', '80px', '', '', '', '115px', '148px', '120px', '60px', '90px']
-$tableCron.trigger('applyWidgets')
-  .trigger('resizableReset')
-  .trigger('sorton', [
-    [
-      [0, 0]
-    ]
-  ])
+if (!jeeFrontEnd.cron) {
+  jeeFrontEnd.cron = {
+    init: function() {
+      window.jeeP = this
+      this.$tableCron = $('#table_cron')
+      this.printCron()
+      this.printListener()
+      jeedomUtils.initTableSorter(false)
+      this.$tableCron[0].config.widgetOptions.resizable_widths = ['50px', '65px', '52px', '100px', '80px', '', '', '', '115px', '148px', '120px', '60px', '90px']
+      this.$tableCron.trigger('applyWidgets')
+        .trigger('resizableReset')
+        .trigger('sorton', [
+          [
+            [0, 0]
+          ]
+        ])
+
+      this.getDeamonState()
+    },
+    //-> Cron
+    printCron: function() {
+      $.showLoading()
+      jeedom.cron.all({
+        success: function(data) {
+          $.showLoading()
+          jeeP.$tableCron.find('tbody').empty()
+          var tr = []
+          for (var i in data) {
+            tr.push(jeeP.addCron(data[i]))
+          }
+          $('#table_cron tbody').append(tr)
+
+          jeeP.$tableCron.trigger("update")
+
+          jeeFrontEnd.modifyWithoutSave = false
+          setTimeout(function() {
+            jeeFrontEnd.modifyWithoutSave = false
+          }, 1000)
+          $.hideLoading()
+        }
+      })
+    },
+    addCron: function(_cron) {
+      $.hideAlert()
+      var disabled = ''
+      if (init(_cron.deamon) == 1) {
+        disabled = 'disabled'
+      }
+      var tr = '<tr id="' + init(_cron.id) + '">'
+      tr += '<td><span class="cronAttr label label-info" data-l1key="id"></span></td>'
+      tr += '<td class="center">'
+      tr += '<input type="checkbox"class="cronAttr" data-l1key="enable" checked ' + disabled + '/>'
+      tr += '</td>'
+      tr += '<td>'
+      tr += init(_cron.pid)
+      tr += '</td>'
+      tr += '<td class="center">'
+      tr += '<input type="checkbox" class="cronAttr" data-l1key="deamon" ' + disabled + ' /></span> '
+      tr += '<input class="cronAttr input-xs" data-l1key="deamonSleepTime" style="width : 50px;" />'
+      tr += '</td>'
+      tr += '<td class="center">'
+      if (init(_cron.deamon) == 0) {
+        tr += '<input type="checkbox" class="cronAttr" data-l1key="once" /></span> '
+      }
+      tr += '</td>'
+      tr += '<td><input class="form-control cronAttr input-sm" data-l1key="class" ' + disabled + ' /></td>'
+      tr += '<td><input class="form-control cronAttr input-sm" data-l1key="function" ' + disabled + ' /></td>'
+      tr += '<td><input class="form-control cronAttr input-sm" data-l1key="schedule" ' + disabled + ' /></td>'
+      tr += '<td>'
+      if (init(_cron.deamon) == 0) {
+        tr += '<input class="form-control cronAttr input-sm" data-l1key="timeout" />'
+      }
+      tr += '</td>'
+      tr += '<td>'
+      tr += init(_cron.lastRun)
+      tr += '</td>'
+      tr += '<td>'
+      tr += init(_cron.runtime, '0') + 's'
+      tr += '</td>'
+      tr += '<td>'
+      var label = 'label label-info'
+      var state = init(_cron.state)
+      if (init(_cron.state) == 'run') {
+        label = 'label label-success'
+        state = '{{En cours}}'
+      }
+      if (init(_cron.state) == 'stop') {
+        label = 'label label-danger'
+        state = '{{Arrêté}}'
+      }
+      if (init(_cron.state) == 'starting') {
+        label = 'label label-warning'
+        state = '{{Démarrage}}'
+      }
+      if (init(_cron.state) == 'stoping') {
+        label = 'label label-warning'
+        state = '{{Arrêt}}'
+      }
+      tr += '<span class="' + label + '">' + state + '</span>'
+      tr += '</td>'
+
+      tr += '<td>'
+      if (init(_cron.id) != '') {
+        tr += '<a class="btn btn-xs display" title="{{Détails de cette tâche}}"><i class="fas fa-file"></i></a> '
+      }
+      if (init(_cron.deamon) == 0) {
+        if (init(_cron.state) == 'run') {
+          tr += ' <a class="btn btn-danger btn-xs stop" title="{{Arrêter cette tâche}}"><i class="fas fa-stop"></i></a>'
+        }
+        if (init(_cron.state) != '' && init(_cron.state) != 'starting' && init(_cron.state) != 'run' && init(_cron.state) != 'stoping') {
+          tr += ' <a class="btn btn-xs btn-success start" title="{{Démarrer cette tâche}}"><i class="fas fa-play"></i></a>'
+        }
+      }
+      tr += ' <a class="btn btn-danger btn-xs" title="{{Supprimer cette tâche}}"><i class="icon maison-poubelle remove"></i></a>'
+      tr += '</td>'
+      tr += '</tr>'
+      var result = $(tr)
+      result.setValues(_cron, '.cronAttr')
+      return result
+    },
+    //-> Listeners
+    printListener: function() {
+      $.showLoading()
+      jeedom.listener.all({
+        success: function(data) {
+          $.showLoading()
+          $('#table_listener tbody').empty()
+          var tr = []
+          for (var i in data) {
+            tr.push(jeeP.addListener(data[i]))
+          }
+          $('#table_listener tbody').append(tr)
+          jeeFrontEnd.modifyWithoutSave = false
+          $.hideLoading()
+        }
+      })
+    },
+    addListener: function(_listener) {
+      $.hideAlert()
+      var disabled = ''
+      var tr = '<tr id="' + init(_listener.id) + '">'
+      tr += '<td class="option"><span class="listenerAttr" data-l1key="id"></span></td>'
+      tr += '<td>'
+      if (init(_listener.id) != '') {
+        tr += '<a class="btn btn-xs display"><i class="fas fa-file"></i></a> '
+      }
+      tr += '</td>'
+      tr += '<td><textarea class="form-control listenerAttr input-sm" data-l1key="event_str" disabled ></textarea></td>'
+      tr += '<td><input class="form-control listenerAttr input-sm" data-l1key="class" disabled /></td>'
+      tr += '<td><input class="form-control listenerAttr input-sm" data-l1key="function" disabled /></td>'
+      tr += '<td><a class="btn btn-danger btn-xs removeListener pull-right" title="{{Supprimer cette tâche}}"><i class="icon maison-poubelle"></i></a></td>'
+      tr += '</tr>'
+      var result = $(tr)
+      result.setValues(_listener, '.listenerAttr')
+      return result
+    },
+    //-> Daemons
+    getDeamonState: function() {
+      $('#table_deamon tbody').empty()
+      jeedom.plugin.all({
+        activateOnly: true,
+        error: function(error) {
+          $.fn.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(plugins) {
+          for (var i in plugins) {
+            if (plugins[i].hasOwnDeamon == 0) continue
+
+            jeedom.plugin.getDeamonInfo({
+              id: plugins[i].id,
+              async: false,
+              error: function(error) {
+                $.fn.showAlert({
+                  message: error.message,
+                  level: 'danger'
+                })
+              },
+              success: function(deamonInfo) {
+                var html = '<tr>'
+                html += '<td>'
+                html += deamonInfo.plugin.name
+                html += '</td>'
+                html += '<td>'
+                if (deamonInfo.state == 'ok') {
+                  html += '<span class="label label-success">OK</span>'
+                } else {
+                  html += '<span class="label label-danger">' + deamonInfo.state.toUpperCase() + '</span>'
+                }
+                html += '</td>'
+                html += '<td>'
+                html += deamonInfo.last_launch
+                html += '</td>'
+                html += '<td>'
+                html += '<a class="bt_deamonAction btn btn-xs btn-success" data-action="start" title="{{Démarrer ou re-démarrer}}" data-plugin="' + deamonInfo.plugin.id + '"><i class="fas fa-play"></i></a> '
+                if (deamonInfo.auto == 0) {
+                  html += '<a class="bt_deamonAction btn btn-xs btn-danger" data-action="stop" title="{{Arrêter}}" data-plugin="' + deamonInfo.plugin.id + '"><i class="fas fa-stop"></i></a> '
+                  html += '<a class="bt_deamonAction btn btn-xs btn-warning" data-action="enableAuto" title="{{Activer la gestion automatique du démon}}" data-plugin="' + deamonInfo.plugin.id + '"><i class="fas fa-magic"></i></a> '
+                } else {
+                  html += '<a class="bt_deamonAction btn btn-xs btn-warning" data-action="disableAuto" title="{{Désactiver la gestion automatique du démon}}" data-plugin="' + deamonInfo.plugin.id + '"><i class="fas fa-times"></i></a> '
+                }
+                html += '</td>'
+                html += '</tr>'
+                $('#table_deamon tbody').append(html)
+              }
+            })
+          }
+        }
+      })
+    },
+  }
+}
+
+jeeFrontEnd.cron.init()
 
 document.onkeydown = function(event) {
   if (jeedomUtils.getOpenedModal()) return
@@ -39,12 +243,12 @@ document.onkeydown = function(event) {
 }
 
 $("#bt_refreshCron").on('click', function() {
-  printCron()
-  printListener()
+  jeeP.printCron()
+  jeeP.printListener()
 })
 
 $("#bt_addCron").on('click', function() {
-  $('#table_cron tbody').prepend(addCron({}))
+  $('#table_cron tbody').prepend(jeeP.addCron({}))
 })
 
 $("#bt_save").on('click', function() {
@@ -57,7 +261,7 @@ $("#bt_save").on('click', function() {
       })
     },
     success: function() {
-      printCron()
+      jeeP.printCron()
     }
   })
 })
@@ -86,13 +290,13 @@ $("#bt_changeCronState").on('click', function() {
   })
 })
 
-$tableCron.on({
+jeeP.$tableCron.on({
   'click': function(event) {
     $(this).closest('tr').remove()
   }
 }, '.remove')
 
-$tableCron.on({
+jeeP.$tableCron.on({
   'click': function(event) {
     jeedom.cron.setState({
       state: 'stop',
@@ -103,12 +307,14 @@ $tableCron.on({
           level: 'danger'
         })
       },
-      success: printCron
+      success: function() {
+        jeeP.printCron()
+      }
     })
   }
 }, '.stop')
 
-$tableCron.on({
+jeeP.$tableCron.on({
   'click': function(event) {
     jeedom.cron.setState({
       state: 'start',
@@ -119,12 +325,14 @@ $tableCron.on({
           level: 'danger'
         })
       },
-      success: printCron
+      success: function() {
+        jeeP.printCron()
+      }
     })
   }
 }, '.start')
 
-$tableCron.on({
+jeeP.$tableCron.on({
   'click': function(event) {
     $('#md_modal').dialog({
       title: "{{Détails du cron}}"
@@ -132,7 +340,7 @@ $tableCron.on({
   }
 }, '.display')
 
-$tableCron.on({
+jeeP.$tableCron.on({
   'change': function(event) {
     if ($(this).value() == 1) {
       $(this).closest('tr').find('.cronAttr[data-l1key=deamonSleepTime]').show()
@@ -151,149 +359,8 @@ $("#table_listener").on({
 }, '.display')
 
 $('#div_pageContainer').off('change', '.cronAttr').on('change', '.cronAttr:visible', function() {
-  modifyWithoutSave = true
+  jeeFrontEnd.modifyWithoutSave = true
 })
-
-/***********************CRONS*****************************/
-function printCron() {
-  $.showLoading()
-  jeedom.cron.all({
-    success: function(data) {
-      $.showLoading()
-      $tableCron.find('tbody').empty()
-      var tr = []
-      for (var i in data) {
-        tr.push(addCron(data[i]))
-      }
-      $('#table_cron tbody').append(tr)
-
-      $tableCron.trigger("update")
-
-      modifyWithoutSave = false
-      setTimeout(function() {
-        modifyWithoutSave = false
-      }, 1000)
-      $.hideLoading()
-    }
-  })
-}
-
-function addCron(_cron) {
-  $.hideAlert()
-  var disabled = ''
-  if (init(_cron.deamon) == 1) {
-    disabled = 'disabled'
-  }
-  var tr = '<tr id="' + init(_cron.id) + '">'
-  tr += '<td><span class="cronAttr label label-info" data-l1key="id"></span></td>'
-  tr += '<td class="center">'
-  tr += '<input type="checkbox"class="cronAttr" data-l1key="enable" checked ' + disabled + '/>'
-  tr += '</td>'
-  tr += '<td>'
-  tr += init(_cron.pid)
-  tr += '</td>'
-  tr += '<td class="center">'
-  tr += '<input type="checkbox" class="cronAttr" data-l1key="deamon" ' + disabled + ' /></span> '
-  tr += '<input class="cronAttr input-xs" data-l1key="deamonSleepTime" style="width : 50px;" />'
-  tr += '</td>'
-  tr += '<td class="center">'
-  if (init(_cron.deamon) == 0) {
-    tr += '<input type="checkbox" class="cronAttr" data-l1key="once" /></span> '
-  }
-  tr += '</td>'
-  tr += '<td><input class="form-control cronAttr input-sm" data-l1key="class" ' + disabled + ' /></td>'
-  tr += '<td><input class="form-control cronAttr input-sm" data-l1key="function" ' + disabled + ' /></td>'
-  tr += '<td><input class="form-control cronAttr input-sm" data-l1key="schedule" ' + disabled + ' /></td>'
-  tr += '<td>'
-  if (init(_cron.deamon) == 0) {
-    tr += '<input class="form-control cronAttr input-sm" data-l1key="timeout" />'
-  }
-  tr += '</td>'
-  tr += '<td>'
-  tr += init(_cron.lastRun)
-  tr += '</td>'
-  tr += '<td>'
-  tr += init(_cron.runtime, '0') + 's'
-  tr += '</td>'
-  tr += '<td>'
-  var label = 'label label-info'
-  var state = init(_cron.state)
-  if (init(_cron.state) == 'run') {
-    label = 'label label-success'
-    state = '{{En cours}}'
-  }
-  if (init(_cron.state) == 'stop') {
-    label = 'label label-danger'
-    state = '{{Arrêté}}'
-  }
-  if (init(_cron.state) == 'starting') {
-    label = 'label label-warning'
-    state = '{{Démarrage}}'
-  }
-  if (init(_cron.state) == 'stoping') {
-    label = 'label label-warning'
-    state = '{{Arrêt}}'
-  }
-  tr += '<span class="' + label + '">' + state + '</span>'
-  tr += '</td>'
-
-  tr += '<td>'
-  if (init(_cron.id) != '') {
-    tr += '<a class="btn btn-xs display" title="{{Détails de cette tâche}}"><i class="fas fa-file"></i></a> '
-  }
-  if (init(_cron.deamon) == 0) {
-    if (init(_cron.state) == 'run') {
-      tr += ' <a class="btn btn-danger btn-xs stop" title="{{Arrêter cette tâche}}"><i class="fas fa-stop"></i></a>'
-    }
-    if (init(_cron.state) != '' && init(_cron.state) != 'starting' && init(_cron.state) != 'run' && init(_cron.state) != 'stoping') {
-      tr += ' <a class="btn btn-xs btn-success start" title="{{Démarrer cette tâche}}"><i class="fas fa-play"></i></a>'
-    }
-  }
-  tr += ' <a class="btn btn-danger btn-xs" title="{{Supprimer cette tâche}}"><i class="icon maison-poubelle remove"></i></a>'
-  tr += '</td>'
-  tr += '</tr>'
-  var result = $(tr)
-  result.setValues(_cron, '.cronAttr')
-  return result
-}
-
-/***********************LISTENERS*****************************/
-function printListener() {
-  $.showLoading()
-  jeedom.listener.all({
-    success: function(data) {
-      $.showLoading()
-      $('#table_listener tbody').empty()
-      var tr = []
-      for (var i in data) {
-        tr.push(addListener(data[i]))
-      }
-      $('#table_listener tbody').append(tr)
-      modifyWithoutSave = false
-      $.hideLoading()
-    }
-  })
-}
-
-function addListener(_listener) {
-  $.hideAlert()
-  var disabled = ''
-  var tr = '<tr id="' + init(_listener.id) + '">'
-  tr += '<td class="option"><span class="listenerAttr" data-l1key="id"></span></td>'
-  tr += '<td>'
-  if (init(_listener.id) != '') {
-    tr += '<a class="btn btn-xs display"><i class="fas fa-file"></i></a> '
-  }
-  tr += '</td>'
-  tr += '<td><textarea class="form-control listenerAttr input-sm" data-l1key="event_str" disabled ></textarea></td>'
-  tr += '<td><input class="form-control listenerAttr input-sm" data-l1key="class" disabled /></td>'
-  tr += '<td><input class="form-control listenerAttr input-sm" data-l1key="function" disabled /></td>'
-  tr += '<td><a class="btn btn-danger btn-xs removeListener pull-right" title="{{Supprimer cette tâche}}"><i class="icon maison-poubelle"></i></a></td>'
-  tr += '</tr>'
-  var result = $(tr)
-  result.setValues(_listener, '.listenerAttr')
-  return result
-}
 
 $('#table_listener').off('click', '.removeListener').on('click', '.removeListener', function() {
   var tr = $(this).closest('tr')
@@ -305,68 +372,9 @@ $('#table_listener').off('click', '.removeListener').on('click', '.removeListene
   })
 })
 
-/***********************DEAMONS*****************************/
-getDeamonState()
-
 $('#bt_refreshDeamon').on('click', function() {
-  getDeamonState()
+  jeeP.getDeamonState()
 })
-
-function getDeamonState() {
-  $('#table_deamon tbody').empty()
-  jeedom.plugin.all({
-    activateOnly: true,
-    error: function(error) {
-      $.fn.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(plugins) {
-      for (var i in plugins) {
-        if (plugins[i].hasOwnDeamon == 0) continue
-
-        jeedom.plugin.getDeamonInfo({
-          id: plugins[i].id,
-          async: false,
-          error: function(error) {
-            $.fn.showAlert({
-              message: error.message,
-              level: 'danger'
-            })
-          },
-          success: function(deamonInfo) {
-            var html = '<tr>'
-            html += '<td>'
-            html += deamonInfo.plugin.name
-            html += '</td>'
-            html += '<td>'
-            if (deamonInfo.state == 'ok') {
-              html += '<span class="label label-success">OK</span>'
-            } else {
-              html += '<span class="label label-danger">' + deamonInfo.state.toUpperCase() + '</span>'
-            }
-            html += '</td>'
-            html += '<td>'
-            html += deamonInfo.last_launch
-            html += '</td>'
-            html += '<td>'
-            html += '<a class="bt_deamonAction btn btn-xs btn-success" data-action="start" title="{{Démarrer ou re-démarrer}}" data-plugin="' + deamonInfo.plugin.id + '"><i class="fas fa-play"></i></a> '
-            if (deamonInfo.auto == 0) {
-              html += '<a class="bt_deamonAction btn btn-xs btn-danger" data-action="stop" title="{{Arrêter}}" data-plugin="' + deamonInfo.plugin.id + '"><i class="fas fa-stop"></i></a> '
-              html += '<a class="bt_deamonAction btn btn-xs btn-warning" data-action="enableAuto" title="{{Activer la gestion automatique du démon}}" data-plugin="' + deamonInfo.plugin.id + '"><i class="fas fa-magic"></i></a> '
-            } else {
-              html += '<a class="bt_deamonAction btn btn-xs btn-warning" data-action="disableAuto" title="{{Désactiver la gestion automatique du démon}}" data-plugin="' + deamonInfo.plugin.id + '"><i class="fas fa-times"></i></a> '
-            }
-            html += '</td>'
-            html += '</tr>'
-            $('#table_deamon tbody').append(html)
-          }
-        })
-      }
-    }
-  })
-}
 
 $('#table_deamon tbody').on('click', '.bt_deamonAction', function() {
   var plugin = $(this).data('plugin')
@@ -382,7 +390,7 @@ $('#table_deamon tbody').on('click', '.bt_deamonAction', function() {
         })
       },
       success: function() {
-        getDeamonState()
+        jeeP.getDeamonState()
       }
     })
   } else if (action == 'stop') {
@@ -395,7 +403,7 @@ $('#table_deamon tbody').on('click', '.bt_deamonAction', function() {
         })
       },
       success: function() {
-        getDeamonState()
+        jeeP.getDeamonState()
       }
     })
   } else if (action == 'enableAuto') {
@@ -409,7 +417,7 @@ $('#table_deamon tbody').on('click', '.bt_deamonAction', function() {
         })
       },
       success: function() {
-        getDeamonState()
+        jeeP.getDeamonState()
       }
     })
   } else if (action == 'disableAuto') {
@@ -423,7 +431,7 @@ $('#table_deamon tbody').on('click', '.bt_deamonAction', function() {
         })
       },
       success: function() {
-        getDeamonState()
+        jeeP.getDeamonState()
       }
     })
   }

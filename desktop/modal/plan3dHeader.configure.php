@@ -24,12 +24,12 @@ if (!is_object($plan3dHeader)) {
   throw new Exception('{{Impossible de trouver le design 3D}}');
 }
 sendVarToJS([
-  'id' => $plan3dHeader->getId(),
-  'plan3dHeader' => utils::o2a($plan3dHeader)
+  'jeephp2js.md_plan3dHeaderConfigure_Id' => $plan3dHeader->getId(),
+  'jeephp2js.md_plan3dHeaderConfigure_plan3dHeader' => utils::o2a($plan3dHeader)
 ]);
 ?>
 
-<div id="div_alertplan3dHeaderConfigure"></div>
+<div id="div_alertplan3dHeaderConfigure" data-modalType="md_plan3dHeaderConfigure"></div>
 <ul class="nav nav-tabs" role="tablist">
   <li role="presentation" class="active"><a href="#main" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-cog"></i> {{Général}}</a></li>
   <li role="presentation"><a href="#components" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-cubes"></i> {{Composants}}</a></li>
@@ -203,7 +203,7 @@ $('#bt_removeConfigureplan3dHeader').on('click', function() {
   })
 })
 
-if (isset(id) && id != '') {
-  $('#div_plan3dHeaderConfigure').setValues(plan3dHeader, '.plan3dHeaderAttr')
+if (isset(jeephp2js.md_plan3dHeaderConfigure_Id) && jeephp2js.md_plan3dHeaderConfigure_Id != '') {
+  $('#div_plan3dHeaderConfigure').setValues(jeephp2js.md_plan3dHeaderConfigure_plan3dHeader, '.plan3dHeaderAttr')
 }
 </script>

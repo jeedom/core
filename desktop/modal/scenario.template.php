@@ -22,10 +22,10 @@ $scenario = scenario::byId(init('scenario_id'));
 if (!is_object($scenario)) {
   throw new Exception('Scénario non trouvé : ' . init('scenario_id'));
 }
-sendVarToJS('scenario_template_id', init('scenario_id'));
+sendVarToJS('jeephp2js.md_scenarioTemplate_scId', init('scenario_id'));
 ?>
 
-<div style="display: none;" id="md_scenarioTemplate"></div>
+<div style="display: none;" id="md_scenarioTemplate" data-modalType="md_scenarioTemplate"></div>
 <div class="row row-overflow" id='div_scenarioTemplate'>
   <div class="col-lg-2 col-md-3 col-sm-5" id="div_listScenario" style="z-index:999">
     <div class="bs-sidebar nav nav-list bs-sidenav">
@@ -91,7 +91,7 @@ refreshScenarioTemplateList()
 
 $('#bt_scenarioTemplateConvert').on('click', function() {
   jeedom.scenario.convertToTemplate({
-    id: scenario_template_id,
+    id: jeephp2js.md_scenarioTemplate_scId,
     template: $('#in_newTemplateName').value()+'.json',
     error: function(error) {
       $('#md_scenarioTemplate').showAlert({message: error.message, level: 'danger'})
@@ -126,14 +126,14 @@ $('#bt_scenarioTemplateApply').on('click', function() {
       var convert = $('.templateScenario').getValues('.templateScenarioAttr')
       jeedom.scenario.applyTemplate({
         template:$('#ul_scenarioTemplateList li.active').attr('data-template'),
-        id: scenario_template_id,
+        id: jeephp2js.md_scenarioTemplate_scId,
         convert: json_encode(convert),
         error: function(error) {
           $('#md_scenarioTemplate').showAlert({message: error.message, level: 'danger'})
         },
         success: function(data) {
           $('#md_modal').dialog('close')
-          printScenario(scenario_template_id)
+          printScenario(jeephp2js.md_scenarioTemplate_scId)
           $.fn.showAlert({message: 'Template appliqué avec succès.', level: 'success'})
         }
       })
@@ -149,7 +149,7 @@ $('#ul_scenarioTemplateList').on({
     $(this).addClass('active')
     jeedom.scenario.loadTemplateDiff({
       template: $(this).attr('data-template'),
-      id: scenario_template_id,
+      id: jeephp2js.md_scenarioTemplate_scId,
       error: function(error) {
         $('#md_scenarioTemplate').showAlert({message: error.message, level: 'danger'})
       },

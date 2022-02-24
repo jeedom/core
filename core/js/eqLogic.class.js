@@ -506,7 +506,7 @@ jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
     success: function(result) {
       if (result.data.length == 0) return false
       if (result.timelineOnly) return false
-      var now = (moment().unix() + (serverTZoffsetMin * 60)) * 1000
+      var now = (moment().unix() + (jeeFrontEnd.serverTZoffsetMin * 60)) * 1000
       var values = result.data.map(function(elt) {
         return elt[1]
       })

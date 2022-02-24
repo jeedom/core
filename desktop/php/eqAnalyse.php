@@ -20,7 +20,7 @@ usort($list, function ($a, $b) {
 
 
 $remove_history = jeedom::getRemovehistory();
-sendVarToJs('_remove_history_', $remove_history);
+sendVarToJs('jeephp2js.removeHistory', $remove_history);
 ?>
 
 <div class="row row-overflow">
