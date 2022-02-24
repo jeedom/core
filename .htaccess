@@ -56,7 +56,7 @@ DirectoryIndex index.php
     RedirectMatch 403 (?i)^.*\/core/api\/.*\/((?!\.php).)*$
     RedirectMatch 403 (?i)^.*\/core/class\/.*$
     RedirectMatch 403 (?i)^.*\/core/com\/.*$
-    RedirectMatch 403 (?i)^.*\/core/config\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.webp|\.svg).)*$
+    RedirectMatch 403 (?i)^.*\/core/config\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.webp|\.svg|\.php).)*$
     RedirectMatch 403 (?i)^.*\/core/css\/.*\/((?!\.css|\.css.map|\.woff|\.woff2|\.ttf|\.svg).)*$
     RedirectMatch 403 (?i)^.*\/core/i18n\/.*$
     RedirectMatch 403 (?i)^.*\/core/img\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.webp|\.svg).)*$
