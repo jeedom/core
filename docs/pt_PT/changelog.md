@@ -1,12 +1,36 @@
+# Changelog Jeedom V4.3
+
+## 4.3.0
+
+### 4.3 : Pré-requisitos
+
+- Debian 10 Buster
+- Php 7.3
+
+### 4.3 : Notícias / Melhorias
+
+- **Ferramentas / Cenários** : Adição de um menu contextual em um cenário para tornar ativo/inativo, alterar grupo, alterar objeto pai.
+- **Ferramentas / Objetos** : Adicionado um menu contextual em um objeto para gerenciar a visibilidade, alterar o objeto pai e mover.
+- **Análise / Cronograma** : Adicionado um campo de pesquisa para filtrar a exibição.
+
+- **Otimização** : jeeFrontEnd{}, jeephp2js{}, pequenas correções de bugs e otimizações.
+
+### 4.3 : WebApp
+
+- Integração de notas.
+
+
 # Changelog Jeedom V4.2
 
 ## 4.2.13
 
-- Melhoria : Criação de chaves de API por padrão inativa (se a solicitação de criação não vier do plugin).
-- Melhoria : tamanho de backup adicionado na página de gerenciamento de backup
-- Núcleo de correção de bugs : corrigiu um problema de tamanho de backup com o plugin Atlas
 - IU de correção de bug : Opção *Ocultar na área de trabalho* resumos.
 - IU de correção de bug : Historiques: Respeite as escalas ao aplicar zoom.
+
+- Núcleo de correção de bugs : Corrigiu um problema de tamanho de backup com o plugin Atlas.
+
+- Melhoria : Criação de chaves de API por padrão inativa (se a solicitação de criação não vier do plugin).
+- Melhoria : Tamanho de backup adicionado na página de gerenciamento de backup.
 
 ## 4.2.12
 

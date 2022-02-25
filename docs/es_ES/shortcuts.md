@@ -48,7 +48,7 @@ En modo edición:
 - En un widget, haga clic derecho en una pestaña : Menú contextual para ir directamente a otro widget.
 - Ctrl Click o Click Center en un widget o en el menú contextual : Abra el widget en una nueva pestaña del navegador.
 
-### Herramientas / escenarios
+### Herramientas / Escenarios
 - Ctrl Click o Center Click en un escenario o en el menú contextual : Abra el escenario en una nueva pestaña del navegador.
 
 En un escenario :

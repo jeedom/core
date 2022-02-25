@@ -48,7 +48,7 @@ Im Bearbeitungsmodus:
 - Klicken Sie in einem Widget mit der rechten Maustaste auf eine Registerkarte : Kontextmenü, um direkt zu einem anderen Widget zu gelangen.
 - Strg Klicken oder Klicken Sie in einem Widget oder im Kontextmenü auf Mitte : Öffnen Sie das Widget in einem neuen Browser-Tab.
 
-### Tools / Szenarien
+### Werkzeuge / Szenarien
 - Strg Klicken oder Mitte Klicken Sie auf ein Szenario oder in das Kontextmenü : Öffnen Sie das Szenario in einem neuen Browser-Tab.
 
 In einem Szenario :

@@ -1,12 +1,36 @@
+# Changelog Jeedom V4.3
+
+## 4.3.0
+
+### 4.3 : Prerequisites
+
+- Debian 10 Buster
+- Php 7.3
+
+### 4.3 : News / Improvements
+
+- **Tools / Scenarios** : Addition of a contextual menu on a scenario to make active/inactive, change group, change parent object.
+- **Tools / Objects** : Added a contextual menu on an object to manage visibility, change parent object, and move.
+- **Analysis / Timeline** : Added a search field to filter the display.
+
+- **Optimization** : jeeFrontEnd{}, jeephp2js{}, minor bugfixes and optimizations.
+
+### 4.3 : WebApp
+
+- Notes integration.
+
+
 # Changelog Jeedom V4.2
 
 ## 4.2.13
 
-- Improvement : Creation of api keys by default inactive (if the creation request does not come from the plugin).
-- Improvement : added backup size on backup management page
-- Bugfix Core : fixed a backup size issue with the Atlas plugin
 - Bugfix UI : Option *Hide on desktop* summaries.
 - Bugfix UI : Historiques: Respect scales when zooming.
+
+- Bugfix Core : Fixed a backup size issue with the Atlas plugin.
+
+- Improvement : Creation of api keys by default inactive (if the creation request does not come from the plugin).
+- Improvement : Added backup size on backup management page.
 
 ## 4.2.12
 

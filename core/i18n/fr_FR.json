@@ -14,6 +14,7 @@
         "Timeline": "Timeline",
         "Logs": "Logs",
         "Analyse équipement": "Analyse équipement",
+        "Notes": "Notes",
         "Crons": "Crons",
         "Démons": "Démons",
         "Santé": "Santé",
@@ -60,6 +61,11 @@
     "mobile\/js\/equipment.js": {
         "Tout": "Tout",
         "Synthèse": "Synthèse"
+    },
+    "mobile\/js\/notes.js": {
+        "Note sauvegardée avec succès": "Note sauvegardée avec succès",
+        "Voulez-vous vraiment supprimer la note :": "Voulez-vous vraiment supprimer la note :",
+        "Note supprimée avec succès": "Note supprimée avec succès"
     },
     "mobile\/js\/application.js": {
         "Résumé": "Résumé",
@@ -134,6 +140,13 @@
         "Status": "Status",
         "Date lancement": "Date lancement",
         "Action": "Action"
+    },
+    "mobile\/html\/notes.html": {
+        "Ajouter": "Ajouter",
+        "Sauvegarder": "Sauvegarder",
+        "Supprimer": "Supprimer",
+        "Titre": "Titre",
+        "Texte": "Texte"
     },
     "mobile\/html\/health.html": {
         "Nom": "Nom",
@@ -467,6 +480,7 @@
         "Nom": "Nom",
         "Visible": "Visible",
         "Affichage": "Affichage",
+        "Paramètres de la tuile. Courbe d'historique et paramètres optionnels.": "Paramètres de la tuile. Courbe d'historique et paramètres optionnels.",
         "Graphique de fond": "Graphique de fond",
         "Information": "Information",
         "Aucune": "Aucune",
@@ -836,6 +850,18 @@
     "desktop\/modal\/update.send.php": {
         "Le dépôt est inactif :": "Le dépôt est inactif :",
         "401 - Accès non autorisé": "401 - Accès non autorisé"
+    },
+    "desktop\/modal\/message.display.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "Tout": "Tout",
+        "Rafraichir": "Rafraichir",
+        "Vider": "Vider",
+        "Date et heure": "Date et heure",
+        "Source": "Source",
+        "Description": "Description",
+        "Action": "Action",
+        "Occurrences": "Occurrences",
+        "Centre de Messages": "Centre de Messages"
     },
     "desktop\/modal\/cmd.configureHistory.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
@@ -1414,6 +1440,7 @@
     },
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "Rechercher | nom | :not(nom": "Rechercher | nom | :not(nom",
         "Principal": "Principal",
         "Timelines": "Timelines",
         "Rafraîchir": "Rafraîchir",
@@ -2229,17 +2256,6 @@
         "Votre box": "Votre box",
         "est éteinte.<br \/> Pour la redémarrer, débranchez-la et rebranchez-la.": "est éteinte.<br \/> Pour la redémarrer, débranchez-la et rebranchez-la."
     },
-    "desktop\/php\/message.php": {
-        "401 - Accès non autorisé": "401 - Accès non autorisé",
-        "Tout": "Tout",
-        "Rafraichir": "Rafraichir",
-        "Vider": "Vider",
-        "Date et heure": "Date et heure",
-        "Source": "Source",
-        "Description": "Description",
-        "Action": "Action",
-        "Occurrences": "Occurrences"
-    },
     "desktop\/php\/interact.php": {
         "Aucun": "Aucun",
         "401 - Accès non autorisé": "401 - Accès non autorisé",
@@ -2425,7 +2441,6 @@
         "Objet parent": "Objet parent",
         "Options": "Options",
         "Visible": "Visible",
-        "Rendre cet objet visible ou non.": "Rendre cet objet visible ou non.",
         "Masquer": "Masquer",
         "Sur Dashboard": "Sur Dashboard",
         "Masquer cet objet uniquement sur le Dashboard. Il restera visible, notamment dans la liste des objets.": "Masquer cet objet uniquement sur le Dashboard. Il restera visible, notamment dans la liste des objets.",
@@ -2582,11 +2597,11 @@
         "Inactifs": "Inactifs",
         "Export CSV": "Export CSV",
         "Rechercher | nom | id | :not(nom": "Rechercher | nom | id | :not(nom",
+        "Vider": "Vider",
         "Date": "Date",
         "Type": "Type",
         "ID": "ID",
-        "Nom": "Nom",
-        "Vider": "Vider"
+        "Nom": "Nom"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
@@ -2597,9 +2612,7 @@
         "OK": "OK"
     },
     "desktop\/js\/update.js": {
-        "Options": "Options",
-        "Êtes-vous sûr de vouloir mettre à jour :": "Êtes-vous sûr de vouloir mettre à jour :",
-        "Êtes-vous sûr de vouloir supprimer :": "Êtes-vous sûr de vouloir supprimer :",
+        "Aucune mise à jour en cours.": "Aucune mise à jour en cours.",
         "Mise(s) à jour terminée(s) avec succès.": "Mise(s) à jour terminée(s) avec succès.",
         "L\\'opération a échoué": "L\\'opération a échoué",
         "Dernière verification des mises à jour": "Dernière verification des mises à jour",
@@ -2610,8 +2623,10 @@
         "Réinstaller": "Réinstaller",
         "Supprimer": "Supprimer",
         "Vérifier": "Vérifier",
-        "Aucune mise à jour en cours.": "Aucune mise à jour en cours.",
-        "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)"
+        "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)",
+        "Options": "Options",
+        "Êtes-vous sûr de vouloir mettre à jour :": "Êtes-vous sûr de vouloir mettre à jour :",
+        "Êtes-vous sûr de vouloir supprimer :": "Êtes-vous sûr de vouloir supprimer :"
     },
     "desktop\/js\/log.js": {
         "Pause": "Pause",
@@ -2619,7 +2634,6 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Êtes-vous sûr de vouloir supprimer tous les logs ?"
     },
     "desktop\/js\/editor.js": {
-        "Editer": "Editer",
         "Le sous-type ne peut être vide": "Le sous-type ne peut être vide",
         "Le nom ne peut être vide": "Le nom ne peut être vide",
         "Fichier enregistré avec succès": "Fichier enregistré avec succès",
@@ -2627,7 +2641,8 @@
         "Options": "Options",
         "Configutation sauvegardée": "Configutation sauvegardée",
         "Activé": "Activé",
-        "Désactivé": "Désactivé"
+        "Désactivé": "Désactivé",
+        "Editer": "Editer"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "Rafraichir",
@@ -2657,6 +2672,7 @@
         "Logs": "Logs",
         "Heartbeat (min)": "Heartbeat (min)",
         "Redémarrer démon": "Redémarrer démon",
+        "Sauvegarde effectuée": "Sauvegarde effectuée",
         "De nouveaux plugins ont été installés": "De nouveaux plugins ont été installés",
         "Synchronisation réussi. Aucun nouveau plugin installé.": "Synchronisation réussi. Aucun nouveau plugin installé.",
         "Market": "Market",
@@ -2666,8 +2682,7 @@
         "Sauvegarde de la configuration des panneaux effectuée": "Sauvegarde de la configuration des panneaux effectuée",
         "Sauvegarde des fonctionalités effectuée": "Sauvegarde des fonctionalités effectuée",
         "Sauvegarde de la configuration des logs effectuée": "Sauvegarde de la configuration des logs effectuée",
-        "Log du plugin": "Log du plugin",
-        "Sauvegarde effectuée": "Sauvegarde effectuée"
+        "Log du plugin": "Log du plugin"
     },
     "desktop\/js\/plan3d.js": {
         "Configuration du plan 3D": "Configuration du plan 3D",
@@ -2679,11 +2694,7 @@
         "Configuration Affichage": "Configuration Affichage"
     },
     "desktop\/js\/view_edit.js": {
-        "Nom de la vue ?": "Nom de la vue ?",
-        "Configuration de la vue": "Configuration de la vue",
         "Modification enregistrée": "Modification enregistrée",
-        "Êtes-vous sûr de vouloir supprimer la vue": "Êtes-vous sûr de vouloir supprimer la vue",
-        "Le nom de la viewZone ne peut être vide": "Le nom de la viewZone ne peut être vide",
         "Largeur": "Largeur",
         "Hauteur": "Hauteur",
         "30 min": "30 min",
@@ -2710,7 +2721,7 @@
         "Variation": "Variation",
         "Ligne": "Ligne",
         "Aire": "Aire",
-        "Barre": "Barre",
+        "Colonne": "Colonne",
         "Camembert": "Camembert",
         "Aucun groupement": "Aucun groupement",
         "Somme par heure": "Somme par heure",
@@ -2738,7 +2749,11 @@
         "Invisible": "Invisible",
         "Visible": "Visible",
         "Non": "Non",
-        "Oui": "Oui"
+        "Oui": "Oui",
+        "Nom de la vue ?": "Nom de la vue ?",
+        "Configuration de la vue": "Configuration de la vue",
+        "Êtes-vous sûr de vouloir supprimer la vue": "Êtes-vous sûr de vouloir supprimer la vue",
+        "Le nom de la viewZone ne peut être vide": "Le nom de la viewZone ne peut être vide"
     },
     "desktop\/js\/display.js": {
         "Configuration de l'objet": "Configuration de l'objet",
@@ -2752,10 +2767,6 @@
         "Historique": "Historique"
     },
     "desktop\/js\/cron.js": {
-        "Désactiver le système cron": "Désactiver le système cron",
-        "Activer le système cron": "Activer le système cron",
-        "Détails du cron": "Détails du cron",
-        "Détails du listener": "Détails du listener",
         "En cours": "En cours",
         "Arrêté": "Arrêté",
         "Démarrage": "Démarrage",
@@ -2767,14 +2778,18 @@
         "Démarrer ou re-démarrer": "Démarrer ou re-démarrer",
         "Arrêter": "Arrêter",
         "Activer la gestion automatique du démon": "Activer la gestion automatique du démon",
-        "Désactiver la gestion automatique du démon": "Désactiver la gestion automatique du démon"
+        "Désactiver la gestion automatique du démon": "Désactiver la gestion automatique du démon",
+        "Désactiver le système cron": "Désactiver le système cron",
+        "Activer le système cron": "Activer le système cron",
+        "Détails du cron": "Détails du cron",
+        "Détails du listener": "Détails du listener"
     },
     "desktop\/js\/history.js": {
+        "Historique supprimé avec succès": "Historique supprimé avec succès",
+        "Mes Calculs": "Mes Calculs",
         "Configuration des formules de calcul": "Configuration des formules de calcul",
         "Configuration de l'historique des commandes": "Configuration de l'historique des commandes",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de",
-        "Mes Calculs": "Mes Calculs",
-        "Historique supprimé avec succès": "Historique supprimé avec succès",
         "Comparer": "Comparer",
         "jours avec": "jours avec",
         "jours il y a": "jours il y a",
@@ -2790,18 +2805,9 @@
         "Commande :": "Commande :",
         "Temps d\\'éxécution": "Temps d\\'éxécution"
     },
-    "desktop\/js\/message.js": {
-        "Centre de Messages": "Centre de Messages"
-    },
     "desktop\/js\/user.js": {
-        "Sauvegarde effectuée": "Sauvegarde effectuée",
         "Le login d\\'un utilisateur ne peut être vide !": "Le login d\\'un utilisateur ne peut être vide !",
         "Deux utilisateurs ne peuvent avoir le même login !": "Deux utilisateurs ne peuvent avoir le même login !",
-        "Vous allez supprimer l\\'utilisateur :": "Vous allez supprimer l\\'utilisateur :",
-        "L\\'utilisateur a bien été supprimé": "L\\'utilisateur a bien été supprimé",
-        "Quel est le nouveau mot de passe ?": "Quel est le nouveau mot de passe ?",
-        "Êtes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Êtes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?",
-        "Modification effectuée": "Modification effectuée",
         "Actif": "Actif",
         "Local": "Local",
         "Ne pas faire de rotation clef api": "Ne pas faire de rotation clef api",
@@ -2819,6 +2825,12 @@
         "Régénérer API": "Régénérer API",
         "Droits": "Droits",
         "Profils": "Profils",
+        "Sauvegarde effectuée": "Sauvegarde effectuée",
+        "Vous allez supprimer l\\'utilisateur :": "Vous allez supprimer l\\'utilisateur :",
+        "L\\'utilisateur a bien été supprimé": "L\\'utilisateur a bien été supprimé",
+        "Quel est le nouveau mot de passe ?": "Quel est le nouveau mot de passe ?",
+        "Êtes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Êtes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?",
+        "Modification effectuée": "Modification effectuée",
         "Gestion des droits (Utilisateur limité)": "Gestion des droits (Utilisateur limité)",
         "Gestion du profils": "Gestion du profils"
     },
@@ -2832,6 +2844,8 @@
         "Configuration Affichage": "Configuration Affichage"
     },
     "desktop\/js\/plan.js": {
+        "Nom du design ?": "Nom du design ?",
+        "Veuillez indiquer le code ?": "Veuillez indiquer le code ?",
         "Designs": "Designs",
         "Edition": "Edition",
         "Plein écran": "Plein écran",
@@ -2864,11 +2878,11 @@
         "Valider": "Valider",
         "Supprimer": "Supprimer",
         "Dupliquer": "Dupliquer",
-        "Verrouiller": "Verrouiller",
-        "Nom du design ?": "Nom du design ?",
-        "Veuillez indiquer le code ?": "Veuillez indiquer le code ?"
+        "Verrouiller": "Verrouiller"
     },
     "desktop\/js\/interact.js": {
+        "Action": "Action",
+        "Sélectionner un mot-clé": "Sélectionner un mot-clé",
         "Liste des interactions": "Liste des interactions",
         "Interactions": "Interactions",
         "Nom": "Nom",
@@ -2877,9 +2891,7 @@
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?",
         "Toutes les interactions ont été régénérées": "Toutes les interactions ont été régénérées",
         "Demande": "Demande",
-        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Êtes-vous sûr de vouloir supprimer l\\'interaction",
-        "Action": "Action",
-        "Sélectionner un mot-clé": "Sélectionner un mot-clé"
+        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Êtes-vous sûr de vouloir supprimer l\\'interaction"
     },
     "desktop\/js\/timeline.js": {
         "Evènements de la timeline supprimés avec succès": "Evènements de la timeline supprimés avec succès",
@@ -2923,13 +2935,13 @@
         "Largeur desktop": "Largeur desktop",
         "Largeur mobile": "Largeur mobile",
         "Time widget": "Time widget",
+        "Choisir": "Choisir",
+        "Test": "Test",
+        "Résultat si test ok": "Résultat si test ok",
         "Remplacement de widget": "Remplacement de widget",
         "Appliquer ce widget à": "Appliquer ce widget à",
         "Modification(s) appliquée(s) avec succès": "Modification(s) appliquée(s) avec succès",
-        "Choisir": "Choisir",
         "Widgets": "Widgets",
-        "Test": "Test",
-        "Résultat si test ok": "Résultat si test ok",
         "Nom du widget": "Nom du widget",
         "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
         "Configuration de la commande": "Configuration de la commande",
@@ -2945,18 +2957,6 @@
         "Opération effectuée": "Opération effectuée"
     },
     "desktop\/js\/administration.js": {
-        "Sauvegarde réussie": "Sauvegarde réussie",
-        "Commande réalisée avec succès": "Commande réalisée avec succès",
-        "Cookie de thème supprimé": "Cookie de thème supprimé",
-        "Image enregistrée et configurée": "Image enregistrée et configurée",
-        "Êtes-vous sûr de vouloir supprimer cette image de fond ?": "Êtes-vous sûr de vouloir supprimer cette image de fond ?",
-        "Image supprimée": "Image supprimée",
-        "Evènement de la timeline supprimé avec succès": "Evènement de la timeline supprimé avec succès",
-        "Décocher pour desactiver l\\'action": "Décocher pour desactiver l\\'action",
-        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Cocher pour que la commande s\\'éxecute en parrallele des autres actions",
-        "Sélectionner un mot-clé": "Sélectionner un mot-clé",
-        "Sélectionner la commande": "Sélectionner la commande",
-        "Création des commandes virtuel réussies": "Création des commandes virtuel réussies",
         "Somme": "Somme",
         "Moyenne": "Moyenne",
         "Texte": "Texte",
@@ -2964,6 +2964,20 @@
         "Aucun": "Aucun",
         "Binaire": "Binaire",
         "Créer virtuel": "Créer virtuel",
+        "Décocher pour desactiver l\\'action": "Décocher pour desactiver l\\'action",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Cocher pour que la commande s\\'éxecute en parrallele des autres actions",
+        "Sélectionner un mot-clé": "Sélectionner un mot-clé",
+        "Sélectionner la commande": "Sélectionner la commande",
+        "Cache vidé": "Cache vidé",
+        "Cache nettoyé": "Cache nettoyé",
+        "Sauvegarde réussie": "Sauvegarde réussie",
+        "Commande réalisée avec succès": "Commande réalisée avec succès",
+        "Cookie de thème supprimé": "Cookie de thème supprimé",
+        "Image enregistrée et configurée": "Image enregistrée et configurée",
+        "Êtes-vous sûr de vouloir supprimer cette image de fond ?": "Êtes-vous sûr de vouloir supprimer cette image de fond ?",
+        "Image supprimée": "Image supprimée",
+        "Evènement de la timeline supprimé avec succès": "Evènement de la timeline supprimé avec succès",
+        "Création des commandes virtuel réussies": "Création des commandes virtuel réussies",
         "Êtes-vous sûr de vouloir supprimer la base d\\'InfluxDB": "Êtes-vous sûr de vouloir supprimer la base d\\'InfluxDB",
         "Action envoyée avec succés": "Action envoyée avec succés",
         "Êtes-vous sûr de vouloir envoyer tout l\\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes.": "Êtes-vous sûr de vouloir envoyer tout l\\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes.",
@@ -2972,8 +2986,6 @@
         "Connexion réussie": "Connexion réussie",
         "Test réussi": "Test réussi",
         "Attention ceci est une opération risquée (vidage du cache), Confirmez vous vouloir la faire ?": "Attention ceci est une opération risquée (vidage du cache), Confirmez vous vouloir la faire ?",
-        "Cache vidé": "Cache vidé",
-        "Cache nettoyé": "Cache nettoyé",
         "Êtes-vous sûr de vouloir réinitialiser la clé API de": "Êtes-vous sûr de vouloir réinitialiser la clé API de",
         "Administration système": "Administration système",
         "Rétablissement des droits d\\'accès effectué avec succès": "Rétablissement des droits d\\'accès effectué avec succès",
@@ -2987,10 +2999,10 @@
         "Information importante :": "Information importante :"
     },
     "desktop\/js\/types.js": {
+        "Aucun": "Aucun",
         "Supprimer les types generiques sur les commandes ?": "Supprimer les types generiques sur les commandes ?",
         "Oui": "Oui",
         "Non": "Non",
-        "Aucun": "Aucun",
         "Supprimer": "Supprimer",
         "Types Génériques automatiques": "Types Génériques automatiques",
         "Types Génériques sauvegardés": "Types Génériques sauvegardés",
@@ -3002,26 +3014,34 @@
         "Commentaire": "Commentaire"
     },
     "desktop\/js\/eqAnalyse.js": {
+        "Supprimée le": "Supprimée le",
         "Configuration commande": "Configuration commande",
         "Configuration de l'équipement": "Configuration de l'équipement",
-        "Configuration en masse": "Configuration en masse",
-        "Supprimée le": "Supprimée le"
+        "Configuration en masse": "Configuration en masse"
     },
     "desktop\/js\/object.js": {
+        "Envoyer": "Envoyer",
+        "Image de fond ajoutée avec succès": "Image de fond ajoutée avec succès",
+        "Commande": "Commande",
+        "Activer": "Activer",
+        "Inverser": "Inverser",
+        "Résumé(s)": "Résumé(s)",
+        "Rendre invisible": "Rendre invisible",
+        "Rendre visible": "Rendre visible",
+        "Rendre invisible sur la Synthèse": "Rendre invisible sur la Synthèse",
+        "Rendre visible sur la Synthèse": "Rendre visible sur la Synthèse",
+        "Rendre invisible sur le Dashboard": "Rendre invisible sur le Dashboard",
+        "Rendre visible sur le Dashboard": "Rendre visible sur le Dashboard",
+        "Objet parent": "Objet parent",
+        "Positionner après": "Positionner après",
         "Graphique des liens": "Graphique des liens",
         "Image de fond appliquée avec succès": "Image de fond appliquée avec succès",
         "Êtes-vous sûr de vouloir enlever l\\'image de fond de cet objet ?": "Êtes-vous sûr de vouloir enlever l\\'image de fond de cet objet ?",
         "Image de fond enlevée": "Image de fond enlevée",
         "Objets": "Objets",
-        "Envoyer": "Envoyer",
-        "Image de fond ajoutée avec succès": "Image de fond ajoutée avec succès",
         "Nom du nouvel objet": "Nom du nouvel objet",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "Êtes-vous sûr de vouloir supprimer l\\'objet",
-        "Commande": "Commande",
-        "Activer": "Activer",
-        "Inverser": "Inverser",
-        "Vue d'ensemble des objets": "Vue d'ensemble des objets",
-        "Résumé(s)": "Résumé(s)"
+        "Vue d'ensemble des objets": "Vue d'ensemble des objets"
     },
     "desktop\/js\/system.js": {
         "Êtes-vous sûr de vouloir éxécuter cette commande :": "Êtes-vous sûr de vouloir éxécuter cette commande :",
@@ -3029,6 +3049,8 @@
         "Commande :": "Commande :"
     },
     "desktop\/js\/backup.js": {
+        "L\\'opération est réussie": "L\\'opération est réussie",
+        "L\\'opération a échoué": "L\\'opération a échoué",
         "Sauvegarde réussie": "Sauvegarde réussie",
         "Êtes-vous sûr de vouloir faire une sauvegarde de": "Êtes-vous sûr de vouloir faire une sauvegarde de",
         "? Une fois lancée cette opération ne peut être annulée": "? Une fois lancée cette opération ne peut être annulée",
@@ -3041,9 +3063,7 @@
         "Êtes-vous sûr de vouloir envoyer une sauvegarde de": "Êtes-vous sûr de vouloir envoyer une sauvegarde de",
         "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "sur le cloud ? Une fois lancée cette opération ne peut être annulée",
         "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud": "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud",
-        "Sauvegarde rapatrier avec succès": "Sauvegarde rapatrier avec succès",
-        "L\\'opération est réussie": "L\\'opération est réussie",
-        "L\\'opération a échoué": "L\\'opération a échoué"
+        "Sauvegarde rapatrier avec succès": "Sauvegarde rapatrier avec succès"
     },
     "desktop\/js\/reboot.js": {
         "Êtes-vous sûr de vouloir redémarrer le système ?": "Êtes-vous sûr de vouloir redémarrer le système ?",
@@ -3053,25 +3073,6 @@
         "est en cours de redémarrage.": "est en cours de redémarrage."
     },
     "desktop\/js\/scenario.js": {
-        "Log d'exécution du scénario": "Log d'exécution du scénario",
-        "Nom du scénario": "Nom du scénario",
-        "Êtes-vous sûr de vouloir désactiver les scénarios ?": "Êtes-vous sûr de vouloir désactiver les scénarios ?",
-        "Êtes-vous sûr de vouloir activer les scénarios ?": "Êtes-vous sûr de vouloir activer les scénarios ?",
-        "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?",
-        "Logs des scénarios supprimés.": "Logs des scénarios supprimés.",
-        "Vue d'ensemble des scénarios": "Vue d'ensemble des scénarios",
-        "Scénario": "Scénario",
-        "Graphique de lien(s)": "Graphique de lien(s)",
-        "Edition texte scénarios": "Edition texte scénarios",
-        "Export du scénario": "Export du scénario",
-        "Template de scénario": "Template de scénario",
-        "Lancement du scénario réussi": "Lancement du scénario réussi",
-        "Arrêt du scénario réussi": "Arrêt du scénario réussi",
-        "Êtes-vous sûr de vouloir supprimer le scénario": "Êtes-vous sûr de vouloir supprimer le scénario",
-        "Êtes-vous sûr de vouloir supprimer ce bloc ?": "Êtes-vous sûr de vouloir supprimer ce bloc ?",
-        "Le bloc Sinon ne peut être masqué s'il contient des éléments.": "Le bloc Sinon ne peut être masqué s'il contient des éléments.",
-        "Afficher ce bloc.<br>Ctrl+click: tous.": "Afficher ce bloc.<br>Ctrl+click: tous.",
-        "Masquer ce bloc.<br>Ctrl+click: tous.": "Masquer ce bloc.<br>Ctrl+click: tous.",
         "Aucun choix possible": "Aucun choix possible",
         "est": "est",
         "égal": "égal",
@@ -3090,9 +3091,6 @@
         "rien": "rien",
         "et": "et",
         "ou": "ou",
-        "Ajout d'une nouvelle condition": "Ajout d'une nouvelle condition",
-        "Ne rien mettre": "Ne rien mettre",
-        "Valider": "Valider",
         "Erreur": "Erreur",
         "Actif": "Actif",
         "Démarrage": "Démarrage",
@@ -3115,6 +3113,8 @@
         "Supprimer l\\'action": "Supprimer l\\'action",
         "Sélectionner un mot-clé": "Sélectionner un mot-clé",
         "Sélectionner la commande": "Sélectionner la commande",
+        "Masquer ce bloc.<br>Ctrl+click: tous.": "Masquer ce bloc.<br>Ctrl+click: tous.",
+        "Afficher ce bloc.<br>Ctrl+click: tous.": "Afficher ce bloc.<br>Ctrl+click: tous.",
         "Décocher pour désactiver l\\'élément": "Décocher pour désactiver l\\'élément",
         "SI": "SI",
         "Autoriser ou non la répétition des actions si l\\'évaluation de la condition est la même que la précédente": "Autoriser ou non la répétition des actions si l\\'évaluation de la condition est la même que la précédente",
@@ -3140,7 +3140,32 @@
         "Bloc Dans": "Bloc Dans",
         "Bloc A": "Bloc A",
         "Bloc Code": "Bloc Code",
-        "Bloc Commentaire": "Bloc Commentaire"
+        "Bloc Commentaire": "Bloc Commentaire",
+        "Log d'exécution du scénario": "Log d'exécution du scénario",
+        "Rendre inactif": "Rendre inactif",
+        "Rendre actif": "Rendre actif",
+        "Aucun": "Aucun",
+        "Groupe": "Groupe",
+        "Objet parent": "Objet parent",
+        "Nom du scénario": "Nom du scénario",
+        "Êtes-vous sûr de vouloir désactiver les scénarios ?": "Êtes-vous sûr de vouloir désactiver les scénarios ?",
+        "Êtes-vous sûr de vouloir activer les scénarios ?": "Êtes-vous sûr de vouloir activer les scénarios ?",
+        "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?",
+        "Logs des scénarios supprimés.": "Logs des scénarios supprimés.",
+        "Vue d'ensemble des scénarios": "Vue d'ensemble des scénarios",
+        "Scénario": "Scénario",
+        "Graphique de lien(s)": "Graphique de lien(s)",
+        "Edition texte scénarios": "Edition texte scénarios",
+        "Export du scénario": "Export du scénario",
+        "Template de scénario": "Template de scénario",
+        "Lancement du scénario réussi": "Lancement du scénario réussi",
+        "Arrêt du scénario réussi": "Arrêt du scénario réussi",
+        "Êtes-vous sûr de vouloir supprimer le scénario": "Êtes-vous sûr de vouloir supprimer le scénario",
+        "Êtes-vous sûr de vouloir supprimer ce bloc ?": "Êtes-vous sûr de vouloir supprimer ce bloc ?",
+        "Le bloc Sinon ne peut être masqué s'il contient des éléments.": "Le bloc Sinon ne peut être masqué s'il contient des éléments.",
+        "Ajout d'une nouvelle condition": "Ajout d'une nouvelle condition",
+        "Ne rien mettre": "Ne rien mettre",
+        "Valider": "Valider"
     },
     "desktop\/common\/js\/ui.js": {
         "Historique": "Historique"

@@ -14,6 +14,7 @@
         "Timeline": "Waktu",
         "Logs": "Logs",
         "Analyse équipement": "Peralatan analisis",
+        "Notes": "Notes",
         "Crons": "Cron",
         "Démons": "Setan",
         "Santé": "Bidang Kesehatan",
@@ -60,6 +61,11 @@
     "mobile\/js\/equipment.js": {
         "Tout": "Semua",
         "Synthèse": "Synthèse"
+    },
+    "mobile\/js\/notes.js": {
+        "Note sauvegardée avec succès": "Note sauvegardée avec succès",
+        "Voulez-vous vraiment supprimer la note :": "Voulez-vous vraiment supprimer la note :",
+        "Note supprimée avec succès": "Note supprimée avec succès"
     },
     "mobile\/js\/application.js": {
         "Résumé": "Ringkasan",
@@ -134,6 +140,13 @@
         "Status": "Status",
         "Date lancement": "Peluncuran Tanggal",
         "Action": "Tindakan"
+    },
+    "mobile\/html\/notes.html": {
+        "Ajouter": "Ajouter",
+        "Sauvegarder": "Sauvegarder",
+        "Supprimer": "Supprimer",
+        "Titre": "Titre",
+        "Texte": "Texte"
     },
     "mobile\/html\/health.html": {
         "Nom": "Nama",
@@ -467,6 +480,7 @@
         "Nom": "Nama",
         "Visible": "Terlihat",
         "Affichage": "Affichage",
+        "Paramètres de la tuile. Courbe d'historique et paramètres optionnels.": "Paramètres de la tuile. Courbe d'historique et paramètres optionnels",
         "Graphique de fond": "Graphique de fond",
         "Information": "Information",
         "Aucune": "Aucune",
@@ -836,6 +850,18 @@
     "desktop\/modal\/update.send.php": {
         "Le dépôt est inactif :": "Le dépôt est inactif :",
         "401 - Accès non autorisé": "401 - Akses tidak sah"
+    },
+    "desktop\/modal\/message.display.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "Tout": "Tout",
+        "Rafraichir": "Rafraichir",
+        "Vider": "Vider",
+        "Date et heure": "Date et heure",
+        "Source": "Source",
+        "Description": "Description",
+        "Action": "Action",
+        "Occurrences": "Occurrences",
+        "Centre de Messages": "Centre de Messages"
     },
     "desktop\/modal\/cmd.configureHistory.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
@@ -1414,6 +1440,7 @@
     },
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
+        "Rechercher | nom | :not(nom": "Rechercher | nom | :not(nom",
         "Principal": "Principal",
         "Timelines": "Timelines",
         "Rafraîchir": "Dingin",
@@ -2229,17 +2256,6 @@
         "Votre box": "Votre box",
         "est éteinte.<br \/> Pour la redémarrer, débranchez-la et rebranchez-la.": "est éteinte.<br \/> Pour la redémarrer, débranchez-la et rebranchez-la"
     },
-    "desktop\/php\/message.php": {
-        "401 - Accès non autorisé": "401 - Akses tidak sah",
-        "Tout": "Semua",
-        "Rafraichir": "Menyegarkan",
-        "Vider": "Abisin",
-        "Date et heure": "Hari dan Jam",
-        "Source": "Sumber",
-        "Description": "Deskripsi",
-        "Action": "Tindakan",
-        "Occurrences": "Occurrences"
-    },
     "desktop\/php\/interact.php": {
         "Aucun": "Aucun",
         "401 - Accès non autorisé": "401 - Akses tidak sah",
@@ -2425,7 +2441,6 @@
         "Objet parent": "Objek induk",
         "Options": "Options",
         "Visible": "Terlihat",
-        "Rendre cet objet visible ou non.": "Rendre cet objet visible ou non",
         "Masquer": "Masquer",
         "Sur Dashboard": "Sur Dashboard",
         "Masquer cet objet uniquement sur le Dashboard. Il restera visible, notamment dans la liste des objets.": "Masquer cet objet uniquement sur le Dashboard. Il restera visible, notamment dans la liste des objets",
@@ -2582,11 +2597,11 @@
         "Inactifs": "Inactifs",
         "Export CSV": "Export CSV",
         "Rechercher | nom | id | :not(nom": "Rechercher | nom | id | :not(nom",
+        "Vider": "Abisin",
         "Date": "Kencan",
         "Type": "Jenis",
         "ID": "ID",
-        "Nom": "Nama",
-        "Vider": "Abisin"
+        "Nom": "Nama"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
@@ -2597,9 +2612,7 @@
         "OK": "Ok"
     },
     "desktop\/js\/update.js": {
-        "Options": "Pilihan",
-        "Êtes-vous sûr de vouloir mettre à jour :": "Êtes-vous sûr de vouloir mettre à jour :",
-        "Êtes-vous sûr de vouloir supprimer :": "Êtes-vous sûr de vouloir supprimer :",
+        "Aucune mise à jour en cours.": "Aucune mise à jour en cours",
         "Mise(s) à jour terminée(s) avec succès.": "Mise(s) à jour terminée(s) avec succès",
         "L\\'opération a échoué": "Operasi L \\' gagal",
         "Dernière verification des mises à jour": "Dernière verification des mises à jour",
@@ -2610,8 +2623,10 @@
         "Réinstaller": "Instal ulang",
         "Supprimer": "Menghapus",
         "Vérifier": "Memeriksa",
-        "Aucune mise à jour en cours.": "Aucune mise à jour en cours",
-        "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)"
+        "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)",
+        "Options": "Pilihan",
+        "Êtes-vous sûr de vouloir mettre à jour :": "Êtes-vous sûr de vouloir mettre à jour :",
+        "Êtes-vous sûr de vouloir supprimer :": "Êtes-vous sûr de vouloir supprimer :"
     },
     "desktop\/js\/log.js": {
         "Pause": "Berhenti Sebentar",
@@ -2619,7 +2634,6 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Apakah Anda yakin ingin menghapus semua log?"
     },
     "desktop\/js\/editor.js": {
-        "Editer": "Editer",
         "Le sous-type ne peut être vide": "Le sous-type ne peut être vide",
         "Le nom ne peut être vide": "Le nom ne peut être vide",
         "Fichier enregistré avec succès": "Fichier enregistré avec succès",
@@ -2627,7 +2641,8 @@
         "Options": "Options",
         "Configutation sauvegardée": "Configutation sauvegardée",
         "Activé": "Activé",
-        "Désactivé": "Désactivé"
+        "Désactivé": "Désactivé",
+        "Editer": "Editer"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "Menyegarkan",
@@ -2657,6 +2672,7 @@
         "Logs": "Logs",
         "Heartbeat (min)": "Heartbeat (min)",
         "Redémarrer démon": "Redémarrer démon",
+        "Sauvegarde effectuée": "Backup dibuat",
         "De nouveaux plugins ont été installés": "De nouveaux plugins ont été installés",
         "Synchronisation réussi. Aucun nouveau plugin installé.": "Synchronisation réussi. Aucun nouveau plugin installé",
         "Market": "Market",
@@ -2666,8 +2682,7 @@
         "Sauvegarde de la configuration des panneaux effectuée": "Menyimpan konfigurasi panel dilakukan",
         "Sauvegarde des fonctionalités effectuée": "Fungsi backup dilakukan",
         "Sauvegarde de la configuration des logs effectuée": "Menyimpan konfigurasi log dilakukan",
-        "Log du plugin": "Log Plugin",
-        "Sauvegarde effectuée": "Backup dibuat"
+        "Log du plugin": "Log Plugin"
     },
     "desktop\/js\/plan3d.js": {
         "Configuration du plan 3D": "Konfigurasi peta 3D",
@@ -2679,11 +2694,7 @@
         "Configuration Affichage": "Configuration Affichage"
     },
     "desktop\/js\/view_edit.js": {
-        "Nom de la vue ?": "View nama?",
-        "Configuration de la vue": "Configuration de la vue",
         "Modification enregistrée": "Perubahan disimpan",
-        "Êtes-vous sûr de vouloir supprimer la vue": "Apakah Anda yakin ingin menghapus pandangan",
-        "Le nom de la viewZone ne peut être vide": "Nama Viewzone tidak boleh kosong",
         "Largeur": "Largeur",
         "Hauteur": "Hauteur",
         "30 min": "30 min",
@@ -2710,7 +2721,7 @@
         "Variation": "Perubahan",
         "Ligne": "Baris",
         "Aire": "Daerah",
-        "Barre": "Barre",
+        "Colonne": "Colonne",
         "Camembert": "Keju Camembert",
         "Aucun groupement": "Tidak ada kelompok",
         "Somme par heure": "Somme par heure",
@@ -2738,7 +2749,11 @@
         "Invisible": "Invisible",
         "Visible": "Visible",
         "Non": "Tidak",
-        "Oui": "Ya"
+        "Oui": "Ya",
+        "Nom de la vue ?": "View nama?",
+        "Configuration de la vue": "Configuration de la vue",
+        "Êtes-vous sûr de vouloir supprimer la vue": "Apakah Anda yakin ingin menghapus pandangan",
+        "Le nom de la viewZone ne peut être vide": "Nama Viewzone tidak boleh kosong"
     },
     "desktop\/js\/display.js": {
         "Configuration de l'objet": "Konfigurasi objek",
@@ -2752,10 +2767,6 @@
         "Historique": "Historis"
     },
     "desktop\/js\/cron.js": {
-        "Désactiver le système cron": "Menonaktifkan sistem cron",
-        "Activer le système cron": "Aktifkan sistem cron",
-        "Détails du cron": "Détails du cron",
-        "Détails du listener": "Détails du listener",
         "En cours": "Sedang berlangsung",
         "Arrêté": "Berhenti",
         "Démarrage": "Démarrage",
@@ -2767,14 +2778,18 @@
         "Démarrer ou re-démarrer": "Démarrer ou re-démarrer",
         "Arrêter": "Berhenti",
         "Activer la gestion automatique du démon": "Activer la gestion automatique du démon",
-        "Désactiver la gestion automatique du démon": "Désactiver la gestion automatique du démon"
+        "Désactiver la gestion automatique du démon": "Désactiver la gestion automatique du démon",
+        "Désactiver le système cron": "Menonaktifkan sistem cron",
+        "Activer le système cron": "Aktifkan sistem cron",
+        "Détails du cron": "Détails du cron",
+        "Détails du listener": "Détails du listener"
     },
     "desktop\/js\/history.js": {
+        "Historique supprimé avec succès": "Sejarah berhasil dihapus",
+        "Mes Calculs": "Mes Calculs",
         "Configuration des formules de calcul": "Konfigurasi rumus",
         "Configuration de l'historique des commandes": "Kontrol Sejarah Konfigurasi",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Harap menunjukkan tanggal (Y-m d H: m: s) sebelum yang ia harus menghapus sejarah \\ 's",
-        "Mes Calculs": "Mes Calculs",
-        "Historique supprimé avec succès": "Sejarah berhasil dihapus",
         "Comparer": "Comparer",
         "jours avec": "jours avec",
         "jours il y a": "jours il y a",
@@ -2790,18 +2805,9 @@
         "Commande :": "Perintah:",
         "Temps d\\'éxécution": "Temps d\\'éxécution"
     },
-    "desktop\/js\/message.js": {
-        "Centre de Messages": "Centre de Messages"
-    },
     "desktop\/js\/user.js": {
-        "Sauvegarde effectuée": "Backup dibuat",
         "Le login d\\'un utilisateur ne peut être vide !": "Le login d\\'un utilisateur ne peut être vide !",
         "Deux utilisateurs ne peuvent avoir le même login !": "Deux utilisateurs ne peuvent avoir le même login !",
-        "Vous allez supprimer l\\'utilisateur :": "Vous allez supprimer l\\'utilisateur :",
-        "L\\'utilisateur a bien été supprimé": "Pengguna \\ 'telah dihapus",
-        "Quel est le nouveau mot de passe ?": "Apa password baru?",
-        "Êtes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Apakah Anda yakin Anda ingin mengubah kunci API dari pengguna \\ 's?",
-        "Modification effectuée": "Perubahan yang dibuat",
         "Actif": "Aktiva",
         "Local": "Local",
         "Ne pas faire de rotation clef api": "Ne pas faire de rotation clef api",
@@ -2819,6 +2825,12 @@
         "Régénérer API": "Régénérer API",
         "Droits": "Droits",
         "Profils": "Profils",
+        "Sauvegarde effectuée": "Backup dibuat",
+        "Vous allez supprimer l\\'utilisateur :": "Vous allez supprimer l\\'utilisateur :",
+        "L\\'utilisateur a bien été supprimé": "Pengguna \\ 'telah dihapus",
+        "Quel est le nouveau mot de passe ?": "Apa password baru?",
+        "Êtes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Apakah Anda yakin Anda ingin mengubah kunci API dari pengguna \\ 's?",
+        "Modification effectuée": "Perubahan yang dibuat",
         "Gestion des droits (Utilisateur limité)": "Gestion des droits (Utilisateur limité)",
         "Gestion du profils": "Gestion du profils"
     },
@@ -2832,6 +2844,8 @@
         "Configuration Affichage": "Configuration Affichage"
     },
     "desktop\/js\/plan.js": {
+        "Nom du design ?": "Nama desain?",
+        "Veuillez indiquer le code ?": "Harap menunjukkan kode?",
         "Designs": "Desain",
         "Edition": "Edisi",
         "Plein écran": "Layar penuh",
@@ -2864,11 +2878,11 @@
         "Valider": "Mengesahkan",
         "Supprimer": "Menghapus",
         "Dupliquer": "Duplikat",
-        "Verrouiller": "Mengunci",
-        "Nom du design ?": "Nama desain?",
-        "Veuillez indiquer le code ?": "Harap menunjukkan kode?"
+        "Verrouiller": "Mengunci"
     },
     "desktop\/js\/interact.js": {
+        "Action": "Tindakan",
+        "Sélectionner un mot-clé": "Pilih kata kunci",
         "Liste des interactions": "Daftar interaksi",
         "Interactions": "Interaksi",
         "Nom": "Nom",
@@ -2877,9 +2891,7 @@
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?",
         "Toutes les interactions ont été régénérées": "Toutes les interactions ont été régénérées",
         "Demande": "Demande",
-        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Apakah Anda yakin ingin menghapus \\ 's interaksi",
-        "Action": "Tindakan",
-        "Sélectionner un mot-clé": "Pilih kata kunci"
+        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Apakah Anda yakin ingin menghapus \\ 's interaksi"
     },
     "desktop\/js\/timeline.js": {
         "Evènements de la timeline supprimés avec succès": "Evènements de la timeline supprimés avec succès",
@@ -2923,13 +2935,13 @@
         "Largeur desktop": "Largeur desktop",
         "Largeur mobile": "Largeur mobile",
         "Time widget": "Time widget",
+        "Choisir": "Memilih",
+        "Test": "Uji",
+        "Résultat si test ok": "Résultat si test ok",
         "Remplacement de widget": "Remplacement de widget",
         "Appliquer ce widget à": "Appliquer ce widget à",
         "Modification(s) appliquée(s) avec succès": "Modifikasi (s) diterapkan (s) berhasil",
-        "Choisir": "Memilih",
         "Widgets": "Widgets",
-        "Test": "Uji",
-        "Résultat si test ok": "Résultat si test ok",
         "Nom du widget": "Nom du widget",
         "Sauvegarde effectuée avec succès": "Cadangan selesai dengan sukses",
         "Configuration de la commande": "Set Kontrol",
@@ -2945,18 +2957,6 @@
         "Opération effectuée": "Operasi dilakukan"
     },
     "desktop\/js\/administration.js": {
-        "Sauvegarde réussie": "Menyimpan sukses",
-        "Commande réalisée avec succès": "Berhasil dilakukan Operasi",
-        "Cookie de thème supprimé": "Cookie de thème supprimé",
-        "Image enregistrée et configurée": "Image enregistrée et configurée",
-        "Êtes-vous sûr de vouloir supprimer cette image de fond ?": "Êtes-vous sûr de vouloir supprimer cette image de fond ?",
-        "Image supprimée": "Image supprimée",
-        "Evènement de la timeline supprimé avec succès": "Timeline acara berhasil dihapus",
-        "Décocher pour desactiver l\\'action": "Hapus tanda centang untuk menonaktifkan \\ 's Aksi",
-        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Periksa untuk urutan \\ 's dieksekusi secara paralel untuk tindakan lainnya",
-        "Sélectionner un mot-clé": "Pilih kata kunci",
-        "Sélectionner la commande": "Pilih perintah",
-        "Création des commandes virtuel réussies": "Menciptakan kontrol virtual yang sukses",
         "Somme": "Jumlah",
         "Moyenne": "Rata-rata",
         "Texte": "Teks",
@@ -2964,6 +2964,20 @@
         "Aucun": "Tak ada",
         "Binaire": "Biner",
         "Créer virtuel": "Membuat virtual",
+        "Décocher pour desactiver l\\'action": "Hapus tanda centang untuk menonaktifkan \\ 's Aksi",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Periksa untuk urutan \\ 's dieksekusi secara paralel untuk tindakan lainnya",
+        "Sélectionner un mot-clé": "Pilih kata kunci",
+        "Sélectionner la commande": "Pilih perintah",
+        "Cache vidé": "Dikosongkan Cache",
+        "Cache nettoyé": "Dibersihkan Cache",
+        "Sauvegarde réussie": "Menyimpan sukses",
+        "Commande réalisée avec succès": "Berhasil dilakukan Operasi",
+        "Cookie de thème supprimé": "Cookie de thème supprimé",
+        "Image enregistrée et configurée": "Image enregistrée et configurée",
+        "Êtes-vous sûr de vouloir supprimer cette image de fond ?": "Êtes-vous sûr de vouloir supprimer cette image de fond ?",
+        "Image supprimée": "Image supprimée",
+        "Evènement de la timeline supprimé avec succès": "Timeline acara berhasil dihapus",
+        "Création des commandes virtuel réussies": "Menciptakan kontrol virtual yang sukses",
         "Êtes-vous sûr de vouloir supprimer la base d\\'InfluxDB": "Êtes-vous sûr de vouloir supprimer la base d\\'InfluxDB",
         "Action envoyée avec succés": "Action envoyée avec succés",
         "Êtes-vous sûr de vouloir envoyer tout l\\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes.": "Êtes-vous sûr de vouloir envoyer tout l\\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes",
@@ -2972,8 +2986,6 @@
         "Connexion réussie": "Berhasil login",
         "Test réussi": "Tes yang sukses",
         "Attention ceci est une opération risquée (vidage du cache), Confirmez vous vouloir la faire ?": "Attention ceci est une opération risquée (vidage du cache), Confirmez vous vouloir la faire ?",
-        "Cache vidé": "Dikosongkan Cache",
-        "Cache nettoyé": "Dibersihkan Cache",
         "Êtes-vous sûr de vouloir réinitialiser la clé API de": "Êtes-vous sûr de vouloir réinitialiser la clé API de",
         "Administration système": "Sistem administrasi",
         "Rétablissement des droits d\\'accès effectué avec succès": "Rétablissement des droits d\\'accès effectué avec succès",
@@ -2987,10 +2999,10 @@
         "Information importante :": "Information importante :"
     },
     "desktop\/js\/types.js": {
+        "Aucun": "Aucun",
         "Supprimer les types generiques sur les commandes ?": "Supprimer les types generiques sur les commandes ?",
         "Oui": "Oui",
         "Non": "Non",
-        "Aucun": "Aucun",
         "Supprimer": "Supprimer",
         "Types Génériques automatiques": "Types Génériques automatiques",
         "Types Génériques sauvegardés": "Types Génériques sauvegardés",
@@ -3002,26 +3014,34 @@
         "Commentaire": "Commentaire"
     },
     "desktop\/js\/eqAnalyse.js": {
+        "Supprimée le": "Supprimée le",
         "Configuration commande": "Perintah setup",
         "Configuration de l'équipement": "Konfigurasi peralatan",
-        "Configuration en masse": "Configuration en masse",
-        "Supprimée le": "Supprimée le"
+        "Configuration en masse": "Configuration en masse"
     },
     "desktop\/js\/object.js": {
+        "Envoyer": "Kirim",
+        "Image de fond ajoutée avec succès": "Image de fond ajoutée avec succès",
+        "Commande": "Pesanan",
+        "Activer": "Mengaktifkan",
+        "Inverser": "Membalikkan",
+        "Résumé(s)": "Résumé(s)",
+        "Rendre invisible": "Rendre invisible",
+        "Rendre visible": "Rendre visible",
+        "Rendre invisible sur la Synthèse": "Rendre invisible sur la Synthèse",
+        "Rendre visible sur la Synthèse": "Rendre visible sur la Synthèse",
+        "Rendre invisible sur le Dashboard": "Rendre invisible sur le Dashboard",
+        "Rendre visible sur le Dashboard": "Rendre visible sur le Dashboard",
+        "Objet parent": "Objet parent",
+        "Positionner après": "Positionner après",
         "Graphique des liens": "Link grafis",
         "Image de fond appliquée avec succès": "Image de fond appliquée avec succès",
         "Êtes-vous sûr de vouloir enlever l\\'image de fond de cet objet ?": "Êtes-vous sûr de vouloir enlever l\\'image de fond de cet objet ?",
         "Image de fond enlevée": "Image de fond enlevée",
         "Objets": "Item",
-        "Envoyer": "Kirim",
-        "Image de fond ajoutée avec succès": "Image de fond ajoutée avec succès",
         "Nom du nouvel objet": "Nom du nouvel objet",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "Apakah Anda yakin ingin menghapus \\ 's objek",
-        "Commande": "Pesanan",
-        "Activer": "Mengaktifkan",
-        "Inverser": "Membalikkan",
-        "Vue d'ensemble des objets": "Vue d'ensemble des objets",
-        "Résumé(s)": "Résumé(s)"
+        "Vue d'ensemble des objets": "Vue d'ensemble des objets"
     },
     "desktop\/js\/system.js": {
         "Êtes-vous sûr de vouloir éxécuter cette commande :": "Etes-vous sûr de vouloir exécuter cette commande :",
@@ -3029,6 +3049,8 @@
         "Commande :": "Perintah:"
     },
     "desktop\/js\/backup.js": {
+        "L\\'opération est réussie": "Operasi L \\' berhasil",
+        "L\\'opération a échoué": "Operasi L \\' gagal",
         "Sauvegarde réussie": "Menyimpan sukses",
         "Êtes-vous sûr de vouloir faire une sauvegarde de": "Etes-vous sûr de vouloir faire une sauvegarde de",
         "? Une fois lancée cette opération ne peut être annulée": "? Une fois lancée cette opération ne peut être annulée",
@@ -3041,9 +3063,7 @@
         "Êtes-vous sûr de vouloir envoyer une sauvegarde de": "Etes-vous sûr de vouloir envoyer une sauvegarde de",
         "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "sur le cloud ? Une fois lancée cette opération ne peut être annulée",
         "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud": "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud",
-        "Sauvegarde rapatrier avec succès": "Sauvegarde rapatrier avec succès",
-        "L\\'opération est réussie": "Operasi L \\' berhasil",
-        "L\\'opération a échoué": "Operasi L \\' gagal"
+        "Sauvegarde rapatrier avec succès": "Sauvegarde rapatrier avec succès"
     },
     "desktop\/js\/reboot.js": {
         "Êtes-vous sûr de vouloir redémarrer le système ?": "Êtes-vous sûr de vouloir redémarrer le système ?",
@@ -3053,25 +3073,6 @@
         "est en cours de redémarrage.": "est en cours de redémarrage"
     },
     "desktop\/js\/scenario.js": {
-        "Log d'exécution du scénario": "Log eksekusi script",
-        "Nom du scénario": "Nom du scénario",
-        "Êtes-vous sûr de vouloir désactiver les scénarios ?": "Êtes-vous sûr de vouloir désactiver les scénarios ?",
-        "Êtes-vous sûr de vouloir activer les scénarios ?": "Êtes-vous sûr de vouloir activer les scénarios ?",
-        "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?",
-        "Logs des scénarios supprimés.": "Logs des scénarios supprimés",
-        "Vue d'ensemble des scénarios": "Vue d'ensemble des scénarios",
-        "Scénario": "Skenario",
-        "Graphique de lien(s)": "Graphique de lien(s)",
-        "Edition texte scénarios": "Edition texte scénarios",
-        "Export du scénario": "Ekspor Skenario",
-        "Template de scénario": "Skenario Template",
-        "Lancement du scénario réussi": "Peluncuran skenario sukses",
-        "Arrêt du scénario réussi": "Menghentikan skenario sukses",
-        "Êtes-vous sûr de vouloir supprimer le scénario": "Apakah Anda yakin ingin menghapus skenario",
-        "Êtes-vous sûr de vouloir supprimer ce bloc ?": "Êtes-vous sûr de vouloir supprimer ce bloc ?",
-        "Le bloc Sinon ne peut être masqué s'il contient des éléments.": "Le bloc Sinon ne peut être masqué s'il contient des éléments",
-        "Afficher ce bloc.<br>Ctrl+click: tous.": "Afficher ce bloc.<br>Ctrl+click: tous",
-        "Masquer ce bloc.<br>Ctrl+click: tous.": "Masquer ce bloc.<br>Ctrl+click: tous",
         "Aucun choix possible": "Aucun choix possible",
         "est": "adalah",
         "égal": "sama",
@@ -3090,9 +3091,6 @@
         "rien": "rien",
         "et": "dan",
         "ou": "atau",
-        "Ajout d'une nouvelle condition": "Ajout d'une nouvelle condition",
-        "Ne rien mettre": "Ne rien mettre",
-        "Valider": "Mengesahkan",
         "Erreur": "Error",
         "Actif": "Aktiva",
         "Démarrage": "Démarrage",
@@ -3115,6 +3113,8 @@
         "Supprimer l\\'action": "Hapus \\ Aksi",
         "Sélectionner un mot-clé": "Pilih kata kunci",
         "Sélectionner la commande": "Pilih perintah",
+        "Masquer ce bloc.<br>Ctrl+click: tous.": "Masquer ce bloc.<br>Ctrl+click: tous",
+        "Afficher ce bloc.<br>Ctrl+click: tous.": "Afficher ce bloc.<br>Ctrl+click: tous",
         "Décocher pour désactiver l\\'élément": "Hapus tanda centang untuk menonaktifkan elemen \\'",
         "SI": "SI",
         "Autoriser ou non la répétition des actions si l\\'évaluation de la condition est la même que la précédente": "Apakah untuk memungkinkan pengulangan tindakan jika penilaian \\ 's dari kondisi ini sama dengan sebelumnya",
@@ -3140,7 +3140,32 @@
         "Bloc Dans": "Bloc Dans",
         "Bloc A": "Bloc A",
         "Bloc Code": "Bloc Code",
-        "Bloc Commentaire": "Bloc Commentaire"
+        "Bloc Commentaire": "Bloc Commentaire",
+        "Log d'exécution du scénario": "Log eksekusi script",
+        "Rendre inactif": "Rendre inactif",
+        "Rendre actif": "Rendre actif",
+        "Aucun": "Aucun",
+        "Groupe": "Groupe",
+        "Objet parent": "Objet parent",
+        "Nom du scénario": "Nom du scénario",
+        "Êtes-vous sûr de vouloir désactiver les scénarios ?": "Êtes-vous sûr de vouloir désactiver les scénarios ?",
+        "Êtes-vous sûr de vouloir activer les scénarios ?": "Êtes-vous sûr de vouloir activer les scénarios ?",
+        "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?",
+        "Logs des scénarios supprimés.": "Logs des scénarios supprimés",
+        "Vue d'ensemble des scénarios": "Vue d'ensemble des scénarios",
+        "Scénario": "Skenario",
+        "Graphique de lien(s)": "Graphique de lien(s)",
+        "Edition texte scénarios": "Edition texte scénarios",
+        "Export du scénario": "Ekspor Skenario",
+        "Template de scénario": "Skenario Template",
+        "Lancement du scénario réussi": "Peluncuran skenario sukses",
+        "Arrêt du scénario réussi": "Menghentikan skenario sukses",
+        "Êtes-vous sûr de vouloir supprimer le scénario": "Apakah Anda yakin ingin menghapus skenario",
+        "Êtes-vous sûr de vouloir supprimer ce bloc ?": "Êtes-vous sûr de vouloir supprimer ce bloc ?",
+        "Le bloc Sinon ne peut être masqué s'il contient des éléments.": "Le bloc Sinon ne peut être masqué s'il contient des éléments",
+        "Ajout d'une nouvelle condition": "Ajout d'une nouvelle condition",
+        "Ne rien mettre": "Ne rien mettre",
+        "Valider": "Mengesahkan"
     },
     "desktop\/common\/js\/ui.js": {
         "Historique": "Historis"

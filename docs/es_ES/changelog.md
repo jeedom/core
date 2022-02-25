@@ -1,12 +1,36 @@
+# Registro de cambios Jeedom V4.3
+
+## 4.3.0
+
+### 4.3 : Prerrequisitos
+
+- Debian 10 Buster
+- PHP 7.3
+
+### 4.3 : Noticias / Mejoras
+
+- **Herramientas / Escenarios** : Adición de un menú contextual en un escenario para activar/desactivar, cambiar grupo, cambiar objeto principal.
+- **Herramientas / Objetos** : Se agregó un menú contextual en un objeto para administrar la visibilidad, cambiar el objeto principal y mover.
+- **Análisis / Cronología** : Se agregó un campo de búsqueda para filtrar la visualización.
+
+- **Mejoramiento** : jeeFrontEnd{}, jeephp2js{}, correcciones de errores menores y optimizaciones.
+
+### 4.3 : WebApp
+
+- Integración de notas.
+
+
 # Registro de cambios Jeedom V4.2
 
 ## 4.2.13
 
-- Mejora : Creación de claves api por defecto inactivas (si la solicitud de creación no proviene del complemento).
-- Mejora : tamaño de copia de seguridad agregado en la página de administración de copias de seguridad
-- Núcleo de corrección de errores : solucionó un problema de tamaño de copia de seguridad con el complemento Atlas
 - Interfaz de usuario de corrección de errores : Opción *Ocultar en el escritorio* resúmenes.
 - Interfaz de usuario de corrección de errores : Historiques: Respetar las escalas al hacer zoom.
+
+- Núcleo de corrección de errores : Solucionó un problema de tamaño de copia de seguridad con el complemento Atlas.
+
+- Mejora : Creación de claves api por defecto inactivas (si la solicitud de creación no proviene del complemento).
+- Mejora : Tamaño de copia de seguridad agregado en la página de administración de copias de seguridad.
 
 ## 4.2.12
 

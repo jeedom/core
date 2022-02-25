@@ -14,6 +14,7 @@
         "Timeline": "Cronología",
         "Logs": "Registros",
         "Analyse équipement": "Análisis dispositivo",
+        "Notes": "Calificaciones",
         "Crons": "Crones",
         "Démons": "Daemon",
         "Santé": "Salud",
@@ -32,13 +33,13 @@
         "Tous": "Todos"
     },
     "mobile\/js\/cron.js": {
-        "Rafraichir": "Refrescar",
+        "Rafraichir": "Actualizar",
         "Version desktop": "Versión de escritorio",
         "Démons": "Demonios",
         "Santé": "Salud"
     },
     "mobile\/js\/message.js": {
-        "Vider": "Vaciar"
+        "Vider": "Vacío"
     },
     "mobile\/js\/health.js": {
         "Rafraichir": "Actualizar",
@@ -61,6 +62,11 @@
         "Tout": "Todo",
         "Synthèse": "Síntesis"
     },
+    "mobile\/js\/notes.js": {
+        "Note sauvegardée avec succès": "Nota guardada correctamente",
+        "Voulez-vous vraiment supprimer la note :": "¿Está seguro de que desea eliminar la nota?",
+        "Note supprimée avec succès": "Nota eliminada con éxito"
+    },
     "mobile\/js\/application.js": {
         "Résumé": "Resumen",
         "Historique": "Historial",
@@ -70,10 +76,10 @@
         "Accueil": "Inicio"
     },
     "mobile\/js\/scenario.js": {
-        "Aucun": "Ninguno"
+        "Aucun": "Ninguna"
     },
     "mobile\/html\/scenariolog.html": {
-        "Vider": "Vacíar",
+        "Vider": "Vacío",
         "Pause": "Pausa",
         "Rechercher": "Buscar"
     },
@@ -135,6 +141,13 @@
         "Date lancement": "Fecha lanzamiento",
         "Action": "Acción"
     },
+    "mobile\/html\/notes.html": {
+        "Ajouter": "Agregar",
+        "Sauvegarder": "Para salvaguardar",
+        "Supprimer": "Eliminar",
+        "Titre": "Título",
+        "Texte": "Texto"
+    },
     "mobile\/html\/health.html": {
         "Nom": "Nombre",
         "Status": "Estado"
@@ -166,8 +179,8 @@
     },
     "mobile\/html\/log.html": {
         "Supprimer tous": "Borrar todos",
-        "Supprimer": "Borrar",
-        "Vider": "Vaciar",
+        "Supprimer": "Eliminar",
+        "Vider": "Vacío",
         "Pause": "Pausa",
         "Rechercher": "Buscar"
     },
@@ -180,7 +193,7 @@
     },
     "desktop\/modal\/object.summary.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "ID": "IDENTIFICACIÓN",
         "Objet": "Objeto",
         "Parent": "Pariente",
@@ -201,7 +214,7 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Général": "General",
         "Composants": "Componentes",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Nom": "Nombre",
         "Position": "Posición",
         "Fond transparent": "Fondo transparente",
@@ -228,8 +241,8 @@
         "Design sauvegardé": "Diseño salvado"
     },
     "desktop\/modal\/history.calcul.php": {
-        "Ajouter": "Añadir",
-        "Sauvegarder": "Guardar",
+        "Ajouter": "Agregar",
+        "Sauvegarder": "Para salvaguardar",
         "Nom": "Nombre",
         "Calcul": "Cálculo",
         "Type": "Tipo",
@@ -273,7 +286,7 @@
         "Rechercher": "Buscar",
         "Pause": "Pausa",
         "Télécharger": "Descargar",
-        "Vider": "Vaciar",
+        "Vider": "Vacío",
         "Log vidé avec succès": "Registro vaciado con éxito"
     },
     "desktop\/modal\/plugin.deamon.php": {
@@ -293,19 +306,19 @@
     },
     "desktop\/modal\/note.manager.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Ajouter": "Añadir",
-        "Sauvegarder": "Guardar",
+        "Ajouter": "Agregar",
+        "Sauvegarder": "Para salvaguardar",
         "Supprimer": "Eliminar",
         "Titre": "Título",
         "Texte": "Texto",
-        "Note sauvegardée avec succès": "Nota guardada con éxito",
+        "Note sauvegardée avec succès": "Nota guardada correctamente",
         "Voulez-vous vraiment supprimer la note :": "¿Está seguro de que desea eliminar la nota?",
-        "Note supprimée avec succès": "Nota eliminada correctamente"
+        "Note supprimée avec succès": "Nota eliminada con éxito"
     },
     "desktop\/modal\/view.configure.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Général": "General",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Nom": "Nombre",
         "Icône": "Icono",
         "Choisir": "Elegir",
@@ -333,7 +346,7 @@
     },
     "desktop\/modal\/dataStore.management.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Ajouter": "Añadir",
+        "Ajouter": "Agregar",
         "Rafraichir": "Actualizar",
         "Nom": "Nombre",
         "Valeur": "Valor",
@@ -354,7 +367,7 @@
     "desktop\/modal\/user.rights.php": {
         "Impossible de trouver l\\'utilisateur :": "No se puede encontrar el usuario:",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Equipements": "Dispositivos",
         "Scénarios": "Escenarios",
         "Objets": "Objetos",
@@ -362,7 +375,7 @@
         "Design": "Diseño",
         "Design 3d": "Diseño 3d",
         "Appliquer aux éléments visibles": "Aplicar a elementos visibles",
-        "Aucun": "No",
+        "Aucun": "Ninguna",
         "Visualisation": "Visualización",
         "Visualisation et exécution": "Visualización y ejecución",
         "Equipement": "Dispositivos",
@@ -467,6 +480,7 @@
         "Nom": "Nombre",
         "Visible": "Visible",
         "Affichage": "Monitor",
+        "Paramètres de la tuile. Courbe d'historique et paramètres optionnels.": "Configuración de mosaicos. Curva histórica y parámetros opcionales",
         "Graphique de fond": "Gráfico de fondo",
         "Information": "Información",
         "Aucune": "Alguna",
@@ -482,7 +496,7 @@
         "Couleur": "Color",
         "Hauteur fixe (px)": "Altura fija (px)",
         "Paramètres optionnels sur la tuile": "Parámetros opcionales en la teja",
-        "Ajouter": "Añadir",
+        "Ajouter": "Agregar",
         "Valeur": "Valor",
         "Action": "Acción",
         "Supprimer": "Eliminar",
@@ -508,7 +522,7 @@
         "Retour à la ligne avant le widget": "Ajustar antes del widget",
         "Retour à la ligne après le widget": "Ajustar después del widget",
         "Paramètres optionnels sur le widget:": "Parámetros opcionales en el widget:",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Pas de description des paramètres optionnels sur ce Widget.": "No hay descripción de los parámetros opcionales de este widget"
     },
     "desktop\/modal\/eqLogic.human.insert.php": {
@@ -519,7 +533,7 @@
     "desktop\/modal\/plan3d.configure.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Général": "General",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Supprimer": "Eliminar",
         "Nom": "Nombre",
         "Type de lien": "Tipo de enlace",
@@ -527,7 +541,7 @@
         "Lien": "Enlace",
         "Rechercher d\\'un équipement": "Buscar dispositivo",
         "Spécificité": "Especificidad",
-        "Aucun": "No",
+        "Aucun": "Ninguna",
         "Lumière": "Iluminación",
         "Texte": "Texto",
         "Porte\/Fenêtre": "Puerta \/ ventana",
@@ -568,7 +582,7 @@
         "Masquer quand le volet est ouvert": "Ocultar cuando el obturador está abierto",
         "Couleur fermé": "Color cerrado",
         "Condition": "Condición",
-        "Ajouter": "Añadir",
+        "Ajouter": "Agregar",
         "Masqué si": "Oculto si"
     },
     "desktop\/modal\/search.php": {
@@ -626,7 +640,7 @@
         "Voir les propositions d'amélioration": "Ver sugerencias de mejora",
         "Etape 3 : Catégorie et type de la demande": "Paso 3: El tamaño y tipo de demanda",
         "Type": "Tipo",
-        "Aucun": "No",
+        "Aucun": "Ninguna",
         "Catégorie": "Categoría",
         "Aucune": "Ninguno",
         "Général": "General",
@@ -657,7 +671,7 @@
         "Tester": "Prueba",
         "Liens": "Enlaces",
         "Informations": "Información",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Configuration": "Configuración ",
         "Alertes": "Alertas",
         "Affichage": "Monitor",
@@ -719,7 +733,7 @@
         "pendant plus de": "Por más de",
         "durée en minutes (laisser vide pour une action immédiate)": "duración en minutos (déjelo en blanco para una acción inmediata)",
         "Action": "Acción",
-        "Ajouter": "Añadir",
+        "Ajouter": "Agregar",
         "Action avant exécution de la commande": "Acción antes de la ejecución de la orden",
         "Action après exécution de la commande": "Después de ejecutar la acción de la orden",
         "Historiser": "Guardar historial",
@@ -728,7 +742,7 @@
         "Moyenne": "Media",
         "Minimum": "Mínimo",
         "Maximum": "Máximo",
-        "Aucun": "No",
+        "Aucun": "Ninguna",
         "Purger historique": "Historial de purga",
         "si plus vieux que": "tan mayor que",
         "1 jour": "1 día",
@@ -837,6 +851,18 @@
         "Le dépôt est inactif :": "El depósito está inactivo:",
         "401 - Accès non autorisé": "401 - Acceso no autorizado"
     },
+    "desktop\/modal\/message.display.php": {
+        "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Tout": "Todo",
+        "Rafraichir": "Actualizar",
+        "Vider": "Vacío",
+        "Date et heure": "Fecha y hora",
+        "Source": "Fuente",
+        "Description": "Descripción",
+        "Action": "Acción",
+        "Occurrences": "Ocurrencias",
+        "Centre de Messages": "Centro de mensajes"
+    },
     "desktop\/modal\/cmd.configureHistory.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Valider": "Validar",
@@ -856,7 +882,7 @@
         "Moyenne": "Media",
         "Minimum": "Mínimo",
         "Maximum": "Máximo",
-        "Aucun": "No",
+        "Aucun": "Ninguna",
         "1 jour": "1 día",
         "7 jours": "7 días",
         "1 mois": "1 mes",
@@ -874,7 +900,7 @@
     "desktop\/modal\/scenario.jsonEdit.php": {
         "Aucun scénario ne correspondant à :": "Ningún escenario correspondiente a:",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Erreur editeur non défini": "Error de editor indefinido",
         "Champs json invalide": "Campos json inválidos",
         "Sauvegarde réussie": "Copia de seguridad realizada con éxito"
@@ -922,7 +948,7 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Type Générique": "Tipo genérico",
         "Objet": "Objeto",
-        "Aucun": "No",
+        "Aucun": "Ninguna",
         "Tous": "Todos"
     },
     "desktop\/modal\/interact.query.display.php": {
@@ -937,7 +963,7 @@
         "Log": "Registro",
         "Liens": "Enlaces",
         "Informations": "Información",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Supprimer": "Eliminar",
         "Affichage": "Monitor",
         "Disposition": "Provisión",
@@ -1012,7 +1038,7 @@
         "Général": "General",
         "Composants": "Componentes",
         "Supprimer": "Eliminar",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Nom": "Nombre",
         "Position": "Posición",
         "Code d'accès": "Código de acceso",
@@ -1035,7 +1061,7 @@
     "desktop\/modal\/package.check.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Attention il y a déjà une installation de package en cours.Cliquez sur le bouton rafraichir jusqu\\'a ce que ca soit fini": "Atención, ya hay una instalación de paquete en progreso. Haga clic en el botón Actualizar hasta que termine",
-        "Rafraichir": "Refrescar",
+        "Rafraichir": "Actualizar",
         "Corriger tout": "Arreglar todo",
         "Package": "Paquete",
         "Type": "Tipo",
@@ -1075,7 +1101,7 @@
     "desktop\/modal\/scenario.summary.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Rafraîchir": "Refrescar",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "ID": "IDENTIFICACIÓN",
         "Scénario": "Escenario",
         "Statut": "Estado",
@@ -1091,7 +1117,7 @@
         "En cours": "En curso",
         "Arrêté": "Detenido",
         "Défaut": "Defecto",
-        "Aucun": "Ningún",
+        "Aucun": "Ninguna",
         "Temps réel": "Tiempo real",
         "Dossier": "Carpetas",
         "Voir les logs": "Ver los registros",
@@ -1122,11 +1148,11 @@
         "De plus, l’installation d’un plugin depuis une autre source que le Market": "Además, instalar un complemento de una fuente que no sea Market",
         "entraine la perte globale d’assistance par l’équipe": "resulta en la pérdida general de asistencia por parte del equipo",
         "Type de source": "Tipo de fuente",
-        "Aucun": "No",
+        "Aucun": "Ninguna",
         "Configuration": "Configuración",
         "ID logique du plugin": "ID lógico del plugin",
         "Envoyer un plugin": "Enviar un plugin",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Sauvegarde réussie": "Copia de seguridad realizada con éxito"
     },
     "desktop\/modal\/widget.replace.php": {
@@ -1193,7 +1219,7 @@
     "desktop\/modal\/object.massEdit.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Type non trouvé :": "Tipo no encontrado:",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Type": "Tipo",
         "Nom": "Nombre",
         "Modification sauvegardée avec succès": "Cambio guardado con éxito"
@@ -1201,7 +1227,7 @@
     "desktop\/modal\/plan.configure.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Général": "General",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Profondeur": "Profundidad",
         "Niveau 0": "Nivel 0",
         "Niveau 1": "Nivel 1",
@@ -1237,7 +1263,7 @@
         "Fond transparent": "Fondo transparente",
         "Nom": "Nombre",
         "Lien": "Enlace",
-        "Aucun": "No",
+        "Aucun": "Ninguna",
         "Icône": "Icono",
         "Choisir une icône": "Elija el icono",
         "Afficher le nom de l'objet": "Mostrar nombre de objeto",
@@ -1376,7 +1402,7 @@
         "Interactions": "Interacciones",
         "Widgets": "Widgets",
         "Types d'équipement": "Tipos de equipo",
-        "Notes": "Notas",
+        "Notes": "Calificaciones",
         "Testeur expression": "Probador de expresión",
         "Variables": "Las variables",
         "Recherche": "Buscar",
@@ -1414,10 +1440,11 @@
     },
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Rechercher | nom | :not(nom": "Buscar | nombre | :sin nombre",
         "Principal": "Principal",
         "Timelines": "Cronologías",
         "Rafraîchir": "Refrescar",
-        "Supprimer": "Borrar",
+        "Supprimer": "Eliminar",
         "Configuration": "Configuración"
     },
     "desktop\/php\/reboot.php": {
@@ -1443,7 +1470,7 @@
         "Prérequis": "Prerrequisitos",
         "Version minimale du Core supportée par le plugin.": "Versión de núcleo mínima admitida por el complemento",
         "Logs et surveillance": "Registros y monitoreo",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Dépendances": "Dependencias",
         "Démon": "Demonio",
         "Installation": "Instalación",
@@ -1492,7 +1519,7 @@
         "pour plus d\\'informations.": "para más informaciones",
         "Dernière vérification :": "Ultima verificación :",
         "Vérifier les mises à jour": "Verifica las actualizaciones",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Mettre à jour": "Actualizar",
         "Mettre à niveau": "Actualizar",
         "Core et plugins": "Core y plugins",
@@ -1532,7 +1559,7 @@
     "desktop\/php\/administration.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Rechercher": "Buscar",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Général": "General",
         "Interface": "Interfaz",
         "Réseaux": "Redes",
@@ -1565,7 +1592,7 @@
         "Turque (pas de support)": "Turco (sin soporte)",
         "Moteur TTS": "Motor TTS",
         "Plugin": "Enchufar",
-        "Date et heure": "Dia y hora",
+        "Date et heure": "Fecha y hora",
         "Fuseau horaire de votre": "Su zona horaria",
         "Forcer la synchronisation de l'heure": "Forzar la sincronización de la hora",
         "Serveur de temps optionnel": "Servidor horario opcional",
@@ -1662,7 +1689,7 @@
         "de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre": "configuración de red y no tiene impacto en los puertos o IP realmente utilizados para alcanzar",
         "Accès interne": "Acceso interno",
         "Protocole": "Protocolo",
-        "Aucun": "No",
+        "Aucun": "Ninguna",
         "HTTP": "Http",
         "HTTPS": "HTTPS",
         "Accès externe": "Acceso externo",
@@ -1697,7 +1724,7 @@
         "Messages": "Mensajes",
         "Ajouter un message à chaque erreur dans les logs": "Añadir un mensaje a cada error en los registros",
         "Action sur message": "Acción sobre mensaje",
-        "Ajouter": "Añadir",
+        "Ajouter": "Agregar",
         "Alertes": "Alertas",
         "Ajouter un message à chaque": "Añadir un mensaje a cada uno",
         "Commande sur": "Comando sobre",
@@ -1950,7 +1977,7 @@
         "Concepts": "Conceptos",
         "Premiers pas": "Primeros pasos",
         "Retour à la Synthèse": "Regresar al resumen",
-        "Rechercher | nom | :not(nom": "Buscar | nombre | : sin nombre",
+        "Rechercher | nom | :not(nom": "Buscar | nombre | :sin nombre",
         "Vider le champ de recherche": "Borrar el campo de búsqueda",
         "Filtre par catégorie": "Filtrar por categoría",
         "Toutes": "Todas",
@@ -1970,7 +1997,7 @@
         "Vider tous": "Limpiar todo",
         "Supprimer": "Eliminar",
         "Supprimer tous": "Borrar todos",
-        "Rechercher | nom | :not(nom": "Buscar | nombre | : sin nombre"
+        "Rechercher | nom | :not(nom": "Buscar | nombre | :sin nombre"
     },
     "desktop\/php\/profils.php": {
         "Error 401 Unauthorized": "Error 401 no autorizado",
@@ -1979,7 +2006,7 @@
         "Vue": "Vista",
         "Design": "Diseño",
         "Design 3D": "Diseño 3D",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Préférences": "Preferencias",
         "Sécurité": "Seguridad",
         "Interface": "Interfaz",
@@ -2054,16 +2081,16 @@
     "desktop\/php\/widgets.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Gestion": "Administración",
-        "Ajouter": "Añadir",
+        "Ajouter": "Agregar",
         "Importer": "Importar",
         "Code": "Código",
         "Remplacement": "Reemplazo",
         "Mes widgets": "Mis widgets",
-        "Rechercher | nom | :not(nom": "Buscar | nombre | :not(nombre",
+        "Rechercher | nom | :not(nom": "Buscar | nombre | :sin nombre",
         "Appliquer à": "Aplicar",
         "Exporter": "Exportar",
-        "Sauvegarder": "Guardar",
-        "Supprimer": "Borrar",
+        "Sauvegarder": "Para salvaguardar",
+        "Supprimer": "Eliminar",
         "Widgets": "Widgets",
         "Général": "General",
         "Nom du widget": "Nombre del widget",
@@ -2108,8 +2135,8 @@
         "Configuration": "Configuración ",
         "Ajouter une zone": "Añadir una zona",
         "Voir le résultat": "Ver el resultado",
-        "Sauvegarder": "Guardar",
-        "Supprimer": "Borrar",
+        "Sauvegarder": "Para salvaguardar",
+        "Supprimer": "Eliminar",
         "Ajouter\/Editer viewZone": "Añadir\/Editar viewZone",
         "Nom": "Nombre",
         "Type": "Tipo",
@@ -2120,15 +2147,15 @@
     },
     "desktop\/php\/scenario.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Aucun": "Ninguno",
+        "Aucun": "Ninguna",
         "Gestion": "Gestión",
-        "Ajouter": "Añadir",
+        "Ajouter": "Agregar",
         "Supprimer les logs": "Eliminar registros",
         "Activer scénarios": "Activar escenarios",
         "Désactiver scénarios": "Desactivar escenarios",
         "Vue d'ensemble": "Resumen",
         "Mes scénarios": "Mis escenarios",
-        "Rechercher | nom | :not(nom": "Buscar | nombre | :not(nombre",
+        "Rechercher | nom | :not(nom": "Buscar | nombre | :sin nombre",
         "Etat précédent": "Estado anterior",
         "Etat suivant": "Siguiente estado",
         "Ajouter bloc": "Agregar bloque",
@@ -2142,7 +2169,7 @@
         "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.<br>Ctrl+click pour sauvegarder, executer et ouvrir le log": "Por favor guarda antes de probar. Esto puede no ser exitoso. <br>Ctrl+clic para guardar, ejecutar y abrir el registro",
         "Exécuter": "Ejecutar",
         "Arrêter": "Detener",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Supprimer": "Eliminar",
         "Général": "General",
         "Scénario": "Escenario",
@@ -2154,7 +2181,7 @@
         "Groupe du scénario": "Grupo de escenario",
         "Actif": "Activo",
         "Visible": "Visible",
-        "Objet parent": "Objeto padre",
+        "Objet parent": "Objeto principal",
         "Log": "Registro",
         "Défaut": "Defecto",
         "Temps réel": "Tiempo real",
@@ -2208,7 +2235,7 @@
     "desktop\/php\/types.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Equipements sans type": "Equipo sin tipo",
-        "Aucun": "No",
+        "Aucun": "Ninguna",
         "Non actif": "No activo",
         "Non visible": "No visible",
         "Reset types": "Tipos de reinicio",
@@ -2229,30 +2256,19 @@
         "Votre box": "Su controlador",
         "est éteinte.<br \/> Pour la redémarrer, débranchez-la et rebranchez-la.": "está apagado <br \/> Para reiniciarlo, desenchúfelo y vuelva a enchufarlo"
     },
-    "desktop\/php\/message.php": {
-        "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Tout": "Todo",
-        "Rafraichir": "Actualizar",
-        "Vider": "Vacío",
-        "Date et heure": "Dia y hora",
-        "Source": "Fuente",
-        "Description": "Descripción",
-        "Action": "Acción",
-        "Occurrences": "Ocurrencias"
-    },
     "desktop\/php\/interact.php": {
-        "Aucun": "No",
+        "Aucun": "Ninguna",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Gestion": "Administración",
-        "Ajouter": "Añadir",
+        "Ajouter": "Agregar",
         "Regénérer": "Actualizar",
         "Tester": "Prueba",
         "Mes interactions": "Mis interacciones",
         "Vous n'avez encore aucune interaction. Cliquez sur ajouter pour commencer.": "Aún no tienes interacción. Haga clic en agregar para comenzar",
-        "Rechercher | nom | :not(nom": "Buscar | nombre | : sin nombre",
+        "Rechercher | nom | :not(nom": "Buscar | nombre | :sin nombre",
         "Phrase(s)": "Frase(s)",
         "Dupliquer": "Duplicar",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Supprimer": "Eliminar",
         "Général": "General",
         "Filtres": "Filtros",
@@ -2300,7 +2316,7 @@
         "Alertes définies": "Alertas definidas",
         "Push définis": "Push definido",
         "Commandes orphelines": "Controles huérfanos",
-        "Rechercher | nom | :not(nom": "Buscar | nombre | : sin nombre",
+        "Rechercher | nom | :not(nom": "Buscar | nombre | :sin nombre",
         "Aucun équipement en Alerte.": "No hay equipos en alerta",
         "Equipement": "Dispositivos",
         "Commande": "Comando",
@@ -2338,7 +2354,7 @@
         "Ajouter un utilisateur": "Añadir un usuario",
         "Activer accès support": "Activar acceso soporte",
         "Désactiver accès support": "Deshabilitar acceso de soporte",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Utilisateur": "Usuario",
         "Actif": "Activo",
         "Profil": "Perfil",
@@ -2354,11 +2370,11 @@
         "Périphérique(s) enregistré(s)": "Dispositivo(s) registrado(s)",
         "Supprimer tout": "Borrar todo",
         "Action": "Acción",
-        "Supprimer": "Borrar",
+        "Supprimer": "Eliminar",
         "Identifiant": "Identificador",
         "Mot de passe": "Contraseña",
         "Annuler": "Cancelar",
-        "Ajouter": "Añadir"
+        "Ajouter": "Agregar"
     },
     "desktop\/php\/database.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -2380,8 +2396,8 @@
         "Activer le système cron": "Activar sistema cron",
         "Désactiver le système cron": "Desactivar el sistema cron",
         "Rafraîchir": "Refrescar",
-        "Ajouter": "Añadir",
-        "Sauvegarder": "Guardar",
+        "Ajouter": "Agregar",
+        "Sauvegarder": "Para salvaguardar",
         "Cron": "Cron",
         "Listener": "Oyente",
         "Démon": "Demonio",
@@ -2410,22 +2426,21 @@
         "Design": "Diseño",
         "Design 3D": "Diseño 3d",
         "Gestion": "Administración",
-        "Ajouter": "Añadir",
+        "Ajouter": "Agregar",
         "Vue d'ensemble": "Resumen",
         "Mes objets": "Mis objetos",
-        "Rechercher | nom | :not(nom": "Buscar | nombre | : sin nombre",
+        "Rechercher | nom | :not(nom": "Buscar | nombre | :sin nombre",
         "Liens": "Enlaces",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Supprimer": "Eliminar",
         "Objet": "Objeto",
         "Résumé": "Resumen",
         "Résumé par équipements": "Resumen por equipos",
         "Général": "General",
         "Nom de l'objet": "Nombre del objeto",
-        "Objet parent": "Objeto padre",
+        "Objet parent": "Objeto principal",
         "Options": "Opciones",
         "Visible": "Visible",
-        "Rendre cet objet visible ou non.": "Haga este objeto visible o no",
         "Masquer": "Esconder",
         "Sur Dashboard": "En el tablero",
         "Masquer cet objet uniquement sur le Dashboard. Il restera visible, notamment dans la liste des objets.": "Oculta este objeto solo en el Tablero. Permanecerá visible, especialmente en la lista de objetos",
@@ -2467,7 +2482,7 @@
         "Remonter dans le résumé global": "Exportar al Resumen general",
         "Activez les résumés qui seront pris en compte pour le résumé global, affiché sur la droite dans la barre de menu.": "Active los resúmenes que se tendrán en cuenta para el resumen global, que se muestra a la derecha en la barra de menú",
         "Tous": "Todos",
-        "Aucun": "No",
+        "Aucun": "Ninguna",
         "Masquer en desktop": "Ocultar en escritorio",
         "Masquer en mobile": "Ocultar en el móvil",
         "Commandes des résumés": "Resumen de pedidos",
@@ -2477,7 +2492,7 @@
     },
     "desktop\/php\/backup.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Sauvegardes locales": "Copias de seguridad locales",
         "Emplacement": "Ubicación",
         "Rétention temporelle (jours)": "Retención temporal (días)",
@@ -2501,7 +2516,7 @@
         "pour en créer un.": "para crear uno"
     },
     "desktop\/php\/history.php": {
-        "Aucun": "No",
+        "Aucun": "Ninguna",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Advertencia: demasiado grande rango de fechas puede tardar mucho tiempo para calcular o ni siquiera aparece",
         "Aucun groupement": "Ninguna agrupación",
@@ -2560,7 +2575,7 @@
     "desktop\/php\/display.php": {
         "$value['name']": "Valor $ [ 'nombre']",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Aucun": "No",
+        "Aucun": "Ninguna",
         "Configuration avancée": "Configuración avanzada",
         "Aller sur la configuration de l\\'objet": "Ir a la configuración del objeto",
         "Désélectionner les équipements": "Deseleccionar equipo",
@@ -2582,11 +2597,11 @@
         "Inactifs": "Inactivo",
         "Export CSV": "Exportar CSV",
         "Rechercher | nom | id | :not(nom": "Buscar | nombre | id | : sin nombre",
+        "Vider": "Vacío",
         "Date": "Fecha",
         "Type": "Tipo",
         "ID": "IDENTIFICACIÓN",
-        "Nom": "Nombre",
-        "Vider": "Vacío"
+        "Nom": "Nombre"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -2597,9 +2612,7 @@
         "OK": "Bueno"
     },
     "desktop\/js\/update.js": {
-        "Options": "Opciones",
-        "Êtes-vous sûr de vouloir mettre à jour :": "¿Está seguro de que desea actualizar:",
-        "Êtes-vous sûr de vouloir supprimer :": "Estas seguro que quieres borrarlo:",
+        "Aucune mise à jour en cours.": "No hay actualizaciones en progreso",
         "Mise(s) à jour terminée(s) avec succès.": "Actualización (es) completada con éxito",
         "L\\'opération a échoué": "La operación falló",
         "Dernière verification des mises à jour": "Última comprobación de actualización",
@@ -2610,8 +2623,10 @@
         "Réinstaller": "Restablecer",
         "Supprimer": "Eliminar",
         "Vérifier": "Verificar",
-        "Aucune mise à jour en cours.": "No hay actualizaciones en progreso",
-        "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "La actualización parece estar bloqueada (sin cambios durante 10 minutos. Verifique el registro)"
+        "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "La actualización parece estar bloqueada (sin cambios durante 10 minutos. Verifique el registro)",
+        "Options": "Opciones",
+        "Êtes-vous sûr de vouloir mettre à jour :": "¿Está seguro de que desea actualizar:",
+        "Êtes-vous sûr de vouloir supprimer :": "Estas seguro que quieres borrarlo:"
     },
     "desktop\/js\/log.js": {
         "Pause": "Pausa",
@@ -2619,7 +2634,6 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "¿Seguro que quieres eliminar todos los registros?"
     },
     "desktop\/js\/editor.js": {
-        "Editer": "Editar",
         "Le sous-type ne peut être vide": "El subtipo no puede estar vacío",
         "Le nom ne peut être vide": "El nombre no puede estar vacío",
         "Fichier enregistré avec succès": "Archivo guardado exitosamente",
@@ -2627,7 +2641,8 @@
         "Options": "Opciones",
         "Configutation sauvegardée": "Configuración guardada",
         "Activé": "Activado",
-        "Désactivé": "Desactivado"
+        "Désactivé": "Desactivado",
+        "Editer": "Editar"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "Actualizar",
@@ -2648,7 +2663,7 @@
         "Votre version de": "Su versión de",
         "ne permet pas d\\'activer ce plugin": "no permite activar este complemento",
         "Niveau log": "Nivel de registro",
-        "Aucun": "No",
+        "Aucun": "Ninguna",
         "Defaut": "Fallo",
         "Debug": "Depurar",
         "Info": "Información",
@@ -2657,6 +2672,7 @@
         "Logs": "Registros",
         "Heartbeat (min)": "Latido del corazón (min)",
         "Redémarrer démon": "Reiniciar demonio",
+        "Sauvegarde effectuée": "Guardado correctamente",
         "De nouveaux plugins ont été installés": "Se han instalado nuevos complementos",
         "Synchronisation réussi. Aucun nouveau plugin installé.": "Sincronización exitosa. No se instaló ningún complemento nuevo",
         "Market": "Mercado",
@@ -2666,8 +2682,7 @@
         "Sauvegarde de la configuration des panneaux effectuée": "Almacenamiento de la configuración de los paneles realizados",
         "Sauvegarde des fonctionalités effectuée": "Guardado de características efectuada",
         "Sauvegarde de la configuration des logs effectuée": "Copia de seguridad de la configuracion de los logs hecho",
-        "Log du plugin": "Registro del plugin",
-        "Sauvegarde effectuée": "Guardado correctamente"
+        "Log du plugin": "Registro del plugin"
     },
     "desktop\/js\/plan3d.js": {
         "Configuration du plan 3D": "Configuración de un mapa en 3D",
@@ -2679,11 +2694,7 @@
         "Configuration Affichage": "Configuración de pantalla"
     },
     "desktop\/js\/view_edit.js": {
-        "Nom de la vue ?": "Nombre de la vista ?",
-        "Configuration de la vue": "Ver configuración",
         "Modification enregistrée": "Modificación registrada",
-        "Êtes-vous sûr de vouloir supprimer la vue": "¿Está seguro de que desea eliminar la vista?",
-        "Le nom de la viewZone ne peut être vide": "El nombre de la Viewzone no puede estar vació",
         "Largeur": "Ancho",
         "Hauteur": "Altura",
         "30 min": "30 minutos",
@@ -2710,7 +2721,7 @@
         "Variation": "Variación",
         "Ligne": "Línea",
         "Aire": "Area",
-        "Barre": "Cerrada",
+        "Colonne": "Columna",
         "Camembert": "Gráfico circular",
         "Aucun groupement": "Ninguna agrupación",
         "Somme par heure": "Suma por hora",
@@ -2738,7 +2749,11 @@
         "Invisible": "Invisible",
         "Visible": "Visible",
         "Non": "No",
-        "Oui": "Si"
+        "Oui": "Si",
+        "Nom de la vue ?": "Nombre de la vista ?",
+        "Configuration de la vue": "Ver configuración",
+        "Êtes-vous sûr de vouloir supprimer la vue": "¿Está seguro de que desea eliminar la vista?",
+        "Le nom de la viewZone ne peut être vide": "El nombre de la Viewzone no puede estar vació"
     },
     "desktop\/js\/display.js": {
         "Configuration de l'objet": "Configuración del objeto",
@@ -2752,10 +2767,6 @@
         "Historique": "Historial"
     },
     "desktop\/js\/cron.js": {
-        "Désactiver le système cron": "Desactivar el sistema cron",
-        "Activer le système cron": "Activar sistema cron",
-        "Détails du cron": "Detalles de Cron",
-        "Détails du listener": "Detalles del oyente",
         "En cours": "En curso",
         "Arrêté": "Detenido",
         "Démarrage": "La puesta en marcha",
@@ -2767,14 +2778,18 @@
         "Démarrer ou re-démarrer": "Iniciar o reiniciar",
         "Arrêter": "Detener",
         "Activer la gestion automatique du démon": "Activa la gestión automática del demonio",
-        "Désactiver la gestion automatique du démon": "Deshabilitar la gestión automática de demonios"
+        "Désactiver la gestion automatique du démon": "Deshabilitar la gestión automática de demonios",
+        "Désactiver le système cron": "Desactivar el sistema cron",
+        "Activer le système cron": "Activar sistema cron",
+        "Détails du cron": "Detalles de Cron",
+        "Détails du listener": "Detalles del oyente"
     },
     "desktop\/js\/history.js": {
+        "Historique supprimé avec succès": "Historial eliminado correctamente",
+        "Mes Calculs": "Mis calculos",
         "Configuration des formules de calcul": "Configuración de fórmulas",
         "Configuration de l'historique des commandes": "Configuración del historial de comandos",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Indique la fecha (A-M-D H:m:s) desde la cuál borrar el historial",
-        "Mes Calculs": "Mis calculos",
-        "Historique supprimé avec succès": "Historial eliminado correctamente",
         "Comparer": "Comparar",
         "jours avec": "días con",
         "jours il y a": "hace días",
@@ -2790,18 +2805,9 @@
         "Commande :": "Comando :",
         "Temps d\\'éxécution": "Tiempo de ejecución"
     },
-    "desktop\/js\/message.js": {
-        "Centre de Messages": "Centro de mensajes"
-    },
     "desktop\/js\/user.js": {
-        "Sauvegarde effectuée": "Guardado correctamente",
         "Le login d\\'un utilisateur ne peut être vide !": "¡El inicio de sesión de un usuario no puede estar vacío!",
         "Deux utilisateurs ne peuvent avoir le même login !": "¡Dos usuarios no pueden tener el mismo inicio de sesión!",
-        "Vous allez supprimer l\\'utilisateur :": "Eliminarás al usuario:",
-        "L\\'utilisateur a bien été supprimé": "Se ha borrado el usuario",
-        "Quel est le nouveau mot de passe ?": "¿ Cual es la nueva contraseña ?",
-        "Êtes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "¿Está seguro de que desea cambiar la clave API del usuario?",
-        "Modification effectuée": "Modificación realizada",
         "Actif": "Activo",
         "Local": "Local",
         "Ne pas faire de rotation clef api": "No gire la clave API",
@@ -2819,6 +2825,12 @@
         "Régénérer API": "Regenerar API",
         "Droits": "Derechos",
         "Profils": "Perfiles",
+        "Sauvegarde effectuée": "Guardado correctamente",
+        "Vous allez supprimer l\\'utilisateur :": "Eliminarás al usuario:",
+        "L\\'utilisateur a bien été supprimé": "Se ha borrado el usuario",
+        "Quel est le nouveau mot de passe ?": "¿ Cual es la nueva contraseña ?",
+        "Êtes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "¿Está seguro de que desea cambiar la clave API del usuario?",
+        "Modification effectuée": "Modificación realizada",
         "Gestion des droits (Utilisateur limité)": "Gestión de derechos (usuario limitado)",
         "Gestion du profils": "Gestión de perfiles"
     },
@@ -2832,6 +2844,8 @@
         "Configuration Affichage": "Configuración de pantalla"
     },
     "desktop\/js\/plan.js": {
+        "Nom du design ?": "¿El nombre del diseño?",
+        "Veuillez indiquer le code ?": "Por favor, indique el código ?",
         "Designs": "Diseños",
         "Edition": "Edición",
         "Plein écran": "Pantalla completa",
@@ -2856,7 +2870,7 @@
         "Nom la copie du design ?": "¿Nombre de la copia del diseño?",
         "Configurer le design": "Configurar el diseño",
         "Configuration du design": "Configuración del diseño",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Paramètres d\\'affichage": "Pantalla de ajustes",
         "Configuration du composant": "Configuración de componentes",
         "Configuration avancée": "Configuración avanzada",
@@ -2864,11 +2878,11 @@
         "Valider": "Validar",
         "Supprimer": "Eliminar",
         "Dupliquer": "Duplicar",
-        "Verrouiller": "Cerrar",
-        "Nom du design ?": "¿El nombre del diseño?",
-        "Veuillez indiquer le code ?": "Por favor, indique el código ?"
+        "Verrouiller": "Cerrar"
     },
     "desktop\/js\/interact.js": {
+        "Action": "Acción",
+        "Sélectionner un mot-clé": "Seleccionar una palabra clave",
         "Liste des interactions": "Lista de Interacciones",
         "Interactions": "Interacciones",
         "Nom": "Apellido",
@@ -2877,9 +2891,7 @@
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "¿Estás seguro de que deseas regenerar todas las interacciones (esto puede ser muy largo)?",
         "Toutes les interactions ont été régénérées": "Todas las interacciones han sido regeneradas",
         "Demande": "Demanda",
-        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "¿Está seguro de que desea eliminar la interacción?",
-        "Action": "Acción",
-        "Sélectionner un mot-clé": "Seleccionar una palabra clave"
+        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "¿Está seguro de que desea eliminar la interacción?"
     },
     "desktop\/js\/timeline.js": {
         "Evènements de la timeline supprimés avec succès": "Eventos de la línea de tiempo eliminados con éxito",
@@ -2923,13 +2935,13 @@
         "Largeur desktop": "Ancho de escritorio",
         "Largeur mobile": "Ancho movible",
         "Time widget": "Widget de tiempo",
+        "Choisir": "Elegir",
+        "Test": "Prueba",
+        "Résultat si test ok": "Resultado si la prueba está bien",
         "Remplacement de widget": "Reemplazo de widget",
         "Appliquer ce widget à": "Aplicar este widget a",
         "Modification(s) appliquée(s) avec succès": "Modificación(es) aplicada(os) con éxito",
-        "Choisir": "Elegir",
         "Widgets": "Widgets",
-        "Test": "Prueba",
-        "Résultat si test ok": "Resultado si la prueba está bien",
         "Nom du widget": "Nombre del widget",
         "Sauvegarde effectuée avec succès": "Guardado correctamente",
         "Configuration de la commande": "Configuración del comando",
@@ -2945,6 +2957,19 @@
         "Opération effectuée": "Operación realizada"
     },
     "desktop\/js\/administration.js": {
+        "Somme": "Suma",
+        "Moyenne": "Media",
+        "Texte": "Texto",
+        "Icône": "Icono",
+        "Aucun": "Ninguna",
+        "Binaire": "Binario",
+        "Créer virtuel": "Crear virtual",
+        "Décocher pour desactiver l\\'action": "Desmarque para desactivar la acción",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Marque para que el comando se ejecute en paralelo con las otras acciones",
+        "Sélectionner un mot-clé": "Seleccionar una palabra clave",
+        "Sélectionner la commande": "Seleccione la orden",
+        "Cache vidé": "Caché vaciada",
+        "Cache nettoyé": "Cache borrada",
         "Sauvegarde réussie": "Copia de seguridad realizada con éxito",
         "Commande réalisée avec succès": "Comando ejecutada con éxito",
         "Cookie de thème supprimé": "Cookie de tema eliminada",
@@ -2952,18 +2977,7 @@
         "Êtes-vous sûr de vouloir supprimer cette image de fond ?": "¿Estás seguro de que deseas eliminar esta imagen de fondo?",
         "Image supprimée": "Imagen eliminada",
         "Evènement de la timeline supprimé avec succès": "Evento de la Cronología eliminado correctamente",
-        "Décocher pour desactiver l\\'action": "Desmarque para desactivar la acción",
-        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Marque para que el comando se ejecute en paralelo con las otras acciones",
-        "Sélectionner un mot-clé": "Seleccionar una palabra clave",
-        "Sélectionner la commande": "Seleccione la orden",
         "Création des commandes virtuel réussies": "Creación de comandos virtuales correctos",
-        "Somme": "Suma",
-        "Moyenne": "Media",
-        "Texte": "Texto",
-        "Icône": "Icono",
-        "Aucun": "No",
-        "Binaire": "Binario",
-        "Créer virtuel": "Crear virtual",
         "Êtes-vous sûr de vouloir supprimer la base d\\'InfluxDB": "¿Está seguro de que desea eliminar la base de datos de InfluxDB?",
         "Action envoyée avec succés": "Acción enviada con éxito",
         "Êtes-vous sûr de vouloir envoyer tout l\\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes.": "¿Está seguro de que desea impulsar el historial completo de todos los pedidos con InfluxDB? Esto se programará y realizará en segundo plano en un minuto y puede llevar mucho tiempo dependiendo de la cantidad de comandos",
@@ -2972,8 +2986,6 @@
         "Connexion réussie": "Conexión exitosa",
         "Test réussi": "Prueba con exito",
         "Attention ceci est une opération risquée (vidage du cache), Confirmez vous vouloir la faire ?": "Atención, esta es una operación arriesgada (vaciar la caché), ¿Confirmas que quieres hacerlo?",
-        "Cache vidé": "Caché vaciada",
-        "Cache nettoyé": "Cache borrada",
         "Êtes-vous sûr de vouloir réinitialiser la clé API de": "¿Está seguro de que desea restablecer la clave API para",
         "Administration système": "Administración del sistema",
         "Rétablissement des droits d\\'accès effectué avec succès": "Derechos de acceso restaurados exitosamente",
@@ -2987,11 +2999,11 @@
         "Information importante :": "Información importante:"
     },
     "desktop\/js\/types.js": {
+        "Aucun": "Ninguna",
         "Supprimer les types generiques sur les commandes ?": "¿Eliminar tipos genéricos de los pedidos?",
         "Oui": "Sí",
         "Non": "No",
-        "Aucun": "No",
-        "Supprimer": "Borrar",
+        "Supprimer": "Eliminar",
         "Types Génériques automatiques": "Tipos genéricos automáticos",
         "Types Génériques sauvegardés": "Tipos genéricos guardados",
         "Liste des Types Génériques (Core et Plugins)": "Lista de tipos genéricos (núcleo y complementos)",
@@ -3002,26 +3014,34 @@
         "Commentaire": "Observación"
     },
     "desktop\/js\/eqAnalyse.js": {
+        "Supprimée le": "Eliminado el",
         "Configuration commande": "Configuración de control",
         "Configuration de l'équipement": "Configuración del equipo",
-        "Configuration en masse": "Configuración masiva",
-        "Supprimée le": "Eliminado el"
+        "Configuration en masse": "Configuración masiva"
     },
     "desktop\/js\/object.js": {
+        "Envoyer": "Enviar",
+        "Image de fond ajoutée avec succès": "Imagen de fondo agregada correctamente",
+        "Commande": "Comando",
+        "Activer": "Activar",
+        "Inverser": "Invertir",
+        "Résumé(s)": "Resumen (s)",
+        "Rendre invisible": "Hacer invisible",
+        "Rendre visible": "Para hacer visible",
+        "Rendre invisible sur la Synthèse": "Hacer invisible en Synthesis",
+        "Rendre visible sur la Synthèse": "Hacer visible en Synthesis",
+        "Rendre invisible sur le Dashboard": "Hacer invisible en el Tablero",
+        "Rendre visible sur le Dashboard": "Hacer visible en el Tablero",
+        "Objet parent": "Objeto principal",
+        "Positionner après": "Posición después",
         "Graphique des liens": "Gráfico de enlaces",
         "Image de fond appliquée avec succès": "La imagen de fondo se aplicó correctamente",
         "Êtes-vous sûr de vouloir enlever l\\'image de fond de cet objet ?": "¿Está seguro de que desea eliminar la imagen de fondo de este objeto?",
         "Image de fond enlevée": "Imagen de fondo eliminada",
         "Objets": "Objetos",
-        "Envoyer": "Enviar",
-        "Image de fond ajoutée avec succès": "Imagen de fondo agregada correctamente",
         "Nom du nouvel objet": "Nombre del nuevo objeto",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "¿Está seguro de que desea eliminar el objeto?",
-        "Commande": "Comando",
-        "Activer": "Activar",
-        "Inverser": "Invertir",
-        "Vue d'ensemble des objets": "Resumen de objetos",
-        "Résumé(s)": "Resumen (s)"
+        "Vue d'ensemble des objets": "Resumen de objetos"
     },
     "desktop\/js\/system.js": {
         "Êtes-vous sûr de vouloir éxécuter cette commande :": "¿Estás seguro de que quieres ejecutar este comando?",
@@ -3029,6 +3049,8 @@
         "Commande :": "Orden :"
     },
     "desktop\/js\/backup.js": {
+        "L\\'opération est réussie": "Operación realizada con éxito",
+        "L\\'opération a échoué": "La operación falló",
         "Sauvegarde réussie": "Copa de seguridad realizada con éxito",
         "Êtes-vous sûr de vouloir faire une sauvegarde de": "¿Estás seguro de que quieres hacer una copia de seguridad de",
         "? Une fois lancée cette opération ne peut être annulée": "? Una vez iniciada, esta operación no se puede cancelar",
@@ -3041,9 +3063,7 @@
         "Êtes-vous sûr de vouloir envoyer une sauvegarde de": "¿Está seguro de que desea enviar una copia de seguridad de",
         "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "en la nube? Una vez iniciada, esta operación no se puede cancelar",
         "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud": "¿Está seguro de que desea repatriar la copia de seguridad en la nube?",
-        "Sauvegarde rapatrier avec succès": "Copia de seguridad recuperada con éxito",
-        "L\\'opération est réussie": "Operación realizada con éxito",
-        "L\\'opération a échoué": "La operación falló"
+        "Sauvegarde rapatrier avec succès": "Copia de seguridad recuperada con éxito"
     },
     "desktop\/js\/reboot.js": {
         "Êtes-vous sûr de vouloir redémarrer le système ?": "¿Está seguro de que desea reiniciar el sistema?",
@@ -3053,25 +3073,6 @@
         "est en cours de redémarrage.": "se está reiniciando"
     },
     "desktop\/js\/scenario.js": {
-        "Log d'exécution du scénario": "Log de ejecución del escenario",
-        "Nom du scénario": "Nombre del escenario",
-        "Êtes-vous sûr de vouloir désactiver les scénarios ?": "¿Estás seguro de que quieres desactivar los escenarios?",
-        "Êtes-vous sûr de vouloir activer les scénarios ?": "¿Está seguro de que desea habilitar escenarios?",
-        "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "¿Está seguro de que desea eliminar todos los registros de escenarios?",
-        "Logs des scénarios supprimés.": "Registros de escenarios eliminados",
-        "Vue d'ensemble des scénarios": "Resumen de los escenarios",
-        "Scénario": "Escenario",
-        "Graphique de lien(s)": "Gráfico de enlace",
-        "Edition texte scénarios": "Edición texto escenarios",
-        "Export du scénario": "Exportación del escenario",
-        "Template de scénario": "Plantilla de escenario",
-        "Lancement du scénario réussi": "Ejecución de escenario realizada con éxito",
-        "Arrêt du scénario réussi": "Parada de escenario correcta",
-        "Êtes-vous sûr de vouloir supprimer le scénario": "¿Está seguro de que desea eliminar el escenario?",
-        "Êtes-vous sûr de vouloir supprimer ce bloc ?": "¿Estás seguro de que deseas eliminar este bloque?",
-        "Le bloc Sinon ne peut être masqué s'il contient des éléments.": "El bloque Else no se puede ocultar si contiene elementos",
-        "Afficher ce bloc.<br>Ctrl+click: tous.": "Muestra este bloque. <br> Ctrl + clic: todo",
-        "Masquer ce bloc.<br>Ctrl+click: tous.": "Esconde este bloque. <br> Ctrl + clic: todo",
         "Aucun choix possible": "No hay elección posible",
         "est": "es",
         "égal": "Igual",
@@ -3090,9 +3091,6 @@
         "rien": "nada",
         "et": "y",
         "ou": "o",
-        "Ajout d'une nouvelle condition": "Agregar una nueva condición",
-        "Ne rien mettre": "No poner nada",
-        "Valider": "Validar",
         "Erreur": "Error",
         "Actif": "Activo",
         "Démarrage": "Inicia",
@@ -3115,6 +3113,8 @@
         "Supprimer l\\'action": "Borrar acción",
         "Sélectionner un mot-clé": "Seleccionar una palabra clave",
         "Sélectionner la commande": "Seleccione el comando",
+        "Masquer ce bloc.<br>Ctrl+click: tous.": "Esconde este bloque. <br> Ctrl + clic: todo",
+        "Afficher ce bloc.<br>Ctrl+click: tous.": "Muestra este bloque. <br> Ctrl + clic: todo",
         "Décocher pour désactiver l\\'élément": "Desactive para desactivar elemento",
         "SI": "Si",
         "Autoriser ou non la répétition des actions si l\\'évaluation de la condition est la même que la précédente": "Permitir o no permitir la repetición de acciones si la evaluación de la condición es la misma que la anterior",
@@ -3132,15 +3132,40 @@
         "Copier ce bloc.<br>Ctrl+Click: Couper ce bloc.": "Copia este bloque. <br> Ctrl + Click: Cortar este bloque",
         "Coller un bloc après celui-ci.<br>Ctrl+Click: remplacer ce bloc par le bloc copié.": "Pega un bloque después de esto. <br> Ctrl + Click: reemplazar este bloque con el bloque copiado",
         "Afficher\/masquer le bloc Sinon": "Mostrar\/ocultar el bloque",
-        "Ajouter": "Añadir",
-        "Action": "ACCIÓN",
+        "Ajouter": "Agregar",
+        "Action": "Acción",
         "Bloc Si\/Alors\/Sinon": "Bloque Si\/Entonces\/Si no",
         "Bloc Action": "Bloque de acción",
         "Bloc Boucle": "Bloque de bucle",
         "Bloc Dans": "Bloque Dentro de",
         "Bloc A": "Bloque A",
         "Bloc Code": "Bloque Código",
-        "Bloc Commentaire": "Bloque Comentario"
+        "Bloc Commentaire": "Bloque Comentario",
+        "Log d'exécution du scénario": "Log de ejecución del escenario",
+        "Rendre inactif": "Hacer inactivo",
+        "Rendre actif": "Activar",
+        "Aucun": "Ninguna",
+        "Groupe": "Grupo",
+        "Objet parent": "Objeto principal",
+        "Nom du scénario": "Nombre del escenario",
+        "Êtes-vous sûr de vouloir désactiver les scénarios ?": "¿Estás seguro de que quieres desactivar los escenarios?",
+        "Êtes-vous sûr de vouloir activer les scénarios ?": "¿Está seguro de que desea habilitar escenarios?",
+        "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "¿Está seguro de que desea eliminar todos los registros de escenarios?",
+        "Logs des scénarios supprimés.": "Registros de escenarios eliminados",
+        "Vue d'ensemble des scénarios": "Resumen de los escenarios",
+        "Scénario": "Escenario",
+        "Graphique de lien(s)": "Gráfico de enlace",
+        "Edition texte scénarios": "Edición texto escenarios",
+        "Export du scénario": "Exportación del escenario",
+        "Template de scénario": "Plantilla de escenario",
+        "Lancement du scénario réussi": "Ejecución de escenario realizada con éxito",
+        "Arrêt du scénario réussi": "Parada de escenario correcta",
+        "Êtes-vous sûr de vouloir supprimer le scénario": "¿Está seguro de que desea eliminar el escenario?",
+        "Êtes-vous sûr de vouloir supprimer ce bloc ?": "¿Estás seguro de que deseas eliminar este bloque?",
+        "Le bloc Sinon ne peut être masqué s'il contient des éléments.": "El bloque Else no se puede ocultar si contiene elementos",
+        "Ajout d'une nouvelle condition": "Agregar una nueva condición",
+        "Ne rien mettre": "No poner nada",
+        "Valider": "Validar"
     },
     "desktop\/common\/js\/ui.js": {
         "Historique": "Historial"
@@ -3154,7 +3179,7 @@
         "Thème alternatif": "Tema alternativo",
         "Bienvenue dans Jeedom": "Bienvenido a Jeedom",
         "Evénements en temps réel": "Eventos en tiempo real",
-        "Notes": "Notas",
+        "Notes": "Calificaciones",
         "Testeur d'expression": "Probador de expresión",
         "Variables des scénarios": "Variables de escenario",
         "Recherche": "Buscar",
@@ -3959,7 +3984,7 @@
         "Market": "Mercado"
     },
     "core\/class\/cmd.class.php": {
-        "Aucun": "No",
+        "Aucun": "Ninguna",
         "Impossible de traduire la couleur en code hexadécimal :": "No se puede traducir el color en código hexadecimal :",
         "Le nom de la commande ne peut pas être vide :": "El nombre del comando no puede estar vacío:",
         "Le type de la commande ne peut pas être vide :": "El tipo del comando no puede estar vacío:",
@@ -4197,7 +4222,7 @@
         "A": "PARA"
     },
     "core\/class\/scenario.class.php": {
-        "Aucun": "No",
+        "Aucun": "Ninguna",
         "Tags :": "Tags :",
         "Déclencheur": "Desencadenar",
         "Un déclencheur du scénario :": "Un desencadenante de escenario:",
@@ -4235,7 +4260,7 @@
         "Attention": "Atención",
         "n\\'a pas envoyé de message depuis plus de": "no ha enviado un mensaje por más de",
         "min (vérifiez les piles)": "min (comprobar pilas)",
-        "Aucun": "No",
+        "Aucun": "Ninguna",
         "L\\'équipement n\\'a pas pu être trouvé :": "No se pudo encontrar el equipo:",
         "Le": "El",
         "inconnue": "Desconocido",
@@ -4280,7 +4305,7 @@
         "Désactivation de": "Desactivación de",
         "Masquage de": "Enmascaramiento de",
         "Affichage de": "Visualización de",
-        "Aucun": "Ningún",
+        "Aucun": "Ninguna",
         "Type inconnu": "Tipo desconocido",
         "Execution du lancement en arriere plan :": "Iniciar ejecución en segundo plano :",
         "Exécution d\\'un bloc élément :": "Ejecución de un bloque de elementos:",
@@ -4436,7 +4461,7 @@
         "La fonction ne peut pas être vide": "La función no puede estar vacía"
     },
     "core\/class\/jeeObject.class.php": {
-        "Aucun": "No",
+        "Aucun": "Ninguna",
         "Le plugin virtuel doit être installé": "El complemento virtual debe estar instalado",
         "Le plugin virtuel doit être actif": "El complemento virtual debe estar activo",
         "Résumé Global": "Resumen global",
@@ -4507,7 +4532,7 @@
         "Désactiver": "Desactivar",
         "Remise à zéro des SI": "Restablecimiento de IS",
         "Tags": "Etiquetas",
-        "Aucun": "No"
+        "Aucun": "Ninguna"
     },
     "core\/template\/scenario\/wait.default.html": {
         "Condition": "Condición",
@@ -4645,7 +4670,7 @@
         "Délai": "Aviso",
         "Option(s)": "Opción(es)",
         "Aucune": "Alguna",
-        "Aucun": "No",
+        "Aucun": "Ninguna",
         "Principal": "Principal"
     },
     "core\/api\/marketApi.php": {

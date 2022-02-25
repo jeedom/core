@@ -14,6 +14,7 @@
         "Timeline": "Zaman çizelgesi",
         "Logs": "Loglar",
         "Analyse équipement": "Analiz ekipmanı",
+        "Notes": "Notes",
         "Crons": "Cronlar",
         "Démons": "Daemon",
         "Santé": "Sağlık",
@@ -60,6 +61,11 @@
     "mobile\/js\/equipment.js": {
         "Tout": "Hepsi",
         "Synthèse": "Sentez"
+    },
+    "mobile\/js\/notes.js": {
+        "Note sauvegardée avec succès": "Note sauvegardée avec succès",
+        "Voulez-vous vraiment supprimer la note :": "Voulez-vous vraiment supprimer la note :",
+        "Note supprimée avec succès": "Note supprimée avec succès"
     },
     "mobile\/js\/application.js": {
         "Résumé": "Özet",
@@ -134,6 +140,13 @@
         "Status": "Durum",
         "Date lancement": "Çalıştırılma tarihi",
         "Action": "Eylem"
+    },
+    "mobile\/html\/notes.html": {
+        "Ajouter": "Ajouter",
+        "Sauvegarder": "Sauvegarder",
+        "Supprimer": "Supprimer",
+        "Titre": "Titre",
+        "Texte": "Texte"
     },
     "mobile\/html\/health.html": {
         "Nom": "İsim",
@@ -467,6 +480,7 @@
         "Nom": "İsim",
         "Visible": "Görülebilir",
         "Affichage": "Affichage",
+        "Paramètres de la tuile. Courbe d'historique et paramètres optionnels.": "Paramètres de la tuile. Courbe d'historique et paramètres optionnels",
         "Graphique de fond": "Graphique de fond",
         "Information": "Information",
         "Aucune": "Aucune",
@@ -836,6 +850,18 @@
     "desktop\/modal\/update.send.php": {
         "Le dépôt est inactif :": "Le dépôt est inactif :",
         "401 - Accès non autorisé": "401 - Yetkisiz erişim"
+    },
+    "desktop\/modal\/message.display.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "Tout": "Tout",
+        "Rafraichir": "Rafraichir",
+        "Vider": "Vider",
+        "Date et heure": "Date et heure",
+        "Source": "Source",
+        "Description": "Description",
+        "Action": "Action",
+        "Occurrences": "Occurrences",
+        "Centre de Messages": "Centre de Messages"
     },
     "desktop\/modal\/cmd.configureHistory.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
@@ -1414,6 +1440,7 @@
     },
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
+        "Rechercher | nom | :not(nom": "Rechercher | nom | :not(nom",
         "Principal": "Birincil",
         "Timelines": "Timelines",
         "Rafraîchir": "Yenile",
@@ -2229,17 +2256,6 @@
         "Votre box": "Votre box",
         "est éteinte.<br \/> Pour la redémarrer, débranchez-la et rebranchez-la.": "est éteinte.<br \/> Pour la redémarrer, débranchez-la et rebranchez-la"
     },
-    "desktop\/php\/message.php": {
-        "401 - Accès non autorisé": "401 - Yetkisiz erişim",
-        "Tout": "Hepsi",
-        "Rafraichir": "Yenile",
-        "Vider": "Boşalt",
-        "Date et heure": "Saat ve tarih",
-        "Source": "Kaynak",
-        "Description": "Tarif",
-        "Action": "Eylem",
-        "Occurrences": "Olaylar"
-    },
     "desktop\/php\/interact.php": {
         "Aucun": "Aucun",
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
@@ -2425,7 +2441,6 @@
         "Objet parent": "Üst nesne",
         "Options": "Options",
         "Visible": "Görülebilir",
-        "Rendre cet objet visible ou non.": "Rendre cet objet visible ou non",
         "Masquer": "Masquer",
         "Sur Dashboard": "Sur Dashboard",
         "Masquer cet objet uniquement sur le Dashboard. Il restera visible, notamment dans la liste des objets.": "Masquer cet objet uniquement sur le Dashboard. Il restera visible, notamment dans la liste des objets",
@@ -2582,11 +2597,11 @@
         "Inactifs": "Inactifs",
         "Export CSV": "Export CSV",
         "Rechercher | nom | id | :not(nom": "Rechercher | nom | id | :not(nom",
+        "Vider": "Boşalt",
         "Date": "Tarih",
         "Type": "Çeşit",
         "ID": "Kimlik",
-        "Nom": "İsim",
-        "Vider": "Boşalt"
+        "Nom": "İsim"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
@@ -2597,9 +2612,7 @@
         "OK": "Tamam"
     },
     "desktop\/js\/update.js": {
-        "Options": "Opsiyonlar",
-        "Êtes-vous sûr de vouloir mettre à jour :": "Êtes-vous sûr de vouloir mettre à jour :",
-        "Êtes-vous sûr de vouloir supprimer :": "Êtes-vous sûr de vouloir supprimer :",
+        "Aucune mise à jour en cours.": "Aucune mise à jour en cours",
         "Mise(s) à jour terminée(s) avec succès.": "Mise(s) à jour terminée(s) avec succès",
         "L\\'opération a échoué": "Operasyon başarılamadı",
         "Dernière verification des mises à jour": "Dernière verification des mises à jour",
@@ -2610,8 +2623,10 @@
         "Réinstaller": "Tekrar kur",
         "Supprimer": "Sil",
         "Vérifier": "Kontrol et",
-        "Aucune mise à jour en cours.": "Aucune mise à jour en cours",
-        "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)"
+        "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)",
+        "Options": "Opsiyonlar",
+        "Êtes-vous sûr de vouloir mettre à jour :": "Êtes-vous sûr de vouloir mettre à jour :",
+        "Êtes-vous sûr de vouloir supprimer :": "Êtes-vous sûr de vouloir supprimer :"
     },
     "desktop\/js\/log.js": {
         "Pause": "Durdur",
@@ -2619,7 +2634,6 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Tüm günlükleri silmek istediğinizden emin misiniz?"
     },
     "desktop\/js\/editor.js": {
-        "Editer": "Editer",
         "Le sous-type ne peut être vide": "Le sous-type ne peut être vide",
         "Le nom ne peut être vide": "Le nom ne peut être vide",
         "Fichier enregistré avec succès": "Fichier enregistré avec succès",
@@ -2627,7 +2641,8 @@
         "Options": "Options",
         "Configutation sauvegardée": "Configutation sauvegardée",
         "Activé": "Activé",
-        "Désactivé": "Désactivé"
+        "Désactivé": "Désactivé",
+        "Editer": "Editer"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "Yenile",
@@ -2657,6 +2672,7 @@
         "Logs": "Loglar",
         "Heartbeat (min)": "Heartbeat (min)",
         "Redémarrer démon": "Redémarrer démon",
+        "Sauvegarde effectuée": "Yedekleme gerçekleştirildi",
         "De nouveaux plugins ont été installés": "De nouveaux plugins ont été installés",
         "Synchronisation réussi. Aucun nouveau plugin installé.": "Synchronisation réussi. Aucun nouveau plugin installé",
         "Market": "Market",
@@ -2666,8 +2682,7 @@
         "Sauvegarde de la configuration des panneaux effectuée": "Gerçekleştirilen panellerin yapılandırmasını kaydetme",
         "Sauvegarde des fonctionalités effectuée": "Özelliklerin kaydı oluştu",
         "Sauvegarde de la configuration des logs effectuée": "Log ayarlarının kaydı yapıldı",
-        "Log du plugin": "Ekletinin log\\'u",
-        "Sauvegarde effectuée": "Yedekleme gerçekleştirildi"
+        "Log du plugin": "Ekletinin log\\'u"
     },
     "desktop\/js\/plan3d.js": {
         "Configuration du plan 3D": "3D harita Yapılandırılması",
@@ -2679,11 +2694,7 @@
         "Configuration Affichage": "Configuration Affichage"
     },
     "desktop\/js\/view_edit.js": {
-        "Nom de la vue ?": "Görünümün ismi ?",
-        "Configuration de la vue": "Configuration de la vue",
         "Modification enregistrée": "Modifikasyon kaydedildi",
-        "Êtes-vous sûr de vouloir supprimer la vue": "Görünümü silmekden eminmisiniz",
-        "Le nom de la viewZone ne peut être vide": "ViewZone'nun ismi boş olmayacak",
         "Largeur": "Largeur",
         "Hauteur": "Hauteur",
         "30 min": "30 dak",
@@ -2710,7 +2721,7 @@
         "Variation": "Varyasyon",
         "Ligne": "Hat",
         "Aire": "Alan",
-        "Barre": "Barre",
+        "Colonne": "Colonne",
         "Camembert": "Yuvarlak grafik",
         "Aucun groupement": "Hiçbir gruplama",
         "Somme par heure": "Somme par heure",
@@ -2738,7 +2749,11 @@
         "Invisible": "Invisible",
         "Visible": "Visible",
         "Non": "Hayır",
-        "Oui": "Evet"
+        "Oui": "Evet",
+        "Nom de la vue ?": "Görünümün ismi ?",
+        "Configuration de la vue": "Configuration de la vue",
+        "Êtes-vous sûr de vouloir supprimer la vue": "Görünümü silmekden eminmisiniz",
+        "Le nom de la viewZone ne peut être vide": "ViewZone'nun ismi boş olmayacak"
     },
     "desktop\/js\/display.js": {
         "Configuration de l'objet": "Nesnenin ayarları",
@@ -2752,10 +2767,6 @@
         "Historique": "Geçmiş"
     },
     "desktop\/js\/cron.js": {
-        "Désactiver le système cron": "Cron sistemini dezaktive et",
-        "Activer le système cron": "Cron sistemini aktifleştirin",
-        "Détails du cron": "Détails du cron",
-        "Détails du listener": "Détails du listener",
         "En cours": "Sürüyor",
         "Arrêté": "Durduruldu",
         "Démarrage": "Démarrage",
@@ -2767,14 +2778,18 @@
         "Démarrer ou re-démarrer": "Démarrer ou re-démarrer",
         "Arrêter": "Durdur",
         "Activer la gestion automatique du démon": "Activer la gestion automatique du démon",
-        "Désactiver la gestion automatique du démon": "Désactiver la gestion automatique du démon"
+        "Désactiver la gestion automatique du démon": "Désactiver la gestion automatique du démon",
+        "Désactiver le système cron": "Cron sistemini dezaktive et",
+        "Activer le système cron": "Cron sistemini aktifleştirin",
+        "Détails du cron": "Détails du cron",
+        "Détails du listener": "Détails du listener"
     },
     "desktop\/js\/history.js": {
+        "Historique supprimé avec succès": "Geçmiş başarıyla silindi",
+        "Mes Calculs": "Mes Calculs",
         "Configuration des formules de calcul": "Formüller yapılandırılması",
         "Configuration de l'historique des commandes": "Komut geçmişini yapılandırma",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Geçmişi hangi tarihden (Y-m-d H:m:s) önce silinmesi gerekdiğini girin",
-        "Mes Calculs": "Mes Calculs",
-        "Historique supprimé avec succès": "Geçmiş başarıyla silindi",
         "Comparer": "Comparer",
         "jours avec": "jours avec",
         "jours il y a": "jours il y a",
@@ -2790,18 +2805,9 @@
         "Commande :": "Komuta :",
         "Temps d\\'éxécution": "Temps d\\'éxécution"
     },
-    "desktop\/js\/message.js": {
-        "Centre de Messages": "Centre de Messages"
-    },
     "desktop\/js\/user.js": {
-        "Sauvegarde effectuée": "Yedekleme gerçekleştirildi",
         "Le login d\\'un utilisateur ne peut être vide !": "Le login d\\'un utilisateur ne peut être vide !",
         "Deux utilisateurs ne peuvent avoir le même login !": "Deux utilisateurs ne peuvent avoir le même login !",
-        "Vous allez supprimer l\\'utilisateur :": "Vous allez supprimer l\\'utilisateur :",
-        "L\\'utilisateur a bien été supprimé": "Kullanıcı silindi",
-        "Quel est le nouveau mot de passe ?": "Yeni şifre nedir ?",
-        "Êtes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Eğer kullanıcı \\ 's API anahtarını değiştirmek istediğinizden emin misiniz?",
-        "Modification effectuée": "Değişim uygulandı",
         "Actif": "Varlıklar",
         "Local": "Yerel",
         "Ne pas faire de rotation clef api": "Ne pas faire de rotation clef api",
@@ -2819,6 +2825,12 @@
         "Régénérer API": "Régénérer API",
         "Droits": "Haklar",
         "Profils": "Profils",
+        "Sauvegarde effectuée": "Yedekleme gerçekleştirildi",
+        "Vous allez supprimer l\\'utilisateur :": "Vous allez supprimer l\\'utilisateur :",
+        "L\\'utilisateur a bien été supprimé": "Kullanıcı silindi",
+        "Quel est le nouveau mot de passe ?": "Yeni şifre nedir ?",
+        "Êtes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Eğer kullanıcı \\ 's API anahtarını değiştirmek istediğinizden emin misiniz?",
+        "Modification effectuée": "Değişim uygulandı",
         "Gestion des droits (Utilisateur limité)": "Gestion des droits (Utilisateur limité)",
         "Gestion du profils": "Gestion du profils"
     },
@@ -2832,6 +2844,8 @@
         "Configuration Affichage": "Configuration Affichage"
     },
     "desktop\/js\/plan.js": {
+        "Nom du design ?": "Disaynın ismi ?",
+        "Veuillez indiquer le code ?": "Pin i girin",
         "Designs": "Tasarımlar",
         "Edition": "Düzenleme",
         "Plein écran": "Tam ekran",
@@ -2864,11 +2878,11 @@
         "Valider": "Onaylayın",
         "Supprimer": "Sil",
         "Dupliquer": "Kopyala",
-        "Verrouiller": "Kilitle",
-        "Nom du design ?": "Disaynın ismi ?",
-        "Veuillez indiquer le code ?": "Pin i girin"
+        "Verrouiller": "Kilitle"
     },
     "desktop\/js\/interact.js": {
+        "Action": "Eylem",
+        "Sélectionner un mot-clé": "Anahtar kelime seçin",
         "Liste des interactions": "Etkileşimlerin listesi",
         "Interactions": "Etkileşim",
         "Nom": "Nom",
@@ -2877,9 +2891,7 @@
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?",
         "Toutes les interactions ont été régénérées": "Toutes les interactions ont été régénérées",
         "Demande": "Demande",
-        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Etkileşimi kaldırmak istediğinizden emin misiniz",
-        "Action": "Eylem",
-        "Sélectionner un mot-clé": "Anahtar kelime seçin"
+        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Etkileşimi kaldırmak istediğinizden emin misiniz"
     },
     "desktop\/js\/timeline.js": {
         "Evènements de la timeline supprimés avec succès": "Evènements de la timeline supprimés avec succès",
@@ -2923,13 +2935,13 @@
         "Largeur desktop": "Largeur desktop",
         "Largeur mobile": "Largeur mobile",
         "Time widget": "Time widget",
+        "Choisir": "Seç",
+        "Test": "Test, denetleme",
+        "Résultat si test ok": "Résultat si test ok",
         "Remplacement de widget": "Remplacement de widget",
         "Appliquer ce widget à": "Appliquer ce widget à",
         "Modification(s) appliquée(s) avec succès": "Değişiklik (ler) başarıyla uygulandı",
-        "Choisir": "Seç",
         "Widgets": "Widget'lar",
-        "Test": "Test, denetleme",
-        "Résultat si test ok": "Résultat si test ok",
         "Nom du widget": "Nom du widget",
         "Sauvegarde effectuée avec succès": "Kayıt başarıyla sonuçlandı",
         "Configuration de la commande": "Komutanın ayarları",
@@ -2945,18 +2957,6 @@
         "Opération effectuée": "Operasyon uygulandı"
     },
     "desktop\/js\/administration.js": {
-        "Sauvegarde réussie": "Kayıt başarılı",
-        "Commande réalisée avec succès": "Komuta başarıyla sonuçlandı",
-        "Cookie de thème supprimé": "Cookie de thème supprimé",
-        "Image enregistrée et configurée": "Image enregistrée et configurée",
-        "Êtes-vous sûr de vouloir supprimer cette image de fond ?": "Êtes-vous sûr de vouloir supprimer cette image de fond ?",
-        "Image supprimée": "Image supprimée",
-        "Evènement de la timeline supprimé avec succès": "Etkinlik Çizelgesi başarıyla silindi",
-        "Décocher pour desactiver l\\'action": "\\ 'ın Eylem devre dışı bırakmak için işaretini kaldırın",
-        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Denetleyin diğer eylemlere ilişkin olarak yürütülen sipariş \\ 'ın",
-        "Sélectionner un mot-clé": "Anahtar kelime seçin",
-        "Sélectionner la commande": "Komutayı seçin",
-        "Création des commandes virtuel réussies": "Sanal komutalarının yapilanması başarıldı",
         "Somme": "Toplam",
         "Moyenne": "Ortalama",
         "Texte": "Metin",
@@ -2964,6 +2964,20 @@
         "Aucun": "Hiçbir",
         "Binaire": "İkili",
         "Créer virtuel": "Sanal oluşturma",
+        "Décocher pour desactiver l\\'action": "\\ 'ın Eylem devre dışı bırakmak için işaretini kaldırın",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Denetleyin diğer eylemlere ilişkin olarak yürütülen sipariş \\ 'ın",
+        "Sélectionner un mot-clé": "Anahtar kelime seçin",
+        "Sélectionner la commande": "Komutayı seçin",
+        "Cache vidé": "Önbellek temizlendi",
+        "Cache nettoyé": "Önbellek temizlendi",
+        "Sauvegarde réussie": "Kayıt başarılı",
+        "Commande réalisée avec succès": "Komuta başarıyla sonuçlandı",
+        "Cookie de thème supprimé": "Cookie de thème supprimé",
+        "Image enregistrée et configurée": "Image enregistrée et configurée",
+        "Êtes-vous sûr de vouloir supprimer cette image de fond ?": "Êtes-vous sûr de vouloir supprimer cette image de fond ?",
+        "Image supprimée": "Image supprimée",
+        "Evènement de la timeline supprimé avec succès": "Etkinlik Çizelgesi başarıyla silindi",
+        "Création des commandes virtuel réussies": "Sanal komutalarının yapilanması başarıldı",
         "Êtes-vous sûr de vouloir supprimer la base d\\'InfluxDB": "Êtes-vous sûr de vouloir supprimer la base d\\'InfluxDB",
         "Action envoyée avec succés": "Action envoyée avec succés",
         "Êtes-vous sûr de vouloir envoyer tout l\\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes.": "Êtes-vous sûr de vouloir envoyer tout l\\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes",
@@ -2972,8 +2986,6 @@
         "Connexion réussie": "Bağlantı sağlandı",
         "Test réussi": "Test başarılı",
         "Attention ceci est une opération risquée (vidage du cache), Confirmez vous vouloir la faire ?": "Attention ceci est une opération risquée (vidage du cache), Confirmez vous vouloir la faire ?",
-        "Cache vidé": "Önbellek temizlendi",
-        "Cache nettoyé": "Önbellek temizlendi",
         "Êtes-vous sûr de vouloir réinitialiser la clé API de": "Êtes-vous sûr de vouloir réinitialiser la clé API de",
         "Administration système": "Sistem yönetimi",
         "Rétablissement des droits d\\'accès effectué avec succès": "Rétablissement des droits d\\'accès effectué avec succès",
@@ -2987,10 +2999,10 @@
         "Information importante :": "Information importante :"
     },
     "desktop\/js\/types.js": {
+        "Aucun": "Aucun",
         "Supprimer les types generiques sur les commandes ?": "Supprimer les types generiques sur les commandes ?",
         "Oui": "Oui",
         "Non": "Non",
-        "Aucun": "Aucun",
         "Supprimer": "Supprimer",
         "Types Génériques automatiques": "Types Génériques automatiques",
         "Types Génériques sauvegardés": "Types Génériques sauvegardés",
@@ -3002,26 +3014,34 @@
         "Commentaire": "Commentaire"
     },
     "desktop\/js\/eqAnalyse.js": {
+        "Supprimée le": "Supprimée le",
         "Configuration commande": "Komuta ayarları",
         "Configuration de l'équipement": "Cihazın ayarları",
-        "Configuration en masse": "Configuration en masse",
-        "Supprimée le": "Supprimée le"
+        "Configuration en masse": "Configuration en masse"
     },
     "desktop\/js\/object.js": {
+        "Envoyer": "Gönder",
+        "Image de fond ajoutée avec succès": "Image de fond ajoutée avec succès",
+        "Commande": "Komuta",
+        "Activer": "Etkinleştir",
+        "Inverser": "Ters çevir",
+        "Résumé(s)": "Résumé(s)",
+        "Rendre invisible": "Rendre invisible",
+        "Rendre visible": "Rendre visible",
+        "Rendre invisible sur la Synthèse": "Rendre invisible sur la Synthèse",
+        "Rendre visible sur la Synthèse": "Rendre visible sur la Synthèse",
+        "Rendre invisible sur le Dashboard": "Rendre invisible sur le Dashboard",
+        "Rendre visible sur le Dashboard": "Rendre visible sur le Dashboard",
+        "Objet parent": "Objet parent",
+        "Positionner après": "Positionner après",
         "Graphique des liens": "Linkler grafiği",
         "Image de fond appliquée avec succès": "Image de fond appliquée avec succès",
         "Êtes-vous sûr de vouloir enlever l\\'image de fond de cet objet ?": "Êtes-vous sûr de vouloir enlever l\\'image de fond de cet objet ?",
         "Image de fond enlevée": "Image de fond enlevée",
         "Objets": "Nesneler",
-        "Envoyer": "Gönder",
-        "Image de fond ajoutée avec succès": "Image de fond ajoutée avec succès",
         "Nom du nouvel objet": "Nom du nouvel objet",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "Nesneyi silmek istediğinizden eminmisiniz",
-        "Commande": "Komuta",
-        "Activer": "Etkinleştir",
-        "Inverser": "Ters çevir",
-        "Vue d'ensemble des objets": "Vue d'ensemble des objets",
-        "Résumé(s)": "Résumé(s)"
+        "Vue d'ensemble des objets": "Vue d'ensemble des objets"
     },
     "desktop\/js\/system.js": {
         "Êtes-vous sûr de vouloir éxécuter cette commande :": "Etes-vous sûr de vouloir exécuter cette commande :",
@@ -3029,6 +3049,8 @@
         "Commande :": "Komuta :"
     },
     "desktop\/js\/backup.js": {
+        "L\\'opération est réussie": "Operasyon başarıldı",
+        "L\\'opération a échoué": "Operasyon başarılamadı",
         "Sauvegarde réussie": "Kayıt başarılı",
         "Êtes-vous sûr de vouloir faire une sauvegarde de": "Etes-vous sûr de vouloir faire une sauvegarde de",
         "? Une fois lancée cette opération ne peut être annulée": "? Une fois lancée cette opération ne peut être annulée",
@@ -3041,9 +3063,7 @@
         "Êtes-vous sûr de vouloir envoyer une sauvegarde de": "Etes-vous sûr de vouloir envoyer une sauvegarde de",
         "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "sur le cloud ? Une fois lancée cette opération ne peut être annulée",
         "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud": "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud",
-        "Sauvegarde rapatrier avec succès": "Sauvegarde rapatrier avec succès",
-        "L\\'opération est réussie": "Operasyon başarıldı",
-        "L\\'opération a échoué": "Operasyon başarılamadı"
+        "Sauvegarde rapatrier avec succès": "Sauvegarde rapatrier avec succès"
     },
     "desktop\/js\/reboot.js": {
         "Êtes-vous sûr de vouloir redémarrer le système ?": "Êtes-vous sûr de vouloir redémarrer le système ?",
@@ -3053,25 +3073,6 @@
         "est en cours de redémarrage.": "est en cours de redémarrage"
     },
     "desktop\/js\/scenario.js": {
-        "Log d'exécution du scénario": "Senaryonun çalışma logu",
-        "Nom du scénario": "Nom du scénario",
-        "Êtes-vous sûr de vouloir désactiver les scénarios ?": "Êtes-vous sûr de vouloir désactiver les scénarios ?",
-        "Êtes-vous sûr de vouloir activer les scénarios ?": "Êtes-vous sûr de vouloir activer les scénarios ?",
-        "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?",
-        "Logs des scénarios supprimés.": "Logs des scénarios supprimés",
-        "Vue d'ensemble des scénarios": "Vue d'ensemble des scénarios",
-        "Scénario": "Senaryo",
-        "Graphique de lien(s)": "Graphique de lien(s)",
-        "Edition texte scénarios": "Edition texte scénarios",
-        "Export du scénario": "Senaryonun ihracı",
-        "Template de scénario": "Senaryo şablonu",
-        "Lancement du scénario réussi": "Senaryonun başlatılması başarılı",
-        "Arrêt du scénario réussi": "Senaryonun durdurulması başarılı",
-        "Êtes-vous sûr de vouloir supprimer le scénario": "Senaryoyu silmek istemenizden eminmisiniz",
-        "Êtes-vous sûr de vouloir supprimer ce bloc ?": "Êtes-vous sûr de vouloir supprimer ce bloc ?",
-        "Le bloc Sinon ne peut être masqué s'il contient des éléments.": "Le bloc Sinon ne peut être masqué s'il contient des éléments",
-        "Afficher ce bloc.<br>Ctrl+click: tous.": "Afficher ce bloc.<br>Ctrl+click: tous",
-        "Masquer ce bloc.<br>Ctrl+click: tous.": "Masquer ce bloc.<br>Ctrl+click: tous",
         "Aucun choix possible": "Aucun choix possible",
         "est": "olduğu",
         "égal": "eşittir",
@@ -3090,9 +3091,6 @@
         "rien": "rien",
         "et": "ve",
         "ou": "yada",
-        "Ajout d'une nouvelle condition": "Ajout d'une nouvelle condition",
-        "Ne rien mettre": "Ne rien mettre",
-        "Valider": "Onaylayın",
         "Erreur": "Hata",
         "Actif": "Varlıklar",
         "Démarrage": "Démarrage",
@@ -3115,6 +3113,8 @@
         "Supprimer l\\'action": "Eylemi sil",
         "Sélectionner un mot-clé": "Anahtar kelime seçin",
         "Sélectionner la commande": "Komutayı seçin",
+        "Masquer ce bloc.<br>Ctrl+click: tous.": "Masquer ce bloc.<br>Ctrl+click: tous",
+        "Afficher ce bloc.<br>Ctrl+click: tous.": "Afficher ce bloc.<br>Ctrl+click: tous",
         "Décocher pour désactiver l\\'élément": "Elemanı devre dışı bırakmak için işaretini kaldır",
         "SI": "EĞER",
         "Autoriser ou non la répétition des actions si l\\'évaluation de la condition est la même que la précédente": "Şartın değerlendirmesi bi önceki ile aynı ise eylemin tekrarlamasına izin ver yada verme",
@@ -3140,7 +3140,32 @@
         "Bloc Dans": "Bloc Dans",
         "Bloc A": "Bloc A",
         "Bloc Code": "Bloc Code",
-        "Bloc Commentaire": "Bloc Commentaire"
+        "Bloc Commentaire": "Bloc Commentaire",
+        "Log d'exécution du scénario": "Senaryonun çalışma logu",
+        "Rendre inactif": "Rendre inactif",
+        "Rendre actif": "Rendre actif",
+        "Aucun": "Aucun",
+        "Groupe": "Groupe",
+        "Objet parent": "Objet parent",
+        "Nom du scénario": "Nom du scénario",
+        "Êtes-vous sûr de vouloir désactiver les scénarios ?": "Êtes-vous sûr de vouloir désactiver les scénarios ?",
+        "Êtes-vous sûr de vouloir activer les scénarios ?": "Êtes-vous sûr de vouloir activer les scénarios ?",
+        "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?",
+        "Logs des scénarios supprimés.": "Logs des scénarios supprimés",
+        "Vue d'ensemble des scénarios": "Vue d'ensemble des scénarios",
+        "Scénario": "Senaryo",
+        "Graphique de lien(s)": "Graphique de lien(s)",
+        "Edition texte scénarios": "Edition texte scénarios",
+        "Export du scénario": "Senaryonun ihracı",
+        "Template de scénario": "Senaryo şablonu",
+        "Lancement du scénario réussi": "Senaryonun başlatılması başarılı",
+        "Arrêt du scénario réussi": "Senaryonun durdurulması başarılı",
+        "Êtes-vous sûr de vouloir supprimer le scénario": "Senaryoyu silmek istemenizden eminmisiniz",
+        "Êtes-vous sûr de vouloir supprimer ce bloc ?": "Êtes-vous sûr de vouloir supprimer ce bloc ?",
+        "Le bloc Sinon ne peut être masqué s'il contient des éléments.": "Le bloc Sinon ne peut être masqué s'il contient des éléments",
+        "Ajout d'une nouvelle condition": "Ajout d'une nouvelle condition",
+        "Ne rien mettre": "Ne rien mettre",
+        "Valider": "Onaylayın"
     },
     "desktop\/common\/js\/ui.js": {
         "Historique": "Geçmiş"

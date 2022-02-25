@@ -14,6 +14,7 @@
         "Timeline": "Cronologia",
         "Logs": "Logs",
         "Analyse équipement": "Apparecchiature di analisi",
+        "Notes": "Notes",
         "Crons": "Cron",
         "Démons": "Daemon",
         "Santé": "Salute",
@@ -60,6 +61,11 @@
     "mobile\/js\/equipment.js": {
         "Tout": "Tutto",
         "Synthèse": "Sintesi"
+    },
+    "mobile\/js\/notes.js": {
+        "Note sauvegardée avec succès": "Note sauvegardée avec succès",
+        "Voulez-vous vraiment supprimer la note :": "Voulez-vous vraiment supprimer la note :",
+        "Note supprimée avec succès": "Note supprimée avec succès"
     },
     "mobile\/js\/application.js": {
         "Résumé": "Sommario",
@@ -134,6 +140,13 @@
         "Status": "Stato",
         "Date lancement": "Data di avvio",
         "Action": "Azione"
+    },
+    "mobile\/html\/notes.html": {
+        "Ajouter": "Ajouter",
+        "Sauvegarder": "Sauvegarder",
+        "Supprimer": "Supprimer",
+        "Titre": "Titre",
+        "Texte": "Texte"
     },
     "mobile\/html\/health.html": {
         "Nom": "Nome",
@@ -467,6 +480,7 @@
         "Nom": "Nome",
         "Visible": "Visibile",
         "Affichage": "Affichage",
+        "Paramètres de la tuile. Courbe d'historique et paramètres optionnels.": "Paramètres de la tuile. Courbe d'historique et paramètres optionnels",
         "Graphique de fond": "Graphique de fond",
         "Information": "Information",
         "Aucune": "Aucune",
@@ -836,6 +850,18 @@
     "desktop\/modal\/update.send.php": {
         "Le dépôt est inactif :": "Le dépôt est inactif :",
         "401 - Accès non autorisé": "401 - Accesso non autorizzato"
+    },
+    "desktop\/modal\/message.display.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "Tout": "Tout",
+        "Rafraichir": "Rafraichir",
+        "Vider": "Vider",
+        "Date et heure": "Date et heure",
+        "Source": "Source",
+        "Description": "Description",
+        "Action": "Action",
+        "Occurrences": "Occurrences",
+        "Centre de Messages": "Centre de Messages"
     },
     "desktop\/modal\/cmd.configureHistory.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
@@ -1414,6 +1440,7 @@
     },
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
+        "Rechercher | nom | :not(nom": "Rechercher | nom | :not(nom",
         "Principal": "Primario",
         "Timelines": "Timelines",
         "Rafraîchir": "Aggiorna",
@@ -2229,17 +2256,6 @@
         "Votre box": "La tua scatola",
         "est éteinte.<br \/> Pour la redémarrer, débranchez-la et rebranchez-la.": "è spento. <br \/> Per riavviarlo, scollegarlo e ricollegarlo"
     },
-    "desktop\/php\/message.php": {
-        "401 - Accès non autorisé": "401 - Accesso non autorizzato",
-        "Tout": "Tutto",
-        "Rafraichir": "Ricarica",
-        "Vider": "Vuota",
-        "Date et heure": "Data e ora",
-        "Source": "Sorgente",
-        "Description": "Descrizione",
-        "Action": "Azione",
-        "Occurrences": "Occorrenze"
-    },
     "desktop\/php\/interact.php": {
         "Aucun": "Aucun",
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
@@ -2425,7 +2441,6 @@
         "Objet parent": "Oggetto padre",
         "Options": "Options",
         "Visible": "Visibile",
-        "Rendre cet objet visible ou non.": "Rendi questo oggetto visibile o meno",
         "Masquer": "Masquer",
         "Sur Dashboard": "Sur Dashboard",
         "Masquer cet objet uniquement sur le Dashboard. Il restera visible, notamment dans la liste des objets.": "Nascondi questo oggetto solo nella Dashboard. Rimarrà visibile, specialmente nell'elenco degli oggetti",
@@ -2582,11 +2597,11 @@
         "Inactifs": "Inattivo",
         "Export CSV": "Esportazione CSV",
         "Rechercher | nom | id | :not(nom": "Rechercher | nom | id | :not(nom",
+        "Vider": "Vuota",
         "Date": "Data",
         "Type": "Tipo",
         "ID": "ID",
-        "Nom": "Nome",
-        "Vider": "Vuota"
+        "Nom": "Nome"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
@@ -2597,9 +2612,7 @@
         "OK": "Bene"
     },
     "desktop\/js\/update.js": {
-        "Options": "Opzioni",
-        "Êtes-vous sûr de vouloir mettre à jour :": "Êtes-vous sûr de vouloir mettre à jour :",
-        "Êtes-vous sûr de vouloir supprimer :": "Êtes-vous sûr de vouloir supprimer :",
+        "Aucune mise à jour en cours.": "Aucune mise à jour en cours",
         "Mise(s) à jour terminée(s) avec succès.": "Mise(s) à jour terminée(s) avec succès",
         "L\\'opération a échoué": "Operazione fallita",
         "Dernière verification des mises à jour": "Dernière verification des mises à jour",
@@ -2610,8 +2623,10 @@
         "Réinstaller": "Reinstallare",
         "Supprimer": "Rimuovere",
         "Vérifier": "Verifica",
-        "Aucune mise à jour en cours.": "Aucune mise à jour en cours",
-        "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)"
+        "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)",
+        "Options": "Opzioni",
+        "Êtes-vous sûr de vouloir mettre à jour :": "Êtes-vous sûr de vouloir mettre à jour :",
+        "Êtes-vous sûr de vouloir supprimer :": "Êtes-vous sûr de vouloir supprimer :"
     },
     "desktop\/js\/log.js": {
         "Pause": "Pausa",
@@ -2619,7 +2634,6 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Sei sicuro di voler eliminare tutti i registri?"
     },
     "desktop\/js\/editor.js": {
-        "Editer": "Editer",
         "Le sous-type ne peut être vide": "Le sous-type ne peut être vide",
         "Le nom ne peut être vide": "Le nom ne peut être vide",
         "Fichier enregistré avec succès": "Fichier enregistré avec succès",
@@ -2627,7 +2641,8 @@
         "Options": "Options",
         "Configutation sauvegardée": "Configutation sauvegardée",
         "Activé": "Activé",
-        "Désactivé": "Désactivé"
+        "Désactivé": "Désactivé",
+        "Editer": "Editer"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "Ricarica",
@@ -2657,6 +2672,7 @@
         "Logs": "Logs",
         "Heartbeat (min)": "Heartbeat (min)",
         "Redémarrer démon": "Redémarrer démon",
+        "Sauvegarde effectuée": "Backup completato",
         "De nouveaux plugins ont été installés": "De nouveaux plugins ont été installés",
         "Synchronisation réussi. Aucun nouveau plugin installé.": "Synchronisation réussi. Aucun nouveau plugin installé",
         "Market": "Market",
@@ -2666,8 +2682,7 @@
         "Sauvegarde de la configuration des panneaux effectuée": "Salvare la configurazione dei pannelli eseguiti",
         "Sauvegarde des fonctionalités effectuée": "Funzionalità di backup eseguita",
         "Sauvegarde de la configuration des logs effectuée": "Salvare la configurazione dei tronchi trasportati",
-        "Log du plugin": "Plug-Log",
-        "Sauvegarde effectuée": "Backup completato"
+        "Log du plugin": "Plug-Log"
     },
     "desktop\/js\/plan3d.js": {
         "Configuration du plan 3D": "Configurazione di una mappa 3D",
@@ -2679,11 +2694,7 @@
         "Configuration Affichage": "Configuration Affichage"
     },
     "desktop\/js\/view_edit.js": {
-        "Nom de la vue ?": "Nome della vista?",
-        "Configuration de la vue": "Visualizza la configurazione",
         "Modification enregistrée": "Cambiamento registrato",
-        "Êtes-vous sûr de vouloir supprimer la vue": "Sei sicuro di voler eliminare la vista",
-        "Le nom de la viewZone ne peut être vide": "Il nome di ViewZone non può essere vuoto",
         "Largeur": "Larghezza",
         "Hauteur": "Hauteur",
         "30 min": "30 minuti",
@@ -2710,7 +2721,7 @@
         "Variation": "Variazione",
         "Ligne": "Linea",
         "Aire": "Area",
-        "Barre": "Barre",
+        "Colonne": "Colonne",
         "Camembert": "Camembert",
         "Aucun groupement": "Nessun gruppo",
         "Somme par heure": "Somme par heure",
@@ -2738,7 +2749,11 @@
         "Invisible": "Invisible",
         "Visible": "Visible",
         "Non": "No",
-        "Oui": "Sì"
+        "Oui": "Sì",
+        "Nom de la vue ?": "Nome della vista?",
+        "Configuration de la vue": "Visualizza la configurazione",
+        "Êtes-vous sûr de vouloir supprimer la vue": "Sei sicuro di voler eliminare la vista",
+        "Le nom de la viewZone ne peut être vide": "Il nome di ViewZone non può essere vuoto"
     },
     "desktop\/js\/display.js": {
         "Configuration de l'objet": "Configurazione dell'oggetto",
@@ -2752,10 +2767,6 @@
         "Historique": "Storico"
     },
     "desktop\/js\/cron.js": {
-        "Désactiver le système cron": "Disabilita il sistema cron",
-        "Activer le système cron": "Attiva il sistema cron",
-        "Détails du cron": "Dettagli cron",
-        "Détails du listener": "Dettagli dell'ascoltatore",
         "En cours": "In corso",
         "Arrêté": "Smettere",
         "Démarrage": "Start-up",
@@ -2767,14 +2778,18 @@
         "Démarrer ou re-démarrer": "Avvia o riavvia",
         "Arrêter": "Ferma",
         "Activer la gestion automatique du démon": "Attiva la gestione automatica del demone",
-        "Désactiver la gestion automatique du démon": "Disabilita la gestione automatica dei demoni"
+        "Désactiver la gestion automatique du démon": "Disabilita la gestione automatica dei demoni",
+        "Désactiver le système cron": "Disabilita il sistema cron",
+        "Activer le système cron": "Attiva il sistema cron",
+        "Détails du cron": "Dettagli cron",
+        "Détails du listener": "Dettagli dell'ascoltatore"
     },
     "desktop\/js\/history.js": {
+        "Historique supprimé avec succès": "Storico cancellato con successo",
+        "Mes Calculs": "Mes Calculs",
         "Configuration des formules de calcul": "Configurazione di formule",
         "Configuration de l'historique des commandes": "Controlli di configurazione Storia",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Si prega di inserire la data (Y-m-g H:m:s) che dovrà essere rimossa prima dello storico di",
-        "Mes Calculs": "Mes Calculs",
-        "Historique supprimé avec succès": "Storico cancellato con successo",
         "Comparer": "Comparer",
         "jours avec": "jours avec",
         "jours il y a": "jours il y a",
@@ -2790,18 +2805,9 @@
         "Commande :": "Comando:",
         "Temps d\\'éxécution": "Temps d\\'éxécution"
     },
-    "desktop\/js\/message.js": {
-        "Centre de Messages": "Centre de Messages"
-    },
     "desktop\/js\/user.js": {
-        "Sauvegarde effectuée": "Backup completato",
         "Le login d\\'un utilisateur ne peut être vide !": "Le login d\\'un utilisateur ne peut être vide !",
         "Deux utilisateurs ne peuvent avoir le même login !": "Deux utilisateurs ne peuvent avoir le même login !",
-        "Vous allez supprimer l\\'utilisateur :": "Vous allez supprimer l\\'utilisateur :",
-        "L\\'utilisateur a bien été supprimé": "L'utente è stato cancellato",
-        "Quel est le nouveau mot de passe ?": "Qual è la nuova password?",
-        "Êtes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Sei sicuro di voler cambiare la chiave API dell'utente?",
-        "Modification effectuée": "Modifica effettuata",
         "Actif": "Beni",
         "Local": "Locale",
         "Ne pas faire de rotation clef api": "Ne pas faire de rotation clef api",
@@ -2819,6 +2825,12 @@
         "Régénérer API": "Régénérer API",
         "Droits": "Diritti",
         "Profils": "Profils",
+        "Sauvegarde effectuée": "Backup completato",
+        "Vous allez supprimer l\\'utilisateur :": "Vous allez supprimer l\\'utilisateur :",
+        "L\\'utilisateur a bien été supprimé": "L'utente è stato cancellato",
+        "Quel est le nouveau mot de passe ?": "Qual è la nuova password?",
+        "Êtes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Sei sicuro di voler cambiare la chiave API dell'utente?",
+        "Modification effectuée": "Modifica effettuata",
         "Gestion des droits (Utilisateur limité)": "Gestion des droits (Utilisateur limité)",
         "Gestion du profils": "Gestion du profils"
     },
@@ -2832,6 +2844,8 @@
         "Configuration Affichage": "Configuration Affichage"
     },
     "desktop\/js\/plan.js": {
+        "Nom du design ?": "Nome del design?",
+        "Veuillez indiquer le code ?": "Si prega di indicare il codice?",
         "Designs": "Disegni",
         "Edition": "Edizione",
         "Plein écran": "Schermo intero",
@@ -2864,11 +2878,11 @@
         "Valider": "Convalidare",
         "Supprimer": "Rimuovere",
         "Dupliquer": "Duplicato",
-        "Verrouiller": "Blocco",
-        "Nom du design ?": "Nome del design?",
-        "Veuillez indiquer le code ?": "Si prega di indicare il codice?"
+        "Verrouiller": "Blocco"
     },
     "desktop\/js\/interact.js": {
+        "Action": "Azione",
+        "Sélectionner un mot-clé": "Seleziona una parola chiave",
         "Liste des interactions": "Lista interazioni",
         "Interactions": "Interazioni",
         "Nom": "Nom",
@@ -2877,9 +2891,7 @@
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?",
         "Toutes les interactions ont été régénérées": "Toutes les interactions ont été régénérées",
         "Demande": "Demande",
-        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Sei sicuro di voler eliminare l\\'interazione",
-        "Action": "Azione",
-        "Sélectionner un mot-clé": "Seleziona una parola chiave"
+        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Sei sicuro di voler eliminare l\\'interazione"
     },
     "desktop\/js\/timeline.js": {
         "Evènements de la timeline supprimés avec succès": "Evènements de la timeline supprimés avec succès",
@@ -2923,13 +2935,13 @@
         "Largeur desktop": "Larghezza del desktop",
         "Largeur mobile": "Larghezza mobile",
         "Time widget": "Widget temporale",
+        "Choisir": "Scegli",
+        "Test": "Prova",
+        "Résultat si test ok": "Résultat si test ok",
         "Remplacement de widget": "Sostituzione del widget",
         "Appliquer ce widget à": "Appliquer ce widget à",
         "Modification(s) appliquée(s) avec succès": "Modifiche applicate con successo",
-        "Choisir": "Scegli",
         "Widgets": "Widget",
-        "Test": "Prova",
-        "Résultat si test ok": "Résultat si test ok",
         "Nom du widget": "Nom du widget",
         "Sauvegarde effectuée avec succès": "Backup completato con successo",
         "Configuration de la commande": "Impostazione comando",
@@ -2945,18 +2957,6 @@
         "Opération effectuée": "Operazione eseguita"
     },
     "desktop\/js\/administration.js": {
-        "Sauvegarde réussie": "Backup completato correttamente",
-        "Commande réalisée avec succès": "Comando eseguito con successo",
-        "Cookie de thème supprimé": "Cookie de thème supprimé",
-        "Image enregistrée et configurée": "Image enregistrée et configurée",
-        "Êtes-vous sûr de vouloir supprimer cette image de fond ?": "Êtes-vous sûr de vouloir supprimer cette image de fond ?",
-        "Image supprimée": "Image supprimée",
-        "Evènement de la timeline supprimé avec succès": "Evento Timeline cancellato con successo",
-        "Décocher pour desactiver l\\'action": "Deselezionare per disabilitare azione \\ 's",
-        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Controllare l'ordine di 's \\ eseguiti in parallelo ad altre azioni",
-        "Sélectionner un mot-clé": "Seleziona una parola chiave",
-        "Sélectionner la commande": "Seleziona comando",
-        "Création des commandes virtuel réussies": "La creazione di comandi virtuali di successo",
         "Somme": "Somma",
         "Moyenne": "Media",
         "Texte": "Testo",
@@ -2964,6 +2964,20 @@
         "Aucun": "Nessuno",
         "Binaire": "Binario",
         "Créer virtuel": "Creare virtuale",
+        "Décocher pour desactiver l\\'action": "Deselezionare per disabilitare azione \\ 's",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Controllare l'ordine di 's \\ eseguiti in parallelo ad altre azioni",
+        "Sélectionner un mot-clé": "Seleziona una parola chiave",
+        "Sélectionner la commande": "Seleziona comando",
+        "Cache vidé": "Cache eliminata",
+        "Cache nettoyé": "Cache puliti",
+        "Sauvegarde réussie": "Backup completato correttamente",
+        "Commande réalisée avec succès": "Comando eseguito con successo",
+        "Cookie de thème supprimé": "Cookie de thème supprimé",
+        "Image enregistrée et configurée": "Image enregistrée et configurée",
+        "Êtes-vous sûr de vouloir supprimer cette image de fond ?": "Êtes-vous sûr de vouloir supprimer cette image de fond ?",
+        "Image supprimée": "Image supprimée",
+        "Evènement de la timeline supprimé avec succès": "Evento Timeline cancellato con successo",
+        "Création des commandes virtuel réussies": "La creazione di comandi virtuali di successo",
         "Êtes-vous sûr de vouloir supprimer la base d\\'InfluxDB": "Êtes-vous sûr de vouloir supprimer la base d\\'InfluxDB",
         "Action envoyée avec succés": "Action envoyée avec succés",
         "Êtes-vous sûr de vouloir envoyer tout l\\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes.": "Êtes-vous sûr de vouloir envoyer tout l\\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes",
@@ -2972,8 +2986,6 @@
         "Connexion réussie": "Connessione avvenuta con successo",
         "Test réussi": "Test di successo",
         "Attention ceci est une opération risquée (vidage du cache), Confirmez vous vouloir la faire ?": "Attention ceci est une opération risquée (vidage du cache), Confirmez vous vouloir la faire ?",
-        "Cache vidé": "Cache eliminata",
-        "Cache nettoyé": "Cache puliti",
         "Êtes-vous sûr de vouloir réinitialiser la clé API de": "Êtes-vous sûr de vouloir réinitialiser la clé API de",
         "Administration système": "L'amministrazione del sistema",
         "Rétablissement des droits d\\'accès effectué avec succès": "Diritti di accesso ripristinati correttamente",
@@ -2987,10 +2999,10 @@
         "Information importante :": "Information importante :"
     },
     "desktop\/js\/types.js": {
+        "Aucun": "Aucun",
         "Supprimer les types generiques sur les commandes ?": "Supprimer les types generiques sur les commandes ?",
         "Oui": "Oui",
         "Non": "Non",
-        "Aucun": "Aucun",
         "Supprimer": "Supprimer",
         "Types Génériques automatiques": "Types Génériques automatiques",
         "Types Génériques sauvegardés": "Types Génériques sauvegardés",
@@ -3002,26 +3014,34 @@
         "Commentaire": "Commentaire"
     },
     "desktop\/js\/eqAnalyse.js": {
+        "Supprimée le": "Supprimée le",
         "Configuration commande": "Configurazione del comando",
         "Configuration de l'équipement": "Configurazione dell'apparecchiatura",
-        "Configuration en masse": "Configuration en masse",
-        "Supprimée le": "Supprimée le"
+        "Configuration en masse": "Configuration en masse"
     },
     "desktop\/js\/object.js": {
+        "Envoyer": "Invia",
+        "Image de fond ajoutée avec succès": "Image de fond ajoutée avec succès",
+        "Commande": "Comando",
+        "Activer": "Attivare",
+        "Inverser": "Inverti",
+        "Résumé(s)": "Résumé(s)",
+        "Rendre invisible": "Rendre invisible",
+        "Rendre visible": "Rendre visible",
+        "Rendre invisible sur la Synthèse": "Rendre invisible sur la Synthèse",
+        "Rendre visible sur la Synthèse": "Rendre visible sur la Synthèse",
+        "Rendre invisible sur le Dashboard": "Rendre invisible sur le Dashboard",
+        "Rendre visible sur le Dashboard": "Rendre visible sur le Dashboard",
+        "Objet parent": "Objet parent",
+        "Positionner après": "Positionner après",
         "Graphique des liens": "Link grafici",
         "Image de fond appliquée avec succès": "Image de fond appliquée avec succès",
         "Êtes-vous sûr de vouloir enlever l\\'image de fond de cet objet ?": "Êtes-vous sûr de vouloir enlever l\\'image de fond de cet objet ?",
         "Image de fond enlevée": "Image de fond enlevée",
         "Objets": "Oggetti",
-        "Envoyer": "Invia",
-        "Image de fond ajoutée avec succès": "Image de fond ajoutée avec succès",
         "Nom du nouvel objet": "Nom du nouvel objet",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "Sei sicuro di voler eliminare l'oggetto",
-        "Commande": "Comando",
-        "Activer": "Attivare",
-        "Inverser": "Inverti",
-        "Vue d'ensemble des objets": "Vue d'ensemble des objets",
-        "Résumé(s)": "Résumé(s)"
+        "Vue d'ensemble des objets": "Vue d'ensemble des objets"
     },
     "desktop\/js\/system.js": {
         "Êtes-vous sûr de vouloir éxécuter cette commande :": "Sei sicuro di voler eseguire questo comando:",
@@ -3029,6 +3049,8 @@
         "Commande :": "Comando:"
     },
     "desktop\/js\/backup.js": {
+        "L\\'opération est réussie": "L'operazione è andata a buon fine",
+        "L\\'opération a échoué": "Operazione fallita",
         "Sauvegarde réussie": "Backup completato correttamente",
         "Êtes-vous sûr de vouloir faire une sauvegarde de": "Etes-vous sûr de vouloir faire une sauvegarde de",
         "? Une fois lancée cette opération ne peut être annulée": "? Une fois lancée cette opération ne peut être annulée",
@@ -3041,9 +3063,7 @@
         "Êtes-vous sûr de vouloir envoyer une sauvegarde de": "Etes-vous sûr de vouloir envoyer une sauvegarde de",
         "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "sur le cloud ? Une fois lancée cette opération ne peut être annulée",
         "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud": "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud",
-        "Sauvegarde rapatrier avec succès": "Sauvegarde rapatrier avec succès",
-        "L\\'opération est réussie": "L'operazione è andata a buon fine",
-        "L\\'opération a échoué": "Operazione fallita"
+        "Sauvegarde rapatrier avec succès": "Sauvegarde rapatrier avec succès"
     },
     "desktop\/js\/reboot.js": {
         "Êtes-vous sûr de vouloir redémarrer le système ?": "Êtes-vous sûr de vouloir redémarrer le système ?",
@@ -3053,25 +3073,6 @@
         "est en cours de redémarrage.": "est en cours de redémarrage"
     },
     "desktop\/js\/scenario.js": {
-        "Log d'exécution du scénario": "Registro di esecuzione della scena",
-        "Nom du scénario": "Nom du scénario",
-        "Êtes-vous sûr de vouloir désactiver les scénarios ?": "Êtes-vous sûr de vouloir désactiver les scénarios ?",
-        "Êtes-vous sûr de vouloir activer les scénarios ?": "Êtes-vous sûr de vouloir activer les scénarios ?",
-        "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?",
-        "Logs des scénarios supprimés.": "Logs des scénarios supprimés",
-        "Vue d'ensemble des scénarios": "Vue d'ensemble des scénarios",
-        "Scénario": "Scena",
-        "Graphique de lien(s)": "Link grafico",
-        "Edition texte scénarios": "Scenari di modifica del testo",
-        "Export du scénario": "Esportazione dello scenario",
-        "Template de scénario": "Modello di scenario",
-        "Lancement du scénario réussi": "Lancio dello scenario riuscito",
-        "Arrêt du scénario réussi": "Terminazione riuscita dello scenario",
-        "Êtes-vous sûr de vouloir supprimer le scénario": "Sei sicuro di voler eliminare lo scenario",
-        "Êtes-vous sûr de vouloir supprimer ce bloc ?": "Sei sicuro di voler eliminare questo blocco?",
-        "Le bloc Sinon ne peut être masqué s'il contient des éléments.": "Le bloc Sinon ne peut être masqué s'il contient des éléments",
-        "Afficher ce bloc.<br>Ctrl+click: tous.": "Mostra questo blocco. <br> Ctrl + clic: tutto",
-        "Masquer ce bloc.<br>Ctrl+click: tous.": "Nascondi questo blocco. <br> Ctrl + clic: tutto",
         "Aucun choix possible": "Aucun choix possible",
         "est": "è",
         "égal": "uguale",
@@ -3090,9 +3091,6 @@
         "rien": "rien",
         "et": "e",
         "ou": "o",
-        "Ajout d'une nouvelle condition": "Aggiunta di una nuova condizione",
-        "Ne rien mettre": "Ne rien mettre",
-        "Valider": "Convalidare",
         "Erreur": "Errore",
         "Actif": "Beni",
         "Démarrage": "Start-up",
@@ -3115,6 +3113,8 @@
         "Supprimer l\\'action": "Elimina azione",
         "Sélectionner un mot-clé": "Seleziona una parola chiave",
         "Sélectionner la commande": "Seleziona comando",
+        "Masquer ce bloc.<br>Ctrl+click: tous.": "Nascondi questo blocco. <br> Ctrl + clic: tutto",
+        "Afficher ce bloc.<br>Ctrl+click: tous.": "Mostra questo blocco. <br> Ctrl + clic: tutto",
         "Décocher pour désactiver l\\'élément": "Deseleziona per disattivare l'elemento",
         "SI": "CASO",
         "Autoriser ou non la répétition des actions si l\\'évaluation de la condition est la même que la précédente": "Consentire o non ripetere le azioni se la valutazione della condizione è la stessa di quella precedente",
@@ -3140,7 +3140,32 @@
         "Bloc Dans": "Block In",
         "Bloc A": "Blocco A",
         "Bloc Code": "Codice blocco",
-        "Bloc Commentaire": "Blocco commenti"
+        "Bloc Commentaire": "Blocco commenti",
+        "Log d'exécution du scénario": "Registro di esecuzione della scena",
+        "Rendre inactif": "Rendre inactif",
+        "Rendre actif": "Rendre actif",
+        "Aucun": "Aucun",
+        "Groupe": "Groupe",
+        "Objet parent": "Objet parent",
+        "Nom du scénario": "Nom du scénario",
+        "Êtes-vous sûr de vouloir désactiver les scénarios ?": "Êtes-vous sûr de vouloir désactiver les scénarios ?",
+        "Êtes-vous sûr de vouloir activer les scénarios ?": "Êtes-vous sûr de vouloir activer les scénarios ?",
+        "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?",
+        "Logs des scénarios supprimés.": "Logs des scénarios supprimés",
+        "Vue d'ensemble des scénarios": "Vue d'ensemble des scénarios",
+        "Scénario": "Scena",
+        "Graphique de lien(s)": "Link grafico",
+        "Edition texte scénarios": "Scenari di modifica del testo",
+        "Export du scénario": "Esportazione dello scenario",
+        "Template de scénario": "Modello di scenario",
+        "Lancement du scénario réussi": "Lancio dello scenario riuscito",
+        "Arrêt du scénario réussi": "Terminazione riuscita dello scenario",
+        "Êtes-vous sûr de vouloir supprimer le scénario": "Sei sicuro di voler eliminare lo scenario",
+        "Êtes-vous sûr de vouloir supprimer ce bloc ?": "Sei sicuro di voler eliminare questo blocco?",
+        "Le bloc Sinon ne peut être masqué s'il contient des éléments.": "Le bloc Sinon ne peut être masqué s'il contient des éléments",
+        "Ajout d'une nouvelle condition": "Aggiunta di una nuova condizione",
+        "Ne rien mettre": "Ne rien mettre",
+        "Valider": "Convalidare"
     },
     "desktop\/common\/js\/ui.js": {
         "Historique": "Storico"

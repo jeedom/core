@@ -14,6 +14,7 @@
         "Timeline": "タイムライン",
         "Logs": "ログ",
         "Analyse équipement": "分析機器",
+        "Notes": "Notes",
         "Crons": "Cronの",
         "Démons": "悪魔",
         "Santé": "健康",
@@ -60,6 +61,11 @@
     "mobile\/js\/equipment.js": {
         "Tout": "全て",
         "Synthèse": "合成"
+    },
+    "mobile\/js\/notes.js": {
+        "Note sauvegardée avec succès": "Note sauvegardée avec succès",
+        "Voulez-vous vraiment supprimer la note :": "Voulez-vous vraiment supprimer la note :",
+        "Note supprimée avec succès": "Note supprimée avec succès"
     },
     "mobile\/js\/application.js": {
         "Résumé": "概要",
@@ -134,6 +140,13 @@
         "Status": "ステータス",
         "Date lancement": "打ち上げ日",
         "Action": "アクション"
+    },
+    "mobile\/html\/notes.html": {
+        "Ajouter": "Ajouter",
+        "Sauvegarder": "Sauvegarder",
+        "Supprimer": "Supprimer",
+        "Titre": "Titre",
+        "Texte": "Texte"
     },
     "mobile\/html\/health.html": {
         "Nom": "表題",
@@ -467,6 +480,7 @@
         "Nom": "表題",
         "Visible": "目に見えます",
         "Affichage": "Affichage",
+        "Paramètres de la tuile. Courbe d'historique et paramètres optionnels.": "Paramètres de la tuile. Courbe d'historique et paramètres optionnels",
         "Graphique de fond": "Graphique de fond",
         "Information": "Information",
         "Aucune": "Aucune",
@@ -836,6 +850,18 @@
     "desktop\/modal\/update.send.php": {
         "Le dépôt est inactif :": "デポジットは無効です：",
         "401 - Accès non autorisé": "401-不正アクセス"
+    },
+    "desktop\/modal\/message.display.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "Tout": "Tout",
+        "Rafraichir": "Rafraichir",
+        "Vider": "Vider",
+        "Date et heure": "Date et heure",
+        "Source": "Source",
+        "Description": "Description",
+        "Action": "Action",
+        "Occurrences": "Occurrences",
+        "Centre de Messages": "Centre de Messages"
     },
     "desktop\/modal\/cmd.configureHistory.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
@@ -1414,6 +1440,7 @@
     },
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
+        "Rechercher | nom | :not(nom": "Rechercher | nom | :not(nom",
         "Principal": "主要",
         "Timelines": "Timelines",
         "Rafraîchir": "クール",
@@ -2229,17 +2256,6 @@
         "Votre box": "あなたの箱",
         "est éteinte.<br \/> Pour la redémarrer, débranchez-la et rebranchez-la.": "オフです。 <br \/>再起動するには、プラグを抜き、再度差し込みます。"
     },
-    "desktop\/php\/message.php": {
-        "401 - Accès non autorisé": "401-不正アクセス",
-        "Tout": "全て",
-        "Rafraichir": "リフレッシュ",
-        "Vider": "空",
-        "Date et heure": "日時",
-        "Source": "ソース",
-        "Description": "説明",
-        "Action": "アクション",
-        "Occurrences": "出現"
-    },
     "desktop\/php\/interact.php": {
         "Aucun": "Aucun",
         "401 - Accès non autorisé": "401-不正アクセス",
@@ -2425,7 +2441,6 @@
         "Objet parent": "親オブジェクト",
         "Options": "Options",
         "Visible": "目に見えます",
-        "Rendre cet objet visible ou non.": "このオブジェクトを表示するかどうか。",
         "Masquer": "Masquer",
         "Sur Dashboard": "Sur Dashboard",
         "Masquer cet objet uniquement sur le Dashboard. Il restera visible, notamment dans la liste des objets.": "このオブジェクトはダッシュボードでのみ非表示にします。特にオブジェクトのリストでは、表示されたままになります。",
@@ -2582,11 +2597,11 @@
         "Inactifs": "不活発",
         "Export CSV": "CSVエクスポート",
         "Rechercher | nom | id | :not(nom": "Rechercher | nom | id | :not(nom",
+        "Vider": "空",
         "Date": "日付",
         "Type": "タイプ",
         "ID": "ID",
-        "Nom": "表題",
-        "Vider": "空"
+        "Nom": "表題"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
@@ -2597,9 +2612,7 @@
         "OK": "[OK]を"
     },
     "desktop\/js\/update.js": {
-        "Options": "オプション",
-        "Êtes-vous sûr de vouloir mettre à jour :": "Êtes-vous sûr de vouloir mettre à jour :",
-        "Êtes-vous sûr de vouloir supprimer :": "Êtes-vous sûr de vouloir supprimer :",
+        "Aucune mise à jour en cours.": "Aucune mise à jour en cours",
         "Mise(s) à jour terminée(s) avec succès.": "Mise(s) à jour terminée(s) avec succès",
         "L\\'opération a échoué": "操作に失敗しました",
         "Dernière verification des mises à jour": "Dernière verification des mises à jour",
@@ -2610,8 +2623,10 @@
         "Réinstaller": "REINSTATE",
         "Supprimer": "取り除きます",
         "Vérifier": "チェック",
-        "Aucune mise à jour en cours.": "Aucune mise à jour en cours",
-        "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)"
+        "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)",
+        "Options": "オプション",
+        "Êtes-vous sûr de vouloir mettre à jour :": "Êtes-vous sûr de vouloir mettre à jour :",
+        "Êtes-vous sûr de vouloir supprimer :": "Êtes-vous sûr de vouloir supprimer :"
     },
     "desktop\/js\/log.js": {
         "Pause": "休止",
@@ -2619,7 +2634,6 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "すべてのログを削除してもよろしいですか？"
     },
     "desktop\/js\/editor.js": {
-        "Editer": "Editer",
         "Le sous-type ne peut être vide": "Le sous-type ne peut être vide",
         "Le nom ne peut être vide": "Le nom ne peut être vide",
         "Fichier enregistré avec succès": "Fichier enregistré avec succès",
@@ -2627,7 +2641,8 @@
         "Options": "Options",
         "Configutation sauvegardée": "Configutation sauvegardée",
         "Activé": "Activé",
-        "Désactivé": "Désactivé"
+        "Désactivé": "Désactivé",
+        "Editer": "Editer"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "リフレッシュ",
@@ -2657,6 +2672,7 @@
         "Logs": "ログ",
         "Heartbeat (min)": "ハートビート（分）",
         "Redémarrer démon": "デーモンを再起動する",
+        "Sauvegarde effectuée": "バックアップ完了",
         "De nouveaux plugins ont été installés": "De nouveaux plugins ont été installés",
         "Synchronisation réussi. Aucun nouveau plugin installé.": "Synchronisation réussi. Aucun nouveau plugin installé",
         "Market": "Market",
@@ -2666,8 +2682,7 @@
         "Sauvegarde de la configuration des panneaux effectuée": "実行されたパネルの構成の保存",
         "Sauvegarde des fonctionalités effectuée": "実行された機能バックアップ",
         "Sauvegarde de la configuration des logs effectuée": "ログ構成が保存されました",
-        "Log du plugin": "プラグインログ",
-        "Sauvegarde effectuée": "バックアップ完了"
+        "Log du plugin": "プラグインログ"
     },
     "desktop\/js\/plan3d.js": {
         "Configuration du plan 3D": "3Dプラン構成",
@@ -2679,11 +2694,7 @@
         "Configuration Affichage": "Configuration Affichage"
     },
     "desktop\/js\/view_edit.js": {
-        "Nom de la vue ?": "ビューの名前？",
-        "Configuration de la vue": "構成を表示",
         "Modification enregistrée": "記録された変更",
-        "Êtes-vous sûr de vouloir supprimer la vue": "ビューを削除してもよろしいですか",
-        "Le nom de la viewZone ne peut être vide": "ViewZone名は空にできません",
         "Largeur": "幅",
         "Hauteur": "Hauteur",
         "30 min": "30分",
@@ -2710,7 +2721,7 @@
         "Variation": "変更",
         "Ligne": "ライン",
         "Aire": "エリア",
-        "Barre": "Barre",
+        "Colonne": "Colonne",
         "Camembert": "カマンベール",
         "Aucun groupement": "何のグループません",
         "Somme par heure": "Somme par heure",
@@ -2738,7 +2749,11 @@
         "Invisible": "Invisible",
         "Visible": "Visible",
         "Non": "ではありません",
-        "Oui": "はい"
+        "Oui": "はい",
+        "Nom de la vue ?": "ビューの名前？",
+        "Configuration de la vue": "構成を表示",
+        "Êtes-vous sûr de vouloir supprimer la vue": "ビューを削除してもよろしいですか",
+        "Le nom de la viewZone ne peut être vide": "ViewZone名は空にできません"
     },
     "desktop\/js\/display.js": {
         "Configuration de l'objet": "オブジェクト構成",
@@ -2752,10 +2767,6 @@
         "Historique": "歴史的"
     },
     "desktop\/js\/cron.js": {
-        "Désactiver le système cron": "Cronシステムを無効にする",
-        "Activer le système cron": "Cronシステムをアクティブにします",
-        "Détails du cron": "Cronの詳細",
-        "Détails du listener": "リスナーの詳細",
         "En cours": "進行中",
         "Arrêté": "逮捕",
         "Démarrage": "起動",
@@ -2767,14 +2778,18 @@
         "Démarrer ou re-démarrer": "起動または再起動",
         "Arrêter": "ストップ",
         "Activer la gestion automatique du démon": "デーモンの自動管理を有効にします",
-        "Désactiver la gestion automatique du démon": "自動デーモン管理を無効にする"
+        "Désactiver la gestion automatique du démon": "自動デーモン管理を無効にする",
+        "Désactiver le système cron": "Cronシステムを無効にする",
+        "Activer le système cron": "Cronシステムをアクティブにします",
+        "Détails du cron": "Cronの詳細",
+        "Détails du listener": "リスナーの詳細"
     },
     "desktop\/js\/history.js": {
+        "Historique supprimé avec succès": "歴史は正常に削除しました",
+        "Mes Calculs": "Mes Calculs",
         "Configuration des formules de calcul": "式の設定",
         "Configuration de l'historique des commandes": "歴史Configurationフォームのコントロール",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "彼は\\「sの歴史を削除する必要がある前に、日付（S：M Y-するM d H）を記入してください",
-        "Mes Calculs": "Mes Calculs",
-        "Historique supprimé avec succès": "歴史は正常に削除しました",
         "Comparer": "Comparer",
         "jours avec": "jours avec",
         "jours il y a": "jours il y a",
@@ -2790,18 +2805,9 @@
         "Commande :": "注文：",
         "Temps d\\'éxécution": "Temps d\\'éxécution"
     },
-    "desktop\/js\/message.js": {
-        "Centre de Messages": "メッセージセンター"
-    },
     "desktop\/js\/user.js": {
-        "Sauvegarde effectuée": "バックアップ完了",
         "Le login d\\'un utilisateur ne peut être vide !": "Le login d\\'un utilisateur ne peut être vide !",
         "Deux utilisateurs ne peuvent avoir le même login !": "Deux utilisateurs ne peuvent avoir le même login !",
-        "Vous allez supprimer l\\'utilisateur :": "Vous allez supprimer l\\'utilisateur :",
-        "L\\'utilisateur a bien été supprimé": "ユーザーが削除されました",
-        "Quel est le nouveau mot de passe ?": "新しいパスワードは何ですか？",
-        "Êtes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "ユーザーのAPIキーを変更してもよろしいですか？",
-        "Modification effectuée": "行われた変更",
         "Actif": "財産",
         "Local": "ローカル",
         "Ne pas faire de rotation clef api": "APIキーを回転させないでください",
@@ -2819,6 +2825,12 @@
         "Régénérer API": "APIを再生成",
         "Droits": "権利",
         "Profils": "Profils",
+        "Sauvegarde effectuée": "バックアップ完了",
+        "Vous allez supprimer l\\'utilisateur :": "Vous allez supprimer l\\'utilisateur :",
+        "L\\'utilisateur a bien été supprimé": "ユーザーが削除されました",
+        "Quel est le nouveau mot de passe ?": "新しいパスワードは何ですか？",
+        "Êtes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "ユーザーのAPIキーを変更してもよろしいですか？",
+        "Modification effectuée": "行われた変更",
         "Gestion des droits (Utilisateur limité)": "Gestion des droits (Utilisateur limité)",
         "Gestion du profils": "Gestion du profils"
     },
@@ -2832,6 +2844,8 @@
         "Configuration Affichage": "Configuration Affichage"
     },
     "desktop\/js\/plan.js": {
+        "Nom du design ?": "デザインの名前？",
+        "Veuillez indiquer le code ?": "コードを指定してください？",
         "Designs": "デザイン",
         "Edition": "版",
         "Plein écran": "全画面",
@@ -2864,11 +2878,11 @@
         "Valider": "検証",
         "Supprimer": "取り除きます",
         "Dupliquer": "重複",
-        "Verrouiller": "ロック",
-        "Nom du design ?": "デザインの名前？",
-        "Veuillez indiquer le code ?": "コードを指定してください？"
+        "Verrouiller": "ロック"
     },
     "desktop\/js\/interact.js": {
+        "Action": "アクション",
+        "Sélectionner un mot-clé": "キーワードを選択",
         "Liste des interactions": "相互作用のリスト",
         "Interactions": "相互作用",
         "Nom": "Nom",
@@ -2877,9 +2891,7 @@
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "すべてのインタラクションを再生成してもよろしいですか（これは非常に長くなる可能性があります）？",
         "Toutes les interactions ont été régénérées": "すべてのインタラクションが再生成されました",
         "Demande": "Demande",
-        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "インタラクションを削除してもよろしいですか",
-        "Action": "アクション",
-        "Sélectionner un mot-clé": "キーワードを選択"
+        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "インタラクションを削除してもよろしいですか"
     },
     "desktop\/js\/timeline.js": {
         "Evènements de la timeline supprimés avec succès": "Evènements de la timeline supprimés avec succès",
@@ -2923,13 +2935,13 @@
         "Largeur desktop": "デスクトップ幅",
         "Largeur mobile": "可動幅",
         "Time widget": "時間ウィジェット",
+        "Choisir": "選択",
+        "Test": "テスト",
+        "Résultat si test ok": "Résultat si test ok",
         "Remplacement de widget": "ウィジェットの交換",
         "Appliquer ce widget à": "Appliquer ce widget à",
         "Modification(s) appliquée(s) avec succès": "変更（複数可）に成功（S）を適用しました",
-        "Choisir": "選択",
         "Widgets": "ウィジェット",
-        "Test": "テスト",
-        "Résultat si test ok": "Résultat si test ok",
         "Nom du widget": "Nom du widget",
         "Sauvegarde effectuée avec succès": "バックアップが正常に完了",
         "Configuration de la commande": "設定された制御",
@@ -2945,18 +2957,6 @@
         "Opération effectuée": "実行された操作"
     },
     "desktop\/js\/administration.js": {
-        "Sauvegarde réussie": "成功したバックアップ",
-        "Commande réalisée avec succès": "成功裏に実施し運用",
-        "Cookie de thème supprimé": "Cookie de thème supprimé",
-        "Image enregistrée et configurée": "Image enregistrée et configurée",
-        "Êtes-vous sûr de vouloir supprimer cette image de fond ?": "Êtes-vous sûr de vouloir supprimer cette image de fond ?",
-        "Image supprimée": "Image supprimée",
-        "Evènement de la timeline supprimé avec succès": "イベントのタイムラインが正常に削除します",
-        "Décocher pour desactiver l\\'action": "\\「sのアクションを無効にするにはチェックを外し",
-        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "他のアクションを並列に実行するための\\「sのチェック",
-        "Sélectionner un mot-clé": "キーワードを選択",
-        "Sélectionner la commande": "コマンドを選択",
-        "Création des commandes virtuel réussies": "成功した仮想コントロールを作成します",
         "Somme": "サム",
         "Moyenne": "平均",
         "Texte": "テキスト",
@@ -2964,6 +2964,20 @@
         "Aucun": "何でもありません",
         "Binaire": "バイナリ",
         "Créer virtuel": "仮想作成",
+        "Décocher pour desactiver l\\'action": "\\「sのアクションを無効にするにはチェックを外し",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "他のアクションを並列に実行するための\\「sのチェック",
+        "Sélectionner un mot-clé": "キーワードを選択",
+        "Sélectionner la commande": "コマンドを選択",
+        "Cache vidé": "空にキャッシュ",
+        "Cache nettoyé": "清掃キャッシュ",
+        "Sauvegarde réussie": "成功したバックアップ",
+        "Commande réalisée avec succès": "成功裏に実施し運用",
+        "Cookie de thème supprimé": "Cookie de thème supprimé",
+        "Image enregistrée et configurée": "Image enregistrée et configurée",
+        "Êtes-vous sûr de vouloir supprimer cette image de fond ?": "Êtes-vous sûr de vouloir supprimer cette image de fond ?",
+        "Image supprimée": "Image supprimée",
+        "Evènement de la timeline supprimé avec succès": "イベントのタイムラインが正常に削除します",
+        "Création des commandes virtuel réussies": "成功した仮想コントロールを作成します",
         "Êtes-vous sûr de vouloir supprimer la base d\\'InfluxDB": "Êtes-vous sûr de vouloir supprimer la base d\\'InfluxDB",
         "Action envoyée avec succés": "Action envoyée avec succés",
         "Êtes-vous sûr de vouloir envoyer tout l\\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes.": "Êtes-vous sûr de vouloir envoyer tout l\\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes",
@@ -2972,8 +2986,6 @@
         "Connexion réussie": "ログインに成功",
         "Test réussi": "成功したテスト",
         "Attention ceci est une opération risquée (vidage du cache), Confirmez vous vouloir la faire ?": "Attention ceci est une opération risquée (vidage du cache), Confirmez vous vouloir la faire ?",
-        "Cache vidé": "空にキャッシュ",
-        "Cache nettoyé": "清掃キャッシュ",
         "Êtes-vous sûr de vouloir réinitialiser la clé API de": "Êtes-vous sûr de vouloir réinitialiser la clé API de",
         "Administration système": "システム管理",
         "Rétablissement des droits d\\'accès effectué avec succès": "正常に復元されたアクセス権",
@@ -2987,10 +2999,10 @@
         "Information importante :": "重要な情報："
     },
     "desktop\/js\/types.js": {
+        "Aucun": "Aucun",
         "Supprimer les types generiques sur les commandes ?": "Supprimer les types generiques sur les commandes ?",
         "Oui": "Oui",
         "Non": "Non",
-        "Aucun": "Aucun",
         "Supprimer": "Supprimer",
         "Types Génériques automatiques": "Types Génériques automatiques",
         "Types Génériques sauvegardés": "Types Génériques sauvegardés",
@@ -3002,26 +3014,34 @@
         "Commentaire": "Commentaire"
     },
     "desktop\/js\/eqAnalyse.js": {
+        "Supprimée le": "Supprimée le",
         "Configuration commande": "コマンド構成",
         "Configuration de l'équipement": "機器構成",
-        "Configuration en masse": "マス構成",
-        "Supprimée le": "Supprimée le"
+        "Configuration en masse": "マス構成"
     },
     "desktop\/js\/object.js": {
+        "Envoyer": "送ります",
+        "Image de fond ajoutée avec succès": "Image de fond ajoutée avec succès",
+        "Commande": "オーダー",
+        "Activer": "アクティブ",
+        "Inverser": "逆",
+        "Résumé(s)": "Résumé(s)",
+        "Rendre invisible": "Rendre invisible",
+        "Rendre visible": "Rendre visible",
+        "Rendre invisible sur la Synthèse": "Rendre invisible sur la Synthèse",
+        "Rendre visible sur la Synthèse": "Rendre visible sur la Synthèse",
+        "Rendre invisible sur le Dashboard": "Rendre invisible sur le Dashboard",
+        "Rendre visible sur le Dashboard": "Rendre visible sur le Dashboard",
+        "Objet parent": "Objet parent",
+        "Positionner après": "Positionner après",
         "Graphique des liens": "グラフィックリンク",
         "Image de fond appliquée avec succès": "Image de fond appliquée avec succès",
         "Êtes-vous sûr de vouloir enlever l\\'image de fond de cet objet ?": "Êtes-vous sûr de vouloir enlever l\\'image de fond de cet objet ?",
         "Image de fond enlevée": "Image de fond enlevée",
         "Objets": "オブジェクト",
-        "Envoyer": "送ります",
-        "Image de fond ajoutée avec succès": "Image de fond ajoutée avec succès",
         "Nom du nouvel objet": "Nom du nouvel objet",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "オブジェクトを削除してもよろしいですか",
-        "Commande": "オーダー",
-        "Activer": "アクティブ",
-        "Inverser": "逆",
-        "Vue d'ensemble des objets": "Vue d'ensemble des objets",
-        "Résumé(s)": "Résumé(s)"
+        "Vue d'ensemble des objets": "Vue d'ensemble des objets"
     },
     "desktop\/js\/system.js": {
         "Êtes-vous sûr de vouloir éxécuter cette commande :": "このコマンドを実行してよろしいですか：",
@@ -3029,6 +3049,8 @@
         "Commande :": "注文："
     },
     "desktop\/js\/backup.js": {
+        "L\\'opération est réussie": "操作は成功しました",
+        "L\\'opération a échoué": "操作に失敗しました",
         "Sauvegarde réussie": "成功したバックアップ",
         "Êtes-vous sûr de vouloir faire une sauvegarde de": "のバックアップを作成してもよろしいですか",
         "? Une fois lancée cette opération ne peut être annulée": "？一度起動すると、この操作はキャンセルできません。",
@@ -3041,9 +3063,7 @@
         "Êtes-vous sûr de vouloir envoyer une sauvegarde de": "のバックアップを送信してもよろしいですか",
         "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "クラウド上で？一度起動すると、この操作はキャンセルできません。",
         "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud": "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud",
-        "Sauvegarde rapatrier avec succès": "Sauvegarde rapatrier avec succès",
-        "L\\'opération est réussie": "操作は成功しました",
-        "L\\'opération a échoué": "操作に失敗しました"
+        "Sauvegarde rapatrier avec succès": "Sauvegarde rapatrier avec succès"
     },
     "desktop\/js\/reboot.js": {
         "Êtes-vous sûr de vouloir redémarrer le système ?": "Êtes-vous sûr de vouloir redémarrer le système ?",
@@ -3053,25 +3073,6 @@
         "est en cours de redémarrage.": "est en cours de redémarrage"
     },
     "desktop\/js\/scenario.js": {
-        "Log d'exécution du scénario": "スクリプトの実行をログに記録します",
-        "Nom du scénario": "Nom du scénario",
-        "Êtes-vous sûr de vouloir désactiver les scénarios ?": "Êtes-vous sûr de vouloir désactiver les scénarios ?",
-        "Êtes-vous sûr de vouloir activer les scénarios ?": "Êtes-vous sûr de vouloir activer les scénarios ?",
-        "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?",
-        "Logs des scénarios supprimés.": "Logs des scénarios supprimés",
-        "Vue d'ensemble des scénarios": "Vue d'ensemble des scénarios",
-        "Scénario": "シナリオ",
-        "Graphique de lien(s)": "リンク画像",
-        "Edition texte scénarios": "テキスト編集シナリオ",
-        "Export du scénario": "シナリオのエクスポート",
-        "Template de scénario": "シナリオテンプレート",
-        "Lancement du scénario réussi": "成功したシナリオの起動",
-        "Arrêt du scénario réussi": "シナリオの正常終了",
-        "Êtes-vous sûr de vouloir supprimer le scénario": "シナリオを削除してもよろしいですか",
-        "Êtes-vous sûr de vouloir supprimer ce bloc ?": "このブロックを削除してもよろしいですか？",
-        "Le bloc Sinon ne peut être masqué s'il contient des éléments.": "Le bloc Sinon ne peut être masqué s'il contient des éléments",
-        "Afficher ce bloc.<br>Ctrl+click: tous.": "このブロックを表示します。 <br> Ctrl +クリック：すべて。",
-        "Masquer ce bloc.<br>Ctrl+click: tous.": "このブロックを非表示にします。 <br> Ctrl +クリック：すべて。",
         "Aucun choix possible": "Aucun choix possible",
         "est": "あります",
         "égal": "等しいです",
@@ -3090,9 +3091,6 @@
         "rien": "rien",
         "et": "と",
         "ou": "若しくは",
-        "Ajout d'une nouvelle condition": "新しい条件を追加する",
-        "Ne rien mettre": "Ne rien mettre",
-        "Valider": "検証",
         "Erreur": "エラー",
         "Actif": "財産",
         "Démarrage": "起動",
@@ -3115,6 +3113,8 @@
         "Supprimer l\\'action": "削除アクション",
         "Sélectionner un mot-clé": "キーワードを選択",
         "Sélectionner la commande": "コマンドを選択",
+        "Masquer ce bloc.<br>Ctrl+click: tous.": "このブロックを非表示にします。 <br> Ctrl +クリック：すべて。",
+        "Afficher ce bloc.<br>Ctrl+click: tous.": "このブロックを表示します。 <br> Ctrl +クリック：すべて。",
         "Décocher pour désactiver l\\'élément": "チェックを外してアイテムを無効にします",
         "SI": "SI",
         "Autoriser ou non la répétition des actions si l\\'évaluation de la condition est la même que la précédente": "条件評価が前の評価と同じ場合、アクションを繰り返すかどうか",
@@ -3140,7 +3140,32 @@
         "Bloc Dans": "ブロックイン",
         "Bloc A": "ブロックA",
         "Bloc Code": "ブロックコード",
-        "Bloc Commentaire": "コメントブロック"
+        "Bloc Commentaire": "コメントブロック",
+        "Log d'exécution du scénario": "スクリプトの実行をログに記録します",
+        "Rendre inactif": "Rendre inactif",
+        "Rendre actif": "Rendre actif",
+        "Aucun": "Aucun",
+        "Groupe": "Groupe",
+        "Objet parent": "Objet parent",
+        "Nom du scénario": "Nom du scénario",
+        "Êtes-vous sûr de vouloir désactiver les scénarios ?": "Êtes-vous sûr de vouloir désactiver les scénarios ?",
+        "Êtes-vous sûr de vouloir activer les scénarios ?": "Êtes-vous sûr de vouloir activer les scénarios ?",
+        "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?",
+        "Logs des scénarios supprimés.": "Logs des scénarios supprimés",
+        "Vue d'ensemble des scénarios": "Vue d'ensemble des scénarios",
+        "Scénario": "シナリオ",
+        "Graphique de lien(s)": "リンク画像",
+        "Edition texte scénarios": "テキスト編集シナリオ",
+        "Export du scénario": "シナリオのエクスポート",
+        "Template de scénario": "シナリオテンプレート",
+        "Lancement du scénario réussi": "成功したシナリオの起動",
+        "Arrêt du scénario réussi": "シナリオの正常終了",
+        "Êtes-vous sûr de vouloir supprimer le scénario": "シナリオを削除してもよろしいですか",
+        "Êtes-vous sûr de vouloir supprimer ce bloc ?": "このブロックを削除してもよろしいですか？",
+        "Le bloc Sinon ne peut être masqué s'il contient des éléments.": "Le bloc Sinon ne peut être masqué s'il contient des éléments",
+        "Ajout d'une nouvelle condition": "新しい条件を追加する",
+        "Ne rien mettre": "Ne rien mettre",
+        "Valider": "検証"
     },
     "desktop\/common\/js\/ui.js": {
         "Historique": "歴史的"
