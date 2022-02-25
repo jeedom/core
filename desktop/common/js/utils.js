@@ -1470,4 +1470,4 @@ var getOpenedModal = jeedomUtils.getOpenedModal
 
 
 //Introduced in v4.3 -> deprecated v4.5 -> remove v4.6
-//var jeedom_langage = jeeFrontEnd.language
+var jeedom_langage = jeeFrontEnd.language
