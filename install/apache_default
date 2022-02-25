@@ -1,7 +1,7 @@
 <VirtualHost *:80>
         ServerAdmin webmaster@localhost
         DocumentRoot /var/www/html
-        ErrorLog /var/www/html/log/http.error
+        ErrorLog WEBSERVER_HOME/log/http.error
 </VirtualHost>
 
 # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
