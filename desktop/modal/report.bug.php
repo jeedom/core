@@ -168,11 +168,11 @@ if (!$first) {
       },
       dataType: 'json',
       error: function(request, status, error) {
-        handleAjaxError(request, status, error, $('#div_alert'))
+        handleAjaxError(request, status, error, $('#div_alertReportBug'))
       },
       success: function(data) {
         if (data.state != 'ok') {
-          $('#div_alert').showAlert({
+          $('#div_alertReportBug').showAlert({
             message: data.result,
             level: 'danger'
           })
@@ -184,12 +184,12 @@ if (!$first) {
           scrollTop: 0
         }, "slow")
         if (data.result != '' && data.result != null && data.result != 'ok') {
-          $('#div_alert').showAlert({
+          $('#div_alertReportBug').showAlert({
             message: '{{Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br/>Vous pouvez le suivre}} <a target="_blank" href="' + data.result + '">ici</a><br/><br/><strong>ATTENTION</strong> votre message sera public, il pourra être supprimé s\'il ne s\'agit pas d\'un bug, vous ne recevrez pas d\'assistance technique suite à cette déclaration)',
             level: 'success'
           })
         } else {
-          $('#div_alert').showAlert({
+          $('#div_alertReportBug').showAlert({
             message: '{{Votre ticket a bien été ouvert. Un mail va vous être envoyé}}',
             level: 'success'
           })

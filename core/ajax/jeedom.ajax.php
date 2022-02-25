@@ -36,7 +36,7 @@ try {
 		@session_write_close();
 		$return['user_login'] = $_SESSION['user']->getLogin();
 
-		$return['langage'] = config::byKey('language', 'core', 'fr_FR');
+		$return['language'] = config::byKey('language', 'core', 'fr_FR');
 		$return['userProfils'] = $_SESSION['user']->getOptions();
 		$return['userProfils']['defaultMobileViewName'] = __('Vue', __FILE__);
 		if ($_SESSION['user']->getOptions('defaultDesktopView') != '') {
