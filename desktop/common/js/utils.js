@@ -656,7 +656,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
   jeedomUtils.setButtonCtrlHandler('#bt_showEventInRealTime', '{{Evénements en temps réel}}', 'log.display&log=event', '#md_modal')
   jeedomUtils.setButtonCtrlHandler('#bt_showNoteManager', '{{Notes}}', 'note.manager', '#md_modal')
   jeedomUtils.setButtonCtrlHandler('#bt_showExpressionTesting', "{{Testeur d'expression}}", 'expression.test', '#md_modal')
-  jeedomUtils.setButtonCtrlHandler('#bt_showDatastoreVariable', '{{Variables des scénarios}}', 'dataStore.management&type=scenario', '#md_modal', false)
+  jeedomUtils.setButtonCtrlHandler('#bt_showDatastoreVariable', '{{Variables}}', 'dataStore.management&type=scenario', '#md_modal', false)
   jeedomUtils.setButtonCtrlHandler('#bt_showSearching', '{{Recherche}}', 'search', '#md_modal')
 
   $('#bt_gotoDashboard').on('click',function(event) {

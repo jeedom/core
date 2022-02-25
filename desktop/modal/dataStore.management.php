@@ -28,8 +28,8 @@ sendVarToJS([
 
 <div class="input-group">
   <div class="input-group-btn">
-    <a class="btn btn-sm btn-success pull-right" id="bt_dataStoreManagementAdd"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
-    <a class="btn btn-sm pull-right" id="bt_dataStoreManagementRefresh"><i class="fas fa-sync-alt"></i> {{Rafraichir}}</a>
+    <a id="bt_dataStoreManagementAdd" class="btn btn-sm btn-success roundedRight pull-right"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
+    <a id="bt_dataStoreManagementRefresh" class="btn btn-sm roundedLeft pull-right"><i class="fas fa-sync-alt"></i> {{Rafraichir}}</a>
   </div>
 </div>
 
