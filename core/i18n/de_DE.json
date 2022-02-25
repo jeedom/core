@@ -815,7 +815,8 @@
         "Pause": "Pause",
         "Télécharger": "Download",
         "Vider": "Leer",
-        "Supprimer": "Entfernen"
+        "Supprimer": "Entfernen",
+        "Le log est vide.": "Das Protokoll ist leer"
     },
     "desktop\/modal\/jeedom.benchmark.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",

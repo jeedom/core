@@ -815,7 +815,8 @@
         "Pause": "Pausa",
         "Télécharger": "Descargar",
         "Vider": "Vacío",
-        "Supprimer": "Eliminar"
+        "Supprimer": "Eliminar",
+        "Le log est vide.": "El registro está vacío"
     },
     "desktop\/modal\/jeedom.benchmark.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",

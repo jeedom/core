@@ -815,7 +815,8 @@
         "Pause": "Пауза",
         "Télécharger": "скачать",
         "Vider": "Пусто",
-        "Supprimer": "удаление"
+        "Supprimer": "удаление",
+        "Le log est vide.": "Le log est vide"
     },
     "desktop\/modal\/jeedom.benchmark.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",

@@ -815,7 +815,8 @@
         "Pause": "休止",
         "Télécharger": "ダウンロード",
         "Vider": "空",
-        "Supprimer": "取り除きます"
+        "Supprimer": "取り除きます",
+        "Le log est vide.": "Le log est vide"
     },
     "desktop\/modal\/jeedom.benchmark.php": {
         "401 - Accès non autorisé": "401-不正アクセス",

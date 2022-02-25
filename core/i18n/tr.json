@@ -815,7 +815,8 @@
         "Pause": "Durdur",
         "Télécharger": "İndir",
         "Vider": "Boşalt",
-        "Supprimer": "Sil"
+        "Supprimer": "Sil",
+        "Le log est vide.": "Le log est vide"
     },
     "desktop\/modal\/jeedom.benchmark.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",

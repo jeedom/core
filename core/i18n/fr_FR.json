@@ -815,7 +815,8 @@
         "Pause": "Pause",
         "Télécharger": "Télécharger",
         "Vider": "Vider",
-        "Supprimer": "Supprimer"
+        "Supprimer": "Supprimer",
+        "Le log est vide.": "Le log est vide."
     },
     "desktop\/modal\/jeedom.benchmark.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",

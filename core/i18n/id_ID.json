@@ -815,7 +815,8 @@
         "Pause": "Berhenti Sebentar",
         "Télécharger": "Download",
         "Vider": "Abisin",
-        "Supprimer": "Menghapus"
+        "Supprimer": "Menghapus",
+        "Le log est vide.": "Le log est vide"
     },
     "desktop\/modal\/jeedom.benchmark.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
