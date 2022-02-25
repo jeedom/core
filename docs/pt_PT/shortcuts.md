@@ -48,7 +48,7 @@ No modo de edição:
 - Em um widget, clique com o botão direito do mouse em uma guia : Menu contextual para ir diretamente para outro widget.
 - Ctrl Clique ou Clique em Central em um widget ou no menu de contexto : Abra o widget em uma nova guia do navegador.
 
-### Ferramentas / Cenários
+### Ferramentas / cenários
 - Ctrl Clique ou Clique Central em um cenário ou no menu de contexto : Abra o cenário em uma nova guia do navegador.
 
 Em um cenário :
