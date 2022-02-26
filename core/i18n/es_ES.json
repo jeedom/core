@@ -2640,9 +2640,9 @@
         "Fichier enregistré avec succès": "Archivo guardado exitosamente",
         "Créer un Widget": "Crear un widget",
         "Options": "Opciones",
-        "Configutation sauvegardée": "Configuración guardada",
         "Activé": "Activado",
         "Désactivé": "Desactivado",
+        "Configutation sauvegardée": "Configuración guardada",
         "Editer": "Editar"
     },
     "desktop\/js\/plugin.js": {
@@ -3155,6 +3155,7 @@
         "Logs des scénarios supprimés.": "Registros de escenarios eliminados",
         "Vue d'ensemble des scénarios": "Resumen de los escenarios",
         "Scénario": "Escenario",
+        "Edition": "Edición",
         "Graphique de lien(s)": "Gráfico de enlace",
         "Edition texte scénarios": "Edición texto escenarios",
         "Export du scénario": "Exportación del escenario",

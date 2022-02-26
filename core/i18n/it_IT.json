@@ -2640,9 +2640,9 @@
         "Fichier enregistré avec succès": "Fichier enregistré avec succès",
         "Créer un Widget": "Créer un Widget",
         "Options": "Options",
-        "Configutation sauvegardée": "Configutation sauvegardée",
         "Activé": "Activé",
         "Désactivé": "Désactivé",
+        "Configutation sauvegardée": "Configutation sauvegardée",
         "Editer": "Editer"
     },
     "desktop\/js\/plugin.js": {
@@ -3155,6 +3155,7 @@
         "Logs des scénarios supprimés.": "Logs des scénarios supprimés",
         "Vue d'ensemble des scénarios": "Vue d'ensemble des scénarios",
         "Scénario": "Scena",
+        "Edition": "Edition",
         "Graphique de lien(s)": "Link grafico",
         "Edition texte scénarios": "Scenari di modifica del testo",
         "Export du scénario": "Esportazione dello scenario",
