@@ -1319,7 +1319,7 @@ jeeP.$pageContainer.off('click', '.plan-link-widget').on('click', '.plan-link-wi
       gridSize: jeeFrontEnd.planEditOption.gridSize,
       highlight: true
     }
-    displayPlan()
+    jeeP.displayPlan()
   }
 })
 
