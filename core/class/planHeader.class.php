@@ -131,8 +131,15 @@ class planHeader {
 		}
 		$size = $this->getImage('size');
 		$filename = 'planHeader' . $this->getId() . '-' . $this->getImage('sha512') . '.' . $this->getImage('type');
-		//return '<img style="z-index:997" src="data/plan/' . $filename . '" data-sixe_y="' . $size[1] . '" data-sixe_x="' . $size[0] . '">';
-		return '<div style="z-index:997;background:url(data/plan/' . $filename . ');background-position:center;width:' . $this->getConfiguration('desktopSizeX') . 'px;height:' . $this->getConfiguration('desktopSizeY') . 'px;background-size:cover;" data-sixe_y="' . $size[1] . '" data-sixe_x="' . $size[0] . '"></div>';
+		$div = '<div style="';
+		$div .= 'z-index: 997;';
+		$div .= 'background: url(data/plan/' . $filename . ');';
+		$div .= 'background-size: ' . $this->getConfiguration('desktopSizeX') . 'px ' . $this->getConfiguration('desktopSizeY') . 'px;';
+		$div .= 'width:' . $this->getConfiguration('desktopSizeX') . 'px;';
+		$div .= 'height:' . $this->getConfiguration('desktopSizeY') . 'px;';
+		$div .= '" data-sixe_y="' . $size[1] . '" data-sixe_x="' . $size[0] . '"';
+		$div .= '></div>';
+		return $div;
 	}
 
 	public function getPlan() {
