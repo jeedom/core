@@ -40,6 +40,7 @@ if(init('log','event') == 'event'){
       <input type="checkbox" id="brutlogcheck" autoswitch="1"/>
       <i id="brutlogicon" class="fas fa-exclamation-circle icon_orange"></i>
       <input class="input-sm roundedLeft" id="in_eventLogSearch" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
+      </a><a id="bt_resetLogSearch" class="btn btn-sm"><i class="fas fa-times"></i>
       <a class="btn btn-warning btn-sm" data-state="1" id="bt_eventLogStopStart"><i class="fas fa-pause"></i> {{Pause}}
       </a><a class="btn btn-success btn-sm" id="bt_logdisplaydownloadLog"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}
       </a><a class="btn btn-warning btn-sm" id="bt_logdisplayclearLog"><i class="fas fa-times"></i> {{Vider}}
@@ -72,6 +73,10 @@ jeedom.log.autoupdate({
   display: $('#pre_eventlog'),
   search: $('#in_eventLogSearch'),
   control: $('#bt_eventLogStopStart')
+})
+
+$('#bt_resetLogSearch').on('click', function () {
+  $('#in_eventLogSearch').val('').keyup()
 })
 
 $("#bt_logdisplayclearLog").on('click', function(event) {

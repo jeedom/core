@@ -180,8 +180,6 @@ jeedom.log.autoupdate = function(_params) {
   if (_params.callNumber == 0) {
     if (isset(_params.default_search)) {
       _params['search'].value(_params.default_search);
-    } else {
-      _params['search'].value('');
     }
     _params.display.scrollTop(_params.display.height() + 200000);
     if (_params['control'].attr('data-state') == 0 && _params['once'] == 0) {

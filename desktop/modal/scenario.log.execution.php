@@ -49,7 +49,7 @@ $rawLogCheck.on('click').on('click', function () {
 
   var scroll = $('#pre_scenariolog').scrollTop()
   jeedom.log.autoupdate({
-    log: 'scenarioLog/scenario'+jeephp2js.md_scenarioLog_scId+'.log',
+    log: 'scenarioLog/scenario' + jeephp2js.md_scenarioLog_scId + '.log',
     display: $('#pre_scenariolog'),
     search: $('#in_scenarioLogSearch'),
     control: $('#bt_scenarioLogStopStart'),
@@ -60,7 +60,7 @@ $rawLogCheck.on('click').on('click', function () {
 
 
 jeedom.log.autoupdate({
-  log: 'scenarioLog/scenario'+jeephp2js.md_scenarioLog_scId+'.log',
+  log: 'scenarioLog/scenario' + jeephp2js.md_scenarioLog_scId + '.log',
   display: $('#pre_scenariolog'),
   search: $('#in_scenarioLogSearch'),
   control: $('#bt_scenarioLogStopStart')
