@@ -720,6 +720,19 @@ if (!jeeFrontEnd.plan) {
 
 jeeFrontEnd.plan.init()
 
+//deprecated v4.3 -> removed v4.4
+var displayPlan = function() {
+  if (isset(planHeader_id)) {
+    jeephp2js.planHeader_id = planHeader_id
+  }
+  jeeFrontEnd.plan.displayPlan()
+  var event = new Event('error')
+  event.filename = 'desktop/js/plan.js'
+  event.message = 'Deprecated use of displayPlan(), use jeeFrontEnd.plan.displayPlan() with jeephp2js.planHeader_id instead.'
+  window.dispatchEvent(event)
+}
+
+
 var clickedOpen = false
 var style_css = ''
 for (var i in jeephp2js.planHeader) {
