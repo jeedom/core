@@ -3196,32 +3196,32 @@
     "core\/php\/utils.inc.php": {
         "Fichier introuvable :": "Arquivo não encontrado:",
         "Trop de sessions, je ne peux pas lister :": "Muitas sessões, não consigo listar:",
-        ". Faire, pour les nettoyer :": "Para limpá-los:",
+        ". Faire, pour les nettoyer :": "Fazer, para limpá-los:",
         "Cette action n\\'est pas autorisée en mode démo": "Esta ação não é permitida no modo de demonstração",
         "Synthèse": "Síntese",
-        "Vues": "Visualizações",
-        "Designs": "Projetos",
-        "Designs 3D": "Projetos 3D",
-        "Equipements": "Instalações",
+        "Vues": "Vistas",
+        "Designs": "Designs",
+        "Designs 3D": "Designs 3D",
+        "Equipements": "Equipamentos",
         "Résumé": "Resumo",
         "Historique": "Histórico",
-        "Timeline": "Linha do tempo",
-        "Rapports": "Relações",
-        "Santé": "Saúde",
+        "Timeline": "Registros cronológicos",
+        "Rapports": "Relatórios",
+        "Santé": "Estado",
         "Objets": "Objetos",
-        "Scénarios": "Cenas",
+        "Scénarios": "Cenários",
         "Interactions": "Interações",
         "Widgets": "Widgets",
-        "Gestion Plugins": "Gerenciamento de plugins",
+        "Gestion Plugins": "Gestão de plugins",
         "Sauvegardes": "Backups",
         "Configuration": "Configuração",
         "Base de données": "Base de dados",
-        "Editeur en masse": "Editor de massa",
-        "Moteur de tâches": "Mecanismo de tarefas",
+        "Editeur en masse": "Editor em massa",
+        "Moteur de tâches": "Motor de tarefas",
         "Personnalisation": "Personalização",
-        "Utilisateurs": "Usuários",
+        "Utilisateurs": "Utilizadores",
         "Préférences": "Preferências",
-        "Logs": "Toras",
+        "Logs": "Registos",
         "Mises à jour": "Atualizações",
         "Panel": "Painel",
         ", ": ","
@@ -3231,18 +3231,18 @@
         "Commande introuvable :": "Pedido não encontrado:"
     },
     "core\/php\/jeeListener.php": {
-        "Le listener ID ne peut être vide": "O ID do ouvinte não pode estar vazio",
-        "Listener non trouvé :": "Ouvinte não encontrado:"
+        "Le listener ID ne peut être vide": "O ID do listener não pode estar vazio",
+        "Listener non trouvé :": "Listener não encontrado:"
     },
     "core\/php\/jeeScenarioExpression.php": {
         "Lancement en arrière-plan non trouvé :": "Inicialização em segundo plano não encontrada:",
         "Lancement en arrière-plan de :": "Lançamento em segundo plano de:"
     },
     "core\/php\/jeePlugin.php": {
-        "Le plugin ID ne peut être vide": "O plug-in de ID não pode estar vazio",
+        "Le plugin ID ne peut être vide": "O ID do plugin não pode estar vazio",
         "Plugin non trouvé :": "Plugin não encontrado:",
         "La fonction ne peut être vide": "A função não pode estar vazia",
-        "Il n\\'existe aucune méthode :": "Não há método:"
+        "Il n\\'existe aucune méthode :": "Não há nenhum método:"
     },
     "core\/php\/downloadFile.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -3256,13 +3256,13 @@
     "core\/php\/jeeCron.php": {
         "Erreur sur": "Erro",
         "[Erreur master]": "[Erro mestre]",
-        "Tous les crons sont actuellement désactivés": "Todos os cron estão desativadas",
+        "Tous les crons sont actuellement désactivés": "Todos os cron estão desativados",
         "[Erreur] Classe ou fonction non trouvée": "[Erro] Classe ou função não encontrada",
         "[Erreur] Non trouvée": "[Erro] Não encontrado"
     },
     "core\/php\/jeeScenario.php": {
         "Scenario  :": "Cenário:",
-        "Erreur :": "De erro:",
+        "Erreur :": "Erro:",
         "Scénario non trouvé. Vérifiez ID :": "Cenário não encontrado. Verifique o ID:"
     },
     "core\/php\/editor.connector.php": {
@@ -3270,11 +3270,11 @@
         "401 - Accès non autorisé": "401 - Acesso não autorizado"
     },
     "core\/js\/cmd.class.js": {
-        "Veuillez indiquer le code ?": "Por favor, indicar o código?",
-        "Êtes-vous sûr de vouloir faire cette action ?": "Etes-vous sûr de vouloir faire cette action ?",
+        "Veuillez indiquer le code ?": "Por favor, indique o código?",
+        "Êtes-vous sûr de vouloir faire cette action ?": "Tem certeza de que deseja realizar esta ação?",
         "Résultat de la commande :": "Resultado do comando:",
         "Action exécutée avec succès": "Ação concluída com êxito",
-        "[Jeedom] Message de test": "[Jeedom] mensagem de teste",
+        "[Jeedom] Message de test": "[Jeedom] Mensagem de teste",
         "Ceci est un test de message pour la commande": "Esta é uma mensagem para o controle de teste",
         "Info": "Informações",
         "Action": "Açao",
@@ -3294,15 +3294,15 @@
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Configuração de plug-in",
-        "Nom de la copie de l\\'équipement ?": "Nome da cópia do equipamento?",
-        "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Tem certeza de que deseja excluir equipamentos \\ 's",
+        "Nom de la copie de l\\'équipement ?": "Nome da cópia do dispositivo?",
+        "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Tem certeza de que deseja excluir o equipamentos",
         "Il est utilisé par ou utilise :": "É usado por ou usa:",
-        "Veuillez d\\'abord sélectionner un": "Por favor \\ 's primeiro selecionar um",
+        "Veuillez d\\'abord sélectionner un": "Por favor, selecione um",
         "Nom de l'équipement ?": "Nome do dispositivo?",
-        "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Ative o equipamento s \\' antes de testar uma de suas ordens"
+        "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Por favor, ative o equipamento antes de testar qualquer um dos seus comandos"
     },
     "core\/js\/log.class.js": {
-        "Reprendre": "Resumo",
+        "Reprendre": "Retomar",
         "Pause": "Pausa"
     },
     "core\/js\/jeedom.class.js": {
@@ -3340,23 +3340,23 @@
     "core\/js\/config.class.js": {
         "Sélectionner un type générique": "Selecione um tipo genérico",
         "Annuler": "Cancelar",
-        "Valider": "Para validar"
+        "Valider": "Validar"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "O valor foi editado com sucesso",
-        "Impossible de modifier une valeur sur une courbe avec groupement": "Não é possível modificar um valor em uma curva com agrupamento",
-        "Edition de la série :": "Série Edição:",
-        "et du point de": "e o ponto de",
+        "Impossible de modifier une valeur sur une courbe avec groupement": "Não é possível modificar um valor numa curva com agrupamento",
+        "Edition de la série :": "Edição da série:",
+        "et du point de": "e do ponto de",
         "valeur :": "valor:",
         "Ne rien mettre pour supprimer la valeur": "Não coloque nada para remover o valor",
-        "Il n\\'existe encore aucun historique pour cette commande :": "It \\ 's ainda nenhuma história para este comando:",
+        "Il n\\'existe encore aucun historique pour cette commande :": "Não existe histórico para este comando:",
         "du": "do",
         "au": "o",
-        "à partir de": "de",
-        "jusqu\\'au": "up \\ a",
+        "à partir de": "a partir de",
+        "jusqu\\'au": "até",
         "Tous": "Tudo",
-        "30 min": "30 minutos",
-        "Heure": "Tempo",
+        "30 min": "30 min",
+        "Heure": "Hora",
         "Jour": "Dia",
         "Semaine": "Semana",
         "Mois": "Mês",
@@ -3609,11 +3609,11 @@
         "Détails : ' ": "Detalhes: '"
     },
     "core\/com\/http.com.php": {
-        "Erreur cURL :": "Erro de ondulação:",
+        "Erreur cURL :": "Erro de CURL:",
         "sur la commande": "no pedido",
         "après": "depois de",
         "relance(s)": "levanta)",
-        "Echec de la requête HTTP :": "Echec de la requête HTTP :"
+        "Echec de la requête HTTP :": "Falha no pedido HTTP :"
     },
     "core\/ajax\/interact.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -3927,13 +3927,13 @@
         "Market Jeedom": "Mercado Jeedom"
     },
     "core\/repo\/github.repo.php": {
-        "Utilisateur ou organisation du dépôt": "Usuário ou organização do repositório",
+        "Utilisateur ou organisation du dépôt": "Utilizador ou organização do repositório",
         "Nom du dépôt": "Nome do repositório",
         "Branche": "Branch",
         "Token (facultatif)": "Token (opcional)",
-        "Utilisateur ou organisation du dépôt pour le core Jeedom": "Usuário ou organização do repositório principal da Jeedom",
-        "Nom du dépôt pour le core Jeedom": "Nome do repositório para o núcleo Jeedom",
-        "Branche pour le core Jeedom": "Indústria do núcleo Jeedom",
+        "Utilisateur ou organisation du dépôt pour le core Jeedom": "Utilizador ou organização do repositório principal do Jeedom",
+        "Nom du dépôt pour le core Jeedom": "Nome do repositório para o core Jeedom",
+        "Branche pour le core Jeedom": "Indústria do core Jeedom",
         "Dépot github non trouvé :": "Repositório do Github não encontrado:",
         "Impossible d\\'écrire dans le répertoire :": "Não foi possível gravar no diretório:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R": "Execute o seguinte comando no SSH: sudo chmod 777 -R",
@@ -4195,9 +4195,9 @@
         "Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping :": "Problema de rede detectado, reinicialização da rede. O gateway não responde ao ping:"
     },
     "core\/class\/view.class.php": {
-        "Le nom de la vue ne peut pas être vide": "O nome da visualização não pode estar vazio",
-        "Vue": "Visão",
-        "Vue :": "Ver:"
+        "Le nom de la vue ne peut pas être vide": "O nome da vista não pode estar vazio",
+        "Vue": "Vista",
+        "Vue :": "Vista:"
     },
     "core\/class\/system.class.php": {
         "Erreur": "Erro",
@@ -4241,7 +4241,7 @@
         "Exécution du scénario": "A executar o cenário",
         "déclenché par :": "desencadeado por:",
         "Le scénario est de type programmé mais la programmation est vide": "O cenário é do tipo programado, mas a programação está vazia",
-        "Impossible d\\'arrêter la sous tâche :": "Incapaz de parar a subtarefa:",
+        "Impossible d\\'arrêter la sous tâche :": "Não foi possível parar a subtarefa:",
         "Impossible d\\'arrêter le scénario :": "Não foi possível parar o cenário:",
         "PID :": "PID:",
         "Scénario": "Cenário"
