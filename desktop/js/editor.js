@@ -54,8 +54,8 @@ if (!jeeFrontEnd.editor) {
         var name = 'cmd.'+$('#sel_widgetType').value()+'.'+$('#sel_widgetSubtype').value()+'.'+$('#in_widgetName').value()+'.html'
         var filePath = 'data/customTemplates/' + $('#sel_widgetVersion').value() + '/'
         jeedom.createFile({
-          path : filePath,
-          name :name,
+          path: filePath,
+          name: name,
           error: function(error) {
             $.fn.showAlert({message: error.message, level: 'danger'})
           },
@@ -110,8 +110,10 @@ if (!jeeFrontEnd.editor) {
         this.init = function() {
           if (jeephp2js.customActive == '1') {
             this.config = 1
+            this.title = this.fm.i18n("{{Activé}}")
           } else {
             this.config = 0
+            this.title = this.fm.i18n("{{Désactivé}}")
           }
         }
         this.exec = function(hashes) {
@@ -145,11 +147,9 @@ if (!jeeFrontEnd.editor) {
           var myClass = ''
           var myIcon = ''
           if (this.config == 1) {
-            this.title = this.fm.i18n("{{Activé}}")
             myClass = 'btn-warning'
             myIcon = ' <i class="fas fa-toggle-on"></i>'
           } else {
-            this.title = this.fm.i18n("{{Désactivé}}")
             myClass = 'btn-success'
             myIcon = ' <i class="fas fa-toggle-off"></i>'
           }
