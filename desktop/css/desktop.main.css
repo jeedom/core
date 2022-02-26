@@ -4380,6 +4380,9 @@ div.div_viewZone legend.lg_viewZone {
   .bootbox.modal {
     z-index: 9000;
   }
+  .bootbox.modal.bootboxScInput {
+    z-index: 1010;
+  }
 
   .modal-footer .btn.bootbox-accept,
   .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button {

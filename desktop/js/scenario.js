@@ -1556,7 +1556,6 @@ $(function() {
 
 
 /* ---------Scenario Management UI---------- */
-var tab = null
 $("#bt_addScenario").off('click').on('click', function(event) {
   bootbox.prompt("{{Nom du scénario}} ?", function(result) {
     if (result !== null) {
@@ -1579,9 +1578,6 @@ $("#bt_addScenario").off('click').on('click', function(event) {
             }
           }
           url += 'id=' + data.id + '&saveSuccessFull=1'
-          if (tab !== null) {
-            url += tab
-          }
           jeeFrontEnd.modifyWithoutSave = false
           jeeP.resetUndo()
           jeedomUtils.loadPage(url)
@@ -1736,7 +1732,41 @@ document.onkeydown = function(event) {
   }
 }
 
-$('#div_scenarioElement').on('focus', ':input', function() {
+jeeP.$divScenario.on('click', 'input.expressionAttr, textarea.expressionAttr', function(event) {
+  if (!event.ctrlKey) return false
+  var $thisInput = $(this)
+  var button = '<button class="btn btn-default bt_selectBootboxCmdExpression" type="button"><i class="fas fa-list-alt"></i></button>'
+  bootbox.prompt({
+    title: '{{Edition}}',
+    size: 'large',
+    inputType: "textarea",
+    container: jeeP.$divScenario,
+    backdrop: false,
+    onShown: function(event) {
+      $(this).addClass('bootboxScInput')
+      $(this).find('.bootbox-input-textarea')
+        .val($thisInput.val())
+        .addClass('expression')
+        .after(button)
+    },
+    callback: function(result) {
+      if (result != null) {
+        $thisInput.val(result)
+      }
+    }
+  })
+})
+jeeP.$divScenario.on('click', '.bt_selectBootboxCmdExpression', function(event) {
+  var expression = $(this).siblings('.expression')
+  jeedom.cmd.getSelectModal({}, function(result) {
+    expression.atCaret('insert', result.human)
+  })
+})
+
+
+
+
+$('#div_scenarioElement').on('click', ':input', function() {
   jeeP.PREV_FOCUS = $(this)
 })
 
