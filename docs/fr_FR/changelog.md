@@ -3,6 +3,8 @@
 - Bugfix UI : Recherche supprimée en activant l'option log brut.
 - Bugfix UI : Téléchargement de log vide impossible.
 
+- Bugfix Core : Taille des images de fond en rapport avec la taille du design.
+
 ## 4.2.13
 
 - Amélioration : Création des clef api par defaut en inactif (si la demande de création ne vient pas du plugin).
