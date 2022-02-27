@@ -102,19 +102,23 @@ if (!jeeFrontEnd.editor) {
       return options
     },
     setCommandCustom: function(options) {
-      $('#bt_getHelpPage').attr('data-page','custom')
+      $('#bt_getHelpPage').attr('data-page', 'custom')
       //new custom command in elfinder:
       elFinder.prototype._options.commands.push('jee_onoffcustom')
       options.uiOptions.toolbar.push(['jee_onoffcustom'])
       elFinder.prototype.commands.jee_onoffcustom = function() {
         this.init = function() {
+          this.title = null
+          this.textOn = '{{Activé}}'
+          this.titleOn = '{{Personnalisation avancée active}}'
+          this.textOff = '{{Désactivé}}'
+          this.titleOff = '{{Personnalisation avancée inactive}}'
           if (jeephp2js.customActive == '1') {
             this.config = 1
-            this.title = this.fm.i18n("{{Activé}}")
           } else {
             this.config = 0
-            this.title = this.fm.i18n("{{Désactivé}}")
           }
+          this.getActive()
         }
         this.exec = function(hashes) {
           this.config = 1-this.config
@@ -140,24 +144,26 @@ if (!jeeFrontEnd.editor) {
           this.getActive()
           return $.Deferred().done()
         }
-        this.getstate = function() {
-          return 0
-        }
         this.getActive = function() {
           var myClass = ''
           var myIcon = ''
+          var $button = $('#elfinder .elfinder-button-icon-jee_onoffcustom + .elfinder-button-text')
+          try { $button.closest('.ui-state-default.tooltipstered').tooltipster('destroy') } catch (error) {}
           if (this.config == 1) {
             myClass = 'btn-warning'
             myIcon = ' <i class="fas fa-toggle-on"></i>'
+            $button.attr('title', this.titleOn).text(this.textOn)
           } else {
             myClass = 'btn-success'
             myIcon = ' <i class="fas fa-toggle-off"></i>'
+            $button.attr('title', this.titleOff).text(this.textOff)
           }
-          $('#elfinder .elfinder-button-icon-jee_onoffcustom + .elfinder-button-text')
-            .removeClass('btn-success btn-warning')
+          $button.removeClass('btn-success btn-warning')
             .addClass(myClass)
-            .text(this.title)
             .append(myIcon)
+        }
+        this.getstate = function() {
+          return 0
         }
       }
       return options
