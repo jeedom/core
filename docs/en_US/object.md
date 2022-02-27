@@ -1,7 +1,7 @@
 # Objets
 **Tools → Objects**
 
-The **objects** allow you to define the tree structure of your home automation.
+The **Objects** allow you to define the tree structure of your home automation.
 
 All the equipment you create must belong to an object and are therefore more easily identifiable. We then say that the object is the **relative** equipment.
 

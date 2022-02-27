@@ -286,7 +286,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - **Mecanismo de tarefas** : Na guia *Demônio*, plugins desativados não aparecem mais.
 - **Relatório** : O uso de *cromada* se disponível.
 - **Relatório** : Possibilidade de exportar cronogramas.
-- **Configuração** : Aba *Em formação* agora está na guia *Geral*.
+- **Configuração** : Aba *Em formação* agora está na guia *Em geral*.
 - **Configuração** : Aba *Pedidos* agora está na guia *Equipamento*.
 - **Janela de configuração avançada de equipamentos** : Alteração dinâmica da configuração do quadro de distribuição.
 - **Equipamento** : Nova categoria *Abertura*.

@@ -286,7 +286,7 @@ The plugins must respect the recommendations on the tree structure of folders an
 - **Task engine** : On the tab *Daemon*, disabled plugins no longer appear.
 - **Report** : The use of *chrome* if available.
 - **Report** : Possibility to export timelines.
-- **Configuration** : Tab *Information* is now in the tab *Main*.
+- **Configuration** : Tab *Information* is now in the tab *General*.
 - **Configuration** : Tab *Orders* is now in the tab *Equipment*.
 - **Advanced equipment configuration window** : Dynamic change of table configuration.
 - **Equipment** : New Category *Opening*.

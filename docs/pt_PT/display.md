@@ -38,7 +38,7 @@ Para cada objeto, próximo ao seu rótulo, dois botões estão disponíveis.
 
 Em cada equipamento encontramos :
 
-- UMA **caixa de seleção** para selecionar o equipamento (você pode selecionar vários). Se pelo menos um dispositivo estiver selecionado, você terá botões de ação que aparecem no canto superior esquerdo para **remover**, para retornar **visível**/**invisível**,  **ativo**/**inativo** equipamento selecionado.
+- UMA **caixa de seleção** para selecionar o equipamento (você pode selecionar vários). Se pelo menos um dispositivo estiver selecionado, você terá botões de ação que aparecem no canto superior esquerdo para **remover**, para retornar **visível**/**invisível**,  **ativo**/**Inativo** equipamento selecionado.
 - L'**identificação** equipamento.
 - A **tipo** equipamento : Identificador do plug-in ao qual ele pertence.
 - A **nome** equipamento.
@@ -202,7 +202,7 @@ Abaixo, você encontrará a lista dos diferentes equipamentos, comandos, cenári
 
 - **Histórico**
     - **Historizar** : Marque a caixa para ter os valores deste comando registrados. (Veja **Análise → História**)
-    - **Suavização moda** : Modo de **suavização** ou d'**arquivamento** permite escolher como arquivar os dados. Por padrão, este é um **média**. Também é possível escolher o **máximo**, a **mínimo**, Onde **algum**. **algum** vamos dizer ao Jeedom que ele não deve executar o arquivamento neste comando (durante o primeiro período de 5 minutos e com a tarefa de arquivamento). Essa opção é perigosa porque o Jeedom mantém tudo : portanto, haverá muito mais dados mantidos.
+    - **Suavização moda** : Modo de **suavização** ou d'**arquivamento** permite escolher como arquivar os dados. Por padrão, este é um **média**. Também é possível escolher o **máximo**, a **mínimo**, Onde **Algum**. **Algum** vamos dizer ao Jeedom que ele não deve executar o arquivamento neste comando (durante o primeiro período de 5 minutos e com a tarefa de arquivamento). Essa opção é perigosa porque o Jeedom mantém tudo : portanto, haverá muito mais dados mantidos.
     - **Limpar histórico se tiver mais de** : Vamos dizer ao Jeedom para excluir todos os dados anteriores a um determinado período. Pode ser prático não manter dados se não for necessário e, portanto, limitar a quantidade de informações registradas pela Jeedom.
 
 - **Gerenciando valores**

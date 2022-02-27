@@ -211,7 +211,7 @@ Zu Blöcken hinzugefügte Aktionen haben mehrere Optionen :
 - Eine Kiste **aktiviert** damit dieser Befehl im Szenario berücksichtigt wird.
 - Eine Kiste **parallel** so dass dieser Befehl parallel (gleichzeitig) mit den anderen ebenfalls ausgewählten Befehlen gestartet wird.
 - EIN **vertikaler Doppelpfeil** um die Aktion zu verschieben. Einfach von dort ziehen und ablegen.
-- Ein Knopf für **Löschen** die Aktion.
+- Ein Knopf für **Entfernen** die Aktion.
 - Eine Schaltfläche für bestimmte Aktionen, bei der jedes Mal die Beschreibung (beim Bewegen des Mauszeigers) dieser Aktion angezeigt wird.
 - Eine Schaltfläche zum Suchen nach einem Aktionsbefehl.
 
@@ -293,7 +293,7 @@ Sie haben auch die folgenden zusätzlichen Tags, wenn Ihr Szenario durch eine In
 - #query# : Interaktion, die das Szenario ausgelöst hat.
 - #profil# : Profil des Benutzers, der das Szenario gestartet hat (kann leer sein).
 
-> **Wichtig**
+> **WICHTIG**
 >
 > Wenn ein Szenario durch eine Interaktion ausgelöst wird, wird es notwendigerweise im schnellen Modus ausgeführt. Also im Interaktionsthread und nicht in einem separaten Thread.
 
@@ -538,4 +538,4 @@ Es ist in diesem *Klasse* Damit Sie Ihre Funktionen hinzufügen können, finden 
 
 > **WICHTIG**
 >
-> Wenn Sie Bedenken haben, können Sie jederzeit zur Originaldatei zurückkehren, indem Sie den Inhalt von kopieren ``user.function.class.sample.php`` in ``user.function.class.php``
+> Wenn Sie Bedenken haben, können Sie jederzeit zur Originaldatei zurückkehren, indem Sie den Inhalt von kopieren ``user.function.class.sample.php`` Im ``user.function.class.php``

@@ -38,7 +38,7 @@ Para cada objeto, junto a su etiqueta, hay dos botones disponibles.
 
 En cada equipo encontramos :
 
-- A **casilla de verificación** para seleccionar el equipo (puede seleccionar varios). Si se selecciona al menos un dispositivo, tiene botones de acción que aparecen en la esquina superior izquierda para **retirar**, regresar **visible**/ /**invisible**,  **activo**/ /**inactivo** equipo seleccionado.
+- A **casilla de verificación** para seleccionar el equipo (puede seleccionar varios). Si se selecciona al menos un dispositivo, tiene botones de acción que aparecen en la esquina superior izquierda para **retirar**, regresar **visible**/ /**invisible**,  **activo**/ /**Inactivo** equipo seleccionado.
 - L'**identificación** equipo.
 - Los **escribe** equipo : Identificador del complemento al que pertenece.
 - Los **apellido** equipo.
@@ -63,13 +63,13 @@ La ventana de **Configuración avanzada de equipos** permite modificarlo. Primer
 - **Vínculos** : Permite mostrar los enlaces del equipo con los objetos, comandos, escenarios, variables, interacciones ... en forma gráfica (en este caso, un doble clic en un elemento lo llevará a su configuración).
 - **Tronco** : muestra los eventos del equipo en cuestión.
 - **Para salvaguardar** : Guarde las modificaciones realizadas en el equipo.
-- **Eliminar** : Retirar equipo.
+- **Retirar** : Retirar equipo.
 
 ### Pestaña de información
 
 Pestaña **Información** contiene información general sobre el equipo y sus controles :
 
-- **IDENTIFICACIÓN** : Identificador único en la base de datos Jeedom.
+- **Identificación** : Identificador único en la base de datos Jeedom.
 - **Apellido** : Nombre del equipo.
 - **ID lógica** : Identificador lógico del equipo (puede estar vacío).
 - **ID de objeto** : Identificador único del objeto padre (puede estar vacío).
@@ -165,7 +165,7 @@ Primero, en la parte superior derecha, algunos botones disponibles :
 
 Pestaña **Información** contiene información general sobre el pedido :
 
-- **IDENTIFICACIÓN** : Identificador único en la base de datos.
+- **Identificación** : Identificador único en la base de datos.
 - **ID lógica** : Identificador lógico del comando (puede estar vacío).
 - **Apellido** : Nombre de la orden.
 - **Escribe** : Tipo de comando (acción o información).
@@ -202,7 +202,7 @@ A continuación, encontrará la lista de los diferentes equipos, comandos, escen
 
 - **Histórico**
     - **Historizar** : Marque la casilla para registrar los valores de este comando. (Ver **Análisis → Historia**)
-    - **Modo de suavizado** : Modo de **alisado** o d'**archivando** le permite elegir cómo archivar los datos. Por defecto, este es un **promedio**. También es posible elegir el **máximo**, los **mínimo**, Donde **ninguna**. **ninguna** digamos a Jeedom que no debe realizar el archivado con este comando (tanto durante los primeros 5 minutos como con la tarea de archivado)). Esta opción es peligrosa porque Jeedom guarda todo : entonces habrá muchos más datos guardados.
+    - **Modo de suavizado** : Modo de **alisado** o d'**archivando** le permite elegir cómo archivar los datos. Por defecto, este es un **promedio**. También es posible elegir el **máximo**, los **mínimo**, Donde **Ninguna**. **Ninguna** digamos a Jeedom que no debe realizar el archivado con este comando (tanto durante los primeros 5 minutos como con la tarea de archivado)). Esta opción es peligrosa porque Jeedom guarda todo : entonces habrá muchos más datos guardados.
     - **Purgue el historial si es anterior a** : Vamos a decirle a Jeedom que elimine todos los datos anteriores a un período determinado. Puede ser práctico no guardar datos si no es necesario y, por lo tanto, limitar la cantidad de información registrada por Jeedom.
 
 - **Gestión de valores**

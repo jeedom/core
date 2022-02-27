@@ -84,7 +84,7 @@ Once connected, this is the command to perform :
 The possible parameters are :
 
 - **fashion** : `force`, to launch an update in forced mode (ignores errors).
-- **version** : Version number tracking, to re-apply changes from this version.
+- **Version** : Version number tracking, to re-apply changes from this version.
 
 Here is an example of syntax to make a forced update by reapplying the changes since 4.0.04 :
 

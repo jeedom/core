@@ -53,7 +53,7 @@ VoHier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& typ
 VoHier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = message & category = \#CATEGORY\#&message=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = message & category=#CATEGORY#&message=#MESSAGE#)
 
 - **Kategorie** : Nachrichtenkategorie, die dem Nachrichtenzentrum hinzugefügt werden soll.
-- **Botschaft** : Denken Sie bei der fraglichen Nachricht sorgfältig über die Codierung der Nachricht nach (Leerzeichen wird zu% 20, =% 3D…)). Sie können ein Werkzeug verwenden, [Hier](https://meyerweb.com/eric/tools/dencoder/).
+- **Nachricht** : Denken Sie bei der fraglichen Nachricht sorgfältig über die Codierung der Nachricht nach (Leerzeichen wird zu% 20, =% 3D…)). Sie können ein Werkzeug verwenden, [Hier](https://meyerweb.com/eric/tools/dencoder/).
 
 ## Objet
 
@@ -84,4 +84,4 @@ Gibt alle Objekte, Geräte, Befehle (und deren Wert, wenn es sich um Information
 VoHier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = Variable & Name=#NAME#&value=)*WERT*
 
 - **Name** : Name der Variablen, deren Wert gewünscht wird (Lesen des Werts).
-- **Wert** \ [Optional \] : Wenn "Wert" angegeben ist, nimmt die Variable diesen Wert an (Schreiben eines Werts)).
+- **WERT** \ [Optional \] : Wenn "Wert" angegeben ist, nimmt die Variable diesen Wert an (Schreiben eines Werts)).

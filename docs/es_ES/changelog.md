@@ -286,7 +286,7 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 - **Motor de tareas** : En la pestaña *Demonio*, los complementos deshabilitados ya no aparecen.
 - **Relación** : El uso de *cromo* si está disponible.
 - **Relación** : Posibilidad de exportar cronogramas.
-- **Configuración** : Pestaña *Información* ahora está en la pestaña *Principal*.
+- **Configuración** : Pestaña *Información* ahora está en la pestaña *General*.
 - **Configuración** : Pestaña *Pedidos* ahora está en la pestaña *Equipo*.
 - **Ventana de configuración avanzada del equipo** : Cambio dinámico de la configuración de la centralita.
 - **Equipo** : Nueva categoría *Apertura*.

@@ -269,10 +269,10 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - **Analyse / Geschichte** : Die Optionen *Gruppierung, Typ, Variation, Treppe* sind nur mit einer einzigen angezeigten Kurve aktiv.
 - **Analyse / Geschichte** : Wir können jetzt die Option verwenden *Bereich* mit der Option *Treppe*.
 - **Analyse / Protokolle** : Neue Monospace-Schriftart für Protokolle.
-- **Sicht** : Möglichkeit, Szenarien zu setzen.
-- **Sicht** : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
-- **Sicht** : Bearbeitungsmodus: Die Geräteaktualisierungssymbole werden durch ein Symbol ersetzt, das dank eines neuen vereinfachten Modals den Zugriff auf ihre Konfiguration ermöglicht.
-- **Sicht** : Die Anzeigereihenfolge ist jetzt unabhängig von der im Dashboard.
+- **Ansicht** : Möglichkeit, Szenarien zu setzen.
+- **Ansicht** : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
+- **Ansicht** : Bearbeitungsmodus: Die Geräteaktualisierungssymbole werden durch ein Symbol ersetzt, das dank eines neuen vereinfachten Modals den Zugriff auf ihre Konfiguration ermöglicht.
+- **Ansicht** : Die Anzeigereihenfolge ist jetzt unabhängig von der im Dashboard.
 - **Zeitleiste** : Trennung von Verlaufs- und Zeitleisten-Seiten.
 - **Zeitleiste** : Integration der Timeline in die DB aus Zuverlässigkeitsgründen.
 - **Zeitleiste** : Verwaltung mehrerer Zeitleisten.

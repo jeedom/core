@@ -84,7 +84,7 @@ Uma vez conectado, este é o comando para executar :
 Os possíveis parâmetros são :
 
 - **moda** : `force ', para iniciar uma atualização no modo forçado (ignora erros).
-- **versão** : Rastreamento de número da versão, para reaplicar as alterações desta versão.
+- **Versão** : Rastreamento de número da versão, para reaplicar as alterações desta versão.
 
 Aqui está um exemplo de sintaxe para fazer uma atualização forçada reaplicando as alterações desde o 4.0.04 :
 
