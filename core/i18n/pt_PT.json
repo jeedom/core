@@ -2637,12 +2637,12 @@
     "desktop\/js\/editor.js": {
         "Le sous-type ne peut être vide": "O subtipo não pode estar vazio",
         "Le nom ne peut être vide": "O nome não pode estar vazio",
-        "Fichier enregistré avec succès": "Arquivo salvo com sucesso",
-        "Créer un Widget": "Crie um widget",
+        "Fichier enregistré avec succès": "Arquivo guardado com sucesso",
+        "Créer un Widget": "Criar um widget",
         "Options": "Opções",
-        "Activé": "Habilitado",
+        "Activé": "Ativado",
         "Désactivé": "Desativado",
-        "Configutation sauvegardée": "Configuração salva",
+        "Configutation sauvegardée": "Configuração guardada",
         "Editer": "Editar"
     },
     "desktop\/js\/plugin.js": {
@@ -2759,10 +2759,10 @@
     "desktop\/js\/display.js": {
         "Configuration de l'objet": "Configuração do objeto",
         "Configuration de l'équipement": "Configuração do equipamento",
-        "Configuration de la commande": "Set Controle",
-        "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Etes-vous sûr de vouloir supprimer tous ces équipements ?",
-        "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Tem certeza de que deseja limpar o histórico de exclusão?",
-        "Historique vidé avec succès": "Histórico esvaziado com sucesso"
+        "Configuration de la commande": "Configuração do pedido",
+        "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Tem certeza de que deseja excluir todos estes equipamentos?",
+        "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Tem certeza que deseja apagar o histórico de exclusões?",
+        "Historique vidé avec succès": "Histórico apagado com sucesso"
     },
     "desktop\/js\/overview.js": {
         "Historique": "Histórico"
