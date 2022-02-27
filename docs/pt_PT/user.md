@@ -6,7 +6,7 @@ Esta página permite definir a lista de usuários autorizados a se conectar ao J
 Na página você tem três botões :
 
 - Adicionar Usuário.
-- Salve .
+- Para salvaguardar.
 - Acesso aberto ao suporte.
 
 ## Lista de usuários
@@ -23,7 +23,7 @@ Na página você tem três botões :
 - **Data da última conexão** : Data do último login do usuário. Observe que esta é a data real da conexão; portanto, se você salvar seu computador, a data da conexão não será atualizada sempre que você retornar.
 - **Direitos** : Modificar direitos de usuário.
 - **Senha** : Permite alterar a senha do usuário.
-- **Retirar** : Remover usuário.
+- **Remover** : Remover usuário.
 - **Regenerar chave de API** : Regenerar chave de API do usuário.
 - **Gerenciar direitos** : Permite gerenciar com precisão os direitos do usuário (observe que o perfil deve estar em "usuário limitado"").
 
@@ -36,7 +36,7 @@ Ao clicar em "Direitos", uma janela é exibida, permitindo que você gerencie os
 > O perfil deve ser limitado, caso contrário, nenhuma restrição colocada aqui será levada em consideração.
 
 Você obtém uma tabela que permite, para cada dispositivo e cada cenário, definir os direitos do usuário :
-- **Não** : o usuário não vê o equipamento / cenário.
+- **Algum** : o usuário não vê o equipamento / cenário.
 - **Visualização** : o usuário vê o equipamento / cenário, mas não pode agir sobre ele.
 - **Visualização e execução** : o usuário vê o equipamento / cenário e pode agir sobre ele (acender uma lâmpada, iniciar o cenário etc.)).
 
@@ -49,7 +49,7 @@ Exibe as sessões do navegador ativas no seu Jeedom, com informações do usuár
 Liste os dispositivos (computadores, celulares, etc.) que registraram sua autenticação em seu Jeedom.
 Você pode ver qual usuário, seu IP, quando e excluir o registro deste dispositivo.
 
-> **Nota**
+> **Observação**
 >
 > O mesmo usuário pode ter registrado dispositivos diferentes. Por exemplo, seu computador desktop, laptop, celular etc.
 

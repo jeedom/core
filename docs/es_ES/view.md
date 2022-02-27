@@ -26,7 +26,7 @@ En una vista, encontramos :
 
 ## Agregar / Editar una vista
 
-El principio es bastante simple : una vista está compuesta de áreas. Cada zona es de tipo *gráfico*, *widget* o *tablero*. Dependiendo de este tipo, puede agregarle gráficos, equipos o comandos.
+El principio es bastante simple : una vista está compuesta de áreas. Cada zona es de tipo *gráfico*, *artilugio* Donde *imagen*. Dependiendo de este tipo, puede agregarle gráficos, equipos o comandos.
 
 - A la izquierda de la página encontramos la lista de Vistas, así como un botón de creación.
 - Un botón en la parte superior derecha le permite editar la Vista actual (Configuración).
@@ -41,7 +41,7 @@ El principio es bastante simple : una vista está compuesta de áreas. Cada zona
 
 En cada zona tienes las siguientes opciones generales :
 
-- **Anchura** : Define el ancho del área (solo en modo escritorio). 1 para el ancho de 1/12 del navegador, 12 para el ancho total.
+- **Largo** : Define el ancho del área (solo en modo escritorio). 1 para el ancho de 1/12 del navegador, 12 para el ancho total.
 - Un botón que permite agregar un elemento a esta zona, dependiendo del tipo de zona (ver abajo).
 - **Editar** : Le permite cambiar el nombre de la zona.
 - **Eliminar** : Eliminar la zona.
@@ -73,7 +73,7 @@ Cuando presionas el botón **Agregar curva**, Jeedom muestra la lista de pedidos
 - **Bote de basura** : Eliminar comando del gráfico.
 - **Apellido** : Nombre del comando para dibujar.
 - **Color** : Color de la curva.
-- **Tipo** : Tipo de curva.
+- **Escribe** : Tipo de curva.
 - **Grupo** : Permite la agrupación de datos (tipo máximo por día).
 - **Escalera** : Escala (derecha o izquierda) de la curva.
 - **Escalera** : Muestra la curva de la escalera.

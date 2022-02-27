@@ -1,9 +1,9 @@
 # Objets
 **Tools → Objects**
 
-The **Objects** allow you to define the tree structure of your home automation.
+The **objects** allow you to define the tree structure of your home automation.
 
-All the equipment you create must belong to an object and are therefore more easily identifiable. We then say that the object is the **parent** equipment.
+All the equipment you create must belong to an object and are therefore more easily identifiable. We then say that the object is the **relative** equipment.
 
 To give free choice to personalization, you can name these objects as you wish. Usually, we will define the different parts of his house, like the name of the rooms (this is also the recommended configuration).
 
@@ -60,7 +60,7 @@ Here are the different characteristics to configure an object :
 - **Visible** : Check this box to make this object visible.
 - **Hide on the Dashboard** : Check this box to hide the object on the Dashboard. It is still kept in the list, which allows it to be displayed, but only explicitly.
 - **Hide on summary** : Check this box to hide the object on the summary'. It is still kept in the list, which allows it to be displayed, but only explicitly.
-- **Action from synthesis** : Here you can indicate a view or a design to go to when you click on the object from the Summary. *Default : Dashboard*.
+- **Action from synthesis** : Here you can indicate a view or a design to go to when you click on the object from the Summary. *Defect : Dashboard*.
 
 #### Display :
 
@@ -81,7 +81,7 @@ Here are the different characteristics to configure an object :
 
 > **Tip**
 >
-> When a device is created and no parent has been defined, it will have as parent : **No**.
+> When a device is created and no parent has been defined, it will have as parent : **Any**.
 
 ## Summary tabs
 

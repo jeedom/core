@@ -1,5 +1,5 @@
 # FAQ
-**Einstellungen → Version : FAQ**
+**Einstellungen → Version : Häufig gestellte Fragen**
 
 ### Jeedom benötigt ein Abonnement ?
 Nein, Jeedom ist vollständig nutzbar, ohne dass ein Abonnement erforderlich ist. Es werden jedoch Dienste für Backups oder Anrufe / SMS angeboten, die jedoch wirklich optional sind.
@@ -41,7 +41,7 @@ Es gibt keine Standarddauer, dies hängt vom System und dem zu sichernden Datenv
 Sie befinden sich im Ordner / var / www / html / backup
 
 ### Können wir Jeedom in https setzen? ?
-Ja : Entweder Sie haben ein Netzteil oder mehr, in diesem Fall Sie
+Jawohl : Entweder Sie haben ein Netzteil oder mehr, in diesem Fall Sie
 benutze einfach die [Jeedom DNS](https://jeedom.github.io/documentation/howto/de_DE/mise_en_place_dns_jeedom). Entweder mit einem DNS und Sie wissen, wie man ein gültiges Zertifikat einrichtet. In diesem Fall handelt es sich um eine Standardinstallation eines Zertifikats.
 
 ### So verbinden Sie sich in SSH ?
@@ -106,7 +106,7 @@ echo &quot;GEWÄHRLEISTUNG ALLER PRIVILEGIEN FÜR jeedom.* TO &#39;jeedom&#39; @
 cd / usr / share / nginx / www / jeedom
 sudo cp core / config / common.config.sample.PHP Core / Config / Common.config.php
 sudo sed -i -e "s /#PASSWORD#/ $ {bdd_password} / g "core / config / common.config.php
-sudo chown www-data:www-data core / config / common.config.php
+sudo chown www-Daten:www-data core / config / common.config.php
 `` ''
 
 ### Ich habe überall \ {\ {… \} \}
@@ -188,7 +188,7 @@ rm -rf / root / tmp / core-master
 ### Ich habe den Fehler in Szenario_Ausführung MYSQL_ATTR_INIT_COMMAND
 Bei der Verwaltung des Jeedom-Teils OS / DB muss dann in der Systemkonsole vorgenommen werden :
 `` ''
-Ja | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-seife php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
+Jawohl | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-seife php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
 `` ''
 
 ### Ich kann die Plugin-Abhängigkeiten nicht installieren. Ich habe einen Fehler des Typs : "E: dpkg wurde eingestellt. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou "E: Lock / var / lib / dpkg / lock konnte nicht abgerufen werden"
@@ -203,7 +203,7 @@ Du musst :
 - Warten Sie 10 Minuten
 - Starten Sie die Abhängigkeiten der blockierenden Plugins neu
 
-### Ich habe diesen Fehler bei der Installation von Plugin-Abhängigkeiten : "von pip._internal import main"
+### Ich habe diesen Fehler bei der Installation von Plugin-Abhängigkeiten : "von pip._interner Import main"
 
 Es ist notwendig in der Systemkonsole von Jeedom oder in ssh zu machen
 

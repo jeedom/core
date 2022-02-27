@@ -14,8 +14,8 @@ Oben rechts haben Sie :
 
 - **Cron-System deaktivieren** : Eine Schaltfläche zum Deaktivieren oder Reaktivieren aller Aufgaben (wenn Sie alle deaktivieren, funktioniert auf Ihrem Jeedom nichts).
 - **Cool** : Aktualisiert die Aufgabentabelle.
-- **Hinzufügen** : Fügen Sie manuell einen Cron-Job hinzu.
-- **Sparen** : Speichern Sie Ihre Änderungen.
+- **Addieren** : Fügen Sie manuell einen Cron-Job hinzu.
+- **Zu schützen** : Speichern Sie Ihre Änderungen.
 
 Unten finden Sie eine Tabelle aller vorhandenen Aufgaben (Achtung, einige Aufgaben können Unteraufgaben starten. Es wird daher dringend empfohlen, die Informationen auf dieser Seite niemals zu ändern).
 
@@ -26,7 +26,7 @@ In dieser Tabelle finden wir :
 - **PID** : Zeigt die aktuelle Prozess-ID an.
 - **Dämon** : Wenn dieses Feld &quot;Ja&quot; lautet, muss die Aufgabe immer ausgeführt werden. Außerdem finden Sie die Häufigkeit des Dämons. Es wird empfohlen, diesen Wert niemals zu ändern und insbesondere niemals zu verringern.
 - **Einzigartig** : Wenn es &quot;Ja&quot; ist, wird die Aufgabe einmal gestartet und löscht sich dann von selbst.
-- **Klassenzimmer** : PHP-Klasse, die aufgerufen wird, um die Aufgabe auszuführen (kann leer sein).
+- **Klasse** : PHP-Klasse, die aufgerufen wird, um die Aufgabe auszuführen (kann leer sein).
 - **Funktion** : PHP-Funktion, die in der aufgerufenen Klasse aufgerufen wird (oder nicht, wenn die Klasse leer ist).
 - **Programmierung** : Programmierung der Aufgabe im CRON-Format.
 - **Auszeit** : Maximale Task-Laufzeit. Wenn es sich bei der Aufgabe um einen Dämon handelt, wird sie am Ende des Zeitlimits automatisch gestoppt und neu gestartet.

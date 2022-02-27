@@ -1,7 +1,7 @@
 # A personalização avançada
 **Configurações → Sistema → Personalização avançada**
 
-Aqui você pode gerenciar funções **JavaScript** e regras **CSS** aplicado em desktop ou celular.
+Aqui você pode gerenciar funções **javascript** e regras **CSS** aplicado em desktop ou celular.
 
 > **Aviso**
 >
@@ -9,7 +9,7 @@ Aqui você pode gerenciar funções **JavaScript** e regras **CSS** aplicado em 
 
 Esta função usa um modo particular do editor de arquivos Core com dois locais:
 
-- desktop / custom : Pode conter os dois arquivos **custom.js** e **CSS customizado** que será carregado pelo Core na versão Desktop.
+- desktop / personalizado : Pode conter os dois arquivos **custom.js** e **CSS customizado** que será carregado pelo Core na versão Desktop.
 - móvel / personalizado : Pode conter os dois arquivos **custom.js** e **CSS customizado** que será carregado pelo Core na versão Mobile.
 
 Na barra de menu do editor de arquivos Core, um botão **Habilitado** Onde **Desativado** diz se o Core deve carregá-los ou não. Esta opção também está disponível em **Configurações → Sistema → Configuração** Guia Interface.

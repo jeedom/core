@@ -6,11 +6,11 @@ Es stehen zwei APIs zur Verfügung : ein entwicklerorientierter JSON RPC 2-Pilot
 
 Diese API ist sehr einfach durch einfache HTTP-Anfragen über URL zu verwenden.
 
-> **Hinweis**
+> **Notiz**
 >
 > Für die gesamte Dokumentation gilt \#IP\_JEEDOM\# entspricht Ihrer Jeedom-Zugriffs-URL. Dies ist (sofern Sie nicht mit Ihrem lokalen Netzwerk verbunden sind) die Internetadresse, mit der Sie von außen auf Jeedom zugreifen.
 
-> **Hinweis**
+> **Notiz**
 >
 > Für die gesamte Dokumentation gilt \#API\_KEY\# entspricht Ihrem API-Schlüssel, der für Ihre Installation spezifisch ist. Um es zu finden, gehen Sie zum Menü "Allgemein" → "Konfiguration" → Registerkarte "Allgemein"".
 
@@ -30,11 +30,11 @@ VoHier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& typ
 
 Der einfachste Weg, um diese URL zu erhalten, ist das Aufrufen der Seite **Analyse → Zusammenfassung der Hausautomation**, Um nach der Bestellung zu suchen und dann die erweiterte Konfiguration (das "Zahnrad" -Symbol) zu öffnen, sehen Sie dort eine URL, die je nach Typ und Subtyp der Bestellung bereits alles enthält, was Sie benötigen.
 
-> **Hinweis**
+> **Notiz**
 >
 > Es ist möglich für das Feld \#ID\# mehrere Bestellungen gleichzeitig aufgeben. Dazu müssen Sie ein Array in json übergeben (ex% 5B12,58,23% 5D, beachten Sie, dass \ [und \] codiert werden müssen, daher% 5B und% 5D). Jeedoms Rückkehr wird ein Json sein.
 
-> **Hinweis**
+> **Notiz**
 >
 > Parameter müssen für URLs codiert werden, Sie können ein Tool verwenden, [Hier](https://meyerweb.com/eric/tools/dencoder/).
 
@@ -42,9 +42,9 @@ Der einfachste Weg, um diese URL zu erhalten, ist das Aufrufen der Seite **Analy
 
 VoHier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = interagiere & query = \#QUERY\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = interagieren & abfragen=#QUERY#)
 
-- **Abfrage** : Frage an Jeedom zu stellen.
+- **Anfrage** : Frage an Jeedom zu stellen.
 - **utf8** \ [Optional \] : teilt Jeedom mit, ob die Abfrage in utf8 codiert werden soll, bevor versucht wird zu antworten.
-- **leer Antworten** \ [Optional \] : 0 für Jeedom, um zu antworten, auch wenn er es nicht verstanden hat, 1 sonst.
+- **leereAntwort** \ [Optional \] : 0 für Jeedom, um zu antworten, auch wenn er es nicht verstanden hat, 1 sonst.
 - **Profil** \ [Optional \] : Benutzername der Person, die die Interaktion initiiert.
 - **antworten\_cmd** \ [Optional \] : Bestellnummer zur Beantwortung der Anfrage.
 
@@ -84,4 +84,4 @@ Gibt alle Objekte, Geräte, Befehle (und deren Wert, wenn es sich um Information
 VoHier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = Variable & Name=#NAME#&value=)*WERT*
 
 - **Name** : Name der Variablen, deren Wert gewünscht wird (Lesen des Werts).
-- **WERT** \ [Optional \] : Wenn "Wert" angegeben ist, nimmt die Variable diesen Wert an (Schreiben eines Werts)).
+- **Wert** \ [Optional \] : Wenn "Wert" angegeben ist, nimmt die Variable diesen Wert an (Schreiben eines Werts)).

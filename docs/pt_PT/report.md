@@ -7,7 +7,7 @@ Esta página permite ver todos os relatórios que foram gerados pela ação do r
 
 Um relatório é uma captura de tela da interface Jeedom por vez t.
 
-> **Nota**
+> **Observação**
 >
 > Essa captura é adaptada para não levar a barra de menus e outros elementos desnecessários a esse tipo de uso.
 

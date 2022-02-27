@@ -26,7 +26,7 @@ Aquí tienes tres botones :
 
 Desde un navegador, vaya al [Mercado](https://market.jeedom.com).
 Iniciar sesión en su cuenta.
-Haga clic en un complemento, luego elija *Instalar estable* o *Instalar beta* (si su cuenta de Market lo permite).
+Haga clic en un complemento, luego elija *Instalar estable* Donde *Instalar beta* (si su cuenta de Market lo permite).
 
 Si su cuenta de Market está configurada correctamente en su Jeedom (Configuración → Actualizaciones / Market → pestaña Market), puede hacer clic en *Sincronizar mercado* o esperar a que se calme por sí solo.
 
@@ -142,9 +142,9 @@ Si el complemento tiene dependencias y / o un demonio, estas áreas adicionales 
 - **Cron10** : Un cron cada 10 minutos.
 - **Cron15** : Un cron cada 15 minutos.
 - **Cron30** : Un cron cada 30 minutos.
-- **CronHourly** : Un cron cada hora.
+- **CronHorario** : Un cron cada hora.
 - **CronDaily** : Un cron diario.
-- **deadcmd** : Un cron para comandantes muertos.
+- **Deadcmd** : Un cron para comandantes muertos.
 - **salud** : Una salud cron.
 
 > **Propina**

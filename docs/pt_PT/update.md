@@ -2,7 +2,7 @@
 **Configurações → Sistema → Centro de Atualização**
 
 
-O **Update Center** permite atualizar todas as funcionalidades do Jeedom, incluindo o software principal e seus plugins.
+A **Update Center** permite atualizar todas as funcionalidades do Jeedom, incluindo o software principal e seus plugins.
 Outras funções de gerenciamento de extensão estão disponíveis (excluir, reinstalar, verificar etc.).).
 
 
@@ -16,7 +16,7 @@ Na abertura da página, se essa verificação tiver mais de duas horas, a Jeedom
 Você também pode usar o botão **Verificar atualizações** Para fazer isso manualmente.
 Se você deseja executar uma verificação manual, pode pressionar o botão "Verificar atualizações".
 
-O botão **Salve ** deve ser usado quando você alterar as opções na tabela abaixo, para especificar não atualizar determinados plugins, se necessário.
+O botão **Para salvaguardar** deve ser usado quando você alterar as opções na tabela abaixo, para especificar não atualizar determinados plugins, se necessário.
 
 ## Atualizar o núcleo
 
@@ -44,18 +44,18 @@ A tabela contém as versões dos núcleos e plug-ins instalados.
 
 Os plug-ins têm um crachá ao lado do nome, especificando sua versão, de cor verde *estábulo*, ou laranja em *beta* ou outro.
 
-- **Status** : OK ou NOK.
-- **Último nome** : Nome e origem do plug-in
+- **Status** : OK ou NÃO.
+- **Nome** : Nome e origem do plug-in
 - **Versão** : Indica a versão precisa do Core ou plugin.
 - **Opções** : Marque esta caixa se não desejar que este plugin seja atualizado durante a atualização global (Button **Atualizar**).
 
 Em cada linha, você pode usar as seguintes funções:
 
 - **Reinstalar** : Forçar reassentamento.
-- **Retirar** : Permite desinstalá-lo.
+- **Remover** : Permite desinstalá-lo.
 - **Verificar** : Consulte a fonte de atualizações para descobrir se uma nova atualização está disponível.
 - **Atualizar** : Permite atualizar o elemento (se houver uma atualização).
-- **Changelog** : Permite acesso à lista de alterações na atualização.
+- **Registro de alterações** : Permite acesso à lista de alterações na atualização.
 
 > **Importante**
 >
@@ -70,7 +70,7 @@ Em cada linha, você pode usar as seguintes funções:
 
 Durante ou após uma atualização, essa guia permite que você leia o log dessa atualização em tempo real.
 
-> **Nota**
+> **Observação**
 >
 > Esse log normalmente termina com *[FINALIZAR SUCESSO DE ATUALIZAÇÃO]*. Pode haver algumas linhas de erro nesse tipo de log, no entanto, a menos que haja um problema real após a atualização, nem sempre é necessário entrar em contato com o suporte para isso.
 
@@ -84,7 +84,7 @@ Uma vez conectado, este é o comando para executar :
 Os possíveis parâmetros são :
 
 - **moda** : `force ', para iniciar uma atualização no modo forçado (ignora erros).
-- **Versão** : Rastreamento de número da versão, para reaplicar as alterações desta versão.
+- **versão** : Rastreamento de número da versão, para reaplicar as alterações desta versão.
 
 Aqui está um exemplo de sintaxe para fazer uma atualização forçada reaplicando as alterações desde o 4.0.04 :
 

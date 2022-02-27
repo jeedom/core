@@ -58,7 +58,7 @@ Durante um backup, o Jeedom fará backup de todos os seus arquivos e do banco de
 
 No nível do protocolo, apenas o Z-Wave (OpenZwave) é um pouco diferente porque não é possível salvar as inclusões. Eles estão diretamente incluídos no controlador, portanto, você deve manter o mesmo controlador para encontrar seus módulos Zwave.
 
-> **Nota**
+> **Observação**
 >
 > Não é feito backup do sistema no qual o Jeedom está instalado. Se você alterou as configurações deste sistema (inclusive via SSH), cabe a você encontrar uma maneira de recuperá-las se tiver alguma dúvida. Da mesma forma, os anexos também não são, então você terá que reinstalá-los após uma restauração
 

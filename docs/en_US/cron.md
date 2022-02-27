@@ -15,7 +15,7 @@ At the top right, you have :
 - **Disable cron system** : a button to deactivate or reactivate all tasks (if you deactivate them all, nothing will be functional on your Jeedom).
 - **Refresh** : Refreshes the task table.
 - **Add** : Add a cron job manually.
-- **Save** : Save your changes.
+- **To safeguard** : Save your changes.
 
 Below, you have the table of all existing tasks (attention, some tasks can launch subtasks, so it is strongly recommended never to modify information on this page).
 
@@ -26,7 +26,7 @@ In this table, we find :
 - **PID** : Indicates the current process ID.
 - **Devil** : If this box is &quot;yes&quot; then the task must always be in progress. Beside, you find the frequency of the daemon, it is advised never to modify this value and especially never to decrease it.
 - **Unique** : If it is &quot;yes&quot; then the task will launch once and then delete itself.
-- **Classroom** : PHP class called to execute the task (can be empty).
+- **Class** : PHP class called to execute the task (can be empty).
 - **Function** : PHP function called in the called class (or not if the class is empty).
 - **Programming** : Programming of the task in CRON format.
 - **Timeout** : Maximum task run time. If the task is a daemon then it will be automatically stopped and restarted at the end of the timeout.

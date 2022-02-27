@@ -75,7 +75,7 @@ Devuelve la lista de cambios desde la fecha y hora pasada en el parámetro (debe
 
 Configuración de json :
 
--   int datetime
+-   int fecha y hora
 
 API de complementos JSON
 ===============
@@ -111,7 +111,7 @@ Devuelve un objeto con todo su equipo y para cada equipo todos sus comandos, as�
 
 Configuración de json :
 
--   int id
+-   identificación interna
 
 jeeObject::byId
 ------------
@@ -120,7 +120,7 @@ Devuelve el objeto especificado
 
 Configuraciones:
 
--   int id
+-   identificación interna
 
 jeeObject::fullById
 ----------------
@@ -167,7 +167,7 @@ Devuelve el resumen de la identificación del objeto
 
 Configuraciones:
 
--   int id : ID de objeto
+-   identificación interna : ID de objeto
 
 -   clave de cuerda : (opcional), clave del resumen deseado, si está vacío, entonces Jeedom devuelve el resumen de todas las claves
 
@@ -186,7 +186,7 @@ Devuelve un dispositivo y sus comandos, así como sus estados (para comandos de 
 
 Configuraciones:
 
--   int id
+-   identificación interna
 
 eqLogic::byId
 -------------
@@ -195,7 +195,7 @@ Devuelve el equipo especificado
 
 Configuraciones:
 
--   int id
+-   identificación interna
 
 eqLogic::byType
 ---------------
@@ -221,7 +221,7 @@ eqLogic::byTypeAndId
 Devuelve una tabla de equipos según los parámetros.
 
 El retorno será de la matriz de forma (&#39;eqType1&#39; ⇒array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒
-array (....)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒ array (....)).,id1 ⇒
+array (....)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒ array (....)).,identificación1 ⇒
 array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒ array (....)), id2 ⇒ array (&#39; id&#39;⇒ ..., &#39;cmds&#39; ⇒
 array(…​.))..)
 
@@ -275,7 +275,7 @@ Devuelve el comando especificado
 
 Configuraciones:
 
--   int id
+-   identificación interna
 
 cmd::byEqLogicId
 ----------------
@@ -293,7 +293,7 @@ Ejecuta el comando especificado
 
 Configuraciones:
 
--   int id : ID de comando o matriz de ID si desea ejecutar múltiples comandos a la vez
+-   identificación interna : ID de comando o matriz de ID si desea ejecutar múltiples comandos a la vez
 
 -   \ [opciones \] Lista de opciones de comando (depende del tipo y subtipo del comando)
 
@@ -304,11 +304,11 @@ Devuelve las estadísticas del pedido (solo funciona con información y pedidos 
 
 Configuraciones:
 
--   int id
+-   identificación interna
 
--   string startTime : fecha de inicio del cálculo de estadísticas
+-   cadena startTime : fecha de inicio del cálculo de estadísticas
 
--   string endTime : fecha de finalización del cálculo de estadísticas
+-   cadena endTime : fecha de finalización del cálculo de estadísticas
 
 cmd::getTendance
 ----------------
@@ -317,11 +317,11 @@ Devuelve la tendencia en el pedido (solo funciona en pedidos de información e h
 
 Configuraciones:
 
--   int id
+-   identificación interna
 
--   string startTime : fecha de inicio del cálculo de tendencia
+-   cadena startTime : fecha de inicio del cálculo de tendencia
 
--   string endTime : fecha de finalización del cálculo de tendencia
+-   cadena endTime : fecha de finalización del cálculo de tendencia
 
 cmd::getHistory
 ---------------
@@ -330,11 +330,11 @@ Devuelve el historial de pedidos (solo funciona en pedidos de información e his
 
 Configuraciones:
 
--   int id
+-   identificación interna
 
--   string startTime : fecha de inicio de la historia
+-   cadena startTime : fecha de inicio de la historia
 
--   string endTime : fecha de finalización de la historia
+-   cadena endTime : fecha de finalización de la historia
 
 cmd::save
 ---------
@@ -373,7 +373,7 @@ Configuraciones:
 
 -   valor int = nulo
 
--   int isVisible = 1
+-   int esVisible = 1
 
 -   alerta de matriz
 
@@ -384,7 +384,7 @@ Le permite enviar un valor a un pedido
 
 Configuraciones:
 
--   int id
+-   identificación interna
 
 -   valor de cadena : valeur
 
@@ -405,7 +405,7 @@ Devuelve el escenario especificado
 
 Configuraciones:
 
--   int id
+-   identificación interna
 
 scenario::export
 ----------------
@@ -414,7 +414,7 @@ Devuelve la exportación del escenario, así como la *nombre humano* del guión
 
 Configuraciones:
 
--   int id
+-   identificación interna
 
 scenario::import
 ----------------
@@ -423,7 +423,7 @@ Le permite importar un escenario.
 
 Configuraciones:
 
--   int id : ID del escenario en el que importar (vacío si la creación)
+-   identificación interna : ID del escenario en el que importar (vacío si la creación)
 
 -   cadena humanName : *nombre humano* del escenario (vacío si creación)
 
@@ -436,7 +436,7 @@ Cambia el estado del escenario especificado.
 
 Configuraciones:
 
--   int id
+-   identificación interna
 
 -   estado de cadena: \ [Ejecutar, detener, habilitar, deshabilitar \]
 
@@ -511,7 +511,7 @@ Configuraciones:
 
 -   tipo de cadena : tipo de valor almacenado (para escenarios es escenario)
 
--   id linkId : -1 para el global (valor para los escenarios predeterminados o el id del escenario)
+-   ID de enlace ID : -1 para el global (valor para los escenarios predeterminados o el id del escenario)
 
 -   clave de cuerda : nombre del valor
 
@@ -525,7 +525,7 @@ Configuraciones:
 -   tipo de cadena : tipo de valor almacenado (para escenarios
     es escenario)
 
--   id linkId : -1 para global (valor para escenarios predeterminados,
+-   ID de enlace ID : -1 para global (valor para escenarios predeterminados,
     o el id del escenario)
 
 -   clave de cuerda : nombre del valor

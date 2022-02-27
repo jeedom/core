@@ -51,16 +51,16 @@ Também podemos definir um comando a ser executado se, por exemplo, a interaçã
 A página de configuração consiste em várias guias e botões :
 
 - **Frases** : Exibe o número de frases da interação (um clique nelas mostra a você).
-- **Registro** : Registra a interação atual.
-- **Retirar** : Excluir interação atual.
+- **Salvar** : Registra a interação atual.
+- **Remover** : Excluir interação atual.
 - **Duplicado** : Duplicar a interação atual.
 
 ### Guia Geral
 
-- **Último nome** : Nome da interação (pode estar vazio, o nome substitui o texto da solicitação na lista de interação).
+- **Nome** : Nome da interação (pode estar vazio, o nome substitui o texto da solicitação na lista de interação).
 - **Grupo** : Grupo de interação, isso permite organizá-los (pode estar vazio, portanto estará no grupo "none").
 - **Ativo** : Permite ativar ou desativar a interação.
-- **Solicitação** : A sentença do modelo de geração (obrigatório).
+- **Demanda** : A sentença do modelo de geração (obrigatório).
 - **Sinônimo** : Permite definir sinônimos nos nomes dos comandos.
 - **Resposta** : A resposta para fornecer.
 - **Aguarde antes de responder (s))** : Adicione um atraso de X segundos antes de gerar a resposta. Permite, por exemplo, aguardar o retorno do status de uma lâmpada antes de ser atendido.
@@ -83,7 +83,7 @@ Use se você deseja direcionar um ou mais comandos específicos ou passar parâm
 
 #### Exemples
 
-> **Nota**
+> **Observação**
 >
 > As capturas de tela podem ser diferentes em vista dos desenvolvimentos.
 
@@ -163,7 +163,7 @@ Como podemos ver aqui, mantive quase a mesma estrutura para a solicitação (é 
 
 O campo **Conversão binária** deve conter 2 respostas : primeiro a resposta se o valor do comando for 0, então uma barra vertical "\|" separação e, finalmente, a resposta se o comando vale 1. Aqui as respostas são simplesmente não e sim, mas poderíamos colocar uma frase um pouco mais longa.
 
-> **Atenção**
+> **Aviso**
 >
 > Tags não funcionam em conversões binárias.
 
@@ -242,7 +242,7 @@ Neste exemplo, vemos uma frase simples que retornará uma resposta com três tem
 
 ![interact017](../images/interact017.png)
 
-Este exemplo visa especificamente equipamentos específicos que permitem uma resposta personalizada. Então, podemos imaginar substituir a resposta do exemplo por "não, não há ninguém na sala *julie*\|sim tem alguém na sala *julie*"
+Este exemplo visa especificamente equipamentos específicos que permitem uma resposta personalizada. Então, podemos imaginar substituir a resposta do exemplo por "não, não há ninguém na sala *Júlia*\|sim tem alguém na sala *Júlia*"
 
 #### Evolution
 
@@ -285,7 +285,7 @@ Então podemos ver uma regexp :
 
 Isso permite que você exclua todos os comandos que possuem uma dessas palavras em suas frases
 
-> **Nota**
+> **Observação**
 >
 > O regexp aqui é uma versão simplificada para fácil utilização. Portanto, podemos usar expressões tradicionais ou expressões simplificadas, como neste exemplo.
 
@@ -297,9 +297,9 @@ Isso permite que você exclua todos os comandos que possuem uma dessas palavras 
 
 ![interact022](../images/interact022.png)
 
-Como podemos ver, existe aqui no pedido a tag **\#consigne\#** (você pode colocar o que deseja), incluído no controle do inversor, para aplicar o valor desejado. Para fazer isso, temos 3 partes : \* Solicitação : em que criamos uma tag que representará o valor que será enviado para a interação. \* Resposta : reutilizamos a tag da resposta para garantir que o Jeedom entenda corretamente a solicitação. \* Açao : colocamos uma ação na lâmpada que queremos acionar e, no valor que passamos, nossa tag *depósito*.
+Como podemos ver, existe aqui no pedido a tag **\#consigne\#** (você pode colocar o que deseja), incluído no controle do inversor, para aplicar o valor desejado. Para fazer isso, temos 3 partes : \* Demanda : em que criamos uma tag que representará o valor que será enviado para a interação. \* Resposta : reutilizamos a tag da resposta para garantir que o Jeedom entenda corretamente a solicitação. \* Açao : colocamos uma ação na lâmpada que queremos acionar e, no valor que passamos, nossa tag *pedido*.
 
-> **Nota**
+> **Observação**
 >
 > Podemos usar qualquer tag, exceto as já usadas pelo Jeedom, pode haver várias para controlar, por exemplo, vários comandos. Observe também que todas as tags são passadas para os cenários iniciados pela interação (no entanto, é necessário que o cenário esteja em "Executar em primeiro plano"").
 
@@ -350,6 +350,6 @@ As interações fazem muitas coisas em particular. Você pode programar uma aç�
 
 ![interact23](../images/interact23.JPG)
 
-> **Nota**
+> **Observação**
 >
 > Você notará na resposta a tag \#value\# isto contém, no caso de uma interação programada, o tempo efetivo de programação

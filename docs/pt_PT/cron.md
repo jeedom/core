@@ -15,7 +15,7 @@ No canto superior direito, você tem :
 - **Desativar o sistema cron** : um botão para desativar ou reativar todas as tarefas (se você desativá-las todas, nada será funcional no seu Jeedom).
 - **Legal** : Atualiza a tabela de tarefas.
 - **Adicionar** : Adicionar um trabalho cron manualmente.
-- **Salve ** : Salve suas alterações.
+- **Para salvaguardar** : Salve suas alterações.
 
 Abaixo, você tem a tabela de todas as tarefas existentes (atenção, algumas tarefas podem iniciar subtarefas, portanto, é altamente recomendável nunca modificar as informações nesta página).
 
@@ -25,8 +25,8 @@ Nesta tabela, encontramos :
 - **Ativo** : Indica se a tarefa está ativa (pode ser iniciada pelo Jeedom) ou não.
 - **PID** : Indica o ID do processo atual.
 - **Demônio** : Se esta caixa for "sim", a tarefa deve sempre estar em andamento. Além disso, você encontra a frequência do daemon, é aconselhável nunca modificar esse valor e, especialmente, nunca diminuí-lo.
-- **Único** : Se for "sim", a tarefa será iniciada uma vez e será excluída automaticamente.
-- **Sala de aula** : Classe PHP chamada para executar a tarefa (pode estar vazia).
+- **Exclusivo** : Se for "sim", a tarefa será iniciada uma vez e será excluída automaticamente.
+- **Classe** : Classe PHP chamada para executar a tarefa (pode estar vazia).
 - **Função** : Função PHP chamada na classe chamada (ou não, se a classe estiver vazia).
 - **Programação** : Programação da tarefa no formato CRON.
 - **Tempo esgotado** : Tempo máximo de execução da tarefa. Se a tarefa for um daemon, ela será automaticamente interrompida e reiniciada no final do tempo limite.

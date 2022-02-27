@@ -6,7 +6,7 @@ Esta página le permite definir la lista de usuarios autorizados para conectarse
 En la página tienes tres botones :
 
 - Agregar usuario.
-- Salvar.
+- Para salvaguardar.
 - Acceso de soporte abierto.
 
 ## Lista de usuarios
@@ -36,7 +36,7 @@ Al hacer clic en &quot;Derechos&quot;, aparece una ventana que le permite admini
 > El perfil debe ser limitado; de lo contrario, no se tendrán en cuenta las restricciones establecidas aquí.
 
 Obtiene una tabla que permite, para cada dispositivo y cada escenario, definir los derechos del usuario :
-- **No** : el usuario no ve el equipo / escenario.
+- **Ninguna** : el usuario no ve el equipo / escenario.
 - **Visualización** : el usuario ve el equipo / escenario pero no puede actuar sobre él.
 - **Visualización y ejecución** : el usuario ve el equipo / escenario y puede actuar sobre él (encender una lámpara, iniciar el escenario, etc).
 

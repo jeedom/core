@@ -91,9 +91,9 @@
 
 ### 4.2 : Noticias / Mejoras
 
-- **Síntesis** : Posibilidad de configurar objetos para ir a un *diseño* o un *ver* desde la síntesis.
+- **Síntesis** : Posibilidad de configurar objetos para ir a un *diseño* o un *vista* desde la síntesis.
 - **Tablero** : La ventana de configuración del dispositivo (modo de edición) ahora le permite configurar widgets móviles y tipos genéricos.
-- **Widgets** : Internacionalización de Widgets de terceros (código de usuario). ver [Doc dev](https://doc.jeedom.com/es_ES/dev/core4.2).
+- **Widgets** : Internacionalización de Widgets de terceros (código de usuario). ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.2).
 - **Análisis / Historia** : Posibilidad de comparar un historial durante un período determinado.
 - **Análisis / Historia** : Visualización de múltiples ejes en Y. Opción para que cada eje tenga su propia escala, agrupada por unidad o no.
 - **Análisis / Historia** : Posibilidad de ocultar los ejes Y. Menú contextual en las leyendas con solo visualización, ocultación de ejes, cambio de color de la curva.
@@ -106,9 +106,9 @@
 - **Resúmenes** : El cambio del parámetro de resumen en la configuración y en los objetos ahora es visible, sin esperar un cambio en el valor de resumen.
 - **Resúmenes** : Ahora es posible configurar [acciones sobre resúmenes](/es_ES/concept/summary#Actions seguro résumés) (ctrl + clic en un resumen) gracias a los virtuales.
 - **Relación** : Vista previa de archivos PDF.
-- **Tipos de equipo** : [Nueva página](/es_ES/core/4.2/types) **Herramientas → Tipos de equipos** permitiendo la asignación de tipos genéricos a dispositivos y comandos, con soporte para tipos dedicados a complementos instalados (ver [Doc dev](https://doc.jeedom.com/es_ES/dev/core4.2)).
+- **Tipos de equipo** : [Nueva página](/es_ES/core/4.2/types) **Herramientas → Tipos de equipos** permitiendo la asignación de tipos genéricos a dispositivos y comandos, con soporte para tipos dedicados a complementos instalados (ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.2)).
 - **Selección de ilustraciones** : Nueva ventana global para la elección de ilustraciones *(iconos, imágenes, fondos)*.
-- **Pantalla de mesa** : Adición de un botón a la derecha de la búsqueda en las páginas *Objetos* *Escenarios* *Interacciones* *Widgets* y *Complementos* para cambiar al modo de mesa. Esto se almacena mediante una cookie o en **Configuración → Sistema → Configuración / Interfaz, Opciones**. Los complementos pueden usar esta nueva función del Core. ver [Doc dev](https://doc.jeedom.com/es_ES/dev/core4.2).
+- **Pantalla de mesa** : Adición de un botón a la derecha de la búsqueda en las páginas *Objetos* *Escenarios* *Interacciones* *Widgets* y *Complementos* para cambiar al modo de mesa. Esto se almacena mediante una cookie o en **Configuración → Sistema → Configuración / Interfaz, Opciones**. Los complementos pueden usar esta nueva función del Core. ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.2).
 - **Configuración del equipo** : Posibilidad de configurar una curva de historial en la parte inferior del mosaico de un dispositivo.
 - **Ordenado** : Posibilidad de realizar un cálculo sobre una acción de comando de tipo slider antes de la ejecución del comando.
 - **Complementos / Gestión** : Visualización de la categoría de complementos y un enlace para abrir directamente su página sin pasar por el menú Complementos.
@@ -126,7 +126,7 @@
 - **Centro de actualizaciones** : El Centro de actualizaciones ahora muestra la fecha de la última actualización.
 - **Agregar al usuario que realiza una acción** : Además en las opciones de ejecución del comando de la identificación y el nombre de usuario que inician la acción (visible en el evento de registro, por ejemplo)
 - **Complemento de documentación y registro de cambios beta** : Gestión de documentación y registro de cambios para complementos en versión beta. Atención, en beta, el registro de cambios no tiene fecha.
-- **Principal** : Integración del complemento JeeXplorer en el Core. Ahora se usa para código de widget y personalización avanzada.
+- **General** : Integración del complemento JeeXplorer en el Core. Ahora se usa para código de widget y personalización avanzada.
 - **Configuración** : Nueva opción en configuración / interfaz para no colorear el banner del título del equipo.
 - **Configuración** : Posibilidad de configurar fondos de pantalla en las páginas Tablero, Análisis, Herramientas y su opacidad según el tema.
 - **Configuración**: Agregar DNS de Jeedom basado en Wireguard en lugar de Openvpn (Administración / redes). Más rápido y más estable, pero aún en prueba. Tenga en cuenta que actualmente esto no es compatible con Jeedom Smart.
@@ -142,8 +142,8 @@
 - Los parámetros opcionales disponibles en los widgets ahora se muestran para cada widget, ya sea en la configuración del comando o desde el modo de edición del tablero.
 - Muchos Core Widgets ahora aceptan configuraciones de color opcionales. (Control deslizante horizontal y vertical, indicador, brújula, lluvia, obturador, control deslizante de plantillas, etc.).
 - Widgets principales con visualización de *hora* ahora admite un parámetro opcional **hora : con fecha de** para mostrar una fecha relativa (ayer a las 4:48 p.m., último lunes a las 2:00 p.m., etc).
-- Los widgets de tipo Cursor (acción) ahora aceptan un parámetro opcional *paso* para definir el paso de cambio en el cursor.
-- El widget **action.slider.value** ahora está disponible en el escritorio, con un parámetro opcional *noslider*, lo que lo convierte en un *entrada* sencillo.
+- Los widgets de tipo Cursor (acción) ahora aceptan un parámetro opcional *pasos* para definir el paso de cambio en el cursor.
+- El widget **acción.deslizador.valor** ahora está disponible en el escritorio, con un parámetro opcional *deslizador*, lo que lo convierte en un *aporte* sencillo.
 - El widget **info.numeric.default** (*Indicador*) se ha rehecho en CSS puro y se ha integrado en dispositivos móviles. Por lo tanto, ahora son idénticos en computadoras de escritorio y dispositivos móviles.
 
 ### 4.2 : Respaldo en la nube
@@ -162,7 +162,7 @@ Hemos agregado una confirmación de la contraseña de la copia de seguridad en l
 - Refuerzo de sesiones : Cambiar a sha256 con 64 caracteres en modo estricto.
 
 El equipo de Jeedom es consciente de que estos cambios pueden tener un impacto y ser embarazosos para usted, pero no podemos comprometer la seguridad.
-Los complementos deben respetar las recomendaciones sobre la estructura de árbol de carpetas y archivos : [Doc](https://doc.jeedom.com/es_ES/dev/plugin_template).
+Los complementos deben respetar las recomendaciones sobre la estructura de árbol de carpetas y archivos : [Médico](https://doc.jeedom.com/es_ES/dev/plugin_template).
 
 [Blog: Jeedom 4 introducción.2 : la seguridad](https://blog.jeedom.com/6165-introduction-jeedom-4-2-la-securite/)
 
@@ -246,8 +246,8 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 - **Tablero** : Rediseño de la visualización del árbol de objetos (flecha a la izquierda de la búsqueda).
 - **Tablero** : Posibilidad de desenfocar imágenes de fondo (Configuración -> Interfaz).
 - **Herramientas / widgets** : La funcion *Aplicar en* muestra los comandos vinculados marcados, al desmarcar uno se aplicará el widget principal predeterminado a este comando.
-- **Widgets** : Agregar un widget principal *deslizador vertical*.
-- **Widgets** : Agregar un widget principal *binarySwitch*.
+- **Widgets** : Agregar un widget principal *deslizadorVertical*.
+- **Widgets** : Agregar un widget principal *interruptor binario*.
 - **Centro de actualizaciones** : Las actualizaciones se verifican automáticamente cuando se abre la página si tiene 120 minutos de antigüedad.
 - **Centro de actualizaciones** : La barra de progreso ahora está en la pestaña *Core y plugins*, y el registro se abre por defecto en la pestaña *Información*.
 - **Centro de actualizaciones** : Si abre otro navegador durante una actualización, la barra de progreso y el registro lo indican.
@@ -255,7 +255,7 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 - **Actualizaciones principales** : Implementación de un sistema para limpiar viejos archivos Core no utilizados.
 - **Guión** : Agregar un motor de búsqueda (a la izquierda del botón Ejecutar).
 - **Guión** : Adición de la función de edad (da la edad del valor del pedido).
-- **Guión** : *stateChanges()* ahora acepta el periodo *hoy* (medianoche hasta ahora), *ayer* y *día* (por 1 día).
+- **Guión** : *stateChanges()* ahora acepta el periodo *hoy dia* (medianoche hasta ahora), *ayer* y *día* (por 1 día).
 - **Guión** : Funciones *estadísticas (), promedio (), máximo (), mínimo (), tendencia (), duración()* : Bugfix durante el período *ayer*, y acepta ahora *día* (por 1 día).
 - **Guión** : Posibilidad de desactivar el sistema de cotización automática (Configuración → Sistema → Configuración : Equipements).
 - **Guión** : Viendo un *advertencia* si no se configura ningún activador.
@@ -267,16 +267,16 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 - **Ventana de variables de escenario** : Ahora se puede hacer clic en los escenarios utilizados por las variables, con la apertura de la búsqueda en la variable.
 - **Análisis / Historia** : Ctrl Haga clic en una leyenda para mostrar solo este historial, Alt Haga clic para mostrarlos todos.
 - **Análisis / Historia** : Las opciones *agrupación, tipo, variación, escalera* están activos solo con una sola curva mostrada.
-- **Análisis / Historia** : Ahora podemos usar la opción *Zona* con la opción *Escalera*.
+- **Análisis / Historia** : Ahora podemos usar la opción *Área* con la opción *Escalera*.
 - **Análisis / Registros** : Nueva fuente tipo monoespacio para registros.
-- **Ver** : Posibilidad de poner escenarios.
-- **Ver** : El modo de edición ahora inserta el mosaico movido.
-- **Ver** : Modo de edición: Los iconos de actualización del equipo se reemplazan por un icono que permite acceder a su configuración, gracias a un nuevo modal simplificado.
-- **Ver** : El orden de visualización ahora es independiente del que se muestra en el Panel de control.
-- **Cronología** : Separación de páginas de historia y cronología.
-- **Cronología** : Integración de la línea de tiempo en DB por razones de confiabilidad.
-- **Cronología** : Gestión de múltiples líneas de tiempo.
-- **Cronología** : Rediseño gráfico completo de la línea de tiempo (Escritorio / Móvil).
+- **Vista** : Posibilidad de poner escenarios.
+- **Vista** : El modo de edición ahora inserta el mosaico movido.
+- **Vista** : Modo de edición: Los iconos de actualización del equipo se reemplazan por un icono que permite acceder a su configuración, gracias a un nuevo modal simplificado.
+- **Vista** : El orden de visualización ahora es independiente del que se muestra en el Panel de control.
+- **Línea de tiempo** : Separación de páginas de historia y cronología.
+- **Línea de tiempo** : Integración de la línea de tiempo en DB por razones de confiabilidad.
+- **Línea de tiempo** : Gestión de múltiples líneas de tiempo.
+- **Línea de tiempo** : Rediseño gráfico completo de la línea de tiempo (Escritorio / Móvil).
 - **Resumen global** : Vista de resumen, soporte para resúmenes de un objeto diferente o con un objeto raíz vacío (escritorio y aplicación web).
 - **Herramientas / Objetos** : Nueva pestaña *Resumen por equipos*.
 - **Resumen de domótica** : Equipos de complementos desactivados y sus controles ya no tienen los iconos a la derecha (configuración de equipos y configuración avanzada).
@@ -286,8 +286,8 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 - **Motor de tareas** : En la pestaña *Demonio*, los complementos deshabilitados ya no aparecen.
 - **Relación** : El uso de *cromo* si está disponible.
 - **Relación** : Posibilidad de exportar cronogramas.
-- **Configuración** : La tabla *Información* ahora está en la pestaña *Principal*.
-- **Configuración** : La tabla *Pedidos* ahora está en la pestaña *Equipo*.
+- **Configuración** : Pestaña *Información* ahora está en la pestaña *Principal*.
+- **Configuración** : Pestaña *Pedidos* ahora está en la pestaña *Equipo*.
 - **Ventana de configuración avanzada del equipo** : Cambio dinámico de la configuración de la centralita.
 - **Equipo** : Nueva categoría *Apertura*.
 - **Equipo** : Posibilidad de invertir comandos tipo cursor (info y acción)
@@ -298,7 +298,7 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 	- Ctrl Clic / Clic Center también disponible en sus menús contextuales (en las pestañas).
 - Nueva página ModalDisplay :
 	- Menú de análisis : Ctrl Click / Click Center en *Tiempo real* : Abra la ventana en una pestaña nueva, en pantalla completa.
-	- Menú de herramientas : Ctrl Click / Click Center en *Notas*, *Probador de expresión*, *Variables*, *Investigación* : Abra la ventana en una pestaña nueva, en pantalla completa.
+	- Menú de herramientas : Ctrl Click / Click Center en *Calificaciones*, *Probador de expresión*, *Variables*, *Investigación* : Abra la ventana en una pestaña nueva, en pantalla completa.
 - Bloque de código, Editor de archivos, Personalización avanzada : Adaptación del tema oscuro.
 - Ventana de selección de imágenes mejorada.
 
@@ -316,9 +316,9 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 ### 4.1 : Autres
 - **Documentación** : Adaptaciones en línea con v4 y v4.1.
 - **Documentación** : Nueva página *Atajos de teclado / mouse* incluyendo un resumen de todos los atajos en Jeedom. Accesible desde el Dashboard doc o las preguntas frecuentes.
-- **Lib** : Actualizar HighStock v7.1.2 a v8.2.0.
-- **Lib** : Actualizar jQuery v3.4.1 a v3.5.1.
-- **Lib** : Actualizar Font Awesome 5.9.0 a 5.13.1.
+- **Liberación** : Actualizar HighStock v7.1.2 a v8.2.0.
+- **Liberación** : Actualizar jQuery v3.4.1 a v3.5.1.
+- **Liberación** : Actualizar Font Awesome 5.9.0 a 5.13.1.
 - **API** :  adición de una opción para prohibir que una clave api de un complemento ejecute métodos centrales (general)
 - Asegurando solicitudes Ajax.
 - Asegurar las llamadas a la API.
@@ -326,7 +326,7 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 - Numerosas optimizaciones de rendimiento de escritorio / móvil.
 
 ### 4.1 : Changements
-- La funcion **escenario-> getHumanName()** de la clase de escenario php ya no regresa *[objeto] [grupo] [nombre]* Pero *[grupo] [objeto] [nombre]*.
+- La funcion **escenario-> getHumanName()** de la clase de escenario php ya no regresa *[objeto] [grupo] [nombre]* maíz *[grupo] [objeto] [nombre]*.
 - La funcion **escenario-> byString()** ahora debe llamarse con la estructura *[grupo] [objeto] [nombre]*.
 - Las funciones **red-> getInterfaceIp () red-> getInterfaceMac () red-> getInterfaces()** han sido reemplazados por **network-> getInterfacesInfo()**
 
@@ -413,7 +413,7 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 
 ### 4.0 : Prerrequisitos
 
-- Debian 9 Stretch
+- Estiramiento de Debian 9
 
 ### 4.0 : Noticias / Mejoras
 
@@ -465,7 +465,7 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 - Configuración : Cambio de #message# a #subject# en Configuración / Registros / Mensajes para evitar duplicar el mensaje.
 - Configuración : Posibilidad en los resúmenes de agregar una exclusión de pedidos que no se han actualizado durante más de XX minutos (ejemplo para el cálculo de promedios de temperatura si un sensor no ha reportado nada durante más de 30min se excluirá del cálculo)<br/><br/>
 - Guión : La coloración de los bloques ya no es aleatoria, sino por tipo de bloque.
-- Guión : Posibilidad haciendo Ctrl + clic en el botón *ejecución* guárdelo, ejecútelo y muestre el registro (si el nivel de registro no está en *No*).
+- Guión : Posibilidad haciendo Ctrl + clic en el botón *ejecución* guárdelo, ejecútelo y muestre el registro (si el nivel de registro no está en *Ninguna*).
 - Guión : Confirmación de eliminación de bloque. Ctrl + clic para evitar la confirmación.
 - Guión : Adición de una función de búsqueda en bloques de código. Buscar : Ctrl + F luego Enter, Siguiente resultado : Ctrl + G, resultado anterior : Ctrl + Mayús + G
 - Guión : Posibilidad de condensar los bloques.
@@ -494,9 +494,9 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 
 ### 4.0 : Autres
 
-- **Lib** : Actualización de jquery 3.4.1
-- **Lib** : Actualizar CodeMiror 5.46.0
-- **Lib** : Actualizar tablesorter 2.31.1
+- **Liberación** : Actualización de jquery 3.4.1
+- **Liberación** : Actualizar CodeMiror 5.46.0
+- **Liberación** : Actualizar tablesorter 2.31.1
 - Aligeramiento general (estilos CSS / en línea, refactorización, etc.) y mejoras de rendimiento.
 - Adición de compatibilidad global de Jeedom DNS con una conexión a Internet 4G.
 - Numerosas correcciones de errores.

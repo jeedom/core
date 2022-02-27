@@ -6,7 +6,7 @@ El sistema de interacción en Jeedom le permite realizar acciones desde texto o 
 Estas órdenes pueden ser obtenidas por :
 
 - SMS : enviar un SMS para iniciar comandos (acción) o hacer una pregunta (información).
-- Gato : Telegram, Slack, etc.
+- Gato : Telegrama, Slack, etc.
 - Vocal : dicta una frase con Siri, Google Now, SARAH, etc. Para iniciar comandos (acción) o hacer una pregunta (información).
 - HTTP : lanzar una URL HTTP que contenga el texto (ej. Tasker, Slack) para iniciar comandos (acción) o hacer una pregunta (información).
 
@@ -30,7 +30,7 @@ Una vez en la configuración de una interacción, tiene un menú contextual con 
 
 En la parte superior de la página, hay 3 botones :
 
-- **Añadir** : Le permite crear nuevas interacciones.
+- **Agregar** : Le permite crear nuevas interacciones.
 - **Regenerado** : Recréer toutes les interactions (peut être très long &gt; 5mn).
 - **Prueba** : Abre un diálogo para escribir y probar una oración.
 
@@ -51,7 +51,7 @@ También podemos definir un comando para ejecutar si, por ejemplo, la interacci�
 La página de configuración consta de varias pestañas y botones :
 
 - **Frases** : Muestra el número de oraciones de la interacción (un clic en ellas te muestra).
-- **Grabar** : Grabar la interacción actual.
+- **Salvar** : Grabar la interacción actual.
 - **Eliminar** : Eliminar interacción actual.
 - **Duplicar** : Duplica la interacción actual.
 
@@ -60,7 +60,7 @@ La página de configuración consta de varias pestañas y botones :
 - **Apellido** : Nombre de interacción (puede estar vacío, el nombre reemplaza el texto de solicitud en la lista de interacción).
 - **Grupo** : Grupo de interacción, esto permite organizarlos (puede estar vacío, por lo tanto estará en el grupo "ninguno").
 - **Activo** : Habilita o deshabilita la interacción.
-- **Solicitud** : La oración modelo generadora (requerida).
+- **Demanda** : La oración modelo generadora (requerida).
 - **Sinónimo** : Permite definir sinónimos en los nombres de los comandos.
 - **Respuesta** : La respuesta para proporcionar.
 - **Espere antes de responder)** : Agregue un retraso de X segundos antes de generar la respuesta. Permite, por ejemplo, esperar el regreso del estado de una lámpara antes de ser respondido.
@@ -177,7 +177,7 @@ Podemos imaginar que una alarma puede ser activada o desactivada por un niño o 
 
 ### Exclusión de expresiones regulares
 
-Es posible crear [Regexp](https://fr.wikipedia.org/wiki/Expression_rationnelle) exclusión, si una oración generada coincide con esta expresión regular, se eliminará. El interés es poder eliminar los falsos positivos, es decir, una oración generada por Jeedom que activa algo que no corresponde a lo que queremos o que interferiría con otra interacción que tendría una oración similar.
+Es posible crear [Expresión regular](https://fr.wikipedia.org/wiki/Expression_rationnelle) exclusión, si una oración generada coincide con esta expresión regular, se eliminará. El interés es poder eliminar los falsos positivos, es decir, una oración generada por Jeedom que activa algo que no corresponde a lo que queremos o que interferiría con otra interacción que tendría una oración similar.
 
 Tenemos 2 lugares para aplicar un Regexp :
 - En la interacción misma en el campo "Exclusión de expresiones regulares"".
@@ -242,7 +242,7 @@ En este ejemplo, vemos una oración simple que devolverá una respuesta con 3 te
 
 ![interact017](../images/interact017.png)
 
-Este ejemplo se dirige específicamente a equipos específicos que permiten una respuesta personalizada. Entonces podríamos imaginar reemplazar la respuesta del ejemplo con "no, no hay nadie en la sala *julia*\|si hay alguien en la sala *julia*"
+Este ejemplo se dirige específicamente a equipos específicos que permiten una respuesta personalizada. Entonces podríamos imaginar reemplazar la respuesta del ejemplo con "no, no hay nadie en la sala *julio*\|si hay alguien en la sala *julio*"
 
 #### Evolution
 
@@ -297,7 +297,7 @@ Es posible controlar una lámpara como un porcentaje (dimmer) o un termostato co
 
 ![interact022](../images/interact022.png)
 
-Como podemos ver, aquí está en la solicitud la etiqueta **\#consigne\#** (puede poner lo que quiera) que se incluye en el control de la unidad para aplicar el valor deseado. Para hacer esto, tenemos 3 partes : \* Solicitud : en el que creamos una etiqueta que representará el valor que se enviará a la interacción. \* Respuesta : reutilizamos la etiqueta para la respuesta para asegurarnos de que Jeedom entendió correctamente la solicitud. \* Acción : ponemos una acción sobre la lámpara que queremos conducir y en el valor le pasamos nuestra etiqueta *consigna*.
+Como podemos ver, aquí está en la solicitud la etiqueta **\#consigne\#** (puede poner lo que quiera) que se incluye en el control de la unidad para aplicar el valor deseado. Para hacer esto, tenemos 3 partes : \* Demanda : en el que creamos una etiqueta que representará el valor que se enviará a la interacción. \* Respuesta : reutilizamos la etiqueta para la respuesta para asegurarnos de que Jeedom entendió correctamente la solicitud. \* Acción : ponemos una acción sobre la lámpara que queremos conducir y en el valor le pasamos nuestra etiqueta *consigna*.
 
 > **Nota**
 >

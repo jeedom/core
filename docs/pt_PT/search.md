@@ -14,7 +14,7 @@ Selecione um dispositivo com o ícone à direita do campo.
 O mecanismo será exibido nas tabelas abaixo :
 
 - O **Cenas** usando este equipamento.
-- O **designs** exibindo este equipamento.
+- O **desenhos** exibindo este equipamento.
 - O **Visualizações** exibindo este equipamento.
 - O **interações** usando este equipamento.
 - Os outros **equipamento** usando este equipamento.
@@ -27,7 +27,7 @@ Selecione um pedido com o ícone à direita do campo.
 O mecanismo será exibido nas tabelas abaixo :
 
 - O **Cenas** usando este comando.
-- O **designs** exibindo este comando.
+- O **desenhos** exibindo este comando.
 - O **Visualizações** exibindo este comando.
 - O **interações** usando este comando.
 - O **equipamento** usando este comando.
@@ -51,7 +51,7 @@ Selecione um plug-in na lista suspensa.
 O mecanismo será exibido nas tabelas abaixo :
 
 - O **Cenas** usando este plugin.
-- O **designs** exibindo este plugin.
+- O **desenhos** exibindo este plugin.
 - O **Visualizações** exibindo este plugin.
 - O **interações** usando este plugin.
 - O **equipamento** usando este plugin.
@@ -59,40 +59,40 @@ O mecanismo será exibido nas tabelas abaixo :
 
 ## Por palavra
 
-Digite uma sequência de caracteres no campo de pesquisa. Valide com *entrar* ou com o botão *Pesquisa*.
+Digite uma sequência de caracteres no campo de pesquisa. Valide com *entrar* ou com o botão *Pesquisar*.
 
 O mecanismo será exibido nas tabelas abaixo :
 
 - O **Cenas** usando esta string.
 	Pesquise expressões, comentários, blocos de código.
 - O **interações** usando esta string.
-	Pesquisar nos campos *Solicitação*.
+	Pesquisar nos campos *Demanda*.
 - O **equipamento** usando esta string.
-	Pesquisar nos campos *nome*, *LogicId*, *eqType*, *Como? 'Ou' o quê*, *Tag*.
+	Pesquisar nos campos *nome*, *logicId*, *eqType*, *Como? 'Ou' O que*, *Tag*.
 - O **ordens** usando esta string.
-	Pesquisar nos campos *nome*, *LogicId*, *eqType*, *tipo_genérico*, .
+	Pesquisar nos campos *nome*, *logicId*, *eqType*, *tipo_genérico*, .
 - O **notas** usando esta string.
 	Pesquisa de texto do Notes.
 
 ## Por ID
 
-Insira um número correspondente a um Id pesquisado no campo de pesquisa. Valide com *entrar* ou com o botão *Pesquisa*.
+Insira um número correspondente a um Id pesquisado no campo de pesquisa. Valide com *entrar* ou com o botão *Pesquisar*.
 
 O mecanismo será exibido nas tabelas abaixo :
 
-- O **Cenas** tendo este id.
-- O **Projeto** tendo este id.
-- O **Visão** tendo este id.
+- A **Cenas** tendo este id.
+- A **Projeto** tendo este id.
+- O **visualizar** tendo este id.
 - L'**interação** tendo este id.
 - L'**equipamento** tendo este id.
-- O **ordenou** tendo este id.
+- O **ordenado** tendo este id.
 - O **Nota** tendo este id.
 
 ## Resultados
 
 Para cada tipo de resultado, permite ações:
 - **Cenas** : Abra o log do cenário ou acesse a página do cenário, com a pesquisa ativa no termo procurado.
-- **designs** : Mostrar design.
+- **desenhos** : Mostrar design.
 - **Visualizações** : Mostrar visualização.
 - **interações** : Abra a página de configuração da interação.
 - **equipamento** : Abra a página de configuração do equipamento.

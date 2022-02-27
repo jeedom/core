@@ -39,9 +39,9 @@ If you display a graph via the history page, you have access to several display 
 
 - **Period** : The display period, including historical data between these two dates. By default, depending on the setting *Display period graphics by default* in *Settings → System → Configuration / Equipment*.
 - **Group** : Offers several grouping options (Sum per hour, etc.).
-- **Display type** : Display in *Line*, *Area*, or *Closed off*. Option saved on the order and used from the Dashboard.
+- **Display type** : Display in *Line*, *Area*, Where *Rod*. Option saved on the order and used from the Dashboard.
 - **Variation** : Displays the difference in value from the previous point. Option saved on the order and used from the Dashboard.
-- **Staircase** : Displays the curve as a staircase or a continuous display. Option saved on the order and used from the Dashboard.
+- **Stairs** : Displays the curve as a staircase or a continuous display. Option saved on the order and used from the Dashboard.
 - **Compare** : Compare the curve between different periods.
 
 > **Tip**
@@ -71,7 +71,7 @@ Once a data is activated, you can choose :
 - **Color** : The color of the curve.
 - **Type** : The type of graph (area, line or column).
 - **Ladder** : Since you can put several curves (data) on the same graph, it is possible to distinguish the scales (right or left).
-- **Staircase** : Displays the curve as a staircase or a continuous display.
+- **Stairs** : Displays the curve as a staircase or a continuous display.
 - **Stack** : Stack the values of the curves (see below for the result).
 - **Variation** : Displays the difference in value from the previous point.
 

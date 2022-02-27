@@ -22,7 +22,7 @@ Este widget é um pouco especial porque é um widget de vários comandos, ou sej
 
 ##### Parâmetros opcionais)
 
-- **escala** *(échelle)* : Permite que você altere o tamanho do widget, preenchendo o parâmetro **escala** para `0.5`, o widget será 2 vezes menor.
+- **régua** *(échelle)* : Permite que você altere o tamanho do widget, preenchendo o parâmetro **régua** para `0.5`, o widget será 2 vezes menor.
 
 >**IMPORTANTE**      
 >É ABSOLUTAMENTE necessário que os tipos genéricos sejam indicados; `Temperatura` no controle de temperatura e` Umidade` no controle de umidade (isso é configurado na configuração avançada do controle, guia de configuração).
@@ -44,7 +44,7 @@ Widget para controle de ação / cursor com botão "**+**" e um botão "**-**" p
 
 ##### Parâmetros opcionais)
 
-- **degrau** *(pas)* : Permite que você defina a etapa de mudança de valor *(0,5 por padrão)*.
+- **degraus** *(pas)* : Permite que você defina a etapa de mudança de valor *(0,5 por padrão)*.
 
 ### Rain
 
@@ -54,7 +54,7 @@ Widget para exibir os níveis de água.
 
 ##### Parâmetros opcionais)
 
-- **escala** *(échelle)* : Permite que você altere o tamanho do widget, preenchendo o parâmetro **escala** para `0.5`, o widget será 2 vezes menor.
+- **régua** *(échelle)* : Permite que você altere o tamanho do widget, preenchendo o parâmetro **régua** para `0.5`, o widget será 2 vezes menor.
 - **showRange** : Defina como `1` para exibir os valores mínimo e máximo do comando.
 - **animar** : Desative a animação do widget com um valor de `0`.
 
@@ -69,9 +69,9 @@ Para isso, é necessário levar em consideração 2 pré-requisitos :
 - O **2 comandos de ação / falha** deve estar vinculado a um pedido **info / binário** que irá armazenar o estado atual do dispositivo.
 
 >**Exemplo**      
->![Widget ToggleLink](./images/widgets5.png)
+>![Widget Alternar Link](./images/widgets5.png)
 
->**Adendo**     
+>**Conselho**     
 >Desmarque *"Afficher"* do comando info / binário que não precisa ser exibido.
 
 - Para que o Jeedom Core seja capaz de identificar qual comando corresponde a qual ação, é essencial respeitar a seguinte nomenclatura para **2 comandos de ação / falha** :
@@ -97,7 +97,7 @@ Para isso, é necessário levar em consideração 2 pré-requisitos :
 `` ''
 
 >**Truque**      
->Desde que o nome padronizado permaneça legível, é possível adaptar a nomenclatura, por exemplo *open_volet* ou *shutter_close*, *passo 2* e *stop_2*, etc.
+>Desde que o nome padronizado permaneça legível, é possível adaptar a nomenclatura, por exemplo *open_volet* Onde *shutter_close*, *caminhada_2* e *parada_2*, etc..
 
 ## Widgets personalizados
 
@@ -145,10 +145,10 @@ Uma vez na página de configuração de um widget, um menu de contexto é acess�
 
 Uma vez na página **Ferramentas → Widgets** você tem que clicar no botão "**Adicionar**" e dê um nome ao seu novo widget.
 
-Então :
-- Você escolhe se isso se aplica a um pedido de tipo **Açao** ou **Informações**.
+Próximo :
+- Você escolhe se isso se aplica a um pedido de tipo **Açao** Onde **Em formação**.
 - Dependendo da escolha anterior, você terá que **escolha o subtipo** da ordem.
-- Finalmente **o modelo** entre aqueles que estarão disponíveis de acordo com as escolhas anteriores.
+- Afinal **o modelo** entre aqueles que estarão disponíveis de acordo com as escolhas anteriores.
 - Uma vez que o modelo foi escolhido, Jeedom exibe as opções de configuração para ele abaixo.
 
 ### Os modelos
@@ -161,12 +161,12 @@ Dependendo do tipo de widget, geralmente você pode personalizar os ícones, col
 
 Existem dois tipos de modelo :
 
-- O "**simples**" : como um ícone / imagem para o "**Nós**" e um ícone / imagem para o "**Fora**".
-- O "**multiestados**" : Isso torna possível definir, por exemplo, uma imagem se o comando tiver o valor "**XX**" e outro tão maior que "**AA**" ou se menos que "**ZZ**". Também funciona para valores de texto, uma imagem se o valor for "**foo**", outro se "**plop**" E assim por diante...
+- O "**simples**" : como um ícone / imagem para o "**NÓS**" e um ícone / imagem para o "**FORA**".
+- O "**multiestado**" : Isso torna possível definir, por exemplo, uma imagem se o comando tiver o valor "**XX**" e outro tão maior que "**AA**" ou se menos que "**ZZ**". Também funciona para valores de texto, uma imagem se o valor for "**toto**", outro se "**plop**" E assim por diante...
 
 #### Remplacement
 
-Isso é chamado de modelo simples, aqui você só precisa dizer que o "**Nós**" corresponde a tal ícone / imagem *(usando o botão de escolha)*, a "**Fora**" para esse outro ícone / imagem, etc...      
+Isso é chamado de modelo simples, aqui você só precisa dizer que o "**NÓS**" corresponde a tal ícone / imagem *(usando o botão de escolha)*, a "**FORA**" para esse outro ícone / imagem, etc...      
 
 A Caixa **Widget de tempo**, se disponível, exibe a duração desde a última mudança de estado no widget.
 
@@ -178,7 +178,7 @@ Para modelos usando imagens, você pode configurar a largura do widget em pixels
 
 #### Test
 
-Isso é chamado de modelos de vários estados *(vários estados)*. Em vez de colocar uma imagem para o "**Nós** e / ou para o "**Fora** como no caso anterior, você atribuirá um ícone de acordo com a validação de uma condição *(test)*. Se isso for verdade, o widget exibirá o ícone / imagem em questão.
+Isso é chamado de modelos de vários estados *(vários estados)*. Em vez de colocar uma imagem para o "**NÓS** e / ou para o "**FORA** como no caso anterior, você atribuirá um ícone de acordo com a validação de uma condição *(test)*. Se isso for verdade, o widget exibirá o ícone / imagem em questão.
 
 Como antes, diferentes imagens podem ser selecionadas dependendo do tema ativo no Jeedom e na caixa **Widget de tempo** mostra a duração desde a última mudança de estado.
 
@@ -188,13 +188,13 @@ Os testes estão no formato : ``#value# == 1`, `#value#`será automaticamente su
 - ``#value# >= 1 && #value# <= 5``
 - ``#value# == 'toto'``
 
->**NOTA**     
+>**Observação**     
 >É essencial mostrar os apóstrofos (**'**) em torno do texto para comparar se o valor é texto *(info / outro)*.
 
->**NOTA**     
+>**Observação**     
 >Para usuários avançados, também é possível usar funções javascript, como `#value#.match ("^ plop") `, aqui testamos se o texto começa com` plop`.
 
->**NOTA**     
+>**Observação**     
 >É possível exibir o valor do comando no widget especificando `#value#`no código HTML do teste. Para exibir a unidade, adicione `#unite#``.
 
 ## Widget de código
@@ -225,7 +225,7 @@ No modo de código, você tem acesso a diferentes tags para pedidos, aqui está 
 Quando um novo valor o Jeedom irá pesquisar na página se o comando está lá e no Jeedom.cmd.atualizar se houver uma função de atualização. Se sim, chama-o com um único argumento, que é um objeto no formulário :
 
 `` ''
-{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
+{valor_exibição:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
 `` ''
 
 Aqui está um exemplo simples de código javascript para colocar no seu widget :
@@ -234,9 +234,9 @@ Aqui está um exemplo simples de código javascript para colocar no seu widget :
 <script>
     Jeedom.cmd.update ['#id#'] = função (_options){
       $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Data da coleta : '+ _options.collectDate)
-      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
+      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.valor_exibição +' #unite#');
     }
-    Jeedom.cmd.update ['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+    Jeedom.cmd.update ['#id#']({valor_exibição:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
 </script>
 `` ''
 
@@ -245,13 +245,13 @@ Aqui estão duas coisas importantes :
 `` ''
 Jeedom.cmd.update ['#id#'] = função (_options){
   $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Data da coleta : '+ _options.collectDate)
-  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
+  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.valor_exibição +' #unite#');
 }
 `` ''
 A função é chamada durante uma atualização do widget. Em seguida, ele atualiza o código html do widget_template.
 
 `` ''
-Jeedom.cmd.update ['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+Jeedom.cmd.update ['#id#']({valor_exibição:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
 `` ''
  A chamada para esta função para a inicialização do widget.
 

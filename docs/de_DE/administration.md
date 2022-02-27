@@ -40,7 +40,7 @@ Auf dieser Registerkarte finden Sie die Parameter für die Anpassung der Anzeige
 
 - **Nicht horizontal** : Beschränkt die Breite der Kacheln alle x Pixel.
 - **Nicht vertikal** : Beschränkt die Höhe der Kacheln alle x Pixel.
-- **Spanne** : Vertikaler und horizontaler Abstand zwischen Kacheln in Pixel.
+- **Rand** : Vertikaler und horizontaler Abstand zwischen Kacheln in Pixel.
 - **Vertikale Zentrierung von Fliesen** : Zentriert den Inhalt der Kacheln vertikal.
 - **Bunte Widget-Symbole** : Einfärben von Widget-Symbolen basierend auf ihrem Status. Veränderbar durch Szenario, *setColoredIcon* ('Symbolfärbung').
 - **Farbige Kategorien** : Einfärbung des Titels der Kacheln nach Kategorie.
@@ -101,11 +101,11 @@ Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfi
     - **Anmeldung** : Geben Sie den Proxy-Login ein,
     - **Passwort** : Geben Sie das Passwort ein.
 
-> **Trinkgeld**
+> **Tipp**
 >
 > Wenn Sie sich in HTTPS befinden, ist der Port 443 (Standard) und in HTTP ist der Port 80 (Standard)). Um HTTPS von außen nutzen zu können, ist jetzt ein Letsencrypt-Plugin auf dem Markt erhältlich.
 
-> **Trinkgeld**
+> **Tipp**
 >
 > Um herauszufinden, ob Sie einen Wert im Feld festlegen müssen **Ergänzen**, Schauen Sie, wenn Sie sich in Ihrem Internetbrowser bei Jeedom anmelden, ob Sie / Jeedom (oder was auch immer) nach der IP hinzufügen müssen.
 
@@ -114,7 +114,7 @@ Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfi
 - **Proxy-Markt** : Ermöglicht den Fernzugriff auf Ihr Jeedom, ohne dass ein DNS oder eine feste IP erforderlich ist oder die Ports Ihrer Internetbox geöffnet werden müssen.
     - **Verwenden von Jeedom DNS** : Aktiviert Jeedom DNS (beachten Sie, dass hierfür mindestens ein Service Pack erforderlich ist).
     - **DNS Status** : DNS-HTTP-Status.
-    - **Management** : Ermöglicht das Stoppen und Neustarten des Jeedom-DNS-Dienstes.
+    - **Verwaltung** : Ermöglicht das Stoppen und Neustarten des Jeedom-DNS-Dienstes.
 
 > **Wichtig**
 >
@@ -181,7 +181,7 @@ Viele Bestellungen können protokolliert werden. So erhalten Sie unter Analyse �
 - **Schwellenwert Berechnung Trend nach oben** : Gleiches gilt für den Aufstieg.
 - **Standard Anzeigezeitraum der Grafiken** : Zeitraum, der standardmäßig verwendet wird, wenn Sie den Verlauf einer Bestellung anzeigen möchten. Je kürzer der Zeitraum, desto schneller zeigt Jeedom das angeforderte Diagramm an.
 
-> **Hinweis**
+> **Notiz**
 >
 > Der erste Parameter **Zeige Statistiken über Widgets** ist möglich, aber standardmäßig deaktiviert, da dadurch die Anzeigezeit des Dashboards erheblich verlängert wird. Wenn Sie diese Option aktivieren, stützt sich Jeedom standardmäßig auf Daten der letzten 24 Stunden, um diese Statistiken zu berechnen.
 > Die Trendberechnungsmethode basiert auf der Berechnung der kleinsten Quadrate (siehe [Hier](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) für das Detail).
@@ -211,13 +211,13 @@ Linkgrafiken konfigurieren. Über diese Links können Sie in Form eines Diagramm
 - **Tiefe für Befehle** : Gleiches gilt für Bestellungen.
 - **Tiefe für Variablen** : Gleiches gilt für Variablen.
 - **Parameter Prerender** : Ermöglicht es Ihnen, auf das Layout des Diagramms zu reagieren.
-- **Parameter machen** : Gleich.
+- **Parameter machen** : Dasselbe.
 
 ## Registerkarte &quot;Interaktionen&quot;
 
 Auf dieser Registerkarte können Sie globale Parameter für die Interaktionen festlegen, die Sie unter Extras → Interaktionen finden.
 
-> **Trinkgeld**
+> **Tipp**
 >
 > Um das Interaktionsprotokoll zu aktivieren, gehen Sie zur Registerkarte Einstellungen → System → Konfiguration : Protokolle, dann überprüfen **Debuggen** in der unteren Liste. Warnung : Die Protokolle sind dann sehr ausführlich !
 
@@ -235,9 +235,9 @@ Hier haben Sie drei Parameter :
 
 ### Automatische Interaktion, kontextuelle & Warnung
 
--   Das **automatische Interaktionen** Erlaube Jeedom, zu versuchen, eine Interaktionsanforderung zu verstehen, auch wenn keine definiert ist. Er wird dann nach einem Objektnamen und / oder einer Ausrüstung suchen und / oder versuchen, so gut wie möglich zu reagieren.
+-   Die **automatische Interaktionen** Erlaube Jeedom, zu versuchen, eine Interaktionsanforderung zu verstehen, auch wenn keine definiert ist. Er wird dann nach einem Objektnamen und / oder einer Ausrüstung suchen und / oder versuchen, so gut wie möglich zu reagieren.
 
--   Das **kontextuelle Interaktionen** Sie können beispielsweise mehrere Anforderungen verketten, ohne alles zu wiederholen :
+-   Die **kontextuelle Interaktionen** Sie können beispielsweise mehrere Anforderungen verketten, ohne alles zu wiederholen :
     - *Jeedom hält den Kontext :*
         - *Sie* : Wie viel ist er im Raum ?
         - *Jeedom* : Temperatur 25.2 ° C.
@@ -248,9 +248,9 @@ Hier haben Sie drei Parameter :
         - *Jeedom* : Temperatur 23.6 ° C, Temperatur 27.2 ° C.
 -   Typ Interaktionen **Lassen Sie uns wissen** Erlauben Sie Jeedom, Sie zu warnen, wenn eine Bestellung einen bestimmten Wert überschreitet / fällt oder wert ist.
     - *Sie* : Benachrichtigen Sie mich, wenn die Wohnzimmertemperatur 25 ° C überschreitet ?
-    - *Jeedom* : In Ordnung (*Sobald die Wohnzimmertemperatur 25 ° C überschreitet, wird Jeedom es Ihnen einmal mitteilen*)
+    - *Jeedom* : OK (*Sobald die Wohnzimmertemperatur 25 ° C überschreitet, wird Jeedom es Ihnen einmal mitteilen*)
 
-> **Hinweis**
+> **Notiz**
 >
 > Standardmäßig antwortet Jeedom Ihnen auf demselben Kanal wie dem, den Sie verwendet haben, um Sie zu benachrichtigen. Wenn es keinen findet, wird der auf dieser Registerkarte angegebene Standardbefehl verwendet : **Standardretouren**.
 
@@ -276,7 +276,7 @@ Hier sind die verschiedenen Optionen verfügbar :
 
 - **LDAP-Authentifizierung aktivieren** : Aktivieren Sie die Authentifizierung über ein AD (LDAP)).
 - **Host** : Server, der die AD hostet.
-- **Feld** : Domain Ihrer AD.
+- **Domain** : Domain Ihrer AD.
 - **Basis-DN** : DN Basis Ihrer AD.
 - **Benutzername** : Benutzername für Jeedom, um sich bei AD anzumelden.
 - **Passwort** : Passwort für Jeedom, um eine Verbindung zu AD herzustellen.
@@ -342,12 +342,12 @@ Einzahlung, die es ermöglicht, automatisch ein Backup von Jeedom auf einer Samb
 - **\ [Backup \] Freigabe** : Pfad zum Teilen (achten Sie darauf, auf der Freigabeebene anzuhalten).
 - **\ [Backup \] Pfad** : Pfad in der Freigabe (relativ zu setzen), muss dieser vorhanden sein.
 
-> **Hinweis**
+> **Notiz**
 >
 > Wenn der Pfad zu Ihrem Samba-Sicherungsordner lautet :
 > \\\\ 192.168.0.1 \\ Backups \\ Hausautomation \\ Jeedom Dann IP = 192.168.0.1, Sharing = //192.168.0.1 / Backups, Path = Home Automation / Jeedom
 
-> **Hinweis**
+> **Notiz**
 >
 > Wenn Sie die Samba-Freigabe wie oben beschrieben validieren, wird im Abschnitt Einstellungen → System → Sicherungen von Jeedom eine neue Form der Sicherung angezeigt. Durch Aktivieren sendet Jeedom es beim nächsten Backup automatisch. Ein Test ist durch manuelle Sicherung möglich.
 
@@ -396,7 +396,7 @@ Für jeden API-Plugin-Schlüssel sowie für HTTP-, JsonRPC- und TTS-APIs können
 - **Untauglich** : API-Schlüssel kann nicht verwendet werden,
 - **White IP** : Es ist nur eine Liste von IPs autorisiert (siehe Einstellungen → System → Konfiguration : Sicherheit),
 - **Localhost** : Es sind nur Anforderungen von dem System zulässig, auf dem Jeedom installiert ist,
-- **Aktiviert** : Ohne Einschränkungen kann jedes System mit Zugriff auf Ihr Jeedom auf diese API zugreifen.
+- **Ermöglicht** : Ohne Einschränkungen kann jedes System mit Zugriff auf Ihr Jeedom auf diese API zugreifen.
 
 Für jeden Plugin-API-Schlüssel können Sie Kernmethoden (allgemein) verbieten, um sie auf ihre einzige eingebettete Methode zu beschränken (achten Sie darauf, dass einige Plugins wie Mobile oder Jeelink unbedingt Kernmethoden benötigen)
 

@@ -111,7 +111,7 @@ Retorna um objeto com todo o seu equipamento e, para cada equipamento, todos os 
 
 Configurações Json :
 
--   int id
+-   id int
 
 jeeObject::byId
 ------------
@@ -120,7 +120,7 @@ Retorna o objeto especificado
 
 Configurações:
 
--   int id
+-   id int
 
 jeeObject::fullById
 ----------------
@@ -167,7 +167,7 @@ Retorna o resumo para o ID do objeto
 
 Configurações:
 
--   int id : Object ID
+-   id int : Object ID
 
 -   chave de cadeia : (opcional), chave do resumo desejado, se vazio, o Jeedom retorna o resumo de todas as chaves
 
@@ -186,7 +186,7 @@ Retorna um dispositivo e seus comandos, bem como seus estados (para comandos do 
 
 Configurações:
 
--   int id
+-   id int
 
 eqLogic::byId
 -------------
@@ -195,7 +195,7 @@ Retorna o equipamento especificado
 
 Configurações:
 
--   int id
+-   id int
 
 eqLogic::byType
 ---------------
@@ -213,7 +213,7 @@ Retorna todos os equipamentos pertencentes ao objeto especificado
 
 Configurações:
 
--   int object\_id
+-   int objeto\_id
 
 eqLogic::byTypeAndId
 --------------------
@@ -275,7 +275,7 @@ Retorna o comando especificado
 
 Configurações:
 
--   int id
+-   id int
 
 cmd::byEqLogicId
 ----------------
@@ -293,7 +293,7 @@ Execute o comando especificado
 
 Configurações:
 
--   int id : id de comando ou array de id se você deseja executar vários comandos de uma só vez
+-   id int : id de comando ou array de id se você deseja executar vários comandos de uma só vez
 
 -   \ [options \] Lista de opções de comando (depende do tipo e subtipo do comando)
 
@@ -304,7 +304,7 @@ Retorna as estatísticas do pedido (funciona apenas em informações e pedidos h
 
 Configurações:
 
--   int id
+-   id int
 
 -   string startTime : data de início do cálculo das estatísticas
 
@@ -317,7 +317,7 @@ Retorna a tendência no pedido (funciona apenas em informações e pedidos hist�
 
 Configurações:
 
--   int id
+-   id int
 
 -   string startTime : data de início do cálculo de tendência
 
@@ -330,7 +330,7 @@ Retorna o histórico de pedidos (funciona apenas em informações e pedidos hist
 
 Configurações:
 
--   int id
+-   id int
 
 -   string startTime : data de início do histórico
 
@@ -355,11 +355,11 @@ Configurações:
 
 -   tipo de string
 
--   string subType
+-   subtipo de string
 
 -   int eqLogic\_id
 
--   int isHistorized = 0
+-   int éHistórico = 0
 
 -   unidade de cordas = ''
 
@@ -369,11 +369,11 @@ Configurações:
 
 -   exibição de matriz
 
--   array html
+-   matriz html
 
 -   valor int = nulo
 
--   int isVisible = 1
+-   int éVisível = 1
 
 -   alerta de matriz
 
@@ -384,7 +384,7 @@ Permite que você envie um valor para um pedido
 
 Configurações:
 
--   int id
+-   id int
 
 -   valor da string : valeur
 
@@ -405,7 +405,7 @@ Retorna o cenário especificado
 
 Configurações:
 
--   int id
+-   id int
 
 scenario::export
 ----------------
@@ -414,7 +414,7 @@ Retorna a exportação do cenário, bem como o *nome humano* do script
 
 Configurações:
 
--   int id
+-   id int
 
 scenario::import
 ----------------
@@ -423,7 +423,7 @@ Permite importar um cenário.
 
 Configurações:
 
--   int id : ID do cenário no qual importar (vazio se a criação)
+-   id int : ID do cenário no qual importar (vazio se a criação)
 
 -   string humanName : *nome humano* do cenário (vazio se a criação)
 
@@ -436,7 +436,7 @@ Altera o estado do cenário especificado.
 
 Configurações:
 
--   int id
+-   id int
 
 -   estado da string: \ [executar, parar, ativar, desativar \]
 
@@ -511,7 +511,7 @@ Configurações:
 
 -   tipo de string : tipo de valor armazenado (para cenários, é cenário)
 
--   id linkId : -1 para o global (valor para os cenários padrão ou o ID do cenário)
+-   ID linkId : -1 para o global (valor para os cenários padrão ou o ID do cenário)
 
 -   chave de cadeia : nome do valor
 
@@ -525,7 +525,7 @@ Configurações:
 -   tipo de string : tipo de valor armazenado (para cenários
     é cenário)
 
--   id linkId : -1 para global (valor para cenários padrão,
+-   ID linkId : -1 para global (valor para cenários padrão,
     ou o ID do cenário)
 
 -   chave de cadeia : nome do valor
@@ -739,7 +739,7 @@ Força o DNS Jeedom a parar
 network::dnsRun
 ---------------
 
-API JSON timeline
+API de linha do tempo JSON
 ===============
 
 timeline::all

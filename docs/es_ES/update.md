@@ -16,7 +16,7 @@ Al abrir la página, si esta verificación tiene más de dos horas, Jeedom rehac
 También puedes usar el botón **Buscar actualizaciones** Para hacerlo manualmente.
 Si desea realizar una verificación manual, puede presionar el botón "Buscar actualizaciones".
 
-El botón **Salvar** se utilizará cuando cambie las opciones en la tabla a continuación, para especificar que no se actualicen ciertos complementos si es necesario.
+El botón **Para salvaguardar** se utilizará cuando cambie las opciones en la tabla a continuación, para especificar que no se actualicen ciertos complementos si es necesario.
 
 ## Actualiza el núcleo
 
@@ -84,7 +84,7 @@ Una vez conectado, este es el comando para realizar :
 Los posibles parámetros son :
 
 - **Moda** : `force`, para iniciar una actualización en modo forzado (ignora los errores).
-- **Versión** : Seguimiento del número de versión, para volver a aplicar los cambios de esta versión.
+- **versión** : Seguimiento del número de versión, para volver a aplicar los cambios de esta versión.
 
 Aquí hay un ejemplo de sintaxis para realizar una actualización forzada al volver a aplicar los cambios desde 4.0.04 :
 

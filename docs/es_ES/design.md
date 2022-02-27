@@ -28,7 +28,7 @@ En el menú (clic derecho), encontramos las siguientes acciones :
 - **Añadir imagen / cámara** : Le permite agregar una imagen o una transmisión desde una cámara.
 - **Agregar área** : Permite agregar una zona transparente en la que se puede hacer clic que podrá ejecutar una serie de acciones durante un clic (dependiendo o no del estado de otro comando)).
 - **Agregar resumen** : Agrega información de un objeto o resumen general.
-- **Monitor**
+- **Mostrar**
     - **Ninguna** : No muestra ninguna cuadrícula.
     - **10x10** : Muestra una cuadrícula de 10 por 10.
     - **15x15** : Muestra una cuadrícula de 15 por 15.
@@ -40,7 +40,7 @@ En el menú (clic derecho), encontramos las siguientes acciones :
 - **Crea un diseño** : Le permite agregar un nuevo diseño.
 - **Diseño duplicado** : Duplica el diseño actual.
 - **Configura el diseño** : Acceso a la configuración del diseño.
-- **Salvar** : Guarde el diseño (nota, también hay copias de seguridad automáticas durante ciertas acciones).
+- **Para salvaguardar** : Guarde el diseño (nota, también hay copias de seguridad automáticas durante ciertas acciones).
 
 > **Importante**
 >
@@ -60,7 +60,7 @@ Encontrado aquí :
     - **Imagen**
         - **Enviar a** : Le permite agregar una imagen de fondo al diseño.
         - **Eliminar imagen** : Eliminar imagen.
-- **Tamaños**
+- **Tallas**
     - **Tamaño (WxH)** : Le permite establecer el tamaño en píxeles de su diseño.
 
 ## Configuración general de elementos
@@ -149,7 +149,7 @@ Le permite elegir los comandos para graficar.
 - **Ocultar nombre** : Marque para ocultar el nombre del equipo.
 - **Color de fondo** : Le permite elegir un color de fondo personalizado, mostrar el equipo con un fondo transparente o usar el color predeterminado.
 - **Color del texto** : Le permite elegir un color de fondo personalizado o usar el color predeterminado.
-- **Redondeo** : Valor en píxeles del redondeo de los ángulos del mosaico del equipo.
+- **Redondeado** : Valor en píxeles del redondeo de los ángulos del mosaico del equipo.
 - **Frontera** : Definición CSS de un borde de mosaico de equipo. Ex : 1px negro sólido.
 - **Opacidad** : Opacidad del mosaico del equipo, entre 0 y 1. Atención : se debe definir un color de fondo.
 - **CSS personalizado** : Reglas CSS para aplicar en el equipo.
@@ -178,7 +178,7 @@ Muestra la ventana de configuración avanzada del equipo (ver documentación **R
 
 ### Configuraciones de pantalla específicas
 
-- **Fijar** : Define lo que desea mostrar, imagen fija o transmisión desde una cámara.
+- **Para mostrar** : Define lo que desea mostrar, imagen fija o transmisión desde una cámara.
 - **Imagen** : Enviar la imagen en cuestión (si ha elegido una imagen).
 - **Cámara** : Cámara para mostrar (si elige cámara).
 

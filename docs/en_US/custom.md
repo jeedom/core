@@ -1,7 +1,7 @@
 # Advanced customization
 **Settings → System → Advanced customization**
 
-Here you can manage functions **JavaScript** and rules **CSS** applied on desktop or mobile.
+Here you can manage functions **javascript** and rules **CSS** applied on desktop or mobile.
 
 > **Warning**
 >

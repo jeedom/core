@@ -1,5 +1,5 @@
 # FAQ
-**Configuración → Versión : Preguntas más frecuentes**
+**Configuración → Versión : Preguntas frecuentes**
 
 ### Jeedom requiere una suscripción ?
 No, Jeedom es totalmente utilizable sin necesidad de suscripción. Sin embargo, hay servicios ofrecidos para copias de seguridad o llamadas / SMS, pero que son realmente opcionales.
@@ -41,7 +41,7 @@ No hay una duración estándar, depende del sistema y del volumen de datos a res
 Están en la carpeta / var / www / html / backup
 
 ### ¿Podemos poner Jeedom en https? ?
-Si : O tienes una fuente de alimentación o más, en este caso
+Sí : O tienes una fuente de alimentación o más, en este caso
 solo usa el [DNS de Jeedom](https://jeedom.github.io/documentation/howto/es_ES/mise_en_place_dns_jeedom). Con un DNS y sabes cómo configurar un certificado válido, en este caso es una instalación estándar de un certificado.
 
 ### Cómo conectarse en SSH ?
@@ -59,7 +59,7 @@ En SSH hacer :
 `` `{.bash}
 sudo su -
 chmod -R 775 / var / www / html
-chown -R www-data:www-data / var / www / html
+chown -R www-datos:www-data / var / www / html
 `` ''
 
 ### Cómo actualizar Jeedom en SSH ?
@@ -67,9 +67,9 @@ En SSH hacer :
 
 `` `{.bash}
 sudo su -
-php /var/www/html/install/update.php
+php /var/www/html/instalar/actualizar.php
 chmod -R 775 / var / www / html
-chown -R www-data:www-data / var / www / html
+chown -R www-datos:www-data / var / www / html
 `` ''
 
 ### ¿Es compatible con Webapp Symbian? ?
@@ -106,7 +106,7 @@ echo &quot;CONCEDE TODOS LOS PRIVILEGIOS EN Jeedom.* TO &#39;jeedom&#39; @ &#39;
 cd / usr / share / nginx / www / jeedom
 sudo cp core / config / common.config.sample.php core / config / common.config.php
 sudo sed -i -e "s /#PASSWORD#/ $ {bdd_password} / g "core / config / common.config.php
-sudo chown www-data:www-data core / config / common.config.php
+sudo chown www-datos:www-data core / config / common.config.php
 `` ''
 
 ### Tengo \ {\ {… \} \} en todas partes
@@ -142,7 +142,7 @@ O consultar el log : /var/log/mysql/error.log
 
 ### Los botones de apagado / reinicio no funcionan
 En una instalación de bricolaje es normal. En SSH, debe realizar el comando visudo y al final del archivo debe agregar : www-data ALL = (ALL)
-NOPASSWD: TODAS.
+NOPASSWD: TODOS.
 
 `` `{.bash}
 servicio sudo apache2 reiniciar
@@ -188,7 +188,7 @@ rm -rf / root / tmp / core-master
 ### Tengo el error en backdrop_execution MYSQL_ATTR_INIT_COMMAND
 En la administración de Jeedom parte OS / DB, entonces en la consola del sistema es necesario hacer :
 `` ''
-si | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
+sí | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
 `` ''
 
 ### No puedo instalar las dependencias del complemento. Tengo un error del tipo : "E: dpkg ha sido descatalogado. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou "E: No se pudo obtener lock / var / lib / dpkg / lock"

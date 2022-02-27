@@ -15,7 +15,7 @@ O arquivamento é uma tarefa que começa à noite e compacta os dados recuperado
 
 > **Dica**
 >
-> Se você seguiu bem, deve ter alta precisão nas últimas 2 horas. No entanto, quando me conecto às 17h, tenho uma precisão nas últimas 17 horas. Por quê ? De fato, para evitar consumir recursos desnecessariamente, a tarefa de arquivamento ocorre apenas uma vez por dia, à noite.
+> Se você seguiu bem, deve ter alta precisão nas últimas 2 horas. No entanto, quando me conecto às 17h, tenho uma precisão nas últimas 17 horas. Por que ? De fato, para evitar consumir recursos desnecessariamente, a tarefa de arquivamento ocorre apenas uma vez por dia, à noite.
 
 > **Importante**
 >
@@ -39,7 +39,7 @@ Se você exibir um gráfico na página de histórico, terá acesso a várias op�
 
 - **Período** : O período de exibição, incluindo dados históricos entre essas duas datas. Por padrão, dependendo da configuração *Gráficos padrão de exibição Período* dentro *Configurações → Sistema → Configuração / Equipamento*.
 - **Grupo** : Oferece várias opções de agrupamento (soma por hora etc.).).
-- **Tipo de exibição** : Exibir em *Linha*, *Área*, ou *Fechado*. Opção salva no pedido e usada no Painel.
+- **Tipo de exibição** : Exibir em *Linha*, *Área*, Onde *Haste*. Opção salva no pedido e usada no Painel.
 - **Variação** : Exibe a diferença de valor do ponto anterior. Opção salva no pedido e usada no Painel.
 - **Escadaria** : Exibe a curva como uma escada ou uma exibição contínua. Opção salva no pedido e usada no Painel.
 - **Comparar** : Compare a curva entre diferentes períodos.
@@ -95,7 +95,7 @@ Você também tem acesso a um gerenciamento de fórmulas de cálculo que permite
 
 Na frente de cada dado que pode ser exibido, você encontrará dois ícones :
 
-- **Lixeira** : Permite excluir os dados gravados; ao clicar, o Jeedom pergunta se deseja excluir os dados antes de uma determinada data ou todos os dados.
+- **Cesto de lixo** : Permite excluir os dados gravados; ao clicar, o Jeedom pergunta se deseja excluir os dados antes de uma determinada data ou todos os dados.
 - **Arrow** : Permite a exportação CSV de dados históricos.
 
 ### Remoção de valor inconsistente

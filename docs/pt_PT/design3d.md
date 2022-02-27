@@ -20,7 +20,7 @@ Depois que seu modelo 3D for criado, ele deverá ser exportado no formato OBJ. S
 >
 > Os arquivos devem estar na raiz do zip e não em uma subpasta.
 
-> **ATENÇÃO**
+> **AVISO**
 >
 > Um modelo 3D é bastante imponente (isso pode representar várias centenas de Mo). Quanto maior, maior o tempo de renderização no Jeedom.
 
@@ -37,11 +37,11 @@ Você pode nessa tela :
 
 Clique no botão "enviar" no nível "Modelo 3D" e selecione seu arquivo zip
 
-> **ATENÇÃO**
+> **AVISO**
 >
 > Jeedom autoriza a importação de um arquivo de 150mo no máximo !
 
-> **ATENÇÃO**
+> **AVISO**
 >
 > Você deve ter um arquivo zip.
 
@@ -89,7 +89,7 @@ Para configurar um elemento no design 3D, clique duas vezes no elemento que voc�
 	- Abertura : o melhor é testar para que ele corresponda à sua porta / janela
 - Translation
 	- Ativar : ativa a tradução ao abrir (porta deslizante / janela))
-	- Significado : direção na qual a porta / janela deve se mover (você tem para cima / baixo / direita / esquerda)
+	- Sentidos : direção na qual a porta / janela deve se mover (você tem para cima / baixo / direita / esquerda)
 	- Repetir : por padrão, a porta / janela se move uma vez sua dimensão na direção especificada, mas você pode aumentar esse valor
 - Ocultar quando a porta / janela está aberta
 	- Ativar : Oculta o elemento se a Porta / Janela estiver aberta

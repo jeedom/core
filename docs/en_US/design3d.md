@@ -89,7 +89,7 @@ To configure an element on the 3D design, double click on the element you want t
 	- Opening : the best is to test so that it matches your Door / Window
 - Translation
 	- Activate : activates translation when opening (sliding door / window type))
-	- Meaning : direction in which the Door / Window should move (you have up / down / right / left)
+	- Senses : direction in which the Door / Window should move (you have up / down / right / left)
 	- Repeat : by default the Door / Window moves once its dimension in the given direction but you can increase this value
 - Hide when the Door / Window is open
 	- Activate : Hides the element if the Door / Window is open

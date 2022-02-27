@@ -4,7 +4,7 @@
 Auf dieser Seite können Sie die Anzeige Ihrer gesamten Hausautomation auf sehr feine Weise konfigurieren.
 Es braucht Zeit, aber seine einzige Grenze ist Ihre Vorstellungskraft.
 
-> **Trinkgeld**
+> **Tipp**
 >
 > Dank des Untermenüs ist es möglich, direkt zu einem Entwurf zu gelangen.
 
@@ -14,7 +14,7 @@ Es braucht Zeit, aber seine einzige Grenze ist Ihre Vorstellungskraft.
 
 Im Menü (Rechtsklick) finden wir folgende Aktionen :
 
-- **Designs** : Zeigt die Liste Ihrer Designs an und ermöglicht Ihnen den Zugriff darauf.
+- **Entwürfe** : Zeigt die Liste Ihrer Designs an und ermöglicht Ihnen den Zugriff darauf.
 - **Bearbeitung** : Wechseln Sie in den Bearbeitungsmodus.
 - **Vollbild** : Ermöglicht die Verwendung der gesamten Webseite, wodurch das Jeedom-Menü von oben entfernt wird.
 - **Grafik hinzufügen** : Fügen Sie eine Grafik hinzu.
@@ -40,7 +40,7 @@ Im Menü (Rechtsklick) finden wir folgende Aktionen :
 - **Erstellen Sie ein Design** : Ermöglicht das Hinzufügen eines neuen Designs.
 - **Doppeltes Design** : Dupliziert das aktuelle Design.
 - **Konfigurieren Sie das Design** : Zugriff auf die Konfiguration des Designs.
-- **Sparen** : Speichern Sie das Design (beachten Sie, dass bei bestimmten Aktionen auch automatische Sicherungen durchgeführt werden).
+- **Zu schützen** : Speichern Sie das Design (beachten Sie, dass bei bestimmten Aktionen auch automatische Sicherungen durchgeführt werden).
 
 > **Wichtig**
 >
@@ -51,29 +51,29 @@ Im Menü (Rechtsklick) finden wir folgende Aktionen :
 Hier gefunden :
 
 - **General**
-    - **Familienname, Nachname** : Der Name Ihres Designs.
+    - **Name** : Der Name Ihres Designs.
     - **Position** : Die Position des Designs im Menü. Ermöglicht die Bestellung der Designs.
     - **Transparenter Hintergrund** : Macht den Hintergrund transparent. Achtung Wenn das Kontrollkästchen aktiviert ist, wird die Hintergrundfarbe nicht verwendet.
     - **Hintergrundfarbe** : Design Hintergrundfarbe.
     - **Zugangscode** : Zugriffscode für Ihr Design (falls leer, ist kein Code erforderlich).
     - **Symbol** : Ein Symbol dafür (erscheint im Designauswahlmenü).
     - **Bild**
-        - **Senden** : Ermöglicht das Hinzufügen eines Hintergrundbilds zum Design.
+        - **Schicken** : Ermöglicht das Hinzufügen eines Hintergrundbilds zum Design.
         - **Bild löschen** : Bild löschen.
 - **Größen**
     - **Größe (BxH)** : Ermöglicht das Festlegen der Größe Ihres Designs in Pixel.
 
 ## Allgemeine Konfiguration der Elemente
 
-> **Hinweis**
+> **Notiz**
 >
 > Je nach Art des Elements können sich die Optionen ändern.
 
 ### Allgemeine Anzeigeeinstellungen
 
 - **Tiefe** : Ermöglicht die Auswahl der Tiefenstufe
-- **Position X (%)** : Horizontale Koordinate des Elements.
-- **Position Y (%)** : Vertikale Koordinate des Elements.
+- **X-Position (%)** : Horizontale Koordinate des Elements.
+- **Y-Position (%)** : Vertikale Koordinate des Elements.
 - **Breite (px)** : Elementbreite in Pixel.
 - **Höhe (px)** : Elementhöhe in Pixel.
 
@@ -131,7 +131,7 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 
 ### Spezifische Anzeigeeinstellungen
 
-- **Familienname, Nachname** : Name des Links (angezeigter Text).
+- **Name** : Name des Links (angezeigter Text).
 - **Verknüpfung** : Link zum betreffenden Design oder zur betreffenden Ansicht.
 - **Hintergrundfarbe** : Mit dieser Option können Sie die Hintergrundfarbe ändern oder transparent machen. Vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu ändern.
 - **Textfarbe** : Mit dieser Option können Sie die Farbe von Symbolen und Texten ändern (achten Sie darauf, die Standardeinstellung auf Nein zu setzen).
@@ -149,7 +149,7 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 - **Name verstecken** : Überprüfen Sie, ob der Name des Geräts ausgeblendet ist.
 - **Hintergrundfarbe** : Ermöglicht die Auswahl einer benutzerdefinierten Hintergrundfarbe oder die Anzeige des Geräts mit transparentem Hintergrund oder die Verwendung der Standardfarbe.
 - **Textfarbe** : Hier können Sie eine benutzerdefinierte Hintergrundfarbe auswählen oder die Standardfarbe verwenden.
-- **Rundung** : Wert in Pixel der Rundung der Winkel der Gerätekachel.
+- **Gerundet** : Wert in Pixel der Rundung der Winkel der Gerätekachel.
 - **Rand** : CSS-Definition einer Gerätekachelgrenze. Ex : 1px festes Schwarz.
 - **Opazität** : Deckkraft der Gerätekachel zwischen 0 und 1. Warnung : Es muss eine Hintergrundfarbe definiert werden.
 - **Benutzerdefiniertes CSS** : CSS-Regeln für das Gerät.
@@ -178,7 +178,7 @@ Zeigt das Fenster zur erweiterten Gerätekonfiguration an (siehe Dokumentation *
 
 ### Spezifische Anzeigeeinstellungen
 
-- **Aufstecken** : Definiert, was Sie anzeigen, Standbilder erstellen oder von einer Kamera streamen möchten.
+- **Zum Anzeigen** : Definiert, was Sie anzeigen, Standbilder erstellen oder von einer Kamera streamen möchten.
 - **Bild** : Senden Sie das betreffende Bild (wenn Sie ein Bild ausgewählt haben).
 - **Kamera** : Zu zeigende Kamera (wenn Sie Kamera gewählt haben).
 

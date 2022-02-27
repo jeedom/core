@@ -10,7 +10,7 @@ Embora muitos, a maioria dos parâmetros esteja configurada por padrão.
 Nesta guia, encontramos informações gerais sobre o Jeedom :
 
 - **Nome do seu Jeedom** : Identifique seu Jeedom, especialmente no mercado. Pode ser reutilizado em cenários ou para identificar um backup.
-- **Língua** : Idioma usado no seu Jeedom.
+- **Linguagem** : Idioma usado no seu Jeedom.
 - **Sistema** : Tipo de hardware no qual o sistema em que o Jeedom é executado está instalado.
 - **Data e hora** : Escolha o seu fuso horário. Você pode clicar em **Sincronização Time Force** para restaurar a hora errada exibida no canto superior direito.
 - **Servidor de tempo opcional** : Indica qual servidor de horário deve ser usado se você clicar em **Sincronização Time Force** (ser reservado para especialistas).
@@ -139,12 +139,12 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 
 - **Adicione uma mensagem a cada tempo limite** : Adicione uma mensagem no centro de mensagens se um dispositivo cair **tempo esgotado**.
 - **Ordem de tempo limite** : Comando de tipo **mensagem** para ser usado se um equipamento estiver em **tempo esgotado**.
-- **Adicione uma mensagem a cada bateria em Aviso** : Adicione uma mensagem no centro de mensagens se um dispositivo estiver com o nível de bateria **Atenção**.
-- **Comando da bateria em Aviso** : Comando de tipo **mensagem** a ser usado se o equipamento estiver com a bateria **Atenção**.
+- **Adicione uma mensagem a cada bateria em Aviso** : Adicione uma mensagem no centro de mensagens se um dispositivo estiver com o nível de bateria **aviso**.
+- **Comando da bateria em Aviso** : Comando de tipo **mensagem** a ser usado se o equipamento estiver com a bateria **aviso**.
 - **Adicione uma mensagem a cada bateria em perigo** : Adicione uma mensagem no centro de mensagens se um dispositivo estiver com o nível de bateria **perigo**.
 - **Comando na bateria em perigo** : Comando de tipo **mensagem** a ser usado se o equipamento estiver com a bateria **perigo**.
-- **Adicione uma mensagem a cada aviso** : Adicione uma mensagem no centro de mensagens se um pedido entrar em alerta **Atenção**.
-- **Comando no aviso** : Comando de tipo **mensagem** usar se um pedido entrar em alerta **Atenção**.
+- **Adicione uma mensagem a cada aviso** : Adicione uma mensagem no centro de mensagens se um pedido entrar em alerta **aviso**.
+- **Comando no aviso** : Comando de tipo **mensagem** usar se um pedido entrar em alerta **aviso**.
 - **Adicione uma mensagem a cada Perigo** : Adicione uma mensagem no centro de mensagens se um pedido entrar em alerta **perigo**.
 - **Comando sobre Perigo** : Comando de tipo **mensagem** usar se um pedido entrar em alerta **perigo**.
 
@@ -181,7 +181,7 @@ Muitos pedidos podem ser registrados. Assim, em Análise → Histórico, você o
 - **Cálculo do limiar acima da tendência** : A mesma coisa para a ascensão.
 - **Gráficos padrão de exibição Período** : Período usado por padrão quando você deseja exibir o histórico de um pedido. Quanto menor o período, mais rápido o Jeedom exibirá o gráfico solicitado.
 
-> **Nota**
+> **Observação**
 >
 > O primeiro parâmetro **Mostrar estatísticas sobre os widgets** é possível, mas desativado por padrão, pois aumenta significativamente o tempo de exibição do painel. Se você ativar esta opção, por padrão, o Jeedom confiará nos dados das últimas 24 horas para calcular essas estatísticas.
 > O método de cálculo de tendência é baseado no cálculo de mínimos quadrados (consulte [aqui](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) para o detalhe).
@@ -219,7 +219,7 @@ Essa guia permite definir parâmetros globais relativos às interações que voc
 
 > **Dica**
 >
-> Para ativar o log de interação, vá para a guia Configurações → Sistema → Configuração : Logs e verifique **Depurar** na lista inferior. Atenção : os logs serão muito detalhados !
+> Para ativar o log de interação, vá para a guia Configurações → Sistema → Configuração : Logs e verifique **Depurar** na lista inferior. Aviso : os logs serão muito detalhados !
 
 ### Geral
 
@@ -250,7 +250,7 @@ Aqui você tem três parâmetros :
     - *Vocês* : Notifique-me se a temperatura da sala exceder 25 ° C ?
     - *Jeedom* : OK (*Assim que a temperatura da sala exceder 25 ° C, Jeedom dirá, uma vez*)
 
-> **Nota**
+> **Observação**
 >
 > Por padrão, o Jeedom responderá pelo mesmo canal que você usou para pedir para notificá-lo. Se não encontrar um, ele usará o comando padrão especificado nesta guia : **Ordem de devolução padrão**.
 
@@ -276,7 +276,7 @@ Aqui estão as diferentes opções disponíveis :
 
 - **Habilitar a autenticação LDAP** : habilitar a autenticação por meio de um AD (LDAP).
 - **Anfitrião** : servidor que hospeda o AD.
-- **Campo** : domínio do seu anúncio.
+- **Domínio** : domínio do seu anúncio.
 - **DN base** : Base DN do seu AD.
 - **Nome de Usuário** : nome de usuário para o Jeedom para entrar no AD.
 - **Senha** : senha para o Jeedom se conectar ao AD.
@@ -323,7 +323,7 @@ Depósito usado para conectar o Jeedom ao Github.
 
 #### Market
 
-Depósito usado para conectar o Jeedom ao mercado, é altamente recomendável usar esse depósito. Atenção : qualquer solicitação de suporte poderá ser recusada se você usar um depósito diferente deste.
+Depósito usado para conectar o Jeedom ao mercado, é altamente recomendável usar esse depósito. Aviso : qualquer solicitação de suporte poderá ser recusada se você usar um depósito diferente deste.
 
 - **Endereço** : Endereço du Mercado.(https://www.Jeedom.com/market).
 - **Nome de Usuário** : Seu nome de usuário no mercado.
@@ -342,12 +342,12 @@ Depósito que permite enviar automaticamente um backup do Jeedom em um compartil
 - **\ [Backup \] Compartilhamento** : Caminho para o compartilhamento (tenha cuidado para parar no nível de compartilhamento).
 - **Caminho \ [Backup \]** : Caminho no compartilhamento (para colocar em relativo), isso deve existir.
 
-> **Nota**
+> **Observação**
 >
 > Se o caminho para a pasta de backup do samba for :
 > \\\\ 192.168.0.1 \\ Backups \\ Domótica \\ Jeedom Then IP = 192.168.0.1, Compartilhando = //192.168.0.1 / Backups, Caminho = Domótica / Jeedom
 
-> **Nota**
+> **Observação**
 >
 > Ao validar o compartilhamento Samba, como descrito acima, uma nova forma de backup aparece na seção Configurações → Sistema → Backups do Jeedom. Ao ativá-lo, o Jeedom o enviará automaticamente durante o próximo backup. Um teste é possível executando um backup manual.
 
@@ -396,7 +396,7 @@ Para cada chave de plug-in de API, bem como para APIs HTTP, JsonRPC e TTS, é po
 - **Desativado** : A chave da API não pode ser usada,
 - **Branco IP** : apenas uma lista de IPs é autorizada (consulte Configurações → Sistema → Configuração : Segurança),
 - **Localhost** : somente solicitações do sistema no qual o Jeedom está instalado são permitidas,
-- **Ativado** : sem restrições, qualquer sistema com acesso ao seu Jeedom poderá acessar esta API.
+- **Habilitado** : sem restrições, qualquer sistema com acesso ao seu Jeedom poderá acessar esta API.
 
 Para cada chave de API de plugin você pode proibi-los de métodos centrais (geral) para limitá-los ao seu único método embutido (tenha cuidado com alguns plugins como mobile ou jeelink absolutamente precisam de métodos centrais)
 

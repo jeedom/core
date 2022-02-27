@@ -44,7 +44,7 @@ Widget for action / cursor control with button "**+**" and a button "**-**" allo
 
 ##### Optional parameter (s))
 
-- **step** *(pas)* : Allows you to set the value change step *(0.5 by default)*.
+- **steps** *(pas)* : Allows you to set the value change step *(0.5 by default)*.
 
 ### Rain
 
@@ -97,7 +97,7 @@ To do so, it is necessary to take into account 2 prerequisites :
 `` ''
 
 >**Trick**      
->As long as the standardized name remains readable, it is possible to adapt the naming, for example *open_volet* or *shutter_close*, *step_2* and *stop_2*, etc.
+>As long as the standardized name remains readable, it is possible to adapt the naming, for example *open_volet* Where *shutter_close*, *walk_2* and *stop_2*, etc..
 
 ## Custom widgets
 
@@ -145,10 +145,10 @@ Once on the configuration page of a widget, a context menu is accessible by `` R
 
 Once on the page **Tools → Widgets** you have to click on the button "**Add**" and give a name to your new widget.
 
-Then :
-- You choose whether it applies to an order of type **Action** or **Info**.
+Next :
+- You choose whether it applies to an order of type **Action** Where **Information**.
 - Depending on the previous choice, you will have to **choose the subtype** of the order.
-- Finally **the template** among those which will be available according to the previous choices.
+- At last **the template** among those which will be available according to the previous choices.
 - Once the template has been chosen, Jeedom displays the configuration options for it below.
 
 ### The templates
@@ -161,14 +161,14 @@ Depending on the type of widget, you can generally customize the icons, put the 
 
 There are two types of template :
 
-- The "**simple**" : as an icon / image for the "**We**" and an icon / image for the "**Off**".
-- The "**multistates**" : This allows you to define, for example, an image if the command has the value "**XX**" and another so greater than "**YY**" or if less than "**ZZ**". Also works for text values, an image if the value is "**foo**", another if "**plop**" And so on...
+- The "**simple**" : as an icon / image for the "**WE**" and an icon / image for the "**OFF**".
+- The "**multistate**" : This allows you to define, for example, an image if the command has the value "**XX**" and another so greater than "**YY**" or if less than "**ZZ**". Also works for text values, an image if the value is "**toto**", another if "**plop**" And so on...
 
 #### Remplacement
 
-This is called a simple template, here you just have to say that the "**We**" matches such icon / image *(using the choose button)*, the "**Off**" to such other icon / image, etc...      
+This is called a simple template, here you just have to say that the "**WE**" matches such icon / image *(using the choose button)*, the "**OFF**" to such other icon / image, etc...      
 
-The box **Time widget**, if available, displays the duration since the last change of state under the widget.
+The box **Time-widget**, if available, displays the duration since the last change of state under the widget.
 
 For templates using images, you can configure the width of the widget in pixels depending on the support (**Desktop width** & **Movable width**). Different images can also be selected according to the active theme of Jeedom *(light or dark)*.
 
@@ -178,9 +178,9 @@ For templates using images, you can configure the width of the widget in pixels 
 
 #### Test
 
-This is called multistate templates *(several states)*. Instead of putting an image for the "**We** and / or for the "**Off** as in the previous case, you will assign an icon according to the validation of a condition *(test)*. If this is true then the widget will display the icon / image in question.
+This is called multistate templates *(several states)*. Instead of putting an image for the "**WE** and / or for the "**OFF** as in the previous case, you will assign an icon according to the validation of a condition *(test)*. If this is true then the widget will display the icon / image in question.
 
-As before, different images can be selected depending on the theme active on Jeedom and the box **Time widget** displays the duration since the last change of state.
+As before, different images can be selected depending on the theme active on Jeedom and the box **Time-widget** displays the duration since the last change of state.
 
 The tests are in the form : ``#value# == 1`, `#value#`will be automatically replaced by the current value of the command. You can also do for example :
 
@@ -188,13 +188,13 @@ The tests are in the form : ``#value# == 1`, `#value#`will be automatically repl
 - ``#value# >= 1 && #value# <= 5``
 - ``#value# == 'toto'``
 
->**NOTE**     
+>**Note**     
 >It is essential to show the apostrophes (**'**) around the text to compare if the value is text *(info / other)*.
 
->**NOTE**     
+>**Note**     
 >For advanced users, it is also possible to use javascript functions such as `#value#.match ("^ plop") `, here we test if the text starts with` plop`.
 
->**NOTE**     
+>**Note**     
 >It is possible to display the value of the command in the widget by specifying `#value#`in the HTML code of the test. To display the unit add `#unite#``.
 
 ## Code Widget

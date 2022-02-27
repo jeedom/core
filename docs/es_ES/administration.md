@@ -42,7 +42,7 @@ En esta pestaña encontrará los parámetros de personalización de la pantalla.
 - **No vertical** : Restringe la altura de los mosaicos cada x píxeles.
 - **Margen** : Espacio vertical y horizontal entre mosaicos, en píxeles.
 - **Centrado vertical de baldosas** : Centra verticalmente el contenido de los mosaicos.
-- **Iconos coloridos de widgets** : Colorear iconos de widgets según su estado. Modificable por escenario, *setColoredIcon* ('Colorear icono').
+- **Iconos coloridos de widgets** : Colorear iconos de widgets según su estado. Modificable por escenario, *conjuntoColoredIcon* ('Colorear icono').
 - **Categorías coloreadas** : Coloración del título de los mosaicos según la categoría.
 
 ### Imágenes de fondo
@@ -65,7 +65,7 @@ En esta pestaña encontrará los parámetros de personalización de la pantalla.
 
 - **Activar** : Active el uso de las siguientes opciones.
 - **Transparencia** : Muestra mosaicos del panel de control y algunos contenidos con transparencia. 1 : totalmente opaco, 0 : totalmente transparente.
-- **Redondo** : Muestra elementos de la interfaz con ángulos redondeados. 0 : sin redondeo, 1 : redondeo máximo.
+- **Ronda** : Muestra elementos de la interfaz con ángulos redondeados. 0 : sin redondeo, 1 : redondeo máximo.
 - **Deshabilitar sombras** : Deshabilita las sombras de los mosaicos en el tablero, los menús y ciertos elementos de la interfaz.
 
 
@@ -98,7 +98,7 @@ Es absolutamente necesario configurar correctamente esta parte importante de Jee
     - Marque la casilla habilitar proxy.
     - **Dirección proxy** : Ingrese la dirección del proxy,
     - **Puerto proxy** : Ingrese el puerto proxy,
-    - **Iniciar sesión** : Ingrese el inicio de sesión proxy,
+    - **Acceso** : Ingrese el inicio de sesión proxy,
     - **Contraseña** : Ingrese la contraseña.
 
 > **Propina**
@@ -114,7 +114,7 @@ Es absolutamente necesario configurar correctamente esta parte importante de Jee
 - **Mercado proxy** : permite el acceso remoto a su Jeedom sin la necesidad de un DNS, una IP fija o abrir los puertos de su caja de Internet.
     - **Usando Jeedom DNS** : activa Jeedom DNS (tenga en cuenta que esto requiere al menos un paquete de servicio)).
     - **Estado de DNS** : Estado HTTP HTTP.
-    - **Administración** : permite detener y reiniciar el servicio DNS de Jeedom.
+    - **Gestión** : permite detener y reiniciar el servicio DNS de Jeedom.
 
 > **Importante**
 >
@@ -248,7 +248,7 @@ Aquí tienes tres parámetros :
         - *Jeedom* : Temperatura 23.6 ° C, temperatura 27.2 ° C
 -   Interacciones de tipo **Avísame** permita pedirle a Jeedom que le avise si un pedido excede / cae o vale un cierto valor.
     - *Vosotras* : Notificarme si la temperatura de la sala supera los 25 ° C ?
-    - *Jeedom* : Bueno (*Tan pronto como la temperatura de la sala supere los 25 ° C, Jeedom le dirá, una vez*)
+    - *Jeedom* : OK (*Tan pronto como la temperatura de la sala supere los 25 ° C, Jeedom le dirá, una vez*)
 
 > **Nota**
 >
@@ -276,7 +276,7 @@ Aquí están las diferentes opciones disponibles :
 
 - **Activar la autenticación LDAP** : habilitar la autenticación a través de un AD (LDAP).
 - **Host** : servidor que aloja el AD.
-- **Campo** : dominio de su AD.
+- **Dominio** : dominio de su AD.
 - **DN base** : DN base de su AD.
 - **Nombre de usuario** : nombre de usuario para que Jeedom inicie sesión en AD.
 - **Contraseña** : contraseña para que Jeedom se conecte a AD.
@@ -395,8 +395,8 @@ Para cada clave de complemento API, así como para las API HTTP, JsonRPC y TTS, 
 
 - **Discapacitado** : La clave API no se puede usar,
 - **IP en blanco** : solo se autoriza una lista de IP (consulte Configuración → Sistema → Configuración : Seguridad),
-- **Localhost** : solo se permiten solicitudes del sistema en el que está instalado Jeedom,
-- **Habilitado** : sin restricciones, cualquier sistema con acceso a su Jeedom podrá acceder a esta API.
+- **Servidor local** : solo se permiten solicitudes del sistema en el que está instalado Jeedom,
+- **Activado** : sin restricciones, cualquier sistema con acceso a su Jeedom podrá acceder a esta API.
 
 Para cada clave de API de complemento, puede prohibirlos de los métodos principales (general) para limitarlos a su único método integrado (tenga cuidado con algunos complementos como mobile o jeelink absolutamente necesitan métodos principales)
 

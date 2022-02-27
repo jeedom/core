@@ -26,7 +26,7 @@ Here you have three buttons :
 
 From a browser, go to the [Market](https://market.jeedom.com).
 Sign into your account.
-Click on a plugin, then choose *Install stable* or *Install beta* (if your Market account allows it).
+Click on a plugin, then choose *Install stable* Where *Install beta* (if your Market account allows it).
 
 If your Market account is correctly configured on your Jeedom (Configuration → Updates / Market → Market tab), you can click on *Synchronize Market* or wait for it to settle down on its own.
 
@@ -42,7 +42,7 @@ At the top of the window you have filters :
 - **Free / Pay** : displays only free or paid.
 - **Official / Recommended** : displays only official or recommended plugins.
 - **Category drop-down menu** : displays only certain categories of plugins.
-- **Search** : allows you to search for a plugin (in the name or description of it).
+- **To research** : allows you to search for a plugin (in the name or description of it).
 - **Username** : displays the user name used to connect to the Market as well as the connection status.
 
 > **Tip**
@@ -98,7 +98,7 @@ By clicking on the icon of a plugin, you open its configuration page.
 - **Author** : The author of the plugin, link to the market and the plugins of this author.
 - **Licence** : Indicates the license of the plugin which will generally be AGPL.
 
-- **Action** : Allows you to enable or disable the plugin. The button **To open** Allows you to go directly to the plugin page.
+- **Action** : Allows you to enable or disable the plugin. The button **Open** Allows you to go directly to the plugin page.
 - **Version** : The version of the plugin installed.
 - **Prerequisites** : Indicates the minimum Jeedom version required for the plugin.
 
@@ -107,21 +107,21 @@ By clicking on the icon of a plugin, you open its configuration page.
 
 - The level of logs specific to the plugin (we find this same possibility in Administration → Configuration on the logs tab, at the bottom of the page).
 - View plugin logs.
-- Heartbeat : Every 5 mins, Jeedom checks if at least one plugin device has communicated in the last X minutes (if you want to deactivate the functionality, just put 0).
+- Heart beat : Every 5 mins, Jeedom checks if at least one plugin device has communicated in the last X minutes (if you want to deactivate the functionality, just put 0).
 - Restart demon : If the hertbeat goes wrong then Jeedom will restart the daemon.
 
 If the plugin has dependencies and / or a daemon, these additional areas are displayed below the areas mentioned above.
 
 ### Dependencies :
 
-- **Last name** : Generally will be local.
+- **Name** : Generally will be local.
 - **Status** : Dependency status, OK or NOK.
 - **Installation** : Allows to install or reinstall dependencies (if you do not do it manually and they are NOK, Jeedom will take care of itself after a while).
 - **Last installation** : Date of last dependency installation.
 
 ### Devil :
 
-- **Last name** : Generally will be local.
+- **Name** : Generally will be local.
 - **Status** : Daemon status, OK or NOK.
 - **Configuration** : OK if all the criteria for the demon to run are met, or gives the cause of the blocking.
 - **(To restart** : Allows you to launch or restart the demon.

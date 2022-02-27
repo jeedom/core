@@ -59,24 +59,24 @@ The engine will display in the tables below :
 
 ## By Word
 
-Enter a character string in the search field. Validate with *enter* or with the button *Search*.
+Enter a character string in the search field. Validate with *enter* or with the button *To research*.
 
 The engine will display in the tables below :
 
 - The **Scenarios** using this string.
 	Search in expressions, comments, code blocks.
 - The **interactions** using this string.
-	Search in fields *Request*.
+	Search in fields *Demand*.
 - The **equipment** using this string.
 	Search in fields *name*, *logicalId*, *eqType*, *How? 'Or' What*, *tags*.
 - The **orders** using this string.
 	Search in fields *name*, *logicalId*, *eqType*, *generic_type*, .
-- The **notes** using this string.
+- The **grades** using this string.
 	Notes text search.
 
 ## By ID
 
-Enter a number corresponding to a searched Id in the search field. Validate with *enter* or with the button *Search*.
+Enter a number corresponding to a searched Id in the search field. Validate with *enter* or with the button *To research*.
 
 The engine will display in the tables below :
 
@@ -97,7 +97,7 @@ For each type of result, it allows actions:
 - **interactions** : Open the interaction configuration page.
 - **equipment** : Open the equipment configuration page.
 - **orders** : Open the order configuration.
-- **notes** : Open Note.
+- **grades** : Open Note.
 
 Each of these options opens a different tab in your browser so as not to lose the current search.
 

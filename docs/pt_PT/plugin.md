@@ -20,13 +20,13 @@ Aqui você tem três botões :
 
 - **Sincronizar mercado** : Se você instalar um plugin de um navegador da web em sua conta do Market (além do Jeedom), você pode forçar uma sincronização para instalá-lo.
 - **Mercado** : Abra o Jeedom Market, para selecionar um plugin e instalá-lo em seu Jeedom.
-- **Plugins** : Você pode instalar um plugin aqui a partir de uma fonte Github, Samba, ...
+- **Plug-ins** : Você pode instalar um plugin aqui a partir de uma fonte Github, Samba, ...
 
 ### Sincronizar mercado
 
 Em um navegador, vá para o [Mercado](https://market.jeedom.com).
 Faça login em sua conta.
-Clique em um plug-in e escolha *Instale estável* ou *Instalar beta* (se sua conta do Market permitir).
+Clique em um plug-in e escolha *Instale estável* Onde *Instalar beta* (se sua conta do Market permitir).
 
 Se sua conta do Market estiver configurada corretamente em seu Jeedom (Configuração → Atualizações / Market → guia Market), você pode clicar em *Sincronizar mercado* ou espere que ele se acalme por conta própria.
 
@@ -42,7 +42,7 @@ No topo da janela você tem filtros :
 - **Gratuito / Pago** : exibe apenas gratuito ou pago.
 - **Oficial / Recomendado** : exibe apenas plugins oficiais ou recomendados.
 - **Menu suspenso Categoria** : exibe apenas determinadas categorias de plugins.
-- **Pesquisa** : permite procurar um plugin (no nome ou na descrição dele)).
+- **Pesquisar** : permite procurar um plugin (no nome ou na descrição dele)).
 - **Nome de Usuário** : exibe o nome de usuário usado para conectar-se ao Market, bem como o status da conexão.
 
 > **Dica**
@@ -56,7 +56,7 @@ Depois de encontrar o plug-in desejado, basta clicar nele para abrir o arquivo. 
     - **Instale estável** : permite instalar o plugin em sua versão estável.
     - **Instalar beta** : permite instalar o plugin em sua versão beta (apenas para betatesters).
     - **Instalar pro** : permite instalar a versão pro (muito pouco usado).
-    - **Retirar** : se o plug-in estiver instalado no momento, esse botão permite removê-lo.
+    - **Remover** : se o plug-in estiver instalado no momento, esse botão permite removê-lo.
 
 Abaixo, você encontrará a descrição do plug-in, a compatibilidade (se o Jeedom detectar uma incompatibilidade, ele o notificará), as opiniões sobre o plug-in (você pode anotá-lo aqui) e informações adicionais (o autor, a pessoa que fez a atualização mais recente, um link para o documento, o número de downloads). À direita, você encontrará um botão "Changelog" que permite ter todo o histórico de modificações, um botão "Documentação" que se refere à documentação do plugin. Então você tem o idioma disponível e as várias informações na data da última versão estável.
 
@@ -87,9 +87,9 @@ Ao clicar no ícone de um plugin, você abre sua página de configuração.
 ### No canto superior direito, alguns botões :
 
 - **Documentação** : Permite acesso direto à página de documentação do plug-in.
-- **Changelog** : Vamos ver o log de alterações do plugin, se existir.
+- **Registro de alterações** : Vamos ver o log de alterações do plugin, se existir.
 - **Detalhes** : Permite encontrar a página do plug-in no mercado.
-- **Retirar** : Remova o plugin do seu Jeedom. Observe que isso também remove permanentemente todos os equipamentos deste plugin.
+- **Remover** : Remova o plugin do seu Jeedom. Observe que isso também remove permanentemente todos os equipamentos deste plugin.
 
 ### Abaixo à esquerda, há uma área **Estado** com :
 
@@ -114,14 +114,14 @@ Se o plug-in tiver dependências e / ou um daemon, essas áreas adicionais serã
 
 ### Dependências :
 
-- **Último nome** : Geralmente será local.
+- **Nome** : Geralmente será local.
 - **Status** : Status de dependência, OK ou NOK.
 - **Instalação** : Permite instalar ou reinstalar dependências (se você não fizer isso manualmente e elas estiverem NOK, o Jeedom cuidará de si mesmo depois de um tempo).
 - **última Instalação** : Data da última instalação da dependência.
 
 ### Demônio :
 
-- **Último nome** : Geralmente será local.
+- **Nome** : Geralmente será local.
 - **Status** : Status do daemon, OK ou NOK.
 - **Configuração** : OK, se todos os critérios para o demônio funcionar forem atendidos ou fornecer a causa do bloqueio.
 - **(Reiniciar** : Permite iniciar ou reiniciar o demônio.

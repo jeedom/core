@@ -32,7 +32,7 @@ La parte *Edición* le permite cambiar los parámetros de estos elementos.
 
 - En el juego *Filtrado*, Seleccione **Equipo**.
 - Haga clic en el botón **+** para agregar un filtro.
-- En este filtro, seleccione la columna *object_id*, y en valor la identificación del objeto en cuestión (visible desde Herramientas / Objetos, Descripción general).
+- En este filtro, seleccione la columna *id_objeto*, y en valor la identificación del objeto en cuestión (visible desde Herramientas / Objetos, Descripción general).
 - Haga clic en el botón *Prueba* para mostrar los escenarios de este grupo.
 - En el juego *Edición*, seleccionar columna *es visible*, luego ingrese el valor 0.
 - Haga clic en **Ejecutar** arriba a la derecha.

@@ -12,11 +12,11 @@ Isso é dividido em várias partes :
 
 - **Perfil**
     - **Conecte-se** : Seu login no Market, não pode ser alterado.
-    - **Último nome** : Seu nome (essas informações são úteis apenas para tornar os e-mails mais agradáveis).
+    - **Nome** : Seu nome (essas informações são úteis apenas para tornar os e-mails mais agradáveis).
     - **Primeiro nome** : Seu primeiro nome (essas informações são úteis apenas para tornar os e-mails mais agradáveis).
     - **Nome de usuário no fórum** : Seu nome de usuário no fórum.
-    - **O email** : Seu email.
-    - **Língua** : Seu idioma.
+    - **E-mail** : Seu email.
+    - **Linguagem** : Seu idioma.
     - **Senha e Confirmar senha** : Permite alterar sua senha.
 
 Para desenvolvedores :
@@ -27,12 +27,12 @@ Para desenvolvedores :
 Para os profissionais :
 - **Conta de email do instalador** : Seu email de contato profissional.
 - **Destinatário das solicitações de suporte** : saber quem receberá os emails de suporte (cliente final, instalador ou ambos).
-    - **CGU**
+    - **PARA% S**
 - **Do utilizador** : condições gerais de uso (tenha cuidado para lê-las, pois elas comprometem você).
 - **Desenvolvedor** : termos de uso para desenvolvedores.
-    - **Ingressos**
+    - **Bilhetes**
 - **Número de bilhetes** : Número de ingressos para o mês atual e seu limite.
-- **Apoio, suporte** : Botão para enviar uma solicitação de suporte (também acessível pelo ponto de exclamação no canto superior direito do Market ou no seu Jeedom).
+- **Apoiar** : Botão para enviar uma solicitação de suporte (também acessível pelo ponto de exclamação no canto superior direito do Market ou no seu Jeedom).
     - **Acesso a betas**
 - **Ativar acesso a plugins beta** : Habilita o acesso a plugins betas (observe que isso impedirá que você acesse o suporte).
     - **Resumo** Aqui você encontrará um resumo dos seus diferentes direitos e serviços.
@@ -54,11 +54,11 @@ Para os profissionais :
 > É possível que o Market às vezes peça para você redefinir suas chaves de instalação, isso é normal, basta seguir o que é solicitado.
 
 - **Minhas jeedoms** : É aqui que todos os seus Jeedoms estão listados
-    - **Último nome** : O nome que você deseja dar ao seu Jeedom (pode ser encontrado no nome do backup se você tiver a assinatura de backup na nuvem).
+    - **Nome** : O nome que você deseja dar ao seu Jeedom (pode ser encontrado no nome do backup se você tiver a assinatura de backup na nuvem).
     - **Estado** : Vamos ver o estado do Jeedom em questão.
     - **IP local / remoto** : IP ou endereço deste Jeedom, configure no Jeedom, se você não colocar nada, será o último IP conhecido.
     - **DNS** : Permite que você personalize o nome do seu DNS.
-    - **Url** : Listar os diferentes URLs de acesso Jeedom.
+    - **URLs** : Listar os diferentes URLs de acesso Jeedom.
     - **Servidor DNS** : Informa o servidor DNS ao qual você está conectado.
     - **Status DNS** : Permite que você veja o status do DNS.
     - **Data de criação** : Data de criação deste Jeedom na sua conta do Market (lembrete, isso é feito automaticamente quando você o vincula ao Market).

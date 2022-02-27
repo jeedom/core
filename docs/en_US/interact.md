@@ -51,16 +51,16 @@ We can also define a command to execute if for example the interaction is not li
 The configuration page consists of several tabs and buttons :
 
 - **Sentences** : Displays the number of sentences of the interaction (a click on them shows you).
-- **Record** : Record the current interaction.
+- **Save** : Record the current interaction.
 - **Remove** : Delete current interaction.
 - **Duplicate** : Duplicates the current interaction.
 
 ### General tab
 
-- **Last name** : Interaction name (can be empty, the name replaces the request text in the interaction list).
+- **Name** : Interaction name (can be empty, the name replaces the request text in the interaction list).
 - **Group** : Interaction group, this allows to organize them (can be empty, will therefore be in the group "none").
 - **Active** : Enables or disables interaction.
-- **Request** : The generating model sentence (required).
+- **Demand** : The generating model sentence (required).
 - **Synonymous** : Allows to define synonyms on the names of the commands.
 - **Reply** : The answer to provide.
 - **Wait before answering (s)** : Add a delay of X seconds before generating the response. It allows for example to wait for the return of a lamp status before being answered.
@@ -242,7 +242,7 @@ In this example we see a simple sentence that will return an answer with 3 diffe
 
 ![interact017](../images/interact017.png)
 
-This example specifically targets specific equipment which allows for a personalized response. So we could imagine replacing the answer of the example with "no there is no one in the room *julie*\|yes there is someone in the room *julie*"
+This example specifically targets specific equipment which allows for a personalized response. So we could imagine replacing the answer of the example with "no there is no one in the room *Julie*\|yes there is someone in the room *Julie*"
 
 #### Evolution
 
@@ -297,7 +297,7 @@ It is possible to control a lamp as a percentage (dimmer) or a thermostat with t
 
 ![interact022](../images/interact022.png)
 
-As we can see, there is here in the request the tag **\#consigne\#** (you can put what you want) which is included in the drive control to apply the desired value. To do this, we have 3 parts : \* Request : in which we create a tag that will represent the value that will be sent to the interaction. \* Reply : we reuse the tag for the response to be sure that Jeedom correctly understood the request. \* Action : we put an action on the lamp we want to drive and in the value we pass it our tag *deposit*.
+As we can see, there is here in the request the tag **\#consigne\#** (you can put what you want) which is included in the drive control to apply the desired value. To do this, we have 3 parts : \* Demand : in which we create a tag that will represent the value that will be sent to the interaction. \* Reply : we reuse the tag for the response to be sure that Jeedom correctly understood the request. \* Action : we put an action on the lamp we want to drive and in the value we pass it our tag *order*.
 
 > **Note**
 >

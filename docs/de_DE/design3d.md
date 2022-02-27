@@ -4,7 +4,7 @@
 Auf dieser Seite können Sie eine 3D-Ansicht Ihres Hauses erstellen, die abhängig vom Status der verschiedenen Informationen in Ihrer Hausautomation reagieren kann.
 
 
-> **Trinkgeld**
+> **Tipp**
 >
 > Dank des Untermenüs ist es möglich, direkt zu einem 3D-Design zu wechseln.
 
@@ -45,7 +45,7 @@ Klicken Sie auf der Ebene &quot;3D-Modell&quot; auf die Schaltfläche &quot;Send
 >
 > Sie müssen eine Zip-Datei haben.
 
-> **Trinkgeld**
+> **Tipp**
 >
 > Nachdem die Datei importiert wurde (sie kann je nach Größe der Datei sehr lang sein), müssen Sie die Seite aktualisieren, um das Ergebnis anzuzeigen (F5).
 
@@ -89,7 +89,7 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 	- Öffnung : Am besten testen Sie, ob es zu Ihrer Tür / Ihrem Fenster passt
 - Translation
 	- Aktivieren Sie : aktiviert die Übersetzung beim Öffnen (Schiebetür- / Fenstertyp))
-	- Bedeutung : Richtung, in die sich die Tür / das Fenster bewegen soll (Sie haben oben / unten / rechts / links)
+	- Sinne : Richtung, in die sich die Tür / das Fenster bewegen soll (Sie haben oben / unten / rechts / links)
 	- Wiederholung : Standardmäßig bewegt sich die Tür / das Fenster einmal in der angegebenen Richtung, aber Sie können diesen Wert erhöhen
 - Verstecken, wenn die Tür / das Fenster geöffnet ist
 	- Aktivieren Sie : Blendet das Element aus, wenn die Tür / das Fenster geöffnet ist
@@ -109,6 +109,6 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 
 Wenn die Bedingung gültig ist, können Sie dem Element die ausgewählte Farbe geben. Sie können so viele Farben / Bedingungen festlegen, wie Sie möchten.
 
-> **Trinkgeld**
+> **Tipp**
 >
 > Die Bedingungen werden in der Reihenfolge ausgewertet, die erste, die wahr ist, wird genommen, die folgenden werden daher nicht bewertet

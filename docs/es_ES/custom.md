@@ -1,7 +1,7 @@
 # Personalización avanzada
 **Configuración → Sistema → Personalización avanzada**
 
-Aquí puede administrar funciones **JavaScript** y reglas **CSS** aplicado en escritorio o móvil.
+Aquí puede administrar funciones **javascript** y reglas **CSS** aplicado en escritorio o móvil.
 
 > **Atención**
 >
@@ -9,10 +9,10 @@ Aquí puede administrar funciones **JavaScript** y reglas **CSS** aplicado en es
 
 Esta función usa un modo particular del editor de archivos Core con dos ubicaciones:
 
-- escritorio / personalizado : Puede contener ambos archivos **custom.js** y **custom.css** que será cargado por el Core en la versión de escritorio.
-- móvil / personalizado : Puede contener ambos archivos **custom.js** y **custom.css** que será cargado por el Core en la versión móvil.
+- escritorio / personalizado : Puede contener ambos archivos **personalizado.js** y **personalizado.css** que será cargado por el Core en la versión de escritorio.
+- móvil / personalizado : Puede contener ambos archivos **personalizado.js** y **personalizado.css** que será cargado por el Core en la versión móvil.
 
-En la barra de menú del editor de archivos Core, un botón **Activado** Dónde **Desactivado** te dice si el Core debe cargarlos o no. Esta opción también está disponible en **Configuración → Sistema → Configuración** Pestaña de interfaz.
+En la barra de menú del editor de archivos Core, un botón **Activado** Donde **Desactivado** te dice si el Core debe cargarlos o no. Esta opción también está disponible en **Configuración → Sistema → Configuración** Pestaña de interfaz.
 
 > **Observación**
 >

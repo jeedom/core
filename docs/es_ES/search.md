@@ -59,30 +59,30 @@ El motor se mostrará en las tablas a continuación :
 
 ## Por palabra
 
-Ingrese una cadena de caracteres en el campo de búsqueda. Validar con *entrar* o con el botón *Buscar*.
+Ingrese una cadena de caracteres en el campo de búsqueda. Validar con *ingresar* o con el botón *Buscar*.
 
 El motor se mostrará en las tablas a continuación :
 
 - Los **Escenarios** usando esta cuerda.
 	Buscar en expresiones, comentarios, bloques de código.
 - Los **interacciones** usando esta cuerda.
-	Buscar en campos *Solicitud*.
+	Buscar en campos *Demanda*.
 - Los **equipo** usando esta cuerda.
-	Buscar en campos *nombre*, *logicId*, *eqType*, *¿Cómo? 'O' ¿Qué*, *etiquetas*.
+	Buscar en campos *nombre*, *ID lógico*, *eqType*, *¿Cómo? 'O' ¿Qué?*, *etiquetas*.
 - Los **pedidos** usando esta cuerda.
-	Buscar en campos *nombre*, *logicId*, *eqType*, *tipo_genérico*, .
-- Los **notas** usando esta cuerda.
+	Buscar en campos *nombre*, *ID lógico*, *eqType*, *tipo_genérico*, .
+- Los **Los grados** usando esta cuerda.
 	Búsqueda de texto de notas.
 
 ## Por ID
 
-Ingrese un número correspondiente a una identificación buscada en el campo de búsqueda. Validar con *entrar* o con el botón *Buscar*.
+Ingrese un número correspondiente a una identificación buscada en el campo de búsqueda. Validar con *ingresar* o con el botón *Buscar*.
 
 El motor se mostrará en las tablas a continuación :
 
 - Los **Escenario** tener esta identificación.
 - Los **diseño** tener esta identificación.
-- Los **ver** tener esta identificación.
+- Los **vista** tener esta identificación.
 - L'**Interacción** tener esta identificación.
 - L'**equipo** tener esta identificación.
 - Los **ordenado** tener esta identificación.
@@ -97,7 +97,7 @@ Para cada tipo de resultado, permite acciones:
 - **interacciones** : Abra la página de configuración de interacción.
 - **equipo** : Abra la página de configuración del equipo.
 - **pedidos** : Abrir la configuración del pedido.
-- **notas** : Nota abierta.
+- **Los grados** : Nota abierta.
 
 Cada una de estas opciones abre una pestaña diferente en su navegador para no perder la búsqueda actual.
 

@@ -19,32 +19,32 @@ In edit mode:
 - Ctrl Click on an info command : Opens all the history information of the tile in the history window.
 
 ### Settings / System / Configuration
-- Ctrl S : Save.
+- Ctrl-S : To safeguard.
 
 ### Settings / System / Backups
-- Ctrl S : Save.
+- Ctrl-S : To safeguard.
 
 ### Settings / System / Task engine
-- Ctrl S : Save.
+- Ctrl-S : To safeguard.
 
 ### Settings / System / Users
-- Ctrl S : Save.
+- Ctrl-S : To safeguard.
 
 ### Settings / Preferences
-- Ctrl S : Save.
+- Ctrl-S : To safeguard.
 
 ### Tools / Interactions
-- On an interaction, Ctrl S : Save.
+- On an interaction, Ctrl S : To safeguard.
 - On an interaction, Right click on a tab : Contextual menu to go directly to another interaction.
 - Ctrl Click or Center Click on an interaction or in the context menu : Open the interaction in a new browser tab.
 
 ### Tools / Objects
-- On an object, Ctrl S : Save.
+- On an object, Ctrl S : To safeguard.
 - On an object, Right click on a tab : Contextual menu to go directly to another object.
 - Ctrl Click or Center Click on an object or in the contextual menu : Open the object in a new browser tab.
 
 ### Tools / Widgets
-- On a widget, Ctrl S : Save.
+- On a widget, Ctrl S : To safeguard.
 - On a widget, Right click on a tab : Contextual menu to go directly to another widget.
 - Ctrl Click or Click Center on a widget or in the context menu : Open the widget in a new browser tab.
 
@@ -52,9 +52,9 @@ In edit mode:
 - Ctrl Click or Center Click on a scenario or in the context menu : Open the scenario in a new browser tab.
 
 On a scenario :
-- Ctrl S : Save.
+- Ctrl-S : To safeguard.
 - Right click on a tab : Contextual menu to go directly to another scenario.
-- Ctrl L : Log display.
+- Ctrl-L : Log display.
 - Ctrl Shift Z : To cancel.
 - Ctrl Shift Y : Remake.
 
@@ -65,28 +65,28 @@ On a scenario :
 - Ctrl Click on icon *Hide this block* : Hide or show all blocks.
 
 In a Code block :
-- Ctrl F : Search in the code.
-- Ctrl G : Next search occurrence.
+- Ctrl-F : Search in the code.
+- Ctrl-G : Next search occurrence.
 
 ### Plugins / Plugins management
-- Ctrl S on a plugin configuration : Save.
+- Ctrl S on a plugin configuration : To safeguard.
 - Ctrl Click or Click Center on a plugin : Open plugin management in a new browser tab.
 
 ### Plugins / *plugin*
-- On a device, Ctrl S  : Save.
+- On a device, Ctrl S  : To safeguard.
 - On a device, Right click on a tab : Contextual menu to go directly to another device.
 - Ctrl Click or Center Click on a device: Open the plugin equipment in a new browser tab.
 
 ### Home / View
-- Ctrl S on editing a view : Save.
+- Ctrl S on editing a view : To safeguard.
 
 ### Home / Design
-- Ctrl S on a design : Save.
+- Ctrl S on a design : To safeguard.
 - Ctrl Shift E on a design : Entering or leaving edit mode.
 
 ### Home automation analysis / summary
-- Ctrl Click on icon *To open* (recherche) : Open all objects and equipment.
-- Ctrl Click on icon *To close* (recherche) : Closes all objects and equipment.
+- Ctrl Click on icon *Open* (recherche) : Open all objects and equipment.
+- Ctrl Click on icon *Close* (recherche) : Closes all objects and equipment.
 
 ### Analysis / History
 If several curves are displayed :

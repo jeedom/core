@@ -40,7 +40,7 @@ In the menu (right click), we find the following actions :
 - **Create a design** : Allows you to add a new design.
 - **Duplicate design** : Duplicates current design.
 - **Configure the design** : Access to the configuration of the design.
-- **Save** : Save the design (note, there are also automatic backups during certain actions).
+- **To safeguard** : Save the design (note, there are also automatic backups during certain actions).
 
 > **Important**
 >
@@ -51,14 +51,14 @@ In the menu (right click), we find the following actions :
 Found here :
 
 - **General**
-    - **Last name** : The name of your design.
+    - **Name** : The name of your design.
     - **Position** : The position of the design in the menu. Allows you to order the designs.
     - **Transparent background** : Makes the background transparent. Attention if the box is checked, the background color is not used.
     - **Background color** : Design background color.
     - **Access code** : Access code to your design (if empty, no code is required).
     - **Icon** : An icon for it (appears in the design choice menu).
     - **Picture**
-        - **To send** : Allows you to add a background image to the design.
+        - **Send** : Allows you to add a background image to the design.
         - **Delete image** : Delete image.
 - **Sizes**
     - **Size (WxH)** : Allows you to set the size in pixels of your design.
@@ -72,8 +72,8 @@ Found here :
 ### Common display settings
 
 - **Depth** : Allows you to choose the depth level
-- **Position X (%)** : Horizontal coordinate of the element.
-- **Position Y (%)** : Vertical coordinate of the element.
+- **X-Position (%)** : Horizontal coordinate of the element.
+- **Y-Position (%)** : Vertical coordinate of the element.
 - **Width (px)** : Element width in pixels.
 - **Height (px)** : Element height in pixels.
 
@@ -131,7 +131,7 @@ Allows you to choose the commands to grapher.
 
 ### Specific display settings
 
-- **Last name** : Name of the link (displayed text).
+- **Name** : Name of the link (displayed text).
 - **Link** : Link to the design or view in question.
 - **Background color** : Allows you to change the background color or make it transparent, do not forget to change &quot;Default&quot; to NO.
 - **Text color** : Allows you to change the color of icons and texts (be careful to set Default to No).
@@ -149,7 +149,7 @@ Allows you to choose the commands to grapher.
 - **Hide name** : Check to hide the name of the equipment.
 - **Background color** : Allows you to choose a custom background color, or to display the equipment with a transparent background, or to use the default color.
 - **Text color** : Lets you choose a custom background color, or use the default color.
-- **Rounding** : Value in pixels of the rounding of the angles of the equipment tile.
+- **Rounded** : Value in pixels of the rounding of the angles of the equipment tile.
 - **Border** : CSS definition of an equipment tile border. Ex : 1px solid black.
 - **Opacity** : Opacity of the equipment tile, between 0 and 1. Warning : a background color must be defined.
 - **Custom CSS** : CSS rules to apply on the equipment.
@@ -178,7 +178,7 @@ Displays the advanced equipment configuration window (see documentation **Home a
 
 ### Specific display settings
 
-- **Pin up** : Defines what you want to display, still image or stream from a camera.
+- **To display** : Defines what you want to display, still image or stream from a camera.
 - **Picture** : Send the image in question (if you have chosen an image).
 - **Camera** : Camera to display (if you chose camera).
 

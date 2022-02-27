@@ -26,7 +26,7 @@ Hier haben Sie drei Tasten :
 
 Gehen Sie in einem Browser zu [Markt](https://market.jeedom.com).
 Melden Sie sich bei Ihrem Konto an.
-Klicken Sie auf ein Plugin und wählen Sie *Stabil installieren* oder *Installieren Sie die Beta* (wenn Ihr Marktkonto dies zulässt).
+Klicken Sie auf ein Plugin und wählen Sie *Stabil installieren* Woher *Installieren Sie die Beta* (wenn Ihr Marktkonto dies zulässt).
 
 Wenn Ihr Marktkonto in Ihrem Jeedom korrekt konfiguriert ist (Konfiguration → Updates / Markt → Registerkarte Markt), können Sie auf klicken *Markt synchronisieren* oder warten Sie, bis es sich von selbst niedergelassen hat.
 
@@ -34,7 +34,7 @@ Wenn Ihr Marktkonto in Ihrem Jeedom korrekt konfiguriert ist (Konfiguration → 
 
 Um ein neues Plugin zu installieren, klicken Sie einfach auf die Schaltfläche "Market" (und Jeedom ist mit dem Internet verbunden). Nach einer kurzen Ladezeit erhalten Sie die Seite.
 
-> **Trinkgeld**
+> **Tipp**
 >
 > Sie müssen Ihre Marktkontoinformationen in der Administration eingegeben haben (Konfiguration → Updates / Markt → Registerkarte Markt), um die Plugins zu finden, die Sie beispielsweise bereits gekauft haben.
 
@@ -42,10 +42,10 @@ Oben im Fenster befinden sich Filter :
 - **Free / Pay** : zeigt nur kostenlos oder kostenpflichtig an.
 - **Amtlicher / Empfohlen** : Zeigt nur offizielle oder empfohlene Plugins an.
 - **Dropdown-Menü Kategorie** : zeigt nur bestimmte Kategorien von Plugins an.
-- **Suche** : Ermöglicht die Suche nach einem Plugin (im Namen oder in der Beschreibung)).
+- **Forschen** : Ermöglicht die Suche nach einem Plugin (im Namen oder in der Beschreibung)).
 - **Benutzername** : Zeigt den Benutzernamen für die Verbindung zum Markt sowie den Verbindungsstatus an.
 
-> **Trinkgeld**
+> **Tipp**
 >
 > Das kleine Kreuz setzt den betreffenden Filter zurück
 
@@ -80,7 +80,7 @@ Achtung, beim Hinzufügen durch eine Zip-Datei muss der Name der Zip mit der ID 
 
 Durch Klicken auf das Symbol eines Plugins öffnen Sie dessen Konfigurationsseite.
 
-> **Trinkgeld**
+> **Tipp**
 >
 > Sie können bei gedrückter Strg-Taste oder Klick-Mitte die Konfiguration in einer neuen Browser-Registerkarte öffnen.
 
@@ -98,7 +98,7 @@ Durch Klicken auf das Symbol eines Plugins öffnen Sie dessen Konfigurationsseit
 - **Autor** : Der Autor des Plugins, Link zum Markt und die Plugins dieses Autors.
 - **Lizenz** : Gibt die Lizenz des Plugins an, bei dem es sich im Allgemeinen um AGPL handelt.
 
-- **Aktion** : Ermöglicht das Aktivieren oder Deaktivieren des Plugins. Die Taste **Öffnen** Ermöglicht den direkten Zugriff auf die Plugin-Seite.
+- **Aktion** : Ermöglicht das Aktivieren oder Deaktivieren des Plugins. Die Taste **Offen** Ermöglicht den direkten Zugriff auf die Plugin-Seite.
 - **Ausführung** : Die Version des installierten Plugins.
 - **Voraussetzungen** : Gibt die für das Plugin erforderliche Jeedom-Mindestversion an.
 
@@ -114,14 +114,14 @@ Wenn das Plugin Abhängigkeiten und / oder einen Dämon hat, werden diese zusät
 
 ### Nebengebäude :
 
-- **Familienname, Nachname** : Im Allgemeinen wird lokal sein.
+- **Name** : Im Allgemeinen wird lokal sein.
 - **Status** : Abhängigkeitsstatus, OK oder NOK.
 - **Installation** : Ermöglicht das Installieren oder Neuinstallieren von Abhängigkeiten (wenn Sie dies nicht manuell tun und diese NOK sind, kümmert sich Jeedom nach einer Weile um sich selbst).
 - **Letzte Installation** : Datum der letzten Abhängigkeitsinstallation.
 
 ### Dämon :
 
-- **Familienname, Nachname** : Im Allgemeinen wird lokal sein.
+- **Name** : Im Allgemeinen wird lokal sein.
 - **Status** : Daemon-Status, OK oder NOK.
 - **Aufbau** : OK, wenn alle Kriterien für die Ausführung des Dämons erfüllt sind oder die Ursache für die Blockierung angegeben ist.
 - **(Neustarten** : Ermöglicht das Starten oder Neustarten des Dämons.
@@ -129,7 +129,7 @@ Wenn das Plugin Abhängigkeiten und / oder einen Dämon hat, werden diese zusät
 - **Automatische Verwaltung** : Aktiviert oder deaktiviert die automatische Verwaltung (wodurch Jeedom den Dämon selbst verwalten und bei Bedarf neu starten kann. Sofern nicht anders angegeben, ist es ratsam, die automatische Verwaltung aktiv zu lassen).
 - **Letzter Start** : Datum des letzten Starts des Daemons.
 
-> **Trinkgeld**
+> **Tipp**
 >
 > Einige Plugins haben einen Konfigurationsteil. Wenn dies der Fall ist, wird es unter den oben beschriebenen Abhängigkeits- und Dämonzonen angezeigt.
 > In diesem Fall finden Sie Informationen zur Konfiguration des betreffenden Plugins in der Dokumentation.
@@ -142,12 +142,12 @@ Wenn das Plugin Abhängigkeiten und / oder einen Dämon hat, werden diese zusät
 - **Cron10** : Ein Cron alle 10 Minuten.
 - **Cron15** : Ein Cron alle 15 Minuten.
 - **Cron30** : Ein Cron alle 30 Minuten.
-- **CronHourly** : Ein Cron pro Stunde.
+- **CronStündlich** : Ein Cron pro Stunde.
 - **CronDaily** : Ein täglicher Cron.
-- **deadcmd** : Ein Cron für tote Kommandeure.
-- **Gesundheit** : Eine alte Gesundheit.
+- **totcmd** : Ein Cron für tote Kommandeure.
+- **die Gesundheit** : Eine alte Gesundheit.
 
-> **Trinkgeld**
+> **Tipp**
 >
 > Wenn das Plugin eine dieser Funktionen verwendet, können Sie dies ausdrücklich verhindern, indem Sie das Kontrollkästchen &quot;Aktivieren&quot; deaktivieren, das daneben angezeigt wird.
 

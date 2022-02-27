@@ -26,7 +26,7 @@ Em uma visualização, encontramos :
 
 ## Adicionando / Editando uma visualização
 
-O princípio é bastante simples : uma vista é composta de áreas. Cada zona é do tipo *gráfico*, *ferramenta* ou *borda*. Dependendo desse tipo, você pode adicionar gráficos, equipamentos ou comandos a ele.
+O princípio é bastante simples : uma vista é composta de áreas. Cada zona é do tipo *gráfico*, *ferramenta* Onde *foto*. Dependendo desse tipo, você pode adicionar gráficos, equipamentos ou comandos a ele.
 
 - À esquerda da página, encontramos a lista de visualizações e um botão de criação.
 - Um botão no canto superior direito permite editar a Visualização Atual (Configuração).
@@ -41,10 +41,10 @@ O princípio é bastante simples : uma vista é composta de áreas. Cada zona é
 
 Em cada zona, você tem as seguintes opções gerais :
 
-- **Largura** : Define a largura da área (somente no modo área de trabalho). 1 para a largura de 1/12 do navegador, 12 para a largura total.
+- **Comprimento** : Define a largura da área (somente no modo área de trabalho). 1 para a largura de 1/12 do navegador, 12 para a largura total.
 - Um botão que permite adicionar um elemento a esta zona, dependendo do tipo de zona (veja abaixo).
 - **Editar** : Permite alterar o nome da zona.
-- **Retirar** : Excluir a zona.
+- **Remover** : Excluir a zona.
 
 ### Zona de tipo de equipamento
 
@@ -70,8 +70,8 @@ Uma área do tipo gráfico permite adicionar gráficos à sua visualização, e 
 
 Quando você pressiona o botão **Adicionar curva**, O Jeedom exibe a lista de comandos históricos e você pode escolher o que deseja adicionar. Depois de concluído, você terá acesso às seguintes opções :
 
-- **Lixeira** : Remover comando do gráfico.
-- **Último nome** : Nome do comando para desenhar.
+- **Cesto de lixo** : Remover comando do gráfico.
+- **Nome** : Nome do comando para desenhar.
 - **Cor** : Cor da curva.
 - **Tipo** : Tipo de curva.
 - **Grupo** : Permite agrupar dados (tipo máximo por dia).
@@ -93,7 +93,7 @@ Aqui você tem os botões :
 - **Adicionar coluna** : Adicione uma coluna à tabela.
 - **Adicionar linha** : Adicione uma linha à tabela.
 
-> **Nota**
+> **Observação**
 >
 > É possível reorganizar as linhas arrastando e soltando, mas não as colunas.
 

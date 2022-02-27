@@ -30,7 +30,7 @@ A configuração da exibição do objeto é feita em **Ferramentas → Objetos**
 >
 > A ordem de exibição dos objetos é a de *Resumo Automation*, que você pode reordenar (Análise → Resumo da automação residencial).
 
-> **Nota**
+> **Observação**
 >
 > Se um objeto não possui um resumo definido, um botão é exibido no canto superior direito para acessar a configuração / resumos do objeto.
 

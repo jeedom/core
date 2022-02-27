@@ -1,7 +1,7 @@
 # Erweiterte Anpassung
 **Einstellungen → System → Erweiterte Anpassung**
 
-Hier können Sie Funktionen verwalten **JavaScript** und Regeln **CSS** auf Desktop oder Handy angewendet.
+Hier können Sie Funktionen verwalten **Javascript** und Regeln **CSS** auf Desktop oder Handy angewendet.
 
 > **Warnung**
 >

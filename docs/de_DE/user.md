@@ -6,7 +6,7 @@ Auf dieser Seite können Sie die Liste der Benutzer definieren, die berechtigt s
 Auf der Seite haben Sie drei Schaltflächen :
 
 - Benutzer hinzufügen.
-- Sparen.
+- Zu schützen.
 - Öffnen Sie den Support-Zugriff.
 
 ## Liste der Benutzer
@@ -16,7 +16,7 @@ Auf der Seite haben Sie drei Schaltflächen :
 - **Lokal** : Ermöglicht die Verbindung des Benutzers nur, wenn er sich im lokalen Netzwerk von Jeedom befindet.
 - **Profil** : Ermöglicht die Auswahl des Benutzerprofils :
     - **Administrator** : Der Benutzer erhält alle Rechte (Bearbeitung / Beratung) an Jeedom.
-    - **Nutzer** : Der Benutzer kann Dashboard, Ansichten, Designs usw. anzeigen. und auf Geräte / Kontrollen einwirken. Er hat jedoch weder Zugriff auf die Konfiguration der Steuerungen / Geräte noch auf die Konfiguration von Jeedom.
+    - **Benutzer** : Der Benutzer kann Dashboard, Ansichten, Designs usw. anzeigen. und auf Geräte / Kontrollen einwirken. Er hat jedoch weder Zugriff auf die Konfiguration der Steuerungen / Geräte noch auf die Konfiguration von Jeedom.
     - **Begrenzter Benutzer** : Der Benutzer sieht nur das autorisierte Gerät (konfigurierbar mit der Schaltfläche "Rechte"").
 - **API-Schlüssel** : Persönlicher API-Schlüssel des Benutzers.
 - **Doppelte Authentifizierung** : Gibt an, ob die doppelte Authentifizierung aktiv ist (OK) oder nicht (NOK)).
@@ -36,7 +36,7 @@ Wenn Sie auf &quot;Rechte&quot; klicken, wird ein Fenster angezeigt, in dem Sie 
 > Das Profil muss eingeschränkt sein, da sonst keine hier aufgeführten Einschränkungen berücksichtigt werden.
 
 Sie erhalten eine Tabelle, in der für jedes Gerät und jedes Szenario die Rechte des Benutzers definiert werden können :
-- **Nein** : Der Benutzer sieht die Ausrüstung / das Szenario nicht.
+- **Irgendein** : Der Benutzer sieht die Ausrüstung / das Szenario nicht.
 - **Visualisierung** : Der Benutzer sieht die Ausrüstung / das Szenario, kann jedoch nicht darauf reagieren.
 - **Visualisierung und Ausführung** : Der Benutzer sieht die Ausrüstung / das Szenario und kann darauf reagieren (Anzünden einer Lampe, Starten des Szenarios usw.)).
 
@@ -49,7 +49,7 @@ Zeigt die auf Ihrem Jeedom aktiven Browsersitzungen mit Benutzerinformationen, d
 Listen Sie die Geräte (Computer, Mobiltelefone usw.) auf, die ihre Authentifizierung auf Ihrem Jeedom registriert haben.
 Sie können sehen, welcher Benutzer, seine IP, wann und die Registrierung für dieses Gerät löschen.
 
-> **Hinweis**
+> **Notiz**
 >
 > Der gleiche Benutzer hat möglicherweise verschiedene Geräte registriert. Zum Beispiel sein Desktop-Computer, Laptop, Handy usw.
 

@@ -1,9 +1,9 @@
 # Objets
 **Herramientas → Objetos**
 
-Los **Objetos** le permite definir la estructura de árbol de su domótica.
+Los **objetos** le permite definir la estructura de árbol de su domótica.
 
-Todo el equipo que cree debe pertenecer a un objeto y, por lo tanto, es más fácil de identificar. Luego decimos que el objeto es el **padre** equipo.
+Todo el equipo que cree debe pertenecer a un objeto y, por lo tanto, es más fácil de identificar. Luego decimos que el objeto es el **relativo** equipo.
 
 Para dar libre elección a la personalización, puede nombrar estos objetos como desee. Por lo general, definiremos las diferentes partes de su casa, como el nombre de las habitaciones (esta también es la configuración recomendada).
 
@@ -12,14 +12,14 @@ Para dar libre elección a la personalización, puede nombrar estos objetos como
 ## Gestion
 
 Tienes dos opciones :
-- **Añadir** : Crea un nuevo objeto.
+- **Agregar** : Crea un nuevo objeto.
 - **Resumen** : Muestra la lista de objetos creados y su configuración.
 
 ## Resumen
 
 La descripción general le permite ver todos los objetos en Jeedom, así como su configuración :
 
-- **CARNÉ DE IDENTIDAD** : ID de objeto.
+- **IDENTIFICACIÓN** : ID de objeto.
 - **Objeto** : Nombre del objeto.
 - **Padre** : Nombre del objeto padre.
 - **Visible** : Visibilidad del objeto.
@@ -62,7 +62,7 @@ Aquí están las diferentes características para configurar un objeto :
 - **Ocultar en resumen** : Marque esta casilla para ocultar el objeto en el resumen'. Todavía se mantiene en la lista, lo que permite que se muestre, pero solo explícitamente.
 - **Acción de síntesis** : Aquí puede indicar una vista o un diseño al que ir cuando haga clic en el objeto del Resumen. *Defecto : Tablero*.
 
-#### Monitor :
+#### Mostrar :
 
 - **Icono** : Le permite elegir un icono para su objeto.
 - **Colores personalizados** : Activa el tener en cuenta los dos parámetros de color personalizados a continuación.
@@ -81,7 +81,7 @@ Aquí están las diferentes características para configurar un objeto :
 
 > **Propina**
 >
-> Cuando se crea un dispositivo y no se ha definido ningún padre, tendrá como padre : **No**.
+> Cuando se crea un dispositivo y no se ha definido ningún padre, tendrá como padre : **Ninguna**.
 
 ## Pestañas de resumen
 

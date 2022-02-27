@@ -1910,7 +1910,7 @@
         "Moteur de cache": "Motor de caché",
         "Système de fichiers": "Sistema de archivos",
         "Memcached": "Memcaché",
-        "Redis": "Redis",
+        "Redis": "Dilo otra vez",
         "Adresse Memcache": "Dirección Memcache",
         "Port Memcache": "Puerto Memcache",
         "Adresse Redis": "Dirección Redis",
@@ -2641,7 +2641,9 @@
         "Créer un Widget": "Crear un widget",
         "Options": "Opciones",
         "Activé": "Activado",
+        "Personnalisation avancée active": "Personalización avanzada activa",
         "Désactivé": "Desactivado",
+        "Personnalisation avancée inactive": "Personalización avanzada desactivada",
         "Configutation sauvegardée": "Configuración guardada",
         "Editer": "Editar"
     },
@@ -4225,7 +4227,7 @@
     },
     "core\/class\/scenario.class.php": {
         "Aucun": "No",
-        "Tags :": "Tags :",
+        "Tags :": "Etiquetas:",
         "Déclencheur": "Desencadenar",
         "Un déclencheur du scénario :": "Un desencadenante de escenario:",
         "est introuvable": "no se encuentra",

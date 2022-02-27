@@ -1,5 +1,5 @@
 # FAQ
-**Settings → Version : Faq**
+**Settings → Version : FAQs**
 
 ### Jeedom does it require a subscription ?
 No, Jeedom is fully usable without any need for any subscription. However, there are services offered for backups or calls / SMS, but which are really optional.

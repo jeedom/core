@@ -72,4 +72,4 @@ Cloud backup allows Jeedom to send your backups directly to the Market. This all
 
 # Frequency of automatic backups
 
-Jeedom performs an automatic backup every day at the same time. It is possible to modify it, from the &quot;Task engine&quot; (the task is named **Jeedom backup**), but it is not recommended. Indeed, it is calculated in relation to the load of the Market.
+Jeedom performs an automatic backup every day at the same time. It is possible to modify it, from the &quot;Task engine&quot; (the task is named **Jeedom-backup**), but it is not recommended. Indeed, it is calculated in relation to the load of the Market.

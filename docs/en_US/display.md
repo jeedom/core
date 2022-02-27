@@ -12,7 +12,7 @@ On the top of the page, we find :
 - **Number of equipments** : Same for the equipment.
 - **Number of commands** : Same for commands.
 - **Inactive** : Check this box if you want inactive items to be displayed on this page.
-- **Search** : Search for a particular item. It can be the name of a device, a command or the name of the plugin by which the device was created.
+- **To research** : Search for a particular item. It can be the name of a device, a command or the name of the plugin by which the device was created.
 - **CSV export** : Allows you to export all objects, equipment and their commands to a CSV file.
 
 You also have a tab **Historical**, displaying the history of commands, equipment, objects, views, design, 3d design, scenarios and deleted users.
@@ -20,7 +20,7 @@ You also have a tab **Historical**, displaying the history of commands, equipmen
 ## Object frames
 
 Below there is one frame per object. In each frame, we find the list of equipment that have this object as parent.
-The first frame **No** represents devices that have no assigned parent.
+The first frame **Any** represents devices that have no assigned parent.
 
 For each object, next to its label, two buttons are available.
 - The first is used to open the object configuration page in a new tab.
@@ -38,10 +38,10 @@ For each object, next to its label, two buttons are available.
 
 On each equipment we find :
 
-- A **check box** to select the equipment (you can select several). If at least one device is selected, you have action buttons that appear in the upper left to **remove**, return **visible**/**invisible**,  **active**/**Inactive** selected equipment.
+- A **check box** to select the equipment (you can select several). If at least one device is selected, you have action buttons that appear in the upper left to **remove**, to return **visible**/**invisible**,  **active**/**inactive** selected equipment.
 - L'**id** equipment.
 - The **type** equipment : Identifier of the plugin to which it belongs.
-- The **last name** equipment.
+- The **name** equipment.
 - **Inactive** (small cross) : Means that the equipment is inactive (if it is not there, the equipment is active).
 - **Invisible** (crossed eye) : Means that the equipment is invisible (if it is not there, the equipment is visible).
 
@@ -62,15 +62,15 @@ The window of **Advanced equipment configuration** allows to modify it. First, a
 - **Information** : displays the raw properties of the equipment.
 - **Connections** : Allows to display the links of the equipment with the objects, commands, scenarios, variables, interactions… in graphic form (in this one, a double click on an element will take you to its configuration).
 - **Log** : displays the events of the equipment in question.
-- **Save** : Save the modifications made on the equipment.
+- **To safeguard** : Save the modifications made on the equipment.
 - **Remove** : Remove equipment.
 
 ### Information tab
 
-The tab **Information** contains general information about the equipment and its controls :
+Tab **Information** contains general information about the equipment and its controls :
 
-- **Id** : Unique identifier in the Jeedom database.
-- **Last name** : Name of equipment.
+- **ID** : Unique identifier in the Jeedom database.
+- **Name** : Name of equipment.
 - **Logical ID** : Logical identifier of the equipment (can be empty).
 - **Object ID** : Unique identifier of the parent object (can be empty).
 - **Creation date** : Equipment creation date.
@@ -106,7 +106,7 @@ new. For equipment, only the value **style** is currently used, it allows to ins
 ### Layout tab
 
 This part allows you to choose between the standard layout of the commands (side by side in the widget), or in table mode. Nothing to set in default mode. Here are the options available in mode
-**Board** :
+**Picture** :
 - **Number of lines**
 - **Number of columns**
 - **Center in boxes** : Check the box to center commands in cells.
@@ -136,7 +136,7 @@ You can also manage the timeout, in minutes, of the equipment. For example, 30 t
 
 > **Tip**
 >
-> The global parameters are in **→ Settings → System Configuration : Logs** or **Equipment**
+> The global parameters are in **→ Settings → System Configuration : Logs** Where **Equipment**
 
 ### Comment tab
 
@@ -151,7 +151,7 @@ First, at the top right, some buttons available :
 - **Log** : Displays the events of the equipment in question.
 - **Information** : Displays the raw properties of the equipment.
 -  **To apply to** : Allows the same configuration to be applied to several commands.
-- **Save** : Save the modifications made on the equipment.
+- **To safeguard** : Save the modifications made on the equipment.
 
 > **Tip**
 >
@@ -163,15 +163,15 @@ First, at the top right, some buttons available :
 
 ### Information tab
 
-The tab **Information** contains general information about the command :
+Tab **Information** contains general information about the command :
 
-- **Id** : Unique identifier in the database.
+- **ID** : Unique identifier in the database.
 - **Logical ID** : Logical identifier of the command (can be empty).
-- **Last name** : Name of the command.
+- **Name** : Name of the command.
 - **Type** : Type of command (action or info).
 - **Subtype** : Command subtype (binary, digital, etc.)).
-- **Direct url** : Provides the URL to access this equipment. (right click, copy the link address) The URL will launch the command for a **action** and return the information for a **info**.
-- **Unit** : Control unit.
+- **Direct url** : Provides the URL to access this equipment. (right click, copy the link address) The URL will launch the command for a **action** and return the information for a **information**.
+- **Unity** : Control unit.
 - **Command triggering an update** : Gives the identifier of another command which, if this other command changes, will force the update of the displayed command.
 - **Visible** : Check this box to make the command visible.
 - **Follow in the timeline** : Check this box to make this command visible in the timeline when it is used. You can specify a specific timeline in the field that appears if the option is checked.
@@ -202,7 +202,7 @@ Below, you will find the list of the different equipment, commands, scenarios or
 
 - **Historical**
     - **Historize** : Check the box to have the values of this command logged. (See **Analysis → History**)
-    - **Smoothing mode** : Mode of **smoothing** or d'**archiving** allows you to choose how to archive the data. By default, this is a **average**. It is also possible to choose the **maximum**, The **minimum**, or **No**. **No** lets tell Jeedom that it should not perform archiving on this command (both during the first 5 mins period and with the archiving task). This option is dangerous because Jeedom keeps everything : so there will be a lot more data kept.
+    - **Smoothing mode** : Mode of **smoothing** or d'**archiving** allows you to choose how to archive the data. By default, this is a **average**. It is also possible to choose the **maximum**, the **minimum**, Where **any**. **any** lets tell Jeedom that it should not perform archiving on this command (both during the first 5 mins period and with the archiving task). This option is dangerous because Jeedom keeps everything : so there will be a lot more data kept.
     - **Purge history if older than** : Lets tell Jeedom to delete all data older than a certain period. May be practical not to keep data if it is not necessary and therefore limit the amount of information recorded by Jeedom.
 
 - **Values management**
@@ -210,9 +210,9 @@ Below, you will find the list of the different equipment, commands, scenarios or
     - **Status return value** : Returns the command to this value after a certain time.
     - **Duration before return of status (min)** : Time before return to the above value.
 
-- **Other**
+- **Others**
     - **Management of the repetition of values** : In automatic if the command goes up 2 times the same value in a row, then Jeedom will not take into account the 2nd ascent (avoids triggering a scenario several times, unless the command is of binary type). You can force the repetition of the value or prohibit it completely.
-    - **Push url** : Allows to add a URL to call in case of update of the command. You can use the following tags : ``#value#`for the value of the command,`#cmd_name#`for the name of the command,`#cmd_id#`for the unique identifier of the command,`#humanname#`for the full name of the command (ex : ``#[SalThe de bain][Hydrometrie][Humidité]#`),`#eq_name#`for the name of the equipment.
+    - **Push url** : Allows to add a URL to call in case of update of the command. You can use the following tags : ``#value#`for the value of the command,`#cmd_name#`for the name of the command,`#cmd_id#`for the unique identifier of the command,`#humanname#`for the full name of the command (ex : ``#[Salthe de bain][Hydrometrie][Humidité]#`),`#eq_name#`for the name of the equipment.
 
 #### For an action command :
 
@@ -224,7 +224,7 @@ Below, you will find the list of the different equipment, commands, scenarios or
 
 ### Alerts tab
 
-Allows you to define an alert level (**warning** or **danger**) depending on certain conditions. For example, if `value&gt; 8` for 30 minutes then the equipment can go on alert **warning**.
+Allows you to define an alert level (**warning** Where **danger**) depending on certain conditions. For example, if `value&gt; 8` for 30 minutes then the equipment can go on alert **warning**.
 
 > **Note**
 >
@@ -234,11 +234,11 @@ Allows you to define an alert level (**warning** or **danger**) depending on cer
 
 In this part, you will be able to configure certain widget display behaviors on the Dashboard, views, design and on mobile.
 
-- **Widget** : Allows you to choose the widget on desktop or mobile (note that you need the widget plugin and that you can also do it from it).
+- **Widgets** : Allows you to choose the widget on desktop or mobile (note that you need the widget plugin and that you can also do it from it).
 - **Visible** : Check to make the command visible.
 - **Show name** : Check to make the name of the command visible, depending on the context.
 - **Display name and icon** : Check to make the icon visible in addition to the command name.
-- **Wrapped line before widget** : Tick **before the widget** or **after the widget** to add a line break before or after the widget (to force for example a column display of the different commands of the equipment instead of default lines)
+- **Wrapped line before widget** : Tick **before the widget** Where **after the widget** to add a line break before or after the widget (to force for example a column display of the different commands of the equipment instead of default lines)
 
 Below, there are optional display parameters that can be passed to the widget. These parameters depend on the widget in question, so you have to look at its file on the Market to know them.
 
