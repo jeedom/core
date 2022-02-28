@@ -277,7 +277,7 @@ class system {
 					return;
 				}
 				if ($_package == null) {
-					$packages = self::getUpgradablePackage($_type) . "\n";
+					$packages = self::getUpgradablePackage($_type);
 					if (count($packages) == '') {
 						return '';
 					}
