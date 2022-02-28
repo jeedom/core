@@ -1447,8 +1447,7 @@ div.div_viewZone legend.lg_viewZone {
     background: transparent;
   }
 
-  div[class*="ListContainer"] > div.cursor,
-  .eqLogicThumbnailContainer > div.cursor {
+  div[class*="ListContainer"] > div.cursor {
     width : 130px !important;
     font-size: 14px !important;
     position: relative;
@@ -1567,20 +1566,36 @@ div.div_viewZone legend.lg_viewZone {
     width: 75px !important;
     padding-top: 5px;
   }
+  div.eqLogicThumbnailContainer div.cursor {
+    width: 130px;
+    font-size: 14px !important;
+    position: relative;
 
+  }
   div.eqLogicThumbnailContainer div.cursor > center > img,
   div.eqLogicThumbnailContainer div.cursor img {
     width: 75px !important;
     height: auto !important;
     padding-top: 15px;
   }
-  div.eqLogicDisplayCard {
+  div.eqLogicThumbnailContainer div.eqLogicDisplayCard.cursor {
+    min-width: 130px !important;
+    max-width: auto !important;
+    width: auto;
+
     margin-bottom: 10px !important;
     height: 168px !important;
     padding: 0 !important;
     margin: 0 !important;
     overflow: hidden;
   }
+
+  div.eqLogicThumbnailContainer div.eqLogicDisplayCard img {
+    height: 100px !important;
+    width: unset !important;
+    padding-top: 15px;
+  }
+
   div.eqLogicDisplayCard .name {
     word-break: break-word !important;
     font-size: 12px !important;
@@ -1594,19 +1609,12 @@ div.div_viewZone legend.lg_viewZone {
     display: block;
     height: 28px !important;
     overflow: hidden;
+    padding: 0 5px;
+    max-width: 130px;
   }
   div.interactDisplayCard > span.name {
     height: 55px !important;
     overflow: hidden;
-  }
-
-  div.eqLogicDisplayCard img {
-    min-height: 99px !important;
-    max-height: 99px;
-    width: auto !important;
-    max-width: 75px !important;
-    overflow: hidden;
-    vertical-align: baseline;
   }
 
   div.eqLogic.eqLogic-widget .widget-name,
@@ -2040,6 +2048,7 @@ div.div_viewZone legend.lg_viewZone {
   }
   div[class*="DisplayCard"].displayAsTable .name > strong {
     line-height: 22px !important;
+    max-width: calc(100% - 340px);
   }
 
   /* objects - interact */
@@ -2116,7 +2125,7 @@ div.div_viewZone legend.lg_viewZone {
     position: relative !important;
     top: 2px !important;
     left: 0 !important;
-    min-width: 100%;
+    min-width: 100% !important;
     text-align: left;
     min-height: 24px !important;
     max-height: 24px !important;
@@ -2125,7 +2134,6 @@ div.div_viewZone legend.lg_viewZone {
     padding: 0 !important;
   }
   div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable > img {
-    max-width: 24px !important;
     min-height: 24px !important;
     height: 24px !important;
     width: auto !important;
