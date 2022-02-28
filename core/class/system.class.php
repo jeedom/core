@@ -196,7 +196,7 @@ class system {
 		$return = array($_type => array());
 		switch ($_type) {
 			case 'apt':
-				$lines = explode("\n", shell_exec(system::getCmdSudo() . ' apt list --upgradable'));
+				$lines = explode("\n", shell_exec(system::getCmdSudo() . ' apt list --upgradable 2>/dev/null'));
 				foreach ($lines as $line) {
 					if (strpos($line, '/') === false) {
 						continue;
@@ -213,7 +213,7 @@ class system {
 				}
 				break;
 			case 'pip3':
-				$datas = json_decode(shell_exec(system::getCmdSudo() . ' pip3 list --outdated --format=json'), true);
+				$datas = json_decode(shell_exec(system::getCmdSudo() . ' pip3 list --outdated --format=json 2>/dev/null'), true);
 				foreach ($datas as $value) {
 					$return[$_type][$value['name']] = array(
 						'name' => $value['name'],
@@ -227,7 +227,7 @@ class system {
 				if (self::os_incompatible('pip2', '', '')) {
 					return array();
 				}
-				$datas = json_decode(shell_exec(system::getCmdSudo() . ' pip list --outdated --format=json'), true);
+				$datas = json_decode(shell_exec(system::getCmdSudo() . ' pip list --outdated --format=json 2>/dev/null'), true);
 				foreach ($datas as $value) {
 					$return[$_type][$value['name']] = array(
 						'name' => $value['name'],
