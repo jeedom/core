@@ -384,7 +384,7 @@ if (!jeeFrontEnd.update) {
           var tr_update = []
           $('.bt_OsPackageUpdate').hide();
           for (var i in data) {
-            if(data[i].length > 0){
+            if(Object.keys(data[i]).length > 0){
               $('.bt_OsPackageUpdate[data-type='+i+']').show();
               for(var j in data[i]){
                 tr_update.push(jeeP.addOsUpdate(data[i][j]))
@@ -392,7 +392,6 @@ if (!jeeFrontEnd.update) {
             }
           }
           $('#table_osUpdate tbody').empty().append(tr_update).trigger('update');
-
         }
       })
     },
