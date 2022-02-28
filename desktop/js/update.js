@@ -165,13 +165,19 @@ if (!jeeFrontEnd.update) {
       tr += '<span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name"></span>'
       tr += '<span class="hidden">' + _update.name + '</span><span class="updateAttr hidden" data-l1key="id"></span>'
       if (_update.configuration && _update.configuration.version) {
-        var updClass = 'label-warning'
-        if (_update.configuration.version.toLowerCase() == 'stable') updClass = 'label-success'
-        if (_update.configuration.version.toLowerCase() != 'stable' && _update.configuration.version.toLowerCase() != 'beta') updClass = 'label-danger'
-        tr += ' <span class="label ' + updClass + '">' + _update.configuration.version + '</span>'
-      }
-      if (_update.type == 'core' && _update.branch) {
-        tr += ' <span class="label">' + _update.branch + '</span>'
+          var updClass;
+          switch (_update.configuration.version.toLowerCase()) {
+              case 'stable':
+              case 'master':
+                  updClass = 'label-success';
+                  break;
+              case 'beta':
+                  updClass = 'label-warning';
+                  break;
+              default:
+                  updClass = 'label-danger';
+          }
+          tr += ' <span class="label ' + updClass + '">' + _update.configuration.version + '</span>'
       }
 
       if (_update.localVersion !== null && _update.localVersion.length > 19) _update.localVersion = _update.localVersion.substring(0, 16) + '...'
