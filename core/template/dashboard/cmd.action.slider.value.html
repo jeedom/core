@@ -3,7 +3,7 @@
     <div class="cmdName">#name_display#</div>
   </div>
   <div class="content-xs">
-    <input type="number" min="#minValue#" max="#maxValue#" value="#state#" step="0.5" id="sliderInput#id#">
+    <input type="number" min="#minValue#" max="#maxValue#" value="#state#" step="1" id="sliderInput#id#">
     <div id="widget_slider#id#" class="slider"></div>
   </div>
   <template>
@@ -13,20 +13,24 @@
   </template>
   <script>
     var $inputNumber#id# = $('#sliderInput#id#')
-    $('#sliderInput#id#').spinner({
-      icons: { down: "ui-icon-triangle-1-s", up: "ui-icon-triangle-1-n"},
-      stop: function(event, ui) {
-        if (event.currentTarget.id != 'sliderInput#id#') {
-          $inputNumber#id#.trigger('change')
-        }
-      }
-    })
-
     var step#id# = 1
+    var spinTimer#id# = null
     if ($.issetWidgetOptParam('#step#', 'step')) {
       step#id# = parseFloat('#step#')
       $inputNumber#id#.attr('step', step#id#)
     }
+
+    $('#sliderInput#id#').spinner({
+      icons: { down: "ui-icon-triangle-1-s", up: "ui-icon-triangle-1-n"},
+      stop: function(event, ui) {
+        if (event.currentTarget.id != 'sliderInput#id#') {
+          clearTimeout(spinTimer#id#)
+          spinTimer#id# = setTimeout(function() {
+            $inputNumber#id#.trigger('change')
+          }, 1000)
+        }
+      }
+    })
 
     if ('#noslider#' != '1') {
       var mySlider#id# = $.createWidgetSlider({
