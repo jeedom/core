@@ -370,6 +370,44 @@ if (!jeeFrontEnd.update) {
       clearTimeout(jeeP.alertTimeout)
       jeeP.alertTimeout = setTimeout(jeeP.alertTimeout, 60000 * 10)
     },
+    printOsUpdate: function(){
+      jeedom.systemGetUpgradablePackage({
+        type : 'all',
+        error: function(error) {
+          $.fn.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          var tr_update = []
+          for (var i in data) {
+             for(var j in data[i]){
+              tr_update.push(jeeP.addOsUpdate(data[i][j]))
+             }
+          }
+          $('#table_osUpdate tbody').empty().append(tr_update).trigger('update');
+
+        }
+      })
+    },
+    addOsUpdate: function(_update) {
+      var tr = '<tr data-logicalId="' + init(_update.name) + '" data-type="' + init(_update.type) + '">'
+      tr += '<td>'
+      tr += '<span class="osUpdateAttr" data-l1key="type"></span>'
+      tr += '</td>'
+      tr += '<td>'
+      tr += '<span class="osUpdateAttr" data-l1key="name"></span>'
+      tr += '</td>'
+      tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="localVersion">' + _update.current_version + '</span></td>'
+      tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="remoteVersion">' + _update.new_version + '</span></td>'
+      tr += '<td>'
+      tr += '</td>'
+      tr += '</tr>'
+      var html = $(tr)
+      html.setValues(_update, '.osUpdateAttr')
+      return html
+    }
   }
 }
 
@@ -401,6 +439,12 @@ $(function() {
   jeeP._pre_updateInfo_clean = $('#pre_updateInfo_clean')
   jeeP._pre_updateInfo_clean.show()
   jeeP.createUpdateObserver()
+
+})
+
+
+$('#bt_osUpdate').off('click').on('click',function(){
+  jeeP.printOsUpdate();
 })
 
 $("#md_specifyUpdate").dialog({

@@ -38,7 +38,7 @@ if ($coreRemoteVersion >= '4.2' && $distrib == 'debian') {
 }
 
 $logUpdate = log::get('update', 0, -1);
-if ( (!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE') ) {
+if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 	sendVarToJS('jeephp2js.isUpdating', '0');
 } else {
 	sendVarToJS('jeephp2js.isUpdating', '1');
@@ -69,6 +69,7 @@ if ( (!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE') ) {
 
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active"><a href="#coreplugin" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-archive"></i> {{Core et plugins}}</a></li>
+			<li role="presentation"><a href="#os" aria-controls="profile" role="tab" data-toggle="tab" id="bt_osUpdate"><i class="fas fa-info"></i> {{OS/Package}}</a></li>
 			<li role="presentation"><a href="#log" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-info"></i> {{Informations}}</a></li>
 		</ul>
 
@@ -95,6 +96,25 @@ if ( (!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE') ) {
 				<div id="div_log">
 					<pre id="pre_updateInfo"></pre>
 				</div>
+			</div>
+
+
+			<div role="tabpanel" class="tab-pane" id="os" style="overflow:auto;overflow-x: hidden">
+				<div class="alert alert-info">{{IMPORTANT : ne sont affiché ici que les packages n'étant pas a jour. Si la liste est vide c'est que tout est à jour}}</div>
+				<table class="ui-table-reflow table table-condensed table-bordered tablesorter" id="table_osUpdate">
+					<thead>
+						<tr>
+							<th>{{Type}}</th>
+							<th>{{Nom}}</th>
+							<th data-sorter="shortDate">{{Version installée}}</th>
+							<th data-sorter="shortDate">{{Dernière version}}</th>
+							<th data-sorter="false" data-filter="false">{{Actions}}</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+
 			</div>
 		</div>
 

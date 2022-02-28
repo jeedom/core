@@ -324,6 +324,17 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'systemGetUpgradablePackage') {
+		if (init('type') == 'all') {
+			$return = system::getUpgradablePackage('apt');
+			$return = array_merge($return, system::getUpgradablePackage('pip2'));
+			$return = array_merge($return, system::getUpgradablePackage('pip3'));
+			ajax::success($return);
+		} else {
+			ajax::success(system::getUpgradablePackage(init('type')));
+		}
+	}
+
 	if (init('action') == 'health') {
 		ajax::success(jeedom::health());
 	}

@@ -192,6 +192,55 @@ class system {
 		return $arch;
 	}
 
+	public static function getUpgradablePackage($_type) {
+		$return = array($_type => array());
+		switch ($_type) {
+			case 'apt':
+				$lines = explode("\n", shell_exec(system::getCmdSudo() . ' apt list --upgradable'));
+				foreach ($lines as $line) {
+					if (strpos($line, '/') === false) {
+						continue;
+					}
+					$infos = array_values(array_filter(explode(" ", $line)));
+					$name = explode("/", $infos[0])[0];
+					$return[$_type][$name] = array(
+						'name' => $name,
+						'type' => 'apt',
+						'platform' => $infos[2],
+						'current_version' => trim($infos[5], ']'),
+						'new_version' => $infos[1],
+					);
+				}
+				break;
+			case 'pip3':
+				$datas = json_decode(shell_exec(system::getCmdSudo() . ' pip3 list --outdated --format=json'), true);
+				foreach ($datas as $value) {
+					$return[$_type][$value['name']] = array(
+						'name' => $value['name'],
+						'type' => 'pip3',
+						'current_version' => $value['version'],
+						'new_version' => $value['latest_version'],
+					);
+				}
+				break;
+			case 'pip2':
+				if (self::os_incompatible('pip2', '', '')) {
+					return array();
+				}
+				$datas = json_decode(shell_exec(system::getCmdSudo() . ' pip list --outdated --format=json'), true);
+				foreach ($datas as $value) {
+					$return[$_type][$value['name']] = array(
+						'name' => $value['name'],
+						'type' => 'pip2',
+						'current_version' => $value['version'],
+						'new_version' => $value['latest_version'],
+					);
+				}
+				break;
+		}
+		return $return;
+	}
+
 	public static function getInstallPackage($_type) {
 		if (isset(self::$_installPackage[$_type])) {
 			return self::$_installPackage[$_type];
