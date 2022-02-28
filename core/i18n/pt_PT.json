@@ -489,7 +489,7 @@
         "Semaine": "Semana",
         "Jour": "Dia",
         "Heure": "Hora",
-        "Type": "Modelo",
+        "Type": "Tipo",
         "Courbe": "Curva",
         "Escalier": "Escadaria",
         "Barre": "Fechado",
@@ -1366,7 +1366,7 @@
         "Version": "Versão",
         "Dashboard": "Painel",
         "Mobile": "Móvel",
-        "Type": "Modelo",
+        "Type": "Tipo",
         "Sous-type": "Subtipo",
         "Nom": "Nome",
         "Créer": "Para criar"
@@ -1524,6 +1524,7 @@
         "Mettre à jour": "Atualizar",
         "Mettre à niveau": "Melhoria",
         "Core et plugins": "Núcleo e plugins",
+        "OS\/Package": "SO\/Pacote",
         "Informations": "Informação",
         "Etat": "Estado",
         "Nom": "Nome",
@@ -1533,6 +1534,8 @@
         "Options": "Opções",
         "Actions": "Estoque",
         "Log :": "Log:",
+        "IMPORTANT : ne sont affiché ici que les packages n'étant pas a jour. Si la liste est vide c'est que tout est à jour": "IMPORTANTE: apenas pacotes desatualizados são exibidos aqui. Se a lista estiver vazia, tudo está atualizado",
+        "Type": "Tipo",
         "Avant toute mise à jour, merci de consulter le": "Antes de qualquer atualização, consulte o",
         "changelog": "Changelog",
         "du Core": "Core",
@@ -3012,7 +3015,7 @@
         "Liste des Types Génériques (Core et Plugins)": "Lista de tipos genéricos (núcleo e plug-ins)",
         "Générique": "Genérico",
         "Nom": "Nome",
-        "Type": "Modelo",
+        "Type": "Tipo",
         "Sous type": "Subtipo",
         "Commentaire": "Observação"
     },
@@ -4575,7 +4578,7 @@
         "Désactiver": "Desativar"
     },
     "core\/template\/scenario\/genericType.default.html": {
-        "Type": "Modelo",
+        "Type": "Tipo",
         "Type Info (event)": "Informações de tipo (evento)",
         "Type Action (exec)": "Tipo de ação (exec)",
         "Objet": "Objeto",
