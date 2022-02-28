@@ -1,9 +1,10 @@
 <div class="cmd cmd-widget" data-type="action" data-subtype="slider" data-template="value" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
-  <input type="number" min="#minValue#" max="#maxValue#" value="#state#" step="0.5" id="sliderInput#id#">
+  <input type="number" min="#minValue#" max="#maxValue#" value="#state#" step="1" id="sliderInput#id#">
   <div id="widget_slider#id#" class="slider full-width-slider"></div>
   <script>
     var $inputNumber#id# = $('#sliderInput#id#')
     var step#id# = 1
+    var spinTimer#id# = null
     if ($.issetWidgetOptParam('#step#', 'step')) {
       step#id# = parseFloat('#step#')
       $inputNumber#id#.attr('step', step#id#)
@@ -40,8 +41,14 @@
     }
 
     $inputNumber#id#.on('change', function(event) {
-      if ('#noslider#' != '1') mySlider#id#.set(this.value)
-      jeedom.cmd.execute({id: '#id#', value: {slider: this.value}})
+      var value = this.value
+      clearTimeout(spinTimer#id#)
+      spinTimer#id# = setTimeout(function() {
+        if ('#noslider#' != '1') mySlider#id#.set(value)
+        jeedom.cmd.execute({id: '#id#', value: {slider: value}})
+      }, 1000)
+
+
     })
 
     $inputNumber#id#.on('keydown', function(event) {
