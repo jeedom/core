@@ -1210,7 +1210,7 @@ class scenarioExpression {
 		if (!is_string($_expression)) {
 			return $_expression;
 		}
-		preg_match_all("/([a-zA-Z][a-zA-Z1-9_]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
+		preg_match_all("/([a-zA-Z][a-zA-Z1-9_]*?)\((.*?)\)/U", $_expression, $matches, PREG_SET_ORDER);
 		if (is_array($matches)) {
 			foreach ($matches as $match) {
 				$function = $match[1];
