@@ -69,7 +69,7 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active"><a href="#coreplugin" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-archive"></i> {{Core et plugins}}</a></li>
-			<li role="presentation"><a href="#os" aria-controls="profile" role="tab" data-toggle="tab" id="bt_osUpdate"><i class="fas fa-info"></i> {{OS/Package}}</a></li>
+			<li role="presentation"><a href="#os" aria-controls="profile" role="tab" data-toggle="tab" class="bt_refreshOsPackageUpdate" data-forceRefresh="0"><i class="fas fa-box"></i> {{OS/Package}}</a></li>
 			<li role="presentation"><a href="#log" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-info"></i> {{Informations}}</a></li>
 		</ul>
 
@@ -101,6 +101,16 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 
 			<div role="tabpanel" class="tab-pane" id="os" style="overflow:auto;overflow-x: hidden">
 				<div class="alert alert-info">{{IMPORTANT : ne sont affiché ici que les packages n'étant pas a jour. Si la liste est vide c'est que tout est à jour}}</div>
+
+				<div class="input-group pull-right" style="display:inline-flex">
+					<span class="input-group-btn">
+						<a class="bt_refreshOsPackageUpdate btn btn-success" data-forceRefresh="1"><i class="fas fa-sync"></i> {{Mettre à jour la liste}}</a>
+						<a class="bt_OsPackageUpdate btn btn-warning" data-type="apt"><i class="fas fa-sync"></i> {{Mettre à jour les packages OS}}</a>
+						<a class="bt_OsPackageUpdate btn btn-warning" data-type="pip2"><i class="fas fa-sync"></i> {{Mettre à jour les packages Python2}}</a>
+						<a class="bt_OsPackageUpdate btn btn-warning" data-type="pip3"><i class="fas fa-sync"></i>{{Mettre à jour les packages Python3}}</a>
+					</span>
+				</div>
+
 				<table class="ui-table-reflow table table-condensed table-bordered tablesorter" id="table_osUpdate">
 					<thead>
 						<tr>

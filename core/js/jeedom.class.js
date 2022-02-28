@@ -966,6 +966,26 @@ jeedom.systemGetUpgradablePackage = function(_params) {
   paramsAJAX.data = {
       action: 'systemGetUpgradablePackage',
       type: _params.type,
+      forceRefresh : _params.forceRefresh || false
+  };
+  $.ajax(paramsAJAX);
+}
+
+jeedom.systemUpgradablePackage = function(_params) {
+  var paramsRequired = ['type'];
+  var paramsSpecifics = {};
+  try {
+      jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+      (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+      return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  paramsAJAX.data = {
+      action: 'systemUpgradablePackage',
+      type: _params.type,
   };
   $.ajax(paramsAJAX);
 }

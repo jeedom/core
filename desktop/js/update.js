@@ -370,9 +370,10 @@ if (!jeeFrontEnd.update) {
       clearTimeout(jeeP.alertTimeout)
       jeeP.alertTimeout = setTimeout(jeeP.alertTimeout, 60000 * 10)
     },
-    printOsUpdate: function(){
+    printOsUpdate: function(_forceRefresh){
       jeedom.systemGetUpgradablePackage({
         type : 'all',
+        forceRefresh : _forceRefresh,
         error: function(error) {
           $.fn.showAlert({
             message: error.message,
@@ -381,10 +382,14 @@ if (!jeeFrontEnd.update) {
         },
         success: function(data) {
           var tr_update = []
+          $('.bt_OsPackageUpdate').hide();
           for (var i in data) {
-             for(var j in data[i]){
-              tr_update.push(jeeP.addOsUpdate(data[i][j]))
-             }
+            if(data[i].length > 0){
+              $('.bt_OsPackageUpdate[data-type='+i+']').show();
+              for(var j in data[i]){
+                tr_update.push(jeeP.addOsUpdate(data[i][j]))
+              }
+            }
           }
           $('#table_osUpdate tbody').empty().append(tr_update).trigger('update');
 
@@ -443,9 +448,30 @@ $(function() {
 })
 
 
-$('#bt_osUpdate').off('click').on('click',function(){
-  jeeP.printOsUpdate();
+$('.bt_refreshOsPackageUpdate').off('click').on('click',function(){
+  jeeP.printOsUpdate($(this).attr('data-forceRefresh'));
 })
+
+$('.bt_OsPackageUpdate').off('click').on('click',function(){
+  let type = $(this).attr('data-type');
+  bootbox.confirm('{{Êtes-vous sûr de vouloir mettre à jour les package de type :}}' + ' ' + type + ' {{, attention cette opération est toujours risquée et peut prendre plusieurs dizaine de minutes}} ?', function(result) {
+    jeedom.systemUpgradablePackage({
+      type : type,
+      error: function(error) {
+        $.fn.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(data) {
+        $.fn.showAlert({
+          message: '{{Mise à jour lancée avec succès. Vous pouvez suivre l\'avancement en allant sur Analayse -> log puis le log packages}}',
+          level: 'success'
+        })
+      }
+    })
+  })
+});
 
 $("#md_specifyUpdate").dialog({
   closeText: '',

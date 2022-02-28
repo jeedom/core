@@ -23,7 +23,6 @@ class system {
 	private static $_hasExec = array();
 	private static $_os_version = null;
 	private static $_installPackage = array();
-	private static $_packageUpdateMake = false;
 	private static $_distrib = null;
 	private static $_command = array(
 		'suse' => array('cmd_check' => ' rpm -qa | grep ', 'cmd_install' => ' zypper in --non-interactive ', 'www-uid' => 'wwwrun', 'www-gid' => 'www', 'type' => 'zypper'),
@@ -192,10 +191,13 @@ class system {
 		return $arch;
 	}
 
-	public static function getUpgradablePackage($_type) {
+	public static function getUpgradablePackage($_type, $_forceRefresh = false) {
 		$return = array($_type => array());
 		switch ($_type) {
 			case 'apt':
+				if ($_forceRefresh) {
+					shell_exec(system::getCmdSudo() . ' apt update 2>/dev/null');
+				}
 				$lines = explode("\n", shell_exec(system::getCmdSudo() . ' apt list --upgradable 2>/dev/null'));
 				foreach ($lines as $line) {
 					if (strpos($line, '/') === false) {
@@ -213,8 +215,12 @@ class system {
 				}
 				break;
 			case 'pip3':
+				$ignore_package = array('dbus-python', 'gpg', 'pycairo', 'pycurl', 'PyGObject');
 				$datas = json_decode(shell_exec(system::getCmdSudo() . ' pip3 list --outdated --format=json 2>/dev/null'), true);
 				foreach ($datas as $value) {
+					if (in_array($value['name'], $ignore_package)) {
+						continue;
+					}
 					$return[$_type][$value['name']] = array(
 						'name' => $value['name'],
 						'type' => 'pip3',
@@ -239,6 +245,56 @@ class system {
 				break;
 		}
 		return $return;
+	}
+
+	public static function upgradePackage($_type, $_package = null) {
+		$cmd = "set -x\n";
+		$cmd .= "echo '*******************Begin of package upgrade type " . $_type . "******************'\n";
+		switch ($_type) {
+			case 'apt':
+				if ($_package == null) {
+					$cmd .= system::getCmdSudo() . " apt update\n";
+					$cmd .= system::getCmdSudo() . ' apt -o Dpkg::Options::="--force-confdef" -y upgrade' . "\n";
+				} else {
+					$cmd .= self::installPackage($_type, $_package);
+				}
+				break;
+			case 'pip3':
+				if ($_package == null) {
+					$packages = self::getUpgradablePackage($_type);
+					if (count($packages) == '') {
+						return;
+					}
+					foreach ($packages[$_type] as $package) {
+						$cmd .= self::installPackage($_type, $package['name']) . "\n";
+					}
+				} else {
+					$cmd .= self::installPackage($_type, $_package) . "\n";
+				}
+				break;
+			case 'pip2':
+				if (self::os_incompatible('pip2', '', '')) {
+					return;
+				}
+				if ($_package == null) {
+					$packages = self::getUpgradablePackage($_type) . "\n";
+					if (count($packages) == '') {
+						return '';
+					}
+					foreach ($packages[$_type] as $package) {
+						$cmd .= self::installPackage($_type, $package['name']) . "\n";
+					}
+				} else {
+					$cmd .= self::installPackage($_type, $_package) . "\n";
+				}
+				break;
+		}
+		$cmd .= "echo '*******************End of package installation******************'\n";
+		if (file_exists('/tmp/jeedom_fix_package')) {
+			shell_exec(system::getCmdSudo() . ' rm /tmp/jeedom_fix_package');
+		}
+		file_put_contents('/tmp/jeedom_fix_package', $cmd);
+		self::launchScriptPackage();
 	}
 
 	public static function getInstallPackage($_type) {
