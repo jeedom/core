@@ -489,7 +489,7 @@
         "Semaine": "Semana",
         "Jour": "Dia",
         "Heure": "Hora",
-        "Type": "Tipo",
+        "Type": "Modelo",
         "Courbe": "Curva",
         "Escalier": "Escadaria",
         "Barre": "Fechado",
@@ -1366,7 +1366,7 @@
         "Version": "Versão",
         "Dashboard": "Painel",
         "Mobile": "Móvel",
-        "Type": "Tipo",
+        "Type": "Modelo",
         "Sous-type": "Subtipo",
         "Nom": "Nome",
         "Créer": "Para criar"
@@ -3015,7 +3015,7 @@
         "Liste des Types Génériques (Core et Plugins)": "Lista de tipos genéricos (núcleo e plug-ins)",
         "Générique": "Genérico",
         "Nom": "Nome",
-        "Type": "Tipo",
+        "Type": "Modelo",
         "Sous type": "Subtipo",
         "Commentaire": "Observação"
     },
@@ -4578,7 +4578,7 @@
         "Désactiver": "Desativar"
     },
     "core\/template\/scenario\/genericType.default.html": {
-        "Type": "Tipo",
+        "Type": "Modelo",
         "Type Info (event)": "Informações de tipo (evento)",
         "Type Action (exec)": "Tipo de ação (exec)",
         "Objet": "Objeto",
