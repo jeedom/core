@@ -1448,7 +1448,7 @@ jeedomUtils.deprecatedFunc = function(_version='4.3', _oldFunc, _newFunc, _names
   return wrapper
 }
 
-//Introduced in v4.2 -> deprecated v4.4 -> remove v4.6
+//Introduced in v4.2 -> deprecated v4.4 -> obsolete v4.5
 var checkPageModified = jeedomUtils.checkPageModified
 var loadPage = jeedomUtils.loadPage
 var initPage = jeedomUtils.initPage
@@ -1469,5 +1469,6 @@ var chooseIcon = jeedomUtils.chooseIcon
 var getOpenedModal = jeedomUtils.getOpenedModal
 
 
-//Introduced in v4.3 -> deprecated v4.5 -> remove v4.6
+//Introduced in v4.3 -> obsolete 4.4
 var jeedom_langage = jeeFrontEnd.language
+var userProfils = jeeFrontEnd.userProfils

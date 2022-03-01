@@ -64,6 +64,8 @@
     }
 
     $inputNumber#id#.on('focusout', function(event) {
+      clearTimeout(spinTimer#id#)
+      if ($(this).attr('value') == $(this).attr('aria-valuenow')) return false
       if ('#noslider#' != '1') mySlider#id#.set(this.value)
       jeedom.cmd.execute({id: '#id#', value: {slider: this.value}})
     })
@@ -74,7 +76,7 @@
     })
 
     jeedom.cmd.update['#id#'] = function(_options) {
-      $inputNumber#id#.val(_options.display_value)
+      $inputNumber#id#.val(_options.display_value).attr('value', _options.display_value).attr('aria-valuenow', _options.display_value)
       if ('#noslider#' != '1') mySlider#id#.set(_options.display_value)
     }
   </script>
