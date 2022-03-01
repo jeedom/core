@@ -76,7 +76,7 @@
     })
 
     jeedom.cmd.update['#id#'] = function(_options) {
-      $inputNumber#id#.val(_options.display_value).attr('value', _options.display_value)
+      $inputNumber#id#.val(_options.display_value).attr('value', _options.display_value).attr('aria-valuenow', _options.display_value)
       if ('#noslider#' != '1') mySlider#id#.set(_options.display_value)
     }
   </script>
