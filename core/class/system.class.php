@@ -212,6 +212,12 @@ class system {
 						'version' => $infos[2]
 					);
 				}
+				$npm = shell_exec('npm -v 2>/dev/null');
+				if ($npm != '') {
+					self::$_installPackage[$_type]['npm'] = array(
+						'version' => $npm
+					);
+				}
 				break;
 			case 'pip2':
 				if (version_compare(self::getOsVersion(), '11', '>=')) {
