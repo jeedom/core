@@ -305,6 +305,7 @@ jeedom.log.colorReplacement = {
 
 }
 jeedom.log.stringColorReplace = function(_str) {
+  _str= _str.replaceAll('<', '&lt;');
   for (var re in jeedom.log.colorReplacement) {
     _str = _str.split(re).join(jeedom.log.colorReplacement[re])
   }
