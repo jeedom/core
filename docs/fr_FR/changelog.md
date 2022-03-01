@@ -2,6 +2,7 @@
 
 - Bugfix UI : Recherche supprimée en activant l'option log brut.
 - Bugfix UI : Téléchargement de log vide impossible.
+- Bugfix UI : Widget cmd.action.slider.value
 
 - Bugfix Core : Taille des images de fond en rapport avec la taille du design.
 

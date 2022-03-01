@@ -3,7 +3,7 @@
     <div class="cmdName">#name_display#</div>
   </div>
   <div class="content-xs">
-    <input type="number" min="#minValue#" max="#maxValue#" value="#state#" step="0.5" id="sliderInput#id#">
+    <input type="number" min="#minValue#" max="#maxValue#" value="#state#" step="1" id="sliderInput#id#">
     <div id="widget_slider#id#" class="slider"></div>
   </div>
   <template>
@@ -13,20 +13,24 @@
   </template>
   <script>
     var $inputNumber#id# = $('#sliderInput#id#')
-    $('#sliderInput#id#').spinner({
-      icons: { down: "ui-icon-triangle-1-s", up: "ui-icon-triangle-1-n"},
-      stop: function(event, ui) {
-        if (event.currentTarget.id != 'sliderInput#id#') {
-          $inputNumber#id#.trigger('change')
-        }
-      }
-    })
-
     var step#id# = 1
+    var spinTimer#id# = null
     if ($.issetWidgetOptParam('#step#', 'step')) {
       step#id# = parseFloat('#step#')
       $inputNumber#id#.attr('step', step#id#)
     }
+
+    $('#sliderInput#id#').spinner({
+      icons: { down: "ui-icon-triangle-1-s", up: "ui-icon-triangle-1-n"},
+      stop: function(event, ui) {
+        if (event.currentTarget.id != 'sliderInput#id#') {
+          clearTimeout(spinTimer#id#)
+          spinTimer#id# = setTimeout(function() {
+            $inputNumber#id#.trigger('change')
+          }, 1000)
+        }
+      }
+    })
 
     if ('#noslider#' != '1') {
       var mySlider#id# = $.createWidgetSlider({
@@ -60,6 +64,8 @@
     }
 
     $inputNumber#id#.on('focusout', function(event) {
+      clearTimeout(spinTimer#id#)
+      if ($(this).attr('value') == $(this).attr('aria-valuenow')) return false
       if ('#noslider#' != '1') mySlider#id#.set(this.value)
       jeedom.cmd.execute({id: '#id#', value: {slider: this.value}})
     })
@@ -70,7 +76,7 @@
     })
 
     jeedom.cmd.update['#id#'] = function(_options) {
-      $inputNumber#id#.val(_options.display_value)
+      $inputNumber#id#.val(_options.display_value).attr('value', _options.display_value).attr('aria-valuenow', _options.display_value)
       if ('#noslider#' != '1') mySlider#id#.set(_options.display_value)
     }
   </script>
