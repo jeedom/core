@@ -7,7 +7,7 @@
 - Bugfix UI : Widget cmd.action.slider.value
 
 - Bugfix Core : Taille des images de fond en rapport avec la taille du design.
-- Bugfix Core : correction d'un soucis sur les clefs api toujours en désactivée
+- Bugfix Core : correction d'un soucis sur les clefs api toujours en désactivées
 
 ## 4.2.13
 
