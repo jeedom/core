@@ -1236,7 +1236,9 @@ class plugin {
 	public function getSource() {
 		if ($this->source == '') {
 			$update = update::byLogicalId($this->id);
-			$this->source = $update->getSource();
+			if (is_object($update)) {
+				$this->source = $update->getSource();
+			}
 		}
 		return $this->source;
 	}

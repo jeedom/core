@@ -1,10 +1,19 @@
 # Changelog Jeedom V4.2
 
+## 4.2.14
+
+- Bugfix UI : Recherche supprimée en activant l'option log brut.
+- Bugfix UI : Téléchargement de log vide impossible.
+- Bugfix UI : Widget cmd.action.slider.value
+
+- Bugfix Core : Taille des images de fond en rapport avec la taille du design.
+- Bugfix Core : correction d'un soucis sur les clefs api toujours en désactivées
+
 ## 4.2.13
 
 - Amélioration : Création des clef api par defaut en inactif (si la demande de création ne vient pas du plugin).
-- Amélioration : ajout de la taille des sauvegardes sur la page de gestion des sauvegardes
-- Bugfix Core : correction d'un soucis de taille de backup avec le plugin Atlas
+- Amélioration : Ajout de la taille des sauvegardes sur la page de gestion des sauvegardes
+- Bugfix Core : Correction d'un soucis de taille de backup avec le plugin Atlas
 - Bugfix UI : Option *Masquer en desktop* des résumés.
 - Bugfix UI : Historiques: Respect des échelles lors du zoom.
 

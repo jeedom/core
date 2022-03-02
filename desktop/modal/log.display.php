@@ -85,6 +85,10 @@ $("#bt_logdisplayremoveLog").on('click', function(event) {
 })
 
 $('#bt_logdisplaydownloadLog').click(function() {
+  if ($('#pre_eventlog').text() == '') {
+    bootbox.alert('{{Le log est vide.}}')
+    return false
+  }
   window.open('core/php/downloadFile.php?pathfile=log/' + log_display_name, "_blank", null)
 })
 </script>
