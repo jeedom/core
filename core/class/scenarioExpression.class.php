@@ -1174,112 +1174,120 @@ class scenarioExpression {
 		return $_default;
 	}
 
-	public static function setTags(&$_expression, &$_scenario = null, $_quote = false, $_nbCall = 0) {
-		$_expression = trim($_expression);
+   	public static function setTags($_expression, &$_scenario = null, $_quote = false, $_nbCall = 0) {
 		if (config::byKey('expression::autoQuote', 'core', 1) == 0) {
-			$_quote = false;
+		    $_quote = false;
 		}
 		if (file_exists(__DIR__ . '/../../data/php/user.function.class.php')) {
-			require_once __DIR__ . '/../../data/php/user.function.class.php';
+		    require_once __DIR__ . '/../../data/php/user.function.class.php';
 		}
+		$formattage='*|';
+		for ($i = 1; $i <= $_nbCall; $i++) {
+		    $formattage=$formattage.'|';
+		}
+
 		if ($_nbCall > 10) {
-			return $_expression;
+		    return $_expression;
 		}
 		$replace1 = self::getRequestTags($_expression);
 		if ($_scenario !== null && count($_scenario->getTags()) > 0) {
-			$replace1 = array_merge($replace1, $_scenario->getTags());
+		    $replace1 = array_merge($replace1, $_scenario->getTags());
 		}
 
 		if (is_object($_scenario)) {
-			$cmd = cmd::byId(str_replace('#', '', $_scenario->getRealTrigger()));
-			if (is_object($cmd)) {
-				$replace1['#trigger#'] = $cmd->getHumanName();
-				$replace1['#trigger_value#'] = $cmd->execCmd();
-			} else {
-				$replace1['#trigger#'] = $_scenario->getRealTrigger();
-			}
+		    $cmd = cmd::byId(str_replace('#', '', $_scenario->getRealTrigger()));
+		    if (is_object($cmd)) {
+			$replace1['#trigger#'] = $cmd->getHumanName();
+			$replace1['#trigger_value#'] = $cmd->execCmd();
+		    } else {
+			$replace1['#trigger#'] = $_scenario->getRealTrigger();
+		    }
 		}
 		if ($_quote) {
-			foreach ($replace1 as &$value) {
-				if (strpos($value, ' ') !== false || preg_match("/[a-zA-Z]/", $value) || $value === '') {
-					$value = '"' . trim($value, '"') . '"';
-				}
+		    foreach ($replace1 as &$value) {
+			if (strpos($value, ' ') !== false || preg_match("/[a-zA-Z]/", $value) || $value === '') {
+			    $value = '"' . trim($value, '"') . '"';
+
 			}
+		    }
 		}
 		$replace2 = array();
 		if (!is_string($_expression)) {
-			return $_expression;
+		    return $_expression;
 		}
 		preg_match_all("/([a-zA-Z][a-zA-Z1-9_]*?)\(((([^\()]*\(.*\)[^\()]*))|([^\(]*))\)/", $_expression, $matches, PREG_SET_ORDER);
 		if (is_array($matches)) {
-			foreach ($matches as $match) {
-				$function = $match[1];
-			        if (isset($match[4])and strlen($match[4])>=1 ){
-					$matchUsed=$match[4];
-			      	}
-			     	else{
-					$matchUsed=$match[5];
-			      	}
-				$replace_string = $match[0];
-				if (substr_count($matchUsed, '(') != substr_count($matchUsed, ')')) {
-					$pos = strpos($_expression, $matchUsed) + strlen($matchUsed);
-					while (substr_count($matchUsed, '(') > substr_count($matchUsed, ')')) {
-						$matchUsed .= $_expression[$pos];
-						$pos++;
-						if ($pos > strlen($_expression)) {
-							break;
-						}
-					}
-					$arguments = self::setTags($matchUsed, $_scenario, $_quote, $_nbCall++);
-					while ($arguments[0] == '(' && $arguments[strlen($arguments) - 1] == ')') {
-						$arguments = substr($arguments, 1, -1);
-					}
-					$result = str_replace($matchUsed, $arguments, $_expression);
-					while (substr_count($result, '(') > substr_count($result, ')')) {
-						$result .= ')';
-					}
-					$result = self::setTags($result, $_scenario, $_quote, $_nbCall++);
-					return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), $result), $_quote);
-				} else {
-					$arguments = explode(',', $matchUsed);
-				}
-				if (method_exists(__CLASS__, $function)) {
-					if ($function == 'trigger') {
-						if (!isset($arguments[0])) {
-							$arguments[0] = '';
-						}
-						$replace2[$replace_string] = self::trigger($arguments[0], $_scenario);
-					} elseif ($function == 'triggerValue') {
-						$replace2[$replace_string] = self::triggerValue($_scenario);
-					} elseif ($function == 'tag') {
-						if (!isset($arguments[0])) {
-							$arguments[0] = '';
-						}
-						if (!isset($arguments[1])) {
-							$arguments[1] = '';
-						}
-						$replace2[$replace_string] = self::tag($_scenario, $arguments[0], $arguments[1]);
-					} else {
-						$replace2[$replace_string] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
-					}
-				} else if (class_exists('userFunction') && method_exists('userFunction', $function)) {
-					$replace2[$replace_string] = call_user_func_array('userFunction' . "::" . $function, $arguments);
-				} else {
-					if (function_exists($function)) {
-						foreach ($arguments as &$argument) {
-							$argument = trim(evaluate(self::setTags($argument, $_scenario, $_quote)));
-						}
-						$replace2[$replace_string] = call_user_func_array($function, $arguments);
-					}
-				}
-				if ($_quote && isset($replace2[$replace_string]) && (strpos($replace2[$replace_string], ' ') !== false || preg_match("/[a-zA-Z#]/", $replace2[$replace_string]) || $replace2[$replace_string] === '')) {
-					$replace2[$replace_string] = '"' . trim($replace2[$replace_string], '"') . '"';
-				}
+		    foreach ($matches as $match) {
+			$function = $match[1];
+			if (isset($match[4])and strlen($match[4])>=1 ){
+			  $matchUsed=$match[4];
 			}
+			else{
+			 $matchUsed=$match[5];
+			}
+			$replace_string = $match[0];
+			if (substr_count($matchUsed, '(')>=1) {
+			    $arguments2 = self::setTags($matchUsed, $_scenario, $_quote, $_nbCall+1);
+			    $arguments = explode(',', $arguments2);
+			}else
+			{
+			    $arguments = explode(',', $matchUsed);
+			}
+			if (method_exists(__CLASS__, $function)) {
+			    if ($function == 'trigger') {
+				if (!isset($arguments[0])) {
+				    $arguments[0] = '';
+				}
+				$replace2[$replace_string] = self::trigger($arguments[0], $_scenario);
+			    } elseif ($function == 'triggerValue') {
+				$replace2[$replace_string] = self::triggerValue($_scenario);
+			    } elseif ($function == 'tag') {
+				if (!isset($arguments[0])) {
+				    $arguments[0] = '';
+				}
+				if (!isset($arguments[1])) {
+				    $arguments[1] = '';
+				}
+				$replace2[$replace_string] = self::tag($_scenario, $arguments[0], $arguments[1]);
+			    } else {
+				$replace2[$replace_string] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
+			    }
+			} else if (class_exists('userFunction') && method_exists('userFunction', $function)) {
+			    $replace2[$replace_string] = call_user_func_array('userFunction' . "::" . $function, $arguments);
+			} else {
+			    if (function_exists($function)) {
+				foreach ($arguments as &$argument) {
+				    $argument = trim(evaluate(self::setTags($argument, $_scenario, $_quote)));
+				}
+				$replace2[$replace_string] = call_user_func_array($function, $arguments);
+			    }
+			}
+			if ($_quote && isset($replace2[$replace_string]) && (strpos($replace2[$replace_string], ' ') !== false || preg_match("/[a-zA-Z#]/", $replace2[$replace_string]) || $replace2[$replace_string] === '')) {
+			    $replace2[$replace_string] = '"' . trim($replace2[$replace_string], '"') . '"';
+			}
+
+		    }
+
 		}
-		$return = cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), str_replace(array_keys($replace2), array_values($replace2), $_expression)), $_quote);
+		if (!function_exists('cmp'))   {
+			function cmp($a, $b)
+		    {
+			if (strlen($a) == strlen($b)) {
+			    return 0;
+			}
+		      return (strlen($a) < strlen($b)) ? 1 : -1;
+		    }
+			}	
+		uksort($replace2, "cmp");
+		$_expression=str_replace(array_keys($replace2), array_values($replace2), $_expression);
+		$_expression=str_replace(array_keys($replace1), array_values($replace1), $_expression);
+		if($_nbCall==0){
+				$return = cmd::cmdToValue($_expression, $_quote);
+		}else{
+			$return =$_expression;
+		}
 		return $return;
-	}
+    	}
 
 	public static function createAndExec($_type, $_cmd, $_options = null) {
 		$scenarioExpression = new self();
