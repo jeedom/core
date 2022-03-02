@@ -2907,8 +2907,8 @@
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Вы уверены, что хотите удалить взаимодействие \\ «ы"
     },
     "desktop\/js\/timeline.js": {
-        "Evènements de la timeline supprimés avec succès": "Evènements de la timeline supprimés avec succès",
         "Configuration de l'historique des commandes": "управления История конфигурации",
+        "Evènements de la timeline supprimés avec succès": "Evènements de la timeline supprimés avec succès",
         "Log d'exécution du scénario": "Журнал запуска скрипта",
         "Historique": "История",
         "Configuration de la commande": "управляющий набор"
