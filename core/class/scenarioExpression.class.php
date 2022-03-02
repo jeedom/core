@@ -681,22 +681,32 @@ class scenarioExpression {
 
 	public static function durationBetween($_cmd_id, $_value, $_startDate, $_endDate, $_unit = 60) {
 		if (!is_numeric(str_replace('#', '', $_cmd_id))) {
-			$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
+		    $cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
 		} else {
-			$cmd = cmd::byId(str_replace('#', '', $_cmd_id));
+		    $cmd = cmd::byId(str_replace('#', '', $_cmd_id));
 		}
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
-			return '';
+		    return '';
 		}
-		if (strtotime($_startDate) >= time()) {
-			return 0;
+		if (($convertTime=strtotime(self::setTags($_startDate))) === false) {
+			log::add('scenario','error','DurationBetween-> Erreur converstion _startDate: '.$_startDate);
 		}
-		if (time() < strtotime($_endDate)) {
-			$_endDate = date('Y-m-d H:i:s');
+		$_startDate = date('Y-m-d H:i:s', $convertTime);
+		$_startTime = strtotime($_startDate);
+		if ($_startTime >= time()) {
+			log::add('scenario','error','DurationBetween-> start time > time start : '.$_startTime.' time '.time());
+		    return 0;
+		}
+		if (($convertTime=strtotime(self::setTags($_endDate))) === false) {
+			log::add('scenario','error','DurationBetween-> Erreur converstion _endDate: '.$_endDate);
+		}
+		$_endDate = date('Y-m-d H:i:s', $convertTime);
+		$_endTime=strtotime($_endDate);
+		if (time() < $_endTime) {
+		    $_endDate = date('Y-m-d H:i:s');
+			$_endTime=strtotime($_endDate);
 		}
 
-		$_startTime = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
-		$_endTime = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
 		$_value = str_replace(',', '.', $_value);
 		$_decimal = strlen(substr(strrchr($_value, "."), 1));
 
@@ -705,32 +715,32 @@ class scenarioExpression {
 		$duration = 0;
 		$lastDuration = strtotime($histories[0]->getDatetime());
 		$lastValue = $histories[0]->getValue();
-
 		foreach ($histories as $history) {
-			if ($history->getDatetime() >= $_startTime) {
-				if ($history->getDatetime() <= $_endTime) {
-					if ($lastValue == $_value) {
-						$duration = $duration + (strtotime($history->getDatetime()) - $lastDuration);
-					}
-				} else {
-					if ($lastValue == $_value) {
-						$duration = $duration + (strtotime($_endTime) - $lastDuration);
-					}
-					$lastDuration = strtotime($history->getDatetime());
-					$lastValue = round($history->getValue(), $_decimal);
-					break;
-				}
-				$lastDuration = strtotime($history->getDatetime());
+		    if ($history->getDatetime() >= $_startDate) {
+			if ($history->getDatetime() <= $_endDate) {
+			    if ($lastValue == $_value) {
+				$duration = $duration + (strtotime($history->getDatetime()) - $lastDuration);
+			    }
 			} else {
-				$lastDuration = strtotime($_startTime);
+			    if ($lastValue == $_value) {
+				$duration = $duration + (strtotime($_endTime) - $lastDuration);
+			    }
+			    $lastDuration = strtotime($history->getDatetime());
+			    $lastValue = round($history->getValue(), $_decimal);
+			    break;
 			}
-			$lastValue = round($history->getValue(), $_decimal);
+			$lastDuration = strtotime($history->getDatetime());
+		    } else {
+			$lastDuration = strtotime($_startTime);
+		    }
+		    $lastValue = round($history->getValue(), $_decimal);
 		}
-		if ($lastValue == $_value && $lastDuration <= strtotime($_endTime)) {
-			$duration = $duration + (strtotime($_endTime) - $lastDuration);
+		if ($lastValue == $_value && $lastDuration <= $_endTime) {
+		    $duration = $duration + $_endTime - $lastDuration;
 		}
 		return floor($duration / $_unit);
 	}
+
 
 	public static function lastBetween($_cmd_id, $_startDate, $_endDate) {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
