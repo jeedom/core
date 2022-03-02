@@ -9,7 +9,7 @@ $date = array(
 ?>
 
 <div class="row row-overflow">
-	<div id="timelineBar">
+	<div id="timelineBar" class="input-group">
 		<input id="in_searchTimeline" class="form-control input-sm roundedLeft" placeholder="{{Rechercher | nom | :not(nom}}" style="flex: 6;flex-grow: 4;" />
 		<a id="bt_resetTimelineSearch" class="btn input-sm form-control noCorner" style="width:30px"><i class="fas fa-times"></i></a>
 		<select class="form-control input-sm noCorner" style="width:200px;" id="sel_timelineFolder">
