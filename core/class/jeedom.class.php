@@ -484,7 +484,9 @@ class jeedom {
 			}
 			config::save('api', config::genKey(), $_plugin);
 		}
-		config::save('api::' . $_plugin . '::mode', $_mode, 'core');
+		if (config::byKey('api::' . $_plugin . '::mode', 'core', 'enable') == 'disable' && $_mode != 'disable') {
+			config::save('api::' . $_plugin . '::mode', $_mode, 'core');
+		}
 		return config::byKey('api', $_plugin);
 	}
 
