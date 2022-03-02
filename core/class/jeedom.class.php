@@ -483,8 +483,8 @@ class jeedom {
 				return '';
 			}
 			config::save('api', config::genKey(), $_plugin);
-			config::save('api::' . $_plugin . '::mode', $_mode, 'core');
 		}
+		config::save('api::' . $_plugin . '::mode', $_mode, 'core');
 		return config::byKey('api', $_plugin);
 	}
 
