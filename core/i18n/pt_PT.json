@@ -2793,8 +2793,8 @@
         "Activer la gestion automatique du démon": "Ativar a gestão automática do daemon",
         "Désactiver la gestion automatique du démon": "Desativar a gestão automática de daemon",
         "Désactiver le système cron": "Desativar o sistema cron",
-        "Activer le système cron": "Ativar sistema cron",
-        "Détails du cron": "Detalhes Cron",
+        "Activer le système cron": "Ativar o sistema cron",
+        "Détails du cron": "Detalhes do cron",
         "Détails du listener": "Detalhes do listener"
     },
     "desktop\/js\/history.js": {
@@ -2984,12 +2984,12 @@
         "Cache vidé": "Cache vazia",
         "Cache nettoyé": "Cache limpa",
         "Sauvegarde réussie": "Backup bem-sucedido",
-        "Commande réalisée avec succès": "Executou a Operação com sucesso",
+        "Commande réalisée avec succès": "Executou a operação com sucesso",
         "Cookie de thème supprimé": "Cookie de tema excluído",
         "Image enregistrée et configurée": "Imagem guardada e configurada",
         "Êtes-vous sûr de vouloir supprimer cette image de fond ?": "Tem certeza de que deseja remover esta imagem de fundo?",
         "Image supprimée": "Imagem excluída",
-        "Evènement de la timeline supprimé avec succès": "Evento do registo cronológico excluído com sucesso",
+        "Evènement de la timeline supprimé avec succès": "Evento da linha cronológica excluído com sucesso",
         "Création des commandes virtuel réussies": "Criação dos controlos virtuais bom sucedida",
         "Êtes-vous sûr de vouloir supprimer la base d\\'InfluxDB": "Tem certeza de que deseja excluir a base de dados do InfluxDB",
         "Action envoyée avec succés": "Ação enviada com sucesso",
@@ -3002,13 +3002,13 @@
         "Êtes-vous sûr de vouloir réinitialiser la clé API de": "Tem certeza de que deseja redefinir a chave API de",
         "Administration système": "Administração do sistema",
         "Rétablissement des droits d\\'accès effectué avec succès": "Direitos de acesso restaurados com sucesso",
-        "Log consistency": "Consistência do registro",
+        "Log consistency": "Consistência do registo",
         "Vérification base de données": "Verificação da base de dados",
         "Vérification des packages": "Verificação de pacotes",
-        "Nettoyage lancé avec succès. Pour suivre l\\'avancement merci de regarder le log cleaningdb": "A limpeza foi iniciada com sucesso. Para acompanhar o progresso, consulte o registro cleaningdb"
+        "Nettoyage lancé avec succès. Pour suivre l\\'avancement merci de regarder le log cleaningdb": "A limpeza foi iniciada com sucesso. Para acompanhar o progresso, consulte o registo cleaningdb"
     },
     "desktop\/js\/connection.js": {
-        "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "Alerta de segurança: <br\/> A sua senha deve ser alterada",
+        "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "Alerta de segurança: <br\/>A sua senha deve ser alterada",
         "Information importante :": "Informação importante:"
     },
     "desktop\/js\/types.js": {
@@ -3187,7 +3187,7 @@
     "desktop\/common\/js\/utils.js": {
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Atenção está a deixar uma página com dados modificados que não foram guardados. Deseja continuar?",
         "Sauvegarde effectuée avec succès": "Backup concluído com êxito",
-        "Suppression effectuée avec succès": "Apagado com sucesso",
+        "Suppression effectuée avec succès": "Eliminado com sucesso",
         "Centre de Messages": "Centro de Mensagens",
         "Thème principal": "Tema principal",
         "Thème alternatif": "Tema alternativo",
@@ -3875,43 +3875,43 @@
     },
     "core\/repo\/samba.repo.php": {
         "Chemin": "Caminho",
-        "[Backup] IP": "IP [de backup]",
-        "[Backup] Utilisateur": "Utilizador [Backup]",
-        "[Backup] Mot de passe": "Senha [Backup]",
-        "[Backup] Partage": "Compartilhamento [Backup]",
-        "[Backup] Chemin": "Caminho [Backup]",
-        "Impossible d\\'écrire dans le répertoire :": "Não foi possível gravar no diretório:",
+        "[Backup] IP": "[Backup] IP",
+        "[Backup] Utilisateur": "[Backup] Utilizador",
+        "[Backup] Mot de passe": "[Backup] Password",
+        "[Backup] Partage": "[Backup] Partilha",
+        "[Backup] Chemin": "[Backup] Caminho",
+        "Impossible d\\'écrire dans le répertoire :": "Impossível escrever no diretório:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R": "Execute o seguinte comando no SSH: sudo chmod 777 -R"
     },
     "core\/repo\/market.repo.php": {
         "Adresse": "Morada",
         "Nom d\\'utilisateur": "Nome do utilizador",
-        "Mot de passe": "Senha",
+        "Mot de passe": "Password",
         "Pas de validation SSL (non recommandé)": "Sem validação SSL (não recomendado)",
-        "[Backup cloud] Nom": "Nome da [backup na nuvem]",
-        "[Backup cloud] Mot de passe": "Senha da [backup na nuvem]",
-        "[Backup cloud] Mot de passe (confirmation)": "[backup na nuvem] Senha (confirmação)",
-        "[Monitoring cloud] Désactiver": "[Monitorização da nuvem] Desativar",
+        "[Backup cloud] Nom": "[Backup cloud] Nome",
+        "[Backup cloud] Mot de passe": "[Backup cloud] Password",
+        "[Backup cloud] Mot de passe (confirmation)": "[Backup cloud] Password (confirmação)",
+        "[Monitoring cloud] Désactiver": "[Monitoring cloud] Desativar",
         "Version : beta, stable": "Versão: beta, estável",
         "Lancement de l\\'installation de": "Lançamento da instalação do",
         "en version": "na versão",
         "Objet introuvable sur le market :": "Objeto não encontrado no mercado:",
-        "Le mot de passe du backup cloud n\\'est pas identique à la confirmation": "A senha da backup cloud não é idêntica à confirmação",
+        "Le mot de passe du backup cloud n\\'est pas identique à la confirmation": "A password da backup cloud não é idêntica à confirmação",
         "Aucun serveur de backup defini. Avez-vous bien un abonnement au backup cloud ?": "Nenhum servidor de backup definido. Tem uma assinatura de backup cloud?",
-        "Vous devez obligatoirement avoir un mot de passe pour le backup cloud (allez dans Réglages -> Système -> Configuration puis onglet Mise à jour\/Market)": "Deve ter uma senha para o backup na nuvem (vá para Configurações -> Sistema -> Configuração e, em seguida, guia Atualização \/ Market)",
-        "Impossible d\\'envoyer le backup au cloud. Le soucis est surement du à un backup trop gros ou à un temps de transfert trop long": "Incapaz de enviar backup para nuvem. O problema é certamente devido a um backup muito grande ou a um tempo de transferência muito longo",
-        "Besoin de faire de la place sur le stockage distant": "Precisa abrir espaço no armazenamento remoto",
+        "Vous devez obligatoirement avoir un mot de passe pour le backup cloud (allez dans Réglages -> Système -> Configuration puis onglet Mise à jour\/Market)": "Deve ter uma senha para o backup na nuvem (vá para Configurações -> Sistema -> Configuração e, em seguida, separador Atualização\/Market)",
+        "Impossible d\\'envoyer le backup au cloud. Le soucis est surement du à un backup trop gros ou à un temps de transfert trop long": "Impossível enviar backup para nuvem. O problema é certamente devido a um backup muito grande ou a um tempo de transferência muito longo",
+        "Besoin de faire de la place sur le stockage distant": "Precisa de aumentar o espaço no armazenamento remoto",
         "Pas assez de place et aucun backup à supprimer": "Espaço insuficiente e nenhum backup para excluir",
-        "Supression du backup cloud :": "Exclusão de backup em nuvem:",
-        "Erreur lors du nettoyage des backups cloud, supression > 10": "Erro ao limpar backups em nuvem, exclusão> 10",
+        "Supression du backup cloud :": "Exclusão de backup na nuvem:",
+        "Erreur lors du nettoyage des backups cloud, supression > 10": "Erro ao limpar backups na nuvem, exclusão > 10",
         "Erreur sur le monitoring cloud :": "Erro na monitorização da nuvem:",
         "Erreur repo_market::getinfo :": "Erro repo_market::getinfo :",
-        "Impossible d\\'écrire dans le répertoire :": "Não foi possível gravar no diretório:",
+        "Impossible d\\'écrire dans le répertoire :": "Impossível escrever no diretório:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R": "Execute o seguinte comando no SSH: sudo chmod 777 -R",
-        "Téléchargement de": "Baixar",
+        "Téléchargement de": "Transferir",
         "URL": "URLs",
         "Installation des plugin, widget, scénario...": "Instalação de plugin, widget, cenário",
-        "OK\\n": "OK",
+        "OK\\n": "OK\\n",
         "Impossible de supprimer :": "Não foi possível excluir:",
         ". Vérifiez les droits": "Verifique os direitos",
         "Echec de création de l\\'archive zip": "Falha ao criar arquivo zip",
@@ -3920,13 +3920,13 @@
     },
     "core\/repo\/market.list.repo.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Widget de type information": "Widget de informações",
+        "Widget de type information": "Widget do tipo informação",
         "Widget de type action": "Widget do tipo de ação",
         "Gratuit": "Gratuito",
         "Payant": "Pago",
         "Officiel": "Oficial",
         "Conseillé": "Aconselhado",
-        "Premium": "Prêmio",
+        "Premium": "Premium",
         "Partenaire": "Parceiro",
         "Legacy": "Legado",
         "Top et nouveautés": "Principais e novidades",
@@ -3936,7 +3936,7 @@
         "Widget pour la version mobile": "Widget para versão móvel",
         "Widget pour la version bureau": "Widget da versão para desktop",
         "par": "por",
-        "Market Jeedom": "Mercado Jeedom"
+        "Market Jeedom": "Market Jeedom"
     },
     "core\/repo\/github.repo.php": {
         "Utilisateur ou organisation du dépôt": "Utilizador ou organização do repositório",
@@ -3959,7 +3959,7 @@
         "URL du fichier ZIP": "URL do arquivo ZIP",
         "URL core Jeedom": "URL do core Jeedom",
         "URL version core Jeedom": "URL da versão do core Jeedom",
-        "Impossible d\\'écrire dans le répertoire :": "Não foi possível gravar no diretório:",
+        "Impossible d\\'écrire dans le répertoire :": "Impossível escrever no diretório:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R": "Execute o seguinte comando no SSH: sudo chmod 777 -R"
     },
     "core\/repo\/market.display.repo.php": {
@@ -4486,12 +4486,12 @@
         "Objet": "Objeto"
     },
     "core\/template\/widgets.html": {
-        "Date de valeur": "Data de validade",
+        "Date de valeur": "Data do valor",
         "Date de collecte": "Data de recolha",
         "Valeur": "Valor",
         "Min": "Mín.",
         "Moyenne": "Média",
-        "Max": "Máx.",
+        "Max": "Max.",
         "Nord": "Norte",
         "Nord-Est": "Nordeste",
         "Est": "Este",
@@ -4505,18 +4505,18 @@
         "Affiche les valeurs minimale et maximale de la commande": "Exibe os valores mínimo e máximo do comando",
         "Pas d'animation": "Sem animação",
         "couleur de l'indicateur de valeur": "cor do indicador de valor",
-        "Titre par défaut": "Título por defeito",
-        "Titre indicatif par défaut": "Título indicativo por defeito",
-        "Autocomplete": "Autocompletar",
+        "Titre par défaut": "Título predefinido",
+        "Titre indicatif par défaut": "Título indicativo predefinido",
+        "Autocomplete": "Auto completar",
         "Ne pas afficher le champ titre": "Não mostrar o campo do título",
-        "Message indicatif par défaut": "Mensagem indicativa por defeito",
-        "Message par défaut": "Mensagem por defeito",
+        "Message indicatif par défaut": "Mensagem indicativa predefinida",
+        "Message par défaut": "Mensagem predefinida",
         "Ne pas afficher le champ message": "Não mostrar o campo de mensagem",
         "Affiche l'info time sous forme de date": "Mostra a hora da informação como uma data",
         "Activer": "Ativar",
         "Desactiver": "Desativar",
-        "Log d'exécution du scénario": "Registro de execução de cenário",
-        "Couleur du curseur et valeur": "Cor e valor do cursor",
+        "Log d'exécution du scénario": "Registo de execução de cenário",
+        "Couleur du curseur et valeur": "Cor do cursor e valor",
         "Pas utilisé pour le changement de valeur": "Não usado para mudança de valor",
         "Couleur d'arrière plan": "Cor de fundo",
         "Ne pas afficher le slider": "Não exibe o controle deslizante",
@@ -4526,7 +4526,7 @@
         "couleur des secteurs Nord et Sud": "cor dos setores Norte e Sul",
         "couleur des secteurs Ouest et Nord": "cor dos setores Oeste e Norte",
         "couleur d'arrière plan": "Cor de fundo",
-        "couleur de la pastille": "cor do patch",
+        "couleur de la pastille": "cor da tabela",
         "Hauteur maximale en pixel": "Altura máxima em pixel"
     },
     "core\/template\/scenario\/sleep.default.html": {
@@ -4539,7 +4539,7 @@
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Cenário",
         "Action": "Ação",
-        "Démarrer": "Começo",
+        "Démarrer": "Iniciar",
         "Démarrer (sync)": "Iniciar (sincronização)",
         "Arrêter": "Parar",
         "Activer": "Ativar",
@@ -4550,7 +4550,7 @@
     },
     "core\/template\/scenario\/wait.default.html": {
         "Condition": "Condição",
-        "Sélectionner la commande": "Selecione o comando",
+        "Sélectionner la commande": "Selecionar o comando",
         "Time out": "Tempo limite"
     },
     "core\/template\/scenario\/cmd.action.color.default.html": {
@@ -4559,12 +4559,12 @@
     },
     "core\/template\/scenario\/popup.default.html": {
         "Message": "Mensagem",
-        "Sélectionner la commande": "Selecione o comando"
+        "Sélectionner la commande": "Selecionar o comando"
     },
     "core\/template\/scenario\/variable.default.html": {
         "Nom": "Nome",
         "Valeur": "Valor",
-        "Sélectionner la commande": "Selecione o comando"
+        "Sélectionner la commande": "Selecionar o comando"
     },
     "core\/template\/scenario\/widget.default.html": {
         "Visible": "Visível",
@@ -4585,19 +4585,19 @@
         "Désactiver": "Desativar"
     },
     "core\/template\/scenario\/genericType.default.html": {
-        "Type": "Modelo",
-        "Type Info (event)": "Informações de tipo (evento)",
-        "Type Action (exec)": "Tipo de ação (exec)",
+        "Type": "Tipo",
+        "Type Info (event)": "Tipo informação (evento)",
+        "Type Action (exec)": "Tipo Ação (exec)",
         "Objet": "Objeto",
         "Valeur": "Valor",
-        "Sélectionner la commande": "Selecione o pedido",
-        "Tous": "Tudo"
+        "Sélectionner la commande": "Selecione o comando",
+        "Tous": "Todos"
     },
     "core\/template\/scenario\/ask.default.html": {
         "Question": "Pergunta",
         "Questions": "Perguntas",
         "Réponse": "Resposta",
-        "Réponses possibles (séparé par des ;)": "Respostas possíveis (separadas por;)",
+        "Réponses possibles (séparé par des ;)": "Respostas possíveis (separadas por ;)",
         "Variable": "Variável",
         "Délai": "Atraso",
         "Délai en s": "Atraso em s",
@@ -4605,36 +4605,36 @@
         "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/event.default.html": {
-        "Commande": "Ordem",
+        "Commande": "Comando",
         "Valeur": "Valor",
         "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/gotodesign.default.html": {
-        "Design": "Projeto"
+        "Design": "Design"
     },
     "core\/template\/scenario\/cmd.action.slider.default.html": {
         "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/message.default.html": {
         "Message": "Mensagem",
-        "Sélectionner la commande": "Selecione o comando"
+        "Sélectionner la commande": "Selecionar o comando"
     },
     "core\/template\/scenario\/log.default.html": {
         "Message": "Mensagem",
-        "Sélectionner la commande": "Selecione o comando"
+        "Sélectionner la commande": "Selecionar o comando"
     },
     "core\/template\/scenario\/tag.default.html": {
         "Nom": "Nome",
         "Valeur": "Valor",
-        "Sélectionner la commande": "Selecione o comando"
+        "Sélectionner la commande": "Selecionar o comando"
     },
     "core\/template\/scenario\/setColoredIcon.default.html": {
-        "Actif": "Ativos",
+        "Actif": "Ativo",
         "Inactif": "Inativo"
     },
     "core\/template\/scenario\/scenario_return.default.html": {
         "Message": "Mensagem",
-        "Sélectionner la commande": "Selecione o comando"
+        "Sélectionner la commande": "Selecionar o comando"
     },
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Procurar ícone"
@@ -4653,37 +4653,37 @@
     },
     "core\/template\/scenario\/say.default.html": {
         "Message": "Mensagem",
-        "Sélectionner la commande": "Selecione o comando"
+        "Sélectionner la commande": "Selecionar o comando"
     },
     "core\/template\/scenario\/exportHistory.default.html": {
-        "Historique à exporter": "História para exportar",
+        "Historique à exporter": "Histórico a exportar",
         "Commandes": "Comandos",
-        "Sélectionner la commande": "Selecione o comando",
-        "De": "Do",
-        "à": "em",
+        "Sélectionner la commande": "Selecionar o comando",
+        "De": "Da",
+        "à": "até",
         "Nom": "Nome",
-        "Exporter en": "Exportar",
+        "Exporter en": "Exportar para",
         "CSV": "CSV"
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "Exportar",
         "Vue": "Vista",
-        "Design": "Projeto",
-        "Plugin": "Plugar",
-        "Analyse Equipements": "Análise de Equipamentos",
-        "Timeline": "Linha temporal",
+        "Design": "Design",
+        "Plugin": "Plugin",
+        "Analyse Equipements": "Análise dos Equipamentos",
+        "Timeline": "Linha cronológica",
         "URL": "URLs",
         "Panel": "Painel",
-        "Exporter en": "Exportar",
+        "Exporter en": "Exportar como",
         "PNG": "PNG",
         "PDF": "PDF",
         "Commandes": "Comandos",
-        "Sélectionner la commande": "Selecione o comando",
+        "Sélectionner la commande": "Selecionar o comando",
         "Largeur (px)": "Largura (px)",
         "Hauteur (px)": "Altura (px)",
-        "Délai": "Prazo",
-        "Option(s)": "Opção (ões)",
-        "Aucune": "Algum",
+        "Délai": "Atraso",
+        "Option(s)": "Opção(s)",
+        "Aucune": "Nenhuma",
         "Aucun": "Nenhum",
         "Principal": "Principal"
     },
