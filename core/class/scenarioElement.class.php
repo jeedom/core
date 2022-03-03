@@ -210,6 +210,7 @@ class scenarioElement {
 				$cmd = __DIR__ . '/../../core/php/jeeScenario.php ';
 				$cmd .= ' scenario_id=' . $_scenario->getId();
 				$cmd .= ' scenarioElement_id=' . $this->getId();
+				$cmd .= ' tags=\'' . json_encode($_scenario->getTags()).'\'';
 				$cmd .= ' >> ' . log::getPathToLog('scenario_element_execution') . ' 2>&1 &';
 				$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['task']['txt'] . $this->getId() . $GLOBALS['JEEDOM_SCLOG_TEXT']['sheduleNow']['txt'] );
 				system::php($cmd);

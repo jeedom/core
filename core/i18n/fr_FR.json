@@ -2907,8 +2907,8 @@
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Êtes-vous sûr de vouloir supprimer l\\'interaction"
     },
     "desktop\/js\/timeline.js": {
-        "Evènements de la timeline supprimés avec succès": "Evènements de la timeline supprimés avec succès",
         "Configuration de l'historique des commandes": "Configuration de l'historique des commandes",
+        "Evènements de la timeline supprimés avec succès": "Evènements de la timeline supprimés avec succès",
         "Log d'exécution du scénario": "Log d'exécution du scénario",
         "Historique": "Historique",
         "Configuration de la commande": "Configuration de la commande"

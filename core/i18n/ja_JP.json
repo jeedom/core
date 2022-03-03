@@ -2907,8 +2907,8 @@
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "インタラクションを削除してもよろしいですか"
     },
     "desktop\/js\/timeline.js": {
-        "Evènements de la timeline supprimés avec succès": "Evènements de la timeline supprimés avec succès",
         "Configuration de l'historique des commandes": "歴史Configurationフォームのコントロール",
+        "Evènements de la timeline supprimés avec succès": "Evènements de la timeline supprimés avec succès",
         "Log d'exécution du scénario": "スクリプトの実行をログに記録します",
         "Historique": "歴史的",
         "Configuration de la commande": "設定された制御"
