@@ -152,7 +152,7 @@ sendVarToJs('jeephp2js.md_userRights_rights', utils::o2a($user));
   <div role="tabpanel" class="tab-pane" id="tab_view">
     <div class="pull-right" style="width: 100%;text-align: right;">
       {{Appliquer aux éléments visibles}}:
-      <select id="objSelectSet" class="input-sm" style="width: 25%;">
+      <select id="viewSelectSet" class="input-sm" style="width: 25%;">
         <option value="n">{{Aucun}}</option>
         <option value="r">{{Visualisation}}</option>
       </select>
@@ -187,7 +187,7 @@ sendVarToJs('jeephp2js.md_userRights_rights', utils::o2a($user));
   <div role="tabpanel" class="tab-pane" id="tab_plan">
     <div class="pull-right" style="width: 100%;text-align: right;">
       {{Appliquer aux éléments visibles}}:
-      <select id="objSelectSet" class="input-sm" style="width: 25%;">
+      <select id="planSelectSet" class="input-sm" style="width: 25%;">
         <option value="n">{{Aucun}}</option>
         <option value="r">{{Visualisation}}</option>
       </select>
@@ -222,7 +222,7 @@ sendVarToJs('jeephp2js.md_userRights_rights', utils::o2a($user));
   <div role="tabpanel" class="tab-pane" id="tab_plan3d">
     <div class="pull-right" style="width: 100%;text-align: right;">
       {{Appliquer aux éléments visibles}}:
-      <select id="objSelectSet" class="input-sm" style="width: 25%;">
+      <select id="plan3dSelectSet" class="input-sm" style="width: 25%;">
         <option value="n">{{Aucun}}</option>
         <option value="r">{{Visualisation}}</option>
       </select>
@@ -305,4 +305,33 @@ sendVarToJs('jeephp2js.md_userRights_rights', utils::o2a($user));
       })
     }
   }, '#objSelectSet')
+
+  $('#tab_view').on({
+    'change': function(event) {
+      var value = $(this).val()
+      $('#tab_view').find('tbody tr:not(.filtered) select').each(function() {
+        $(this).val(value)
+      })
+    }
+  }, '#viewSelectSet')
+
+
+  $('#tab_plan').on({
+    'change': function(event) {
+      var value = $(this).val()
+      $('#tab_plan').find('tbody tr:not(.filtered) select').each(function() {
+        $(this).val(value)
+      })
+    }
+  }, '#planSelectSet')
+
+
+  $('#tab_plan3d').on({
+    'change': function(event) {
+      var value = $(this).val()
+      $('#tab_plan3d').find('tbody tr:not(.filtered) select').each(function() {
+        $(this).val(value)
+      })
+    }
+  }, '#plan3dSelectSet')
 </script>
