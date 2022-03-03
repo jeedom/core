@@ -309,7 +309,7 @@ class history {
 			}
 		}
 		$sql .= ' FROM history
-		WHERE cmd_id=:cmd_id ';
+		WHERE value is not null AND cmd_id=:cmd_id ';
 		if ($_startTime !== null) {
 			$sql .= ' AND datetime>=:startTime';
 		}
@@ -352,7 +352,7 @@ class history {
 			}
 		}
 		$sql .= ' FROM historyArch
-		WHERE cmd_id=:cmd_id ';
+		WHERE value is not null AND cmd_id=:cmd_id ';
 		if ($_startTime !== null) {
 			$sql .= ' AND `datetime`>=:startTime';
 		}
@@ -904,6 +904,9 @@ class history {
 	/*     * *********************Methode d'instance************************* */
 
 	public function save($_cmd = null, $_direct = false) {
+		if ($this->getValue() === null) {
+			return;
+		}
 		global $JEEDOM_INTERNAL_CONFIG;
 		if ($_cmd === null) {
 			$cmd = $this->getCmd();
