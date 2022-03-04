@@ -1175,13 +1175,13 @@ class scenarioExpression {
 	}
 
 	public static function setTags(&$_expression, &$_scenario = null, $_quote = false, $_nbCall = 0) {
-		$_expression = trim($_expression);
 		if (config::byKey('expression::autoQuote', 'core', 1) == 0) {
 			$_quote = false;
 		}
 		if (file_exists(__DIR__ . '/../../data/php/user.function.class.php')) {
 			require_once __DIR__ . '/../../data/php/user.function.class.php';
 		}
+	  
 		if ($_nbCall > 10) {
 			return $_expression;
 		}
@@ -1203,6 +1203,7 @@ class scenarioExpression {
 			foreach ($replace1 as &$value) {
 				if (strpos($value, ' ') !== false || preg_match("/[a-zA-Z]/", $value) || $value === '') {
 					$value = '"' . trim($value, '"') . '"';
+
 				}
 			}
 		}
@@ -1210,7 +1211,7 @@ class scenarioExpression {
 		if (!is_string($_expression)) {
 			return $_expression;
 		}
-		preg_match_all("/([a-zA-Z][a-zA-Z1-9_]*?)\(((([^\()]*\(.*\)[^\()]*))|([^\(]*))\)/", $_expression, $matches, PREG_SET_ORDER);
+		preg_match_all("/([a-zA-Z][a-zA-Z1-9_]*?)\(((([^\()]*\(.*\)[^\()]*[^\)]))|([^\(]*[^\)]))\)/", $_expression, $matches, PREG_SET_ORDER);
 		if (is_array($matches)) {
 			foreach ($matches as $match) {
 				$function = $match[1];
@@ -1221,26 +1222,11 @@ class scenarioExpression {
 					$matchUsed=$match[5];
 			      	}
 				$replace_string = $match[0];
-				if (substr_count($matchUsed, '(') != substr_count($matchUsed, ')')) {
-					$pos = strpos($_expression, $matchUsed) + strlen($matchUsed);
-					while (substr_count($matchUsed, '(') > substr_count($matchUsed, ')')) {
-						$matchUsed .= $_expression[$pos];
-						$pos++;
-						if ($pos > strlen($_expression)) {
-							break;
-						}
-					}
-					$arguments = self::setTags($matchUsed, $_scenario, $_quote, $_nbCall++);
-					while ($arguments[0] == '(' && $arguments[strlen($arguments) - 1] == ')') {
-						$arguments = substr($arguments, 1, -1);
-					}
-					$result = str_replace($matchUsed, $arguments, $_expression);
-					while (substr_count($result, '(') > substr_count($result, ')')) {
-						$result .= ')';
-					}
-					$result = self::setTags($result, $_scenario, $_quote, $_nbCall++);
-					return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), $result), $_quote);
+                if (substr_count($matchUsed, '(')>=1) {
+                    $arguments2 = self::setTags($matchUsed, $_scenario, $_quote, $_nbCall+1);
+                    $arguments = explode(',', $arguments2);
 				} else {
+				 
 					$arguments = explode(',', $matchUsed);
 				}
 				if (method_exists(__CLASS__, $function)) {
@@ -1277,7 +1263,23 @@ class scenarioExpression {
 				}
 			}
 		}
-		$return = cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), str_replace(array_keys($replace2), array_values($replace2), $_expression)), $_quote);
+        if (!function_exists('cmp'))   {
+        	function cmp($a, $b)
+            {
+                if (strlen($a) == strlen($b)) {
+                    return 0;
+                }
+              return (strlen($a) < strlen($b)) ? 1 : -1;
+            }
+  		}	
+        uksort($replace2, "cmp");
+        $_expression=str_replace(array_keys($replace2), array_values($replace2), $_expression);
+        $_expression=str_replace(array_keys($replace1), array_values($replace1), $_expression);
+        if($_nbCall==0){
+            $return = cmd::cmdToValue($_expression, $_quote);
+        }else{
+           	$return =$_expression;   
+        }		 
 		return $return;
 	}
 
