@@ -5,19 +5,19 @@
     "mobile\/modal\/warnme.html": {
         "Valeur": "Valor",
         "Annuler": "Cancelar",
-        "Ok": "OK"
+        "Ok": "Ok"
     },
     "mobile\/js\/log.js": {
-        "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Tem certeza de que deseja excluir todos os logs?"
+        "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Tem certeza de que deseja excluir todos os registos?"
     },
     "mobile\/js\/home.js": {
-        "Timeline": "Linha do tempo",
-        "Logs": "Toras",
-        "Analyse équipement": "Equipamentos de análise",
-        "Notes": "Classificações",
-        "Crons": "Cron",
-        "Démons": "Demônios",
-        "Santé": "Saúde",
+        "Timeline": "Linha cronológica",
+        "Logs": "Registos",
+        "Analyse équipement": "Análise de equipamentos",
+        "Notes": "Notas",
+        "Crons": "Crons",
+        "Démons": "Daemons",
+        "Santé": "Estado",
         "Basculer le thème": "Alternar tema",
         "Version desktop": "Versão desktop",
         "Forcer mise à jour": "Forçar atualização",
@@ -25,27 +25,27 @@
         "A propos": "Sobre",
         "Déconnexion": "Sair",
         "Synthèse": "Síntese",
-        "Tous": "Tudo",
-        "Designs": "Desenhos",
-        "Designs 3D": "Projetos 3D"
+        "Tous": "Todos",
+        "Designs": "Designs",
+        "Designs 3D": "Designs 3D"
     },
     "mobile\/js\/overview.js": {
-        "Tous": "Tudo"
+        "Tous": "Todos"
     },
     "mobile\/js\/cron.js": {
-        "Rafraichir": "Legal",
+        "Rafraichir": "Recarregar",
         "Version desktop": "Versão desktop",
-        "Démons": "Demônios",
-        "Santé": "Saúde"
+        "Démons": "Daemons",
+        "Santé": "Estado"
     },
     "mobile\/js\/message.js": {
-        "Vider": "Vazio"
+        "Vider": "Limpar"
     },
     "mobile\/js\/health.js": {
-        "Rafraichir": "Refrescar",
+        "Rafraichir": "Recarregar",
         "Version desktop": "Versão desktop",
-        "Démons": "Demônios",
-        "Crons": "Cron"
+        "Démons": "Daemons",
+        "Crons": "Crons"
     },
     "mobile\/js\/timeline.js": {
         "Rafraîchir": "Recarregar",
@@ -53,81 +53,81 @@
         "Timelines": "Linha cronológica"
     },
     "mobile\/js\/deamon.js": {
-        "Rafraichir": "Refrescar",
+        "Rafraichir": "Recarregar",
         "Version desktop": "Versão desktop",
-        "Crons": "Cron",
-        "Santé": "Saúde"
+        "Crons": "Crons",
+        "Santé": "Estado"
     },
     "mobile\/js\/equipment.js": {
         "Tout": "Tudo",
         "Synthèse": "Síntese"
     },
     "mobile\/js\/notes.js": {
-        "Note sauvegardée avec succès": "Nota salva com sucesso",
-        "Voulez-vous vraiment supprimer la note :": "Tem certeza de que deseja excluir a nota:",
+        "Note sauvegardée avec succès": "Nota guardada com sucesso",
+        "Voulez-vous vraiment supprimer la note :": "Tem a certeza que deseja excluir a nota:",
         "Note supprimée avec succès": "Nota excluída com sucesso"
     },
     "mobile\/js\/application.js": {
         "Résumé": "Resumo",
         "Historique": "Histórico",
-        "Préviens moi": "Me avisar",
+        "Préviens moi": "Avisar-me",
         "Me prévenir si": "Notifique-me se",
         "Synthèse": "Síntese",
-        "Accueil": "Home"
+        "Accueil": "Início"
     },
     "mobile\/js\/scenario.js": {
-        "Aucun": "Não"
+        "Aucun": "Nenhum"
     },
     "mobile\/html\/scenariolog.html": {
-        "Vider": "Vazio",
+        "Vider": "Limpar",
         "Pause": "Pausa",
-        "Rechercher": "Pesquisa"
+        "Rechercher": "Pesquisar"
     },
     "mobile\/html\/history.html": {
-        "Début": "Começo",
-        "Fin": "Final",
+        "Début": "Inicio",
+        "Fin": "Fim",
         "Ok": "OK",
         "Aucun groupement": "Nenhum grupo",
         "Somme par heure": "Soma por hora",
-        "Moyenne par heure": "Por hora médio",
+        "Moyenne par heure": "Média por hora",
         "Minimum par heure": "Mínimo por hora",
-        "Maximum par heure": "Máxima por hora",
+        "Maximum par heure": "Máximo por hora",
         "Somme par jour": "Soma por dia",
         "Moyenne par jour": "Média diária",
         "Minimum par jour": "Mínima diária",
         "Maximum par jour": "Máxima por dia",
         "Somme par semaine": "Quantidade por semana",
-        "Moyenne par semaine": "Semanal médio",
+        "Moyenne par semaine": "Média semanal",
         "Minimum par semaine": "Mínimo por semana",
         "Maximum par semaine": "Máximo por semana",
-        "Somme par mois": "Quantia mensal",
-        "Moyenne par mois": "Mensal",
+        "Somme par mois": "Soma mensal",
+        "Moyenne par mois": "Média mensal",
         "Minimum par mois": "Mínimo mensal",
         "Maximum par mois": "Máximo por mês",
-        "Somme par année": "Sum por ano",
+        "Somme par année": "Soma por ano",
         "Moyenne par année": "Média por ano",
         "Minimum par année": "Mínimo por ano",
         "Maximum par année": "Máximo por ano",
         "Ligne": "Linha",
-        "Aire": "área",
-        "Barre": "Bar",
-        "Variation": "Mudança",
+        "Aire": "Área",
+        "Barre": "Barra",
+        "Variation": "Variação",
         "Escalier": "Escada"
     },
     "mobile\/html\/eqAnalyse.html": {
         "Batteries": "Baterias",
-        "Alertes": "Notificações"
+        "Alertes": "Alertas"
     },
     "mobile\/html\/about.html": {
         "Version": "Versão",
         "Source": "Fonte",
-        "Branche": "Branch",
+        "Branche": "Caminho",
         "Système": "Sistema",
-        "Auteur(s)": "Autor (es)"
+        "Auteur(s)": "Autor(es)"
     },
     "mobile\/html\/index.html": {
-        "Accueil": "Home",
-        "Rechercher": "Pesquisa"
+        "Accueil": "Inicio",
+        "Rechercher": "Pesquisar"
     },
     "mobile\/html\/message.html": {
         "Date": "Data",
@@ -139,12 +139,12 @@
         "Nom": "Nome",
         "Status": "Estado",
         "Date lancement": "Data de lançamento",
-        "Action": "Açao"
+        "Action": "Ação"
     },
     "mobile\/html\/notes.html": {
         "Ajouter": "Adicionar",
-        "Sauvegarder": "Para salvaguardar",
-        "Supprimer": "Remover",
+        "Sauvegarder": "Guardar",
+        "Supprimer": "Eliminar",
         "Titre": "Título",
         "Texte": "Texto"
     },
@@ -153,36 +153,36 @@
         "Status": "Estado"
     },
     "mobile\/html\/connection.html": {
-        "Nom d'utilisateur": "Nome de Usuário",
-        "Mot de passe": "Senha",
-        "Code à 2 facteurs": "Fator Code 2",
-        "Enregistrer cet appareil": "Salve este dispositivo",
-        "Connexion": "Logar"
+        "Nom d'utilisateur": "Nome do Utilizador",
+        "Mot de passe": "Password",
+        "Code à 2 facteurs": "Autenticação em 2 passos",
+        "Enregistrer cet appareil": "Guardar este dispositivo",
+        "Connexion": "Entrar"
     },
     "mobile\/html\/home.html": {
-        "Equipements": "Instalações",
+        "Equipements": "Equipamentos",
         "Messages": "Mensagens",
-        "Message(s)": "Mensagem (s)",
-        "Vues": "Visualizações",
-        "Designs": "Desenhos",
-        "Scénarios": "Cenas",
-        "Scénario": "Cenas",
+        "Message(s)": "Mensagem(s)",
+        "Vues": "Vistas",
+        "Designs": "Designs",
+        "Scénarios": "Cenários",
+        "Scénario": "Cenário",
         "Analyse": "Análise",
-        "Autre": "Outro",
-        "Plugins": "Plug-ins"
+        "Autre": "Outra",
+        "Plugins": "Plugins"
     },
     "mobile\/html\/cron.html": {
         "Nom": "Nome",
         "Status": "Estado",
         "Date lancement": "Data de lançamento",
-        "Action": "Açao"
+        "Action": "Ação"
     },
     "mobile\/html\/log.html": {
-        "Supprimer tous": "Apagar tudo",
-        "Supprimer": "Retirar",
-        "Vider": "Vazio",
+        "Supprimer tous": "Eliminar tudo",
+        "Supprimer": "Eliminar",
+        "Vider": "Apagar",
         "Pause": "Pausa",
-        "Rechercher": "Pesquisa"
+        "Rechercher": "Pesquisar"
     },
     "desktop\/modal\/scenario.human.insert.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado"
@@ -1512,55 +1512,55 @@
     "desktop\/php\/update.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Erreur sur la vérification des mises à jour :": "Erro ao verificar atualizações:",
-        "Votre système actuel fonctionnant correctement et n\\'étant plus assez performant pour être en mesure de continuer à le faire dans les meilleures conditions à l\\'avenir, nous vous invitons à ne plus mettre à jour le core de Jeedom dorénavant.": "Como o seu sistema atual está funcionando corretamente e não é mais eficiente o suficiente para continuar a fazê-lo nas melhores condições no futuro, convidamos você a não atualizar mais o núcleo Jeedom",
-        "Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\\'environnement Linux de votre box Smart": "Para poder acessar futuras atualizações do núcleo, atualize o ambiente Linux de sua caixa inteligente",
-        "Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\\'environnement Linux de votre box vers": "Para poder acessar futuras atualizações do núcleo, atualize o ambiente Linux de sua caixa para",
-        "Il est conseillé de procéder à une nouvelle installation en Debian 10 Buster puis de restaurer votre dernière sauvegarde Jeedom plutôt que mettre directement à jour l\\'OS en ligne de commande. Consulter": "É aconselhável realizar uma nova instalação no Debian 10 Buster e então restaurar seu último backup Jeedom ao invés de atualizar diretamente o sistema operacional a partir da linha de comando. Consultar",
-        "la documentation d\\'installation": "documentação de instalação",
-        "pour plus d\\'informations.": "Para maiores informações",
-        "Dernière vérification :": "Última avaliação:",
-        "Vérifier les mises à jour": "Verificar atualizações",
-        "Sauvegarder": "Salvar",
+        "Votre système actuel fonctionnant correctement et n\\'étant plus assez performant pour être en mesure de continuer à le faire dans les meilleures conditions à l\\'avenir, nous vous invitons à ne plus mettre à jour le core de Jeedom dorénavant.": "O seu sistema atual está a funcionar corretamente mas não tem especificações que lhe permitam correr nas melhores condições a mais recente actualização do Jeedom, não deve atualizar o core Jeedom a partir de agora",
+        "Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\\'environnement Linux de votre box Smart": "Para poder aceder a futuras atualizações do core, atualize a versão do Linux da sua box Smart",
+        "Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\\'environnement Linux de votre box vers": "Para poder aceder a futuras atualizações do núcleo, atualize a versão do Linux da sua box para",
+        "Il est conseillé de procéder à une nouvelle installation en Debian 10 Buster puis de restaurer votre dernière sauvegarde Jeedom plutôt que mettre directement à jour l\\'OS en ligne de commande. Consulter": "É aconselhável realizar uma nova instalação no Debian 10 Buster e então restaurar seu último backup Jeedom ao invés de atualizar diretamente o sistema operativo a partir da linha de comando. Consultar",
+        "la documentation d\\'installation": "a documentação de instalação",
+        "pour plus d\\'informations.": "para mais informações",
+        "Dernière vérification :": "Última verificação:",
+        "Vérifier les mises à jour": "Verificar as atualizações",
+        "Sauvegarder": "Guardar",
         "Mettre à jour": "Atualizar",
-        "Mettre à niveau": "Melhoria",
-        "Core et plugins": "Núcleo e plugins",
+        "Mettre à niveau": "Atualização da versão",
+        "Core et plugins": "Core e plugins",
         "OS\/Package": "SO\/Pacote",
-        "Informations": "Informação",
+        "Informations": "Informações",
         "Etat": "Estado",
         "Nom": "Nome",
         "Version installée": "Versão instalada",
         "Dernière version": "Versão mais recente",
         "Mise à jour faite le": "Atualização feita em",
         "Options": "Opções",
-        "Actions": "Estoque",
-        "Log :": "Log:",
+        "Actions": "Ações",
+        "Log :": "Registo:",
         "IMPORTANT : ne sont affiché ici que les packages n'étant pas a jour. Si la liste est vide c'est que tout est à jour": "IMPORTANTE: apenas pacotes desatualizados são exibidos aqui. Se a lista estiver vazia, tudo está atualizado",
-        "Mettre à jour la liste": "Atualizar lista",
-        "Mettre à jour les packages OS": "Atualizar pacotes do SO",
-        "Mettre à jour les packages Python2": "Atualizar pacotes Python2",
-        "Mettre à jour les packages Python3": "Atualizar pacotes Python3",
+        "Mettre à jour la liste": "Atualizar a lista",
+        "Mettre à jour les packages OS": "Atualizar os pacotes do SO",
+        "Mettre à jour les packages Python2": "Atualizar os pacotes Python2",
+        "Mettre à jour les packages Python3": "Atualizar os pacotes Python3",
         "Type": "Tipo",
         "Avant toute mise à jour, merci de consulter le": "Antes de qualquer atualização, consulte o",
-        "changelog": "Changelog",
-        "du Core": "Core",
+        "changelog": "changelog",
+        "du Core": "do Core",
         "Pré-update": "Pré-atualização",
         "Mettre d'abord le script d'update à jour.": "Primeiro atualize o script de atualização",
-        "Sauvegarder avant": "Salvar antes",
-        "Mettre à jour les plugins": "Plugins de atualização",
-        "Mettre à jour le core": "Atualizar o núcleo",
+        "Sauvegarder avant": "Guardar antes",
+        "Mettre à jour les plugins": "Atualizar os plugins",
+        "Mettre à jour le core": "Atualizar o core",
         "Mode forcé": "Modo forçado",
         "Continuer la mise à jour en cas d'erreur.": "Continue a atualização em caso de erro",
-        "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur 'Aucune'.": "A opção a seguir pode ser modificada apenas a pedido do suporte, caso contrário, DEVE ser configurada como 'None'",
-        "Mise à jour à réappliquer": "Update para reaplicar",
-        "Aucune": "Não"
+        "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur 'Aucune'.": "A opção a seguir pode ser modificada apenas a pedido do suporte, caso contrário, DEVE ser configurada como 'Nenhuma'",
+        "Mise à jour à réappliquer": "Atualização para reaplicar",
+        "Aucune": "Nenhuma"
     },
     "desktop\/php\/view.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Vue inconnue. Vérifier l\\'ID.": "Vista desconhecida. Verifique o ID",
-        "Aucune vue n\\'existe, cliquez <a href=\"index.php?v=d&p=view_edit\">ici<\/a> pour en créer une.": "Não existe visualização, clique <a href=\"index.php?v=d&p=view_edit\">aqui<\/a> para criar uma",
-        "Ajouter une vue": "Adicionar Ver",
-        "Rechercher": "Pesquisa",
-        "Afficher\/Masquer les vues": "Mostrar \/ Ocultar vistas",
+        "Aucune vue n\\'existe, cliquez <a href=\"index.php?v=d&p=view_edit\">ici<\/a> pour en créer une.": "Não existe vista, clique <a href=\"index.php?v=d&p=view_edit\">aqui<\/a> para criar uma",
+        "Ajouter une vue": "Adicionar uma vista",
+        "Rechercher": "Pesquisar",
+        "Afficher\/Masquer les vues": "Mostrar\/Ocultar as vistas",
         "Edition complète": "Edição completa",
         "Mode édition": "Modo de edição"
     },
@@ -2091,28 +2091,28 @@
         "Gestion": "Gestão",
         "Ajouter": "Adicionar",
         "Importer": "Importar",
-        "Code": "CÓDIGO",
-        "Remplacement": "Substituição",
-        "Mes widgets": "Meus widgets",
-        "Rechercher | nom | :not(nom": "Pesquisa | nome | : não (nome",
-        "Appliquer à": "Aplicar",
-        "Exporter": "Exportação",
-        "Sauvegarder": "Salvar",
-        "Supprimer": "Retirar",
+        "Code": "Código",
+        "Remplacement": "Substituir",
+        "Mes widgets": "Os meus widgets",
+        "Rechercher | nom | :not(nom": "Pesquisa | nome | :not(nome",
+        "Appliquer à": "Aplicar a",
+        "Exporter": "Exportar",
+        "Sauvegarder": "Guardar",
+        "Supprimer": "Eliminar",
         "Widgets": "Widgets",
         "Général": "Geral",
         "Nom du widget": "Nome do widget",
         "Type": "Tipo",
         "Sous-Type": "Subtipo",
         "Template": "Modelo",
-        "Icône": "ícone",
+        "Icône": "Ícone",
         "Choisir": "Escolher",
         "Prévisualisation": "Pré-visualização",
-        "Test": "Teste",
+        "Test": "Testar",
         "Expression": "Expressão",
-        "Résultat thème Light": "Resultado da luz do tema",
-        "Résultat thème Dark": "Resultado de tema escuro",
-        "Commandes liées": "Pedidos vinculados"
+        "Résultat thème Light": "Resultado do tema claro",
+        "Résultat thème Dark": "Resultado do tema escuro",
+        "Commandes liées": "Comandos vinculados"
     },
     "desktop\/php\/report.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -2370,17 +2370,17 @@
         "Double authentification": "Autenticação dupla",
         "Dernière connexion": "Último login",
         "Actions": "Ações",
-        "Session(s) active(s)": "Sessão (s) ativa (s)",
-        "ID": "Identificação",
+        "Session(s) active(s)": "Sessão(s) ativa(s)",
+        "ID": "ID",
         "IP": "IP",
         "Date": "Data",
         "Déconnecter": "Desligar",
-        "Périphérique(s) enregistré(s)": "Dispositivo(s) registrado(s)",
+        "Périphérique(s) enregistré(s)": "Dispositivo(s) registado(s)",
         "Supprimer tout": "Apagar tudo",
-        "Action": "Açao",
-        "Supprimer": "Retirar",
-        "Identifiant": "Login",
-        "Mot de passe": "Senha",
+        "Action": "Ação",
+        "Supprimer": "Eliminar",
+        "Identifiant": "Utilizador",
+        "Mot de passe": "Password",
         "Annuler": "Cancelar",
         "Ajouter": "Adicionar"
     },
