@@ -286,8 +286,16 @@ class scenarioExpression {
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
-		$_startTime = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
-		$_endTime = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
+		if (($convertTime=strtotime(self::setTags($_startDate))) === false) {
+			log::add('scenario','error','averageBetween-> Error converting startDate : '.$_startDate.' to time ');
+		}
+		$_startDate = date('Y-m-d H:i:s', $convertTime);
+		$_startTime = strtotime($_startDate);
+		if (($convertTime=strtotime(self::setTags($_endDate))) === false) {
+			log::add('scenario','error','averageBetween-> Error converting endDate: '.$_endDate.' to time ');
+		}
+		$_endDate = date('Y-m-d H:i:s', $convertTime);
+		$_endTime = strtotime($_endDate);
 		$historyStatistique = $cmd->getStatistique($_startTime, $_endTime);
 		if (!isset($historyStatistique['avg'])) {
 			return '';
@@ -311,8 +319,16 @@ class scenarioExpression {
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
-		$_startTime = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
-		$_endTime = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
+		if (($convertTime=strtotime(self::setTags($_startDate))) === false) {
+			log::add('scenario','error','averageTemporalBetween-> Error converting startDate : '.$_startDate.' to time ');
+		}
+		$_startDate = date('Y-m-d H:i:s', $convertTime);
+		$_startTime = strtotime($_startDate);
+		if (($convertTime=strtotime(self::setTags($_endDate))) === false) {
+			log::add('scenario','error','averageTemporalBetween-> Error converting endDate: '.$_endDate.' to time ');
+		}
+		$_endDate = date('Y-m-d H:i:s', $convertTime);
+		$_endTime = strtotime($_endDate);
 		return round($cmd->getTemporalAvg($_startTime, $_endTime), 1);
 	}
 
@@ -440,11 +456,19 @@ class scenarioExpression {
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
-		$_startTime = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
-		$_endTime = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
+		if (($convertTime=strtotime(self::setTags($_startDate))) === false) {
+			log::add('scenario','error','maxBetween-> Error converting startDate : '.$_startDate.' to time ');
+		}
+		$_startDate = date('Y-m-d H:i:s', $convertTime);
+		$_startTime = strtotime($_startDate);
+		if (($convertTime=strtotime(self::setTags($_endDate))) === false) {
+			log::add('scenario','error','maxBetween-> Error converting endDate: '.$_endDate.' to time ');
+		}
+		$_endDate = date('Y-m-d H:i:s', $convertTime);
+		$_endTime = strtotime($_endDate);
 		$historyStatistique = $cmd->getStatistique($_startTime, $_endTime);
 		if (!isset($historyStatistique['max'])) {
-			return '';
+			return '0';
 		}
 		return round($historyStatistique['max'], 1);
 	}
@@ -471,8 +495,16 @@ class scenarioExpression {
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
-		$_startTime = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
-		$_endTime = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
+		if (($convertTime=strtotime(self::setTags($_startDate))) === false) {
+			log::add('scenario','error','minBetween-> Error converting startDate : '.$_startDate.' to time ');
+		}
+		$_startDate = date('Y-m-d H:i:s', $convertTime);
+		$_startTime = strtotime($_startDate);
+		if (($convertTime=strtotime(self::setTags($_endDate))) === false) {
+			log::add('scenario','error','minBetween-> Error converting endDate: '.$_endDate.' to time ');
+		}
+		$_endDate = date('Y-m-d H:i:s', $convertTime);
+		$_endTime = strtotime($_endDate);
 		$historyStatistique = $cmd->getStatistique($_startTime, $_endTime);
 		if (!isset($historyStatistique['min'])) {
 			return '';
@@ -624,9 +656,16 @@ class scenarioExpression {
 			$_endDate = func_get_arg(2);
 			$_value = null;
 		}
-		$_startTime = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
-		$_endTime = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
-
+		if (($convertTime=strtotime(self::setTags($_startDate))) === false) {
+			log::add('scenario','error','stateChangesBetween-> Error converting startDate : '.$_startDate.' to time ');
+		}
+		$_startDate = date('Y-m-d H:i:s', $convertTime);
+		$_startTime = strtotime($_startDate);
+		if (($convertTime=strtotime(self::setTags($_endDate))) === false) {
+			log::add('scenario','error','stateChangesBetween-> Error converting endDate: '.$_endDate.' to time ');
+		}
+		$_endDate = date('Y-m-d H:i:s', $convertTime);
+		$_endTime = strtotime($_endDate);
 		return history::stateChanges($cmd_id, $_value, $_startTime, $_endTime);
 	}
 
@@ -688,15 +727,23 @@ class scenarioExpression {
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
-		if (strtotime($_startDate) >= time()) {
+		if (($convertTime=strtotime(self::setTags($_startDate))) === false) {
+			log::add('scenario','error','durationBetween-> Error converting startDate : '.$_startDate.' to time ');
+		}
+		$_startDate = date('Y-m-d H:i:s', $convertTime);
+		$_startTime = strtotime($_startDate);
+		if (($convertTime=strtotime(self::setTags($_endDate))) === false) {
+			log::add('scenario','error','durationBetween-> Error converting endDate: '.$_endDate.' to time ');
+		}
+		$_endDate = date('Y-m-d H:i:s', $convertTime);
+		$_endTime = strtotime($_endDate);
+		if ($_startTime >= time()) {
 			return 0;
 		}
-		if (time() < strtotime($_endDate)) {
+		if (time() < $_endTime) {
 			$_endDate = date('Y-m-d H:i:s');
+			$_endTime=strtotime($_endDate);
 		}
-
-		$_startTime = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
-		$_endTime = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
 		$_value = str_replace(',', '.', $_value);
 		$_decimal = strlen(substr(strrchr($_value, "."), 1));
 
@@ -707,8 +754,8 @@ class scenarioExpression {
 		$lastValue = $histories[0]->getValue();
 
 		foreach ($histories as $history) {
-			if ($history->getDatetime() >= $_startTime) {
-				if ($history->getDatetime() <= $_endTime) {
+			if ($history->getDatetime() >= $_startDate) {
+				if ($history->getDatetime() <= $_endDate) {
 					if ($lastValue == $_value) {
 						$duration = $duration + (strtotime($history->getDatetime()) - $lastDuration);
 					}
@@ -726,8 +773,8 @@ class scenarioExpression {
 			}
 			$lastValue = round($history->getValue(), $_decimal);
 		}
-		if ($lastValue == $_value && $lastDuration <= strtotime($_endTime)) {
-			$duration = $duration + (strtotime($_endTime) - $lastDuration);
+		if ($lastValue == $_value && $lastDuration <= $_endTime) {
+			$duration = $duration + $_endTime - $lastDuration;
 		}
 		return floor($duration / $_unit);
 	}
@@ -737,8 +784,16 @@ class scenarioExpression {
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
-		$_startTime = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
-		$_endTime = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
+		if (($convertTime=strtotime(self::setTags($_startDate))) === false) {
+			log::add('scenario','error','lastBetween-> Error converting startDate : '.$_startDate.' to time ');
+		}
+		$_startDate = date('Y-m-d H:i:s', $convertTime);
+		$_startTime = strtotime($_startDate);
+		if (($convertTime=strtotime(self::setTags($_endDate))) === false) {
+			log::add('scenario','error','lastBetween-> Error converting endDate: '.$_endDate.' to time ');
+		}
+		$_endDate = date('Y-m-d H:i:s', $convertTime);
+		$_endTime = strtotime($_endDate);
 		$historyStatistique = $cmd->getStatistique($_startTime, $_endTime);
 		if (!isset($historyStatistique['last']) || $historyStatistique['last'] === '') {
 			return '';
@@ -770,8 +825,16 @@ class scenarioExpression {
 			return '';
 		}
 		$_calc = str_replace(' ', '', $_calc);
-		$_startTime = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
-		$_endTime = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
+		if (($convertTime=strtotime(self::setTags($_startDate))) === false) {
+			log::add('scenario','error','statisticsBetween-> Error converting startDate : '.$_startDate.' to time ');
+		}
+		$_startDate = date('Y-m-d H:i:s', $convertTime);
+		$_startTime = strtotime($_startDate);
+		if (($convertTime=strtotime(self::setTags($_endDate))) === false) {
+			log::add('scenario','error','statisticsBetween-> Error converting endDate: '.$_endDate.' to time ');
+		}
+		$_endDate = date('Y-m-d H:i:s', $convertTime);
+		$_endTime = strtotime($_endDate);
 		$historyStatistique = $cmd->getStatistique(self::setTags($_startTime), self::setTags($_endTime));
 		return $historyStatistique[$_calc];
 	}
