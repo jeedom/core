@@ -2703,8 +2703,8 @@
         "Configuration de l\\'objet": "Configuração do objeto"
     },
     "desktop\/js\/view.js": {
-        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre.": "Você está no modo de edição. Você pode mover os blocos, redimensioná-los e editar os comandos (ordem, widget) com o botão à direita do título",
-        "Configuration Affichage": "Configuração de exibição"
+        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre.": "Está no modo de edição. Pode mover os blocos, redimensioná-los e editar os comandos (ordem, widget) com o botão à direita do título",
+        "Configuration Affichage": "Configuração de visualização"
     },
     "desktop\/js\/view_edit.js": {
         "Modification enregistrée": "Alterações salvas",
