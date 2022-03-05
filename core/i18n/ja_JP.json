@@ -434,6 +434,7 @@
         "Evènement": "イベント",
         "Tag": "タグ",
         "Coloration des icones": "アイコンの色付け",
+        "Type générique": "Type générique",
         "Pause de x seconde(s)": "X秒の一時停止（s）",
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "条件が有効になるまで待ちます（最大2時間）",
         "Création\/modification d’une variable ou de la valeur d’une variable": "変数または変数の値の作成\/変更",
