@@ -1210,38 +1210,32 @@ class scenarioExpression {
 		if (!is_string($_expression)) {
 			return $_expression;
 		}
-		preg_match_all("/([a-zA-Z][a-zA-Z1-9_]*?)\(((([^\()]*\(.*\)[^\()]*))|([^\(]*))\)/", $_expression, $matches, PREG_SET_ORDER);
+		preg_match_all("/([a-zA-Z][a-zA-Z1-9_]*?)\((.*?)\)/", $_expression, $matches, PREG_SET_ORDER);
 		if (is_array($matches)) {
 			foreach ($matches as $match) {
 				$function = $match[1];
-			        if (isset($match[4])and strlen($match[4])>=1 ){
-					$matchUsed=$match[4];
-			      	}
-			     	else{
-					$matchUsed=$match[5];
-			      	}
 				$replace_string = $match[0];
-				if (substr_count($matchUsed, '(') != substr_count($matchUsed, ')')) {
-					$pos = strpos($_expression, $matchUsed) + strlen($matchUsed);
-					while (substr_count($matchUsed, '(') > substr_count($matchUsed, ')')) {
-						$matchUsed .= $_expression[$pos];
+				if (substr_count($match[2], '(') != substr_count($match[2], ')')) {
+					$pos = strpos($_expression, $match[2]) + strlen($match[2]);
+					while (substr_count($match[2], '(') > substr_count($match[2], ')')) {
+						$match[2] .= $_expression[$pos];
 						$pos++;
 						if ($pos > strlen($_expression)) {
 							break;
 						}
 					}
-					$arguments = self::setTags($matchUsed, $_scenario, $_quote, $_nbCall++);
+					$arguments = self::setTags($match[2], $_scenario, $_quote, $_nbCall++);
 					while ($arguments[0] == '(' && $arguments[strlen($arguments) - 1] == ')') {
 						$arguments = substr($arguments, 1, -1);
 					}
-					$result = str_replace($matchUsed, $arguments, $_expression);
+					$result = str_replace($match[2], $arguments, $_expression);
 					while (substr_count($result, '(') > substr_count($result, ')')) {
 						$result .= ')';
 					}
 					$result = self::setTags($result, $_scenario, $_quote, $_nbCall++);
 					return cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), $result), $_quote);
 				} else {
-					$arguments = explode(',', $matchUsed);
+					$arguments = explode(',', $match[2]);
 				}
 				if (method_exists(__CLASS__, $function)) {
 					if ($function == 'trigger') {
