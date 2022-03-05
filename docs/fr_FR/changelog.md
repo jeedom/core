@@ -1,5 +1,7 @@
 # Changelog Jeedom V4.2
 
+- Bugfix UI : Scénario : Ajout de l'action *genericType* dans la modale de sélection.
+
 ## 4.2.14
 
 - Bugfix UI : Recherche supprimée en activant l'option log brut.
