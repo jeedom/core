@@ -1732,8 +1732,9 @@ document.onkeydown = function(event) {
   }
 }
 
-jeeP.$divScenario.on('click', 'input.expressionAttr, textarea.expressionAttr', function(event) {
-  if (!event.ctrlKey) return false
+//ctrl-click input popup
+jeeP.$divScenario.on('click', 'input:not([type="checkbox"]).expressionAttr, textarea.expressionAttr', function(event) {
+  if (!event.ctrlKey) return true
   var $thisInput = $(this)
   var button = '<button class="btn btn-default bt_selectBootboxCmdExpression" type="button"><i class="fas fa-list-alt"></i></button>'
   bootbox.prompt({
