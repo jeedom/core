@@ -4,7 +4,7 @@ colors Light
 */
 :root {
   --lineheight : 1.42em;
-  /* keet it as rem even when zero!!*/
+  /* keep it as rem even when zero!!*/
   --border-radius: 0rem;
   --opacity: 1;
 
