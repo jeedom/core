@@ -302,7 +302,7 @@ class scenario {
 				$trigger = '#' . $_event->getId() . '#';
 				$message = $GLOBALS['JEEDOM_SCLOG_TEXT']['startAutoOnEvent']['txt'] . $_event->getHumanName();
 				if ($_value !== null) {
-					$message .= ' (' . $_value . ')';
+					$message .= ' ("' . $_value . '")';
 				}
 			} else {
 				$scenarios1 = self::byTrigger($_event);
