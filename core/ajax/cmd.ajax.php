@@ -460,7 +460,7 @@ try {
 			if (is_array($histories)) {
 				foreach ($histories as $datetime => $value) {
 					$info_history = array();
-					$info_history[] = floatval(strtotime(date('Y-m-d H:i:s', $datetime) . " UTC")) * 1000;
+					$info_history[] = floatval(strtotime(date('Y-m-d H:i:s', $datetime))) * 1000;
 					$info_history[] = ($value === null) ? null : floatval($value);
 					if ($value > $return['maxValue'] || $return['maxValue'] == '') {
 						$return['maxValue'] = round($value, 1);
@@ -477,8 +477,8 @@ try {
 		}
 		if (init('lastPointToEnd') == 1) {
 			$last = end($data);
-			if ($last[0] < (strtotime($dateEnd . " UTC") * 1000)) {
-				$data[] = array((strtotime($dateEnd . " UTC") * 1000), $last[1]);
+			if ($last[0] < (strtotime($dateEnd) * 1000)) {
+				$data[] = array((strtotime($dateEnd) * 1000), $last[1]);
 			}
 		}
 		$return['data'] = $data;
