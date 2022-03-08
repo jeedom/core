@@ -162,7 +162,7 @@ $('.plan3dHeaderAttr[data-l1key=configuration][data-l2key=icon]').on('dblclick',
 
 $('#bt_upload3dModel').fileupload({
   replaceFileInput: false,
-  url: 'core/ajax/plan3d.ajax.php?action=uploadModel&id=' + id,
+  url: 'core/ajax/plan3d.ajax.php?action=uploadModel&id=' + jeephp2js.md_plan3dHeaderConfigure_Id,
   dataType: 'json',
   done: function(e, data) {
     if (data.result.state != 'ok') {
