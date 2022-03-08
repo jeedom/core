@@ -95,7 +95,7 @@ $('#bt_chooseIcon').on('click', function() {
 
 $('#bt_uploadImage').fileupload({
   replaceFileInput: false,
-  url: 'core/ajax/view.ajax.php?action=uploadImage&id=' + view.id,
+  url: 'core/ajax/view.ajax.php?action=uploadImage&id=' + jeephp2js.md_viewConfigure_View.id,
   dataType: 'json',
   done: function(e, data) {
     if (data.result.state != 'ok') {
@@ -108,7 +108,7 @@ $('#bt_uploadImage').fileupload({
 
 $('#bt_removeBackgroundImage').off('click').on('click', function() {
   jeedom.view.removeImage({
-    id: view.id,
+    id: jeephp2js.md_viewConfigure_View.id,
     error: function(error) {
       $('#div_alertViewConfigure').showAlert({message: error.message, level: 'danger'})
     },
@@ -121,7 +121,7 @@ $('#bt_removeBackgroundImage').off('click').on('click', function() {
 $('#bt_saveConfigureView').on('click', function() {
   var view =  $('#div_viewConfigure').getValues('.viewAttr')[0]
   jeedom.view.save({
-    id : view.id,
+    id : jeephp2js.md_viewConfigure_View.id,
     view: view,
     error: function(error) {
       $('#div_alertViewConfigure').showAlert({message: error.message, level: 'danger'})
