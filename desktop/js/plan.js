@@ -181,7 +181,7 @@ if (!jeeFrontEnd.plan) {
                 jeeP.$pageContainer.append(style_css)
                 style_css = ''
               } catch (e) {}
-              jeedomUtils.addOrUpdateUrl('plan_id', jeephp2js.planHeader_id, data.name + ' - Jeedom')
+              jeedomUtils.addOrUpdateUrl('plan_id', jeephp2js.planHeader_id, data.name + ' - ' + JEEDOM_PRODUCT_NAME)
               jeeP.initEditOption(jeeFrontEnd.planEditOption.state)
               jeedomUtils.initReportMode()
               $(window).scrollTop(0)

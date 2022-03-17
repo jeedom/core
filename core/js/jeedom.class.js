@@ -100,7 +100,7 @@ jeedom.changes = function() {
     },
     error: function(_error) {
       if (typeof(user_id) != "undefined" && jeedom.connect == 100) {
-        jeedom.notify('{{Erreur de connexion}}', '{{Erreur lors de la connexion à Jeedom}} : ' + _error.message);
+        jeedom.notify('{{Erreur de connexion}}', '{{Erreur lors de la connexion}} : ' + _error.message);
       }
       jeedom.connect++;
       jeedom.changes_timeout = setTimeout(jeedom.changes, 1);

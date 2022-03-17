@@ -18,7 +18,13 @@ $allObject = jeeObject::buildTree(null, true);
 
       $backUrl = $_object->getImgLink();
       if ($backUrl == '') {
-        $backUrl = 'core/img/background/jeedom_abstract_04_light.jpg';
+        $product_synthese_image = config::byKey('product_synthese_image');
+        if($product_synthese_image) {
+          $backUrl = $product_synthese_image;
+        }
+        else {
+          $backUrl = 'core/img/background/jeedom_abstract_04_light.jpg';
+        }
       }
 
       $synthAction = $_object->getConfiguration('synthToAction', -1);

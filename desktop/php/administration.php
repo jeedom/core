@@ -1870,7 +1870,7 @@ user::isBan();
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Temps de pause pour le long polling}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Fréquence à laquelle Jeedom vérifie si il y a des événements en attente.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Fréquence à laquelle}} <?php echo ' ' . config::byKey('product_name') . ' '; ?> {{vérifie si il y a des événements en attente.}}"></i></sup>
 								<sub>s</sub>
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -1879,7 +1879,7 @@ user::isBan();
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Nettoyer le cache}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Force la suppression des objets qui ne sont plus utiles.<br>Jeedom le fait automatiquement toutes les nuits.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Force la suppression des objets qui ne sont plus utiles.<br>}} <?php echo ' ' . config::byKey('product_name') . ' '; ?> {{le fait automatiquement toutes les nuits.}}"></i></sup>
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<a class="btn btn-warning" id="bt_cleanCache" style="width:80px"><i class="fas fa-magic"></i> {{Nettoyer}}</a>
@@ -2043,7 +2043,7 @@ user::isBan();
 						<legend><i class="fas fa-hospital-symbol"></i> {{Vérifications Système}}</legend>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-8 control-label"><i class="fas fa-recycle"></i> {{Vérification générale}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Permet de lancer le test de consistence de Jeedom.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Permet de lancer le test de consistence de}} <?php echo ' ' . config::byKey('product_name') . ' '; ?>{{.}}"></i></sup>
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
 								<a class="btn btn-info" id="bt_consistency" style="width:50%;"><i class="fas fa-recycle"></i> {{Vérifier}}</a>

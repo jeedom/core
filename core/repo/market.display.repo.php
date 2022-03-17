@@ -145,7 +145,10 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 ?>
 <div style="display: none;width : 100%" id="div_alertMarketDisplay"></div>
 
-<?php if (count($market->getImg('screenshot')) > 0) {
+<?php
+$mbState= config::byKey('mbState');
+if ($mbState == 0) {
+if (count($market->getImg('screenshot')) > 0) {
 ?>
 	<div style='padding:25px;margin: 0 5px;width: calc(100% - 20px);'>
 		<div class="variable-width" style="height : 200px;">
@@ -271,7 +274,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 	</div>
 
 </div>
-
+<?php } ?>
 <style>
 	.slick-prev:before,
 	.slick-next:before {
@@ -301,7 +304,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 
 	$('body').setValues(market_display_info, '.marketAttr');
 
-	$('#div_alertMarketDisplay').closest('.ui-dialog').find('.ui-dialog-title').text('Market Jeedom - ' + market_display_info_category);
+	$('#div_alertMarketDisplay').closest('.ui-dialog').find('.ui-dialog-title').text('Market - ' + market_display_info_category);
 
 	$('.marketAttr[data-l1key=description]').html(jeedomUtils.linkify(market_display_info.description));
 	$('.marketAttr[data-l1key=utilization]').html(jeedomUtils.linkify(market_display_info.utilization));

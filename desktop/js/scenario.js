@@ -302,7 +302,7 @@ if (!jeeFrontEnd.scenario) {
           jeeP.updateElseToggle()
           jeedomUtils.taAutosize()
           var title = ''
-          if (data.name) title = data.name + ' - Jeedom'
+          if (data.name) title = data.name + ' - ' + JEEDOM_PRODUCT_NAME
           var hash = window.location.hash
           jeedomUtils.addOrUpdateUrl('id', data.id, title)
           if (hash == '') {

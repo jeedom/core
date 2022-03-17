@@ -72,7 +72,7 @@ if (!isConnect()) {
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription say" style="display:none;">
-  {{Permet de faire dire un texte à}} <?php echo config::byKey('product_name'); ?> {{(ne marche que si un onglet Jeedom est ouvert dans le navigateur)}}
+  {{Permet de faire dire un texte à}} <?php echo config::byKey('product_name'); ?> {{(ne marche que si un onglet}} <?php echo ' ' . config::byKey('product_name') . ' '; ?> {{ est ouvert dans le navigateur)}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription gotodesign" style="display:none;">
@@ -92,15 +92,15 @@ if (!isConnect()) {
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription ask" style="display:none;">
-  {{Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.}}
+  {{Action qui permet à}} <?php echo ' ' . config::byKey('product_name') . ' '; ?> {{de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si}} <?php echo ' ' . config::byKey('product_name') . ' '; ?> {{reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription jeedom_poweroff" style="display:none;">
-  {{Envoi l'ordre à Jeedom de s'éteindre}}
+  {{Envoi l'ordre à}} <?php echo ' ' . config::byKey('product_name') . ' '; ?> {{de s'éteindre}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription jeedom_reboot" style="display:none;">
-  {{Envoi l'ordre à Jeedom de redémarrer}}
+  {{Envoi l'ordre à}} <?php echo ' ' . config::byKey('product_name') . ' '; ?> {{de redémarrer}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription scenario_return" style="display:none;">
@@ -112,7 +112,7 @@ if (!isConnect()) {
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription alert2" style="display:none;">
-  {{Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page Jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte}}
+  {{Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page}} <?php echo ' ' . config::byKey('product_name') . ' '; ?> {{d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription popup" style="display:none;">

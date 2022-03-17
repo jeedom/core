@@ -311,10 +311,11 @@ jeedom.cmd.test = function(_params) {
               });
               break;
             case 'message':
+              var productName = JEEDOM_PRODUCT_NAME
               jeedom.cmd.execute({
                 id: _params.id,
                 value: {
-                  title: '{{[Jeedom] Message de test}}',
+                  title: productName + '{{ Message de test}}',
                   message: '{{Ceci est un test de message pour la commande}} ' + result.name
                 },
                 cache: 0,

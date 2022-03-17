@@ -53,6 +53,9 @@ class jeedom {
 			'product_icon',
 			'product_icon_apple',
 			'product_image',
+			'product_synthese_image',
+			'product_interface_image',
+			'mbState',
 			'enableCustomCss',
 			'mobile_theme_color',
 			'mobile_theme_color_night',
@@ -224,13 +227,24 @@ class jeedom {
 			'key' => 'sudo::right'
 		);
 
-		$return[] = array(
-			'name' => __('Version Jeedom', __FILE__),
-			'state' => true,
-			'result' => self::version(),
-			'comment' => '',
-			'key' => 'jeedom::version'
-		);
+		$mbState= config::byKey('mbState');
+		if ($mbState == 0) {
+			$return[] = array(
+				'name' => __('Version Jeedom', _FILE_),
+				'state' => true,
+				'result' => self::version(),
+				'comment' => '',
+				'key' => 'jeedom::version'
+			);
+			} else {
+				$return[] = array(
+					'name' => __('Version', _FILE_),
+					'state' => true,
+					'result' => self::version(),
+					'comment' => '',
+					'key' => 'jeedom::version'
+				);
+		}
 
 		$return[] = array(
 			'name' => __('Version OS', __FILE__),

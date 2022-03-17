@@ -484,6 +484,8 @@ function setTheme() {
 									<li><a href="index.php?v=m" class="noOnePageLoad"><i class="fas fa-mobile"></i> {{Version mobile}}</a></li>
 									<li class="divider"></li>
 									<?php if (isConnect('admin')) { ?>
+									<?php $mbState = config::byKey('mbState');
+											if ($mbState == 0) { ?>
 										<li>
 											<?php if (isset($plugin) && is_object($plugin) && $plugin->getIssue() != '') { ?>
 												<a target="_blank" href="<?php echo $plugin->getIssue() ?>"><i class="fas fa-exclamation-circle"></i> {{Rapport de bug}}</a>
@@ -491,9 +493,14 @@ function setTheme() {
 												<a class="bt_reportBug"><i class="fas fa-exclamation-circle"></i> {{Demande de support}}</a>
 											<?php } ?>
 										</li>
-									<?php } ?>
+									<?php }} ?>
 									<li><a href="index.php?v=d&logout=1" class="noOnePageLoad"><i class="fas fa-sign-out-alt"></i> {{Se déconnecter}}</a></li>
-									<li><a id="bt_jeedomAbout"><i class="fas fa-info-circle"></i> {{Version}} <?php echo jeedom::version(); ?></a></li>
+									<?php
+									if ($mbState == 0) { ?>
+										<li><a id="bt_jeedomAbout"><i class="fas fa-info-circle"></i> {{Version}} <?php echo jeedom::version(); ?></a></li>
+									<?php } else { ?>
+										<li><a><i class="fas fa-info-circle"></i> {{Version}} <?php echo jeedom::version(); ?></a></li>
+									<?php } ?>
 								</ul>
 							</li>
 						</ul>
@@ -529,11 +536,14 @@ function setTheme() {
 									<span class="cmdName"><?php echo config::byKey('name'); ?></span>
 								</a>
 							</li>
-							<?php if (config::byKey('doc::base_url', 'core') != '') { ?>
+							<?php
+							$mbState = config::byKey('mbState');
+							if ($mbState == 0) {
+							if (config::byKey('doc::base_url', 'core') != '') { ?>
 								<li class="hidden-sm">
 									<a id="bt_getHelpPage" class="cursor" data-plugin="<?php echo init('m'); ?>" data-page="<?php echo init('p'); ?>" title="{{Aide sur la page en cours}}"><i class="fas fa-question-circle"></i></a>
 								</li>
-							<?php } ?>
+							<?php }} ?>
 						</ul>
 					</nav>
 					<div id="summaryGlobalMain"><?php echo jeeObject::getGlobalHtmlSummary(); ?></div>

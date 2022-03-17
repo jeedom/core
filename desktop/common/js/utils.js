@@ -450,11 +450,28 @@ jeedomUtils.setBackgroundImage = function(_path) {
     }
 
     if (['dashboard', 'overview', 'home', 'equipment'].indexOf($('body').attr('data-page')) != -1) {
-      _path = jeedom.theme['interface::background::dashboard']
+      if(jeedom.theme.product_interface_image){
+        _path = jeedom.theme.product_interface_image
+      }
+      else {
+        _path = jeedom.theme['interface::background::dashboard']
+      }
     } else if (['display', 'eqAnalyse', 'log', 'timeline', 'history', 'report', 'health', 'administration', 'profils', 'update', 'backup', 'cron', 'user'].indexOf($('body').attr('data-page')) != -1) {
-      _path = jeedom.theme['interface::background::analysis']
+      if(jeedom.theme.product_interface_image){
+        _path = jeedom.theme.product_interface_image
+      }
+      else {
+        _path = jeedom.theme['interface::background::analysis']
+      }
     } else {
-      _path = jeedom.theme['interface::background::tools']
+      if ($('body').attr('data-page') != 'false') {
+        if(jeedom.theme.product_interface_image){
+          _path = jeedom.theme.product_interface_image
+        }
+        else {
+          _path = jeedom.theme['interface::background::tools']
+        }
+      }
     }
 
     if (!jeedomUtils._elBackground) jeedomUtils._elBackground = $('#backgroundforJeedom')

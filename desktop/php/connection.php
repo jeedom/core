@@ -35,11 +35,14 @@ include_file('3rdparty', 'animate/animate', 'js');
 					<div class="submit center">
 						<button class="dark btn-lg" id="bt_login_validate"><i class="fas fa-sign-in-alt" ></i> {{Connexion}}</button>
 					</div>
-					<?php if (config::byKey('doc::base_url', 'core') != ''){ ?>
+					<?php
+					$mbState = config::byKey('mbState');
+					if ($mbState == 0) {
+					if (config::byKey('doc::base_url', 'core') != ''){ ?>
 						<div class="resetPassword center">
 							<a href="<?php echo config::byKey('doc::base_url', 'core'); ?>/fr_FR/howto/reset.password" target="_blank">{{J'ai perdu mon mot de passe}}</a>
 						</div>
-					<?php } ?>
+					<?php }} ?>
 				</div>
 				<div id="market" tabindex="502" class="form-group" style="display:none;">
 					<h3>Je n'ai pas de compte Market</h3>
@@ -55,14 +58,16 @@ include_file('3rdparty', 'animate/animate', 'js');
 						<label>{{Mot de passe}}</label>
 					</div>
 					<div class="submit">
-						<button class="dark btn-lg" id="bt_login_validate_market"><i class="fas fa-sign-in-alt"></i> {{Connecter Jeedom au Market}}</button>
+						<button class="dark btn-lg" id="bt_login_validate_market"><i class="fas fa-sign-in-alt"></i> {{Connecter}} <?php echo ' ' . config::byKey('product_name') . ' '; ?> {{au Market}}</button>
 					</div>
 					<div class="submit">
 						<button class="dark btn-lg" id="bt_ignore_market"><i class="fas fa-times"></i></i> {{Configurer plus tard}}</button>
 					</div>
+					<?php if ($mbState == 0) { ?>
 					<div class="resetPassword">
 						<a href="https://www.jeedom.com/market/index.php?v=d&p=connection" target="_blank">{{J'ai perdu mon mot de passe}}</a>
 					</div>
+					<?php } ?>
 					<br/>
 				</div>
 				<div id="register" tabindex="500" class="form-group">
@@ -82,9 +87,11 @@ include_file('3rdparty', 'animate/animate', 'js');
 			</div>
 		</div>
 	</div>
+	<?php if ($mbState == 0) { ?>
 	<button class="btn_help animated bounceInUp" onclick="window.open('https://doc.jeedom.com/fr_FR/premiers-pas/#tocAnchor-4')">
 		?
 	</button>
+	<?php } ?>
 </div>
 
 <?php
@@ -114,4 +121,3 @@ if (config::byKey('product_connection_BG')) {
 	include_file('desktop', 'connection', 'css');
 	include_file('desktop', 'connection', 'js');
 	?>
-	

@@ -30,8 +30,10 @@ function initHome() {
   }
   $bottomPanelOtherActions.append('<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d"><i class="fas fa-desktop"></i> {{Version desktop}}</a>')
   $bottomPanelOtherActions.append('<a id="bt_forceReload" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button"><i class="fas fa-retweet"></i> {{Forcer mise à jour}}</a>')
-  $bottomPanelOtherActions.append('<a href="https://doc.jeedom.com/" target="_blank" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button"><i class="fas fa-question-circle"></i> {{Documentation}}</a>')
-  $bottomPanelOtherActions.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="about" data-title="<i class=\'fas fa-info-circle\'></i> {{A propos}}"><i class="fas fa-info-circle"></i> {{A propos}}</a>')
+  if(jeedom.theme.mbState == 0) {
+    $bottomPanelOtherActions.append('<a href="https://doc.jeedom.com/" target="_blank" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button"><i class="fas fa-question-circle"></i> {{Documentation}}</a>')
+    $bottomPanelOtherActions.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="about" data-title="<i class=\'fas fa-info-circle\'></i> {{A propos}}"><i class="fas fa-info-circle"></i> {{A propos}}</a>')
+  }
   $bottomPanelOtherActions.append('<a href="#" id="bt_logout" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button"><i class="fas fa-sign-out-alt"></i> {{Déconnexion}}</a>')
   $bottomPanelOtherActions.append('<br>')
 
@@ -182,12 +184,31 @@ function initHome() {
     }
   })
 
-  jeedom.config.load({
-    configuration: 'name',
-    success: function(data) {
-      $('#jeedomName').html(data+'<br>WebApp Jeedom<br>')
-    }
-  })
+  function loadConfig(_key) {
+    jeedom.config.load({
+      configuration: _key,
+      success: function(data) {
+        if(_key == 'name') {
+          $('#jeedomName').html(data);
+        }
+        if(_key == 'product_name') {
+          var txt = $('#jeedomName').text();
+          $('#jeedomName').html(txt + '<br> WebApp ' + data);
+        }
+        if(_key == 'mbState') {
+          if (data != 0) {
+            $("#path2899").hide();
+          } else {
+            $("#path2899").show();
+          }
+        }
+      }
+    })
+  }
+
+loadConfig('name');
+loadConfig('mbState');
+loadConfig('product_name');
 
   if (!APP_MODE) {
     setTimeout(function() {

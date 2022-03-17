@@ -140,6 +140,7 @@ if (!jeeFrontEnd.plugin) {
 
 
           $spanRightButton.empty().append('<a class="btn btn-sm roundedLeft bt_refreshPluginInfo"><i class="fas fa-sync"></i> {{Rafraichir}}</a>')
+          if(jeedom.theme.mbState == 0) {
           if (data.update.configuration && data.update.configuration.version == 'beta') {
             if (isset(data.documentation_beta) && data.documentation_beta != '') {
               $spanRightButton.append('<a class="btn btn-primary btn-sm" target="_blank" href="' + data.documentation_beta + '"><i class="fas fa-book"></i> {{Documentation}}</a>')
@@ -159,6 +160,7 @@ if (!jeeFrontEnd.plugin) {
           if (isset(data.info.display) && data.info.display != '') {
             $spanRightButton.append('<a class="btn btn-primary btn-sm" target="_blank" href="' + data.info.display + '"><i class="fas fa-book"></i> {{Détails}}</a>')
           }
+        }
           $spanRightButton.append('<a class="btn btn-danger btn-sm removePlugin roundedRight" data-market_logicalId="' + data.id + '"><i class="fas fa-trash"></i> {{Supprimer}}</a>');
 
 
