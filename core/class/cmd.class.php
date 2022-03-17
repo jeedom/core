@@ -2262,9 +2262,22 @@ class cmd {
 	}
 
 	public function getCmdValue() {
-		$cmd = self::byId(str_replace('#', '', $this->getValue()));
-		if (is_object($cmd)) {
+		preg_match_all("/#([0-9]*)#/", $this->getValue(), $matches);
+		if (count($matches[1]) == 1) {
+			$cmd = self::byId(str_replace('#', '', $matches[1][0]));
+			if (!is_object($cmd)) {
+				return false;
+			}
 			return $cmd;
+		}
+		$cmds = array();
+		foreach ($matches[1] as $cmd_id) {
+			if (is_object($cmd = self::byId(str_replace('#', '', $cmd_id)))) {
+				$cmds[] = $cmd;
+			}
+		}
+		if (!empty($cmds)) {
+			return $cmds;
 		}
 		return false;
 	}
