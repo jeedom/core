@@ -2698,7 +2698,7 @@
         "Sauvegarde effectuée": "Backup feito",
         "De nouveaux plugins ont été installés": "Novos plugins foram instalados",
         "Synchronisation réussi. Aucun nouveau plugin installé.": "Sincronização bem-sucedida. Nenhum novo plugin instalado",
-        "Market": "Mercado",
+        "Market": "Market",
         "Ajouter un plugin": "Adicionar um plugin",
         "Gestion Plugins": "Gestão de plugins",
         "Êtes-vous sûr de vouloir supprimer le plugin": "Tem certeza que deseja remover o plugin",
@@ -4005,7 +4005,7 @@
         "Dernière mise à jour le": "Última Atualização em",
         "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "Quer ir para a página de configuração de seu novo plugin?",
         "Objet installé avec succès": "Objeto instalado com sucesso",
-        "Market": "Mercado"
+        "Market": "Market"
     },
     "core\/class\/cmd.class.php": {
         "Aucun": "Não",
