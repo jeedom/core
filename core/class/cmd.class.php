@@ -2262,6 +2262,9 @@ class cmd {
 	}
 
 	public function getCmdValue() {
+		if (is_object($cmd = cmd::byId($this->getValue()))) {
+			return $cmd;
+		}
 		preg_match_all("/#([0-9]*)#/", $this->getValue(), $matches);
 		if (count($matches[1]) == 1) {
 			$cmd = self::byId(str_replace('#', '', $matches[1][0]));
