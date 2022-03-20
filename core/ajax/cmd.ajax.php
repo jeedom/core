@@ -403,6 +403,9 @@ try {
 			if (!is_object($cmd)) {
 				throw new Exception(__('Commande ID inconnu :', __FILE__) . ' ' . init('id'));
 			}
+
+			$return['round'] = intval($cmd->getConfiguration('historizeRound'));
+
 			$eqLogic = $cmd->getEqLogic();
 			if (!$eqLogic->hasRight('r')) {
 				throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));

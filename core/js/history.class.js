@@ -251,6 +251,9 @@ jeedom.history.drawChart = function(_params) {
         return;
       }
 
+      _params.round = data.result.round
+      if (_params.round == 0) _params.round = 2
+
       /*
       comparing true
       Chart exist (empty, not reset), first addSeries is reference, second addSeries is comparison
@@ -548,7 +551,7 @@ jeedom.history.drawChart = function(_params) {
             },
             tooltip: {
               pointFormat: '{point.y} {series.userOptions.unite}<br/>{series.userOptions.shortName}',
-              valueDecimals: 2,
+              valueDecimals: _params.round,
             },
             plotOptions: {
               series: {
@@ -677,7 +680,7 @@ jeedom.history.drawChart = function(_params) {
             unite: data.result.unite,
             shortName: (isset(_params.option.name)) ? _params.option.name : data.result.history_name,
             tooltip: {
-              valueDecimals: 2
+              valueDecimals: _params.round
             },
             point: {
               events: {
@@ -826,7 +829,7 @@ jeedom.history.drawChart = function(_params) {
               enabled: false, //cause errors when hovering before chart done
               xDateFormat: '%a %Y-%m-%d %H:%M:%S',
               pointFormat: '{point.y} {series.userOptions.unite}<br/>{series.userOptions.shortName}',
-              valueDecimals: 2,
+              valueDecimals: _params.round,
               crosshairs: [true, true]
             },
             yAxis: [{
