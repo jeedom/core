@@ -96,6 +96,8 @@ if (!jeeFrontEnd.dashboard) {
       }
       var divEquipements = $('div.div_displayEquipement')
       if (_mode == 0) {
+        //Exit edit mode:
+        $('.widget-name a.reportModeHidden, .scenario-widget .widget-name a').removeClass('disabled')
         jeedom.cmd.disableExecute = false
         jeedomUI.isEditing = false
         $('#dashTopBar .btn:not(#bt_editDashboardWidgetOrder)').removeClass('disabled')
@@ -116,6 +118,8 @@ if (!jeeFrontEnd.dashboard) {
           .val('')
           .prop('readonly', false)
       } else {
+        //Enter edit mode!
+        $('.widget-name a.reportModeHidden, .scenario-widget .widget-name a').addClass('disabled')
         jeedomUI.isEditing = true
         jeedom.cmd.disableExecute = true
         this.resetCategoryFilter()

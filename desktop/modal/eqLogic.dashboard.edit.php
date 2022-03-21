@@ -677,7 +677,15 @@ function editSaveEqlogic() {
         error: function(error) {
           $('#md_displayEqLogicConfigure').showAlert({message: error.message, level: 'danger'})
         },
-        success : function(){}
+        success : function() {}
+      })
+
+      $('body').one('eqLogic::update', function(_event, _options) {
+        setTimeout(function(){
+          jeeFrontEnd.dashboard.editWidgetMode(0, false)
+          jeeFrontEnd.dashboard.editWidgetMode(1, false)
+        }, 250)
+
       })
     }
   })
