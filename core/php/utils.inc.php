@@ -1550,7 +1550,7 @@ function pageTitle($_page) {
 }
 
 function cleanComponanteName($_name) {
-	return strip_tags(str_replace(array('&', '#', ']', '[', '%', "\\", "/", "'", '"'), '', $_name));
+	return strip_tags(str_replace(array('&', '#', ']', '[', '%', "\\", "/", "'", '"',"*"), '', $_name));
 }
 
 function startsWith($haystack, $needle) {
