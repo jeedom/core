@@ -20,7 +20,7 @@ $report_path = __DIR__ . '/../../data/report/';
 		<div class="bs-sidebar reportType view">
 			<ul id="ul_view" class="nav nav-list bs-sidenav">
 				<label><i class="far fa-image"></i> {{Vues}}</label>
-				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
+				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%" /></li>
 				<?php
 				$echo = '';
 				foreach (view::all() as $view) {
@@ -35,7 +35,7 @@ $report_path = __DIR__ . '/../../data/report/';
 		<div class="bs-sidebar reportType plan" style="display:none">
 			<ul id="ul_plan" class="nav nav-list bs-sidenav">
 				<label><i class="fas fa-paint-brush"></i> {{Design}}</label>
-				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
+				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%" /></li>
 				<?php
 				$echo = '';
 				foreach (planHeader::all() as $plan) {
@@ -50,7 +50,7 @@ $report_path = __DIR__ . '/../../data/report/';
 		<div class="bs-sidebar reportType plugin" style="display:none">
 			<ul id="ul_plan" class="nav nav-list bs-sidenav">
 				<label><i class="fas fa-tags"></i> {{Plugin}}</label>
-				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
+				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%" /></li>
 				<?php
 				$echo = '';
 				foreach (plugin::listPlugin(true) as $plugin) {
@@ -68,8 +68,9 @@ $report_path = __DIR__ . '/../../data/report/';
 		<div class="bs-sidebar reportType other" style="display:none">
 			<ul id="ul_plan" class="nav nav-list bs-sidenav">
 				<label><i class="fas fa-network-wired"></i> {{Autre}}</label>
-				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
+				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%" /></li>
 				<li class="cursor li_reportType" data-type="other" data-id="eqAnalyse"><a>{{Analyse Equipements}}</a></li>
+				<li class="cursor li_reportType" data-type="other" data-id="health"><a>{{Santé}}</a></li>
 				<li class="cursor li_reportType" data-type="other" data-id="timeline"><a>{{Timeline}}</a></li>
 				<li class="cursor li_reportType" data-type="other" data-id="url"><a>{{URL}}</a></li>
 			</ul>
@@ -80,7 +81,7 @@ $report_path = __DIR__ . '/../../data/report/';
 		<div class="bs-sidebar" style="margin-top : 4px;">
 			<ul id="ul_report" class="nav nav-list bs-sidenav">
 				<label><i class="fas fa-clipboard-list"></i> {{Rapport(s)}}</label>
-				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
+				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%" /></li>
 			</ul>
 		</div>
 	</div>
@@ -89,7 +90,7 @@ $report_path = __DIR__ . '/../../data/report/';
 		<form class="form-horizontal">
 			<fieldset>
 				<div id="currentReport" style="top: 10px;position: relative;"></div>
-				<br/>
+				<br />
 				<div class="input-group floatingbar" style="display:inline-flex;">
 					<div class="input-group-btn">
 						<a class="btn btn-success btn-sm roundedLeft" id="bt_download"><i class="fas fa-download"></i> {{Télécharger}}
@@ -137,4 +138,4 @@ $report_path = __DIR__ . '/../../data/report/';
 	</div>
 </div>
 
-<?php include_file("desktop", "report", "js");?>
+<?php include_file("desktop", "report", "js"); ?>

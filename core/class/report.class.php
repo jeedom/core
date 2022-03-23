@@ -21,7 +21,7 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class report {
 	/*     * *************************Attributs****************************** */
-	
+
 	/*     * ***********************Methode static*************************** */
 	public static function clean() {
 		if (!file_exists(__DIR__ . '/../../data/report')) {
@@ -29,9 +29,9 @@ class report {
 		}
 		shell_exec('find ' . __DIR__ . '/../../data/report -type f -mtime +' . config::byKey('report::maxdays') . ' -delete');
 	}
-	
+
 	public static function generate($_url, $_type, $_name, $_format = 'png', $_parameter = array()) {
-		if(!is_string($_format)){
+		if (!is_string($_format)) {
 			$_format = 'png';
 		}
 		$out = __DIR__ . '/../../data/report/';
@@ -41,23 +41,26 @@ class report {
 			mkdir($out, 0775, true);
 		}
 		$out = realpath($out);
-		$out .= '/'.date('Y_m_d_H_i_s') . '.' . $_format;
+		$out .= '/' . date('Y_m_d_H_i_s') . '.' . $_format;
 		$min_width = (isset($_parameter['width']) && $_parameter['width'] > 800) ? $_parameter['width'] : 1280;
 		$min_height = (isset($_parameter['height']) && $_parameter['height'] > 600) ? $_parameter['height'] : 1280;
 		$delay = (isset($_parameter['delay']) && $_parameter['delay'] > 1000) ? $_parameter['delay'] : config::byKey('report::delay');
-		if($_name != 'url'){
+		if ($_name != 'url') {
 			$_url .= '&auth=' . user::getAccessKeyForReport();
 		}
-		if(shell_exec('which chromium | wc -l') > 0){
-			if($_name != 'url'){
-				$_url .= '&delay='.$delay;
+		if (shell_exec('which chromium | wc -l') > 0) {
+			if ($_name != 'url') {
+				$_url .= '&delay=' . $delay;
 			}
-			if($_format == 'pdf'){
-				$cmd = 'chromium --headless --no-sandbox --disable-gpu --print-to-pdf='.$out.' --window-size=' . $min_width . ',' . $min_height . ' "' . $_url.'"';
-			}else{
-				$cmd = 'chromium --headless --no-sandbox --disable-gpu --screenshot='.$out.' --window-size=' . $min_width . ',' . $min_height . ' "' . $_url.'"';
+			if (isset($_parameter['tab']) && $_parameter['tab'] != '') {
+				$_url .= '#' . $_parameter['tab'];
 			}
-		}else{
+			if ($_format == 'pdf') {
+				$cmd = 'chromium --headless --no-sandbox --disable-gpu --print-to-pdf=' . $out . ' --window-size=' . $min_width . ',' . $min_height . ' "' . $_url . '"';
+			} else {
+				$cmd = 'chromium --headless --no-sandbox --disable-gpu --screenshot=' . $out . ' --window-size=' . $min_width . ',' . $min_height . ' "' . $_url . '"';
+			}
+		} else {
 			$cmd = 'xvfb-run --server-args="-screen 0, 1920x1280x24" cutycapt --min-width=' . $min_width . ' --min-height=' . $min_height . ' --url="' . $_url . '" --out="' . $out . '"';
 			$cmd .= ' --delay=' . $delay;
 			$cmd .= ' --print-backgrounds=on';
@@ -66,5 +69,4 @@ class report {
 		com_shell::execute($cmd);
 		return $out;
 	}
-	
 }

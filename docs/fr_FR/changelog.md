@@ -12,6 +12,9 @@
 - **Outils / Scénarios** : Ajout d'un menu contextuel sur un scénario pour rendre actif/inactif, changer de groupe, changer d'objet parent.
 - **Outils / Objets** : Ajout d'un menu contextuel sur un objet pour gérer la visbilité, changer d'objet parent, et déplacer.
 - **Analyse / Timeline** : Ajout d'un champ de recherche pour filtrer l'affichage.
+- **Rapport** : Possibilité de faire des rapports sur la santé de Jeedom
+- **Rapport** : Possibilité de faire des rapports sur les équipements en alertes
+- **Mise à jour** : Possibilité de voir depuis Jeedom les packages OS/PIP2/PIP3/NodeJS qui peuvent etre mise à jour et de lancer la mise à jour (attention fonction risquée et en beta)
 
 - **Optimisation** : jeeFrontEnd{}, jeephp2js{}, corrections de bugs mineures et optimisations.
 
