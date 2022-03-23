@@ -174,6 +174,9 @@ class cmd {
 			$sql .= ' AND `generic_type` IS NOT NULL';
 		}
 		$sql .= ' ORDER BY `order`,`name`';
+		if (is_object($_eqLogic)  && class_exists($_eqLogic->getEqType_name() . 'Cmd')) {
+			return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, $_eqLogic->getEqType_name() . 'Cmd');
+		}
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__), $_eqLogic);
 	}
 
@@ -256,6 +259,9 @@ class cmd {
 			$sql .= ' AND eqType=:eqType ';
 		}
 		$sql .= ' ORDER BY name';
+		if ($_eqType != null  && class_exists($_eqType . 'Cmd')) {
+			return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, $_eqType . 'Cmd');
+		}
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
@@ -326,7 +332,7 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byEqLogicIdAndLogicalId($_eqLogic_id, $_logicalId, $_multiple = false, $_type = null) {
+	public static function byEqLogicIdAndLogicalId($_eqLogic_id, $_logicalId, $_multiple = false, $_type = null, $_eqLogic = null) {
 		$values = array(
 			'eqLogic_id' => $_eqLogic_id,
 			'logicalId' => $_logicalId,
@@ -341,12 +347,18 @@ class cmd {
 		}
 		$sql .= ' ORDER BY `order`';
 		if ($_multiple) {
+			if (is_object($_eqLogic)  && class_exists($_eqLogic->getEqType_name() . 'Cmd')) {
+				return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, $_eqLogic->getEqType_name() . 'Cmd');
+			}
 			return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+		}
+		if (is_object($_eqLogic)  && class_exists($_eqLogic->getEqType_name() . 'Cmd')) {
+			return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, $_eqLogic->getEqType_name() . 'Cmd');
 		}
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byEqLogicIdAndGenericType($_eqLogic_id, $_generic_type, $_multiple = false, $_type = null) {
+	public static function byEqLogicIdAndGenericType($_eqLogic_id, $_generic_type, $_multiple = false, $_type = null, $_eqLogic = null) {
 		$values = array(
 			'eqLogic_id' => $_eqLogic_id,
 			'generic_type' => $_generic_type,
@@ -360,7 +372,13 @@ class cmd {
 			$sql .= ' AND type=:type';
 		}
 		if ($_multiple) {
+			if (is_object($_eqLogic)  && class_exists($_eqLogic->getEqType_name() . 'Cmd')) {
+				return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, $_eqLogic->getEqType_name() . 'Cmd');
+			}
 			return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+		}
+		if (is_object($_eqLogic)  && class_exists($_eqLogic->getEqType_name() . 'Cmd')) {
+			return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, $_eqLogic->getEqType_name() . 'Cmd');
 		}
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
@@ -439,6 +457,9 @@ class cmd {
 		WHERE c.name=:cmd_name
 		AND el.name=:eqLogic_name
 		AND el.eqType_name=:eqType_name';
+		if ($_eqType_name != null  && class_exists($_eqType_name . 'Cmd')) {
+			return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, $_eqType_name . 'Cmd');
+		}
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 

@@ -1557,7 +1557,7 @@ class eqLogic {
 			if (isset($this->_cmds[$_logicalId . '.' . $_multiple . '.' . $_type])) {
 				return $this->_cmds[$_logicalId . '.' . $_multiple . '.' . $_type];
 			}
-			$cmds = cmd::byEqLogicIdAndLogicalId($this->id, $_logicalId, $_multiple, $_type);
+			$cmds = cmd::byEqLogicIdAndLogicalId($this->id, $_logicalId, $_multiple, $_type, $this);
 		} else {
 			$cmds = cmd::byEqLogicId($this->id, $_type, $_visible, $this);
 		}
@@ -1579,7 +1579,7 @@ class eqLogic {
 			if (isset($this->_cmds[$_generic_type . '.' . $_multiple . '.' . $_type])) {
 				return $this->_cmds[$_generic_type . '.' . $_multiple . '.' . $_type];
 			}
-			$cmds = cmd::byEqLogicIdAndGenericType($this->id, $_generic_type, $_multiple, $_type);
+			$cmds = cmd::byEqLogicIdAndGenericType($this->id, $_generic_type, $_multiple, $_type, $this);
 		} else {
 			$cmds = cmd::byEqLogicId($this->id, $_type, $_visible, $this);
 		}
