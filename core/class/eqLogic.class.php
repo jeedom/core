@@ -150,6 +150,9 @@ class eqLogic {
 		} else {
 			$sql .= ' ORDER BY `order`,category';
 		}
+		if ($_eqType_name != null && class_exists($_eqType_name)) {
+			return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, $_eqType_name);
+		}
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
@@ -163,7 +166,13 @@ class eqLogic {
 		WHERE logicalId=:logicalId
 		AND eqType_name=:eqType_name';
 		if ($_multiple) {
+			if (class_exists($_eqType_name)) {
+				return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, $_eqType_name);
+			}
 			return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+		}
+		if (class_exists($_eqType_name)) {
+			return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, $_eqType_name);
 		}
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
@@ -180,6 +189,9 @@ class eqLogic {
 			$sql .= ' AND isEnable=1';
 		}
 		$sql .= ' ORDER BY ob.name,el.name';
+		if (class_exists($_eqType_name)) {
+			return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, $_eqType_name);
+		}
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
@@ -208,6 +220,9 @@ class eqLogic {
 			WHERE eqType_name=:eqType_name
 			AND JSON_CONTAINS(configuration,:configuration)
 			ORDER BY name';
+			if ($_eqType_name != null && class_exists($_eqType_name)) {
+				return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, $_eqType_name);
+			}
 			return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 		}
 		$values = array(
@@ -219,6 +234,9 @@ class eqLogic {
 		WHERE eqType_name=:eqType_name
 		AND configuration LIKE :configuration
 		ORDER BY name';
+		if ($_eqType_name != null && class_exists($_eqType_name)) {
+			return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, $_eqType_name);
+		}
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
@@ -236,7 +254,7 @@ class eqLogic {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function searchConfiguration($_configuration, $_type = null) {
+	public static function searchConfiguration($_configuration, $_eqType_name = null) {
 		if (!is_array($_configuration)) {
 			$values = array(
 				'configuration' => '%' . $_configuration . '%',
@@ -256,11 +274,14 @@ class eqLogic {
 				$sql .= ' OR configuration LIKE :configuration' . $i;
 			}
 		}
-		if ($_type !== null) {
-			$values['eqType_name'] = $_type;
+		if ($_eqType_name !== null) {
+			$values['eqType_name'] = $_eqType_name;
 			$sql .= ' AND eqType_name=:eqType_name ';
 		}
 		$sql .= ' ORDER BY name';
+		if ($_eqType_name != null && class_exists($_eqType_name)) {
+			return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, $_eqType_name);
+		}
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
