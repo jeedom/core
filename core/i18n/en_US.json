@@ -115,7 +115,7 @@
         "Escalier": "Steps"
     },
     "mobile\/html\/eqAnalyse.html": {
-        "Batteries": "Battery",
+        "Batteries": "Batteries",
         "Alertes": "Warnings"
     },
     "mobile\/html\/about.html": {
@@ -778,6 +778,7 @@
         "En": "In",
         "si": "if",
         "Pendant plus de": "For more than",
+        "M'alerter au retour à la normal": "Alert me when back to normal",
         "Widget": "Widgets",
         "Appliquer à": "Apply to",
         "Afficher le nom": "Show name",
@@ -2132,6 +2133,7 @@
         "Autre": "Other",
         "Rechercher": "Search",
         "Analyse Equipements": "Equipment Analysis",
+        "Santé": "Health",
         "Timeline": "Timeline",
         "URL": "Url",
         "Rapport(s)": "Reports",
@@ -2328,7 +2330,7 @@
     "desktop\/php\/eqAnalyse.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Configuration": "Configuration",
-        "Batteries": "Battery",
+        "Batteries": "Batteries",
         "Equipements en alerte": "Equipment on alert",
         "Actions définies": "Defined actions",
         "Alertes définies": "Defined alerts",
@@ -4036,6 +4038,7 @@
         "niveau": "level",
         "pendant plus de": "for more than",
         "minute(s)": "minutes)",
+        "Retour à la normal de ": "Back to normal",
         "Appels de l\\'URL de push pour la commande": "Push URL calls for command",
         "Erreur push sur :": "Push error on:",
         "Erreur computing influx sur :": "Error computing influx on:",
@@ -4376,6 +4379,8 @@
         "Panel introuvable - Vérifiez l\\'id :": "Panel not found - Check the id:",
         "Rapport équipement du": "Equipment report",
         "Veuillez trouver ci-joint le rapport équipement généré le": "Please find attached the equipment report generated on",
+        "Veuillez trouver ci-joint le rapport équipement en alert généré le": "Please find attached the equipment alert report generated on",
+        "Veuillez trouver ci-joint le rapport de santé généré le": "Please find attached the health report generated on",
         "Génération du rapport timeline": "Timeline report generation",
         "Rapport url du": "Url report",
         "Veuillez trouver ci-joint le rapport url généré le": "Please find attached url report generated on",
@@ -4679,7 +4684,9 @@
         "Vue": "View",
         "Design": "Design",
         "Plugin": "Plugin",
-        "Analyse Equipements": "Equipment Analysis",
+        "Batteries": "Batteries",
+        "Alerte Equipements": "Equipment Alert",
+        "Santé": "Health",
         "Timeline": "Timeline",
         "URL": "Url",
         "Panel": "Panel",

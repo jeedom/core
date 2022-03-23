@@ -17,7 +17,7 @@
         "Notes": "Notas",
         "Crons": "Crons",
         "Démons": "Daemons",
-        "Santé": "Estado",
+        "Santé": "Saúde",
         "Basculer le thème": "Alternar tema",
         "Version desktop": "Versão desktop",
         "Forcer mise à jour": "Forçar atualização",
@@ -36,7 +36,7 @@
         "Rafraichir": "Recarregar",
         "Version desktop": "Versão desktop",
         "Démons": "Daemons",
-        "Santé": "Estado"
+        "Santé": "Saúde"
     },
     "mobile\/js\/message.js": {
         "Vider": "Limpar"
@@ -56,7 +56,7 @@
         "Rafraichir": "Recarregar",
         "Version desktop": "Versão desktop",
         "Crons": "Crons",
-        "Santé": "Estado"
+        "Santé": "Saúde"
     },
     "mobile\/js\/equipment.js": {
         "Tout": "Tudo",
@@ -778,6 +778,7 @@
         "En": "Em",
         "si": "se",
         "Pendant plus de": "Por mais que",
+        "M'alerter au retour à la normal": "Avise-me quando voltar ao normal",
         "Widget": "Widget",
         "Appliquer à": "Aplicar a",
         "Afficher le nom": "Mostrar o nome",
@@ -1358,7 +1359,7 @@
         "Statut démon": "Estatuto do daemon",
         "erreurs": "erros",
         "en cours": "Em curso",
-        "Santé": "Problemas",
+        "Santé": "Saúde",
         "Configuration du plugin": "Configuração de plugin",
         "Santé de": "Estado de",
         "Benchmark Jeedom": "Benchmark do Jeedom",
@@ -1402,7 +1403,7 @@
         "Timeline": "Linha cronológica",
         "Historique": "Histórico",
         "Rapport": "Relatório",
-        "Santé": "Estado",
+        "Santé": "Saúde",
         "Outils": "Ferramentas",
         "Objets": "Objetos",
         "Scénarios": "Cenários",
@@ -2132,6 +2133,7 @@
         "Autre": "Outro",
         "Rechercher": "Pesquisar",
         "Analyse Equipements": "Análise de Equipamentos",
+        "Santé": "Saúde",
         "Timeline": "Linha cronológica",
         "URL": "URLs",
         "Rapport(s)": "Relatório(s)",
@@ -2859,7 +2861,7 @@
     },
     "desktop\/js\/health.js": {
         "Configuration du plugin": "Configuração de plugin",
-        "Santé": "Estado",
+        "Santé": "Saúde",
         "Jeedom benchmark": "Benchmark Jeedom"
     },
     "desktop\/js\/dashboard.js": {
@@ -3229,7 +3231,7 @@
         "Historique": "Histórico",
         "Timeline": "Linha cronológica",
         "Rapports": "Relatórios",
-        "Santé": "Estado",
+        "Santé": "Saúde",
         "Objets": "Objetos",
         "Scénarios": "Cenários",
         "Interactions": "Interações",
@@ -3411,7 +3413,7 @@
         "Objets connectés": "Objetos conectados",
         "Confort": "Conforto",
         "Monitoring": "Monitorização",
-        "Santé": "Estado",
+        "Santé": "Saúde",
         "Nature": "Natureza",
         "Timeout": "Tempo limite",
         "Batterie en Warning": "Bateria em aviso",
@@ -4036,6 +4038,7 @@
         "niveau": "nível",
         "pendant plus de": "por mais de",
         "minute(s)": "minutos)",
+        "Retour à la normal de ": "De volta ao normal",
         "Appels de l\\'URL de push pour la commande": "Chamadas de URL push para pedido",
         "Erreur push sur :": "Push error on:",
         "Erreur computing influx sur :": "Erro ao calcular influxo em:",
@@ -4376,6 +4379,8 @@
         "Panel introuvable - Vérifiez l\\'id :": "Painel não encontrado - Verifique o ID:",
         "Rapport équipement du": "Relatório de equipamento",
         "Veuillez trouver ci-joint le rapport équipement généré le": "Encontre em anexo o relatório do equipamento gerado em",
+        "Veuillez trouver ci-joint le rapport équipement en alert généré le": "Por favor, encontre em anexo o relatório de alerta do equipamento gerado em",
+        "Veuillez trouver ci-joint le rapport de santé généré le": "Por favor, encontre em anexo o relatório de saúde gerado em",
         "Génération du rapport timeline": "Geração de relatórios da linha do tempo",
         "Rapport url du": "Relatório de Url",
         "Veuillez trouver ci-joint le rapport url généré le": "Em anexo, encontre o relatório de URL gerado em",
@@ -4679,7 +4684,9 @@
         "Vue": "Vista",
         "Design": "Design",
         "Plugin": "Plugin",
-        "Analyse Equipements": "Análise dos Equipamentos",
+        "Batteries": "Baterias",
+        "Alerte Equipements": "Alerta de equipamento",
+        "Santé": "Saúde",
         "Timeline": "Linha cronológica",
         "URL": "URLs",
         "Panel": "Painel",

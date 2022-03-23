@@ -12,6 +12,10 @@
 - **Ferramentas / Cenários** : Adição de um menu contextual em um cenário para tornar ativo/inativo, alterar grupo, alterar objeto pai.
 - **Ferramentas / Objetos** : Adicionado um menu contextual em um objeto para gerenciar a visibilidade, alterar o objeto pai e mover.
 - **Análise / Cronograma** : Adicionado um campo de pesquisa para filtrar a exibição.
+- **Relatório** : Capacidade de relatar sobre a saúde de Jeedom
+- **Relatório** : Capacidade de relatar alertas de equipamentos
+- **Atualizar** : Capacidade de ver do Jeedom os pacotes OS / PIP2 / PIP3 / NodeJS que podem ser atualizados e iniciar a atualização (cuidado com a função arriscada e em beta)
+- **Comando de alerta** : Adicionada uma opção para receber uma mensagem em caso de fim de alerta
 
 - **Otimização** : jeeFrontEnd{}, jeephp2js{}, pequenas correções de bugs e otimizações.
 

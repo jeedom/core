@@ -17,7 +17,7 @@
         "Notes": "Bewertungen",
         "Crons": "Cron",
         "Démons": "Daemon",
-        "Santé": "Gesundheit",
+        "Santé": "Die Gesundheit",
         "Basculer le thème": "Thema umschalten",
         "Version desktop": "Desktop Version",
         "Forcer mise à jour": "Aktualisierung erzwingen",
@@ -36,7 +36,7 @@
         "Rafraichir": "Auffrischen",
         "Version desktop": "Desktop-Version",
         "Démons": "Dämonen",
-        "Santé": "Gesundheit"
+        "Santé": "Die Gesundheit"
     },
     "mobile\/js\/message.js": {
         "Vider": "Leer"
@@ -56,7 +56,7 @@
         "Rafraichir": "Aktualisieren",
         "Version desktop": "Desktop Version",
         "Crons": "Cron",
-        "Santé": "Gesundheit"
+        "Santé": "Die Gesundheit"
     },
     "mobile\/js\/equipment.js": {
         "Tout": "Alles",
@@ -778,6 +778,7 @@
         "En": "In",
         "si": "wenn",
         "Pendant plus de": "Für mehr als",
+        "M'alerter au retour à la normal": "Benachrichtigen Sie mich, wenn der Normalzustand wiederhergestellt ist",
         "Widget": "Widgets",
         "Appliquer à": "Übernehmen",
         "Afficher le nom": "Anzeigename",
@@ -1358,7 +1359,7 @@
         "Statut démon": "Dämonenstatus",
         "erreurs": "Fehler",
         "en cours": "In Bearbeitung",
-        "Santé": "Gesundheit",
+        "Santé": "Die Gesundheit",
         "Configuration du plugin": "Plugin Konfiguration",
         "Santé de": "Gesundheit von",
         "Benchmark Jeedom": "Jeedom Benchmark",
@@ -1402,7 +1403,7 @@
         "Timeline": "Zeitleiste",
         "Historique": "Chronik",
         "Rapport": "Bericht",
-        "Santé": "Gesundheit",
+        "Santé": "Die Gesundheit",
         "Outils": "Werkzeuge",
         "Objets": "Objekte",
         "Scénarios": "Szenarien",
@@ -2132,6 +2133,7 @@
         "Autre": "Andere",
         "Rechercher": "Suchen nach",
         "Analyse Equipements": "Geräteanalyse",
+        "Santé": "Die Gesundheit",
         "Timeline": "Zeitleiste",
         "URL": "URLs",
         "Rapport(s)": "Berichte)",
@@ -2859,7 +2861,7 @@
     },
     "desktop\/js\/health.js": {
         "Configuration du plugin": "Plugin Konfiguration",
-        "Santé": "Gesundheit",
+        "Santé": "Die Gesundheit",
         "Jeedom benchmark": "Jeedom Benchmark"
     },
     "desktop\/js\/dashboard.js": {
@@ -3229,7 +3231,7 @@
         "Historique": "Chronik",
         "Timeline": "Zeitleiste",
         "Rapports": "Verhältnis",
-        "Santé": "Gesundheit",
+        "Santé": "Die Gesundheit",
         "Objets": "Objekte",
         "Scénarios": "Szenarien",
         "Interactions": "Interaktion",
@@ -3411,7 +3413,7 @@
         "Objets connectés": "Verbundene Objekte",
         "Confort": "Komfort",
         "Monitoring": "Überwachung",
-        "Santé": "Gesundheit",
+        "Santé": "Die Gesundheit",
         "Nature": "Natur",
         "Timeout": "Zeitüberschreitung",
         "Batterie en Warning": "Warnung Batterie",
@@ -4036,6 +4038,7 @@
         "niveau": "Niveau",
         "pendant plus de": "für mehr als",
         "minute(s)": "Protokoll)",
+        "Retour à la normal de ": "Zurück zum Normalem",
         "Appels de l\\'URL de push pour la commande": "Push-URL-Aufrufe zur Bestellung",
         "Erreur push sur :": "Fehler einschieben:",
         "Erreur computing influx sur :": "Fehler beim Berechnen des Zuflusses bei:",
@@ -4376,6 +4379,8 @@
         "Panel introuvable - Vérifiez l\\'id :": "Panel nicht gefunden - Überprüfen Sie die ID:",
         "Rapport équipement du": "Gerätebericht",
         "Veuillez trouver ci-joint le rapport équipement généré le": "Im Anhang finden Sie den Gerätebericht, der am erstellt wurde",
+        "Veuillez trouver ci-joint le rapport équipement en alert généré le": "Im Anhang finden Sie den generierten Gerätealarmbericht",
+        "Veuillez trouver ci-joint le rapport de santé généré le": "Anbei finden Sie den erstellten Gesundheitsbericht",
         "Génération du rapport timeline": "Generierung von Zeitleistenberichten",
         "Rapport url du": "URL-Bericht",
         "Veuillez trouver ci-joint le rapport url généré le": "Im Anhang finden Sie den URL-Bericht, der am erstellt wurde",
@@ -4679,7 +4684,9 @@
         "Vue": "Aussicht",
         "Design": "Entwurf",
         "Plugin": "Plugin",
-        "Analyse Equipements": "Geräteanalyse",
+        "Batteries": "Batterien",
+        "Alerte Equipements": "Gerätealarm",
+        "Santé": "Die Gesundheit",
         "Timeline": "Zeitleiste",
         "URL": "URLs",
         "Panel": "Platte",
