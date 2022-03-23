@@ -1934,6 +1934,7 @@ class cmd {
 		if ($_level == $this->getCache('alertLevel')) {
 			return;
 		}
+
 		global $JEEDOM_INTERNAL_CONFIG;
 		$this->setCache('alertLevel', $_level);
 		$eqLogic = $this->getEqLogic();
@@ -1954,6 +1955,25 @@ class cmd {
 				$message .= ' ' . __('pendant plus de', __FILE__) . ' ' . $this->getAlert($_level . 'during') . ' ' . __('minute(s)', __FILE__);
 			}
 			$message .= ' => ' . jeedom::toHumanReadable(str_replace('#value#', $_value, $this->getAlert($_level . 'if')));
+			log::add('event', 'info', $message);
+			$eqLogic = $this->getEqLogic();
+			if (config::byKey('alert::addMessageOn' . ucfirst($_level)) == 1) {
+				message::add($eqLogic->getEqType_name(), $message);
+			}
+			$cmds = explode(('&&'), config::byKey('alert::' . $_level . 'Cmd'));
+			if (count($cmds) > 0 && trim(config::byKey('alert::' . $_level . 'Cmd')) != '') {
+				foreach ($cmds as $id) {
+					$cmd = cmd::byId(str_replace('#', '', $id));
+					if (is_object($cmd)) {
+						$cmd->execCmd(array(
+							'title' => '[' . config::byKey('name', 'core', 'JEEDOM') . '] : ' . $message,
+							'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
+						));
+					}
+				}
+			}
+		} elseif ($this->getConfiguration('alert::messageReturnBack') == 1) {
+			$message = __('Retour à la normal de ', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('valeur :', __FILE__) . ' ' . $_value . trim(' ' . $this->getUnite());
 			log::add('event', 'info', $message);
 			$eqLogic = $this->getEqLogic();
 			if (config::byKey('alert::addMessageOn' . ucfirst($_level)) == 1) {
