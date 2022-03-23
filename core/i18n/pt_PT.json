@@ -17,7 +17,7 @@
         "Notes": "Notas",
         "Crons": "Crons",
         "Démons": "Daemons",
-        "Santé": "Saúde",
+        "Santé": "Estado",
         "Basculer le thème": "Alternar tema",
         "Version desktop": "Versão desktop",
         "Forcer mise à jour": "Forçar atualização",
@@ -36,7 +36,7 @@
         "Rafraichir": "Recarregar",
         "Version desktop": "Versão desktop",
         "Démons": "Daemons",
-        "Santé": "Saúde"
+        "Santé": "Estado"
     },
     "mobile\/js\/message.js": {
         "Vider": "Limpar"
@@ -56,7 +56,7 @@
         "Rafraichir": "Recarregar",
         "Version desktop": "Versão desktop",
         "Crons": "Crons",
-        "Santé": "Saúde"
+        "Santé": "Estado"
     },
     "mobile\/js\/equipment.js": {
         "Tout": "Tudo",
@@ -1359,7 +1359,7 @@
         "Statut démon": "Estatuto do daemon",
         "erreurs": "erros",
         "en cours": "Em curso",
-        "Santé": "Saúde",
+        "Santé": "Problemas",
         "Configuration du plugin": "Configuração de plugin",
         "Santé de": "Estado de",
         "Benchmark Jeedom": "Benchmark do Jeedom",
@@ -1403,7 +1403,7 @@
         "Timeline": "Linha cronológica",
         "Historique": "Histórico",
         "Rapport": "Relatório",
-        "Santé": "Saúde",
+        "Santé": "Estado",
         "Outils": "Ferramentas",
         "Objets": "Objetos",
         "Scénarios": "Cenários",
@@ -2861,7 +2861,7 @@
     },
     "desktop\/js\/health.js": {
         "Configuration du plugin": "Configuração de plugin",
-        "Santé": "Saúde",
+        "Santé": "Estado",
         "Jeedom benchmark": "Benchmark Jeedom"
     },
     "desktop\/js\/dashboard.js": {
@@ -3231,7 +3231,7 @@
         "Historique": "Histórico",
         "Timeline": "Linha cronológica",
         "Rapports": "Relatórios",
-        "Santé": "Saúde",
+        "Santé": "Estado",
         "Objets": "Objetos",
         "Scénarios": "Cenários",
         "Interactions": "Interações",
@@ -3413,7 +3413,7 @@
         "Objets connectés": "Objetos conectados",
         "Confort": "Conforto",
         "Monitoring": "Monitorização",
-        "Santé": "Saúde",
+        "Santé": "Estado",
         "Nature": "Natureza",
         "Timeout": "Tempo limite",
         "Batterie en Warning": "Bateria em aviso",

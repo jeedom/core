@@ -17,7 +17,7 @@
         "Notes": "Bewertungen",
         "Crons": "Cron",
         "Démons": "Daemon",
-        "Santé": "Die Gesundheit",
+        "Santé": "Gesundheit",
         "Basculer le thème": "Thema umschalten",
         "Version desktop": "Desktop Version",
         "Forcer mise à jour": "Aktualisierung erzwingen",
@@ -36,7 +36,7 @@
         "Rafraichir": "Auffrischen",
         "Version desktop": "Desktop-Version",
         "Démons": "Dämonen",
-        "Santé": "Die Gesundheit"
+        "Santé": "Gesundheit"
     },
     "mobile\/js\/message.js": {
         "Vider": "Leer"
@@ -56,7 +56,7 @@
         "Rafraichir": "Aktualisieren",
         "Version desktop": "Desktop Version",
         "Crons": "Cron",
-        "Santé": "Die Gesundheit"
+        "Santé": "Gesundheit"
     },
     "mobile\/js\/equipment.js": {
         "Tout": "Alles",
@@ -1359,7 +1359,7 @@
         "Statut démon": "Dämonenstatus",
         "erreurs": "Fehler",
         "en cours": "In Bearbeitung",
-        "Santé": "Die Gesundheit",
+        "Santé": "Gesundheit",
         "Configuration du plugin": "Plugin Konfiguration",
         "Santé de": "Gesundheit von",
         "Benchmark Jeedom": "Jeedom Benchmark",
@@ -1403,7 +1403,7 @@
         "Timeline": "Zeitleiste",
         "Historique": "Chronik",
         "Rapport": "Bericht",
-        "Santé": "Die Gesundheit",
+        "Santé": "Gesundheit",
         "Outils": "Werkzeuge",
         "Objets": "Objekte",
         "Scénarios": "Szenarien",
@@ -2861,7 +2861,7 @@
     },
     "desktop\/js\/health.js": {
         "Configuration du plugin": "Plugin Konfiguration",
-        "Santé": "Die Gesundheit",
+        "Santé": "Gesundheit",
         "Jeedom benchmark": "Jeedom Benchmark"
     },
     "desktop\/js\/dashboard.js": {
@@ -3231,7 +3231,7 @@
         "Historique": "Chronik",
         "Timeline": "Zeitleiste",
         "Rapports": "Verhältnis",
-        "Santé": "Die Gesundheit",
+        "Santé": "Gesundheit",
         "Objets": "Objekte",
         "Scénarios": "Szenarien",
         "Interactions": "Interaktion",
@@ -3413,7 +3413,7 @@
         "Objets connectés": "Verbundene Objekte",
         "Confort": "Komfort",
         "Monitoring": "Überwachung",
-        "Santé": "Die Gesundheit",
+        "Santé": "Gesundheit",
         "Nature": "Natur",
         "Timeout": "Zeitüberschreitung",
         "Batterie en Warning": "Warnung Batterie",
