@@ -476,9 +476,12 @@ $('.bt_OsPackageUpdate').off('click').on('click',function(){
       },
       success: function(data) {
         $.fn.showAlert({
-          message: '{{Mise à jour lancée avec succès. Vous pouvez suivre l\'avancement en allant sur Analayse -> log puis le log packages}}',
+          message: '{{Mise à jour lancée avec succès.}}',
           level: 'success'
         })
+        $('#md_modal').dialog({
+          title: "{{Log de mise à jour}}"
+        }).load('index.php?v=d&modal=log.display&log=packages').dialog('open')
       }
     })
   })
