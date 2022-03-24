@@ -91,7 +91,7 @@ if (!jeeFrontEnd.update) {
                   clearTimeout(jeeP.alertTimeout)
                 }
                 $.fn.showAlert({
-                  message: '{{L\'opération a échoué}}',
+                  message: '{{L\'opération a échoué. Veuillez aller sur l\'onglet informations et consulter la log pour savoir pourquoi.}}',
                   level: 'danger'
                 })
                 _autoUpdate = 0
