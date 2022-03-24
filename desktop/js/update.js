@@ -388,10 +388,10 @@ if (!jeeFrontEnd.update) {
         },
         success: function(data) {
           var tr_update = []
-          $('.bt_OsPackageUpdate').hide();
+          $('.bt_OsPackageUpdate').attr('disabled','disabled');
           for (var i in data) {
             if(Object.keys(data[i]).length > 0){
-              $('.bt_OsPackageUpdate[data-type='+i+']').show();
+              $('.bt_OsPackageUpdate[data-type='+i+']').removeAttr('disabled');
               for(var j in data[i]){
                 tr_update.push(jeeP.addOsUpdate(data[i][j]))
               }
@@ -458,8 +458,14 @@ $('.bt_refreshOsPackageUpdate').off('click').on('click',function(){
 })
 
 $('.bt_OsPackageUpdate').off('click').on('click',function(){
+  if($(this).attr('disabled')){
+    return;
+  }
   let type = $(this).attr('data-type');
   bootbox.confirm('{{Êtes-vous sûr de vouloir mettre à jour les package de type :}}' + ' ' + type + ' {{, attention cette opération est toujours risquée et peut prendre plusieurs dizaine de minutes}} ?', function(result) {
+    if(!result){
+      return;
+    }
     jeedom.systemUpgradablePackage({
       type : type,
       error: function(error) {
