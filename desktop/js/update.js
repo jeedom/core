@@ -25,6 +25,7 @@ if (!jeeFrontEnd.update) {
       this.hasUpdate = false
       this.progress = -2
       this.alertTimeout = null
+      this.osUpdateChecked = 0
       //___log interceptor beautifier___
       this.prevUpdateText = ''
       this.newLogClean = '<pre id="pre_updateInfo_clean" style="display:none;"><i>{{Aucune mise à jour en cours.}}</i></pre>'
@@ -80,6 +81,7 @@ if (!jeeFrontEnd.update) {
                   clearTimeout(jeeP.alertTimeout)
                 }
                 _autoUpdate = 0
+                $('.bt_refreshOsPackageUpdate').removeClass('disabled')
                 jeedomUtils.reloadPagePrompt('{{Mise(s) à jour terminée(s) avec succès.}}')
               }
               //update error:
@@ -95,6 +97,7 @@ if (!jeeFrontEnd.update) {
                   level: 'danger'
                 })
                 _autoUpdate = 0
+                $('.bt_refreshOsPackageUpdate').removeClass('disabled')
               }
             }
           }
@@ -376,10 +379,11 @@ if (!jeeFrontEnd.update) {
       clearTimeout(jeeP.alertTimeout)
       jeeP.alertTimeout = setTimeout(jeeP.alertTimeout, 60000 * 10)
     },
-    printOsUpdate: function(_forceRefresh){
+    printOsUpdate: function(_forceRefresh) {
+      this.osUpdateChecked = 1
       jeedom.systemGetUpgradablePackage({
-        type : 'all',
-        forceRefresh : _forceRefresh,
+        type: 'all',
+        forceRefresh: _forceRefresh,
         error: function(error) {
           $.fn.showAlert({
             message: error.message,
@@ -388,16 +392,16 @@ if (!jeeFrontEnd.update) {
         },
         success: function(data) {
           var tr_update = []
-          $('.bt_OsPackageUpdate').attr('disabled','disabled');
+          $('.bt_OsPackageUpdate').addClass('disabled')
           for (var i in data) {
-            if(Object.keys(data[i]).length > 0){
-              $('.bt_OsPackageUpdate[data-type='+i+']').removeAttr('disabled');
-              for(var j in data[i]){
+            if (Object.keys(data[i]).length > 0) {
+              $('.bt_OsPackageUpdate[data-type=' + i + ']').removeClass('disabled')
+              for (var j in data[i]) {
                 tr_update.push(jeeP.addOsUpdate(data[i][j]))
               }
             }
           }
-          $('#table_osUpdate tbody').empty().append(tr_update).trigger('update');
+          $('#table_osUpdate tbody').empty().append(tr_update).trigger('update')
         }
       })
     },
@@ -430,6 +434,7 @@ $(function() {
     $.hideAlert()
     jeeP.progress = 7
     $('.progressbarContainer').removeClass('hidden')
+    $('.bt_refreshOsPackageUpdate').addClass('disabled')
     jeeP.updateProgressBar()
     jeeP.getJeedomLog(1, 'update')
   }
@@ -453,8 +458,10 @@ $(function() {
 })
 
 
-$('.bt_refreshOsPackageUpdate').off('click').on('click',function(){
-  jeeP.printOsUpdate($(this).attr('data-forceRefresh'));
+$('.bt_refreshOsPackageUpdate').off('click').on('click', function() {
+  if (jeeP.osUpdateChecked == 0 || $(this).attr('data-forceRefresh') == "1") {
+    jeeP.printOsUpdate($(this).attr('data-forceRefresh'))
+  }
 })
 
 $('.bt_OsPackageUpdate').off('click').on('click',function(){
@@ -530,6 +537,7 @@ $('#bt_doUpdate').off('click').on('click', function() {
   $.hideAlert()
   jeeP.progress = 0
   $('.progressbarContainer').removeClass('hidden')
+  $('.bt_refreshOsPackageUpdate').addClass('disabled')
   jeeP.updateProgressBar()
   jeedom.update.doAll({
     options: options,
@@ -570,6 +578,7 @@ $('#table_update').on({
       if (result) {
         jeeP.progress = -1;
         $('.progressbarContainer').removeClass('hidden')
+        $('.bt_refreshOsPackageUpdate').addClass('disabled')
         jeeP.updateProgressBar()
         $.hideAlert()
         jeedom.update.do({
