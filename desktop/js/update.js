@@ -469,7 +469,7 @@ $('.bt_OsPackageUpdate').off('click').on('click',function(){
     return;
   }
   let type = $(this).attr('data-type');
-  bootbox.confirm('{{Êtes-vous sûr de vouloir mettre à jour les package de type :}}' + ' ' + type + ' {{, attention cette opération est toujours risquée et peut prendre plusieurs dizaine de minutes}} ?', function(result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir mettre à jour les packages de type}}' + ' : ' + type + ' ? {{Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes}}.', function(result) {
     if(!result){
       return;
     }
