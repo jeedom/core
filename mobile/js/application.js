@@ -120,13 +120,7 @@ $(window).on('popstate', function(event) {
   }
   jeedomUtils.loadModal(false)
   jeedomUtils.loadPanel(false)
-  if (!history_page.option) {
-    jeedomUtils.loadPage(history_page.page, history_page.title)
-  } else if (!history_page.plugin) {
-    jeedomUtils.loadPage(history_page.page, history_page.title, history_page.option)
-  } else {
-    jeedomUtils.loadPage(history_page.page, history_page.title, history_page.option, history_page.plugin)
-  }
+  jeedomUtils.loadPage(history_page.page, history_page.title, history_page.option, history_page.plugin)
   if (history_page.scroll) {
     setTimeout(function() {
       $(document).scrollTop(history_page.scroll)
