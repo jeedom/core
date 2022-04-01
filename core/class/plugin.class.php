@@ -305,7 +305,7 @@ class plugin {
 					}
 				}
 				if ($enable == 0) {
-					return;
+					continue;
 				}
 				if (!$ok) {
 					$message = __('Attention le plugin', __FILE__) . ' ' . ' ' . $plugin->getName();
