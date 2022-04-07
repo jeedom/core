@@ -116,7 +116,7 @@ try {
 		echo $e->getMessage();
 	}
 	
-	echo 'Creating archive...';
+	echo "Creating archive...\n";
 	
 	$excludes = array(
 		'tmp',
@@ -139,6 +139,27 @@ try {
 		$excludes[] = config::byKey('recordDir', 'camera');
 	}
 	
+  	if (!isset($NO_PLUGIN_BACKUP) || $NO_PLUGIN_BACKUP === false) {
+		foreach (plugin::listPlugin(true) as $plugin) {
+			$plugin_id = $plugin->getId();
+			if (method_exists($plugin_id, 'backupExclude')) {
+				$plugin_excludes=$plugin_id::backupExclude();
+				if(isset($plugin_excludes) === true) {
+					foreach ($plugin_excludes as $plugin_exclude) {
+						$plugin_exclude=trim($plugin_exclude);
+     					if(isset($plugin_exclude) === true && $plugin_exclude !== '') {
+							if (strpos($plugin_exclude, '..') === false) {
+								$excludes[]="plugins/".$plugin_id."/".$plugin_exclude;
+								echo "Plugin " . $plugin_id . " - the following subfolder will be excluded from the backup: ".$plugin_exclude."\n";
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+  
+  
 	$exclude = '';
 	foreach ($excludes as $folder) {
 		$exclude .= ' --exclude="' . $folder . '"';
