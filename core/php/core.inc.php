@@ -50,55 +50,38 @@ try {
 	
 }
 
-function jeedomCoreAutoload($classname) {
-	try {
-		include_file('core', $classname, 'class');
-	} catch (Exception $e) {
-		
-	} catch (Error $e) {
-		
-	}
-}
+function jeedomAutoload($_classname) {
+	/* core class always in /core/class : */
+	$path = __DIR__ . "/../../core/class/$_classname.class.php";
+	if (file_exists($path)) {
+		include_file('core', $_classname, 'class');
 
-function jeedomPluginAutoload($_classname) {
-	if (strpos($_classname, '\\') !== false || strpos($_classname, 'com_') !== false || strpos($_classname, 'repo_') !== false || strpos($_classname, '/') !== false) {
-		return;
-	}
-	$classname = str_replace(array('Real', 'Cmd'), '', $_classname);
-	$plugin_active = config::byKey('active', $classname, null);
-	if (($plugin_active === null || $plugin_active == '' || $plugin_active == 0) && strpos($classname,'_') !== false) {
-		$classname = explode('_', $classname)[0];
+	} else if (substr($_classname, 0, 4) === 'com_') {
+		/* class com_$1 in /core/com/$1.com.php */
+		include_file('core', substr($_classname, 4), 'com');
+
+	} else if (substr($_classname, 0, 5) === 'repo_') {
+		/* class repo_$1 in /core/repo/$1.repo.php */
+		include_file('core', substr($_classname, 5), 'repo');
+
+	} else if (strpos($_classname, '\\') === false && strpos($_classname, '/') === false) {
+		/* autoload for plugins : no namespace */
+		$classname = str_replace(array('Real', 'Cmd'), '', $_classname);
 		$plugin_active = config::byKey('active', $classname, null);
-	}
-	try {
-		if ($plugin_active == 1) {
-			include_file('core', $classname, 'class', $classname);
+		if (($plugin_active === null || $plugin_active == '' || $plugin_active == 0) && strpos($classname,'_') !== false) {
+			$classname = explode('_', $classname)[0];
+			$plugin_active = config::byKey('active', $classname, null);
 		}
-	} catch (Exception $e) {
-		
-	} catch (Error $e) {
-		
+		if ($plugin_active == 1) {
+			try {
+				include_file('core', $classname, 'class', $classname);
+			} catch (Exception $e) {
+				echo($e->getMessage());
+			} catch (Error $e) {
+				die($e->getMessage());
+			}
+		}
 	}
 }
 
-function jeedomOtherAutoload($classname) {
-	try {
-		include_file('core', substr($classname, 4), 'com');
-		return;
-	} catch (Exception $e) {
-		
-	} catch (Error $e) {
-		
-	}
-	try {
-		include_file('core', substr($classname, 5), 'repo');
-		return;
-	} catch (Exception $e) {
-		
-	} catch (Error $e) {
-		
-	}
-}
-spl_autoload_register('jeedomOtherAutoload', true, true);
-spl_autoload_register('jeedomPluginAutoload', true, true);
-spl_autoload_register('jeedomCoreAutoload', true, true);
+spl_autoload_register('jeedomAutoload', true, true);
