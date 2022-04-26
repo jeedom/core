@@ -216,7 +216,7 @@ class network {
 		}
 		if ($_mode == 'internal') {
 			foreach ((self::getInterfacesInfo()) as $interface) {
-				if ($interface['ifname'] == 'lo' || !isset($interface['addr_info'])) {
+				if ($interface['ifname'] == 'lo' || !isset($interface['addr_info']) || strpos($interface['ifname'], 'docker') !== false) {
 					continue;
 				}
 				$ip = null;
