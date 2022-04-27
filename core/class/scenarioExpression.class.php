@@ -653,7 +653,7 @@ class scenarioExpression {
 		}
 		$duration = 0;
 		$lastDatetime = strtotime($_startTime);
-		$lastValue = round($histories[0]->getValue(), $_decimal);
+		$lastValue = round($cmd->getTemporalAvg($_startTime, $_endTime), 1);
 		foreach ($histories as $history) {
 			if ($history->getDatetime() < $_startTime) {
 				$lastValue = round($history->getValue(), $_decimal);
