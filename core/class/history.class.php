@@ -147,6 +147,36 @@ class history {
 	}
 
 	/**
+	 * Value of a command on a given date
+	 */
+	public static function byCmdIdAtDatetime($_cmd_id, $_time) {
+		$values = array(
+			'cmd_id' => $_cmd_id,
+			'time' => $_time,
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM history
+		WHERE cmd_id=:cmd_id
+		AND `datetime`<=:time
+		ORDER BY `datetime` DESC LIMIT 1';
+		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+		if (!is_object($result)) {
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+			FROM historyArch
+			WHERE cmd_id=:cmd_id
+			AND `datetime`<=:time
+			ORDER BY `datetime` DESC LIMIT 1';
+			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, 'historyArch');
+			if (is_object($result)) {
+				$result->setTableName('historyArch');
+			}
+		} else {
+			$result->setTableName('history');
+		}
+		return $result;
+	}
+
+	/**
 	 * Archive data from history into historyArch
 	 */
 	public static function archive() {
