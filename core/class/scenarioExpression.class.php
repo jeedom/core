@@ -647,13 +647,13 @@ class scenarioExpression {
 		$_value = str_replace(',', '.', $_value);
 		$_decimal = strlen(substr(strrchr($_value, "."), 1));
 
-		$histories = $cmd->getHistory(date('Y-m-d H:i:s', strtotime($_startTime . ' - 2 hours')), $_endTime);
+		$histories = $cmd->getHistory($_startTime, $_endTime);
 		if (count($histories) == 0) {
 			return '';
 		}
 		$duration = 0;
 		$lastDatetime = strtotime($_startTime);
-		$lastValue = round($cmd->getTemporalAvg($_startTime, $_endTime), 1);
+		$lastValue = round(history::byCmdIdAtDatetime($_cmd_id, $_startTime), $_decimal);
 		foreach ($histories as $history) {
 			if ($history->getDatetime() < $_startTime) {
 				$lastValue = round($history->getValue(), $_decimal);
