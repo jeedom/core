@@ -640,6 +640,7 @@ class scenarioExpression {
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
+		$cmd_id = $cmd->getId();
 		$dates = self::getDatesFromPeriod($_period);
 		$_startTime = $dates[0];
 		$_endTime = $dates[1];
@@ -648,12 +649,22 @@ class scenarioExpression {
 		$_decimal = strlen(substr(strrchr($_value, "."), 1));
 
 		$histories = $cmd->getHistory($_startTime, $_endTime);
-		if (count($histories) == 0) {
-			return '';
-		}
 		$duration = 0;
 		$lastDatetime = strtotime($_startTime);
-		$lastValue = round(history::byCmdIdAtDatetime($_cmd_id, $_startTime), $_decimal);
+
+		$historyAtDateTime = history::byCmdIdAtDatetime($cmd_id, $_startTime);
+		
+		if (!is_object($historyAtDateTime)) { // No data present before the requested date
+			if (count($histories) == 0) { // No data present in the requested period
+				return 0;
+			}
+			$lastValue = round($histories[0]->getValue(), $_decimal);
+			if (strtotime($_startTime) < strtotime($histories[0]->getDatetime())) {
+				$lastDatetime = strtotime($histories[0]->getDatetime());
+			}
+		} else {
+			$lastValue = round($historyAtDateTime->getValue(), $_decimal);
+		}
 		foreach ($histories as $history) {
 			if ($history->getDatetime() < $_startTime) {
 				$lastValue = round($history->getValue(), $_decimal);
