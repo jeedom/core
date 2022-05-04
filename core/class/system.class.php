@@ -532,15 +532,13 @@ class system {
 				}
 			}
 		}
-
-		$first_type = array('pip3' => true, 'apt' => true);
 		$has_something_todo = false;
 		foreach ($return as $package => $info) {
 			if (($info['status'] != 0 && !$info['reinstall']) || $info['optional'] || $info['status'] == 3) {
 				continue;
 			}
 			$has_something_todo = true;
-			if (isset($first_type[$info['type']]) && $first_type[$info['type']]) {
+			if (!isset($first_type[$info['type']]) || $first_type[$info['type']] == true) {
 				$first_type[$info['type']] = false;
 				switch ($info['type']) {
 					case 'apt':
