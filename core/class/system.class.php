@@ -532,19 +532,37 @@ class system {
 				}
 			}
 		}
-		if ($_foreground) {
-			echo shell_exec(self::getCmdSudo() . " apt update 2>&1");
-		} else {
-			$cmd .= self::getCmdSudo() . " apt update\n";
-			$count++;
-			$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
-		}
+
+		$first_type = array('pip3' => true, 'apt' => true);
 		$has_something_todo = false;
 		foreach ($return as $package => $info) {
 			if (($info['status'] != 0 && !$info['reinstall']) || $info['optional'] || $info['status'] == 3) {
 				continue;
 			}
 			$has_something_todo = true;
+			if (isset($first_type[$info['type']]) && $first_type[$info['type']]) {
+				$first_type[$info['type']] = false;
+				switch ($info['type']) {
+					case 'apt':
+						if ($_foreground) {
+							echo shell_exec(self::getCmdSudo() . " apt update 2>&1");
+						} else {
+							$cmd .= self::getCmdSudo() . " apt update\n";
+							$count++;
+							$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+						}
+						break;
+					case 'pip3':
+						if ($_foreground) {
+							echo shell_exec(self::getCmdSudo() . " pip3 install --upgrade pip 2>&1");
+						} else {
+							$cmd .= self::getCmdSudo() . " pip3 install --upgrade pip\n";
+							$count++;
+							$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+						}
+						break;
+				}
+			}
 			if ($_foreground) {
 				echo shell_exec(self::installPackage($info['type'], $info['name']) . ' 2>&1');
 			} else {
