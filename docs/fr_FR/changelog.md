@@ -1,7 +1,10 @@
 # Changelog Jeedom V4.2
 
+## 4.2.15
+
 - Bugfix UI : Scénario : Ajout de l'action *genericType* dans la modale de sélection.
 - Bugfix Core : Correction du décalage sur les historiques calculés.
+- Bugfix : Installation des dépendances du plugin zigbee
 
 ## 4.2.14
 
