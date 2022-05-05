@@ -894,8 +894,9 @@ jeedom.history.drawChart = function(_params) {
           jeedom.history.chart[_params.el].doing = 1
           
           var options = {default: {}}
-          if (isset(_params.yAxisScaling) && _params.yAxisScaling != '') options.default.yAxisScaling = _params.yAxisScaling
-          if (isset(_params.yAxisByUnit) && _params.yAxisByUnit != '') options.default.yAxisByUnit = _params.yAxisByUnit
+          if (isset(_params.yAxisScaling) && _params.yAxisScaling !== '') options.default.yAxisScaling = _params.yAxisScaling
+          if (isset(_params.yAxisByUnit) && _params.yAxisByUnit !== '') options.default.yAxisByUnit = _params.yAxisByUnit
+          if (isset(_params.yAxisScalePercent) && _params.yAxisScalePercent !== '') options.default.yAxisScalePercent = _params.yAxisScalePercent
           jeedom.history.initChart(_params.el, options)
         } else {
           //set options for comparison serie:
@@ -1004,7 +1005,8 @@ jeedom.history.initChart = function(_chartId, _options) {
     yAxisVisible: true,
     yAxisScaling: true,
     yAxisByUnit: true,
-    tracking: true
+    tracking: true,
+    yAxisScalePercent : 1.005
   }
 
   if (jeedom.history.chart[thisId].type == 'pie') return false
@@ -1012,6 +1014,7 @@ jeedom.history.initChart = function(_chartId, _options) {
 
   if (isset(_options.default.yAxisScaling)) jeedom.history.default.yAxisScaling = Boolean(Number(_options.default.yAxisScaling))
   if (isset(_options.default.yAxisByUnit)) jeedom.history.default.yAxisByUnit = Boolean(Number(_options.default.yAxisByUnit))
+  if (isset(_options.default.yAxisScalePercent)) jeedom.history.default.yAxisScalePercent = Number(_options.default.yAxisScalePercent)
 
   /*
   HichChart button states (undocumented):
@@ -1135,6 +1138,7 @@ jeedom.history.initChart = function(_chartId, _options) {
     jeedom.history.chart[thisId].btToggleyaxisVisible.setState(0)
   }
 
+  jeedom.history.chart[thisId].yAxisScalePercent = jeedom.history.default.yAxisScalePercent
 
   //store all that in chart:
   jeedom.history.chart[thisId].chart._jeeButtons = [
@@ -1416,7 +1420,7 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
           max: units[unit].max < 0 ? 0 : units[unit].max,
           tickPositions: null
         }, false)
-        axis.setExtremes(null,  units[unit].max * 1.005, false)
+        axis.setExtremes(null,  units[unit].max * jeedom.history.chart[_chartId].yAxisScalePercent, false)
       } else {
         axis.setExtremes(null, null, false, false)
       }
@@ -1435,7 +1439,7 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
       if (axis.stacking.stacksTouched == 0) {
         axis.update({
           softMin: 0,
-          softMax: softMax / 1.005,
+          softMax: softMax / jeedom.history.chart[_chartId].yAxisScalePercent,
           min: null,
           max: null,
           tickPositions: null
@@ -1497,7 +1501,7 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
           max: units[unit].max < 0 ? 0 : units[unit].max,
           tickPositions: null
         }, false)
-        axis.setExtremes(units[unit].min / 1.005,  units[unit].max * 1.005, false)
+        axis.setExtremes(units[unit].min / jeedom.history.chart[_chartId].yAxisScalePercent,  units[unit].max * jeedom.history.chart[_chartId].yAxisScalePercent, false)
       } else {
         axis.setExtremes(null, null, false, false)
       }
@@ -1538,7 +1542,7 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
           max: max * 1.005,
           tickPositions: null
         }, false)
-        axis.setExtremes(min / 1.005, max * 1.005, false)
+        axis.setExtremes(min / jeedom.history.chart[_chartId].yAxisScalePercent, max * jeedom.history.chart[_chartId].yAxisScalePercent, false)
       } else {
         axis.setExtremes(null, null, false, false)
       }
