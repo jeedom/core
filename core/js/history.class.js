@@ -894,8 +894,8 @@ jeedom.history.drawChart = function(_params) {
           jeedom.history.chart[_params.el].doing = 1
           
           var options = {default: {}}
-          if (isset(_params.yAxisScaling) && _params.yAxisScaling != '') options.default.yAxisScaling = _params.yAxisScaling
-          if (isset(_params.yAxisByUnit) && _params.yAxisByUnit != '') options.default.yAxisByUnit = _params.yAxisByUnit
+          if (isset(_params.yAxisScaling) && _params.yAxisScaling !== '') options.default.yAxisScaling = _params.yAxisScaling
+          if (isset(_params.yAxisByUnit) && _params.yAxisByUnit !== '') options.default.yAxisByUnit = _params.yAxisByUnit
           jeedom.history.initChart(_params.el, options)
         } else {
           //set options for comparison serie:
