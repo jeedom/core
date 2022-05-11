@@ -62,12 +62,12 @@ if (!jeeFrontEnd.editor) {
           success: function() {
             $("#md_widgetCreate").dialog('close')
             $.fn.showAlert({message: '{{Fichier enregistré avec succès}}', level: 'success'})
-            var hash = getHashFromPath(filePath.replace('data/customTemplates/', '').replace('/', ''))
+            var hash = jeeP.getHashFromPath(filePath.replace('data/customTemplates/', '').replace('/', ''))
             jeeFrontEnd.editor._elfInstance.exec('open', hash)
             //jeeFrontEnd.editor._elfInstance.exec('reload')
 
             var path = filePath.replace('data/customTemplates/', '') + name
-            hash = getHashFromPath(path)
+            hash = jeeP.getHashFromPath(path)
             setTimeout(function() {
               jeeFrontEnd.editor._elfInstance.exec('edit', hash)
             }, 350)
