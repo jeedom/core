@@ -4066,6 +4066,8 @@
         "Si la derniere heure enregistrée est fausse, il faut la remettre à zéro": "Se a última hora gravada for falsa, é preciso colocá-la a zero",
         "Droits sudo": "Direitos de sudo",
         "Appliquez les droits root à Jeedom": "Aplicar direitos de root ao Jeedom",
+        "Version Jeedom": "Versão Jeedom",
+        "Version": "Versão",
         "Version OS": "Versão do SO",
         "Version PHP": "Versão do PHP",
         "Si vous êtes en version 5.4.x on vous indiquera quand la version 5.5 sera obligatoire": "Se estiver na versão 5.4.x, informaremos quando a versão 5.5 for obrigatória",
