@@ -1086,7 +1086,7 @@
         "non": "No",
         "Corriger": "Fix",
         "Vérification des packages": "Verification of packages",
-        "Êtes-vous sûr de vouloir installer tous les packages non optionnel ?": "Are you sure you want to install all non-optional packages?",
+        "Êtes-vous sûr de vouloir installer tous les packages non optionnels ?": "Are you sure you want to install all non-optional packages?",
         "Êtes-vous sûr de vouloir installer le package": "Are you sure you want to install the package",
         "Installation lancée cela peut prendre plusieurs dizaines de minutes.": "Installation started, this can take several tens of minutes",
         "Installation des packages": "Installing packages"
@@ -1541,7 +1541,7 @@
         "Options": "Options",
         "Actions": "Shares",
         "Log :": "Log:",
-        "IMPORTANT : ne sont affiché ici que les packages n'étant pas a jour. Si la liste est vide c'est que tout est à jour": "IMPORTANT: only outdated packages are displayed here. If the list is empty, everything is up to date",
+        "IMPORTANT : Ne sont affichés ici que les packages Linux n’étant pas à jour. Une liste vide signifiant que votre système Linux est à jour.": "IMPORTANT: Only outdated Linux packages are displayed here. An empty list meaning that your Linux system is up to date",
         "Mettre à jour la liste": "Update list",
         "Mettre à jour les packages OS": "Update OS Packages",
         "Mettre à jour les packages Python2": "Update Python2 packages",
@@ -2230,7 +2230,7 @@
         "Description": "Description",
         "Ajouter un bloc": "Add block",
         "Si\/Alors\/Sinon": "If \/ Do \/ Else",
-        "Action": "Stock",
+        "Action": "Action",
         "Boucle": "Loop",
         "Dans": "In",
         "A": "At",
@@ -3153,13 +3153,13 @@
         "FAIRE": "DO",
         "CODE": "CODED",
         "COMMENTAIRE": "COMMENT",
-        "ACTION": "STOCK",
+        "ACTION": "ACTION",
         "Supprimer ce bloc.<br>Ctrl+Click: Supprimer sans confirmation.": "Delete this block. <br> Ctrl + Click: Delete without confirmation",
         "Copier ce bloc.<br>Ctrl+Click: Couper ce bloc.": "Copy this block. <br> Ctrl + Click: Cut this block",
         "Coller un bloc après celui-ci.<br>Ctrl+Click: remplacer ce bloc par le bloc copié.": "Paste a block after this. <br> Ctrl + Click: replace this block with the copied block",
         "Afficher\/masquer le bloc Sinon": "Show \/ hide Else block",
         "Ajouter": "Add",
-        "Action": "STOCK",
+        "Action": "ACTION",
         "Bloc Si\/Alors\/Sinon": "If \/ Do \/ Else block",
         "Bloc Action": "Action Block",
         "Bloc Boucle": "Loop Block",
@@ -3291,7 +3291,6 @@
         "Scénario non trouvé. Vérifiez ID :": "Scenario not found. Check ID:"
     },
     "core\/php\/editor.connector.php": {
-        "Invalide type": "Invalid type",
         "401 - Accès non autorisé": "401 - Unauthorized Access"
     },
     "core\/js\/cmd.class.js": {

@@ -1086,7 +1086,7 @@
         "non": "No",
         "Corriger": "Corregir",
         "Vérification des packages": "Verificación de paquetes",
-        "Êtes-vous sûr de vouloir installer tous les packages non optionnel ?": "¿Está seguro de que desea instalar todos los paquetes no opcionales?",
+        "Êtes-vous sûr de vouloir installer tous les packages non optionnels ?": "¿Está seguro de que desea instalar todos los paquetes no opcionales?",
         "Êtes-vous sûr de vouloir installer le package": "¿Está seguro de que desea instalar el paquete?",
         "Installation lancée cela peut prendre plusieurs dizaines de minutes.": "La instalación comenzó, esto puede tomar varias decenas de minutos",
         "Installation des packages": "Instalacion de paquetes"
@@ -1541,7 +1541,7 @@
         "Options": "Opciones",
         "Actions": "Acciones",
         "Log :": "Registro:",
-        "IMPORTANT : ne sont affiché ici que les packages n'étant pas a jour. Si la liste est vide c'est que tout est à jour": "IMPORTANTE: aquí solo se muestran los paquetes obsoletos. Si la lista está vacía, todo está actualizado",
+        "IMPORTANT : Ne sont affichés ici que les packages Linux n’étant pas à jour. Une liste vide signifiant que votre système Linux est à jour.": "IMPORTANTE: Aquí solo se muestran los paquetes de Linux obsoletos. Una lista vacía que significa que su sistema Linux está actualizado",
         "Mettre à jour la liste": "Lista de actualizacion",
         "Mettre à jour les packages OS": "Actualizar paquetes de sistema operativo",
         "Mettre à jour les packages Python2": "Actualizar paquetes de Python2",
@@ -3291,7 +3291,6 @@
         "Scénario non trouvé. Vérifiez ID :": "Escenario no encontrado. ID de verificación:"
     },
     "core\/php\/editor.connector.php": {
-        "Invalide type": "Tipo inválido",
         "401 - Accès non autorisé": "401 - Acceso no autorizado"
     },
     "core\/js\/cmd.class.js": {
