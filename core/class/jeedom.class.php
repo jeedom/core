@@ -227,23 +227,23 @@ class jeedom {
 			'key' => 'sudo::right'
 		);
 
-		$mbState= config::byKey('mbState');
+		$mbState = config::byKey('mbState');
 		if ($mbState == 0) {
 			$return[] = array(
-				'name' => __('Version Jeedom', _FILE_),
+				'name' => __('Version Jeedom', __FILE__),
 				'state' => true,
 				'result' => self::version(),
 				'comment' => '',
 				'key' => 'jeedom::version'
 			);
-			} else {
-				$return[] = array(
-					'name' => __('Version', _FILE_),
-					'state' => true,
-					'result' => self::version(),
-					'comment' => '',
-					'key' => 'jeedom::version'
-				);
+		} else {
+			$return[] = array(
+				'name' => __('Version', __FILE__),
+				'state' => true,
+				'result' => self::version(),
+				'comment' => '',
+				'key' => 'jeedom::version'
+			);
 		}
 
 		$return[] = array(
