@@ -150,7 +150,7 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt ')) > 0) {
   $('.bt_correctPackage').off('click').on('click', function() {
     var el = $(this)
     if (el.data('package') == 'all') {
-      var text = '{{Êtes-vous sûr de vouloir installer tous les packages non optionnel ?}}'
+      var text = '{{Êtes-vous sûr de vouloir installer tous les packages non optionnels ?}}'
     } else {
       var text = '{{Êtes-vous sûr de vouloir installer le package}} ' + el.data('package') + ' ?'
     }
