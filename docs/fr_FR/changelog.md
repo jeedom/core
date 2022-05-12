@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.2
 
+## 4.2.16
+
+- Bugfix Core : Création d'archive avec l'éditeur de fichiers.
+
 ## 4.2.15
 
 - Bugfix UI : Scénario : Ajout de l'action *genericType* dans la modale de sélection.
