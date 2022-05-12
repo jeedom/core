@@ -37,9 +37,13 @@ class listener {
 			if (count($events) > 0) {
 				$listener->emptyEvent();
 				foreach ($events as $event) {
-					$cmd = cmd::byId(str_replace('#', '', $event));
-					if (is_object($cmd)) {
-						$listener->addEvent($cmd->getId());
+					if ($event == '*') {
+						$listener->addEvent('*');
+					} else {
+						$cmd = cmd::byId(str_replace('#', '', $event));
+						if (is_object($cmd)) {
+							$listener->addEvent($cmd->getId());
+						}
 					}
 				}
 				$listener->save();
