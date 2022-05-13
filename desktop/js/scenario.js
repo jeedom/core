@@ -2420,17 +2420,15 @@ jeeP.$divScenario.on('focusout', '.expression .expressionAttr[data-l1key=express
 //COPY - PASTE
 jeeP.$divScenario.on('click', '.bt_copyElement', function(event) {
   var clickedBloc = $(this).closest('.element')
-  if (!clickedBloc.parent('#div_scenarioElement').length) {
-    jeeP.clipboard = clickedBloc.parent().parent()
-  } else {
-    jeeP.clipboard = clickedBloc
-  }
+
   jeeP.clipboard = jeeP.getElement(clickedBloc)
+
   //delete all id in properties to make it unique:
   jeeP.removeObjectProp(jeeP.clipboard, 'id')
   localStorage.removeItem('jeedomScCopy')
   localStorage.setItem('jeedomScCopy', JSON.stringify(jeeP.clipboard))
 
+  //cut:
   if (event.ctrlKey || event.metaKey) {
     jeeP.setUndoStack()
     clickedBloc.remove()
@@ -2439,13 +2437,14 @@ jeeP.$divScenario.on('click', '.bt_copyElement', function(event) {
 })
 
 jeeP.$divScenario.on('click', '.bt_pasteElement', function(event) {
-  var clickedBloc = $(this).closest('.element')
   if (localStorage.getItem('jeedomScCopy')) {
     jeeP.clipboard = JSON.parse(localStorage.getItem('jeedomScCopy'))
+  } else {
+    return false
   }
+  var clickedBloc = $(this).closest('.element')
 
   jeeP.setUndoStack()
-
   jeeP.actionOptions = []
   var pastedElement = jeeP.addElement(jeeP.clipboard)
   pastedElement = $(pastedElement)
@@ -2453,7 +2452,9 @@ jeeP.$divScenario.on('click', '.bt_pasteElement', function(event) {
   //Are we pasting inside an expresion:
   if (clickedBloc.parent('#div_scenarioElement').length) {
     //get the element if copied from an expression:
-    if (pastedElement.hasClass('expression')) pastedElement = pastedElement.find('.element')
+    if (pastedElement.hasClass('expression')) {
+      pastedElement = pastedElement.find('.element')
+    }
     pastedElement.insertAfter(clickedBloc)
   } else {
     //make it an expression if not yet:
@@ -2470,6 +2471,8 @@ jeeP.$divScenario.on('click', '.bt_pasteElement', function(event) {
     }
   }
 
+  $('#insertHere').removeAttr('id')
+
   //Synch collapsed elements:
   pastedElement.find('i.fa-eye-slash').each(function() {
     $(this).parents('.element').first().addClass('elementCollapse')
@@ -2481,6 +2484,7 @@ jeeP.$divScenario.on('click', '.bt_pasteElement', function(event) {
 
   jeeP.updateElseToggle()
 
+  //replace:
   if (event.ctrlKey || event.metaKey) {
     clickedBloc.remove()
   }
