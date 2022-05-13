@@ -4245,7 +4245,7 @@
         "POUR": "FOR",
         "FAIRE": "DO",
         "CODE": "CODED",
-        "ACTION": "STOCK",
+        "ACTION": "ACTION",
         "DANS": "IN",
         "A": "AT"
     },
@@ -4554,7 +4554,7 @@
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Scenario",
-        "Action": "Stock",
+        "Action": "Action",
         "Démarrer": "Start",
         "Démarrer (sync)": "Start (sync)",
         "Arrêter": "Stop",
@@ -4601,7 +4601,7 @@
         "Désactiver": "Disable"
     },
     "core\/template\/scenario\/genericType.default.html": {
-        "Type": "Kind",
+        "Type": "Type",
         "Type Info (event)": "Info type (event)",
         "Type Action (exec)": "Action type (exec)",
         "Objet": "Object",
