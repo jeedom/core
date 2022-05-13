@@ -2,6 +2,7 @@
 
 ## 4.2.16
 
+- Bugfix Core : Scénario : Fusion des éléments collés dans certains cas.
 - Bugfix Core : Création d'archive avec l'éditeur de fichiers.
 
 ## 4.2.15
