@@ -1288,24 +1288,21 @@ try {
 		log::add('api', 'debug', 'Demande du GetJson');
 		$return = array();	
 		$idBox = jeedom::getHardwareKey();
-		$return[$idBox ]['apikeyUser'] = $_USER_GLOBAL->getHash();
-		$return[$idBox ]['configs'] = 'undefined';
-		$return[$idBox ]['externalIp'] = network::getNetworkAccess('external');;
-		$return[$idBox ]['hardware'] = jeedom::getHardwareName();
-		$return[$idBox ]['hwkey'] = jeedom::getHardwareKey();
-
-		$return[$idBox ]['informations']['hardware'] = jeedom::getHardwareName();
-		$return[$idBox ]['informations']['language'] = config::byKey('language');
-		$return[$idBox ]['informations']['nbMessage'] = message::nbMessage();
-	    $return[$idBox ]['informations']['nbUpdate'] = update::nbNeedUpdate();
-		$return[$idBox ]['informations']['uname'] = system::getDistrib() . ' ' . system::getOsVersion();
-		$return[$idBox ]['jeedom_version'] = jeedom::version();
-		$return[$idBox ]['localIp'] = network::getNetworkAccess('internal');
-	     $return[$idBox ]['rdk'] = $rdk;
-		$return[$idBox ]['name'] = config::byKey('name');
-
+		$return[$idBox]['apikeyUser'] = $_USER_GLOBAL->getHash();
+		$return[$idBox]['configs'] = 'undefined';
+		$return[$idBox]['externalIp'] = network::getNetworkAccess('external');;
+		$return[$idBox]['hardware'] = jeedom::getHardwareName();
+		$return[$idBox]['hwkey'] = jeedom::getHardwareKey();
+		$return[$idBox]['informations']['hardware'] = jeedom::getHardwareName();
+		$return[$idBox]['informations']['language'] = config::byKey('language');
+		$return[$idBox]['informations']['nbMessage'] = message::nbMessage();
+	    	$return[$idBox]['informations']['nbUpdate'] = update::nbNeedUpdate();
+		$return[$idBox]['informations']['uname'] = system::getDistrib() . ' ' . system::getOsVersion();
+		$return[$idBox]['jeedom_version'] = jeedom::version();
+		$return[$idBox]['localIp'] = network::getNetworkAccess('internal');
+	     	$return[$idBox]['rdk'] = $rdk;
+		$return[$idBox]['name'] = config::byKey('name');
 		$jsonrpc->makeSuccess($return);
-
 	}
 	throw new Exception(__('Aucune méthode correspondante :', __FILE__) . ' ' . secureXSS($jsonrpc->getMethod()), -32500);
 	/*         * *********Catch exeption*************** */
