@@ -1153,6 +1153,7 @@ $divScenario.on('click', '.bt_copyElement', function(event) {
   localStorage.removeItem('jeedomScCopy')
   localStorage.setItem('jeedomScCopy', JSON.stringify(SC_CLIPBOARD))
 
+  //cut:
   if (event.ctrlKey || event.metaKey) {
     setUndoStack()
     clickedBloc.remove()
@@ -1192,6 +1193,8 @@ $divScenario.on('click', '.bt_pasteElement', function(event) {
     }
   }
 
+  $('#insertHere').removeAttr('id')
+
   //Synch collapsed elements:
   pastedElement.find('i.fa-eye-slash').each(function() {
     $(this).parents('.element').first().addClass('elementCollapse')
@@ -1203,6 +1206,7 @@ $divScenario.on('click', '.bt_pasteElement', function(event) {
 
   updateElseToggle()
 
+  //replace:
   if (event.ctrlKey || event.metaKey) {
     clickedBloc.remove()
   }
