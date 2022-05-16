@@ -4,6 +4,7 @@
 
 - Bugfix Core : Scénario : Fusion des éléments collés dans certains cas.
 - Bugfix Core : Création d'archive avec l'éditeur de fichiers.
+- Bugfix : augmentation du délai pour le contact du service de monitoring (permet d'alléger la charge sur les serveurs cloud)
 
 ## 4.2.15
 
