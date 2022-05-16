@@ -1269,6 +1269,41 @@ try {
 			}
 		}
 	}
+	
+	/*                                       Mobile API                                      */
+	if($jsonrpc->getMethod() == 'getJson'){
+		log::add('api', 'debug', 'Demande du RDK to send with Json');
+		$registerDevice = $_USER_GLOBAL->getOptions('registerDevice', array());
+		if (!is_array($registerDevice)) {
+			$registerDevice = array();
+		}
+		$rdk = (!isset($params['rdk']) || !isset($registerDevice[sha512($params['rdk'])])) ? config::genKey() : $params['rdk'];
+		$registerDevice[sha512($rdk)] = array();
+		$registerDevice[sha512($rdk)]['datetime'] = date('Y-m-d H:i:s');
+		$registerDevice[sha512($rdk)]['ip'] = getClientIp();
+		$registerDevice[sha512($rdk)]['session_id'] = session_id();
+		$_USER_GLOBAL->setOptions('registerDevice', $registerDevice);
+		$_USER_GLOBAL->save();
+		log::add('api', 'debug', 'RDK :' . $rdk);
+		log::add('api', 'debug', 'Demande du GetJson');
+		$return = array();	
+		$idBox = jeedom::getHardwareKey();
+		$return[$idBox]['apikeyUser'] = $_USER_GLOBAL->getHash();
+		$return[$idBox]['configs'] = 'undefined';
+		$return[$idBox]['externalIp'] = network::getNetworkAccess('external');;
+		$return[$idBox]['hardware'] = jeedom::getHardwareName();
+		$return[$idBox]['hwkey'] = jeedom::getHardwareKey();
+		$return[$idBox]['informations']['hardware'] = jeedom::getHardwareName();
+		$return[$idBox]['informations']['language'] = config::byKey('language');
+		$return[$idBox]['informations']['nbMessage'] = message::nbMessage();
+	    	$return[$idBox]['informations']['nbUpdate'] = update::nbNeedUpdate();
+		$return[$idBox]['informations']['uname'] = system::getDistrib() . ' ' . system::getOsVersion();
+		$return[$idBox]['jeedom_version'] = jeedom::version();
+		$return[$idBox]['localIp'] = network::getNetworkAccess('internal');
+	     	$return[$idBox]['rdk'] = $rdk;
+		$return[$idBox]['name'] = config::byKey('name');
+		$jsonrpc->makeSuccess($return);
+	}
 	throw new Exception(__('Aucune méthode correspondante :', __FILE__) . ' ' . secureXSS($jsonrpc->getMethod()), -32500);
 	/*         * *********Catch exeption*************** */
 } catch (Exception $e) {

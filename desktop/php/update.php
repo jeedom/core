@@ -100,7 +100,7 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 
 
 			<div role="tabpanel" class="tab-pane" id="os" style="overflow:auto;overflow-x: hidden">
-				<div class="alert alert-info">{{IMPORTANT : ne sont affiché ici que les packages n'étant pas a jour. Si la liste est vide c'est que tout est à jour}}</div>
+				<div class="alert alert-info">{{IMPORTANT : Ne sont affichés ici que les packages Linux n’étant pas à jour. Une liste vide signifiant que votre système Linux est à jour.}}</div>
 
 				<div class="input-group pull-right" style="display:inline-flex">
 					<span class="input-group-btn">

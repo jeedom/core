@@ -12,7 +12,7 @@ if (init('type') == '') {
 } else if (init('type') == 'custom') {
   $rootPaths = ['desktop/custom', 'mobile/custom'];
 } else {
-  throw new Exception(__('Invalide type', __FILE__));
+  $rootPaths = [''];
 }
 
 // // To Enable(true) handling of PostScript files by ImageMagick

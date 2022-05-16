@@ -37,8 +37,8 @@ class listener {
 			if (count($events) > 0) {
 				$listener->emptyEvent();
 				foreach ($events as $event) {
-					if ($event == '*') {
-						$listener->addEvent('*');
+					if ($event == '#*#') {
+						$listener->addEvent('#*#');
 					} else {
 						$cmd = cmd::byId(str_replace('#', '', $event));
 						if (is_object($cmd)) {
