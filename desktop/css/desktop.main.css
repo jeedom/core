@@ -3687,20 +3687,11 @@ div.div_viewZone legend.lg_viewZone {
   .element .subElement:first-of-type legend {
     margin: 0 0 0 30px !important;
   }
-  .element .subElement.subElementAT legend {
-    position: relative;
-    display: inline;
-    top: 5px;
-  }
   .element .subElement.subElementAT legend + span {
-    position: relative;
-    display: inline;
-    top: 5px;
-    padding-left: 3px;
+    position: absolute;
+    top: 4px;
+    padding-left: 70px;
     color: var(--link-color);
-  }
-  .element .subElement.subElementAT .expression {
-    top: 6px;
   }
   .element .subElement.subElementIF legend {
     margin: 0 0 0 59px !important;
