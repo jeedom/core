@@ -1026,7 +1026,7 @@ class eqLogic {
 					$scenario->setTags(array('eqLogic_id' => $this->getId()));
 					$scenario->launch('other', __('Lancement du scénario sur création équipement', __FILE__));
 				}
-			} catch (\Exception $e) {
+			} catch (Exception $e) {
 			}
 		}
 	}
