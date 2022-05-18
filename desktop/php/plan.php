@@ -34,11 +34,18 @@ if (init('plan_id') == '') {
 	}
 }
 if (!is_object($planHeader) && count($planHeaders) > 0) {
-	$planHeader = $planHeaders[0];
+	if ($planHeaders[0]->hasRight('r')) {
+		$planHeader = $planHeaders[0];
+	}
 }
 if (!is_object($planHeader)) {
-	echo '<div class="alert alert-warning">{{Aucun design n\'existe, cliquez}}' . ' <a id="bt_createNewDesign" class="cursor label alert-info">{{ici}} </a> {{pour en créer un.}}</div>';
-	sendVarToJS('jeephp2js.planHeader_id', -1);
+	if (isConnect('admin')) {
+		echo '<div class="alert alert-warning">{{Aucun design n\'existe, cliquez}}' . ' <a id="bt_createNewDesign" class="cursor label alert-info">{{ici}} </a> {{pour en créer un.}}</div>';
+		sendVarToJS('jeephp2js.planHeader_id', -1);
+	} else {
+		sendVarToJS('jeephp2js.planHeader_id', -1);
+	}
+
 } else {
 	sendVarToJS('jeephp2js.planHeader_id', $planHeader->getId());
 }
