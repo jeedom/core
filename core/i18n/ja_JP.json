@@ -1564,6 +1564,7 @@
     "desktop\/php\/view.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
         "Vue inconnue. Vérifier l\\'ID.": "不明なビュー。 IDを確認してください。",
+        "Vous n\\'avez pas le droit d\\'accéder à cette vue.": "Vous n\\'avez pas le droit d\\'accéder à cette vue",
         "Aucune vue n\\'existe, cliquez <a href=\"index.php?v=d&p=view_edit\">ici<\/a> pour en créer une.": "ビューが存在しません。ここをクリック<a href=\"index.php?v=d&p=view_edit\">し<\/a>て作成してください。",
         "Ajouter une vue": "ビューを追加する",
         "Rechercher": "検索",

@@ -1564,6 +1564,7 @@
     "desktop\/php\/view.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Vue inconnue. Vérifier l\\'ID.": "Unbekannte Ansicht. Überprüfen Sie die ID",
+        "Vous n\\'avez pas le droit d\\'accéder à cette vue.": "Sie sind nicht berechtigt, auf diese Ansicht zuzugreifen",
         "Aucune vue n\\'existe, cliquez <a href=\"index.php?v=d&p=view_edit\">ici<\/a> pour en créer une.": "Es ist keine Ansicht vorhanden. Klicken Sie <a href=\"index.php?v=d&p=view_edit\">hier<\/a> , um eine zu erstellen",
         "Ajouter une vue": "Fügen Sie eine Ansicht hinzu",
         "Rechercher": "Suchen nach",
