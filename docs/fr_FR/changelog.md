@@ -2,7 +2,8 @@
 
 ## 4.2.17
 
-- Bugfix UI : Affichage des blocs A sos Chrome.
+- Bugfix Core : Accès utilisateur limité aux designs et vues.
+- Bugfix UI : Affichage des blocs A sous Chrome.
 
 ## 4.2.16
 
