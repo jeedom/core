@@ -19,18 +19,18 @@ if (init('view_id') == '') {
 }
 
 if (!is_object($view) && count($list_view) > 0) {
-	if ($list_view[0]->hasRight('r')) {
-		$view = $list_view[0];
-	}
+	$view = $list_view[0];
 }
 
-if (!$view->hasRight('r')) {
+if (is_object($view) && !$view->hasRight('r')) {
 	$view = null;
 	throw new Exception('{{Vous n\'avez pas le droit d\'accéder à cette vue.}}');
 }
 
-if (!is_object($view) && isConnect('admin')) {
-	throw new Exception('{{Aucune vue n\'existe, cliquez <a href="index.php?v=d&p=view_edit">ici</a> pour en créer une.}}');
+if (!is_object($view)) {
+	if (isConnect('admin')) {
+		throw new Exception('{{Aucune vue n\'existe, cliquez <a href="index.php?v=d&p=view_edit">ici</a> pour en créer une.}}');
+	}
 	sendVarToJS('jeephp2js.view_id', -1);
 } else {
 	sendVarToJS('jeephp2js.view_id', $view->getId());
@@ -80,12 +80,16 @@ if ($_SESSION['user']->getOptions('displayViewByDefault') == 1 && init('report')
 	<i class='far fa-image cursor pull-left bt_displayView reportModeHidden hidden-768' data-display='<?php echo $_SESSION['user']->getOptions('displayViewByDefault') ?>' title="{{Afficher/Masquer les vues}}"></i>
 	<?php
 	if (init('noControl') == '') {
-		if (isConnect('admin')) { ?>
+		if (is_object($view) && isConnect('admin')) { ?>
 			<a href="index.php?v=d&p=view_edit&view_id=<?php echo $view->getId(); ?>" class="btn btn-warning btn-xs pull-right reportModeHidden bt_hideFullScreen hidden-768"><i class="fas fa-pencil-alt"></i> {{Edition complète}}</a><?php }	?>
 		<i class="fas fa-pencil-alt pull-right cursor reportModeHidden bt_hideFullScreen hidden-768" id="bt_editViewWidgetOrder" data-mode="0" title="{{Mode édition}}"></i>
 	<?php } ?>
 	<h3>
-		<?php echo trim($view->getDisplay('icon')) . ' ' . $view->getName(); ?>
+		<?php
+			if (is_object($view)) {
+				echo trim($view->getDisplay('icon')) . ' ' . $view->getName();
+			}
+		?>
 	</h3>
 </legend>
 <div class="row div_displayView"></div>
