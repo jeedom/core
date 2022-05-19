@@ -471,6 +471,11 @@ jeedom.eqLogic.initGraphInfo = function(_eqLogicId) {
 jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
   var drawEqEl = $('.eqlogicbackgraph[data-cmdid=' + _cmdId + ']')
   if (drawEqEl.length == 0) return false
+  if (drawEqEl.hasClass('fixedbackgraph')) {
+    var topMargin = 0
+  } else {
+    var topMargin = 35
+  }
   var dateEnd = moment().format('YYYY-MM-DD HH:mm:ss')
   var dateStart
   var decay = drawEqEl.data('format')
@@ -522,7 +527,7 @@ jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
           spacingBottom: 0,
           spacingLeft: 0,
           plotBorderWidth: 0,
-          margin: minValue < 0 ? [35, 0, 5, 0] : [35, 0, 0, 0]
+          margin: minValue < 0 ? [topMargin, 0, 5, 0] : [topMargin, 0, 0, 0]
         },
         title: {
           text: ''
