@@ -83,7 +83,8 @@ class jeedom {
 			'interface::background::analysis',
 			'interface::background::tools',
 			'interface::background::opacitylight',
-			'interface::background::opacitydark'
+			'interface::background::opacitydark',
+			'interface::mobile::onecolumn'
 		);
 
 		$return = config::byKeys($key);

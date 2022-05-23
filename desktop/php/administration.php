@@ -437,6 +437,12 @@ user::isBan();
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 								<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::vertCentering" data-reload="1" />
 							</div>
+							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Mobile : une colonne par defaut}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Les tuile prendont toute la largeur par défaut en mobile}}"></i></sup>
+							</label>
+							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+								<input type="checkbox" class="configKey form-control" data-l1key="interface::mobile::onecolumn" />
+							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Icônes widgets colorées}}
@@ -1104,7 +1110,7 @@ user::isBan();
 								</select>
 							</div>
 						</div>
-                        <div class="form-group">
+						<div class="form-group">
 							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Autoriser les dates dans le futur}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Autorise l'affichage d'historique avec des dates dans le futur.}}"></i></sup>
 							</label>

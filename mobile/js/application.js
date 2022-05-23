@@ -724,7 +724,9 @@ jeedomUtils.setTileSize = function(_filter) {
     $(this).css({'margin':'0px', 'padding':'0px'})
     if ($(this).hasClass('col2')) {
       $(this).width(bsize * 2)
-    } else {
+    } else if(jeedom.theme['interface::mobile::onecolumn'] == 1) {
+      $(this).width(bsize * 2)
+    }else{
       $(this).width(bsize - jeedom.theme['widget::margin'])
     }
     $(this).css('margin',jeedom.theme['widget::margin']+'px')
