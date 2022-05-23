@@ -1660,6 +1660,8 @@
         "Espace vertical et horizontal entre les tuiles, en pixel": "Espaço vertical e horizontal entre blocos, em pixels",
         "Centrage vertical des tuiles": "Centrar blocos na vertical",
         "Centre verticalement le contenu des tuiles": "Centrar na vertical o conteúdo dos blocos",
+        "Mobile : une colonne par defaut": "Celular: uma coluna por padrão",
+        "Les tuile prendont toute la largeur par défaut en mobile": "Os blocos serão padronizados para largura total em dispositivos móveis",
         "Icônes widgets colorées": "Ícones dos widgets coloridos",
         "Coloration des icônes de widgets en fonction de leur état.<br>Modifiable par scénario, setColoredIcon ('Coloration des icônes').": "Cor dos ícones dos widgets de acordo com seu estado. <br> Editável por cenário, setColoredIcon ('Cor do ícone')",
         "Catégories colorées": "Categorias coloridas",

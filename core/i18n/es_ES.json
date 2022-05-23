@@ -1660,6 +1660,8 @@
         "Espace vertical et horizontal entre les tuiles, en pixel": "Espacio vertical y horizontal entre mosaicos, en píxeles",
         "Centrage vertical des tuiles": "Centrado vertical de los azulejos",
         "Centre verticalement le contenu des tuiles": "Centrar verticalmente el contenido de los mosaicos",
+        "Mobile : une colonne par defaut": "Móvil: una columna por defecto",
+        "Les tuile prendont toute la largeur par défaut en mobile": "Los mosaicos tendrán por defecto el ancho completo en dispositivos móviles",
         "Icônes widgets colorées": "Iconos de widgets coloridos",
         "Coloration des icônes de widgets en fonction de leur état.<br>Modifiable par scénario, setColoredIcon ('Coloration des icônes').": "Coloración de iconos de widgets según su estado. <br> Editable por escenario, setColoredIcon ('Coloración de icono')",
         "Catégories colorées": "Categorías coloreadas",

@@ -1660,6 +1660,8 @@
         "Espace vertical et horizontal entre les tuiles, en pixel": "Vertikaler und horizontaler Abstand zwischen Kacheln in Pixel",
         "Centrage vertical des tuiles": "Vertikale Zentrierung der Fliesen",
         "Centre verticalement le contenu des tuiles": "Zentrieren Sie den Inhalt der Kacheln vertikal",
+        "Mobile : une colonne par defaut": "Mobil: standardmäßig eine Spalte",
+        "Les tuile prendont toute la largeur par défaut en mobile": "Kacheln werden auf Mobilgeräten standardmäßig in voller Breite angezeigt",
         "Icônes widgets colorées": "Bunte Widget-Symbole",
         "Coloration des icônes de widgets en fonction de leur état.<br>Modifiable par scénario, setColoredIcon ('Coloration des icônes').": "Färbung von Widget-Symbolen nach ihrem Status. <br> Nach Szenario bearbeitbar, setColoredIcon ('Symbolfärbung')",
         "Catégories colorées": "Farbige Kategorien",
