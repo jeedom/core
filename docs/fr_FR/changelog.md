@@ -22,6 +22,7 @@
 ### 4.3 : WebApp
 
 - Intégration des Notes.
+- Possibilité d'afficher les tuiles que sur une colonne (réglage dans la configuration de jeedom onglet interface)
 
 
 # Changelog Jeedom V4.2

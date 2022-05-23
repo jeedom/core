@@ -66,6 +66,14 @@ Sur chaque ligne, vous pouvez utiliser les fonctions suivantes:
 >
 > Quand vous lancez une mise à jour, une barre de progression apparaît au dessus du tableau. Évitez d'autres manipulations pendant la mise à jour.
 
+## Onglet OS/Package
+
+> **IMPORTANT**
+>
+> Cet onglet est reservé aux utilisateurs avancés et uniquement aux utilisateurs avancé, la moindre mauvaise action ici peut CASSER votre Jeedom (sans possibilité de recourir au support)
+
+Cet onglet permet de voir les mises à jour disponible pour l'os (apt), package python (pip2 et pip3) ainsi que mettre à jour les packages qui le nécessite. 
+
 ## Onglet Informations
 
 En cours de mise à jour ou après celle-ci, cet onglet permet de lire en temps réel le log de cette mise à jour.

@@ -44,6 +44,8 @@ Vous trouverez dans cet onglet les paramètres de personnalisation de l'affichag
 - **Centrage vertical des tuiles** : Centre verticalement le contenu des tuiles.
 - **Icônes widgets colorées** : Coloration des icônes de widgets en fonction de leur état. Modifiable par scénario, *setColoredIcon* ('Coloration des icônes').
 - **Catégories colorées** : Colorisation du titre des tuiles en fonction de la catégorie.
+- **Mobile : une colonne par defaut** : Affichage pleine largeur des tuiles en mobile
+
 
 ### Images de fond
 
