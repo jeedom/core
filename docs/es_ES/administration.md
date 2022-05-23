@@ -44,6 +44,8 @@ En esta pestaña encontrará los parámetros de personalización de la pantalla.
 - **Centrado vertical de baldosas** : Centra verticalmente el contenido de los mosaicos.
 - **Iconos coloridos de widgets** : Colorear iconos de widgets según su estado. Modificable por escenario, *conjuntoColoredIcon* ('Colorear icono').
 - **Categorías coloreadas** : Coloración del título de los mosaicos según la categoría.
+- **Móvil : una columna predeterminada** : Visualización de ancho completo de mosaicos en dispositivos móviles
+
 
 ### Imágenes de fondo
 

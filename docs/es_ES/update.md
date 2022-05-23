@@ -66,6 +66,14 @@ En cada línea, puede usar las siguientes funciones:
 >
 > Cuando inicia una actualización, aparece una barra de progreso sobre la tabla. Evite otras manipulaciones durante la actualización.
 
+## Pestaña OS/Paquete
+
+> **Importante**
+>
+> Esta pestaña está reservada para usuarios avanzados y solo para usuarios avanzados, la más mínima mala acción aquí puede ROMPER su Jeedom (sin la posibilidad de recurrir al soporte)
+
+Esta pestaña le permite ver las actualizaciones disponibles para el paquete os (apt), python (pip2 y pip3), así como actualizar los paquetes que lo requieren. 
+
 ## Pestaña de información
 
 Durante o después de una actualización, esta pestaña le permite leer el registro de esta actualización en tiempo real.

@@ -22,6 +22,7 @@
 ### 4.3 : WebApp
 
 - Notes-Integration.
+- Möglichkeit, die Kacheln nur auf einer Spalte anzuzeigen (Einstellung in der Konfiguration der Registerkarte Jeedom-Schnittstelle)
 
 
 # Änderungsprotokoll Jeedom V4.2

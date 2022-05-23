@@ -66,6 +66,14 @@ Em cada linha, você pode usar as seguintes funções:
 >
 > Quando você inicia uma atualização, uma barra de progresso aparece acima da tabela. Evite outras manipulações durante a atualização.
 
+## Guia SO/Pacote
+
+> **Importante**
+>
+> Esta guia é reservada para usuários avançados e apenas para usuários avançados, a menor ação ruim aqui pode QUEBRAR seu Jeedom (sem a possibilidade de recorrer ao suporte)
+
+Esta aba permite que você veja as atualizações disponíveis para os (apt), pacote python (pip2 e pip3) assim como atualizar os pacotes que o requerem. 
+
 ## Guia Informações
 
 Durante ou após uma atualização, essa guia permite que você leia o log dessa atualização em tempo real.

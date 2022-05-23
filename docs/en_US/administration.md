@@ -44,6 +44,8 @@ In this tab you will find the display customization parameters.
 - **Vertical centering of tiles** : Vertically centers the content of the tiles.
 - **Colorful widget icons** : Coloring widget icons based on their state. Modifiable by scenario, *setColoredIcon* ('Icon coloring').
 - **Colored categories** : Colorization of the title of the tiles according to the category.
+- **Mobile : a default column** : Full-width display of tiles in mobile
+
 
 ### Background images
 

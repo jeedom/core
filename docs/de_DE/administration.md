@@ -44,6 +44,8 @@ Auf dieser Registerkarte finden Sie die Parameter für die Anpassung der Anzeige
 - **Vertikale Zentrierung von Fliesen** : Zentriert den Inhalt der Kacheln vertikal.
 - **Bunte Widget-Symbole** : Einfärben von Widget-Symbolen basierend auf ihrem Status. Veränderbar durch Szenario, *setColoredIcon* ('Symbolfärbung').
 - **Farbige Kategorien** : Einfärbung des Titels der Kacheln nach Kategorie.
+- **Handy, Mobiltelefon : eine Standardspalte** : Anzeige von Kacheln in voller Breite auf Mobilgeräten
+
 
 ### Hintergrundbilder
 

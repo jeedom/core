@@ -22,6 +22,7 @@
 ### 4.3 : WebApp
 
 - Notes integration.
+- Possibility to display the tiles only on a column (setting in the configuration of jeedom interface tab)
 
 
 # Changelog Jeedom V4.2

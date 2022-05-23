@@ -22,6 +22,7 @@
 ### 4.3 : WebApp
 
 - Integração de notas.
+- Possibilidade de mostrar os mosaicos apenas numa coluna (definindo na configuração do separador interface do jeedom)
 
 
 # Changelog Jeedom V4.2

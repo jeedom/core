@@ -44,6 +44,8 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 - **Centralização vertical de ladrilhos** : Centraliza verticalmente o conteúdo dos blocos.
 - **Ícones coloridos de widget** : Ícones de widget para colorir com base em seu estado. Modificável por cenário, *setColoredIcon* ('Coloração de ícone').
 - **Categorias coloridas** : Colorização do título dos tiles de acordo com a categoria.
+- **Móvel : uma coluna padrão** : Exibição de largura total de blocos em dispositivos móveis
+
 
 ### Imagens de fundo
 
