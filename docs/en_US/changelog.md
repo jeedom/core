@@ -11,11 +11,12 @@
 
 - **Tools / Scenarios** : Addition of a contextual menu on a scenario to make active/inactive, change group, change parent object.
 - **Tools / Objects** : Added a contextual menu on an object to manage visibility, change parent object, and move.
+- **Tools / Replace** : New tool for replacing equipment and commands.
 - **Analysis / Timeline** : Added a search field to filter the display.
-- **Report** : Ability to report on Jeedom health
-- **Report** : Ability to report on equipment alerts
-- **Update** : Ability to see from Jeedom the OS / PIP2 / PIP3 / NodeJS packages that can be updated and launch the update (beware risky function and in beta)
-- **Alert command** : Added an option to receive a message in case of end of alert
+- **Report** : Ability to report on Jeedom health.
+- **Report** : Ability to report on alerted equipment.
+- **Update** : Ability to see from Jeedom the OS / PIP2 / PIP3 / NodeJS packages that can be updated and launch the update (beware risky function and in beta).
+- **Alert command** : Added an option to receive a message in case of end of alert.
 
 - **Optimization** : jeeFrontEnd{}, jeephp2js{}, minor bugfixes and optimizations.
 
@@ -23,6 +24,10 @@
 
 - Notes integration.
 - Possibility to display the tiles only on a column (setting in the configuration of jeedom interface tab)
+
+### 4.3 : Autre
+
+- **Lib** : Update Font Awesome 5.13.1 to 5.15.4.
 
 
 # Changelog Jeedom V4.2
