@@ -159,7 +159,7 @@ sendVarToJS([
                   <a id="bt_resetSearchName" class="btn" style="width:30px"><i class="fas fa-times"></i></a>
                 </div>
               </div>
-
+              <div style="text-align: center;">{{Source}} <i class="far fa-arrow-alt-circle-right"></i> {{Cible}}</div>
               <div id="eqSource" class="row form-group col-lg-12">
               </div>
 

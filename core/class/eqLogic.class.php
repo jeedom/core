@@ -1213,7 +1213,7 @@ class eqLogic {
 		return false;
 	}
 
-	public function replaceEqlogic($_sourceId, $_targetId, $_hideSource=false) {
+	public function migrateEqlogic($_sourceId, $_targetId, $_hideSource=false) {
 		$sourceEq = eqLogic::byId($_sourceId);
 		if (!is_object($sourceEq)) {
 			throw new Exception(__('L\'équipement source n\'existe pas', __FILE__));
@@ -1275,7 +1275,7 @@ class eqLogic {
 			$targetEq->save();
 
 		} catch (Exception $e) {
-			throw new Exception(__('Erreur lors du remplacement d\'équipement: ', __FILE__).$e->getMessage());
+			throw new Exception(__('Erreur lors de la migration d\'équipement', __FILE__) . ' : '. $e->getMessage());
 		}
 
 		if ($_hideSource) {

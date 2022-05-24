@@ -25,12 +25,12 @@
         "A propos": "Sobre",
         "Déconnexion": "Sair",
         "Synthèse": "Síntese",
-        "Tous": "Todos",
+        "Tous": "Tudo",
         "Designs": "Designs",
         "Designs 3D": "Designs 3D"
     },
     "mobile\/js\/overview.js": {
-        "Tous": "Todos"
+        "Tous": "Tudo"
     },
     "mobile\/js\/cron.js": {
         "Rafraichir": "Recarregar",
@@ -76,7 +76,7 @@
         "Accueil": "Início"
     },
     "mobile\/js\/scenario.js": {
-        "Aucun": "Nenhum"
+        "Aucun": "Não"
     },
     "mobile\/html\/scenariolog.html": {
         "Vider": "Limpar",
@@ -169,7 +169,7 @@
         "Scénario": "Cenário",
         "Analyse": "Análise",
         "Autre": "Outra",
-        "Plugins": "Plugins"
+        "Plugins": "Plug-ins"
     },
     "mobile\/html\/cron.html": {
         "Nom": "Nome",
@@ -375,7 +375,7 @@
         "Design": "Design",
         "Design 3d": "Design 3D",
         "Appliquer aux éléments visibles": "Aplicar a elementos visíveis",
-        "Aucun": "Nenhum",
+        "Aucun": "Não",
         "Visualisation": "Vista",
         "Visualisation et exécution": "Visualização e execução",
         "Equipement": "Equipamento",
@@ -547,7 +547,7 @@
         "Lien": "Link",
         "Rechercher d\\'un équipement": "Procurar equipamento",
         "Spécificité": "Especificidade",
-        "Aucun": "Nenhum",
+        "Aucun": "Não",
         "Lumière": "Luz",
         "Texte": "Texto",
         "Porte\/Fenêtre": "Porta\/Janela",
@@ -646,7 +646,7 @@
         "Voir les propositions d'amélioration": "Veja sugestões de melhoria",
         "Etape 3 : Catégorie et type de la demande": "Passo 3: O tamanho e tipo de pedido",
         "Type": "Tipo",
-        "Aucun": "Nenhum",
+        "Aucun": "Não",
         "Catégorie": "Categoria",
         "Aucune": "Nenhuma",
         "Général": "Geral",
@@ -748,7 +748,7 @@
         "Moyenne": "Média",
         "Minimum": "Mínimo",
         "Maximum": "Máximo",
-        "Aucun": "Nenhum",
+        "Aucun": "Não",
         "Purger historique": "Limpar histórico",
         "si plus vieux que": "se mais antigo que",
         "1 jour": "1 dia",
@@ -818,7 +818,7 @@
         "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel.": "Observe que seu nível de registo(evento) é menor que info, por isso não não pode ver em tempo real",
         "Configuration": "Configuração",
         "Log brut": "Registo em bruto",
-        "Rechercher": "Pesquisa",
+        "Rechercher": "Pesquisar",
         "Pause": "Pausa",
         "Télécharger": "Descarregar",
         "Vider": "Apagar",
@@ -890,7 +890,7 @@
         "Moyenne": "Média",
         "Minimum": "Mínimo",
         "Maximum": "Máximo",
-        "Aucun": "Nenhum",
+        "Aucun": "Não",
         "1 jour": "1 dia",
         "7 jours": "7 dias",
         "1 mois": "1 mês",
@@ -956,8 +956,8 @@
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Type Générique": "Tipo Genérico",
         "Objet": "Objeto",
-        "Aucun": "Nenhum",
-        "Tous": "Todos"
+        "Aucun": "Não",
+        "Tous": "Tudo"
     },
     "desktop\/modal\/interact.query.display.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -1125,7 +1125,7 @@
         "En cours": "Em curso",
         "Arrêté": "Parado",
         "Défaut": "Predefinido",
-        "Aucun": "Nenhum",
+        "Aucun": "Não",
         "Temps réel": "Tempo real",
         "Dossier": "Ficheiro",
         "Voir les logs": "Ver registos",
@@ -1156,7 +1156,7 @@
         "De plus, l’installation d’un plugin depuis une autre source que le Market": "Além disso, a instalação de um plugin de uma fonte diferente do Market",
         "entraine la perte globale d’assistance par l’équipe": "resulta na perda geral de assistência pela equipe",
         "Type de source": "Tipo de fonte",
-        "Aucun": "Nenhum",
+        "Aucun": "Não",
         "Configuration": "Configuração",
         "ID logique du plugin": "ID Logico do plugin",
         "Envoyer un plugin": "Enviar plugin",
@@ -1271,7 +1271,7 @@
         "Fond transparent": "Fundo transparente",
         "Nom": "Nome",
         "Lien": "Link",
-        "Aucun": "Nenhum",
+        "Aucun": "Não",
         "Icône": "Ícone",
         "Choisir une icône": "Escolha um ícone",
         "Afficher le nom de l'objet": "Mostrar nome do objeto",
@@ -1363,7 +1363,7 @@
         "Configuration du plugin": "Configuração de plugin",
         "Santé de": "Estado de",
         "Benchmark Jeedom": "Benchmark do Jeedom",
-        "Plugins": "Plugins",
+        "Plugins": "Plug-ins",
         "Vous pouvez voir les détails des plugins sur la partie basse de cette page": "Pode ver os detalhes dos plugins na parte inferior desta página",
         "et": "e",
         "Extensions php": "Extensões php"
@@ -1414,7 +1414,8 @@
         "Testeur expression": "Testador de expressão",
         "Variables": "Variáveis",
         "Recherche": "Pesquisa",
-        "Plugins": "Plugins",
+        "Remplacer": "Substituir",
+        "Plugins": "Plug-ins",
         "Gestion des plugins": "Gestão de plugins",
         "Réglages": "Configurações",
         "Système": "Sistema",
@@ -1464,7 +1465,7 @@
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Gestion": "Gestão",
         "Synchroniser": "Sincronizar",
-        "Plugins": "Plugins",
+        "Plugins": "Plug-ins",
         "Mes plugins": "Os meus plugins",
         "Rechercher": "Pesquisar",
         "Etat": "Estado",
@@ -1707,7 +1708,7 @@
         "de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre": "da configuração de rede e não tem impacto nas portas ou no IP realmente usados para atingir o",
         "Accès interne": "Acesso interno",
         "Protocole": "Protocolo",
-        "Aucun": "Nenhum",
+        "Aucun": "Não",
         "HTTP": "HTTP",
         "HTTPS": "HTTPS",
         "Accès externe": "Acesso externo",
@@ -1987,6 +1988,33 @@
         "Interface d’administration de la base de données.": "Interface de administração da base de dados",
         "Utilisateur": "Utilizador"
     },
+    "desktop\/php\/replace.php": {
+        "401 - Accès non autorisé": "401 - Acesso não autorizado",
+        "Reset": "Redefinir",
+        "Filtrer": "Filtro",
+        "Remplacer": "Substituir",
+        "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "É altamente recomendável fazer um backup do sistema antes de usar esta ferramenta!",
+        "Filtres": "Filtros",
+        "Filtre par objet": "Filtrar por objeto",
+        "Objets": "Objetos",
+        "Tous": "Tudo",
+        "Aucun": "Não",
+        "Filtre par plugin": "Filtrar por plug-in",
+        "Plugins": "Plug-ins",
+        "Options": "Opções",
+        "Copier la configuration des équipements source": "Copie a configuração dos dispositivos de origem",
+        "Copie les proprités de l'équipement source (objet parent, type générique, catégorie, visibilité, positionnement dashboard, etc) sur l'équipement cible.": "Copia as propriedades do dispositivo de origem (objeto pai, tipo genérico, categoria, visibilidade, posicionamento do painel etc.) para o dispositivo de destino",
+        "Cacher les équipements source": "Ocultar dispositivos de origem",
+        "Rend invisible l\\'équipement source.": "Torna o equipamento de origem invisível",
+        "Copier l'historique des commandes source": "Copiar histórico de comandos de origem",
+        "Copie l'historique de la commande source sur la commande cible.": "Copia o histórico do comando de origem para o comando de destino",
+        "Copier la configuration des commandes source": "Copie a configuração dos comandos de origem",
+        "Copie les proprités et configurations de la commande source sur la commande cible.": "Copia propriedades e configurações do controle de origem para o controle de destino",
+        "Remplacements": "Substituições",
+        "Rechercher": "Pesquisar",
+        "Source": "Fonte",
+        "Cible": "Alvo"
+    },
     "desktop\/php\/dashboardit.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Rechercher": "Pesquisar"
@@ -2105,7 +2133,7 @@
         "Ajouter": "Adicionar",
         "Importer": "Importar",
         "Code": "Código",
-        "Remplacement": "Substituir",
+        "Remplacement": "Substituição",
         "Mes widgets": "Os meus widgets",
         "Rechercher | nom | :not(nom": "Pesquisa | nome | :not(nome",
         "Appliquer à": "Aplicar a",
@@ -2152,7 +2180,7 @@
     "desktop\/php\/view_edit.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Créer une vue": "Criar exibição",
-        "Rechercher": "Pesquisa",
+        "Rechercher": "Pesquisar",
         "Edition": "Editando",
         "Configuration": "Configuração",
         "Ajouter une zone": "Adicionar Zona",
@@ -2169,7 +2197,7 @@
     },
     "desktop\/php\/scenario.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Aucun": "Nenhum",
+        "Aucun": "Não",
         "Gestion": "Gerir",
         "Ajouter": "Adicionar",
         "Supprimer les logs": "Apagar os registos",
@@ -2280,7 +2308,7 @@
         "est éteinte.<br \/> Pour la redémarrer, débranchez-la et rebranchez-la.": "está desligada.<br \/> Para a reiniciar, desconecte-a e conecte-a novamente"
     },
     "desktop\/php\/interact.php": {
-        "Aucun": "Nenhum",
+        "Aucun": "Não",
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Gestion": "Gestão",
         "Ajouter": "Adicionar",
@@ -2323,7 +2351,7 @@
         "Commandes par unité": "Comandos por unidade",
         "Sans unité": "Sem unidade",
         "Commandes des objets": "Comandos dos objeto",
-        "Plugins": "Plugins",
+        "Plugins": "Plug-ins",
         "Catégories": "Categorias",
         "Sans catégorie": "Nenhuma categoria",
         "Visibles": "Visível",
@@ -2504,8 +2532,8 @@
         "Configuration des résumés": "Configuração dos resumos",
         "Remonter dans le résumé global": "Voltar ao resumo geral",
         "Activez les résumés qui seront pris en compte pour le résumé global, affiché sur la droite dans la barre de menu.": "Ative os resumos que serão levados em consideração para o resumo global, exibido à direita na barra de menus",
-        "Tous": "Todos",
-        "Aucun": "Nenhum",
+        "Tous": "Tudo",
+        "Aucun": "Não",
         "Masquer en desktop": "Esconder no ambiente de trabalho",
         "Masquer en mobile": "Esconder no dispositivo móvel",
         "Commandes des résumés": "Resumo dos comandos",
@@ -2539,7 +2567,7 @@
         "pour en créer un.": "para criar um"
     },
     "desktop\/php\/history.php": {
-        "Aucun": "Nenhum",
+        "Aucun": "Não",
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Atenção: um intervalo de datas muito grande pode levar muito tempo para ser calculado ou até mesmo não poder ser exibido",
         "Aucun groupement": "Nenhum grupo",
@@ -2597,7 +2625,7 @@
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$value['name']",
-        "401 - Accès non autorisé": "Nenhum autorizado",
+        "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Aucun": "Não",
         "Configuration avancée": "Configuração avançada",
         "Aller sur la configuration de l\\'objet": "Ir para a configuração do objeto",
@@ -2692,7 +2720,7 @@
         "Votre version de": "A sua versão de",
         "ne permet pas d\\'activer ce plugin": "não permite ativar este plugin",
         "Niveau log": "Nível de registo",
-        "Aucun": "Nenhum",
+        "Aucun": "Não",
         "Defaut": "Predefinido",
         "Debug": "Depurar",
         "Info": "Informações",
@@ -2732,7 +2760,7 @@
         "Semaine": "Semana",
         "Mois": "Mês",
         "Année": "Ano",
-        "Tous": "Todos",
+        "Tous": "Tudo",
         "Ajouter courbe": "Adicionar curva",
         "Ajouter colonne": "Adicionar coluna",
         "Ajouter ligne": "Adicionar linha",
@@ -2990,7 +3018,7 @@
         "Moyenne": "Média",
         "Texte": "Texto",
         "Icône": "ícone",
-        "Aucun": "Nenhum",
+        "Aucun": "Não",
         "Binaire": "Binário",
         "Créer virtuel": "Criar virtual",
         "Décocher pour desactiver l\\'action": "Desmarque para desativar a ação",
@@ -3028,7 +3056,7 @@
         "Information importante :": "Informação importante:"
     },
     "desktop\/js\/types.js": {
-        "Aucun": "Nenhum",
+        "Aucun": "Não",
         "Supprimer les types generiques sur les commandes ?": "Remover tipos genéricos dos pedidos?",
         "Oui": "Sim",
         "Non": "Não",
@@ -3041,6 +3069,13 @@
         "Type": "Modelo",
         "Sous type": "Submodelo",
         "Commentaire": "Comentário"
+    },
+    "desktop\/js\/replace.js": {
+        "Aucun": "Não",
+        "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Tem certeza de que deseja Substituir este equipamento e comandos?",
+        "Aucun équipement à remplacer": "Nenhum equipamento para substituir",
+        "Aucune commande à remplacer": "Não há pedidos para substituir",
+        "Remplacement effectué": "Substituição feita"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Supprimée le": "Excluído em",
@@ -3173,7 +3208,7 @@
         "Log d'exécution du scénario": "Registo da execução do cenário",
         "Rendre inactif": "Tornar inativo",
         "Rendre actif": "Tornar ativa",
-        "Aucun": "Nenhum",
+        "Aucun": "Não",
         "Groupe": "Grupo",
         "Objet parent": "Objeto pai",
         "Nom du scénario": "Nome do cenário",
@@ -3235,6 +3270,7 @@
         "Historique": "Histórico",
         "Timeline": "Linha cronológica",
         "Rapports": "Relatórios",
+        "Remplacement": "Substituição",
         "Santé": "Estado",
         "Objets": "Objetos",
         "Scénarios": "Cenários",
@@ -3381,7 +3417,7 @@
         "au": "o",
         "à partir de": "a partir de",
         "jusqu\\'au": "até",
-        "Tous": "Todos",
+        "Tous": "Tudo",
         "30 min": "30 minutos",
         "Heure": "Hora",
         "Jour": "Dia",
@@ -3722,7 +3758,8 @@
         "Fichier introuvable, impossible de le supprimer": "Arquivo não encontrado, não pode ser excluído",
         "Impossible de supprimer le fichier": "Não foi possível excluir o arquivo",
         "Aucune méthode correspondante à :": "Nenhum método correspondente a:",
-        "Type non trouvé :": "Type não encontrado:"
+        "Type non trouvé :": "Type não encontrado:",
+        "Aucun équipement ou commande à remplacer": "Nenhum equipamento ou controles para substituir"
     },
     "core\/ajax\/dataStore.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -4050,6 +4087,9 @@
         "Erreur delete influx sur :": "Erro ao excluir influxo em:",
         "Envoie de l\\'historique à influx :": "Envia histórico de influxo:",
         "Erreur history influx sur :": "Erro de influxo de histórico em:",
+        "La commande source n\\'existe pas": "Comando fonte não existe",
+        "La commande cible n\\'existe pas": "O comando de destino não existe",
+        "Erreur lors de la migration de commande": "Erro ao migrar o pedido",
         "Commande": "Ordem"
     },
     "core\/class\/jeedom.class.php": {
@@ -4253,7 +4293,7 @@
         "A": "À(s)"
     },
     "core\/class\/scenario.class.php": {
-        "Aucun": "Nenhum",
+        "Aucun": "Não",
         "Tags :": "Separadores:",
         "Déclencheur": "Acionador",
         "Un déclencheur du scénario :": "Um acionador de cenário:",
@@ -4291,7 +4331,7 @@
         "Attention": "Atenção",
         "n\\'a pas envoyé de message depuis plus de": "não enviou uma mensagem por mais de",
         "min (vérifiez les piles)": "min (verifique as pilhas)",
-        "Aucun": "Nenhum",
+        "Aucun": "Não",
         "L\\'équipement n\\'a pas pu être trouvé :": "Não foi possível encontrar o equipamento:",
         "Le": "O",
         "inconnue": "Desconhecido",
@@ -4305,6 +4345,9 @@
         "Le nom de l\\'équipement ne peut pas être vide :": "O nome do dispositivo não pode estar vazio:",
         "Lancement du scénario sur création équipement": "Lançamento do cenário de criação de equipamentos",
         "[' . config::byKey('name', 'core', 'JEEDOM') . ']": "['. config :: byKey ('nome', 'núcleo', 'JEEDOM'). ']",
+        "L\\'équipement source n\\'existe pas": "O equipamento de origem não existe",
+        "L\\'équipement cible n\\'existe pas": "O dispositivo de destino não existe",
+        "Erreur lors de la migration d\\'équipement": "Erro ao migrar equipamento",
         "Equipement": "Equipamento",
         "Action": "Açao"
     },
@@ -4336,7 +4379,7 @@
         "Désactivation de": "Desativação de",
         "Masquage de": "Mascara de",
         "Affichage de": "Exibição de",
-        "Aucun": "Nenhum",
+        "Aucun": "Não",
         "Type inconnu": "Tipo desconhecido",
         "Execution du lancement en arriere plan :": "Execução do cenário em segundo plano:",
         "Exécution d\\'un bloc élément :": "Execução de um bloco de elemento:",
@@ -4565,7 +4608,7 @@
         "Désactiver": "Desativar",
         "Remise à zéro des SI": "Reiniciar a zero os SE",
         "Tags": "Separadores",
-        "Aucun": "Nenhum"
+        "Aucun": "Não"
     },
     "core\/template\/scenario\/wait.default.html": {
         "Condition": "Condição",
@@ -4610,7 +4653,7 @@
         "Objet": "Objeto",
         "Valeur": "Valor",
         "Sélectionner la commande": "Selecione o comando",
-        "Tous": "Todos"
+        "Tous": "Tudo"
     },
     "core\/template\/scenario\/ask.default.html": {
         "Question": "Pergunta",
@@ -4705,7 +4748,7 @@
         "Délai": "Atraso",
         "Option(s)": "Opção(s)",
         "Aucune": "Nenhuma",
-        "Aucun": "Nenhum",
+        "Aucun": "Não",
         "Principal": "Principal"
     },
     "core\/api\/marketApi.php": {
