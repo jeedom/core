@@ -25,12 +25,12 @@
         "A propos": "Sobre",
         "Déconnexion": "Sair",
         "Synthèse": "Síntese",
-        "Tous": "Tudo",
+        "Tous": "Todos",
         "Designs": "Designs",
         "Designs 3D": "Designs 3D"
     },
     "mobile\/js\/overview.js": {
-        "Tous": "Tudo"
+        "Tous": "Todos"
     },
     "mobile\/js\/cron.js": {
         "Rafraichir": "Recarregar",
@@ -76,7 +76,7 @@
         "Accueil": "Início"
     },
     "mobile\/js\/scenario.js": {
-        "Aucun": "Não"
+        "Aucun": "Nenhum"
     },
     "mobile\/html\/scenariolog.html": {
         "Vider": "Limpar",
@@ -169,7 +169,7 @@
         "Scénario": "Cenário",
         "Analyse": "Análise",
         "Autre": "Outra",
-        "Plugins": "Plug-ins"
+        "Plugins": "Plugins"
     },
     "mobile\/html\/cron.html": {
         "Nom": "Nome",
@@ -375,7 +375,7 @@
         "Design": "Design",
         "Design 3d": "Design 3D",
         "Appliquer aux éléments visibles": "Aplicar a elementos visíveis",
-        "Aucun": "Não",
+        "Aucun": "Nenhum",
         "Visualisation": "Vista",
         "Visualisation et exécution": "Visualização e execução",
         "Equipement": "Equipamento",
@@ -547,7 +547,7 @@
         "Lien": "Link",
         "Rechercher d\\'un équipement": "Procurar equipamento",
         "Spécificité": "Especificidade",
-        "Aucun": "Não",
+        "Aucun": "Nenhum",
         "Lumière": "Luz",
         "Texte": "Texto",
         "Porte\/Fenêtre": "Porta\/Janela",
@@ -646,7 +646,7 @@
         "Voir les propositions d'amélioration": "Veja sugestões de melhoria",
         "Etape 3 : Catégorie et type de la demande": "Passo 3: O tamanho e tipo de pedido",
         "Type": "Tipo",
-        "Aucun": "Não",
+        "Aucun": "Nenhum",
         "Catégorie": "Categoria",
         "Aucune": "Nenhuma",
         "Général": "Geral",
@@ -748,7 +748,7 @@
         "Moyenne": "Média",
         "Minimum": "Mínimo",
         "Maximum": "Máximo",
-        "Aucun": "Não",
+        "Aucun": "Nenhum",
         "Purger historique": "Limpar histórico",
         "si plus vieux que": "se mais antigo que",
         "1 jour": "1 dia",
@@ -818,7 +818,7 @@
         "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel.": "Observe que seu nível de registo(evento) é menor que info, por isso não não pode ver em tempo real",
         "Configuration": "Configuração",
         "Log brut": "Registo em bruto",
-        "Rechercher": "Pesquisar",
+        "Rechercher": "Pesquisa",
         "Pause": "Pausa",
         "Télécharger": "Descarregar",
         "Vider": "Apagar",
@@ -890,7 +890,7 @@
         "Moyenne": "Média",
         "Minimum": "Mínimo",
         "Maximum": "Máximo",
-        "Aucun": "Não",
+        "Aucun": "Nenhum",
         "1 jour": "1 dia",
         "7 jours": "7 dias",
         "1 mois": "1 mês",
@@ -956,8 +956,8 @@
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Type Générique": "Tipo Genérico",
         "Objet": "Objeto",
-        "Aucun": "Não",
-        "Tous": "Tudo"
+        "Aucun": "Nenhum",
+        "Tous": "Todos"
     },
     "desktop\/modal\/interact.query.display.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -1125,7 +1125,7 @@
         "En cours": "Em curso",
         "Arrêté": "Parado",
         "Défaut": "Predefinido",
-        "Aucun": "Não",
+        "Aucun": "Nenhum",
         "Temps réel": "Tempo real",
         "Dossier": "Ficheiro",
         "Voir les logs": "Ver registos",
@@ -1156,7 +1156,7 @@
         "De plus, l’installation d’un plugin depuis une autre source que le Market": "Além disso, a instalação de um plugin de uma fonte diferente do Market",
         "entraine la perte globale d’assistance par l’équipe": "resulta na perda geral de assistência pela equipe",
         "Type de source": "Tipo de fonte",
-        "Aucun": "Não",
+        "Aucun": "Nenhum",
         "Configuration": "Configuração",
         "ID logique du plugin": "ID Logico do plugin",
         "Envoyer un plugin": "Enviar plugin",
@@ -1271,7 +1271,7 @@
         "Fond transparent": "Fundo transparente",
         "Nom": "Nome",
         "Lien": "Link",
-        "Aucun": "Não",
+        "Aucun": "Nenhum",
         "Icône": "Ícone",
         "Choisir une icône": "Escolha um ícone",
         "Afficher le nom de l'objet": "Mostrar nome do objeto",
@@ -1363,7 +1363,7 @@
         "Configuration du plugin": "Configuração de plugin",
         "Santé de": "Estado de",
         "Benchmark Jeedom": "Benchmark do Jeedom",
-        "Plugins": "Plug-ins",
+        "Plugins": "Plugins",
         "Vous pouvez voir les détails des plugins sur la partie basse de cette page": "Pode ver os detalhes dos plugins na parte inferior desta página",
         "et": "e",
         "Extensions php": "Extensões php"
@@ -1415,7 +1415,7 @@
         "Variables": "Variáveis",
         "Recherche": "Pesquisa",
         "Remplacer": "Substituir",
-        "Plugins": "Plug-ins",
+        "Plugins": "Plugins",
         "Gestion des plugins": "Gestão de plugins",
         "Réglages": "Configurações",
         "Système": "Sistema",
@@ -1465,7 +1465,7 @@
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Gestion": "Gestão",
         "Synchroniser": "Sincronizar",
-        "Plugins": "Plug-ins",
+        "Plugins": "Plugins",
         "Mes plugins": "Os meus plugins",
         "Rechercher": "Pesquisar",
         "Etat": "Estado",
@@ -1708,7 +1708,7 @@
         "de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre": "da configuração de rede e não tem impacto nas portas ou no IP realmente usados para atingir o",
         "Accès interne": "Acesso interno",
         "Protocole": "Protocolo",
-        "Aucun": "Não",
+        "Aucun": "Nenhum",
         "HTTP": "HTTP",
         "HTTPS": "HTTPS",
         "Accès externe": "Acesso externo",
@@ -2133,7 +2133,7 @@
         "Ajouter": "Adicionar",
         "Importer": "Importar",
         "Code": "Código",
-        "Remplacement": "Substituição",
+        "Remplacement": "Substituir",
         "Mes widgets": "Os meus widgets",
         "Rechercher | nom | :not(nom": "Pesquisa | nome | :not(nome",
         "Appliquer à": "Aplicar a",
@@ -2180,7 +2180,7 @@
     "desktop\/php\/view_edit.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Créer une vue": "Criar exibição",
-        "Rechercher": "Pesquisar",
+        "Rechercher": "Pesquisa",
         "Edition": "Editando",
         "Configuration": "Configuração",
         "Ajouter une zone": "Adicionar Zona",
@@ -2197,7 +2197,7 @@
     },
     "desktop\/php\/scenario.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Aucun": "Não",
+        "Aucun": "Nenhum",
         "Gestion": "Gerir",
         "Ajouter": "Adicionar",
         "Supprimer les logs": "Apagar os registos",
@@ -2308,7 +2308,7 @@
         "est éteinte.<br \/> Pour la redémarrer, débranchez-la et rebranchez-la.": "está desligada.<br \/> Para a reiniciar, desconecte-a e conecte-a novamente"
     },
     "desktop\/php\/interact.php": {
-        "Aucun": "Não",
+        "Aucun": "Nenhum",
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Gestion": "Gestão",
         "Ajouter": "Adicionar",
@@ -2351,7 +2351,7 @@
         "Commandes par unité": "Comandos por unidade",
         "Sans unité": "Sem unidade",
         "Commandes des objets": "Comandos dos objeto",
-        "Plugins": "Plug-ins",
+        "Plugins": "Plugins",
         "Catégories": "Categorias",
         "Sans catégorie": "Nenhuma categoria",
         "Visibles": "Visível",
@@ -2532,8 +2532,8 @@
         "Configuration des résumés": "Configuração dos resumos",
         "Remonter dans le résumé global": "Voltar ao resumo geral",
         "Activez les résumés qui seront pris en compte pour le résumé global, affiché sur la droite dans la barre de menu.": "Ative os resumos que serão levados em consideração para o resumo global, exibido à direita na barra de menus",
-        "Tous": "Tudo",
-        "Aucun": "Não",
+        "Tous": "Todos",
+        "Aucun": "Nenhum",
         "Masquer en desktop": "Esconder no ambiente de trabalho",
         "Masquer en mobile": "Esconder no dispositivo móvel",
         "Commandes des résumés": "Resumo dos comandos",
@@ -2567,7 +2567,7 @@
         "pour en créer un.": "para criar um"
     },
     "desktop\/php\/history.php": {
-        "Aucun": "Não",
+        "Aucun": "Nenhum",
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Atenção: um intervalo de datas muito grande pode levar muito tempo para ser calculado ou até mesmo não poder ser exibido",
         "Aucun groupement": "Nenhum grupo",
@@ -2625,7 +2625,7 @@
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$value['name']",
-        "401 - Accès non autorisé": "401 - Acesso não autorizado",
+        "401 - Accès non autorisé": "Nenhum autorizado",
         "Aucun": "Não",
         "Configuration avancée": "Configuração avançada",
         "Aller sur la configuration de l\\'objet": "Ir para a configuração do objeto",
@@ -2720,7 +2720,7 @@
         "Votre version de": "A sua versão de",
         "ne permet pas d\\'activer ce plugin": "não permite ativar este plugin",
         "Niveau log": "Nível de registo",
-        "Aucun": "Não",
+        "Aucun": "Nenhum",
         "Defaut": "Predefinido",
         "Debug": "Depurar",
         "Info": "Informações",
@@ -2760,7 +2760,7 @@
         "Semaine": "Semana",
         "Mois": "Mês",
         "Année": "Ano",
-        "Tous": "Tudo",
+        "Tous": "Todos",
         "Ajouter courbe": "Adicionar curva",
         "Ajouter colonne": "Adicionar coluna",
         "Ajouter ligne": "Adicionar linha",
@@ -3018,7 +3018,7 @@
         "Moyenne": "Média",
         "Texte": "Texto",
         "Icône": "ícone",
-        "Aucun": "Não",
+        "Aucun": "Nenhum",
         "Binaire": "Binário",
         "Créer virtuel": "Criar virtual",
         "Décocher pour desactiver l\\'action": "Desmarque para desativar a ação",
@@ -3056,7 +3056,7 @@
         "Information importante :": "Informação importante:"
     },
     "desktop\/js\/types.js": {
-        "Aucun": "Não",
+        "Aucun": "Nenhum",
         "Supprimer les types generiques sur les commandes ?": "Remover tipos genéricos dos pedidos?",
         "Oui": "Sim",
         "Non": "Não",
@@ -3208,7 +3208,7 @@
         "Log d'exécution du scénario": "Registo da execução do cenário",
         "Rendre inactif": "Tornar inativo",
         "Rendre actif": "Tornar ativa",
-        "Aucun": "Não",
+        "Aucun": "Nenhum",
         "Groupe": "Grupo",
         "Objet parent": "Objeto pai",
         "Nom du scénario": "Nome do cenário",
@@ -3417,7 +3417,7 @@
         "au": "o",
         "à partir de": "a partir de",
         "jusqu\\'au": "até",
-        "Tous": "Tudo",
+        "Tous": "Todos",
         "30 min": "30 minutos",
         "Heure": "Hora",
         "Jour": "Dia",
@@ -4293,7 +4293,7 @@
         "A": "À(s)"
     },
     "core\/class\/scenario.class.php": {
-        "Aucun": "Não",
+        "Aucun": "Nenhum",
         "Tags :": "Separadores:",
         "Déclencheur": "Acionador",
         "Un déclencheur du scénario :": "Um acionador de cenário:",
@@ -4331,7 +4331,7 @@
         "Attention": "Atenção",
         "n\\'a pas envoyé de message depuis plus de": "não enviou uma mensagem por mais de",
         "min (vérifiez les piles)": "min (verifique as pilhas)",
-        "Aucun": "Não",
+        "Aucun": "Nenhum",
         "L\\'équipement n\\'a pas pu être trouvé :": "Não foi possível encontrar o equipamento:",
         "Le": "O",
         "inconnue": "Desconhecido",
@@ -4379,7 +4379,7 @@
         "Désactivation de": "Desativação de",
         "Masquage de": "Mascara de",
         "Affichage de": "Exibição de",
-        "Aucun": "Não",
+        "Aucun": "Nenhum",
         "Type inconnu": "Tipo desconhecido",
         "Execution du lancement en arriere plan :": "Execução do cenário em segundo plano:",
         "Exécution d\\'un bloc élément :": "Execução de um bloco de elemento:",
@@ -4512,7 +4512,7 @@
         "Vérification des mises à jour, mise à jour et réinstallation désactivées sur": "Verificar atualizações desabilitadas, atualizações e reinstalações no",
         "Impossible de créer le dossier  :": "Não foi possível criar a pasta:",
         "Problème de droits ?": "Problema de direitos?",
-        "Téléchargement du plugin...": "Faça o download do plugin",
+        "Téléchargement du plugin (source : ": "Download do plugin (fonte:",
         "OK\\n": "OK\\n",
         "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être dû à une absence de connexion au market (vérifiez dans la configuration de jeedom qu\\'un test de connexion au market marche) ou lié à un manque de place, une version minimale requise non consistante avec votre version de Jeedom, un souci du plugin sur le market, un soucis sur l\\'achat de votre plugin, etc.": "Falha ao baixar o arquivo. Tente novamente mais tarde (tamanho inferior a 100 bytes). Isso pode ser devido à falta de conexão com o mercado (verifique na configuração do jeedom que um teste de conexão do mercado funciona) ou ligado à falta de espaço, uma versão mínima exigida não compatível com sua versão do Jeedom, uma preocupação do plugin no mercado, uma preocupação com a compra do seu plugin, etc",
         "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être dû à une absence de connexion au market (vérifiez dans la configuration de ' . jeedom::getHardwareName() . ' qu\\'un test de connexion au market marche) ou lié à un manque de place, une version minimale requise non consistante avec votre version de ' . jeedom::getHardwareName() . ' un souci du plugin sur le market, un soucis sur l\\'achat de votre plugin, etc.": "Falha ao baixar o arquivo. Tente novamente mais tarde (tamanho inferior a 100 bytes). Isso pode ser devido a uma falta de conexão com o mercado (verifique na configuração de ' . jeedom::getHardwareName() . ' que um teste de conexão com o mercado funciona) ou ligado à falta de espaço, uma versão mínima necessária inconsistente com sua versão de ' . jeedom::getHardwareName() . ' um problema com o plugin no mercado, um problema com a compra do seu plugin, etc",
@@ -4608,7 +4608,7 @@
         "Désactiver": "Desativar",
         "Remise à zéro des SI": "Reiniciar a zero os SE",
         "Tags": "Separadores",
-        "Aucun": "Não"
+        "Aucun": "Nenhum"
     },
     "core\/template\/scenario\/wait.default.html": {
         "Condition": "Condição",
@@ -4653,7 +4653,7 @@
         "Objet": "Objeto",
         "Valeur": "Valor",
         "Sélectionner la commande": "Selecione o comando",
-        "Tous": "Tudo"
+        "Tous": "Todos"
     },
     "core\/template\/scenario\/ask.default.html": {
         "Question": "Pergunta",
@@ -4748,7 +4748,7 @@
         "Délai": "Atraso",
         "Option(s)": "Opção(s)",
         "Aucune": "Nenhuma",
-        "Aucun": "Não",
+        "Aucun": "Nenhum",
         "Principal": "Principal"
     },
     "core\/api\/marketApi.php": {

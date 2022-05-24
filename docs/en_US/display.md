@@ -38,7 +38,7 @@ For each object, next to its label, two buttons are available.
 
 On each equipment we find :
 
-- A **check box** to select the equipment (you can select several). If at least one device is selected, you have action buttons that appear in the upper left to **remove**, to return **visible**/**invisible**,  **active**/**Inactive** selected equipment.
+- A **check box** to select the equipment (you can select several). If at least one device is selected, you have action buttons that appear in the upper left to **remove**, to return **visible**/**invisible**,  **asset**/**Inactive** selected equipment.
 - L'**id** equipment.
 - The **type** equipment : Identifier of the plugin to which it belongs.
 - The **name** equipment.

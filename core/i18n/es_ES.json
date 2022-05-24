@@ -76,7 +76,7 @@
         "Accueil": "Inicio"
     },
     "mobile\/js\/scenario.js": {
-        "Aucun": "No"
+        "Aucun": "Ninguno"
     },
     "mobile\/html\/scenariolog.html": {
         "Vider": "Vacíar",
@@ -1125,7 +1125,7 @@
         "En cours": "En curso",
         "Arrêté": "Detenido",
         "Défaut": "Defecto",
-        "Aucun": "No",
+        "Aucun": "Ningún",
         "Temps réel": "Tiempo real",
         "Dossier": "Carpetas",
         "Voir les logs": "Ver los registros",
@@ -1465,7 +1465,7 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Gestion": "Administración",
         "Synchroniser": "Sincronizar",
-        "Plugins": "Complementos",
+        "Plugins": "Plugins",
         "Mes plugins": "Mis plugins",
         "Rechercher": "Buscar",
         "Etat": "Estado",
@@ -2197,7 +2197,7 @@
     },
     "desktop\/php\/scenario.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Aucun": "No",
+        "Aucun": "Ninguno",
         "Gestion": "Gestión",
         "Ajouter": "Añadir",
         "Supprimer les logs": "Eliminar registros",
@@ -3208,7 +3208,7 @@
         "Log d'exécution du scénario": "Log de ejecución del escenario",
         "Rendre inactif": "Hacer inactivo",
         "Rendre actif": "Activar",
-        "Aucun": "No",
+        "Aucun": "Ninguna",
         "Groupe": "Grupo",
         "Objet parent": "Objeto principal",
         "Nom du scénario": "Nombre del escenario",
@@ -4379,7 +4379,7 @@
         "Désactivation de": "Desactivación de",
         "Masquage de": "Enmascaramiento de",
         "Affichage de": "Visualización de",
-        "Aucun": "No",
+        "Aucun": "Ningún",
         "Type inconnu": "Tipo desconocido",
         "Execution du lancement en arriere plan :": "Iniciar ejecución en segundo plano :",
         "Exécution d\\'un bloc élément :": "Ejecución de un bloque de elementos:",
@@ -4512,7 +4512,7 @@
         "Vérification des mises à jour, mise à jour et réinstallation désactivées sur": "Compruebe si hay actualizaciones, actualícelas y vuelva a instalarlas desactivadas en",
         "Impossible de créer le dossier  :": "No se puede crear la carpeta:",
         "Problème de droits ?": "¿Problema de derechos?",
-        "Téléchargement du plugin...": "Descargar el plugin",
+        "Téléchargement du plugin (source : ": "Descarga del complemento (fuente:",
         "OK\\n": "Aceptar\\n",
         "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être dû à une absence de connexion au market (vérifiez dans la configuration de jeedom qu\\'un test de connexion au market marche) ou lié à un manque de place, une version minimale requise non consistante avec votre version de Jeedom, un souci du plugin sur le market, un soucis sur l\\'achat de votre plugin, etc.": "No se pudo descargar el archivo. Vuelva a intentarlo más tarde (tamaño inferior a 100 bytes). Esto puede deberse a una falta de conexión al mercado (verifique en la configuración de jeedom que funcione una prueba de conexión al mercado) o relacionado con la falta de espacio, una versión mínima requerida que no es consistente con su versión de Jeedom, una preocupación del complemento en el mercado, una inquietud sobre la compra de su complemento, etc",
         "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être dû à une absence de connexion au market (vérifiez dans la configuration de ' . jeedom::getHardwareName() . ' qu\\'un test de connexion au market marche) ou lié à un manque de place, une version minimale requise non consistante avec votre version de ' . jeedom::getHardwareName() . ' un souci du plugin sur le market, un soucis sur l\\'achat de votre plugin, etc.": "No se pudo descargar el archivo. Vuelva a intentarlo más tarde (tamaño inferior a 100 bytes). Esto puede deberse a una falta de conexión al mercado (verifique en la configuración de ' . jeedom::getHardwareName() . ' que funcione una prueba de conexión al mercado) o vinculado a la falta de espacio, una versión mínima requerida inconsistente con su versión de ' . jeedom::getHardwareName() . ' un problema con el complemento en el mercado, un problema con la compra de su complemento, etc",

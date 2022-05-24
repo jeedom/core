@@ -11,7 +11,7 @@ You will find there the list of scenarios of your Jeedom, as well as functionali
 
 - **Add** : Create a scenario. The procedure is described in the next chapter.
 - **Disable scenarios** : Disables all scenarios. Rarely used and knowingly, since no scenario will run anymore.
-- **Overview** : Allows you to have an overview of all scenarios. You can change the values **active**, **visible**, **multi launch**, **synchronous mode**, **Log** and **Timeline** (these parameters are described in the following chapter). You can also access the logs for each scenario and start them individually.
+- **Overview** : Allows you to have an overview of all scenarios. You can change the values **asset**, **visible**, **multi launch**, **synchronous mode**, **Log** and **Timeline** (these parameters are described in the following chapter). You can also access the logs for each scenario and start them individually.
 
 ## My scenarios
 

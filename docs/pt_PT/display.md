@@ -38,7 +38,7 @@ Para cada objeto, próximo ao seu rótulo, dois botões estão disponíveis.
 
 Em cada equipamento encontramos :
 
-- UMA **caixa de seleção** para selecionar o equipamento (você pode selecionar vários). Se pelo menos um dispositivo estiver selecionado, você terá botões de ação que aparecem no canto superior esquerdo para **remover**, para retornar **visível**/**invisível**,  **ativo**/**Inativo** equipamento selecionado.
+- UMA **caixa de seleção** para selecionar o equipamento (você pode selecionar vários). Se pelo menos um dispositivo estiver selecionado, você terá botões de ação que aparecem no canto superior esquerdo para **remover**, para retornar **visível**/**invisível**,  **de ativos**/**Inativo** equipamento selecionado.
 - L'**identificação** equipamento.
 - A **tipo** equipamento : Identificador do plug-in ao qual ele pertence.
 - A **nome** equipamento.
@@ -182,7 +182,7 @@ Você também tem três outros botões laranja embaixo :
 
 - **Este comando substitui o ID** : Permite substituir um ID do pedido pelo pedido em questão. Útil se você excluiu um equipamento no Jeedom e possui cenários que usam comandos dele.
 - **Este comando substitui o comando** : Substituir comando pelo comando atual.
-- **Substituir esse comando pelo comando** : Por outro lado, substitua o comando por outro comando.
+- **Substitua este comando pelo comando** : Por outro lado, substitua o comando por outro comando.
 
 > **Observação**
 >

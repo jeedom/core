@@ -11,7 +11,7 @@ Você encontrará a lista de cenários do seu Jeedom, bem como funcionalidades p
 
 - **Adicionar** : Crie um cenário. O procedimento é descrito no próximo capítulo.
 - **Desativar cenários** : Desativa todos os cenários. Raramente usado e conscientemente, já que nenhum cenário será executado.
-- **Visão global** : Permite que você tenha uma visão geral de todos os cenários. Você pode alterar os valores **ativo**, **visível**, **Multi lançamento**, **Sincronicamente**, **Registro** e **Linha do tempo** (esses parâmetros são descritos no capítulo a seguir). Você também pode acessar os logs para cada cenário e iniciá-los individualmente.
+- **Visão global** : Permite que você tenha uma visão geral de todos os cenários. Você pode alterar os valores **de ativos**, **visível**, **Multi lançamento**, **Sincronicamente**, **Registro** e **Linha do tempo** (esses parâmetros são descritos no capítulo a seguir). Você também pode acessar os logs para cada cenário e iniciá-los individualmente.
 
 ## Meus scripts
 
