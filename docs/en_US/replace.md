@@ -32,6 +32,7 @@ For each equipment, will be copied from the source to the target:
 	* Comments and tags
 	* The property *timeout*
 	* The configuration *autorefresh*
+This equipment will also be replaced by the target equipment on Designs and Views.
 
 - **Hide source devices** : Allows to make the source equipment invisible once replaced by the target equipment.
 - **Copy source command history** : Copy source command history to target command.

@@ -32,6 +32,7 @@ Para cada equipamento, será copiado da fonte para o destino:
 	* Comentários e etiquetas
 	* A propriedade *tempo esgotado*
 	* A configuração *atualização automática*
+Este equipamento também será substituído pelo equipamento alvo em Desenhos e Vistas.
 
 - **Ocultar dispositivos de origem** : Permite tornar o equipamento de origem invisível uma vez substituído pelo equipamento de destino.
 - **Copiar histórico de comandos de origem** : Copie o histórico do comando de origem para o comando de destino.

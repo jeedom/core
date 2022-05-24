@@ -38,7 +38,7 @@ Für jedes Objekt stehen neben seiner Beschriftung zwei Schaltflächen zur Verf�
 
 Auf jeder Ausrüstung finden wir :
 
-- EIN **Kontrollkästchen** um das Gerät auszuwählen (Sie können mehrere auswählen). Wenn mindestens ein Gerät ausgewählt ist, haben Sie Aktionsschaltflächen, die oben links zu angezeigt werden **Löschen**, zurückgeben **sichtbar**/.**unsichtbar**,  **Anlage**/.**Inaktiv** ausgewählte Ausrüstung.
+- EIN **Kontrollkästchen** um das Gerät auszuwählen (Sie können mehrere auswählen). Wenn mindestens ein Gerät ausgewählt ist, haben Sie Aktionsschaltflächen, die oben links zu angezeigt werden **Löschen**, zurückgeben **sichtbar**/.**unsichtbar**,  **aktiv**/.**Inaktiv** ausgewählte Ausrüstung.
 - L'**Ich würde** Ausrüstung.
 - Der **Art** Ausrüstung : Kennung des Plugins, zu dem es gehört.
 - Der **Name** Ausrüstung.

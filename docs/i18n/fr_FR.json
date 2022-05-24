@@ -3795,6 +3795,7 @@
         "timeout": "timeout",
         "La configuration": "La configuration",
         "autorefresh": "autorefresh",
+        "Cet équipement sera également remplaçé par l'équipement cible sur les Designs et les Vues": "Cet équipement sera également remplaçé par l'équipement cible sur les Designs et les Vues",
         "Cacher les équipements source": "Cacher les équipements source",
         "Permet de rendre l'équipement source invisible une fois remplaçé par l'équipement cible": "Permet de rendre l'équipement source invisible une fois remplaçé par l'équipement cible",
         "Copier l'historique des commandes source": "Copier l'historique des commandes source",

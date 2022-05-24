@@ -32,6 +32,7 @@ Für jedes Gerät wird von der Quelle zum Ziel kopiert:
 	* Kommentare und Tags
 	* Die Eigenschaft *Auszeit*
 	* Die Konfiguration *automatische Aktualisierung*
+Diese Ausrüstung wird auch durch die Zielausrüstung auf Designs und Ansichten ersetzt.
 
 - **Quellgeräte ausblenden** : Ermöglicht es, das Quellgerät unsichtbar zu machen, nachdem es durch das Zielgerät ersetzt wurde.
 - **Quellbefehlshistorie kopieren** : Kopieren Sie den Quellbefehlsverlauf in den Zielbefehl.

@@ -32,6 +32,7 @@ Para cada equipo, se copiará desde el origen al destino:
 	* Comentarios y etiquetas
 	* La propiedad *se acabó el tiempo*
 	* La configuración *autorefrescar*
+Este equipo también será reemplazado por el equipo de destino en Diseños y Vistas.
 
 - **Ocultar dispositivos de origen** : Permite hacer invisible el equipo de origen una vez reemplazado por el equipo de destino.
 - **Copiar historial de comandos de origen** : Copie el historial de comandos de origen en el comando de destino.
