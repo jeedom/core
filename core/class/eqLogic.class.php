@@ -1237,7 +1237,7 @@ class eqLogic {
 			$targetEq->setDisplay('backGraph::color', $sourceEq->getDisplay('backGraph::color', ''));
 			$targetEq->setDisplay('backGraph::height', $sourceEq->getDisplay('backGraph::height', ''));
 
-			if (count($sourceEq->getDisplay('parameters')) > 0) {
+			if (count($sourceEq->getDisplay('parameters', [])) > 0) {
 				$targetEq->setDisplay($sourceEq->getDisplay('parameters'));
 			}
 
