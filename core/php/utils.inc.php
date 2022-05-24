@@ -1479,6 +1479,9 @@ function pageTitle($_page) {
 		case 'report':
 			$return = __('Rapports', __FILE__);
 			break;
+		case 'replace':
+			$return = __('Remplacement', __FILE__);
+			break;
 		case 'health':
 			$return = __('Santé', __FILE__);
 			break;

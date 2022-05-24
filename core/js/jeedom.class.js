@@ -951,6 +951,27 @@ jeedom.massEditSave = function(_params) {
   $.ajax(paramsAJAX);
 }
 
+jeedom.massReplace = function(_params) {
+  var paramsRequired = ['options', 'eqlogics', 'cmds'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  paramsAJAX.data = {
+    action: 'massReplace',
+    options: _params.options,
+    eqlogics: _params.eqlogics,
+    cmds: _params.cmds
+  };
+  $.ajax(paramsAJAX);
+}
+
 jeedom.systemGetUpgradablePackage = function(_params) {
   var paramsRequired = ['type'];
   var paramsSpecifics = {};

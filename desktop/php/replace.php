@@ -1,0 +1,174 @@
+<?php
+if (!isConnect('admin')) {
+  throw new Exception('{{401 - Accès non autorisé}}');
+}
+
+$listPlugins = plugin::listPlugin();
+$listObjects = jeeObject::buildTree(null, false);
+$listEqlogics = eqLogic::all();
+$listCommands = cmd::all();
+
+sendVarToJS([
+  'jeephp2js.listPlugins' => utils::o2a($listPlugins),
+  'jeephp2js.listObjects' => utils::o2a($listObjects),
+  'jeephp2js.listEqlogics' => utils::o2a($listEqlogics),
+  'jeephp2js.listCommands' => utils::o2a($listCommands)
+]);
+
+?>
+
+<div class="floatingbar">
+  <div class="input-group">
+      <span class="input-group-btn">
+          <a class="btn btn-info btn-sm roundedLeft" id="bt_clearReplace"><i class="fas fa-times"></i> {{Reset}}
+          </a><a class="btn btn-success btn-sm" id="bt_applyFilters"><i class="fas fa-filter"></i> {{Filtrer}}
+          </a><a class="btn btn-danger btn-sm roundedRight" id="bt_replace"><i class="fas fa-random"></i> {{Remplacer}}</a>
+      </span>
+  </div>
+</div>
+<br/><br/>
+
+<div class="row row-overflow">
+  <fieldset>
+    <div class="alert alert-warning"><i class="fas fa-radiation"></i> {{Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !}}
+    </div>
+  </fieldset>
+  <div class="col-xs-12">
+
+    <div class="panel-group" id="accordionFilter">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="true" href="#panelFilter"><i class="fas fa-filter"></i> {{Filtres}}</a>
+            </h3>
+          </div>
+          <div id="panelFilter" class="panel-collapse collapse in" aria-expanded="true" style="">
+            <div class="panel-body">
+
+              <div class="col-lg-1"></div>
+              <div class="col-lg-1 col-md-2 col-xs-3">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="{{Filtre par objet}}">
+                  <i class="fas fa-filter"></i> {{Objets}}&nbsp;&nbsp;&nbsp;<span class="caret"></span>
+                </button>
+                <ul id="objectFilter" class="dropdown-menu" role="menu">
+                  <li>
+                    <a id="objectFilterAll"> {{Tous}}</a>
+                    <a id="objectFilterNone"> {{Aucun}}</a>
+                  </li>
+                  <li class="divider"></li>
+                  <?php
+                    $li = '';
+                    $li .= '<li><a><input checked type="checkbox" class="objectFilterKey" data-key=""/>&nbsp;{{Aucun}}</a></li>';
+                    foreach ($listObjects as $object) {
+                      $decay = $object->getConfiguration('parentNumber');
+                      $li .= '<li><a><input checked type="checkbox" class="objectFilterKey" data-key="' . $object->getId() . '"/>&nbsp;' . str_repeat('&nbsp;&nbsp;', $decay) . $object->getName() . '</a></li>';
+                    }
+                    echo $li;
+                  ?>
+                </ul>
+              </div>
+              <div class="col-lg-1 col-md-2 col-xs-3">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="{{Filtre par plugin}}">
+                  <i class="fas fa-filter"></i> {{Plugins}}&nbsp;&nbsp;&nbsp;<span class="caret"></span>
+                </button>
+                <ul id="pluginFilter" class="dropdown-menu" role="menu">
+                  <li>
+                    <a id="pluginFilterAll"> {{Tous}}</a>
+                    <a id="pluginFilterNone"> {{Aucun}}</a>
+                  </li>
+                  <li class="divider"></li>
+                  <?php
+                    $li = '';
+                    foreach ($listPlugins as $plugin) {
+                      $li .=  '<li><a><input checked type="checkbox" class="pluginFilterKey" data-key="' . $plugin->getId() . '"/>&nbsp;' . $plugin->getName() . '</a></li>';
+                    }
+                    echo $li;
+                  ?>
+                </ul>
+              </div>
+
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-group" id="accordionOption">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="true" href="#panelOption"><i class="fas fa-cogs"></i> {{Options}}</a>
+            </h3>
+          </div>
+          <div id="panelOption" class="panel-collapse collapse in" aria-expanded="true" style="">
+            <div class="panel-body">
+
+              <div class="form-group col-lg-12">
+                <label class="col-lg-4 col-md-6 col-sm-6 col-xs-10 control-label">{{Copier la configuration des équipements source}}
+                <sup><i class="fas fa-question-circle" title="{{Copie les proprités de l'équipement source (objet parent, type générique, catégorie, visibilité, positionnement dashboard, etc) sur l'équipement cible.}}"></i></sup>
+                </label>
+                <div class="col-lg-1">
+                  <input id="opt_replaceEqs" type="checkbox" class="form-control" />
+                </div>
+              </div>
+
+              <div class="form-group col-lg-12">
+                <label class="col-lg-4 col-md-6 col-sm-6 col-xs-10 control-label">{{Cacher les équipements source}}
+                <sup><i class="fas fa-question-circle" title="{{Rend invisible l\'équipement source.}}"></i></sup>
+                </label>
+                <div class="col-lg-1">
+                  <input id="opt_hideEqs" type="checkbox" class="form-control" />
+                </div>
+              </div>
+
+              <div class="form-group col-lg-12">
+                <label class="col-lg-4 col-md-6 col-sm-6 col-xs-10 control-label">{{Copier l'historique des commandes source}}
+                <sup><i class="fas fa-question-circle" title="{{Copie l'historique de la commande source sur la commande cible.}}"></i></sup>
+                </label>
+                <div class="col-lg-1">
+                  <input id="opt_copyHistory" type="checkbox" class="form-control" />
+                </div>
+              </div>
+
+              <div class="form-group col-lg-12">
+                <label class="col-lg-4 col-md-6 col-sm-6 col-xs-10 control-label">{{Copier la configuration des commandes source}}
+                <sup><i class="fas fa-question-circle" title="{{Copie les proprités et configurations de la commande source sur la commande cible.}}"></i></sup>
+                </label>
+                <div class="col-lg-1">
+                  <input id="opt_copyCmdProperties" type="checkbox" class="form-control" />
+                </div>
+              </div>
+
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-group" id="accordionReplace">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="true" href="#panelReplace"><i class="fas fa-random"></i> {{Remplacements}}</a>
+            </h3>
+          </div>
+          <div id="panelReplace" class="panel-collapse collapse in" aria-expanded="true" style="">
+            <div class="panel-body">
+
+              <div class="input-group" style="margin-bottom:5px;display: inline-table;">
+                <input class="form-control rounded" placeholder="{{Rechercher}}" id="in_searchByName"/>
+                <div class="input-group-btn">
+                  <a id="bt_resetSearchName" class="btn" style="width:30px"><i class="fas fa-times"></i></a>
+                </div>
+              </div>
+
+              <div id="eqSource" class="row form-group col-lg-12">
+              </div>
+
+            </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<?php include_file('desktop', 'replace', 'js');?>

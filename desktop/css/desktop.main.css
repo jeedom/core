@@ -642,9 +642,36 @@ Desktop
     border-bottom: 1px solid var(--el-defaultColor);
   }
 
+  [data-page=replace] #div_pageContainer #eqSource ul.eqLogic {
+    border-bottom: 1px solid var(--el-defaultColor);
+  }
+  [data-page=replace] #div_pageContainer #eqSource ul {
+    list-style-type: none;
+    margin: 2px 5px !important;
+    padding: 1px 0px !important;
+  }
+  [data-page=replace] #div_pageContainer #eqSource ul li {
+    margin: 3px 5px !important;
+    padding: 7px 5px !important;
+  }
+  [data-page=replace] #div_pageContainer #eqSource ul div.replacer {
+   float: right;
+  }
+  [data-page=replace] #div_pageContainer #eqSource ul div.replacer select {
+    line-height: 14px;
+    width: unset;
+  }
+  [data-page=replace] #div_pageContainer #eqSource ul li.cmd div.replacer select {
+    line-height: 12px;
+    margin-top: -10px;
+    width: unset;
+  }
+
+
   [data-page=types] #div_pageContainer #genericsContainer li.eqLogic:hover,
   [data-page=types] #div_pageContainer #genericsContainer li.eqLogic.hover,
-  [data-page=display] #div_pageContainer #displaytab li.eqLogic:hover {
+  [data-page=display] #div_pageContainer #displaytab li.eqLogic:hover,
+  [data-page=replace] #div_pageContainer #eqSource ul:hover {
     font-weight: bold;
   }
   [data-page=types] #div_pageContainer #genericsContainer li.eqLogic li.cmd,

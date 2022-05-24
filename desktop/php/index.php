@@ -421,6 +421,7 @@ function setTheme() {
 										<li><a id="bt_showExpressionTesting"><i class="fas fa-check"></i> {{Testeur expression}}</a></li>
 										<li><a id="bt_showDatastoreVariable"><i class="fas fa-eye"></i> {{Variables}}</a></li>
 										<li><a id="bt_showSearching"><i class="fas fa-search"></i> {{Recherche}}</a></li>
+										<li><a href="index.php?v=d&p=replace"><i class="fas fa-random"></i> {{Remplacer}}</a></li>
 									</ul>
 								</li>
 							<?php } ?>

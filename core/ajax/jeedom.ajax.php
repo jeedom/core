@@ -324,7 +324,6 @@ try {
 		ajax::success();
 	}
 
-
 	if (init('action') == 'systemGetUpgradablePackage') {
 		if (init('type') == 'all') {
 			$return = system::getUpgradablePackage('apt', init('forceRefresh', false));
@@ -652,6 +651,105 @@ try {
 			}
 		}
 		ajax::success();
+	}
+
+	if (init('action') == 'massReplace') {
+		unautorizedInDemo();
+
+		$options = init('options');
+    	$eqlogics = init('eqlogics');
+    	$cmds = init('cmds');
+
+    	$return = array('eqlogics' => 0, 'cmds' => 0);
+
+    	if (count($eqlogics) == 0 && count($cmds) == 0) {
+    		throw new Exception('{{Aucun équipement ou commande à remplacer}}');
+    	}
+
+    	log::add('massReplace', 'alert', '__BEGIN MASS REPLACEMENT__');
+
+		//for each source eqlogic:
+		if ($options['replaceEqs'] == "true") {
+			foreach ($eqlogics as $_replace) {
+				//debug:
+				$sourceEq = eqLogic::byId($_replace['source']);
+				$targetEq = eqLogic::byId($_replace['target']);
+				log::add('massReplace', 'alert', 'Replace eqLogic: ('.$sourceEq->getId().')'.$sourceEq->getName().' by ('.$targetEq->getId().')'.$targetEq->getName());
+
+				eqLogic::replaceEqlogic($_replace['source'], $_replace['target'], filter_var($options['hideEqs'], FILTER_VALIDATE_BOOLEAN));
+				$return['eqlogics'] += 1;
+			}
+		}
+
+		//for each source cmd:
+		foreach ($cmds as $_replace) {
+			$sourceCmd = cmd::byId($_replace['source']);
+			if ($sourceCmd->getLogicalId() == 'refresh') continue;
+			$targetCmd = cmd::byId($_replace['target']);
+
+			log::add('massReplace', 'alert', 'Replace Cmd: ('.$sourceCmd->getId().')'.$sourceCmd->getName().' by ('.$targetCmd->getId().')'.$targetCmd->getName());
+
+			//copy properties:
+			if ($options['copyCmdProperties'] == "true") {
+				if ($sourceCmd->getGeneric_type() != null) {
+					$targetCmd->setGeneric_type($sourceCmd->getGeneric_type());
+				}
+				if (count($sourceCmd->getDisplay('parameters')) > 0) {
+					$targetCmd->setDisplay($sourceCmd->getDisplay('parameters'));
+				}
+				if (count($sourceCmd->getConfiguration('jeedomPreExecCmd')) > 0) {
+					$targetCmd->setConfiguration('jeedomPreExecCmd', $sourceCmd->getConfiguration('jeedomPreExecCmd'));
+				}
+				if (count($sourceCmd->getConfiguration('jeedomPostExecCmd')) > 0) {
+					$targetCmd->setConfiguration('jeedomPostExecCmd', $sourceCmd->getConfiguration('jeedomPostExecCmd'));
+				}
+				if ($sourceCmd->getConfiguration('icon') != '') {
+					$targetCmd->setConfiguration('icon', $sourceCmd->getConfiguration('icon'));
+				}
+				if ($sourceCmd->getConfiguration('timeline::enable') != '') {
+					$targetCmd->setConfiguration('timeline::enable', $sourceCmd->getConfiguration('timeline::enable'));
+					$targetCmd->setConfiguration('timeline::folder', $sourceCmd->getConfiguration('timeline::folder'));
+				}
+				$targetCmd->setConfiguration('repeatEventManagement', $sourceCmd->getConfiguration('repeatEventManagement', 'never'));
+
+				if ($sourceCmd->getConfiguration('historizeRound') != '') {
+					$targetCmd->setConfiguration('historizeRound', $sourceCmd->getConfiguration('historizeRound'));
+				}
+				if ($sourceCmd->getConfiguration('calcul') != '') {
+					$targetCmd->setConfiguration('calcul', $sourceCmd->getConfiguration('calcul'));
+				}
+				if ($sourceCmd->getConfiguration('returnStateValue') != '') {
+					$targetCmd->setConfiguration('returnStateValue', $sourceCmd->getConfiguration('returnStateValue'));
+				}
+				if ($sourceCmd->getConfiguration('returnStateTime') != '') {
+					$targetCmd->setConfiguration('returnStateTime', $sourceCmd->getConfiguration('returnStateTime'));
+				}
+				if ($sourceCmd->getConfiguration('calculValueOffset') != '') {
+					$targetCmd->setConfiguration('calculValueOffset', $sourceCmd->getConfiguration('calculValueOffset'));
+				}
+
+				$targetCmd->setIsVisible($sourceCmd->getIsVisible());
+				$targetCmd->setOrder($sourceCmd->getOrder());
+				$targetCmd->setIsHistorized($sourceCmd->getIsHistorized());
+				$targetCmd->setTemplate('dashboard', $sourceCmd->getTemplate('dashboard'));
+				$targetCmd->setTemplate('mobile', $sourceCmd->getTemplate('mobile'));
+
+				$targetCmd->save();
+			}
+
+			//replace command where used:
+			jeedom::replaceTag(array('#' . str_replace('#', '', $sourceCmd->getId()) . '#' => '#' . str_replace('#', '', $targetCmd->getId()) . '#'));
+
+			//copy history:
+			if ($options['copyCmdHistory'] == "true" && $sourceCmd->isHistorized()) {
+				if ($sourceCmd->getIsHistorized() == 1) {
+					log::add('massReplace', 'alert', 'Copy command history: ('.$sourceCmd->getId().')'.$sourceCmd->getName() . ' to  ('.$targetCmd->getId().')'.$targetCmd->getName());
+					history::copyHistoryToCmd($sourceCmd->getId(), $targetCmd->getId());
+				}
+			}
+			$return['cmds'] += 1;
+		}
+		ajax::success($return);
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));

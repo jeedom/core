@@ -1213,6 +1213,77 @@ class eqLogic {
 		return false;
 	}
 
+	public function replaceEqlogic($_sourceId, $_targetId, $_hideSource=false) {
+		$sourceEq = eqLogic::byId($_sourceId);
+		if (!is_object($sourceEq)) {
+			throw new Exception(__('L\'équipement source n\'existe pas', __FILE__));
+		}
+		$targetEq = eqLogic::byId($_targetId);
+		if (!is_object($sourceEq)) {
+			throw new Exception(__('L\'équipement cible n\'existe pas', __FILE__));
+		}
+
+		try {
+			$targetEq->setObject_id($sourceEq->getObject_id());
+			$targetEq->setIsVisible($sourceEq->getIsVisible());
+			$targetEq->setIsEnable($sourceEq->getIsEnable());
+			$targetEq->setOrder($sourceEq->getOrder());
+
+			$targetEq->setDisplay('height', $sourceEq->getDisplay('height', 'auto'));
+			$targetEq->setDisplay('width', $sourceEq->getDisplay('width', 'auto'));
+			$targetEq->setDisplay('backGraph::info', $sourceEq->getDisplay('backGraph::info', ''));
+			$targetEq->setDisplay('backGraph::format', $sourceEq->getDisplay('backGraph::format', ''));
+			$targetEq->setDisplay('backGraph::type', $sourceEq->getDisplay('backGraph::type', ''));
+			$targetEq->setDisplay('backGraph::color', $sourceEq->getDisplay('backGraph::color', ''));
+			$targetEq->setDisplay('backGraph::height', $sourceEq->getDisplay('backGraph::height', ''));
+
+			if (count($sourceEq->getDisplay('parameters')) > 0) {
+				$targetEq->setDisplay($sourceEq->getDisplay('parameters'));
+			}
+
+			if ($sourceEq->getDisplay('layout::dashboard::table::parameters', '-1') != '-1') {
+				$targetEq->setDisplay('layout::dashboard::table::parameters', $sourceEq->getDisplay('layout::dashboard::table::parameters'));
+			}
+
+			if ($sourceEq->getGenericType() != null) {
+				$targetEq->setGenericType($sourceEq->getGenericType());
+			}
+
+			foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
+				$targetEq->setCategory($key, $sourceEq->getCategory($key, 0));
+			}
+
+			if ($sourceEq->getComment() != '') {
+				$targetEq->setComment($sourceEq->getComment());
+			}
+			if ($sourceEq->getTags() != null) {
+				$targetEq->setTags($sourceEq->getTags());
+			}
+
+			if ($sourceEq->getTimeout() != null) {
+				$targetEq->setTimeout($sourceEq->getTimeout());
+			}
+
+			if ($sourceEq->getConfiguration('autorefresh') != '') {
+				$targetEq->setConfiguration('autorefresh', $sourceEq->getConfiguration('autorefresh'));
+			}
+
+			if ($sourceEq->getConfiguration('icon') != '') {
+				$targetEq->setConfiguration('icon', $sourceEq->getConfiguration('icon'));
+			}
+
+			$targetEq->save();
+
+		} catch (Exception $e) {
+			throw new Exception(__('Erreur lors du remplacement d\'équipement: ', __FILE__).$e->getMessage());
+		}
+
+		if ($_hideSource) {
+			$sourceEq->setIsVisible(0);
+			$sourceEq->save();
+		}
+	}
+
 	public function import($_configuration, $_dontRemove = false) {
 		$cmdClass = $this->getEqType_name() . 'Cmd';
 		if (isset($_configuration['configuration'])) {

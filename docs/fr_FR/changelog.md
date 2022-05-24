@@ -11,11 +11,12 @@
 
 - **Outils / Scénarios** : Ajout d'un menu contextuel sur un scénario pour rendre actif/inactif, changer de groupe, changer d'objet parent.
 - **Outils / Objets** : Ajout d'un menu contextuel sur un objet pour gérer la visbilité, changer d'objet parent, et déplacer.
+- **Outils / Remplacer** : Nouvel outil de remplacement d'équipements et commandes.
 - **Analyse / Timeline** : Ajout d'un champ de recherche pour filtrer l'affichage.
-- **Rapport** : Possibilité de faire des rapports sur la santé de Jeedom
-- **Rapport** : Possibilité de faire des rapports sur les équipements en alertes
-- **Mise à jour** : Possibilité de voir depuis Jeedom les packages OS/PIP2/PIP3/NodeJS qui peuvent etre mise à jour et de lancer la mise à jour (attention fonction risquée et en beta)
-- **Commande alerte** : Ajout d'une option pour recevoir un message en cas de fin d'alerte
+- **Rapport** : Possibilité de faire des rapports sur la santé de Jeedom.
+- **Rapport** : Possibilité de faire des rapports sur les équipements en alerte.
+- **Mise à jour** : Possibilité de voir depuis Jeedom les packages OS/PIP2/PIP3/NodeJS qui peuvent etre mise à jour et de lancer la mise à jour (attention fonction risquée et en beta).
+- **Commande alerte** : Ajout d'une option pour recevoir un message en cas de fin d'alerte.
 
 - **Optimisation** : jeeFrontEnd{}, jeephp2js{}, corrections de bugs mineures et optimisations.
 
@@ -23,6 +24,10 @@
 
 - Intégration des Notes.
 - Possibilité d'afficher les tuiles que sur une colonne (réglage dans la configuration de jeedom onglet interface)
+
+### 4.3 : Autre
+
+- **Lib** : Update Font Awesome 5.13.1 vers 5.15.4.
 
 
 # Changelog Jeedom V4.2
