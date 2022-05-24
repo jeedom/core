@@ -1274,6 +1274,14 @@ class eqLogic {
 
 			$targetEq->save();
 
+			//Designs:
+			$sql = 'UPDATE `plan` SET `link_id` = '.$targetEq->getId().' WHERE `link_type` = \'eqLogic\' AND `link_id` = '.$sourceEq->getId();
+			DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+
+			//Views:
+			$sql = 'UPDATE `viewData` SET `link_id` = '.$targetEq->getId().' WHERE `type` = \'eqLogic\' AND `link_id` = '.$sourceEq->getId();
+			DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+
 		} catch (Exception $e) {
 			throw new Exception(__('Erreur lors de la migration d\'équipement', __FILE__) . ' : '. $e->getMessage());
 		}

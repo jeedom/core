@@ -32,6 +32,7 @@ Pour chaque équipement, seront copiés de la source vers la cible:
 	* Les commentaires et tags
 	* La propriété *timeout*
 	* La configuration *autorefresh*
+Cet équipement sera également remplaçé par l'équipement cible sur les Designs et les Vues.
 
 - **Cacher les équipements source** : Permet de rendre l'équipement source invisible une fois remplaçé par l'équipement cible.
 - **Copier l'historique des commandes source** : Copie l'historique de la commande source sur la commande cible.
