@@ -11,11 +11,12 @@
 
 - **Werkzeuge / Szenarien** : Hinzufügen eines Kontextmenüs zu einem Szenario zum Aktivieren/Deaktivieren, Ändern der Gruppe, Ändern des übergeordneten Objekts.
 - **Werkzeuge / Objekte** : Ein Kontextmenü für ein Objekt wurde hinzugefügt, um die Sichtbarkeit zu verwalten, das übergeordnete Objekt zu ändern und es zu verschieben.
+- **Werkzeuge / Ersetzen** : Neues Tool zum Ersetzen von Ausrüstung und Befehlen.
 - **Analyse / Zeitleiste** : Ein Suchfeld hinzugefügt, um die Anzeige zu filtern.
-- **Prüfbericht** : Möglichkeit, über die Gesundheit von Jeedom zu berichten
-- **Prüfbericht** : Möglichkeit, Gerätewarnungen zu melden
-- **Aktualisieren** : Möglichkeit, von Jeedom die OS / PIP2 / PIP3 / NodeJS-Pakete zu sehen, die aktualisiert werden können, und das Update zu starten (Vorsicht, riskante Funktion und in Beta)
-- **Alarmbefehl** : Option hinzugefügt, um eine Nachricht im Falle des Endes des Alarms zu erhalten
+- **Prüfbericht** : Möglichkeit, über die Gesundheit von Jeedom zu berichten.
+- **Prüfbericht** : Möglichkeit, über alarmierte Geräte zu berichten.
+- **Aktualisieren** : Möglichkeit, von Jeedom die OS / PIP2 / PIP3 / NodeJS-Pakete zu sehen, die aktualisiert werden können, und das Update zu starten (Vorsicht, riskante Funktion und in Beta).
+- **Alarmbefehl** : Option hinzugefügt, um eine Nachricht im Falle des Endes des Alarms zu erhalten.
 
 - **Optimierung** : jeeFrontEnd{}, jeephp2js{}, kleinere Bugfixes und Optimierungen.
 
@@ -23,6 +24,10 @@
 
 - Notes-Integration.
 - Möglichkeit, die Kacheln nur auf einer Spalte anzuzeigen (Einstellung in der Konfiguration der Registerkarte Jeedom-Schnittstelle)
+
+### 4.3 : Autre
+
+- **Lib** : Aktualisieren Sie Font Awesome 5.13.1 bis 5.15.4.
 
 
 # Änderungsprotokoll Jeedom V4.2

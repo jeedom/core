@@ -1414,6 +1414,7 @@
         "Testeur expression": "Tester di espressione",
         "Variables": "Variabili",
         "Recherche": "Recherche",
+        "Remplacer": "Remplacer",
         "Plugins": "Plugins",
         "Gestion des plugins": "Gestione Plugin",
         "Réglages": "Impostazioni",
@@ -1986,6 +1987,33 @@
         "Administration Base de données": "Database di Administration",
         "Interface d’administration de la base de données.": "Interfaccia di amministrazione del database",
         "Utilisateur": "Utente"
+    },
+    "desktop\/php\/replace.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "Reset": "Reset",
+        "Filtrer": "Filtrer",
+        "Remplacer": "Remplacer",
+        "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
+        "Filtres": "Filtres",
+        "Filtre par objet": "Filtre par objet",
+        "Objets": "Objets",
+        "Tous": "Tous",
+        "Aucun": "Aucun",
+        "Filtre par plugin": "Filtre par plugin",
+        "Plugins": "Plugins",
+        "Options": "Options",
+        "Copier la configuration des équipements source": "Copier la configuration des équipements source",
+        "Copie les proprités de l'équipement source (objet parent, type générique, catégorie, visibilité, positionnement dashboard, etc) sur l'équipement cible.": "Copie les proprités de l'équipement source (objet parent, type générique, catégorie, visibilité, positionnement dashboard, etc) sur l'équipement cible",
+        "Cacher les équipements source": "Cacher les équipements source",
+        "Rend invisible l\\'équipement source.": "Rend invisible l\\'équipement source",
+        "Copier l'historique des commandes source": "Copier l'historique des commandes source",
+        "Copie l'historique de la commande source sur la commande cible.": "Copie l'historique de la commande source sur la commande cible",
+        "Copier la configuration des commandes source": "Copier la configuration des commandes source",
+        "Copie les proprités et configurations de la commande source sur la commande cible.": "Copie les proprités et configurations de la commande source sur la commande cible",
+        "Remplacements": "Remplacements",
+        "Rechercher": "Rechercher",
+        "Source": "Source",
+        "Cible": "Cible"
     },
     "desktop\/php\/dashboardit.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
@@ -3042,6 +3070,13 @@
         "Sous type": "Sous type",
         "Commentaire": "Commentaire"
     },
+    "desktop\/js\/replace.js": {
+        "Aucun": "Aucun",
+        "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?",
+        "Aucun équipement à remplacer": "Aucun équipement à remplacer",
+        "Aucune commande à remplacer": "Aucune commande à remplacer",
+        "Remplacement effectué": "Remplacement effectué"
+    },
     "desktop\/js\/eqAnalyse.js": {
         "Supprimée le": "Supprimée le",
         "Configuration commande": "Configurazione del comando",
@@ -3235,6 +3270,7 @@
         "Historique": "Storico",
         "Timeline": "Cronologia",
         "Rapports": "Relazioni",
+        "Remplacement": "Remplacement",
         "Santé": "Salute",
         "Objets": "Oggetti",
         "Scénarios": "Scenari",
@@ -3722,7 +3758,8 @@
         "Fichier introuvable, impossible de le supprimer": "Fichier introuvable, impossible de le supprimer",
         "Impossible de supprimer le fichier": "Impossibile eliminare il file",
         "Aucune méthode correspondante à :": "Nessun metodo corrispondente a:",
-        "Type non trouvé :": "Tipo non trovato:"
+        "Type non trouvé :": "Tipo non trovato:",
+        "Aucun équipement ou commande à remplacer": "Aucun équipement ou commande à remplacer"
     },
     "core\/ajax\/dataStore.ajax.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
@@ -4050,6 +4087,9 @@
         "Erreur delete influx sur :": "Erreur delete influx sur :",
         "Envoie de l\\'historique à influx :": "Envoie de l\\'historique à influx :",
         "Erreur history influx sur :": "Erreur history influx sur :",
+        "La commande source n\\'existe pas": "La commande source n\\'existe pas",
+        "La commande cible n\\'existe pas": "La commande cible n\\'existe pas",
+        "Erreur lors de la migration de commande": "Erreur lors de la migration de commande",
         "Commande": "Comando"
     },
     "core\/class\/jeedom.class.php": {
@@ -4305,6 +4345,9 @@
         "Le nom de l\\'équipement ne peut pas être vide :": "Il nome del dispositivo non può essere vuoto:",
         "Lancement du scénario sur création équipement": "Lancement du scénario sur création équipement",
         "[' . config::byKey('name', 'core', 'JEEDOM') . ']": "[' . config::byKey('name', 'core', 'JEEDOM') . ']",
+        "L\\'équipement source n\\'existe pas": "L\\'équipement source n\\'existe pas",
+        "L\\'équipement cible n\\'existe pas": "L\\'équipement cible n\\'existe pas",
+        "Erreur lors de la migration d\\'équipement": "Erreur lors de la migration d\\'équipement",
         "Equipement": "Dispositivo",
         "Action": "Action"
     },
