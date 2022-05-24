@@ -104,7 +104,7 @@ sendVarToJS([
 
               <div class="form-group col-lg-12">
                 <label class="col-lg-4 col-md-6 col-sm-6 col-xs-10 control-label">{{Copier la configuration des équipements source}}
-                <sup><i class="fas fa-question-circle" title="{{Copie les proprités de l'équipement source (objet parent, type générique, catégorie, visibilité, positionnement dashboard, etc) sur l'équipement cible.}}"></i></sup>
+                <sup><i class="fas fa-question-circle" title="{{Copie les propriétés de l’équipement source (objet parent, catégories, visibilité, positionnement dashboard, etc) sur l’équipement cible.}}"></i></sup>
                 </label>
                 <div class="col-lg-1">
                   <input id="opt_replaceEqs" type="checkbox" class="form-control" />
@@ -113,7 +113,7 @@ sendVarToJS([
 
               <div class="form-group col-lg-12">
                 <label class="col-lg-4 col-md-6 col-sm-6 col-xs-10 control-label">{{Cacher les équipements source}}
-                <sup><i class="fas fa-question-circle" title="{{Rend invisible l\'équipement source.}}"></i></sup>
+                <sup><i class="fas fa-question-circle" title="{{Rend invisible l'équipement source.}}"></i></sup>
                 </label>
                 <div class="col-lg-1">
                   <input id="opt_hideEqs" type="checkbox" class="form-control" />
@@ -131,7 +131,7 @@ sendVarToJS([
 
               <div class="form-group col-lg-12">
                 <label class="col-lg-4 col-md-6 col-sm-6 col-xs-10 control-label">{{Copier la configuration des commandes source}}
-                <sup><i class="fas fa-question-circle" title="{{Copie les proprités et configurations de la commande source sur la commande cible.}}"></i></sup>
+                <sup><i class="fas fa-question-circle" title="{{Copie les propriétés et configurations de la commande source sur la commande cible.}}"></i></sup>
                 </label>
                 <div class="col-lg-1">
                   <input id="opt_copyCmdProperties" type="checkbox" class="form-control" />
