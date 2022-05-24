@@ -2413,7 +2413,7 @@ class cmd {
 			if ($sourceCmd->getGeneric_type() != null) {
 				$targetCmd->setGeneric_type($sourceCmd->getGeneric_type());
 			}
-			if (count($sourceCmd->getDisplay('parameters')) > 0) {
+			if (count($sourceCmd->getDisplay('parameters', [])) > 0) {
 				$targetCmd->setDisplay($sourceCmd->getDisplay('parameters'));
 			}
 			if (count($sourceCmd->getConfiguration('jeedomPreExecCmd')) > 0) {
