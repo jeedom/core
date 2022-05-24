@@ -676,7 +676,7 @@ try {
 				$targetEq = eqLogic::byId($_replace['target']);
 				log::add('massReplace', 'alert', 'Replace eqLogic: ('.$sourceEq->getId().')'.$sourceEq->getName().' by ('.$targetEq->getId().')'.$targetEq->getName());
 
-				eqLogic::replaceEqlogic($_replace['source'], $_replace['target'], filter_var($options['hideEqs'], FILTER_VALIDATE_BOOLEAN));
+				eqLogic::migrateEqlogic($_replace['source'], $_replace['target'], filter_var($options['hideEqs'], FILTER_VALIDATE_BOOLEAN));
 				$return['eqlogics'] += 1;
 			}
 		}
@@ -691,50 +691,7 @@ try {
 
 			//copy properties:
 			if ($options['copyCmdProperties'] == "true") {
-				if ($sourceCmd->getGeneric_type() != null) {
-					$targetCmd->setGeneric_type($sourceCmd->getGeneric_type());
-				}
-				if (count($sourceCmd->getDisplay('parameters')) > 0) {
-					$targetCmd->setDisplay($sourceCmd->getDisplay('parameters'));
-				}
-				if (count($sourceCmd->getConfiguration('jeedomPreExecCmd')) > 0) {
-					$targetCmd->setConfiguration('jeedomPreExecCmd', $sourceCmd->getConfiguration('jeedomPreExecCmd'));
-				}
-				if (count($sourceCmd->getConfiguration('jeedomPostExecCmd')) > 0) {
-					$targetCmd->setConfiguration('jeedomPostExecCmd', $sourceCmd->getConfiguration('jeedomPostExecCmd'));
-				}
-				if ($sourceCmd->getConfiguration('icon') != '') {
-					$targetCmd->setConfiguration('icon', $sourceCmd->getConfiguration('icon'));
-				}
-				if ($sourceCmd->getConfiguration('timeline::enable') != '') {
-					$targetCmd->setConfiguration('timeline::enable', $sourceCmd->getConfiguration('timeline::enable'));
-					$targetCmd->setConfiguration('timeline::folder', $sourceCmd->getConfiguration('timeline::folder'));
-				}
-				$targetCmd->setConfiguration('repeatEventManagement', $sourceCmd->getConfiguration('repeatEventManagement', 'never'));
-
-				if ($sourceCmd->getConfiguration('historizeRound') != '') {
-					$targetCmd->setConfiguration('historizeRound', $sourceCmd->getConfiguration('historizeRound'));
-				}
-				if ($sourceCmd->getConfiguration('calcul') != '') {
-					$targetCmd->setConfiguration('calcul', $sourceCmd->getConfiguration('calcul'));
-				}
-				if ($sourceCmd->getConfiguration('returnStateValue') != '') {
-					$targetCmd->setConfiguration('returnStateValue', $sourceCmd->getConfiguration('returnStateValue'));
-				}
-				if ($sourceCmd->getConfiguration('returnStateTime') != '') {
-					$targetCmd->setConfiguration('returnStateTime', $sourceCmd->getConfiguration('returnStateTime'));
-				}
-				if ($sourceCmd->getConfiguration('calculValueOffset') != '') {
-					$targetCmd->setConfiguration('calculValueOffset', $sourceCmd->getConfiguration('calculValueOffset'));
-				}
-
-				$targetCmd->setIsVisible($sourceCmd->getIsVisible());
-				$targetCmd->setOrder($sourceCmd->getOrder());
-				$targetCmd->setIsHistorized($sourceCmd->getIsHistorized());
-				$targetCmd->setTemplate('dashboard', $sourceCmd->getTemplate('dashboard'));
-				$targetCmd->setTemplate('mobile', $sourceCmd->getTemplate('mobile'));
-
-				$targetCmd->save();
+				cmd::migrateCmd($_replace['source'], $_replace['target']);
 			}
 
 			//replace command where used:
