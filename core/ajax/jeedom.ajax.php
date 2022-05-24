@@ -94,7 +94,10 @@ try {
 			}
 		}
 		if (isset($plugin) && is_object($plugin)) {
-			if ($plugin->getDocumentation() != '') {
+			$update = $plugin->getUpdate();
+			if (is_object($update) && $update->getConfiguration('version', 'stable') == 'beta' && $plugin->getDocumentation_beta() != '') {
+				ajax::success($plugin->getDocumentation_beta() . '?theme=' . $theme);
+			} else if ($plugin->getDocumentation() != '') {
 				ajax::success($plugin->getDocumentation() . '?theme=' . $theme);
 			}
 		} else {
@@ -657,16 +660,16 @@ try {
 		unautorizedInDemo();
 
 		$options = init('options');
-    	$eqlogics = init('eqlogics');
-    	$cmds = init('cmds');
+		$eqlogics = init('eqlogics');
+		$cmds = init('cmds');
 
-    	$return = array('eqlogics' => 0, 'cmds' => 0);
+		$return = array('eqlogics' => 0, 'cmds' => 0);
 
-    	if (count($eqlogics) == 0 && count($cmds) == 0) {
-    		throw new Exception('{{Aucun équipement ou commande à remplacer}}');
-    	}
+		if (count($eqlogics) == 0 && count($cmds) == 0) {
+			throw new Exception('{{Aucun équipement ou commande à remplacer}}');
+		}
 
-    	log::add('massReplace', 'alert', '__BEGIN MASS REPLACEMENT__');
+		log::add('massReplace', 'alert', '__BEGIN MASS REPLACEMENT__');
 
 		//for each source eqlogic:
 		if ($options['replaceEqs'] == "true") {
@@ -674,7 +677,7 @@ try {
 				//debug:
 				$sourceEq = eqLogic::byId($_replace['source']);
 				$targetEq = eqLogic::byId($_replace['target']);
-				log::add('massReplace', 'alert', 'Replace eqLogic: ('.$sourceEq->getId().')'.$sourceEq->getName().' by ('.$targetEq->getId().')'.$targetEq->getName());
+				log::add('massReplace', 'alert', 'Replace eqLogic: (' . $sourceEq->getId() . ')' . $sourceEq->getName() . ' by (' . $targetEq->getId() . ')' . $targetEq->getName());
 
 				eqLogic::migrateEqlogic($_replace['source'], $_replace['target'], filter_var($options['hideEqs'], FILTER_VALIDATE_BOOLEAN));
 				$return['eqlogics'] += 1;
@@ -687,7 +690,7 @@ try {
 			if ($sourceCmd->getLogicalId() == 'refresh') continue;
 			$targetCmd = cmd::byId($_replace['target']);
 
-			log::add('massReplace', 'alert', 'Replace Cmd: ('.$sourceCmd->getId().')'.$sourceCmd->getName().' by ('.$targetCmd->getId().')'.$targetCmd->getName());
+			log::add('massReplace', 'alert', 'Replace Cmd: (' . $sourceCmd->getId() . ')' . $sourceCmd->getName() . ' by (' . $targetCmd->getId() . ')' . $targetCmd->getName());
 
 			//copy properties:
 			if ($options['copyCmdProperties'] == "true") {
@@ -700,7 +703,7 @@ try {
 			//copy history:
 			if ($options['copyCmdHistory'] == "true" && $sourceCmd->isHistorized()) {
 				if ($sourceCmd->getIsHistorized() == 1) {
-					log::add('massReplace', 'alert', 'Copy command history: ('.$sourceCmd->getId().')'.$sourceCmd->getName() . ' to  ('.$targetCmd->getId().')'.$targetCmd->getName());
+					log::add('massReplace', 'alert', 'Copy command history: (' . $sourceCmd->getId() . ')' . $sourceCmd->getName() . ' to  (' . $targetCmd->getId() . ')' . $targetCmd->getName());
 					history::copyHistoryToCmd($sourceCmd->getId(), $targetCmd->getId());
 				}
 			}
