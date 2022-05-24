@@ -4,6 +4,7 @@
 
 - Bugfix Core : Accès utilisateur limité aux designs et vues.
 - Bugfix UI : Affichage des blocs A sous Chrome.
+- Bugfix : lien vers la documentation lorsque le plugin est en beta
 
 ## 4.2.16
 
