@@ -2409,49 +2409,99 @@ class cmd {
 			throw new Exception(__('La commande cible n\'existe pas', __FILE__));
 		}
 
+		$migrateDisplayValues = [
+			'parameters' => array(),
+			'showNameOndashboard' => '',
+			'showNameOnmobile' => '',
+			'showIconAndNamedashboard' => '',
+			'showIconAndNamemobile' => '',
+			'showStatsOndashboard' => '',
+			'showStatsOnmobile' => '',
+			'forceReturnLineBefore' => '',
+			'forceReturnLineAfter' => '',
+			'invertBinary' => '',
+			'icon' => '',
+		];
+
+		$migrateConfigurationValues = [
+			'jeedomPreExecCmd' => array(),
+			'jeedomPostExecCmd' => array(),
+			'timeline::enable' => '',
+			'timeline::folder' => '',
+			'repeatEventManagement' => '',
+			'historizeRound' => '',
+			'calcul' => '',
+			'returnStateValue' => '',
+			'returnStateTime' => '',
+			'calculValueOffset' => '',
+			'denyValues' => '',
+			'returnStateValue' => '',
+			'returnStateTime' => '',
+			'jeedomPushUrl' => '',
+			'invertBinary' => '',
+			'minValue' => '',
+			'maxValue' => ''
+		];
+
+		$migrateAlertValues = [
+			'warningif' => '',
+			'warningduring' => '',
+			'dangerif' => '',
+			'dangerduring' => '',
+		];
+
 		try {
+			//properties:
 			if ($sourceCmd->getGeneric_type() != null) {
 				$targetCmd->setGeneric_type($sourceCmd->getGeneric_type());
 			}
-			if (count($sourceCmd->getDisplay('parameters', [])) > 0) {
-				$targetCmd->setDisplay($sourceCmd->getDisplay('parameters'));
-			}
-			if (count($sourceCmd->getConfiguration('jeedomPreExecCmd')) > 0) {
-				$targetCmd->setConfiguration('jeedomPreExecCmd', $sourceCmd->getConfiguration('jeedomPreExecCmd'));
-			}
-			if (count($sourceCmd->getConfiguration('jeedomPostExecCmd')) > 0) {
-				$targetCmd->setConfiguration('jeedomPostExecCmd', $sourceCmd->getConfiguration('jeedomPostExecCmd'));
-			}
-			if ($sourceCmd->getConfiguration('icon') != '') {
-				$targetCmd->setConfiguration('icon', $sourceCmd->getConfiguration('icon'));
-			}
-			if ($sourceCmd->getConfiguration('timeline::enable') != '') {
-				$targetCmd->setConfiguration('timeline::enable', $sourceCmd->getConfiguration('timeline::enable'));
-				$targetCmd->setConfiguration('timeline::folder', $sourceCmd->getConfiguration('timeline::folder'));
-			}
-			$targetCmd->setConfiguration('repeatEventManagement', $sourceCmd->getConfiguration('repeatEventManagement', 'never'));
-
-			if ($sourceCmd->getConfiguration('historizeRound') != '') {
-				$targetCmd->setConfiguration('historizeRound', $sourceCmd->getConfiguration('historizeRound'));
-			}
-			if ($sourceCmd->getConfiguration('calcul') != '') {
-				$targetCmd->setConfiguration('calcul', $sourceCmd->getConfiguration('calcul'));
-			}
-			if ($sourceCmd->getConfiguration('returnStateValue') != '') {
-				$targetCmd->setConfiguration('returnStateValue', $sourceCmd->getConfiguration('returnStateValue'));
-			}
-			if ($sourceCmd->getConfiguration('returnStateTime') != '') {
-				$targetCmd->setConfiguration('returnStateTime', $sourceCmd->getConfiguration('returnStateTime'));
-			}
-			if ($sourceCmd->getConfiguration('calculValueOffset') != '') {
-				$targetCmd->setConfiguration('calculValueOffset', $sourceCmd->getConfiguration('calculValueOffset'));
-			}
-
 			$targetCmd->setIsVisible($sourceCmd->getIsVisible());
 			$targetCmd->setOrder($sourceCmd->getOrder());
 			$targetCmd->setIsHistorized($sourceCmd->getIsHistorized());
 			$targetCmd->setTemplate('dashboard', $sourceCmd->getTemplate('dashboard'));
 			$targetCmd->setTemplate('mobile', $sourceCmd->getTemplate('mobile'));
+
+			//display:
+			foreach ($migrateDisplayValues as $key => $value) {
+				if (is_array($value)) {
+					if (count($sourceCmd->getDisplay($key, $value)) > 0) {
+						$targetCmd->setDisplay($key, $sourceCmd->getDisplay($key, $value));
+					}
+				}
+				if (is_string($value)) {
+					if ($sourceCmd->getDisplay($key) != $value) {
+						$targetCmd->setDisplay($key, $sourceCmd->getDisplay($key, $value));
+					}
+				}
+			}
+
+			//configuration:
+			foreach ($migrateConfigurationValues as $key => $value) {
+				if (is_array($value)) {
+					if (count($sourceCmd->getConfiguration($key, $value)) > 0) {
+						$targetCmd->setConfiguration($key, $sourceCmd->getConfiguration($key, $value));
+					}
+				}
+				if (is_string($value)) {
+					if ($sourceCmd->getConfiguration($key, $value) != $value) {
+						$targetCmd->setConfiguration($key, $sourceCmd->getConfiguration($key, $value));
+					}
+				}
+			}
+
+			//alert:
+			foreach ($migrateAlertValues as $key => $value) {
+				if (is_array($value)) {
+					if (count($sourceCmd->getAlert($key, $value)) > 0) {
+						$targetCmd->setAlert($key, $sourceCmd->getAlert($key, $value));
+					}
+				}
+				if (is_string($value)) {
+					if ($sourceCmd->getAlert($key, $value) != $value) {
+						$targetCmd->setAlert($key, $sourceCmd->getAlert($key, $value));
+					}
+				}
+			}
 
 			$targetCmd->save();
 		} catch (Exception $e) {

@@ -1223,36 +1223,33 @@ class eqLogic {
 			throw new Exception(__('L\'équipement cible n\'existe pas', __FILE__));
 		}
 
+		$migrateDisplayValues = [
+			'parameters' => array(),
+			'height' => '',
+			'width' => '',
+			'height' => '',
+			'backGraph::info' => '',
+			'backGraph::format' => '',
+			'backGraph::type' => '',
+			'backGraph::color' => '',
+			'backGraph::height' => '',
+			'layout::dashboard::table::parameters' => '',
+		];
+
+		$migrateConfigurationValues = [
+			'autorefresh' => '',
+			'icon' => '',
+		];
+
 		try {
+			//properties:
 			$targetEq->setObject_id($sourceEq->getObject_id());
 			$targetEq->setIsVisible($sourceEq->getIsVisible());
 			$targetEq->setIsEnable($sourceEq->getIsEnable());
 			$targetEq->setOrder($sourceEq->getOrder());
-
-			$targetEq->setDisplay('height', $sourceEq->getDisplay('height', 'auto'));
-			$targetEq->setDisplay('width', $sourceEq->getDisplay('width', 'auto'));
-			$targetEq->setDisplay('backGraph::info', $sourceEq->getDisplay('backGraph::info', ''));
-			$targetEq->setDisplay('backGraph::format', $sourceEq->getDisplay('backGraph::format', ''));
-			$targetEq->setDisplay('backGraph::type', $sourceEq->getDisplay('backGraph::type', ''));
-			$targetEq->setDisplay('backGraph::color', $sourceEq->getDisplay('backGraph::color', ''));
-			$targetEq->setDisplay('backGraph::height', $sourceEq->getDisplay('backGraph::height', ''));
-
-			if (count($sourceEq->getDisplay('parameters', [])) > 0) {
-				$targetEq->setDisplay($sourceEq->getDisplay('parameters'));
-			}
-
-			if ($sourceEq->getDisplay('layout::dashboard::table::parameters', '-1') != '-1') {
-				$targetEq->setDisplay('layout::dashboard::table::parameters', $sourceEq->getDisplay('layout::dashboard::table::parameters'));
-			}
-
 			if ($sourceEq->getGenericType() != null) {
 				$targetEq->setGenericType($sourceEq->getGenericType());
 			}
-
-			foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
-				$targetEq->setCategory($key, $sourceEq->getCategory($key, 0));
-			}
-
 			if ($sourceEq->getComment() != '') {
 				$targetEq->setComment($sourceEq->getComment());
 			}
@@ -1264,12 +1261,38 @@ class eqLogic {
 				$targetEq->setTimeout($sourceEq->getTimeout());
 			}
 
-			if ($sourceEq->getConfiguration('autorefresh') != '') {
-				$targetEq->setConfiguration('autorefresh', $sourceEq->getConfiguration('autorefresh'));
+			//categories:
+			foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
+				$targetEq->setCategory($key, $sourceEq->getCategory($key, 0));
 			}
 
-			if ($sourceEq->getConfiguration('icon') != '') {
-				$targetEq->setConfiguration('icon', $sourceEq->getConfiguration('icon'));
+
+			//display:
+			foreach ($migrateDisplayValues as $key => $value) {
+				if (is_array($value)) {
+					if (count($sourceEq->getDisplay($key, $value)) > 0) {
+						$targetEq->setDisplay($key, $sourceEq->getDisplay($key, $value));
+					}
+				}
+				if (is_string($value)) {
+					if ($sourceEq->getDisplay($key) != $value) {
+						$targetEq->setDisplay($key, $sourceEq->getDisplay($key, $value));
+					}
+				}
+			}
+
+			//configuration:
+			foreach ($migrateConfigurationValues as $key => $value) {
+				if (is_array($value)) {
+					if (count($sourceEq->getConfiguration($key, $value)) > 0) {
+						$targetEq->setConfiguration($key, $sourceEq->getConfiguration($key, $value));
+					}
+				}
+				if (is_string($value)) {
+					if ($sourceEq->getConfiguration($key, $value) != $value) {
+						$targetEq->setConfiguration($key, $sourceEq->getConfiguration($key, $value));
+					}
+				}
 			}
 
 			$targetEq->save();
