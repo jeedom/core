@@ -1239,6 +1239,10 @@ class eqLogic {
 		$migrateConfigurationValues = [
 			'autorefresh' => '',
 			'icon' => '',
+			'battery_type' => '',
+			'battery_danger_threshold' => '',
+			'battery_warning_threshold' => '',
+			//'batterytime' => '',
 		];
 
 		try {
