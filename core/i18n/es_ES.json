@@ -49,7 +49,7 @@
     },
     "mobile\/js\/timeline.js": {
         "Rafraîchir": "Refrescar",
-        "Principal": "Principal",
+        "Principal": "Importante",
         "Timelines": "Cronologías"
     },
     "mobile\/js\/deamon.js": {
@@ -1450,7 +1450,7 @@
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Rechercher | nom | :not(nom": "Buscar | nombre | :sin nombre",
-        "Principal": "Principal",
+        "Principal": "Importante",
         "Timelines": "Cronologías",
         "Rafraîchir": "Refrescar",
         "Supprimer": "Borrar",
@@ -4749,7 +4749,7 @@
         "Option(s)": "Opción(es)",
         "Aucune": "Alguna",
         "Aucun": "No",
-        "Principal": "Principal"
+        "Principal": "Importante"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "No está autorizado para realizar esta acción, IP:",
