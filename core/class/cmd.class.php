@@ -403,6 +403,9 @@ class cmd {
 				array_push($eqLogicIds, $eqLogic->getId());
 			}
 			$eqLogicIds = implode(',', $eqLogicIds);
+			if (empty($eqLogicIds)) {
+				return;
+			}
 			$sql .= ' AND eqLogic_id IN (' . $eqLogicIds . ')';
 		}
 
