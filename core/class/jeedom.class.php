@@ -1477,7 +1477,7 @@ class jeedom {
 
 			//copy history:
 			if ($options['copyCmdHistory'] == "true" && $sourceCmd->isHistorized()) {
-				if ($sourceCmd->getSubType() == $targetCmd->getSubType())) {
+				if ($sourceCmd->getSubType() == $targetCmd->getSubType()) {
 					log::add('massReplace', 'alert', 'Copy command history: (' . $sourceCmd->getId() . ')' . $sourceCmd->getName() . ' to  (' . $targetCmd->getId() . ')' . $targetCmd->getName());
 					history::copyHistoryToCmd($sourceCmd->getId(), $targetCmd->getId());
 				}
