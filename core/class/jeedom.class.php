@@ -1411,8 +1411,14 @@ class jeedom {
 		if (count($eqlogics) == 0 && count($cmds) == 0) {
 			throw new Exception('{{Aucun équipement ou commande à remplacer}}');
 		}
+		foreach (['replaceEqs', 'hideEqs', 'copyCmdProperties', 'copyCmdHistory'] as $key) {
+			if (!isset($options[$key])) {
+				$options[$key] = false;
+			}
+		}
 
-		log::add('massReplace', 'alert', '__BEGIN MASS REPLACEMENT__');
+		log::add('massReplace', 'alert', '----------BEGIN MASS REPLACEMENT----------');
+		log::add('massReplace', 'alert', 'Options: ' . json_encode($options, JSON_PRETTY_PRINT));
 
 		$return = array('eqlogics' => 0, 'cmds' => 0);
 
@@ -1421,9 +1427,11 @@ class jeedom {
 			foreach ($eqlogics as $_sourceId => $_targetId) {
 				$sourceEq = eqLogic::byId($_sourceId);
 				$targetEq = eqLogic::byId($_targetId);
+				if (!is_object($sourceEq)) continue;
+				if (!is_object($targetEq)) continue;
 
 				//debug:
-				log::add('massReplace', 'alert', 'Replace eqLogic: (' . $sourceEq->getId() . ')' . $sourceEq->getName() . ' by (' . $targetEq->getId() . ')' . $targetEq->getName());
+				log::add('massReplace', 'alert', 'Migrate eqLogic: (' . $sourceEq->getId() . ')' . $sourceEq->getName() . ' by (' . $targetEq->getId() . ')' . $targetEq->getName());
 
 				eqLogic::migrateEqlogic($_sourceId, $_targetId, filter_var($options['hideEqs'], FILTER_VALIDATE_BOOLEAN));
 
@@ -1475,8 +1483,6 @@ class jeedom {
 						$planEqlogic->save();
 					}
 				}
-
-
 				$return['eqlogics'] += 1;
 			}
 		}
@@ -1484,17 +1490,19 @@ class jeedom {
 		//for each source cmd:
 		foreach ($cmds as $_sourceId => $_targetId) {
 			$sourceCmd = cmd::byId($_sourceId);
-			if ($sourceCmd->getLogicalId() == 'refresh') continue;
 			$targetCmd = cmd::byId($_targetId);
-
-			log::add('massReplace', 'alert', 'Replace Cmd: (' . $sourceCmd->getId() . ')' . $sourceCmd->getName() . ' by (' . $targetCmd->getId() . ')' . $targetCmd->getName());
+			if (!is_object($sourceCmd)) continue;
+			if (!is_object($targetCmd)) continue;
+			if ($sourceCmd->getLogicalId() == 'refresh') continue;
 
 			//copy properties:
 			if ($options['copyCmdProperties'] == "true") {
+				log::add('massReplace', 'alert', 'Migrate Cmd: (' . $sourceCmd->getId() . ')' . $sourceCmd->getName() . ' by (' . $targetCmd->getId() . ')' . $targetCmd->getName());
 				cmd::migrateCmd($_sourceId, $_targetId);
 			}
 
 			//replace command where used:
+			log::add('massReplace', 'alert', 'Replace Cmd: (' . $sourceCmd->getId() . ')' . $sourceCmd->getName() . ' by (' . $targetCmd->getId() . ')' . $targetCmd->getName());
 			jeedom::replaceTag(array('#' . str_replace('#', '', $sourceCmd->getId()) . '#' => '#' . str_replace('#', '', $targetCmd->getId()) . '#'));
 
 			//copy history:
