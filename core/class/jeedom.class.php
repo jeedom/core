@@ -1454,6 +1454,28 @@ class jeedom {
 					$targetEq->save();
 				}
 
+				//Migrate plan cmd config for eqLogic:
+				$planEqlogics = plan::byLinkTypeLinkId('eqLogic', $targetEq->getId());
+				foreach ($planEqlogics as $planEqlogic) {
+					$savePlan = false;
+					$newDisplayValue = array();
+					foreach (['cmdHideName', 'cmdHide', 'cmdTransparentBackground'] as $key) {
+						$displayValue = $planEqlogic->getDisplay($key, null);
+						if ($displayValue) {
+							$savePlan = true;
+							foreach ($displayValue as $cmdId => $value) {
+								if (isset($cmds[$cmdId])) {
+									$newDisplayValue[$cmds[$cmdId]] = $value;
+								}
+							}
+						}
+					}
+					if ($savePlan) {
+						$planEqlogic->setDisplay($key, $newDisplayValue);
+						$planEqlogic->save();
+					}
+				}
+
 
 				$return['eqlogics'] += 1;
 			}
