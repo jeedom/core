@@ -3758,8 +3758,7 @@
         "Fichier introuvable, impossible de le supprimer": "Archivo no encontrado, no se puede eliminar",
         "Impossible de supprimer le fichier": "No se puede eliminar el archivo",
         "Aucune méthode correspondante à :": "Ningún método correspondiente a:",
-        "Type non trouvé :": "Tipo no encontrado:",
-        "Aucun équipement ou commande à remplacer": "No hay equipos o controles para reemplazar"
+        "Type non trouvé :": "Tipo no encontrado:"
     },
     "core\/ajax\/dataStore.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -4170,7 +4169,8 @@
         "Démarrage de jeedom fini avec succès": "Inicio de jeedom finalizado con éxito",
         "De nouvelles mises à jour sont disponibles": "Nuevas actualizaciones están disponibles",
         "Vous pouvez arrêter le système": "Puedes parar el sistema",
-        "Vous pouvez lancer le redémarrage du système": "Puedes iniciar el reinicio del sistema"
+        "Vous pouvez lancer le redémarrage du système": "Puedes iniciar el reinicio del sistema",
+        "Aucun équipement ou commande à remplacer": "No hay equipos o controles para reemplazar"
     },
     "core\/class\/interactQuery.class.php": {
         "Correspondance trouvée :": "Correspondencia encontrada :",

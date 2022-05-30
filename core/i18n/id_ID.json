@@ -3758,8 +3758,7 @@
         "Fichier introuvable, impossible de le supprimer": "Fichier introuvable, impossible de le supprimer",
         "Impossible de supprimer le fichier": "Impossible de supprimer le fichier",
         "Aucune méthode correspondante à :": "Aucune methode correspondante à :",
-        "Type non trouvé :": "Type non trouvé :",
-        "Aucun équipement ou commande à remplacer": "Aucun équipement ou commande à remplacer"
+        "Type non trouvé :": "Type non trouvé :"
     },
     "core\/ajax\/dataStore.ajax.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
@@ -4170,7 +4169,8 @@
         "Démarrage de jeedom fini avec succès": "Jeedom Mulai selesai berhasil",
         "De nouvelles mises à jour sont disponibles": "De nouvelles mises à jour sont disponibles",
         "Vous pouvez arrêter le système": "Vous pouvez arrêter le système",
-        "Vous pouvez lancer le redémarrage du système": "Vous pouvez lancer le redémarrage du système"
+        "Vous pouvez lancer le redémarrage du système": "Vous pouvez lancer le redémarrage du système",
+        "Aucun équipement ou commande à remplacer": "Aucun équipement ou commande à remplacer"
     },
     "core\/class\/interactQuery.class.php": {
         "Correspondance trouvée :": "Korespondensi ditemukan:",
