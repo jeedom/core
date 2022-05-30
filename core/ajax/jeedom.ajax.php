@@ -658,58 +658,7 @@ try {
 
 	if (init('action') == 'massReplace') {
 		unautorizedInDemo();
-
-		$options = init('options');
-		$eqlogics = init('eqlogics');
-		$cmds = init('cmds');
-
-		$return = array('eqlogics' => 0, 'cmds' => 0);
-
-		if (count($eqlogics) == 0 && count($cmds) == 0) {
-			throw new Exception('{{Aucun équipement ou commande à remplacer}}');
-		}
-
-		log::add('massReplace', 'alert', '__BEGIN MASS REPLACEMENT__');
-
-		//for each source eqlogic:
-		if ($options['replaceEqs'] == "true") {
-			foreach ($eqlogics as $_replace) {
-				//debug:
-				$sourceEq = eqLogic::byId($_replace['source']);
-				$targetEq = eqLogic::byId($_replace['target']);
-				log::add('massReplace', 'alert', 'Replace eqLogic: (' . $sourceEq->getId() . ')' . $sourceEq->getName() . ' by (' . $targetEq->getId() . ')' . $targetEq->getName());
-
-				eqLogic::migrateEqlogic($_replace['source'], $_replace['target'], filter_var($options['hideEqs'], FILTER_VALIDATE_BOOLEAN));
-				$return['eqlogics'] += 1;
-			}
-		}
-
-		//for each source cmd:
-		foreach ($cmds as $_replace) {
-			$sourceCmd = cmd::byId($_replace['source']);
-			if ($sourceCmd->getLogicalId() == 'refresh') continue;
-			$targetCmd = cmd::byId($_replace['target']);
-
-			log::add('massReplace', 'alert', 'Replace Cmd: (' . $sourceCmd->getId() . ')' . $sourceCmd->getName() . ' by (' . $targetCmd->getId() . ')' . $targetCmd->getName());
-
-			//copy properties:
-			if ($options['copyCmdProperties'] == "true") {
-				cmd::migrateCmd($_replace['source'], $_replace['target']);
-			}
-
-			//replace command where used:
-			jeedom::replaceTag(array('#' . str_replace('#', '', $sourceCmd->getId()) . '#' => '#' . str_replace('#', '', $targetCmd->getId()) . '#'));
-
-			//copy history:
-			if ($options['copyCmdHistory'] == "true" && $sourceCmd->isHistorized()) {
-				if ($sourceCmd->getIsHistorized() == 1) {
-					log::add('massReplace', 'alert', 'Copy command history: (' . $sourceCmd->getId() . ')' . $sourceCmd->getName() . ' to  (' . $targetCmd->getId() . ')' . $targetCmd->getName());
-					history::copyHistoryToCmd($sourceCmd->getId(), $targetCmd->getId());
-				}
-			}
-			$return['cmds'] += 1;
-		}
-		ajax::success($return);
+		ajax::success(jeedom::massReplace(init('options'), init('eqlogics'), init('cmds')));
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));

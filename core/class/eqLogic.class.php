@@ -1228,12 +1228,14 @@ class eqLogic {
 			'height' => '',
 			'width' => '',
 			'height' => '',
-			'backGraph::info' => '',
 			'backGraph::format' => '',
 			'backGraph::type' => '',
 			'backGraph::color' => '',
 			'backGraph::height' => '',
-			'layout::dashboard::table::parameters' => '',
+			'layout::dashboard' => '',
+			'layout::dashboard::table::nbLine' => '',
+			'layout::dashboard::table::nbColumn' => '',
+			'layout::dashboard::table::parameters' => array(),
 		];
 
 		$migrateConfigurationValues = [
@@ -1267,7 +1269,7 @@ class eqLogic {
 
 			//categories:
 			foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
-				$targetEq->setCategory($key, $sourceEq->getCategory($key, 0));
+				$targetEq->setCategory($key, $sourceEq->getCategory($key, '0'));
 			}
 
 

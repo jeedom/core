@@ -2426,9 +2426,12 @@ class cmd {
 		$migrateConfigurationValues = [
 			'jeedomPreExecCmd' => array(),
 			'jeedomPostExecCmd' => array(),
+			'actionCheckCmd' => array(),
 			'timeline::enable' => '',
 			'timeline::folder' => '',
 			'repeatEventManagement' => '',
+			'historizeMode' => '',
+			'historyPurge' => '',
 			'historizeRound' => '',
 			'calcul' => '',
 			'returnStateValue' => '',
@@ -2440,7 +2443,10 @@ class cmd {
 			'jeedomPushUrl' => '',
 			'invertBinary' => '',
 			'minValue' => '',
-			'maxValue' => ''
+			'maxValue' => '',
+			'jeedomCheckCmdOperator' => '',
+			'jeedomCheckCmdTest' => '',
+			'jeedomCheckCmdTime' => '',
 		];
 
 		$migrateAlertValues = [

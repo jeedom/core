@@ -1407,6 +1407,88 @@ class jeedom {
 		return $remove_history;
 	}
 
+	public static function massReplace($options=array(), $eqlogics, $cmds) {
+		if (count($eqlogics) == 0 && count($cmds) == 0) {
+			throw new Exception('{{Aucun équipement ou commande à remplacer}}');
+		}
+
+		log::add('massReplace', 'alert', '__BEGIN MASS REPLACEMENT__');
+
+		$return = array('eqlogics' => 0, 'cmds' => 0);
+
+		//for each source eqlogic:
+		if ($options['replaceEqs'] == "true") {
+			foreach ($eqlogics as $_replace) {
+				$sourceEq = eqLogic::byId($_replace['source']);
+				$targetEq = eqLogic::byId($_replace['target']);
+
+				//debug:
+				log::add('massReplace', 'alert', 'Replace eqLogic: (' . $sourceEq->getId() . ')' . $sourceEq->getName() . ' by (' . $targetEq->getId() . ')' . $targetEq->getName());
+
+				eqLogic::migrateEqlogic($_replace['source'], $_replace['target'], filter_var($options['hideEqs'], FILTER_VALIDATE_BOOLEAN));
+
+				//migrate graphInfo if cmd known:
+				if (is_numeric($sourceEq->getDisplay('backGraph::info', ''))) {
+					$cmdGraphId = $sourceEq->getDisplay('backGraph::info', '');
+					foreach ($cmds as $_replace) {
+						if ($cmdGraphId == $_replace['source']) {
+							$targetEq->setDisplay('backGraph::info', $_replace['target']);
+							$targetEq->save();
+							break;
+						}
+					}
+				}
+				//display table dynamic settings:
+				$sourceDisplay = $sourceEq->getDisplay();
+				foreach ($sourceDisplay as $key => $value) {
+					$query = 'layout::dashboard::table::cmd::';
+					if (substr($key, 0, strlen($query)) === $query) {
+						$sourceCmdId = explode('::', str_replace($query, '', $key))[0];
+						$end = explode('::', str_replace($query, '', $key))[1];
+						foreach ($cmds as $_replace) {
+							if ($sourceCmdId == $_replace['source']) {
+								$targetEq->setDisplay($query.$_replace['target'].'::'.$end, $value);
+								break;
+							}
+						}
+					}
+					$targetEq->save();
+				}
+
+				$return['eqlogics'] += 1;
+			}
+		}
+
+		//for each source cmd:
+		foreach ($cmds as $_replace) {
+			$sourceCmd = cmd::byId($_replace['source']);
+			if ($sourceCmd->getLogicalId() == 'refresh') continue;
+			$targetCmd = cmd::byId($_replace['target']);
+
+			log::add('massReplace', 'alert', 'Replace Cmd: (' . $sourceCmd->getId() . ')' . $sourceCmd->getName() . ' by (' . $targetCmd->getId() . ')' . $targetCmd->getName());
+
+			//copy properties:
+			if ($options['copyCmdProperties'] == "true") {
+				cmd::migrateCmd($_replace['source'], $_replace['target']);
+			}
+
+			//replace command where used:
+			jeedom::replaceTag(array('#' . str_replace('#', '', $sourceCmd->getId()) . '#' => '#' . str_replace('#', '', $targetCmd->getId()) . '#'));
+
+			//copy history:
+			if ($options['copyCmdHistory'] == "true" && $sourceCmd->isHistorized()) {
+				if ($sourceCmd->getIsHistorized() == 1) {
+					log::add('massReplace', 'alert', 'Copy command history: (' . $sourceCmd->getId() . ')' . $sourceCmd->getName() . ' to  (' . $targetCmd->getId() . ')' . $targetCmd->getName());
+					history::copyHistoryToCmd($sourceCmd->getId(), $targetCmd->getId());
+				}
+			}
+			$return['cmds'] += 1;
+		}
+
+		return $return;
+	}
+
+
 	/******************************SYSTEM MANAGEMENT**********************************************************/
 
 	public static function haltSystem() {
