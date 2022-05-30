@@ -1418,67 +1418,67 @@ class jeedom {
 
 		//for each source eqlogic:
 		if ($options['replaceEqs'] == "true") {
-			foreach ($eqlogics as $_replace) {
-				$sourceEq = eqLogic::byId($_replace['source']);
-				$targetEq = eqLogic::byId($_replace['target']);
+			foreach ($eqlogics as $_sourceId => $_targetId) {
+				$sourceEq = eqLogic::byId($_sourceId);
+				$targetEq = eqLogic::byId($_targetId);
 
 				//debug:
 				log::add('massReplace', 'alert', 'Replace eqLogic: (' . $sourceEq->getId() . ')' . $sourceEq->getName() . ' by (' . $targetEq->getId() . ')' . $targetEq->getName());
 
-				eqLogic::migrateEqlogic($_replace['source'], $_replace['target'], filter_var($options['hideEqs'], FILTER_VALIDATE_BOOLEAN));
+				eqLogic::migrateEqlogic($_sourceId, $_targetId, filter_var($options['hideEqs'], FILTER_VALIDATE_BOOLEAN));
 
 				//migrate graphInfo if cmd known:
 				if (is_numeric($sourceEq->getDisplay('backGraph::info', ''))) {
 					$cmdGraphId = $sourceEq->getDisplay('backGraph::info', '');
-					foreach ($cmds as $_replace) {
-						if ($cmdGraphId == $_replace['source']) {
-							$targetEq->setDisplay('backGraph::info', $_replace['target']);
-							$targetEq->save();
-							break;
-						}
+					if (isset($cmds[$cmdGraphId])) {
+						$targetEq->setDisplay('backGraph::info', $cmds[$cmdGraphId]);
+						$targetEq->save();
 					}
 				}
 				//display table dynamic settings:
-				$sourceDisplay = $sourceEq->getDisplay();
-				foreach ($sourceDisplay as $key => $value) {
-					$query = 'layout::dashboard::table::cmd::';
-					if (substr($key, 0, strlen($query)) === $query) {
-						$sourceCmdId = explode('::', str_replace($query, '', $key))[0];
-						$end = explode('::', str_replace($query, '', $key))[1];
-						foreach ($cmds as $_replace) {
-							if ($sourceCmdId == $_replace['source']) {
-								$targetEq->setDisplay($query.$_replace['target'].'::'.$end, $value);
-								break;
+				if ($sourceEq->getDisplay('layout::dashboard', '') == 'table') {
+					$sourceDisplay = $sourceEq->getDisplay();
+					foreach ($sourceDisplay as $key => $value) {
+						$query = 'layout::dashboard::table::cmd::';
+						if (substr($key, 0, strlen($query)) === $query) {
+							$sourceCmdId = explode('::', str_replace($query, '', $key))[0];
+							$end = explode('::', str_replace($query, '', $key))[1];
+							if (isset($cmds[$sourceCmdId])) {
+								$targetEq->setDisplay('backGraph::info', $cmds[$sourceCmdId]);
 							}
 						}
+						$targetEq->save();
 					}
+				} elseif ($targetEq->getDisplay('layout::dashboard', '') == 'table') {
+					$targetEq->setDisplay('layout::dashboard', null);
 					$targetEq->save();
 				}
+
 
 				$return['eqlogics'] += 1;
 			}
 		}
 
 		//for each source cmd:
-		foreach ($cmds as $_replace) {
-			$sourceCmd = cmd::byId($_replace['source']);
+		foreach ($cmds as $_sourceId => $_targetId) {
+			$sourceCmd = cmd::byId($_sourceId);
 			if ($sourceCmd->getLogicalId() == 'refresh') continue;
-			$targetCmd = cmd::byId($_replace['target']);
+			$targetCmd = cmd::byId($_targetId);
 
 			log::add('massReplace', 'alert', 'Replace Cmd: (' . $sourceCmd->getId() . ')' . $sourceCmd->getName() . ' by (' . $targetCmd->getId() . ')' . $targetCmd->getName());
 
 			//copy properties:
 			if ($options['copyCmdProperties'] == "true") {
-				cmd::migrateCmd($_replace['source'], $_replace['target']);
+				cmd::migrateCmd($_sourceId, $_targetId);
 			}
 
 			//replace command where used:
 			jeedom::replaceTag(array('#' . str_replace('#', '', $sourceCmd->getId()) . '#' => '#' . str_replace('#', '', $targetCmd->getId()) . '#'));
 
 			//copy history:
-			if ($options['copyCmdHistory'] == "true" && $sourceCmd->isHistorized()) {
+			if ($options['copyCmdHistory'] == "true" && $sourceCmd->getIsHistorized() == 1) {
 				if ($sourceCmd->getSubType() == $targetCmd->getSubType()) {
-					log::add('massReplace', 'alert', 'Copy command history: (' . $sourceCmd->getId() . ')' . $sourceCmd->getName() . ' to  (' . $targetCmd->getId() . ')' . $targetCmd->getName());
+					log::add('massReplace', 'alert', 'Copy command history: (' . $sourceCmd->getId() . ')' . $sourceCmd->getName() . ' to (' . $targetCmd->getId() . ')' . $targetCmd->getName());
 					history::copyHistoryToCmd($sourceCmd->getId(), $targetCmd->getId());
 				}
 			}

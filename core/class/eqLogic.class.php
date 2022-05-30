@@ -1263,9 +1263,7 @@ class eqLogic {
 				$targetEq->setTags($sourceEq->getTags());
 			}
 
-			if ($sourceEq->getTimeout() != null) {
-				$targetEq->setTimeout($sourceEq->getTimeout());
-			}
+			$targetEq->setTimeout($sourceEq->getTimeout());
 
 			//categories:
 			foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
@@ -1297,6 +1295,8 @@ class eqLogic {
 				if (is_string($value)) {
 					if ($sourceEq->getConfiguration($key, $value) != $value) {
 						$targetEq->setConfiguration($key, $sourceEq->getConfiguration($key, $value));
+					} else {
+						$targetEq->setConfiguration($key, null);
 					}
 				}
 			}

@@ -386,8 +386,8 @@ $('#bt_replace').on('click', function() {
       var opt_copyHistory = $('#opt_copyHistory').is(':checked')
       var opt_copyCmdProperties = $('#opt_copyCmdProperties').is(':checked')
 
-      var replaceEqs = new Array()
-      var replaceCmds = new Array()
+      var replaceEqs = {}
+      var replaceCmds = {}
 
       $('#eqSource ul.eqLogic').each(function() {
         if ($(this).find('input.cb_selEqLogic').is(":checked")) {
@@ -395,18 +395,11 @@ $('#bt_replace').on('click', function() {
           var targetEqId = $(this).find('> div.replacer select').val()
 
           if (targetEqId != '') {
-            replaceEqs.push({
-              source: sourceEqId,
-              target: targetEqId
-            })
-
+            replaceEqs[sourceEqId] = targetEqId
             $(this).find('li.cmd').each(function() {
               var replaceId = $(this).find('select').val()
               if (replaceId != '') {
-                replaceCmds.push({
-                  source: $(this).attr('data-id'),
-                  target: replaceId
-                })
+                replaceCmds[$(this).attr('data-id')] = replaceId
               }
             })
           }

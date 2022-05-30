@@ -2508,6 +2508,8 @@ class cmd {
 				if (is_string($value)) {
 					if ($sourceCmd->getAlert($key, $value) != $value) {
 						$targetCmd->setAlert($key, $sourceCmd->getAlert($key, $value));
+					} else {
+						$targetCmd->setAlert($key, null);
 					}
 				}
 			}
