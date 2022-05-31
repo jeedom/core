@@ -1467,7 +1467,11 @@ class jeedom {
 						$targetEq->setDisplay('backGraph::info', $_cmds[$cmdGraphId]);
 						$targetEq->save();
 					}
+				} elseif ($targetEq->getDisplay('backGraph::info', '0') != '0') {
+					$targetEq->setDisplay('backGraph::info', '0');
+					$targetEq->save();
 				}
+
 				//display table dynamic settings:
 				if ($sourceEq->getDisplay('layout::dashboard', '') == 'table') {
 					$sourceDisplay = $sourceEq->getDisplay();
@@ -1488,6 +1492,13 @@ class jeedom {
 				}
 
 				$return['eqlogics'] += 1;
+			}
+		} elseif ($_options['hideEqs']) {
+			foreach ($_eqlogics as $_sourceId => $_targetId) {
+				$sourceEq = eqLogic::byId($_sourceId);
+				if (!is_object($sourceEq)) continue;
+				$sourceEq->setIsVisible(0);
+				$sourceEq->save();
 			}
 		}
 
