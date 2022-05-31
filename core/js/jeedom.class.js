@@ -185,10 +185,10 @@ jeedom.init = function() {
   });
 
   $body.on('jeedom::gotoplan', function(_event, _plan_id) {
-    if (getUrlVars('p') == 'plan' && 'function' == typeof(displayPlan)) {
+    if (getUrlVars('p') == 'plan' && 'function' == typeof(jeeFrontEnd.plan.displayPlan)) {
       if (_plan_id != $('#sel_planHeader').attr('data-link_id')) {
-        planHeader_id = _plan_id;
-        displayPlan();
+        jeephp2js.planHeader_id = _plan_id;
+        jeeFrontEnd.plan.displayPlan();
       }
     }
   });
