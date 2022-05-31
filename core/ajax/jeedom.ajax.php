@@ -658,7 +658,7 @@ try {
 
 	if (init('action') == 'massReplace') {
 		unautorizedInDemo();
-		ajax::success(jeedom::massReplace(init('options'), init('eqlogics'), init('cmds')));
+		ajax::success(jeedom::massReplace(init('options', array()), init('eqlogics', array()), init('cmds', array())));
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));

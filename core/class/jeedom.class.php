@@ -1407,39 +1407,64 @@ class jeedom {
 		return $remove_history;
 	}
 
-	public static function massReplace($options=array(), $eqlogics, $cmds) {
-		if (count($eqlogics) == 0 && count($cmds) == 0) {
+	public static function massReplace($_options=array(), $_eqlogics=array(), $_cmds=array()) {
+		if (!is_array($_options) || !is_array($_eqlogics) || !is_array($_cmds)) {
+			throw new Exception('Missmatch arguments');
+		}
+		if (count($_eqlogics) == 0 && count($_cmds) == 0) {
 			throw new Exception('{{Aucun équipement ou commande à remplacer}}');
 		}
 		foreach (['replaceEqs', 'hideEqs', 'copyCmdProperties', 'copyCmdHistory'] as $key) {
-			if (!isset($options[$key])) {
-				$options[$key] = false;
+			if (!isset($_options[$key])) {
+				$_options[$key] = false;
 			}
 		}
 
 		log::add('massReplace', 'alert', '----------BEGIN MASS REPLACEMENT----------');
-		log::add('massReplace', 'alert', 'Options: ' . json_encode($options, JSON_PRETTY_PRINT));
+		log::add('massReplace', 'alert', 'Options: ' . json_encode($_options, JSON_PRETTY_PRINT));
 
 		$return = array('eqlogics' => 0, 'cmds' => 0);
 
 		//for each source eqlogic:
-		if ($options['replaceEqs'] == "true") {
-			foreach ($eqlogics as $_sourceId => $_targetId) {
+		if ($_options['replaceEqs'] == "true") {
+			foreach ($_eqlogics as $_sourceId => $_targetId) {
 				$sourceEq = eqLogic::byId($_sourceId);
 				$targetEq = eqLogic::byId($_targetId);
-				if (!is_object($sourceEq)) continue;
-				if (!is_object($targetEq)) continue;
+				if (!is_object($sourceEq) || !is_object($targetEq)) continue;
 
-				//debug:
-				log::add('massReplace', 'alert', 'Migrate eqLogic: (' . $sourceEq->getId() . ')' . $sourceEq->getName() . ' by (' . $targetEq->getId() . ')' . $targetEq->getName());
+				log::add('massReplace', 'alert', 'Migrate eqLogic: (' . $sourceEq->getId() . ')' . $sourceEq->getName() . ' to (' . $targetEq->getId() . ')' . $targetEq->getName());
 
-				eqLogic::migrateEqlogic($_sourceId, $_targetId, filter_var($options['hideEqs'], FILTER_VALIDATE_BOOLEAN));
+				//Migrate plan cmd config for eqLogic:
+				$planEqlogics = plan::byLinkTypeLinkId('eqLogic', $sourceEq->getId());
+				foreach ($planEqlogics as $planEqlogic) {
+					$savePlan = false;
+					foreach (['cmdHideName', 'cmdHide', 'cmdTransparentBackground'] as $key) {
+						$displayValue = $planEqlogic->getDisplay($key, null);
+						if ($displayValue) {
+							$savePlan = true;
+							$newDisplayValue = array();
+							foreach ($displayValue as $cmdId => $value) {
+								if (isset($_cmds[$cmdId])) {
+									$newDisplayValue[$_cmds[$cmdId]] = $value;
+								}
+							}
+							$planEqlogic->setDisplay($key, $newDisplayValue);
+						}
+					}
+					if ($savePlan) {
+						log::add('massReplace', 'alert', 'Replace eqLogic: (' . $sourceEq->getId() . ')' . $sourceEq->getName() . ' in Design: ' . $planEqlogic->getPlanHeader()->getName());
+						$planEqlogic->save();
+					}
+				}
+
+				//Migrate eqLogic configurations:
+				eqLogic::migrateEqlogic($_sourceId, $_targetId, filter_var($_options['hideEqs'], FILTER_VALIDATE_BOOLEAN));
 
 				//migrate graphInfo if cmd known:
 				if (is_numeric($sourceEq->getDisplay('backGraph::info', ''))) {
 					$cmdGraphId = $sourceEq->getDisplay('backGraph::info', '');
-					if (isset($cmds[$cmdGraphId])) {
-						$targetEq->setDisplay('backGraph::info', $cmds[$cmdGraphId]);
+					if (isset($_cmds[$cmdGraphId])) {
+						$targetEq->setDisplay('backGraph::info', $_cmds[$cmdGraphId]);
 						$targetEq->save();
 					}
 				}
@@ -1451,8 +1476,8 @@ class jeedom {
 						if (substr($key, 0, strlen($query)) === $query) {
 							$sourceCmdId = explode('::', str_replace($query, '', $key))[0];
 							$end = explode('::', str_replace($query, '', $key))[1];
-							if (isset($cmds[$sourceCmdId])) {
-								$targetEq->setDisplay('backGraph::info', $cmds[$sourceCmdId]);
+							if (isset($_cmds[$sourceCmdId])) {
+								$targetEq->setDisplay('backGraph::info', $_cmds[$sourceCmdId]);
 							}
 						}
 						$targetEq->save();
@@ -1462,42 +1487,20 @@ class jeedom {
 					$targetEq->save();
 				}
 
-				//Migrate plan cmd config for eqLogic:
-				$planEqlogics = plan::byLinkTypeLinkId('eqLogic', $targetEq->getId());
-				foreach ($planEqlogics as $planEqlogic) {
-					$savePlan = false;
-					$newDisplayValue = array();
-					foreach (['cmdHideName', 'cmdHide', 'cmdTransparentBackground'] as $key) {
-						$displayValue = $planEqlogic->getDisplay($key, null);
-						if ($displayValue) {
-							$savePlan = true;
-							foreach ($displayValue as $cmdId => $value) {
-								if (isset($cmds[$cmdId])) {
-									$newDisplayValue[$cmds[$cmdId]] = $value;
-								}
-							}
-						}
-					}
-					if ($savePlan) {
-						$planEqlogic->setDisplay($key, $newDisplayValue);
-						$planEqlogic->save();
-					}
-				}
 				$return['eqlogics'] += 1;
 			}
 		}
 
 		//for each source cmd:
-		foreach ($cmds as $_sourceId => $_targetId) {
+		foreach ($_cmds as $_sourceId => $_targetId) {
 			$sourceCmd = cmd::byId($_sourceId);
 			$targetCmd = cmd::byId($_targetId);
-			if (!is_object($sourceCmd)) continue;
-			if (!is_object($targetCmd)) continue;
+			if (!is_object($sourceCmd) || !is_object($targetCmd)) continue;
 			if ($sourceCmd->getLogicalId() == 'refresh') continue;
 
 			//copy properties:
-			if ($options['copyCmdProperties'] == "true") {
-				log::add('massReplace', 'alert', 'Migrate Cmd: (' . $sourceCmd->getId() . ')' . $sourceCmd->getName() . ' by (' . $targetCmd->getId() . ')' . $targetCmd->getName());
+			if ($_options['copyCmdProperties'] == "true") {
+				log::add('massReplace', 'alert', 'Migrate Cmd: (' . $sourceCmd->getId() . ')' . $sourceCmd->getName() . ' to (' . $targetCmd->getId() . ')' . $targetCmd->getName());
 				cmd::migrateCmd($_sourceId, $_targetId);
 			}
 
@@ -1506,7 +1509,7 @@ class jeedom {
 			jeedom::replaceTag(array('#' . str_replace('#', '', $sourceCmd->getId()) . '#' => '#' . str_replace('#', '', $targetCmd->getId()) . '#'));
 
 			//copy history:
-			if ($options['copyCmdHistory'] == "true" && $sourceCmd->getIsHistorized() == 1) {
+			if ($_options['copyCmdHistory'] == "true" && $sourceCmd->getIsHistorized() == 1) {
 				if ($sourceCmd->getSubType() == $targetCmd->getSubType()) {
 					log::add('massReplace', 'alert', 'Copy command history: (' . $sourceCmd->getId() . ')' . $sourceCmd->getName() . ' to (' . $targetCmd->getId() . ')' . $targetCmd->getName());
 					history::copyHistoryToCmd($sourceCmd->getId(), $targetCmd->getId());
@@ -1515,6 +1518,7 @@ class jeedom {
 			$return['cmds'] += 1;
 		}
 
+		log::add('massReplace', 'alert', '----------MASS REPLACEMENT END----------');
 		return $return;
 	}
 
