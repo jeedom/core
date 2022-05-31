@@ -383,8 +383,9 @@ $('#bt_replace').on('click', function() {
 
       var opt_replaceEqs = $('#opt_replaceEqs').is(':checked')
       var opt_hideEqs = $('#opt_hideEqs').is(':checked')
-      var opt_copyHistory = $('#opt_copyHistory').is(':checked')
       var opt_copyCmdProperties = $('#opt_copyCmdProperties').is(':checked')
+      var opt_removeHistory = $('#opt_removeHistory').is(':checked')
+      var opt_copyHistory = $('#opt_copyHistory').is(':checked')
 
       var replaceEqs = {}
       var replaceCmds = {}
@@ -429,8 +430,9 @@ $('#bt_replace').on('click', function() {
         options: {
           replaceEqs: opt_replaceEqs,
           hideEqs: opt_hideEqs,
-          copyCmdHistory: opt_copyHistory,
-          copyCmdProperties: opt_copyCmdProperties
+          copyCmdProperties: opt_copyCmdProperties,
+          removeCmdHistory: opt_removeHistory,
+          copyCmdHistory: opt_copyHistory
         },
         eqlogics: replaceEqs,
         cmds: replaceCmds,

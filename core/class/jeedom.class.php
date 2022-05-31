@@ -1414,7 +1414,7 @@ class jeedom {
 		if (count($_eqlogics) == 0 && count($_cmds) == 0) {
 			throw new Exception('{{Aucun équipement ou commande à remplacer}}');
 		}
-		foreach (['replaceEqs', 'hideEqs', 'copyCmdProperties', 'copyCmdHistory'] as $key) {
+		foreach (['replaceEqs', 'hideEqs', 'copyCmdProperties', 'removeCmdHistory', 'copyCmdHistory'] as $key) {
 			if (!isset($_options[$key])) {
 				$_options[$key] = false;
 			}
@@ -1507,6 +1507,12 @@ class jeedom {
 			//replace command where used:
 			log::add('massReplace', 'alert', 'Replace Cmd: (' . $sourceCmd->getId() . ')' . $sourceCmd->getName() . ' by (' . $targetCmd->getId() . ')' . $targetCmd->getName());
 			jeedom::replaceTag(array('#' . str_replace('#', '', $sourceCmd->getId()) . '#' => '#' . str_replace('#', '', $targetCmd->getId()) . '#'));
+
+			//remove history:
+			if ($_options['removeCmdHistory'] == "true" && $targetCmd->getType() == 'info') {
+				log::add('massReplace', 'alert', 'Remove command history: (' . $targetCmd->getId() . ')' . $targetCmd->getName());
+				history::removes($targetCmd->getId());
+			}
 
 			//copy history:
 			if ($_options['copyCmdHistory'] == "true" && $sourceCmd->getIsHistorized() == 1) {

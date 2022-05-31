@@ -103,7 +103,7 @@ sendVarToJS([
             <div class="panel-body">
 
               <div class="form-group col-lg-12">
-                <label class="col-lg-4 col-md-6 col-sm-6 col-xs-10 control-label">{{Copier la configuration des équipements source}}
+                <label class="col-lg-4 col-md-6 col-sm-6 col-xs-10 control-label">{{Copier la configuration de l'équipement source}}
                 <sup><i class="fas fa-question-circle" title="{{Copie les propriétés de l’équipement source (objet parent, catégories, visibilité, positionnement dashboard, etc) sur l’équipement cible.}}"></i></sup>
                 </label>
                 <div class="col-lg-1">
@@ -112,7 +112,7 @@ sendVarToJS([
               </div>
 
               <div class="form-group col-lg-12">
-                <label class="col-lg-4 col-md-6 col-sm-6 col-xs-10 control-label">{{Cacher les équipements source}}
+                <label class="col-lg-4 col-md-6 col-sm-6 col-xs-10 control-label">{{Cacher l'équipement source}}
                 <sup><i class="fas fa-question-circle" title="{{Rend invisible l'équipement source.}}"></i></sup>
                 </label>
                 <div class="col-lg-1">
@@ -121,20 +121,29 @@ sendVarToJS([
               </div>
 
               <div class="form-group col-lg-12">
-                <label class="col-lg-4 col-md-6 col-sm-6 col-xs-10 control-label">{{Copier l'historique des commandes source}}
-                <sup><i class="fas fa-question-circle" title="{{Copie l'historique de la commande source sur la commande cible.}}"></i></sup>
-                </label>
-                <div class="col-lg-1">
-                  <input id="opt_copyHistory" type="checkbox" class="form-control" />
-                </div>
-              </div>
-
-              <div class="form-group col-lg-12">
-                <label class="col-lg-4 col-md-6 col-sm-6 col-xs-10 control-label">{{Copier la configuration des commandes source}}
+                <label class="col-lg-4 col-md-6 col-sm-6 col-xs-10 control-label">{{Copier la configuration de la commande source}}
                 <sup><i class="fas fa-question-circle" title="{{Copie les propriétés et configurations de la commande source sur la commande cible.}}"></i></sup>
                 </label>
                 <div class="col-lg-1">
                   <input id="opt_copyCmdProperties" type="checkbox" class="form-control" />
+                </div>
+              </div>
+
+              <div class="form-group col-lg-12">
+                <label class="col-lg-4 col-md-6 col-sm-6 col-xs-10 control-label">{{Supprimer l'historique de la commandes cible}}
+                <sup><i class="fas fa-question-circle" title="{{Supprime l'historique de la commande cible.}}"></i></sup>
+                </label>
+                <div class="col-lg-1">
+                  <input id="opt_removeHistory" type="checkbox" class="form-control" />
+                </div>
+              </div>
+
+              <div class="form-group col-lg-12">
+                <label class="col-lg-4 col-md-6 col-sm-6 col-xs-10 control-label">{{Copier l'historique de la commande source}}
+                <sup><i class="fas fa-question-circle" title="{{Copie l'historique de la commande source sur la commande cible.}}"></i></sup>
+                </label>
+                <div class="col-lg-1">
+                  <input id="opt_copyHistory" type="checkbox" class="form-control" />
                 </div>
               </div>
 
