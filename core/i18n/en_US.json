@@ -2002,14 +2002,14 @@
         "Filtre par plugin": "Filter by plugin",
         "Plugins": "Plugins",
         "Options": "Options",
-        "Copier la configuration de l'équipement source": "Copy configuration from source device",
-        "Copie les propriétés de l’équipement source (objet parent, catégories, visibilité, positionnement dashboard, etc) sur l’équipement cible.": "Copies the properties of the source equipment (parent object, categories, visibility, dashboard positioning, etc.) to the target device",
+        "Copier la configuration de l'équipement source": "Copy configuration from source equipment",
+        "Copie les propriétés de l’équipement source (objet parent, catégories, visibilité, positionnement dashboard, etc) sur l’équipement cible.": "Copy the properties of source equipment (parent object, categories, visibility, dashboard positioning, etc.) to target equipment",
         "Cacher l'équipement source": "Hide source equipment",
         "Rend invisible l'équipement source.": "Makes source equipment invisible",
         "Copier la configuration de la commande source": "Copy configuration from source command",
-        "Copie les propriétés et configurations de la commande source sur la commande cible.": "Copy properties and configurations from the source command to the target command",
+        "Copie les propriétés et configurations de la commande source sur la commande cible.": "Copy properties and configurations from source command to target command",
         "Supprimer l'historique de la commandes cible": "Delete target command history",
-        "Supprime l'historique de la commande cible.": "Deletes the history of the target command",
+        "Supprime l'historique de la commande cible.": "Delete the history of the target command",
         "Copier l'historique de la commande source": "Copy source command history",
         "Copie l'historique de la commande source sur la commande cible.": "Copy history of source command to target command",
         "Remplacements": "Replacements",
@@ -3073,11 +3073,11 @@
         "Commentaire": "Remark"
     },
     "desktop\/js\/replace.js": {
-        "Aucun": "No",
-        "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Are you sure you want to Replace these equipment and commands?",
+        "Aucun": "None",
+        "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Are you sure you want to Replace these equipments and commands?",
         "Aucun équipement à remplacer": "No equipment to replace",
         "Aucune commande à remplacer": "No command to replace",
-        "Remplacement effectué": "Replacement made"
+        "Remplacement effectué": "Replacement done"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Supprimée le": "Deleted on",
