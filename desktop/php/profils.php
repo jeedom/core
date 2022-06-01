@@ -116,6 +116,9 @@ $objectOptions = jeeObject::getUISelectList(false);
 								<select class="form-control userAttr" data-l1key="options" data-l2key="defaultDesktopView">
 									<?php
 									foreach ((view::all()) as $view) {
+                                      	if (!$view->hasRight('r')) {
+											continue;
+										}
 										echo '<option value="'.$view->getId().'">'.$view->getName().'</option>';
 									}
 									?>
@@ -126,6 +129,9 @@ $objectOptions = jeeObject::getUISelectList(false);
 								<select class="form-control userAttr" data-l1key="options" data-l2key="defaultMobileView">
 									<?php
 									foreach ((view::all()) as $view) {
+                                      	if (!$view->hasRight('r')) {
+											continue;
+										}
 										echo '<option value="'.$view->getId().'">'.$view->getName().'</option>';
 									}
 									?>
@@ -148,6 +154,9 @@ $objectOptions = jeeObject::getUISelectList(false);
 								<select class="form-control userAttr" data-l1key="options" data-l2key="defaultDashboardPlan">
 									<?php
 									foreach ((planHeader::all()) as $plan) {
+                                      	if (!$plan->hasRight('r')) {
+											continue;
+										}
 										echo '<option value="'.$plan->getId().'">'.$plan->getName().'</option>';
 									}
 									?>
@@ -158,6 +167,9 @@ $objectOptions = jeeObject::getUISelectList(false);
 								<select class="form-control userAttr" data-l1key="options" data-l2key="defaultMobilePlan">
 									<?php
 									foreach ((planHeader::all()) as $plan) {
+                                      	if (!$plan->hasRight('r')) {
+											continue;
+										}
 										echo '<option value="'.$plan->getId().'">'.$plan->getName().'</option>';
 									}
 									?>

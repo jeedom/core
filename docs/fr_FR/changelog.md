@@ -1,16 +1,26 @@
 # Changelog Jeedom V4.2
 
+## 4.2.18
+
+- Mise à jour de nodejs
+
+## 4.2.17
+
+- Bugfix Core : Accès utilisateur limité aux designs et vues.
+- Bugfix UI : Affichage des blocs A sous Chrome.
+- Bugfix : lien vers la documentation lorsque le plugin est en beta
+
 ## 4.2.16
 
 - Bugfix Core : Scénario : Fusion des éléments collés dans certains cas.
 - Bugfix Core : Création d'archive avec l'éditeur de fichiers.
-- Bugfix : augmentation du délai pour le contact du service de monitoring (permet d'alléger la charge sur les serveurs cloud)
+- Bugfix : augmentation du délai pour le contact du service de monitoring (permet d'alléger la charge sur les serveurs cloud).
 
 ## 4.2.15
 
 - Bugfix UI : Scénario : Ajout de l'action *genericType* dans la modale de sélection.
 - Bugfix Core : Correction du décalage sur les historiques calculés.
-- Bugfix : Installation des dépendances du plugin zigbee
+- Bugfix : Installation des dépendances du plugin zigbee.
 
 ## 4.2.14
 

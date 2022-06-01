@@ -8,7 +8,7 @@ if (init('view_id') == '') {
 	if ($_SESSION['user']->getOptions('defaultDesktopView') != '') {
 		$view = view::byId($_SESSION['user']->getOptions('defaultDesktopView'));
 	}
-	if (!is_object($view)) {
+	if (!is_object($view) && isConnect('admin')) {
 		$view = $list_view[0];
 	}
 } else {
@@ -17,10 +17,25 @@ if (init('view_id') == '') {
 		throw new Exception('{{Vue inconnue. Vérifier l\'ID.}}');
 	}
 }
-if (!is_object($view)) {
-	throw new Exception('{{Aucune vue n\'existe, cliquez <a href="index.php?v=d&p=view_edit">ici</a> pour en créer une.}}');
+
+if (!is_object($view) && count($list_view) > 0) {
+	$view = $list_view[0];
 }
-sendVarToJS('view_id', $view->getId());
+
+if (is_object($view) && !$view->hasRight('r')) {
+	$view = null;
+	throw new Exception('{{Vous n\'avez pas le droit d\'accéder à cette vue.}}');
+}
+
+if (!is_object($view)) {
+	if (isConnect('admin')) {
+		throw new Exception('{{Aucune vue n\'existe, cliquez <a href="index.php?v=d&p=view_edit">ici</a> pour en créer une.}}');
+	}
+	sendVarToJS('view_id', -1);
+} else {
+	sendVarToJS('view_id', $view->getId());
+}
+
 ?>
 
 <div class="row row-overflow">

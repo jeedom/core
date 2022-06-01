@@ -226,4 +226,3 @@ if [ "$toReAddRepo" -ne "0" ]; then
   sudo wget --quiet -O - http://repo.jeedom.com/odroid/conf/jeedom.gpg.key | sudo apt-key add - &>/dev/null
   sudo apt-add-repository "deb http://repo.jeedom.com/odroid/ stable main" &>/dev/null
 fi
-

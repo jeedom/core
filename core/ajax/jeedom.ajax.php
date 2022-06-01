@@ -94,7 +94,10 @@ try {
 			}
 		}
 		if (isset($plugin) && is_object($plugin)) {
-			if ($plugin->getDocumentation() != '') {
+			$update = $plugin->getUpdate();
+			if (is_object($update) && $update->getConfiguration('version', 'stable') == 'beta' && $plugin->getDocumentation_beta() != '') {
+				ajax::success($plugin->getDocumentation_beta() . '?theme=' . $theme);
+			} else if ($plugin->getDocumentation() != '') {
 				ajax::success($plugin->getDocumentation() . '?theme=' . $theme);
 			}
 		} else {
