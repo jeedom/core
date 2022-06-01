@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.2
 
+## 4.2.18
+
+- Mise à jour de nodejs
+
 ## 4.2.17
 
 - Bugfix Core : Accès utilisateur limité aux designs et vues.
