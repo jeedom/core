@@ -1,10 +1,10 @@
 #!/bin/bash
 
-installVer='14' 	#NodeJS major version to be installed
-minVer='14'	      #min NodeJS major version to be accepted
+installVer='16' 	#NodeJS major version to be installed
+minVer='16'	      #min NodeJS major version to be accepted
 
 # vérifier si toujours nécessaire, cette source traine encore sur certaines smart et si une source est invalide -> nodejs ne s'installera pas
-if [ -f /etc/apt/sources.list.d/deb-multimedia.list* ]; then
+if ls /etc/apt/sources.list.d/deb-multimedia.list* &>/dev/null; then
   echo "Vérification si la source deb-multimedia existe (bug lors du apt-get update si c'est le cas)"
   echo "deb-multimedia existe !"
   if [ -f /etc/apt/sources.list.d/deb-multimedia.list.disabled ]; then
@@ -97,7 +97,7 @@ else
     #version to install for armv6 (to check on https://unofficial-builds.nodejs.org)
     if [[ $installVer == "12" ]]
     then
-      armVer="12.21.0"
+      armVer="12.22.12"
     fi
     if [[ $installVer == "13" ]]
     then
@@ -105,11 +105,15 @@ else
     fi
     if [[ $installVer == "14" ]]
     then
-      armVer="14.16.0"
+      armVer="14.19.2"
     fi
     if [[ $installVer == "15" ]]
     then
-      armVer="15.9.0"
+      armVer="15.14.0"
+    fi
+    if [[ $installVer == "16" ]]
+    then
+      armVer="16.15.0"
     fi
     echo "Jeedom Mini ou Raspberry 1, 2 ou zéro détecté, non supporté mais on essaye l'utilisation du paquet non-officiel ${armVer} pour armv6l"
     wget https://unofficial-builds.nodejs.org/download/release/${armvVer}/node-v${armVer}-linux-armv6l.tar.gz
@@ -219,7 +223,7 @@ fi
 if [ "$toReAddRepo" -ne "0" ]; then
   echo "Réactivation de la source repo.jeedom.com qu'on avait désactivé !"
   toReAddRepo=0
-  sudo wget --quiet -O - http://repo.jeedom.com/odroid/conf/jeedom.gpg.key | sudo apt-key add - 
+  sudo wget --quiet -O - http://repo.jeedom.com/odroid/conf/jeedom.gpg.key | sudo apt-key add - &>/dev/null
   sudo apt-add-repository "deb http://repo.jeedom.com/odroid/ stable main" &>/dev/null
 fi
 
