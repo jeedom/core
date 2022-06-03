@@ -35,7 +35,7 @@ $('#bt_login_validate').on('click', function() {
     twoFactorCode: $('#in_twoFactorCode').val(),
     storeConnection: $('#cb_storeConnection').value(),
     error: function(error) {
-      if(error.code == -32012){
+      if (error.code == -32012) {
         $('#div_twoFactorCode').show()
         return
       }
@@ -45,10 +45,10 @@ $('#bt_login_validate').on('click', function() {
       })
       $('.veen').animateCss('shake')
     },
-    success: function(data) {
+    success: function() {
       if ($('#in_login_username').val() == $('#in_login_password').val()) {
-        $('#phrase_login_btn').html('{{Alerte de sécurité :<br/>Votre mot de passe doit être changé.}}')
-        $('#titre_login_btn').html('{{Information importante :}}')
+        $('#phrase_login_btn').html('{{Alerte de sécurité}} :<br>{{Votre mot de passe doit être changé.}}')
+        $('#titre_login_btn').html('{{Information importante}} :')
         $('.veen .wrapper').addClass('move')
         $('.body').css('background', 'linear-gradient(360deg, rgba(147,204,1,0.6), rgba(147,204,1,1))')
         $('.login-btn').css('color', '#000000')
@@ -69,9 +69,9 @@ $('#bt_login_validate').on('click', function() {
 })
 
 $('#bt_change_validate').on('click', function() {
-  if ($('#in_change_password').val() == $('#in_change_passwordToo').val()) {
+  if ($('#in_change_password').val() != '' && $('#in_change_password').val() == $('#in_change_passwordToo').val()) {
     jeedom.user.get({
-      error: function(data) {
+      error: function() {
         $.fn.showAlert({
           message: error.message,
           level: 'danger'
@@ -110,10 +110,10 @@ $('#bt_change_validate').on('click', function() {
           }
         })
       }
-    });
+    })
   } else {
     $.fn.showAlert({
-      message: 'Les deux mots de passe ne sont pas identiques',
+      message: '{{Le mot de passe est vide ou ne correspond pas à la confirmation.}}',
       level: 'danger'
     })
   }
@@ -166,7 +166,7 @@ $('#bt_login_validate_market').on('click', function() {
 })
 
 $('#bt_ignore_market').on('click', function() {
-  window.location.reload();
+  window.location.reload()
 })
 
 $('#bt_compte_market').on('click', function() {
@@ -197,7 +197,7 @@ $('#in_change_passwordToo').keypress(function(event) {
 $(function() {
   $('#bootstrap_theme_css').attr('href', 'core/themes/core2019_Light/desktop/core2019_Light.css')
 
-  document.title = JEEDOM_PRODUCT_NAME + ' - Login';
+  document.title = JEEDOM_PRODUCT_NAME + ' - Login'
 
   $(".veen .login-btn button").click(function() {
     $('.veen .wrapper').removeClass('move')
