@@ -678,6 +678,9 @@ class repo_market {
 			if (isset($_result['dns::remote']) && config::byKey('dns::remote') != $_result['dns::remote']) {
 				config::save('dns::remote', $_result['dns::remote']);
 				$restart_dns = true;
+			} elseif (!isset($_result['dns::remote']) && config::byKey('dns::remote') != '') {
+				config::save('dns::remote', '');
+				$restart_dns = true;
 			}
 			if (isset($_result['service::monitoring::enable']) && config::byKey('service::monitoring::enable') != $_result['service::monitoring::enable']) {
 				config::save('service::monitoring::enable', $_result['service::monitoring::enable']);
