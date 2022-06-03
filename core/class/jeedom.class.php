@@ -1458,42 +1458,39 @@ class jeedom {
 				}
 
 				//Migrate eqLogic configurations:
-				eqLogic::migrateEqlogic($_sourceId, $_targetId, filter_var($_options['hideEqs'], FILTER_VALIDATE_BOOLEAN));
+				eqLogic::migrateEqlogic($_sourceId, $_targetId);
 
 				//migrate graphInfo if cmd known:
-				if (is_numeric($sourceEq->getDisplay('backGraph::info', ''))) {
-					$cmdGraphId = $sourceEq->getDisplay('backGraph::info', '');
+				$var = $sourceEq->getDisplay('backGraph::info', '0');
+				if ($sourceEq->getDisplay('backGraph::info', '0') != '0') {
+					$cmdGraphId = $sourceEq->getDisplay('backGraph::info');
 					if (isset($_cmds[$cmdGraphId])) {
 						$targetEq->setDisplay('backGraph::info', $_cmds[$cmdGraphId]);
-						$targetEq->save();
 					}
-				} elseif ($targetEq->getDisplay('backGraph::info', '0') != '0') {
+				} else {
 					$targetEq->setDisplay('backGraph::info', '0');
-					$targetEq->save();
 				}
 
 				//display table dynamic settings:
-				if ($sourceEq->getDisplay('layout::dashboard', '') == 'table') {
-					$sourceDisplay = $sourceEq->getDisplay();
-					foreach ($sourceDisplay as $key => $value) {
-						$query = 'layout::dashboard::table::cmd::';
-						if (substr($key, 0, strlen($query)) === $query) {
-							$sourceCmdId = explode('::', str_replace($query, '', $key))[0];
-							$end = explode('::', str_replace($query, '', $key))[1];
-							if (isset($_cmds[$sourceCmdId])) {
-								$targetEq->setDisplay('backGraph::info', $_cmds[$sourceCmdId]);
-							}
+				$targetEq->setDisplay('layout::dashboard', $sourceEq->getDisplay('layout::dashboard', ''));
+				$sourceDisplay = $sourceEq->getDisplay();
+				$targetEq->setDisplay('layout::dashboard::table::parameters', $sourceEq->getDisplay('layout::dashboard::table::parameters', null));
+				foreach ($sourceDisplay as $key => $value) {
+					$query = 'layout::dashboard::table::cmd::';
+					if (substr($key, 0, strlen($query)) === $query) {
+						$targetEq->setDisplay($key, null);
+						$sourceCmdId = explode('::', str_replace($query, '', $key))[0];
+						$end = explode('::', str_replace($query, '', $key))[1];
+						if (isset($_cmds[$sourceCmdId])) {
+							$targetEq->setDisplay($query.$_cmds[$sourceCmdId].'::'.$end, $value);
 						}
-						$targetEq->save();
 					}
-				} elseif ($targetEq->getDisplay('layout::dashboard', '') == 'table') {
-					$targetEq->setDisplay('layout::dashboard', null);
-					$targetEq->save();
 				}
 
+				$targetEq->save();
 				$return['eqlogics'] += 1;
 			}
-		} elseif ($_options['hideEqs']) {
+		} elseif ($_options['hideEqs'] == "true") {
 			foreach ($_eqlogics as $_sourceId => $_targetId) {
 				$sourceEq = eqLogic::byId($_sourceId);
 				if (!is_object($sourceEq)) continue;

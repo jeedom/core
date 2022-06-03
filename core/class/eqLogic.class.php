@@ -1213,7 +1213,7 @@ class eqLogic {
 		return false;
 	}
 
-	public function migrateEqlogic($_sourceId, $_targetId, $_hideSource=false) {
+	public function migrateEqlogic($_sourceId, $_targetId) {
 		$sourceEq = eqLogic::byId($_sourceId);
 		if (!is_object($sourceEq)) {
 			throw new Exception(__('L\'équipement source n\'existe pas', __FILE__));
@@ -1234,8 +1234,7 @@ class eqLogic {
 			'backGraph::height' => '',
 			'layout::dashboard' => '',
 			'layout::dashboard::table::nbLine' => '',
-			'layout::dashboard::table::nbColumn' => '',
-			'layout::dashboard::table::parameters' => array(),
+			'layout::dashboard::table::nbColumn' => ''
 		];
 
 		$migrateConfigurationValues = [
@@ -1276,12 +1275,12 @@ class eqLogic {
 				if (is_array($value)) {
 					if (count($sourceEq->getDisplay($key, $value)) > 0) {
 						$targetEq->setDisplay($key, $sourceEq->getDisplay($key, $value));
+					} else {
+						$targetEq->setConfiguration($key, $value);
 					}
 				}
 				if (is_string($value)) {
-					if ($sourceEq->getDisplay($key) != $value) {
-						$targetEq->setDisplay($key, $sourceEq->getDisplay($key, $value));
-					}
+					$targetEq->setDisplay($key, $sourceEq->getDisplay($key, $value));
 				}
 			}
 
@@ -1290,6 +1289,8 @@ class eqLogic {
 				if (is_array($value)) {
 					if (count($sourceEq->getConfiguration($key, $value)) > 0) {
 						$targetEq->setConfiguration($key, $sourceEq->getConfiguration($key, $value));
+					} else {
+						$targetEq->setConfiguration($key, []);
 					}
 				}
 				if (is_string($value)) {
@@ -1313,11 +1314,6 @@ class eqLogic {
 
 		} catch (Exception $e) {
 			throw new Exception(__('Erreur lors de la migration d\'équipement', __FILE__) . ' : '. $e->getMessage());
-		}
-
-		if ($_hideSource) {
-			$sourceEq->setIsVisible(0);
-			$sourceEq->save();
 		}
 	}
 
