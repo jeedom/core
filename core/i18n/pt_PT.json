@@ -3054,8 +3054,10 @@
         "Nettoyage lancé avec succès. Pour suivre l\\'avancement merci de regarder le log cleaningdb": "A limpeza foi iniciada com sucesso. Para acompanhar o progresso, consulte o registo cleaningdb"
     },
     "desktop\/js\/connection.js": {
-        "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "Alerta de segurança: <br\/>A sua senha deve ser alterada",
-        "Information importante :": "Informação importante:"
+        "Alerte de sécurité": "Alerta de segurança",
+        "Votre mot de passe doit être changé.": "Sua senha precisa ser alterada",
+        "Information importante": "Informação importante",
+        "Le mot de passe est vide ou ne correspond pas à la confirmation.": "A senha está vazia ou não corresponde à confirmação"
     },
     "desktop\/js\/types.js": {
         "Aucun": "Nenhum",

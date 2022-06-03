@@ -3054,8 +3054,10 @@
         "Nettoyage lancé avec succès. Pour suivre l\\'avancement merci de regarder le log cleaningdb": "Nettoyage lancé avec succès. Pour suivre l\\'avancement merci de regarder le log cleaningdb"
     },
     "desktop\/js\/connection.js": {
-        "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "Alerte de sécurité :<br\/>Votre mot de passe doit être changé",
-        "Information importante :": "Information importante :"
+        "Alerte de sécurité": "Alerte de sécurité",
+        "Votre mot de passe doit être changé.": "Votre mot de passe doit être changé",
+        "Information importante": "Information importante",
+        "Le mot de passe est vide ou ne correspond pas à la confirmation.": "Le mot de passe est vide ou ne correspond pas à la confirmation"
     },
     "desktop\/js\/types.js": {
         "Aucun": "Aucun",

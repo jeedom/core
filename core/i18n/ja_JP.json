@@ -3054,8 +3054,10 @@
         "Nettoyage lancé avec succès. Pour suivre l\\'avancement merci de regarder le log cleaningdb": "クリーニングが正常に開始されました。進捗状況を確認するには、cleaningdbログをご覧ください"
     },
     "desktop\/js\/connection.js": {
-        "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "セキュリティ警告： <br\/>パスワードを変更する必要があります。",
-        "Information importante :": "重要な情報："
+        "Alerte de sécurité": "Alerte de sécurité",
+        "Votre mot de passe doit être changé.": "Votre mot de passe doit être changé",
+        "Information importante": "Information importante",
+        "Le mot de passe est vide ou ne correspond pas à la confirmation.": "Le mot de passe est vide ou ne correspond pas à la confirmation"
     },
     "desktop\/js\/types.js": {
         "Aucun": "Aucun",
