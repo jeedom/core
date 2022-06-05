@@ -414,7 +414,7 @@ class system {
 					if (file_exists(__DIR__ . '/../../' . $package . '/package.json')) {
 						$version = json_decode(file_get_contents(__DIR__ . '/../../' . $package . '/package.json'), true)['version'];
 						if ($type == 'npm') {
-							exec('cd ' . __DIR__ . '/../../' . $package . ';npm list', $output, $return_var);
+							exec('cd ' . __DIR__ . '/../../' . $package . ';' . self::getCmdSudo() . ' npm list', $output, $return_var);
 							if ($return_var == 0) {
 								$found = 1;
 							}
