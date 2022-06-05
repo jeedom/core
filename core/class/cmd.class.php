@@ -2474,7 +2474,7 @@ class cmd {
 					if (count($sourceCmd->getDisplay($key, $value)) > 0) {
 						$targetCmd->setDisplay($key, $sourceCmd->getDisplay($key, $value));
 					} else {
-						$targetEq->setDisplay($key, null);
+						$targetCmd->setDisplay($key, null);
 					}
 				}
 				if (is_string($value)) {
@@ -2492,7 +2492,7 @@ class cmd {
 					if (count($sourceCmd->getConfiguration($key, $value)) > 0) {
 						$targetCmd->setConfiguration($key, $sourceCmd->getConfiguration($key, $value));
 					} else {
-						$targetEq->setConfiguration($key, null);
+						$targetCmd->setConfiguration($key, null);
 					}
 				}
 				if (is_string($value)) {
@@ -2510,7 +2510,7 @@ class cmd {
 					if (count($sourceCmd->getAlert($key, $value)) > 0) {
 						$targetCmd->setAlert($key, $sourceCmd->getAlert($key, $value));
 					} else {
-						$targetEq->setAlert($key, null);
+						$targetCmd->setAlert($key, null);
 					}
 				}
 				if (is_string($value)) {
