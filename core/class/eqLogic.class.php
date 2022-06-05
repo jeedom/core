@@ -1252,16 +1252,9 @@ class eqLogic {
 			$targetEq->setIsVisible($sourceEq->getIsVisible());
 			$targetEq->setIsEnable($sourceEq->getIsEnable());
 			$targetEq->setOrder($sourceEq->getOrder());
-			if ($sourceEq->getGenericType() != null) {
-				$targetEq->setGenericType($sourceEq->getGenericType());
-			}
-			if ($sourceEq->getComment() != '') {
-				$targetEq->setComment($sourceEq->getComment());
-			}
-			if ($sourceEq->getTags() != null) {
-				$targetEq->setTags($sourceEq->getTags());
-			}
-
+			$targetEq->setGenericType($sourceEq->getGenericType());
+			$targetEq->setComment($sourceEq->getComment());
+			$targetEq->setTags($sourceEq->getTags());
 			$targetEq->setTimeout($sourceEq->getTimeout());
 
 			//categories:
@@ -1276,11 +1269,13 @@ class eqLogic {
 					if (count($sourceEq->getDisplay($key, $value)) > 0) {
 						$targetEq->setDisplay($key, $sourceEq->getDisplay($key, $value));
 					} else {
-						$targetEq->setConfiguration($key, $value);
+						$targetEq->setDisplay($key, $value);
 					}
 				}
 				if (is_string($value)) {
 					$targetEq->setDisplay($key, $sourceEq->getDisplay($key, $value));
+				} else {
+					$targetEq->setDisplay($key, null);
 				}
 			}
 
@@ -1290,7 +1285,7 @@ class eqLogic {
 					if (count($sourceEq->getConfiguration($key, $value)) > 0) {
 						$targetEq->setConfiguration($key, $sourceEq->getConfiguration($key, $value));
 					} else {
-						$targetEq->setConfiguration($key, []);
+						$targetEq->setConfiguration($key, $value);
 					}
 				}
 				if (is_string($value)) {

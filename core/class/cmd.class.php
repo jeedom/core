@@ -2461,9 +2461,7 @@ class cmd {
 
 		try {
 			//properties:
-			if ($sourceCmd->getGeneric_type() != null) {
-				$targetCmd->setGeneric_type($sourceCmd->getGeneric_type());
-			}
+			$targetCmd->setGeneric_type($sourceCmd->getGeneric_type());
 			$targetCmd->setIsVisible($sourceCmd->getIsVisible());
 			$targetCmd->setOrder($sourceCmd->getOrder());
 			$targetCmd->setIsHistorized($sourceCmd->getIsHistorized());
@@ -2475,11 +2473,15 @@ class cmd {
 				if (is_array($value)) {
 					if (count($sourceCmd->getDisplay($key, $value)) > 0) {
 						$targetCmd->setDisplay($key, $sourceCmd->getDisplay($key, $value));
+					} else {
+						$targetEq->setDisplay($key, null);
 					}
 				}
 				if (is_string($value)) {
 					if ($sourceCmd->getDisplay($key) != $value) {
 						$targetCmd->setDisplay($key, $sourceCmd->getDisplay($key, $value));
+					} else {
+						$targetCmd->setDisplay($key, null);
 					}
 				}
 			}
@@ -2489,11 +2491,15 @@ class cmd {
 				if (is_array($value)) {
 					if (count($sourceCmd->getConfiguration($key, $value)) > 0) {
 						$targetCmd->setConfiguration($key, $sourceCmd->getConfiguration($key, $value));
+					} else {
+						$targetEq->setConfiguration($key, null);
 					}
 				}
 				if (is_string($value)) {
 					if ($sourceCmd->getConfiguration($key, $value) != $value) {
 						$targetCmd->setConfiguration($key, $sourceCmd->getConfiguration($key, $value));
+					} else {
+						$targetCmd->setConfiguration($key, null);
 					}
 				}
 			}
@@ -2503,6 +2509,8 @@ class cmd {
 				if (is_array($value)) {
 					if (count($sourceCmd->getAlert($key, $value)) > 0) {
 						$targetCmd->setAlert($key, $sourceCmd->getAlert($key, $value));
+					} else {
+						$targetEq->setAlert($key, null);
 					}
 				}
 				if (is_string($value)) {
