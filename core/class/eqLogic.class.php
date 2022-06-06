@@ -1247,8 +1247,6 @@ class eqLogic {
 		];
 
 		try {
-			$var = $sourceEq->getComment();
-			message::add('comm', $var);
 			//properties:
 			$targetEq->setObject_id($sourceEq->getObject_id());
 			$targetEq->setIsVisible($sourceEq->getIsVisible());
