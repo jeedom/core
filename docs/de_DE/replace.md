@@ -1,4 +1,4 @@
-# Remplacer
+ # Remplacer
 **Extras → Ersetzen**
 
 Dieses Tool ermöglicht den schnellen Austausch von Geräten und Befehlen, beispielsweise bei einem Plugin- oder Modulwechsel.
@@ -17,39 +17,45 @@ Sie können zur besseren Lesbarkeit nur bestimmte Geräte anzeigen, nach Objekt 
 >
 > Wenn keine dieser Optionen aktiviert ist, läuft die Ersetzung auf die Verwendung der Funktion hinaus *Ersetzen Sie diesen Befehl durch den Befehl* in erweiterter Konfiguration.
 
-- **Konfiguration von Quellgeräten kopieren** :
+- **Konfiguration vom Quellgerät kopieren** :
 Für jedes Gerät wird von der Quelle zum Ziel kopiert:
-	* Das übergeordnete Objekt
-	* Die Eigenschaft *sichtbar*
-	* Die Eigenschaft *Anlage*
-	* Bestellung (Dashboard)
-	* Die Breite und Höhe (Tile Dashboard)
-	* Kachelkurvenparameter
-	* Optionale Parameter
-	* Die Konfiguration der Tabellenanzeige
-	* der generische Typ
-	* Die Kategorien
-	* Kommentare und Tags
+	* Das übergeordnete Objekt,
+	* Die Kategorien,
+	* Eigenschaften *Anlage* und *sichtbar*,
+	* Kommentare und Tags,
+	* Bestellung (Dashboard),
+	* Die Breite und Höhe (Tile Dashboard),
+	* Kachelkurveneinstellungen,
+	* Optionale Parameter,
+	* Die Konfiguration der Tabellenanzeige,
+	* der generische Typ,
 	* Die Eigenschaft *Auszeit*
-	* Die Konfiguration *automatische Aktualisierung*
-Diese Ausrüstung wird auch durch die Zielausrüstung auf Designs und Ansichten ersetzt.
+	* Die Konfiguration *automatische Aktualisierung*,
+	* Batterie- und Kommunikationswarnungen,
 
-- **Quellgeräte ausblenden** : Ermöglicht es, das Quellgerät unsichtbar zu machen, nachdem es durch das Zielgerät ersetzt wurde.
-- **Quellbefehlshistorie kopieren** : Kopieren Sie den Quellbefehlsverlauf in den Zielbefehl.
-- **Konfiguration aus Quellbefehlen kopieren** :
+
+*Diese Ausrüstung wird auch durch die Zielausrüstung auf Designs und Ansichten ersetzt.*
+
+- **Quellgerät ausblenden** : Ermöglicht es, das Quellgerät unsichtbar zu machen, nachdem es durch das Zielgerät ersetzt wurde.
+- **Kopieren Sie die Konfiguration aus dem Quellbefehl** :
 Für jeden Befehl wird von der Quelle zum Ziel kopiert:
-	* Die Eigenschaft *sichtbar*
-	* Bestellung (Dashboard)
-	* L'historisation
-	* Die verwendeten Dashboard- und Mobile-Widgets
-	* Der generische Typ
-	* Optionale Parameter
-	* Die Konfigurationen *jeedomPreExecCmd* und *jeedomPostExecCmd* (Aktion)
-	* Value Action Konfigurationen (info)
-	* Symbol
-	* Die Aktivierung und das Verzeichnis in *Zeitleiste*
-	* Die Konfigurationen von *Berechnung* und *runden*
-	* Die Wiederholungswertkonfiguration
+	* Die Eigenschaft *sichtbar*,
+	* Bestellung (Dashboard),
+	* L'historisation,
+	* Die verwendeten Dashboard- und Mobile-Widgets,
+	* Der generische Typ,
+	* Optionale Parameter,
+	* Die Konfigurationen *jeedomPreExecCmd* und *jeedomPostExecCmd* (Aktion),
+	* Value Action Konfigurationen (info),
+	* Symbol,
+	* Die Aktivierung und das Verzeichnis in *Zeitleiste*,
+	* Die Konfigurationen von *Berechnung* und *runden*,
+	* Die influxDB-Konfiguration,
+	* Die Wiederholungswertkonfiguration,
+	* Warnungen,
+- **Befehlshistorie des Ziels löschen** : Löscht Zielbefehlsverlaufsdaten.
+- **Quellbefehlshistorie kopieren** : Kopieren Sie den Quellbefehlsverlauf in den Zielbefehl.
+
 
 
 ## Remplacements

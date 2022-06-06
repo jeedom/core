@@ -1990,10 +1990,10 @@
     },
     "desktop\/php\/replace.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
+        "Sauvegarde Système": "Backup do sistema",
         "Reset": "Redefinir",
         "Filtrer": "Filtro",
         "Remplacer": "Substituir",
-        "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "É altamente recomendável fazer um backup do sistema antes de usar esta ferramenta!",
         "Filtres": "Filtros",
         "Filtre par objet": "Filtrar por objeto",
         "Objets": "Objetos",
@@ -3076,6 +3076,7 @@
     },
     "desktop\/js\/replace.js": {
         "Aucun": "Não",
+        "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "É altamente recomendável fazer um backup do sistema antes de usar esta ferramenta!",
         "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Tem certeza de que deseja Substituir este equipamento e comandos?",
         "Aucun équipement à remplacer": "Nenhum equipamento para substituir",
         "Aucune commande à remplacer": "Não há pedidos para substituir",

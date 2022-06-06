@@ -1990,10 +1990,10 @@
     },
     "desktop\/php\/replace.php": {
         "401 - Accès non autorisé": "401 - Unauthorized Access",
+        "Sauvegarde Système": "System Backup",
         "Reset": "Reset",
         "Filtrer": "Filter",
         "Remplacer": "Replace",
-        "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "It is strongly advised to make a system backup before using this tool!",
         "Filtres": "Filters",
         "Filtre par objet": "Filter by object",
         "Objets": "Objects",
@@ -3076,6 +3076,7 @@
     },
     "desktop\/js\/replace.js": {
         "Aucun": "None",
+        "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "It is strongly advised to make a system backup before using this tool!",
         "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Are you sure you want to Replace these equipments and commands?",
         "Aucun équipement à remplacer": "No equipment to replace",
         "Aucune commande à remplacer": "No command to replace",
