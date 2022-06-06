@@ -2531,6 +2531,7 @@ class cmd {
 			}
 
 			$targetCmd->save();
+			return $targetCmd;
 		} catch (Exception $e) {
 			throw new Exception(__('Erreur lors de la migration de commande', __FILE__) . ' : '. $e->getMessage());
 		}

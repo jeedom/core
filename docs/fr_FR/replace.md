@@ -1,4 +1,4 @@
-# Remplacer
+ # Remplacer
 **Outils → Remplacer**
 
 Cet outil permet de remplacer rapidement des équipements et commandes, par exemple dans le cas d'un changement de plugin, ou d'un module.
@@ -17,39 +17,45 @@ Vous pouvoir afficher seulement certains équipements pour plus de lisibilité, 
 >
 > Si aucune de ces options n'est cochée, le remplacement revient à utiliser la fonction *Remplacer cette commande par la commande* en configuration avançée.
 
-- **Copier la configuration des équipements source** :
+- **Copier la configuration de l'équipement source** :
 Pour chaque équipement, seront copiés de la source vers la cible:
-	* L'objet parent
-	* La propriété *visible*
-	* La propriété *actif*
-	* L'ordre (Dashboard)
-	* Les Largeure et hauteur (Tuile Dashboard)
-	* Les paramètre de courbe de tuile
-	* Les paramètres optionnels
-	* La configuration d'affichage table
-	* le Type Générique
-	* Les catégories
-	* Les commentaires et tags
+	* L'objet parent,
+	* Les catégories,
+	* Les propriétés *actif* et *visible*,
+	* Les commentaires et tags,
+	* L'ordre (Dashboard),
+	* Les Largeure et hauteur (Tuile Dashboard),
+	* Les paramètres de courbe de tuile,
+	* Les paramètres optionnels,
+	* La configuration d'affichage table,
+	* le Type Générique,
 	* La propriété *timeout*
-	* La configuration *autorefresh*
-Cet équipement sera également remplaçé par l'équipement cible sur les Designs et les Vues.
+	* La configuration *autorefresh*,
+	* Les Alertes batterie et communication,
 
-- **Cacher les équipements source** : Permet de rendre l'équipement source invisible une fois remplaçé par l'équipement cible.
-- **Copier l'historique des commandes source** : Copie l'historique de la commande source sur la commande cible.
-- **Copier la configuration des commandes source** :
+
+*Cet équipement sera également remplaçé par l'équipement cible sur les Designs et les Vues.*
+
+- **Cacher l'équipement source** : Permet de rendre l'équipement source invisible une fois remplaçé par l'équipement cible.
+- **Copier la configuration de la commande source** :
 Pour chaque commande, seront copiés de la source vers la cible:
-	* La propriété *visible*
-	* L'ordre (Dashboard)
-	* L'historisation
-	* Les widget Dashboard et Mobile utilisés
-	* Le Type Générique
-	* Les paramètres optionnels
-	* Les configuration *jeedomPreExecCmd* et *jeedomPostExecCmd* (action)
-	* Les configuration d'Action sur valeur (info)
-	* L'icône
-	* L'activation et le répertoire en *Timeline*
-	* Les configurations de *calcul* et *arrondi*
-	* La configuration de répétition de valeur
+	* La propriété *visible*,
+	* L'ordre (Dashboard),
+	* L'historisation,
+	* Les widget Dashboard et Mobile utilisés,
+	* Le Type Générique,
+	* Les paramètres optionnels,
+	* Les configuration *jeedomPreExecCmd* et *jeedomPostExecCmd* (action),
+	* Les configuration d'Action sur valeur (info),
+	* L'icône,
+	* L'activation et le répertoire en *Timeline*,
+	* Les configurations de *calcul* et *arrondi*,
+	* La configuration influxDB,
+	* La configuration de répétition de valeur,
+	* Les alertes,
+- **Supprimer l'historique de la commandes cible** : Supprime les données d'historisation de la commande cible.
+- **Copier l'historique des commandes source** : Copie l'historique de la commande source sur la commande cible.
+
 
 
 ## Remplacements

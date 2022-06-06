@@ -1310,6 +1310,8 @@ class eqLogic {
 			$sql = 'UPDATE `viewData` SET `link_id` = '.$targetEq->getId().' WHERE `type` = \'eqLogic\' AND `link_id` = '.$sourceEq->getId();
 			DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 
+			return $targetEq;
+
 		} catch (Exception $e) {
 			throw new Exception(__('Erreur lors de la migration d\'équipement', __FILE__) . ' : '. $e->getMessage());
 		}

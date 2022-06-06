@@ -20,7 +20,8 @@ sendVarToJS([
 <div class="floatingbar">
   <div class="input-group">
       <span class="input-group-btn">
-          <a class="btn btn-info btn-sm roundedLeft" id="bt_clearReplace"><i class="fas fa-times"></i> {{Reset}}
+          <a href="index.php?v=d&p=backup" class="btn btn-success btn-sm roundedLeft"><i class="fas fa-save"></i> {{Sauvegarde Système}}
+          </a><a class="btn btn-info btn-sm roundedLeft" id="bt_clearReplace"><i class="fas fa-times"></i> {{Reset}}
           </a><a class="btn btn-success btn-sm" id="bt_applyFilters"><i class="fas fa-filter"></i> {{Filtrer}}
           </a><a class="btn btn-danger btn-sm roundedRight" id="bt_replace"><i class="fas fa-random"></i> {{Remplacer}}</a>
       </span>
@@ -29,10 +30,6 @@ sendVarToJS([
 <br/><br/>
 
 <div class="row row-overflow">
-  <fieldset>
-    <div class="alert alert-warning"><i class="fas fa-radiation"></i> {{Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !}}
-    </div>
-  </fieldset>
   <div class="col-xs-12">
 
     <div class="panel-group" id="accordionFilter">
