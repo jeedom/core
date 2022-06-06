@@ -2450,6 +2450,14 @@ class cmd {
 			'jeedomCheckCmdOperator' => '',
 			'jeedomCheckCmdTest' => '',
 			'jeedomCheckCmdTime' => '',
+			'actionConfirm' => '',
+			'actionCodeAccess' => '',
+			'alert::messageReturnBack' => '',
+			'interact::auto::disable' => '',
+			'influx::enable' => '',
+			'influx::namecmd' => '',
+			'influx::nameEq' => '',
+			'influx::nameVal' => '',
 		];
 
 		$migrateAlertValues = [

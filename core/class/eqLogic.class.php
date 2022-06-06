@@ -1247,15 +1247,18 @@ class eqLogic {
 		];
 
 		try {
+			$var = $sourceEq->getComment();
+			message::add('comm', $var);
 			//properties:
 			$targetEq->setObject_id($sourceEq->getObject_id());
 			$targetEq->setIsVisible($sourceEq->getIsVisible());
 			$targetEq->setIsEnable($sourceEq->getIsEnable());
 			$targetEq->setOrder($sourceEq->getOrder());
 			$targetEq->setGenericType($sourceEq->getGenericType());
+			$targetEq->setTimeout($sourceEq->getTimeout());
 			$targetEq->setComment($sourceEq->getComment());
 			$targetEq->setTags($sourceEq->getTags());
-			$targetEq->setTimeout($sourceEq->getTimeout());
+
 
 			//categories:
 			foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
@@ -1273,9 +1276,11 @@ class eqLogic {
 					}
 				}
 				if (is_string($value)) {
-					$targetEq->setDisplay($key, $sourceEq->getDisplay($key, $value));
-				} else {
-					$targetEq->setDisplay($key, null);
+					if ($sourceEq->getDisplay($key) != $value) {
+						$targetEq->setDisplay($key, $sourceEq->getDisplay($key, $value));
+					} else {
+						$targetEq->setDisplay($key, null);
+					}
 				}
 			}
 

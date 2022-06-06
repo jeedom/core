@@ -1459,6 +1459,7 @@ class jeedom {
 
 				//Migrate eqLogic configurations:
 				eqLogic::migrateEqlogic($_sourceId, $_targetId);
+				$targetEq = eqLogic::byId($_targetId);
 
 				//migrate graphInfo if cmd known:
 				$var = $sourceEq->getDisplay('backGraph::info', '0');
@@ -1510,6 +1511,7 @@ class jeedom {
 			if ($_options['copyCmdProperties'] == "true") {
 				log::add('massReplace', 'alert', 'Migrate Cmd: (' . $sourceCmd->getId() . ')' . $sourceCmd->getName() . ' to (' . $targetCmd->getId() . ')' . $targetCmd->getName());
 				cmd::migrateCmd($_sourceId, $_targetId);
+				$targetCmd = cmd::byId($_targetId);
 			}
 
 			//replace command where used:
