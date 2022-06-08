@@ -113,6 +113,22 @@ Desktop
     padding: 0 !important;
     margin: 0;
   }
+
+  div.eqLogic-widget .timeCmd.label {
+    display: ruby;
+    color: var(--txt-color);
+    background: rgb(var(--bg-color));
+    position: relative;
+    padding: 2px 5px !important;
+    font-size: 11px !important;
+    margin-top: 4px;
+    margin-left: -4px;
+  }
+
+  div.eqLogic-widget .timeCmd.label:first-letter {
+    text-transform: uppercase;
+  }
+
   div.cmd-widget div[class^="content"] > select {
     font-size: 16px !important;
     height: 22px;
