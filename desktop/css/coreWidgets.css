@@ -122,6 +122,9 @@ Desktop
     padding: 2px 5px !important;
     font-size: 11px !important;
     margin-top: 4px;
+  }
+
+  div.eqLogic-widget .value .timeCmd.label {
     margin-left: -4px;
   }
 
