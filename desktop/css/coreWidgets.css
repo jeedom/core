@@ -104,7 +104,6 @@ Desktop
     min-height: 16px;
     max-height: 16px;
     margin-bottom: 2px;
-    margin-left: 4px;
   }
   div.cmd-widget .value > .center-block {
     color: var(--txt-color);
@@ -122,10 +121,6 @@ Desktop
     padding: 2px 5px !important;
     font-size: 11px !important;
     margin-top: 4px;
-  }
-
-  .value .timeCmd.label {
-    margin-left: -4px;
   }
 
   .timeCmd.label:first-letter {
