@@ -114,7 +114,7 @@ Desktop
     margin: 0;
   }
 
-  div.eqLogic-widget .timeCmd.label {
+  .timeCmd.label {
     display: ruby;
     color: var(--txt-color);
     background: rgb(var(--bg-color));
@@ -124,11 +124,11 @@ Desktop
     margin-top: 4px;
   }
 
-  div.eqLogic-widget .value .timeCmd.label {
+  .value .timeCmd.label {
     margin-left: -4px;
   }
 
-  div.eqLogic-widget .timeCmd.label:first-letter {
+  .timeCmd.label:first-letter {
     text-transform: uppercase;
   }
 
