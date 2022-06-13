@@ -1709,6 +1709,9 @@ class cmd {
 		} else if ($this->getSubType() == 'binary' && trim($value) === '') {
 			$display_value = 0;
 		}
+		$valueInfo = self::autoValueArray($value, $this->getConfiguration('historizeRound', 99), $this->getUnite());
+		$display_value = $valueInfo[0];
+		$unit = $valueInfo[1];
 		if ($repeat && $this->getConfiguration('repeatEventManagement', 'never') == 'never') {
 			$this->addHistoryValue($value, $this->getCollectDate());
 			$eqLogic->emptyCacheWidget();
@@ -1729,7 +1732,7 @@ class cmd {
 			$this->setCache(array('value' => $value, 'valueDate' => $this->getValueDate()));
 			scenario::check($this, false, $this->getGeneric_type(), $object, $value);
 			$level = $this->checkAlertLevel($value);
-			$events[] = array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'alertLevel' => $level);
+			$events[] = array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'unit' => $unit, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'alertLevel' => $level);
 			$foundInfo = false;
 			$value_cmd = self::byValue($this->getId(), null, true);
 			if (is_array($value_cmd) && count($value_cmd) > 0) {
@@ -1749,7 +1752,7 @@ class cmd {
 				listener::backgroundCalculDependencyCmd($this->getId());
 			}
 		} else {
-			$events[] = array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate());
+			$events[] = array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'unit' => $unit, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate());
 		}
 		if (count($events) > 0) {
 			event::adds('cmd::update', $events);
