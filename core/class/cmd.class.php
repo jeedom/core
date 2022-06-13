@@ -52,12 +52,13 @@ class cmd {
 	protected $_changed = false;
 	private static $_templateArray = array();
 	private static $_unite_conversion = array(
-		'*W' => array(1000, 'W', 'kW', 'MW'),
-		'*io' => array(1024, 'io', 'Kio', 'Mio', 'Gio', 'Tio'),
-		'*o' => array(1000, 'o', 'Ko', 'Mo', 'Go', 'To'),
-		'*Hz' => array(1000, 'Hz', 'kHz', 'MHz', 'GHz'),
-		'*l' => array(1000, 'l', 'm<sup>3</sup>'),
-		'*s' => array(60, 's', 'min', 'h')
+		'W' => array(1000, 'W', 'kW', 'MW'),
+		'Wh' => array(1000, 'Wh', 'kWh', 'MWh'),
+		'io' => array(1024, 'io', 'Kio', 'Mio', 'Gio', 'Tio'),
+		'o' => array(1000, 'o', 'Ko', 'Mo', 'Go', 'To'),
+		'Hz' => array(1000, 'Hz', 'kHz', 'MHz', 'GHz'),
+		'l' => array(1000, 'l', 'm<sup>3</sup>'),
+		's' => array(60, 's', 'min', 'h')
 	);
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -403,9 +404,6 @@ class cmd {
 				array_push($eqLogicIds, $eqLogic->getId());
 			}
 			$eqLogicIds = implode(',', $eqLogicIds);
-			if (empty($eqLogicIds)) {
-				return;
-			}
 			$sql .= ' AND eqLogic_id IN (' . $eqLogicIds . ')';
 		}
 
@@ -1439,7 +1437,7 @@ class cmd {
 	public static function autoValueArray($_value, $_decimal = 99, $_unit = '', $_space = False) {
 		$_unit = str_replace("\"", "", $_unit);
 		$_unit = str_replace("\'", "", $_unit);
-		if (array_keys(self::$_unite_conversion) > 0 && array_key_exists($_unit, self::$_unite_conversion)) {
+		if (isset(self::$_unite_conversion[$_unit])) {
 			$mod = self::$_unite_conversion[$_unit][0];
 			$prefix = array_slice(self::$_unite_conversion[$_unit], 1);
 			$myval = self::autoValueFormat($_value, $mod, count($prefix) - 1);
@@ -1937,7 +1935,6 @@ class cmd {
 		if ($_level == $this->getCache('alertLevel')) {
 			return;
 		}
-
 		global $JEEDOM_INTERNAL_CONFIG;
 		$this->setCache('alertLevel', $_level);
 		$eqLogic = $this->getEqLogic();
@@ -1947,6 +1944,7 @@ class cmd {
 		if ($this->getAlert($_level . 'during') != '' && $this->getAlert($_level . 'during') > 0 && $eqLogic->getStatus('enableDatime') != '' && strtotime($eqLogic->getStatus('enableDatime') . '+ ' . $this->getAlert($_level . 'during')) > strtotime('now')) {
 			return;
 		}
+
 		$maxAlert = $eqLogic->getMaxCmdAlert();
 		$prevAlert = $eqLogic->getAlert();
 		if (!$_value) {
@@ -1978,22 +1976,7 @@ class cmd {
 		} elseif ($this->getConfiguration('alert::messageReturnBack') == 1) {
 			$message = __('Retour à la normal de ', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('valeur :', __FILE__) . ' ' . $_value . trim(' ' . $this->getUnite());
 			log::add('event', 'info', $message);
-			$eqLogic = $this->getEqLogic();
-			if (config::byKey('alert::addMessageOn' . ucfirst($_level)) == 1) {
-				message::add($eqLogic->getEqType_name(), $message);
-			}
-			$cmds = explode(('&&'), config::byKey('alert::' . $_level . 'Cmd'));
-			if (count($cmds) > 0 && trim(config::byKey('alert::' . $_level . 'Cmd')) != '') {
-				foreach ($cmds as $id) {
-					$cmd = cmd::byId(str_replace('#', '', $id));
-					if (is_object($cmd)) {
-						$cmd->execCmd(array(
-							'title' => '[' . config::byKey('name', 'core', 'JEEDOM') . '] : ' . $message,
-							'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
-						));
-					}
-				}
-			}
+			message::add($this->getEqLogic()->getEqType_name(), $message);
 		}
 
 		if ($prevAlert != $maxAlert) {
@@ -2400,124 +2383,6 @@ class cmd {
 			return (isset($return[$_key])) ? $return[$_key] : $_default;
 		}
 		return $return;
-	}
-
-	public function migrateCmd($_sourceId, $_targetId) {
-		$sourceCmd = cmd::byId($_sourceId);
-		if (!is_object($sourceCmd)) {
-			throw new Exception(__('La commande source n\'existe pas', __FILE__));
-		}
-		$targetCmd = cmd::byId($_targetId);
-		if (!is_object($targetCmd)) {
-			throw new Exception(__('La commande cible n\'existe pas', __FILE__));
-		}
-
-		$migrateDisplayValues = [
-			'parameters' => array(),
-			'showNameOndashboard' => '',
-			'showNameOnmobile' => '',
-			'showIconAndNamedashboard' => '',
-			'showIconAndNamemobile' => '',
-			'showStatsOndashboard' => '',
-			'showStatsOnmobile' => '',
-			'forceReturnLineBefore' => '',
-			'forceReturnLineAfter' => '',
-			'invertBinary' => '',
-			'icon' => '',
-		];
-
-		$migrateConfigurationValues = [
-			'jeedomPreExecCmd' => array(),
-			'jeedomPostExecCmd' => array(),
-			'actionCheckCmd' => array(),
-			'timeline::enable' => '',
-			'timeline::folder' => '',
-			'repeatEventManagement' => '',
-			'historizeMode' => '',
-			'historyPurge' => '',
-			'historizeRound' => '',
-			'calcul' => '',
-			'returnStateValue' => '',
-			'returnStateTime' => '',
-			'calculValueOffset' => '',
-			'denyValues' => '',
-			'returnStateValue' => '',
-			'returnStateTime' => '',
-			'jeedomPushUrl' => '',
-			'invertBinary' => '',
-			'minValue' => '',
-			'maxValue' => '',
-			'jeedomCheckCmdOperator' => '',
-			'jeedomCheckCmdTest' => '',
-			'jeedomCheckCmdTime' => '',
-		];
-
-		$migrateAlertValues = [
-			'warningif' => '',
-			'warningduring' => '',
-			'dangerif' => '',
-			'dangerduring' => '',
-		];
-
-		try {
-			//properties:
-			if ($sourceCmd->getGeneric_type() != null) {
-				$targetCmd->setGeneric_type($sourceCmd->getGeneric_type());
-			}
-			$targetCmd->setIsVisible($sourceCmd->getIsVisible());
-			$targetCmd->setOrder($sourceCmd->getOrder());
-			$targetCmd->setIsHistorized($sourceCmd->getIsHistorized());
-			$targetCmd->setTemplate('dashboard', $sourceCmd->getTemplate('dashboard'));
-			$targetCmd->setTemplate('mobile', $sourceCmd->getTemplate('mobile'));
-
-			//display:
-			foreach ($migrateDisplayValues as $key => $value) {
-				if (is_array($value)) {
-					if (count($sourceCmd->getDisplay($key, $value)) > 0) {
-						$targetCmd->setDisplay($key, $sourceCmd->getDisplay($key, $value));
-					}
-				}
-				if (is_string($value)) {
-					if ($sourceCmd->getDisplay($key) != $value) {
-						$targetCmd->setDisplay($key, $sourceCmd->getDisplay($key, $value));
-					}
-				}
-			}
-
-			//configuration:
-			foreach ($migrateConfigurationValues as $key => $value) {
-				if (is_array($value)) {
-					if (count($sourceCmd->getConfiguration($key, $value)) > 0) {
-						$targetCmd->setConfiguration($key, $sourceCmd->getConfiguration($key, $value));
-					}
-				}
-				if (is_string($value)) {
-					if ($sourceCmd->getConfiguration($key, $value) != $value) {
-						$targetCmd->setConfiguration($key, $sourceCmd->getConfiguration($key, $value));
-					}
-				}
-			}
-
-			//alert:
-			foreach ($migrateAlertValues as $key => $value) {
-				if (is_array($value)) {
-					if (count($sourceCmd->getAlert($key, $value)) > 0) {
-						$targetCmd->setAlert($key, $sourceCmd->getAlert($key, $value));
-					}
-				}
-				if (is_string($value)) {
-					if ($sourceCmd->getAlert($key, $value) != $value) {
-						$targetCmd->setAlert($key, $sourceCmd->getAlert($key, $value));
-					} else {
-						$targetCmd->setAlert($key, null);
-					}
-				}
-			}
-
-			$targetCmd->save();
-		} catch (Exception $e) {
-			throw new Exception(__('Erreur lors de la migration de commande', __FILE__) . ' : '. $e->getMessage());
-		}
 	}
 
 	public function export() {
