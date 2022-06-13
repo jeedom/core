@@ -66,7 +66,7 @@ if ($selectPlugin != '') {
         $trs .= '<td class="datetime">' . $message->getDate() . '</td>';
         $trs .= '<td class="plugin">' . $message->getPlugin() . '</td>';
         $trs .= '<td class="message">' . html_entity_decode($message->getMessage()) . '</td>';
-        $trs .= '<td class="message_action">' . $message->getAction() . '</td>';
+        $trs .= '<td class="message_action">' . html_entity_decode($message->getAction()) . '</td>';
         $trs .= '<td class="occurrences" style="text-align: center">' . $message->getOccurrences() . '</td>';
         $trs .= '</tr>';
       }
