@@ -1448,11 +1448,19 @@ class cmd {
 	}
 
 	private static function autoValueFormat($_value, $_mod = 1000, $_maxdiv = 10) {
-		$val = floatval($_value);
+		if ($_value < 0) {
+			$val = floatval(-$_value);
+		} else {
+			$val = floatval($_value);
+		}
+
 		$div = 0;
 		while ($val > $_mod && $div < $_maxdiv) {
 			$val = floatval($val / $_mod);
 			$div++;
+		}
+		if ($_value < 0) {
+			$val = -$val;
 		}
 		return array($val, $div);
 	}
