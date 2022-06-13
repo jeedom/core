@@ -4091,9 +4091,6 @@
         "Erreur delete influx sur :": "Fehler beim Löschen des Zuflusses bei:",
         "Envoie de l\\'historique à influx :": "Sendet die Zuflusshistorie:",
         "Erreur history influx sur :": "Verlaufszuflussfehler bei:",
-        "La commande source n\\'existe pas": "Quellbefehl existiert nicht",
-        "La commande cible n\\'existe pas": "Zielbefehl existiert nicht",
-        "Erreur lors de la migration de commande": "Fehler beim Migrieren der Bestellung",
         "Commande": "Befehl"
     },
     "core\/class\/jeedom.class.php": {

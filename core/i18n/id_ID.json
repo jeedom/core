@@ -4091,9 +4091,6 @@
         "Erreur delete influx sur :": "Erreur delete influx sur :",
         "Envoie de l\\'historique à influx :": "Envoie de l\\'historique à influx :",
         "Erreur history influx sur :": "Erreur history influx sur :",
-        "La commande source n\\'existe pas": "La commande source n\\'existe pas",
-        "La commande cible n\\'existe pas": "La commande cible n\\'existe pas",
-        "Erreur lors de la migration de commande": "Erreur lors de la migration de commande",
         "Commande": "Pesanan"
     },
     "core\/class\/jeedom.class.php": {

@@ -4091,9 +4091,6 @@
         "Erreur delete influx sur :": "Error delete influx on:",
         "Envoie de l\\'historique à influx :": "Sends influx history:",
         "Erreur history influx sur :": "History influx error on:",
-        "La commande source n\\'existe pas": "Source command does not exist",
-        "La commande cible n\\'existe pas": "Target command does not exist",
-        "Erreur lors de la migration de commande": "Error while migrating command",
         "Commande": "Command"
     },
     "core\/class\/jeedom.class.php": {
