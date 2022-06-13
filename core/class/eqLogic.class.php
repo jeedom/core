@@ -1252,17 +1252,11 @@ class eqLogic {
 			$targetEq->setIsVisible($sourceEq->getIsVisible());
 			$targetEq->setIsEnable($sourceEq->getIsEnable());
 			$targetEq->setOrder($sourceEq->getOrder());
-			if ($sourceEq->getGenericType() != null) {
-				$targetEq->setGenericType($sourceEq->getGenericType());
-			}
-			if ($sourceEq->getComment() != '') {
-				$targetEq->setComment($sourceEq->getComment());
-			}
-			if ($sourceEq->getTags() != null) {
-				$targetEq->setTags($sourceEq->getTags());
-			}
-
+			$targetEq->setGenericType($sourceEq->getGenericType());
 			$targetEq->setTimeout($sourceEq->getTimeout());
+			$targetEq->setComment($sourceEq->getComment());
+			$targetEq->setTags($sourceEq->getTags());
+
 
 			//categories:
 			foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
@@ -1276,11 +1270,15 @@ class eqLogic {
 					if (count($sourceEq->getDisplay($key, $value)) > 0) {
 						$targetEq->setDisplay($key, $sourceEq->getDisplay($key, $value));
 					} else {
-						$targetEq->setConfiguration($key, $value);
+						$targetEq->setDisplay($key, $value);
 					}
 				}
 				if (is_string($value)) {
-					$targetEq->setDisplay($key, $sourceEq->getDisplay($key, $value));
+					if ($sourceEq->getDisplay($key) != $value) {
+						$targetEq->setDisplay($key, $sourceEq->getDisplay($key, $value));
+					} else {
+						$targetEq->setDisplay($key, null);
+					}
 				}
 			}
 
@@ -1290,7 +1288,7 @@ class eqLogic {
 					if (count($sourceEq->getConfiguration($key, $value)) > 0) {
 						$targetEq->setConfiguration($key, $sourceEq->getConfiguration($key, $value));
 					} else {
-						$targetEq->setConfiguration($key, []);
+						$targetEq->setConfiguration($key, $value);
 					}
 				}
 				if (is_string($value)) {
@@ -1311,6 +1309,8 @@ class eqLogic {
 			//Views:
 			$sql = 'UPDATE `viewData` SET `link_id` = '.$targetEq->getId().' WHERE `type` = \'eqLogic\' AND `link_id` = '.$sourceEq->getId();
 			DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+
+			return $targetEq;
 
 		} catch (Exception $e) {
 			throw new Exception(__('Erreur lors de la migration d\'équipement', __FILE__) . ' : '. $e->getMessage());

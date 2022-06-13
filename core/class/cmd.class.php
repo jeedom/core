@@ -1944,7 +1944,6 @@ class cmd {
 		if ($this->getAlert($_level . 'during') != '' && $this->getAlert($_level . 'during') > 0 && $eqLogic->getStatus('enableDatime') != '' && strtotime($eqLogic->getStatus('enableDatime') . '+ ' . $this->getAlert($_level . 'during')) > strtotime('now')) {
 			return;
 		}
-
 		$maxAlert = $eqLogic->getMaxCmdAlert();
 		$prevAlert = $eqLogic->getAlert();
 		if (!$_value) {

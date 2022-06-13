@@ -824,21 +824,6 @@ div.div_viewZone legend.lg_viewZone {
     color: var(--al-warning-color);
   }
 
-  .timeCmd.label {
-    color: var(--txt-color);
-    background: rgb(var(--bg-color));
-    position: relative;
-    padding: 2px 5px !important;
-    font-size: 11px !important;
-    margin-top: 4px;
-  }
-  .eqLogic-widget .timeCmd.label {
-    display: ruby;
-  }
-  .timeCmd.label:first-letter {
-    text-transform: uppercase;
-  }
-
   .eqLogic-widget,
   .scenario-widget {
     overflow: hidden;

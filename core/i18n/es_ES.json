@@ -1990,10 +1990,10 @@
     },
     "desktop\/php\/replace.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Sauvegarde Système": "Copia de seguridad del sistema",
         "Reset": "Reiniciar",
         "Filtrer": "Filtrar",
         "Remplacer": "Reemplazar",
-        "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "¡Se recomienda encarecidamente hacer una copia de seguridad del sistema antes de usar esta herramienta!",
         "Filtres": "Filtros",
         "Filtre par objet": "Filtrar por objeto",
         "Objets": "Objetos",
@@ -3076,6 +3076,7 @@
     },
     "desktop\/js\/replace.js": {
         "Aucun": "No",
+        "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "¡Se recomienda encarecidamente hacer una copia de seguridad del sistema antes de usar esta herramienta!",
         "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "¿Está seguro de que desea reemplazar este equipo y comandos?",
         "Aucun équipement à remplacer": "No hay equipo para reemplazar",
         "Aucune commande à remplacer": "No hay pedidos para reemplazar",
@@ -4090,9 +4091,6 @@
         "Erreur delete influx sur :": "Error al eliminar la afluencia en:",
         "Envoie de l\\'historique à influx :": "Envía historial de afluencia:",
         "Erreur history influx sur :": "Error de flujo de historial en:",
-        "La commande source n\\'existe pas": "El comando fuente no existe",
-        "La commande cible n\\'existe pas": "El comando de destino no existe",
-        "Erreur lors de la migration de commande": "Error al migrar orden",
         "Commande": "Comando"
     },
     "core\/class\/jeedom.class.php": {

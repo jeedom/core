@@ -104,7 +104,6 @@ Desktop
     min-height: 16px;
     max-height: 16px;
     margin-bottom: 2px;
-    margin-left: 4px;
   }
   div.cmd-widget .value > .center-block {
     color: var(--txt-color);
@@ -113,6 +112,21 @@ Desktop
     padding: 0 !important;
     margin: 0;
   }
+
+  .timeCmd.label {
+    display: ruby;
+    color: var(--txt-color);
+    background: rgb(var(--bg-color));
+    position: relative;
+    padding: 2px 5px !important;
+    font-size: 11px !important;
+    margin-top: 4px;
+  }
+
+  .timeCmd.label:first-letter {
+    text-transform: uppercase;
+  }
+
   div.cmd-widget div[class^="content"] > select {
     font-size: 16px !important;
     height: 22px;

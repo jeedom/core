@@ -58,7 +58,7 @@ if (!jeeFrontEnd.replace) {
       $('#eqSource ul.eqLogic[data-id="' + eqlogicId + '"] div.replacer select').val('').keyup()
     },
     resetCmdSelects: function(eqlogicId=-1) {
-      $('#eqSource ul.eqLogic[data-id="' + eqlogicId + '"]').find('.cmd').each(function() {
+      $('#eqSource ul.eqLogic[data-id="' + eqlogicId + '"] li.cmd').each(function() {
         $(this).find('select').empty()
       })
     },
@@ -258,14 +258,15 @@ $('#eqSource').on({
     //Do not replace itself!
     if (sourceEqId == targetEqId) {
       $(this).val('').keyup()
-      jeeP.resetCmdSelects($thisEq)
+      jeeP.resetCmdSelects(sourceEqId)
+      jeeP.synchEqlogicsReplacers()
       return false
     }
 
     //Is ever replacing by this eqLogic:
     if (is_array(jeeP.replacerEqList) && jeeP.replacerEqList.includes(targetEqId)) {
       $(this).val('').keyup()
-      jeeP.resetCmdSelects($thisEq)
+      jeeP.resetCmdSelects(sourceEqId)
       jeeP.synchEqlogicsReplacers()
       return false
     }
@@ -303,7 +304,6 @@ $('#eqSource').on({
 }, 'ul.eqLogic > .replacer > select')
 
 $('#bt_clearReplace').on('click', function() {
-
   $('#objectFilter .objectFilterKey').each(function() {
     $(this).prop("checked", true)
   })
@@ -314,6 +314,8 @@ $('#bt_clearReplace').on('click', function() {
 
   $('#opt_replaceEqs').prop("checked", false)
   $('#opt_hideEqs').prop("checked", false)
+  $('#opt_copyCmdProperties').prop("checked", false)
+  $('#opt_removeHistory').prop("checked", false)
   $('#opt_copyHistory').prop("checked", false)
 
   jeeP.sourcesEqContainer.empty()
@@ -377,76 +379,78 @@ $('#bt_applyFilters').on('click', function() {
 })
 
 $('#bt_replace').on('click', function() {
-  bootbox.confirm('{{Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?}}', function(result) {
-    if (result) {
-      $.hideAlert()
+  bootbox.confirm({
+    message: "<b>{{Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !}}</b>" + "<br>" +  "{{Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?}}",
+    callback: function(result) {
+      if (result) {
+        $.hideAlert()
 
-      var opt_replaceEqs = $('#opt_replaceEqs').is(':checked')
-      var opt_hideEqs = $('#opt_hideEqs').is(':checked')
-      var opt_copyCmdProperties = $('#opt_copyCmdProperties').is(':checked')
-      var opt_removeHistory = $('#opt_removeHistory').is(':checked')
-      var opt_copyHistory = $('#opt_copyHistory').is(':checked')
+        var opt_replaceEqs = $('#opt_replaceEqs').is(':checked')
+        var opt_hideEqs = $('#opt_hideEqs').is(':checked')
+        var opt_copyCmdProperties = $('#opt_copyCmdProperties').is(':checked')
+        var opt_removeHistory = $('#opt_removeHistory').is(':checked')
+        var opt_copyHistory = $('#opt_copyHistory').is(':checked')
 
-      var replaceEqs = {}
-      var replaceCmds = {}
+        var replaceEqs = {}
+        var replaceCmds = {}
 
-      $('#eqSource ul.eqLogic').each(function() {
-        if ($(this).find('input.cb_selEqLogic').is(":checked")) {
-          var sourceEqId = $(this).attr('data-id')
-          var targetEqId = $(this).find('> div.replacer select').val()
+        $('#eqSource ul.eqLogic').each(function() {
+          if ($(this).find('input.cb_selEqLogic').is(":checked")) {
+            var sourceEqId = $(this).attr('data-id')
+            var targetEqId = $(this).find('> div.replacer select').val()
 
-          if (targetEqId != '') {
-            replaceEqs[sourceEqId] = targetEqId
-            $(this).find('li.cmd').each(function() {
-              var replaceId = $(this).find('select').val()
-              if (replaceId != '') {
-                replaceCmds[$(this).attr('data-id')] = replaceId
-              }
+            if (targetEqId != '') {
+              replaceEqs[sourceEqId] = targetEqId
+              $(this).find('li.cmd').each(function() {
+                var replaceId = $(this).find('select').val()
+                if (replaceId != '') {
+                  replaceCmds[$(this).attr('data-id')] = replaceId
+                }
+              })
+            }
+
+          }
+        })
+
+        if (opt_replaceEqs && count(replaceEqs) == 0) {
+          $.fn.showAlert({
+            message: '{{Aucun équipement à remplacer}}',
+            level: 'info'
+          })
+          bootbox.hideAll()
+          return true
+        }
+
+        if (!opt_replaceEqs && count(replaceCmds) == 0) {
+          $.fn.showAlert({
+            message: '{{Aucune commande à remplacer}}',
+            level: 'info'
+          })
+          bootbox.hideAll()
+          return true
+        }
+
+        jeedom.massReplace({
+          options: {
+            replaceEqs: opt_replaceEqs,
+            hideEqs: opt_hideEqs,
+            copyCmdProperties: opt_copyCmdProperties,
+            removeCmdHistory: opt_removeHistory,
+            copyCmdHistory: opt_copyHistory
+          },
+          eqlogics: replaceEqs,
+          cmds: replaceCmds,
+          error: function(error) {
+            $.fn.showAlert({message: error.message, level: 'danger'})
+          },
+          success: function(data) {
+            $.fn.showAlert({
+              message: '{{Remplacement effectué}}' + ' : eqLogics: ' + data.eqlogics + ' | commands: ' + data.cmds,
+              level: 'success'
             })
           }
-
-        }
-      })
-
-      if (opt_replaceEqs && count(replaceEqs) == 0) {
-        $.fn.showAlert({
-          message: '{{Aucun équipement à remplacer}}',
-          level: 'info'
         })
-        bootbox.hideAll()
-        return true
       }
-
-      if (!opt_replaceEqs && count(replaceCmds) == 0) {
-        $.fn.showAlert({
-          message: '{{Aucune commande à remplacer}}',
-          level: 'info'
-        })
-        bootbox.hideAll()
-        return true
-      }
-
-      jeedom.massReplace({
-        options: {
-          replaceEqs: opt_replaceEqs,
-          hideEqs: opt_hideEqs,
-          copyCmdProperties: opt_copyCmdProperties,
-          removeCmdHistory: opt_removeHistory,
-          copyCmdHistory: opt_copyHistory
-        },
-        eqlogics: replaceEqs,
-        cmds: replaceCmds,
-        error: function(error) {
-          $.fn.showAlert({message: error.message, level: 'danger'})
-        },
-        success: function(data) {
-          $.fn.showAlert({
-            message: '{{Remplacement effectué}}' + ' : eqLogics: ' + data.eqlogics + ' | commands: ' + data.cmds,
-            level: 'success'
-          })
-        }
-      })
-
     }
   })
 })

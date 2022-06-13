@@ -1,4 +1,4 @@
-# Remplacer
+ # Remplacer
 **Tools → Replace**
 
 This tool makes it possible to quickly replace equipment and controls, for example in the case of a change of plugin, or of a module.
@@ -17,39 +17,45 @@ You can display only certain equipment for more readability, filtering by object
 >
 > If none of these options is checked, the replacement amounts to using the function *Replace this command with the command* in advanced configuration.
 
-- **Copy configuration from source devices** :
+- **Copy configuration from source device** :
 For each equipment, will be copied from the source to the target:
-	* The parent object
-	* The property *visible*
-	* The property *asset*
-	* Order (Dashboard)
-	* The width and height (Tile Dashboard)
-	* Tile Curve Parameters
-	* Optional parameters
-	* The table display configuration
-	* the Generic Type
-	* The categories
-	* Comments and tags
+	* The parent object,
+	* The categories,
+	* Properties *asset* and *visible*,
+	* Comments and tags,
+	* Order (Dashboard),
+	* The width and height (Tile Dashboard),
+	* Tile curve settings,
+	* Optional parameters,
+	* The table display configuration,
+	* the Generic Type,
 	* The property *timeout*
-	* The configuration *autorefresh*
-This equipment will also be replaced by the target equipment on Designs and Views.
+	* The configuration *autorefresh*,
+	* Battery and communication alerts,
 
-- **Hide source devices** : Allows to make the source equipment invisible once replaced by the target equipment.
-- **Copy source command history** : Copy source command history to target command.
-- **Copy configuration from source commands** :
+
+*This equipment will also be replaced by the target equipment on Designs and Views.*
+
+- **Hide source equipment** : Allows to make the source equipment invisible once replaced by the target equipment.
+- **Copy configuration from source command** :
 For each command, will be copied from source to target:
-	* The property *visible*
-	* Order (Dashboard)
-	* L'historisation
-	* The Dashboard and Mobile widgets used
-	* The Generic Type
-	* Optional parameters
-	* The configurations *jeedomPreExecCmd* and *jeedomPostExecCmd* (action)
-	* Value Action configurations (info)
-	* Icon
-	* The activation and the directory in *Timeline*
-	* The configurations of *calculation* and *round*
-	* The repeat value configuration
+	* The property *visible*,
+	* Order (Dashboard),
+	* L'historisation,
+	* The Dashboard and Mobile widgets used,
+	* The Generic Type,
+	* Optional parameters,
+	* The configurations *jeedomPreExecCmd* and *jeedomPostExecCmd* (action),
+	* Value Action configurations (info),
+	* Icon,
+	* The activation and the directory in *Timeline*,
+	* The configurations of *calculation* and *round*,
+	* The influxDB configuration,
+	* The repeat value configuration,
+	* Alerts,
+- **Delete target command history** : Deletes target command history data.
+- **Copy source command history** : Copy source command history to target command.
+
 
 
 ## Remplacements

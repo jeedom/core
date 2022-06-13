@@ -1,4 +1,4 @@
-# Remplacer
+ # Remplacer
 **Ferramentas → Substituir**
 
 Esta ferramenta permite substituir rapidamente equipamentos e comandos, por exemplo no caso de mudança de plugin, ou de um módulo.
@@ -17,39 +17,45 @@ Você pode exibir apenas determinados equipamentos para maior legibilidade, filt
 >
 > Se nenhuma dessas opções estiver marcada, a substituição equivale ao uso da função *Substitua este comando pelo comando* em configuração avançada.
 
-- **Copie a configuração dos dispositivos de origem** :
+- **Copiar configuração do dispositivo de origem** :
 Para cada equipamento, será copiado da fonte para o destino:
-	* O objeto pai
-	* A propriedade *visível*
-	* A propriedade *de ativos*
-	* Encomenda (Painel)
-	* A largura e a altura (Painel de mosaico)
-	* Parâmetros de curva de bloco
-	* Parâmetros opcionais
-	* A configuração de exibição da tabela
-	* o tipo genérico
-	* As categorias
-	* Comentários e etiquetas
+	* O objeto pai,
+	* As categorias,
+	* Propriedades *de ativos* e *visível*,
+	* Comentários e etiquetas,
+	* Encomenda (Painel),
+	* A largura e a altura (Painel de mosaico),
+	* Configurações de curva de ladrilho,
+	* Parâmetros opcionais,
+	* A configuração de exibição da tabela,
+	* o tipo genérico,
 	* A propriedade *tempo esgotado*
-	* A configuração *atualização automática*
-Este equipamento também será substituído pelo equipamento alvo em Desenhos e Vistas.
+	* A configuração *atualização automática*,
+	* Alertas de bateria e comunicação,
 
-- **Ocultar dispositivos de origem** : Permite tornar o equipamento de origem invisível uma vez substituído pelo equipamento de destino.
-- **Copiar histórico de comandos de origem** : Copie o histórico do comando de origem para o comando de destino.
-- **Copie a configuração dos comandos de origem** :
+
+*Este equipamento também será substituído pelo equipamento alvo em Desenhos e Vistas.*
+
+- **Ocultar equipamento de origem** : Permite tornar o equipamento de origem invisível uma vez substituído pelo equipamento de destino.
+- **Copiar configuração do comando de origem** :
 Para cada comando, será copiado da origem para o destino:
-	* A propriedade *visível*
-	* Encomenda (Painel)
-	* L'historisation
-	* Os widgets Dashboard e Mobile usados
-	* O tipo genérico
-	* Parâmetros opcionais
-	* As configurações *jeedomPreExecCmd* e *jeedomPostExecCmd* (ação)
-	* Configurações de ação de valor (informações)
-	* ícone
-	* A ativação e o diretório em *Linha do tempo*
-	* As configurações de *Cálculo* e *redondo*
-	* A configuração do valor de repetição
+	* A propriedade *visível*,
+	* Encomenda (Painel),
+	* L'historisation,
+	* Os widgets Dashboard e Mobile usados,
+	* O tipo genérico,
+	* Parâmetros opcionais,
+	* As configurações *jeedomPreExecCmd* e *jeedomPostExecCmd* (ação),
+	* Configurações de ação de valor (informações),
+	* ícone,
+	* A ativação e o diretório em *Linha do tempo*,
+	* As configurações de *Cálculo* e *redondo*,
+	* A configuração do influxDB,
+	* A configuração do valor de repetição,
+	* Alertas,
+- **Excluir histórico de comandos de destino** : Exclui os dados do histórico de comandos de destino.
+- **Copiar histórico de comandos de origem** : Copie o histórico do comando de origem para o comando de destino.
+
 
 
 ## Remplacements

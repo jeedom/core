@@ -1,4 +1,4 @@
-# Remplacer
+ # Remplacer
 **Herramientas → Reemplazar**
 
 Esta herramienta permite reemplazar rápidamente equipos y controles, por ejemplo, en el caso de un cambio de complemento o de un módulo.
@@ -17,39 +17,45 @@ Puede mostrar solo ciertos equipos para una mayor legibilidad, filtrando por obj
 >
 > Si ninguna de estas opciones está marcada, el reemplazo equivale a usar la función *Reemplace este comando con el comando* en configuración avanzada.
 
-- **Copie la configuración de los dispositivos de origen** :
+- **Copiar la configuración del dispositivo de origen** :
 Para cada equipo, se copiará desde el origen al destino:
-	* El objeto padre
-	* La propiedad *visible*
-	* La propiedad *activo*
-	* Orden (Tablero)
-	* El ancho y la altura (panel de mosaico)
-	* Parámetros de curva de mosaico
-	* Parámetros opcionales
-	* La configuración de visualización de la tabla
-	* el tipo genérico
-	* Las categorias
-	* Comentarios y etiquetas
+	* El objeto padre,
+	* Las categorias,
+	* Los propietarios *activo* y *visible*,
+	* Comentarios y etiquetas,
+	* Orden (Tablero),
+	* El ancho y la altura (panel de mosaico),
+	* Configuración de la curva de mosaico,
+	* Parámetros opcionales,
+	* La configuración de visualización de la tabla,
+	* el tipo genérico,
 	* La propiedad *se acabó el tiempo*
-	* La configuración *autorefrescar*
-Este equipo también será reemplazado por el equipo de destino en Diseños y Vistas.
+	* La configuración *autorefrescar*,
+	* Alertas de batería y comunicación,
 
-- **Ocultar dispositivos de origen** : Permite hacer invisible el equipo de origen una vez reemplazado por el equipo de destino.
-- **Copiar historial de comandos de origen** : Copie el historial de comandos de origen en el comando de destino.
-- **Copie la configuración de los comandos de origen** :
+
+*Este equipo también será reemplazado por el equipo de destino en Diseños y Vistas.*
+
+- **Ocultar equipo fuente** : Permite hacer invisible el equipo de origen una vez reemplazado por el equipo de destino.
+- **Copie la configuración del comando fuente** :
 Para cada comando, se copiará de origen a destino:
-	* La propiedad *visible*
-	* Orden (Tablero)
-	* L'historisation
-	* Los widgets Dashboard y Mobile utilizados
-	* El tipo genérico
-	* Parámetros opcionales
-	* Las configuraciones *JeedomPreExecCmd* y *jeedomPostExecCmd* (acción)
-	* Configuraciones de acción de valor (información)
-	* Icono
-	* La activación y el directorio en *Línea de tiempo*
-	* Las configuraciones de *cálculo* y *redondo*
-	* La configuración del valor de repetición
+	* La propiedad *visible*,
+	* Orden (Tablero),
+	* L'historisation,
+	* Los widgets Dashboard y Mobile utilizados,
+	* El tipo genérico,
+	* Parámetros opcionales,
+	* Las configuraciones *JeedomPreExecCmd* y *jeedomPostExecCmd* (acción),
+	* Configuraciones de acción de valor (información),
+	* Icono,
+	* La activación y el directorio en *Línea de tiempo*,
+	* Las configuraciones de *cálculo* y *redondo*,
+	* La configuración de influxDB,
+	* La configuración del valor de repetición,
+	* Alertas,
+- **Eliminar el historial de comandos de destino** : Elimina los datos del historial de comandos de destino.
+- **Copiar historial de comandos de origen** : Copie el historial de comandos de origen en el comando de destino.
+
 
 
 ## Remplacements
