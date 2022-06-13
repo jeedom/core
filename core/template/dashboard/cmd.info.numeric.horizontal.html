@@ -7,7 +7,7 @@
     <div class="hgauge-value"></div>
   </div>
   <div class="value" data-cmd_id="#id#">
-    <div class="state"><strong>#state#</strong> <strong>#unite#</strong></div>
+    <div class="state"><strong>#state# #unite#</strong></div>
   </div>
   <div class="cmdStats #hide_history#">
     <span title='{{Min}}' class='tooltips'>#minHistoryValue#</span>|<span title='{{Moyenne}}' class='tooltips'>#averageHistoryValue#</span>|<span title='{{Max}}' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
@@ -29,10 +29,10 @@
       var cmd = $('.cmd[data-cmd_id=#id#]')
       cmd.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
       cmd.find('.hgauge-value').width(width+'%')
-      cmd.find('.state strong').first().text(_options.display_value)
+      cmd.find('.state strong').first().text(_options.display_value+' '+_options.unit)
     }
 
-    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#'});
+    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',unit:'#unite#'});
 
     if ($.issetWidgetOptParam('#color#', 'color')) {
       $('.cmd[data-cmd_id=#id#] .hgauge-value').css('background', '#color#')

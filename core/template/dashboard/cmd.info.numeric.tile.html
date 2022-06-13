@@ -3,7 +3,7 @@
     <div  class="cmdName">#name_display#</div>
   </div>
   <div class="content-sm">
-    <span class="pull-right">#unite#</span>
+    <span class="pull-right unit">#unite#</span>
     <span class="pull-right state"></span>
   </div>
   <div class="value #hide_history#">
@@ -16,8 +16,9 @@
     jeedom.cmd.update['#id#'] = function(_options) {
       $('.cmd[data-cmd_id=#id#]').attr('title', '{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
       $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value)
+      $('.cmd[data-cmd_id=#id#] .unit').empty().append(_options.unit)
     }
 
-    jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'})
+    jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#',unit:'#unite#'})
   </script>
 </div>
