@@ -3,7 +3,7 @@ Aqui está a documentação sobre métodos de API.
 Primeiro, aqui estão as especificações (JSON RPC 2.0) :
 <http://www.jsonrpc.org/specification>
 
-O acesso à API é via URL : **/core/api/jeeApi.php
+O acesso à API é via URL : **
 
 Aqui está um exemplo de configuração de um objeto Json que pode ser usado no corpo de uma solicitação feita por um agente HTTP:
 `` json
@@ -773,7 +773,7 @@ o que simplifica o uso da API.
 Recuperando a lista de objetos :
 
 `` `{.php}
-$ = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
+$ = new jsonrpcClient('#URL_JEEDOM#', #API_KEY#);
 if ($ jsonrpc-> sendRequest ('jeeObject::tudo ', matriz())){
     print_r ($ jsonrpc-> getResult ());
 }else{
@@ -784,7 +784,7 @@ if ($ jsonrpc-> sendRequest ('jeeObject::tudo ', matriz())){
 Execução de uma ordem (com a opção de um título e uma mensagem)
 
 `` `{.php}
-$ = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
+$ = new jsonrpcClient('#URL_JEEDOM#', #API_KEY#);
 if ($ jsonrpc-> sendRequest ('cmd::execCmd ', array (' id' => #cmd_id#, 'options '=> array (' title '=>' Cuckoo ',' message '=>' Funciona')))){
     eco 'OK';
 }else{

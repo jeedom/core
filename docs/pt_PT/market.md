@@ -11,12 +11,12 @@ Isso é dividido em várias partes :
 É aqui que você poderá ajustar diferentes parâmetros do seu perfil :
 
 - ****
-    - **Conecte-se** : Seu login no Market, não pode ser alterado.
+    - **** : Seu login no Market, não pode ser alterado.
     - **** : Seu nome (essas informações são úteis apenas para tornar os e-mails mais agradáveis).
     - **Primeiro nome** : Seu primeiro nome (essas informações são úteis apenas para tornar os e-mails mais agradáveis).
     - **Nome de usuário no fórum** : Seu nome de usuário no fórum.
     - **** : Seu email.
-    - **Linguagem** : Seu idioma.
+    - **** : Seu idioma.
     - **Senha e Confirmar senha** : Permite alterar sua senha.
 
 Para desenvolvedores :
@@ -37,19 +37,19 @@ Para os profissionais :
 - **Ativar acesso a plugins beta** : Habilita o acesso a plugins betas (observe que isso impedirá que você acesse o suporte).
     - **Resumo** Aqui você encontrará um resumo dos seus diferentes direitos e serviços.
 
-> **Dica**
+> ****
 >
 > Não esqueça de salvar.
 
 ## Minhas jeedoms
 
 - ****
-    - **Jeedom** : Seu nível de service pack.
+    - **** : Seu nível de service pack.
     - **Digite um número de service pack** : Permite que você digite o número do seu service pack (ele pode ser encontrado no e-mail enviado pela Jeedom durante o seu pedido).
 - **Key instalação**
     - **Número de chaves de instalação** : Exibe o número de instalações Jeedom atualmente vinculadas à sua conta, bem como o limite autorizado.
 
-> **Dica**
+> ****
 >
 > É possível que o Market às vezes peça para você redefinir suas chaves de instalação, isso é normal, basta seguir o que é solicitado.
 
@@ -58,7 +58,7 @@ Para os profissionais :
     - **** : Vamos ver o estado do Jeedom em questão.
     - **IP local / remoto** : IP ou endereço deste Jeedom, configure no Jeedom, se você não colocar nada, será o último IP conhecido.
     - **** : Permite que você personalize o nome do seu DNS.
-    - **URLs** : Listar os diferentes URLs de acesso Jeedom.
+    - **** : Listar os diferentes URLs de acesso Jeedom.
     - **Servidor DNS** : Informa o servidor DNS ao qual você está conectado.
     - **Status DNS** : Permite que você veja o status do DNS.
     - **Data de criação** : Data de criação deste Jeedom na sua conta do Market (lembrete, isso é feito automaticamente quando você o vincula ao Market).
@@ -66,7 +66,7 @@ Para os profissionais :
     - **** : Nome do hardware Jeedom.
     - **** : Versão Jeedom instalada.
 
-> **Dica**
+> ****
 >
 > Não esqueça de salvar.
 
@@ -82,7 +82,7 @@ Nesta guia, você pode consultar seu saldo de SMS / Chamadas (utilizável com o 
 
 Aqui você encontra todas as suas compras e pode solicitar a devolução da fatura ou e-mail de recebimento.
 
-> **Importante**
+> ****
 >
 > Se você comprar um plugin oficial, receberá uma fatura. No entanto, para um plug-in de terceiros, é um recibo, para a fatura que você precisa solicitar ao desenvolvedor.
 

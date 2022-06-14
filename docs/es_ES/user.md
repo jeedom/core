@@ -6,7 +6,7 @@ Esta página le permite definir la lista de usuarios autorizados para conectarse
 En la página tienes tres botones :
 
 - Agregar usuario.
-- .
+- Para salvaguardar.
 - Acceso de soporte abierto.
 
 ## Lista de usuarios
@@ -31,7 +31,7 @@ En la página tienes tres botones :
 
 Al hacer clic en &quot;Derechos&quot;, aparece una ventana que le permite administrar los derechos del usuario con precisión. La primera pestaña muestra los diferentes equipos. El segundo presenta los escenarios.
 
-> ****
+> **Importante**
 >
 > El perfil debe ser limitado; de lo contrario, no se tendrán en cuenta las restricciones establecidas aquí.
 
@@ -49,7 +49,7 @@ Muestra las sesiones del navegador activas en su Jeedom, con información del us
 Enumere los dispositivos (ordenadores, móviles, etc.) que han registrado su autenticación en su Jeedom.
 Puede ver qué usuario, su IP, cuándo y eliminar el registro para este dispositivo.
 
-> ****
+> **Nota**
 >
 > El mismo usuario puede haber registrado diferentes dispositivos. Por ejemplo, su computadora de escritorio, computadora portátil, móvil, etc.
 

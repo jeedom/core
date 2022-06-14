@@ -4,11 +4,11 @@
 Esta página permite configurar a exibição de toda a sua automação residencial de uma maneira muito fina.
 Leva tempo, mas seu único limite é a sua imaginação.
 
-> **Dica**
+> ****
 >
 > É possível ir diretamente a um design graças ao submenu.
 
-> **Importante**
+> ****
 >
 > Todas as ações são executadas clicando com o botão direito do mouse nesta página, tenha cuidado em fazê-lo bem no design. Ao criar, você deve fazê-lo no meio da página (para ter certeza de estar no design).
 
@@ -42,7 +42,7 @@ No menu (clique direito), encontramos as seguintes ações :
 - **Cenografia** : Acesso à configuração do design.
 - **** : Salve o design (observe, também há backups automáticos durante determinadas ações).
 
-> **Importante**
+> ****
 >
 > A configuração dos elementos de design é feita com um clique neles.
 
@@ -65,7 +65,7 @@ Encontrado aqui :
 
 ## Configuração geral de elementos
 
-> **Observação**
+> ****
 >
 > Dependendo do tipo de item, as opções podem mudar.
 
@@ -119,7 +119,7 @@ Permite escolher os comandos para grapher.
 - **** : texto em negrito.
 - **** : Texto em código HTML que estará no elemento.
 
-> **Importante**
+> ****
 >
 > Se você colocar o código HTML (especialmente o Javascript), verifique-o antes, pois pode ocorrer se houver algum erro ou substituir um componente Jeedom que trava completamente o design e ele só precisará excluí-lo diretamente no banco de dados.
 
@@ -151,7 +151,7 @@ Permite escolher os comandos para grapher.
 - **Cor do texto** : Permite escolher uma cor de plano de fundo personalizada ou usar a cor padrão.
 - **** : Valor em pixels do arredondamento dos ângulos do bloco do equipamento.
 - **** : Definição CSS de uma borda de bloco de equipamento.  : 1px preto sólido.
-- **** : Opacidade do ladrilho do equipamento, entre 0 e 1. Atenção : uma cor de fundo deve ser definida.
+- **** : Opacidade do ladrilho do equipamento, entre 0 e 1.  : uma cor de fundo deve ser definida.
 - **CSS personalizado** : Regras CSS a serem aplicadas no equipamento.
 - **Aplicar css personalizado em** : Seletor de CSS no qual aplicar CSS personalizado.
 
@@ -204,7 +204,7 @@ Você apenas tem que colocar as ações a fazer para o On e para o Off.
 
 Nesse modo, ao passar o mouse ou clicar na área Jeedom, você exibirá o widget em questão.
 
-- **Equipamento** : Widget a ser exibido ao passar o mouse ou clicar em.
+- **** : Widget a ser exibido ao passar o mouse ou clicar em.
 - **Mostrar no viaduto** : Se marcado, exibe o widget em foco.
 - **Vista em um clique** : Se marcado, o widget será exibido no clique.
 - **** : Permite escolher onde o widget será exibido (por padrão, no canto inferior direito).

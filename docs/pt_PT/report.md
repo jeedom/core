@@ -7,7 +7,7 @@ Esta página permite ver todos os relatórios que foram gerados pela ação do r
 
 Um relatório é uma captura de tela da interface Jeedom por vez t.
 
-> **Observação**
+> ****
 >
 > Essa captura é adaptada para não levar a barra de menus e outros elementos desnecessários a esse tipo de uso.
 
@@ -27,7 +27,7 @@ Seu uso é muito simples. Selecione à esquerda se quiser ver :
 
 Em seguida, selecione o nome do relatório em questão. Você verá todas as datas dos relatórios disponíveis.
 
-> **Importante**
+> ****
 >
 > A exclusão automática é feita por padrão para relatórios com mais de 30 dias. Você pode configurar esse atraso na configuração do Jeedom.
 

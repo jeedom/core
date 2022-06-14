@@ -66,7 +66,7 @@ Esta posibilidad se puede utilizar tanto con widgets predeterminados como con wi
 
 Para hacerlo, es necesario tener en cuenta 2 requisitos previos :
 
--  **2 comandos de acción / falla** debe estar vinculado a un pedido **info / binario** que almacenará el estado actual del dispositivo.
+- Los **2 comandos de acción / falla** debe estar vinculado a un pedido **info / binario** que almacenará el estado actual del dispositivo.
 
 >****      
 >![Widget de ToggleLink](./images/widgets5.png)
@@ -146,7 +146,7 @@ Una vez en la página de configuración de un widget, se puede acceder a un men�
 Una vez en la página **Herramientas → Widgets** tienes que hacer clic en el botón "****" y dale un nombre a tu nuevo widget.
 
  :
-- Tú eliges si se aplica a una orden de tipo ****  ****.
+- Tú eliges si se aplica a una orden de tipo **Valores**  **Información**.
 - Dependiendo de la elección anterior, deberá **elige el subtipo** De la orden.
 -  **la plantilla** entre los que estarán disponibles según las opciones anteriores.
 - Una vez que se ha elegido la plantilla, Jeedom muestra las opciones de configuración para ella a continuación.
@@ -161,8 +161,8 @@ Dependiendo del tipo de widget, generalmente puede personalizar los íconos, pon
 
 Hay dos tipos de plantillas :
 
--  "****" : como un icono / imagen para el "****" y un icono / imagen para el "****".
--  "****" : Esto permite definir, por ejemplo, una imagen si el comando tiene el valor "**XX**" y otro tan grande que "****" o si menos de "****". También funciona para valores de texto, una imagen si el valor es "****", otro si "****" y así enseguida...
+- Los "****" : como un icono / imagen para el "****" y un icono / imagen para el "****".
+- Los "****" : Esto permite definir, por ejemplo, una imagen si el comando tiene el valor "**XX**" y otro tan grande que "****" o si menos de "****". También funciona para valores de texto, una imagen si el valor es "****", otro si "****" y así enseguida...
 
 #### Remplacement
 
@@ -182,19 +182,19 @@ Esto se llama plantillas multiestado *(varios estados)*. En lugar de poner una i
 
 Como antes, se pueden seleccionar diferentes imágenes según el tema activo en Jeedom y el cuadro **Widget de tiempo** muestra la duración desde el último cambio de estado.
 
-Las pruebas están en forma : ''#value# == #value#`será reemplazado automáticamente por el valor actual del comando. También puedes hacer por ejemplo :
+Las pruebas están en forma : ''#value# == 1`, `#value#`será reemplazado automáticamente por el valor actual del comando. También puedes hacer por ejemplo :
 
-- ''#value# > 
-- ''#value# >=  #value# <= 5''
+- ''#value# > 1`
+- ''#value# >= 1 && #value# <= 5''
 - ''#value# == 'toto'''
 
->****     
+>**Nota**     
 >Es imprescindible mostrar los apóstrofos (**'**) alrededor del texto para comparar si el valor es texto *(info / otro)*.
 
->****     
+>**Nota**     
 >Para usuarios avanzados, también es posible utilizar funciones javascript como `#value#.match ("^ plop") `, aquí probamos si el texto comienza con` plop`.
 
->****     
+>**Nota**     
 >Es posible mostrar el valor del comando en el widget especificando `#value#`en el código HTML de la prueba. Para mostrar la unidad, agregue `#unite#''.
 
 ## Widget de código
@@ -213,7 +213,7 @@ En el modo de código tiene acceso a diferentes etiquetas para pedidos, aquí ha
 - **#uid#** : Identificador único para esta generación del widget (si hay varias veces el mismo comando, caso de diseños:  solo este identificador es realmente único)
 - **#valueDate#** : fecha del valor del pedido
 - **#collectDate#** : fecha de recogida del pedido
-- **#alertLevel#** : nivel de alerta (ver [](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) para la lista)
+- **#alertLevel#** : nivel de alerta (ver [aquí](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) para la lista)
 - **#hide_history#** : si el historial (máximo, mínimo, promedio, tendencia) debe estar oculto o no. En cuanto a la #hide_name# está vacío u oculto y, por lo tanto, se puede usar directamente en una clase. IMPORTANTE si esta etiqueta no se encuentra en su widget, entonces las etiquetas #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue#  #tendance# no será reemplazado por Jeedom.
 - **#minHistoryValue#** : valor mínimo durante el período (período definido en la configuración de Jeedom por el usuario)
 - **#averageHistoryValue#** : valor promedio durante el período (período definido en la configuración de Jeedom por el usuario)
@@ -234,9 +234,9 @@ Aquí hay un ejemplo simple de código JavaScript para poner en su widget :
 <script>
     Jeedom.cmd.update ['#id#'] = función (_options){
       $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '_options.valueDate'<br/>Fecha de recogida : '+ _options.collectDate)
-      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.mostrar_valor ' #unite#')
+      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.mostrar_valor ' #unite#');
     }
-    Jeedom.cmd.update ['#id#']({mostrar_valor:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'})
+    Jeedom.cmd.update ['#id#']({mostrar_valor:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
 </script>
 `` ''
 
@@ -245,16 +245,16 @@ Aquí hay dos cosas importantes :
 `` ''
 Jeedom.cmd.update ['#id#'] = función (_options){
   $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '_options.valueDate'<br/>Fecha de recogida : '+ _options.collectDate)
-  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.mostrar_valor ' #unite#')
+  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.mostrar_valor ' #unite#');
 }
 `` ''
 La función se llama durante una actualización del widget. Luego actualiza el código html del widget_template.
 
 `` ''
-Jeedom.cmd.update ['#id#']({mostrar_valor:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'})
+Jeedom.cmd.update ['#id#']({mostrar_valor:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
 `` ''
  La llamada a esta función para la inicialización del widget.
 
 ### Exemples
 
- Encontraras [](https://github.com/Jeedom/core/tree/V4-stable/core/template) ejemplos de widgets (en el tablero y carpetas móviles)
+ Encontraras [aquí](https://github.com/Jeedom/core/tree/V4-stable/core/template) ejemplos de widgets (en el tablero y carpetas móviles)

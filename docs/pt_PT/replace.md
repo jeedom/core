@@ -29,7 +29,7 @@ Para cada equipamento, será copiado da fonte para o destino:
 	* Parâmetros opcionais,
 	* A configuração de exibição da tabela,
 	* o tipo genérico,
-	* A propriedade *tempo esgotado*
+	* A propriedade **
 	* A configuração **,
 	* Alertas de bateria e comunicação,
 
@@ -48,7 +48,7 @@ Para cada comando, será copiado da origem para o destino:
 	* As configurações **  *jeedomPostExecCmd* (ação),
 	* Configurações de ação de valor (informações),
 	* ícone,
-	* A ativação e o diretório em *Linha do tempo*,
+	* A ativação e o diretório em **,
 	* As configurações de **  **,
 	* A configuração do influxDB,
 	* A configuração do valor de repetição,

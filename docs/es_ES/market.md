@@ -82,7 +82,7 @@ En esta pestaña puede consultar su saldo de SMS / Llamadas (utilizable con el c
 
 Aquí encontrará todas sus compras y puede solicitar la devolución de la factura o recibo por correo electrónico.
 
-> ****
+> **Importante**
 >
 > Si compra un complemento oficial, recibirá una factura. Sin embargo, para un complemento de terceros es un recibo, para la factura debe solicitar al desarrollador.
 

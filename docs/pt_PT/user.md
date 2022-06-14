@@ -31,7 +31,7 @@ Na página você tem três botões :
 
 Ao clicar em "Direitos", uma janela é exibida, permitindo que você gerencie os direitos do usuário com precisão. A primeira guia exibe os diferentes equipamentos. O segundo apresenta os cenários.
 
-> **Importante**
+> ****
 >
 > O perfil deve ser limitado, caso contrário, nenhuma restrição colocada aqui será levada em consideração.
 
@@ -49,7 +49,7 @@ Exibe as sessões do navegador ativas no seu Jeedom, com informações do usuár
 Liste os dispositivos (computadores, celulares, etc.) que registraram sua autenticação em seu Jeedom.
 Você pode ver qual usuário, seu IP, quando e excluir o registro deste dispositivo.
 
-> **Observação**
+> ****
 >
 > O mesmo usuário pode ter registrado dispositivos diferentes. Por exemplo, seu computador desktop, laptop, celular etc.
 

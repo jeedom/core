@@ -12,7 +12,7 @@ Diese Bestellungen erhalten Sie von :
 
 Der Wert von Interaktionen liegt in der vereinfachten Integration in andere Systeme wie Smartphones, Tablets, andere Hausautomationsboxen usw.
 
-> ****
+> **Tipp**
 >
 > Sie können eine Interaktion öffnen, indem Sie dies tun :
 > - Klicken Sie auf eine davon.
@@ -34,7 +34,7 @@ Am oberen Rand der Seite befinden sich 3 Schaltflächen :
 - **Regenerat** : Recréer toutes les interactions (peut être très long &gt; 5mn).
 - **** : Öffnen Sie einen Dialog, um einen Satz zu schreiben und zu testen.
 
-> ****
+> **Tipp**
 >
 > Wenn Sie eine Interaktion haben, die beispielsweise die Sätze für Lichter generiert, und Sie ein neues Lichtsteuermodul hinzufügen, müssen Sie entweder alle Interaktionen neu generieren oder zur betreffenden Interaktion gehen und sie erneut erstellen, um sie zu erstellen die Sätze dieses neuen Moduls.
 
@@ -83,7 +83,7 @@ Verwenden Sie diese Option, wenn Sie einen oder mehrere bestimmte Befehle als Zi
 
 #### Exemples
 
-> ****
+> **Notiz**
 >
 > Die Screenshots können im Hinblick auf Entwicklungen unterschiedlich sein.
 
@@ -103,7 +103,7 @@ Wir können uns sehr gut vorstellen, dasselbe mit mehreren Aktionen zu tun, um m
 
 In den beiden obigen Beispielen ist der Modellsatz identisch, aber die daraus resultierenden Aktionen ändern sich entsprechend der Konfiguration im Teil "Aktion". Daher können wir uns bereits mit einer einfachen Interaktion mit einem einzelnen Satz Aktionen vorstellen, die zwischen diesen kombiniert werden verschiedene Befehle und verschiedene Szenarien (wir können auch Szenarien im Aktionsteil von Interaktionen auslösen).
 
-> ****
+> **Tipp**
 >
 > Um ein Szenario hinzuzufügen, erstellen Sie eine neue Aktion, schreiben Sie &quot;Szenario&quot; ohne Akzent und drücken Sie die Tabulatortaste auf Ihrer Tastatur, um die Szenarioauswahl aufzurufen.
 
@@ -285,7 +285,7 @@ Wir können also einen regulären Ausdruck sehen :
 
 Auf diese Weise können Sie alle Befehle löschen, deren Satz eines dieser Wörter enthält
 
-> ****
+> **Notiz**
 >
 > Der reguläre Ausdruck hier ist eine vereinfachte Version zur einfachen Verwendung. Wir können daher entweder traditionelle Ausdrücke oder vereinfachte Ausdrücke wie in diesem Beispiel verwenden.
 
@@ -299,7 +299,7 @@ Es ist möglich, eine Lampe als Prozentsatz (Dimmer) oder einen Thermostat mit d
 
 Wie wir sehen können, gibt es hier in der Anfrage das Tag **\.#consigne\.#** (Sie können eingeben, was Sie möchten), was in der Antriebssteuerung enthalten ist, um den gewünschten Wert anzuwenden. Dazu haben wir 3 Teile : \.*  : in dem wir ein Tag erstellen, das den Wert darstellt, der an die Interaktion gesendet wird. \* Antwort : Wir verwenden das Tag für die Antwort erneut, um sicherzustellen, dass Jeedom die Anfrage richtig verstanden hat. \*  : Wir setzen eine Aktion auf die Lampe, die wir fahren möchten, und geben in dem Wert, den wir geben, unser Etikett an **.
 
-> ****
+> **Notiz**
 >
 > Wir können jedes Tag verwenden, außer denjenigen, die bereits von Jeedom verwendet werden. Es können mehrere verwendet werden, um beispielsweise mehrere Befehle zu steuern. Beachten Sie auch, dass alle Tags an die von der Interaktion gestarteten Szenarien übergeben werden (es ist jedoch erforderlich, dass sich das Szenario unter "Im Vordergrund ausführen" befindet").
 
@@ -350,6 +350,6 @@ Interaktionen machen insbesondere viele Dinge. Sie können eine Aktion dynamisch
 
 ![interact23](../images/interact23.JPG)
 
-> ****
+> **Notiz**
 >
 > Sie werden in der Antwort das Tag \ bemerken#value\.# Dies enthält im Falle einer programmierten Interaktion die effektive Programmierzeit

@@ -48,7 +48,7 @@ Para cada comando, se copiará de origen a destino:
 	* Las configuraciones **  *jeedomPostExecCmd* (acción),
 	* Configuraciones de acción de valor (información),
 	* Icono,
-	* La activación y el directorio en **,
+	* La activación y el directorio en *Línea de tiempo*,
 	* Las configuraciones de **  **,
 	* La configuración de influxDB,
 	* La configuración del valor de repetición,

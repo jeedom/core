@@ -4,7 +4,7 @@
 Diese Seite informiert über alle Jeedom-Anwendungsaufgaben, die auf dem Server ausgeführt werden.
 Diese Seite ist wissentlich oder auf Anfrage des technischen Supports zu verwenden.
 
-> ****
+> **Wichtig**
 >
 > Im Falle eines Missbrauchs auf dieser Seite kann jede Anfrage nach Unterstützung abgelehnt werden.
 

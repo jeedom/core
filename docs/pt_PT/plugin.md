@@ -10,7 +10,7 @@ Existe, portanto, uma lista de plugins em ordem alfabética e um link para o mer
 
 Ao clicar em um plug-in, você acessa sua configuração. Na parte superior, você encontra o nome do plug-in e, entre parênteses, seu nome em Jeedom (ID) e, finalmente, o tipo de versão instalada (estável, beta).
 
-> **Importante**
+> ****
 >
 > Ao baixar um plug-in, ele é desativado por padrão. Então você tem que ativá-lo sozinho.
 
@@ -19,12 +19,12 @@ Ao clicar em um plug-in, você acessa sua configuração. Na parte superior, voc
 Aqui você tem três botões :
 
 - **Sincronizar mercado** : Se você instalar um plugin de um navegador da web em sua conta do Market (além do Jeedom), você pode forçar uma sincronização para instalá-lo.
-- **Mercado** : Abra o Jeedom Market, para selecionar um plugin e instalá-lo em seu Jeedom.
+- **** : Abra o Jeedom Market, para selecionar um plugin e instalá-lo em seu Jeedom.
 - **** : Você pode instalar um plugin aqui a partir de uma fonte Github, Samba, ...
 
 ### Sincronizar mercado
 
-Em um navegador, vá para o [Mercado](https://market.jeedom.com).
+Em um navegador, vá para o [](https://market.jeedom.com).
 Faça login em sua conta.
 Clique em um plug-in e escolha *Instale estável*  *Instalar beta* (se sua conta do Market permitir).
 
@@ -34,7 +34,7 @@ Se sua conta do Market estiver configurada corretamente em seu Jeedom (Configura
 
 Para instalar um novo plugin, basta clicar no botão "Mercado" (e o Jeedom está conectado à Internet). Após um curto período de carregamento, você receberá a página.
 
-> **Dica**
+> ****
 >
 > Você deve inserir as informações da sua conta do Market na administração (Configuração → Atualizações / Market → guia Market) para encontrar os plug-ins que você já comprou, por exemplo.
 
@@ -45,7 +45,7 @@ No topo da janela você tem filtros :
 - **** : permite procurar um plugin (no nome ou na descrição dele)).
 - **Nome de Usuário** : exibe o nome de usuário usado para conectar-se ao Market, bem como o status da conexão.
 
-> **Dica**
+> ****
 >
 > A cruz pequena redefine o filtro em questão
 
@@ -60,11 +60,11 @@ Depois de encontrar o plug-in desejado, basta clicar nele para abrir o arquivo. 
 
 Abaixo, você encontrará a descrição do plug-in, a compatibilidade (se o Jeedom detectar uma incompatibilidade, ele o notificará), as opiniões sobre o plug-in (você pode anotá-lo aqui) e informações adicionais (o autor, a pessoa que fez a atualização mais recente, um link para o documento, o número de downloads). À direita, você encontrará um botão "Changelog" que permite ter todo o histórico de modificações, um botão "Documentação" que se refere à documentação do plugin. Então você tem o idioma disponível e as várias informações na data da última versão estável.
 
-> **Importante**
+> ****
 >
 > Não é realmente recomendável colocar um plug-in beta em um Jeedom não beta, pois muitos problemas operacionais podem resultar.
 
-> **Importante**
+> ****
 >
 > Alguns plugins são cobrados; nesse caso, o plug-in oferecerá que você o compre. Depois de concluído, é necessário aguardar cerca de dez minutos (tempo de validação do pagamento) e retornar ao arquivo do plug-in para instalá-lo normalmente.
 
@@ -80,7 +80,7 @@ Atenção, no caso de adicionar por um arquivo zip, o nome do zip deve ser o mes
 
 Ao clicar no ícone de um plugin, você abre sua página de configuração.
 
-> **Dica**
+> ****
 >
 > Você pode pressionar Ctrl ou Click Center para abrir sua configuração em uma nova guia do navegador.
 
@@ -123,13 +123,13 @@ Se o plug-in tiver dependências e / ou um daemon, essas áreas adicionais serã
 
 - **** : Geralmente será local.
 - **** : Status do daemon, OK ou NOK.
-- **Configuração** : OK, se todos os critérios para o demônio funcionar forem atendidos ou fornecer a causa do bloqueio.
+- **** : OK, se todos os critérios para o demônio funcionar forem atendidos ou fornecer a causa do bloqueio.
 - **(Reiniciar** : Permite iniciar ou reiniciar o demônio.
 - **Parar** : Usado para parar o daemon (apenas no caso em que o gerenciamento automático está desativado).
 - **Gerenciamento automático** : Habilita ou desabilita o gerenciamento automático (que permite que o Jeedom gerencie o próprio daemon e reinicie-o, se necessário. Salvo indicação em contrário, é recomendável deixar o gerenciamento automático ativo).
 - **último lançamento** : Data do último lançamento do daemon.
 
-> **Dica**
+> ****
 >
 > Alguns plugins possuem uma parte de configuração. Se for esse o caso, ele aparecerá nas zonas de dependência e daemon descritas acima.
 > Nesse caso, consulte a documentação do plug-in em questão para saber como configurá-lo.
@@ -147,7 +147,7 @@ Se o plug-in tiver dependências e / ou um daemon, essas áreas adicionais serã
 - **** : Um cron para comandantes mortos.
 - **** : Uma saúde cron.
 
-> **Dica**
+> ****
 >
 > Se o plug-in usa uma dessas funções, você pode proibi-lo especificamente desmarcando a caixa "ativar" que estará presente ao lado dele.
 

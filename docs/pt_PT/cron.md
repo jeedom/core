@@ -4,7 +4,7 @@
 Esta página informa sobre todas as tarefas do aplicativo Jeedom em execução no servidor.
 Esta página deve ser usada com conhecimento ou a pedido de suporte técnico.
 
-> **Importante**
+> ****
 >
 > Em caso de uso indevido nesta página, qualquer solicitação de suporte poderá ser recusada.
 
@@ -21,7 +21,7 @@ Abaixo, você tem a tabela de todas as tarefas existentes (atenção, algumas ta
 
 Nesta tabela, encontramos :
 
-- **\#** : ID da tarefa, útil para vincular um processo em execução ao que ele realmente faz.
+- **#** : ID da tarefa, útil para vincular um processo em execução ao que ele realmente faz.
 - **** : Indica se a tarefa está ativa (pode ser iniciada pelo Jeedom) ou não.
 - **** : Indica o ID do processo atual.
 - **Demônio** : Se esta caixa for "sim", a tarefa deve sempre estar em andamento. Além disso, você encontra a frequência do daemon, é aconselhável nunca modificar esse valor e, especialmente, nunca diminuí-lo.

@@ -11,13 +11,13 @@ Você encontrará a lista de cenários do seu Jeedom, bem como funcionalidades p
 
 - **** : Crie um cenário. O procedimento é descrito no próximo capítulo.
 - **Desativar cenários** : Desativa todos os cenários. Raramente usado e conscientemente, já que nenhum cenário será executado.
-- **Visão global** : Permite que você tenha uma visão geral de todos os cenários. Você pode alterar os valores ****, ****, **Multi lançamento**, **Sincronicamente**, ****  **Linha do tempo** (esses parâmetros são descritos no capítulo a seguir). Você também pode acessar os logs para cada cenário e iniciá-los individualmente.
+- **Visão global** : Permite que você tenha uma visão geral de todos os cenários. Você pode alterar os valores ****, ****, **Multi lançamento**, **Sincronicamente**, ****  **** (esses parâmetros são descritos no capítulo a seguir). Você também pode acessar os logs para cada cenário e iniciá-los individualmente.
 
 ## Meus scripts
 
-Você encontrará nesta parte **lista de cenários** que você criou. Eles são classificados de acordo com seus ****, possivelmente definido para cada um deles. Cada cenário é exibido com seus **** e o dele **Objeto pai**. O **cenários esmaecidos** são os que estão desativados.
+Você encontrará nesta parte **lista de cenários** que você criou. Eles são classificados de acordo com seus ****, possivelmente definido para cada um deles. Cada cenário é exibido com seus **** e o dele **Objeto pai**.  **cenários esmaecidos** são os que estão desativados.
 
-> **Dica**
+> ****
 >
 > Você pode abrir um cenário fazendo :
 > - Clique em um deles.
@@ -71,20 +71,20 @@ Na aba **Geral**, encontramos os principais parâmetros do cenário :
 - **Objeto pai** : Atribuição a um objeto pai. Será então visível ou não, de acordo com este pai.
 - **Tempo limite em segundos (0 = ilimitado)** : O tempo máximo de execução permitido para este cenário. Além desse tempo, a execução do cenário é interrompida.
 - **Multi lançamento** : Marque esta caixa se desejar que o cenário possa ser iniciado várias vezes ao mesmo tempo.
->**IMPORTANTE**
+>****
 >
 >O multi lançamento funciona por segundo, ou seja, se você tiver 2 lançamentos no mesmo segundo sem a caixa marcada, ainda haverá 2 lançamentos do cenário (embora não deva). Da mesma forma, durante vários lançamentos no mesmo segundo, alguns lançamentos podem perder as tags. Conclusão é ABSOLUTAMENTE necessário evitar vários lançamentos no mesmo segundo.
 - **Sincronicamente** : Inicie o cenário no segmento atual em vez de um segmento dedicado. Aumenta a velocidade na qual o cenário é iniciado, mas pode tornar o sistema instável.
 - **** : O tipo de log desejado para o cenário. Você pode cortar os registros do cenário ou, ao contrário, mostrá-lo em Análise → Tempo real.
-- **Linha do tempo** : Mantenha um acompanhamento do cenário na linha do tempo (consulte Histórico doc).
+- **** : Mantenha um acompanhamento do cenário na linha do tempo (consulte Histórico doc).
 - **Ícone** : Permite escolher um ícone para o cenário em vez do ícone padrão.
 - **** : Permite que você escreva um pequeno texto para descrever seu cenário.
 - **Modo de cenário** : O cenário pode ser programado, acionado ou ambos. Você terá a opção de indicar o (s) gatilho (s) (máximo de 15 gatilhos) e a (s) programação (ões)).
 
-> **Dica**
+> ****
 >
 > Agora as condições podem ser inseridas no modo acionado. Por exemplo : ``#[Garage][Open Garage][Ouverture]# == 1``
-> Atenção : você pode ter no máximo 28 gatilhos / programação para um cenário.
+>  : você pode ter no máximo 28 gatilhos / programação para um cenário.
 
 > **Modo de ponta programado**
 >
@@ -92,16 +92,16 @@ Na aba **Geral**, encontramos os principais parâmetros do cenário :
 
 ## Guia Cenário
 
-É aqui que você criará seu cenário. Depois de criar o cenário, seu conteúdo está vazio, então ele fará ... nada. Você tem que começar com **Adicionar bloco**, com o botão à direita. Após a criação de um bloco, você pode adicionar outro **** ou um **estoque**.
+É aqui que você criará seu cenário. Depois de criar o cenário, seu conteúdo está vazio, então ele fará ... nada. Você tem que começar com **Adicionar bloco**, com o botão à direita. Após a criação de um bloco, você pode adicionar outro **** ou um ****.
 
 Para maior comodidade e não ter que reordenar constantemente os blocos no cenário, a adição de um bloco é feita após o campo em que o cursor do mouse está localizado.
 *Por exemplo, se você tiver dez blocos e clicar na condição IF do primeiro bloco, o bloco adicionado será adicionado após este bloco, no mesmo nível. Se nenhum campo estiver ativo, ele será adicionado no final do cenário.*
 
-> **Dica**
+> ****
 >
 > Em condições e ações, é melhor favorecer aspas simples (') em vez de aspas duplas (").
 
-> **Dica**
+> ****
 >
 > Ctrl Shift Z ou Ctrl Shift Y permite que você'****  **** uma modificação (adição de ação, bloco...).
 
@@ -140,16 +140,16 @@ Três botões estão disponíveis à direita deste tipo de bloco para selecionar
 - **Pesquisa cenário** : Permite procurar um cenário para testar.
 - **Procure equipamento** : O mesmo para equipamentos.
 
-> **Observação**
+> ****
 >
 > Em blocos do tipo Se / Então / Caso contrário, as setas circulares à esquerda do campo de condição permitem ativar ou não a repetição de ações se a avaliação da condição fornecer o mesmo resultado que na avaliação anterior.
 > Expressão IF != 0 é equivalente a expressão IF e expressão IF == 0 é equivalente a expressão IF não
 
-> **Dica**
+> ****
 >
 > Há uma lista de tags que permitem acessar variáveis do cenário ou de outro, ou pela hora, data, número aleatório,… Veja abaixo os capítulos sobre comandos e tags.
 
-Depois que a condição estiver concluída, você deve usar o botão "adicionar" à esquerda para adicionar um novo **** ou um **estoque** no bloco atual.
+Depois que a condição estiver concluída, você deve usar o botão "adicionar" à esquerda para adicionar um novo **** ou um **** no bloco atual.
 
 
 ### Código de bloco
@@ -164,7 +164,7 @@ O bloco Code permite executar código php. Portanto, é muito poderoso, mas requ
     -  ``$id`` : ID do pedido.
 -  ``$cmd->execCmd($options = null);`` : Execute o comando e retorne o resultado.
     - ``$options`` : Opções para a execução do comando (podem ser específicas para o plugin). Opções básicas (subtipo de comando) :
-        -  ``message`` : ``$option = array('title' => 'titre du mensagem , 'message' => 'Mon message');``
+        -  ``message`` : ``$option = array('title' => 'titre du  , 'message' => 'Mon message');``
         -  ``color`` : ``$option = array('color' => 'couleur en hexadécimal');``
         -  ``slider`` : ``$option = array('slider' => 'valeur voulue de 0 à 100');``
 
@@ -193,7 +193,7 @@ O bloco Code permite executar código php. Portanto, é muito poderoso, mas requ
 - ``$scenario->setLog($message);`` : Escreva uma mensagem no log de script.
 - ``$scenario->persistLog();`` : Forçar a gravação do log (caso contrário, ele será gravado apenas no final do cenário). Cuidado, isso pode atrasar um pouco o cenário.
 
-> **Dica**
+> ****
 >
 > Adição de uma função de pesquisa no bloco Código :  : Ctrl + F, em seguida, Enter, próximo resultado : Ctrl + G, resultado anterior : Ctrl+Shift+G
 
@@ -215,7 +215,7 @@ As ações adicionadas aos blocos têm várias opções :
 - Um botão para ações específicas, sempre que a descrição (em foco) dessa ação.
 - Um botão para procurar um comando de ação.
 
-> **Dica**
+> ****
 >
 > Dependendo do comando selecionado, diferentes campos adicionais podem ser exibidos.
 
@@ -236,7 +236,7 @@ Existem gatilhos específicos (além dos fornecidos pelos comandos) :
 - ``#variable(nom_variable)#`` : Alterando o valor da variável name_name.
 - ``#genericType (GENERIC, #[Object]#)#`` : Alteração de um comando de informação do tipo GENÉRICO genérico, no objeto Object.
 
-Você também pode acionar um cenário usando a API HTTP descrita [aqui](https:doc.jeedom.com/pt_PT/core4.1api_http).
+Você também pode acionar um cenário usando a API HTTP descrita [](https:doc.jeedom.com/pt_PT/core4.1api_http).
 
 ### Operadores de comparação e links entre condições
 
@@ -261,9 +261,9 @@ Você pode combinar qualquer comparação com os seguintes operadores :
 
 Uma tag é substituída durante a execução do cenário por seu valor. Você pode usar as seguintes tags :
 
-> **Dica**
+> ****
 >
-> Para exibir os zeros à esquerda, use a função Data (). Veja [aqui](https:www.php.netmanualfrdatetime.format.php).
+> Para exibir os zeros à esquerda, use a função Data (). Veja [](https:www.php.netmanualfrdatetime.format.php).
 
 - ``#seconde#`` : Segundo atual (sem zeros à esquerda, ex : 6 para 08:07:06).
 - ``#hour#`` : Hora atual no formato 24h (sem zeros à esquerda)).  : 8 para 08:07:06 ou 17 para 17:15.
@@ -293,7 +293,7 @@ Você também tem as seguintes tags adicionais se seu cenário foi acionado por 
 - #query# : Interação que acionou o cenário.
 - #profil# : Perfil do usuário que iniciou o cenário (pode estar vazio).
 
-> **Importante**
+> ****
 >
 > Quando um cenário é acionado por uma interação, é necessariamente executado no modo rápido. Portanto, no segmento de interação e não em um segmento separado.
 
@@ -349,11 +349,11 @@ Várias funções estão disponíveis para o equipamento :
 - ``lastScenarioExecution(scenario)`` : Dá a duração em segundos desde o último lançamento do cenário.
     0 : O cenário não existe
 
-- ``collectDate(cmd,[format])`` : Retorna a data da última coleta de dados para o comando colocado como parâmetro, o 2º parâmetro opcional é usado para especificar o formato de retorno (detalhes [aqui](https:www.php.netmanualfrdatetime.format.php)).
+- ``collectDate(cmd,[format])`` : Retorna a data da última coleta de dados para o comando colocado como parâmetro, o 2º parâmetro opcional é usado para especificar o formato de retorno (detalhes [](https:www.php.netmanualfrdatetime.format.php)).
     -1 : Não foi possível encontrar o comando,
     -2 : O comando não é do tipo info.
 
-- ``valueDate(cmd,[format])`` : Devolve a data do último valor conhecido para o comando colocado como parâmetro, o 2º parâmetro opcional é usado para especificar o formato de retorno (detalhes [aqui](https:www.php.netmanualfrdatetime.format.php)).
+- ``valueDate(cmd,[format])`` : Devolve a data do último valor conhecido para o comando colocado como parâmetro, o 2º parâmetro opcional é usado para especificar o formato de retorno (detalhes [](https:www.php.netmanualfrdatetime.format.php)).
     -1 : Não foi possível encontrar o comando,
     -2 : O comando não é do tipo info.
 
@@ -368,7 +368,7 @@ Várias funções estão disponíveis para o equipamento :
 
 - ``name(type,commande)`` : Usado para recuperar o nome do pedido, equipamento ou objeto.  : cmd, eqLogic ou objeto.
 
-- ``lastCommunication(equipment,[format])`` : Retorna a data da última comunicação para o dispositivo dado como parâmetro, o 2º parâmetro opcional é usado para especificar o formato de retorno (detalhes [aqui](https:www.php.netmanualfrdatetime.format.php)). Um retorno de -1 significa que o equipamento não pode ser encontrado.
+- ``lastCommunication(equipment,[format])`` : Retorna a data da última comunicação para o dispositivo dado como parâmetro, o 2º parâmetro opcional é usado para especificar o formato de retorno (detalhes [](https:www.php.netmanualfrdatetime.format.php)). Um retorno de -1 significa que o equipamento não pode ser encontrado.
 
 - ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Retorna uma cor calculada em relação a um valor no intervalo color_start / color_end. O valor deve estar entre min_value e max_value.
 
@@ -467,7 +467,7 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
     - Para iniciar : Comece o cenário em um tópico diferente. O cenário iniciado é executado independentemente do cenário de chamada.
     - Iniciar (Sincronizar) : Inicia o cenário chamado e pausa o cenário chamado, enquanto o cenário chamado termina de ser executado.
     - Pare : Pára o script.
-    - Permitir : Ative um cenário desativado.
+    -  : Ative um cenário desativado.
     - Desativar : Cenário de desativação. Ele não inicia mais, independentemente dos gatilhos.
     - Reinicializando os ISs : Usado para redefinir o status de ****. Este status é usado para a não repetição das ações de um ****, se a avaliação da condição der o mesmo resultado da avaliação anterior.
 - **** (stop) : Pára o script.
@@ -484,7 +484,7 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
 - **Ícone** (icon) : Permite alterar o ícone de representação do cenário.
 - **** (alert) : Exibe uma pequena mensagem de alerta em todos os navegadores que têm uma página Jeedom aberta. Além disso, você pode escolher 4 níveis de alerta.
 - **** (popup) : Permite exibir um pop-up que deve ser absolutamente validado em todos os navegadores que possuem uma página jeedom aberta.
-- **Relatório** (report) : Permite exportar uma visualização em formato (PDF, PNG, JPEG ou SVG) e enviá-la usando um comando do tipo mensagem. Observe que, se seu acesso à Internet estiver em HTTPS não assinado, essa funcionalidade não funcionará. HTTP ou HTTPS assinado é necessário.
+- **** (report) : Permite exportar uma visualização em formato (PDF, PNG, JPEG ou SVG) e enviá-la usando um comando do tipo mensagem. Observe que, se seu acesso à Internet estiver em HTTPS não assinado, essa funcionalidade não funcionará. HTTP ou HTTPS assinado é necessário.
 - **Excluir bloco IN / A agendado** () : Apagar a programação de todos os blocos dentro e A Cenário.
 - **Evento** (event) : Permite inserir um valor em um comando de tipo de informação arbitrariamente.
 - **** (tag) : Permite adicionar / modificar uma marca (a marca existe apenas durante a execução atual do cenário, diferentemente das variáveis que sobrevivem ao final do cenário).
@@ -524,7 +524,7 @@ Como, de um Jeedom para outro ou de uma instalação para outro, os comandos pod
 
 ## Adição da função php
 
-> **IMPORTANTE**
+> ****
 >
 > A adição da função PHP é reservada para usuários avançados. O menor erro pode ser fatal para o seu Jeedom.
 
@@ -536,6 +536,6 @@ Vá para a pasta de dados, php e clique no arquivo user.function.class.php.
 
 Está nisso ** que você pode adicionar suas funções, você encontrará um exemplo de função básica.
 
-> **IMPORTANTE**
+> ****
 >
 > Se você tiver alguma dúvida, sempre poderá reverter para o arquivo original, copiando o conteúdo de ``user.function.class.sample.php``  ``user.function.class.php``

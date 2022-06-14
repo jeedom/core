@@ -16,7 +16,7 @@ En cada objeto, se muestran su imagen de fondo y sus resúmenes :
 Dependiendo del tipo de resumen (clave), visible en **Preferencias → Sistema → Configuración / Resúmenes** :
 - Arriba a la izquierda : El nombre del objeto.
 - Arriba a la derecha : La temperatura (**) y humedad (**).
-- Bajo el título :  (**) y movimiento (**), de color verde o rojo dependiendo de si hay alertas / movimientos en progreso.
+- Bajo el título : Alerta (**) y movimiento (**), de color verde o rojo dependiendo de si hay alertas / movimientos en progreso.
 - Abajo : Todos los otros resúmenes de materias.
 
 La configuración de la visualización del objeto se realiza en **Herramientas → Objetos** :
@@ -30,7 +30,7 @@ La configuración de la visualización del objeto se realiza en **Herramientas �
 >
 > El orden de visualización de los objetos es el de *Resumen de domótica*, que puede reordenar (Análisis → Resumen de automatización del hogar).
 
-> ****
+> **Nota**
 >
 > Si un objeto no tiene un resumen definido, se muestra un botón en la parte superior derecha para acceder a la configuración / resúmenes del objeto.
 

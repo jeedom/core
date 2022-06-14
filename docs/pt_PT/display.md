@@ -26,11 +26,11 @@ Para cada objeto, próximo ao seu rótulo, dois botões estão disponíveis.
 - O primeiro é usado para abrir a página de configuração do objeto em uma nova guia.
 - O segundo fornece algumas informações sobre o objeto,
 
-> **Dica**
+> ****
 >
 > A cor do plano de fundo dos quadros do objeto depende da cor escolhida na configuração do objeto.
 
-> **Dica**
+> ****
 >
 > Com um clique e soltar nos objetos ou equipamentos, você pode alterar a ordem deles ou até atribuí-los a outro objeto. É da ordem estabelecida nesta página que a exibição do Painel é calculada.
 
@@ -39,7 +39,7 @@ Para cada objeto, próximo ao seu rótulo, dois botões estão disponíveis.
 Em cada equipamento encontramos :
 
 -  **caixa de seleção** para selecionar o equipamento (você pode selecionar vários). Se pelo menos um dispositivo estiver selecionado, você terá botões de ação que aparecem no canto superior esquerdo para ****,  ********,  ******** equipamento selecionado.
-- L'**Eu iria** equipamento.
+- L'**** equipamento.
 -  **** equipamento : Identificador do plug-in ao qual ele pertence.
 -  **** equipamento.
 - **** (pequena cruz) : Significa que o equipamento está inativo (se não estiver lá, o equipamento está ativo).
@@ -53,7 +53,7 @@ Se o plug-in do equipamento estiver desativado, os dois ícones à direita não 
 
 ## Configuração avançada de equipamentos
 
-> **Dica**
+> ****
 >
 > É possível acessar (se o plugin o suportar) diretamente a esta janela a partir da página de configuração do equipamento, clicando no botão de configuração avançada
 
@@ -74,7 +74,7 @@ A janela de **Configuração avançada de equipamentos** permite modificá-lo. P
 - **ID lógico** : Identificador lógico do equipamento (pode estar vazio).
 - **Object ID** : Identificador exclusivo do objeto pai (pode estar vazio).
 - **Data de criação** : Data de criação do equipamento.
-- **Permitir** : Marque a caixa para ativar o equipamento (não esqueça de salvar).
+- **** : Marque a caixa para ativar o equipamento (não esqueça de salvar).
 - **** : Marque a caixa para tornar o equipamento visível (não esqueça de salvar).
 - **** : Identificador do plug-in pelo qual ele foi criado.
 - **Tentativa fracassada** : Número de falhas consecutivas de tentativas de comunicação com o equipamento.
@@ -99,7 +99,7 @@ Na aba ****, você poderá configurar certos comportamentos de exibição de blo
 Abaixo, há parâmetros opcionais de exibição que podem ser aplicados ao equipamento. Esses parâmetros são compostos de um nome e um valor. Basta clicar em **** aplicar um
 novo. Para equipamentos, apenas o valor **** atualmente utilizado, permite inserir código CSS no equipamento em questão.
 
-> **Dica**
+> ****
 >
 > Não se esqueça de salvar após qualquer modificação.
 
@@ -118,7 +118,7 @@ Abaixo para cada caixa, o **Configuração detalhada** permite que você
 - **Caixa de texto** : Adicione texto além do comando (ou sozinho, se não houver comando na caixa).
 - **Estilo do caso (CSS)** : Modifique o estilo CSS específico da caixa (observe que ele substitui e substitui o CSS geral das caixas).
 
-> **Dica**
+> ****
 >
 > Em uma caixa da tabela, se você deseja colocar 2 comandos um abaixo do outro, não se esqueça de adicionar uma quebra de linha após o primeiro no **Configuração avançada** disso.
 
@@ -134,9 +134,9 @@ Abaixo, você também pode definir os limites de alerta de bateria específicos 
 
 Você também pode gerenciar o tempo limite, em minutos, do equipamento. Por exemplo, 30 informa ao jeedom que se o equipamento não se comunicar por 30 minutos, ele deve ser colocado em alerta.
 
-> **Dica**
+> ****
 >
-> Os parâmetros globais estão em **Configurações → Sistema → Configuração : Histórico**  **Equipamento**
+> Os parâmetros globais estão em **Configurações → Sistema → Configuração : **  ****
 
 ### Guia de comentários
 
@@ -153,11 +153,11 @@ Primeiro, no canto superior direito, alguns botões disponíveis :
 -  **Aplicar** : Permite que a mesma configuração seja aplicada a vários comandos.
 - **** : Salve as modificações feitas no equipamento.
 
-> **Dica**
+> ****
 >
 > Em um gráfico, um clique duplo em um elemento leva você à sua configuração.
 
-> **Observação**
+> ****
 >
 > Dependendo do tipo de pedido, as informações / ações exibidas podem mudar.
 
@@ -170,7 +170,7 @@ Primeiro, no canto superior direito, alguns botões disponíveis :
 - **** : Nome do comando.
 - **** : Tipo de comando (ação ou informação).
 - **** : Subtipo de comando (binário, digital etc.)).
-- **URL direta** : Fornece a URL para acessar este equipamento. (clique com o botão direito do mouse, copie o endereço do link) O URL iniciará o comando para um **estoque** e retorne as informações para um ****.
+- **URL direta** : Fornece a URL para acessar este equipamento. (clique com o botão direito do mouse, copie o endereço do link) O URL iniciará o comando para um **** e retorne as informações para um ****.
 - **** : Unidade de controle.
 - **Comando provocando uma atualização** : Fornece o identificador de outro comando que, se esse outro comando for alterado, forçará a atualização do comando exibido.
 - **** : Marque esta caixa para tornar o comando visível.
@@ -184,7 +184,7 @@ Você também tem três outros botões laranja embaixo :
 - **Este comando substitui o comando** : Substituir comando pelo comando atual.
 - **Substituir esse comando pelo comando** : Por outro lado, substitua o comando por outro comando.
 
-> **Observação**
+> ****
 >
 > Esse tipo de ação substitui comandos em todos os lugares do Jeedom (cenário, interação, comando, equipamento….).
 
@@ -224,11 +224,11 @@ Abaixo, você encontrará a lista dos diferentes equipamentos, comandos, cenári
 
 ### Guia Alertas
 
-Permite definir um nível de alerta (**aviso**  **perigo**) dependendo de certas condições. Por exemplo, se `valor> 8` por 30 minutos, o equipamento pode ficar em alerta **aviso**.
+Permite definir um nível de alerta (****  ****) dependendo de certas condições. Por exemplo, se `valor> 8` por 30 minutos, o equipamento pode ficar em alerta ****.
 
-> **Observação**
+> ****
 >
-> Na página **Configurações → Sistema → Configuração : Histórico**, você pode configurar um comando de tipo de mensagem que permitirá que o Jeedom o notifique se o limite de aviso ou perigo for atingido.
+> Na página **Configurações → Sistema → Configuração : **, você pode configurar um comando de tipo de mensagem que permitirá que o Jeedom o notifique se o limite de aviso ou perigo for atingido.
 
 ### Guia Exibir
 
@@ -242,6 +242,6 @@ Nesta parte, você poderá configurar determinados comportamentos de exibição 
 
 Abaixo, existem parâmetros de exibição opcionais que podem ser passados para o widget. Esses parâmetros dependem do widget em questão, portanto, é necessário examinar o arquivo no Market para conhecê-los.
 
-> **Dica**
+> ****
 >
 > Não se esqueça de salvar após qualquer modificação.

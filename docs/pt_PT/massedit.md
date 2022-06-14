@@ -3,7 +3,7 @@
 
 Esta ferramenta permite que você edite um grande número de equipamentos, comandos, objetos ou cenários. É completamente genérico e usa automaticamente o esquema e a estrutura do banco de dados Jeedom. Assim, ele suporta plug-ins e a configuração de seus equipamentos.
 
-> **Atenção**
+> ****
 >
 > Se esta ferramenta for muito fácil de usar, ela se destina a usuários avançados. Na verdade, é de fato muito simples alterar qualquer parâmetro em dezenas de dispositivos ou centenas de comandos e, portanto, tornar certas funções inoperantes, veja até mesmo o Core.
 
@@ -30,7 +30,7 @@ A parte ** permite que você altere os parâmetros desses itens.
 
 #### Tornar todo o equipamento de um objeto / sala invisível:
 
-- No jogo **, selecionar **Equipamento**.
+- No jogo **, selecionar ****.
 - Clique no botão **** para adicionar um filtro.
 - Neste filtro, selecione a coluna **, e em valor o id do objeto em questão (visível em Ferramentas / Objetos, Visão Geral).
 - Clique no botão ** para mostrar os cenários deste grupo.

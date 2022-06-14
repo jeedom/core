@@ -29,7 +29,7 @@ Für jedes Gerät wird von der Quelle zum Ziel kopiert:
 	* Optionale Parameter,
 	* Die Konfiguration der Tabellenanzeige,
 	* der generische Typ,
-	* Die Eigenschaft **
+	* Die Eigenschaft *Auszeit*
 	* Die Konfiguration **,
 	* Batterie- und Kommunikationswarnungen,
 
@@ -48,7 +48,7 @@ Für jeden Befehl wird von der Quelle zum Ziel kopiert:
 	* Die Konfigurationen **  *jeedomPostExecCmd* (Aktion),
 	* Value Action Konfigurationen (info),
 	* Symbol,
-	* Die Aktivierung und das Verzeichnis in **,
+	* Die Aktivierung und das Verzeichnis in *Zeitleiste*,
 	* Die Konfigurationen von **  **,
 	* Die influxDB-Konfiguration,
 	* Die Wiederholungswertkonfiguration,

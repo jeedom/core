@@ -1,7 +1,7 @@
 # Objets
 **Werkzeuge → Objekte**
 
- **** Mit dieser Option können Sie die Baumstruktur Ihrer Hausautomation definieren.
+Das **** Mit dieser Option können Sie die Baumstruktur Ihrer Hausautomation definieren.
 
 Alle von Ihnen erstellten Geräte müssen zu einem Objekt gehören und sind daher leichter zu identifizieren. Wir sagen dann, dass das Objekt das ist **** Ausrüstung.
 
@@ -20,7 +20,7 @@ Sie haben zwei Möglichkeiten :
 In der Übersicht können Sie alle Objekte in Jeedom sowie deren Konfiguration anzeigen :
 
 - **** : Objekt-ID.
-- **** : Objektname.
+- **Objekt** : Objektname.
 - **Vater** : Name des übergeordneten Objekts.
 - **** : Objektsichtbarkeit.
 - **** : Gibt an, ob das Objekt im Dashboard ausgeblendet ist.
@@ -32,7 +32,7 @@ In der Übersicht können Sie alle Objekte in Jeedom sowie deren Konfiguration a
 
 Sobald Sie ein Objekt erstellt haben, wird es in diesem Teil angezeigt.
 
-> ****
+> **Tipp**
 >
 > Sie können ein Objekt öffnen, indem Sie dies tun :
 > - Klicken Sie auf eine davon.
@@ -71,15 +71,15 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 - **Nur bei Synthese** : Ermöglicht das Einfügen eines Bildes für die Synthese, ohne dass es als Hintergrundbild verwendet wird, insbesondere auf der Seite ** dieses Objekts.
 - **** : Sie haben die Möglichkeit, ein Bild hochzuladen oder zu löschen. Im JPEG-Format ist dieses Bild das Hintergrundbild des Objekts, wenn Sie es im Dashboard anzeigen. Es wird auch für das Vorschaubild des Stücks über die Synthese verwendet.
 
-> ****
+> **Tipp**
 >
 > Sie können die Anzeigereihenfolge von Objekten im Dashboard ändern. Wählen Sie in der Übersicht (oder in der Zusammenfassung der Hausautomation) Ihr Objekt mit der Maus per Drag & Drop aus, um ihm einen neuen Platz zu geben.
 
-> ****
+> **Tipp**
 >
 > Sie können eine Grafik sehen, die alle Elemente von Jeedom darstellt, die an dieses Objekt angehängt sind, indem Sie auf die Schaltfläche klicken ****, oben rechts.
 
-> ****
+> **Tipp**
 >
 > Wenn ein Gerät erstellt wird und kein übergeordnetes Gerät definiert wurde, wird es als übergeordnetes Element verwendet : ****.
 

@@ -17,7 +17,7 @@ El archivado es una tarea que comienza de noche y compacta los datos recuperados
 >
 > Si ha seguido bien, debe tener una alta precisión solo en las últimas 2 horas. Sin embargo, cuando me conecto a las 5 p.m., tengo precisión en las últimas 17 horas.  ? De hecho, para evitar consumir recursos innecesariamente, la tarea de archivo se lleva a cabo solo una vez al día, por la noche.
 
-> ****
+> **Importante**
 >
 > Por supuesto, este principio de archivo solo se aplica a los pedidos digitales. En órdenes de tipo binario, Jeedom solo mantiene las fechas de cambio de estado.
 
@@ -37,7 +37,7 @@ Desde Core v4.2 también es posible mostrar una curva en la parte inferior del m
 
 Si muestra un gráfico a través de la página del historial, tiene acceso a varias opciones de visualización, arriba del gráfico :
 
-- **Período** : El período de visualización, incluidos los datos históricos entre estas dos fechas. Por defecto, dependiendo de la configuración *Período de visualización de los gráficos por defecto*  *Configuración → Sistema → Configuración / Equipo*.
+- **Período** : El período de visualización, incluidos los datos históricos entre estas dos fechas. Por defecto, dependiendo de la configuración *Período de visualización de los gráficos por defecto* dentro *Configuración → Sistema → Configuración / Equipo*.
 - **** : Ofrece varias opciones de agrupación (Suma por hora, etc.).
 - **Tipo de visualización** : Mostrar en **, **,  **. Opción guardada en el pedido y utilizada desde el Tablero.
 - **** : Muestra la diferencia de valor del punto anterior. Opción guardada en el pedido y utilizada desde el Tablero.

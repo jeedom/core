@@ -31,7 +31,7 @@ Auf der Seite haben Sie drei Schaltflächen :
 
 Wenn Sie auf &quot;Rechte&quot; klicken, wird ein Fenster angezeigt, in dem Sie die Benutzerrechte genau verwalten können. Auf der ersten Registerkarte werden die verschiedenen Geräte angezeigt. Der zweite zeigt die Szenarien.
 
-> ****
+> **Wichtig**
 >
 > Das Profil muss eingeschränkt sein, da sonst keine hier aufgeführten Einschränkungen berücksichtigt werden.
 
@@ -49,7 +49,7 @@ Zeigt die auf Ihrem Jeedom aktiven Browsersitzungen mit Benutzerinformationen, d
 Listen Sie die Geräte (Computer, Mobiltelefone usw.) auf, die ihre Authentifizierung auf Ihrem Jeedom registriert haben.
 Sie können sehen, welcher Benutzer, seine IP, wann und die Registrierung für dieses Gerät löschen.
 
-> ****
+> **Notiz**
 >
 > Der gleiche Benutzer hat möglicherweise verschiedene Geräte registriert. Zum Beispiel sein Desktop-Computer, Laptop, Handy usw.
 

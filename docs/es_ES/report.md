@@ -7,7 +7,7 @@ Esta página le permite ver todos los informes generados por la acción del info
 
 Un informe es una captura de pantalla de la interfaz Jeedom en un momento t.
 
-> ****
+> **Nota**
 >
 > Esta captura está adaptada para no tomar la barra de menú y otros elementos innecesarios en este tipo de uso.
 
@@ -27,7 +27,7 @@ Su uso es muy sencillo. Seleccione a la izquierda si quiere ver :
 
 Luego seleccione el nombre del informe en cuestión. Luego verá todas las fechas de los informes disponibles.
 
-> ****
+> **Importante**
 >
 > La eliminación automática se realiza de forma predeterminada para informes de más de 30 días. Puede configurar este retraso en la configuración de Jeedom.
 

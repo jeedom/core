@@ -24,7 +24,7 @@ Este widget é um pouco especial porque é um widget de vários comandos, ou sej
 
 - **** *(échelle)* : Permite que você altere o tamanho do widget, preenchendo o parâmetro **** para `0.5`, o widget será 2 vezes menor.
 
->**IMPORTANTE**      
+>****      
 >É ABSOLUTAMENTE necessário que os tipos genéricos sejam indicados; `Temperatura` no controle de temperatura e` Umidade` no controle de umidade (isso é configurado na configuração avançada do controle, guia de configuração).
 
 >****      
@@ -66,7 +66,7 @@ Esta possibilidade pode ser usada tanto com widgets padrão quanto com widgets p
 
 Para isso, é necessário levar em consideração 2 pré-requisitos :
 
-- O **2 comandos de ação / falha** deve estar vinculado a um pedido **info / binário** que irá armazenar o estado atual do dispositivo.
+-  **2 comandos de ação / falha** deve estar vinculado a um pedido **info / binário** que irá armazenar o estado atual do dispositivo.
 
 >****      
 >![Widget Alternar Link](./images/widgets5.png)
@@ -161,8 +161,8 @@ Dependendo do tipo de widget, geralmente você pode personalizar os ícones, col
 
 Existem dois tipos de modelo :
 
-- O "****" : como um ícone / imagem para o "****" e um ícone / imagem para o "****".
-- O "****" : Isso torna possível definir, por exemplo, uma imagem se o comando tiver o valor "**XX**" e outro tão maior que "****" ou se menos que "****". Também funciona para valores de texto, uma imagem se o valor for "****", outro se "****" E assim por diante...
+-  "****" : como um ícone / imagem para o "****" e um ícone / imagem para o "****".
+-  "****" : Isso torna possível definir, por exemplo, uma imagem se o comando tiver o valor "**XX**" e outro tão maior que "****" ou se menos que "****". Também funciona para valores de texto, uma imagem se o valor for "****", outro se "****" E assim por diante...
 
 #### Remplacement
 
@@ -188,13 +188,13 @@ Os testes estão no formato : ``#value# == #value#`será automaticamente substit
 - ``#value# >=  #value# <= 5``
 - ``#value# == 'toto'``
 
->**Observação**     
+>****     
 >É essencial mostrar os apóstrofos (**'**) em torno do texto para comparar se o valor é texto *(info / outro)*.
 
->**Observação**     
+>****     
 >Para usuários avançados, também é possível usar funções javascript, como `#value#.match ("^ plop") `, aqui testamos se o texto começa com` plop`.
 
->**Observação**     
+>****     
 >É possível exibir o valor do comando no widget especificando `#value#`no código HTML do teste. Para exibir a unidade, adicione `#unite#``.
 
 ## Widget de código
@@ -213,7 +213,7 @@ No modo de código, você tem acesso a diferentes tags para pedidos, aqui está 
 - **#uid#** : identificador exclusivo para esta geração do widget (se houver várias vezes o mesmo comando, caso de designs:  somente esse identificador é realmente único)
 - **#valueDate#** : data do valor do pedido
 - **#collectDate#** : data de coleta do pedido
-- **#alertLevel#** : nível de alerta (consulte [aqui](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) para a lista)
+- **#alertLevel#** : nível de alerta (consulte [](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) para a lista)
 - **#hide_history#** : se o histórico (máximo, mínimo, média, tendência) deve ser oculto ou não. Quanto ao #hide_name# está vazio ou oculto e, portanto, pode ser usado diretamente em uma classe. IMPORTANTE se essa tag não for encontrada no seu widget, as tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue#  #tendance# não será substituído pelo Jeedom.
 - **#minHistoryValue#** : valor mínimo durante o período (período definido na configuração do Jeedom pelo usuário)
 - **#averageHistoryValue#** : valor médio ao longo do período (período definido na configuração do Jeedom pelo usuário)
@@ -234,9 +234,9 @@ Aqui está um exemplo simples de código javascript para colocar no seu widget :
 <script>
     Jeedom.cmd.update ['#id#'] = função (_options){
       $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '_options.valueDate'<br/>Data da coleta : '+ _options.collectDate)
-      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.valor_exibição ' #unite#');
+      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.valor_exibição ' #unite#')
     }
-    Jeedom.cmd.update ['#id#']({valor_exibição:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+    Jeedom.cmd.update ['#id#']({valor_exibição:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'})
 </script>
 `` ''
 
@@ -245,16 +245,16 @@ Aqui estão duas coisas importantes :
 `` ''
 Jeedom.cmd.update ['#id#'] = função (_options){
   $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '_options.valueDate'<br/>Data da coleta : '+ _options.collectDate)
-  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.valor_exibição ' #unite#');
+  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.valor_exibição ' #unite#')
 }
 `` ''
 A função é chamada durante uma atualização do widget. Em seguida, ele atualiza o código html do widget_template.
 
 `` ''
-Jeedom.cmd.update ['#id#']({valor_exibição:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+Jeedom.cmd.update ['#id#']({valor_exibição:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'})
 `` ''
  A chamada para esta função para a inicialização do widget.
 
 ### Exemples
 
- Você encontrará [aqui](https://github.com/Jeedom/core/tree/V4-stable/core/template) exemplos de widgets (no painel e nas pastas móveis)
+ Você encontrará [](https://github.com/Jeedom/core/tree/V4-stable/core/template) exemplos de widgets (no painel e nas pastas móveis)

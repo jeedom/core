@@ -7,7 +7,7 @@ Auf dieser Seite können Sie alle Berichte anzeigen, die von der Berichtsaktion 
 
 Ein Bericht ist ein Screenshot der Jeedom-Schnittstelle zu einem Zeitpunkt t.
 
-> ****
+> **Notiz**
 >
 > Diese Erfassung ist so angepasst, dass die Menüleiste und andere unnötige Elemente für diese Art der Verwendung nicht berücksichtigt werden.
 
@@ -27,7 +27,7 @@ Die Verwendung ist sehr einfach. Wählen Sie links, wenn Sie sehen möchten :
 
 Wählen Sie dann den Namen des betreffenden Berichts aus. Sie sehen dann alle Daten der verfügbaren Berichte.
 
-> ****
+> **Wichtig**
 >
 > Das automatische Löschen erfolgt standardmäßig für Berichte, die älter als 30 Tage sind. Sie können diese Verzögerung in der Konfiguration von Jeedom konfigurieren.
 
