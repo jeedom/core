@@ -404,6 +404,9 @@ class cmd {
 				array_push($eqLogicIds, $eqLogic->getId());
 			}
 			$eqLogicIds = implode(',', $eqLogicIds);
+			if (empty($eqLogicIds)) {
+				return;
+			}
 			$sql .= ' AND eqLogic_id IN (' . $eqLogicIds . ')';
 		}
 
@@ -2394,6 +2397,142 @@ class cmd {
 		}
 		return $return;
 	}
+
+	public function migrateCmd($_sourceId, $_targetId) {
+		$sourceCmd = cmd::byId($_sourceId);
+		if (!is_object($sourceCmd)) {
+			throw new Exception(__('La commande source n\'existe pas', __FILE__));
+		}
+		$targetCmd = cmd::byId($_targetId);
+		if (!is_object($targetCmd)) {
+			throw new Exception(__('La commande cible n\'existe pas', __FILE__));
+		}
+
+		$migrateDisplayValues = [
+			'parameters' => array(),
+			'showNameOndashboard' => '',
+			'showNameOnmobile' => '',
+			'showIconAndNamedashboard' => '',
+			'showIconAndNamemobile' => '',
+			'showStatsOndashboard' => '',
+			'showStatsOnmobile' => '',
+			'forceReturnLineBefore' => '',
+			'forceReturnLineAfter' => '',
+			'invertBinary' => '',
+			'icon' => '',
+		];
+
+		$migrateConfigurationValues = [
+			'jeedomPreExecCmd' => array(),
+			'jeedomPostExecCmd' => array(),
+			'actionCheckCmd' => array(),
+			'timeline::enable' => '',
+			'timeline::folder' => '',
+			'repeatEventManagement' => '',
+			'historizeMode' => '',
+			'historyPurge' => '',
+			'historizeRound' => '',
+			'calcul' => '',
+			'returnStateValue' => '',
+			'returnStateTime' => '',
+			'calculValueOffset' => '',
+			'denyValues' => '',
+			'returnStateValue' => '',
+			'returnStateTime' => '',
+			'jeedomPushUrl' => '',
+			'invertBinary' => '',
+			'minValue' => '',
+			'maxValue' => '',
+			'jeedomCheckCmdOperator' => '',
+			'jeedomCheckCmdTest' => '',
+			'jeedomCheckCmdTime' => '',
+			'actionConfirm' => '',
+			'actionCodeAccess' => '',
+			'alert::messageReturnBack' => '',
+			'interact::auto::disable' => '',
+			'influx::enable' => '',
+			'influx::namecmd' => '',
+			'influx::nameEq' => '',
+			'influx::nameVal' => '',
+		];
+
+		$migrateAlertValues = [
+			'warningif' => '',
+			'warningduring' => '',
+			'dangerif' => '',
+			'dangerduring' => '',
+		];
+
+		try {
+			//properties:
+			$targetCmd->setGeneric_type($sourceCmd->getGeneric_type());
+			$targetCmd->setIsVisible($sourceCmd->getIsVisible());
+			$targetCmd->setOrder($sourceCmd->getOrder());
+			$targetCmd->setIsHistorized($sourceCmd->getIsHistorized());
+			$targetCmd->setTemplate('dashboard', $sourceCmd->getTemplate('dashboard'));
+			$targetCmd->setTemplate('mobile', $sourceCmd->getTemplate('mobile'));
+
+			//display:
+			foreach ($migrateDisplayValues as $key => $value) {
+				if (is_array($value)) {
+					if (count($sourceCmd->getDisplay($key, $value)) > 0) {
+						$targetCmd->setDisplay($key, $sourceCmd->getDisplay($key, $value));
+					} else {
+						$targetCmd->setDisplay($key, null);
+					}
+				}
+				if (is_string($value)) {
+					if ($sourceCmd->getDisplay($key) != $value) {
+						$targetCmd->setDisplay($key, $sourceCmd->getDisplay($key, $value));
+					} else {
+						$targetCmd->setDisplay($key, null);
+					}
+				}
+			}
+
+			//configuration:
+			foreach ($migrateConfigurationValues as $key => $value) {
+				if (is_array($value)) {
+					if (count($sourceCmd->getConfiguration($key, $value)) > 0) {
+						$targetCmd->setConfiguration($key, $sourceCmd->getConfiguration($key, $value));
+					} else {
+						$targetCmd->setConfiguration($key, null);
+					}
+				}
+				if (is_string($value)) {
+					if ($sourceCmd->getConfiguration($key, $value) != $value) {
+						$targetCmd->setConfiguration($key, $sourceCmd->getConfiguration($key, $value));
+					} else {
+						$targetCmd->setConfiguration($key, null);
+					}
+				}
+			}
+
+			//alert:
+			foreach ($migrateAlertValues as $key => $value) {
+				if (is_array($value)) {
+					if (count($sourceCmd->getAlert($key, $value)) > 0) {
+						$targetCmd->setAlert($key, $sourceCmd->getAlert($key, $value));
+					} else {
+						$targetCmd->setAlert($key, null);
+					}
+				}
+				if (is_string($value)) {
+					if ($sourceCmd->getAlert($key, $value) != $value) {
+						$targetCmd->setAlert($key, $sourceCmd->getAlert($key, $value));
+					} else {
+						$targetCmd->setAlert($key, null);
+					}
+				}
+			}
+
+			$targetCmd->save();
+			return $targetCmd;
+		} catch (Exception $e) {
+			throw new Exception(__('Erreur lors de la migration de commande', __FILE__) . ' : ' . $e->getMessage());
+		}
+	}
+
 
 	public function export() {
 		$cmd = clone $this;
