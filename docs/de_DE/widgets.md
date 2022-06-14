@@ -24,7 +24,7 @@ Dieses Widget ist etwas Besonderes, da es sich um ein Widget mit mehreren Befehl
 
 - **** *(échelle)* : Ermöglicht das Ändern der Größe des Widgets durch Ausfüllen des Parameters **** auf `0.5`, das Widget wird 2 mal kleiner sein.
 
->**WICHTIG**      
+>****      
 >Es ist ABSOLUT notwendig, dass die generischen Typen angegeben werden; `Temperatur` auf der Temperaturregelung und` Luftfeuchtigkeit` auf der Feuchtigkeitsregelung (dies wird in der erweiterten Konfiguration der Steuerung auf der Registerkarte Konfiguration konfiguriert).
 
 >****      
@@ -66,7 +66,7 @@ Diese Möglichkeit kann sowohl mit Standard-Widgets als auch mit benutzerdefinie
 
 Dazu müssen 2 Voraussetzungen berücksichtigt werden :
 
-- Das **2 Aktions- / Fehlerbefehle** muss mit einer Bestellung verknüpft sein **info / binär** Hier wird der aktuelle Status des Geräts gespeichert.
+-  **2 Aktions- / Fehlerbefehle** muss mit einer Bestellung verknüpft sein **info / binär** Hier wird der aktuelle Status des Geräts gespeichert.
 
 >****      
 >![ToggleLink-Widget](./images/widgets5.png)
@@ -161,8 +161,8 @@ Abhängig von der Art des Widgets können Sie die Symbole im Allgemeinen anpasse
 
 Es gibt zwei Arten von Vorlagen :
 
-- Das "****" : als Symbol / Bild für die "****" und ein Symbol / Bild für die "****".
-- Das "****" : Dies ermöglicht es beispielsweise, ein Bild zu definieren, wenn der Befehl den Wert hat "**XX**" und ein anderer so größer als "****" oder wenn weniger als "****". Funktioniert auch für Textwerte, ein Bild, wenn der Wert ist "****", ein anderer wenn "****" Und so weiter...
+-  "****" : als Symbol / Bild für die "****" und ein Symbol / Bild für die "****".
+-  "****" : Dies ermöglicht es beispielsweise, ein Bild zu definieren, wenn der Befehl den Wert hat "**XX**" und ein anderer so größer als "****" oder wenn weniger als "****". Funktioniert auch für Textwerte, ein Bild, wenn der Wert ist "****", ein anderer wenn "****" Und so weiter...
 
 #### Remplacement
 
@@ -188,13 +188,13 @@ Die Tests sind in der Form : ``#value# == 1`,`#value#`wird automatisch durch den
 - ``#value# >=  #value# <= 5``
 - ``#value# == 'toto'``
 
->**Notiz**     
+>****     
 >Es ist wichtig, die Apostrophe zu zeigen (**'**) um den Text herum zu vergleichen, ob der Wert Text ist *(info / andere)*.
 
->**Notiz**     
+>****     
 >Für fortgeschrittene Benutzer ist es auch möglich, Javascript-Funktionen wie `zu verwenden#value#.match ("^ plop") `, hier testen wir, ob der Text mit` plop` beginnt.
 
->**Notiz**     
+>****     
 >Sie können den Wert des Befehls im Widget anzeigen, indem Sie `angeben#value#`im HTML-Code des Tests. Um das Gerät anzuzeigen, fügen Sie `hinzu#unite#``.
 
 ## Code-Widget
@@ -213,7 +213,7 @@ Im Codemodus haben Sie Zugriff auf verschiedene Tags für Bestellungen. Hier ist
 - **#uid#** : eindeutige Kennung für diese Generation des Widgets (wenn es mehrmals den gleichen Befehl gibt, bei Entwürfen:  Nur diese Kennung ist wirklich eindeutig)
 - **#valueDate#** : Datum des Bestellwertes
 - **#collectDate#** : Datum der Auftragserfassung
-- **#alertLevel#** : Alarmstufe (siehe [hier](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) für die Liste)
+- **#alertLevel#** : Alarmstufe (siehe [](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) für die Liste)
 - **#hide_history#** : ob der Verlauf (max, min, Durchschnitt, Trend) ausgeblendet werden soll oder nicht. Wie für die #hide_name# Es ist leer oder versteckt und kann daher direkt in einer Klasse verwendet werden. WICHTIG Wenn dieses Tag nicht in Ihrem Widget gefunden wird, dann die Tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue#  #tendance# wird nicht durch Jeedom ersetzt.
 - **#minHistoryValue#** : Mindestwert über den Zeitraum (Zeitraum, den der Benutzer in der Jeedom-Konfiguration definiert hat)
 - **#averageHistoryValue#** : Durchschnittswert über den Zeitraum (Zeitraum, der vom Benutzer in der Jeedom-Konfiguration definiert wurde)
@@ -257,4 +257,4 @@ Jeedom.cmd.update ['#id#']({Anzeigewert:'#state#',valueDate:'#valueDate#',collec
 
 ### Exemples
 
- Sie werden finden [hier](https://github.com/Jeedom/core/tree/V4-stable/core/template) Beispiele für Widgets (in Dashboard- und mobilen Ordnern)
+ Sie werden finden [](https://github.com/Jeedom/core/tree/V4-stable/core/template) Beispiele für Widgets (in Dashboard- und mobilen Ordnern)

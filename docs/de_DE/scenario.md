@@ -11,13 +11,13 @@ Dort finden Sie die Liste der Szenarien Ihres Jeedom sowie Funktionen, um diese 
 
 - **** : Erstellen Sie ein Szenario. Die Vorgehensweise wird im nächsten Kapitel beschrieben.
 - **Szenarien deaktivieren** : Deaktiviert alle Szenarien. Selten verwendet und wissentlich, da kein Szenario mehr ausgeführt wird.
-- **Übersicht** : Ermöglicht einen Überblick über alle Szenarien. Sie können die Werte ändern ****, ****, **Multi-Launch**, **synchroner Modus**, ****  **Zeitleiste** (Diese Parameter werden im folgenden Kapitel beschrieben). Sie können auch auf die Protokolle für jedes Szenario zugreifen und sie einzeln starten.
+- **Übersicht** : Ermöglicht einen Überblick über alle Szenarien. Sie können die Werte ändern ****, ****, **Multi-Launch**, **synchroner Modus**, ****  **** (Diese Parameter werden im folgenden Kapitel beschrieben). Sie können auch auf die Protokolle für jedes Szenario zugreifen und sie einzeln starten.
 
 ## Meine Szenarien
 
-Sie finden in diesem Teil **Liste der Szenarien** dass du erstellt hast. Sie werden nach ihren klassifiziert ****, möglicherweise für jeden von ihnen definiert. Jedes Szenario wird mit seinem angezeigt **** und seine **übergeordnetes Objekt**. Das **ausgegraute Szenarien** sind diejenigen, die deaktiviert sind.
+Sie finden in diesem Teil **Liste der Szenarien** dass du erstellt hast. Sie werden nach ihren klassifiziert ****, möglicherweise für jeden von ihnen definiert. Jedes Szenario wird mit seinem angezeigt **** und seine **übergeordnetes Objekt**.  **ausgegraute Szenarien** sind diejenigen, die deaktiviert sind.
 
-> **Tipp**
+> ****
 >
 > Sie können ein Szenario öffnen, indem Sie dies tun :
 > - Klicken Sie auf eine davon.
@@ -71,20 +71,20 @@ In der Registerkarte **General**, Wir finden die Hauptparameter des Szenarios :
 - **übergeordnetes Objekt** : Zuordnung zu einem übergeordneten Objekt. Es wird dann entsprechend diesem Elternteil sichtbar sein oder nicht.
 - **Zeitüberschreitung in Sekunden (0 = unbegrenzt)** : Die maximal zulässige Ausführungszeit für dieses Szenario. Nach dieser Zeit wird die Ausführung des Szenarios unterbrochen.
 - **Multi-Launch** : Aktivieren Sie dieses Kontrollkästchen, wenn das Szenario mehrmals gleichzeitig gestartet werden soll.
->**WICHTIG**
+>****
 >
 >Der Mehrfachstart funktioniert pro Sekunde, dh wenn Sie zwei Starts in derselben Sekunde haben, ohne das Kontrollkästchen aktiviert zu haben, gibt es immer noch zwei Starts des Szenarios (obwohl dies nicht der Fall sein sollte)). Ebenso können bei mehreren Starts in derselben Sekunde einige Starts die Tags verlieren. Fazit Es ist ABSOLUT notwendig, mehrere Starts in derselben Sekunde zu vermeiden.
 - **Synchroner Modus** : Starten Sie das Szenario im aktuellen Thread anstelle eines dedizierten Threads. Erhöht die Geschwindigkeit, mit der das Szenario gestartet wird, kann jedoch das System instabil machen.
 - **** : Der für das Szenario gewünschte Protokolltyp. Sie können die Szenarioprotokolle ausschneiden oder im Gegenteil unter Analyse → Echtzeit anzeigen.
-- **Zeitleiste** : Behalten Sie das Szenario in der Zeitleiste im Auge (siehe Verlaufsdokument)).
+- **** : Behalten Sie das Szenario in der Zeitleiste im Auge (siehe Verlaufsdokument)).
 - **Symbol** : Ermöglicht die Auswahl eines Symbols für das Szenario anstelle des Standardsymbols.
 - **** : Ermöglicht das Schreiben eines kleinen Textes zur Beschreibung Ihres Szenarios.
 - **Szenariomodus** : Das Szenario kann programmiert, ausgelöst oder beides sein. Sie haben dann die Wahl, die Auslöser (maximal 15 Auslöser) und die Programmierung (en) anzugeben).
 
-> **Tipp**
+> ****
 >
 > Bedingungen können jetzt im ausgelösten Modus eingegeben werden. Zum Beispiel : ``#[Garage][Open Garage][Ouverture]# == 1``
-> Aufmerksamkeit : Sie können maximal 28 Trigger / Programmierungen für ein Szenario haben.
+>  : Sie können maximal 28 Trigger / Programmierungen für ein Szenario haben.
 
 > **Tippmodus programmiert**
 >
@@ -92,16 +92,16 @@ In der Registerkarte **General**, Wir finden die Hauptparameter des Szenarios :
 
 ## Registerkarte &quot;Szenario&quot;
 
-Hier erstellen Sie Ihr Szenario. Nach dem Erstellen des Szenarios ist sein Inhalt leer, sodass er ... nichts tut. Du musst mit anfangen **Block hinzufügen**, mit dem Knopf rechts. Sobald ein Block erstellt wurde, können Sie einen weiteren hinzufügen **** oder ein **Lager**.
+Hier erstellen Sie Ihr Szenario. Nach dem Erstellen des Szenarios ist sein Inhalt leer, sodass er ... nichts tut. Du musst mit anfangen **Block hinzufügen**, mit dem Knopf rechts. Sobald ein Block erstellt wurde, können Sie einen weiteren hinzufügen **** oder ein ****.
 
 Um die Blöcke im Szenario einfacher zu gestalten und nicht ständig neu anordnen zu müssen, wird nach dem Feld, in dem sich der Mauszeiger befindet, ein Block hinzugefügt.
 *Wenn Sie beispielsweise zehn Blöcke haben und auf die IF-Bedingung des ersten Blocks klicken, wird der hinzugefügte Block nach diesem Block auf derselben Ebene hinzugefügt. Wenn kein Feld aktiv ist, wird es am Ende des Szenarios hinzugefügt.*
 
-> **Tipp**
+> ****
 >
 > Bei Bedingungen und Aktionen ist es besser, einfache Anführungszeichen (') anstelle von doppelten zu bevorzugen (").
 
-> **Tipp**
+> ****
 >
 > Mit einer Strg-Umschalttaste Z oder einer Strg-Umschalttaste Y können Sie dies tun'**** oder von **** eine Modifikation (Hinzufügen einer Aktion, Blockieren)...).
 
@@ -140,16 +140,16 @@ Rechts neben diesem Blocktyp stehen drei Schaltflächen zur Auswahl eines zu tes
 - **Suchen Sie ein Szenario** : Ermöglicht die Suche nach einem zu testenden Szenario.
 - **Suche nach Ausrüstung** : Gleiches gilt für die Ausrüstung.
 
-> **Notiz**
+> ****
 >
 > Bei Blöcken vom Typ If / Then / Andernfalls können kreisförmige Pfeile links neben dem Bedingungsfeld die Wiederholung von Aktionen aktivieren oder nicht, wenn die Auswertung der Bedingung das gleiche Ergebnis wie bei der vorherigen Auswertung ergibt.
 > IF-Ausdruck != 0 entspricht IF-Ausdruck und IF-Ausdruck == 0 entspricht IF-nicht-Ausdruck
 
-> **Tipp**
+> ****
 >
 > Es gibt eine Liste von Tags, die den Zugriff auf Variablen aus dem einen oder anderen Szenario oder nach Uhrzeit, Datum, Zufallszahl usw. ermöglichen. Siehe unten die Kapitel zu Befehlen und Tags.
 
-Sobald die Bedingung erfüllt ist, müssen Sie die Schaltfläche &quot;Hinzufügen&quot; auf der linken Seite verwenden, um eine neue hinzuzufügen **** oder ein **Lager** im aktuellen Block.
+Sobald die Bedingung erfüllt ist, müssen Sie die Schaltfläche &quot;Hinzufügen&quot; auf der linken Seite verwenden, um eine neue hinzuzufügen **** oder ein **** im aktuellen Block.
 
 
 ### Blockcode
@@ -164,7 +164,7 @@ Mit dem Code-Block können Sie PHP-Code ausführen. Es ist daher sehr mächtig, 
     -  ``$id`` : Bestellnummer.
 -  ``$cmd->execCmd($options = null);`` : Führen Sie den Befehl aus und geben Sie das Ergebnis zurück.
     - ``$options`` : Optionen für die Ausführung des Befehls (können spezifisch für das Plugin sein). Grundlegende Optionen (Befehlssubtyp) :
-        -  ``message`` : ``$option = array('title' => 'titre du Botschaft , 'message' => 'Mon message');``
+        -  ``message`` : ``$option = array('title' => 'titre du  , 'message' => 'Mon message');``
         -  ``color`` : ``$option = array('color' => 'couleur en hexadécimal');``
         -  ``slider`` : ``$option = array('slider' => 'valeur voulue de 0 à 100');``
 
@@ -193,7 +193,7 @@ Mit dem Code-Block können Sie PHP-Code ausführen. Es ist daher sehr mächtig, 
 - ``$scenario->setLog($message);`` : Schreiben Sie eine Nachricht in das Skriptprotokoll.
 - ``$scenario->persistLog();`` : Erzwingen Sie das Schreiben des Protokolls (andernfalls wird es nur am Ende des Szenarios geschrieben). Seien Sie vorsichtig, dies kann das Szenario etwas verlangsamen.
 
-> **Tipp**
+> ****
 >
 > Hinzufügen einer Suchfunktion im Codeblock :  : Strg + F dann Enter, Nächstes Ergebnis : Strg + G, Vorheriges Ergebnis : Strg + Umschalt + G
 
@@ -215,7 +215,7 @@ Zu Blöcken hinzugefügte Aktionen haben mehrere Optionen :
 - Eine Schaltfläche für bestimmte Aktionen, bei der jedes Mal die Beschreibung (beim Bewegen des Mauszeigers) dieser Aktion angezeigt wird.
 - Eine Schaltfläche zum Suchen nach einem Aktionsbefehl.
 
-> **Tipp**
+> ****
 >
 > Je nach gewähltem Befehl können unterschiedliche Zusatzfelder angezeigt werden.
 
@@ -236,7 +236,7 @@ Es gibt bestimmte Auslöser (außer denen, die durch Befehle bereitgestellt werd
 - ``#variable(nom_variable)#`` : Ändern des Wertes der Variablen name_name.
 - ``#GenericType (GENERIC, #[Object]#)#`` : Änderung eines Infobefehls vom Typ Generic GENERIC im Objektobjekt.
 
-Sie können ein Szenario auch über die beschriebene HTTP-API auslösen [hier](https:/./.doc.jeedom.com/de_DE/core/.4.1/.api_http).
+Sie können ein Szenario auch über die beschriebene HTTP-API auslösen [](https:/./.doc.jeedom.com/de_DE/core/.4.1/.api_http).
 
 ### Vergleichsoperatoren und Verknüpfungen zwischen Bedingungen
 
@@ -261,9 +261,9 @@ Sie können jeden Vergleich mit den folgenden Operatoren kombinieren :
 
 Ein Tag wird während der Ausführung des Szenarios durch seinen Wert ersetzt. Sie können die folgenden Tags verwenden :
 
-> **Tipp**
+> ****
 >
-> Verwenden Sie die Funktion Date (), um die führenden Nullen anzuzeigen. Siehe [hier](https:/./.www.php.net/.manual/.fr/.datetime.format.php).
+> Verwenden Sie die Funktion Date (), um die führenden Nullen anzuzeigen. Siehe [](https:/./.www.php.net/.manual/.fr/.datetime.format.php).
 
 - ``#seconde#`` : Aktuelle Sekunde (ohne führende Nullen, z : 6 für 08:07:06).
 - ``#hour#`` : Aktuelle Zeit im 24h-Format (ohne führende Nullen).  : 8 für 08:07:06 oder 17 für 17:15.
@@ -293,7 +293,7 @@ Sie haben auch die folgenden zusätzlichen Tags, wenn Ihr Szenario durch eine In
 - #query# : Interaktion, die das Szenario ausgelöst hat.
 - #profil# : Profil des Benutzers, der das Szenario gestartet hat (kann leer sein).
 
-> **Wichtig**
+> ****
 >
 > Wenn ein Szenario durch eine Interaktion ausgelöst wird, wird es notwendigerweise im schnellen Modus ausgeführt. Also im Interaktionsthread und nicht in einem separaten Thread.
 
@@ -349,11 +349,11 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 - ``lastScenarioExecution(scenario)`` : Gibt die Dauer in Sekunden seit dem letzten Start des Szenarios an.
     0 : Das Szenario existiert nicht
 
-- ``collectDate(cmd,[format])`` : Gibt das Datum der letzten Datenerfassung für den als Parameter platzierten Befehl zurück. Der zweite optionale Parameter wird verwendet, um das Rückgabeformat anzugeben (Details [hier](https:/./.www.php.net/.manual/.fr/.datetime.format.php)).
+- ``collectDate(cmd,[format])`` : Gibt das Datum der letzten Datenerfassung für den als Parameter platzierten Befehl zurück. Der zweite optionale Parameter wird verwendet, um das Rückgabeformat anzugeben (Details [](https:/./.www.php.net/.manual/.fr/.datetime.format.php)).
     -1 : Der Befehl konnte nicht gefunden werden,
     -2 : Der Befehl ist nicht vom Typ info.
 
-- ``valueDate(cmd,[format])`` : Gibt das Datum des letzten bekannten Werts für den als Parameter platzierten Befehl zurück. Der zweite optionale Parameter wird verwendet, um das Rückgabeformat anzugeben (Details [hier](https:/./.www.php.net/.manual/.fr/.datetime.format.php)).
+- ``valueDate(cmd,[format])`` : Gibt das Datum des letzten bekannten Werts für den als Parameter platzierten Befehl zurück. Der zweite optionale Parameter wird verwendet, um das Rückgabeformat anzugeben (Details [](https:/./.www.php.net/.manual/.fr/.datetime.format.php)).
     -1 : Der Befehl konnte nicht gefunden werden,
     -2 : Der Befehl ist nicht vom Typ info.
 
@@ -368,7 +368,7 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 
 - ``name(type,commande)`` : Wird verwendet, um den Namen der Bestellung, Ausrüstung oder des Objekts abzurufen.  : cmd, eqLogic oder Objekt.
 
-- ``lastCommunication(equipment,[format])`` : Gibt das Datum der letzten Kommunikation für das als Parameter angegebene Gerät zurück, der 2. optionale Parameter dient zur Angabe des Rückgabeformats (Details [hier](https:/./.www.php.net/.manual/.fr/.datetime.format.php)). Eine Rückgabe von -1 bedeutet, dass das Gerät nicht gefunden werden kann.
+- ``lastCommunication(equipment,[format])`` : Gibt das Datum der letzten Kommunikation für das als Parameter angegebene Gerät zurück, der 2. optionale Parameter dient zur Angabe des Rückgabeformats (Details [](https:/./.www.php.net/.manual/.fr/.datetime.format.php)). Eine Rückgabe von -1 bedeutet, dass das Gerät nicht gefunden werden kann.
 
 - ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Gibt eine relativ zu einem Wert im Intervall color_start / color_end berechnete Farbe zurück. Der Wert muss zwischen min_value und max_value liegen.
 
@@ -467,7 +467,7 @@ Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die fo
     - Zum Starten : Starten Sie das Szenario in einem anderen Thread. Das gestartete Szenario läuft unabhängig vom aufrufenden Szenario.
     - Starten (Synchronisieren)) : Startet das aufgerufene Szenario und pausiert das aufrufende Szenario, während die Ausführung des aufgerufenen Szenarios beendet ist.
     - Halt : Stoppen Sie das Szenario.
-    - Ermöglichen : Aktivieren Sie ein deaktiviertes Szenario.
+    -  : Aktivieren Sie ein deaktiviertes Szenario.
     - Deaktivieren : Szenario deaktivieren. Es wird nicht mehr unabhängig von den Auslösern gestartet.
     - Zurücksetzen der ISs : Wird verwendet, um den Status von . zurückzusetzen ****. Dieser Status wird verwendet, um die Aktionen von a . nicht zu wiederholen ****, wenn die Bewertung der Bedingung das gleiche Ergebnis wie die vorherige Bewertung ergibt.
 - **** (stop) : Stoppen Sie das Szenario.
@@ -484,7 +484,7 @@ Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die fo
 - **Symbol** (icon) : Ermöglicht das Ändern des Darstellungssymbols des Szenarios.
 - **** (alert) : Zeigt eine kleine Warnmeldung in allen Browsern an, in denen eine Jeedom-Seite geöffnet ist. Sie können zusätzlich 4 Alarmstufen auswählen.
 - **** (popup) : Ermöglicht die Anzeige eines Popups, das in allen Browsern, in denen eine Jeedom-Seite geöffnet ist, unbedingt überprüft werden muss.
-- **Bericht** (report) : Ermöglicht das Exportieren einer Ansicht im Format (PDF, PNG, JPEG oder SVG) und das Senden mit einem Befehl vom Typ Nachricht. Bitte beachten Sie, dass diese Funktionalität nicht funktioniert, wenn sich Ihr Internetzugang in nicht signiertem HTTPS befindet. Signiertes HTTP oder HTTPS ist erforderlich.
+- **** (report) : Ermöglicht das Exportieren einer Ansicht im Format (PDF, PNG, JPEG oder SVG) und das Senden mit einem Befehl vom Typ Nachricht. Bitte beachten Sie, dass diese Funktionalität nicht funktioniert, wenn sich Ihr Internetzugang in nicht signiertem HTTPS befindet. Signiertes HTTP oder HTTPS ist erforderlich.
 - **Programmierten IN / A-Block löschen** (entfernen_inat) : Ermöglicht das Löschen der Programmierung aller IN- und A-Blöcke des Szenarios.
 - **Ereignis** (event) : Ermöglicht das willkürliche Übertragen eines Werts in einen Befehl vom Typ Information.
 - **** (tag) : Ermöglicht das Hinzufügen / Ändern eines Tags (das Tag ist nur während der aktuellen Ausführung des Szenarios vorhanden, im Gegensatz zu den Variablen, die das Ende des Szenarios überleben).
@@ -524,7 +524,7 @@ Da die Befehle von einem Jeedom zum anderen oder von einer Installation zur ande
 
 ## Hinzufügung der PHP-Funktion
 
-> **WICHTIG**
+> ****
 >
 > Das Hinzufügen der PHP-Funktion ist fortgeschrittenen Benutzern vorbehalten. Der kleinste Fehler kann für Ihr Jeedom fatal sein.
 
@@ -536,6 +536,6 @@ Gehen Sie in den Datenordner und dann in PHP und klicken Sie auf die Datei user.
 
 Es ist in diesem ** Damit Sie Ihre Funktionen hinzufügen können, finden Sie dort ein Beispiel für eine Grundfunktion.
 
-> **WICHTIG**
+> ****
 >
 > Wenn Sie Bedenken haben, können Sie jederzeit zur Originaldatei zurückkehren, indem Sie den Inhalt von kopieren ``user.function.class.sample.php``  ``user.function.class.php``

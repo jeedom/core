@@ -3,25 +3,25 @@
 
 ## Timeline
 
-La página Línea de tiempo le permite mostrar eventos cronológicamente, como cambios de orden *información*, disparadores de comando *Valores*, y ejecuciones de escenarios.
+La página Línea de tiempo le permite mostrar eventos cronológicamente, como cambios de orden **, disparadores de comando **, y ejecuciones de escenarios.
 
 Para verlos, primero debe activar el seguimiento en la línea de tiempo de los comandos o escenarios deseados, luego ocurren estos eventos.
 
-- **Guion** : Ya sea directamente en una página de escenario o en *Visión general* escenarios.
-- **Ordenado** : Ya sea en la configuración avanzada del comando o en la configuración del historial para hacerlo en "masa".
+- **** : Ya sea directamente en una página de escenario o en *Visión general* escenarios.
+- **** : Ya sea en la configuración avanzada del comando o en la configuración del historial para hacerlo en "masa".
 
-![Línea de tiempo](images/timeline_intro.jpg)
+![](images/timeline_intro.jpg)
 
-La linea de tiempo *Importante* siempre contiene todos los eventos. Sin embargo, puede filtrar la línea de tiempo por *carpetas*. En cada lugar donde active la línea de tiempo, tendrá un campo para ingresar el nombre de una carpeta, existente o no.
-Luego puede filtrar la línea de tiempo por esta carpeta seleccionándola a la izquierda del botón *Actualizar*.
+La linea de tiempo ** siempre contiene todos los eventos. Sin embargo, puede filtrar la línea de tiempo por **. En cada lugar donde active la línea de tiempo, tendrá un campo para ingresar el nombre de una carpeta, existente o no.
+Luego puede filtrar la línea de tiempo por esta carpeta seleccionándola a la izquierda del botón **.
 
-> **Nota**
+> ****
 >
 > Si ya no usa una carpeta, aparecerá en la lista mientras existan eventos vinculados a esta carpeta. Desaparecerá de la lista por sí mismo.
 
 Una vez que haya activado el seguimiento en la línea de tiempo de los comandos y escenarios que desee, podrá verlos aparecer en la línea de tiempo.
 
-> **Importante**
+> ****
 >
 > Debe esperar nuevos eventos después de activar el seguimiento en la línea de tiempo antes de verlos aparecer.
 

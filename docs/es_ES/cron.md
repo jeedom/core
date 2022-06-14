@@ -4,7 +4,7 @@
 Esta página informa sobre todas las tareas de la aplicación Jeedom que se ejecutan en el servidor.
 Esta página se debe utilizar a sabiendas o a pedido del soporte técnico.
 
-> **Importante**
+> ****
 >
 > En caso de mal manejo en esta página, cualquier solicitud de soporte puede ser rechazada.
 
@@ -15,7 +15,7 @@ En la parte superior derecha, tienes :
 - **Deshabilitar sistema cron** : un botón para desactivar o reactivar todas las tareas (si las desactiva todas, nada funcionará en su Jeedom).
 - **Fresco** : Actualiza la tabla de tareas.
 - **** : Agregar un trabajo cron manualmente.
-- **Para salvaguardar** : Guarda tus cambios.
+- **** : Guarda tus cambios.
 
 A continuación, tiene la tabla de todas las tareas existentes (atención, algunas tareas pueden iniciar subtareas, por lo que se recomienda no modificar nunca la información en esta página)).
 
@@ -34,7 +34,7 @@ En esta tabla, encontramos :
 - **Última duración** : Último tiempo de ejecución de la tarea (un demonio siempre estará en 0s, no te preocupes porque otras tareas pueden estar en 0s).
 - **** : Estado actual de la tarea (como recordatorio, una tarea daemon siempre se "ejecuta"").
 
-- **Valores** :
+- **** :
     - **Detalles** : Ver el cron en detalle (como se almacena en la base).
     - **Comenzar / Parar** : Iniciar o detener la tarea (dependiendo de su estado).
     - **** : Eliminar tarea.

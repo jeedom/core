@@ -11,7 +11,7 @@ La página de registros es bastante simple :
 A la izquierda, una lista de registros disponibles, con un campo de búsqueda para filtrar el nombre de los registros.
 Arriba a la derecha 5 botones :
 
-- **Buscar** : Le permite filtrar la visualización del registro actual.
+- **** : Le permite filtrar la visualización del registro actual.
 - **Pausa / Reanudar** : Pausa / reanuda la actualización en tiempo real del registro actual.
 - **Descargar** : Descargar el registro actual.
 - **** : Borrar el registro actual.

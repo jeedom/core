@@ -8,7 +8,7 @@ Lleva tiempo pero su único límite es tu imaginación.
 >
 > Es posible ir directamente a un diseño gracias al submenú.
 
-> **Importante**
+> ****
 >
 > Todas las acciones se realizan haciendo clic derecho en esta página, tenga cuidado de hacerlo bien en el diseño. Al crear, debe hacerlo en el medio de la página (para asegurarse de estar en el diseño).
 
@@ -28,7 +28,7 @@ En el menú (clic derecho), encontramos las siguientes acciones :
 - **Añadir imagen / cámara** : Le permite agregar una imagen o una transmisión desde una cámara.
 - **Agregar área** : Permite agregar una zona transparente en la que se puede hacer clic que podrá ejecutar una serie de acciones durante un clic (dependiendo o no del estado de otro comando)).
 - **Agregar resumen** : Agrega información de un objeto o resumen general.
-- **Monitor**
+- ****
     - **** : No muestra ninguna cuadrícula.
     - **** : Muestra una cuadrícula de 10 por 10.
     - **** : Muestra una cuadrícula de 15 por 15.
@@ -40,9 +40,9 @@ En el menú (clic derecho), encontramos las siguientes acciones :
 - **Crea un diseño** : Le permite agregar un nuevo diseño.
 - **Diseño duplicado** : Duplica el diseño actual.
 - **Configura el diseño** : Acceso a la configuración del diseño.
-- **Para salvaguardar** : Guarde el diseño (nota, también hay copias de seguridad automáticas durante ciertas acciones).
+- **** : Guarde el diseño (nota, también hay copias de seguridad automáticas durante ciertas acciones).
 
-> **Importante**
+> ****
 >
 > La configuración de los elementos de diseño se realiza haciendo clic en ellos.
 
@@ -65,7 +65,7 @@ Encontrado aquí :
 
 ## Configuración general de elementos
 
-> **Nota**
+> ****
 >
 > Dependiendo del tipo de elemento, las opciones pueden cambiar.
 
@@ -119,7 +119,7 @@ Le permite elegir los comandos para graficar.
 - **** : texto en negrita.
 - **** : Texto en código HTML que estará en el elemento.
 
-> **Importante**
+> ****
 >
 > Si coloca código HTML (especialmente Javascript), tenga cuidado de verificarlo antes porque puede hacerlo si hay un error o si sobrescribe un componente de Jeedom y bloquea completamente el diseño y solo tendrá que eliminarlo. directamente en la base de datos.
 

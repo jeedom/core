@@ -12,7 +12,7 @@ En la parte superior de la página, encontramos :
 - **Numero de equipos** : Lo mismo para el equipo.
 - **Numero de ordenes** : Lo mismo para pedidos.
 - **** : Marque esta casilla si desea que se muestren elementos inactivos en esta página.
-- **Buscar** : Buscar un artículo en particular. Puede ser el nombre de un dispositivo, un pedido o el nombre del complemento por el cual se creó el dispositivo.
+- **** : Buscar un artículo en particular. Puede ser el nombre de un dispositivo, un pedido o el nombre del complemento por el cual se creó el dispositivo.
 - **Exportación CSV** : Le permite exportar todos los objetos, equipos y sus comandos a un archivo CSV.
 
 También tienes una pestaña ****, Mostrar el historial de pedidos, equipos, objetos, vistas, diseño, diseño 3D, escenarios y usuarios eliminados.
@@ -40,8 +40,8 @@ En cada equipo encontramos :
 
 -  **casilla de verificación** para seleccionar el equipo (puede seleccionar varios). Si se selecciona al menos un dispositivo, tiene botones de acción que aparecen en la esquina superior izquierda para ****,  ****/ /****,  ****/ /**** equipo seleccionado.
 - L'**** equipo.
-- La **** equipo : Identificador del complemento al que pertenece.
-- La **** equipo.
+-  **** equipo : Identificador del complemento al que pertenece.
+-  **** equipo.
 - **** (pequeña cruz) : Significa que el equipo está inactivo (si no está allí, el equipo está activo).
 - **** (ojo cruzado) : Significa que el equipo es invisible (si no está allí, el equipo es visible).
 
@@ -62,7 +62,7 @@ La ventana de **Configuración avanzada de equipos** permite modificarlo. Primer
 - **** : muestra las propiedades en bruto del equipo.
 - **** : Permite mostrar los enlaces del equipo con los objetos, comandos, escenarios, variables, interacciones ... en forma gráfica (en este caso, un doble clic en un elemento lo llevará a su configuración).
 - **** : muestra los eventos del equipo en cuestión.
-- **Para salvaguardar** : Guarde las modificaciones realizadas en el equipo.
+- **** : Guarde las modificaciones realizadas en el equipo.
 - **** : Retirar equipo.
 
 ### Pestaña de información
@@ -74,7 +74,7 @@ La ventana de **Configuración avanzada de equipos** permite modificarlo. Primer
 - **ID lógica** : Identificador lógico del equipo (puede estar vacío).
 - **ID de objeto** : Identificador único del objeto padre (puede estar vacío).
 - **Fecha de creación** : Fecha de creación del equipo.
-- **Habilitar** : Marque la casilla para activar el equipo (no olvide guardar).
+- **** : Marque la casilla para activar el equipo (no olvide guardar).
 - **** : Marque la casilla para hacer visible el equipo (no olvide guardar).
 - **** : Identificador del complemento por el cual fue creado.
 - **Intento fallido** : Número de intentos fallidos de comunicaciones consecutivas con el equipo.
@@ -86,7 +86,7 @@ A continuación encontrará una tabla con la lista de comandos de equipos con, p
 
 ### Ver pestaña
 
-En la pestaña **Monitor**, podrá configurar ciertos comportamientos de visualización de mosaico en el Tablero o en el dispositivo móvil.
+En la pestaña ****, podrá configurar ciertos comportamientos de visualización de mosaico en el Tablero o en el dispositivo móvil.
 
 #### Widget
 
@@ -151,13 +151,13 @@ Primero, en la parte superior derecha, algunos botones disponibles :
 - **** : Muestra los eventos del equipo en cuestión.
 - **** : Muestra las propiedades en bruto del equipo.
 -  **Aplicar a** : Permite que la misma configuración se aplique a varios comandos.
-- **Para salvaguardar** : Guarde las modificaciones realizadas en el equipo.
+- **** : Guarde las modificaciones realizadas en el equipo.
 
 > ****
 >
 > En un gráfico, un doble clic en un elemento lo lleva a su configuración.
 
-> **Nota**
+> ****
 >
 > Dependiendo del tipo de orden, la información / acciones mostradas pueden cambiar.
 
@@ -170,7 +170,7 @@ Primero, en la parte superior derecha, algunos botones disponibles :
 - **** : Nombre de la orden.
 - **** : Tipo de comando (acción o información).
 - **** : Subtipo de comando (binario, digital, etc.)).
-- **URL directa** : Proporciona la URL para acceder a este equipo. (clic derecho, copie la dirección del enlace) La URL iniciará el comando para un **Valores** y devolver la información para un **información**.
+- **URL directa** : Proporciona la URL para acceder a este equipo. (clic derecho, copie la dirección del enlace) La URL iniciará el comando para un **** y devolver la información para un ****.
 - **** : Unidad de control.
 - **Comando que desencadena una actualización** : Da el identificador de otro comando que, si este otro comando cambia, forzará la actualización del comando mostrado.
 - **** : Marque esta casilla para hacer visible el comando.
@@ -184,7 +184,7 @@ También tienes otros tres botones naranjas debajo :
 - **Este comando reemplaza el comando** : Reemplazar comando con comando actual.
 - **Reemplace este comando con el comando** : Por el contrario, reemplace el comando con otro comando.
 
-> **Nota**
+> ****
 >
 > Este tipo de acción reemplaza los comandos en todas partes en Jeedom (escenario, interacción, comando, equipo.).
 
@@ -226,7 +226,7 @@ A continuación, encontrará la lista de los diferentes equipos, comandos, escen
 
 Le permite definir un nivel de alerta (****  ****) dependiendo de ciertas condiciones. Por ejemplo, si `valor&gt; 8` durante 30 minutos, entonces el equipo puede estar en alerta ****.
 
-> **Nota**
+> ****
 >
 > En la página **→ Configuración → Configuración del Sistema : **, puede configurar un comando de tipo de mensaje que permitirá que Jeedom le notifique si se alcanza el umbral de advertencia o peligro.
 

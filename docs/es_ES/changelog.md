@@ -13,8 +13,8 @@
 - **Herramientas / Objetos** : Se agregó un menú contextual en un objeto para administrar la visibilidad, cambiar el objeto principal y mover.
 - **Herramientas / Reemplazar** : Nueva herramienta de sustitución de equipos y mandos.
 - **Análisis / Cronología** : Se agregó un campo de búsqueda para filtrar la visualización.
-- **Relación** : Capacidad para informar sobre la salud de Jeedom.
-- **Relación** : Capacidad para informar sobre equipos alertados.
+- **** : Capacidad para informar sobre la salud de Jeedom.
+- **** : Capacidad para informar sobre equipos alertados.
 - **Actualización** : Capacidad para ver desde Jeedom los paquetes OS / PIP2 / PIP3 / NodeJS que se pueden actualizar e iniciar la actualización (cuidado con la función arriesgada y en versión beta).
 - **Comando de alerta** : Se agregó una opción para recibir un mensaje en caso de fin de alerta.
 
@@ -101,8 +101,8 @@
 
 ### 4.2 : Noticias / Mejoras
 
-- **Síntesis** : Posibilidad de configurar objetos para ir a un *diseño* o un *visto* desde la síntesis.
-- **Tablero** : La ventana de configuración del dispositivo (modo de edición) ahora le permite configurar widgets móviles y tipos genéricos.
+- **Síntesis** : Posibilidad de configurar objetos para ir a un ** o un ** desde la síntesis.
+- **** : La ventana de configuración del dispositivo (modo de edición) ahora le permite configurar widgets móviles y tipos genéricos.
 - **** : Internacionalización de Widgets de terceros (código de usuario). ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.2).
 - **Análisis / Historia** : Posibilidad de comparar un historial durante un período determinado.
 - **Análisis / Historia** : Visualización de múltiples ejes en Y. Opción para que cada eje tenga su propia escala, agrupada por unidad o no.
@@ -115,12 +115,12 @@
 - **Resúmenes** : Posibilidad de no mostrar nunca el número a la derecha del icono, o solo si es positivo.
 - **Resúmenes** : El cambio del parámetro de resumen en la configuración y en los objetos ahora es visible, sin esperar un cambio en el valor de resumen.
 - **Resúmenes** : Ahora es posible configurar [acciones sobre resúmenes](/es_ES/concept/summary#Actions  résumés) (ctrl + clic en un resumen) gracias a los virtuales.
-- **Relación** : Vista previa de archivos PDF.
+- **** : Vista previa de archivos PDF.
 - **Tipos de equipo** : [Nueva página](/es_ES/core/4.2/types) **Herramientas → Tipos de equipos** permitiendo la asignación de tipos genéricos a dispositivos y comandos, con soporte para tipos dedicados a complementos instalados (ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.2)).
 - **Selección de ilustraciones** : Nueva ventana global para la elección de ilustraciones *(iconos, imágenes, fondos)*.
 - **Pantalla de mesa** : Adición de un botón a la derecha de la búsqueda en las páginas ** *Escenarios* ** **  ** para cambiar al modo de mesa. Esto se almacena mediante una cookie o en **Configuración → Sistema → Configuración / Interfaz, Opciones**. Los complementos pueden usar esta nueva función del Core. ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.2).
 - **Configuración del equipo** : Posibilidad de configurar una curva de historial en la parte inferior del mosaico de un dispositivo.
-- **Ordenado** : Posibilidad de realizar un cálculo sobre una acción de comando de tipo slider antes de la ejecución del comando.
+- **** : Posibilidad de realizar un cálculo sobre una acción de comando de tipo slider antes de la ejecución del comando.
 - **Complementos / Gestión** : Visualización de la categoría de complementos y un enlace para abrir directamente su página sin pasar por el menú Complementos.
 - **Guión** : Función de respaldo de código (*plegado de código*) en *Bloques de código*. Atajos Ctrl + Y y Ctrl + I.
 - **Guión** : Copiar / pegar y deshacer / rehacer la corrección de errores (reescritura completa).
@@ -246,15 +246,15 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 ### 4.1 : Noticias / Mejoras
 
 - **Síntesis** : Agregar una nueva página **Inicio → Resumen** Ofrece un resumen visual global de las partes, con acceso rápido a resúmenes.
-- **Investigar** : Adición de un motor de búsqueda en **Herramientas → Buscar**.
-- **Tablero** : El modo de edición ahora inserta el mosaico movido.
-- **Tablero** : Modo de edición: Los iconos de actualización del equipo se reemplazan por un icono que permite acceder a su configuración, gracias a un nuevo modal simplificado.
-- **Tablero** : Ahora podemos hacer clic en el ** widgets de acciones de tiempo para abrir la ventana del historial del comando de información vinculada.
-- **Tablero** : El tamaño del mosaico de un equipo nuevo se adapta a su contenido.
-- **Tablero** : Agregar (¡atrás!) Un botón para filtrar los elementos mostrados por categoría.
-- **Tablero** : Ctrl Click en una información abre la ventana de historial con todos los comandos historizados del equipo visibles en el mosaico. Ctrl Haga clic en una leyenda para mostrar solo esta, Alt Haga clic para mostrarlas todas.
-- **Tablero** : Rediseño de la visualización del árbol de objetos (flecha a la izquierda de la búsqueda).
-- **Tablero** : Posibilidad de desenfocar imágenes de fondo (Configuración -> Interfaz).
+- **** : Adición de un motor de búsqueda en **Herramientas → Buscar**.
+- **** : El modo de edición ahora inserta el mosaico movido.
+- **** : Modo de edición: Los iconos de actualización del equipo se reemplazan por un icono que permite acceder a su configuración, gracias a un nuevo modal simplificado.
+- **** : Ahora podemos hacer clic en el ** widgets de acciones de tiempo para abrir la ventana del historial del comando de información vinculada.
+- **** : El tamaño del mosaico de un equipo nuevo se adapta a su contenido.
+- **** : Agregar (¡atrás!) Un botón para filtrar los elementos mostrados por categoría.
+- **** : Ctrl Click en una información abre la ventana de historial con todos los comandos historizados del equipo visibles en el mosaico. Ctrl Haga clic en una leyenda para mostrar solo esta, Alt Haga clic para mostrarlas todas.
+- **** : Rediseño de la visualización del árbol de objetos (flecha a la izquierda de la búsqueda).
+- **** : Posibilidad de desenfocar imágenes de fondo (Configuración -> Interfaz).
 - **Herramientas / widgets** : La funcion *Aplicar en* muestra los comandos vinculados marcados, al desmarcar uno se aplicará el widget principal predeterminado a este comando.
 - **** : Agregar un widget principal **.
 - **** : Agregar un widget principal **.
@@ -283,10 +283,10 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 - **** : El modo de edición ahora inserta el mosaico movido.
 - **** : Modo de edición: Los iconos de actualización del equipo se reemplazan por un icono que permite acceder a su configuración, gracias a un nuevo modal simplificado.
 - **** : El orden de visualización ahora es independiente del que se muestra en el Panel de control.
-- **Línea de tiempo** : Separación de páginas de historia y cronología.
-- **Línea de tiempo** : Integración de la línea de tiempo en DB por razones de confiabilidad.
-- **Línea de tiempo** : Gestión de múltiples líneas de tiempo.
-- **Línea de tiempo** : Rediseño gráfico completo de la línea de tiempo (Escritorio / Móvil).
+- **** : Separación de páginas de historia y cronología.
+- **** : Integración de la línea de tiempo en DB por razones de confiabilidad.
+- **** : Gestión de múltiples líneas de tiempo.
+- **** : Rediseño gráfico completo de la línea de tiempo (Escritorio / Móvil).
 - **Resumen global** : Vista de resumen, soporte para resúmenes de un objeto diferente o con un objeto raíz vacío (escritorio y aplicación web).
 - **Herramientas / Objetos** : Nueva pestaña *Resumen por equipos*.
 - **Resumen de domótica** : Equipos de complementos desactivados y sus controles ya no tienen los iconos a la derecha (configuración de equipos y configuración avanzada).
@@ -294,8 +294,8 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 - **Resumen de domótica** : Posibilidad de mover varios equipos de un objeto a otro.
 - **Resumen de domótica** : Posibilidad de seleccionar todo el equipo de un objeto.
 - **Motor de tareas** : En la pestaña *Demonio*, los complementos deshabilitados ya no aparecen.
-- **Relación** : El uso de ** si está disponible.
-- **Relación** : Posibilidad de exportar cronogramas.
+- **** : El uso de ** si está disponible.
+- **** : Posibilidad de exportar cronogramas.
 - **** :  ** ahora está en la pestaña *General*.
 - **** :  ** ahora está en la pestaña **.
 - **Ventana de configuración avanzada del equipo** : Cambio dinámico de la configuración de la centralita.
@@ -308,7 +308,7 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 	- Ctrl Clic / Clic Center también disponible en sus menús contextuales (en las pestañas).
 - Nueva página ModalDisplay :
 	- Menú de análisis : Ctrl Click / Click Center en *Tiempo real* : Abra la ventana en una pestaña nueva, en pantalla completa.
-	- Menú de herramientas : Ctrl Click / Click Center en **, *Probador de expresión*, **, *Investigar* : Abra la ventana en una pestaña nueva, en pantalla completa.
+	- Menú de herramientas : Ctrl Click / Click Center en **, *Probador de expresión*, **, ** : Abra la ventana en una pestaña nueva, en pantalla completa.
 - Bloque de código, Editor de archivos, Personalización avanzada : Adaptación del tema oscuro.
 - Ventana de selección de imágenes mejorada.
 
@@ -438,12 +438,12 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 - Los campos de búsqueda (panel, escenarios, objetos, widgets, interacciones, complementos) ahora están activos cuando se abre la página, lo que le permite escribir una búsqueda directamente.
 - Se agregó un botón X en los campos de búsqueda para cancelar la búsqueda.
 - Durante una búsqueda, la clave ** cancelar búsqueda.
-- Tablero : En el modo de edición, el control de búsqueda y sus botones se desactivan y se fijan.
-- Tablero : En el modo de edición, un clic de un botón *expandir* a la derecha de los objetos cambia el tamaño de los mosaicos del objeto a la altura del más alto. Ctrl + clic los reduce a la altura del más bajo.
-- Tablero : La ejecución del comando en un mosaico ahora se indica con el botón **. Si no hay ninguno en el mosaico, aparecerá durante la ejecución.
-- Tablero : Los mosaicos indican un comando de información (histórico, que abrirá la ventana Historial) o una acción al pasar el mouse.
-- Tablero : La ventana del historial ahora le permite abrir este historial en Análisis / Historial.
-- Tablero : La ventana del historial mantiene su posición / dimensiones al reabrir otro historial.
+-  : En el modo de edición, el control de búsqueda y sus botones se desactivan y se fijan.
+-  : En el modo de edición, un clic de un botón ** a la derecha de los objetos cambia el tamaño de los mosaicos del objeto a la altura del más alto. Ctrl + clic los reduce a la altura del más bajo.
+-  : La ejecución del comando en un mosaico ahora se indica con el botón **. Si no hay ninguno en el mosaico, aparecerá durante la ejecución.
+-  : Los mosaicos indican un comando de información (histórico, que abrirá la ventana Historial) o una acción al pasar el mouse.
+-  : La ventana del historial ahora le permite abrir este historial en Análisis / Historial.
+-  : La ventana del historial mantiene su posición / dimensiones al reabrir otro historial.
 - Ventana de configuración de comandos: Ctrl + clic en "Guardar" cierra la ventana después.
 - Ventana de configuración del equipo: Ctrl + clic en "Guardar" cierra la ventana después.
 - Agregar información de uso al eliminar un dispositivo.
@@ -477,7 +477,7 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 - Guión : La coloración de los bloques ya no es aleatoria, sino por tipo de bloque.
 - Guión : Posibilidad haciendo Ctrl + clic en el botón *ejecución* guárdelo, ejecútelo y muestre el registro (si el nivel de registro no está en **).
 - Guión : Confirmación de eliminación de bloque. Ctrl + clic para evitar la confirmación.
-- Guión : Adición de una función de búsqueda en bloques de código. Buscar : Ctrl + F luego Enter, Siguiente resultado : Ctrl + G, resultado anterior : Ctrl + Mayús + G
+- Guión : Adición de una función de búsqueda en bloques de código.  : Ctrl + F luego Enter, Siguiente resultado : Ctrl + G, resultado anterior : Ctrl + Mayús + G
 - Guión : Posibilidad de condensar los bloques.
 - Guión : La acción 'Agregar bloque' cambia a la pestaña Escenario si es necesario.
 - Guión : Nuevas funciones de copiar / pegar en bloque. Ctrl + clic para cortar / reemplazar.
@@ -497,7 +497,7 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 - Resumen de domótica : Exportación CSV del objeto principal, identificación, equipo y su identificación, comando.
 - Resumen de domótica : Posibilidad de hacer visibles o no uno o más comandos.<br/><br/>
 -  : Posibilidad de especificar el orden (posición) del **  *Diseños 3d* (Editar, configurar diseño).
--  : Adición de un campo CSS personalizado en los elementos del *diseño*.
+-  : Adición de un campo CSS personalizado en los elementos del **.
 -  : Se movieron las opciones de visualización en Diseño de la configuración avanzada, en los parámetros de visualización de la **. Esto con el fin de simplificar la interfaz y permitir tener diferentes parámetros mediante **.
 -  : Mover y cambiar el tamaño de componentes en ** tiene en cuenta su tamaño, con o sin magnetización.<br/><br/>
 - Adición de un sistema de configuración masiva (utilizado en la página Equipo para configurar alertas de comunicaciones en ellos)
@@ -515,7 +515,7 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 ### 4.0 : Changements
 
 - Elimine Font Awesome 4 para mantener solo Font Awesome 5.
-- El complemento del widget no es compatible con esta versión de Jeedom y ya no será compatible (porque las funciones se han tomado internamente en el núcleo). Más información [aquí](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
+- El complemento del widget no es compatible con esta versión de Jeedom y ya no será compatible (porque las funciones se han tomado internamente en el núcleo). Más información [](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
 
 >****
 >

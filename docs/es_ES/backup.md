@@ -58,7 +58,7 @@ Durante una copia de seguridad, Jeedom realizará una copia de seguridad de todo
 
 A nivel de protocolo, solo la Z-Wave (OpenZwave) es un poco diferente porque no es posible guardar las inclusiones. Estos se incluyen directamente en el controlador, por lo que debe mantener el mismo controlador para encontrar sus módulos Zwave.
 
-> **Nota**
+> ****
 >
 > El sistema en el que está instalado Jeedom no está respaldado. Si ha cambiado la configuración de este sistema (incluso a través de SSH), depende de usted encontrar una manera de recuperarlos si tiene alguna inquietud. Del mismo modo, las dependencias tampoco lo son, por lo que deberá reinstalarlas después de una restauración
 

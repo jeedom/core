@@ -10,7 +10,7 @@ Es gibt daher eine Liste von Plugins in alphabetischer Reihenfolge und einen Lin
 
 Durch Klicken auf ein Plugin greifen Sie auf dessen Konfiguration zu. Oben finden Sie den Namen des Plugins, dann in Klammern den Namen in Jeedom (ID) und schließlich den Typ der installierten Version (Stable, Beta)).
 
-> **Wichtig**
+> ****
 >
 > Beim Herunterladen eines Plugins ist es standardmäßig deaktiviert. Sie müssen es also selbst aktivieren.
 
@@ -19,12 +19,12 @@ Durch Klicken auf ein Plugin greifen Sie auf dessen Konfiguration zu. Oben finde
 Hier haben Sie drei Tasten :
 
 - **Markt synchronisieren** : Wenn Sie ein Plugin über einen Webbrowser in Ihrem Market-Konto installieren (außer Jeedom), können Sie eine Synchronisierung erzwingen, um es zu installieren.
-- **Markt** : Öffnen Sie den Jeedom Market, wählen Sie ein Plugin aus und installieren Sie es auf Ihrem Jeedom.
+- **** : Öffnen Sie den Jeedom Market, wählen Sie ein Plugin aus und installieren Sie es auf Ihrem Jeedom.
 - **** : Sie können hier ein Plugin von einer Github, Samba-Quelle installieren, ...
 
 ### Markt synchronisieren
 
-Gehen Sie in einem Browser zu [Markt](https://market.jeedom.com).
+Gehen Sie in einem Browser zu [](https://market.jeedom.com).
 Melden Sie sich bei Ihrem Konto an.
 Klicken Sie auf ein Plugin und wählen Sie *Stabil installieren*  *Installieren Sie die Beta* (wenn Ihr Marktkonto dies zulässt).
 
@@ -34,7 +34,7 @@ Wenn Ihr Marktkonto in Ihrem Jeedom korrekt konfiguriert ist (Konfiguration → 
 
 Um ein neues Plugin zu installieren, klicken Sie einfach auf die Schaltfläche "Market" (und Jeedom ist mit dem Internet verbunden). Nach einer kurzen Ladezeit erhalten Sie die Seite.
 
-> **Tipp**
+> ****
 >
 > Sie müssen Ihre Marktkontoinformationen in der Administration eingegeben haben (Konfiguration → Updates / Markt → Registerkarte Markt), um die Plugins zu finden, die Sie beispielsweise bereits gekauft haben.
 
@@ -45,7 +45,7 @@ Oben im Fenster befinden sich Filter :
 - **** : Ermöglicht die Suche nach einem Plugin (im Namen oder in der Beschreibung)).
 - **Benutzername** : Zeigt den Benutzernamen für die Verbindung zum Markt sowie den Verbindungsstatus an.
 
-> **Tipp**
+> ****
 >
 > Das kleine Kreuz setzt den betreffenden Filter zurück
 
@@ -60,11 +60,11 @@ Wenn Sie das gewünschte Plugin gefunden haben, klicken Sie einfach darauf, um d
 
 Nachfolgend finden Sie die Beschreibung des Plugins, die Kompatibilität (wenn Jeedom eine Inkompatibilität feststellt, werden Sie benachrichtigt), die Meinungen zum Plugin (Sie können es hier notieren) und zusätzliche Informationen (der Autor, die Person, die es erstellt hat) das neueste Update, ein Link zum Dokument, die Anzahl der Downloads). Auf der rechten Seite finden Sie eine Schaltfläche &quot;Changelog&quot;, mit der Sie den gesamten Änderungsverlauf abrufen können. Eine Schaltfläche &quot;Dokumentation&quot;, die auf die Dokumentation des Plugins verweist. Dann haben Sie die verfügbare Sprache und die verschiedenen Informationen zum Datum der letzten stabilen Version.
 
-> **Wichtig**
+> ****
 >
 > Es wird wirklich nicht empfohlen, ein Beta-Plugin auf ein Nicht-Beta-Jeedom zu setzen, da dies zu vielen Betriebsproblemen führen kann.
 
-> **Wichtig**
+> ****
 >
 > Einige Plugins sind kostenpflichtig. In diesem Fall bietet Ihnen das Plugin den Kauf an. Sobald Sie fertig sind, müssen Sie ungefähr zehn Minuten warten (Zahlungsüberprüfungszeit) und dann zur Plugin-Datei zurückkehren, um sie normal zu installieren.
 
@@ -80,7 +80,7 @@ Achtung, beim Hinzufügen durch eine Zip-Datei muss der Name der Zip mit der ID 
 
 Durch Klicken auf das Symbol eines Plugins öffnen Sie dessen Konfigurationsseite.
 
-> **Tipp**
+> ****
 >
 > Sie können bei gedrückter Strg-Taste oder Klick-Mitte die Konfiguration in einer neuen Browser-Registerkarte öffnen.
 
@@ -123,13 +123,13 @@ Wenn das Plugin Abhängigkeiten und / oder einen Dämon hat, werden diese zusät
 
 - **** : Im Allgemeinen wird lokal sein.
 - **** : Daemon-Status, OK oder NOK.
-- **Aufbau** : OK, wenn alle Kriterien für die Ausführung des Dämons erfüllt sind oder die Ursache für die Blockierung angegeben ist.
+- **** : OK, wenn alle Kriterien für die Ausführung des Dämons erfüllt sind oder die Ursache für die Blockierung angegeben ist.
 - **(Neustarten** : Ermöglicht das Starten oder Neustarten des Dämons.
 - **Anschlag** : Wird zum Stoppen des Dämons verwendet (nur in dem Fall, in dem die automatische Verwaltung deaktiviert ist).
 - **Automatische Verwaltung** : Aktiviert oder deaktiviert die automatische Verwaltung (wodurch Jeedom den Dämon selbst verwalten und bei Bedarf neu starten kann. Sofern nicht anders angegeben, ist es ratsam, die automatische Verwaltung aktiv zu lassen).
 - **Letzter Start** : Datum des letzten Starts des Daemons.
 
-> **Tipp**
+> ****
 >
 > Einige Plugins haben einen Konfigurationsteil. Wenn dies der Fall ist, wird es unter den oben beschriebenen Abhängigkeits- und Dämonzonen angezeigt.
 > In diesem Fall finden Sie Informationen zur Konfiguration des betreffenden Plugins in der Dokumentation.
@@ -147,7 +147,7 @@ Wenn das Plugin Abhängigkeiten und / oder einen Dämon hat, werden diese zusät
 - **** : Ein Cron für tote Kommandeure.
 - **** : Eine alte Gesundheit.
 
-> **Tipp**
+> ****
 >
 > Wenn das Plugin eine dieser Funktionen verwendet, können Sie dies ausdrücklich verhindern, indem Sie das Kontrollkästchen &quot;Aktivieren&quot; deaktivieren, das daneben angezeigt wird.
 

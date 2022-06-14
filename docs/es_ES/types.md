@@ -1,7 +1,7 @@
 # Tipos de equipo
 **Herramientas → Tipos de equipos**
 
-Los sensores y actuadores en Jeedom son administrados por complementos, que crean equipos con comandos *Información* (sensor) o *Valores* (solenoide). Esto luego permite activar acciones basadas en el cambio de ciertos sensores, como encender una luz en la detección de movimiento. Pero Jeedom Core y complementos como **, **, *Hogar inteligente de Google*, *Hogar inteligente de Alexa* etc., no sé qué es este equipo : Un enchufe, una luz, una persiana, etc.
+Los sensores y actuadores en Jeedom son administrados por complementos, que crean equipos con comandos ** (sensor) o ** (solenoide). Esto luego permite activar acciones basadas en el cambio de ciertos sensores, como encender una luz en la detección de movimiento. Pero Jeedom Core y complementos como **, **, *Hogar inteligente de Google*, *Hogar inteligente de Alexa* etc., no sé qué es este equipo : Un enchufe, una luz, una persiana, etc.
 
 Para superar este problema, especialmente con asistentes de voz (*Enciende la luz de la habitación*), Core presentó el **Tipos genéricos**, utilizado por estos complementos.
 
@@ -24,7 +24,7 @@ Esta página ofrece almacenamiento por tipo de equipo : Enchufe, luz, obturador,
 
 ## Tipo de comando
 
-Una vez que un elemento de equipo se coloca en la posición correcta **, Pulsando sobre él accedes a la lista de sus pedidos, coloreados de diferente color si es un *Información* (Azul) o un *Valores* (Orange).
+Una vez que un elemento de equipo se coloca en la posición correcta **, Pulsando sobre él accedes a la lista de sus pedidos, coloreados de diferente color si es un ** (Azul) o un ** (Orange).
 
 Al hacer clic con el botón derecho en un pedido, puede asignarle un Tipo genérico correspondiente a las especificaciones de este pedido (Tipo de información / acción, Numérico, Subtipo binario, etc).
 
@@ -48,9 +48,9 @@ En cada dispositivo, tienes dos botones :
 
 #### Desencadenar
 
-Puede activar un escenario desde sensores. Por ejemplo, si tiene detectores de movimiento en la casa, puede crear un escenario de alarma con cada detector activado : ''#[Salón][Move Salon][Presence]# == 1`, `#[Cuisine][Move Cuisine][Presence]# == 1`, etc.. En tal escenario, necesitará todos sus detectores de movimiento, y si agrega uno, tendrá que agregarlo a los disparadores. Lógica.
+Puede activar un escenario desde sensores. Por ejemplo, si tiene detectores de movimiento en la casa, puede crear un escenario de alarma con cada detector activado : ''#[Salón][Move Salon][Presence]# == #[Cuisine][Move Cuisine][Presence]# == 1`, etc.. En tal escenario, necesitará todos sus detectores de movimiento, y si agrega uno, tendrá que agregarlo a los disparadores. Lógica.
 
-Los tipos genéricos le permiten usar un solo disparador : ''#genericType(PRESENCE)# == 1`. Aquí, no se indica ningún objeto, por lo que el más mínimo movimiento en toda la casa desencadenará el escenario. Si agrega un nuevo detector en la casa, no es necesario editar los escenarios).
+Los tipos genéricos le permiten usar un solo disparador : ''#genericType(PRESENCE)# == . Aquí, no se indica ningún objeto, por lo que el más mínimo movimiento en toda la casa desencadenará el escenario. Si agrega un nuevo detector en la casa, no es necesario editar los escenarios).
 
 Aquí, un disparador al encender una luz en la sala de estar : ''#genericType(LUZ_ESTADO,#[Salón]#)# > 
 
@@ -58,7 +58,7 @@ Aquí, un disparador al encender una luz en la sala de estar : ''#genericType(LU
 
 Si, en un escenario, desea saber si hay una luz encendida en la sala de estar, puede hacer :
 
-#[Salón][Lumiere Canapé][]# == 1 O #[Salón][Lumiere Salon][]# == 1 O #[Salón][Lumiere Angle][]# == 1`
+#[Salón][Lumiere Canapé][]# == 1 O #[Salón][Lumiere Salon][]# == 1 O #[Salón][Lumiere Angle][]# == 
 
 O mas simplemente : IF `genericType (LIGHT_STATE,#[Salón]#) > 0` o si una o más luces están encendidas en la sala de estar.
 
@@ -86,217 +86,217 @@ O más simplemente, cree una acción `genericType` con` LIGHT_ON` en` Salon`. Si
 
 | **Otro (id: Other)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  | Temporizador de estado | Información | numeric
-| TIMER_ESTADO | Estado del temporizador (pausar o no) | Información | binario, numérico
-| ESTABLECER_TIMER |  | Valores | slider
-|  | Pausar temporizador | Valores | other
-|  | Reanudar el temporizador | Valores | other
+|  | Temporizador de estado |  | numeric
+| TIMER_ESTADO | Estado del temporizador (pausar o no) |  | binario, numérico
+| ESTABLECER_TIMER |  |  | slider
+|  | Pausar temporizador |  | other
+|  | Reanudar el temporizador |  | other
 
 | **Batería (id: Battery)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  |  | Información | numeric
-| BATERIA CARGANDO | Bateria cargando | Información | binary
+|  |  |  | numeric
+| BATERIA CARGANDO | Bateria cargando |  | binary
 
 | **Cámara (id: Camera)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| CÁMARA_URL | URL de la cámara | Información | string
-| CAMERA_RECORD_ESTADO | Estado de grabación de la cámara | Información | binary
-| CÁMARA_ARRIBA | Movimiento de la cámara hacia arriba | Valores | other
-| CÁMARA HACIA ABAJO | Movimiento de la cámara hacia abajo | Valores | other
-| CÁMARA_IZQUIERDA | Movimiento de la cámara hacia la izquierda | Valores | other
-| CÁMARA_DERECHA | Movimiento de la cámara hacia la derecha | Valores | other
-| CÁMARA_ZOOM | Acercar la cámara hacia adelante | Valores | other
-| CÁMARA_DEZOOM | Zoom de la cámara hacia atrás | Valores | other
-| CÁMARA_DETENER | Detener la cámara | Valores | other
-| CÁMARA_PRESET | Preajuste de la cámara | Valores | other
-|  | Grabación de cámara | Valores |
-| CÁMARA_TOMAR | Cámara de instantáneas | Valores |
+| CÁMARA_URL | URL de la cámara |  | string
+| CAMERA_RECORD_ESTADO | Estado de grabación de la cámara |  | binary
+| CÁMARA_ARRIBA | Movimiento de la cámara hacia arriba |  | other
+| CÁMARA HACIA ABAJO | Movimiento de la cámara hacia abajo |  | other
+| CÁMARA_IZQUIERDA | Movimiento de la cámara hacia la izquierda |  | other
+| CÁMARA_DERECHA | Movimiento de la cámara hacia la derecha |  | other
+| CÁMARA_ZOOM | Acercar la cámara hacia adelante |  | other
+| CÁMARA_DEZOOM | Zoom de la cámara hacia atrás |  | other
+| CÁMARA_DETENER | Detener la cámara |  | other
+| CÁMARA_PRESET | Preajuste de la cámara |  | other
+|  | Grabación de cámara |  |
+| CÁMARA_TOMAR | Cámara de instantáneas |  |
 
 | **Calefacción (id: Heating)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| CALEFACCIÓN_ESTADO | Estado de calentamiento del hilo piloto | Información | binary
-| CALEFACCIÓN_ENCENDIDO | Botón de encendido del calentamiento del hilo piloto | Valores | other
-| CALEFACCIÓN_APAGADO | Botón de apagado del calentamiento del hilo piloto | Valores | other
-|  | Botón de hilo piloto de calentamiento | Valores | other
+| CALEFACCIÓN_ESTADO | Estado de calentamiento del hilo piloto |  | binary
+| CALEFACCIÓN_ENCENDIDO | Botón de encendido del calentamiento del hilo piloto |  | other
+| CALEFACCIÓN_APAGADO | Botón de apagado del calentamiento del hilo piloto |  | other
+|  | Botón de hilo piloto de calentamiento |  | other
 
 | **Electricidad (id: Electricity)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  | Energia electrica | Información | numeric
-|  | El consumo de energía | Información | numeric
-|  |  | Información | numeric
-|  | Reiniciar | Valores | other
+|  | Energia electrica |  | numeric
+|  | El consumo de energía |  | numeric
+|  |  |  | numeric
+|  | Reiniciar |  | other
 
 | **Entorno (id: Environment)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  | TEMPERATURA | Información | numeric
-| CALIDAD DEL AIRE | Calidad del aire | Información | numeric
-|  |  | Información | numeric
-|  | PRESENCIA | Información | binary
-|  | Deteccion de humo | Información | binary
-|  |  | Información | numeric
-|  |  | Información | numeric
-|  | ) | Información | numeric
-|  | CO2 (ppm) | Información | numeric
-|  | Sonido (dB) | Información | numeric
-|  |  | Información | numeric
-| GOTERA DE AGUA | Fuga de agua | Información |
-| FILTRO_LIMPIAR_ESTADO | Estado de filtro | Información | binary
+|  | TEMPERATURA |  | numeric
+| CALIDAD DEL AIRE | Calidad del aire |  | numeric
+|  |  |  | numeric
+|  | PRESENCIA |  | binary
+|  | Deteccion de humo |  | binary
+|  |  |  | numeric
+|  |  |  | numeric
+|  | ) |  | numeric
+|  | CO2 (ppm) |  | numeric
+|  | Sonido (dB) |  | numeric
+|  |  |  | numeric
+| GOTERA DE AGUA | Fuga de agua |  |
+| FILTRO_LIMPIAR_ESTADO | Estado de filtro |  | binary
 
 | **Genérico (id: Generic)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  |  | Información | numeric
-|  |  | Información | numeric
-|  |  | Información | binario, numérico
-| INFORMACIÓN_GENÉRICA |  Genérico | Información |
-| ACCIÓN_GENÉRICA |  Genérico | Valores | other
+|  |  |  | numeric
+|  |  |  | numeric
+|  |  |  | binario, numérico
+| INFORMACIÓN_GENÉRICA |  Genérico |  |
+| ACCIÓN_GENÉRICA |  Genérico |  | other
 
 | **Luz (id: Light)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| LUZ_ESTADO | Estado de luz | Información | binario, numérico
-| LUZ_BRILLO | Brillo de luz | Información | numeric
-| COLOR CLARO | Color claro | Información | string
-| LUZ_ESTADO_BOOL | Estado de luz (binario) | Información | binary
-| LUZ_COLOR_TEMP | Color de temperatura de luz | Información | numeric
-| LUZ_TOGGLE | Alternar luz | Valores | other
-| LUCES ENCENDIDAS | Botón de luz encendido | Valores | other
-| LUZ APAGADA | Botón de luz apagado | Valores | other
-| LUZ_SLIDER | Luz deslizante | Valores | slider
-| LUZ_SET_COLOR | Color claro | Valores | color
-| MODO_LUZ | Modo de luz | Valores | other
-| LUZ_SET_COLOR_TEMP | Color de temperatura de luz | Valores |
+| LUZ_ESTADO | Estado de luz |  | binario, numérico
+| LUZ_BRILLO | Brillo de luz |  | numeric
+| COLOR CLARO | Color claro |  | string
+| LUZ_ESTADO_BOOL | Estado de luz (binario) |  | binary
+| LUZ_COLOR_TEMP | Color de temperatura de luz |  | numeric
+| LUZ_TOGGLE | Alternar luz |  | other
+| LUCES ENCENDIDAS | Botón de luz encendido |  | other
+| LUZ APAGADA | Botón de luz apagado |  | other
+| LUZ_SLIDER | Luz deslizante |  | slider
+| LUZ_SET_COLOR | Color claro |  | color
+| MODO_LUZ | Modo de luz |  | other
+| LUZ_SET_COLOR_TEMP | Color de temperatura de luz |  |
 
 | **Modo (id: Mode)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| MODO_ESTADO | Modo de estado | Información | string
-|  | Modo de cambio | Valores | other
+| MODO_ESTADO | Modo de estado |  | string
+|  | Modo de cambio |  | other
 
 | **Multimedia (id: Multimedia)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  |  | Información | numeric
-| MEDIO_ESTADO |  | Información | string
-|  |  | Información | string
-| ARTISTA_MEDIA |  | Información | string
-| MEDIO_TITLE |  | Información | string
-|  |  | Información | string
-|  |  | Información | numérico, cadena
-| MEDIO_ESTADO |  | Información | binary
-| SET_VOLUMEN |  | Valores | slider
-|  |  | Valores | otro control deslizante
-| MEDIOS_PAUSA |  | Valores | other
-| MEDIOS_RESUME |  | Valores | other
-|  | Deténgase | Valores | other
-| MEDIOS_SIGUIENTE |  | Valores | other
-| MEDIOS_ANTERIORES | Anterior | Valores | other
-|  |  | Valores | other
-| MEDIOS_DESACTIVADOS |  | Valores | other
-| MEDIOS_MUTE |  | Valores | other
-| MEDIA_UNMUTE | Sin silencio | Valores | other
+|  |  |  | numeric
+| MEDIO_ESTADO |  |  | string
+|  |  |  | string
+| ARTISTA_MEDIA |  |  | string
+| MEDIO_TITLE |  |  | string
+|  |  |  | string
+|  |  |  | numérico, cadena
+| MEDIO_ESTADO |  |  | binary
+| SET_VOLUMEN |  |  | slider
+|  |  |  | otro control deslizante
+| MEDIOS_PAUSA |  |  | other
+| MEDIOS_RESUME |  |  | other
+|  |  |  | other
+| MEDIOS_SIGUIENTE |  |  | other
+| MEDIOS_ANTERIORES | Anterior |  | other
+|  |  |  | other
+| MEDIOS_DESACTIVADOS |  |  | other
+| MEDIOS_MUTE |  |  | other
+|  | Sin silencio |  | other
 
 | **Clima (id: Weather)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| TIEMPO_TEMPERATURA | Temperatura del tiempo | Información | numeric
-| TIEMPO_TEMPERATURA_MAX_2 | Condición meteorológica d + 1 máx d + 2 | Información | numeric
-| VELOCIDAD DEL VIENTO | Velocidad del viento) | Información | numeric
-| LLUVIA_TOTAL | Lluvia (acumulación) | Información | numeric
-| LLUVIA_ACTUAL | Lluvia (mm / h) | Información | numeric
-| CLIMA_CONDICIÓN_ID_4 | Condición meteorológica (id) d + 4 | Información | numeric
-| CLIMA_CONDICIÓN_4 | Condición meteorológica d + 4 | Información | string
-| TIEMPO_TEMPERATURA_MAX_4 | Clima Temperatura máxima d + 4 | Información | numeric
-| TIEMPO_TEMPERATURA_MIN_4 | Tiempo Temperatura min d + 4 | Información | numeric
-| CLIMA_CONDICIÓN_ID_3 | Condición meteorológica (id) d + 3 | Información | numeric
-| CLIMA_CONDICIÓN_3 | Condición meteorológica d + 3 | Información | string
-| TIEMPO_TEMPERATURA_MAX_3 | Clima Temperatura máxima d + 3 | Información | numeric
-| TIEMPO_TEMPERATURA_MIN_3 | Tiempo Temperatura min d + 3 | Información | numeric
-| CLIMA_CONDICIÓN_ID_2 | Condición meteorológica (id) d + 2 | Información | numeric
-| CLIMA_CONDICIÓN_2 | Condición meteorológica d + 2 | Información | string
-| TIEMPO_TEMPERATURA_MIN_2 | Tiempo Temperatura min d + 2 | Información | numeric
-| CLIMA_HUMEDAD | Humedad del tiempo | Información | numeric
-| CLIMA_CONDICIÓN_ID_1 | Condición meteorológica (id) d + 1 | Información | numeric
-| CLIMA_CONDICIÓN_1 | Condición meteorológica d + 1 | Información | string
-| CLIMA_TEMPERATURA_MAX_1 | Clima Temperatura máxima d + 1 | Información | numeric
-| TIEMPO_TEMPERATURA_MIN_1 | Clima Temperatura min d + 1 | Información | numeric
-| TIEMPO_CONDICIÓN_ID | Condición climática (id) | Información | numeric
-| CONDICIÓN CLIMÁTICA | Condición climática | Información | string
-| TIEMPO_TEMPERATURA_MAX | Clima Temperatura máxima | Información | numeric
-| TIEMPO_TEMPERATURA_MIN | Clima Temperatura min | Información | numeric
-| CLIMA_AMANECER | Tiempo al atardecer | Información | numeric
-| TIEMPO_PUESTA DEL SOL | Tiempo del amanecer | Información | numeric
-| CLIMA_VIENTO_DIRECCIÓN | Dirección del viento tiempo | Información | numeric
-| TIEMPO_VIENTO_VELOCIDAD | Tiempo de velocidad del viento | Información | numeric
-| CLIMA_PRESIÓN | Presión meteorológica | Información | numeric
-| DIRECCIÓN DEL VIENTO | Dirección del viento) | Información | numeric
+| TIEMPO_TEMPERATURA | Temperatura del tiempo |  | numeric
+| TIEMPO_TEMPERATURA_MAX_2 | Condición meteorológica d + 1 máx d + 2 |  | numeric
+| VELOCIDAD DEL VIENTO | Velocidad del viento) |  | numeric
+| LLUVIA_TOTAL | Lluvia (acumulación) |  | numeric
+| LLUVIA_ACTUAL | Lluvia (mm / h) |  | numeric
+| CLIMA_CONDICIÓN_ID_4 | Condición meteorológica (id) d + 4 |  | numeric
+| CLIMA_CONDICIÓN_4 | Condición meteorológica d + 4 |  | string
+| TIEMPO_TEMPERATURA_MAX_4 | Clima Temperatura máxima d + 4 |  | numeric
+| TIEMPO_TEMPERATURA_MIN_4 | Tiempo Temperatura min d + 4 |  | numeric
+| CLIMA_CONDICIÓN_ID_3 | Condición meteorológica (id) d + 3 |  | numeric
+| CLIMA_CONDICIÓN_3 | Condición meteorológica d + 3 |  | string
+| TIEMPO_TEMPERATURA_MAX_3 | Clima Temperatura máxima d + 3 |  | numeric
+| TIEMPO_TEMPERATURA_MIN_3 | Tiempo Temperatura min d + 3 |  | numeric
+| CLIMA_CONDICIÓN_ID_2 | Condición meteorológica (id) d + 2 |  | numeric
+| CLIMA_CONDICIÓN_2 | Condición meteorológica d + 2 |  | string
+| TIEMPO_TEMPERATURA_MIN_2 | Tiempo Temperatura min d + 2 |  | numeric
+| CLIMA_HUMEDAD | Humedad del tiempo |  | numeric
+| CLIMA_CONDICIÓN_ID_1 | Condición meteorológica (id) d + 1 |  | numeric
+| CLIMA_CONDICIÓN_1 | Condición meteorológica d + 1 |  | string
+| CLIMA_TEMPERATURA_MAX_1 | Clima Temperatura máxima d + 1 |  | numeric
+| TIEMPO_TEMPERATURA_MIN_1 | Clima Temperatura min d + 1 |  | numeric
+| TIEMPO_CONDICIÓN_ID | Condición climática (id) |  | numeric
+| CONDICIÓN CLIMÁTICA | Condición climática |  | string
+| TIEMPO_TEMPERATURA_MAX | Clima Temperatura máxima |  | numeric
+| TIEMPO_TEMPERATURA_MIN | Clima Temperatura min |  | numeric
+| CLIMA_AMANECER | Tiempo al atardecer |  | numeric
+| TIEMPO_PUESTA DEL SOL | Tiempo del amanecer |  | numeric
+| CLIMA_VIENTO_DIRECCIÓN | Dirección del viento tiempo |  | numeric
+| TIEMPO_VIENTO_VELOCIDAD | Tiempo de velocidad del viento |  | numeric
+| CLIMA_PRESIÓN | Presión meteorológica |  | numeric
+| DIRECCIÓN DEL VIENTO | Dirección del viento) |  | numeric
 
 | **Apertura (id: Opening)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| BLOQUEO_ESTADO | Bloqueo de estado | Información | binary
-| BARRERA_ESTADO | Estado del portal (apertura) | Información | binary
-| GARAJE_ESTADO | Estado del garaje (apertura) | Información | binary
-| APERTURA | Puerta | Información | binary
-| ABRIENDO_VENTANA | Ventana | Información | binary
-| BLOQUEAR_ABRIR | Botón de bloqueo abierto | Valores | other
-| LOCK_CLOSE | Cerrar el botón de bloqueo | Valores | other
-| GB_OPEN | Botón de apertura de puerta o garaje | Valores | other
-| GB_CLOSE | Botón de cierre de puerta o garaje | Valores | other
-| GB_TOGGLE | Interruptor de botón de puerta o garaje | Valores | other
+| BLOQUEO_ESTADO | Bloqueo de estado |  | binary
+| BARRERA_ESTADO | Estado del portal (apertura) |  | binary
+| GARAJE_ESTADO | Estado del garaje (apertura) |  | binary
+|  |  |  | binary
+| ABRIENDO_VENTANA | Ventana |  | binary
+| BLOQUEAR_ABRIR | Botón de bloqueo abierto |  | other
+|  | Cerrar el botón de bloqueo |  | other
+|  | Botón de apertura de puerta o garaje |  | other
+|  | Botón de cierre de puerta o garaje |  | other
+|  | Interruptor de botón de puerta o garaje |  | other
 
 | **Zócalo (id: Outlet)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| ESTADO_ENERGÍA | Toma de estado | Información | numérico, binario
-| ENERGÍA_ON | En el enchufe del botón | Valores | other
-| ENERGÍA_APAGADA | Botón de enchufe desactivado | Valores | other
-| DESLIZADOR DE ENERGÍA | Toma deslizante | Valores |
+| ESTADO_ENERGÍA | Toma de estado |  | numérico, binario
+| ENERGÍA_ON | En el enchufe del botón |  | other
+| ENERGÍA_APAGADA | Botón de enchufe desactivado |  | other
+| DESLIZADOR DE ENERGÍA | Toma deslizante |  |
 
 | **Robot (identificación: Robot)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| MUELLE_ESTADO | Base estatal | Información | binary
-| MUELLE | De regreso a la base | Valores | other
+| MUELLE_ESTADO | Base estatal |  | binary
+|  | De regreso a la base |  | other
 
 | **Seguridad (id: Security)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| SIREN_ESTADO | Estado de la sirena | Información | binary
-| ALARMA_ESTADO | Estado de alarma | Información | binario, cadena
-| MODO_ALARMA | Modo de alarma | Información | string
-| ALARMA_ENABLE_ESTADO | Estado de alarma activado | Información | binary
-| INUNDACIÓN | Inundación | Información | binary
-| SABOTAJE | Sabotaje | Información | binary
-| CHOQUE | Choque | Información | binario, numérico
-| SIREN_OFF | Botón de sirena apagado | Valores | other
-| SIREN_EN | Botón de sirena encendido | Valores | other
-| ALARMA_ARMADO | Alarma armada | Valores | other
-| ALARMA_LIBERADA | Alarma lanzada | Valores | other
-| ALARMA_ESTABLECER_MODO | Modo de alarma | Valores | other
+| SIREN_ESTADO | Estado de la sirena |  | binary
+| ALARMA_ESTADO | Estado de alarma |  | binario, cadena
+| MODO_ALARMA | Modo de alarma |  | string
+| ALARMA_ENABLE_ESTADO | Estado de alarma activado |  | binary
+|  |  |  | binary
+|  |  |  | binary
+|  |  |  | binario, numérico
+|  | Botón de sirena apagado |  | other
+| SIREN_EN | Botón de sirena encendido |  | other
+| ALARMA_ARMADO | Alarma armada |  | other
+| ALARMA_LIBERADA | Alarma lanzada |  | other
+| ALARMA_ESTABLECER_MODO | Modo de alarma |  | other
 
 | **Termostato (id: Thermostat)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| TERMOSTATO_ESTADO | Estado del termostato (BINARIO) (solo para termostato de complemento) | Información |
-| TERMOSTATO_TEMPERATURA | Termostato de temperatura ambiente | Información | numeric
-| TERMOSTATO_CONSIGNA | Termostato de consigna | Información | numeric
-| MODO_TERMOSTATO | Modo de termostato (solo para termostato de complemento) | Información | string
-| TERMOSTATO_BLOQUEO | Termostato de bloqueo (solo para termostato de complemento) | Información | binary
-| TERMOSTATO_TEMPERATURA_EXTERIOR | Termostato de temperatura exterior (solo para termostato de complemento) | Información | numeric
-| TERMOSTATO_ESTADO_NOMBRE | Estado del termostato (HUMAN) (solo para termostato de complemento) | Información | string
-| TERMOSTATO_HUMEDAD | Termostato de humedad ambiental | Información | numeric
-| HUMEDAD_CONSIGNA | Establecer humedad | Información | slider
-| TERMOSTATO_SET_SETPOINT | Termostato de consigna | Valores | slider
-| TERMOSTATO_FIJAR_MODO | Modo de termostato (solo para termostato de complemento) | Valores | other
-| TERMOSTATO_SET_LOCK | Termostato de bloqueo (solo para termostato de complemento) | Valores | other
-| TERMOSTATO_SET_UNLOCK | Desbloquear el termostato (solo para el termostato enchufable)) | Valores | other
-| HUMEDAD_SET_SETPOINT | Establecer humedad | Valores | slider
+| TERMOSTATO_ESTADO | Estado del termostato (BINARIO) (solo para termostato de complemento) |  |
+| TERMOSTATO_TEMPERATURA | Termostato de temperatura ambiente |  | numeric
+| TERMOSTATO_CONSIGNA | Termostato de consigna |  | numeric
+| MODO_TERMOSTATO | Modo de termostato (solo para termostato de complemento) |  | string
+| TERMOSTATO_BLOQUEO | Termostato de bloqueo (solo para termostato de complemento) |  | binary
+| TERMOSTATO_TEMPERATURA_EXTERIOR | Termostato de temperatura exterior (solo para termostato de complemento) |  | numeric
+| TERMOSTATO_ESTADO_NOMBRE | Estado del termostato (HUMAN) (solo para termostato de complemento) |  | string
+| TERMOSTATO_HUMEDAD | Termostato de humedad ambiental |  | numeric
+| HUMEDAD_CONSIGNA | Establecer humedad |  | slider
+| TERMOSTATO_SET_SETPOINT | Termostato de consigna |  | slider
+| TERMOSTATO_FIJAR_MODO | Modo de termostato (solo para termostato de complemento) |  | other
+| TERMOSTATO_SET_LOCK | Termostato de bloqueo (solo para termostato de complemento) |  | other
+| TERMOSTATO_SET_UNLOCK | Desbloquear el termostato (solo para el termostato enchufable)) |  | other
+| HUMEDAD_SET_SETPOINT | Establecer humedad |  | slider
 
 | **Ventilador (id: Fan)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| FAN_SPEED_STATE | Estado de la velocidad del ventilador | Información | numeric
-| ROTACIÓN_ESTADO | Rotación de estado | Información | numeric
-| VELOCIDAD DEL VENTILADOR | Velocidad del ventilador | Valores | slider
-| GIRAR | Girar | Valores | slider
+|  | Estado de la velocidad del ventilador |  | numeric
+| ROTACIÓN_ESTADO | Rotación de estado |  | numeric
+| VELOCIDAD DEL VENTILADOR | Velocidad del ventilador |  | slider
+|  |  |  | slider
 
 | **Panel (id: Shutter)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| FLAP_ESTADO | Panel de estado | Información | binario, numérico
-| FLAP_BSO_ESTADO | Panel de estado de BSO | Información | binario, numérico
-| FLAP_ARRIBA | Botón de panel hacia arriba | Valores | other
-| FLAP_ABAJO | Botón de panel hacia abajo | Valores | other
-| FLAP_DETENER | Botón de parada del obturador | Valores |
-| FLAP_SLIDER | Panel de botones deslizantes | Valores | slider
-| FLAP_BSO_ARRIBA | Botón arriba del panel BSO | Valores | other
-| FLAP_BSO_ABAJO | Botón Abajo del panel BSO | Valores | other
+| FLAP_ESTADO | Panel de estado |  | binario, numérico
+| FLAP_BSO_ESTADO | Panel de estado de BSO |  | binario, numérico
+| FLAP_ARRIBA | Botón de panel hacia arriba |  | other
+| FLAP_ABAJO | Botón de panel hacia abajo |  | other
+| FLAP_DETENER | Botón de parada del obturador |  |
+|  | Panel de botones deslizantes |  | slider
+| FLAP_BSO_ARRIBA | Botón arriba del panel BSO |  | other
+| FLAP_BSO_ABAJO | Botón Abajo del panel BSO |  | other

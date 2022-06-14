@@ -10,7 +10,7 @@ Por lo tanto, hay una lista de complementos en orden alfabético y un enlace al 
 
 Al hacer clic en un complemento, accede a su configuración. En la parte superior, encontrará el nombre del complemento, luego entre paréntesis, su nombre en Jeedom (ID) y, finalmente, el tipo de versión instalada (estable, beta).
 
-> **Importante**
+> ****
 >
 > Al descargar un complemento, está deshabilitado de forma predeterminada. Entonces tienes que activarlo tú mismo.
 
@@ -42,7 +42,7 @@ En la parte superior de la ventana tienes filtros :
 - **Abierto / De pago** : muestra solo gratis o de pago.
 - **Oficial / Recomendado** : muestra solo complementos oficiales o recomendados.
 - **Menú desplegable de categoría** : muestra solo ciertas categorías de complementos.
-- **Buscar** : le permite buscar un complemento (en el nombre o la descripción del mismo).
+- **** : le permite buscar un complemento (en el nombre o la descripción del mismo).
 - **Nombre del usuario** : muestra el nombre de usuario utilizado para conectarse a Market, así como el estado de la conexión.
 
 > ****
@@ -60,11 +60,11 @@ Una vez que haya encontrado el complemento que desea, simplemente haga clic en �
 
 A continuación, encontrará la descripción del complemento, la compatibilidad (si Jeedom detecta una incompatibilidad, se lo notificará), las opiniones sobre el complemento (puede anotarlo aquí) e información adicional (el autor, la persona que realizó la última actualización, un enlace al documento, la cantidad de descargas). A la derecha encontrará un botón &quot;Registro de cambios&quot; que le permite tener todo el historial de modificaciones, un botón &quot;Documentación&quot; que se refiere a la documentación del complemento. Luego tiene el idioma disponible y la información variada sobre la fecha de la última versión estable.
 
-> **Importante**
+> ****
 >
 > Realmente no se recomienda poner un complemento beta en un Jeedom no beta, pueden resultar muchos problemas operativos.
 
-> **Importante**
+> ****
 >
 > Algunos complementos son de pago, en este caso el complemento le ofrecerá comprarlo. Una vez hecho esto, debe esperar unos diez minutos (tiempo de validación del pago), luego regresar al archivo del complemento para instalarlo normalmente.
 
@@ -98,7 +98,7 @@ Al hacer clic en el icono de un complemento, abre su página de configuración.
 - **** : El autor del complemento, enlace al mercado y los complementos de este autor.
 - **** : Indica la licencia del complemento que generalmente será AGPL.
 
-- **Valores** : Le permite habilitar o deshabilitar el complemento. El botón **Abrir** Le permite ir directamente a la página del complemento.
+- **** : Le permite habilitar o deshabilitar el complemento. El botón **** Le permite ir directamente a la página del complemento.
 - **** : La versión del complemento instalado.
 - **Prerrequisitos** : Indica la versión mínima de Jeedom requerida para el complemento.
 

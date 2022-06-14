@@ -60,7 +60,7 @@ La página de configuración consta de varias pestañas y botones :
 - **** : Nombre de interacción (puede estar vacío, el nombre reemplaza el texto de solicitud en la lista de interacción).
 - **** : Grupo de interacción, esto permite organizarlos (puede estar vacío, por lo tanto estará en el grupo "ninguno").
 - **** : Habilita o deshabilita la interacción.
-- **Solicitud** : La oración modelo generadora (requerida).
+- **** : La oración modelo generadora (requerida).
 - **** : Permite definir sinónimos en los nombres de los comandos.
 - **Respuesta** : La respuesta para proporcionar.
 - **Espere antes de responder)** : Agregue un retraso de X segundos antes de generar la respuesta. Permite, por ejemplo, esperar el regreso del estado de una lámpara antes de ser respondido.
@@ -83,7 +83,7 @@ La página de configuración consta de varias pestañas y botones :
 
 #### Exemples
 
-> **Nota**
+> ****
 >
 > Las capturas de pantalla pueden ser diferentes en vista de los desarrollos.
 
@@ -285,7 +285,7 @@ Entonces podemos ver una expresión regular :
 
 Esto le permite eliminar todos los comandos que tienen una de estas palabras en su oración
 
-> **Nota**
+> ****
 >
 > La expresión regular aquí es una versión simplificada para un uso fácil. Por lo tanto, podemos usar expresiones tradicionales o expresiones simplificadas como en este ejemplo.
 
@@ -297,9 +297,9 @@ Es posible controlar una lámpara como un porcentaje (dimmer) o un termostato co
 
 ![interact022](../images/interact022.png)
 
-Como podemos ver, aquí está en la solicitud la etiqueta **#consigne#** (puede poner lo que quiera) que se incluye en el control de la unidad para aplicar el valor deseado. Para hacer esto, tenemos 3 partes : * Solicitud : en el que creamos una etiqueta que representará el valor que se enviará a la interacción. \* Respuesta : reutilizamos la etiqueta para la respuesta para asegurarnos de que Jeedom entendió correctamente la solicitud. \* Valores : ponemos una acción sobre la lámpara que queremos conducir y en el valor le pasamos nuestra etiqueta **.
+Como podemos ver, aquí está en la solicitud la etiqueta **#consigne#** (puede poner lo que quiera) que se incluye en el control de la unidad para aplicar el valor deseado. Para hacer esto, tenemos 3 partes : *  : en el que creamos una etiqueta que representará el valor que se enviará a la interacción. \* Respuesta : reutilizamos la etiqueta para la respuesta para asegurarnos de que Jeedom entendió correctamente la solicitud. \*  : ponemos una acción sobre la lámpara que queremos conducir y en el valor le pasamos nuestra etiqueta **.
 
-> **Nota**
+> ****
 >
 > Podemos usar cualquier etiqueta, excepto las que ya usa Jeedom, puede haber varias para controlar, por ejemplo, varios comandos. Tenga en cuenta también que todas las etiquetas se pasan a los escenarios iniciados por la interacción (sin embargo, es necesario que el escenario esté en "Ejecutar en primer plano"").
 
@@ -350,6 +350,6 @@ Las interacciones hacen muchas cosas en particular. Puedes programar una acción
 
 ![interact23](../images/interact23.JPG)
 
-> **Nota**
+> ****
 >
 > Notará en la respuesta la etiqueta \#value# esto contiene, en el caso de una interacción programada, el tiempo efectivo de programación

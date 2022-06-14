@@ -4,11 +4,11 @@
 Auf dieser Seite können Sie die Anzeige Ihrer gesamten Hausautomation auf sehr feine Weise konfigurieren.
 Es braucht Zeit, aber seine einzige Grenze ist Ihre Vorstellungskraft.
 
-> **Tipp**
+> ****
 >
 > Dank des Untermenüs ist es möglich, direkt zu einem Entwurf zu gelangen.
 
-> **Wichtig**
+> ****
 >
 > Alle Aktionen werden ausgeführt, indem Sie mit der rechten Maustaste auf diese Seite klicken. Achten Sie darauf, dass dies im Design gut funktioniert. Beim Erstellen müssen Sie dies in der Mitte der Seite tun (um sicherzugehen, dass Sie sich im Design befinden).
 
@@ -42,7 +42,7 @@ Im Menü (Rechtsklick) finden wir folgende Aktionen :
 - **Konfigurieren Sie das Design** : Zugriff auf die Konfiguration des Designs.
 - **** : Speichern Sie das Design (beachten Sie, dass bei bestimmten Aktionen auch automatische Sicherungen durchgeführt werden).
 
-> **Wichtig**
+> ****
 >
 > Die Konfiguration der Designelemente erfolgt durch Klicken.
 
@@ -65,7 +65,7 @@ Hier gefunden :
 
 ## Allgemeine Konfiguration der Elemente
 
-> **Notiz**
+> ****
 >
 > Je nach Art des Elements können sich die Optionen ändern.
 
@@ -119,7 +119,7 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 - **** : fetter Text.
 - **** : Text im HTML-Code, der sich im Element befindet.
 
-> **Wichtig**
+> ****
 >
 > Wenn Sie HTML-Code (insbesondere Javascript) einfügen, überprüfen Sie diesen sorgfältig, da dies möglich ist, wenn ein Fehler vorliegt oder wenn eine Jeedom-Komponente überschrieben wird, das Design vollständig abstürzt und nur gelöscht werden muss direkt in die Datenbank.
 
@@ -151,7 +151,7 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 - **Textfarbe** : Hier können Sie eine benutzerdefinierte Hintergrundfarbe auswählen oder die Standardfarbe verwenden.
 - **** : Wert in Pixel der Rundung der Winkel der Gerätekachel.
 - **** : CSS-Definition einer Gerätekachelgrenze.  : 1px festes Schwarz.
-- **** : Deckkraft der Gerätekachel zwischen 0 und 1. Aufmerksamkeit : Es muss eine Hintergrundfarbe definiert werden.
+- **** : Deckkraft der Gerätekachel zwischen 0 und 1.  : Es muss eine Hintergrundfarbe definiert werden.
 - **Benutzerdefiniertes CSS** : CSS-Regeln für das Gerät.
 - **Wenden Sie benutzerdefiniertes CSS auf an** : CSS-Auswahl, auf die benutzerdefiniertes CSS angewendet werden soll.
 
@@ -204,7 +204,7 @@ Sie müssen nur die Aktionen ausführen, die für das Ein und das Aus ausgeführ
 
 In diesem Modus wird beim Bewegen oder Klicken im Bereich Jeedom das betreffende Widget angezeigt.
 
-- **Ausrüstung** : Widget, das beim Bewegen oder Klicken angezeigt wird.
+- **** : Widget, das beim Bewegen oder Klicken angezeigt wird.
 - **Show auf Überführung** : Wenn diese Option aktiviert ist, wird das Widget beim Hover angezeigt.
 - **Ansicht mit einem Klick** : Wenn diese Option aktiviert ist, wird das Widget beim Klicken angezeigt.
 - **** : Hier können Sie auswählen, wo das Widget angezeigt werden soll (standardmäßig unten rechts)).

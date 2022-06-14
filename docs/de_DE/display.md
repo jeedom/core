@@ -26,11 +26,11 @@ Für jedes Objekt stehen neben seiner Beschriftung zwei Schaltflächen zur Verf�
 - Die erste wird verwendet, um die Objektkonfigurationsseite in einer neuen Registerkarte zu öffnen.
 - Die zweite enthält einige Informationen zum Objekt,
 
-> **Tipp**
+> ****
 >
 > Die Hintergrundfarbe der Objektrahmen hängt von der Farbe ab, die in der Konfiguration des Objekts ausgewählt wurde.
 
-> **Tipp**
+> ****
 >
 > Mit einem Klick auf die Objekte oder Geräte können Sie deren Reihenfolge ändern oder sie sogar einem anderen Objekt zuweisen. Aus der auf dieser Seite festgelegten Reihenfolge wird die Anzeige des Dashboards berechnet.
 
@@ -39,7 +39,7 @@ Für jedes Objekt stehen neben seiner Beschriftung zwei Schaltflächen zur Verf�
 Auf jeder Ausrüstung finden wir :
 
 -  **Kontrollkästchen** um das Gerät auszuwählen (Sie können mehrere auswählen). Wenn mindestens ein Gerät ausgewählt ist, haben Sie Aktionsschaltflächen, die oben links zu angezeigt werden ****,  ****/.****,  ****/.**** ausgewählte Ausrüstung.
-- L'**Ich würde** Ausrüstung.
+- L'**** Ausrüstung.
 -  **** Ausrüstung : Kennung des Plugins, zu dem es gehört.
 -  **** Ausrüstung.
 - **** (kleines Kreuz) : Bedeutet, dass das Gerät inaktiv ist (wenn es nicht vorhanden ist, ist das Gerät aktiv).
@@ -53,7 +53,7 @@ Wenn das Geräte-Plugin deaktiviert ist, werden die beiden Symbole rechts nicht 
 
 ## Erweiterte Gerätekonfiguration
 
-> **Tipp**
+> ****
 >
 > Sie können (sofern das Plugin dies unterstützt) direkt von der Gerätekonfigurationsseite auf dieses Fenster zugreifen, indem Sie auf die Schaltfläche Erweiterte Konfiguration klicken
 
@@ -74,7 +74,7 @@ Das Fenster von **Erweiterte Gerätekonfiguration** erlaubt es zu ändern. Zunä
 - **Logische ID** : Logische Kennung des Geräts (kann leer sein).
 - **Objekt-ID** : Eindeutige Kennung des übergeordneten Objekts (kann leer sein).
 - **Erstellungsdatum** : Erstellungsdatum der Ausrüstung.
-- **Ermöglichen** : Aktivieren Sie das Kontrollkästchen, um das Gerät zu aktivieren (vergessen Sie nicht, es zu speichern).
+- **** : Aktivieren Sie das Kontrollkästchen, um das Gerät zu aktivieren (vergessen Sie nicht, es zu speichern).
 - **** : Aktivieren Sie das Kontrollkästchen, um das Gerät sichtbar zu machen (vergessen Sie nicht, es zu speichern).
 - **** : Kennung des Plugins, mit dem es erstellt wurde.
 - **Versuch fehlgeschlagen** : Anzahl fehlgeschlagener aufeinanderfolgender Kommunikationsversuche mit dem Gerät.
@@ -99,7 +99,7 @@ In der Registerkarte ****, Sie können bestimmte Verhaltensweisen bei der Anzeig
 Unten finden Sie optionale Anzeigeparameter, die auf das Gerät angewendet werden können. Diese Parameter bestehen aus einem Namen und einem Wert. Klicken Sie einfach auf **** einen anwenden
 wieder. Für Geräte nur den Wert **** Wird derzeit verwendet, kann CSS-Code in das betreffende Gerät eingefügt werden.
 
-> **Tipp**
+> ****
 >
 > Vergessen Sie nicht, nach jeder Änderung zu speichern.
 
@@ -118,7 +118,7 @@ Unten für jede Box die **detaillierte Konfiguration** erlaubt dir
 - **Boxtext** : Fügen Sie zusätzlich zum Befehl Text hinzu (oder ganz alleine, wenn das Feld keinen Befehl enthält).
 - **Fallstil (CSS)** : Ändern Sie den spezifischen CSS-Stil der Box (beachten Sie, dass das allgemeine CSS der Boxen überschrieben und ersetzt wird).
 
-> **Tipp**
+> ****
 >
 > Wenn Sie in einem Feld in der Tabelle zwei Befehle untereinander setzen möchten, vergessen Sie nicht, nach dem ersten in der Tabelle einen Zeilenumbruch hinzuzufügen **Erweiterte Konfiguration** davon.
 
@@ -134,9 +134,9 @@ Im Folgenden können Sie auch die spezifischen Batteriewarnschwellen für dieses
 
 Sie können das Zeitlimit der Ausrüstung auch in Minuten verwalten. Zum Beispiel sagt 30 jeedom, dass wenn das Gerät 30 Minuten lang nicht kommuniziert hat, es in Alarmbereitschaft versetzt werden muss.
 
-> **Tipp**
+> ****
 >
-> Die globalen Parameter sind in **→ Einstellungen → Systemkonfiguration : Protokolle**  **Ausrüstung**
+> Die globalen Parameter sind in **→ Einstellungen → Systemkonfiguration : **  ****
 
 ### Registerkarte &quot;Kommentar&quot;
 
@@ -153,11 +153,11 @@ Zunächst sind oben rechts einige Schaltflächen verfügbar :
 -  **Bewerben Sie sich bei** : Ermöglicht die Anwendung derselben Konfiguration auf mehrere Befehle.
 - **** : Speichern Sie die am Gerät vorgenommenen Änderungen.
 
-> **Tipp**
+> ****
 >
 > In einer Grafik bringt Sie ein Doppelklick auf ein Element zu seiner Konfiguration.
 
-> **Notiz**
+> ****
 >
 > Abhängig von der Art der Bestellung können sich die angezeigten Informationen / Aktionen ändern.
 
@@ -170,7 +170,7 @@ Zunächst sind oben rechts einige Schaltflächen verfügbar :
 - **** : Name der Bestellung.
 - **** : Art des Befehls (Aktion oder Info).
 - **** : Befehlssubtyp (binär, digital usw.)).
-- **Direkte URL** : Gibt die URL für den Zugriff auf dieses Gerät an. (Rechtsklick, kopiere die Linkadresse) Die URL startet den Befehl für a **Lager** und geben Sie die Informationen für a zurück ****.
+- **Direkte URL** : Gibt die URL für den Zugriff auf dieses Gerät an. (Rechtsklick, kopiere die Linkadresse) Die URL startet den Befehl für a **** und geben Sie die Informationen für a zurück ****.
 - **** : Steuereinheit.
 - **Befehl, der ein Update auslöst** : Gibt die Kennung eines anderen Befehls an, der bei Änderung dieses anderen Befehls die Aktualisierung des angezeigten Befehls erzwingt.
 - **** : Aktivieren Sie dieses Kontrollkästchen, um den Befehl sichtbar zu machen.
@@ -184,7 +184,7 @@ Sie haben auch drei andere orangefarbene Knöpfe darunter :
 - **Dieser Befehl ersetzt den Befehl** : Befehl durch aktuellen Befehl ersetzen.
 - **Ersetzen Sie diesen Befehl durch den Befehl** : Ersetzen Sie umgekehrt den Befehl durch einen anderen Befehl.
 
-> **Notiz**
+> ****
 >
 > Diese Art von Aktion ersetzt Befehle überall in Jeedom (Szenario, Interaktion, Befehl, Ausrüstung…).).
 
@@ -224,11 +224,11 @@ Unten finden Sie eine Liste der verschiedenen Geräte, Befehle, Szenarien oder I
 
 ### Registerkarte &quot;Warnungen&quot;
 
-Ermöglicht das Definieren einer Alarmstufe (**Warnung**  **Achtung**) abhängig von bestimmten Bedingungen. Wenn beispielsweise 30 Minuten lang &quot;Wert&gt; 8&quot; angezeigt wird, kann das Gerät in Alarmbereitschaft versetzt werden **Warnung**.
+Ermöglicht das Definieren einer Alarmstufe (****  ****) abhängig von bestimmten Bedingungen. Wenn beispielsweise 30 Minuten lang &quot;Wert&gt; 8&quot; angezeigt wird, kann das Gerät in Alarmbereitschaft versetzt werden ****.
 
-> **Notiz**
+> ****
 >
-> Auf der Seite **→ Einstellungen → Systemkonfiguration : Protokolle**, Sie können einen Nachrichtentypbefehl konfigurieren, mit dem Jeedom Sie benachrichtigen kann, wenn der Warn- oder Gefahrenschwellenwert erreicht ist.
+> Auf der Seite **→ Einstellungen → Systemkonfiguration : **, Sie können einen Nachrichtentypbefehl konfigurieren, mit dem Jeedom Sie benachrichtigen kann, wenn der Warn- oder Gefahrenschwellenwert erreicht ist.
 
 ### Registerkarte &quot;Ansicht&quot;
 
@@ -242,6 +242,6 @@ In diesem Teil können Sie bestimmte Widget-Anzeigeverhalten im Dashboard, in An
 
 Unten finden Sie optionale Anzeigeparameter, die an das Widget übergeben werden können. Diese Parameter hängen vom jeweiligen Widget ab. Sie müssen sich daher die Datei auf dem Markt ansehen, um sie zu kennen.
 
-> **Tipp**
+> ****
 >
 > Vergessen Sie nicht, nach jeder Änderung zu speichern.
