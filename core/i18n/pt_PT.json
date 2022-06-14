@@ -4091,6 +4091,9 @@
         "Erreur delete influx sur :": "Erro ao excluir influxo em:",
         "Envoie de l\\'historique à influx :": "Envia histórico de influxo:",
         "Erreur history influx sur :": "Erro de influxo de histórico em:",
+        "La commande source n\\'existe pas": "La commande source n\\'existe pas",
+        "La commande cible n\\'existe pas": "La commande cible n\\'existe pas",
+        "Erreur lors de la migration de commande": "Erreur lors de la migration de commande",
         "Commande": "Ordem"
     },
     "core\/class\/jeedom.class.php": {

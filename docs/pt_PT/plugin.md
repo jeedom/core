@@ -6,7 +6,7 @@ Você também pode manipular os plugins, a saber : baixar, atualizar e ativá-lo
 
 Existe, portanto, uma lista de plugins em ordem alfabética e um link para o mercado.
 - Os plug-ins desativados ficam acinzentados.
-- Plugins que não estão na versão *estável* temos um ponto laranja na frente do nome.
+- Plugins que não estão na versão ** temos um ponto laranja na frente do nome.
 
 Ao clicar em um plug-in, você acessa sua configuração. Na parte superior, você encontra o nome do plug-in e, entre parênteses, seu nome em Jeedom (ID) e, finalmente, o tipo de versão instalada (estável, beta).
 
@@ -20,13 +20,13 @@ Aqui você tem três botões :
 
 - **Sincronizar mercado** : Se você instalar um plugin de um navegador da web em sua conta do Market (além do Jeedom), você pode forçar uma sincronização para instalá-lo.
 - **Mercado** : Abra o Jeedom Market, para selecionar um plugin e instalá-lo em seu Jeedom.
-- **Plug-ins** : Você pode instalar um plugin aqui a partir de uma fonte Github, Samba, ...
+- **** : Você pode instalar um plugin aqui a partir de uma fonte Github, Samba, ...
 
 ### Sincronizar mercado
 
 Em um navegador, vá para o [Mercado](https://market.jeedom.com).
 Faça login em sua conta.
-Clique em um plug-in e escolha *Instale estável* Onde *Instalar beta* (se sua conta do Market permitir).
+Clique em um plug-in e escolha *Instale estável*  *Instalar beta* (se sua conta do Market permitir).
 
 Se sua conta do Market estiver configurada corretamente em seu Jeedom (Configuração → Atualizações / Market → guia Market), você pode clicar em *Sincronizar mercado* ou espere que ele se acalme por conta própria.
 
@@ -42,7 +42,7 @@ No topo da janela você tem filtros :
 - **Gratuito / Pago** : exibe apenas gratuito ou pago.
 - **Oficial / Recomendado** : exibe apenas plugins oficiais ou recomendados.
 - **Menu suspenso Categoria** : exibe apenas determinadas categorias de plugins.
-- **Pesquisar** : permite procurar um plugin (no nome ou na descrição dele)).
+- **** : permite procurar um plugin (no nome ou na descrição dele)).
 - **Nome de Usuário** : exibe o nome de usuário usado para conectar-se ao Market, bem como o status da conexão.
 
 > **Dica**
@@ -56,7 +56,7 @@ Depois de encontrar o plug-in desejado, basta clicar nele para abrir o arquivo. 
     - **Instale estável** : permite instalar o plugin em sua versão estável.
     - **Instalar beta** : permite instalar o plugin em sua versão beta (apenas para betatesters).
     - **Instalar pro** : permite instalar a versão pro (muito pouco usado).
-    - **Deletar** : se o plug-in estiver instalado no momento, esse botão permite removê-lo.
+    - **** : se o plug-in estiver instalado no momento, esse botão permite removê-lo.
 
 Abaixo, você encontrará a descrição do plug-in, a compatibilidade (se o Jeedom detectar uma incompatibilidade, ele o notificará), as opiniões sobre o plug-in (você pode anotá-lo aqui) e informações adicionais (o autor, a pessoa que fez a atualização mais recente, um link para o documento, o número de downloads). À direita, você encontrará um botão "Changelog" que permite ter todo o histórico de modificações, um botão "Documentação" que se refere à documentação do plugin. Então você tem o idioma disponível e as várias informações na data da última versão estável.
 
@@ -86,20 +86,20 @@ Ao clicar no ícone de um plugin, você abre sua página de configuração.
 
 ### No canto superior direito, alguns botões :
 
-- **Documentação** : Permite acesso direto à página de documentação do plug-in.
-- **Registro de alterações** : Vamos ver o log de alterações do plugin, se existir.
+- **** : Permite acesso direto à página de documentação do plug-in.
+- **** : Vamos ver o log de alterações do plugin, se existir.
 - **Detalhes** : Permite encontrar a página do plug-in no mercado.
-- **Deletar** : Remova o plugin do seu Jeedom. Observe que isso também remove permanentemente todos os equipamentos deste plugin.
+- **** : Remova o plugin do seu Jeedom. Observe que isso também remove permanentemente todos os equipamentos deste plugin.
 
-### Abaixo à esquerda, há uma área **Estado** com :
+### Abaixo à esquerda, há uma área ****  :
 
-- **Status** : Permite ver o status do plug-in (ativo / inativo)).
+- **** : Permite ver o status do plug-in (ativo / inativo)).
 - **Categoria** : A categoria do plugin, indicando em qual submenu encontrá-lo.
-- **Autor** : O autor do plugin, link para o mercado e os plugins deste autor.
-- **Licença** : Indica a licença do plug-in, que geralmente será AGPL.
+- **** : O autor do plugin, link para o mercado e os plugins deste autor.
+- **** : Indica a licença do plug-in, que geralmente será AGPL.
 
-- **Ações** : Permite ativar ou desativar o plug-in. O botão **Abrir** Permite que você vá diretamente para a página do plugin.
-- **Versão** : A versão do plug-in instalado.
+- **** : Permite ativar ou desativar o plug-in. O botão **** Permite que você vá diretamente para a página do plugin.
+- **** : A versão do plug-in instalado.
 - **Pré-requisitos** : Indica a versão mínima do Jeedom necessária para o plug-in.
 
 
@@ -107,22 +107,22 @@ Ao clicar no ícone de um plugin, você abre sua página de configuração.
 
 - O nível de logs específicos para o plug-in (encontramos essa mesma possibilidade em Administração → Configuração na guia logs, na parte inferior da página).
 - Exibir logs do plug-in.
-- Batimento cardiaco : A cada 5 minutos, o Jeedom verifica se pelo menos um dispositivo de plug-in se comunicou nos últimos X minutos (se você deseja desativar a funcionalidade, basta colocar 0).
+-  : A cada 5 minutos, o Jeedom verifica se pelo menos um dispositivo de plug-in se comunicou nos últimos X minutos (se você deseja desativar a funcionalidade, basta colocar 0).
 - Reiniciar demônio : Se o hertbeat der errado, o Jeedom reiniciará o daemon.
 
 Se o plug-in tiver dependências e / ou um daemon, essas áreas adicionais serão exibidas abaixo das áreas mencionadas acima.
 
 ### Dependências :
 
-- **Sobrenome** : Geralmente será local.
-- **Status** : Status de dependência, OK ou NOK.
-- **Instalação** : Permite instalar ou reinstalar dependências (se você não fizer isso manualmente e elas estiverem NOK, o Jeedom cuidará de si mesmo depois de um tempo).
+- **** : Geralmente será local.
+- **** : Status de dependência, OK ou NOK.
+- **** : Permite instalar ou reinstalar dependências (se você não fizer isso manualmente e elas estiverem NOK, o Jeedom cuidará de si mesmo depois de um tempo).
 - **última Instalação** : Data da última instalação da dependência.
 
 ### Demônio :
 
-- **Sobrenome** : Geralmente será local.
-- **Status** : Status do daemon, OK ou NOK.
+- **** : Geralmente será local.
+- **** : Status do daemon, OK ou NOK.
 - **Configuração** : OK, se todos os critérios para o demônio funcionar forem atendidos ou fornecer a causa do bloqueio.
 - **(Reiniciar** : Permite iniciar ou reiniciar o demônio.
 - **Parar** : Usado para parar o daemon (apenas no caso em que o gerenciamento automático está desativado).
@@ -136,16 +136,16 @@ Se o plug-in tiver dependências e / ou um daemon, essas áreas adicionais serã
 
 ### Abaixo, há uma área de funcionalidade. Isso permite que você veja se o plug-in usa uma das principais funções do Jeedom, como :
 
-- **Interagir** : Interações específicas.
-- **Cron** : Um cron por minuto.
-- **Cron5** : Um cron a cada 5 minutos.
-- **Cron10** : Um cron a cada 10 minutos.
-- **Cron15** : Um cron a cada 15 minutos.
-- **Cron30** : Um cron a cada 30 minutos.
-- **CronHourly** : Um cron a cada hora.
-- **CronDaily** : Um cron diário.
-- **deadcmd** : Um cron para comandantes mortos.
-- **saúde** : Uma saúde cron.
+- **** : Interações específicas.
+- **** : Um cron por minuto.
+- **** : Um cron a cada 5 minutos.
+- **** : Um cron a cada 10 minutos.
+- **** : Um cron a cada 15 minutos.
+- **** : Um cron a cada 30 minutos.
+- **** : Um cron a cada hora.
+- **** : Um cron diário.
+- **** : Um cron para comandantes mortos.
+- **** : Uma saúde cron.
 
 > **Dica**
 >

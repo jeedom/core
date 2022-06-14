@@ -3,7 +3,7 @@
 
 Parte importante no software : a parte da historização, uma lembrança verdadeira. É possível no Jeedom registrar qualquer comando do tipo de informação (binário ou digital). Isso permitirá, por exemplo, registrar uma curva de temperatura, consumo, aberturas de uma porta, etc.
 
-![Histórico](./images/history.gif)
+![](./images/history.gif)
 
 ### Princípio de historização
 
@@ -15,7 +15,7 @@ O arquivamento é uma tarefa que começa à noite e compacta os dados recuperado
 
 > **Dica**
 >
-> Se você seguiu bem, deve ter alta precisão nas últimas 2 horas. No entanto, quando me conecto às 17h, tenho uma precisão nas últimas 17 horas. Por que ? De fato, para evitar consumir recursos desnecessariamente, a tarefa de arquivamento ocorre apenas uma vez por dia, à noite.
+> Se você seguiu bem, deve ter alta precisão nas últimas 2 horas. No entanto, quando me conecto às 17h, tenho uma precisão nas últimas 17 horas.  ? De fato, para evitar consumir recursos desnecessariamente, a tarefa de arquivamento ocorre apenas uma vez por dia, à noite.
 
 > **Importante**
 >
@@ -37,12 +37,12 @@ Do Core v4.2, também é possível exibir uma curva na parte inferior do ladrilh
 
 Se você exibir um gráfico na página de histórico, terá acesso a várias opções de exibição, acima do gráfico :
 
-- **Período** : O período de exibição, incluindo dados históricos entre essas duas datas. Por padrão, dependendo da configuração *Gráficos padrão de exibição Período* dentro *Configurações → Sistema → Configuração / Equipamento*.
-- **Grupo** : Oferece várias opções de agrupamento (soma por hora etc.).).
-- **Tipo de exibição** : Exibir em *Linha*, *Área*, Onde *Fechado*. Opção salva no pedido e usada no Painel.
-- **Variação** : Exibe a diferença de valor do ponto anterior. Opção salva no pedido e usada no Painel.
-- **Escadas** : Exibe a curva como uma escada ou uma exibição contínua. Opção salva no pedido e usada no Painel.
-- **Comparar** : Compare a curva entre diferentes períodos.
+- **Período** : O período de exibição, incluindo dados históricos entre essas duas datas. Por padrão, dependendo da configuração *Gráficos padrão de exibição Período*  *Configurações → Sistema → Configuração / Equipamento*.
+- **** : Oferece várias opções de agrupamento (soma por hora etc.).).
+- **Tipo de exibição** : Exibir em **, **,  **. Opção salva no pedido e usada no Painel.
+- **** : Exibe a diferença de valor do ponto anterior. Opção salva no pedido e usada no Painel.
+- **** : Exibe a curva como uma escada ou uma exibição contínua. Opção salva no pedido e usada no Painel.
+- **** : Compare a curva entre diferentes períodos.
 
 > **Dica**
 >
@@ -52,7 +52,7 @@ Na parte superior onde as curvas são exibidas, também existem várias opções
 
 À esquerda:
 
-- **Ampliação** : Uma área de atalho que permite ajustar o zoom horizontal para a duração desejada, se os dados forem carregados.
+- **** : Uma área de atalho que permite ajustar o zoom horizontal para a duração desejada, se os dados forem carregados.
 
 A direita:
 
@@ -68,12 +68,12 @@ Sob as curvas, você também pode usar o menu contextual em cada legenda para is
 Você também pode exibir os gráficos nas visualizações (veremos aqui as opções de configuração e não como fazê-lo, para isso, é necessário ir à documentação das visualizações ou desenhos em função). Aqui estão as opções :
 
 Depois que os dados são ativados, você pode escolher :
-- **Cor** : A cor da curva.
-- **Gentil** : O tipo de gráfico (área, linha ou coluna).
-- **Escada** : Como você pode colocar várias curvas (dados) no mesmo gráfico, é possível distinguir as escalas (direita ou esquerda)).
-- **Escadas** : Exibe a curva como uma escada ou uma exibição contínua.
-- **Pilha** : Empilhe os valores das curvas (veja abaixo o resultado).
-- **Variação** : Exibe a diferença de valor do ponto anterior.
+- **** : A cor da curva.
+- **** : O tipo de gráfico (área, linha ou coluna).
+- **** : Como você pode colocar várias curvas (dados) no mesmo gráfico, é possível distinguir as escalas (direita ou esquerda)).
+- **** : Exibe a curva como uma escada ou uma exibição contínua.
+- **** : Empilhe os valores das curvas (veja abaixo o resultado).
+- **** : Exibe a diferença de valor do ponto anterior.
 
 ### Opção na página do histórico
 
@@ -95,7 +95,7 @@ Você também tem acesso a um gerenciamento de fórmulas de cálculo que permite
 
 Na frente de cada dado que pode ser exibido, você encontrará dois ícones :
 
-- **Cesto de lixo** : Permite excluir os dados gravados; ao clicar, o Jeedom pergunta se deseja excluir os dados antes de uma determinada data ou todos os dados.
+- **** : Permite excluir os dados gravados; ao clicar, o Jeedom pergunta se deseja excluir os dados antes de uma determinada data ou todos os dados.
 - **Arrow** : Permite a exportação CSV de dados históricos.
 
 ### Remoção de valor inconsistente
