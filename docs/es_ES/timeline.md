@@ -15,7 +15,7 @@ Para verlos, primero debe activar el seguimiento en la línea de tiempo de los c
 La linea de tiempo ** siempre contiene todos los eventos. Sin embargo, puede filtrar la línea de tiempo por **. En cada lugar donde active la línea de tiempo, tendrá un campo para ingresar el nombre de una carpeta, existente o no.
 Luego puede filtrar la línea de tiempo por esta carpeta seleccionándola a la izquierda del botón **.
 
-> **Nota**
+> ****
 >
 > Si ya no usa una carpeta, aparecerá en la lista mientras existan eventos vinculados a esta carpeta. Desaparecerá de la lista por sí mismo.
 

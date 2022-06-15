@@ -48,9 +48,9 @@ En cada dispositivo, tienes dos botones :
 
 #### Desencadenar
 
-Puede activar un escenario desde sensores. Por ejemplo, si tiene detectores de movimiento en la casa, puede crear un escenario de alarma con cada detector activado : ''#[Salón][Move Salon][Presence]# == 1`, `#[Cuisine][Move Cuisine][Presence]# == 1`, etc.. En tal escenario, necesitará todos sus detectores de movimiento, y si agrega uno, tendrá que agregarlo a los disparadores. Lógica.
+Puede activar un escenario desde sensores. Por ejemplo, si tiene detectores de movimiento en la casa, puede crear un escenario de alarma con cada detector activado : ''#[Salón][Move Salon][Presence]# == #[Cuisine][Move Cuisine][Presence]# == 1`, etc.. En tal escenario, necesitará todos sus detectores de movimiento, y si agrega uno, tendrá que agregarlo a los disparadores. Lógica.
 
-Los tipos genéricos le permiten usar un solo disparador : ''#genericType(PRESENCE)# == 1`. Aquí, no se indica ningún objeto, por lo que el más mínimo movimiento en toda la casa desencadenará el escenario. Si agrega un nuevo detector en la casa, no es necesario editar los escenarios).
+Los tipos genéricos le permiten usar un solo disparador : ''#genericType(PRESENCE)# == . Aquí, no se indica ningún objeto, por lo que el más mínimo movimiento en toda la casa desencadenará el escenario. Si agrega un nuevo detector en la casa, no es necesario editar los escenarios).
 
 Aquí, un disparador al encender una luz en la sala de estar : ''#genericType(LUZ_ESTADO,#[Salón]#)# > 
 
@@ -58,7 +58,7 @@ Aquí, un disparador al encender una luz en la sala de estar : ''#genericType(LU
 
 Si, en un escenario, desea saber si hay una luz encendida en la sala de estar, puede hacer :
 
-#[Salón][Lumiere Canapé][]# == 1 O #[Salón][Lumiere Salon][]# == 1 O #[Salón][Lumiere Angle][]# == 1`
+#[Salón][Lumiere Canapé][]# == 1 O #[Salón][Lumiere Salon][]# == 1 O #[Salón][Lumiere Angle][]# == 
 
 O mas simplemente : IF `genericType (LIGHT_STATE,#[Salón]#) > 0` o si una o más luces están encendidas en la sala de estar.
 
