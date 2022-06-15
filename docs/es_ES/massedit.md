@@ -24,7 +24,7 @@ La parte ** le permite cambiar los parámetros de estos elementos.
 - En el juego **, Seleccione **Guión**.
 - Haga clic en el botón **** para agregar un filtro.
 - En este filtro, seleccione la columna **, y resalte el nombre del grupo para cambiar el nombre.
-- Haga clic en el botón ** para mostrar los escenarios de este grupo.
+- Haga clic en el botón *Prueba* para mostrar los escenarios de este grupo.
 - En el juego **, seleccionar columna **, luego pon el nombre que quieras en el valor.
 - Haga clic en **Ejecutar** arriba a la derecha.
 
@@ -33,6 +33,6 @@ La parte ** le permite cambiar los parámetros de estos elementos.
 - En el juego **, Seleccione ****.
 - Haga clic en el botón **** para agregar un filtro.
 - En este filtro, seleccione la columna *id_objeto*, y en valor la identificación del objeto en cuestión (visible desde Herramientas / Objetos, Descripción general).
-- Haga clic en el botón ** para mostrar los escenarios de este grupo.
+- Haga clic en el botón *Prueba* para mostrar los escenarios de este grupo.
 - En el juego **, seleccionar columna **, luego ingrese el valor 0.
 - Haga clic en **Ejecutar** arriba a la derecha.

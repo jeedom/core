@@ -14,13 +14,13 @@ Jeedom tiene una versión móvil adecuada para usar en dispositivos móviles y t
 Cuando inicia sesión en Jeedom por primera vez (e incluso después si no los ha cambiado), el nombre de usuario y la contraseña predeterminados son admin / admin. En la primera conexión, se recomienda encarecidamente modificar estos identificadores para mayor seguridad.
 
 ### Ya no puedo conectarme a mi Jeedom
-Desde Jeedom 3.2 ya no es posible conectarse con admin / admin de forma remota por razones obvias de seguridad. Las credenciales de administrador / administrador solo funcionan localmente. Atención, si pasas por el DNS, incluso localmente, necesariamente estás identificado como remoto. Otro punto predeterminado solo IP en 192.168.*.* o 127.0.0.1 son reconocidos como locales. Está configurado en la administración de la parte de seguridad de Jeedom y luego IP "blanco". Si, a pesar de todo, aún no puede conectarse, debe usar el procedimiento de restablecimiento de contraseña, consulte [](https://doc.jeedom.com/es_ES/howto/reset.password).
+Desde Jeedom 3.2 ya no es posible conectarse con admin / admin de forma remota por razones obvias de seguridad. Las credenciales de administrador / administrador solo funcionan localmente. Atención, si pasas por el DNS, incluso localmente, necesariamente estás identificado como remoto. Otro punto predeterminado solo IP en 192.168.*.* o 127.0.0.1 son reconocidos como locales. Está configurado en la administración de la parte de seguridad de Jeedom y luego IP "blanco". Si, a pesar de todo, aún no puede conectarse, debe usar el procedimiento de restablecimiento de contraseña, consulte [aquí](https://doc.jeedom.com/es_ES/howto/reset.password).
 
 ### No veo todo mi equipo en el Tablero
 A menudo, esto se debe al hecho de que el equipo está asignado a un objeto que no es el hijo o el objeto mismo del primer objeto seleccionado a la izquierda en el árbol (puede configurarlo en su perfil).
 
 ### La interfaz de Jeedom tiene accesos directos ?
-Sí, la lista de atajos de teclado / mouse es [](shortcuts.md).
+Sí, la lista de atajos de teclado / mouse es [aquí](shortcuts.md).
 
 ### ¿Podemos reordenar pedidos de equipos? ?
 Sí, es posible, solo arrastre y suelte los comandos de su objeto en su configuración.
