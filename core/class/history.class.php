@@ -961,7 +961,7 @@ class history {
 				if ($this->getValue() === 0) {
 					$values = array(
 						'cmd_id' => $this->getCmd_id(),
-						'datetime' => date('Y-m-d H:i:00', strtotime($this->getDatetime()) + 300),
+						'datetime' => date('Y-m-d H:i:00', strtotime($this->getDatetime())),
 						'value' => $this->getValue(),
 					);
 					$sql = 'REPLACE INTO history
