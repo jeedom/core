@@ -1,6 +1,6 @@
 # ModalDisplay
 
-A página **** é um contêiner simples para carregar o conteúdo de uma janela (**  **) página inteira.
+A página **** é um contêiner simples para carregar o conteúdo de uma janela (** Onde **) página inteira.
 
 É utilizado em particular nos seguintes casos:
 - Menu Análise : Ctrl Clique / Clique em Central no *Tempo real*

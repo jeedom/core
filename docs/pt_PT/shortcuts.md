@@ -19,32 +19,32 @@ No modo de edição:
 - Ctrl Clique em um comando de informações : Abre todas as informações do histórico do bloco na janela do histórico.
 
 ### Configurações / Sistema / Configuração
-- Ctrl-S : .
+- Ctrl-S : Para salvaguardar.
 
 ### Configurações / Sistema / Backups
-- Ctrl-S : .
+- Ctrl-S : Para salvaguardar.
 
 ### Configurações / Sistema / Mecanismo de tarefas
-- Ctrl-S : .
+- Ctrl-S : Para salvaguardar.
 
 ### Configurações / Sistema / Usuários
-- Ctrl-S : .
+- Ctrl-S : Para salvaguardar.
 
 ### Configurações / Preferências
-- Ctrl-S : .
+- Ctrl-S : Para salvaguardar.
 
 ### Ferramentas / Interações
-- Em uma interação, Ctrl S : .
+- Em uma interação, Ctrl S : Para salvaguardar.
 - Em uma interação, clique com o botão direito do mouse em uma guia : Menu contextual para ir diretamente para outra interação.
 - Ctrl Clique ou Clique Central em uma interação ou no menu de contexto : Abra a interação em uma nova guia do navegador.
 
 ### Ferramentas / Objetos
-- Em um objeto, Ctrl S : .
+- Em um objeto, Ctrl S : Para salvaguardar.
 - Em um objeto, clique com o botão direito do mouse em uma guia : Menu contextual para ir diretamente para outro objeto.
 - Ctrl Clique ou Clique Central em um objeto ou no menu contextual : Abra o objeto em uma nova guia do navegador.
 
 ### Ferramentas / Widgets
-- Em um widget, Ctrl S : .
+- Em um widget, Ctrl S : Para salvaguardar.
 - Em um widget, clique com o botão direito do mouse em uma guia : Menu contextual para ir diretamente para outro widget.
 - Ctrl Clique ou Clique em Central em um widget ou no menu de contexto : Abra o widget em uma nova guia do navegador.
 
@@ -52,7 +52,7 @@ No modo de edição:
 - Ctrl Clique ou Clique Central em um cenário ou no menu de contexto : Abra o cenário em uma nova guia do navegador.
 
 Em um cenário :
-- Ctrl-S : .
+- Ctrl-S : Para salvaguardar.
 - Clique com o botão direito do mouse em uma guia : Menu contextual para ir diretamente para outro cenário.
 - Ctrl-L : Exibição de log.
 -  : .
@@ -69,23 +69,23 @@ Em um bloco de código :
 - Ctrl-G : Próxima ocorrência de pesquisa.
 
 ### Plugins / Gerenciamento de Plugins
-- Ctrl S em uma configuração de plug-in : .
+- Ctrl S em uma configuração de plug-in : Para salvaguardar.
 - Ctrl Clique ou Clique Central em um plug-in : Abra o gerenciamento de plug-ins em uma nova guia do navegador.
 
 ### Plug-ins / **
-- Em um dispositivo, Ctrl S  : .
+- Em um dispositivo, Ctrl S  : Para salvaguardar.
 - Em um dispositivo, clique com o botão direito do mouse em uma guia : Menu contextual para ir diretamente para outro dispositivo.
 - Ctrl Clique ou Clique Central em um dispositivo: Abra o equipamento do plug-in em uma nova guia do navegador.
 
 ### Início / Ver
-- Ctrl S na edição de uma vista : .
+- Ctrl S na edição de uma vista : Para salvaguardar.
 
 ### Home / Design
-- Ctrl S em um design : .
+- Ctrl S em um design : Para salvaguardar.
 - Ctrl Shift E em um design : Entrando ou saindo do modo de edição.
 
 ### Análise / resumo de automação residencial
-- Ctrl Clique no ícone ** (recherche) : Abra todos os objetos e equipamentos.
+- Ctrl Clique no ícone *Abrir* (recherche) : Abra todos os objetos e equipamentos.
 - Ctrl Clique no ícone ** (recherche) : Fecha todos os objetos e equipamentos.
 
 ### Análise / História

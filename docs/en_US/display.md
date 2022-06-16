@@ -12,7 +12,7 @@ On the top of the page, we find :
 - **Number of equipments** : Same for the equipment.
 - **Number of commands** : Same for commands.
 - **** : Check this box if you want inactive items to be displayed on this page.
-- **** : Search for a particular item. It can be the name of a device, a command or the name of the plugin by which the device was created.
+- **To research** : Search for a particular item. It can be the name of a device, a command or the name of the plugin by which the device was created.
 - **CSV export** : Allows you to export all objects, equipment and their commands to a CSV file.
 
 You also have a tab ****, displaying the history of commands, equipment, objects, views, design, 3d design, scenarios and deleted users.
@@ -40,8 +40,8 @@ On each equipment we find :
 
 -  **check box** to select the equipment (you can select several). If at least one device is selected, you have action buttons that appear in the upper left to ****,  ********,  ******** selected equipment.
 - L'**** equipment.
--  **** equipment : Identifier of the plugin to which it belongs.
--  **** equipment.
+- The **** equipment : Identifier of the plugin to which it belongs.
+- The **** equipment.
 - **** (small cross) : Means that the equipment is inactive (if it is not there, the equipment is active).
 - **** (crossed eye) : Means that the equipment is invisible (if it is not there, the equipment is visible).
 
@@ -62,7 +62,7 @@ The window of **Advanced equipment configuration** allows to modify it. First, a
 - **** : displays the raw properties of the equipment.
 - **** : Allows to display the links of the equipment with the objects, commands, scenarios, variables, interactions… in graphic form (in this one, a double click on an element will take you to its configuration).
 - **** : displays the events of the equipment in question.
-- **** : Save the modifications made on the equipment.
+- **To safeguard** : Save the modifications made on the equipment.
 - **** : Remove equipment.
 
 ### Information tab
@@ -86,7 +86,7 @@ Below you will find a table with the list of equipment commands with, for each, 
 
 ### View tab
 
-In the tab ****, you will be able to configure certain tile display behaviors on the Dashboard or on mobile.
+In the tab **Display**, you will be able to configure certain tile display behaviors on the Dashboard or on mobile.
 
 #### Widget
 
@@ -151,13 +151,13 @@ First, at the top right, some buttons available :
 - **** : Displays the events of the equipment in question.
 - **** : Displays the raw properties of the equipment.
 -  **To apply to** : Allows the same configuration to be applied to several commands.
-- **** : Save the modifications made on the equipment.
+- **To safeguard** : Save the modifications made on the equipment.
 
 > ****
 >
 > In a graphic, a double click on an element brings you to its configuration.
 
-> ****
+> **Note**
 >
 > Depending on the type of command, the information / actions displayed may change.
 
@@ -170,7 +170,7 @@ First, at the top right, some buttons available :
 - **** : Name of the command.
 - **** : Type of command (action or info).
 - **** : Command subtype (binary, digital, etc.)).
-- **Direct url** : Provides the URL to access this equipment. (right click, copy the link address) The URL will launch the command for a **** and return the information for a ****.
+- **Direct url** : Provides the URL to access this equipment. (right click, copy the link address) The URL will launch the command for a **stock** and return the information for a **information**.
 - **** : Control unit.
 - **Command triggering an update** : Gives the identifier of another command which, if this other command changes, will force the update of the displayed command.
 - **** : Check this box to make the command visible.
@@ -184,7 +184,7 @@ You also have three other orange buttons underneath :
 - **This command replaces the command** : Replace command with current command.
 - **Replace this command with the command** : Conversely, replace the command with another command.
 
-> ****
+> **Note**
 >
 > This kind of action replaces commands everywhere in Jeedom (scenario, interaction, command, equipment….).
 
@@ -226,7 +226,7 @@ Below, you will find the list of the different equipment, commands, scenarios or
 
 Allows you to define an alert level (****  ****) depending on certain conditions. For example, if `value&gt; 8` for 30 minutes then the equipment can go on alert ****.
 
-> ****
+> **Note**
 >
 > On the page **→ Settings → System Configuration : **, you can configure a message type command that will allow Jeedom to notify you if the warning or danger threshold is reached.
 

@@ -17,7 +17,7 @@ Archiving is a task that starts at night and compacts the data recovered during 
 >
 > If you have followed well you should have a high precision on the last 2 hours only. However when I connect at 5 p.m., I have a precision on the last 17 hours.  ? In fact, to avoid consuming resources unnecessarily, the task of archiving takes place only once a day, in the evening.
 
-> ****
+> **Important**
 >
 > Of course, this archiving principle only applies to digital orders. On binary type orders, Jeedom only keeps the dates of change of state.
 
@@ -37,7 +37,7 @@ From Core v4.2 it is also possible to display a curve at the bottom of the tile 
 
 If you display a graph via the history page, you have access to several display options, above the graph :
 
-- **Period** : The display period, including historical data between these two dates. By default, depending on the setting *Display period graphics by default*  *Settings → System → Configuration / Equipment*.
+- **Period** : The display period, including historical data between these two dates. By default, depending on the setting *Display period graphics by default* in *Settings → System → Configuration / Equipment*.
 - **** : Offers several grouping options (Sum per hour, etc.).
 - **Display type** : Display in **, **,  **. Option saved on the order and used from the Dashboard.
 - **** : Displays the difference in value from the previous point. Option saved on the order and used from the Dashboard.

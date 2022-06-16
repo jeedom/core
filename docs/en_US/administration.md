@@ -42,7 +42,7 @@ In this tab you will find the display customization parameters.
 - **Not vertical** : Constrains the height of the tiles every x pixels.
 - **** : Vertical and horizontal space between tiles, in pixels.
 - **Vertical centering of tiles** : Vertically centers the content of the tiles.
-- **Colorful widget icons** : Coloring widget icons based on their state. Modifiable by scenario, ** ('Icon coloring').
+- **Colorful widget icons** : Coloring widget icons based on their state. Modifiable by scenario, *setColoredIcon* ('Icon coloring').
 - **Colored categories** : Colorization of the title of the tiles according to the category.
 - ** : a default column** : Full-width display of tiles in mobile
 
@@ -76,7 +76,7 @@ In this tab you will find the display customization parameters.
 
 It is absolutely necessary to correctly configure this important part of Jeedom otherwise a lot of plugins may not work. There are two ways to access Jeedom : L'**Internal access** (from the same local network as Jeedom) and l'**External access** (from another network, especially from the Internet).
 
-> ****
+> **Important**
 >
 > This part is just there to explain to Jeedom its environment :
 > changing the port or IP in this tab will not change Jeedom&#39;s port or IP actually. For that you have to connect in SSH and edit the file / etc / network / interfaces for IP and the files etc / apache2 / sites-available / default and etc / apache2 / sites-available / default\_ssl (for HTTPS).
@@ -118,7 +118,7 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
     - **DNS status** : DNS HTTP status.
     - **** : allows to stop and restart the Jeedom DNS service.
 
-> ****
+> **Important**
 >
 > If you cannot get Jeedom DNS to work, look at the configuration of the firewall and parental filter of your Internet box (on livebox you need for example the firewall at medium level).
 - **Lifetime of sessions (hour)** : lifetime of PHP sessions, it is not recommended to touch this parameter.
@@ -183,7 +183,7 @@ Many command can be logged. Thus, in Analysis → History, you get graphs repres
 - **Upper trend calculation threshold** : Same thing for the rise.
 - **Display period graphics by default** : Period which is used by default when you want to display the history of a command. The shorter the period, the faster Jeedom will display the requested graph.
 
-> ****
+> **Note**
 >
 > The first parameter **Display widget statistics** is possible but disabled by default because it significantly extends the display time of the dashboard. If you activate this option, by default, Jeedom relies on data from the past 24 hours to calculate these statistics.
 > The trend calculation method is based on the least squares calculation (see [](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) for the detail).
@@ -237,9 +237,9 @@ Here you have three parameters :
 
 ### Automatic, contextual & warning interaction
 
--    **automatic interactions** allow Jeedom to try to understand an interaction request even if none is defined. He will then look for an object name and / or equipment and / or command to try to respond as best as possible.
+-   The **automatic interactions** allow Jeedom to try to understand an interaction request even if none is defined. He will then look for an object name and / or equipment and / or command to try to respond as best as possible.
 
--    **contextual interactions** allow you to chain multiple requests without repeating everything, for example :
+-   The **contextual interactions** allow you to chain multiple requests without repeating everything, for example :
     - *Jeedom keeping the context :*
         - ** : How much is he in the room ?
         - ** : Temperature 25.2 ° C
@@ -252,7 +252,7 @@ Here you have three parameters :
     - ** : Notify me if the living room temperature exceeds 25 ° C ?
     - ** :  (*As soon as the living room temperature exceeds 25 ° C, Jeedom will tell you, once*)
 
-> ****
+> **Note**
 >
 > By default Jeedom will answer you by the same channel as the one you used to ask it to notify you. If it does not find one, it will then use the default command specified in this tab : **Default return command**.
 
@@ -344,27 +344,27 @@ Deposit allowing to automatically send a backup of Jeedom on a Samba share (ex :
 - **\ [Backup \] Sharing** : Path to sharing (be careful to stop at the sharing level).
 - **\ [Backup \] Path** : Path in the sharing (to put in relative), this must exist.
 
-> ****
+> **Note**
 >
 > If the path to your samba backup folder is :
 > \\\\ 192.168.0.1 \\ Backups \\ Home automation \\ Jeedom Then IP = 192.168.0.1, Sharing = //192.168.0.1 / Backups, Path = Home automation / Jeedom
 
-> ****
+> **Note**
 >
 > When validating the Samba share, as described above, a new form of backup appears in the Settings → System → Backups section of Jeedom. By activating it, Jeedom will send it automatically during the next backup. A test is possible by performing a manual backup.
 
-> ****
+> **Important**
 >
 > You may need to install the smbclient package for the repository to work.
 
-> ****
+> **Important**
 >
 > The Samba protocol has several versions, the v1 is compromised in terms of security and on some NAS you can force the client to use v2 or v3 to connect. So if you have an error *: * there is a good chance that on the NAS side the restriction is in place. You must then modify the / etc / samba / smb file on your Jeedom OS.conf and add these two lines to it :
 > 
 > 
 > The Jeedom side smbclient will then use v2 where v3 and by putting SMB3 to both only SMB3. So it&#39;s up to you to adapt according to restrictions on the NAS or other Samba server
 
-> ****
+> **Important**
 >
 > Jeedom must be the only one to write in this folder and it must be empty by default (i.e. before the configuration and the sending of the first backup, the folder must not contain any file or folder).
 
@@ -404,7 +404,7 @@ For each plugin API key you can prohibit them from core methods (general) to lim
 
 ## Onglet &gt_OS/DB
 
-> ****
+> **Important**
 >
 > This tab is reserved for experts.
 > If you modify Jeedom with one of these two solutions, the support may refuse to help you.

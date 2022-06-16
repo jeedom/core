@@ -66,7 +66,7 @@ This possibility can be used both with default widgets and with custom widgets.
 
 To do so, it is necessary to take into account 2 prerequisites :
 
--  **2 action / fault commands** must be linked to an order **info / binary** which will store the current state of the device.
+- The **2 action / fault commands** must be linked to an order **info / binary** which will store the current state of the device.
 
 >****      
 >![ToggleLink Widget](./images/widgets5.png)
@@ -146,7 +146,7 @@ Once on the configuration page of a widget, a context menu is accessible by `` R
 Once on the page **Tools → Widgets** you have to click on the button "****" and give a name to your new widget.
 
  :
-- You choose whether it applies to an order of type ****  ****.
+- You choose whether it applies to an order of type **Stock**  **Information**.
 - Depending on the previous choice, you will have to **choose the subtype** of the order.
 -  **the template** among those which will be available according to the previous choices.
 - Once the template has been chosen, Jeedom displays the configuration options for it below.
@@ -161,8 +161,8 @@ Depending on the type of widget, you can generally customize the icons, put the 
 
 There are two types of template :
 
--  "****" : as an icon / image for the "****" and an icon / image for the "****".
--  "****" : This allows you to define, for example, an image if the command has the value "**XX**" and another so greater than "****" or if less than "****". Also works for text values, an image if the value is "****", another if "****" And so on...
+- The "****" : as an icon / image for the "****" and an icon / image for the "****".
+- The "****" : This allows you to define, for example, an image if the command has the value "**XX**" and another so greater than "****" or if less than "****". Also works for text values, an image if the value is "****", another if "****" And so on...
 
 #### Remplacement
 
@@ -188,13 +188,13 @@ The tests are in the form : ``#value# == #value#`will be automatically replaced 
 - ``#value# >=  #value# <= 5``
 - ``#value# == 'toto'``
 
->****     
+>**Note**     
 >It is essential to show the apostrophes (**'**) around the text to compare if the value is text *(info / other)*.
 
->****     
+>**Note**     
 >For advanced users, it is also possible to use javascript functions such as `#value#.match ("^ plop") `, here we test if the text starts with` plop`.
 
->****     
+>**Note**     
 >It is possible to display the value of the command in the widget by specifying `#value#`in the HTML code of the test. To display the unit add `#unite#``.
 
 ## Code Widget

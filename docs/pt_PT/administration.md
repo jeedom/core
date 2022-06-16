@@ -76,7 +76,7 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 
 É absolutamente necessário configurar corretamente esta parte importante do Jeedom, caso contrário, muitos plugins podem não funcionar. Existem duas maneiras de acessar o Jeedom : L'**Acesso interno** (da mesma rede local que Jeedom) e l'**Acesso externo** (de outra rede, especialmente da Internet).
 
-> ****
+> **Importante**
 >
 > Esta parte existe apenas para explicar à Jeedom seu ambiente :
 > alterar a porta ou o IP nesta guia não alterará a porta ou o IP da Jeedom, na verdade. Para isso, é necessário conectar-se no SSH e editar o arquivo / etc / network / interfaces para IP e os arquivos etc / apache2 / sites-available / default e etc / apache2 / sites-available / default\_ssl (para HTTPS).
@@ -103,11 +103,11 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
     - **** : Digite o login do proxy,
     - **Senha** : Digite a senha.
 
-> ****
+> **Dica**
 >
 > Se você estiver em HTTPS, a porta é 443 (padrão) e em HTTP, a porta é 80 (padrão)). Para usar HTTPS de fora, um plug-in letsencrypt agora está disponível no mercado.
 
-> ****
+> **Dica**
 >
 > Para descobrir se você precisa definir um valor no campo **Complemento**, veja, quando você faz login no Jeedom no seu navegador da Internet, se precisar adicionar / Jeedom (ou qualquer outra coisa) após o IP.
 
@@ -116,9 +116,9 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 - **Mercado de proxy** : permite acesso remoto ao seu Jeedom sem a necessidade de um DNS, um IP fixo ou abrir as portas da sua caixa da Internet.
     - **Usando o DNS Jeedom** : ativa o DNS Jeedom (observe que isso requer pelo menos um service pack).
     - **Status de DNS** : Status HTTP DNS.
-    - **** : permite parar e reiniciar o serviço DNS Jeedom.
+    - **Gestão** : permite parar e reiniciar o serviço DNS Jeedom.
 
-> ****
+> **Importante**
 >
 > Se você não conseguir que o DNS Jeedom funcione, verifique a configuração do firewall e do filtro dos pais da sua caixa da Internet (na caixa viva você precisa, por exemplo, do firewall em nível médio).
 - **Duração das sessões (hora)** : vida útil das sessões PHP, não é recomendável tocar nesse parâmetro.
@@ -139,8 +139,8 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 
 ### Alertes
 
-- **Adicione uma mensagem a cada tempo limite** : Adicione uma mensagem no centro de mensagens se um dispositivo cair ****.
-- **Ordem de tempo limite** : Comando de tipo **** para ser usado se um equipamento estiver em ****.
+- **Adicione uma mensagem a cada tempo limite** : Adicione uma mensagem no centro de mensagens se um dispositivo cair **tempo esgotado**.
+- **Ordem de tempo limite** : Comando de tipo **** para ser usado se um equipamento estiver em **tempo esgotado**.
 - **Adicione uma mensagem a cada bateria em Aviso** : Adicione uma mensagem no centro de mensagens se um dispositivo estiver com o nível de bateria ****.
 - **Comando da bateria em Aviso** : Comando de tipo **** a ser usado se o equipamento estiver com a bateria ****.
 - **Adicione uma mensagem a cada bateria em perigo** : Adicione uma mensagem no centro de mensagens se um dispositivo estiver com o nível de bateria ****.
@@ -183,7 +183,7 @@ Muitos pedidos podem ser registrados. Assim, em Análise → Histórico, você o
 - **Cálculo do limiar acima da tendência** : A mesma coisa para a ascensão.
 - **Gráficos padrão de exibição Período** : Período usado por padrão quando você deseja exibir o histórico de um pedido. Quanto menor o período, mais rápido o Jeedom exibirá o gráfico solicitado.
 
-> ****
+> **Observação**
 >
 > O primeiro parâmetro **Mostrar estatísticas sobre os widgets** é possível, mas desativado por padrão, pois aumenta significativamente o tempo de exibição do painel. Se você ativar esta opção, por padrão, o Jeedom confiará nos dados das últimas 24 horas para calcular essas estatísticas.
 > O método de cálculo de tendência é baseado no cálculo de mínimos quadrados (consulte [](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) para o detalhe).
@@ -219,9 +219,9 @@ Configurar gráficos de link. Esses links permitem ver, na forma de gráfico, as
 
 Essa guia permite definir parâmetros globais relativos às interações que você encontrará em Ferramentas → Interações.
 
-> ****
+> **Dica**
 >
-> Para ativar o log de interação, vá para a guia Configurações → Sistema → Configuração : Logs e verifique **** na lista inferior.  : os logs serão muito detalhados !
+> Para ativar o log de interação, vá para a guia Configurações → Sistema → Configuração : Logs e verifique **** na lista inferior. Atenção : os logs serão muito detalhados !
 
 ### Geral
 
@@ -237,9 +237,9 @@ Aqui você tem três parâmetros :
 
 ### Interação automática, contextual e aviso
 
--    **interações automáticas** permitir que o Jeedom tente entender uma solicitação de interação, mesmo que nenhuma esteja definida. Ele procurará um nome de objeto e / ou equipamento e / ou ordem para tentar responder da melhor forma possível.
+-   O **interações automáticas** permitir que o Jeedom tente entender uma solicitação de interação, mesmo que nenhuma esteja definida. Ele procurará um nome de objeto e / ou equipamento e / ou ordem para tentar responder da melhor forma possível.
 
--    **interações contextuais** permitem encadear várias solicitações sem repetir tudo, por exemplo :
+-   O **interações contextuais** permitem encadear várias solicitações sem repetir tudo, por exemplo :
     - *Jeedom mantendo o contexto :*
         - ** : Quanto ele está na sala ?
         - ** : Temperatura 25.2 ° C
@@ -252,7 +252,7 @@ Aqui você tem três parâmetros :
     - ** : Notifique-me se a temperatura da sala exceder 25 ° C ?
     - ** :  (*Assim que a temperatura da sala exceder 25 ° C, Jeedom dirá, uma vez*)
 
-> ****
+> **Observação**
 >
 > Por padrão, o Jeedom responderá pelo mesmo canal que você usou para pedir para notificá-lo. Se não encontrar um, ele usará o comando padrão especificado nesta guia : **Ordem de devolução padrão**.
 
@@ -325,7 +325,7 @@ Depósito usado para conectar o Jeedom ao Github.
 
 #### Market
 
-Depósito usado para conectar o Jeedom ao mercado, é altamente recomendável usar esse depósito.  : qualquer solicitação de suporte poderá ser recusada se você usar um depósito diferente deste.
+Depósito usado para conectar o Jeedom ao mercado, é altamente recomendável usar esse depósito. Atenção : qualquer solicitação de suporte poderá ser recusada se você usar um depósito diferente deste.
 
 - **** :  du .(https://www.Jeedom.com/market).
 - **Nome de Usuário** : Seu nome de usuário no mercado.
@@ -344,27 +344,27 @@ Depósito que permite enviar automaticamente um backup do Jeedom em um compartil
 - **\ [Backup \] Compartilhamento** : Caminho para o compartilhamento (tenha cuidado para parar no nível de compartilhamento).
 - **Caminho \ [Backup \]** : Caminho no compartilhamento (para colocar em relativo), isso deve existir.
 
-> ****
+> **Observação**
 >
 > Se o caminho para a pasta de backup do samba for :
 > \\\\ 192.168.0.1 \\ Backups \\ Domótica \\ Jeedom Then IP = 192.168.0.1, Compartilhando = //192.168.0.1 / Backups, Caminho = Domótica / Jeedom
 
-> ****
+> **Observação**
 >
 > Ao validar o compartilhamento Samba, como descrito acima, uma nova forma de backup aparece na seção Configurações → Sistema → Backups do Jeedom. Ao ativá-lo, o Jeedom o enviará automaticamente durante o próximo backup. Um teste é possível executando um backup manual.
 
-> ****
+> **Importante**
 >
 > Pode ser necessário instalar o pacote smbclient para o repositório funcionar.
 
-> ****
+> **Importante**
 >
 > O protocolo Samba possui várias versões, a v1 está comprometida em termos de segurança e, em alguns NAS, você pode forçar o cliente a usar a v2 ou v3 para conectar-se. Então, se você tiver um erro *falha na negociação do protocolo: * existe uma boa chance de que, no lado do NAS, a restrição esteja em vigor. Você deve modificar o arquivo / etc / samba / smb no seu Jeedom OS.conf e adicione essas duas linhas a ele :
 > protocolo máximo do cliente = SMB3
 > protocolo min de cliente = SMB2
 > O smbclient do lado do Jeedom usará v2 em que v3 e colocando SMB3 em ambos apenas SMB3. Cabe a você adaptar de acordo com as restrições no servidor NAS ou outro servidor Samba
 
-> ****
+> **Importante**
 >
 > O Jeedom deve ser o único a escrever nesta pasta e deve estar vazio por padrão (ou seja, antes da configuração e do envio do primeiro backup, a pasta não deve conter nenhum arquivo ou pasta).
 
@@ -404,7 +404,7 @@ Para cada chave de API de plugin você pode proibi-los de métodos centrais (ger
 
 ## Onglet &gt_OS/DB
 
-> ****
+> **Importante**
 >
 > Essa guia está reservada para especialistas.
 > Se você modificar o Jeedom com uma dessas duas soluções, o suporte poderá se recusar a ajudá-lo.

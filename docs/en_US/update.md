@@ -2,7 +2,7 @@
 **Settings → System → Update Center**
 
 
- **Update Center** allows you to update all of Jeedom&#39;s functionality, including the core software and its plugins.
+The **Update Center** allows you to update all of Jeedom&#39;s functionality, including the core software and its plugins.
 Other extension management functions are available (delete, reinstall, check, etc.).
 
 
@@ -16,7 +16,7 @@ At the opening of the page, if this verification is more than two hours old, Jee
 You can also use the button **Check for updates** To do it manually.
 If you want to perform a manual check, you can press the button "Check for updates".
 
-The button **** is to be used when you change the options in the table below, to specify not to update certain plugins if necessary.
+The button **To safeguard** is to be used when you change the options in the table below, to specify not to update certain plugins if necessary.
 
 ## Update the Core
 
@@ -30,7 +30,7 @@ Once you click on it, you get these different options :
 - **Forced mode** : Perform the update in forced mode, that is to say that, even if there is an error, Jeedom will continue and will not restore the backup. (This mode disables saving !).
 - **Update to reapply** : Allows you to re-apply an update. ( : Not all updates can be re-applied.)
 
-> ****
+> **Important**
 >
 > Before an update, by default, Jeedom will make a backup. In the event of a problem when applying an update, Jeedom will automatically restore the backup made just before. This principle is only valid for Jeedom updates and not for plugin updates.
 
@@ -57,7 +57,7 @@ On each line, you can use the following functions:
 - **Update** : Allows you to update the element (if it has an update).
 - **** : Allows access to the list of changes in the update.
 
-> ****
+> **Important**
 >
 > If the changelog is empty but you still have an update, it means that the documentation has been updated. It is therefore not necessary to ask the developer for changes, since there are not necessarily any. (it is often an update of the translation, documentation).
 > The plugin developer can also in some cases make simple bugfixes, which do not necessarily require updating the changelog.
@@ -78,7 +78,7 @@ This tab allows you to see the updates available for the os (apt), python packag
 
 During or after an update, this tab allows you to read the log of this update in real time.
 
-> ****
+> **Note**
 >
 > This log normally ends with *]*. There may be some error lines in this type of log, however, unless there is a real problem after update, it is not always necessary to contact support for this.
 

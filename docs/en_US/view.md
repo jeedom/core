@@ -93,7 +93,7 @@ Here you have the buttons :
 - **Add column** : Add a column to the table.
 - **Add line** : Add a row to the table.
 
-> ****
+> **Note**
 >
 > It is possible to reorganize the rows by dragging and dropping but not the columns.
 

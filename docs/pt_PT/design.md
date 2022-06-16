@@ -4,11 +4,11 @@
 Esta página permite configurar a exibição de toda a sua automação residencial de uma maneira muito fina.
 Leva tempo, mas seu único limite é a sua imaginação.
 
-> ****
+> **Dica**
 >
 > É possível ir diretamente a um design graças ao submenu.
 
-> ****
+> **Importante**
 >
 > Todas as ações são executadas clicando com o botão direito do mouse nesta página, tenha cuidado em fazê-lo bem no design. Ao criar, você deve fazê-lo no meio da página (para ter certeza de estar no design).
 
@@ -40,9 +40,9 @@ No menu (clique direito), encontramos as seguintes ações :
 - **Criar um design** : Permite adicionar um novo design.
 - **Projeto duplicado** : Duplica o design atual.
 - **Cenografia** : Acesso à configuração do design.
-- **** : Salve o design (observe, também há backups automáticos durante determinadas ações).
+- **Para salvaguardar** : Salve o design (observe, também há backups automáticos durante determinadas ações).
 
-> ****
+> **Importante**
 >
 > A configuração dos elementos de design é feita com um clique neles.
 
@@ -51,7 +51,7 @@ No menu (clique direito), encontramos as seguintes ações :
 Encontrado aqui :
 
 - **Geral**
-    - **** : O nome do seu design.
+    - **Sobrenome** : O nome do seu design.
     - **** : A posição do design no menu. Permite que você encomende os desenhos.
     - **Fundo transparente** : Torna o plano de fundo transparente. Atenção, se a caixa estiver marcada, a cor do plano de fundo não será usada.
     - **Cor de fundo** : Cor do plano de fundo do design.
@@ -65,7 +65,7 @@ Encontrado aqui :
 
 ## Configuração geral de elementos
 
-> ****
+> **Observação**
 >
 > Dependendo do tipo de item, as opções podem mudar.
 
@@ -119,7 +119,7 @@ Permite escolher os comandos para grapher.
 - **** : texto em negrito.
 - **** : Texto em código HTML que estará no elemento.
 
-> ****
+> **Importante**
 >
 > Se você colocar o código HTML (especialmente o Javascript), verifique-o antes, pois pode ocorrer se houver algum erro ou substituir um componente Jeedom que trava completamente o design e ele só precisará excluí-lo diretamente no banco de dados.
 
@@ -131,7 +131,7 @@ Permite escolher os comandos para grapher.
 
 ### Configurações de exibição específicas
 
-- **** : Nome do link (texto exibido).
+- **Sobrenome** : Nome do link (texto exibido).
 - **** : Link para o design ou exibição em questão.
 - **Cor de fundo** : Permite alterar a cor do plano de fundo ou torná-la transparente; não se esqueça de alterar "Padrão" para NÃO.
 - **Cor do texto** : Permite alterar a cor dos ícones e textos (tenha cuidado para definir Padrão como Não).
@@ -150,8 +150,8 @@ Permite escolher os comandos para grapher.
 - **Cor de fundo** : Permite escolher uma cor de fundo personalizada, exibir o equipamento com um fundo transparente ou usar a cor padrão.
 - **Cor do texto** : Permite escolher uma cor de plano de fundo personalizada ou usar a cor padrão.
 - **** : Valor em pixels do arredondamento dos ângulos do bloco do equipamento.
-- **** : Definição CSS de uma borda de bloco de equipamento.  : 1px preto sólido.
-- **** : Opacidade do ladrilho do equipamento, entre 0 e 1.  : uma cor de fundo deve ser definida.
+- **** : Definição CSS de uma borda de bloco de equipamento. Ex : 1px preto sólido.
+- **** : Opacidade do ladrilho do equipamento, entre 0 e 1. Atenção : uma cor de fundo deve ser definida.
 - **CSS personalizado** : Regras CSS a serem aplicadas no equipamento.
 - **Aplicar css personalizado em** : Seletor de CSS no qual aplicar CSS personalizado.
 
@@ -194,7 +194,7 @@ Nesse modo, um clique na zona executa uma ou mais ações. Aqui você só precis
 
 ### Macro binário
 
-Nesse modo, o Jeedom executará as ações Ativar ou Desativar, dependendo do status do comando que você indicar.  : se o comando vale 0, o Jeedom executará as ações On, caso contrário, executará as ações Off
+Nesse modo, o Jeedom executará as ações Ativar ou Desativar, dependendo do status do comando que você indicar. Ex : se o comando vale 0, o Jeedom executará as ações On, caso contrário, executará as ações Off
 
 - **Informação binária** : Comando que fornece o status para verificar para decidir qual ação executar (Ativado ou Desativado).
 

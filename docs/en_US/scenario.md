@@ -11,11 +11,11 @@ You will find there the list of scenarios of your Jeedom, as well as functionali
 
 - **** : Create a scenario. The procedure is described in the next chapter.
 - **Disable scenarios** : Disables all scenarios. Rarely used and knowingly, since no scenario will run anymore.
-- **Overview** : Allows you to have an overview of all scenarios. You can change the values ****, ****, **multi launch**, **synchronous mode**, ****  **** (these parameters are described in the following chapter). You can also access the logs for each scenario and start them individually.
+- **Overview** : Allows you to have an overview of all scenarios. You can change the values ****, ****, **multi launch**, **synchronous mode**, ****  **Timeline** (these parameters are described in the following chapter). You can also access the logs for each scenario and start them individually.
 
 ## My scenarios
 
-You will find in this part **list of scenarios** that you created. They are classified according to their ****, possibly defined for each of them. Each scenario is displayed with its **** and his **parent object**.  **grayed out scenarios** are the ones that are disabled.
+You will find in this part **list of scenarios** that you created. They are classified according to their ****, possibly defined for each of them. Each scenario is displayed with its **** and his **parent object**. The **grayed out scenarios** are the ones that are disabled.
 
 > ****
 >
@@ -46,10 +46,10 @@ Before that, at the top of the page, there are some useful functions to manage t
 - **Text editing** : Displays a window allowing to edit the scenario in the form of text / json. Don&#39;t forget to save.
 - **** : Allows you to obtain a pure text version of the scenario.
 - **** : Allows you to access the templates and apply one to the scenario from the Market (explained at the bottom of the page).
-- **** : Unfolds a search field to search in the scenario. This search unfolds the collapsed blocks if necessary and folds them back after the search.
+- **Research** : Unfolds a search field to search in the scenario. This search unfolds the collapsed blocks if necessary and folds them back after the search.
 - **Perform** : Allows you to launch the scenario manually (regardless of the triggers). Save beforehand to take into account the modifications.
 - **** : Delete scenario.
-- **** : Save the changes made.
+- **To safeguard** : Save the changes made.
 
 > ****
 >
@@ -76,7 +76,7 @@ In the tab **General**, we find the main parameters of the scenario :
 >The multi launch works per second, that is to say that if you have 2 launches in the same second without the box checked, there will still be 2 launches of the scenario (although it should not). Likewise, during several launches in the same second, some launches may lose the tags. Conclusion it is ABSOLUTELY necessary to avoid multiple launches in the same second.
 - **Synchronous mode** : Start the scenario in the current thread instead of a dedicated thread. Increases the speed at which the scenario is launched, but can make the system unstable.
 - **** : The type of log desired for the scenario. You can cut the scenario logs or on the contrary show it in Analysis → Real time.
-- **** : Keep a follow-up of the scenario in the timeline (see History doc).
+- **Timeline** : Keep a follow-up of the scenario in the timeline (see History doc).
 - **Icon** : Allows you to choose an icon for the scenario instead of the standard icon.
 - **** : Allows you to write a small text to describe your scenario.
 - **Scenario mode** : The scenario can be programmed, triggered or both. You will then have the choice to indicate the trigger (s) (15 triggers maximum) and the programming (s)).
@@ -88,11 +88,11 @@ In the tab **General**, we find the main parameters of the scenario :
 
 > **Tip mode programmed**
 >
-> Scheduled mode uses syntax ****. For example, you can run a scenario every 20 minutes with  ``*20 * * * *``, or at 5 a.m. to settle a multitude of things for the day with ``0 5 * * *``.  ? to the right of a program allows you to set it without being a specialist in Cron syntax.
+> Scheduled mode uses syntax ****. For example, you can run a scenario every 20 minutes with  ``*20 * * * *``, or at 5 a.m. to settle a multitude of things for the day with ``0 5 * * *``. The ? to the right of a program allows you to set it without being a specialist in Cron syntax.
 
 ## Scenario tab
 
-This is where you will build your scenario. After creating the scenario, its content is empty, so it will do ... nothing. You have to start with **Add block**, with the button on the right. Once a block has been created, you can add another **** or a ****.
+This is where you will build your scenario. After creating the scenario, its content is empty, so it will do ... nothing. You have to start with **Add block**, with the button on the right. Once a block has been created, you can add another **** or a **stock**.
 
 For more convenience and not having to constantly reorder the blocks in the scenario, adding a block is done after the field in which the mouse cursor is located.
 *For example, if you have ten blocks, and you click in the IF condition of the first block, the added block will be added after this block, at the same level. If no field is active, it will be added at the end of the scenario.*
@@ -110,7 +110,7 @@ For more convenience and not having to constantly reorder the blocks in the scen
 Here are the different types of blocks available :
 
 - **If / Then / Or** : Allows actions to be carried out under conditions (if this, then that).
-- **** : Allows you to launch simple actions without any conditions.
+- **Stock** : Allows you to launch simple actions without any conditions.
 - **** : Allows actions to be performed repeatedly from 1 to a defined number (or even the value of a sensor, or a random number…).
 - **** : Allows to launch an action in X minute (s) (0 is a possible value). The peculiarity is that the actions are launched in the background, so they do not block the rest of the scenario. So it&#39;s a non-blocking block.
 - **** : Allows to tell Jeedom to launch the actions of the block at a given time (in the form hhmm). This block is non-blocking.  : 0030 for 00:30, or 0146 for 1h46 and 1050 for 10h50.
@@ -140,7 +140,7 @@ Three buttons are available on the right of this type of block to select an item
 - **Search a scenario** : Allows you to search for a scenario to test.
 - **Search for equipment** : Same for equipment.
 
-> ****
+> **Note**
 >
 > On blocks of type If / Then / Otherwise, circular arrows to the left of the condition field allow to activate or not the repetition of actions if the evaluation of the condition gives the same result as during the previous evaluation.
 > IF expression != 0 is equivalent to IF expression and IF expression == 0 is equivalent to IF not expression
@@ -149,7 +149,7 @@ Three buttons are available on the right of this type of block to select an item
 >
 > There is a list of tags allowing access to variables from the scenario or another, or by the time, the date, a random number,… See below the chapters on commands and tags.
 
-Once the condition is completed, you must use the &quot;add&quot; button on the left to add a new **** or a **** in the current block.
+Once the condition is completed, you must use the &quot;add&quot; button on the left to add a new **** or a **stock** in the current block.
 
 
 ### Block Code
@@ -195,7 +195,7 @@ The Code block allows you to execute php code. It is therefore very powerful but
 
 > ****
 >
-> Addition of a search function in the Code block :  : Ctrl + F then Enter, Next result : Ctrl + G, Previous result : Ctrl+Shift+G
+> Addition of a search function in the Code block : To research : Ctrl + F then Enter, Next result : Ctrl + G, Previous result : Ctrl+Shift+G
 
 [Scenarios : Little codes with friends](https:kiboost.github.iojeedom_docsjeedomV4TipsCodesScenario)
 
@@ -293,7 +293,7 @@ You also have the following additional tags if your scenario was triggered by an
 - #query# : Interaction that triggered the scenario.
 - #profil# : Profile of the user who started the scenario (can be empty).
 
-> ****
+> **Important**
 >
 > When a scenario is triggered by an interaction, it is necessarily executed in fast mode. So in the interaction thread and not in a separate thread.
 
@@ -482,20 +482,20 @@ In addition to home automation commands, you have access to the following action
 - **Stop Jeedom** () : Ask Jeedom to shut down.
 - **Return a text / data** () : Returns a text or a value for an interaction for example.
 - **Icon** (icon) : Allows to change the icon of representation of the scenario.
-- **** (alert) : Displays a small alert message on all browsers that have a Jeedom page open. You can, in addition, choose 4 alert levels.
-- **** (popup) : Allows to display a pop-up which must absolutely be validated on all browsers which have a jeedom page open.
-- **** (report) : Allows you to export a view in format (PDF, PNG, JPEG or SVG) and send it using a message-type command. Please note, if your Internet access is in unsigned HTTPS, this functionality will not work. Signed HTTP or HTTPS is required.
-- **Delete programmed IN / A block** () : Allows you to delete the programming of all IN and A blocks of the scenario.
+- **Alert** (alert) : Displays a small alert message on all browsers that have a Jeedom page open. You can, in addition, choose 4 alert levels.
+- **Pop up** (popup) : Allows to display a pop-up which must absolutely be validated on all browsers which have a jeedom page open.
+- **Report** (report) : Allows you to export a view in format (PDF, PNG, JPEG or SVG) and send it using a message-type command. Please note, if your Internet access is in unsigned HTTPS, this functionality will not work. Signed HTTP or HTTPS is required.
+- **Delete programmed IN / A block** (remove_inat) : Allows you to delete the programming of all IN and A blocks of the scenario.
 - **Event** (event) : Allows you to push a value in an information type command arbitrarily.
-- **** (tag) : Allows you to add / modify a tag (the tag only exists during the current execution of the scenario unlike the variables that survive the end of the scenario).
+- **Tags** (tag) : Allows you to add / modify a tag (the tag only exists during the current execution of the scenario unlike the variables that survive the end of the scenario).
 - **Coloring of dashboard icons** (setColoredIcon) : allows to activate or not the coloring of icons on the dashboard.
 - **Historical export** (exportHistory) : allows to export the history in csv of an order in the form of a file (sending by mail for example). You can put several commands (separated by &&). The selection of the period is made in the form :
   - "-1 month "=> -1 month
   - "-1 day midnight "=> -1 day at midnight
   - "now "=> now
   - "monday this week midnight "=> Monday of this week at midnight
-  - ":59 "=> previous Sunday at 11:59 p.m
-  - ":59 "=> last day of the previous month at 11:59 p.m
+  - "last sunday 23:59 "=> previous Sunday at 11:59 p.m
+  - "last day of previous month 23:59 "=> last day of the previous month at 11:59 p.m
   - "first day of january this year midnight "=> first day of january at midnight
   - ...
 
@@ -503,7 +503,7 @@ In addition to home automation commands, you have access to the following action
 
 This functionality allows you to transform a scenario into a template to, for example, apply it to another Jeedom.
 
-By clicking on the button **** at the top of the page, you open the template management window.
+By clicking on the button **template** at the top of the page, you open the template management window.
 
 From there, you have the possibility :
 
@@ -514,7 +514,7 @@ From there, you have the possibility :
 
 By clicking on a template, you can :
 
-- **** : Share the template on the Market.
+- **To share** : Share the template on the Market.
 - **** : Delete template.
 - **Download** : Get the template as a JSON file to send it to another Jeedom for example.
 
@@ -534,8 +534,8 @@ Go to the Jeedom configuration, then OS / DB and launch the file editor.
 
 Go to the data folder then php and click on the user.function.class.php file.
 
-It is in this ** that you can add your functions, there you will find an example of a basic function.
+It is in this *class* that you can add your functions, there you will find an example of a basic function.
 
 > ****
 >
-> If you have a concern, you can always revert to the original file by copying the contents of ``user.function.class.sample.php``  ``user.function.class.php``
+> If you have a concern, you can always revert to the original file by copying the contents of ``user.function.class.sample.php`` in ``user.function.class.php``

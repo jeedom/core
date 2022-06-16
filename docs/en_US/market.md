@@ -82,7 +82,7 @@ On this tab you can consult your SMS / Calls balance (usable with the Phone mark
 
 Here you find all your purchases and you can request the return of the invoice or receipt email.
 
-> ****
+> **Important**
 >
 > If you buy an official plugin you will receive an invoice. However for a third party plugin it is a receipt, for the invoice you have to ask the developer.
 

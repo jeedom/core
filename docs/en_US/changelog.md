@@ -13,8 +13,8 @@
 - **Tools / Objects** : Added a contextual menu on an object to manage visibility, change parent object, and move.
 - **Tools / Replace** : New tool for replacing equipment and commands.
 - **Analysis / Timeline** : Added a search field to filter the display.
-- **** : Ability to report on Jeedom health.
-- **** : Ability to report on alerted equipment.
+- **Report** : Ability to report on Jeedom health.
+- **Report** : Ability to report on alerted equipment.
 - **Update** : Ability to see from Jeedom the OS / PIP2 / PIP3 / NodeJS packages that can be updated and launch the update (beware risky function and in beta).
 - **Alert command** : Added an option to receive a message in case of end of alert.
 
@@ -101,8 +101,8 @@
 
 ### 4.2 : News / Improvements
 
-- **Synthesis** : Possibility of configuring objects to go to a ** or a ** since the synthesis.
-- **** : The device configuration window (edit mode) now allows you to configure mobile widgets and generic types.
+- **Synthesis** : Possibility of configuring objects to go to a *design* or a *seen* since the synthesis.
+- **Dashboard** : The device configuration window (edit mode) now allows you to configure mobile widgets and generic types.
 - **** : Internationalization of third-party Widgets (user code). see [](https://doc.jeedom.com/en_US/dev/core4.2).
 - **Analysis / History** : Possibility to compare a history over a given period.
 - **Analysis / History** : Display of multiple axes in Y. Option for each axis to have its own scale, grouped by unit or not.
@@ -115,12 +115,12 @@
 - **Summaries** : Possibility to never display the number to the right of the icon, or only if it is positive.
 - **Summaries** : The change of summary parameter in configuration and on objects is now visible, without waiting for a change in summary value.
 - **Summaries** : It is now possible to configure [actions on summaries](/en_US/concept/summary#Actions  résumés) (ctrl + click on a summary) thanks to the virtual ones.
-- **** : Preview PDF files.
+- **Report** : Preview PDF files.
 - **Types of equipment** : [New page](/en_US/core/4.2/types) **Tools → Equipment types** allowing generic types to be assigned to devices and commands, with support for types dedicated to installed plugins (see [](https://doc.jeedom.com/en_US/dev/core4.2)).
 - **Selection of illustrations** : New global window for the choice of illustrations *(icons, images, backgrounds)*.
 - **Table display** : Addition of a button to the right of the search on the pages ** *Scenarios* ** **  ** to switch to table mode. This is stored by a cookie or in **Settings → System → Configuration / Interface, Options**. The plugins can use this new function of the Core. see [](https://doc.jeedom.com/en_US/dev/core4.2).
 - **Equipment configuration** : Possibility of configuring a history curve at the bottom of the tile of a device.
-- **** : Possibility of making a calculation on a command action of type slider before execution of the command.
+- **Ordered** : Possibility of making a calculation on a command action of type slider before execution of the command.
 - **Plugins / Management** : Display of the plugin category, and a link to directly open its page without going through the Plugins menu.
 - **Scenario** : Code fallback function (*folding code*) in the *Code Blocks*. Ctrl + Y and Ctrl + I shortcuts.
 - **Scenario** : Copy / paste and undo / redo bugfix (complete rewrite).
@@ -246,15 +246,15 @@ The plugins must respect the recommendations on the tree structure of folders an
 ### 4.1 : News / Improvements
 
 - **Synthesis** : New page **Home → Synthesis** offering a global visual summary of the parts, with quick access to summaries.
-- **** : Add of a search engine in **Tools → Search**.
-- **** : Edit mode now inserting the moved tile.
-- **** : Edit mode: the equipment refresh icons are replaced by an icon allowing access to their configuration, thanks to a new simplified modal.
-- **** : We can now click on the ** time actions widgets to open the history window of the linked info command.
-- **** : The size of a new equipment&#39;s tile adapts to its content.
-- **** : Add (back!) A button to filter the displayed items by category.
-- **** : Ctrl Click on an info opens the history window with all the historicized commands of the equipment visible on the tile. Ctrl Click on a legend to display only this one, Alt Click to display them all.
-- **** : Redesign of the display of the object tree (arrow to the left of the search).
-- **** : Ability to blur background images (Configuration -> Interface).
+- **Research** : Add of a search engine in **Tools → Search**.
+- **Dashboard** : Edit mode now inserting the moved tile.
+- **Dashboard** : Edit mode: the equipment refresh icons are replaced by an icon allowing access to their configuration, thanks to a new simplified modal.
+- **Dashboard** : We can now click on the ** time actions widgets to open the history window of the linked info command.
+- **Dashboard** : The size of a new equipment&#39;s tile adapts to its content.
+- **Dashboard** : Add (back!) A button to filter the displayed items by category.
+- **Dashboard** : Ctrl Click on an info opens the history window with all the historicized commands of the equipment visible on the tile. Ctrl Click on a legend to display only this one, Alt Click to display them all.
+- **Dashboard** : Redesign of the display of the object tree (arrow to the left of the search).
+- **Dashboard** : Ability to blur background images (Configuration -> Interface).
 - **Tools / Widgets** : Function *Apply on* shows the linked commands checked, unchecking one will apply the default core widget to this command.
 - **** : Adding a core widget **.
 - **** : Adding a core widget **.
@@ -283,10 +283,10 @@ The plugins must respect the recommendations on the tree structure of folders an
 - **** : Edit mode now inserting the moved tile.
 - **** : Edit mode: the equipment refresh icons are replaced by an icon allowing access to their configuration, thanks to a new simplified modal.
 - **** : The display order is now independent of that on the Dashboard.
-- **** : Separation of History and Timeline pages.
-- **** : Integration of the Timeline in DB for reliability reasons.
-- **** : Management of multiple timelines.
-- **** : Complete graphic redesign of the timeline (Desktop / Mobile).
+- **Timeline** : Separation of History and Timeline pages.
+- **Timeline** : Integration of the Timeline in DB for reliability reasons.
+- **Timeline** : Management of multiple timelines.
+- **Timeline** : Complete graphic redesign of the timeline (Desktop / Mobile).
 - **Global Summary** : Summary view, support for summaries from a different object or with an empty root object (Desktop and WebApp).
 - **Tools / Objects** : New tab *Summary by equipment*.
 - **Domotic overview** : Plugin equipments deactivated and their controls no longer have the icons on the right (equipment configuration and advanced configuration).
@@ -294,8 +294,8 @@ The plugins must respect the recommendations on the tree structure of folders an
 - **Domotic overview** : Possibility to move several pieces of equipment from one object to another.
 - **Domotic overview** : Possibility to select all the equipment of an object.
 - **Task engine** : On the tab *Daemon*, disabled plugins no longer appear.
-- **** : The use of ** if available.
-- **** : Possibility to export timelines.
+- **Report** : The use of ** if available.
+- **Report** : Possibility to export timelines.
 - **** :  ** is now in the tab *General*.
 - **** :  ** is now in the tab **.
 - **Advanced equipment configuration window** : Dynamic change of table configuration.
@@ -308,7 +308,7 @@ The plugins must respect the recommendations on the tree structure of folders an
 	- Ctrl Clic / Clic Center also available in their context menus (on the tabs).
 - New ModalDisplay page :
 	- Analysis menu : Ctrl Click / Click Center on *Real time* : Open the window in a new tab, in full screen.
-	- Tools menu : Ctrl Click / Click Center on **, *Expression tester*, **, ** : Open the window in a new tab, in full screen.
+	- Tools menu : Ctrl Click / Click Center on **, *Expression tester*, **, *Research* : Open the window in a new tab, in full screen.
 - Code Block, File Editor, Advanced Customization : Dark theme adaptation.
 - Improved image selection window.
 
@@ -438,12 +438,12 @@ The plugins must respect the recommendations on the tree structure of folders an
 - The search fields (Dashboard, scenarios, objects, widgets, interactions, plugins) are now active when the page is opened, allowing you to type a search directly.
 - Added an X button on the search fields to cancel the search.
 - During a search, the key ** cancel search.
--  : In edit mode, the search control and its buttons are disabled and become fixed.
--  : In edit mode, a click of a button ** to the right of objects resizes the tiles of the object to the height of the highest. Ctrl + click reduces them to the height of the lowest.
--  : Command execution on a tile is now signaled by the button **. If there is none on the tile, it will appear during execution.
--  : The tiles indicate an info command (historized, which will open the History window) or action on hover.
--  : The history window now allows you to open this history in Analysis / History.
--  : The history window keeps its position / dimensions when reopening another history.
+- Dashboard : In edit mode, the search control and its buttons are disabled and become fixed.
+- Dashboard : In edit mode, a click of a button *expand* to the right of objects resizes the tiles of the object to the height of the highest. Ctrl + click reduces them to the height of the lowest.
+- Dashboard : Command execution on a tile is now signaled by the button **. If there is none on the tile, it will appear during execution.
+- Dashboard : The tiles indicate an info command (historized, which will open the History window) or action on hover.
+- Dashboard : The history window now allows you to open this history in Analysis / History.
+- Dashboard : The history window keeps its position / dimensions when reopening another history.
 - Command Configuration Window: Ctrl + click on "Save" closes the window after.
 - Equipment configuration window: Ctrl + click on "Save" closes the window after.
 - Add usage information when deleting a device.
@@ -477,7 +477,7 @@ The plugins must respect the recommendations on the tree structure of folders an
 - Scenario : The colorization of blocks is no longer random, but by block type.
 - Scenario : Possibility by doing a Ctrl + click on the button *execution* save it, launch it, and display the log (if the log level is not on **).
 - Scenario : Confirmation of block deletion. Ctrl + click to avoid confirmation.
-- Scenario : Addition of a search function in Code blocks.  : Ctrl + F then Enter, Next result : Ctrl + G, Previous result : Ctrl+Shift+G
+- Scenario : Addition of a search function in Code blocks. To research : Ctrl + F then Enter, Next result : Ctrl + G, Previous result : Ctrl+Shift+G
 - Scenario : Possibility of condensing the blocks.
 - Scenario : The 'Add block' action switches to the Scenario tab if necessary.
 - Scenario : New block copy / paste functions. Ctrl + click to cut / replace.
@@ -497,7 +497,7 @@ The plugins must respect the recommendations on the tree structure of folders an
 - Domotic overview : CSV export of parent object, id, equipment and their id, command.
 - Domotic overview : Possibility of making visible or not one or more commands.<br/><br/>
 -  : Possibility to specify the order (position) of the **  *3d designs* (Edit, Configure Design).
--  : Addition of a custom CSS field on the elements of the **.
+-  : Addition of a custom CSS field on the elements of the *design*.
 -  : Moved the display options in Design of the advanced configuration, in the display parameters from the **. This in order to simplify the interface, and to allow to have different parameters by **.
 -  : Moving and resizing components on ** takes their size into account, with or without magnetization.<br/><br/>
 - Addition of a mass configuration system (used on the Equipment page to configure Communications Alerts on them)

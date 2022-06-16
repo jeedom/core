@@ -13,8 +13,8 @@
 - **Ferramentas / Objetos** : Adicionado um menu contextual em um objeto para gerenciar a visibilidade, alterar o objeto pai e mover.
 - **Ferramentas / Substituir** : Nova ferramenta para substituição de equipamentos e comandos.
 - **Análise / Cronograma** : Adicionado um campo de pesquisa para filtrar a exibição.
-- **** : Capacidade de relatar sobre a saúde de Jeedom.
-- **** : Capacidade de relatar equipamentos alertados.
+- **Relatório** : Capacidade de relatar sobre a saúde de Jeedom.
+- **Relatório** : Capacidade de relatar equipamentos alertados.
 - **Atualizar** : Capacidade de ver do Jeedom os pacotes OS / PIP2 / PIP3 / NodeJS que podem ser atualizados e iniciar a atualização (cuidado com a função arriscada e em beta).
 - **Comando de alerta** : Adicionada uma opção para receber uma mensagem em caso de fim de alerta.
 
@@ -66,7 +66,7 @@
 ## 
 
 - IU de correção de bug : Correção de widget *padrão numérico* (cmdName muito longo).
-- IU de correção de bug : Passando variáveis css *--url-iconsDark*  *--url-iconsLight* em absoluto (Bug Safari MacOS).
+- IU de correção de bug : Passando variáveis css *--url-iconsDark* e *--url-iconsLight* em absoluto (Bug Safari MacOS).
 - IU de correção de bug : Posição das notificações em *centro superior*.
 
 - Núcleo de correção de bugs : Etapa padrão para widgets ** em 1.
@@ -115,10 +115,10 @@
 - **Resumos** : Possibilidade de nunca mostrar o número à direita do ícone, ou apenas se for positivo.
 - **Resumos** : A alteração do parâmetro de resumo na configuração e nos objetos agora está visível, sem esperar por uma alteração no valor de resumo.
 - **Resumos** : Agora é possível configurar [ações em resumos](/pt_PT/concept/summary#Actions  résumés) (ctrl + clique em um resumo) graças aos virtuais.
-- **** : Visualizar arquivos PDF.
+- **Relatório** : Visualizar arquivos PDF.
 - **Tipos de equipamento** : [Nova página](/pt_PT/core/4.2/types) **Ferramentas → Tipos de equipamento** permitindo que tipos genéricos sejam atribuídos a dispositivos e comandos, com suporte para tipos dedicados a plug-ins instalados (ver [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.2)).
 - **Seleção de ilustrações** : Nova janela global para a escolha de ilustrações *(ícones, imagens, planos de fundo)*.
-- **Exibir mesa** : Adição de um botão à direita da pesquisa nas páginas ** *Cenários* ** **  ** para mudar para o modo de mesa. Isso é armazenado por um cookie ou em **Configurações → Sistema → Configuração / Interface, Opções**. Os plugins podem usar esta nova função do Core. Vejo [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.2).
+- **Exibir mesa** : Adição de um botão à direita da pesquisa nas páginas ** *Cenários* ** ** e ** para mudar para o modo de mesa. Isso é armazenado por um cookie ou em **Configurações → Sistema → Configuração / Interface, Opções**. Os plugins podem usar esta nova função do Core. Vejo [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.2).
 - **Configuração do equipamento** : Possibilidade de configurar uma curva de histórico na parte inferior do ladrilho de um dispositivo.
 - **** : Possibilidade de fazer um cálculo em uma ação de comando do tipo deslizante antes da execução do comando.
 - **Plugins / Gerenciamento** : Exibição da categoria do plugin e um link para abrir diretamente sua página sem passar pelo menu Plugins.
@@ -137,12 +137,12 @@
 - **Adicionar o usuário realizando uma ação** : Além das opções de execução do comando de id e nome de usuário para lançar a ação (visível no log de eventos por exemplo)
 - **Documentação e plug-in de changelog beta** : Documentação e gerenciamento de changelog para plug-ins em beta. Atenção, em beta o changelog não é datado.
 - **** : Integração do plugin JeeXplorer no Core. Agora usado para código de widget e personalização avançada.
-- **** : Nova opção de configuração / interface para não colorir o título do banner do equipamento.
-- **** : Possibilidade de configurar papéis de parede nas páginas Dashboard, Analysis, Tools e sua opacidade de acordo com o tema.
-- ****: Adicionando Jeedom DNS baseado em Wireguard em vez de Openvpn (Administração / redes). Mais rápido e estável, mas ainda em teste. Por favor, note que atualmente não é compatível com Jeedom Smart.
-- **** : Configurações OSDB: Adição de uma ferramenta para edição em massa de equipamentos, comandos, objetos, cenários.
-- **** : Configurações OSDB: Adicionar um construtor de consulta SQL dinâmica.
-- ****: Possibilidade de desativar o monitoramento de nuvem (Administração / Atualizações / Mercado).
+- **Configuração** : Nova opção de configuração / interface para não colorir o título do banner do equipamento.
+- **Configuração** : Possibilidade de configurar papéis de parede nas páginas Dashboard, Analysis, Tools e sua opacidade de acordo com o tema.
+- **Configuração**: Adicionando Jeedom DNS baseado em Wireguard em vez de Openvpn (Administração / redes). Mais rápido e estável, mas ainda em teste. Por favor, note que atualmente não é compatível com Jeedom Smart.
+- **Configuração** : Configurações OSDB: Adição de uma ferramenta para edição em massa de equipamentos, comandos, objetos, cenários.
+- **Configuração** : Configurações OSDB: Adicionar um construtor de consulta SQL dinâmica.
+- **Configuração**: Possibilidade de desativar o monitoramento de nuvem (Administração / Atualizações / Mercado).
 - **** : Adição de ````jeeCli.php```` na pasta core / php do Jeedom para gerenciar algumas funções de linha de comando.
 - *Grandes melhorias na interface em termos de desempenho / capacidade de resposta. jeedomUtils {}, jeedomUI {}, menu principal reescrito em css puro, remoção de initRowWorflow (), simplificação do código, correções de css para telas pequenas, etc.*
 
@@ -160,7 +160,7 @@
 
 Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de entrada (como lembrete, o usuário é o único a saber essa senha, em caso de esquecimento, Jeedom não pode recuperá-la nem acessar os backups. Nuvem do usuário).
 
->****
+>**IMPORTANTE**
 >
 > Após a atualização, você DEVE ir para Configurações → Sistema → guia Atualização de configuração / Mercado e inserir a confirmação da senha do backup em nuvem para que isso possa ser feito.
 
@@ -246,7 +246,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 ### 4.1 : Notícias / Melhorias
 
 - **Síntese** : Adicionando uma nova página **Home → Resumo** oferecendo um resumo visual global das peças, com acesso rápido aos resumos.
-- **** : Adição de um mecanismo de pesquisa em **Ferramentas → Pesquisa**.
+- **Pesquisar** : Adição de um mecanismo de pesquisa em **Ferramentas → Pesquisa**.
 - **** : Modo de edição agora inserindo o bloco movido.
 - **** : Modo de edição: os ícones de atualização do equipamento são substituídos por um ícone que permite acesso à sua configuração, graças a um novo modal simplificado.
 - **** : Agora podemos clicar no ** widgets de ações de tempo para abrir a janela do histórico do comando info vinculado.
@@ -265,7 +265,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - **Atualizações principais** : Implementação de um sistema para limpar arquivos Core não utilizados antigos.
 - **Cenas** : Adicionando um mecanismo de pesquisa (à esquerda do botão Executar).
 - **Cenas** : Adição da função de idade (fornece a idade do valor da ordem).
-- **Cenas** : *stateChanges()* agora aceite o período ** (meia-noite até agora), **  ** (por 1 dia).
+- **Cenas** : *stateChanges()* agora aceite o período ** (meia-noite até agora), ** e ** (por 1 dia).
 - **Cenas** :  *estatísticas (), média (), max (), min (), tendência (), duração()* : Bugfix ao longo do período **, e aceite agora ** (por 1 dia).
 - **Cenas** : Possibilidade de desativar o sistema de cotação automática (Configurações → Sistema → Configuração : Equipements).
 - **Cenas** : Visualizando um ** se nenhum gatilho estiver configurado.
@@ -283,10 +283,10 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - **** : Modo de edição agora inserindo o bloco movido.
 - **** : Modo de edição: os ícones de atualização do equipamento são substituídos por um ícone que permite acesso à sua configuração, graças a um novo modal simplificado.
 - **** : A ordem de exibição agora é independente da ordem no painel.
-- **** : Separação das páginas de histórico e cronograma.
-- **** : Integração da linha do tempo no DB por motivos de confiabilidade.
-- **** : Gerenciamento de várias linhas do tempo.
-- **** : Completo redesenho gráfico da linha do tempo (Desktop / Mobile).
+- **Linha do tempo** : Separação das páginas de histórico e cronograma.
+- **Linha do tempo** : Integração da linha do tempo no DB por motivos de confiabilidade.
+- **Linha do tempo** : Gerenciamento de várias linhas do tempo.
+- **Linha do tempo** : Completo redesenho gráfico da linha do tempo (Desktop / Mobile).
 - **Resumo Global** : Visualização Resumo, suporte para resumos de um objeto diferente ou com um objeto raiz vazio (Desktop e WebApp).
 - **Ferramentas / Objetos** : Nova aba *Resumo por equipamento*.
 - **Resumo Automation** : Equipamentos de plug-in desativados e seus controles não têm mais os ícones à direita (configuração do equipamento e configuração avançada).
@@ -294,10 +294,10 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - **Resumo Automation** : Possibilidade de mover várias peças de equipamento de um objeto para outro.
 - **Resumo Automation** : Possibilidade de selecionar todo o equipamento de um objeto.
 - **Mecanismo de tarefas** : Na guia *Demônio*, plugins desativados não aparecem mais.
-- **** : O uso de ** se disponível.
-- **** : Possibilidade de exportar cronogramas.
-- **** :  ** agora está na guia *Em geral*.
-- **** :  ** agora está na guia **.
+- **Relatório** : O uso de ** se disponível.
+- **Relatório** : Possibilidade de exportar cronogramas.
+- **Configuração** :  ** agora está na guia *Em geral*.
+- **Configuração** :  ** agora está na guia **.
 - **Janela de configuração avançada de equipamentos** : Alteração dinâmica da configuração do quadro de distribuição.
 - **** : Nova categoria **.
 - **** : Possibilidade de inverter comandos do tipo cursor (informação e ação)
@@ -308,7 +308,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 	- Ctrl Clic / Clic Center também disponível em seus menus de contexto (nas guias).
 - Nova página ModalDisplay :
 	- Menu Análise : Ctrl Clique / Clique em Central no *Tempo real* : Abra a janela em uma nova guia, em tela cheia.
-	- Menu Ferramentas : Ctrl Clique / Clique em Central no **, *Testador de expressão*, **, ** : Abra a janela em uma nova guia, em tela cheia.
+	- Menu Ferramentas : Ctrl Clique / Clique em Central no **, *Testador de expressão*, **, *Pesquisar* : Abra a janela em uma nova guia, em tela cheia.
 - Bloco de código, editor de arquivos, personalização avançada : Adaptação tema escuro.
 - Janela de seleção de imagem aprimorada.
 
@@ -324,8 +324,8 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - Muitas correções de bugs (UI, retrato / paisagem iOS, etc.).
 
 ### 4.1 : Autres
-- **** : Adaptações de acordo com v4 e v4.1.
-- **** : Nova página *Atalhos de teclado / mouse* incluindo um resumo de todos os atalhos no Jeedom. Acessível no documento do Painel ou nas Perguntas frequentes.
+- **Documentação** : Adaptações de acordo com v4 e v4.1.
+- **Documentação** : Nova página *Atalhos de teclado / mouse* incluindo um resumo de todos os atalhos no Jeedom. Acessível no documento do Painel ou nas Perguntas frequentes.
 - **** : Atualizar o HighStock v7.1.2 a v8.2.0.
 - **** : Atualizar o jQuery v3.4.1 a v3.5.1.
 - **** : Atualizar fonte Awesome 5.9.0 a 5.13.1.
@@ -465,15 +465,15 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 -  : Adição de um widget de bússola / vento numérico (obrigado @thanaus).
 -  : Adicionado um widget numérico de informações de chuva (obrigado @thanaus)
 -  : Exibição do widget do obturador de informações / ação proporcional ao valor.<br/><br/>
--  : Melhoria e reorganização de guias.
--  : Adição de muitos ** (aide).
--  : Adicionar um motor de pesquisa.
--  : Adicionado um botão para esvaziar o cache de widgets (guia Cache).
--  : Adicionada uma opção para desativar o cache de widgets (guia Cache).
--  : Possibilidade de centrar verticalmente o conteúdo dos tiles (guia Interface).
--  : Adicionou um parâmetro para a eliminação global de logs (guia Pedidos).
--  : Mudança de #message# em #subject# em Configuração / Logs / Mensagens para evitar a duplicação da mensagem.
--  : Possibilidade nos resumos de adicionar uma exclusão de pedidos que não foram atualizados por mais de XX minutos (exemplo para o cálculo de médias de temperatura se um sensor não reportou nada por mais de 30min será excluído do cálculo)<br/><br/>
+- Configuração : Melhoria e reorganização de guias.
+- Configuração : Adição de muitos ** (aide).
+- Configuração : Adicionar um motor de pesquisa.
+- Configuração : Adicionado um botão para esvaziar o cache de widgets (guia Cache).
+- Configuração : Adicionada uma opção para desativar o cache de widgets (guia Cache).
+- Configuração : Possibilidade de centrar verticalmente o conteúdo dos tiles (guia Interface).
+- Configuração : Adicionou um parâmetro para a eliminação global de logs (guia Pedidos).
+- Configuração : Mudança de #message# em #subject# em Configuração / Logs / Mensagens para evitar a duplicação da mensagem.
+- Configuração : Possibilidade nos resumos de adicionar uma exclusão de pedidos que não foram atualizados por mais de XX minutos (exemplo para o cálculo de médias de temperatura se um sensor não reportou nada por mais de 30min será excluído do cálculo)<br/><br/>
 - Cenas : A colorização dos blocos não é mais aleatória, mas por tipo de bloco.
 - Cenas : Possibilidade ao fazer um Ctrl + clique no botão *execução* salve-o, execute-o e exiba o log (se o nível de log não estiver ativado **).
 - Cenas : Confirmação de exclusão de bloco. Ctrl + clique para evitar a confirmação.
@@ -496,7 +496,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - Resumo Automation : Adicionando equipamentos e IDs de pedido, para exibir e pesquisar.
 - Resumo Automation : Exportação CSV de objeto pai, id, equipamento e seu id, comando.
 - Resumo Automation : Possibilidade de tornar visível ou não um ou mais comandos.<br/><br/>
--  : Possibilidade de especificar a ordem (posição) do **  *Projetos 3D* (Editar, Configurar Design).
+-  : Possibilidade de especificar a ordem (posição) do ** e *Projetos 3D* (Editar, Configurar Design).
 -  : Adição de um campo CSS personalizado nos elementos do **.
 -  : Movidas as opções de exibição em Design da configuração avançada, nos parâmetros de exibição do **. Isso para simplificar a interface e permitir ter diferentes parâmetros por **.
 -  : Movendo e redimensionando componentes em ** leva seu tamanho em consideração, com ou sem magnetização.<br/><br/>
@@ -517,6 +517,6 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - Remova Font Awesome 4 para manter apenas Font Awesome 5.
 - O plugin do widget não é compatível com esta versão do Jeedom e não será mais suportado (porque os recursos foram levados internamente no núcleo). Mais Informações [](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
 
->****
+>**IMPORTANTE**
 >
 > Se após a atualização você tiver um erro no Dashboard, tente reiniciar sua caixa para que ela leve em consideração as novas adições de componentes.

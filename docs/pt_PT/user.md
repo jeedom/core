@@ -6,13 +6,13 @@ Esta página permite definir a lista de usuários autorizados a se conectar ao J
 Na página você tem três botões :
 
 - Adicionar Usuário.
-- .
+- Para salvaguardar.
 - Acesso aberto ao suporte.
 
 ## Lista de usuários
 
 - **Nome de Usuário** : ID do usuário.
-- **** : Permite desativar a conta sem excluí-la.
+- **De ativos** : Permite desativar a conta sem excluí-la.
 - **** : Permite a conexão do usuário apenas se ele estiver na rede local Jeedom.
 - **** : Permite escolher o perfil do usuário :
     - **** : O usuário obtém todos os direitos (edição / consulta) no Jeedom.
@@ -23,7 +23,7 @@ Na página você tem três botões :
 - **Data da última conexão** : Data do último login do usuário. Observe que esta é a data real da conexão; portanto, se você salvar seu computador, a data da conexão não será atualizada sempre que você retornar.
 - **** : Modificar direitos de usuário.
 - **Senha** : Permite alterar a senha do usuário.
-- **** : Remover usuário.
+- **Deletar** : Remover usuário.
 - **Regenerar chave de API** : Regenerar chave de API do usuário.
 - **Gerenciar direitos** : Permite gerenciar com precisão os direitos do usuário (observe que o perfil deve estar em "usuário limitado"").
 
@@ -31,7 +31,7 @@ Na página você tem três botões :
 
 Ao clicar em "Direitos", uma janela é exibida, permitindo que você gerencie os direitos do usuário com precisão. A primeira guia exibe os diferentes equipamentos. O segundo apresenta os cenários.
 
-> ****
+> **Importante**
 >
 > O perfil deve ser limitado, caso contrário, nenhuma restrição colocada aqui será levada em consideração.
 
@@ -49,7 +49,7 @@ Exibe as sessões do navegador ativas no seu Jeedom, com informações do usuár
 Liste os dispositivos (computadores, celulares, etc.) que registraram sua autenticação em seu Jeedom.
 Você pode ver qual usuário, seu IP, quando e excluir o registro deste dispositivo.
 
-> ****
+> **Observação**
 >
 > O mesmo usuário pode ter registrado dispositivos diferentes. Por exemplo, seu computador desktop, laptop, celular etc.
 

@@ -12,7 +12,7 @@ Isso é dividido em várias partes :
 
 - ****
     - **** : Seu login no Market, não pode ser alterado.
-    - **** : Seu nome (essas informações são úteis apenas para tornar os e-mails mais agradáveis).
+    - **Sobrenome** : Seu nome (essas informações são úteis apenas para tornar os e-mails mais agradáveis).
     - **Primeiro nome** : Seu primeiro nome (essas informações são úteis apenas para tornar os e-mails mais agradáveis).
     - **Nome de usuário no fórum** : Seu nome de usuário no fórum.
     - **** : Seu email.
@@ -37,7 +37,7 @@ Para os profissionais :
 - **Ativar acesso a plugins beta** : Habilita o acesso a plugins betas (observe que isso impedirá que você acesse o suporte).
     - **Resumo** Aqui você encontrará um resumo dos seus diferentes direitos e serviços.
 
-> ****
+> **Dica**
 >
 > Não esqueça de salvar.
 
@@ -49,12 +49,12 @@ Para os profissionais :
 - **Key instalação**
     - **Número de chaves de instalação** : Exibe o número de instalações Jeedom atualmente vinculadas à sua conta, bem como o limite autorizado.
 
-> ****
+> **Dica**
 >
 > É possível que o Market às vezes peça para você redefinir suas chaves de instalação, isso é normal, basta seguir o que é solicitado.
 
 - **Minhas jeedoms** : É aqui que todos os seus Jeedoms estão listados
-    - **** : O nome que você deseja dar ao seu Jeedom (pode ser encontrado no nome do backup se você tiver a assinatura de backup na nuvem).
+    - **Sobrenome** : O nome que você deseja dar ao seu Jeedom (pode ser encontrado no nome do backup se você tiver a assinatura de backup na nuvem).
     - **** : Vamos ver o estado do Jeedom em questão.
     - **IP local / remoto** : IP ou endereço deste Jeedom, configure no Jeedom, se você não colocar nada, será o último IP conhecido.
     - **** : Permite que você personalize o nome do seu DNS.
@@ -64,9 +64,9 @@ Para os profissionais :
     - **Data de criação** : Data de criação deste Jeedom na sua conta do Market (lembrete, isso é feito automaticamente quando você o vincula ao Market).
     - **Última atualização** : A última comunicação da Jeedom com o mercado.
     - **** : Nome do hardware Jeedom.
-    - **** : Versão Jeedom instalada.
+    - **Versão** : Versão Jeedom instalada.
 
-> ****
+> **Dica**
 >
 > Não esqueça de salvar.
 
@@ -82,7 +82,7 @@ Nesta guia, você pode consultar seu saldo de SMS / Chamadas (utilizável com o 
 
 Aqui você encontra todas as suas compras e pode solicitar a devolução da fatura ou e-mail de recebimento.
 
-> ****
+> **Importante**
 >
 > Se você comprar um plugin oficial, receberá uma fatura. No entanto, para um plug-in de terceiros, é um recibo, para a fatura que você precisa solicitar ao desenvolvedor.
 

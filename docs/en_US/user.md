@@ -6,7 +6,7 @@ This page allows you to define the list of users authorized to connect to Jeedom
 On the page you have three buttons :
 
 - Add user.
-- .
+- To safeguard.
 - Open support access.
 
 ## Users list
@@ -31,7 +31,7 @@ On the page you have three buttons :
 
 When clicking on &quot;Rights&quot; a window appears allowing you to manage user rights finely. The first tab displays the different equipment. The second presents the scenarios.
 
-> ****
+> **Important**
 >
 > The profile must be limited otherwise no restrictions put here will be taken into account.
 
@@ -49,7 +49,7 @@ Displays the browser sessions active on your Jeedom, with user information, its 
 List the devices (computers, mobiles, etc.) which have registered their authentication on your Jeedom.
 You can see which user, their IP, when, and delete the registration for this device.
 
-> ****
+> **Note**
 >
 > The same user may have registered different devices. For example, his desktop computer, laptop, mobile, etc.
 

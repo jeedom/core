@@ -60,7 +60,7 @@ The configuration page consists of several tabs and buttons :
 - **** : Interaction name (can be empty, the name replaces the request text in the interaction list).
 - **** : Interaction group, this allows to organize them (can be empty, will therefore be in the group "none").
 - **** : Enables or disables interaction.
-- **** : The generating model sentence (required).
+- **Request** : The generating model sentence (required).
 - **** : Allows to define synonyms on the names of the commands.
 - **Reply** : The answer to provide.
 - **Wait before answering (s)** : Add a delay of X seconds before generating the response. It allows for example to wait for the return of a lamp status before being answered.
@@ -83,7 +83,7 @@ Use if you want to target one or more specific commands or pass specific paramet
 
 #### Exemples
 
-> ****
+> **Note**
 >
 > The screenshots may be different in view of developments.
 
@@ -285,7 +285,7 @@ So we can see a regexp :
 
 This allows you to delete all commands that have one of these words in their sentence
 
-> ****
+> **Note**
 >
 > The regexp here is a simplified version for easy use. We can therefore either use traditional expressions or use simplified expressions as in this example.
 
@@ -297,9 +297,9 @@ It is possible to control a lamp as a percentage (dimmer) or a thermostat with t
 
 ![interact022](../images/interact022.png)
 
-As we can see, there is here in the request the tag **#consigne#** (you can put what you want) which is included in the drive control to apply the desired value. To do this, we have 3 parts : *  : in which we create a tag that will represent the value that will be sent to the interaction. \* Reply : we reuse the tag for the response to be sure that Jeedom correctly understood the request. \*  : we put an action on the lamp we want to drive and in the value we pass it our tag **.
+As we can see, there is here in the request the tag **#consigne#** (you can put what you want) which is included in the drive control to apply the desired value. To do this, we have 3 parts : * Request : in which we create a tag that will represent the value that will be sent to the interaction. \* Reply : we reuse the tag for the response to be sure that Jeedom correctly understood the request. \* Stock : we put an action on the lamp we want to drive and in the value we pass it our tag **.
 
-> ****
+> **Note**
 >
 > We can use any tag except those already used by Jeedom, there can be several to control for example several commands. Note also that all the tags are passed to the scenarios launched by the interaction (it is however necessary that the scenario is in "Execute in foreground").
 
@@ -350,6 +350,6 @@ Interactions do a lot of things in particular. You can program an action dynamic
 
 ![interact23](../images/interact23.JPG)
 
-> ****
+> **Note**
 >
 > You will notice in the response the tag \#value# this contains, in the case of a programmed interaction, the effective programming time

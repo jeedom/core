@@ -48,7 +48,7 @@ For each command, will be copied from source to target:
 	* The configurations **  *),
 	* Value Action configurations (info),
 	* Icon,
-	* The activation and the directory in **,
+	* The activation and the directory in *Timeline*,
 	* The configurations of **  **,
 	* The influxDB configuration,
 	* The repeat value configuration,
