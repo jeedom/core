@@ -4121,6 +4121,7 @@
         "Vous n\\'êtes pas sur un OS officiellement supporté par l\\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supportés sont Debian Strech et Debian Buster": "Sie verwenden kein Betriebssystem, das offiziell vom Jeedom-Team unterstützt wird (jede Supportanfrage kann daher abgelehnt werden). Offiziell unterstützte Betriebssysteme sind Debian Strech und Debian Buster",
         "Version database": "Datenbankversion",
         "Espace disque libre": "Freier Speicherplatz",
+        "Connexion active\/max\/autorisée": "Connexion active\/max\/autorisée",
         "Espace disque libre tmp": "Freier Speicherplatz tmp",
         "En cas d\\'erreur essayez de redémarrer. Si le problème persiste, testez en désactivant les plugins un à un jusqu\\'à trouver le coupable": "Versuchen Sie im Fehlerfall einen Neustart. Wenn das Problem weiterhin besteht, testen Sie die Plugins nacheinander, bis Sie den Schuldigen gefunden haben",
         "Mémoire disponible": "Verfügbarer Speicher",

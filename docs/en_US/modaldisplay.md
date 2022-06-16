@@ -1,6 +1,6 @@
 # ModalDisplay
 
-The page **** is a simple container for loading the contents of a window (** Where **) full page.
+The page **** is a simple container for loading the contents of a window (**  **) full page.
 
 It is used in particular in the following cases:
 - Analysis menu : Ctrl Click / Click Center on *Real time*
