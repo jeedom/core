@@ -311,6 +311,17 @@ class jeedom {
 			'key' => 'space::root'
 		);
 
+		$nb_active_connection = DB::Prepare('show status where `variable_name` = \'Threads_connected\'', array(), DB::FETCH_TYPE_ROW);
+		$max_used_connection = DB::Prepare('SHOW STATUS WHERE `variable_name` = \'Max_used_connections\';', array(), DB::FETCH_TYPE_ROW);
+		$allow_connection = DB::Prepare('SHOW VARIABLES LIKE \'max_connections\'', array(), DB::FETCH_TYPE_ROW);
+		$return[] = array(
+			'name' => __('Connexion active/max/autorisée', __FILE__),
+			'state' => true,
+			'result' => $nb_active_connection['Value'] . '/' . $max_used_connection['Value'] . '/' . $allow_connection['Value'],
+			'comment' => '',
+			'key' => 'database::connexion'
+		);
+
 		$value = self::checkSpaceLeft(self::getTmpFolder());
 		$return[] = array(
 			'name' => __('Espace disque libre tmp', __FILE__),
@@ -1407,7 +1418,7 @@ class jeedom {
 		return $remove_history;
 	}
 
-	public static function massReplace($_options=array(), $_eqlogics=array(), $_cmds=array()) {
+	public static function massReplace($_options = array(), $_eqlogics = array(), $_cmds = array()) {
 		if (!is_array($_options) || !is_array($_eqlogics) || !is_array($_cmds)) {
 			throw new Exception('Missmatch arguments');
 		}
@@ -1482,7 +1493,7 @@ class jeedom {
 						$sourceCmdId = explode('::', str_replace($query, '', $key))[0];
 						$end = explode('::', str_replace($query, '', $key))[1];
 						if (isset($_cmds[$sourceCmdId])) {
-							$targetEq->setDisplay($query.$_cmds[$sourceCmdId].'::'.$end, $value);
+							$targetEq->setDisplay($query . $_cmds[$sourceCmdId] . '::' . $end, $value);
 						}
 					}
 				}
