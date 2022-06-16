@@ -3,7 +3,7 @@
 		<div class="cmdName #hide_name#">#name_display#</div>
 		<div class="hgauge-bckg"></div>
 		<div class="hgauge-value"></div>
-		<div class="state"><strong>#state#</strong> <strong>#unite#</strong></div>
+		<div class="state"><strong>#state#</strong> <strong class="unit">#unite#</strong></div>
 	</center>
 
 	<script>
@@ -18,9 +18,10 @@
 			width = Math.round(parseFloat(width) * 10) / 10
 			$('.cmd[data-cmd_uid=#uid#] .hgauge-value').width(width+'%')
 			$('.cmd[data-cmd_uid=#uid#] .state strong').first().text(_options.display_value)
+			$('.cmd[data-cmd_uid=#uid#] .unit').text(_options.unit)
 		}
 
-		jeedom.cmd.update['#id#']({display_value: '#state#'})
+		jeedom.cmd.update['#id#']({display_value: '#state#',unit:'#unite#'})
 
 		if ($.issetWidgetOptParam('#color#', 'color')) {
 			 $('.cmd[data-cmd_id=#id#] .hgauge-value').css('background', '#color#')

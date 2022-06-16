@@ -1,11 +1,12 @@
 <div class="cmd cmd-widget" data-type="info" data-subtype="numeric" data-template="tile" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
 	<center>
 		<div class="cmdName #hide_name#">#name_display#</div>
-		<span class="state">#state#</span>#unite#
+		<span class="state">#state#</span><span class="unit">#unite#</span>
 	</center>
 	<script>
 		jeedom.cmd.update['#id#'] = function(_options) {
 			$('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value)
+			$('.cmd[data-cmd_id=#id#] .unit').empty().append(_options.unit);
 		}
 	</script>
 </div>

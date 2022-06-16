@@ -1,10 +1,11 @@
 <div class="cmd cmd-widget #history#" data-type="info" data-subtype="numeric" data-template="line" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
 	<center>
-		<span class="cmdName #hide_name#">#name_display#</span> <strong class="state"></strong>#unite#
+		<span class="cmdName #hide_name#">#name_display#</span> <strong class="state"></strong><span class="unit">#unite#</span>
 	</center>
 	<script>
 		jeedom.cmd.update['#id#'] = function(_options) {
 			$('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value)
+			$('.cmd[data-cmd_id=#id#] .unit').empty().append(_options.unit)
 			if (_options.alertLevel) {
 				$('.cmd[data-cmd_id=#id#]').css('background-color', '')
 				if (_options.alertLevel == 'warning') {
@@ -15,6 +16,6 @@
 			}
 		}
 
-		jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'})
+		jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#',unit:'#unite#'})
 	</script>
 </div>

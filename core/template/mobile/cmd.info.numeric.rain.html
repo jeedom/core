@@ -8,7 +8,7 @@
     <span class="plage unite" style="display:none;"></span>
     <div class="widget-rain-main">
     </div>
-    <div class="widget-rain-water" style=""></div>
+    <div class="widget-rain-water"></div>
   </div>
   <div class="cmdStats #hide_history#">
       <span>#minHistoryValue#</span>|<span>#averageHistoryValue#</span>|<span>#maxHistoryValue# <i class="#tendance#"></i></span>
@@ -23,7 +23,8 @@
     cmd#id#.find('.widget-rain-water').css('background', "url('data:image/svg+xml;base64," + waterSvg64#id# + "')")
 
     jeedom.cmd.update['#id#'] = function(_options) {
-      cmd#id#.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate+'<br/>{{Valeur}} : '+_options.display_value+'#unite#')
+      cmd#id#.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate+'<br/>{{Valeur}} : '+_options.display_value+_options.unit)
+      cmd#id#.find('.unit').empty().append(_options.unit);
 
       var value_#id# = parseFloat(_options.display_value)
       cmd#id#.find('.value').empty().append(value_#id#)
@@ -58,6 +59,6 @@
       cmd#id#.find('.plage').show()
     }
 
-    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'})
+    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#',unit:'#unite#'})
   </script>
 </div>
