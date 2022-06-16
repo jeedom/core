@@ -6,17 +6,17 @@ Es stehen zwei APIs zur Verfügung : ein entwicklerorientierter JSON RPC 2-Pilot
 
 Diese API ist sehr einfach durch einfache HTTP-Anfragen über URL zu verwenden.
 
-> **Notiz**
+> ****
 >
 > Für die gesamte Dokumentation gilt \#IP\_JEEDOM\# entspricht Ihrer Jeedom-Zugriffs-URL. Dies ist (sofern Sie nicht mit Ihrem lokalen Netzwerk verbunden sind) die Internetadresse, mit der Sie von außen auf Jeedom zugreifen.
 
-> **Notiz**
+> ****
 >
 > Für die gesamte Dokumentation gilt \#API\_KEY\# entspricht Ihrem API-Schlüssel, der für Ihre Installation spezifisch ist. Um es zu finden, gehen Sie zum Menü "Allgemein" → "Konfiguration" → Registerkarte "Allgemein"".
 
 ## Szenario
 
-Vohier l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = Szenario & id = \#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#?apikey=#APIKEY#& type = Szenario & ID=#ID#&action=#ACTION#)
+Vo l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = Szenario & id = \#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#?apikey=#APIKEY#& type = Szenario & ID=#ID#&action=#ACTION#)
 
 - **** : entspricht Ihrer Szenario-ID. Die ID finden Sie auf der entsprechenden Szenarioseite unter "Extras" → "Szenarien" nach Auswahl des Szenarios neben dem Namen der Registerkarte "Allgemein"". Ein anderer Weg, um es zu finden : Klicken Sie unter "Extras" → "Szenarien" auf "Übersicht"".
 - **** : entspricht der Aktion, die Sie anwenden möchten. Verfügbare Befehle sind : "start "," stop "," deaktivieren "und" aktivieren "um das Szenario zu starten, zu stoppen, zu deaktivieren oder zu aktivieren.
@@ -24,23 +24,23 @@ Vohier l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = Szenario & id = 
 
 ##  Info / Aktionsbefehl
 
-Vohier l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = cmd & id = \#ID\#](http://#IP_JEEDOM#?apikey=#APIKEY#& type = cmd & id=#ID#)
+Vo l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = cmd & id = \#ID\#](http://#IP_JEEDOM#?apikey=#APIKEY#& type = cmd & id=#ID#)
 
 - **** : entspricht der ID dessen, was Sie steuern möchten oder von dem Sie Informationen erhalten möchten.
 
 Der einfachste Weg, um diese URL zu erhalten, ist das Aufrufen der Seite **Analyse → Zusammenfassung der Hausautomation**, Um nach der Bestellung zu suchen und dann die erweiterte Konfiguration (das "Zahnrad" -Symbol) zu öffnen, sehen Sie dort eine URL, die je nach Typ und Subtyp der Bestellung bereits alles enthält, was Sie benötigen.
 
-> **Notiz**
+> ****
 >
 > Es ist möglich für das Feld \#ID\# mehrere Bestellungen gleichzeitig aufgeben. Dazu müssen Sie ein Array in json übergeben (ex% 5B12,58,23% 5D, beachten Sie, dass \ [und \] codiert werden müssen, daher% 5B und% 5D). Jeedoms Rückkehr wird ein Json sein.
 
-> **Notiz**
+> ****
 >
-> Parameter müssen für URLs codiert werden, Sie können ein Tool verwenden, [hier](https://meyerweb.com/eric/tools/dencoder/).
+> Parameter müssen für URLs codiert werden, Sie können ein Tool verwenden, [](https://meyerweb.com/eric/tools/dencoder/).
 
 ## Interaction
 
-Vohier l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = interagiere & query = \#QUERY\#](http://#IP_JEEDOM#?apikey=#APIKEY#& type = interagieren & abfragen=#QUERY#)
+Vo l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = interagiere & query = \#QUERY\#](http://#IP_JEEDOM#?apikey=#APIKEY#& type = interagieren & abfragen=#QUERY#)
 
 - **** : Frage an Jeedom zu stellen.
 - **** \ [Optional \] : teilt Jeedom mit, ob die Abfrage in utf8 codiert werden soll, bevor versucht wird zu antworten.
@@ -50,38 +50,38 @@ Vohier l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = interagiere & qu
 
 ## Message
 
-Vohier l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = message & category = \#CATEGORY\#&message=\#MESSAGE\#](http://#IP_JEEDOM#?apikey=#APIKEY#& type = message & category=#CATEGORY#&message=#MESSAGE#)
+Vo l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = message & category = \#CATEGORY\#&message=\#MESSAGE\#](http://#IP_JEEDOM#?apikey=#APIKEY#& type = message & category=#CATEGORY#&message=#MESSAGE#)
 
 - **** : Nachrichtenkategorie, die dem Nachrichtenzentrum hinzugefügt werden soll.
-- **** : Denken Sie bei der fraglichen Nachricht sorgfältig über die Codierung der Nachricht nach (Leerzeichen wird zu% 20, =% 3D…)). Sie können ein Werkzeug verwenden, [hier](https://meyerweb.com/eric/tools/dencoder/).
+- **** : Denken Sie bei der fraglichen Nachricht sorgfältig über die Codierung der Nachricht nach (Leerzeichen wird zu% 20, =% 3D…)). Sie können ein Werkzeug verwenden, [](https://meyerweb.com/eric/tools/dencoder/).
 
 ## Objet
 
-Vohier l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = Objekt](http://#IP_JEEDOM#?apikey=#APIKEY#& type = Objekt)
+Vo l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = Objekt](http://#IP_JEEDOM#?apikey=#APIKEY#& type = Objekt)
 
 Gibt in json die Liste aller Jeedom-Objekte zurück.
 
 ## Equipement
 
-Vohier l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = eqLogic & object\_id = \#OBJECT\_ID\#](http://#IP_JEEDOM#?apikey=#APIKEY#& type = eqLogic & object_id=#OBJECT_ID#)
+Vo l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = eqLogic & object\_id = \#OBJECT\_ID\#](http://#IP_JEEDOM#?apikey=#APIKEY#& type = eqLogic & object_id=#OBJECT_ID#)
 
 - **Objekt\_id** : ID des Objekts, dessen Ausrüstung wir wiederherstellen möchten.
 
 ## Commande
 
-Vohier l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = command & eqLogic\_id = \#EQLOGIC\_ID\#](http://#IP_JEEDOM#?apikey=#APIKEY#& type = command & eqLogic_id=#EQLOGIC_ID#)
+Vo l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = command & eqLogic\_id = \#EQLOGIC\_ID\#](http://#IP_JEEDOM#?apikey=#APIKEY#& type = command & eqLogic_id=#EQLOGIC_ID#)
 
 - **** : ID der Ausrüstung, von der Bestellungen abgerufen werden sollen.
 
 ## Vollständige Daten
 
-Vohier l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = fullData](http://#IP_JEEDOM#?apikey=#APIKEY#& type = fullData)
+Vo l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = fullData](http://#IP_JEEDOM#?apikey=#APIKEY#& type = fullData)
 
 Gibt alle Objekte, Geräte, Befehle (und deren Wert, wenn es sich um Informationen handelt) in json zurück.
 
 ## Variable
 
-Vohier l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#?apikey=#APIKEY#& type = Variable & Name=#NAME#&value=)**
+Vo l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#?apikey=#APIKEY#& type = Variable & Name=#NAME#&value=)**
 
 - **** : Name der Variablen, deren Wert gewünscht wird (Lesen des Werts).
 - **** \ [Optional \] : Wenn "Wert" angegeben ist, nimmt die Variable diesen Wert an (Schreiben eines Werts)).

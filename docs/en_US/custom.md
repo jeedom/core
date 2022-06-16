@@ -9,10 +9,10 @@ Here you can manage functions **** and rules **** applied on desktop or mobile.
 
 This function uses a particular mode of the Core file editor with two locations:
 
--  : Can contain both files ****  **** which will be loaded by the Core in Desktop version.
--  : Can contain both files ****  **** which will be loaded by the Core in Mobile version.
+-  : Can contain both files **** and **** which will be loaded by the Core in Desktop version.
+-  : Can contain both files **** and **** which will be loaded by the Core in Mobile version.
 
-In the menu bar of the Core file editor, a button ****  **Deactivated** tells you if the Core should load them or not. This option is also available in **Settings → System → Configuration** Interface tab.
+In the menu bar of the Core file editor, a button **** Where **Deactivated** tells you if the Core should load them or not. This option is also available in **Settings → System → Configuration** Interface tab.
 
 > ****
 >

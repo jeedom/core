@@ -12,7 +12,7 @@ These commands can be obtained by :
 
 The value of interactions lies in the simplified integration into other systems such as smartphones, tablets, other home automation boxes, etc.
 
-> ****
+> **Tip**
 >
 > You can open an interaction by doing :
 > - Click on one of them.
@@ -34,7 +34,7 @@ At the top of the page, there are 3 buttons :
 - **Regenerate** : Recréer toutes les interactions (peut être très long &gt; 5mn).
 - **** : Open a dialog to write and test a sentence.
 
-> ****
+> **Tip**
 >
 > If you have an interaction that generates sentences for lights for example and you add a new light control module, you will either have to regenerate all the interactions, or go to the interaction in question and save it again to create the sentences of this new module.
 
@@ -52,15 +52,15 @@ The configuration page consists of several tabs and buttons :
 
 - **** : Displays the number of sentences of the interaction (a click on them shows you).
 - **** : Record the current interaction.
-- **** : Delete current interaction.
+- **To delete** : Delete current interaction.
 - **** : Duplicates the current interaction.
 
 ### General tab
 
-- **** : Interaction name (can be empty, the name replaces the request text in the interaction list).
+- **Last name** : Interaction name (can be empty, the name replaces the request text in the interaction list).
 - **** : Interaction group, this allows to organize them (can be empty, will therefore be in the group "none").
-- **** : Enables or disables interaction.
-- **** : The generating model sentence (required).
+- **Asset** : Enables or disables interaction.
+- **Request** : The generating model sentence (required).
 - **** : Allows to define synonyms on the names of the commands.
 - **Reply** : The answer to provide.
 - **Wait before answering (s)** : Add a delay of X seconds before generating the response. It allows for example to wait for the return of a lamp status before being answered.
@@ -83,7 +83,7 @@ Use if you want to target one or more specific commands or pass specific paramet
 
 #### Exemples
 
-> ****
+> **Note**
 >
 > The screenshots may be different in view of developments.
 
@@ -103,7 +103,7 @@ We can very well imagine doing the same with several actions to light several la
 
 In the 2 examples above, the model sentence is identical but the actions which result from it change according to what is configured in the "Action" part, we can therefore already with a simple interaction with a single sentence imagine actions combined between various commands and various scenarios (we can also trigger scenarios in the action part of interactions).
 
-> ****
+> **Tip**
 >
 > To add a scenario, create a new action, write &quot;scenario&quot; without an accent, press the tab key on your keyboard to bring up the scenario selector.
 
@@ -111,7 +111,7 @@ In the 2 examples above, the model sentence is identical but the actions which r
 
 Here we will see all the interest and all the power of interactions, with a model sentence we will be able to generate sentences for a whole group of commands.
 
-We will resume what was done above, delete the actions that we had added, and instead of the fixed sentence, in &quot;Request&quot;, we will use the tags **#commande#**  **#equipement#**. Jeedom will therefore replace these tags with the name of the commands and the name of the equipment (we can see the importance of having consistent command / equipment names).
+We will resume what was done above, delete the actions that we had added, and instead of the fixed sentence, in &quot;Request&quot;, we will use the tags **#commande#** and **#equipement#**. Jeedom will therefore replace these tags with the name of the commands and the name of the equipment (we can see the importance of having consistent command / equipment names).
 
 ![interact006](../images/interact006.png)
 
@@ -171,7 +171,7 @@ Field **Binary conversion** must contain 2 answers : first the answer if the val
 
 The "Authorized users" field allows you to authorize only certain people to execute the command, you can put several profiles by separating them with a "\|".
 
- : personne1|personne2
+Example : personne1|personne2
 
 We can imagine that an alarm can be activated or deactivated by a child or a neighbor who would come to water the plants in your absence.
 
@@ -285,7 +285,7 @@ So we can see a regexp :
 
 This allows you to delete all commands that have one of these words in their sentence
 
-> ****
+> **Note**
 >
 > The regexp here is a simplified version for easy use. We can therefore either use traditional expressions or use simplified expressions as in this example.
 
@@ -297,9 +297,9 @@ It is possible to control a lamp as a percentage (dimmer) or a thermostat with t
 
 ![interact022](../images/interact022.png)
 
-As we can see, there is here in the request the tag **#consigne#** (you can put what you want) which is included in the drive control to apply the desired value. To do this, we have 3 parts : *  : in which we create a tag that will represent the value that will be sent to the interaction. \* Reply : we reuse the tag for the response to be sure that Jeedom correctly understood the request. \*  : we put an action on the lamp we want to drive and in the value we pass it our tag **.
+As we can see, there is here in the request the tag **#consigne#** (you can put what you want) which is included in the drive control to apply the desired value. To do this, we have 3 parts : * Request : in which we create a tag that will represent the value that will be sent to the interaction. \* Reply : we reuse the tag for the response to be sure that Jeedom correctly understood the request. \* Stock : we put an action on the lamp we want to drive and in the value we pass it our tag **.
 
-> ****
+> **Note**
 >
 > We can use any tag except those already used by Jeedom, there can be several to control for example several commands. Note also that all the tags are passed to the scenarios launched by the interaction (it is however necessary that the scenario is in "Execute in foreground").
 
@@ -346,10 +346,10 @@ This example therefore allows to launch the scenario which is linked in the acti
 
 ### Programming an action with interactions
 
-Interactions do a lot of things in particular. You can program an action dynamically.  : "Turns on the heat at 22 for 2:50 p.m". Nothing could be simpler, just use the tags \#time# (if a specific time is defined) or \#duration# (for in X time, example in 1 hour) :
+Interactions do a lot of things in particular. You can program an action dynamically. Example : "Turns on the heat at 22 for 2:50 p.m". Nothing could be simpler, just use the tags \#time# (if a specific time is defined) or \#duration# (for in X time, example in 1 hour) :
 
 ![interact23](../images/interact23.JPG)
 
-> ****
+> **Note**
 >
 > You will notice in the response the tag \#value# this contains, in the case of a programmed interaction, the effective programming time

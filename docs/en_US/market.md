@@ -10,9 +10,9 @@ This is broken down into several parts :
 
 This is where you will be able to adjust different parameters of your profile :
 
-- ****
+- **Profile**
     - **** : Your login on the Market, it cannot be changed.
-    - **** : Your name (this information is only useful to make emails more pleasant).
+    - **Last name** : Your name (this information is only useful to make emails more pleasant).
     - **First name** : Your first name (this information is only useful to make emails more pleasant).
     - **Username on the forum** : Your username on the forum.
     - **** : Your email.
@@ -28,7 +28,7 @@ For the pros :
 - **Installer email account** : Your professional contact email.
 - **Support requests recipient** : know who will receive support emails (end customer, installer or both).
     - ****
-- **** : general conditions of use (be careful to read them because they commit you).
+- **User** : general conditions of use (be careful to read them because they commit you).
 - **Developer** : terms of use for developers.
     - ****
 - **Number of tickets** : Number of tickets for the current month and your limit.
@@ -37,7 +37,7 @@ For the pros :
 - **Enable access to beta plugins** : Enables access to betas plugins (note that this will prevent you from accessing the support).
     - **Summary** Here you will find a summary of your different rights and services.
 
-> ****
+> **Tip**
 >
 > Don&#39;t forget to save.
 
@@ -49,12 +49,12 @@ For the pros :
 - **Installation key**
     - **Number of installation keys** : Displays the number of Jeedom installations currently linked to your account as well as the authorized limit.
 
-> ****
+> **Tip**
 >
 > It is possible that the Market sometimes asks you to reset your installation keys, this is normal, just follow what is requested.
 
 - **My jeedoms** : This is where all your Jeedoms are listed
-    - **** : The name you want to give to your Jeedom (can be found in the backup name if you have the cloud backup subscription).
+    - **Last name** : The name you want to give to your Jeedom (can be found in the backup name if you have the cloud backup subscription).
     - **** : Lets see the state of the Jeedom in question.
     - **Local / remote IP** : IP or address of this Jeedom, configure in Jeedom, if you do not put anything it will be the last known IP.
     - **** : Allows you to customize the name of your DNS.
@@ -64,9 +64,9 @@ For the pros :
     - **Creation date** : Date of creation of this Jeedom on your Market account (as a reminder, this is done automatically when you link it to the Market).
     - **Last update** : Jeedom&#39;s last communication with the Market.
     - **** : Jeedom hardware name.
-    - **** : Jeedom version installed.
+    - **Version** : Jeedom version installed.
 
-> ****
+> **Tip**
 >
 > Don&#39;t forget to save.
 
@@ -82,7 +82,7 @@ On this tab you can consult your SMS / Calls balance (usable with the Phone mark
 
 Here you find all your purchases and you can request the return of the invoice or receipt email.
 
-> ****
+> **Important**
 >
 > If you buy an official plugin you will receive an invoice. However for a third party plugin it is a receipt, for the invoice you have to ask the developer.
 
