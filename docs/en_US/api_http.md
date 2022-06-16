@@ -6,11 +6,11 @@ Two APIs are available : a developer-oriented JSON RPC 2 pilot.0 and another via
 
 This API is very easy to use by simple HTTP requests via URL.
 
-> ****
+> **Note**
 >
 > For all of this documentation, \#IP\_JEEDOM\# corresponds to your Jeedom access url. This is (unless you are connected to your local network) the internet address that you use to access Jeedom from outside.
 
-> ****
+> **Note**
 >
 > For all of this documentation, \#API\_KEY\# corresponds to your API key, specific to your installation. To find it, go to the "General" menu → "Configuration" → "General" tab".
 
@@ -19,8 +19,8 @@ This API is very easy to use by simple HTTP requests via URL.
 Vo l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = scenario & id = \#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#?apikey=#APIKEY#& type = scenario & id=#ID#&action=#ACTION#)
 
 - **** : matches your scenario id. The ID can be found on the relevant scenario page, in "Tools" → "Scenarios", once the scenario has been selected, next to the name of the "General" tab". Another way to find it : in "Tools" → "Scenarios", click on "Overview".
-- **** : corresponds to the action you want to apply. Available commands are : "start ", " stop ", " disable "and "enable" to respectively start, stop, disable or enable the scenario.
-- **** \[optional\] : if the action is "start", you can pass tags to the scenario (see the documentation on the scenarios) in the form tags = toto% 3D1% 20tata% 3D2 (note that% 20 corresponds to a space and% 3D to = ).
+- **stock** : corresponds to the action you want to apply. Available commands are : "start ", " stop ", " disable "and "enable" to respectively start, stop, disable or enable the scenario.
+- **tags** \[optional\] : if the action is "start", you can pass tags to the scenario (see the documentation on the scenarios) in the form tags = toto% 3D1% 20tata% 3D2 (note that% 20 corresponds to a space and% 3D to = ).
 
 ##  Info / Action command
 
@@ -30,11 +30,11 @@ Vo l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = cmd & id = \#ID\#](h
 
 The easiest way to get this URL is to go to the page **Analysis → Home automation summary**, to search for the command then to open its advanced configuration (the "gear" icon) and there, you will see a URL which already contains everything you need depending on the type and subtype of the command.
 
-> ****
+> **Note**
 >
 > It is possible for the field \#ID\# place multiple commands at once. To do this, you must pass an array in json (ex% 5B12,58,23% 5D, note that \ [and \] must be encoded, hence the% 5B and% 5D). Jeedom&#39;s return will be a json.
 
-> ****
+> **Note**
 >
 > Parameters must be encoded for urls, You can use a tool, [](https://meyerweb.com/eric/tools/dencoder/).
 
@@ -83,5 +83,5 @@ Returns all objects, equipment, commands (and their value if they are info) in j
 
 Vo l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#?apikey=#APIKEY#& type = variable & name=#NAME#&value=)**
 
-- **** : name of the variable whose value is desired (reading the value).
+- **name** : name of the variable whose value is desired (reading the value).
 - **** \[optional\] : if "value" is specified then the variable will take this value (writing a value).
