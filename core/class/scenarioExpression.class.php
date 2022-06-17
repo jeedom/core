@@ -653,7 +653,7 @@ class scenarioExpression {
 		$lastDatetime = strtotime($_startTime);
 
 		$historyAtDateTime = history::byCmdIdAtDatetime($cmd_id, $_startTime);
-		
+
 		if (!is_object($historyAtDateTime)) { // No data present before the requested date
 			if (count($histories) == 0) { // No data present in the requested period
 				return 0;
@@ -1844,7 +1844,8 @@ class scenarioExpression {
 					return;
 				}
 			} elseif ($this->getType() == 'condition') {
-				$expression = self::setTags($this->getExpression(), $scenario, true);
+				$expr = $this->getExpression();
+				$expression = self::setTags($expr, $scenario, true);
 				$message = __('Evaluation de la condition', __FILE__) . ' : [' . $expression . '] = ';
 				$result = evaluate($expression);
 				if (is_bool($result)) {
