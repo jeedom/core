@@ -6,11 +6,11 @@ Duas APIs estão disponíveis : um piloto JSON RPC 2 orientado ao desenvolvedor.
 
 Essa API é muito fácil de usar por solicitações HTTP simples via URL.
 
-> **Observação**
+> ****
 >
 > Para toda esta documentação, \#IP\_JEEDOM\# corresponde ao seu URL de acesso Jeedom. Este é (a menos que você esteja conectado à sua rede local) o endereço da Internet que você usa para acessar o Jeedom de fora.
 
-> **Observação**
+> ****
 >
 > Para toda esta documentação, \#API\_KEY\# corresponde à sua chave API, específica para sua instalação. Para encontrá-lo, vá ao menu "Geral" → guia "Configuração" → "Geral"".
 
@@ -19,7 +19,7 @@ Essa API é muito fácil de usar por solicitações HTTP simples via URL.
 Vo l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = cenário & id = \#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#?apikey=#APIKEY#& type = cenário & id=#ID#&action=#ACTION#)
 
 - **** : corresponde ao seu ID do cenário. O ID pode ser encontrado na página do cenário relevante, em "Ferramentas" → "Cenários", após a seleção do cenário, ao lado do nome da guia "Geral"". Outra maneira de encontrá-lo : em "Ferramentas" → "Cenários", clique em "Visão geral".
-- **estoque** : corresponde à ação que você deseja aplicar. Os comandos disponíveis são : "iniciar "," parar "," desabilitar "e" habilitar "para, respectivamente, iniciar, parar, desativar ou ativar o cenário.
+- **** : corresponde à ação que você deseja aplicar. Os comandos disponíveis são : "iniciar "," parar "," desabilitar "e" habilitar "para, respectivamente, iniciar, parar, desativar ou ativar o cenário.
 - **** \ [opcional \] : se a ação for "iniciar", você pode passar as tags para o cenário (consulte a documentação sobre os cenários) nas tags de formulário = para% 3D1% 20tata% 3D2 (observe que% 20 corresponde a um espaço e% 3D para = ).
 
 ##  Comando Info / Ação
@@ -30,11 +30,11 @@ Vo l'URL = [http://\#IP\_JEEDOM\#?apikey=\#APIKEY\#& type = cmd & id = \#ID\#](h
 
 A maneira mais fácil de obter esse URL é ir para a página **Análise → Resumo da automação residencial**, para pesquisar o pedido e abrir sua configuração avançada (o ícone "engrenagem"), você verá um URL que já contém tudo o que precisa, dependendo do tipo e subtipo do pedido.
 
-> **Observação**
+> ****
 >
 > É possível para o campo \#ID\# faça vários pedidos de uma só vez. Para fazer isso, você deve passar uma matriz em json (ex% 5B12,58,23% 5D, observe que \ [e \] devem ser codificados, portanto,% 5B e% 5D). O retorno de Jeedom será um json.
 
-> **Observação**
+> ****
 >
 > Os parâmetros devem ser codificados para urls, você pode usar uma ferramenta, [](https://meyerweb.com/eric/tools/dencoder/).
 

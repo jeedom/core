@@ -11,7 +11,7 @@ The Logs page is quite simple :
 On the left, a list of available logs, with a search field to filter the name of the logs.
 Top right 5 buttons :
 
-- **To research** : Allows you to filter the display of the current log.
+- **** : Allows you to filter the display of the current log.
 - **Pause / Resume** : Pause / resume real-time update of the current log.
 - **Download** : Download the current log.
 - **** : Clear the current log.

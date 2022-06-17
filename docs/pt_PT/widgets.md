@@ -18,13 +18,13 @@ Os dispositivos (ou blocos) têm certos parâmetros de configuração acessívei
 
 Este widget é um pouco especial porque é um widget de vários comandos, ou seja, ele reúne o valor de vários comandos. Aqui ele assume comandos de temperatura e umidade. Para configurá-lo, você deve atribuir o widget aos controles de temperatura e umidade do seu equipamento.
 
-![Widge HygroThermographe](./images/widgets3.png)
+![Widg HygroThermographe](./images/widgets3.png)
 
 ##### Parâmetros opcionais)
 
 - **** *(échelle)* : Permite que você altere o tamanho do widget, preenchendo o parâmetro **** para `0.5`, o widget será 2 vezes menor.
 
->**IMPORTANTE**      
+>****      
 >É ABSOLUTAMENTE necessário que os tipos genéricos sejam indicados; `Temperatura` no controle de temperatura e` Umidade` no controle de umidade (isso é configurado na configuração avançada do controle, guia de configuração).
 
 >****      
@@ -50,7 +50,7 @@ Widget para controle de ação / cursor com botão "****" e um botão "**-**" pe
 
 Widget para exibir os níveis de água.
 
-![Widge Rain](./images/widgets4.png)
+![Widg Rain](./images/widgets4.png)
 
 ##### Parâmetros opcionais)
 
@@ -66,7 +66,7 @@ Esta possibilidade pode ser usada tanto com widgets padrão quanto com widgets p
 
 Para isso, é necessário levar em consideração 2 pré-requisitos :
 
-- O **2 comandos de ação / falha** deve estar vinculado a um pedido **info / binário** que irá armazenar o estado atual do dispositivo.
+-  **2 comandos de ação / falha** deve estar vinculado a um pedido **info / binário** que irá armazenar o estado atual do dispositivo.
 
 >****      
 >![Widget Alternar Link](./images/widgets5.png)
@@ -97,7 +97,7 @@ Para isso, é necessário levar em consideração 2 pré-requisitos :
 `` ''
 
 >****      
->Desde que o nome padronizado permaneça legível, é possível adaptar a nomenclatura, por exemplo *open_volet* Onde *shutter_close*, ** e **, .
+>Desde que o nome padronizado permaneça legível, é possível adaptar a nomenclatura, por exemplo *open_volet*  *shutter_close*, **  **, .
 
 ## Widgets personalizados
 
@@ -113,9 +113,9 @@ Existem dois tipos de widgets personalizados :
 ![](./images/widgets.png)
 
 Você tem quatro opções :
-- **Adicionar** : Permite que você adicione um widget **.
+- **** : Permite que você adicione um widget **.
 - **** : Permite que você importe um widget como um arquivo json exportado anteriormente.
-- **Codificado** : Acesse a página de edição do widget **.
+- **** : Acesse a página de edição do widget **.
 - **** : Abre uma janela que permite substituir um widget por outro em todos os dispositivos que o utilizam.
 
 ### Meus widgets
@@ -143,10 +143,10 @@ Uma vez na página de configuração de um widget, um menu de contexto é acess�
 
 ### Criando um widget
 
-Uma vez na página **Ferramentas → Widgets** você tem que clicar no botão "**Adicionar**" e dê um nome ao seu novo widget.
+Uma vez na página **Ferramentas → Widgets** você tem que clicar no botão "****" e dê um nome ao seu novo widget.
 
-Próximo :
-- Você escolhe se isso se aplica a um pedido de tipo **Ações** Onde ****.
+ :
+- Você escolhe se isso se aplica a um pedido de tipo ****  ****.
 - Dependendo da escolha anterior, você terá que **escolha o subtipo** da ordem.
 -  **o modelo** entre aqueles que estarão disponíveis de acordo com as escolhas anteriores.
 - Uma vez que o modelo foi escolhido, Jeedom exibe as opções de configuração para ele abaixo.
@@ -161,8 +161,8 @@ Dependendo do tipo de widget, geralmente você pode personalizar os ícones, col
 
 Existem dois tipos de modelo :
 
-- O "****" : como um ícone / imagem para o "****" e um ícone / imagem para o "****".
-- O "****" : Isso torna possível definir, por exemplo, uma imagem se o comando tiver o valor "**XX**" e outro tão maior que "****" ou se menos que "****". Também funciona para valores de texto, uma imagem se o valor for "****", outro se "****" E assim por diante...
+-  "****" : como um ícone / imagem para o "****" e um ícone / imagem para o "****".
+-  "****" : Isso torna possível definir, por exemplo, uma imagem se o comando tiver o valor "**XX**" e outro tão maior que "****" ou se menos que "****". Também funciona para valores de texto, uma imagem se o valor for "****", outro se "****" E assim por diante...
 
 #### Remplacement
 
@@ -174,7 +174,7 @@ Para modelos usando imagens, você pode configurar a largura do widget em pixels
 
 >****     
 >Para usuários avançados, é possível colocar tags nos valores de substituição e especificar seu valor na configuração avançada do comando.    
->Se, por exemplo, em **Largura da área de trabalho** você coloca como valor `#largeur_desktop#`` (**tenha cuidado para colocar o** ``#`` **autour**) puis dans la configurati avancée d'une commande, ongle affichage → "**Paramètres optionnels widget**" vous ajoutez  paramètre ``largeur_desktop`` (**sans les** ``#`) e dê a ele o valor "**90**", este widget personalizado neste comando terá 90 pixels de largura. Isso permite que você adapte o tamanho do widget a cada pedido sem ter que fazer um widget específico a cada vez.
+>Se, por exemplo, em **Largura da área de trabalho** você coloca como valor `#largeur_desktop#`` (**tenha cuidado para colocar o** ``#`` **autour**) puis dans la configurati avancée d'une commande, ongl affichage → "**Paramètres optionnels widget**" vous ajoutez  paramètre ``largeur_desktop`` (**sans les** ``#`) e dê a ele o valor "**90**", este widget personalizado neste comando terá 90 pixels de largura. Isso permite que você adapte o tamanho do widget a cada pedido sem ter que fazer um widget específico a cada vez.
 
 #### Test
 
@@ -188,13 +188,13 @@ Os testes estão no formato : ``#value# == #value#`será automaticamente substit
 - ``#value# >=  #value# <= 5``
 - ``#value# == 'toto'``
 
->**Observação**     
+>****     
 >É essencial mostrar os apóstrofos (**'**) em torno do texto para comparar se o valor é texto *(info / outro)*.
 
->**Observação**     
+>****     
 >Para usuários avançados, também é possível usar funções javascript, como `#value#.match ("^ plop") `, aqui testamos se o texto começa com` plop`.
 
->**Observação**     
+>****     
 >É possível exibir o valor do comando no widget especificando `#value#`no código HTML do teste. Para exibir a unidade, adicione `#unite#``.
 
 ## Widget de código
@@ -214,7 +214,7 @@ No modo de código, você tem acesso a diferentes tags para pedidos, aqui está 
 - **#valueDate#** : data do valor do pedido
 - **#collectDate#** : data de coleta do pedido
 - **#alertLevel#** : nível de alerta (consulte [](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) para a lista)
-- **#hide_history#** : se o histórico (máximo, mínimo, média, tendência) deve ser oculto ou não. Quanto ao #hide_name# está vazio ou oculto e, portanto, pode ser usado diretamente em uma classe. IMPORTANTE se essa tag não for encontrada no seu widget, as tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# e #tendance# não será substituído pelo Jeedom.
+- **#hide_history#** : se o histórico (máximo, mínimo, média, tendência) deve ser oculto ou não. Quanto ao #hide_name# está vazio ou oculto e, portanto, pode ser usado diretamente em uma classe. IMPORTANTE se essa tag não for encontrada no seu widget, as tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue#  #tendance# não será substituído pelo Jeedom.
 - **#minHistoryValue#** : valor mínimo durante o período (período definido na configuração do Jeedom pelo usuário)
 - **#averageHistoryValue#** : valor médio ao longo do período (período definido na configuração do Jeedom pelo usuário)
 - **#maxHistoryValue#** : valor máximo durante o período (período definido na configuração do Jeedom pelo usuário)

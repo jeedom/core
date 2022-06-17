@@ -1,7 +1,7 @@
 # Objets
 **Tools → Objects**
 
-The **** allow you to define the tree structure of your home automation.
+ **** allow you to define the tree structure of your home automation.
 
 All the equipment you create must belong to an object and are therefore more easily identifiable. We then say that the object is the **** equipment.
 
@@ -60,15 +60,15 @@ Here are the different characteristics to configure an object :
 - **** : Check this box to make this object visible.
 - **Hide on the Dashboard** : Check this box to hide the object on the Dashboard. It is still kept in the list, which allows it to be displayed, but only explicitly.
 - **Hide on summary** : Check this box to hide the object on the summary'. It is still kept in the list, which allows it to be displayed, but only explicitly.
-- **Action from synthesis** : Here you can indicate a view or a design to go to when you click on the object from the Summary. * : Dashboard*.
+- **Action from synthesis** : Here you can indicate a view or a design to go to when you click on the object from the Summary. * : *.
 
-#### Display :
+####  :
 
 - **Icon** : Allows you to choose an icon for your object.
 - **Custom colors** : Activates the taking into account of the two custom color parameters below.
 - **Tag color** : Allows you to choose the color of the object and the equipment attached to it.
 - **Tag text color** : Allows you to choose the color of the text of the object. This text will be over the **Tag color**. You choose a color to make the text readable.
-- **Only on synthesis** : Allows you to put an image for the Synthesis without it being used as a background image, especially on the page *Dashboard* of this object.
+- **Only on synthesis** : Allows you to put an image for the Synthesis without it being used as a background image, especially on the page ** of this object.
 - **** : You have the option to upload an image or delete it. In jpeg format this image will be the background image of the object when you display it on the Dashboard. It will also be used for the thumbnail of the piece on the Synthesis.
 
 > ****

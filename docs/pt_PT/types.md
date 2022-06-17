@@ -1,7 +1,7 @@
 # Tipos de equipamento
 **Ferramentas → Tipos de equipamento**
 
-Os sensores e atuadores no Jeedom são gerenciados por plug-ins, que criam equipamentos com comandos ** (sensor) ou *Ações* (atuador do). Isso torna possível disparar ações com base na mudança de certos sensores, como acender uma luz na detecção de movimento. Mas o Jeedom Core e plug-ins como **, **, *Casa inteligente do Google*, *Alexa Casa Inteligente* etc, não sei o que é este equipamento : Uma tomada, uma luz, uma veneziana, etc.
+Os sensores e atuadores no Jeedom são gerenciados por plug-ins, que criam equipamentos com comandos ** (sensor) ou ** (atuador do). Isso torna possível disparar ações com base na mudança de certos sensores, como acender uma luz na detecção de movimento. Mas o Jeedom Core e plug-ins como **, **, *Casa inteligente do Google*, *Alexa Casa Inteligente* etc, não sei o que é este equipamento : Uma tomada, uma luz, uma veneziana, etc.
 
 Para superar esse problema, especialmente com assistentes de voz (*Acenda a luz da sala*), Core introduziu o **Tipos Genéricos**, usado por esses plugins.
 
@@ -17,18 +17,18 @@ Esta página permite que esses Tipos Genéricos sejam configurados de forma mais
 
 Esta página oferece armazenamento por tipo de equipamento : Soquete, luz, obturador, termostato, câmera, etc. Inicialmente, a maior parte do seu equipamento será classificado em **Equipamento sem tipo**. Para atribuir um tipo a eles, você pode movê-los para outro tipo ou clicar com o botão direito no equipamento para movê-lo diretamente. O tipo de equipamento não é realmente útil em si, sendo o mais importante os tipos de pedido. Você pode, portanto, ter um Equipamento sem um Tipo, ou um Tipo que não corresponda necessariamente aos seus comandos. Você pode, é claro, misturar tipos de controles no mesmo equipamento. Por enquanto, é mais um armazenamento, uma organização lógica, que talvez servirá em versões futuras.
 
-> **Dica**
+> ****
 >
 > - Quando você move o equipamento no jogo **Equipamento sem tipo**, Jeedom sugere que você remova os tipos genéricos de seus pedidos.
 > - Você pode mover vários equipamentos de uma vez marcando as caixas de seleção à esquerda deles.
 
 ## Tipo de comando
 
-Uma vez que um item do equipamento é posicionado na posição correta **, clicando nele você acessa a lista de seus pedidos, colorida de forma diferente se for um ** (Azul) ou um *Ações* (Orange).
+Uma vez que um item do equipamento é posicionado na posição correta **, clicando nele você acessa a lista de seus pedidos, colorida de forma diferente se for um ** (Azul) ou um ** (Orange).
 
 Ao clicar com o botão direito em um pedido, você pode atribuir a ele um tipo genérico correspondente às especificações desse pedido (tipo de informação / ação, numérico, subtipo binário, etc).
 
-> **Dica**
+> ****
 >
 > - O menu contextual de comandos exibe o tipo de equipamento em negrito, mas ainda permite atribuir qualquer Tipo Genérico de qualquer tipo de equipamento.
 
@@ -38,7 +38,7 @@ Em cada dispositivo, você tem dois botões :
 
 - **Tipos de redefinição** : Esta função remove os tipos genéricos de todos os comandos do equipamento.
 
-> **Atenção**
+> ****
 >
 > Nenhuma alteração é feita antes de salvar, com o botão no canto superior direito da página.
 
@@ -80,7 +80,7 @@ Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. S
 
 ## Lista de tipos de núcleo genérico
 
-> **Dica**
+> ****
 >
 > - Você pode encontrar essa lista diretamente no Jeedom, nesta mesma página, com o botão **** canto superior direito.
 
@@ -88,9 +88,9 @@ Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. S
 |:--------|:----------------|:--------:|:---------:|
 |  | Cronômetro de estado |  | numeric
 |  | Status do temporizador (pausa ou não) |  | binário, numérico
-| DEFINIR TEMPORIZADOR |  | Ações | slider
-|  | Pausar cronômetro | Ações | other
-|  | Resumo do cronômetro | Ações | other
+| DEFINIR TEMPORIZADOR |  |  | slider
+|  | Pausar cronômetro |  | other
+|  | Resumo do cronômetro |  | other
 
 | **Bateria (id: Battery)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -101,30 +101,30 @@ Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. S
 |:--------|:----------------|:--------:|:---------:|
 |  | Url da câmera |  | string
 |  | Status de gravação da câmera |  | binary
-|  | Movimento da câmera para cima | Ações | other
-|  | Movimento da câmera para baixo | Ações | other
-|  | Movimento da câmera para a esquerda | Ações | other
-|  | Movimento da câmera para a direita | Ações | other
-|  | Zoom da câmera para frente | Ações | other
-|  | Zoom da câmera para trás | Ações | other
-|  | Parar câmera | Ações | other
-|  | Predefinição da câmera | Ações | other
-|  | Gravação de câmera | Ações |
-|  | Câmera instantânea | Ações |
+|  | Movimento da câmera para cima |  | other
+|  | Movimento da câmera para baixo |  | other
+|  | Movimento da câmera para a esquerda |  | other
+|  | Movimento da câmera para a direita |  | other
+|  | Zoom da câmera para frente |  | other
+|  | Zoom da câmera para trás |  | other
+|  | Parar câmera |  | other
+|  | Predefinição da câmera |  | other
+|  | Gravação de câmera |  |
+|  | Câmera instantânea |  |
 
 | **Aquecimento (id: Heating)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 |  | Status de aquecimento do fio piloto |  | binary
-| AQUECIMENTO_ON | Botão LIGADO de aquecimento do fio piloto | Ações | other
-| AQUECIMENTO_OFF | Botão de aquecimento do fio piloto DESLIGADO | Ações | other
-|  | Botão do fio piloto de aquecimento | Ações | other
+| AQUECIMENTO_ON | Botão LIGADO de aquecimento do fio piloto |  | other
+| AQUECIMENTO_OFF | Botão de aquecimento do fio piloto DESLIGADO |  | other
+|  | Botão do fio piloto de aquecimento |  | other
 
 | **Eletricidade (id: Electricity)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 |  | Energia elétrica |  | numeric
 |  | Consumo de energia |  | numeric
 |  |  |  | numeric
-|  | Reiniciar | Ações | other
+|  | Reiniciar |  | other
 
 | **Ambiente (id: Environment)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -148,7 +148,7 @@ Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. S
 |  |  |  | numeric
 |  |  |  | binário, numérico
 |  |  Genérico |  |
-|  |  Genérico | Ações | other
+|  |  Genérico |  | other
 
 | **Light (id: Light)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -157,18 +157,18 @@ Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. S
 | COR CLARA | Cor clara |  | string
 |  | Estado Leve (Binário) |  | binary
 |  | Cor da temperatura da luz |  | numeric
-|  | Alternar luz | Ações | other
-| LUZES LIGADAS | Botão de luz ligado | Ações | other
-| LUZ APAGADA | Botão de luz apagado | Ações | other
-|  | Luz deslizante | Ações | slider
-|  | Cor clara | Ações | color
-|  | Modo de luz | Ações | other
-|  | Cor da temperatura da luz | Ações |
+|  | Alternar luz |  | other
+| LUZES LIGADAS | Botão de luz ligado |  | other
+| LUZ APAGADA | Botão de luz apagado |  | other
+|  | Luz deslizante |  | slider
+|  | Cor clara |  | color
+|  | Modo de luz |  | other
+|  | Cor da temperatura da luz |  |
 
 | **Modo (id: Mode)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 |  | Modo de status |  | string
-|  | Modo de mudança | Ações | other
+|  | Modo de mudança |  | other
 
 | **Multimídia (id: Multimedia)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -180,17 +180,17 @@ Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. S
 |  |  |  | string
 |  |  |  | numérico, string
 |  |  |  | binary
-|  |  | Ações | slider
-|  |  | Ações | outro controle deslizante
-|  |  | Ações | other
-|  |  | Ações | other
-|  |  | Ações | other
-|  |  | Ações | other
-|  | Anterior | Ações | other
-|  |  | Ações | other
-|  |  | Ações | other
-|  |  | Ações | other
-|  | Sem mudo | Ações | other
+|  |  |  | slider
+|  |  |  | outro controle deslizante
+|  |  |  | other
+|  |  |  | other
+|  |  |  | other
+|  |  |  | other
+|  | Anterior |  | other
+|  |  |  | other
+|  |  |  | other
+|  |  |  | other
+|  | Sem mudo |  | other
 
 | **Tempo (id: Weather)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -233,23 +233,23 @@ Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. S
 |  | Estado de garagem (abertura) |  | binary
 |  |  |  | binary
 |  | Janela |  | binary
-|  | Botão de bloqueio aberto | Ações | other
-|  | Botão de bloqueio Fechar | Ações | other
-|  | Botão de abertura do portão ou garagem | Ações | other
-|  | Botão de fechamento do portão ou garagem | Ações | other
-|  | Botão de alternância de portão ou garagem | Ações | other
+|  | Botão de bloqueio aberto |  | other
+|  | Botão de bloqueio Fechar |  | other
+|  | Botão de abertura do portão ou garagem |  | other
+|  | Botão de fechamento do portão ou garagem |  | other
+|  | Botão de alternância de portão ou garagem |  | other
 
 | **Soquete (id: Outlet)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 |  | Soquete de estado |  | numérico, binário
-|  | No Soquete de Botão | Ações | other
-|  | Botão de soquete desligado | Ações | other
-|  | Soquete deslizante | Ações |
+|  | No Soquete de Botão |  | other
+|  | Botão de soquete desligado |  | other
+|  | Soquete deslizante |  |
 
 | **Robô (código: Robot)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 |  | Base estadual |  | binary
-|  | De volta à base | Ações | other
+|  | De volta à base |  | other
 
 | **Segurança (id: Security)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -260,11 +260,11 @@ Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. S
 |  |  |  | binary
 |  |  |  | binary
 |  |  |  | binário, numérico
-|  | Botão da sirene desligado | Ações | other
-|  | Botão de sirene ligado | Ações | other
-| ALARME_ARMED | Alarme armado | Ações | other
-|  | Alarme liberado | Ações | other
-|  | Modo de Alarme | Ações | other
+|  | Botão da sirene desligado |  | other
+|  | Botão de sirene ligado |  | other
+| ALARME_ARMED | Alarme armado |  | other
+|  | Alarme liberado |  | other
+|  | Modo de Alarme |  | other
 
 | **Termostato (id: Thermostat)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -277,26 +277,26 @@ Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. S
 |  | Status do termostato (HUMANO) (apenas para termostato de plug-in) |  | string
 | TERMOSTATO_HUMIDITY | Termostato de umidade ambiente |  | numeric
 |  | Definir umidade |  | slider
-|  | Termostato de ponto de ajuste | Ações | slider
-|  | Modo do termostato (apenas para termostato de plug-in) | Ações | other
-|  | Termostato de bloqueio (apenas para termostato de plug-in) | Ações | other
-|  | Desbloquear termostato (apenas para termostato de plug-in) | Ações | other
-|  | Definir umidade | Ações | slider
+|  | Termostato de ponto de ajuste |  | slider
+|  | Modo do termostato (apenas para termostato de plug-in) |  | other
+|  | Termostato de bloqueio (apenas para termostato de plug-in) |  | other
+|  | Desbloquear termostato (apenas para termostato de plug-in) |  | other
+|  | Definir umidade |  | slider
 
 | **Ventilador (id: Fan)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 |  | Status da velocidade do ventilador |  | numeric
 |  | Rotação de estado |  | numeric
-| VELOCIDADE DO VENTILADOR | Velocidade do ventilador | Ações | slider
-|  |  | Ações | slider
+| VELOCIDADE DO VENTILADOR | Velocidade do ventilador |  | slider
+|  |  |  | slider
 
 | **Painel (id: Shutter)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 |  | Painel de status |  | binário, numérico
 |  | Painel de status do BSO |  | binário, numérico
-|  | Botão Pane Up | Ações | other
-|  | Botão do painel para baixo | Ações | other
-|  | Botão de parada do obturador | Ações |
-|  | Painel de botões deslizantes | Ações | slider
-|  | Botão para cima do painel BSO | Ações | other
-|  | Botão para baixo do painel BSO | Ações | other
+|  | Botão Pane Up |  | other
+|  | Botão do painel para baixo |  | other
+|  | Botão de parada do obturador |  |
+|  | Painel de botões deslizantes |  | slider
+|  | Botão para cima do painel BSO |  | other
+|  | Botão para baixo do painel BSO |  | other

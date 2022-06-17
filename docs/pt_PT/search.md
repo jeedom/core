@@ -3,7 +3,7 @@
 
 Jeedom oferece um mecanismo de busca interno.
 
-![Pesquisar](./images/search_intro.gif)
+![](./images/search_intro.gif)
 
 Você pode fazer pesquisas de diferentes tipos :
 
@@ -13,12 +13,12 @@ Selecione um dispositivo com o ícone à direita do campo.
 
 O mecanismo será exibido nas tabelas abaixo :
 
-- O **Cenas** usando este equipamento.
-- O **** exibindo este equipamento.
-- O **** exibindo este equipamento.
-- O **** usando este equipamento.
+-  **Cenas** usando este equipamento.
+-  **** exibindo este equipamento.
+-  **** exibindo este equipamento.
+-  **** usando este equipamento.
 - Os outros **** usando este equipamento.
-- O **** usando este equipamento.
+-  **** usando este equipamento.
 
 ## Por Encomenda
 
@@ -26,11 +26,11 @@ Selecione um pedido com o ícone à direita do campo.
 
 O mecanismo será exibido nas tabelas abaixo :
 
-- O **Cenas** usando este comando.
-- O **** exibindo este comando.
-- O **** exibindo este comando.
-- O **** usando este comando.
-- O **** usando este comando.
+-  **Cenas** usando este comando.
+-  **** exibindo este comando.
+-  **** exibindo este comando.
+-  **** usando este comando.
+-  **** usando este comando.
 - Os outros **** usando este comando.
 
 ## Por variável
@@ -39,10 +39,10 @@ Selecione uma variável na lista suspensa.
 
 O mecanismo será exibido nas tabelas abaixo :
 
-- O **Cenas** usando esta variável.
-- O **** usando esta variável.
-- O **** usando esta variável.
-- O **** usando esta variável.
+-  **Cenas** usando esta variável.
+-  **** usando esta variável.
+-  **** usando esta variável.
+-  **** usando esta variável.
 
 ## Por Plugin
 
@@ -50,12 +50,12 @@ Selecione um plug-in na lista suspensa.
 
 O mecanismo será exibido nas tabelas abaixo :
 
-- O **Cenas** usando este plugin.
-- O **** exibindo este plugin.
-- O **** exibindo este plugin.
-- O **** usando este plugin.
-- O **** usando este plugin.
-- O **** usando este plugin.
+-  **Cenas** usando este plugin.
+-  **** exibindo este plugin.
+-  **** exibindo este plugin.
+-  **** usando este plugin.
+-  **** usando este plugin.
+-  **** usando este plugin.
 
 ## Por palavra
 
@@ -63,15 +63,15 @@ Digite uma sequência de caracteres no campo de pesquisa. Valide com ** ou com o
 
 O mecanismo será exibido nas tabelas abaixo :
 
-- O **Cenas** usando esta string.
+-  **Cenas** usando esta string.
 	Pesquise expressões, comentários, blocos de código.
-- O **** usando esta string.
+-  **** usando esta string.
 	Pesquisar nos campos **.
-- O **** usando esta string.
+-  **** usando esta string.
 	Pesquisar nos campos **, **, **, **, **.
-- O **** usando esta string.
+-  **** usando esta string.
 	Pesquisar nos campos **, **, **, *tipo_genérico*, .
-- O **** usando esta string.
+-  **** usando esta string.
 	Pesquisa de texto do Notes.
 
 ## Por ID
@@ -80,8 +80,8 @@ Insira um número correspondente a um Id pesquisado no campo de pesquisa. Valide
 
 O mecanismo será exibido nas tabelas abaixo :
 
-- A **Cenas** tendo este id.
-- A **** tendo este id.
+-  **Cenas** tendo este id.
+-  **** tendo este id.
 -  **** tendo este id.
 - L'**** tendo este id.
 - L'**** tendo este id.

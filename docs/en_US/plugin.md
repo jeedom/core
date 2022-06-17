@@ -10,7 +10,7 @@ There is therefore a list of plugins in alphabetical order and a link to the mar
 
 By clicking on a plugin, you access its configuration. At the top, you find the name of the plugin, then in parentheses, its name in Jeedom (ID) and finally, the type of installed version (stable, beta).
 
-> **Important**
+> ****
 >
 > When downloading a plugin, it is disabled by default. So you have to activate it by yourself.
 
@@ -42,7 +42,7 @@ At the top of the window you have filters :
 - **Free / Pay** : displays only free or paid.
 - **Official / Recommended** : displays only official or recommended plugins.
 - **Category drop-down menu** : displays only certain categories of plugins.
-- **To research** : allows you to search for a plugin (in the name or description of it).
+- **** : allows you to search for a plugin (in the name or description of it).
 - **Username** : displays the user name used to connect to the Market as well as the connection status.
 
 > ****
@@ -60,11 +60,11 @@ Once you have found the plugin you want, just click on it to bring up its file. 
 
 Below, you will find the description of the plugin, the compatibility (if Jeedom detects an incompatibility, it will notify you), the opinions on the plugin (you can note it here) and additional information (the author, the person who made the latest update, a link to the doc, the number of downloads). On the right you find a &quot;Changelog&quot; button which allows you to have all the history of modifications, a &quot;Documentation&quot; button which refers to the documentation of the plugin. Then you have the available language and the various information on the date of the last stable version.
 
-> **Important**
+> ****
 >
 > It is really not recommended to put a beta plugin on a non beta Jeedom, a lot of operational problems can result.
 
-> **Important**
+> ****
 >
 > Some plugins are chargeable, in this case the plugin will offer you to buy it. Once done, you have to wait about ten minutes (payment validation time), then return to the plugin file to install it normally.
 
@@ -98,7 +98,7 @@ By clicking on the icon of a plugin, you open its configuration page.
 - **** : The author of the plugin, link to the market and the plugins of this author.
 - **** : Indicates the license of the plugin which will generally be AGPL.
 
-- **Stock** : Allows you to enable or disable the plugin. The button **Open** Allows you to go directly to the plugin page.
+- **** : Allows you to enable or disable the plugin. The button **** Allows you to go directly to the plugin page.
 - **** : The version of the plugin installed.
 - **Prerequisites** : Indicates the minimum Jeedom version required for the plugin.
 

@@ -12,7 +12,7 @@ Esses pedidos podem ser obtidos por :
 
 O valor das interações reside na integração simplificada em outros sistemas, como smartphones, tablets, outras caixas de automação residencial, etc.
 
-> **Dica**
+> ****
 >
 > Você pode abrir uma interação fazendo :
 > - Clique em um deles.
@@ -30,11 +30,11 @@ Uma vez na configuração de uma interação, você tem um menu contextual com o
 
 No topo da página, existem 3 botões :
 
-- **Adicionar** : Permite criar novas interações.
+- **** : Permite criar novas interações.
 - **Regenerar** : Recréer toutes les interactions (peut être très long &gt; 5mn).
 - **** : Abra uma caixa de diálogo para escrever e testar uma frase.
 
-> **Dica**
+> ****
 >
 > Se você possui uma interação que gera sentenças para luzes, por exemplo, e adiciona um novo módulo de controle de luz, precisará regenerar todas as interações ou ir para a interação em questão e salvá-la novamente para criar as frases deste novo módulo.
 
@@ -52,14 +52,14 @@ A página de configuração consiste em várias guias e botões :
 
 - **** : Exibe o número de frases da interação (um clique nelas mostra a você).
 - **** : Registra a interação atual.
-- **Deletar** : Excluir interação atual.
-- **Duplicado** : Duplicar a interação atual.
+- **** : Excluir interação atual.
+- **** : Duplicar a interação atual.
 
 ### Guia Geral
 
-- **Sobrenome** : Nome da interação (pode estar vazio, o nome substitui o texto da solicitação na lista de interação).
-- **Banda** : Grupo de interação, isso permite organizá-los (pode estar vazio, portanto estará no grupo "none").
-- **De ativos** : Permite ativar ou desativar a interação.
+- **** : Nome da interação (pode estar vazio, o nome substitui o texto da solicitação na lista de interação).
+- **** : Grupo de interação, isso permite organizá-los (pode estar vazio, portanto estará no grupo "none").
+- **** : Permite ativar ou desativar a interação.
 - **** : A sentença do modelo de geração (obrigatório).
 - **** : Permite definir sinônimos nos nomes dos comandos.
 - **Resposta** : A resposta para fornecer.
@@ -83,7 +83,7 @@ Use se você deseja direcionar um ou mais comandos específicos ou passar parâm
 
 #### Exemples
 
-> **Observação**
+> ****
 >
 > As capturas de tela podem ser diferentes em vista dos desenvolvimentos.
 
@@ -103,7 +103,7 @@ Podemos muito bem imaginar fazendo o mesmo com várias ações para acender vár
 
 Nos 2 exemplos acima, a sentença modelo é idêntica, mas as ações resultantes dela mudam de acordo com o que está configurado na parte "Ação", portanto, já podemos, com uma interação simples com uma única frase, imaginar ações combinadas entre vários comandos e vários cenários (também podemos acionar cenários na parte de ação das interações).
 
-> **Dica**
+> ****
 >
 > Para adicionar um cenário, crie uma nova ação, escreva "cenário" sem acento, pressione a tecla Tab no teclado para abrir o seletor de cenário.
 
@@ -111,7 +111,7 @@ Nos 2 exemplos acima, a sentença modelo é idêntica, mas as ações resultante
 
 Aqui veremos todo o interesse e todo o poder das interações. Com uma sentença modelo, poderemos gerar sentenças para todo um grupo de comandos.
 
-Retomaremos o que foi feito acima, excluiremos as ações que adicionamos e, em vez da frase fixa, em "Solicitação", usaremos as tags **#commande#** e **#equipement#**. Portanto, a Jeedom substituirá essas tags pelo nome dos comandos e pelo nome do equipamento (podemos ver a importância de ter nomes consistentes de comando / equipamento).
+Retomaremos o que foi feito acima, excluiremos as ações que adicionamos e, em vez da frase fixa, em "Solicitação", usaremos as tags **#commande#**  **#equipement#**. Portanto, a Jeedom substituirá essas tags pelo nome dos comandos e pelo nome do equipamento (podemos ver a importância de ter nomes consistentes de comando / equipamento).
 
 ![interact006](../images/interact006.png)
 
@@ -285,7 +285,7 @@ Então podemos ver uma regexp :
 
 Isso permite que você exclua todos os comandos que possuem uma dessas palavras em suas frases
 
-> **Observação**
+> ****
 >
 > O regexp aqui é uma versão simplificada para fácil utilização. Portanto, podemos usar expressões tradicionais ou expressões simplificadas, como neste exemplo.
 
@@ -297,9 +297,9 @@ Isso permite que você exclua todos os comandos que possuem uma dessas palavras 
 
 ![interact022](../images/interact022.png)
 
-Como podemos ver, existe aqui no pedido a tag **#consigne#** (você pode colocar o que deseja), incluído no controle do inversor, para aplicar o valor desejado. Para fazer isso, temos 3 partes : *  : em que criamos uma tag que representará o valor que será enviado para a interação. \* Resposta : reutilizamos a tag da resposta para garantir que o Jeedom entenda corretamente a solicitação. \* Ações : colocamos uma ação na lâmpada que queremos acionar e, no valor que passamos, nossa tag **.
+Como podemos ver, existe aqui no pedido a tag **#consigne#** (você pode colocar o que deseja), incluído no controle do inversor, para aplicar o valor desejado. Para fazer isso, temos 3 partes : *  : em que criamos uma tag que representará o valor que será enviado para a interação. \* Resposta : reutilizamos a tag da resposta para garantir que o Jeedom entenda corretamente a solicitação. \*  : colocamos uma ação na lâmpada que queremos acionar e, no valor que passamos, nossa tag **.
 
-> **Observação**
+> ****
 >
 > Podemos usar qualquer tag, exceto as já usadas pelo Jeedom, pode haver várias para controlar, por exemplo, vários comandos. Observe também que todas as tags são passadas para os cenários iniciados pela interação (no entanto, é necessário que o cenário esteja em "Executar em primeiro plano"").
 
@@ -350,6 +350,6 @@ As interações fazem muitas coisas em particular. Você pode programar uma aç�
 
 ![interact23](../images/interact23.JPG)
 
-> **Observação**
+> ****
 >
 > Você notará na resposta a tag \#value# isto contém, no caso de uma interação programada, o tempo efetivo de programação
