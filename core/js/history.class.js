@@ -554,6 +554,10 @@ jeedom.history.drawChart = function(_params) {
               valueDecimals: _params.round,
             },
             plotOptions: {
+              column: {
+                grouping: false,
+                stacking: 'normal'
+              },
               series: {
                 animation: {
                   duration: (getUrlVars('report') == 1) ? 0 : jeedom.history.chartDrawTime
@@ -651,6 +655,11 @@ jeedom.history.drawChart = function(_params) {
         } else {
           if (_params.option.graphType == 'areaspline') {
             _params.option.graphType = 'area'
+          }
+          if(_params.option.invertData){
+            for (var i in data.result.data) {
+              data.result.data[i][1] = -data.result.data[i][1]
+            }
           }
           var series = {
             dataGrouping: dataGrouping,
@@ -754,6 +763,10 @@ jeedom.history.drawChart = function(_params) {
             _jeeId: _params.el,
             credits: { enabled: false },
             plotOptions: {
+              column: {
+                grouping: false,
+                stacking: 'normal'
+              },
               series: {
                 animation: {
                   duration: (getUrlVars('report') == 1) ? 0 : jeedom.history.chartDrawTime
