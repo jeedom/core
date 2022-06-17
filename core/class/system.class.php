@@ -656,7 +656,7 @@ class system {
 		}
 	}
 
-	public static function installPackage($_type, $_package, $_version = null) {
+	public static function installPackage($_type, $_package, $_version = '') {
 		switch ($_type) {
 			case 'apt':
 				if ($_package == 'node' || $_package == 'nodejs' || $_package == 'npm') {
@@ -669,7 +669,7 @@ class system {
 				}
 				return self::getCmdSudo() . ' pip2 install --force-reinstall --ignore-installed --upgrade ' . $_package;
 			case 'pip3':
-				if ($_version != null) {
+				if ($_version != '') {
 					$_package .= '==' . $_version;
 				}
 				return self::getCmdSudo() . ' pip3 install --force-reinstall --ignore-installed --upgrade ' . $_package;
