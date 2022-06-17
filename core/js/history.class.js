@@ -977,7 +977,9 @@ jeedom.history.drawChart = function(_params) {
 
       //set plotband:
       var extremes = jeedom.history.chart[_params.el].chart.xAxis[0].getExtremes()
-      var plotband = jeedom.history.generatePlotBand(extremes.min, extremes.max)
+      if(!isset(_params.disablePlotBand) || _params.disablePlotBand == false){
+        var plotband = jeedom.history.generatePlotBand(extremes.min, extremes.max)
+      }
       for (var i in plotband) {
         jeedom.history.chart[_params.el].chart.xAxis[0].addPlotBand(plotband[i])
       }
