@@ -458,9 +458,9 @@ class system {
 				}
 			}
 			if ($_foreground) {
-				echo shell_exec(self::installPackage($info['type'], $info['name']) . ' 2>&1');
+				echo shell_exec(self::installPackage($info['type'], $info['name'], $info['needVersion']) . ' 2>&1');
 			} else {
-				$cmd .= self::installPackage($info['type'], $info['name']) . "\n";
+				$cmd .= self::installPackage($info['type'], $info['name'], $info['needVersion']) . "\n";
 				$count++;
 				$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
 			}
@@ -552,7 +552,7 @@ class system {
 		}
 	}
 
-	public static function installPackage($_type, $_package) {
+	public static function installPackage($_type, $_package, $_version = '') {
 		switch ($_type) {
 			case 'apt':
 				if ($_package == 'node' || $_package == 'nodejs' || $_package == 'npm') {
@@ -565,6 +565,9 @@ class system {
 				}
 				return self::getCmdSudo() . ' pip2 install --force-reinstall --ignore-installed --upgrade ' . $_package;
 			case 'pip3':
+				if ($_version != '') {
+					$_package .= '==' . $_version;
+				}
 				return self::getCmdSudo() . ' pip3 install --force-reinstall --ignore-installed --upgrade ' . $_package;
 			case 'npm':
 				if (strpos($_package, '/') === false) {
