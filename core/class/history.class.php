@@ -958,7 +958,7 @@ class history {
 				$time = strtotime($this->getDatetime());
 				$time -= $time % 300;
 				$this->setDatetime(date('Y-m-d H:i:s', $time));
-				if ($this->getValue() === 0) {
+				if ($this->getValue() == 0) {
 					$values = array(
 						'cmd_id' => $this->getCmd_id(),
 						'datetime' => date('Y-m-d H:i:00', strtotime($this->getDatetime())),
