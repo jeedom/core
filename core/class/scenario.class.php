@@ -1723,6 +1723,7 @@ class scenario {
 		if ($_isActive != $this->getIsActive()) {
 			$this->_changeState = true;
 			$this->_changed = true;
+			event::add('scenario::update', array('scenario_id' => $this->getId(), 'isActive' => $_isActive));
 		}
 		$this->isActive = $_isActive;
 		return $this;
