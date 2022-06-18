@@ -107,6 +107,9 @@ class dataStore {
 	}
 
 	public function postSave() {
+		if ($this->getType() == 'scenario') {
+			event::add('scenario::variable', array('key' => $this->getKey(), 'value' => $this->getValue()));
+		}
 		scenario::check('variable(' . $this->getKey().')');
 		$value_cmd =	cmd::byValue('variable(' . $this->getKey(), null, true);
 		if (is_array($value_cmd)) {
