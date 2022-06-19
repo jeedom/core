@@ -96,7 +96,7 @@ In the tab ****, you will be able to configure certain tile display behaviors on
 
 ### Optional parameters on the tile
 
-Below, there are optional display parameters that can be applied to the equipment. These parameters are composed of a name and a value. Just click on **To add** to apply one
+Below, there are optional display parameters that can be applied to the equipment. These parameters are composed of a name and a value. Just click on **** to apply one
 new. For equipment, only the value **** is currently used, it allows to insert CSS code on the equipment in question.
 
 > ****
@@ -157,7 +157,7 @@ First, at the top right, some buttons available :
 >
 > In a graphic, a double click on an element brings you to its configuration.
 
-> **Note**
+> ****
 >
 > Depending on the type of command, the information / actions displayed may change.
 
@@ -184,7 +184,7 @@ You also have three other orange buttons underneath :
 - **This command replaces the command** : Replace command with current command.
 - **Replace this command with the command** : Conversely, replace the command with another command.
 
-> **Note**
+> ****
 >
 > This kind of action replaces commands everywhere in Jeedom (scenario, interaction, command, equipment….).
 
@@ -202,7 +202,7 @@ Below, you will find the list of the different equipment, commands, scenarios or
 
 - ****
     - **** : Check the box to have the values of this command logged. (See **Analysis → History**)
-    - **Smoothing mode** : Mode of **** or d'**** allows you to choose how to archive the data. By default, this is a ****. It is also possible to choose the ****, the ****,  ****. **** lets tell Jeedom that it should not perform archiving on this command (both during the first 5 mins period and with the archiving task). This option is dangerous because Jeedom keeps everything : so there will be a lot more data kept.
+    - **Smoothing mode** : Mode of **** or d'**** allows you to choose how to archive the data. By default, this is a ****. It is also possible to choose the ****,  ****,  ****. **** lets tell Jeedom that it should not perform archiving on this command (both during the first 5 mins period and with the archiving task). This option is dangerous because Jeedom keeps everything : so there will be a lot more data kept.
     - **Purge history if older than** : Lets tell Jeedom to delete all data older than a certain period. May be practical not to keep data if it is not necessary and therefore limit the amount of information recorded by Jeedom.
 
 - **Values management**
@@ -212,7 +212,7 @@ Below, you will find the list of the different equipment, commands, scenarios or
 
 - ****
     - **Management of the repetition of values** : In automatic if the command goes up 2 times the same value in a row, then Jeedom will not take into account the 2nd ascent (avoids triggering a scenario several times, unless the command is of binary type). You can force the repetition of the value or prohibit it completely.
-    - **Push url** : Allows to add a URL to call in case of update of the command. You can use the following tags : ``#value#`for the value of the command,`#cmd_name#`for the name of the command,`#cmd_id#`for the unique identifier of the command,`#humanname#`for the full name of the command (ex : ``#[Salthe de bain][Hydrometrie][Humidité]#`),`#eq_name#`for the name of the equipment.
+    - **Push url** : Allows to add a URL to call in case of update of the command. You can use the following tags : ``#value#`for the value of the command,`#cmd_name#`for the name of the command,`#cmd_id#`for the unique identifier of the command,`#humanname#`for the full name of the command (ex : ``#[Sal de bain][Hydrometrie][Humidité]#`),`#eq_name#`for the name of the equipment.
 
 #### For an action command :
 
@@ -226,7 +226,7 @@ Below, you will find the list of the different equipment, commands, scenarios or
 
 Allows you to define an alert level (****  ****) depending on certain conditions. For example, if `value&gt; 8` for 30 minutes then the equipment can go on alert ****.
 
-> **Note**
+> ****
 >
 > On the page **→ Settings → System Configuration : **, you can configure a message type command that will allow Jeedom to notify you if the warning or danger threshold is reached.
 

@@ -76,7 +76,7 @@
 
 - Improvement : New options on Design charts for scale and Y axis grouping.
 
-- Core : Lib update ** 
+-  : Lib update ** 
 
 ## 
 
@@ -124,7 +124,7 @@
 - **Plugins / Management** : Display of the plugin category, and a link to directly open its page without going through the Plugins menu.
 - **Scenario** : Code fallback function (*folding code*) in the *Code Blocks*. Ctrl + Y and Ctrl + I shortcuts.
 - **Scenario** : Copy / paste and undo / redo bugfix (complete rewrite).
-- **Scenario** : Adding calculation functions ````averageTemporal(commande,période)```` & ````averageTemporalBetween(commande,start,end)```` allowing to obtain the average weighted by the duration over the period.
+- **Scenario** : Adding calculation functions ````averageTemporal(commande,période)````  ````averageTemporalBetween(commande,start,end)```` allowing to obtain the average weighted by the duration over the period.
 - **Scenario** : Added support for Generic Types in scenarios.
 	- Trigger : ``#genericType(LIGHT_STATE,#]#)# > 
 	- IF `genericType (LIGHT_STATE,#]#) > 
@@ -168,7 +168,7 @@ We have added a confirmation of the cloud backup password to prevent entry error
 
 - In order to significantly increase the security of the Jeedom solution, the file access system has changed. Before certain files were prohibited from certain locations. From v4.2, files are explicitly allowed by type and location.
 - Change at the API level, previously "tolerant" if you arrived with the Core key indicating plugin XXXXX. This is no longer the case, you must arrive with the key corresponding to the plugin.
-- In http API you could indicate a plugin name in type, this is no longer possible. The type corresponding to the type of the request (scenario, eqLogic, cmd, etc.) must correspond to the plugin. For example for the virtual plugin you had ````type=virtual```` in the url it is now necessary to replace by ````plugin=virtual&type=event````.
+- In http API you could indicate a plugin name in type, this is no longer possible. The type corresponding to the type of the request (scenario, eqLogic, cmd, etc.) must correspond to the plugin. For example for the virtual plugin you had ````type=virtual```` in the url it is now necessary to replace by ````plugin=virtualtype=event````.
 - Reinforcement of sessions : Change to sha256 with 64 characters in strict mode.
 
 The Jeedom team is well aware that these changes can have an impact and be embarrassing for you, but we cannot compromise on safety.
@@ -515,7 +515,7 @@ The plugins must respect the recommendations on the tree structure of folders an
 ### 4.0 : Changements
 
 - Remove Font Awesome 4 to keep only Font Awesome 5.
-- The widget plugin is not compatible with this version of Jeedom and will no longer be supported (because the features have been taken internally on the core). More information [here](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
+- The widget plugin is not compatible with this version of Jeedom and will no longer be supported (because the features have been taken internally on the core). More information [](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
 
 >****
 >
