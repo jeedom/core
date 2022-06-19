@@ -78,7 +78,7 @@ This tab allows you to see the updates available for the os (apt), python packag
 
 During or after an update, this tab allows you to read the log of this update in real time.
 
-> ****
+> **Note**
 >
 > This log normally ends with *]*. There may be some error lines in this type of log, however, unless there is a real problem after update, it is not always necessary to contact support for this.
 

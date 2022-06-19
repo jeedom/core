@@ -15,7 +15,7 @@ To see them, you must first activate the tracking on the timeline of the desired
 The timeline ** always contains all the events. However, you can filter the timeline by **. At each place where you activate the timeline, you will have a field to enter the name of a folder, existing or not.
 You can then filter the timeline by this folder by selecting it to the left of the button **.
 
-> ****
+> **Note**
 >
 > If you no longer use a folder, it will appear in the list as long as events linked to this folder exist. It will disappear from the list by itself.
 

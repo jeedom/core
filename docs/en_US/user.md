@@ -49,7 +49,7 @@ Displays the browser sessions active on your Jeedom, with user information, its 
 List the devices (computers, mobiles, etc.) which have registered their authentication on your Jeedom.
 You can see which user, their IP, when, and delete the registration for this device.
 
-> ****
+> **Note**
 >
 > The same user may have registered different devices. For example, his desktop computer, laptop, mobile, etc.
 
