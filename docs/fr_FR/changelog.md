@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.2
 
+## 4.2.19
+
+- Ajout de la gestion des version pour les packages python (permet de corriger le soucis avec le plugin zigbee)
+
 ## 4.2.18
 
 - Mise à jour de nodejs
