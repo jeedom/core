@@ -372,7 +372,7 @@ try {
 			}
 		}
 
-      	if (config::byKey('history::allowFuture', 'core', 0) == '0' && strtotime($dateEnd) > strtotime('now')) {
+		if (init('allowFuture', 0) == 1 && config::byKey('history::allowFuture', 'core', 0) == '0' && strtotime($dateEnd) > strtotime('now')) {
 			$dateEnd = date('Y-m-d H:i:s');
 		}
 
