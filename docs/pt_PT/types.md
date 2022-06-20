@@ -1,7 +1,7 @@
 # Tipos de equipamento
 **Ferramentas → Tipos de equipamento**
 
-Os sensores e atuadores no Jeedom são gerenciados por plug-ins, que criam equipamentos com comandos ** (sensor) ou ** (atuador do). Isso torna possível disparar ações com base na mudança de certos sensores, como acender uma luz na detecção de movimento. Mas o Jeedom Core e plug-ins como *Móvel*, *Homebridge*, *Casa inteligente do Google*, *Alexa Casa Inteligente* etc, não sei o que é este equipamento : Uma tomada, uma luz, uma veneziana, etc.
+Os sensores e atuadores no Jeedom são gerenciados por plug-ins, que criam equipamentos com comandos ** (sensor) ou ** (atuador do). Isso torna possível disparar ações com base na mudança de certos sensores, como acender uma luz na detecção de movimento. Mas o Jeedom Core e plug-ins como **, **, *Casa inteligente do Google*, *Alexa Casa Inteligente* etc, não sei o que é este equipamento : Uma tomada, uma luz, uma veneziana, etc.
 
 Para superar esse problema, especialmente com assistentes de voz (*Acenda a luz da sala*), Core introduziu o **Tipos Genéricos**, usado por esses plugins.
 
@@ -17,18 +17,18 @@ Esta página permite que esses Tipos Genéricos sejam configurados de forma mais
 
 Esta página oferece armazenamento por tipo de equipamento : Soquete, luz, obturador, termostato, câmera, etc. Inicialmente, a maior parte do seu equipamento será classificado em **Equipamento sem tipo**. Para atribuir um tipo a eles, você pode movê-los para outro tipo ou clicar com o botão direito no equipamento para movê-lo diretamente. O tipo de equipamento não é realmente útil em si, sendo o mais importante os tipos de pedido. Você pode, portanto, ter um Equipamento sem um Tipo, ou um Tipo que não corresponda necessariamente aos seus comandos. Você pode, é claro, misturar tipos de controles no mesmo equipamento. Por enquanto, é mais um armazenamento, uma organização lógica, que talvez servirá em versões futuras.
 
-> **Dica**
+> ****
 >
 > - Quando você move o equipamento no jogo **Equipamento sem tipo**, Jeedom sugere que você remova os tipos genéricos de seus pedidos.
 > - Você pode mover vários equipamentos de uma vez marcando as caixas de seleção à esquerda deles.
 
 ## Tipo de comando
 
-Uma vez que um item do equipamento é posicionado na posição correta *Gentil*, clicando nele você acessa a lista de seus pedidos, colorida de forma diferente se for um ** (Azul) ou um ** (Orange).
+Uma vez que um item do equipamento é posicionado na posição correta **, clicando nele você acessa a lista de seus pedidos, colorida de forma diferente se for um ** (Azul) ou um ** (Orange).
 
 Ao clicar com o botão direito em um pedido, você pode atribuir a ele um tipo genérico correspondente às especificações desse pedido (tipo de informação / ação, numérico, subtipo binário, etc).
 
-> **Dica**
+> ****
 >
 > - O menu contextual de comandos exibe o tipo de equipamento em negrito, mas ainda permite atribuir qualquer Tipo Genérico de qualquer tipo de equipamento.
 
@@ -38,7 +38,7 @@ Em cada dispositivo, você tem dois botões :
 
 - **Tipos de redefinição** : Esta função remove os tipos genéricos de todos os comandos do equipamento.
 
-> **Atenção**
+> ****
 >
 > Nenhuma alteração é feita antes de salvar, com o botão no canto superior direito da página.
 
@@ -48,17 +48,17 @@ Na v4.2, o Core integrou os tipos genéricos nos cenários. Você pode, assim, a
 
 #### Desencadear
 
-Você pode acionar um cenário a partir de sensores. Por exemplo, se você tiver detectores de movimento em casa, pode criar um cenário de alarme com cada detector acionando : ``#[Salão][Move Salon][Presence]# == 1`, `#[Cuisine][Move Cuisine][Presence]# == 1`, etc.. Nesse cenário, você precisará de todos os detectores de movimento e, se adicionar um, terá que adicioná-lo aos gatilhos. Lógica.
+Você pode acionar um cenário a partir de sensores. Por exemplo, se você tiver detectores de movimento em casa, pode criar um cenário de alarme com cada detector acionando : ``#[Salão][Move Salon][Presence]# == #[Cuisine][Move Cuisine][Presence]# == 1`, etc.. Nesse cenário, você precisará de todos os detectores de movimento e, se adicionar um, terá que adicioná-lo aos gatilhos. Lógica.
 
-Os tipos genéricos permitem que você use um único gatilho : ``#genericType(PRESENCE)# == 1`. Aqui, nenhum objeto é indicado, então o menor movimento em toda a casa irá desencadear o cenário. Se você adicionar um novo detector na casa, não há necessidade de editar o (s) cenário (s)).
+Os tipos genéricos permitem que você use um único gatilho : ``#genericType(PRESENCE)# == . Aqui, nenhum objeto é indicado, então o menor movimento em toda a casa irá desencadear o cenário. Se você adicionar um novo detector na casa, não há necessidade de editar o (s) cenário (s)).
 
-Aqui, um gatilho para acender uma luz na sala de estar : ``#genericType(LIGHT_STATE,#[Salão]#)# > 0`
+Aqui, um gatilho para acender uma luz na sala de estar : ``#genericType(,#[Salão]#)# > 
 
 #### Expression
 
 Se, em um cenário, você quiser saber se uma luz está acesa na sala de estar, você pode fazer :
 
-SE `#[Salão][Lumiere Canapé][Estado]# == 1 OU #[Salão][Lumiere Salon][Estado]# == 1 OU #[Salão][Lumiere Angle][Estado]# == 1`
+SE `#[Salão][Lumiere Canapé][]# ==  #[Salão][Lumiere Salon][]# ==  #[Salão][Lumiere Angle][]# == 
 
 Ou mais simplesmente : IF `genericType (LIGHT_STATE,#[Salão]#) > 0` ou se uma ou mais luzes estiverem acesas na sala de estar.
 
@@ -80,111 +80,111 @@ Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. S
 
 ## Lista de tipos de núcleo genérico
 
-> **Dica**
+> ****
 >
-> - Você pode encontrar essa lista diretamente no Jeedom, nesta mesma página, com o botão **Listagem** canto superior direito.
+> - Você pode encontrar essa lista diretamente no Jeedom, nesta mesma página, com o botão **** canto superior direito.
 
 | **Outro (id: Other)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| CRONÔMETRO | Cronômetro de estado |  | numeric
-| TIMER_STATE | Status do temporizador (pausa ou não) |  | binário, numérico
-| DEFINIR TEMPORIZADOR | Cronômetro |  | slider
-| TIMER_PAUSE | Pausar cronômetro |  | other
-| TIMER_RESUME | Resumo do cronômetro |  | other
+|  | Cronômetro de estado |  | numeric
+|  | Status do temporizador (pausa ou não) |  | binário, numérico
+| DEFINIR TEMPORIZADOR |  |  | slider
+|  | Pausar cronômetro |  | other
+|  | Resumo do cronômetro |  | other
 
 | **Bateria (id: Battery)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| BATERIA | Bateria |  | numeric
-| BATTERY_CHARGING | Carregamento de bateria |  | binary
+|  |  |  | numeric
+|  | Carregamento de bateria |  | binary
 
 | **Câmera (id: Camera)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| CAMERA_URL | Url da câmera |  | string
-| CAMERA_RECORD_STATE | Status de gravação da câmera |  | binary
-| CAMERA_UP | Movimento da câmera para cima |  | other
-| CAMERA_DOWN | Movimento da câmera para baixo |  | other
-| CAMERA_LEFT | Movimento da câmera para a esquerda |  | other
-| CAMERA_RIGHT | Movimento da câmera para a direita |  | other
-| CAMERA_ZOOM | Zoom da câmera para frente |  | other
-| CAMERA_DEZOOM | Zoom da câmera para trás |  | other
-| CAMERA_STOP | Parar câmera |  | other
-| CAMERA_PRESET | Predefinição da câmera |  | other
-| CAMERA_RECORD | Gravação de câmera |  |
-| CAMERA_TAKE | Câmera instantânea |  |
+|  | Url da câmera |  | string
+|  | Status de gravação da câmera |  | binary
+|  | Movimento da câmera para cima |  | other
+|  | Movimento da câmera para baixo |  | other
+|  | Movimento da câmera para a esquerda |  | other
+|  | Movimento da câmera para a direita |  | other
+|  | Zoom da câmera para frente |  | other
+|  | Zoom da câmera para trás |  | other
+|  | Parar câmera |  | other
+|  | Predefinição da câmera |  | other
+|  | Gravação de câmera |  |
+|  | Câmera instantânea |  |
 
 | **Aquecimento (id: Heating)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| HEATING_STATE | Status de aquecimento do fio piloto |  | binary
+|  | Status de aquecimento do fio piloto |  | binary
 | AQUECIMENTO_ON | Botão LIGADO de aquecimento do fio piloto |  | other
 | AQUECIMENTO_OFF | Botão de aquecimento do fio piloto DESLIGADO |  | other
-| HEATING_OTHER | Botão do fio piloto de aquecimento |  | other
+|  | Botão do fio piloto de aquecimento |  | other
 
 | **Eletricidade (id: Electricity)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| POTÊNCIA | Energia elétrica |  | numeric
-| CONSUMO | Consumo de energia |  | numeric
-| VOLTAGEM | Tensão |  | numeric
-| REINÍCIO | Reiniciar |  | other
+|  | Energia elétrica |  | numeric
+|  | Consumo de energia |  | numeric
+|  |  |  | numeric
+|  | Reiniciar |  | other
 
 | **Ambiente (id: Environment)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| TEMPERATURA | TEMPERATURA |  | numeric
+|  | TEMPERATURA |  | numeric
 | QUALIDADE DO AR | Qualidade do ar |  | numeric
-| BRILHO | Brilho |  | numeric
-| PRESENÇA | PRESENÇA |  | binary
-| FUMAÇA | Detecção de fumaça |  | binary
-| UMIDADE | Umidade |  | numeric
-| UV | UV |  | numeric
-| CO2 | CO2 (ppm) |  | numeric
-| CO | CO (ppm) |  | numeric
-| RUÍDO | Som (dB) |  | numeric
-| PRESSÃO | Pressão |  | numeric
+|  |  |  | numeric
+|  | PRESENÇA |  | binary
+|  | Detecção de fumaça |  | binary
+|  |  |  | numeric
+|  |  |  | numeric
+|  | ) |  | numeric
+|  | ) |  | numeric
+|  | Som (dB) |  | numeric
+|  |  |  | numeric
 | VAZAMENTO DE ÁGUA | Vazamento de água |  |
-| FILTER_CLEAN_STATE | Estado do filtro |  | binary
+|  | Estado do filtro |  | binary
 
 | **Genérico (id: Generic)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| PROFUNDIDADE | Profundidade |  | numeric
-| DISTÂNCIA | Distância |  | numeric
-| BOTÃO | Botão |  | binário, numérico
-| GENERIC_INFO |  Genérico |  |
-| GENERIC_ACTION |  Genérico |  | other
+|  |  |  | numeric
+|  |  |  | numeric
+|  |  |  | binário, numérico
+|  |  Genérico |  |
+|  |  Genérico |  | other
 
 | **Light (id: Light)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| LIGHT_STATE | Estado claro |  | binário, numérico
-| LIGHT_BRIGHTNESS | Brilho da luz |  | numeric
+|  | Estado claro |  | binário, numérico
+|  | Brilho da luz |  | numeric
 | COR CLARA | Cor clara |  | string
-| LIGHT_STATE_BOOL | Estado Leve (Binário) |  | binary
-| LIGHT_COLOR_TEMP | Cor da temperatura da luz |  | numeric
-| LIGHT_TOGGLE | Alternar luz |  | other
+|  | Estado Leve (Binário) |  | binary
+|  | Cor da temperatura da luz |  | numeric
+|  | Alternar luz |  | other
 | LUZES LIGADAS | Botão de luz ligado |  | other
 | LUZ APAGADA | Botão de luz apagado |  | other
-| LIGHT_SLIDER | Luz deslizante |  | slider
-| LIGHT_SET_COLOR | Cor clara |  | color
-| LIGHT_MODE | Modo de luz |  | other
-| LIGHT_SET_COLOR_TEMP | Cor da temperatura da luz |  |
+|  | Luz deslizante |  | slider
+|  | Cor clara |  | color
+|  | Modo de luz |  | other
+|  | Cor da temperatura da luz |  |
 
 | **Modo (id: Mode)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| MODE_STATE | Modo de status |  | string
-| MODE_SET_STATE | Modo de mudança |  | other
+|  | Modo de status |  | string
+|  | Modo de mudança |  | other
 
 | **Multimídia (id: Multimedia)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| VOLUME | Volume |  | numeric
-| MEDIA_STATUS | Status |  | string
-| MEDIA_ALBUM | Álbum |  | string
-| MEDIA_ARTIST | Artista |  | string
-| MEDIA_TITLE | Título |  | string
-| MEDIA_POWER | Poder |  | string
-| CANAL | Corrente |  | numérico, string
-| MEDIA_STATE | Estado |  | binary
-| SET_VOLUME | Volume |  | slider
-| SET_CHANNEL | Corrente |  | outro controle deslizante
-| MEDIA_PAUSE | Pausa |  | other
-| MEDIA_RESUME | Leitura |  | other
-|  | Pare |  | other
+|  |  |  | numeric
+|  |  |  | string
+|  |  |  | string
+|  |  |  | string
+|  |  |  | string
+|  |  |  | string
+|  |  |  | numérico, string
+|  |  |  | binary
+|  |  |  | slider
+|  |  |  | outro controle deslizante
+|  |  |  | other
+|  |  |  | other
+|  |  |  | other
 |  |  |  | other
 |  | Anterior |  | other
 |  |  |  | other

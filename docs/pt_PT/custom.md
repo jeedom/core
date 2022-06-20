@@ -3,7 +3,7 @@
 
 Aqui você pode gerenciar funções **** e regras **** aplicado em desktop ou celular.
 
-> **Atenção**
+> ****
 >
 > O uso de regras CSS inadequadas pode interromper a exibição do seu Jeedom. Funções js usadas incorretamente podem causar danos significativos a vários componentes de sua instalação. Lembre-se de gerar e terceirizar um backup antes de usar essas funções.
 

@@ -9,6 +9,6 @@ Es bastante simple. Le muestra la fecha y hora del mensaje, el complemento que l
 
 En la parte superior, hay un selector para filtrar mensajes en un complemento en particular y en el extremo derecho un botón para vaciar todos los mensajes.
 
-> **Consejo**
+> ****
 >
 > Cuando tenga un error en el centro de mensajes, primero intente eliminar el mensaje y luego vea si el error regresa antes de contactar al soporte. A veces es solo debido a un problema de conexión de red.

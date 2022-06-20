@@ -182,9 +182,9 @@ Isso é chamado de modelos de vários estados *(vários estados)*. Em vez de col
 
 Como antes, diferentes imagens podem ser selecionadas dependendo do tema ativo no Jeedom e na caixa **Widget de tempo** mostra a duração desde a última mudança de estado.
 
-Os testes estão no formato : ``#value# == 1`, `#value#`será automaticamente substituído pelo valor atual do comando. Você também pode fazer, por exemplo :
+Os testes estão no formato : ``#value# == #value#`será automaticamente substituído pelo valor atual do comando. Você também pode fazer, por exemplo :
 
-- ``#value# > 1`
+- ``#value# > 
 - ``#value# >=  #value# <= 5``
 - ``#value# == 'toto'``
 

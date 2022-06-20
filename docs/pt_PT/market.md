@@ -37,7 +37,7 @@ Para os profissionais :
 - **Ativar acesso a plugins beta** : Habilita o acesso a plugins betas (observe que isso impedirá que você acesse o suporte).
     - **Resumo** Aqui você encontrará um resumo dos seus diferentes direitos e serviços.
 
-> **Dica**
+> ****
 >
 > Não esqueça de salvar.
 
@@ -49,13 +49,13 @@ Para os profissionais :
 - **Key instalação**
     - **Número de chaves de instalação** : Exibe o número de instalações Jeedom atualmente vinculadas à sua conta, bem como o limite autorizado.
 
-> **Dica**
+> ****
 >
 > É possível que o Market às vezes peça para você redefinir suas chaves de instalação, isso é normal, basta seguir o que é solicitado.
 
 - **Minhas jeedoms** : É aqui que todos os seus Jeedoms estão listados
     - **** : O nome que você deseja dar ao seu Jeedom (pode ser encontrado no nome do backup se você tiver a assinatura de backup na nuvem).
-    - **Estado** : Vamos ver o estado do Jeedom em questão.
+    - **** : Vamos ver o estado do Jeedom em questão.
     - **IP local / remoto** : IP ou endereço deste Jeedom, configure no Jeedom, se você não colocar nada, será o último IP conhecido.
     - **** : Permite que você personalize o nome do seu DNS.
     - **** : Listar os diferentes URLs de acesso Jeedom.
@@ -66,7 +66,7 @@ Para os profissionais :
     - **** : Nome do hardware Jeedom.
     - **** : Versão Jeedom instalada.
 
-> **Dica**
+> ****
 >
 > Não esqueça de salvar.
 

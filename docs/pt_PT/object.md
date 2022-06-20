@@ -32,7 +32,7 @@ A visão geral permite visualizar todos os objetos no Jeedom, bem como suas conf
 
 Depois de criar um objeto, ele aparecerá nesta parte.
 
-> **Dica**
+> ****
 >
 > Você pode abrir um objeto fazendo :
 > - Clique em um deles.
@@ -71,15 +71,15 @@ Aqui estão as diferentes características para configurar um objeto :
 - **Somente na síntese** : Permite que você coloque uma imagem para a Síntese sem que seja usada como imagem de fundo, especialmente na página ** deste objeto.
 - **** : Você tem a opção de fazer upload de uma imagem ou excluí-la. No formato jpeg, essa imagem será a imagem de plano de fundo do objeto quando você a exibir no Painel. Também será usado para a miniatura da peça no Synthesis.
 
-> **Dica**
+> ****
 >
 > Você pode alterar a ordem de exibição dos objetos no Painel. Na visão geral (ou no Resumo da automação residencial), selecione seu objeto com o mouse, arrastando e soltando, para dar um novo local.
 
-> **Dica**
+> ****
 >
 > Você pode ver um gráfico representando todos os elementos do Jeedom anexados a esse objeto clicando no botão ****, canto superior direito.
 
-> **Dica**
+> ****
 >
 > Quando um dispositivo é criado e nenhum pai foi definido, ele terá como pai : ****.
 
