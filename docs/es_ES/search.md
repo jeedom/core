@@ -59,7 +59,7 @@ El motor se mostrará en las tablas a continuación :
 
 ## Por palabra
 
-Ingrese una cadena de caracteres en el campo de búsqueda. Validar con ** o con el botón *Buscar*.
+Ingrese una cadena de caracteres en el campo de búsqueda. Validar con ** o con el botón **.
 
 El motor se mostrará en las tablas a continuación :
 
@@ -76,7 +76,7 @@ El motor se mostrará en las tablas a continuación :
 
 ## Por ID
 
-Ingrese un número correspondiente a una identificación buscada en el campo de búsqueda. Validar con ** o con el botón *Buscar*.
+Ingrese un número correspondiente a una identificación buscada en el campo de búsqueda. Validar con ** o con el botón **.
 
 El motor se mostrará en las tablas a continuación :
 

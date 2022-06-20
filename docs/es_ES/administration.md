@@ -65,7 +65,7 @@ En esta pestaña encontrará los parámetros de personalización de la pantalla.
 
 ### Personnalisation
 
-- **Habilitar** : Active el uso de las siguientes opciones.
+- **** : Active el uso de las siguientes opciones.
 - **** : Muestra mosaicos del panel de control y algunos contenidos con transparencia. 1 : totalmente opaco, 0 : totalmente transparente.
 - **** : Muestra elementos de la interfaz con ángulos redondeados. 0 : sin redondeo, 1 : redondeo máximo.
 - **Deshabilitar sombras** : Deshabilita las sombras de los mosaicos en el tablero, los menús y ciertos elementos de la interfaz.
@@ -76,7 +76,7 @@ En esta pestaña encontrará los parámetros de personalización de la pantalla.
 
 Es absolutamente necesario configurar correctamente esta parte importante de Jeedom, de lo contrario, muchos complementos pueden no funcionar. Hay dos formas de acceder a Jeedom : L'**Acceso interno** (de la misma red local que Jeedom) y l'**Acceso externo** (de otra red, especialmente de Internet).
 
-> **Importante**
+> ****
 >
 > Esta parte está ahí para explicarle a Jeedom su entorno :
 > cambiar el puerto o IP en esta pestaña no cambiará el puerto o IP de Jeedom en realidad. Para eso tiene que conectarse en SSH y editar el archivo / etc / network / interfaces para IP y los archivos etc / apache2 / sites-available / default y etc / apache2 / sites-available / default\_ssl (para HTTPS).
@@ -103,11 +103,11 @@ Es absolutamente necesario configurar correctamente esta parte importante de Jee
     - **** : Ingrese el inicio de sesión proxy,
     - **Contraseña** : Ingrese la contraseña.
 
-> **Consejo**
+> ****
 >
 > Si está en HTTPS, el puerto es 443 (predeterminado) y en HTTP el puerto es 80 (predeterminado). Para usar HTTPS desde el exterior, ahora está disponible en el mercado un complemento de letencrypt.
 
-> **Consejo**
+> ****
 >
 > Para saber si necesita establecer un valor en el campo **Complementar**, mire, cuando inicie sesión en Jeedom en su navegador de Internet, si necesita agregar / Jeedom (o lo que sea) después de la IP.
 
@@ -118,7 +118,7 @@ Es absolutamente necesario configurar correctamente esta parte importante de Jee
     - **Estado de DNS** : Estado HTTP HTTP.
     - **** : permite detener y reiniciar el servicio DNS de Jeedom.
 
-> **Importante**
+> ****
 >
 > Si no puede hacer que funcione Jeedom DNS, mire la configuración del firewall y el filtro parental de su caja de Internet (en livebox necesita, por ejemplo, el firewall a nivel medio).
 - **Duración de las sesiones (hora)** : duración de las sesiones PHP, no se recomienda tocar este parámetro.
@@ -183,18 +183,18 @@ Se pueden registrar muchos pedidos. Por lo tanto, en Análisis → Historia, obt
 - **Umbral de cálculo de alta tendencia** : Lo mismo para el ascenso.
 - **Período de visualización de los gráficos por defecto** : Período que se usa de forma predeterminada cuando desea mostrar el historial de un pedido. Cuanto más corto sea el período, más rápido Jeedom mostrará el gráfico solicitado.
 
-> **Nota**
+> ****
 >
 > El primer parámetro **Ver las estadísticas de los widgets** es posible pero está deshabilitado de manera predeterminada porque extiende significativamente el tiempo de visualización del tablero. Si activa esta opción, de manera predeterminada, Jeedom se basa en los datos de las últimas 24 horas para calcular estas estadísticas.
-> El método de cálculo de tendencia se basa en el cálculo de mínimos cuadrados (ver [aquí](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) para el detalle).
+> El método de cálculo de tendencia se basa en el cálculo de mínimos cuadrados (ver [](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) para el detalle).
 
 ### Push
 
 - **Url de push global** : le permite agregar una URL para llamar en caso de una actualización del pedido. Puedes usar las siguientes etiquetas :
-**\#value\#** por el valor del pedido, **\#cmd\_name\#** para el nombre del comando,
-**\#cmd\_id\#** para el identificador único del pedido,
-**\#humanname\#** para el nombre completo de la orden (ej : \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#),
-**\#eq_name\#** para el nombre del equipo
+**#value#** por el valor del pedido, **#cmd_name#** para el nombre del comando,
+**#cmd_id#** para el identificador único del pedido,
+**#humanname#** para el nombre completo de la orden (ej : #[Salle de bain][Hydrometrie][Humidité]#),
+**#eq_name#** para el nombre del equipo
 
 ## Pestaña Informes
 
@@ -219,9 +219,9 @@ Configurar gráficos de enlace. Estos enlaces le permiten ver, en forma de gráf
 
 Esta pestaña le permite establecer parámetros globales relacionados con las interacciones que encontrará en Herramientas → Interacciones.
 
-> **Consejo**
+> ****
 >
-> Para activar el registro de interacción, vaya a la pestaña Configuración → Sistema → Configuración : Registros, luego verifique **** en la lista de abajo. Atención : los registros serán muy detallados !
+> Para activar el registro de interacción, vaya a la pestaña Configuración → Sistema → Configuración : Registros, luego verifique **** en la lista de abajo.  : los registros serán muy detallados !
 
 ### Principal
 
@@ -252,7 +252,7 @@ Aquí tienes tres parámetros :
     - ** : Notificarme si la temperatura de la sala supera los 25 ° C ?
     - ** :  (*Tan pronto como la temperatura de la sala supere los 25 ° C, Jeedom le dirá, una vez*)
 
-> **Nota**
+> ****
 >
 > De manera predeterminada, Jeedom le responderá por el mismo canal que utilizó para pedirle que le notifique. Si no encuentra uno, utilizará el comando predeterminado especificado en esta pestaña : **Orden de restitución por defecto**.
 
@@ -260,10 +260,10 @@ Aquí están las diferentes opciones disponibles :
 
 - **Habilitar interacciones automatizadas** : Marque para habilitar las interacciones automáticas.
 - **Habilitar respuestas contextuales** : Marque para habilitar las interacciones contextuales.
-- **Respuesta contextual prioritaria si la frase comienza por** : Si la oración comienza con la palabra que complete aquí, Jeedom priorizará una respuesta contextual (puede poner varias palabras separadas por **;** ).
+- **Respuesta contextual prioritaria si la frase comienza por** : Si la oración comienza con la palabra que complete aquí, Jeedom priorizará una respuesta contextual (puede poner varias palabras separadas por **** ).
 - **Cortar una interacción en 2 si contiene** : Lo mismo para la división de una interacción que contiene varias preguntas. Aquí das las palabras que separan las diferentes preguntas.
 - **Activa las interacciones "Notificarme""** : Marque para habilitar las interacciones de tipo **Avísame**.
-- **Respuesta &quot;Dime&quot; si la oración comienza con** : Si la oración comienza con esta (s) palabra (s) entonces Jeedom buscará hacer una interacción del tipo **Avísame** (puedes poner varias palabras separadas por **;** ).
+- **Respuesta &quot;Dime&quot; si la oración comienza con** : Si la oración comienza con esta (s) palabra (s) entonces Jeedom buscará hacer una interacción del tipo **Avísame** (puedes poner varias palabras separadas por **** ).
 - **Orden de restitución por defecto** : Comando de retorno predeterminado para la interacción de tipo **Avísame** (utilizado, en particular, si ha programado la alerta a través de la interfaz móvil)
 - **Sinónimo de objetos** : Lista de sinónimos para objetos (ej : rdc|planta baja|bajo tierra|bajo; sdb|Cuarto de baño).
 - **Sinónimo de equipamiento** : Lista de sinónimos para equipos.
@@ -325,7 +325,7 @@ Depósito utilizado para conectar Jeedom a Github.
 
 #### Market
 
-Depósito utilizado para conectar Jeedom al mercado, se recomienda encarecidamente utilizar este depósito. Atención : cualquier solicitud de soporte puede ser rechazada si utiliza un depósito diferente a este.
+Depósito utilizado para conectar Jeedom al mercado, se recomienda encarecidamente utilizar este depósito.  : cualquier solicitud de soporte puede ser rechazada si utiliza un depósito diferente a este.
 
 - **** :  du .(https://www.Jeedom.com/market).
 - **Nombre de usuario** : Su nombre de usuario en el mercado.
@@ -344,27 +344,27 @@ Depósito que permite enviar automáticamente una copia de seguridad de Jeedom e
 - **\ [Copia de seguridad \] Compartir** : Ruta para compartir (tenga cuidado de detenerse en el nivel de compartir).
 - **\ [Copia de seguridad \] Ruta** : Ruta en el intercambio (para poner en relativo), esto debe existir.
 
-> **Nota**
+> ****
 >
 > Si la ruta a su carpeta de copia de seguridad samba es :
 > \\\\ 192.168.0.1 \\ Copias de seguridad \\ Automatización del hogar \\ Jeedom Then IP = 192.168.0.1, Compartir = //192.168.0.1 / Copias de seguridad, Ruta = Domótica / Jeedom
 
-> **Nota**
+> ****
 >
 > Al validar el uso compartido de Samba, como se describió anteriormente, aparece una nueva forma de respaldo en la sección Configuración → Sistema → Copias de respaldo de Jeedom. Al activarlo, Jeedom lo enviará automáticamente durante la próxima copia de seguridad. Una prueba es posible realizando una copia de seguridad manual.
 
-> **Importante**
+> ****
 >
 > Es posible que deba instalar el paquete smbclient para que funcione el repositorio.
 
-> **Importante**
+> ****
 >
 > El protocolo Samba tiene varias versiones, el v1 tiene un nivel de seguridad comprometido y en algunos NAS puede obligar al cliente a usar v2 o v3 para conectarse. Entonces si tienes un error *negociación de protocolo fallida: * hay una buena posibilidad de que en el lado del NAS la restricción esté en su lugar. Luego debe modificar el archivo / etc / samba / smb en su sistema operativo Jeedom.conf y agregue estas dos líneas :
 > protocolo max del cliente = SMB3
 > protocolo min del cliente = SMB2
 > El smbclient del lado de Jeedom usará v2 donde v3 y al poner SMB3 en ambos solo SMB3. Entonces, depende de usted adaptarse según las restricciones en el NAS u otro servidor Samba
 
-> **Importante**
+> ****
 >
 > Jeedom debe ser el único en escribir en esta carpeta y debe estar vacío de forma predeterminada (es decir, antes de la configuración y el envío de la primera copia de seguridad, la carpeta no debe contener ningún archivo o carpeta).
 
@@ -398,13 +398,13 @@ Para cada clave de complemento API, así como para las API HTTP, JsonRPC y TTS, 
 - **Discapacitado** : La clave API no se puede usar,
 - **IP en blanco** : solo se autoriza una lista de IP (consulte Configuración → Sistema → Configuración : Seguridad),
 - **** : solo se permiten solicitudes del sistema en el que está instalado Jeedom,
-- **Activado** : sin restricciones, cualquier sistema con acceso a su Jeedom podrá acceder a esta API.
+- **** : sin restricciones, cualquier sistema con acceso a su Jeedom podrá acceder a esta API.
 
 Para cada clave de API de complemento, puede prohibirlos de los métodos principales (general) para limitarlos a su único método integrado (tenga cuidado con algunos complementos como mobile o jeelink absolutamente necesitan métodos principales)
 
-## Onglet &gt;\_OS/DB
+## Onglet &gt_OS/DB
 
-> **Importante**
+> ****
 >
 > Esta pestaña está reservada para expertos.
 > Si modifica Jeedom con una de estas dos soluciones, el soporte puede negarse a ayudarlo.

@@ -44,7 +44,7 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 - **Centralização vertical de ladrilhos** : Centraliza verticalmente o conteúdo dos blocos.
 - **Ícones coloridos de widget** : Ícones de widget para colorir com base em seu estado. Modificável por cenário, ** ('Coloração de ícone').
 - **Categorias coloridas** : Colorização do título dos tiles de acordo com a categoria.
-- **Móvel : uma coluna padrão** : Exibição de largura total de blocos em dispositivos móveis
+- ** : uma coluna padrão** : Exibição de largura total de blocos em dispositivos móveis
 
 
 ### Imagens de fundo
@@ -103,11 +103,11 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
     - **** : Digite o login do proxy,
     - **Senha** : Digite a senha.
 
-> **Dica**
+> ****
 >
 > Se você estiver em HTTPS, a porta é 443 (padrão) e em HTTP, a porta é 80 (padrão)). Para usar HTTPS de fora, um plug-in letsencrypt agora está disponível no mercado.
 
-> **Dica**
+> ****
 >
 > Para descobrir se você precisa definir um valor no campo **Complemento**, veja, quando você faz login no Jeedom no seu navegador da Internet, se precisar adicionar / Jeedom (ou qualquer outra coisa) após o IP.
 
@@ -219,9 +219,9 @@ Configurar gráficos de link. Esses links permitem ver, na forma de gráfico, as
 
 Essa guia permite definir parâmetros globais relativos às interações que você encontrará em Ferramentas → Interações.
 
-> **Dica**
+> ****
 >
-> Para ativar o log de interação, vá para a guia Configurações → Sistema → Configuração : Logs e verifique **** na lista inferior. Atenção : os logs serão muito detalhados !
+> Para ativar o log de interação, vá para a guia Configurações → Sistema → Configuração : Logs e verifique **** na lista inferior.  : os logs serão muito detalhados !
 
 ### Geral
 
@@ -325,7 +325,7 @@ Depósito usado para conectar o Jeedom ao Github.
 
 #### Market
 
-Depósito usado para conectar o Jeedom ao mercado, é altamente recomendável usar esse depósito. Atenção : qualquer solicitação de suporte poderá ser recusada se você usar um depósito diferente deste.
+Depósito usado para conectar o Jeedom ao mercado, é altamente recomendável usar esse depósito.  : qualquer solicitação de suporte poderá ser recusada se você usar um depósito diferente deste.
 
 - **** :  du .(https://www.Jeedom.com/market).
 - **Nome de Usuário** : Seu nome de usuário no mercado.

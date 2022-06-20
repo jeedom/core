@@ -19,32 +19,32 @@ En modo edición:
 - Ctrl Haga clic en un comando de información : Abre toda la información del historial del mosaico en la ventana del historial.
 
 ### Configuraciones / Sistema / Configuración
-- Ctrl-S : Para salvaguardar.
+- Ctrl-S : .
 
 ### Configuración / Sistema / Copias de seguridad
-- Ctrl-S : Para salvaguardar.
+- Ctrl-S : .
 
 ### Configuración / Sistema / Motor de tareas
-- Ctrl-S : Para salvaguardar.
+- Ctrl-S : .
 
 ### Configuraciones / Sistema / Usuarios
-- Ctrl-S : Para salvaguardar.
+- Ctrl-S : .
 
 ### Configuraciones / Preferencias
-- Ctrl-S : Para salvaguardar.
+- Ctrl-S : .
 
 ### Herramientas / interacciones
-- En una interacción, Ctrl S : Para salvaguardar.
+- En una interacción, Ctrl S : .
 - En una interacción, haga clic derecho en una pestaña : Menú contextual para ir directamente a otra interacción.
 - Ctrl Click o Center Click en una interacción o en el menú contextual : Abra la interacción en una nueva pestaña del navegador.
 
 ### Herramientas / Objetos
-- En un objeto, Ctrl S : Para salvaguardar.
+- En un objeto, Ctrl S : .
 - En un objeto, haga clic derecho en una pestaña : Menú contextual para ir directamente a otro objeto.
 - Ctrl Click o Center Click en un objeto o en el menú contextual : Abra el objeto en una nueva pestaña del navegador.
 
 ### Herramientas / widgets
-- En un widget, Ctrl S : Para salvaguardar.
+- En un widget, Ctrl S : .
 - En un widget, haga clic derecho en una pestaña : Menú contextual para ir directamente a otro widget.
 - Ctrl Click o Click Center en un widget o en el menú contextual : Abra el widget en una nueva pestaña del navegador.
 
@@ -52,7 +52,7 @@ En modo edición:
 - Ctrl Click o Center Click en un escenario o en el menú contextual : Abra el escenario en una nueva pestaña del navegador.
 
 En un escenario :
-- Ctrl-S : Para salvaguardar.
+- Ctrl-S : .
 - Haga clic derecho en una pestaña : Menú contextual para ir directamente a otro escenario.
 - Ctrl-L : Pantalla de registro.
 - Ctrl Mayús Z : .
@@ -69,19 +69,19 @@ En un bloque de código :
 - Ctrl-G : Siguiente búsqueda.
 
 ### Complementos / Gestión de complementos
-- Ctrl S en una configuración de complemento : Para salvaguardar.
+- Ctrl S en una configuración de complemento : .
 - Ctrl Click o Click Center en un complemento : Abra la administración de complementos en una nueva pestaña del navegador.
 
 ### Complementos / **
-- En un dispositivo, Ctrl S  : Para salvaguardar.
+- En un dispositivo, Ctrl S  : .
 - En un dispositivo, haga clic derecho en una pestaña : Menú contextual para ir directamente a otro dispositivo.
 - Ctrl Click o Center Click en un dispositivo: Abra el equipo del complemento en una nueva pestaña del navegador.
 
 ### Inicio / Ver
-- Ctrl S al editar una vista : Para salvaguardar.
+- Ctrl S al editar una vista : .
 
 ### Inicio / Diseño
-- Ctrl S en un diseño : Para salvaguardar.
+- Ctrl S en un diseño : .
 - Ctrl Shift E en un diseño : Entrar o salir del modo de edición.
 
 ### Análisis / resumen de domótica
