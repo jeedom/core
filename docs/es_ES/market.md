@@ -12,7 +12,7 @@ Aquí es donde podrá ajustar diferentes parámetros de su perfil :
 
 - ****
     - **** : Su inicio de sesión en el mercado, no se puede cambiar.
-    - **** : Su nombre (esta información solo es útil para hacer que los correos electrónicos sean más agradables).
+    - **Apellido** : Su nombre (esta información solo es útil para hacer que los correos electrónicos sean más agradables).
     - **Primer nombre** : Su nombre (esta información solo es útil para hacer que los correos electrónicos sean más agradables).
     - **Nombre de usuario en el foro** : Tu nombre de usuario en el foro.
     - **** : Su email.
@@ -37,7 +37,7 @@ Para los profesionales :
 - **Habilitar el acceso a complementos beta** : Permite el acceso a los complementos de betas (tenga en cuenta que esto le impedirá acceder al soporte).
     - **Resumen** Aquí encontrará un resumen de sus diferentes derechos y servicios.
 
-> ****
+> **Consejo**
 >
 > No olvides guardar.
 
@@ -49,13 +49,13 @@ Para los profesionales :
 - **Clave de instalación**
     - **Número de llaves de instalación** : Muestra el número de instalaciones de Jeedom actualmente vinculadas a su cuenta, así como el límite autorizado.
 
-> ****
+> **Consejo**
 >
 > Es posible que Market a veces le pida que restablezca sus claves de instalación, esto es normal, solo siga lo que se solicita.
 
 - **Mis jeedoms** : Aquí es donde se enumeran todos tus Jeedoms
-    - **** : El nombre que desea darle a su Jeedom (se puede encontrar en el nombre de la copia de seguridad si tiene la suscripción de copia de seguridad en la nube).
-    - **** : Veamos el estado de la libertad en cuestión.
+    - **Apellido** : El nombre que desea darle a su Jeedom (se puede encontrar en el nombre de la copia de seguridad si tiene la suscripción de copia de seguridad en la nube).
+    - **Estado** : Veamos el estado de la libertad en cuestión.
     - **IP local / remota** : IP o dirección de este Jeedom, configúrelo en Jeedom, si no pone nada será la última IP conocida.
     - **** : Le permite personalizar el nombre de su DNS.
     - **** : Enumere las diferentes URL de acceso de Jeedom.
@@ -66,7 +66,7 @@ Para los profesionales :
     - **** : Nombre de hardware Jeedom.
     - **** : Versión Jeedom instalada.
 
-> ****
+> **Consejo**
 >
 > No olvides guardar.
 
@@ -82,7 +82,7 @@ En esta pestaña puede consultar su saldo de SMS / Llamadas (utilizable con el c
 
 Aquí encontrará todas sus compras y puede solicitar la devolución de la factura o recibo por correo electrónico.
 
-> ****
+> **Importante**
 >
 > Si compra un complemento oficial, recibirá una factura. Sin embargo, para un complemento de terceros es un recibo, para la factura debe solicitar al desarrollador.
 

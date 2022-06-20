@@ -15,7 +15,7 @@ Este relatório (diferente das visualizações e designs) é gerado automaticame
 - 5 : Nome do seu Jeedom, atalho para configuração.
 - 6 : Modo de edição (reordenar / redimensionar blocos).
 - 7 : Filtrar por categorias.
-- 8 : Objeto : Ícone, nome e resumo e seus equipamentos.
+- 8 :  : Ícone, nome e resumo e seus equipamentos.
 - 9 : Ladrilho para equipamento.
 - 10 : Widget de pedidos.
 
@@ -51,7 +51,7 @@ Além disso, você pode clicar no título do ladrilho (o nome do equipamento) pa
 
 - Um clique em um pedido de tipo de informação exibe o histórico do pedido (se for histórico).
 - Um Ctrl + Clique em um comando de tipo de informação exibe o histórico de todos os comandos (históricos) desse bloco.
-- Um clique na informação *Tempo* de um comando de ação exibe o histórico do comando (se for historizado).
+- Um clique na informação ** de um comando de ação exibe o histórico do comando (se for historizado).
 
 
 ## Modo de edição

@@ -4,23 +4,23 @@
 Esta página le permite crear una vista 3D de su hogar que puede reaccionar dependiendo del estado de la información variada en su domótica.
 
 
-> ****
+> **Consejo**
 >
 > Es posible ir directamente a un diseño 3D gracias al submenú.
 
 ## Importando el modelo 3D
 
-> ****
+> **IMPORTANTE**
 >
 > No puede crear su modelo 3D directamente en Jeedom, debe hacerlo con un software de terceros. Nous recommandons le très bon SweetHome3d (http://www.sweethome3d.com/fr/).
 
 Una vez que se ha creado su modelo 3D, debe exportarse en formato OBJ. Si usa SweetHome3d, esto se hace desde el menú "Vista 3D" y luego "Exportar a formato OBJ". Luego tome todos los archivos generados y póngalos en un archivo zip (puede haber muchos archivos debido a las texturas).
 
-> ****
+> **IMPORTANTE**
 >
 > Los archivos deben estar en la raíz del zip y no en una subcarpeta.
 
-> ****
+> **ATENCIÓN**
 >
 > Un modelo 3D es bastante imponente (esto puede representar varios cientos de Mo). Cuanto más grande sea, mayor será el tiempo de representación en Jeedom.
 
@@ -37,22 +37,22 @@ Puedes desde esta pantalla :
 
 Haga clic en el botón &quot;enviar&quot; en el nivel &quot;Modelo 3D&quot; y seleccione su archivo zip
 
-> ****
+> **ATENCIÓN**
 >
 > Jeedom autoriza la importación de un archivo de 150mo como máximo !
 
-> ****
+> **ATENCIÓN**
 >
 > Debes tener un archivo zip.
 
-> ****
+> **Consejo**
 >
 > Una vez que se haya importado el archivo (puede ser bastante largo dependiendo del tamaño del archivo), debe actualizar la página para ver el resultado (F5).
 
 
 ## Configuracion de elementos
 
-> ****
+> **IMPORTANTE**
 >
 > La configuración solo se puede hacer en modo edición.
 
@@ -64,12 +64,12 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 
 ### Luz
 
--  : El control del estado de la luz puede ser binario (0 o 1), digital (0 a 100%) o color
--  : potencia de la bombilla (tenga en cuenta que esto puede no reflejar la realidad))
+- Estado : El control del estado de la luz puede ser binario (0 o 1), digital (0 a 100%) o color
+- Potencia : potencia de la bombilla (tenga en cuenta que esto puede no reflejar la realidad))
 
 ### Texte
 
--  : texto para mostrar (puede poner comandos allí, el texto se actualizará automáticamente al cambiarlo))
+- Texto : texto para mostrar (puede poner comandos allí, el texto se actualizará automáticamente al cambiarlo))
 - Tamaño del texto
 - Color del texto
 - Transparencia de texto : de 0 (invisible) a 1 (visible)
@@ -83,25 +83,25 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 
 #### Puerta / ventana
 
--  : Estado de puerta / ventana, 1 cerrado y 0 abierto
+- Estado : Estado de puerta / ventana, 1 cerrado y 0 abierto
 - Rotation
-	-  : activa la rotación de la puerta / ventana al abrir
-	-  : lo mejor es probar para que coincida con su puerta / ventana
+	- Habilitar : activa la rotación de la puerta / ventana al abrir
+	- Apertura : lo mejor es probar para que coincida con su puerta / ventana
 - Translation
-	-  : activa la traducción al abrir (puerta corredera / tipo de ventana))
-	-  : dirección en la que debe moverse la puerta / ventana (tiene arriba / abajo / derecha / izquierda)
+	- Habilitar : activa la traducción al abrir (puerta corredera / tipo de ventana))
+	- Sentido : dirección en la que debe moverse la puerta / ventana (tiene arriba / abajo / derecha / izquierda)
 	- Repetición : de forma predeterminada, la Puerta / Ventana se mueve una vez que su dimensión en la dirección dada, pero puede aumentar este valor
 - Ocultar cuando la puerta / ventana está abierta
-	-  : Oculta el elemento si la puerta / ventana está abierta
+	- Habilitar : Oculta el elemento si la puerta / ventana está abierta
 - Couleur
 	- Color abierto : Si marca, el elemento tomará este color si la puerta / ventana está abierta
 	- Color cerrado : Si marca, el elemento tomará este color si la puerta / ventana está cerrada
 
 #### Volet
 
--  : estado del obturador, 0 abierto otro valor cerrado
+- Estado : estado del obturador, 0 abierto otro valor cerrado
 - Ocultar cuando el obturador está abierto
-	-  : ocultar el elemento si el obturador está abierto
+	- Habilitar : ocultar el elemento si el obturador está abierto
 - Couleur
 	- Color cerrado : Si marca, el elemento tomará este color si el obturador está cerrado
 
@@ -109,6 +109,6 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 
 Si la condición es válida, permite dar el color elegido al elemento. Puedes poner tantos colores / condiciones como quieras.
 
-> ****
+> **Consejo**
 >
 > Las condiciones se evalúan en orden, se tomará la primera que sea verdadera, por lo tanto, las siguientes no se evaluarán

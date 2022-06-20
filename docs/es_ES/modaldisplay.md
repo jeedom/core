@@ -1,6 +1,6 @@
 # ModalDisplay
 
-La página **** es un contenedor simple para cargar el contenido de una ventana (**  **) página completa.
+La página **** es un contenedor simple para cargar el contenido de una ventana (** Dónde **) página completa.
 
 Se utiliza en particular en los siguientes casos:
 - Menú de análisis : Ctrl Click / Click Center en *Tiempo real*

@@ -15,8 +15,8 @@ Em cada objeto, sua imagem de plano de fundo e seus resumos são exibidos :
 
 Dependendo do tipo de resumo (chave), visível em **Configurações → Sistema → Configuração / Resumos** :
 - Canto superior esquerdo : O nome do objeto.
-- Canto superior direito : Temperatura (*temperatura*) e umidade (*umidade*).
-- Sob o título : Alerta (*segurança*) e movimento (*movimento*), verde ou vermelho, dependendo da existência de alertas / movimentos em andamento.
+- Canto superior direito : Temperatura (**) e umidade (**).
+- Sob o título :  (**) e movimento (**), verde ou vermelho, dependendo da existência de alertas / movimentos em andamento.
 - Downstairs : Todos os outros resumos de assuntos.
 
 A configuração da exibição do objeto é feita em **Ferramentas → Objetos** :
@@ -30,7 +30,7 @@ A configuração da exibição do objeto é feita em **Ferramentas → Objetos**
 >
 > A ordem de exibição dos objetos é a de *Resumo Automation*, que você pode reordenar (Análise → Resumo da automação residencial).
 
-> **Observação**
+> ****
 >
 > Se um objeto não possui um resumo definido, um botão é exibido no canto superior direito para acessar a configuração / resumos do objeto.
 
