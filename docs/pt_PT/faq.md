@@ -1,5 +1,5 @@
 # FAQ
-**Configurações → Versão : Perguntas frequentes**
+**Configurações → Versão : **
 
 ### Jeedom requer uma assinatura ?
 Não, o Jeedom é totalmente utilizável sem a necessidade de qualquer assinatura. No entanto, existem serviços oferecidos para backups ou chamadas / SMS, mas que são realmente opcionais.
@@ -14,13 +14,13 @@ O Jeedom possui uma versão móvel adequada para uso em celulares e tablets. Há
 Quando você faz login no Jeedom pela primeira vez (e mesmo depois se você não os tiver alterado), o nome de usuário e a senha padrão são admin / admin. Na primeira conexão, é altamente recomendável modificar esses identificadores para obter mais segurança.
 
 ### Não consigo mais me conectar ao meu Jeedom
-Desde o Jeedom 3.2 não é mais possível conectar-se a admin / admin remotamente por razões óbvias de segurança. As credenciais de administrador / administrador funcionam apenas localmente. Atenção, se você passar pelo DNS, mesmo localmente, será necessariamente identificado como remoto. Outro ponto padrão somente IP em 192.168.*.* ou 127.0.0.1 são reconhecidos como locais. Ele é configurado na administração da parte de segurança Jeedom e depois no IP "branco". Se, apesar de tudo, você ainda não conseguir se conectar, use o procedimento de redefinição de senha, consulte [aqui](https://doc.jeedom.com/pt_PT/howto/reset.password).
+Desde o Jeedom 3.2 não é mais possível conectar-se a admin / admin remotamente por razões óbvias de segurança. As credenciais de administrador / administrador funcionam apenas localmente. Atenção, se você passar pelo DNS, mesmo localmente, será necessariamente identificado como remoto. Outro ponto padrão somente IP em 192.168.*.* .1 são reconhecidos como locais. Ele é configurado na administração da parte de segurança Jeedom e depois no IP "branco". Se, apesar de tudo, você ainda não conseguir se conectar, use o procedimento de redefinição de senha, consulte [](https://doc.jeedom.com/pt_PT/howto/reset.password).
 
 ### Não vejo todo o meu equipamento no painel
 Geralmente, isso se deve ao fato de o equipamento estar atribuído a um objeto que não é o filho ou o próprio objeto do primeiro objeto selecionado à esquerda na árvore (você pode configurá-lo em seu perfil).
 
 ### A interface Jeedom possui atalhos ?
-Sim, a lista de atalhos de teclado / mouse é [aqui](shortcuts.md).
+Sim, a lista de atalhos de teclado / mouse é [](shortcuts.md).
 
 ### Podemos reordenar pedidos de equipamentos ?
 Sim, é possível, basta arrastar e soltar os comandos do seu objeto em sua configuração.
@@ -41,14 +41,14 @@ Não existe uma duração padrão, depende do sistema e do volume de dados a ser
 Eles estão na pasta / var / www / html / backup
 
 ### Podemos colocar o Jeedom em https ?
-Sim : Você tem um pacote de força ou mais, nesse caso, você
+ : Você tem um pacote de força ou mais, nesse caso, você
 basta usar o [Jeedom DNS](https://jeedom.github.io/documentation/howto/pt_PT/mise_en_place_dns_jeedom). Com um DNS e você sabe como configurar um certificado válido, nesse caso, é uma instalação padrão de um certificado.
 
 ### Como se conectar no SSH ?
-Aqui está um [documentação](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "Windows : Putty". O "hostname" sendo o ip do seu Jeedom, os identificadores sendo :
+Aqui está um [](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "Windows : Putty". O "hostname" sendo o ip do seu Jeedom, os identificadores sendo :
 
-- Nome de usuário : "root ", senha : "Mjeedom96"
-- Nome de usuário : "jeedom ", senha : "Mjeedom96"
+-  : "root ", senha : "Mjeedom96"
+-  : "jeedom ", senha : "Mjeedom96"
 - Ou o que você coloca na instalação se estiver em DIY
 
 Observe que quando você escreve a senha, não verá nada escrito na tela, isso é normal.
@@ -57,19 +57,19 @@ Observe que quando você escreve a senha, não verá nada escrito na tela, isso 
 No ssh do :
 
 `` `{.bash}
-sudo su -
+ -
 chmod -R 775 / var / www / html
-chown -R www-data:www-data / var / www / html
+:www-data / var / www / html
 `` ''
 
 ### Como atualizar o Jeedom no SSH ?
 No ssh do :
 
 `` `{.bash}
-sudo su -
-php /var/www/html/install/update.php
+ -
+
 chmod -R 775 / var / www / html
-chown -R www-data:www-data / var / www / html
+:www-data / var / www / html
 `` ''
 
 ### O Symbian é compatível com Webapp ?
@@ -100,13 +100,13 @@ Estes devem ser redefinidos :
 
 `` `{.bash}
 bdd_password = $ (cat / dev / urandom | tr-cd 'a-f0-9' | cabeça -c 15)
-echo "DROP USER 'jeedom' @ 'localhost'" | mysql -uroot -p
-echo "CREATE USER 'jeedom' @ 'localhost' IDENTIFICADO POR '$ {bdd_password}';" | mysql -uroot -p
-eco "CONCEDE TODOS OS PRIVILÉGIOS NO jeedom.* TO 'jeedom' @ 'localhost';" | mysql -uroot -p
+echo "DROP USER 'jeedom' @ 'localhost'" | 
+echo "CREATE USER 'jeedom' @ 'localhost' IDENTIFICADO POR '$ {bdd_password}';" | 
+eco "CONCEDE TODOS OS PRIVILÉGIOS NO jeedom.* TO 'jeedom' @ 'localhost';" | 
 cd / usr / share / nginx / www / jeedom
 sudo cp core / config / common.config.sample.php core / config / common.config.php
 sudo sed -i -e "s /#PASSWORD#/ $ {bdd_password} / g "core / config / common.config.php
-sudo chown www-data:www-data core / config / common.config.php
+:www-data core / config / common.config.php
 `` ''
 
 ### Eu tenho \ {\ {… \} \} em todo lugar
@@ -117,7 +117,7 @@ Novamente, isso geralmente ocorre devido a um plug-in na versão beta, enquanto 
 
 ### Não tenho mais acesso ao Jeedom, nem pela interface da web nem no console via SSH
 Este erro não se deve ao Jeedom, mas a um problema com o sistema.
-Se isso persistir após a reinstalação, é recomendável verificar com o serviço pós-venda se há problemas de hardware. Aqui está o [documentação](https://doc.jeedom.com/pt_PT/installation/smart) para Smart
+Se isso persistir após a reinstalação, é recomendável verificar com o serviço pós-venda se há problemas de hardware. Aqui está o [](https://doc.jeedom.com/pt_PT/installation/smart) para Smart
 
 ### Meu cenário não para mais
 É aconselhável olhar para os comandos executados pelo cenário, geralmente vem de um comando que não termina.
@@ -134,15 +134,15 @@ Isso ocorre porque o MySQL parou, não é normal, os casos comuns são :
 
 Infelizmente, não há muita solução se for o segundo caso, o melhor é recuperar um backup (disponível em / var / www / html / backup por padrão), reinstalar o Jeedom e restaurar o backup. Você também pode ver por que o MySQL não deseja inicializar a partir de um console SSH :
 `` `{.bash}
-sudo su -
+ -
 serviço de parada do mysql
-mysqld --verbose
+
 `` ''
-Ou consulte o log : /var/log/mysql/error.log
+Ou consulte o log : 
 
 ### Os botões Desligar / Reiniciar não funcionam
 Em uma instalação DIY é normal. No SSH, você deve fazer o comando visudo e, no final do arquivo, adicionar : www-data ALL = (ALL)
-NOPASSWD: TUDO.
+NOPASSWD: .
 
 `` `{.bash}
 serviço sudo reinício apache2
@@ -157,7 +157,7 @@ Os alertas são classificados por prioridade, do menos importante ao mais import
 ### O My Jeedom exibe permanentemente "Inicializando" mesmo após 1 hora ?
 Se você está no DIY e no Debian 9 ou mais, verifique se não houve uma atualização do Apache e, portanto, o retorno do privateTmp (visível fazendo `ls / tmp` e veja se há uma pasta particular \* Apache). Se for esse o caso, você tem que fazer :
 `` ''
-mkdir /etc/systemd/system/apache2.service.d
+
 echo "[Service]"> /etc/systemd/system/apache2.service.d/privatetmp.conf
 echo "PrivateTmp = no" >> /etc/systemd/system/apache2.service.d/privatetmp.conf
 `` ''
@@ -188,7 +188,7 @@ rm -rf / root / tmp / núcleo-mestre
 ### Estou com o erro no cenário_execução MYSQL_ATTR_INIT_COMMAND
 Na administração do Jeedom parte OS / DB, no console do sistema, é necessário fazer :
 `` ''
-sim | O comando sudo apt-install -y php-mysql-php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-zip php-ssh2 php-mbstring php-ldap
+ | O comando sudo apt-install -y php-mysql-php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-zip php-ssh2 php-mbstring php-ldap
 `` ''
 
 ### Não consigo instalar as dependências do plug-in. Tenho um erro do tipo : "E: dpkg foi descontinuado. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou "E: Não foi possível obter o bloqueio / var / lib / dpkg / lock"
