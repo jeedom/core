@@ -2,7 +2,7 @@
 **Einstellungen → System → Update Center**
 
 
-Das **Update Center** Mit dieser Funktion können Sie alle Funktionen von Jeedom aktualisieren, einschließlich der Kernsoftware und ihrer Plugins.
+ **Update Center** Mit dieser Funktion können Sie alle Funktionen von Jeedom aktualisieren, einschließlich der Kernsoftware und ihrer Plugins.
 Andere Erweiterungsverwaltungsfunktionen sind verfügbar (Löschen, Neuinstallieren, Überprüfen usw.).).
 
 
@@ -16,7 +16,7 @@ Wenn diese Überprüfung zu Beginn der Seite älter als zwei Stunden ist, wieder
 Sie können auch die Schaltfläche verwenden **Suchen Sie nach Updates** Um es manuell zu tun.
 Wenn Sie eine manuelle Überprüfung durchführen möchten, können Sie auf die Schaltfläche "Nach Updates suchen" klicken".
 
-Die Taste **Zu schützen** wird verwendet, wenn Sie die Optionen in der folgenden Tabelle ändern, um anzugeben, dass bestimmte Plugins bei Bedarf nicht aktualisiert werden sollen.
+Die Taste **** wird verwendet, wenn Sie die Optionen in der folgenden Tabelle ändern, um anzugeben, dass bestimmte Plugins bei Bedarf nicht aktualisiert werden sollen.
 
 ## Aktualisieren Sie den Core
 
@@ -28,7 +28,7 @@ Sobald Sie darauf klicken, erhalten Sie diese verschiedenen Optionen :
 - **Aktualisieren Sie den Core** : Ermöglicht es Ihnen, den Jeedom-Kernel (den Kern) in das Update aufzunehmen.
 
 - **Erzwungener Modus** : Führen Sie das Update im erzwungenen Modus durch, dh, dass Jeedom auch im Fehlerfall fortfährt und die Sicherung nicht wiederherstellt. (Dieser Modus deaktiviert das Speichern !).
-- **Update zur erneuten Anwendung** : Ermöglicht das erneute Anwenden eines Updates. (NB : Nicht alle Updates können erneut angewendet werden.)
+- **Update zur erneuten Anwendung** : Ermöglicht das erneute Anwenden eines Updates. ( : Nicht alle Updates können erneut angewendet werden.)
 
 > **Wichtig**
 >
@@ -42,20 +42,20 @@ Sobald Sie darauf klicken, erhalten Sie diese verschiedenen Optionen :
 
 Die Tabelle enthält die Versionen des Core und der installierten Plugins.
 
-Die Plugins haben neben ihrem Namen ein Abzeichen, das ihre Version angibt und grün ist *stetig*, oder orange in *Beta* oder andere.
+Die Plugins haben neben ihrem Namen ein Abzeichen, das ihre Version angibt und grün ist **, oder orange in ** oder andere.
 
-- **Status** : OK oder NOK.
-- **Nachname** : Name und Herkunft des Plugins
-- **Ausführung** : Zeigt die genaue Version des Core oder Plugins an.
+- **** : OK oder NOK.
+- **** : Name und Herkunft des Plugins
+- **** : Zeigt die genaue Version des Core oder Plugins an.
 - **Optionen** : Aktivieren Sie dieses Kontrollkästchen, wenn dieses Plugin während des globalen Updates nicht aktualisiert werden soll (Schaltfläche) **Update**).
 
 In jeder Zeile können Sie die folgenden Funktionen verwenden:
 
 - **Wieder einstellen** : Neuansiedlung erzwingen.
-- **Löschen** : Ermöglicht die Deinstallation.
+- **** : Ermöglicht die Deinstallation.
 - **überprüfen** : Fragen Sie die Quelle nach Updates ab, um herauszufinden, ob ein neues Update verfügbar ist.
 - **Update** : Ermöglicht das Aktualisieren des Elements (sofern es aktualisiert wurde)).
-- **Änderungsprotokoll** : Ermöglicht den Zugriff auf die Liste der Änderungen im Update.
+- **** : Ermöglicht den Zugriff auf die Liste der Änderungen im Update.
 
 > **Wichtig**
 >
@@ -91,8 +91,8 @@ Sobald die Verbindung hergestellt ist, ist dies der auszuführende Befehl :
 
 Die möglichen Parameter sind :
 
-- **Mode** : `force`, um ein Update im erzwungenen Modus zu starten (ignoriert Fehler).
-- **Ausführung** : Nachverfolgung der Versionsnummer, um Änderungen gegenüber dieser Version erneut anzuwenden.
+- **** : `force`, um ein Update im erzwungenen Modus zu starten (ignoriert Fehler).
+- **** : Nachverfolgung der Versionsnummer, um Änderungen gegenüber dieser Version erneut anzuwenden.
 
 Hier ist ein Beispiel für die Syntax, um ein erzwungenes Update durchzuführen, indem die Änderungen seit 4.0 erneut angewendet werden.04 :
 

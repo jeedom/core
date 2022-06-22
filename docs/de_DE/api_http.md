@@ -42,17 +42,17 @@ Der einfachste Weg, um diese URL zu erhalten, ist das Aufrufen der Seite **Analy
 
 Vohier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = interagiere & query = \#QUERY\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = interagieren & abfragen=#QUERY#)
 
-- **** : Frage an Jeedom zu stellen.
-- **** \ [Optional \] : teilt Jeedom mit, ob die Abfrage in utf8 codiert werden soll, bevor versucht wird zu antworten.
-- **** \ [Optional \] : 0 für Jeedom, um zu antworten, auch wenn er es nicht verstanden hat, 1 sonst.
-- **** \ [Optional \] : Benutzername der Person, die die Interaktion initiiert.
+- **Anfrage** : Frage an Jeedom zu stellen.
+- **utf8** \ [Optional \] : teilt Jeedom mit, ob die Abfrage in utf8 codiert werden soll, bevor versucht wird zu antworten.
+- **leereAntwort** \ [Optional \] : 0 für Jeedom, um zu antworten, auch wenn er es nicht verstanden hat, 1 sonst.
+- **Profil** \ [Optional \] : Benutzername der Person, die die Interaktion initiiert.
 - **antworten\_cmd** \ [Optional \] : Bestellnummer zur Beantwortung der Anfrage.
 
 ## Message
 
 Vohier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = message & category = \#CATEGORY\#&message=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = message & category=#CATEGORY#&message=#MESSAGE#)
 
-- **** : Nachrichtenkategorie, die dem Nachrichtenzentrum hinzugefügt werden soll.
+- **Kategorie** : Nachrichtenkategorie, die dem Nachrichtenzentrum hinzugefügt werden soll.
 - **Botschaft** : Denken Sie bei der fraglichen Nachricht sorgfältig über die Codierung der Nachricht nach (Leerzeichen wird zu% 20, =% 3D…)). Sie können ein Werkzeug verwenden, [hier](https://meyerweb.com/eric/tools/dencoder/).
 
 ## Objet
@@ -71,7 +71,7 @@ Vohier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& typ
 
 Vohier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = command & eqLogic\_id = \#EQLOGIC\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = command & eqLogic_id=#EQLOGIC_ID#)
 
-- **** : ID der Ausrüstung, von der Bestellungen abgerufen werden sollen.
+- **eqLogic\_id** : ID der Ausrüstung, von der Bestellungen abgerufen werden sollen.
 
 ## Vollständige Daten
 
@@ -81,7 +81,7 @@ Gibt alle Objekte, Geräte, Befehle (und deren Wert, wenn es sich um Information
 
 ## Variable
 
-Vohier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = Variable & Name=#NAME#&value=)**
+Vohier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = Variable & Name=#NAME#&value=)*WERT*
 
 - **Name** : Name der Variablen, deren Wert gewünscht wird (Lesen des Werts).
-- **** \ [Optional \] : Wenn "Wert" angegeben ist, nimmt die Variable diesen Wert an (Schreiben eines Werts)).
+- **Wert** \ [Optional \] : Wenn "Wert" angegeben ist, nimmt die Variable diesen Wert an (Schreiben eines Werts)).

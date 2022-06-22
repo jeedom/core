@@ -30,7 +30,7 @@ La configuración de la visualización del objeto se realiza en **Herramientas �
 >
 > El orden de visualización de los objetos es el de *Resumen de domótica*, que puede reordenar (Análisis → Resumen de automatización del hogar).
 
-> ****
+> **Nota**
 >
 > Si un objeto no tiene un resumen definido, se muestra un botón en la parte superior derecha para acceder a la configuración / resúmenes del objeto.
 

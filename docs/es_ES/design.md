@@ -65,7 +65,7 @@ Encontrado aquí :
 
 ## Configuración general de elementos
 
-> ****
+> **Nota**
 >
 > Dependiendo del tipo de elemento, las opciones pueden cambiar.
 

@@ -93,7 +93,7 @@ Aqui tienes los botones :
 - **Agregar columna** : Agregar una columna a la tabla.
 - **Agregar línea** : Agregar una fila a la tabla.
 
-> ****
+> **Nota**
 >
 > Es posible reorganizar las filas arrastrando y soltando, pero no las columnas.
 

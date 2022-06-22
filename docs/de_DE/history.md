@@ -3,7 +3,7 @@
 
 Wichtiger Teil in der Software : der Historisierungsteil, eine wahre Erinnerung daran. In Jeedom ist es möglich, jeden Informationstypbefehl (binär oder digital) zu protokollieren). So können Sie beispielsweise einen Temperaturverlauf, Verbräuche, Türöffnungen etc. protokollieren.
 
-![Historisch](./images/history.gif)
+![](./images/history.gif)
 
 ### Prinzip der Historisierung
 
@@ -15,7 +15,7 @@ Die Archivierung beginnt nachts und komprimiert die tagsüber wiederhergestellte
 
 > **Tipp**
 >
-> Wenn Sie gut gefolgt sind, sollten Sie nur in den letzten 2 Stunden eine hohe Präzision haben. Wenn ich mich jedoch um 17 Uhr verbinde, habe ich eine Präzision für die letzten 17 Stunden. Warum ? Um unnötigen Ressourcenverbrauch zu vermeiden, findet die Archivierungsaufgabe nur einmal am Tag abends statt.
+> Wenn Sie gut gefolgt sind, sollten Sie nur in den letzten 2 Stunden eine hohe Präzision haben. Wenn ich mich jedoch um 17 Uhr verbinde, habe ich eine Präzision für die letzten 17 Stunden.  ? Um unnötigen Ressourcenverbrauch zu vermeiden, findet die Archivierungsaufgabe nur einmal am Tag abends statt.
 
 > **Wichtig**
 >
@@ -37,12 +37,12 @@ Ab Core v4.2 ist es auch möglich, eine Kurve am unteren Rand der Kachel eines G
 
 Wenn Sie ein Diagramm über die Verlaufsseite anzeigen, haben Sie über dem Diagramm Zugriff auf mehrere Anzeigeoptionen :
 
-- **Zeit** : Der Anzeigezeitraum einschließlich historischer Daten zwischen diesen beiden Daten. Standardmäßig abhängig von der Einstellung *Standard Anzeigezeitraum der Grafiken* in *Einstellungen → System → Konfiguration / Ausstattung*.
-- **Gruppe** : Bietet verschiedene Gruppierungsoptionen (Summe pro Stunde usw.).).
-- **Anzeigetyp** : Anzeige in *Linie*, *Bereich*, Wo *Abgesperrt*. Option in der Bestellung gespeichert und über das Dashboard verwendet.
-- **Variation** : Zeigt die Wertdifferenz zum vorherigen Punkt an. Option in der Bestellung gespeichert und über das Dashboard verwendet.
-- **Treppe** : Zeigt die Kurve als Treppe oder kontinuierliche Anzeige an. Option in der Bestellung gespeichert und über das Dashboard verwendet.
-- **Vergleichen** : Vergleichen Sie die Kurve zwischen verschiedenen Perioden.
+- **Zeit** : Der Anzeigezeitraum einschließlich historischer Daten zwischen diesen beiden Daten. Standardmäßig abhängig von der Einstellung *Standard Anzeigezeitraum der Grafiken*  *Einstellungen → System → Konfiguration / Ausstattung*.
+- **** : Bietet verschiedene Gruppierungsoptionen (Summe pro Stunde usw.).).
+- **Anzeigetyp** : Anzeige in **, **,  **. Option in der Bestellung gespeichert und über das Dashboard verwendet.
+- **** : Zeigt die Wertdifferenz zum vorherigen Punkt an. Option in der Bestellung gespeichert und über das Dashboard verwendet.
+- **** : Zeigt die Kurve als Treppe oder kontinuierliche Anzeige an. Option in der Bestellung gespeichert und über das Dashboard verwendet.
+- **** : Vergleichen Sie die Kurve zwischen verschiedenen Perioden.
 
 > **Tipp**
 >
@@ -52,7 +52,7 @@ Im oberen Teil, wo die Kurven angezeigt werden, gibt es auch mehrere Optionen :
 
 Auf der Linken:
 
-- **Zoomen** : Ein Shortcut-Bereich, mit dem Sie den horizontalen Zoom auf die gewünschte Dauer einstellen können, wenn die Daten geladen sind.
+- **** : Ein Shortcut-Bereich, mit dem Sie den horizontalen Zoom auf die gewünschte Dauer einstellen können, wenn die Daten geladen sind.
 
 Auf der rechten Seite:
 
@@ -68,12 +68,12 @@ Unter den Kurven können Sie auch das Kontextmenü jeder Legende verwenden, um e
 Sie können die Diagramme auch in den Ansichten anzeigen (wir sehen hier die Konfigurationsoptionen und nicht, wie es geht, dafür müssen Sie zur Dokumentation der Ansichten oder Entwürfe in Funktion gehen). Hier sind die Optionen :
 
 Sobald eine Daten aktiviert sind, können Sie auswählen :
-- **Farbe** : Die Farbe der Kurve.
-- **Nett** : Der Diagrammtyp (Bereich, Linie oder Spalte)).
-- **Leiter** : Da Sie mehrere Kurven (Daten) in ein Diagramm einfügen können, können Sie die Skalen (rechts oder links) unterscheiden).
-- **Treppe** : Zeigt die Kurve als Treppe oder kontinuierliche Anzeige an.
-- **Stapel** : Stapeln Sie die Werte der Kurven (siehe unten für das Ergebnis).
-- **Variation** : Zeigt die Wertdifferenz zum vorherigen Punkt an.
+- **** : Die Farbe der Kurve.
+- **** : Der Diagrammtyp (Bereich, Linie oder Spalte)).
+- **** : Da Sie mehrere Kurven (Daten) in ein Diagramm einfügen können, können Sie die Skalen (rechts oder links) unterscheiden).
+- **** : Zeigt die Kurve als Treppe oder kontinuierliche Anzeige an.
+- **** : Stapeln Sie die Werte der Kurven (siehe unten für das Ergebnis).
+- **** : Zeigt die Wertdifferenz zum vorherigen Punkt an.
 
 ### Option auf der Verlaufsseite
 
@@ -95,7 +95,7 @@ Sie haben auch Zugriff auf eine Verwaltung von Berechnungsformeln, die es Ihnen 
 
 Vor allen Daten, die angezeigt werden können, finden Sie zwei Symbole :
 
-- **Mülleimer** : Ermöglicht das Löschen der aufgezeichneten Daten. Beim Klicken fragt Jeedom, ob die Daten vor einem bestimmten Datum oder alle Daten gelöscht werden sollen.
+- **** : Ermöglicht das Löschen der aufgezeichneten Daten. Beim Klicken fragt Jeedom, ob die Daten vor einem bestimmten Datum oder alle Daten gelöscht werden sollen.
 - **Pfeil** : Aktiviert den CSV-Export historischer Daten.
 
 ### Inkonsistente Wertentfernung

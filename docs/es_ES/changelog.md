@@ -515,7 +515,7 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 ### 4.0 : Changements
 
 - Elimine Font Awesome 4 para mantener solo Font Awesome 5.
-- El complemento del widget no es compatible con esta versión de Jeedom y ya no será compatible (porque las funciones se han tomado internamente en el núcleo). Más información [](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
+- El complemento del widget no es compatible con esta versión de Jeedom y ya no será compatible (porque las funciones se han tomado internamente en el núcleo). Más información [aquí](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
 
 >****
 >

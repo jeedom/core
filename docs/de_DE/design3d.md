@@ -64,7 +64,7 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 
 ### Licht
 
-- Status : Die Lichtstatussteuerung kann binär (0 oder 1), digital (0 bis 100%) oder farbig sein
+-  : Die Lichtstatussteuerung kann binär (0 oder 1), digital (0 bis 100%) oder farbig sein
 -  : Lampenleistung (bitte beachten Sie, dass dies möglicherweise nicht die Realität widerspiegelt))
 
 ### Texte
@@ -83,7 +83,7 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 
 #### Tür / Fenster
 
-- Bundesland : Tür- / Fensterstatus, 1 geschlossen und 0 offen
+-  : Tür- / Fensterstatus, 1 geschlossen und 0 offen
 - Rotation
 	- Ermöglichen : Aktiviert die Drehung der Tür / des Fensters beim Öffnen
 	-  : Am besten testen Sie, ob es zu Ihrer Tür / Ihrem Fenster passt
@@ -99,7 +99,7 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 
 #### Volet
 
-- Bundesland : Verschlussstatus, 0 offen anderer Wert geschlossen
+-  : Verschlussstatus, 0 offen anderer Wert geschlossen
 - Ausblenden, wenn der Verschluss geöffnet ist
 	- Ermöglichen : Blenden Sie das Element aus, wenn der Verschluss geöffnet ist
 - Couleur
