@@ -1,10 +1,10 @@
 # Änderungsprotokoll Jeedom V4.3
 
-## 4.3.0
+## 
 
 ### 4.3 : Voraussetzungen
 
-- Debian 10 Buster
+- 
 - PHP7.3
 
 ### 4.3 : Neuigkeiten / Verbesserungen
@@ -13,12 +13,12 @@
 - **Werkzeuge / Objekte** : Ein Kontextmenü für ein Objekt wurde hinzugefügt, um die Sichtbarkeit zu verwalten, das übergeordnete Objekt zu ändern und es zu verschieben.
 - **Werkzeuge / Ersetzen** : Neues Tool zum Ersetzen von Ausrüstung und Befehlen.
 - **Analyse / Zeitleiste** : Ein Suchfeld hinzugefügt, um die Anzeige zu filtern.
-- **Bericht** : Möglichkeit, über die Gesundheit von Jeedom zu berichten.
-- **Bericht** : Möglichkeit, über alarmierte Geräte zu berichten.
+- **** : Möglichkeit, über die Gesundheit von Jeedom zu berichten.
+- **** : Möglichkeit, über alarmierte Geräte zu berichten.
 - **Aktualisieren** : Möglichkeit, von Jeedom die OS / PIP2 / PIP3 / NodeJS-Pakete zu sehen, die aktualisiert werden können, und das Update zu starten (Vorsicht, riskante Funktion und in Beta).
 - **Alarmbefehl** : Option hinzugefügt, um eine Nachricht im Falle des Endes des Alarms zu erhalten.
 
-- **Optimierung** : jeeFrontEnd{}, jeephp2js{}, kleinere Bugfixes und Optimierungen.
+- **** : jeeFrontEnd{}, jeephp2js{}, kleinere Bugfixes und Optimierungen.
 
 ### 4.3 : WebApp
 
@@ -27,14 +27,14 @@
 
 ### 4.3 : Autre
 
-- **Lib** : Aktualisieren Sie Font Awesome 5.13.1 bis 5.15.4.
+- **** : Aktualisieren Sie Font Awesome 5.13.1 bis 5.15.4.
 
 
 # Änderungsprotokoll Jeedom V4.2
 
-## 4.2.13
+## 
 
-- Bugfix-Benutzeroberfläche : Möglichkeit *Auf dem Desktop verstecken* Zusammenfassungen.
+- Bugfix-Benutzeroberfläche :  *Auf dem Desktop verstecken* Zusammenfassungen.
 - Bugfix-Benutzeroberfläche : Historiques: Beachten Sie beim Zoomen die Maßstäbe.
 
 - Bugfix-Kern : Ein Problem mit der Backup-Größe mit dem Atlas-Plugin wurde behoben.
@@ -81,7 +81,7 @@
 ## 
 
 - Bugfix-Benutzeroberfläche : Zusammenfassung der Hausautomation, Löschen des Löschverlaufs.
-- Bugfix-Benutzeroberfläche : Möglichkeit *Nicht mehr anzeigen* auf dem Modal *Erstbenutzer*.
+- Bugfix-Benutzeroberfläche :  *Nicht mehr anzeigen* auf dem Modal *Erstbenutzer*.
 - Bugfix-Benutzeroberfläche : Kurve in Hintergrundkacheln in einer Ansicht.
 - Bugfix-Benutzeroberfläche : Historien, Achsenskalierung beim Entzoomen.
 - Bugfix-Benutzeroberfläche : Historien, Ansichten stapeln.
@@ -96,7 +96,7 @@
 
 ### 4.2 : Voraussetzungen
 
-- Debian 10 Buster
+- 
 - PHP7.3
 
 ### 4.2 : Neuigkeiten / Verbesserungen
@@ -110,17 +110,17 @@
 - **Analyse / Geschichte** : Gespeicherte Verlaufsberechnungen werden jetzt wie diese über der Liste der Befehle angezeigt.
 - **Analyse / Ausrüstung** : Verwaiste Bestellungen zeigen jetzt ihren Namen und das Löschdatum an, falls sie sich noch im Löschverlauf befinden, sowie einen Link zu dem betroffenen Szenario oder der betroffenen Ausrüstung.
 - **Analyse / Protokolle** : Protokollzeilennummerierung. Möglichkeit, das Rohprotokoll anzuzeigen.
-- **Protokolle** : Färbung von Protokollen nach bestimmten Ereignissen. Möglichkeit, das Rohprotokoll anzuzeigen.
+- **** : Färbung von Protokollen nach bestimmten Ereignissen. Möglichkeit, das Rohprotokoll anzuzeigen.
 - **Zusammenfassungen** : Möglichkeit, ein anderes Symbol zu definieren, wenn die Zusammenfassung null ist (keine Fensterläden geöffnet, kein Licht an usw.)).
 - **Zusammenfassungen** : Es ist möglich, die Zahl rechts neben dem Symbol niemals oder nur dann anzuzeigen, wenn sie positiv ist.
 - **Zusammenfassungen** : Die Änderung des Zusammenfassungsparameters in der Konfiguration und für Objekte ist jetzt sichtbar, ohne auf eine Änderung des Zusammenfassungswerts zu warten.
 - **Zusammenfassungen** : Konfiguration ist jetzt möglich [Aktionen zu Zusammenfassungen](/de_DE/concept/summary#Actions  résumés) (Strg + Klick auf eine Zusammenfassung) dank der virtuellen.
-- **Bericht** : Vorschau von PDF-Dateien.
+- **** : Vorschau von PDF-Dateien.
 - **Gerätearten** : [Neue Seite](/de_DE/core/4.2/types) **Werkzeuge → Gerätetypen** Ermöglicht die Zuweisung von generischen Typen zu Geräten und Befehlen mit Unterstützung für Typen, die für installierte Plugins bestimmt sind (siehe [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.2)).
 - **Auswahl der Abbildungen** : Neues globales Fenster für die Auswahl der Abbildungen *(Symbole, Bilder, Hintergründe)*.
 - **Tabellenanzeige** : Hinzufügen einer Schaltfläche rechts von der Suche auf den Seiten ** *Szenarien* ** **  ** in den Tabellenmodus wechseln. Dies wird durch ein Cookie oder in gespeichert **Einstellungen → System → Konfiguration / Schnittstelle, Optionen**. Die Plugins können diese neue Funktion des Core nutzen. sehen [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.2).
 - **Gerätekonfiguration** : Möglichkeit, eine Verlaufskurve am unteren Rand der Kachel eines Geräts zu konfigurieren.
-- **Bestellt** : Möglichkeit, vor Ausführung des Befehls eine Berechnung für eine Befehlsaktion vom Typ Schieberegler durchzuführen.
+- **** : Möglichkeit, vor Ausführung des Befehls eine Berechnung für eine Befehlsaktion vom Typ Schieberegler durchzuführen.
 - **Plugins / Management** : Anzeige der Plugin-Kategorie und ein Link zum direkten Öffnen der Seite, ohne das Plugins-Menü aufzurufen.
 - **Szenario** : Code-Fallback-Funktion (*Code falten*) in dem *Codeblöcke*. Tastenkombinationen Strg + Y und Strg + I.
 - **Szenario** : Bugfix kopieren / einfügen und rückgängig machen / wiederholen (vollständiges Umschreiben)).
@@ -137,12 +137,12 @@
 - **Hinzufügen des Benutzers, der eine Aktion ausführt** : Hinzufügen in den Befehlsausführungsoptionen der ID und des Benutzernamens, die die Aktion starten (z. B. sichtbar im Protokollereignis)
 - **Dokumentation und Changelog-Plugin Beta** : Dokumentation und Changelog-Management für Plugins in der Beta. Achtung, in der Beta ist das Changelog nicht datiert.
 - **** : Integration des JeeXplorer-Plugins in den Core. Wird jetzt für Widget-Code und erweiterte Anpassung verwendet.
-- **Aufbau** : Neue Option in Konfiguration / Benutzeroberfläche, um das Titelbanner des Geräts nicht einzufärben.
-- **Aufbau** : Möglichkeit, Hintergrundbilder auf den Seiten Dashboard, Analyse, Tools und deren Deckkraft entsprechend dem Thema zu konfigurieren.
-- **Aufbau**: Jeedom DNS basierend auf Wireguard anstelle von Openvpn hinzufügen (Administration / Netzwerke). Schneller und stabiler, aber noch im Test. Bitte beachten Sie, dass dies derzeit nicht mit Jeedom Smart kompatibel ist.
-- **Aufbau** : OSDB-Einstellungen: Hinzufügen eines Tools zur Massenbearbeitung von Geräten, Befehlen, Objekten, Szenarien.
-- **Aufbau** : OSDB-Einstellungen: Hinzufügen eines dynamischen SQL-Abfragekonstruktors.
-- **Aufbau**: Möglichkeit zum Deaktivieren der Cloud-Überwachung (Administration / Updates / Market).
+- **** : Neue Option in Konfiguration / Benutzeroberfläche, um das Titelbanner des Geräts nicht einzufärben.
+- **** : Möglichkeit, Hintergrundbilder auf den Seiten Dashboard, Analyse, Tools und deren Deckkraft entsprechend dem Thema zu konfigurieren.
+- ****: Jeedom DNS basierend auf Wireguard anstelle von Openvpn hinzufügen (Administration / Netzwerke). Schneller und stabiler, aber noch im Test. Bitte beachten Sie, dass dies derzeit nicht mit Jeedom Smart kompatibel ist.
+- **** : OSDB-Einstellungen: Hinzufügen eines Tools zur Massenbearbeitung von Geräten, Befehlen, Objekten, Szenarien.
+- **** : OSDB-Einstellungen: Hinzufügen eines dynamischen SQL-Abfragekonstruktors.
+- ****: Möglichkeit zum Deaktivieren der Cloud-Überwachung (Administration / Updates / Market).
 - **** : Zugabe von ````jeeCli.php```` im core / php-Ordner von Jeedom, um einige Kommandozeilenfunktionen zu verwalten.
 - *Große Verbesserungen der Benutzeroberfläche in Bezug auf Leistung / Reaktionsfähigkeit. jeedomUtils {}, jeedomUI {}, Hauptmenü in reinem CSS umgeschrieben, Entfernung von initRowWorflow(), Vereinfachung des Codes, CSS-Fixes für kleine Bildschirme usw.*
 
@@ -160,7 +160,7 @@
 
 Wir haben eine Bestätigung des Cloud-Backup-Passworts hinzugefügt, um Eingabefehler zu vermeiden (zur Erinnerung, der Benutzer ist der einzige, der dieses Passwort kennt, falls es vergessen wird, kann Jeedom es weder wiederherstellen noch auf die Backups zugreifen. Cloud des Benutzers).
 
->**WICHTIG**
+>****
 >
 > Nach dem Update MÜSSEN Sie zu Einstellungen → System → Konfigurationsupdate / Markt gehen und die Bestätigung des Cloud-Sicherungskennworts eingeben, damit dies durchgeführt werden kann.
 
@@ -241,7 +241,7 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 
 ### 4.1 : Voraussetzungen
 
-- Debian 10 Buster
+- 
 
 ### 4.1 : Neuigkeiten / Verbesserungen
 
@@ -268,7 +268,7 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - **Szenario** : *stateChanges()* Akzeptieren Sie jetzt den Zeitraum ** (Mitternacht bis jetzt), **  ** (für 1 Tag).
 - **Szenario** :  *Statistik (), Durchschnitt (), Max (), Min (), Trend (), Dauer()* : Bugfix über den Zeitraum **, und jetzt akzeptieren ** (für 1 Tag).
 - **Szenario** : Möglichkeit, das automatische Angebotssystem zu deaktivieren (Einstellungen → System → Konfiguration : Equipements).
-- **Szenario** : Anzeigen a *Warnung* wenn kein Trigger konfiguriert ist.
+- **Szenario** : Anzeigen a ** wenn kein Trigger konfiguriert ist.
 - **Szenario** : Bugfix von ** auf Block kopieren / einfügen.
 - **Szenario** : Kopieren / Einfügen eines Blocks zwischen verschiedenen Szenarien.
 - **Szenario** : Die Funktionen zum Rückgängigmachen / Wiederherstellen sind jetzt als Schaltflächen verfügbar (neben der Schaltfläche zum Erstellen von Blöcken)).
@@ -283,10 +283,10 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - **** : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
 - **** : Bearbeitungsmodus: Die Geräteaktualisierungssymbole werden durch ein Symbol ersetzt, das dank eines neuen vereinfachten Modals den Zugriff auf ihre Konfiguration ermöglicht.
 - **** : Die Anzeigereihenfolge ist jetzt unabhängig von der im Dashboard.
-- **Zeitleiste** : Trennung von Verlaufs- und Zeitleisten-Seiten.
-- **Zeitleiste** : Integration der Timeline in die DB aus Zuverlässigkeitsgründen.
-- **Zeitleiste** : Verwaltung mehrerer Zeitleisten.
-- **Zeitleiste** : Komplette grafische Neugestaltung der Timeline (Desktop / Mobile).
+- **** : Trennung von Verlaufs- und Zeitleisten-Seiten.
+- **** : Integration der Timeline in die DB aus Zuverlässigkeitsgründen.
+- **** : Verwaltung mehrerer Zeitleisten.
+- **** : Komplette grafische Neugestaltung der Timeline (Desktop / Mobile).
 - **Globale Zusammenfassung** : Zusammenfassungsansicht, Unterstützung für Zusammenfassungen von einem anderen Objekt oder mit einem leeren Stammobjekt (Desktop und WebApp)).
 - **Werkzeuge / Objekte** : Neue Registerkarte *Zusammenfassung nach Ausrüstung*.
 - **Zusammenfassung der Hausautomation** : Plugin-Geräte sind deaktiviert und ihre Steuerelemente haben nicht mehr die Symbole auf der rechten Seite (Gerätekonfiguration und erweiterte Konfiguration)).
@@ -294,14 +294,14 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - **Zusammenfassung der Hausautomation** : Möglichkeit, mehrere Geräte von einem Objekt zum anderen zu bewegen.
 - **Zusammenfassung der Hausautomation** : Möglichkeit, alle Geräte eines Objekts auszuwählen.
 - **Task-Engine** : Auf der Registerkarte *Dämon*, deaktivierte Plugins werden nicht mehr angezeigt.
-- **Bericht** : Die Verwendung von ** wenn verfügbar.
-- **Bericht** : Möglichkeit zum Exportieren von Zeitleisten.
-- **Aufbau** :  ** ist jetzt in der Registerkarte *Allgemein*.
-- **Aufbau** :  ** ist jetzt in der Registerkarte *Ausrüstung*.
+- **** : Die Verwendung von ** wenn verfügbar.
+- **** : Möglichkeit zum Exportieren von Zeitleisten.
+- **** :  ** ist jetzt in der Registerkarte *Allgemein*.
+- **** :  ** ist jetzt in der Registerkarte **.
 - **Fenster zur erweiterten Gerätekonfiguration** : Dynamische Änderung der Schalttafelkonfiguration.
-- **Ausrüstung** : Neue Kategorie **.
-- **Ausrüstung** : Möglichkeit des Invertierens von Cursortypbefehlen (Info und Aktion))
-- **Ausrüstung** : Möglichkeit, einer Kachel Klassen-CSS hinzuzufügen (siehe Widget-Dokumentation).
+- **** : Neue Kategorie **.
+- **** : Möglichkeit des Invertierens von Cursortypbefehlen (Info und Aktion))
+- **** : Möglichkeit, einer Kachel Klassen-CSS hinzuzufügen (siehe Widget-Dokumentation).
 - **Über Fenster** : Hinzufügen von Verknüpfungen zu Changelog und FAQ.
 - Widgets / Objekte / Szenarien / Interaktionen / Plugins Seiten :
 	- Strg Clic / Clic Center auf einem Widget, Objekt, Szenarien, Interaktion, Plugin-Ausrüstung : Wird in einem neuen Tab geöffnet.
@@ -326,9 +326,9 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 ### 4.1 : Autres
 - **** : Anpassungen gemäß v4 und v4.1.
 - **** : Neue Seite *Tastatur- / Mausverknüpfungen* einschließlich einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Dashboard-Dokument oder die FAQ.
-- **Lib** : Aktualisieren Sie HighStock v7.1.2 bis v8.2.0.
-- **Lib** : Aktualisieren Sie jQuery v3.4.1 bis v3.5.1.
-- **Lib** : Aktualisieren Sie Font Awesome 5.9.0 bis 5.13.1.
+- **** : Aktualisieren Sie HighStock v7.1.2 bis v8.2.0.
+- **** : Aktualisieren Sie jQuery v3.4.1 bis v3.5.1.
+- **** : Aktualisieren Sie Font Awesome 5.9.0 bis 5.13.1.
 - **** :  Hinzufügung einer Option, um zu verhindern, dass ein API-Schlüssel eines Plugins Kernmethoden ausführt (allgemein))
 - Sichern von Ajax-Anfragen.
 - API-Aufrufe sichern.
@@ -465,15 +465,15 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 -  : Hinzufügen eines Widgets für numerische Kompass- / Windinformationen (danke @thanaus).
 -  : Ein numerisches Regeninfo-Widget wurde hinzugefügt (danke @thanaus)
 -  : Anzeige des Info- / Action-Shutter-Widgets proportional zum Wert.<br/><br/>
-- Aufbau : Verbesserung und Reorganisation von Registerkarten.
-- Aufbau : Hinzufügung von vielen ** (aide).
-- Aufbau : Hinzufügen einer Suchmaschine.
-- Aufbau : Es wurde eine Schaltfläche hinzugefügt, um den Cache der Widgets zu leeren (Registerkarte Cache)).
-- Aufbau : Es wurde eine Option hinzugefügt, um den Cache von Widgets zu deaktivieren (Registerkarte Cache)).
-- Aufbau : Möglichkeit der vertikalen Zentrierung des Inhalts der Kacheln (Registerkarte Schnittstelle)).
-- Aufbau : Es wurde ein Parameter für die globale Bereinigung von Protokollen hinzugefügt (Registerkarte "Bestellungen")).
-- Aufbau : Änderung von #message# beim #subject# in Konfiguration / Protokolle / Nachrichten, um das Duplizieren der Nachricht zu vermeiden.
-- Aufbau : Möglichkeit in den Zusammenfassungen, einen Ausschluss von Aufträgen hinzuzufügen, die nicht länger als XX Minuten aktualisiert wurden (Beispiel für die Berechnung von Temperaturdurchschnitten, wenn ein Sensor länger als 30 Minuten nichts gemeldet hat, wird er von der Berechnung ausgeschlossen)<br/><br/>
+-  : Verbesserung und Reorganisation von Registerkarten.
+-  : Hinzufügung von vielen ** (aide).
+-  : Hinzufügen einer Suchmaschine.
+-  : Es wurde eine Schaltfläche hinzugefügt, um den Cache der Widgets zu leeren (Registerkarte Cache)).
+-  : Es wurde eine Option hinzugefügt, um den Cache von Widgets zu deaktivieren (Registerkarte Cache)).
+-  : Möglichkeit der vertikalen Zentrierung des Inhalts der Kacheln (Registerkarte Schnittstelle)).
+-  : Es wurde ein Parameter für die globale Bereinigung von Protokollen hinzugefügt (Registerkarte "Bestellungen")).
+-  : Änderung von #message# beim #subject# in Konfiguration / Protokolle / Nachrichten, um das Duplizieren der Nachricht zu vermeiden.
+-  : Möglichkeit in den Zusammenfassungen, einen Ausschluss von Aufträgen hinzuzufügen, die nicht länger als XX Minuten aktualisiert wurden (Beispiel für die Berechnung von Temperaturdurchschnitten, wenn ein Sensor länger als 30 Minuten nichts gemeldet hat, wird er von der Berechnung ausgeschlossen)<br/><br/>
 - Szenario : Die Färbung von Blöcken erfolgt nicht mehr zufällig, sondern nach Blocktyp.
 - Szenario : Möglichkeit durch Strg + Klick auf die Schaltfläche *Ausführung* Speichern Sie es, starten Sie es und zeigen Sie das Protokoll an (wenn die Protokollebene nicht aktiviert ist **).
 - Szenario : Bestätigung der Blocklöschung. Strg + Klicken, um eine Bestätigung zu vermeiden.
@@ -504,9 +504,9 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 
 ### 4.0 : Autres
 
-- **Lib** : Aktualisieren Sie jquery 3.4.1
-- **Lib** : Aktualisieren Sie CodeMiror 5.46.0
-- **Lib** : Tablesorter aktualisieren 2.31.1
+- **** : Aktualisieren Sie jquery 3.4.1
+- **** : Aktualisieren Sie CodeMiror 5.46.0
+- **** : Tablesorter aktualisieren 2.31.1
 - Allgemeine Aufhellung (CSS / Inline-Stile, Refactoring usw.) und Leistungsverbesserungen.
 - Hinzufügung der globalen Kompatibilität von Jeedom DNS mit einer 4G-Internetverbindung.
 - Zahlreiche Fehlerbehebungen.
@@ -515,8 +515,8 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 ### 4.0 : Changements
 
 - Entfernen Sie Font Awesome 4, um nur Font Awesome 5 beizubehalten.
-- Das Widget-Plugin ist nicht mit dieser Version von Jeedom kompatibel und wird nicht mehr unterstützt (da die Funktionen intern im Kern übernommen wurden). Mehr Informationen [hier](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
+- Das Widget-Plugin ist nicht mit dieser Version von Jeedom kompatibel und wird nicht mehr unterstützt (da die Funktionen intern im Kern übernommen wurden). Mehr Informationen [](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
 
->**WICHTIG**
+>****
 >
 > Wenn nach dem Update ein Fehler im Dashboard auftritt, versuchen Sie, Ihre Box neu zu starten, damit die neuen Ergänzungen von Komponenten berücksichtigt werden.

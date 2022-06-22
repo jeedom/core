@@ -182,19 +182,19 @@ Esto se llama plantillas multiestado *(varios estados)*. En lugar de poner una i
 
 Como antes, se pueden seleccionar diferentes imágenes según el tema activo en Jeedom y el cuadro **Widget de tiempo** muestra la duración desde el último cambio de estado.
 
-Las pruebas están en forma : ''#value# == 1`, `#value#`será reemplazado automáticamente por el valor actual del comando. También puedes hacer por ejemplo :
+Las pruebas están en forma : ''#value# == #value#`será reemplazado automáticamente por el valor actual del comando. También puedes hacer por ejemplo :
 
-- ''#value# > 1`
-- ''#value# >= 1 && #value# <= 5''
+- ''#value# > 
+- ''#value# >=  #value# <= 5''
 - ''#value# == 'toto'''
 
->**Nota**     
+>****     
 >Es imprescindible mostrar los apóstrofos (**'**) alrededor del texto para comparar si el valor es texto *(info / otro)*.
 
->**Nota**     
+>****     
 >Para usuarios avanzados, también es posible utilizar funciones javascript como `#value#.match ("^ plop") `, aquí probamos si el texto comienza con` plop`.
 
->**Nota**     
+>****     
 >Es posible mostrar el valor del comando en el widget especificando `#value#`en el código HTML de la prueba. Para mostrar la unidad, agregue `#unite#''.
 
 ## Widget de código
@@ -213,7 +213,7 @@ En el modo de código tiene acceso a diferentes etiquetas para pedidos, aquí ha
 - **#uid#** : Identificador único para esta generación del widget (si hay varias veces el mismo comando, caso de diseños:  solo este identificador es realmente único)
 - **#valueDate#** : fecha del valor del pedido
 - **#collectDate#** : fecha de recogida del pedido
-- **#alertLevel#** : nivel de alerta (ver [aquí](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) para la lista)
+- **#alertLevel#** : nivel de alerta (ver [](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) para la lista)
 - **#hide_history#** : si el historial (máximo, mínimo, promedio, tendencia) debe estar oculto o no. En cuanto a la #hide_name# está vacío u oculto y, por lo tanto, se puede usar directamente en una clase. IMPORTANTE si esta etiqueta no se encuentra en su widget, entonces las etiquetas #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue#  #tendance# no será reemplazado por Jeedom.
 - **#minHistoryValue#** : valor mínimo durante el período (período definido en la configuración de Jeedom por el usuario)
 - **#averageHistoryValue#** : valor promedio durante el período (período definido en la configuración de Jeedom por el usuario)
@@ -234,9 +234,9 @@ Aquí hay un ejemplo simple de código JavaScript para poner en su widget :
 <script>
     Jeedom.cmd.update ['#id#'] = función (_options){
       $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '_options.valueDate'<br/>Fecha de recogida : '+ _options.collectDate)
-      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.mostrar_valor ' #unite#');
+      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.mostrar_valor ' #unite#')
     }
-    Jeedom.cmd.update ['#id#']({mostrar_valor:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+    Jeedom.cmd.update ['#id#']({mostrar_valor:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'})
 </script>
 `` ''
 
@@ -245,16 +245,16 @@ Aquí hay dos cosas importantes :
 `` ''
 Jeedom.cmd.update ['#id#'] = función (_options){
   $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '_options.valueDate'<br/>Fecha de recogida : '+ _options.collectDate)
-  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.mostrar_valor ' #unite#');
+  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.mostrar_valor ' #unite#')
 }
 `` ''
 La función se llama durante una actualización del widget. Luego actualiza el código html del widget_template.
 
 `` ''
-Jeedom.cmd.update ['#id#']({mostrar_valor:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+Jeedom.cmd.update ['#id#']({mostrar_valor:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'})
 `` ''
  La llamada a esta función para la inicialización del widget.
 
 ### Exemples
 
- Encontraras [aquí](https://github.com/Jeedom/core/tree/V4-stable/core/template) ejemplos de widgets (en el tablero y carpetas móviles)
+ Encontraras [](https://github.com/Jeedom/core/tree/V4-stable/core/template) ejemplos de widgets (en el tablero y carpetas móviles)

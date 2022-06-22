@@ -30,11 +30,11 @@ Sobald Sie darauf klicken, erhalten Sie diese verschiedenen Optionen :
 - **Erzwungener Modus** : Führen Sie das Update im erzwungenen Modus durch, dh, dass Jeedom auch im Fehlerfall fortfährt und die Sicherung nicht wiederherstellt. (Dieser Modus deaktiviert das Speichern !).
 - **Update zur erneuten Anwendung** : Ermöglicht das erneute Anwenden eines Updates. ( : Nicht alle Updates können erneut angewendet werden.)
 
-> **Wichtig**
+> ****
 >
 > Vor einem Update erstellt Jeedom standardmäßig ein Backup. Im Falle eines Problems beim Anwenden eines Updates stellt Jeedom das unmittelbar zuvor erstellte Backup automatisch wieder her. Dieses Prinzip gilt nur für Jeedom-Updates und nicht für Plugin-Updates.
 
-> **Tipp**
+> ****
 >
 > Sie können ein Update von Jeedom erzwingen, auch wenn es keines bietet.
 
@@ -47,7 +47,7 @@ Die Plugins haben neben ihrem Namen ein Abzeichen, das ihre Version angibt und g
 - **** : OK oder NOK.
 - **** : Name und Herkunft des Plugins
 - **** : Zeigt die genaue Version des Core oder Plugins an.
-- **Optionen** : Aktivieren Sie dieses Kontrollkästchen, wenn dieses Plugin während des globalen Updates nicht aktualisiert werden soll (Schaltfläche) **Update**).
+- **** : Aktivieren Sie dieses Kontrollkästchen, wenn dieses Plugin während des globalen Updates nicht aktualisiert werden soll (Schaltfläche) **Update**).
 
 In jeder Zeile können Sie die folgenden Funktionen verwenden:
 
@@ -57,18 +57,18 @@ In jeder Zeile können Sie die folgenden Funktionen verwenden:
 - **Update** : Ermöglicht das Aktualisieren des Elements (sofern es aktualisiert wurde)).
 - **** : Ermöglicht den Zugriff auf die Liste der Änderungen im Update.
 
-> **Wichtig**
+> ****
 >
 > Wenn das Änderungsprotokoll leer ist, Sie aber noch ein Update haben, bedeutet dies, dass die Dokumentation aktualisiert wurde. Es ist daher nicht erforderlich, den Entwickler um Änderungen zu bitten, da diese nicht unbedingt vorhanden sind. (Es ist oft eine Aktualisierung der Übersetzung, Dokumentation).
 > In einigen Fällen kann der Plugin-Entwickler auch einfache Bugfixes vornehmen, für die nicht unbedingt das Changelog aktualisiert werden muss.
 
-> **Tipp**
+> ****
 >
 > Wenn Sie ein Update starten, wird über der Tabelle ein Fortschrittsbalken angezeigt. Vermeiden Sie andere Manipulationen während des Updates.
 
 ## Registerkarte Betriebssystem/Paket
 
-> **WICHTIG**
+> ****
 >
 > Diese Registerkarte ist fortgeschrittenen Benutzern vorbehalten und nur für fortgeschrittene Benutzer, die geringste schlechte Aktion hier kann Ihr Jeedom BRECHEN (ohne die Möglichkeit, auf den Support zurückzugreifen)
 
@@ -78,7 +78,7 @@ Auf dieser Registerkarte können Sie die verfügbaren Updates für das Betriebss
 
 Während oder nach einem Update können Sie auf dieser Registerkarte das Protokoll dieses Updates in Echtzeit lesen.
 
-> **Notiz**
+> ****
 >
 > Dieses Protokoll endet normalerweise mit *[UPDATE ERFOLG BEENDEN]*. Es kann einige Fehlerzeilen in dieser Art von Protokoll geben. Sofern nach dem Update kein echtes Problem auftritt, ist es jedoch nicht immer erforderlich, den Support zu kontaktieren.
 

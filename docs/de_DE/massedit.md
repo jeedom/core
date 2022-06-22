@@ -3,7 +3,7 @@
 
 Mit diesem Tool können Sie eine große Anzahl von Geräten, Befehlen, Objekten oder Szenarien bearbeiten. Es ist vollständig generisch und verwendet automatisch das Schema und die Struktur der Jeedom-Datenbank. Es unterstützt somit Plugins und die Konfiguration ihrer Geräte.
 
-> **Aufmerksamkeit**
+> ****
 >
 > Wenn dieses Tool recht einfach zu bedienen ist, ist es für fortgeschrittene Benutzer gedacht. Tatsächlich ist es sehr einfach, jeden Parameter auf Dutzenden von Geräten oder Hunderten von Befehlen zu ändern und daher bestimmte Funktionen außer Betrieb zu setzen, siehe sogar den Core.
 
@@ -30,7 +30,7 @@ Das Teil ** ermöglicht es Ihnen, Parameter dieser Elemente zu ändern.
 
 #### Machen Sie die gesamte Ausrüstung eines Objekts / Raums unsichtbar:
 
-- Im Spiel **, wählen **Ausrüstung**.
+- Im Spiel **, wählen ****.
 - Klicken Sie auf die Schaltfläche **** einen Filter hinzufügen.
 - Wählen Sie in diesem Filter die Spalte *Objekt Identifikation*, und als Wert die ID des betreffenden Objekts (sichtbar unter Tools / Objects, Overview).
 - Klicken Sie auf die Schaltfläche ** um die Szenarien dieser Gruppe anzuzeigen.

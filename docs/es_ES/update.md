@@ -78,7 +78,7 @@ Esta pestaña le permite ver las actualizaciones disponibles para el paquete os 
 
 Durante o después de una actualización, esta pestaña le permite leer el registro de esta actualización en tiempo real.
 
-> **Nota**
+> ****
 >
 > Este registro normalmente termina con *[FINALIZAR ÉXITO ACTUALIZADO]*. Puede haber algunas líneas de error en este tipo de registro, sin embargo, a menos que haya un problema real después de la actualización, no siempre es necesario contactar al soporte para esto.
 

@@ -11,12 +11,12 @@ Dies ist in mehrere Teile gegliedert :
 Hier können Sie verschiedene Parameter Ihres Profils anpassen :
 
 - ****
-    - **Anmeldung** : Ihr Login auf dem Markt kann nicht geändert werden.
+    - **** : Ihr Login auf dem Markt kann nicht geändert werden.
     - **** : Ihr Name (diese Informationen sind nur nützlich, um E-Mails angenehmer zu gestalten).
     - **Vorname** : Ihr Vorname (diese Informationen sind nur nützlich, um E-Mails angenehmer zu gestalten).
     - **Benutzername im Forum** : Dein Benutzername im Forum.
     - **** : Ihre E-Mail.
-    - **Sprache** : Deine Sprache.
+    - **** : Deine Sprache.
     - **Passwort &amp;&amp; Passwort bestätigen** : Ermöglicht das Ändern Ihres Passworts.
 
 Für Entwickler :
@@ -37,19 +37,19 @@ Für die Profis :
 - **Aktivieren Sie den Zugriff auf Beta-Plugins** : Aktiviert den Zugriff auf Betas-Plugins (beachten Sie, dass Sie dadurch nicht auf den Support zugreifen können).
     - **Zusammenfassung** Hier finden Sie eine Zusammenfassung Ihrer verschiedenen Rechte und Dienste.
 
-> **Tipp**
+> ****
 >
 > Vergiss nicht zu sparen.
 
 ## Meine Jeedoms
 
 - ****
-    - **Jeedom** : Ihr Service Pack.
+    - **** : Ihr Service Pack.
     - **Geben Sie eine Service Pack-Nummer ein** : Hier können Sie Ihre Service Pack-Nummer eingeben (diese finden Sie in der E-Mail, die Jeedom während Ihrer Bestellung gesendet hat).
 - **Installationsschlüssel**
     - **Anzahl der Installationsschlüssel** : Zeigt die Anzahl der Jeedom-Installationen an, die derzeit mit Ihrem Konto verknüpft sind, sowie das autorisierte Limit.
 
-> **Tipp**
+> ****
 >
 > Es ist möglich, dass der Markt Sie manchmal auffordert, Ihre Installationsschlüssel zurückzusetzen. Dies ist normal. Befolgen Sie einfach die Anforderungen.
 
@@ -58,7 +58,7 @@ Für die Profis :
     - **** : Sehen wir uns den Zustand des fraglichen Jeedom an.
     - **Lokale / Remote-IP** : IP oder Adresse dieses Jeedom, konfigurieren Sie in Jeedom. Wenn Sie nichts eingeben, ist dies die letzte bekannte IP.
     - **** : Ermöglicht das Anpassen des Namens Ihres DNS.
-    - **URLs** : Listen Sie die verschiedenen Jeedom-Zugriffs-URLs auf.
+    - **** : Listen Sie die verschiedenen Jeedom-Zugriffs-URLs auf.
     - **DNS-Server** : Zeigt Ihnen den DNS-Server an, an den Sie angeschlossen sind.
     - **DNS-Status** : Hier können Sie den Status des DNS anzeigen.
     - **Erstellungsdatum** : Erstellungsdatum dieses Jeedom auf Ihrem Marktkonto (zur Erinnerung: Dies erfolgt automatisch, wenn Sie es mit dem Markt verknüpfen).
@@ -66,7 +66,7 @@ Für die Profis :
     - **** : Jeedom Hardware-Name.
     - **** : Jeedom Version installiert.
 
-> **Tipp**
+> ****
 >
 > Vergiss nicht zu sparen.
 
@@ -82,7 +82,7 @@ Auf dieser Registerkarte können Sie Ihr SMS- / Anrufguthaben einsehen (verwendb
 
 Hier finden Sie alle Ihre Einkäufe und können die Rücksendung der Rechnung oder Quittungs-E-Mail anfordern.
 
-> **Wichtig**
+> ****
 >
 > Wenn Sie ein offizielles Plugin kaufen, erhalten Sie eine Rechnung. Für ein Plugin eines Drittanbieters handelt es sich jedoch um eine Quittung. Für die Rechnung müssen Sie den Entwickler fragen.
 
