@@ -430,7 +430,7 @@ class system {
 		
 		$has_something_todo = false;
 		foreach ($return as $package => $info) {
-			if (($info['status'] != 0 && !$info['reinstall']) || $info['optional'] || $info['status'] == 3) {
+			if (($info['status'] != 0 && !$info['reinstall']) || $info['status'] == 3) {
 				continue;
 			}
 			$has_something_todo = true;
