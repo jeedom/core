@@ -72,7 +72,7 @@ In einem Codeblock :
 - Strg + S bei einer Plugin-Konfiguration : .
 - Strg Klicken oder Klicken Sie in einem Plugin auf Mitte : Öffnen Sie die Plugin-Verwaltung in einem neuen Browser-Tab.
 
-###  *Plugin*
+###  **
 - Auf einem Gerät wird Strg S gedrückt  : .
 - Klicken Sie auf einem Gerät mit der rechten Maustaste auf eine Registerkarte : Kontextmenü, um direkt zu einem anderen Gerät zu gelangen.
 - Strg Klicken oder Mitte Klicken Sie auf ein Gerät: Öffnen Sie das Plugin-Gerät in einem neuen Browser-Tab.

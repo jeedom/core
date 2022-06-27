@@ -11,7 +11,7 @@ Dort finden Sie die Liste der Szenarien Ihres Jeedom sowie Funktionen, um diese 
 
 - **** : Erstellen Sie ein Szenario. Die Vorgehensweise wird im nächsten Kapitel beschrieben.
 - **Szenarien deaktivieren** : Deaktiviert alle Szenarien. Selten verwendet und wissentlich, da kein Szenario mehr ausgeführt wird.
-- **Übersicht** : Ermöglicht einen Überblick über alle Szenarien. Sie können die Werte ändern ****, ****, **Multi-Launch**, **synchroner Modus**, **** und **** (Diese Parameter werden im folgenden Kapitel beschrieben). Sie können auch auf die Protokolle für jedes Szenario zugreifen und sie einzeln starten.
+- **Übersicht** : Ermöglicht einen Überblick über alle Szenarien. Sie können die Werte ändern ****, ****, **Multi-Launch**, **synchroner Modus**, ****  **** (Diese Parameter werden im folgenden Kapitel beschrieben). Sie können auch auf die Protokolle für jedes Szenario zugreifen und sie einzeln starten.
 
 ## Meine Szenarien
 
@@ -41,14 +41,14 @@ Davor gibt es oben auf der Seite einige nützliche Funktionen zum Verwalten dies
 - **Vorheriger / nächster Zustand** : Aktion abbrechen / wiederholen.
 - **Block hinzufügen** : Ermöglicht das Hinzufügen eines Blocks des gewünschten Typs zum Szenario (siehe unten)).
 - **** : Zeigt die Szenarioprotokolle an.
-- **Duplikat** : Kopieren Sie das Szenario, um ein neues mit einem anderen Namen zu erstellen.
+- **** : Kopieren Sie das Szenario, um ein neues mit einem anderen Namen zu erstellen.
 - **** : Ermöglicht das Anzeigen des Diagramms der Elemente, die sich auf das Szenario beziehen.
 - **Textbearbeitung** : Zeigt ein Fenster an, in dem das Szenario in Form von Text / JSON bearbeitet werden kann. Vergiss nicht zu sparen.
 - **** : Ermöglicht es Ihnen, eine reine Textversion des Szenarios zu erhalten.
 - **** : Ermöglicht den Zugriff auf die Vorlagen und die Anwendung auf das Szenario aus dem Markt (siehe unten auf der Seite)).
 - **** : Entfaltet ein Suchfeld für die Suche im Szenario. Diese Suche entfaltet die reduzierten Blöcke bei Bedarf und faltet sie nach der Suche zurück.
 - **Ausführen** : Ermöglicht das manuelle Starten des Szenarios (unabhängig von den Auslösern)). Speichern Sie vorher, um die Änderungen zu berücksichtigen.
-- **Löschen** : Szenario löschen.
+- **** : Szenario löschen.
 - **** : Speichern Sie die vorgenommenen Änderungen.
 
 > ****
@@ -65,8 +65,8 @@ In der Registerkarte **General**, Wir finden die Hauptparameter des Szenarios :
 
 - **Name des Szenarios** : Der Name Ihres Szenarios.
 - **Name, der angezeigt werden soll** : Der Name, der für die Anzeige verwendet wird. Optional wird der Name des Szenarios verwendet, wenn er nicht ausgefüllt ist.
-- **Band** : Ermöglicht das Organisieren der Szenarien, indem Sie sie in Gruppen einteilen (sichtbar auf der Szenarioseite und in ihren Kontextmenüs).
-- **Anlage** : Aktivieren Sie das Szenario. Wenn nicht aktiv, wird es von Jeedom unabhängig vom Triggermodus nicht ausgeführt.
+- **** : Ermöglicht das Organisieren der Szenarien, indem Sie sie in Gruppen einteilen (sichtbar auf der Szenarioseite und in ihren Kontextmenüs).
+- **** : Aktivieren Sie das Szenario. Wenn nicht aktiv, wird es von Jeedom unabhängig vom Triggermodus nicht ausgeführt.
 - **** : Wird verwendet, um das Szenario sichtbar zu machen (Dashboard)).
 - **übergeordnetes Objekt** : Zuordnung zu einem übergeordneten Objekt. Es wird dann entsprechend diesem Elternteil sichtbar sein oder nicht.
 - **Zeitüberschreitung in Sekunden (0 = unbegrenzt)** : Die maximal zulässige Ausführungszeit für dieses Szenario. Nach dieser Zeit wird die Ausführung des Szenarios unterbrochen.
@@ -92,7 +92,7 @@ In der Registerkarte **General**, Wir finden die Hauptparameter des Szenarios :
 
 ## Registerkarte &quot;Szenario&quot;
 
-Hier erstellen Sie Ihr Szenario. Nach dem Erstellen des Szenarios ist sein Inhalt leer, sodass er ... nichts tut. Du musst mit anfangen **Block hinzufügen**, mit dem Knopf rechts. Sobald ein Block erstellt wurde, können Sie einen weiteren hinzufügen **** oder ein **Lager**.
+Hier erstellen Sie Ihr Szenario. Nach dem Erstellen des Szenarios ist sein Inhalt leer, sodass er ... nichts tut. Du musst mit anfangen **Block hinzufügen**, mit dem Knopf rechts. Sobald ein Block erstellt wurde, können Sie einen weiteren hinzufügen **** oder ein ****.
 
 Um die Blöcke im Szenario einfacher zu gestalten und nicht ständig neu anordnen zu müssen, wird nach dem Feld, in dem sich der Mauszeiger befindet, ein Block hinzugefügt.
 *Wenn Sie beispielsweise zehn Blöcke haben und auf die IF-Bedingung des ersten Blocks klicken, wird der hinzugefügte Block nach diesem Block auf derselben Ebene hinzugefügt. Wenn kein Feld aktiv ist, wird es am Ende des Szenarios hinzugefügt.*
@@ -110,7 +110,7 @@ Um die Blöcke im Szenario einfacher zu gestalten und nicht ständig neu anordne
 Hier sind die verschiedenen Arten von Blöcken verfügbar :
 
 - **If / Then / Oder** : Ermöglicht die Ausführung von Aktionen unter Bedingungen (wenn dies, dann das).
-- **Aktie** : Ermöglicht das Starten einfacher Aktionen ohne Bedingungen.
+- **** : Ermöglicht das Starten einfacher Aktionen ohne Bedingungen.
 - **** : Ermöglicht die wiederholte Ausführung von Aktionen von 1 bis zu einer definierten Zahl (oder sogar dem Wert eines Sensors oder einer Zufallszahl…)).
 - **** : Ermöglicht das Starten einer Aktion in X Minute (n) (0 ist ein möglicher Wert). Die Besonderheit ist, dass die Aktionen im Hintergrund gestartet werden, sodass sie den Rest des Szenarios nicht blockieren. Es ist also ein nicht blockierender Block.
 - **** : Ermöglicht es Jeedom, die Aktionen des Blocks zu einem bestimmten Zeitpunkt (in der Form hhmm) zu starten). Dieser Block ist nicht blockierend.  : 0030 für 00:30 oder 0146 für 1h46 und 1050 für 10h50.
@@ -136,11 +136,11 @@ Für die Bedingungen versucht Jeedom, es möglich zu machen, sie so viel wie mö
 
 Rechts neben diesem Blocktyp stehen drei Schaltflächen zur Auswahl eines zu testenden Elements zur Verfügung :
 
-- **Finden Sie eine Bestellung** : Ermöglicht die Suche nach einer Bestellung in allen in Jeedom verfügbaren. Sobald die Bestellung gefunden wurde, öffnet Jeedom ein Fenster, in dem Sie gefragt werden, welchen Test Sie daran durchführen möchten. Wenn Sie möchten **Setzen Sie nichts**, Jeedom wird die Bestellung ohne Vergleich hinzufügen. Sie können auch wählen **und**  ****  **** Kettenprüfungen an verschiedenen Geräten.
+- **Finden Sie eine Bestellung** : Ermöglicht die Suche nach einer Bestellung in allen in Jeedom verfügbaren. Sobald die Bestellung gefunden wurde, öffnet Jeedom ein Fenster, in dem Sie gefragt werden, welchen Test Sie daran durchführen möchten. Wenn Sie möchten **Setzen Sie nichts**, Jeedom wird die Bestellung ohne Vergleich hinzufügen. Sie können auch wählen ****  ****  **** Kettenprüfungen an verschiedenen Geräten.
 - **Suchen Sie ein Szenario** : Ermöglicht die Suche nach einem zu testenden Szenario.
 - **Suche nach Ausrüstung** : Gleiches gilt für die Ausrüstung.
 
-> **Notiz**
+> ****
 >
 > Bei Blöcken vom Typ If / Then / Andernfalls können kreisförmige Pfeile links neben dem Bedingungsfeld die Wiederholung von Aktionen aktivieren oder nicht, wenn die Auswertung der Bedingung das gleiche Ergebnis wie bei der vorherigen Auswertung ergibt.
 > IF-Ausdruck != 0 entspricht IF-Ausdruck und IF-Ausdruck == 0 entspricht IF-nicht-Ausdruck
@@ -149,7 +149,7 @@ Rechts neben diesem Blocktyp stehen drei Schaltflächen zur Auswahl eines zu tes
 >
 > Es gibt eine Liste von Tags, die den Zugriff auf Variablen aus dem einen oder anderen Szenario oder nach Uhrzeit, Datum, Zufallszahl usw. ermöglichen. Siehe unten die Kapitel zu Befehlen und Tags.
 
-Sobald die Bedingung erfüllt ist, müssen Sie die Schaltfläche &quot;Hinzufügen&quot; auf der linken Seite verwenden, um eine neue hinzuzufügen **** oder ein **Lager** im aktuellen Block.
+Sobald die Bedingung erfüllt ist, müssen Sie die Schaltfläche &quot;Hinzufügen&quot; auf der linken Seite verwenden, um eine neue hinzuzufügen **** oder ein **** im aktuellen Block.
 
 
 ### Blockcode
@@ -159,12 +159,12 @@ Mit dem Code-Block können Sie PHP-Code ausführen. Es ist daher sehr mächtig, 
 #### Zugang zu Steuerungen (Sensoren und Aktoren))
 
 -  ``cmd::byString($string);`` : Gibt das entsprechende Befehlsobjekt zurück.
-    -   ``$string``: Link zur gewünschten Bestellung : ``#[objet][][commande]#`` ( : ``#[Appartement][Alarme][Anlage]#``)
+    -   ``$string``: Link zur gewünschten Bestellung : ``#[objet][][commande]#`` ( : ``#[Appartement][Alarme][]#``)
 -  ``cmd::byId($id);`` : Gibt das entsprechende Befehlsobjekt zurück.
     -  ``$id`` : Bestellnummer.
 -  ``$cmd->execCmd($options = null);`` : Führen Sie den Befehl aus und geben Sie das Ergebnis zurück.
     - ``$options`` : Optionen für die Ausführung des Befehls (können spezifisch für das Plugin sein). Grundlegende Optionen (Befehlssubtyp) :
-        -  ``message`` : ``$option = array('title' => 'titre du Botschaft , 'message' => 'Mon message');``
+        -  ``message`` : ``$option = array('title' => 'titre du  , 'message' => 'Mon message');``
         -  ``color`` : ``$option = array('color' => 'couleur en hexadécimal');``
         -  ``slider`` : ``$option = array('slider' => 'valeur voulue de 0 à 100');``
 
@@ -253,7 +253,7 @@ Sie können eines der folgenden Symbole für Vergleiche unter Bedingungen verwen
 
 Sie können jeden Vergleich mit den folgenden Operatoren kombinieren :
 
-- ```` : und. Es ist auch möglich zu verwenden : ``ET`` /. ``et`` /. ``AND`` /. ``and`` funktioniert aber möglicherweise nicht gut mit einigen PHP-Funktionen.
+- ```` : . Es ist auch möglich zu verwenden : ``ET`` /. ``et`` /. ``AND`` /. ``and`` funktioniert aber möglicherweise nicht gut mit einigen PHP-Funktionen.
 - ``||`` : . Es ist auch möglich zu verwenden : ``OU`` /. ``ou`` /. ``OR`` /. ``or`` funktioniert aber möglicherweise nicht gut mit einigen PHP-Funktionen.
 - ``xor``  : oder exklusiv. Es ist auch möglich zu verwenden : ``XOR`` /. ``^`` funktioniert aber möglicherweise nicht gut mit einigen PHP-Funktionen.
 
@@ -375,7 +375,7 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 Die Perioden und Intervalle dieser Funktionen können auch mit verwendet werden [PHP-Ausdrücke](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php) wie zum Beispiel :
 
 - ``Now`` : .
-- ``Today`` : 00:00 heute (ermöglicht zum Beispiel, Ergebnisse für den Tag zu erhalten, wenn zwischen ``Today`` und ``Now``).
+- ``Today`` : 00:00 heute (ermöglicht zum Beispiel, Ergebnisse für den Tag zu erhalten, wenn zwischen ``Today``  ``Now``).
 - ``Last Monday`` : letzten Montag um 00:00.
 - ``5 days ago`` : Vor 5 Tagen.
 - ``Yesterday noon`` : gestern mittag.
@@ -515,7 +515,7 @@ Von dort haben Sie die Möglichkeit :
 Durch Klicken auf eine Vorlage können Sie :
 
 - **** : Teilen Sie die Vorlage auf dem Markt.
-- **Löschen** : Vorlage löschen.
+- **** : Vorlage löschen.
 - **Download** : Holen Sie sich die Vorlage als JSON-Datei, um sie beispielsweise an ein anderes Jeedom zu senden.
 
 Unten haben Sie den Teil, um Ihre Vorlage auf das aktuelle Szenario anzuwenden.

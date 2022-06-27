@@ -32,7 +32,7 @@ Am oberen Rand der Seite befinden sich 3 Schaltflächen :
 
 - **** : Ermöglicht das Erstellen neuer Interaktionen.
 - **Regenerat** : Recréer toutes les interactions (peut être très long &gt; 5mn).
-- **Prüfen** : Öffnen Sie einen Dialog, um einen Satz zu schreiben und zu testen.
+- **** : Öffnen Sie einen Dialog, um einen Satz zu schreiben und zu testen.
 
 > ****
 >
@@ -50,18 +50,18 @@ Wir können auch einen auszuführenden Befehl definieren, wenn beispielsweise di
 
 Die Konfigurationsseite besteht aus mehreren Registerkarten und Schaltflächen :
 
-- **Sätze** : Zeigt die Anzahl der Sätze der Interaktion an (ein Klick darauf zeigt Sie).
-- **Zur Anmeldung** : Notieren Sie die aktuelle Interaktion.
-- **Löschen** : Aktuelle Interaktion löschen.
-- **Duplikat** : Dupliziert die aktuelle Interaktion.
+- **** : Zeigt die Anzahl der Sätze der Interaktion an (ein Klick darauf zeigt Sie).
+- **** : Notieren Sie die aktuelle Interaktion.
+- **** : Aktuelle Interaktion löschen.
+- **** : Dupliziert die aktuelle Interaktion.
 
 ### Registerkarte &quot;Allgemein&quot;
 
-- **Nachname** : Interaktionsname (kann leer sein, der Name ersetzt den Anforderungstext in der Interaktionsliste).
-- **Band** : Interaktionsgruppe, dies ermöglicht es, sie zu organisieren (kann leer sein, wird daher in der Gruppe "keine" sein").
-- **Anlage** : Aktiviert oder deaktiviert die Interaktion.
-- **Anfrage** : Der generierende Modellsatz (erforderlich).
-- **Gleichbedeutend** : Ermöglicht das Definieren von Synonymen für die Namen der Befehle.
+- **** : Interaktionsname (kann leer sein, der Name ersetzt den Anforderungstext in der Interaktionsliste).
+- **** : Interaktionsgruppe, dies ermöglicht es, sie zu organisieren (kann leer sein, wird daher in der Gruppe "keine" sein").
+- **** : Aktiviert oder deaktiviert die Interaktion.
+- **** : Der generierende Modellsatz (erforderlich).
+- **** : Ermöglicht das Definieren von Synonymen für die Namen der Befehle.
 - **Antwort** : Die Antwort zu geben.
 - **Warten Sie, bevor Sie antworten (s)** : Fügen Sie eine Verzögerung von X Sekunden hinzu, bevor Sie die Antwort generieren. So können Sie beispielsweise auf die Rückkehr eines Lampenstatus warten, bevor Sie beantwortet werden.
 - **Binäre Konvertierung** : Konvertiert beispielsweise Binärwerte in Öffnen / Schließen (nur für Befehle vom Typ Binärinfo)).
@@ -83,7 +83,7 @@ Verwenden Sie diese Option, wenn Sie einen oder mehrere bestimmte Befehle als Zi
 
 #### Exemples
 
-> **Notiz**
+> ****
 >
 > Die Screenshots können im Hinblick auf Entwicklungen unterschiedlich sein.
 
@@ -111,7 +111,7 @@ In den beiden obigen Beispielen ist der Modellsatz identisch, aber die daraus re
 
 Hier sehen wir das ganze Interesse und die ganze Kraft von Interaktionen. Mit einem Modellsatz können wir Sätze für eine ganze Gruppe von Befehlen generieren.
 
-Wir werden das oben Gesagte fortsetzen, die Aktionen löschen, die wir hinzugefügt haben, und anstelle des festen Satzes in &quot;Anfrage&quot; die Tags verwenden **\.#commande\.#** und **\.#equipement\.#**. Jeedom wird diese Tags daher durch den Namen der Befehle und den Namen des Geräts ersetzen (wir können sehen, wie wichtig es ist, konsistente Befehls- / Gerätenamen zu haben).
+Wir werden das oben Gesagte fortsetzen, die Aktionen löschen, die wir hinzugefügt haben, und anstelle des festen Satzes in &quot;Anfrage&quot; die Tags verwenden **\.#commande\.#**  **\.#equipement\.#**. Jeedom wird diese Tags daher durch den Namen der Befehle und den Namen des Geräts ersetzen (wir können sehen, wie wichtig es ist, konsistente Befehls- / Gerätenamen zu haben).
 
 ![interact006](../images/interact006.png)
 
@@ -163,7 +163,7 @@ Wie wir hier sehen können, habe ich für die Anfrage fast die gleiche Struktur 
 
 Das Feld **Binäre Konvertierung** muss 2 Antworten enthalten : zuerst die Antwort, wenn der Wert des Befehls 0 ist, dann ein vertikaler Balken "\|" Trennung und schließlich die Antwort, wenn der Befehl 1 wert ist. Hier sind die Antworten einfach nein und ja, aber wir könnten einen etwas längeren Satz setzen.
 
-> **Warnung**
+> ****
 >
 > Tags funktionieren nicht in binären Konvertierungen.
 
@@ -171,13 +171,13 @@ Das Feld **Binäre Konvertierung** muss 2 Antworten enthalten : zuerst die Antwo
 
 Im Feld "Autorisierte Benutzer" können Sie nur bestimmte Personen zur Ausführung des Befehls autorisieren. Sie können mehrere Profile erstellen, indem Sie sie durch ein "\" trennen|".
 
-Beispiel : personne1\.|personne2
+ : personne1\.|personne2
 
 Wir können uns vorstellen, dass ein Alarm von einem Kind oder einem Nachbarn aktiviert oder deaktiviert werden kann, der in Ihrer Abwesenheit kommen würde, um die Pflanzen zu gießen.
 
 ### Regexp-Ausschluss
 
-Es ist möglich zu erstellen [Regexp](https://fr.wikipedia.org/wiki/Expression_rationnelle) Ausschluss: Wenn ein generierter Satz mit diesem regulären Ausdruck übereinstimmt, wird er gelöscht. Das Interesse besteht darin, falsch positive Ergebnisse entfernen zu können, dh einen von Jeedom erzeugten Satz, der etwas aktiviert, das nicht dem entspricht, was wir wollen, oder das eine andere Interaktion stören würde, die einen ähnlichen Satz hätte.
+Es ist möglich zu erstellen [](https://fr.wikipedia.org/wiki/Expression_rationnelle) Ausschluss: Wenn ein generierter Satz mit diesem regulären Ausdruck übereinstimmt, wird er gelöscht. Das Interesse besteht darin, falsch positive Ergebnisse entfernen zu können, dh einen von Jeedom erzeugten Satz, der etwas aktiviert, das nicht dem entspricht, was wir wollen, oder das eine andere Interaktion stören würde, die einen ähnlichen Satz hätte.
 
 Wir haben 2 Stellen, an denen Sie einen Regexp anwenden können :
 - In der Interaktion selbst im Feld "Regexp-Ausschluss"".
@@ -242,7 +242,7 @@ In diesem Beispiel sehen wir einen einfachen Satz, der eine Antwort mit 3 versch
 
 ![interact017](../images/interact017.png)
 
-Dieses Beispiel zielt speziell auf bestimmte Geräte ab, die eine personalisierte Antwort ermöglichen. Wir könnten uns also vorstellen, die Antwort des Beispiels durch "Nein, es ist niemand im Raum" zu ersetzen *Julia*\.|Ja, da ist jemand im Raum *Julia*"
+Dieses Beispiel zielt speziell auf bestimmte Geräte ab, die eine personalisierte Antwort ermöglichen. Wir könnten uns also vorstellen, die Antwort des Beispiels durch "Nein, es ist niemand im Raum" zu ersetzen **\.|Ja, da ist jemand im Raum **"
 
 #### Evolution
 
@@ -285,7 +285,7 @@ Wir können also einen regulären Ausdruck sehen :
 
 Auf diese Weise können Sie alle Befehle löschen, deren Satz eines dieser Wörter enthält
 
-> **Notiz**
+> ****
 >
 > Der reguläre Ausdruck hier ist eine vereinfachte Version zur einfachen Verwendung. Wir können daher entweder traditionelle Ausdrücke oder vereinfachte Ausdrücke wie in diesem Beispiel verwenden.
 
@@ -297,9 +297,9 @@ Es ist möglich, eine Lampe als Prozentsatz (Dimmer) oder einen Thermostat mit d
 
 ![interact022](../images/interact022.png)
 
-Wie wir sehen können, gibt es hier in der Anfrage das Tag **\.#consigne\.#** (Sie können eingeben, was Sie möchten), was in der Antriebssteuerung enthalten ist, um den gewünschten Wert anzuwenden. Dazu haben wir 3 Teile : \.* Anfrage : in dem wir ein Tag erstellen, das den Wert darstellt, der an die Interaktion gesendet wird. \* Antwort : Wir verwenden das Tag für die Antwort erneut, um sicherzustellen, dass Jeedom die Anfrage richtig verstanden hat. \* Aktie : Wir setzen eine Aktion auf die Lampe, die wir fahren möchten, und geben in dem Wert, den wir geben, unser Etikett an *bestellen*.
+Wie wir sehen können, gibt es hier in der Anfrage das Tag **\.#consigne\.#** (Sie können eingeben, was Sie möchten), was in der Antriebssteuerung enthalten ist, um den gewünschten Wert anzuwenden. Dazu haben wir 3 Teile : \.*  : in dem wir ein Tag erstellen, das den Wert darstellt, der an die Interaktion gesendet wird. \* Antwort : Wir verwenden das Tag für die Antwort erneut, um sicherzustellen, dass Jeedom die Anfrage richtig verstanden hat. \*  : Wir setzen eine Aktion auf die Lampe, die wir fahren möchten, und geben in dem Wert, den wir geben, unser Etikett an **.
 
-> **Notiz**
+> ****
 >
 > Wir können jedes Tag verwenden, außer denjenigen, die bereits von Jeedom verwendet werden. Es können mehrere verwendet werden, um beispielsweise mehrere Befehle zu steuern. Beachten Sie auch, dass alle Tags an die von der Interaktion gestarteten Szenarien übergeben werden (es ist jedoch erforderlich, dass sich das Szenario unter "Im Vordergrund ausführen" befindet").
 
@@ -346,10 +346,10 @@ Dieses Beispiel ermöglicht es daher, das Szenario zu starten, das im Aktionstei
 
 ### Programmieren einer Aktion mit Interaktionen
 
-Interaktionen machen insbesondere viele Dinge. Sie können eine Aktion dynamisch programmieren. Beispiel : "Schaltet die Heizung um 22 Uhr für 14.50 Uhr ein". Nichts könnte einfacher sein, verwenden Sie einfach die Tags \#time\.# (wenn eine bestimmte Zeit definiert ist) oder \#duration\.# (für in X-Zeit, Beispiel in 1 Stunde) :
+Interaktionen machen insbesondere viele Dinge. Sie können eine Aktion dynamisch programmieren.  : "Schaltet die Heizung um 22 Uhr für 14.50 Uhr ein". Nichts könnte einfacher sein, verwenden Sie einfach die Tags \#time\.# (wenn eine bestimmte Zeit definiert ist) oder \#duration\.# (für in X-Zeit, Beispiel in 1 Stunde) :
 
 ![interact23](../images/interact23.JPG)
 
-> **Notiz**
+> ****
 >
 > Sie werden in der Antwort das Tag \ bemerken#value\.# Dies enthält im Falle einer programmierten Interaktion die effektive Programmierzeit

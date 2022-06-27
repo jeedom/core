@@ -18,7 +18,7 @@ Die Geräte (oder Kacheln) verfügen über bestimmte Konfigurationsparameter, au
 
 Dieses Widget ist etwas Besonderes, da es sich um ein Widget mit mehreren Befehlen handelt, d. H. Es setzt den Wert mehrerer Befehle zusammen. Hier nimmt er Temperatur- und Feuchtigkeitsbefehle entgegen. Um es zu konfigurieren, müssen Sie das Widget den Temperatur- und Feuchtigkeitsreglern Ihrer Geräte zuweisen.
 
-![Widgund HygroThermographe](./images/widgets3.png)
+![Widg HygroThermographe](./images/widgets3.png)
 
 ##### Optionale Parameter)
 
@@ -50,7 +50,7 @@ Widget zur Aktions- / Cursorsteuerung mit Schaltfläche "****" und ein Knopf "**
 
 Widget zur Anzeige des Wasserstandes.
 
-![Widgund Rain](./images/widgets4.png)
+![Widg Rain](./images/widgets4.png)
 
 ##### Optionale Parameter)
 
@@ -68,7 +68,7 @@ Dazu müssen 2 Voraussetzungen berücksichtigt werden :
 
 -  **2 Aktions- / Fehlerbefehle** muss mit einer Bestellung verknüpft sein **info / binär** Hier wird der aktuelle Status des Geräts gespeichert.
 
->**Beispiel**      
+>****      
 >![ToggleLink-Widget](./images/widgets5.png)
 
 >****     
@@ -97,7 +97,7 @@ Dazu müssen 2 Voraussetzungen berücksichtigt werden :
 `` ''
 
 >****      
->Solange der standardisierte Name lesbar bleibt, kann beispielsweise die Benennung angepasst werden *open_volet*  *shutter_close*, ** und **, .
+>Solange der standardisierte Name lesbar bleibt, kann beispielsweise die Benennung angepasst werden *open_volet*  *shutter_close*, **  **, .
 
 ## Benutzerdefinierte Widgets
 
@@ -146,7 +146,7 @@ Sobald Sie sich auf der Konfigurationsseite eines Widgets befinden, können Sie 
 Einmal auf der Seite **Extras → Widgets** Sie müssen auf die Schaltfläche klicken "****" und geben Sie Ihrem neuen Widget einen Namen.
 
  :
-- Sie wählen, ob es für eine Typreihenfolge gilt **Aktie**  ****.
+- Sie wählen, ob es für eine Typreihenfolge gilt ****  ****.
 - Abhängig von der vorherigen Auswahl müssen Sie **Wählen Sie den Subtyp** der Bestellung.
 -  **Die Vorlage** unter denen, die gemäß den vorherigen Auswahlmöglichkeiten verfügbar sein werden.
 - Sobald die Vorlage ausgewählt wurde, zeigt Jeedom die Konfigurationsoptionen dafür unten an.
@@ -174,7 +174,7 @@ Bei Vorlagen mit Bildern können Sie die Breite des Widgets je nach Unterstützu
 
 >****     
 >Für fortgeschrittene Benutzer ist es möglich, Tags in die Ersatzwerte einzufügen und ihren Wert in der erweiterten Konfiguration des Befehls anzugeben.    
->Wenn zum Beispiel in **Desktop-Breite** Sie setzen als Wert `#largeur_desktop#`` (**Achten Sie darauf, die** ``#`` **autour**) puis dans la configurati avancée d'une commande, onglund affichage → "**Paramètres optionnels widget**" vous ajoutez  paramètre ``largeur_desktop`` (**sans les** ``#`) und gib ihm den Wert "**90**", Dieses benutzerdefinierte Widget für diesen Befehl ist 90 Pixel breit. Auf diese Weise können Sie die Größe des Widgets an jede Bestellung anpassen, ohne jedes Mal ein bestimmtes Widget erstellen zu müssen.
+>Wenn zum Beispiel in **Desktop-Breite** Sie setzen als Wert `#largeur_desktop#`` (**Achten Sie darauf, die** ``#`` **autour**) puis dans la configurati avancée d'une commande, ongl affichage → "**Paramètres optionnels widget**" vous ajoutez  paramètre ``largeur_desktop`` (**sans les** ``#`) und gib ihm den Wert "**90**", Dieses benutzerdefinierte Widget für diesen Befehl ist 90 Pixel breit. Auf diese Weise können Sie die Größe des Widgets an jede Bestellung anpassen, ohne jedes Mal ein bestimmtes Widget erstellen zu müssen.
 
 #### Test
 
@@ -188,13 +188,13 @@ Die Tests sind in der Form : ``#value# == 1`,`#value#`wird automatisch durch den
 - ``#value# >=  #value# <= 5``
 - ``#value# == 'toto'``
 
->**Notiz**     
+>****     
 >Es ist wichtig, die Apostrophe zu zeigen (**'**) um den Text herum zu vergleichen, ob der Wert Text ist *(info / andere)*.
 
->**Notiz**     
+>****     
 >Für fortgeschrittene Benutzer ist es auch möglich, Javascript-Funktionen wie `zu verwenden#value#.match ("^ plop") `, hier testen wir, ob der Text mit` plop` beginnt.
 
->**Notiz**     
+>****     
 >Sie können den Wert des Befehls im Widget anzeigen, indem Sie `angeben#value#`im HTML-Code des Tests. Um das Gerät anzuzeigen, fügen Sie `hinzu#unite#``.
 
 ## Code-Widget
@@ -214,7 +214,7 @@ Im Codemodus haben Sie Zugriff auf verschiedene Tags für Bestellungen. Hier ist
 - **#valueDate#** : Datum des Bestellwertes
 - **#collectDate#** : Datum der Auftragserfassung
 - **#alertLevel#** : Alarmstufe (siehe [](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) für die Liste)
-- **#hide_history#** : ob der Verlauf (max, min, Durchschnitt, Trend) ausgeblendet werden soll oder nicht. Wie für die #hide_name# Es ist leer oder versteckt und kann daher direkt in einer Klasse verwendet werden. WICHTIG Wenn dieses Tag nicht in Ihrem Widget gefunden wird, dann die Tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# und #tendance# wird nicht durch Jeedom ersetzt.
+- **#hide_history#** : ob der Verlauf (max, min, Durchschnitt, Trend) ausgeblendet werden soll oder nicht. Wie für die #hide_name# Es ist leer oder versteckt und kann daher direkt in einer Klasse verwendet werden. WICHTIG Wenn dieses Tag nicht in Ihrem Widget gefunden wird, dann die Tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue#  #tendance# wird nicht durch Jeedom ersetzt.
 - **#minHistoryValue#** : Mindestwert über den Zeitraum (Zeitraum, den der Benutzer in der Jeedom-Konfiguration definiert hat)
 - **#averageHistoryValue#** : Durchschnittswert über den Zeitraum (Zeitraum, der vom Benutzer in der Jeedom-Konfiguration definiert wurde)
 - **#maxHistoryValue#** : Maximalwert über den Zeitraum (Zeitraum, der vom Benutzer in der Jeedom-Konfiguration definiert wurde)

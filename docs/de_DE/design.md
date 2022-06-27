@@ -51,7 +51,7 @@ Im Menü (Rechtsklick) finden wir folgende Aktionen :
 Hier gefunden :
 
 - **General**
-    - **Nachname** : Der Name Ihres Designs.
+    - **** : Der Name Ihres Designs.
     - **** : Die Position des Designs im Menü. Ermöglicht die Bestellung der Designs.
     - **Transparenter Hintergrund** : Macht den Hintergrund transparent. Achtung Wenn das Kontrollkästchen aktiviert ist, wird die Hintergrundfarbe nicht verwendet.
     - **Hintergrundfarbe** : Design Hintergrundfarbe.
@@ -65,7 +65,7 @@ Hier gefunden :
 
 ## Allgemeine Konfiguration der Elemente
 
-> **Notiz**
+> ****
 >
 > Je nach Art des Elements können sich die Optionen ändern.
 
@@ -131,7 +131,7 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 
 ### Spezifische Anzeigeeinstellungen
 
-- **Nachname** : Name des Links (angezeigter Text).
+- **** : Name des Links (angezeigter Text).
 - **** : Link zum betreffenden Design oder zur betreffenden Ansicht.
 - **Hintergrundfarbe** : Mit dieser Option können Sie die Hintergrundfarbe ändern oder transparent machen. Vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu ändern.
 - **Textfarbe** : Mit dieser Option können Sie die Farbe von Symbolen und Texten ändern (achten Sie darauf, die Standardeinstellung auf Nein zu setzen).

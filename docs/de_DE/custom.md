@@ -9,8 +9,8 @@ Hier können Sie Funktionen verwalten **** und Regeln **** auf Desktop oder Hand
 
 Diese Funktion verwendet einen bestimmten Modus des Core-Dateieditors mit zwei Speicherorten:
 
-- Desktop / Benutzerdefiniert : Kann beide Dateien enthalten **** und **Benutzerdefinierte CSS** die vom Core in der Desktop-Version geladen wird.
-- mobil / benutzerdefiniert : Kann beide Dateien enthalten **** und **Benutzerdefinierte CSS** die vom Core in der mobilen Version geladen werden.
+- Desktop / Benutzerdefiniert : Kann beide Dateien enthalten ****  **Benutzerdefinierte CSS** die vom Core in der Desktop-Version geladen wird.
+- mobil / benutzerdefiniert : Kann beide Dateien enthalten ****  **Benutzerdefinierte CSS** die vom Core in der mobilen Version geladen werden.
 
 In der Menüleiste des Core-Dateieditors befindet sich eine Schaltfläche ****  **Deaktiviert** sagt dir, ob der Core sie laden soll oder nicht. Diese Option ist auch verfügbar in **Einstellungen → System → Konfiguration** Registerkarte Schnittstelle.
 

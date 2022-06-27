@@ -44,7 +44,7 @@ In jeder Zone haben Sie die folgenden allgemeinen Optionen :
 - **** : Definiert die Breite des Bereichs (nur im Desktop-Modus). 1 für die Breite von 1/12 des Navigators, 12 für die Gesamtbreite.
 - Eine Schaltfläche zum Hinzufügen eines Elements zu dieser Zone, abhängig vom Zonentyp (siehe unten)).
 - **** : Ermöglicht das Ändern des Namens der Zone.
-- **Löschen** : Löschen Sie die Zone.
+- **** : Löschen Sie die Zone.
 
 ### Gerätetypzone
 
@@ -71,7 +71,7 @@ In einem Grafikbereich können Sie Ihrer Ansicht Grafiken hinzufügen. Die folge
 Wenn Sie die Taste drücken **Kurve hinzufügen**, Jeedom zeigt die Liste der historischen Befehle an und Sie können den hinzuzufügenden auswählen. Sobald Sie fertig sind, haben Sie Zugriff auf die folgenden Optionen :
 
 - **** : Befehl aus Diagramm entfernen.
-- **Nachname** : Name des zu zeichnenden Befehls.
+- **** : Name des zu zeichnenden Befehls.
 - **** : Farbe der Kurve.
 - **** : Art der Kurve.
 - **** : Ermöglicht die Gruppierung von Daten (maximaler Typ pro Tag).
@@ -93,7 +93,7 @@ Hier haben Sie die Schaltflächen :
 - **Spalte hinzufügen** : Fügen Sie der Tabelle eine Spalte hinzu.
 - **Zeile hinzufügen** : Fügen Sie der Tabelle eine Zeile hinzu.
 
-> **Notiz**
+> ****
 >
 > Es ist möglich, die Zeilen durch Ziehen und Ablegen neu zu organisieren, nicht jedoch die Spalten.
 

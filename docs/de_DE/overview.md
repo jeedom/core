@@ -30,7 +30,7 @@ Die Konfiguration der Anzeige des Objekts erfolgt in **Werkzeuge → Objekte** :
 >
 > Die Anzeigereihenfolge von Objekten ist die von *Übersicht Haus-Automatisierung*, die Sie nachbestellen können (Analyse → Zusammenfassung der Hausautomation).
 
-> **Notiz**
+> ****
 >
 > Wenn für ein Objekt keine Zusammenfassung definiert ist, wird oben rechts eine Schaltfläche angezeigt, über die Sie auf die Konfiguration / Zusammenfassungen des Objekts zugreifen können.
 

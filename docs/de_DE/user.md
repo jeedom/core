@@ -12,7 +12,7 @@ Auf der Seite haben Sie drei Schaltflächen :
 ## Liste der Benutzer
 
 - **Benutzername** : Benutzer-ID.
-- **Anlage** : Ermöglicht das Deaktivieren des Kontos, ohne es zu löschen.
+- **** : Ermöglicht das Deaktivieren des Kontos, ohne es zu löschen.
 - **** : Ermöglicht die Verbindung des Benutzers nur, wenn er sich im lokalen Netzwerk von Jeedom befindet.
 - **** : Ermöglicht die Auswahl des Benutzerprofils :
     - **** : Der Benutzer erhält alle Rechte (Bearbeitung / Beratung) an Jeedom.
@@ -23,7 +23,7 @@ Auf der Seite haben Sie drei Schaltflächen :
 - **Datum der letzten Verbindung** : Datum der letzten Benutzeranmeldung. Bitte beachten Sie, dass dies das tatsächliche Verbindungsdatum ist. Wenn Sie also Ihren Computer speichern, wird das Verbindungsdatum nicht bei jeder Rückkehr aktualisiert.
 - **** : Benutzerrechte ändern.
 - **Passwort** : Ermöglicht das Ändern des Benutzerpassworts.
-- **Löschen** : Benutzer entfernen.
+- **** : Benutzer entfernen.
 - **API-Schlüssel neu generieren** : Benutzer-API-Schlüssel neu generieren.
 - **Rechte verwalten** : Ermöglicht die Feinverwaltung von Benutzerrechten (beachten Sie, dass sich das Profil in "eingeschränkter Benutzer" befinden muss)").
 
@@ -49,7 +49,7 @@ Zeigt die auf Ihrem Jeedom aktiven Browsersitzungen mit Benutzerinformationen, d
 Listen Sie die Geräte (Computer, Mobiltelefone usw.) auf, die ihre Authentifizierung auf Ihrem Jeedom registriert haben.
 Sie können sehen, welcher Benutzer, seine IP, wann und die Registrierung für dieses Gerät löschen.
 
-> **Notiz**
+> ****
 >
 > Der gleiche Benutzer hat möglicherweise verschiedene Geräte registriert. Zum Beispiel sein Desktop-Computer, Laptop, Handy usw.
 

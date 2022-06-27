@@ -1,7 +1,7 @@
 # Gerätearten
 **Werkzeuge → Gerätetypen**
 
-Die Sensoren und Aktoren in Jeedom werden von Plugins verwaltet, die Geräte mit Befehlen erstellen ** (Sensor) oder *Aktie* (Antrieb). Dadurch ist es dann möglich, Aktionen basierend auf der Änderung bestimmter Sensoren auszulösen, wie z.B. das Einschalten eines Lichts bei Bewegungserkennung. Aber der Jeedom Core und Plugins wie **, **, *Google-Smarthome*, *Alexa-Smarthome* etc., weiß nicht was das für ein Gerät ist : Eine Steckdose, ein Licht, ein Rollladen usw.
+Die Sensoren und Aktoren in Jeedom werden von Plugins verwaltet, die Geräte mit Befehlen erstellen ** (Sensor) oder ** (Antrieb). Dadurch ist es dann möglich, Aktionen basierend auf der Änderung bestimmter Sensoren auszulösen, wie z.B. das Einschalten eines Lichts bei Bewegungserkennung. Aber der Jeedom Core und Plugins wie **, **, *Google-Smarthome*, *Alexa-Smarthome* etc., weiß nicht was das für ein Gerät ist : Eine Steckdose, ein Licht, ein Rollladen usw.
 
 Um dieses Problem zu lösen, insbesondere bei Sprachassistenten (*Mach das Zimmerlicht an*), Core stellte die . vor **Generische Typen**, von diesen Plugins verwendet.
 
@@ -24,7 +24,7 @@ Diese Seite bietet Lagerung nach Gerätetyp : Steckdose, Licht, Shutter, Thermos
 
 ## Befehlstyp
 
-Sobald ein Ausrüstungsgegenstand richtig positioniert ist **, wenn Sie darauf klicken, gelangen Sie zur Liste der Bestellungen, die anders gefärbt sind, wenn es a . ist ** (Blau) oder a *Aktie* (Orange).
+Sobald ein Ausrüstungsgegenstand richtig positioniert ist **, wenn Sie darauf klicken, gelangen Sie zur Liste der Bestellungen, die anders gefärbt sind, wenn es a . ist ** (Blau) oder a ** (Orange).
 
 Durch Rechtsklick auf einen Auftrag können Sie ihm dann einen generischen Typ entsprechend den Spezifikationen dieses Auftrags zuweisen (Info-/Aktionstyp, Numerisch, Binärer Untertyp usw).
 
@@ -88,9 +88,9 @@ Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon
 |:--------|:----------------|:--------:|:---------:|
 |  | Status-Timer |  | numeric
 | TIMER_STATUS | Timer-Status (Pause oder nicht)) |  | binär, numerisch
-|  |  | Aktie | slider
-|  | Pause-Timer | Aktie | other
-|  | Timer fortsetzen | Aktie | other
+|  |  |  | slider
+|  | Pause-Timer |  | other
+|  | Timer fortsetzen |  | other
 
 | **: Battery)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -101,30 +101,30 @@ Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon
 |:--------|:----------------|:--------:|:---------:|
 | KAMERA_URL | Kamera-URL |  | string
 |  | Aufnahmestatus der Kamera |  | binary
-| KAMERA_AUF | Kamerabewegung nach oben | Aktie | other
-| KAMERA RUNTER | Kamerabewegung nach unten | Aktie | other
-| KAMERA_LEFT | Kamerabewegung nach links | Aktie | other
-| KAMERA_RECHTS | Kamerabewegung nach rechts | Aktie | other
-| KAMERA_ZOOM | Kamera nach vorne zoomen | Aktie | other
-| KAMERA_DEZOOM | Kamerarückseite zoomen | Aktie | other
-| KAMERA_STOP | Kamera stoppen | Aktie | other
-|  | Kameravoreinstellung | Aktie | other
-| KAMERA_AUFNAHME | Kameraaufnahme | Aktie |
-| KAMERA_AUFNAHME | Schnappschuss-Kamera | Aktie |
+| KAMERA_AUF | Kamerabewegung nach oben |  | other
+| KAMERA RUNTER | Kamerabewegung nach unten |  | other
+| KAMERA_LEFT | Kamerabewegung nach links |  | other
+| KAMERA_RECHTS | Kamerabewegung nach rechts |  | other
+| KAMERA_ZOOM | Kamera nach vorne zoomen |  | other
+| KAMERA_DEZOOM | Kamerarückseite zoomen |  | other
+| KAMERA_STOP | Kamera stoppen |  | other
+|  | Kameravoreinstellung |  | other
+| KAMERA_AUFNAHME | Kameraaufnahme |  |
+| KAMERA_AUFNAHME | Schnappschuss-Kamera |  |
 
 | **Heizung (id: Heating)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | HEIZZUSTAND | Status der Pilotdrahtheizung |  | binary
-| AUFHEIZEN | Taste Steuerdrahtheizung EIN | Aktie | other
-| HEIZUNG_AUS | Taste Pilotdrahtheizung AUS | Aktie | other
-| HEIZUNG_OTHER | Heizsteuerdraht Taste | Aktie | other
+| AUFHEIZEN | Taste Steuerdrahtheizung EIN |  | other
+| HEIZUNG_AUS | Taste Pilotdrahtheizung AUS |  | other
+| HEIZUNG_OTHER | Heizsteuerdraht Taste |  | other
 
 | **Strom (id: Electricity)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 |  | Elektrische Energie |  | numeric
 |  | Energieverbrauch |  | numeric
 |  |  |  | numeric
-|  | Neu starten | Aktie | other
+|  | Neu starten |  | other
 
 | **Umgebung (id: Environment)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -148,7 +148,7 @@ Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon
 |  |  |  | numeric
 |  |  |  | binär, numerisch
 | ALLGEMEINE_INFO |  Generisch |  |
-|  |  Generisch | Aktie | other
+|  |  Generisch |  | other
 
 | **Licht (id: Light)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -157,18 +157,18 @@ Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon
 | HELLE FARBE | Helle Farbe |  | string
 |  | Lichtzustand (Binär) |  | binary
 |  | Lichttemperatur Farbe |  | numeric
-|  | Licht umschalten | Aktie | other
-| LICHT AN | Lichttaste Ein | Aktie | other
-| LICHT AUS | Lichttaste aus | Aktie | other
-|  | Lichtschieber | Aktie | slider
-|  | Helle Farbe | Aktie | color
-|  | Lichtmodus | Aktie | other
-|  | Lichttemperatur Farbe | Aktie |
+|  | Licht umschalten |  | other
+| LICHT AN | Lichttaste Ein |  | other
+| LICHT AUS | Lichttaste aus |  | other
+|  | Lichtschieber |  | slider
+|  | Helle Farbe |  | color
+|  | Lichtmodus |  | other
+|  | Lichttemperatur Farbe |  |
 
 | **Modus (id: Mode)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | MODE_STATUS | Statusmodus |  | string
-|  | Modus ändern | Aktie | other
+|  | Modus ändern |  | other
 
 | **Multimedia (id: Multimedia)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -180,17 +180,17 @@ Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon
 | MEDIEN_MACHT |  |  | string
 |  |  |  | numerisch, Zeichenfolge
 | MEDIEN_STATUS |  |  | binary
-|  |  | Aktie | slider
-|  |  | Aktie | anderer Schieberegler
-| MEDIEN_PAUSE |  | Aktie | other
-|  |  | Aktie | other
-| MEDIEN_STOP |  | Aktie | other
-| MEDIEN_NÄCHSTES |  | Aktie | other
-| MEDIEN_VORHER | Vorherige | Aktie | other
-| MEDIEN_EIN |  | Aktie | other
-| MEDIEN_AUS |  | Aktie | other
-| MEDIEN_STUMM |  | Aktie | other
-|  | Keine Stummschaltung | Aktie | other
+|  |  |  | slider
+|  |  |  | anderer Schieberegler
+| MEDIEN_PAUSE |  |  | other
+|  |  |  | other
+| MEDIEN_STOP |  |  | other
+| MEDIEN_NÄCHSTES |  |  | other
+| MEDIEN_VORHER | Vorherige |  | other
+| MEDIEN_EIN |  |  | other
+| MEDIEN_AUS |  |  | other
+| MEDIEN_STUMM |  |  | other
+|  | Keine Stummschaltung |  | other
 
 | **Wetter (id: Weather)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -233,23 +233,23 @@ Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon
 | GARAGE_STAAT | Garage (Eröffnung) Zustand |  | binary
 |  |  |  | binary
 |  | Fenster |  | binary
-|  | Sperrtaste öffnen | Aktie | other
-|  | Sperrtaste Schließen | Aktie | other
-|  | Tor- oder Garagenöffnungstaste | Aktie | other
-|  | Tor- oder Garagenschließtaster | Aktie | other
-|  | Tor- oder Garagentaste umschalten | Aktie | other
+|  | Sperrtaste öffnen |  | other
+|  | Sperrtaste Schließen |  | other
+|  | Tor- oder Garagenöffnungstaste |  | other
+|  | Tor- oder Garagenschließtaster |  | other
+|  | Tor- oder Garagentaste umschalten |  | other
 
 | **Buchse (id: Outlet)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | ENERGIE_STATE | Zustandssteckdose |  | numerisch, binär
-| ENERGIE_EIN | Auf Knopfleiste | Aktie | other
-| ENERGIE_AUS | Steckdosentaste Aus | Aktie | other
-|  | Schieberbuchse | Aktie |
+| ENERGIE_EIN | Auf Knopfleiste |  | other
+| ENERGIE_AUS | Steckdosentaste Aus |  | other
+|  | Schieberbuchse |  |
 
 | **Roboter (id: Robot)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 |  | Staatliche Basis |  | binary
-|  | Zurück zur basis | Aktie | other
+|  | Zurück zur basis |  | other
 
 | **Sicherheit (id: Security)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -260,11 +260,11 @@ Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon
 |  |  |  | binary
 |  |  |  | binary
 |  |  |  | binär, numerisch
-| SIRENE_AUS | Sirenentaste aus | Aktie | other
-| SIRENE_EIN | Sirenenknopf Ein | Aktie | other
-| ALARM_SCHARF | Bewaffneter Alarm | Aktie | other
-| ALARM_FREIGEGEBEN | Alarm ausgelöst | Aktie | other
-|  | Alarmmodus | Aktie | other
+| SIRENE_AUS | Sirenentaste aus |  | other
+| SIRENE_EIN | Sirenenknopf Ein |  | other
+| ALARM_SCHARF | Bewaffneter Alarm |  | other
+| ALARM_FREIGEGEBEN | Alarm ausgelöst |  | other
+|  | Alarmmodus |  | other
 
 | **: Thermostat)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -277,26 +277,26 @@ Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon
 |  | Thermostatstatus (MENSCH) (nur für Plugin-Thermostat) |  | string
 | THERMOSTAT_FEUCHTE | Raumfeuchtigkeitsthermostat |  | numeric
 |  | Luftfeuchtigkeit einstellen |  | slider
-|  | Sollwertthermostat | Aktie | slider
-|  | Thermostat-Modus (nur für Plugin-Thermostat)) | Aktie | other
-|  | Sperrthermostat (nur für Plugin-Thermostat)) | Aktie | other
-|  | Thermostat entsperren (nur für Plugin-Thermostat)) | Aktie | other
-|  | Luftfeuchtigkeit einstellen | Aktie | slider
+|  | Sollwertthermostat |  | slider
+|  | Thermostat-Modus (nur für Plugin-Thermostat)) |  | other
+|  | Sperrthermostat (nur für Plugin-Thermostat)) |  | other
+|  | Thermostat entsperren (nur für Plugin-Thermostat)) |  | other
+|  | Luftfeuchtigkeit einstellen |  | slider
 
 | **Lüfter (id: Fan)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 |  | Lüftergeschwindigkeit Status |  | numeric
 | ROTATION_STATUS | Zustandsrotation |  | numeric
-| LÜFTERGESCHWINDIGKEIT | Lüftergeschwindigkeit | Aktie | slider
-|  |  | Aktie | slider
+| LÜFTERGESCHWINDIGKEIT | Lüftergeschwindigkeit |  | slider
+|  |  |  | slider
 
 | **Bereich (id: Shutter)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 |  | Statusbereich |  | binär, numerisch
 |  | Bereich BSO-Status |  | binär, numerisch
-|  | Schaltfläche „Fenster nach oben“ | Aktie | other
-|  | Schaltfläche „Fenster nach unten“ | Aktie | other
-|  | Stopptaste Auslöser | Aktie |
-|  | Bereich mit Schieberegler | Aktie | slider
-|  | Schaltfläche BSO-Fenster nach oben | Aktie | other
-|  | Schaltfläche BSO-Fenster nach unten | Aktie | other
+|  | Schaltfläche „Fenster nach oben“ |  | other
+|  | Schaltfläche „Fenster nach unten“ |  | other
+|  | Stopptaste Auslöser |  |
+|  | Bereich mit Schieberegler |  | slider
+|  | Schaltfläche BSO-Fenster nach oben |  | other
+|  | Schaltfläche BSO-Fenster nach unten |  | other

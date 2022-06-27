@@ -45,14 +45,14 @@ Die Tabelle enthält die Versionen des Core und der installierten Plugins.
 Die Plugins haben neben ihrem Namen ein Abzeichen, das ihre Version angibt und grün ist **, oder orange in ** oder andere.
 
 - **** : OK oder NOK.
-- **Nachname** : Name und Herkunft des Plugins
+- **** : Name und Herkunft des Plugins
 - **** : Zeigt die genaue Version des Core oder Plugins an.
 - **** : Aktivieren Sie dieses Kontrollkästchen, wenn dieses Plugin während des globalen Updates nicht aktualisiert werden soll (Schaltfläche) **Update**).
 
 In jeder Zeile können Sie die folgenden Funktionen verwenden:
 
 - **Wieder einstellen** : Neuansiedlung erzwingen.
-- **Löschen** : Ermöglicht die Deinstallation.
+- **** : Ermöglicht die Deinstallation.
 - **überprüfen** : Fragen Sie die Quelle nach Updates ab, um herauszufinden, ob ein neues Update verfügbar ist.
 - **Update** : Ermöglicht das Aktualisieren des Elements (sofern es aktualisiert wurde)).
 - **** : Ermöglicht den Zugriff auf die Liste der Änderungen im Update.
@@ -78,7 +78,7 @@ Auf dieser Registerkarte können Sie die verfügbaren Updates für das Betriebss
 
 Während oder nach einem Update können Sie auf dieser Registerkarte das Protokoll dieses Updates in Echtzeit lesen.
 
-> **Notiz**
+> ****
 >
 > Dieses Protokoll endet normalerweise mit *[UPDATE ERFOLG BEENDEN]*. Es kann einige Fehlerzeilen in dieser Art von Protokoll geben. Sofern nach dem Update kein echtes Problem auftritt, ist es jedoch nicht immer erforderlich, den Support zu kontaktieren.
 
@@ -92,7 +92,7 @@ Sobald die Verbindung hergestellt ist, ist dies der auszuführende Befehl :
 Die möglichen Parameter sind :
 
 - **** : `force`, um ein Update im erzwungenen Modus zu starten (ignoriert Fehler).
-- **Ausführung** : Nachverfolgung der Versionsnummer, um Änderungen gegenüber dieser Version erneut anzuwenden.
+- **** : Nachverfolgung der Versionsnummer, um Änderungen gegenüber dieser Version erneut anzuwenden.
 
 Hier ist ein Beispiel für die Syntax, um ein erzwungenes Update durchzuführen, indem die Änderungen seit 4.0 erneut angewendet werden.04 :
 

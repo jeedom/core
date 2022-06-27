@@ -39,7 +39,7 @@ Für jedes Objekt stehen neben seiner Beschriftung zwei Schaltflächen zur Verf�
 Auf jeder Ausrüstung finden wir :
 
 -  **Kontrollkästchen** um das Gerät auszuwählen (Sie können mehrere auswählen). Wenn mindestens ein Gerät ausgewählt ist, haben Sie Aktionsschaltflächen, die oben links zu angezeigt werden ****,  ****/.****,  ****/.**** ausgewählte Ausrüstung.
-- L'**Ich würde** Ausrüstung.
+- L'**** Ausrüstung.
 -  **** Ausrüstung : Kennung des Plugins, zu dem es gehört.
 -  **** Ausrüstung.
 - **** (kleines Kreuz) : Bedeutet, dass das Gerät inaktiv ist (wenn es nicht vorhanden ist, ist das Gerät aktiv).
@@ -63,14 +63,14 @@ Das Fenster von **Erweiterte Gerätekonfiguration** erlaubt es zu ändern. Zunä
 - **** : Ermöglicht die Anzeige der Verknüpfungen des Geräts mit den Objekten, Befehlen, Szenarien, Variablen, Interaktionen usw. in grafischer Form (in diesem Fall führt ein Doppelklick auf ein Element zu seiner Konfiguration).
 - **** : Zeigt die Ereignisse des betreffenden Geräts an.
 - **** : Speichern Sie die am Gerät vorgenommenen Änderungen.
-- **Löschen** : Ausrüstung entfernen.
+- **** : Ausrüstung entfernen.
 
 ### Registerkarte Informationen
 
  **** enthält allgemeine Informationen über das Gerät und seine Bedienelemente :
 
 - **** : Eindeutige Kennung in der Jeedom-Datenbank.
-- **Nachname** : Name der Ausrüstung.
+- **** : Name der Ausrüstung.
 - **Logische ID** : Logische Kennung des Geräts (kann leer sein).
 - **Objekt-ID** : Eindeutige Kennung des übergeordneten Objekts (kann leer sein).
 - **Erstellungsdatum** : Erstellungsdatum der Ausrüstung.
@@ -146,7 +146,7 @@ Ermöglicht das Schreiben eines Kommentars zur Ausrüstung.
 
 Zunächst sind oben rechts einige Schaltflächen verfügbar :
 
-- **Prüfen** : Wird zum Testen des Befehls verwendet.
+- **** : Wird zum Testen des Befehls verwendet.
 - **** : Ermöglicht die Anzeige der Verknüpfungen des Geräts mit Objekten, Befehlen, Szenarien, Variablen, Interaktionen…. in grafischer Form.
 - **** : Zeigt die Ereignisse des betreffenden Geräts an.
 - **** : Zeigt die Roheigenschaften des Geräts an.
@@ -157,7 +157,7 @@ Zunächst sind oben rechts einige Schaltflächen verfügbar :
 >
 > In einer Grafik bringt Sie ein Doppelklick auf ein Element zu seiner Konfiguration.
 
-> **Notiz**
+> ****
 >
 > Abhängig von der Art der Bestellung können sich die angezeigten Informationen / Aktionen ändern.
 
@@ -167,10 +167,10 @@ Zunächst sind oben rechts einige Schaltflächen verfügbar :
 
 - **** : Eindeutiger Bezeichner in der Datenbank.
 - **Logische ID** : Logische Kennung des Befehls (kann leer sein).
-- **Nachname** : Name der Bestellung.
+- **** : Name der Bestellung.
 - **** : Art des Befehls (Aktion oder Info).
 - **** : Befehlssubtyp (binär, digital usw.)).
-- **Direkte URL** : Gibt die URL für den Zugriff auf dieses Gerät an. (Rechtsklick, kopiere die Linkadresse) Die URL startet den Befehl für a **Lager** und geben Sie die Informationen für a zurück ****.
+- **Direkte URL** : Gibt die URL für den Zugriff auf dieses Gerät an. (Rechtsklick, kopiere die Linkadresse) Die URL startet den Befehl für a **** und geben Sie die Informationen für a zurück ****.
 - **** : Steuereinheit.
 - **Befehl, der ein Update auslöst** : Gibt die Kennung eines anderen Befehls an, der bei Änderung dieses anderen Befehls die Aktualisierung des angezeigten Befehls erzwingt.
 - **** : Aktivieren Sie dieses Kontrollkästchen, um den Befehl sichtbar zu machen.
@@ -184,7 +184,7 @@ Sie haben auch drei andere orangefarbene Knöpfe darunter :
 - **Dieser Befehl ersetzt den Befehl** : Befehl durch aktuellen Befehl ersetzen.
 - **Ersetzen Sie diesen Befehl durch den Befehl** : Ersetzen Sie umgekehrt den Befehl durch einen anderen Befehl.
 
-> **Notiz**
+> ****
 >
 > Diese Art von Aktion ersetzt Befehle überall in Jeedom (Szenario, Interaktion, Befehl, Ausrüstung…).).
 
@@ -226,7 +226,7 @@ Unten finden Sie eine Liste der verschiedenen Geräte, Befehle, Szenarien oder I
 
 Ermöglicht das Definieren einer Alarmstufe (****  ****) abhängig von bestimmten Bedingungen. Wenn beispielsweise 30 Minuten lang &quot;Wert&gt; 8&quot; angezeigt wird, kann das Gerät in Alarmbereitschaft versetzt werden ****.
 
-> **Notiz**
+> ****
 >
 > Auf der Seite **→ Einstellungen → Systemkonfiguration : **, Sie können einen Nachrichtentypbefehl konfigurieren, mit dem Jeedom Sie benachrichtigen kann, wenn der Warn- oder Gefahrenschwellenwert erreicht ist.
 

@@ -12,7 +12,7 @@ Hier können Sie verschiedene Parameter Ihres Profils anpassen :
 
 - ****
     - **** : Ihr Login auf dem Markt kann nicht geändert werden.
-    - **Nachname** : Ihr Name (diese Informationen sind nur nützlich, um E-Mails angenehmer zu gestalten).
+    - **** : Ihr Name (diese Informationen sind nur nützlich, um E-Mails angenehmer zu gestalten).
     - **Vorname** : Ihr Vorname (diese Informationen sind nur nützlich, um E-Mails angenehmer zu gestalten).
     - **Benutzername im Forum** : Dein Benutzername im Forum.
     - **** : Ihre E-Mail.
@@ -54,7 +54,7 @@ Für die Profis :
 > Es ist möglich, dass der Markt Sie manchmal auffordert, Ihre Installationsschlüssel zurückzusetzen. Dies ist normal. Befolgen Sie einfach die Anforderungen.
 
 - **Meine Jeedoms** : Hier sind alle Ihre Jeedoms aufgelistet
-    - **Nachname** : Der Name, den Sie Ihrem Jeedom geben möchten (finden Sie im Sicherungsnamen, wenn Sie über ein Cloud-Sicherungsabonnement verfügen).
+    - **** : Der Name, den Sie Ihrem Jeedom geben möchten (finden Sie im Sicherungsnamen, wenn Sie über ein Cloud-Sicherungsabonnement verfügen).
     - **** : Sehen wir uns den Zustand des fraglichen Jeedom an.
     - **Lokale / Remote-IP** : IP oder Adresse dieses Jeedom, konfigurieren Sie in Jeedom. Wenn Sie nichts eingeben, ist dies die letzte bekannte IP.
     - **** : Ermöglicht das Anpassen des Namens Ihres DNS.

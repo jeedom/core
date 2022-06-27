@@ -66,7 +66,7 @@
 ## 
 
 - Bugfix-Benutzeroberfläche : Widget-Fix *numerische Vorgabe* (cmdName zu lang).
-- Bugfix-Benutzeroberfläche : Übergeben von CSS-Variablen *--url-iconsDark* und *--url-iconsLight* absolut (Bug Safari MacOS).
+- Bugfix-Benutzeroberfläche : Übergeben von CSS-Variablen *--url-iconsDark*  *--url-iconsLight* absolut (Bug Safari MacOS).
 - Bugfix-Benutzeroberfläche : Position der Benachrichtigungen in *oben in der Mitte*.
 
 - Bugfix-Kern : Standardschritt für Widgets ** um 1.
@@ -118,7 +118,7 @@
 - **** : Vorschau von PDF-Dateien.
 - **Gerätearten** : [Neue Seite](/de_DE/core/4.2/types) **Werkzeuge → Gerätetypen** Ermöglicht die Zuweisung von generischen Typen zu Geräten und Befehlen mit Unterstützung für Typen, die für installierte Plugins bestimmt sind (siehe [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.2)).
 - **Auswahl der Abbildungen** : Neues globales Fenster für die Auswahl der Abbildungen *(Symbole, Bilder, Hintergründe)*.
-- **Tabellenanzeige** : Hinzufügen einer Schaltfläche rechts von der Suche auf den Seiten ** *Szenarien* ** ** und ** in den Tabellenmodus wechseln. Dies wird durch ein Cookie oder in gespeichert **Einstellungen → System → Konfiguration / Schnittstelle, Optionen**. Die Plugins können diese neue Funktion des Core nutzen. sehen [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.2).
+- **Tabellenanzeige** : Hinzufügen einer Schaltfläche rechts von der Suche auf den Seiten ** *Szenarien* ** **  ** in den Tabellenmodus wechseln. Dies wird durch ein Cookie oder in gespeichert **Einstellungen → System → Konfiguration / Schnittstelle, Optionen**. Die Plugins können diese neue Funktion des Core nutzen. sehen [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.2).
 - **Gerätekonfiguration** : Möglichkeit, eine Verlaufskurve am unteren Rand der Kachel eines Geräts zu konfigurieren.
 - **** : Möglichkeit, vor Ausführung des Befehls eine Berechnung für eine Befehlsaktion vom Typ Schieberegler durchzuführen.
 - **Plugins / Management** : Anzeige der Plugin-Kategorie und ein Link zum direkten Öffnen der Seite, ohne das Plugins-Menü aufzurufen.
@@ -137,12 +137,12 @@
 - **Hinzufügen des Benutzers, der eine Aktion ausführt** : Hinzufügen in den Befehlsausführungsoptionen der ID und des Benutzernamens, die die Aktion starten (z. B. sichtbar im Protokollereignis)
 - **Dokumentation und Changelog-Plugin Beta** : Dokumentation und Changelog-Management für Plugins in der Beta. Achtung, in der Beta ist das Changelog nicht datiert.
 - **** : Integration des JeeXplorer-Plugins in den Core. Wird jetzt für Widget-Code und erweiterte Anpassung verwendet.
-- **Aufbau** : Neue Option in Konfiguration / Benutzeroberfläche, um das Titelbanner des Geräts nicht einzufärben.
-- **Aufbau** : Möglichkeit, Hintergrundbilder auf den Seiten Dashboard, Analyse, Tools und deren Deckkraft entsprechend dem Thema zu konfigurieren.
-- **Aufbau**: Jeedom DNS basierend auf Wireguard anstelle von Openvpn hinzufügen (Administration / Netzwerke). Schneller und stabiler, aber noch im Test. Bitte beachten Sie, dass dies derzeit nicht mit Jeedom Smart kompatibel ist.
-- **Aufbau** : OSDB-Einstellungen: Hinzufügen eines Tools zur Massenbearbeitung von Geräten, Befehlen, Objekten, Szenarien.
-- **Aufbau** : OSDB-Einstellungen: Hinzufügen eines dynamischen SQL-Abfragekonstruktors.
-- **Aufbau**: Möglichkeit zum Deaktivieren der Cloud-Überwachung (Administration / Updates / Market).
+- **** : Neue Option in Konfiguration / Benutzeroberfläche, um das Titelbanner des Geräts nicht einzufärben.
+- **** : Möglichkeit, Hintergrundbilder auf den Seiten Dashboard, Analyse, Tools und deren Deckkraft entsprechend dem Thema zu konfigurieren.
+- ****: Jeedom DNS basierend auf Wireguard anstelle von Openvpn hinzufügen (Administration / Netzwerke). Schneller und stabiler, aber noch im Test. Bitte beachten Sie, dass dies derzeit nicht mit Jeedom Smart kompatibel ist.
+- **** : OSDB-Einstellungen: Hinzufügen eines Tools zur Massenbearbeitung von Geräten, Befehlen, Objekten, Szenarien.
+- **** : OSDB-Einstellungen: Hinzufügen eines dynamischen SQL-Abfragekonstruktors.
+- ****: Möglichkeit zum Deaktivieren der Cloud-Überwachung (Administration / Updates / Market).
 - **** : Zugabe von ````jeeCli.php```` im core / php-Ordner von Jeedom, um einige Kommandozeilenfunktionen zu verwalten.
 - *Große Verbesserungen der Benutzeroberfläche in Bezug auf Leistung / Reaktionsfähigkeit. jeedomUtils {}, jeedomUI {}, Hauptmenü in reinem CSS umgeschrieben, Entfernung von initRowWorflow(), Vereinfachung des Codes, CSS-Fixes für kleine Bildschirme usw.*
 
@@ -265,7 +265,7 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - **Kernupdates** : Implementierung eines Systems zum Bereinigen alter nicht verwendeter Core-Dateien.
 - **Szenario** : Hinzufügen einer Suchmaschine (links von der Schaltfläche Ausführen)).
 - **Szenario** : Hinzufügung der Altersfunktion (gibt das Alter des Wertes der Bestellung an).
-- **Szenario** : *stateChanges()* Akzeptieren Sie jetzt den Zeitraum ** (Mitternacht bis jetzt), ** und ** (für 1 Tag).
+- **Szenario** : *stateChanges()* Akzeptieren Sie jetzt den Zeitraum ** (Mitternacht bis jetzt), **  ** (für 1 Tag).
 - **Szenario** :  *Statistik (), Durchschnitt (), Max (), Min (), Trend (), Dauer()* : Bugfix über den Zeitraum **, und jetzt akzeptieren ** (für 1 Tag).
 - **Szenario** : Möglichkeit, das automatische Angebotssystem zu deaktivieren (Einstellungen → System → Konfiguration : Equipements).
 - **Szenario** : Anzeigen a ** wenn kein Trigger konfiguriert ist.
@@ -296,8 +296,8 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - **Task-Engine** : Auf der Registerkarte *Dämon*, deaktivierte Plugins werden nicht mehr angezeigt.
 - **** : Die Verwendung von ** wenn verfügbar.
 - **** : Möglichkeit zum Exportieren von Zeitleisten.
-- **Aufbau** :  ** ist jetzt in der Registerkarte *Allgemein*.
-- **Aufbau** :  ** ist jetzt in der Registerkarte **.
+- **** :  ** ist jetzt in der Registerkarte *Allgemein*.
+- **** :  ** ist jetzt in der Registerkarte **.
 - **Fenster zur erweiterten Gerätekonfiguration** : Dynamische Änderung der Schalttafelkonfiguration.
 - **** : Neue Kategorie **.
 - **** : Möglichkeit des Invertierens von Cursortypbefehlen (Info und Aktion))
@@ -465,15 +465,15 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 -  : Hinzufügen eines Widgets für numerische Kompass- / Windinformationen (danke @thanaus).
 -  : Ein numerisches Regeninfo-Widget wurde hinzugefügt (danke @thanaus)
 -  : Anzeige des Info- / Action-Shutter-Widgets proportional zum Wert.<br/><br/>
-- Aufbau : Verbesserung und Reorganisation von Registerkarten.
-- Aufbau : Hinzufügung von vielen ** (aide).
-- Aufbau : Hinzufügen einer Suchmaschine.
-- Aufbau : Es wurde eine Schaltfläche hinzugefügt, um den Cache der Widgets zu leeren (Registerkarte Cache)).
-- Aufbau : Es wurde eine Option hinzugefügt, um den Cache von Widgets zu deaktivieren (Registerkarte Cache)).
-- Aufbau : Möglichkeit der vertikalen Zentrierung des Inhalts der Kacheln (Registerkarte Schnittstelle)).
-- Aufbau : Es wurde ein Parameter für die globale Bereinigung von Protokollen hinzugefügt (Registerkarte "Bestellungen")).
-- Aufbau : Änderung von #message# beim #subject# in Konfiguration / Protokolle / Nachrichten, um das Duplizieren der Nachricht zu vermeiden.
-- Aufbau : Möglichkeit in den Zusammenfassungen, einen Ausschluss von Aufträgen hinzuzufügen, die nicht länger als XX Minuten aktualisiert wurden (Beispiel für die Berechnung von Temperaturdurchschnitten, wenn ein Sensor länger als 30 Minuten nichts gemeldet hat, wird er von der Berechnung ausgeschlossen)<br/><br/>
+-  : Verbesserung und Reorganisation von Registerkarten.
+-  : Hinzufügung von vielen ** (aide).
+-  : Hinzufügen einer Suchmaschine.
+-  : Es wurde eine Schaltfläche hinzugefügt, um den Cache der Widgets zu leeren (Registerkarte Cache)).
+-  : Es wurde eine Option hinzugefügt, um den Cache von Widgets zu deaktivieren (Registerkarte Cache)).
+-  : Möglichkeit der vertikalen Zentrierung des Inhalts der Kacheln (Registerkarte Schnittstelle)).
+-  : Es wurde ein Parameter für die globale Bereinigung von Protokollen hinzugefügt (Registerkarte "Bestellungen")).
+-  : Änderung von #message# beim #subject# in Konfiguration / Protokolle / Nachrichten, um das Duplizieren der Nachricht zu vermeiden.
+-  : Möglichkeit in den Zusammenfassungen, einen Ausschluss von Aufträgen hinzuzufügen, die nicht länger als XX Minuten aktualisiert wurden (Beispiel für die Berechnung von Temperaturdurchschnitten, wenn ein Sensor länger als 30 Minuten nichts gemeldet hat, wird er von der Berechnung ausgeschlossen)<br/><br/>
 - Szenario : Die Färbung von Blöcken erfolgt nicht mehr zufällig, sondern nach Blocktyp.
 - Szenario : Möglichkeit durch Strg + Klick auf die Schaltfläche *Ausführung* Speichern Sie es, starten Sie es und zeigen Sie das Protokoll an (wenn die Protokollebene nicht aktiviert ist **).
 - Szenario : Bestätigung der Blocklöschung. Strg + Klicken, um eine Bestätigung zu vermeiden.
@@ -496,7 +496,7 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - Zusammenfassung der Hausautomation : Hinzufügen von Geräten und Bestell-IDs zum Anzeigen und Suchen.
 - Zusammenfassung der Hausautomation : CSV-Export des übergeordneten Objekts, der ID, der Ausrüstung und ihrer ID, des Befehls.
 - Zusammenfassung der Hausautomation : Möglichkeit, einen oder mehrere Befehle sichtbar zu machen oder nicht.<br/><br/>
--  : Möglichkeit zur Angabe der Reihenfolge (Position) des ** und *3D-Designs* (Bearbeiten, Design konfigurieren).
+-  : Möglichkeit zur Angabe der Reihenfolge (Position) des **  *3D-Designs* (Bearbeiten, Design konfigurieren).
 -  : Hinzufügen eines benutzerdefinierten CSS-Felds zu den Elementen des **.
 -  : Die Anzeigeoptionen im Design der erweiterten Konfiguration wurden in den Anzeigeparametern aus dem verschoben **. Dies, um die Schnittstelle zu vereinfachen und verschiedene Parameter durch zu ermöglichen **.
 -  : Verschieben und Ändern der Größe von Komponenten ** berücksichtigt ihre Größe mit oder ohne Magnetisierung.<br/><br/>

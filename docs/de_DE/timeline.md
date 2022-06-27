@@ -3,7 +3,7 @@
 
 ## Timeline
 
-Auf der Seite Zeitleiste können Sie Ereignisse wie Auftragsänderungen chronologisch anzeigen **, Befehl wird ausgelöst *Lager*, und Szenarioausführungen.
+Auf der Seite Zeitleiste können Sie Ereignisse wie Auftragsänderungen chronologisch anzeigen **, Befehl wird ausgelöst **, und Szenarioausführungen.
 
 Um sie anzuzeigen, müssen Sie zuerst die Verfolgung der gewünschten Befehle oder Szenarien auf der Zeitachse aktivieren. Anschließend treten diese Ereignisse auf.
 
@@ -15,7 +15,7 @@ Um sie anzuzeigen, müssen Sie zuerst die Verfolgung der gewünschten Befehle od
 Die Zeitleiste ** enthält immer alle Ereignisse. Sie können die Zeitleiste jedoch nach filtern **. An jeder Stelle, an der Sie die Zeitleiste aktivieren, haben Sie ein Feld, in das Sie den Namen eines Ordners eingeben können, ob vorhanden oder nicht.
 Sie können die Zeitleiste dann nach diesem Ordner filtern, indem Sie sie links neben der Schaltfläche auswählen **.
 
-> **Notiz**
+> ****
 >
 > Wenn Sie keinen Ordner mehr verwenden, wird dieser in der Liste angezeigt, solange Ereignisse vorhanden sind, die mit diesem Ordner verknüpft sind. Es wird von selbst aus der Liste verschwinden.
 

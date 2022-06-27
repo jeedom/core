@@ -22,7 +22,7 @@ Unten finden Sie eine Tabelle aller vorhandenen Aufgaben (Achtung, einige Aufgab
 In dieser Tabelle finden wir :
 
 - **\.#** : Aufgaben-ID, die nützlich ist, um einen laufenden Prozess mit dem zu verknüpfen, was er wirklich tut.
-- **Anlage** : Zeigt an, ob die Aufgabe aktiv ist (kann von Jeedom gestartet werden) oder nicht.
+- **** : Zeigt an, ob die Aufgabe aktiv ist (kann von Jeedom gestartet werden) oder nicht.
 - **** : Zeigt die aktuelle Prozess-ID an.
 - **Dämon** : Wenn dieses Feld &quot;Ja&quot; lautet, muss die Aufgabe immer ausgeführt werden. Außerdem finden Sie die Häufigkeit des Dämons. Es wird empfohlen, diesen Wert niemals zu ändern und insbesondere niemals zu verringern.
 - **** : Wenn es &quot;Ja&quot; ist, wird die Aufgabe einmal gestartet und löscht sich dann von selbst.
@@ -34,7 +34,7 @@ In dieser Tabelle finden wir :
 - **Letzte Dauer** : Letzte Ausführungszeit der Aufgabe (ein Daemon wird immer bei 0 sein, keine Sorge, andere Aufgaben können bei 0 sein).
 - **** : Aktueller Status der Aufgabe (zur Erinnerung: Eine Daemon-Aufgabe wird immer "ausgeführt"").
 
-- **Aktie** :
+- **** :
     - **Details** : Sehen Sie sich den Cron im Detail an (wie in der Basis gespeichert)).
     - **Start / Stopp** : Starten oder stoppen Sie die Aufgabe (abhängig von ihrem Status).
     - **** : Aufgabe löschen.
