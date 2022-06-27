@@ -4,7 +4,7 @@
 Diese Seite informiert über alle Jeedom-Anwendungsaufgaben, die auf dem Server ausgeführt werden.
 Diese Seite ist wissentlich oder auf Anfrage des technischen Supports zu verwenden.
 
-> **Wichtig**
+> ****
 >
 > Im Falle eines Missbrauchs auf dieser Seite kann jede Anfrage nach Unterstützung abgelehnt werden.
 
@@ -14,8 +14,8 @@ Oben rechts haben Sie :
 
 - **Cron-System deaktivieren** : Eine Schaltfläche zum Deaktivieren oder Reaktivieren aller Aufgaben (wenn Sie alle deaktivieren, funktioniert auf Ihrem Jeedom nichts).
 - **Cool** : Aktualisiert die Aufgabentabelle.
-- **Hinzufügen** : Fügen Sie manuell einen Cron-Job hinzu.
-- **Zu schützen** : Speichern Sie Ihre Änderungen.
+- **** : Fügen Sie manuell einen Cron-Job hinzu.
+- **** : Speichern Sie Ihre Änderungen.
 
 Unten finden Sie eine Tabelle aller vorhandenen Aufgaben (Achtung, einige Aufgaben können Unteraufgaben starten. Es wird daher dringend empfohlen, die Informationen auf dieser Seite niemals zu ändern).
 
@@ -32,7 +32,7 @@ In dieser Tabelle finden wir :
 - **** : Maximale Task-Laufzeit. Wenn es sich bei der Aufgabe um einen Dämon handelt, wird sie am Ende des Zeitlimits automatisch gestoppt und neu gestartet.
 - **Letzter Start** : Datum des letzten Taskstarts.
 - **Letzte Dauer** : Letzte Ausführungszeit der Aufgabe (ein Daemon wird immer bei 0 sein, keine Sorge, andere Aufgaben können bei 0 sein).
-- **Status** : Aktueller Status der Aufgabe (zur Erinnerung: Eine Daemon-Aufgabe wird immer "ausgeführt"").
+- **** : Aktueller Status der Aufgabe (zur Erinnerung: Eine Daemon-Aufgabe wird immer "ausgeführt"").
 
 - **Aktie** :
     - **Details** : Sehen Sie sich den Cron im Detail an (wie in der Basis gespeichert)).
