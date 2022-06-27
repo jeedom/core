@@ -499,7 +499,7 @@ class user {
 
 	public function validateTwoFactorCode($_code) {
 		$google2fa = new Google2FA();
-		return $google2fa->verifyKey($this->getOptions('twoFactorAuthentificationSecret'), $_code);
+		return $google2fa->verifyKey($this->getOptions('twoFactorAuthentificationSecret'), $_code, 8);
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
