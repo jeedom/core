@@ -4619,7 +4619,7 @@
     "core\/template\/scenario\/wait.default.html": {
         "Condition": "Condition",
         "Sélectionner la commande": "Sélectionner la commande",
-        "Time out": "Time out"
+        "Time out": "Time out (sec)"
     },
     "core\/template\/scenario\/cmd.action.color.default.html": {
         "Couleur": "Couleur",
