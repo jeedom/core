@@ -97,7 +97,7 @@ Dazu müssen 2 Voraussetzungen berücksichtigt werden :
 `` ''
 
 >**Trick**      
->Solange der standardisierte Name lesbar bleibt, kann beispielsweise die Benennung angepasst werden *open_volet* Wo *shutter_close*, *walk_2* und *Haltestelle_2*, etc.
+>Solange der standardisierte Name lesbar bleibt, kann beispielsweise die Benennung angepasst werden *open_volet* Wo *shutter_close*, *2. März* und *Haltestelle_2*, etc.
 
 ## Benutzerdefinierte Widgets
 

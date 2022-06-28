@@ -97,7 +97,7 @@ Para isso, é necessário levar em consideração 2 pré-requisitos :
 `` ''
 
 >**Truque**      
->Desde que o nome padronizado permaneça legível, é possível adaptar a nomenclatura, por exemplo *open_volet* Onde *shutter_close*, *caminhada_2* e *parada_2*, etc.
+>Desde que o nome padronizado permaneça legível, é possível adaptar a nomenclatura, por exemplo *open_volet* Onde *shutter_close*, *2 de março* e *parada_2*, etc.
 
 ## Widgets personalizados
 
