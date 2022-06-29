@@ -1711,6 +1711,7 @@ class cmd {
 		$this->setValueDate(($repeat) ? $this->getValueDate() : $this->getCollectDate());
 		$eqLogic->setStatus(array('lastCommunication' => $this->getCollectDate(), 'timeout' => 0));
 		$display_value = $value;
+		$unit = $this->getUnite();
 		if (method_exists($this, 'formatValueWidget')) {
 			$display_value = $this->formatValueWidget($value);
 		} else if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
@@ -1720,9 +1721,11 @@ class cmd {
 		} else if ($this->getSubType() == 'binary' && trim($value) === '') {
 			$display_value = 0;
 		}
-		$valueInfo = self::autoValueArray($value, $this->getConfiguration('historizeRound', 99), $this->getUnite());
-		$display_value = $valueInfo[0];
-		$unit = $valueInfo[1];
+		if ($this->getSubType() == 'numeric') {
+			$valueInfo = self::autoValueArray($value, $this->getConfiguration('historizeRound', 99), $this->getUnite());
+			$display_value = $valueInfo[0];
+			$unit = $valueInfo[1];
+		}
 		if ($repeat && $this->getConfiguration('repeatEventManagement', 'never') == 'never') {
 			$this->addHistoryValue($value, $this->getCollectDate());
 			$eqLogic->emptyCacheWidget();

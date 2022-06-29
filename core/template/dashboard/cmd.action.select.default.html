@@ -14,5 +14,7 @@
     jeedom.cmd.update['#id#'] = function(_options) {
       $(".cmd[data-cmd_uid=#uid#] .selectCmd").val(_options.display_value)
     }
+
+    jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'})
   </script>
 </div>
