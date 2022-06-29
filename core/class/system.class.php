@@ -550,9 +550,14 @@ class system {
 						}
 						break;
 					case 'pip3':
+						$cmd_cleaning_pip = self::getCmdSudo() . " find /usr/local/lib/python3.7/dist-packages/ -mindepth 1 -maxdepth 1 -type d -exec du -ks {} + | awk '$1 <= 4' | cut -f 2- | xargs -d \\n " . self::getCmdSudo() . " rm -rf";
 						if ($_foreground) {
+							echo shell_exec($cmd_cleaning_pip . " 2>&1");
 							echo shell_exec(self::getCmdSudo() . " pip3 install --upgrade pip 2>&1");
 						} else {
+							$cmd .= $cmd_cleaning_pip . "\n";
+							$count++;
+							$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
 							$cmd .= self::getCmdSudo() . " pip3 install --upgrade pip\n";
 							$count++;
 							$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
