@@ -299,9 +299,9 @@ jeedom.eqLogic.getCmd = function(_params) {
 jeedom.eqLogic.byId = function(_params) {
   var paramsRequired = ['id'];
   var paramsSpecifics = {
-    pre_success: function(result) {
-      jeedom.eqLogic.cache.byId[_params.id] = result;
-      return result;
+    pre_success: function(data) {
+      jeedom.eqLogic.cache.byId[data.result.id] = data.result;
+      return data;
     }
   };
   try {
