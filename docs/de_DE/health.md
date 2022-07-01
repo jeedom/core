@@ -4,7 +4,7 @@
 Auf der Seite Jeedom Health erhalten Sie einen schnellen Überblick über den Gesundheitszustand Ihres Jeedom.
 Es zeigt auch (wenn Plugins es verwenden) den Gesundheitszustand des Plugins an.
 
-> **Notiz**
+> ****
 >
 > Klicken Sie auf das Symbol oben rechts, um auf den Benchmark Ihres Jeedom zuzugreifen.
 
@@ -22,10 +22,10 @@ Rechts finden Sie die Symbole :
 -   Anzeige der Plugin-Konfigurationsseite.
 -   Gesamtzustand des Plugins.
 
-> **Notiz**
+> ****
 >
 > Die Symbole können je nach Plugin variieren.
 
-> **Notiz**
+> ****
 >
 > Wenn die Linie grün ist, ist im Allgemeinen alles in Ordnung und wenn sie rot ist, gibt es ein Problem.
