@@ -14,7 +14,7 @@ At the top right, you have :
 
 - **Disable cron system** : a button to deactivate or reactivate all tasks (if you deactivate them all, nothing will be functional on your Jeedom).
 - **Refresh** : Refreshes the task table.
-- **To add** : Add a cron job manually.
+- **** : Add a cron job manually.
 - **** : Save your changes.
 
 Below, you have the table of all existing tasks (attention, some tasks can launch subtasks, so it is strongly recommended never to modify information on this page).
@@ -34,7 +34,7 @@ In this table, we find :
 - **Last duration** : Last execution time of the task (a daemon will always be at 0s, don't worry about other tasks can be at 0s).
 - **** : Current status of the task (as a reminder, a daemon task is always "run"").
 
-- **Stock** :
+- **** :
     - **Details** : See the cron in detail (as stored in base).
     - **Start / Stop** : Start or stop the task (depending on its status).
     - **** : Delete task.
