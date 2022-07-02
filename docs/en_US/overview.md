@@ -30,7 +30,7 @@ The configuration of the display of the object is done in **Tools → Objects** 
 >
 > The display order of objects is that of *Domotic overview*, that you can reorder (Analysis → Home automation summary).
 
-> ****
+> **Note**
 >
 > If an object does not have a summary defined, a button is displayed at the top right to access the configuration / summaries of the object.
 

@@ -14,13 +14,13 @@ Jeedom has a mobile version suitable for use on mobile and tablet. There is also
 When you log in to Jeedom for the first time (and even afterwards if you haven&#39;t changed them), the default username and password are admin / admin. At the first connection, you are strongly recommended to modify these identifiers for more security.
 
 ### I can no longer connect to my Jeedom
-Since Jeedom 3.2 it is no longer possible to connect with admin / admin remotely for obvious security reasons. Admin / admin credentials only work locally. Attention if you go through the DNS even locally you are necessarily identified as remote. Other default point only IP on 192.168.*.* or 127.0.0.1 are recognized as local. It is configured in the administration of Jeedom security part then IP "white". If, despite everything, you still cannot connect, you must use the password reset procedure, see [](https://doc.jeedom.com/en_US/howto/reset.password).
+Since Jeedom 3.2 it is no longer possible to connect with admin / admin remotely for obvious security reasons. Admin / admin credentials only work locally. Attention if you go through the DNS even locally you are necessarily identified as remote. Other default point only IP on 192.168.*.* or 127.0.0.1 are recognized as local. It is configured in the administration of Jeedom security part then IP "white". If, despite everything, you still cannot connect, you must use the password reset procedure, see [here](https://doc.jeedom.com/en_US/howto/reset.password).
 
 ### I do not see all my equipment on the Dashboard
 Often this is due to the fact that the equipment is assigned to an object which is not the son or the object itself of the first object selected on the left in the tree (you can configure this one in your profile).
 
 ### Jeedom interface has shortcuts ?
-Yes, the list of keyboard / mouse shortcuts is [](shortcuts.md).
+Yes, the list of keyboard / mouse shortcuts is [here](shortcuts.md).
 
 ### Can we reorder equipment commands ?
 Yes it is possible, just drag and drop the commands of your object on its configuration.
