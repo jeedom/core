@@ -9,7 +9,7 @@ Real brain of home automation, the scenarios allow to interact with the real wor
 
 You will find there the list of scenarios of your Jeedom, as well as functionalities to manage them at best :
 
-- **To add** : Create a scenario. The procedure is described in the next chapter.
+- **** : Create a scenario. The procedure is described in the next chapter.
 - **Disable scenarios** : Disables all scenarios. Rarely used and knowingly, since no scenario will run anymore.
 - **Overview** : Allows you to have an overview of all scenarios. You can change the values ****, ****, **multi launch**, **synchronous mode**, ****  **** (these parameters are described in the following chapter). You can also access the logs for each scenario and start them individually.
 
@@ -33,7 +33,7 @@ Once on the configuration of a scenario, you have a contextual menu with the Rig
 
 ## Creation | Editing a scenario
 
-After clicking on **To add**, you must choose the name of your scenario. You are then redirected to the page of its general parameters.
+After clicking on ****, you must choose the name of your scenario. You are then redirected to the page of its general parameters.
 Before that, at the top of the page, there are some useful functions to manage this scenario :
 
 - **** : Next to the word **General**, this is the scenario identifier.
@@ -110,11 +110,11 @@ For more convenience and not having to constantly reorder the blocks in the scen
 Here are the different types of blocks available :
 
 - **If / Then / Or** : Allows actions to be carried out under conditions (if this, then that).
-- **Stock** : Allows you to launch simple actions without any conditions.
+- **** : Allows you to launch simple actions without any conditions.
 - **** : Allows actions to be performed repeatedly from 1 to a defined number (or even the value of a sensor, or a random number…).
 - **** : Allows to launch an action in X minute (s) (0 is a possible value). The peculiarity is that the actions are launched in the background, so they do not block the rest of the scenario. So it&#39;s a non-blocking block.
 - **** : Allows to tell Jeedom to launch the actions of the block at a given time (in the form hhmm). This block is non-blocking.  : 0030 for 00:30, or 0146 for 1h46 and 1050 for 10h50.
-- **Coded** : Allows you to write directly in PHP code (requires certain knowledge and can be risky but allows you to have no constraints).
+- **** : Allows you to write directly in PHP code (requires certain knowledge and can be risky but allows you to have no constraints).
 - **** : Allows you to add comments to your scenario.
 
 Each block has its options to better handle them :
@@ -136,11 +136,11 @@ For the conditions, Jeedom tries to make it possible to write them as much as po
 
 Three buttons are available on the right of this type of block to select an item to test :
 
-- **Find a command** : Allows you to search for a command in all those available in Jeedom. Once the command is found, Jeedom opens a window to ask you what test you want to perform on it. If you choose to **Put nothing**, Jeedom will add the command without comparison. You can also choose ****  ****  **Next** to chain tests on different equipment.
+- **Find a command** : Allows you to search for a command in all those available in Jeedom. Once the command is found, Jeedom opens a window to ask you what test you want to perform on it. If you choose to **Put nothing**, Jeedom will add the command without comparison. You can also choose ****  ****  **** to chain tests on different equipment.
 - **Search a scenario** : Allows you to search for a scenario to test.
 - **Search for equipment** : Same for equipment.
 
-> **Note**
+> ****
 >
 > On blocks of type If / Then / Otherwise, circular arrows to the left of the condition field allow to activate or not the repetition of actions if the evaluation of the condition gives the same result as during the previous evaluation.
 > IF expression != 0 is equivalent to IF expression and IF expression == 0 is equivalent to IF not expression
@@ -236,7 +236,7 @@ There are specific triggers (other than those provided by commands) :
 - ``#variable(nom_variable)#`` : Changing the value of the variable name_name.
 - ``#genericType (GENERIC, #[Object]#)#`` : Change of a Generic GENERIC type info command, in the Object object.
 
-You can also trigger a scenario using the HTTP API described [here](https:doc.jeedom.com/en_US/core4.1api_http).
+You can also trigger a scenario using the HTTP API described [](https:doc.jeedom.com/en_US/core4.1api_http).
 
 ### Comparison operators and links between conditions
 
@@ -253,7 +253,7 @@ You can use any of the following symbols for comparisons under conditions :
 
 You can combine any comparison with the following operators :
 
-- ``&&`` : . It is also possible to use : ``ET``  ``et``  ``AND``  ``and`` but may not work well with some php functions.
+- ```` : . It is also possible to use : ``ET``  ``et``  ``AND``  ``and`` but may not work well with some php functions.
 - ``||`` : . It is also possible to use : ``OU``  ``ou``  ``OR``  ``or`` but may not work well with some php functions.
 - ``xor``  : or exclusive. It is also possible to use : ``XOR``  ``^`` but may not work well with some php functions.
 
@@ -263,7 +263,7 @@ A tag is replaced during the execution of the scenario by its value. You can use
 
 > ****
 >
-> To have the leading zeros displayed, use the Date () function. See [here](https:www.php.netmanualfrdatetime.format.php).
+> To have the leading zeros displayed, use the Date () function. See [](https:www.php.netmanualfrdatetime.format.php).
 
 - ``#seconde#`` : Current second (without leading zeros, ex : 6 for 08:07:06).
 - ``#hour#`` : Current time in 24h format (without leading zeros).  : 8 for 08:07:06 or 17 for 17:15.
@@ -301,17 +301,17 @@ You also have the following additional tags if your scenario was triggered by an
 
 Several functions are available for the equipment :
 
-- ``average(commande,période)`` & ``averageBetween(commande,start,end)`` : Give the average of the commandover the period (period=[month, day, hour, min] or [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s``  [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)).
+- ``average(commande,période)``  ``averageBetween(commande,start,end)`` : Give the average of the commandover the period (period=[month, day, hour, min] or [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s``  [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)).
 
-- ``averageTemporal(commande,période)`` & ``averageTemporalBetween(commande,start,end)`` : Give the average of the values of the order weighted by their duration of existence over the period (period=[month, day, hour, min] or [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s``  [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)).
+- ``averageTemporal(commande,période)``  ``averageTemporalBetween(commande,start,end)`` : Give the average of the values of the order weighted by their duration of existence over the period (period=[month, day, hour, min] or [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s``  [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)).
 
-- ``min(commande,période)`` & ``minBetween(commande,start,end)`` : Give the minimum command over the period (period=[month, day, hour, min] or [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s``  [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)).
+- ``min(commande,période)``  ``minBetween(commande,start,end)`` : Give the minimum command over the period (period=[month, day, hour, min] or [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s``  [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)).
 
-- ``max(commande,période)`` & ``maxBetween(commande,start,end)`` : Give the maximum of the commandover the period (period=[month, day, hour, min] or [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s``  [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)).
+- ``max(commande,période)``  ``maxBetween(commande,start,end)`` : Give the maximum of the commandover the period (period=[month, day, hour, min] or [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s``  [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)).
 
-- ``duration(commande, valeur, période)`` & ``durationbetween(commande,valeur,start,end)`` : Give the duration in minutes during which the equipment had the chosen value over the period (period=[month, day, hour, min] or [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s``  [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)).
+- ``duration(commande, valeur, période)``  ``durationbetween(commande,valeur,start,end)`` : Give the duration in minutes during which the equipment had the chosen value over the period (period=[month, day, hour, min] or [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s``  [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)).
 
-- ``statistics(commande,calcul,période)`` & ``statisticsBetween(commande,calcul,start,end)`` : Give the result of different statistical calculations (sum, count, std, variance, avg, min, max) over the period (period=[month, day, hour, min] or [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s``  [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)).
+- ``statistics(commande,calcul,période)``  ``statisticsBetween(commande,calcul,start,end)`` : Give the result of different statistical calculations (sum, count, std, variance, avg, min, max) over the period (period=[month, day, hour, min] or [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s``  [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)).
 
 - ``tendance(commande,période,seuil)`` : Gives the trend of the command over the period (period=[month, day, hour, min] or [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)).
 
@@ -330,7 +330,7 @@ Several functions are available for the equipment :
 - ``age(commande)`` : Gives the age in seconds of the value of the command (``collecDate``)
     -1 : The command does not exist or it is not of type info.
 
-- ``stateChanges(commande,[valeur], période)`` & ``stateChangesBetween(commande, [valeur], start, end)`` : Give the number of changes of state (towards a certain value if indicated, or if not indicated compared to its current value) over the period (period=[month, day, hour, min] or [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s``  [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)).
+- ``stateChanges(commande,[valeur], période)``  ``stateChangesBetween(commande, [valeur], start, end)`` : Give the number of changes of state (towards a certain value if indicated, or if not indicated compared to its current value) over the period (period=[month, day, hour, min] or [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s``  [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)).
 
 - ``lastBetween(commande,start,end)`` : Gives the last value recorded for the device between the 2 requested terminals (in the form ``Y-m-d H:i:s``  [PHP expression](http:php.netmanualfrdatetime.formats.relative.php)).
 
@@ -349,11 +349,11 @@ Several functions are available for the equipment :
 - ``lastScenarioExecution(scenario)`` : Gives the duration in seconds since the last launch of the scenario.
     0 : The scenario does not exist
 
-- ``collectDate(cmd,[format])`` : Returns the date of the last data collection for the command placed as a parameter, the 2nd optional parameter is used to specify the return format (details [here](https:www.php.netmanualfrdatetime.format.php)).
+- ``collectDate(cmd,[format])`` : Returns the date of the last data collection for the command placed as a parameter, the 2nd optional parameter is used to specify the return format (details [](https:www.php.netmanualfrdatetime.format.php)).
     -1 : The command could not be found,
     -2 : The command is not of type info.
 
-- ``valueDate(cmd,[format])`` : Returns the date of the last known value for the command placed as a parameter, the 2nd optional parameter is used to specify the return format (details [here](https:www.php.netmanualfrdatetime.format.php)).
+- ``valueDate(cmd,[format])`` : Returns the date of the last known value for the command placed as a parameter, the 2nd optional parameter is used to specify the return format (details [](https:www.php.netmanualfrdatetime.format.php)).
     -1 : The command could not be found,
     -2 : The command is not of type info.
 
@@ -368,7 +368,7 @@ Several functions are available for the equipment :
 
 - ``name(type,commande)`` : Used to retrieve the name of the command, equipment or object.  : cmd, eqLogic or object.
 
-- ``lastCommunication(equipment,[format])`` : Returns the date of the last communication for the device given as a parameter, the 2nd optional parameter is used to specify the return format (details [here](https:www.php.netmanualfrdatetime.format.php)). A return of -1 means that the equipment cannot be found.
+- ``lastCommunication(equipment,[format])`` : Returns the date of the last communication for the device given as a parameter, the 2nd optional parameter is used to specify the return format (details [](https:www.php.netmanualfrdatetime.format.php)). A return of -1 means that the equipment cannot be found.
 
 - ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Returns a color calculated relative to a value in the interval color_start / color_end. The value must be between min_value and max_value.
 
