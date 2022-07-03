@@ -24,7 +24,7 @@ The part ** allows you to change parameters on these items.
 - In the game **, select **Scenario**.
 - Click on the button **** to add a filter.
 - In this filter, select the column **, and highlight the name of the group to rename.
-- Click on the button ** to display the scenarios of this group.
+- Click on the button *Test* to display the scenarios of this group.
 - In the game **, select column **, then put the name you want in the value.
 - Click on **Execute** top right.
 
@@ -33,6 +33,6 @@ The part ** allows you to change parameters on these items.
 - In the game **, select ****.
 - Click on the button **** to add a filter.
 - In this filter, select the column **, and in value the id of the object in question (visible from Tools / Objects, Overview).
-- Click on the button ** to display the scenarios of this group.
+- Click on the button *Test* to display the scenarios of this group.
 - In the game **, select column **, then enter the value 0.
 - Click on **Execute** top right.

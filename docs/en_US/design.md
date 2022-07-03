@@ -65,7 +65,7 @@ Found here :
 
 ## General configuration of elements
 
-> ****
+> **Note**
 >
 > Depending on the type of item, options may change.
 

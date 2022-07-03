@@ -7,7 +7,7 @@ Esta página le permite ver todos los informes generados por la acción del info
 
 Un informe es una captura de pantalla de la interfaz Jeedom en un momento t.
 
-> ****
+> **Nota**
 >
 > Esta captura está adaptada para no tomar la barra de menú y otros elementos innecesarios en este tipo de uso.
 

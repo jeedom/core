@@ -15,8 +15,8 @@ Auf jedem Objekt werden sein Hintergrundbild und seine Zusammenfassungen angezei
 
 Abhängig von der Art der Zusammenfassung (Schlüssel), sichtbar in **Einstellungen → System → Konfiguration / Zusammenfassungen** :
 - Oben links : Der Name des Objekts.
-- Oben rechts : Temperatur (*Temperatur*) und Feuchtigkeit (*Feuchtigkeit*).
-- Unter dem Titel : Alarm (*Sicherheit*) und Bewegung (*Bewegung*), grün oder rot gefärbt, je nachdem, ob Warnungen / Bewegungen ausgeführt werden.
+- Oben rechts : Temperatur (**) und Feuchtigkeit (**).
+- Unter dem Titel :  (**) und Bewegung (**), grün oder rot gefärbt, je nachdem, ob Warnungen / Bewegungen ausgeführt werden.
 - Unten : Alle anderen Fachzusammenfassungen.
 
 Die Konfiguration der Anzeige des Objekts erfolgt in **Werkzeuge → Objekte** :
@@ -26,11 +26,11 @@ Die Konfiguration der Anzeige des Objekts erfolgt in **Werkzeuge → Objekte** :
 - Wenn das Hintergrundbild nur auf der Zusammenfassungsseite oder auch einmal im Hintergrund auf dem Objekt verwendet werden soll.
 - Die Elemente seiner Zusammenfassungen in der Registerkarte *Zusammenfassung*.
 
-> **Tipp**
+> ****
 >
 > Die Anzeigereihenfolge von Objekten ist die von *Übersicht Haus-Automatisierung*, die Sie nachbestellen können (Analyse → Zusammenfassung der Hausautomation).
 
-> **Notiz**
+> ****
 >
 > Wenn für ein Objekt keine Zusammenfassung definiert ist, wird oben rechts eine Schaltfläche angezeigt, über die Sie auf die Konfiguration / Zusammenfassungen des Objekts zugreifen können.
 
@@ -42,7 +42,7 @@ Für jedes Objekt können Sie klicken :
 - Auf einem Zusammenfassungselement, um die Elemente dieses Objekts dieses Typs anzuzeigen. Diese werden modal angezeigt, ohne die Seite zu ändern, und ermöglichen es Ihnen, einen Verschluss schnell zu schließen, ein Licht einzuschalten usw. Die Größe des Modals passt sich an das Gerät an, das angezeigt werden muss, aber Sie können es verschieben. Selbst wenn das Modal der Zusammenfassungen geöffnet ist, können Sie auf andere Zusammenfassungen klicken.
 
 
-> **Tipp**
+> ****
 >
 > Strg Klicken oder Mitte Klicken Sie auf das Objekt oder ein Zusammenfassungselement öffnet eine weitere Registerkarte Ihres Browsers.
 

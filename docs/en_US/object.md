@@ -12,7 +12,7 @@ To give free choice to personalization, you can name these objects as you wish. 
 ## Gestion
 
 You have two options :
-- **** : Create a new object.
+- **To add** : Create a new object.
 - **Overview** : Displays the list of objects created and their configuration.
 
 ## Overview

@@ -22,12 +22,12 @@ Este widget é um pouco especial porque é um widget de vários comandos, ou sej
 
 ##### Parâmetros opcionais)
 
-- **escala** *(échelle)* : Permite que você altere o tamanho do widget, preenchendo o parâmetro **escala** para `0.5`, o widget será 2 vezes menor.
+- **** *(échelle)* : Permite que você altere o tamanho do widget, preenchendo o parâmetro **** para `0.5`, o widget será 2 vezes menor.
 
->**IMPORTANTE**      
+>****      
 >É ABSOLUTAMENTE necessário que os tipos genéricos sejam indicados; `Temperatura` no controle de temperatura e` Umidade` no controle de umidade (isso é configurado na configuração avançada do controle, guia de configuração).
 
->**NOTA**      
+>****      
 > Atenção em um design, é especialmente importante não fazer um pedido sozinho com esse widget que não funcionará, pois é um widget usando o valor de vários comandos; é absolutamente necessário colocar o widget completo
 
 ### Multiline
@@ -36,15 +36,15 @@ Este widget é usado para exibir o conteúdo de uma informação / outro comando
 
 ##### Parâmetros opcionais)
 
-- **altura máxima** *(altura máxima)* : Permite que você defina a altura máxima do widget (um elevador *(scrollbar)* aparecerá na lateral se o texto ultrapassar).
+- **** *(altura máxima)* : Permite que você defina a altura máxima do widget (um elevador *(scrollbar)* aparecerá na lateral se o texto ultrapassar).
 
 ### Botão deslizante
 
-Widget para controle de ação / cursor com botão "**+**" e um botão "**-**" permitindo agir com precisão sobre um valor.
+Widget para controle de ação / cursor com botão "****" e um botão "**-**" permitindo agir com precisão sobre um valor.
 
 ##### Parâmetros opcionais)
 
-- **degraus** *(pas)* : Permite que você defina a etapa de mudança de valor *(0,5 por padrão)*.
+- **** *(pas)* : Permite que você defina a etapa de mudança de valor *(0,5 por padrão)*.
 
 ### Rain
 
@@ -54,9 +54,9 @@ Widget para exibir os níveis de água.
 
 ##### Parâmetros opcionais)
 
-- **escala** *(échelle)* : Permite que você altere o tamanho do widget, preenchendo o parâmetro **escala** para `0.5`, o widget será 2 vezes menor.
-- **showRange** : Defina como `1` para exibir os valores mínimo e máximo do comando.
-- **animar** : Desative a animação do widget com um valor de `0`.
+- **** *(échelle)* : Permite que você altere o tamanho do widget, preenchendo o parâmetro **** para `0.5`, o widget será 2 vezes menor.
+- **** : Defina como `1` para exibir os valores mínimo e máximo do comando.
+- **** : Desative a animação do widget com um valor de `0`.
 
 ### Ativar / desativar ícone de alternância
 
@@ -66,12 +66,12 @@ Esta possibilidade pode ser usada tanto com widgets padrão quanto com widgets p
 
 Para isso, é necessário levar em consideração 2 pré-requisitos :
 
-- O **2 comandos de ação / falha** deve estar vinculado a um pedido **info / binário** que irá armazenar o estado atual do dispositivo.
+-  **2 comandos de ação / falha** deve estar vinculado a um pedido **info / binário** que irá armazenar o estado atual do dispositivo.
 
->**Exemplo**      
+>****      
 >![Widget Alternar Link](./images/widgets5.png)
 
->**Adendo**     
+>****     
 >Desmarque *"Afficher"* do comando info / binário que não precisa ser exibido.
 
 - Para que o Jeedom Core seja capaz de identificar qual comando corresponde a qual ação, é essencial respeitar a seguinte nomenclatura para **2 comandos de ação / falha** :
@@ -97,7 +97,7 @@ Para isso, é necessário levar em consideração 2 pré-requisitos :
 `` ''
 
 >**Truque**      
->Desde que o nome padronizado permaneça legível, é possível adaptar a nomenclatura, por exemplo *open_volet* Onde *shutter_close*, *2 de março* e *parada_2*, etc.
+>Desde que o nome padronizado permaneça legível, é possível adaptar a nomenclatura, por exemplo *open_volet* Onde *shutter_close*, *caminhada_2* e *parada_2*, etc.
 
 ## Widgets personalizados
 
@@ -110,7 +110,7 @@ Existem dois tipos de widgets personalizados :
 
 ### Gestion
 
-![Widgets](./images/widgets.png)
+![](./images/widgets.png)
 
 Você tem quatro opções :
 - **Adicionar** : Permite que você adicione um widget *Essencial*.
@@ -122,7 +122,7 @@ Você tem quatro opções :
 
 Nesta parte você encontrará todos os widgets que criou, classificados por tipo.
 
-![Mes Widgets](./images/widgets1.png)
+![Mes ](./images/widgets1.png)
 
 > **Truque**      
 > Você pode abrir um widget fazendo :
@@ -131,7 +131,7 @@ Nesta parte você encontrará todos os widgets que criou, classificados por tipo
 
 O mecanismo de pesquisa permite filtrar a exibição de widgets de acordo com diferentes critérios (nome, tipo, subtipo, etc...). A tecla `Esc` cancela a pesquisa.
 
-![Recherche Widgets](./images/widgets2.png)
+![Recherche ](./images/widgets2.png)
 
 À direita do campo de pesquisa, três botões que podem ser encontrados em vários lugares no Jeedom:
 
@@ -155,14 +155,14 @@ Próximo :
 
 #### Definição de um template
 
-Para simplificar, seu código (HTML / JS), integrado ao Core, algumas partes são configuráveis pelo usuário através da interface gráfica do menu **Widgets**. A partir da mesma base de dados e tendo em conta os elementos que introduzirá no template, o Core irá gerar widgets únicos correspondentes ao display que deseja obter.
+Para simplificar, seu código (HTML / JS), integrado ao Core, algumas partes são configuráveis pelo usuário através da interface gráfica do menu ****. A partir da mesma base de dados e tendo em conta os elementos que introduzirá no template, o Core irá gerar widgets únicos correspondentes ao display que deseja obter.
 
 Dependendo do tipo de widget, geralmente você pode personalizar os ícones, colocar as imagens de sua escolha e / ou incorporar código HTML.
 
 Existem dois tipos de modelo :
 
-- O "**simples**" : como um ícone / imagem para o "**NÓS**" e um ícone / imagem para o "**DESLIGADO**".
-- O "**multiestado**" : Isso torna possível definir, por exemplo, uma imagem se o comando tiver o valor "**XX**" e outro tão maior que "**AA**" ou se menos que "**ZZ**". Também funciona para valores de texto, uma imagem se o valor for "**toto**", outro se "**plop**" E assim por diante...
+-  "**simples**" : como um ícone / imagem para o "**NÓS**" e um ícone / imagem para o "**DESLIGADO**".
+-  "**multiestado**" : Isso torna possível definir, por exemplo, uma imagem se o comando tiver o valor "**XX**" e outro tão maior que "**AA**" ou se menos que "**ZZ**". Também funciona para valores de texto, uma imagem se o valor for "**toto**", outro se "**plop**" E assim por diante...
 
 #### Remplacement
 
@@ -174,7 +174,7 @@ Para modelos usando imagens, você pode configurar a largura do widget em pixels
 
 >**Truque**     
 >Para usuários avançados, é possível colocar tags nos valores de substituição e especificar seu valor na configuração avançada do comando.    
->Se, por exemplo, em **Largura da área de trabalho** você coloca como valor `#largeur_desktop#`` (**tenha cuidado para colocar o** ``#`` **autour**) puis dans la configuratinós avancée d'une commande, ongle affichage → "**Paramètres optionnels widget**" vous ajoutez a paramètre ``largeur_desktop`` (**sans les** ``#`) e dê a ele o valor "**90**", este widget personalizado neste comando terá 90 pixels de largura. Isso permite que você adapte o tamanho do widget a cada pedido sem ter que fazer um widget específico a cada vez.
+>Se, por exemplo, em **Largura da área de trabalho** você coloca como valor `#largeur_desktop#`` (**tenha cuidado para colocar o** ``#`` **autour**) puis dans la configurati avancée d'une commande, ongle affichage → "**Paramètres optionnels widget**" vous ajoutez a paramètre ``largeur_desktop`` (**sans les** ``#`) e dê a ele o valor "**90**", este widget personalizado neste comando terá 90 pixels de largura. Isso permite que você adapte o tamanho do widget a cada pedido sem ter que fazer um widget específico a cada vez.
 
 #### Test
 
@@ -233,8 +233,8 @@ Aqui está um exemplo simples de código javascript para colocar no seu widget :
 `` ''
 <script>
     Jeedom.cmd.update ['#id#'] = função (_options){
-      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Data da coleta : '+ _options.collectDate)
-      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.valor_exibição +' #unite#');
+      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '_options.valueDate'<br/>Data da coleta : '+ _options.collectDate)
+      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.valor_exibição ' #unite#');
     }
     Jeedom.cmd.update ['#id#']({valor_exibição:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
 </script>
@@ -244,8 +244,8 @@ Aqui estão duas coisas importantes :
 
 `` ''
 Jeedom.cmd.update ['#id#'] = função (_options){
-  $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Data da coleta : '+ _options.collectDate)
-  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.valor_exibição +' #unite#');
+  $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '_options.valueDate'<br/>Data da coleta : '+ _options.collectDate)
+  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.valor_exibição ' #unite#');
 }
 `` ''
 A função é chamada durante uma atualização do widget. Em seguida, ele atualiza o código html do widget_template.
