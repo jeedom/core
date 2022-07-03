@@ -66,7 +66,7 @@
 ## 
 
 - IU de correção de bug : Correção de widget *padrão numérico* (cmdName muito longo).
-- IU de correção de bug : Passando variáveis css *--url-iconsDark* e *--url-iconsLight* em absoluto (Bug Safari MacOS).
+- IU de correção de bug : Passando variáveis css *--url-iconsDark*  *--url-iconsLight* em absoluto (Bug Safari MacOS).
 - IU de correção de bug : Posição das notificações em *centro superior*.
 
 - Núcleo de correção de bugs : Etapa padrão para widgets ** em 1.
@@ -76,7 +76,7 @@
 
 - Melhoria : Novas opções em gráficos de design para agrupamento de escala e eixo Y.
 
-- Essencial : Atualização de biblioteca ** 
+-  : Atualização de biblioteca ** 
 
 ## 
 
@@ -118,7 +118,7 @@
 - **** : Visualizar arquivos PDF.
 - **Tipos de equipamento** : [Nova página](/pt_PT/core/4.2/types) **Ferramentas → Tipos de equipamento** permitindo que tipos genéricos sejam atribuídos a dispositivos e comandos, com suporte para tipos dedicados a plug-ins instalados (ver [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.2)).
 - **Seleção de ilustrações** : Nova janela global para a escolha de ilustrações *(ícones, imagens, planos de fundo)*.
-- **Exibir mesa** : Adição de um botão à direita da pesquisa nas páginas ** *Cenários* ** ** e ** para mudar para o modo de mesa. Isso é armazenado por um cookie ou em **Configurações → Sistema → Configuração / Interface, Opções**. Os plugins podem usar esta nova função do Core. Vejo [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.2).
+- **Exibir mesa** : Adição de um botão à direita da pesquisa nas páginas ** *Cenários* ** **  ** para mudar para o modo de mesa. Isso é armazenado por um cookie ou em **Configurações → Sistema → Configuração / Interface, Opções**. Os plugins podem usar esta nova função do Core. Vejo [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.2).
 - **Configuração do equipamento** : Possibilidade de configurar uma curva de histórico na parte inferior do ladrilho de um dispositivo.
 - **** : Possibilidade de fazer um cálculo em uma ação de comando do tipo deslizante antes da execução do comando.
 - **Plugins / Gerenciamento** : Exibição da categoria do plugin e um link para abrir diretamente sua página sem passar pelo menu Plugins.
@@ -265,7 +265,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - **Atualizações principais** : Implementação de um sistema para limpar arquivos Core não utilizados antigos.
 - **Cenas** : Adicionando um mecanismo de pesquisa (à esquerda do botão Executar).
 - **Cenas** : Adição da função de idade (fornece a idade do valor da ordem).
-- **Cenas** : *stateChanges()* agora aceite o período ** (meia-noite até agora), ** e ** (por 1 dia).
+- **Cenas** : *stateChanges()* agora aceite o período ** (meia-noite até agora), **  ** (por 1 dia).
 - **Cenas** :  *estatísticas (), média (), max (), min (), tendência (), duração()* : Bugfix ao longo do período **, e aceite agora ** (por 1 dia).
 - **Cenas** : Possibilidade de desativar o sistema de cotação automática (Configurações → Sistema → Configuração : Equipements).
 - **Cenas** : Visualizando um ** se nenhum gatilho estiver configurado.
@@ -496,7 +496,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - Resumo Automation : Adicionando equipamentos e IDs de pedido, para exibir e pesquisar.
 - Resumo Automation : Exportação CSV de objeto pai, id, equipamento e seu id, comando.
 - Resumo Automation : Possibilidade de tornar visível ou não um ou mais comandos.<br/><br/>
--  : Possibilidade de especificar a ordem (posição) do ** e *Projetos 3D* (Editar, Configurar Design).
+-  : Possibilidade de especificar a ordem (posição) do **  *Projetos 3D* (Editar, Configurar Design).
 -  : Adição de um campo CSS personalizado nos elementos do **.
 -  : Movidas as opções de exibição em Design da configuração avançada, nos parâmetros de exibição do **. Isso para simplificar a interface e permitir ter diferentes parâmetros por **.
 -  : Movendo e redimensionando componentes em ** leva seu tamanho em consideração, com ou sem magnetização.<br/><br/>
@@ -515,7 +515,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 ### 4.0 : Changements
 
 - Remova Font Awesome 4 para manter apenas Font Awesome 5.
-- O plugin do widget não é compatível com esta versão do Jeedom e não será mais suportado (porque os recursos foram levados internamente no núcleo). Mais Informações [aqui](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
+- O plugin do widget não é compatível com esta versão do Jeedom e não será mais suportado (porque os recursos foram levados internamente no núcleo). Mais Informações [](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
 
 >****
 >

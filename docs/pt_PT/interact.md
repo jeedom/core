@@ -30,7 +30,7 @@ Uma vez na configuração de uma interação, você tem um menu contextual com o
 
 No topo da página, existem 3 botões :
 
-- **Adicionar** : Permite criar novas interações.
+- **** : Permite criar novas interações.
 - **Regenerar** : Recréer toutes les interactions (peut être très long &gt; 5mn).
 - **** : Abra uma caixa de diálogo para escrever e testar uma frase.
 
@@ -83,7 +83,7 @@ Use se você deseja direcionar um ou mais comandos específicos ou passar parâm
 
 #### Exemples
 
-> **Observação**
+> ****
 >
 > As capturas de tela podem ser diferentes em vista dos desenvolvimentos.
 
@@ -111,7 +111,7 @@ Nos 2 exemplos acima, a sentença modelo é idêntica, mas as ações resultante
 
 Aqui veremos todo o interesse e todo o poder das interações. Com uma sentença modelo, poderemos gerar sentenças para todo um grupo de comandos.
 
-Retomaremos o que foi feito acima, excluiremos as ações que adicionamos e, em vez da frase fixa, em "Solicitação", usaremos as tags **#commande#** e **#equipement#**. Portanto, a Jeedom substituirá essas tags pelo nome dos comandos e pelo nome do equipamento (podemos ver a importância de ter nomes consistentes de comando / equipamento).
+Retomaremos o que foi feito acima, excluiremos as ações que adicionamos e, em vez da frase fixa, em "Solicitação", usaremos as tags **#commande#**  **#equipement#**. Portanto, a Jeedom substituirá essas tags pelo nome dos comandos e pelo nome do equipamento (podemos ver a importância de ter nomes consistentes de comando / equipamento).
 
 ![interact006](../images/interact006.png)
 
@@ -285,7 +285,7 @@ Então podemos ver uma regexp :
 
 Isso permite que você exclua todos os comandos que possuem uma dessas palavras em suas frases
 
-> **Observação**
+> ****
 >
 > O regexp aqui é uma versão simplificada para fácil utilização. Portanto, podemos usar expressões tradicionais ou expressões simplificadas, como neste exemplo.
 
@@ -297,9 +297,9 @@ Isso permite que você exclua todos os comandos que possuem uma dessas palavras 
 
 ![interact022](../images/interact022.png)
 
-Como podemos ver, existe aqui no pedido a tag **#consigne#** (você pode colocar o que deseja), incluído no controle do inversor, para aplicar o valor desejado. Para fazer isso, temos 3 partes : *  : em que criamos uma tag que representará o valor que será enviado para a interação. \* Resposta : reutilizamos a tag da resposta para garantir que o Jeedom entenda corretamente a solicitação. \* Ações : colocamos uma ação na lâmpada que queremos acionar e, no valor que passamos, nossa tag **.
+Como podemos ver, existe aqui no pedido a tag **#consigne#** (você pode colocar o que deseja), incluído no controle do inversor, para aplicar o valor desejado. Para fazer isso, temos 3 partes : *  : em que criamos uma tag que representará o valor que será enviado para a interação. \* Resposta : reutilizamos a tag da resposta para garantir que o Jeedom entenda corretamente a solicitação. \*  : colocamos uma ação na lâmpada que queremos acionar e, no valor que passamos, nossa tag **.
 
-> **Observação**
+> ****
 >
 > Podemos usar qualquer tag, exceto as já usadas pelo Jeedom, pode haver várias para controlar, por exemplo, vários comandos. Observe também que todas as tags são passadas para os cenários iniciados pela interação (no entanto, é necessário que o cenário esteja em "Executar em primeiro plano"").
 
@@ -350,6 +350,6 @@ As interações fazem muitas coisas em particular. Você pode programar uma aç�
 
 ![interact23](../images/interact23.JPG)
 
-> **Observação**
+> ****
 >
 > Você notará na resposta a tag \#value# isto contém, no caso de uma interação programada, o tempo efetivo de programação

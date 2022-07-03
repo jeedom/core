@@ -65,7 +65,7 @@ Encontrado aqui :
 
 ## Configuração geral de elementos
 
-> **Observação**
+> ****
 >
 > Dependendo do tipo de item, as opções podem mudar.
 

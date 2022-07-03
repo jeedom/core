@@ -18,7 +18,7 @@ Os dispositivos (ou blocos) têm certos parâmetros de configuração acessívei
 
 Este widget é um pouco especial porque é um widget de vários comandos, ou seja, ele reúne o valor de vários comandos. Aqui ele assume comandos de temperatura e umidade. Para configurá-lo, você deve atribuir o widget aos controles de temperatura e umidade do seu equipamento.
 
-![Widge HygroThermographe](./images/widgets3.png)
+![Widg HygroThermographe](./images/widgets3.png)
 
 ##### Parâmetros opcionais)
 
@@ -50,7 +50,7 @@ Widget para controle de ação / cursor com botão "****" e um botão "**-**" pe
 
 Widget para exibir os níveis de água.
 
-![Widge Rain](./images/widgets4.png)
+![Widg Rain](./images/widgets4.png)
 
 ##### Parâmetros opcionais)
 
@@ -96,8 +96,8 @@ Para isso, é necessário levar em consideração 2 pré-requisitos :
     'go':'on'
 `` ''
 
->**Truque**      
->Desde que o nome padronizado permaneça legível, é possível adaptar a nomenclatura, por exemplo *open_volet* Onde *shutter_close*, *caminhada_2* e *parada_2*, etc.
+>****      
+>Desde que o nome padronizado permaneça legível, é possível adaptar a nomenclatura, por exemplo *open_volet*  *shutter_close*, **  **, .
 
 ## Widgets personalizados
 
@@ -105,18 +105,18 @@ A página Widgets, acessível a partir do menu **Ferramentas → Widgets**, perm
 
 Existem dois tipos de widgets personalizados :
 
-- Widgets *Essencial* baseado em modelo. Esses widgets são gerenciados pelo Jeedom Core e, portanto, monitorados pela equipe de desenvolvimento. Sua compatibilidade é garantida com futuras evoluções do Jeedom.
-- Widgets *Terceiro* baseado no código do usuário. Ao contrário dos widgets principais, a equipe de desenvolvimento da Jeedom não tem controle sobre o código inserido nesses widgets, sua compatibilidade com desenvolvimentos futuros não é garantida. Esses widgets, portanto, precisam ser mantidos pelo usuário.
+- Widgets ** baseado em modelo. Esses widgets são gerenciados pelo Jeedom Core e, portanto, monitorados pela equipe de desenvolvimento. Sua compatibilidade é garantida com futuras evoluções do Jeedom.
+- Widgets ** baseado no código do usuário. Ao contrário dos widgets principais, a equipe de desenvolvimento da Jeedom não tem controle sobre o código inserido nesses widgets, sua compatibilidade com desenvolvimentos futuros não é garantida. Esses widgets, portanto, precisam ser mantidos pelo usuário.
 
 ### Gestion
 
 ![](./images/widgets.png)
 
 Você tem quatro opções :
-- **Adicionar** : Permite que você adicione um widget *Essencial*.
-- **Importar** : Permite que você importe um widget como um arquivo json exportado anteriormente.
-- **Codificado** : Acesse a página de edição do widget *Terceiro*.
-- **Substituição** : Abre uma janela que permite substituir um widget por outro em todos os dispositivos que o utilizam.
+- **** : Permite que você adicione um widget **.
+- **** : Permite que você importe um widget como um arquivo json exportado anteriormente.
+- **** : Acesse a página de edição do widget **.
+- **** : Abre uma janela que permite substituir um widget por outro em todos os dispositivos que o utilizam.
 
 ### Meus widgets
 
@@ -124,7 +124,7 @@ Nesta parte você encontrará todos os widgets que criou, classificados por tipo
 
 ![Mes ](./images/widgets1.png)
 
-> **Truque**      
+> ****      
 > Você pode abrir um widget fazendo :
 > - `Clique` em um deles.
 > - `Ctrl + Click` ou` Click + Center` para abri-lo em uma nova guia do navegador.
@@ -143,12 +143,12 @@ Uma vez na página de configuração de um widget, um menu de contexto é acess�
 
 ### Criando um widget
 
-Uma vez na página **Ferramentas → Widgets** você tem que clicar no botão "**Adicionar**" e dê um nome ao seu novo widget.
+Uma vez na página **Ferramentas → Widgets** você tem que clicar no botão "****" e dê um nome ao seu novo widget.
 
-Próximo :
-- Você escolhe se isso se aplica a um pedido de tipo **Ações** Onde **Em formação**.
+ :
+- Você escolhe se isso se aplica a um pedido de tipo ****  ****.
 - Dependendo da escolha anterior, você terá que **escolha o subtipo** da ordem.
-- Finalmente **o modelo** entre aqueles que estarão disponíveis de acordo com as escolhas anteriores.
+-  **o modelo** entre aqueles que estarão disponíveis de acordo com as escolhas anteriores.
 - Uma vez que o modelo foi escolhido, Jeedom exibe as opções de configuração para ele abaixo.
 
 ### Os modelos
@@ -161,40 +161,40 @@ Dependendo do tipo de widget, geralmente você pode personalizar os ícones, col
 
 Existem dois tipos de modelo :
 
--  "**simples**" : como um ícone / imagem para o "**NÓS**" e um ícone / imagem para o "**DESLIGADO**".
--  "**multiestado**" : Isso torna possível definir, por exemplo, uma imagem se o comando tiver o valor "**XX**" e outro tão maior que "**AA**" ou se menos que "**ZZ**". Também funciona para valores de texto, uma imagem se o valor for "**toto**", outro se "**plop**" E assim por diante...
+-  "****" : como um ícone / imagem para o "****" e um ícone / imagem para o "****".
+-  "****" : Isso torna possível definir, por exemplo, uma imagem se o comando tiver o valor "**XX**" e outro tão maior que "****" ou se menos que "****". Também funciona para valores de texto, uma imagem se o valor for "****", outro se "****" E assim por diante...
 
 #### Remplacement
 
-Isso é chamado de modelo simples, aqui você só precisa dizer que o "**NÓS**" corresponde a tal ícone / imagem *(usando o botão de escolha)*, a "**DESLIGADO**" para esse outro ícone / imagem, etc...      
+Isso é chamado de modelo simples, aqui você só precisa dizer que o "****" corresponde a tal ícone / imagem *(usando o botão de escolha)*,  "****" para esse outro ícone / imagem, etc...      
 
 A Caixa **Widget de tempo**, se disponível, exibe a duração desde a última mudança de estado no widget.
 
 Para modelos usando imagens, você pode configurar a largura do widget em pixels dependendo do suporte (**Largura da área de trabalho** E **Largura móvel**). Diferentes imagens também podem ser selecionadas de acordo com o tema ativo do Jeedom *(claro ou escuro)*.
 
->**Truque**     
+>****     
 >Para usuários avançados, é possível colocar tags nos valores de substituição e especificar seu valor na configuração avançada do comando.    
->Se, por exemplo, em **Largura da área de trabalho** você coloca como valor `#largeur_desktop#`` (**tenha cuidado para colocar o** ``#`` **autour**) puis dans la configurati avancée d'une commande, ongle affichage → "**Paramètres optionnels widget**" vous ajoutez a paramètre ``largeur_desktop`` (**sans les** ``#`) e dê a ele o valor "**90**", este widget personalizado neste comando terá 90 pixels de largura. Isso permite que você adapte o tamanho do widget a cada pedido sem ter que fazer um widget específico a cada vez.
+>Se, por exemplo, em **Largura da área de trabalho** você coloca como valor `#largeur_desktop#`` (**tenha cuidado para colocar o** ``#`` **autour**) puis dans la configurati avancée d'une commande, ongl affichage → "**Paramètres optionnels widget**" vous ajoutez  paramètre ``largeur_desktop`` (**sans les** ``#`) e dê a ele o valor "**90**", este widget personalizado neste comando terá 90 pixels de largura. Isso permite que você adapte o tamanho do widget a cada pedido sem ter que fazer um widget específico a cada vez.
 
 #### Test
 
-Isso é chamado de modelos de vários estados *(vários estados)*. Em vez de colocar uma imagem para o "**NÓS** e / ou para o "**DESLIGADO** como no caso anterior, você atribuirá um ícone de acordo com a validação de uma condição *(test)*. Se isso for verdade, o widget exibirá o ícone / imagem em questão.
+Isso é chamado de modelos de vários estados *(vários estados)*. Em vez de colocar uma imagem para o "**** e / ou para o "**** como no caso anterior, você atribuirá um ícone de acordo com a validação de uma condição *(test)*. Se isso for verdade, o widget exibirá o ícone / imagem em questão.
 
 Como antes, diferentes imagens podem ser selecionadas dependendo do tema ativo no Jeedom e na caixa **Widget de tempo** mostra a duração desde a última mudança de estado.
 
-Os testes estão no formato : ``#value# == 1`, `#value#`será automaticamente substituído pelo valor atual do comando. Você também pode fazer, por exemplo :
+Os testes estão no formato : ``#value# == #value#`será automaticamente substituído pelo valor atual do comando. Você também pode fazer, por exemplo :
 
-- ``#value# > 1`
-- ``#value# >= 1 && #value# <= 5``
+- ``#value# > 
+- ``#value# >=  #value# <= 5``
 - ``#value# == 'toto'``
 
->**Observação**     
+>****     
 >É essencial mostrar os apóstrofos (**'**) em torno do texto para comparar se o valor é texto *(info / outro)*.
 
->**Observação**     
+>****     
 >Para usuários avançados, também é possível usar funções javascript, como `#value#.match ("^ plop") `, aqui testamos se o texto começa com` plop`.
 
->**Observação**     
+>****     
 >É possível exibir o valor do comando no widget especificando `#value#`no código HTML do teste. Para exibir a unidade, adicione `#unite#``.
 
 ## Widget de código
@@ -213,8 +213,8 @@ No modo de código, você tem acesso a diferentes tags para pedidos, aqui está 
 - **#uid#** : identificador exclusivo para esta geração do widget (se houver várias vezes o mesmo comando, caso de designs:  somente esse identificador é realmente único)
 - **#valueDate#** : data do valor do pedido
 - **#collectDate#** : data de coleta do pedido
-- **#alertLevel#** : nível de alerta (consulte [aqui](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) para a lista)
-- **#hide_history#** : se o histórico (máximo, mínimo, média, tendência) deve ser oculto ou não. Quanto ao #hide_name# está vazio ou oculto e, portanto, pode ser usado diretamente em uma classe. IMPORTANTE se essa tag não for encontrada no seu widget, as tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# e #tendance# não será substituído pelo Jeedom.
+- **#alertLevel#** : nível de alerta (consulte [](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) para a lista)
+- **#hide_history#** : se o histórico (máximo, mínimo, média, tendência) deve ser oculto ou não. Quanto ao #hide_name# está vazio ou oculto e, portanto, pode ser usado diretamente em uma classe. IMPORTANTE se essa tag não for encontrada no seu widget, as tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue#  #tendance# não será substituído pelo Jeedom.
 - **#minHistoryValue#** : valor mínimo durante o período (período definido na configuração do Jeedom pelo usuário)
 - **#averageHistoryValue#** : valor médio ao longo do período (período definido na configuração do Jeedom pelo usuário)
 - **#maxHistoryValue#** : valor máximo durante o período (período definido na configuração do Jeedom pelo usuário)
@@ -234,9 +234,9 @@ Aqui está um exemplo simples de código javascript para colocar no seu widget :
 <script>
     Jeedom.cmd.update ['#id#'] = função (_options){
       $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '_options.valueDate'<br/>Data da coleta : '+ _options.collectDate)
-      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.valor_exibição ' #unite#');
+      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.valor_exibição ' #unite#')
     }
-    Jeedom.cmd.update ['#id#']({valor_exibição:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+    Jeedom.cmd.update ['#id#']({valor_exibição:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'})
 </script>
 `` ''
 
@@ -245,16 +245,16 @@ Aqui estão duas coisas importantes :
 `` ''
 Jeedom.cmd.update ['#id#'] = função (_options){
   $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '_options.valueDate'<br/>Data da coleta : '+ _options.collectDate)
-  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.valor_exibição ' #unite#');
+  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.valor_exibição ' #unite#')
 }
 `` ''
 A função é chamada durante uma atualização do widget. Em seguida, ele atualiza o código html do widget_template.
 
 `` ''
-Jeedom.cmd.update ['#id#']({valor_exibição:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+Jeedom.cmd.update ['#id#']({valor_exibição:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'})
 `` ''
  A chamada para esta função para a inicialização do widget.
 
 ### Exemples
 
- Você encontrará [aqui](https://github.com/Jeedom/core/tree/V4-stable/core/template) exemplos de widgets (no painel e nas pastas móveis)
+ Você encontrará [](https://github.com/Jeedom/core/tree/V4-stable/core/template) exemplos de widgets (no painel e nas pastas móveis)

@@ -9,10 +9,10 @@ Aqui você pode gerenciar funções **** e regras **** aplicado em desktop ou ce
 
 Esta função usa um modo particular do editor de arquivos Core com dois locais:
 
-- desktop / personalizado : Pode conter os dois arquivos **** e **CSS customizado** que será carregado pelo Core na versão Desktop.
-- móvel / personalizado : Pode conter os dois arquivos **** e **CSS customizado** que será carregado pelo Core na versão Mobile.
+- desktop / personalizado : Pode conter os dois arquivos ****  **CSS customizado** que será carregado pelo Core na versão Desktop.
+- móvel / personalizado : Pode conter os dois arquivos ****  **CSS customizado** que será carregado pelo Core na versão Mobile.
 
-Na barra de menu do editor de arquivos Core, um botão **** Onde **Desativado** diz se o Core deve carregá-los ou não. Esta opção também está disponível em **Configurações → Sistema → Configuração** Guia Interface.
+Na barra de menu do editor de arquivos Core, um botão ****  **Desativado** diz se o Core deve carregá-los ou não. Esta opção também está disponível em **Configurações → Sistema → Configuração** Guia Interface.
 
 > ****
 >

@@ -58,7 +58,7 @@ During a backup, Jeedom will backup all of its files and the database. This ther
 
 At the protocol level, only the Z-Wave (OpenZwave) is a little different because it is not possible to save the inclusions. These are directly included in the controller, so you must keep the same controller to find its Zwave modules.
 
-> **Note**
+> ****
 >
 > The system on which Jeedom is installed is not backed up. If you have changed settings for this system (including via SSH), it&#39;s up to you to find a way to recover them if you have any concerns. Similarly, the outbuildings are not either, so you will have to reinstall them after a restoration
 

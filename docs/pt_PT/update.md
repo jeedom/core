@@ -78,7 +78,7 @@ Esta aba permite que você veja as atualizações disponíveis para os (apt), pa
 
 Durante ou após uma atualização, essa guia permite que você leia o log dessa atualização em tempo real.
 
-> **Observação**
+> ****
 >
 > Esse log normalmente termina com *[FINALIZAR SUCESSO DE ATUALIZAÇÃO]*. Pode haver algumas linhas de erro nesse tipo de log, no entanto, a menos que haja um problema real após a atualização, nem sempre é necessário entrar em contato com o suporte para isso.
 

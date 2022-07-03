@@ -39,7 +39,7 @@ Se você exibir um gráfico na página de histórico, terá acesso a várias op�
 
 - **Período** : O período de exibição, incluindo dados históricos entre essas duas datas. Por padrão, dependendo da configuração *Gráficos padrão de exibição Período*  *Configurações → Sistema → Configuração / Equipamento*.
 - **** : Oferece várias opções de agrupamento (soma por hora etc.).).
-- **Tipo de exibição** : Exibir em **, **, Onde **. Opção salva no pedido e usada no Painel.
+- **Tipo de exibição** : Exibir em **, **,  **. Opção salva no pedido e usada no Painel.
 - **** : Exibe a diferença de valor do ponto anterior. Opção salva no pedido e usada no Painel.
 - **** : Exibe a curva como uma escada ou uma exibição contínua. Opção salva no pedido e usada no Painel.
 - **** : Compare a curva entre diferentes períodos.

@@ -157,7 +157,7 @@ Primero, en la parte superior derecha, algunos botones disponibles :
 >
 > En un gráfico, un doble clic en un elemento lo lleva a su configuración.
 
-> **Nota**
+> ****
 >
 > Dependiendo del tipo de orden, la información / acciones mostradas pueden cambiar.
 
@@ -184,7 +184,7 @@ También tienes otros tres botones naranjas debajo :
 - **Este comando reemplaza el comando** : Reemplazar comando con comando actual.
 - **Reemplace este comando con el comando** : Por el contrario, reemplace el comando con otro comando.
 
-> **Nota**
+> ****
 >
 > Este tipo de acción reemplaza los comandos en todas partes en Jeedom (escenario, interacción, comando, equipo.).
 
@@ -226,7 +226,7 @@ A continuación, encontrará la lista de los diferentes equipos, comandos, escen
 
 Le permite definir un nivel de alerta (****  ****) dependiendo de ciertas condiciones. Por ejemplo, si `valor&gt; 8` durante 30 minutos, entonces el equipo puede estar en alerta ****.
 
-> **Nota**
+> ****
 >
 > En la página **→ Configuración → Configuración del Sistema : **, puede configurar un comando de tipo de mensaje que permitirá que Jeedom le notifique si se alcanza el umbral de advertencia o peligro.
 

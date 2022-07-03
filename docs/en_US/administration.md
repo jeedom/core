@@ -116,7 +116,7 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
 - **Proxy market** : allows remote access to your Jeedom without the need for a DNS, a fixed IP or to open the ports of your Internet box.
     - **Using Jeedom DNS** : activates Jeedom DNS (note that this requires at least one service pack).
     - **DNS status** : DNS HTTP status.
-    - **Management** : allows to stop and restart the Jeedom DNS service.
+    - **** : allows to stop and restart the Jeedom DNS service.
 
 > ****
 >
@@ -183,10 +183,10 @@ Many command can be logged. Thus, in Analysis → History, you get graphs repres
 - **Upper trend calculation threshold** : Same thing for the rise.
 - **Display period graphics by default** : Period which is used by default when you want to display the history of a command. The shorter the period, the faster Jeedom will display the requested graph.
 
-> **Note**
+> ****
 >
 > The first parameter **Display widget statistics** is possible but disabled by default because it significantly extends the display time of the dashboard. If you activate this option, by default, Jeedom relies on data from the past 24 hours to calculate these statistics.
-> The trend calculation method is based on the least squares calculation (see [here](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) for the detail).
+> The trend calculation method is based on the least squares calculation (see [](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) for the detail).
 
 ### Push
 
@@ -252,7 +252,7 @@ Here you have three parameters :
     - ** : Notify me if the living room temperature exceeds 25 ° C ?
     - ** :  (*As soon as the living room temperature exceeds 25 ° C, Jeedom will tell you, once*)
 
-> **Note**
+> ****
 >
 > By default Jeedom will answer you by the same channel as the one you used to ask it to notify you. If it does not find one, it will then use the default command specified in this tab : **Default return command**.
 
@@ -260,10 +260,10 @@ Here are the different options available :
 
 - **Enable automatic interactions** : Check to enable automatic interactions.
 - **Enable contextual answers** : Check to enable contextual interactions.
-- **Priority contextual answer if sentence begins with** : If the sentence begins with the word you enter here, Jeedom will then prioritize a contextual response (you can put several words separated by **;** ).
+- **Priority contextual answer if sentence begins with** : If the sentence begins with the word you enter here, Jeedom will then prioritize a contextual response (you can put several words separated by **** ).
 - **Cut an interaction up in 2 if it contains** : Same thing for the division of an interaction containing several questions. Here you give the words that separate the different questions.
 - **Activate "Notify Me" interactions"** : Check to enable type interactions **Warn me**.
-- **&quot;Tell me&quot; response if the sentence starts with** : If the sentence begins with this word (s) then Jeedom will seek to make an interaction of the type **Warn me** (you can put several words separated by **;** ).
+- **&quot;Tell me&quot; response if the sentence starts with** : If the sentence begins with this word (s) then Jeedom will seek to make an interaction of the type **Warn me** (you can put several words separated by **** ).
 - **Default return command** : Default return command for type interaction **Warn me** (used, in particular, if you have programmed the alert via the mobile interface)
 - **Synonym for objects** : List of synonyms for objects (ex : rdc|ground floor|basement|low; sdb|Bathroom).
 - **Synonym for equipment** : List of synonyms for equipment.
@@ -344,12 +344,12 @@ Deposit allowing to automatically send a backup of Jeedom on a Samba share (ex :
 - **\ [Backup \] Sharing** : Path to sharing (be careful to stop at the sharing level).
 - **\ [Backup \] Path** : Path in the sharing (to put in relative), this must exist.
 
-> **Note**
+> ****
 >
 > If the path to your samba backup folder is :
 > \\\\ 192.168.0.1 \\ Backups \\ Home automation \\ Jeedom Then IP = 192.168.0.1, Sharing = //192.168.0.1 / Backups, Path = Home automation / Jeedom
 
-> **Note**
+> ****
 >
 > When validating the Samba share, as described above, a new form of backup appears in the Settings → System → Backups section of Jeedom. By activating it, Jeedom will send it automatically during the next backup. A test is possible by performing a manual backup.
 
@@ -402,7 +402,7 @@ For each API plugin key, as well as for HTTP, JsonRPC and TTS APIs, you can defi
 
 For each plugin API key you can prohibit them from core methods (general) to limit them to their only embedded method (be careful some plugins like mobile or jeelink absolutely need core methods)
 
-## Onglet &gt;_OS/DB
+## Onglet &gt_OS/DB
 
 > ****
 >

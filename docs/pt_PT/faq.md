@@ -14,13 +14,13 @@ O Jeedom possui uma versão móvel adequada para uso em celulares e tablets. Há
 Quando você faz login no Jeedom pela primeira vez (e mesmo depois se você não os tiver alterado), o nome de usuário e a senha padrão são admin / admin. Na primeira conexão, é altamente recomendável modificar esses identificadores para obter mais segurança.
 
 ### Não consigo mais me conectar ao meu Jeedom
-Desde o Jeedom 3.2 não é mais possível conectar-se a admin / admin remotamente por razões óbvias de segurança. As credenciais de administrador / administrador funcionam apenas localmente. Atenção, se você passar pelo DNS, mesmo localmente, será necessariamente identificado como remoto. Outro ponto padrão somente IP em 192.168.*.* .1 são reconhecidos como locais. Ele é configurado na administração da parte de segurança Jeedom e depois no IP "branco". Se, apesar de tudo, você ainda não conseguir se conectar, use o procedimento de redefinição de senha, consulte [aqui](https://doc.jeedom.com/pt_PT/howto/reset.password).
+Desde o Jeedom 3.2 não é mais possível conectar-se a admin / admin remotamente por razões óbvias de segurança. As credenciais de administrador / administrador funcionam apenas localmente. Atenção, se você passar pelo DNS, mesmo localmente, será necessariamente identificado como remoto. Outro ponto padrão somente IP em 192.168.*.* .1 são reconhecidos como locais. Ele é configurado na administração da parte de segurança Jeedom e depois no IP "branco". Se, apesar de tudo, você ainda não conseguir se conectar, use o procedimento de redefinição de senha, consulte [](https://doc.jeedom.com/pt_PT/howto/reset.password).
 
 ### Não vejo todo o meu equipamento no painel
 Geralmente, isso se deve ao fato de o equipamento estar atribuído a um objeto que não é o filho ou o próprio objeto do primeiro objeto selecionado à esquerda na árvore (você pode configurá-lo em seu perfil).
 
 ### A interface Jeedom possui atalhos ?
-Sim, a lista de atalhos de teclado / mouse é [aqui](shortcuts.md).
+Sim, a lista de atalhos de teclado / mouse é [](shortcuts.md).
 
 ### Podemos reordenar pedidos de equipamentos ?
 Sim, é possível, basta arrastar e soltar os comandos do seu objeto em sua configuração.

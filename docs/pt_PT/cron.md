@@ -14,7 +14,7 @@ No canto superior direito, você tem :
 
 - **Desativar o sistema cron** : um botão para desativar ou reativar todas as tarefas (se você desativá-las todas, nada será funcional no seu Jeedom).
 - **Legal** : Atualiza a tabela de tarefas.
-- **Adicionar** : Adicionar um trabalho cron manualmente.
+- **** : Adicionar um trabalho cron manualmente.
 - **** : Salve suas alterações.
 
 Abaixo, você tem a tabela de todas as tarefas existentes (atenção, algumas tarefas podem iniciar subtarefas, portanto, é altamente recomendável nunca modificar as informações nesta página).
@@ -34,7 +34,7 @@ Nesta tabela, encontramos :
 - **Última duração** : Último tempo de execução da tarefa (um daemon sempre estará em 0s, não se preocupe, outras tarefas podem estar em 0s).
 - **** : Status atual da tarefa (como lembrete, uma tarefa daemon é sempre "executada"").
 
-- **Ações** :
+- **** :
     - **Detalhes** : Veja o cron em detalhes (como armazenado na base).
     - **Iniciar / Parar** : Iniciar ou parar a tarefa (dependendo do status).
     - **** : Excluir tarefa.

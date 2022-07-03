@@ -116,7 +116,7 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 - **Mercado de proxy** : permite acesso remoto ao seu Jeedom sem a necessidade de um DNS, um IP fixo ou abrir as portas da sua caixa da Internet.
     - **Usando o DNS Jeedom** : ativa o DNS Jeedom (observe que isso requer pelo menos um service pack).
     - **Status de DNS** : Status HTTP DNS.
-    - **Gestão** : permite parar e reiniciar o serviço DNS Jeedom.
+    - **** : permite parar e reiniciar o serviço DNS Jeedom.
 
 > ****
 >
@@ -183,10 +183,10 @@ Muitos pedidos podem ser registrados. Assim, em Análise → Histórico, você o
 - **Cálculo do limiar acima da tendência** : A mesma coisa para a ascensão.
 - **Gráficos padrão de exibição Período** : Período usado por padrão quando você deseja exibir o histórico de um pedido. Quanto menor o período, mais rápido o Jeedom exibirá o gráfico solicitado.
 
-> **Observação**
+> ****
 >
 > O primeiro parâmetro **Mostrar estatísticas sobre os widgets** é possível, mas desativado por padrão, pois aumenta significativamente o tempo de exibição do painel. Se você ativar esta opção, por padrão, o Jeedom confiará nos dados das últimas 24 horas para calcular essas estatísticas.
-> O método de cálculo de tendência é baseado no cálculo de mínimos quadrados (consulte [aqui](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) para o detalhe).
+> O método de cálculo de tendência é baseado no cálculo de mínimos quadrados (consulte [](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) para o detalhe).
 
 ### Push
 
@@ -252,7 +252,7 @@ Aqui você tem três parâmetros :
     - ** : Notifique-me se a temperatura da sala exceder 25 ° C ?
     - ** :  (*Assim que a temperatura da sala exceder 25 ° C, Jeedom dirá, uma vez*)
 
-> **Observação**
+> ****
 >
 > Por padrão, o Jeedom responderá pelo mesmo canal que você usou para pedir para notificá-lo. Se não encontrar um, ele usará o comando padrão especificado nesta guia : **Ordem de devolução padrão**.
 
@@ -260,10 +260,10 @@ Aqui estão as diferentes opções disponíveis :
 
 - **Activar interacções automatizados** : Marque para ativar interações automáticas.
 - **Ativar respostas contextuais** : Marque para ativar interações contextuais.
-- **Prioridade resposta contextual se a sentença começa** : Se a frase começar com a palavra que você preenche aqui, o Jeedom priorizará uma resposta contextual (você pode colocar várias palavras separadas por **;** ).
+- **Prioridade resposta contextual se a sentença começa** : Se a frase começar com a palavra que você preenche aqui, o Jeedom priorizará uma resposta contextual (você pode colocar várias palavras separadas por **** ).
 - **Cortar uma interacção 2 se contiver** : O mesmo vale para a divisão de uma interação que contém várias perguntas. Aqui você fornece as palavras que separam as diferentes perguntas.
 - **Ativar interações "Notifique-me""** : Marque para ativar interações de tipo **Avise-me**.
-- **Resposta "Diga-me" se a frase começar com** : Se a frase começar com esta (s) palavra (s), o Jeedom procurará fazer uma interação do tipo **Avise-me** (você pode colocar várias palavras separadas por **;** ).
+- **Resposta "Diga-me" se a frase começar com** : Se a frase começar com esta (s) palavra (s), o Jeedom procurará fazer uma interação do tipo **Avise-me** (você pode colocar várias palavras separadas por **** ).
 - **Ordem de devolução padrão** : Comando de retorno padrão para interação de tipo **Avise-me** (usado, em particular, se você programou o alerta pela interface móvel)
 - **Sinônimo de objetos** : Lista de sinônimos para objetos (ex : rdc|térreo|subterrâneo|banheiro baixo|Casa de banho).
 - **Sinônimo de equipamento** : Lista de sinônimos para equipment.
@@ -344,12 +344,12 @@ Depósito que permite enviar automaticamente um backup do Jeedom em um compartil
 - **\ [Backup \] Compartilhamento** : Caminho para o compartilhamento (tenha cuidado para parar no nível de compartilhamento).
 - **Caminho \ [Backup \]** : Caminho no compartilhamento (para colocar em relativo), isso deve existir.
 
-> **Observação**
+> ****
 >
 > Se o caminho para a pasta de backup do samba for :
 > \\\\ 192.168.0.1 \\ Backups \\ Domótica \\ Jeedom Then IP = 192.168.0.1, Compartilhando = //192.168.0.1 / Backups, Caminho = Domótica / Jeedom
 
-> **Observação**
+> ****
 >
 > Ao validar o compartilhamento Samba, como descrito acima, uma nova forma de backup aparece na seção Configurações → Sistema → Backups do Jeedom. Ao ativá-lo, o Jeedom o enviará automaticamente durante o próximo backup. Um teste é possível executando um backup manual.
 
@@ -402,7 +402,7 @@ Para cada chave de plug-in de API, bem como para APIs HTTP, JsonRPC e TTS, é po
 
 Para cada chave de API de plugin você pode proibi-los de métodos centrais (geral) para limitá-los ao seu único método embutido (tenha cuidado com alguns plugins como mobile ou jeelink absolutamente precisam de métodos centrais)
 
-## Onglet &gt;_OS/DB
+## Onglet &gt_OS/DB
 
 > ****
 >

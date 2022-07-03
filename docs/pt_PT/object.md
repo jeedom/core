@@ -12,7 +12,7 @@ Para dar livre escolha à personalização, você pode nomear esses objetos como
 ## Gestion
 
 Você tem duas opções :
-- **Adicionar** : Crie um novo objeto.
+- **** : Crie um novo objeto.
 - **Visão global** : Exibe a lista de objetos criados e suas configurações.
 
 ## Visão global

@@ -96,7 +96,7 @@ Na aba ****, você poderá configurar certos comportamentos de exibição de blo
 
 ### Parâmetros opcionais no bloco
 
-Abaixo, há parâmetros opcionais de exibição que podem ser aplicados ao equipamento. Esses parâmetros são compostos de um nome e um valor. Basta clicar em **Adicionar** aplicar um
+Abaixo, há parâmetros opcionais de exibição que podem ser aplicados ao equipamento. Esses parâmetros são compostos de um nome e um valor. Basta clicar em **** aplicar um
 novo. Para equipamentos, apenas o valor **** atualmente utilizado, permite inserir código CSS no equipamento em questão.
 
 > ****
@@ -136,7 +136,7 @@ Você também pode gerenciar o tempo limite, em minutos, do equipamento. Por exe
 
 > ****
 >
-> Os parâmetros globais estão em **Configurações → Sistema → Configuração : ** Onde ****
+> Os parâmetros globais estão em **Configurações → Sistema → Configuração : **  ****
 
 ### Guia de comentários
 
@@ -157,7 +157,7 @@ Primeiro, no canto superior direito, alguns botões disponíveis :
 >
 > Em um gráfico, um clique duplo em um elemento leva você à sua configuração.
 
-> **Observação**
+> ****
 >
 > Dependendo do tipo de pedido, as informações / ações exibidas podem mudar.
 
@@ -184,7 +184,7 @@ Você também tem três outros botões laranja embaixo :
 - **Este comando substitui o comando** : Substituir comando pelo comando atual.
 - **Substituir esse comando pelo comando** : Por outro lado, substitua o comando por outro comando.
 
-> **Observação**
+> ****
 >
 > Esse tipo de ação substitui comandos em todos os lugares do Jeedom (cenário, interação, comando, equipamento….).
 
@@ -202,7 +202,7 @@ Abaixo, você encontrará a lista dos diferentes equipamentos, comandos, cenári
 
 - ****
     - **** : Marque a caixa para ter os valores deste comando registrados. (Veja **Análise → História**)
-    - **Suavização moda** : Modo de **** '**** permite escolher como arquivar os dados. Por padrão, este é um ****. Também é possível escolher o ****, a ****, Onde ****. **** vamos dizer ao Jeedom que ele não deve executar o arquivamento neste comando (durante o primeiro período de 5 minutos e com a tarefa de arquivamento). Essa opção é perigosa porque o Jeedom mantém tudo : portanto, haverá muito mais dados mantidos.
+    - **Suavização moda** : Modo de **** '**** permite escolher como arquivar os dados. Por padrão, este é um ****. Também é possível escolher o ****,  ****,  ****. **** vamos dizer ao Jeedom que ele não deve executar o arquivamento neste comando (durante o primeiro período de 5 minutos e com a tarefa de arquivamento). Essa opção é perigosa porque o Jeedom mantém tudo : portanto, haverá muito mais dados mantidos.
     - **Limpar histórico se tiver mais de** : Vamos dizer ao Jeedom para excluir todos os dados anteriores a um determinado período. Pode ser prático não manter dados se não for necessário e, portanto, limitar a quantidade de informações registradas pela Jeedom.
 
 - **Gerenciando valores**
@@ -212,7 +212,7 @@ Abaixo, você encontrará a lista dos diferentes equipamentos, comandos, cenári
 
 - ****
     - **Gestão de valores repetidos** : Em automático, se o comando subir duas vezes o mesmo valor em uma linha, o Jeedom não levará em consideração a segunda subida (evita desencadear um cenário várias vezes, a menos que o comando seja do tipo binário). Você pode forçar a repetição do valor ou proibi-lo completamente.
-    - **URL impulso** : Permite adicionar um URL para chamar em caso de atualização do pedido. Você pode usar as seguintes tags : ``#value#`para o valor do pedido '#cmd_name#`para o nome do comando,`#cmd_id#`para o identificador exclusivo da ordem,`#humanname#`para o nome completo do comando (ex : ``#[Sala de bain][Hydrometrie][Humidité]#`),`#eq_name#`para o nome do equipamento.
+    - **URL impulso** : Permite adicionar um URL para chamar em caso de atualização do pedido. Você pode usar as seguintes tags : ``#value#`para o valor do pedido '#cmd_name#`para o nome do comando,`#cmd_id#`para o identificador exclusivo da ordem,`#humanname#`para o nome completo do comando (ex : ``#[Sal de bain][Hydrometrie][Humidité]#`),`#eq_name#`para o nome do equipamento.
 
 #### Para um comando de ação :
 
@@ -224,9 +224,9 @@ Abaixo, você encontrará a lista dos diferentes equipamentos, comandos, cenári
 
 ### Guia Alertas
 
-Permite definir um nível de alerta (**** Onde ****) dependendo de certas condições. Por exemplo, se `valor> 8` por 30 minutos, o equipamento pode ficar em alerta ****.
+Permite definir um nível de alerta (****  ****) dependendo de certas condições. Por exemplo, se `valor> 8` por 30 minutos, o equipamento pode ficar em alerta ****.
 
-> **Observação**
+> ****
 >
 > Na página **Configurações → Sistema → Configuração : **, você pode configurar um comando de tipo de mensagem que permitirá que o Jeedom o notifique se o limite de aviso ou perigo for atingido.
 
@@ -238,7 +238,7 @@ Nesta parte, você poderá configurar determinados comportamentos de exibição 
 - **** : Marque para tornar o comando visível.
 - **Mostrar nome** : Marque para tornar o nome do comando visível, dependendo do contexto.
 - **Imprimir o nome eo ícone** : Marque para tornar o ícone visível, além do nome do comando.
-- **Envoltório forçado antes Widget** :  **antes do widget** Onde **após o widget** adicionar uma quebra de linha antes ou depois do widget (para forçar, por exemplo, uma exibição em coluna dos diferentes comandos do equipamento em vez das linhas padrão)
+- **Envoltório forçado antes Widget** :  **antes do widget**  **após o widget** adicionar uma quebra de linha antes ou depois do widget (para forçar, por exemplo, uma exibição em coluna dos diferentes comandos do equipamento em vez das linhas padrão)
 
 Abaixo, existem parâmetros de exibição opcionais que podem ser passados para o widget. Esses parâmetros dependem do widget em questão, portanto, é necessário examinar o arquivo no Market para conhecê-los.
 

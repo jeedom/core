@@ -26,7 +26,7 @@ Em uma visualização, encontramos :
 
 ## Adicionando / Editando uma visualização
 
-O princípio é bastante simples : uma vista é composta de áreas. Cada zona é do tipo **, ** Onde **. Dependendo desse tipo, você pode adicionar gráficos, equipamentos ou comandos a ele.
+O princípio é bastante simples : uma vista é composta de áreas. Cada zona é do tipo **, **  **. Dependendo desse tipo, você pode adicionar gráficos, equipamentos ou comandos a ele.
 
 - À esquerda da página, encontramos a lista de visualizações e um botão de criação.
 - Um botão no canto superior direito permite editar a Visualização Atual (Configuração).
@@ -93,7 +93,7 @@ Aqui você tem os botões :
 - **Adicionar coluna** : Adicione uma coluna à tabela.
 - **Adicionar linha** : Adicione uma linha à tabela.
 
-> **Observação**
+> ****
 >
 > É possível reorganizar as linhas arrastando e soltando, mas não as colunas.
 

@@ -26,7 +26,7 @@ Aqui você tem três botões :
 
 Em um navegador, vá para o [](https://market.jeedom.com).
 Faça login em sua conta.
-Clique em um plug-in e escolha *Instale estável* Onde *Instalar beta* (se sua conta do Market permitir).
+Clique em um plug-in e escolha *Instale estável*  *Instalar beta* (se sua conta do Market permitir).
 
 Se sua conta do Market estiver configurada corretamente em seu Jeedom (Configuração → Atualizações / Market → guia Market), você pode clicar em *Sincronizar mercado* ou espere que ele se acalme por conta própria.
 
@@ -98,7 +98,7 @@ Ao clicar no ícone de um plugin, você abre sua página de configuração.
 - **** : O autor do plugin, link para o mercado e os plugins deste autor.
 - **** : Indica a licença do plug-in, que geralmente será AGPL.
 
-- **Ações** : Permite ativar ou desativar o plug-in. O botão **** Permite que você vá diretamente para a página do plugin.
+- **** : Permite ativar ou desativar o plug-in. O botão **** Permite que você vá diretamente para a página do plugin.
 - **** : A versão do plug-in instalado.
 - **Pré-requisitos** : Indica a versão mínima do Jeedom necessária para o plug-in.
 

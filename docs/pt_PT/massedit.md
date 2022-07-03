@@ -24,7 +24,7 @@ A parte ** permite que você altere os parâmetros desses itens.
 - No jogo **, selecionar **Cenário**.
 - Clique no botão **** para adicionar um filtro.
 - Neste filtro, selecione a coluna **, e destacar o nome do grupo a ser renomeado.
-- Clique no botão *Teste* para mostrar os cenários deste grupo.
+- Clique no botão ** para mostrar os cenários deste grupo.
 - No jogo **, selecionar coluna **, então coloque o nome que você deseja no valor.
 - Clique em **Executar** canto superior direito.
 
@@ -33,6 +33,6 @@ A parte ** permite que você altere os parâmetros desses itens.
 - No jogo **, selecionar ****.
 - Clique no botão **** para adicionar um filtro.
 - Neste filtro, selecione a coluna **, e em valor o id do objeto em questão (visível em Ferramentas / Objetos, Visão Geral).
-- Clique no botão *Teste* para mostrar os cenários deste grupo.
+- Clique no botão ** para mostrar os cenários deste grupo.
 - No jogo **, selecionar coluna **, em seguida, insira o valor 0.
 - Clique em **Executar** canto superior direito.

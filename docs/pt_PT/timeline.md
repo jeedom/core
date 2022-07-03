@@ -15,7 +15,7 @@ Para vê-los, você deve primeiro ativar o rastreamento na linha do tempo dos co
 A linha do tempo ** sempre contém todos os eventos. No entanto, você pode filtrar a linha do tempo **. Em cada local em que você ativa a linha do tempo, você terá um campo para inserir o nome de uma pasta, existente ou não.
 Você pode filtrar a linha do tempo por esta pasta selecionando-a à esquerda do botão **.
 
-> **Observação**
+> ****
 >
 > Se você não usar mais uma pasta, ela aparecerá na lista enquanto existirem eventos vinculados a essa pasta. Ele desaparecerá da lista por si só.
 
