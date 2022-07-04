@@ -15,8 +15,8 @@ Em cada objeto, sua imagem de plano de fundo e seus resumos são exibidos :
 
 Dependendo do tipo de resumo (chave), visível em **Configurações → Sistema → Configuração / Resumos** :
 - Canto superior esquerdo : O nome do objeto.
-- Canto superior direito : Temperatura (**) e umidade (**).
-- Sob o título :  (**) e movimento (**), verde ou vermelho, dependendo da existência de alertas / movimentos em andamento.
+- Canto superior direito : Temperatura (*temperatura*) e umidade (*umidade*).
+- Sob o título : Alerta (*segurança*) e movimento (*movimento*), verde ou vermelho, dependendo da existência de alertas / movimentos em andamento.
 - Downstairs : Todos os outros resumos de assuntos.
 
 A configuração da exibição do objeto é feita em **Ferramentas → Objetos** :
@@ -26,11 +26,11 @@ A configuração da exibição do objeto é feita em **Ferramentas → Objetos**
 - Se a imagem de plano de fundo deve ser usada apenas na página Resumo ou também em segundo plano uma vez no objeto.
 - Os elementos de seus resumos, na guia *Resumo*.
 
-> ****
+> **Dica**
 >
 > A ordem de exibição dos objetos é a de *Resumo Automation*, que você pode reordenar (Análise → Resumo da automação residencial).
 
-> ****
+> **Observação**
 >
 > Se um objeto não possui um resumo definido, um botão é exibido no canto superior direito para acessar a configuração / resumos do objeto.
 
@@ -42,7 +42,7 @@ Para cada objeto, você pode clicar em :
 - Em um elemento de resumo para exibir os elementos deste objeto, deste tipo. Eles são exibidos em um modal, sem alterar a página, e permitem fechar rapidamente um obturador, acender uma luz, etc. O tamanho do modal se adapta ao equipamento que ele deve exibir, mas você pode movê-lo. Mesmo com o modal de resumos aberto, você pode clicar em outros resumos.
 
 
-> ****
+> **Dica**
 >
 > Ctrl Clique ou Clique Central no objeto ou um elemento de resumo abre outra guia do seu navegador.
 
