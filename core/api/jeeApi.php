@@ -1256,6 +1256,28 @@ try {
 		}
 		$jsonrpc->makeSuccess(network::dns_run());
 	}
+	
+	/*             * ************************User*************************** */
+	
+	if ($jsonrpc->getMethod() == 'user::all') {
+		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(), array('admin'))) {
+			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
+		}
+		$jsonrpc->makeSuccess(utils::o2a(user::all()));
+	}
+	
+	if ($jsonrpc->getMethod() == 'user::save') {
+		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(), array('admin'))) {
+			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
+		}
+		$user = user::byId($params['id']);
+		if(!is_object($user)){
+			$user = new user();
+		}
+		utils::a2o($user,$params);
+		$user->save();
+		$jsonrpc->makeSuccess(utils::o2a($user));
+	}
 
 	/*             * ************************************************************************ */
 
