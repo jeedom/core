@@ -761,7 +761,29 @@ Paramètres:
 
 -   string folder : nom du dossier
 
-Renvoi le status du DNS Jeedom
+API JSON User
+=================
+
+user::all
+-------------
+
+Retourne la liste de tous les utilisateurs
+
+user::save
+---------------------
+
+Crée ou edite un utilisateur
+
+Paramètres:
+
+-   int id (si edition)
+
+-   string login 
+
+-   string password 
+
+-   string profile : \[admin,user,restrict\]
+
 
 API JSON Exemples
 =================
