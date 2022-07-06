@@ -529,7 +529,9 @@ class user {
 	}
 
 	public function setPassword($_password) {
-		$_password = (!is_sha512($_password)) ? sha512($_password) : $_password;
+		if($_password != ''){
+			$_password = (!is_sha512($_password)) ? sha512($_password) : $_password;
+		}
 		$this->_changed = utils::attrChanged($this->_changed, $this->password, $_password);
 		$this->password = $_password;
 		return $this;
