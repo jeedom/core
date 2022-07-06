@@ -761,7 +761,29 @@ Configurações:
 
 -   pasta de corda : nome da pasta
 
-Retornar o status DNS do Jeedom
+
+=================
+
+user::all
+-------------
+
+
+
+user::save
+---------------------
+
+
+
+Configurações:
+
+-   )
+
+-   
+
+-   
+
+-   : ]
+
 
 Exemplos de API JSON
 =================

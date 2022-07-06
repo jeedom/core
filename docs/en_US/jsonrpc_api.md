@@ -761,7 +761,29 @@ Settings:
 
 -   string folder : folder name
 
-Return Jeedom DNS status
+
+=================
+
+user::all
+-------------
+
+
+
+user::save
+---------------------
+
+
+
+Settings:
+
+-   )
+
+-   
+
+-   
+
+-   : ]
+
 
 JSON API Examples
 =================

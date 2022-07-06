@@ -3709,6 +3709,7 @@
         "Connexion de l\\'utilisateur par REMOTE_USER :": "User login by REMOTE_USER:",
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir ajouter un utilisateur": "You must deactivate LDAP authentication to add a user",
+        "Utilisateur invalide": "Utilisateur invalide",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir supprimer un utilisateur": "You must deactivate LDAP authentication to be able to delete a user",
         "Vous ne pouvez pas supprimer le compte avec lequel vous êtes connecté": "You cannot delete the account with which you are connected",
         "Utilisateur non trouvé :": "User not found:",
@@ -4246,6 +4247,7 @@
         "Commande notification utilisateur": "User notification command",
         "Ce nom d\\'utilisateur est déja pris": "This username is already taken",
         "Le nom d\\'utilisateur ne peut pas être vide": "Username cannot be empty",
+        "Le mot de passe ne peut etre vide": "Le mot de passe ne peut etre vide",
         "Vous ne pouvez désactiver le dernier utilisateur": "You cannot deactivate the last user",
         "Vous ne pouvez changer le profil du dernier administrateur": "You cannot change the profile of the last administrator",
         "Vous ne pouvez supprimer le dernier administrateur": "You cannot delete the last administrator"

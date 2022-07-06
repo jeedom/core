@@ -761,7 +761,29 @@ Configuraciones:
 
 -   carpeta de cadena : nombre de la carpeta
 
-Devolver el estado DNS de Jeedom
+
+=================
+
+user::all
+-------------
+
+
+
+user::save
+---------------------
+
+
+
+Configuraciones:
+
+-   )
+
+-   
+
+-   
+
+-   : ]
+
 
 Ejemplos de API JSON
 =================

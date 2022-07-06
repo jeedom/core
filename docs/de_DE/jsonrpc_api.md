@@ -761,7 +761,29 @@ Die Einstellungen:
 
 -   String-Ordner : Ordnernamen
 
-Gibt den Jeedom DNS-Status zurück
+
+=================
+
+user::all
+-------------
+
+
+
+user::save
+---------------------
+
+
+
+Die Einstellungen:
+
+-   )
+
+-   
+
+-   
+
+-   : ]
+
 
 JSON-API-Beispiele
 =================
