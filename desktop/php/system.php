@@ -17,7 +17,7 @@ if (!isConnect('admin')) {
           <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo ../../health.sh">health.sh</a></li>
         <?php } ?>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="ps -eo size,pid,user,command --sort -size">Memory Usage</a></li>
-        <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu">CPU Usage</a></li>
+        <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="ps -eo pid,ppid,%mem,%cpu,cmd --sort=-%cpu">CPU Usage</a></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo dmesg">dmesg</a></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo ip addr">ip addr</a></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo lsusb">lsusb</a></li>
