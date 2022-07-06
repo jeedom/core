@@ -761,28 +761,28 @@ Settings:
 
 -   string folder : folder name
 
-
+API JSON User
 =================
 
 user::all
 -------------
 
-
+Retourne la liste de tous les utilisateurs
 
 user::save
 ---------------------
 
-
+Crée ou edite un utilisateur
 
 Settings:
 
--   )
+-   int id (si edition)
 
--   
+-   string login 
 
--   
+-   string password 
 
--   : ]
+-   string profile : \[admin,user,restrict\]
 
 
 JSON API Examples

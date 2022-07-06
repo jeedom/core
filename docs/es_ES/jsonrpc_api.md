@@ -761,28 +761,28 @@ Configuraciones:
 
 -   carpeta de cadena : nombre de la carpeta
 
-
+API JSON User
 =================
 
 user::all
 -------------
 
-
+Retourne la liste de tous les utilisateurs
 
 user::save
 ---------------------
 
-
+Crée ou edite un utilisateur
 
 Configuraciones:
 
--   )
+-   int id (si edition)
 
--   
+-   string login 
 
--   
+-   string password 
 
--   : ]
+-   string profile : \[admin,user,restrict\]
 
 
 Ejemplos de API JSON

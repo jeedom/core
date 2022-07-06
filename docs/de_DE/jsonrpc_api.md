@@ -761,28 +761,28 @@ Die Einstellungen:
 
 -   String-Ordner : Ordnernamen
 
-
+API JSON User
 =================
 
 user::all
 -------------
 
-
+Retourne la liste de tous les utilisateurs
 
 user::save
 ---------------------
 
-
+Crée ou edite un utilisateur
 
 Die Einstellungen:
 
--   )
+-   int id (si edition)
 
--   
+-   string login 
 
--   
+-   string password 
 
--   : ]
+-   string profile : \[admin,user,restrict\]
 
 
 JSON-API-Beispiele
