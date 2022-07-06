@@ -451,6 +451,9 @@ class user {
 		if ($this->getLogin() == '') {
 			throw new Exception(__('Le nom d\'utilisateur ne peut pas être vide', __FILE__));
 		}
+		if ($this->getPassword() == '') {
+			throw new Exception(__('Le mot de passe ne peut etre vide', __FILE__));
+		}
 		$admins = user::byProfils('admin', true);
 		if (count($admins) == 1 && $admins[0]->getId() == $this->getId()) {
 			if ($this->getProfils() == 'admin' && $this->getEnable() == 0) {
