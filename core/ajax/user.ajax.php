@@ -176,6 +176,23 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'copyRights') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		$from = user::byId(init('from'));
+		$to = user::byId(init('to'));
+		if (!is_object($from) || !is_object($to)) {
+			throw new Exception(__('Utilisateur invalide', __FILE__));
+		}
+		$rights = $from->getRights();
+		foreach ($rights as $key => $value) {
+			$to->setRights($key, $value);
+		}
+		$to->save();
+		ajax::success();
+	}
+
 	if (init('action') == 'remove') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
