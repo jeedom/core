@@ -2,7 +2,7 @@
 **Einstellungen → System → Update Center**
 
 
-Das **Update Center** Mit dieser Funktion können Sie alle Funktionen von Jeedom aktualisieren, einschließlich der Kernsoftware und ihrer Plugins.
+Der **Update Center** Mit dieser Funktion können Sie alle Funktionen von Jeedom aktualisieren, einschließlich der Kernsoftware und ihrer Plugins.
 Andere Erweiterungsverwaltungsfunktionen sind verfügbar (Löschen, Neuinstallieren, Überprüfen usw.).).
 
 
@@ -42,17 +42,17 @@ Sobald Sie darauf klicken, erhalten Sie diese verschiedenen Optionen :
 
 Die Tabelle enthält die Versionen des Core und der installierten Plugins.
 
-Die Plugins haben neben ihrem Namen ein Abzeichen, das ihre Version angibt und grün ist *stetig*, oder orange in *Beta* oder andere.
+Die Plugins haben neben ihrem Namen ein Abzeichen, das ihre Version angibt und grün ist *stabil*, oder orange in *Beta* oder andere.
 
 - **Status** : OK oder NOK.
-- **Nachname** : Name und Herkunft des Plugins
+- **Name** : Name und Herkunft des Plugins
 - **Ausführung** : Zeigt die genaue Version des Core oder Plugins an.
 - **Optionen** : Aktivieren Sie dieses Kontrollkästchen, wenn dieses Plugin während des globalen Updates nicht aktualisiert werden soll (Schaltfläche) **Update**).
 
 In jeder Zeile können Sie die folgenden Funktionen verwenden:
 
 - **Wieder einstellen** : Neuansiedlung erzwingen.
-- **Löschen** : Ermöglicht die Deinstallation.
+- **Entfernen** : Ermöglicht die Deinstallation.
 - **überprüfen** : Fragen Sie die Quelle nach Updates ab, um herauszufinden, ob ein neues Update verfügbar ist.
 - **Update** : Ermöglicht das Aktualisieren des Elements (sofern es aktualisiert wurde)).
 - **Änderungsprotokoll** : Ermöglicht den Zugriff auf die Liste der Änderungen im Update.
@@ -68,7 +68,7 @@ In jeder Zeile können Sie die folgenden Funktionen verwenden:
 
 ## Registerkarte Betriebssystem/Paket
 
-> **WICHTIG**
+> **Wichtig**
 >
 > Diese Registerkarte ist fortgeschrittenen Benutzern vorbehalten und nur für fortgeschrittene Benutzer, die geringste schlechte Aktion hier kann Ihr Jeedom BRECHEN (ohne die Möglichkeit, auf den Support zurückzugreifen)
 

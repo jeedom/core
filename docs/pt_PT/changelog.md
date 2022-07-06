@@ -47,7 +47,7 @@
 - IU de correção de bug : Exibindo a pasta de uma ação na linha do tempo.
 
 - Núcleo de correção de bugs : Exibição da chave de API de cada plugin na página de configuração.
-- Núcleo de correção de bugs : Adicionar opção *Hora* em um gráfico em Design.
+- Núcleo de correção de bugs : Adicionar opção *Tempo* em um gráfico em Design.
 - Núcleo de correção de bugs : Curva de ladrilhos com valor negativo.
 - Núcleo de correção de bugs : Erro 403 na reinicialização.
 
@@ -70,13 +70,13 @@
 - IU de correção de bug : Posição das notificações em *centro superior*.
 
 - Núcleo de correção de bugs : Etapa padrão para widgets *Controle deslizante* em 1.
-- Núcleo de correção de bugs : A atualização da página indica *Em andamento* sobre *ERRO DE ATUALIZAÇÃO* (atualização de log).
+- Núcleo de correção de bugs : A atualização da página indica *Em andamento* em *ERRO DE ATUALIZAÇÃO* (atualização de log).
 - Núcleo de correção de bugs : Modificação do valor de um histórico.
 - Núcleo de correção de bugs : Problemas corrigidos com a instalação de dependências python.
 
 - Melhoria : Novas opções em gráficos de design para agrupamento de escala e eixo Y.
 
-- Essencial : Atualização de biblioteca *elFinder* 2.1.59 -> 2.1.60
+- Testemunho : Atualização de biblioteca *elFinder* 2.1.59 -> 2.1.60
 
 ## 4.2.8
 
@@ -101,7 +101,7 @@
 
 ### 4.2 : Notícias / Melhorias
 
-- **Síntese** : Possibilidade de configurar objetos para ir a um *Projeto* ou um *visto* desde a síntese.
+- **Síntese** : Possibilidade de configurar objetos para ir a um *Projeto* ou um *visualizar* desde a síntese.
 - **Painel** : A janela de configuração do dispositivo (modo de edição) agora permite que você configure widgets móveis e tipos genéricos.
 - **Widgets** : Internacionalização de Widgets de terceiros (código do usuário). Vejo [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.2).
 - **Análise / História** : Possibilidade de comparar uma história ao longo de um determinado período.
@@ -114,7 +114,7 @@
 - **Resumos** : Possibilidade de definir um ícone diferente quando o resumo for nulo (sem venezianas abertas, sem luz acesa, etc).
 - **Resumos** : Possibilidade de nunca mostrar o número à direita do ícone, ou apenas se for positivo.
 - **Resumos** : A alteração do parâmetro de resumo na configuração e nos objetos agora está visível, sem esperar por uma alteração no valor de resumo.
-- **Resumos** : Agora é possível configurar [ações em resumos](/pt_PT/concept/summary#Actions sobre résumés) (ctrl + clique em um resumo) graças aos virtuais.
+- **Resumos** : Agora é possível configurar [ações em resumos](/pt_PT/concept/summary#Actions em résumés) (ctrl + clique em um resumo) graças aos virtuais.
 - **Relatório** : Visualizar arquivos PDF.
 - **Tipos de equipamento** : [Nova página](/pt_PT/core/4.2/types) **Ferramentas → Tipos de equipamento** permitindo que tipos genéricos sejam atribuídos a dispositivos e comandos, com suporte para tipos dedicados a plug-ins instalados (ver [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.2)).
 - **Seleção de ilustrações** : Nova janela global para a escolha de ilustrações *(ícones, imagens, planos de fundo)*.
@@ -130,9 +130,9 @@
 	- IF `genericType (LIGHT_STATE,#[Salão]#) > 0`
 	- Ação `GenericType`
 - **Objetos** : Plugins agora podem solicitar parâmetros específicos para objetos.
-- **Usuários** : Plugins agora podem solicitar parâmetros específicos para usuários.
-- **Usuários** : Capacidade de gerenciar os perfis de diferentes usuários Jeedom a partir da página de gerenciamento de usuários.
-- **Usuários** : Capacidade de ocultar objetos / visualização / design / design 3D para usuários limitados.
+- **Comercial** : Plugins agora podem solicitar parâmetros específicos para usuários.
+- **Comercial** : Capacidade de gerenciar os perfis de diferentes usuários Jeedom a partir da página de gerenciamento de usuários.
+- **Comercial** : Capacidade de ocultar objetos / visualização / design / design 3D para usuários limitados.
 - **Centro de Atualizações** : Centro de atualização agora exibe a data da última atualização.
 - **Adicionar o usuário realizando uma ação** : Além das opções de execução do comando de id e nome de usuário para lançar a ação (visível no log de eventos por exemplo)
 - **Documentação e plug-in de changelog beta** : Documentação e gerenciamento de changelog para plug-ins em beta. Atenção, em beta o changelog não é datado.
@@ -151,7 +151,7 @@
 - As configurações de widgets para a versão Mobile agora estão acessíveis a partir da janela de configuração do equipamento no modo Dashboard Edit.
 - Os parâmetros opcionais disponíveis nos widgets agora são exibidos para cada widget, seja na configuração do comando ou no modo de edição do painel.
 - Muitos widgets principais agora aceitam configurações de cores opcionais. (controle deslizante horizontal e vertical, medidor, bússola, chuva, obturador, controle deslizante de modelos, etc.).
-- Widgets principais com exibição de um *Tempo* agora suporta um parâmetro opcional **Tempo : encontro** para exibir uma data relativa (ontem às 16h48, segunda-feira passada às 14h, etc).
+- Widgets principais com exibição de um *Tempo* agora suporta um parâmetro opcional **Tempo : datado** para exibir uma data relativa (ontem às 16h48, segunda-feira passada às 14h, etc).
 - Widgets do tipo cursor (ação) agora aceitam um parâmetro opcional *degraus* para definir a etapa de mudança no cursor.
 - O widget **ação.slider.value** agora está disponível no desktop, com um parâmetro opcional *noslider*, o que o torna um *entrada* simples.
 - O widget **info.numeric.default** (*Medidor*) foi refeito em puro css e integrado em dispositivos móveis. Eles são, portanto, agora idênticos em computadores e dispositivos móveis.
@@ -172,7 +172,7 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 - Reforço de sessões : Mude para sha256 com 64 caracteres em modo estrito.
 
 A equipe da Jeedom está ciente de que essas mudanças podem ter um impacto e ser embaraçosas para você, mas não podemos comprometer a segurança.
-Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pastas e arquivos : [Médico](https://doc.jeedom.com/pt_PT/dev/plugin_template).
+Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pastas e arquivos : [Doutor](https://doc.jeedom.com/pt_PT/dev/plugin_template).
 
 [Blog: Jeedom 4 introdução.2 : Segurança](https://blog.jeedom.com/6165-introduction-jeedom-4-2-la-securite/)
 
@@ -221,7 +221,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 
 - Correção de bug na exclusão de zona em uma visualização.
 - Correção de erro de js que pode aparecer em navegadores antigos.
-- Correção de bugs cmd.info.numeric.default.html se o comando não estiver visível.
+- Bugfix cmd.info.numeric.default.html se o comando não estiver visível.
 - Página de login de correção de bug.
 
 ## 4.1.18
@@ -232,7 +232,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - Correção de bugs de resumos coloridos na síntese.
 - Correção de bug em comentários de cenário com json.
 - Correção de bug em atualizações de resumo em visualizações do modo Painel.
-- Bugfix de elementos *imagem* em um design.
+- Bugfix de elementos *foto* em um design.
 - Adicionadas opções de agrupamento por tempo para gráficos em visualizações.
 - Conservação do contexto de síntese ao clicar nos resumos.
 - Centralização de imagens de síntese.
@@ -246,7 +246,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 ### 4.1 : Notícias / Melhorias
 
 - **Síntese** : Adicionando uma nova página **Home → Resumo** oferecendo um resumo visual global das peças, com acesso rápido aos resumos.
-- **Pesquisar** : Adição de um mecanismo de pesquisa em **Ferramentas → Pesquisa**.
+- **Pesquisa** : Adição de um mecanismo de pesquisa em **Ferramentas → Pesquisa**.
 - **Painel** : Modo de edição agora inserindo o bloco movido.
 - **Painel** : Modo de edição: os ícones de atualização do equipamento são substituídos por um ícone que permite acesso à sua configuração, graças a um novo modal simplificado.
 - **Painel** : Agora podemos clicar no *Tempo* widgets de ações de tempo para abrir a janela do histórico do comando info vinculado.
@@ -277,12 +277,12 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - **Janela Variáveis de Cenário** : Os cenários usados pelas variáveis agora são clicáveis, com a abertura da pesquisa na variável.
 - **Análise / História** : Ctrl Clique em uma legenda para exibir apenas esse histórico, Alt Clique para exibir todos eles.
 - **Análise / História** : As opções *agrupamento, tipo, variação, escada* estão ativos apenas com uma única curva exibida.
-- **Análise / História** : Agora podemos usar a opção *Área* com a opção *Escadas*.
+- **Análise / História** : Agora podemos usar a opção *Área* com a opção *Escadaria*.
 - **Análise / Logs** : Nova fonte de tipo monoespaçado para logs.
-- **Visto** : Possibilidade de colocar cenários.
-- **Visto** : Modo de edição agora inserindo o bloco movido.
-- **Visto** : Modo de edição: os ícones de atualização do equipamento são substituídos por um ícone que permite acesso à sua configuração, graças a um novo modal simplificado.
-- **Visto** : A ordem de exibição agora é independente da ordem no painel.
+- **Visualizar** : Possibilidade de colocar cenários.
+- **Visualizar** : Modo de edição agora inserindo o bloco movido.
+- **Visualizar** : Modo de edição: os ícones de atualização do equipamento são substituídos por um ícone que permite acesso à sua configuração, graças a um novo modal simplificado.
+- **Visualizar** : A ordem de exibição agora é independente da ordem no painel.
 - **Linha do tempo** : Separação das páginas de histórico e cronograma.
 - **Linha do tempo** : Integração da linha do tempo no DB por motivos de confiabilidade.
 - **Linha do tempo** : Gerenciamento de várias linhas do tempo.
@@ -308,7 +308,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 	- Ctrl Clic / Clic Center também disponível em seus menus de contexto (nas guias).
 - Nova página ModalDisplay :
 	- Menu Análise : Ctrl Clique / Clique em Central no *Tempo real* : Abra a janela em uma nova guia, em tela cheia.
-	- Menu Ferramentas : Ctrl Clique / Clique em Central no *Classificações*, *Testador de expressão*, *Variáveis*, *Pesquisar* : Abra a janela em uma nova guia, em tela cheia.
+	- Menu Ferramentas : Ctrl Clique / Clique em Central no *Classificações*, *Testador de expressão*, *Variáveis*, *Pesquisa* : Abra a janela em uma nova guia, em tela cheia.
 - Bloco de código, editor de arquivos, personalização avançada : Adaptação tema escuro.
 - Janela de seleção de imagem aprimorada.
 
@@ -336,7 +336,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - Inúmeras otimizações de desempenho de desktop / dispositivos móveis.
 
 ### 4.1 : Changements
-- A função **cenário-> getHumanName()** da classe de cenário php não retorna mais *[objeto] [grupo] [nome]* mas *[grupo] [objeto] [nome]*.
+- A função **cenário-> getHumanName()** da classe de cenário php não retorna mais *[objeto] [grupo] [nome]* milho *[grupo] [objeto] [nome]*.
 - A função **cenário-> byString()** agora deve ser chamado com a estrutura *[grupo] [objeto] [nome]*.
 - Funções **rede-> getInterfaceIp () rede-> getInterfaceMac () rede-> getInterfaces()** foram substituídos por **rede-> getInterfacesInfo()**
 
@@ -475,7 +475,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - Configuração : Mudança de #message# em #subject# em Configuração / Logs / Mensagens para evitar a duplicação da mensagem.
 - Configuração : Possibilidade nos resumos de adicionar uma exclusão de pedidos que não foram atualizados por mais de XX minutos (exemplo para o cálculo de médias de temperatura se um sensor não reportou nada por mais de 30min será excluído do cálculo)<br/><br/>
 - Cenas : A colorização dos blocos não é mais aleatória, mas por tipo de bloco.
-- Cenas : Possibilidade ao fazer um Ctrl + clique no botão *execução* salve-o, execute-o e exiba o log (se o nível de log não estiver ativado *Nenhum*).
+- Cenas : Possibilidade ao fazer um Ctrl + clique no botão *execução* salve-o, execute-o e exiba o log (se o nível de log não estiver ativado *Algum*).
 - Cenas : Confirmação de exclusão de bloco. Ctrl + clique para evitar a confirmação.
 - Cenas : Adição de uma função de pesquisa em blocos de código. Pesquisar : Ctrl + F, em seguida, Enter, próximo resultado : Ctrl + G, resultado anterior : Ctrl+Shift+G
 - Cenas : Possibilidade de condensar os blocos.

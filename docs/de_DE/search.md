@@ -3,7 +3,7 @@
 
 Jeedom bietet eine interne Suchmaschine.
 
-![](./images/search_intro.gif)
+![Forschung](./images/search_intro.gif)
 
 Sie können verschiedene Arten suchen :
 
@@ -13,12 +13,12 @@ Wählen Sie ein Gerät mit dem Symbol rechts neben dem Feld aus.
 
 Der Motor wird in den folgenden Tabellen angezeigt :
 
-- Das **Szenarien** mit diesem Gerät.
-- Das **** Anzeige dieser Ausrüstung.
-- Das **** Anzeige dieser Ausrüstung.
-- Das **** mit diesem Gerät.
-- Die anderen **** mit diesem Gerät.
-- Das **** mit diesem Gerät.
+- Die **Szenarien** mit diesem Gerät.
+- Die **Entwürfe** Anzeige dieser Ausrüstung.
+- Die **Ansichten** Anzeige dieser Ausrüstung.
+- Die **Interaktionen** mit diesem Gerät.
+- Die anderen **Ausrüstung** mit diesem Gerät.
+- Die **Aufträge** mit diesem Gerät.
 
 ## Auf Bestellung
 
@@ -26,12 +26,12 @@ Wählen Sie eine Bestellung mit dem Symbol rechts neben dem Feld.
 
 Der Motor wird in den folgenden Tabellen angezeigt :
 
-- Das **Szenarien** mit diesem Befehl.
-- Das **** Anzeige dieses Befehls.
-- Das **** Anzeige dieses Befehls.
-- Das **** mit diesem Befehl.
-- Das **** mit diesem Befehl.
-- Die anderen **** mit diesem Befehl.
+- Die **Szenarien** mit diesem Befehl.
+- Die **Entwürfe** Anzeige dieses Befehls.
+- Die **Ansichten** Anzeige dieses Befehls.
+- Die **Interaktionen** mit diesem Befehl.
+- Die **Ausrüstung** mit diesem Befehl.
+- Die anderen **Aufträge** mit diesem Befehl.
 
 ## Nach Variablen
 
@@ -39,10 +39,10 @@ Wählen Sie eine Variable aus der Dropdown-Liste.
 
 Der Motor wird in den folgenden Tabellen angezeigt :
 
-- Das **Szenarien** mit dieser Variablen.
-- Das **** mit dieser Variablen.
-- Das **** mit dieser Variablen.
-- Das **** mit dieser Variablen.
+- Die **Szenarien** mit dieser Variablen.
+- Die **Interaktionen** mit dieser Variablen.
+- Die **Ausrüstung** mit dieser Variablen.
+- Die **Aufträge** mit dieser Variablen.
 
 ## Per Plugin
 
@@ -50,54 +50,54 @@ Wählen Sie ein Plugin aus der Dropdown-Liste.
 
 Der Motor wird in den folgenden Tabellen angezeigt :
 
-- Das **Szenarien** mit diesem Plugin.
-- Das **** Anzeige dieses Plugins.
-- Das **** Anzeige dieses Plugins.
-- Das **** mit diesem Plugin.
-- Das **** mit diesem Plugin.
-- Das **** mit diesem Plugin.
+- Die **Szenarien** mit diesem Plugin.
+- Die **Entwürfe** Anzeige dieses Plugins.
+- Die **Ansichten** Anzeige dieses Plugins.
+- Die **Interaktionen** mit diesem Plugin.
+- Die **Ausrüstung** mit diesem Plugin.
+- Die **Aufträge** mit diesem Plugin.
 
 ## Durch Wort
 
-Geben Sie eine Zeichenfolge in das Suchfeld ein. Validieren mit ** oder mit der Taste **.
+Geben Sie eine Zeichenfolge in das Suchfeld ein. Validieren mit *betreten* oder mit der Taste *Forschen*.
 
 Der Motor wird in den folgenden Tabellen angezeigt :
 
-- Das **Szenarien** mit dieser Zeichenfolge.
+- Die **Szenarien** mit dieser Zeichenfolge.
 	Suchen Sie in Ausdrücken, Kommentaren und Codeblöcken.
-- Das **** mit dieser Zeichenfolge.
-	Suche in Feldern **.
-- Das **** mit dieser Zeichenfolge.
-	Suche in Feldern **, **, **, **, **.
-- Das **** mit dieser Zeichenfolge.
-	Suche in Feldern **, **, **, *generischer_typ*, .
-- Das **** mit dieser Zeichenfolge.
+- Die **Interaktionen** mit dieser Zeichenfolge.
+	Suche in Feldern *Anforderung*.
+- Die **Ausrüstung** mit dieser Zeichenfolge.
+	Suche in Feldern *Name*, *logische ID*, *eqType*, *Wie? 'Oder' Was*, *Stichworte*.
+- Die **Aufträge** mit dieser Zeichenfolge.
+	Suche in Feldern *Name*, *logische ID*, *eqType*, *generischer_typ*, .
+- Die **Noten** mit dieser Zeichenfolge.
 	Notizen Textsuche.
 
 ## Nach ID
 
-Geben Sie im Suchfeld eine Nummer ein, die einer gesuchten ID entspricht. Validieren mit ** oder mit der Taste **.
+Geben Sie im Suchfeld eine Nummer ein, die einer gesuchten ID entspricht. Validieren mit *betreten* oder mit der Taste *Forschen*.
 
 Der Motor wird in den folgenden Tabellen angezeigt :
 
-- Das **Szenario** mit dieser ID.
-- Das **** mit dieser ID.
--  **** mit dieser ID.
-- L'**** mit dieser ID.
-- L'**** mit dieser ID.
--  **** mit dieser ID.
--  **** mit dieser ID.
+- Der **Szenario** mit dieser ID.
+- Der **Design** mit dieser ID.
+- Die **Ansicht** mit dieser ID.
+- L'**Interaktion** mit dieser ID.
+- L'**Ausrüstung** mit dieser ID.
+- Die **bestellt** mit dieser ID.
+- Die **Hinweis** mit dieser ID.
 
 ## Ergebnisse
 
 Für jede Art von Ergebnis sind Aktionen zulässig:
 - **Szenarien** : Öffnen Sie das Szenarioprotokoll oder rufen Sie die Szenarioseite mit der aktiven Suche nach dem gesuchten Begriff auf.
-- **** : Showdesign.
-- **** : Ansicht anzeigen.
-- **** : Öffnen Sie die Interaktionskonfigurationsseite.
-- **** : Öffnen Sie die Gerätekonfigurationsseite.
-- **** : Öffnen Sie die Auftragskonfiguration.
-- **** : Hinweis öffnen.
+- **Entwürfe** : Showdesign.
+- **Ansichten** : Ansicht anzeigen.
+- **Interaktionen** : Öffnen Sie die Interaktionskonfigurationsseite.
+- **Ausrüstung** : Öffnen Sie die Gerätekonfigurationsseite.
+- **Aufträge** : Öffnen Sie die Auftragskonfiguration.
+- **Noten** : Hinweis öffnen.
 
 Jede dieser Optionen öffnet eine andere Registerkarte in Ihrem Browser, um die aktuelle Suche nicht zu verlieren.
 

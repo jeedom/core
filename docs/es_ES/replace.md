@@ -13,7 +13,7 @@ Puede mostrar solo ciertos equipos para una mayor legibilidad, filtrando por obj
 
 ## Options
 
-> ****
+> **Observación**
 >
 > Si ninguna de estas opciones está marcada, el reemplazo equivale a usar la función *Reemplace este comando con el comando* en configuración avanzada.
 
@@ -21,7 +21,7 @@ Puede mostrar solo ciertos equipos para una mayor legibilidad, filtrando por obj
 Para cada equipo, se copiará desde el origen al destino:
 	* El objeto padre,
 	* Las categorias,
-	* Los propietarios **  **,
+	* Los propietarios *activo* y *visible*,
 	* Comentarios y etiquetas,
 	* Orden (Tablero),
 	* El ancho y la altura (panel de mosaico),
@@ -29,8 +29,8 @@ Para cada equipo, se copiará desde el origen al destino:
 	* Parámetros opcionales,
 	* La configuración de visualización de la tabla,
 	* el tipo genérico,
-	* La propiedad **
-	* La configuración **,
+	* La propiedad *se acabó el tiempo*
+	* La configuración *autorefrescar*,
 	* Alertas de batería y comunicación,
 
 
@@ -39,17 +39,17 @@ Para cada equipo, se copiará desde el origen al destino:
 - **Ocultar equipo fuente** : Permite hacer invisible el equipo de origen una vez reemplazado por el equipo de destino.
 - **Copie la configuración del comando fuente** :
 Para cada comando, se copiará de origen a destino:
-	* La propiedad **,
+	* La propiedad *visible*,
 	* Orden (Tablero),
 	* L'historisation,
 	* Los widgets Dashboard y Mobile utilizados,
 	* El tipo genérico,
 	* Parámetros opcionales,
-	* Las configuraciones **  *jeedomPostExecCmd* (acción),
+	* Las configuraciones *JeedomPreExecCmd* y *jeedomPostExecCmd* (acción),
 	* Configuraciones de acción de valor (información),
 	* Icono,
-	* La activación y el directorio en **,
-	* Las configuraciones de **  **,
+	* La activación y el directorio en *Línea de tiempo*,
+	* Las configuraciones de *cálculo* y *redondo*,
 	* La configuración de influxDB,
 	* La configuración del valor de repetición,
 	* Alertas,
@@ -60,7 +60,7 @@ Para cada comando, se copiará de origen a destino:
 
 ## Remplacements
 
-El botón **** En la parte superior derecha te permite visualizar todo el equipamiento, siguiendo los filtros por objeto y por plugin.
+El botón **Filtrar** En la parte superior derecha te permite visualizar todo el equipamiento, siguiendo los filtros por objeto y por plugin.
 
 Para cada equipo :
 
@@ -69,6 +69,6 @@ Para cada equipo :
 - Haga clic en su nombre para ver sus comandos e indique qué comandos los reemplazan. Al elegir un equipo, la herramienta rellena previamente estas opciones si encuentra un pedido del mismo tipo y el mismo nombre en el equipo de destino.
 
 
-> ****
+> **Observación**
 >
 > Cuando indica un dispositivo de destino en un dispositivo de origen, este dispositivo de destino está deshabilitado en la lista.

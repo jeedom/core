@@ -65,9 +65,9 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 
 ### Personnalisation
 
-- **Permitir** : Ative o uso das opções abaixo.
+- **Ativar** : Ative o uso das opções abaixo.
 - **Transparência** : Exibe blocos do painel e algum conteúdo com transparência. 1 : totalmente opaco, 0 : totalmente transparente.
-- **Redondo** : Exibe elementos da interface com ângulos arredondados. 0 : sem arredondamento, 1 : arredondamento máximo.
+- **Volta** : Exibe elementos da interface com ângulos arredondados. 0 : sem arredondamento, 1 : arredondamento máximo.
 - **Desativar sombras** : Desativa sombras de blocos no painel, menus e certos elementos da interface.
 
 
@@ -86,7 +86,7 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
     - **OK / NOK** : indica se a configuração interna da rede está correta.
     - **Protocolo** : o protocolo a ser usado, geralmente HTTP.
     - **URL ou endereço IP** : IP Jeedom para entrar.
-    - **Porta** : a porta da interface da web Jeedom, geralmente 80.
+    - **Porto** : a porta da interface da web Jeedom, geralmente 80.
         Observe que alterar a porta aqui não altera a porta Jeedom real, que permanecerá a mesma.
     - **Complemento** : o fragmento de URL adicional (exemplo : / Jeedom) para acessar o Jeedom.
 
@@ -221,7 +221,7 @@ Essa guia permite definir parâmetros globais relativos às interações que voc
 
 > **Dica**
 >
-> Para ativar o log de interação, vá para a guia Configurações → Sistema → Configuração : Logs e verifique **Depurar** na lista inferior. Atenção : os logs serão muito detalhados !
+> Para ativar o log de interação, vá para a guia Configurações → Sistema → Configuração : Logs e verifique **Depurar** na lista inferior. Aviso : os logs serão muito detalhados !
 
 ### Geral
 
@@ -241,15 +241,15 @@ Aqui você tem três parâmetros :
 
 -   O **interações contextuais** permitem encadear várias solicitações sem repetir tudo, por exemplo :
     - *Jeedom mantendo o contexto :*
-        - *Você* : Quanto ele está na sala ?
+        - *Vocês* : Quanto ele está na sala ?
         - *Jeedom* : Temperatura 25.2 ° C
-        - *Você* : e na sala de estar ?
+        - *Vocês* : e na sala de estar ?
         - *Jeedom* : Temperatura 27.2 ° C
     - *Faça duas perguntas em uma :*
-        - *Você* : Como é no quarto e na sala de estar ?
+        - *Vocês* : Como é no quarto e na sala de estar ?
         - *Jeedom* : Temperatura 23.6 ° C, Temperatura 27.2 ° C
 -   Interações de tipo **Avise-me** permita que a Jeedom avise se um pedido excede / cai ou vale algum valor.
-    - *Você* : Notifique-me se a temperatura da sala exceder 25 ° C ?
+    - *Vocês* : Notifique-me se a temperatura da sala exceder 25 ° C ?
     - *Jeedom* : OK (*Assim que a temperatura da sala exceder 25 ° C, Jeedom dirá, uma vez*)
 
 > **Observação**
@@ -325,7 +325,7 @@ Depósito usado para conectar o Jeedom ao Github.
 
 #### Market
 
-Depósito usado para conectar o Jeedom ao mercado, é altamente recomendável usar esse depósito. Atenção : qualquer solicitação de suporte poderá ser recusada se você usar um depósito diferente deste.
+Depósito usado para conectar o Jeedom ao mercado, é altamente recomendável usar esse depósito. Aviso : qualquer solicitação de suporte poderá ser recusada se você usar um depósito diferente deste.
 
 - **Endereço** : Endereço du Mercado.(https://www.Jeedom.com/market).
 - **Nome de Usuário** : Seu nome de usuário no mercado.

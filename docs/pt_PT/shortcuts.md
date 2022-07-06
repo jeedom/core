@@ -86,7 +86,7 @@ Em um bloco de código :
 
 ### Análise / resumo de automação residencial
 - Ctrl Clique no ícone *Abrir* (recherche) : Abra todos os objetos e equipamentos.
-- Ctrl Clique no ícone *Perto* (recherche) : Fecha todos os objetos e equipamentos.
+- Ctrl Clique no ícone *Fechar* (recherche) : Fecha todos os objetos e equipamentos.
 
 ### Análise / História
 Se várias curvas forem exibidas :

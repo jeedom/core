@@ -5,7 +5,7 @@
 Beim Öffnen einer Seite (Dashboard, Szenarien usw.) liegt der Fokus auf dem Suchfeld. Sie können daher ohne weitere Aktion direkt eine Suche eingeben.
 
 - Klicken Sie auf die Uhr (Menüleiste) : Öffnen Sie die Timeline.
-- Klicken Sie auf den Namen des Jeedom (Menüleiste))  :  **Einstellungen → System → Konfiguration**.
+- Klicken Sie auf den Namen des Jeedom (Menüleiste))  : Offen **Einstellungen → System → Konfiguration**.
 - Klicken Sie auf ?  (Menüleiste)  : Öffnen Sie die Hilfe auf der aktuellen Seite.
 - Flucht auf ein Forschungsfeld : Leeren Sie das Suchfeld und brechen Sie es ab.
 
@@ -14,7 +14,7 @@ Im Bearbeitungsmodus:
 	- Ziehen Sie n Drop auf Kacheln, um sie neu anzuordnen.
 	- Ändern Sie die Größe der Kachelränder, um deren Größe zu ändern.
 	- Kontextmenü (Rechtsklick) auf den Kacheln.
-	- Strg Klicken Sie auf ein Symbol ** : Passt die Höhe der Objektkacheln nicht relativ zur höchsten, sondern relativ zur niedrigsten an.
+	- Strg Klicken Sie auf ein Symbol *erweitern* : Passt die Höhe der Objektkacheln nicht relativ zur höchsten, sondern relativ zur niedrigsten an.
 
 - Strg Klicken Sie auf einen Info-Befehl : Öffnet alle Verlaufsinformationen der Kachel im Verlaufsfenster.
 
@@ -55,8 +55,8 @@ In einem Szenario :
 - Strg S : Zu schützen.
 - Klicken Sie mit der rechten Maustaste auf eine Registerkarte : Kontextmenü, um direkt zu einem anderen Szenario zu gelangen.
 - Strg L : Protokollanzeige.
-- Strg Shift Z : .
-- Strg Shift Y : .
+- Strg Shift Z : Abbrechen.
+- Strg Shift Y : Neu machen.
 
 - Strg Klicken Sie auf Ausführen : Speichern Sie das Szenario, führen Sie es aus und öffnen Sie das Protokoll.
 - Strg Klicken Sie auf das Symbol *Kopieren Sie diesen Block* : Schneiden Sie diesen Block.
@@ -72,7 +72,7 @@ In einem Codeblock :
 - Strg + S bei einer Plugin-Konfiguration : Zu schützen.
 - Strg Klicken oder Klicken Sie in einem Plugin auf Mitte : Öffnen Sie die Plugin-Verwaltung in einem neuen Browser-Tab.
 
-###  **
+### Plugins / *Plugin*
 - Auf einem Gerät wird Strg S gedrückt  : Zu schützen.
 - Klicken Sie auf einem Gerät mit der rechten Maustaste auf eine Registerkarte : Kontextmenü, um direkt zu einem anderen Gerät zu gelangen.
 - Strg Klicken oder Mitte Klicken Sie auf ein Gerät: Öffnen Sie das Plugin-Gerät in einem neuen Browser-Tab.
@@ -85,8 +85,8 @@ In einem Codeblock :
 - Strg-Umschalttaste E für ein Design : Aktivieren oder Verlassen des Bearbeitungsmodus.
 
 ### Analyse / Zusammenfassung der Hausautomation
-- Strg Klicken Sie auf das Symbol ** (recherche) : Öffnen Sie alle Gegenstände und Geräte.
-- Strg Klicken Sie auf das Symbol ** (recherche) : Schließt alle Objekte und Geräte.
+- Strg Klicken Sie auf das Symbol *Offen* (recherche) : Öffnen Sie alle Gegenstände und Geräte.
+- Strg Klicken Sie auf das Symbol *Nah dran* (recherche) : Schließt alle Objekte und Geräte.
 
 ### Analyse / Geschichte
 Wenn mehrere Kurven angezeigt werden :

@@ -115,7 +115,7 @@
         "Escalier": "Steps"
     },
     "mobile\/html\/eqAnalyse.html": {
-        "Batteries": "Batteries",
+        "Batteries": "Battery",
         "Alertes": "Warnings"
     },
     "mobile\/html\/about.html": {
@@ -2363,7 +2363,7 @@
     "desktop\/php\/eqAnalyse.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Configuration": "Configuration",
-        "Batteries": "Batteries",
+        "Batteries": "Battery",
         "Equipements en alerte": "Equipment on alert",
         "Actions définies": "Defined actions",
         "Alertes définies": "Defined alerts",
