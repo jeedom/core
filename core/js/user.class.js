@@ -327,3 +327,23 @@ jeedom.user.supportAccess = function(_params) {
   };
   $.ajax(paramsAJAX);
 }
+
+jeedom.user.copyRights = function(_params) {
+  var paramsRequired = ['from','to'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/user.ajax.php';
+  paramsAJAX.data = {
+    action: 'copyRights',
+    from: _params.from,
+    to: _params.to
+  };
+  $.ajax(paramsAJAX);
+}

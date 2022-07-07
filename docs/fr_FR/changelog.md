@@ -13,6 +13,7 @@
 - **Outils / Objets** : Ajout d'un menu contextuel sur un objet pour gérer la visbilité, changer d'objet parent, et déplacer.
 - **Outils / Remplacer** : Nouvel outil de remplacement d'équipements et commandes.
 - **Analyse / Timeline** : Ajout d'un champ de recherche pour filtrer l'affichage.
+- **Utilisateurs** : Ajout d'un bouton pour copier les droits d'un utilisateur limité vers un autre
 - **Rapport** : Possibilité de faire des rapports sur la santé de Jeedom.
 - **Rapport** : Possibilité de faire des rapports sur les équipements en alerte.
 - **Mise à jour** : Possibilité de voir depuis Jeedom les packages OS/PIP2/PIP3/NodeJS qui peuvent etre mise à jour et de lancer la mise à jour (attention fonction risquée et en beta).

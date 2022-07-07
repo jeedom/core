@@ -82,7 +82,7 @@ if (!jeeFrontEnd.user) {
               userTR += '<option value="disable">{{Désactivé}}</option>'
               userTR += '</select>'
             }
-            userTR += '<input class="userAttr form-control input-sm" data-l1key="hash" disabled />'
+            userTR += '<input class="userAttr form-control input-sm" data-l1key="hash" disabled  style="margin-top:4px;"/>'
             userTR += '</td>'
             userTR += '<td>'
             if (isset(data[i].options) && isset(data[i].options.twoFactorAuthentification) && data[i].options.twoFactorAuthentification == 1 && isset(data[i].options.twoFactorAuthentificationSecret) && data[i].options.twoFactorAuthentificationSecret != '') {
@@ -105,6 +105,9 @@ if (!jeeFrontEnd.user) {
                 userTR += '<a class="btn btn-xs btn-warning pull-right bt_change_mdp_user"><i class="fas fa-pencil-alt"></i> {{Mot de passe}}</a>'
               }
               userTR += '<a class="cursor bt_changeHash btn btn-warning btn-xs pull-right" title="{{Renouveler la clef API}}"><i class="fas fa-sync"></i> {{Régénérer API}}</a>'
+              if (data[i].profils == 'restrict') {
+                userTR += '<a class="btn btn-xs btn-default pull-right bt_copy_user_rights"><i class="fas fa-copy"></i> {{Copier les droits}}</a>'
+              }
               userTR += '<a class="btn btn-xs btn-warning pull-right bt_manage_restrict_rights"><i class="fas fa-align-right"></i> {{Droits}}</a>'
               if (data[i].profils != 'restrict') {
                 userTR = userTR.replace('bt_manage_restrict_rights', 'bt_manage_restrict_rights disabled')
@@ -370,6 +373,59 @@ $('#table_user').on('click', '.bt_disableTwoFactorAuthentification', function() 
     }
   })
 })
+
+$('#table_user').on('click', '.bt_copy_user_rights', function() {
+  let from = $(this).closest('tr').find('.userAttr[data-l1key=id]').value()
+  let select_list = []
+  $('#table_user tbody tr').each(function(){
+    if($(this).find('.userAttr[data-l1key=login]').value() == 'internal_report'){
+      return;
+    }
+    if($(this).find('.userAttr[data-l1key=profils]').value() != 'restrict'){
+      return;
+    }
+    if($(this).find('.userAttr[data-l1key=id]').value() == from){
+      return;
+    }
+    select_list.push({
+      value: $(this).find('.userAttr[data-l1key=id]').value(),
+      text: $(this).find('.userAttr[data-l1key=login]').value()
+    })
+  })
+  if(select_list.length == 0){
+    $.fn.showAlert({
+      message: '{{Vous n\'avez aucun autre utilisateur à profil limité}}',
+      level: 'warning'
+    })
+    return
+  }
+  bootbox.prompt({
+    title: "{{Vous voulez copier les droit de }}<strong>"+$(this).closest('tr').find('.userAttr[data-l1key=login]').value()+"</strong> {{vers}} ?",
+    value: select_list[0].value,
+    inputType: 'select',
+    inputOptions: select_list,
+    callback: function(to) {
+      jeedom.user.copyRights({
+        to: to,
+        from: from,
+        error: function(error) {
+          $.fn.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          $.fn.showAlert({
+            message: '{{Droits copié avec succes}}',
+            level: 'success'
+          })
+        }
+      })
+    }
+  });
+})
+
+
 
 $('.bt_deleteSession').on('click', function() {
   var id = $(this).closest('tr').attr('data-id')
