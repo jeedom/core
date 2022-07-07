@@ -2882,6 +2882,7 @@
         "Mot de passe": "パスワード",
         "Renouveler la clef API": "APIキーを更新する",
         "Régénérer API": "APIを再生成",
+        "Copier les droits": "Copier les droits",
         "Droits": "権利",
         "Profils": "Profils",
         "Sauvegarde effectuée": "バックアップ完了",
@@ -2891,7 +2892,11 @@
         "Êtes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "ユーザーのAPIキーを変更してもよろしいですか？",
         "Modification effectuée": "行われた変更",
         "Gestion des droits (Utilisateur limité)": "Gestion des droits (Utilisateur limité)",
-        "Gestion du profils": "Gestion du profils"
+        "Gestion du profils": "Gestion du profils",
+        "Vous n\\'avez aucun autre utilisateur à profil limité": "Vous n\\'avez aucun autre utilisateur à profil limité",
+        "Vous voulez copier les droit de ": "Vous voulez copier les droit de",
+        "vers": "vers",
+        "Droits copié avec succes": "Droits copié avec succes"
     },
     "desktop\/js\/health.js": {
         "Configuration du plugin": "プラグイン構成",

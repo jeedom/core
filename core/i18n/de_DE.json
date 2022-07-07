@@ -796,7 +796,7 @@
         "Êtes-vous sûr de vouloir envoyer tout l\\'historique de cette commande à InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute.": "Sind Sie sicher, dass Sie den gesamten Verlauf dieses Befehls an InfluxDB senden möchten? Dies wird in einer Minute im Hintergrund geplant und durchgeführt",
         "Programmation envoyée avec succés": "Programmierung erfolgreich gesendet",
         "Êtes-vous sûr de vouloir copier l\\'historique de": "Sind Sie sicher, dass Sie den Verlauf von kopieren möchten?",
-        "vers": "zu",
+        "vers": "gegenüber",
         "Il est conseillé de vider l\\'historique de la commande": "Es wird empfohlen, den Verlauf der Befehle zu leeren",
         "avant la copie": "vor dem Kopieren",
         "Historique copié avec succès": "Chronik erfolgreich kopiert",
@@ -2882,6 +2882,7 @@
         "Mot de passe": "Passwort",
         "Renouveler la clef API": "Erneuern Sie den API-Schlüssel",
         "Régénérer API": "API neu generieren",
+        "Copier les droits": "Kopierrechte",
         "Droits": "Rechte",
         "Profils": "Profile",
         "Sauvegarde effectuée": "Sicherung abgeschlossen",
@@ -2891,7 +2892,11 @@
         "Êtes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Möchten Sie den API-Schlüssel des Benutzers wirklich ändern?",
         "Modification effectuée": "Änderung vorgenommen",
         "Gestion des droits (Utilisateur limité)": "Rechteverwaltung (eingeschränkter Benutzer)",
-        "Gestion du profils": "Profilverwaltung"
+        "Gestion du profils": "Profilverwaltung",
+        "Vous n\\'avez aucun autre utilisateur à profil limité": "Sie haben keine anderen Benutzer mit eingeschränktem Profil",
+        "Vous voulez copier les droit de ": "Sie möchten die Rechte von kopieren",
+        "vers": "gegenüber",
+        "Droits copié avec succes": "Rechte erfolgreich kopiert"
     },
     "desktop\/js\/health.js": {
         "Configuration du plugin": "Plugin Konfiguration",

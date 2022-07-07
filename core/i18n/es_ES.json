@@ -796,7 +796,7 @@
         "Êtes-vous sûr de vouloir envoyer tout l\\'historique de cette commande à InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute.": "¿Está seguro de que desea enviar el historial completo de este comando a InfluxDB? Esto se programará y se hará en segundo plano en un minuto",
         "Programmation envoyée avec succés": "Programación enviada con éxito",
         "Êtes-vous sûr de vouloir copier l\\'historique de": "¿Estás seguro de que quieres copiar el historial de",
-        "vers": "Hacia",
+        "vers": "hacia",
         "Il est conseillé de vider l\\'historique de la commande": "Es aconsejable vaciar el histórico del comando",
         "avant la copie": "antes de copiar",
         "Historique copié avec succès": "Historial copiado correctamente",
@@ -2882,6 +2882,7 @@
         "Mot de passe": "Contraseña",
         "Renouveler la clef API": "Renovar clave de API",
         "Régénérer API": "Regenerar API",
+        "Copier les droits": "Derechos de copia",
         "Droits": "Derechos",
         "Profils": "Perfiles",
         "Sauvegarde effectuée": "Guardado correctamente",
@@ -2891,7 +2892,11 @@
         "Êtes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "¿Está seguro de que desea cambiar la clave API del usuario?",
         "Modification effectuée": "Modificación realizada",
         "Gestion des droits (Utilisateur limité)": "Gestión de derechos (usuario limitado)",
-        "Gestion du profils": "Gestión de perfiles"
+        "Gestion du profils": "Gestión de perfiles",
+        "Vous n\\'avez aucun autre utilisateur à profil limité": "No tienes otros usuarios de perfil limitado",
+        "Vous voulez copier les droit de ": "Quiere copiar los derechos de",
+        "vers": "hacia",
+        "Droits copié avec succes": "Derechos copiados correctamente"
     },
     "desktop\/js\/health.js": {
         "Configuration du plugin": "Configuración del complemento",
