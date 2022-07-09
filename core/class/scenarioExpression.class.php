@@ -1555,7 +1555,7 @@ class scenarioExpression {
 							if ($cmd->getType() == 'info') {
 								$cmd->event(jeedom::evaluateExpression($options['value']));
 								$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['event']['txt'] . $cmd->getHumanName() . ' ' . __('à', __FILE__) . ' ' . $options['value']);
-							} else if ($cmd->getType() == 'action') {
+							} else if ($cmd->getType() == 'action' && $cmd->getEqLogic()->getIsEnable() == 1) {
 								if ($cmd->getSubtype() == 'slider') {
 									$options['slider'] = evaluate($options['value']);
 								}
