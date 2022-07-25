@@ -3,8 +3,10 @@ echo 'Start init'
 
 if [ -f /var/www/html/core/config/common.config.php ]; then
 	echo 'Jeedom is already install'
+	JEEDOM_INSTALL=1
 else
 	echo 'Start jeedom installation'
+	JEEDOM_INSTALL=0
 	rm -rf /root/install.sh
 	wget https://raw.githubusercontent.com/jeedom/core/alpha/install/install.sh -O /root/install.sh
 	chmod +x /root/install.sh
@@ -39,7 +41,7 @@ if [ $(which mysqld | wc -l) -ne 0 ]; then
 	service mysql restart
 fi
 
-if ! [ -f /.jeedom_backup_restore ]; then
+if [ ! -f /.jeedom_backup_restore && ${JEEDOM_INSTALL} -eq 0 ]; then
 	if [ ! -z "${RESTOREBACKUP}" ] && [ "${RESTOREBACKUP}" != 'NO' ]; then
 		echo 'Need restore backup '${RESTOREBACKUP}
 		wget ${RESTOREBACKUP} -O /tmp/backup.tar.gz
