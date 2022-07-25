@@ -1,7 +1,7 @@
-name: Docker Image CI
+name: Docker Image CI latest
 on:
   schedule:
-    - cron: "00 00 * * *"
+    - cron: "00 02 * * *"
 jobs:
   build:
     runs-on: ubuntu-latest
