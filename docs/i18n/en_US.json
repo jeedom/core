@@ -7526,6 +7526,7 @@
         "Mode synchrone": "Synchronous mode",
         "Lance le scénario dans le thread courant au lieu d'un thread dédié": "Start the scenario in the current thread instead of a dedicated thread",
         "Permet d'augmenter la vitesse de lancement du scénario, mais peut rendre le système instable": "Increases the speed at which the scenario is launched, but can make the system unstable",
+        "Attention a ne surtout pas mettre de scénarios complexe ou avec des pauses (sleep) ou wait en synchrone, cela engendre un comportement instable de jeedom et ne pourra etre couvert par le support": "Be careful not to put complex scenarios or with pauses (sleep) or wait synchronously, this generates an unstable behavior of jeedom and cannot be covered by the support",
         "Le type de log souhaité pour le scénario": "The type of log desired for the scenario",
         "Vous pouvez couper les logs du scénario ou au contraire le faire apparaître dans Analyse → Temps réel": "You can cut the scenario logs or on the contrary show it in Analysis → Real time",
         "Permet de garder un suivi du scénario dans la timeline (voir doc Historique": "Keep a follow-up of the scenario in the timeline (see History doc",

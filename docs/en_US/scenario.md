@@ -74,7 +74,7 @@ In the tab **General**, we find the main parameters of the scenario :
 >**IMPORTANT**
 >
 >The multi launch works per second, that is to say that if you have 2 launches in the same second without the box checked, there will still be 2 launches of the scenario (although it should not). Likewise, during several launches in the same second, some launches may lose the tags. Conclusion it is ABSOLUTELY necessary to avoid multiple launches in the same second.
-- **Synchronous mode** : Start the scenario in the current thread instead of a dedicated thread. Increases the speed at which the scenario is launched, but can make the system unstable.
+- **Synchronous mode** : Start the scenario in the current thread instead of a dedicated thread. Increases the speed at which the scenario is launched, but can make the system unstable. Be careful not to put complex scenarios or with pauses (sleep) or wait synchronously, this generates an unstable behavior of jeedom and cannot be covered by the support.
 - **Log** : The type of log desired for the scenario. You can cut the scenario logs or on the contrary show it in Analysis → Real time.
 - **Timeline** : Keep a follow-up of the scenario in the timeline (see History doc).
 - **Icon** : Allows you to choose an icon for the scenario instead of the standard icon.
