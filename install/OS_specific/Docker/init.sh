@@ -41,7 +41,7 @@ if [ $(which mysqld | wc -l) -ne 0 ]; then
 	service mysql restart
 fi
 
-if [ ! -f /.jeedom_backup_restore && ${JEEDOM_INSTALL} -eq 0 ]; then
+if [ ! -f /.jeedom_backup_restore ] && [ ${JEEDOM_INSTALL} -eq 0 ]; then
 	if [ ! -z "${RESTOREBACKUP}" ] && [ "${RESTOREBACKUP}" != 'NO' ]; then
 		echo 'Need restore backup '${RESTOREBACKUP}
 		wget ${RESTOREBACKUP} -O /tmp/backup.tar.gz
