@@ -2882,6 +2882,7 @@
         "Mot de passe": "Contraseña",
         "Renouveler la clef API": "Renovar clave de API",
         "Régénérer API": "Regenerar API",
+        "Copier les droits": "Derechos de copia",
         "Droits": "Derechos",
         "Profils": "Perfiles",
         "Sauvegarde effectuée": "Guardado correctamente",
@@ -2891,7 +2892,11 @@
         "Êtes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "¿Está seguro de que desea cambiar la clave API del usuario?",
         "Modification effectuée": "Modificación realizada",
         "Gestion des droits (Utilisateur limité)": "Gestión de derechos (usuario limitado)",
-        "Gestion du profils": "Gestión de perfiles"
+        "Gestion du profils": "Gestión de perfiles",
+        "Vous n\\'avez aucun autre utilisateur à profil limité": "No tienes otros usuarios de perfil limitado",
+        "Vous voulez copier les droit de ": "Quiere copiar los derechos de",
+        "vers": "hacia",
+        "Droits copié avec succes": "Derechos copiados correctamente"
     },
     "desktop\/js\/health.js": {
         "Configuration du plugin": "Configuración del complemento",

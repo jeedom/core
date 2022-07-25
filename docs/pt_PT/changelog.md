@@ -13,6 +13,7 @@
 - **Ferramentas / Objetos** : Adicionado um menu contextual em um objeto para gerenciar a visibilidade, alterar o objeto pai e mover.
 - **Ferramentas / Substituir** : Nova ferramenta para substituição de equipamentos e comandos.
 - **Análise / Cronograma** : Adicionado um campo de pesquisa para filtrar a exibição.
+- **Comercial** : Adicionado um botão para copiar os direitos de um usuário limitado para outro
 - **Relatório** : Capacidade de relatar sobre a saúde de Jeedom.
 - **Relatório** : Capacidade de relatar equipamentos alertados.
 - **Atualizar** : Capacidade de ver do Jeedom os pacotes OS / PIP2 / PIP3 / NodeJS que podem ser atualizados e iniciar a atualização (cuidado com a função arriscada e em beta).
