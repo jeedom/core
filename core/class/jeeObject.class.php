@@ -389,7 +389,11 @@ class jeeObject {
 		if (count($value) == 0) {
 			return null;
 		}
-		return round(jeedom::calculStat($def[$_key]['calcul'], $value), 1);
+		$return = jeedom::calculStat($def[$_key]['calcul'], $value);
+		if (is_nan($return)) {
+			return $return;
+		}
+		return round($return, 1);
 	}
 
 	public static function getGlobalHtmlSummary($_version = 'dashboard') {
@@ -981,7 +985,7 @@ class jeeObject {
 	}
 
 	public function getHtmlSummary($_version = 'dashboard') {
-      	$dbVersion = $_version == 'dashboard' ? 'desktop' : $_version;
+		$dbVersion = $_version == 'dashboard' ? 'desktop' : $_version;
 		$virtual = eqLogic::byLogicalId('summary' . $this->getId(), 'virtual');
 		$return = '<span class="objectSummaryContainer objectSummary' . $this->getId() . '" data-version="' . $_version . '">';
 		$def = config::byKey('object:summary');
