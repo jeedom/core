@@ -713,7 +713,7 @@ class scenarioExpression {
 
 		$histories = $cmd->getHistory();
 		if (count($histories) == 0) {
-			return '0';
+			return 0;
 		}
 		
 		$duration = 0;
