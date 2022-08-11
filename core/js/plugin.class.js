@@ -124,6 +124,26 @@ jeedom.plugin.dependancyInstall = function(_params) {
   $.ajax(paramsAJAX);
 }
 
+jeedom.plugin.dependancyChangeAutoMode = function(_params) {
+  var paramsRequired = ['id', 'mode'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/plugin.ajax.php';
+  paramsAJAX.data = {
+    action: 'dependancyChangeAutoMode',
+    id: _params.id,
+    mode: _params.mode
+  };
+  $.ajax(paramsAJAX);
+}
+
 jeedom.plugin.getDeamonInfo = function(_params) {
   var paramsRequired = ['id'];
   var paramsSpecifics = {

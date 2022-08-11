@@ -33,6 +33,7 @@ $dependancy_info = $plugin->dependancy_info();
       <th>{{Nom}}</th>
       <th>{{Statut}}</th>
       <th>{{Installation}}</th>
+      <th>{{Gestion automatique}}</th>
       <th>{{Dernière installation}}</th>
     </tr>
   </thead>
@@ -67,6 +68,14 @@ $dependancy_info = $plugin->dependancy_info();
       <td>
         <a class="btn btn-warning btn-sm launchInstallPluginDependancy" style="position:relative;top:-5px;"><i class="fas fa-bicycle"></i> {{Relancer}}</a>
       </td>
+      <td>
+        <?php if ($dependancy_info['auto'] == 1) { ?>
+          <a class="btn btn-danger btn-sm bt_changeAutoModeDependancy" data-mode="0" style="position:relative;top:-5px;"><i class="fas fa-times"></i> {{Désactiver}}</a>
+        <?php } else { ?>
+          <a class="btn btn-success btn-sm bt_changeAutoModeDependancy" data-mode="1" style="position:relative;top:-5px;"><i class="fas fa-magic"></i> {{Activer}}</a>
+        <?php }
+        ?>
+      </td>
       <td class="td_lastLaunchDependancy">
         <?php echo $dependancy_info['last_launch'] ?>
       </td>
@@ -75,57 +84,91 @@ $dependancy_info = $plugin->dependancy_info();
 </table>
 
 <script>
-function refreshDependancyInfo() {
-  var nok = false
-  jeedom.plugin.getDependancyInfo({
-    id : plugin_id,
-    success: function (data) {
-      switch(data.state) {
-        case 'ok':
-          $('.dependancyState').empty().append('<span class="label label-success">{{OK}}</span>')
-          break
-        case 'nok':
-          nok = true
-          $("#div_plugin_dependancy").closest('.panel').removeClass('panel-success panel-info').addClass('panel-danger')
-          $('.dependancyState').empty().append('<span class="label label-danger">{{NOK}}</span>')
-          break
-        case 'in_progress':
-          nok = true
-          $("#div_plugin_dependancy").closest('.panel').removeClass('panel-success panel-danger').addClass('panel-info')
-          var html = '<span class="label label-primary"><i class="fas fa-spinner fa-spin"></i> {{Installation en cours}}'
-          if (isset(data.progression) && data.progression !== '') {
-            html += ' - '+data.progression+' %'
-          }
-          if (isset(data.duration) && data.duration != -1) {
-            html += ' - '+data.duration+' min'
-          }
-          html += '</span>'
-          $('.dependancyState').empty().append(html)
-          break
-        default:
-          $('.dependancyState').empty().append('<span class="label label-warning">'+data.state+'</span>')
+  function refreshDependancyInfo() {
+    var nok = false
+    jeedom.plugin.getDependancyInfo({
+      id: plugin_id,
+      success: function(data) {
+        switch (data.state) {
+          case 'ok':
+            $('.dependancyState').empty().append('<span class="label label-success">{{OK}}</span>')
+            break
+          case 'nok':
+            nok = true
+            $("#div_plugin_dependancy").closest('.panel').removeClass('panel-success panel-info').addClass('panel-danger')
+            $('.dependancyState').empty().append('<span class="label label-danger">{{NOK}}</span>')
+            break
+          case 'in_progress':
+            nok = true
+            $("#div_plugin_dependancy").closest('.panel').removeClass('panel-success panel-danger').addClass('panel-info')
+            var html = '<span class="label label-primary"><i class="fas fa-spinner fa-spin"></i> {{Installation en cours}}'
+            if (isset(data.progression) && data.progression !== '') {
+              html += ' - ' + data.progression + ' %'
+            }
+            if (isset(data.duration) && data.duration != -1) {
+              html += ' - ' + data.duration + ' min'
+            }
+            html += '</span>'
+            $('.dependancyState').empty().append(html)
+            break
+          default:
+            $('.dependancyState').empty().append('<span class="label label-warning">' + data.state + '</span>')
+        }
+        $('.td_lastLaunchDependancy').empty().append(data.last_launch)
+        if (data.auto == 1) {
+          $('.bt_changeAutoModeDependancy').removeClass('btn-success').addClass('btn-danger')
+          $('.bt_changeAutoModeDependancy').attr('data-mode', 0)
+          $('.bt_changeAutoModeDependancy').html('<i class="fas fa-times"></i> {{Désactiver}}')
+        } else {
+          $('.bt_changeAutoModeDependancy').removeClass('btn-danger').addClass('btn-success')
+          $('.bt_changeAutoModeDependancy').attr('data-mode', 1)
+          $('.bt_changeAutoModeDependancy').html('<i class="fas fa-magic"></i> {{Activer}}')
+        }
+        if (!nok) {
+          $("#div_plugin_dependancy").closest('.panel').removeClass('panel-danger panel-info').addClass('panel-success')
+        }
+        if (nok) {
+          setTimeout(refreshDependancyInfo, 5000)
+        }
       }
-      $('.td_lastLaunchDependancy').empty().append(data.last_launch)
-      if (!nok) {
-        $("#div_plugin_dependancy").closest('.panel').removeClass('panel-danger panel-info').addClass('panel-success')
-      }
-      if (nok) {
-        setTimeout(refreshDependancyInfo, 5000)
-      }
-    }
-  })
-}
-refreshDependancyInfo()
+    })
+  }
+  refreshDependancyInfo()
 
-$('.launchInstallPluginDependancy').on('click',function() {
-  jeedom.plugin.dependancyInstall({
-    id : plugin_id,
-    error: function(error) {
-      $.fn.showAlert({message: error.message, level: 'danger'})
-    },
-    success: function(data) {
-      $("#div_plugin_dependancy").load('index.php?v=d&modal=plugin.dependancy&plugin_id='+plugin_id)
-    }
+  $('.launchInstallPluginDependancy').on('click', function() {
+    jeedom.plugin.dependancyInstall({
+      id: plugin_id,
+      error: function(error) {
+        $.fn.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(data) {
+        $("#div_plugin_dependancy").load('index.php?v=d&modal=plugin.dependancy&plugin_id=' + plugin_id)
+      }
+    })
   })
-})
+
+
+  $('.bt_changeAutoModeDependancy').on('click', function() {
+    clearTimeout(refreshDependancyInfo)
+    var mode = $(this).attr('data-mode')
+    jeedom.plugin.dependancyChangeAutoMode({
+      id: plugin_id,
+      mode: mode,
+      error: function(error) {
+        $.fn.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+        refreshDependancyInfo()
+        timeout_refreshDeamonInfo = setTimeout(refreshDependancyInfo, 5000)
+      },
+      success: function() {
+        refreshDependancyInfo()
+        timeout_refreshDeamonInfo = setTimeout(refreshDependancyInfo, 5000)
+      }
+    })
+  })
 </script>

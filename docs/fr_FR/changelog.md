@@ -18,7 +18,7 @@
 - **Rapport** : Possibilité de faire des rapports sur les équipements en alerte.
 - **Mise à jour** : Possibilité de voir depuis Jeedom les packages OS/PIP2/PIP3/NodeJS qui peuvent etre mise à jour et de lancer la mise à jour (attention fonction risquée et en beta).
 - **Commande alerte** : Ajout d'une option pour recevoir un message en cas de fin d'alerte.
-
+- **Plugins** : possibilité de désactiver l'installation des dépendances par plugin
 - **Optimisation** : jeeFrontEnd{}, jeephp2js{}, corrections de bugs mineures et optimisations.
 
 ### 4.3 : WebApp

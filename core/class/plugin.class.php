@@ -562,7 +562,7 @@ class plugin {
 				continue;
 			}
 			$dependancy_info = $plugin->dependancy_info();
-			if ($dependancy_info['state'] == 'nok') {
+			if ($dependancy_info['state'] == 'nok' && config::byKey('dependancyAutoMode', $plugin->getId(), 1) == 1) {
 				try {
 					$plugin->dependancy_install();
 				} catch (Exception $e) {
@@ -674,6 +674,7 @@ class plugin {
 				$return['duration'] = -1;
 			}
 			$return['last_launch'] = config::byKey('lastDependancyInstallTime', $this->getId(), __('Inconnue', __FILE__));
+			$return['auto'] = config::byKey('dependancyAutoMode', $this->getId(), 1);
 			if ($return['state'] == 'ok') {
 				cache::set('dependancy' . $this->getID(), $return);
 			}
@@ -705,6 +706,7 @@ class plugin {
 			$return['duration'] = -1;
 		}
 		$return['last_launch'] = config::byKey('lastDependancyInstallTime', $this->getId(), __('Inconnue', __FILE__));
+		$return['auto'] = config::byKey('dependancyAutoMode', $this->getId(), 1);
 		if ($return['state'] == 'ok') {
 			cache::set('dependancy' . $this->getID(), $return);
 		}
@@ -774,6 +776,15 @@ class plugin {
 		$cache = cache::byKey('dependancy' . $this->getID());
 		$cache->remove();
 		return;
+	}
+
+	public function dependancy_changeAutoMode($_mode) {
+		config::save('dependancyAutoMode', $_mode, $this->getId());
+		$plugin_id = $this->getId();
+		if (method_exists($plugin_id, 'dependancy_changeAutoMode')) {
+			$plugin_id::dependancy_changeAutoMode($_mode);
+		}
+		$this->dependancy_info(true);
 	}
 
 	public function deamon_changeAutoMode($_mode) {
