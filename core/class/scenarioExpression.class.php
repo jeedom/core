@@ -712,7 +712,10 @@ class scenarioExpression {
 		$_decimal = strlen(substr(strrchr($_value, "."), 1));
 
 		$histories = $cmd->getHistory();
-
+		if (count($histories) == 0) {
+			return 0;
+		}
+		
 		$duration = 0;
 		$lastDuration = strtotime($histories[0]->getDatetime());
 		$lastValue = $histories[0]->getValue();
