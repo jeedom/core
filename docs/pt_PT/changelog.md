@@ -18,7 +18,7 @@
 - **Relatório** : Capacidade de relatar equipamentos alertados.
 - **Atualizar** : Capacidade de ver do Jeedom os pacotes OS / PIP2 / PIP3 / NodeJS que podem ser atualizados e iniciar a atualização (cuidado com a função arriscada e em beta).
 - **Comando de alerta** : Adicionada uma opção para receber uma mensagem em caso de fim de alerta.
-
+- **Plug-ins** : possibilidade de desabilitar a instalação de dependências por plugin
 - **Otimização** : jeeFrontEnd{}, jeephp2js{}, pequenas correções de bugs e otimizações.
 
 ### 4.3 : WebApp

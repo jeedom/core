@@ -296,13 +296,13 @@
         "Configuration": "Configuração",
         "(Re)Démarrer": "(Re)Iniciar",
         "Arrêter": "Parar",
-        "Gestion automatique": "Gestão automática",
+        "Gestion automatique": "Gerenciamento automático",
         "Dernier lancement": "último lançamento",
         "Local": "Local",
         "OK": "Ok",
         "NOK": "NOK",
         "Désactiver": "Desativar",
-        "Activer": "Ativar"
+        "Activer": "Permitir"
     },
     "desktop\/modal\/note.manager.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -402,12 +402,15 @@
         "Nom": "Nome",
         "Statut": "Estado",
         "Installation": "Instalação",
+        "Gestion automatique": "Gerenciamento automático",
         "Dernière installation": "última Instalação",
         "Local": "Local",
         "OK": "Ok",
         "NOK": "NOK",
         "Installation en cours": "Instalação em progresso",
-        "Relancer": "Relançar"
+        "Relancer": "Relançar",
+        "Désactiver": "Desativar",
+        "Activer": "Permitir"
     },
     "desktop\/modal\/action.insert.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -568,7 +571,7 @@
         "Volet": "Estore",
         "Etat": "Estado",
         "Rotation": "Rotação",
-        "Activer": "Ativar",
+        "Activer": "Permitir",
         "Ouverture": "Abertura",
         "Gauche": "Esquerda",
         "Droite": "Direita",
@@ -984,7 +987,7 @@
         "Création": "Criação",
         "Changement de pile": "Troca de bateria",
         "Tag(s)": "Separador(es)",
-        "Activer": "Ativar",
+        "Activer": "Permitir",
         "Visible": "Visível",
         "Type": "Tipo",
         "Tentative échouée": "Tentativa falhada",
@@ -1695,7 +1698,7 @@
         "Durée des notifications": "Duração das notificações",
         "Durée d'affichage des notifications en seconde (0: infini)": "Mostra a duração das notificações em segundos (0: infinito)",
         "Personnalisation": "Personalização",
-        "Activer": "Ativar",
+        "Activer": "Permitir",
         "Permet de modifier les paramètres par défaut des thèmes": "Permite alterar as configurações padrão dos temas",
         "Personnalisation avancée": "A personalização avançada",
         "Activer la Personnalisation avancée.": "Ativar a personalização avançada",
@@ -2712,7 +2715,7 @@
         "Afficher le panneau desktop": "Mostrar painel da área de trabalho",
         "Afficher le panneau mobile": "Mostrar painel móvel",
         "Oui": "Sim",
-        "Activer": "Ativar",
+        "Activer": "Permitir",
         "Non": "Não",
         "Statut": "Estado",
         "Actif": "Ativo",
@@ -3097,7 +3100,7 @@
         "Envoyer": "Enviar",
         "Image de fond ajoutée avec succès": "Imagem de fundo adicionada com sucesso",
         "Commande": "Comando",
-        "Activer": "Ativar",
+        "Activer": "Permitir",
         "Inverser": "Inverter",
         "Résumé(s)": "Resumo(s)",
         "Rendre invisible": "Tornar invisível",
@@ -4588,7 +4591,7 @@
         "Message par défaut": "Mensagem predefinida",
         "Ne pas afficher le champ message": "Não mostrar o campo de mensagem",
         "Affiche l'info time sous forme de date": "Mostra a hora da informação como uma data",
-        "Activer": "Ativar",
+        "Activer": "Permitir",
         "Desactiver": "Desativar",
         "Log d'exécution du scénario": "Registo de execução de cenário",
         "Couleur du curseur et valeur": "Cor do cursor e valor",
@@ -4617,7 +4620,7 @@
         "Démarrer": "Iniciar",
         "Démarrer (sync)": "Iniciar (sincronização)",
         "Arrêter": "Parar",
-        "Activer": "Ativar",
+        "Activer": "Permitir",
         "Désactiver": "Desativar",
         "Remise à zéro des SI": "Reiniciar a zero os SE",
         "Tags": "Separadores",
@@ -4644,7 +4647,7 @@
     "core\/template\/scenario\/widget.default.html": {
         "Visible": "Visível",
         "Masquer": "Esconder",
-        "Activer": "Ativar",
+        "Activer": "Permitir",
         "Désactiver": "Desativar"
     },
     "core\/template\/scenario\/delete_variable.default.html": {
@@ -4656,7 +4659,7 @@
         "Action": "Ação",
         "Visible": "Visível",
         "Masquer": "Esconder",
-        "Activer": "Ativar",
+        "Activer": "Permitir",
         "Désactiver": "Desativar"
     },
     "core\/template\/scenario\/genericType.default.html": {

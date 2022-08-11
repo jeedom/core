@@ -296,13 +296,13 @@
         "Configuration": "Konfiguration",
         "(Re)Démarrer": "(Re) Anfang",
         "Arrêter": "Beenden",
-        "Gestion automatique": "Automatisches management",
+        "Gestion automatique": "Automatische Verwaltung",
         "Dernier lancement": "Letzter Start",
         "Local": "Lokal",
         "OK": "Ok",
         "NOK": "NOK",
-        "Désactiver": "Deactivate",
-        "Activer": "Aktivieren"
+        "Désactiver": "Deaktivieren",
+        "Activer": "Ermöglichen"
     },
     "desktop\/modal\/note.manager.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -402,12 +402,15 @@
         "Nom": "Name",
         "Statut": "Status",
         "Installation": "Einrichtung",
+        "Gestion automatique": "Automatische Verwaltung",
         "Dernière installation": "Letzte Installation",
         "Local": "Lokal",
         "OK": "Ok",
         "NOK": "NOK",
         "Installation en cours": "Installation läuft",
-        "Relancer": "Beleben"
+        "Relancer": "Beleben",
+        "Désactiver": "Deaktivieren",
+        "Activer": "Ermöglichen"
     },
     "desktop\/modal\/action.insert.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -568,7 +571,7 @@
         "Volet": "Klappe",
         "Etat": "Zustand",
         "Rotation": "Drehung",
-        "Activer": "Aktivieren",
+        "Activer": "Ermöglichen",
         "Ouverture": "Öffnung",
         "Gauche": "Links",
         "Droite": "Recht",
@@ -984,7 +987,7 @@
         "Création": "Schaffung",
         "Changement de pile": "Batteriewechsel",
         "Tag(s)": "Tag (e)",
-        "Activer": "Aktivieren",
+        "Activer": "Ermöglichen",
         "Visible": "Sichtbar",
         "Type": "Typ",
         "Tentative échouée": "Versuch fehlgeschlagen",
@@ -1695,7 +1698,7 @@
         "Durée des notifications": "Dauer der Benachrichtigungen",
         "Durée d'affichage des notifications en seconde (0: infini)": "Anzeigedauer von Benachrichtigungen in Sekunden (0: unendlich)",
         "Personnalisation": "Personalisierung",
-        "Activer": "Aktivieren",
+        "Activer": "Ermöglichen",
         "Permet de modifier les paramètres par défaut des thèmes": "Ändern Sie die Standardeinstellungen für Themen",
         "Personnalisation avancée": "Erweiterte Anpassung",
         "Activer la Personnalisation avancée.": "Aktivieren Sie die erweiterte Personalisierung",
@@ -2712,13 +2715,13 @@
         "Afficher le panneau desktop": "Desktop-Panel anzeigen",
         "Afficher le panneau mobile": "Mobiles Panel anzeigen",
         "Oui": "Ja",
-        "Activer": "Aktivieren",
+        "Activer": "Ermöglichen",
         "Non": "Nicht",
         "Statut": "Status",
         "Actif": "Aktiviert",
         "Inactif": "Inaktiv",
         "Action": "Aktion",
-        "Désactiver": "Deactivate",
+        "Désactiver": "Deaktivieren",
         "Votre version de": "Ihre Version von",
         "ne permet pas d\\'activer ce plugin": "erlaubt nicht, dieses Plugin zu aktivieren",
         "Niveau log": "Protokollstufe",
@@ -2876,7 +2879,7 @@
         "Activé": "Ermöglicht",
         "Désactivé": "Deaktiviert",
         "OK": "Ok",
-        "Désactiver": "Deactivate",
+        "Désactiver": "Deaktivieren",
         "NOK": "NOK",
         "Supprimer": "Entfernen",
         "Mot de passe": "Passwort",
@@ -3097,7 +3100,7 @@
         "Envoyer": "Senden",
         "Image de fond ajoutée avec succès": "Hintergrundbild erfolgreich hinzugefügt",
         "Commande": "Befehl",
-        "Activer": "Aktivieren",
+        "Activer": "Ermöglichen",
         "Inverser": "Umgekehrt",
         "Résumé(s)": "Zusammenfassung (en)",
         "Rendre invisible": "Unsichtbar machen",
@@ -4588,7 +4591,7 @@
         "Message par défaut": "Standardnachricht",
         "Ne pas afficher le champ message": "Zeigen Sie das Nachrichtenfeld nicht an",
         "Affiche l'info time sous forme de date": "Zeigt die Info-Zeit als Datum an",
-        "Activer": "Aktivieren Sie",
+        "Activer": "Ermöglichen",
         "Desactiver": "Deaktivieren",
         "Log d'exécution du scénario": "Szenario-Ausführungsprotokoll",
         "Couleur du curseur et valeur": "Cursorfarbe und -wert",
@@ -4617,8 +4620,8 @@
         "Démarrer": "Start",
         "Démarrer (sync)": "Starten (Synchronisieren)",
         "Arrêter": "Beenden",
-        "Activer": "Aktivieren",
-        "Désactiver": "Deactivate",
+        "Activer": "Ermöglichen",
+        "Désactiver": "Deaktivieren",
         "Remise à zéro des SI": "Zurücksetzen von IS",
         "Tags": "Stichworte",
         "Aucun": "Nein"
@@ -4644,8 +4647,8 @@
     "core\/template\/scenario\/widget.default.html": {
         "Visible": "Sichtbar",
         "Masquer": "Auszublenden",
-        "Activer": "Aktivieren",
-        "Désactiver": "Deactivate"
+        "Activer": "Ermöglichen",
+        "Désactiver": "Deaktivieren"
     },
     "core\/template\/scenario\/delete_variable.default.html": {
         "Nom": "Name"
@@ -4656,8 +4659,8 @@
         "Action": "Aktion",
         "Visible": "Sichtbar",
         "Masquer": "Auszublenden",
-        "Activer": "Aktivieren",
-        "Désactiver": "Deactivate"
+        "Activer": "Ermöglichen",
+        "Désactiver": "Deaktivieren"
     },
     "core\/template\/scenario\/genericType.default.html": {
         "Type": "Typ",

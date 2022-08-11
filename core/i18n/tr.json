@@ -402,12 +402,15 @@
         "Nom": "İsim",
         "Statut": "Statü",
         "Installation": "Tesisat",
+        "Gestion automatique": "Gestion automatique",
         "Dernière installation": "Son kurulum",
         "Local": "Yerel",
         "OK": "Tamam",
         "NOK": "NOK",
         "Installation en cours": "Kurulum sürüyor",
-        "Relancer": "Tekrar başlat"
+        "Relancer": "Tekrar başlat",
+        "Désactiver": "Désactiver",
+        "Activer": "Activer"
     },
     "desktop\/modal\/action.insert.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
