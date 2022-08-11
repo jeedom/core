@@ -301,8 +301,8 @@
         "Local": "Local",
         "OK": "Bueno",
         "NOK": "No está bien",
-        "Désactiver": "Deshabilitar",
-        "Activer": "Habilitar"
+        "Désactiver": "Desactivar",
+        "Activer": "Activar"
     },
     "desktop\/modal\/note.manager.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -571,7 +571,7 @@
         "Volet": "Persiana",
         "Etat": "Estado",
         "Rotation": "Rotación",
-        "Activer": "Habilitar",
+        "Activer": "Activar",
         "Ouverture": "Apertura",
         "Gauche": "Izquierda",
         "Droite": "Derecha",
@@ -987,7 +987,7 @@
         "Création": "Creación",
         "Changement de pile": "Cambio de batería",
         "Tag(s)": "Tag (s)",
-        "Activer": "Habilitar",
+        "Activer": "Activar",
         "Visible": "Visible",
         "Type": "Tipo",
         "Tentative échouée": "Intento fracasado",
@@ -1698,7 +1698,7 @@
         "Durée des notifications": "Duración de las notificaciones",
         "Durée d'affichage des notifications en seconde (0: infini)": "Mostrar la duración de las notificaciones en segundos (0: infinito)",
         "Personnalisation": "Personalización",
-        "Activer": "Habilitar",
+        "Activer": "Activar",
         "Permet de modifier les paramètres par défaut des thèmes": "Cambiar la configuración predeterminada para los temas",
         "Personnalisation avancée": "Personalización avanzada",
         "Activer la Personnalisation avancée.": "Activa la personalización avanzada",
@@ -2715,13 +2715,13 @@
         "Afficher le panneau desktop": "Vista del panel de escritorio",
         "Afficher le panneau mobile": "Vista del panel móvil",
         "Oui": "Si",
-        "Activer": "Habilitar",
+        "Activer": "Activar",
         "Non": "No",
         "Statut": "Estado",
         "Actif": "Activo",
         "Inactif": "Inactivo",
         "Action": "Acción",
-        "Désactiver": "Deshabilitar",
+        "Désactiver": "Desactivar",
         "Votre version de": "Su versión de",
         "ne permet pas d\\'activer ce plugin": "no permite activar este complemento",
         "Niveau log": "Nivel de registro",
@@ -2879,7 +2879,7 @@
         "Activé": "Activado",
         "Désactivé": "Desactivado",
         "OK": "Bueno",
-        "Désactiver": "Deshabilitar",
+        "Désactiver": "Desactivar",
         "NOK": "No está bien",
         "Supprimer": "Eliminar",
         "Mot de passe": "Contraseña",
@@ -3100,7 +3100,7 @@
         "Envoyer": "Enviar",
         "Image de fond ajoutée avec succès": "Imagen de fondo agregada correctamente",
         "Commande": "Comando",
-        "Activer": "Habilitar",
+        "Activer": "Activar",
         "Inverser": "Invertir",
         "Résumé(s)": "Resumen (s)",
         "Rendre invisible": "Hacer invisible",
@@ -4591,7 +4591,7 @@
         "Message par défaut": "Mensaje predeterminado",
         "Ne pas afficher le champ message": "No mostrar el campo de mensaje",
         "Affiche l'info time sous forme de date": "Muestra la hora de información como una fecha",
-        "Activer": "Habilitar",
+        "Activer": "Activar",
         "Desactiver": "Desactivar",
         "Log d'exécution du scénario": "Registro de ejecución del escenario",
         "Couleur du curseur et valeur": "Color y valor del cursor",
@@ -4620,8 +4620,8 @@
         "Démarrer": "Iniciar",
         "Démarrer (sync)": "Iniciar (sync)",
         "Arrêter": "Detener",
-        "Activer": "Habilitar",
-        "Désactiver": "Deshabilitar",
+        "Activer": "Activar",
+        "Désactiver": "Desactivar",
         "Remise à zéro des SI": "Restablecimiento de IS",
         "Tags": "Etiquetas",
         "Aucun": "No"
@@ -4647,8 +4647,8 @@
     "core\/template\/scenario\/widget.default.html": {
         "Visible": "Visible",
         "Masquer": "Ocultar",
-        "Activer": "Habilitar",
-        "Désactiver": "Deshabilitar"
+        "Activer": "Activar",
+        "Désactiver": "Desactivar"
     },
     "core\/template\/scenario\/delete_variable.default.html": {
         "Nom": "Nombre"
@@ -4659,8 +4659,8 @@
         "Action": "Acción",
         "Visible": "Visible",
         "Masquer": "Ocultar",
-        "Activer": "Habilitar",
-        "Désactiver": "Deshabilitar"
+        "Activer": "Activar",
+        "Désactiver": "Desactivar"
     },
     "core\/template\/scenario\/genericType.default.html": {
         "Type": "Escribe",
