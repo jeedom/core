@@ -145,6 +145,9 @@ class system {
 			return;
 		}
 		if (is_numeric($_find)) {
+			if ($_find === 0) {
+				return;
+			}
 			$kill = posix_kill($_find, 15);
 			if ($kill) {
 				return true;
