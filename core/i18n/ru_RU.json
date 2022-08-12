@@ -402,12 +402,15 @@
         "Nom": "Имя",
         "Statut": "статус",
         "Installation": "установка",
+        "Gestion automatique": "Gestion automatique",
         "Dernière installation": "Последняя установка",
         "Local": "местный",
         "OK": "хорошо",
         "NOK": "Неактивен",
         "Installation en cours": "Идет установка",
-        "Relancer": "возрождать"
+        "Relancer": "возрождать",
+        "Désactiver": "Désactiver",
+        "Activer": "Activer"
     },
     "desktop\/modal\/action.insert.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",

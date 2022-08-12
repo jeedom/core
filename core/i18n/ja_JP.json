@@ -402,12 +402,15 @@
         "Nom": "表題",
         "Statut": "ステータス",
         "Installation": "インスト",
+        "Gestion automatique": "Gestion automatique",
         "Dernière installation": "最後のインストール",
         "Local": "ローカル",
         "OK": "[OK]を",
         "NOK": "NOK",
         "Installation en cours": "インストール中",
-        "Relancer": "生き返ります"
+        "Relancer": "生き返ります",
+        "Désactiver": "Désactiver",
+        "Activer": "Activer"
     },
     "desktop\/modal\/action.insert.php": {
         "401 - Accès non autorisé": "401-不正アクセス",

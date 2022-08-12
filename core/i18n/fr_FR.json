@@ -402,12 +402,15 @@
         "Nom": "Nom",
         "Statut": "Statut",
         "Installation": "Installation",
+        "Gestion automatique": "Gestion automatique",
         "Dernière installation": "Dernière installation",
         "Local": "Local",
         "OK": "OK",
         "NOK": "NOK",
         "Installation en cours": "Installation en cours",
-        "Relancer": "Relancer"
+        "Relancer": "Relancer",
+        "Désactiver": "Désactiver",
+        "Activer": "Activer"
     },
     "desktop\/modal\/action.insert.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",

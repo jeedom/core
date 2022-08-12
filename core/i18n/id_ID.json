@@ -402,12 +402,15 @@
         "Nom": "Nama",
         "Statut": "Status",
         "Installation": "Instalasi",
+        "Gestion automatique": "Gestion automatique",
         "Dernière installation": "Instalasi terakhir",
         "Local": "Local",
         "OK": "Ok",
         "NOK": "NOK",
         "Installation en cours": "Instalasi berlangsung",
-        "Relancer": "Menghidupkan kembali"
+        "Relancer": "Menghidupkan kembali",
+        "Désactiver": "Désactiver",
+        "Activer": "Activer"
     },
     "desktop\/modal\/action.insert.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
