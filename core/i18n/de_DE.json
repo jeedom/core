@@ -4567,7 +4567,7 @@
     },
     "core\/template\/widgets.html": {
         "Date de valeur": "Datum der Wertstellung",
-        "Date de collecte": "Datum der Abholung",
+        "Date de collecte": "Abholtermin",
         "Valeur": "Wert",
         "Min": "Mindest",
         "Moyenne": "Durchschnittlich",
