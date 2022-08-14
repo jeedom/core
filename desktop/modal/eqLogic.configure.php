@@ -171,7 +171,7 @@ sendVarToJS([
                 $display .= '<td>';
                 if ($cmd->getType() == 'info') {
                   $value = $cmd->execCmd();
-                  $display .= '<span class="eqLogicConfigure_cmdValue" data-cmd_id="' . $cmd->getid() . '" title="{{Date de valeur}} : ' . $cmd->getValueDate() . ' - {{Date de collecte}} : ' .  $cmd->getCollectDate() . '">' . $value . ' ' . $cmd->getUnite() . '<span>';
+                  $display .= '<span class="eqLogicConfigure_cmdValue" data-cmd_id="' . $cmd->getid() . '" title="{{Date de collecte}} : ' .  $cmd->getCollectDate() . '">' . $value . ' ' . $cmd->getUnite() . ' {{le}} ' . $cmd->getValueDate() . '<span>';
                 }
                 $display .= '</td>';
                 $display .= '<td>';
@@ -830,8 +830,8 @@ sendVarToJS([
   $('.eqLogicConfigure_cmdValue').each(function() {
     jeedom.cmd.addUpdateFunction($(this).attr('data-cmd_id'), function(_options) {
       let cmd = $('.eqLogicConfigure_cmdValue[data-cmd_id=' + _options.cmd_id + ']')
-      cmd.attr('title', '{{Date de valeur}} : ' + _options.valueDate + '<br/>{{Date de collecte}} : ' + _options.collectDate)
-      cmd.empty().append(_options.display_value + ' ' + _options.unit);
+      cmd.attr('title', '{{Date de collecte}} : ' + _options.collectDate)
+      cmd.empty().append(_options.display_value + ' ' + _options.unit + ' {{le}} ' + _options.valueDate);
     });
   })
 </script>
