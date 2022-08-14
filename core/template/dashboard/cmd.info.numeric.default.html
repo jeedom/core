@@ -20,12 +20,12 @@
       let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
       if (_options.display_value >= maxValue) {
         maxValue = _options.display_value
-        let angle = 0
+        var angle = 0
       } else if (_options.display_value <= minValue) {
         minValue = _options.display_value
-        let angle = -180
+        var angle = -180
       } else {
-        let angle = (((_options.display_value - minValue) * 180) / (maxValue - minValue)) - 180
+        var angle = (((_options.display_value - minValue) * 180) / (maxValue - minValue)) - 180
       }
       cmd.find('.gaugeValue').css('transform', 'scale(0.94) rotate('+angle+'deg)')
       cmd.find('.state strong').first().text(_options.display_value+' '+_options.unit)
