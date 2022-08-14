@@ -4,9 +4,9 @@
 		<span class="state">#state#</span><span class="unit">#unite#</span>
 	</center>
 	<script>
-		jeedom.cmd.update['#id#'] = function(_options) {
+		 jeedom.cmd.addUpdateFunction('#id#',function(_options) {
 			$('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value)
 			$('.cmd[data-cmd_id=#id#] .unit').empty().append(_options.unit);
-		}
+		});
 	</script>
 </div>

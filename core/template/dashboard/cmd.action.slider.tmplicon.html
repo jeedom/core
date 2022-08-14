@@ -49,25 +49,24 @@
       }
     })
 
-    jeedom.cmd.update['#id#'] = function(_options) {
-      var cmd = $('.cmd[data-cmd_id=#id#]')
-      if ('#_time_widget_#' == '1') {
-        jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
-      } else {
-        cmd.find('.timeCmd').remove()
-      }
+    jeedom.cmd.addUpdateFunction('#id#',function(_options) {
+        var cmd = $('.cmd[data-cmd_id=#id#]')
+        if ('#_time_widget_#' == '1') {
+          jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
+        } else {
+          cmd.find('.timeCmd').remove()
+        }
 
-      var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
-      var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
-      var stateValue = ('#state#' == '') ? 0 : parseInt(_options.display_value)
-      mySlider#id#.set(stateValue)
-      if (stateValue > minValue) {
-        cmd.find('.iconCmd').empty().append("#_icon_on_#").attr('data-state', 'on')
-      } else {
-        cmd.find('.iconCmd').empty().append("#_icon_off_#").attr('data-state', 'off')
-      }
-    }
-
-    jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'})
+        var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
+        var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+        var stateValue = ('#state#' == '') ? 0 : parseInt(_options.display_value)
+        mySlider#id#.set(stateValue)
+        if (stateValue > minValue) {
+          cmd.find('.iconCmd').empty().append("#_icon_on_#").attr('data-state', 'on')
+        } else {
+          cmd.find('.iconCmd').empty().append("#_icon_off_#").attr('data-state', 'off')
+        }
+      });
+    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
   </script>
 </div>

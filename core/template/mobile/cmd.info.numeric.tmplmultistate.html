@@ -5,7 +5,7 @@
     <span class="timeCmd value #history#" data-type="info"></span>
   </center>
   <script>
-    jeedom.cmd.update['#id#'] = function(_options) {
+     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
       var cmd = $('.cmd[data-cmd_id=#id#]')
       if ('#_time_widget_#' == '1') {
         jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
@@ -40,9 +40,9 @@
         }
         cmd.find('.iconCmd img').attr('style',style)
       })
-    }
+    });
 
-    jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'})
+    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
 
     $('body').on('changeThemeEvent', function (event,theme) {
       $('.cmd[data-cmd_id=#id#]').trigger('changeThemeEventCmd', theme)

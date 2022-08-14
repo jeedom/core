@@ -12,15 +12,15 @@
   </center>
   <script>
     var cmd#id# = $('.cmd[data-cmd_id=#id#]')
-    jeedom.cmd.update['#id#'] = function(_options){
+    jeedom.cmd.addUpdateFunction('#id#',function(_options) {
       let directions#id# = ['{{Nord}}', '{{Nord-Est}}', '{{Est}}', '{{Sud-Est}}', '{{Sud}}', '{{Sud-Ouest}}', '{{Ouest}}', '{{Nord-Ouest}}']
       var windDir#id# = directions#id#[Math.round(((_options.display_value %= 360) < 0 ? _options.display_value + 360 : _options.display_value) / 45) % 8]
       cmd#id#.find('.widget-compass-needle-placer').css('transform', 'rotate(' + _options.display_value +'deg)')
       cmd#id#.find('.state').text(_options.display_value.toString()+'°')
       cmd#id#.find('.winDir').html(windDir#id#)
-    }
+    });
 
-    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'})
+    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
 
     if ($.issetWidgetOptParam('#needle_color#', 'needle_color')) {
       cmd#id#.find('.widget-compass-needle').css('border-top-color','#needle_color#')

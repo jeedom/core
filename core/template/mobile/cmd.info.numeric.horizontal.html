@@ -7,7 +7,7 @@
 	</center>
 
 	<script>
-		jeedom.cmd.update['#id#'] = function(_options){
+		 jeedom.cmd.addUpdateFunction('#id#',function(_options) {
 			var position = _options.display_value
 			var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
 			var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
@@ -19,9 +19,9 @@
 			$('.cmd[data-cmd_uid=#uid#] .hgauge-value').width(width+'%')
 			$('.cmd[data-cmd_uid=#uid#] .state strong').first().text(_options.display_value)
 			$('.cmd[data-cmd_uid=#uid#] .unit').text(_options.unit)
-		}
+		});
 
-		jeedom.cmd.update['#id#']({display_value: '#state#',unit:'#unite#'})
+		jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
 
 		if ($.issetWidgetOptParam('#color#', 'color')) {
 			 $('.cmd[data-cmd_id=#id#] .hgauge-value').css('background', '#color#')

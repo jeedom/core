@@ -7,7 +7,7 @@
   </div>
   <template></template>
   <script>
-    jeedom.cmd.update['#id#'] = function(_options) {
+     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
       if (['1', 1, '99', 99, 'on'].includes(_options.display_value)) {
         if (jeedom.cmd.normalizeName('#name#') == 'on') {
           $('.cmd[data-cmd_id=#id#]').hide()
@@ -23,8 +23,8 @@
           $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="far fa-bell-slash"></i>')
         }
       }
-    }
-    jeedom.cmd.update['#id#']({display_value:' #state#'})
+    });
+    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
 
     $('.cmd[data-cmd_uid=#uid#] .action').off().on('click', function () {
       jeedom.cmd.execute({id: '#id#'})

@@ -51,7 +51,7 @@
       }
     })
 
-    jeedom.cmd.update['#id#'] = function(_options) {
+    jeedom.cmd.addUpdateFunction('#id#',function(_options) {
       var cmd = $('.cmd[data-cmd_uid=#uid#]')
       cmd.attr('title', '{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
       var position = _options.display_value
@@ -65,7 +65,7 @@
       cmd.find('.shuttergauge-value').height(height_#uid#+'%')
       cmd.find('.state strong').first().text(_options.display_value)
       mySlider#id#.set(position)
-    }
+    });
 
     $('.cmd[data-cmd_uid=#uid#] .shuttergauge-bckg').off().on('click', function() {
       shutterPos = $('.cmd[data-cmd_uid=#uid#] .state strong').first().html()
@@ -78,6 +78,6 @@
       }
     })
 
-    jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'})
+    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
   </script>
 </div>

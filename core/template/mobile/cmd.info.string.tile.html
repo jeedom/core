@@ -7,8 +7,8 @@
     </div>
   </center>
   <script>
-    jeedom.cmd.update['#id#'] = function(_options) {
+     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
       $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append(_options.display_value)
-    }
+    });
   </script>
 </div>

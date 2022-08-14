@@ -88,7 +88,7 @@
       }
     }
 
-    jeedom.cmd.update['#id#'] = function(_options) {
+    jeedom.cmd.addUpdateFunction('#id#',function(_options) {
       var widget = $('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe:first')
       if ('#generic_type#' == 'TEMPERATURE') {
         var n = parseFloat(_options.display_value).toFixed(1)
@@ -104,8 +104,8 @@
         widget.find('.decNumHumidity').text(Math.round((_options.display_value - Math.floor(_options.display_value)) * 10))
         widget.find('[data-type=humidity').attr('data-cmd_id', #id#)
       }
-    }
-    jeedom.cmd.update['#id#']({display_value:'#state#', valueDate:'#valueDate#', collectDate:'#collectDate#'})
+    });
+    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
 
     setTimeout(function() {
       if ($('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe').length > 1) {

@@ -4,14 +4,14 @@
     <span id="iconCmd"></span>
   </center>
   <script>
-    jeedom.cmd.update['#id#'] = function(_options){
+    jeedom.cmd.addUpdateFunction('#id#',function(_options) {
       if (_options.display_value == '1') {
         $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lumiere-on"></i>')
       } else {
         $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lumiere-off"></i>')
       }
-    }
+    });
 
-    jeedom.cmd.update['#id#']({display_value: '#state#'})
+    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
   </script>
 </div>

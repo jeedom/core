@@ -387,7 +387,6 @@ jeedom.cmd.refreshValue = function(_params) {
     if ($('.eqlogicbackgraph[data-cmdid=' + _params[i].cmd_id + ']').length) {
       jeedom.eqLogic.drawGraphInfo(_params[i].cmd_id)
     }
-
     cmd = $('.cmd[data-cmd_id=' + _params[i].cmd_id + ']');
     if (cmd.hasClass('noRefresh')) {
       continue;
@@ -395,9 +394,41 @@ jeedom.cmd.refreshValue = function(_params) {
     if (!isset(jeedom.cmd.update) || !isset(jeedom.cmd.update[_params[i].cmd_id])) {
       continue;
     }
-    jeedom.cmd.update[_params[i].cmd_id](_params[i]);
+    if(typeof jeedom.cmd.update[_params[i].cmd_id] == 'function'){
+      jeedom.cmd.update[_params[i].cmd_id](_params[i]);
+    }
+    for(var j in jeedom.cmd.update[_params[i].cmd_id]){
+      jeedom.cmd.update[_params[i].cmd_id][j](_params[i]);
+    }
   }
 };
+
+jeedom.cmd.addUpdateFunction = function(cmd_id,_function){
+  if (!isset(jeedom.cmd.update)) {
+    jeedom.cmd.update = []
+  }
+  if (!isset(jeedom.cmd.update[cmd_id])) {
+    jeedom.cmd.update[cmd_id] = [_function]
+    return;
+  }
+  if(typeof jeedom.cmd.update[cmd_id] == 'function'){
+    let prevFunction  = jeedom.cmd.update[cmd_id];
+    if(prevFunction.toString( ) == _function.toString( )){
+      return;
+    }
+    jeedom.cmd.update[cmd_id] = [prevFunction,_function]
+  }
+  for(var i in jeedom.cmd.update[cmd_id]){
+    if(jeedom.cmd.update[cmd_id][i].toString( ) == _function.toString( )){
+      return;
+    }
+  }
+  jeedom.cmd.update[cmd_id].push(_function);
+}
+
+jeedom.cmd.resetUpdateFunction = function(){
+  jeedom.cmd.update = [];
+}
 
 jeedom.cmd.getWidgetHelp = function(_params) {
   var paramsRequired = ['id', 'version'];

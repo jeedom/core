@@ -4,7 +4,7 @@
   </div>
   <template></template>
   <script>
-    jeedom.cmd.update['#id#'] = function(_options) {
+     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
       var cmd = $('.cmd[data-cmd_id=#id#]')
 
       if (_options.display_value == '1' || _options.display_value >= 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
@@ -22,8 +22,8 @@
           cmd.show().find('.iconCmdLine').empty().append("#_icon_off_#")
         }
       }
-    }
-    jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'})
+    });
+    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
 
     $('.cmd[data-cmd_uid=#uid#] .iconCmdLine').off().on('click', function() {
       jeedom.cmd.execute({id: '#id#'})

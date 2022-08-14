@@ -10,16 +10,16 @@
       <span title='{{Min}}' class='tooltips'>#minHistoryValue#</span>|<span title='{{Moyenne}}' class='tooltips'>#averageHistoryValue#</span>|<span title='{{Max}}' class='tooltips'>#maxHistoryValue# <i class="#tendance#"></i></span>
   </div>
   <script>
-    jeedom.cmd.update['#id#'] = function(_options){
+     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
       $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
       if (_options.display_value == '0') {
         $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height('100%')
       }else {
         $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height('0')
       }
-    }
+    });
 
-    jeedom.cmd.update['#id#']({display_value:'#state#'})
+    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
 
     if ($.issetWidgetOptParam('#color#', 'color')) {
       $('.cmd[data-cmd_id=#id#]').find('div.shuttergauge-value').style('background', '#color#', 'important')

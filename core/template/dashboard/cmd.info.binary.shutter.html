@@ -19,7 +19,7 @@
     <div>color : rgb(20,20,20) ({{Couleur du curseur et valeur}})</div>
   </template>
   <script>
-    jeedom.cmd.update['#id#'] = function(_options){
+     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
       $('.cmd[data-cmd_id=#id#]').attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
       if (_options.display_value == '1') {
         $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height('0')
@@ -27,9 +27,9 @@
         $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height('100%')
       }
       $('.cmd[data-cmd_id=#id#] .state strong').first().text(_options.display_value)
-    }
+    });
 
-    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'})
+    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
 
     if ($.issetWidgetOptParam('#color#', 'color')) {
       $('.cmd[data-cmd_id=#id#]').find('div.shuttergauge-value').style('background', '#color#', 'important')

@@ -76,6 +76,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 
   jeedomUtils.closeJeedomMenu()
   window.toastr.clear()
+  jeedom.cmd.resetUpdateFunction();
 
   $.contextMenu('destroy')
   $('.context-menu-root').remove()
