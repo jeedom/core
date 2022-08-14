@@ -41,8 +41,8 @@
     }
 
     mySlider#id#.on('change', function(values, handle) {
-      var value = values[handle].replace('#unite#', '').trim()
-      var cmd = $('.cmd[data-cmd_uid=#uid#]')
+      let value = values[handle].replace('#unite#', '').trim()
+      let cmd = $('.cmd[data-cmd_uid=#uid#]')
       if ('#invert#' == '1') {
         var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
         jeedom.cmd.execute({id: '#id#', value: {slider: maxValue - value}})
@@ -52,11 +52,11 @@
     })
 
     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      var cmd = $('.cmd[data-cmd_uid=#uid#]')
+      let cmd = $('.cmd[data-cmd_uid=#uid#]')
       cmd.attr('title', '{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
-      var position = _options.display_value
-      var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
-      var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+      let position = _options.display_value
+      let minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
+      let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
       if ('#invert#' == '1') {
         position = maxValue - position
       }
@@ -69,8 +69,8 @@
 
     $('.cmd[data-cmd_uid=#uid#] .shuttergauge-bckg').off().on('click', function() {
       shutterPos = $('.cmd[data-cmd_uid=#uid#] .state strong').first().html()
-      var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
-      var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+      let minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
+      let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
       if (shutterPos > 50) {
         jeedom.cmd.execute({id: '#id#', value: {slider: minValue}})
       } else {

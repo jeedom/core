@@ -13,7 +13,7 @@
   </template>
   <script>
     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      var cmd = $('.cmd[data-cmd_id=#id#]')
+      let cmd = $('.cmd[data-cmd_id=#id#]')
       if ('#_time_widget_#' != '1') {
         cmd.find('.timeCmd').parent().remove()
       }
@@ -42,7 +42,7 @@
         }
       }
 
-      var style = ''
+      let style = ''
       if (!isNaN('#_desktop_width_#')) {
         style = 'width:#_desktop_width_#px !important;'
       }
@@ -55,7 +55,7 @@
         else {
           cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#", "#_img_dark_off_#"))
         }
-        var style = ''
+        let style = ''
         if (!isNaN('#_desktop_width_#')) {
           style = 'width:#_desktop_width_#px !important;'
         }

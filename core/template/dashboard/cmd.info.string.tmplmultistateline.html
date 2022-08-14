@@ -10,7 +10,7 @@
   </template>
   <script>
      jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      var cmd = $('.cmd[data-cmd_id=#id#]')
+      let cmd = $('.cmd[data-cmd_id=#id#]')
       if ('#_time_widget_#' == '1') {
         jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
       } else {
@@ -18,7 +18,7 @@
       }
       cmd.attr('title', '{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate+'<br/>{{Valeur}} : '+_options.display_value+'#unite#')
       try {
-        var state = ''
+        let state = ''
         #test#
         cmd.find('.iconCmdLine').empty().append(state)
       } catch (error) {

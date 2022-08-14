@@ -20,16 +20,14 @@
   </template>
   <script>
     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      var position = _options.display_value
-      var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
-      var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+      let position = _options.display_value
+      let minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
+      let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
       if (position > maxValue) position = maxValue
       if (position < minValue) position = minValue
-
-      var height = ((position - minValue) * 100) / (maxValue - minValue)
+      let height = ((position - minValue) * 100) / (maxValue - minValue)
       height = Math.round(parseFloat(height) * 10) / 10
-
-      var cmd = $('.cmd[data-cmd_id=#id#]')
+      let cmd = $('.cmd[data-cmd_id=#id#]')
       cmd.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
       cmd.find('.vgauge-value').height(height+'%')
       cmd.find('.state strong').first().text(_options.display_value+' '+_options.unit)

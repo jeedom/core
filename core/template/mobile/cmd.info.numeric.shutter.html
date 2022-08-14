@@ -11,8 +11,8 @@
   </div>
   <script>
      jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      var cmd = $('.cmd[data-cmd_id=#id#]')
-      var height = (_options.display_value * 100 / (#maxValue#-#minValue#)) + #minValue#
+      let cmd = $('.cmd[data-cmd_id=#id#]')
+      let height = (_options.display_value * 100 / (#maxValue#-#minValue#)) + #minValue#
       height = 100 - (Math.round(parseFloat(height) * 10) / 10)
       cmd.find('.shuttergauge-value').height(height+'%')
       cmd.find('.shuttergauge-state strong').first().text(_options.display_value)

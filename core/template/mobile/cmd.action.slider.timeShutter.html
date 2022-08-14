@@ -37,12 +37,12 @@
     })
 
     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      var cmd = $('.cmd[data-cmd_uid=#uid#]')
+      let cmd = $('.cmd[data-cmd_uid=#uid#]')
       jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
-      var height = ((_options.display_value - #minValue#) * 100) / (#maxValue# - #minValue#)
+      let height = ((_options.display_value - #minValue#) * 100) / (#maxValue# - #minValue#)
       height = 100 - (Math.round(parseFloat(height) * 10) / 10)
       if ('#invert#' == '1') {
-        var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+        let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
         height = maxValue - height
       }
       cmd.find('.shuttergauge-value').height(height+'%')

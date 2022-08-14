@@ -20,10 +20,10 @@
   </template>
   <script>
      jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      var cmd = $('.cmd[data-cmd_id=#id#]')
-      var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
-      var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
-      var height = ((_options.display_value - minValue) * 100) / (maxValue - minValue)
+      let cmd = $('.cmd[data-cmd_id=#id#]')
+      let minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
+      let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+      let height = ((_options.display_value - minValue) * 100) / (maxValue - minValue)
       cmd.attr('title', '{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
       height = 100 - (Math.round(parseFloat(height) * 10) / 10)
       cmd.find('.shuttergauge-value').height(height+'%')

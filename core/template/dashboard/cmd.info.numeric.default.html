@@ -15,17 +15,17 @@
   </template>
   <script>
      jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      var cmd = $('.cmd[data-cmd_id=#id#]')
-      var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
-      var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+      let cmd = $('.cmd[data-cmd_id=#id#]')
+      let minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
+      let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
       if (_options.display_value >= maxValue) {
         maxValue = _options.display_value
-        var angle = 0
+        let angle = 0
       } else if (_options.display_value <= minValue) {
         minValue = _options.display_value
-        var angle = -180
+        let angle = -180
       } else {
-        var angle = (((_options.display_value - minValue) * 180) / (maxValue - minValue)) - 180
+        let angle = (((_options.display_value - minValue) * 180) / (maxValue - minValue)) - 180
       }
       cmd.find('.gaugeValue').css('transform', 'scale(0.94) rotate('+angle+'deg)')
       cmd.find('.state strong').first().text(_options.display_value+' '+_options.unit)

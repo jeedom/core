@@ -5,20 +5,17 @@
   <template></template>
   <script>
      jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      var cmd = $('.cmd[data-cmd_id=#id#]')
-
+      let cmd = $('.cmd[data-cmd_id=#id#]')
       if (_options.display_value == '1' || _options.display_value >= 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
         if (jeedom.cmd.normalizeName('#name#') == 'on') {
           cmd.hide()
-        }
-        else {
+        }else {
           cmd.show().find('.iconCmdLine').empty().append("#_icon_on_#")
         }
       } else {
         if (jeedom.cmd.normalizeName('#name#') == 'off') {
           cmd.hide()
-        }
-        else {
+        }else {
           cmd.show().find('.iconCmdLine').empty().append("#_icon_off_#")
         }
       }

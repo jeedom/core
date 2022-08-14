@@ -6,35 +6,32 @@
   </center>
   <script>
      jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      var cmd = $('.cmd[data-cmd_id=#id#]')
+      let cmd = $('.cmd[data-cmd_id=#id#]')
       if ('#_time_widget_#' == '1') {
         jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
       } else {
         cmd.find('.timeCmd').remove();
       }
       cmd.attr('title', 'Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
-
       try {
-        var state = ''
+        let state = ''
         #test#
         cmd.find('.iconCmd').empty().append(state)
       } catch (error) {
         console.log(error)
       }
-
-      var style = ''
+      let style = ''
       if (!isNaN('#_mobile_width_#')) {
         style = 'max-width:#_mobile_width_#px !important;'
       }
       cmd.find('.iconCmd img').attr('style', style)
-
       cmd.off('changeThemeEvent').on('changeThemeEventCmd',function (event, theme) {
-        var state = ''
+        let state = ''
         #change_theme#
         if (state != '') {
           cmd.find('.iconCmd').empty().append(state)
         }
-        var style = ''
+        let style = ''
         if (!isNaN('#_mobile_width_#')) {
           style = 'max-width:#_mobile_width_#px !important;'
         }

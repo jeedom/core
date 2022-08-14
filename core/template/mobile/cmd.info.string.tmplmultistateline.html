@@ -5,16 +5,15 @@
   </center>
   <script>
      jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      var cmd = $('.cmd[data-cmd_id=#id#]')
+      let cmd = $('.cmd[data-cmd_id=#id#]')
       if ('#_time_widget_#' == '1') {
         jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
       } else {
         cmd.find('.timeCmd').remove()
       }
       cmd.attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
-
       try {
-        var state = ''
+        let state = ''
         #test#
         cmd.find('.iconCmdLine').empty().append(state)
       } catch (error) {

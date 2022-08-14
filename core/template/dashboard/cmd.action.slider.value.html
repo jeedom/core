@@ -48,7 +48,7 @@
       }
 
       mySlider#id#.on('update', function(values, handle) {
-        var value = values[handle].replace('#unite#', '').trim()
+        let value = values[handle].replace('#unite#', '').trim()
         if (values[handle]) {
           if (parseInt(value) == parseFloat(value)) {
             $inputNumber#id#.val(parseInt(value))

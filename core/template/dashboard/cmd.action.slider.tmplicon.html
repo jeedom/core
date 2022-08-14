@@ -41,25 +41,25 @@
 
     $('.cmd[data-cmd_id=#id#] .iconCmd').on('click', function() {
       if ($(this).attr('data-state') == 'on') {
-        var value = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
+        let value = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
         jeedom.cmd.execute({id: '#id#', value: {slider: value}})
       } else {
-        var value = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+        let value = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
         jeedom.cmd.execute({id: '#id#', value: {slider: value}})
       }
     })
 
     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-        var cmd = $('.cmd[data-cmd_id=#id#]')
+      let cmd = $('.cmd[data-cmd_id=#id#]')
         if ('#_time_widget_#' == '1') {
           jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
         } else {
           cmd.find('.timeCmd').remove()
         }
 
-        var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
-        var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
-        var stateValue = ('#state#' == '') ? 0 : parseInt(_options.display_value)
+        let minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
+        let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+        let stateValue = ('#state#' == '') ? 0 : parseInt(_options.display_value)
         mySlider#id#.set(stateValue)
         if (stateValue > minValue) {
           cmd.find('.iconCmd').empty().append("#_icon_on_#").attr('data-state', 'on')

@@ -5,15 +5,13 @@
   <template></template>
   <script>
      jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      var cmd = $('.cmd[data-cmd_id=#id#]')
+      let cmd = $('.cmd[data-cmd_id=#id#]')
       cmd.attr('title', '{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
-
       if (_options.display_value == '1') {
         $('.cmd[data-cmd_id=#id#] .iconCmdLine').empty().append("#_icon_on_#")
       } else {
         $('.cmd[data-cmd_id=#id#] .iconCmdLine').empty().append("#_icon_off_#")
       }
-
       if (_options.alertLevel) {
         if (_options.alertLevel == 'warning') {
           cmd.addClass('label label-warning')
