@@ -280,7 +280,7 @@ jeedom.cmd.test = function(_params) {
             case 'color':
               bootbox.prompt({ 
                 title: "Quelle couleur  (#rrggbb)?",
-                value: '#fff00',
+                value: '#ff000',
                 callback: function(result){ 
                   if(result === null){
                     return;
