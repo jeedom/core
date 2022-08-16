@@ -3372,6 +3372,8 @@
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Конфигурация плагина",
+        "Date de collecte": "Date de collecte",
+        "Date de valeur": "Date de valeur",
         "Nom de la copie de l\\'équipement ?": "Nom de la copie de l\\'équipement ?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Вы уверены, что хотите удалить оборудование",
         "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
