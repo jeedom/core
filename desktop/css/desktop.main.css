@@ -2673,6 +2673,7 @@ div.div_viewZone legend.lg_viewZone {
     border-image-width: 0 !important;
     margin : 0;
     vertical-align: middle;
+    text-align: center;
   }
 
   input.knob {
