@@ -248,7 +248,11 @@ $(".eqLogicDisplayCard").on('click', function(event) {
         if ('function' == typeof(addCmdToTable)) {
           $('.cmd').remove()
           for (var i in data.cmd) {
-            data.cmd[i]['htmlstate'] = '<span class="cmdTableState" data-cmd_id="' + data.cmd[i].id + '" title="{{Date de collecte}} : ' + data.cmd[i].collectDate + '- {{Date de valeur}} ' + data.cmd[i].valueDate + '">' + data.cmd[i].state +  ' ' + data.cmd[i].unite + '<span>';
+            if(data.cmd[i].type == 'info'){
+              data.cmd[i]['htmlstate'] = '<span class="cmdTableState" data-cmd_id="' + data.cmd[i].id + '" title="{{Date de collecte}} : ' + data.cmd[i].collectDate + '- {{Date de valeur}} ' + data.cmd[i].valueDate + '">' + data.cmd[i].state +  ' ' + data.cmd[i].unite + '<span>';
+            }else{
+              data.cmd[i]['htmlstate'] = '';
+            }
             addCmdToTable(data.cmd[i])
           }
         }

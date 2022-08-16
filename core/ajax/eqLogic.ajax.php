@@ -445,7 +445,7 @@ try {
 		$return['cmd'] = array();
 		foreach ($eqLogic->getCmd() as $cmd) {
 			$info = utils::o2a($cmd);
-			if (init('getCmdState', 0) == 1) {
+			if (init('getCmdState', 0) == 1 && $cmd->getType() == 'info') {
 				$state = $cmd->execCmd();
 				$info['state'] = $state;
 				$info['valueDate'] = $cmd->getValueDate();
