@@ -831,7 +831,7 @@ sendVarToJS([
     jeedom.cmd.addUpdateFunction($(this).attr('data-cmd_id'), function(_options) {
       let cmd = $('.eqLogicConfigure_cmdValue[data-cmd_id=' + _options.cmd_id + ']')
       cmd.attr('title', '{{Date de collecte}} : ' + _options.collectDate)
-      cmd.empty().append(_options.display_value + ' ' + _options.unit + ' {{le}} ' + _options.valueDate);
+      cmd.empty().append(_options.value + ' ' + _options.unit + ' {{le}} ' + _options.valueDate);
     });
   })
 </script>

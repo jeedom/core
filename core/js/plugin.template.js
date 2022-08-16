@@ -260,7 +260,7 @@ $(".eqLogicDisplayCard").on('click', function(event) {
           jeedom.cmd.addUpdateFunction($(this).attr('data-cmd_id'), function(_options) {
             let cmd = $('.cmdTableState[data-cmd_id=' + _options.cmd_id + ']')
             cmd.attr('title', '{{Date de collecte}} : ' + _options.collectDate+' - {{Date de valeur}} ' + _options.valueDate)
-            cmd.empty().append(_options.display_value + ' ' + _options.unit);
+            cmd.empty().append(_options.value + ' ' + _options.unit);
           });
         })
         $('#div_pageContainer').on({
