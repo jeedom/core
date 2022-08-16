@@ -345,26 +345,51 @@ jeedom.cmd.test = function(_params) {
               break;
             case 'message':
               var productName = JEEDOM_PRODUCT_NAME
-              jeedom.cmd.execute({
-                id: _params.id,
-                value: {
-                  title: productName + '{{ Message de test}}',
-                  message: '{{Ceci est un test de message pour la commande}} ' + result.name
-                },
-                cache: 0,
-                error: function(error) {
-                  $.fn.showAlert({
-                    message: error.message,
-                    level: 'danger'
-                  });
-                },
-                success: function() {
-                  $(_params.alert).showAlert({
-                    message: '{{Action exécutée avec succès}}',
-                    level: 'success'
-                  });
+              bootbox.dialog({
+                title: "{{Message}}",
+                message: '<form class="bootbox-form"><input id="in_testCmdTitle" class="bootbox-input bootbox-input-text form-control" autocomplete="off" type="text" value="'+productName + '{{ Message de test}}"><br/><br/><textarea  id="ta_testCmdMessage" class="bootbox-input bootbox-input-textarea form-control">{{Ceci est un test de message pour la commande}} ' + result.name +'</textarea></form>',
+                size: 'large',
+                buttons: {
+                  cancel: {
+                    label: "Annuler",
+                    className: 'btn-warning',
+                    callback: function(){
+                        
+                    }
+                  },
+                  success: {
+                    label: "{{Ok}}",
+                    className: "btn-success",
+                    callback: function() {
+                      jeedom.cmd.execute({
+                        id: _params.id,
+                        value: {
+                          title: $('#in_testCmdTitle').value(),
+                          message: $('#ta_testCmdMessage').value()
+                        },
+                        cache: 0,
+                        error: function(error) {
+                          $.fn.showAlert({
+                            message: error.message,
+                            level: 'danger'
+                          });
+                        },
+                        success: function() {
+                          $(_params.alert).showAlert({
+                            message: '{{Action exécutée avec succès}}',
+                            level: 'success'
+                          });
+                        }
+                      });
+                    }
+                  },
                 }
-              });
+              })
+
+
+
+             
+              
               break;
           }
           break;
