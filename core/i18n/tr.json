@@ -3372,6 +3372,8 @@
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Eklentinin ayarları",
+        "Date de collecte": "Date de collecte",
+        "Date de valeur": "Date de valeur",
         "Nom de la copie de l\\'équipement ?": "Nom de la copie de l\\'équipement ?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Cihazı silmek istemekden eminmisiniz",
         "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",

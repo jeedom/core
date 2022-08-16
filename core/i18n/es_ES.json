@@ -3372,6 +3372,8 @@
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Configuración del complemento",
+        "Date de collecte": "Fecha de recogida",
+        "Date de valeur": "Fecha valor",
         "Nom de la copie de l\\'équipement ?": "Nombre de la copia del equipo?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "¿Está seguro de que desea eliminar el equipo?",
         "Il est utilisé par ou utilise :": "Es utilizado por o utiliza:",
@@ -4567,7 +4569,7 @@
     },
     "core\/template\/widgets.html": {
         "Date de valeur": "Fecha valor",
-        "Date de collecte": "Fecha de colección",
+        "Date de collecte": "Fecha de recogida",
         "Valeur": "Valor",
         "Min": "Mínimo",
         "Moyenne": "Promedio",
