@@ -226,6 +226,7 @@ $(".eqLogicDisplayCard").on('click', function(event) {
       type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
       id: $(this).attr('data-eqLogic_id'),
       status: 1,
+      getCmdState : 1,
       error: function(error) {
         $.hideLoading()
         $.fn.showAlert({
@@ -247,9 +248,17 @@ $(".eqLogicDisplayCard").on('click', function(event) {
         if ('function' == typeof(addCmdToTable)) {
           $('.cmd').remove()
           for (var i in data.cmd) {
+            data.cmd[i]['htmlstate'] = '<span class="cmdTableState" data-cmd_id="' + data.cmd[i].id + '" title="{{Date de collecte}} : ' + data.cmd[i].collectDate + '- {{Date de valeur}} ' + data.cmd[i].valueDate + '">' + data.cmd[i].state +  ' ' + data.cmd[i].unite + '<span>';
             addCmdToTable(data.cmd[i])
           }
         }
+        $('.cmdTableState').each(function() {
+          jeedom.cmd.addUpdateFunction($(this).attr('data-cmd_id'), function(_options) {
+            let cmd = $('.cmdTableState[data-cmd_id=' + _options.cmd_id + ']')
+            cmd.attr('title', '{{Date de collecte}} : ' + _options.collectDate+' - {{Date de valeur}} ' + _options.valueDate)
+            cmd.empty().append(_options.display_value + ' ' + _options.unit);
+          });
+        })
         $('#div_pageContainer').on({
           'change': function(event) {
             jeedom.cmd.changeType($(this).closest('.cmd'))

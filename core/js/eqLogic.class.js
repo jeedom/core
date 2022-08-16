@@ -243,7 +243,8 @@ jeedom.eqLogic.print = function(_params) {
     action: 'get',
     type: _params.type,
     id: _params.id,
-    status: _params.status || 0
+    status: _params.status || 0,
+    getCmdState: _params.getCmdState || 0
   };
   $.ajax(paramsAJAX);
 }
