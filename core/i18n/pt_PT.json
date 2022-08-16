@@ -5,7 +5,7 @@
     "mobile\/modal\/warnme.html": {
         "Valeur": "Valor",
         "Annuler": "Cancelar",
-        "Ok": "Ok"
+        "Ok": "OK"
     },
     "mobile\/js\/log.js": {
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Tem certeza de que deseja excluir todos os registos?"
@@ -692,9 +692,9 @@
         "Sous-type": "Subtipo",
         "Mise à jour par": "Atualizado por",
         "Valeurs possibles": "Valores possíveis",
-        "Valeur": "Valor",
-        "Date collecte": "Data de recolha",
-        "Date valeur": "Data do valor",
+        "Etat": "Estado",
+        "Date de collecte": "Data de coleta",
+        "le": "a",
         "URL directe": "URL direta",
         "Unité": "Unidade",
         "Visible": "Visivél",
@@ -730,6 +730,7 @@
         "Arrondi": "Arredondar",
         "Nombre de décimales": "Número de casas decimais",
         "Type générique": "Tipo genérico",
+        "Valeur": "Valor",
         "Restriction de l'action": "Restringir a ação",
         "Confirmer l'action": "Confirmar a ação",
         "Code d'accès": "Código de acesso",
@@ -3352,8 +3353,10 @@
         "Êtes-vous sûr de vouloir faire cette action ?": "Tem certeza de que deseja realizar esta ação?",
         "Résultat de la commande :": "Resultado do comando:",
         "Action exécutée avec succès": "Ação concluída com êxito",
+        "Message": "Mensagem",
         " Message de test": "Mensagem de teste",
         "Ceci est un test de message pour la commande": "Esta é uma mensagem de teste para o comando",
+        "Ok": "OK",
         "Info": "Informações",
         "Action": "Açao",
         "Sélectionner la commande": "Selecione o comando",
@@ -4568,7 +4571,7 @@
         "Objet": "Objeto"
     },
     "core\/template\/widgets.html": {
-        "Date de valeur": "Data de validade",
+        "Date de valeur": "Data do valor",
         "Date de collecte": "Data de coleta",
         "Valeur": "Valor",
         "Min": "Mín.",
