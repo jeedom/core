@@ -244,71 +244,104 @@ jeedom.cmd.test = function(_params) {
               });
               break;
             case 'slider':
-              var slider = 50;
-              if (isset(result.configuration) && isset(result.configuration.maxValue) && isset(result.configuration.minValue)) {
-                slider = (result.configuration.maxValue - result.configuration.minValue) / 2;
-              }
-              jeedom.cmd.execute({
-                id: _params.id,
-                value: {
-                  slider: slider
-                },
-                cache: 0,
-                error: function(error) {
-                  $(_params.alert).showAlert({
-                    message: error.message,
-                    level: 'danger'
-                  });
-                },
-                success: function() {
-                  $(_params.alert).showAlert({
-                    message: '{{Action exécutée avec succès}}',
-                    level: 'success'
+              bootbox.prompt({
+                title: "This is a prompt with a range input!",
+                inputType: 'range',
+                min: result.configuration.minValue || 0,
+                max: result.configuration.maxValue || 100,
+                step: 1,
+                value: 50,
+                callback: function (result) {
+                  if(result === null){
+                    return;
+                  }
+                  jeedom.cmd.execute({
+                    id: _params.id,
+                    value: {
+                      slider: result
+                    },
+                    cache: 0,
+                    error: function(error) {
+                      $(_params.alert).showAlert({
+                        message: error.message,
+                        level: 'danger'
+                      });
+                    },
+                    success: function() {
+                      $(_params.alert).showAlert({
+                        message: '{{Action exécutée avec succès}}',
+                        level: 'success'
+                      });
+                    }
                   });
                 }
               });
               break;
             case 'color':
-              jeedom.cmd.execute({
-                id: _params.id,
-                value: {
-                  color: '#fff000'
-                },
-                cache: 0,
-                error: function(error) {
-                  $(_params.alert).showAlert({
-                    message: error.message,
-                    level: 'danger'
-                  });
-                },
-                success: function() {
-                  $(_params.alert).showAlert({
-                    message: '{{Action exécutée avec succès}}',
-                    level: 'success'
-                  });
+              bootbox.prompt({ 
+                title: "Quelle couleur  (#rrggbb)?",
+                value: '#fff00',
+                callback: function(result){ 
+                  if(result === null){
+                    return;
+                  }
+                  jeedom.cmd.execute({
+                    id: _params.id,
+                    value: {
+                      color: result
+                    },
+                    cache: 0,
+                    error: function(error) {
+                      $(_params.alert).showAlert({
+                        message: error.message,
+                        level: 'danger'
+                      });
+                    },
+                    success: function() {
+                      $(_params.alert).showAlert({
+                        message: '{{Action exécutée avec succès}}',
+                        level: 'success'
+                      });
+                    }
+                  }); 
                 }
               });
               break;
             case 'select':
-              jeedom.cmd.execute({
-                id: _params.id,
-                value: {
-                  select: result.configuration.listValue.split(';')[0].split('|')[0]
-                },
-                cache: 0,
-                error: function(error) {
-                  $(_params.alert).showAlert({
-                    message: error.message,
-                    level: 'danger'
-                  });
-                },
-                success: function() {
-                  $(_params.alert).showAlert({
-                    message: '{{Action exécutée avec succès}}',
-                    level: 'success'
-                  });
+              let values = result.configuration.listValue.split(';');
+              let inputOptions = [];
+              for(let i in values){
+                inputOptions.push({text: values[i].split('|')[1],value: values[i].split('|')[0]})
+              }
+              bootbox.prompt({
+                title: "Valeur ?",
+                inputType: 'select',
+                inputOptions: inputOptions,
+                callback: function (result) {
+                  if(result === null){
+                    return;
+                  }
+                  jeedom.cmd.execute({
+                    id: _params.id,
+                    value: {
+                      select: result
+                    },
+                    cache: 0,
+                    error: function(error) {
+                      $(_params.alert).showAlert({
+                        message: error.message,
+                        level: 'danger'
+                      });
+                    },
+                    success: function() {
+                      $(_params.alert).showAlert({
+                        message: '{{Action exécutée avec succès}}',
+                        level: 'success'
+                      });
+                    }
+                  });   
                 }
-              });
+            });
               break;
             case 'message':
               var productName = JEEDOM_PRODUCT_NAME
