@@ -5,7 +5,7 @@
     "mobile\/modal\/warnme.html": {
         "Valeur": "Valor",
         "Annuler": "Cancelar",
-        "Ok": "OK"
+        "Ok": "Ok"
     },
     "mobile\/js\/log.js": {
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Tem certeza de que deseja excluir todos os registos?"
@@ -4572,7 +4572,7 @@
     },
     "core\/template\/widgets.html": {
         "Date de valeur": "Data do valor",
-        "Date de collecte": "Data de coleta",
+        "Date de collecte": "Data de recolha",
         "Valeur": "Valor",
         "Min": "Mín.",
         "Moyenne": "Média",

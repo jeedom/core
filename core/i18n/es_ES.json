@@ -3628,7 +3628,7 @@
         "Précedent": "Anterior",
         "On": "Nosotros",
         "Off": "Apagado",
-        "Etat": "Estado",
+        "Etat": "Expresar",
         "Muet": "Mudo",
         "Non Muet": "Sin silencio",
         "Vitesse ventilateur": "Velocidad del ventilador",
@@ -4572,7 +4572,7 @@
     },
     "core\/template\/widgets.html": {
         "Date de valeur": "Fecha valor",
-        "Date de collecte": "Fecha de recogida",
+        "Date de collecte": "Fecha de colección",
         "Valeur": "Valor",
         "Min": "Mínimo",
         "Moyenne": "Promedio",
