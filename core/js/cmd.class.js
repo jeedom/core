@@ -744,6 +744,13 @@ jeedom.cmd.historyInfluxAll = function(_params) {
 jeedom.cmd.changeType = function(_cmd, _subType) {
   var selSubType = '<select style="width : 120px;margin-top : 5px;" class="cmdAttr form-control input-sm" data-l1key="subType">';
   var type = _cmd.find('.cmdAttr[data-l1key=type]').value();
+  if(type == 'action'){
+    _cmd.find('.cmdAction[data-action=test]').show();
+    _cmd.find('.cmdAttr[data-l1key=htmlstate]').hide();
+  }else{
+    _cmd.find('.cmdAction[data-action=test]').hide();
+    _cmd.find('.cmdAttr[data-l1key=htmlstate]').show();
+  }
   jeedom.getConfiguration({
     key: 'cmd:type:' + type + ':subtype',
     default: 0,
