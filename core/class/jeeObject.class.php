@@ -389,7 +389,7 @@ class jeeObject {
 		if (count($value) == 0) {
 			return null;
 		}
-		return round(jeedom::calculStat($def[$_key]['calcul'], $value), 1);
+		return jeedom::calculStat($def[$_key]['calcul'], $value);
 	}
 
 	public static function getGlobalHtmlSummary($_version = 'dashboard') {
@@ -423,7 +423,7 @@ class jeeObject {
 				$result = trim(implode(',', $value), ',');
 				$allowDisplayZero = 1;
 			} else {
-				$result = round(jeedom::calculStat($def[$key]['calcul'], $value), 1);
+				$result = jeedom::calculStat($def[$key]['calcul'], $value);
 			}
 			if ($allowDisplayZero == 0 && $result == 0) {
 				$style = 'display:none;';
@@ -963,7 +963,7 @@ class jeeObject {
 		if ($_raw) {
 			return $values;
 		}
-		return round(jeedom::calculStat($def[$_key]['calcul'], $values), 1);
+		return jeedom::calculStat($def[$_key]['calcul'], $values);
 	}
 
 	public function getHtmlSummary($_version = 'dashboard') {

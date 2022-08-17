@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.2
 
+## 4.2.21
+
+- Correction d'un bug sur les résumés
+
 ## 4.2.20
 
 - Ajout d'un ssyteme de correction des packages pip lors d'une mauvaise installation
