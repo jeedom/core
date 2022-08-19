@@ -33,8 +33,8 @@ if (!isConnect('admin')) {
         <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="w">w</a></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="dpkg -l">dpkg -l</a></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="netstat -tupln"> netstat -tupln</a></li>
-        <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command='sudo cp /var/www/html/install/apache_security_unsecure /etc/apache2/conf-available/security.conf;echo "systemctl restart apache2" | sudo at now'> {{Apache non securisé}}</a></li>
-        <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command='sudo cp /var/www/html/install/apache_security /etc/apache2/conf-available/security.conf;echo "systemctl restart apache2" | sudo at now'> {{Apache sécurisé}}</a></li>
+        <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command='sudo cp /var/www/html/install/apache_security_unsecure /etc/apache2/conf-available/security.conf;sudo a2enmod headers;echo "systemctl restart apache2" | sudo at now'> {{Apache non securisé}}</a></li>
+        <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command='sudo cp /var/www/html/install/apache_security /etc/apache2/conf-available/security.conf;sudo a2enmod headers;echo "systemctl restart apache2" | sudo at now'> {{Apache sécurisé}}</a></li>
       </ul>
     </div>
   </div>
