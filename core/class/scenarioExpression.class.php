@@ -715,7 +715,7 @@ class scenarioExpression {
 		if (count($histories) == 0) {
 			return 0;
 		}
-		
+
 		$duration = 0;
 		$lastDuration = strtotime($histories[0]->getDatetime());
 		$lastValue = $histories[0]->getValue();
@@ -1589,7 +1589,7 @@ class scenarioExpression {
 						$result = $options['value'];
 					}
 				} elseif ($this->getExpression() == 'delete_variable') {
-					scenario::removeData($options['name']);
+					$scenario->removeData($options['name']);
 					$this->setLog($scenario, __('Suppression de la variable', __FILE__) . ' ' . $options['name']);
 					return;
 				} elseif ($this->getExpression() == 'ask') {
