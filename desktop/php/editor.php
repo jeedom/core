@@ -11,7 +11,7 @@ if (init('type', '') == 'custom') {
 		$path = __DIR__ . '/../../' . $rootPath;
 		if (!file_exists($path)) {
 			mkdir($path);
-			}
+		}
 		$filePath = $path . '/custom.css';
 		if (!is_file($filePath)) {
 			@file_put_contents($filePath, '/* Custom CSS Core ' . jeedom::version() . ' */');
@@ -25,7 +25,8 @@ if (init('type', '') == 'custom') {
 
 sendVarToJS([
 	'jeephp2js.editorType' => init('type', ''),
-	'jeephp2js.customActive' => config::byKey('enableCustomCss')
+	'jeephp2js.customActive' => config::byKey('enableCustomCss'),
+	'root' => init('root', ''),
 ]);
 
 //Core CodeMirror:
@@ -82,10 +83,10 @@ include_file("desktop", "editor", "js");
 			<div class="form-group">
 				<label class="col-xs-4 control-label">{{Type}}</label>
 				<div class="col-xs-8">
-					<select  id="sel_widgetType">
+					<select id="sel_widgetType">
 						<?php
 						foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
-							echo '<option value="'.$key.'"><a>'.$value['name'].'</option>';
+							echo '<option value="' . $key . '"><a>' . $value['name'] . '</option>';
 						}
 						?>
 					</select>
@@ -96,29 +97,29 @@ include_file("desktop", "editor", "js");
 				<div class="col-xs-8">
 					<select id="sel_widgetSubtype">
 						<option value="" data-default="1"><a></option>
-							<?php
-							foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
-								foreach ($value['subtype'] as $skey => $svalue) {
-									echo '<option data-type="'.$key.'" value="'.$skey.'"><a>'.$svalue['name'].'</option>';
-								}
+						<?php
+						foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
+							foreach ($value['subtype'] as $skey => $svalue) {
+								echo '<option data-type="' . $key . '" value="' . $skey . '"><a>' . $svalue['name'] . '</option>';
 							}
-							?>
-						</select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-xs-4 control-label">{{Nom}}</label>
-					<div class="col-xs-8">
-						<input id="in_widgetName" class="form-control" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-xs-4 control-label"></label>
-					<div class="col-xs-8">
-						<a class="btn btn-success" style="color:white;" id="bt_widgetCreate"><i class="fas fa-check"></i> {{Créer}}</a>
-					</div>
+						}
+						?>
+					</select>
 				</div>
 			</div>
-		</fieldset>
-	</form>
+			<div class="form-group">
+				<label class="col-xs-4 control-label">{{Nom}}</label>
+				<div class="col-xs-8">
+					<input id="in_widgetName" class="form-control" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-xs-4 control-label"></label>
+				<div class="col-xs-8">
+					<a class="btn btn-success" style="color:white;" id="bt_widgetCreate"><i class="fas fa-check"></i> {{Créer}}</a>
+				</div>
+			</div>
+</div>
+</fieldset>
+</form>
 </div>
