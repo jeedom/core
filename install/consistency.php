@@ -62,6 +62,7 @@ try {
 		}
 	}
 	if (config::byKey('object:summary') == '' || !is_array(config::byKey('object:summary'))) {
+		echo "Fix default summary...";
 		config::save(
 			'object:summary',
 			array(
@@ -78,8 +79,10 @@ try {
 				'power' => array('key' => 'power', 'name' => 'Puissance', 'calcul' => 'sum', 'icon' => '<i class="fa fa-bolt"></i>', 'unit' => 'W', 'allowDisplayZero' => false),
 			)
 		);
+		echo "OK\n";
 	}
 
+	echo "Check crons...\n";
 	$crons = cron::all();
 	if (is_array($crons)) {
 		if (class_exists('Cron\CronExpression')) {
@@ -377,29 +380,36 @@ try {
 
 		config::save('hardware_name', '');
 		if (config::byKey('api') == '') {
+			echo "Fix default apikey...\n";
 			config::save('api', config::genKey());
 		}
 		if (file_exists(__DIR__ . '/../core/nodeJS')) {
+			echo "Remove unsed nodejs folder...\n";
 			shell_exec(system::getCmdSudo() . 'rm -rf ' . __DIR__ . '/../core/nodeJS');
 		}
 		if (file_exists(__DIR__ . '/../script/ngrok')) {
+			echo "Remove unsed ngrok folder...\n";
 			shell_exec(system::getCmdSudo() . 'rm -rf ' . __DIR__ . '/../script/ngrok');
 		}
 		try {
 			if (method_exists('cache', 'flushWidget')) {
+				echo "Flush cache widget...\n";
 				cache::flushWidget();
 			}
 		} catch (Exception $e) {
 		} catch (Error $e) {
 		}
 
+		echo "Check jeedom object...";
 		foreach (jeeObject::all() as $object) {
 			try {
 				$object->save();
 			} catch (Exception $exc) {
 			}
 		}
+		echo "OK\n";
 
+		echo "Check jeedom cmd...";
 		foreach (cmd::all() as $cmd) {
 			try {
 				$changed = false;
@@ -422,10 +432,16 @@ try {
 			}
 		}
 	}
+	echo "OK\n";
+
 	if (!file_exists(__DIR__ . '/../data/php/user.function.class.php')) {
+		echo "Create default user function...";
 		copy(__DIR__ . '/../data/php/user.function.class.sample.php', __DIR__ . '/../data/php/user.function.class.php');
+		echo "OK\n";
 	}
+
 	if (!file_exists('/etc/systemd/system/mariadb.service.d/jeedom.conf')) {
+		echo "Add parameter for mariadb service...";
 		$cmd = '';
 		if (!file_exists('/etc/systemd/system/mariadb.service.d')) {
 			$cmd .= 'sudo mkdir /etc/systemd/system/mariadb.service.d;';
@@ -435,18 +451,25 @@ try {
 		$cmd .= 'sudo echo "Restart=always" >> /etc/systemd/system/mariadb.service.d/jeedom.conf;';
 		$cmd .= 'sudo systemctl daemon-reload;';
 		exec($cmd);
+		echo "OK\n";
 	}
 
 	if (file_exists(__DIR__ . '/../.htaccess_custom')) {
+		echo "Configure custom htaccess...";
 		shell_exec('sudo rm ' . __DIR__ . '/../.htaccess;sudo cp ' . __DIR__ . '/../.htaccess_custom ' . __DIR__ . '/../.htaccess');
+		echo "OK\n";
 	}
 
 	if (!file_exists('/etc/apache2/conf-enabled/remoteip.conf')) {
+		echo "Configure apache remote ip...";
 		shell_exec('sudo cp ' . __DIR__ . '/apache_remoteip /etc/apache2/conf-enabled/remoteip.conf');
 		echo "Update remoteip config file, you need to restart jeedom";
+		echo "OK\n";
 	}
 
+	echo "Set cache hour...";
 	cache::set('hour', strtotime('UTC'));
+	echo "OK\n";
 } catch (Exception $e) {
 	echo "\nError : ";
 	echo $e->getMessage();
