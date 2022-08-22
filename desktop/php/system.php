@@ -15,6 +15,7 @@ if (!isConnect('admin')) {
           <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command='echo "yes | sudo apt -f install" | sudo at now'>Fix install</a></li>
           <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command='echo "sudo dpkg --configure -a --force-confdef" | sudo at now'>Dpkg configure</a></li>
           <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo ../../health.sh">health.sh</a></li>
+          <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo echo 'nameserver 8.8.8.8' > /etc/resolv.conf">Set DNS</a></li>
         <?php } ?>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="ps -eo size,pid,user,command --sort -size">Memory Usage</a></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="ps -eo pid,ppid,%mem,%cpu,cmd --sort=-%cpu">CPU Usage</a></li>
