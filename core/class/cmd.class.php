@@ -1982,10 +1982,14 @@ class cmd {
 				foreach ($cmds as $id) {
 					$cmd = cmd::byId(str_replace('#', '', $id));
 					if (is_object($cmd)) {
-						$cmd->execCmd(array(
-							'title' => '[' . config::byKey('name', 'core', 'JEEDOM') . '] : ' . $message,
-							'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
-						));
+						try {
+							$cmd->execCmd(array(
+								'title' => '[' . config::byKey('name', 'core', 'JEEDOM') . '] : ' . $message,
+								'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
+							));
+						} catch (Exception $e) {
+							log::add('jeedomAlert', 'error', __('Erreur lors de l\'envoi de l\'alerte : ', __FILE__) . ' ' . $cmd->getHumanName() . '  => ' . $e->getMessage());
+						}
 					}
 				}
 			}
