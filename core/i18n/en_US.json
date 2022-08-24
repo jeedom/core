@@ -4098,6 +4098,7 @@
         "niveau": "level",
         "pendant plus de": "for more than",
         "minute(s)": "minutes)",
+        "Erreur lors de l\\'envoi de l\\'alerte : ": "Error sending alert:",
         "Retour à la normal de ": "Back to normal",
         "Appels de l\\'URL de push pour la commande": "Push URL calls for command",
         "Erreur push sur :": "Push error on:",
