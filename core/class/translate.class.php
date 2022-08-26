@@ -102,7 +102,7 @@ class translate {
 		$language = self::getLanguage();
 
 		if ($language == 'fr_FR') {
-			return preg_replace("/{{(.*?)}}/s", '$1', $_content);
+			//return preg_replace("/{{(.*?)}}/s", '$1', $_content);
 		}
 
 		if (substr($_name, 0, 1) == '/') {
@@ -138,7 +138,7 @@ class translate {
 			if (isset($translate[$_name][$text]) && $translate[$_name][$text] != '') {
 				$replace['{{' . $text . '}}'] = ltrim($translate[$_name][$text], '##');
 			} else if (strpos($text, "'") !== false && isset($translate[$_name][str_replace("'", "\'", $text)]) && $translate[$_name][str_replace("'", "\'", $text)] != '') {
-				$replace["{{" . $text . "}}"] = ltrim($translate[$_name][str_replace("'","\'",$text)], '##');
+				$replace["{{" . $text . "}}"] = ltrim($translate[$_name][str_replace("'", "\'", $text)], '##');
 			}
 			if (!isset($replace['{{' . $text . '}}']) && isset($translate['common'][$text])) {
 				$replace['{{' . $text . '}}'] = $translate['common'][$text];
@@ -169,7 +169,7 @@ class translate {
 		return __DIR__ . '/../../data/customTemplates/i18n/' . $_widgetName . '.json';
 	}
 
-	public static function loadTranslation($_plugin=null) {
+	public static function loadTranslation($_plugin = null) {
 		$return = array();
 		if ($_plugin == null || $_plugin == 'core') {
 			$filename = self::getPathTranslationFile(self::getLanguage());
@@ -208,7 +208,7 @@ class translate {
 	}
 
 	public static function setLanguage($_langage) {
-		self::$language = $_langage ;
+		self::$language = $_langage;
 	}
 
 	/*     * *********************Methode d'instance************************* */
