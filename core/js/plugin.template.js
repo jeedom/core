@@ -263,6 +263,10 @@ $(".eqLogicDisplayCard").on('click', function(event) {
             let cmd = $('.cmdTableState[data-cmd_id=' + _options.cmd_id + ']')
             cmd.attr('title', '{{Date de collecte}} : ' + _options.collectDate+' - {{Date de valeur}} ' + _options.valueDate)
             cmd.empty().append(_options.value + ' ' + _options.unit);
+            cmd.css('color','red');
+            setTimeout(function(){
+              cmd.css('color','');
+            }, 1000);
           });
         })
         $('#div_pageContainer').on({
