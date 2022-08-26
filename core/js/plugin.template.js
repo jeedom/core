@@ -659,6 +659,23 @@ $("img.lazy").each(function() {
 
 
 function addCmdToTableDefault(_cmd) {
+  if($('#table_cmd thead').text() == ''){
+    table = '<thead>';
+		table += '<tr>';
+		table += '<th>{{Id}}</th>';
+		table += '<th>{{Nom}}</th>';
+		table += '<th>{{Type}}</th>';
+		table += '<th>{{Logical ID}}</th>';
+		table += '<th>{{Options}}</th>';
+		table += '<th>{{Paramètres}}</th>';
+		table += '<th>{{Etat}}</th>';
+		table += '<th>{{Action}}</th>';
+		table += '</tr>';
+		table += '</thead>';
+		table += '<tbody>';
+		table += '</tbody>';
+    $('#table_cmd').append(table);
+  }
   if (!isset(_cmd)) {
     var _cmd = {configuration: {}};
   }
