@@ -136,7 +136,7 @@
         "Occurrences": "Occurrences"
     },
     "mobile\/html\/deamon.html": {
-        "Nom": "Last name",
+        "Nom": "Name",
         "Status": "Status",
         "Date lancement": "Date start",
         "Action": "Stock"
@@ -149,7 +149,7 @@
         "Texte": "Text"
     },
     "mobile\/html\/health.html": {
-        "Nom": "Last name",
+        "Nom": "Name",
         "Status": "Status"
     },
     "mobile\/html\/connection.html": {
@@ -172,7 +172,7 @@
         "Plugins": "Plugins"
     },
     "mobile\/html\/cron.html": {
-        "Nom": "Last name",
+        "Nom": "Name",
         "Status": "Status",
         "Date lancement": "Date start",
         "Action": "Stock"
@@ -215,7 +215,7 @@
         "Général": "Main",
         "Composants": "Components",
         "Sauvegarder": "Save",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Position": "Position",
         "Fond transparent": "Transparent background",
         "Couleur de fond": "Background color",
@@ -243,7 +243,7 @@
     "desktop\/modal\/history.calcul.php": {
         "Ajouter": "Add",
         "Sauvegarder": "Save",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Calcul": "Calculation",
         "Type": "Kind",
         "Groupement": "Group",
@@ -291,7 +291,7 @@
     },
     "desktop\/modal\/plugin.deamon.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Statut": "Status",
         "Configuration": "Configuration",
         "(Re)Démarrer": "(re)start",
@@ -319,7 +319,7 @@
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Général": "Main",
         "Sauvegarder": "Save",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Icône": "Icon",
         "Choisir": "Select",
         "Image (marche uniquement avec le thème Jeedom)": "Image (only works with Jeedom theme)",
@@ -348,7 +348,7 @@
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Ajouter": "Add",
         "Rafraichir": "Refresh",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Valeur": "Value",
         "Utilisée dans": "Used in",
         "Action": "Stock",
@@ -394,12 +394,12 @@
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Informations": "Information",
         "ID": "ID",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Visible": "Visible"
     },
     "desktop\/modal\/plugin.dependancy.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Statut": "Status",
         "Installation": "Facility",
         "Gestion automatique": "Automatic management",
@@ -473,7 +473,7 @@
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Objet": "Object",
         "Equipement": "Equipment",
-        "Commande": "Command",
+        "Commande": "Ordered",
         "Commande info": "Info command",
         "Commande action": "Action command"
     },
@@ -486,7 +486,7 @@
     "desktop\/modal\/eqLogic.dashboard.edit.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "EqLogic non trouvé :": "EqLogic not found:",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Visible": "Visible",
         "Affichage": "Display",
         "Paramètres de la tuile. Courbe d'historique et paramètres optionnels.": "Tile settings. History curve and optional parameters",
@@ -544,7 +544,7 @@
         "Général": "Main",
         "Sauvegarder": "Save",
         "Supprimer": "Delete",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Type de lien": "Type of link",
         "Equipement": "Equipment",
         "Lien": "Link",
@@ -601,7 +601,7 @@
         "Rechercher": "Search",
         "Recherche par": "Search by",
         "Equipement": "Equipment",
-        "Commande": "Command",
+        "Commande": "Ordered",
         "Variable": "Variable",
         "Plugin": "Plugin",
         "Mot": "Word",
@@ -672,7 +672,7 @@
     },
     "desktop\/modal\/dataStore.human.insert.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Nom": "Last name"
+        "Nom": "Name"
     },
     "desktop\/modal\/cmd.configure.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -687,7 +687,7 @@
         "Général": "Main",
         "ID": "ID",
         "Logical ID": "Logical ID",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Type": "Kind",
         "Sous-type": "Sub-type",
         "Mise à jour par": "Updated by",
@@ -696,7 +696,7 @@
         "Date de collecte": "Date of collection",
         "le": "the",
         "URL directe": "Direct URL",
-        "Unité": "Unity",
+        "Unité": "Unit",
         "Visible": "Visible",
         "Valeur minimum": "Minimum value",
         "défaut": "default",
@@ -831,7 +831,7 @@
     },
     "desktop\/modal\/jeedom.benchmark.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Temps": "Time"
     },
     "desktop\/modal\/js.error.php": {
@@ -882,7 +882,7 @@
         "Commandes historisées :": "Historized commands:",
         "Commandes timeline :": "Timeline commands:",
         "par page": "per page",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Plugin": "Plugin",
         "Type": "Kind",
         "Historisé": "Historized",
@@ -920,7 +920,7 @@
     "desktop\/modal\/cmd.graph.select.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Objet": "Object",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Affichage": "Display",
         "Ligne": "Line",
         "Aire": "Area",
@@ -982,7 +982,7 @@
         "Alertes": "Warnings",
         "Commentaire": "Comment",
         "ID": "ID",
-        "Nom": "Last name",
+        "Nom": "Name",
         "ID logique": "Logical ID",
         "ID de l'objet": "Object ID",
         "Création": "Creation",
@@ -1053,7 +1053,7 @@
         "Composants": "Components",
         "Supprimer": "Delete",
         "Sauvegarder": "Save",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Position": "Position",
         "Code d'accès": "Access code",
         "Icône": "Icon",
@@ -1084,7 +1084,7 @@
         "Voulu par": "Need by",
         "Version": "Version",
         "Remarque": "Note",
-        "Commande": "Command",
+        "Commande": "Ordered",
         "Action": "Stock",
         "Incompatible avec l\\'OS": "Incompatible with OS",
         "Mise à jour": "Update",
@@ -1203,11 +1203,11 @@
     "desktop\/modal\/cmd.selectMultiple.php": {
         "Aucune commande trouvée": "No commands found",
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Inverser": "Reverse",
+        "Inverser": "Invert",
         "Valider": "Validate",
         "Objet": "Object",
         "Equipement": "Equipment",
-        "Nom": "Last name"
+        "Nom": "Name"
     },
     "desktop\/modal\/cmd.history.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -1235,7 +1235,7 @@
         "Type non trouvé :": "Type not found:",
         "Sauvegarder": "Save",
         "Type": "Kind",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Modification sauvegardée avec succès": "Change saved successfully"
     },
     "desktop\/modal\/plan.configure.php": {
@@ -1255,7 +1255,7 @@
         "Facteur de zoom. Ex : Réduire de moitié : 0.5, Doubler : 2": "Zoom factor. Ex: Reduce by half: 0.5, Double: 2",
         "Attention : cette option crée des problèmes de placement sur les bords du design.": "Warning: this option creates placement problems on the edges of the design",
         "Spécifique": "Specific",
-        "Afficher": "To display",
+        "Afficher": "Show",
         "Image": "Picture",
         "Caméra": "Camera",
         "Envoyer": "Send",
@@ -1275,7 +1275,7 @@
         "Afficher le sélecteur de période": "Show period selector",
         "Afficher la barre de défilement": "Show scroll bar",
         "Fond transparent": "Transparent background",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Lien": "Link",
         "Aucun": "None",
         "Icône": "Icon",
@@ -1295,7 +1295,7 @@
         "Attention : peut être source de problèmes.": "Warning: can cause problems",
         "Appliquer le css personnalisé sur": "Apply custom css on",
         "Commandes": "Commands",
-        "Commande": "Command",
+        "Commande": "Ordered",
         "Masquer": "Hide",
         "Taille de la police": "Font size",
         "Alignement du texte": "Text alignment",
@@ -1381,7 +1381,7 @@
         "Mobile": "Mobile",
         "Type": "Kind",
         "Sous-type": "Subtype",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Créer": "Create"
     },
     "desktop\/php\/plan3d.php": {
@@ -1541,7 +1541,7 @@
         "OS\/Package": "OS\/Package",
         "Informations": "Information",
         "Etat": "State",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Version installée": "Installed version",
         "Dernière version": "Last version",
         "Mise à jour faite le": "Update made on",
@@ -1770,11 +1770,11 @@
         "Défaut": "Default",
         "Ajouter un type de résumé": "Add a summary type",
         "Clé": "Key",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Calcul": "Calculation",
         "Icône": "Icon",
         "Icône si nul": "If null icon",
-        "Unité": "Unity",
+        "Unité": "Unit",
         "Masquer le nombre": "Hide number",
         "Ne jamais afficher le numéro à coté de l'icône.": "Never display the number next to the icon",
         "Masquer le nombre si nul": "Hide number if zero",
@@ -2123,7 +2123,7 @@
         "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "EXPERIMENTAL: It is strongly recommended to perform a system backup before using this tool!",
         "Filtre": "Filter",
         "Equipement": "Equipment",
-        "Commande": "Command",
+        "Commande": "Ordered",
         "Objet": "Object",
         "Scénario": "Scenario",
         "Ajouter un filtre": "Add filter",
@@ -2179,7 +2179,7 @@
         "Télécharger": "Download",
         "Supprimer": "Delete",
         "Tout supprimer": "Delete all",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Chemin": "Path",
         "Id rapport": "Report Id",
         "Extension": "Extension",
@@ -2196,7 +2196,7 @@
         "Sauvegarder": "Save",
         "Supprimer": "Remove",
         "Ajouter\/Editer viewZone": "Add \/ Edit viewZone",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Type": "Kind",
         "Equipement": "Equipment",
         "Graphique": "Graphic",
@@ -2269,7 +2269,7 @@
         "Description": "Description",
         "Ajouter un bloc": "Add block",
         "Si\/Alors\/Sinon": "If \/ Do \/ Else",
-        "Action": "Stock",
+        "Action": "Action",
         "Boucle": "Loop",
         "Dans": "In",
         "A": "At",
@@ -2301,7 +2301,7 @@
         "Types auto": "Auto types",
         "Inconnu": "Unknown",
         "Rechercher | nom | id": "Search | name | id",
-        "Liste": "List",
+        "Liste": "Listing",
         "Sauvegarder": "Save",
         "Appliquer": "Apply",
         "Types inconnus": "Unknown types"
@@ -2332,7 +2332,7 @@
         "Général": "Main",
         "Filtres": "Filters",
         "Actions": "Shares",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Groupe": "Group",
         "Groupe de l'interaction": "Interaction group",
         "Actif": "Active",
@@ -2378,7 +2378,7 @@
         "Rechercher | nom | :not(nom": "Search | name | : not (name",
         "Aucun équipement en Alerte.": "No equipment on alert",
         "Equipement": "Equipment",
-        "Commande": "Command",
+        "Commande": "Ordered",
         "Type": "Kind",
         "Actions": "Shares",
         "Action sur état": "State action",
@@ -2473,7 +2473,7 @@
         "Statut": "Status",
         "Actions": "Shares",
         "Event": "Event",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Status": "Status",
         "Date lancement": "Date start",
         "Action": "Stock"
@@ -2660,7 +2660,7 @@
         "Date": "Dated",
         "Type": "Kind",
         "ID": "ID",
-        "Nom": "Last name"
+        "Nom": "Name"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -2776,7 +2776,7 @@
         "Ajouter Scénario": "Add Scenario",
         "Editer": "Edit",
         "Supprimer": "Delete",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Couleur": "Color",
         "Type": "Kind",
         "Groupement": "Group",
@@ -2955,7 +2955,7 @@
         "Sélectionner un mot-clé": "Select a keyword",
         "Liste des interactions": "List of interactions",
         "Interactions": "Interactions",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Tester les interactions": "Test interactions",
         "Sauvegarde réussie avec succès": "Backup successful",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "Are you sure you want to regenerate all interactions (this can be very long)?",
@@ -3080,7 +3080,7 @@
         "Types Génériques sauvegardés": "Generic types saved",
         "Liste des Types Génériques (Core et Plugins)": "List of Generic Types (Core and Plugins)",
         "Générique": "Generic",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Type": "Kind",
         "Sous type": "Sub type",
         "Commentaire": "Remark"
@@ -3102,9 +3102,9 @@
     "desktop\/js\/object.js": {
         "Envoyer": "Send",
         "Image de fond ajoutée avec succès": "Background image successfully added",
-        "Commande": "Command",
+        "Commande": "Ordered",
         "Activer": "Activate",
-        "Inverser": "Reverse",
+        "Inverser": "Invert",
         "Résumé(s)": "Summary",
         "Rendre invisible": "Make invisible",
         "Rendre visible": "To make visible",
@@ -3213,7 +3213,7 @@
         "Coller un bloc après celui-ci.<br>Ctrl+Click: remplacer ce bloc par le bloc copié.": "Paste a block after this. <br> Ctrl + Click: replace this block with the copied block",
         "Afficher\/masquer le bloc Sinon": "Show \/ hide Else block",
         "Ajouter": "Add",
-        "Action": "Stock",
+        "Action": "ACTION",
         "Bloc Si\/Alors\/Sinon": "If \/ Do \/ Else block",
         "Bloc Action": "Action Block",
         "Bloc Boucle": "Loop Block",
@@ -3391,16 +3391,18 @@
         "Paramètres": "Settings",
         "Etat": "State",
         "Action": "Stock",
-        "Nom de la commande": "Command name",
-        "Commande information liée": "Order related information",
-        "Aucune": "None",
-        "Icône": "Icon",
+        "Commande": "Ordered",
+        "Valeur retour d\\'état": "Status return value",
+        "Durée avant retour d\\'état (min)": "Duration before status return (min)",
+        "Min": "Minimum",
+        "Max": "Max",
+        "Unité": "Unity",
+        "Liste de valeur|texte séparé par ;": "List of value|text separated by;",
+        "Liste": "Listing",
         "Afficher": "To display",
         "Historiser": "Historize",
         "Inverser": "Reverse",
-        "Min.": "Min.",
-        "Max.": "Max.",
-        "Unité": "Unity"
+        "Tester": "Test"
     },
     "core\/js\/log.class.js": {
         "Reprendre": "Resume",
@@ -3670,7 +3672,7 @@
         "Curseur": "Cursor",
         "Message": "Message",
         "Couleur": "Color",
-        "Liste": "List",
+        "Liste": "Listing",
         "Scénario lancé manuellement": "Manually launched scenario",
         "Scénario exécuté automatiquement sur événement venant de :": "Scenario executed automatically on event from:",
         "Scénario exécuté sur événement": "Scenario executed on event",
@@ -3911,7 +3913,7 @@
         "Commande inconnue :": "Unknown command:",
         "Aucun point ne correspond pour l\\'historique :": "No point corresponds for the history:",
         "Jeedom": "Jeedom",
-        "Commande": "Command",
+        "Commande": "Ordered",
         "Objet": "Object",
         "Scénario": "Scenario",
         "Interaction": "Interaction",
@@ -4054,7 +4056,7 @@
     },
     "core\/repo\/market.display.repo.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Développé par": "Developed by",
         "Conseillé": "Recommended",
         "Legacy": "Legacy",
@@ -4129,7 +4131,7 @@
         "La commande source n\\'existe pas": "La commande source n\\'existe pas",
         "La commande cible n\\'existe pas": "La commande cible n\\'existe pas",
         "Erreur lors de la migration de commande": "Erreur lors de la migration de commande",
-        "Commande": "Command"
+        "Commande": "Ordered"
     },
     "core\/class\/jeedom.class.php": {
         "Administration": "Settings",
@@ -4246,7 +4248,7 @@
         "aucune valeur": "no value"
     },
     "core\/class\/history.class.php": {
-        "Commande": "Command",
+        "Commande": "Ordered",
         "Date": "Dated",
         "Valeur": "Value",
         "La commande source n\\'existe pas :": "The source command does not exist:",
@@ -4642,7 +4644,7 @@
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Scenario",
-        "Action": "Stock",
+        "Action": "Action",
         "Démarrer": "Start",
         "Démarrer (sync)": "Start (sync)",
         "Arrêter": "Stop",
@@ -4666,7 +4668,7 @@
         "Sélectionner la commande": "Select command"
     },
     "core\/template\/scenario\/variable.default.html": {
-        "Nom": "Last name",
+        "Nom": "Name",
         "Valeur": "Value",
         "Sélectionner la commande": "Select command"
     },
@@ -4677,7 +4679,7 @@
         "Désactiver": "Disable"
     },
     "core\/template\/scenario\/delete_variable.default.html": {
-        "Nom": "Last name"
+        "Nom": "Name"
     },
     "core\/template\/scenario\/equipement.default.html": {
         "Equipement": "Equipment",
@@ -4689,7 +4691,7 @@
         "Désactiver": "Disable"
     },
     "core\/template\/scenario\/genericType.default.html": {
-        "Type": "Kind",
+        "Type": "Type",
         "Type Info (event)": "Info type (event)",
         "Type Action (exec)": "Action type (exec)",
         "Objet": "Object",
@@ -4709,7 +4711,7 @@
         "Sélectionner la commande": "Select command"
     },
     "core\/template\/scenario\/event.default.html": {
-        "Commande": "Command",
+        "Commande": "Ordered",
         "Valeur": "Value",
         "Sélectionner la commande": "Select command"
     },
@@ -4728,7 +4730,7 @@
         "Sélectionner la commande": "Select command"
     },
     "core\/template\/scenario\/tag.default.html": {
-        "Nom": "Last name",
+        "Nom": "Name",
         "Valeur": "Value",
         "Sélectionner la commande": "Select command"
     },
@@ -4765,7 +4767,7 @@
         "Sélectionner la commande": "Select command",
         "De": "From",
         "à": "To",
-        "Nom": "Last name",
+        "Nom": "Name",
         "Exporter en": "Export to",
         "CSV": "CSV"
     },
