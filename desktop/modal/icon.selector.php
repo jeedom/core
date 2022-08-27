@@ -76,7 +76,7 @@ sendVarToJS([
                 echo '<li><a data-path="' . $root . '/' . $dir . '">' . ucfirst(str_replace(array('/', '_'), array('', ' '), $dir)) . '</a></li>';
               }
             }
-            echo '<li><a data-path="'.__DIR__ . '/../../data/3rdparty/font-awesome5/">Font-Awesome</a></li>';
+            echo '<li><a data-path="'.__DIR__ . '/../../3rdparty/font-awesome5/">Font-Awesome</a></li>';
             ?>
           </ul>
         </div>
