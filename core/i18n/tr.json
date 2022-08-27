@@ -3252,6 +3252,8 @@
         "Historique": "Geçmiş"
     },
     "desktop\/common\/js\/utils.js": {
+        "Impossible de charger la ressource \"${uri}\", car elle va contre la directive de Content Security Policy :<br \/> \"${violation}": "Impossible de charger la ressource \"${uri}\", car elle va contre la directive de Content Security Policy :<br \/> \"${violation}",
+        "La ressource \"${uri}\" a été chargée, mais elle va contre la directive de Content Security Policy :<br \/> \"${violation}": "La ressource \"${uri}\" a été chargée, mais elle va contre la directive de Content Security Policy :<br \/> \"${violation}",
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Dikkat modifie verikeri bulunan bi sayfayı terk etmek uzerisiniz. Devam etmekden eminmisiniz?",
         "Sauvegarde effectuée avec succès": "Kayıt başarıyla sonuçlandı",
         "Suppression effectuée avec succès": "Silme başarıyla sonuçlandı",

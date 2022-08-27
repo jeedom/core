@@ -3252,6 +3252,8 @@
         "Historique": "History"
     },
     "desktop\/common\/js\/utils.js": {
+        "Impossible de charger la ressource \"${uri}\", car elle va contre la directive de Content Security Policy :<br \/> \"${violation}": "Unable to load resource \"${uri}\", because it goes against Content Security Policy directive:<br \/> \"${violation}",
+        "La ressource \"${uri}\" a été chargée, mais elle va contre la directive de Content Security Policy :<br \/> \"${violation}": "The \"${uri}\" resource was loaded, but it goes against the Content Security Policy directive:<br \/> \"${violation}",
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "You have modified settings that haven\\'t been saved. Are you sure you want to continue?",
         "Sauvegarde effectuée avec succès": "Successfully saved",
         "Suppression effectuée avec succès": "Successful deletion",
