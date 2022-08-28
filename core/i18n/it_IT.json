@@ -1044,7 +1044,8 @@
         "Configuration de la commande": "Impostazione comando",
         "Logs": "Logs",
         "Avez-vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\\'hui": "Avez-vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\\'hui",
-        "Changement de pile(s) pris en compte": "Changement de pile(s) pris en compte"
+        "Changement de pile(s) pris en compte": "Changement de pile(s) pris en compte",
+        "Date de valeur": "Date de valeur"
     },
     "desktop\/modal\/plan3dHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",

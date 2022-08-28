@@ -1044,7 +1044,8 @@
         "Configuration de la commande": "Befehl Konfiguration",
         "Logs": "Protokolle",
         "Avez-vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\\'hui": "Haben Sie die Batterien gewechselt? Durch diese Aktion wird das Datum des Batteriewechsels auf heute gesetzt",
-        "Changement de pile(s) pris en compte": "Batteriewechsel berücksichtigt"
+        "Changement de pile(s) pris en compte": "Batteriewechsel berücksichtigt",
+        "Date de valeur": "Datum der Wertstellung"
     },
     "desktop\/modal\/plan3dHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",

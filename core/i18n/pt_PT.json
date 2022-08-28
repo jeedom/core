@@ -1044,7 +1044,8 @@
         "Configuration de la commande": "Configuração do comando",
         "Logs": "Registos",
         "Avez-vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\\'hui": "Trocou as baterias? Esta ação definirá a data de troca da bateria para hoje",
-        "Changement de pile(s) pris en compte": "Troca da(s) bateria(s) levada em consideração"
+        "Changement de pile(s) pris en compte": "Troca da(s) bateria(s) levada em consideração",
+        "Date de valeur": "Data de validade"
     },
     "desktop\/modal\/plan3dHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -4594,7 +4595,7 @@
         "Objet": "Objeto"
     },
     "core\/template\/widgets.html": {
-        "Date de valeur": "Data do valor",
+        "Date de valeur": "Data de validade",
         "Date de collecte": "Data de recolha",
         "Valeur": "Valor",
         "Min": "Mín.",
