@@ -473,7 +473,7 @@
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Objet": "Objekt",
         "Equipement": "Gerät",
-        "Commande": "Bestellt",
+        "Commande": "Befehl",
         "Commande info": "Info Befehl",
         "Commande action": "Aktionsbefehl"
     },
@@ -601,7 +601,7 @@
         "Rechercher": "Suchen nach",
         "Recherche par": "Suche nach",
         "Equipement": "Gerät",
-        "Commande": "Bestellt",
+        "Commande": "Befehl",
         "Variable": "Variable",
         "Plugin": "Plugin",
         "Mot": "Wort",
@@ -677,7 +677,7 @@
     "desktop\/modal\/cmd.configure.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Commande non trouvée": "Befehl nicht gefunden",
-        "Tester": "Prüfen",
+        "Tester": "Prüfung",
         "Liens": "Links",
         "Informations": "Information",
         "Sauvegarder": "Speichern",
@@ -1084,7 +1084,7 @@
         "Voulu par": "Gesucht von",
         "Version": "Ausführung",
         "Remarque": "Bemerkung",
-        "Commande": "Bestellt",
+        "Commande": "Befehl",
         "Action": "Aktion",
         "Incompatible avec l\\'OS": "Inkompatibel mit Betriebssystem",
         "Mise à jour": "Update",
@@ -1295,7 +1295,7 @@
         "Attention : peut être source de problèmes.": "Warnung: Kann Probleme verursachen",
         "Appliquer le css personnalisé sur": "Wenden Sie benutzerdefiniertes CSS auf an",
         "Commandes": "Befehle",
-        "Commande": "Bestellt",
+        "Commande": "Befehl",
         "Masquer": "Auszublenden",
         "Taille de la police": "Schriftgröße",
         "Alignement du texte": "Textausrichtung",
@@ -1927,7 +1927,7 @@
         "Vérification automatique des mises à jour": "Automatische Überprüfung der Updates",
         "Configuration des dépôts": "Konfiguration von Repositorys",
         "Tester\/Synchroniser": "Test \/ Synchronisieren",
-        "Tester": "Prüfen",
+        "Tester": "Prüfung",
         "Attention : toute modification du moteur de cache nécessite un redémarrage de": "Achtung : Jede Änderung an der Cache-Engine erfordert einen Neustart von",
         "Statistiques": "Statistiken",
         "objets": "Objekte",
@@ -2321,7 +2321,7 @@
         "Gestion": "Management",
         "Ajouter": "Hinzufügen",
         "Regénérer": "Regenerat",
-        "Tester": "Prüfen",
+        "Tester": "Prüfung",
         "Mes interactions": "Meine Interaktionen",
         "Vous n'avez encore aucune interaction. Cliquez sur ajouter pour commencer.": "Sie haben noch keine Interaktion. Klicken Sie auf Hinzufügen, um zu beginnen",
         "Rechercher | nom | :not(nom": "Suche | Name | : nicht (Name",
@@ -2378,7 +2378,7 @@
         "Rechercher | nom | :not(nom": "Suche | Name | : nicht (Name",
         "Aucun équipement en Alerte.": "Keine Ausrüstung in Alarmbereitschaft",
         "Equipement": "Gerät",
-        "Commande": "Bestellt",
+        "Commande": "Befehl",
         "Type": "Typ",
         "Actions": "Aktionen",
         "Action sur état": "Staatliche Aktion",
@@ -2446,7 +2446,7 @@
         "Select cmd id 1": "Wählen Sie cmd id 1",
         "Cliquez sur une commande ci dessus ou éxécutez une commande personnalisée.": "Klicken Sie oben auf einen Befehl oder führen Sie einen benutzerdefinierten Befehl aus",
         "Constructeur SQL": "SQL-Konstruktor",
-        "Tester": "Prüfen",
+        "Tester": "Prüfung",
         "Exécuter": "Ausführen",
         "Commande SQL": "SQL-Befehl"
     },
@@ -3102,7 +3102,7 @@
     "desktop\/js\/object.js": {
         "Envoyer": "Senden",
         "Image de fond ajoutée avec succès": "Hintergrundbild erfolgreich hinzugefügt",
-        "Commande": "Bestellt",
+        "Commande": "Befehl",
         "Activer": "Aktivieren",
         "Inverser": "Umgekehrt",
         "Résumé(s)": "Zusammenfassung (en)",
@@ -3252,6 +3252,8 @@
         "Historique": "Chronik"
     },
     "desktop\/common\/js\/utils.js": {
+        "Impossible de charger la ressource \"${uri}\", car elle va contre la directive de Content Security Policy :<br \/> \"${violation}": "Ressource „${uri}“ kann nicht geladen werden, da sie gegen die Richtlinie zur Inhaltssicherheit verstößt:<br \/> \"${Verletzung}",
+        "La ressource \"${uri}\" a été chargée, mais elle va contre la directive de Content Security Policy :<br \/> \"${violation}": "Die Ressource „${uri}“ wurde geladen, verstößt jedoch gegen die Richtlinie zur Inhaltssicherheit:<br \/> \"${Verletzung}",
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Vorsicht! Sie verlassen einer Seite mit modifizierten und nicht gespeicherten Daten. Wollen Sie weitermachen?",
         "Sauvegarde effectuée avec succès": "Speichern erfolgreich abgeschlossen",
         "Suppression effectuée avec succès": "Erfolgreiches Löschen",
@@ -3913,7 +3915,7 @@
         "Commande inconnue :": "Unbekannter Befehl:",
         "Aucun point ne correspond pour l\\'historique :": "Für die Geschichte entspricht kein Punkt:",
         "Jeedom": "Jeedom",
-        "Commande": "Bestellt",
+        "Commande": "Befehl",
         "Objet": "Objekt",
         "Scénario": "Szenario",
         "Interaction": "Interaktion",
@@ -4131,7 +4133,7 @@
         "La commande source n\\'existe pas": "La commande source n\\'existe pas",
         "La commande cible n\\'existe pas": "La commande cible n\\'existe pas",
         "Erreur lors de la migration de commande": "Erreur lors de la migration de commande",
-        "Commande": "Bestellt"
+        "Commande": "Befehl"
     },
     "core\/class\/jeedom.class.php": {
         "Administration": "Verwaltung",
@@ -4248,7 +4250,7 @@
         "aucune valeur": "kein Wert"
     },
     "core\/class\/history.class.php": {
-        "Commande": "Bestellt",
+        "Commande": "Befehl",
         "Date": "Datum",
         "Valeur": "Wert",
         "La commande source n\\'existe pas :": "Der Quellbefehl existiert nicht:",
@@ -4595,7 +4597,7 @@
         "Date de valeur": "Datum der Wertstellung",
         "Date de collecte": "Abholtermin",
         "Valeur": "Wert",
-        "Min": "Minimum",
+        "Min": "Mindest",
         "Moyenne": "Durchschnittlich",
         "Max": "Max",
         "Nord": "Norden",
@@ -4711,7 +4713,7 @@
         "Sélectionner la commande": "Befehl auswählen"
     },
     "core\/template\/scenario\/event.default.html": {
-        "Commande": "Bestellt",
+        "Commande": "Befehl",
         "Valeur": "Wert",
         "Sélectionner la commande": "Befehl auswählen"
     },

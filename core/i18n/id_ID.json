@@ -3252,6 +3252,8 @@
         "Historique": "Historis"
     },
     "desktop\/common\/js\/utils.js": {
+        "Impossible de charger la ressource \"${uri}\", car elle va contre la directive de Content Security Policy :<br \/> \"${violation}": "Impossible de charger la ressource \"${uri}\", car elle va contre la directive de Content Security Policy :<br \/> \"${violation}",
+        "La ressource \"${uri}\" a été chargée, mais elle va contre la directive de Content Security Policy :<br \/> \"${violation}": "La ressource \"${uri}\" a été chargée, mais elle va contre la directive de Content Security Policy :<br \/> \"${violation}",
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Peringatan meninggalkan halaman dengan data yang dimodifikasi yang belum disimpan. Apakah Anda ingin melanjutkan?",
         "Sauvegarde effectuée avec succès": "Cadangan selesai dengan sukses",
         "Suppression effectuée avec succès": "Berhasil dihapus",

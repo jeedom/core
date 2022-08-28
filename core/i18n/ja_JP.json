@@ -3252,6 +3252,8 @@
         "Historique": "歴史的"
     },
     "desktop\/common\/js\/utils.js": {
+        "Impossible de charger la ressource \"${uri}\", car elle va contre la directive de Content Security Policy :<br \/> \"${violation}": "Impossible de charger la ressource \"${uri}\", car elle va contre la directive de Content Security Policy :<br \/> \"${violation}",
+        "La ressource \"${uri}\" a été chargée, mais elle va contre la directive de Content Security Policy :<br \/> \"${violation}": "La ressource \"${uri}\" a été chargée, mais elle va contre la directive de Content Security Policy :<br \/> \"${violation}",
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "保存されていない変更されたデータを含むページを離れていることに注意してください。続行しますか？",
         "Sauvegarde effectuée avec succès": "バックアップが正常に完了",
         "Suppression effectuée avec succès": "削除に成功",

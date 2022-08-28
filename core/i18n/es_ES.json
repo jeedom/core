@@ -473,7 +473,7 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Objet": "Objeto",
         "Equipement": "Dispositivo",
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "Commande info": "Comando de información",
         "Commande action": "Comando de acción"
     },
@@ -601,7 +601,7 @@
         "Rechercher": "Buscar",
         "Recherche par": "Buscar por",
         "Equipement": "Dispositivo",
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "Variable": "Variable",
         "Plugin": "Enchufar",
         "Mot": "Palabra",
@@ -677,7 +677,7 @@
     "desktop\/modal\/cmd.configure.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Commande non trouvée": "Comando no encontrado",
-        "Tester": "Prueba",
+        "Tester": "Probar",
         "Liens": "Enlaces",
         "Informations": "Información",
         "Sauvegarder": "Guardar",
@@ -1084,7 +1084,7 @@
         "Voulu par": "Buscado por",
         "Version": "Versión",
         "Remarque": "Observación",
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "Action": "Acción",
         "Incompatible avec l\\'OS": "Incompatible con OS",
         "Mise à jour": "Actualización",
@@ -1295,7 +1295,7 @@
         "Attention : peut être source de problèmes.": "Advertencia: puede causar problemas",
         "Appliquer le css personnalisé sur": "Aplicar CSS personalizado en",
         "Commandes": "Comandos",
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "Masquer": "Ocultar",
         "Taille de la police": "Tamaño de fuente",
         "Alignement du texte": "Alineación de texto",
@@ -2378,7 +2378,7 @@
         "Rechercher | nom | :not(nom": "Buscar | nombre | : sin nombre",
         "Aucun équipement en Alerte.": "No hay equipos en alerta",
         "Equipement": "Dispositivos",
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "Type": "Tipo",
         "Actions": "Acciones",
         "Action sur état": "Acción estatal",
@@ -3102,7 +3102,7 @@
     "desktop\/js\/object.js": {
         "Envoyer": "Enviar",
         "Image de fond ajoutée avec succès": "Imagen de fondo agregada correctamente",
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "Activer": "Activar",
         "Inverser": "Invertir",
         "Résumé(s)": "Resumen (s)",
@@ -3252,6 +3252,8 @@
         "Historique": "Historial"
     },
     "desktop\/common\/js\/utils.js": {
+        "Impossible de charger la ressource \"${uri}\", car elle va contre la directive de Content Security Policy :<br \/> \"${violation}": "No se puede cargar el recurso \"${uri}\", porque va en contra de la directiva de Política de seguridad de contenido:<br \/> \"${violación}",
+        "La ressource \"${uri}\" a été chargée, mais elle va contre la directive de Content Security Policy :<br \/> \"${violation}": "Se cargó el recurso \"${uri}\", pero va en contra de la directiva de Política de seguridad de contenido:<br \/> \"${violación}",
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Advertencia: Usted está dejando una página con datos modificados sin guardar. ¿Quiere continuar?",
         "Sauvegarde effectuée avec succès": "Guardado correctamente",
         "Suppression effectuée avec succès": "Eliminación exitosa",
@@ -3672,7 +3674,7 @@
         "Curseur": "Cursor",
         "Message": "Mensaje",
         "Couleur": "Color",
-        "Liste": "Listado",
+        "Liste": "Lista",
         "Scénario lancé manuellement": "Escenario lanzado manualmente",
         "Scénario exécuté automatiquement sur événement venant de :": "Escenario ejecutado automáticamente en evento proveniente de:",
         "Scénario exécuté sur événement": "Escenario ejecutado en el evento",
@@ -3913,7 +3915,7 @@
         "Commande inconnue :": "Comando desconocido:",
         "Aucun point ne correspond pour l\\'historique :": "Ningún punto corresponde para el historial:",
         "Jeedom": "Jeedom",
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "Objet": "Objeto",
         "Scénario": "Escenario",
         "Interaction": "Interacción",
@@ -4131,7 +4133,7 @@
         "La commande source n\\'existe pas": "El comando fuente no existe",
         "La commande cible n\\'existe pas": "El comando de destino no existe",
         "Erreur lors de la migration de commande": "Error al migrar orden",
-        "Commande": "Ordenado"
+        "Commande": "Comando"
     },
     "core\/class\/jeedom.class.php": {
         "Administration": "Administración",
@@ -4248,7 +4250,7 @@
         "aucune valeur": "ningún valor"
     },
     "core\/class\/history.class.php": {
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "Date": "Fecha",
         "Valeur": "Valor",
         "La commande source n\\'existe pas :": "El comando fuente no existe:",
@@ -4711,7 +4713,7 @@
         "Sélectionner la commande": "Seleccionar el comando"
     },
     "core\/template\/scenario\/event.default.html": {
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "Valeur": "Valor",
         "Sélectionner la commande": "Seleccionar el comando"
     },

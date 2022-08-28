@@ -43,6 +43,17 @@ window.addEventListener('error', function(event) {
   $('#bt_jsErrorModal').show()
   $.hideLoading()
 })
+window.addEventListener("securitypolicyviolation", function(event) {
+  var uri = event.blockedURI;
+  var violation = event.originalPolicy.trim().split(';').find(e => e.trim().startsWith(event.violatedDirective)).trim();
+  if (event.disposition == 'enforce')
+    var msg = `{{Impossible de charger la ressource "${uri}", car elle va contre la directive de Content Security Policy :<br /> "${violation}"}}`;
+  else
+    var msg = `{{La ressource "${uri}" a été chargée, mais elle va contre la directive de Content Security Policy :<br /> "${violation}"}}`;
+  JS_ERROR.push({"filename": event.documentURI, "lineno": "0", "message": msg});
+  $('#bt_jsErrorModal').show();
+  $.hideLoading();
+});
 
 //UI Time display:
 setInterval(function() {
