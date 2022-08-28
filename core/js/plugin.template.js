@@ -248,7 +248,16 @@ $(".eqLogicDisplayCard").on('click', function(event) {
         $('.cmd').remove()
         for (var i in data.cmd) {
           if(data.cmd[i].type == 'info'){
-            data.cmd[i]['htmlstate'] = '<span class="cmdTableState" data-cmd_id="' + data.cmd[i].id + '" title="{{Date de collecte}} : ' + data.cmd[i].collectDate + '- {{Date de valeur}} ' + data.cmd[i].valueDate + '">' + data.cmd[i].state +  ' ' + data.cmd[i].unite + '<span>';
+            data.cmd[i].state = String(data.cmd[i].state).replace(/<[^>]*>?/gm, '');
+            data.cmd[i]['htmlstate'] =  '<span class="cmdTableState"';
+            data.cmd[i]['htmlstate'] += 'data-cmd_id="' + data.cmd[i].id+ '"';
+            data.cmd[i]['htmlstate'] += 'title="{{Date de collecte}} : ' + data.cmd[i].collectDate + '- {{Date de valeur}} ' + data.cmd[i].valueDate;
+            if(data.cmd[i].state.length > 50){
+              data.cmd[i]['htmlstate'] += ' - '+data.cmd[i].state.replaceAll('"','\"');
+            }
+            data.cmd[i]['htmlstate'] += '" >';
+            data.cmd[i]['htmlstate'] += data.cmd[i].state.substring(0, 50) +  ' ' + data.cmd[i].unite;
+            data.cmd[i]['htmlstate'] += '<span>';
           }else{
             data.cmd[i]['htmlstate'] = '';
           }
@@ -260,9 +269,14 @@ $(".eqLogicDisplayCard").on('click', function(event) {
         }
         $('.cmdTableState').each(function() {
           jeedom.cmd.addUpdateFunction($(this).attr('data-cmd_id'), function(_options) {
+            _options.value = String(_options.value).replace(/<[^>]*>?/gm, '');
             let cmd = $('.cmdTableState[data-cmd_id=' + _options.cmd_id + ']')
-            cmd.attr('title', '{{Date de collecte}} : ' + _options.collectDate+' - {{Date de valeur}} ' + _options.valueDate)
-            cmd.empty().append(_options.value + ' ' + _options.unit);
+            let title = '{{Date de collecte}} : ' + _options.collectDate+' - {{Date de valeur}} ' + _options.valueDate;
+            if(_options.value.length > 50){
+              title += ' - '+_options.value;
+            }
+            cmd.attr('title', title)
+            cmd.empty().append(_options.value.substring(0, 50) + ' ' + _options.unit);
             cmd.css('color','var(--logo-primary-color)');
             setTimeout(function(){
               cmd.css('color','');
