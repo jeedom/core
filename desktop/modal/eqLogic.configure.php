@@ -171,11 +171,12 @@ sendVarToJS([
                 $display .= '<td>';
                 if ($cmd->getType() == 'info') {
                   $value = $cmd->execCmd();
-                  $title = '{{Date de collecte}} : ' .  $cmd->getCollectDate();
+                  $title = '{{Date de valeur}} : ' . $cmd->getValueDate() . ' - {{Date de collecte}} : ' .  $cmd->getCollectDate();
                   if (strlen($value) > 50) {
-                    $title .= ' - ' . $value;
+                    $title .= '<br/>{{Valeur}} : ' . $value;
+                    $value = trim(substr($value, 0, 50)) . '...';
                   }
-                  $display .= '<span class="eqLogicConfigure_cmdValue" data-cmd_id="' . $cmd->getid() . '" title=" ' . $title . '">' . substr($value, 0, 50) . ' ' . $cmd->getUnite() . ' {{le}} ' . $cmd->getValueDate() . '<span>';
+                  $display .= '<span class="eqLogicConfigure_cmdValue" data-cmd_id="' . $cmd->getid() . '" title=" ' . htmlspecialchars($title) . '">' . $value . ' ' . $cmd->getUnite() . '<span>';
                 }
                 $display .= '</td>';
                 $display .= '<td>';
@@ -834,13 +835,14 @@ sendVarToJS([
   $('.eqLogicConfigure_cmdValue').each(function() {
     jeedom.cmd.addUpdateFunction($(this).attr('data-cmd_id'), function(_options) {
       _options.value = String(_options.value).replace(/<[^>]*>?/gm, '');
-      let cmd = $('.cmdTableState[data-cmd_id=' + _options.cmd_id + ']')
-      let title = '{{Date de collecte}} : ' + _options.collectDate + ' - {{Date de valeur}} ' + _options.valueDate;
+      let cmd = $('.eqLogicConfigure_cmdValue[data-cmd_id=' + _options.cmd_id + ']')
+      let title = '{{Date de valeur}} : ' + _options.valueDate + ' - {{Date de collecte}} : ' + _options.collectDate;
       if (_options.value.length > 50) {
-        title += ' - ' + _options.value;
+        title += '<br/>{{Valeur}} : ' + _options.value;
+         _options.value = _options.value.trim().substring(0, 50) + '...';
       }
       cmd.attr('title', title)
-      cmd.empty().append(_options.value.substring(0, 50) + ' ' + _options.unit + ' {{le}} ' + _options.valueDate);
+      cmd.empty().append(_options.value + ' ' + _options.unit);
       cmd.css('color', 'var(--logo-primary-color)');
       setTimeout(function() {
         cmd.css('color', '');
