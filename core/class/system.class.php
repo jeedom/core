@@ -347,7 +347,9 @@ class system {
 				}
 				break;
 			case 'npm':
-				$datas = json_decode(shell_exec('npm -g ls -json -depth 1 2>/dev/null'), true);
+				$datas1 = json_decode(shell_exec('npm -g ls -json -depth 1 2>/dev/null'), true);
+				$datas2 = json_decode(shell_exec(self::getCmdSudo() . ' npm -g ls -json -depth 1 2>/dev/null'), true);
+				$datas = array_replace_recursive($datas1, $datas2);
 				if (isset($datas['dependencies']['yarn'])) {
 					self::$_installPackage[$_type]['yarn'] = array(
 						'version' => $datas['dependencies']['yarn']['version']
