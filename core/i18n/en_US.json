@@ -997,8 +997,8 @@
         "Commandes": "Commands",
         "Valeur": "Value",
         "Action": "Stock",
+        "Date de valeur": "Value date",
         "Date de collecte": "Date of collection",
-        "le": "the",
         "Graphique de fond": "Background graphic",
         "Information": "Information",
         "Aucune": "None",
@@ -1044,8 +1044,7 @@
         "Configuration de la commande": "Command configuration",
         "Logs": "Logs",
         "Avez-vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\\'hui": "Have you changed the batteries? This action will set the battery change date to today",
-        "Changement de pile(s) pris en compte": "Change of battery (s) taken into account",
-        "Date de valeur": "Value date"
+        "Changement de pile(s) pris en compte": "Change of battery (s) taken into account"
     },
     "desktop\/modal\/plan3dHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",

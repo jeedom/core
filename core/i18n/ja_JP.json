@@ -997,8 +997,8 @@
         "Commandes": "コマンド",
         "Valeur": "値",
         "Action": "アクション",
+        "Date de valeur": "Date de valeur",
         "Date de collecte": "Date de collecte",
-        "le": "le",
         "Graphique de fond": "Graphique de fond",
         "Information": "Information",
         "Aucune": "Aucune",
@@ -1044,8 +1044,7 @@
         "Configuration de la commande": "設定された制御",
         "Logs": "ログ",
         "Avez-vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\\'hui": "Avez-vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\\'hui",
-        "Changement de pile(s) pris en compte": "考慮されたバッテリーの変更",
-        "Date de valeur": "Date de valeur"
+        "Changement de pile(s) pris en compte": "考慮されたバッテリーの変更"
     },
     "desktop\/modal\/plan3dHeader.configure.php": {
         "401 - Accès non autorisé": "401-不正アクセス",

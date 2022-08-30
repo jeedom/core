@@ -997,8 +997,8 @@
         "Commandes": "Команды",
         "Valeur": "значение",
         "Action": "Действие",
+        "Date de valeur": "Date de valeur",
         "Date de collecte": "Date de collecte",
-        "le": "le",
         "Graphique de fond": "Graphique de fond",
         "Information": "Information",
         "Aucune": "Aucune",
@@ -1044,8 +1044,7 @@
         "Configuration de la commande": "управляющий набор",
         "Logs": "Журналы",
         "Avez-vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\\'hui": "Avez-vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\\'hui",
-        "Changement de pile(s) pris en compte": "Смена аккумулятора (ов) учтена",
-        "Date de valeur": "Date de valeur"
+        "Changement de pile(s) pris en compte": "Смена аккумулятора (ов) учтена"
     },
     "desktop\/modal\/plan3dHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
