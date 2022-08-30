@@ -3377,8 +3377,8 @@
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "プラグイン構成",
-        "Date de collecte": "Date de collecte",
         "Date de valeur": "Date de valeur",
+        "Date de collecte": "Date de collecte",
         "Nom de la copie de l\\'équipement ?": "機器のコピーの名前？",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "機器を削除してもよろしいですか",
         "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",

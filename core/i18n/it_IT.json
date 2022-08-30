@@ -3377,8 +3377,8 @@
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Configurazione del plugin",
-        "Date de collecte": "Date de collecte",
         "Date de valeur": "Date de valeur",
+        "Date de collecte": "Date de collecte",
         "Nom de la copie de l\\'équipement ?": "Nome della copia dell'attrezzatura?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Sei sicuro di voler eliminare l'apparecchiatura",
         "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",

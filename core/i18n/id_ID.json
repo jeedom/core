@@ -3377,8 +3377,8 @@
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Konfigurasi Plugin",
-        "Date de collecte": "Date de collecte",
         "Date de valeur": "Date de valeur",
+        "Date de collecte": "Date de collecte",
         "Nom de la copie de l\\'équipement ?": "Nom de la copie de l\\'équipement ?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Apakah Anda yakin ingin menghapus peralatan \\ 's",
         "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",

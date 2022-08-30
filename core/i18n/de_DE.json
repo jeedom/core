@@ -3377,8 +3377,8 @@
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Plugin Konfiguration",
-        "Date de collecte": "Datum der Abholung",
         "Date de valeur": "Datum der Wertstellung",
+        "Date de collecte": "Datum der Abholung",
         "Nom de la copie de l\\'équipement ?": "Name der Gerätekopie?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Sind Sie sicher, dass Sie das Gerät löschen möchten?",
         "Il est utilisé par ou utilise :": "Es wird verwendet von oder verwendet:",
