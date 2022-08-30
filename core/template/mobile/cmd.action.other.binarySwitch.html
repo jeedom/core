@@ -21,7 +21,7 @@
       $('.cmd[data-cmd_uid=#uid#] span.binarySwitchHandle').style('background-color', '#color_switch#', 'important')
     }
 
-    jeedom.cmd.update['#id#'] = function(_options) {
+    jeedom.cmd.addUpdateFunction('#id#',function(_options) {
       if (['1', 1, '99', 99, 'on'].includes(_options.display_value)) {
         if (jeedom.cmd.normalizeName('#name#') == 'on') {
           $('.cmd[data-cmd_id=#id#]').hide()
@@ -38,9 +38,9 @@
         }
         $('.cmd[data-cmd_id=#id#]').find('input.binarySwitch').prop('checked', false)
       }
-    }
+    });
 
-    jeedom.cmd.update['#id#']({display_value: '#state#'})
+    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
 
     $('.cmd[data-cmd_uid=#uid#] span.binarySwitch').off().on('click', function (event) {
       jeedom.cmd.execute({id: '#id#'})

@@ -823,7 +823,6 @@ class eqLogic {
 		//History graph:
 		if ($this->getDisplay('backGraph::info', 0) != 0 && is_object(cmd::byId($this->getDisplay('backGraph::info')))) {
 			$replace['#divGraphInfo#'] = '<div class="eqlogicbackgraph" data-cmdid="' . $this->getDisplay('backGraph::info') . '" data-format="' . $this->getDisplay('backGraph::format', 'day') . '" data-type="' . $this->getDisplay('backGraph::type', 'areaspline') . '" data-color="' . $this->getDisplay('backGraph::color', '#4572A7') . '"><script>jeedom.eqLogic.initGraphInfo(' . $this->getId() . ')</script></div>';
-
 			$height = $this->getDisplay('backGraph::height', '0');
 			if ($height != '0') {
 				$replace['#isVerticalAlign#'] = 0;
@@ -1108,9 +1107,12 @@ class eqLogic {
 		if ($this->getConfiguration('noBatterieCheck', 0) == 1) {
 			return;
 		}
+		$currentpourcent = null;
 		if ($_pourcent === '') {
 			$_pourcent = $this->getStatus('battery');
 			$_datetime = $this->getStatus('batteryDatetime');
+		} else {
+			$currentpourcent = $this->getStatus('battery');
 		}
 		if ($_pourcent > 100) {
 			$_pourcent = 100;
@@ -1122,9 +1124,13 @@ class eqLogic {
 			$this->setConfiguration('batterytime', date('Y-m-d H:i:s'));
 			$this->save(true);
 		}
+
 		$warning_threshold = $this->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'));
 		$danger_threshold = $this->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'));
-		if ($_pourcent !== '' && $_pourcent < $danger_threshold) {
+		if ($_pourcent !== '' && $_pourcent < $danger_threshold && strtotime($this->getStatus('batteryDatetime')) + 7 * 24 * 3600 > strtotime('now')) {
+			if ($currentpourcent < $danger_threshold) {
+				return;
+			}
 			$prevStatus = $this->getStatus('batterydanger', 0);
 			$logicalId = 'lowBattery' . $this->getId();
 			$message = 'L\'équipement ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $danger_threshold . '% de batterie (niveau danger avec ' . $_pourcent . '% de batterie)';
@@ -1150,6 +1156,9 @@ class eqLogic {
 				}
 			}
 		} else if ($_pourcent !== '' && $_pourcent < $warning_threshold) {
+			if ($currentpourcent < $warning_threshold && strtotime($this->getStatus('batteryDatetime')) + 7 * 24 * 3600 > strtotime('now')) {
+				return;
+			}
 			$prevStatus = $this->getStatus('batterywarning', 0);
 			$logicalId = 'warningBattery' . $this->getId();
 			$message = 'L\'équipement ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $warning_threshold . '% de batterie (niveau warning avec ' . $_pourcent . '% de batterie)';

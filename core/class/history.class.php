@@ -228,6 +228,13 @@ class history {
 			try {
 				$cmd = cmd::byId($sensors['cmd_id']);
 				if (!is_object($cmd) || $cmd->getType() != 'info' || $cmd->getIsHistorized() != 1) {
+					$values = array(
+						'cmd_id' => $sensors['cmd_id']
+					);
+					$sql = 'DELETE FROM history WHERE cmd_id=:cmd_id';
+					DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+					$sql = 'DELETE FROM historyArch WHERE cmd_id=:cmd_id';
+					DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 					continue;
 				}
 				$purgeTime = false;

@@ -5,14 +5,14 @@ if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
 
-if (init('type') == '') {
-  $rootPaths = [''];
-} else if (init('type') == 'widget') {
+$rootPaths = [''];
+
+if (init('type') == 'widget') {
   $rootPaths = ['data/customTemplates'];
 } else if (init('type') == 'custom') {
   $rootPaths = ['desktop/custom', 'mobile/custom'];
-} else {
-  $rootPaths = [''];
+} else if (init('root') != '' && strpos(init('root'), '..') === false && substr(init('root'), 0, 1) != '/') {
+  $rootPaths = [init('root')];
 }
 
 // // To Enable(true) handling of PostScript files by ImageMagick

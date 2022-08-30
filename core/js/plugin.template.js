@@ -226,6 +226,7 @@ $(".eqLogicDisplayCard").on('click', function(event) {
       type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
       id: $(this).attr('data-eqLogic_id'),
       status: 1,
+      getCmdState : 1,
       error: function(error) {
         $.hideLoading()
         $.fn.showAlert({
@@ -244,12 +245,44 @@ $(".eqLogicDisplayCard").on('click', function(event) {
         if ('function' == typeof(printEqLogic)) {
           printEqLogic(data)
         }
-        if ('function' == typeof(addCmdToTable)) {
-          $('.cmd').remove()
-          for (var i in data.cmd) {
+        $('.cmd').remove()
+        for (var i in data.cmd) {
+          if(data.cmd[i].type == 'info'){
+            data.cmd[i].state = String(data.cmd[i].state).replace(/<[^>]*>?/gm, '');
+            data.cmd[i]['htmlstate'] =  '<span class="cmdTableState"';
+            data.cmd[i]['htmlstate'] += 'data-cmd_id="' + data.cmd[i].id+ '"';
+            data.cmd[i]['htmlstate'] += 'title="{{Date de collecte}} : ' + data.cmd[i].collectDate + '- {{Date de valeur}} ' + data.cmd[i].valueDate;
+            if(data.cmd[i].state.length > 50){
+              data.cmd[i]['htmlstate'] += ' - '+data.cmd[i].state.replaceAll('"','\"');
+            }
+            data.cmd[i]['htmlstate'] += '" >';
+            data.cmd[i]['htmlstate'] += data.cmd[i].state.substring(0, 50) +  ' ' + data.cmd[i].unite;
+            data.cmd[i]['htmlstate'] += '<span>';
+          }else{
+            data.cmd[i]['htmlstate'] = '';
+          }
+          if(typeof addCmdToTable == 'function'){
             addCmdToTable(data.cmd[i])
+          }else{
+            addCmdToTableDefault(data.cmd[i]);
           }
         }
+        $('.cmdTableState').each(function() {
+          jeedom.cmd.addUpdateFunction($(this).attr('data-cmd_id'), function(_options) {
+            _options.value = String(_options.value).replace(/<[^>]*>?/gm, '');
+            let cmd = $('.cmdTableState[data-cmd_id=' + _options.cmd_id + ']')
+            let title = '{{Date de collecte}} : ' + _options.collectDate+' - {{Date de valeur}} ' + _options.valueDate;
+            if(_options.value.length > 50){
+              title += ' - '+_options.value;
+            }
+            cmd.attr('title', title)
+            cmd.empty().append(_options.value.substring(0, 50) + ' ' + _options.unit);
+            cmd.css('color','var(--logo-primary-color)');
+            setTimeout(function(){
+              cmd.css('color','');
+            }, 1000);
+          });
+        })
         $('#div_pageContainer').on({
           'change': function(event) {
             jeedom.cmd.changeType($(this).closest('.cmd'))
@@ -502,7 +535,11 @@ $('#bt_resetSearch').on('click', function() {
 
 /**************************CMD*********************************************/
 $('.cmdAction[data-action=add]').on('click', function() {
-  addCmdToTable()
+  if(typeof addCmdToTable == 'function'){
+    addCmdToTable()
+  }else{
+    addCmdToTableDefault();
+  }
   $('.cmd:last .cmdAttr[data-l1key=type]').trigger('change')
   modifyWithoutSave = true
 })
@@ -529,7 +566,11 @@ $('#div_pageContainer').on('click', '.cmd .cmdAction[data-action=copy]', functio
   modifyWithoutSave = true
   var cmd = $(this).closest('.cmd').getValues('.cmdAttr')[0]
   cmd.id = ''
-  addCmdToTable(cmd)
+  if(typeof addCmdToTable == 'function'){
+    addCmdToTable(cmd)
+  }else{
+    addCmdToTableDefault(cmd);
+  }
 })
 
 $('#div_pageContainer').on('click', '.cmd .cmdAction[data-action=test]', function(event) {
@@ -633,3 +674,96 @@ $("img.lazy").each(function() {
     el.trigger("sporty")
   }
 })
+
+
+function addCmdToTableDefault(_cmd) {
+  if($('#table_cmd thead').text() == ''){
+    table = '<thead>';
+		table += '<tr>';
+		table += '<th>{{Id}}</th>';
+		table += '<th>{{Nom}}</th>';
+		table += '<th>{{Type}}</th>';
+		table += '<th>{{Logical ID}}</th>';
+		table += '<th>{{Options}}</th>';
+		table += '<th>{{Paramètres}}</th>';
+		table += '<th>{{Etat}}</th>';
+		table += '<th>{{Action}}</th>';
+		table += '</tr>';
+		table += '</thead>';
+		table += '<tbody>';
+		table += '</tbody>';
+    $('#table_cmd').append(table);
+  }
+  if (!isset(_cmd)) {
+    var _cmd = {configuration: {}};
+  }
+  if (!isset(_cmd.configuration)) {
+    _cmd.configuration = {};
+  }
+  var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
+  tr += '<td style="min-width:50px;width:70px;">';
+  tr += '<span class="cmdAttr" data-l1key="id"></span>';
+  tr += '</td>';
+  tr += '<td>';
+  tr += '<div class="row">';
+  tr += '<div class="col-sm-6">';
+  tr += '<a class="cmdAction btn btn-default btn-sm" data-l1key="chooseIcon"><i class="fa fa-flag"></i> Icône</a>';
+  tr += '<span class="cmdAttr" data-l1key="display" data-l2key="icon" style="margin-left : 10px;"></span>';
+  tr += '</div>';
+  tr += '<div class="col-sm-6">';
+  tr += '<input class="cmdAttr form-control input-sm" data-l1key="name">';
+  tr += '</div>';
+  tr += '</div>';
+  tr += '<select class="cmdAttr form-control input-sm" data-l1key="value" style="display : none;margin-top : 5px;" title="La valeur de la commande vaut par défaut la commande">';
+  tr += '<option value="">Aucune</option>';
+  tr += '</select>';
+  tr += '</td>';
+  tr += '<td>';
+  tr += '<input class="cmdAttr form-control input-sm" data-l1key="id" style="display : none;">';
+  tr += '<span class="type" type="' + init(_cmd.type) + '">' + jeedom.cmd.availableType() + '</span>';
+  tr += '<span class="subType" subType="' + init(_cmd.subType) + '"></span>';
+  tr += '</td>';
+  tr += '<td><input class="cmdAttr form-control input-sm" data-l1key="logicalId" value="0" style="width : 70%; display : inline-block;" placeholder="{{Commande}}"><br/>';
+  tr += '</td>';
+  tr += '<td>';
+  tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="returnStateValue" placeholder="{{Valeur retour d\'état}}" style="width:48%;display:inline-block;">';
+  tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="returnStateTime" placeholder="{{Durée avant retour d\'état (min)}}" style="width:48%;display:inline-block;margin-left:2px;">';
+  tr += '<select class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="updateCmdId" style="display : none;" title="Commande d\'information à mettre à jour">';
+  tr += '<option value="">Aucune</option>';
+  tr += '</select>';
+  tr += '</td>';
+  tr += '<td>';
+  tr += '<input class="tooltips cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="minValue" placeholder="{{Min}}" title="{{Min}}" style="width:30%;display:inline-block;">';
+  tr += '<input class="tooltips cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="maxValue" placeholder="{{Max}}" title="{{Max}}" style="width:30%;display:inline-block;">';
+  tr += '<input class="cmdAttr form-control input-sm" data-l1key="unite" placeholder="Unité" title="{{Unité}}" style="width:30%;display:inline-block;margin-left:2px;">';
+  tr += '<input class="tooltips cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="listValue" placeholder="{{Liste de valeur|texte séparé par ;}}" title="{{Liste}}">';
+  tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isVisible" checked/>{{Afficher}}</label></span> ';
+  tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span> ';
+  tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="invertBinary"/>{{Inverser}}</label></span> ';
+  tr += '</td>';
+  tr += '<td>';
+  tr += '<span class="cmdAttr" data-l1key="htmlstate"></span>'; 
+  tr += '</td>';
+  tr += '<td>';
+  if (is_numeric(_cmd.id)) {
+    tr += '<a class="btn btn-default btn-xs cmdAction" data-action="configure"><i class="fas fa-cogs"></i></a> ';
+    tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fa fa-rss"></i> {{Tester}}</a>';
+  }
+  tr += '<i class="fas fa-minus-circle pull-right cmdAction cursor" data-action="remove"></i>';
+  tr += '</td>';
+  tr += '</tr>';
+  $('#table_cmd tbody').append(tr);
+  var tr = $('#table_cmd tbody tr').last();
+  jeedom.eqLogic.builSelectCmd({
+    id: $('.eqLogicAttr[data-l1key=id]').value(),
+    filter: {type: 'info'},
+    error: function (error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (result) {
+      tr.find('.cmdAttr[data-l1key=value]').append(result);
+      tr.setValues(_cmd, '.cmdAttr');
+      jeedom.cmd.changeType(tr, init(_cmd.subType));
+    }
+  });
+}

@@ -10,10 +10,10 @@
   	</div>
 
 	<script>
-    jeedom.cmd.update['#id#'] = function(_options) {
-      var cmd = $('.cmd[data-cmd_id=#id#]')
-      var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
-      var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
+      let cmd = $('.cmd[data-cmd_id=#id#]')
+      let minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
+      let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
       if (_options.display_value >= maxValue) {
         maxValue = _options.display_value
         var angle = 0
@@ -25,10 +25,10 @@
       }
       cmd.find('.gaugeValue').css('transform', 'scale(0.94) rotate('+angle+'deg)')
       cmd.find('.state strong').first().text(_options.display_value)
-    }
+    });
 
     if (is_numeric('#state#')) {
-      jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#',unit:'#unite#'})
+      jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
     } else {
       $('.cmd[data-cmd_uid=#uid#] .gauge').append('<center><span class="label label-danger">#state#</span></center>')
     }

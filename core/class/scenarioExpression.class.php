@@ -712,6 +712,9 @@ class scenarioExpression {
 		$_decimal = strlen(substr(strrchr($_value, "."), 1));
 
 		$histories = $cmd->getHistory();
+		if (count($histories) == 0) {
+			return 0;
+		}
 
 		$duration = 0;
 		$lastDuration = strtotime($histories[0]->getDatetime());
@@ -1487,7 +1490,8 @@ class scenarioExpression {
 								$tags = array();
 								$args = arg2array($this->getOptions('tags'));
 								foreach ($args as $key => $value) {
-									$tags['#' . trim(trim($key), '#') . '#'] = trim(self::setTags(trim($value), $scenario), '"');
+									$tValue = trim($value);
+									$tags['#' . trim(trim($key), '#') . '#'] = trim(self::setTags($tValue, $scenario), '"');
 								}
 								$actionScenario->setTags($tags);
 							}
@@ -1506,7 +1510,8 @@ class scenarioExpression {
 								$tags = array();
 								$args = arg2array($this->getOptions('tags'));
 								foreach ($args as $key => $value) {
-									$tags['#' . trim(trim($key), '#') . '#'] = trim(self::setTags(trim($value), $scenario), '"');
+									$tValue = trim($value);
+									$tags['#' . trim(trim($key), '#') . '#'] = trim(self::setTags($tValue, $scenario), '"');
 								}
 								$actionScenario->setTags($tags);
 							}
@@ -1586,7 +1591,7 @@ class scenarioExpression {
 						$result = $options['value'];
 					}
 				} elseif ($this->getExpression() == 'delete_variable') {
-					scenario::removeData($options['name']);
+					$scenario->removeData($options['name']);
 					$this->setLog($scenario, __('Suppression de la variable', __FILE__) . ' ' . $options['name']);
 					return;
 				} elseif ($this->getExpression() == 'ask') {

@@ -601,6 +601,7 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
       $('#popupDialog').trigger('create').popup('open')
     })
   } else {
+    jeedom.cmd.resetUpdateFunction();
     $('#page').hide().load(page, function() {
       $('body').attr('data-page', _page)
       $('#page').trigger('create')

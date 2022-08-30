@@ -216,7 +216,7 @@ class network {
 		}
 		if ($_mode == 'internal') {
 			foreach ((self::getInterfacesInfo()) as $interface) {
-				if ($interface['ifname'] == 'lo' || !isset($interface['addr_info']) || strpos($interface['ifname'], 'docker') !== false) {
+				if ($interface['ifname'] == 'lo' || !isset($interface['addr_info']) || strpos($interface['ifname'], 'docker') !== false  || strpos($interface['ifname'], 'tun') !== false || strpos($interface['ifname'], 'br') !== false) {
 					continue;
 				}
 				$ip = null;
@@ -347,7 +347,6 @@ class network {
 			$openvpn->setConfiguration('compression', 'comp-lzo');
 			$openvpn->setConfiguration('remote_port', config::byKey('vpn::port', 'core', 1194));
 			$openvpn->setConfiguration('auth_mode', 'password');
-			$openvpn->setConfiguration('additionalVpnParameters', 'tun-mtu 1300');
 			$openvpn->save($direct);
 			if (!file_exists(__DIR__ . '/../../plugins/openvpn/data')) {
 				shell_exec('mkdir -p ' . __DIR__ . '/../../plugins/openvpn/data');

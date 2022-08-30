@@ -19,18 +19,18 @@
     <div>color : rgb(20,20,20) ({{Couleur du curseur et valeur}})</div>
   </template>
   <script>
-    jeedom.cmd.update['#id#'] = function(_options){
-      var cmd = $('.cmd[data-cmd_id=#id#]')
-      var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
-      var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
-      var height = ((_options.display_value - minValue) * 100) / (maxValue - minValue)
+     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
+      let cmd = $('.cmd[data-cmd_id=#id#]')
+      let minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
+      let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+      let height = ((_options.display_value - minValue) * 100) / (maxValue - minValue)
       cmd.attr('title', '{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
       height = 100 - (Math.round(parseFloat(height) * 10) / 10)
       cmd.find('.shuttergauge-value').height(height+'%')
       cmd.find('.state strong').first().text(_options.display_value+' '+_options.unit)
-    }
+    });
 
-    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',unit:'#unite#'})
+    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
 
     if ($.issetWidgetOptParam('#color#', 'color')) {
       $('.cmd[data-cmd_id=#id#]').find('div.shuttergauge-value').style('background', '#color#', 'important')

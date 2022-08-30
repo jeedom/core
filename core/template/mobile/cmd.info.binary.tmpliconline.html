@@ -1,8 +1,8 @@
 <div class="cmd cmd-widget #history#" data-type="info" data-subtype="binary" data-template="tmpliconline" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
 	<center><span class="cmdName #hide_name#">#name_display#</span> <span class="iconCmdLine"></span></center>
 	<script>
-		jeedom.cmd.update['#id#'] = function(_options) {
-			var cmd = $('.cmd[data-cmd_id=#id#]')
+		 jeedom.cmd.addUpdateFunction('#id#',function(_options) {
+			let cmd = $('.cmd[data-cmd_id=#id#]')
 			if (_options.display_value == '1') {
 				$('.cmd[data-cmd_id=#id#] .iconCmdLine').empty().append("#_icon_on_#")
 			} else {
@@ -20,8 +20,8 @@
 					cmd.attr('data-alertlevel','none')
 				}
 			}
-		}
+		});
 
-		jeedom.cmd.update['#id#']({display_value: '#state#', alertLevel: '#alertLevel#'})
+		jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
 	</script>
 </div>

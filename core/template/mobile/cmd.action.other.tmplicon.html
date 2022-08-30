@@ -5,36 +5,32 @@
     <span class="timeCmd value #value_history#" data-type="info" data-cmd_id="#value_id#"></span>
   </center>
   <script>
-    jeedom.cmd.update['#id#'] = function(_options) {
-      var cmd = $('.cmd[data-cmd_id=#id#]')
+     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
+      let cmd = $('.cmd[data-cmd_id=#id#]')
       if ('#_time_widget_#' != '1') {
         cmd.find('.timeCmd').remove()
       }
-
       if (_options.display_value == '1' || _options.display_value >= 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
         if (jeedom.cmd.normalizeName('#name#') == 'on') {
           cmd.hide()
-        }
-        else {
+        }else {
           cmd.show().find('.iconCmd').empty().append("#_icon_on_#")
           if ('#_time_widget_#' == '1') {
             jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
           }
         }
-      }
-      else {
+      }else {
         if (jeedom.cmd.normalizeName('#name#') == 'off') {
           cmd.hide()
-        }
-        else {
+        }else {
           cmd.show().find('.iconCmd').empty().append("#_icon_off_#")
           if ('#_time_widget_#' == '1') {
             jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
           }
         }
       }
-    }
-    jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'})
+    });
+    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
 
     $('.cmd[data-cmd_uid=#uid#] .iconCmd').off().on('click', function () {
       jeedom.cmd.execute({id: '#id#'})

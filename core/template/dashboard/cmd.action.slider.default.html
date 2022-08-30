@@ -34,8 +34,8 @@
       jeedom.cmd.execute({id: '#id#', value: {slider: values[handle].replace('#unite#', '').trim()}})
     })
 
-    jeedom.cmd.update['#id#'] = function(_options) {
+    jeedom.cmd.addUpdateFunction('#id#',function(_options) {
       mySlider#id#.set(_options.display_value)
-    }
+    });
   </script>
 </div>

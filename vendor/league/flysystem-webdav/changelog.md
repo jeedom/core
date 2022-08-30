@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.10 - 2021-12-31
+
+* Only return last-modified if it's set (#62)
+
 ## 1.0.9 - 2019-11-13
 
 * Made detection of directories compliant with rfc4918 (#53).

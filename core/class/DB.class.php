@@ -49,7 +49,7 @@ class DB {
 		if (self::$connection == null) {
 			self::initConnection();
 			self::$lastConnection = strtotime('now');
-		} else if (self::$lastConnection + 120 < strtotime('now')) {
+		} elseif (self::$lastConnection + 120 < strtotime('now')) {
 			try {
 				$result = @self::$connection->query('select 1;');
 				if (!$result) {
@@ -71,7 +71,7 @@ class DB {
 		$bind_params = trim($bind_params, ', ');
 		if ($_className != NULL && class_exists($_className)) {
 			return self::Prepare("CALL $_procName($bind_params)", $_params, $_fetch_type, PDO::FETCH_CLASS, $_className);
-		} else if ($_fetch_opt != NULL) {
+		} elseif ($_fetch_opt != NULL) {
 			return self::Prepare("CALL $_procName($bind_params)", $_params, $_fetch_type, $_fetch_opt, $_className);
 		} else {
 			return self::Prepare("CALL $_procName($bind_params)", $_params, $_fetch_type);
@@ -85,7 +85,7 @@ class DB {
 			if ($_fetchType == self::FETCH_TYPE_ROW) {
 				if ($_fetch_opt === null) {
 					$res = $stmt->fetch($_fetch_param);
-				} else if ($_fetch_param == PDO::FETCH_CLASS) {
+				} elseif ($_fetch_param == PDO::FETCH_CLASS) {
 					$res = $stmt->fetchObject($_fetch_opt);
 				}
 			} else {

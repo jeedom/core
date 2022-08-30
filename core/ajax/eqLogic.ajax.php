@@ -442,7 +442,17 @@ try {
 			throw new Exception(__('EqLogic inconnu. Vérifiez l\'ID', __FILE__) . ' ' . init('id'));
 		}
 		$return = utils::o2a($eqLogic);
-		$return['cmd'] = utils::o2a($eqLogic->getCmd());
+		$return['cmd'] = array();
+		foreach ($eqLogic->getCmd() as $cmd) {
+			$info = utils::o2a($cmd);
+			if (init('getCmdState', 0) == 1 && $cmd->getType() == 'info') {
+				$state = $cmd->execCmd();
+				$info['state'] = $state;
+				$info['valueDate'] = $cmd->getValueDate();
+				$info['collectDate'] = $cmd->getCollectDate();
+			}
+			$return['cmd'][] = $info;
+		}
 		ajax::success(jeedom::toHumanReadable($return));
 	}
 

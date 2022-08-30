@@ -126,11 +126,11 @@ class WebDAVAdapter extends AbstractAdapter
                 return false;
             }
 
+            $lastModified = isset($response['headers']['last-modified']) ? $response['headers']['last-modified'] : time();
+
             return array_merge([
                 'contents' => $response['body'],
-                'timestamp' => strtotime(is_array($response['headers']['last-modified'])
-                    ? current($response['headers']['last-modified'])
-                    : $response['headers']['last-modified']),
+                'timestamp' => strtotime(is_array($lastModified) ? current($lastModified) : $lastModified),
                 'path' => $path,
             ], Util::map($response['headers'], static::$resultMap));
         } catch (Exception $e) {

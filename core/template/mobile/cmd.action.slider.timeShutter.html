@@ -36,19 +36,19 @@
       jeedom.cmd.execute({id: '#id#', value: {slider: values[handle].replace('#unite#', '').trim()}})
     })
 
-    jeedom.cmd.update['#id#'] = function(_options) {
-      var cmd = $('.cmd[data-cmd_uid=#uid#]')
+    jeedom.cmd.addUpdateFunction('#id#',function(_options) {
+      let cmd = $('.cmd[data-cmd_uid=#uid#]')
       jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
-      var height = ((_options.display_value - #minValue#) * 100) / (#maxValue# - #minValue#)
+      let height = ((_options.display_value - #minValue#) * 100) / (#maxValue# - #minValue#)
       height = 100 - (Math.round(parseFloat(height) * 10) / 10)
       if ('#invert#' == '1') {
-        var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+        let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
         height = maxValue - height
       }
       cmd.find('.shuttergauge-value').height(height+'%')
       cmd.find('.state strong').first().text(_options.display_value)
       mySlider#id#.set(_options.display_value)
-    }
+    });
 
     $('.cmd[data-cmd_uid=#uid#] .shuttergauge-bckg').off().on('click', function() {
       shutterPos = $('.cmd[data-cmd_uid=#uid#] .state strong').first().html()
@@ -59,6 +59,6 @@
       }
     })
 
-    jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#'})
+    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
   </script>
 </div>

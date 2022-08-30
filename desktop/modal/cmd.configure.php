@@ -122,24 +122,12 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 </div>
               <?php } ?>
               <?php if ($cmd->getType() == 'info') {
-                $cache = $cmd->getCache(array('value', 'collectDate', 'valueDate'));
+                $value = $cmd->execCmd();
               ?>
                 <div class="form-group">
-                  <label class="col-xs-4 control-label">{{Valeur}}</label>
+                  <label class="col-xs-4 control-label">{{Etat}}</label>
                   <div class="col-xs-8">
-                    <span class="label label-primary" style="max-width: 100%;"><?php echo $cache['value'] ?></span>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-xs-4 control-label">{{Date collecte}}</label>
-                  <div class="col-xs-8">
-                    <span class="label label-primary"><?php echo $cache['collectDate'] ?></span>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-xs-4 control-label">{{Date valeur}}</label>
-                  <div class="col-xs-8">
-                    <span class="label label-primary"><?php echo $cache['valueDate'] ?></span>
+                    <span class="label label-primary" style="max-width: 100%;"><?php echo '<span class="cmdConfigure_cmdValue" data-cmd_id="' . $cmd->getid() . '" title="{{Date de collecte}} : ' .  $cmd->getCollectDate() . '">' . $value . ' ' . $cmd->getUnite() . ' {{le}} ' . $cmd->getValueDate() . '<span>'; ?></span>
                   </div>
                 </div>
               <?php } ?>
@@ -1417,5 +1405,13 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
       id: jeephp2js.md_cmdConfigure_cmdInfo.id,
       alert: '#md_displayCmdConfigure'
     })
+  })
+
+  $('.cmdConfigure_cmdValue').each(function() {
+    jeedom.cmd.addUpdateFunction($(this).attr('data-cmd_id'), function(_options) {
+      let cmd = $('.cmdConfigure_cmdValue[data-cmd_id=' + _options.cmd_id + ']')
+      cmd.attr('title', '{{Date de collecte}} : ' + _options.collectDate)
+      cmd.empty().append(_options.value + ' ' + _options.unit + ' {{le}} ' + _options.valueDate);
+    });
   })
 </script>

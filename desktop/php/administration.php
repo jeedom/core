@@ -1236,7 +1236,7 @@ user::isBan();
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Profondeur pour les équipements}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Nombre de niveaux maximal d’éléments à afficher dans les graphiques de liens d'équipement'}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Nombre de niveaux maximal d’éléments à afficher dans les graphiques de liens d'équipement}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 								<input class="configKey form-control" data-l1key="graphlink::eqLogic::drill" />

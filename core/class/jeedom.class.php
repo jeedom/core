@@ -509,6 +509,7 @@ class jeedom {
 				return '';
 			}
 			config::save('api', config::genKey(), $_plugin);
+			config::save('api::' . $_plugin . '::mode', $_mode, 'core');
 		}
 		if (config::byKey('api::' . $_plugin . '::mode', 'core', 'enable') == 'disable' && $_mode != 'disable') {
 			config::save('api::' . $_plugin . '::mode', $_mode, 'core');
@@ -1292,12 +1293,12 @@ class jeedom {
 		}
 	}
 
-	public static function calculStat($_calcul, $_values) {
+	public static function calculStat($_calcul, $_values, $_round = 1) {
 		switch ($_calcul) {
 			case 'sum':
-				return array_sum($_values);
+				return round(array_sum($_values), $_round);
 			case 'avg':
-				return array_sum($_values) / count($_values);
+				return round(array_sum($_values) / count($_values), $_round);
 			case 'text':
 				return trim(implode(',', $_values), ',');
 		}

@@ -5,58 +5,51 @@
     <span class="timeCmd value #value_history#" data-type="info" data-cmd_id="#value_id#"></span>
   </center>
   <script>
-    jeedom.cmd.update['#id#'] = function(_options) {
-      var cmd = $('.cmd[data-cmd_id=#id#]')
+     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
+      let cmd = $('.cmd[data-cmd_id=#id#]')
       if ('#_time_widget_#' != '1') {
         cmd.find('.timeCmd').remove()
       }
-
       if (_options.display_value == '1' || _options.display_value >= 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
         cmd.attr('data-state','on')
         if (jeedom.cmd.normalizeName('#name#') == 'on') {
           cmd.hide()
-        }
-        else {
+        }else {
           cmd.show().find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_on_#", "#_img_dark_on_#"))
           if ('#_time_widget_#' == '1') {
             jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
           }
         }
-      }
-      else {
+      }else {
         cmd.attr('data-state','off')
         if (jeedom.cmd.normalizeName('#name#') == 'off') {
           cmd.hide()
-        }
-        else {
+        }else {
           cmd.show().find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#", "#_img_dark_off_#"))
           if ('#_time_widget_#' == '1') {
             jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
           }
         }
       }
-
-      var style = ''
+      let style = ''
       if (!isNaN('#_mobile_width_#')) {
         style = 'max-width:#_mobile_width_#px !important;'
       }
       cmd.find('.imgCmd img').attr('style', style)
-
       cmd.off('changeThemeEventCmd').on('achangeThemeEventCmd', function(event, theme) {
         if (cmd.attr('data-state') == 'on') {
           cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_on_#", "#_img_dark_on_#"))
-        }
-        else {
+        }else {
           cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#", "#_img_dark_off_#"))
         }
-        var style = ''
+        let style = ''
         if (!isNaN('#_mobile_width_#')) {
           style = 'max-width:#_mobile_width_#px !important;'
         }
         cmd.find('.imgCmd img').attr('style', style)
       })
-    }
-    jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'})
+    });
+    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
 
     $('.cmd[data-cmd_uid=#uid#] .imgCmd').off().on('click', function () {
       jeedom.cmd.execute({id: '#id#'})

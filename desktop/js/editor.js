@@ -189,8 +189,10 @@ jeeFrontEnd.editor.init()
 $(function() {
   CodeMirror.modeURL = "3rdparty/codemirror/mode/%N/%N.js"
 
+
+
   var options = {
-    url: 'core/php/editor.connector.php',
+    url: 'core/php/editor.connector.php?root='+root,
     baseUrl: '3rdparty/elfinder/',
     cssAutoLoad: false,
     lang: jeeFrontEnd.language.substring(0, 2),

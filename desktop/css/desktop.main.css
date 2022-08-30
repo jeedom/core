@@ -3702,7 +3702,7 @@ div.div_viewZone legend.lg_viewZone {
   .element .subElement.subElementAT legend + span {
     position: absolute;
     top: 4px;
-    padding-left: 70px;
+    margin-left: 70px;
     color: var(--link-color);
   }
   .element .subElement.subElementIF legend {

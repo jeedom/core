@@ -153,7 +153,10 @@ sendVarToJS([
           <table class="table table-bordered table-condensed">
             <thead>
               <tr>
+                <th>{{ID}}</th>
                 <th>{{Nom}}</th>
+                <th>{{Type}}</th>
+                <th>{{Valeur}}</th>
                 <th>{{Action}}</th>
               </tr>
             </thead>
@@ -162,9 +165,22 @@ sendVarToJS([
               $display = '';
               foreach (($eqLogic->getCmd()) as $cmd) {
                 $display .= '<tr class="advanceCmdConfigurationCmdConfigure" data-id="' . $cmd->getId() . '">';
+                $display .= '<td>' . $cmd->getId() . '</td>';
                 $display .= '<td>' . $cmd->getHumanName() . '</td>';
+                $display .= '<td>' . $cmd->getType() . ' / ' . $cmd->getSubtype() . '</td>';
                 $display .= '<td>';
-                $display .= '<a class="btn btn-default btn-xs pull-right cursor bt_advanceCmdConfigurationOnEqLogicConfiguration" data-id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
+                if ($cmd->getType() == 'info') {
+                  $value = $cmd->execCmd();
+                  $title = '{{Date de valeur}} : ' . $cmd->getValueDate() . ' - {{Date de collecte}} : ' .  $cmd->getCollectDate();
+                  if (strlen($value) > 50) {
+                    $title .= '<br/>{{Valeur}} : ' . $value;
+                    $value = trim(substr($value, 0, 50)) . '...';
+                  }
+                  $display .= '<span class="eqLogicConfigure_cmdValue" data-cmd_id="' . $cmd->getid() . '" title=" ' . htmlspecialchars($title) . '">' . $value . ' ' . $cmd->getUnite() . '<span>';
+                }
+                $display .= '</td>';
+                $display .= '<td>';
+                $display .= '<a class="btn btn-default btn-xs cursor bt_advanceCmdConfigurationOnEqLogicConfiguration" data-id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
                 $display .= '</td>';
                 $display .= '</tr>';
               }
@@ -814,5 +830,23 @@ sendVarToJS([
         })
       }
     })
+  })
+
+  $('.eqLogicConfigure_cmdValue').each(function() {
+    jeedom.cmd.addUpdateFunction($(this).attr('data-cmd_id'), function(_options) {
+      _options.value = String(_options.value).replace(/<[^>]*>?/gm, '');
+      let cmd = $('.eqLogicConfigure_cmdValue[data-cmd_id=' + _options.cmd_id + ']')
+      let title = '{{Date de valeur}} : ' + _options.valueDate + ' - {{Date de collecte}} : ' + _options.collectDate;
+      if (_options.value.length > 50) {
+        title += '<br/>{{Valeur}} : ' + _options.value;
+         _options.value = _options.value.trim().substring(0, 50) + '...';
+      }
+      cmd.attr('title', title)
+      cmd.empty().append(_options.value + ' ' + _options.unit);
+      cmd.css('color', 'var(--logo-primary-color)');
+      setTimeout(function() {
+        cmd.css('color', '');
+      }, 1000);
+    });
   })
 </script>

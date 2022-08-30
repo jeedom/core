@@ -16,23 +16,21 @@
     <div>color : rgb(20,20,20) ({{couleur de l'indicateur de valeur}})</div>
   </template>
   <script>
-    jeedom.cmd.update['#id#'] = function(_options) {
-      var position = _options.display_value
-      var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
-      var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
+      let position = _options.display_value
+      let minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
+      let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
       if (position > maxValue) position = maxValue
       if (position < minValue) position = minValue
-
-      var width = ((position - minValue) * 100) / (maxValue - minValue)
+      let width = ((position - minValue) * 100) / (maxValue - minValue)
       width = Math.round(parseFloat(width) * 10) / 10
-
-      var cmd = $('.cmd[data-cmd_id=#id#]')
+      let cmd = $('.cmd[data-cmd_id=#id#]')
       cmd.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
       cmd.find('.hgauge-value').width(width+'%')
       cmd.find('.state strong').first().text(_options.display_value+' '+_options.unit)
-    }
+    });
 
-    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',unit:'#unite#'});
+    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
 
     if ($.issetWidgetOptParam('#color#', 'color')) {
       $('.cmd[data-cmd_id=#id#] .hgauge-value').css('background', '#color#')

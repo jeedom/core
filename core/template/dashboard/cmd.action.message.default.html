@@ -26,7 +26,7 @@
     })
 
     if ($.issetWidgetOptParam('#title_possibility_list#', 'title_possibility_list')) {
-      var mylist#id# = '#title_possibility_list#'
+      let mylist#id# = '#title_possibility_list#'
       mylist#id# = mylist#id#.split(',')
       mylist#id# = mylist#id#.map(str => str.trim())
       $('.cmd[data-cmd_uid=#uid#] .title').autocomplete({
