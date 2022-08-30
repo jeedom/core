@@ -513,11 +513,11 @@ class system {
 		$count++;
 		$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
 		if ($_foreground) {
-			if (self::checkInstallationLog() != '') {
-				echo shell_exec(self::checkInstallationLog() . ' 2>&1');
+			if (self::checkInstallationLog($_plugin) != '') {
+				echo shell_exec(self::checkInstallationLog($_plugin) . ' 2>&1');
 			}
 		} else {
-			$cmd .= self::checkInstallationLog();
+			$cmd .= self::checkInstallationLog($_plugin);
 			$count++;
 			$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
 		}
@@ -721,9 +721,13 @@ class system {
 		return self::$_os_version;
 	}
 
-	public static function checkInstallationLog() {
+	public static function checkInstallationLog($_plugin = '') {
 		if (class_exists('log')) {
-			$log = log::getPathToLog('packages');
+			if ($_plugin != '') {
+				$log = log::getPathToLog($_plugin . '_packages');
+			} else {
+				$log = log::getPathToLog('packages');
+			}
 		} else {
 			$log = '/tmp/jeedom_fix_package_log';
 		}
