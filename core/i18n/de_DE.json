@@ -997,8 +997,8 @@
         "Commandes": "Befehle",
         "Valeur": "Wert",
         "Action": "Aktion",
+        "Date de valeur": "Datum der Wertstellung",
         "Date de collecte": "Datum der Abholung",
-        "le": "das",
         "Graphique de fond": "Hintergrundgrafik",
         "Information": "Information",
         "Aucune": "Irgendein",
@@ -1044,8 +1044,7 @@
         "Configuration de la commande": "Befehl Konfiguration",
         "Logs": "Protokolle",
         "Avez-vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\\'hui": "Haben Sie die Batterien gewechselt? Durch diese Aktion wird das Datum des Batteriewechsels auf heute gesetzt",
-        "Changement de pile(s) pris en compte": "Batteriewechsel berücksichtigt",
-        "Date de valeur": "Datum der Wertstellung"
+        "Changement de pile(s) pris en compte": "Batteriewechsel berücksichtigt"
     },
     "desktop\/modal\/plan3dHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -3378,8 +3377,8 @@
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Plugin Konfiguration",
-        "Date de collecte": "Datum der Abholung",
         "Date de valeur": "Datum der Wertstellung",
+        "Date de collecte": "Datum der Abholung",
         "Nom de la copie de l\\'équipement ?": "Name der Gerätekopie?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Sind Sie sicher, dass Sie das Gerät löschen möchten?",
         "Il est utilisé par ou utilise :": "Es wird verwendet von oder verwendet:",

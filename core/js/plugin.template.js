@@ -251,9 +251,9 @@ $(".eqLogicDisplayCard").on('click', function(event) {
             data.cmd[i].state = String(data.cmd[i].state).replace(/<[^>]*>?/gm, '');
             data.cmd[i]['htmlstate'] =  '<span class="cmdTableState"';
             data.cmd[i]['htmlstate'] += 'data-cmd_id="' + data.cmd[i].id+ '"';
-            data.cmd[i]['htmlstate'] += 'title="{{Date de collecte}} : ' + data.cmd[i].collectDate + '- {{Date de valeur}} ' + data.cmd[i].valueDate;
+            data.cmd[i]['htmlstate'] += 'title="{{Date de valeur}} : ' + data.cmd[i].valueDate + '<br/>{{Date de collecte}} : ' + data.cmd[i].collectDate;
             if(data.cmd[i].state.length > 50){
-              data.cmd[i]['htmlstate'] += ' - '+data.cmd[i].state.replaceAll('"','\"');
+              data.cmd[i]['htmlstate'] += '<br/>'+data.cmd[i].state.replaceAll('"','&quot;');
             }
             data.cmd[i]['htmlstate'] += '" >';
             data.cmd[i]['htmlstate'] += data.cmd[i].state.substring(0, 50) +  ' ' + data.cmd[i].unite;

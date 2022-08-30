@@ -997,8 +997,8 @@
         "Commandes": "Comandi",
         "Valeur": "Valore",
         "Action": "Azione",
+        "Date de valeur": "Date de valeur",
         "Date de collecte": "Date de collecte",
-        "le": "le",
         "Graphique de fond": "Graphique de fond",
         "Information": "Information",
         "Aucune": "Aucune",
@@ -1044,8 +1044,7 @@
         "Configuration de la commande": "Impostazione comando",
         "Logs": "Logs",
         "Avez-vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\\'hui": "Avez-vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\\'hui",
-        "Changement de pile(s) pris en compte": "Changement de pile(s) pris en compte",
-        "Date de valeur": "Date de valeur"
+        "Changement de pile(s) pris en compte": "Changement de pile(s) pris en compte"
     },
     "desktop\/modal\/plan3dHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
@@ -3378,8 +3377,8 @@
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Configurazione del plugin",
-        "Date de collecte": "Date de collecte",
         "Date de valeur": "Date de valeur",
+        "Date de collecte": "Date de collecte",
         "Nom de la copie de l\\'équipement ?": "Nome della copia dell'attrezzatura?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Sei sicuro di voler eliminare l'apparecchiatura",
         "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
