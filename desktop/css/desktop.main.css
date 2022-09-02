@@ -361,21 +361,7 @@ Desktop
   #jeedomMenuBar ul.navbar-nav > li ul ul {
     overflow: auto;
     overflow-x: hidden;
-  }
-  @media screen and (max-height: 400px) {
-    #jeedomMenuBar ul.navbar-nav > li ul ul {
-      max-height: 114px; /* 4 items */
-    }
-  }
-  @media screen and (min-height: 400px) and (max-height: 800px) {
-    #jeedomMenuBar ul.navbar-nav > li ul ul {
-      max-height: 272px; /* 10 items */
-    }
-  }
-  @media screen and (min-height: 801px) {
-    #jeedomMenuBar ul.navbar-nav > li ul ul {
-      max-height: 610px;
-    }
+    max-height: 80vh;
   }
 
 
@@ -3071,7 +3057,7 @@ div.div_viewZone legend.lg_viewZone {
     word-wrap:break-word;
   }
 
-  #table_message td. {
+  #table_message td {
     height: unset;
   }
 
