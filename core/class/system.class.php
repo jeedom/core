@@ -446,7 +446,7 @@ class system {
 						}
 						break;
 					case 'pip3':
-						$cmd_cleaning_pip =  'RESULTTODELETE=$(find /usr/local/lib/python3.7/dist-packages/ -mindepth 1 -maxdepth 1 -type d -exec du -ks {} + | awk \'$1 <= 4\' | cut -f 2-);';
+						$cmd_cleaning_pip =  'RESULTTODELETE=$(find /usr/local/lib/python3*/dist-packages/ -mindepth 1 -maxdepth 1 -type d -exec du -ks {} + | awk \'$1 <= 4\' | cut -f 2-);';
                                                 $cmd_cleaning_pip .= 'RESULTTODELETE2=$(echo "$RESULTTODELETE" | sed \'s, ,\\ ,g\'); echo "$RESULTTODELETE2" | xargs rm -rf';
 						if ($_foreground) {
 							echo shell_exec($cmd_cleaning_pip . " 2>&1");
