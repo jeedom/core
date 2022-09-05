@@ -123,7 +123,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 </div>
               <?php } ?>
               <div class="form-group">
-                <label class="col-xs-4 control-label">{{Derniere execution par jour}}</label>
+                <label class="col-xs-4 control-label">{{Derniere exécution par}}</label>
                 <div class="col-xs-8">
                   <span class="cmdAttr" data-l1key="cache" data-l2key="lastExecutionUser"></span>
                 </div>
