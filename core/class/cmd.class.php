@@ -1089,6 +1089,11 @@ class cmd {
 	}
 
 	public function preExecCmd($_values = array()) {
+		if (isset($_values['user_login'])) {
+			$this->setCache('lastExecutionUser', $_values['user_login']);
+		} else {
+			$this->setCache('lastExecutionUser', 'system');
+		}
 		$this->pre_postExecCmd($_values, 'jeedomPreExecCmd');
 	}
 
