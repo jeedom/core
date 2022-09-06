@@ -21,12 +21,12 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class event {
 	/*     * *************************Attributs****************************** */
-	
+
 	private static $limit = 250;
 	private static $_fd = null;
-	
+
 	/*     * ***********************Methode static*************************** */
-	
+
 	public static function getFileDescriptorLock() {
 		if (self::$_fd === null) {
 			self::$_fd = fopen(jeedom::getTmpFolder() . '/event_cache_lock', 'w');
@@ -34,11 +34,11 @@ class event {
 		}
 		return self::$_fd;
 	}
-	
+
 	public static function add($_event, $_option = array()) {
 		$waitIfLocked = true;
 		$fd = self::getFileDescriptorLock();
-		if (flock($fd, LOCK_EX, $waitIfLocked)) {
+		if (@flock($fd, LOCK_EX, $waitIfLocked)) {
 			$cache = cache::byKey('event');
 			$value = json_decode($cache->getValue('[]'), true);
 			if (!is_array($value)) {
@@ -49,7 +49,7 @@ class event {
 			flock($fd, LOCK_UN);
 		}
 	}
-	
+
 	public static function adds($_event, $_values = array()) {
 		$waitIfLocked = true;
 		$fd = self::getFileDescriptorLock();
@@ -67,14 +67,14 @@ class event {
 			flock($fd, LOCK_UN);
 		}
 	}
-	
+
 	public static function cleanEvent($_events) {
 		$_events = array_slice(array_values($_events), -self::$limit, self::$limit);
 		$find = array();
 		$events = array_values($_events);
 		$now = strtotime('now') + 300;
 		foreach ($events as $key => $event) {
-			if($event['datetime'] > $now){
+			if ($event['datetime'] > $now) {
 				unset($events[$key]);
 				continue;
 			}
@@ -86,7 +86,7 @@ class event {
 				$id = 'scenario::update::' . $event['option']['scenario_id'];
 			} elseif ($event['name'] == 'jeeObject::summary::update') {
 				$id = 'jeeObject::summary::update::' . $event['option']['object_id'];
-				if(is_array($event['option']['keys']) && count($event['option']['keys']) > 0){
+				if (is_array($event['option']['keys']) && count($event['option']['keys']) > 0) {
 					foreach ($event['option']['keys'] as $key2 => $value) {
 						$id .= $key2;
 					}
@@ -95,22 +95,22 @@ class event {
 				continue;
 			}
 			if (isset($find[$id])) {
-				if($find[$id]['datetime'] > $event['datetime']){
+				if ($find[$id]['datetime'] > $event['datetime']) {
 					unset($events[$key]);
 					continue;
-				}else{
+				} else {
 					unset($events[$find[$id]['key']]);
 				}
 			}
-			$find[$id] = array('datetime' => $event['datetime'],'key' => $key);
+			$find[$id] = array('datetime' => $event['datetime'], 'key' => $key);
 		}
 		return array_values($events);
 	}
-	
+
 	public static function orderEvent($a, $b) {
 		return ($a['datetime'] - $b['datetime']);
 	}
-	
+
 	public static function changes($_datetime, $_longPolling = null, $_filter = null) {
 		$return = self::filterEvent(self::changesSince($_datetime), $_filter);
 		if ($_longPolling === null || count($return['result']) > 0) {
@@ -132,7 +132,7 @@ class event {
 		$return['result'] = self::cleanEvent($return['result']);
 		return $return;
 	}
-	
+
 	private static function filterEvent($_data = array(), $_filter = null) {
 		if ($_filter == null) {
 			return $_data;
@@ -150,10 +150,10 @@ class event {
 		}
 		return $return;
 	}
-	
+
 	private static function changesSince($_datetime) {
 		$now = getmicrotime();
-		if($_datetime > $now){
+		if ($_datetime > $now) {
 			$_datetime = $now;
 		}
 		$return = array('datetime' => $_datetime, 'result' => array());
@@ -175,8 +175,8 @@ class event {
 		$return['result'] = array_reverse($return['result']);
 		return $return;
 	}
-	
+
 	/*     * *********************Methode d'instance************************* */
-	
+
 	/*     * **********************Getteur Setteur*************************** */
 }
