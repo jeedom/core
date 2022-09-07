@@ -544,17 +544,23 @@ class history {
 	}
 
 	public static function getTemporalAvg($_cmd_id, $_startTime, $_endTime) {
-		$histories = self::all($_cmd_id, date('Y-m-d H:i:s', strtotime($_startTime . ' -2 hours')), $_endTime);
-		$cHistory = self::byCmdIdAtDatetime($_cmd_id, $_startTime);
-		$cTime = $cHistory->getValue();
-		$cValue = strtotime($cHistory->getDatetime());
-		$sum = 0;
+		$histories = self::all($_cmd_id, $_startTime, $_endTime);
+		if (is_object($lastHistory = self::byCmdIdAtDatetime($_cmd_id, $_startTime))) {
+			$histories = array_merge(array($lastHistory), $histories);
+		}
+
 		if (count($histories) == 0) {
+			return -1;
+		}
+		$cValue = $histories[0]->getValue();
+		if (count($histories) == 1) {
 			return $cValue;
 		}
+		$cTime = strtotime($_startTime);
+		$sum = 0;
 		foreach ($histories as $history) {
-			if ($cTime < strtotime($_startTime)) {
-				$cTime = strtotime($_startTime);
+			if (strtotime($history->getDatetime()) < strtotime($_startTime)) {
+				continue;
 			}
 			$sum += $cValue * (strtotime($history->getDatetime()) - $cTime);
 			$cValue = $history->getValue();
@@ -562,9 +568,6 @@ class history {
 		}
 		if (strtotime($_endTime) > $cTime) {
 			$sum += $cValue * (strtotime($_endTime) - $cTime);
-		}
-		if ($cTime < strtotime($_startTime)) {
-			return $cValue;
 		}
 		return $sum / (strtotime($_endTime) - strtotime($_startTime));
 	}
