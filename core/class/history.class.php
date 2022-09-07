@@ -549,7 +549,7 @@ class history {
 		$cValue = null;
 		$sum = 0;
 		if (count($histories) == 0) {
-			return 0;
+			return self::byCmdIdAtDatetime($_cmd_id, $_startTime);
 		}
 		foreach ($histories as $history) {
 			if ($cValue == null || strtotime($history->getDatetime()) < strtotime($_startTime)) {
