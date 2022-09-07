@@ -568,7 +568,7 @@ class history {
 			$sum += $cValue * (strtotime($_endTime) - $cTime);
 		}
 		if (($cTime - strtotime($_startTime)) <= 0) {
-			return 0;
+			return $cValue;
 		}
 		return $sum / (strtotime($_endTime) - strtotime($_startTime));
 	}
