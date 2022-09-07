@@ -545,11 +545,12 @@ class history {
 
 	public static function getTemporalAvg($_cmd_id, $_startTime, $_endTime) {
 		$histories = self::all($_cmd_id, date('Y-m-d H:i:s', strtotime($_startTime . ' -2 hours')), $_endTime);
+		$cHistory = self::byCmdIdAtDatetime($_cmd_id, $_startTime);
 		$cTime = null;
 		$cValue = null;
 		$sum = 0;
 		if (count($histories) == 0) {
-			return self::byCmdIdAtDatetime($_cmd_id, $_startTime);
+			return $cHistory->getValue();
 		}
 		foreach ($histories as $history) {
 			if ($cValue == null || strtotime($history->getDatetime()) < strtotime($_startTime)) {
