@@ -45,6 +45,8 @@ switch ($argv[1]) {
                 $update->setConfiguration('version', 'stable');
                 $update->save();
                 $update->doUpdate();
+                $plugin = plugin::byId($argv[3]);
+                $plugin->setIsEnable(1);
                 break;
             case 'dependancy_end':
                 if (!isset($argv[3])) {
