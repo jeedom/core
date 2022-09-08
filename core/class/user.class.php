@@ -532,8 +532,10 @@ class user {
 	}
 
 	public function setPassword($_password) {
-		if($_password != ''){
+		if ($_password != '') {
 			$_password = (!is_sha512($_password)) ? sha512($_password) : $_password;
+		} else {
+			throw new Exception(__('Le mot de passe ne peut etre vide', __FILE__));
 		}
 		$this->_changed = utils::attrChanged($this->_changed, $this->password, $_password);
 		$this->password = $_password;
