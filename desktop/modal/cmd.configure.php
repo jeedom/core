@@ -26,6 +26,7 @@ global $JEEDOM_INTERNAL_CONFIG;
 
 $cmdInfo = jeedom::toHumanReadable(utils::o2a($cmd));
 $cmdInfo['eqLogicName'] = $cmd->getEqLogic()->getName();
+$cmdInfo['cache'] = $cmd->getCache();
 sendVarToJS([
   'jeephp2js.md_cmdConfigure_cmdInfo' => $cmdInfo,
   'jeephp2js.md_cmdConfigure_cmdInfoSearchString' => urlencode(str_replace('#', '', $cmd->getHumanName())),
@@ -121,6 +122,12 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                   </div>
                 </div>
               <?php } ?>
+              <div class="form-group">
+                <label class="col-xs-4 control-label">{{Dernière exécution par}}</label>
+                <div class="col-xs-8">
+                  <span class="cmdAttr" data-l1key="cache" data-l2key="lastExecutionUser"></span>
+                </div>
+              </div>
               <?php if ($cmd->getType() == 'info') {
                 $value = $cmd->execCmd();
               ?>
@@ -128,9 +135,9 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                   <label class="col-xs-4 control-label">{{Etat}}</label>
                   <div class="col-xs-8">
                     <?php
-                      if ($value != '') {
+                    if ($value != '') {
                     ?>
-                    <span class="label label-primary" style="max-width: 100%;"><?php echo '<span class="cmdConfigure_cmdValue" data-cmd_id="' . $cmd->getid() . '" title="{{Date de collecte}} : ' .  $cmd->getCollectDate() . '">' . $value . ' ' . $cmd->getUnite() . ' {{le}} ' . $cmd->getValueDate() . '<span>'; ?></span>
+                      <span class="label label-primary" style="max-width: 100%;"><?php echo '<span class="cmdConfigure_cmdValue" data-cmd_id="' . $cmd->getid() . '" title="{{Date de collecte}} : ' .  $cmd->getCollectDate() . '">' . $value . ' ' . $cmd->getUnite() . ' {{le}} ' . $cmd->getValueDate() . '<span>'; ?></span>
                     <?php } ?>
                   </div>
                 </div>

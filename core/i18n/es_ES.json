@@ -692,6 +692,7 @@
         "Sous-type": "Sub-tipo",
         "Mise à jour par": "Actualizado por",
         "Valeurs possibles": "Valores posibles",
+        "Dernière exécution par": "Última ejecución por",
         "Etat": "Estado",
         "Date de collecte": "Fecha de recogida",
         "le": "la",
@@ -997,8 +998,8 @@
         "Commandes": "Comandos",
         "Valeur": "Valor",
         "Action": "Acción",
+        "Date de valeur": "Fecha valor",
         "Date de collecte": "Fecha de recogida",
-        "le": "la",
         "Graphique de fond": "Gráfico de fondo",
         "Information": "Información",
         "Aucune": "Alguna",
@@ -1044,8 +1045,7 @@
         "Configuration de la commande": "Configuración del comando",
         "Logs": "Registros",
         "Avez-vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\\'hui": "¿Ha cambiado las pilas? Esta acción establecerá la fecha de cambio de batería en hoy",
-        "Changement de pile(s) pris en compte": "Cambio de batería (s) tomado en cuenta",
-        "Date de valeur": "Fecha valor"
+        "Changement de pile(s) pris en compte": "Cambio de batería (s) tomado en cuenta"
     },
     "desktop\/modal\/plan3dHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -3378,8 +3378,8 @@
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Configuración del complemento",
-        "Date de collecte": "Fecha de recogida",
         "Date de valeur": "Fecha valor",
+        "Date de collecte": "Fecha de recogida",
         "Nom de la copie de l\\'équipement ?": "Nombre de la copia del equipo?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "¿Está seguro de que desea eliminar el equipo?",
         "Il est utilisé par ou utilise :": "Es utilizado por o utiliza:",
