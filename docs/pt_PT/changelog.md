@@ -9,6 +9,7 @@
 
 ### 4.3 : Notícias / Melhorias
 
+- **Ferramentas / Cenários** : Modal para edição ctrl+click em campos editáveis de blocos/ações.
 - **Ferramentas / Cenários** : Adição de um menu contextual em um cenário para tornar ativo/inativo, alterar grupo, alterar objeto pai.
 - **Ferramentas / Objetos** : Adicionado um menu contextual em um objeto para gerenciar a visibilidade, alterar o objeto pai e mover.
 - **Ferramentas / Substituir** : Nova ferramenta para substituição de equipamentos e comandos.
@@ -24,7 +25,7 @@
 ### 4.3 : WebApp
 
 - Integração de notas.
-- Possibilidade de mostrar os mosaicos apenas numa coluna (definindo na configuração do separador interface do jeedom)
+- Possibilidade de mostrar os mosaicos apenas numa coluna (definindo na configuração do separador interface do jeedom).
 
 ### 4.3 : Autre
 
@@ -32,6 +33,49 @@
 
 
 # Changelog Jeedom V4.2
+
+## 4.2.21
+
+- Corrigido um bug nos resumos.
+
+## 4.2.20
+
+- Adicionado um sistema para corrigir pacotes pip durante uma instalação incorreta.
+
+## 4.2.19
+
+- Adicionado gerenciamento de versão para pacotes python (permite corrigir o problema com o plugin zigbee).
+
+## 4.2.18
+
+- Atualização do nodejs.
+
+## 4.2.17
+
+- Núcleo de correção de bugs : Acesso limitado do usuário a designs e visualizações.
+- IU de correção de bug : Exibição de blocos A no Chrome.
+- Correção de bug : Link para documentação quando o plug-in estiver em beta.
+
+## 4.2.16
+
+- Núcleo de correção de bugs : Cenas : Mesclar itens colados em alguns casos.
+- Núcleo de correção de bugs : Criação de arquivos com editor de arquivos.
+- Correção de bug : Maior atraso para entrar em contato com o serviço de monitoramento (permite aliviar a carga nos servidores em nuvem).
+
+## 4.2.15
+
+- IU de correção de bug : Cenas : Adicionando a ação *tipo genérico* no modo de seleção.
+- Núcleo de correção de bugs : Corrigido o atraso nos históricos calculados.
+- Correção de bug : Instalação de dependências de plugin zigbee.
+
+## 4.2.14
+
+- IU de correção de bug : Pesquisa removida ativando a opção de log bruto.
+- IU de correção de bug : Não foi possível baixar o log vazio.
+- IU de correção de bug : Widget cmd.action.slider.value
+
+- Núcleo de correção de bugs : Tamanho das imagens de fundo em relação ao tamanho do design.
+- Núcleo de correção de bugs : Corrigido um problema com as chaves de API ainda desabilitadas.
 
 ## 4.2.13
 
