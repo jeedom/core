@@ -960,7 +960,13 @@ class plugin {
 				} else {
 					$out = $this->callInstallFunction('install');
 				}
-				$this->dependancy_info(true);
+				$dependancy_info = $this->dependancy_info(true);
+				if ($dependancy_info['state'] == 'nok' && config::byKey('dependancyAutoMode', $this->getId(), 1) == 1) {
+					try {
+						$this->dependancy_install();
+					} catch (Exception $e) {
+					}
+				}
 			} else {
 				$this->deamon_stop();
 				if ($alreadyActive == 1) {
