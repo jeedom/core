@@ -9,6 +9,7 @@
 
 ### 4.3 : Noticias / Mejoras
 
+- **Herramientas / Escenarios** : Modal para editar ctrl+clic en campos editables de bloques/acciones.
 - **Herramientas / Escenarios** : Adición de un menú contextual en un escenario para activar/desactivar, cambiar grupo, cambiar objeto principal.
 - **Herramientas / Objetos** : Se agregó un menú contextual en un objeto para administrar la visibilidad, cambiar el objeto principal y mover.
 - **Herramientas / Reemplazar** : Nueva herramienta de sustitución de equipos y mandos.
@@ -24,7 +25,7 @@
 ### 4.3 : WebApp
 
 - Integración de notas.
-- Posibilidad de mostrar los mosaicos solo en una columna (configuración en la pestaña de configuración de la interfaz de jeedom))
+- Posibilidad de mostrar los mosaicos solo en una columna (configuración en la pestaña de configuración de la interfaz de jeedom)).
 
 ### 4.3 : Autre
 
@@ -32,6 +33,49 @@
 
 
 # Registro de cambios Jeedom V4.2
+
+## 4.2.21
+
+- Se corrigió un error en los resúmenes.
+
+## 4.2.20
+
+- Se agregó un sistema para corregir paquetes pip durante una mala instalación.
+
+## 4.2.19
+
+- Se agregó administración de versiones para paquetes de python (permite corregir el problema con el complemento zigbee).
+
+## 4.2.18
+
+- Actualización de nodejs.
+
+## 4.2.17
+
+- Núcleo de corrección de errores : Acceso de usuario limitado a diseños y vistas.
+- Interfaz de usuario de corrección de errores : Visualización de bloques A en Chrome.
+- Arreglo del fallo : Enlace a la documentación cuando el complemento está en versión beta.
+
+## 4.2.16
+
+- Núcleo de corrección de errores : Guión : Combinar elementos pegados en algunos casos.
+- Núcleo de corrección de errores : Creación de archivos con editor de archivos.
+- Arreglo del fallo : Mayor demora para contactar con el servicio de monitoreo (permite aligerar la carga en los servidores en la nube)).
+
+## 4.2.15
+
+- Interfaz de usuario de corrección de errores : Guión : Agregar la acción *tipo genérico* en el modo de selección.
+- Núcleo de corrección de errores : Retraso fijo en las historias calculadas.
+- Arreglo del fallo : Instalación de dependencias del complemento zigbee.
+
+## 4.2.14
+
+- Interfaz de usuario de corrección de errores : Investigación eliminada al activar la opción de registro sin procesar.
+- Interfaz de usuario de corrección de errores : No se puede descargar el registro vacío.
+- Interfaz de usuario de corrección de errores : Widget cmd.action.slider.value
+
+- Núcleo de corrección de errores : Tamaño de las imágenes de fondo en relación al tamaño del diseño.
+- Núcleo de corrección de errores : Se solucionó un problema con las claves de API aún deshabilitadas.
 
 ## 4.2.13
 
