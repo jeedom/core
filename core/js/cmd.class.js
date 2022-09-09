@@ -278,10 +278,10 @@ jeedom.cmd.test = function(_params) {
               });
               break;
             case 'color':
-              bootbox.prompt({ 
-                title: "Quelle couleur  (#rrggbb)?",
+              bootbox.prompt({
+                title: "{{Quelle couleur (#rrggbb) ?}}",
                 value: '#ff000',
-                callback: function(result){ 
+                callback: function(result){
                   if(result === null){
                     return;
                   }
@@ -303,7 +303,7 @@ jeedom.cmd.test = function(_params) {
                         level: 'success'
                       });
                     }
-                  }); 
+                  });
                 }
               });
               break;
@@ -314,7 +314,7 @@ jeedom.cmd.test = function(_params) {
                 inputOptions.push({text: values[i].split('|')[1],value: values[i].split('|')[0]})
               }
               bootbox.prompt({
-                title: "Valeur ?",
+                title: "{{Valeur ?}}",
                 inputType: 'select',
                 inputOptions: inputOptions,
                 callback: function (result) {
@@ -339,7 +339,7 @@ jeedom.cmd.test = function(_params) {
                         level: 'success'
                       });
                     }
-                  });   
+                  });
                 }
             });
               break;
@@ -351,10 +351,10 @@ jeedom.cmd.test = function(_params) {
                 size: 'large',
                 buttons: {
                   cancel: {
-                    label: "Annuler",
+                    label: "{{Annuler}}",
                     className: 'btn-warning',
                     callback: function(){
-                        
+
                     }
                   },
                   success: {
@@ -385,11 +385,6 @@ jeedom.cmd.test = function(_params) {
                   },
                 }
               })
-
-
-
-             
-              
               break;
           }
           break;

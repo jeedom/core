@@ -9,6 +9,7 @@
 
 ### 4.3 : News / Improvements
 
+- **Tools / Scenarios** : Modal for ctrl+click editing in editable fields of blocks/actions.
 - **Tools / Scenarios** : Addition of a contextual menu on a scenario to make active/inactive, change group, change parent object.
 - **Tools / Objects** : Added a contextual menu on an object to manage visibility, change parent object, and move.
 - **Tools / Replace** : New tool for replacing equipment and commands.
@@ -24,7 +25,7 @@
 ### 4.3 : WebApp
 
 - Notes integration.
-- Possibility to display the tiles only on a column (setting in the configuration of jeedom interface tab)
+- Possibility to display the tiles only on a column (setting in the configuration of jeedom interface tab).
 
 ### 4.3 : Autre
 
@@ -32,6 +33,49 @@
 
 
 # Changelog Jeedom V4.2
+
+## 4.2.21
+
+- Fixed a bug on summaries.
+
+## 4.2.20
+
+- Added a system to correct pip packages during a bad installation.
+
+## 4.2.19
+
+- Added version management for python packages (allows to correct the problem with the zigbee plugin).
+
+## 4.2.18
+
+- Nodejs update.
+
+## 4.2.17
+
+- Bugfix Core : Limited user access to designs and views.
+- Bugfix UI : Display of A blocks in Chrome.
+- Bugfix : Link to documentation when the plugin is in beta.
+
+## 4.2.16
+
+- Bugfix Core : Scenario : Merge pasted items in some cases.
+- Bugfix Core : Archive creation with file editor.
+- Bugfix : Increased delay for contacting the monitoring service (allows to lighten the load on cloud servers).
+
+## 4.2.15
+
+- Bugfix UI : Scenario : Adding the action *genericType* in the selection mode.
+- Bugfix Core : Fixed lag on calculated histories.
+- Bugfix : Installation of zigbee plugin dependencies.
+
+## 4.2.14
+
+- Bugfix UI : Research removed by activating the raw log option.
+- Bugfix UI : Unable to download empty log.
+- Bugfix UI : Cmd.action.slider.value widget
+
+- Bugfix Core : Size of background images in relation to the size of the design.
+- Bugfix Core : Fixed an issue with api keys still disabled.
 
 ## 4.2.13
 

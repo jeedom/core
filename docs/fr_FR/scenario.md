@@ -74,7 +74,7 @@ Dans l’onglet **Général**, on retrouve les paramètres principaux du scénar
 >**IMPORTANT**
 >
 >Le multi lancement marche à la seconde, c'est à dire que si vous avez 2 lancements dans la même seconde sans la case cochée il y aura quand même 2 lancements du scénario (alors qu'il ne devrait pas). De même lors de plusieurs lancements dans la même seconde il se peut que certains lancements perdent les tags. Conclusion il faut ABSOLUMENT éviter de multiples lancements dans la même seconde.
-- **Mode synchrone** : Lance le scénario dans le thread courant au lieu d'un thread dédié. Permet d'augmenter la vitesse de lancement du scénario, mais peut rendre le système instable. Attention a ne surtout pas mettre de scénarios complexe ou avec des pauses (sleep) ou wait en synchrone, cela engendre un comportement instable de jeedom et ne pourra etre couvert par le support.
+- **Mode synchrone** : Lance le scénario dans le thread courant au lieu d'un thread dédié. Permet d'augmenter la vitesse de lancement du scénario, mais peut rendre le système instable. Attention a ne surtout pas mettre de scénario complexe ou avec des pauses (sleep) ou wait en synchrone, cela engendre un comportement instable de jeedom et ne pourra être couvert par le support.
 - **Log** : Le type de log souhaité pour le scénario. Vous pouvez couper les logs du scénario ou au contraire le faire apparaître dans Analyse → Temps réel.
 - **Timeline** : Permet de garder un suivi du scénario dans la timeline (voir doc Historique).
 - **Icône** : Permet de choisir une icône pour le scénario en lieu et place de l’icône standard.
