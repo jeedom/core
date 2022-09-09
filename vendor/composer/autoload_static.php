@@ -71,6 +71,10 @@ class ComposerStaticInit5a0c414efab2298f121e5cbed8bbcba9
             'League\\Flysystem\\WebDAV\\' => 24,
             'League\\Flysystem\\' => 17,
         ),
+        'J' => 
+        array (
+            'Jeedom\\' => 7,
+        ),
         'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
@@ -220,6 +224,10 @@ class ComposerStaticInit5a0c414efab2298f121e5cbed8bbcba9
         'League\\Flysystem\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/flysystem/src',
+        ),
+        'Jeedom\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (

@@ -13,6 +13,11 @@
     "matthiasmullie/minify": "*",
     "pragmarx/google2fa-qrcode": "^1.0"
   },
+  "autoload": {
+    "psr-4": {
+      "Jeedom\\": "src/"
+    }
+  },
   "license": "GPL",
   "config": {
     "preferred-install": "dist",
