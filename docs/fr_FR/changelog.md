@@ -9,6 +9,7 @@
 
 ### 4.3 : Nouveautés / Améliorations
 
+- **Outils / Scénarios** : Modale d'édition au ctrl+click dans les champs éditable des blocs/actions.
 - **Outils / Scénarios** : Ajout d'un menu contextuel sur un scénario pour rendre actif/inactif, changer de groupe, changer d'objet parent.
 - **Outils / Objets** : Ajout d'un menu contextuel sur un objet pour gérer la visbilité, changer d'objet parent, et déplacer.
 - **Outils / Remplacer** : Nouvel outil de remplacement d'équipements et commandes.
@@ -24,7 +25,7 @@
 ### 4.3 : WebApp
 
 - Intégration des Notes.
-- Possibilité d'afficher les tuiles que sur une colonne (réglage dans la configuration de jeedom onglet interface)
+- Possibilité d'afficher les tuiles que sur une colonne (réglage dans la configuration de jeedom onglet interface).
 
 ### 4.3 : Autre
 
@@ -32,6 +33,49 @@
 
 
 # Changelog Jeedom V4.2
+
+## 4.2.21
+
+- Correction d'un bug sur les résumés.
+
+## 4.2.20
+
+- Ajout d'un ssyteme de correction des packages pip lors d'une mauvaise installation.
+
+## 4.2.19
+
+- Ajout de la gestion des version pour les packages python (permet de corriger le soucis avec le plugin zigbee).
+
+## 4.2.18
+
+- Mise à jour de nodejs.
+
+## 4.2.17
+
+- Bugfix Core : Accès utilisateur limité aux designs et vues.
+- Bugfix UI : Affichage des blocs A sous Chrome.
+- Bugfix : Lien vers la documentation lorsque le plugin est en beta.
+
+## 4.2.16
+
+- Bugfix Core : Scénario : Fusion des éléments collés dans certains cas.
+- Bugfix Core : Création d'archive avec l'éditeur de fichiers.
+- Bugfix : Augmentation du délai pour le contact du service de monitoring (permet d'alléger la charge sur les serveurs cloud).
+
+## 4.2.15
+
+- Bugfix UI : Scénario : Ajout de l'action *genericType* dans la modale de sélection.
+- Bugfix Core : Correction du décalage sur les historiques calculés.
+- Bugfix : Installation des dépendances du plugin zigbee.
+
+## 4.2.14
+
+- Bugfix UI : Recherche supprimée en activant l'option log brut.
+- Bugfix UI : Téléchargement de log vide impossible.
+- Bugfix UI : Widget cmd.action.slider.value
+
+- Bugfix Core : Taille des images de fond en rapport avec la taille du design.
+- Bugfix Core : Correction d'un soucis sur les clefs api toujours en désactivées.
 
 ## 4.2.13
 

@@ -9,6 +9,7 @@
 
 ### 4.3 : Neuigkeiten / Verbesserungen
 
+- **Werkzeuge / Szenarien** : Modal für Strg+Klick-Bearbeitung in bearbeitbaren Feldern von Blöcken/Aktionen.
 - **Werkzeuge / Szenarien** : Hinzufügen eines Kontextmenüs zu einem Szenario zum Aktivieren/Deaktivieren, Ändern der Gruppe, Ändern des übergeordneten Objekts.
 - **Werkzeuge / Objekte** : Ein Kontextmenü für ein Objekt wurde hinzugefügt, um die Sichtbarkeit zu verwalten, das übergeordnete Objekt zu ändern und es zu verschieben.
 - **Werkzeuge / Ersetzen** : Neues Tool zum Ersetzen von Ausrüstung und Befehlen.
@@ -24,7 +25,7 @@
 ### 4.3 : WebApp
 
 - Notes-Integration.
-- Möglichkeit, die Kacheln nur auf einer Spalte anzuzeigen (Einstellung in der Konfiguration der Registerkarte Jeedom-Schnittstelle)
+- Möglichkeit, die Kacheln nur auf einer Spalte anzuzeigen (Einstellung in der Konfiguration der Registerkarte Jeedom-Schnittstelle).
 
 ### 4.3 : Autre
 
@@ -32,6 +33,49 @@
 
 
 # Änderungsprotokoll Jeedom V4.2
+
+## 4.2.21
+
+- Fehler in Zusammenfassungen behoben.
+
+## 4.2.20
+
+- Ein System hinzugefügt, um Pip-Pakete während einer fehlerhaften Installation zu korrigieren.
+
+## 4.2.19
+
+- Versionsverwaltung für Python-Pakete hinzugefügt (ermöglicht die Behebung des Problems mit dem Zigbee-Plugin).
+
+## 4.2.18
+
+- Nodejs-Update.
+
+## 4.2.17
+
+- Bugfix-Kern : Eingeschränkter Benutzerzugriff auf Designs und Ansichten.
+- Bugfix-Benutzeroberfläche : Anzeige von A-Blöcken in Chrome.
+- Fehlerbehebung : Link zur Dokumentation, wenn sich das Plugin in der Beta-Phase befindet.
+
+## 4.2.16
+
+- Bugfix-Kern : Szenario : Eingefügte Elemente in einigen Fällen zusammenführen.
+- Bugfix-Kern : Archiverstellung mit Dateieditor.
+- Fehlerbehebung : Erhöhte Verzögerung für die Kontaktaufnahme mit dem Überwachungsdienst (ermöglicht die Belastung von Cloud-Servern zu verringern).
+
+## 4.2.15
+
+- Bugfix-Benutzeroberfläche : Szenario : Hinzufügen der Aktion *generischerTyp* im Auswahlmodus.
+- Bugfix-Kern : Verzögerung bei berechneten Historien behoben.
+- Fehlerbehebung : Installation von Zigbee-Plugin-Abhängigkeiten.
+
+## 4.2.14
+
+- Bugfix-Benutzeroberfläche : Recherche durch Aktivieren der Raw-Log-Option entfernt.
+- Bugfix-Benutzeroberfläche : Leeres Protokoll kann nicht heruntergeladen werden.
+- Bugfix-Benutzeroberfläche : Cmd.action.slider.value-Widget
+
+- Bugfix-Kern : Größe der Hintergrundbilder im Verhältnis zur Größe des Designs.
+- Bugfix-Kern : Ein Problem mit weiterhin deaktivierten API-Schlüsseln wurde behoben.
 
 ## 4.2.13
 

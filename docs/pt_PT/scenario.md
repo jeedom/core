@@ -74,7 +74,7 @@ Na aba **Geral**, encontramos os principais parâmetros do cenário :
 >**IMPORTANTE**
 >
 >O multi lançamento funciona por segundo, ou seja, se você tiver 2 lançamentos no mesmo segundo sem a caixa marcada, ainda haverá 2 lançamentos do cenário (embora não deva). Da mesma forma, durante vários lançamentos no mesmo segundo, alguns lançamentos podem perder as tags. Conclusão é ABSOLUTAMENTE necessário evitar vários lançamentos no mesmo segundo.
-- **Sincronicamente** : Inicie o cenário no segmento atual em vez de um segmento dedicado. Aumenta a velocidade na qual o cenário é iniciado, mas pode tornar o sistema instável. Cuidado para não colocar cenários complexos ou com pausas (sleep) ou esperar de forma síncrona, isso gera um comportamento instável de jeedom e não pode ser coberto pelo suporte.
+- **Sincronicamente** : Inicie o cenário no segmento atual em vez de um segmento dedicado. Aumenta a velocidade na qual o cenário é iniciado, mas pode tornar o sistema instável. Cuidado para não colocar um cenário complexo ou com pausas (sleep) ou esperar de forma síncrona, isso gera um comportamento instável de jeedom e não pode ser coberto pelo suporte.
 - **Registro** : O tipo de log desejado para o cenário. Você pode cortar os registros do cenário ou, ao contrário, mostrá-lo em Análise → Tempo real.
 - **Linha do tempo** : Mantenha um acompanhamento do cenário na linha do tempo (consulte Histórico doc).
 - **Ícone** : Permite escolher um ícone para o cenário em vez do ícone padrão.

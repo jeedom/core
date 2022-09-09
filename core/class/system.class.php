@@ -675,12 +675,12 @@ class system {
 				if (version_compare(self::getOsVersion(), '11', '>=')) {
 					return '';
 				}
-				return self::getCmdSudo() . ' pip2 install --force-reinstall --upgrade ' . $_package;
+				return self::getCmdSudo() . ' pip2 install --no-cache-dir --force-reinstall --upgrade ' . $_package;
 			case 'pip3':
 				if ($_version != '') {
 					$_package .= '==' . $_version;
 				}
-				return self::getCmdSudo() . ' pip3 install --force-reinstall --upgrade ' . $_package;
+				return self::getCmdSudo() . ' pip3 install --no-cache-dir --force-reinstall --upgrade ' . $_package;
 			case 'npm':
 				if (strpos($_package, '/') === false) {
 					return self::getCmdSudo() . ' npm install --force -g ' . $_package;
