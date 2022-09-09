@@ -4102,7 +4102,7 @@
         "Mode synchrone": "Mode synchrone",
         "Lance le scénario dans le thread courant au lieu d'un thread dédié": "Lance le scénario dans le thread courant au lieu d'un thread dédié",
         "Permet d'augmenter la vitesse de lancement du scénario, mais peut rendre le système instable": "Permet d'augmenter la vitesse de lancement du scénario, mais peut rendre le système instable",
-        "Attention a ne surtout pas mettre de scénarios complexe ou avec des pauses (sleep) ou wait en synchrone, cela engendre un comportement instable de jeedom et ne pourra etre couvert par le support": "Attention a ne surtout pas mettre de scénarios complexe ou avec des pauses (sleep) ou wait en synchrone, cela engendre un comportement instable de jeedom et ne pourra etre couvert par le support",
+        "Attention a ne surtout pas mettre de scénario complexe ou avec des pauses (sleep) ou wait en synchrone, cela engendre un comportement instable de jeedom et ne pourra être couvert par le support": "Attention a ne surtout pas mettre de scénario complexe ou avec des pauses (sleep) ou wait en synchrone, cela engendre un comportement instable de jeedom et ne pourra être couvert par le support",
         "Le type de log souhaité pour le scénario": "Le type de log souhaité pour le scénario",
         "Vous pouvez couper les logs du scénario ou au contraire le faire apparaître dans Analyse → Temps réel": "Vous pouvez couper les logs du scénario ou au contraire le faire apparaître dans Analyse → Temps réel",
         "Permet de garder un suivi du scénario dans la timeline (voir doc Historique": "Permet de garder un suivi du scénario dans la timeline (voir doc Historique",

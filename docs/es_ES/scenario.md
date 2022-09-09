@@ -74,7 +74,7 @@ En la pestaña **General**, encontramos los principales parámetros del escenari
 >**IMPORTANTE**
 >
 >El lanzamiento múltiple funciona por segundo, es decir que si tienes 2 lanzamientos en el mismo segundo sin marcar la casilla, aún habrá 2 lanzamientos del escenario (aunque no debería). Asimismo, durante varios lanzamientos en el mismo segundo, algunos lanzamientos pueden perder las etiquetas. Conclusión es ABSOLUTAMENTE necesario evitar múltiples lanzamientos en el mismo segundo.
-- **Modo síncrono** : Inicie el escenario en el hilo actual en lugar de un hilo dedicado. Aumenta la velocidad a la que se inicia el escenario, pero puede hacer que el sistema sea inestable. Tenga cuidado de no poner escenarios complejos o con pausas (dormir) o esperar sincrónicamente, esto genera un comportamiento inestable de jeedom y no puede ser cubierto por el soporte.
+- **Modo síncrono** : Inicie el escenario en el hilo actual en lugar de un hilo dedicado. Aumenta la velocidad a la que se inicia el escenario, pero puede hacer que el sistema sea inestable. Tenga cuidado de no poner un escenario complejo o con pausas (dormir) o esperar sincrónicamente, esto genera un comportamiento inestable de jeedom y no puede ser cubierto por el soporte.
 - **Tronco** : El tipo de registro deseado para el escenario. Puede cortar los registros del escenario o por el contrario mostrarlo en Análisis → Tiempo real.
 - **Línea de tiempo** : Mantenga un seguimiento del escenario en la línea de tiempo (consulte el documento Historial).
 - **Icono** : Le permite elegir un icono para el escenario en lugar del icono estándar.

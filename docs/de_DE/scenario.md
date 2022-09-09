@@ -74,7 +74,7 @@ In der Registerkarte **General**, Wir finden die Hauptparameter des Szenarios :
 >**WICHTIG**
 >
 >Der Mehrfachstart funktioniert pro Sekunde, dh wenn Sie zwei Starts in derselben Sekunde haben, ohne das Kontrollkästchen aktiviert zu haben, gibt es immer noch zwei Starts des Szenarios (obwohl dies nicht der Fall sein sollte)). Ebenso können bei mehreren Starts in derselben Sekunde einige Starts die Tags verlieren. Fazit Es ist ABSOLUT notwendig, mehrere Starts in derselben Sekunde zu vermeiden.
-- **Synchroner Modus** : Starten Sie das Szenario im aktuellen Thread anstelle eines dedizierten Threads. Erhöht die Geschwindigkeit, mit der das Szenario gestartet wird, kann jedoch das System instabil machen. Achten Sie darauf, komplexe Szenarien nicht mit Pausen (sleep) oder synchron zu warten, dies erzeugt ein instabiles Verhalten von jeedom und kann nicht vom Support abgedeckt werden.
+- **Synchroner Modus** : Starten Sie das Szenario im aktuellen Thread anstelle eines dedizierten Threads. Erhöht die Geschwindigkeit, mit der das Szenario gestartet wird, kann jedoch das System instabil machen. Achten Sie darauf, ein komplexes Szenario nicht mit Pausen (sleep) oder synchronem Warten zu versehen, dies erzeugt ein instabiles Verhalten von Jeedom und kann nicht vom Support abgedeckt werden.
 - **Protokoll** : Der für das Szenario gewünschte Protokolltyp. Sie können die Szenarioprotokolle ausschneiden oder im Gegenteil unter Analyse → Echtzeit anzeigen.
 - **Zeitleiste** : Behalten Sie das Szenario in der Zeitleiste im Auge (siehe Verlaufsdokument)).
 - **Symbol** : Ermöglicht die Auswahl eines Symbols für das Szenario anstelle des Standardsymbols.

@@ -7569,7 +7569,7 @@
         "Mode synchrone": "Synchroner Modus",
         "Lance le scénario dans le thread courant au lieu d'un thread dédié": "Starten Sie das Szenario im aktuellen Thread anstelle eines dedizierten Threads",
         "Permet d'augmenter la vitesse de lancement du scénario, mais peut rendre le système instable": "Erhöht die Geschwindigkeit, mit der das Szenario gestartet wird, kann jedoch das System instabil machen",
-        "Attention a ne surtout pas mettre de scénarios complexe ou avec des pauses (sleep) ou wait en synchrone, cela engendre un comportement instable de jeedom et ne pourra etre couvert par le support": "Achten Sie darauf, komplexe Szenarien nicht mit Pausen (sleep) oder synchron zu warten, dies erzeugt ein instabiles Verhalten von jeedom und kann nicht vom Support abgedeckt werden",
+        "Attention a ne surtout pas mettre de scénario complexe ou avec des pauses (sleep) ou wait en synchrone, cela engendre un comportement instable de jeedom et ne pourra être couvert par le support": "Achten Sie darauf, ein komplexes Szenario nicht mit Pausen (sleep) oder synchronem Warten zu versehen, dies erzeugt ein instabiles Verhalten von Jeedom und kann nicht vom Support abgedeckt werden",
         "Le type de log souhaité pour le scénario": "Der für das Szenario gewünschte Protokolltyp",
         "Vous pouvez couper les logs du scénario ou au contraire le faire apparaître dans Analyse → Temps réel": "Sie können die Szenarioprotokolle ausschneiden oder im Gegenteil unter Analyse → Echtzeit anzeigen",
         "Permet de garder un suivi du scénario dans la timeline (voir doc Historique": "Behalten Sie das Szenario in der Zeitleiste im Auge (siehe Verlaufsdokument)",
