@@ -1636,6 +1636,7 @@ class jeedom {
 		}
 		$result = 'diy';
 		$uname = shell_exec('uname -a');
+		$hostname = shell_exec('cat /etc/hostname');
 		if (file_exists('/.dockerinit')) {
 			$result = 'docker';
 		} else if (file_exists('/usr/bin/raspi-config')) {
@@ -1657,6 +1658,8 @@ class jeedom {
 			$result = 'smart';
 		} else if (file_exists('/etc/update-motd.d/10-armbian-header-jeedomatlas')) {
 			$result = 'Atlas';
+		} else if (strpos($hostname, 'Luna') !== false){
+			$result = 'Luna';
 		}
 		config::save('hardware_name', $result);
 		return config::byKey('hardware_name');
