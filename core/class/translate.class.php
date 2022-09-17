@@ -190,7 +190,7 @@ class translate {
 					$content = file_get_contents($filename);
 					return is_json($content, array())[self::getLanguage()];
 				} else {
-					return array([self::getLanguage()] => array());
+					return array(self::getLanguage() => array());
 				}
 			} else {
 				return array_merge($return, plugin::getTranslation($_plugin, self::getLanguage()));
