@@ -18,6 +18,7 @@
       let cmd = $('.cmd[data-cmd_id=#id#]')
       let minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
       let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+      cmd.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
       if (_options.display_value >= maxValue) {
         maxValue = _options.display_value
         var angle = 0
