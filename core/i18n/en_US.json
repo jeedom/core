@@ -868,12 +868,12 @@
         "401 - Accès non autorisé": "401 - Unauthorized Access",
         "Tout": "All",
         "Rafraichir": "Refresh",
-        "Vider": "Empty",
+        "Vider": "Clear",
         "Date et heure": "Date and hour",
         "Source": "Source",
         "Description": "Description",
         "Action": "Action",
-        "Occurrences": "Occurrences",
+        "Occurrences": "Occurrence",
         "Centre de Messages": "Message Center"
     },
     "desktop\/modal\/cmd.configureHistory.php": {
