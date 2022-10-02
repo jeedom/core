@@ -965,16 +965,12 @@ class cmd
                         }
                     }
                     $value = strtolower($_value);
-                    if ($value == 'on' || $value == 'high' || $value == 'true' || $value === true) {
-                        return 1;
+                    $binary = ($value === 'on' || $value === 'high' || $value === 'true' || (is_numeric(intval($_value)) && intval($_value) > 1) || $_value === true || $_value == 1);
+                    if ($this->getConfiguration('invertBinary')) {
+                        return (int) !$binary;
                     }
-                    if ($value == 'off' || $value == 'low' || $value == 'false' || $value === false) {
-                        return 0;
-                    }
-                    if ((is_numeric(intval($_value)) && intval($_value) > 1) || $_value === true || $_value == 1) {
-                        return 1;
-                    }
-                    return 0;
+
+                    return (int) $binary;
                 case 'numeric':
                     $_value = floatval(str_replace(',', '.', $_value));
                     if ($this->getConfiguration('calculValueOffset') != '') {
@@ -1758,10 +1754,6 @@ class cmd
             return;
         }
         $value = $this->formatValue($_value);
-
-        if ($this->getSubType() == 'binary' && $this->getConfiguration('invertBinary') == 1) {
-            $value = ($value == 1) ? 0 : 1;
-        }
 
         if ($this->getSubType() == 'numeric' && ($value > $this->getConfiguration('maxValue', $value) || $value < $this->getConfiguration('minValue', $value)) && strpos($value, 'error') === false) {
             log::add('cmd', 'info', __('La commande n\'est pas dans la plage de valeur autorisée :', __FILE__) . ' ' . $this->getHumanName() . ' => ' . $value);
