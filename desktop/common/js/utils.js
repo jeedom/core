@@ -47,7 +47,7 @@ window.addEventListener('error', function(event) {
 if ('SecurityPolicyViolationEvent' in window) { // Check browser support of SecurityPolicyViolationEnevt interface
   window.addEventListener("securitypolicyviolation", function(event) {
     var uri = event.blockedURI
-    if ('originalPolicy' in event) {
+    if (event.originalPolicy && event.violatedDirective) {
       var violation = event.originalPolicy.trim().split(';').find(e => e.trim().startsWith(event.violatedDirective)).trim()
       if (event.disposition == 'enforce')
         var msg = `{{Impossible de charger la ressource "${uri}", car elle va contre la directive de Content Security Policy :<br /> "${violation}"}}`
