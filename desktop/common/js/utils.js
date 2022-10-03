@@ -44,6 +44,9 @@ window.addEventListener('error', function(event) {
   $.hideLoading()
 })
 window.addEventListener("securitypolicyviolation", function(event) {
+  if(!event.originalPolicy){
+    return;
+  }
   var uri = event.blockedURI;
   var violation = event.originalPolicy.trim().split(';').find(e => e.trim().startsWith(event.violatedDirective)).trim();
   if (event.disposition == 'enforce')
