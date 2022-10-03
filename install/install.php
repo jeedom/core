@@ -55,11 +55,15 @@ try {
 	config::save('api', config::genKey());
 	require_once __DIR__ . '/consistency.php';
 	echo "Ajout de l'utilisateur (admin,admin)\n";
-	$user = new user();
-	$user->setLogin('admin');
-	$user->setPassword(sha512('admin'));
-	$user->setProfils('admin');
-	$user->save();
+	try{
+		$user = new user();
+		$user->setLogin('admin');
+		$user->setPassword(sha512('admin'));
+		$user->setProfils('admin');
+		$user->save();
+	}catch (\Exception $e) {
+		echo "***ERREUR*** " . $e->getMessage() . "\n";
+	}
 	config::save('log::level', 400);
 	echo "OK\n";
 	config::save('version', jeedom::version());

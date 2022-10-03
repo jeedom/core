@@ -868,12 +868,12 @@
         "401 - Accès non autorisé": "401 - Unauthorized Access",
         "Tout": "All",
         "Rafraichir": "Refresh",
-        "Vider": "Empty",
+        "Vider": "Clear",
         "Date et heure": "Date and hour",
         "Source": "Source",
         "Description": "Description",
         "Action": "Action",
-        "Occurrences": "Occurrences",
+        "Occurrences": "Occurrence",
         "Centre de Messages": "Message Center"
     },
     "desktop\/modal\/cmd.configureHistory.php": {
@@ -1891,7 +1891,7 @@
         "tls": "TLS",
         "Hôte": "Host",
         "URL utilisée pour contacter la base, en précisant le type de connexion (e.g ldap(s):\/\/URL)": "URL used to contact the database, specifying the type of connection (e.g. ldap(s):\/\/URL)",
-        "Port": "Harbor",
+        "Port": "Port",
         "Port à utiliser (par défaut, LDAP:389, LDAPS:636)": "Port to use (default, LDAP:389, LDAPS:636)",
         "Domaine": "Domain",
         "FQDN de la base": "Base FQDN",
@@ -3255,6 +3255,7 @@
     "desktop\/common\/js\/utils.js": {
         "Impossible de charger la ressource \"${uri}\", car elle va contre la directive de Content Security Policy :<br \/> \"${violation}": "Unable to load resource \"${uri}\", because it goes against Content Security Policy directive:<br \/> \"${violation}",
         "La ressource \"${uri}\" a été chargée, mais elle va contre la directive de Content Security Policy :<br \/> \"${violation}": "The \"${uri}\" resource was loaded, but it goes against the Content Security Policy directive:<br \/> \"${violation}",
+        "Erreur de directive Content Security Policy sur la ressource \"${uri}": "Content Security Policy directive error on resource \"${uri}",
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "You have modified settings that haven\\'t been saved. Are you sure you want to continue?",
         "Sauvegarde effectuée avec succès": "Successfully saved",
         "Suppression effectuée avec succès": "Successful deletion",

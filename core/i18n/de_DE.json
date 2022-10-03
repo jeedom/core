@@ -3255,6 +3255,7 @@
     "desktop\/common\/js\/utils.js": {
         "Impossible de charger la ressource \"${uri}\", car elle va contre la directive de Content Security Policy :<br \/> \"${violation}": "Ressource „${uri}“ kann nicht geladen werden, da sie gegen die Richtlinie zur Inhaltssicherheit verstößt:<br \/> \"${Verletzung}",
         "La ressource \"${uri}\" a été chargée, mais elle va contre la directive de Content Security Policy :<br \/> \"${violation}": "Die Ressource „${uri}“ wurde geladen, verstößt jedoch gegen die Richtlinie zur Inhaltssicherheit:<br \/> \"${Verletzung}",
+        "Erreur de directive Content Security Policy sur la ressource \"${uri}": "Fehler der Inhaltssicherheitsrichtlinienrichtlinie für Ressource \"${uri}",
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Vorsicht! Sie verlassen einer Seite mit modifizierten und nicht gespeicherten Daten. Wollen Sie weitermachen?",
         "Sauvegarde effectuée avec succès": "Speichern erfolgreich abgeschlossen",
         "Suppression effectuée avec succès": "Erfolgreiches Löschen",
