@@ -311,7 +311,7 @@ sendVarToJS([
                         $echo .= '<input class="eqLogicAttr pull-right advanceWidgetParameter form-control inline-block input-sm" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '" style="width:50%;' . $display . '" value="' . $default . '" />';
                         break;
                       case 'number':
-                        $echo .= '<input type="number" class="eqLogicAttr pull-right advanceWidgetParameter form-control inline-block input-sm" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '" style="width:50%;' . $display . '" value="' . $default . '" />';
+                        $echo .= '<input type="number" class="eqLogicAttr pull-right advanceWidgetParameter form-control inline-block input-sm ui-spinner" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '" style="width:50%;' . $display . '" value="' . $default . '" />';
                         break;
                     }
                     $echo .= '</td>';
@@ -435,11 +435,11 @@ sendVarToJS([
             <div class="form-group">
               <label class="col-sm-2 control-label">{{Nombre de lignes}}</label>
               <div class="col-sm-2">
-                <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::nbLine" />
+                <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm ui-spinner" data-l1key="display" data-l2key="layout::dashboard::table::nbLine" />
               </div>
               <label class="col-sm-2 control-label">{{Nombre de colonnes}}</label>
               <div class="col-sm-2">
-                <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::nbColumn" />
+                <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm ui-spinner" data-l1key="display" data-l2key="layout::dashboard::table::nbColumn" />
               </div>
               <a class="btn btn-success btn-sm" id="bt_eqLogicLayoutApply"><i class="fas fa-hammer"></i></i> {{Appliquer}}</a>
             </div>
