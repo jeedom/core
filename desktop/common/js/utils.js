@@ -998,7 +998,7 @@ jeedomUtils.dateTimePickerInit = function(_step) {
 }
 
 jeedomUtils.initSpinners = function() {
-  $('input[type="number"]').spinner({
+  $('input[type="number"].ui-spinner').spinner({
     icons: {
       down: "ui-icon-triangle-1-s",
       up: "ui-icon-triangle-1-n"

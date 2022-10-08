@@ -413,13 +413,13 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la hauteur des tuiles tous les x pixels}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="1" class="configKey form-control" data-l1key="widget::step::height" data-reload="1" />
+								<input type="number" min="1" class="configKey form-control ui-spinner" data-l1key="widget::step::height" data-reload="1" />
 							</div>
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Pas horizontal}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la largeur des tuiles tous les x pixels}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="1" class="configKey form-control" data-l1key="widget::step::width" data-reload="1" />
+								<input type="number" min="1" class="configKey form-control ui-spinner" data-l1key="widget::step::width" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -427,7 +427,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Espace vertical et horizontal entre les tuiles, en pixel}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="0" class="configKey form-control" data-l1key="widget::margin" data-reload="1" />
+								<input type="number" min="0" class="configKey form-control ui-spinner" data-l1key="widget::margin" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -469,7 +469,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Valeur de flou pour les images de fond sur les pages Dashboard.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="0" max="20" class="configKey form-control" data-l1key="css::objectBackgroundBlur" data-reload="1" />
+								<input type="number" min="0" max="20" class="configKey form-control ui-spinner" data-l1key="css::objectBackgroundBlur" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -510,13 +510,13 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Opacité des images de fond en thème Light. Ajuster en fonction de la luminosité des images de fond.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control" data-l1key="interface::background::opacitylight" data-reload="1" />
+								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control ui-spinner" data-l1key="interface::background::opacitylight" data-reload="1" />
 							</div>
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Opacité thème Dark}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Opacité des images de fond en thème Dark.  Ajuster en fonction de la luminosité des images de fond.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control" data-l1key="interface::background::opacitydark" data-reload="1" />
+								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control ui-spinner" data-l1key="interface::background::opacitydark" data-reload="1" />
 							</div>
 						</div>
 
@@ -544,7 +544,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Durée d'affichage des notifications en seconde (0: infini)}}."></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-								<input type="number" min="0" max="30" step="1" class="configKey form-control" data-l1key="interface::toast::duration" data-reload="1" />
+								<input type="number" min="0" max="30" step="1" class="configKey form-control ui-spinner" data-l1key="interface::toast::duration" data-reload="1" />
 							</div>
 						</div>
 
@@ -573,7 +573,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Transparence (Opacité) des tuiles et de certains éléments d'interface.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-								<input type="number" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="css::background-opacity" data-reload="1" />
+								<input type="number" min="0" max="1" step="0.1" class="configKey form-control ui-spinner" data-l1key="css::background-opacity" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -581,7 +581,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Arrondi des éléments de l'interface (Tuiles, boutons etc).<br>0 : pas d'arrondi}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-								<input type="number" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="css::border-radius" data-reload="1" />
+								<input type="number" min="0" max="1" step="0.1" class="configKey form-control ui-spinner" data-l1key="css::border-radius" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -1788,7 +1788,7 @@ user::isBan();
 													$div .= '<input class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 													break;
 												case 'number':
-													$div .= '<input type="number" class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+													$div .= '<input type="number" class="configKey form-control ui-spinner" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 													break;
 												case 'password':
 													$div .= '<div class="input-group">';
