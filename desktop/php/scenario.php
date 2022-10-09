@@ -331,8 +331,10 @@ sendVarToJS([
 							</fieldset>
 						</form>
 						<hr class="hrPrimary">
-						<legend><i class="fas fa-link"></i> {{Scénarios liés}}</legend>
-						<div class="scenario_link"></div>
+						<legend><i class="fas fa-link"></i> {{Scénarios liés}} <i class="fas fa-arrow-left "></i></legend>
+						<div class="scenario_link_getUsedBy"></div>
+						<legend><i class="fas fa-link"></i> {{Scénarios liés}} <i class="fas fa-arrow-right "></i></legend>
+						<div class="scenario_link_getUse"></div>
 					</div>
 				</div>
 

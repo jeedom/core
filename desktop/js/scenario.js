@@ -271,18 +271,30 @@ if (!jeeFrontEnd.scenario) {
               jeeP.addSchedule(data.schedule)
             }
           }
-          $('.scenario_link').empty()
-          var html = ''
+          $('.scenario_link_getUsedBy').empty()
+          $('.scenario_link_getUse').empty()
+          var html_getUsedBy = ''
+          var html_getUse = ''
           if (data.scenario_link.scenario) {
             for (var i in data.scenario_link.scenario) {
-              if (data.scenario_link.scenario[i].isActive == 1) {
-                html += '<span class="label label-success cursor scenario_link" data-scenario_id="' + i + '">' + data.scenario_link.scenario[i].name + '</span><br/>'
-              } else {
-                html += '<span class="label label-danger cursor scenario_link" data-scenario_id="' + i + '">' + data.scenario_link.scenario[i].name + '</span><br/>'
+              if (data.scenario_link.scenario[i].link == 'getUsedBy') {
+                if (data.scenario_link.scenario[i].isActive == 1) {
+                  html_getUsedBy += '<span class="label label-success cursor scenario_link" data-scenario_id="' + i + '">' + data.scenario_link.scenario[i].name + '</span><br/>'
+                } else {
+                  html_getUsedBy += '<span class="label label-danger cursor scenario_link" data-scenario_id="' + i + '">' + data.scenario_link.scenario[i].name + '</span><br/>'
+                }
+              }
+              else if (data.scenario_link.scenario[i].link == 'getUse') {
+                if (data.scenario_link.scenario[i].isActive == 1) {
+                  html_getUse += '<span class="label label-success cursor scenario_link" data-scenario_id="' + i + '">' + data.scenario_link.scenario[i].name + '</span><br/>'
+                } else {
+                  html_getUse += '<span class="label label-danger cursor scenario_link" data-scenario_id="' + i + '">' + data.scenario_link.scenario[i].name + '</span><br/>'
+                }
               }
             }
           }
-          $('.scenario_link').append(html)
+          $('.scenario_link_getUsedBy').append(html_getUsedBy)
+          $('.scenario_link_getUse').append(html_getUse)
           if (data.elements.length == 0) {
             $('#div_scenarioElement').append('<center class="span_noScenarioElement"><span>{{Pour constituer votre scénario, veuillez ajouter des blocs}}.</span></center>')
           }
