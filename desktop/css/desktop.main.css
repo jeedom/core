@@ -3304,7 +3304,7 @@ div.div_viewZone legend.lg_viewZone {
   }
 
 /* ____________________SCENARIO */
-  .scenario_link .label {
+  .scenario_link_getUsedBy .label, .scenario_link_getUse .label {
     display: inline-block;
     margin: 2px;
   }
