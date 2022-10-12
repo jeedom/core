@@ -1061,6 +1061,8 @@ jeedom.cmd.normalizeName = function(_tagname) {
     'ouvert': 'on',
     'fermer': 'off',
     'activer': 'on',
+    'active': 'on',
+    'inactive': 'off',
     'desactiver': 'off',
     'désactiver': 'off',
     'lock': 'on',

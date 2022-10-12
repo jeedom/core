@@ -896,7 +896,7 @@ $('#div_pageContainer').on({
     var type = $(this).closest('.div_summary').data('type')
     jeedom.cmd.getSelectModal({
       object: {
-        id: $('.objectAttr[data-l1key="id"]').val()
+        id: $('.objectAttr[data-l1key="id"]').value()
       },
       cmd: {
         type: 'info'

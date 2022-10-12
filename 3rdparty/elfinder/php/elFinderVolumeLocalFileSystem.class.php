@@ -265,6 +265,14 @@ class elFinderVolumeLocalFileSystem extends elFinderVolumeDriver
         }
 
         $this->statOwner = (!empty($this->options['statOwner']));
+
+        // enable WinRemoveTailDots plugin on Windows server
+        if (DIRECTORY_SEPARATOR !== '/') {
+            if (!isset($this->options['plugin'])) {
+                $this->options['plugin'] = array();
+            }
+            $this->options['plugin']['WinRemoveTailDots'] = array('enable' => true);
+        }
     }
 
     /**
@@ -477,6 +485,7 @@ class elFinderVolumeLocalFileSystem extends elFinderVolumeDriver
         if ($path === DIRECTORY_SEPARATOR) {
             return $this->root;
         } else {
+            $path = $this->_normpath($path);
             if (strpos($path, $this->systemRoot) === 0) {
                 return $path;
             } else if (DIRECTORY_SEPARATOR !== '/' && preg_match('/^[a-zA-Z]:' . preg_quote(DIRECTORY_SEPARATOR, '/') . '/', $path)) {

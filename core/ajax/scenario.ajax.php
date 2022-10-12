@@ -388,14 +388,14 @@ try {
 			if ($scenarioLink->getId() == $scenario->getId()) {
 				continue;
 			}
-			$return['scenario_link']['scenario'][$scenarioLink->getId()] = array('name' => $scenarioLink->getHumanName(), 'isActive' => $scenarioLink->getIsActive());
+			$return['scenario_link']['scenario'][$scenarioLink->getId()] = array('name' => $scenarioLink->getHumanName(), 'isActive' => $scenarioLink->getIsActive(), 'link' => 'getUsedBy');
 		}
 		$use = $scenario->getUse();
 		foreach ($use['scenario'] as $scenarioLink) {
 			if ($scenarioLink->getId() == $scenario->getId()) {
 				continue;
 			}
-			$return['scenario_link']['scenario'][$scenarioLink->getId()] = array('name' => $scenarioLink->getHumanName(), 'isActive' => $scenarioLink->getIsActive());
+			$return['scenario_link']['scenario'][$scenarioLink->getId()] = array('name' => $scenarioLink->getHumanName(), 'isActive' => $scenarioLink->getIsActive(), 'link' => 'getUse');
 		}
 		ajax::success($return);
 	}

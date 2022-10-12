@@ -413,13 +413,13 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la hauteur des tuiles tous les x pixels}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="1" class="configKey form-control" data-l1key="widget::step::height" data-reload="1" />
+								<input type="number" min="1" class="configKey form-control ui-spinner" data-l1key="widget::step::height" data-reload="1" />
 							</div>
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Pas horizontal}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la largeur des tuiles tous les x pixels}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="1" class="configKey form-control" data-l1key="widget::step::width" data-reload="1" />
+								<input type="number" min="1" class="configKey form-control ui-spinner" data-l1key="widget::step::width" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -427,7 +427,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Espace vertical et horizontal entre les tuiles, en pixel}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="0" class="configKey form-control" data-l1key="widget::margin" data-reload="1" />
+								<input type="number" min="0" class="configKey form-control ui-spinner" data-l1key="widget::margin" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -469,7 +469,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Valeur de flou pour les images de fond sur les pages Dashboard.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="0" max="20" class="configKey form-control" data-l1key="css::objectBackgroundBlur" data-reload="1" />
+								<input type="number" min="0" max="20" class="configKey form-control ui-spinner" data-l1key="css::objectBackgroundBlur" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -510,13 +510,13 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Opacité des images de fond en thème Light. Ajuster en fonction de la luminosité des images de fond.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control" data-l1key="interface::background::opacitylight" data-reload="1" />
+								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control ui-spinner" data-l1key="interface::background::opacitylight" data-reload="1" />
 							</div>
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Opacité thème Dark}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Opacité des images de fond en thème Dark.  Ajuster en fonction de la luminosité des images de fond.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control" data-l1key="interface::background::opacitydark" data-reload="1" />
+								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control ui-spinner" data-l1key="interface::background::opacitydark" data-reload="1" />
 							</div>
 						</div>
 
@@ -544,7 +544,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Durée d'affichage des notifications en seconde (0: infini)}}."></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-								<input type="number" min="0" max="30" step="1" class="configKey form-control" data-l1key="interface::toast::duration" data-reload="1" />
+								<input type="number" min="0" max="30" step="1" class="configKey form-control ui-spinner" data-l1key="interface::toast::duration" data-reload="1" />
 							</div>
 						</div>
 
@@ -573,7 +573,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Transparence (Opacité) des tuiles et de certains éléments d'interface.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-								<input type="number" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="css::background-opacity" data-reload="1" />
+								<input type="number" min="0" max="1" step="0.1" class="configKey form-control ui-spinner" data-l1key="css::background-opacity" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -581,7 +581,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Arrondi des éléments de l'interface (Tuiles, boutons etc).<br>0 : pas d'arrondi}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-								<input type="number" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="css::border-radius" data-reload="1" />
+								<input type="number" min="0" max="1" step="0.1" class="configKey form-control ui-spinner" data-l1key="css::border-radius" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -760,7 +760,12 @@ user::isBan();
 								<div class="form-group">
 									<label class="col-xs-4 control-label">{{Mot de passe}}</label>
 									<div class="col-xs-4">
-										<input class="inputPassword configKey form-control" type="text" data-l1key="proxyPassword">
+										<div class="input-group">
+											<input class="inputPassword configKey form-control" type="text" data-l1key="proxyPassword">
+											<span class="input-group-btn">
+												<a class="btn btn-default form-control bt_showPass roundedRight" data-plugin="core"><i class="fas fa-eye"></i></a>
+											</span>
+										</div>
 									</div>
 								</div>
 							</fieldset>
@@ -1557,7 +1562,12 @@ user::isBan();
 										<sup><i class="fas fa-question-circle" tooltip="{{Mot de passe de l'utilisateur}}"></i></sup>
 									</label>
 									<div class="col-md-3 col-sm-4 col-xs-12">
-										<input type="text" class="inputPassword configKey form-control" data-l1key="ldap:password" />
+										<div class="input-group">
+											<input type="text" class="inputPassword configKey form-control" data-l1key="ldap:password" />
+											<span class="input-group-btn">
+												<a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a>
+											</span>
+										</div>
 									</div>
 								</div>
 								<div class="form-group">
@@ -1778,10 +1788,13 @@ user::isBan();
 													$div .= '<input class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 													break;
 												case 'number':
-													$div .= '<input type="number" class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+													$div .= '<input type="number" class="configKey form-control ui-spinner" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 													break;
 												case 'password':
+													$div .= '<div class="input-group">';
 													$div .= '<input type="text" class="inputPassword configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+													$div .= '<span class="input-group-btn"><a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a></span>';
+													$div .= '</div>';
 													break;
 												case 'select':
 													$div .= '<select class="form-control configKey" data-l1key="' . $key . '::' . $pKey . '">';
@@ -1926,9 +1939,12 @@ user::isBan();
 							</label>
 							<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 								<div class="input-group">
-									<input class="span_apikey roundedLeft form-control" readonly value="<?php echo $configs['api']; ?>" />
+									<input class="inputPassword span_apikey roundedLeft form-control" readonly value="<?php echo $configs['api']; ?>" />
 									<span class="input-group-btn">
-										<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="core"><i class="fas fa-sync"></i></a>
+										<a class="btn btn-default form-control bt_regenerate_api" data-plugin="core"><i class="fas fa-sync"></i></a>
+									</span>
+									<span class="input-group-btn">
+										<a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a>
 									</span>
 								</div>
 							</div>
@@ -1945,9 +1961,12 @@ user::isBan();
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Accès API TTS}}</label>
 							<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 								<div class="input-group">
-									<input class="span_apikey roundedLeft form-control" readonly value="<?php echo $configs['apitts']; ?>" />
+									<input class="inputPassword span_apikey roundedLeft form-control" readonly value="<?php echo $configs['apitts']; ?>" />
 									<span class="input-group-btn">
-										<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="apitts"><i class="fas fa-sync"></i></a>
+										<a class="btn btn-default form-control bt_regenerate_api" data-plugin="apitts"><i class="fas fa-sync"></i></a>
+									</span>
+									<span class="input-group-btn">
+										<a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a>
 									</span>
 								</div>
 							</div>
@@ -1967,9 +1986,12 @@ user::isBan();
 							</label>
 							<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 								<div class="input-group">
-									<input class="span_apikey roundedLeft form-control" readonly value="<?php echo $configs['apipro']; ?>" />
+									<input class="inputPassword span_apikey roundedLeft form-control" readonly value="<?php echo $configs['apipro']; ?>" />
 									<span class="input-group-btn">
-										<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="apipro"><i class="fas fa-sync"></i></a>
+										<a class="btn btn-default form-control bt_regenerate_api" data-plugin="apipro"><i class="fas fa-sync"></i></a>
+									</span>
+									<span class="input-group-btn">
+										<a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a>
 									</span>
 								</div>
 							</div>
@@ -1987,9 +2009,12 @@ user::isBan();
 							</label>
 							<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 								<div class="input-group">
-									<input class="span_apikey roundedLeft form-control" readonly value="<?php echo $configs['apimarket']; ?>" />
+									<input class="inputPassword span_apikey roundedLeft form-control" readonly value="<?php echo $configs['apimarket']; ?>" />
 									<span class="input-group-btn">
-										<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="apimarket"><i class="fas fa-sync"></i></a>
+										<a class="btn btn-default form-control bt_regenerate_api" data-plugin="apimarket"><i class="fas fa-sync"></i></a>
+									</span>
+									<span class="input-group-btn">
+										<a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a>
 									</span>
 								</div>
 							</div>
@@ -2010,9 +2035,12 @@ user::isBan();
 								$div .= '<label class="col-xs-12 control-label pull-left">{{Clé API}} : ' . $plugin->getName() . '</label>';
 								$div .= '<div class="col-lg-4 col-md-3 col-sm-4 col-xs-12">';
 								$div .= '<div class="input-group">';
-								$div .= '<input class="span_apikey roundedLeft form-control" readonly value="' . jeedom::getApiKey($plugin->getId(), 'disable') . '" />';
+								$div .= '<input class="inputPassword span_apikey roundedLeft form-control" readonly value="' . jeedom::getApiKey($plugin->getId(), 'disable') . '" />';
 								$div .= '<span class="input-group-btn">';
-								$div .= '<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="' . $plugin->getId() . '"><i class="fas fa-sync"></i></a>';
+								$div .= '<a class="btn btn-default form-control bt_regenerate_api" data-plugin="' . $plugin->getId() . '"><i class="fas fa-sync"></i></a>';
+								$div .= '</span>';
+								$div .= '<span class="input-group-btn">';
+								$div .= '<a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a>';
 								$div .= '</span>';
 								$div .= '</div>';
 								$div .= '</div>';
@@ -2137,8 +2165,16 @@ user::isBan();
 								<i class="fas fa-database"></i> {{Utilisateur}} / {{Mot de passe}}
 							</label>
 							<span class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<?php global $CONFIG;
-								echo $CONFIG['db']['username'] . ' / ' . $CONFIG['db']['password']; ?>
+								<?php
+									global $CONFIG;
+									echo $CONFIG['db']['username'];
+								?>
+								<div class="input-group">
+									<input class="inputPassword roundedLeft form-control" readonly value="<?php echo $CONFIG['db']['password']; ?>" />
+									<span class="input-group-btn">
+										<a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a>
+									</span>
+								</div>
 							</span>
 						</div>
 					</fieldset>

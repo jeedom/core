@@ -32,7 +32,7 @@ class elFinder
      *
      * @var integer
      */
-    protected static $ApiRevision = 60;
+    protected static $ApiRevision = 61;
 
     /**
      * Storages (root dirs)
@@ -764,6 +764,25 @@ class elFinder
         // set utf8Encoder
         if (isset($opts['utf8Encoder']) && is_callable($opts['utf8Encoder'])) {
             $this->utf8Encoder = $opts['utf8Encoder'];
+        }
+
+        // for LocalFileSystem driver on Windows server
+        if (DIRECTORY_SEPARATOR !== '/') {
+            if (empty($opts['bind'])) {
+                $opts['bind'] = array();
+            }
+
+            $_key = 'upload.pre mkdir.pre mkfile.pre rename.pre archive.pre ls.pre';
+            if (!isset($opts['bind'][$_key])) {
+                $opts['bind'][$_key] = array();
+            }
+            array_push($opts['bind'][$_key], 'Plugin.WinRemoveTailDots.cmdPreprocess');
+
+            $_key = 'upload.presave paste.copyfrom';
+            if (!isset($opts['bind'][$_key])) {
+                $opts['bind'][$_key] = array();
+            }
+            array_push($opts['bind'][$_key], 'Plugin.WinRemoveTailDots.onUpLoadPreSave');
         }
 
         // bind events listeners
