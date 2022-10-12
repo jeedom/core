@@ -450,9 +450,13 @@ class system {
                                                 $cmd_cleaning_pip .= 'RESULTTODELETE2=$(echo "$RESULTTODELETE" | sed \'s, ,\\ ,g\'); echo "$RESULTTODELETE2" | xargs rm -rf';
 						if ($_foreground) {
 							echo shell_exec($cmd_cleaning_pip . " 2>&1");
+							echo shell_exec(self::getCmdSudo() . " pip3 cache purge 2>&1");
 							echo shell_exec(self::getCmdSudo() . " pip3 install --upgrade pip 2>&1");
 						} else {
 							$cmd .= $cmd_cleaning_pip . "\n";
+							$count++;
+							$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+							$cmd .= self::getCmdSudo() . " pip3 cache purge\n";
 							$count++;
 							$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
 							$cmd .= self::getCmdSudo() . " pip3 install --upgrade pip\n";
@@ -568,12 +572,12 @@ class system {
 				if (version_compare(self::getOsVersion(), '11', '>=')) {
 					return '';
 				}
-				return self::getCmdSudo() . ' pip2 install --no-cache-dir --force-reinstall --upgrade ' . $_package;
+				return self::getCmdSudo() . ' pip2 install --force-reinstall --upgrade ' . $_package;
 			case 'pip3':
 				if ($_version != '') {
 					$_package .= '==' . $_version;
 				}
-				return self::getCmdSudo() . ' pip3 install --no-cache-dir --force-reinstall --upgrade ' . $_package;
+				return self::getCmdSudo() . ' pip3 install --force-reinstall --upgrade ' . $_package;
 			case 'npm':
 				if (strpos($_package, '/') === false) {
 					return self::getCmdSudo() . ' npm install --force -g ' . $_package;
