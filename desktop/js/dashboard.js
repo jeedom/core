@@ -276,6 +276,9 @@ if (!jeeFrontEnd.dashboard) {
           } catch (err) {
             console.log(err)
           }
+          if (typeof jeeP == 'undefined') {
+            return;
+          }
           if (jeeP.url_summary != '') {
             if ($divDisplayEq.find('div.eqLogic-widget:visible, div.scenario-widget:visible').length == 0) {
               $divDisplayEq.closest('.div_object').remove()
