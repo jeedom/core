@@ -1802,7 +1802,7 @@ $(function() {
   }, 250)
 })
 
-$('.scenario_link').off('click', '.scenario_link').on('click', '.scenario_link', function(event) {
+$('.scenario_link_getUsedBy, .scenario_link_getUse').off('click', '.scenario_link').on('click', '.scenario_link', function(event) {
   $.hideAlert()
   if (event.ctrlKey || event.metaKey) {
     var url = '/index.php?v=d&p=scenario&id=' + $(this).attr('data-scenario_id')
@@ -1812,7 +1812,7 @@ $('.scenario_link').off('click', '.scenario_link').on('click', '.scenario_link',
     jeeP.printScenario($(this).attr('data-scenario_id'))
   }
 })
-$('.scenario_link').off('mouseup', '.scenario_link').on('mouseup', '.scenario_link', function(event) {
+$('.scenario_link_getUsedBy, .scenario_link_getUse').off('mouseup', '.scenario_link').on('mouseup', '.scenario_link', function(event) {
   if (event.which == 2) {
     event.preventDefault()
     var id = $(this).attr('data-scenario_id')
