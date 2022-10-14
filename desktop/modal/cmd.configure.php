@@ -102,7 +102,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-xs-4 control-label">{{Mise à jour par}}</label>
+                <label class="col-xs-4 control-label">{{Commande mise à jour}}</label>
                 <div class="col-xs-8">
                   <span class="cmdAttr" data-l1key="value"></span>
                 </div>
@@ -125,7 +125,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Dernière exécution par}}</label>
                 <div class="col-xs-8">
-                  <span class="cmdAttr" data-l1key="cache" data-l2key="lastExecutionUser"></span>
+                  <span class="cmdAttr label label-primary" data-l1key="cache" data-l2key="lastExecutionUser"></span>
                 </div>
               </div>
               <?php if ($cmd->getType() == 'info') {

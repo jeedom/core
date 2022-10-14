@@ -4574,7 +4574,8 @@ div.div_viewZone legend.lg_viewZone {
     background-color: rgb(var(--defaultBkg-color))
   }
 
-  #div_displayCmdConfigure .form-group div > span.cmdAttr {
+  #div_displayCmdConfigure .form-group div > span.cmdAttr,
+  #div_displayCmdConfigure .form-group div > span.label.label-primary {
     max-width: 98% !important;
     display: inline-block;
     padding: 5px !important;
