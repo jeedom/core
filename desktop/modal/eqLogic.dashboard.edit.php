@@ -323,7 +323,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showNameOnmobile" checked></td>';
               $display .= '</tr>';
 
-              $display .= '<tr><td>{{Afficher le nom ET l\'icône}}</td>';
+              $display .= "<tr><td>{{Afficher le nom ET l'icône}}</td>";
               $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showIconAndNamedashboard"></td>';
               $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showIconAndNamemobile"></td>';
               $display .= '</tr>';
