@@ -240,8 +240,8 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               <div class="iconeGeneric form-group">
                 <label class="col-xs-4 control-label">{{Icône}}</label>
                 <div class="col-xs-4">
-                  <span class="cmdAttr label cursor" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></span>
-                  <a class="btn btn-default btn-sm" id="bt_cmdConfigureChooseIcon"><i class="fas fa-flag"></i> {{Icône}}</a>
+                  <span class="cmdAttr label cursor" data-l1key="display" data-l2key="icon" style="font-size : 1.5em!important;"></span>
+                  <a class="btn btn-default btn-sm" id="bt_cmdConfigureChooseIcon"><i class="fas fa-icons"></i> {{Icône}}</a>
                 </div>
               </div>
               <?php if ($cmd->getIsHistorized() == 1) { ?>
