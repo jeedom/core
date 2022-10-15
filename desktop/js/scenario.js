@@ -295,9 +295,21 @@ if (!jeeFrontEnd.scenario) {
           }
           $('.scenario_link_getUsedBy').append(html_getUsedBy)
           $('.scenario_link_getUse').append(html_getUse)
+
           if (data.elements.length == 0) {
             $('#div_scenarioElement').append('<center class="span_noScenarioElement"><span>{{Pour constituer votre scénario, veuillez ajouter des blocs}}.</span></center>')
           }
+
+          $('.defined_actions').empty()
+          var htmlActions = ''
+          if (data.definedAction) {
+            for (var i in data.definedAction) {
+              htmlActions += '<span class="label label-info cursor action_link" data-action_id="' + i + '">' + data.definedAction[i]['name'] + '</span><br/>'
+            }
+            $('.defined_actions').append(htmlActions)
+          }
+
+
           jeeP.actionOptions = []
           var elements = ''
           for (var i in data.elements) {
@@ -1820,6 +1832,13 @@ $('.scenario_link_getUsedBy, .scenario_link_getUse').off('mouseup', '.scenario_l
       ctrlKey: true
     }))
   }
+})
+
+$('.defined_actions').off('click', '.action_link').on('click', '.action_link', function(event) {
+  $.hideAlert()
+  var cmdId = $(this).attr('data-action_id')
+  $('#md_modal').dialog().load('index.php?v=d&modal=cmd.configure&cmd_id=' + cmdId).dialog('open')
+
 })
 
 $('#bt_chooseIcon').on('click', function() {

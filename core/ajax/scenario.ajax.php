@@ -397,6 +397,11 @@ try {
 			}
 			$return['scenario_link']['scenario'][$scenarioLink->getId()] = array('name' => $scenarioLink->getHumanName(), 'isActive' => $scenarioLink->getIsActive(), 'link' => 'getUse');
 		}
+		$return['definedAction'] = array();
+		$definedAction = cmd::searchConfiguration('"scenario_id":"' . init('id') . '"');
+		foreach ($definedAction as $cmd) {
+			$return['definedAction'][$cmd->getId()] = array('name' => $cmd->getEqLogic()->getHumanName() . ' [' . $cmd->getName() . ']');
+		}
 		ajax::success($return);
 	}
 
