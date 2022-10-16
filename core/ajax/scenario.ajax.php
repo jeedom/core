@@ -397,10 +397,32 @@ try {
 			}
 			$return['scenario_link']['scenario'][$scenarioLink->getId()] = array('name' => $scenarioLink->getHumanName(), 'isActive' => $scenarioLink->getIsActive(), 'link' => 'getUse');
 		}
+
 		$return['definedAction'] = array();
 		$definedAction = cmd::searchConfiguration('"scenario_id":"' . init('id') . '"');
 		foreach ($definedAction as $cmd) {
-			$return['definedAction'][$cmd->getId()] = array('name' => $cmd->getEqLogic()->getHumanName() . ' [' . $cmd->getName() . ']');
+			foreach ($cmd->getConfiguration('jeedomPreExecCmd', '') as $actionCmd) {
+				try {
+					if ($actionCmd['cmd'] == 'scenario' && $actionCmd['options']['scenario_id'] == init('id')) {
+						$return['definedAction'][$cmd->getId()] = array(
+							'name' => $cmd->getEqLogic()->getHumanName() . ' [' . $cmd->getName() . ']',
+							'enable' => $actionCmd['options']['enable']
+						);
+					}
+				} catch (Exception $e) {
+				}
+			}
+			foreach ($cmd->getConfiguration('jeedomPostExecCmd', '') as $actionCmd) {
+				try {
+					if ($actionCmd['cmd'] == 'scenario' && $actionCmd['options']['scenario_id'] == init('id')) {
+						$return['definedAction'][$cmd->getId()] = array(
+							'name' => $cmd->getEqLogic()->getHumanName() . ' [' . $cmd->getName() . ']',
+							'enable' => $actionCmd['options']['enable']
+						);
+					}
+				} catch (Exception $e) {
+				}
+			}
 		}
 		ajax::success($return);
 	}

@@ -42,7 +42,7 @@ if (!jeeFrontEnd.scenario) {
       window.jeeP = this
     },
     checkNoMode: function() {
-      if ($('div.scheduleDisplay .schedule').length || $('div.provokeDisplay .trigger').length) {
+      if ($('div.scheduleDisplay .schedule').length || $('div.provokeDisplay .trigger').length || $('div.defined_actions .action_link:not(.cross)').length) {
         $('#emptyModeWarning').hide()
       } else {
         $('#emptyModeWarning').show()
@@ -248,6 +248,7 @@ if (!jeeFrontEnd.scenario) {
             $('#in_ongoing').removeClass('label-danger').removeClass('label-success').text('{{Inactif}}')
           }
 
+          //Triggers:
           if ($.isArray(data.trigger)) {
             for (var i in data.trigger) {
               if (data.trigger[i] != '' && data.trigger[i] != null) {
@@ -271,6 +272,22 @@ if (!jeeFrontEnd.scenario) {
               jeeP.addSchedule(data.schedule)
             }
           }
+
+          //Defines actions:
+          $('.defined_actions').empty()
+          var htmlActions = ''
+          if (data.definedAction) {
+            for (var i in data.definedAction) {
+              if (data.definedAction[i]['enable'] == '1') {
+                htmlActions += '<span class="label label-info cursor action_link" data-action_id="' + i + '">' + data.definedAction[i]['name'] + '</span><br/>'
+              } else {
+                htmlActions += '<span class="label label-info cursor cross action_link" data-action_id="' + i + '">' + data.definedAction[i]['name'] + '</span><br/>'
+              }
+            }
+            $('.defined_actions').append(htmlActions)
+          }
+
+          //Links:
           $('.scenario_link_getUsedBy').empty()
           $('.scenario_link_getUse').empty()
           var html_getUsedBy = ''
@@ -296,19 +313,10 @@ if (!jeeFrontEnd.scenario) {
           $('.scenario_link_getUsedBy').append(html_getUsedBy)
           $('.scenario_link_getUse').append(html_getUse)
 
+          //Empty scenario ?
           if (data.elements.length == 0) {
             $('#div_scenarioElement').append('<center class="span_noScenarioElement"><span>{{Pour constituer votre scénario, veuillez ajouter des blocs}}.</span></center>')
           }
-
-          $('.defined_actions').empty()
-          var htmlActions = ''
-          if (data.definedAction) {
-            for (var i in data.definedAction) {
-              htmlActions += '<span class="label label-info cursor action_link" data-action_id="' + i + '">' + data.definedAction[i]['name'] + '</span><br/>'
-            }
-            $('.defined_actions').append(htmlActions)
-          }
-
 
           jeeP.actionOptions = []
           var elements = ''
