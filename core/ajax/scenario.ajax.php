@@ -405,11 +405,13 @@ try {
 			foreach ($cmdArray['configuration']['actionCheckCmd'] as $actionCmd) {
 				try {
 					if ($actionCmd['cmd'] == 'scenario' && $actionCmd['options']['scenario_id'] == init('id')) {
-						$return['definedAction'][$cmd->getId()] = array(
+						$action = array(
+							'cmdId' => $cmd->getId(),
 							'name' => $cmd->getEqLogic()->getHumanName() . ' [' . $cmd->getName() . ']',
 							'enable' => $actionCmd['options']['enable'],
 							'type' => 'actionCheckCmd'
 						);
+						array_push($return['definedAction'], $action);
 					}
 				} catch (Exception $e) {
 				}
@@ -417,11 +419,13 @@ try {
 			foreach ($cmdArray['configuration']['jeedomPreExecCmd'] as $actionCmd) {
 				try {
 					if ($actionCmd['cmd'] == 'scenario' && $actionCmd['options']['scenario_id'] == init('id')) {
-						$return['definedAction'][$cmd->getId()] = array(
+						$action = array(
+							'cmdId' => $cmd->getId(),
 							'name' => $cmd->getEqLogic()->getHumanName() . ' [' . $cmd->getName() . ']',
 							'enable' => $actionCmd['options']['enable'],
 							'type' => 'jeedomPreExecCmd'
 						);
+						array_push($return['definedAction'], $action);
 					}
 				} catch (Exception $e) {
 				}
@@ -429,11 +433,13 @@ try {
 			foreach ($cmdArray['configuration']['jeedomPostExecCmd'] as $actionCmd) {
 				try {
 					if ($actionCmd['cmd'] == 'scenario' && $actionCmd['options']['scenario_id'] == init('id')) {
-						$return['definedAction'][$cmd->getId()] = array(
+						$action = array(
+							'cmdId' => $cmd->getId(),
 							'name' => $cmd->getEqLogic()->getHumanName() . ' [' . $cmd->getName() . ']',
 							'enable' => $actionCmd['options']['enable'],
 							'type' => 'jeedomPostExecCmd'
 						);
+						array_push($return['definedAction'], $action);
 					}
 				} catch (Exception $e) {
 				}

@@ -1224,6 +1224,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           level: 'success'
         })
         synchModalToCmd()
+        syncModalToScenario()
         if (event.ctrlKey) {
           setTimeout(function() {
             $('#md_modal').dialog('close')
@@ -1240,6 +1241,11 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
       $cmdTr.find('input.cmdAttr[data-l1key="isVisible"]').prop('checked', $('#div_displayCmdConfigure input.cmdAttr[data-l1key="isVisible"').prop('checked'))
       $cmdTr.find('.cmdAttr[data-l1key=display][data-l2key=icon]').html($('#div_displayCmdConfigure .cmdAttr[data-l1key=display][data-l2key=icon]').html())
     }
+  }
+
+  function syncModalToScenario() {
+    if (getUrlVars('p') != 'scenario') return
+    jeeFrontEnd.scenario.updateDefinedActions(true)
   }
 
   $('#cmd_configuration').on({
