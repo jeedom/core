@@ -277,11 +277,16 @@ if (!jeeFrontEnd.scenario) {
           $('.defined_actions').empty()
           var htmlActions = ''
           if (data.definedAction) {
+            var prefix = ''
             for (var i in data.definedAction) {
+              if (data.definedAction[i]['type'] == 'actionCheckCmd') prefix = 'Value -> '
+              if (data.definedAction[i]['type'] == 'jeedomPreExecCmd') prefix = 'PreExec -> '
+              if (data.definedAction[i]['type'] == 'jeedomPostExecCmd') prefix = 'PostExec -> '
+
               if (data.definedAction[i]['enable'] == '1') {
-                htmlActions += '<span class="label label-info cursor action_link" data-action_id="' + i + '">' + data.definedAction[i]['name'] + '</span><br/>'
+                htmlActions += '<span class="label label-info cursor action_link" data-action_id="' + i + '">' + prefix + data.definedAction[i]['name'] + '</span><br/>'
               } else {
-                htmlActions += '<span class="label label-info cursor cross action_link" data-action_id="' + i + '">' + data.definedAction[i]['name'] + '</span><br/>'
+                htmlActions += '<span class="label label-info cursor cross action_link" data-action_id="' + i + '">' + prefix + data.definedAction[i]['name'] + '</span><br/>'
               }
             }
             $('.defined_actions').append(htmlActions)

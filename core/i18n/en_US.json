@@ -2266,7 +2266,7 @@
         "Attention : aucun déclencheur paramétré !": "Attention: no trigger configured!",
         "Précédent": "Previous",
         "Prochain": "Next",
-        "Actions définies": "Defined actions",
+        "Actions de déclenchement": "Triggering actions",
         "Scénarios liés": "Linked scenarios",
         "Description": "Description",
         "Ajouter un bloc": "Add block",

@@ -401,23 +401,38 @@ try {
 		$return['definedAction'] = array();
 		$definedAction = cmd::searchConfiguration('"scenario_id":"' . init('id') . '"');
 		foreach ($definedAction as $cmd) {
-			foreach ($cmd->getConfiguration('jeedomPreExecCmd', '') as $actionCmd) {
+			$cmdArray = utils::o2a($cmd);
+			foreach ($cmdArray['configuration']['actionCheckCmd'] as $actionCmd) {
 				try {
 					if ($actionCmd['cmd'] == 'scenario' && $actionCmd['options']['scenario_id'] == init('id')) {
 						$return['definedAction'][$cmd->getId()] = array(
 							'name' => $cmd->getEqLogic()->getHumanName() . ' [' . $cmd->getName() . ']',
-							'enable' => $actionCmd['options']['enable']
+							'enable' => $actionCmd['options']['enable'],
+							'type' => 'actionCheckCmd'
 						);
 					}
 				} catch (Exception $e) {
 				}
 			}
-			foreach ($cmd->getConfiguration('jeedomPostExecCmd', '') as $actionCmd) {
+			foreach ($cmdArray['configuration']['jeedomPreExecCmd'] as $actionCmd) {
 				try {
 					if ($actionCmd['cmd'] == 'scenario' && $actionCmd['options']['scenario_id'] == init('id')) {
 						$return['definedAction'][$cmd->getId()] = array(
 							'name' => $cmd->getEqLogic()->getHumanName() . ' [' . $cmd->getName() . ']',
-							'enable' => $actionCmd['options']['enable']
+							'enable' => $actionCmd['options']['enable'],
+							'type' => 'jeedomPreExecCmd'
+						);
+					}
+				} catch (Exception $e) {
+				}
+			}
+			foreach ($cmdArray['configuration']['jeedomPostExecCmd'] as $actionCmd) {
+				try {
+					if ($actionCmd['cmd'] == 'scenario' && $actionCmd['options']['scenario_id'] == init('id')) {
+						$return['definedAction'][$cmd->getId()] = array(
+							'name' => $cmd->getEqLogic()->getHumanName() . ' [' . $cmd->getName() . ']',
+							'enable' => $actionCmd['options']['enable'],
+							'type' => 'jeedomPostExecCmd'
 						);
 					}
 				} catch (Exception $e) {
