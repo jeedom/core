@@ -925,17 +925,17 @@ class cmd {
 						} catch (Error $ex) {
 						}
 					}
-					$value = strtolower($_value);
-					if ($value == 'on' || $value == 'high' || $value == 'true' || $value === true) {
-						return 1;
+					if ($_value === true || $_value === 1) { // Handle literal values
+						$binary = true;
+					} elseif ((is_numeric(intval($_value)) && intval($_value) >= 1)) { // Handle number and numeric string
+						$binary = true;
+					} elseif (in_array(strtolower($_value), array('on', 'true', 'high'))) { // Handle common string boolean values
+						$binary = true;
+					} else { // Handle everything else as false
+						$binary = false;
 					}
-					if ($value == 'off' || $value == 'low' || $value == 'false' || $value === false) {
-						return 0;
-					}
-					if ((is_numeric(intval($_value)) && intval($_value) > 1) || $_value === true || $_value == 1) {
-						return 1;
-					}
-					return 0;
+					// Return int value negated according to invertBinary configuration
+					return intval($binary xor boolval($this->getConfiguration('invertBinary', false)));
 				case 'numeric':
 					$_value = floatval(str_replace(',', '.', $_value));
 					if ($this->getConfiguration('calculValueOffset') != '') {
@@ -1697,10 +1697,6 @@ class cmd {
 			return;
 		}
 		$value = $this->formatValue($_value);
-
-		if ($this->getSubType() == 'binary' && $this->getConfiguration('invertBinary') == 1) {
-			$value = ($value == 1) ? 0 : 1;
-		}
 
 		if ($this->getSubType() == 'numeric' && ($value > $this->getConfiguration('maxValue', $value) || $value < $this->getConfiguration('minValue', $value)) && strpos($value, 'error') === false) {
 			log::add('cmd', 'info', __('La commande n\'est pas dans la plage de valeur autorisée :', __FILE__) . ' ' . $this->getHumanName() . ' => ' . $value);
