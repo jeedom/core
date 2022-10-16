@@ -26,6 +26,7 @@ global $JEEDOM_INTERNAL_CONFIG;
 
 $cmdInfo = jeedom::toHumanReadable(utils::o2a($cmd));
 $cmdInfo['eqLogicName'] = $cmd->getEqLogic()->getName();
+$cmdInfo['eqLogicHumanName'] = $cmd->getEqLogic()->getHumanName();
 $cmdInfo['cache'] = $cmd->getCache();
 sendVarToJS([
   'jeephp2js.md_cmdConfigure_cmdInfo' => $cmdInfo,
@@ -851,7 +852,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 
     //modal title:
     var title = '{{Configuration commande}}'
-    title += ' : ' + jeephp2js.md_cmdConfigure_cmdInfo.eqLogicName
+    title += ' : ' + jeephp2js.md_cmdConfigure_cmdInfo.eqLogicHumanName
     title += ' <span class="cmdName">[' + jeephp2js.md_cmdConfigure_cmdInfo.name + '] <em>(' + jeephp2js.md_cmdConfigure_cmdInfo.type + ')</em></span>'
     $('#cmdConfigureTab').parents('.ui-dialog').find('.ui-dialog-title').html(title)
     if ($('#eqLogicConfigureTab').length) {
