@@ -26,6 +26,7 @@ global $JEEDOM_INTERNAL_CONFIG;
 
 $cmdInfo = jeedom::toHumanReadable(utils::o2a($cmd));
 $cmdInfo['eqLogicName'] = $cmd->getEqLogic()->getName();
+$cmdInfo['eqLogicHumanName'] = $cmd->getEqLogic()->getHumanName();
 $cmdInfo['cache'] = $cmd->getCache();
 sendVarToJS([
   'jeephp2js.md_cmdConfigure_cmdInfo' => $cmdInfo,
@@ -102,7 +103,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-xs-4 control-label">{{Mise à jour par}}</label>
+                <label class="col-xs-4 control-label">{{Commande mise à jour}}</label>
                 <div class="col-xs-8">
                   <span class="cmdAttr" data-l1key="value"></span>
                 </div>
@@ -125,7 +126,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Dernière exécution par}}</label>
                 <div class="col-xs-8">
-                  <span class="cmdAttr" data-l1key="cache" data-l2key="lastExecutionUser"></span>
+                  <span class="cmdAttr label label-primary" data-l1key="cache" data-l2key="lastExecutionUser"></span>
                 </div>
               </div>
               <?php if ($cmd->getType() == 'info') {
@@ -240,8 +241,8 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               <div class="iconeGeneric form-group">
                 <label class="col-xs-4 control-label">{{Icône}}</label>
                 <div class="col-xs-4">
-                  <span class="cmdAttr label cursor" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></span>
-                  <a class="btn btn-default btn-sm" id="bt_cmdConfigureChooseIcon"><i class="fas fa-flag"></i> {{Icône}}</a>
+                  <span class="cmdAttr label cursor" data-l1key="display" data-l2key="icon" style="font-size : 1.5em!important;"></span>
+                  <a class="btn btn-default btn-sm" id="bt_cmdConfigureChooseIcon"><i class="fas fa-icons"></i> {{Icône}}</a>
                 </div>
               </div>
               <?php if ($cmd->getIsHistorized() == 1) { ?>
@@ -851,7 +852,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 
     //modal title:
     var title = '{{Configuration commande}}'
-    title += ' : ' + jeephp2js.md_cmdConfigure_cmdInfo.eqLogicName
+    title += ' : ' + jeephp2js.md_cmdConfigure_cmdInfo.eqLogicHumanName
     title += ' <span class="cmdName">[' + jeephp2js.md_cmdConfigure_cmdInfo.name + '] <em>(' + jeephp2js.md_cmdConfigure_cmdInfo.type + ')</em></span>'
     $('#cmdConfigureTab').parents('.ui-dialog').find('.ui-dialog-title').html(title)
     if ($('#eqLogicConfigureTab').length) {
@@ -1223,6 +1224,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           level: 'success'
         })
         synchModalToCmd()
+        syncModalToScenario()
         if (event.ctrlKey) {
           setTimeout(function() {
             $('#md_modal').dialog('close')
@@ -1239,6 +1241,11 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
       $cmdTr.find('input.cmdAttr[data-l1key="isVisible"]').prop('checked', $('#div_displayCmdConfigure input.cmdAttr[data-l1key="isVisible"').prop('checked'))
       $cmdTr.find('.cmdAttr[data-l1key=display][data-l2key=icon]').html($('#div_displayCmdConfigure .cmdAttr[data-l1key=display][data-l2key=icon]').html())
     }
+  }
+
+  function syncModalToScenario() {
+    if (getUrlVars('p') != 'scenario') return
+    jeeFrontEnd.scenario.updateDefinedActions(true)
   }
 
   $('#cmd_configuration').on({

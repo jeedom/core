@@ -108,6 +108,9 @@ Desktop
   .italic {
     font-style: italic;
   }
+  .cross {
+    text-decoration: line-through;
+  }
 
   h1,h2,h3,h4,h5,h6,
   h3 a:visited {
@@ -4574,7 +4577,8 @@ div.div_viewZone legend.lg_viewZone {
     background-color: rgb(var(--defaultBkg-color))
   }
 
-  #div_displayCmdConfigure .form-group div > span.cmdAttr {
+  #div_displayCmdConfigure .form-group div > span.cmdAttr,
+  #div_displayCmdConfigure .form-group div > span.label.label-primary {
     max-width: 98% !important;
     display: inline-block;
     padding: 5px !important;

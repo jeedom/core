@@ -397,6 +397,54 @@ try {
 			}
 			$return['scenario_link']['scenario'][$scenarioLink->getId()] = array('name' => $scenarioLink->getHumanName(), 'isActive' => $scenarioLink->getIsActive(), 'link' => 'getUse');
 		}
+
+		$return['definedAction'] = array();
+		$definedAction = cmd::searchConfiguration('"scenario_id":"' . init('id') . '"');
+		foreach ($definedAction as $cmd) {
+			$cmdArray = utils::o2a($cmd);
+			foreach ($cmdArray['configuration']['actionCheckCmd'] as $actionCmd) {
+				try {
+					if ($actionCmd['cmd'] == 'scenario' && $actionCmd['options']['scenario_id'] == init('id')) {
+						$action = array(
+							'cmdId' => $cmd->getId(),
+							'name' => $cmd->getEqLogic()->getHumanName() . ' [' . $cmd->getName() . ']',
+							'enable' => $actionCmd['options']['enable'],
+							'type' => 'actionCheckCmd'
+						);
+						array_push($return['definedAction'], $action);
+					}
+				} catch (Exception $e) {
+				}
+			}
+			foreach ($cmdArray['configuration']['jeedomPreExecCmd'] as $actionCmd) {
+				try {
+					if ($actionCmd['cmd'] == 'scenario' && $actionCmd['options']['scenario_id'] == init('id')) {
+						$action = array(
+							'cmdId' => $cmd->getId(),
+							'name' => $cmd->getEqLogic()->getHumanName() . ' [' . $cmd->getName() . ']',
+							'enable' => $actionCmd['options']['enable'],
+							'type' => 'jeedomPreExecCmd'
+						);
+						array_push($return['definedAction'], $action);
+					}
+				} catch (Exception $e) {
+				}
+			}
+			foreach ($cmdArray['configuration']['jeedomPostExecCmd'] as $actionCmd) {
+				try {
+					if ($actionCmd['cmd'] == 'scenario' && $actionCmd['options']['scenario_id'] == init('id')) {
+						$action = array(
+							'cmdId' => $cmd->getId(),
+							'name' => $cmd->getEqLogic()->getHumanName() . ' [' . $cmd->getName() . ']',
+							'enable' => $actionCmd['options']['enable'],
+							'type' => 'jeedomPostExecCmd'
+						);
+						array_push($return['definedAction'], $action);
+					}
+				} catch (Exception $e) {
+				}
+			}
+		}
 		ajax::success($return);
 	}
 

@@ -20,6 +20,7 @@ if (!jeeFrontEnd.scenario) {
   jeeFrontEnd.scenario = {
     $divScenario: null,
     tab: null,
+    dataDefinedAction: null,
     PREV_FOCUS: null,
     actionOptions: [],
     editors: [],
@@ -42,7 +43,7 @@ if (!jeeFrontEnd.scenario) {
       window.jeeP = this
     },
     checkNoMode: function() {
-      if ($('div.scheduleDisplay .schedule').length || $('div.provokeDisplay .trigger').length) {
+      if ($('div.scheduleDisplay .schedule').length || $('div.provokeDisplay .trigger').length || $('div.defined_actions .action_link:not(.cross)').length) {
         $('#emptyModeWarning').hide()
       } else {
         $('#emptyModeWarning').show()
@@ -183,6 +184,79 @@ if (!jeeFrontEnd.scenario) {
         }
       })
     },
+    updateDefinedActions: function(cmdModal=false) {
+      //cmdModal called from cmd.configure modal to update ui list!
+      if (cmdModal) {
+        var scId = $('div#div_editScenario span[data-l1key="id"]').text()
+        var cmdId = $('div#cmd_information span[data-l1key="id"]').text()
+        var cmdName = jeephp2js.md_cmdConfigure_cmdInfo.eqLogicHumanName + ' [' + jeephp2js.md_cmdConfigure_cmdInfo.name + ']'
+
+        //clean actual cmd from list:
+        jeeP.dataDefinedAction = jeeP.dataDefinedAction.filter(i => i['cmdId'] != cmdId)
+
+        var action, scenario_id, enable
+        $('.actionCheckCmd').each(function() {
+          action = $(this).find('input[data-type="actionCheckCmd"]').value()
+          if (action != "scenario") return true
+          scenario_id = $(this).find('select[data-l2key="scenario_id"]').value()
+          if (scenario_id != scId) return true
+          enable = $(this).find('input[data-l2key="enable"]').value()
+          action = {
+            'cmdId': cmdId,
+            'name': cmdName,
+            'enable': enable,
+            'type': 'actionCheckCmd'
+          }
+          jeeP.dataDefinedAction.push(action)
+        })
+
+        $('.actionPreExecCmd').each(function() {
+          action = $(this).find('input[data-type="actionPreExecCmd"]').value()
+          if (action != "scenario") return true
+          scenario_id = $(this).find('select[data-l2key="scenario_id"]').value()
+          if (scenario_id != scId) return true
+          enable = $(this).find('input[data-l2key="enable"]').value()
+          action = {
+            'cmdId': cmdId,
+            'name': cmdName,
+            'enable': enable,
+            'type': 'jeedomPreExecCmd'
+          }
+          jeeP.dataDefinedAction.push(action)
+        })
+
+        $('.actionPostExecCmd').each(function() {
+          action = $(this).find('input[data-type="actionPostExecCmd"]').value()
+          if (action != "scenario") return true
+          scenario_id = $(this).find('select[data-l2key="scenario_id"]').value()
+          if (scenario_id != scId) return true
+          enable = $(this).find('input[data-l2key="enable"]').value()
+          action = {
+            'cmdId': cmdId,
+            'name': cmdName,
+            'enable': enable,
+            'type': 'jeedomPostExecCmd'
+          }
+          jeeP.dataDefinedAction.push(action)
+        })
+      }
+
+      $('.defined_actions').empty()
+      var htmlActions = ''
+      var prefix = ''
+      for (var i in jeeP.dataDefinedAction) {
+        if (jeeP.dataDefinedAction[i]['type'] == 'actionCheckCmd') prefix = 'Value -> '
+        if (jeeP.dataDefinedAction[i]['type'] == 'jeedomPreExecCmd') prefix = 'PreExec -> '
+        if (jeeP.dataDefinedAction[i]['type'] == 'jeedomPostExecCmd') prefix = 'PostExec -> '
+
+        if (jeeP.dataDefinedAction[i]['enable'] == '1') {
+          htmlActions += '<span class="label label-info cursor action_link" data-cmd_id="' + jeeP.dataDefinedAction[i]['cmdId'] + '">' + prefix + jeeP.dataDefinedAction[i]['name'] + '</span><br/>'
+        } else {
+          htmlActions += '<span class="label label-info cursor cross action_link" data-cmd_id="' + jeeP.dataDefinedAction[i]['cmdId'] + '">' + prefix + jeeP.dataDefinedAction[i]['name'] + '</span><br/>'
+        }
+      }
+      $('.defined_actions').append(htmlActions)
+    },
     printScenario: function(_id) {
       $.hideAlert()
       $.showLoading()
@@ -248,6 +322,7 @@ if (!jeeFrontEnd.scenario) {
             $('#in_ongoing').removeClass('label-danger').removeClass('label-success').text('{{Inactif}}')
           }
 
+          //Triggers:
           if ($.isArray(data.trigger)) {
             for (var i in data.trigger) {
               if (data.trigger[i] != '' && data.trigger[i] != null) {
@@ -271,6 +346,14 @@ if (!jeeFrontEnd.scenario) {
               jeeP.addSchedule(data.schedule)
             }
           }
+
+          //Defines actions:
+          if (data.definedAction) {
+            jeeP.dataDefinedAction = data.definedAction
+            jeeP.updateDefinedActions()
+          }
+
+          //Links:
           $('.scenario_link_getUsedBy').empty()
           $('.scenario_link_getUse').empty()
           var html_getUsedBy = ''
@@ -295,9 +378,12 @@ if (!jeeFrontEnd.scenario) {
           }
           $('.scenario_link_getUsedBy').append(html_getUsedBy)
           $('.scenario_link_getUse').append(html_getUse)
+
+          //Empty scenario ?
           if (data.elements.length == 0) {
             $('#div_scenarioElement').append('<center class="span_noScenarioElement"><span>{{Pour constituer votre scénario, veuillez ajouter des blocs}}.</span></center>')
           }
+
           jeeP.actionOptions = []
           var elements = ''
           for (var i in data.elements) {
@@ -1820,6 +1906,13 @@ $('.scenario_link_getUsedBy, .scenario_link_getUse').off('mouseup', '.scenario_l
       ctrlKey: true
     }))
   }
+})
+
+$('.defined_actions').off('click', '.action_link').on('click', '.action_link', function(event) {
+  $.hideAlert()
+  var cmdId = $(this).attr('data-cmd_id')
+  $('#md_modal').dialog().load('index.php?v=d&modal=cmd.configure&cmd_id=' + cmdId).dialog('open')
+
 })
 
 $('#bt_chooseIcon').on('click', function() {

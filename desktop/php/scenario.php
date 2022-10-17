@@ -87,6 +87,7 @@ sendVarToJS([
 	'jeephp2js.scenarioListGroup' => $scenarioListGroup,
 	'jeephp2js.objectList' => $parentList
 ]);
+
 ?>
 
 <div class="row row-overflow">
@@ -328,13 +329,20 @@ sendVarToJS([
 								</div>
 								<div class="provokeMode provokeDisplay" style="display: none;">
 								</div>
+
+								<legend><i class="fas fa-play-circle"></i> {{Actions de déclenchement}}</legend>
+								<div class="defined_actions"></div>
 							</fieldset>
 						</form>
 						<hr class="hrPrimary">
-						<legend><i class="fas fa-link"></i> {{Scénarios liés}} <i class="fas fa-arrow-left "></i></legend>
-						<div class="scenario_link_getUsedBy"></div>
-						<legend><i class="fas fa-link"></i> {{Scénarios liés}} <i class="fas fa-arrow-right "></i></legend>
-						<div class="scenario_link_getUse"></div>
+						<form class="form-horizontal">
+							<fieldset>
+								<legend><i class="fas fa-link"></i> {{Scénarios liés}} <i class="fas fa-arrow-left "></i></legend>
+								<div class="scenario_link_getUsedBy"></div>
+								<legend><i class="fas fa-link"></i> {{Scénarios liés}} <i class="fas fa-arrow-right "></i></legend>
+								<div class="scenario_link_getUse"></div>
+							</fieldset>
+						</form>
 					</div>
 				</div>
 
