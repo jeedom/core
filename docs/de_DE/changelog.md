@@ -1,6 +1,6 @@
 # Änderungsprotokoll Jeedom V4.3
 
-## 4.3.0
+## 4.3.1
 
 ### 4.3 : Voraussetzungen
 
@@ -31,6 +31,17 @@
 
 - **Lib** : Aktualisieren Sie Font Awesome 5.13.1 bis 5.15.4.
 
+### 4.3 : Notes
+
+- Für Benutzer, die Menüs in ihren Designs im Formular verwenden :
+
+<html>`<li class="monmenu"><div class="imagette">.png" Höhe=30px></div></br></li> `
+
+Sie müssen jetzt verwenden:
+
+<html>`.planHeader_id=15; jeeFrontEnd.plan.<html>displayPlan();"><li class="monmenu"><div class="imagette">.png" Höhe=30px></div></br></li> `
+
+sehen [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.3).
 
 # Änderungsprotokoll Jeedom V4.2
 

@@ -1,6 +1,6 @@
 # Registro de cambios Jeedom V4.3
 
-## 4.3.0
+## 4.3.1
 
 ### 4.3 : Prerrequisitos
 
@@ -31,6 +31,17 @@
 
 - **Liberación** : Actualizar Font Awesome 5.13.1 a 5.15.4.
 
+### 4.3 : Notes
+
+- Para usuarios que usan menús en sus diseños en el formulario :
+
+<html>`<li class="monmenu"><div class="imagette">.png" altura=30px></div></br></li> `
+
+Ahora debes usar:
+
+<html>`.planHeader_id=15; jeeFrontEnd.plan.<html>mostrarPlan();"><li class="monmenu"><div class="imagette">.png" altura=30px></div></br></li> `
+
+ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.3).
 
 # Registro de cambios Jeedom V4.2
 
