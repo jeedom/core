@@ -1,6 +1,6 @@
 # Changelog Jeedom V4.3
 
-## 4.3.0
+## 4.3.1
 
 ### 4.3 : Pré-requis
 
@@ -31,6 +31,17 @@
 
 - **Lib** : Update Font Awesome 5.13.1 vers 5.15.4.
 
+### 4.3 : Notes
+
+- Pour les utilisateurs qui utilisent des menus dans leurs designs sous la forme :
+
+`<a onClick="planHeader_id=15; displayPlan();"><li class="monmenu"><div class="imagette"><img src="theme1/images/new/home.png" height=30px></div></br></li></a>`
+
+Il faut maintenant utiliser:
+
+`<a onClick="jeephp2js.planHeader_id=15; jeeFrontEnd.plan.displayPlan();"><li class="monmenu"><div class="imagette"><img src="theme1/images/new/home.png" height=30px></div></br></li></a>`
+
+cf [Doc dev](https://doc.jeedom.com/fr_FR/dev/core4.3).
 
 # Changelog Jeedom V4.2
 
