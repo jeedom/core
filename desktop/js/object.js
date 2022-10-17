@@ -493,7 +493,7 @@ $(function() {
       //parent submenu:
       var parentItems = {}
       parentItems[0] = {
-        'name': '<span class="label labelObjectHuman">None</span>',
+        'name': '<span class="label labelObjectHuman">{{Aucun}}</span>',
         'disabled': (thisFatherId == '') ? true : false,
         'jType': 'parent',
         'jId': '',
