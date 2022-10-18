@@ -3075,8 +3075,16 @@ div.div_viewZone legend.lg_viewZone {
   i.tablesorter-icon {
     background-image: none !important;
   }
-  .tablesorter-header[data-sorter=false] {
+  th..tablesorter-header[data-sorter=false] {
     cursor: default;
+  }
+  th.tablesorter-header select + i.tablesorter-icon {
+    top: 32px !important;
+  }
+  th.tablesorter-header select {
+    height: 22px;
+    padding: 1px 5px !important;
+    line-height: 1.5;
   }
   i.tablesorter-icon.glyphicon-chevron-up::before {
     content: "\25bc" !important;

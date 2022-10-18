@@ -214,9 +214,11 @@ if (!jeeFrontEnd.object) {
           summarySelect += '<i class="fas fa-tags"></i>&nbsp;&nbsp;{{Résumé(s)}}&nbsp;&nbsp;<span class="caret"></span>'
           summarySelect += '</button>'
           summarySelect += '<ul class="dropdown-menu" role="menu" style="top:unset;left:unset;height: 190px;overflow: auto;">'
-          Object.keys(jeephp2js.configObjSummary).forEach(function(key) {
-            summarySelect += '<li><a tabIndex="-1"><input type="checkbox" data-value="' + jeephp2js.configObjSummary[key].key + '" data-name="' + jeephp2js.configObjSummary[key].name + '" />&nbsp' + jeephp2js.configObjSummary[key].name + '</a></li>'
-          })
+          if (typeof jeephp2js.configObjSummary === 'object') {
+            Object.keys(jeephp2js.configObjSummary).forEach(function(key) {
+              summarySelect += '<li><a tabIndex="-1"><input type="checkbox" data-value="' + jeephp2js.configObjSummary[key].key + '" data-name="' + jeephp2js.configObjSummary[key].name + '" />&nbsp' + jeephp2js.configObjSummary[key].name + '</a></li>'
+            })
+          }
           summarySelect += '</ul>'
 
           var nbEqs = eqLogics.length
