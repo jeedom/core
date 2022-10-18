@@ -1432,9 +1432,6 @@ class jeedom {
 			}
 		}
 
-		log::add('massReplace', 'alert', '----------BEGIN MASS REPLACEMENT----------');
-		log::add('massReplace', 'alert', 'Options: ' . json_encode($_options, JSON_PRETTY_PRINT));
-
 		$return = array('eqlogics' => 0, 'cmds' => 0);
 
 		//for each source eqlogic:
@@ -1443,8 +1440,6 @@ class jeedom {
 				$sourceEq = eqLogic::byId($_sourceId);
 				$targetEq = eqLogic::byId($_targetId);
 				if (!is_object($sourceEq) || !is_object($targetEq)) continue;
-
-				log::add('massReplace', 'alert', 'Migrate eqLogic: (' . $sourceEq->getId() . ')' . $sourceEq->getName() . ' to (' . $targetEq->getId() . ')' . $targetEq->getName());
 
 				//Migrate plan cmd config for eqLogic:
 				$planEqlogics = plan::byLinkTypeLinkId('eqLogic', $sourceEq->getId());
@@ -1464,7 +1459,7 @@ class jeedom {
 						}
 					}
 					if ($savePlan) {
-						log::add('massReplace', 'alert', 'Replace eqLogic: (' . $sourceEq->getId() . ')' . $sourceEq->getName() . ' in Design: ' . $planEqlogic->getPlanHeader()->getName());
+				
 						$planEqlogic->save();
 					}
 				}
@@ -1520,31 +1515,27 @@ class jeedom {
 
 			//copy properties:
 			if ($_options['copyCmdProperties'] == "true") {
-				log::add('massReplace', 'alert', 'Migrate Cmd: (' . $sourceCmd->getId() . ')' . $sourceCmd->getName() . ' to (' . $targetCmd->getId() . ')' . $targetCmd->getName());
+		
 				$targetCmd = cmd::migrateCmd($_sourceId, $_targetId);
 			}
 
 			//replace command where used:
-			log::add('massReplace', 'alert', 'Replace Cmd: (' . $sourceCmd->getId() . ')' . $sourceCmd->getName() . ' by (' . $targetCmd->getId() . ')' . $targetCmd->getName());
 			jeedom::replaceTag(array('#' . str_replace('#', '', $sourceCmd->getId()) . '#' => '#' . str_replace('#', '', $targetCmd->getId()) . '#'));
 
 			//remove history:
 			if ($_options['removeCmdHistory'] == "true" && $targetCmd->getType() == 'info') {
-				log::add('massReplace', 'alert', 'Remove command history: (' . $targetCmd->getId() . ')' . $targetCmd->getName());
 				history::removes($targetCmd->getId());
 			}
 
 			//copy history:
 			if ($_options['copyCmdHistory'] == "true" && $sourceCmd->getIsHistorized() == 1) {
 				if ($sourceCmd->getSubType() == $targetCmd->getSubType()) {
-					log::add('massReplace', 'alert', 'Copy command history: (' . $sourceCmd->getId() . ')' . $sourceCmd->getName() . ' to (' . $targetCmd->getId() . ')' . $targetCmd->getName());
 					history::copyHistoryToCmd($sourceCmd->getId(), $targetCmd->getId());
 				}
 			}
 			$return['cmds'] += 1;
 		}
 
-		log::add('massReplace', 'alert', '----------MASS REPLACEMENT END----------');
 		return $return;
 	}
 
