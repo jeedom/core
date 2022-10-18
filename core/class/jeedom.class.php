@@ -1459,7 +1459,6 @@ class jeedom {
 						}
 					}
 					if ($savePlan) {
-				
 						$planEqlogic->save();
 					}
 				}
@@ -1515,7 +1514,7 @@ class jeedom {
 
 			//copy properties:
 			if ($_options['copyCmdProperties'] == "true") {
-		
+
 				$targetCmd = cmd::migrateCmd($_sourceId, $_targetId);
 			}
 
