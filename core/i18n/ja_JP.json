@@ -2011,7 +2011,7 @@
         "Plugins": "Plugins",
         "Options": "Options",
         "Copier la configuration de l'équipement source": "Copier la configuration de l'équipement source",
-        "Copie les propriétés de l’équipement source (objet parent, catégories, visibilité, positionnement dashboard, etc) sur l’équipement cible.": "Copie les propriétés de l’équipement source (objet parent, catégories, visibilité, positionnement dashboard, etc) sur l’équipement cible",
+        "Copie les propriétés de l’équipement source (objet parent, catégories, visibilité, positionnement dashboard, designs, vues, etc) sur l’équipement cible.": "Copie les propriétés de l’équipement source (objet parent, catégories, visibilité, positionnement dashboard, designs, vues, etc) sur l’équipement cible",
         "Cacher l'équipement source": "Cacher l'équipement source",
         "Rend invisible l'équipement source.": "Rend invisible l'équipement source",
         "Copier la configuration de la commande source": "Copier la configuration de la commande source",

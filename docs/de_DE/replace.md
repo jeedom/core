@@ -18,13 +18,13 @@ Sie können zur besseren Lesbarkeit nur bestimmte Geräte anzeigen, nach Objekt 
 > Wenn keine dieser Optionen aktiviert ist, läuft die Ersetzung auf die Verwendung der Funktion hinaus *Ersetzen Sie diesen Befehl durch den Befehl* in erweiterter Konfiguration.
 
 - **Konfiguration vom Quellgerät kopieren** :
-Für jedes Gerät wird von der Quelle zum Ziel kopiert:
+Für jedes Gerät wird von der Quelle zum Ziel kopiert (nicht erschöpfende Liste) :
 	* Das übergeordnete Objekt,
 	* Die Kategorien,
 	* Eigenschaften *Anlage* und *sichtbar*,
 	* Kommentare und Tags,
 	* Bestellung (Dashboard),
-	* Die Breite und Höhe (Tile Dashboard),
+	* Breite und Höhe (Kachel-Dashboard),
 	* Kachelkurveneinstellungen,
 	* Optionale Parameter,
 	* Die Konfiguration der Tabellenanzeige,
@@ -33,12 +33,15 @@ Für jedes Gerät wird von der Quelle zum Ziel kopiert:
 	* Die Konfiguration *automatische Aktualisierung*,
 	* Batterie- und Kommunikationswarnungen,
 
+Das Quellgerät wird auch durch das Zielgerät auf dem ersetzt **Entwurf** und die **Ansichten**.
+
 
 *Diese Ausrüstung wird auch durch die Zielausrüstung auf Designs und Ansichten ersetzt.*
 
 - **Quellgerät ausblenden** : Ermöglicht es, das Quellgerät unsichtbar zu machen, nachdem es durch das Zielgerät ersetzt wurde.
+
 - **Kopieren Sie die Konfiguration aus dem Quellbefehl** :
-Für jeden Befehl wird von der Quelle zum Ziel kopiert:
+Für jede Bestellung wird von der Quelle zum Ziel kopiert (nicht erschöpfende Liste) :
 	* Die Eigenschaft *sichtbar*,
 	* Bestellung (Dashboard),
 	* L'historisation,
@@ -53,7 +56,9 @@ Für jeden Befehl wird von der Quelle zum Ziel kopiert:
 	* Die influxDB-Konfiguration,
 	* Die Wiederholungswertkonfiguration,
 	* Warnungen,
+
 - **Befehlshistorie des Ziels löschen** : Löscht Zielbefehlsverlaufsdaten.
+
 - **Quellbefehlshistorie kopieren** : Kopieren Sie den Quellbefehlsverlauf in den Zielbefehl.
 
 

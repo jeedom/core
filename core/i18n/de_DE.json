@@ -2011,7 +2011,7 @@
         "Plugins": "Plugins",
         "Options": "Optionen",
         "Copier la configuration de l'équipement source": "Konfiguration vom Quellgerät kopieren",
-        "Copie les propriétés de l’équipement source (objet parent, catégories, visibilité, positionnement dashboard, etc) sur l’équipement cible.": "Kopiert die Eigenschaften des Quellgeräts (übergeordnetes Objekt, Kategorien, Sichtbarkeit, Dashboard-Positionierung usw.) auf das Zielgerät",
+        "Copie les propriétés de l’équipement source (objet parent, catégories, visibilité, positionnement dashboard, designs, vues, etc) sur l’équipement cible.": "Kopiert die Eigenschaften des Quellgeräts (übergeordnetes Objekt, Kategorien, Sichtbarkeit, Dashboard-Positionierung, Designs, Ansichten usw.) auf das Zielgerät",
         "Cacher l'équipement source": "Quellgerät ausblenden",
         "Rend invisible l'équipement source.": "Macht Quellengeräte unsichtbar",
         "Copier la configuration de la commande source": "Kopieren Sie die Konfiguration aus dem Quellbefehl",

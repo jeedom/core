@@ -18,13 +18,13 @@ Você pode exibir apenas determinados equipamentos para maior legibilidade, filt
 > Se nenhuma dessas opções estiver marcada, a substituição equivale ao uso da função *Substitua este comando pelo comando* em configuração avançada.
 
 - **Copiar configuração do dispositivo de origem** :
-Para cada equipamento, será copiado da fonte para o destino:
+Para cada equipamento, será copiado da fonte para o destino (lista não exaustiva) :
 	* O objeto pai,
 	* As categorias,
 	* Propriedades *de ativos* e *visível*,
 	* Comentários e etiquetas,
 	* Encomenda (Painel),
-	* A largura e a altura (Painel de mosaico),
+	* A largura e a altura (painel de ladrilhos),
 	* Configurações de curva de ladrilho,
 	* Parâmetros opcionais,
 	* A configuração de exibição da tabela,
@@ -33,12 +33,15 @@ Para cada equipamento, será copiado da fonte para o destino:
 	* A configuração *atualização automática*,
 	* Alertas de bateria e comunicação,
 
+O equipamento de origem também será substituído pelo equipamento de destino no **Projeto** e a **Visualizações**.
+
 
 *Este equipamento também será substituído pelo equipamento alvo em Desenhos e Vistas.*
 
 - **Ocultar equipamento de origem** : Permite tornar o equipamento de origem invisível uma vez substituído pelo equipamento de destino.
+
 - **Copiar configuração do comando de origem** :
-Para cada comando, será copiado da origem para o destino:
+Para cada pedido, será copiado da origem para o destino (lista não exaustiva) :
 	* A propriedade *visível*,
 	* Encomenda (Painel),
 	* L'historisation,
@@ -53,7 +56,9 @@ Para cada comando, será copiado da origem para o destino:
 	* A configuração do influxDB,
 	* A configuração do valor de repetição,
 	* Alertas,
+
 - **Excluir histórico de comandos de destino** : Exclui os dados do histórico de comandos de destino.
+
 - **Copiar histórico de comandos de origem** : Copie o histórico do comando de origem para o comando de destino.
 
 

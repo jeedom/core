@@ -556,10 +556,10 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - Zusammenfassung der Hausautomation : Hinzufügen von Geräten und Bestell-IDs zum Anzeigen und Suchen.
 - Zusammenfassung der Hausautomation : CSV-Export des übergeordneten Objekts, der ID, der Ausrüstung und ihrer ID, des Befehls.
 - Zusammenfassung der Hausautomation : Möglichkeit, einen oder mehrere Befehle sichtbar zu machen oder nicht.<br/><br/>
-- Design : Möglichkeit zur Angabe der Reihenfolge (Position) des *Entwürfe* und *3D-Designs* (Bearbeiten, Design konfigurieren).
-- Design : Hinzufügen eines benutzerdefinierten CSS-Felds zu den Elementen des *Design*.
-- Design : Die Anzeigeoptionen im Design der erweiterten Konfiguration wurden in den Anzeigeparametern aus dem verschoben *Design*. Dies, um die Schnittstelle zu vereinfachen und verschiedene Parameter durch zu ermöglichen *Design*.
-- Design : Verschieben und Ändern der Größe von Komponenten *Design* berücksichtigt ihre Größe mit oder ohne Magnetisierung.<br/><br/>
+- Entwurf : Möglichkeit zur Angabe der Reihenfolge (Position) des *Entwürfe* und *3D-Designs* (Bearbeiten, Design konfigurieren).
+- Entwurf : Hinzufügen eines benutzerdefinierten CSS-Felds zu den Elementen des *Design*.
+- Entwurf : Die Anzeigeoptionen im Design der erweiterten Konfiguration wurden in den Anzeigeparametern aus dem verschoben *Entwurf*. Dies, um die Schnittstelle zu vereinfachen und verschiedene Parameter durch zu ermöglichen *Entwurf*.
+- Entwurf : Verschieben und Ändern der Größe von Komponenten *Entwurf* berücksichtigt ihre Größe mit oder ohne Magnetisierung.<br/><br/>
 - Hinzufügen eines Massenkonfigurationssystems (wird auf der Seite Ausrüstung verwendet, um Kommunikationswarnungen darauf zu konfigurieren)
 
 ### 4.0 : Autres
