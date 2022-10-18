@@ -878,7 +878,7 @@
     },
     "desktop\/modal\/cmd.configureHistory.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Valider": "Validate",
+        "Valider": "Save",
         "Commandes :": "Commands:",
         "Commandes historisées :": "Historized commands:",
         "Commandes timeline :": "Timeline commands:",
@@ -891,7 +891,7 @@
         "Inversée": "Inverted",
         "Lissage": "Smoothing",
         "Purge": "Purge",
-        "Action": "Stock",
+        "Action": "Action",
         "Moyenne": "Average",
         "Minimum": "Minimum",
         "Maximum": "Maximum",
