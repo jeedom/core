@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.3
 
+## 4.3.2
+
+- Fixed a problem displaying the status of an info command in the advanced configuration of the command if the value is 0
+
 ## 4.3.1
 
 ### 4.3 : Prerequisites
