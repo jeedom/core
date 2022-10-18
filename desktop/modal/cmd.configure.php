@@ -136,9 +136,11 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                   <label class="col-xs-4 control-label">{{Etat}}</label>
                   <div class="col-xs-8">
                     <?php
-                    if ($value != '') {
+                    if ($value !== '') {
                     ?>
                       <span class="label label-primary" style="max-width: 100%;"><?php echo '<span class="cmdConfigure_cmdValue" data-cmd_id="' . $cmd->getid() . '" title="{{Date de collecte}} : ' .  $cmd->getCollectDate() . '">' . $value . ' ' . $cmd->getUnite() . ' {{le}} ' . $cmd->getValueDate() . '<span>'; ?></span>
+                    <?php } else { ?>
+                      <span class="label label-primary" style="max-width: 100%;"><?php echo '<span class="cmdConfigure_cmdValue" data-cmd_id="' . $cmd->getid() . '">{{Inconnu}}<span>'; ?></span>
                     <?php } ?>
                   </div>
                 </div>

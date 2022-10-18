@@ -1,6 +1,6 @@
 # Changelog Jeedom V4.3
 
-## 4.3.0
+## 4.3.1
 
 ### 4.3 : Prerequisites
 
@@ -31,6 +31,17 @@
 
 - **Lib** : Update Font Awesome 5.13.1 to 5.15.4.
 
+### 4.3 : Notes
+
+- For users who use menus in their designs in the form :
+
+<html>`<li class="monmenu"><div class="imagette">.png" height=30px></div></br></li> `
+
+You must now use:
+
+<html>`.planHeader_id=15; jeeFrontEnd.plan.<html>displayPlan();"><li class="monmenu"><div class="imagette">.png" height=30px></div></br></li> `
+
+see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.3).
 
 # Changelog Jeedom V4.2
 

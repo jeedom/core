@@ -1,6 +1,6 @@
 # Changelog Jeedom V4.3
 
-## 4.3.0
+## 4.3.1
 
 ### 4.3 : Pré-requisitos
 
@@ -31,6 +31,17 @@
 
 - **Livre** : Atualizar fonte impressionante 5.13.1 a 5.15.4.
 
+### 4.3 : Notes
+
+- Para usuários que usam menus em seus designs no formulário :
+
+<html>`<li class="monmenu"><div class="imagette">.png" altura=30px></div></br></li> `
+
+Você deve agora usar:
+
+<html>`.planHeader_id=15; jeeFrontEnd.plan.<html>displayPlan();"><li class="monmenu"><div class="imagette">.png" altura=30px></div></br></li> `
+
+Vejo [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.3).
 
 # Changelog Jeedom V4.2
 
