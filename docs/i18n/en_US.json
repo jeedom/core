@@ -1264,6 +1264,8 @@
     "changelog.md": {
         "Répéter les valeurs identiques (Oui": "Repeat identical values (Yes",
         "Changelog Jeedom V4.3": "Changelog Jeedom V4.3",
+        "4.3.2": "4.3.2",
+        "Correction d'un soucis d'affichage de l'état d'une commande info dans la configuration avancé de la commande si la valeur est 0": "Fixed a problem displaying the status of an info command in the advanced configuration of the command if the value is 0",
         "4.3.1": "4.3.1",
         "Pré-requis": "Prerequisites",
         "Debian 10 Buster": "Debian 10 Buster",

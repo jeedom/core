@@ -1,5 +1,9 @@
 # Registro de cambios Jeedom V4.3
 
+## 4.3.2
+
+- Se solucionó un problema al mostrar el estado de un comando de información en la configuración avanzada del comando si el valor es 0
+
 ## 4.3.1
 
 ### 4.3 : Prerrequisitos
