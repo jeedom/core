@@ -1,5 +1,9 @@
 # Änderungsprotokoll Jeedom V4.3
 
+## 4.3.2
+
+- Es wurde ein Problem behoben, bei dem der Status eines Info-Befehls in der erweiterten Konfiguration des Befehls angezeigt wurde, wenn der Wert 0 ist
+
 ## 4.3.1
 
 ### 4.3 : Voraussetzungen

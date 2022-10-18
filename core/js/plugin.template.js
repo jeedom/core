@@ -269,14 +269,14 @@ $(".eqLogicDisplayCard").on('click', function(event) {
         }
         $('.cmdTableState').each(function() {
           jeedom.cmd.addUpdateFunction($(this).attr('data-cmd_id'), function(_options) {
-            _options.value = String(_options.value).replace(/<[^>]*>?/gm, '');
+            _options.display_value = String(_options.display_value).replace(/<[^>]*>?/gm, '');
             let cmd = $('.cmdTableState[data-cmd_id=' + _options.cmd_id + ']')
             let title = '{{Date de collecte}} : ' + _options.collectDate+' - {{Date de valeur}} ' + _options.valueDate;
-            if(_options.value.length > 50){
-              title += ' - '+_options.value;
+            if(_options.display_value.length > 50){
+              title += ' - '+_options.display_value;
             }
             cmd.attr('title', title)
-            cmd.empty().append(_options.value.substring(0, 50) + ' ' + _options.unit);
+              cmd.empty().append(_options.display_value.substring(0, 50) + ' ' + _options.unit);
             cmd.css('color','var(--logo-primary-color)');
             setTimeout(function(){
               cmd.css('color','');
