@@ -1,8 +1,12 @@
 # Changelog Jeedom V4.3
 
+## 4.3.3
+
+- Amélioration de la vérification de la version de nodejs/npm.
+
 ## 4.3.2
 
-- Correction d'un soucis d'affichage de l'état d'une commande info dans la configuration avancé de la commande si la valeur est 0
+- Correction d'un soucis d'affichage de l'état d'une commande info dans la configuration avancé de la commande si la valeur est 0.
 
 ## 4.3.1
 
@@ -13,9 +17,9 @@
 
 ### 4.3 : Nouveautés / Améliorations
 
-- **Outils / Scénarios** : Modale d'édition au ctrl+click dans les champs éditable des blocs/actions.
+- **Outils / Scénarios** : Modale d'édition au ctrl+click dans les champs éditables des blocs/actions.
 - **Outils / Scénarios** : Ajout d'un menu contextuel sur un scénario pour rendre actif/inactif, changer de groupe, changer d'objet parent.
-- **Outils / Objets** : Ajout d'un menu contextuel sur un objet pour gérer la visbilité, changer d'objet parent, et déplacer.
+- **Outils / Objets** : Ajout d'un menu contextuel sur un objet pour gérer la visibilité, changer d'objet parent, et déplacer.
 - **Outils / Remplacer** : Nouvel outil de remplacement d'équipements et commandes.
 - **Analyse / Timeline** : Ajout d'un champ de recherche pour filtrer l'affichage.
 - **Utilisateurs** : Ajout d'un bouton pour copier les droits d'un utilisateur limité vers un autre
@@ -23,7 +27,7 @@
 - **Rapport** : Possibilité de faire des rapports sur les équipements en alerte.
 - **Mise à jour** : Possibilité de voir depuis Jeedom les packages OS/PIP2/PIP3/NodeJS qui peuvent etre mise à jour et de lancer la mise à jour (attention fonction risquée et en beta).
 - **Commande alerte** : Ajout d'une option pour recevoir un message en cas de fin d'alerte.
-- **Plugins** : possibilité de désactiver l'installation des dépendances par plugin
+- **Plugins** : Possibilité de désactiver l'installation des dépendances par plugin.
 - **Optimisation** : jeeFrontEnd{}, jeephp2js{}, corrections de bugs mineures et optimisations.
 
 ### 4.3 : WebApp

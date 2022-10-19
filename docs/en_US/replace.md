@@ -18,13 +18,13 @@ You can display only certain equipment for more readability, filtering by object
 > If none of these options is checked, the replacement amounts to using the function *Replace this command with the command* in advanced configuration.
 
 - **Copy configuration from source device** :
-For each equipment, will be copied from the source to the target:
+For each piece of equipment, will be copied from the source to the target (non-exhaustive list) :
 	* The parent object,
 	* The categories,
 	* Properties *asset* and *visible*,
 	* Comments and tags,
 	* Order (Dashboard),
-	* The width and height (Tile Dashboard),
+	* The Width and Height (Tile Dashboard),
 	* Tile curve settings,
 	* Optional parameters,
 	* The table display configuration,
@@ -33,12 +33,15 @@ For each equipment, will be copied from the source to the target:
 	* The configuration *autorefresh*,
 	* Battery and communication alerts,
 
+The source equipment will also be replaced by the target equipment on the **Design** and the **Views**.
+
 
 *This equipment will also be replaced by the target equipment on Designs and Views.*
 
 - **Hide source equipment** : Allows to make the source equipment invisible once replaced by the target equipment.
+
 - **Copy configuration from source command** :
-For each command, will be copied from source to target:
+For each order, will be copied from the source to the target (non-exhaustive list) :
 	* The property *visible*,
 	* Order (Dashboard),
 	* L'historisation,
@@ -53,7 +56,9 @@ For each command, will be copied from source to target:
 	* The influxDB configuration,
 	* The repeat value configuration,
 	* Alerts,
+
 - **Delete target command history** : Deletes target command history data.
+
 - **Copy source command history** : Copy source command history to target command.
 
 
