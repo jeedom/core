@@ -85,6 +85,7 @@ if ($selectPlugin != '') {
     $('#table_message')[0].config.widgetOptions.resizable_widths = ['50px', '140px', '100px', '', '90px', '120px']
     $('#table_message').trigger('applyWidgets')
       .trigger('resizableReset')
+      .trigger('update')
   })
 
   $("#sel_plugin").on('change', function(event) {
