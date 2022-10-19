@@ -8,7 +8,7 @@ $sqlQuery = 'SELECT TABLE_NAME, COLUMN_NAME, DATA_TYPE, EXTRA FROM information_s
 $result = DB::prepare($sqlQuery, array('db_name' => $CONFIG['db']['dbname']), DB::FETCH_TYPE_ALL);
 
 $tableList = array();
-foreach($result as $res) {
+foreach ($result as $res) {
   if (!isset($tableList[$res['TABLE_NAME']]) || !is_array($tableList[$res['TABLE_NAME']])) {
     $tableList[$res['TABLE_NAME']] = array();
   }
@@ -22,13 +22,14 @@ sendVarToJS('jeephp2js.tableList', $tableList);
     <div class="bs-sidebar">
       <ul class="nav nav-list bs-sidenav list-group" id='ul_listSqlHistory'></ul>
       <ul class="nav nav-list bs-sidenav list-group" id='ul_listSqlRequest'>
-        <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
+        <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%" /></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="SHOW TABLES">{{Tables}}</a></li>
-        <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="SELECT table_name AS `Table`, round(((data_length + index_length) / 1024 / 1024), 2) `MB`,table_rows as `Ligne` FROM information_schema.TABLES WHERE table_schema='<?php  echo $CONFIG['db']['dbname'];?>' ORDER BY (data_length + index_length) DESC">{{Taille}}</a></li>
+        <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="SELECT table_name AS `Table`, round(((data_length + index_length) / 1024 / 1024), 2) `MB`,table_rows as `Ligne` FROM information_schema.TABLES WHERE table_schema='<?php echo $CONFIG['db']['dbname']; ?>' ORDER BY (data_length + index_length) DESC">{{Taille}}</a></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="SELECT * FROM dataStore WHERE type='scenario'">{{Select Variables}}</a></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="SELECT * FROM eqLogic">{{Select eqLogics}}</a></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="SELECT id, name, configuration FROM eqLogic">{{Select eqLogics configuration}}</a></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="SELECT * FROM cmd WHERE id=1">{{Select cmd id 1}}</a></li>
+        <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="UPDATE `config` set `value`=0 WHERE `key`='active'">{{Désactiver tous les plugins}}</a></li>
       </ul>
       <div id="h3_executeCommand" class="alert alert-info">{{Cliquez sur une commande ci dessus ou éxécutez une commande personnalisée.}}</div>
     </div>
@@ -43,11 +44,11 @@ sendVarToJS('jeephp2js.tableList', $tableList);
           </span>
         </div>
       </label>
-      
+
       <div id="dynamicsql" class="content">
         <form class="form-horizontal">
           <fieldset>
-            
+
             <!-- SQL UI OPERATION selector-->
             <div class="form-group">
               <div class="col-md-2 col-xs-3">
@@ -58,9 +59,9 @@ sendVarToJS('jeephp2js.tableList', $tableList);
                   <option value="DELETE">DELETE</option>
                 </select>
               </div>
-              
+
               <div class="col-md-4 col-xs-3">
-                <input id="sql_selector" class="form-control input-sm" type="text" value="*" placeholder="* or col1,col2,..."/>
+                <input id="sql_selector" class="form-control input-sm" type="text" value="*" placeholder="* or col1,col2,..." />
               </div>
               <label id="lblFrom" class="col-md-2 col-xs-2 control-label">FROM</label>
               <div class="col-md-3 col-xs-4">
@@ -68,30 +69,30 @@ sendVarToJS('jeephp2js.tableList', $tableList);
                   <?php
                   $options = '';
                   foreach ($tableList as $table => $cols) {
-                    $options .= '<option value="'.$table.'">'.$table.'</option>';
+                    $options .= '<option value="' . $table . '">' . $table . '</option>';
                   }
                   echo $options;
                   ?>
                 </select>
               </div>
             </div>
-            
+
             <!-- SQL UI SET-->
             <div id="sqlSetGroup" class="form-group" style="display: none;">
               <label class="col-xs-12">SET</label>
             </div>
-            
+
             <!-- SQL UI WHERE-->
             <div id="sqlWhereGroup" class="form-group">
               <label class="col-md-2 col-xs-3 control-label">
-                <input id="checksqlwhere" type="checkbox"/>WHERE
+                <input id="checksqlwhere" type="checkbox" />WHERE
               </label>
               <div class="col-md-2 col-xs-3">
                 <select id="sqlWhere" class="form-control input-sm disabled">
                   <?php
                   $options = '';
                   foreach ($tableList['cmd'] as $col) {
-                    $options .= '<option value="'.$col['colName'].'">'.$col['colName'].'</option>';
+                    $options .= '<option value="' . $col['colName'] . '">' . $col['colName'] . '</option>';
                   }
                   echo $options;
                   ?>
@@ -104,26 +105,26 @@ sendVarToJS('jeephp2js.tableList', $tableList);
                 </select>
               </div>
               <div class="col-md-6 col-xs-3">
-                <input id="sqlLikeValue" class="form-control input-sm disabled" type="text" value="" placeholder="int or 'string', like % wildcard"/>
+                <input id="sqlLikeValue" class="form-control input-sm disabled" type="text" value="" placeholder="int or 'string', like % wildcard" />
               </div>
             </div>
-            
+
           </fieldset>
         </form>
       </div>
-      
+
       <label><i class="fas fa-database"></i> {{Commande SQL}}</label>
       <div class="input-group content">
-        <input id="in_specificCommand" class="form-control input-sm" type="text"/>
+        <input id="in_specificCommand" class="form-control input-sm" type="text" />
         <div class="input-group-btn">
           <a id="bt_validateSpecificCommand" class="btn btn-warning btn-sm"><i class="fas fa-radiation"></i> {{Exécuter}} </a>
         </div>
       </div>
     </div>
-    
+
     <!-- SQL RESULT -->
     <div id="div_commandResult" style="overflow: auto;"></div>
   </div>
 </div>
 
-<?php include_file("desktop", "database", "js");?>
+<?php include_file("desktop", "database", "js"); ?>

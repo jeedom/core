@@ -769,7 +769,7 @@ jeedom.history.drawChart = function(_params) {
                 stacking: 'normal'
               },
               series: {
-                pointWidth: _params.pointWidth || 10,
+                pointWidth: _params.pointWidth || undefined,
                 animation: {
                   duration: (getUrlVars('report') == 1) ? 0 : jeedom.history.chartDrawTime
                 },

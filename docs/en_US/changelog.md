@@ -1,8 +1,12 @@
 # Changelog Jeedom V4.3
 
+## 4.3.3
+
+- Improved nodejs/npm version checking.
+
 ## 4.3.2
 
-- Fixed a problem displaying the status of an info command in the advanced configuration of the command if the value is 0
+- Fixed a problem displaying the status of an info command in the advanced configuration of the command if the value is 0.
 
 ## 4.3.1
 
@@ -23,7 +27,7 @@
 - **Report** : Ability to report on alerted equipment.
 - **Update** : Ability to see from Jeedom the OS / PIP2 / PIP3 / NodeJS packages that can be updated and launch the update (beware risky function and in beta).
 - **Alert command** : Added an option to receive a message in case of end of alert.
-- **Plugins** : possibility to disable the installation of dependencies by plugin
+- **Plugins** : Possibility to disable the installation of dependencies by plugin.
 - **Optimization** : jeeFrontEnd{}, jeephp2js{}, minor bugfixes and optimizations.
 
 ### 4.3 : WebApp

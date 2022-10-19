@@ -18,7 +18,7 @@ Puede mostrar solo ciertos equipos para una mayor legibilidad, filtrando por obj
 > Si ninguna de estas opciones está marcada, el reemplazo equivale a usar la función *Reemplace este comando con el comando* en configuración avanzada.
 
 - **Copiar la configuración del dispositivo de origen** :
-Para cada equipo, se copiará desde el origen al destino:
+Para cada equipo, se copiará desde el origen al destino (lista no exhaustiva) :
 	* El objeto padre,
 	* Las categorias,
 	* Los propietarios *activo* y *visible*,
@@ -33,12 +33,15 @@ Para cada equipo, se copiará desde el origen al destino:
 	* La configuración *autorefrescar*,
 	* Alertas de batería y comunicación,
 
+El equipo de origen también será reemplazado por el equipo de destino en el **Diseño** y los **Puntos de vista**.
+
 
 *Este equipo también será reemplazado por el equipo de destino en Diseños y Vistas.*
 
 - **Ocultar equipo fuente** : Permite hacer invisible el equipo de origen una vez reemplazado por el equipo de destino.
+
 - **Copie la configuración del comando fuente** :
-Para cada comando, se copiará de origen a destino:
+Para cada pedido, se copiará desde el origen al destino (lista no exhaustiva) :
 	* La propiedad *visible*,
 	* Orden (Tablero),
 	* L'historisation,
@@ -53,7 +56,9 @@ Para cada comando, se copiará de origen a destino:
 	* La configuración de influxDB,
 	* La configuración del valor de repetición,
 	* Alertas,
+
 - **Eliminar el historial de comandos de destino** : Elimina los datos del historial de comandos de destino.
+
 - **Copiar historial de comandos de origen** : Copie el historial de comandos de origen en el comando de destino.
 
 

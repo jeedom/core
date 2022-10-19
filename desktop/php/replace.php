@@ -101,7 +101,7 @@ sendVarToJS([
 
               <div class="form-group col-lg-12">
                 <label class="col-lg-4 col-md-6 col-sm-6 col-xs-10 control-label">{{Copier la configuration de l'équipement source}}
-                <sup><i class="fas fa-question-circle" title="{{Copie les propriétés de l’équipement source (objet parent, catégories, visibilité, positionnement dashboard, etc) sur l’équipement cible.}}"></i></sup>
+                <sup><i class="fas fa-question-circle" title="{{Copie les propriétés de l’équipement source (objet parent, catégories, visibilité, positionnement dashboard, designs, vues, etc) sur l’équipement cible.}}"></i></sup>
                 </label>
                 <div class="col-lg-1">
                   <input id="opt_replaceEqs" type="checkbox" class="form-control" />
