@@ -1,8 +1,12 @@
 # Changelog Jeedom V4.3
 
+## 4.3.3
+
+- Verificação de versão nodejs/npm aprimorada.
+
 ## 4.3.2
 
-- Corrigido um problema ao exibir o status de um comando info na configuração avançada do comando se o valor for 0
+- Corrigido um problema ao exibir o status de um comando info na configuração avançada do comando se o valor for 0.
 
 ## 4.3.1
 
@@ -23,7 +27,7 @@
 - **Relatório** : Capacidade de relatar equipamentos alertados.
 - **Atualizar** : Capacidade de ver do Jeedom os pacotes OS / PIP2 / PIP3 / NodeJS que podem ser atualizados e iniciar a atualização (cuidado com a função arriscada e em beta).
 - **Comando de alerta** : Adicionada uma opção para receber uma mensagem em caso de fim de alerta.
-- **Plug-ins** : possibilidade de desabilitar a instalação de dependências por plugin
+- **Plug-ins** : Possibilidade de desabilitar a instalação de dependências por plugin.
 - **Otimização** : jeeFrontEnd{}, jeephp2js{}, pequenas correções de bugs e otimizações.
 
 ### 4.3 : WebApp
