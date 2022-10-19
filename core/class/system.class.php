@@ -571,6 +571,22 @@ class system {
 							$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
 						}
 						break;
+					case 'npm':
+						if ($_foreground) {
+							echo shell_exec(self::getCmdSudo() . ' chmod +x ' . __DIR__ . '/../../resources/install_nodejs.sh;' . self::getCmdSudo() . ' ' . __DIR__ . '/../../resources/install_nodejs.sh');
+						} else {
+							$cmd .= self::getCmdSudo() . ' chmod +x ' . __DIR__ . '/../../resources/install_nodejs.sh;' . self::getCmdSudo() . ' ' . __DIR__ . '/../../resources/install_nodejs.sh' . "\n";
+							$count++;
+							$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+						}
+					case 'yarn':
+						if ($_foreground) {
+							echo shell_exec(self::getCmdSudo() . ' chmod +x ' . __DIR__ . '/../../resources/install_nodejs.sh;' . self::getCmdSudo() . ' ' . __DIR__ . '/../../resources/install_nodejs.sh');
+						} else {
+							$cmd .= self::getCmdSudo() . ' chmod +x ' . __DIR__ . '/../../resources/install_nodejs.sh;' . self::getCmdSudo() . ' ' . __DIR__ . '/../../resources/install_nodejs.sh' . "\n";
+							$count++;
+							$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+						}
 				}
 			}
 			if ($_foreground) {
