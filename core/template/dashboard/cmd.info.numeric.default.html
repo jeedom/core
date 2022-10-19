@@ -19,14 +19,14 @@
       let minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
       let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
       cmd.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
-      if (_options.display_value >= maxValue) {
-        maxValue = _options.display_value
+      if (_options.value >= maxValue) {
+        maxValue = _options.value
         var angle = 0
-      } else if (_options.display_value <= minValue) {
-        minValue = _options.display_value
+      } else if (_options.value <= minValue) {
+        minValue = _options.value
         var angle = -180
       } else {
-        var angle = (((_options.display_value - minValue) * 180) / (maxValue - minValue)) - 180
+        var angle = (((_options.value - minValue) * 180) / (maxValue - minValue)) - 180
       }
       cmd.find('.gaugeValue').css('transform', 'scale(0.94) rotate('+angle+'deg)')
       cmd.find('.state strong').first().text(_options.display_value+' '+_options.unit)
