@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.3
 
+## 4.3.3
+
+- Amélioration de la verification de la version de nodejs/npm
+
 ## 4.3.2
 
 - Correction d'un soucis d'affichage de l'état d'une commande info dans la configuration avancé de la commande si la valeur est 0
