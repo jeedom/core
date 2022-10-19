@@ -29,7 +29,7 @@ sendVarToJS('jeephp2js.tableList', $tableList);
         <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="SELECT * FROM eqLogic">{{Select eqLogics}}</a></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="SELECT id, name, configuration FROM eqLogic">{{Select eqLogics configuration}}</a></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="SELECT * FROM cmd WHERE id=1">{{Select cmd id 1}}</a></li>
-        <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="UPDATE `config` set value=0 WHERE `key`='active'">{{Désactiver tous les plugins}}</a></li>
+        <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="UPDATE `config` set `value`=0 WHERE `key`='active'">{{Désactiver tous les plugins}}</a></li>
       </ul>
       <div id="h3_executeCommand" class="alert alert-info">{{Cliquez sur une commande ci dessus ou éxécutez une commande personnalisée.}}</div>
     </div>
