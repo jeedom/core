@@ -3,6 +3,7 @@
 ## 4.3.4
 
 - Ein Problem mit Hintergrundbildern wurde behoben
+- Ein Fehler mit dem Standardnummern-Widget wurde behoben
 
 ## 4.3.3
 
