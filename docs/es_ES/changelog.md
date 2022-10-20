@@ -2,8 +2,9 @@
 
 ## 4.3.4
 
-- Se solucionó un problema con las imágenes de fondo
-- Se corrigió un error con el widget de número predeterminado
+- Se solucionó un problema con las imágenes de fondo.
+- Se corrigió un error con el widget de número predeterminado.
+- Se corrigió el error de inclusión con algunos complementos (*nueces* por ejemplo).
 
 ## 4.3.3
 

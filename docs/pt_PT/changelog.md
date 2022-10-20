@@ -2,8 +2,9 @@
 
 ## 4.3.4
 
-- Corrigido um problema com imagens de fundo
-- Corrigido um bug com o widget de número padrão
+- Corrigido um problema com imagens de fundo.
+- Corrigido um bug com o widget de número padrão.
+- Corrigido erro de inclusão com alguns plugins (*nozes* por exemplo).
 
 ## 4.3.3
 

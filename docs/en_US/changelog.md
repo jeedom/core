@@ -2,8 +2,9 @@
 
 ## 4.3.4
 
-- Fixed an issue with background images
-- Fixed a bug with the default number widget
+- Fixed an issue with background images.
+- Fixed a bug with the default number widget.
+- Fixed inclusion error with some plugins (*nuts* for example).
 
 ## 4.3.3
 
