@@ -1545,16 +1545,16 @@ class cmd {
 				$template = getTemplate('core', $_version, 'cmd.error');
 				$replace['#state#'] = 'N/A';
 			} else {
-				$replace['#state#'] = $this->execCmd();
-				if (strpos($replace['#state#'], 'error::') !== false) {
+				$replace['#value#'] = $this->execCmd();
+				if (strpos($replace['#value#'], 'error::') !== false) {
 					$template = getTemplate('core', $_version, 'cmd.error');
-					$replace['#state#'] = str_replace('error::', '', $replace['#state#']);
+					$replace['#value#'] = str_replace('error::', '', $replace['#value#']);
 				} else {
 					if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
-						$replace['#state#'] = ($replace['#state#'] == 1) ? 0 : 1;
+						$replace['#value#'] = ($replace['#value#'] == 1) ? 0 : 1;
 					}
-					if ($this->getSubType() == 'numeric' && trim($replace['#state#']) === '') {
-						$replace['#state#'] = 0;
+					if ($this->getSubType() == 'numeric' && trim($replace['#value#']) === '') {
+						$replace['#value#'] = 0;
 					}
 					if ($this->getSubType() == 'numeric' && trim($replace['#unite#']) != '') {
 						if ($this->getConfiguration('historizeRound') !== '' && is_numeric($this->getConfiguration('historizeRound')) && $this->getConfiguration('historizeRound') >= 0) {
@@ -1562,11 +1562,13 @@ class cmd {
 						} else {
 							$round = 99;
 						}
-						$replace['#value#'] = $replace['#state#'];
-						$valueInfo = self::autoValueArray($replace['#state#'], $round, $replace['#unite#']);
+						$valueInfo = self::autoValueArray($replace['#value#'], $round, $replace['#unite#']);
 						$replace['#state#'] = $valueInfo[0];
 						$replace['#unite#'] = $valueInfo[1];
 					}
+				}
+				if (!isset($replace['#state#'])) {
+					$replace['#state#'] = $replace['#value#'];
 				}
 				if (method_exists($this, 'formatValueWidget')) {
 					$replace['#state#'] = $this->formatValueWidget($replace['#state#']);
