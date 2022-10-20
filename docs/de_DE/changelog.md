@@ -2,8 +2,9 @@
 
 ## 4.3.4
 
-- Ein Problem mit Hintergrundbildern wurde behoben
-- Ein Fehler mit dem Standardnummern-Widget wurde behoben
+- Ein Problem mit Hintergrundbildern wurde behoben.
+- Ein Fehler mit dem Standardnummern-Widget wurde behoben.
+- Einschlussfehler bei einigen Plugins behoben (*Nüsse* zum Beispiel).
 
 ## 4.3.3
 
