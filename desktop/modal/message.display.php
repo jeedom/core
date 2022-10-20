@@ -19,7 +19,7 @@ if (!isConnect()) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
 
-$selectPlugin = init('plugin');
+$selectPlugin = init('selectPlugin');
 if ($selectPlugin != '') {
   $listMessage = message::byPlugin($selectPlugin);
 } else {
@@ -91,7 +91,7 @@ if ($selectPlugin != '') {
   $("#sel_plugin").on('change', function(event) {
     $('#md_modal').dialog({
       title: "{{Centre de Messages}}"
-    }).load('index.php?v=d&p=message&plugin=' + $('#sel_plugin').value() + '&ajax=1')
+    }).load('index.php?v=d&modal=message.display&selectPlugin=' + $('#sel_plugin').value()).dialog('open')
   })
 
   $("#bt_clearMessage").on('click', function(event) {
@@ -113,7 +113,7 @@ if ($selectPlugin != '') {
   $('#bt_refreshMessage').on('click', function(event) {
     $('#md_modal').dialog({
       title: "{{Centre de Messages}}"
-    }).load('index.php?v=d&p=message&ajax=1').dialog('open')
+    }).load('index.php?v=d&modal=message.display').dialog('open')
   })
 
   $('#table_message').on({
