@@ -1264,6 +1264,9 @@
     "changelog.md": {
         "Répéter les valeurs identiques (Oui": "Repeat identical values (Yes",
         "Changelog Jeedom V4.3": "Changelog Jeedom V4.3",
+        "4.3.4": "4.3.4",
+        "Correction d'un soucis sur les images de fond": "Fixed an issue with background images",
+        "Correction d'un bug avec le widget numerique par defaut": "Fixed a bug with the default number widget",
         "4.3.3": "4.3.3",
         "Amélioration de la vérification de la version de nodejs\/npm": "Improved nodejs\/npm version checking",
         "4.3.2": "4.3.2",
