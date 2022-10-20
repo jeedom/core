@@ -803,6 +803,8 @@
         "displayPlan();\"><li class=\"monmenu\"><div class=\"imagette\"><img src=\"theme1\/images\/new\/home": "displayPlan();\"><li class=\"monmenu\"><div class=\"imagette\"><img src=\"theme1\/images\/new\/home",
         "Doc dev": "Doc dev",
         "cf": "cf",
+        "ici": "ici",
+        "Article du blog": "Article du blog",
         "Changelog Jeedom V4.2": "Changelog Jeedom V4.2",
         "4.2.21": "4.2.21",
         "Correction d'un bug sur les résumés": "Correction d'un bug sur les résumés",
@@ -1419,7 +1421,6 @@
         "Nombreuses corrections de bugs": "Nombreuses corrections de bugs",
         "Corrections de sécurité": "Corrections de sécurité",
         "Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5": "Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5",
-        "ici": "ici",
         "Le plugin widget n'est pas compatible avec cette version de Jeedom et ne sera plus supporté (car les fonctionnalités ont été reprise en interne sur le core": "Le plugin widget n'est pas compatible avec cette version de Jeedom et ne sera plus supporté (car les fonctionnalités ont été reprise en interne sur le core",
         "Plus d'informations": "Plus d'informations",
         "Si après la mise à jour vous avez une erreur sur le Dashboard essayez de redémarrer votre box pour qu'elle prenne bien les nouveaux ajout de composants en compte": "Si après la mise à jour vous avez une erreur sur le Dashboard essayez de redémarrer votre box pour qu'elle prenne bien les nouveaux ajout de composants en compte"

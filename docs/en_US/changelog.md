@@ -57,6 +57,8 @@ You must now use:
 
 see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.3).
 
+Blog post [here](https://blog.jeedom.com/6739-jeedom-4-3/)
+
 # Changelog Jeedom V4.2
 
 ## 4.2.21

@@ -57,6 +57,8 @@ Você deve agora usar:
 
 Vejo [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.3).
 
+Postagem do blog [aqui](https://blog.jeedom.com/6739-jeedom-4-3/)
+
 # Changelog Jeedom V4.2
 
 ## 4.2.21
