@@ -1539,11 +1539,12 @@ class cmd {
 			}
 		}
 		if ($this->getType() == 'info') {
-			$replace['#state#'] = '';
+			$replace['#value#'] = '';
 			$replace['#tendance#'] = '';
 			if ($this->getEqLogic()->getIsEnable() == 0) {
 				$template = getTemplate('core', $_version, 'cmd.error');
-				$replace['#state#'] = 'N/A';
+				$replace['#value#'] = 'N/A';
+				$replace['#state#'] = $replace['#value#'];
 			} else {
 				$replace['#value#'] = $this->execCmd();
 				if (strpos($replace['#value#'], 'error::') !== false) {
