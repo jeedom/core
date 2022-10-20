@@ -1562,7 +1562,7 @@ class cmd {
 						} else {
 							$round = 99;
 						}
-
+						$replace['#value#'] = $replace['#state#'];
 						$valueInfo = self::autoValueArray($replace['#state#'], $round, $replace['#unite#']);
 						$replace['#state#'] = $valueInfo[0];
 						$replace['#unite#'] = $valueInfo[1];

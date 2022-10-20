@@ -3,6 +3,7 @@
 ## 4.3.4
 
 - Correction d'un soucis sur les images de fond
+- Correction d'un bug avec le widget numerique par defaut
 
 ## 4.3.3
 
