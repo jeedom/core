@@ -57,6 +57,8 @@ Sie müssen jetzt verwenden:
 
 sehen [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.3).
 
+Blogeintrag [Hier](https://blog.jeedom.com/6739-jeedom-4-3/)
+
 # Änderungsprotokoll Jeedom V4.2
 
 ## 4.2.21
