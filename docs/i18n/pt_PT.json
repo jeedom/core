@@ -1264,6 +1264,8 @@
     "changelog.md": {
         "Répéter les valeurs identiques (Oui": "Repita valores idênticos (Sim",
         "Changelog Jeedom V4.3": "Changelog Jeedom V4.3",
+        "4.3.4": "4.3.4",
+        "Correction d'un soucis sur les images de fond": "Corrigido um problema com imagens de fundo",
         "4.3.3": "4.3.3",
         "Amélioration de la vérification de la version de nodejs\/npm": "Verificação de versão nodejs\/npm aprimorada",
         "4.3.2": "4.3.2",

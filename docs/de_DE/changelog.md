@@ -1,5 +1,9 @@
 # Änderungsprotokoll Jeedom V4.3
 
+## 4.3.4
+
+- Ein Problem mit Hintergrundbildern wurde behoben
+
 ## 4.3.3
 
 - Versionsprüfung von nodejs/npm verbessert.

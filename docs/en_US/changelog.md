@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.3
 
+## 4.3.4
+
+- Fixed an issue with background images
+
 ## 4.3.3
 
 - Improved nodejs/npm version checking.
