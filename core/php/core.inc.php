@@ -61,7 +61,7 @@ function jeedomAutoload($_classname) {
 		/* autoload for plugins : no namespace */
 		$classname = str_replace(array('Real', 'Cmd'), '', $_classname);
 		$plugin_active = config::byKey('active', $classname, null);
-		if ($plugin_active === null && strpos($classname, '_') !== false) {
+		if (($plugin_active === null || $plugin_active == '' || $plugin_active == 0) && strpos($classname, '_') !== false) {
 			$classname = explode('_', $classname)[0];
 			$plugin_active = config::byKey('active', $classname, null);
 		}
@@ -69,9 +69,9 @@ function jeedomAutoload($_classname) {
 			try {
 				include_file('core', $classname, 'class', $classname);
 			} catch (Exception $e) {
-				echo ($e->getMessage());
+				
 			} catch (Error $e) {
-				die($e->getMessage());
+				
 			}
 		}
 	}

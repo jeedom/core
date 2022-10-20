@@ -57,6 +57,8 @@ Ahora debes usar:
 
 ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.3).
 
+Entrada en el blog [aquí](https://blog.jeedom.com/6739-jeedom-4-3/)
+
 # Registro de cambios Jeedom V4.2
 
 ## 4.2.21
