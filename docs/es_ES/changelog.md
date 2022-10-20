@@ -1,5 +1,9 @@
 # Registro de cambios Jeedom V4.3
 
+## 4.3.4
+
+- Se solucionó un problema con las imágenes de fondo
+
 ## 4.3.3
 
 - Comprobación mejorada de la versión de nodejs/npm.
