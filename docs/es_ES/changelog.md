@@ -3,6 +3,7 @@
 ## 4.3.4
 
 - Se solucionó un problema con las imágenes de fondo
+- Se corrigió un error con el widget de número predeterminado
 
 ## 4.3.3
 

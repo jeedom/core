@@ -3,6 +3,7 @@
 ## 4.3.4
 
 - Fixed an issue with background images
+- Fixed a bug with the default number widget
 
 ## 4.3.3
 
