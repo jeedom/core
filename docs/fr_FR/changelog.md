@@ -57,6 +57,8 @@ Il faut maintenant utiliser:
 
 cf [Doc dev](https://doc.jeedom.com/fr_FR/dev/core4.3).
 
+Article du blog [ici](https://blog.jeedom.com/6739-jeedom-4-3/)
+
 # Changelog Jeedom V4.2
 
 ## 4.2.21
