@@ -961,6 +961,9 @@ class jeeObject {
 				$infos['cmd'] = str_replace('#' . $cmd->getId() . '#', $value, $infos['cmd']);
 			}
 			$value = evaluate($infos['cmd']);
+			if (is_array($value)) {
+				continue;
+			}
 
 			$value = trim($value, '"');
 			if (isset($infos['invert']) && $infos['invert'] == 1) {
