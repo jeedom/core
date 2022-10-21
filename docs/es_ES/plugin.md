@@ -98,7 +98,7 @@ Al hacer clic en el icono de un complemento, abre su página de configuración.
 - **Autor** : El autor del complemento, enlace al mercado y los complementos de este autor.
 - **Licencia** : Indica la licencia del complemento que generalmente será AGPL.
 
-- **Acción** : Le permite habilitar o deshabilitar el complemento. El botón **Abrir** Le permite ir directamente a la página del complemento.
+- **Valores** : Le permite habilitar o deshabilitar el complemento. El botón **Abrir** Le permite ir directamente a la página del complemento.
 - **Versión** : La versión del complemento instalado.
 - **Prerrequisitos** : Indica la versión mínima de Jeedom requerida para el complemento.
 
