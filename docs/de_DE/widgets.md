@@ -146,7 +146,7 @@ Sobald Sie sich auf der Konfigurationsseite eines Widgets befinden, können Sie 
 Einmal auf der Seite **Extras → Widgets** Sie müssen auf die Schaltfläche klicken "**Addieren**" und geben Sie Ihrem neuen Widget einen Namen.
 
 Nächste :
-- Sie wählen, ob es für eine Typreihenfolge gilt **Aktion** Woher **Information**.
+- Sie wählen, ob es für eine Typreihenfolge gilt **Aktie** Woher **Information**.
 - Abhängig von der vorherigen Auswahl müssen Sie **Wählen Sie den Subtyp** der Bestellung.
 - Zu guter Letzt **Die Vorlage** unter denen, die gemäß den vorherigen Auswahlmöglichkeiten verfügbar sein werden.
 - Sobald die Vorlage ausgewählt wurde, zeigt Jeedom die Konfigurationsoptionen dafür unten an.

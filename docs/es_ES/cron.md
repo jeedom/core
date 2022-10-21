@@ -34,7 +34,7 @@ En esta tabla, encontramos :
 - **Última duración** : Último tiempo de ejecución de la tarea (un demonio siempre estará en 0s, no te preocupes porque otras tareas pueden estar en 0s).
 - **Estado** : Estado actual de la tarea (como recordatorio, una tarea daemon siempre se "ejecuta"").
 
-- **Acción** :
+- **Valores** :
     - **Detalles** : Ver el cron en detalle (como se almacena en la base).
     - **Comenzar / Parar** : Iniciar o detener la tarea (dependiendo de su estado).
     - **Supresión** : Eliminar tarea.

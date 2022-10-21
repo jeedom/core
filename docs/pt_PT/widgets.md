@@ -146,7 +146,7 @@ Uma vez na página de configuração de um widget, um menu de contexto é acess�
 Uma vez na página **Ferramentas → Widgets** você tem que clicar no botão "**Adicionar**" e dê um nome ao seu novo widget.
 
 Próximo :
-- Você escolhe se isso se aplica a um pedido de tipo **Açao** Onde **Em formação**.
+- Você escolhe se isso se aplica a um pedido de tipo **Ações** Onde **Em formação**.
 - Dependendo da escolha anterior, você terá que **escolha o subtipo** da ordem.
 - Afinal **o modelo** entre aqueles que estarão disponíveis de acordo com as escolhas anteriores.
 - Uma vez que o modelo foi escolhido, Jeedom exibe as opções de configuração para ele abaixo.

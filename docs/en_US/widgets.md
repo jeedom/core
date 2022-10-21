@@ -146,7 +146,7 @@ Once on the configuration page of a widget, a context menu is accessible by `` R
 Once on the page **Tools → Widgets** you have to click on the button "**Add**" and give a name to your new widget.
 
 Next :
-- You choose whether it applies to an order of type **Action** Where **Information**.
+- You choose whether it applies to an order of type **Stock** Where **Information**.
 - Depending on the previous choice, you will have to **choose the subtype** of the order.
 - At last **the template** among those which will be available according to the previous choices.
 - Once the template has been chosen, Jeedom displays the configuration options for it below.

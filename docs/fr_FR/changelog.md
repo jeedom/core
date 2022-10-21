@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.3
 
+## 4.3.5
+
+- Correction de bugs.
+
 ## 4.3.4
 
 - Correction d'un soucis sur les images de fond.
@@ -49,11 +53,11 @@
 
 - Pour les utilisateurs qui utilisent des menus dans leurs designs sous la forme :
 
-`<a onClick="planHeader_id=15; displayPlan();"><li class="monmenu"><div class="imagette"><img src="theme1/images/new/home.png" height=30px></div></br></li></a>`
+``<a onClick="planHeader_id=15; displayPlan();"><li class="monmenu"><div class="imagette"><img src="theme1/images/new/home.png" height=30px></div></br></li></a>``
 
 Il faut maintenant utiliser:
 
-`<a onClick="jeephp2js.planHeader_id=15; jeeFrontEnd.plan.displayPlan();"><li class="monmenu"><div class="imagette"><img src="theme1/images/new/home.png" height=30px></div></br></li></a>`
+``<a onClick="jeephp2js.planHeader_id=15; jeeFrontEnd.plan.displayPlan();"><li class="monmenu"><div class="imagette"><img src="theme1/images/new/home.png" height=30px></div></br></li></a>``
 
 cf [Doc dev](https://doc.jeedom.com/fr_FR/dev/core4.3).
 
@@ -198,9 +202,9 @@ Article du blog [ici](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **Scénario** : Bugfix des copier / coller et undo / redo (réécriture complète).
 - **Scénario** : Ajout des fonctions de calcul ``averageTemporal(commande,période)`` & ``averageTemporalBetween(commande,start,end)`` permettant d'obtenir la moyenne pondérée par la durée sur la période.
 - **Scénario** : Ajout du support des Types Génériques dans les scénarios.
-	- Déclencheur : `#genericType(LIGHT_STATE,#[Salon]#)# > 0`
-	- IF `genericType(LIGHT_STATE,#[Salon]#) > 0`
-	- Action `genericType`
+	- Déclencheur : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0``
+	- IF ``genericType(LIGHT_STATE,#[Salon]#) > 0``
+	- Action ``genericType``
 - **Objets** : Les plugins peuvent maintenant demander des paramètres spécifique propres aux objets.
 - **Utilisateurs** : Les plugins peuvent maintenant demander des paramètres spécifique propres aux utilisateurs.
 - **Utilisateurs** : Possibilité de gérer les profils des différents utilisateurs Jeedom depuis la page de gestion des utilisateurs.

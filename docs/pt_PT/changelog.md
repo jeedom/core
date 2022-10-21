@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.3
 
+## 4.3.5
+
+- Bugfix.
+
 ## 4.3.4
 
 - Corrigido um problema com imagens de fundo.
@@ -49,11 +53,11 @@
 
 - Para usuários que usam menus em seus designs no formulário :
 
-<html>`<li class="monmenu"><div class="imagette">.png" altura=30px></div></br></li> `
+``<a onClick="planHeader_id=15; displayPlan();"><li class="monmenu"><div class="imagette"><img src="theme1/images/new/home.png" height=30px></div></br></li></a>``
 
 Você deve agora usar:
 
-<html>`.planHeader_id=15; jeeFrontEnd.plan.<html>displayPlan();"><li class="monmenu"><div class="imagette">.png" altura=30px></div></br></li> `
+``<a onClick="jeephp2js.planHeader_id=15; jeeFrontEnd.plan.displayPlan();"><li class="monmenu"><div class="imagette"><img src="theme1/images/new/home.png" height=30px></div></br></li></a>``
 
 Vejo [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.3).
 
@@ -196,11 +200,11 @@ Postagem do blog [aqui](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **Plugins / Gerenciamento** : Exibição da categoria do plugin e um link para abrir diretamente sua página sem passar pelo menu Plugins.
 - **Cenas** : Função de fallback de código (*dobradura de código*) no *Blocos de Código*. Atalhos Ctrl + Y e Ctrl + I.
 - **Cenas** : Copiar / colar e desfazer / refazer correção de bug (reescrita completa).
-- **Cenas** : Adicionando funções de cálculo ````averageTemporal(commande,période)```` E ````averageTemporalBetween(commande,start,end)```` permitindo obter a média ponderada pela duração ao longo do período.
+- **Cenas** : Adicionando funções de cálculo ``averageTemporal(commande,période)`` E ``averageTemporalBetween(commande,start,end)`` permitindo obter a média ponderada pela duração ao longo do período.
 - **Cenas** : Adicionado suporte para tipos genéricos em cenários.
-	- Desencadear : ``#genericType(LIGHT_STATE,#[Salão]#)# > 0`
-	- IF `genericType (LIGHT_STATE,#[Salão]#) > 0`
-	- Ação `GenericType`
+	- Desencadear : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0``
+	- E SE ``genericType(LIGHT_STATE,#[Salon]#) > 0``
+	- Ações ``genericType``
 - **Objetos** : Plugins agora podem solicitar parâmetros específicos para objetos.
 - **Comercial** : Plugins agora podem solicitar parâmetros específicos para usuários.
 - **Comercial** : Capacidade de gerenciar os perfis de diferentes usuários Jeedom a partir da página de gerenciamento de usuários.
@@ -215,7 +219,7 @@ Postagem do blog [aqui](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **Configuração** : Configurações OSDB: Adição de uma ferramenta para edição em massa de equipamentos, comandos, objetos, cenários.
 - **Configuração** : Configurações OSDB: Adicionar um construtor de consulta SQL dinâmica.
 - **Configuração**: Possibilidade de desativar o monitoramento de nuvem (Administração / Atualizações / Mercado).
-- **jeeCLI** : Adição de ````jeeCli.php```` na pasta core / php do Jeedom para gerenciar algumas funções de linha de comando.
+- **jeeCLI** : Adição de ``jeeCli.php`` na pasta core / php do Jeedom para gerenciar algumas funções de linha de comando.
 - *Grandes melhorias na interface em termos de desempenho / capacidade de resposta. jeedomUtils {}, jeedomUI {}, menu principal reescrito em css puro, remoção de initRowWorflow (), simplificação do código, correções de css para telas pequenas, etc.*
 
 ### 4.2 : Widgets principais
@@ -240,7 +244,7 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 
 - Para aumentar significativamente a segurança da solução Jeedom, o sistema de acesso a arquivos mudou. Antes de certos arquivos serem proibidos em certos locais. De v4.2, os arquivos são explicitamente permitidos por tipo e localização.
 - Mudança no nível da API, anteriormente "tolerante" se você chegou com a chave do núcleo indicando o plugin XXXXX. Este não é mais o caso, você deve chegar com a chave correspondente ao plugin.
-- Na API http, você pode indicar um nome de plugin em tipo, isso não é mais possível. O tipo correspondente ao tipo de solicitação (cenário, eqLogic, cmd, etc.) deve corresponder ao plugin. Por exemplo, para o plugin virtual que você tinha ````type=virtual```` no url, agora é necessário substituir por ````plugin=virtualEtype=event````.
+- Na API http, você pode indicar um nome de plugin em tipo, isso não é mais possível. O tipo correspondente ao tipo de solicitação (cenário, eqLogic, cmd, etc.) deve corresponder ao plugin. Por exemplo, para o plugin virtual que você tinha ``type=virtual`` no url, agora é necessário substituir por ``plugin=virtualEtype=event``.
 - Reforço de sessões : Mude para sha256 com 64 caracteres em modo estrito.
 
 A equipe da Jeedom está ciente de que essas mudanças podem ter um impacto e ser embaraçosas para você, mas não podemos comprometer a segurança.

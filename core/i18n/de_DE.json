@@ -3141,6 +3141,7 @@
         "Êtes-vous sûr de vouloir restaurer": "Sind Sie sicher, dass Sie wiederherstellen möchten?",
         "avec la sauvegarde": "mit Backup",
         "Une fois lancée cette opération ne peut être annulée.": "Nach dem Start kann dieser Vorgang nicht abgebrochen werden",
+        "IMPORTANT la restauration d\\'un backup est une opération risquée et n\\'est à utiliser qu\\'en dernier recours": "WICHTIG Das Wiederherstellen einer Sicherung ist ein riskanter Vorgang und sollte nur als letzter Ausweg verwendet werden",
         "Êtes-vous sûr de vouloir supprimer la sauvegarde": "Sind Sie sicher, dass Sie die Sicherung löschen möchten?",
         "Sauvegarde supprimée avec succès": "Backup erfolgreich gelöscht",
         "Fichier(s) ajouté(s) avec succès": "Datei (en) erfolgreich hinzugefügt",
