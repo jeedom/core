@@ -1264,6 +1264,8 @@
     "changelog.md": {
         "Répéter les valeurs identiques (Oui": "Repeat identical values (Yes",
         "Changelog Jeedom V4.3": "Changelog Jeedom V4.3",
+        "4.3.5": "4.3.5",
+        "Correction de bugs": "Bugfix",
         "4.3.4": "4.3.4",
         "Correction d'un soucis sur les images de fond": "Fixed an issue with background images",
         "Correction d'un bug avec le widget numerique par défaut": "Fixed a bug with the default number widget",
@@ -1722,7 +1724,6 @@
         "Renforcement de la securité des cookies": "Reinforcement of cookie security",
         "Utilisation de chromium (si il est installé) pour les rapports": "Using chromium (if installed) for reports",
         "Correction d'un soucis de calcul de temps d'état sur les widgets si le fuseau horaire de jeedom n'est pas le meme que celui du navigateur": "Fixed a problem with calculating state time on widgets if the jeedom time zone is not the same as that of the browser",
-        "Correction de bugs": "Bugfix",
         "4.0.55": "4.0.55",
         "Le nouveau dns (\\*.eu.jeedom": "The new dns (\\*. Eu.jeedom",
         "link) devient le DNS primaire (l'ancien DNS marche toujours": "link) becomes the primary DNS (the old DNS still works",
