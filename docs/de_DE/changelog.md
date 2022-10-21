@@ -1,5 +1,9 @@
 # Änderungsprotokoll Jeedom V4.3
 
+## 4.3.5
+
+- Bug-Fix
+
 ## 4.3.4
 
 - Ein Problem mit Hintergrundbildern wurde behoben.

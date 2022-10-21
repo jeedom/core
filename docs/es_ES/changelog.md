@@ -1,5 +1,9 @@
 # Registro de cambios Jeedom V4.3
 
+## 4.3.5
+
+- Arreglo del fallo
+
 ## 4.3.4
 
 - Se solucionó un problema con las imágenes de fondo.

@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.3
 
+## 4.3.5
+
+- Bugfix
+
 ## 4.3.4
 
 - Corrigido um problema com imagens de fundo.
