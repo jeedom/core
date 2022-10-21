@@ -25,6 +25,7 @@ class plugin {
 	private $id;
 	private $name;
 	private $description;
+	private $compatibility;
 	private $license;
 	private $installation;
 	private $author;
@@ -85,6 +86,7 @@ class plugin {
 				$plugin->description = $plugin->description['fr_FR'];
 			}
 		}
+		$plugin->compatibility = (isset($data['compatibility'])) ? $data['compatibility'] : '';
 		$plugin->license = (isset($data['licence'])) ? $data['licence'] : '';
 		$plugin->license = (isset($data['license'])) ? $data['license'] : $plugin->license;
 		$plugin->author = (isset($data['author'])) ? $data['author'] : '';
@@ -1075,6 +1077,16 @@ class plugin {
 			return $this->description;
 		}
 		return nl2br($this->description);
+	}
+
+	public function getCompatibility() {
+		if (is_array($this->compatibility)) {
+			foreach ($this->compatibility as $key => &$value) {
+				$value = nl2br($value);
+			}
+			return $this->compatibility;
+		}
+		return nl2br($this->compatibility);
 	}
 
 	public function getSpecialAttributes() {
