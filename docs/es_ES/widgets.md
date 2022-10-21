@@ -146,7 +146,7 @@ Una vez en la página de configuración de un widget, se puede acceder a un men�
 Una vez en la página **Herramientas → Widgets** tienes que hacer clic en el botón "**Agregar**" y dale un nombre a tu nuevo widget.
 
 Próximo :
-- Tú eliges si se aplica a una orden de tipo **Valores** Donde **Información**.
+- Tú eliges si se aplica a una orden de tipo **Acción** Donde **Información**.
 - Dependiendo de la elección anterior, deberá **elige el subtipo** De la orden.
 - Por fin **la plantilla** entre los que estarán disponibles según las opciones anteriores.
 - Una vez que se ha elegido la plantilla, Jeedom muestra las opciones de configuración para ella a continuación.

@@ -98,7 +98,7 @@ Durch Klicken auf das Symbol eines Plugins öffnen Sie dessen Konfigurationsseit
 - **Autor** : Der Autor des Plugins, Link zum Markt und die Plugins dieses Autors.
 - **Lizenz** : Gibt die Lizenz des Plugins an, bei dem es sich im Allgemeinen um AGPL handelt.
 
-- **Aktie** : Ermöglicht das Aktivieren oder Deaktivieren des Plugins. Die Taste **Offen** Ermöglicht den direkten Zugriff auf die Plugin-Seite.
+- **Aktion** : Ermöglicht das Aktivieren oder Deaktivieren des Plugins. Die Taste **Offen** Ermöglicht den direkten Zugriff auf die Plugin-Seite.
 - **Ausführung** : Die Version des installierten Plugins.
 - **Voraussetzungen** : Gibt die für das Plugin erforderliche Jeedom-Mindestversion an.
 

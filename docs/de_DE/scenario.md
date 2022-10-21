@@ -110,7 +110,7 @@ Um die Blöcke im Szenario einfacher zu gestalten und nicht ständig neu anordne
 Hier sind die verschiedenen Arten von Blöcken verfügbar :
 
 - **If / Then / Oder** : Ermöglicht die Ausführung von Aktionen unter Bedingungen (wenn dies, dann das).
-- **Aktie** : Ermöglicht das Starten einfacher Aktionen ohne Bedingungen.
+- **Aktion** : Ermöglicht das Starten einfacher Aktionen ohne Bedingungen.
 - **Schleife** : Ermöglicht die wiederholte Ausführung von Aktionen von 1 bis zu einer definierten Zahl (oder sogar dem Wert eines Sensors oder einer Zufallszahl…)).
 - **Im** : Ermöglicht das Starten einer Aktion in X Minute (n) (0 ist ein möglicher Wert). Die Besonderheit ist, dass die Aktionen im Hintergrund gestartet werden, sodass sie den Rest des Szenarios nicht blockieren. Es ist also ein nicht blockierender Block.
 - **BEI** : Ermöglicht es Jeedom, die Aktionen des Blocks zu einem bestimmten Zeitpunkt (in der Form hhmm) zu starten). Dieser Block ist nicht blockierend. Ex : 0030 für 00:30 oder 0146 für 1h46 und 1050 für 10h50.
