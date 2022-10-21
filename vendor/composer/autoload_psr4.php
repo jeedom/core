@@ -41,6 +41,7 @@ return array(
     'League\\OAuth2\\Client\\' => array($vendorDir . '/league/oauth2-client/src'),
     'League\\Flysystem\\WebDAV\\' => array($vendorDir . '/league/flysystem-webdav/src'),
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
+    'InfluxDB\\' => array($vendorDir . '/influxdb/influxdb-php/src/InfluxDB'),
     'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
     'GuzzleHttp\\Promise\\' => array($vendorDir . '/guzzlehttp/promises/src'),
     'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
