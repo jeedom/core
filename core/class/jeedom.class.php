@@ -75,7 +75,7 @@ class jeedom {
 			'logo_dark',
 			'logo_mobile_light',
 			'logo_mobile_dark',
-			'objectBackgroundBlur',
+			'css::objectBackgroundBlur',
 			'theme_displayAsTable',
 			'interface::toast::position',
 			'interface::toast::duration',
@@ -84,7 +84,9 @@ class jeedom {
 			'interface::background::tools',
 			'interface::background::opacitylight',
 			'interface::background::opacitydark',
-			'interface::mobile::onecolumn'
+			'interface::mobile::onecolumn',
+			'css::background-opacity',
+			'css::border-radius'
 		);
 
 		$return = config::byKeys($key);
@@ -1648,7 +1650,7 @@ class jeedom {
 			$result = 'smart';
 		} else if (file_exists('/etc/update-motd.d/10-armbian-header-jeedomatlas')) {
 			$result = 'Atlas';
-		} else if (strpos($hostname, 'Luna') !== false){
+		} else if (strpos($hostname, 'Luna') !== false) {
 			$result = 'Luna';
 		}
 		config::save('hardware_name', $result);
