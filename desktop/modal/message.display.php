@@ -91,7 +91,7 @@ if ($selectPlugin != '') {
   $("#sel_plugin").on('change', function(event) {
     $('#md_modal').dialog({
       title: "{{Centre de Messages}}"
-    }).load('index.php?v=d&modal=message.display&selectPlugin=' + $('#sel_plugin').value()).dialog('open')
+    }).load('index.php?v=d&modal=message.display&selectPlugin=' + encodeURI($('#sel_plugin').value())).dialog('open')
   })
 
   $("#bt_clearMessage").on('click', function(event) {
