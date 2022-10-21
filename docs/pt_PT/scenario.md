@@ -110,7 +110,7 @@ Para maior comodidade e não ter que reordenar constantemente os blocos no cená
 Aqui estão os diferentes tipos de blocos disponíveis :
 
 - **If / Then / Ou** : Permite que ações sejam realizadas sob condições (se este, então aquele).
-- **Açao** : Permite iniciar ações simples sem nenhuma condição.
+- **Ações** : Permite iniciar ações simples sem nenhuma condição.
 - **Laço** : Permite que ações sejam executadas repetidamente de 1 a um número definido (ou mesmo o valor de um sensor ou um número aleatório…).
 - **Dentro** : Permite iniciar uma ação em X minuto (s) (0 é um valor possível). A peculiaridade é que as ações são iniciadas em segundo plano, para que não bloqueiem o restante do cenário. Portanto, é um bloco sem bloqueio.
 - **NO** : Permite que o Jeedom inicie as ações do bloco em um determinado momento (no formato hhmm). Este bloco é sem bloqueio. Ex : 0030 para 00:30 ou 0146 para 1h46 e 1050 para 10h50.

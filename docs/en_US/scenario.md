@@ -110,7 +110,7 @@ For more convenience and not having to constantly reorder the blocks in the scen
 Here are the different types of blocks available :
 
 - **If / Then / Or** : Allows actions to be carried out under conditions (if this, then that).
-- **Action** : Allows you to launch simple actions without any conditions.
+- **Stock** : Allows you to launch simple actions without any conditions.
 - **Loop** : Allows actions to be performed repeatedly from 1 to a defined number (or even the value of a sensor, or a random number…).
 - **In** : Allows to launch an action in X minute (s) (0 is a possible value). The peculiarity is that the actions are launched in the background, so they do not block the rest of the scenario. So it&#39;s a non-blocking block.
 - **AT** : Allows to tell Jeedom to launch the actions of the block at a given time (in the form hhmm). This block is non-blocking. Ex : 0030 for 00:30, or 0146 for 1h46 and 1050 for 10h50.

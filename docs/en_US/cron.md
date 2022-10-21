@@ -34,7 +34,7 @@ In this table, we find :
 - **Last duration** : Last execution time of the task (a daemon will always be at 0s, don't worry about other tasks can be at 0s).
 - **Status** : Current status of the task (as a reminder, a daemon task is always "run"").
 
-- **Action** :
+- **Stock** :
     - **Details** : See the cron in detail (as stored in base).
     - **Start / Stop** : Start or stop the task (depending on its status).
     - **Deletion** : Delete task.

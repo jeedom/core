@@ -3141,6 +3141,7 @@
         "Êtes-vous sûr de vouloir restaurer": "Are you sure you want to restore",
         "avec la sauvegarde": "with backup",
         "Une fois lancée cette opération ne peut être annulée.": "Once launched, this operation cannot be canceled",
+        "IMPORTANT la restauration d\\'un backup est une opération risquée et n\\'est à utiliser qu\\'en dernier recours": "IMPORTANT restoring a backup is a risky operation and should only be used as a last resort",
         "Êtes-vous sûr de vouloir supprimer la sauvegarde": "Are you sure you want to delete the backup",
         "Sauvegarde supprimée avec succès": "Backup successfully deleted",
         "Fichier(s) ajouté(s) avec succès": "File (s) successfully added",
