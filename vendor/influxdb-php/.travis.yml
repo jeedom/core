@@ -1,0 +1,33 @@
+language: php
+sudo: false
+cache:
+    directories:
+        - $HOME/.composer/cache/files
+
+env:
+    global:
+        - CC_TEST_REPORTER_ID=303a289e61e8e11d8bcae115860c4fffc6e1e7fe2d504d20a773e69bd7641284
+
+matrix:
+    fast_finish: true
+    include:
+        # - php: <7.3 is over EOL. phpunit does not support it anymore so we just ignore this version
+        - php: 7.3
+        - php: 7.4
+        - php: 8.0
+
+before_install:
+    # setup code climate reporter https://docs.codeclimate.com/docs/configuring-test-coverage
+    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+    - chmod +x ./cc-test-reporter
+    - ./cc-test-reporter before-build
+
+install:
+    - composer update --prefer-dist --no-interaction
+
+script:
+    - composer validate --strict --no-check-lock
+    - composer test-ci
+
+after_script:
+  - ./cc-test-reporter after-build -t clover --exit-code $TRAVIS_TEST_RESULT
