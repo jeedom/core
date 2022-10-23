@@ -1264,6 +1264,9 @@
     "changelog.md": {
         "Répéter les valeurs identiques (Oui": "Identische Werte wiederholen (Ja",
         "Changelog Jeedom V4.3": "Änderungsprotokoll Jeedom V4.3",
+        "4.3.6": "4.3.6",
+        "Suppression de la conversion des unitées pour les secondes (s": "Einheitenumrechnung für Sekunden (s) entfernt",
+        "Suppression du menu de mise à jour OS pour les box Jeedom (les mises à jour OS sont gerés par Jeedom SAS": "Entfernung des Betriebssystem-Update-Menüs für Jeedom-Boxen (Betriebssystem-Updates werden von Jeedom SAS verwaltet",
         "4.3.5": "4.3.5",
         "Correction de bugs": "Bug-Fix",
         "4.3.4": "4.3.4",

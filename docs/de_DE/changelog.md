@@ -1,5 +1,10 @@
 # Änderungsprotokoll Jeedom V4.3
 
+## 4.3.6
+
+- Einheitenumrechnung für Sekunden (s) entfernt)
+- Entfernung des Betriebssystem-Update-Menüs für Jeedom-Boxen (Betriebssystem-Updates werden von Jeedom SAS verwaltet)
+
 ## 4.3.5
 
 - Bug-Fix.

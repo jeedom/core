@@ -1,5 +1,10 @@
 # Registro de cambios Jeedom V4.3
 
+## 4.3.6
+
+- Conversión de unidad eliminada por segundo (s))
+- Eliminación del menú de actualización del sistema operativo para las cajas Jeedom (las actualizaciones del sistema operativo son administradas por Jeedom SAS)
+
 ## 4.3.5
 
 - Arreglo del fallo.

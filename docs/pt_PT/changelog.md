@@ -1,5 +1,10 @@
 # Changelog Jeedom V4.3
 
+## 4.3.6
+
+- Conversão de unidade removida por segundos (s))
+- Remoção do menu de atualização do sistema operacional para caixas Jeedom (as atualizações do sistema operacional são gerenciadas pelo Jeedom SAS)
+
 ## 4.3.5
 
 - Bugfix.
