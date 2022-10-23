@@ -92,8 +92,8 @@ $('#bt_saveSummaryScenario').on('click', function() {
     },
     success: function(data) {
       $('#div_alertScenarioJsonEdit').showAlert({message: '{{Sauvegarde réussie}}', level: 'success'})
-      if (typeof printScenario === "function") {
-        printScenario(jeephp2js.md_scenarioJsonEdit_scId)
+      if (typeof jeeFrontEnd.scenario.printScenario === "function") {
+        jeeFrontEnd.scenario.printScenario(jeephp2js.md_scenarioJsonEdit_scId)
       }
     }
   })

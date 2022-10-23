@@ -133,7 +133,7 @@ $('#bt_scenarioTemplateApply').on('click', function() {
         },
         success: function(data) {
           $('#md_modal').dialog('close')
-          printScenario(jeephp2js.md_scenarioTemplate_scId)
+          jeeFrontEnd.scenario.printScenario(jeephp2js.md_scenarioTemplate_scId)
           $.fn.showAlert({message: 'Template appliqué avec succès.', level: 'success'})
         }
       })
