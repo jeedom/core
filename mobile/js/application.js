@@ -167,6 +167,13 @@ jeedomUtils.transitionJeedomBackground = function(_path) {
   jeedomUtils._elBackground.find('#bottom').css('background-image', 'url("../../../../' + _path + '")')
 }
 
+jeedomUtils.changeTheme = function(_theme) {
+  var currentTheme = $('body').attr('data-theme').toLowerCase()
+  if (_theme == 'toggle' || !currentTheme.endsWith(_theme)) {
+    jeedomUtils.switchTheme(jeedom.theme)
+  }
+}
+
 jeedomUtils.switchTheme = function(themeConfig) {
   var theme = 'core/themes/' + themeConfig.mobile_theme_color_night + '/mobile/' + themeConfig.mobile_theme_color_night + '.css'
   var themeShadows = 'core/themes/' + themeConfig.mobile_theme_color_night + '/mobile/shadows.css'

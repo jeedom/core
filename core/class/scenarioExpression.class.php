@@ -1475,6 +1475,10 @@ class scenarioExpression {
 					$this->setLog($scenario, __('Changement design :', __FILE__) . ' ' . $options['plan_id']);
 					event::add('jeedom::gotoplan', $options['plan_id']);
 					return;
+				} elseif ($this->getExpression() == 'changeTheme') {
+					$this->setLog($scenario, __('Changement de thème :', __FILE__) . ' ' . $options['theme']);
+					event::add('changeTheme', $options['theme']);
+					return;
 				} elseif ($this->getExpression() == 'scenario') {
 					if ($scenario !== null && $this->getOptions('scenario_id') == $scenario->getId()) {
 						$actionScenario = &$scenario;

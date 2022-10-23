@@ -345,6 +345,13 @@ jeedomUtils.setJeedomTheme = function() {
     jeedomUtils.switchTheme()
   })
 
+  jeedomUtils.changeTheme = function(_theme) {
+    var currentTheme = $('body').attr('data-theme').toLowerCase()
+    if (_theme == 'toggle' || !currentTheme.endsWith(_theme)) {
+      jeedomUtils.switchTheme()
+    }
+  }
+
   jeedomUtils.switchTheme = function() {
     var theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/'+jeedom.theme.default_bootstrap_theme_night+'.css'
     var themeShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/shadows.css'

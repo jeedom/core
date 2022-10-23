@@ -249,8 +249,8 @@ jeedom.init = function() {
     }
     jeedomUtils.checkThemechange()
   });
-  $body.on('switchTheme', function(_event, _options) {
-    jeedomUtils.switchTheme()
+  $body.on('changeTheme', function(_event, _options) {
+    jeedomUtils.changeTheme(_options)
   });
   if (typeof user_id !== 'undefined') {
     jeedom.changes();
