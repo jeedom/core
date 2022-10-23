@@ -36,7 +36,6 @@ if ($coreRemoteVersion >= '4.2' && $distrib == 'debian') {
 		echo '<div class="col-xs-12 text-center ' . $alertLevel . '"><strong>' . $system . '</strong><br>' . $messageAlert . '</div>';
 	}
 }
-
 $logUpdate = log::get('update', 0, -1);
 if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 	sendVarToJS('jeephp2js.isUpdating', '0');
@@ -54,7 +53,7 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 				<a class="btn btn-info btn-sm roundedLeft" id="bt_checkAllUpdate"><i class="fas fa-sync"></i> {{Vérifier les mises à jour}}
 				</a><a class="btn btn-success btn-sm" id="bt_saveUpdate"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
 				</a><?php if ($showUpdate == true) { ?><a href="#" class="btn btn-sm btn-warning roundedRight" id="bt_updateJeedom"><i class="fas fa-check"></i> {{Mettre à jour}}
-					</a><?php } else if ($showUpgrade == true) { ?><a class="btn btn-sm btn-danger roundedRight" href="index.php?v=d&p=migrate"><i class="fab fa-linux"></i> {{Mettre à niveau}}
+					</a><?php } elseif ($showUpdate == true) { ?><a class="btn btn-sm btn-danger roundedRight" href="index.php?v=d&p=migrate"><i class="fab fa-linux"></i> {{Mettre à niveau}}
 					</a><?php } ?>
 			</span>
 		</div>
@@ -69,7 +68,9 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active"><a href="#coreplugin" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-archive"></i> {{Core et plugins}}</a></li>
-			<li role="presentation"><a href="#os" aria-controls="profile" role="tab" data-toggle="tab" class="bt_refreshOsPackageUpdate" data-forceRefresh="0"><i class="fas fa-box"></i> {{OS/Package}}</a></li>
+			<?php if (!in_array(jeedom::getHardwareName(), array('miniplus', 'smart', 'Atlas', 'Luna'))) { ?>
+				<li role="presentation"><a href="#os" aria-controls="profile" role="tab" data-toggle="tab" class="bt_refreshOsPackageUpdate" data-forceRefresh="0"><i class="fas fa-box"></i> {{OS/Package}}</a></li>
+			<?php } ?>
 			<li role="presentation"><a href="#log" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-info"></i> {{Informations}}</a></li>
 		</ul>
 

@@ -1,5 +1,10 @@
 # Changelog Jeedom V4.3
 
+## 4.3.6
+
+- Suppression de la conversion des unitées pour les secondes (s)
+- Suppression du menu de mise à jour OS pour les box Jeedom (les mises à jour OS sont gerés par Jeedom SAS)
+
 ## 4.3.5
 
 - Correction de bugs.
