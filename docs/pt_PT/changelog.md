@@ -2,8 +2,9 @@
 
 ## 4.3.6
 
-- Conversão de unidade removida por segundos (s))
-- Remoção do menu de atualização do sistema operacional para caixas Jeedom (as atualizações do sistema operacional são gerenciadas pelo Jeedom SAS)
+- Conversão de unidade removida por segundos (s)).
+- Remoção do menu de atualização do sistema operacional para caixas Jeedom (as atualizações do sistema operacional são gerenciadas pelo Jeedom SAS).
+- Adicionando uma ação *Mudar tema* para cenários, ações de valor, ações pré/pós exec : Permite alterar o tema da interface imediatamente, no escuro, claro ou outro (alternar).
 
 ## 4.3.5
 

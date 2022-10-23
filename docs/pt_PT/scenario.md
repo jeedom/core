@@ -488,7 +488,8 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
 - **Excluir bloco IN / A agendado** (remove_inat) : Apagar a programação de todos os blocos dentro e A Cenário.
 - **Evento** (event) : Permite inserir um valor em um comando de tipo de informação arbitrariamente.
 - **Tag** (tag) : Permite adicionar / modificar uma marca (a marca existe apenas durante a execução atual do cenário, diferentemente das variáveis que sobrevivem ao final do cenário).
-- **Coloração de ícones do painel** (setColoredIcon) : permite ativar ou não a coloração de ícones no painel.
+- **Coloração de ícones do painel** (setColoredIcon) : Permite ativar ou não a coloração de ícones no painel.
+- **Mudança de tema** (changetheme) : Permite que você altere o tema da interface atual para Escuro ou Claro.
 - **Exportação histórica** (exportHistory) : permite exportar o histórico em csv de uma encomenda sob a forma de ficheiro (envio por correio por exemplo). Você pode colocar vários comandos (separados por &&). A seleção do período é feita no formulário :
   - "-1 mês "=> -1 mês
   - "-1 dia à meia-noite "=> -1 dia à meia-noite

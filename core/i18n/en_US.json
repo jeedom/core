@@ -438,6 +438,7 @@
         "Tag": "Tags",
         "Coloration des icones": "Icon coloring",
         "Type générique": "Generic type",
+        "changer de thème": "change theme",
         "Pause de x seconde(s)": "Pause of x second (s)",
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "Wait until the condition is valid (maximum 2h)",
         "Création\/modification d’une variable ou de la valeur d’une variable": "Creation \/ modification of a variable or the value of a variable",
@@ -466,8 +467,10 @@
         "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "Allows to send, by a message command, a report of a view, a design or a panel in PNG \/ PDF \/ JPEG \/ SVG",
         "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "Allows you to delete the programming of all IN and AT blocks of the scenario",
         "Permet de pousser une valeur dans une commande de type information de maniere arbitraire": "Allows you to push a value in an information type command arbitrarily",
-        "Permets d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": "Allow to add \/ modify a tag (the tag only exists during the current execution of the scenario unlike the variables that survive the end of the scenario)",
-        "Permets d'activer ou non la coloration des icones sur le dashboard": "Allow to activate or not the coloring of icons on the dashboard"
+        "Permet d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": "Allows you to add\/modify a tag (the tag only exists during the current execution of the scenario unlike the variables which survive at the end of the scenario)",
+        "Permet d'activer ou non la coloration des icones sur le dashboard": "Allows you to activate or not the coloring of icons on the dashboard",
+        "Permet d'actionner des équipements en fonction de types génériques": "Allows you to operate equipment based on generic types",
+        "Permet de changer le thème en cours de l'interface": "Allows you to change the current theme of the interface"
     },
     "desktop\/modal\/cmd.human.insert.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -4454,6 +4457,7 @@
         "Equipement désactivé :": "Disable Equipment:",
         "Equipement activé :": "Enable equipment:",
         "Changement design :": "Design change:",
+        "Changement de thème :": "Theme change:",
         "options :": "options:",
         "Arrêt forcé du scénario :": "Forced termination of the scenario:",
         "Désactivation du scénario :": "Disable scenario:",
@@ -4756,6 +4760,9 @@
     },
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Search icon"
+    },
+    "core\/template\/scenario\/changeTheme.default.html": {
+        "theme": "theme"
     },
     "core\/template\/scenario\/cmd.action.text.default.html": {
         "Message": "Message"

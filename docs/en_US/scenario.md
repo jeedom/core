@@ -488,7 +488,8 @@ In addition to home automation commands, you have access to the following action
 - **Delete programmed IN / A block** (remove_inat) : Allows you to delete the programming of all IN and A blocks of the scenario.
 - **Event** (event) : Allows you to push a value in an information type command arbitrarily.
 - **Tags** (tag) : Allows you to add / modify a tag (the tag only exists during the current execution of the scenario unlike the variables that survive the end of the scenario).
-- **Coloring of dashboard icons** (setColoredIcon) : allows to activate or not the coloring of icons on the dashboard.
+- **Coloring of dashboard icons** (setColoredIcon) : Allows to activate or not the coloring of icons on the dashboard.
+- **Change of theme** (changetheme) : Allows you to change the current interface theme to Dark or Light.
 - **Historical export** (exportHistory) : allows to export the history in csv of an order in the form of a file (sending by mail for example). You can put several commands (separated by &&). The selection of the period is made in the form :
   - "-1 month "=> -1 month
   - "-1 day midnight "=> -1 day at midnight

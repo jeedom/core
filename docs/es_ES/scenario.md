@@ -488,7 +488,8 @@ Además de los comandos de automatización del hogar, tiene acceso a las siguien
 - **Eliminar bloque IN / A programado** (eliminar_inat) : Le permite eliminar la programación de todos los bloques IN y A del escenario.
 - **Evento** (event) : Le permite insertar un valor en un comando de tipo de información arbitrariamente.
 - **Etiquetas** (tag) : Le permite agregar / modificar una etiqueta (la etiqueta solo existe durante la ejecución actual del escenario a diferencia de las variables que sobreviven al final del escenario).
-- **Coloración de los iconos del tablero** (setColoredIcon) : permite activar o no la coloración de iconos en el tablero.
+- **Coloración de los iconos del tablero** (setColoredIcon) : Permite activar o no la coloración de iconos en el tablero.
+- **Cambio de tema** (changetheme) : Le permite cambiar el tema de la interfaz actual a Oscuro o Claro.
 - **Exportación histórica** (exportHistory) : permite exportar el historial en csv de un pedido en forma de archivo (envío por correo por ejemplo). Puede poner varios comandos (separados por &&). La selección del período se realiza en el formulario :
   - "-1 mes "=> -1 mes
   - "-1 día medianoche "=> -1 día a medianoche

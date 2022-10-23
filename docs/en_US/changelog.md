@@ -2,8 +2,9 @@
 
 ## 4.3.6
 
-- Removed unit conversion for seconds (s))
-- Removal of the OS update menu for Jeedom boxes (OS updates are managed by Jeedom SAS)
+- Removed unit conversion for seconds (s)).
+- Removal of the OS update menu for Jeedom boxes (OS updates are managed by Jeedom SAS).
+- Adding an action *changeTheme* for scenarios, value actions, pre/post exec actions : It allows to change the theme of the interface immediately, in dark, light or the other (toggle).
 
 ## 4.3.5
 
