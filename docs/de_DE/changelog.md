@@ -4,6 +4,7 @@
 
 - Einheitenumrechnung für Sekunden (s) entfernt).
 - Entfernung des Betriebssystem-Update-Menüs für Jeedom-Boxen (Betriebssystem-Updates werden von Jeedom SAS verwaltet).
+- Fehler im Verlaufskonfigurationsmodus behoben.
 - Hinzufügen einer Aktion *Thema ändern* für Szenarien, Wertaktionen, Pre-/Post-Exec-Aktionen : Es ermöglicht, das Thema der Benutzeroberfläche sofort zu ändern, in dunkel, hell oder das andere (toggle).
 
 ## 4.3.5

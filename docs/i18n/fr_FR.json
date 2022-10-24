@@ -752,6 +752,7 @@
         "4.3.6": "4.3.6",
         "Suppression de la conversion des unitées pour les secondes (s": "Suppression de la conversion des unitées pour les secondes (s",
         "Suppression du menu de mise à jour OS pour les box Jeedom (les mises à jour OS sont gerés par Jeedom SAS": "Suppression du menu de mise à jour OS pour les box Jeedom (les mises à jour OS sont gerés par Jeedom SAS",
+        "Correction d'un bug sur la modale de configuration des historiques": "Correction d'un bug sur la modale de configuration des historiques",
         "changeTheme": "changeTheme",
         "Ajout d'une action": "Ajout d'une action",
         "pour les scénarios, actions sur valeur, actions pre\/post exec": "pour les scénarios, actions sur valeur, actions pre\/post exec",

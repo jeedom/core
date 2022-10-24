@@ -1267,6 +1267,7 @@
         "4.3.6": "4.3.6",
         "Suppression de la conversion des unitées pour les secondes (s": "Conversión de unidad eliminada por segundo (s)",
         "Suppression du menu de mise à jour OS pour les box Jeedom (les mises à jour OS sont gerés par Jeedom SAS": "Eliminación del menú de actualización del sistema operativo para las cajas Jeedom (las actualizaciones del sistema operativo son administradas por Jeedom SAS",
+        "Correction d'un bug sur la modale de configuration des historiques": "Se corrigió un error en el modo de configuración del historial",
         "Ajout d'une action": "Añadir una acción",
         "pour les scénarios, actions sur valeur, actions pre\/post exec": "para escenarios, acciones de valor, acciones pre\/post ejecutivas",
         "Elle permet de changer le thème de l'interface immédiatement, en dark, light ou l'autre (toggle": "Permite cambiar el tema de la interfaz inmediatamente, en oscuro, claro u otro (alternar",
