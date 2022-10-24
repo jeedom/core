@@ -45,7 +45,7 @@ if (!isConnect()) {
   <option value="tag">{{Tag}}</option>
   <option value="setColoredIcon">{{Coloration des icones}}</option>
   <option value="genericType" class="scenarioOnly">{{Type générique}}</option>
-  <option value="changeTheme">{{changer de thème}}</option>
+  <option value="changeTheme">{{Changer de thème}}</option>
 </select>
 <br/>
 <div class="alert alert-info mod_actionValue_selDescription sleep">
