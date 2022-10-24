@@ -63,10 +63,10 @@
       "visible": 1
     }
   ,
-   "atlas" :
+   "luna" :
    	{
-	  "title": "Options Atlas",
-      "wizard": "atlas",
+	  "title": "Options Luna",
+      "wizard": "luna",
       "order": 7,
       "custom": "",
       "visible": 1
