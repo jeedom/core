@@ -3260,9 +3260,9 @@
         "Historique": "Histórico"
     },
     "desktop\/common\/js\/utils.js": {
-        "Impossible de charger la ressource \"${uri}\", car elle va contre la directive de Content Security Policy :<br \/> \"${violation}": "Não foi possível carregar o recurso \"${uri}\", porque vai contra a diretiva da Política de Segurança de Conteúdo:<br \/> \"${violação}",
-        "La ressource \"${uri}\" a été chargée, mais elle va contre la directive de Content Security Policy :<br \/> \"${violation}": "O recurso \"${uri}\" foi carregado, mas vai contra a diretiva da Política de Segurança de Conteúdo:<br \/> \"${violação}",
         "Erreur de directive Content Security Policy sur la ressource \"${uri}": "Erro de diretiva de política de segurança de conteúdo no recurso \"${uri}",
+        "Impossible de charger la ressource \"${uri}\", car elle va contre la directive de Content Security Policy :<br \/> \"${violation.trim()}": "Não foi possível carregar o recurso \"${uri}\", porque vai contra a diretiva da Política de Segurança de Conteúdo:<br \/> \"${violation.trim()}",
+        "La ressource \"${uri}\" a été chargée, mais elle va contre la directive de Content Security Policy :<br \/> \"${violation.trim()}": "O recurso \"${uri}\" foi carregado, mas vai contra a diretiva da Política de Segurança de Conteúdo:<br \/> \"${violation.trim()}",
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Atenção está a deixar uma página com dados modificados que não foram guardados. Deseja continuar?",
         "Sauvegarde effectuée avec succès": "Backup concluído com êxito",
         "Suppression effectuée avec succès": "Eliminado com sucesso",
