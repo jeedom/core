@@ -39,7 +39,7 @@
 - **Herramientas / Objetos** : Se agregó un menú contextual en un objeto para administrar la visibilidad, cambiar el objeto principal y mover.
 - **Herramientas / Reemplazar** : Nueva herramienta de sustitución de equipos y mandos.
 - **Análisis / Cronología** : Se agregó un campo de búsqueda para filtrar la visualización.
-- **Usuarios** : Se agregó un botón para copiar los derechos de un usuario limitado a otro
+- **Usuarios** : Se agregó un botón para copiar los derechos de un usuario limitado a otro.
 - **Relación** : Capacidad para informar sobre la salud de Jeedom.
 - **Relación** : Capacidad para informar sobre equipos alertados.
 - **Actualización** : Capacidad para ver desde Jeedom los paquetes OS / PIP2 / PIP3 / NodeJS que se pueden actualizar e iniciar la actualización (cuidado con la función arriesgada y en versión beta).
