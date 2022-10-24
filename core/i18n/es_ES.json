@@ -438,6 +438,7 @@
         "Tag": "Etiqueta",
         "Coloration des icones": "Coloración de icono",
         "Type générique": "Tipo genérico",
+        "changer de thème": "cambiar de tema",
         "Pause de x seconde(s)": "Pausa de x segundo(s)",
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "Espera hasta que la condición sea válida (máximo 2 horas)",
         "Création\/modification d’une variable ou de la valeur d’une variable": "Crear\/modificar una variable o valor de una variable",
@@ -466,8 +467,10 @@
         "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "Permite enviar un informe de una vista, diseño o panel en PNG\/PDF\/JPEG\/SVG usando un comando de mensaje",
         "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "Permite borrar la programación de todos los bloques Dentro de y A del escenario",
         "Permet de pousser une valeur dans une commande de type information de maniere arbitraire": "Le permite insertar un valor en un comando de tipo de información arbitrariamente",
-        "Permets d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": "Permitir agregar \/ modificar una etiqueta (la etiqueta solo existe durante la ejecución actual del escenario a diferencia de las variables que sobreviven al final del escenario)",
-        "Permets d'activer ou non la coloration des icones sur le dashboard": "Permitir activar o no el color de los iconos en el tablero"
+        "Permet d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": "Le permite agregar\/modificar una etiqueta (la etiqueta solo existe durante la ejecución actual del escenario a diferencia de las variables que sobreviven al final del escenario)",
+        "Permet d'activer ou non la coloration des icones sur le dashboard": "Le permite activar o no el coloreado de iconos en el tablero",
+        "Permet d'actionner des équipements en fonction de types génériques": "Le permite operar equipos basados en tipos genéricos",
+        "Permet de changer le thème en cours de l'interface": "Le permite cambiar el tema actual de la interfaz"
     },
     "desktop\/modal\/cmd.human.insert.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -4454,6 +4457,7 @@
         "Equipement désactivé :": "Equipo desactivado:",
         "Equipement activé :": "Equipo activado:",
         "Changement design :": "Cambio de diseño:",
+        "Changement de thème :": "Cambio de tema:",
         "options :": "opciones:",
         "Arrêt forcé du scénario :": "Parada forzada del escenario :",
         "Désactivation du scénario :": "Desactivar el escenario :",
@@ -4756,6 +4760,9 @@
     },
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Icono de búsqueda"
+    },
+    "core\/template\/scenario\/changeTheme.default.html": {
+        "theme": "tema"
     },
     "core\/template\/scenario\/cmd.action.text.default.html": {
         "Message": "Mensaje"

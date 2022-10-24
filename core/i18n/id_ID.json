@@ -438,6 +438,7 @@
         "Tag": "Tag",
         "Coloration des icones": "Coloration des icones",
         "Type générique": "Type générique",
+        "changer de thème": "changer de thème",
         "Pause de x seconde(s)": "Jeda x detik (s)",
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "Menunggu sampai kondisi ini berlaku (maksimum 2 jam)",
         "Création\/modification d’une variable ou de la valeur d’une variable": "Penciptaan \/ modifikasi variabel atau nilai dari variabel",
@@ -466,8 +467,10 @@
         "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "Kirim, pos komando, laporan pandangan, desain atau panel PNG \/ PDF \/ JPEG \/ SVG",
         "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "Hapus pemrograman semua blok IN dan A Skenario",
         "Permet de pousser une valeur dans une commande de type information de maniere arbitraire": "Permet de pousser une valeur dans une commande de type information de maniere arbitraire",
-        "Permets d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": "Permets d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)",
-        "Permets d'activer ou non la coloration des icones sur le dashboard": "Permets d'activer ou non la coloration des icones sur le dashboard"
+        "Permet d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": "Permet d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)",
+        "Permet d'activer ou non la coloration des icones sur le dashboard": "Permet d'activer ou non la coloration des icones sur le dashboard",
+        "Permet d'actionner des équipements en fonction de types génériques": "Permet d'actionner des équipements en fonction de types génériques",
+        "Permet de changer le thème en cours de l'interface": "Permet de changer le thème en cours de l'interface"
     },
     "desktop\/modal\/cmd.human.insert.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
@@ -4454,6 +4457,7 @@
         "Equipement désactivé :": "Equipement désactivé :",
         "Equipement activé :": "Equipement activé :",
         "Changement design :": "Changement design :",
+        "Changement de thème :": "Changement de thème :",
         "options :": "options :",
         "Arrêt forcé du scénario :": "Paksa mematikan skenario:",
         "Désactivation du scénario :": "Penonaktifan skenario",
@@ -4756,6 +4760,9 @@
     },
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Ikon pencarian"
+    },
+    "core\/template\/scenario\/changeTheme.default.html": {
+        "theme": "theme"
     },
     "core\/template\/scenario\/cmd.action.text.default.html": {
         "Message": "Message"

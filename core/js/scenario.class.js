@@ -570,7 +570,8 @@ jeedom.scenario.autoCompleteAction = [
   'icon',
   'event',
   'remove_inat',
-  'genericType'
+  'genericType',
+  'changeTheme'
 ]
 jeedom.scenario.setAutoComplete = function(_params) {
   if (!isset(_params)) {

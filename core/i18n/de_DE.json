@@ -438,6 +438,7 @@
         "Tag": "Etikett",
         "Coloration des icones": "Symbol Färbung",
         "Type générique": "Allgemeiner Typ",
+        "changer de thème": "Thema wechseln",
         "Pause de x seconde(s)": "Pause von x Sekunde (n)",
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "Warten Sie, bis die Bedingung gültig ist (maximal 2 Stunden)",
         "Création\/modification d’une variable ou de la valeur d’une variable": "Erstellung \/ Änderung einer Variablen oder des Werts einer Variablen",
@@ -466,8 +467,10 @@
         "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "Ermöglicht das Senden eines Berichts einer Ansicht, eines Entwurfs oder eines Bedienfelds in PNG \/ PDF \/ JPEG \/ SVG über einen Nachrichtenbefehl",
         "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "Ermöglicht das Löschen der Programmierung aller IN- und A-Blöcke des Szenarios",
         "Permet de pousser une valeur dans une commande de type information de maniere arbitraire": "Ermöglicht das willkürliche Übertragen eines Werts in einen Befehl vom Typ Information",
-        "Permets d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": "Hinzufügen \/ Ändern eines Tags zulassen (das Tag ist nur während der aktuellen Ausführung des Szenarios vorhanden, im Gegensatz zu den Variablen, die das Ende des Szenarios überleben)",
-        "Permets d'activer ou non la coloration des icones sur le dashboard": "Aktivieren oder Deaktivieren der Farbgebung von Symbolen im Dashboard"
+        "Permet d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": "Ermöglicht das Hinzufügen\/Ändern eines Tags (das Tag existiert nur während der aktuellen Ausführung des Szenarios, im Gegensatz zu den Variablen, die am Ende des Szenarios überleben)",
+        "Permet d'activer ou non la coloration des icones sur le dashboard": "Ermöglicht das Aktivieren oder Deaktivieren der Farbgebung von Symbolen auf dem Dashboard",
+        "Permet d'actionner des équipements en fonction de types génériques": "Ermöglicht den Betrieb von Geräten basierend auf generischen Typen",
+        "Permet de changer le thème en cours de l'interface": "Ermöglicht Ihnen, das aktuelle Thema der Benutzeroberfläche zu ändern"
     },
     "desktop\/modal\/cmd.human.insert.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -4454,6 +4457,7 @@
         "Equipement désactivé :": "Gerät deaktiviert:",
         "Equipement activé :": "Aktivierte Ausrüstung:",
         "Changement design :": "Designänderung:",
+        "Changement de thème :": "Themenwechsel:",
         "options :": "Optionen:",
         "Arrêt forcé du scénario :": "Erzwungene Beendigung des Szenarios:",
         "Désactivation du scénario :": "Deaktivierung des Szenarios:",
@@ -4756,6 +4760,9 @@
     },
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Suchsymbol"
+    },
+    "core\/template\/scenario\/changeTheme.default.html": {
+        "theme": "Thema"
     },
     "core\/template\/scenario\/cmd.action.text.default.html": {
         "Message": "Nachricht"

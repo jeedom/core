@@ -45,6 +45,7 @@ if (!isConnect()) {
   <option value="tag">{{Tag}}</option>
   <option value="setColoredIcon">{{Coloration des icones}}</option>
   <option value="genericType" class="scenarioOnly">{{Type générique}}</option>
+  <option value="changeTheme">{{changer de thème}}</option>
 </select>
 <br/>
 <div class="alert alert-info mod_actionValue_selDescription sleep">
@@ -132,11 +133,19 @@ if (!isConnect()) {
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription tag" style="display:none;">
-  {{Permets d'ajouter/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)}}
+  {{Permet d'ajouter/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription setColoredIcon" style="display:none;">
-  {{Permets d'activer ou non la coloration des icones sur le dashboard}}
+  {{Permet d'activer ou non la coloration des icones sur le dashboard}}
+</div>
+
+<div class="alert alert-info mod_actionValue_selDescription genericType" style="display:none;">
+  {{Permet d'actionner des équipements en fonction de types génériques}}
+</div>
+
+<div class="alert alert-info mod_actionValue_selDescription changeTheme" style="display:none;">
+  {{Permet de changer le thème en cours de l'interface}}
 </div>
 
 <script>

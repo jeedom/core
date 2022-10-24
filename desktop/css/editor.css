@@ -283,10 +283,11 @@ Theme ElFinder File Editor 2021 @Jeedom
     cursor: pointer !important;
   }
 
-  [data-page="editor"] .CodeMirror-foldgutter-open,
-  [data-page="editor"] .CodeMirror-foldgutter-folded {
+  [data-page="editor"] #elfinder .CodeMirror-foldgutter-open,
+  [data-page="editor"] #elfinder .CodeMirror-foldgutter-folded {
     cursor: pointer;
-    transform: scale(1.6) translate(-1.5px,0) !important;
+    transform: scale(2) translate(1px,0) !important;
+    background: transparent !important;
   }
 
   [data-page="editor"] .CodeMirror-lines {

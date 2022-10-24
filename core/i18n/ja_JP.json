@@ -438,6 +438,7 @@
         "Tag": "タグ",
         "Coloration des icones": "アイコンの色付け",
         "Type générique": "Type générique",
+        "changer de thème": "changer de thème",
         "Pause de x seconde(s)": "X秒の一時停止（s）",
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "条件が有効になるまで待ちます（最大2時間）",
         "Création\/modification d’une variable ou de la valeur d’une variable": "変数または変数の値の作成\/変更",
@@ -466,8 +467,10 @@
         "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "メッセージコマンドによって、ビュー、デザイン、またはパネルのレポートをPNG \/ PDF \/ JPEG \/ SVGで送信できます。",
         "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "シナリオのすべてのINおよびAブロックのプログラミングを削除できます。",
         "Permet de pousser une valeur dans une commande de type information de maniere arbitraire": "情報タイプコマンドの値を任意にプッシュできます。",
-        "Permets d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": "タグの追加\/変更を許可します（タグは、シナリオの最後まで存続する変数とは異なり、シナリオの現在の実行中にのみ存在します）",
-        "Permets d'activer ou non la coloration des icones sur le dashboard": "ダッシュボード上のアイコンの色付けをアクティブにするかどうかを許可します"
+        "Permet d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": "Permet d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)",
+        "Permet d'activer ou non la coloration des icones sur le dashboard": "Permet d'activer ou non la coloration des icones sur le dashboard",
+        "Permet d'actionner des équipements en fonction de types génériques": "Permet d'actionner des équipements en fonction de types génériques",
+        "Permet de changer le thème en cours de l'interface": "Permet de changer le thème en cours de l'interface"
     },
     "desktop\/modal\/cmd.human.insert.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
@@ -4454,6 +4457,7 @@
         "Equipement désactivé :": "Equipement désactivé :",
         "Equipement activé :": "Equipement activé :",
         "Changement design :": "Changement design :",
+        "Changement de thème :": "Changement de thème :",
         "options :": "options :",
         "Arrêt forcé du scénario :": "強制シャットダウンのシナリオ：",
         "Désactivation du scénario :": "シナリオを無効にします：",
@@ -4756,6 +4760,9 @@
     },
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "検索アイコン"
+    },
+    "core\/template\/scenario\/changeTheme.default.html": {
+        "theme": "theme"
     },
     "core\/template\/scenario\/cmd.action.text.default.html": {
         "Message": "Message"

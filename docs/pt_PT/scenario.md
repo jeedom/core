@@ -110,7 +110,7 @@ Para maior comodidade e não ter que reordenar constantemente os blocos no cená
 Aqui estão os diferentes tipos de blocos disponíveis :
 
 - **If / Then / Ou** : Permite que ações sejam realizadas sob condições (se este, então aquele).
-- **Ações** : Permite iniciar ações simples sem nenhuma condição.
+- **Açao** : Permite iniciar ações simples sem nenhuma condição.
 - **Laço** : Permite que ações sejam executadas repetidamente de 1 a um número definido (ou mesmo o valor de um sensor ou um número aleatório…).
 - **Dentro** : Permite iniciar uma ação em X minuto (s) (0 é um valor possível). A peculiaridade é que as ações são iniciadas em segundo plano, para que não bloqueiem o restante do cenário. Portanto, é um bloco sem bloqueio.
 - **NO** : Permite que o Jeedom inicie as ações do bloco em um determinado momento (no formato hhmm). Este bloco é sem bloqueio. Ex : 0030 para 00:30 ou 0146 para 1h46 e 1050 para 10h50.
@@ -488,7 +488,8 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
 - **Excluir bloco IN / A agendado** (remove_inat) : Apagar a programação de todos os blocos dentro e A Cenário.
 - **Evento** (event) : Permite inserir um valor em um comando de tipo de informação arbitrariamente.
 - **Tag** (tag) : Permite adicionar / modificar uma marca (a marca existe apenas durante a execução atual do cenário, diferentemente das variáveis que sobrevivem ao final do cenário).
-- **Coloração de ícones do painel** (setColoredIcon) : permite ativar ou não a coloração de ícones no painel.
+- **Coloração de ícones do painel** (setColoredIcon) : Permite ativar ou não a coloração de ícones no painel.
+- **Mudança de tema** (changetheme) : Permite que você altere o tema da interface atual para Escuro ou Claro.
 - **Exportação histórica** (exportHistory) : permite exportar o histórico em csv de uma encomenda sob a forma de ficheiro (envio por correio por exemplo). Você pode colocar vários comandos (separados por &&). A seleção do período é feita no formulário :
   - "-1 mês "=> -1 mês
   - "-1 dia à meia-noite "=> -1 dia à meia-noite
