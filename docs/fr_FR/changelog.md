@@ -4,6 +4,7 @@
 
 - Suppression de la conversion des unitées pour les secondes (s).
 - Suppression du menu de mise à jour OS pour les box Jeedom (les mises à jour OS sont gerés par Jeedom SAS).
+- Correction d'un bug sur la modale de configuration des historiques.
 - Ajout d'une action *changeTheme* pour les scénarios, actions sur valeur, actions pre/post exec : Elle permet de changer le thème de l'interface immédiatement, en dark, light ou l'autre (toggle).
 
 ## 4.3.5

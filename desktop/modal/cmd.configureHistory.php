@@ -90,7 +90,7 @@ include_file('3rdparty', 'jquery.tablesorter/_jeedom/pager-custom-constrols', 'j
       if ($i <= 15) {
         $tr .= '<tr data-change="0" data-cmd_id="' . $cmd->getId() . '" data-right="' . $right . '">';
       } else {
-        $tr .= '<tr data-change="0" data-cmd_id="' . $cmd->getId() . '" style="display: none;">';
+        $tr .= '<tr data-change="0" data-cmd_id="' . $cmd->getId() . '" data-right="' . $right . '" style="display: none;">';
       }
       $i++;
 
