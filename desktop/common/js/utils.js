@@ -47,14 +47,15 @@ window.addEventListener('error', function(event) {
 if ('SecurityPolicyViolationEvent' in window) { // Check browser support of SecurityPolicyViolationEnevt interface
   window.addEventListener("securitypolicyviolation", function(event) {
     var uri = event.blockedURI
+    var msg = `{{Erreur de directive Content Security Policy sur la ressource "${uri}"}}`
     if (event.originalPolicy && event.violatedDirective) {
-      var violation = event.originalPolicy.trim().split(';').find(e => e.trim().startsWith(event.violatedDirective)).trim()
-      if (event.disposition == 'enforce')
-        var msg = `{{Impossible de charger la ressource "${uri}", car elle va contre la directive de Content Security Policy :<br /> "${violation}"}}`
-      else
-        var msg = `{{La ressource "${uri}" a été chargée, mais elle va contre la directive de Content Security Policy :<br /> "${violation}"}}`
-    }else {
-      var msg = `{{Erreur de directive Content Security Policy sur la ressource "${uri}"}}`
+      var violation = event.originalPolicy.trim().split(';').find(e => e.trim().startsWith(event.violatedDirective))
+      if (typeof violation === 'string') {
+        if (event.disposition == 'enforce')
+          var msg = `{{Impossible de charger la ressource "${uri}", car elle va contre la directive de Content Security Policy :<br /> "${violation.trim()}"}}`
+        else
+          var msg = `{{La ressource "${uri}" a été chargée, mais elle va contre la directive de Content Security Policy :<br /> "${violation.trim()}"}}`
+      }
     }
     jeedomUtils.JS_ERROR.push({"filename": event.documentURI, "lineno": "0", "message": msg})
     $('#bt_jsErrorModal').show()
