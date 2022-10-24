@@ -297,7 +297,7 @@ It is possible to control a lamp as a percentage (dimmer) or a thermostat with t
 
 ![interact022](../images/interact022.png)
 
-As we can see, there is here in the request the tag **\#consigne\#** (you can put what you want) which is included in the drive control to apply the desired value. To do this, we have 3 parts : \* Demand : in which we create a tag that will represent the value that will be sent to the interaction. \* Reply : we reuse the tag for the response to be sure that Jeedom correctly understood the request. \* Stock : we put an action on the lamp we want to drive and in the value we pass it our tag *order*.
+As we can see, there is here in the request the tag **\#consigne\#** (you can put what you want) which is included in the drive control to apply the desired value. To do this, we have 3 parts : \* Demand : in which we create a tag that will represent the value that will be sent to the interaction. \* Reply : we reuse the tag for the response to be sure that Jeedom correctly understood the request. \* Action : we put an action on the lamp we want to drive and in the value we pass it our tag *order*.
 
 > **Note**
 >

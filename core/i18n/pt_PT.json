@@ -438,6 +438,7 @@
         "Tag": "Separador",
         "Coloration des icones": "Coloração de ícone",
         "Type générique": "Tipo genérico",
+        "changer de thème": "Mudar tema",
         "Pause de x seconde(s)": "Pausa x segundo(s)",
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "Esperar até que a condição seja válida (máximo de 2 horas)",
         "Création\/modification d’une variable ou de la valeur d’une variable": "Criação\/modificação de uma variável ou do valor de uma variável",
@@ -466,8 +467,10 @@
         "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "Permite enviar, por mensagem de comando, um relatório de uma vista, um design ou um painel em PNG\/PDF\/JPEG\/SVG",
         "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "Permite apagar a programação de todos os blocos EM e ÀS do cenário",
         "Permet de pousser une valeur dans une commande de type information de maniere arbitraire": "Permite enviar um valor num comando do tipo de informação de forma aleatória",
-        "Permets d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": "Permitir adicionar\/modificar uma tag (a tag existe apenas durante a execução atual do cenário, diferentemente das variáveis que sobrevivem ao final do cenário)",
-        "Permets d'activer ou non la coloration des icones sur le dashboard": "Permitir ativar ou não a coloração de ícones no painel"
+        "Permet d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": "Permite adicionar\/modificar um tag (o tag só existe durante a execução atual do cenário ao contrário das variáveis que sobrevivem no final do cenário)",
+        "Permet d'activer ou non la coloration des icones sur le dashboard": "Permite ativar ou não a coloração dos ícones no painel",
+        "Permet d'actionner des équipements en fonction de types génériques": "Permite operar equipamentos com base em tipos genéricos",
+        "Permet de changer le thème en cours de l'interface": "Permite alterar o tema atual da interface"
     },
     "desktop\/modal\/cmd.human.insert.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -4454,6 +4457,7 @@
         "Equipement désactivé :": "Equipamento desativado:",
         "Equipement activé :": "Equipamento ativado:",
         "Changement design :": "Mudança de design:",
+        "Changement de thème :": "Mudança de tema:",
         "options :": "opções:",
         "Arrêt forcé du scénario :": "Paragem forçada do cenário:",
         "Désactivation du scénario :": "Desativação do cenário:",
@@ -4756,6 +4760,9 @@
     },
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Procurar ícone"
+    },
+    "core\/template\/scenario\/changeTheme.default.html": {
+        "theme": "tema"
     },
     "core\/template\/scenario\/cmd.action.text.default.html": {
         "Message": "Mensagem"

@@ -98,7 +98,7 @@ By clicking on the icon of a plugin, you open its configuration page.
 - **Author** : The author of the plugin, link to the market and the plugins of this author.
 - **Licence** : Indicates the license of the plugin which will generally be AGPL.
 
-- **Stock** : Allows you to enable or disable the plugin. The button **Open** Allows you to go directly to the plugin page.
+- **Action** : Allows you to enable or disable the plugin. The button **Open** Allows you to go directly to the plugin page.
 - **Version** : The version of the plugin installed.
 - **Prerequisites** : Indicates the minimum Jeedom version required for the plugin.
 

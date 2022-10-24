@@ -110,7 +110,7 @@ Para mayor comodidad y no tener que reordenar constantemente los bloques en el e
 Aquí están los diferentes tipos de bloques disponibles :
 
 - **If / Then / O** : Permite que las acciones se lleven a cabo bajo condiciones (si esto, entonces eso).
-- **Valores** : Le permite lanzar acciones simples sin ninguna condición.
+- **Acción** : Le permite lanzar acciones simples sin ninguna condición.
 - **Lazo** : Permite que las acciones se realicen repetidamente desde 1 hasta un número definido (o incluso el valor de un sensor, o un número aleatorio).
 - **Dentro** : Permite iniciar una acción en X minuto (s) (0 es un valor posible). La peculiaridad es que las acciones se inician en segundo plano, por lo que no bloquean el resto del escenario. Entonces es un bloque sin bloqueo.
 - **EN** : Permite decirle a Jeedom que inicie las acciones del bloque en un momento dado (en la forma hhmm). Este bloque no es bloqueante. Ex : 0030 para 00:30, o 0146 para 1h46 y 1050 para 10h50.
@@ -488,7 +488,8 @@ Además de los comandos de automatización del hogar, tiene acceso a las siguien
 - **Eliminar bloque IN / A programado** (eliminar_inat) : Le permite eliminar la programación de todos los bloques IN y A del escenario.
 - **Evento** (event) : Le permite insertar un valor en un comando de tipo de información arbitrariamente.
 - **Etiquetas** (tag) : Le permite agregar / modificar una etiqueta (la etiqueta solo existe durante la ejecución actual del escenario a diferencia de las variables que sobreviven al final del escenario).
-- **Coloración de los iconos del tablero** (setColoredIcon) : permite activar o no la coloración de iconos en el tablero.
+- **Coloración de los iconos del tablero** (setColoredIcon) : Permite activar o no la coloración de iconos en el tablero.
+- **Cambio de tema** (changetheme) : Le permite cambiar el tema de la interfaz actual a Oscuro o Claro.
 - **Exportación histórica** (exportHistory) : permite exportar el historial en csv de un pedido en forma de archivo (envío por correo por ejemplo). Puede poner varios comandos (separados por &&). La selección del período se realiza en el formulario :
   - "-1 mes "=> -1 mes
   - "-1 día medianoche "=> -1 día a medianoche

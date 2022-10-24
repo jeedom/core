@@ -98,7 +98,7 @@ Ao clicar no ícone de um plugin, você abre sua página de configuração.
 - **Autor** : O autor do plugin, link para o mercado e os plugins deste autor.
 - **Licença** : Indica a licença do plug-in, que geralmente será AGPL.
 
-- **Ações** : Permite ativar ou desativar o plug-in. O botão **Abrir** Permite que você vá diretamente para a página do plugin.
+- **Açao** : Permite ativar ou desativar o plug-in. O botão **Abrir** Permite que você vá diretamente para a página do plugin.
 - **Versão** : A versão do plug-in instalado.
 - **Pré-requisitos** : Indica a versão mínima do Jeedom necessária para o plug-in.
 
