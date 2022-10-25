@@ -270,7 +270,7 @@ try {
 		}
 		unautorizedInDemo();
 		$cmd_ajax = jeedom::fromHumanReadable(json_decode(init('cmd'), true));
-		$cmd = cmd::byId(init($cmd_ajax['id']));
+		$cmd = isset($cmd_ajax['id']) ? cmd::byId($cmd_ajax['id']) : null;
 		if (!is_object($cmd)) {
 			$cmd = new cmd();
 		}
