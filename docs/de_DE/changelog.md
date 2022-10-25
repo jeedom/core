@@ -3,6 +3,8 @@
 ## 4.3.7
 
 - Fehlerbehebungen (die sich auf ein zukünftiges Plugin in der Entwicklung auswirken).
+- Anzeigefehler bei einigen Widgets basierend auf Einheiten behoben.
+- Beschreibung hinzugefügt **Quelle** für Nachrichtenaktionen (vgl [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.3)).
 
 ## 4.3.6
 

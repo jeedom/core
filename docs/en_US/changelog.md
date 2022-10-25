@@ -3,6 +3,8 @@
 ## 4.3.7
 
 - Bug fixes (impacting a future plugin under development).
+- Fixed display bugs on some widgets based on unit.
+- Added description **source** for message actions (see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.3)).
 
 ## 4.3.6
 

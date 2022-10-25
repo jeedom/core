@@ -3,6 +3,8 @@
 ## 4.3.7
 
 - Corrección de errores (que afectan a un complemento futuro en desarrollo)).
+- Se corrigieron errores de visualización en algunos widgets según la unidad.
+- Descripción añadida **fuente** para acciones de mensajes (ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.3)).
 
 ## 4.3.6
 
