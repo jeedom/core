@@ -34,8 +34,8 @@
     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
       cmd#id#.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate+'<br/>{{Valeur}} : '+_options.display_value+'#unite#')
 
-      var value_#id# = parseFloat(_options.display_value)
-      cmd#id#.find('.value').empty().append(value_#id#)
+      var value_#id# = parseFloat(_options.value)
+      cmd#id#.find('.value').empty().append(_options.display_value)
 
       var minValue_#id# = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
       var maxValue_#id# = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
@@ -67,6 +67,6 @@
       cmd#id#.find('.plage').show()
     }
 
-    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
+    jeedom.cmd.refreshValue([{cmd_id:'#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
   </script>
 </div>

@@ -3,6 +3,8 @@
 ## 4.3.7
 
 - Correction de bugs (impactant un futur plugin en cours de développement).
+- Correction de bugs d'affichage sur certains widgets en fonction de l'unité.
+- Ajout de la description **source** pour les actions messages (voir [Doc dev](https://doc.jeedom.com/fr_FR/dev/core4.3)).
 
 ## 4.3.6
 
