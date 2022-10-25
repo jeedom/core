@@ -1,5 +1,9 @@
 # Änderungsprotokoll Jeedom V4.3
 
+## 4.3.7
+
+- Fehlerbehebungen (die sich auf ein zukünftiges Plugin in der Entwicklung auswirken)
+
 ## 4.3.6
 
 - Einheitenumrechnung für Sekunden (s) entfernt).

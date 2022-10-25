@@ -749,6 +749,8 @@
         "Répéter les valeurs identiques (Oui": "Répéter les valeurs identiques (Oui",
         "Non": "Non",
         "Changelog Jeedom V4.3": "Changelog Jeedom V4.3",
+        "4.3.7": "4.3.7",
+        "Correction de bugs (impactant un futur plugin en cours de développement": "Correction de bugs (impactant un futur plugin en cours de développement",
         "4.3.6": "4.3.6",
         "Suppression de la conversion des unitées pour les secondes (s": "Suppression de la conversion des unitées pour les secondes (s",
         "Suppression du menu de mise à jour OS pour les box Jeedom (les mises à jour OS sont gerées par Jeedom SAS": "Suppression du menu de mise à jour OS pour les box Jeedom (les mises à jour OS sont gerées par Jeedom SAS",

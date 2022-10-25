@@ -1264,6 +1264,8 @@
     "changelog.md": {
         "Répéter les valeurs identiques (Oui": "Repeat identical values (Yes",
         "Changelog Jeedom V4.3": "Changelog Jeedom V4.3",
+        "4.3.7": "4.3.7",
+        "Correction de bugs (impactant un futur plugin en cours de développement": "Bug fixes (impacting a future plugin under development",
         "4.3.6": "4.3.6",
         "Suppression de la conversion des unitées pour les secondes (s": "Removed unit conversion for seconds (s)",
         "Suppression du menu de mise à jour OS pour les box Jeedom (les mises à jour OS sont gerées par Jeedom SAS": "Removal of the OS update menu for Jeedom boxes (OS updates are managed by Jeedom SAS",

@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.3
 
+## 4.3.7
+
+- Correções de bugs (afetando um futuro plugin em desenvolvimento)
+
 ## 4.3.6
 
 - Conversão de unidade removida por segundos (s)).
