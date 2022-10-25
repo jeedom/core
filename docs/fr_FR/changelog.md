@@ -2,7 +2,7 @@
 
 ## 4.3.7
 
-- Correction de bugs (impactant un futur plugin en cours de développement)
+- Correction de bugs (impactant un futur plugin en cours de développement).
 
 ## 4.3.6
 

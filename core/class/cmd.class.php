@@ -1079,6 +1079,7 @@ class cmd {
 							}
 						}
 					}
+					$options['source'] = $this->getHumanName();
 				}
 				scenarioExpression::createAndExec('action', $action['cmd'], $options);
 			} catch (Exception $e) {
@@ -1869,6 +1870,7 @@ class cmd {
 				if (isset($action['options'])) {
 					$options = $action['options'];
 				}
+				$options['source'] = $this->getHumanName();
 				scenarioExpression::createAndExec('action', $action['cmd'], $options);
 			} catch (Exception $e) {
 				log::add('cmd', 'error', __('Erreur lors de l\'exécution de', __FILE__) . ' ' . $action['cmd'] . __('. Détails :', __FILE__) . ' ' . $e->getMessage());
