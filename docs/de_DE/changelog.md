@@ -2,7 +2,7 @@
 
 ## 4.3.7
 
-- Fehlerbehebungen (die sich auf ein zukünftiges Plugin in der Entwicklung auswirken)
+- Fehlerbehebungen (die sich auf ein zukünftiges Plugin in der Entwicklung auswirken).
 
 ## 4.3.6
 

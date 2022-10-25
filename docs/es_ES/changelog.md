@@ -2,7 +2,7 @@
 
 ## 4.3.7
 
-- Corrección de errores (que afectan a un complemento futuro en desarrollo))
+- Corrección de errores (que afectan a un complemento futuro en desarrollo)).
 
 ## 4.3.6
 
