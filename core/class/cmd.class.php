@@ -2249,12 +2249,12 @@ class cmd {
 	}
 
 	public function generateAskResponseLink($_response, $_plugin = 'core', $_network = 'external') {
-		$token = $this->getCache('ask::token', config::genKey());
-		$this->setCache(array('ask::count' => 0, 'ask::token' => $token));
+		//$token = $this->getCache('ask::token', config::genKey());
+		$this->setCache(array('ask::count' => 0, 'ask::token' => config::genKey()));
 		$return = network::getNetworkAccess($_network) . '/core/api/jeeApi.php?';
 		$return .= 'type=ask';
-		$return .= '&plugin=' . $_plugin;
-		$return .= '&apikey=' . jeedom::getApiKey($_plugin);
+		//$return .= '&plugin=' . $_plugin;
+		//$return .= '&apikey=' . jeedom::getApiKey($_plugin);
 		$return .= '&token=' . $token;
 		$return .= '&response=' . urlencode($_response);
 		$return .= '&cmd_id=' . $this->getId();

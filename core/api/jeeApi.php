@@ -31,6 +31,22 @@ global $_RESTRICTED;
 $_RESTRICTED = false;
 if (init('type') != '') {
 	try {
+		if ($type == 'ask') {
+			$cmd = cmd::byId(init('cmd_id'));
+			if (!is_object($cmd)) {
+				throw new Exception(__('Commande inconnue :', __FILE__) . ' ' . init('cmd_id'));
+			}
+			if ($cmd->getCache('ask::token', config::genKey()) != init('token')) {
+				throw new Exception(__('Token invalide', __FILE__));
+			}
+			if (init('count', 0) != 0 && init('count', 0) > $cmd->getCache('ask::count', 0)) {
+				$cmd->setCache('ask::count', $cmd->getCache('ask::count', 0) + 1);
+				die();
+			}
+			$cmd->askResponse(init('response'));
+			$cmd->setCache(array('ask::count' => 0, 'ask::token' => config::genKey()));
+			die();
+		}
 		$plugin = init('plugin', 'core');
 		if (in_array($plugin, array('apitts', 'apipro', 'apimarket'))) {
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__));
@@ -85,20 +101,6 @@ if (init('type') != '') {
 				echo $cmd->execCmd($_REQUEST);
 				die();
 			}
-		}
-		if ($type == 'ask') {
-			$cmd = cmd::byId(init('cmd_id'));
-			if (!is_object($cmd)) {
-				throw new Exception(__('Commande inconnue :', __FILE__) . ' ' . init('cmd_id'));
-			}
-			if ($cmd->getCache('ask::token', config::genKey()) != init('token')) {
-				throw new Exception(__('Token invalide', __FILE__) . $cmd->getCache('ask::token') . ' != ' . init('token'));
-			}
-			if (init('count', 0) != 0 && init('count', 0) > $cmd->getCache('ask::count', 0)) {
-				$cmd->setCache('ask::count', $cmd->getCache('ask::count', 0) + 1);
-				die();
-			}
-			$cmd->askResponse(init('response'));
 		}
 		if ($type == 'interact') {
 			$query = init('query');
@@ -1256,25 +1258,25 @@ try {
 		}
 		$jsonrpc->makeSuccess(network::dns_run());
 	}
-	
+
 	/*             * ************************User*************************** */
-	
+
 	if ($jsonrpc->getMethod() == 'user::all') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(), array('admin'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
 		$jsonrpc->makeSuccess(utils::o2a(user::all()));
 	}
-	
+
 	if ($jsonrpc->getMethod() == 'user::save') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(), array('admin'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
 		$user = user::byId($params['id']);
-		if(!is_object($user)){
+		if (!is_object($user)) {
 			$user = new user();
 		}
-		utils::a2o($user,$params);
+		utils::a2o($user, $params);
 		$user->save();
 		$jsonrpc->makeSuccess(utils::o2a($user));
 	}
@@ -1291,9 +1293,9 @@ try {
 			}
 		}
 	}
-	
+
 	/*                                       Mobile API                                      */
-	if($jsonrpc->getMethod() == 'getJson'){
+	if ($jsonrpc->getMethod() == 'getJson') {
 		log::add('api', 'debug', 'Demande du RDK to send with Json');
 		$registerDevice = $_USER_GLOBAL->getOptions('registerDevice', array());
 		if (!is_array($registerDevice)) {
@@ -1308,7 +1310,7 @@ try {
 		$_USER_GLOBAL->save();
 		log::add('api', 'debug', 'RDK :' . $rdk);
 		log::add('api', 'debug', 'Demande du GetJson');
-		$return = array();	
+		$return = array();
 		$idBox = jeedom::getHardwareKey();
 		$return[$idBox]['apikeyUser'] = $_USER_GLOBAL->getHash();
 		$return[$idBox]['configs'] = 'undefined';
@@ -1318,11 +1320,11 @@ try {
 		$return[$idBox]['informations']['hardware'] = jeedom::getHardwareName();
 		$return[$idBox]['informations']['language'] = config::byKey('language');
 		$return[$idBox]['informations']['nbMessage'] = message::nbMessage();
-	    	$return[$idBox]['informations']['nbUpdate'] = update::nbNeedUpdate();
+		$return[$idBox]['informations']['nbUpdate'] = update::nbNeedUpdate();
 		$return[$idBox]['informations']['uname'] = system::getDistrib() . ' ' . system::getOsVersion();
 		$return[$idBox]['jeedom_version'] = jeedom::version();
 		$return[$idBox]['localIp'] = network::getNetworkAccess('internal');
-	     	$return[$idBox]['rdk'] = $rdk;
+		$return[$idBox]['rdk'] = $rdk;
 		$return[$idBox]['name'] = config::byKey('name');
 		$jsonrpc->makeSuccess($return);
 	}
