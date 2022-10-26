@@ -4843,14 +4843,14 @@
         "Aucune méthode correspondante :": "対応する方法はありません："
     },
     "core\/api\/jeeApi.php": {
+        "Commande inconnue :": "不明なコマンド：",
+        "Token invalide": "Token invalide",
         "Vous n\\'êtes pas autorisé à effectuer cette action": "このアクションを実行する権限がありません",
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",
         "Demande sur l\\'api http venant de :": "Demande sur l\\'api http venant de :",
         "Appels de": "通話",
         "Aucune commande correspondant à l\\'ID :": "Aucune commande correspondant à l\\'ID :",
         "Exécution de :": "Exécution de :",
-        "Commande inconnue :": "不明なコマンド：",
-        "Token invalide": "Token invalide",
         "Demande API pour les scénarios": "Demande API pour les scénarios",
         "Aucun scénario correspondant à l\\'ID :": "Aucun scénario correspondant à l\\'ID :",
         "Vous n\\'avez pas le droit de faire une action sur ce scénario": "Vous n\\'avez pas le droit de faire une action sur ce scénario",

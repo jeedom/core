@@ -4843,14 +4843,14 @@
         "Aucune méthode correspondante :": "No corresponding method:"
     },
     "core\/api\/jeeApi.php": {
+        "Commande inconnue :": "Unknown command:",
+        "Token invalide": "Invalid token",
         "Vous n\\'êtes pas autorisé à effectuer cette action": "You are not authorized to perform this action",
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "You are not authorized to perform this action, IP :",
         "Demande sur l\\'api http venant de :": "Request on the http API coming from:",
         "Appels de": "Calls from",
         "Aucune commande correspondant à l\\'ID :": "No command corresponding to the ID:",
         "Exécution de :": "Execution of:",
-        "Commande inconnue :": "Unknown command:",
-        "Token invalide": "Invalid token",
         "Demande API pour les scénarios": "API request for scenarios",
         "Aucun scénario correspondant à l\\'ID :": "No scenario corresponding to ID:",
         "Vous n\\'avez pas le droit de faire une action sur ce scénario": "You are not allowed to take action on this scenario",
