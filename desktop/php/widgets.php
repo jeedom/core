@@ -3,17 +3,17 @@ if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
 $rootPath = __DIR__ . '/../../data/customTemplates';
-if(!file_exists($rootPath)){
+if (!file_exists($rootPath)) {
   mkdir($rootPath);
 }
-if(!file_exists($rootPath.'/dashboard')){
-  mkdir($rootPath.'/dashboard');
+if (!file_exists($rootPath . '/dashboard')) {
+  mkdir($rootPath . '/dashboard');
 }
-if(!file_exists($rootPath.'/mobile')){
-  mkdir($rootPath.'/mobile');
+if (!file_exists($rootPath . '/mobile')) {
+  mkdir($rootPath . '/mobile');
 }
 global $JEEDOM_INTERNAL_CONFIG;
-$widgets = array('action' => array(),'info' => array());
+$widgets = array('action' => array(), 'info' => array());
 foreach ((widgets::all()) as $widget) {
   $widgets[$widget->getType()][] = $widget;
 }
@@ -25,24 +25,24 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
     $thisDiv = '<div class="panel panel-default">';
     $thisDiv .= '<div class="panel-heading">';
     $thisDiv .= '<h3 class="panel-title">';
-    $thisDiv .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#widget_'.$_type.'">'.$title.' - ';
-    $thisDiv .= $c. ($c > 1 ? ' widgets' : ' widget').'</a>';
+    $thisDiv .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#widget_' . $_type . '">' . $title . ' - ';
+    $thisDiv .= $c . ($c > 1 ? ' widgets' : ' widget') . '</a>';
     $thisDiv .= '</h3>';
     $thisDiv .= '</div>';
-    $thisDiv .= '<div id="widget_'.$_type.'" class="panel-collapse collapse">';
+    $thisDiv .= '<div id="widget_' . $_type . '" class="panel-collapse collapse">';
     $thisDiv .= '<div class="panel-body">';
     $thisDiv .= '<div class="widgetsListContainer">';
     foreach ($_widgets[$_type] as $widget) {
       $thisDiv .= '<div class="widgetsDisplayCard cursor" data-widgets_id="' . $widget->getId() . '">';
       if ($widget->getDisplay('icon') != '') {
-        $thisDiv .= '<span>'.$widget->getDisplay('icon').'</span>';
+        $thisDiv .= '<span>' . $widget->getDisplay('icon') . '</span>';
       } else {
         $thisDiv .= '<span><i class="fas fa-image"></i></span>';
       }
       $thisDiv .= '<br/>';
-      $thisDiv .= '<span class="name"><span class="label label-primary cursor" style="font-size:10px !important;padding: 2px 4px">' . $widget->getType() . '</span> | <span class="label label-info cursor" style="font-size:10px !important;padding: 2px 4px">'.$widget->getSubType() .'</span></span>';
+      $thisDiv .= '<span class="name"><span class="label label-primary cursor" style="font-size:10px !important;padding: 2px 4px">' . $widget->getType() . '</span> | <span class="label label-info cursor" style="font-size:10px !important;padding: 2px 4px">' . $widget->getSubType() . '</span></span>';
       $thisDiv .= '<span class="name search">' . $widget->getName() . '</span><br/>';
-      $thisDiv .= '<span class="hiddenAsCard displayTableRight">'.ucfirst($widget->getSubType()).' | '.ucfirst(str_replace('tmpl', '', $widget->getTemplate()));
+      $thisDiv .= '<span class="hiddenAsCard displayTableRight">' . ucfirst($widget->getSubType()) . ' | ' . ucfirst(str_replace('tmpl', '', $widget->getTemplate()));
       if ($widget->getReplace('#_time_widget_#', 0) == 1) $thisDiv .= ' (time)';
       $thisDiv .= '</span>';
       $thisDiv .= '</div>';
@@ -59,21 +59,17 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
 
 <div class="row row-overflow">
   <div id="div_widgetsList" class="col-xs-12">
-    <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
+    <legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
     <div class="widgetsListContainer <?php echo (jeedom::getThemeConfig()['theme_displayAsTable'] == 1) ? ' containerAsTable' : ''; ?>">
       <div class="cursor logoPrimary" id="bt_addWidgets">
         <div class="center"><i class="fas fa-plus-circle"></i></div>
         <span class="txtColor">{{Ajouter}}</span>
       </div>
-      <div class="cursor logoSecondary" id="bt_mainImportWidgets" style="cursor: default !important;">
-        <div class="center" style="cursor: default !important;">
-          <span class="btn-file"><i class="fas fa-file-import" style="margin-bottom: 20px;"></i>
-            <input type="file" name="file">
-            <span class="txtColor" style="margin-left: 4px;">{{Importer}}</span>
-          </span>
-        </div>
-
+      <div class="cursor logoSecondary" id="bt_mainImportWidgets">
+        <div class="center"><i class="fas fa-file-import"></i></div>
+        <span class=" txtColor">{{Importer}}</span>
       </div>
+      <input type="file" name="file" id="uploadFile" class="hidden">
       <div class="cursor logoSecondary" id="bt_editCode">
         <div class="center"><i class="far fa-file-code"></i></div>
         <span class="txtColor">{{Code}}</span>
@@ -106,7 +102,7 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
       $div .= jeedom_displayWidgetGroup('info', $widgets);
       $div .= jeedom_displayWidgetGroup('action', $widgets);
 
-      echo $div.'</div>';
+      echo $div . '</div>';
     }
     ?>
   </div>
@@ -116,7 +112,7 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
       <div class="input-group">
         <span class="input-group-btn">
           <a class="btn btn-default btn-sm roundedLeft" id="bt_applyToCmd"><i class="fas fa-arrow-alt-circle-down"></i> <span class="hidden-768">{{Appliquer à}}</span>
-          </a><span class="btn btn-info btn-sm btn-file"><i class="fas fa-file-import"></i> <span class="hidden-768">{{Importer}}</span><input  id="bt_importWidgets" type="file" name="file" style="display:inline-block;">
+          </a><span class="btn btn-info btn-sm btn-file"><i class="fas fa-file-import"></i> <span class="hidden-768">{{Importer}}</span><input id="bt_importWidgets" type="file" name="file" style="display:inline-block;">
           </span><a class="btn btn-info btn-sm" id="bt_exportWidgets"><i class="fas fa-file-export"></i> <span class="hidden-768">{{Exporter}}</span>
           </a><a class="btn btn-success btn-sm" id="bt_saveWidgets"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
           </a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeWidgets"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
@@ -131,7 +127,7 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
 
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane active" id="widgetstab">
-        <br/>
+        <br />
         <form class="form-horizontal">
           <fieldset>
             <div class="row">
@@ -140,8 +136,8 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
                 <div class="form-group">
                   <label class="col-lg-4 col-xs-4 control-label">{{Nom du widget}}</label>
                   <div class="col-lg-4 col-xs-5">
-                    <input class="form-control widgetsAttr" type="text" data-l1key="id" style="display : none;"/>
-                    <input class="form-control widgetsAttr" type="text" data-l1key="name" placeholder="{{Nom du widget}}"/>
+                    <input class="form-control widgetsAttr" type="text" data-l1key="id" style="display : none;" />
+                    <input class="form-control widgetsAttr" type="text" data-l1key="name" placeholder="{{Nom du widget}}" />
                   </div>
                 </div>
                 <div class="form-group">
@@ -150,7 +146,7 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
                     <select class="form-control widgetsAttr" data-l1key="type">
                       <?php
                       foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
-                        echo '<option value="'.$key.'"><a>'.$value['name'].'</option>';
+                        echo '<option value="' . $key . '"><a>' . $value['name'] . '</option>';
                       }
                       ?>
                     </select>
@@ -161,9 +157,9 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
                   <div class="col-lg-4 col-xs-5">
                     <?php
                     foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
-                      echo '<select class="form-control selectWidgetSubType" data-l1key="subtype" data-type="'.$key.'">';
+                      echo '<select class="form-control selectWidgetSubType" data-l1key="subtype" data-type="' . $key . '">';
                       foreach ($value['subtype'] as $skey => $svalue) {
-                        echo '<option data-type="'.$key.'" value="'.$skey.'"><a>'.$svalue['name'].'</option>';
+                        echo '<option data-type="' . $key . '" value="' . $skey . '"><a>' . $svalue['name'] . '</option>';
                       }
                       echo '</select>';
                     }
@@ -176,9 +172,9 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
                     <?php
                     foreach ((widgets::listTemplate()) as $type => $values) {
                       foreach ($values as $subtype => $namelist) {
-                        echo '<select class="form-control selectWidgetTemplate" data-l1key="template" data-type="'.$type.'" data-subtype="'.$subtype.'">';
+                        echo '<select class="form-control selectWidgetTemplate" data-l1key="template" data-type="' . $type . '" data-subtype="' . $subtype . '">';
                         foreach ($namelist as $name) {
-                          echo '<option data-type="'.$type.'" data-subtype="'.$subtype.'" value="'.$name.'">'.ucfirst(str_replace('tmpl','',$name)).'</option>';
+                          echo '<option data-type="' . $type . '" data-subtype="' . $subtype . '" value="' . $name . '">' . ucfirst(str_replace('tmpl', '', $name)) . '</option>';
                         }
                         echo '</select>';
                       }
@@ -245,4 +241,4 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
   </div>
 </div>
 
-<?php include_file("desktop", "widgets", "js");?>
+<?php include_file("desktop", "widgets", "js"); ?>
