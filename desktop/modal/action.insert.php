@@ -25,17 +25,17 @@ if (!isConnect()) {
   <option value="variable">{{Variable}}</option>
   <option value="delete_variable">{{Supprimer une variable}}</option>
   <option value="scenario">{{Scénario}}</option>
-  <option value="stop" class="scenarioOnly">{{Stop}}</option>
+  <option value="stop">{{Stop}}</option>
   <option value="wait">{{Attendre}}</option>
   <option value="gotodesign">{{Aller au design}}</option>
-  <option value="log" class="scenarioOnly">{{Ajouter un log}}</option>
+  <option value="log">{{Ajouter un log}}</option>
   <option value="message">{{Créer un message}}</option>
   <option value="equipement">{{Activer/Désactiver Masquer/Afficher un équipement}}</option>
   <option value="ask">{{Faire une demande}}</option>
   <option value="jeedom_poweroff">{{Arrêter}} <?php echo config::byKey('product_name'); ?></option>
   <option value="jeedom_reboot">{{Redémarrer}} <?php echo config::byKey('product_name'); ?></option>
-  <option value="scenario_return" class="scenarioOnly">{{Retourner un texte/une donnée}}</option>
-  <option value="icon" class="scenarioOnly">{{Icône}}</option>
+  <option value="scenario_return">{{Retourner un texte/une donnée}}</option>
+  <option value="icon">{{Icône}}</option>
   <option value="alert">{{Alerte}}</option>
   <option value="popup">{{Pop-up}}</option>
   <option value="report">{{Rapport}}</option>
@@ -44,7 +44,7 @@ if (!isConnect()) {
   <option value="event">{{Evènement}}</option>
   <option value="tag">{{Tag}}</option>
   <option value="setColoredIcon">{{Coloration des icones}}</option>
-  <option value="genericType" class="scenarioOnly">{{Type générique}}</option>
+  <option value="genericType">{{Type générique}}</option>
   <option value="changeTheme">{{Changer de thème}}</option>
 </select>
 <br/>
@@ -170,10 +170,14 @@ mod_insertAction.options = {}
 
 mod_insertAction.setOptions = function(_options) {
   mod_insertAction.options = _options;
-  if (init(_options.scenario,false) == false) {
-    $('#mod_actionValue_sel .scenarioOnly').hide()
+  if (init(_options.scenario, false) == false) {
+    $('#mod_actionValue_sel option').each(function(index) {
+      if (jeedom.scenario.autoCompleteActionScOnly.includes($(this).value())) {
+        $(this).hide()
+      }
+    })
   } else {
-    $('#mod_actionValue_sel .scenarioOnly').show()
+    $('#mod_actionValue_sel option').show()
   }
 }
 

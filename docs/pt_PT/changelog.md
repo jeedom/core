@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.3
 
+## 4.3.7
+
+- Correções de bugs (afetando um futuro plugin em desenvolvimento).
+- Corrigidos erros de exibição em alguns widgets com base na unidade.
+- Descrição adicionada **fonte** para ações de mensagem (consulte [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.3)).
+
 ## 4.3.6
 
 - Conversão de unidade removida por segundos (s)).

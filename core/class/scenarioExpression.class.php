@@ -1429,7 +1429,11 @@ class scenarioExpression {
 					$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['event']['txt'] . $cmd->getHumanName() . ' ' . __('à', __FILE__) . ' ' . $options['value']);
 					return;
 				} elseif ($this->getExpression() == 'message') {
-					message::add('scenario', $options['message']);
+					$source = 'scenario';
+					if (isset($options['source']) && is_string($options['source'])) {
+						$source = $options['source'];
+					}
+					message::add($source, $options['message']);
 					$this->setLog($scenario, __('Ajout du message suivant dans le centre de message :', __FILE__) . ' ' . $options['message']);
 					return;
 				} elseif ($this->getExpression() == 'alert') {
