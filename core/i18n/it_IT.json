@@ -3023,9 +3023,10 @@
         "Sauvegarde effectuée avec succès": "Backup completato con successo",
         "Configuration de la commande": "Impostazione comando",
         "Êtes-vous sûr de vouloir supprimer le widget": "Êtes-vous sûr de vouloir supprimer le widget",
-        "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "L'importazione di widget viene eseguita in formato json da widget precedentemente esportati",
+        "L'import de widget se fait au format json à partir d'un widget précédemment exporté.": "L'import de widget se fait au format json à partir d'un widget précédemment exporté",
         "Fichier json non compatible.": "File Json non compatibile",
-        "Problème lors de la lecture du fichier.": "Problema durante la lettura del file"
+        "Problème lors de la lecture du fichier.": "Problema durante la lettura del file",
+        "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "L'importazione di widget viene eseguita in formato json da widget precedentemente esportati"
     },
     "desktop\/js\/profils.js": {
         "Les deux mots de passe ne sont pas identiques": "Le due password non sono identiche",

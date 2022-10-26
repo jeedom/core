@@ -3023,9 +3023,10 @@
         "Sauvegarde effectuée avec succès": "Резервное копирование завершено успешно",
         "Configuration de la commande": "управляющий набор",
         "Êtes-vous sûr de vouloir supprimer le widget": "Êtes-vous sûr de vouloir supprimer le widget",
-        "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "L'import de widgets se fait au format json à partir de widgets précedemment exporté",
+        "L'import de widget se fait au format json à partir d'un widget précédemment exporté.": "L'import de widget se fait au format json à partir d'un widget précédemment exporté",
         "Fichier json non compatible.": "Fichier json non compatible",
-        "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier"
+        "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier",
+        "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "L'import de widgets se fait au format json à partir de widgets précedemment exporté"
     },
     "desktop\/js\/profils.js": {
         "Les deux mots de passe ne sont pas identiques": "Два пароля не идентичны",

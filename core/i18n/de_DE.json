@@ -3023,9 +3023,10 @@
         "Sauvegarde effectuée avec succès": "Speichern erfolgreich abgeschlossen",
         "Configuration de la commande": "Befehl Konfiguration",
         "Êtes-vous sûr de vouloir supprimer le widget": "Möchten Sie das Widget wirklich entfernen?",
-        "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "Der Import von Widgets erfolgt im JSON-Format von zuvor exportierten Widgets",
+        "L'import de widget se fait au format json à partir d'un widget précédemment exporté.": "Der Widget-Import erfolgt im json-Format aus einem zuvor exportierten Widget",
         "Fichier json non compatible.": "Json-Datei nicht kompatibel",
-        "Problème lors de la lecture du fichier.": "Problem beim Lesen der Datei"
+        "Problème lors de la lecture du fichier.": "Problem beim Lesen der Datei",
+        "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "Der Import von Widgets erfolgt im JSON-Format von zuvor exportierten Widgets"
     },
     "desktop\/js\/profils.js": {
         "Les deux mots de passe ne sont pas identiques": "Die beiden Passwörter sind nicht identisch",
