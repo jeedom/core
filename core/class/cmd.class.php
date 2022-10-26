@@ -2277,7 +2277,7 @@ class cmd {
 		$dataStore->setValue($_response);
 		$dataStore->setLink_id(-1);
 		$dataStore->save();
-		$this->setCache(array('ask::variable' => 'none', 'ask::count' => 0, 'ask::token' => null, 'ask::endtime' => null));
+		$this->setCache(array('ask::variable' => 'none', 'ask::count' => 0, 'ask::token' => config::genKey(), 'ask::endtime' => null));
 		return true;
 	}
 

@@ -44,7 +44,6 @@ if (init('type') != '') {
 				die();
 			}
 			$cmd->askResponse(init('response'));
-			$cmd->setCache(array('ask::count' => 0, 'ask::token' => config::genKey()));
 			die();
 		}
 		$plugin = init('plugin', 'core');
