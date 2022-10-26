@@ -67,7 +67,7 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
       </div>
       <div class="cursor logoSecondary" id="bt_mainImportWidgets">
         <div class="center"><i class="fas fa-file-import"></i></div>
-        <span class=" txtColor">{{Importer}}</span>
+        <span class="txtColor">{{Importer}}</span>
       </div>
       <input type="file" name="file" id="uploadFile" class="hidden">
       <div class="cursor logoSecondary" id="bt_editCode">
