@@ -249,7 +249,7 @@ $('#in_searchWidgets').keyup(function() {
   if (search == '') {
     $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
     $('.widgetsDisplayCard').show()
-    return;
+    return
   }
   search = jeedomUtils.normTextLower(search)
   var not = search.startsWith(":not(")
@@ -347,7 +347,7 @@ $(function() {
         })
       }
     })
-  } catch (err) {}
+  } catch (err) { }
 })
 
 $('#bt_chooseIcon').on('click', function() {
@@ -389,8 +389,8 @@ $('#bt_applyToCmd').off('click').on('click', function() {
   })
 
   $('#md_modal').dialog({
-      title: "{{Appliquer ce widget à}}"
-    })
+    title: "{{Appliquer ce widget à}}"
+  })
     .load('index.php?v=d&modal=cmd.selectMultiple&type=' + $('.widgetsAttr[data-l1key=type]').value() + '&subtype=' + $('.widgetsAttr[data-l1key=subtype]').value(), function() {
       jeedomUtils.initTableSorter()
 
@@ -454,8 +454,8 @@ $('#bt_applyToCmd').off('click').on('click', function() {
                       level: 'danger'
                     })
                   },
-                  success: function() {}
-                });
+                  success: function() { }
+                })
 
               } else {
                 if (checkedId.includes(thisId)) {
@@ -471,7 +471,7 @@ $('#bt_applyToCmd').off('click').on('click', function() {
                     success: function(data) {
                       $('#div_usedBy .cmdAdvanceConfigure[data-cmd_id="' + data.id + '"]').remove()
                     }
-                  });
+                  })
                 }
               }
             })
@@ -659,12 +659,17 @@ $("#bt_exportWidgets").on('click', function(event) {
   return false
 })
 
-$("#bt_mainImportWidgets").change(function(event) {
+$("#bt_mainImportWidgets").off('click').on('click', function(event) {
+  $('#uploadFile').click()
+  event.stopPropagation()
+})
+
+$("#uploadFile").change(function(event) {
   $('#div_alert').hide()
   var uploadedFile = event.target.files[0]
   if (uploadedFile.type !== "application/json") {
     $.fn.showAlert({
-      message: "{{L'import de widgets se fait au format json à partir de widgets précedemment exporté.}}",
+      message: "{{L'import de widget se fait au format json à partir d'un widget précédemment exporté.}}",
       level: 'danger'
     })
     return false
@@ -681,7 +686,7 @@ $("#bt_mainImportWidgets").change(function(event) {
             $.fn.showAlert({
               message: error.message,
               level: 'danger'
-            });
+            })
           },
           success: function(data) {
             var readFile = new FileReader()
@@ -708,10 +713,10 @@ $("#bt_mainImportWidgets").change(function(event) {
                   $.fn.showAlert({
                     message: error.message,
                     level: 'danger'
-                  });
+                  })
                 },
                 success: function(data) {
-                  jeedomUtils.loadPage('index.php?v=d&p=widgets&id=' + objectData.id + '&saveSuccessFull=1');
+                  jeedomUtils.loadPage('index.php?v=d&p=widgets&id=' + objectData.id + '&saveSuccessFull=1')
                 }
               })
             }
@@ -751,8 +756,8 @@ $("#bt_importWidgets").change(function(event) {
         })
         return false
       }
-      objectData.id = $('.widgetsAttr[data-l1key=id]').value();
-      objectData.name = $('.widgetsAttr[data-l1key=name]').value();
+      objectData.id = $('.widgetsAttr[data-l1key=id]').value()
+      objectData.name = $('.widgetsAttr[data-l1key=name]').value()
       if (isset(objectData.test)) {
         for (var i in objectData.test) {
           jeeP.addTest(objectData.test[i])
