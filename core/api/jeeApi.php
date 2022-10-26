@@ -36,7 +36,7 @@ if (init('type') != '') {
 			if (!is_object($cmd)) {
 				throw new Exception(__('Commande inconnue :', __FILE__) . ' ' . init('cmd_id'));
 			}
-			if ($cmd->getCache('ask::token', config::genKey()) != init('token')) {
+			if ($cmd->getCache('ask::token', config::genKey()) == null || $cmd->getCache('ask::token', config::genKey()) != init('token')) {
 				throw new Exception(__('Token invalide', __FILE__));
 			}
 			if (init('count', 0) != 0 && init('count', 0) > $cmd->getCache('ask::count', 0)) {
