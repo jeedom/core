@@ -35,7 +35,7 @@ try {
 	}
 
 	unautorizedInDemo();
-	$pathfile = calculPath(urldecode(init('pathfile')));
+	$pathfile = calculPath(init('pathfile'));
 	$pathfile = (strpos($pathfile, '*') !== false) ? realpath(str_replace('*', '', $pathfile)) . '/*' : realpath($pathfile);
 
 	if ($pathfile === false) {
@@ -85,8 +85,7 @@ try {
 	if ($path_parts['extension'] == 'pdf') {
 		header('Content-Type: application/pdf');
 		header('Content-Disposition: inline; filename=' . $path_parts['basename']);
-	}
-	else {
+	} else {
 		header('Content-Type: application/octet-stream');
 		header('Content-Disposition: attachment; filename=' . $path_parts['basename']);
 	}
