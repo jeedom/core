@@ -33,21 +33,21 @@ class message {
 
 	/*     * ***********************Methode static*************************** */
 	/**
-	*
-	* @param type $_type
-	* @param type $_message
-	* @param type $_action
-	* @param type $_logicalId
-	* @param type $_writeMessage
-	*/
+	 *
+	 * @param type $_type
+	 * @param type $_message
+	 * @param type $_action
+	 * @param type $_logicalId
+	 * @param type $_writeMessage
+	 */
 	public static function add($_type, $_message, $_action = '', $_logicalId = '', $_writeMessage = true) {
 		if (is_array($_message)) $_message = json_encode($_message, JSON_PRETTY_PRINT);
 		$message = (new message())
-		->setPlugin(secureXSS($_type))
-		->setMessage(secureXSS($_message))
-		->setAction(secureXSS($_action))
-		->setDate(date('Y-m-d H:i:s'))
-		->setLogicalId(secureXSS($_logicalId));
+			->setPlugin(secureXSS($_type))
+			->setMessage(secureXSS($_message))
+			->setAction(secureXSS($_action))
+			->setDate(date('Y-m-d H:i:s'))
+			->setLogicalId(secureXSS($_logicalId));
 		$message->save($_writeMessage);
 	}
 
@@ -197,8 +197,8 @@ class message {
 			DB::save($this);
 			$params = array(
 				'#plugin#' => $this->getPlugin(),
-				'#subject#' => $this->getMessage(),
-				'#message#' => $this->getMessage(),
+				'#subject#' => html_entity_decode($this->getMessage()),
+				'#message#' => html_entity_decode($this->getMessage()),
 			);
 			$actions = config::byKey('actionOnMessage');
 			if (is_array($actions) && count($actions) > 0) {
@@ -251,31 +251,31 @@ class message {
 	}
 
 	public function setId($_id) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
+		$this->_changed = utils::attrChanged($this->_changed, $this->id, $_id);
 		$this->id = $_id;
 		return $this;
 	}
 
 	public function setDate($_date) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->date,$_date);
+		$this->_changed = utils::attrChanged($this->_changed, $this->date, $_date);
 		$this->date = $_date;
 		return $this;
 	}
 
 	public function setPlugin($_plugin) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->plugin,$_plugin);
+		$this->_changed = utils::attrChanged($this->_changed, $this->plugin, $_plugin);
 		$this->plugin = $_plugin;
 		return $this;
 	}
 
 	public function setMessage($_message) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->message,$_message);
+		$this->_changed = utils::attrChanged($this->_changed, $this->message, $_message);
 		$this->message = $_message;
 		return $this;
 	}
 
 	public function setAction($_action) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->action,$_action);
+		$this->_changed = utils::attrChanged($this->_changed, $this->action, $_action);
 		$this->action = $_action;
 		return $this;
 	}
@@ -285,7 +285,7 @@ class message {
 	}
 
 	public function setLogicalId($_logicalId) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->logicalId,$_logicalId);
+		$this->_changed = utils::attrChanged($this->_changed, $this->logicalId, $_logicalId);
 		$this->logicalId = $_logicalId;
 		return $this;
 	}
@@ -298,5 +298,4 @@ class message {
 		$this->_changed = $_changed;
 		return $this;
 	}
-
 }
