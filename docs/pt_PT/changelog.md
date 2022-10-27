@@ -5,6 +5,7 @@
 - Bugfix
 - Segurança de perguntas aprimorada ao usar a função generateAskResponseLink por plugins : uso de um token exclusivo (não há mais envio da chave da API principal) e bloqueio da resposta apenas entre as opções possíveis
 - Corrigido um bug que impedia a instalação do jeedom
+- Corrigido um bug no influxdb
 
 
 ## 4.3.7

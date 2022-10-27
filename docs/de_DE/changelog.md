@@ -5,6 +5,7 @@
 - Bug-Fix
 - Verbesserte Ask-Sicherheit bei Verwendung der generateAskResponseLink-Funktion durch Plugins : Verwendung eines eindeutigen Tokens (kein Senden des Kern-API-Schlüssels mehr) und Sperren der Antwort nur unter den möglichen Optionen
 - Es wurde ein Fehler behoben, der die Installation von jeedom verhinderte
+- Fehler in influxdb behoben
 
 
 ## 4.3.7
