@@ -1,5 +1,18 @@
 # Changelog Jeedom V4.3
 
+## 4.3.8
+
+- Bugfix
+- Improved ask security when using the generateAskResponseLink function by plugins : use of a unique token (no more sending of the core api key) and locking of the response only among the possible choices
+- Fixed a bug preventing the installation of jeedom
+
+
+## 4.3.7
+
+- Bug fixes (impacting a future plugin under development).
+- Fixed display bugs on some widgets based on unit.
+- Added description **source** for message actions (see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.3)).
+
 ## 4.3.6
 
 - Removed unit conversion for seconds (s)).
@@ -39,7 +52,7 @@
 - **Tools / Objects** : Added a contextual menu on an object to manage visibility, change parent object, and move.
 - **Tools / Replace** : New tool for replacing equipment and commands.
 - **Analysis / Timeline** : Added a search field to filter the display.
-- **Users** : Added a button to copy the rights of a limited user to another
+- **Users** : Added a button to copy the rights of a limited user to another.
 - **Report** : Ability to report on Jeedom health.
 - **Report** : Ability to report on alerted equipment.
 - **Update** : Ability to see from Jeedom the OS / PIP2 / PIP3 / NodeJS packages that can be updated and launch the update (beware risky function and in beta).

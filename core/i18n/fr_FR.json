@@ -438,7 +438,7 @@
         "Tag": "Tag",
         "Coloration des icones": "Coloration des icones",
         "Type générique": "Type générique",
-        "changer de thème": "changer de thème",
+        "Changer de thème": "Changer de thème",
         "Pause de x seconde(s)": "Pause de x seconde(s)",
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "Attend jusqu’à ce que la condition soit valide (maximum 2h)",
         "Création\/modification d’une variable ou de la valeur d’une variable": "Création\/modification d’une variable ou de la valeur d’une variable",
@@ -3023,9 +3023,10 @@
         "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
         "Configuration de la commande": "Configuration de la commande",
         "Êtes-vous sûr de vouloir supprimer le widget": "Êtes-vous sûr de vouloir supprimer le widget",
-        "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "L'import de widgets se fait au format json à partir de widgets précedemment exporté.",
+        "L'import de widget se fait au format json à partir d'un widget précédemment exporté.": "L'import de widget se fait au format json à partir d'un widget précédemment exporté.",
         "Fichier json non compatible.": "Fichier json non compatible.",
-        "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier."
+        "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier.",
+        "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "L'import de widgets se fait au format json à partir de widgets précedemment exporté."
     },
     "desktop\/js\/profils.js": {
         "Les deux mots de passe ne sont pas identiques": "Les deux mots de passe ne sont pas identiques",
@@ -3260,9 +3261,9 @@
         "Historique": "Historique"
     },
     "desktop\/common\/js\/utils.js": {
-        "Impossible de charger la ressource \"${uri}\", car elle va contre la directive de Content Security Policy :<br \/> \"${violation}": "Impossible de charger la ressource \"${uri}\", car elle va contre la directive de Content Security Policy :<br \/> \"${violation}",
-        "La ressource \"${uri}\" a été chargée, mais elle va contre la directive de Content Security Policy :<br \/> \"${violation}": "La ressource \"${uri}\" a été chargée, mais elle va contre la directive de Content Security Policy :<br \/> \"${violation}",
         "Erreur de directive Content Security Policy sur la ressource \"${uri}": "Erreur de directive Content Security Policy sur la ressource \"${uri}",
+        "Impossible de charger la ressource \"${uri}\", car elle va contre la directive de Content Security Policy :<br \/> \"${violation.trim()}": "Impossible de charger la ressource \"${uri}\", car elle va contre la directive de Content Security Policy :<br \/> \"${violation.trim()}",
+        "La ressource \"${uri}\" a été chargée, mais elle va contre la directive de Content Security Policy :<br \/> \"${violation.trim()}": "La ressource \"${uri}\" a été chargée, mais elle va contre la directive de Content Security Policy :<br \/> \"${violation.trim()}",
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?",
         "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
         "Suppression effectuée avec succès": "Suppression effectuée avec succès",
@@ -4843,14 +4844,15 @@
         "Aucune méthode correspondante :": "Aucune méthode correspondante :"
     },
     "core\/api\/jeeApi.php": {
+        "Token invalide": "Token invalide",
+        "Commande inconnue :": "Commande inconnue :",
+        "Erreur response ask, temps écoulé ou réponse invalide": "Erreur response ask, temps écoulé ou réponse invalide",
         "Vous n\\'êtes pas autorisé à effectuer cette action": "Vous n\\'êtes pas autorisé à effectuer cette action",
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",
         "Demande sur l\\'api http venant de :": "Demande sur l\\'api http venant de :",
         "Appels de": "Appels de",
         "Aucune commande correspondant à l\\'ID :": "Aucune commande correspondant à l\\'ID :",
         "Exécution de :": "Exécution de :",
-        "Commande inconnue :": "Commande inconnue :",
-        "Token invalide": "Token invalide",
         "Demande API pour les scénarios": "Demande API pour les scénarios",
         "Aucun scénario correspondant à l\\'ID :": "Aucun scénario correspondant à l\\'ID :",
         "Vous n\\'avez pas le droit de faire une action sur ce scénario": "Vous n\\'avez pas le droit de faire une action sur ce scénario",

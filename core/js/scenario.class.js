@@ -506,7 +506,7 @@ jeedom.scenario.setOrder = function(_params) {
   $.ajax(paramsAJAX);
 }
 
-/* Actions Autocomplete */
+/* Conditions Autocomplete */
 jeedom.scenario.autoCompleteCondition = [
   '#rand(MIN,MAX)',
   '##minute#',
@@ -547,6 +547,7 @@ jeedom.scenario.autoCompleteCondition = [
   '#lastCommunication(equipement)',
   '#color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)'
 ]
+/* Actions Autocomplete */
 jeedom.scenario.autoCompleteAction = [
   'setColoredIcon',
   'tag',
@@ -556,23 +557,27 @@ jeedom.scenario.autoCompleteAction = [
   'variable',
   'delete_variable',
   'scenario',
-  'stop',
   'wait',
   'gotodesign',
-  'log',
   'message',
   'equipement',
   'ask',
   'jeedom_poweroff',
-  'scenario_return',
   'alert',
   'popup',
-  'icon',
   'event',
   'remove_inat',
+  'changeTheme',
   'genericType',
-  'changeTheme'
 ]
+/* Actions Autocomplete only for scenarios*/
+jeedom.scenario.autoCompleteActionScOnly = [
+  'stop',
+  'log',
+  'scenario_return',
+  'icon'
+]
+
 jeedom.scenario.setAutoComplete = function(_params) {
   if (!isset(_params)) {
     _params = {}
@@ -619,11 +624,16 @@ jeedom.scenario.setAutoComplete = function(_params) {
     }
 
     if ($(this).find('.expressionAttr[data-l1key=type]').value() == 'action') {
+        if ($('body').attr('data-page') == "scenario") {
+          jeedom.scenario.autoCompleteActionContext = jeedom.scenario.autoCompleteAction.concat(jeedom.scenario.autoCompleteActionScOnly)
+        } else {
+          jeedom.scenario.autoCompleteActionContext = jeedom.scenario.autoCompleteAction
+        }
+
       $(this).find('.expressionAttr[data-l1key=' + _params.type + ']').autocomplete({
-        source: jeedom.scenario.autoCompleteAction,
+        source: jeedom.scenario.autoCompleteActionContext,
         close: function(event, ui) {
           $(this).blur()
-          //$(this).trigger('focusout')
         }
       })
     }
