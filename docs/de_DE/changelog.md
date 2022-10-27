@@ -1,5 +1,12 @@
 # Änderungsprotokoll Jeedom V4.3
 
+## 4.3.8
+
+- Bug-Fix
+- Verbesserte Ask-Sicherheit bei Verwendung der generateAskResponseLink-Funktion durch Plugins : Verwendung eines eindeutigen Tokens (kein Senden des Kern-API-Schlüssels mehr) und Sperren der Antwort nur unter den möglichen Optionen
+- Es wurde ein Fehler behoben, der die Installation von jeedom verhinderte
+
+
 ## 4.3.7
 
 - Fehlerbehebungen (die sich auf ein zukünftiges Plugin in der Entwicklung auswirken).

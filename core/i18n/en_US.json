@@ -4844,8 +4844,9 @@
         "Aucune méthode correspondante :": "No corresponding method:"
     },
     "core\/api\/jeeApi.php": {
-        "Commande inconnue :": "Unknown command:",
         "Token invalide": "Invalid token",
+        "Commande inconnue :": "Unknown command:",
+        "Erreur response ask, temps écoulé ou réponse invalide": "Response ask error, time elapsed or invalid response",
         "Vous n\\'êtes pas autorisé à effectuer cette action": "You are not authorized to perform this action",
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "You are not authorized to perform this action, IP :",
         "Demande sur l\\'api http venant de :": "Request on the http API coming from:",

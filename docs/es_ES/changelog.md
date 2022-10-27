@@ -1,5 +1,12 @@
 # Registro de cambios Jeedom V4.3
 
+## 4.3.8
+
+- Arreglo del fallo
+- Se mejoró la seguridad de las preguntas al usar la función generateAskResponseLink mediante complementos : uso de un token único (no más envío de la clave API central) y bloqueo de la respuesta solo entre las opciones posibles
+- Se corrigió un error que impedía la instalación de jeedom
+
+
 ## 4.3.7
 
 - Corrección de errores (que afectan a un complemento futuro en desarrollo)).

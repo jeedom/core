@@ -4844,8 +4844,9 @@
         "Aucune méthode correspondante :": "Karşılık gelen yöntem yok:"
     },
     "core\/api\/jeeApi.php": {
-        "Commande inconnue :": "Bilinmeyen komut:",
         "Token invalide": "Geçersiz simge",
+        "Commande inconnue :": "Bilinmeyen komut:",
+        "Erreur response ask, temps écoulé ou réponse invalide": "Erreur response ask, temps écoulé ou réponse invalide",
         "Vous n\\'êtes pas autorisé à effectuer cette action": "Bu işlemi gerçekleştirme yetkiniz yok",
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",
         "Demande sur l\\'api http venant de :": "Http API'sından gelen istek:",

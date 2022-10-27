@@ -4844,8 +4844,9 @@
         "Aucune méthode correspondante :": "対応する方法はありません："
     },
     "core\/api\/jeeApi.php": {
-        "Commande inconnue :": "不明なコマンド：",
         "Token invalide": "Token invalide",
+        "Commande inconnue :": "不明なコマンド：",
+        "Erreur response ask, temps écoulé ou réponse invalide": "Erreur response ask, temps écoulé ou réponse invalide",
         "Vous n\\'êtes pas autorisé à effectuer cette action": "このアクションを実行する権限がありません",
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",
         "Demande sur l\\'api http venant de :": "Demande sur l\\'api http venant de :",
