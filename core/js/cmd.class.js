@@ -991,6 +991,24 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
 };
 
 jeedom.cmd.displayActionOption = function(_expression, _options, _callback) {
+  if (_expression == '') {
+    if ('function' == typeof(_callback)) {
+      _callback('')
+      return
+    }
+    return ''
+  }
+
+  if ($('body').attr('data-page') != "scenario") {
+    if (jeedom.scenario.autoCompleteActionScOnly.includes(_expression)) {
+      if ('function' == typeof(_callback)) {
+        _callback('Unsupported')
+        return
+      }
+      return 'Unsupported'
+    }
+  }
+
   var html = '';
   $.ajax({
     type: "POST",

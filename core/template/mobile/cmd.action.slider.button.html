@@ -10,7 +10,7 @@
       let max = ('#maxValue#' == '') ?  Number.MAX_VALUE : parseFloat('#maxValue#')
       let step = (isNaN(parseFloat('#step#'))) ?  0.5 : parseFloat('#step#')
       if (parseFloat($('.cmd[data-cmd_uid=#uid#] .in_value').val()) <= max - step ) {
-        jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: parseFloat($('.cmd[data-cmd_uid=#uid#] .in_value').val()) + step}])
+        jeedom.cmd.refreshValue([{cmd_id :'#id#',value: parseFloat($('.cmd[data-cmd_uid=#uid#] .in_value').val()) + step}])
         $('.cmd[data-cmd_uid=#uid#] .in_value').trigger('change')
       }
     })
@@ -19,7 +19,7 @@
       let min = ('#minValue#' == '') ? Number.MIN_VALUE : parseFloat('#minValue#')
       let step = (isNaN(parseFloat('#step#'))) ?  0.5 : parseFloat('#step#')
       if (parseFloat($('.cmd[data-cmd_uid=#uid#] .in_value').val()) >= min + step) {
-        jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: parseFloat($('.cmd[data-cmd_uid=#uid#] .in_value').val()) - step}])
+        jeedom.cmd.refreshValue([{cmd_id :'#id#',value: parseFloat($('.cmd[data-cmd_uid=#uid#] .in_value').val()) - step}])
         $('.cmd[data-cmd_uid=#uid#] .in_value').trigger('change')
       }
     })
@@ -34,9 +34,7 @@
     })
 
     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      $('.cmd[data-cmd_uid=#uid#] .in_value').val(_options.display_value+' #unite#')
+      $('.cmd[data-cmd_uid=#uid#] .in_value').val(_options.value+' #unite#')
     });
-
-    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
   </script>
 </div>

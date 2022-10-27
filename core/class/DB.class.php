@@ -105,7 +105,7 @@ class DB {
 		if ($_fetch_param == PDO::FETCH_CLASS) {
 			if (is_array($res) && count($res) > 0) {
 				foreach ($res as &$obj) {
-					if (method_exists($obj, 'decrypt')) {
+					if (is_object($obj) && method_exists($obj, 'decrypt')) {
 						$obj->decrypt();
 						if (method_exists($obj, 'setChanged')) {
 							$obj->setChanged(false);
@@ -113,7 +113,7 @@ class DB {
 					}
 				}
 			} else {
-				if (method_exists($res, 'decrypt')) {
+				if (is_object($res) && method_exists($res, 'decrypt')) {
 					$res->decrypt();
 					if (method_exists($res, 'setChanged')) {
 						$res->setChanged(false);

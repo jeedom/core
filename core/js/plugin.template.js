@@ -219,6 +219,7 @@ $(".eqLogicDisplayCard").on('click', function(event) {
     } else {
       $('.eqLogic').show()
     }
+    $('.eqLogicDisplayCard.active').removeClass('active')
     $(this).addClass('active')
     $('.nav-tabs a:not(.eqLogicAction)').first().click()
     $.showLoading()

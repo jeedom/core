@@ -57,6 +57,7 @@ class config {
 	 * @return boolean
 	 */
 	public static function save($_key, $_value, $_plugin = 'core') {
+		$class = ($_plugin == 'core') ? 'config' : $_plugin;
 		if (is_object($_value) || is_array($_value)) {
 			$_value = json_encode($_value, JSON_UNESCAPED_UNICODE);
 		}
@@ -66,6 +67,10 @@ class config {
 		$defaultConfiguration = self::getDefaultConfiguration($_plugin);
 		if (isset($defaultConfiguration[$_plugin][$_key]) && $_value == $defaultConfiguration[$_plugin][$_key]) {
 			self::remove($_key, $_plugin);
+			$function = 'postConfig_' . str_replace(array('::', ':'), '_', $_key);
+			if (method_exists($class, $function)) {
+				$class::$function($_value);
+			}
 			return true;
 		}
 		if ($_plugin == 'core') {
@@ -75,9 +80,6 @@ class config {
 				return true;
 			}
 		}
-
-		$class = ($_plugin == 'core') ? 'config' : $_plugin;
-
 		$function = 'preConfig_' . str_replace(array('::', ':', '-'), '_', $_key);
 		if (method_exists($class, $function)) {
 			$_value = $class::$function($_value);

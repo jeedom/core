@@ -438,7 +438,7 @@
         "Tag": "Tag",
         "Coloration des icones": "Coloration des icones",
         "Type générique": "Type générique",
-        "changer de thème": "changer de thème",
+        "Changer de thème": "Changer de thème",
         "Pause de x seconde(s)": "X saniye duraklama",
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "Şartın gerçekleşmesine kadar bekle (maximum 2saat)",
         "Création\/modification d’une variable ou de la valeur d’une variable": "Bir değişkenin veya değişkenin değerini oluşturulması\/değiştirilmesi",
@@ -3023,9 +3023,10 @@
         "Sauvegarde effectuée avec succès": "Kayıt başarıyla sonuçlandı",
         "Configuration de la commande": "Komutanın ayarları",
         "Êtes-vous sûr de vouloir supprimer le widget": "Êtes-vous sûr de vouloir supprimer le widget",
-        "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "L'import de widgets se fait au format json à partir de widgets précedemment exporté",
+        "L'import de widget se fait au format json à partir d'un widget précédemment exporté.": "L'import de widget se fait au format json à partir d'un widget précédemment exporté",
         "Fichier json non compatible.": "Fichier json non compatible",
-        "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier"
+        "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier",
+        "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "L'import de widgets se fait au format json à partir de widgets précedemment exporté"
     },
     "desktop\/js\/profils.js": {
         "Les deux mots de passe ne sont pas identiques": "Şifreleriniz aynı değil",
@@ -3260,9 +3261,9 @@
         "Historique": "Geçmiş"
     },
     "desktop\/common\/js\/utils.js": {
-        "Impossible de charger la ressource \"${uri}\", car elle va contre la directive de Content Security Policy :<br \/> \"${violation}": "Impossible de charger la ressource \"${uri}\", car elle va contre la directive de Content Security Policy :<br \/> \"${violation}",
-        "La ressource \"${uri}\" a été chargée, mais elle va contre la directive de Content Security Policy :<br \/> \"${violation}": "La ressource \"${uri}\" a été chargée, mais elle va contre la directive de Content Security Policy :<br \/> \"${violation}",
         "Erreur de directive Content Security Policy sur la ressource \"${uri}": "Erreur de directive Content Security Policy sur la ressource \"${uri}",
+        "Impossible de charger la ressource \"${uri}\", car elle va contre la directive de Content Security Policy :<br \/> \"${violation.trim()}": "Impossible de charger la ressource \"${uri}\", car elle va contre la directive de Content Security Policy :<br \/> \"${violation.trim()}",
+        "La ressource \"${uri}\" a été chargée, mais elle va contre la directive de Content Security Policy :<br \/> \"${violation.trim()}": "La ressource \"${uri}\" a été chargée, mais elle va contre la directive de Content Security Policy :<br \/> \"${violation.trim()}",
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Dikkat modifie verikeri bulunan bi sayfayı terk etmek uzerisiniz. Devam etmekden eminmisiniz?",
         "Sauvegarde effectuée avec succès": "Kayıt başarıyla sonuçlandı",
         "Suppression effectuée avec succès": "Silme başarıyla sonuçlandı",
@@ -4843,14 +4844,15 @@
         "Aucune méthode correspondante :": "Karşılık gelen yöntem yok:"
     },
     "core\/api\/jeeApi.php": {
+        "Token invalide": "Geçersiz simge",
+        "Commande inconnue :": "Bilinmeyen komut:",
+        "Erreur response ask, temps écoulé ou réponse invalide": "Erreur response ask, temps écoulé ou réponse invalide",
         "Vous n\\'êtes pas autorisé à effectuer cette action": "Bu işlemi gerçekleştirme yetkiniz yok",
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",
         "Demande sur l\\'api http venant de :": "Http API'sından gelen istek:",
         "Appels de": "Tarafından yapılan aramalar",
         "Aucune commande correspondant à l\\'ID :": "Kimliğe karşılık gelen komut yok:",
         "Exécution de :": "Yürütme:",
-        "Commande inconnue :": "Bilinmeyen komut:",
-        "Token invalide": "Geçersiz simge",
         "Demande API pour les scénarios": "Senaryolar için API isteği",
         "Aucun scénario correspondant à l\\'ID :": "Kimliğe karşılık gelen senaryo yok:",
         "Vous n\\'avez pas le droit de faire une action sur ce scénario": "Bu senaryoda işlem yapmanıza izin verilmiyor",

@@ -1,5 +1,18 @@
 # Änderungsprotokoll Jeedom V4.3
 
+## 4.3.8
+
+- Bug-Fix
+- Verbesserte Ask-Sicherheit bei Verwendung der generateAskResponseLink-Funktion durch Plugins : Verwendung eines eindeutigen Tokens (kein Senden des Kern-API-Schlüssels mehr) und Sperren der Antwort nur unter den möglichen Optionen
+- Es wurde ein Fehler behoben, der die Installation von jeedom verhinderte
+
+
+## 4.3.7
+
+- Fehlerbehebungen (die sich auf ein zukünftiges Plugin in der Entwicklung auswirken).
+- Anzeigefehler bei einigen Widgets basierend auf Einheiten behoben.
+- Beschreibung hinzugefügt **Quelle** für Nachrichtenaktionen (vgl [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.3)).
+
 ## 4.3.6
 
 - Einheitenumrechnung für Sekunden (s) entfernt).
@@ -39,7 +52,7 @@
 - **Werkzeuge / Objekte** : Ein Kontextmenü für ein Objekt wurde hinzugefügt, um die Sichtbarkeit zu verwalten, das übergeordnete Objekt zu ändern und es zu verschieben.
 - **Werkzeuge / Ersetzen** : Neues Tool zum Ersetzen von Ausrüstung und Befehlen.
 - **Analyse / Zeitleiste** : Ein Suchfeld hinzugefügt, um die Anzeige zu filtern.
-- **Benutzer** : Eine Schaltfläche hinzugefügt, um die Rechte eines eingeschränkten Benutzers auf einen anderen zu kopieren
+- **Benutzer** : Eine Schaltfläche hinzugefügt, um die Rechte eines eingeschränkten Benutzers auf einen anderen zu kopieren.
 - **Prüfbericht** : Möglichkeit, über die Gesundheit von Jeedom zu berichten.
 - **Prüfbericht** : Möglichkeit, über alarmierte Geräte zu berichten.
 - **Aktualisieren** : Möglichkeit, von Jeedom die OS / PIP2 / PIP3 / NodeJS-Pakete zu sehen, die aktualisiert werden können, und das Update zu starten (Vorsicht, riskante Funktion und in Beta).

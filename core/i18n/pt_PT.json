@@ -438,7 +438,7 @@
         "Tag": "Separador",
         "Coloration des icones": "Coloração de ícone",
         "Type générique": "Tipo genérico",
-        "changer de thème": "Mudar tema",
+        "Changer de thème": "Mudar tema",
         "Pause de x seconde(s)": "Pausa x segundo(s)",
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "Esperar até que a condição seja válida (máximo de 2 horas)",
         "Création\/modification d’une variable ou de la valeur d’une variable": "Criação\/modificação de uma variável ou do valor de uma variável",
@@ -3023,9 +3023,10 @@
         "Sauvegarde effectuée avec succès": "Backup concluído com êxito",
         "Configuration de la commande": "Configuração do comando",
         "Êtes-vous sûr de vouloir supprimer le widget": "Tem certeza que deseja remover o widget",
-        "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "A importação de widgets é feita no formato json a partir de widgets exportados anteriormente",
+        "L'import de widget se fait au format json à partir d'un widget précédemment exporté.": "A importação do widget é feita no formato json a partir de um widget exportado anteriormente",
         "Fichier json non compatible.": "Arquivo Json não compatível",
-        "Problème lors de la lecture du fichier.": "Problema ao ler o arquivo"
+        "Problème lors de la lecture du fichier.": "Problema ao ler o arquivo",
+        "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "A importação de widgets é feita no formato json a partir de widgets exportados anteriormente"
     },
     "desktop\/js\/profils.js": {
         "Les deux mots de passe ne sont pas identiques": "As duas senhas não são idênticas",
@@ -3260,9 +3261,9 @@
         "Historique": "Histórico"
     },
     "desktop\/common\/js\/utils.js": {
-        "Impossible de charger la ressource \"${uri}\", car elle va contre la directive de Content Security Policy :<br \/> \"${violation}": "Não foi possível carregar o recurso \"${uri}\", porque vai contra a diretiva da Política de Segurança de Conteúdo:<br \/> \"${violação}",
-        "La ressource \"${uri}\" a été chargée, mais elle va contre la directive de Content Security Policy :<br \/> \"${violation}": "O recurso \"${uri}\" foi carregado, mas vai contra a diretiva da Política de Segurança de Conteúdo:<br \/> \"${violação}",
         "Erreur de directive Content Security Policy sur la ressource \"${uri}": "Erro de diretiva de política de segurança de conteúdo no recurso \"${uri}",
+        "Impossible de charger la ressource \"${uri}\", car elle va contre la directive de Content Security Policy :<br \/> \"${violation.trim()}": "Não foi possível carregar o recurso \"${uri}\", porque vai contra a diretiva da Política de Segurança de Conteúdo:<br \/> \"${violation.trim()}",
+        "La ressource \"${uri}\" a été chargée, mais elle va contre la directive de Content Security Policy :<br \/> \"${violation.trim()}": "O recurso \"${uri}\" foi carregado, mas vai contra a diretiva da Política de Segurança de Conteúdo:<br \/> \"${violation.trim()}",
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Atenção está a deixar uma página com dados modificados que não foram guardados. Deseja continuar?",
         "Sauvegarde effectuée avec succès": "Backup concluído com êxito",
         "Suppression effectuée avec succès": "Eliminado com sucesso",
@@ -4843,14 +4844,15 @@
         "Aucune méthode correspondante :": "Nenhum método correspondente:"
     },
     "core\/api\/jeeApi.php": {
+        "Token invalide": "Token inválido",
+        "Commande inconnue :": "Comando desconhecido:",
+        "Erreur response ask, temps écoulé ou réponse invalide": "Erro de pergunta de resposta, tempo decorrido ou resposta inválida",
         "Vous n\\'êtes pas autorisé à effectuer cette action": "Não está autorizado a executar esta ação",
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Não está autorizado a realizar esta ação, IP:",
         "Demande sur l\\'api http venant de :": "Pedido na API http proveniente de:",
         "Appels de": "Pedidos de",
         "Aucune commande correspondant à l\\'ID :": "Nenhum comando correspondente ao ID:",
         "Exécution de :": "Execução de:",
-        "Commande inconnue :": "Comando desconhecido:",
-        "Token invalide": "Token inválido",
         "Demande API pour les scénarios": "Pedir API para os cenários",
         "Aucun scénario correspondant à l\\'ID :": "Nenhum cenário correspondente à ID:",
         "Vous n\\'avez pas le droit de faire une action sur ce scénario": "Não tem permissão para realizar uma ação neste cenário",

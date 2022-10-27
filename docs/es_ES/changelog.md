@@ -1,5 +1,18 @@
 # Registro de cambios Jeedom V4.3
 
+## 4.3.8
+
+- Arreglo del fallo
+- Se mejoró la seguridad de las preguntas al usar la función generateAskResponseLink mediante complementos : uso de un token único (no más envío de la clave API central) y bloqueo de la respuesta solo entre las opciones posibles
+- Se corrigió un error que impedía la instalación de jeedom
+
+
+## 4.3.7
+
+- Corrección de errores (que afectan a un complemento futuro en desarrollo)).
+- Se corrigieron errores de visualización en algunos widgets según la unidad.
+- Descripción añadida **fuente** para acciones de mensajes (ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.3)).
+
 ## 4.3.6
 
 - Conversión de unidad eliminada por segundo (s)).
@@ -39,7 +52,7 @@
 - **Herramientas / Objetos** : Se agregó un menú contextual en un objeto para administrar la visibilidad, cambiar el objeto principal y mover.
 - **Herramientas / Reemplazar** : Nueva herramienta de sustitución de equipos y mandos.
 - **Análisis / Cronología** : Se agregó un campo de búsqueda para filtrar la visualización.
-- **Usuarios** : Se agregó un botón para copiar los derechos de un usuario limitado a otro
+- **Usuarios** : Se agregó un botón para copiar los derechos de un usuario limitado a otro.
 - **Relación** : Capacidad para informar sobre la salud de Jeedom.
 - **Relación** : Capacidad para informar sobre equipos alertados.
 - **Actualización** : Capacidad para ver desde Jeedom los paquetes OS / PIP2 / PIP3 / NodeJS que se pueden actualizar e iniciar la actualización (cuidado con la función arriesgada y en versión beta).

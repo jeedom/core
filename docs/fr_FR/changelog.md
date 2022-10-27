@@ -1,9 +1,22 @@
 # Changelog Jeedom V4.3
 
+## 4.3.8
+
+- Correction de bugs
+- Amélioration de la sécurité des ask lors de l'utilisation de la fonction generateAskResponseLink par les plugins : utilisation d'un token unique (plus d'envoi de la clef api du core) et verouillage de la réponse uniquement parmis les choix possible
+- Correction d'un bug empechant l'installation de jeedom
+
+
+## 4.3.7
+
+- Correction de bugs (impactant un futur plugin en cours de développement).
+- Correction de bugs d'affichage sur certains widgets en fonction de l'unité.
+- Ajout de la description **source** pour les actions messages (voir [Doc dev](https://doc.jeedom.com/fr_FR/dev/core4.3)).
+
 ## 4.3.6
 
 - Suppression de la conversion des unitées pour les secondes (s).
-- Suppression du menu de mise à jour OS pour les box Jeedom (les mises à jour OS sont gerés par Jeedom SAS).
+- Suppression du menu de mise à jour OS pour les box Jeedom (les mises à jour OS sont gerées par Jeedom SAS).
 - Correction d'un bug sur la modale de configuration des historiques.
 - Ajout d'une action *changeTheme* pour les scénarios, actions sur valeur, actions pre/post exec : Elle permet de changer le thème de l'interface immédiatement, en dark, light ou l'autre (toggle).
 
@@ -14,7 +27,7 @@
 ## 4.3.4
 
 - Correction d'un soucis sur les images de fond.
-- Correction d'un bug avec le widget numerique par défaut.
+- Correction d'un bug avec le widget numérique par défaut.
 - Correction d'une erreur d'inclusion avec certains plugins (*nut* par exemple).
 
 ## 4.3.3
@@ -39,7 +52,7 @@
 - **Outils / Objets** : Ajout d'un menu contextuel sur un objet pour gérer la visibilité, changer d'objet parent, et déplacer.
 - **Outils / Remplacer** : Nouvel outil de remplacement d'équipements et commandes.
 - **Analyse / Timeline** : Ajout d'un champ de recherche pour filtrer l'affichage.
-- **Utilisateurs** : Ajout d'un bouton pour copier les droits d'un utilisateur limité vers un autre
+- **Utilisateurs** : Ajout d'un bouton pour copier les droits d'un utilisateur limité vers un autre.
 - **Rapport** : Possibilité de faire des rapports sur la santé de Jeedom.
 - **Rapport** : Possibilité de faire des rapports sur les équipements en alerte.
 - **Mise à jour** : Possibilité de voir depuis Jeedom les packages OS/PIP2/PIP3/NodeJS qui peuvent etre mise à jour et de lancer la mise à jour (attention fonction risquée et en beta).
