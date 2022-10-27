@@ -3023,9 +3023,10 @@
         "Sauvegarde effectuée avec succès": "バックアップが正常に完了",
         "Configuration de la commande": "設定された制御",
         "Êtes-vous sûr de vouloir supprimer le widget": "Êtes-vous sûr de vouloir supprimer le widget",
-        "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "ウィジェットのインポートは、以前にエクスポートされたウィジェットからjson形式で行われます。",
+        "L'import de widget se fait au format json à partir d'un widget précédemment exporté.": "L'import de widget se fait au format json à partir d'un widget précédemment exporté",
         "Fichier json non compatible.": "JSONファイルに互換性がありません。",
-        "Problème lors de la lecture du fichier.": "ファイルの読み取りに問題があります。"
+        "Problème lors de la lecture du fichier.": "ファイルの読み取りに問題があります。",
+        "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "ウィジェットのインポートは、以前にエクスポートされたウィジェットからjson形式で行われます。"
     },
     "desktop\/js\/profils.js": {
         "Les deux mots de passe ne sont pas identiques": "2つのパスワードは同一ではありません",
@@ -4843,14 +4844,14 @@
         "Aucune méthode correspondante :": "対応する方法はありません："
     },
     "core\/api\/jeeApi.php": {
+        "Commande inconnue :": "不明なコマンド：",
+        "Token invalide": "Token invalide",
         "Vous n\\'êtes pas autorisé à effectuer cette action": "このアクションを実行する権限がありません",
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",
         "Demande sur l\\'api http venant de :": "Demande sur l\\'api http venant de :",
         "Appels de": "通話",
         "Aucune commande correspondant à l\\'ID :": "Aucune commande correspondant à l\\'ID :",
         "Exécution de :": "Exécution de :",
-        "Commande inconnue :": "不明なコマンド：",
-        "Token invalide": "Token invalide",
         "Demande API pour les scénarios": "Demande API pour les scénarios",
         "Aucun scénario correspondant à l\\'ID :": "Aucun scénario correspondant à l\\'ID :",
         "Vous n\\'avez pas le droit de faire une action sur ce scénario": "Vous n\\'avez pas le droit de faire une action sur ce scénario",

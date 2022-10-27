@@ -3023,9 +3023,10 @@
         "Sauvegarde effectuée avec succès": "Guardado correctamente",
         "Configuration de la commande": "Configuración del comando",
         "Êtes-vous sûr de vouloir supprimer le widget": "¿Estás seguro de que quieres eliminar el widget?",
-        "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "La importación de widgets se realiza en formato json desde widgets previamente exportados",
+        "L'import de widget se fait au format json à partir d'un widget précédemment exporté.": "La importación del widget se realiza en formato json desde un widget exportado previamente",
         "Fichier json non compatible.": "El archivo Json no es compatible",
-        "Problème lors de la lecture du fichier.": "Problema al leer el archivo"
+        "Problème lors de la lecture du fichier.": "Problema al leer el archivo",
+        "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "La importación de widgets se realiza en formato json desde widgets previamente exportados"
     },
     "desktop\/js\/profils.js": {
         "Les deux mots de passe ne sont pas identiques": "Las dos contraseñas no son idénticas",
@@ -4843,14 +4844,14 @@
         "Aucune méthode correspondante :": "No hay método correspondiente:"
     },
     "core\/api\/jeeApi.php": {
+        "Commande inconnue :": "Comando desconocido:",
+        "Token invalide": "Token inválido",
         "Vous n\\'êtes pas autorisé à effectuer cette action": "No tiene autorización para realizar esta acción",
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "No está autorizado para realizar esta acción, IP:",
         "Demande sur l\\'api http venant de :": "Solicitud sobre la API http proveniente de:",
         "Appels de": "Llamadas",
         "Aucune commande correspondant à l\\'ID :": "Ningún comando correspondiente a la ID:",
         "Exécution de :": "Ejecución de:",
-        "Commande inconnue :": "Comando desconocido:",
-        "Token invalide": "Token inválido",
         "Demande API pour les scénarios": "Solicitud de API para escenarios",
         "Aucun scénario correspondant à l\\'ID :": "Ningún escenario correspondiente a la ID:",
         "Vous n\\'avez pas le droit de faire une action sur ce scénario": "No tiene permiso para tomar medidas en este escenario",
