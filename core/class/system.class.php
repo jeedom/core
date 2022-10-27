@@ -604,7 +604,7 @@ class system {
 				} else {
 					$cmd .= "sudo systemctl restart apache2\n";
 					$count++;
-					$cmd .= 'echo' . $count . ' > ' . $progress_file . "\n";
+					$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
 				}
 			}
 			if (isset($_packages['post-install']['script'])) {
