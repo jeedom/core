@@ -31,17 +31,16 @@ global $_RESTRICTED;
 $_RESTRICTED = false;
 if (init('type') != '') {
 	try {
-		if ($type == 'ask') {
+		if (init('type') == 'ask') {
+			if (trim(init('token')) == '' || strlen(init('token')) < 64) {
+				throw new Exception(__('Token invalide', __FILE__));
+			}
 			$cmd = cmd::byId(init('cmd_id'));
 			if (!is_object($cmd)) {
 				throw new Exception(__('Commande inconnue :', __FILE__) . ' ' . init('cmd_id'));
 			}
-			if ($cmd->getCache('ask::token', config::genKey()) == null || $cmd->getCache('ask::token', config::genKey()) != init('token')) {
+			if (trim($cmd->getCache('ask::token', config::genKey())) != init('token')) {
 				throw new Exception(__('Token invalide', __FILE__));
-			}
-			if (init('count', 0) != 0 && init('count', 0) > $cmd->getCache('ask::count', 0)) {
-				$cmd->setCache('ask::count', $cmd->getCache('ask::count', 0) + 1);
-				die();
 			}
 			$cmd->askResponse(init('response'));
 			die();

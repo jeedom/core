@@ -2251,13 +2251,12 @@ class cmd {
 	}
 
 	public function generateAskResponseLink($_response, $_plugin = 'core', $_network = 'external') {
-		//$token = $this->getCache('ask::token', config::genKey());
-		$this->setCache(array('ask::count' => 0, 'ask::token' => config::genKey()));
+		if ($this->getCache('ask::token') == null || $this->getCache('ask::token') == '' || strlen($this->getCache('ask::token')) < 60) {
+			$this->setCache('ask::token', config::genKey());
+		}
 		$return = network::getNetworkAccess($_network) . '/core/api/jeeApi.php?';
 		$return .= 'type=ask';
-		//$return .= '&plugin=' . $_plugin;
-		//$return .= '&apikey=' . jeedom::getApiKey($_plugin);
-		$return .= '&token=' . $token;
+		$return .= '&token=' . $this->getCache('ask::token');
 		$return .= '&response=' . urlencode($_response);
 		$return .= '&cmd_id=' . $this->getId();
 		return $return;
@@ -2277,7 +2276,7 @@ class cmd {
 		$dataStore->setValue($_response);
 		$dataStore->setLink_id(-1);
 		$dataStore->save();
-		$this->setCache(array('ask::variable' => 'none', 'ask::count' => 0, 'ask::token' => config::genKey(), 'ask::endtime' => null));
+		$this->setCache(array('ask::variable' => 'none', 'ask::token' => config::genKey(), 'ask::endtime' => null));
 		return true;
 	}
 
