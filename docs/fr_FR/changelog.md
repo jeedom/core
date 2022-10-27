@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.3
 
+## 4.3.8
+
+- Correction de bugs
+- Amélioration de la sécurité des ask lors de l'utilisation de la fonction generateAskResponseLink par les plugins : utilisation d'un token unique (plus d'envoi de la clef api du core) et verouillage de la réponse uniquement parmis les choix possible
+
+
 ## 4.3.7
 
 - Correction de bugs (impactant un futur plugin en cours de développement).
