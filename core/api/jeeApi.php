@@ -42,7 +42,9 @@ if (init('type') != '') {
 			if (trim($cmd->getCache('ask::token', config::genKey())) != init('token')) {
 				throw new Exception(__('Token invalide', __FILE__));
 			}
-			$cmd->askResponse(init('response'));
+			if (!$cmd->askResponse(init('response'))) {
+				throw new Exception(__('Erreur response ask, temps écoulé ou réponse invalide', __FILE__));
+			}
 			die();
 		}
 		$plugin = init('plugin', 'core');

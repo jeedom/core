@@ -1625,6 +1625,7 @@ class scenarioExpression {
 					$this->setLog($scenario, __('Demande', __FILE__) . ' ' . json_encode($options_cmd));
 					$cmd->setCache('ask::variable', $options['variable']);
 					$cmd->setCache('ask::endtime', strtotime('now') + $limit);
+					$cmd->setCache('ask::answer', $options_cmd['answer']);
 					$cmd->execCmd($options_cmd);
 					$occurence = 0;
 					$value = '';

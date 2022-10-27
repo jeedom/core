@@ -2270,6 +2270,9 @@ class cmd {
 		if ($askEndTime === null || $askEndTime < strtotime('now')) {
 			return false;
 		}
+		if (!in_array($_response, $this->getCache('ask::answer'))) {
+			return false;
+		}
 		$dataStore = new dataStore();
 		$dataStore->setType('scenario');
 		$dataStore->setKey($this->getCache('ask::variable', 'none'));
