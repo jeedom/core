@@ -805,7 +805,7 @@ class scenario {
 			$cmd = __DIR__ . '/../../core/php/jeeScenario.php ';
 			$cmd .= ' scenario_id=' . $this->getId();
 			$cmd .= ' trigger=' . escapeshellarg($_trigger);
-			$cmd .= ' "message=' . escapeshellarg(sanitizeAccent($_message)) . '"';
+			$cmd .= ' "message=' . escapeshellarg(sanitizeAccent(addslashes($_message))) . '"';
 			$cmd .= ' >> ' . log::getPathToLog('scenario_execution') . ' 2>&1 &';
 			system::php($cmd);
 		}

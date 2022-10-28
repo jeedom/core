@@ -69,8 +69,8 @@ exit 1
 fi
 
 
-type nodejs &>/dev/null
-if [ $? -eq 0 ]; then actual=`nodejs -v`; else actual='Aucune'; fi
+type node &>/dev/null
+if [ $? -eq 0 ]; then actual=`node -v`; else actual='Aucune'; fi
 echo -n "[Check Version NodeJS actuelle : ${actual} : "
 testVer=$(php -r "echo version_compare('${actual}','v${minVer}','>=');")
 if [[ $testVer == "1" ]]
