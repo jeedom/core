@@ -364,6 +364,7 @@ class config {
 	}
 
 	public static function postConfig_object_summary($_value) {
+		$events = array();
 		try {
 			foreach (jeeObject::all() as $object) {
 				$object->setChanged(true);
