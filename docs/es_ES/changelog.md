@@ -5,6 +5,7 @@
 - Arreglo del fallo
 - Se mejoró la seguridad de las preguntas al usar la función generateAskResponseLink mediante complementos : uso de un token único (no más envío de la clave API central) y bloqueo de la respuesta solo entre las opciones posibles
 - Se corrigió un error que impedía la instalación de jeedom
+- Se corrigió un error en influxdb
 
 
 ## 4.3.7

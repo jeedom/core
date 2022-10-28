@@ -754,6 +754,7 @@
         "Amélioration de la sécurité des ask lors de l'utilisation de la fonction generateAskResponseLink par les plugins": "Amélioration de la sécurité des ask lors de l'utilisation de la fonction generateAskResponseLink par les plugins",
         "utilisation d'un token unique (plus d'envoi de la clef api du core) et verouillage de la réponse uniquement parmis les choix possible": "utilisation d'un token unique (plus d'envoi de la clef api du core) et verouillage de la réponse uniquement parmis les choix possible",
         "Correction d'un bug empechant l'installation de jeedom": "Correction d'un bug empechant l'installation de jeedom",
+        "Correction d'un bug sur influxdb": "Correction d'un bug sur influxdb",
         "4.3.7": "4.3.7",
         "Correction de bugs (impactant un futur plugin en cours de développement": "Correction de bugs (impactant un futur plugin en cours de développement",
         "Correction de bugs d'affichage sur certains widgets en fonction de l'unité": "Correction de bugs d'affichage sur certains widgets en fonction de l'unité",
