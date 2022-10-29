@@ -217,5 +217,5 @@ class translate {
 }
 
 function __($_content, $_name, $_backslash = false) {
-	return translate::sentence($_content, $_name, $_backslash);
+	return translate::sentence(str_replace("\'", '', $_content), $_name, $_backslash);
 }
