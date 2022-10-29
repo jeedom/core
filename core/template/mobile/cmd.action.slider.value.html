@@ -47,8 +47,6 @@
         if ('#noslider#' != '1') mySlider#id#.set(value)
         jeedom.cmd.execute({id: '#id#', value: {slider: value}})
       }, 1000)
-
-
     })
 
     $inputNumber#id#.on('keydown', function(event) {
@@ -58,8 +56,8 @@
     })
 
     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      if ('#noslider#' != '1') $inputNumber#id#.val(_options.display_value)
-      mySlider#id#.set(_options.display_value)
+      if ('#noslider#' != '1') $inputNumber#id#.val(_options.value)
+      mySlider#id#.set(_options.value)
     });
   </script>
 </div>
