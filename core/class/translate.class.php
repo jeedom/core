@@ -101,10 +101,6 @@ class translate {
 		}
 		$language = self::getLanguage();
 
-		if ($language == 'fr_FR') {
-			//return preg_replace("/{{(.*?)}}/s", '$1', $_content);
-		}
-
 		if (substr($_name, 0, 1) == '/') {
 			if (strpos($_name, 'plugins') !== false) {
 				$_name = substr($_name, strpos($_name, 'plugins'));
@@ -120,11 +116,17 @@ class translate {
 
 		//is a custom user widget:
 		if (substr($_name, 0, 12) == 'customtemp::') {
+			if ($language == 'fr_FR') {
+				return preg_replace("/{{(.*?)}}/s", '$1', $_content);
+			}
 			$translate = self::getWidgetTranslation($_name);
 			if (empty($translate[$_name])) {
 				return preg_replace("/{{(.*?)}}/s", '$1', $_content);
 			}
 		} else {
+			if ($language == 'fr_FR' && self::getPluginFromName($_name) == 'core') {
+				return preg_replace("/{{(.*?)}}/s", '$1', $_content);
+			}
 			$translate = self::getTranslation(self::getPluginFromName($_name));
 		}
 
