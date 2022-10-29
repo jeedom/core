@@ -33,32 +33,43 @@
     }
 
     mySlider#id#.on('change', function(values, handle) {
-      jeedom.cmd.execute({id: '#id#', value: {slider: values[handle].replace('#unite#', '').trim()}})
+      let value = values[handle].replace('#unite#', '').trim()
+      let cmd = $('.cmd[data-cmd_uid=#uid#]')
+      if ('#invert#' == '1') {
+        let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+        jeedom.cmd.execute({id: '#id#', value: {slider: maxValue - value}})
+      } else {
+        jeedom.cmd.execute({id: '#id#', value: {slider: value}})
+      }
     })
 
     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
       let cmd = $('.cmd[data-cmd_uid=#uid#]')
       jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
-      let height = ((_options.display_value - #minValue#) * 100) / (#maxValue# - #minValue#)
-      height = 100 - (Math.round(parseFloat(height) * 10) / 10)
+      let position = _options.value
+      let minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
+      let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
       if ('#invert#' == '1') {
-        let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
-        height = maxValue - height
+        position = maxValue - position
       }
-      cmd.find('.shuttergauge-value').height(height+'%')
-      cmd.find('.state strong').first().text(_options.display_value)
-      mySlider#id#.set(_options.display_value)
+      let height_#uid# = ((position - minValue) * 100) / (maxValue - minValue)
+      height_#uid# = 100 - (Math.round(parseFloat(height_#uid#) * 10) / 10)
+      cmd.find('.shuttergauge-value').height(height_#uid#+'%')
+      cmd.find('.state strong').first().text(_options.value)
+      mySlider#id#.set(position)
     });
 
     $('.cmd[data-cmd_uid=#uid#] .shuttergauge-bckg').off().on('click', function() {
       shutterPos = $('.cmd[data-cmd_uid=#uid#] .state strong').first().html()
-      if (shutterPos > 50) {
-        jeedom.cmd.execute({id: '#id#', value: {slider: #minValue#}})
+      let minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
+      let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+      if (shutterPos > (maxValue - minValue) / 2) {
+        jeedom.cmd.execute({id: '#id#', value: {slider: minValue}})
       } else {
-        jeedom.cmd.execute({id: '#id#', value: {slider: #maxValue#}})
+        jeedom.cmd.execute({id: '#id#', value: {slider: maxValue}})
       }
     })
 
-    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
+    jeedom.cmd.refreshValue([{cmd_id :'#id#',value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
   </script>
 </div>
