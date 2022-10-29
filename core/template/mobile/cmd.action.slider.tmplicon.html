@@ -49,7 +49,7 @@
       }
       let minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
       let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
-      let stateValue = ('#state#' == '') ? 0 : parseInt(_options.display_value)
+      let stateValue = ('#state#' == '') ? 0 : parseInt(_options.value)
       mySlider#id#.set(stateValue)
       if (stateValue > minValue) {
         cmd.find('.iconCmd').empty().append("#_icon_on_#").attr('data-state', 'on')
@@ -58,6 +58,6 @@
       }
     });
 
-    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
+    jeedom.cmd.refreshValue([{cmd_id :'#id#',value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
   </script>
 </div>
