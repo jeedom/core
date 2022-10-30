@@ -1,0 +1,5 @@
+/.dockerignore
+/log
+/backup
+/tests
+/docker/jeedom_swag_mariadb/backup

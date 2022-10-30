@@ -1,0 +1,116 @@
+diff --git a/core/class/jeedom.class.php b/core/class/jeedom.class.php
+index 3a9d1b601..770cd426c 100644
+--- a/core/class/jeedom.class.php
++++ b/core/class/jeedom.class.php
+@@ -266,14 +266,16 @@ class jeedom {
+ 			'key' => 'php::version'
+ 		);
+ 
+-		$apaches = count(system::ps('apache2'));
+-		$return[] = array(
+-			'name' => __('Apache', __FILE__),
+-			'state' => ($apaches > 0),
+-			'result' => $apaches,
+-			'comment' => '',
+-			'key' => 'apache'
+-		);
++        if (config::byKey('need_apache', 'core', 1) != 0) {
++            $apaches = count(system::ps('apache2'));
++            $return[] = array(
++                'name' => __('Apache', __FILE__),
++                'state' => ($apaches > 0),
++                'result' => $apaches,
++                'comment' => '',
++                'key' => 'apache'
++            );
++        }
+ 
+ 		$state = true;
+ 		$version = '';
+@@ -446,14 +448,16 @@ class jeedom {
+ 		}
+ 		$return[] = $cache_health;
+ 
+-		$state = shell_exec('systemctl show apache2 | grep  PrivateTmp | grep yes | wc -l');
+-		$return[] = array(
+-			'name' => __('Apache private tmp', __FILE__),
+-			'state' => $state,
+-			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+-			'comment' => ($state) ? '' : __('Veuillez désactiver le private tmp d\'Apache (Jeedom ne peut marcher avec).', __FILE__) . '</a>',
+-			'key' => 'apache2::privateTmp'
+-		);
++        if (config::byKey('need_apache', 'core', 1) != 0) {
++            $state = shell_exec('systemctl show apache2 | grep  PrivateTmp | grep yes | wc -l');
++            $return[] = array(
++                'name' => __('Apache private tmp', __FILE__),
++                'state' => $state,
++                'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
++                'comment' => ($state) ? '' : __('Veuillez désactiver le private tmp d\'Apache (Jeedom ne peut marcher avec).', __FILE__) . '</a>',
++                'key' => 'apache2::privateTmp'
++            );
++        }
+ 
+ 		foreach ((update::listRepo()) as $repo) {
+ 			if (!$repo['enable']) {
+diff --git a/core/class/system.class.php b/core/class/system.class.php
+index e523b88a1..a66b8b6a7 100644
+--- a/core/class/system.class.php
++++ b/core/class/system.class.php
+@@ -690,6 +690,26 @@ class system {
+ 				if ($_package == 'node' || $_package == 'nodejs' || $_package == 'npm') {
+ 					return self::getCmdSudo() . ' chmod +x ' . __DIR__ . '/../../resources/install_nodejs.sh;' . self::getCmdSudo() . ' ' . __DIR__ . '/../../resources/install_nodejs.sh';
+ 				}
++                if (config::byKey('need_apache', 'core', 1) != 0) {
++                    if ($_package == 'apache2') {
++                        return '# Skip unused package ' . $_package . ' under 3 parts docker (front is not here. php-fpm is used.)';
++                    }
++                }
++                if (config::byKey('need_fail2ban', 'core', 1) != 0) {
++                    if ($_package == 'fail2ban') {
++                        return '# Skip unused package ' . $_package . ' under 3 parts docker (front are not here, fail2ban is handled by front part)';
++                    }
++                }
++                if (config::byKey('need_mariadb_server', 'core', 1) != 0) {
++                    if ($_package == 'mariadb-common' || $_package == 'mariadb-server') {
++                        return '# Skip unused package ' . $_package . ' under 3 parts docker (database is not here)';
++                    }
++                }
++                if (config::byKey('need_ntp', 'core', 1) != 0) {
++                    if ($_package == 'ntpdate') {
++                        return '# Skip unused package ' . $_package . ' under docker ntp is useless. date synchronization is handled by the docker host';
++                    }
++                }
+ 				return self::getCmdSudo() . ' apt install -o Dpkg::Options::="--force-confdef" -y ' . $_package;
+ 			case 'pip2':
+ 				if (version_compare(self::getOsVersion(), '11', '>=')) {
+diff --git a/core/config/default.config.ini b/core/config/default.config.ini
+index c2ecb2131..fde319e38 100644
+--- a/core/config/default.config.ini
++++ b/core/config/default.config.ini
+@@ -18,6 +18,11 @@ logo_light = core/img/logo-jeedom_Light.png
+ logo_dark = core/img/logo-jeedom_Dark.png
+ logo_mobile_light = core/img/jeedom_home_Light.png
+ logo_mobile_dark = core/img/jeedom_home_Dark.png
++need_apache = 0
++need_mariadb_server = 0
++need_fail2ban = 0
++need_ntp = 0
++need_auto_patch = 1
+ 
+ ;interface
+ default_bootstrap_theme=core2019_Light
+diff --git a/install/update.php b/install/update.php
+index 261facb92..1403b69c0 100644
+--- a/install/update.php
++++ b/install/update.php
+@@ -170,6 +170,10 @@ try {
+ 					}
+ 				}
+ 
++                if (config::byKey('need_auto_patch', 'core', 0) != 0) {
++                    shell_exec(__DIR__ . '/../auto_patch/jeedom_docker_patch.sh ' . $cibDir);
++                }
++
+ 				if (init('preUpdate') == 1) {
+ 					echo "Update updater...";
+ 					rmove($cibDir . '/install/update.php', __DIR__ . '/update.php', false, array(), array('log' => true, 'ignoreFileSizeUnder' => 1));

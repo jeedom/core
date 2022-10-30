@@ -1,0 +1,88 @@
+version: "3.9"
+services:
+  mariadb:
+    image: linuxserver/mariadb:latest
+    environment:
+      PUID: ${PUID}
+      PGID: ${PGID}
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      MYSQL_DATABASE: jeedom
+      MYSQL_USER: jeedom
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+    volumes:
+      - data:/config/databases
+
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 2s
+      retries: 60
+
+  jeedom:
+    build:
+      context: ../..
+      dockerfile: ${PWD}/Dockerfile
+
+    image: my_jeedom
+    environment:
+      MYSQL_HOSTNAME: mariadb
+      MYSQL_PORT: 3306
+      MYSQL_DBNAME: jeedom
+      MYSQL_USERNAME: jeedom
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+    restart: unless-stopped
+
+    depends_on:
+      mariadb:
+        condition: service_healthy
+
+    # Exposes devices to use raspberry gpio card (Pizigate)
+    devices:
+      - /dev/gpiomem
+      - /dev/ttyAMA0
+
+
+    volumes:
+      # Expose /sys, maybe useless ?
+      - /sys:/sys
+      - shared:/var/www/html
+      - ./backup:/var/www/html/backup
+
+  swag:
+    image: linuxserver/swag
+
+    restart: unless-stopped
+
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=Europe/Paris
+      - URL=<<<your.domain.com>>>
+      - SUBDOMAINS=<<<my_jeedom_sib_domain>>>
+      - VALIDATION=dns
+      - CERTPROVIDER= #optional
+      - DNSPLUGIN=ovh
+      - PROPAGATION= #optional
+      - DUCKDNSTOKEN= #optional
+      - EMAIL=alcolo47@gmail.com #optional
+      - ONLY_SUBDOMAINS=true #optional
+      - EXTRA_DOMAINS= #optional
+      - STAGING=false #optional
+      - MAXMINDDB_LICENSE_KEY= #optional
+
+    ports:
+      - "443:443"
+
+    volumes:
+      - shared:/var/www/html
+      - ./nginx.conf:/config/nginx/site-confs/default.conf
+      - /etc/letsencrypt:/config/etc/letsencrypt
+
+    links:
+      - jeedom
+
+volumes:
+  data:
+  shared:
