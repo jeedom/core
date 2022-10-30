@@ -1893,7 +1893,9 @@ div.div_viewZone legend.lg_viewZone {
     min-height: 20px !important;
     display: inline-block !important;
   }
-
+  body[data-page="administration"] div#config div#div_actionOnMessage {
+    width:  98%;
+  }
 
   /* context menus */
   .context-menu-root .context-menu-layer {
