@@ -1612,9 +1612,11 @@ class scenarioExpression {
 					$limit = (isset($options['timeout'])) ? $options['timeout'] : 300;
 					$options_cmd = array('title' => $options['question'], 'message' => $options['question'], 'answer' => explode(';', $options['answer']), 'timeout' => $limit, 'variable' => $options['variable']);
 
-					$tags = $scenario->getTags();
-					if (isset($tags['#profile#']) === true) {
-						$this->setOptions('cmd', str_replace('#profile#', $tags['#profile#'], $this->getOptions('cmd')));
+					if ($scenario !== null) {
+						$tags = $scenario->getTags();
+						if (isset($tags['#profile#']) === true) {
+							$this->setOptions('cmd', str_replace('#profile#', $tags['#profile#'], $this->getOptions('cmd')));
+						}
 					}
 
 					$cmd = cmd::byId(str_replace('#', '', $this->getOptions('cmd')));
