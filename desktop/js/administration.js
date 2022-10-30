@@ -1259,17 +1259,6 @@ $(".bt_regenerate_api").on('click', function(event) {
   })
 })
 
-$(".bt_showPass").on('click', function(event) {
-  $.hideAlert()
-  var el = $(this)
-  el.closest('.input-group').find('input').toggleClass('inputPassword')
-  if (el.find('.fas').hasClass('fa-eye-slash')) {
-    el.find('.fas').removeClass('fa-eye-slash').addClass('fa-eye')
-  } else {
-    el.find('.fas').removeClass('fa-eye').addClass('fa-eye-slash')
-  }
-})
-
 /**************************OSDB***********************************/
 $('#bt_accessSystemAdministration').on('click', function() {
   $('#md_modal').dialog({
