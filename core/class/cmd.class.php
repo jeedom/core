@@ -1297,7 +1297,7 @@ class cmd {
 			$widgetHelp = explode('</template>', $widgetCode)[0];
 			$widgetHelp = explode('<template>', $widgetHelp)[1];
 			if ($widgetHelp == '') {
-				return '<em>' . __('Aucun paramètre optionnel disponible.', __FILE__) . '</em>.';
+				return '<em>' . __('Aucun paramètre optionnel disponible.', __FILE__) . '</em>';
 			} else {
 				$widgetHelp = strip_tags($widgetHelp, '<div>');
 				if ($isCorewidget) {

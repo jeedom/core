@@ -137,7 +137,7 @@ sendVarToJS([
               $display .= '<tr class="advanceCmdConfigurationCmdConfigure" data-id="' . $cmd->getId() . '">';
               $display .= '<td class="hidden-xs">' . $cmd->getId() . '</td>';
               $display .= '<td>' . $cmd->getHumanName() . '</td>';
-              $display .= '<td><span class="label label-sm label-' . (($cmd->getType() == 'action') ? 'warning' : 'primary') . '">' . $cmd->getType() . '</span> <span class="label label-sm label-info">' . $cmd->getSubtype() . '</span§></td>';
+              $display .= '<td><span class="label label-sm label-' . (($cmd->getType() == 'action') ? 'warning' : 'primary') . '">' . $cmd->getType() . '</span> <span class="label label-sm label-info">' . $cmd->getSubtype() . '</span></td>';
               $display .= '<td>';
               if ($cmd->getType() == 'info') {
                 $value = $cmd->execCmd();
