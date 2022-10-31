@@ -556,7 +556,6 @@ jeedom.history.drawChart = function(_params) {
             },
             plotOptions: {
               column: {
-                grouping: false,
                 stacking: 'normal'
               },
               series: {
@@ -765,7 +764,6 @@ jeedom.history.drawChart = function(_params) {
             credits: { enabled: false },
             plotOptions: {
               column: {
-                grouping: false,
                 stacking: 'normal'
               },
               series: {

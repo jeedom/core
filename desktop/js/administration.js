@@ -844,11 +844,13 @@ jeeP.$divConfig.on({
 
 $('#bt_addActionOnMessage').on('click', function() {
   jeeP.addActionOnMessage()
+  jeeFrontEnd.modifyWithoutSave = true
 })
 
 jeeP.$divConfig.on({
   'click': function(event) {
     $(this).closest('.actionOnMessage').remove()
+    jeeFrontEnd.modifyWithoutSave = true
   }
 }, '.bt_removeAction')
 
