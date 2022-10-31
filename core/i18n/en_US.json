@@ -142,7 +142,7 @@
         "Action": "Stock"
     },
     "mobile\/html\/notes.html": {
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Sauvegarder": "To safeguard",
         "Supprimer": "Remove",
         "Titre": "Title",
@@ -212,7 +212,7 @@
     },
     "desktop\/modal\/planHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Général": "General",
+        "Général": "Main",
         "Composants": "Components",
         "Sauvegarder": "Save",
         "Nom": "Name",
@@ -241,7 +241,7 @@
         "Design sauvegardé": "Saved design"
     },
     "desktop\/modal\/history.calcul.php": {
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Sauvegarder": "Save",
         "Nom": "Name",
         "Calcul": "Calculation",
@@ -306,7 +306,7 @@
     },
     "desktop\/modal\/note.manager.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Sauvegarder": "Save",
         "Supprimer": "Delete",
         "Titre": "Title",
@@ -317,7 +317,7 @@
     },
     "desktop\/modal\/view.configure.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Général": "General",
+        "Général": "Main",
         "Sauvegarder": "Save",
         "Nom": "Name",
         "Icône": "Icon",
@@ -346,7 +346,7 @@
     },
     "desktop\/modal\/dataStore.management.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Rafraichir": "Refresh",
         "Nom": "Name",
         "Valeur": "Value",
@@ -510,7 +510,7 @@
         "Défaut": "Default",
         "Transparent": "Transparent",
         "Paramètres optionnels": "Optional Parameters",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Nom": "Name",
         "Valeur": "Value",
         "Action": "Action",
@@ -547,7 +547,7 @@
     },
     "desktop\/modal\/plan3d.configure.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Général": "General",
+        "Général": "Main",
         "Sauvegarder": "Save",
         "Supprimer": "Delete",
         "Nom": "Name",
@@ -597,7 +597,7 @@
         "Masquer quand le volet est ouvert": "Hide when the shutter is open",
         "Couleur fermé": "Color closed",
         "Condition": "Condition",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Masqué si": "Hidden if"
     },
     "desktop\/modal\/search.php": {
@@ -658,7 +658,7 @@
         "Aucun": "None",
         "Catégorie": "Category",
         "Aucune": "None",
-        "Général": "General",
+        "Général": "Main",
         "Scénario": "Scenario",
         "Etape 4 : Demande de support": "Step 4: Request for support",
         "IMPORTANT : pour avoir une réponse rapide et précise merci de lire cette <a target=\"_blank\" href=\"https:\/\/doc.jeedom.com\/fr_FR\/howto\/remonter_un_bug\">documentation": "IMPORTANT: for a quick and precise response, please read this <a target=\"_blank\" href=\"https:\/\/doc.jeedom.com\/fr_FR\/howto\/remonter_un_bug\">documentation<\/a>",
@@ -690,7 +690,7 @@
         "Configuration": "Configuration",
         "Alertes": "Warnings",
         "Affichage": "Display",
-        "Général": "General",
+        "Général": "Main",
         "ID": "ID",
         "Logical ID": "Logical ID",
         "Nom": "Name",
@@ -751,7 +751,7 @@
         "pendant plus de": "for more than",
         "durée en minutes (laisser vide pour une action immédiate)": "duration in minutes (leave blank for immediate action)",
         "Action": "Action",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Action avant exécution de la commande": "Pre-execution action",
         "Action après exécution de la commande": "Post-execution action",
         "Historiser": "Historize",
@@ -1058,7 +1058,7 @@
     "desktop\/modal\/plan3dHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Impossible de trouver le design 3D": "Could not find the 3D design",
-        "Général": "General",
+        "Général": "Main",
         "Composants": "Components",
         "Supprimer": "Delete",
         "Sauvegarder": "Save",
@@ -1154,7 +1154,7 @@
         "Charger un template": "Load a template",
         "Nom du template": "Template name",
         "Template": "Template",
-        "Général": "General",
+        "Général": "Main",
         "Gérer": "Manage",
         "Supprimer": "Delete",
         "Télécharger": "Download",
@@ -1249,7 +1249,7 @@
     },
     "desktop\/modal\/plan.configure.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Général": "General",
+        "Général": "Main",
         "Sauvegarder": "Save",
         "Profondeur": "Depth",
         "Niveau 0": "Level 0",
@@ -1758,7 +1758,7 @@
         "Messages": "Posts",
         "Ajouter un message à chaque erreur dans les logs": "Add a message for each error in log",
         "Action sur message": "Action on message",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Alertes": "Warnings",
         "Ajouter un message à chaque": "Add a message for each",
         "Commande sur": "Command on",
@@ -2136,7 +2136,7 @@
         "Objet": "Object",
         "Scénario": "Scenario",
         "Ajouter un filtre": "Add filter",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Test": "Test",
         "Colonne": "Column",
         "Valeur": "Value",
@@ -2147,7 +2147,7 @@
     "desktop\/php\/widgets.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Gestion": "Management",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Importer": "Import",
         "Code": "Code",
         "Remplacement": "Replacement",
@@ -2158,7 +2158,7 @@
         "Sauvegarder": "Save",
         "Supprimer": "Delete",
         "Widgets": "Widgets",
-        "Général": "General",
+        "Général": "Main",
         "Nom du widget": "Widget name",
         "Type": "Type",
         "Sous-Type": "Subtype",
@@ -2216,7 +2216,7 @@
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Aucun": "None",
         "Gestion": "Management",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Supprimer les logs": "Delete logs",
         "Activer scénarios": "Enable scenarios",
         "Désactiver scénarios": "Disable scenarios",
@@ -2329,7 +2329,7 @@
         "Aucun": "None",
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Gestion": "Management",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Regénérer": "Regenerate",
         "Tester": "Test",
         "Mes interactions": "My interactions",
@@ -2339,7 +2339,7 @@
         "Dupliquer": "Duplicate",
         "Sauvegarder": "Save",
         "Supprimer": "Delete",
-        "Général": "General",
+        "Général": "Main",
         "Filtres": "Filters",
         "Actions": "Actions",
         "Nom": "Name",
@@ -2443,7 +2443,7 @@
         "Identifiant": "Login",
         "Mot de passe": "Password",
         "Annuler": "Cancel",
-        "Ajouter": "To add"
+        "Ajouter": "Add"
     },
     "desktop\/php\/database.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -2466,7 +2466,7 @@
         "Activer le système cron": "Enable cron system",
         "Désactiver le système cron": "Disable cron system",
         "Rafraîchir": "Refresh",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Sauvegarder": "Save",
         "Cron": "Cron",
         "Listener": "Listen",
@@ -2496,7 +2496,7 @@
         "Design": "Design",
         "Design 3D": "3d design",
         "Gestion": "Management",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Vue d'ensemble": "Overview",
         "Mes objets": "My objects",
         "Rechercher | nom | :not(nom": "Search | name | :not(name",
@@ -2921,8 +2921,7 @@
         "Jeedom benchmark": "Jeedom benchmark"
     },
     "desktop\/js\/dashboard.js": {
-        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": "You are in edit mode. You can move the tiles, resize them, and edit the commands (order, widget) with the button to the right of the title. Don't forget to exit edit mode to save",
-        "Configuration Affichage": "Display Configuration"
+        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": "You are in edit mode. You can move the tiles, resize them, and edit the commands (order, widget) with the button to the right of the title. Don't forget to exit edit mode to save"
     },
     "desktop\/js\/plan.js": {
         "Nom du design ?": "New design name ?",
@@ -3225,7 +3224,7 @@
         "Copier ce bloc.<br>Ctrl+Click: Couper ce bloc.": "Copy this block. <br> Ctrl + Click: Cut this block",
         "Coller un bloc après celui-ci.<br>Ctrl+Click: remplacer ce bloc par le bloc copié.": "Paste a block after this. <br> Ctrl + Click: replace this block with the copied block",
         "Afficher\/masquer le bloc Sinon": "Show \/ hide Else block",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Action": "ACTION",
         "Bloc Si\/Alors\/Sinon": "If \/ Do \/ Else block",
         "Bloc Action": "Action Block",
