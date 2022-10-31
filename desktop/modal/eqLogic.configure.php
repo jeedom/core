@@ -97,7 +97,6 @@ sendVarToJS([
           <div class="col-sm-3">
             <span class="label label-sm label-primary"><?php echo $eqLogic->getStatus('numberTryWithoutSuccess', 0) ?></span>
           </div>
-
         </div>
 
         <div class="form-group">
@@ -227,7 +226,7 @@ sendVarToJS([
                 <?php
                 $display = '';
                 foreach ((jeedom::getConfiguration('eqLogic:displayType')) as $key => $value) {
-                  $display .= '<th style="width:20%">' . $value['name'] . '</th>';
+                  $display .= '<th style="width:25%">' . $value['name'] . '</th>';
                 }
                 echo $display;
                 ?>
