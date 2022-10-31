@@ -16,7 +16,8 @@ RUN apt update && apt install -y git
 
 COPY . /SRC
 # Generate if not already exists auto_patch/patch.git.diff
-RUN /SRC/auto_patch/jeedom_docker_patch.sh /SRC
+RUN /SRC/auto_patch/jeedom_docker_patch.sh /SRC \
+ && rm -rf /SRC/.git*
 
 RUN mkdir /SCRIPTS \
  && cd /SRC/docker/jeedom_swag_mariadb \
