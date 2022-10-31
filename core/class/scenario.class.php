@@ -834,7 +834,7 @@ class scenario {
 			return;
 		}
 		if ($this->getConfiguration('timeDependency', 0) == 1) {
-			if (!jeedom::isDateOk() || (((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1 && date('G') > 0 && date('G') < 4)) {
+			if (!jeedom::isDateOk() || (((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1  && date('I') == 1 && date('Gi') > 159) ) {
 				$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenario']['txt'] . $this->getHumanName() . ' ' . __('annulé car il utilise une condition de type temporelle et que la date système n\'est pas OK (ou que l\'on est en changement d\'heure négatif)', __FILE__));
 				$this->setState('stop');
 				$this->setPID();
