@@ -292,7 +292,7 @@ $('#eqSource').on({
       var options = '<option value=""></option>'
       var _cmd = jeephp2js.listCommands.filter(o => o.id == $(this).attr('data-id'))[0]
       optionsCmds.forEach(function(optionsCmd) {
-        if (_cmd.name == optionsCmd.name && _cmd.type == optionsCmd.type) {
+        if (_cmd.name.toLowerCase() == optionsCmd.name.toLowerCase() && _cmd.type == optionsCmd.type) {
           options += '<option selected value="' + optionsCmd.id + '">' + optionsCmd.name + '</option>'
         } else {
           options += '<option value="' + optionsCmd.id + '">' + optionsCmd.name + '</option>'
