@@ -20,6 +20,15 @@ i.cursor {
   color: var(--link-color) !important;
 }
 
+input[type=checkbox],
+input[type=radio] {
+  background: var(--btn-default-color);
+  --color: var(--linkHoverLight-color);
+}
+input:checked {
+  background: var(--sc-formTxt-color);
+}
+
 .panel-default .panel-title {
   color: var(--linkHover-color) !important;
 }

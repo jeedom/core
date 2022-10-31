@@ -2904,6 +2904,7 @@ div.div_viewZone legend.lg_viewZone {
     width: 15px !important;
     height: 15px;
     border-radius: 0 !important;
+    border: none !important;
     background: var(--form-bg-color);
     color: var(--txt-color);
     font-weight: normal !important;
@@ -2917,6 +2918,8 @@ div.div_viewZone legend.lg_viewZone {
     font-weight: 700;
     content: '\f00c' !important;
     position: absolute;
+    margin: 0 !important;
+    border: none !important;
   }
   input[type=checkbox]::-ms-check {
     background-color: var(--form-bg-color) !important;
