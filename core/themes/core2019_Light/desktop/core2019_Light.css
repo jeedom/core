@@ -10,12 +10,13 @@ i.cursor {
   color: var(--link-color) !important;
 }
 
-input[type=checkbox],
-input[type=radio] {
-  background: var(--el-defaultColor);
+input[type=checkbox]:not(checked),
+input[type=radio]:not(checked) {
+  background: var(--el-defaultColor) !important;
 }
-input:checked {
-  background: var(--form-bg-color);
+input[type=checkbox]:checked,
+input[type=radio]:checked {
+  background: var(--form-bg-color) !important;
 }
 
 .panel-default .panel-title {

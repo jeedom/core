@@ -20,13 +20,13 @@ i.cursor {
   color: var(--link-color) !important;
 }
 
-input[type=checkbox],
-input[type=radio] {
-  background: var(--btn-default-color);
-  --color: var(--linkHoverLight-color);
+input[type=checkbox]:not(checked),
+input[type=radio]:not(checked) {
+  background: var(--btn-default-color) !important;
 }
-input:checked {
-  background: var(--sc-formTxt-color);
+input[type=checkbox]:checked,
+input[type=radio]:checked {
+  background: var(--sc-formTxt-color) !important;
 }
 
 .panel-default .panel-title {
