@@ -412,7 +412,7 @@ $('#bt_replace').on('click', function() {
           }
         })
 
-        if (opt_replaceEqs && count(replaceEqs) == 0) {
+        if (opt_replaceEqs && Object.keys(replaceEqs).length === 0) {
           $.fn.showAlert({
             message: '{{Aucun équipement à remplacer}}',
             level: 'info'
@@ -421,7 +421,7 @@ $('#bt_replace').on('click', function() {
           return true
         }
 
-        if (!opt_replaceEqs && count(replaceCmds) == 0) {
+        if (!opt_replaceEqs && Object.keys(replaceCmds).length === 0) {
           $.fn.showAlert({
             message: '{{Aucune commande à remplacer}}',
             level: 'info'
