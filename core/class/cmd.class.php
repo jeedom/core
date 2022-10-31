@@ -1307,7 +1307,7 @@ class cmd {
 				}
 			}
 		} else {
-			return '<em>' . __('Aucune description trouvée pour ce Widget.', __FILE__) . '</em>.';
+			return '<em>' . __('Aucune description trouvée pour ce Widget.', __FILE__) . '</em>';
 		}
 	}
 
