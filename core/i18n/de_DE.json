@@ -995,7 +995,7 @@
         "Activer": "Aktivieren",
         "Visible": "Sichtbar",
         "ID logique": "Logische ID",
-        "Création \/ Sauvegarde": "Erstellung \/ Sicherung",
+        "Création - Sauvegarde": "Erstellung - Sicherung",
         "Tentative échouée": "Versuch fehlgeschlagen",
         "Dernière communication": "Letzte Mitteilung",
         "Tag(s)": "Tag (e)",
@@ -1052,7 +1052,7 @@
         "Sauvegarde réussie": "Speichern erfolgreich",
         "Êtes-vous sûr de vouloir supprimer cet équipement ?": "Möchten Sie dieses Gerät wirklich löschen?",
         "Equipement supprimé avec succès": "Ausrüstung erfolgreich gelöscht",
-        "Confirmer le remplacement des piles ? Cette action enregistrera le dernier de changement de piles à la date d\\'aujourd\\'hui.": "Batteriewechsel bestätigen? Diese Aktion zeichnet den letzten Batteriewechsel am heutigen Datum auf",
+        "Confirmer le remplacement des piles ? Cette action enregistrera le dernier de changement de piles à la date d'aujourd'hui.": "Batteriewechsel bestätigen? Diese Aktion zeichnet den letzten Batteriewechsel am heutigen Datum auf",
         "Le remplacement des piles a été enregistré": "Der Batteriewechsel wurde aufgezeichnet"
     },
     "desktop\/modal\/plan3dHeader.configure.php": {

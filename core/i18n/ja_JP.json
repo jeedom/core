@@ -995,7 +995,7 @@
         "Activer": "アクティブ",
         "Visible": "目に見えます",
         "ID logique": "論理ID",
-        "Création \/ Sauvegarde": "Création \/ Sauvegarde",
+        "Création - Sauvegarde": "Création - Sauvegarde",
         "Tentative échouée": "失敗した試み",
         "Dernière communication": "最後の通信",
         "Tag(s)": "タグ（複数可）",
@@ -1052,7 +1052,7 @@
         "Sauvegarde réussie": "成功したバックアップ",
         "Êtes-vous sûr de vouloir supprimer cet équipement ?": "この機器を削除してもよろしいですか？",
         "Equipement supprimé avec succès": "Equipement supprimé avec succès",
-        "Confirmer le remplacement des piles ? Cette action enregistrera le dernier de changement de piles à la date d\\'aujourd\\'hui.": "Confirmer le remplacement des piles ? Cette action enregistrera le dernier de changement de piles à la date d\\'aujourd\\'hui",
+        "Confirmer le remplacement des piles ? Cette action enregistrera le dernier de changement de piles à la date d'aujourd'hui.": "Confirmer le remplacement des piles ? Cette action enregistrera le dernier de changement de piles à la date d'aujourd'hui",
         "Le remplacement des piles a été enregistré": "Le remplacement des piles a été enregistré"
     },
     "desktop\/modal\/plan3dHeader.configure.php": {
