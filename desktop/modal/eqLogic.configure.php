@@ -87,9 +87,9 @@ sendVarToJS([
 
 
         <div class="form-group">
-          <label class="col-sm-2 control-label">{{Création / Sauvegarde}}</label>
+          <label class="col-sm-2 control-label">{{Création - Sauvegarde}}</label>
           <div class="col-sm-3">
-            <span class="eqLogicAttr label label-sm label-info" data-l1key="configuration" data-l2key="createtime"></span> /
+            <span class="eqLogicAttr label label-sm label-info" data-l1key="configuration" data-l2key="createtime"></span> -
             <span class="eqLogicAttr label label-sm label-info" data-l1key="configuration" data-l2key="updatetime"></span>
           </div>
 
@@ -729,7 +729,7 @@ sendVarToJS([
   })
 
   $('#bt_resetbattery').on('click', function() {
-    bootbox.confirm('{{Confirmer le remplacement des piles ? Cette action enregistrera le dernier de changement de piles à la date d\'aujourd\'hui.}}', function(result) {
+    bootbox.confirm("{{Confirmer le remplacement des piles ? Cette action enregistrera le dernier de changement de piles à la date d'aujourd'hui.}}", function(result) {
       if (result) {
         var eqLogic = {}
         eqLogic['id'] = jeephp2js.md_eqLogicConfigure_Info.id
