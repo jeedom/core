@@ -857,11 +857,12 @@ jeedomUtils.initPage = function() {
 jeedomUtils.initDisplayAsTable = function() {
   var $buttonAsTable = $('#bt_displayAsTable')
   if ($buttonAsTable.length) {
-
     if (getCookie('jeedom_displayAsTable') == 'true' || jeedom.theme.theme_displayAsTable == 1) {
       $('#bt_displayAsTable').data('state', '1').addClass('active')
       $($buttonAsTable.data('card')).addClass('displayAsTable')
-      $($buttonAsTable.data('container')).first().addClass('containerAsTable')
+      if ($($buttonAsTable.data('container')).length > 1) {
+        $($buttonAsTable.data('container')).first().addClass('containerAsTable')
+      }
     }
 
     $buttonAsTable.off('click').on('click', function () {
@@ -869,7 +870,9 @@ jeedomUtils.initDisplayAsTable = function() {
         $(this).data('state', '1').addClass('active')
         setCookie('jeedom_displayAsTable', 'true', 7)
         $($(this).data('card')).addClass('displayAsTable')
-        $($(this).data('container')).first().addClass('containerAsTable')
+        if ($($(this).data('container')).length > 1) {
+          $($(this).data('container')).first().addClass('containerAsTable')
+        }
       } else {
         $(this).data('state', '0').removeClass('active')
         setCookie('jeedom_displayAsTable', 'false', 7)
