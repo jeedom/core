@@ -764,6 +764,10 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
           })
         }
 
+        for (cmd of cmds) {
+          delete jeedom.cmd.update[cmd.id]
+        }
+
         jeedom.cmd.setOrder({
           version: 'dashboard',
           cmds: cmds,
