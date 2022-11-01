@@ -812,7 +812,11 @@ $("#bt_saveObject").on('click', function(event) {
     },
     success: function(data) {
       jeeFrontEnd.modifyWithoutSave = false
-      window.location = 'index.php?v=d&p=object&id=' + data.id + '&saveSuccessFull=1'
+      var url = 'index.php?v=d&p=object&id=' + data.id + '&saveSuccessFull=1'
+      if (window.location.hash != '') {
+        url += window.location.hash
+      }
+      jeedomUtils.loadPage(url)
     }
   })
   return false
