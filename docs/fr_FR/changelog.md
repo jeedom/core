@@ -2,13 +2,15 @@
 
 ## 4.3.9
 
+- Amélioration de l'édition des tuiles.
+- Amélioration de la visibilité des checkboxs sur les thème Dark et Light.
 - Correction de bugs et améliorations.
 
 ## 4.3.8
 
 - Correction de bugs.
 - Amélioration de la sécurité des ask lors de l'utilisation de la fonction generateAskResponseLink par les plugins : utilisation d'un token unique (plus d'envoi de la clef api du core) et verrouillage de la réponse uniquement parmi les choix possible.
-- Correction d'un bug empêchant l'installation de jeedom.
+- Correction d'un bug empêchant l'installation de Jeedom.
 - Correction d'un bug sur InfluxDB.
 
 
