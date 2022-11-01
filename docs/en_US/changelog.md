@@ -2,6 +2,8 @@
 
 ## 4.3.9
 
+- Improved tile editing.
+- Improved visibility of Dark and Light themed checkboxes.
 - Bug fixes and improvements.
 
 ## 4.3.8

@@ -2,6 +2,8 @@
 
 ## 4.3.9
 
+- Verbesserte Kachelbearbeitung.
+- Verbesserte Sichtbarkeit von dunklen und hellen Kontrollkästchen.
 - Fehlerbehebungen und Verbesserungen.
 
 ## 4.3.8
