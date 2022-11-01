@@ -2,6 +2,8 @@
 
 ## 4.3.9
 
+- Edición de mosaicos mejorada.
+- Visibilidad mejorada de las casillas de verificación temáticas Oscuras y Claras.
 - Corrección de errores y mejoras.
 
 ## 4.3.8

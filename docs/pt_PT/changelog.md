@@ -2,6 +2,8 @@
 
 ## 4.3.9
 
+- Edição de blocos aprimorada.
+- Visibilidade aprimorada das caixas de seleção temáticas Escuro e Claro.
 - Correções de bugs e melhorias.
 
 ## 4.3.8
