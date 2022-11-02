@@ -5,6 +5,7 @@
 - Amélioration de l'édition des tuiles.
 - Amélioration de la visibilité des checkboxs sur les thème Dark et Light.
 - Correction de bugs et améliorations.
+- Optimisation du changement, merci @jpty
 
 ## 4.3.8
 
