@@ -852,6 +852,11 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
       $('a[href="#cmd_display"]').click()
     }
 
+    if (jeephp2js.md_cmdConfigure_cmdInfo.type == 'info') {
+      $('#bt_cmdConfigureTest').remove()
+      $('#bt_cmdConfigureGraph').addClass('roundedLeft')
+    }
+
     //modal title:
     var title = '{{Configuration commande}}'
     title += ' : ' + jeephp2js.md_cmdConfigure_cmdInfo.eqLogicHumanName

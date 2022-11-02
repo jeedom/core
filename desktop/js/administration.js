@@ -844,11 +844,13 @@ jeeP.$divConfig.on({
 
 $('#bt_addActionOnMessage').on('click', function() {
   jeeP.addActionOnMessage()
+  jeeFrontEnd.modifyWithoutSave = true
 })
 
 jeeP.$divConfig.on({
   'click': function(event) {
     $(this).closest('.actionOnMessage').remove()
+    jeeFrontEnd.modifyWithoutSave = true
   }
 }, '.bt_removeAction')
 
@@ -1257,17 +1259,6 @@ $(".bt_regenerate_api").on('click', function(event) {
       })
     }
   })
-})
-
-$(".bt_showPass").on('click', function(event) {
-  $.hideAlert()
-  var el = $(this)
-  el.closest('.input-group').find('input').toggleClass('inputPassword')
-  if (el.find('.fas').hasClass('fa-eye-slash')) {
-    el.find('.fas').removeClass('fa-eye-slash').addClass('fa-eye')
-  } else {
-    el.find('.fas').removeClass('fa-eye').addClass('fa-eye-slash')
-  }
 })
 
 /**************************OSDB***********************************/

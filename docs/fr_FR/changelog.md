@@ -1,11 +1,18 @@
 # Changelog Jeedom V4.3
 
+## 4.3.9
+
+- Amélioration de l'édition des tuiles.
+- Amélioration de la visibilité des checkboxs sur les thème Dark et Light.
+- Correction de bugs et améliorations.
+- Optimisation du changement, merci @jpty
+
 ## 4.3.8
 
-- Correction de bugs
-- Amélioration de la sécurité des ask lors de l'utilisation de la fonction generateAskResponseLink par les plugins : utilisation d'un token unique (plus d'envoi de la clef api du core) et verouillage de la réponse uniquement parmis les choix possible
-- Correction d'un bug empechant l'installation de jeedom
-- Correction d'un bug sur influxdb
+- Correction de bugs.
+- Amélioration de la sécurité des ask lors de l'utilisation de la fonction generateAskResponseLink par les plugins : utilisation d'un token unique (plus d'envoi de la clef api du core) et verrouillage de la réponse uniquement parmi les choix possible.
+- Correction d'un bug empêchant l'installation de Jeedom.
+- Correction d'un bug sur InfluxDB.
 
 
 ## 4.3.7
@@ -16,8 +23,8 @@
 
 ## 4.3.6
 
-- Suppression de la conversion des unitées pour les secondes (s).
-- Suppression du menu de mise à jour OS pour les box Jeedom (les mises à jour OS sont gerées par Jeedom SAS).
+- Suppression de la conversion des unités pour les secondes (s).
+- Suppression du menu de mise à jour OS pour les box Jeedom (les mises à jour OS sont gérées par Jeedom SAS).
 - Correction d'un bug sur la modale de configuration des historiques.
 - Ajout d'une action *changeTheme* pour les scénarios, actions sur valeur, actions pre/post exec : Elle permet de changer le thème de l'interface immédiatement, en dark, light ou l'autre (toggle).
 
