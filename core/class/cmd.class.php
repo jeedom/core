@@ -1733,7 +1733,7 @@ class cmd {
 		if ($repeat && $this->getConfiguration('repeatEventManagement', 'never') == 'never') {
 			$this->addHistoryValue($value, $this->getCollectDate());
 			$eqLogic->emptyCacheWidget();
-			event::adds('cmd::update', array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'unit' => $this->getUnite(), 'collectDate' => $this->getCollectDate())));
+			event::adds('cmd::update', array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'unit' => $unit, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate())));
 			return;
 		}
 		$_loop++;
@@ -1756,7 +1756,7 @@ class cmd {
 			if (is_array($value_cmd) && count($value_cmd) > 0) {
 				foreach ($value_cmd as $cmd) {
 					if ($cmd->getType() == 'action') {
-						$events[] = array('cmd_id' => $cmd->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'unit' => $cmd->getUnite());
+						$events[] = array('cmd_id' => $cmd->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'unit' => $unit);
 					} else {
 						if ($_loop > 1) {
 							$cmd->event($cmd->execute(), null, $_loop);
