@@ -4,6 +4,8 @@
 
 - Edição de blocos aprimorada.
 - Visibilidade aprimorada das caixas de seleção temáticas Escuro e Claro.
+- Corrigido o empilhamento de histórico.
+- Otimização do gerenciamento de mudança de tempo (obrigado @jpty).
 - Correções de bugs e melhorias.
 
 ## 4.3.8

@@ -1267,6 +1267,8 @@
         "4.3.9": "4.3.9",
         "Amélioration de l'édition des tuiles": "Verbesserte Kachelbearbeitung",
         "Amélioration de la visibilité des checkboxs sur les thème Dark et Light": "Verbesserte Sichtbarkeit von dunklen und hellen Kontrollkästchen",
+        "Correction de l'empilement des historiques": "Verlaufsstapelung behoben",
+        "Optimisation de la gestion du changement d'heure (merci @jpty": "Optimierung des Zeitumstellungsmanagements (danke @jpty",
         "Correction de bugs et améliorations": "Fehlerbehebungen und Verbesserungen",
         "4.3.8": "4.3.8",
         "Correction de bugs": "Bug-Fix",

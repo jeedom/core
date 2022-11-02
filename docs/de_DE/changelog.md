@@ -4,6 +4,8 @@
 
 - Verbesserte Kachelbearbeitung.
 - Verbesserte Sichtbarkeit von dunklen und hellen Kontrollkästchen.
+- Verlaufsstapelung behoben.
+- Optimierung des Zeitumstellungsmanagements (danke @jpty).
 - Fehlerbehebungen und Verbesserungen.
 
 ## 4.3.8
