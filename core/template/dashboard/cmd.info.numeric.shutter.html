@@ -23,14 +23,14 @@
       let cmd = $('.cmd[data-cmd_id=#id#]')
       let minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
       let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
-      let height = ((_options.display_value - minValue) * 100) / (maxValue - minValue)
+      let height = ((_options.value - minValue) * 100) / (maxValue - minValue)
       cmd.attr('title', '{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
       height = 100 - (Math.round(parseFloat(height) * 10) / 10)
       cmd.find('.shuttergauge-value').height(height+'%')
       cmd.find('.state strong').first().text(_options.display_value+' '+_options.unit)
     });
 
-    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
+    jeedom.cmd.refreshValue([{cmd_id: '#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
 
     if ($.issetWidgetOptParam('#color#', 'color')) {
       $('.cmd[data-cmd_id=#id#]').find('div.shuttergauge-value').style('background', '#color#', 'important')
