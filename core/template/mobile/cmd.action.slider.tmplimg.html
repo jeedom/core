@@ -1,7 +1,7 @@
 <div class="cmd cmd-widget #history#" data-type="action" data-subtype="slider" data-template="tmplimg" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
   <center>
     <div class="cmdName #hide_name#">#name_display#</div>
-    <span class="cursor imgCmd"></span>
+    <span class="cursor imgCmd iconCmd"></span>
     <div id="widget_slider#id#" class="slider full-width-slider"></div>
     <span class="timeCmd value #value_history#" data-type="info" data-cmd_id="#value_id#"></span>
   </center>
@@ -50,7 +50,7 @@
 
       let minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
       let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
-      let stateValue = ('#state#' == '') ? 0 : parseInt(_options.display_value)
+      let stateValue = ('#state#' == '') ? 0 : parseInt(_options.value)
       mySlider#id#.set(stateValue)
       if (stateValue > minValue) {
         cmd.attr('data-state','on')
@@ -60,14 +60,13 @@
         cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#", "#_img_dark_off_#")).attr('data-state', 'off')
       }
 
-      let style = ''
-      if (!isNaN('#_desktop_width_#')) {
-        style = 'max-width:#_desktop_width_#px !important;'
+      if (!isNaN(parseInt('#_mobile_width_#'))) {
+        let style = 'max-width:' + parseInt('#_mobile_width_#') + 'px !important;'
+        cmd.find('.imgCmd img').attr('style', style)
       }
-      cmd.find('.imgCmd img').attr('style', style)
-    });
+    })
 
-    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
+    jeedom.cmd.refreshValue([{cmd_id: '#id#',value: '#state#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
 
     $('body').on('changeThemeEvent', function (event, theme) {
       let cmd = $('.cmd[data-cmd_id=#id#]')
@@ -76,11 +75,10 @@
       } else {
         cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#", "#_img_dark_off_#"))
       }
-      let style = ''
-      if (!isNaN('#_desktop_width_#')) {
-        style = 'max-width:#_desktop_width_#px !important;'
+      if (!isNaN(parseInt('#_mobile_width_#'))) {
+        let style = 'max-width:' + parseInt('#_mobile_width_#') + 'px !important;'
+        cmd.find('.imgCmd img').attr('style', style)
       }
-      cmd.find('.imgCmd img').attr('style',style)
     })
   </script>
 </div>
