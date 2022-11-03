@@ -14,20 +14,20 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-function jeedom() {}
+function jeedom() { }
 jeedom.__description = 'All js methods per Jeedom class. Handles front-end <-> ajax <-> php classes.'
-jeedom.cache = [];
-jeedom.display = {};
-jeedom.connect = 0;
-jeedom.theme = {};
-jeedom.changes_timeout = null;
+jeedom.cache = []
+jeedom.display = {}
+jeedom.connect = 0
+jeedom.theme = {}
+jeedom.changes_timeout = null
 
 jeeFrontEnd = {
   __description: 'Global object where each Core page register its own functions and variable in its sub-object name.',
   jeedom_firstUse: '',
   language: '',
   userProfils: {},
-  planEditOption: {state: false, snap: false, grid: false, gridSize: false, highlight: true},
+  planEditOption: { state: false, snap: false, grid: false, gridSize: false, highlight: true },
   //loadPage history:
   PREVIOUS_PAGE: null,
   PREVIOUS_LOCATION: null,
@@ -53,80 +53,80 @@ jeephp2js = {}
 var Highcharts
 
 if (!isset(jeedom.cache.getConfiguration)) {
-  jeedom.cache.getConfiguration = null;
+  jeedom.cache.getConfiguration = null
 }
 
 jeedom.changes = function() {
-  var paramsRequired = [];
+  var paramsRequired = []
   var paramsSpecifics = {
     global: false,
     success: function(data) {
       if (jeedom.connect > 0) {
-        jeedom.connect = 0;
+        jeedom.connect = 0
       }
-      jeedom.datetime = data.datetime;
-      var cmd_update = [];
-      var eqLogic_update = [];
-      var object_summary_update = [];
+      jeedom.datetime = data.datetime
+      var cmd_update = []
+      var eqLogic_update = []
+      var object_summary_update = []
       for (var i in data.result) {
         if (data.result[i].name == 'cmd::update') {
-          cmd_update.push(data.result[i].option);
-          continue;
+          cmd_update.push(data.result[i].option)
+          continue
         }
         if (data.result[i].name == 'eqLogic::update') {
-          eqLogic_update.push(data.result[i].option);
-          continue;
+          eqLogic_update.push(data.result[i].option)
+          continue
         }
         if (data.result[i].name == 'jeeObject::summary::update') {
-          object_summary_update.push(data.result[i].option);
-          continue;
+          object_summary_update.push(data.result[i].option)
+          continue
         }
         if (isset(data.result[i].option)) {
-          $('body').trigger(data.result[i].name, data.result[i].option);
+          $('body').trigger(data.result[i].name, data.result[i].option)
         } else {
-          $('body').trigger(data.result[i].name);
+          $('body').trigger(data.result[i].name)
         }
       }
       if (cmd_update.length > 0) {
-        $('body').trigger('cmd::update', [cmd_update]);
+        $('body').trigger('cmd::update', [cmd_update])
       }
       if (eqLogic_update.length > 0) {
-        $('body').trigger('eqLogic::update', [eqLogic_update]);
+        $('body').trigger('eqLogic::update', [eqLogic_update])
       }
       if (object_summary_update.length > 0) {
-        $('body').trigger('jeeObject::summary::update', [object_summary_update]);
+        $('body').trigger('jeeObject::summary::update', [object_summary_update])
       }
-      jeedom.changes_timeout = setTimeout(jeedom.changes, 1);
+      jeedom.changes_timeout = setTimeout(jeedom.changes, 1)
     },
     error: function(_error) {
-      if (typeof(user_id) != "undefined" && jeedom.connect == 100) {
-        jeedom.notify('{{Erreur de connexion}}', '{{Erreur lors de la connexion}} : ' + _error.message);
+      if (typeof (user_id) != "undefined" && jeedom.connect == 100) {
+        jeedom.notify('{{Erreur de connexion}}', '{{Erreur lors de la connexion}} : ' + _error.message)
       }
-      jeedom.connect++;
-      jeedom.changes_timeout = setTimeout(jeedom.changes, 1);
+      jeedom.connect++
+      jeedom.changes_timeout = setTimeout(jeedom.changes, 1)
     }
-  };
-  try {
-    jeedom.private.checkParamsRequired(paramsRequired);
-  } catch (e) {
-    (paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics);
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/event.ajax.php';
+  try {
+    jeedom.private.checkParamsRequired(paramsRequired)
+  } catch (e) {
+    (paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics)
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/event.ajax.php'
   paramsAJAX.data = {
     action: 'changes',
     datetime: jeedom.datetime,
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.init = function() {
-  jeedom.datetime = jeeFrontEnd.serverDatetime;
-  jeedom.display.version = 'desktop';
+  jeedom.datetime = jeeFrontEnd.serverDatetime
+  jeedom.display.version = 'desktop'
   if ($.mobile) {
-    jeedom.display.version = 'mobile';
+    jeedom.display.version = 'mobile'
   }
   var cssComputedStyle = getComputedStyle(document.documentElement)
   Highcharts.setOptions({
@@ -151,56 +151,56 @@ jeedom.init = function() {
       cssComputedStyle.getPropertyValue('--scBlocACTION'),
       cssComputedStyle.getPropertyValue('--scBlocAT')
     ]
-  });
+  })
 
   var $body = $('body')
   $body.on('cmd::update', function(_event, _options) {
-    jeedom.cmd.refreshValue(_options);
-  });
+    jeedom.cmd.refreshValue(_options)
+  })
 
   $body.on('scenario::update', function(_event, _options) {
-    jeedom.scenario.refreshValue(_options);
-  });
+    jeedom.scenario.refreshValue(_options)
+  })
   $body.on('eqLogic::update', function(_event, _options) {
-    jeedom.eqLogic.refreshValue(_options);
-  });
+    jeedom.eqLogic.refreshValue(_options)
+  })
   $body.on('jeeObject::summary::update', function(_event, _options) {
-    jeedom.object.summaryUpdate(_options);
-  });
+    jeedom.object.summaryUpdate(_options)
+  })
 
   $body.on('ui::update', function(_event, _options) {
     if (isset(_options.page) && _options.page != '') {
       if ($.mobile) {
         if (!PAGE_HISTORY || PAGE_HISTORY.length == 0 || !PAGE_HISTORY[PAGE_HISTORY.length - 1].page || PAGE_HISTORY[PAGE_HISTORY.length - 1].page != _options.page) {
-          return;
+          return
         }
       } else if (getUrlVars('p') != _options.page) {
-        return;
+        return
       }
     }
     if (!isset(_options.container) || _options.container == '') {
-      _options.container = 'body';
+      _options.container = 'body'
     }
-    $(_options.container).setValues(_options.data, _options.type);
-  });
+    $(_options.container).setValues(_options.data, _options.type)
+  })
 
   $body.on('jeedom::gotoplan', function(_event, _plan_id) {
-    if (getUrlVars('p') == 'plan' && 'function' == typeof(jeeFrontEnd.plan.displayPlan)) {
+    if (getUrlVars('p') == 'plan' && 'function' == typeof (jeeFrontEnd.plan.displayPlan)) {
       if (_plan_id != $('#sel_planHeader').attr('data-link_id')) {
-        jeephp2js.planHeader_id = _plan_id;
-        jeeFrontEnd.plan.displayPlan();
+        jeephp2js.planHeader_id = _plan_id
+        jeeFrontEnd.plan.displayPlan()
       }
     }
-  });
+  })
 
   $body.on('jeedom::alert', function(_event, _options) {
     if (!isset(_options.message) || $.trim(_options.message) == '') {
       if (isset(_options.page) && _options.page != '') {
         if (getUrlVars('p') == _options.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _options.page)) {
-          $.hideAlert();
+          $.hideAlert()
         }
       } else {
-        $.hideAlert();
+        $.hideAlert()
       }
     } else {
       if (isset(_options.page) && _options.page != '') {
@@ -212,28 +212,28 @@ jeedom.init = function() {
           options.ttl = _options.ttl
         }
         if (getUrlVars('p') == _options.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _options.page)) {
-          $.fn.showAlert(options);
+          $.fn.showAlert(options)
         }
       } else {
-        $.fn.showAlert(_options);
+        $.fn.showAlert(_options)
       }
     }
-  });
+  })
   $body.on('jeedom::alertPopup', function(_event, _message) {
-    alert(_message);
-  });
+    alert(_message)
+  })
   $body.on('jeedom::coloredIcons', function(_event, _state) {
-    $body.attr('data-coloredIcons', _state);
-  });
+    $body.attr('data-coloredIcons', _state)
+  })
   $body.on('message::refreshMessageNumber', function(_event, _options) {
-    jeedom.refreshMessageNumber();
-  });
+    jeedom.refreshMessageNumber()
+  })
   $body.on('update::refreshUpdateNumber', function(_event, _options) {
-    jeedom.refreshUpdateNumber();
-  });
+    jeedom.refreshUpdateNumber()
+  })
   $body.on('notify', function(_event, _options) {
-    jeedom.notify(_options.title, _options.message, _options.theme);
-  });
+    jeedom.notify(_options.title, _options.message, _options.theme)
+  })
   $body.on('checkThemechange', function(_event, _options) {
     setCookie('currentTheme', '', -1)
     $('#jQMnDColor').attr('data-nochange', 0)
@@ -248,12 +248,12 @@ jeedom.init = function() {
       jeedom.theme.theme_changeAccordingTime = _options.theme_changeAccordingTime
     }
     jeedomUtils.checkThemechange()
-  });
+  })
   $body.on('changeTheme', function(_event, _options) {
     jeedomUtils.changeTheme(_options)
-  });
+  })
   if (typeof user_id !== 'undefined') {
-    jeedom.changes();
+    jeedom.changes()
   }
 }
 
@@ -283,7 +283,7 @@ jeedom.refreshMessageNumber = function() {
       })
     },
     success: function(_number) {
-      jeedom.MESSAGE_NUMBER = _number;
+      jeedom.MESSAGE_NUMBER = _number
       if (_number == 0 || _number == '0') {
         $('#span_nbMessage').hide()
       } else {
@@ -304,7 +304,7 @@ jeedom.refreshUpdateNumber = function() {
       })
     },
     success: function(_number) {
-      jeedom.UPDATE_NUMBER = _number;
+      jeedom.UPDATE_NUMBER = _number
       if (_number == 0 || _number == '0') {
         $('#span_nbUpdate').hide()
       } else {
@@ -331,685 +331,724 @@ jeedom.notify = function(_title, _text, _class_name) {
 }
 
 jeedom.getStringUsedBy = function(_params) {
-  var paramsRequired = ['search'];
-  var paramsSpecifics = {};
+  var paramsRequired = ['search']
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'getStringUsedBy',
     search: _params.search
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.getIdUsedBy = function(_params) {
-  var paramsRequired = ['search'];
-  var paramsSpecifics = {};
+  var paramsRequired = ['search']
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'getIdUsedBy',
     search: _params.search
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.getConfiguration = function(_params) {
-  var paramsRequired = ['key'];
+  var paramsRequired = ['key']
   var paramsSpecifics = {
     pre_success: function(data) {
-      jeedom.cache.getConfiguration = data.result;
-      var keys = _params.key.split(':');
-      data.result = jeedom.cache.getConfiguration;
+      jeedom.cache.getConfiguration = data.result
+      var keys = _params.key.split(':')
+      data.result = jeedom.cache.getConfiguration
       for (var i in keys) {
         if (data.result[keys[i]]) {
-          data.result = data.result[keys[i]];
+          data.result = data.result[keys[i]]
         }
       }
-      return data;
+      return data
     }
-  };
-  try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-  } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   if (jeedom.cache.getConfiguration != null) {
-    var keys = _params.key.split(':');
-    var result = jeedom.cache.getConfiguration;
+    var keys = _params.key.split(':')
+    var result = jeedom.cache.getConfiguration
     for (var i in keys) {
       if (result[keys[i]]) {
-        result = result[keys[i]];
+        result = result[keys[i]]
       }
     }
-    _params.success(result);
-    return;
+    _params.success(result)
+    return
   }
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'getConfiguration',
     key: ''
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.haltSystem = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {};
+  var paramsRequired = []
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'haltSystem',
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.ssh = function(_params) {
   if ($.isPlainObject(_params)) {
-    command = _params.command;
+    command = _params.command
   } else {
-    command = _params;
-    _params = {};
+    command = _params
+    _params = {}
   }
-  var paramsRequired = [];
-  var paramsSpecifics = {};
+  var paramsRequired = []
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'ssh',
     command: command
-  };
-  $.ajax(paramsAJAX);
-  return 'Execute command : ' + command;
+  }
+  $.ajax(paramsAJAX)
+  return 'Execute command : ' + command
 }
 
 jeedom.db = function(_params) {
   if ($.isPlainObject(_params)) {
-    command = _params.command;
+    command = _params.command
   } else {
-    command = _params;
-    _params = {};
+    command = _params
+    _params = {}
   }
-  var paramsRequired = [];
-  var paramsSpecifics = {};
+  var paramsRequired = []
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'db',
     command: command
-  };
-  $.ajax(paramsAJAX);
-  return 'Execute command : ' + command;
+  }
+  $.ajax(paramsAJAX)
+  return 'Execute command : ' + command
 }
 
 jeedom.dbcorrectTable = function(_params) {
-  var paramsRequired = ['table'];
-  var paramsSpecifics = {};
+  var paramsRequired = ['table']
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'dbcorrectTable',
     table: _params.table
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.rebootSystem = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {};
+  var paramsRequired = []
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'rebootSystem',
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.systemCorrectPackage = function(_params) {
-  var paramsRequired = ['package'];
-  var paramsSpecifics = {};
+  var paramsRequired = ['package']
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'systemCorrectPackage',
     package: _params.package
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.health = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {};
+  var paramsRequired = []
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'health',
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.forceSyncHour = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {};
+  var paramsRequired = []
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'forceSyncHour',
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.getCronSelectModal = function(_options, _callback) {
   if ($("#mod_insertCronValue").length == 0) {
-    $('body').append('<div id="mod_insertCronValue" title="{{Assistant cron}}" ></div>');
+    $('body').append('<div id="mod_insertCronValue" title="{{Assistant cron}}" ></div>')
     $("#mod_insertCronValue").dialog({
       closeText: '',
       autoOpen: false,
       modal: true,
       height: 310,
       width: 800
-    });
+    })
     jQuery.ajaxSetup({
       async: false
-    });
-    $('#mod_insertCronValue').load('index.php?v=d&modal=cron.human.insert');
+    })
+    $('#mod_insertCronValue').load('index.php?v=d&modal=cron.human.insert')
     jQuery.ajaxSetup({
       async: true
-    });
+    })
   }
   $("#mod_insertCronValue").dialog('option', 'buttons', {
     "{{Annuler}}": function() {
-      $(this).dialog("close");
+      $(this).dialog("close")
     },
     "{{Valider}}": function() {
-      var retour = {};
-      retour.cron = {};
-      retour.value = mod_insertCron.getValue();
-      if ($.trim(retour) != '' && 'function' == typeof(_callback)) {
-        _callback(retour);
+      var retour = {}
+      retour.cron = {}
+      retour.value = mod_insertCron.getValue()
+      if ($.trim(retour) != '' && 'function' == typeof (_callback)) {
+        _callback(retour)
       }
-      $(this).dialog('close');
+      $(this).dialog('close')
     }
-  });
-  $('#mod_insertCronValue').dialog('open');
+  })
+  $('#mod_insertCronValue').dialog('open')
 }
 
 jeedom.getSelectActionModal = function(_options, _callback) {
   if (!isset(_options)) {
-    _options = {};
+    _options = {}
   }
   if ($("#mod_insertActionValue").length == 0) {
-    $('body').append('<div id="mod_insertActionValue" title="{{Sélectionner la commande}}" ></div>');
+    $('body').append('<div id="mod_insertActionValue" title="{{Sélectionner la commande}}" ></div>')
     $("#mod_insertActionValue").dialog({
       closeText: '',
       autoOpen: false,
       modal: true,
       height: 310,
       width: 800
-    });
+    })
     jQuery.ajaxSetup({
       async: false
-    });
-    $('#mod_insertActionValue').load('index.php?v=d&modal=action.insert');
+    })
+    $('#mod_insertActionValue').load('index.php?v=d&modal=action.insert')
     jQuery.ajaxSetup({
       async: true
-    });
+    })
   }
-  mod_insertAction.setOptions(_options);
+  mod_insertAction.setOptions(_options)
   $("#mod_insertActionValue").dialog('option', 'buttons', {
     "{{Annuler}}": function() {
-      $(this).dialog("close");
+      $(this).dialog("close")
     },
     "{{Valider}}": function() {
-      var retour = {};
-      retour.action = {};
-      retour.human = mod_insertAction.getValue();
-      if ($.trim(retour) != '' && 'function' == typeof(_callback)) {
-        _callback(retour);
+      var retour = {}
+      retour.action = {}
+      retour.human = mod_insertAction.getValue()
+      if ($.trim(retour) != '' && 'function' == typeof (_callback)) {
+        _callback(retour)
       }
-      $(this).dialog('close');
+      $(this).dialog('close')
     }
-  });
-  $('#mod_insertActionValue').dialog('open');
+  })
+  $('#mod_insertActionValue').dialog('open')
 }
 
 jeedom.getGraphData = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {};
+  var paramsRequired = []
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'getGraphData',
     filter_type: params.filter_type || null,
     filter_id: params.filter_id || null,
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.getDocumentationUrl = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {};
+  var paramsRequired = []
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'getDocumentationUrl',
     plugin: params.plugin || null,
     page: params.page || null,
     theme: params.theme || null,
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.addWarnme = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {};
+  var paramsRequired = []
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'addWarnme',
     cmd_id: params.cmd_id,
     test: params.test,
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.getFileFolder = function(_params) {
-  var paramsRequired = ['type', 'path'];
-  var paramsSpecifics = {};
+  var paramsRequired = ['type', 'path']
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'getFileFolder',
     type: _params.type,
     path: _params.path,
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.getFileContent = function(_params) {
-  var paramsRequired = ['path'];
-  var paramsSpecifics = {};
+  var paramsRequired = ['path']
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'getFileContent',
     path: _params.path,
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.setFileContent = function(_params) {
-  var paramsRequired = ['path', 'content'];
-  var paramsSpecifics = {};
+  var paramsRequired = ['path', 'content']
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'setFileContent',
     path: _params.path,
     content: _params.content,
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.deleteFile = function(_params) {
-  var paramsRequired = ['path'];
-  var paramsSpecifics = {};
+  var paramsRequired = ['path']
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'deleteFile',
     path: _params.path,
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.createFolder = function(_params) {
-  var paramsRequired = ['path', 'name'];
-  var paramsSpecifics = {};
+  var paramsRequired = ['path', 'name']
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'createFolder',
     path: _params.path,
     name: _params.name,
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
+}
+
+jeedom.renameFolder = function(_params) {
+  var paramsRequired = ['src', 'dst']
+  var paramsSpecifics = {}
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
+  paramsAJAX.data = {
+    action: 'renameFolder',
+    src: _params.src,
+    dst: _params.dst
+  }
+  $.ajax(paramsAJAX)
+}
+
+jeedom.deleteFolder = function(_params) {
+  var paramsRequired = ['path']
+  var paramsSpecifics = {}
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
+  paramsAJAX.data = {
+    action: 'deleteFolder',
+    path: _params.path
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.createFile = function(_params) {
-  var paramsRequired = ['path', 'name'];
-  var paramsSpecifics = {};
+  var paramsRequired = ['path', 'name']
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'createFile',
     path: _params.path,
     name: _params.name,
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.emptyRemoveHistory = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {};
+  var paramsRequired = []
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'emptyRemoveHistory',
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.version = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {};
+  var paramsRequired = []
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'version'
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.removeImageIcon = function(_params) {
-  var paramsRequired = ['filepath'];
-  var paramsSpecifics = {};
+  var paramsRequired = ['filepath']
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'removeImageIcon',
     filepath: _params.filepath
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.cleanFileSystemRight = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {};
+  var paramsRequired = []
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'cleanFileSystemRight'
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.consistency = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {};
+  var paramsRequired = []
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'consistency'
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.cleanDatabase = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {};
+  var paramsRequired = []
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'cleanDatabase'
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.massEditSave = function(_params) {
-  var paramsRequired = ['type', 'objects'];
-  var paramsSpecifics = {};
+  var paramsRequired = ['type', 'objects']
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'massEditSave',
     type: _params.type,
     objects: json_encode(_params.objects)
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.massReplace = function(_params) {
-  var paramsRequired = ['options', 'eqlogics', 'cmds'];
-  var paramsSpecifics = {};
+  var paramsRequired = ['options', 'eqlogics', 'cmds']
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'massReplace',
     options: _params.options,
     eqlogics: _params.eqlogics,
     cmds: _params.cmds
-  };
-  $.ajax(paramsAJAX);
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.systemGetUpgradablePackage = function(_params) {
-  var paramsRequired = ['type'];
-  var paramsSpecifics = {};
+  var paramsRequired = ['type']
+  var paramsSpecifics = {}
   try {
-      jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-      (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-      return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
-      action: 'systemGetUpgradablePackage',
-      type: _params.type,
-      forceRefresh : _params.forceRefresh || false
-  };
-  $.ajax(paramsAJAX);
+    action: 'systemGetUpgradablePackage',
+    type: _params.type,
+    forceRefresh: _params.forceRefresh || false
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.systemUpgradablePackage = function(_params) {
-  var paramsRequired = ['type'];
-  var paramsSpecifics = {};
+  var paramsRequired = ['type']
+  var paramsSpecifics = {}
   try {
-      jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-      (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-      return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
-      action: 'systemUpgradablePackage',
-      type: _params.type,
-  };
-  $.ajax(paramsAJAX);
+    action: 'systemUpgradablePackage',
+    type: _params.type,
+  }
+  $.ajax(paramsAJAX)
 }
