@@ -1,11 +1,19 @@
 # Changelog Jeedom V4.3
 
+## 4.3.9
+
+- Improved tile editing.
+- Improved visibility of Dark and Light themed checkboxes.
+- Fixed history stacking.
+- Optimization of time change management (thanks @jpty).
+- Bug fixes and improvements.
+
 ## 4.3.8
 
-- Bugfix
-- Improved ask security when using the generateAskResponseLink function by plugins : use of a unique token (no more sending of the core api key) and locking of the response only among the possible choices
-- Fixed a bug preventing the installation of jeedom
-- Fixed a bug on influxdb
+- Bugfix.
+- Improved ask security when using the generateAskResponseLink function by plugins : use of a unique token (no more sending of the core api key) and locking of the response only among the possible choices.
+- Fixed a bug preventing the installation of jeedom.
+- Fixed a bug on influxdb.
 
 
 ## 4.3.7

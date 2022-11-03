@@ -292,7 +292,7 @@ $('#eqSource').on({
       var options = '<option value=""></option>'
       var _cmd = jeephp2js.listCommands.filter(o => o.id == $(this).attr('data-id'))[0]
       optionsCmds.forEach(function(optionsCmd) {
-        if (_cmd.name == optionsCmd.name && _cmd.type == optionsCmd.type) {
+        if (_cmd.name.toLowerCase() == optionsCmd.name.toLowerCase() && _cmd.type == optionsCmd.type) {
           options += '<option selected value="' + optionsCmd.id + '">' + optionsCmd.name + '</option>'
         } else {
           options += '<option value="' + optionsCmd.id + '">' + optionsCmd.name + '</option>'
@@ -412,7 +412,7 @@ $('#bt_replace').on('click', function() {
           }
         })
 
-        if (opt_replaceEqs && count(replaceEqs) == 0) {
+        if (opt_replaceEqs && Object.keys(replaceEqs).length === 0) {
           $.fn.showAlert({
             message: '{{Aucun équipement à remplacer}}',
             level: 'info'
@@ -421,7 +421,7 @@ $('#bt_replace').on('click', function() {
           return true
         }
 
-        if (!opt_replaceEqs && count(replaceCmds) == 0) {
+        if (!opt_replaceEqs && Object.keys(replaceCmds).length === 0) {
           $.fn.showAlert({
             message: '{{Aucune commande à remplacer}}',
             level: 'info'

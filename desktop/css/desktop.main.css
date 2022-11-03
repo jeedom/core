@@ -1893,7 +1893,9 @@ div.div_viewZone legend.lg_viewZone {
     min-height: 20px !important;
     display: inline-block !important;
   }
-
+  body[data-page="administration"] div#config div#div_actionOnMessage {
+    width:  98%;
+  }
 
   /* context menus */
   .context-menu-root .context-menu-layer {
@@ -2676,7 +2678,7 @@ div.div_viewZone legend.lg_viewZone {
     border: none;
     padding: 0 12px !important;
   }
-  .form-control:not(.btn):not(.expressionAttr),
+  .form-control:not(.btn):not(.expressionAttr):not(input),
   input:not(.btn):not(.dial):not([type=radio]):not([type=image]):not(.expressionAttr):not(.knob):not([type=checkbox]),
   textarea:not(.expressionAttr) {
     background-color: var(--form-bg-color) !important;
@@ -2902,6 +2904,7 @@ div.div_viewZone legend.lg_viewZone {
     width: 15px !important;
     height: 15px;
     border-radius: 0 !important;
+    border: none !important;
     background: var(--form-bg-color);
     color: var(--txt-color);
     font-weight: normal !important;
@@ -2915,6 +2918,8 @@ div.div_viewZone legend.lg_viewZone {
     font-weight: 700;
     content: '\f00c' !important;
     position: absolute;
+    margin: 0 !important;
+    border: none !important;
   }
   input[type=checkbox]::-ms-check {
     background-color: var(--form-bg-color) !important;
@@ -3605,7 +3610,9 @@ div.div_viewZone legend.lg_viewZone {
   }
 
   .element input[type=checkbox],
-  .element input[type=radio] {
+  .element input[type=checkbox]:checked,
+  .element input[type=radio],
+  .element input[type=radio]:checked {
     top: 3px;
     color: var(--linkHoverLight-color);
     background: var(--sc-formTxt-color) !important;

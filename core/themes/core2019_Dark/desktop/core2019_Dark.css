@@ -20,6 +20,14 @@ i.cursor {
   color: var(--link-color) !important;
 }
 
+input[type=checkbox]:not(checked),
+input[type=radio]:not(checked) {
+  background: var(--btn-default-color) !important;
+}
+input[type=checkbox]:checked {
+  background: var(--sc-formTxt-color) !important;
+}
+
 .panel-default .panel-title {
   color: var(--linkHover-color) !important;
 }

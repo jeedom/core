@@ -407,7 +407,7 @@ if (!jeeFrontEnd.update) {
             if (Object.keys(data[i]).length > 0) {
               $('.bt_OsPackageUpdate[data-type=' + i + ']').removeClass('disabled')
               for (var j in data[i]) {
-                tr_update.push(jeeP.addOsUpdate(data[i][j]))
+                tr_update.push(jeeFrontEnd.update.addOsUpdate(data[i][j]))
               }
             }
           }
