@@ -3610,7 +3610,9 @@ div.div_viewZone legend.lg_viewZone {
   }
 
   .element input[type=checkbox],
-  .element input[type=radio] {
+  .element input[type=checkbox]:checked,
+  .element input[type=radio],
+  .element input[type=radio]:checked {
     top: 3px;
     color: var(--linkHoverLight-color);
     background: var(--sc-formTxt-color) !important;

@@ -215,6 +215,7 @@ function convertDuration($time) {
 
 function getClientIp() {
 	$sources = array(
+		'HTTP_CF_CONNECTING_IP',
 		'HTTP_X_REAL_IP',
 		'HTTP_X_FORWARDED_FOR',
 		'HTTP_CLIENT_IP',
@@ -222,6 +223,9 @@ function getClientIp() {
 	);
 	foreach ($sources as $source) {
 		if (isset($_SERVER[$source])) {
+			if (strpos($_SERVER[$source], ',') !== false) {
+				return explode(',', $_SERVER[$source])[0];
+			}
 			return $_SERVER[$source];
 		}
 	}
@@ -1553,7 +1557,7 @@ function pageTitle($_page) {
 }
 
 function cleanComponanteName($_name) {
-	return strip_tags(str_replace(array('&', '#', ']', '[', '%', "\\", "/", "'", '"',"*"), '', $_name));
+	return strip_tags(str_replace(array('&', '#', ']', '[', '%', "\\", "/", "'", '"', "*"), '', $_name));
 }
 
 function startsWith($haystack, $needle) {

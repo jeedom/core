@@ -1267,6 +1267,8 @@
         "4.3.9": "4.3.9",
         "Amélioration de l'édition des tuiles": "Improved tile editing",
         "Amélioration de la visibilité des checkboxs sur les thème Dark et Light": "Improved visibility of Dark and Light themed checkboxes",
+        "Correction de l'empilement des historiques": "Fixed history stacking",
+        "Optimisation de la gestion du changement d'heure (merci @jpty": "Optimization of time change management (thanks @jpty",
         "Correction de bugs et améliorations": "Bug fixes and improvements",
         "4.3.8": "4.3.8",
         "Correction de bugs": "Bugfix",

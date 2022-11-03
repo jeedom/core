@@ -1267,6 +1267,8 @@
         "4.3.9": "4.3.9",
         "Amélioration de l'édition des tuiles": "Edición de mosaicos mejorada",
         "Amélioration de la visibilité des checkboxs sur les thème Dark et Light": "Visibilidad mejorada de las casillas de verificación temáticas Oscuras y Claras",
+        "Correction de l'empilement des historiques": "Apilamiento de historial fijo",
+        "Optimisation de la gestion du changement d'heure (merci @jpty": "Optimización de la gestión del cambio de hora (gracias @jpty",
         "Correction de bugs et améliorations": "Corrección de errores y mejoras",
         "4.3.8": "4.3.8",
         "Correction de bugs": "Arreglo del fallo",

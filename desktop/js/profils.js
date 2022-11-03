@@ -19,7 +19,9 @@
 if (!jeeFrontEnd.profils) {
   jeeFrontEnd.profils = {
     init: function() {
+      /* Not used, loaded as modal!
       window.jeeP = this
+      */
     },
   }
 }

@@ -4,6 +4,8 @@
 
 - Improved tile editing.
 - Improved visibility of Dark and Light themed checkboxes.
+- Fixed history stacking.
+- Optimization of time change management (thanks @jpty).
 - Bug fixes and improvements.
 
 ## 4.3.8

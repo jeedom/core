@@ -4,6 +4,8 @@
 
 - Edición de mosaicos mejorada.
 - Visibilidad mejorada de las casillas de verificación temáticas Oscuras y Claras.
+- Apilamiento de historial fijo.
+- Optimización de la gestión del cambio de hora (gracias @jpty).
 - Corrección de errores y mejoras.
 
 ## 4.3.8
