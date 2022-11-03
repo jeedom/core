@@ -561,11 +561,6 @@ Desktop
     color: var(--linkHover-color) !important;
     outline: none;
   }
-  .context-menu-root,
-  .context-menu-list {
-    z-index: 9999 !important;
-    box-shadow: none;
-  }
 
 /* ____________________SIGN IN */
   .form-signin {
@@ -1898,6 +1893,11 @@ div.div_viewZone legend.lg_viewZone {
   }
 
   /* context menus */
+  .context-menu-root,
+  .context-menu-list {
+    z-index: 9999 !important;
+    box-shadow: none;
+  }
   .context-menu-root .context-menu-layer {
     z-index: 5000 !important;
   }
@@ -3103,7 +3103,7 @@ div.div_viewZone legend.lg_viewZone {
   i.tablesorter-icon {
     background-image: none !important;
   }
-  th..tablesorter-header[data-sorter=false] {
+  th.tablesorter-header[data-sorter=false] {
     cursor: default;
   }
   th.tablesorter-header select + i.tablesorter-icon {
