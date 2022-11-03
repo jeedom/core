@@ -14,8 +14,7 @@ input[type=checkbox]:not(checked),
 input[type=radio]:not(checked) {
   background: var(--el-defaultColor) !important;
 }
-input[type=checkbox]:checked,
-input[type=radio]:checked {
+input[type=checkbox]:checked {
   background: var(--form-bg-color) !important;
 }
 

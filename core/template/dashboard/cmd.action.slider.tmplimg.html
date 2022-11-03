@@ -3,7 +3,7 @@
     <div class="cmdName">#name_display#</div>
   </div>
   <div class="content-sm ">
-    <span class="cursor imgCmd#uid# imgCmd"></span>
+    <span class="cursor imgCmd#uid# imgCmd iconCmd"></span>
   </div>
   <div class="value">
     <div id="widget_slider#id#" class="slider full-width-slider"></div>
@@ -59,7 +59,7 @@
 
       let minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
       let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
-      let stateValue = ('#state#' == '') ? 0 : parseInt(_options.display_value)
+      let stateValue = ('#state#' == '') ? 0 : parseInt(_options.value)
       mySlider#id#.set(stateValue)
       if (stateValue > minValue) {
         cmd.attr('data-state','on')
@@ -69,14 +69,13 @@
         cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#", "#_img_dark_off_#")).attr('data-state', 'off')
       }
 
-      let style = ''
-      if (!isNaN('#_desktop_width_#')) {
-        style = 'max-width:#_desktop_width_#px !important;'
+      if (!isNaN(parseInt('#_desktop_width_#'))) {
+        let style = 'max-width:' + parseInt('#_desktop_width_#') + 'px !important;'
+        cmd.find('.imgCmd img').attr('style', style)
       }
-      cmd.find('.imgCmd img').attr('style', style)
-    });
+    })
 
-    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
+    jeedom.cmd.refreshValue([{cmd_id: '#id#', value: '#state#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
 
     $('body').on('changeThemeEvent', function (event, theme) {
       let cmd = $('.cmd[data-cmd_id=#id#]')
@@ -85,11 +84,10 @@
       } else {
         cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#", "#_img_dark_off_#"))
       }
-      let style = ''
-      if (!isNaN('#_desktop_width_#')) {
-        style = 'max-width:#_desktop_width_#px !important;'
+      if (!isNaN(parseInt('#_desktop_width_#'))) {
+        let style = 'max-width:' + parseInt('#_desktop_width_#') + 'px !important;'
+        cmd.find('.imgCmd img').attr('style', style)
       }
-      cmd.find('.imgCmd img').attr('style',style)
     })
   </script>
   <!-- parameters  #_mobile_width_# -->
