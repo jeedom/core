@@ -851,7 +851,7 @@
         "Message": "Сообщение"
     },
     "desktop\/modal\/icon.selector.php": {
-        "401 - Accès non autorisé": "401 - Несанкционированный доступ",
+        "Accès non autorisé": "Accès non autorisé",
         "Icônes": "Icônes",
         "Images": "Images",
         "Images de fond": "Images de fond",
@@ -863,7 +863,14 @@
         "Icônes rouges": "Icônes rouges",
         "Icônes vertes": "Icônes vertes",
         "Rechercher": "поиск",
-        "Envoyer": "Отправить",
+        "Clic droit sur un dossier pour ouvrir le menu contextuel": "Clic droit sur un dossier pour ouvrir le menu contextuel",
+        "Envoyer des images": "Envoyer des images",
+        "Nouveau dossier": "Nouveau dossier",
+        "Nouveau": "Nouveau",
+        "Renommer le dossier": "Renommer le dossier",
+        "Supprimer le dossier": "Supprimer le dossier",
+        "Etes-vous sûr de vouloir supprimer le dossier": "Etes-vous sûr de vouloir supprimer le dossier",
+        "Attention : le contenu du dossier sera définitivement supprimé lors de l'opération.": "Attention : le contenu du dossier sera définitivement supprimé lors de l'opération",
         "Supprimer": "удаление",
         "Êtes-vous sûr de vouloir supprimer cette image": "Вы уверены, что хотите удалить это изображение?"
     },

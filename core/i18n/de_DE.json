@@ -851,7 +851,7 @@
         "Message": "Nachricht"
     },
     "desktop\/modal\/icon.selector.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "Accès non autorisé": "Unautorisierter Zugriff",
         "Icônes": "Symbole",
         "Images": "Bilder",
         "Images de fond": "Hintergrundbilder",
@@ -863,7 +863,14 @@
         "Icônes rouges": "Rote Symbole",
         "Icônes vertes": "Grüne Symbole",
         "Rechercher": "Suchen nach",
-        "Envoyer": "Senden",
+        "Clic droit sur un dossier pour ouvrir le menu contextuel": "Klicken Sie mit der rechten Maustaste auf einen Ordner, um das Kontextmenü zu öffnen",
+        "Envoyer des images": "Bilder senden",
+        "Nouveau dossier": "Neuer Ordner",
+        "Nouveau": "Neu",
+        "Renommer le dossier": "Ordner umbenennen",
+        "Supprimer le dossier": "Lösche Ordner",
+        "Etes-vous sûr de vouloir supprimer le dossier": "Möchten Sie den Ordner wirklich löschen?",
+        "Attention : le contenu du dossier sera définitivement supprimé lors de l'opération.": "Achtung: Der Inhalt des Ordners wird während des Vorgangs dauerhaft gelöscht",
         "Supprimer": "Entfernen",
         "Êtes-vous sûr de vouloir supprimer cette image": "Möchten Sie dieses Bild wirklich löschen?"
     },

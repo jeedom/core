@@ -1,3 +1,11 @@
+# Changelog Jeedom V4.4
+
+## 4.4
+
+### 4.4 : Notícias / Melhorias
+
+- **Janela de seleção de imagem** : Adicionado um menu de contexto para enviar imagens e criar, renomear ou excluir uma pasta.
+
 # Changelog Jeedom V4.3
 
 ## 4.3.9

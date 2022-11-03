@@ -851,7 +851,7 @@
         "Message": "Mensagem"
     },
     "desktop\/modal\/icon.selector.php": {
-        "401 - Accès non autorisé": "401 - Acesso não autorizado",
+        "Accès non autorisé": "Acesso não autorizado",
         "Icônes": "Ícones",
         "Images": "Imagens",
         "Images de fond": "Imagens de fundo",
@@ -863,7 +863,14 @@
         "Icônes rouges": "Ícones vermelhos",
         "Icônes vertes": "Ícones verdes",
         "Rechercher": "Pesquisar",
-        "Envoyer": "Enviar",
+        "Clic droit sur un dossier pour ouvrir le menu contextuel": "Clique com o botão direito em uma pasta para abrir o menu de contexto",
+        "Envoyer des images": "Enviar fotos",
+        "Nouveau dossier": "Nova pasta",
+        "Nouveau": "Novo",
+        "Renommer le dossier": "Renomear pasta",
+        "Supprimer le dossier": "Excluir pasta",
+        "Etes-vous sûr de vouloir supprimer le dossier": "Tem certeza de que deseja excluir a pasta",
+        "Attention : le contenu du dossier sera définitivement supprimé lors de l'opération.": "Atenção: o conteúdo da pasta será excluído permanentemente durante a operação",
         "Supprimer": "Excluir",
         "Êtes-vous sûr de vouloir supprimer cette image": "Tem certeza de que deseja excluir esta imagem"
     },

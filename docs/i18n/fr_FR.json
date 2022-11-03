@@ -748,6 +748,10 @@
     "changelog.md": {
         "Répéter les valeurs identiques (Oui": "Répéter les valeurs identiques (Oui",
         "Non": "Non",
+        "Changelog Jeedom V4.4": "Changelog Jeedom V4.4",
+        "Nouveautés \/ Améliorations": "Nouveautés \/ Améliorations",
+        "Fenêtre de sélection d'image": "Fenêtre de sélection d'image",
+        "Ajout d'un menu contextuel permettant d'envoyer des images et de créer, renommer ou supprimer un dossier": "Ajout d'un menu contextuel permettant d'envoyer des images et de créer, renommer ou supprimer un dossier",
         "Changelog Jeedom V4.3": "Changelog Jeedom V4.3",
         "4.3.9": "4.3.9",
         "Amélioration de l'édition des tuiles": "Amélioration de l'édition des tuiles",
@@ -791,7 +795,6 @@
         "Pré-requis": "Pré-requis",
         "Debian 10 Buster": "Debian 10 Buster",
         "Php 7.3": "Php 7.3",
-        "Nouveautés \/ Améliorations": "Nouveautés \/ Améliorations",
         "Outils \/ Scénarios": "Outils \/ Scénarios",
         "Modale d'édition au ctrl+click dans les champs éditables des blocs\/actions": "Modale d'édition au ctrl+click dans les champs éditables des blocs\/actions",
         "Ajout d'un menu contextuel sur un scénario pour rendre actif\/inactif, changer de groupe, changer d'objet parent": "Ajout d'un menu contextuel sur un scénario pour rendre actif\/inactif, changer de groupe, changer d'objet parent",

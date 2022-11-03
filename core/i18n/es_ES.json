@@ -851,7 +851,7 @@
         "Message": "Mensaje"
     },
     "desktop\/modal\/icon.selector.php": {
-        "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Accès non autorisé": "Acceso no autorizado",
         "Icônes": "Iconos",
         "Images": "Imágenes",
         "Images de fond": "Imágenes de fondo",
@@ -863,7 +863,14 @@
         "Icônes rouges": "Iconos rojos",
         "Icônes vertes": "Iconos verdes",
         "Rechercher": "Buscar",
-        "Envoyer": "Enviar",
+        "Clic droit sur un dossier pour ouvrir le menu contextuel": "Haga clic derecho en una carpeta para abrir el menú contextual",
+        "Envoyer des images": "Enviar imágenes",
+        "Nouveau dossier": "Nueva carpeta",
+        "Nouveau": "Nuevo",
+        "Renommer le dossier": "Renombrar carpeta",
+        "Supprimer le dossier": "Eliminar carpeta",
+        "Etes-vous sûr de vouloir supprimer le dossier": "¿Está seguro de que desea eliminar la carpeta?",
+        "Attention : le contenu du dossier sera définitivement supprimé lors de l'opération.": "Advertencia: el contenido de la carpeta se eliminará de forma permanente durante la operación",
         "Supprimer": "Eliminar",
         "Êtes-vous sûr de vouloir supprimer cette image": "¿Estás seguro de que deseas eliminar esta imagen?"
     },

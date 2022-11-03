@@ -851,7 +851,7 @@
         "Message": "Message"
     },
     "desktop\/modal\/icon.selector.php": {
-        "401 - Accès non autorisé": "401 - Unauthorized access",
+        "Accès non autorisé": "Unauthorized access",
         "Icônes": "Icons",
         "Images": "Pictures",
         "Images de fond": "Background images",
@@ -863,7 +863,14 @@
         "Icônes rouges": "Red icons",
         "Icônes vertes": "Green icons",
         "Rechercher": "Search",
-        "Envoyer": "Send",
+        "Clic droit sur un dossier pour ouvrir le menu contextuel": "Right click on a folder to open the context menu",
+        "Envoyer des images": "Send pictures",
+        "Nouveau dossier": "New folder",
+        "Nouveau": "New",
+        "Renommer le dossier": "Rename Folder",
+        "Supprimer le dossier": "Delete Folder",
+        "Etes-vous sûr de vouloir supprimer le dossier": "Are you sure you want to delete the folder",
+        "Attention : le contenu du dossier sera définitivement supprimé lors de l'opération.": "Warning: the contents of the folder will be permanently deleted during the operation",
         "Supprimer": "Delete",
         "Êtes-vous sûr de vouloir supprimer cette image": "Are you sure you want to delete this picture"
     },

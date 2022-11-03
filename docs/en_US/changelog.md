@@ -1,3 +1,11 @@
+# Changelog Jeedom V4.4
+
+## 4.4
+
+### 4.4 : News / Improvements
+
+- **Image selection window** : Added a context menu for sending images and creating, renaming or deleting a folder.
+
 # Changelog Jeedom V4.3
 
 ## 4.3.9

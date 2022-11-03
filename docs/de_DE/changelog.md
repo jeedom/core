@@ -1,3 +1,11 @@
+# Änderungsprotokoll Jeedom V4.4
+
+## 4.4
+
+### 4.4 : Neuigkeiten / Verbesserungen
+
+- **Bildauswahlfenster** : Kontextmenü zum Senden von Bildern und Erstellen, Umbenennen oder Löschen eines Ordners hinzugefügt.
+
 # Änderungsprotokoll Jeedom V4.3
 
 ## 4.3.9
