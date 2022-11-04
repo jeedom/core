@@ -308,7 +308,7 @@ class plugin {
 					continue;
 				}
 				if (!$ok) {
-					$message = __('Attention le plugin', __FILE__) . ' ' . ' ' . $plugin->getName();
+					$message = __('Attention le plugin', __FILE__) . ' ' . $plugin->getName();
 					$message .= ' ' . __('n\'a pas recu de message depuis', __FILE__) . ' ' . $heartbeat . ' ' . __('min', __FILE__);
 					$logicalId = 'heartbeat' . $plugin->getId();
 					message::add($plugin->getId(), $message, '', $logicalId);

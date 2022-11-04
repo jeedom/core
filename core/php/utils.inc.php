@@ -1035,7 +1035,7 @@ function secureXSS($_string) {
 	if ($_string === null) {
 		return null;
 	}
-	return str_replace('&amp;', '&', htmlspecialchars(strip_tags($_string), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+	return str_replace('&amp;', '&', htmlspecialchars($_string, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
 }
 
 function minify($_buffer) {

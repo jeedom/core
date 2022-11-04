@@ -199,8 +199,8 @@ class message {
 			if (is_array($actions) && count($actions) > 0) {
 				$params = array(
 					'#plugin#' => $this->getPlugin(),
-					'#subject#' => html_entity_decode($this->getMessage()),
-					'#message#' => html_entity_decode($this->getMessage()),
+					'#subject#' => htmlspecialchars_decode($this->getMessage(), ENT_QUOTES | ENT_HTML5),
+					'#message#' => htmlspecialchars_decode($this->getMessage(), ENT_QUOTES | ENT_HTML5),
 				);
 				foreach ($actions as $action) {
 					$options = array();
