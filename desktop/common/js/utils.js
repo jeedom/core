@@ -95,7 +95,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 
   jeedomUtils.closeJeedomMenu()
   window.toastr.clear()
-  jeedom.cmd.resetUpdateFunction();
+  jeedom.cmd.resetUpdateFunction()
 
   $.contextMenu('destroy')
   $('.context-menu-root').remove()
@@ -1445,6 +1445,81 @@ jeedomUtils.closeModal = function(_modals='') {
 
 jeedomUtils.cleanModals = function(_modals='') {
   $('.ui-dialog .cleanableModal').parent('.ui-dialog').remove()
+}
+
+//Context menu on checkbox
+jeedomUtils.setCheckboxStateByType = function(_type, _state, _callback) {
+  if (!isset(_type)) return false
+  if (!isset(_state)) _state = -1
+  var checkboxes = $(_type)
+  var isCallback = (isset(_callback) && typeof _callback === 'function') ? true : false
+  var execCallback = false
+  checkboxes.each(function(index) {
+    execCallback = false
+    if (_state == -1) {
+      $(this).prop('checked', !$(this).prop('checked'))
+      execCallback = true
+    } else {
+      if ($(this).prop('checked') != _state) {
+        $(this).prop('checked', _state)
+        execCallback = true
+      }
+    }
+    if (isCallback && execCallback) {
+      _callback($(this))
+    }
+  })
+}
+jeedomUtils.getElementType = function(_el) {
+  let thisType = ''
+  if (_el.is('input')) thisType = 'input[type="'+_el.attr('type')+'"]'
+
+  if (_el.attr("data-context")) {
+    thisType += '[data-context="'+_el.attr("data-context")+'"]'
+  } else {
+    if (_el.attr("data-l1key")) {
+      thisType += '[data-l1key="'+_el.attr("data-l1key")+'"]'
+    }
+    if (_el.attr("data-l2key")) {
+      thisType += '[data-l2key="'+_el.attr("data-l2key")+'"]'
+    }
+  }
+
+  return thisType
+}
+jeedomUtils.setCheckContextMenu = function(_callback) {
+  let ctxSelector = 'input[type="checkbox"].checkContext, input[type="radio"].checkContext'
+  $.contextMenu('destroy', ctxSelector)
+  $('.contextmenu-checkbox').remove()
+  jeedomUtils.checkContextMenu = $.contextMenu({
+    selector: ctxSelector,
+    appendTo: 'div#div_pageContainer',
+    className: 'contextmenu-checkbox',
+    zIndex: 9999,
+    items: {
+      all: {
+        name: "{{Sélectionner tout}}",
+        callback: function(key, opt) {
+          let thisType = jeedomUtils.getElementType($(this))
+          jeedomUtils.setCheckboxStateByType(thisType, 1, _callback)
+        }
+      },
+      none: {
+        name: "{{Désélectionner tout}}",
+        callback: function(key, opt) {
+          let thisType = jeedomUtils.getElementType($(this))
+          jeedomUtils.setCheckboxStateByType(thisType, 0, _callback)
+        }
+      },
+      invert: {
+        name: "{{Inverser la sélection}}",
+        callback: function(key, opt) {
+          let thisType = jeedomUtils.getElementType($(this))
+          jeedomUtils.setCheckboxStateByType(thisType, -1, _callback)
+        }
+      }
+    }
+  })
 }
 
 

@@ -1,10 +1,24 @@
 # Changelog Jeedom V4.4
 
-## 4.4
+
+### 4.4 : Pré-requis
+
+- Debian 10 Buster
+- Php 7.3
 
 ### 4.4 : Nouveautés / Améliorations
 
 - **Fenêtre de sélection d'image** : Ajout d'un menu contextuel permettant d'envoyer des images et de créer, renommer ou supprimer un dossier.
+- Un menu contextuel a été ajouté à différent endroits sur les checkboxs pour les sélectionner toutes, aucun, ou inverser la sélection (voir [Doc dev](https://doc.jeedom.com/fr_FR/dev/core4.4)).
+
+### 4.4 : Autre
+
+*RAS*
+
+### 4.4 : Notes
+
+*RAS*
+
 
 # Changelog Jeedom V4.3
 

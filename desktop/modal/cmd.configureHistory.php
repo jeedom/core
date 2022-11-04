@@ -59,14 +59,28 @@ include_file('3rdparty', 'jquery.tablesorter/_jeedom/pager-custom-constrols', 'j
       <th>{{Nom}}</th>
       <th>{{Plugin}}</th>
       <th>{{Type}}</th>
-      <th data-filter="false" data-sorter="checkbox">{{Historisé}}</th>
-      <th data-filter="false" data-sorter="checkbox">{{Timeline}}
-        <a class="btn btn-success btn-xs" id="bt_applytimeline" style="width:22px;"><i class="fas fa-check"></i></a>
-        <a class="btn btn-danger btn-xs" id="bt_canceltimeline" style="width:22px;"><i class="fas fa-times"></i></a>
-      </th>
-      <th data-filter="false" data-sorter="checkbox">{{Inversée}}</th>
-      <th data-sorter="select-text">{{Lissage}}</th>
-      <th class="extractor-select sorter-purges">{{Purge}}</th>
+      <th data-filter="false" data-sorter="checkbox"><input type="checkbox" class="tablesorter-noSort"> {{Historisé}}</th>
+      <th data-filter="false" data-sorter="checkbox"><input type="checkbox" class="tablesorter-noSort"> {{Timeline}}</th>
+      <th data-filter="false" data-sorter="checkbox"><input type="checkbox" class="tablesorter-noSort"> {{Inversée}}</th>
+      <th data-filter="false" data-sorter="select-text">
+        <select id="smoothSelectAll" class="tablesorter-noSort">
+          <option value="none">{{Aucun}}</option>
+          <option value="avg">{{Moyenne}}</option>
+          <option value="min">{{Minimum}}</option>
+          <option value="max">{{Maximum}}</option>
+        </select> {{Lissage}}</th>
+      <th class="extractor-select sorter-purges">
+        <select id="purgeSelectAll" class="tablesorter-noSort">
+          <option value="-1 day">{{1 jour}}</option>
+          <option value="-7 days">{{7 jours}}</option>
+          <option value="-1 month">{{1 mois}}</option>
+          <option value="-3 month">{{3 mois}}</option>
+          <option value="-6 month">{{6 mois}}</option>
+          <option value="-1 year">{{1 an}}</option>
+          <option value="-2 years">{{2 ans}}</option>
+          <option value="-3 years">{{3 ans}}</option>
+          <option value="">{{Jamais}}</option>
+        </select> {{Purge}}</th>
       <th data-sorter="false" data-filter="false">{{Action}}</th>
     </tr>
   </thead>
@@ -249,21 +263,28 @@ include_file('3rdparty', 'jquery.tablesorter/_jeedom/pager-custom-constrols', 'j
       type: 'numeric',
     })
 
-    $('#bt_canceltimeline').on('mousedown', function(event) {
-      $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible:not([disabled])').each(function() {
-        $(this).prop('checked', false)
+    $('#smoothSelectAll').on('change', function(event) {
+      event.stopPropagation()
+      event.preventDefault()
+      var value = $(this).val()
+      $('.cmdAttr[data-l2key="historizeMode"]:visible:not([disabled])').each(function() {
+        $(this).val(value)
         $(this).closest('tr').attr('data-change', '1')
       })
       return false
     })
 
-    $('#bt_applytimeline').on('mousedown', function(event) {
-      $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible:not([disabled])').each(function() {
-        $(this).prop('checked', true)
+    $('#purgeSelectAll').on('change', function(event) {
+      event.stopPropagation()
+      event.preventDefault()
+      var value = $(this).val()
+      $('.cmdAttr[data-l2key="historyPurge"]:visible:not([disabled])').each(function() {
+        $(this).val(value)
         $(this).closest('tr').attr('data-change', '1')
       })
       return false
     })
+
 
     $('#table_cmdConfigureHistory input[data-l2key="timeline::folder"]:not([disabled])').each(function() {
       if ($(this).val() == '') {
@@ -275,7 +296,8 @@ include_file('3rdparty', 'jquery.tablesorter/_jeedom/pager-custom-constrols', 'j
 
   $(function() {
     jeedomUtils.initTableSorter()
-    $tableCmdConfigureHistory[0].config.widgetOptions.resizable_widths = ['', '120px', '115px', '120px', '160px', '90px', '120px', '130px', '95px']
+    $tableCmdConfigureHistory[0].config.widgetOptions.resizable_widths = ['', '120px', '115px', '130px', '160px', '120px', '120px', '130px', '95px']
+    $tableCmdConfigureHistory[0].config.checkboxVisible = true
     $tableCmdConfigureHistory.trigger('resizableReset')
     $tableCmdConfigureHistory.width('100%')
     setTableParser()

@@ -62,10 +62,10 @@ function jeedom_displayObjectGroup($object=-1) {
 	//custom colors panel-title:
 	if ($objecUseCustomColor == 1) {
 		$aStyle = 'style="color:'.$object->getDisplay('tagTextColor').'!important"';
-		$div .= '<h3 class="panel-title" style="background-color:'.$object->getDisplay('tagColor').'; width:calc(100% - 100px);display: inline-block;">';
+		$div .= '<h3 class="panel-title" style="background-color:'.$object->getDisplay('tagColor').'; width:calc(100% - 50px);display: inline-block;">';
 		$div .= '<a '.$aStyle.'class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_'.$_index.'" style="color:'.$object->getDisplay('tagTextColor').'!important">'.$objectIcon.' '.$objectName;
 	} else {
-		$div .= '<h3 class="panel-title" style="width:calc(100% - 100px);display: inline-block;">';
+		$div .= '<h3 class="panel-title" style="width:calc(100% - 50px);display: inline-block;">';
 		$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_'.$_index.'">'.$objectIcon.' '.$objectName;
 	}
 	$div .= '</a></h3>';
@@ -73,8 +73,6 @@ function jeedom_displayObjectGroup($object=-1) {
 	$div .= '<h3 class="panel-title" style="background-color:var(--defaultBkg-color); width:100px;display: inline;">';
 	$div .= '<i class="fas fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i>';
 	$div .= '<a href="/index.php?v=d&p=object&id='.$objectId.'" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fas fa-external-link-square-alt"></i></a>';
-	$div .= '<i class="fas fa-square pull-right cursor objectUnselectEqlogics" title="{{Désélectionner les équipements}}"></i>';
-	$div .= '<i class="fas fa-check-square pull-right cursor objectSelectEqlogics" title="{{Sélectionner les équipements}}"></i>';
 	$div .= '</h3>';
 	$div .= '</div>';
 	
@@ -93,7 +91,7 @@ function jeedom_displayObjectGroup($object=-1) {
 		}
 		$translate_category = trim($translate_category,',');
 		$div .= '<li class="eqLogic cursor" data-id="'.$eqLogic->getId().'" data-translate-category="'.$translate_category.'" data-enable="'.$eqLogic->getIsEnable().'" data-name="'.$eqLogic->getName().'" data-type="'.$eqLogic->getEqType_name().'">';
-		$div .= '<input type="checkbox" class="cb_selEqLogic" /> ';
+		$div .= '<input type="checkbox" class="cb_selEqLogic checkContext" data-context="objectId'.$objectId.'"/> ';
 		$div .= $eqLogic->getId(). ' | ' . $eqLogic->getEqType_name() .' | '.$eqLogic->getName();
 		if ($eqLogic->getIsEnable() != 1) {
 			$div .= '<i class="fas fa-times" title="{{Non actif}}"></i> ';
@@ -110,7 +108,7 @@ function jeedom_displayObjectGroup($object=-1) {
 		$div .= '<ul class="cmdSortable" style="display:none;" >';
 		foreach ($display_cmds[$eqLogic->getId()] as $cmd) {
 			$div .= '<li class="alert alert-info cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">' ;
-			$div .= '<input type="checkbox" class="cb_selCmd"> ';
+			$div .= '<input type="checkbox" class="cb_selCmd checkContext" data-context="eqId'.$eqLogic->getId().'"> ';
 			$div .=  $cmd->getId().' | '.$cmd->getName();
 			if ($cmd->getIsVisible() != 1) {
 				$div .= ' <i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';

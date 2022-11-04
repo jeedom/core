@@ -324,13 +324,13 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
           $eQs .= $cmd->getHumanName();
           $eQs .= '</td>';
           $eQs .= '<td>';
-          $eQs .= '<input type="checkbox" class="planAttr" data-l1key="display" data-l2key="cmdHideName" data-l3key="' . $cmd->getId() . '" />';
+          $eQs .= '<input type="checkbox" class="planAttr checkContext" data-l1key="display" data-l2key="cmdHideName" data-l3key="' . $cmd->getId() . '" />';
           $eQs .= '</td>';
           $eQs .= '<td>';
-          $eQs .= '<input type="checkbox" class="planAttr" data-l1key="display" data-l2key="cmdHide" data-l3key="' . $cmd->getId() . '" />';
+          $eQs .= '<input type="checkbox" class="planAttr checkContext" data-l1key="display" data-l2key="cmdHide" data-l3key="' . $cmd->getId() . '" />';
           $eQs .= '</td>';
           $eQs .= '<td>';
-          $eQs .= '<input type="checkbox" class="planAttr" data-l1key="display" data-l2key="cmdTransparentBackground" data-l3key="' . $cmd->getId() . '" />';
+          $eQs .= '<input type="checkbox" class="planAttr checkContext" data-l1key="display" data-l2key="cmdTransparentBackground" data-l3key="' . $cmd->getId() . '" />';
           $eQs .= '</td>';
           $eQs .= '</tr>';
         }
@@ -658,11 +658,10 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
           }
         }
         setPlanUI_Events()
+        jeedomUtils.setCheckContextMenu()
       }
     })
   }
-
-
 
   function setPlanUI_Events() {
     //background : not default if transparent:
@@ -694,7 +693,6 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
       }
     })
   }
-
 
   function save() {
     var plans = $('#fd_planConfigure').getValues('.planAttr')
