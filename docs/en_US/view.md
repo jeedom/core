@@ -26,7 +26,7 @@ On a View, we find :
 
 ## Adding / Editing a view
 
-The principle is quite simple : a View is made up of areas. Each zone is of type *graphic*, *widget* Where *picture*. Depending on this type, you can add graphics, equipment, or commands to it.
+The principle is quite simple : a View is made up of areas. Each zone is of type *chart*, *widget* Where *picture*. Depending on this type, you can add graphics, equipment, or commands to it.
 
 - On the left of the page we find the list of Views as well as a creation button.
 - A button at the top right allows you to edit the Current View (Configuration).
@@ -44,7 +44,7 @@ On each zone you have the following general options :
 - **Lenght** : Defines the width of the area (in desktop mode only). 1 for the width of 1/12 of the navigator, 12 for the total width.
 - A button allowing to add an element to this zone, depending on the type of zone (see below).
 - **Edit** : Allows you to change the name of the zone.
-- **Remove** : Delete the zone.
+- **To delete** : Delete the zone.
 
 ### Equipment type zone
 
@@ -71,9 +71,9 @@ A graphics type area allows you to add graphics to your view, it has the followi
 When you press the button **Add curve**, Jeedom displays the list of historical commands and you can choose the one to add. Once done you have access to the following options :
 
 - **Trash can** : Remove command from chart.
-- **Name** : Name of the command to draw.
+- **Last name** : Name of the command to draw.
 - **Color** : Color of the curve.
-- **Type** : Type of curve.
+- **Kind** : Type of curve.
 - **Group** : Allows grouping of data (maximum type per day).
 - **Ladder** : Scale (right or left) of the curve.
 - **Stairs** : Displays the staircase curve.

@@ -42,17 +42,17 @@ Once you click on it, you get these different options :
 
 The table contains the versions of the Core and installed plugins.
 
-The plugins have a badge next to their name, specifying their version, green in color *stable*, or orange in *beta* Or other.
+The plugins have a badge next to their name, specifying their version, green in color *steady*, or orange in *beta* Or other.
 
 - **Status** : OK or NOK.
-- **Name** : Name and origin of the plugin
+- **Last name** : Name and origin of the plugin
 - **Version** : Indicates the precise version of the Core or plugin.
 - **Options** : Check this box if you do not want this plugin to be updated during the global update (Button **Update**).
 
 On each line, you can use the following functions:
 
 - **Reinstate** : Force resettlement.
-- **Remove** : Allows you to uninstall it.
+- **To delete** : Allows you to uninstall it.
 - **Check** : Query source for updates to find out if a new update is available.
 - **Update** : Allows you to update the element (if it has an update).
 - **Changelog** : Allows access to the list of changes in the update.

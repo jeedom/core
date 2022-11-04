@@ -66,7 +66,7 @@ The engine will display in the tables below :
 - The **Scenarios** using this string.
 	Search in expressions, comments, code blocks.
 - The **interactions** using this string.
-	Search in fields *Demand*.
+	Search in fields *Request*.
 - The **equipment** using this string.
 	Search in fields *name*, *logicalId*, *eqType*, *How? 'Or' What*, *tags*.
 - The **orders** using this string.
@@ -82,7 +82,7 @@ The engine will display in the tables below :
 
 - The **Scenario** having this Id.
 - The **design** having this Id.
-- The **view** having this Id.
+- The **seen** having this Id.
 - L'**interaction** having this Id.
 - L'**equipment** having this Id.
 - The **ordered** having this Id.

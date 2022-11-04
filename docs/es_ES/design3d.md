@@ -4,7 +4,7 @@
 Esta página le permite crear una vista 3D de su hogar que puede reaccionar dependiendo del estado de la información variada en su domótica.
 
 
-> **Propina**
+> **Consejo**
 >
 > Es posible ir directamente a un diseño 3D gracias al submenú.
 
@@ -45,7 +45,7 @@ Haga clic en el botón &quot;enviar&quot; en el nivel &quot;Modelo 3D&quot; y se
 >
 > Debes tener un archivo zip.
 
-> **Propina**
+> **Consejo**
 >
 > Una vez que se haya importado el archivo (puede ser bastante largo dependiendo del tamaño del archivo), debe actualizar la página para ver el resultado (F5).
 
@@ -85,14 +85,14 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 
 - Estado : Estado de puerta / ventana, 1 cerrado y 0 abierto
 - Rotation
-	- Activar : activa la rotación de la puerta / ventana al abrir
+	- Habilitar : activa la rotación de la puerta / ventana al abrir
 	- Apertura : lo mejor es probar para que coincida con su puerta / ventana
 - Translation
-	- Activar : activa la traducción al abrir (puerta corredera / tipo de ventana))
-	- Sentidos : dirección en la que debe moverse la puerta / ventana (tiene arriba / abajo / derecha / izquierda)
+	- Habilitar : activa la traducción al abrir (puerta corredera / tipo de ventana))
+	- Sentido : dirección en la que debe moverse la puerta / ventana (tiene arriba / abajo / derecha / izquierda)
 	- Repetición : de forma predeterminada, la Puerta / Ventana se mueve una vez que su dimensión en la dirección dada, pero puede aumentar este valor
 - Ocultar cuando la puerta / ventana está abierta
-	- Activar : Oculta el elemento si la puerta / ventana está abierta
+	- Habilitar : Oculta el elemento si la puerta / ventana está abierta
 - Couleur
 	- Color abierto : Si marca, el elemento tomará este color si la puerta / ventana está abierta
 	- Color cerrado : Si marca, el elemento tomará este color si la puerta / ventana está cerrada
@@ -101,7 +101,7 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 
 - Estado : estado del obturador, 0 abierto otro valor cerrado
 - Ocultar cuando el obturador está abierto
-	- Activar : ocultar el elemento si el obturador está abierto
+	- Habilitar : ocultar el elemento si el obturador está abierto
 - Couleur
 	- Color cerrado : Si marca, el elemento tomará este color si el obturador está cerrado
 
@@ -109,6 +109,6 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 
 Si la condición es válida, permite dar el color elegido al elemento. Puedes poner tantos colores / condiciones como quieras.
 
-> **Propina**
+> **Consejo**
 >
 > Las condiciones se evalúan en orden, se tomará la primera que sea verdadera, por lo tanto, las siguientes no se evaluarán

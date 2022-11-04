@@ -51,16 +51,16 @@ Também podemos definir um comando a ser executado se, por exemplo, a interaçã
 A página de configuração consiste em várias guias e botões :
 
 - **Frases** : Exibe o número de frases da interação (um clique nelas mostra a você).
-- **Salvar** : Registra a interação atual.
-- **Remover** : Excluir interação atual.
+- **Registrar** : Registra a interação atual.
+- **Deletar** : Excluir interação atual.
 - **Duplicado** : Duplicar a interação atual.
 
 ### Guia Geral
 
-- **Nome** : Nome da interação (pode estar vazio, o nome substitui o texto da solicitação na lista de interação).
-- **Grupo** : Grupo de interação, isso permite organizá-los (pode estar vazio, portanto estará no grupo "none").
-- **Ativo** : Permite ativar ou desativar a interação.
-- **Demanda** : A sentença do modelo de geração (obrigatório).
+- **Sobrenome** : Nome da interação (pode estar vazio, o nome substitui o texto da solicitação na lista de interação).
+- **Banda** : Grupo de interação, isso permite organizá-los (pode estar vazio, portanto estará no grupo "none").
+- **De ativos** : Permite ativar ou desativar a interação.
+- **Solicitar** : A sentença do modelo de geração (obrigatório).
 - **Sinônimo** : Permite definir sinônimos nos nomes dos comandos.
 - **Resposta** : A resposta para fornecer.
 - **Aguarde antes de responder (s))** : Adicione um atraso de X segundos antes de gerar a resposta. Permite, por exemplo, aguardar o retorno do status de uma lâmpada antes de ser atendido.
@@ -297,7 +297,7 @@ Isso permite que você exclua todos os comandos que possuem uma dessas palavras 
 
 ![interact022](../images/interact022.png)
 
-Como podemos ver, existe aqui no pedido a tag **\#consigne\#** (você pode colocar o que deseja), incluído no controle do inversor, para aplicar o valor desejado. Para fazer isso, temos 3 partes : \* Demanda : em que criamos uma tag que representará o valor que será enviado para a interação. \* Resposta : reutilizamos a tag da resposta para garantir que o Jeedom entenda corretamente a solicitação. \* Açao : colocamos uma ação na lâmpada que queremos acionar e, no valor que passamos, nossa tag *pedido*.
+Como podemos ver, existe aqui no pedido a tag **\#consigne\#** (você pode colocar o que deseja), incluído no controle do inversor, para aplicar o valor desejado. Para fazer isso, temos 3 partes : \* Solicitar : em que criamos uma tag que representará o valor que será enviado para a interação. \* Resposta : reutilizamos a tag da resposta para garantir que o Jeedom entenda corretamente a solicitação. \* Ações : colocamos uma ação na lâmpada que queremos acionar e, no valor que passamos, nossa tag *ordem*.
 
 > **Observação**
 >

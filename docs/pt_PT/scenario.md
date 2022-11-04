@@ -11,11 +11,11 @@ Você encontrará a lista de cenários do seu Jeedom, bem como funcionalidades p
 
 - **Adicionar** : Crie um cenário. O procedimento é descrito no próximo capítulo.
 - **Desativar cenários** : Desativa todos os cenários. Raramente usado e conscientemente, já que nenhum cenário será executado.
-- **Visão global** : Permite que você tenha uma visão geral de todos os cenários. Você pode alterar os valores **ativo**, **visível**, **Multi lançamento**, **Sincronicamente**, **Registro** e **Linha do tempo** (esses parâmetros são descritos no capítulo a seguir). Você também pode acessar os logs para cada cenário e iniciá-los individualmente.
+- **Visão global** : Permite que você tenha uma visão geral de todos os cenários. Você pode alterar os valores **de ativos**, **visível**, **Multi lançamento**, **Sincronicamente**, **Registro** e **Linha do tempo** (esses parâmetros são descritos no capítulo a seguir). Você também pode acessar os logs para cada cenário e iniciá-los individualmente.
 
 ## Meus scripts
 
-Você encontrará nesta parte **lista de cenários** que você criou. Eles são classificados de acordo com seus **grupo**, possivelmente definido para cada um deles. Cada cenário é exibido com seus **nome** e o dele **Objeto pai**. O **cenários esmaecidos** são os que estão desativados.
+Você encontrará nesta parte **lista de cenários** que você criou. Eles são classificados de acordo com seus **banda**, possivelmente definido para cada um deles. Cada cenário é exibido com seus **nome** e o dele **Objeto pai**. O **cenários esmaecidos** são os que estão desativados.
 
 > **Dica**
 >
@@ -36,7 +36,7 @@ Uma vez na configuração de um cenário, você tem um menu contextual com o bot
 Depois de clicar em **Adicionar**, você deve escolher o nome do seu cenário. Você é redirecionado para a página de seus parâmetros gerais.
 Antes disso, no topo da página, existem algumas funções úteis para gerenciar esse cenário :
 
-- **Identificação** : Ao lado da palavra **Geral**, este é o identificador de cenário.
+- **EU IRIA** : Ao lado da palavra **Geral**, este é o identificador de cenário.
 - **Status** : *Preso* Onde *Contínuo*, indica o estado atual do cenário.
 - **Estado anterior / seguinte** : Cancelar / refazer uma ação.
 - **Adicionar bloco** : Permite adicionar um bloco do tipo desejado ao cenário (veja abaixo).
@@ -46,9 +46,9 @@ Antes disso, no topo da página, existem algumas funções úteis para gerenciar
 - **Edição de texto** : Exibe uma janela que permite editar o cenário na forma de texto / json. Não esqueça de salvar.
 - **Exportar** : Permite obter uma versão em texto puro do cenário.
 - **Modelo** : Permite que você acesse os modelos e aplique um ao cenário do Mercado (explicado no final da página).
-- **Pesquisa** : Desdobra um campo de pesquisa para pesquisar no cenário. Esta pesquisa desdobra os blocos recolhidos se necessário e os dobra de volta após a pesquisa.
+- **Pesquisar** : Desdobra um campo de pesquisa para pesquisar no cenário. Esta pesquisa desdobra os blocos recolhidos se necessário e os dobra de volta após a pesquisa.
 - **Realizar** : Permite iniciar o cenário manualmente (independentemente dos gatilhos). Salve antecipadamente para levar em conta as modificações.
-- **Remover** : Excluir cenário.
+- **Deletar** : Excluir cenário.
 - **Para salvaguardar** : Salve as alterações feitas.
 
 > **Pontas**
@@ -57,7 +57,7 @@ Antes disso, no topo da página, existem algumas funções úteis para gerenciar
     > - As variáveis visíveis em **Ferramentas → Variáveis**
     > - O testador de expressão, acessível por **Ferramentas → Testador de expressão**
 >
-> Um **Ctrl Clique no botão executar** permite salvar, executar e exibir diretamente o log do cenário (se o nível do log não for Nenhum)).
+> UMA **Ctrl Clique no botão executar** permite salvar, executar e exibir diretamente o log do cenário (se o nível do log não for Nenhum)).
 
 ## Guia Geral
 
@@ -65,8 +65,8 @@ Na aba **Geral**, encontramos os principais parâmetros do cenário :
 
 - **Nome do cenário** : O nome do seu cenário.
 - **Display Name** : O nome usado para sua exibição. Opcional, se não preenchido, o nome do cenário é usado.
-- **Grupo** : Permite organizar os cenários, classificando-os em grupos (visíveis na página de cenários e em seus menus contextuais).
-- **Ativo** : Ativar o cenário. Se não estiver ativo, ele não será executado pelo Jeedom, independentemente do modo de disparo.
+- **Banda** : Permite organizar os cenários, classificando-os em grupos (visíveis na página de cenários e em seus menus contextuais).
+- **De ativos** : Ativar o cenário. Se não estiver ativo, ele não será executado pelo Jeedom, independentemente do modo de disparo.
 - **Visível** : Usado para tornar o cenário visível (Painel).
 - **Objeto pai** : Atribuição a um objeto pai. Será então visível ou não, de acordo com este pai.
 - **Tempo limite em segundos (0 = ilimitado)** : O tempo máximo de execução permitido para este cenário. Além desse tempo, a execução do cenário é interrompida.
@@ -84,7 +84,7 @@ Na aba **Geral**, encontramos os principais parâmetros do cenário :
 > **Dica**
 >
 > Agora as condições podem ser inseridas no modo acionado. Por exemplo : ``#[Garage][Open Garage][Ouverture]# == 1``
-> Aviso : você pode ter no máximo 28 gatilhos / programação para um cenário.
+> Atenção : você pode ter no máximo 28 gatilhos / programação para um cenário.
 
 > **Modo de ponta programado**
 >
@@ -92,7 +92,7 @@ Na aba **Geral**, encontramos os principais parâmetros do cenário :
 
 ## Guia Cenário
 
-É aqui que você criará seu cenário. Depois de criar o cenário, seu conteúdo está vazio, então ele fará ... nada. Você tem que começar com **Adicionar bloco**, com o botão à direita. Após a criação de um bloco, você pode adicionar outro **bloquear** ou um **açao**.
+É aqui que você criará seu cenário. Depois de criar o cenário, seu conteúdo está vazio, então ele fará ... nada. Você tem que começar com **Adicionar bloco**, com o botão à direita. Após a criação de um bloco, você pode adicionar outro **quadra** ou um **estoque**.
 
 Para maior comodidade e não ter que reordenar constantemente os blocos no cenário, a adição de um bloco é feita após o campo em que o cursor do mouse está localizado.
 *Por exemplo, se você tiver dez blocos e clicar na condição IF do primeiro bloco, o bloco adicionado será adicionado após este bloco, no mesmo nível. Se nenhum campo estiver ativo, ele será adicionado no final do cenário.*
@@ -110,12 +110,12 @@ Para maior comodidade e não ter que reordenar constantemente os blocos no cená
 Aqui estão os diferentes tipos de blocos disponíveis :
 
 - **If / Then / Ou** : Permite que ações sejam realizadas sob condições (se este, então aquele).
-- **Açao** : Permite iniciar ações simples sem nenhuma condição.
-- **Laço** : Permite que ações sejam executadas repetidamente de 1 a um número definido (ou mesmo o valor de um sensor ou um número aleatório…).
+- **Estoque** : Permite iniciar ações simples sem nenhuma condição.
+- **Ciclo** : Permite que ações sejam executadas repetidamente de 1 a um número definido (ou mesmo o valor de um sensor ou um número aleatório…).
 - **Dentro** : Permite iniciar uma ação em X minuto (s) (0 é um valor possível). A peculiaridade é que as ações são iniciadas em segundo plano, para que não bloqueiem o restante do cenário. Portanto, é um bloco sem bloqueio.
-- **NO** : Permite que o Jeedom inicie as ações do bloco em um determinado momento (no formato hhmm). Este bloco é sem bloqueio. Ex : 0030 para 00:30 ou 0146 para 1h46 e 1050 para 10h50.
+- **TEM** : Permite que o Jeedom inicie as ações do bloco em um determinado momento (no formato hhmm). Este bloco é sem bloqueio. Ex : 0030 para 00:30 ou 0146 para 1h46 e 1050 para 10h50.
 - **Codificado** : Permite escrever diretamente no código PHP (requer certo conhecimento e pode ser arriscado, mas permite que você não tenha restrições).
-- **Observação** : Permite adicionar comentários ao seu cenário.
+- **Comente** : Permite adicionar comentários ao seu cenário.
 
 Cada bloco tem suas opções para lidar melhor com eles :
 
@@ -129,14 +129,14 @@ Cada bloco tem suas opções para lidar melhor com eles :
     - O ícone Colar permite colar uma cópia do bloco copiado anteriormente após o bloco no qual você usa esta função.  Ctrl Clique no ícone substitui o bloco pelo bloco copiado.
     - O ícone - permite excluir o bloco, com uma solicitação de confirmação. Ctrl Clique exclui o bloco sem confirmação.
 
-### Se / Então / Caso contrário, bloqueia | Laço | Dentro | A
+### Se / Então / Caso contrário, bloqueia | Ciclo | Dentro | A
 
 Pelas condições, o Jeedom tenta torná-las possíveis o máximo possível em linguagem natural, mantendo-se flexível.
 > NÃO use [] em testes de condição, apenas parênteses () são possíveis.
 
 Três botões estão disponíveis à direita deste tipo de bloco para selecionar um item para testar :
 
-- **Ordem de pesquisa** : Permite procurar um pedido em todos os disponíveis no Jeedom. Depois que o pedido é encontrado, o Jeedom abre uma janela para perguntar qual teste você deseja executar nele. Se você escolher **Não ponha nada**, Jeedom adicionará o pedido sem comparação. Você também pode escolher **e** Onde **Onde** antes de **Próximo** para encadear testes em diferentes equipamentos.
+- **Ordem de pesquisa** : Permite procurar um pedido em todos os disponíveis no Jeedom. Depois que o pedido é encontrado, o Jeedom abre uma janela para perguntar qual teste você deseja executar nele. Se você escolher **Não ponha nada**, Jeedom adicionará o pedido sem comparação. Você também pode escolher **e** Onde **Onde** antes da **Próximo** para encadear testes em diferentes equipamentos.
 - **Pesquisa cenário** : Permite procurar um cenário para testar.
 - **Procure equipamento** : O mesmo para equipamentos.
 
@@ -149,7 +149,7 @@ Três botões estão disponíveis à direita deste tipo de bloco para selecionar
 >
 > Há uma lista de tags que permitem acessar variáveis do cenário ou de outro, ou pela hora, data, número aleatório,… Veja abaixo os capítulos sobre comandos e tags.
 
-Depois que a condição estiver concluída, você deve usar o botão "adicionar" à esquerda para adicionar um novo **bloquear** ou um **açao** no bloco atual.
+Depois que a condição estiver concluída, você deve usar o botão "adicionar" à esquerda para adicionar um novo **quadra** ou um **estoque** no bloco atual.
 
 
 ### Código de bloco
@@ -159,7 +159,7 @@ O bloco Code permite executar código php. Portanto, é muito poderoso, mas requ
 #### Acesso a controles (sensores e atuadores)
 
 -  ``cmd::byString($string);`` : Retorna o objeto de comando correspondente.
-    -   ``$string``: Link para o pedido desejado : ``#[objet][equipamento][commande]#`` (Ex : ``#[Appartement][Alarme][Ativo]#``)
+    -   ``$string``: Link para o pedido desejado : ``#[objet][equipamento][commande]#`` (Ex : ``#[Appartement][Alarme][De ativos]#``)
 -  ``cmd::byId($id);`` : Retorna o objeto de comando correspondente.
     -  ``$id`` : ID do pedido.
 -  ``$cmd->execCmd($options = null);`` : Execute o comando e retorne o resultado.
@@ -211,7 +211,7 @@ As ações adicionadas aos blocos têm várias opções :
 - Uma caixa **ativado** para que esse comando seja levado em consideração no cenário.
 - Uma caixa **paralelo** para que este comando seja iniciado em paralelo (ao mesmo tempo) com os outros comandos também selecionados.
 - UMA **seta dupla vertical** para mover a ação. Basta arrastar e soltar a partir daí.
-- Um botão para **Remover** a acção.
+- Um botão para **Deletar** a acção.
 - Um botão para ações específicas, sempre que a descrição (em foco) dessa ação.
 - Um botão para procurar um comando de ação.
 
@@ -366,7 +366,7 @@ Várias funções estão disponíveis para o equipamento :
 
 - ``tag(montag,[defaut])`` : Usado para recuperar o valor de uma tag ou o valor padrão, se ele não existir.
 
-- ``name(type,commande)`` : Usado para recuperar o nome do pedido, equipamento ou objeto. Tipo : cmd, eqLogic ou objeto.
+- ``name(type,commande)`` : Usado para recuperar o nome do pedido, equipamento ou objeto. Gentil : cmd, eqLogic ou objeto.
 
 - ``lastCommunication(equipment,[format])`` : Retorna a data da última comunicação para o dispositivo dado como parâmetro, o 2º parâmetro opcional é usado para especificar o formato de retorno (detalhes [aqui](https://www.php.net/manual/fr/datetime.format.php)). Um retorno de -1 significa que o equipamento não pode ser encontrado.
 
@@ -467,11 +467,11 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
     - Para iniciar : Comece o cenário em um tópico diferente. O cenário iniciado é executado independentemente do cenário de chamada.
     - Iniciar (Sincronizar) : Inicia o cenário chamado e pausa o cenário chamado, enquanto o cenário chamado termina de ser executado.
     - Pare : Pára o script.
-    - Ativar : Ative um cenário desativado.
+    - Permitir : Ative um cenário desativado.
     - Desativar : Cenário de desativação. Ele não inicia mais, independentemente dos gatilhos.
     - Reinicializando os ISs : Usado para redefinir o status de **E SE**. Este status é usado para a não repetição das ações de um **E SE**, se a avaliação da condição der o mesmo resultado da avaliação anterior.
 - **Pare** (stop) : Pára o script.
-- **Esperar** (wait) : Aguarde até que a condição seja válida (máximo de 2h), o tempo limite será em segundos (s).
+- **Espero** (wait) : Aguarde até que a condição seja válida (máximo de 2h), o tempo limite será em segundos (s).
 - **Vai o projeto** (gotodesign) : Alterar o design exibido em todos os navegadores pelo design solicitado.
 - **Adicionar um registro** (log) : Permite adicionar uma mensagem no log.
 - **Criar mensagem** (message) : Adicionar uma mensagem ao centro de mensagens.
@@ -516,7 +516,7 @@ A partir daí, você tem a possibilidade :
 Ao clicar em um modelo, você pode :
 
 - **Compartilhar** : Compartilhe o modelo no mercado.
-- **Remover** : Excluir modelo.
+- **Deletar** : Excluir modelo.
 - **Baixar** : Obtenha o modelo como um arquivo JSON para enviá-lo para outro Jeedom, por exemplo.
 
 Abaixo, você tem a parte para aplicar seu modelo ao cenário atual.

@@ -65,7 +65,7 @@ In this tab you will find the display customization parameters.
 
 ### Personnalisation
 
-- **Activate** : Activate the use of the options below.
+- **Enable** : Activate the use of the options below.
 - **Transparency** : Displays Dashboard tiles and some content with transparency. 1 : totally opaque, 0 : totally transparent.
 - **Round** : Displays interface elements with rounded angles. 0 : no rounding, 1 : maximum rounding.
 - **Disable shadows** : Disables shadows from tiles on the dashboard, menus, and certain interface elements.
@@ -86,7 +86,7 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
     - **OK / NOK** : indicates if the internal network configuration is correct.
     - **Protocol** : the protocol to use, often HTTP.
     - **URL or IP address** : Jeedom IP to enter.
-    - **Harbor** : the port of the Jeedom web interface, generally 80.
+    - **Port** : the port of the Jeedom web interface, generally 80.
         Please note changing the port here does not change the actual Jeedom port which will remain the same.
     - **Complement** : the fragment of additional URL (example : / jeedom) to access Jeedom.
 
@@ -221,7 +221,7 @@ This tab allows you to set global parameters concerning the interactions that yo
 
 > **Tip**
 >
-> To activate the interaction log, go to the Settings → System → Configuration tab : Logs, then check **Debug** in the bottom list. Warning : the logs will then be very verbose !
+> To activate the interaction log, go to the Settings → System → Configuration tab : Logs, then check **Debug** in the bottom list. Attention : the logs will then be very verbose !
 
 ### Main
 
@@ -325,7 +325,7 @@ Deposit used to connect Jeedom to Github.
 
 #### Market
 
-Deposit used to connect Jeedom to the market, it is strongly advised to use this deposit. Warning : any request for support may be refused if you use a deposit other than this one.
+Deposit used to connect Jeedom to the market, it is strongly advised to use this deposit. Attention : any request for support may be refused if you use a deposit other than this one.
 
 - **Address** : Address du Market.(https://www.Jeedom.com/market).
 - **Username** : Your Username on the Market.

@@ -6,7 +6,7 @@ Sie können nämlich auch die Plugins manipulieren : herunterladen, aktualisiere
 
 Es gibt daher eine Liste von Plugins in alphabetischer Reihenfolge und einen Link zum Markt.
 - Deaktivierte Plugins sind ausgegraut.
-- Plugins, die nicht in der Version sind *stabil* Wir haben einen orangefarbenen Punkt vor ihrem Namen.
+- Plugins, die nicht in der Version sind *stetig* Wir haben einen orangefarbenen Punkt vor ihrem Namen.
 
 Durch Klicken auf ein Plugin greifen Sie auf dessen Konfiguration zu. Oben finden Sie den Namen des Plugins, dann in Klammern den Namen in Jeedom (ID) und schließlich den Typ der installierten Version (Stable, Beta)).
 
@@ -26,7 +26,7 @@ Hier haben Sie drei Tasten :
 
 Gehen Sie in einem Browser zu [Markt](https://market.jeedom.com).
 Melden Sie sich bei Ihrem Konto an.
-Klicken Sie auf ein Plugin und wählen Sie *Stabil installieren* Woher *Installieren Sie die Beta* (wenn Ihr Marktkonto dies zulässt).
+Klicken Sie auf ein Plugin und wählen Sie *Stabil installieren* Wo *Installieren Sie die Beta* (wenn Ihr Marktkonto dies zulässt).
 
 Wenn Ihr Marktkonto in Ihrem Jeedom korrekt konfiguriert ist (Konfiguration → Updates / Markt → Registerkarte Markt), können Sie auf klicken *Markt synchronisieren* oder warten Sie, bis es sich von selbst niedergelassen hat.
 
@@ -56,7 +56,7 @@ Wenn Sie das gewünschte Plugin gefunden haben, klicken Sie einfach darauf, um d
     - **Stabil installieren** : ermöglicht die Installation des Plugins in seiner stabilen Version.
     - **Installieren Sie die Beta** : ermöglicht die Installation des Plugins in seiner Beta-Version (nur für Betatester).
     - **Installieren Sie pro** : ermöglicht die Installation der Pro-Version (sehr wenig verwendet).
-    - **Entfernen** : Wenn das Plugin derzeit installiert ist, können Sie es mit dieser Schaltfläche entfernen.
+    - **Löschen** : Wenn das Plugin derzeit installiert ist, können Sie es mit dieser Schaltfläche entfernen.
 
 Nachfolgend finden Sie die Beschreibung des Plugins, die Kompatibilität (wenn Jeedom eine Inkompatibilität feststellt, werden Sie benachrichtigt), die Meinungen zum Plugin (Sie können es hier notieren) und zusätzliche Informationen (der Autor, die Person, die es erstellt hat) das neueste Update, ein Link zum Dokument, die Anzahl der Downloads). Auf der rechten Seite finden Sie eine Schaltfläche &quot;Changelog&quot;, mit der Sie den gesamten Änderungsverlauf abrufen können. Eine Schaltfläche &quot;Dokumentation&quot;, die auf die Dokumentation des Plugins verweist. Dann haben Sie die verfügbare Sprache und die verschiedenen Informationen zum Datum der letzten stabilen Version.
 
@@ -89,7 +89,7 @@ Durch Klicken auf das Symbol eines Plugins öffnen Sie dessen Konfigurationsseit
 - **Dokumentation** : Ermöglicht den direkten Zugriff auf die Plugin-Dokumentationsseite.
 - **Änderungsprotokoll** : Sehen wir uns das Plugin-Änderungsprotokoll an, falls vorhanden.
 - **Details** : Ermöglicht es Ihnen, die Plugin-Seite auf dem Markt zu finden.
-- **Entfernen** : Entfernen Sie das Plugin aus Ihrem Jeedom. Bitte beachten Sie, dass dadurch auch alle Geräte dauerhaft aus diesem Plugin entfernt werden.
+- **Löschen** : Entfernen Sie das Plugin aus Ihrem Jeedom. Bitte beachten Sie, dass dadurch auch alle Geräte dauerhaft aus diesem Plugin entfernt werden.
 
 ### Unten links befindet sich ein Bereich **Zustand** mit :
 
@@ -98,7 +98,7 @@ Durch Klicken auf das Symbol eines Plugins öffnen Sie dessen Konfigurationsseit
 - **Autor** : Der Autor des Plugins, Link zum Markt und die Plugins dieses Autors.
 - **Lizenz** : Gibt die Lizenz des Plugins an, bei dem es sich im Allgemeinen um AGPL handelt.
 
-- **Aktion** : Ermöglicht das Aktivieren oder Deaktivieren des Plugins. Die Taste **Offen** Ermöglicht den direkten Zugriff auf die Plugin-Seite.
+- **Aktie** : Ermöglicht das Aktivieren oder Deaktivieren des Plugins. Die Taste **Offen** Ermöglicht den direkten Zugriff auf die Plugin-Seite.
 - **Ausführung** : Die Version des installierten Plugins.
 - **Voraussetzungen** : Gibt die für das Plugin erforderliche Jeedom-Mindestversion an.
 
@@ -114,14 +114,14 @@ Wenn das Plugin Abhängigkeiten und / oder einen Dämon hat, werden diese zusät
 
 ### Nebengebäude :
 
-- **Name** : Im Allgemeinen wird lokal sein.
+- **Nachname** : Im Allgemeinen wird lokal sein.
 - **Status** : Abhängigkeitsstatus, OK oder NOK.
-- **Installation** : Ermöglicht das Installieren oder Neuinstallieren von Abhängigkeiten (wenn Sie dies nicht manuell tun und diese NOK sind, kümmert sich Jeedom nach einer Weile um sich selbst).
+- **Einrichtung** : Ermöglicht das Installieren oder Neuinstallieren von Abhängigkeiten (wenn Sie dies nicht manuell tun und diese NOK sind, kümmert sich Jeedom nach einer Weile um sich selbst).
 - **Letzte Installation** : Datum der letzten Abhängigkeitsinstallation.
 
 ### Dämon :
 
-- **Name** : Im Allgemeinen wird lokal sein.
+- **Nachname** : Im Allgemeinen wird lokal sein.
 - **Status** : Daemon-Status, OK oder NOK.
 - **Aufbau** : OK, wenn alle Kriterien für die Ausführung des Dämons erfüllt sind oder die Ursache für die Blockierung angegeben ist.
 - **(Neustarten** : Ermöglicht das Starten oder Neustarten des Dämons.

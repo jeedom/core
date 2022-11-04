@@ -1,7 +1,7 @@
 # Types of equipment
 **Tools → Equipment types**
 
-The sensors and actuators in Jeedom are managed by plugins, which create equipment with commands *Information* (sensor) or *Action* (actuator). This then makes it possible to trigger actions based on the change of certain sensors, such as turning on a light on motion detection. But the Jeedom Core, and plugins like *Mobile*, *Homebridge*, *Google Smart Home*, *Alexa Smart Home* etc., do not know what this equipment is : A socket, a light, a shutter, etc.
+The sensors and actuators in Jeedom are managed by plugins, which create equipment with commands *Information* (sensor) or *Stock* (actuator). This then makes it possible to trigger actions based on the change of certain sensors, such as turning on a light on motion detection. But the Jeedom Core, and plugins like *Mobile*, *Homebridge*, *Google Smart Home*, *Alexa Smart Home* etc., do not know what this equipment is : A socket, a light, a shutter, etc.
 
 To overcome this problem, especially with voice assistants (*Turn on the room light*), Core introduced the **Generic Types**, used by these plugins.
 
@@ -24,7 +24,7 @@ This page offers storage by type of equipment : Socket, Light, Shutter, Thermost
 
 ## Command type
 
-Once an item of equipment is positioned in the correct *Type*, by clicking on it you access the list of its orders, colored differently if it is a *Information* (Blue) or a *Action* (Orange).
+Once an item of equipment is positioned in the correct *Kind*, by clicking on it you access the list of its orders, colored differently if it is a *Information* (Blue) or a *Stock* (Orange).
 
 By right-clicking on an order, you can then assign it a Generic Type corresponding to the specifications of this order (Info / Action type, Numeric, Binary subtype, etc).
 
@@ -38,7 +38,7 @@ On each device, you have two buttons :
 
 - **Reset types** : This function removes Generic Types from all equipment commands.
 
-> **Warning**
+> **Attention**
 >
 > No changes are made before saving, with the button at the top right of the page.
 
@@ -48,19 +48,19 @@ In v4.2, the Core has integrated the generic types in the scenarios. You can thu
 
 #### Trigger
 
-You can trigger a scenario from sensors. For example, if you have motion detectors in the house, you can create an alarm scenario with each detector triggering : ``#[Salon][Move Salon][Presence]# == 1`, `#[Cuisine][Move Cuisine][Presence]# == 1`, etc.. In such a scenario, you will therefore need all your motion detectors, and if you add one, you will have to add it to the triggers. Logic.
+You can trigger a scenario from sensors. For example, if you have motion detectors in the house, you can create an alarm scenario with each detector triggering : ``#[Living room][Move Salon][Presence]# == 1`, `#[Cuisine][Move Cuisine][Presence]# == 1`, etc.. In such a scenario, you will therefore need all your motion detectors, and if you add one, you will have to add it to the triggers. Logic.
 
 Thanks to generic types, you will be able to use a single trigger : ``#genericType(PRESENCE)# == 1`. Here, no object is indicated, so the slightest movement throughout the house will trigger the scenario. If you add a new detector in the house, no need to edit the scenario (s)).
 
-Here, a trigger on the switching on of a light in the Living room : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0`
+Here, a trigger on the switching on of a light in the Living room : ``#genericType(LIGHT_STATE,#[Living room]#)# > 0`
 
 #### Expression
 
 If, in a scenario, you want to know if a light is on in the Living Room, you can do :
 
-IF `#[Salon][Lumiere Canapé][State]# == 1 OR #[Salon][Lumiere Salon][State]# == 1 OR #[Salon][Lumiere Angle][State]# == 1`
+IF `#[Living room][Lumiere Canapé][State]# == 1 OR #[Living room][Lumiere Salon][State]# == 1 OR #[Living room][Lumiere Angle][State]# == 1`
 
-Or more simply : IF `genericType (LIGHT_STATE,#[Salon]#) > 0` or if one or more light (s) are on in the Living room.
+Or more simply : IF `genericType (LIGHT_STATE,#[Living room]#) > 0` or if one or more light (s) are on in the Living room.
 
 If tomorrow you add a light in your living room, no need to retouch your scenarios !
 
@@ -70,9 +70,9 @@ If tomorrow you add a light in your living room, no need to retouch your scenari
 If you want to turn on all the lights in the Living Room, you can create a light action:
 
 `` ``
-#[Salon][Lumiere Canapé][We]#
-#[Salon][Lumiere Salon][We]#
-#[Salon][Lumiere Angle][We]#
+#[Living room][Lumiere Canapé][We]#
+#[Living room][Lumiere Salon][We]#
+#[Living room][Lumiere Angle][We]#
 `` ``
 
 Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tomorrow you add a light in your living room, no need to retouch your scenarios !
@@ -88,9 +88,9 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 |:--------|:----------------|:--------:|:---------:|
 | TIMER | State timer | Information | numeric
 | TIMER_STATE | Timer Status (pause or not) | Information | binary, numeric
-| SET_TIMER | Timer | Action | slider
-| TIMER_PAUSE | Pause timer | Action | other
-| TIMER_RESUME | Timer resume | Action | other
+| SET_TIMER | Timer | Stock | slider
+| TIMER_PAUSE | Pause timer | Stock | other
+| TIMER_RESUME | Timer resume | Stock | other
 
 | **Battery (id: Battery)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -101,30 +101,30 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 |:--------|:----------------|:--------:|:---------:|
 | CAMERA_URL | Camera url | Information | string
 | CAMERA_RECORD_STATE | Camera recording status | Information | binary
-| CAMERA_UP | Camera movement up | Action | other
-| CAMERA_DOWN | Camera movement down | Action | other
-| CAMERA_LEFT | Camera movement to the left | Action | other
-| CAMERA_RIGHT | Camera movement to the right | Action | other
-| CAMERA_ZOOM | Zoom camera forward | Action | other
-| CAMERA_DEZOOM | Zoom camera back | Action | other
-| CAMERA_STOP | Stop camera | Action | other
-| CAMERA_PRESET | Camera preset | Action | other
-| CAMERA_RECORD | Camera recording | Action |
-| CAMERA_TAKE | Snapshot camera | Action |
+| CAMERA_UP | Camera movement up | Stock | other
+| CAMERA_DOWN | Camera movement down | Stock | other
+| CAMERA_LEFT | Camera movement to the left | Stock | other
+| CAMERA_RIGHT | Camera movement to the right | Stock | other
+| CAMERA_ZOOM | Zoom camera forward | Stock | other
+| CAMERA_DEZOOM | Zoom camera back | Stock | other
+| CAMERA_STOP | Stop camera | Stock | other
+| CAMERA_PRESET | Camera preset | Stock | other
+| CAMERA_RECORD | Camera recording | Stock |
+| CAMERA_TAKE | Snapshot camera | Stock |
 
 | **Heating (id: Heating)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | HEATING_STATE | Pilot wire heating Status | Information | binary
-| HEATING_ON | Pilot wire heating ON button | Action | other
-| HEATING_OFF | Pilot wire heating OFF button | Action | other
-| HEATING_OTHER | Heating pilot wire Button | Action | other
+| HEATING_ON | Pilot wire heating ON button | Stock | other
+| HEATING_OFF | Pilot wire heating OFF button | Stock | other
+| HEATING_OTHER | Heating pilot wire Button | Stock | other
 
 | **Electricity (id: Electricity)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | Power | Electric power | Information | numeric
 | CONSUMPTION | Power consumption | Information | numeric
-| VOLTAGE | Voltage | Information | numeric
-| REBOOT | Restart | Action | other
+| VOLTAGE | Tension | Information | numeric
+| REBOOT | Restart | Stock | other
 
 | **Environment (id: Environment)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -148,7 +148,7 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 | DISTANCE | DISTANCE | Information | numeric
 | BUTTON | Button | Information | binary, numeric
 | GENERIC_INFO |  Generic | Information |
-| GENERIC_ACTION |  Generic | Action | other
+| GENERIC_ACTION |  Generic | Stock | other
 
 | **Light (id: Light)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -157,18 +157,18 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 | LIGHT_COLOR | Light Color | Information | string
 | LIGHT_STATE_BOOL | Light State (Binary) | Information | binary
 | LIGHT_COLOR_TEMP | Light Temperature Color | Information | numeric
-| LIGHT_TOGGLE | Toggle light | Action | other
-| LIGHT_ON | Light Button On | Action | other
-| LIGHT_OFF | Light Button Off | Action | other
-| LIGHT_SLIDER | Slider light | Action | slider
-| LIGHT_SET_COLOR | Light Color | Action | color
-| LIGHT_MODE | Light Mode | Action | other
-| LIGHT_SET_COLOR_TEMP | Light Temperature Color | Action |
+| LIGHT_TOGGLE | Toggle light | Stock | other
+| LIGHT_ON | Light Button On | Stock | other
+| LIGHT_OFF | Light Button Off | Stock | other
+| LIGHT_SLIDER | Slider light | Stock | slider
+| LIGHT_SET_COLOR | Light Color | Stock | color
+| LIGHT_MODE | Light Mode | Stock | other
+| LIGHT_SET_COLOR_TEMP | Light Temperature Color | Stock |
 
 | **Fashion (id: Mode)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | MODE_STATE | Status Mode | Information | string
-| MODE_SET_STATE | Change Mode | Action | other
+| MODE_SET_STATE | Change Mode | Stock | other
 
 | **Multimedia (id: Multimedia)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -180,17 +180,17 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 | MEDIA_POWER | Power | Information | string
 | CHANNEL | Chain | Information | numeric, string
 | MEDIA_STATE | State | Information | binary
-| SET_VOLUME | Volume | Action | slider
-| SET_CHANNEL | Chain | Action | other slider
-| MEDIA_PAUSE | Pause | Action | other
-| MEDIA_RESUME | Reading | Action | other
-| MEDIA_STOP | Stop | Action | other
-| MEDIA_NEXT | Following | Action | other
-| MEDIA_PREVIOUS | Previous | Action | other
-| MEDIA_ON | We | Action | other
-| MEDIA_OFF | Off | Action | other
-| MEDIA_MUTE | Mute | Action | other
-| MEDIA_UNMUTE | No Mute | Action | other
+| SET_VOLUME | Volume | Stock | slider
+| SET_CHANNEL | Chain | Stock | other slider
+| MEDIA_PAUSE | Pause | Stock | other
+| MEDIA_RESUME | Reading | Stock | other
+| MEDIA_STOP | Stop | Stock | other
+| MEDIA_NEXT | Next | Stock | other
+| MEDIA_PREVIOUS | Previous | Stock | other
+| MEDIA_ON | We | Stock | other
+| MEDIA_OFF | Off | Stock | other
+| MEDIA_MUTE | Mute | Stock | other
+| MEDIA_UNMUTE | No Mute | Stock | other
 
 | **Weather (id: Weather)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -231,25 +231,25 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 | LOCK_STATE | State lock | Information | binary
 | BARRIER_STATE | Portal (opening) State | Information | binary
 | GARAGE_STATE | Garage (opening) State | Information | binary
-| OPENING | Carries | Information | binary
+| OPENING | Gate | Information | binary
 | OPENING_WINDOW | Window | Information | binary
-| LOCK_OPEN | Lock Button Open | Action | other
-| LOCK_CLOSE | Lock Button Close | Action | other
-| GB_OPEN | Gate or garage opening button | Action | other
-| GB_CLOSE | Gate or garage closing button | Action | other
-| GB_TOGGLE | Gate or garage button toggle | Action | other
+| LOCK_OPEN | Lock Button Open | Stock | other
+| LOCK_CLOSE | Lock Button Close | Stock | other
+| GB_OPEN | Gate or garage opening button | Stock | other
+| GB_CLOSE | Gate or garage closing button | Stock | other
+| GB_TOGGLE | Gate or garage button toggle | Stock | other
 
 | **Socket (id: Outlet)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | ENERGY_STATE | State socket | Information | numeric, binary
-| ENERGY_ON | On Button Socket | Action | other
-| ENERGY_OFF | Socket Button Off | Action | other
-| ENERGY_SLIDER | Slider socket | Action |
+| ENERGY_ON | On Button Socket | Stock | other
+| ENERGY_OFF | Socket Button Off | Stock | other
+| ENERGY_SLIDER | Slider socket | Stock |
 
 | **Robot (id: Robot)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | DOCK_STATE | State base | Information | binary
-| DOCK | Back to base | Action | other
+| DOCK | Back to base | Stock | other
 
 | **Security (id: Security)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -260,11 +260,11 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 | FLOOD | Flood | Information | binary
 | SABOTAGE | SABOTAGE | Information | binary
 | SHOCK | Shock | Information | binary, numeric
-| SIREN_OFF | Siren Button Off | Action | other
-| SIREN_ON | Siren Button On | Action | other
-| ALARM_ARMED | Armed alarm | Action | other
-| ALARM_RELEASED | Alarm released | Action | other
-| ALARM_SET_MODE | Alarm Mode | Action | other
+| SIREN_OFF | Siren Button Off | Stock | other
+| SIREN_ON | Siren Button On | Stock | other
+| ALARM_ARMED | Armed alarm | Stock | other
+| ALARM_RELEASED | Alarm released | Stock | other
+| ALARM_SET_MODE | Alarm Mode | Stock | other
 
 | **Thermostat (id: Thermostat)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -277,26 +277,26 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 | THERMOSTAT_STATE_NAME | Thermostat Status (HUMAN) (for Plugin Thermostat only) | Information | string
 | THERMOSTAT_HUMIDITY | Room humidity thermostat | Information | numeric
 | HUMIDITY_SETPOINT | Set humidity | Information | slider
-| THERMOSTAT_SET_SETPOINT | Setpoint thermostat | Action | slider
-| THERMOSTAT_SET_MODE | Thermostat Mode (for Plugin Thermostat only) | Action | other
-| THERMOSTAT_SET_LOCK | Locking Thermostat (for Plugin Thermostat only) | Action | other
-| THERMOSTAT_SET_UNLOCK | Unlock Thermostat (for Plugin Thermostat only) | Action | other
-| HUMIDITY_SET_SETPOINT | Set humidity | Action | slider
+| THERMOSTAT_SET_SETPOINT | Setpoint thermostat | Stock | slider
+| THERMOSTAT_SET_MODE | Thermostat Mode (for Plugin Thermostat only) | Stock | other
+| THERMOSTAT_SET_LOCK | Locking Thermostat (for Plugin Thermostat only) | Stock | other
+| THERMOSTAT_SET_UNLOCK | Unlock Thermostat (for Plugin Thermostat only) | Stock | other
+| HUMIDITY_SET_SETPOINT | Set humidity | Stock | slider
 
 | **Fan (id: Fan)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | FAN_SPEED_STATE | Fan speed Status | Information | numeric
 | ROTATION_STATE | State Rotation | Information | numeric
-| FAN_SPEED | Fan speed | Action | slider
-| ROTATION | ROTATION | Action | slider
+| FAN_SPEED | Fan speed | Stock | slider
+| SPIN | SPIN | Stock | slider
 
 | **Pane (id: Shutter)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | FLAP_STATE | Status pane | Information | binary, numeric
 | FLAP_BSO_STATE | BSO Status pane | Information | binary, numeric
-| FLAP_UP | Pane Up Button | Action | other
-| FLAP_DOWN | Pane Down Button | Action | other
-| FLAP_STOP | Stop button shutter | Action |
-| FLAP_SLIDER | Slider Button Pane | Action | slider
-| FLAP_BSO_UP | BSO pane Up button | Action | other
-| FLAP_BSO_DOWN | BSO pane Down button | Action | other
+| FLAP_UP | Pane Up Button | Stock | other
+| FLAP_DOWN | Pane Down Button | Stock | other
+| FLAP_STOP | Stop button shutter | Stock |
+| FLAP_SLIDER | Slider Button Pane | Stock | slider
+| FLAP_BSO_UP | BSO pane Up button | Stock | other
+| FLAP_BSO_DOWN | BSO pane Down button | Stock | other

@@ -3,7 +3,7 @@
 
 Here you can manage functions **javascript** and rules **CSS** applied on desktop or mobile.
 
-> **Warning**
+> **Attention**
 >
 > Using inappropriate CSS rules can break the display of your Jeedom. Incorrectly used js functions can cause significant damage to various components of your installation. Remember to generate and outsource a backup before using these functions.
 

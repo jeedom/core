@@ -761,28 +761,28 @@ Configurações:
 
 -   pasta de corda : nome da pasta
 
-API JSON User
+API de usuário JSON
 =================
 
 user::all
 -------------
 
-Retourne la liste de tous les utilisateurs
+Retorna a lista de todos os usuários
 
 user::save
 ---------------------
 
-Crée ou edite un utilisateur
+Criar ou editar um usuário
 
 Configurações:
 
--   int id (si edition)
+-   int id (se edição)
 
--   string login 
+-   seqüência de login
 
--   string password 
+-   senha de string
 
--   string profile : \[admin,user,restrict\]
+-   perfil de string: \[admin,usuário,restringir\]
 
 
 Exemplos de API JSON

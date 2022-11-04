@@ -97,7 +97,7 @@ To do so, it is necessary to take into account 2 prerequisites :
 `` ''
 
 >**Trick**      
->As long as the standardized name remains readable, it is possible to adapt the naming, for example *open_volet* Where *shutter_close*, *walk_2* and *stop_2*, etc..
+>As long as the standardized name remains readable, it is possible to adapt the naming, for example *open_volet* Where *shutter_close*, *walk_2* and *stop_2*, etc.
 
 ## Custom widgets
 
@@ -113,7 +113,7 @@ There are two types of custom widgets :
 ![Widgets](./images/widgets.png)
 
 You have four options :
-- **Add** : Allows you to add a widget *Core*.
+- **To add** : Allows you to add a widget *Core*.
 - **Import** : Allows you to import a widget as a previously exported json file.
 - **Coded** : Access the widget editing page *Third*.
 - **Replacement** : Opens a window allowing you to replace a widget with another on all devices using it.
@@ -143,12 +143,12 @@ Once on the configuration page of a widget, a context menu is accessible by `` R
 
 ### Creating a widget
 
-Once on the page **Tools → Widgets** you have to click on the button "**Add**" and give a name to your new widget.
+Once on the page **Tools → Widgets** you have to click on the button "**To add**" and give a name to your new widget.
 
 Next :
-- You choose whether it applies to an order of type **Action** Where **Information**.
+- You choose whether it applies to an order of type **Stock** Where **Information**.
 - Depending on the previous choice, you will have to **choose the subtype** of the order.
-- At last **the template** among those which will be available according to the previous choices.
+- Finally **the template** among those which will be available according to the previous choices.
 - Once the template has been chosen, Jeedom displays the configuration options for it below.
 
 ### The templates

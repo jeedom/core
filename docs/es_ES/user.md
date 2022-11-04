@@ -23,7 +23,7 @@ En la página tienes tres botones :
 - **Fecha de la última conexión** : Fecha de inicio de sesión del último usuario. Tenga en cuenta que esta es la fecha de conexión real, por lo que si guarda su computadora, la fecha de conexión no se actualiza cada vez que regresa.
 - **Derechos** : Modificar derechos de usuario.
 - **Contraseña** : Le permite cambiar la contraseña del usuario.
-- **Eliminar** : Eliminar usuario.
+- **Borrar** : Eliminar usuario.
 - **Regenerar clave API** : Regenerar clave de API de usuario.
 - **Administrar derechos** : Le permite administrar con precisión los derechos de los usuarios (tenga en cuenta que el perfil debe estar en "usuario limitado"").
 

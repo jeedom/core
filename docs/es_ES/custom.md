@@ -12,7 +12,7 @@ Esta función usa un modo particular del editor de archivos Core con dos ubicaci
 - escritorio / personalizado : Puede contener ambos archivos **personalizado.js** y **personalizado.css** que será cargado por el Core en la versión de escritorio.
 - móvil / personalizado : Puede contener ambos archivos **personalizado.js** y **personalizado.css** que será cargado por el Core en la versión móvil.
 
-En la barra de menú del editor de archivos Core, un botón **Activado** Donde **Desactivado** te dice si el Core debe cargarlos o no. Esta opción también está disponible en **Configuración → Sistema → Configuración** Pestaña de interfaz.
+En la barra de menú del editor de archivos Core, un botón **Activado** Dónde **Desactivado** te dice si el Core debe cargarlos o no. Esta opción también está disponible en **Configuración → Sistema → Configuración** Pestaña de interfaz.
 
 > **Observación**
 >

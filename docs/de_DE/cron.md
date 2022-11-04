@@ -14,7 +14,7 @@ Oben rechts haben Sie :
 
 - **Cron-System deaktivieren** : Eine Schaltfläche zum Deaktivieren oder Reaktivieren aller Aufgaben (wenn Sie alle deaktivieren, funktioniert auf Ihrem Jeedom nichts).
 - **Cool** : Aktualisiert die Aufgabentabelle.
-- **Addieren** : Fügen Sie manuell einen Cron-Job hinzu.
+- **Hinzufügen** : Fügen Sie manuell einen Cron-Job hinzu.
 - **Zu schützen** : Speichern Sie Ihre Änderungen.
 
 Unten finden Sie eine Tabelle aller vorhandenen Aufgaben (Achtung, einige Aufgaben können Unteraufgaben starten. Es wird daher dringend empfohlen, die Informationen auf dieser Seite niemals zu ändern).
@@ -22,7 +22,7 @@ Unten finden Sie eine Tabelle aller vorhandenen Aufgaben (Achtung, einige Aufgab
 In dieser Tabelle finden wir :
 
 - **\.#** : Aufgaben-ID, die nützlich ist, um einen laufenden Prozess mit dem zu verknüpfen, was er wirklich tut.
-- **Aktiv** : Zeigt an, ob die Aufgabe aktiv ist (kann von Jeedom gestartet werden) oder nicht.
+- **Anlage** : Zeigt an, ob die Aufgabe aktiv ist (kann von Jeedom gestartet werden) oder nicht.
 - **PID** : Zeigt die aktuelle Prozess-ID an.
 - **Dämon** : Wenn dieses Feld &quot;Ja&quot; lautet, muss die Aufgabe immer ausgeführt werden. Außerdem finden Sie die Häufigkeit des Dämons. Es wird empfohlen, diesen Wert niemals zu ändern und insbesondere niemals zu verringern.
 - **Einzigartig** : Wenn es &quot;Ja&quot; ist, wird die Aufgabe einmal gestartet und löscht sich dann von selbst.
@@ -34,7 +34,7 @@ In dieser Tabelle finden wir :
 - **Letzte Dauer** : Letzte Ausführungszeit der Aufgabe (ein Daemon wird immer bei 0 sein, keine Sorge, andere Aufgaben können bei 0 sein).
 - **Status** : Aktueller Status der Aufgabe (zur Erinnerung: Eine Daemon-Aufgabe wird immer "ausgeführt"").
 
-- **Aktion** :
+- **Aktie** :
     - **Details** : Sehen Sie sich den Cron im Detail an (wie in der Basis gespeichert)).
     - **Start / Stopp** : Starten oder stoppen Sie die Aufgabe (abhängig von ihrem Status).
     - **Streichung** : Aufgabe löschen.

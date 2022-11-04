@@ -11,7 +11,7 @@ On the top of the page, we find :
 - **Number of objects** : Total number of objects configured in our Jeedom, including inactive elements.
 - **Number of equipments** : Same for the equipment.
 - **Number of commands** : Same for commands.
-- **Inactive** : Check this box if you want inactive items to be displayed on this page.
+- **Idle** : Check this box if you want inactive items to be displayed on this page.
 - **To research** : Search for a particular item. It can be the name of a device, a command or the name of the plugin by which the device was created.
 - **CSV export** : Allows you to export all objects, equipment and their commands to a CSV file.
 
@@ -20,7 +20,7 @@ You also have a tab **Historical**, displaying the history of commands, equipmen
 ## Object frames
 
 Below there is one frame per object. In each frame, we find the list of equipment that have this object as parent.
-The first frame **Any** represents devices that have no assigned parent.
+The first frame **None** represents devices that have no assigned parent.
 
 For each object, next to its label, two buttons are available.
 - The first is used to open the object configuration page in a new tab.
@@ -38,11 +38,11 @@ For each object, next to its label, two buttons are available.
 
 On each equipment we find :
 
-- A **check box** to select the equipment (you can select several). If at least one device is selected, you have action buttons that appear in the upper left to **remove**, to return **visible**/**invisible**,  **active**/**Inactive** selected equipment.
+- A **check box** to select the equipment (you can select several). If at least one device is selected, you have action buttons that appear in the upper left to **to delete**, to return **visible**/**invisible**,  **asset**/**Idle** selected equipment.
 - L'**id** equipment.
-- The **type** equipment : Identifier of the plugin to which it belongs.
+- The **kind** equipment : Identifier of the plugin to which it belongs.
 - The **name** equipment.
-- **Inactive** (small cross) : Means that the equipment is inactive (if it is not there, the equipment is active).
+- **Idle** (small cross) : Means that the equipment is inactive (if it is not there, the equipment is active).
 - **Invisible** (crossed eye) : Means that the equipment is invisible (if it is not there, the equipment is visible).
 
 If the equipment plugin is disabled, the two icons on the right do not appear:
@@ -63,7 +63,7 @@ The window of **Advanced equipment configuration** allows to modify it. First, a
 - **Connections** : Allows to display the links of the equipment with the objects, commands, scenarios, variables, interactions… in graphic form (in this one, a double click on an element will take you to its configuration).
 - **Log** : displays the events of the equipment in question.
 - **To safeguard** : Save the modifications made on the equipment.
-- **Remove** : Remove equipment.
+- **To delete** : Remove equipment.
 
 ### Information tab
 
@@ -74,9 +74,9 @@ Tab **Information** contains general information about the equipment and its con
 - **Logical ID** : Logical identifier of the equipment (can be empty).
 - **Object ID** : Unique identifier of the parent object (can be empty).
 - **Creation date** : Equipment creation date.
-- **Activate** : Check the box to activate the equipment (don't forget to save).
+- **Enable** : Check the box to activate the equipment (don't forget to save).
 - **Visible** : Check the box to make the equipment visible (don't forget to save).
-- **Type** : Identifier of the plugin by which it was created.
+- **Kind** : Identifier of the plugin by which it was created.
 - **Failed attempt** : Number of failed consecutive communications attempts with the equipment.
 - **Date of last communication** : Date of the last communication of the equipment.
 - **Last update** : Date of last communication with the equipment.
@@ -96,7 +96,7 @@ In the tab **Display**, you will be able to configure certain tile display behav
 
 ### Optional parameters on the tile
 
-Below, there are optional display parameters that can be applied to the equipment. These parameters are composed of a name and a value. Just click on **Add** to apply one
+Below, there are optional display parameters that can be applied to the equipment. These parameters are composed of a name and a value. Just click on **To add** to apply one
 new. For equipment, only the value **style** is currently used, it allows to insert CSS code on the equipment in question.
 
 > **Tip**
@@ -168,9 +168,9 @@ Tab **Information** contains general information about the command :
 - **Id** : Unique identifier in the database.
 - **Logical ID** : Logical identifier of the command (can be empty).
 - **Name** : Name of the command.
-- **Type** : Type of command (action or info).
+- **Kind** : Type of command (action or info).
 - **Subtype** : Command subtype (binary, digital, etc.)).
-- **Direct url** : Provides the URL to access this equipment. (right click, copy the link address) The URL will launch the command for a **action** and return the information for a **information**.
+- **Direct url** : Provides the URL to access this equipment. (right click, copy the link address) The URL will launch the command for a **stock** and return the information for a **information**.
 - **Unity** : Control unit.
 - **Command triggering an update** : Gives the identifier of another command which, if this other command changes, will force the update of the displayed command.
 - **Visible** : Check this box to make the command visible.
@@ -202,7 +202,7 @@ Below, you will find the list of the different equipment, commands, scenarios or
 
 - **Historical**
     - **Historize** : Check the box to have the values of this command logged. (See **Analysis → History**)
-    - **Smoothing mode** : Mode of **smoothing** or d'**archiving** allows you to choose how to archive the data. By default, this is a **average**. It is also possible to choose the **maximum**, the **minimum**, Where **Any**. **Any** lets tell Jeedom that it should not perform archiving on this command (both during the first 5 mins period and with the archiving task). This option is dangerous because Jeedom keeps everything : so there will be a lot more data kept.
+    - **Smoothing mode** : Mode of **smoothing** or d'**archiving** allows you to choose how to archive the data. By default, this is a **mean**. It is also possible to choose the **maximum**, the **minimum**, Where **None**. **None** lets tell Jeedom that it should not perform archiving on this command (both during the first 5 mins period and with the archiving task). This option is dangerous because Jeedom keeps everything : so there will be a lot more data kept.
     - **Purge history if older than** : Lets tell Jeedom to delete all data older than a certain period. May be practical not to keep data if it is not necessary and therefore limit the amount of information recorded by Jeedom.
 
 - **Values management**

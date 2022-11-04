@@ -12,7 +12,7 @@ Isso é dividido em várias partes :
 
 - **Perfil**
     - **Conecte-se** : Seu login no Market, não pode ser alterado.
-    - **Nome** : Seu nome (essas informações são úteis apenas para tornar os e-mails mais agradáveis).
+    - **Sobrenome** : Seu nome (essas informações são úteis apenas para tornar os e-mails mais agradáveis).
     - **Primeiro nome** : Seu primeiro nome (essas informações são úteis apenas para tornar os e-mails mais agradáveis).
     - **Nome de usuário no fórum** : Seu nome de usuário no fórum.
     - **E-mail** : Seu email.
@@ -54,7 +54,7 @@ Para os profissionais :
 > É possível que o Market às vezes peça para você redefinir suas chaves de instalação, isso é normal, basta seguir o que é solicitado.
 
 - **Minhas jeedoms** : É aqui que todos os seus Jeedoms estão listados
-    - **Nome** : O nome que você deseja dar ao seu Jeedom (pode ser encontrado no nome do backup se você tiver a assinatura de backup na nuvem).
+    - **Sobrenome** : O nome que você deseja dar ao seu Jeedom (pode ser encontrado no nome do backup se você tiver a assinatura de backup na nuvem).
     - **Estado** : Vamos ver o estado do Jeedom em questão.
     - **IP local / remoto** : IP ou endereço deste Jeedom, configure no Jeedom, se você não colocar nada, será o último IP conhecido.
     - **DNS** : Permite que você personalize o nome do seu DNS.

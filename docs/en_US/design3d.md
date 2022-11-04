@@ -65,7 +65,7 @@ To configure an element on the 3D design, double click on the element you want t
 ### Light
 
 - Status : Light status control can be binary (0 or 1), digital (0 to 100%) or color
-- Power : bulb power (please note this may not reflect reality))
+- Powerful : bulb power (please note this may not reflect reality))
 
 ### Texte
 
@@ -85,14 +85,14 @@ To configure an element on the 3D design, double click on the element you want t
 
 - State : Door / Window status, 1 closed and 0 open
 - Rotation
-	- Activate : activates the rotation of the Door / Window when opening
+	- Enable : activates the rotation of the Door / Window when opening
 	- Opening : the best is to test so that it matches your Door / Window
 - Translation
-	- Activate : activates translation when opening (sliding door / window type))
-	- Senses : direction in which the Door / Window should move (you have up / down / right / left)
+	- Enable : activates translation when opening (sliding door / window type))
+	- Meaning : direction in which the Door / Window should move (you have up / down / right / left)
 	- Repeat : by default the Door / Window moves once its dimension in the given direction but you can increase this value
 - Hide when the Door / Window is open
-	- Activate : Hides the element if the Door / Window is open
+	- Enable : Hides the element if the Door / Window is open
 - Couleur
 	- Open color : if tick the element will take this color if the Door / Window is open
 	- Color closed : if tick the element will take this color if the Door / Window is closed
@@ -101,7 +101,7 @@ To configure an element on the 3D design, double click on the element you want t
 
 - State : shutter status, 0 open other value closed
 - Hide when the shutter is open
-	- Activate : hide the element if the shutter is open
+	- Enable : hide the element if the shutter is open
 - Couleur
 	- Color closed : if tick the element will take this color if the shutter is closed
 

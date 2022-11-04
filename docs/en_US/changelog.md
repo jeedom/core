@@ -160,7 +160,7 @@ Blog post [here](https://blog.jeedom.com/6739-jeedom-4-3/)
 - Bugfix UI : Displaying an action's folder on the Timeline.
 
 - Bugfix Core : Display of the API key of each plugin on the configuration page.
-- Bugfix Core : Add option *Time* on a chart in Design.
+- Bugfix Core : Add option *Hour* on a chart in Design.
 - Bugfix Core : Tile curve with negative value.
 - Bugfix Core : 403 error on reboot.
 
@@ -214,7 +214,7 @@ Blog post [here](https://blog.jeedom.com/6739-jeedom-4-3/)
 
 ### 4.2 : News / Improvements
 
-- **Synthesis** : Possibility of configuring objects to go to a *design* or a *view* since the synthesis.
+- **Synthesis** : Possibility of configuring objects to go to a *design* or a *seen* since the synthesis.
 - **Dashboard** : The device configuration window (edit mode) now allows you to configure mobile widgets and generic types.
 - **Widgets** : Internationalization of third-party Widgets (user code). see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.2).
 - **Analysis / History** : Possibility to compare a history over a given period.
@@ -264,7 +264,7 @@ Blog post [here](https://blog.jeedom.com/6739-jeedom-4-3/)
 - Widgets settings for the Mobile version are now accessible from the equipment configuration window in Dashboard Edit mode.
 - The optional parameters available on widgets are now displayed for each widget, either in the command configuration or from the Dashboard edit mode.
 - Many Core Widgets now accept optional color settings. (horizontal and vertical slider, gauge, compass, rain, shutter, templates slider, etc.).
-- Core Widgets with display of a *time* now support an optional parameter **time : dated** to display a relative date (Yesterday at 4:48 p.m., Last Monday at 2:00 p.m., etc).
+- Core Widgets with display of a *time* now support an optional parameter **time : date** to display a relative date (Yesterday at 4:48 p.m., Last Monday at 2:00 p.m., etc).
 - Cursor (action) type Widgets now accept an optional parameter *steps* to define the change step at the cursor.
 - The Widget **action.slider.value** is now available in desktop, with an optional parameter *noslider*, which makes it a *input* simple.
 - The Widget **info.numeric.default** (*Gauge*) has been redone in pure css, and integrated in mobile. They are therefore now identical in desktop and mobile.
@@ -345,7 +345,7 @@ The plugins must respect the recommendations on the tree structure of folders an
 - Bugfix of colored summaries on synthesis.
 - Bugfix on scenario comments with json.
 - Bugfix on summary updates on Dashboard mode previews.
-- Bugfix of elements *picture* on a design.
+- Bugfix of elements *image* on a design.
 - Added grouping options by time for charts on views.
 - Conservation of the Synthesis context when clicking on the summaries.
 - Centering of Synthesis images.
@@ -392,10 +392,10 @@ The plugins must respect the recommendations on the tree structure of folders an
 - **Analysis / History** : The options *grouping, type, variation, staircase* are active only with a single displayed curve.
 - **Analysis / History** : We can now use the option *Area* with the option *Stairs*.
 - **Analysis / Logs** : New monospace type font for logs.
-- **View** : Possibility to put scenarios.
-- **View** : Edit mode now inserting the moved tile.
-- **View** : Edit mode: the equipment refresh icons are replaced by an icon allowing access to their configuration, thanks to a new simplified modal.
-- **View** : The display order is now independent of that on the Dashboard.
+- **Seen** : Possibility to put scenarios.
+- **Seen** : Edit mode now inserting the moved tile.
+- **Seen** : Edit mode: the equipment refresh icons are replaced by an icon allowing access to their configuration, thanks to a new simplified modal.
+- **Seen** : The display order is now independent of that on the Dashboard.
 - **Timeline** : Separation of History and Timeline pages.
 - **Timeline** : Integration of the Timeline in DB for reliability reasons.
 - **Timeline** : Management of multiple timelines.
@@ -449,7 +449,7 @@ The plugins must respect the recommendations on the tree structure of folders an
 - Numerous desktop / mobile performance optimizations.
 
 ### 4.1 : Changements
-- Function **scenario-> getHumanName()** of the php scenario class no longer returns *[object] [group] [name]* corn *[group] [object] [name]*.
+- Function **scenario-> getHumanName()** of the php scenario class no longer returns *[object] [group] [name]* but *[group] [object] [name]*.
 - Function **scenario-> byString()** must now be called with the structure *[group] [object] [name]*.
 - Functions **network-> getInterfaceIp () network-> getInterfaceMac () network-> getInterfaces()** have been replaced by **network-> getInterfacesInfo()**
 
@@ -588,7 +588,7 @@ The plugins must respect the recommendations on the tree structure of folders an
 - Configuration : Change of #message# at #subject# in Configuration / Logs / Messages to avoid duplicating the message.
 - Configuration : Possibility in the summaries to add an exclusion of orders that have not been updated for more than XX minutes (example for the calculation of temperature averages if a sensor has not reported anything for more than 30min it will be excluded from the calculation)<br/><br/>
 - Scenario : The colorization of blocks is no longer random, but by block type.
-- Scenario : Possibility by doing a Ctrl + click on the button *execution* save it, launch it, and display the log (if the log level is not on *Any*).
+- Scenario : Possibility by doing a Ctrl + click on the button *execution* save it, launch it, and display the log (if the log level is not on *None*).
 - Scenario : Confirmation of block deletion. Ctrl + click to avoid confirmation.
 - Scenario : Addition of a search function in Code blocks. To research : Ctrl + F then Enter, Next result : Ctrl + G, Previous result : Ctrl+Shift+G
 - Scenario : Possibility of condensing the blocks.

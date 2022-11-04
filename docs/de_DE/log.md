@@ -15,7 +15,7 @@ Oben rechts 5 Tasten :
 - **Pause / Resume** : Unterbrechen / Fortsetzen der Echtzeitaktualisierung des aktuellen Protokolls.
 - **Download** : Laden Sie das aktuelle Protokoll herunter.
 - **Leer** : Löschen Sie das aktuelle Protokoll.
-- **Entfernen** : Löschen Sie das aktuelle Protokoll. Wenn Jeedom es braucht, wird es automatisch neu erstellt.
+- **Löschen** : Löschen Sie das aktuelle Protokoll. Wenn Jeedom es braucht, wird es automatisch neu erstellt.
 - **Löschen Sie alle Protokolle** : Löschen Sie alle vorhandenen Protokolle.
 
 > **Tipp**
