@@ -1,7 +1,7 @@
 # Objets
 **Werkzeuge → Objekte**
 
-Die **Objekte** Mit dieser Option können Sie die Baumstruktur Ihrer Hausautomation definieren.
+Das **Objekte** Mit dieser Option können Sie die Baumstruktur Ihrer Hausautomation definieren.
 
 Alle von Ihnen erstellten Geräte müssen zu einem Objekt gehören und sind daher leichter zu identifizieren. Wir sagen dann, dass das Objekt das ist **relativ** Ausrüstung.
 
@@ -12,7 +12,7 @@ Um der Personalisierung freie Wahl zu lassen, können Sie diese Objekte nach Ihr
 ## Gestion
 
 Sie haben zwei Möglichkeiten :
-- **Addieren** : Erstellen Sie ein neues Objekt.
+- **Hinzufügen** : Erstellen Sie ein neues Objekt.
 - **Übersicht** : Zeigt die Liste der erstellten Objekte und deren Konfiguration an.
 
 ## Übersicht
@@ -81,7 +81,7 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 
 > **Tipp**
 >
-> Wenn ein Gerät erstellt wird und kein übergeordnetes Gerät definiert wurde, wird es als übergeordnetes Element verwendet : **Irgendein**.
+> Wenn ein Gerät erstellt wird und kein übergeordnetes Gerät definiert wurde, wird es als übergeordnetes Element verwendet : **Keiner**.
 
 ## Zusammenfassungs-Tabs
 

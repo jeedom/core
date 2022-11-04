@@ -39,7 +39,7 @@ Wenn Sie ein Diagramm über die Verlaufsseite anzeigen, haben Sie über dem Diag
 
 - **Zeit** : Der Anzeigezeitraum einschließlich historischer Daten zwischen diesen beiden Daten. Standardmäßig abhängig von der Einstellung *Standard Anzeigezeitraum der Grafiken* in *Einstellungen → System → Konfiguration / Ausstattung*.
 - **Gruppe** : Bietet verschiedene Gruppierungsoptionen (Summe pro Stunde usw.).).
-- **Anzeigetyp** : Anzeige in *Linie*, *Bereich*, Woher *Stange*. Option in der Bestellung gespeichert und über das Dashboard verwendet.
+- **Anzeigetyp** : Anzeige in *Linie*, *Bereich*, Wo *Abgesperrt*. Option in der Bestellung gespeichert und über das Dashboard verwendet.
 - **Variation** : Zeigt die Wertdifferenz zum vorherigen Punkt an. Option in der Bestellung gespeichert und über das Dashboard verwendet.
 - **Treppe** : Zeigt die Kurve als Treppe oder kontinuierliche Anzeige an. Option in der Bestellung gespeichert und über das Dashboard verwendet.
 - **Vergleichen** : Vergleichen Sie die Kurve zwischen verschiedenen Perioden.
@@ -69,7 +69,7 @@ Sie können die Diagramme auch in den Ansichten anzeigen (wir sehen hier die Kon
 
 Sobald eine Daten aktiviert sind, können Sie auswählen :
 - **Farbe** : Die Farbe der Kurve.
-- **Art** : Der Diagrammtyp (Bereich, Linie oder Spalte)).
+- **Nett** : Der Diagrammtyp (Bereich, Linie oder Spalte)).
 - **Leiter** : Da Sie mehrere Kurven (Daten) in ein Diagramm einfügen können, können Sie die Skalen (rechts oder links) unterscheiden).
 - **Treppe** : Zeigt die Kurve als Treppe oder kontinuierliche Anzeige an.
 - **Stapel** : Stapeln Sie die Werte der Kurven (siehe unten für das Ergebnis).

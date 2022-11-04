@@ -39,9 +39,9 @@ Se você exibir um gráfico na página de histórico, terá acesso a várias op�
 
 - **Período** : O período de exibição, incluindo dados históricos entre essas duas datas. Por padrão, dependendo da configuração *Gráficos padrão de exibição Período* dentro *Configurações → Sistema → Configuração / Equipamento*.
 - **Grupo** : Oferece várias opções de agrupamento (soma por hora etc.).).
-- **Tipo de exibição** : Exibir em *Linha*, *Área*, Onde *Haste*. Opção salva no pedido e usada no Painel.
+- **Tipo de exibição** : Exibir em *Linha*, *Área*, Onde *Fechado*. Opção salva no pedido e usada no Painel.
 - **Variação** : Exibe a diferença de valor do ponto anterior. Opção salva no pedido e usada no Painel.
-- **Escadaria** : Exibe a curva como uma escada ou uma exibição contínua. Opção salva no pedido e usada no Painel.
+- **Escadas** : Exibe a curva como uma escada ou uma exibição contínua. Opção salva no pedido e usada no Painel.
 - **Comparar** : Compare a curva entre diferentes períodos.
 
 > **Dica**
@@ -69,9 +69,9 @@ Você também pode exibir os gráficos nas visualizações (veremos aqui as opç
 
 Depois que os dados são ativados, você pode escolher :
 - **Cor** : A cor da curva.
-- **Tipo** : O tipo de gráfico (área, linha ou coluna).
+- **Gentil** : O tipo de gráfico (área, linha ou coluna).
 - **Escada** : Como você pode colocar várias curvas (dados) no mesmo gráfico, é possível distinguir as escalas (direita ou esquerda)).
-- **Escadaria** : Exibe a curva como uma escada ou uma exibição contínua.
+- **Escadas** : Exibe a curva como uma escada ou uma exibição contínua.
 - **Pilha** : Empilhe os valores das curvas (veja abaixo o resultado).
 - **Variação** : Exibe a diferença de valor do ponto anterior.
 

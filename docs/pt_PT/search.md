@@ -3,7 +3,7 @@
 
 Jeedom oferece um mecanismo de busca interno.
 
-![Pesquisa](./images/search_intro.gif)
+![Pesquisar](./images/search_intro.gif)
 
 Você pode fazer pesquisas de diferentes tipos :
 
@@ -59,14 +59,14 @@ O mecanismo será exibido nas tabelas abaixo :
 
 ## Por palavra
 
-Digite uma sequência de caracteres no campo de pesquisa. Valide com *entrar* ou com o botão *Pesquisar*.
+Digite uma sequência de caracteres no campo de pesquisa. Valide com *digitar* ou com o botão *Pesquisar*.
 
 O mecanismo será exibido nas tabelas abaixo :
 
 - O **Cenas** usando esta string.
 	Pesquise expressões, comentários, blocos de código.
 - O **interações** usando esta string.
-	Pesquisar nos campos *Demanda*.
+	Pesquisar nos campos *Solicitar*.
 - O **equipamento** usando esta string.
 	Pesquisar nos campos *nome*, *logicId*, *eqType*, *Como? 'Ou' O que*, *Tag*.
 - O **ordens** usando esta string.
@@ -76,13 +76,13 @@ O mecanismo será exibido nas tabelas abaixo :
 
 ## Por ID
 
-Insira um número correspondente a um Id pesquisado no campo de pesquisa. Valide com *entrar* ou com o botão *Pesquisar*.
+Insira um número correspondente a um Id pesquisado no campo de pesquisa. Valide com *digitar* ou com o botão *Pesquisar*.
 
 O mecanismo será exibido nas tabelas abaixo :
 
 - A **Cenas** tendo este id.
 - A **Projeto** tendo este id.
-- O **visualizar** tendo este id.
+- O **visto** tendo este id.
 - L'**interação** tendo este id.
 - L'**equipamento** tendo este id.
 - O **ordenado** tendo este id.

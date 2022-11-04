@@ -26,11 +26,11 @@ Para cada objeto, junto a su etiqueta, hay dos botones disponibles.
 - El primero se usa para abrir la página de configuración de objetos en una pestaña nueva.
 - El segundo proporciona información sobre el objeto,
 
-> **Propina**
+> **Consejo**
 >
 > El color de fondo de los marcos del objeto depende del color elegido en la configuración del objeto.
 
-> **Propina**
+> **Consejo**
 >
 > Con un clic y soltar sobre los objetos o equipos, puede cambiar su orden o incluso asignarlos a otro objeto. Es a partir del orden establecido en esta página que se calcula la visualización del Tablero.
 
@@ -38,10 +38,10 @@ Para cada objeto, junto a su etiqueta, hay dos botones disponibles.
 
 En cada equipo encontramos :
 
-- A **casilla de verificación** para seleccionar el equipo (puede seleccionar varios). Si se selecciona al menos un dispositivo, tiene botones de acción que aparecen en la esquina superior izquierda para **retirar**, regresar **visible**/ /**invisible**,  **activo**/ /**Inactivo** equipo seleccionado.
+- A **casilla de verificación** para seleccionar el equipo (puede seleccionar varios). Si se selecciona al menos un dispositivo, tiene botones de acción que aparecen en la esquina superior izquierda para **borrar**, regresar **visible**/ /**invisible**,  **activo**/ /**inactivo** equipo seleccionado.
 - L'**identificación** equipo.
-- Los **escribe** equipo : Identificador del complemento al que pertenece.
-- Los **apellido** equipo.
+- La **tipo** equipo : Identificador del complemento al que pertenece.
+- La **apellido** equipo.
 - **Inactivo** (pequeña cruz) : Significa que el equipo está inactivo (si no está allí, el equipo está activo).
 - **Invisible** (ojo cruzado) : Significa que el equipo es invisible (si no está allí, el equipo es visible).
 
@@ -53,7 +53,7 @@ Si el complemento del equipo está desactivado, los dos íconos a la derecha no 
 
 ## Configuración avanzada de equipos
 
-> **Propina**
+> **Consejo**
 >
 > Es posible acceder (si el complemento lo admite) directamente a esta ventana desde la página de configuración del equipo haciendo clic en el botón de configuración avanzada
 
@@ -63,20 +63,20 @@ La ventana de **Configuración avanzada de equipos** permite modificarlo. Primer
 - **Vínculos** : Permite mostrar los enlaces del equipo con los objetos, comandos, escenarios, variables, interacciones ... en forma gráfica (en este caso, un doble clic en un elemento lo llevará a su configuración).
 - **Tronco** : muestra los eventos del equipo en cuestión.
 - **Para salvaguardar** : Guarde las modificaciones realizadas en el equipo.
-- **Retirar** : Retirar equipo.
+- **Borrar** : Retirar equipo.
 
 ### Pestaña de información
 
 Pestaña **Información** contiene información general sobre el equipo y sus controles :
 
-- **Identificación** : Identificador único en la base de datos Jeedom.
+- **IDENTIFICACIÓN** : Identificador único en la base de datos Jeedom.
 - **Apellido** : Nombre del equipo.
 - **ID lógica** : Identificador lógico del equipo (puede estar vacío).
 - **ID de objeto** : Identificador único del objeto padre (puede estar vacío).
 - **Fecha de creación** : Fecha de creación del equipo.
-- **Activar** : Marque la casilla para activar el equipo (no olvide guardar).
+- **Habilitar** : Marque la casilla para activar el equipo (no olvide guardar).
 - **Visible** : Marque la casilla para hacer visible el equipo (no olvide guardar).
-- **Escribe** : Identificador del complemento por el cual fue creado.
+- **Tipo** : Identificador del complemento por el cual fue creado.
 - **Intento fallido** : Número de intentos fallidos de comunicaciones consecutivas con el equipo.
 - **Fecha de la última comunicación** : Fecha de la última comunicación del equipo.
 - **última actualización** : Fecha de la última comunicación con el equipo.
@@ -86,7 +86,7 @@ A continuación encontrará una tabla con la lista de comandos de equipos con, p
 
 ### Ver pestaña
 
-En la pestaña **Mostrar**, podrá configurar ciertos comportamientos de visualización de mosaico en el Tablero o en el dispositivo móvil.
+En la pestaña **Monitor**, podrá configurar ciertos comportamientos de visualización de mosaico en el Tablero o en el dispositivo móvil.
 
 #### Widget
 
@@ -96,10 +96,10 @@ En la pestaña **Mostrar**, podrá configurar ciertos comportamientos de visuali
 
 ### Parámetros opcionales en el mosaico
 
-A continuación, hay parámetros de visualización opcionales que se pueden aplicar al equipo. Estos parámetros están compuestos de un nombre y un valor. Solo haz clic en **Agregar** aplicar uno
+A continuación, hay parámetros de visualización opcionales que se pueden aplicar al equipo. Estos parámetros están compuestos de un nombre y un valor. Solo haz clic en **Para agregar** aplicar uno
 de nuevo. Para equipos, solo el valor **estilo** actualmente se usa, permite insertar código CSS en el equipo en cuestión.
 
-> **Propina**
+> **Consejo**
 >
 > No olvide guardar después de cualquier modificación.
 
@@ -114,11 +114,11 @@ Esta parte le permite elegir entre el diseño estándar de los comandos (uno al 
 - **Estilo de tabla (CSS)** : Le permite definir solo el estilo de la tabla.
 
 A continuación para cada cuadro, el **configuración detallada** te permite
-esta :
+este :
 - **Cuadro de texto** : Agregue texto además del comando (o todo solo, si no hay un comando en el cuadro).
 - **Estilo de caso (CSS)** : Modifique el estilo CSS específico del cuadro (tenga en cuenta que sobrescribe y reemplaza el CSS general de los cuadros).
 
-> **Propina**
+> **Consejo**
 >
 > En un cuadro de la tabla, si desea colocar 2 comandos uno debajo del otro, no olvide agregar un salto de línea después del primero en el **Configuración avanzada** del mismo.
 
@@ -134,9 +134,9 @@ A continuación, también puede definir los umbrales de alerta de batería espec
 
 También puede administrar el tiempo de espera, en minutos, del equipo. Por ejemplo, 30 le dice a Jeedom que si el equipo no se ha comunicado durante 30 minutos, entonces debe ponerse en alerta.
 
-> **Propina**
+> **Consejo**
 >
-> Los parámetros globales están en **→ Configuración → Configuración del Sistema : Registros** Donde **Equipo**
+> Los parámetros globales están en **→ Configuración → Configuración del Sistema : Registros** Dónde **Equipo**
 
 ### Pestaña de comentarios
 
@@ -153,7 +153,7 @@ Primero, en la parte superior derecha, algunos botones disponibles :
 -  **Aplicar a** : Permite que la misma configuración se aplique a varios comandos.
 - **Para salvaguardar** : Guarde las modificaciones realizadas en el equipo.
 
-> **Propina**
+> **Consejo**
 >
 > En un gráfico, un doble clic en un elemento lo lleva a su configuración.
 
@@ -165,12 +165,12 @@ Primero, en la parte superior derecha, algunos botones disponibles :
 
 Pestaña **Información** contiene información general sobre el pedido :
 
-- **Identificación** : Identificador único en la base de datos.
+- **IDENTIFICACIÓN** : Identificador único en la base de datos.
 - **ID lógica** : Identificador lógico del comando (puede estar vacío).
 - **Apellido** : Nombre de la orden.
-- **Escribe** : Tipo de comando (acción o información).
+- **Tipo** : Tipo de comando (acción o información).
 - **Subtipo** : Subtipo de comando (binario, digital, etc.)).
-- **URL directa** : Proporciona la URL para acceder a este equipo. (clic derecho, copie la dirección del enlace) La URL iniciará el comando para un **acción** y devolver la información para un **información**.
+- **URL directa** : Proporciona la URL para acceder a este equipo. (clic derecho, copie la dirección del enlace) La URL iniciará el comando para un **Valores** y devolver la información para un **información**.
 - **Unidad** : Unidad de control.
 - **Comando que desencadena una actualización** : Da el identificador de otro comando que, si este otro comando cambia, forzará la actualización del comando mostrado.
 - **Visible** : Marque esta casilla para hacer visible el comando.
@@ -202,7 +202,7 @@ A continuación, encontrará la lista de los diferentes equipos, comandos, escen
 
 - **Histórico**
     - **Historizar** : Marque la casilla para registrar los valores de este comando. (Ver **Análisis → Historia**)
-    - **Modo de suavizado** : Modo de **alisado** o d'**archivando** le permite elegir cómo archivar los datos. Por defecto, este es un **promedio**. También es posible elegir el **máximo**, los **mínimo**, Donde **Ninguna**. **Ninguna** digamos a Jeedom que no debe realizar el archivado con este comando (tanto durante los primeros 5 minutos como con la tarea de archivado)). Esta opción es peligrosa porque Jeedom guarda todo : entonces habrá muchos más datos guardados.
+    - **Modo de suavizado** : Modo de **alisado** o d'**archivando** le permite elegir cómo archivar los datos. Por defecto, este es un **significar**. También es posible elegir el **máximo**, la **mínimo**, Dónde **ninguna**. **ninguna** digamos a Jeedom que no debe realizar el archivado con este comando (tanto durante los primeros 5 minutos como con la tarea de archivado)). Esta opción es peligrosa porque Jeedom guarda todo : entonces habrá muchos más datos guardados.
     - **Purgue el historial si es anterior a** : Vamos a decirle a Jeedom que elimine todos los datos anteriores a un período determinado. Puede ser práctico no guardar datos si no es necesario y, por lo tanto, limitar la cantidad de información registrada por Jeedom.
 
 - **Gestión de valores**
@@ -212,7 +212,7 @@ A continuación, encontrará la lista de los diferentes equipos, comandos, escen
 
 - **Otros**
     - **Gestión de la repetición de valores** : En automático, si el comando sube 2 veces el mismo valor en una fila, Jeedom no tendrá en cuenta el segundo ascenso (evita activar un escenario varias veces, a menos que el comando sea de tipo binario)). Puede forzar la repetición del valor o prohibirlo por completo.
-    - **URL de inserción** : Permite agregar una URL para llamar en caso de actualización del pedido. Puedes usar las siguientes etiquetas : ''#value#`por el valor de la orden,`#cmd_name#`para el nombre del comando,`#cmd_id#`para el identificador único de la orden,`#humanname#`para el nombre completo del comando (ex : ''#[Sallos de bain][Hydrometrie][Humidité]#`),`#eq_name#`para el nombre del equipo.
+    - **URL de inserción** : Permite agregar una URL para llamar en caso de actualización del pedido. Puedes usar las siguientes etiquetas : ''#value#`por el valor de la orden,`#cmd_name#`para el nombre del comando,`#cmd_id#`para el identificador único de la orden,`#humanname#`para el nombre completo del comando (ex : ''#[Salla de bain][Hydrometrie][Humidité]#`),`#eq_name#`para el nombre del equipo.
 
 #### Para un comando de acción :
 
@@ -224,7 +224,7 @@ A continuación, encontrará la lista de los diferentes equipos, comandos, escen
 
 ### Pestaña Alertas
 
-Le permite definir un nivel de alerta (**advertencia** Donde **peligro**) dependiendo de ciertas condiciones. Por ejemplo, si `valor&gt; 8` durante 30 minutos, entonces el equipo puede estar en alerta **advertencia**.
+Le permite definir un nivel de alerta (**advertencia** Dónde **peligro**) dependiendo de ciertas condiciones. Por ejemplo, si `valor&gt; 8` durante 30 minutos, entonces el equipo puede estar en alerta **advertencia**.
 
 > **Nota**
 >
@@ -238,10 +238,10 @@ En esta parte, podrá configurar ciertos comportamientos de visualización de wi
 - **Visible** : Marque para hacer visible el comando.
 - **Mostrar nombre** : Marque para hacer visible el nombre del comando, dependiendo del contexto.
 - **Mostrar nombre e icono** : Marque para que el icono sea visible además del nombre del comando.
-- **Línea envuelta antes del widget** : Garrapata **antes del widget** Donde **después del widget** para agregar un salto de línea antes o después del widget (para forzar, por ejemplo, una visualización de columna de los diferentes comandos del equipo en lugar de las líneas predeterminadas)
+- **Línea envuelta antes del widget** : Marcar **antes del widget** Dónde **después del widget** para agregar un salto de línea antes o después del widget (para forzar, por ejemplo, una visualización de columna de los diferentes comandos del equipo en lugar de las líneas predeterminadas)
 
 A continuación, hay parámetros de visualización opcionales que se pueden pasar al widget. Estos parámetros dependen del widget en cuestión, por lo que debe consultar su archivo en Market para conocerlos.
 
-> **Propina**
+> **Consejo**
 >
 > No olvide guardar después de cualquier modificación.

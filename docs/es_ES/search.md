@@ -3,7 +3,7 @@
 
 Jeedom ofrece un buscador interno.
 
-![Investigación](./images/search_intro.gif)
+![Investigar](./images/search_intro.gif)
 
 Puedes hacer búsquedas de diferentes tipos :
 
@@ -66,7 +66,7 @@ El motor se mostrará en las tablas a continuación :
 - Los **Escenarios** usando esta cuerda.
 	Buscar en expresiones, comentarios, bloques de código.
 - Los **interacciones** usando esta cuerda.
-	Buscar en campos *Demanda*.
+	Buscar en campos *Solicitud*.
 - Los **equipo** usando esta cuerda.
 	Buscar en campos *nombre*, *ID lógico*, *eqType*, *¿Cómo? 'O' ¿Qué?*, *etiquetas*.
 - Los **pedidos** usando esta cuerda.
@@ -80,9 +80,9 @@ Ingrese un número correspondiente a una identificación buscada en el campo de 
 
 El motor se mostrará en las tablas a continuación :
 
-- Los **Escenario** tener esta identificación.
-- Los **diseño** tener esta identificación.
-- Los **vista** tener esta identificación.
+- La **Escenario** tener esta identificación.
+- La **diseño** tener esta identificación.
+- Los **visto** tener esta identificación.
 - L'**Interacción** tener esta identificación.
 - L'**equipo** tener esta identificación.
 - Los **ordenado** tener esta identificación.

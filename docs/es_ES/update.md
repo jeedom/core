@@ -2,7 +2,7 @@
 **Configuración → Sistema → Centro de actualizaciones**
 
 
-Los **Centro de actualizaciones** le permite actualizar toda la funcionalidad de Jeedom, incluido el software principal y sus complementos.
+La **Centro de actualizaciones** le permite actualizar toda la funcionalidad de Jeedom, incluido el software principal y sus complementos.
 Hay otras funciones de administración de extensiones disponibles (eliminar, reinstalar, verificar, etc.).
 
 
@@ -34,7 +34,7 @@ Una vez que haces clic en él, obtienes estas diferentes opciones :
 >
 > Antes de una actualización, por defecto, Jeedom hará una copia de seguridad. En el caso de un problema al aplicar una actualización, Jeedom restaurará automáticamente la copia de seguridad realizada justo antes. Este principio solo es válido para las actualizaciones de Jeedom y no para actualizar complementos.
 
-> **Propina**
+> **Consejo**
 >
 > Puede forzar una actualización de Jeedom, incluso si no ofrece una.
 
@@ -42,7 +42,7 @@ Una vez que haces clic en él, obtienes estas diferentes opciones :
 
 La tabla contiene las versiones de Core y los complementos instalados.
 
-Los complementos tienen una insignia al lado de su nombre, especificando su versión, de color verde *estable*, o naranja en *beta* u otro.
+Los complementos tienen una insignia al lado de su nombre, especificando su versión, de color verde *firme*, o naranja en *beta* u otro.
 
 - **Estado** : OK o NOK.
 - **Apellido** : Nombre y origen del complemento
@@ -52,7 +52,7 @@ Los complementos tienen una insignia al lado de su nombre, especificando su vers
 En cada línea, puede usar las siguientes funciones:
 
 - **Restablecer** : Reasentamiento forzado.
-- **Eliminar** : Le permite desinstalarlo.
+- **Borrar** : Le permite desinstalarlo.
 - **Comprobar** : Consulte la fuente de actualizaciones para averiguar si hay una nueva actualización disponible.
 - **Poner al día** : Le permite actualizar el elemento (si tiene una actualización).
 - **Registro de cambios** : Permite el acceso a la lista de cambios en la actualización.
@@ -62,13 +62,13 @@ En cada línea, puede usar las siguientes funciones:
 > Si el registro de cambios está vacío pero aún tiene una actualización, significa que la documentación se ha actualizado. Por lo tanto, no es necesario solicitar cambios al desarrollador, ya que no necesariamente hay. (a menudo es una actualización de la traducción, documentación).
 > El desarrollador del complemento también puede en algunos casos hacer correcciones de errores simples, que no necesariamente requieren actualizar el registro de cambios.
 
-> **Propina**
+> **Consejo**
 >
 > Cuando inicia una actualización, aparece una barra de progreso sobre la tabla. Evite otras manipulaciones durante la actualización.
 
 ## Pestaña OS/Paquete
 
-> **Importante**
+> **IMPORTANTE**
 >
 > Esta pestaña está reservada para usuarios avanzados y solo para usuarios avanzados, la más mínima mala acción aquí puede ROMPER su Jeedom (sin la posibilidad de recurrir al soporte)
 
@@ -92,7 +92,7 @@ Una vez conectado, este es el comando para realizar :
 Los posibles parámetros son :
 
 - **Moda** : `force`, para iniciar una actualización en modo forzado (ignora los errores).
-- **Versión** : Seguimiento del número de versión, para volver a aplicar los cambios de esta versión.
+- **versión** : Seguimiento del número de versión, para volver a aplicar los cambios de esta versión.
 
 Aquí hay un ejemplo de sintaxis para realizar una actualización forzada al volver a aplicar los cambios desde 4.0.04 :
 

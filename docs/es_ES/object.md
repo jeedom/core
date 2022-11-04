@@ -1,9 +1,9 @@
 # Objets
 **Herramientas → Objetos**
 
-Los **Objetos** le permite definir la estructura de árbol de su domótica.
+Los **objetos** le permite definir la estructura de árbol de su domótica.
 
-Todo el equipo que cree debe pertenecer a un objeto y, por lo tanto, es más fácil de identificar. Luego decimos que el objeto es el **relativo** equipo.
+Todo el equipo que cree debe pertenecer a un objeto y, por lo tanto, es más fácil de identificar. Luego decimos que el objeto es el **pariente** equipo.
 
 Para dar libre elección a la personalización, puede nombrar estos objetos como desee. Por lo general, definiremos las diferentes partes de su casa, como el nombre de las habitaciones (esta también es la configuración recomendada).
 
@@ -12,7 +12,7 @@ Para dar libre elección a la personalización, puede nombrar estos objetos como
 ## Gestion
 
 Tienes dos opciones :
-- **Agregar** : Crea un nuevo objeto.
+- **Para agregar** : Crea un nuevo objeto.
 - **Resumen** : Muestra la lista de objetos creados y su configuración.
 
 ## Resumen
@@ -23,7 +23,7 @@ La descripción general le permite ver todos los objetos en Jeedom, así como su
 - **Objeto** : Nombre del objeto.
 - **Padre** : Nombre del objeto padre.
 - **Visible** : Visibilidad del objeto.
-- **Máscara** : Indica si el objeto está oculto en el Tablero.
+- **Mascarilla** : Indica si el objeto está oculto en el Tablero.
 - **Resumen definido** : Indica el número de pedidos por resumen. Lo que está en azul se tiene en cuenta en el resumen global.
 - **Resumen de panel oculto** : Indica resúmenes ocultos en el Tablero.
 - **Resumen móvil oculto** : Mostrar resúmenes ocultos en dispositivos móviles.
@@ -32,7 +32,7 @@ La descripción general le permite ver todos los objetos en Jeedom, así como su
 
 Una vez que haya creado un objeto, aparecerá en esta parte.
 
-> **Propina**
+> **Consejo**
 >
 > Puede abrir un objeto haciendo :
 > - Haga clic en uno de ellos.
@@ -62,7 +62,7 @@ Aquí están las diferentes características para configurar un objeto :
 - **Ocultar en resumen** : Marque esta casilla para ocultar el objeto en el resumen'. Todavía se mantiene en la lista, lo que permite que se muestre, pero solo explícitamente.
 - **Acción de síntesis** : Aquí puede indicar una vista o un diseño al que ir cuando haga clic en el objeto del Resumen. *Defecto : Tablero*.
 
-#### Mostrar :
+#### Monitor :
 
 - **Icono** : Le permite elegir un icono para su objeto.
 - **Colores personalizados** : Activa el tener en cuenta los dos parámetros de color personalizados a continuación.
@@ -71,15 +71,15 @@ Aquí están las diferentes características para configurar un objeto :
 - **Solo en síntesis** : Le permite poner una imagen para la síntesis sin que se utilice como imagen de fondo, especialmente en la página *Tablero* de este objeto.
 - **Imagen** : Tienes la opción de cargar una imagen o eliminarla. En formato jpeg, esta imagen será la imagen de fondo del objeto cuando lo muestre en el Tablero. También se usará para la miniatura de la pieza en la Síntesis.
 
-> **Propina**
+> **Consejo**
 >
 > Puede cambiar el orden de visualización de los objetos en el Tablero. En la descripción general (o en el Resumen de automatización del hogar), seleccione su objeto con el mouse arrastrando y soltando para darle un nuevo lugar.
 
-> **Propina**
+> **Consejo**
 >
 > Puede ver un gráfico que representa todos los elementos de Jeedom unidos a este objeto haciendo clic en el botón **Vínculos**, arriba a la derecha.
 
-> **Propina**
+> **Consejo**
 >
 > Cuando se crea un dispositivo y no se ha definido ningún padre, tendrá como padre : **Ninguna**.
 

@@ -12,7 +12,7 @@ On the page you have three buttons :
 ## Users list
 
 - **Username** : User ID.
-- **Active** : Allows you to deactivate the account without deleting it.
+- **Asset** : Allows you to deactivate the account without deleting it.
 - **Local** : Allows the connection of the user only if he is on the local network of Jeedom.
 - **Profile** : Allows you to choose the user profile :
     - **Administrator** : The user obtains all rights (editing / consultation) on Jeedom.
@@ -23,7 +23,7 @@ On the page you have three buttons :
 - **Date of last connection** : Date of last user login. Please note, this is the actual connection date, so if you save your computer, the connection date is not updated each time you return.
 - **Rights** : Modify user rights.
 - **Password** : Allows you to change the user&#39;s password.
-- **Remove** : Remove user.
+- **To delete** : Remove user.
 - **Regenerate API key** : Regenerate user API key.
 - **Manage rights** : Allows you to manage user rights finely (note that the profile must be in "limited user"").
 
@@ -36,7 +36,7 @@ When clicking on &quot;Rights&quot; a window appears allowing you to manage user
 > The profile must be limited otherwise no restrictions put here will be taken into account.
 
 You get a table which allows, for each device and each scenario, to define the rights of the user :
-- **Any** : the user does not see the equipment / scenario.
+- **None** : the user does not see the equipment / scenario.
 - **Visualization** : the user sees the equipment / scenario but cannot act on it.
 - **Visualization and execution** : the user sees the equipment / scenario and can act on it (lighting a lamp, launching the scenario, etc).
 

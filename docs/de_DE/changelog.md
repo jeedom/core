@@ -70,8 +70,8 @@
 - **Werkzeuge / Ersetzen** : Neues Tool zum Ersetzen von Ausrüstung und Befehlen.
 - **Analyse / Zeitleiste** : Ein Suchfeld hinzugefügt, um die Anzeige zu filtern.
 - **Benutzer** : Eine Schaltfläche hinzugefügt, um die Rechte eines eingeschränkten Benutzers auf einen anderen zu kopieren.
-- **Prüfbericht** : Möglichkeit, über die Gesundheit von Jeedom zu berichten.
-- **Prüfbericht** : Möglichkeit, über alarmierte Geräte zu berichten.
+- **Bericht** : Möglichkeit, über die Gesundheit von Jeedom zu berichten.
+- **Bericht** : Möglichkeit, über alarmierte Geräte zu berichten.
 - **Aktualisieren** : Möglichkeit, von Jeedom die OS / PIP2 / PIP3 / NodeJS-Pakete zu sehen, die aktualisiert werden können, und das Update zu starten (Vorsicht, riskante Funktion und in Beta).
 - **Alarmbefehl** : Option hinzugefügt, um eine Nachricht im Falle des Endes des Alarms zu erhalten.
 - **Plugins** : Möglichkeit, die Installation von Abhängigkeiten per Plugin zu deaktivieren.
@@ -98,7 +98,7 @@ Sie müssen jetzt verwenden:
 
 sehen [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.3).
 
-Blogeintrag [Hier](https://blog.jeedom.com/6739-jeedom-4-3/)
+Blogeintrag [hier](https://blog.jeedom.com/6739-jeedom-4-3/)
 
 # Änderungsprotokoll Jeedom V4.2
 
@@ -160,7 +160,7 @@ Blogeintrag [Hier](https://blog.jeedom.com/6739-jeedom-4-3/)
 - Bugfix-Benutzeroberfläche : Anzeigen des Ordners einer Aktion auf der Timeline.
 
 - Bugfix-Kern : Anzeige des API-Schlüssels jedes Plugins auf der Konfigurationsseite.
-- Bugfix-Kern : Option hinzufügen *Zeit* auf einem Diagramm in Design.
+- Bugfix-Kern : Option hinzufügen *Stunde* auf einem Diagramm in Design.
 - Bugfix-Kern : Kachelkurve mit negativem Wert.
 - Bugfix-Kern : 403 Fehler beim Neustart.
 
@@ -214,7 +214,7 @@ Blogeintrag [Hier](https://blog.jeedom.com/6739-jeedom-4-3/)
 
 ### 4.2 : Neuigkeiten / Verbesserungen
 
-- **Synthese** : Möglichkeit zum Konfigurieren von Objekten für a *Design* oder ein *Ansicht* seit der Synthese.
+- **Synthese** : Möglichkeit zum Konfigurieren von Objekten für a *Entwurf* oder ein *gesehen* seit der Synthese.
 - **Armaturenbrett** : Im Gerätekonfigurationsfenster (Bearbeitungsmodus) können Sie jetzt mobile Widgets und generische Typen konfigurieren.
 - **Widgets** : Internationalisierung von Widgets von Drittanbietern (Benutzercode). sehen [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.2).
 - **Analyse / Geschichte** : Möglichkeit, eine Historie über einen bestimmten Zeitraum zu vergleichen.
@@ -228,7 +228,7 @@ Blogeintrag [Hier](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **Zusammenfassungen** : Es ist möglich, die Zahl rechts neben dem Symbol niemals oder nur dann anzuzeigen, wenn sie positiv ist.
 - **Zusammenfassungen** : Die Änderung des Zusammenfassungsparameters in der Konfiguration und für Objekte ist jetzt sichtbar, ohne auf eine Änderung des Zusammenfassungswerts zu warten.
 - **Zusammenfassungen** : Konfiguration ist jetzt möglich [Aktionen zu Zusammenfassungen](/de_DE/concept/summary#Actions an résumés) (Strg + Klick auf eine Zusammenfassung) dank der virtuellen.
-- **Prüfbericht** : Vorschau von PDF-Dateien.
+- **Bericht** : Vorschau von PDF-Dateien.
 - **Gerätearten** : [Neue Seite](/de_DE/core/4.2/types) **Werkzeuge → Gerätetypen** Ermöglicht die Zuweisung von generischen Typen zu Geräten und Befehlen mit Unterstützung für Typen, die für installierte Plugins bestimmt sind (siehe [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.2)).
 - **Auswahl der Abbildungen** : Neues globales Fenster für die Auswahl der Abbildungen *(Symbole, Bilder, Hintergründe)*.
 - **Tabellenanzeige** : Hinzufügen einer Schaltfläche rechts von der Suche auf den Seiten *Objekte* *Szenarien* *Interaktionen* *Widgets* und *Plugins* in den Tabellenmodus wechseln. Dies wird durch ein Cookie oder in gespeichert **Einstellungen → System → Konfiguration / Schnittstelle, Optionen**. Die Plugins können diese neue Funktion des Core nutzen. sehen [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.2).
@@ -264,7 +264,7 @@ Blogeintrag [Hier](https://blog.jeedom.com/6739-jeedom-4-3/)
 - Auf die Widgets-Einstellungen für die Mobile-Version kann jetzt über das Gerätekonfigurationsfenster im Dashboard-Bearbeitungsmodus zugegriffen werden.
 - Die optionalen Parameter, die für Widgets verfügbar sind, werden jetzt für jedes Widget entweder in der Befehlskonfiguration oder im Dashboard-Bearbeitungsmodus angezeigt.
 - Viele Core Widgets akzeptieren jetzt optionale Farbeinstellungen. (horizontaler und vertikaler Schieberegler, Messgerät, Kompass, Regen, Verschluss, Schieberegler für Vorlagen usw.).
-- Kern-Widgets mit Anzeige von a *Zeit* unterstützen jetzt einen optionalen Parameter **Zeit : datiert** um ein relatives Datum anzuzeigen (Gestern um 16:48 Uhr, Letzter Montag um 14:00 Uhr usw.)).
+- Kern-Widgets mit Anzeige von a *Zeit* unterstützen jetzt einen optionalen Parameter **Zeit : Datum** um ein relatives Datum anzuzeigen (Gestern um 16:48 Uhr, Letzter Montag um 14:00 Uhr usw.)).
 - Widgets vom Typ Cursor (Aktion) akzeptieren jetzt einen optionalen Parameter *Schritte* um den Änderungsschritt am Cursor zu definieren.
 - Das Widget **action.slider.value** ist jetzt auf dem Desktop mit einem optionalen Parameter verfügbar *kein Gleiter*, was macht es ein *Eingang* einfach.
 - Das Widget **info.numeric.default** (*Messgerät*) wurde in reinem CSS überarbeitet und in mobile integriert. Sie sind daher jetzt in Desktop und Mobile identisch.
@@ -392,10 +392,10 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - **Analyse / Geschichte** : Die Optionen *Gruppierung, Typ, Variation, Treppe* sind nur mit einer einzigen angezeigten Kurve aktiv.
 - **Analyse / Geschichte** : Wir können jetzt die Option verwenden *Bereich* mit der Option *Treppe*.
 - **Analyse / Protokolle** : Neue Monospace-Schriftart für Protokolle.
-- **Ansicht** : Möglichkeit, Szenarien zu setzen.
-- **Ansicht** : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
-- **Ansicht** : Bearbeitungsmodus: Die Geräteaktualisierungssymbole werden durch ein Symbol ersetzt, das dank eines neuen vereinfachten Modals den Zugriff auf ihre Konfiguration ermöglicht.
-- **Ansicht** : Die Anzeigereihenfolge ist jetzt unabhängig von der im Dashboard.
+- **Gesehen** : Möglichkeit, Szenarien zu setzen.
+- **Gesehen** : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
+- **Gesehen** : Bearbeitungsmodus: Die Geräteaktualisierungssymbole werden durch ein Symbol ersetzt, das dank eines neuen vereinfachten Modals den Zugriff auf ihre Konfiguration ermöglicht.
+- **Gesehen** : Die Anzeigereihenfolge ist jetzt unabhängig von der im Dashboard.
 - **Zeitleiste** : Trennung von Verlaufs- und Zeitleisten-Seiten.
 - **Zeitleiste** : Integration der Timeline in die DB aus Zuverlässigkeitsgründen.
 - **Zeitleiste** : Verwaltung mehrerer Zeitleisten.
@@ -407,8 +407,8 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - **Zusammenfassung der Hausautomation** : Möglichkeit, mehrere Geräte von einem Objekt zum anderen zu bewegen.
 - **Zusammenfassung der Hausautomation** : Möglichkeit, alle Geräte eines Objekts auszuwählen.
 - **Task-Engine** : Auf der Registerkarte *Dämon*, deaktivierte Plugins werden nicht mehr angezeigt.
-- **Prüfbericht** : Die Verwendung von *Chrom* wenn verfügbar.
-- **Prüfbericht** : Möglichkeit zum Exportieren von Zeitleisten.
+- **Bericht** : Die Verwendung von *Chrom* wenn verfügbar.
+- **Bericht** : Möglichkeit zum Exportieren von Zeitleisten.
 - **Aufbau** : Tab *Information* ist jetzt in der Registerkarte *Allgemein*.
 - **Aufbau** : Tab *Aufträge* ist jetzt in der Registerkarte *Ausrüstung*.
 - **Fenster zur erweiterten Gerätekonfiguration** : Dynamische Änderung der Schalttafelkonfiguration.
@@ -449,7 +449,7 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - Zahlreiche Leistungsoptimierungen für Desktop / Mobile.
 
 ### 4.1 : Changements
-- Die Funktion **Szenario-> getHumanName()** der PHP-Szenario-Klasse wird nicht mehr zurückgegeben *[Objekt] [Gruppe] [Name]* Mais *[Gruppe] [Objekt] [Name]*.
+- Die Funktion **Szenario-> getHumanName()** der PHP-Szenario-Klasse wird nicht mehr zurückgegeben *[Objekt] [Gruppe] [Name]* aber *[Gruppe] [Objekt] [Name]*.
 - Die Funktion **Szenario-> byString()** muss nun mit der Struktur aufgerufen werden *[Gruppe] [Objekt] [Name]*.
 - Funktionen **network-> getInterfaceIp () network-> getInterfaceMac () network-> getInterfaces()** wurden ersetzt durch **network-> getInterfacesInfo()**
 
@@ -588,7 +588,7 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - Aufbau : Änderung von #message# beim #subject# in Konfiguration / Protokolle / Nachrichten, um das Duplizieren der Nachricht zu vermeiden.
 - Aufbau : Möglichkeit in den Zusammenfassungen, einen Ausschluss von Aufträgen hinzuzufügen, die nicht länger als XX Minuten aktualisiert wurden (Beispiel für die Berechnung von Temperaturdurchschnitten, wenn ein Sensor länger als 30 Minuten nichts gemeldet hat, wird er von der Berechnung ausgeschlossen)<br/><br/>
 - Szenario : Die Färbung von Blöcken erfolgt nicht mehr zufällig, sondern nach Blocktyp.
-- Szenario : Möglichkeit durch Strg + Klick auf die Schaltfläche *Ausführung* Speichern Sie es, starten Sie es und zeigen Sie das Protokoll an (wenn die Protokollebene nicht aktiviert ist *Irgendein*).
+- Szenario : Möglichkeit durch Strg + Klick auf die Schaltfläche *Ausführung* Speichern Sie es, starten Sie es und zeigen Sie das Protokoll an (wenn die Protokollebene nicht aktiviert ist *Keiner*).
 - Szenario : Bestätigung der Blocklöschung. Strg + Klicken, um eine Bestätigung zu vermeiden.
 - Szenario : Hinzufügen einer Suchfunktion in Codeblöcken. Forschen : Strg + F dann Enter, Nächstes Ergebnis : Strg + G, Vorheriges Ergebnis : Strg + Umschalt + G
 - Szenario : Möglichkeit der Verdichtung der Blöcke.
@@ -609,10 +609,10 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - Zusammenfassung der Hausautomation : Hinzufügen von Geräten und Bestell-IDs zum Anzeigen und Suchen.
 - Zusammenfassung der Hausautomation : CSV-Export des übergeordneten Objekts, der ID, der Ausrüstung und ihrer ID, des Befehls.
 - Zusammenfassung der Hausautomation : Möglichkeit, einen oder mehrere Befehle sichtbar zu machen oder nicht.<br/><br/>
-- Design : Möglichkeit zur Angabe der Reihenfolge (Position) des *Entwürfe* und *3D-Designs* (Bearbeiten, Design konfigurieren).
-- Design : Hinzufügen eines benutzerdefinierten CSS-Felds zu den Elementen des *Design*.
-- Design : Die Anzeigeoptionen im Design der erweiterten Konfiguration wurden in den Anzeigeparametern aus dem verschoben *Design*. Dies, um die Schnittstelle zu vereinfachen und verschiedene Parameter durch zu ermöglichen *Design*.
-- Design : Verschieben und Ändern der Größe von Komponenten *Design* berücksichtigt ihre Größe mit oder ohne Magnetisierung.<br/><br/>
+- Entwurf : Möglichkeit zur Angabe der Reihenfolge (Position) des *Entwürfe* und *3D-Designs* (Bearbeiten, Design konfigurieren).
+- Entwurf : Hinzufügen eines benutzerdefinierten CSS-Felds zu den Elementen des *Entwurf*.
+- Entwurf : Die Anzeigeoptionen im Design der erweiterten Konfiguration wurden in den Anzeigeparametern aus dem verschoben *Entwurf*. Dies, um die Schnittstelle zu vereinfachen und verschiedene Parameter durch zu ermöglichen *Entwurf*.
+- Entwurf : Verschieben und Ändern der Größe von Komponenten *Entwurf* berücksichtigt ihre Größe mit oder ohne Magnetisierung.<br/><br/>
 - Hinzufügen eines Massenkonfigurationssystems (wird auf der Seite Ausrüstung verwendet, um Kommunikationswarnungen darauf zu konfigurieren)
 
 ### 4.0 : Autres
@@ -628,7 +628,7 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 ### 4.0 : Changements
 
 - Entfernen Sie Font Awesome 4, um nur Font Awesome 5 beizubehalten.
-- Das Widget-Plugin ist nicht mit dieser Version von Jeedom kompatibel und wird nicht mehr unterstützt (da die Funktionen intern im Kern übernommen wurden). Mehr Informationen [Hier](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
+- Das Widget-Plugin ist nicht mit dieser Version von Jeedom kompatibel und wird nicht mehr unterstützt (da die Funktionen intern im Kern übernommen wurden). Mehr Informationen [hier](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
 
 >**WICHTIG**
 >

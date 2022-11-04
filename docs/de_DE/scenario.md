@@ -9,13 +9,13 @@ Die Szenarien sind ein echtes Gehirn der Hausautomation und ermöglichen es, auf
 
 Dort finden Sie die Liste der Szenarien Ihres Jeedom sowie Funktionen, um diese am besten zu verwalten :
 
-- **Addieren** : Erstellen Sie ein Szenario. Die Vorgehensweise wird im nächsten Kapitel beschrieben.
+- **Hinzufügen** : Erstellen Sie ein Szenario. Die Vorgehensweise wird im nächsten Kapitel beschrieben.
 - **Szenarien deaktivieren** : Deaktiviert alle Szenarien. Selten verwendet und wissentlich, da kein Szenario mehr ausgeführt wird.
-- **Übersicht** : Ermöglicht einen Überblick über alle Szenarien. Sie können die Werte ändern **aktiv**, **sichtbar**, **Multi-Launch**, **synchroner Modus**, **Protokoll** und **Zeitleiste** (Diese Parameter werden im folgenden Kapitel beschrieben). Sie können auch auf die Protokolle für jedes Szenario zugreifen und sie einzeln starten.
+- **Übersicht** : Ermöglicht einen Überblick über alle Szenarien. Sie können die Werte ändern **Anlage**, **sichtbar**, **Multi-Launch**, **synchroner Modus**, **Protokoll** und **Zeitleiste** (Diese Parameter werden im folgenden Kapitel beschrieben). Sie können auch auf die Protokolle für jedes Szenario zugreifen und sie einzeln starten.
 
 ## Meine Szenarien
 
-Sie finden in diesem Teil **Liste der Szenarien** dass du erstellt hast. Sie werden nach ihren klassifiziert **Gruppe**, möglicherweise für jeden von ihnen definiert. Jedes Szenario wird mit seinem angezeigt **Name** und seine **übergeordnetes Objekt**. Die **ausgegraute Szenarien** sind diejenigen, die deaktiviert sind.
+Sie finden in diesem Teil **Liste der Szenarien** dass du erstellt hast. Sie werden nach ihren klassifiziert **Band**, möglicherweise für jeden von ihnen definiert. Jedes Szenario wird mit seinem angezeigt **Name** und seine **übergeordnetes Objekt**. Das **ausgegraute Szenarien** sind diejenigen, die deaktiviert sind.
 
 > **Tipp**
 >
@@ -33,11 +33,11 @@ Sobald Sie ein Szenario konfiguriert haben, haben Sie ein Kontextmenü mit der r
 
 ## Schaffung | Szenario bearbeiten
 
-Nach dem Klicken auf **Addieren**, Sie müssen den Namen Ihres Szenarios auswählen. Sie werden dann zur Seite mit den allgemeinen Parametern weitergeleitet.
+Nach dem Klicken auf **Hinzufügen**, Sie müssen den Namen Ihres Szenarios auswählen. Sie werden dann zur Seite mit den allgemeinen Parametern weitergeleitet.
 Davor gibt es oben auf der Seite einige nützliche Funktionen zum Verwalten dieses Szenarios :
 
 - **ICH WÜRDE** : Neben dem Wort **General**, Dies ist die Szenariokennung.
-- **Status** : *Verhaftet* Woher *In Bearbeitung*, Es zeigt den aktuellen Status des Szenarios an.
+- **Status** : *Verhaftet* Wo *In Bearbeitung*, Es zeigt den aktuellen Status des Szenarios an.
 - **Vorheriger / nächster Zustand** : Aktion abbrechen / wiederholen.
 - **Block hinzufügen** : Ermöglicht das Hinzufügen eines Blocks des gewünschten Typs zum Szenario (siehe unten)).
 - **Protokoll** : Zeigt die Szenarioprotokolle an.
@@ -45,10 +45,10 @@ Davor gibt es oben auf der Seite einige nützliche Funktionen zum Verwalten dies
 - **Verbindungen** : Ermöglicht das Anzeigen des Diagramms der Elemente, die sich auf das Szenario beziehen.
 - **Textbearbeitung** : Zeigt ein Fenster an, in dem das Szenario in Form von Text / JSON bearbeitet werden kann. Vergiss nicht zu sparen.
 - **Export** : Ermöglicht es Ihnen, eine reine Textversion des Szenarios zu erhalten.
-- **Vorlage** : Ermöglicht den Zugriff auf die Vorlagen und die Anwendung auf das Szenario aus dem Markt (siehe unten auf der Seite)).
+- **Schablone** : Ermöglicht den Zugriff auf die Vorlagen und die Anwendung auf das Szenario aus dem Markt (siehe unten auf der Seite)).
 - **Forschung** : Entfaltet ein Suchfeld für die Suche im Szenario. Diese Suche entfaltet die reduzierten Blöcke bei Bedarf und faltet sie nach der Suche zurück.
 - **Ausführen** : Ermöglicht das manuelle Starten des Szenarios (unabhängig von den Auslösern)). Speichern Sie vorher, um die Änderungen zu berücksichtigen.
-- **Entfernen** : Szenario löschen.
+- **Löschen** : Szenario löschen.
 - **Zu schützen** : Speichern Sie die vorgenommenen Änderungen.
 
 > **Tipps**
@@ -57,7 +57,7 @@ Davor gibt es oben auf der Seite einige nützliche Funktionen zum Verwalten dies
     > - Die Variablen, sichtbar in **Werkzeuge → Variablen**
     > - Der Ausdruckstester, auf den über zugegriffen werden kann **Werkzeuge → Ausdruckstester**
 >
-> Ein **Strg Klicken Sie auf die Schaltfläche Ausführen** Mit dieser Option können Sie das Szenarioprotokoll direkt speichern, ausführen und anzeigen (wenn die Protokollebene nicht Keine ist).
+> EIN **Strg Klicken Sie auf die Schaltfläche Ausführen** Mit dieser Option können Sie das Szenarioprotokoll direkt speichern, ausführen und anzeigen (wenn die Protokollebene nicht Keine ist).
 
 ## Registerkarte &quot;Allgemein&quot;
 
@@ -65,8 +65,8 @@ In der Registerkarte **General**, Wir finden die Hauptparameter des Szenarios :
 
 - **Name des Szenarios** : Der Name Ihres Szenarios.
 - **Name, der angezeigt werden soll** : Der Name, der für die Anzeige verwendet wird. Optional wird der Name des Szenarios verwendet, wenn er nicht ausgefüllt ist.
-- **Gruppe** : Ermöglicht das Organisieren der Szenarien, indem Sie sie in Gruppen einteilen (sichtbar auf der Szenarioseite und in ihren Kontextmenüs).
-- **Aktiv** : Aktivieren Sie das Szenario. Wenn nicht aktiv, wird es von Jeedom unabhängig vom Triggermodus nicht ausgeführt.
+- **Band** : Ermöglicht das Organisieren der Szenarien, indem Sie sie in Gruppen einteilen (sichtbar auf der Szenarioseite und in ihren Kontextmenüs).
+- **Anlage** : Aktivieren Sie das Szenario. Wenn nicht aktiv, wird es von Jeedom unabhängig vom Triggermodus nicht ausgeführt.
 - **Sichtbar** : Wird verwendet, um das Szenario sichtbar zu machen (Dashboard)).
 - **übergeordnetes Objekt** : Zuordnung zu einem übergeordneten Objekt. Es wird dann entsprechend diesem Elternteil sichtbar sein oder nicht.
 - **Zeitüberschreitung in Sekunden (0 = unbegrenzt)** : Die maximal zulässige Ausführungszeit für dieses Szenario. Nach dieser Zeit wird die Ausführung des Szenarios unterbrochen.
@@ -84,15 +84,15 @@ In der Registerkarte **General**, Wir finden die Hauptparameter des Szenarios :
 > **Tipp**
 >
 > Bedingungen können jetzt im ausgelösten Modus eingegeben werden. Zum Beispiel : ``#[Garage][Open Garage][Ouverture]# == 1``
-> Warnung : Sie können maximal 28 Trigger / Programmierungen für ein Szenario haben.
+> Aufmerksamkeit : Sie können maximal 28 Trigger / Programmierungen für ein Szenario haben.
 
 > **Tippmodus programmiert**
 >
-> Der geplante Modus verwendet die Syntax **Cron**. Sie können beispielsweise alle 20 Minuten ein Szenario mit ausführen  ``*/.20 * * * *``, oder um 5 Uhr morgens, um eine Vielzahl von Dingen für den Tag mit zu erledigen ``0 5 * * *``. Der ? Rechts neben einem Programm können Sie es einstellen, ohne Spezialist für Cron-Syntax zu sein.
+> Der geplante Modus verwendet die Syntax **Cron**. Sie können beispielsweise alle 20 Minuten ein Szenario mit ausführen  ``*/.20 * * * *``, oder um 5 Uhr morgens, um eine Vielzahl von Dingen für den Tag mit zu erledigen ``0 5 * * *``. Das ? Rechts neben einem Programm können Sie es einstellen, ohne Spezialist für Cron-Syntax zu sein.
 
 ## Registerkarte &quot;Szenario&quot;
 
-Hier erstellen Sie Ihr Szenario. Nach dem Erstellen des Szenarios ist sein Inhalt leer, sodass er ... nichts tut. Du musst mit anfangen **Block hinzufügen**, mit dem Knopf rechts. Sobald ein Block erstellt wurde, können Sie einen weiteren hinzufügen **Block** oder ein **Aktion**.
+Hier erstellen Sie Ihr Szenario. Nach dem Erstellen des Szenarios ist sein Inhalt leer, sodass er ... nichts tut. Du musst mit anfangen **Block hinzufügen**, mit dem Knopf rechts. Sobald ein Block erstellt wurde, können Sie einen weiteren hinzufügen **Block** oder ein **Lager**.
 
 Um die Blöcke im Szenario einfacher zu gestalten und nicht ständig neu anordnen zu müssen, wird nach dem Feld, in dem sich der Mauszeiger befindet, ein Block hinzugefügt.
 *Wenn Sie beispielsweise zehn Blöcke haben und auf die IF-Bedingung des ersten Blocks klicken, wird der hinzugefügte Block nach diesem Block auf derselben Ebene hinzugefügt. Wenn kein Feld aktiv ist, wird es am Ende des Szenarios hinzugefügt.*
@@ -110,12 +110,12 @@ Um die Blöcke im Szenario einfacher zu gestalten und nicht ständig neu anordne
 Hier sind die verschiedenen Arten von Blöcken verfügbar :
 
 - **If / Then / Oder** : Ermöglicht die Ausführung von Aktionen unter Bedingungen (wenn dies, dann das).
-- **Aktion** : Ermöglicht das Starten einfacher Aktionen ohne Bedingungen.
+- **Aktie** : Ermöglicht das Starten einfacher Aktionen ohne Bedingungen.
 - **Schleife** : Ermöglicht die wiederholte Ausführung von Aktionen von 1 bis zu einer definierten Zahl (oder sogar dem Wert eines Sensors oder einer Zufallszahl…)).
 - **Im** : Ermöglicht das Starten einer Aktion in X Minute (n) (0 ist ein möglicher Wert). Die Besonderheit ist, dass die Aktionen im Hintergrund gestartet werden, sodass sie den Rest des Szenarios nicht blockieren. Es ist also ein nicht blockierender Block.
-- **BEI** : Ermöglicht es Jeedom, die Aktionen des Blocks zu einem bestimmten Zeitpunkt (in der Form hhmm) zu starten). Dieser Block ist nicht blockierend. Ex : 0030 für 00:30 oder 0146 für 1h46 und 1050 für 10h50.
+- **HAT** : Ermöglicht es Jeedom, die Aktionen des Blocks zu einem bestimmten Zeitpunkt (in der Form hhmm) zu starten). Dieser Block ist nicht blockierend. Ex : 0030 für 00:30 oder 0146 für 1h46 und 1050 für 10h50.
 - **Codiert** : Ermöglicht das direkte Schreiben in PHP-Code (erfordert bestimmte Kenntnisse und kann riskant sein, ermöglicht Ihnen jedoch keine Einschränkungen).
-- **Anmerkung** : Ermöglicht das Hinzufügen von Kommentaren zu Ihrem Szenario.
+- **Kommentar** : Ermöglicht das Hinzufügen von Kommentaren zu Ihrem Szenario.
 
 Jeder Block hat seine Optionen, um besser damit umzugehen :
 
@@ -136,7 +136,7 @@ Für die Bedingungen versucht Jeedom, es möglich zu machen, sie so viel wie mö
 
 Rechts neben diesem Blocktyp stehen drei Schaltflächen zur Auswahl eines zu testenden Elements zur Verfügung :
 
-- **Finden Sie eine Bestellung** : Ermöglicht die Suche nach einer Bestellung in allen in Jeedom verfügbaren. Sobald die Bestellung gefunden wurde, öffnet Jeedom ein Fenster, in dem Sie gefragt werden, welchen Test Sie daran durchführen möchten. Wenn Sie möchten **Setzen Sie nichts**, Jeedom wird die Bestellung ohne Vergleich hinzufügen. Sie können auch wählen **und** Woher **Woher** Vor **Nächste** Kettenprüfungen an verschiedenen Geräten.
+- **Finden Sie eine Bestellung** : Ermöglicht die Suche nach einer Bestellung in allen in Jeedom verfügbaren. Sobald die Bestellung gefunden wurde, öffnet Jeedom ein Fenster, in dem Sie gefragt werden, welchen Test Sie daran durchführen möchten. Wenn Sie möchten **Setzen Sie nichts**, Jeedom wird die Bestellung ohne Vergleich hinzufügen. Sie können auch wählen **und** Wo **Wo** Vor **Nächste** Kettenprüfungen an verschiedenen Geräten.
 - **Suchen Sie ein Szenario** : Ermöglicht die Suche nach einem zu testenden Szenario.
 - **Suche nach Ausrüstung** : Gleiches gilt für die Ausrüstung.
 
@@ -149,7 +149,7 @@ Rechts neben diesem Blocktyp stehen drei Schaltflächen zur Auswahl eines zu tes
 >
 > Es gibt eine Liste von Tags, die den Zugriff auf Variablen aus dem einen oder anderen Szenario oder nach Uhrzeit, Datum, Zufallszahl usw. ermöglichen. Siehe unten die Kapitel zu Befehlen und Tags.
 
-Sobald die Bedingung erfüllt ist, müssen Sie die Schaltfläche &quot;Hinzufügen&quot; auf der linken Seite verwenden, um eine neue hinzuzufügen **Block** oder ein **Aktion** im aktuellen Block.
+Sobald die Bedingung erfüllt ist, müssen Sie die Schaltfläche &quot;Hinzufügen&quot; auf der linken Seite verwenden, um eine neue hinzuzufügen **Block** oder ein **Lager** im aktuellen Block.
 
 
 ### Blockcode
@@ -159,7 +159,7 @@ Mit dem Code-Block können Sie PHP-Code ausführen. Es ist daher sehr mächtig, 
 #### Zugang zu Steuerungen (Sensoren und Aktoren))
 
 -  ``cmd::byString($string);`` : Gibt das entsprechende Befehlsobjekt zurück.
-    -   ``$string``: Link zur gewünschten Bestellung : ``#[objet][Ausrüstung][commande]#`` (Ex : ``#[Appartement][Alarme][Aktiv]#``)
+    -   ``$string``: Link zur gewünschten Bestellung : ``#[objet][Ausrüstung][commande]#`` (ex : ``#[Appartement][Alarme][Anlage]#``)
 -  ``cmd::byId($id);`` : Gibt das entsprechende Befehlsobjekt zurück.
     -  ``$id`` : Bestellnummer.
 -  ``$cmd->execCmd($options = null);`` : Führen Sie den Befehl aus und geben Sie das Ergebnis zurück.
@@ -186,7 +186,7 @@ Mit dem Code-Block können Sie PHP-Code ausführen. Es ist daher sehr mächtig, 
 - ``$scenario->save();`` : Änderungen speichern.
 - ``$scenario->setData($key, $value);`` : Speichern Sie eine Daten (Variable).
     - ``$key`` : Werteschlüssel (int oder string).
-    - ``$value`` : Wert zu speichern (``int``, ``string``, ``array`` Woher ``object``).
+    - ``$value`` : Wert zu speichern (``int``, ``string``, ``array`` Wo ``object``).
 - ``$scenario->getData($key);`` : Daten abrufen (variabel).
     - ``$key => 1`` : Werteschlüssel (int oder string).
 - ``$scenario->removeData($key);`` : Daten löschen.
@@ -211,7 +211,7 @@ Zu Blöcken hinzugefügte Aktionen haben mehrere Optionen :
 - Eine Kiste **aktiviert** damit dieser Befehl im Szenario berücksichtigt wird.
 - Eine Kiste **parallel** so dass dieser Befehl parallel (gleichzeitig) mit den anderen ebenfalls ausgewählten Befehlen gestartet wird.
 - EIN **vertikaler Doppelpfeil** um die Aktion zu verschieben. Einfach von dort ziehen und ablegen.
-- Ein Knopf für **Entfernen** die Aktion.
+- Ein Knopf für **löschen** die Aktion.
 - Eine Schaltfläche für bestimmte Aktionen, bei der jedes Mal die Beschreibung (beim Bewegen des Mauszeigers) dieser Aktion angezeigt wird.
 - Eine Schaltfläche zum Suchen nach einem Aktionsbefehl.
 
@@ -236,7 +236,7 @@ Es gibt bestimmte Auslöser (außer denen, die durch Befehle bereitgestellt werd
 - ``#variable(nom_variable)#`` : Ändern des Wertes der Variablen name_name.
 - ``#GenericType (GENERIC, #[Object]#)#`` : Änderung eines Infobefehls vom Typ Generic GENERIC im Objektobjekt.
 
-Sie können ein Szenario auch über die beschriebene HTTP-API auslösen [Hier](https:/./.doc.jeedom.com/de_DE/core/.4.1/.api_http).
+Sie können ein Szenario auch über die beschriebene HTTP-API auslösen [hier](https:/./.doc.jeedom.com/de_DE/core/.4.1/.api_http).
 
 ### Vergleichsoperatoren und Verknüpfungen zwischen Bedingungen
 
@@ -254,7 +254,7 @@ Sie können eines der folgenden Symbole für Vergleiche unter Bedingungen verwen
 Sie können jeden Vergleich mit den folgenden Operatoren kombinieren :
 
 - ``&&`` : und. Es ist auch möglich zu verwenden : ``ET`` /. ``et`` /. ``AND`` /. ``and`` funktioniert aber möglicherweise nicht gut mit einigen PHP-Funktionen.
-- ``||`` : Woher. Es ist auch möglich zu verwenden : ``OU`` /. ``ou`` /. ``OR`` /. ``or`` funktioniert aber möglicherweise nicht gut mit einigen PHP-Funktionen.
+- ``||`` : Wo. Es ist auch möglich zu verwenden : ``OU`` /. ``ou`` /. ``OR`` /. ``or`` funktioniert aber möglicherweise nicht gut mit einigen PHP-Funktionen.
 - ``xor``  : oder exklusiv. Es ist auch möglich zu verwenden : ``XOR`` /. ``^`` funktioniert aber möglicherweise nicht gut mit einigen PHP-Funktionen.
 
 ### Tags
@@ -263,7 +263,7 @@ Ein Tag wird während der Ausführung des Szenarios durch seinen Wert ersetzt. S
 
 > **Tipp**
 >
-> Verwenden Sie die Funktion Date (), um die führenden Nullen anzuzeigen. Siehe [Hier](https:/./.www.php.net/.manual/.fr/.datetime.format.php).
+> Verwenden Sie die Funktion Date (), um die führenden Nullen anzuzeigen. Siehe [hier](https:/./.www.php.net/.manual/.fr/.datetime.format.php).
 
 - ``#seconde#`` : Aktuelle Sekunde (ohne führende Nullen, z : 6 für 08:07:06).
 - ``#hour#`` : Aktuelle Zeit im 24h-Format (ohne führende Nullen). Ex : 8 für 08:07:06 oder 17 für 17:15.
@@ -293,7 +293,7 @@ Sie haben auch die folgenden zusätzlichen Tags, wenn Ihr Szenario durch eine In
 - #query# : Interaktion, die das Szenario ausgelöst hat.
 - #profil# : Profil des Benutzers, der das Szenario gestartet hat (kann leer sein).
 
-> **WICHTIG**
+> **Wichtig**
 >
 > Wenn ein Szenario durch eine Interaktion ausgelöst wird, wird es notwendigerweise im schnellen Modus ausgeführt. Also im Interaktionsthread und nicht in einem separaten Thread.
 
@@ -301,17 +301,17 @@ Sie haben auch die folgenden zusätzlichen Tags, wenn Ihr Szenario durch eine In
 
 Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 
-- ``average(commande,période)`` & ``averageBetween(commande,start,end)`` : Geben Sie den Durchschnitt der Bestellung über den Zeitraum an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` Woher [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``average(commande,période)`` & ``averageBetween(commande,start,end)`` : Geben Sie den Durchschnitt der Bestellung über den Zeitraum an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` Wo [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
-- ``averageTemporal(commande,période)`` & ``averageTemporalBetween(commande,start,end)`` : Geben Sie den Durchschnitt der Werte der Bestellung gewichtet nach ihrer Existenzdauer über den Zeitraum (Periode=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` Woher [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``averageTemporal(commande,période)`` & ``averageTemporalBetween(commande,start,end)`` : Geben Sie den Durchschnitt der Werte der Bestellung gewichtet nach ihrer Existenzdauer über den Zeitraum (Periode=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` Wo [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
-- ``min(commande,période)`` & ``minBetween(commande,start,end)`` : Geben Sie die Mindestbestellmenge über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` Woher [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``min(commande,période)`` & ``minBetween(commande,start,end)`` : Geben Sie die Mindestbestellmenge über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` Wo [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
-- ``max(commande,période)`` & ``maxBetween(commande,start,end)`` : Geben Sie das Maximum der Bestellung über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` Woher [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``max(commande,période)`` & ``maxBetween(commande,start,end)`` : Geben Sie das Maximum der Bestellung über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` Wo [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
-- ``duration(commande, valeur, période)`` & ``durationbetween(commande,valeur,start,end)`` : Geben Sie die Dauer in Minuten an, während der das Gerät über den Zeitraum (Zeitraum) den gewählten Wert hatte=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` Woher [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``duration(commande, valeur, période)`` & ``durationbetween(commande,valeur,start,end)`` : Geben Sie die Dauer in Minuten an, während der das Gerät über den Zeitraum (Zeitraum) den gewählten Wert hatte=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` Wo [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
-- ``statistics(commande,calcul,période)`` & ``statisticsBetween(commande,calcul,start,end)`` : Geben Sie das Ergebnis verschiedener statistischer Berechnungen (Summe, Anzahl, Standard, Varianz, Durchschnitt, Min, Max) über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` Woher [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``statistics(commande,calcul,période)`` & ``statisticsBetween(commande,calcul,start,end)`` : Geben Sie das Ergebnis verschiedener statistischer Berechnungen (Summe, Anzahl, Standard, Varianz, Durchschnitt, Min, Max) über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` Wo [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
 - ``tendance(commande,période,seuil)`` : Gibt den Trend der Bestellung über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
@@ -330,9 +330,9 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 - ``age(commande)`` : Gibt das Alter des Befehlswerts in Sekunden an (``collecDate``)
     -1 : Der Befehl existiert nicht oder ist nicht vom Typ info.
 
-- ``stateChanges(commande,[valeur], période)`` & ``stateChangesBetween(commande, [valeur], start, end)`` : Gibt die Anzahl der Zustandsänderungen (in Richtung eines bestimmten Wertes, falls angegeben, oder, falls nicht angegeben, im Vergleich zum aktuellen Wert) über den Zeitraum (Periode=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` Woher [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``stateChanges(commande,[valeur], période)`` & ``stateChangesBetween(commande, [valeur], start, end)`` : Gibt die Anzahl der Zustandsänderungen (in Richtung eines bestimmten Wertes, falls angegeben, oder, falls nicht angegeben, im Vergleich zum aktuellen Wert) über den Zeitraum (Periode=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` Wo [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
-- ``lastBetween(commande,start,end)`` : Gibt den letzten für das Gerät aufgezeichneten Wert zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` Woher [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``lastBetween(commande,start,end)`` : Gibt den letzten für das Gerät aufgezeichneten Wert zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` Wo [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
 - ``variable(mavariable,valeur par défaut)`` : Ruft standardmäßig den Wert einer Variablen oder den gewünschten Wert ab.
 
@@ -349,11 +349,11 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 - ``lastScenarioExecution(scenario)`` : Gibt die Dauer in Sekunden seit dem letzten Start des Szenarios an.
     0 : Das Szenario existiert nicht
 
-- ``collectDate(cmd,[format])`` : Gibt das Datum der letzten Datenerfassung für den als Parameter platzierten Befehl zurück. Der zweite optionale Parameter wird verwendet, um das Rückgabeformat anzugeben (Details [Hier](https:/./.www.php.net/.manual/.fr/.datetime.format.php)).
+- ``collectDate(cmd,[format])`` : Gibt das Datum der letzten Datenerfassung für den als Parameter platzierten Befehl zurück. Der zweite optionale Parameter wird verwendet, um das Rückgabeformat anzugeben (Details [hier](https:/./.www.php.net/.manual/.fr/.datetime.format.php)).
     -1 : Der Befehl konnte nicht gefunden werden,
     -2 : Der Befehl ist nicht vom Typ info.
 
-- ``valueDate(cmd,[format])`` : Gibt das Datum des letzten bekannten Werts für den als Parameter platzierten Befehl zurück. Der zweite optionale Parameter wird verwendet, um das Rückgabeformat anzugeben (Details [Hier](https:/./.www.php.net/.manual/.fr/.datetime.format.php)).
+- ``valueDate(cmd,[format])`` : Gibt das Datum des letzten bekannten Werts für den als Parameter platzierten Befehl zurück. Der zweite optionale Parameter wird verwendet, um das Rückgabeformat anzugeben (Details [hier](https:/./.www.php.net/.manual/.fr/.datetime.format.php)).
     -1 : Der Befehl konnte nicht gefunden werden,
     -2 : Der Befehl ist nicht vom Typ info.
 
@@ -366,9 +366,9 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 
 - ``tag(montag,[defaut])`` : Wird verwendet, um den Wert eines Tags oder den Standardwert abzurufen, falls dieser nicht vorhanden ist.
 
-- ``name(type,commande)`` : Wird verwendet, um den Namen der Bestellung, Ausrüstung oder des Objekts abzurufen. Art : cmd, eqLogic oder Objekt.
+- ``name(type,commande)`` : Wird verwendet, um den Namen der Bestellung, Ausrüstung oder des Objekts abzurufen. Nett : cmd, eqLogic oder Objekt.
 
-- ``lastCommunication(equipment,[format])`` : Gibt das Datum der letzten Kommunikation für das als Parameter angegebene Gerät zurück, der 2. optionale Parameter dient zur Angabe des Rückgabeformats (Details [Hier](https:/./.www.php.net/.manual/.fr/.datetime.format.php)). Eine Rückgabe von -1 bedeutet, dass das Gerät nicht gefunden werden kann.
+- ``lastCommunication(equipment,[format])`` : Gibt das Datum der letzten Kommunikation für das als Parameter angegebene Gerät zurück, der 2. optionale Parameter dient zur Angabe des Rückgabeformats (Details [hier](https:/./.www.php.net/.manual/.fr/.datetime.format.php)). Eine Rückgabe von -1 bedeutet, dass das Gerät nicht gefunden werden kann.
 
 - ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Gibt eine relativ zu einem Wert im Intervall color_start / color_end berechnete Farbe zurück. Der Wert muss zwischen min_value und max_value liegen.
 
@@ -379,7 +379,7 @@ Die Perioden und Intervalle dieser Funktionen können auch mit verwendet werden 
 - ``Last Monday`` : letzten Montag um 00:00.
 - ``5 days ago`` : Vor 5 Tagen.
 - ``Yesterday noon`` : gestern mittag.
-- Usw..
+- Etc.
 
 Hier finden Sie praktische Beispiele zum Verständnis der von diesen verschiedenen Funktionen zurückgegebenen Werte :
 
@@ -429,7 +429,7 @@ Eine generische Funktions-Toolbox kann auch zum Durchführen von Konvertierungen
 - ``median(commande1,commande2…​.commandeN)`` : Gibt den Median der Werte zurück.
 - ``avg(commande1,commande2…​.commandeN)`` : Gibt den Durchschnitt der Werte zurück.
 - ``time_op(time,value)`` : Ermöglicht die pünktliche Ausführung von Operationen mit time = time (z : 1530) und Wert = Wert zum Addieren oder Subtrahieren in Minuten.
-- ``time_between(time,start,end)`` : Wird verwendet, um zu testen, ob eine Zeit zwischen zwei Werten mit liegt ``time=temps`` (Ex : 1530), ``start=temps``, ``end=temps``. Start- und Endwerte können sich über Mitternacht erstrecken.
+- ``time_between(time,start,end)`` : Wird verwendet, um zu testen, ob eine Zeit zwischen zwei Werten mit liegt ``time=temps`` (ex : 1530), ``start=temps``, ``end=temps``. Start- und Endwerte können sich über Mitternacht erstrecken.
 - ``time_diff(date1,date2[,format, round])`` : Wird verwendet, um den Unterschied zwischen zwei Daten zu ermitteln (die Daten müssen das Format JJJJ / MM / TT HH haben:MM:SS). Standardmäßig gibt die Methode die Differenz in Tag (e) zurück). Sie können es in Sekunden (s), Minuten (m), Stunden (h) fragen). Beispiel in Sekunden ``time_diff(2019-02-02 14:55:00,2019-02-25 14:55:00,s)``. Die Differenz wird in absoluten Zahlen zurückgegeben, sofern Sie nichts anderes angeben ``f`` (``sf``, ``mf``, ``hf``, ``df``). Sie können auch verwenden ``dhms`` wer wird nicht Beispiel zurückgeben ``7j 2h 5min 46s``. Der optionale Parameter round rundet auf x Dezimalstellen (standardmäßig 2). Ex: ``time_diff(2020-02-21 20:55:28,2020-02-28 23:01:14,df, 4)``.
 - ``formatTime(time)`` : Formatiert die Rückgabe einer Kette ``#time#``.
 - ``floor(time/.60)`` : Konvertieren Sie Sekunden in Minuten oder Minuten in Stunden (``floor(time/.3600)`` für Sekunden bis Stunden).
@@ -467,11 +467,11 @@ Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die fo
     - Zum Starten : Starten Sie das Szenario in einem anderen Thread. Das gestartete Szenario läuft unabhängig vom aufrufenden Szenario.
     - Starten (Synchronisieren)) : Startet das aufgerufene Szenario und pausiert das aufrufende Szenario, während die Ausführung des aufgerufenen Szenarios beendet ist.
     - Halt : Stoppen Sie das Szenario.
-    - Aktivieren Sie : Aktivieren Sie ein deaktiviertes Szenario.
+    - Ermöglichen : Aktivieren Sie ein deaktiviertes Szenario.
     - Deaktivieren : Szenario deaktivieren. Es wird nicht mehr unabhängig von den Auslösern gestartet.
     - Zurücksetzen der ISs : Wird verwendet, um den Status von . zurückzusetzen **WENN**. Dieser Status wird verwendet, um die Aktionen von a . nicht zu wiederholen **WENN**, wenn die Bewertung der Bedingung das gleiche Ergebnis wie die vorherige Bewertung ergibt.
-- **Stoppen** (stop) : Stoppen Sie das Szenario.
-- **Erwarten** (wait) : Warten Sie, bis die Bedingung gültig ist (maximal 2 Stunden). Die Zeitüberschreitung erfolgt in Sekunden (s)).
+- **Halt** (stop) : Stoppen Sie das Szenario.
+- **Erwarten von** (wait) : Warten Sie, bis die Bedingung gültig ist (maximal 2 Stunden). Die Zeitüberschreitung erfolgt in Sekunden (s)).
 - **Gehe zum Design** (gotodesign) : Ändern Sie das in allen Browsern angezeigte Design durch das angeforderte Design.
 - **Fügen Sie ein Protokoll hinzu** (log) : Ermöglicht das Hinzufügen einer Nachricht zu den Protokollen.
 - **Nachricht erstellen** (message) : Fügen Sie dem Nachrichtencenter eine Nachricht hinzu.
@@ -483,8 +483,8 @@ Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die fo
 - **Geben Sie einen Text / Daten zurück** (Szenario_return) : Gibt beispielsweise einen Text oder einen Wert für eine Interaktion zurück.
 - **Symbol** (icon) : Ermöglicht das Ändern des Darstellungssymbols des Szenarios.
 - **Alarm** (alert) : Zeigt eine kleine Warnmeldung in allen Browsern an, in denen eine Jeedom-Seite geöffnet ist. Sie können zusätzlich 4 Alarmstufen auswählen.
-- **Pop-up** (popup) : Ermöglicht die Anzeige eines Popups, das in allen Browsern, in denen eine Jeedom-Seite geöffnet ist, unbedingt überprüft werden muss.
-- **Prüfbericht** (report) : Ermöglicht das Exportieren einer Ansicht im Format (PDF, PNG, JPEG oder SVG) und das Senden mit einem Befehl vom Typ Nachricht. Bitte beachten Sie, dass diese Funktionalität nicht funktioniert, wenn sich Ihr Internetzugang in nicht signiertem HTTPS befindet. Signiertes HTTP oder HTTPS ist erforderlich.
+- **Aufpoppen** (popup) : Ermöglicht die Anzeige eines Popups, das in allen Browsern, in denen eine Jeedom-Seite geöffnet ist, unbedingt überprüft werden muss.
+- **Bericht** (report) : Ermöglicht das Exportieren einer Ansicht im Format (PDF, PNG, JPEG oder SVG) und das Senden mit einem Befehl vom Typ Nachricht. Bitte beachten Sie, dass diese Funktionalität nicht funktioniert, wenn sich Ihr Internetzugang in nicht signiertem HTTPS befindet. Signiertes HTTP oder HTTPS ist erforderlich.
 - **Programmierten IN / A-Block löschen** (entfernen_inat) : Ermöglicht das Löschen der Programmierung aller IN- und A-Blöcke des Szenarios.
 - **Ereignis** (event) : Ermöglicht das willkürliche Übertragen eines Werts in einen Befehl vom Typ Information.
 - **Stichworte** (tag) : Ermöglicht das Hinzufügen / Ändern eines Tags (das Tag ist nur während der aktuellen Ausführung des Szenarios vorhanden, im Gegensatz zu den Variablen, die das Ende des Szenarios überleben).
@@ -504,7 +504,7 @@ Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die fo
 
 Mit dieser Funktion können Sie ein Szenario in eine Vorlage umwandeln, um es beispielsweise auf ein anderes Jeedom anzuwenden.
 
-Durch Klicken auf die Schaltfläche **Vorlage** Oben auf der Seite öffnen Sie das Vorlagenverwaltungsfenster.
+Durch Klicken auf die Schaltfläche **Schablone** Oben auf der Seite öffnen Sie das Vorlagenverwaltungsfenster.
 
 Von dort haben Sie die Möglichkeit :
 
@@ -516,7 +516,7 @@ Von dort haben Sie die Möglichkeit :
 Durch Klicken auf eine Vorlage können Sie :
 
 - **Teilen** : Teilen Sie die Vorlage auf dem Markt.
-- **Entfernen** : Vorlage löschen.
+- **Löschen** : Vorlage löschen.
 - **Download** : Holen Sie sich die Vorlage als JSON-Datei, um sie beispielsweise an ein anderes Jeedom zu senden.
 
 Unten haben Sie den Teil, um Ihre Vorlage auf das aktuelle Szenario anzuwenden.
@@ -539,4 +539,4 @@ Es ist in diesem *Klasse* Damit Sie Ihre Funktionen hinzufügen können, finden 
 
 > **WICHTIG**
 >
-> Wenn Sie Bedenken haben, können Sie jederzeit zur Originaldatei zurückkehren, indem Sie den Inhalt von kopieren ``user.function.class.sample.php`` Im ``user.function.class.php``
+> Wenn Sie Bedenken haben, können Sie jederzeit zur Originaldatei zurückkehren, indem Sie den Inhalt von kopieren ``user.function.class.sample.php`` in ``user.function.class.php``

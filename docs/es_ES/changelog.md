@@ -214,7 +214,7 @@ Entrada en el blog [aquí](https://blog.jeedom.com/6739-jeedom-4-3/)
 
 ### 4.2 : Noticias / Mejoras
 
-- **Síntesis** : Posibilidad de configurar objetos para ir a un *diseño* o un *vista* desde la síntesis.
+- **Síntesis** : Posibilidad de configurar objetos para ir a un *diseño* o un *visto* desde la síntesis.
 - **Tablero** : La ventana de configuración del dispositivo (modo de edición) ahora le permite configurar widgets móviles y tipos genéricos.
 - **Widgets** : Internacionalización de Widgets de terceros (código de usuario). ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.2).
 - **Análisis / Historia** : Posibilidad de comparar un historial durante un período determinado.
@@ -264,10 +264,10 @@ Entrada en el blog [aquí](https://blog.jeedom.com/6739-jeedom-4-3/)
 - Ahora se puede acceder a la configuración de los widgets para la versión móvil desde la ventana de configuración del equipo en el modo de edición del tablero.
 - Los parámetros opcionales disponibles en los widgets ahora se muestran para cada widget, ya sea en la configuración del comando o desde el modo de edición del tablero.
 - Muchos Core Widgets ahora aceptan configuraciones de color opcionales. (Control deslizante horizontal y vertical, indicador, brújula, lluvia, obturador, control deslizante de plantillas, etc.).
-- Widgets principales con visualización de *hora* ahora admite un parámetro opcional **hora : con fecha de** para mostrar una fecha relativa (ayer a las 4:48 p.m., último lunes a las 2:00 p.m., etc).
+- Widgets principales con visualización de *tiempo* ahora admite un parámetro opcional **tiempo : fecha** para mostrar una fecha relativa (ayer a las 4:48 p.m., último lunes a las 2:00 p.m., etc).
 - Los widgets de tipo Cursor (acción) ahora aceptan un parámetro opcional *pasos* para definir el paso de cambio en el cursor.
 - El widget **acción.deslizador.valor** ahora está disponible en el escritorio, con un parámetro opcional *deslizador*, lo que lo convierte en un *aporte* sencillo.
-- El widget **info.numeric.default** (*Indicador*) se ha rehecho en CSS puro y se ha integrado en dispositivos móviles. Por lo tanto, ahora son idénticos en computadoras de escritorio y dispositivos móviles.
+- El widget **info.numeric.default** (*Medir*) se ha rehecho en CSS puro y se ha integrado en dispositivos móviles. Por lo tanto, ahora son idénticos en computadoras de escritorio y dispositivos móviles.
 
 ### 4.2 : Respaldo en la nube
 
@@ -359,10 +359,10 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 ### 4.1 : Noticias / Mejoras
 
 - **Síntesis** : Agregar una nueva página **Inicio → Resumen** Ofrece un resumen visual global de las partes, con acceso rápido a resúmenes.
-- **Investigación** : Adición de un motor de búsqueda en **Herramientas → Buscar**.
+- **Investigar** : Adición de un motor de búsqueda en **Herramientas → Buscar**.
 - **Tablero** : El modo de edición ahora inserta el mosaico movido.
 - **Tablero** : Modo de edición: Los iconos de actualización del equipo se reemplazan por un icono que permite acceder a su configuración, gracias a un nuevo modal simplificado.
-- **Tablero** : Ahora podemos hacer clic en el *hora* widgets de acciones de tiempo para abrir la ventana del historial del comando de información vinculada.
+- **Tablero** : Ahora podemos hacer clic en el *tiempo* widgets de acciones de tiempo para abrir la ventana del historial del comando de información vinculada.
 - **Tablero** : El tamaño del mosaico de un equipo nuevo se adapta a su contenido.
 - **Tablero** : Agregar (¡atrás!) Un botón para filtrar los elementos mostrados por categoría.
 - **Tablero** : Ctrl Click en una información abre la ventana de historial con todos los comandos historizados del equipo visibles en el mosaico. Ctrl Haga clic en una leyenda para mostrar solo esta, Alt Haga clic para mostrarlas todas.
@@ -378,8 +378,8 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 - **Actualizaciones principales** : Implementación de un sistema para limpiar viejos archivos Core no utilizados.
 - **Guión** : Agregar un motor de búsqueda (a la izquierda del botón Ejecutar).
 - **Guión** : Adición de la función de edad (da la edad del valor del pedido).
-- **Guión** : *stateChanges()* ahora acepta el periodo *hoy dia* (medianoche hasta ahora), *ayer* y *día* (por 1 día).
-- **Guión** : Funciones *estadísticas (), promedio (), máximo (), mínimo (), tendencia (), duración()* : Bugfix durante el período *ayer*, y acepta ahora *día* (por 1 día).
+- **Guión** : *stateChanges()* ahora acepta el periodo *Este Dia* (medianoche hasta ahora), *el dia de ayer* y *día* (por 1 día).
+- **Guión** : Funciones *estadísticas (), promedio (), máximo (), mínimo (), tendencia (), duración()* : Bugfix durante el período *el dia de ayer*, y acepta ahora *día* (por 1 día).
 - **Guión** : Posibilidad de desactivar el sistema de cotización automática (Configuración → Sistema → Configuración : Equipements).
 - **Guión** : Viendo un *advertencia* si no se configura ningún activador.
 - **Guión** : Corrección de errores de *Seleccione* en el bloque copiar / pegar.
@@ -392,10 +392,10 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 - **Análisis / Historia** : Las opciones *agrupación, tipo, variación, escalera* están activos solo con una sola curva mostrada.
 - **Análisis / Historia** : Ahora podemos usar la opción *Área* con la opción *Escalera*.
 - **Análisis / Registros** : Nueva fuente tipo monoespacio para registros.
-- **Vista** : Posibilidad de poner escenarios.
-- **Vista** : El modo de edición ahora inserta el mosaico movido.
-- **Vista** : Modo de edición: Los iconos de actualización del equipo se reemplazan por un icono que permite acceder a su configuración, gracias a un nuevo modal simplificado.
-- **Vista** : El orden de visualización ahora es independiente del que se muestra en el Panel de control.
+- **Visto** : Posibilidad de poner escenarios.
+- **Visto** : El modo de edición ahora inserta el mosaico movido.
+- **Visto** : Modo de edición: Los iconos de actualización del equipo se reemplazan por un icono que permite acceder a su configuración, gracias a un nuevo modal simplificado.
+- **Visto** : El orden de visualización ahora es independiente del que se muestra en el Panel de control.
 - **Línea de tiempo** : Separación de páginas de historia y cronología.
 - **Línea de tiempo** : Integración de la línea de tiempo en DB por razones de confiabilidad.
 - **Línea de tiempo** : Gestión de múltiples líneas de tiempo.
@@ -421,7 +421,7 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 	- Ctrl Clic / Clic Center también disponible en sus menús contextuales (en las pestañas).
 - Nueva página ModalDisplay :
 	- Menú de análisis : Ctrl Click / Click Center en *Tiempo real* : Abra la ventana en una pestaña nueva, en pantalla completa.
-	- Menú de herramientas : Ctrl Click / Click Center en *Calificaciones*, *Probador de expresión*, *Variables*, *Investigación* : Abra la ventana en una pestaña nueva, en pantalla completa.
+	- Menú de herramientas : Ctrl Click / Click Center en *Calificaciones*, *Probador de expresión*, *Variables*, *Investigar* : Abra la ventana en una pestaña nueva, en pantalla completa.
 - Bloque de código, Editor de archivos, Personalización avanzada : Adaptación del tema oscuro.
 - Ventana de selección de imágenes mejorada.
 
@@ -449,7 +449,7 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 - Numerosas optimizaciones de rendimiento de escritorio / móvil.
 
 ### 4.1 : Changements
-- La funcion **escenario-> getHumanName()** de la clase de escenario php ya no regresa *[objeto] [grupo] [nombre]* maíz *[grupo] [objeto] [nombre]*.
+- La funcion **escenario-> getHumanName()** de la clase de escenario php ya no regresa *[objeto] [grupo] [nombre]* pero *[grupo] [objeto] [nombre]*.
 - La funcion **escenario-> byString()** ahora debe llamarse con la estructura *[grupo] [objeto] [nombre]*.
 - Las funciones **red-> getInterfaceIp () red-> getInterfaceMac () red-> getInterfaces()** han sido reemplazados por **network-> getInterfacesInfo()**
 
@@ -550,7 +550,7 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 - Los campos de búsqueda ahora admiten acentos.
 - Los campos de búsqueda (panel, escenarios, objetos, widgets, interacciones, complementos) ahora están activos cuando se abre la página, lo que le permite escribir una búsqueda directamente.
 - Se agregó un botón X en los campos de búsqueda para cancelar la búsqueda.
-- Durante una búsqueda, la clave *escapar* cancelar búsqueda.
+- Durante una búsqueda, la clave *Escapar* cancelar búsqueda.
 - Tablero : En el modo de edición, el control de búsqueda y sus botones se desactivan y se fijan.
 - Tablero : En el modo de edición, un clic de un botón *expandir* a la derecha de los objetos cambia el tamaño de los mosaicos del objeto a la altura del más alto. Ctrl + clic los reduce a la altura del más bajo.
 - Tablero : La ejecución del comando en un mosaico ahora se indica con el botón *actualizar*. Si no hay ninguno en el mosaico, aparecerá durante la ejecución.

@@ -30,7 +30,7 @@ Sobald Sie eine Interaktion konfiguriert haben, haben Sie ein Kontextmenü mit d
 
 Am oberen Rand der Seite befinden sich 3 Schaltflächen :
 
-- **Addieren** : Ermöglicht das Erstellen neuer Interaktionen.
+- **Hinzufügen** : Ermöglicht das Erstellen neuer Interaktionen.
 - **Regenerat** : Recréer toutes les interactions (peut être très long &gt; 5mn).
 - **Prüfen** : Öffnen Sie einen Dialog, um einen Satz zu schreiben und zu testen.
 
@@ -51,16 +51,16 @@ Wir können auch einen auszuführenden Befehl definieren, wenn beispielsweise di
 Die Konfigurationsseite besteht aus mehreren Registerkarten und Schaltflächen :
 
 - **Sätze** : Zeigt die Anzahl der Sätze der Interaktion an (ein Klick darauf zeigt Sie).
-- **Speichern** : Notieren Sie die aktuelle Interaktion.
-- **Entfernen** : Aktuelle Interaktion löschen.
+- **Zur Anmeldung** : Notieren Sie die aktuelle Interaktion.
+- **Löschen** : Aktuelle Interaktion löschen.
 - **Duplikat** : Dupliziert die aktuelle Interaktion.
 
 ### Registerkarte &quot;Allgemein&quot;
 
-- **Name** : Interaktionsname (kann leer sein, der Name ersetzt den Anforderungstext in der Interaktionsliste).
-- **Gruppe** : Interaktionsgruppe, dies ermöglicht es, sie zu organisieren (kann leer sein, wird daher in der Gruppe "keine" sein").
-- **Aktiv** : Aktiviert oder deaktiviert die Interaktion.
-- **Anforderung** : Der generierende Modellsatz (erforderlich).
+- **Nachname** : Interaktionsname (kann leer sein, der Name ersetzt den Anforderungstext in der Interaktionsliste).
+- **Band** : Interaktionsgruppe, dies ermöglicht es, sie zu organisieren (kann leer sein, wird daher in der Gruppe "keine" sein").
+- **Anlage** : Aktiviert oder deaktiviert die Interaktion.
+- **Anfrage** : Der generierende Modellsatz (erforderlich).
 - **Gleichbedeutend** : Ermöglicht das Definieren von Synonymen für die Namen der Befehle.
 - **Antwort** : Die Antwort zu geben.
 - **Warten Sie, bevor Sie antworten (s)** : Fügen Sie eine Verzögerung von X Sekunden hinzu, bevor Sie die Antwort generieren. So können Sie beispielsweise auf die Rückkehr eines Lampenstatus warten, bevor Sie beantwortet werden.
@@ -297,7 +297,7 @@ Es ist möglich, eine Lampe als Prozentsatz (Dimmer) oder einen Thermostat mit d
 
 ![interact022](../images/interact022.png)
 
-Wie wir sehen können, gibt es hier in der Anfrage das Tag **\.#consigne\.#** (Sie können eingeben, was Sie möchten), was in der Antriebssteuerung enthalten ist, um den gewünschten Wert anzuwenden. Dazu haben wir 3 Teile : \.* Anforderung : in dem wir ein Tag erstellen, das den Wert darstellt, der an die Interaktion gesendet wird. \* Antwort : Wir verwenden das Tag für die Antwort erneut, um sicherzustellen, dass Jeedom die Anfrage richtig verstanden hat. \* Aktion : Wir setzen eine Aktion auf die Lampe, die wir fahren möchten, und geben in dem Wert, den wir geben, unser Etikett an *Befehl*.
+Wie wir sehen können, gibt es hier in der Anfrage das Tag **\.#consigne\.#** (Sie können eingeben, was Sie möchten), was in der Antriebssteuerung enthalten ist, um den gewünschten Wert anzuwenden. Dazu haben wir 3 Teile : \.* Anfrage : in dem wir ein Tag erstellen, das den Wert darstellt, der an die Interaktion gesendet wird. \* Antwort : Wir verwenden das Tag für die Antwort erneut, um sicherzustellen, dass Jeedom die Anfrage richtig verstanden hat. \* Aktie : Wir setzen eine Aktion auf die Lampe, die wir fahren möchten, und geben in dem Wert, den wir geben, unser Etikett an *bestellen*.
 
 > **Notiz**
 >

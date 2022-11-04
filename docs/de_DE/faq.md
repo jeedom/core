@@ -14,13 +14,13 @@ Jeedom verfügt über eine mobile Version, die für Mobilgeräte und Tablets gee
 Wenn Sie sich zum ersten Mal bei Jeedom anmelden (und auch danach, wenn Sie sie nicht geändert haben), lauten der Standardbenutzername und das Standardkennwort admin / admin. Bei der ersten Verbindung wird dringend empfohlen, diese Kennungen zu ändern, um die Sicherheit zu erhöhen.
 
 ### Ich kann mich nicht mehr mit meinem Jeedom verbinden
-Seit Jeedom 3.2 Aus offensichtlichen Sicherheitsgründen ist es nicht mehr möglich, eine Remoteverbindung mit admin / admin herzustellen. Admin / Admin-Anmeldeinformationen funktionieren nur lokal. Achtung, wenn Sie den DNS auch lokal durchlaufen, werden Sie notwendigerweise als remote identifiziert. Anderer Standardpunkt nur IP auf 192.168.*.* oder 127.0.0.1 werden als lokal anerkannt. Es wird in der Administration des Jeedom-Sicherheitsteils dann IP "weiß konfiguriert". Wenn Sie trotz allem immer noch keine Verbindung herstellen können, müssen Sie das Verfahren zum Zurücksetzen des Kennworts verwenden (siehe) [Hier](https://doc.jeedom.com/de_DE/howto/reset.password).
+Seit Jeedom 3.2 Aus offensichtlichen Sicherheitsgründen ist es nicht mehr möglich, eine Remoteverbindung mit admin / admin herzustellen. Admin / Admin-Anmeldeinformationen funktionieren nur lokal. Achtung, wenn Sie den DNS auch lokal durchlaufen, werden Sie notwendigerweise als remote identifiziert. Anderer Standardpunkt nur IP auf 192.168.*.* oder 127.0.0.1 werden als lokal anerkannt. Es wird in der Administration des Jeedom-Sicherheitsteils dann IP "weiß konfiguriert". Wenn Sie trotz allem immer noch keine Verbindung herstellen können, müssen Sie das Verfahren zum Zurücksetzen des Kennworts verwenden (siehe) [hier](https://doc.jeedom.com/de_DE/howto/reset.password).
 
 ### Ich sehe nicht alle meine Geräte im Dashboard
 Dies liegt häufig daran, dass die Ausrüstung einem Objekt zugeordnet ist, das nicht der Sohn oder das Objekt selbst des ersten links im Baum ausgewählten Objekts ist (Sie können dieses in Ihrem Profil konfigurieren).
 
 ### Die Jeedom-Schnittstelle verfügt über Verknüpfungen ?
-Ja, die Liste der Tastatur- / Mausverknüpfungen lautet [Hier](shortcuts.md).
+Ja, die Liste der Tastatur- / Mausverknüpfungen lautet [hier](shortcuts.md).
 
 ### Können wir Ausrüstungsbestellungen nachbestellen? ?
 Ja, es ist möglich, ziehen Sie einfach die Befehle Ihres Objekts in die Konfiguration und legen Sie sie dort ab.
@@ -41,7 +41,7 @@ Es gibt keine Standarddauer, dies hängt vom System und dem zu sichernden Datenv
 Sie befinden sich im Ordner / var / www / html / backup
 
 ### Können wir Jeedom in https setzen? ?
-Jawohl : Entweder Sie haben ein Netzteil oder mehr, in diesem Fall Sie
+Ja : Entweder Sie haben ein Netzteil oder mehr, in diesem Fall Sie
 benutze einfach die [Jeedom DNS](https://jeedom.github.io/documentation/howto/de_DE/mise_en_place_dns_jeedom). Entweder mit einem DNS und Sie wissen, wie man ein gültiges Zertifikat einrichtet. In diesem Fall handelt es sich um eine Standardinstallation eines Zertifikats.
 
 ### So verbinden Sie sich in SSH ?

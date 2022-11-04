@@ -37,7 +37,7 @@ Para los profesionales :
 - **Habilitar el acceso a complementos beta** : Permite el acceso a los complementos de betas (tenga en cuenta que esto le impedirá acceder al soporte).
     - **Resumen** Aquí encontrará un resumen de sus diferentes derechos y servicios.
 
-> **Propina**
+> **Consejo**
 >
 > No olvides guardar.
 
@@ -49,7 +49,7 @@ Para los profesionales :
 - **Clave de instalación**
     - **Número de llaves de instalación** : Muestra el número de instalaciones de Jeedom actualmente vinculadas a su cuenta, así como el límite autorizado.
 
-> **Propina**
+> **Consejo**
 >
 > Es posible que Market a veces le pida que restablezca sus claves de instalación, esto es normal, solo siga lo que se solicita.
 
@@ -66,7 +66,7 @@ Para los profesionales :
     - **Hardware** : Nombre de hardware Jeedom.
     - **Versión** : Versión Jeedom instalada.
 
-> **Propina**
+> **Consejo**
 >
 > No olvides guardar.
 

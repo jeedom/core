@@ -9,13 +9,13 @@ Real brain of home automation, the scenarios allow to interact with the real wor
 
 You will find there the list of scenarios of your Jeedom, as well as functionalities to manage them at best :
 
-- **Add** : Create a scenario. The procedure is described in the next chapter.
+- **To add** : Create a scenario. The procedure is described in the next chapter.
 - **Disable scenarios** : Disables all scenarios. Rarely used and knowingly, since no scenario will run anymore.
-- **Overview** : Allows you to have an overview of all scenarios. You can change the values **active**, **visible**, **multi launch**, **synchronous mode**, **Log** and **Timeline** (these parameters are described in the following chapter). You can also access the logs for each scenario and start them individually.
+- **Overview** : Allows you to have an overview of all scenarios. You can change the values **asset**, **visible**, **multi launch**, **synchronous mode**, **Log** and **Timeline** (these parameters are described in the following chapter). You can also access the logs for each scenario and start them individually.
 
 ## My scenarios
 
-You will find in this part **list of scenarios** that you created. They are classified according to their **group**, possibly defined for each of them. Each scenario is displayed with its **name** and his **parent object**. The **grayed out scenarios** are the ones that are disabled.
+You will find in this part **list of scenarios** that you created. They are classified according to their **band**, possibly defined for each of them. Each scenario is displayed with its **name** and his **parent object**. The **grayed out scenarios** are the ones that are disabled.
 
 > **Tip**
 >
@@ -33,7 +33,7 @@ Once on the configuration of a scenario, you have a contextual menu with the Rig
 
 ## Creation | Editing a scenario
 
-After clicking on **Add**, you must choose the name of your scenario. You are then redirected to the page of its general parameters.
+After clicking on **To add**, you must choose the name of your scenario. You are then redirected to the page of its general parameters.
 Before that, at the top of the page, there are some useful functions to manage this scenario :
 
 - **ID** : Next to the word **General**, this is the scenario identifier.
@@ -48,7 +48,7 @@ Before that, at the top of the page, there are some useful functions to manage t
 - **Template** : Allows you to access the templates and apply one to the scenario from the Market (explained at the bottom of the page).
 - **Research** : Unfolds a search field to search in the scenario. This search unfolds the collapsed blocks if necessary and folds them back after the search.
 - **Perform** : Allows you to launch the scenario manually (regardless of the triggers). Save beforehand to take into account the modifications.
-- **Remove** : Delete scenario.
+- **To delete** : Delete scenario.
 - **To safeguard** : Save the changes made.
 
 > **Tips**
@@ -57,7 +57,7 @@ Before that, at the top of the page, there are some useful functions to manage t
     > - The variables, visible in **Tools → Variables**
     > - The expression tester, accessible by **Tools → Expression tester**
 >
-> One **Ctrl Click on the execute button** allows you to directly save, execute and display the scenario log (if the log level is not None).
+> A **Ctrl Click on the execute button** allows you to directly save, execute and display the scenario log (if the log level is not None).
 
 ## General tab
 
@@ -65,8 +65,8 @@ In the tab **General**, we find the main parameters of the scenario :
 
 - **Scenario name** : The name of your scenario.
 - **Name to display** : The name used for its display. Optional, if not filled in, the name of the scenario is used.
-- **Group** : Allows you to organize the scenarios, by classifying them in groups (visible on the scenarios page and in their contextual menus).
-- **Active** : Activate the scenario. If not active, it will not be executed by Jeedom, regardless of the trigger mode.
+- **Band** : Allows you to organize the scenarios, by classifying them in groups (visible on the scenarios page and in their contextual menus).
+- **Asset** : Activate the scenario. If not active, it will not be executed by Jeedom, regardless of the trigger mode.
 - **Visible** : Used to make the scenario visible (Dashboard).
 - **Parent object** : Assignment to a parent object. It will then be visible or not according to this parent.
 - **Timeout in seconds (0 = unlimited)** : The maximum execution time allowed for this scenario. Beyond this time, the execution of the scenario is interrupted.
@@ -84,7 +84,7 @@ In the tab **General**, we find the main parameters of the scenario :
 > **Tip**
 >
 > Conditions can now be entered in triggered mode. Eg : ``#[Garage][Open Garage][Ouverture]# == 1``
-> Warning : you can have a maximum of 28 triggers / programming for a scenario.
+> Attention : you can have a maximum of 28 triggers / programming for a scenario.
 
 > **Tip mode programmed**
 >
@@ -92,7 +92,7 @@ In the tab **General**, we find the main parameters of the scenario :
 
 ## Scenario tab
 
-This is where you will build your scenario. After creating the scenario, its content is empty, so it will do ... nothing. You have to start with **Add block**, with the button on the right. Once a block has been created, you can add another **block** or a **action**.
+This is where you will build your scenario. After creating the scenario, its content is empty, so it will do ... nothing. You have to start with **Add block**, with the button on the right. Once a block has been created, you can add another **block** or a **stock**.
 
 For more convenience and not having to constantly reorder the blocks in the scenario, adding a block is done after the field in which the mouse cursor is located.
 *For example, if you have ten blocks, and you click in the IF condition of the first block, the added block will be added after this block, at the same level. If no field is active, it will be added at the end of the scenario.*
@@ -110,12 +110,12 @@ For more convenience and not having to constantly reorder the blocks in the scen
 Here are the different types of blocks available :
 
 - **If / Then / Or** : Allows actions to be carried out under conditions (if this, then that).
-- **Action** : Allows you to launch simple actions without any conditions.
+- **Stock** : Allows you to launch simple actions without any conditions.
 - **Loop** : Allows actions to be performed repeatedly from 1 to a defined number (or even the value of a sensor, or a random number…).
 - **In** : Allows to launch an action in X minute (s) (0 is a possible value). The peculiarity is that the actions are launched in the background, so they do not block the rest of the scenario. So it&#39;s a non-blocking block.
-- **AT** : Allows to tell Jeedom to launch the actions of the block at a given time (in the form hhmm). This block is non-blocking. Ex : 0030 for 00:30, or 0146 for 1h46 and 1050 for 10h50.
+- **HAS** : Allows to tell Jeedom to launch the actions of the block at a given time (in the form hhmm). This block is non-blocking. Ex : 0030 for 00:30, or 0146 for 1h46 and 1050 for 10h50.
 - **Coded** : Allows you to write directly in PHP code (requires certain knowledge and can be risky but allows you to have no constraints).
-- **Remark** : Allows you to add comments to your scenario.
+- **Comment** : Allows you to add comments to your scenario.
 
 Each block has its options to better handle them :
 
@@ -149,7 +149,7 @@ Three buttons are available on the right of this type of block to select an item
 >
 > There is a list of tags allowing access to variables from the scenario or another, or by the time, the date, a random number,… See below the chapters on commands and tags.
 
-Once the condition is completed, you must use the &quot;add&quot; button on the left to add a new **block** or a **action** in the current block.
+Once the condition is completed, you must use the &quot;add&quot; button on the left to add a new **block** or a **stock** in the current block.
 
 
 ### Block Code
@@ -159,7 +159,7 @@ The Code block allows you to execute php code. It is therefore very powerful but
 #### Access to controls (sensors and actuators)
 
 -  ``cmd::byString($string);`` : Returns the corresponding command object.
-    -   ``$string``: Link to the desired command : ``#[objet][equipment][commande]#`` (Ex : ``#[Appartement][Alarme][Active]#``)
+    -   ``$string``: Link to the desired command : ``#[objet][equipment][commande]#`` (ex : ``#[Appartement][Alarme][Asset]#``)
 -  ``cmd::byId($id);`` : Returns the corresponding command object.
     -  ``$id`` : Command ID.
 -  ``$cmd->execCmd($options = null);`` : Execute the command and return the result.
@@ -211,7 +211,7 @@ Actions added to blocks have several options :
 - A box **activated** so that this command is taken into account in the scenario.
 - A box **parallel** so that this command is launched in parallel (at the same time) with the other commands also selected.
 - A **vertical double arrow** to move the action. Just drag and drop from there.
-- A button for **Remove** the action.
+- A button for **to delete** the action.
 - A button for specific actions, with each time the description (on hover) of this action.
 - A button to search for an action command.
 
@@ -293,7 +293,7 @@ You also have the following additional tags if your scenario was triggered by an
 - #query# : Interaction that triggered the scenario.
 - #profil# : Profile of the user who started the scenario (can be empty).
 
-> **IMPORTANT**
+> **Important**
 >
 > When a scenario is triggered by an interaction, it is necessarily executed in fast mode. So in the interaction thread and not in a separate thread.
 
@@ -366,7 +366,7 @@ Several functions are available for the equipment :
 
 - ``tag(montag,[defaut])`` : Used to retrieve the value of a tag or the default value if it does not exist.
 
-- ``name(type,commande)`` : Used to retrieve the name of the command, equipment or object. Type : cmd, eqLogic or object.
+- ``name(type,commande)`` : Used to retrieve the name of the command, equipment or object. Kind : cmd, eqLogic or object.
 
 - ``lastCommunication(equipment,[format])`` : Returns the date of the last communication for the device given as a parameter, the 2nd optional parameter is used to specify the return format (details [here](https://www.php.net/manual/fr/datetime.format.php)). A return of -1 means that the equipment cannot be found.
 
@@ -379,7 +379,7 @@ The periods and intervals of these functions can also be used with [PHP expressi
 - ``Last Monday`` : last Monday at 00:00.
 - ``5 days ago`` : 5 days ago.
 - ``Yesterday noon`` : yesterday afternoon.
-- Etc..
+- Etc.
 
 Here are practical examples to understand the values returned by these different functions :
 
@@ -429,7 +429,7 @@ A generic function toolbox can also be used to perform conversions or calculatio
 - ``median(commande1,commande2…​.commandeN)`` : Returns the median of the values.
 - ``avg(commande1,commande2…​.commandeN)`` : Returns the average of the values.
 - ``time_op(time,value)`` : Allows you to perform operations on time, with time = time (ex : 1530) and value = value to add or subtract in minutes.
-- ``time_between(time,start,end)`` : Used to test if a time is between two values with ``time=temps`` (Ex : 1530), ``start=temps``, ``end=temps``. Start and end values can be straddling midnight.
+- ``time_between(time,start,end)`` : Used to test if a time is between two values with ``time=temps`` (ex : 1530), ``start=temps``, ``end=temps``. Start and end values can be straddling midnight.
 - ``time_diff(date1,date2[,format, round])`` : Used to find out the difference between two dates (the dates must be in the format YYYY / MM / DD HH:MM:SS). By default, the method returns the difference in day (s). You can ask it in seconds (s), minutes (m), hours (h). Example in seconds ``time_diff(2019-02-02 14:55:00,2019-02-25 14:55:00,s)``. The difference is returned in absolute, unless you specify ``f`` (``sf``, ``mf``, ``hf``, ``df``). You can also use ``dhms`` who will not return example ``7j 2h 5min 46s``. The optional round parameter rounds to x decimal places (2 by default). Ex: ``time_diff(2020-02-21 20:55:28,2020-02-28 23:01:14,df, 4)``.
 - ``formatTime(time)`` : Formats the return of a chain ``#time#``.
 - ``floor(time/60)`` : Convert seconds to minutes, or minutes to hours (``floor(time/3600)`` for seconds to hours).
@@ -467,7 +467,7 @@ In addition to home automation commands, you have access to the following action
     - To start up : Start the scenario in a different thread. The started scenario runs independently of the calling scenario.
     - Start (Sync) : Starts the called scenario and pauses the calling scenario, while the called scenario has finished running.
     - Stop : Stop the scenario.
-    - Activate : Activate a disabled scenario.
+    - Enable : Activate a disabled scenario.
     - Deactivate : Disable scenario. It no longer launches regardless of the triggers.
     - Resetting the ISs : Used to reset the status of **IF**. This status is used for the non-repetition of the actions of a **IF**, if the evaluation of the condition gives the same result as the previous evaluation.
 - **Stop** (stop) : Stop the scenario.
@@ -504,7 +504,7 @@ In addition to home automation commands, you have access to the following action
 
 This functionality allows you to transform a scenario into a template to, for example, apply it to another Jeedom.
 
-By clicking on the button **Template** at the top of the page, you open the template management window.
+By clicking on the button **template** at the top of the page, you open the template management window.
 
 From there, you have the possibility :
 
@@ -516,7 +516,7 @@ From there, you have the possibility :
 By clicking on a template, you can :
 
 - **To share** : Share the template on the Market.
-- **Remove** : Delete template.
+- **To delete** : Delete template.
 - **Download** : Get the template as a JSON file to send it to another Jeedom for example.
 
 Below, you have the part to apply your template to the current scenario.
@@ -539,4 +539,4 @@ It is in this *class* that you can add your functions, there you will find an ex
 
 > **IMPORTANT**
 >
-> If you have a concern, you can always revert to the original file by copying the contents of ``user.function.class.sample.php`` In ``user.function.class.php``
+> If you have a concern, you can always revert to the original file by copying the contents of ``user.function.class.sample.php`` in ``user.function.class.php``

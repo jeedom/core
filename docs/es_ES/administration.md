@@ -22,7 +22,7 @@ En esta pestaña encontramos información general sobre Jeedom :
 A continuación, varios parámetros que centralizan la información que pueden usar los complementos, evitando tener que ingresarlos en cada complemento.
 
 - Contacto : Latitud, longitud y altitud de su hogar / sitio.
-- Habla a : Dirección postal de su hogar / sitio.
+- Dirección : Dirección postal de su hogar / sitio.
 - Diverso : Superficie y número de ocupantes de su hogar / sitio.
 
 ## Pestaña interfaz
@@ -65,9 +65,9 @@ En esta pestaña encontrará los parámetros de personalización de la pantalla.
 
 ### Personnalisation
 
-- **Activar** : Active el uso de las siguientes opciones.
+- **Habilitar** : Active el uso de las siguientes opciones.
 - **Transparencia** : Muestra mosaicos del panel de control y algunos contenidos con transparencia. 1 : totalmente opaco, 0 : totalmente transparente.
-- **Ronda** : Muestra elementos de la interfaz con ángulos redondeados. 0 : sin redondeo, 1 : redondeo máximo.
+- **Redondo** : Muestra elementos de la interfaz con ángulos redondeados. 0 : sin redondeo, 1 : redondeo máximo.
 - **Deshabilitar sombras** : Deshabilita las sombras de los mosaicos en el tablero, los menús y ciertos elementos de la interfaz.
 
 
@@ -103,11 +103,11 @@ Es absolutamente necesario configurar correctamente esta parte importante de Jee
     - **Acceso** : Ingrese el inicio de sesión proxy,
     - **Contraseña** : Ingrese la contraseña.
 
-> **Propina**
+> **Consejo**
 >
 > Si está en HTTPS, el puerto es 443 (predeterminado) y en HTTP el puerto es 80 (predeterminado). Para usar HTTPS desde el exterior, ahora está disponible en el mercado un complemento de letencrypt.
 
-> **Propina**
+> **Consejo**
 >
 > Para saber si necesita establecer un valor en el campo **Complementar**, mire, cuando inicie sesión en Jeedom en su navegador de Internet, si necesita agregar / Jeedom (o lo que sea) después de la IP.
 
@@ -116,7 +116,7 @@ Es absolutamente necesario configurar correctamente esta parte importante de Jee
 - **Mercado proxy** : permite el acceso remoto a su Jeedom sin la necesidad de un DNS, una IP fija o abrir los puertos de su caja de Internet.
     - **Usando Jeedom DNS** : activa Jeedom DNS (tenga en cuenta que esto requiere al menos un paquete de servicio)).
     - **Estado de DNS** : Estado HTTP HTTP.
-    - **Gestión** : permite detener y reiniciar el servicio DNS de Jeedom.
+    - **Administración** : permite detener y reiniciar el servicio DNS de Jeedom.
 
 > **Importante**
 >
@@ -219,7 +219,7 @@ Configurar gráficos de enlace. Estos enlaces le permiten ver, en forma de gráf
 
 Esta pestaña le permite establecer parámetros globales relacionados con las interacciones que encontrará en Herramientas → Interacciones.
 
-> **Propina**
+> **Consejo**
 >
 > Para activar el registro de interacción, vaya a la pestaña Configuración → Sistema → Configuración : Registros, luego verifique **Depurar** en la lista de abajo. Atención : los registros serán muy detallados !
 
@@ -327,7 +327,7 @@ Depósito utilizado para conectar Jeedom a Github.
 
 Depósito utilizado para conectar Jeedom al mercado, se recomienda encarecidamente utilizar este depósito. Atención : cualquier solicitud de soporte puede ser rechazada si utiliza un depósito diferente a este.
 
-- **Habla a** : Habla a du Mercado.(https://www.Jeedom.com/market).
+- **Dirección** : Dirección du Mercado.(https://www.Jeedom.com/market).
 - **Nombre de usuario** : Su nombre de usuario en el mercado.
 - **Contraseña** : Tu contraseña de mercado.
 - **Nombre [nube de respaldo]** : Nombre de su copia de seguridad en la nube (la atención debe ser única para cada Jeedom en riesgo de chocar entre sí).

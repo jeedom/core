@@ -29,7 +29,7 @@ In the menu (right click), we find the following actions :
 - **Add area** : Allows to add a clickable transparent zone which will be able to execute a series of actions during a click (depending or not on the status of another command).
 - **Add summary** : Adds information from an object or general summary.
 - **Display**
-    - **Any** : Does not display any grid.
+    - **None** : Does not display any grid.
     - **10x10** : Displays a 10 by 10 grid.
     - **15x15** : Displays a grid of 15 by 15.
     - **20x20** : Displays a 20 by 20 grid.
@@ -51,13 +51,13 @@ In the menu (right click), we find the following actions :
 Found here :
 
 - **General**
-    - **Name** : The name of your design.
+    - **Last name** : The name of your design.
     - **Position** : The position of the design in the menu. Allows you to order the designs.
     - **Transparent background** : Makes the background transparent. Attention if the box is checked, the background color is not used.
     - **Background color** : Design background color.
     - **Access code** : Access code to your design (if empty, no code is required).
     - **Icon** : An icon for it (appears in the design choice menu).
-    - **Picture**
+    - **Image**
         - **Send** : Allows you to add a background image to the design.
         - **Delete image** : Delete image.
 - **Sizes**
@@ -116,7 +116,7 @@ Allows you to choose the commands to grapher.
 - **Border** : allows you to add a border, beware the syntax is HTML (you must use CSS syntax, for example : solid 1px black).
 - **Font size** : allows you to change the font size (ex 50%, you must put the% sign).
 - **Text alignment** : allows you to choose the alignment of the text (left / right / centered).
-- **Fat** : bold text.
+- **Bold** : bold text.
 - **Text** : Text in HTML code that will be in the element.
 
 > **Important**
@@ -131,7 +131,7 @@ Allows you to choose the commands to grapher.
 
 ### Specific display settings
 
-- **Name** : Name of the link (displayed text).
+- **Last name** : Name of the link (displayed text).
 - **Link** : Link to the design or view in question.
 - **Background color** : Allows you to change the background color or make it transparent, do not forget to change &quot;Default&quot; to NO.
 - **Text color** : Allows you to change the color of icons and texts (be careful to set Default to No).
@@ -139,7 +139,7 @@ Allows you to choose the commands to grapher.
 - **Border (attention CSS syntax, ex : solid 1px black)** : Allows you to add a border, beware the syntax is HTML.
 - **Font size (ex 50%, you must put the% sign)** : Allows you to change the font size.
 - **Text alignment** : Allows you to choose the alignment of the text (left / right / centered).
-- **Fat** : Bold text.
+- **Bold** : Bold text.
 
 ## Equipement
 
@@ -151,7 +151,7 @@ Allows you to choose the commands to grapher.
 - **Text color** : Lets you choose a custom background color, or use the default color.
 - **Rounded** : Value in pixels of the rounding of the angles of the equipment tile.
 - **Border** : CSS definition of an equipment tile border. Ex : 1px solid black.
-- **Opacity** : Opacity of the equipment tile, between 0 and 1. Warning : a background color must be defined.
+- **Opacity** : Opacity of the equipment tile, between 0 and 1. Attention : a background color must be defined.
 - **Custom CSS** : CSS rules to apply on the equipment.
 - **Apply custom css on** : CSS selector on which to apply custom CSS.
 
@@ -179,7 +179,7 @@ Displays the advanced equipment configuration window (see documentation **Home a
 ### Specific display settings
 
 - **To display** : Defines what you want to display, still image or stream from a camera.
-- **Picture** : Send the image in question (if you have chosen an image).
+- **Image** : Send the image in question (if you have chosen an image).
 - **Camera** : Camera to display (if you chose camera).
 
 ## Zone
@@ -219,7 +219,7 @@ In this mode, when hovering or clicking in the Jeedom area, you will display the
 - **Round off the angles (don't forget to put%, ex 50%)** : Allows to round the angles, do not forget to put the%.
 - **Border (attention CSS syntax, ex : solid 1px black)** : Allows you to add a border, beware the syntax is HTML.
 - **Font size (ex 50%, you must put the% sign)** : Allows you to change the font size.
-- **Fat** : Bold text.
+- **Bold** : Bold text.
 
 ## FAQ
 

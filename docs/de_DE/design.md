@@ -29,7 +29,7 @@ Im Menü (Rechtsklick) finden wir folgende Aktionen :
 - **Bereich hinzufügen** : Ermöglicht das Hinzufügen einer anklickbaren transparenten Zone, die während eines Klicks eine Reihe von Aktionen ausführen kann (abhängig vom Status eines anderen Befehls oder nicht).
 - **Zusammenfassung hinzufügen** : Fügt Informationen aus einem Objekt oder einer allgemeinen Zusammenfassung hinzu.
 - **Anzeige**
-    - **Irgendein** : Zeigt kein Raster an.
+    - **Keiner** : Zeigt kein Raster an.
     - **10x10** : Zeigt ein 10 x 10-Raster an.
     - **15x15** : Zeigt ein Raster von 15 mal 15 an.
     - **20x20** : Zeigt ein 20 x 20-Raster an.
@@ -51,14 +51,14 @@ Im Menü (Rechtsklick) finden wir folgende Aktionen :
 Hier gefunden :
 
 - **General**
-    - **Name** : Der Name Ihres Designs.
+    - **Nachname** : Der Name Ihres Designs.
     - **Position** : Die Position des Designs im Menü. Ermöglicht die Bestellung der Designs.
     - **Transparenter Hintergrund** : Macht den Hintergrund transparent. Achtung Wenn das Kontrollkästchen aktiviert ist, wird die Hintergrundfarbe nicht verwendet.
     - **Hintergrundfarbe** : Design Hintergrundfarbe.
     - **Zugangscode** : Zugriffscode für Ihr Design (falls leer, ist kein Code erforderlich).
     - **Symbol** : Ein Symbol dafür (erscheint im Designauswahlmenü).
     - **Bild**
-        - **Schicken** : Ermöglicht das Hinzufügen eines Hintergrundbilds zum Design.
+        - **Senden** : Ermöglicht das Hinzufügen eines Hintergrundbilds zum Design.
         - **Bild löschen** : Bild löschen.
 - **Größen**
     - **Größe (BxH)** : Ermöglicht das Festlegen der Größe Ihres Designs in Pixel.
@@ -99,7 +99,7 @@ Ermöglicht das Sperren des Elements, sodass es nicht mehr beweglich oder in der
 - **Periodenauswahl anzeigen** : Zeigt den Periodenwähler oben links an.
 - **Bildlaufleiste anzeigen** : Zeigt die Bildlaufleiste an.
 - **Transparenter Hintergrund** : Macht den Hintergrund transparent.
-- **Rand** : Ermöglicht das Hinzufügen eines Rahmens. Achten Sie darauf, dass die Syntax HTML ist (seien Sie vorsichtig, Sie müssen beispielsweise die CSS-Syntax verwenden : festes 1px schwarz).
+- **Grenze** : Ermöglicht das Hinzufügen eines Rahmens. Achten Sie darauf, dass die Syntax HTML ist (seien Sie vorsichtig, Sie müssen beispielsweise die CSS-Syntax verwenden : festes 1px schwarz).
 
 ### Erweiterte Konfiguration
 
@@ -113,10 +113,10 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 - **Hintergrundfarbe** : Mit dieser Option können Sie die Hintergrundfarbe ändern oder transparent machen. Vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu ändern.
 - **Textfarbe** : Mit dieser Option können Sie die Farbe von Symbolen und Texten ändern (achten Sie darauf, die Standardeinstellung auf Nein zu setzen)..
 - **Rund um die Winkel** : erlaubt das Abrunden der Winkel (vergessen Sie nicht,%, ex 50% zu setzen).
-- **Rand** : Wenn Sie einen Rahmen hinzufügen möchten, achten Sie darauf, dass die Syntax HTML ist (Sie müssen beispielsweise die CSS-Syntax verwenden : festes 1px schwarz).
+- **Grenze** : Wenn Sie einen Rahmen hinzufügen möchten, achten Sie darauf, dass die Syntax HTML ist (Sie müssen beispielsweise die CSS-Syntax verwenden : festes 1px schwarz).
 - **Schriftgröße** : Mit dieser Option können Sie die Schriftgröße ändern (ab 50% müssen Sie das% -Zeichen eingeben).
 - **Textausrichtung** : Mit dieser Option können Sie die Ausrichtung des Texts auswählen (links / rechts / zentriert)).
-- **Fett** : fetter Text.
+- **Fett gedruckt** : fetter Text.
 - **Text** : Text im HTML-Code, der sich im Element befindet.
 
 > **Wichtig**
@@ -131,7 +131,7 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 
 ### Spezifische Anzeigeeinstellungen
 
-- **Name** : Name des Links (angezeigter Text).
+- **Nachname** : Name des Links (angezeigter Text).
 - **Verknüpfung** : Link zum betreffenden Design oder zur betreffenden Ansicht.
 - **Hintergrundfarbe** : Mit dieser Option können Sie die Hintergrundfarbe ändern oder transparent machen. Vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu ändern.
 - **Textfarbe** : Mit dieser Option können Sie die Farbe von Symbolen und Texten ändern (achten Sie darauf, die Standardeinstellung auf Nein zu setzen).
@@ -139,7 +139,7 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 - **Rand (Aufmerksamkeit CSS-Syntax, z : festes 1px schwarz)** : Ermöglicht das Hinzufügen eines Rahmens. Beachten Sie, dass die Syntax HTML ist.
 - **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** : Ermöglicht das Ändern der Schriftgröße.
 - **Textausrichtung** : Mit dieser Option können Sie die Ausrichtung des Texts auswählen (links / rechts / zentriert)).
-- **Fett** : Fetter Text.
+- **Fett gedruckt** : Fetter Text.
 
 ## Equipement
 
@@ -150,8 +150,8 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 - **Hintergrundfarbe** : Ermöglicht die Auswahl einer benutzerdefinierten Hintergrundfarbe oder die Anzeige des Geräts mit transparentem Hintergrund oder die Verwendung der Standardfarbe.
 - **Textfarbe** : Hier können Sie eine benutzerdefinierte Hintergrundfarbe auswählen oder die Standardfarbe verwenden.
 - **Gerundet** : Wert in Pixel der Rundung der Winkel der Gerätekachel.
-- **Rand** : CSS-Definition einer Gerätekachelgrenze. Ex : 1px festes Schwarz.
-- **Opazität** : Deckkraft der Gerätekachel zwischen 0 und 1. Warnung : Es muss eine Hintergrundfarbe definiert werden.
+- **Grenze** : CSS-Definition einer Gerätekachelgrenze. Ex : 1px festes Schwarz.
+- **Opazität** : Deckkraft der Gerätekachel zwischen 0 und 1. Aufmerksamkeit : Es muss eine Hintergrundfarbe definiert werden.
 - **Benutzerdefiniertes CSS** : CSS-Regeln für das Gerät.
 - **Wenden Sie benutzerdefiniertes CSS auf an** : CSS-Auswahl, auf die benutzerdefiniertes CSS angewendet werden soll.
 
@@ -219,7 +219,7 @@ In diesem Modus wird beim Bewegen oder Klicken im Bereich Jeedom das betreffende
 - **Runden Sie die Winkel ab (vergessen Sie nicht,%, ex 50%, anzugeben)** : Ermöglicht das Abrunden der Winkel. Vergessen Sie nicht, die% anzugeben.
 - **Rand (Aufmerksamkeit CSS-Syntax, z : festes 1px schwarz)** : Ermöglicht das Hinzufügen eines Rahmens. Beachten Sie, dass die Syntax HTML ist.
 - **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** : Ermöglicht das Ändern der Schriftgröße.
-- **Fett** : Fetter Text.
+- **Fett gedruckt** : Fetter Text.
 
 ## FAQ
 

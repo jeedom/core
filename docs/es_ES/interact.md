@@ -12,7 +12,7 @@ Estas órdenes pueden ser obtenidas por :
 
 El valor de las interacciones radica en la integración simplificada en otros sistemas como teléfonos inteligentes, tabletas, otras cajas de automatización del hogar, etc.
 
-> **Propina**
+> **Consejo**
 >
 > Puede abrir una interacción haciendo :
 > - Haga clic en uno de ellos.
@@ -30,11 +30,11 @@ Una vez en la configuración de una interacción, tiene un menú contextual con 
 
 En la parte superior de la página, hay 3 botones :
 
-- **Agregar** : Le permite crear nuevas interacciones.
+- **Para agregar** : Le permite crear nuevas interacciones.
 - **Regenerado** : Recréer toutes les interactions (peut être très long &gt; 5mn).
 - **Prueba** : Abre un diálogo para escribir y probar una oración.
 
-> **Propina**
+> **Consejo**
 >
 > Si tiene una interacción que genera las oraciones para las luces, por ejemplo, y agrega un nuevo módulo de control de luz, tendrá que regenerar todas las interacciones o ir a la interacción en cuestión y guardarla nuevamente para crear las oraciones de este nuevo módulo.
 
@@ -50,17 +50,17 @@ También podemos definir un comando para ejecutar si, por ejemplo, la interacci�
 
 La página de configuración consta de varias pestañas y botones :
 
-- **Frases** : Muestra el número de oraciones de la interacción (un clic en ellas te muestra).
-- **Salvar** : Grabar la interacción actual.
-- **Eliminar** : Eliminar interacción actual.
+- **Oraciones** : Muestra el número de oraciones de la interacción (un clic en ellas te muestra).
+- **Para registrarse** : Grabar la interacción actual.
+- **Borrar** : Eliminar interacción actual.
 - **Duplicar** : Duplica la interacción actual.
 
 ### Pestaña General
 
 - **Apellido** : Nombre de interacción (puede estar vacío, el nombre reemplaza el texto de solicitud en la lista de interacción).
-- **Grupo** : Grupo de interacción, esto permite organizarlos (puede estar vacío, por lo tanto estará en el grupo "ninguno").
+- **Banda** : Grupo de interacción, esto permite organizarlos (puede estar vacío, por lo tanto estará en el grupo "ninguno").
 - **Activo** : Habilita o deshabilita la interacción.
-- **Demanda** : La oración modelo generadora (requerida).
+- **Solicitud** : La oración modelo generadora (requerida).
 - **Sinónimo** : Permite definir sinónimos en los nombres de los comandos.
 - **Respuesta** : La respuesta para proporcionar.
 - **Espere antes de responder)** : Agregue un retraso de X segundos antes de generar la respuesta. Permite, por ejemplo, esperar el regreso del estado de una lámpara antes de ser respondido.
@@ -103,7 +103,7 @@ Podemos imaginar hacer lo mismo con varias acciones para encender varias lámpar
 
 En los 2 ejemplos anteriores, la oración modelo es idéntica pero las acciones que resultan de ella cambian de acuerdo con lo que está configurado en la parte "Acción", por lo tanto, ya con una simple interacción con una sola oración podemos imaginar acciones combinadas entre varios comandos y diversos escenarios (también podemos activar escenarios en la parte de acción de las interacciones).
 
-> **Propina**
+> **Consejo**
 >
 > Para agregar un escenario, cree una nueva acción, escriba &quot;escenario&quot; sin acento, presione la tecla de tabulación en su teclado para que aparezca el selector de escenario.
 
@@ -297,7 +297,7 @@ Es posible controlar una lámpara como un porcentaje (dimmer) o un termostato co
 
 ![interact022](../images/interact022.png)
 
-Como podemos ver, aquí está en la solicitud la etiqueta **\#consigne\#** (puede poner lo que quiera) que se incluye en el control de la unidad para aplicar el valor deseado. Para hacer esto, tenemos 3 partes : \* Demanda : en el que creamos una etiqueta que representará el valor que se enviará a la interacción. \* Respuesta : reutilizamos la etiqueta para la respuesta para asegurarnos de que Jeedom entendió correctamente la solicitud. \* Acción : ponemos una acción sobre la lámpara que queremos conducir y en el valor le pasamos nuestra etiqueta *consigna*.
+Como podemos ver, aquí está en la solicitud la etiqueta **\#consigne\#** (puede poner lo que quiera) que se incluye en el control de la unidad para aplicar el valor deseado. Para hacer esto, tenemos 3 partes : \* Solicitud : en el que creamos una etiqueta que representará el valor que se enviará a la interacción. \* Respuesta : reutilizamos la etiqueta para la respuesta para asegurarnos de que Jeedom entendió correctamente la solicitud. \* Valores : ponemos una acción sobre la lámpara que queremos conducir y en el valor le pasamos nuestra etiqueta *consigna*.
 
 > **Nota**
 >

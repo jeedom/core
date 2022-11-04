@@ -19,7 +19,7 @@ This API is very easy to use by simple HTTP requests via URL.
 Vohere l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = scenario & id = \#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = scenario & id=#ID#&action=#ACTION#)
 
 - **id** : matches your scenario id. The ID can be found on the relevant scenario page, in "Tools" → "Scenarios", once the scenario has been selected, next to the name of the "General" tab". Another way to find it : in "Tools" → "Scenarios", click on "Overview".
-- **action** : corresponds to the action you want to apply. Available commands are : "start ", " stop ", " disable "and "enable" to respectively start, stop, disable or enable the scenario.
+- **stock** : corresponds to the action you want to apply. Available commands are : "start ", " stop ", " disable "and "enable" to respectively start, stop, disable or enable the scenario.
 - **tags** \[optional\] : if the action is "start", you can pass tags to the scenario (see the documentation on the scenarios) in the form tags = toto% 3D1% 20tata% 3D2 (note that% 20 corresponds to a space and% 3D to = ).
 
 ##  Info / Action command
@@ -53,7 +53,7 @@ Vohere l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& typ
 Vohere l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = message & category = \#CATEGORY\#&message=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = message & category=#CATEGORY#&message=#MESSAGE#)
 
 - **category** : message category to add to message center.
-- **Message** : message in question, be careful to think about encoding the message (space becomes% 20, =% 3D…). You can use a tool, [here](https://meyerweb.com/eric/tools/dencoder/).
+- **message** : message in question, be careful to think about encoding the message (space becomes% 20, =% 3D…). You can use a tool, [here](https://meyerweb.com/eric/tools/dencoder/).
 
 ## Objet
 
@@ -84,4 +84,4 @@ Returns all objects, equipment, commands (and their value if they are info) in j
 Vohere l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = variable & name=#NAME#&value=)*VALUE*
 
 - **name** : name of the variable whose value is desired (reading the value).
-- **VALUE** \[optional\] : if "value" is specified then the variable will take this value (writing a value).
+- **value** \[optional\] : if "value" is specified then the variable will take this value (writing a value).
