@@ -1,10 +1,24 @@
 # Changelog Jeedom V4.4
 
-## 4.4
+
+### 4.4 : Pré-requisitos
+
+- Debian 10 Buster
+- PHP 7.3
 
 ### 4.4 : Notícias / Melhorias
 
 - **Janela de seleção de imagem** : Adicionado um menu de contexto para enviar imagens e criar, renomear ou excluir uma pasta.
+- Um menu contextual foi adicionado em diferentes locais nas caixas de seleção para selecionar tudo, nenhum ou inverter a seleção (consulte [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.4)).
+
+### 4.4 : Autre
+
+*RAS*
+
+### 4.4 : Notes
+
+*RAS*
+
 
 # Changelog Jeedom V4.3
 
