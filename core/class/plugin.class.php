@@ -309,7 +309,7 @@ class plugin {
 				}
 				if (!$ok) {
 					$message = __('Attention le plugin', __FILE__) . ' ' . ' ' . $plugin->getName();
-					$message .= ' ' . __('n\'a recu de message depuis', __FILE__) . ' ' . $heartbeat . ' ' . __('min', __FILE__);
+					$message .= ' ' . __('n\'a pas recu de message depuis', __FILE__) . ' ' . $heartbeat . ' ' . __('min', __FILE__);
 					$logicalId = 'heartbeat' . $plugin->getId();
 					message::add($plugin->getId(), $message, '', $logicalId);
 					if ($plugin->getHasOwnDeamon() && config::byKey('heartbeat::restartDeamon::' . $plugin->getId(), 'core', 0) == 1) {
