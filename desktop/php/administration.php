@@ -806,13 +806,9 @@ user::isBan();
 						</div>
 						<div class="form-group">
 							<div class="col-sm-2 hidden-768"></div>
-							<div class="col-sm-10 col-xs-12">
-
-							</div>
+							<div class="col-sm-10 col-xs-12"></div>
 						</div>
-						<form class="form-horizontal">
-							<div id="div_actionOnMessage"></div>
-						</form>
+						<div id="div_actionOnMessage"></div>
 						<?php
 						foreach ($JEEDOM_INTERNAL_CONFIG['messageChannel'] as $k => $v) {
 							echo '<div class="form-group" data-channel="' . $k . '">';
