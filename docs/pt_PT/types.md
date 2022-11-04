@@ -121,7 +121,7 @@ Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. S
 
 | **Eletricidade (id: Electricity)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| POTÊNCIA | Energia elétrica | Em formação | numeric
+| Poder | Energia elétrica | Em formação | numeric
 | CONSUMO | Consumo de energia | Em formação | numeric
 | VOLTAGEM | Tensão | Em formação | numeric
 | REINÍCIO | Reiniciar | Ações | other
@@ -145,7 +145,7 @@ Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. S
 | **Genérico (id: Generic)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | PROFUNDIDADE | Profundidade | Em formação | numeric
-| DISTÂNCIA | Distância | Em formação | numeric
+| DISTÂNCIA | DISTÂNCIA | Em formação | numeric
 | BOTÃO | Botão | Em formação | binário, numérico
 | GENERIC_INFO |  Genérico | Em formação |
 | GENERIC_ACTION |  Genérico | Ações | other
@@ -172,7 +172,7 @@ Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. S
 
 | **Multimídia (id: Multimedia)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| VOLUME | Volume | Em formação | numeric
+| Volume | Volume | Em formação | numeric
 | MEDIA_STATUS | Status | Em formação | string
 | MEDIA_ALBUM | Álbum | Em formação | string
 | MEDIA_ARTIST | Artista | Em formação | string
@@ -258,7 +258,7 @@ Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. S
 | ALARM_MODE | Modo de Alarme | Em formação | string
 | ALARM_ENABLE_STATE | Status de alarme ativado | Em formação | binary
 | ENCHENTE | Enchente | Em formação | binary
-| SABOTAR | Sabotar | Em formação | binary
+| SABOTAR | SABOTAR | Em formação | binary
 | CHOQUE | Choque | Em formação | binário, numérico
 | SIREN_OFF | Botão da sirene desligado | Ações | other
 | SIREN_ON | Botão de sirene ligado | Ações | other
@@ -288,7 +288,7 @@ Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. S
 | FAN_SPEED_STATE | Status da velocidade do ventilador | Em formação | numeric
 | ROTATION_STATE | Rotação de estado | Em formação | numeric
 | VELOCIDADE DO VENTILADOR | Velocidade do ventilador | Ações | slider
-| RODAR | Rodar | Ações | slider
+| RODAR | RODAR | Ações | slider
 
 | **Painel (id: Shutter)** | | | |
 |:--------|:----------------|:--------:|:---------:|

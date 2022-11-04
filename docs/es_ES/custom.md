@@ -22,7 +22,7 @@ En la barra de menú del editor de archivos Core, un botón **Activado** Dónde 
 
 [CSS: Hojas de estilo en cascada](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
-[JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 [Consejos para personalizar la interfaz](https://kiboost.github.io/jeedom_docs/jeedomV4Tips/Interface/)
 

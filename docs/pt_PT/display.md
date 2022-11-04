@@ -38,7 +38,7 @@ Para cada objeto, próximo ao seu rótulo, dois botões estão disponíveis.
 
 Em cada equipamento encontramos :
 
-- UMA **caixa de seleção** para selecionar o equipamento (você pode selecionar vários). Se pelo menos um dispositivo estiver selecionado, você terá botões de ação que aparecem no canto superior esquerdo para **deletar**, para retornar **visível**/**invisível**,  **de ativos**/**parado** equipamento selecionado.
+- UMA **caixa de seleção** para selecionar o equipamento (você pode selecionar vários). Se pelo menos um dispositivo estiver selecionado, você terá botões de ação que aparecem no canto superior esquerdo para **deletar**, para retornar **visível**/**invisível**,  **de ativos**/**Parado** equipamento selecionado.
 - L'**Eu iria** equipamento.
 - A **Gentil** equipamento : Identificador do plug-in ao qual ele pertence.
 - A **nome** equipamento.
@@ -69,8 +69,8 @@ A janela de **Configuração avançada de equipamentos** permite modificá-lo. P
 
 Aba **Em formação** contém informações gerais sobre o equipamento e seus controles :
 
-- **EU IRIA** : Identificador exclusivo no banco de dados Jeedom.
-- **Sobrenome** : Nome de equipamentos.
+- **Eu iria** : Identificador exclusivo no banco de dados Jeedom.
+- **Nome** : Nome de equipamentos.
 - **ID lógico** : Identificador lógico do equipamento (pode estar vazio).
 - **Object ID** : Identificador exclusivo do objeto pai (pode estar vazio).
 - **Data de criação** : Data de criação do equipamento.
@@ -165,9 +165,9 @@ Primeiro, no canto superior direito, alguns botões disponíveis :
 
 Aba **Em formação** contém informações gerais sobre o pedido :
 
-- **EU IRIA** : Identificador exclusivo no banco de dados.
+- **Eu iria** : Identificador exclusivo no banco de dados.
 - **ID lógico** : Identificador lógico do comando (pode estar vazio).
-- **Sobrenome** : Nome do comando.
+- **Nome** : Nome do comando.
 - **Gentil** : Tipo de comando (ação ou informação).
 - **Subtipo** : Subtipo de comando (binário, digital etc.)).
 - **URL direta** : Fornece a URL para acessar este equipamento. (clique com o botão direito do mouse, copie o endereço do link) O URL iniciará o comando para um **estoque** e retorne as informações para um **em formação**.

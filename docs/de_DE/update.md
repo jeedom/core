@@ -68,7 +68,7 @@ In jeder Zeile können Sie die folgenden Funktionen verwenden:
 
 ## Registerkarte Betriebssystem/Paket
 
-> **WICHTIG**
+> **Wichtig**
 >
 > Diese Registerkarte ist fortgeschrittenen Benutzern vorbehalten und nur für fortgeschrittene Benutzer, die geringste schlechte Aktion hier kann Ihr Jeedom BRECHEN (ohne die Möglichkeit, auf den Support zurückzugreifen)
 

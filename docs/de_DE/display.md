@@ -69,8 +69,8 @@ Das Fenster von **Erweiterte Gerätekonfiguration** erlaubt es zu ändern. Zunä
 
 Tab **Information** enthält allgemeine Informationen über das Gerät und seine Bedienelemente :
 
-- **ICH WÜRDE** : Eindeutige Kennung in der Jeedom-Datenbank.
-- **Nachname** : Name der Ausrüstung.
+- **Ich würde** : Eindeutige Kennung in der Jeedom-Datenbank.
+- **Name** : Name der Ausrüstung.
 - **Logische ID** : Logische Kennung des Geräts (kann leer sein).
 - **Objekt-ID** : Eindeutige Kennung des übergeordneten Objekts (kann leer sein).
 - **Erstellungsdatum** : Erstellungsdatum der Ausrüstung.
@@ -165,9 +165,9 @@ Zunächst sind oben rechts einige Schaltflächen verfügbar :
 
 Tab **Information** enthält allgemeine Informationen zur Bestellung :
 
-- **ICH WÜRDE** : Eindeutiger Bezeichner in der Datenbank.
+- **Ich würde** : Eindeutiger Bezeichner in der Datenbank.
 - **Logische ID** : Logische Kennung des Befehls (kann leer sein).
-- **Nachname** : Name der Bestellung.
+- **Name** : Name der Bestellung.
 - **Nett** : Art des Befehls (Aktion oder Info).
 - **Untertyp** : Befehlssubtyp (binär, digital usw.)).
 - **Direkte URL** : Gibt die URL für den Zugriff auf dieses Gerät an. (Rechtsklick, kopiere die Linkadresse) Die URL startet den Befehl für a **Lager** und geben Sie die Informationen für a zurück **Information**.
@@ -202,7 +202,7 @@ Unten finden Sie eine Liste der verschiedenen Geräte, Befehle, Szenarien oder I
 
 - **Historisch**
     - **Historisiere** : Aktivieren Sie das Kontrollkästchen, um die Werte dieses Befehls zu protokollieren. (Siehe **Analyse → Geschichte**)
-    - **Glättungsmodus** : Modus von **Glättung** oder d'**Archivierung** Hier können Sie auswählen, wie die Daten archiviert werden sollen. Standardmäßig ist dies ein **bedeuten**. Es ist auch möglich, die zu wählen **maximal**, das **Minimum**, Wo **keiner**. **keiner** Lassen Sie uns Jeedom mitteilen, dass für diesen Befehl keine Archivierung durchgeführt werden soll (sowohl während der ersten 5 Minuten als auch während der Archivierungsaufgabe)). Diese Option ist gefährlich, weil Jeedom alles behält : Es werden also viel mehr Daten gespeichert.
+    - **Glättungsmodus** : Modus von **Glättung** oder d'**Archivierung** Hier können Sie auswählen, wie die Daten archiviert werden sollen. Standardmäßig ist dies ein **bedeuten**. Es ist auch möglich, die zu wählen **maximal**, das **Minimum**, Wo **Keiner**. **Keiner** Lassen Sie uns Jeedom mitteilen, dass für diesen Befehl keine Archivierung durchgeführt werden soll (sowohl während der ersten 5 Minuten als auch während der Archivierungsaufgabe)). Diese Option ist gefährlich, weil Jeedom alles behält : Es werden also viel mehr Daten gespeichert.
     - **Verlauf löschen, wenn älter als** : Sagen wir Jeedom, dass alle Daten gelöscht werden sollen, die älter als ein bestimmter Zeitraum sind. Es kann praktisch sein, keine Daten zu speichern, wenn dies nicht erforderlich ist, und daher die Menge der von Jeedom aufgezeichneten Informationen zu begrenzen.
 
 - **Werteverwaltung**

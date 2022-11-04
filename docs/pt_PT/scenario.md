@@ -110,7 +110,7 @@ Para maior comodidade e não ter que reordenar constantemente os blocos no cená
 Aqui estão os diferentes tipos de blocos disponíveis :
 
 - **If / Then / Ou** : Permite que ações sejam realizadas sob condições (se este, então aquele).
-- **Ações** : Permite iniciar ações simples sem nenhuma condição.
+- **Estoque** : Permite iniciar ações simples sem nenhuma condição.
 - **Ciclo** : Permite que ações sejam executadas repetidamente de 1 a um número definido (ou mesmo o valor de um sensor ou um número aleatório…).
 - **Dentro** : Permite iniciar uma ação em X minuto (s) (0 é um valor possível). A peculiaridade é que as ações são iniciadas em segundo plano, para que não bloqueiem o restante do cenário. Portanto, é um bloco sem bloqueio.
 - **TEM** : Permite que o Jeedom inicie as ações do bloco em um determinado momento (no formato hhmm). Este bloco é sem bloqueio. Ex : 0030 para 00:30 ou 0146 para 1h46 e 1050 para 10h50.
@@ -159,7 +159,7 @@ O bloco Code permite executar código php. Portanto, é muito poderoso, mas requ
 #### Acesso a controles (sensores e atuadores)
 
 -  ``cmd::byString($string);`` : Retorna o objeto de comando correspondente.
-    -   ``$string``: Link para o pedido desejado : ``#[objet][equipamento][commande]#`` (ex : ``#[Appartement][Alarme][De ativos]#``)
+    -   ``$string``: Link para o pedido desejado : ``#[objet][equipamento][commande]#`` (Ex : ``#[Appartement][Alarme][De ativos]#``)
 -  ``cmd::byId($id);`` : Retorna o objeto de comando correspondente.
     -  ``$id`` : ID do pedido.
 -  ``$cmd->execCmd($options = null);`` : Execute o comando e retorne o resultado.
@@ -211,7 +211,7 @@ As ações adicionadas aos blocos têm várias opções :
 - Uma caixa **ativado** para que esse comando seja levado em consideração no cenário.
 - Uma caixa **paralelo** para que este comando seja iniciado em paralelo (ao mesmo tempo) com os outros comandos também selecionados.
 - UMA **seta dupla vertical** para mover a ação. Basta arrastar e soltar a partir daí.
-- Um botão para **deletar** a acção.
+- Um botão para **Deletar** a acção.
 - Um botão para ações específicas, sempre que a descrição (em foco) dessa ação.
 - Um botão para procurar um comando de ação.
 
@@ -293,7 +293,7 @@ Você também tem as seguintes tags adicionais se seu cenário foi acionado por 
 - #query# : Interação que acionou o cenário.
 - #profil# : Perfil do usuário que iniciou o cenário (pode estar vazio).
 
-> **Importante**
+> **IMPORTANTE**
 >
 > Quando um cenário é acionado por uma interação, é necessariamente executado no modo rápido. Portanto, no segmento de interação e não em um segmento separado.
 
@@ -429,7 +429,7 @@ Uma caixa de ferramentas de funções genéricas também pode ser usada para rea
 - ``median(commande1,commande2…​.commandeN)`` : Retorna a mediana dos valores.
 - ``avg(commande1,commande2…​.commandeN)`` : Retorna a média dos valores.
 - ``time_op(time,value)`` : Permite executar operações dentro do prazo, com time = time (ex : 1530) e value = value para adicionar ou subtrair em minutos.
-- ``time_between(time,start,end)`` : Usado para testar se um tempo está entre dois valores com ``time=temps`` (ex : 1530), ``start=temps``, ``end=temps``. Os valores inicial e final podem chegar à meia-noite.
+- ``time_between(time,start,end)`` : Usado para testar se um tempo está entre dois valores com ``time=temps`` (Ex : 1530), ``start=temps``, ``end=temps``. Os valores inicial e final podem chegar à meia-noite.
 - ``time_diff(date1,date2[,format, round])`` : Usado para descobrir a diferença entre duas datas (as datas devem estar no formato AAAA / MM / DD HH:MM:SS). Por padrão, o método retorna a diferença em dia (s)). Você pode perguntar em segundos (s), minutos (m), horas (h). Exemplo em segundos ``time_diff(2019-02-02 14:55:00,2019-02-25 14:55:00,s)``. A diferença é retornada em absoluto, a menos que você especifique ``f`` (``sf``, ``mf``, ``hf``, ``df``). Você também pode usar ``dhms`` quem não vai devolver exemplo ``7j 2h 5min 46s``. O parâmetro opcional round é arredondado para x casas decimais (2 por padrão). Ex: ``time_diff(2020-02-21 20:55:28,2020-02-28 23:01:14,df, 4)``.
 - ``formatTime(time)`` : Formata o retorno de uma cadeia ``#time#``.
 - ``floor(time/60)`` : Converter segundos em minutos ou minutos em horas (``floor(time/3600)`` por segundos a horas).
@@ -504,7 +504,7 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
 
 Essa funcionalidade permite transformar um cenário em um modelo para, por exemplo, aplicá-lo a outro Jeedom.
 
-Clicando no botão **modelo** no topo da página, você abre a janela de gerenciamento de modelos.
+Clicando no botão **Modelo** no topo da página, você abre a janela de gerenciamento de modelos.
 
 A partir daí, você tem a possibilidade :
 
@@ -539,4 +539,4 @@ Está nisso *classe* que você pode adicionar suas funções, você encontrará 
 
 > **IMPORTANTE**
 >
-> Se você tiver alguma dúvida, sempre poderá reverter para o arquivo original, copiando o conteúdo de ``user.function.class.sample.php`` dentro ``user.function.class.php``
+> Se você tiver alguma dúvida, sempre poderá reverter para o arquivo original, copiando o conteúdo de ``user.function.class.sample.php`` Dentro ``user.function.class.php``

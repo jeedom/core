@@ -38,7 +38,7 @@ For each object, next to its label, two buttons are available.
 
 On each equipment we find :
 
-- A **check box** to select the equipment (you can select several). If at least one device is selected, you have action buttons that appear in the upper left to **to delete**, to return **visible**/**invisible**,  **asset**/**idle** selected equipment.
+- A **check box** to select the equipment (you can select several). If at least one device is selected, you have action buttons that appear in the upper left to **to delete**, to return **visible**/**invisible**,  **asset**/**Idle** selected equipment.
 - L'**id** equipment.
 - The **kind** equipment : Identifier of the plugin to which it belongs.
 - The **name** equipment.
@@ -69,8 +69,8 @@ The window of **Advanced equipment configuration** allows to modify it. First, a
 
 Tab **Information** contains general information about the equipment and its controls :
 
-- **ID** : Unique identifier in the Jeedom database.
-- **Last name** : Name of equipment.
+- **Id** : Unique identifier in the Jeedom database.
+- **Name** : Name of equipment.
 - **Logical ID** : Logical identifier of the equipment (can be empty).
 - **Object ID** : Unique identifier of the parent object (can be empty).
 - **Creation date** : Equipment creation date.
@@ -165,9 +165,9 @@ First, at the top right, some buttons available :
 
 Tab **Information** contains general information about the command :
 
-- **ID** : Unique identifier in the database.
+- **Id** : Unique identifier in the database.
 - **Logical ID** : Logical identifier of the command (can be empty).
-- **Last name** : Name of the command.
+- **Name** : Name of the command.
 - **Kind** : Type of command (action or info).
 - **Subtype** : Command subtype (binary, digital, etc.)).
 - **Direct url** : Provides the URL to access this equipment. (right click, copy the link address) The URL will launch the command for a **stock** and return the information for a **information**.
@@ -202,7 +202,7 @@ Below, you will find the list of the different equipment, commands, scenarios or
 
 - **Historical**
     - **Historize** : Check the box to have the values of this command logged. (See **Analysis → History**)
-    - **Smoothing mode** : Mode of **smoothing** or d'**archiving** allows you to choose how to archive the data. By default, this is a **mean**. It is also possible to choose the **maximum**, the **minimum**, Where **none**. **none** lets tell Jeedom that it should not perform archiving on this command (both during the first 5 mins period and with the archiving task). This option is dangerous because Jeedom keeps everything : so there will be a lot more data kept.
+    - **Smoothing mode** : Mode of **smoothing** or d'**archiving** allows you to choose how to archive the data. By default, this is a **mean**. It is also possible to choose the **maximum**, the **minimum**, Where **None**. **None** lets tell Jeedom that it should not perform archiving on this command (both during the first 5 mins period and with the archiving task). This option is dangerous because Jeedom keeps everything : so there will be a lot more data kept.
     - **Purge history if older than** : Lets tell Jeedom to delete all data older than a certain period. May be practical not to keep data if it is not necessary and therefore limit the amount of information recorded by Jeedom.
 
 - **Values management**
