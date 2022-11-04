@@ -2,6 +2,7 @@
 
 ## 4.3.10
 
+- Correction de l'affichage de la valeur dans la fenêtre de configuration d'une commande.
 - Ajout d'informations et de contrôle sur l'outil de remplacement.
 
 ## 4.3.9
