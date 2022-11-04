@@ -172,41 +172,47 @@ if (!jeeFrontEnd.administration) {
     },
     //-> action on message
     loadActionOnMessage: function() {
-      $('#div_actionOnMessage').empty()
-      jeedom.config.load({
-        configuration: 'actionOnMessage',
-        error: function(error) {
-          $.fn.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          if (data == '' || typeof data != 'object') return
-          jeeP.actionOptions = []
-          for (var i in data) {
-            jeeP.addActionOnMessage(data[i])
-          }
-          jeedom.cmd.displayActionsOption({
-            params: jeeP.actionOptions,
-            async: false,
-            error: function(error) {
-              $.fn.showAlert({
-                message: error.message,
-                level: 'danger'
-              })
-            },
-            success: function(data) {
-              for (var i in data) {
-                $('#' + data[i].id).append(data[i].html.html)
-              }
-              jeedomUtils.taAutosize()
+      $('.bt_addActionOnMessage').each(function(){
+        let channel = $(this).attr('data-channel');
+        $('#div_actionOnMessage'+channel).empty()
+        jeedom.config.load({
+          configuration: 'actionOnMessage'+channel,
+          error: function(error) {
+            $.fn.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function(data) {
+            if (data == '' || typeof data != 'object') return
+            jeeP.actionOptions = []
+            for (var i in data) {
+              jeeP.addActionOnMessage(data[i],channel)
             }
-          })
-        }
-      })
+            jeedom.cmd.displayActionsOption({
+              params: jeeP.actionOptions,
+              async: false,
+              error: function(error) {
+                $.fn.showAlert({
+                  message: error.message,
+                  level: 'danger'
+                })
+              },
+              success: function(data) {
+                for (var i in data) {
+                  $('#' + data[i].id).append(data[i].html.html)
+                }
+                jeedomUtils.taAutosize()
+              }
+            })
+          }
+        })
+      });
     },
-    addActionOnMessage: function(_action) {
+    addActionOnMessage: function(_action,_channel) {
+      if (!isset(_channel)) {
+        _channel = ''
+      }
       if (!isset(_action)) {
         _action = {}
       }
@@ -236,8 +242,8 @@ if (!jeeFrontEnd.administration) {
       var actionOption_id = jeedomUtils.uniqId()
       div += '<div class="col-sm-5 actionOptions" id="' + actionOption_id + '"></div>'
       div += '</div>'
-      $('#div_actionOnMessage').append(div)
-      $('#div_actionOnMessage .actionOnMessage').last().setValues(_action, '.expressionAttr')
+      $('#div_actionOnMessage'+_channel).append(div)
+      $('#div_actionOnMessage'+_channel+' .actionOnMessage').last().setValues(_action, '.expressionAttr')
       jeeP.actionOptions.push({
         expression: init(_action.cmd, ''),
         options: _action.options,
@@ -245,7 +251,7 @@ if (!jeeFrontEnd.administration) {
       })
 
       jeedom.scenario.setAutoComplete({
-        parent: $('#div_actionOnMessage'),
+        parent: $('#div_actionOnMessage'+_channel),
         type: 'cmd'
       })
     },
@@ -517,7 +523,10 @@ $("#bt_saveGeneraleConfig").off('click').on('click', function(event) {
   jeeP.saveConvertColor()
   jeeP.saveObjectSummary()
   var config = $('#config').getValues('.configKey')[0]
-  config.actionOnMessage = json_encode($('#div_actionOnMessage .actionOnMessage').getValues('.expressionAttr'))
+  $('.bt_addActionOnMessage').each(function(){
+    let channel = $(this).attr('data-channel');
+    config['actionOnMessage'+channel] = json_encode($('#div_actionOnMessage'+channel+' .actionOnMessage').getValues('.expressionAttr'))
+  })
   jeedom.config.save({
     configuration: config,
     error: function(error) {
@@ -843,8 +852,8 @@ jeeP.$divConfig.on({
   }
 }, '.configKey[data-l1key="log::engine"]')
 
-$('#bt_addActionOnMessage').on('click', function() {
-  jeeP.addActionOnMessage()
+$('.bt_addActionOnMessage').on('click', function() {
+  jeeP.addActionOnMessage({},$(this).attr('data-channel'))
   jeeFrontEnd.modifyWithoutSave = true
 })
 

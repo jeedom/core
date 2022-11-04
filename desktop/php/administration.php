@@ -798,10 +798,10 @@ user::isBan();
 								<input type="checkbox" class="configKey" data-l1key="addMessageForErrorLog" checked />
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group" data-channel="">
 							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-8 control-label">{{Action sur message}}</label>
 							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-								<a class="btn btn-sm btn-success" id="bt_addActionOnMessage"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
+								<a class="btn btn-sm btn-success bt_addActionOnMessage" data-channel=""><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
 							</div>
 						</div>
 						<div class="form-group">
@@ -810,15 +810,34 @@ user::isBan();
 
 							</div>
 						</div>
+						<form class="form-horizontal">
+							<div id="div_actionOnMessage"></div>
+						</form>
+						<?php
+						foreach ($JEEDOM_INTERNAL_CONFIG['messageChannel'] as $k => $v) {
+							echo '<div class="form-group" data-channel="' . $k . '">';
+							echo '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-8 control-label">{{Action sur message, channel }} ' . $v['name'] . '</label>';
+							echo '<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">';
+							echo '<a class="btn btn-sm btn-success bt_addActionOnMessage" data-channel="' . $k . '"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>';
+							echo '</div>';
+							echo '</div>';
+							echo '<div class="form-group">';
+							echo '<div class="col-sm-2 hidden-768"></div>';
+							echo '<div class="col-sm-10 col-xs-12">';
+							echo '</div>';
+							echo '</div>';
+							echo '<form class="form-horizontal">';
+							echo '<div id="div_actionOnMessage' . $k . '"></div>';
+							echo '</form>';
+						}
+						?>
 					</fieldset>
 				</form>
-				<form class="form-horizontal">
-					<div id="div_actionOnMessage"></div>
-				</form>
+				<hr />
 
 				<ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" class="active"><a href="#log_alertes" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> {{Alertes}}</a></li>
-					<li role="presentation"><a href="#log_log" role="tab" data-toggle="tab"><i class="fas fa-file"></i> {{Logs}}</a></li>
+					<li role="presentation" class="active"><a href="#log_alertes" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> {{Action sur alertes}}</a></li>
+					<li role="presentation"><a href="#log_log" role="tab" data-toggle="tab"><i class="fas fa-file"></i> {{Niveau de Logs}}</a></li>
 				</ul>
 
 				<div class="tab-content">
@@ -2166,8 +2185,8 @@ user::isBan();
 							</label>
 							<span class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<?php
-									global $CONFIG;
-									echo $CONFIG['db']['username'];
+								global $CONFIG;
+								echo $CONFIG['db']['username'];
 								?>
 								<div class="input-group">
 									<input class="inputPassword roundedLeft form-control" readonly value="<?php echo $CONFIG['db']['password']; ?>" />

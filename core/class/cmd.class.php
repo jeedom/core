@@ -1980,7 +1980,7 @@ class cmd {
 			log::add('event', 'info', $message);
 			$eqLogic = $this->getEqLogic();
 			if (config::byKey('alert::addMessageOn' . ucfirst($_level)) == 1) {
-				message::add($eqLogic->getEqType_name(), $message);
+				message::add($eqLogic->getEqType_name(), $message, '', '', true, 'alerting');
 			}
 			$cmds = explode(('&&'), config::byKey('alert::' . $_level . 'Cmd'));
 			if (count($cmds) > 0 && trim(config::byKey('alert::' . $_level . 'Cmd')) != '') {
@@ -2001,7 +2001,7 @@ class cmd {
 		} elseif ($this->getConfiguration('alert::messageReturnBack') == 1) {
 			$message = __('Retour à la normal de ', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('valeur :', __FILE__) . ' ' . $_value . trim(' ' . $this->getUnite());
 			log::add('event', 'info', $message);
-			message::add($this->getEqLogic()->getEqType_name(), $message);
+			message::add($this->getEqLogic()->getEqType_name(), $message, '', '', true, 'alerting');
 		}
 
 		if ($prevAlert != $maxAlert) {

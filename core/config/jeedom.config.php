@@ -62,6 +62,9 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'other' => array('name' => __('Autre', __FILE__), 'icon' => 'fas fa-bars'),
 		),
 	),
+	'messageChannel' => array(
+		'alerting' => array('name' => __('Alerte des commandes', __FILE__), 'icon' => '<i class="far fa-bell"></i>')
+	),
 	'alerts' => array(
 		'timeout' => array('name' => __('Timeout', __FILE__), 'icon' => 'far fa-clock', 'level' => 6, 'check' => false, 'color' => '#FF0000'),
 		'batterywarning' => array('name' => __('Batterie en Warning', __FILE__), 'icon' => 'fas fa-battery-quarter', 'level' => 2, 'check' => false, 'color' => '#FFAB00'),

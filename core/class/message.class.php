@@ -40,7 +40,7 @@ class message {
 	 * @param type $_logicalId
 	 * @param type $_writeMessage
 	 */
-	public static function add($_type, $_message, $_action = '', $_logicalId = '', $_writeMessage = true) {
+	public static function add($_type, $_message, $_action = '', $_logicalId = '', $_writeMessage = true, $_channel = null) {
 		if (is_array($_message)) $_message = json_encode($_message, JSON_PRETTY_PRINT);
 		$message = (new message())
 			->setPlugin(secureXSS($_type))
@@ -48,7 +48,7 @@ class message {
 			->setAction(secureXSS($_action))
 			->setDate(date('Y-m-d H:i:s'))
 			->setLogicalId(secureXSS($_logicalId));
-		$message->save($_writeMessage);
+		$message->save($_writeMessage, $_channel);
 	}
 
 	public static function removeAll($_plugin = '', $_logicalId = '', $_search = false) {
@@ -139,7 +139,7 @@ class message {
 
 	/*     * *********************Methode d'instance************************* */
 
-	public function save($_writeMessage = true) {
+	public function save($_writeMessage = true, $_channel = null) {
 		if ($this->getMessage() == '') {
 			return;
 		}
@@ -195,7 +195,11 @@ class message {
 		}
 		if ($_writeMessage) {
 			DB::save($this);
-			$actions = config::byKey('actionOnMessage');
+			$configKey = ($_channel == null) ? 'actionOnMessage' : 'actionOnMessage' . $_channel;
+			$actions = config::byKey($configKey);
+			if (!is_array($actions) || count($actions) == 0) {
+				$actions = config::byKey('actionOnMessage');
+			}
 			if (is_array($actions) && count($actions) > 0) {
 				$params = array(
 					'#plugin#' => $this->getPlugin(),
