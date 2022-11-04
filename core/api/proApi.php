@@ -146,7 +146,8 @@ try {
 			$defaut = 0;
 			$result = jeedom::version();
 			$advice = '';
-			$health[] = array('plugin' => 'core', 'type' => 'Version Jeedom', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
+			$productName = config::byKey('product_name');
+			$health[] = array('plugin' => 'core', 'type' => 'Version '. $productName , 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
 
 			$defaut = 0;
 			$result = phpversion();
