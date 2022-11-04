@@ -1125,7 +1125,7 @@ jeedomUtils.rgbToHex = function(r, g, b) {
   return "#" + jeedomUtils.componentToHex(r) + jeedomUtils.componentToHex(g) + jeedomUtils.componentToHex(b)
 }
 
-jeedomUtils.addOrUpdateUrl = function(_param,_value,_title) {
+jeedomUtils.addOrUpdateUrl = function(_param, _value, _title) {
   var url = new URL(window.location.href)
   var query_string = url.search
   var search_params = new URLSearchParams(query_string)
@@ -1576,35 +1576,59 @@ jeedomUtils.deprecatedFunc = function(_version='4.3', _oldFunc, _newFunc, _names
   } else {
     var newName = _newFunc.name
   }
+  var msg = `JEEDOM WARNING! Deprecated function since Core v${_version} called: Please use the new ${newName}() function instead!`
   const wrapper = function() {
-    console.error(`JEEDOM WARNING! Deprecated function since Core v${_version} called: Please use the new ${newName}() function instead!`)
+    console.error(msg)
     _newFunc.apply(this, arguments)
   }
+
+  var jsError = {
+    filename: 'utils.js',
+    lineno: 'unknown',
+    message: msg,
+  }
+  jeedomUtils.JS_ERROR.push(jsError)
+  $('#bt_jsErrorModal').show()
+
   wrapper.prototype = _newFunc.prototype
   return wrapper
 }
 
 //Introduced in v4.2 -> deprecated v4.4 -> obsolete v4.5
-var checkPageModified = jeedomUtils.checkPageModified
-var loadPage = jeedomUtils.loadPage
-var initPage = jeedomUtils.initPage
-var initTooltips = jeedomUtils.initTooltips
-var initTableSorter = jeedomUtils.initTableSorter
-var initHelp = jeedomUtils.initHelp
-var datePickerInit = jeedomUtils.datePickerInit
-var normTextLower = jeedomUtils.normTextLower
-var sleep = jeedomUtils.sleep
-var uniqId = jeedomUtils.uniqId
-var taAutosize = jeedomUtils.taAutosize
-var hexToRgb = jeedomUtils.hexToRgb
-var componentToHex = jeedomUtils.componentToHex
-var rgbToHex = jeedomUtils.rgbToHex
-var addOrUpdateUrl = jeedomUtils.addOrUpdateUrl
-var positionEqLogic = jeedomUtils.positionEqLogic
-var chooseIcon = jeedomUtils.chooseIcon
-var getOpenedModal = jeedomUtils.getOpenedModal
+//var checkPageModified = jeedomUtils.checkPageModified
+function checkPageModified() { return jeedomUtils.deprecatedFunc('4.4', checkPageModified, 'checkPageModified', 'jeedomUtils')(); }
+//var loadPage = jeedomUtils.loadPage
+function loadPage(_url, _noPushHistory) { return jeedomUtils.deprecatedFunc('4.4', loadPage, 'loadPage', 'jeedomUtils')(); }
+//var initPage = jeedomUtils.initPage
+function initPage() { return jeedomUtils.deprecatedFunc('4.4', initPage, 'initPage', 'jeedomUtils')(); }
+//var initTooltips = jeedomUtils.initTooltips
+function initTooltips(_el) { return jeedomUtils.deprecatedFunc('4.4', initTooltips, 'initTooltips', 'jeedomUtils')(); }
+//var initTableSorter = jeedomUtils.initTableSorter
+function initTableSorter(filter) { return jeedomUtils.deprecatedFunc('4.4', initTableSorter, 'initTableSorter', 'jeedomUtils')(); }
+//var initHelp = jeedomUtils.initHelp
+function initHelp() { return jeedomUtils.deprecatedFunc('4.4', initHelp, 'initHelp', 'jeedomUtils')(); }
+//var datePickerInit = jeedomUtils.datePickerInit
+function datePickerInit() { return jeedomUtils.deprecatedFunc('4.4', datePickerInit, 'datePickerInit', 'jeedomUtils')(); }
+//var normTextLower = jeedomUtils.normTextLower
+function normTextLower(_text) { return jeedomUtils.deprecatedFunc('4.4', normTextLower, 'normTextLower', 'jeedomUtils')(); }
+//var sleep = jeedomUtils.sleep
+function sleep(milliseconds) { return jeedomUtils.deprecatedFunc('4.4', sleep, 'sleep', 'jeedomUtils')(); }
+//var uniqId = jeedomUtils.uniqId
+function uniqId(_prefix) { return jeedomUtils.deprecatedFunc('4.4', uniqId, 'uniqId', 'jeedomUtils')(); }
+//var taAutosize = jeedomUtils.taAutosize
+function taAutosize() { return jeedomUtils.deprecatedFunc('4.4', taAutosize, 'taAutosize', 'jeedomUtils')(); }
+//var hexToRgb = jeedomUtils.hexToRgb
+function hexToRgb(hex) { return jeedomUtils.deprecatedFunc('4.4', hexToRgb, 'hexToRgb', 'jeedomUtils')(); }
+//var componentToHex = jeedomUtils.componentToHex
+function componentToHex(c) { return jeedomUtils.deprecatedFunc('4.4', componentToHex, 'componentToHex', 'jeedomUtils')(); }
+//var rgbToHex = jeedomUtils.rgbToHex
+function rgbToHex(r, g, b) { return jeedomUtils.deprecatedFunc('4.4', rgbToHex, 'rgbToHex', 'jeedomUtils')(); }
+//var addOrUpdateUrl = jeedomUtils.addOrUpdateUrl
+function addOrUpdateUrl(_param,_value,_title) { return jeedomUtils.deprecatedFunc('4.4', addOrUpdateUrl, 'addOrUpdateUrl', 'jeedomUtils')(); }
+//var positionEqLogic = jeedomUtils.positionEqLogic
+function positionEqLogic(_id, _preResize, _scenario) { return jeedomUtils.deprecatedFunc('4.4', positionEqLogic, 'positionEqLogic', 'jeedomUtils')(); }
+//var chooseIcon = jeedomUtils.chooseIcon
+function chooseIcon(_callback, _params) { return jeedomUtils.deprecatedFunc('4.4', chooseIcon, 'chooseIcon', 'jeedomUtils')(); }
+//var getOpenedModal = jeedomUtils.getOpenedModal
+function getOpenedModal() { return jeedomUtils.deprecatedFunc('4.4', getOpenedModal, 'getOpenedModal', 'jeedomUtils')(); }
 
-
-//Introduced in v4.3 -> obsolete 4.4
-var jeedom_langage = jeeFrontEnd.language
-var userProfils = jeeFrontEnd.userProfils
