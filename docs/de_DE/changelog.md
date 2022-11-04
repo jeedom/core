@@ -1,10 +1,24 @@
 # Änderungsprotokoll Jeedom V4.4
 
-## 4.4
+
+### 4.4 : Voraussetzungen
+
+- Debian 10 Buster
+- PHP7.3
 
 ### 4.4 : Neuigkeiten / Verbesserungen
 
 - **Bildauswahlfenster** : Kontextmenü zum Senden von Bildern und Erstellen, Umbenennen oder Löschen eines Ordners hinzugefügt.
+- Ein Kontextmenü wurde an verschiedenen Stellen zu den Kontrollkästchen hinzugefügt, um alle oder keine auszuwählen oder die Auswahl umzukehren (siehe [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.4)).
+
+### 4.4 : Autre
+
+*RAS*
+
+### 4.4 : Notes
+
+*RAS*
+
 
 # Änderungsprotokoll Jeedom V4.3
 
