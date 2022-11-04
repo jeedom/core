@@ -24,6 +24,11 @@ if (!jeeFrontEnd.display) {
       window.jeeP = this
       this.actionMode = null
       this.$tableRemoveHistory = $('#table_removeHistory')
+
+      var checkContextMenuCallback = function(_el) {
+        _el.trigger('change')
+      }
+      jeedomUtils.setCheckContextMenu(checkContextMenuCallback)
     },
     setRemoveHistoryTable: function() {
       jeedomUtils.initTableSorter()
@@ -292,28 +297,6 @@ $('.bt_exportcsv').on('click', function() {
     })
   })
   $('.bt_exportcsv').attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(fullFile))
-})
-
-$('.objectSelectEqlogics').on('click', function() {
-  var object = $(this).closest('.objectSortable')
-  if (object.find('.accordion-toggle').attr('aria-expanded') == 'false') object.find('.accordion-toggle').click()
-
-  //inactive or not:
-  var elements
-  if ($('#cb_actifDisplay').is(':checked')) elements = $(this).closest('.objectSortable').find('li.eqLogic .cb_selEqLogic')
-  else elements = $(this).closest('.objectSortable').find('li.eqLogic[data-enable="1"] .cb_selEqLogic')
-
-  elements.each(function() {
-    $(this).prop('checked', true)
-  })
-  jeeP.setEqActions()
-})
-$('.objectUnselectEqlogics').on('click', function() {
-  var object = $(this).closest('.objectSortable')
-  $(this).closest('.objectSortable').find('li.eqLogic .cb_selEqLogic').each(function() {
-    $(this).prop('checked', false)
-  })
-  jeeP.setEqActions()
 })
 
 $('.eqLogicSortable > li.eqLogic').on('click', function(event) {

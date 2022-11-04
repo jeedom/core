@@ -102,16 +102,16 @@ if (!jeeFrontEnd.administration) {
 
       tr += '<td><input class="objectSummaryAttr form-control input-sm" data-l1key="unit" /></td>'
 
-      tr += '<td class="center"><input type="checkbox" class="objectSummaryAttr warning" data-l1key="hidenumber" /></td>'
+      tr += '<td class="center"><input type="checkbox" class="objectSummaryAttr checkContext warning" data-l1key="hidenumber" /></td>'
 
-      tr += '<td class="center"><input type="checkbox" class="objectSummaryAttr" data-l1key="hidenulnumber" /></td>'
+      tr += '<td class="center"><input type="checkbox" class="objectSummaryAttr checkContext" data-l1key="hidenulnumber" /></td>'
 
       tr += '<td><select class="objectSummaryAttr input-sm" data-l1key="count">'
       tr += '<option value="">{{Aucun}}</option>'
       tr += '<option value="binary">{{Binaire}}</option>'
       tr += '</select></td>'
 
-      tr += '<td class="center"><input type="checkbox" class="objectSummaryAttr" data-l1key="allowDisplayZero" /></td>'
+      tr += '<td class="center"><input type="checkbox" class="objectSummaryAttr checkContext" data-l1key="allowDisplayZero" /></td>'
 
       tr += '<td class="center"><input class="objectSummaryAttr form-control input-sm" data-l1key="ignoreIfCmdOlderThan" /></td>'
       tr += ''
@@ -411,6 +411,7 @@ $(function() {
 
   jeedomUtils.dateTimePickerInit()
   jeedomUtils.initSpinners()
+  jeedomUtils.setCheckContextMenu()
   jeeP.printConvertColor()
   setTimeout(function() {
     jeeP.updateTooltips()
