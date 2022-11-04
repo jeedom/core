@@ -42,7 +42,7 @@ if (!jeeFrontEnd.replace) {
         select += '<optgroup label="' + jeephp2js.listObjects.filter(o => o.id == _id)[0].name + '">'
         jeeP.filteredEqlogics.filter(o => o.object_id == _id).forEach(function(eqlogic) {
           parentName = jeephp2js.listObjects.filter(o => o.id == _id)[0].name
-          select += '<option value="' + eqlogic.id + '">[' + parentName + '][' + eqlogic.name + ']</option>'
+          select += '<option value="' + eqlogic.id + '" data-name="' + eqlogic.name + '">[' + parentName + '][' + eqlogic.name + ']</option>'
         })
 
         select += '</optgroup>'
@@ -252,11 +252,13 @@ $('#eqSource').on({
     //get source and target eqLogics Ids:
     var $thisEq = $(this).parents('ul.eqLogic')
     var sourceEqId = $thisEq.attr('data-id')
+    var sourceEqName = $thisEq.attr('data-name')
     var targetEqId = $(this).val()
-
+    var targetEqName = $(this).find('option[value="' + targetEqId + '"]').attr('data-name')
 
     //Do not replace itself!
     if (sourceEqId == targetEqId) {
+      jeedomUtils.toastMsg('warning', "{{Vous ne pouvez pas remplacer un équipement par lui même.}}")
       $(this).val('').keyup()
       jeeP.resetCmdSelects(sourceEqId)
       jeeP.synchEqlogicsReplacers()
@@ -265,6 +267,16 @@ $('#eqSource').on({
 
     //Is ever replacing by this eqLogic:
     if (is_array(jeeP.replacerEqList) && jeeP.replacerEqList.includes(targetEqId)) {
+      jeedomUtils.toastMsg('warning', "{{Cet équipement remplace déjà un autre équipement.}}")
+      $(this).val('').keyup()
+      jeeP.resetCmdSelects(sourceEqId)
+      jeeP.synchEqlogicsReplacers()
+      return false
+    }
+
+    //Same name will throw error when in same object:
+    if (sourceEqName == targetEqName) {
+      jeedomUtils.toastMsg('warning', "{{Vous ne pouvez pas remplacer un équipement par un équipement de même nom.}}")
       $(this).val('').keyup()
       jeeP.resetCmdSelects(sourceEqId)
       jeeP.synchEqlogicsReplacers()
