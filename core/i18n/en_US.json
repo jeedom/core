@@ -1762,7 +1762,7 @@
         "Nombre maximum d'évènements sur chaque Timeline": "Maximum number of events on each Timeline",
         "Supprimer tous les évènements de la Timeline": "Delete all events from Timeline",
         "Supprimer": "Delete",
-        "Messages": "Posts",
+        "Messages": "Message",
         "Ajouter un message à chaque erreur dans les logs": "Add a message for each error in log",
         "Action sur message": "Action on message",
         "Ajouter": "Add",
@@ -3526,7 +3526,7 @@
         "Monitoring": "Monitoring",
         "Santé": "Health",
         "Nature": "Nature",
-        "Alerte des commandes": "Orders alert",
+        "Alerte des commandes": "Command alert",
         "Timeout": "Timeout",
         "Batterie en Warning": "Battery in Warning",
         "Batterie en Danger": "Battery in Danger",
@@ -4163,7 +4163,7 @@
         "Erreur history influx sur :": "History influx error on:",
         "La commande source n\\'existe pas": "Source command does not exist",
         "La commande cible n\\'existe pas": "Target command does not exist",
-        "Erreur lors de la migration de commande": "Error while migrating order",
+        "Erreur lors de la migration de commande": "Error while migrating command",
         "Commande": "Command"
     },
     "core\/class\/jeedom.class.php": {
