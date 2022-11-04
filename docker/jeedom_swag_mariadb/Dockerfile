@@ -124,10 +124,6 @@ RUN mkdir -p -m 775 /tmp/jeedom && chown -R www-data:www-data /tmp/jeedom
 # Set main jeedom cron
 RUN echo "* * * * * www-data /usr/bin/php /var/www/html/core/php/jeeCron.php > /dev/null" > /etc/cron.d/jeedom
 
-# Cron for zigbee zhaquirks patch checker
-COPY --from=sources /SCRIPTS/patch_zigbee_zhaquirks.py /root/
-RUN echo "*/5 * * * * root /root/patch_zigbee_zhaquirks.py > /dev/null" > /etc/cron.d/patch_zigbee_zhaquirks
-
 
 # Set default command
 COPY --from=sources /SCRIPTS/init.sh /root/
