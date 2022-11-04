@@ -195,13 +195,13 @@ class message {
 		}
 		if ($_writeMessage) {
 			DB::save($this);
-			$params = array(
-				'#plugin#' => $this->getPlugin(),
-				'#subject#' => html_entity_decode($this->getMessage()),
-				'#message#' => html_entity_decode($this->getMessage()),
-			);
 			$actions = config::byKey('actionOnMessage');
 			if (is_array($actions) && count($actions) > 0) {
+				$params = array(
+					'#plugin#' => $this->getPlugin(),
+					'#subject#' => html_entity_decode($this->getMessage()),
+					'#message#' => html_entity_decode($this->getMessage()),
+				);
 				foreach ($actions as $action) {
 					$options = array();
 					if (isset($action['options'])) {
