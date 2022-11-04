@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.3
 
+## 4.3.10
+
+- Ajout d'informations et de contrôle sur l'outil de remplacement.
+
 ## 4.3.9
 
 - Amélioration de l'édition des tuiles.
