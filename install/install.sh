@@ -85,6 +85,13 @@ step_2_mainpackage() {
   apt-get -y install nmap
   apt-get -y install ffmpeg
   apt-get -y install usbutils
+  apt-get -y install gettext
+  apt-get -y install libcurl3-gnutls
+  apt-get -y install chromium
+  apt-get -y install librsync-dev
+  apt-get -y snmp
+  apt-get -y snmp-mibs-downloader
+  apt-get -y ssl-cert
   echo "${VERT}étape 2 paquet principal réussie${NORMAL}"
 }
 
@@ -130,6 +137,8 @@ step_5_php() {
   apt install -y php-ssh2
   apt install -y php-mbstring
   apt install -y php-ldap
+  apt install -y php-yaml
+  apt install -y php-snmp
   echo "${VERT}étape 5 php réussie${NORMAL}"
 }
 
@@ -338,6 +347,8 @@ step_11_jeedom_post() {
       echo 'tmpfs        /tmp/jeedom            tmpfs  defaults,size=256M                                       0 0' >>  /etc/fstab
     fi
   fi
+  chmod +x ${WEBSERVER_HOME}/resources/install_nodejs.sh
+  ${WEBSERVER_HOME}/resources/install_nodejs.sh
   echo "${VERT}étape 11 post jeedom réussie${NORMAL}"
 }
 
