@@ -1571,18 +1571,38 @@ $.ui.dialog.prototype._focusTabbable = $.noop //avoid ui-dialog focus on inputs 
  * @param {string} _line
  */
 jeedomUtils.deprecatedFunc= function(_oldFnName, _newFnName, _since, _to, _line) {
-  var msg = `JEEDOM WARNING! Deprecated function ${_oldFnName} since Core v${_since} called: Use the new Core v${_to} ${_newFnName}() function.`
-  console.error(msg)
-  var jsError = {
-    filename: 'desktop/common/js/utils.js',
+  var msg = `!WARNING! Deprecated function ${_oldFnName} since Core v${_since}: Use new Core v${_to} ${_newFnName}() function.`
+
+  if ($('body').attr('data-type') == 'plugin') {
+    var _pluginId = $('body').attr('data-page')
+    jeedom.plugin.get({
+        id: _pluginId,
+        error: function(error) {
+          $.fn.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          var require = data.require
+          msg += ' plugin: ' + _pluginId + ' | require: ' + require
+        }
+      })
+  }
+
+  setTimeout(() => {
+    console.error(msg)
+    var jsError = {
+      filename: 'desktop/common/js/utils.js',
     lineno: '-1',
     message: msg,
   }
   var isShown = jeedomUtils.JS_ERROR.filter(v => v.message == msg)
   if (isShown.length < 1) {
-    jeedomUtils.JS_ERROR.push(jsError)
-    $('#bt_jsErrorModal').show()
-  }
+      jeedomUtils.JS_ERROR.push(jsError)
+      $('#bt_jsErrorModal').show()
+    }
+  }, 500)
 }
 
 //Introduced in v4.2 -> deprecated v4.4 -> obsolete v4.5
