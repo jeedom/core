@@ -724,4 +724,7 @@ jeedom.eqLogic.htmlBattery = function(_params) {
 }
 
 // deprecated v4.2 -> remove v4.5 (used by plugins!)
-jeedom.eqLogic.builSelectCmd = jeedom.eqLogic.buildSelectCmd
+jeedom.eqLogic.builSelectCmd = function(_params) {
+  jeedomUtils.deprecatedFunc('jeedom.eqLogic.builSelectCmd', 'jeedom.eqLogic.buildSelectCmd', '4.4', '4.1')
+  return jeedom.eqLogic.buildSelectCmd(_params)
+}

@@ -9,6 +9,7 @@
 ### 4.4 : Neuigkeiten / Verbesserungen
 
 - **Bildauswahlfenster** : Kontextmenü zum Senden von Bildern und Erstellen, Umbenennen oder Löschen eines Ordners hinzugefügt.
+- **Verwaltung** : Möglichkeit, Aktionen bei Fehler oder Befehlsalarm zu unterscheiden.
 - Ein Kontextmenü wurde an verschiedenen Stellen zu den Kontrollkästchen hinzugefügt, um alle oder keine auszuwählen oder die Auswahl umzukehren (siehe [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.4)).
 
 ### 4.4 : Autre

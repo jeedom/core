@@ -9,6 +9,7 @@
 ### 4.4 : Noticias / Mejoras
 
 - **Ventana de selección de imagen** : Se agregó un menú contextual para enviar imágenes y crear, renombrar o eliminar una carpeta.
+- **Administración** : Posibilidad de diferenciar acciones en caso de error o de alerta de comando.
 - Se ha agregado un menú contextual en diferentes lugares en las casillas de verificación para seleccionar todo, ninguno o invertir la selección (ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.4)).
 
 ### 4.4 : Autre

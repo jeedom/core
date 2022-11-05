@@ -604,7 +604,7 @@ class cmd {
 			return $_input;
 		}
 		$replace = array();
-		preg_match_all("/#\[(.*?)\]\[(.*?)\]\[(.*?)\]#/", $_input, $matches);
+		preg_match_all("/#\[([^#]*)\]\[([^#]*)\]\[([^#]*)\]#/", $_input, $matches);
 		if (count($matches) == 4) {
 			$countMatches = count($matches[0]);
 			for ($i = 0; $i < $countMatches; $i++) {

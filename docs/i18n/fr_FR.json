@@ -755,6 +755,8 @@
         "Nouveautés \/ Améliorations": "Nouveautés \/ Améliorations",
         "Fenêtre de sélection d'image": "Fenêtre de sélection d'image",
         "Ajout d'un menu contextuel permettant d'envoyer des images et de créer, renommer ou supprimer un dossier": "Ajout d'un menu contextuel permettant d'envoyer des images et de créer, renommer ou supprimer un dossier",
+        "Administration": "Administration",
+        "Possibilité de différencier les actions sur erreur ou sur alerte de commande": "Possibilité de différencier les actions sur erreur ou sur alerte de commande",
         "Doc dev": "Doc dev",
         "Un menu contextuel a été ajouté à différent endroits sur les checkboxs pour les sélectionner toutes, aucun, ou inverser la sélection (voir": "Un menu contextuel a été ajouté à différent endroits sur les checkboxs pour les sélectionner toutes, aucun, ou inverser la sélection (voir",
         "Autre": "Autre",

@@ -237,11 +237,6 @@ function mySqlIsHere() {
 	return is_object(DB::getConnection());
 }
 
-function displayExeption($e) {
-	trigger_error('La fonction displayExeption devient displayException', E_USER_DEPRECATED);
-	return displayException($e);
-}
-
 function displayException($e) {
 	$message = '<span id="span_errorMessage">' . $e->getMessage() . '</span>';
 	if (DEBUG) {
@@ -727,11 +722,6 @@ function date_fr($date_en) {
 			break;
 	}
 	return preg_replace($texte_short_day_en, $texte_short_day, preg_replace($texte_short_month_en, $texte_short_month, preg_replace($texte_long_en, $texte_long, $date_en)));
-}
-
-function convertDayEnToFr($_day) {
-	trigger_error('La fonction convertDayEnToFr devient convertDayFromEn', E_USER_DEPRECATED);
-	return convertDayFromEn($_day);
 }
 
 function convertDayFromEn($_day) {

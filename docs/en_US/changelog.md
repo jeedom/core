@@ -9,6 +9,7 @@
 ### 4.4 : News / Improvements
 
 - **Image selection window** : Added a context menu for sending images and creating, renaming or deleting a folder.
+- **Administration** : Possibility to differentiate actions on error or on command alert.
 - A contextual menu has been added in different places on the checkboxes to select all, none, or invert the selection (see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.4)).
 
 ### 4.4 : Autre

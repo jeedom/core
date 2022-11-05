@@ -757,22 +757,3 @@ jeedomUtils.normTextLower = function(_text) {
   return _text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
 }
 
-//deprecated, remove v4.3
-function refreshUpdateNumber() {
-  jeedomUtils.refreshMessageNumber()
-}
-function positionEqLogic(_id) {
-  jeedomUtils.positionEqLogic(_id)
-}
-function setTileSize(_filter) {
-  jeedomUtils.setTileSize(_filter)
-}
-function panel(_name, _callback) {
-  jeedomUtils.loadPanel(_name, _callback)
-}
-function setBackgroundImage(_path){
-  jeedomUtils.setBackgroundImage(_path)
-}
-
-//deprecated, remove v4.4
-var page = jeedomUtils.loadPage

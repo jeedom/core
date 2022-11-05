@@ -268,46 +268,6 @@ $(function() {
     jeedomUtils.setBackgroundImage('')
   }
 
-  //options for jeedom.notify() toastr
-  toastr.options = {
-    "newestOnTop": true,
-    "closeButton": true,
-    "debug": false,
-    "positionClass": jeedom.theme['interface::toast::position'],
-    "showDuration": "300",
-    "hideDuration": "1000",
-    "timeOut": parseInt(jeedom.theme['interface::toast::duration']) * 1000,
-    "extendedTimeOut": "1500",
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "fadeIn",
-    "hideMethod": "fadeOut",
-    "progressBar": true,
-    "onclick": function() {
-      window.toastr.clear()
-      $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&modal=message.display').dialog('open')
-    }
-  }
-  jeedomUtils.toastrUIoptions = {
-    "newestOnTop": true,
-    "closeButton": true,
-    "tapToDismiss": false,
-    "debug": false,
-    "positionClass": jeedom.theme['interface::toast::position'],
-    "showDuration": "300",
-    "hideDuration": "1000",
-    "timeOut": "5000",
-    "extendedTimeOut": "1500",
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "fadeIn",
-    "hideMethod": "fadeOut",
-    "progressBar": true,
-    "onclick": function(event) {
-      event.clickToClose = true
-    }
-  }
-
   setTimeout(function() {
     jeedomUtils.initTooltips()
     jeedomUtils.createObserver()
@@ -315,6 +275,45 @@ $(function() {
   }, 1)
 })
 
+//options for jeedom.notify() toastr
+toastr.options = {
+  "newestOnTop": true,
+  "closeButton": true,
+  "debug": false,
+  "positionClass": jeedom.theme['interface::toast::position'],
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": parseInt(jeedom.theme['interface::toast::duration']) * 1000,
+  "extendedTimeOut": "1500",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut",
+  "progressBar": true,
+  "onclick": function() {
+    window.toastr.clear()
+    $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&modal=message.display').dialog('open')
+  }
+}
+jeedomUtils.toastrUIoptions = {
+  "newestOnTop": true,
+  "closeButton": true,
+  "tapToDismiss": false,
+  "debug": false,
+  "positionClass": jeedom.theme['interface::toast::position'],
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1500",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut",
+  "progressBar": true,
+  "onclick": function(event) {
+    event.clickToClose = true
+  }
+}
 jeedomUtils.toastMsg = function(level, msg, target) {
   level = isset(level) ? level : 'success'
   msg = isset(msg) ? msg : ''
@@ -1125,7 +1124,7 @@ jeedomUtils.rgbToHex = function(r, g, b) {
   return "#" + jeedomUtils.componentToHex(r) + jeedomUtils.componentToHex(g) + jeedomUtils.componentToHex(b)
 }
 
-jeedomUtils.addOrUpdateUrl = function(_param,_value,_title) {
+jeedomUtils.addOrUpdateUrl = function(_param, _value, _title) {
   var url = new URL(window.location.href)
   var query_string = url.search
   var search_params = new URLSearchParams(query_string)
@@ -1558,53 +1557,128 @@ jQuery.fn.setSelection = function(selectionStart, selectionEnd) {
 
 $.ui.dialog.prototype._focusTabbable = $.noop //avoid ui-dialog focus on inputs when opening
 
-/*
-return new fonction with deprecated message
-example: function initTooltips(_el) { return jeedomUtils.deprecatedFunc('4.3', initTooltips, 'initTooltips', 'jeedomUtils')(); }
-@_version {string}
-@_oldFunc {function}
-@_newFunc {function}
-OR
-@_oldFunc {function}
-@_newFunc {string}
-@_namespace {string}
-*/
-jeedomUtils.deprecatedFunc = function(_version='4.3', _oldFunc, _newFunc, _namespace) {
-  if (isset(_namespace)) {
-    var newName = _namespace + '.' + _newFunc
-    _newFunc = window[_namespace][_newFunc]
-  } else {
-    var newName = _newFunc.name
+
+
+//Deprecated functions:
+
+/**
+ * Send message to alert about deprecated function.
+ * @param {string} _oldFnName
+ * @param {string} _newFnName
+ * @param {string} _since
+ * @param {string} _to
+ * @param {string} _line
+ */
+jeedomUtils.deprecatedFunc= function(_oldFnName, _newFnName, _since, _to, _line) {
+  var msg = `!WARNING! Deprecated function ${_oldFnName} since Core v${_since}: Use new Core v${_to} ${_newFnName}() function.`
+
+  if ($('body').attr('data-type') == 'plugin') {
+    var _pluginId = $('body').attr('data-page')
+    jeedom.plugin.get({
+        id: _pluginId,
+        error: function(error) {
+          $.fn.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          var require = data.require
+          msg += ' plugin: ' + _pluginId + ' | require: ' + require
+        }
+      })
   }
-  const wrapper = function() {
-    console.error(`JEEDOM WARNING! Deprecated function since Core v${_version} called: Please use the new ${newName}() function instead!`)
-    _newFunc.apply(this, arguments)
-  }
-  wrapper.prototype = _newFunc.prototype
-  return wrapper
+
+  setTimeout(() => {
+    console.error(msg)
+    var jsError = {
+      filename: 'desktop/common/js/utils.js',
+      lineno: '-1',
+      message: msg,
+    }
+    var isShown = jeedomUtils.JS_ERROR.filter(v => v.message == msg)
+    if (isShown.length < 1) {
+      jeedomUtils.JS_ERROR.push(jsError)
+      $('#bt_jsErrorModal').show()
+    }
+  }, 500)
 }
 
 //Introduced in v4.2 -> deprecated v4.4 -> obsolete v4.5
-var checkPageModified = jeedomUtils.checkPageModified
-var loadPage = jeedomUtils.loadPage
-var initPage = jeedomUtils.initPage
-var initTooltips = jeedomUtils.initTooltips
-var initTableSorter = jeedomUtils.initTableSorter
-var initHelp = jeedomUtils.initHelp
-var datePickerInit = jeedomUtils.datePickerInit
-var normTextLower = jeedomUtils.normTextLower
-var sleep = jeedomUtils.sleep
-var uniqId = jeedomUtils.uniqId
-var taAutosize = jeedomUtils.taAutosize
-var hexToRgb = jeedomUtils.hexToRgb
-var componentToHex = jeedomUtils.componentToHex
-var rgbToHex = jeedomUtils.rgbToHex
-var addOrUpdateUrl = jeedomUtils.addOrUpdateUrl
-var positionEqLogic = jeedomUtils.positionEqLogic
-var chooseIcon = jeedomUtils.chooseIcon
-var getOpenedModal = jeedomUtils.getOpenedModal
+function checkPageModified() {
+  jeedomUtils.deprecatedFunc('checkPageModified', 'jeedomUtils.checkPageModified', '4.4', '4.2')
+  return jeedomUtils.checkPageModified()
+}
+function loadPage(_url, _noPushHistory) {
+  jeedomUtils.deprecatedFunc('loadPage', 'jeedomUtils.loadPage', '4.4', '4.2')
+  return jeedomUtils.loadPage(_url, _noPushHistory)
+}
+function initPage() {
+  jeedomUtils.deprecatedFunc('initPage', 'jeedomUtils.initPage', '4.4', '4.2')
+  return jeedomUtils.initPage()
+}
+function initTooltips(_el) {
+  jeedomUtils.deprecatedFunc('initTooltips', 'jeedomUtils.initTooltips', '4.4', '4.2')
+  return jeedomUtils.initTooltips(_el)
+}
+function initTableSorter(filter) {
+  jeedomUtils.deprecatedFunc('initTableSorter', 'jeedomUtils.initTableSorter', '4.4', '4.2')
+  return jeedomUtils.initTableSorter(filter)
+}
+function initHelp() {
+  jeedomUtils.deprecatedFunc('initHelp', 'jeedomUtils.initHelp', '4.4', '4.2')
+  return jeedomUtils.initHelp()
+}
+function datePickerInit() {
+  jeedomUtils.deprecatedFunc('datePickerInit', 'jeedomUtils.datePickerInit', '4.4', '4.2')
+  return jeedomUtils.datePickerInit()
+}
+function normTextLower(_text) {
+  jeedomUtils.deprecatedFunc('normTextLower', 'jeedomUtils.normTextLower', '4.4', '4.2')
+  return jeedomUtils.normTextLower(_text)
+}
+function sleep(milliseconds) {
+  jeedomUtils.deprecatedFunc('sleep', 'jeedomUtils.sleep', '4.4', '4.2')
+  return jeedomUtils.sleep(milliseconds)
+}
+function uniqId(_prefix) {
+  jeedomUtils.deprecatedFunc('uniqId', 'jeedomUtils.uniqId', '4.4', '4.2')
+  return jeedomUtils.uniqId(_prefix)
+}
+function taAutosize() {
+  jeedomUtils.deprecatedFunc('taAutosize', 'jeedomUtils.taAutosize', '4.4', '4.2')
+  return jeedomUtils.taAutosize()
+}
+function hexToRgb(hex) {
+  jeedomUtils.deprecatedFunc('hexToRgb', 'jeedomUtils.hexToRgb', '4.4', '4.2')
+  return jeedomUtils.hexToRgb(hex)
+}
+function componentToHex(c) {
+  jeedomUtils.deprecatedFunc('componentToHex', 'jeedomUtils.componentToHex', '4.4', '4.2')
+  return jeedomUtils.componentToHex(c)
+}
+function rgbToHex(r, g, b) {
+  jeedomUtils.deprecatedFunc('rgbToHex', 'jeedomUtils.rgbToHex', '4.4', '4.2')
+  return jeedomUtils.rgbToHex(r, g, b)
+}
+function addOrUpdateUrl(_param, _value, _title) {
+  jeedomUtils.deprecatedFunc('addOrUpdateUrl', 'jeedomUtils.addOrUpdateUrl', '4.4', '4.2')
+  return jeedomUtils.addOrUpdateUrl(_param, _value, _title)
+}
+function positionEqLogic(_id, _preResize, _scenario) {
+  jeedomUtils.deprecatedFunc('positionEqLogic', 'jeedomUtils.positionEqLogic', '4.4', '4.2')
+  return jeedomUtils.positionEqLogic(_id, _preResize, _scenario)
+}
+function chooseIcon(_callback, _params) {
+  jeedomUtils.deprecatedFunc('chooseIcon', 'jeedomUtils.chooseIcon', '4.4', '4.2')
+  return jeedomUtils.chooseIcon(_callback, _params)
+}
+function getOpenedModal() {
+  jeedomUtils.deprecatedFunc('getOpenedModal', 'jeedomUtils.getOpenedModal', '4.4', '4.2')
+  return jeedomUtils.getOpenedModal()
+}
 
 
-//Introduced in v4.3 -> obsolete 4.4
+//Introduced in v4.3 -> obsolete 4.5 ?
 var jeedom_langage = jeeFrontEnd.language
 var userProfils = jeeFrontEnd.userProfils
