@@ -1658,3 +1658,8 @@ function getOpenedModal() {
   jeedomUtils.deprecatedFunc('getOpenedModal', 'jeedomUtils.getOpenedModal', '4.4', '4.2')
   return jeedomUtils.getOpenedModal()
 }
+
+
+//Introduced in v4.3 -> obsolete 4.5 ?
+var jeedom_langage = jeeFrontEnd.language
+var userProfils = jeeFrontEnd.userProfils
