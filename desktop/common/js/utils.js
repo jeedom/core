@@ -1558,77 +1558,103 @@ jQuery.fn.setSelection = function(selectionStart, selectionEnd) {
 
 $.ui.dialog.prototype._focusTabbable = $.noop //avoid ui-dialog focus on inputs when opening
 
-/*
-return new fonction with deprecated message
-example: function initTooltips(_el) { return jeedomUtils.deprecatedFunc('4.3', initTooltips, 'initTooltips', 'jeedomUtils')(); }
-@_version {string}
-@_oldFunc {function}
-@_newFunc {function}
-OR
-@_oldFunc {function}
-@_newFunc {string}
-@_namespace {string}
-*/
-jeedomUtils.deprecatedFunc = function(_version='4.3', _oldFunc, _newFunc, _namespace) {
-  if (isset(_namespace)) {
-    var newName = _namespace + '.' + _newFunc
-    _newFunc = window[_namespace][_newFunc]
-  } else {
-    var newName = _newFunc.name
-  }
-  var msg = `JEEDOM WARNING! Deprecated function since Core v${_version} called: Please use the new ${newName}() function instead!`
-  const wrapper = function() {
-    console.error(msg)
-    _newFunc.apply(this, arguments)
-  }
 
+
+//Deprecated functions:
+
+/**
+ * Send message to alert about deprecated function.
+ * @param {string} _oldFnName
+ * @param {string} _newFnName
+ * @param {string} _since
+ * @param {string} _to
+ * @param {string} _line
+ */
+jeedomUtils.deprecatedFunc= function(_oldFnName, _newFnName, _since, _to, _line) {
+  var msg = `JEEDOM WARNING! Deprecated function ${_oldFnName} since Core v${_since} called: Use the new Core v${_to} ${_newFnName}() function.`
+  console.error(msg)
   var jsError = {
-    filename: 'utils.js',
-    lineno: 'unknown',
+    filename: 'desktop/common/js/utils.js',
+    lineno: '-1',
     message: msg,
   }
-  jeedomUtils.JS_ERROR.push(jsError)
-  $('#bt_jsErrorModal').show()
-
-  wrapper.prototype = _newFunc.prototype
-  return wrapper
+  var isShown = jeedomUtils.JS_ERROR.filter(v => v.message == msg)
+  if (isShown.length < 1) {
+    jeedomUtils.JS_ERROR.push(jsError)
+    $('#bt_jsErrorModal').show()
+  }
 }
 
 //Introduced in v4.2 -> deprecated v4.4 -> obsolete v4.5
-//var checkPageModified = jeedomUtils.checkPageModified
-function checkPageModified() { return jeedomUtils.deprecatedFunc('4.4', checkPageModified, 'checkPageModified', 'jeedomUtils')(); }
-//var loadPage = jeedomUtils.loadPage
-function loadPage(_url, _noPushHistory) { return jeedomUtils.deprecatedFunc('4.4', loadPage, 'loadPage', 'jeedomUtils')(); }
-//var initPage = jeedomUtils.initPage
-function initPage() { return jeedomUtils.deprecatedFunc('4.4', initPage, 'initPage', 'jeedomUtils')(); }
-//var initTooltips = jeedomUtils.initTooltips
-function initTooltips(_el) { return jeedomUtils.deprecatedFunc('4.4', initTooltips, 'initTooltips', 'jeedomUtils')(); }
-//var initTableSorter = jeedomUtils.initTableSorter
-function initTableSorter(filter) { return jeedomUtils.deprecatedFunc('4.4', initTableSorter, 'initTableSorter', 'jeedomUtils')(); }
-//var initHelp = jeedomUtils.initHelp
-function initHelp() { return jeedomUtils.deprecatedFunc('4.4', initHelp, 'initHelp', 'jeedomUtils')(); }
-//var datePickerInit = jeedomUtils.datePickerInit
-function datePickerInit() { return jeedomUtils.deprecatedFunc('4.4', datePickerInit, 'datePickerInit', 'jeedomUtils')(); }
-//var normTextLower = jeedomUtils.normTextLower
-function normTextLower(_text) { return jeedomUtils.deprecatedFunc('4.4', normTextLower, 'normTextLower', 'jeedomUtils')(); }
-//var sleep = jeedomUtils.sleep
-function sleep(milliseconds) { return jeedomUtils.deprecatedFunc('4.4', sleep, 'sleep', 'jeedomUtils')(); }
-//var uniqId = jeedomUtils.uniqId
-function uniqId(_prefix) { return jeedomUtils.deprecatedFunc('4.4', uniqId, 'uniqId', 'jeedomUtils')(); }
-//var taAutosize = jeedomUtils.taAutosize
-function taAutosize() { return jeedomUtils.deprecatedFunc('4.4', taAutosize, 'taAutosize', 'jeedomUtils')(); }
-//var hexToRgb = jeedomUtils.hexToRgb
-function hexToRgb(hex) { return jeedomUtils.deprecatedFunc('4.4', hexToRgb, 'hexToRgb', 'jeedomUtils')(); }
-//var componentToHex = jeedomUtils.componentToHex
-function componentToHex(c) { return jeedomUtils.deprecatedFunc('4.4', componentToHex, 'componentToHex', 'jeedomUtils')(); }
-//var rgbToHex = jeedomUtils.rgbToHex
-function rgbToHex(r, g, b) { return jeedomUtils.deprecatedFunc('4.4', rgbToHex, 'rgbToHex', 'jeedomUtils')(); }
-//var addOrUpdateUrl = jeedomUtils.addOrUpdateUrl
-function addOrUpdateUrl(_param,_value,_title) { return jeedomUtils.deprecatedFunc('4.4', addOrUpdateUrl, 'addOrUpdateUrl', 'jeedomUtils')(); }
-//var positionEqLogic = jeedomUtils.positionEqLogic
-function positionEqLogic(_id, _preResize, _scenario) { return jeedomUtils.deprecatedFunc('4.4', positionEqLogic, 'positionEqLogic', 'jeedomUtils')(); }
-//var chooseIcon = jeedomUtils.chooseIcon
-function chooseIcon(_callback, _params) { return jeedomUtils.deprecatedFunc('4.4', chooseIcon, 'chooseIcon', 'jeedomUtils')(); }
-//var getOpenedModal = jeedomUtils.getOpenedModal
-function getOpenedModal() { return jeedomUtils.deprecatedFunc('4.4', getOpenedModal, 'getOpenedModal', 'jeedomUtils')(); }
-
+function checkPageModified() {
+  jeedomUtils.deprecatedFunc('checkPageModified', 'jeedomUtils.checkPageModified', '4.4', '4.2')
+  return jeedomUtils.checkPageModified()
+}
+function loadPage(_url, _noPushHistory) {
+  jeedomUtils.deprecatedFunc('loadPage', 'jeedomUtils.loadPage', '4.4', '4.2')
+  return jeedomUtils.loadPage(_url, _noPushHistory)
+}
+function initPage() {
+  jeedomUtils.deprecatedFunc('initPage', 'jeedomUtils.initPage', '4.4', '4.2')
+  return jeedomUtils.initPage()
+}
+function initTooltips(_el) {
+  jeedomUtils.deprecatedFunc('initTooltips', 'jeedomUtils.initTooltips', '4.4', '4.2')
+  return jeedomUtils.initTooltips(_el)
+}
+function initTableSorter(filter) {
+  jeedomUtils.deprecatedFunc('initTableSorter', 'jeedomUtils.initTableSorter', '4.4', '4.2')
+  return jeedomUtils.initTableSorter(filter)
+}
+function initHelp() {
+  jeedomUtils.deprecatedFunc('initHelp', 'jeedomUtils.initHelp', '4.4', '4.2')
+  return jeedomUtils.initHelp()
+}
+function datePickerInit() {
+  jeedomUtils.deprecatedFunc('datePickerInit', 'jeedomUtils.datePickerInit', '4.4', '4.2')
+  return jeedomUtils.datePickerInit()
+}
+function normTextLower(_text) {
+  jeedomUtils.deprecatedFunc('normTextLower', 'jeedomUtils.normTextLower', '4.4', '4.2')
+  return jeedomUtils.normTextLower(_text)
+}
+function sleep(milliseconds) {
+  jeedomUtils.deprecatedFunc('sleep', 'jeedomUtils.sleep', '4.4', '4.2')
+  return jeedomUtils.sleep(milliseconds)
+}
+function uniqId(_prefix) {
+  jeedomUtils.deprecatedFunc('uniqId', 'jeedomUtils.uniqId', '4.4', '4.2')
+  return jeedomUtils.uniqId(_prefix)
+}
+function taAutosize() {
+  jeedomUtils.deprecatedFunc('taAutosize', 'jeedomUtils.taAutosize', '4.4', '4.2')
+  return jeedomUtils.taAutosize()
+}
+function hexToRgb(hex) {
+  jeedomUtils.deprecatedFunc('hexToRgb', 'jeedomUtils.hexToRgb', '4.4', '4.2')
+  return jeedomUtils.hexToRgb(hex)
+}
+function componentToHex(c) {
+  jeedomUtils.deprecatedFunc('componentToHex', 'jeedomUtils.componentToHex', '4.4', '4.2')
+  return jeedomUtils.componentToHex(c)
+}
+function rgbToHex(r, g, b) {
+  jeedomUtils.deprecatedFunc('rgbToHex', 'jeedomUtils.rgbToHex', '4.4', '4.2')
+  return jeedomUtils.rgbToHex(r, g, b)
+}
+function addOrUpdateUrl(_param, _value, _title) {
+  jeedomUtils.deprecatedFunc('addOrUpdateUrl', 'jeedomUtils.addOrUpdateUrl', '4.4', '4.2')
+  return jeedomUtils.addOrUpdateUrl(_param, _value, _title)
+}
+function positionEqLogic(_id, _preResize, _scenario) {
+  jeedomUtils.deprecatedFunc('positionEqLogic', 'jeedomUtils.positionEqLogic', '4.4', '4.2')
+  return jeedomUtils.positionEqLogic(_id, _preResize, _scenario)
+}
+function chooseIcon(_callback, _params) {
+  jeedomUtils.deprecatedFunc('chooseIcon', 'jeedomUtils.chooseIcon', '4.4', '4.2')
+  return jeedomUtils.chooseIcon(_callback, _params)
+}
+function getOpenedModal() {
+  jeedomUtils.deprecatedFunc('getOpenedModal', 'jeedomUtils.getOpenedModal', '4.4', '4.2')
+  return jeedomUtils.getOpenedModal()
+}

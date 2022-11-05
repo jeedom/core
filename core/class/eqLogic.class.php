@@ -241,6 +241,7 @@ class eqLogic {
 	}
 
 	public static function byTypeAndSearhConfiguration($_eqType_name, $_configuration) {
+		trigger_error('eqLogic::byTypeAndSearhConfiguration() is deprecated since Core v4.4, eqLogic::byTypeAndSearchConfiguration() has been introduced since Core v4.1', E_USER_DEPRECATED);
 		return self::byTypeAndSearchConfiguration($_eqType_name, $_configuration);
 	}
 
