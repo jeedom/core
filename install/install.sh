@@ -80,8 +80,7 @@ step_2_mainpackage() {
   apt-get -y install libsox-fmt-mp3 sox libttspico-utils
   apt-get -y install espeak
   apt-get -y install mbrola
-  apt-get -y remove brltty
-  apt-get -y remove net-tools
+  apt-get -y install net-tools
   apt-get -y install nmap
   apt-get -y install ffmpeg
   apt-get -y install usbutils
@@ -89,9 +88,10 @@ step_2_mainpackage() {
   apt-get -y install libcurl3-gnutls
   apt-get -y install chromium
   apt-get -y install librsync-dev
-  apt-get -y snmp
-  apt-get -y snmp-mibs-downloader
-  apt-get -y ssl-cert
+  apt-get -y install snmp
+  apt-get -y install snmp-mibs-downloader
+  apt-get -y install ssl-cert
+  apt-get -y remove brltty
   echo "${VERT}étape 2 paquet principal réussie${NORMAL}"
 }
 
