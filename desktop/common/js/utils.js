@@ -268,46 +268,6 @@ $(function() {
     jeedomUtils.setBackgroundImage('')
   }
 
-  //options for jeedom.notify() toastr
-  toastr.options = {
-    "newestOnTop": true,
-    "closeButton": true,
-    "debug": false,
-    "positionClass": jeedom.theme['interface::toast::position'],
-    "showDuration": "300",
-    "hideDuration": "1000",
-    "timeOut": parseInt(jeedom.theme['interface::toast::duration']) * 1000,
-    "extendedTimeOut": "1500",
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "fadeIn",
-    "hideMethod": "fadeOut",
-    "progressBar": true,
-    "onclick": function() {
-      window.toastr.clear()
-      $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&modal=message.display').dialog('open')
-    }
-  }
-  jeedomUtils.toastrUIoptions = {
-    "newestOnTop": true,
-    "closeButton": true,
-    "tapToDismiss": false,
-    "debug": false,
-    "positionClass": jeedom.theme['interface::toast::position'],
-    "showDuration": "300",
-    "hideDuration": "1000",
-    "timeOut": "5000",
-    "extendedTimeOut": "1500",
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "fadeIn",
-    "hideMethod": "fadeOut",
-    "progressBar": true,
-    "onclick": function(event) {
-      event.clickToClose = true
-    }
-  }
-
   setTimeout(function() {
     jeedomUtils.initTooltips()
     jeedomUtils.createObserver()
@@ -315,6 +275,45 @@ $(function() {
   }, 1)
 })
 
+//options for jeedom.notify() toastr
+toastr.options = {
+  "newestOnTop": true,
+  "closeButton": true,
+  "debug": false,
+  "positionClass": jeedom.theme['interface::toast::position'],
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": parseInt(jeedom.theme['interface::toast::duration']) * 1000,
+  "extendedTimeOut": "1500",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut",
+  "progressBar": true,
+  "onclick": function() {
+    window.toastr.clear()
+    $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&modal=message.display').dialog('open')
+  }
+}
+jeedomUtils.toastrUIoptions = {
+  "newestOnTop": true,
+  "closeButton": true,
+  "tapToDismiss": false,
+  "debug": false,
+  "positionClass": jeedom.theme['interface::toast::position'],
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1500",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut",
+  "progressBar": true,
+  "onclick": function(event) {
+    event.clickToClose = true
+  }
+}
 jeedomUtils.toastMsg = function(level, msg, target) {
   level = isset(level) ? level : 'success'
   msg = isset(msg) ? msg : ''
@@ -1594,11 +1593,11 @@ jeedomUtils.deprecatedFunc= function(_oldFnName, _newFnName, _since, _to, _line)
     console.error(msg)
     var jsError = {
       filename: 'desktop/common/js/utils.js',
-    lineno: '-1',
-    message: msg,
-  }
-  var isShown = jeedomUtils.JS_ERROR.filter(v => v.message == msg)
-  if (isShown.length < 1) {
+      lineno: '-1',
+      message: msg,
+    }
+    var isShown = jeedomUtils.JS_ERROR.filter(v => v.message == msg)
+    if (isShown.length < 1) {
       jeedomUtils.JS_ERROR.push(jsError)
       $('#bt_jsErrorModal').show()
     }
