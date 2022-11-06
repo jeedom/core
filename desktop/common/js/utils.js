@@ -1583,8 +1583,7 @@ jeedomUtils.deprecatedFunc= function(_oldFnName, _newFnName, _since, _to, _line)
           })
         },
         success: function(data) {
-          var require = data.require
-          msg += ' plugin: ' + _pluginId + ' | require: ' + require
+          msg += ' plugin: ' + _pluginId + ' | require: ' + data.require
         }
       })
   }
