@@ -295,7 +295,8 @@ class history {
 					'archivePackage' => config::byKey('historyArchivePackage') * 3600,
 					'archiveTime' => $archiveDatetime
 				);
-				$sql = 'REPLACE INTO historyArch(cmd_id,`datetime`,value) SELECT cmd_id,MIN(`datetime`),' . $mode . '(CAST(value AS DECIMAL(12,2))) as value
+				$round = (is_numeric($cmd->getConfiguration('historizeRound'))) ? $cmd->getConfiguration('historizeRound') : 2;
+				$sql = 'REPLACE INTO historyArch(cmd_id,`datetime`,value) SELECT cmd_id,MIN(`datetime`),' . $mode . '(CAST(value AS DECIMAL(12,' . $round . '))) as value
 				FROM history
 				WHERE `datetime` <= :archiveTime
 				AND cmd_id=:cmd_id
@@ -989,13 +990,13 @@ class history {
 				if ($result !== false) {
 					switch ($cmd->getConfiguration('historizeMode', 'avg')) {
 						case 'avg':
-							$this->setValue(($result['value'] + $this->getValue()) / 2);
+							$this->setValue(round(($result['value'] + $this->getValue()) / 2, $cmd->getConfiguration('historizeRound')));
 							break;
 						case 'min':
-							$this->setValue(min($result['value'], $this->getValue()));
+							$this->setValue(round(min($result['value'], $this->getValue()), $cmd->getConfiguration('historizeRound')));
 							break;
 						case 'max':
-							$this->setValue(max($result['value'], $this->getValue()));
+							$this->setValue(round(max($result['value'], $this->getValue()), $cmd->getConfiguration('historizeRound')));
 							break;
 					}
 					if ($result['value'] === $this->getValue()) {
