@@ -10,6 +10,7 @@
 
 - **Fenêtre de sélection d'image** : Ajout d'un menu contextuel permettant d'envoyer des images et de créer, renommer ou supprimer un dossier.
 - **Administration** : Possibilité de différencier les actions sur erreur ou sur alerte de commande.
+- **Historique** : La modale d'historique et la page Historique permettent d'utiliser les boutons *Week, Month, Year* pour recharger un historique plus large.
 - Un menu contextuel a été ajouté à différent endroits sur les checkboxs pour les sélectionner toutes, aucun, ou inverser la sélection (voir [Doc dev](https://doc.jeedom.com/fr_FR/dev/core4.4)).
 
 ### 4.4 : Autre
