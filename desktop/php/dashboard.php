@@ -21,13 +21,16 @@ if (init('object_id') == '') {
 }
 
 //Check for object found:
+$mbState = config::byKey('mbState');
 if ($DisplayByObject && !is_object($object)) {
 	$object = jeeObject::rootObject();
 	if (!is_object($object)) {
 		$alert = '{{Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets}}.<br/>';
-		if (config::byKey('doc::base_url', 'core') != '') {
-			$alert .= '{{Documentation}} : <a href="' . config::byKey('doc::base_url', 'core') . '/fr_FR/concept/" class="cursor label alert-info" target="_blank">{{Concepts}}</a>';
-			$alert .= ' | <a href="' . config::byKey('doc::base_url', 'core') . '/fr_FR/premiers-pas/" class="cursor label alert-info" target="_blank">{{Premiers pas}}</a>';
+		if ($mbState == 0) {
+			if (config::byKey('doc::base_url', 'core') != '') {
+				$alert .= '{{Documentation}} : <a href="' . config::byKey('doc::base_url', 'core') . '/fr_FR/concept/" class="cursor label alert-info" target="_blank">{{Concepts}}</a>';
+				$alert .= ' | <a href="' . config::byKey('doc::base_url', 'core') . '/fr_FR/premiers-pas/" class="cursor label alert-info" target="_blank">{{Premiers pas}}</a>';
+			}
 		}
 		echo '<div class="alert alert-warning">' . $alert . '</div>';
 		return;
