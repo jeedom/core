@@ -158,6 +158,9 @@ jeedom.history.changePoint = function(_params) {
 }
 
 jeedom.history.modalchangePoint = function(event, _this, _params) {
+  if (jeedom.history.chart[_this.series.chart._jeeId].mode == 'view' || jeedom.history.chart[_this.series.chart._jeeId].mode == 'plan') {
+    return
+  }
   var deviceInfo = getDeviceType()
   if ($.mobile || deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') return
   if ($('#md_modal2').is(':visible')) return
