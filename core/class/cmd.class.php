@@ -2115,8 +2115,8 @@ class cmd {
 			$url = config::byKey('cmdInfluxURL');
 			$port = config::byKey('cmdInfluxPort');
 			$base = config::byKey('cmdInfluxTable');
-			$user = config::byKey('cmdInfluxUser', '');
-			$pass = config::byKey('cmdInfluxPass', '');
+			$user = config::byKey('cmdInfluxUser', 'core', '');
+			$pass = config::byKey('cmdInfluxPass', 'core', '');
 			if ($url == '' || $port == '') {
 				return;
 			}
