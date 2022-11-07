@@ -2902,6 +2902,10 @@ div.div_viewZone legend.lg_viewZone {
     margin-top: 6px !important;
     margin-left: -20px;
   }
+  input[type=checkbox]:hover,
+  input[type=radio]:hover {
+    cursor: pointer;
+  }
   input[type=checkbox],
   input[type=radio] {
     font-size: 14px !important;
