@@ -299,6 +299,35 @@ $('#bt_validChangeDate').on('click', function() {
     }
   })
 })
+jeeP.$pageContainer.on({
+  'click': function(event) {
+    try {
+      var _startDate = moment($('#in_startDate').value(), 'YYYY-MM-DD')
+      var _endDate = $('#in_endDate').value()
+
+      var range = $(event.target).parent('g').attr('data-range')
+      var newStartdDate = ''
+
+      switch (range) {
+        case 'year':
+          newStartdDate = _startDate.subtract(1, 'years').format('YYYY-MM-DD')
+          break
+        case 'month':
+          newStartdDate = _startDate.subtract(1, 'months').format('YYYY-MM-DD')
+          break
+        case 'week':
+          newStartdDate = _startDate.subtract(1, 'weeks').format('YYYY-MM-DD')
+          break
+      }
+      if (newStartdDate !='') {
+        $('#in_startDate').value(newStartdDate)
+        $('#bt_validChangeDate').trigger('click')
+      }
+    } catch (error) {}
+  }
+}, 'g.highcharts-range-selector-group .highcharts-button.highcharts-button-disabled')
+
+
 $('#bt_findCmdCalculHistory').on('click', function() {
   jeedom.cmd.getSelectModal({
     cmd: {
@@ -331,7 +360,6 @@ $('#bt_openCmdHistoryConfigure').on('click', function() {
 })
 
 //Right options:
-
 $('#sel_groupingType').off('change').on('change', function(event) {
   if (event.isTrigger == 3) return
   if (jeeP.__lastId__ == null) return

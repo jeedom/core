@@ -104,7 +104,9 @@ if (!jeeFrontEnd.md_history) {
           height: jQuery(window).height() - 270,
           success: function(data) {
             self.done -= 1
-            if (self.done == 0) self.setModal()
+            if (self.done == 0) {
+              self.setModal()
+            }
           }
         })
       })
@@ -171,5 +173,36 @@ if (!jeeFrontEnd.md_history) {
       jeedomUtils.loadPage('index.php?v=d&p=history&cmd_id=' + jeephp2js.md_history_cmdId)
     }
   }, '#bt_openInHistory')
+
+
+  jeeM.$pageContainer.on({
+    'click': function(event) {
+      try {
+        var _startDate = moment($('#in_startDate').value(), 'YYYY-MM-DD')
+        var _endDate = $('#in_endDate').value()
+
+        var range = $(event.target).parent('g').attr('data-range')
+        var newStartdDate = ''
+
+        switch (range) {
+          case 'year':
+            newStartdDate = _startDate.subtract(1, 'years').format('YYYY-MM-DD')
+            break
+          case 'month':
+            newStartdDate = _startDate.subtract(1, 'months').format('YYYY-MM-DD')
+            break
+          case 'week':
+            newStartdDate = _startDate.subtract(1, 'weeks').format('YYYY-MM-DD')
+            break
+        }
+        if (newStartdDate !='') {
+          jeeM.md_modal.dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + jeephp2js.md_history_cmdId + '&startDate='+newStartdDate+'&endDate='+_endDate).dialog('open')
+        }
+      } catch (error) {}
+    }
+  }, 'g.highcharts-range-selector-group .highcharts-button.highcharts-button-disabled')
+
+
+
 })()
 </script>

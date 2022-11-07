@@ -395,6 +395,7 @@ jeedom.history.drawChart = function(_params) {
         events: {
           load: function(event) {
             this.setSize(undefined, undefined, false)
+
             //default min/max set earlier in series
             //.doing initialized at 1 when chart created with first curve
             var thisId = event.target.userOptions._jeeId
@@ -1351,6 +1352,20 @@ jeedom.history.chartDone = function(_chartId) {
         if (isset(jeeFrontEnd[jeedom.history.chart[_chartId].mode]) && typeof jeeFrontEnd[jeedom.history.chart[_chartId].mode].highcharts_done_callback === "function") {
           jeeFrontEnd[jeedom.history.chart[_chartId].mode].highcharts_done_callback(_chartId)
         }
+
+        //custom range buttons class:
+        if (jeedom.history.chart[_chartId].mode != 'view' && jeedom.history.chart[_chartId].mode != 'plan') {
+          try {
+            chart.rangeSelector.buttons[0].attr('data-range', 'all')
+            chart.rangeSelector.buttons[1].attr('data-range', '30mins')
+            chart.rangeSelector.buttons[2].attr('data-range', 'hour')
+            chart.rangeSelector.buttons[3].attr('data-range', 'day')
+            chart.rangeSelector.buttons[4].attr('data-range', 'week').addClass('warning')
+            chart.rangeSelector.buttons[5].attr('data-range', 'month').addClass('warning')
+            chart.rangeSelector.buttons[6].attr('data-range', 'year').addClass('warning')
+          } catch (error) {}
+        }
+
       }
     }, (getUrlVars('report') == 1) ? 0 : jeedom.history.chartDrawTime)
   } catch (error) {
