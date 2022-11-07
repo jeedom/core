@@ -413,6 +413,9 @@ jeedom.history.drawChart = function(_params) {
                   dropdown: 'never'
                 }
               }, false)
+              this.rangeSelector.buttons[4].attr('data-range', 'week').addClass('warning')
+              this.rangeSelector.buttons[5].attr('data-range', 'month').addClass('warning')
+              this.rangeSelector.buttons[6].attr('data-range', 'year').addClass('warning')
             } else if (this.chartWidth <= 550 && this.rangeSelector.options.dropdown != 'always') {
               this.update({
                 rangeSelector: {
