@@ -405,6 +405,7 @@ jeedom.history.drawChart = function(_params) {
             var thisId = event.target.userOptions._jeeId
             setTimeout(function() {
               try {
+                jeedom.history.setRangeSelectorButtons(event.target.userOptions._jeeId)
                 jeedom.history.chartCallback(thisId, {type: 'load'})
               } catch (error) {}
             }, 0)
@@ -417,12 +418,14 @@ jeedom.history.drawChart = function(_params) {
                   dropdown: 'never'
                 }
               }, false)
+              jeedom.history.setRangeSelectorButtons(event.target.userOptions._jeeId)
             } else if (this.chartWidth <= 550 && this.rangeSelector.options.dropdown != 'always') {
               this.update({
                 rangeSelector: {
                   dropdown: 'always'
                 }
               }, false)
+              jeedom.history.setRangeSelectorButtons(event.target.userOptions._jeeId)
             }
           },
           render: function(event) {
@@ -1753,6 +1756,20 @@ jeedom.history.emptyChart = function(_chartId, _yAxis) {
   jeedom.history.chart[_chartId].chart.redraw()
 }
 
+jeedom.history.setRangeSelectorButtons = function(_chartId) {
+  if (_chartId === undefined || jeedom.history.chart[_chartId].chart === undefined) return false
+  var chart = jeedom.history.chart[_chartId].chart
+  var min = chart.xAxis[0].dataMin
+  var max = chart.xAxis[0].dataMax
+  chart.rangeSelector.buttonOptions.forEach(function(option, index) {
+    if (max - (option._range + min) < 0) {
+      chart.rangeSelector.buttons[index].addClass('warning')
+    } else {
+      chart.rangeSelector.buttons[index].removeClass('warning')
+    }
+  })
+}
+
 /*
 Handle rangeSelector buttons for dynamic reloading:
 */
@@ -1793,6 +1810,7 @@ jeedom.history.handleRangeButton = function(_button, _chartId) {
             done -= 1
             if (done == 0) {
               chart.xAxis[0].setExtremes(mRequestStart.valueOf(), mEnd.valueOf())
+              jeedom.history.setRangeSelectorButtons(_chartId)
             }
           }
         })
