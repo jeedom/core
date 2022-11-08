@@ -103,7 +103,6 @@ sendVarToJS([
     <div role="tabpanel" class="tab-pane active" id="tabobjectbg">
       <div class="imgContainer">
         <div id="treeFolder-bg" class="div_treeFolder">
-          <sup class="pull-right"><i class="fas fa-question-circle" title="{{Clic droit sur un dossier pour ouvrir le menu contextuel}}"></i></sup>
           <ul id="ul_Folder-bg">
             <?php
             $rootPath = __DIR__ . '/../../core/img/object_background/';
@@ -209,14 +208,14 @@ sendVarToJS([
         var items = {
           "upload": {
             "separator_after": true,
-            "label": "{{Envoyer des images}}",
-            "icon": "fas fa-file-upload",
+            "label": "{{Ajouter}}",
+            "icon": "fas fa-file-image",
             "action": function() {
               $('#bt_uploadImg').click()
             }
           },
           "create": {
-            "label": "{{Nouveau dossier}}",
+            "label": "{{Nouveau}}",
             "icon": "fas fa-folder-plus",
             "action": function() {
               jeedom.createFolder({
@@ -246,14 +245,14 @@ sendVarToJS([
         }
         if (node.parent !== '#') {
           items.rename = {
-            "label": "{{Renommer le dossier}}",
+            "label": "{{Renommer}}",
             "icon": "fas fa-folder",
             "action": function() {
               tree.edit(node)
             }
           }
           items.remove = {
-            "label": "{{Supprimer le dossier}}",
+            "label": "{{Supprimer}}",
             "icon": "fas fa-folder-minus",
             "action": function() {
               bootbox.confirm("{{Etes-vous sûr de vouloir supprimer le dossier}} <strong>" + tree.get_node(node.parent).text + "/" + node.text + "</strong> ?<br>{{Attention : le contenu du dossier sera définitivement supprimé lors de l'opération.}}", function(result) {

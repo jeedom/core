@@ -233,7 +233,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
       <div id="panel_layout" class="panel panel-default">
         <h3 class="panel-title">
           <a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#layout"><i class="fas fa-th"></i> {{Disposition}}</a>
-          <sup class="pull-right"><i class="fas fa-question-circle" title="{{Mise en forme de la tuile par défaut ou en mode tableau..}}"></i></sup>
+          <sup class="pull-right"><i class="fas fa-question-circle" title="{{Mise en forme de la tuile par défaut ou en mode tableau.}}"></i></sup>
         </h3>
         <div id="layout" class="panel-collapse collapse">
           <div class="panel-body">
