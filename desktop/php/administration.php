@@ -79,10 +79,6 @@ user::isBan();
 									<option value="es_ES">{{Espagnol}}</option>
 									<option value="it_IT">{{Italien (pas de support)}}</option>
 									<option value="pt_PT">{{Portugais (pas de support)}}</option>
-									<option value="ru_RU">{{Russe (pas de support)}}</option>
-									<option value="ja_JP">{{Japonais (pas de support)}}</option>
-									<option value="id_ID">{{Indonesien (pas de support)}}</option>
-									<option value="tr">{{Turque (pas de support)}}</option>
 								</select>
 							</div>
 						</div>
