@@ -142,7 +142,7 @@
         "Action": "Stock"
     },
     "mobile\/html\/notes.html": {
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Sauvegarder": "To safeguard",
         "Supprimer": "Remove",
         "Titre": "Title",
@@ -241,7 +241,7 @@
         "Design sauvegardé": "Saved design"
     },
     "desktop\/modal\/history.calcul.php": {
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Sauvegarder": "Save",
         "Nom": "Name",
         "Calcul": "Calculation",
@@ -306,7 +306,7 @@
     },
     "desktop\/modal\/note.manager.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Sauvegarder": "Save",
         "Supprimer": "Delete",
         "Titre": "Title",
@@ -346,7 +346,7 @@
     },
     "desktop\/modal\/dataStore.management.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Rafraichir": "Refresh",
         "Nom": "Name",
         "Valeur": "Value",
@@ -510,7 +510,7 @@
         "Défaut": "Default",
         "Transparent": "Transparent",
         "Paramètres optionnels": "Optional Parameters",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Nom": "Name",
         "Valeur": "Value",
         "Action": "Stock",
@@ -597,7 +597,7 @@
         "Masquer quand le volet est ouvert": "Hide when the shutter is open",
         "Couleur fermé": "Color closed",
         "Condition": "Condition",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Masqué si": "Hidden if"
     },
     "desktop\/modal\/search.php": {
@@ -751,7 +751,7 @@
         "pendant plus de": "for more than",
         "durée en minutes (laisser vide pour une action immédiate)": "duration in minutes (leave blank for immediate action)",
         "Action": "Stock",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Action avant exécution de la commande": "Pre-execution action",
         "Action après exécution de la commande": "Post-execution action",
         "Historiser": "Historize",
@@ -1759,7 +1759,7 @@
         "Messages": "Message",
         "Ajouter un message à chaque erreur dans les logs": "Add a message for each error in log",
         "Action sur message": "Action on message",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Action sur message, channel ": "Action on message, channel",
         "Action sur alertes": "Action on alerts",
         "Niveau de Logs": "Log level",
@@ -2139,7 +2139,7 @@
         "Objet": "Object",
         "Scénario": "Scenario",
         "Ajouter un filtre": "Add filter",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Test": "Test",
         "Colonne": "Column",
         "Valeur": "Value",
@@ -2150,7 +2150,7 @@
     "desktop\/php\/widgets.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Gestion": "Management",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Importer": "Import",
         "Code": "Coded",
         "Remplacement": "Replacement",
@@ -2219,7 +2219,7 @@
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Aucun": "None",
         "Gestion": "Management",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Supprimer les logs": "Delete logs",
         "Activer scénarios": "Enable scenarios",
         "Désactiver scénarios": "Disable scenarios",
@@ -2332,7 +2332,7 @@
         "Aucun": "None",
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Gestion": "Management",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Regénérer": "Regenerate",
         "Tester": "Test",
         "Mes interactions": "My interactions",
@@ -2446,7 +2446,7 @@
         "Identifiant": "Login",
         "Mot de passe": "Password",
         "Annuler": "Cancel",
-        "Ajouter": "To add"
+        "Ajouter": "Add"
     },
     "desktop\/php\/database.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -2469,7 +2469,7 @@
         "Activer le système cron": "Enable cron system",
         "Désactiver le système cron": "Disable cron system",
         "Rafraîchir": "Refresh",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Sauvegarder": "Save",
         "Cron": "Cron",
         "Listener": "Listen",
@@ -2499,7 +2499,7 @@
         "Design": "Design",
         "Design 3D": "3d design",
         "Gestion": "Management",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Vue d'ensemble": "Overview",
         "Mes objets": "My objects",
         "Rechercher | nom | :not(nom": "Search | name | :not(name",
@@ -3228,7 +3228,7 @@
         "Copier ce bloc.<br>Ctrl+Click: Couper ce bloc.": "Copy this block. <br> Ctrl + Click: Cut this block",
         "Coller un bloc après celui-ci.<br>Ctrl+Click: remplacer ce bloc par le bloc copié.": "Paste a block after this. <br> Ctrl + Click: replace this block with the copied block",
         "Afficher\/masquer le bloc Sinon": "Show \/ hide Else block",
-        "Ajouter": "To add",
+        "Ajouter": "Add",
         "Action": "STOCK",
         "Bloc Si\/Alors\/Sinon": "If \/ Do \/ Else block",
         "Bloc Action": "Action Block",

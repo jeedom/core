@@ -142,7 +142,7 @@
         "Action": "Acción"
     },
     "mobile\/html\/notes.html": {
-        "Ajouter": "Para agregar",
+        "Ajouter": "Agregar",
         "Sauvegarder": "Para salvaguardar",
         "Supprimer": "Eliminar",
         "Titre": "Título",
@@ -241,7 +241,7 @@
         "Design sauvegardé": "Diseño salvado"
     },
     "desktop\/modal\/history.calcul.php": {
-        "Ajouter": "Para agregar",
+        "Ajouter": "Añadir",
         "Sauvegarder": "Guardar",
         "Nom": "Nombre",
         "Calcul": "Cálculo",
@@ -306,7 +306,7 @@
     },
     "desktop\/modal\/note.manager.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Ajouter": "Para agregar",
+        "Ajouter": "Añadir",
         "Sauvegarder": "Guardar",
         "Supprimer": "Eliminar",
         "Titre": "Título",
@@ -346,7 +346,7 @@
     },
     "desktop\/modal\/dataStore.management.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Ajouter": "Para agregar",
+        "Ajouter": "Añadir",
         "Rafraichir": "Actualizar",
         "Nom": "Nombre",
         "Valeur": "Valor",
@@ -510,7 +510,7 @@
         "Défaut": "Por defecto",
         "Transparent": "Transparente",
         "Paramètres optionnels": "Parámetros opcionales",
-        "Ajouter": "Para agregar",
+        "Ajouter": "Añadir",
         "Nom": "Nombre",
         "Valeur": "Valor",
         "Action": "Acción",
@@ -597,7 +597,7 @@
         "Masquer quand le volet est ouvert": "Ocultar cuando el obturador está abierto",
         "Couleur fermé": "Color cerrado",
         "Condition": "Condición",
-        "Ajouter": "Para agregar",
+        "Ajouter": "Añadir",
         "Masqué si": "Oculto si"
     },
     "desktop\/modal\/search.php": {
@@ -751,7 +751,7 @@
         "pendant plus de": "Por más de",
         "durée en minutes (laisser vide pour une action immédiate)": "duración en minutos (déjelo en blanco para una acción inmediata)",
         "Action": "Acción",
-        "Ajouter": "Para agregar",
+        "Ajouter": "Añadir",
         "Action avant exécution de la commande": "Acción antes de la ejecución de la orden",
         "Action après exécution de la commande": "Después de ejecutar la acción de la orden",
         "Historiser": "Guardar historial",
@@ -1759,7 +1759,7 @@
         "Messages": "Mensajes",
         "Ajouter un message à chaque erreur dans les logs": "Añadir un mensaje a cada error en los registros",
         "Action sur message": "Acción sobre mensaje",
-        "Ajouter": "Para agregar",
+        "Ajouter": "Añadir",
         "Action sur message, channel ": "Acción en mensaje, canal",
         "Action sur alertes": "Acción sobre alertas",
         "Niveau de Logs": "Nivel de registro",
@@ -2139,7 +2139,7 @@
         "Objet": "Objeto",
         "Scénario": "Guión",
         "Ajouter un filtre": "Añadir filtro",
-        "Ajouter": "Para agregar",
+        "Ajouter": "Agregar",
         "Test": "Prueba",
         "Colonne": "Columna",
         "Valeur": "Valor",
@@ -2150,7 +2150,7 @@
     "desktop\/php\/widgets.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Gestion": "Administración",
-        "Ajouter": "Para agregar",
+        "Ajouter": "Añadir",
         "Importer": "Importar",
         "Code": "Código",
         "Remplacement": "Reemplazo",
@@ -2219,7 +2219,7 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Aucun": "Ninguno",
         "Gestion": "Gestión",
-        "Ajouter": "Para agregar",
+        "Ajouter": "Añadir",
         "Supprimer les logs": "Eliminar registros",
         "Activer scénarios": "Activar escenarios",
         "Désactiver scénarios": "Desactivar escenarios",
@@ -2332,7 +2332,7 @@
         "Aucun": "No",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Gestion": "Administración",
-        "Ajouter": "Para agregar",
+        "Ajouter": "Añadir",
         "Regénérer": "Actualizar",
         "Tester": "Prueba",
         "Mes interactions": "Mis interacciones",
@@ -2446,7 +2446,7 @@
         "Identifiant": "Identificador",
         "Mot de passe": "Contraseña",
         "Annuler": "Cancelar",
-        "Ajouter": "Para agregar"
+        "Ajouter": "Añadir"
     },
     "desktop\/php\/database.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -2469,7 +2469,7 @@
         "Activer le système cron": "Activar sistema cron",
         "Désactiver le système cron": "Desactivar el sistema cron",
         "Rafraîchir": "Refrescar",
-        "Ajouter": "Para agregar",
+        "Ajouter": "Añadir",
         "Sauvegarder": "Guardar",
         "Cron": "Cron",
         "Listener": "Oyente",
@@ -2499,7 +2499,7 @@
         "Design": "Diseño",
         "Design 3D": "Diseño 3d",
         "Gestion": "Administración",
-        "Ajouter": "Para agregar",
+        "Ajouter": "Añadir",
         "Vue d'ensemble": "Resumen",
         "Mes objets": "Mis objetos",
         "Rechercher | nom | :not(nom": "Buscar | nombre | : sin nombre",
@@ -3228,7 +3228,7 @@
         "Copier ce bloc.<br>Ctrl+Click: Couper ce bloc.": "Copia este bloque. <br> Ctrl + Click: Cortar este bloque",
         "Coller un bloc après celui-ci.<br>Ctrl+Click: remplacer ce bloc par le bloc copié.": "Pega un bloque después de esto. <br> Ctrl + Click: reemplazar este bloque con el bloque copiado",
         "Afficher\/masquer le bloc Sinon": "Mostrar\/ocultar el bloque",
-        "Ajouter": "Para agregar",
+        "Ajouter": "Añadir",
         "Action": "ACCIÓN",
         "Bloc Si\/Alors\/Sinon": "Bloque Si\/Entonces\/Si no",
         "Bloc Action": "Bloque de acción",
