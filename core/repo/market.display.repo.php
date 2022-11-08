@@ -255,11 +255,8 @@ if (count($market->getImg('screenshot')) > 0) {
 				if ($market->getLanguage('de_DE') == 1) {
 					echo '<img src="core/img/langFlags/allemand.png" width="30" />';
 				}
-				if ($market->getLanguage('sp_SP') == 1) {
+				if ($market->getLanguage('es_ES') == 1) {
 					echo '<img src="core/img/langFlags/espagnol.png" width="30" />';
-				}
-				if ($market->getLanguage('ru_RU') == 1) {
-					echo '<img src="core/img/langFlags/russe.png" width="30" />';
 				}
 				if ($market->getLanguage('it_IT') == 1) {
 					echo '<img src="core/img/langFlags/italien.png" width="30" />';

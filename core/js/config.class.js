@@ -106,50 +106,6 @@ jeedom.config.locales = {
             year: 'A '
         }
     },
-    ru_RU: {
-        duration: {
-            second: 's ',
-            minute: 'm ',
-            hour: 'c ',
-            day: 'd ',
-            week: 'N ',
-            month: 'M ',
-            year: 'G '
-        }
-    },
-    ja_JP: {
-        duration: {
-            second: 'ba ',
-            minute: 'b ',
-            hour: 'j ',
-            day: 'h ',
-            week: 'S ',
-            month: 'Ts ',
-            year: 'T '
-        }
-    },
-    id_ID: {
-        duration: {
-            second: 'd ',
-            minute: 'm ',
-            hour: 'j ',
-            day: 'm ',
-            week: 'H ',
-            month: 'B ',
-            year: 'T '
-        }
-    },
-    tr: {
-        duration: {
-            second: 's ',
-            minute: 'd ',
-            hour: 's ',
-            day: 'g ',
-            week: 'H ',
-            month: 'A ',
-            year: 'Y '
-        }
-    }
 }
 
 jeedom.config.save = function(_params) {
