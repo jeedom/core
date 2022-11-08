@@ -1738,52 +1738,51 @@ jeedom.history.toggleYaxisVisible = function(_chartId) {
 /*
 Remove all series/yAxis from chart:
 */
-jeedom.history.emptyChart = function(_chartId) {
+jeedom.history.emptyChart = function(_chartId, _yAxis) {
   if (jeedom.history.chart[_chartId] === undefined) return false
-  /*should be done in reverse order !??! .slice().reverse().forEach
-  only used by desktop history for comparing
-
-  */
-  jeedom.history.chart[_chartId].chart.series.forEach(function(series) {
-    series.remove(false)
+  if (!isset(_yAxis)) _yAxis = false
+  $(jeedom.history.chart[_chartId].chart.series).each(function(i, series) {
+    if (series.options && !isNaN(series.options.id)) {
+      if (!series.name.includes('Navigator ')) {
+        var cmd_id = series.options.id
+        series.remove(false)
+        if (_yAxis) jeedom.history.chart[_chartId].chart.get(cmd_id+'-yAxis').remove(false)
+      }
+    }
   })
-  /*
-  jeedom.history.chart[_chartId].chart.yAxis.forEach(function(yAxis) {
-    yAxis.remove(false)
-  })
-  */
   jeedom.history.chart[_chartId].chart.redraw()
 }
 
 /*
 Handle rangeSelector buttons for dynamic reloading:
 */
-jeedom.history.handleRangeButton = function(_button, _el) {
-  var mStart = moment(jeedom.history.chart[_el].dateStart, 'YYYY-MM-DD')
-  var mEnd = moment(jeedom.history.chart[_el].dateEnd, 'YYYY-MM-DD hh:mm:ss')
+jeedom.history.handleRangeButton = function(_button, _chartId) {
+  var mStart = moment(jeedom.history.chart[_chartId].dateStart, 'YYYY-MM-DD')
+  var mEnd = moment(jeedom.history.chart[_chartId].dateEnd, 'YYYY-MM-DD hh:mm:ss')
   var mRequestStart = mEnd.clone().subtract(_button.count, _button.type)
 
   if (mRequestStart.isBefore(mStart)) {
-    var cmds = jeedom.history.chart[_el].cmd
+    var cmds = jeedom.history.chart[_chartId].cmd
 
-    //delete all series and their yAxis, then reload them with larger date range!
-    var chart = jeedom.history.chart[_el].chart
-    var dateEnd = jeedom.history.chart[_el].dateEnd
+    //delete all series and their yAxis, then reload them with larger date range and same parameters!
+    var chart = jeedom.history.chart[_chartId].chart
+    var dateEnd = jeedom.history.chart[_chartId].dateEnd
     var done = 0
-    $(jeedom.history.chart[_el].chart.series).each(function(i, series) {
+    var cmd_id, cmd_option
+    $(jeedom.history.chart[_chartId].chart.series).each(function(i, series) {
       if (series.options && !isNaN(series.options.id)) {
-        var cmd_id = series.options.id
-        var cmd_option = cmds[cmd_id].option
+        cmd_id = series.options.id
+        cmd_option = cmds[cmd_id].option
         delete cmd_option.graphStack
 
         if (!series.name.includes('Navigator ')) {
           series.remove(false)
-          chart.get(cmd_id+'-yAxis').remove()
+          chart.get(cmd_id+'-yAxis').remove(false)
           done += 1
         }
         jeedom.history.drawChart({
           cmd_id: cmd_id,
-          el: _el,
+          el: _chartId,
           dateRange: 'all',
           option: cmd_option,
           dateStart: mRequestStart.format('YYYY-MM-DD'),

@@ -204,7 +204,7 @@ if (!jeeFrontEnd.history) {
 
       //Existing serie dateRange can vary, remove all series:
       jeedom.history.setAxisScales(this.__el__, {redraw: true, resetDateRange: true})
-      jeedom.history.emptyChart(this.__el__)
+      jeedom.history.emptyChart(this.__el__, true)
 
       //add data from both date range:
       self = this
