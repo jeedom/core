@@ -170,7 +170,7 @@ if (!jeeFrontEnd.md_history) {
 
   jeeM.$pageContainer.on({
     'click': function(event) {
-      jeedomUtils.loadPage('index.php?v=d&p=history&cmd_id=' + jeephp2js.md_history_cmdId)
+      jeedomUtils.loadPage('index.php?v=d&p=history&cmd_id=' + jeephp2js.md_history_cmdId + '&startDate=' + $('#in_startDate').val() + '&endDate=' + $('#in_endDate').val())
     }
   }, '#bt_openInHistory')
 
