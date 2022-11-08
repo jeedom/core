@@ -2,6 +2,7 @@
 
 ## 4.3.10
 
+- **Analyse / Historique** : Correction de bugs sur la suppression d'historique.
 - Correction de l'affichage de la valeur dans la fenêtre de configuration d'une commande.
 - Ajout d'informations et de contrôle sur l'outil de remplacement.
 
