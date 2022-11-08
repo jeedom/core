@@ -158,6 +158,9 @@ jeedom.history.changePoint = function(_params) {
 }
 
 jeedom.history.modalchangePoint = function(event, _this, _params) {
+  if (jeedom.history.chart[_this.series.chart._jeeId].mode == 'view' || jeedom.history.chart[_this.series.chart._jeeId].mode == 'plan') {
+    return
+  }
   var deviceInfo = getDeviceType()
   if ($.mobile || deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') return
   if ($('#md_modal2').is(':visible')) return
@@ -852,7 +855,7 @@ jeedom.history.drawChart = function(_params) {
               minPadding: 0.001,
               maxPadding: 0.001,
               labels: {
-                format: '{value} ' + series.unite,
+                format: '{value} ' + data.result.unite,
                 style: {
                   color: _params.option.graphColor
                 },
@@ -955,7 +958,7 @@ jeedom.history.drawChart = function(_params) {
               minPadding: 0.001,
               maxPadding: 0.001,
               labels: {
-                format: '{value} ' + series.unite,
+                format: '{value} ' + data.result.unite,
                 style: {
                   color: _params.option.graphColor
                 },
@@ -1710,15 +1713,18 @@ jeedom.history.toggleYaxisVisible = function(_chartId) {
 /*
 Remove all series/yAxis from chart:
 */
-jeedom.history.emptyChart = function(_chartId) {
+jeedom.history.emptyChart = function(_chartId, _yAxis) {
   if (jeedom.history.chart[_chartId] === undefined) return false
-  jeedom.history.chart[_chartId].chart.series.forEach(function(series) {
-    series.remove(false)
+  if (!isset(_yAxis)) _yAxis = false
+  $(jeedom.history.chart[_chartId].chart.series).each(function(i, series) {
+    if (series.options && !isNaN(series.options.id)) {
+      if (!series.name.includes('Navigator ')) {
+        var cmd_id = series.options.id
+        series.remove(false)
+        if (_yAxis) jeedom.history.chart[_chartId].chart.get(cmd_id+'-yAxis').remove(false)
+      }
+    }
   })
-  /*
-  jeedom.history.chart[_chartId].chart.yAxis.forEach(function(yAxis) {
-    yAxis.remove(false)
-  })
-  */
   jeedom.history.chart[_chartId].chart.redraw()
 }
+
