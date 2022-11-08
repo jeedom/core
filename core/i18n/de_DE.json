@@ -142,7 +142,7 @@
         "Action": "Aktion"
     },
     "mobile\/html\/notes.html": {
-        "Ajouter": "Addieren",
+        "Ajouter": "Hinzufügen",
         "Sauvegarder": "Zu schützen",
         "Supprimer": "Entfernen",
         "Titre": "Titel",
@@ -515,7 +515,7 @@
         "Valeur": "Wert",
         "Action": "Aktion",
         "Disposition": "Bereitstellung",
-        "Mise en forme de la tuile par défaut ou en mode tableau..": "Formatieren der Kachel standardmäßig oder im Tabellenmodus",
+        "Mise en forme de la tuile par défaut ou en mode tableau.": "Formatieren der Kachel standardmäßig oder im Tabellenmodus",
         "Mise en forme générale": "Allgemeine Formatierung",
         "Tableau": "Tabelle",
         "Centrer": "Center",
@@ -864,14 +864,12 @@
         "Icônes vertes": "Grüne Symbole",
         "Rechercher": "Suchen nach",
         "Clic droit sur un dossier pour ouvrir le menu contextuel": "Klicken Sie mit der rechten Maustaste auf einen Ordner, um das Kontextmenü zu öffnen",
-        "Envoyer des images": "Bilder senden",
-        "Nouveau dossier": "Neuer Ordner",
+        "Ajouter": "Hinzufügen",
         "Nouveau": "Neu",
-        "Renommer le dossier": "Ordner umbenennen",
-        "Supprimer le dossier": "Lösche Ordner",
+        "Renommer": "Umbenennen",
+        "Supprimer": "Entfernen",
         "Etes-vous sûr de vouloir supprimer le dossier": "Möchten Sie den Ordner wirklich löschen?",
         "Attention : le contenu du dossier sera définitivement supprimé lors de l'opération.": "Achtung: Der Inhalt des Ordners wird während des Vorgangs dauerhaft gelöscht",
-        "Supprimer": "Entfernen",
         "Êtes-vous sûr de vouloir supprimer cette image": "Möchten Sie dieses Bild wirklich löschen?"
     },
     "desktop\/modal\/update.send.php": {
