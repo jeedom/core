@@ -4186,13 +4186,7 @@ div.div_viewZone legend.lg_viewZone {
     font-weight: 700;
   }
   div.chartContainer .highcharts-button-disabled {
-    opacity: 0.6 !important;
-  }
-  div.chartContainer g.highcharts-button-disabled.warning > rect {
-    fill: var(--al-warning-color) !important;
-  }
-  div.chartContainer g.highcharts-button-disabled.warning > text {
-    fill: var(--sc-formTxt-color) !important;
+    opacity: 0.3 !important;
   }
   div.chartContainer .highcharts-button-box {
     x:0;

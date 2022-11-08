@@ -158,6 +158,10 @@ jeedom.history.changePoint = function(_params) {
 }
 
 jeedom.history.modalchangePoint = function(event, _this, _params) {
+  if (jeedom.history.chart[_this.series.chart._jeeId].mode == 'view' || jeedom.history.chart[_this.series.chart._jeeId].mode == 'plan') {
+    return
+  }
+
   var deviceInfo = getDeviceType()
   if ($.mobile || deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') return
   if ($('#md_modal2').is(':visible')) return
@@ -413,9 +417,6 @@ jeedom.history.drawChart = function(_params) {
                   dropdown: 'never'
                 }
               }, false)
-              this.rangeSelector.buttons[4].attr('data-range', 'week').addClass('warning')
-              this.rangeSelector.buttons[5].attr('data-range', 'month').addClass('warning')
-              this.rangeSelector.buttons[6].attr('data-range', 'year').addClass('warning')
             } else if (this.chartWidth <= 550 && this.rangeSelector.options.dropdown != 'always') {
               this.update({
                 rangeSelector: {
@@ -802,6 +803,7 @@ jeedom.history.drawChart = function(_params) {
               enabled: _params.enableExport || ($.mobile) ? false : true
             },
             rangeSelector: {
+              allButtonsEnabled: true,
               buttonTheme: { // styles for the buttons
                 width: 'auto',
                 padding: 4
@@ -809,31 +811,51 @@ jeedom.history.drawChart = function(_params) {
               buttons: [{
                 type: 'all',
                 count: 1,
-                text: '{{Tous}}'
+                text: '{{Tous}}',
               }, {
                 type: 'minute',
                 count: 30,
-                text: '{{30 min}}'
+                text: '{{30 min}}',
               }, {
                 type: 'hour',
                 count: 1,
-                text: '{{Heure}}'
+                text: '{{Heure}}',
               }, {
                 type: 'day',
                 count: 1,
-                text: '{{Jour}}'
+                text: '{{Jour}}',
+                events: {
+                    click: function() {
+                      jeedom.history.handleRangeButton(this, _params.el)
+                    }
+                }
               }, {
                 type: 'week',
                 count: 1,
-                text: '{{Semaine}}'
+                text: '{{Semaine}}',
+                events: {
+                    click: function() {
+                      jeedom.history.handleRangeButton(this, _params.el)
+                    }
+                }
               }, {
                 type: 'month',
                 count: 1,
-                text: '{{Mois}}'
+                text: '{{Mois}}',
+                events: {
+                    click: function() {
+                      jeedom.history.handleRangeButton(this, _params.el)
+                    }
+                }
               }, {
                 type: 'year',
                 count: 1,
-                text: '{{Année}}'
+                text: '{{Année}}',
+                events: {
+                    click: function() {
+                      jeedom.history.handleRangeButton(this, _params.el)
+                    }
+                }
               }],
               selected: dateRange,
               inputEnabled: false,
@@ -850,7 +872,7 @@ jeedom.history.drawChart = function(_params) {
               crosshairs: [true, true]
             },
             yAxis: [{
-              id: _params.cmd_id,
+              id: _params.cmd_id+'-yAxis',
               showEmpty: false,
               gridLineWidth: 0,
               minPadding: 0.001,
@@ -953,7 +975,7 @@ jeedom.history.drawChart = function(_params) {
           } else if (_params.option.graphStack != 1) {
             //add new yAxis:
             var yAxis = {
-              id: _params.cmd_id,
+              id: _params.cmd_id+'-yAxis',
               showEmpty: false,
               gridLineWidth: 0,
               minPadding: 0.001,
@@ -979,11 +1001,13 @@ jeedom.history.drawChart = function(_params) {
               }
             }, false)
             //add axis to chart:
-            series.yAxis = _params.cmd_id
+            series.yAxis = _params.cmd_id+'-yAxis'
             jeedom.history.chart[_params.el].chart.addAxis(yAxis, false, false)
           }
           //add series to graph:
           jeedom.history.chart[_params.el].chart.addSeries(series, false)
+          jeedom.history.chart[_params.el].dateStart = _params.dateStart
+          jeedom.history.chart[_params.el].dateEnd = _params.dateEnd
 
         }
         jeedom.history.chart[_params.el].cmd[_params.cmd_id] = {
@@ -991,6 +1015,9 @@ jeedom.history.drawChart = function(_params) {
           dateRange: _params.dateRange
         }
       }
+
+      jeedom.history.chart[_params.el].dateStart = data.result.dateStart
+      jeedom.history.chart[_params.el].dateEnd = data.result.dateEnd
 
       //set plotband:
       var extremes = jeedom.history.chart[_params.el].chart.xAxis[0].getExtremes()
@@ -1008,7 +1035,6 @@ jeedom.history.drawChart = function(_params) {
     }
   })
 }
-
 
 /*
 Special custom Jeedom HighCharts functions
@@ -1159,7 +1185,7 @@ jeedom.history.initChart = function(_chartId, _options) {
     jeedom.history.chart[thisId].yAxisVisible = false
     jeedom.history.chart[thisId].btToggleyaxisVisible.setState(0)
   }
-  
+
   jeedom.history.chart[thisId].yAxisScalePercent = jeedom.history.default.yAxisScalePercent
 
   //store all that in chart:
@@ -1355,20 +1381,6 @@ jeedom.history.chartDone = function(_chartId) {
         if (isset(jeeFrontEnd[jeedom.history.chart[_chartId].mode]) && typeof jeeFrontEnd[jeedom.history.chart[_chartId].mode].highcharts_done_callback === "function") {
           jeeFrontEnd[jeedom.history.chart[_chartId].mode].highcharts_done_callback(_chartId)
         }
-
-        //custom range buttons class:
-        if (jeedom.history.chart[_chartId].mode != 'view' && jeedom.history.chart[_chartId].mode != 'plan') {
-          try {
-            chart.rangeSelector.buttons[0].attr('data-range', 'all')
-            chart.rangeSelector.buttons[1].attr('data-range', '30mins')
-            chart.rangeSelector.buttons[2].attr('data-range', 'hour')
-            chart.rangeSelector.buttons[3].attr('data-range', 'day')
-            chart.rangeSelector.buttons[4].attr('data-range', 'week').addClass('warning')
-            chart.rangeSelector.buttons[5].attr('data-range', 'month').addClass('warning')
-            chart.rangeSelector.buttons[6].attr('data-range', 'year').addClass('warning')
-          } catch (error) {}
-        }
-
       }
     }, (getUrlVars('report') == 1) ? 0 : jeedom.history.chartDrawTime)
   } catch (error) {
@@ -1545,10 +1557,8 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
 
   //scale | No unit : Each axis will get its own min/max
   if (jeedom.history.chart[_chartId].yAxisScaling && !jeedom.history.chart[_chartId].yAxisByUnit) {
-    var min, max, axisId
+    var min, max
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
-      axisId = axis.userOptions.id
-      if (!axisId) axisId = 0
       if (axis.series[0].data.length > 0) {
         var min = Math.min.apply(Math, axis.series[0].data.filter(x => x !== null).map(function (key) { return key.options.y }))
         var max = Math.max.apply(Math, axis.series[0].data.filter(x => x !== null).map(function (key) { return key.options.y }))
@@ -1730,6 +1740,10 @@ Remove all series/yAxis from chart:
 */
 jeedom.history.emptyChart = function(_chartId) {
   if (jeedom.history.chart[_chartId] === undefined) return false
+  /*should be done in reverse order !??! .slice().reverse().forEach
+  only used by desktop history for comparing
+
+  */
   jeedom.history.chart[_chartId].chart.series.forEach(function(series) {
     series.remove(false)
   })
@@ -1739,4 +1753,57 @@ jeedom.history.emptyChart = function(_chartId) {
   })
   */
   jeedom.history.chart[_chartId].chart.redraw()
+}
+
+/*
+Handle rangeSelector buttons for dynamic reloading:
+*/
+jeedom.history.handleRangeButton = function(_button, _el) {
+  var mStart = moment(jeedom.history.chart[_el].dateStart, 'YYYY-MM-DD')
+  var mEnd = moment(jeedom.history.chart[_el].dateEnd, 'YYYY-MM-DD hh:mm:ss')
+  var mRequestStart = mEnd.clone().subtract(_button.count, _button.type)
+
+  if (mRequestStart.isBefore(mStart)) {
+    var cmds = jeedom.history.chart[_el].cmd
+
+    //delete all series and their yAxis, then reload them with larger date range!
+    var chart = jeedom.history.chart[_el].chart
+    var dateEnd = jeedom.history.chart[_el].dateEnd
+    var done = 0
+    $(jeedom.history.chart[_el].chart.series).each(function(i, series) {
+      if (series.options && !isNaN(series.options.id)) {
+        var cmd_id = series.options.id
+        var cmd_option = cmds[cmd_id].option
+        delete cmd_option.graphStack
+
+        if (!series.name.includes('Navigator ')) {
+          series.remove(false)
+          chart.get(cmd_id+'-yAxis').remove()
+          done += 1
+        }
+        jeedom.history.drawChart({
+          cmd_id: cmd_id,
+          el: _el,
+          dateRange: 'all',
+          option: cmd_option,
+          dateStart: mRequestStart.format('YYYY-MM-DD'),
+          dateEnd:  dateEnd,
+          newGraph: false,
+          global: false,
+          success: function(data) {
+            done -= 1
+            if (done == 0) {
+              chart.xAxis[0].setExtremes(mRequestStart.valueOf(), mEnd.valueOf())
+            }
+          }
+        })
+      }
+    })
+
+    $('input#in_startDate').value(mRequestStart.format('YYYY-MM-DD'))
+
+    return true
+  } else {
+    return true
+  }
 }
