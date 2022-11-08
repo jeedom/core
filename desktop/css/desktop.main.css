@@ -4212,6 +4212,9 @@ div.div_viewZone legend.lg_viewZone {
     stroke: transparent;
     fill: var(--objectTxt-color) !important;
   }
+  div.chartContainer g.highcharts-range-selector-group g.highcharts-button.warning > text{
+    fill: var(--al-warning-color) !important;
+  }
   path.highcharts-graph {
     stroke-width: 1.2;
   }
