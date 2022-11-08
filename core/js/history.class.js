@@ -878,7 +878,7 @@ jeedom.history.drawChart = function(_params) {
               minPadding: 0.001,
               maxPadding: 0.001,
               labels: {
-                format: '{value} ' + series.unite,
+                format: '{value} ' + data.result.unite,
                 style: {
                   color: _params.option.graphColor
                 },
@@ -981,7 +981,7 @@ jeedom.history.drawChart = function(_params) {
               minPadding: 0.001,
               maxPadding: 0.001,
               labels: {
-                format: '{value} ' + series.unite,
+                format: '{value} ' + data.result.unite,
                 style: {
                   color: _params.option.graphColor
                 },

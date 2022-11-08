@@ -77,14 +77,6 @@ if (!jeeFrontEnd.history) {
         } else {
           this.__lastId__ = currentSeries[currentSeries.length - 1].userOptions.id
           _prop = false
-          var grouping = currentSeries[0].userOptions.dataGrouping.enabled
-          if (grouping) {
-            var groupingType = currentSeries[0].userOptions.dataGrouping.approximation + '::' + currentSeries[0].userOptions.dataGrouping.units[0][0]
-            $('#sel_groupingType').value(groupingType)
-          } else {
-            $('#sel_groupingType').val($('#sel_groupingType option:first').val())
-          }
-
           if (isset(currentSeries[0].userOptions.dataGrouping)) {
             var grouping = currentSeries[0].userOptions.dataGrouping.enabled
             if (grouping) {
@@ -187,10 +179,6 @@ if (!jeeFrontEnd.history) {
             message: '{{Historique supprimé avec succès}}',
             level: 'success'
           })
-          li = $('li[data-cmd_id=' + _cmd_id + ']')
-          if (li && li.hasClass('active')) {
-            li.find('.history').click()
-          }
         }
       })
     },
@@ -512,6 +500,7 @@ jeeP.$pageContainer.on({
 jeeP.$pageContainer.on({
   'click': function(event) {
     $.hideAlert()
+    if (event.target.className.includes('remove') || event.target.className.includes('export')) return
     if (isset(jeedom.history.chart[jeeP.__el__]) && jeedom.history.chart[jeeP.__el__].comparing) return
 
     var options = null
