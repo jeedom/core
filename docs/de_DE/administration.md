@@ -38,8 +38,8 @@ Auf dieser Registerkarte finden Sie die Parameter für die Anpassung der Anzeige
 
 ### Tuiles
 
-- **Nicht horizontal** : Beschränkt die Breite der Kacheln alle x Pixel.
-- **Nicht vertikal** : Beschränkt die Höhe der Kacheln alle x Pixel.
+- **Horizontale Tonhöhe** : Beschränkt die Breite der Kacheln alle x Pixel.
+- **Vertikale Steigung** : Beschränkt die Höhe der Kacheln alle x Pixel.
 - **Rand** : Vertikaler und horizontaler Abstand zwischen Kacheln in Pixel.
 - **Vertikale Zentrierung von Fliesen** : Zentriert den Inhalt der Kacheln vertikal.
 - **Bunte Widget-Symbole** : Einfärben von Widget-Symbolen basierend auf ihrem Status. Veränderbar durch Szenario, *setColoredIcon* ('Symbolfärbung').

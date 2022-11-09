@@ -13,6 +13,12 @@
 - **Histórico** : El modal de historial y la página de historial permiten usar botones *Semana, Mes, Año* para recargar una historia más grande.
 - Se ha agregado un menú contextual en diferentes lugares en las casillas de verificación para seleccionar todo, ninguno o invertir la selección (ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.4)).
 
+> **Observación**
+>
+> Sobre **Tablero** y los **Puntos de vista**, Núcleo v4.4 ahora cambia automáticamente el tamaño de los mosaicos para crear una cuadrícula perfecta. Las unidades (la altura más pequeña y el ancho más pequeño de un mosaico) de esta cuadrícula se definen en **Ajustes → Sistema → Configuración / Interfaz** por valores *Tono vertical* y *Paso horizontal*. El valor *Margen* definiendo el espacio entre las baldosas.
+> Los mosaicos se adaptan a las dimensiones de la cuadrícula y se pueden hacer una, dos veces, etc. estos valores en alto o ancho. Sin duda será necesario pasar [Modo de edición del tablero](https://doc.jeedom.com/es_ES/core/4.4/dashboard#Mode%20%C3%A9dition) para ajustar el tamaño de algunos mosaicos después de la actualización.
+
+
 ### 4.4 : Autre
 
 *RAS*

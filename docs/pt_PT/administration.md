@@ -38,8 +38,8 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 
 ### Tuiles
 
-- **Não horizontal** : Restringe a largura dos blocos a cada x pixels.
-- **Não vertical** : Restringe a altura dos blocos a cada x pixels.
+- **Arremesso horizontal** : Restringe a largura dos blocos a cada x pixels.
+- **Passo vertical** : Restringe a altura dos blocos a cada x pixels.
 - **Margem** : Espaço vertical e horizontal entre blocos, em pixels.
 - **Centralização vertical de ladrilhos** : Centraliza verticalmente o conteúdo dos blocos.
 - **Ícones coloridos de widget** : Ícones de widget para colorir com base em seu estado. Modificável por cenário, *setColoredIcon* ('Coloração de ícone').

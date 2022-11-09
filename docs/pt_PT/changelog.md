@@ -13,6 +13,12 @@
 - **Histórico** : O modal de histórico e a página de histórico permitem usar botões *Semana, Mês, Ano* para recarregar um histórico maior.
 - Um menu contextual foi adicionado em diferentes locais nas caixas de seleção para selecionar tudo, nenhum ou inverter a seleção (consulte [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.4)).
 
+> **Observação**
+>
+> No **Painel** e a **Visualizações**, Núcleo v4.4 agora redimensiona automaticamente os blocos para criar uma grade perfeita. As unidades (menor altura e menor largura de um ladrilho) desta grade são definidas em **Configurações → Sistema → Configuração / Interface** por valores *Passo vertical* e *Arremesso horizontal*. O valor que *Margem* definindo o espaço entre as telhas.
+> Os ladrilhos se adaptam às dimensões da grade e podem ser feitos uma, duas vezes etc. esses valores em altura ou largura. Certamente será necessário passar [Modo de edição do painel](https://doc.jeedom.com/pt_PT/core/4.4/dashboard#Mode%20%C3%A9dition) para ajustar o tamanho de alguns blocos após a atualização.
+
+
 ### 4.4 : Autre
 
 *RAS*

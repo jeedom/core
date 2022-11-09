@@ -13,6 +13,12 @@
 - **Historical** : History modal and History page allow to use buttons *Week, Month, Year* to reload a larger history.
 - A contextual menu has been added in different places on the checkboxes to select all, none, or invert the selection (see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.4)).
 
+> **Remark**
+>
+> On the **Dashboard** and the **Views**, Core v4.4 now automatically resizes tiles to build a seamless grid. The units (smallest height and smallest width of a tile) of this grid are defined in **Settings → System → Configuration / Interface** by values *Vertical pitch* and *Horizontal pitch*. The value *Margin* defining the space between the tiles.
+> The tiles adapt to the dimensions of the grid and can be done once, twice etc. these values in height or width. It will certainly be necessary to pass [Dashboard edit mode](https://doc.jeedom.com/en_US/core/4.4/dashboard#Mode%20%C3%A9dition) to fine-tune the size of some tiles after the update.
+
+
 ### 4.4 : Autre
 
 *RAS*

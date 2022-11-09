@@ -13,6 +13,12 @@
 - **Historisch** : Verlaufsmodal und Verlaufsseite ermöglichen die Verwendung von Schaltflächen *Woche, Monat, Jahr* um einen größeren Verlauf neu zu laden.
 - Ein Kontextmenü wurde an verschiedenen Stellen zu den Kontrollkästchen hinzugefügt, um alle oder keine auszuwählen oder die Auswahl umzukehren (siehe [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.4)).
 
+> **Anmerkung**
+>
+> Auf der **Armaturenbrett** und die **Ansichten**, Kern v4.4 ändert jetzt automatisch die Größe von Kacheln, um ein nahtloses Raster zu erstellen. Die Einheiten (kleinste Höhe und kleinste Breite einer Kachel) dieses Rasters sind in definiert **Einstellungen → System → Konfiguration / Schnittstelle** nach Werten *Vertikale Steigung* und *Horizontale Tonhöhe*. Der Wert *Rand* Definieren des Raums zwischen den Kacheln.
+> Die Fliesen passen sich den Abmessungen des Rasters an und können einmal, zweimal usw. diese Werte in Höhe oder Breite. Es wird sicherlich notwendig sein, zu bestehen [Dashboard-Bearbeitungsmodus](https://doc.jeedom.com/de_DE/core/4.4/dashboard#Mode%20%C3%A9dition) um die Größe einiger Kacheln nach dem Update zu optimieren.
+
+
 ### 4.4 : Autre
 
 *RAS*
