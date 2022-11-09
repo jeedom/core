@@ -15,12 +15,14 @@
 */
 
 "use strict"
-
 var jeedomUtils = {
-  __description: 'Loaded once for every desktop/mobile page. Global UI functions and variables.'
+  __description: 'Loaded once for every desktop/mobile page. Global UI functions and variables.',
+  widthStep: parseInt(jeedom.theme['widget::step::width']) > 120 ? parseInt(jeedom.theme['widget::step::width']): 180,
+  heightStep: parseInt(jeedom.theme['widget::step::height']) > 140 ? parseInt(jeedom.theme['widget::step::height']) : 150,
+  backgroundIMG: null,
+  _elBackground: null
 }
-jeedomUtils.backgroundIMG = null
-jeedomUtils._elBackground = null
+jeedomUtils.heightSteps = Array.apply(null, {length: 9}).map(function(value, index) {return (index + 1) * jeedomUtils.heightStep})
 
 $(function() {
   jeedomUtils._elBackground = $('#backgroundforJeedom')
@@ -272,38 +274,38 @@ $(function() {
   toastr.options = {
     "newestOnTop": true,
     "closeButton": true,
-  "debug": false,
-  "positionClass": jeedom.theme['interface::toast::position'],
-  "showDuration": "300",
-  "hideDuration": "1000",
-  "timeOut": parseInt(jeedom.theme['interface::toast::duration']) * 1000,
-  "extendedTimeOut": "1500",
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut",
-  "progressBar": true,
-  "onclick": function() {
-    window.toastr.clear()
-    $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&modal=message.display').dialog('open')
+    "debug": false,
+    "positionClass": jeedom.theme['interface::toast::position'],
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": parseInt(jeedom.theme['interface::toast::duration']) * 1000,
+    "extendedTimeOut": "1500",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut",
+    "progressBar": true,
+    "onclick": function() {
+      window.toastr.clear()
+      $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&modal=message.display').dialog('open')
+    }
   }
-}
-jeedomUtils.toastrUIoptions = {
-  "newestOnTop": true,
-  "closeButton": true,
-  "tapToDismiss": false,
-  "debug": false,
-  "positionClass": jeedom.theme['interface::toast::position'],
-  "showDuration": "300",
-  "hideDuration": "1000",
-  "timeOut": "5000",
-  "extendedTimeOut": "1500",
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut",
-  "progressBar": true,
-  "onclick": function(event) {
+  jeedomUtils.toastrUIoptions = {
+    "newestOnTop": true,
+    "closeButton": true,
+    "tapToDismiss": false,
+    "debug": false,
+    "positionClass": jeedom.theme['interface::toast::position'],
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1500",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut",
+    "progressBar": true,
+    "onclick": function(event) {
       event.clickToClose = true
     }
   }
@@ -1259,39 +1261,43 @@ jeedomUtils.closeJeedomMenu = function() {
 
 jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
   var margin = jeedom.theme['widget::margin'] + 'px ' + jeedom.theme['widget::margin']*2 + 'px ' + jeedom.theme['widget::margin'] + 'px 0'
+  var containerWidth = window.innerWidth - 22
+  var cols = Math.floor(containerWidth / this.widthStep) + 1
+  var surplus = containerWidth - (cols * this.widthStep)
+  var widthStep = this.widthStep + (surplus / cols) - (2 * parseInt(jeedom.theme['widget::margin']))
+  var widthSteps = Array.apply(null, {length: 9}).map(function(value, index) {return (index + 1) * widthStep})
+
+
   if (_id != undefined) {
-    var widget = (_scenario) ? $('div.scenario-widget[data-scenario_id='+_id+']') : $('div.eqLogic-widget[data-eqlogic_id='+_id+']')
-    widget.css({'margin': '0px', 'padding': '0px'})
-    if (widget.width() == 0) {
-      widget.width('230')
-    }
-    if (widget.height() == 0) {
-      widget.height('110')
-    }
+    var tile = (_scenario) ? $('div.scenario-widget[data-scenario_id='+_id+']') : $('div.eqLogic-widget[data-eqlogic_id='+_id+']')
+    tile.css('margin', '0px')
     if (init(_preResize, true)) {
-      widget.width(Math.floor(widget.width() / jeedom.theme['widget::step::width']) * jeedom.theme['widget::step::width'] - (2 * jeedom.theme['widget::margin']))
-      widget.height(Math.floor(widget.height() / jeedom.theme['widget::step::height']) * jeedom.theme['widget::step::height'] - (2 * jeedom.theme['widget::margin']))
+      tile.width(Math.floor(tile.width() / jeedom.theme['widget::step::width']) * jeedom.theme['widget::step::width'] - (2 * jeedom.theme['widget::margin']))
+      tile.height(Math.floor(tile.height() / jeedom.theme['widget::step::height']) * jeedom.theme['widget::step::height'] - (2 * jeedom.theme['widget::margin']))
     }
-    widget.width(jeedomUtils.calculWidgetSize(widget.width(),jeedom.theme['widget::step::width'],jeedom.theme['widget::margin']))
-    widget.height(jeedomUtils.calculWidgetSize(widget.height(),jeedom.theme['widget::step::height'],jeedom.theme['widget::margin']))
-    widget.css('margin', margin)
+
+    var width = jeedomUtils.getClosestInArray(tile.width() -1, widthSteps)
+    var height = jeedomUtils.getClosestInArray(tile.height(), jeedomUtils.heightSteps)
+    tile.width(width + (2 * widthSteps.indexOf(width) * parseInt(jeedom.theme['widget::margin'])))
+    tile.height(height + (2 * jeedomUtils.heightSteps.indexOf(height) * parseInt(jeedom.theme['widget::margin'])))
+
+    tile.css('margin', margin)
   } else {
-    $('div.eqLogic-widget:not(.jeedomAlreadyPosition), div.scenario-widget:not(.jeedomAlreadyPosition)')
-    .css('margin','0px')
-    .css('padding','0px')
-    .each(function() {
-      if ($(this).width() == 0) {
-        $(this).width('230')
-      }
-      if ($(this).height() == 0) {
-        $(this).height('110')
-      }
-      $(this).width(jeedomUtils.calculWidgetSize($(this).width(),jeedom.theme['widget::step::width'],jeedom.theme['widget::margin']))
-      .height(jeedomUtils.calculWidgetSize($(this).height(),jeedom.theme['widget::step::height'],jeedom.theme['widget::margin']))
-    })
-    .css('margin', margin)
+    $('div.eqLogic-widget, div.scenario-widget')
+      .each(function() {
+        var width = jeedomUtils.getClosestInArray(parseInt($(this).width() -1), widthSteps)
+        var height = jeedomUtils.getClosestInArray($(this).height(), jeedomUtils.heightSteps)
+        $(this).width(width + (2 * widthSteps.indexOf(width) * parseInt(jeedom.theme['widget::margin'])))
+        $(this).height(height + (2 * jeedomUtils.heightSteps.indexOf(height) * parseInt(jeedom.theme['widget::margin'])))
+      })
+      .css('margin', margin)
     $('div.eqLogic-widget, div.scenario-widget').addClass('jeedomAlreadyPosition')
   }
+}
+jeedomUtils.getClosestInArray = function(_num, _refAr) {
+  return _refAr.reduce(function(prev, curr) {
+    return (Math.abs(curr - _num) < Math.abs(prev - _num) ? curr : prev)
+  })
 }
 
 jeedomUtils.showHelpModal = function(_name, _plugin) {
@@ -1401,14 +1407,6 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
     })
     $('#mod_selectIcon').dialog('open')
   })
-}
-
-jeedomUtils.calculWidgetSize = function(_size,_step,_margin) {
-  var result = Math.ceil(_size / _step) * _step - (2*_margin)
-  if (result < _size) {
-    result += Math.ceil((_size - result) / _step)* _step
-  }
-  return result
 }
 
 jeedomUtils.getOpenedModal = function() {

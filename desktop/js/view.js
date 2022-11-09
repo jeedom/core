@@ -153,6 +153,9 @@ $(function() {
   jeedomUI.isEditing = false
   jeedomUI.setEqSignals()
   jeedomUI.setHistoryModalHandler()
+  $(window).on('resize', function () {
+    jeedomUtils.positionEqLogic()
+  })
 })
 
 $('#div_pageContainer').on('click', '.bt_gotoViewZone', function() {

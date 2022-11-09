@@ -285,9 +285,9 @@ if (!jeeFrontEnd.dashboard) {
               return
             }
           }
+
           jeedomUtils.positionEqLogic()
           var container = $divDisplayEq.packery()
-
           var packData = $divDisplayEq.data('packery')
           if (isset(packData) && packData.items.length == 1) {
             $divDisplayEq.packery('destroy').packery()
@@ -357,19 +357,6 @@ $(function() {
 
   //autoResize new created tiles:
   setTimeout(function() {
-    $('div.eqLogic-widget > div.autoResize').each(function(index) {
-      var h = $(this).outerHeight(true) + $(this).parent().find('.widget-name').outerHeight(true) + 20
-      for (var i = 1; i < 40; i++) {
-        if (h <= i * 25) {
-          h = i * 25
-          break
-        }
-      }
-      $(this).closest('div.eqLogic-widget')
-        .height(h + 'px')
-        .width($(this).outerWidth(true) + 'px')
-      $(this).closest('.div_displayEquipement').packery()
-    })
     if ($('div.eqLogic-widget > div.autoResize').length) jeedomUI.saveWidgetDisplay({
       dashboard: 1
     })
@@ -382,6 +369,9 @@ $(function() {
   }, 750)
 
   jeeP.postInit()
+  $(window).on('resize', function () {
+    jeedomUtils.positionEqLogic()
+  })
 })
 
 //searching
@@ -506,7 +496,6 @@ $(function() {
 })
 $('#dashOverviewPrev').on({
   'mouseenter': function(event) {
-
     $('#dashOverviewPrevSummaries > .objectSummaryContainer').hide()
 
     var width = $(window).width()

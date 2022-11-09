@@ -749,7 +749,8 @@ Desktop
   .div_object legend .objectDashLegend {
     padding: 3px 20px;
     background-color: rgba(var(--bg-color), var(--opacity)) !important;
-    width: 100%;
+    width: calc(100% - 4px);
+    margin-left: -2px;
     display: inline-block;
   }
   .div_object legend .objectDashLegend > a {
@@ -804,7 +805,9 @@ div.div_viewZone legend.lg_viewZone {
     color: var(--link-color) !important;
   }
 
-
+  div.div_displayEquipement {
+    margin-left: 1px;
+  }
   [data-page="dashboard"] div.col-md-12:empty {
     display:none;
   }
@@ -837,6 +840,7 @@ div.div_viewZone legend.lg_viewZone {
 
   .eqLogic-widget,
   .scenario-widget {
+    padding: 0;
     max-width: 100%;
     overflow: hidden;
     z-index: 0;

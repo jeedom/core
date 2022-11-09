@@ -13,6 +13,12 @@
 - **Historique** : La modale d'historique et la page Historique permettent d'utiliser les boutons *Week, Month, Year* pour recharger un historique plus large.
 - Un menu contextuel a été ajouté à différent endroits sur les checkboxs pour les sélectionner toutes, aucun, ou inverser la sélection (voir [Doc dev](https://doc.jeedom.com/fr_FR/dev/core4.4)).
 
+> **Remarque**
+>
+> Sur le **Dashboard** et les **Vues**, Le Core v4.4 redimensionne maintenant automatiquement les tuiles pour construire une grille homogène. Les unités (plus petite hauteur et plus petit largeur d'une tuile) de cette grille sont définies dans **Réglages → Système → Configuration / Interface** par les valeurs *Pas vertical* et *Pas horizontal*. La valeur *Marge* définissant l'espace entre les tuiles.
+> Les tuiles s'adaptent aux dimensions de la grille et peuvent faire une fois, deux fois etc. ces valeurs en hauteur ou largeur. Il faudra certainement passer en [mode Edition du Dashboard](https://doc.jeedom.com/fr_FR/core/4.4/dashboard#Mode%20%C3%A9dition) pour affiner la taille de certaines tuiles après la mise à jour.
+
+
 ### 4.4 : Autre
 
 *RAS*

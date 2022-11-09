@@ -105,6 +105,11 @@ $(function() {
   }
 
   jeedomUtils.initTableSorter()
+  $(window).on('resize', function () {
+    if ($('#ul_tabBatteryAlert li.alerts').hasClass('active')) {
+      jeedomUtils.positionEqLogic()
+    }
+  })
 })
 
 //update tablesorter on tab click:
