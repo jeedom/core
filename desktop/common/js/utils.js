@@ -268,17 +268,10 @@ $(function() {
     jeedomUtils.setBackgroundImage('')
   }
 
-  setTimeout(function() {
-    jeedomUtils.initTooltips()
-    jeedomUtils.createObserver()
-    $body.trigger('jeedom_page_load')
-  }, 1)
-})
-
-//options for jeedom.notify() toastr
-toastr.options = {
-  "newestOnTop": true,
-  "closeButton": true,
+  //options for jeedom.notify() toastr, need jeedom.theme set!
+  toastr.options = {
+    "newestOnTop": true,
+    "closeButton": true,
   "debug": false,
   "positionClass": jeedom.theme['interface::toast::position'],
   "showDuration": "300",
@@ -311,9 +304,17 @@ jeedomUtils.toastrUIoptions = {
   "hideMethod": "fadeOut",
   "progressBar": true,
   "onclick": function(event) {
-    event.clickToClose = true
+      event.clickToClose = true
+    }
   }
-}
+
+  setTimeout(function() {
+    jeedomUtils.initTooltips()
+    jeedomUtils.createObserver()
+    $body.trigger('jeedom_page_load')
+  }, 1)
+})
+
 jeedomUtils.toastMsg = function(level, msg, target) {
   level = isset(level) ? level : 'success'
   msg = isset(msg) ? msg : ''
