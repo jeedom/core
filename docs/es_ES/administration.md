@@ -38,8 +38,8 @@ En esta pestaña encontrará los parámetros de personalización de la pantalla.
 
 ### Tuiles
 
-- **Paso horizontal** : Restringe el ancho de los mosaicos cada x píxeles.
-- **Tono vertical** : Restringe la altura de los mosaicos cada x píxeles.
+- **No horizontal** : Restringe el ancho de los mosaicos cada x píxeles.
+- **No vertical** : Restringe la altura de los mosaicos cada x píxeles.
 - **Margen** : Espacio vertical y horizontal entre mosaicos, en píxeles.
 - **Centrado vertical de baldosas** : Centra verticalmente el contenido de los mosaicos.
 - **Iconos coloridos de widgets** : Colorear iconos de widgets según su estado. Modificable por escenario, *conjuntoColoredIcon* ('Colorear icono').

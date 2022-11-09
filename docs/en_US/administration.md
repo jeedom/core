@@ -38,8 +38,8 @@ In this tab you will find the display customization parameters.
 
 ### Tuiles
 
-- **Horizontal pitch** : Constrains the width of the tiles every x pixels.
-- **Vertical pitch** : Constrains the height of the tiles every x pixels.
+- **Not horizontal** : Constrains the width of the tiles every x pixels.
+- **Not vertical** : Constrains the height of the tiles every x pixels.
 - **Margin** : Vertical and horizontal space between tiles, in pixels.
 - **Vertical centering of tiles** : Vertically centers the content of the tiles.
 - **Colorful widget icons** : Coloring widget icons based on their state. Modifiable by scenario, *setColoredIcon* ('Icon coloring').
