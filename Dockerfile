@@ -31,6 +31,7 @@ RUN echo "innodb_log_file_size = 32M" >> /etc/mysql/conf.d/jeedom_my.cnf
 RUN echo "innodb_large_prefix = on" >> /etc/mysql/conf.d/jeedom_my.cnf
 
 RUN sh /tmp/install.sh 8
+RUN sh /tmp/install.sh 11
 RUN sh /tmp/install.sh 12
 
 
