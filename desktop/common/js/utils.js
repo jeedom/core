@@ -1273,9 +1273,6 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
     }
     widget.width(jeedomUtils.calculWidgetSize(widget.width(),jeedom.theme['widget::step::width'],jeedom.theme['widget::margin']))
     widget.height(jeedomUtils.calculWidgetSize(widget.height(),jeedom.theme['widget::step::height'],jeedom.theme['widget::margin']))
-    if (!widget.hasClass(widget.attr('data-category'))) {
-      widget.addClass(widget.attr('data-category'))
-    }
     widget.css('margin', margin)
   } else {
     $('div.eqLogic-widget:not(.jeedomAlreadyPosition), div.scenario-widget:not(.jeedomAlreadyPosition)')
@@ -1290,9 +1287,6 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
       }
       $(this).width(jeedomUtils.calculWidgetSize($(this).width(),jeedom.theme['widget::step::width'],jeedom.theme['widget::margin']))
       .height(jeedomUtils.calculWidgetSize($(this).height(),jeedom.theme['widget::step::height'],jeedom.theme['widget::margin']))
-      if (!$(this).hasClass($(this).attr('data-category'))) {
-        $(this).addClass($(this).attr('data-category'))
-      }
     })
     .css('margin', margin)
     $('div.eqLogic-widget, div.scenario-widget').addClass('jeedomAlreadyPosition')

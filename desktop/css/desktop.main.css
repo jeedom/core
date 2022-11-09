@@ -837,6 +837,7 @@ div.div_viewZone legend.lg_viewZone {
 
   .eqLogic-widget,
   .scenario-widget {
+    max-width: 100%;
     overflow: hidden;
     z-index: 0;
   }
