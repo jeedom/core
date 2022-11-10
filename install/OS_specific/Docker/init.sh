@@ -27,7 +27,7 @@ else
 		sed -i "s/#USERNAME#/jeedom/g" /var/www/html/core/config/common.config.php
 		sed -i "s/#PORT#/3306/g" /var/www/html/core/config/common.config.php
 		sed -i "s/#HOST#/localhost/g" /var/www/html/core/config/common.config.php
-		/root/install.sh -s 10
+		/root/install.sh -s 10mariadb
 		/root/install.sh -s 11
 	fi
 fi
@@ -36,7 +36,7 @@ echo 'Start atd'
 service atd restart
 
 if [ $(which mysqld | wc -l) -ne 0 ]; then
-	echo 'Starting mysql'
+	echo 'Starting mariadb'
 	chown -R mysql:mysql /var/lib/mysql /var/run/mysqld
 	service mariadb restart
 	if [ $? -ne 0 ]; then
