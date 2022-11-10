@@ -30,6 +30,9 @@
         "Designs 3D": "Diseños en 3D"
     },
     "mobile\/js\/overview.js": {
+        "Vue": "Visto",
+        "Design": "Diseño",
+        "Design 3D": "Diseño 3D",
         "Tous": "Todos"
     },
     "mobile\/js\/cron.js": {
@@ -619,7 +622,7 @@
         "Scénario": "Escenario",
         "Actions": "Acciones",
         "Design": "Diseño",
-        "Vue": "Vista",
+        "Vue": "Visto",
         "Interaction": "Interacción",
         "Note": "Nota",
         "Voir les logs": "Ver los registros",
@@ -1412,9 +1415,9 @@
         "Accueil": "Inicio",
         "Synthèse": "Síntesis",
         "Dashboard": "Tablero",
-        "Vue": "Ver",
+        "Vue": "Visto",
         "Design": "Diseño",
-        "Design 3D": "Diseño 3d",
+        "Design 3D": "Diseño 3D",
         "Analyse": "Análisis",
         "Logs": "Registros",
         "Temps réel": "Tiempo real",
@@ -2072,7 +2075,7 @@
         "Error 401 Unauthorized": "Error 401 no autorizado",
         "Dashboard": "Tablero",
         "Synthèse": "Síntesis",
-        "Vue": "Vista",
+        "Vue": "Visto",
         "Design": "Diseño",
         "Design 3D": "Diseño 3D",
         "Sauvegarder": "Guardar",
@@ -2495,9 +2498,9 @@
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Dashboard": "Tablero",
-        "Vue": "Ver",
+        "Vue": "Visto",
         "Design": "Diseño",
-        "Design 3D": "Diseño 3d",
+        "Design 3D": "Diseño 3D",
         "Gestion": "Administración",
         "Ajouter": "Añadir",
         "Vue d'ensemble": "Resumen",
@@ -3803,7 +3806,7 @@
         "Aucune méthode correspondante à :": "Ningún método correspondiente a:"
     },
     "core\/ajax\/jeedom.ajax.php": {
-        "Vue": "Vista",
+        "Vue": "Visto",
         "Objet": "Objeto",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Aucune documentation trouvée": "Ninguna documentación encontrada",
@@ -4336,7 +4339,7 @@
     },
     "core\/class\/view.class.php": {
         "Le nom de la vue ne peut pas être vide": "El nombre de la vista no puede estar vacío",
-        "Vue": "Ver",
+        "Vue": "Visto",
         "Vue :": "Vista :"
     },
     "core\/class\/system.class.php": {
@@ -4804,7 +4807,7 @@
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "Exportar",
-        "Vue": "Ver",
+        "Vue": "Visto",
         "Design": "Diseño",
         "Plugin": "Enchufar",
         "Batteries": "Baterías",

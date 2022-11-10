@@ -30,6 +30,9 @@
         "Designs 3D": "Projetos 3D"
     },
     "mobile\/js\/overview.js": {
+        "Vue": "Visto",
+        "Design": "Projeto",
+        "Design 3D": "Desenho 3D",
         "Tous": "Todos"
     },
     "mobile\/js\/cron.js": {
@@ -619,7 +622,7 @@
         "Scénario": "Cenários",
         "Actions": "Ações",
         "Design": "Projeto",
-        "Vue": "Vista",
+        "Vue": "Visto",
         "Interaction": "Interação",
         "Note": "NOTA",
         "Voir les logs": "Ver registos",
@@ -1412,7 +1415,7 @@
         "Accueil": "Início",
         "Synthèse": "Síntese",
         "Dashboard": "Painel de controlo",
-        "Vue": "Vista",
+        "Vue": "Visto",
         "Design": "Projeto",
         "Design 3D": "Desenho 3D",
         "Analyse": "Análise",
@@ -2072,7 +2075,7 @@
         "Error 401 Unauthorized": "Erro 401 não autorizado",
         "Dashboard": "Painel de controlo",
         "Synthèse": "Síntese",
-        "Vue": "Vista",
+        "Vue": "Visto",
         "Design": "Projeto",
         "Design 3D": "Desenho 3D",
         "Sauvegarder": "Guardar",
@@ -2495,7 +2498,7 @@
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Dashboard": "Painel de controlo",
-        "Vue": "Vista",
+        "Vue": "Visto",
         "Design": "Projeto",
         "Design 3D": "Desenho 3D",
         "Gestion": "Gestão",
@@ -3803,7 +3806,7 @@
         "Aucune méthode correspondante à :": "Nenhum método correspondente a:"
     },
     "core\/ajax\/jeedom.ajax.php": {
-        "Vue": "Vista",
+        "Vue": "Visto",
         "Objet": "Objeto",
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Aucune documentation trouvée": "Nenhuma documentação encontrada",
@@ -4336,7 +4339,7 @@
     },
     "core\/class\/view.class.php": {
         "Le nom de la vue ne peut pas être vide": "O nome da vista não pode estar vazio",
-        "Vue": "Vista",
+        "Vue": "Visto",
         "Vue :": "Vista:"
     },
     "core\/class\/system.class.php": {
@@ -4804,7 +4807,7 @@
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "Exportar",
-        "Vue": "Vista",
+        "Vue": "Visto",
         "Design": "Projeto",
         "Plugin": "Plugar",
         "Batteries": "Baterias",

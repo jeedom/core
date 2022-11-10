@@ -30,6 +30,9 @@
         "Designs 3D": "3D tasarımlar"
     },
     "mobile\/js\/overview.js": {
+        "Vue": "Vue",
+        "Design": "Design",
+        "Design 3D": "Design 3D",
         "Tous": "Tous"
     },
     "mobile\/js\/cron.js": {
