@@ -14,7 +14,7 @@ else
 	if [ $(which mysqld | wc -l) -ne 0 ]; then
 		chown -R mysql:mysql /var/lib/mysql
 		mysql_install_db --user=mysql --basedir=/usr/ --ldata=/var/lib/mysql/
-		service mysql restart
+		service mariadb restart
 		MYSQL_JEEDOM_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 		echo "DROP USER 'jeedom'@'localhost';" | mysql > /dev/null 2>&1
 		echo  "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${MYSQL_JEEDOM_PASSWD}';" | mysql
@@ -27,7 +27,7 @@ else
 		sed -i "s/#USERNAME#/jeedom/g" /var/www/html/core/config/common.config.php
 		sed -i "s/#PORT#/3306/g" /var/www/html/core/config/common.config.php
 		sed -i "s/#HOST#/localhost/g" /var/www/html/core/config/common.config.php
-		/root/install.sh -s 10
+		/root/install.sh -s 10mariadb
 		/root/install.sh -s 11
 	fi
 fi
@@ -36,9 +36,13 @@ echo 'Start atd'
 service atd restart
 
 if [ $(which mysqld | wc -l) -ne 0 ]; then
-	echo 'Starting mysql'
+	echo 'Starting mariadb'
 	chown -R mysql:mysql /var/lib/mysql /var/run/mysqld
-	service mysql restart
+	service mariadb restart
+	if [ $? -ne 0 ]; then
+		 rm /var/lib/mysql/ib_logfile*
+		 service mariadb restart
+	fi
 fi
 
 if [ ${JEEDOM_INSTALL} -eq 0 ] && [ ! -z "${RESTOREBACKUP}" ] && [ "${RESTOREBACKUP}" != 'NO' ]; then
