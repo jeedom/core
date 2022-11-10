@@ -400,6 +400,12 @@ Desktop
     #jeedomMenuBar ul.navbar-nav label.drop-icon {
       display: none;
     }
+    #jeedomMenuBar ul.navbar-nav:not(.disabled) > li > ul,
+    #jeedomMenuBar ul.navbar-nav:not(.disabled) > li > ul > li > ul {
+      display: block;
+      visibility: hidden;
+      transition-delay: 0.1s;
+    }
     #jeedomMenuBar ul.navbar-nav a.submenu:after {
       position: absolute;
       display: block;
@@ -413,16 +419,18 @@ Desktop
       margin-top: -12px;
     }
     #jeedomMenuBar ul.navbar-nav:not(.disabled) li li:hover,
-    #jeedomMenuBar ul.navbar-nav:not(.disabled) li li:hover > a{
+    #jeedomMenuBar ul.navbar-nav:not(.disabled) li li:hover > a {
       color: var(--link-color) !important;
       background-color: var(--form-bg-color);
     }
     #jeedomMenuBar ul.navbar-nav:not(.disabled) > li:hover > ul {
-      display: block !important;
+      visibility: visible;
+      transition-delay: 0.25s;
     }
     #jeedomMenuBar ul.navbar-nav:not(.disabled) > li > ul > li:hover > ul,
     #jeedomMenuBar ul.navbar-nav:not(.disabled) > li > ul > li > ul:hover {
-      display: block !important;
+      visibility: visible;
+      transition-delay: 0.25s;
     }
   }
 
