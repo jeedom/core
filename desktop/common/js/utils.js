@@ -17,12 +17,12 @@
 "use strict"
 var jeedomUtils = {
   __description: 'Loaded once for every desktop/mobile page. Global UI functions and variables.',
-  widthStep: parseInt(jeedom.theme['widget::step::width']) > 120 ? parseInt(jeedom.theme['widget::step::width']): 180,
-  heightStep: parseInt(jeedom.theme['widget::step::height']) > 140 ? parseInt(jeedom.theme['widget::step::height']) : 150,
+  tileWidthStep: parseInt(jeedom.theme['widget::step::width']) > 120 ? parseInt(jeedom.theme['widget::step::width']): 180,
+  tileHeightStep: parseInt(jeedom.theme['widget::step::height']) > 140 ? parseInt(jeedom.theme['widget::step::height']) : 150,
   backgroundIMG: null,
   _elBackground: null
 }
-jeedomUtils.heightSteps = Array.apply(null, {length: 9}).map(function(value, index) {return (index + 1) * jeedomUtils.heightStep})
+jeedomUtils.tileHeightSteps = Array.apply(null, {length: 15}).map(function(value, index) {return (index + 1) * jeedomUtils.tileHeightStep})
 
 $(function() {
   jeedomUtils._elBackground = $('#backgroundforJeedom')
@@ -1261,12 +1261,12 @@ jeedomUtils.closeJeedomMenu = function() {
 
 jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
   var margin = jeedom.theme['widget::margin'] + 'px ' + jeedom.theme['widget::margin']*2 + 'px ' + jeedom.theme['widget::margin'] + 'px 0'
+  //Get full width, step columns, to fill right space:
   var containerWidth = window.innerWidth - 22
-  var cols = Math.floor(containerWidth / this.widthStep) + 1
-  var surplus = containerWidth - (cols * this.widthStep)
-  var widthStep = this.widthStep + (surplus / cols) - (2 * parseInt(jeedom.theme['widget::margin']))
-  var widthSteps = Array.apply(null, {length: 9}).map(function(value, index) {return (index + 1) * widthStep})
-
+  var cols = Math.floor(containerWidth / jeedomUtils.tileWidthStep) + 1
+  var tileWidthAdd = containerWidth - (cols * jeedomUtils.tileWidthStep)
+  var widthStep = jeedomUtils.tileWidthStep + (tileWidthAdd / cols) - (2 * parseInt(jeedom.theme['widget::margin']))
+  var widthSteps = Array.apply(null, {length: 15}).map(function(value, index) {return (index + 1) * widthStep})
 
   if (_id != undefined) {
     var tile = (_scenario) ? $('div.scenario-widget[data-scenario_id='+_id+']') : $('div.eqLogic-widget[data-eqlogic_id='+_id+']')
@@ -1276,22 +1276,28 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
       tile.height(Math.floor(tile.height() / jeedom.theme['widget::step::height']) * jeedom.theme['widget::step::height'] - (2 * jeedom.theme['widget::margin']))
     }
 
-    var width = jeedomUtils.getClosestInArray(tile.width() -1, widthSteps)
-    var height = jeedomUtils.getClosestInArray(tile.height(), jeedomUtils.heightSteps)
+    var width = jeedomUtils.getClosestInArray(tile.width(), widthSteps)
+    tile.data('confWidth', parseInt(tile.width()))
+    var height = jeedomUtils.getClosestInArray(tile.height(), jeedomUtils.tileHeightSteps)
     tile.width(width + (2 * widthSteps.indexOf(width) * parseInt(jeedom.theme['widget::margin'])))
-    tile.height(height + (2 * jeedomUtils.heightSteps.indexOf(height) * parseInt(jeedom.theme['widget::margin'])))
+    tile.height(height + (2 * jeedomUtils.tileHeightSteps.indexOf(height) * parseInt(jeedom.theme['widget::margin'])))
 
     tile.css('margin', margin)
   } else {
+    var width, height
     $('div.eqLogic-widget, div.scenario-widget')
       .each(function() {
-        var width = jeedomUtils.getClosestInArray(parseInt($(this).width() -1), widthSteps)
-        var height = jeedomUtils.getClosestInArray($(this).height(), jeedomUtils.heightSteps)
-        $(this).width(width + (2 * widthSteps.indexOf(width) * parseInt(jeedom.theme['widget::margin'])))
-        $(this).height(height + (2 * jeedomUtils.heightSteps.indexOf(height) * parseInt(jeedom.theme['widget::margin'])))
+        //As we alter width with right space, we need original width ref:
+        if ($(this).data('confWidth') === undefined) $(this).data('confWidth', parseInt($(this).width()))
+
+        width = jeedomUtils.getClosestInArray($(this).data('confWidth'), widthSteps)
+        height = jeedomUtils.getClosestInArray($(this).height(), jeedomUtils.tileHeightSteps)
+        $(this)
+          .width(width + (2 * widthSteps.indexOf(width) * parseInt(jeedom.theme['widget::margin'])))
+          .height(height + (2 * jeedomUtils.tileHeightSteps.indexOf(height) * parseInt(jeedom.theme['widget::margin'])))
       })
       .css('margin', margin)
-    $('div.eqLogic-widget, div.scenario-widget').addClass('jeedomAlreadyPosition')
+      .addClass('jeedomAlreadyPosition')
   }
 }
 jeedomUtils.getClosestInArray = function(_num, _refAr) {

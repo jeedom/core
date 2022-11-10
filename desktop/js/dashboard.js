@@ -369,7 +369,8 @@ $(function() {
   }, 750)
 
   jeeP.postInit()
-  $(window).on('resize', function () {
+  $(window).on('resize', function (event) {
+    if (event.isTrigger) return
     jeedomUtils.positionEqLogic()
   })
 })

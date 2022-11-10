@@ -4358,8 +4358,8 @@
         "SINON": "ELSE",
         "POUR": "FOR",
         "FAIRE": "DO",
-        "CODE": "CODED",
-        "ACTION": "STOCK",
+        "CODE": "CODE",
+        "ACTION": "ACTION",
         "DANS": "IN",
         "A": "AT"
     },
