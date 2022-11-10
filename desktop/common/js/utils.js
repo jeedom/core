@@ -22,7 +22,7 @@ var jeedomUtils = {
   backgroundIMG: null,
   _elBackground: null
 }
-jeedomUtils.tileHeightSteps = Array.apply(null, {length: 15}).map(function(value, index) {return (index + 1) * jeedomUtils.tileHeightStep})
+jeedomUtils.tileHeightSteps = Array.apply(null, {length: 10}).map(function(value, index) {return (index + 1) * jeedomUtils.tileHeightStep})
 
 $(function() {
   jeedomUtils._elBackground = $('#backgroundforJeedom')
@@ -1266,7 +1266,7 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
   var cols = Math.floor(containerWidth / jeedomUtils.tileWidthStep) + 1
   var tileWidthAdd = containerWidth - (cols * jeedomUtils.tileWidthStep)
   var widthStep = jeedomUtils.tileWidthStep + (tileWidthAdd / cols) - (2 * parseInt(jeedom.theme['widget::margin']))
-  var widthSteps = Array.apply(null, {length: 15}).map(function(value, index) {return (index + 1) * widthStep})
+  var widthSteps = Array.apply(null, {length: 10}).map(function(value, index) {return (index + 1) * widthStep})
 
   if (_id != undefined) {
     var tile = (_scenario) ? $('div.scenario-widget[data-scenario_id='+_id+']') : $('div.eqLogic-widget[data-eqlogic_id='+_id+']')
@@ -1288,10 +1288,12 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
     $('div.eqLogic-widget, div.scenario-widget')
       .each(function() {
         //As we alter width with right space, we need original width ref:
-        if ($(this).data('confWidth') === undefined) $(this).data('confWidth', parseInt($(this).width()))
-
+        if ($(this).data('confWidth') === undefined) {
+          $(this).data('confWidth', $(this).width())
+          $(this).data('stepHeight', jeedomUtils.tileHeightSteps.indexOf(jeedomUtils.getClosestInArray($(this).height(), jeedomUtils.tileHeightSteps)))
+        }
         width = jeedomUtils.getClosestInArray($(this).data('confWidth'), widthSteps)
-        height = jeedomUtils.getClosestInArray($(this).height(), jeedomUtils.tileHeightSteps)
+        height = jeedomUtils.tileHeightSteps[$(this).data('stepHeight')]
         $(this)
           .width(width + (2 * widthSteps.indexOf(width) * parseInt(jeedom.theme['widget::margin'])))
           .height(height + (2 * jeedomUtils.tileHeightSteps.indexOf(height) * parseInt(jeedom.theme['widget::margin'])))
@@ -1301,6 +1303,7 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
   }
 }
 jeedomUtils.getClosestInArray = function(_num, _refAr) {
+  //_refAr must be incremental ordered!
   return _refAr.reduce(function(prev, curr) {
     return (Math.abs(curr - _num) < Math.abs(prev - _num) ? curr : prev)
   })
