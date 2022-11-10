@@ -622,7 +622,7 @@
         "Scénario": "Cenários",
         "Actions": "Ações",
         "Design": "Projeto",
-        "Vue": "Visto",
+        "Vue": "Vista",
         "Interaction": "Interação",
         "Note": "NOTA",
         "Voir les logs": "Ver registos",
@@ -1415,7 +1415,7 @@
         "Accueil": "Início",
         "Synthèse": "Síntese",
         "Dashboard": "Painel de controlo",
-        "Vue": "Visto",
+        "Vue": "Vista",
         "Design": "Projeto",
         "Design 3D": "Desenho 3D",
         "Analyse": "Análise",
@@ -2075,7 +2075,7 @@
         "Error 401 Unauthorized": "Erro 401 não autorizado",
         "Dashboard": "Painel de controlo",
         "Synthèse": "Síntese",
-        "Vue": "Visto",
+        "Vue": "Vista",
         "Design": "Projeto",
         "Design 3D": "Desenho 3D",
         "Sauvegarder": "Guardar",
@@ -2498,7 +2498,7 @@
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Dashboard": "Painel de controlo",
-        "Vue": "Visto",
+        "Vue": "Vista",
         "Design": "Projeto",
         "Design 3D": "Desenho 3D",
         "Gestion": "Gestão",
@@ -3806,7 +3806,7 @@
         "Aucune méthode correspondante à :": "Nenhum método correspondente a:"
     },
     "core\/ajax\/jeedom.ajax.php": {
-        "Vue": "Visto",
+        "Vue": "Vista",
         "Objet": "Objeto",
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Aucune documentation trouvée": "Nenhuma documentação encontrada",
@@ -4339,7 +4339,7 @@
     },
     "core\/class\/view.class.php": {
         "Le nom de la vue ne peut pas être vide": "O nome da vista não pode estar vazio",
-        "Vue": "Visto",
+        "Vue": "Vista",
         "Vue :": "Vista:"
     },
     "core\/class\/system.class.php": {
@@ -4807,7 +4807,7 @@
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "Exportar",
-        "Vue": "Visto",
+        "Vue": "Vista",
         "Design": "Projeto",
         "Plugin": "Plugar",
         "Batteries": "Baterias",

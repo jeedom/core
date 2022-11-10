@@ -622,7 +622,7 @@
         "Scénario": "Scenario",
         "Actions": "Shares",
         "Design": "Design",
-        "Vue": "Seen",
+        "Vue": "View",
         "Interaction": "Interaction",
         "Note": "Note",
         "Voir les logs": "Scenario Log",
@@ -1415,9 +1415,9 @@
         "Accueil": "Home",
         "Synthèse": "Synthesis",
         "Dashboard": "Dashboard",
-        "Vue": "Seen",
+        "Vue": "View",
         "Design": "Design",
-        "Design 3D": "3D design",
+        "Design 3D": "3d design",
         "Analyse": "Analysis",
         "Logs": "Logs",
         "Temps réel": "Real time",
@@ -2075,9 +2075,9 @@
         "Error 401 Unauthorized": "Error 401 Unauthorized",
         "Dashboard": "Dashboard",
         "Synthèse": "Synthesis",
-        "Vue": "Seen",
+        "Vue": "View",
         "Design": "Design",
-        "Design 3D": "3D design",
+        "Design 3D": "3d design",
         "Sauvegarder": "Save",
         "Préférences": "Preferences",
         "Sécurité": "Security",
@@ -2498,9 +2498,9 @@
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Dashboard": "Dashboard",
-        "Vue": "Seen",
+        "Vue": "View",
         "Design": "Design",
-        "Design 3D": "3D design",
+        "Design 3D": "3d design",
         "Gestion": "Management",
         "Ajouter": "Add",
         "Vue d'ensemble": "Overview",
@@ -3806,7 +3806,7 @@
         "Aucune méthode correspondante à :": "No method corresponding to:"
     },
     "core\/ajax\/jeedom.ajax.php": {
-        "Vue": "Seen",
+        "Vue": "View",
         "Objet": "Object",
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Aucune documentation trouvée": "No documentation found",
@@ -4339,7 +4339,7 @@
     },
     "core\/class\/view.class.php": {
         "Le nom de la vue ne peut pas être vide": "View name cannot be empty",
-        "Vue": "Seen",
+        "Vue": "View",
         "Vue :": "View :"
     },
     "core\/class\/system.class.php": {
@@ -4807,7 +4807,7 @@
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "Export",
-        "Vue": "Seen",
+        "Vue": "View",
         "Design": "Design",
         "Plugin": "Plugin",
         "Batteries": "Batteries",
