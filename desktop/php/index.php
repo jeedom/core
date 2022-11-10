@@ -95,6 +95,19 @@ if (init('rescue', 0) == 0) {
 	}
 }
 
+$allUserViews = [];
+foreach ((view::all()) as $view_menu) {
+	if ($view_menu->hasRight('r')) array_push($allUserViews, $view_menu);
+}
+$allPlanHeaderViews = [];
+foreach ((planHeader::all()) as $plan_menu) {
+	if ($plan_menu->hasRight('r')) array_push($allPlanHeaderViews, $plan_menu);
+}
+$allPlan3dHeaderViews = [];
+foreach ((plan3dHeader::all()) as $plan3d_menu) {
+	if ($plan3d_menu->hasRight('r')) array_push($allPlan3dHeaderViews, $plan3d_menu);
+}
+
 global $homeLogoSrc;
 function setTheme() {
 	global $jeedom_theme, $homeLogoSrc;
@@ -315,17 +328,14 @@ function setTheme() {
 									</li>
 
 									<li>
-										<a id="bt_gotoView" class="submenu">
+										<a id="bt_gotoView" class="<?php if (count($allUserViews) > 0) echo 'submenu';?>">
 											<i class="far fa-image"></i> {{Vue}}
-											<label class="drop-icon" for="drop-view"><i class="fas fa-chevron-down fa-2x"></i></label>
+											<?php if (count($allUserViews) > 0) echo '<label class="drop-icon" for="drop-view"><i class="fas fa-chevron-down fa-2x"></i></label>';?>
 										</a>
 										<input type="checkbox" id="drop-view">
 										<?php
 										$echo = '';
-										foreach ((view::all()) as $view_menu) {
-											if (!$view_menu->hasRight('r')) {
-												continue;
-											}
+										foreach ($allUserViews as $view_menu) {
 											$echo .= '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon', '<i class="far fa-image"></i>')) . ' ' . $view_menu->getName() . '</a></li>';
 										}
 										if ($echo != '') {
@@ -335,17 +345,14 @@ function setTheme() {
 									</li>
 
 									<li>
-										<a id="bt_gotoPlan" class="submenu">
+										<a id="bt_gotoPlan" class="<?php if (count($allPlanHeaderViews) > 0) echo 'submenu';?>">
 											<i class="fas fa-paint-brush"></i> {{Design}}
-											<label class="drop-icon" for="drop-design"><i class="fas fa-chevron-down fa-2x"></i></label>
+											<?php if (count($allPlanHeaderViews) > 0) echo '<label class="drop-icon" for="drop-design"><i class="fas fa-chevron-down fa-2x"></i></label>';?>
 										</a>
 										<input type="checkbox" id="drop-design">
 										<?php
 										$echo = '';
-										foreach ((planHeader::all()) as $plan_menu) {
-											if (!$plan_menu->hasRight('r')) {
-												continue;
-											}
+										foreach ($allPlanHeaderViews as $plan_menu) {
 											$echo .= '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon', '<i class="fas fa-paint-brush"></i>') . ' ' . $plan_menu->getName()) . '</a></li>';
 										}
 										if ($echo != '') {
@@ -355,17 +362,14 @@ function setTheme() {
 									</li>
 
 									<li>
-										<a id="bt_gotoPlan3d" class="submenu">
+										<a id="bt_gotoPlan3d" class="<?php if (count($allPlan3dHeaderViews) > 0) echo 'submenu';?>">
 											<i class="fas fa-cubes"></i> {{Design 3D}}
-											<label class="drop-icon" for="drop-design3d"><i class="fas fa-chevron-down fa-2x"></i></label>
+											<?php if (count($allPlan3dHeaderViews) > 0) echo '<label class="drop-icon" for="drop-design3d"><i class="fas fa-chevron-down fa-2x"></i></label>';?>
 										</a>
 										<input type="checkbox" id="drop-design3d">
 										<?php
 										$echo = '';
-										foreach ((plan3dHeader::all()) as $plan3d_menu) {
-											if (!$plan3d_menu->hasRight('r')) {
-												continue;
-											}
+										foreach ($allPlan3dHeaderViews as $plan3d_menu) {
 											$echo .= '<li><a href="index.php?v=d&p=plan3d&plan3d_id=' . $plan3d_menu->getId() . '">' . trim($plan3d_menu->getConfiguration('icon') . ' ' . $plan3d_menu->getName()) . '</a></li>';
 										}
 										if ($echo != '') {
