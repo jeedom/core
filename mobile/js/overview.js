@@ -10,7 +10,7 @@ function initOverview() {
     success: function(objects) {
       $.clearDivContent('objectOverviewContainer')
       var summaries = []
-      var _this, icon, _backUrl, div
+      var _this, icon, _backUrl, div, synthAction, dataPage, dataOption, dataTitle
       for (var i in objects) {
         if (objects[i].isVisible == 1 && objects[i].configuration.hideOnOverview != 1) {
           _this = objects[i]
@@ -22,7 +22,31 @@ function initOverview() {
           if (_backUrl == '') {
             _backUrl = 'core/img/background/jeedom_abstract_04_light.jpg'
           }
-          div = '<div class="objectPreview cursor shadowed fullCorner" style="background:url('+_backUrl+')" data-option="'+_this.id+'" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + _this.name.replace(/\"/g, "\'") + '">'
+
+          synthAction = _this.configuration.synthToAction
+          if (synthAction != "-1" && synthAction != 'synthToDashboard') {
+            if (synthAction == 'synthToView') {
+              dataPage = 'view'
+              dataOption = _this.configuration.synthToView
+              dataTitle = '{{Vue}}'
+            }
+            if (synthAction == 'synthToPlan') {
+              dataPage = 'index.php?v=d&p=plan&plan_id=' + _this.configuration.synthToPlan
+              dataOption = ''
+              dataTitle = '{{Design}}'
+            }
+            if (synthAction == 'synthToPlan3d') {
+              dataPage = 'index.php?v=d&p=plan3d&plan3d_id=' + _this.configuration.synthToPlan3d
+              dataOption = ''
+              dataTitle = '{{Design 3D}}'
+            }
+          } else {
+            dataPage = 'equipment';
+            dataOption = _this.id
+            dataTitle = icon.replace(/\"/g, "\'") + ' ' + _this.name.replace(/\"/g, "\'")
+          }
+
+          div = '<div class="objectPreview cursor shadowed fullCorner" style="background:url('+_backUrl+')" data-page="' + dataPage + '" data-option="'+dataOption+'" data-page="equipment" data-title="' + dataTitle + '">'
             div += '<div class="topPreview topCorner">'
               div += '<span class="name">'+icon +' '+_this.name+'</span>'
             div += '</div>'
@@ -63,11 +87,15 @@ function initOverview() {
       }, 500)
 
       $('.objectPreview').off('click').on('click', function(event) {
-        if (event.target !== this) return
+      if (event.target !== this) return
       if ($(event.target).hasClass('topPreview') || $(event.target).hasClass('name')) return
         jeedomUtils.loadModal(false)
         jeedomUtils.loadPanel(false)
-        jeedomUtils.loadPage('equipment', $(this).data('title'), $(this).data('option').toString())
+        if ($(this).data('option').toString() == '') {
+          window.location.href = $(this).data('page')
+        } else {
+          jeedomUtils.loadPage($(this).data('page'), $(this).data('title'), $(this).data('option').toString())
+        }
       })
 
       $('.objectPreview .name').off('click').on('click', function(event) {

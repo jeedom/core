@@ -470,7 +470,7 @@ jeedomUtils.initApplication = function(_reinit) {
               jeedomUtils.loadPage('home', 'Accueil')
             } else {
               if (getUrlVars('p') == 'view') {
-                jeedomUtils.loadPage('view', 'Vue',getUrlVars('view_id'));
+                jeedomUtils.loadPage('view', 'Vue', getUrlVars('view_id'));
               } else if (isset(jeeFrontEnd.userProfils) && jeeFrontEnd.userProfils != null && isset(jeeFrontEnd.userProfils.homePageMobile) && jeeFrontEnd.userProfils.homePageMobile != 'home') {
                 var res = jeeFrontEnd.userProfils.homePageMobile.split("::")
                 if (res[0] == 'core') {
