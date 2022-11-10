@@ -123,7 +123,7 @@ step_4_apache() {
 step_5_php() {
   echo "---------------------------------------------------------------------"
   echo "${JAUNE}Commence l'étape 5 php${NORMAL}"
-  apt_install php libapache2-mod-php php-json php-mariadb
+  apt_install php libapache2-mod-php php-json php-mysql
   apt install -y php-curl
   apt install -y php-gd
   apt install -y php-imap
