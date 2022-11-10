@@ -3,12 +3,12 @@ FROM debian:11
 MAINTAINER info@jeedom.com
 
 COPY install/install.sh /tmp/
-RUN sh /tmp/install.sh 1
-RUN sh /tmp/install.sh 2
+RUN sh /tmp/install.sh -s 1
+RUN sh /tmp/install.sh -s 2
 RUN apt install -y mariadb-client mariadb-common mariadb-server
-RUN sh /tmp/install.sh 4
-RUN sh /tmp/install.sh 5
-RUN sh /tmp/install.sh 6
+RUN sh /tmp/install.sh -s 4
+RUN sh /tmp/install.sh -s 5
+RUN sh /tmp/install.sh -s 6
 
 RUN mkdir -p /lib/systemd/system/mariadb.service.d
 RUN echo '[Service]' > /lib/systemd/system/mariadb.service.d/override.conf
@@ -30,9 +30,9 @@ RUN echo "innodb_flush_log_at_trx_commit = 2" >> /etc/mysql/conf.d/jeedom_my.cnf
 RUN echo "innodb_log_file_size = 32M" >> /etc/mysql/conf.d/jeedom_my.cnf
 RUN echo "innodb_large_prefix = on" >> /etc/mysql/conf.d/jeedom_my.cnf
 
-RUN sh /tmp/install.sh 8
-RUN sh /tmp/install.sh 11
-RUN sh /tmp/install.sh 12
+RUN sh /tmp/install.sh -s 8
+RUN sh /tmp/install.sh -s 11
+RUN sh /tmp/install.sh -s 12
 
 
 COPY install/OS_specific/Docker/init.sh /root/
