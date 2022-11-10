@@ -8,9 +8,10 @@
 
 ### 4.4 : News / Improvements
 
+- **Historical** : History modal and History page allow to use buttons *Week, Month, Year* to reload a larger history.
+- **Jeedom menu** : A delay of 0.25s was introduced on opening submenus.
 - **Image selection window** : Added a context menu for sending images and creating, renaming or deleting a folder.
 - **Administration** : Possibility to differentiate actions on error or on command alert.
-- **Historical** : History modal and History page allow to use buttons *Week, Month, Year* to reload a larger history.
 - A contextual menu has been added in different places on the checkboxes to select all, none, or invert the selection (see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.4)).
 
 > **Remark**

@@ -8,9 +8,10 @@
 
 ### 4.4 : Notícias / Melhorias
 
+- **Histórico** : O modal de histórico e a página de histórico permitem usar botões *Semana, Mês, Ano* para recarregar um histórico maior.
+- **Menu Jeedom** : Um atraso de 0.25s foi introduzido na abertura de submenus.
 - **Janela de seleção de imagem** : Adicionado um menu de contexto para enviar imagens e criar, renomear ou excluir uma pasta.
 - **Administração** : Possibilidade de diferenciar ações em caso de erro ou alerta de comando.
-- **Histórico** : O modal de histórico e a página de histórico permitem usar botões *Semana, Mês, Ano* para recarregar um histórico maior.
 - Um menu contextual foi adicionado em diferentes locais nas caixas de seleção para selecionar tudo, nenhum ou inverter a seleção (consulte [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.4)).
 
 > **Observação**

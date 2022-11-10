@@ -8,9 +8,10 @@
 
 ### 4.4 : Noticias / Mejoras
 
+- **Histórico** : El modal de historial y la página de historial permiten usar botones *Semana, Mes, Año* para recargar una historia más grande.
+- **Menú Jeedom** : Un retraso de 0.25s se introdujo en la apertura de submenús.
 - **Ventana de selección de imagen** : Se agregó un menú contextual para enviar imágenes y crear, renombrar o eliminar una carpeta.
 - **Administración** : Posibilidad de diferenciar acciones en caso de error o de alerta de comando.
-- **Histórico** : El modal de historial y la página de historial permiten usar botones *Semana, Mes, Año* para recargar una historia más grande.
 - Se ha agregado un menú contextual en diferentes lugares en las casillas de verificación para seleccionar todo, ninguno o invertir la selección (ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.4)).
 
 > **Observación**
