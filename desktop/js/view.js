@@ -153,7 +153,8 @@ $(function() {
   jeedomUI.isEditing = false
   jeedomUI.setEqSignals()
   jeedomUI.setHistoryModalHandler()
-  $(window).on('resize', function () {
+  $(window).on('resize', function (event) {
+    if (event.isTrigger) return
     jeedomUtils.positionEqLogic()
   })
 })
