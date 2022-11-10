@@ -23,8 +23,8 @@ apt_install() {
   fi
 }
 
-mysql_sql() {
-  echo "$@" | mysql -uroot
+mariadb_sql() {
+  echo "$@" | mariadb -uroot
   if [ $? -ne 0 ]; then
     echo "${ROUGE}Ne peut exécuter $@ dans MySQL - Annulation${NORMAL}"
     exit 1
@@ -100,13 +100,13 @@ step_3_database() {
   echo "${JAUNE}Commence l'étape 3 base de données${NORMAL}"
   apt_install mariadb-client mariadb-common mariadb-server
   
-  service_action status mysql
+  service_action status mariadb
   if [ $? -ne 0 ]; then
-    service_action start mysql
+    service_action start mariadb
   fi
-  service_action status mysql
+  service_action status mariadb
   if [ $? -ne 0 ]; then
-    echo "${ROUGE}Ne peut lancer mysql - Annulation${NORMAL}"
+    echo "${ROUGE}Ne peut lancer mariadb - Annulation${NORMAL}"
     exit 1
   fi
   
@@ -123,7 +123,7 @@ step_4_apache() {
 step_5_php() {
   echo "---------------------------------------------------------------------"
   echo "${JAUNE}Commence l'étape 5 php${NORMAL}"
-  apt_install php libapache2-mod-php php-json php-mysql
+  apt_install php libapache2-mod-php php-json php-mariadb
   apt install -y php-curl
   apt install -y php-gd
   apt install -y php-imap
@@ -171,9 +171,9 @@ step_6_jeedom_download() {
   echo "${VERT}étape 6 téléchargement de jeedom réussie${NORMAL}"
 }
 
-step_7_jeedom_customization_mysql() {
+step_7_jeedom_customization_mariadb() {
   echo "---------------------------------------------------------------------"
-  echo "${JAUNE}Commence l'étape 7 personnalisation de jeedom mysql${NORMAL}"
+  echo "${JAUNE}Commence l'étape 7 personnalisation de jeedom mariadb${NORMAL}"
   
   mkdir -p /lib/systemd/system/mariadb.service.d
   echo '[Service]' > /lib/systemd/system/mariadb.service.d/override.conf
@@ -181,9 +181,9 @@ step_7_jeedom_customization_mysql() {
   echo 'RestartSec=10' >> /lib/systemd/system/mariadb.service.d/override.conf
   systemctl daemon-reload
   
-  service_action stop mysql > /dev/null 2>&1
+  service_action stop mariadb > /dev/null 2>&1
   if [ $? -ne 0 ]; then
-    echo "${ROUGE}Ne peut arrêter mysql - Annulation${NORMAL}"
+    echo "${ROUGE}Ne peut arrêter mariadb - Annulation${NORMAL}"
     exit 1
   fi
   
@@ -207,13 +207,13 @@ step_7_jeedom_customization_mysql() {
     echo "innodb_large_prefix = on" >> /etc/mysql/conf.d/jeedom_my.cnf
   fi
   
-  service_action start mysql > /dev/null 2>&1
+  service_action start mariadb > /dev/null 2>&1
   if [ $? -ne 0 ]; then
-    echo "${ROUGE}Ne peut lancer mysql - Annulation${NORMAL}"
+    echo "${ROUGE}Ne peut lancer mariadb - Annulation${NORMAL}"
     exit 1
   fi
   
-  echo "${VERT}étape 7 personnalisation de jeedom mysql réussie${NORMAL}"
+  echo "${VERT}étape 7 personnalisation de jeedom mariadb réussie${NORMAL}"
 }
 
 step_8_jeedom_customization() {
@@ -283,13 +283,13 @@ step_8_jeedom_customization() {
 step_9_jeedom_configuration() {
   echo "---------------------------------------------------------------------"
   echo "${JAUNE}commence l'étape 9 configuration de jeedom${NORMAL}"
-  echo "DROP USER 'jeedom'@'localhost';" | mysql -uroot > /dev/null 2>&1
-  mysql_sql "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${MYSQL_JEEDOM_PASSWD}';"
-  mysql_sql "DROP DATABASE IF EXISTS jeedom;"
-  mysql_sql "CREATE DATABASE jeedom;"
-  mysql_sql "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';"
+  echo "DROP USER 'jeedom'@'localhost';" | mariadb -uroot > /dev/null 2>&1
+  mariadb_sql "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${MARIADB_JEEDOM_PASSWD}';"
+  mariadb_sql "DROP DATABASE IF EXISTS jeedom;"
+  mariadb_sql "CREATE DATABASE jeedom;"
+  mariadb_sql "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';"
   cp ${WEBSERVER_HOME}/core/config/common.config.sample.php ${WEBSERVER_HOME}/core/config/common.config.php
-  sed -i "s/#PASSWORD#/${MYSQL_JEEDOM_PASSWD}/g" ${WEBSERVER_HOME}/core/config/common.config.php
+  sed -i "s/#PASSWORD#/${MARIADB_JEEDOM_PASSWD}/g" ${WEBSERVER_HOME}/core/config/common.config.php
   sed -i "s/#DBNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php
   sed -i "s/#USERNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php
   sed -i "s/#PORT#/3306/g" ${WEBSERVER_HOME}/core/config/common.config.php
@@ -381,7 +381,7 @@ distrib_1_spe(){
 STEP=0
 VERSION=V4-stable
 WEBSERVER_HOME=/var/www/html
-MYSQL_JEEDOM_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
+MARIADB_JEEDOM_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 INSTALLATION_TYPE='standard'
 
 while getopts ":s:v:w:m:i:" opt; do
@@ -413,7 +413,7 @@ case ${STEP} in
   step_4_apache
   step_5_php
   step_6_jeedom_download
-  step_7_jeedom_customization_mysql
+  step_7_jeedom_customization_mariadb
   step_8_jeedom_customization
   step_9_jeedom_configuration
   step_10_jeedom_installation
@@ -434,7 +434,7 @@ case ${STEP} in
   ;;
   6) step_6_jeedom_download
   ;;
-  7) step_7_jeedom_customization_mysql
+  7) step_7_jeedom_customization_mariadb
   ;;
   8) step_8_jeedom_customization
   ;;
