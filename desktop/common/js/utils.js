@@ -17,22 +17,23 @@
 "use strict"
 var jeedomUtils = {
   __description: 'Loaded once for every desktop/mobile page. Global UI functions and variables.',
-  tileWidthStep: parseInt(jeedom.theme['widget::step::width']) > 120 ? parseInt(jeedom.theme['widget::step::width']): 180,
-  tileHeightStep: parseInt(jeedom.theme['widget::step::height']) > 140 ? parseInt(jeedom.theme['widget::step::height']) : 150,
   backgroundIMG: null,
   _elBackground: null
 }
-jeedomUtils.tileHeightSteps = Array.apply(null, {length: 10}).map(function(value, index) {return (index + 1) * jeedomUtils.tileHeightStep})
 
+// => jeedom.theme loaded:
 $(function() {
   jeedomUtils._elBackground = $('#backgroundforJeedom')
+  jeedomUtils.tileWidthStep = parseInt(jeedom.theme['widget::step::width']) >= 90 ? parseInt(jeedom.theme['widget::step::width']) : 180
+  jeedomUtils.tileHeightStep = parseInt(jeedom.theme['widget::step::height']) >= 140 ? parseInt(jeedom.theme['widget::step::height']) : 150
+  jeedomUtils.tileHeightSteps = Array.apply(null, {length: 10}).map(function(value, index) {return (index + 1) * jeedomUtils.tileHeightStep})
   $(document)
-  .ajaxStart(function () {
-    $.showLoading()
-  })
-  .ajaxStop(function () {
-    $.hideLoading()
-  })
+    .ajaxStart(function () {
+      $.showLoading()
+    })
+    .ajaxStop(function () {
+      $.hideLoading()
+    })
 })
 
 //js error in ! ui:
