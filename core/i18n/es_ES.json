@@ -622,7 +622,7 @@
         "Scénario": "Escenario",
         "Actions": "Acciones",
         "Design": "Diseño",
-        "Vue": "Visto",
+        "Vue": "Vista",
         "Interaction": "Interacción",
         "Note": "Nota",
         "Voir les logs": "Ver los registros",
@@ -1415,9 +1415,9 @@
         "Accueil": "Inicio",
         "Synthèse": "Síntesis",
         "Dashboard": "Tablero",
-        "Vue": "Visto",
+        "Vue": "Ver",
         "Design": "Diseño",
-        "Design 3D": "Diseño 3D",
+        "Design 3D": "Diseño 3d",
         "Analyse": "Análisis",
         "Logs": "Registros",
         "Temps réel": "Tiempo real",
@@ -2075,7 +2075,7 @@
         "Error 401 Unauthorized": "Error 401 no autorizado",
         "Dashboard": "Tablero",
         "Synthèse": "Síntesis",
-        "Vue": "Visto",
+        "Vue": "Vista",
         "Design": "Diseño",
         "Design 3D": "Diseño 3D",
         "Sauvegarder": "Guardar",
@@ -2498,9 +2498,9 @@
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Dashboard": "Tablero",
-        "Vue": "Visto",
+        "Vue": "Ver",
         "Design": "Diseño",
-        "Design 3D": "Diseño 3D",
+        "Design 3D": "Diseño 3d",
         "Gestion": "Administración",
         "Ajouter": "Añadir",
         "Vue d'ensemble": "Resumen",
@@ -3806,7 +3806,7 @@
         "Aucune méthode correspondante à :": "Ningún método correspondiente a:"
     },
     "core\/ajax\/jeedom.ajax.php": {
-        "Vue": "Visto",
+        "Vue": "Vista",
         "Objet": "Objeto",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Aucune documentation trouvée": "Ninguna documentación encontrada",
@@ -4339,7 +4339,7 @@
     },
     "core\/class\/view.class.php": {
         "Le nom de la vue ne peut pas être vide": "El nombre de la vista no puede estar vacío",
-        "Vue": "Visto",
+        "Vue": "Ver",
         "Vue :": "Vista :"
     },
     "core\/class\/system.class.php": {
@@ -4807,7 +4807,7 @@
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "Exportar",
-        "Vue": "Visto",
+        "Vue": "Ver",
         "Design": "Diseño",
         "Plugin": "Enchufar",
         "Batteries": "Baterías",

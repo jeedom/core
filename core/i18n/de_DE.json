@@ -622,7 +622,7 @@
         "Scénario": "Szenario",
         "Actions": "Lager",
         "Design": "Entwurf",
-        "Vue": "Gesehen",
+        "Vue": "Aussicht",
         "Interaction": "Interaktion",
         "Note": "Notiz",
         "Voir les logs": "Siehe die Protokolle",
@@ -1415,7 +1415,7 @@
         "Accueil": "Mein Haus",
         "Synthèse": "Synthese",
         "Dashboard": "Instrumententafel",
-        "Vue": "Gesehen",
+        "Vue": "Aussicht",
         "Design": "Entwurf",
         "Design 3D": "3D-Design",
         "Analyse": "Analysieren",
@@ -2075,7 +2075,7 @@
         "Error 401 Unauthorized": "Fehler 401 Nicht autorisiert",
         "Dashboard": "Instrumententafel",
         "Synthèse": "Synthese",
-        "Vue": "Gesehen",
+        "Vue": "Aussicht",
         "Design": "Entwurf",
         "Design 3D": "3D-Design",
         "Sauvegarder": "Speichern",
@@ -2498,7 +2498,7 @@
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Dashboard": "Instrumententafel",
-        "Vue": "Gesehen",
+        "Vue": "Aussicht",
         "Design": "Entwurf",
         "Design 3D": "3D-Design",
         "Gestion": "Management",
@@ -3806,7 +3806,7 @@
         "Aucune méthode correspondante à :": "Keine Methode entsprechend:"
     },
     "core\/ajax\/jeedom.ajax.php": {
-        "Vue": "Gesehen",
+        "Vue": "Aussicht",
         "Objet": "Objekt",
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Aucune documentation trouvée": "Keine Dokumentation gefunden",
@@ -4339,7 +4339,7 @@
     },
     "core\/class\/view.class.php": {
         "Le nom de la vue ne peut pas être vide": "Der Ansichtsname darf nicht leer sein",
-        "Vue": "Gesehen",
+        "Vue": "Aussicht",
         "Vue :": "Ansicht:"
     },
     "core\/class\/system.class.php": {
@@ -4807,7 +4807,7 @@
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "Export",
-        "Vue": "Gesehen",
+        "Vue": "Aussicht",
         "Design": "Entwurf",
         "Plugin": "Plugin",
         "Batteries": "Batterien",
