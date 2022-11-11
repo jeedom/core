@@ -21,7 +21,7 @@ var jeedomUtils = {
   _elBackground: null,
   tileWidthStep : 180,
   tileHeightStep : 150,
-  tileHeightSteps : Array.apply(null, {length: 10}).map(function(value, index) {return (index + 1) * 150})
+  tileHeightSteps : Array.apply(null, {length: 10}).map(function(value, index) {return (index + 1) * 180})
 }
 
 
