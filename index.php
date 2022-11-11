@@ -21,29 +21,34 @@ try {
 		header("location: install/setup.php");
 	}
 
+	require_once __DIR__ . "/core/php/core.inc.php";
 	//dunno desktop or mobile:
 	if (!isset($_GET['v'])) {
-		$useragent = (isset($_SERVER["HTTP_USER_AGENT"])) ? $_SERVER["HTTP_USER_AGENT"] : 'none';
-		$getParams = (stristr($useragent, "Android") || strpos($useragent, "iPod") || strpos($useragent, "iPhone") || strpos($useragent, "Mobile") || strpos($useragent, "WebOS") || strpos($useragent, "mobile") || strpos($useragent, "hp-tablet")) ? 'm' : 'd';
-		foreach ($_GET as $var => $value) {
-			if (is_array($value)) {
-				continue;
-			}
-			$getParams .= '&' . $var . '=' . $value;
-		}
-		$url = 'index.php?v=' . trim($getParams, '&');
-		if (headers_sent()) {
-			$_script = '<script type="text/javascript">';
-			$_script .= "window.location.href='$url';";
-			$_script .= '</script>';
-			echo $_script;
+		if (config::byKey('disableMobileUi') == 1) {
+			$_GET['v'] = 'd';
 		} else {
-			exit(header('Location: ' . $url));
+			$useragent = (isset($_SERVER["HTTP_USER_AGENT"])) ? $_SERVER["HTTP_USER_AGENT"] : 'none';
+			$getParams = (stristr($useragent, "Android") || strpos($useragent, "iPod") || strpos($useragent, "iPhone") || strpos($useragent, "Mobile") || strpos($useragent, "WebOS") || strpos($useragent, "mobile") || strpos($useragent, "hp-tablet")) ? 'm' : 'd';
+			foreach ($_GET as $var => $value) {
+				if (is_array($value)) {
+					continue;
+				}
+				$getParams .= '&' . $var . '=' . $value;
+			}
+			$url = 'index.php?v=' . trim($getParams, '&');
+			if (headers_sent()) {
+				$_script = '<script type="text/javascript">';
+				$_script .= "window.location.href='$url';";
+				$_script .= '</script>';
+				echo $_script;
+			} else {
+				exit(header('Location: ' . $url));
+			}
+			die();
 		}
-		die();
 	}
 
-	require_once __DIR__ . "/core/php/core.inc.php";
+
 	if (isset($_GET['v']) && $_GET['v'] == 'd') {
 		if (isset($_GET['modal'])) {
 			try {

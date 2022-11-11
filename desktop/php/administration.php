@@ -403,6 +403,15 @@ user::isBan();
 							</div>
 						</div>
 
+						<div class="form-group">
+							<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Désactiver l'interface mobile}}
+								<sup><i class="fas fa-question-circle" tooltip="{{La version mobile sera la meme que la version desktop}}"></i></sup>
+							</label>
+							<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6">
+								<input type="checkbox" class="configKey" data-l1key="disableMobileUi" />
+							</div>
+						</div>
+
 						<legend>{{Tuiles}}</legend>
 						<div class="form-group">
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Pas vertical}}
