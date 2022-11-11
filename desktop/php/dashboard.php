@@ -68,6 +68,7 @@ foreach ($objectTree as $_object) {
 }
 ?>
 
+
 <div class="row row-overflow">
 </div>
 <div id="div_displayObject">
@@ -153,7 +154,7 @@ foreach ($objectTree as $_object) {
 		$objectId =  $object->getId();
 		$divClass = 'div_object';
 		if ($toSummary) $divClass .= ' hidden';
-		$div =  '<div class="col-md-12">';
+		$div =  '<div class="' . config::byKey('dahsboard::column::size') . '" >';
 		$div .= '<div data-object_id="' . $objectId . '" data-father_id="' . $object->getFather_id() . '" class="' . $divClass . '">';
 		$div .= '<legend><span class="objectDashLegend fullCorner">';
 		if (init('childs', 1) == 0) {

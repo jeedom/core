@@ -434,6 +434,13 @@ user::isBan();
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 								<input type="number" min="0" class="configKey form-control ui-spinner" data-l1key="widget::margin" data-reload="1" />
 							</div>
+
+							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Dashboard colonnes}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Nombre de colonne sur le dashboard (1 colonne = 1 objet)}}"></i></sup>
+							</label>
+							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+								<input type="text" class="configKey form-control" data-l1key="dahsboard::column::size" />
+							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Centrage vertical des tuiles}}
