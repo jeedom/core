@@ -15,25 +15,24 @@
 */
 
 "use strict"
+
 var jeedomUtils = {
   __description: 'Loaded once for every desktop/mobile page. Global UI functions and variables.',
   backgroundIMG: null,
-  _elBackground: null,
-  tileWidthStep : parseInt(jeedom.theme['widget::step::width']) >= 90 ? parseInt(jeedom.theme['widget::step::width']) : 180,
-  tileHeightStep : parseInt(jeedom.theme['widget::step::height']) >= 140 ? parseInt(jeedom.theme['widget::step::height']) : 150,
-  tileHeightSteps : Array.apply(null, {length: 10}).map(function(value, index) {return (index + 1) * 180})
+  _elBackground: null
 }
+jeedomUtils.tileWidthStep = parseInt(jeedom.theme['widget::step::width']) >= 90 ? parseInt(jeedom.theme['widget::step::width']) : 180,
+jeedomUtils.tileHeightStep = parseInt(jeedom.theme['widget::step::height']) >= 140 ? parseInt(jeedom.theme['widget::step::height']) : 150,
+jeedomUtils.tileHeightSteps = Array.apply(null, {length: 10}).map(function(value, index) {return (index + 1) * jeedomUtils.tileHeightStep})
 
 
-
-// => jeedom.theme loaded:
 $(function() {
   jeedomUtils._elBackground = $('#backgroundforJeedom')
   $(document)
-    .ajaxStart(function () {
+    .ajaxStart(function() {
       $.showLoading()
     })
-    .ajaxStop(function () {
+    .ajaxStop(function() {
       $.hideLoading()
     })
 })
@@ -1288,7 +1287,8 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
     tile.css('margin', margin)
   } else {
     var width, height
-    $('div.eqLogic-widget, div.scenario-widget').each(function() {
+    $('div.eqLogic-widget, div.scenario-widget')
+      .each(function() {
         //As we alter width with right space, we need original width ref:
         if ($(this).data('confWidth') === undefined) {
           $(this).data('confWidth', $(this).width())

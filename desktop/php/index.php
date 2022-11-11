@@ -184,6 +184,11 @@ function setTheme() {
 	include_file('core', 'core', 'js');
 	include_file('core', 'js.inc', 'php');
 
+	sendVarToJS([
+		'jeeFrontEnd.language' => $configs['language'],
+		'jeedom.theme' => $jeedom_theme
+	]);
+
 	include_file('3rdparty', 'nouislider/nouislider', 'js');
 	include_file('3rdparty', 'nouislider/nouislider', 'css');
 	include_file('3rdparty', 'bootstrap/bootstrap.min', 'js');
@@ -261,10 +266,6 @@ function setTheme() {
 		<div class="loadingSpinner"></div>
 	</div>
 	<?php
-	sendVarToJS([
-		'jeeFrontEnd.language' => $configs['language'],
-		'jeedom.theme' => $jeedom_theme
-	]);
 	if (!isConnect()) {
 		include_file('desktop', 'connection', 'php');
 	} else {
