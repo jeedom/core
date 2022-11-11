@@ -394,65 +394,62 @@ function init(_value, _default) {
 
 
   $.fn.value = function(_value) {
+    var $this = $(this)
     if (isset(_value)) {
-      if ($(this).length > 1) {
-        $(this).each(function() {
+      if ($this.length > 1) {
+        $this.each(function() {
           $(this).value(_value);
         });
       } else {
-        if ($(this).is('input')) {
-          if ($(this).attr('type') == 'checkbox') {
+        if ($this.is('input')) {
+          if ($this.attr('type') == 'checkbox') {
             if (init(_value) === '') {
               return;
             }
-            $(this).prop('checked', (init(_value) == 1) ? true : false);
-          } else if ($(this).attr('type') == 'radio') {
-            $(this).prop('checked', (init(_value) == 1) ? true : false);
+            $this.prop('checked', (init(_value) == 1) ? true : false);
+          } else if ($this.attr('type') == 'radio') {
+            $this.prop('checked', (init(_value) == 1) ? true : false);
           } else {
-            $(this).val(init(_value));
+            $this.val(init(_value));
           }
-        } else if ($(this).is('select')) {
+        } else if ($this.is('select')) {
           if (init(_value) == '') {
-            $(this).find('[value=""]').prop('selected', true)
+            $this.find('[value=""]').prop('selected', true)
           } else {
-            $(this).val(init(_value));
+            $this.val(init(_value));
           }
-        } else if ($(this).is('textarea')) {
-          $(this).val(init(_value));
-        } else if ($(this).is('span') || $(this).is('div') || $(this).is('p')) {
-          $(this).html(init(_value));
-        } else if ($(this).is('pre')) {
-          $(this).html(init(_value));
-        } else if ($(this).is('button') && $(this).hasClass('dropdown-toggle')) {
-          var button = $(this);
-          $(this).closest('div.dropdown').find('ul.dropdown-menu li a').each(function() {
-            if ($(this).attr('data-value') == _value) {
-              button.html($(this).text() + '<span class="caret"></span>')
+        } else if ($this.is('textarea')) {
+          $this.val(init(_value));
+        } else if ($this.is('span, div, p, pre')) {
+          $this.html(init(_value));
+        } else if ($this.is('button') && $this.hasClass('dropdown-toggle')) {
+          var button = $this;
+          $this.closest('div.dropdown').find('ul.dropdown-menu li a').each(function() {
+            if ($this.attr('data-value') == _value) {
+              button.html($this.text() + '<span class="caret"></span>')
               button.attr('value', _value)
             }
           });
         }
-        $(this).trigger('change');
+        $this.trigger('change');
       }
     } else {
       var value = '';
-      if ($(this).is('input') || $(this).is('select') || $(this).is('textarea')) {
-        if ($(this).attr('type') == 'checkbox') {
-          value = ($(this).is(':checked')) ? '1' : '0';
-        } else if ($(this).attr('type') == 'radio') {
-          value = ($(this).is(':checked')) ? '1' : '0';
+      if ($this.is('input', 'select', 'textarea')) {
+        if ($this.attr('type') == 'checkbox' || $this.attr('type') == 'radio') {
+          value = ($this.is(':checked')) ? '1' : '0';
         } else {
-          value = $(this).val();
+          value = $this.val();
         }
       }
-      if ($(this).is('div') || $(this).is('span') || $(this).is('p')) {
-        value = $(this).html();
+      if ($this.is('div, span, p')) {
+        value = $this.html();
       }
-      if ($(this).is('a') && $(this).attr('value') != undefined) {
-        value = $(this).attr('value');
+      if ($this.is('a') && $this.attr('value') != undefined) {
+        value = $this.attr('value');
       }
       if (value == '') {
-        value = $(this).val();
+        value = $this.val();
       }
       return value;
     }
@@ -576,17 +573,18 @@ function init(_value, _default) {
   }
 
   $.fn.setValues = function(_object, _attr) {
+    var $this = $(this)
     for (var i in _object) {
-      if ((!is_array(_object[i]) || $(this).find(_attr + '[data-l1key="' + i + '"]').attr('multiple') == 'multiple') && !is_object(_object[i])) {
-        $(this).find(_attr + '[data-l1key="' + i + '"]').value(_object[i]);
+      if ((!is_array(_object[i]) || $this.find(_attr + '[data-l1key="' + i + '"]').attr('multiple') == 'multiple') && !is_object(_object[i])) {
+        $this.find(_attr + '[data-l1key="' + i + '"]').value(_object[i]);
       } else {
         for (var j in _object[i]) {
-          if ((is_array(_object[i][j]) || $(this).find(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"]').attr('multiple') == 'multiple') || is_object(_object[i][j])) {
+          if ((is_array(_object[i][j]) || $this.find(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"]').attr('multiple') == 'multiple') || is_object(_object[i][j])) {
             for (var k in _object[i][j]) {
-              $(this).find(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"][data-l3key="' + k + '"]').value(_object[i][j][k]);
+              $this.find(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"][data-l3key="' + k + '"]').value(_object[i][j][k]);
             }
           } else {
-            $(this).find(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"]').value(_object[i][j]);
+            $this.find(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"]').value(_object[i][j]);
           }
         }
       }
