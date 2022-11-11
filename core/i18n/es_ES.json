@@ -1680,6 +1680,8 @@
         "Contraint la largeur des tuiles tous les x pixels": "Restringe el ancho de los mosaicos cada x píxeles",
         "Marge": "Margen",
         "Espace vertical et horizontal entre les tuiles, en pixel": "Espacio vertical y horizontal entre mosaicos, en píxeles",
+        "Dashboard colonnes": "Columnas del tablero",
+        "Nombre de colonne sur le dashboard (1 colonne = 1 objet)": "Número de columnas en el tablero (1 columna = 1 objeto)",
         "Centrage vertical des tuiles": "Centrado vertical de los azulejos",
         "Centre verticalement le contenu des tuiles": "Centrar verticalmente el contenido de los mosaicos",
         "Mobile : une colonne par defaut": "Móvil: una columna por defecto",

@@ -1680,6 +1680,8 @@
         "Contraint la largeur des tuiles tous les x pixels": "Vincola la larghezza delle tessere ogni x pixel",
         "Marge": "Margine",
         "Espace vertical et horizontal entre les tuiles, en pixel": "Spazio verticale e orizzontale tra i riquadri, in pixel",
+        "Dashboard colonnes": "Dashboard colonnes",
+        "Nombre de colonne sur le dashboard (1 colonne = 1 objet)": "Nombre de colonne sur le dashboard (1 colonne = 1 objet)",
         "Centrage vertical des tuiles": "Centratura verticale delle piastrelle",
         "Centre verticalement le contenu des tuiles": "Centrare verticalmente il contenuto dei riquadri",
         "Mobile : une colonne par defaut": "Mobile : une colonne par defaut",

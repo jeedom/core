@@ -1680,6 +1680,8 @@
         "Contraint la largeur des tuiles tous les x pixels": "Beschränkt die Breite der Kacheln alle x Pixel",
         "Marge": "Spanne",
         "Espace vertical et horizontal entre les tuiles, en pixel": "Vertikaler und horizontaler Abstand zwischen Kacheln in Pixel",
+        "Dashboard colonnes": "Dashboard-Spalten",
+        "Nombre de colonne sur le dashboard (1 colonne = 1 objet)": "Anzahl der Spalten auf dem Dashboard (1 Spalte = 1 Objekt)",
         "Centrage vertical des tuiles": "Vertikale Zentrierung der Fliesen",
         "Centre verticalement le contenu des tuiles": "Zentrieren Sie den Inhalt der Kacheln vertikal",
         "Mobile : une colonne par defaut": "Mobil: standardmäßig eine Spalte",
