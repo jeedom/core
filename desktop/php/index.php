@@ -184,6 +184,7 @@ function setTheme() {
 	include_file('core', 'core', 'js');
 	include_file('core', 'js.inc', 'php');
 
+	setTheme();
 	sendVarToJS([
 		'jeeFrontEnd.language' => $configs['language'],
 		'jeedom.theme' => $jeedom_theme
@@ -239,7 +240,7 @@ function setTheme() {
 	include_file('desktop', 'coreWidgets', 'css');
 	include_file('desktop', 'desktop.main', 'css');
 
-	setTheme();
+
 
 	if (init('report') == 1) {
 		include_file('desktop', 'report', 'css');
