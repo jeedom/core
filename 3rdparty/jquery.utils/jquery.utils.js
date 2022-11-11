@@ -435,7 +435,7 @@ function init(_value, _default) {
       }
     } else {
       var value = '';
-      if ($this.is('input', 'select', 'textarea')) {
+      if ($this.is('input, select, textarea')) {
         if ($this.attr('type') == 'checkbox' || $this.attr('type') == 'radio') {
           value = ($this.is(':checked')) ? '1' : '0';
         } else {
