@@ -1671,6 +1671,8 @@
         "Basculer le thème en fonction de l'heure": "Cambiar el tema según el tiempo",
         "Activer pour basculer automatiquement en thème alternatif aux heures choisies.": "Actívelo para cambiar automáticamente a un tema alternativo en los momentos seleccionados",
         "Capteur de luminosité (mobile)": "Sensor de brillo (móvil)",
+        "Désactiver l'interface mobile": "Deshabilitar la interfaz móvil",
+        "La version mobile sera la meme que la version desktop": "La versión móvil será la misma que la versión de escritorio",
         "Tuiles": "Embaldosado",
         "Pas vertical": "No vertical",
         "Contraint la hauteur des tuiles tous les x pixels": "Restringe la altura de los mosaicos cada x píxeles",
