@@ -21,12 +21,13 @@ var jeedomUtils = {
   _elBackground: null
 }
 
+jeedomUtils.tileWidthStep = parseInt(jeedom.theme['widget::step::width']) >= 90 ? parseInt(jeedom.theme['widget::step::width']) : 180
+jeedomUtils.tileHeightStep = parseInt(jeedom.theme['widget::step::height']) >= 140 ? parseInt(jeedom.theme['widget::step::height']) : 150
+jeedomUtils.tileHeightSteps = Array.apply(null, {length: 10}).map(function(value, index) {return (index + 1) * jeedomUtils.tileHeightStep})
+
 // => jeedom.theme loaded:
 $(function() {
   jeedomUtils._elBackground = $('#backgroundforJeedom')
-  jeedomUtils.tileWidthStep = parseInt(jeedom.theme['widget::step::width']) >= 90 ? parseInt(jeedom.theme['widget::step::width']) : 180
-  jeedomUtils.tileHeightStep = parseInt(jeedom.theme['widget::step::height']) >= 140 ? parseInt(jeedom.theme['widget::step::height']) : 150
-  jeedomUtils.tileHeightSteps = Array.apply(null, {length: 10}).map(function(value, index) {return (index + 1) * jeedomUtils.tileHeightStep})
   $(document)
     .ajaxStart(function () {
       $.showLoading()
@@ -1286,8 +1287,7 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
     tile.css('margin', margin)
   } else {
     var width, height
-    $('div.eqLogic-widget, div.scenario-widget')
-      .each(function() {
+    $('div.eqLogic-widget, div.scenario-widget').each(function() {
         //As we alter width with right space, we need original width ref:
         if ($(this).data('confWidth') === undefined) {
           $(this).data('confWidth', $(this).width())
