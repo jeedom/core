@@ -18,7 +18,10 @@
 var jeedomUtils = {
   __description: 'Loaded once for every desktop/mobile page. Global UI functions and variables.',
   backgroundIMG: null,
-  _elBackground: null
+  _elBackground: null,
+  tileWidthStep : 180,
+  tileHeightStep : 150,
+  tileHeightSteps : Array.apply(null, {length: 10}).map(function(value, index) {return (index + 1) * 150})
 }
 
 

@@ -172,9 +172,9 @@ foreach ($objectTree as $_object) {
 		$div .= '<div class="div_displayEquipement" id="div_ob' . $objectId . '">';
 
 		if ($toSummary) {
-			$div .= '<script>$(function() {jeeFrontEnd.dashboard.getObjectHtmlFromSummary(' . $objectId . ')});</script>';
+			$div .= '<script>jeeFrontEnd.dashboard.getObjectHtmlFromSummary(' . $objectId . ')</script>';
 		} else {
-			$div .= '<script>$(function() {jeeFrontEnd.dashboard.getObjectHtml(' . $objectId . ')});</script>';
+			$div .= '<script>jeeFrontEnd.dashboard.getObjectHtml(' . $objectId . ')</script>';
 		}
 		$div .= '</div></div></div>';
 		echo $div;
