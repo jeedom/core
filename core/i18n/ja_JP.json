@@ -1671,6 +1671,8 @@
         "Basculer le thème en fonction de l'heure": "時間に基づいてテーマを切り替える",
         "Activer pour basculer automatiquement en thème alternatif aux heures choisies.": "有効にすると、選択した時間に別のテーマに自動的に切り替わります。",
         "Capteur de luminosité (mobile)": "明るさセンサー（モバイル）",
+        "Désactiver l'interface mobile": "Désactiver l'interface mobile",
+        "La version mobile sera la meme que la version desktop": "La version mobile sera la meme que la version desktop",
         "Tuiles": "タイリング",
         "Pas vertical": "垂直ではない",
         "Contraint la hauteur des tuiles tous les x pixels": "Xピクセルごとにタイルの高さを制限します",

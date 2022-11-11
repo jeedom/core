@@ -1671,6 +1671,8 @@
         "Basculer le thème en fonction de l'heure": "Toggle theme based on time",
         "Activer pour basculer automatiquement en thème alternatif aux heures choisies.": "Activate to automatically switch to alternative theme at the selected times",
         "Capteur de luminosité (mobile)": "Brightness sensor (mobile)",
+        "Désactiver l'interface mobile": "Disable the mobile interface",
+        "La version mobile sera la meme que la version desktop": "The mobile version will be the same as the desktop version",
         "Tuiles": "Tiles",
         "Pas vertical": "Vertical step",
         "Contraint la hauteur des tuiles tous les x pixels": "Constrains the height of the tiles every x pixels",

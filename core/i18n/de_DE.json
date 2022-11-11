@@ -1671,6 +1671,8 @@
         "Basculer le thème en fonction de l'heure": "Thema basierend auf der Zeit umschalten",
         "Activer pour basculer automatiquement en thème alternatif aux heures choisies.": "Aktivieren Sie diese Option, um zu den ausgewählten Zeiten automatisch zu einem anderen Thema zu wechseln",
         "Capteur de luminosité (mobile)": "Helligkeitssensor (mobil)",
+        "Désactiver l'interface mobile": "Deaktivieren Sie die mobile Schnittstelle",
+        "La version mobile sera la meme que la version desktop": "Die mobile Version ist die gleiche wie die Desktop-Version",
         "Tuiles": "Fliesen",
         "Pas vertical": "Nicht vertikal",
         "Contraint la hauteur des tuiles tous les x pixels": "Beschränkt die Höhe der Kacheln alle x Pixel",
