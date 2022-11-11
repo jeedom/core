@@ -21,13 +21,14 @@ var jeedomUtils = {
   _elBackground: null
 }
 
-jeedomUtils.tileWidthStep = parseInt(jeedom.theme['widget::step::width']) >= 90 ? parseInt(jeedom.theme['widget::step::width']) : 180
-jeedomUtils.tileHeightStep = parseInt(jeedom.theme['widget::step::height']) >= 140 ? parseInt(jeedom.theme['widget::step::height']) : 150
-jeedomUtils.tileHeightSteps = Array.apply(null, {length: 10}).map(function(value, index) {return (index + 1) * jeedomUtils.tileHeightStep})
+
 
 // => jeedom.theme loaded:
 $(function() {
   jeedomUtils._elBackground = $('#backgroundforJeedom')
+  jeedomUtils.tileWidthStep = parseInt(jeedom.theme['widget::step::width']) >= 90 ? parseInt(jeedom.theme['widget::step::width']) : 180
+  jeedomUtils.tileHeightStep = parseInt(jeedom.theme['widget::step::height']) >= 140 ? parseInt(jeedom.theme['widget::step::height']) : 150
+  jeedomUtils.tileHeightSteps = Array.apply(null, {length: 10}).map(function(value, index) {return (index + 1) * jeedomUtils.tileHeightStep})
   $(document)
     .ajaxStart(function () {
       $.showLoading()
