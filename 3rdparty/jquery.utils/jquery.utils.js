@@ -397,9 +397,10 @@ function init(_value, _default) {
     var $this = $(this)
     if (isset(_value)) {
       if ($this.length > 1) {
-        $this.each(function() {
-          $(this).value(_value);
-        });
+        var idx
+        for (idx=0; idx < $this.length; idx++) {
+          $($this[idx]).value(_value)
+        }
       } else {
         if ($this.is('input')) {
           if ($this.attr('type') == 'checkbox') {
