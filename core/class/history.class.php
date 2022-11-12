@@ -414,8 +414,11 @@ class history {
 		}
 		$sql .= ' ORDER BY `datetime` ASC';
 		$result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, 'historyArch');
-
-		return array_merge($result2, $result1);
+		// $t0 = -microtime(true);
+		$resu = array_merge($result2, $result1);
+    		uasort($resu,function($a,$b) { return strcmp($a->datetime, $b->datetime); });
+		// message::add(__CLASS__, "Merge history Nb: ".count($resu) ." Total time: " .round($t0 +microtime(true),3) ."s");
+		return $resu;
 	}
 
 	public static function getOldestValue($_cmd_id, $_limit = 1) {
