@@ -184,12 +184,6 @@ function setTheme() {
 	include_file('core', 'core', 'js');
 	include_file('core', 'js.inc', 'php');
 
-	setTheme();
-	sendVarToJS([
-		'jeeFrontEnd.language' => $configs['language'],
-		'jeedom.theme' => $jeedom_theme
-	]);
-
 	include_file('3rdparty', 'nouislider/nouislider', 'js');
 	include_file('3rdparty', 'nouislider/nouislider', 'css');
 	include_file('3rdparty', 'bootstrap/bootstrap.min', 'js');
@@ -203,7 +197,6 @@ function setTheme() {
 	include_file('3rdparty', 'highstock/modules/solid-gauge', 'js');
 	include_file('3rdparty', 'highstock/modules/exporting', 'js');
 	include_file('3rdparty', 'highstock/modules/offline-exporting', 'js');
-	include_file('desktop/common', 'utils', 'js');
 	include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js');
 	include_file('3rdparty', 'jwerty/jwerty', 'js');
 	include_file('3rdparty', 'jquery.packery/jquery.packery', 'js');
@@ -236,11 +229,17 @@ function setTheme() {
 	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'js');
 	include_file('3rdparty', 'autosize/autosize.min', 'js');
 	include_file('3rdparty', 'moment/moment-with-locales.min', 'js');
+
+	//set theme before loading utils:
 	include_file('desktop', 'bootstrap', 'css');
 	include_file('desktop', 'coreWidgets', 'css');
 	include_file('desktop', 'desktop.main', 'css');
-
-
+	setTheme();
+	sendVarToJS([
+		'jeeFrontEnd.language' => $configs['language'],
+		'jeedom.theme' => $jeedom_theme
+	]);
+	include_file('desktop/common', 'utils', 'js');
 
 	if (init('report') == 1) {
 		include_file('desktop', 'report', 'css');

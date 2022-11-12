@@ -550,7 +550,6 @@ Desktop
   a > img:hover {
     opacity: 0.75;
   }
-
   .btn:not(.cmdName),
   .btn:not(.cmdName):active,
   .btn:not(.cmdName).active {
