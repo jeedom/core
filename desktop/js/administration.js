@@ -556,7 +556,6 @@ $("#bt_saveGeneraleConfig").off('click').on('click', function(event) {
           } catch (error) {
             reloadPage = true
           }
-
           if (reloadPage) {
             var url = 'index.php?v=d&p=administration&saveSuccessFull=1'
             if (window.location.hash != '') {
