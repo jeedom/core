@@ -66,6 +66,8 @@ $summaryCache = [];
 foreach ($objectTree as $_object) {
 	$summaryCache[$_object->getId()] = $_object->getHtmlSummary();
 }
+global $columns;
+$columns = config::byKey('dahsboard::column::size');
 ?>
 
 
@@ -150,11 +152,12 @@ foreach ($objectTree as $_object) {
 	include_file('desktop', 'dashboard', 'js');
 
 	function formatJeedomObjectDiv($object, $toSummary = false) {
+		global $columns;
 		global $summaryCache;
 		$objectId =  $object->getId();
 		$divClass = 'div_object';
 		if ($toSummary) $divClass .= ' hidden';
-		$div =  '<div class="' . config::byKey('dahsboard::column::size') . '" >';
+		$div =  '<div class="' . $columns . '" >';
 		$div .= '<div data-object_id="' . $objectId . '" data-father_id="' . $object->getFather_id() . '" class="' . $divClass . '">';
 		$div .= '<legend><span class="objectDashLegend fullCorner">';
 		if (init('childs', 1) == 0) {
@@ -185,8 +188,9 @@ foreach ($objectTree as $_object) {
 		<?php
 		if ($DisplayByObject) {
 			//show root object and all its childs:
-			if ($object->hasRight('r')) {
-				formatJeedomObjectDiv($object);
+			$childs = array();
+			if (count($allObject) == 1) {
+				$columns = 'col-xs-12';
 			}
 			foreach ($allObject as $thisObject) {
 				if ($thisObject->getId() != $object->getId()) {
@@ -196,8 +200,17 @@ foreach ($objectTree as $_object) {
 					if ($child->getConfiguration('hideOnDashboard', 0) == 1 || !$child->hasRight('r')) {
 						continue;
 					}
-					formatJeedomObjectDiv($child);
+					$childs[] = $child;
 				}
+			}
+			if (count($childs) == 0) {
+				$columns = 'col-xs-12';
+			}
+			if ($object->hasRight('r')) {
+				formatJeedomObjectDiv($object);
+			}
+			foreach ($childs as $child) {
+				formatJeedomObjectDiv($child);
 			}
 		} else {
 			//show object(s) for summaries:
