@@ -402,26 +402,16 @@ class history {
 		if ($_endTime !== null) {
 			$values['endTime'] = $_endTime;
 		}
-
-		$sql = 'DELETE FROM history
+		$sql_tmpl = 'DELETE FROM #table#
 		WHERE cmd_id=:cmd_id ';
 		if ($_startTime !== null) {
-			$sql .= ' AND datetime>=:startTime';
+			$sql_tmpl .= ' AND datetime>=:startTime';
 		}
 		if ($_endTime !== null) {
-			$sql .= ' AND datetime<=:endTime';
+			$sql_tmpl .= ' AND datetime<=:endTime';
 		}
-		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-
-		$sql = 'DELETE FROM historyArch
-		WHERE cmd_id=:cmd_id ';
-		if ($_startTime !== null) {
-			$sql .= ' AND `datetime`>=:startTime';
-		}
-		if ($_endTime !== null) {
-			$sql .= ' AND `datetime`<=:endTime';
-		}
-		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		DB::Prepare(str_replace('#table#', 'history', $sql_tmpl), $values, DB::FETCH_TYPE_ROW);
+		DB::Prepare(str_replace('#table#', 'historyArch', $sql_tmpl), $values, DB::FETCH_TYPE_ROW);
 		return true;
 	}
 
