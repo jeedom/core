@@ -147,7 +147,7 @@ function getDeviceType() {
   }
 
   if (result.type == 'phone') {
-    var margin = (result.subType == 'ios' ? 6 : 12)
+    var margin = (result.subType == 'ios' ? 6 : 4)
     var ori = window.orientation
     if (ori == 90 || ori == -90) { //landscape
       result.bSize = (result.width / 4) - margin
