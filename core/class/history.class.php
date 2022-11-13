@@ -329,7 +329,7 @@ class history {
 			$values['endTime'] = $_endTime;
 		}
 		if ($_groupingType == null) {
-			$sql = 'SELECT ' . DB::buildField(__CLASS__);
+			$sql_tmpl = 'SELECT ' . DB::buildField(__CLASS__);
 		} else {
 			$goupingType = explode('::', $_groupingType);
 			$function = 'AVG';
@@ -341,81 +341,41 @@ class history {
 				$function = 'SUM';
 			}
 			if ($goupingType[1] == 'hour') {
-				$sql = 'SELECT `cmd_id`,`datetime` as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
+				$sql_tmpl = 'SELECT `cmd_id`,`datetime` as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
 			} else {
-				$sql = 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
+				$sql_tmpl = 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
 			}
 		}
-		$sql .= ' FROM history
+		$sql_tmpl .= ' FROM #table#
 		WHERE value is not null AND cmd_id=:cmd_id ';
 		if ($_startTime !== null) {
-			$sql .= ' AND datetime>=:startTime';
+			$sql_tmpl .= ' AND datetime>=:startTime';
 		}
 		if ($_endTime !== null) {
-			$sql .= ' AND datetime<=:endTime';
+			$sql_tmpl .= ' AND datetime<=:endTime';
 		}
 		if ($_groupingType != null) {
 			if ($goupingType[1] == 'week') {
-				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`))';
+				$sql_tmpl .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`))';
 			} else if ($goupingType[1] == 'hour') {
-				$sql .= ' GROUP BY CONCAT(DATE(`datetime`), \'/\', HOUR(`datetime`))';
+				$sql_tmpl .= ' GROUP BY CONCAT(DATE(`datetime`), \'/\', HOUR(`datetime`))';
 			} else if ($goupingType[1] == 'month') {
-				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', MONTH(`datetime`))';
+				$sql_tmpl .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', MONTH(`datetime`))';
 			} else {
 				$time = 'DATE';
 				if ($goupingType[1] == 'year') {
 					$time = 'YEAR';
 				}
-				$sql .= ' GROUP BY ' . $time . '(`datetime`)';
+				$sql_tmpl .= ' GROUP BY ' . $time . '(`datetime`)';
 			}
 		}
-		$sql .= ' ORDER BY `datetime` ASC';
-		$result1 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-		if ($_groupingType == null) {
-			$sql = 'SELECT ' . DB::buildField(__CLASS__);
-		} else {
-			$goupingType = explode('::', $_groupingType);
-			$function = 'AVG';
-			if ($goupingType[0] == 'high') {
-				$function = 'MAX';
-			} else	if ($goupingType[0] == 'low') {
-				$function = 'MIN';
-			} else	if ($goupingType[0] == 'sum') {
-				$function = 'SUM';
-			}
-			if ($goupingType[1] == 'hour') {
-				$sql = 'SELECT `cmd_id`,`datetime` as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
-			} else {
-				$sql = 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
-			}
-		}
-		$sql .= ' FROM historyArch
-		WHERE value is not null AND cmd_id=:cmd_id ';
-		if ($_startTime !== null) {
-			$sql .= ' AND `datetime`>=:startTime';
-		}
-		if ($_endTime !== null) {
-			$sql .= ' AND `datetime`<=:endTime';
-		}
-		if ($_groupingType != null) {
-			if ($goupingType[1] == 'week') {
-				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`))';
-			} else if ($goupingType[1] == 'hour') {
-				$sql .= ' GROUP BY CONCAT(DATE(`datetime`), \'/\', HOUR(`datetime`))';
-			} else if ($goupingType[1] == 'month') {
-				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', MONTH(`datetime`))';
-			} else {
-				$time = 'DATE';
-				if ($goupingType[1] == 'year') {
-					$time = 'YEAR';
-				}
-				$sql .= ' GROUP BY ' . $time . '(`datetime`)';
-			}
-		}
-		$sql .= ' ORDER BY `datetime` ASC';
-		$result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, 'historyArch');
-
-		return array_merge($result2, $result1);
+		$sql_tmpl .= ' ORDER BY `datetime` ASC';
+		$sql = 'select * from (';
+		$sql .= '(' . str_replace('#table#', 'history', $sql_tmpl) . ')';
+		$sql .= ' UNION ALL ';
+		$sql .= '(' . str_replace('#table#', 'historyArch', $sql_tmpl) . ')';
+		$sql .= ')a  ORDER BY `datetime` ASC';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
 	public static function getOldestValue($_cmd_id, $_limit = 1) {
