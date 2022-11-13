@@ -19,13 +19,13 @@
 try {
 	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
-	
+
 	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
-	
+
 	ajax::init(array('uploadModel'));
-	
+
 	if (init('action') == 'save') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -42,7 +42,7 @@ try {
 		}
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'plan3dHeader') {
 		$return = array();
 		foreach (plan3d::byPlan3dHeaderId(init('plan3dHeader_id')) as $plan3d) {
@@ -52,7 +52,7 @@ try {
 		}
 		ajax::success($return);
 	}
-	
+
 	if (init('action') == 'create') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -63,7 +63,7 @@ try {
 		$plan3d->save();
 		ajax::success($plan3d->getHtml(init('version')));
 	}
-	
+
 	if (init('action') == 'get') {
 		$plan3d = plan3d::byId(init('id'));
 		if (!is_object($plan3d)) {
@@ -73,7 +73,7 @@ try {
 		$return['additionalData'] = $plan3d->additionalData();
 		ajax::success($return);
 	}
-	
+
 	if (init('action') == 'byName') {
 		$plan3d = plan3d::byName3dHeaderId(init('name'), init('plan3dHeader_id'));
 		if (!is_object($plan3d)) {
@@ -81,7 +81,7 @@ try {
 		}
 		ajax::success($plan3d->getHtml());
 	}
-	
+
 	if (init('action') == 'remove') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -93,7 +93,7 @@ try {
 		}
 		ajax::success($plan3d->remove());
 	}
-	
+
 	if (init('action') == 'removeplan3dHeader') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -103,10 +103,13 @@ try {
 		if (!is_object($plan3dHeader)) {
 			throw new Exception(__('Objet inconnu vérifiez l\'id', __FILE__));
 		}
+		if (!$plan3dHeader->hasRight('w')) {
+			throw new Exception(__('Vous n\'avez pas le droit de modifier ce design 3d', __FILE__));
+		}
 		$plan3dHeader->remove();
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'allHeader') {
 		$plan3dHeaders = plan3dHeader::all();
 		$return = array();
@@ -117,11 +120,14 @@ try {
 		}
 		ajax::success($return);
 	}
-	
+
 	if (init('action') == 'getplan3dHeader') {
 		$plan3dHeader = plan3dHeader::byId(init('id'));
 		if (!is_object($plan3dHeader)) {
 			throw new Exception(__('plan3d header inconnu vérifiez l\'id :', __FILE__) . ' ' . init('id'));
+		}
+		if (!$plan3dHeader->hasRight('r')) {
+			throw new Exception(__('Vous n\'avez pas le droit de voir ce design 3d', __FILE__));
 		}
 		if (trim($plan3dHeader->getConfiguration('accessCode', '')) != '' && $plan3dHeader->getConfiguration('accessCode', '') != sha512(init('code'))) {
 			throw new Exception(__('Code d\'accès invalide', __FILE__), -32005);
@@ -129,7 +135,7 @@ try {
 		$return = utils::o2a($plan3dHeader);
 		ajax::success($return);
 	}
-	
+
 	if (init('action') == 'saveplan3dHeader') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -143,11 +149,14 @@ try {
 		if (!is_object($plan3dHeader)) {
 			$plan3dHeader = new plan3dHeader();
 		}
+		if (!$plan3dHeader->hasRight('w')) {
+			throw new Exception(__('Vous n\'avez pas le droit de modifier ce design 3d', __FILE__));
+		}
 		utils::a2o($plan3dHeader, $plan3dHeader_ajax);
 		$plan3dHeader->save();
 		ajax::success(utils::o2a($plan3dHeader));
 	}
-	
+
 	if (init('action') == 'uploadModel') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -156,6 +165,9 @@ try {
 		$plan3dHeader = plan3dHeader::byId(init('id'));
 		if (!is_object($plan3dHeader)) {
 			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
+		}
+		if (!$plan3dHeader->hasRight('w')) {
+			throw new Exception(__('Vous n\'avez pas le droit de modifier ce design 3d', __FILE__));
 		}
 		if (!isset($_FILES['file'])) {
 			throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
@@ -202,7 +214,7 @@ try {
 		$plan3dHeader->save();
 		ajax::success();
 	}
-	
+
 	throw new Exception(__('Aucune méthode correspondant à :', __FILE__) . ' ' . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

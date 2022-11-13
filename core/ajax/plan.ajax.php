@@ -24,7 +24,7 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 
-	ajax::init(array('uploadImagePlan','uploadImage'));
+	ajax::init(array('uploadImagePlan', 'uploadImage'));
 
 	if (init('action') == 'save') {
 		if (!isConnect('admin')) {
@@ -115,6 +115,9 @@ try {
 		if (!is_object($planHeader)) {
 			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
 		}
+		if (!$planHeader->hasRight('w')) {
+			throw new Exception(__('Vous n\'avez pas le droit de modifier ce design', __FILE__));
+		}
 		$planHeader->remove();
 		ajax::success();
 	}
@@ -123,6 +126,9 @@ try {
 		$planHeaders = planHeader::all();
 		$return = array();
 		foreach ($planHeaders as $planHeader) {
+			if (!$planHeader->hasRight('r')) {
+				continue;
+			}
 			$info_planHeader = utils::o2a($planHeader);
 			unset($info_planHeader['image']);
 			$return[] = $info_planHeader;
@@ -134,6 +140,9 @@ try {
 		$planHeader = planHeader::byId(init('id'));
 		if (!is_object($planHeader)) {
 			throw new Exception(__('Plan header inconnu. Vérifiez l\'ID', __FILE__) . ' ' . init('id'));
+		}
+		if (!$planHeader->hasRight('r')) {
+			throw new Exception(__('Vous n\'avez pas le droit de voir ce design', __FILE__));
 		}
 		if (trim($planHeader->getConfiguration('accessCode', '')) != '' && $planHeader->getConfiguration('accessCode', '') != sha512(init('code'))) {
 			throw new Exception(__('Code d\'accès invalide', __FILE__), -32005);
@@ -156,6 +165,9 @@ try {
 		if (!is_object($planHeader)) {
 			$planHeader = new planHeader();
 		}
+		if (!$planHeader->hasRight('w')) {
+			throw new Exception(__('Vous n\'avez pas le droit de modifier ce design', __FILE__));
+		}
 		utils::a2o($planHeader, $planHeader_ajax);
 		$planHeader->save();
 		ajax::success(utils::o2a($planHeader));
@@ -170,6 +182,9 @@ try {
 		if (!is_object($planHeader)) {
 			throw new Exception(__('Plan header inconnu. Vérifiez l\'ID', __FILE__) . ' ' . init('id'));
 		}
+		if (!$planHeader->hasRight('w')) {
+			throw new Exception(__('Vous n\'avez pas le droit de modifier ce design', __FILE__));
+		}
 		ajax::success(utils::o2a($planHeader->copy(init('name'))));
 	}
 
@@ -182,10 +197,13 @@ try {
 		if (!is_object($planHeader)) {
 			throw new Exception(__('Plan header inconnu. Vérifiez l\'ID', __FILE__) . ' ' . init('id'));
 		}
-		$filename = 'planHeader'.$planHeader->getId().'-'.$planHeader->getImage('sha512') . '.' . $planHeader->getImage('type');
+		if (!$planHeader->hasRight('w')) {
+			throw new Exception(__('Vous n\'avez pas le droit de modifier ce design', __FILE__));
+		}
+		$filename = 'planHeader' . $planHeader->getId() . '-' . $planHeader->getImage('sha512') . '.' . $planHeader->getImage('type');
 		$planHeader->setImage('sha512', '');
 		$planHeader->save();
-		@unlink( __DIR__ . '/../../data/plan/' . $filename);
+		@unlink(__DIR__ . '/../../data/plan/' . $filename);
 		ajax::success();
 	}
 
@@ -198,6 +216,9 @@ try {
 		if (!is_object($planHeader)) {
 			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
 		}
+		if (!$planHeader->hasRight('w')) {
+			throw new Exception(__('Vous n\'avez pas le droit de modifier ce design', __FILE__));
+		}
 		if (!isset($_FILES['file'])) {
 			throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
 		}
@@ -208,21 +229,21 @@ try {
 		if (filesize($_FILES['file']['tmp_name']) > 5000000) {
 			throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
 		}
-		$files = ls(__DIR__ . '/../../data/plan/','planHeader'.$planHeader->getId().'*');
-		if(count($files)  > 0){
+		$files = ls(__DIR__ . '/../../data/plan/', 'planHeader' . $planHeader->getId() . '*');
+		if (count($files)  > 0) {
 			foreach ($files as $file) {
-				unlink(__DIR__ . '/../../data/plan/'.$file);
+				unlink(__DIR__ . '/../../data/plan/' . $file);
 			}
 		}
 		$img_size = getimagesize($_FILES['file']['tmp_name']);
 		$planHeader->setImage('type', str_replace('.', '', $extension));
 		$planHeader->setImage('size', $img_size);
 		$planHeader->setImage('sha512', sha512($_FILES['file']['tmp_name']));
-		$filename = 'planHeader'.$planHeader->getId().'-'.$planHeader->getImage('sha512') . '.' . $planHeader->getImage('type');
+		$filename = 'planHeader' . $planHeader->getId() . '-' . $planHeader->getImage('sha512') . '.' . $planHeader->getImage('type');
 		$filepath = __DIR__ . '/../../data/plan/' . $filename;
-		file_put_contents($filepath,file_get_contents($_FILES['file']['tmp_name']));
-		if(!file_exists($filepath)){
-			throw new \Exception(__('Impossible de sauvegarder l\'image',__FILE__));
+		file_put_contents($filepath, file_get_contents($_FILES['file']['tmp_name']));
+		if (!file_exists($filepath)) {
+			throw new \Exception(__('Impossible de sauvegarder l\'image', __FILE__));
 		}
 		$planHeader->save();
 		ajax::success();
