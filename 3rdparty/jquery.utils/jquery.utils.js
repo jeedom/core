@@ -461,27 +461,27 @@ function init(_value, _default) {
     var $this = $(this)
 
     if ($this.length > 1) {
-      var idx
+      var idx, idx2, value, depthFound, $that, elValue, l1key, l2key, l3key
       for (idx=0; idx < $this.length; idx++) {
-        var value = {}
-        var depthFound = $($this[idx]).findAtDepth(_attr, init(_depth, 0))
-        var idx2
+        value = {}
+        depthFound = $($this[idx]).findAtDepth(_attr, init(_depth, 0))
+        idx2
         for (idx2=0; idx2 < depthFound.length; idx2++) {
-          var $that = $(depthFound[idx2])
-          var elValue = $that.value()
+          $that = $(depthFound[idx2])
+          elValue = $that.value()
           try {
             if ($.trim(elValue).substr(0, 1) == '{') {
-              var elValue = JSON.parse($that.value())
+              elValue = JSON.parse($that.value())
             }
           } catch (e) {}
-          var l1key = $that.attr('data-l1key')
+          l1key = $that.attr('data-l1key')
           if (l1key != undefined && l1key != '') {
-            var l2key = $that.attr('data-l2key')
+            l2key = $that.attr('data-l2key')
             if (l2key !== undefined) {
               if (!isset(value[l1key])) {
                 value[l1key] = {}
               }
-              var l3key = $that.attr('data-l3key')
+              l3key = $that.attr('data-l3key')
               if (l3key !== undefined) {
                 if (!isset(value[l1key][l2key])) {
                   value[l1key][l2key] = {}
@@ -523,26 +523,26 @@ function init(_value, _default) {
     if ($this.length == 1) {
       var value = {}
       var depthFound = $($this).findAtDepth(_attr, init(_depth, 0))
-      var idx2
+      var idx2, $that, l1key, l2key, l3key
       for (idx2=0; idx2 < depthFound.length; idx2++) {
-        var $that = $(depthFound[idx2])
+        $that = $(depthFound[idx2])
         if ($that.attr('data-l1key') != undefined && $that.attr('data-l1key') != '') {
-          var elValue = $that.value()
+          elValue = $that.value()
           try {
             if ($.trim(elValue).substr(0, 1) == '{') {
-              var elValue = JSON.parse($that.value())
+              elValue = JSON.parse($that.value())
             }
           } catch (e) {
 
           }
-          var l1key = $that.attr('data-l1key')
-          var l2key = $that.attr('data-l2key')
+          l1key = $that.attr('data-l1key')
+          l2key = $that.attr('data-l2key')
           if (l2key !== undefined) {
-            var l2key = $that.attr('data-l2key')
+            l2key = $that.attr('data-l2key')
             if (!isset(value[l1key])) {
               value[l1key] = {}
             }
-            var l3key = $that.attr('data-l3key')
+            l3key = $that.attr('data-l3key')
             if (l3key !== undefined) {
               if (!isset(value[l1key][l2key])) {
                 value[l1key][l2key] = {}
