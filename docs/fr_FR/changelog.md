@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.3
 
+## 4.3.11
+
+- **Analyse / Historique** : Bugfix sur la comparaison d'historique (bug introduit en 4.3.10).
+
 ## 4.3.10
 
 - **Analyse / Historique** : Correction de bugs sur la suppression d'historique.
