@@ -258,7 +258,7 @@ function init(_value, _default) {
 /**************UI*****************************/
 (function($) {
   var scriptsCache = [];
-  $.include = function(_path, _callback) {
+  jQuery.include = function(_path, _callback) {
     $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
       if (options.dataType == 'script' || originalOptions.dataType == 'script') {
         options.cache = true;
@@ -291,7 +291,7 @@ function init(_value, _default) {
   };
 
   /***************************Fast Vanilla div emptying************************/
-  $.clearDivContent = function(_id = '') {
+  jQuery.clearDivContent = function(_id = '') {
     if (_id == '') return
     var contain = document.getElementById(_id)
     if (contain) {
@@ -302,15 +302,15 @@ function init(_value, _default) {
   }
 
   /********************************loading************************/
-  $.showLoading = function() {
+  jQuery.showLoading = function() {
     $('#div_jeedomLoading').show();
   };
-  $.hideLoading = function() {
+  jQuery.hideLoading = function() {
     $('#div_jeedomLoading').hide();
   };
 
   /*********************jquery alert*************************************/
-  $.fn.showAlert = function(_options) {
+  jQuery.fn.showAlert = function(_options) {
     var options = init(_options, {})
     options.message = init(options.message, '')
     options.level = init(options.level, '')
@@ -351,7 +351,7 @@ function init(_value, _default) {
     }
   }
 
-  $.fn.hideAlert = function() {
+  jQuery.fn.hideAlert = function() {
     //old div_alert:
     $('#jqAlertSpacer' + $(this).attr('id')).remove();
     $(this).text('').hide();
@@ -363,7 +363,7 @@ function init(_value, _default) {
     return $(this);
   };
 
-  $.hideAlert = function() {
+  jQuery.hideAlert = function() {
     if (!$.mobile) {
       //Old div_alert:
       $('.jqAlert').text('');
@@ -393,7 +393,7 @@ function init(_value, _default) {
   };
 
 
-  $.fn.value = function(_value) {
+  jQuery.fn.value = function(_value) {
     var $this = $(this)
     if (isset(_value)) {
       if ($this.length > 1) {
@@ -456,124 +456,134 @@ function init(_value, _default) {
     }
   };
 
-  $.fn.getValues = function(_attr, _depth) {
-    var values = [];
-    if ($(this).length > 1) {
-      $(this).each(function() {
-        var value = {};
-        $(this).findAtDepth(_attr, init(_depth, 0)).each(function() {
-          var elValue = $(this).value();
+  jQuery.fn.getValues = function(_attr, _depth) {
+    var values = []
+    var $this = $(this)
+
+    if ($this.length > 1) {
+      var idx
+      for (idx=0; idx < $this.length; idx++) {
+        var value = {}
+        var depthFound = $($this[idx]).findAtDepth(_attr, init(_depth, 0))
+        var idx2
+        for (idx2=0; idx2 < depthFound.length; idx2++) {
+          var $that = $(depthFound[idx2])
+          var elValue = $that.value()
           try {
             if ($.trim(elValue).substr(0, 1) == '{') {
-              var elValue = JSON.parse($(this).value());
+              var elValue = JSON.parse($that.value())
             }
-          } catch (e) {
-
-          }
-          if ($(this).attr('data-l1key') != undefined && $(this).attr('data-l1key') != '') {
-            var l1key = $(this).attr('data-l1key');
-            if ($(this).attr('data-l2key') !== undefined) {
-              var l2key = $(this).attr('data-l2key');
+          } catch (e) {}
+          var l1key = $that.attr('data-l1key')
+          if (l1key != undefined && l1key != '') {
+            var l2key = $that.attr('data-l2key')
+            if (l2key !== undefined) {
               if (!isset(value[l1key])) {
-                value[l1key] = {};
+                value[l1key] = {}
               }
-              if ($(this).attr('data-l3key') !== undefined) {
-                var l3key = $(this).attr('data-l3key');
+              var l3key = $that.attr('data-l3key')
+              if (l3key !== undefined) {
                 if (!isset(value[l1key][l2key])) {
-                  value[l1key][l2key] = {};
+                  value[l1key][l2key] = {}
                 }
                 if (isset(value[l1key][l2key][l3key])) {
                   if (!is_array(value[l1key][l2key][l3key])) {
-                    value[l1key][l2key][l3key] = [value[l1key][l2key][l3key]];
+                    value[l1key][l2key][l3key] = [value[l1key][l2key][l3key]]
                   }
-                  value[l1key][l2key][l3key].push(elValue);
+                  value[l1key][l2key][l3key].push(elValue)
                 } else {
-                  value[l1key][l2key][l3key] = elValue;
+                  value[l1key][l2key][l3key] = elValue
                 }
               } else {
                 if (isset(value[l1key][l2key])) {
                   if (!is_array(value[l1key][l2key])) {
-                    value[l1key][l2key] = [value[l1key][l2key]];
+                    value[l1key][l2key] = [value[l1key][l2key]]
                   }
-                  value[l1key][l2key].push(elValue);
+                  value[l1key][l2key].push(elValue)
                 } else {
-                  value[l1key][l2key] = elValue;
+                  value[l1key][l2key] = elValue
                 }
               }
             } else {
               if (isset(value[l1key])) {
                 if (!is_array(value[l1key])) {
-                  value[l1key] = [value[l1key]];
+                  value[l1key] = [value[l1key]]
                 }
-                value[l1key].push(elValue);
+                value[l1key].push(elValue)
               } else {
-                value[l1key] = elValue;
+                value[l1key] = elValue
               }
             }
           }
-        });
-        values.push(value);
-      });
+        }
+        values.push(value)
+      }
     }
-    if ($(this).length == 1) {
-      var value = {};
-      $(this).findAtDepth(_attr, init(_depth, 0)).each(function() {
-        if ($(this).attr('data-l1key') != undefined && $(this).attr('data-l1key') != '') {
-          var elValue = $(this).value();
+
+    if ($this.length == 1) {
+      var value = {}
+      var depthFound = $($this).findAtDepth(_attr, init(_depth, 0))
+      var idx2
+      for (idx2=0; idx2 < depthFound.length; idx2++) {
+        var $that = $(depthFound[idx2])
+        if ($that.attr('data-l1key') != undefined && $that.attr('data-l1key') != '') {
+          var elValue = $that.value()
           try {
             if ($.trim(elValue).substr(0, 1) == '{') {
-              var elValue = JSON.parse($(this).value());
+              var elValue = JSON.parse($that.value())
             }
           } catch (e) {
 
           }
-          var l1key = $(this).attr('data-l1key');
-          if ($(this).attr('data-l2key') !== undefined) {
-            var l2key = $(this).attr('data-l2key');
+          var l1key = $that.attr('data-l1key')
+          var l2key = $that.attr('data-l2key')
+          if (l2key !== undefined) {
+            var l2key = $that.attr('data-l2key')
             if (!isset(value[l1key])) {
-              value[l1key] = {};
+              value[l1key] = {}
             }
-            if ($(this).attr('data-l3key') !== undefined) {
-              var l3key = $(this).attr('data-l3key');
+            var l3key = $that.attr('data-l3key')
+            if (l3key !== undefined) {
               if (!isset(value[l1key][l2key])) {
-                value[l1key][l2key] = {};
+                value[l1key][l2key] = {}
               }
               if (isset(value[l1key][l2key][l3key])) {
                 if (!is_array(value[l1key][l2key][l3key])) {
-                  value[l1key][l2key][l3key] = [value[l1key][l2key][l3key]];
+                  value[l1key][l2key][l3key] = [value[l1key][l2key][l3key]]
                 }
-                value[l1key][l2key][l3key].push(elValue);
+                value[l1key][l2key][l3key].push(elValue)
               } else {
-                value[l1key][l2key][l3key] = elValue;
+                value[l1key][l2key][l3key] = elValue
               }
             } else {
               if (isset(value[l1key][l2key])) {
                 if (!is_array(value[l1key][l2key])) {
-                  value[l1key][l2key] = [value[l1key][l2key]];
+                  value[l1key][l2key] = [value[l1key][l2key]]
                 }
-                value[l1key][l2key].push(elValue);
+                value[l1key][l2key].push(elValue)
               } else {
-                value[l1key][l2key] = elValue;
+                value[l1key][l2key] = elValue
               }
             }
           } else {
             if (isset(value[l1key])) {
               if (!is_array(value[l1key])) {
-                value[l1key] = [value[l1key]];
+                value[l1key] = [value[l1key]]
               }
-              value[l1key].push(elValue);
+              value[l1key].push(elValue)
             } else {
-              value[l1key] = elValue;
+              value[l1key] = elValue
             }
           }
         }
-      });
-      values.push(value);
+      }
+      values.push(value)
     }
-    return values;
+
+    return values
   }
 
-  $.fn.setValues = function(_object, _attr) {
+  jQuery.fn.setValues = function(_object, _attr) {
     var $this = $(this)
     for (var i in _object) {
       if ((!is_array(_object[i]) || $this.find(_attr + '[data-l1key="' + i + '"]').attr('multiple') == 'multiple') && !is_object(_object[i])) {
@@ -595,14 +605,14 @@ function init(_value, _default) {
 
   /**************LI FILTER*****************************/
 
-  $.initTableFilter = function() {
+  jQuery.initTableFilter = function() {
     $("body").delegate("ul li input.filter", 'keyup', function() {
       $(this).closest('ul').ulFilter();
     });
   };
 
 
-  $.fn.ulFilter = function() {
+  jQuery.fn.ulFilter = function() {
     var ul = $(this);
     var li = $(this).find('li:not(.filter):not(.nav-header):first');
     var find = 'li.filter input.filter';
