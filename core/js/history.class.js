@@ -1749,7 +1749,11 @@ jeedom.history.emptyChart = function(_chartId, _yAxis) {
       if (!series.name.includes('Navigator ')) {
         var cmd_id = series.options.id
         series.remove(false)
-        if (_yAxis) jeedom.history.chart[_chartId].chart.get(cmd_id+'-yAxis').remove(false)
+        if (_yAxis) {
+          try {
+            jeedom.history.chart[_chartId].chart.get(cmd_id+'-yAxis').remove(false)
+          } catch (e) {}
+        }
       }
     }
   })
