@@ -499,11 +499,11 @@ $JEEDOM_INTERNAL_CONFIG = array(
 				'type' => 'Info', 'subtype' => array('numeric'), 'calcul' => 'avg'
 			),
 			'WEATHER_SUNSET' => array(
-				'name' => __('Météo lever de soleil', __FILE__), 'familyid' => 'Weather', 'family' => __('Météo', __FILE__),
+				'name' => __('Météo coucher de soleil', __FILE__), 'familyid' => 'Weather', 'family' => __('Météo', __FILE__),
 				'type' => 'Info', 'subtype' => array('numeric'), 'calcul' => 'avg'
 			),
 			'WEATHER_SUNRISE' => array(
-				'name' => __('Météo coucher de soleil', __FILE__), 'familyid' => 'Weather', 'family' => __('Météo', __FILE__),
+				'name' => __('Météo lever de soleil', __FILE__), 'familyid' => 'Weather', 'family' => __('Météo', __FILE__),
 				'type' => 'Info', 'subtype' => array('numeric'), 'calcul' => 'avg'
 			),
 			'WEATHER_TEMPERATURE_MIN' => array(

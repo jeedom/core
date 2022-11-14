@@ -11,6 +11,7 @@
 - **Historical** : History modal and History page allow to use buttons *Week, Month, Year* to reload a larger history.
 - **Jeedom menu** : A delay of 0.25s was introduced on opening submenus.
 - **Image selection window** : Added a context menu for sending images and creating, renaming or deleting a folder.
+- **Dashboard** : Ability to display several objects side by side (Settings → System → Configuration / Interface).
 - **Administration** : Possibility to differentiate actions on error or on command alert.
 - A contextual menu has been added in different places on the checkboxes to select all, none, or invert the selection (see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.4)).
 
@@ -278,7 +279,7 @@ Blog post [here](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **Configuration**: Adding Jeedom DNS based on Wireguard instead of Openvpn (Administration / networks). Faster, and more stable, but still in testing. Please note that this is currently not Jeedom Smart compatible.
 - **Configuration** : OSDB settings: Addition of a tool for mass editing of equipment, commands, objects, scenarios.
 - **Configuration** : OSDB settings: Adding a dynamic SQL query constructor.
-- **Configuration**: Possibility to deactivate cloud monitoring (Administration / Updates / Market).
+- **Configuration**: Ability to disable cloud monitoring (Administration / Updates / Market).
 - **jeeCLI** : Addition of ``jeeCli.php`` in the core / php folder of Jeedom to manage some command line functions.
 - *Big improvements to the interface in terms of performance / responsiveness. jeedomUtils {}, jeedomUI {}, main menu rewritten in pure css, removal of initRowWorflow (), simplification of the code, css fixes for small screens, etc.*
 
