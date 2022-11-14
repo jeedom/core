@@ -466,6 +466,26 @@ class scenarioExpression {
 		return 1;
 	}
 
+	public static function noChange($_condition, $_during = 60) {
+		$occurence = 0;
+		$limit = 60;
+		$during = jeedom::evaluateExpression($_during);
+		$limit = (is_numeric($during)) ? $during : 60;
+		log::add('test', 'debug', $_condition);
+		while (true) {
+			log::add('test', 'debug', jeedom::evaluateExpression($_condition));
+			if (!jeedom::evaluateExpression($_condition)) {
+				return 0;
+			}
+			if ($occurence > $limit) {
+				return 1;
+			}
+			$occurence++;
+			sleep(1);
+		}
+		return 1;
+	}
+
 	public static function minBetween($_cmd_id, $_startDate, $_endDate) {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
@@ -907,6 +927,36 @@ class scenarioExpression {
 		return '#' . $color->red . $color->green . $color->blue;
 	}
 
+	public static function triggerNoChange($_during, $_scenario) {
+		$occurence = 0;
+		$limit = 60;
+		$during = jeedom::evaluateExpression($_during);
+		$limit = (is_numeric($during)) ? $during : 60;
+		$cmd = cmd::byId(str_replace('#', '', $_scenario->getRealTrigger()));
+		if (!is_object($cmd)) {
+			return 0;
+		}
+		$init_value = $cmd->execCmd();
+		while (true) {
+			if ($init_value != $cmd->execCmd()) {
+				return 0;
+			}
+			if ($occurence > $limit) {
+				return 1;
+			}
+			$occurence++;
+			sleep(1);
+		}
+		return 1;
+	}
+
+	public static function triggerId(&$_scenario = null) {
+		if ($_scenario !== null) {
+			return str_replace('#', '', $_scenario->getRealTrigger());
+		}
+		return 0;
+	}
+
 	public static function trigger($_name = '', &$_scenario = null) {
 		if ($_scenario !== null) {
 			if (trim($_name) == '') {
@@ -1259,6 +1309,10 @@ class scenarioExpression {
 						$replace2[$replace_string] = self::trigger($arguments[0], $_scenario);
 					} elseif ($function == 'triggerValue') {
 						$replace2[$replace_string] = self::triggerValue($_scenario);
+					} elseif ($function == 'triggerId') {
+						$replace2[$replace_string] = self::triggerId($_scenario);
+					} elseif ($function == 'triggerNoChange') {
+						$replace2[$replace_string] = self::triggerNoChange($arguments[0], $_scenario);
 					} elseif ($function == 'tag') {
 						if (!isset($arguments[0])) {
 							$arguments[0] = '';
@@ -1565,7 +1619,7 @@ class scenarioExpression {
 					} catch (Error $ex) {
 						$result = $options['value'];
 					}
-					$this->setLog($scenario, __('Affectation de la variable', __FILE__) . ' ' . $this->getOptions('name') . ' => ' . $options['value'] . ' = ' . $result);
+					$this->setLog($scenario, __('Affectation de la variable', __FILE__) . ' ' . $this->getOptions('name') . ' => ' . $result . ' (' . $options['value'] . ')');
 					$dataStore = new dataStore();
 					$dataStore->setKey($this->getOptions('name'));
 					$dataStore->setValue($result);
