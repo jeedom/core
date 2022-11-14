@@ -1265,7 +1265,12 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
   var margin = jeedom.theme['widget::margin'] + 'px ' + jeedom.theme['widget::margin']*2 + 'px ' + jeedom.theme['widget::margin'] + 'px 0'
 
   //Get full width, step columns, to fill right space:
-  var containerWidth = $('div.div_displayEquipement').first().width()
+  if (document.getElementsByClassName('div_displayEquipement').length > 0) {
+    var containerWidth = document.getElementsByClassName('div_displayEquipement')[0].offsetWidth
+  } else {
+    var containerWidth = window.innerWidth - 22
+  }
+
   var cols = Math.floor(containerWidth / jeedomUtils.tileWidthStep) + 1
   var tileWidthAdd = containerWidth - (cols * jeedomUtils.tileWidthStep)
   var widthStep = jeedomUtils.tileWidthStep + (tileWidthAdd / cols) - (2 * parseInt(jeedom.theme['widget::margin']))
@@ -1287,21 +1292,23 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
 
     tile.css('margin', margin)
   } else {
-    var width, height, idx, $this
-    var $elements = $('div.eqLogic-widget, div.scenario-widget')
-    for (idx=0; idx < $elements.length; idx++) {
-      $this = $($elements[idx])
-      if ($this.data('confWidth') === undefined) {
-          $this.data('confWidth', $this.width())
-          $this.data('stepHeight', jeedomUtils.tileHeightSteps.indexOf(jeedomUtils.getClosestInArray($this.height(), jeedomUtils.tileHeightSteps)))
-        }
-        width = jeedomUtils.getClosestInArray($this.data('confWidth'), widthSteps)
-        height = jeedomUtils.tileHeightSteps[$this.data('stepHeight')]
-        $this
-          .width(width + (2 * widthSteps.indexOf(width) * parseInt(jeedom.theme['widget::margin'])))
-          .height(height + (2 * jeedomUtils.tileHeightSteps.indexOf(height) * parseInt(jeedom.theme['widget::margin'])))
+    var width, height, idx, element
+    var elements = document.querySelectorAll('div.eqLogic-widget, div.scenario-widget')
+    for (idx=0; idx < elements.length; idx++) {
+      element = elements[idx]
+      if (element.dataset.confWidth === undefined) {
+        element.dataset.confWidth = element.offsetWidth
+        element.dataset.stepHeight = jeedomUtils.tileHeightSteps.indexOf(jeedomUtils.getClosestInArray(element.offsetHeight, jeedomUtils.tileHeightSteps))
+      }
+      width = jeedomUtils.getClosestInArray(element.dataset.confWidth, widthSteps)
+      height = jeedomUtils.tileHeightSteps[element.dataset.stepHeight]
+      Object.assign(element.style, {
+        width: (width + (2 * widthSteps.indexOf(width) * parseInt(jeedom.theme['widget::margin']))) + 'px',
+        height: (height + (2 * jeedomUtils.tileHeightSteps.indexOf(height) * parseInt(jeedom.theme['widget::margin']))) + 'px',
+        margin: margin
+      })
+      element.classList.add("jeedomAlreadyPosition")
     }
-    $elements.css('margin', margin).addClass('jeedomAlreadyPosition')
   }
 }
 jeedomUtils.getClosestInArray = function(_num, _refAr) {

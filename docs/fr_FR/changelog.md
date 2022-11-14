@@ -11,6 +11,7 @@
 - **Historique** : La modale d'historique et la page Historique permettent d'utiliser les boutons *Week, Month, Year* pour recharger un historique plus large.
 - **Menu Jeedom** : Un délai de 0.25s a été introduit sur l'ouverture des sous-menus.
 - **Fenêtre de sélection d'image** : Ajout d'un menu contextuel permettant d'envoyer des images et de créer, renommer ou supprimer un dossier.
+- **Dashboard** : Possibilité d'afficher plusieurs objets cote à cote (Réglages → Système → Configuration / Interface).
 - **Administration** : Possibilité de différencier les actions sur erreur ou sur alerte de commande.
 - Un menu contextuel a été ajouté à différent endroits sur les checkboxs pour les sélectionner toutes, aucun, ou inverser la sélection (voir [Doc dev](https://doc.jeedom.com/fr_FR/dev/core4.4)).
 
@@ -278,7 +279,7 @@ Article du blog [ici](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **Configuration**: Ajout DNS Jeedom basé sur Wireguard au lieu d'Openvpn (Administration / réseaux). Plus rapide, et plus stable, mais encore en test. Attention ce n'est pour le moment pas compatible Jeedom Smart.
 - **Configuration** : Réglages OSDB: Ajout d'un outil d'édition en masse d'équipements, commandes, objets, scénarios.
 - **Configuration** : Réglages OSDB: Ajout d'un constructeur dynamique de requête SQL.
-- **Configuration**: Possibilité de désactiver le monitoring cloud (Administration / Mises à jour/Market).
+- **Configuration**: Possibilité de désactiver le monitoring cloud (Administration / Mises à jour / Market).
 - **jeeCLI** : Ajout de ``jeeCli.php`` dans le dossier core/php de Jeedom pour gérer certaines fonctions en ligne de commande.
 - *Grosses améliorations de l'interface en terme de performances / réactivité. jeedomUtils{}, jeedomUI{}, menu principal réecrit en css pur, suppression d'initRowWorflow(), simplication du code, corrections css pour les petits écrans, etc.*
 
