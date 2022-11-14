@@ -460,85 +460,22 @@ function init(_value, _default) {
     var values = []
     var $this = $(this)
 
-    if ($this.length > 1) {
-      var idx, idx2, value, depthFound, $that, elValue, l1key, l2key, l3key
-      for (idx=0; idx < $this.length; idx++) {
-        value = {}
-        depthFound = $($this[idx]).findAtDepth(_attr, init(_depth, 0))
-        idx2
-        for (idx2=0; idx2 < depthFound.length; idx2++) {
-          $that = $(depthFound[idx2])
-          elValue = $that.value()
-          try {
-            if ($.trim(elValue).substr(0, 1) == '{') {
-              elValue = JSON.parse($that.value())
-            }
-          } catch (e) {}
-          l1key = $that.attr('data-l1key')
-          if (l1key != undefined && l1key != '') {
-            l2key = $that.attr('data-l2key')
-            if (l2key !== undefined) {
-              if (!isset(value[l1key])) {
-                value[l1key] = {}
-              }
-              l3key = $that.attr('data-l3key')
-              if (l3key !== undefined) {
-                if (!isset(value[l1key][l2key])) {
-                  value[l1key][l2key] = {}
-                }
-                if (isset(value[l1key][l2key][l3key])) {
-                  if (!is_array(value[l1key][l2key][l3key])) {
-                    value[l1key][l2key][l3key] = [value[l1key][l2key][l3key]]
-                  }
-                  value[l1key][l2key][l3key].push(elValue)
-                } else {
-                  value[l1key][l2key][l3key] = elValue
-                }
-              } else {
-                if (isset(value[l1key][l2key])) {
-                  if (!is_array(value[l1key][l2key])) {
-                    value[l1key][l2key] = [value[l1key][l2key]]
-                  }
-                  value[l1key][l2key].push(elValue)
-                } else {
-                  value[l1key][l2key] = elValue
-                }
-              }
-            } else {
-              if (isset(value[l1key])) {
-                if (!is_array(value[l1key])) {
-                  value[l1key] = [value[l1key]]
-                }
-                value[l1key].push(elValue)
-              } else {
-                value[l1key] = elValue
-              }
-            }
-          }
-        }
-        values.push(value)
-      }
-    }
-
-    if ($this.length == 1) {
-      var value = {}
-      var depthFound = $($this).findAtDepth(_attr, init(_depth, 0))
-      var idx2, $that, l1key, l2key, l3key
+    var idx, idx2, value, depthFound, $that, elValue, l1key, l2key, l3key
+    for (idx=0; idx < $this.length; idx++) {
+      value = {}
+      depthFound = $($this[idx]).findAtDepth(_attr, init(_depth, 0))
       for (idx2=0; idx2 < depthFound.length; idx2++) {
         $that = $(depthFound[idx2])
-        if ($that.attr('data-l1key') != undefined && $that.attr('data-l1key') != '') {
-          elValue = $that.value()
-          try {
-            if ($.trim(elValue).substr(0, 1) == '{') {
-              elValue = JSON.parse($that.value())
-            }
-          } catch (e) {
-
+        elValue = $that.value()
+        try {
+          if ($.trim(elValue).substr(0, 1) == '{') {
+            elValue = JSON.parse($that.value())
           }
-          l1key = $that.attr('data-l1key')
+        } catch (e) {}
+        l1key = $that.attr('data-l1key')
+        if (l1key != undefined && l1key != '') {
           l2key = $that.attr('data-l2key')
           if (l2key !== undefined) {
-            l2key = $that.attr('data-l2key')
             if (!isset(value[l1key])) {
               value[l1key] = {}
             }
