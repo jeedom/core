@@ -3,6 +3,7 @@
 ## 4.3.11
 
 - **Analyse / Historique** : Bugfix sur la comparaison d'historique (bug introduit en 4.3.10).
+- **Synthèse** : L'*Action depuis la synthèse* d'un objet est maintenant supportée sur la version mobile.
 
 ## 4.3.10
 
