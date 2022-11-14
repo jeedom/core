@@ -11,6 +11,7 @@
 - **Historisch** : Verlaufsmodal und Verlaufsseite ermöglichen die Verwendung von Schaltflächen *Woche, Monat, Jahr* um einen größeren Verlauf neu zu laden.
 - **Jeedom-Menü** : Eine Verzögerung von 0.25s wurde beim Öffnen von Untermenüs eingeführt.
 - **Bildauswahlfenster** : Kontextmenü zum Senden von Bildern und Erstellen, Umbenennen oder Löschen eines Ordners hinzugefügt.
+- **Armaturenbrett** : Möglichkeit, mehrere Objekte nebeneinander anzuzeigen (Einstellungen → System → Konfiguration / Schnittstelle).
 - **Verwaltung** : Möglichkeit, Aktionen bei Fehler oder Befehlsalarm zu unterscheiden.
 - Ein Kontextmenü wurde an verschiedenen Stellen zu den Kontrollkästchen hinzugefügt, um alle oder keine auszuwählen oder die Auswahl umzukehren (siehe [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.4)).
 
