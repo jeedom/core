@@ -1270,44 +1270,44 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
   } else {
     var containerWidth = window.innerWidth - 22
   }
-
   var cols = Math.floor(containerWidth / jeedomUtils.tileWidthStep) + 1
   var tileWidthAdd = containerWidth - (cols * jeedomUtils.tileWidthStep)
   var widthStep = jeedomUtils.tileWidthStep + (tileWidthAdd / cols) - (2 * parseInt(jeedom.theme['widget::margin']))
   var widthSteps = Array.apply(null, {length: 10}).map(function(value, index) {return (index + 1) * widthStep})
 
   if (_id != undefined) {
-    var tile = (_scenario) ? $('div.scenario-widget[data-scenario_id='+_id+']') : $('div.eqLogic-widget[data-eqlogic_id='+_id+']')
-    tile.css('margin', '0px')
+    var tile = (_scenario) ? document.querySelector('.scenario-widget[data-scenario_id="'+_id+'"]') : document.querySelector('.eqLogic-widget[data-eqlogic_id="'+_id+'"]')
     if (init(_preResize, true)) {
-      tile.width(Math.floor(tile.width() / jeedom.theme['widget::step::width']) * jeedom.theme['widget::step::width'] - (2 * jeedom.theme['widget::margin']))
-      tile.height(Math.floor(tile.height() / jeedom.theme['widget::step::height']) * jeedom.theme['widget::step::height'] - (2 * jeedom.theme['widget::margin']))
+      Object.assign(tile.style, {
+        width: (Math.floor(tile.width() / jeedom.theme['widget::step::width']) * jeedom.theme['widget::step::width'] - (2 * jeedom.theme['widget::margin'])) + 'px',
+        height: (Math.floor(tile.height() / jeedom.theme['widget::step::height']) * jeedom.theme['widget::step::height'] - (2 * jeedom.theme['widget::margin'])) + 'px'
+      })
     }
-
-    var width = jeedomUtils.getClosestInArray(tile.width(), widthSteps)
-    tile.data('confWidth', parseInt(tile.width()))
-    var height = jeedomUtils.getClosestInArray(tile.height(), jeedomUtils.tileHeightSteps)
-    tile.width(width + (2 * widthSteps.indexOf(width) * parseInt(jeedom.theme['widget::margin'])))
-    tile.height(height + (2 * jeedomUtils.tileHeightSteps.indexOf(height) * parseInt(jeedom.theme['widget::margin'])))
-
-    tile.css('margin', margin)
+    var width = jeedomUtils.getClosestInArray(tile.offsetWidth, widthSteps)
+    tile.dataset.confWidth = tile.offsetWidth
+    var height = jeedomUtils.getClosestInArray(tile.offsetHeight, jeedomUtils.tileHeightSteps)
+    Object.assign(tile.style, {
+      width: (width + (2 * widthSteps.indexOf(width) * parseInt(jeedom.theme['widget::margin']))) + 'px',
+      height: (height + (2 * jeedomUtils.tileHeightSteps.indexOf(height) * parseInt(jeedom.theme['widget::margin']))) + 'px',
+      margin: margin
+    })
   } else {
     var width, height, idx, element
     var elements = document.querySelectorAll('div.eqLogic-widget, div.scenario-widget')
     for (idx=0; idx < elements.length; idx++) {
-      element = elements[idx]
-      if (element.dataset.confWidth === undefined) {
-        element.dataset.confWidth = element.offsetWidth
-        element.dataset.stepHeight = jeedomUtils.tileHeightSteps.indexOf(jeedomUtils.getClosestInArray(element.offsetHeight, jeedomUtils.tileHeightSteps))
+      tile = elements[idx]
+      if (tile.dataset.confWidth === undefined) {
+        tile.dataset.confWidth = tile.offsetWidth
+        tile.dataset.stepHeight = jeedomUtils.tileHeightSteps.indexOf(jeedomUtils.getClosestInArray(tile.offsetHeight, jeedomUtils.tileHeightSteps))
       }
-      width = jeedomUtils.getClosestInArray(element.dataset.confWidth, widthSteps)
-      height = jeedomUtils.tileHeightSteps[element.dataset.stepHeight]
-      Object.assign(element.style, {
+      width = jeedomUtils.getClosestInArray(tile.dataset.confWidth, widthSteps)
+      height = jeedomUtils.tileHeightSteps[tile.dataset.stepHeight]
+      Object.assign(tile.style, {
         width: (width + (2 * widthSteps.indexOf(width) * parseInt(jeedom.theme['widget::margin']))) + 'px',
         height: (height + (2 * jeedomUtils.tileHeightSteps.indexOf(height) * parseInt(jeedom.theme['widget::margin']))) + 'px',
         margin: margin
       })
-      element.classList.add("jeedomAlreadyPosition")
+      tile.classList.add("jeedomAlreadyPosition")
     }
   }
 }
