@@ -113,27 +113,28 @@ NodeList.prototype.getValues = function(_attr, _depth) {
 Element.prototype.setValues = function(_object, _attr) {
   var selector
   for (var i in _object) {
-      if ((!is_array(_object[i]) || this.querySelector(_attr + '[data-l1key="' + i + '"]').getAttribute('multiple') == 'multiple') && !is_object(_object[i])) {
-        this.querySelectorAll(_attr + '[data-l1key="' + i + '"]').forEach((element) => {
-          element.jeeValue(_object[i])
-        })
-      } else {
-        for (var j in _object[i]) {
-          selector = _attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"]'
-          if ((is_array(_object[i][j]) || (this.querySelector(selector) !== null && this.querySelector(selector).getAttribute('multiple') == 'multiple')) || is_object(_object[i][j])) {
-            for (var k in _object[i][j]) {
-              this.querySelectorAll(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"][data-l3key="' + k + '"]').forEach((element) => {
-                element.jeeValue(_object[i][j][k])
-              })
-            }
-          } else {
-            this.querySelectorAll(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"]').forEach((element) => {
-              element.jeeValue(_object[i][j])
+    selector = _attr + '[data-l1key="' + i + '"]'
+    if ((!is_array(_object[i]) || (this.querySelector(selector) !== null && this.querySelector(selector).getAttribute('multiple') == 'multiple')) && !is_object(_object[i])) {
+      this.querySelectorAll(_attr + '[data-l1key="' + i + '"]').forEach((element) => {
+        element.jeeValue(_object[i])
+      })
+    } else {
+      for (var j in _object[i]) {
+        selector = _attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"]'
+        if ((is_array(_object[i][j]) || (this.querySelector(selector) !== null && this.querySelector(selector).getAttribute('multiple') == 'multiple')) || is_object(_object[i][j])) {
+          for (var k in _object[i][j]) {
+            this.querySelectorAll(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"][data-l3key="' + k + '"]').forEach((element) => {
+              element.jeeValue(_object[i][j][k])
             })
           }
+        } else {
+          this.querySelectorAll(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"]').forEach((element) => {
+            element.jeeValue(_object[i][j])
+          })
         }
       }
     }
+  }
 }
 
 Element.prototype.jeeValue = function(_value) {

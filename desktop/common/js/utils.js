@@ -1528,6 +1528,17 @@ jeedomUtils.setCheckContextMenu = function(_callback) {
 
 
 //Extensions__
+jQuery.fn.findAtDepth = function(selector, maxDepth) {
+  var depths = [], i
+  if (maxDepth > 0) {
+    for (i = 1; i <= maxDepth; i++) {
+      depths.push('> ' + new Array(i).join('* > ') + selector)
+    }
+    selector = depths.join(', ')
+  }
+  return this.find(selector)
+}
+
 jQuery.fn.setCursorPosition = function(position) {
   if(this.lengh == 0) return this;
   return $(this).setSelection(position, position)
