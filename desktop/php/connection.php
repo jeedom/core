@@ -16,10 +16,10 @@ include_file('3rdparty', 'animate/animate', 'js');
 			</div>
 			<div class="wrapper">
 				<div id="login" tabindex="503" class="form-group">
-					<h3>Connexion
+					<h3>{{Connexion}}
 						<?php
 						if (config::byKey('display_name_login') == 1) {
-							echo ' à ' . config::byKey('name');
+							echo ' {{à}} ' . config::byKey('name');
 						}
 						?>
 					</h3>
