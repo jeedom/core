@@ -1618,6 +1618,7 @@
         "Version": "Version",
         "Nom de votre": "Nom de votre",
         "(utilisé notamment par le market)": "(utilisé notamment par le market)",
+        "Afficher sur la page de connexion": "Afficher sur la page de connexion",
         "Langue": "Langue",
         "Langue de votre": "Langue de votre",
         "Français": "Français",
@@ -2298,11 +2299,12 @@
         "Annuler": "Annuler"
     },
     "desktop\/php\/connection.php": {
+        "Connexion": "Connexion",
+        "à": "à",
         "Nom d'utilisateur": "Nom d'utilisateur",
         "Mot de passe": "Mot de passe",
         "Code à 2 facteurs": "Code à 2 facteurs",
         "Enregistrer cet ordinateur": "Enregistrer cet ordinateur",
-        "Connexion": "Connexion",
         "J'ai perdu mon mot de passe": "J'ai perdu mon mot de passe",
         "En créer un !": "En créer un !",
         "Connecter": "Connecter",

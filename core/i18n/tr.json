@@ -1618,6 +1618,7 @@
         "Version": "Versiyon",
         "Nom de votre": "Nom de votre",
         "(utilisé notamment par le market)": "(utilisé notamment par le market)",
+        "Afficher sur la page de connexion": "Afficher sur la page de connexion",
         "Langue": "Dil",
         "Langue de votre": "Langue de votre",
         "Français": "Français",
@@ -2298,11 +2299,12 @@
         "Annuler": "Iptal et"
     },
     "desktop\/php\/connection.php": {
+        "Connexion": "Bağlantı",
+        "à": "à",
         "Nom d'utilisateur": "Kullanıcı adı",
         "Mot de passe": "Şifre",
         "Code à 2 facteurs": "2 haneli kod",
         "Enregistrer cet ordinateur": "Bu bilgisayarı kaydet",
-        "Connexion": "Bağlantı",
         "J'ai perdu mon mot de passe": "Şifremi kaybettim",
         "En créer un !": "En créer un !",
         "Connecter": "Connecter",

@@ -1618,6 +1618,7 @@
         "Version": "Версия",
         "Nom de votre": "Nom de votre",
         "(utilisé notamment par le market)": "(utilisé notamment par le market)",
+        "Afficher sur la page de connexion": "Afficher sur la page de connexion",
         "Langue": "Язык",
         "Langue de votre": "Langue de votre",
         "Français": "Français",
@@ -2298,11 +2299,12 @@
         "Annuler": "Отменить"
     },
     "desktop\/php\/connection.php": {
+        "Connexion": "Соединение",
+        "à": "à",
         "Nom d'utilisateur": "Имя пользователя",
         "Mot de passe": "Пароль",
         "Code à 2 facteurs": "Код 2 фактора",
         "Enregistrer cet ordinateur": "Сохранить этот компьютер",
-        "Connexion": "Соединение",
         "J'ai perdu mon mot de passe": "Я потерял пароль",
         "En créer un !": "Создать один!",
         "Connecter": "Connecter",

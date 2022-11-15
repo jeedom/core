@@ -1618,6 +1618,7 @@
         "Version": "バージョン",
         "Nom de votre": "お名前",
         "(utilisé notamment par le market)": "(utilisé notamment par le market)",
+        "Afficher sur la page de connexion": "Afficher sur la page de connexion",
         "Langue": "言語",
         "Langue de votre": "あなたの言語",
         "Français": "Français",
@@ -2298,11 +2299,12 @@
         "Annuler": "キャンセル"
     },
     "desktop\/php\/connection.php": {
+        "Connexion": "ログイン",
+        "à": "à",
         "Nom d'utilisateur": "ユーザー名",
         "Mot de passe": "パスワード",
         "Code à 2 facteurs": "コードの2倍",
         "Enregistrer cet ordinateur": "このコンピューターを保存する",
-        "Connexion": "ログイン",
         "J'ai perdu mon mot de passe": "パスワードを紛失しました",
         "En créer un !": "作成してください！",
         "Connecter": "Connecter",

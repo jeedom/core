@@ -1618,6 +1618,7 @@
         "Version": "Versi",
         "Nom de votre": "Nom de votre",
         "(utilisé notamment par le market)": "(utilisé notamment par le market)",
+        "Afficher sur la page de connexion": "Afficher sur la page de connexion",
         "Langue": "Bahasa",
         "Langue de votre": "Langue de votre",
         "Français": "Français",
@@ -2298,11 +2299,12 @@
         "Annuler": "Tidak jadi"
     },
     "desktop\/php\/connection.php": {
+        "Connexion": "Koneksi",
+        "à": "à",
         "Nom d'utilisateur": "Nama pemakai",
         "Mot de passe": "Password",
         "Code à 2 facteurs": "Kode 2 faktor",
         "Enregistrer cet ordinateur": "Mendaftarkan komputer ini",
-        "Connexion": "Koneksi",
         "J'ai perdu mon mot de passe": "Saya lupa password saya",
         "En créer un !": "En créer un !",
         "Connecter": "Connecter",
