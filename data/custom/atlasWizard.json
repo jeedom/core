@@ -2,7 +2,7 @@
 "trame": {
   "welcome" :
     {
-      "title": "{{Bienvenue}}",
+      "title": "Bienvenue",
       "wizard": "welcome",
       "order": 0,
       "custom": "",
@@ -18,20 +18,11 @@
       "visible": 1
     }
   ,
-  "boxName" :
-    {
-      "title": "Nommez votre box",
-      "wizard": "boxName",
-      "order": 2,
-      "custom": "",
-      "visible": 1
-    },
-  
   "objects" : {
 
       "title": "Pièces",
       "wizard": "objects",
-      "order": 3,
+      "order": 2,
       "custom": "",
       "visible": 1
 
@@ -40,7 +31,7 @@
     {
       "title": "Service pack",
       "wizard": "pack",
-      "order": 4,
+      "order": 3,
       "custom": "",
       "visible": 1
     }
@@ -49,7 +40,7 @@
     {
       "title": "Configuration des plugins",
       "wizard": "pluginsConfigs",
-      "order": 5,
+      "order": 4,
       "custom": "",
       "visible": 1
     }
@@ -58,7 +49,7 @@
     {
       "title": "Services",
       "wizard": "services",
-      "order": 6,
+      "order": 5,
       "custom": "",
       "visible": 1
     }
@@ -67,7 +58,7 @@
     {
       "title": "Assistants Vocaux",
       "wizard": "assistants",
-      "order": 7,
+      "order": 6,
       "custom": "",
       "visible": 1
     }
@@ -76,16 +67,16 @@
    	{
 	  "title": "Options Atlas",
       "wizard": "atlas",
-      "order": 8,
+      "order": 7,
       "custom": "",
       "visible": 1
    	}
   ,
   "ready" :
     {
-      "title": "Prêt à démarrer",
+      "title": "Pret à commencer",
       "wizard": "ready",
-      "order": 9,
+      "order": 8,
       "custom": "",
       "visible": 1
     }
