@@ -1159,12 +1159,6 @@ jeedomUtils.addOrUpdateUrl = function(_param, _value, _title) {
   }
 }
 
-String.prototype.HTMLFormat = function() {
-  return this.replace(/[\u00A0-\u9999<>\&]/g, function (i) {
-    return '&#' + i.charCodeAt(0) + ';';
-  });
-}
-
 //Global UI functions__
 jeedomUtils.userDeviceType = 'mobile'
 jeedomUtils.setJeedomMenu = function() {
@@ -1534,17 +1528,6 @@ jeedomUtils.setCheckContextMenu = function(_callback) {
 
 
 //Extensions__
-jQuery.fn.findAtDepth = function(selector, maxDepth) {
-  var depths = [], i
-  if (maxDepth > 0) {
-    for (i = 1; i <= maxDepth; i++) {
-      depths.push('> ' + new Array(i).join('* > ') + selector)
-    }
-    selector = depths.join(', ')
-  }
-  return this.find(selector)
-}
-
 jQuery.fn.setCursorPosition = function(position) {
   if(this.lengh == 0) return this;
   return $(this).setSelection(position, position)

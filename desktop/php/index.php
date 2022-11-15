@@ -239,6 +239,7 @@ function setTheme() {
 		'jeeFrontEnd.language' => $configs['language'],
 		'jeedom.theme' => $jeedom_theme
 	]);
+	include_file('core', 'dom.utils', 'dom');
 	include_file('desktop/common', 'utils', 'js');
 
 	if (init('report') == 1) {
