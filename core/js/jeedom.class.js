@@ -163,9 +163,11 @@ jeedom.init = function() {
   $body.addEventListener('scenario::update', function(_event) {
     jeedom.scenario.refreshValue(_event.detail)
   })
+
   $body.addEventListener('eqLogic::update', function(_event) {
     jeedom.eqLogic.refreshValue(_event.detail)
   })
+
   $body.addEventListener('jeeObject::summary::update', function(_event) {
     jeedom.object.summaryUpdate(_event.detail)
   })
@@ -188,7 +190,7 @@ jeedom.init = function() {
 
   $body.addEventListener('jeedom::gotoplan', function(_event) {
     if (getUrlVars('p') == 'plan' && 'function' == typeof (jeeFrontEnd.plan.displayPlan)) {
-      if (_event.detail != $('#sel_planHeader').attr('data-link_id')) {
+      if (_event.detail != document.getElementById('sel_planHeader').getAttribute('data-link_id')) {
         jeephp2js.planHeader_id = _event.detail
         jeeFrontEnd.plan.displayPlan()
       }
@@ -221,24 +223,34 @@ jeedom.init = function() {
       }
     }
   })
+
   $body.addEventListener('jeedom::alertPopup', function(_event) {
     alert(_event.detail)
   })
+
   $body.addEventListener('jeedom::coloredIcons', function(_event) {
-    $body.attr('data-coloredIcons', _event.detail)
+    $body.setAttribute('data-coloredIcons', _event.detail)
   })
+
   $body.addEventListener('message::refreshMessageNumber', function(_event) {
     jeedom.refreshMessageNumber()
   })
+
   $body.addEventListener('update::refreshUpdateNumber', function(_event) {
     jeedom.refreshUpdateNumber()
   })
+
   $body.addEventListener('notify', function(_event) {
     jeedom.notify(_event.detail.title, _event.detail.message, _event.detail.theme)
   })
+
   $body.addEventListener('checkThemechange', function(_event) {
     setCookie('currentTheme', '', -1)
-    $('#jQMnDColor').attr('data-nochange', 0)
+    if ($.mobile) {
+      document.getElementById('jQMnDColor').setAttribute('data-nochange', 0)
+    } else {
+      document.getElementById('bootstrap_theme_css').setAttribute('data-nochange', 0)
+    }
 
     if (isset(_event.detail.theme_start_day_hour)) {
       jeedom.theme.theme_start_day_hour = _event.detail.theme_start_day_hour
@@ -251,6 +263,7 @@ jeedom.init = function() {
     }
     jeedomUtils.checkThemechange()
   })
+
   $body.addEventListener('changeTheme', function(_event) {
     jeedomUtils.changeTheme(_event.detail)
   })
