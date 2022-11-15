@@ -378,20 +378,15 @@ function init(_value, _default) {
   /**********************Jquery.value******************************/
 
   jQuery.fn.findAtDepth = function(selector, maxDepth) {
-    var depths = [],
-      i;
-
+    var depths = [], i
     if (maxDepth > 0) {
       for (i = 1; i <= maxDepth; i++) {
-        depths.push('> ' + new Array(i).join('* > ') + selector);
+        depths.push('> ' + new Array(i).join('* > ') + selector)
       }
-
-      selector = depths.join(', ');
-      return this.find(selector).first();
+      selector = depths.join(', ')
     }
-    return this.find(selector);
-  };
-
+    return this.find(selector)
+  }
 
   jQuery.fn.value = function(_value) {
     var $this = $(this)
