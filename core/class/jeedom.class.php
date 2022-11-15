@@ -640,6 +640,9 @@ class jeedom {
 				if (file_exists('/dev/ttyS2')) {
 					$usbMapping['Jeedom Atlas'] = '/dev/ttyS2';
 				}
+				if (file_exists('/dev/ttyS1')) {
+					$usbMapping['Jeedom Luna Zwave'] = '/dev/ttyS1';
+				}
 				if (file_exists('/dev/ttyS0')) {
 					$usbMapping['Cubiboard'] = '/dev/ttyS0';
 				}
