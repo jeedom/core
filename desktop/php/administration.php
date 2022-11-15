@@ -66,6 +66,10 @@ user::isBan();
 							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 								<input type="text" class="configKey form-control" data-l1key="name" />
 							</div>
+							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Afficher sur la page de connexion}}</label>
+							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+								<input type="checkbox" class="configKey form-control" data-l1key="display_name_login" />
+							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Langue}}
@@ -439,7 +443,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Nombre de colonne sur le dashboard (1 colonne = 1 objet)}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<select class="form-control configKey" data-l1key="dahsboard::column::size"  data-reload="1">
+								<select class="form-control configKey" data-l1key="dahsboard::column::size" data-reload="1">
 									<option value="col-xs-12">1</option>
 									<option value="col-xs-6">2</option>
 									<option value="col-xs-4">3</option>

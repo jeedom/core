@@ -16,7 +16,13 @@ include_file('3rdparty', 'animate/animate', 'js');
 			</div>
 			<div class="wrapper">
 				<div id="login" tabindex="503" class="form-group">
-					<h3>Login</h3>
+					<h3>Connexion
+						<?php
+						if (config::byKey('display_name_login') == 1) {
+							echo ' à ' . config::byKey('name');
+						}
+						?>
+					</h3>
 					<div class="mail">
 						<label>{{Nom d'utilisateur}}</label>
 						<input type="text" id="in_login_username">
@@ -33,20 +39,21 @@ include_file('3rdparty', 'animate/animate', 'js');
 						<input type="checkbox" id="cb_storeConnection" /><label>{{Enregistrer cet ordinateur}}</label>
 					</div>
 					<div class="submit center">
-						<button class="dark btn-lg" id="bt_login_validate"><i class="fas fa-sign-in-alt" ></i> {{Connexion}}</button>
+						<button class="dark btn-lg" id="bt_login_validate"><i class="fas fa-sign-in-alt"></i> {{Connexion}}</button>
 					</div>
 					<?php
 					$mbState = config::byKey('mbState');
 					if ($mbState == 0) {
-					if (config::byKey('doc::base_url', 'core') != ''){ ?>
-						<div class="resetPassword center">
-							<a href="<?php echo config::byKey('doc::base_url', 'core'); ?>/fr_FR/howto/reset.password" target="_blank">{{J'ai perdu mon mot de passe}}</a>
-						</div>
-					<?php }} ?>
+						if (config::byKey('doc::base_url', 'core') != '') { ?>
+							<div class="resetPassword center">
+								<a href="<?php echo config::byKey('doc::base_url', 'core'); ?>/fr_FR/howto/reset.password" target="_blank">{{J'ai perdu mon mot de passe}}</a>
+							</div>
+					<?php }
+					} ?>
 				</div>
 				<div id="market" tabindex="502" class="form-group" style="display:none;">
 					<h3>Je n'ai pas de compte Market</h3>
-					<button class="dark btn-lg" id="bt_compte_market"><i class="fas fa-sign-in-alt" ></i> {{En créer un !}}</button>
+					<button class="dark btn-lg" id="bt_compte_market"><i class="fas fa-sign-in-alt"></i> {{En créer un !}}</button>
 					<hr align=center size=2 width="70%">
 					<h3>J'ai un compte market</h3>
 					<div class="mail">
@@ -64,11 +71,11 @@ include_file('3rdparty', 'animate/animate', 'js');
 						<button class="dark btn-lg" id="bt_ignore_market"><i class="fas fa-times"></i></i> {{Configurer plus tard}}</button>
 					</div>
 					<?php if ($mbState == 0) { ?>
-					<div class="resetPassword">
-						<a href="https://www.jeedom.com/market/index.php?v=d&p=connection" target="_blank">{{J'ai perdu mon mot de passe}}</a>
-					</div>
+						<div class="resetPassword">
+							<a href="https://www.jeedom.com/market/index.php?v=d&p=connection" target="_blank">{{J'ai perdu mon mot de passe}}</a>
+						</div>
 					<?php } ?>
-					<br/>
+					<br />
 				</div>
 				<div id="register" tabindex="500" class="form-group">
 					<h3>{{CHANGER VOTRE MOT DE PASSE}}</h3>
@@ -88,9 +95,9 @@ include_file('3rdparty', 'animate/animate', 'js');
 		</div>
 	</div>
 	<?php if ($mbState == 0) { ?>
-	<button class="btn_help animated bounceInUp" onclick="window.open('https://doc.jeedom.com/fr_FR/premiers-pas/#tocAnchor-4')">
-		?
-	</button>
+		<button class="btn_help animated bounceInUp" onclick="window.open('https://doc.jeedom.com/fr_FR/premiers-pas/#tocAnchor-4')">
+			?
+		</button>
 	<?php } ?>
 </div>
 
@@ -98,27 +105,27 @@ include_file('3rdparty', 'animate/animate', 'js');
 if (config::byKey('product_connection_BG')) {
 	echo "<style>";
 	echo "body {";
-		echo "background-image: url(".config::byKey('product_connection_BG').") !important;";
-		echo "background-position: center !important;";
-		echo "background-repeat: no-repeat !important;";
-		echo "background-size: cover !important;";
-		echo "}";
-		echo "</style>";
-	} elseif (config::byKey('product_connection_color')){
-		echo "<style>";
-		echo "body { background:".config::byKey('product_connection_color')." !important;}";
-		echo "</style>";
-	}
-	if(config::byKey('product_btn_login_color')){
-		echo "<style>";
-		echo "#bt_login_validate { background:".config::byKey('product_connection_color')." !important; border-color:".config::byKey('product_connection_color')." !important; }";
-		echo "</style>";
-	}
-	if(stristr(config::byKey('product_name'), 'Jeedom') == false){
-		echo "<style>";
-		echo ".btn_help { display:none; }";
-		echo "</style>";
-	}
-	include_file('desktop', 'connection', 'css');
-	include_file('desktop', 'connection', 'js');
-	?>
+	echo "background-image: url(" . config::byKey('product_connection_BG') . ") !important;";
+	echo "background-position: center !important;";
+	echo "background-repeat: no-repeat !important;";
+	echo "background-size: cover !important;";
+	echo "}";
+	echo "</style>";
+} elseif (config::byKey('product_connection_color')) {
+	echo "<style>";
+	echo "body { background:" . config::byKey('product_connection_color') . " !important;}";
+	echo "</style>";
+}
+if (config::byKey('product_btn_login_color')) {
+	echo "<style>";
+	echo "#bt_login_validate { background:" . config::byKey('product_connection_color') . " !important; border-color:" . config::byKey('product_connection_color') . " !important; }";
+	echo "</style>";
+}
+if (stristr(config::byKey('product_name'), 'Jeedom') == false) {
+	echo "<style>";
+	echo ".btn_help { display:none; }";
+	echo "</style>";
+}
+include_file('desktop', 'connection', 'css');
+include_file('desktop', 'connection', 'js');
+?>
