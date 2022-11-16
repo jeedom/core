@@ -59,6 +59,19 @@ NodeList.prototype.hide = function() {
   }
 }
 
+/*
+Better use container.replaceChildren(...arrayOfNewChildren) or container.replaceChildren()
+*/
+Element.prototype.empty = function() {
+  while (this.firstChild) {
+    this.removeChild(this.lastChild)
+  }
+}
+NodeList.prototype.empty = function() {
+  for (var idx=0; idx < this.length; idx++) {
+    this[idx].empty()
+  }
+}
 
 //CSS Class manipulation
 Element.prototype.addClass = function(_className) {
@@ -286,15 +299,15 @@ function in_array(a, b, d) {
 }
 
 function json_decode(a) {
-  var b = this.window.JSON;
+  var b = window.JSON;
   if ("object" === typeof b && "function" === typeof b.parse)
     try {
       return b.parse(a)
     } catch (d) {
       if (!(d instanceof SyntaxError))
         throw Error("Unexpected error type in json_decode()");
-      this.php_js = this.php_js || {};
-      this.php_js.last_error_json = 4;
+      window.php_js = window.php_js || {};
+      window.php_js.last_error_json = 4;
       return null
     }
   b = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
@@ -356,7 +369,7 @@ function json_encode(a) {
           case "object":
             if (!l)
               return "null";
-            if (this.PHPJS_Resource && l instanceof this.PHPJS_Resource || window.PHPJS_Resource && l instanceof window.PHPJS_Resource)
+            if (window.PHPJS_Resource && l instanceof window.PHPJS_Resource || window.PHPJS_Resource && l instanceof window.PHPJS_Resource)
               throw new SyntaxError("json_encode");
             d += "    ";
             k = [];
