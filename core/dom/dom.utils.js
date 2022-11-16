@@ -299,8 +299,8 @@ function json_decode(a) {
   }));
   if (/^[\],:{}\s]*$/.test(a.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, "@").replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, "]").replace(/(?:^|:|,)(?:\s*\[)+/g, "")))
     return a = eval("(" + a + ")");
-  this.php_js = this.php_js || {};
-  this.php_js.last_error_json = 4;
+  window.php_js = window.php_js || {};
+  window.php_js.last_error_json = 4;
   return null
 }
 
@@ -374,8 +374,8 @@ function json_encode(a) {
   } catch (f) {
     if (!(f instanceof SyntaxError))
       throw Error("Unexpected error type in json_encode()");
-    this.php_js = this.php_js || {};
-    this.php_js.last_error_json = 4;
+    window.php_js = window.php_js || {};
+    window.php_js.last_error_json = 4;
     return null
   }
 }
