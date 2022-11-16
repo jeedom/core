@@ -466,26 +466,6 @@ class scenarioExpression {
 		return 1;
 	}
 
-	public static function noChange($_condition, $_during = 60) {
-		$occurence = 0;
-		$limit = 60;
-		$during = jeedom::evaluateExpression($_during);
-		$limit = (is_numeric($during)) ? $during : 60;
-		log::add('test', 'debug', $_condition);
-		while (true) {
-			log::add('test', 'debug', jeedom::evaluateExpression($_condition));
-			if (!jeedom::evaluateExpression($_condition)) {
-				return 0;
-			}
-			if ($occurence > $limit) {
-				return 1;
-			}
-			$occurence++;
-			sleep(1);
-		}
-		return 1;
-	}
-
 	public static function minBetween($_cmd_id, $_startDate, $_endDate) {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
@@ -927,7 +907,7 @@ class scenarioExpression {
 		return '#' . $color->red . $color->green . $color->blue;
 	}
 
-	public static function triggerNoChange($_during, $_scenario) {
+	public static function triggerChange($_during, $_scenario) {
 		$occurence = 0;
 		$limit = 60;
 		$during = jeedom::evaluateExpression($_during);
@@ -939,15 +919,15 @@ class scenarioExpression {
 		$init_value = $cmd->execCmd();
 		while (true) {
 			if ($init_value != $cmd->execCmd()) {
-				return 0;
+				return 1;
 			}
 			if ($occurence > $limit) {
-				return 1;
+				return 0;
 			}
 			$occurence++;
 			sleep(1);
 		}
-		return 1;
+		return 0;
 	}
 
 	public static function triggerId(&$_scenario = null) {
