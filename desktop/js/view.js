@@ -226,7 +226,7 @@ if (jeephp2js.view_id != '') {
         })
 
         $('.eqLogicZone').each(function() {
-          var container = $(this).packery()
+          var container = $(this).packery({isLayoutInstant: true})
           var itemElems = container.find('.eqLogic-widget, .scenario-widget').draggable()
           container.packery('bindUIDraggableEvents', itemElems)
 
@@ -277,13 +277,13 @@ $('.bt_displayView').on('click', function() {
     $(this).closest('.row').find('.div_displayViewList').hide()
     $(this).closest('.row').find('.div_displayViewContainer').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-12 col-md-12 col-sm-12')
     $('.eqLogicZone').each(function() {
-      $(this).packery()
+      $(this).packery({isLayoutInstant: true})
     });
     $(this).attr('data-display', 0)
   } else {
     $(this).closest('.row').find('.div_displayViewList').show();
     $(this).closest('.row').find('.div_displayViewContainer').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-10 col-md-9 col-sm-8')
-    $('.eqLogicZone').packery()
+    $('.eqLogicZone').packery({isLayoutInstant: true})
     $(this).attr('data-display', 1)
   }
 })

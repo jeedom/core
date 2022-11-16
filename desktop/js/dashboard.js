@@ -244,7 +244,7 @@ if (!jeeFrontEnd.dashboard) {
                 //is last ajax:
                 if (nbEqs == 0) {
                   jeedomUtils.positionEqLogic()
-                  $divDisplayEq.packery()
+                  $divDisplayEq.packery({isLayoutInstant: true})
                   if ($divDisplayEq.find('div.eqLogic-widget:visible, div.scenario-widget:visible').length == 0) {
                     $divDisplayEq.closest('.div_object').remove()
                   }
@@ -287,10 +287,10 @@ if (!jeeFrontEnd.dashboard) {
           }
 
           jeedomUtils.positionEqLogic()
-          var container = $divDisplayEq.packery()
+          var container = $divDisplayEq.packery({isLayoutInstant: true})
           var packData = $divDisplayEq.data('packery')
           if (isset(packData) && packData.items.length == 1) {
-            $divDisplayEq.packery('destroy').packery()
+            $divDisplayEq.packery('destroy').packery({isLayoutInstant: true})
           }
 
           //synch category filter:
