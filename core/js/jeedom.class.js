@@ -245,7 +245,6 @@ jeedom.init = function() {
   })
 
   $body.addEventListener('checkThemechange', function(_event) {
-    setCookie('currentTheme', '', -1)
     if ($.mobile) {
       document.getElementById('jQMnDColor').setAttribute('data-nochange', 0)
     } else {
