@@ -49,7 +49,7 @@ if(init('log','event') == 'event'){
   </div>
   <br/><br/>
 </div>
-<pre id='pre_eventlog' style='overflow: auto; height: calc(100% - 90px);width:100%;'></pre>
+<pre id='pre_eventlog' style='overflow: auto; height: calc(100% - 110px); width:100%;'></pre>
 
 <script>
 var $rawLogCheck = $('#brutlogcheck')

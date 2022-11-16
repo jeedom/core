@@ -158,7 +158,7 @@ if (!jeeFrontEnd.overview) {
                   })
 
                   self.$summaryContainer.packery({
-                    gutter: 10
+                    gutter: parseInt(jeedom.theme['widget::margin']) * 2,
                   })
 
                   //check is inside screen:
