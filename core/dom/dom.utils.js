@@ -197,6 +197,11 @@ Element.prototype.setValues = function(_object, _attr) {
     }
   }
 }
+NodeList.prototype.setValues = function(_object, _attr) {
+  for (var idx=0; idx < this.length; idx++) {
+    this[idx].setValues(_object, _attr)
+  }
+}
 
 Element.prototype.jeeValue = function(_value) {
   if (isset(_value)) { //SET
