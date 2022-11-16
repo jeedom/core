@@ -126,7 +126,7 @@ if (!jeeFrontEnd.administration) {
       tr += '</tr>'
       document.querySelector('#table_objectSummary tbody').insertAdjacentHTML('beforeend', tr)
       if (isset(_summary)) {
-        Array.from(document.querySelectorAll('#table_objectSummary tbody tr')).pop().setValues(_summary, '.objectSummaryAttr')
+        document.querySelectorAll('#table_objectSummary tbody tr').last().setValues(_summary, '.objectSummaryAttr')
       }
       if (isset(_summary) && isset(_summary.key) && _summary.key != '') {
         $('#table_objectSummary tbody tr:last .objectSummaryAttr[data-l1key=key]').attr('disabled', 'disabled')
@@ -243,7 +243,7 @@ if (!jeeFrontEnd.administration) {
       div += '<div class="col-sm-5 actionOptions" id="' + actionOption_id + '"></div>'
       div += '</div>'
       document.querySelector('#div_actionOnMessage'+_channel).insertAdjacentHTML('beforeend', div)
-      Array.from(document.querySelectorAll('#div_actionOnMessage'+_channel+' .actionOnMessage')).pop().setValues(_action, '.expressionAttr')
+      document.querySelectorAll('#div_actionOnMessage'+_channel+' .actionOnMessage').last().setValues(_action, '.expressionAttr')
 
       jeeP.actionOptions.push({
         expression: init(_action.cmd, ''),

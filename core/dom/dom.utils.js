@@ -16,18 +16,89 @@
 
 "use strict"
 
+/* Extension Functions
+*/
 String.prototype.HTMLFormat = function() {
   return this.replace(/[\u00A0-\u9999<>\&]/g, function (i) {
     return '&#' + i.charCodeAt(0) + ';';
   });
 }
 
+/* initEvent() deprecated
 Element.prototype.triggerEvent = function(_eventName) {
   var customEvent = document.createEvent('Event')
   customEvent.initEvent(_eventName, true, true)
   this.dispatchEvent(customEvent)
 }
+*/
+Element.prototype.triggerEvent = function(_eventName) {
+  var event = new Event(_eventName, {bubbles: true})
+  this.dispatchEvent(event)
+}
 
+
+/* Shortcuts Functions
+*/
+//Hide Show
+Element.prototype.show = function() {
+  if (this.dataset.toggle == 'tab') return
+  this.style.display = ''
+}
+NodeList.prototype.show = function() {
+  for (var idx=0; idx < this.length; idx++) {
+    this[idx].show()
+  }
+}
+Element.prototype.hide = function() {
+  if (this.dataset.toggle == 'tab') return
+  this.style.display = 'none'
+}
+NodeList.prototype.hide = function() {
+  for (var idx=0; idx < this.length; idx++) {
+    this[idx].hide()
+  }
+}
+
+
+//CSS Class manipulation
+Element.prototype.addClass = function(_className) {
+  this.classList.add(_className)
+}
+NodeList.prototype.addClass = function() {
+  for (var idx=0; idx < this.length; idx++) {
+    this[idx].addClass()
+  }
+}
+Element.prototype.removeClass = function(_className) {
+  this.classList.remove(_className)
+}
+NodeList.prototype.removeClass = function() {
+  for (var idx=0; idx < this.length; idx++) {
+    this[idx].removeClass()
+  }
+}
+Element.prototype.toggleClass = function(_className) {
+  this.classList.toggle(_className)
+}
+NodeList.prototype.toggleClass = function() {
+  for (var idx=0; idx < this.length; idx++) {
+    this[idx].toggleClass()
+  }
+}
+Element.prototype.hasClass = function(_className) {
+  return this.classList.contains(_className)
+}
+
+
+//Misc
+NodeList.prototype.last = function() {
+  return Array.from(this).pop()
+}
+
+
+/* Set and Get element values according to Jeedom data
+Must be high performance
+*/
 Element.prototype.findAtDepth = function(selector, maxDepth) {
   var depths = [], i
   if (maxDepth > 0) {
@@ -39,7 +110,6 @@ Element.prototype.findAtDepth = function(selector, maxDepth) {
   return this.querySelectorAll(selector)
 }
 
-//Called from single DOM element
 Element.prototype.getValues = function(_attr, _depth) {
   var value = {}
   var idx, value, depthFound, thatElement, elValue, l1key, l2key, l3key
@@ -98,8 +168,6 @@ Element.prototype.getValues = function(_attr, _depth) {
 
   return [value]
 }
-
-//Called from DOM NodeList
 NodeList.prototype.getValues = function(_attr, _depth) {
   var values = [], elValues
   for (var idx=0; idx < this.length; idx++) {
@@ -114,22 +182,16 @@ Element.prototype.setValues = function(_object, _attr) {
   for (var i in _object) {
     selector = _attr + '[data-l1key="' + i + '"]'
     if ((!is_array(_object[i]) || (this.querySelector(selector) !== null && this.querySelector(selector).getAttribute('multiple') == 'multiple')) && !is_object(_object[i])) {
-      this.querySelectorAll(_attr + '[data-l1key="' + i + '"]').forEach((element) => {
-        element.jeeValue(_object[i])
-      })
+      this.querySelectorAll(_attr + '[data-l1key="' + i + '"]').jeeValue(_object[i])
     } else {
       for (var j in _object[i]) {
         selector = _attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"]'
         if ((is_array(_object[i][j]) || (this.querySelector(selector) !== null && this.querySelector(selector).getAttribute('multiple') == 'multiple')) || is_object(_object[i][j])) {
           for (var k in _object[i][j]) {
-            this.querySelectorAll(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"][data-l3key="' + k + '"]').forEach((element) => {
-              element.jeeValue(_object[i][j][k])
-            })
+            this.querySelectorAll(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"][data-l3key="' + k + '"]').jeeValue(_object[i][j][k])
           }
         } else {
-          this.querySelectorAll(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"]').forEach((element) => {
-            element.jeeValue(_object[i][j])
-          })
+          this.querySelectorAll(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"]').jeeValue(_object[i][j])
         }
       }
     }
@@ -197,8 +259,13 @@ Element.prototype.jeeValue = function(_value) {
     return value
   }
 }
+NodeList.prototype.jeeValue = function(_value) {
+  for (var idx=0; idx < this.length; idx++) {
+    this[idx].jeeValue(_value)
+  }
+}
 
-//js fonctions
+//Global functions
 function in_array(a, b, d) {
   var c = "";
   if (d)
