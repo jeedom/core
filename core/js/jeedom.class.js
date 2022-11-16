@@ -83,7 +83,11 @@ jeedom.changes = function() {
           continue
         }
         if (isset(data.result[i].option)) {
-          $body.dispatchEvent(new CustomEvent(data.result[i].name, { detail: data.result[i].option }))
+          if (['scenario::update', 'ui::update', 'jeedom::gotoplan', 'jeedom::alert', 'jeedom::alertPopup', 'jeedom::coloredIcons', 'message::refreshMessageNumber', 'update::refreshUpdateNumber', 'notify', 'checkThemechange', 'changeTheme'].includes(data.result[i].name)) {
+            $body.dispatchEvent(new CustomEvent(data.result[i].name, { detail: data.result[i].option }))
+          } else {
+            $('body').trigger(data.result[i].name, data.result[i].option)
+          }
         } else {
           $body.dispatchEvent(new CustomEvent(data.result[i].name))
         }
@@ -160,16 +164,16 @@ jeedom.init = function() {
     jeedom.cmd.refreshValue(_event.detail)
   })
 
-  $body.addEventListener('scenario::update', function(_event) {
-    jeedom.scenario.refreshValue(_event.detail)
-  })
-
   $body.addEventListener('eqLogic::update', function(_event) {
     jeedom.eqLogic.refreshValue(_event.detail)
   })
 
   $body.addEventListener('jeeObject::summary::update', function(_event) {
     jeedom.object.summaryUpdate(_event.detail)
+  })
+
+  $body.addEventListener('scenario::update', function(_event) {
+    jeedom.scenario.refreshValue(_event.detail)
   })
 
   $body.addEventListener('ui::update', function(_event) {
@@ -232,11 +236,11 @@ jeedom.init = function() {
     $body.setAttribute('data-coloredIcons', _event.detail)
   })
 
-  $body.addEventListener('message::refreshMessageNumber', function(_event) {
+  $body.addEventListener('message::refreshMessageNumber', function() {
     jeedom.refreshMessageNumber()
   })
 
-  $body.addEventListener('update::refreshUpdateNumber', function(_event) {
+  $body.addEventListener('update::refreshUpdateNumber', function() {
     jeedom.refreshUpdateNumber()
   })
 
