@@ -2290,7 +2290,7 @@
         "Description": "Description",
         "Ajouter un bloc": "Add block",
         "Si\/Alors\/Sinon": "If \/ Do \/ Else",
-        "Action": "Stock",
+        "Action": "Action",
         "Boucle": "Loop",
         "Dans": "In",
         "A": "At",
@@ -4687,7 +4687,7 @@
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Scenario",
-        "Action": "Stock",
+        "Action": "Action",
         "Démarrer": "Start",
         "Démarrer (sync)": "Start (sync)",
         "Arrêter": "Stop",
