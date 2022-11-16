@@ -18,11 +18,20 @@
       "visible": 1
     }
   ,
+  "boxName" :
+    {
+      "title": "Nommez votre box",
+      "wizard": "boxName",
+      "order": 2,
+      "custom": "",
+      "visible": 1
+    }
+  ,
   "objects" : {
 
       "title": "Pièces",
       "wizard": "objects",
-      "order": 2,
+      "order": 3,
       "custom": "",
       "visible": 1
 
@@ -31,7 +40,7 @@
     {
       "title": "Service pack",
       "wizard": "pack",
-      "order": 3,
+      "order": 4,
       "custom": "",
       "visible": 1
     }
@@ -40,7 +49,7 @@
     {
       "title": "Services",
       "wizard": "services",
-      "order": 4,
+      "order": 5,
       "custom": "",
       "visible": 1
     }
@@ -49,7 +58,7 @@
     {
       "title": "Assistants Vocaux",
       "wizard": "assistants",
-      "order": 5,
+      "order": 6,
       "custom": "",
       "visible": 1
     }
@@ -58,16 +67,16 @@
    	{
 	  "title": "Appairage Freebox",
       "wizard": "freebox_os",
-      "order": 6,
+      "order": 7,
       "custom": "",
       "visible": 1
    	}
   ,
   "ready" :
     {
-      "title": "Ready to start",
+      "title": "Prêt à commencer",
       "wizard": "ready",
-      "order": 7,
+      "order": 8,
       "custom": "",
       "visible": 1
     }
