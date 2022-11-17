@@ -937,16 +937,17 @@ class history {
 				WHERE cmd_id=:cmd_id
 				AND `datetime`=:datetime';
 				$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+				$round = (is_numeric($cmd->getConfiguration('historizeRound'))) ? $cmd->getConfiguration('historizeRound') : 2;
 				if ($result !== false) {
 					switch ($cmd->getConfiguration('historizeMode', 'avg')) {
 						case 'avg':
-							$this->setValue(round(($result['value'] + $this->getValue()) / 2, $cmd->getConfiguration('historizeRound')));
+							$this->setValue(round(($result['value'] + $this->getValue()) / 2, $round));
 							break;
 						case 'min':
-							$this->setValue(round(min($result['value'], $this->getValue()), $cmd->getConfiguration('historizeRound')));
+							$this->setValue(round(min($result['value'], $this->getValue()), $round));
 							break;
 						case 'max':
-							$this->setValue(round(max($result['value'], $this->getValue()), $cmd->getConfiguration('historizeRound')));
+							$this->setValue(round(max($result['value'], $this->getValue()), $round));
 							break;
 					}
 					if ($result['value'] === $this->getValue()) {
