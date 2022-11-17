@@ -216,7 +216,7 @@ jeedom.init = function() {
           message: _event.detail.message,
           level: _event.detail.level
         }
-        if (_options.ttl) {
+        if (_event.detail.ttl) {
           options.ttl = _event.detail.ttl
         }
         if (getUrlVars('p') == _event.detail.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _event.detail.page)) {
