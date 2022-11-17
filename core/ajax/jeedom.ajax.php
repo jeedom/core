@@ -173,7 +173,7 @@ try {
 		$_search = init('search');
 		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array(), 'interactDef' => array(), 'note' => array());
 
-		$result = scenarioExpression::searchExpression($_search);
+		$result = scenarioExpression::searchExpression($_search, $_search, false);
 		foreach ($result as $expr) {
 			$expr = utils::o2a($expr);
 			$subElement = scenarioSubElement::byId($expr['scenarioSubElement_id']);
