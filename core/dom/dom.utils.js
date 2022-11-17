@@ -40,6 +40,9 @@ Element.prototype.triggerEvent = function(_eventName) {
 /* Shortcuts Functions
 */
 //Hide Show
+Element.prototype.isHidden = function() {
+  return (this.offsetParent === null)
+}
 Element.prototype.show = function() {
   if (this.dataset.toggle == 'tab') return
   this.style.display = ''

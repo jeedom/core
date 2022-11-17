@@ -26,7 +26,7 @@ jeedomUtils.tileHeightStep = parseInt(jeedom.theme['widget::step::height']) >= 1
 jeedomUtils.tileHeightSteps = Array.apply(null, {length: 10}).map(function(value, index) {return (index + 1) * jeedomUtils.tileHeightStep})
 
 
-$(function() {
+document.addEventListener('DOMContentLoaded', function() {
   jeedomUtils._elBackground = $('#backgroundforJeedom')
   $(document)
     .ajaxStart(function() {
@@ -191,7 +191,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   return
 }
 
-$(function() {
+document.addEventListener('DOMContentLoaded', function() {
   var $body = $('body')
   if (getDeviceType()['type'] == 'desktop') jeedomUtils.userDeviceType = 'desktop'
   $body.attr('data-device', jeedomUtils.userDeviceType)
@@ -272,46 +272,6 @@ $(function() {
     jeedomUtils.setBackgroundImage('')
   }
 
-  //options for jeedom.notify() toastr, need jeedom.theme set!
-  toastr.options = {
-    "newestOnTop": true,
-    "closeButton": true,
-    "debug": false,
-    "positionClass": jeedom.theme['interface::toast::position'],
-    "showDuration": "300",
-    "hideDuration": "1000",
-    "timeOut": parseInt(jeedom.theme['interface::toast::duration']) * 1000,
-    "extendedTimeOut": "1500",
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "fadeIn",
-    "hideMethod": "fadeOut",
-    "progressBar": true,
-    "onclick": function() {
-      window.toastr.clear()
-      $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&modal=message.display').dialog('open')
-    }
-  }
-  jeedomUtils.toastrUIoptions = {
-    "newestOnTop": true,
-    "closeButton": true,
-    "tapToDismiss": false,
-    "debug": false,
-    "positionClass": jeedom.theme['interface::toast::position'],
-    "showDuration": "300",
-    "hideDuration": "1000",
-    "timeOut": "5000",
-    "extendedTimeOut": "1500",
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "fadeIn",
-    "hideMethod": "fadeOut",
-    "progressBar": true,
-    "onclick": function(event) {
-      event.clickToClose = true
-    }
-  }
-
   setTimeout(function() {
     jeedomUtils.initTooltips()
     jeedomUtils.createObserver()
@@ -319,15 +279,108 @@ $(function() {
   }, 1)
 })
 
-jeedomUtils.toastMsg = function(level, msg, target) {
-  level = isset(level) ? level : 'success'
-  msg = isset(msg) ? msg : ''
-  toastr[level](msg, ' ', jeedomUtils.toastrUIoptions)
-  if (isset(target)) {
-    try {
-      $("#toast-container").appendTo(target).css('position', 'absolute')
-    } catch(error) {}
+//Toastr____________ options for jeedom.notify() toastr, need jeedom.theme set!
+toastr.options = {
+  "newestOnTop": true,
+  "closeButton": true,
+  "debug": false,
+  "positionClass": jeedom.theme['interface::toast::position'],
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": parseInt(jeedom.theme['interface::toast::duration']) * 1000,
+  "extendedTimeOut": "1500",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut",
+  "progressBar": true,
+  "onclick": function() {
+    window.toastr.clear()
+    $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&modal=message.display').dialog('open')
   }
+}
+jeedomUtils.toastrUIoptions = {
+  "newestOnTop": true,
+  "closeButton": true,
+  "tapToDismiss": false,
+  "debug": false,
+  "positionClass": jeedom.theme['interface::toast::position'],
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": parseInt(jeedom.theme['interface::toast::duration']) * 1000,
+  "extendedTimeOut": "1500",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut",
+  "progressBar": true,
+  "onclick": function(event) {
+    event.clickToClose = true
+  }
+}
+
+jeedomUtils.showAlert = function(_options) {
+  var options = init(_options, {})
+  options.message = init(options.message, '')
+  options.level = init(options.level, '')
+  options.emptyBefore = init(options.emptyBefore, false)
+  options.show = init(options.show, true)
+  options.attach = init(options.attach, false)
+  if (!options.ttl) {
+    if (options.level == 'danger') {
+      options.ttl = 0
+    } else {
+      options.ttl = 5000
+    }
+  }
+  if (options.level == 'danger') options.level = 'error'
+  if (options.emptyBefore == true) {
+    window.toastr.clear()
+  }
+  let options_toastr = jeedomUtils.toastrUIoptions
+  options_toastr.timeOut = options.ttl
+
+  toastr[options.level](options.message, ' ', options_toastr)
+
+  var toastContainer = document.getElementById('toast-container')
+  if (options.attach) {
+    try {
+      var attachTo = document.querySelector(options.attach)
+      if (attachTo != null) {
+        attachTo.appendChild(toastContainer)
+        toastContainer.style.position = 'absolute'
+      }
+    } catch (error) {
+      console.error('jeedomUtils.showAlert: ' + error)
+    }
+  } else {
+    toastContainer.style.position = ''
+  }
+}
+
+jeedomUtils.hideAlert = function() {
+  //Deprecated, old div_alert may be used on plugins:
+  document.querySelector('.jqAlert').forEach(function(element) {
+    element.innerHTML = ''
+    element.hide()
+  })
+  window.toastr.clear()
+}
+
+jeedomUtils.loadingTimeout = null
+jeedomUtils.showLoading = function() {
+  document.getElementById('div_jeedomLoading').show()
+  //Hanging timeout:
+  clearTimeout(jeedomUtils.loadingTimeout)
+  jeedomUtils.loadingTimeout = setTimeout(() => {
+    if (!document.getElementById('div_jeedomLoading').isHidden()) {
+      jeedomUtils.hideLoading()
+      jeedomUtils.showAlert({level: 'danger', message: 'Operation Timeout: Something has gone wrong!'})
+    }
+  }, 20 * 1000)
+}
+jeedomUtils.hideLoading = function() {
+  document.getElementById('div_jeedomLoading').hide()
 }
 
 //Jeedom theme__

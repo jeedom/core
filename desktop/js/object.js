@@ -82,7 +82,7 @@ if (!jeeFrontEnd.object) {
           if (!isset(data.configuration['info::type'])) {
             data.configuration['info::type'] = 'room'
           }
-          $('.object').setValues(data, '.objectAttr')
+          document.querySelectorAll('#div_conf').setValues(data, '.objectAttr')
 
           if (!isset(data.configuration.hideOnOverview)) {
             $('input[data-l2key="hideOnOverview"]').prop('checked', false)
@@ -140,7 +140,7 @@ if (!jeeFrontEnd.object) {
               el = $('.type' + i)
               if (el != undefined) {
                 for (var j in summary[i]) {
-                  jeeP.addSummaryInfo(el, summary[i][j])
+                  jeeP.addSummaryInfo('.type' + i, summary[i][j])
                 }
                 if (summary[i].length != 0) {
                   $('.summarytabnumber' + i).append('(' + summary[i].length + ')')
@@ -169,7 +169,7 @@ if (!jeeFrontEnd.object) {
       })
     },
     //-> summary tab
-    addSummaryInfo: function(_el, _summary) {
+    addSummaryInfo: function(_selector, _summary) {
       if (!isset(_summary)) {
         _summary = {}
       }
@@ -192,8 +192,8 @@ if (!jeeFrontEnd.object) {
       div += '<label><input type="checkbox" class="summaryAttr" data-l1key="invert" />{{Inverser}}</label>'
       div += '</div>'
       div += '</div>'
-      _el.find('.div_summary').append(div)
-      _el.find('.summary').last().setValues(_summary, '.summaryAttr')
+      document.querySelector(_selector).querySelector('.div_summary').insertAdjacentHTML('beforeend', div)
+      document.querySelector(_selector).querySelectorAll('.summary').last().setValues(_summary, '.summaryAttr')
     },
     //-> eqLogics tab
     addEqlogicsInfo: function(_id, _objName, _summay) {
@@ -782,8 +782,8 @@ $('.objectAttr[data-l1key=display][data-l2key=icon]').on('dblclick', function() 
   $(this).value('')
 })
 
-$("#bt_saveObject").on('click', function(event) {
-  var object = $('.object').getValues('.objectAttr')[0]
+document.getElementById('bt_saveObject').addEventListener('click', function (event) {
+  var object = document.querySelectorAll('.object').getValues('.objectAttr')[0]
   if (!isset(object.configuration)) {
     object.configuration = {}
   }
@@ -791,14 +791,14 @@ $("#bt_saveObject").on('click', function(event) {
     object.configuration.summary = {}
   }
 
-  var type, summaries, summary
-  $('.object .div_summary').each(function() {
-    type = $(this).attr('data-type')
+  var type, summaries, data
+  document.querySelectorAll('#div_conf .object .div_summary').forEach(function(divSummary) {
+    type = divSummary.getAttribute('data-type')
     object.configuration.summary[type] = []
     summaries = {}
-    $(this).find('.summary').each(function() {
-      summary = $(this).getValues('.summaryAttr')[0]
-      object.configuration.summary[type].push(summary)
+    divSummary.querySelectorAll('.summary').forEach(function(summary) {
+      data = summary.getValues('.summaryAttr')[0]
+      object.configuration.summary[type].push(data)
     })
   })
 
@@ -879,7 +879,7 @@ $('#div_pageContainer').off('change', '.objectAttr').on('change', '.objectAttr:v
 
 $('.addSummary').on('click', function() {
   var type = $(this).attr('data-type')
-  jeeP.addSummaryInfo($('.type' + type))
+  jeeP.addSummaryInfo(type)
   jeeFrontEnd.modifyWithoutSave = true
 })
 
@@ -983,7 +983,7 @@ $('#eqlogicsTab').on({
     }
     if (el != undefined) {
       if (state) {
-        jeeP.addSummaryInfo(el, summary)
+        jeeP.addSummaryInfo('.type' + type, summary)
       } else {
         el.find('input[data-l1key="cmd"]').each(function() {
           if ($(this).val() == cmd) {

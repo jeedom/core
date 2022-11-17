@@ -380,7 +380,8 @@
   }
   .eqLogic.eqLogic-widget .widget-name .object_name {
     vertical-align: super;
-    font-size: 11px !important;
+    font-size: 13px !important;
+    margin: 10px;
   }
   .eqLogic.eqLogic-widget:not(.displayObjectName) .widget-name .object_name {
     display: none;
@@ -539,6 +540,7 @@
     background: transparent !important;
   }
   body[data-coloredcats="0"] div.eqLogic-widget .widget-name > span,
+  body[data-coloredcats="0"] div.eqLogic-widget .widget-name > span .object_name,
   body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name  > a,
   body[data-coloredcats="0"] div.eqLogic-widget span.cmd.refresh > i {
     color: var(--link-color) !important;
