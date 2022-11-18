@@ -1687,9 +1687,6 @@ div.div_viewZone legend.lg_viewZone {
     display: none;
   }
 
-  div.eqLogic-widget .panelLink {
-    margin-top: 5px !important;
-  }
   div.eqLogic-widget .panelLink i {
     color: var(--eqTitle-color) !important;
     font-size: 12px !important;
