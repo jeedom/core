@@ -6,6 +6,9 @@
     <span class="cmd refresh pull-right cursor" data-cmd_id="#refresh_id#">
       <i class="fas fa-sync"></i>
     </span>
+    <span class="panelLink pull-right cursor" data-cmd_id="#panelLink#">
+      <a href="#panelLink#"></a><i class="fas fa-external-link-alt"></i></a>
+    </span>
     <span class="reportModeVisible">#name_display# <span class="object_name">#object_name#</span></span>
     <a href="#eqLink#" class="reportModeHidden">#name_display# <span class="object_name">#object_name#</span></a>
   </center>
@@ -16,6 +19,9 @@
   </div>
   #divGraphInfo#
   <script>
+    if ('#panelLink#' == '') {
+      $('.eqLogic[data-eqLogic_uid=#uid#] .panelLink').remove()
+    }
     if ('#refresh_id#' != '') {
       $('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function () {
         jeedom.cmd.execute({id: '#refresh_id#'})

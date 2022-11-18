@@ -807,6 +807,7 @@ div.div_viewZone legend.lg_viewZone {
   body[data-coloredcats="0"] div.eqLogic-widget .widget-name > a,
   body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name  > a,
   body[data-coloredcats="0"] div.eqLogic-widget span.cmd.refresh > i,
+  body[data-coloredcats="0"] div.eqLogic-widget span.panelLink > i,
   body[data-coloredcats="0"] div.eqLogic-widget > span.cmd.editOptions:after,
   body[data-coloredcats="0"] .counterReorderJeedom {
     color: var(--link-color) !important;
@@ -1685,6 +1686,19 @@ div.div_viewZone legend.lg_viewZone {
   div.eqLogic-widget.editingMode .cmd.refresh {
     display: none;
   }
+
+  div.eqLogic-widget .panelLink {
+    margin-top: 5px !important;
+  }
+  div.eqLogic-widget .panelLink i {
+    color: var(--eqTitle-color) !important;
+    font-size: 12px !important;
+  }
+
+  div.eqLogic-widget.editingMode .panelLink {
+    display: none;
+  }
+  
 
   div.eqLogic-widget .cmd.editOptions {
     position: absolute;

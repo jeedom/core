@@ -746,6 +746,7 @@ class eqLogic {
 			'#isVerticalAlign#' => (config::byKey('interface::advance::vertCentering', 'core', 0) == 1) ? 'verticalAlign' : '',
 			'#class#' => '',
 			'#divGraphInfo#' => '',
+			'#panelLink#' => ($this->getConfiguration('panelLink') != '') ? $this->getConfiguration('panelLink') : '',
 		);
 
 		//Automatic height when first displayed:
