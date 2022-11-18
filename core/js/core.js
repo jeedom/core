@@ -76,10 +76,13 @@ function init(_value, _default) {
   return _value;
 }
 
-function getUrlVars(_key) {
-  var vars = [],
-    hash, nbVars = 0;
-  var hashes = window.location.search.replace('?', '').split('&');
+function getUrlVars(_key,_url) {
+  var vars = [], hash, nbVars = 0;
+  if(_url){
+    var hashes = _url.split('?')[1].split('&');
+  }else{
+    var hashes = window.location.search.replace('?', '').split('&');
+  }
   for (var i = 0; i < hashes.length; i++) {
     if (hashes[i] !== "" && hashes[i] !== "?") {
       hash = hashes[i].split('=');

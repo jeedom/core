@@ -20,6 +20,12 @@
   <script>
     if ('#panelLink#' == '') {
       $('.eqLogic[data-eqLogic_uid=#uid#] .panelLink').remove()
+    }else{
+      let href = $('.eqLogic[data-eqLogic_uid=#uid#] .panelLink a').attr('href');
+      $('.eqLogic[data-eqLogic_uid=#uid#] .panelLink a').attr('data-page',getUrlVars('p',href));
+      $('.eqLogic[data-eqLogic_uid=#uid#] .panelLink a').attr('data-plugin',getUrlVars('m',href));
+      $('.eqLogic[data-eqLogic_uid=#uid#] .panelLink a').attr('data-title','panel');
+      $('.eqLogic[data-eqLogic_uid=#uid#] .panelLink a').attr('href',null)
     }
     if ('#refresh_id#' != '') {
       $('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function () {
