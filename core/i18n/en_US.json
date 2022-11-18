@@ -1681,7 +1681,7 @@
         "Contraint la largeur des tuiles tous les x pixels": "Constrains the width of the tiles every x pixels",
         "Marge": "Margin",
         "Espace vertical et horizontal entre les tuiles, en pixel": "Vertical and horizontal space between tiles, in pixels",
-        "Dashboard colonnes": "Dashboard columns",
+        "Dashboard colonnes sur écran large\/moyen\/petit": "Dashboard columns on large\/medium\/small screen",
         "Nombre de colonne sur le dashboard (1 colonne = 1 objet)": "Number of columns on the dashboard (1 column = 1 object)",
         "Centrage vertical des tuiles": "Vertical centering of tiles",
         "Centre verticalement le contenu des tuiles": "Vertically center the content of the tiles",

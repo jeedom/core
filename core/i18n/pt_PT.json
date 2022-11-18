@@ -1681,7 +1681,7 @@
         "Contraint la largeur des tuiles tous les x pixels": "Restringe a largura dos blocos a cada x pixels",
         "Marge": "Margem",
         "Espace vertical et horizontal entre les tuiles, en pixel": "Espaço vertical e horizontal entre blocos, em pixels",
-        "Dashboard colonnes": "Colunas do painel",
+        "Dashboard colonnes sur écran large\/moyen\/petit": "Colunas do painel na tela grande\/média\/pequena",
         "Nombre de colonne sur le dashboard (1 colonne = 1 objet)": "Número de colunas no painel (1 coluna = 1 objeto)",
         "Centrage vertical des tuiles": "Centrar blocos na vertical",
         "Centre verticalement le contenu des tuiles": "Centrar na vertical o conteúdo dos blocos",
