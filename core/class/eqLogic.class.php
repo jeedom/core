@@ -746,8 +746,15 @@ class eqLogic {
 			'#isVerticalAlign#' => (config::byKey('interface::advance::vertCentering', 'core', 0) == 1) ? 'verticalAlign' : '',
 			'#class#' => '',
 			'#divGraphInfo#' => '',
-			'#panelLink#' => ($this->getConfiguration('panelLink') != '') ? $this->getConfiguration('panelLink') : '',
+			'#panelLink#' => '',
 		);
+		if ($this->getConfiguration('panelLink') != '') {
+			if ($_version == 'dashboard') {
+				$replace['#panelLink#'] = 'index.php?v=d&m=' . $this->getEqType_name() . '&p=' . $this->getConfiguration('panelLink');
+			} else {
+				$replace['#panelLink#'] = 'index.php?v=m&m=' . $this->getEqType_name() . '&p=' . $this->getConfiguration('panelLink');
+			}
+		}
 
 		//Automatic height when first displayed:
 		if ($this->getDisplay('height', 'auto') == 'auto') {
