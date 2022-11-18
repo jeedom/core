@@ -269,8 +269,12 @@ if (!jeeFrontEnd.dashboard) {
           })
         },
         success: function(html) {
-          var $divDisplayEq = $('#div_ob' + _object_id)
+          let $divDisplayEq = $('#div_ob' + _object_id)
           try {
+            if(html == ''){
+              $divDisplayEq.closest('.div_object').parent().remove();
+              return;
+            }
             $.clearDivContent('div_ob' + _object_id)
             $divDisplayEq.html(html)
           } catch (err) {
@@ -287,15 +291,15 @@ if (!jeeFrontEnd.dashboard) {
           }
 
           jeedomUtils.positionEqLogic()
-          var container = $divDisplayEq.packery({isLayoutInstant: true})
-          var packData = $divDisplayEq.data('packery')
+          let container = $divDisplayEq.packery({isLayoutInstant: true})
+          let packData = $divDisplayEq.data('packery')
           if (isset(packData) && packData.items.length == 1) {
             $divDisplayEq.packery('destroy').packery({isLayoutInstant: true})
           }
 
           //synch category filter:
           if (jeeP.url_category != 'all') {
-            var cat = jeeP.url_category.charAt(0).toUpperCase() + jeeP.url_category.slice(1)
+            let cat = jeeP.url_category.charAt(0).toUpperCase() + jeeP.url_category.slice(1)
             $('#dashTopBar button.dropdown-toggle').addClass('warning')
             $('#categoryfilter .catFilterKey').each(function() {
               $(this).prop('checked', false)
@@ -304,7 +308,7 @@ if (!jeeFrontEnd.dashboard) {
             this.filterByCategory()
           }
 
-          var itemElems = container.find('div.eqLogic-widget, div.scenario-widget')
+          let itemElems = container.find('div.eqLogic-widget, div.scenario-widget')
           container.packery('bindUIDraggableEvents', itemElems)
 
           $(itemElems).each(function(i, itemElem) {
