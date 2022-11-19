@@ -240,7 +240,7 @@ $(".eqLogicDisplayCard").on('click', function(event) {
         if (isset(data) && isset(data.timeout) && data.timeout == 0) {
           data.timeout = ''
         }
-        $('body').setValues(data, '.eqLogicAttr')
+        document.querySelector('#div_mainContainer').setValues(data, '.eqLogicAttr')
         if (!isset(data.category.opening)) $('input[data-l2key="opening"]').prop('checked', false)
 
         if ('function' == typeof(printEqLogic)) {
@@ -366,9 +366,9 @@ $('.eqLogicAction[data-action=save]').off('click').on('click', function() {
   var eqLogics = []
   $('.eqLogic').each(function() {
     if ($(this).is(':visible')) {
-      var eqLogic = $(this).getValues('.eqLogicAttr')
+      var eqLogic = this.getValues('.eqLogicAttr')
       eqLogic = eqLogic[0]
-      eqLogic.cmd = $(this).find('.cmd').getValues('.cmdAttr')
+      eqLogic.cmd = this.querySelectorAll('.cmd').getValues('.cmdAttr')
       if ('function' == typeof(saveEqLogic)) {
         eqLogic = saveEqLogic(eqLogic)
       }
@@ -565,12 +565,12 @@ $('#div_pageContainer').on('click', '.cmd .cmdAction[data-action=remove]', funct
 
 $('#div_pageContainer').on('click', '.cmd .cmdAction[data-action=copy]', function() {
   modifyWithoutSave = true
-  var cmd = $(this).closest('.cmd').getValues('.cmdAttr')[0]
+  var cmd = this.closest('.cmd').getValues('.cmdAttr')[0]
   cmd.id = ''
-  if(typeof addCmdToTable == 'function'){
+  if (typeof addCmdToTable == 'function') {
     addCmdToTable(cmd)
-  }else{
-    addCmdToTableDefault(cmd);
+  } else {
+    addCmdToTableDefault(cmd)
   }
 })
 
@@ -678,7 +678,8 @@ $("img.lazy").each(function() {
 
 
 function addCmdToTableDefault(_cmd) {
-  if($('#table_cmd thead').text() == ''){
+  if (document.getElementById('table_cmd') == null) return
+  if (document.querySelector('#table_cmd thead').innerHTML == '') {
     table = '<thead>';
 		table += '<tr>';
 		table += '<th>{{Id}}</th>';
@@ -693,7 +694,7 @@ function addCmdToTableDefault(_cmd) {
 		table += '</thead>';
 		table += '<tbody>';
 		table += '</tbody>';
-    $('#table_cmd').append(table);
+    document.getElementById('table_cmd').insertAdjacentHTML('beforeend', table)
   }
   if (!isset(_cmd)) {
     var _cmd = {configuration: {}};
@@ -753,18 +754,19 @@ function addCmdToTableDefault(_cmd) {
   tr += '<i class="fas fa-minus-circle pull-right cmdAction cursor" data-action="remove"></i>';
   tr += '</td>';
   tr += '</tr>';
-  $('#table_cmd tbody').append(tr);
-  var tr = $('#table_cmd tbody tr').last();
+  document.querySelector('#table_cmd tbody').append(tr)
+  var tr = document.querySelectorAll('#table_cmd tbody tr').last()
   jeedom.eqLogic.buildSelectCmd({
-    id: $('.eqLogicAttr[data-l1key=id]').value(),
+    id: document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue(),
     filter: {type: 'info'},
     error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function (result) {
-      tr.find('.cmdAttr[data-l1key=value]').append(result);
-      tr.setValues(_cmd, '.cmdAttr');
-      jeedom.cmd.changeType(tr, init(_cmd.subType));
+      tr.querySelector('.cmdAttr[data-l1key="value"]').insertAdjacentHTML('beforeend', result)
+      tr.setValues(_cmd, '.cmdAttr')
+      //cmd js class still use jquery, send $():
+      jeedom.cmd.changeType($(tr), init(_cmd.subType))
     }
   });
 }
