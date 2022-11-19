@@ -23,7 +23,7 @@
 
 ### 4.4 : Autre
 
-*RAS*
+- **Kern** : Beginn der Entwicklung in reinem js, ohne jQuery. Sehen [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.4).
 
 ### 4.4 : Notes
 

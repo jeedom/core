@@ -23,7 +23,7 @@
 
 ### 4.4 : Autre
 
-*RAS*
+- **Centro** : Inicio de desarrollo en js puro, sin jQuery. Ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.4).
 
 ### 4.4 : Notes
 
