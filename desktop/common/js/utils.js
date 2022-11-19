@@ -362,14 +362,14 @@ jeedomUtils.hideAlert = function() {
   //Deprecated, old div_alert may be used on plugins:
   document.querySelector('.jqAlert').forEach(function(element) {
     element.innerHTML = ''
-    element.hide()
+    element.unseen()
   })
   window.toastr.clear()
 }
 
 jeedomUtils.loadingTimeout = null
 jeedomUtils.showLoading = function() {
-  document.getElementById('div_jeedomLoading').show()
+  document.getElementById('div_jeedomLoading').seen()
   //Hanging timeout:
   clearTimeout(jeedomUtils.loadingTimeout)
   jeedomUtils.loadingTimeout = setTimeout(() => {
@@ -380,7 +380,7 @@ jeedomUtils.showLoading = function() {
   }, 20 * 1000)
 }
 jeedomUtils.hideLoading = function() {
-  document.getElementById('div_jeedomLoading').hide()
+  document.getElementById('div_jeedomLoading').unseen()
 }
 
 //Jeedom theme__

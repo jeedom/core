@@ -39,24 +39,22 @@ Element.prototype.triggerEvent = function(_eventName) {
 
 /* Shortcuts Functions
 */
-//Hide Show
+//Hide Show as seen(), unseen() as prototype show/hide are ever declared and fired by bootstrap and jquery
 Element.prototype.isHidden = function() {
   return (this.offsetParent === null)
 }
-Element.prototype.show = function() {
-  if (this.dataset.toggle == 'tab') return
+Element.prototype.seen = function() {
   this.style.display = ''
 }
-NodeList.prototype.show = function() {
+NodeList.prototype.seen = function() {
   for (var idx=0; idx < this.length; idx++) {
     this[idx].show()
   }
 }
-Element.prototype.hide = function() {
-  if (this.dataset.toggle == 'tab') return
+Element.prototype.unseen = function() {
   this.style.display = 'none'
 }
-NodeList.prototype.hide = function() {
+NodeList.prototype.unseen = function() {
   for (var idx=0; idx < this.length; idx++) {
     this[idx].hide()
   }
