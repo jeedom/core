@@ -792,11 +792,11 @@ document.getElementById('bt_saveObject').addEventListener('click', function (eve
   }
 
   var type, summaries, data
-  document.querySelectorAll('#div_conf .object .div_summary').forEach(function(divSummary) {
+  document.querySelectorAll('#summarytab .div_summary').forEach(function(divSummary) {
     type = divSummary.getAttribute('data-type')
     object.configuration.summary[type] = []
     summaries = {}
-    divSummary.querySelectorAll('.summary').forEach(function(summary) {
+    divSummary.querySelectorAll('#summarytab .summary').forEach(function(summary) {
       data = summary.getValues('.summaryAttr')[0]
       object.configuration.summary[type].push(data)
     })
@@ -879,7 +879,7 @@ $('#div_pageContainer').off('change', '.objectAttr').on('change', '.objectAttr:v
 
 $('.addSummary').on('click', function() {
   var type = $(this).attr('data-type')
-  jeeP.addSummaryInfo(type)
+  jeeP.addSummaryInfo('.type' + type)
   jeeFrontEnd.modifyWithoutSave = true
 })
 
@@ -966,7 +966,18 @@ $('#bt_resetCmdSearch').on('click', function() {
   $('#in_searchCmds').val('').keyup()
 })
 
+
 //sync eqLogic cmd -> summaryInfo
+$('#eqlogicsTab').on({
+  'click': function(event){
+    if (event.target.type == 'checkbox') return
+    var checkbox = $(this).find('input[type="checkbox"]')
+    checkbox.prop("checked", !checkbox.prop("checked")).change()
+    event.stopPropagation()
+  }
+}, 'ul.dropdown-menu a')
+
+
 $('#eqlogicsTab').on({
   'change': function(event) {
     var type = $(this).data('value')
@@ -994,4 +1005,4 @@ $('#eqlogicsTab').on({
       jeeP.updateSummaryTabNbr(type)
     }
   }
-}, 'input[type="checkbox"]')
+}, 'ul.dropdown-menu input[type="checkbox"]')
