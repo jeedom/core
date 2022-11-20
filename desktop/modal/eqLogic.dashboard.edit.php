@@ -471,21 +471,22 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
     setModal()
 
     //display options:
-    $('#div_displayEqLogicConfigure').setValues(jeephp2js.md_eqLogicDashEdit_eqInfo, '.eqLogicAttr')
+    this.getElementById('div_displayEqLogicConfigure').setJeeValues(jeephp2js.md_eqLogicDashEdit_eqInfo, '.eqLogicAttr')
 
-    var $panelCmds = $('#panel_cmds')
-    $panelCmds.find('.cmdConfig').each(function() {
-      var id = $(this).data('id')
+    var panelCmds = document.getElementById('panel_cmds')
+    var id, cmdInfo, dashWidget, mobileWidget
+    panelCmds.querySelectorAll('.cmdConfig').forEach(function(element) {
+      var id = element.dataset.id
       var cmdInfo = jeephp2js.md_eqLogicDashEdit_allCmdsInfo[id]
-      if (cmdInfo.widgetPossibilityDashboard == true) $(this).find('.widgetPossibilityDashboard').show()
-      if (cmdInfo.widgetPossibilityMobile == true) $(this).find('.widgetPossibilityMobile').show()
-      $panelCmds.setValues(cmdInfo, '.cmdAttr' + id)
+      if (cmdInfo.widgetPossibilityDashboard == true) element.querySelector('.widgetPossibilityDashboard').seen()
+      if (cmdInfo.widgetPossibilityMobile == true) element.querySelector('.widgetPossibilityMobile').seen()
+      panelCmds.setJeeValues(cmdInfo, '.cmdAttr' + id)
 
       //widgets default if empty:
-      var dashWidget = $(this).find('select[data-l2key="dashboard"]')
-      if (dashWidget.val() == null) dashWidget.val($(this).find('select[data-l2key="dashboard"] option:first').val())
-      var mobileWidget = $(this).find('select[data-l2key="mobile"]')
-      if (mobileWidget.val() == null) mobileWidget.val($(this).find('select[data-l2key="mobile"] option:first').val())
+      var dashWidget = element.querySelector('select[data-l2key="dashboard"]')
+      if (dashWidget.value == '') dashWidget.selectedIndex = 0
+      var mobileWidget = element.querySelector('select[data-l2key="mobile"]')
+      if (mobileWidget.value == '') mobileWidget.selectedIndex = 0
     })
 
     setTableLayoutSortable()
@@ -630,9 +631,9 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
   })
 
   $('.sel_layout').on('change', function() {
-    var type = $(this).attr('data-type')
-    $('.widget_layout').hide()
-    $('.widget_layout.' + $(this).value()).show()
+    var type = this.getAttribute('data-type')
+    document.querySelectorAll('.widget_layout').unseen()
+    document.querySelectorAll('.widget_layout.' + this.jeeValue()).seen()
   })
 
   /* commandes */
@@ -676,18 +677,18 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
   })
 
   $('.advanceWidgetParameterDefault').off('change').on('change', function() {
-    if ($(this).value() == 1) {
-      $(this).closest('td').find('.advanceWidgetParameter').hide()
+    if (this.jeeValue() == 1) {
+      this.closest('td').querySelector('.advanceWidgetParameter').unseen()
     } else {
-      $(this).closest('td').find('.advanceWidgetParameter').show()
+      this.closest('td').querySelector('.advanceWidgetParameter').seen()
     }
   })
 
   $('.advanceWidgetParameterColorTransparent').off('change').on('change', function() {
-    if ($(this).value() == 1) {
-      $(this).closest('td').find('.advanceWidgetParameterColor').hide()
+    if (this.jeeValue() == 1) {
+      this.closest('td').querySelector('.advanceWidgetParameterColor').unseen()
     } else {
-      $(this).closest('td').find('.advanceWidgetParameterColor').show()
+      this.closest('td').querySelector('.advanceWidgetParameterColor').seen()
     }
   })
 
@@ -708,12 +709,12 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 
   function editSaveEqlogic() {
     //get eqLogic:
-    var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0]
+    var eqLogic = document.getElementById('div_displayEqLogicConfigure').getJeeValues('.eqLogicAttr')[0]
     if (!isset(eqLogic.display)) eqLogic.display = {}
     if (!isset(eqLogic.display.parameters)) eqLogic.display.parameters = {}
     //tile optionnal parameters:
-    $('#table_widgetParameters tbody tr').each(function() {
-      eqLogic.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value()
+    document.querySelectorAll('#table_widgetParameters tbody tr').forEach(function (element) {
+      eqLogic.display.parameters[element.querySelector('.key').jeeValue()] = element.querySelector('.value').jeeValue()
     })
 
     //get cmds:
@@ -721,12 +722,12 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
     var cmd, attribClass
     $('#div_eqLogicCmds .cmdConfig').each(function() {
       attribClass = $(this).data('attribclass')
-      cmd = $(this).getValues('.' + attribClass)[0]
+      cmd = this.getJeeValues('.' + attribClass)[0]
       if (!isset(cmd.display)) cmd.display = {}
       if (!isset(cmd.display.parameters)) cmd.display.parameters = {}
       //cmd optionnal parameters:
-      $(this).find('tr.cmdoptparam').each(function() {
-        cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value()
+      this.querySelectorAll('tr.cmdoptparam').forEach(function (element) {
+        cmd.display.parameters[element.querySelector('.key').jeeValue()] = element.querySelector('.value').jeeValue()
       })
       eqLogic.cmd.push(cmd);
     })
