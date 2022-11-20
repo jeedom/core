@@ -178,7 +178,7 @@
         "Nom": "Name",
         "Status": "Status",
         "Date lancement": "Date start",
-        "Action": "Stock"
+        "Action": "Action"
     },
     "mobile\/html\/log.html": {
         "Supprimer tous": "Delete all",
@@ -2494,12 +2494,12 @@
         "Dernier lancement": "Last launch",
         "Dernière durée": "Last duration",
         "Statut": "Status",
-        "Actions": "Shares",
+        "Actions": "Actions",
         "Event": "Event",
         "Nom": "Name",
         "Status": "Status",
         "Date lancement": "Date start",
-        "Action": "Stock"
+        "Action": "Action"
     },
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
