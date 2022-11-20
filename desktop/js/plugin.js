@@ -445,7 +445,7 @@ document.onkeydown = function(event) {
 
 //searching:
 $('#in_searchPlugin').off('keyup').keyup(function() {
-  var search = $(this).value()
+  var search = this.value
   if (search == '') {
     $('.pluginDisplayCard').show()
     return

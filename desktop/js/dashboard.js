@@ -382,7 +382,7 @@ $(function() {
 //searching
 $('#in_searchDashboard').off('keyup').on('keyup', function() {
   if (jeedomUI.isEditing) return
-  var search = $(this).value()
+  var search = this.value
   $('.div_object:not(.hideByObjectSel)').show()
   if (search == '') {
     $('.eqLogic-widget').show()

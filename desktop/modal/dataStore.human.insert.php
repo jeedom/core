@@ -54,6 +54,6 @@ if (!isConnect()) {
   }
 
   mod_insertDataStore.getId = function() {
-    return $('#table_mod_insertDataSotreValue tbody tr:first .mod_insertDataStoreValue_name select').value()
+    return document.querySelector('#table_mod_insertDataSotreValue tbody tr').querySelector('.mod_insertDataStoreValue_name select').jeeValue()
   }
 </script>

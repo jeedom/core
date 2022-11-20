@@ -23,7 +23,7 @@ if (!jeeFrontEnd.timeline) {
     },
     displayTimeline: function() {
       jeedom.timeline.byFolder({
-        folder: $('#sel_timelineFolder').value(),
+        folder: document.getElementById('sel_timelineFolder').jeeValue(),
         error: function(error) {
           $.fn.showAlert({
             message: error.message,
@@ -163,7 +163,7 @@ $(function() {
 
 //searching
 $('#in_searchTimeline').keyup(function() {
-  var search = $(this).value()
+  var search = this.value
   if (search == '') {
     $('#timelineContainer > ul > li').show()
     return

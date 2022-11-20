@@ -57,5 +57,5 @@ sendVarToJS('jeephp2js.md_objectConfigure_objectInfo', utils::o2a($object));
 </div>
 
 <script>
-  $('#div_displayObjectConfigure').setValues(jeephp2js.md_objectConfigure_objectInfo, '.objectAttr')
+  document.getElementById('div_displayObjectConfigure').setJeeValues(jeephp2js.md_objectConfigure_objectInfo, '.objectAttr')
 </script>

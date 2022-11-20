@@ -74,7 +74,7 @@ jeeFrontEnd.display.init()
 //searching
 $('#in_search').on('keyup', function() {
   try {
-    var search = $(this).value()
+    var search = this.value
     var searchID = search
     if (isNaN(search)) searchID = false
 

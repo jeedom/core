@@ -152,7 +152,7 @@ $('#in_search').off('keyup').on('keyup', function() {
   if (jeeP.$eqlogics.length == 0) {
     return
   }
-  var search = $(this).value()
+  var search = this.value
   if (search == '') {
     jeeP.$eqlogics.show()
     return

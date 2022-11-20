@@ -131,7 +131,7 @@ $('.bt_replaceWidget').off('click').on('click',function() {
     $('#md_widgetReplaceAlert').showAlert({message: '{{Le sous-type de la commande à replacer doit etre le meme que le sous-type de la commande remplacante}}', level: 'danger'})
     return
   }
-  var info = $('#form_widgetReplace').getValues('.widgetReplaceAttr'+version)[0]
+  var info = document.getElementById('form_widgetReplace').getJeeValues('.widgetReplaceAttr'+version)[0]
   jeedom.widgets.replacement({
     version : version,
     replace : info.replace,

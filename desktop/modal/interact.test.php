@@ -41,12 +41,12 @@ $('#in_testInteractQuery').keypress(function(event) {
 })
 
 $('#bt_executeInteractOk').on('click',function() {
-  if ($('#in_testInteractQuery').value() == '') {
+  if (document.getElementById('in_testInteractQuery').value == '') {
     $('#div_alertInteractTest').showAlert({message: '{{La demande ne peut être vide}}', level: 'danger'})
     return
   }
   jeedom.interact.execute({
-    query: $('#in_testInteractQuery').value(),
+    query: document.getElementById('in_testInteractQuery').value,
     error: function(error) {
       $('#div_alertInteractTest').showAlert({message: error.message, level: 'danger'})
     },

@@ -853,9 +853,9 @@ jeedomUtils.setJeedomGlobalUI = function() {
   })
 
   $('body').off('click','.jeeHelper[data-helper=cron]').on('click','.jeeHelper[data-helper=cron]',function() {
-    var el = $(this).closest('div').find('input')
-    jeedom.getCronSelectModal({},function(result) {
-      el.value(result.value)
+    var el = this.closest('div').querySelector('input')
+    jeedom.getCronSelectModal({}, function(result) {
+      el.jeeValue(result.value)
     })
   })
 

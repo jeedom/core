@@ -469,7 +469,7 @@ sendVarToJS([
 
   $('#in_searchIconSelector').on('keyup', function() {
     $('.divIconSel').show()
-    var search = $(this).value()
+    var search = this.value
     if (search != '') {
       search = jeedomUtils.normTextLower(search)
       $('.iconDesc').each(function() {

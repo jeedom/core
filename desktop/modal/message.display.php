@@ -91,12 +91,12 @@ if ($selectPlugin != '') {
   $("#sel_plugin").on('change', function(event) {
     $('#md_modal').dialog({
       title: "{{Centre de Messages}}"
-    }).load('index.php?v=d&modal=message.display&selectPlugin=' + encodeURI($('#sel_plugin').value())).dialog('open')
+    }).load('index.php?v=d&modal=message.display&selectPlugin=' + encodeURI(document.getElementById('sel_plugin').jeeValue())).dialog('open')
   })
 
   $("#bt_clearMessage").on('click', function(event) {
     jeedom.message.clear({
-      plugin: $('#sel_plugin').value(),
+      plugin: document.getElementById('sel_plugin').jeeValue(),
       error: function(error) {
         $.fn.showAlert({
           message: error.message,
@@ -104,7 +104,7 @@ if ($selectPlugin != '') {
         })
       },
       success: function() {
-        $("#table_message tbody").remove()
+        document.querySelector("#table_message tbody").empty()
         jeedom.refreshMessageNumber()
       }
     })

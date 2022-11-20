@@ -174,7 +174,7 @@ $(function() {
 
 //searching
 $('#in_searchInteract').keyup(function() {
-  var search = $(this).value()
+  var search = this.value
   if (search == '') {
     $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
     $('.interactDisplayCard').show()

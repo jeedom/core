@@ -71,7 +71,7 @@ $(".li_log").on('click', function() {
 
 //searching
 $('#in_searchLogFilter').keyup(function() {
-  var search = $(this).value()
+  var search = this.value
   if (search == '') {
     $('#ul_object .li_log').show()
     return

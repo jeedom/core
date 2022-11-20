@@ -101,7 +101,7 @@ $(function() {
 //searching:
 $('#in_searchByName').on('keyup', function() {
   try {
-    var search = $(this).value()
+    var search = this.value
     var searchID = search
     if (isNaN(search)) searchID = false
 

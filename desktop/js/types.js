@@ -119,7 +119,7 @@ $(function() {
 //searching:
 $('#in_searchTypes').on('keyup', function() {
   try {
-    var search = $(this).value()
+    var search = this.value
     var searchID = search
     if (isNaN(search)) searchID = false
 

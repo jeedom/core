@@ -1293,7 +1293,7 @@ jeeFrontEnd.scenario.init()
 
 //searching
 $('#in_searchScenario').keyup(function() {
-  var search = $(this).value()
+  var search = this.value
   if (search == '') {
     $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
     $('.scenarioDisplayCard').show()
@@ -1348,7 +1348,7 @@ $('.bt_ViewLog').off('click').on('click', function(event) {
 
 //inside searching
 $('#in_searchInsideScenario').keyup(function() {
-  var search = $(this).value()
+  var search = this.value
   $('#div_scenarioElement .insideSearch').removeClass('insideSearch')
   $('#div_scenarioElement div.CodeMirror.CodeMirror-wrap').each(function() {
     $(this).get(0).CodeMirror.setCursor(0)
