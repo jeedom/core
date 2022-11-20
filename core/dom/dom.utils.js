@@ -16,6 +16,11 @@
 
 "use strict"
 
+/*migration
+regex case sensitive
+^.*(?:.value\(|getValues|setValues).*$
+*/
+
 /* Extension Functions
 */
 String.prototype.HTMLFormat = function() {
@@ -48,7 +53,7 @@ Element.prototype.seen = function() {
 }
 NodeList.prototype.seen = function() {
   for (var idx=0; idx < this.length; idx++) {
-    this[idx].show()
+    this[idx].seen()
   }
 }
 Element.prototype.unseen = function() {
@@ -56,7 +61,7 @@ Element.prototype.unseen = function() {
 }
 NodeList.prototype.unseen = function() {
   for (var idx=0; idx < this.length; idx++) {
-    this[idx].hide()
+    this[idx].unseen()
   }
 }
 

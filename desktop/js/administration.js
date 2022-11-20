@@ -368,9 +368,9 @@ if (!jeeFrontEnd.administration) {
     saveConvertColor: function() {
       var value = {}
       var colors = {}
-      $('#table_convertColor tbody tr').each(function() {
-        colors[$(this).find('.color').value()] = $(this).find('.html').value()
-      });
+      document.querySelectorAll('#table_convertColor tbody tr').forEach(function (element) {
+        colors[element.querySelector('.color').jeeValue()] = element.querySelector('.html').jeeValue()
+      })
       value.convertColor = colors
       $.ajax({
         type: "POST",
@@ -428,7 +428,7 @@ $(function() {
 
 //searching
 $('#in_searchConfig').keyup(function() {
-  var search = $(this).value()
+  var search = this.value
 
   //place back found els with random numbered span to place them back to right place. Avoid cloning els for better saving.
   $('span[searchId]').each(function() {
@@ -733,15 +733,22 @@ jeeP.$divConfig.on({
 /**************************NETWORK***********************************/
 jeeP.$divConfig.on({
   'change': function(event) {
+    let externalAddr = document.querySelector('.configKey[data-l1key="externalAddr"]')
+    let externalPort = document.querySelector('.configKey[data-l1key="externalPort"]')
+    let externalComplement = document.querySelector('.configKey[data-l1key="externalComplement"]')
     setTimeout(function() {
-      if ($('.configKey[data-l1key="market::allowDNS"]').value() == 1 && $('.configKey[data-l1key="network::disableMangement"]').value() == 0) {
-        $('.configKey[data-l1key=externalProtocol]').attr('disabled', true)
-        $('.configKey[data-l1key=externalAddr]').attr('disabled', true).value('')
-        $('.configKey[data-l1key=externalPort]').attr('disabled', true).value('')
+      if (document.querySelector('.configKey[data-l1key="market::allowDNS"]').jeeValue() == 1 && document.querySelector('.configKey[data-l1key="network::disableMangement"]').jeeValue() == 0) {
+        document.querySelector('.configKey[data-l1key="externalProtocol"]').setAttribute('disabled', '')
+        externalAddr.setAttribute('disabled', '')
+        externalAddr.jeeValue('')
+        externalPort.setAttribute('disabled', '')
+        externalPort.jeeValue('')
+        externalComplement.setAttribute('disabled', '')
+        externalComplement.jeeValue('')
       } else {
-        $('.configKey[data-l1key=externalProtocol]').attr('disabled', false)
-        $('.configKey[data-l1key=externalAddr]').attr('disabled', false)
-        $('.configKey[data-l1key=externalPort]').attr('disabled', false)
+        externalAddr.removeAttribute('disabled')
+        externalPort.removeAttribute('disabled')
+        externalComplement.removeAttribute('disabled')
       }
     }, 100)
   }
@@ -846,9 +853,10 @@ $('#bt_removeTimelineEvent').on('click', function() {
 
 jeeP.$divConfig.on({
   'change': function(event) {
-    $('.logEngine').hide()
-    if ($(this).value() == '') return
-    $('.logEngine.' + $(this).value()).show()
+    document.querySelectorAll('.logEngine').unseen()
+    if (this.value == '') return
+    let element = document.querySelector('.logEngine.' + this.value)
+    if (element !== null) element.seen()
   }
 }, '.configKey[data-l1key="log::engine"]')
 
@@ -867,10 +875,10 @@ jeeP.$divConfig.on({
 jeeP.$divConfig.on({
   'focusout': function(event) {
     var expression = this.closest('.actionOnMessage').getJeeValues('.expressionAttr')
-    var el = $(this)
+    var el = this
     if (expression[0] && expression[0].options) {
-      jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function(html) {
-        el.closest('.actionOnMessage').find('.actionOptions').html(html)
+      jeedom.cmd.displayActionOption(this.value, init(expression[0].options), function(html) {
+        el.closest('.actionOnMessage').querySelector('.actionOptions').innerHTML = html
         jeedomUtils.taAutosize()
       })
     }
@@ -879,15 +887,15 @@ jeeP.$divConfig.on({
 
 jeeP.$divConfig.on({
   'click': function(event) {
-    var el = $(this).closest('.actionOnMessage').find('.expressionAttr[data-l1key=cmd]')
+    var el = this.closest('.actionOnMessage').querySelector('.expressionAttr[data-l1key=cmd]')
     jeedom.cmd.getSelectModal({
       cmd: {
         type: 'action'
       }
     }, function(result) {
-      el.value(result.human)
-      jeedom.cmd.displayActionOption(el.value(), '', function(html) {
-        el.closest('.actionOnMessage').find('.actionOptions').html(html)
+      el.jeeValue(result.human)
+      jeedom.cmd.displayActionOption(el.jeeValue(), '', function(html) {
+        el.closest('.actionOnMessage').querySelector('.actionOptions').innerHTML = html
         jeedomUtils.taAutosize()
       })
     })
@@ -896,11 +904,11 @@ jeeP.$divConfig.on({
 
 jeeP.$divConfig.on({
   'click': function(event) {
-    var el = $(this).closest('.actionOnMessage').find('.expressionAttr[data-l1key=cmd]')
+    var el = this.closest('.actionOnMessage').querySelector('.expressionAttr[data-l1key=cmd]')
     jeedom.getSelectActionModal({}, function(result) {
-      el.value(result.human)
-      jeedom.cmd.displayActionOption(el.value(), '', function(html) {
-        el.closest('.actionOnMessage').find('.actionOptions').html(html)
+      el.jeeValue(result.human)
+      jeedom.cmd.displayActionOption(el.jeeValue(), '', function(html) {
+        el.closest('.actionOnMessage').querySelector('.actionOptions').innerHTML = html
         jeedomUtils.taAutosize()
       })
     })
@@ -926,7 +934,7 @@ $('.bt_selectWarnMeCmd').on('click', function() {
       subType: 'message'
     }
   }, function(result) {
-    $('.configKey[data-l1key="interact::warnme::defaultreturncmd"]').value(result.human)
+    document.querySelectorAll('.configKey[data-l1key="interact::warnme::defaultreturncmd"]').jeeValue(result.human)
   })
 })
 
@@ -994,13 +1002,13 @@ jeeP.$divConfig.on({
 
 jeeP.$divConfig.on({
   'click': function(event) {
-    var objectSummary = $(this).closest('.objectSummary')
+    var objectSummary = this.closest('.objectSummary').querySelectorAll('.objectSummaryAttr[data-l1key=key]').jeeValue()
     $.ajax({
       type: "POST",
       url: "core/ajax/object.ajax.php",
       data: {
         action: "createSummaryVirtual",
-        key: objectSummary.find('.objectSummaryAttr[data-l1key=key]').value()
+        key: objectSummary
       },
       dataType: 'json',
       error: function(request, status, error) {
@@ -1025,7 +1033,7 @@ jeeP.$divConfig.on({
 
 jeeP.$divConfig.on({
   'dblclick': function(event) {
-    $(this).value('')
+    this.innerHTML = ''
   }
 }, '.objectSummary .objectSummaryAttr[data-l1key=icon], .objectSummary .objectSummaryAttr[data-l1key=iconnul]')
 
@@ -1097,10 +1105,10 @@ $('#bt_addColorConvert').on('click', function() {
 /**************************SECURITY***********************************/
 jeeP.$divConfig.on({
   'change': function(event) {
-    if ($(this).value() == 1) {
-      $('#div_config_ldap').show()
+    if (this.checked) {
+      document.getElementById('div_config_ldap').seen()
     } else {
-      $('#div_config_ldap').hide()
+      document.getElementById('div_config_ldap').unseen()
     }
   }
 }, '.configKey[data-l1key="ldap:enable"]')
@@ -1161,10 +1169,10 @@ $('#bt_removeBanIp').on('click', function() {
 
 /**************************UPDATES / MARKET***********************************/
 jeeP.$divConfig.off('change', '.enableRepository').on('change', '.enableRepository', function() {
-  if ($(this).value() == 1) {
-    $('.repositoryConfiguration' + $(this).attr('data-repo')).show()
+  if (this.checked) {
+    document.querySelectorAll('.repositoryConfiguration' + this.getAttribute('data-repo')).seen()
   } else {
-    $('.repositoryConfiguration' + $(this).attr('data-repo')).hide()
+    document.querySelectorAll('.repositoryConfiguration' + this.getAttribute('data-repo')).unseen()
   }
 })
 
@@ -1214,9 +1222,10 @@ $('.testRepoConnection').on('click', function() {
 /**************************CACHE***********************************/
 jeeP.$divConfig.on({
   'change': function(event) {
-    $('.cacheEngine').hide()
-    if ($(this).value() == '') return
-    $('.cacheEngine.' + $(this).value()).show()
+    document.querySelectorAll('.cacheEngine').unseen()
+    if (this.value == '') return
+    let element = document.querySelector('.cacheEngine.' + this.value)
+    if (element !== null) element.seen()
   }
 }, '.configKey[data-l1key="cache::engine"]')
 
@@ -1242,7 +1251,7 @@ $("#bt_flushWidgetCache").on('click', function(event) {
 /**************************API***********************************/
 $(".bt_regenerate_api").on('click', function(event) {
   $.hideAlert()
-  var el = $(this)
+  var el = this
   bootbox.confirm('{{Êtes-vous sûr de vouloir réinitialiser la clé API de}}' + ' ' + el.attr('data-plugin') + ' ?', function(result) {
     if (result) {
       $.ajax({
@@ -1264,7 +1273,7 @@ $(".bt_regenerate_api").on('click', function(event) {
             })
             return
           }
-          el.closest('.input-group').find('.span_apikey').value(data.result)
+          el.closest('.input-group').querySelectorAll('.span_apikey').jeeValue(data.result)
         }
       })
     }
@@ -1353,9 +1362,9 @@ $('#table_convertColor tbody').off('click', '.removeConvertColor').on('click', '
 
 //CMD color
 $('.bt_resetColor').on('click', function() {
-  var el = $(this);
+  var el = this
   jeedom.getConfiguration({
-    key: $(this).attr('data-l1key'),
+    key: el.getAttribute('data-l1key'),
     default: 1,
     error: function(error) {
       $.fn.showAlert({
@@ -1364,7 +1373,7 @@ $('.bt_resetColor').on('click', function() {
       })
     },
     success: function(data) {
-      $('.configKey[data-l1key="' + el.attr('data-l1key') + '"]').value(data)
+      document.querySelectorAll('.configKey[data-l1key="' + el.getAttribute('data-l1key') + '"]').jeeValue(data)
     }
   })
 })
