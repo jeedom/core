@@ -478,7 +478,7 @@ In addition to home automation commands, you have access to the following action
 - **Activate / Deactivate Hide / display equipment** (equipement) : Allows you to modify the properties of visible / invisible, active / inactive equipment.
 - **To make a request** (ask) : Allows to indicate to Jeedom that it is necessary to ask a question to the user. The answer is stored in a variable, then you just have to test its value.
     For the moment, only sms, slack, telegram and snips plugins are compatible, as well as the mobile application.
-    Attention, this function is blocking. As long as there is no response or the timeout is not reached, the scenario waits.
+    Attention, this function is blocking. As long as there is no response or the timeout is not reached, the scenario waits. Note for a free answer put * in the list of possible answers.
 - **Stop Jeedom** (jeedom_poweroff) : Ask Jeedom to shut down.
 - **Return a text / data** (scenario_return) : Returns a text or a value for an interaction for example.
 - **Icon** (icon) : Allows to change the icon of representation of the scenario.

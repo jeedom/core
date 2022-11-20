@@ -478,7 +478,7 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
 - **Activar / Desactivar Hide / Show equipamentos** (equipement) : Permite modificar as propriedades de equipamento visível / invisível, ativo / inativo.
 - **Aplicar** (ask) : Permite indicar a Jeedom que é necessário fazer uma pergunta ao usuário. A resposta é armazenada em uma variável, então você só precisa testar seu valor.
     No momento, apenas plugins sms, slack, telegram e snips são compatíveis, assim como o aplicativo móvel.
-    Atenção, esta função está bloqueando. Enquanto não houver resposta ou o tempo limite não for atingido, o cenário aguarda.
+    Atenção, esta função está bloqueando. Enquanto não houver resposta ou o tempo limite não for atingido, o cenário aguarda. Nota para uma resposta livre coloque * na lista de possíveis respostas.
 - **Stop Jeedom** (jeedom_poweroff) : Peça ao Jeedom para desligar.
 - **Retornar um texto / um dado** (scenery_return) : Retorna um texto ou um valor para uma interação por exemplo.
 - **Ícone** (icon) : Permite alterar o ícone de representação do cenário.

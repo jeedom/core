@@ -478,7 +478,7 @@ Además de los comandos de automatización del hogar, tiene acceso a las siguien
 - **Activar / Desactivar Ocultar / mostrar equipo** (equipement) : Le permite modificar las propiedades de los equipos visibles / invisibles, activos / inactivos.
 - **Hacer una solicitud** (ask) : Permite indicar a Jeedom que es necesario hacerle una pregunta al usuario. La respuesta se almacena en una variable, entonces solo tiene que probar su valor.
     Por el momento, solo los complementos sms, slack, telegram y snips son compatibles, así como la aplicación móvil.
-    Atención, esta función está bloqueando. Mientras no haya respuesta o no se alcance el tiempo de espera, el escenario espera.
+    Atención, esta función está bloqueando. Mientras no haya respuesta o no se alcance el tiempo de espera, el escenario espera. Nota para una respuesta libre poner * en la lista de posibles respuestas.
 - **Stop Jeedom** (jeedom_poweroff) : Pídale a Jeedom que cierre.
 - **Devolver un texto / datos** (vuelta_escenario) : Devuelve un texto o un valor para una interacción, por ejemplo.
 - **Icono** (icon) : Permite cambiar el ícono de representación del escenario.

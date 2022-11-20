@@ -4566,6 +4566,7 @@
         "Pour le moment, seuls les plugins sms, slack, telegram et snips sont compatibles, ainsi que l'application mobile": "Pour le moment, seuls les plugins sms, slack, telegram et snips sont compatibles, ainsi que l'application mobile",
         "Attention, cette fonction est bloquante": "Attention, cette fonction est bloquante",
         "Tant qu'il n'y a pas de réponse ou que le timeout n'est pas atteint, le scénario attend": "Tant qu'il n'y a pas de réponse ou que le timeout n'est pas atteint, le scénario attend",
+        "Note pour une réponse libre mettre * dans la liste des réponses possible": "Note pour une réponse libre mettre * dans la liste des réponses possible",
         "Arrêter Jeedom": "Arrêter Jeedom",
         "jeedom_poweroff": "jeedom_poweroff",
         "Demande à Jeedom de s'éteindre": "Demande à Jeedom de s'éteindre",

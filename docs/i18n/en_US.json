@@ -8071,6 +8071,7 @@
         "Pour le moment, seuls les plugins sms, slack, telegram et snips sont compatibles, ainsi que l'application mobile": "For the moment, only sms, slack, telegram and snips plugins are compatible, as well as the mobile application",
         "Attention, cette fonction est bloquante": "Attention, this function is blocking",
         "Tant qu'il n'y a pas de réponse ou que le timeout n'est pas atteint, le scénario attend": "As long as there is no response or the timeout is not reached, the scenario waits",
+        "Note pour une réponse libre mettre * dans la liste des réponses possible": "Note for a free answer put * in the list of possible answers",
         "Arrêter Jeedom": "Stop Jeedom",
         "jeedom_poweroff": "jeedom_poweroff",
         "Demande à Jeedom de s'éteindre": "Ask Jeedom to shut down",
