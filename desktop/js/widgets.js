@@ -88,7 +88,7 @@ if (!jeeFrontEnd.widgets) {
           }
 
           if (typeof _data != 'undefined') {
-            $('.widgets').setValues({
+            document.querySelectorAll('.widgets').setJeeValues({
               replace: _data.replace
             }, '.widgetsAttr')
           }
@@ -98,8 +98,10 @@ if (!jeeFrontEnd.widgets) {
             $('.type_test').hide()
           }
           $('.selectWidgetTemplate').on('change', function() {
-            if ($(this).value() == '' || !$(this).hasClass('widgetsAttr')) return
-            jeeP.loadTemplateConfiguration('cmd.' + $('.widgetsAttr[data-l1key=type]').value() + '.' + $('.widgetsAttr[data-l1key=subtype]').value() + '.' + $(this).value())
+            if (this.jeeValue() == '' || !this.hasClass('widgetsAttr')) return
+              let type = document.querySelector('.widgetsAttr[data-l1key="type"]').jeeValue()
+              let subtype = document.querySelector('.widgetsAttr[data-l1key="subtype"]').jeeValue()
+            jeeP.loadTemplateConfiguration('cmd.' + type + '.' + subtype + '.' + this.jeeValue())
           })
           jeeFrontEnd.modifyWithoutSave = true
         }
@@ -123,10 +125,14 @@ if (!jeeFrontEnd.widgets) {
         success: function(data) {
           $('a[href="#widgetstab"]').click()
           $('.selectWidgetTemplate').off('change')
-          $('.widgetsAttr').value('')
-          $('.widgetsAttr[data-l1key=type]').value('info')
-          $('.widgetsAttr[data-l1key=subtype]').value($('.widgetsAttr[data-l1key=subtype]').find('option:first').attr('value'))
-          $('.widgets').setValues(data, '.widgetsAttr')
+          document.querySelectorAll('.widgetsAttr').jeeValue('')
+          document.querySelectorAll('.widgetsAttr[data-l1key="type"]').jeeValue('info')
+
+          document.querySelector('.widgetsAttr[data-l1key="subtype"]').jeeValue(
+            document.querySelector('.widgetsAttr[data-l1key="subtype"]').selectedIndex = 0
+          )
+
+          document.querySelectorAll('.widgets').setJeeValues(data, '.widgetsAttr')
           if (isset(data.test)) {
             for (var i in data.test) {
               jeeP.addTest(data.test[i])
@@ -211,7 +217,7 @@ if (!jeeFrontEnd.widgets) {
       div += '</div>'
       div += '</div>'
       $('#div_templateTest').append(div)
-      $('#div_templateTest').find('.test').last().setValues(_test, '.testAttr')
+      document.getElementById('div_templateTest').querySelectorAll('.test').last().setJeeValues(_test, '.testAttr')
     },
     downloadObjectAsJson: function(exportObj, exportName) {
       var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj))
@@ -245,7 +251,7 @@ $(function() {
 
 //searching
 $('#in_searchWidgets').keyup(function() {
-  var search = $(this).value()
+  var search = this.value
   if (search == '') {
     $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
     $('.widgetsDisplayCard').show()
@@ -388,10 +394,12 @@ $('#bt_applyToCmd').off('click').on('click', function() {
     checkedId.push($(this).data('cmd_id'))
   })
 
+  let type = document.querySelector('.widgetsAttr[data-l1key="type"]').jeeValue()
+  let subtype = document.querySelector('.widgetsAttr[data-l1key="subtype"]').jeeValue()
   $('#md_modal').dialog({
     title: "{{Appliquer ce widget à}}"
   })
-    .load('index.php?v=d&modal=cmd.selectMultiple&type=' + $('.widgetsAttr[data-l1key=type]').value() + '&subtype=' + $('.widgetsAttr[data-l1key=subtype]').value(), function() {
+    .load('index.php?v=d&modal=cmd.selectMultiple&type=' + type + '&subtype=' +subtype, function() {
       jeedomUtils.initTableSorter()
 
       $('#table_cmdConfigureSelectMultiple tbody tr').each(function(index) {
@@ -408,8 +416,8 @@ $('#bt_applyToCmd').off('click').on('click', function() {
       })
 
       $('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function() {
-        var widgets = $('.widgets').getValues('.widgetsAttr')[0]
-        widgets.test = $('#div_templateTest .test').getValues('.testAttr')
+        var widgets = document.querySelectorAll('.widgets').getJeeValues('.widgetsAttr')[0]
+        widgets.test = document.querySelectorAll('#div_templateTest .test').getJeeValues('.testAttr')
         jeedom.widgets.save({
           widgets: widgets,
           error: function(error) {
@@ -422,8 +430,8 @@ $('#bt_applyToCmd').off('click').on('click', function() {
             jeeFrontEnd.modifyWithoutSave = false
             var cmd = {
               template: {
-                dashboard: 'custom::' + $('.widgetsAttr[data-l1key=name]').value(),
-                mobile: 'custom::' + $('.widgetsAttr[data-l1key=name]').value()
+                dashboard: 'custom::' + document.querySelector('.widgetsAttr[data-l1key="name"]').jeeValue(),
+                mobile: 'custom::' + document.querySelector('.widgetsAttr[data-l1key="name"]').jeeValue()
               }
             }
             var cmdDefault = {
@@ -486,7 +494,7 @@ $('#bt_applyToCmd').off('click').on('click', function() {
 })
 
 $('.widgetsAttr[data-l1key=display][data-l2key=icon]').off('dblclick').on('dblclick', function() {
-  $('.widgetsAttr[data-l1key=display][data-l2key=icon]').value('')
+  document.querySelectorAll('.widgetsAttr[data-l1key=display][data-l2key=icon]').jeeValue('')
 })
 
 $('.widgetsAttr[data-l1key=type]').off('change').on('change', function() {
@@ -494,7 +502,7 @@ $('.widgetsAttr[data-l1key=type]').off('change').on('change', function() {
   $('#div_templateTest').empty()
   $('#div_usedBy').empty()
   $('.selectWidgetSubType').hide().removeClass('widgetsAttr')
-  $('.selectWidgetSubType[data-type=' + $(this).value() + ']').show().addClass('widgetsAttr').change()
+  $('.selectWidgetSubType[data-type="' + this.jeeValue() + '"]').show().addClass('widgetsAttr').change()
 })
 
 $('.selectWidgetSubType').off('change').on('change', function() {
@@ -502,13 +510,14 @@ $('.selectWidgetSubType').off('change').on('change', function() {
   $('#div_templateTest').empty()
   $('#div_usedBy').empty()
   $('.selectWidgetTemplate').hide().removeClass('widgetsAttr')
-  $('.selectWidgetTemplate[data-type=' + $('.widgetsAttr[data-l1key=type]').value() + '][data-subtype=' + $(this).value() + ']').show().addClass('widgetsAttr').change()
+  let type = document.querySelector('.widgetsAttr[data-l1key="type"]').jeeValue()
+  $('.selectWidgetTemplate[data-type="' + type + '"][data-subtype="' + this.jeeValue() + '"]').show().addClass('widgetsAttr').change()
 })
 
 $('#div_templateReplace').off('click', '.chooseIcon').on('click', '.chooseIcon', function() {
   var bt = $(this)
   jeedomUtils.chooseIcon(function(_icon) {
-    bt.closest('.form-group').find('.widgetsAttr[data-l1key=replace]').value(_icon)
+    bt.closest('.form-group').querySelector('.widgetsAttr[data-l1key=replace]').jeeValue(_icon)
   }, {
     img: true
   })
@@ -518,7 +527,7 @@ $('#div_templateReplace').off('click', '.chooseIcon').on('click', '.chooseIcon',
 $('#div_templateTest').off('click', '.chooseIcon').on('click', '.chooseIcon', function() {
   var bt = $(this)
   jeedomUtils.chooseIcon(function(_icon) {
-    bt.closest('.input-group').find('.testAttr').value(_icon)
+    bt.closest('.input-group').querySelector('.testAttr').jeeValue(_icon)
   }, {
     img: true
   })
@@ -608,8 +617,9 @@ if (is_numeric(getUrlVars('id'))) {
 }
 
 $("#bt_saveWidgets").on('click', function(event) {
-  var widgets = $('.widgets').getValues('.widgetsAttr')[0]
-  widgets.test = $('#div_templateTest .test').getValues('.testAttr')
+  var widgets = document.getElementById('div_conf').getJeeValues('.widgetsAttr')[0]
+  widgets.test = document.querySelectorAll('#div_templateTest .test').getJeeValues('.testAttr')
+
   jeedom.widgets.save({
     widgets: widgets,
     error: function(error) {
@@ -630,7 +640,7 @@ $('#bt_removeWidgets').on('click', function(event) {
   bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer le widget}} <span style="font-weight: bold ;">' + $('input[data-l1key="name"]').val() + '</span> ?', function(result) {
     if (result) {
       jeedom.widgets.remove({
-        id: $('.widgetsAttr[data-l1key=id]').value(),
+        id: document.querySelector('.widgetsAttr[data-l1key=id]').jeeValue(),
         error: function(error) {
           $.fn.showAlert({
             message: error.message,
@@ -647,8 +657,8 @@ $('#bt_removeWidgets').on('click', function(event) {
 })
 
 $("#bt_exportWidgets").on('click', function(event) {
-  var widgets = $('.widgets').getValues('.widgetsAttr')[0]
-  widgets.test = $('#div_templateTest .test').getValues('.testAttr')
+  var widgets = document.getElementById('div_conf').getJeeValues('.widgetsAttr')[0]
+  widgets.test = document.querySelectorAll('#div_templateTest .test').getJeeValues('.testAttr')
   widgets.id = ""
   jeedom.version({
     success: function(version) {
@@ -756,8 +766,9 @@ $("#bt_importWidgets").change(function(event) {
         })
         return false
       }
-      objectData.id = $('.widgetsAttr[data-l1key=id]').value()
-      objectData.name = $('.widgetsAttr[data-l1key=name]').value()
+
+      objectData.id = document.querySelector('.widgetsAttr[data-l1key=id]').jeeValue()
+      objectData.name = document.querySelector('.widgetsAttr[data-l1key=name]').jeeValue()
       if (isset(objectData.test)) {
         for (var i in objectData.test) {
           jeeP.addTest(objectData.test[i])

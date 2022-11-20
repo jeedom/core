@@ -23,11 +23,11 @@ if (!jeeFrontEnd.view_edit) {
     },
     saveView: function(_viewResult) {
       $.hideAlert()
-      var view = $('#div_view').getValues('.viewAttr')[0]
+      var view = document.getElementById('div_view').getJeeValues('.viewAttr')[0]
       view.zones = []
       var viewZoneInfo, line, col
       $('.viewZone').each(function() {
-        viewZoneInfo = $(this).getValues('.viewZoneAttr')[0]
+        viewZoneInfo = this.getJeeValues('.viewZoneAttr')[0]
         if (viewZoneInfo.type == 'table') {
           viewZoneInfo.viewData = [{
             'configuration': {}
@@ -38,7 +38,7 @@ if (!jeeFrontEnd.view_edit) {
             viewZoneInfo.viewData[0]['configuration'][line] = {}
             col = 0
             $(this).find('td input').each(function() {
-              viewZoneInfo.viewData[0]['configuration'][line][col] = $(this).value()
+              viewZoneInfo.viewData[0]['configuration'][line][col] = this.jeeValue()
               col++
             })
             line++
@@ -46,12 +46,12 @@ if (!jeeFrontEnd.view_edit) {
           viewZoneInfo.configuration.nbcol = col
           viewZoneInfo.configuration.nbline = line
         } else {
-          viewZoneInfo.viewData = $(this).find('.viewData').getValues('.viewDataAttr')
+          viewZoneInfo.viewData = this.querySelectorAll('.viewData').getJeeValues('.viewDataAttr')
         }
         view.zones.push(viewZoneInfo)
       })
       jeedom.view.save({
-        id: $(".li_view.active").attr('data-view_id'),
+        id: document.querySelector(".li_view.active").getAttribute('data-view_id'),
         view: view,
         error: function(error) {
           $.fn.showAlert({
@@ -178,7 +178,7 @@ if (!jeeFrontEnd.view_edit) {
         }
         div += '</div>'
         $('#div_viewZones').append(div)
-        $('#div_viewZones .viewZone').last().setValues(_viewZone, '.viewZoneAttr')
+        document.querySelectorAll('#div_viewZones .viewZone').last().setJeeValues(_viewZone, '.viewZoneAttr')
         $("#div_viewZones .viewZone:last .div_viewData tbody").sortable({
           axis: "y",
           cursor: "move",
@@ -276,9 +276,11 @@ if (!jeeFrontEnd.view_edit) {
       tr += '</td>'
 
       tr += '</tr>'
-      var result = $(tr)
-      result.setValues(_viewData, '.viewDataAttr')
-      return result
+
+      let newRow = document.createElement("tr")
+      newRow.innerHTML = tr
+      newRow.setJeeValues(_viewData, '.viewDataAttr')
+      return newRow
     },
     addWidgetService: function(_viewData) {
       if (!isset(_viewData.configuration) || _viewData.configuration == '') {
@@ -292,9 +294,11 @@ if (!jeeFrontEnd.view_edit) {
       tr += '<span class="viewDataAttr" data-l1key="name"></span>'
       tr += '</td>'
       tr += '</tr>'
-      var result = $(tr)
-      result.setValues(_viewData, '.viewDataAttr')
-      return result
+
+      let newRow = document.createElement("tr")
+      newRow.innerHTML = tr
+      newRow.setJeeValues(_viewData, '.viewDataAttr')
+      return newRow
     },
   }
 }
@@ -342,7 +346,7 @@ $('#bt_chooseIcon').on('click', function() {
 })
 
 $('.viewAttr[data-l1key=display][data-l2key=icon]').on('dblclick', function() {
-  $(this).value('')
+  this.innerHTML = ''
 })
 
 $(".li_view").on('click', function(event) {
@@ -359,8 +363,8 @@ $(".li_view").on('click', function(event) {
       })
     },
     success: function(data) {
-      $('#div_viewZones').empty()
-      $('#div_view').setValues(data, '.viewAttr')
+      document.querySelectorAll('#div_viewZones').empty()
+      document.getElementById('div_view').setJeeValues(data, '.viewAttr')
       var viewZone
       for (var i in data.viewZone) {
         viewZone = data.viewZone[i]
@@ -370,7 +374,9 @@ $(".li_view").on('click', function(event) {
           if (init(viewZone.type, 'widget') == 'graph') {
             $('#div_viewZones .viewZone:last .div_viewData').append(jeeP.addGraphService(viewData))
           } else if (init(viewZone.type, 'widget') == 'table') {
-            $('#div_viewZones .viewZone:last .viewData').setValues(viewData, '.viewDataAttr')
+            document.querySelectorAll('#div_viewZones').forEach(function (element) {
+              element.querySelectorAll('.viewZone').last().setJeeValues(viewData, '.viewDataAttr')
+            })
           } else {
             $('#div_viewZones .viewZone:last .div_viewData tbody').append(jeeP.addWidgetService(viewData))
           }
@@ -459,11 +465,11 @@ $('#div_viewZones').sortable({
 
 $('#div_pageContainer').on({
   'change': function(event) {
-    var selectTr = $(this).closest('tr')
-    if ($(this).value() == 1) {
-      selectTr.find('div.option').show()
+    var selectTr = this.closest('tr')
+    if (this.jeeValue() == 1) {
+      selectTr.querySelectorAll('div.option').seen()
     } else {
-      selectTr.find('div.option').hide()
+      selectTr.querySelectorAll('div.option').unseen()
     }
   }
 }, '#table_addViewData .enable')
@@ -480,9 +486,9 @@ $('#bt_addviewZone').on('click', function() {
 $('#bt_addEditviewZoneSave').on('click', function() {
   if ($.trim($('#in_addEditviewZoneName').val()) != '') {
     var viewZone = {
-      name: $('#in_addEditviewZoneName').value(),
-      emplacement: $('#in_addEditviewZoneEmplacement').value(),
-      type: $('#sel_addEditviewZoneType').value()
+      name: document.getElementById('in_addEditviewZoneName').innerHTML,
+      emplacement: document.getElementById('in_addEditviewZoneEmplacement').innerHTML,
+      type: document.getElementById('sel_addEditviewZoneType').value
     }
     jeeP.addEditviewZone(viewZone)
     $('#md_addEditviewZone').modal('hide')
@@ -591,7 +597,7 @@ $('#div_viewZones').on({
 
 $('#div_viewZones').on({
   'change': function(event) {
-    $(this).css('background-color', $(this).value())
+    this.style.backgroundColor = this.jeeValue()
   }
 }, '.viewDataAttr[data-l1key=configuration][data-l2key=graphColor]')
 
