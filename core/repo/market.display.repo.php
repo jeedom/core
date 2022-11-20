@@ -299,7 +299,7 @@ if (count($market->getImg('screenshot')) > 0) {
 		slidesToScroll: 1
 	});
 
-	document.querySelector('#div_mainContainer').setValues(market_display_info, '.marketAttr')
+	document.querySelector('#div_mainContainer').setJeeValues(market_display_info, '.marketAttr')
 
 	$('#div_alertMarketDisplay').closest('.ui-dialog').find('.ui-dialog-title').text('Market - ' + market_display_info_category);
 

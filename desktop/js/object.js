@@ -82,7 +82,7 @@ if (!jeeFrontEnd.object) {
           if (!isset(data.configuration['info::type'])) {
             data.configuration['info::type'] = 'room'
           }
-          document.querySelectorAll('#div_conf').setValues(data, '.objectAttr')
+          document.querySelectorAll('#div_conf').setJeeValues(data, '.objectAttr')
 
           if (!isset(data.configuration.hideOnOverview)) {
             $('input[data-l2key="hideOnOverview"]').prop('checked', false)
@@ -193,7 +193,7 @@ if (!jeeFrontEnd.object) {
       div += '</div>'
       div += '</div>'
       document.querySelector(_selector).querySelector('.div_summary').insertAdjacentHTML('beforeend', div)
-      document.querySelector(_selector).querySelectorAll('.summary').last().setValues(_summary, '.summaryAttr')
+      document.querySelector(_selector).querySelectorAll('.summary').last().setJeeValues(_summary, '.summaryAttr')
     },
     //-> eqLogics tab
     addEqlogicsInfo: function(_id, _objName, _summay) {
@@ -783,7 +783,7 @@ $('.objectAttr[data-l1key=display][data-l2key=icon]').on('dblclick', function() 
 })
 
 document.getElementById('bt_saveObject').addEventListener('click', function (event) {
-  var object = document.querySelectorAll('.object').getValues('.objectAttr')[0]
+  var object = document.querySelectorAll('.object').getJeeValues('.objectAttr')[0]
   if (!isset(object.configuration)) {
     object.configuration = {}
   }
@@ -797,7 +797,7 @@ document.getElementById('bt_saveObject').addEventListener('click', function (eve
     object.configuration.summary[type] = []
     summaries = {}
     divSummary.querySelectorAll('#summarytab .summary').forEach(function(summary) {
-      data = summary.getValues('.summaryAttr')[0]
+      data = summary.getJeeValues('.summaryAttr')[0]
       object.configuration.summary[type].push(data)
     })
   })

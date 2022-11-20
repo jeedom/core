@@ -124,7 +124,7 @@ Element.prototype.findAtDepth = function(selector, maxDepth) {
   return this.querySelectorAll(selector)
 }
 
-Element.prototype.getValues = function(_attr, _depth) {
+Element.prototype.getJeeValues = function(_attr, _depth) {
   var value = {}
   var idx, value, depthFound, thatElement, elValue, l1key, l2key, l3key
   var elements = this.findAtDepth(_attr, init(_depth, 0))
@@ -182,16 +182,16 @@ Element.prototype.getValues = function(_attr, _depth) {
 
   return [value]
 }
-NodeList.prototype.getValues = function(_attr, _depth) {
+NodeList.prototype.getJeeValues = function(_attr, _depth) {
   var values = [], elValues
   for (var idx=0; idx < this.length; idx++) {
-    elValues = this[idx].getValues(_attr, _depth)
+    elValues = this[idx].getJeeValues(_attr, _depth)
     values.push(elValues[0])
   }
   return values
 }
 
-Element.prototype.setValues = function(_object, _attr) {
+Element.prototype.setJeeValues = function(_object, _attr) {
   var selector
   for (var i in _object) {
     selector = _attr + '[data-l1key="' + i + '"]'
@@ -211,9 +211,9 @@ Element.prototype.setValues = function(_object, _attr) {
     }
   }
 }
-NodeList.prototype.setValues = function(_object, _attr) {
+NodeList.prototype.setJeeValues = function(_object, _attr) {
   for (var idx=0; idx < this.length; idx++) {
-    this[idx].setValues(_object, _attr)
+    this[idx].setJeeValues(_object, _attr)
   }
 }
 

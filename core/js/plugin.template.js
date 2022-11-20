@@ -240,7 +240,7 @@ $(".eqLogicDisplayCard").on('click', function(event) {
         if (isset(data) && isset(data.timeout) && data.timeout == 0) {
           data.timeout = ''
         }
-        document.querySelector('#div_mainContainer').setValues(data, '.eqLogicAttr')
+        document.querySelector('#div_mainContainer').setJeeValues(data, '.eqLogicAttr')
         if (!isset(data.category.opening)) $('input[data-l2key="opening"]').prop('checked', false)
 
         if ('function' == typeof(printEqLogic)) {
@@ -366,9 +366,9 @@ $('.eqLogicAction[data-action=save]').off('click').on('click', function() {
   var eqLogics = []
   $('.eqLogic').each(function() {
     if ($(this).is(':visible')) {
-      var eqLogic = this.getValues('.eqLogicAttr')
+      var eqLogic = this.getJeeValues('.eqLogicAttr')
       eqLogic = eqLogic[0]
-      eqLogic.cmd = this.querySelectorAll('.cmd').getValues('.cmdAttr')
+      eqLogic.cmd = this.querySelectorAll('.cmd').getJeeValues('.cmdAttr')
       if ('function' == typeof(saveEqLogic)) {
         eqLogic = saveEqLogic(eqLogic)
       }
@@ -565,7 +565,7 @@ $('#div_pageContainer').on('click', '.cmd .cmdAction[data-action=remove]', funct
 
 $('#div_pageContainer').on('click', '.cmd .cmdAction[data-action=copy]', function() {
   modifyWithoutSave = true
-  var cmd = this.closest('.cmd').getValues('.cmdAttr')[0]
+  var cmd = this.closest('.cmd').getJeeValues('.cmdAttr')[0]
   cmd.id = ''
   if (typeof addCmdToTable == 'function') {
     addCmdToTable(cmd)
@@ -764,7 +764,7 @@ function addCmdToTableDefault(_cmd) {
     },
     success: function (result) {
       tr.querySelector('.cmdAttr[data-l1key="value"]').insertAdjacentHTML('beforeend', result)
-      tr.setValues(_cmd, '.cmdAttr')
+      tr.setJeeValues(_cmd, '.cmdAttr')
       //cmd js class still use jquery, send $():
       jeedom.cmd.changeType($(tr), init(_cmd.subType))
     }

@@ -189,7 +189,7 @@ jeedom.init = function() {
     if (!isset(_event.detail.container) || _event.detail.container == '') {
       _event.detail.container = 'body'
     }
-    document.querySelectorAll(_event.detail.container).setValues(_event.detail.data, _event.detail.type)
+    document.querySelectorAll(_event.detail.container).setJeeValues(_event.detail.data, _event.detail.type)
   })
 
   $body.addEventListener('jeedom::gotoplan', function(_event) {
