@@ -478,7 +478,7 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
 - **Activer/Désactiver Masquer/afficher un équipement** (equipement) : Permet de modifier les propriétés d’un équipement visible/invisible, actif/inactif.
 - **Faire une demande** (ask) : Permet d’indiquer à Jeedom qu’il faut poser une question à l’utilisateur. La réponse est stockée dans une variable, il suffit ensuite de tester sa valeur.
     Pour le moment, seuls les plugins sms, slack, telegram et snips sont compatibles, ainsi que l'application mobile.
-    Attention, cette fonction est bloquante. Tant qu’il n’y a pas de réponse ou que le timeout n’est pas atteint, le scénario attend.
+    Attention, cette fonction est bloquante. Tant qu’il n’y a pas de réponse ou que le timeout n’est pas atteint, le scénario attend. Note pour une réponse libre mettre * dans la liste des réponses possible.
 - **Arrêter Jeedom** (jeedom_poweroff) : Demande à Jeedom de s’éteindre.
 - **Retourner un texte/une donnée** (scenario_return) : Retourne un texte ou une valeur pour une interaction par exemple.
 - **Icône** (icon) : Permet de changer l’icône de représentation du scénario.
