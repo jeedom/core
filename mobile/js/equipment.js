@@ -203,6 +203,9 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
       setTimeout(function() {
         $('#div_displayEquipement .objectHtml').packery({gutter :0})
       }, 1)
+      setTimeout(function() {
+        $('#div_displayEquipement .objectHtml').packery({gutter :0})
+      }, 50)
     }
   })
 }
@@ -274,6 +277,9 @@ function displayEqsBySummary(_objectsAll, _objectId, _summary) {
               setTimeout(function() {
                 $('#div_displayEquipement .objectHtml').packery({gutter :0})
               }, 1)
+              setTimeout(function() {
+                $('#div_displayEquipement .objectHtml').packery({gutter :0})
+              }, 50)
             }
           }
         })
