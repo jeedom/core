@@ -49,10 +49,12 @@ if (!jeeFrontEnd.user) {
           })
         },
         success: function(data) {
-          $('#table_user tbody').empty()
-          var tr = []
-          var disable, userTR, result
+          var table = document.getElementById('table_user').querySelector('tbody')
+          table.empty()
+          var fragment = document.createDocumentFragment()
+          var disable, userTR, node
           for (var i in data) {
+            let newRow = table.insertRow(i)
             disable = ''
             if (data[i].login == 'internal_report' || data[i].login == 'jeedom_support') {
               disable = 'disabled'
@@ -118,12 +120,11 @@ if (!jeeFrontEnd.user) {
             }
             userTR += '</td>'
             userTR += '</tr>'
-            result = $(userTR)
-            result.setValues(data[i], '.userAttr')
-            tr.push(result)
+
+            newRow.innerHTML = userTR
+            newRow.setJeeValues(data[i], '.userAttr')
           }
-          $('#table_user tbody').append(tr)
-          $('#table_user tbody .userAttr[data-l1key=options][data-l2key="api::mode"]').trigger('change')
+          document.querySelector('#table_user tbody').appendChild(fragment)
           jeeFrontEnd.modifyWithoutSave = false
           $.hideLoading()
         }
@@ -172,16 +173,16 @@ $('#div_administration').on({
 
 $("#bt_addUser").on('click', function(event) {
   $.hideAlert()
-  $('#in_newUserLogin').value('')
-  $('#in_newUserMdp').value('')
+  document.getElementById('in_newUserLogin').value = ''
+  document.getElementById('in_newUserMdp').value = ''
   $('#md_newUser').modal('show')
 })
 
 $("#bt_newUserSave").on('click', function(event) {
   $.hideAlert()
   var user = [{
-    login: $('#in_newUserLogin').value(),
-    password: $('#in_newUserMdp').value()
+    login: document.getElementById('in_newUserLogin').value,
+    password: document.getElementById('in_newUserMdp').value
   }]
   jeedom.user.save({
     users: user,
@@ -204,7 +205,7 @@ $("#bt_newUserSave").on('click', function(event) {
 })
 
 $("#bt_saveUser").on('click', function(event) {
-  var users =  $('#table_user tbody tr').getValues('.userAttr')
+  var users = document.getElementById('table_user').querySelectorAll('tbody tr').getJeeValues('.userAttr')
 
   if (!jeeP.checkUsersLogins(users)) return
 
@@ -230,9 +231,9 @@ $("#bt_saveUser").on('click', function(event) {
 $("#table_user").on('click', ".bt_del_user", function(event) {
   $.hideAlert();
   var user = {
-    id: $(this).closest('tr').find('.userAttr[data-l1key=id]').value()
+    id: this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
   }
-  var userName = $(this).closest('tr').find('input[data-l1key="login"]').val()
+  var userName = this.closest('tr').querySelector('input[data-l1key="login"]').value
   bootbox.confirm('{{Vous allez supprimer l\'utilisateur :}}' + ' ' + userName, function(result) {
     if (result) {
       jeedom.user.remove({
@@ -258,8 +259,8 @@ $("#table_user").on('click', ".bt_del_user", function(event) {
 $("#table_user").on('click', ".bt_change_mdp_user", function(event) {
   $.hideAlert()
   var user = {
-    id: $(this).closest('tr').find('.userAttr[data-l1key=id]').value(),
-    login: $(this).closest('tr').find('.userAttr[data-l1key=login]').value()
+    id: this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML,
+    login: this.closest('tr').querySelector('input[data-l1key="login"]').value
   }
   bootbox.prompt("{{Quel est le nouveau mot de passe ?}}", function(result) {
     if (result !== null) {
@@ -288,7 +289,7 @@ $("#table_user").on('click', ".bt_change_mdp_user", function(event) {
 $("#table_user").on('click', ".bt_changeHash", function(event) {
   $.hideAlert()
   var user = {
-    id: $(this).closest('tr').find('.userAttr[data-l1key=id]').value()
+    id: this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
   }
   bootbox.confirm("{{Êtes-vous sûr de vouloir changer la clef API de l\'utilisateur ?}}", function(result) {
     if (result) {
@@ -338,30 +339,30 @@ $('#bt_supportAccess').on('click', function() {
   })
 })
 
-$('#table_user').off('change','.userAttr[data-l1key=options][data-l2key="api::mode"]').on('change','.userAttr[data-l1key=options][data-l2key="api::mode"]',function(){
-  var tr = $(this).closest('tr');
-  if($(this).value() == 'disable'){
-    tr.find('.userAttr[data-l1key=hash]').hide()
-  }else{
-    tr.find('.userAttr[data-l1key=hash]').show()
+$('#table_user').off('change','.userAttr[data-l1key=options][data-l2key="api::mode"]').on('change','.userAttr[data-l1key=options][data-l2key="api::mode"]',function() {
+  var tr = this.closest('tr')
+  if (this.value == 'disable') {
+    tr.querySelector('.userAttr[data-l1key=hash]').unseen()
+  } else {
+    tr.querySelector('.userAttr[data-l1key=hash]').seen()
   }
 })
 
 $('#table_user').on('click', '.bt_manage_restrict_rights', function() {
   $('#md_modal').dialog({
     title: "{{Gestion des droits (Utilisateur limité)}}"
-  }).load('index.php?v=d&modal=user.rights&id=' + $(this).closest('tr').find('.userAttr[data-l1key=id]').value()).dialog('open')
+  }).load('index.php?v=d&modal=user.rights&id=' + this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML).dialog('open')
 })
 
 $('#table_user').on('click', '.bt_manage_profils', function() {
   $('#md_modal').dialog({
     title: "{{Gestion du profils}}"
-  }).load('index.php?v=d&p=profils&ajax=1&user_id=' + $(this).closest('tr').find('.userAttr[data-l1key=id]').value()).dialog('open')
+  }).load('index.php?v=d&p=profils&ajax=1&user_id=' + this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML).dialog('open')
 })
 
 $('#table_user').on('click', '.bt_disableTwoFactorAuthentification', function() {
   jeedom.user.removeTwoFactorCode({
-    id: $(this).closest('tr').find('.userAttr[data-l1key=id]').value(),
+    id: this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML,
     error: function(error) {
       $.fn.showAlert({
         message: error.message,
@@ -375,24 +376,24 @@ $('#table_user').on('click', '.bt_disableTwoFactorAuthentification', function() 
 })
 
 $('#table_user').on('click', '.bt_copy_user_rights', function() {
-  let from = $(this).closest('tr').find('.userAttr[data-l1key=id]').value()
+  let from = this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
   let select_list = []
-  $('#table_user tbody tr').each(function(){
-    if($(this).find('.userAttr[data-l1key=login]').value() == 'internal_report'){
+  $('#table_user tbody tr').each(function() {
+    if (this.querySelector('.userAttr[data-l1key="login"]').value == 'internal_report') {
       return;
     }
-    if($(this).find('.userAttr[data-l1key=profils]').value() != 'restrict'){
+    if (this.querySelector('.userAttr[data-l1key="profils"]').value != 'restrict') {
       return;
     }
-    if($(this).find('.userAttr[data-l1key=id]').value() == from){
+    if (this.querySelector('.userAttr[data-l1key="id"]').innerHTML == from) {
       return;
     }
     select_list.push({
-      value: $(this).find('.userAttr[data-l1key=id]').value(),
-      text: $(this).find('.userAttr[data-l1key=login]').value()
+      value: this.querySelector('.userAttr[data-l1key="id"]').innerHTML,
+      text: this.querySelector('.userAttr[data-l1key="login"]').value
     })
   })
-  if(select_list.length == 0){
+  if (select_list.length == 0) {
     $.fn.showAlert({
       message: '{{Vous n\'avez aucun autre utilisateur à profil limité}}',
       level: 'warning'
@@ -400,11 +401,12 @@ $('#table_user').on('click', '.bt_copy_user_rights', function() {
     return
   }
   bootbox.prompt({
-    title: "{{Vous voulez copier les droit de }}<strong>"+$(this).closest('tr').find('.userAttr[data-l1key=login]').value()+"</strong> {{vers}} ?",
+    title: "{{Vous voulez copier les droit de }}<strong> " + this.closest('tr').querySelector('.userAttr[data-l1key="login"]').value + "</strong> {{vers}} ?",
     value: select_list[0].value,
     inputType: 'select',
     inputOptions: select_list,
     callback: function(to) {
+      if (to == null) return
       jeedom.user.copyRights({
         to: to,
         from: from,
