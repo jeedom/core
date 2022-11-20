@@ -1,5 +1,7 @@
 # Changelog Jeedom V4.3
 
+- Autorisation d'une réponse libre dans ask si vous mettez * dans le champs des réponses possibles
+
 ## 4.3.11
 
 - **Analyse / Historique** : Bugfix sur la comparaison d'historique (bug introduit en 4.3.10).
