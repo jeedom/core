@@ -543,7 +543,7 @@ $('.updateOption[data-l1key=force]').off('click').on('click', function() {
 
 $('#bt_doUpdate').off('click').on('click', function() {
   $("#md_specifyUpdate").dialog('close')
-  var options = $('#md_specifyUpdate').getValues('.updateOption')[0]
+  var options = document.getElementById('md_specifyUpdate').getJeeValues('.updateOption')[0]
   $.hideAlert()
   jeeP.progress = 0
   $('.progressbarContainer').removeClass('hidden')
@@ -653,7 +653,7 @@ $('#table_update').on({
 
 $('#bt_saveUpdate').on('click', function() {
   jeedom.update.saves({
-    updates: $('tbody tr').getValues('.updateAttr'),
+    updates: document.querySelectorAll('tbody tr').getJeeValues('.updateAttr'),
     error: function(error) {
       $.fn.showAlert({
         message: error.message,

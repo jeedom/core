@@ -61,7 +61,7 @@ if (!jeeFrontEnd.md_noteManager) {
           $('#div_noteManagerAlert').showAlert({message: error.message, level: 'danger'})
         },
         success: function(notes) {
-          var note = $('#div_noteManagerDisplay').getValues('.noteAttr')[0]
+          var note = document.getElementById('div_noteManagerDisplay').getJeeValues('.noteAttr')[0]
           var ul = ''
           for (var i in notes) {
             ul += '<li class="cursor li_noteDisplay" data-id="' + notes[i].id + '"><a>' + notes[i].name + '</a></li>'
@@ -105,14 +105,14 @@ if (!jeeFrontEnd.md_noteManager) {
       },
       success: function(note) {
         $('#div_noteManagerDisplay .noteAttr').value('')
-        $('#div_noteManagerDisplay').setValues(note, '.noteAttr')
+        document.getElementById('div_noteManagerDisplay').setJeeValues(note, '.noteAttr')
         jeedomUtils.taAutosize()
       }
     })
   })
 
   $('#bt_noteManagerSave').on('click',function() {
-    var note = $('#div_noteManagerDisplay').getValues('.noteAttr')[0]
+    var note = document.getElementById('div_noteManagerDisplay').getJeeValues('.noteAttr')[0]
     jeedom.note.save({
       note : note,
       error: function(error) {
@@ -120,14 +120,14 @@ if (!jeeFrontEnd.md_noteManager) {
       },
       success: function(note) {
         $('#div_noteManagerAlert').showAlert({message: '{{Note sauvegardée avec succès}}', level: 'success'})
-        $('#div_noteManagerDisplay').setValues(note, '.noteAttr')
+        document.getElementById('div_noteManagerDisplay').setJeeValues(note, '.noteAttr')
         jeeM.updateNoteList()
       }
     })
   })
 
   $('#bt_noteManagerRemove').on('click',function() {
-    var note = $('#div_noteManagerDisplay').getValues('.noteAttr')[0]
+    var note = document.getElementById('div_noteManagerDisplay').getJeeValues('.noteAttr')[0]
     var r = confirm('{{Voulez-vous vraiment supprimer la note :}}' + ' ' + note.name + ' ?')
     if (r == true) {
       jeedom.note.remove({

@@ -76,9 +76,9 @@ if (!jeeFrontEnd.object) {
           })
         },
         success: function(data) {
-          $('.objectAttr').value('')
+          document.querySelectorAll('.objectAttr').jeeValue('')
           $('.objectAttr[data-l1key=father_id] option').show()
-          $('#summarytab input[type=checkbox]').value(0)
+          document.querySelectorAll('#summarytab input[type=checkbox]').jeeValue(0)
           if (!isset(data.configuration['info::type'])) {
             data.configuration['info::type'] = 'room'
           }
@@ -111,8 +111,8 @@ if (!jeeFrontEnd.object) {
               objectTxtColor = '#ebebeb'
             }
 
-            $('.objectAttr[data-l1key=display][data-l2key=tagColor]').value(objectBkgdColor)
-            $('.objectAttr[data-l1key=display][data-l2key=tagTextColor]').value(objectTxtColor)
+            document.querySelectorAll('.objectAttr[data-l1key=display][data-l2key=tagColor]').jeeValue(objectBkgdColor)
+            document.querySelectorAll('.objectAttr[data-l1key=display][data-l2key=tagTextColor]').jeeValue(objectTxtColor)
 
             $('.objectAttr[data-l1key=display][data-l2key=tagColor]').click(function() {
               $('input[data-l2key="useCustomColor"').prop('checked', true)
@@ -384,7 +384,7 @@ $(function() {
 
 //searching
 $('#in_searchObject').keyup(function() {
-  var search = $(this).value()
+  var search = this.value
   if (search == '') {
     $('.objectDisplayCard').show()
     return
@@ -668,7 +668,7 @@ $(function() {
 $('#bt_graphObject').on('click', function() {
   $('#md_modal').dialog({
     title: "{{Graphique des liens}}"
-  }).load('index.php?v=d&modal=graph.link&filter_type=object&filter_id=' + $('.objectAttr[data-l1key=id]').value()).dialog('open')
+  }).load('index.php?v=d&modal=graph.link&filter_type=object&filter_id=' + document.querySelector('.objectAttr[data-l1key="id"]').innerHTML).dialog('open')
 })
 
 $('#bt_libraryBackgroundImage').on('click', function() {
@@ -676,7 +676,7 @@ $('#bt_libraryBackgroundImage').on('click', function() {
     $('.objectImg').show().find('img').replaceWith(_icon)
     $('.objectImg img').attr('width', '240px')
     jeedom.object.uploadImage({
-      id: $('.objectAttr[data-l1key=id]').value(),
+      id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML,
       file: $('.objectImg img').data('filename'),
       error: function(error) {
         $.fn.showAlert({
@@ -692,7 +692,7 @@ $('#bt_libraryBackgroundImage').on('click', function() {
       }
     })
   }, {
-    object_id: $('.objectAttr[data-l1key=id]').value()
+    object_id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML
   })
 })
 
@@ -700,7 +700,7 @@ $('#bt_removeBackgroundImage').off('click').on('click', function() {
   bootbox.confirm('{{Êtes-vous sûr de vouloir enlever l\'image de fond de cet objet ?}}', function(result) {
     if (result) {
       jeedom.object.removeImage({
-        id: $('.objectAttr[data-l1key=id]').value(),
+        id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML,
         error: function(error) {
           $.fn.showAlert({
             message: error.message,
@@ -779,7 +779,7 @@ $("#bt_addObject, #bt_addObject2").on('click', function(event) {
 })
 
 $('.objectAttr[data-l1key=display][data-l2key=icon]').on('dblclick', function() {
-  $(this).value('')
+  this.innerHTML = ''
 })
 
 document.getElementById('bt_saveObject').addEventListener('click', function (event) {
@@ -898,17 +898,17 @@ $('.bt_checkNone').on('click', function() {
 //cmd info modal autoselect object:
 $('#div_pageContainer').on({
   'click': function(event) {
-    var el = $(this).closest('.summary').find('.summaryAttr[data-l1key=cmd]')
-    var type = $(this).closest('.div_summary').data('type')
+    var el = this.closest('.summary').querySelector('.summaryAttr[data-l1key="cmd"]')
+    var type = this.closest('.div_summary').dataset.type
     jeedom.cmd.getSelectModal({
       object: {
-        id: $('.objectAttr[data-l1key="id"]').value()
+        id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML
       },
       cmd: {
         type: 'info'
       }
     }, function(result) {
-      el.value(result.human)
+      el.jeeValue(result.human)
       jeeP.updateSummaryTabNbr(type)
       jeeP.updateSummaryButton(result.human, type, true)
     })
@@ -935,7 +935,7 @@ $('.bt_showObjectSummary').off('click').on('click', function() {
 
 //eqLogics tab searching
 $('#in_searchCmds').keyup(function() {
-  var search = $(this).value()
+  var search = this.value
   if (search == '') {
     $('#eqLogicsCmds .panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
     return

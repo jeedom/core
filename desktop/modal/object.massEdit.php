@@ -113,8 +113,8 @@ jeedomUtils.initTableSorter()
 
 $('#bt_saveMassEdit').off('click').on('click',function() {
   jeedom.massEditSave({
-    type : jeephp2js.md_objectMassEdit_type,
-    objects : $('#table_massEdit .editObject').getValues('.editObjectAttr'),
+    type: jeephp2js.md_objectMassEdit_type,
+    objects: document.querySelectorAll('#table_massEdit .editObject').getJeeValues('.editObjectAttr'),
     error: function(error) {
       $('#div_alertMassEdit').showAlert({message: error.message, level: 'danger'})
     },
