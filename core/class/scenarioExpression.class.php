@@ -1644,7 +1644,11 @@ class scenarioExpression {
 					$dataStore->setLink_id(-1);
 					$dataStore->save();
 					$limit = (isset($options['timeout'])) ? $options['timeout'] : 300;
-					$options_cmd = array('title' => $options['question'], 'message' => $options['question'], 'answer' => explode(';', $options['answer']), 'timeout' => $limit, 'variable' => $options['variable']);
+					$answer = explode(';', $options['answer']);
+					if (($key = array_search('*', $answer)) !== false) {
+						unset($answer[$key]);
+					}
+					$options_cmd = array('title' => $options['question'], 'message' => $options['question'], 'answer' => $answer, 'timeout' => $limit, 'variable' => $options['variable']);
 
 					if ($scenario !== null) {
 						$tags = $scenario->getTags();

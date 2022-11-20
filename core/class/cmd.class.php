@@ -2271,7 +2271,7 @@ class cmd {
 		if ($askEndTime === null || $askEndTime < strtotime('now')) {
 			return false;
 		}
-		if (!in_array($_response, $this->getCache('ask::answer'))) {
+		if (!in_array($_response, $this->getCache('ask::answer')) && !in_array('*', $this->getCache('ask::answer'))) {
 			return false;
 		}
 		$dataStore = new dataStore();
