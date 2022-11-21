@@ -388,7 +388,7 @@ $(function () {
 	});
 
 	$('#sel_categorie').on('change', function () {
-		$('#md_modal').load($(this).attr('data-href') + '&categorie=' + encodeURI($(this).value()));
+		$('#md_modal').load(this.getAttribute('data-href') + '&categorie=' + encodeURI(this.value));
 	});
 
 	$('#bt_search').on('click', function () {

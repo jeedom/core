@@ -363,7 +363,7 @@ if (count($market->getImg('screenshot')) > 0) {
 	});
 
 	$('#in_myRating').on('change', function() {
-		var id = $('.marketAttr[data-l1key=id]').value();
+		var id = document.querySelector('.marketAttr[data-l1key="id"]').jeeValue()
 		jeedom.repo.setRating({
 			id: id,
 			repo: 'market',

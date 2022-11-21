@@ -586,7 +586,7 @@ jeedom.scenario.setAutoComplete = function(_params) {
   }
 
   _params.parent.find('.expression').each(function() {
-    if ($(this).find('.expressionAttr[data-l1key=type]').value() == 'condition') {
+    if (this.querySelector('.expressionAttr[data-l1key="type"]').value == 'condition') {
       $(this).find('.expressionAttr[data-l1key=' + _params.type + ']').autocomplete({
         minLength: 1,
         source: function(request, response) {
@@ -623,7 +623,7 @@ jeedom.scenario.setAutoComplete = function(_params) {
       })
     }
 
-    if ($(this).find('.expressionAttr[data-l1key=type]').value() == 'action') {
+    if (this.querySelector('.expressionAttr[data-l1key=type]').value == 'action') {
         if ($('body').attr('data-page') == "scenario") {
           jeedom.scenario.autoCompleteActionContext = jeedom.scenario.autoCompleteAction.concat(jeedom.scenario.autoCompleteActionScOnly)
         } else {
