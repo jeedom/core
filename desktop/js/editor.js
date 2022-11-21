@@ -43,16 +43,16 @@ if (!jeeFrontEnd.editor) {
 
       //button create inside options modal:
       $('#bt_widgetCreate').off('click').on('click', function() {
-        if ($('#sel_widgetSubtype').value() == '') {
+        if (document.getElementById('sel_widgetSubtype').value == '') {
           $.fn.showAlert({message: '{{Le sous-type ne peut être vide}}', level: 'danger'})
           return
         }
-        if ($('#in_widgetName').value() == '') {
+        if (document.getElementById('in_widgetName').value == '') {
           $.fn.showAlert({message: '{{Le nom ne peut être vide}}', level: 'danger'})
           return
         }
-        var name = 'cmd.'+$('#sel_widgetType').value()+'.'+$('#sel_widgetSubtype').value()+'.'+$('#in_widgetName').value()+'.html'
-        var filePath = 'data/customTemplates/' + $('#sel_widgetVersion').value() + '/'
+        var name = 'cmd.'+document.getElementById('sel_widgetType').value+'.'+document.getElementById('sel_widgetSubtype').value+'.'+document.getElementById('in_widgetName').value+'.html'
+        var filePath = 'data/customTemplates/' + document.getElementById('sel_widgetVersion').value + '/'
         jeedom.createFile({
           path: filePath,
           name: name,

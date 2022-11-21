@@ -200,8 +200,8 @@ include_file('3rdparty', 'jquery.tablesorter/_jeedom/pager-custom-constrols', 'j
   $('#bt_cmdConfigureCmdHistoryApply').on('click', function() {
     var cmds = []
     $tableCmdConfigureHistory.find('tbody tr[data-right=x]').each(function() {
-      if ($(this).attr('data-change') == '1') {
-        cmds.push($(this).getValues('.cmdAttr')[0])
+      if (this.getAttribute('data-change') == '1') {
+        cmds.push(this.getJeeValues('.cmdAttr')[0])
       }
     })
 

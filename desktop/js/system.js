@@ -67,14 +67,14 @@ $('#ul_listSystemHistory').off('click', '.bt_systemCommand').on('click', '.bt_sy
     command: command,
     success: function(log) {
       $('#h3_executeCommand').empty().append('{{Commande :}}' + ' ' + command)
-      $('#in_specificCommand').value(command)
+      document.getElementById('in_specificCommand').value = command
       $('#pre_commandResult').append(log)
     }
   })
 })
 
 $('#bt_validateSpecifiCommand').off('click').on('click', function() {
-  var command = $('#in_specificCommand').value()
+  var command = document.getElementById('in_specificCommand').value
   $('#pre_commandResult').empty()
   jeedom.ssh({
     command: command,
@@ -92,7 +92,7 @@ $('#bt_validateSpecifiCommand').off('click').on('click', function() {
 
 $('#in_specificCommand').keypress(function(event) {
   if (event.which == 13) {
-    var command = $('#in_specificCommand').value()
+    var command = document.getElementById('in_specificCommand').value
     $('#pre_commandResult').empty()
     jeedom.ssh({
       command: command,

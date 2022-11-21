@@ -45,7 +45,7 @@ if (!jeeFrontEnd.display) {
     setEqActions: function() {
       var found = false
       $('.cb_selEqLogic').each(function() {
-        if ($(this).value() == 1) {
+        if (this.checked) {
           found = true
           return
         }
@@ -322,7 +322,7 @@ $('.eqLogicSortable > li.eqLogic').on('click', function(event) {
 })
 
 $('#cb_actifDisplay').on('change', function() {
-  if ($(this).value() == 1) {
+  if (this.checked) {
     $('.eqLogic[data-enable=0]').show()
   } else {
     $('.eqLogic[data-enable=0]').hide()
@@ -346,7 +346,7 @@ $('.cb_selEqLogic').on('change', function() {
 $('.cb_selCmd').on('change', function() {
   var found = false
   $('.cb_selCmd').each(function() {
-    if ($(this).value() == 1) {
+    if (this.checked) {
       found = true;
       return;
     }
@@ -369,7 +369,7 @@ $('#bt_removeEqlogic').on('click', function() {
     if (result) {
       var eqLogics = []
       $('.cb_selEqLogic').each(function() {
-        if ($(this).value() == 1) {
+        if (this.checked) {
           eqLogics.push($(this).closest('.eqLogic').attr('data-id'))
         }
       })
@@ -393,7 +393,7 @@ $('.bt_setIsVisible').on('click', function() {
   if (jeeP.actionMode == 'eqLogic') {
     var eqLogics = []
     $('.cb_selEqLogic').each(function() {
-      if ($(this).value() == 1) {
+      if (this.checked) {
         eqLogics.push($(this).closest('.eqLogic').attr('data-id'))
       }
     })
@@ -415,7 +415,7 @@ $('.bt_setIsVisible').on('click', function() {
   if (jeeP.actionMode == 'cmd') {
     var cmds = []
     $('.cb_selCmd').each(function() {
-      if ($(this).value() == 1) {
+      if (this.checked) {
         cmds.push($(this).closest('.cmd').attr('data-id'))
       }
     })
@@ -438,7 +438,7 @@ $('.bt_setIsVisible').on('click', function() {
 $('.bt_setIsEnable').on('click', function() {
   var eqLogics = []
   $('.cb_selEqLogic').each(function() {
-    if ($(this).value() == 1) {
+    if (this.checked) {
       eqLogics.push($(this).closest('.eqLogic').attr('data-id'))
     }
   })

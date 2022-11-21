@@ -30,10 +30,10 @@ jeeFrontEnd.connection.init()
 
 $('#bt_login_validate').on('click', function() {
   jeedom.user.login({
-    username: $('#in_login_username').val(),
-    password: $('#in_login_password').val(),
-    twoFactorCode: $('#in_twoFactorCode').val(),
-    storeConnection: $('#cb_storeConnection').value(),
+    username: document.getElementById('in_login_username').value,
+    password: document.getElementById('in_login_password').value,
+    twoFactorCode: document.getElementById('in_twoFactorCode').value,
+    storeConnection: document.getElementById('cb_storeConnection').checked,
     error: function(error) {
       if (error.code == -32012) {
         $('#div_twoFactorCode').show()

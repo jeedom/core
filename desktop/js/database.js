@@ -74,21 +74,21 @@ if (!jeeFrontEnd.database) {
     },
     // -> SQL constructor
     constructSQLstring: function() {
-      var operation = $('#sqlOperation').value()
+      var operation = document.getElementById('sqlOperation').value
       var command = operation
 
       switch (operation) {
         case 'SELECT':
-          command += ' ' + $('#sql_selector').val() + ' FROM `' + $('#sqlTable').val() + '`'
+          command += ' ' + document.getElementById('sql_selector').value + ' FROM `' + document.getElementById('sqlTable').value + '`'
           break
         case 'INSERT':
-          command += ' INTO `' + $('#sqlTable').val() + '`'
+          command += ' INTO `' + document.getElementById('sqlTable').value + '`'
           break
         case 'UPDATE':
-          command += ' `' + $('#sqlTable').val() + '` SET '
+          command += ' `' + document.getElementById('sqlTable').value + '` SET '
           break
         case 'DELETE':
-          command += ' FROM `' + $('#sqlTable').val() + '`'
+          command += ' FROM `' + document.getElementById('sqlTable').value + '`'
           break
       }
       if (operation == 'INSERT') {
@@ -120,11 +120,11 @@ if (!jeeFrontEnd.database) {
         command = command.slice(0, -1)
       }
 
-      if (['SELECT', 'UPDATE', 'DELETE'].includes(operation) && $('#checksqlwhere').is(':checked') && $('#sqlLikeValue').val() != '') {
+      if (['SELECT', 'UPDATE', 'DELETE'].includes(operation) && document.getElementById('checksqlwhere').checked && document.getElementById('sqlLikeValue').value != '') {
         command += ' WHERE '
-        command += '`' + $('#sqlWhere').val() + '`'
-        command += ' ' + $('#sqlLike').value()
-        command += ' ' + $('#sqlLikeValue').val()
+        command += '`' + document.getElementById('sqlWhere').value + '`'
+        command += ' ' + document.getElementById('sqlLike').value
+        command += ' ' + document.getElementById('sqlLikeValue').value
       }
 
       return command
@@ -188,7 +188,7 @@ $('#in_specificCommand').keypress(function(event) {
 
 //*************************SQL constructor**************************
 $('#sqlOperation').off('change').on('change', function() {
-  var operation = $(this).value()
+  var operation = this.value
   switch (operation) {
     case 'SELECT':
       $(this).removeClass('warning danger').addClass('info')
@@ -231,14 +231,14 @@ $('#sqlOperation').off('change').on('change', function() {
 })
 
 $('#sqlTable').off('change').on('change', function() {
-  var selectedTable = $(this).value()
+  var selectedTable = this.value
   var options = ''
   for (var col in jeephp2js.tableList[selectedTable]) {
     options += '<option value="' + jeephp2js.tableList[selectedTable][col]['colName'] + '">' + jeephp2js.tableList[selectedTable][col]['colName'] + '</option>'
   }
   $('#sqlWhere').empty().append(options)
 
-  if (['INSERT', 'UPDATE'].includes($('#sqlOperation').value())) {
+  if (['INSERT', 'UPDATE'].includes(document.getElementById('sqlOperation').value)) {
     jeeP.defineSQLsetGroup()
   }
   $(window).trigger('resize')

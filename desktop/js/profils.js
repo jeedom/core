@@ -49,9 +49,9 @@ $(function() {
 
 $("#bt_saveProfils").on('click', function(event) {
   $.hideAlert()
-  var profil = $('#div_userProfils').getValues('.userAttr')[0]
+  var profil = document.getElementById('div_userProfils').getJeeValues('.userAttr')[0]
   if (jeephp2js.profils_user_id == -1) {
-    if (profil.password != $('#in_passwordCheck').value()) {
+    if (profil.password != document.getElementById('in_passwordCheck').value) {
       $.fn.showAlert({
         message: "{{Les deux mots de passe ne sont pas identiques}}",
         level: 'danger'
@@ -79,7 +79,7 @@ $("#bt_saveProfils").on('click', function(event) {
             })
           },
           success: function(data) {
-            $('#div_userProfils').setValues(data, '.userAttr')
+            document.getElementById('div_userProfils').setJeeValues(data, '.userAttr')
             jeeFrontEnd.modifyWithoutSave = false
           }
         })
@@ -126,8 +126,8 @@ jeedom.user.get({
     })
   },
   success: function(data) {
-    $('#div_userProfils').setValues(data, '.userAttr')
-    $('#in_passwordCheck').value(data.password)
+    document.getElementById('div_userProfils').setJeeValues(data, '.userAttr')
+    document.getElementById('in_passwordCheck').value = data.password
     jeeFrontEnd.modifyWithoutSave = false
   }
 })
@@ -143,12 +143,12 @@ $('.bt_selectWarnMeCmd').on('click', function() {
       subType: 'message'
     }
   }, function(result) {
-    $('.userAttr[data-l1key="options"][data-l2key="notification::cmd"]').value(result.human)
+    document.querySelector('.userAttr[data-l1key="options"][data-l2key="notification::cmd"]').jeeValue(result.human)
   })
 })
 
 $('#bt_configureTwoFactorAuthentification').on('click', function() {
-  var profil = $('#div_userProfils').getValues('.userAttr')[0]
+  var profil = document.getElementById('div_userProfils').getJeeValues('.userAttr')[0]
   $('#md_modal').dialog({
     title: "{{Authentification 2 étapes}}"
   }).load('index.php?v=d&modal=twoFactor.authentification').dialog('open')
@@ -156,7 +156,7 @@ $('#bt_configureTwoFactorAuthentification').on('click', function() {
 
 if (jeephp2js.profils_user_id == -1) {
   $('#bt_genUserKeyAPI').on('click', function() {
-    var profil = $('#div_userProfils').getValues('.userAttr')[0]
+    var profil = document.getElementById('div_userProfils').getJeeValues('.userAttr')[0]
     profil.hash = ''
     jeedom.user.saveProfils({
       profils: profil,
@@ -179,7 +179,7 @@ if (jeephp2js.profils_user_id == -1) {
             })
           },
           success: function(data) {
-            $('#div_userProfils').setValues(data, '.userAttr')
+            document.getElementById('div_userProfils').setJeeValues(data, '.userAttr')
             jeeFrontEnd.modifyWithoutSave = false
           }
         })
