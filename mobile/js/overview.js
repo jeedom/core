@@ -108,12 +108,18 @@ function initOverview() {
   })
 
   if (plugins.length > 0) {
+    let nb_plugin = 0;
+    for (var i in plugins) {
+      if (plugins[i].mobile == '') continue
+      if (plugins[i].displayMobilePanel == 0) continue
+      nb_plugin++;
+    }
     var panel = '<center>'
     for (var i in plugins) {
       if (plugins[i].mobile == '') continue
       if (plugins[i].displayMobilePanel == 0) continue
       panel += '<a href="#" class="link ui-btn ui-btn-inline ui-btn-raised ui-mini" data-page="' + plugins[i].mobile + '" data-plugin="' + plugins[i].id + '" data-title="' + plugins[i].name + '">'
-      if(plugins.length < 4){
+      if(nb_plugin < 4){
         panel +=  plugins[i].name
       }else{
         panel += '<img src="plugins/'+plugins[i].id +'/plugin_info/'+plugins[i].id +'_icon.png" onerror=\'this.style.display = "none"\' style="height:25px" /> '
