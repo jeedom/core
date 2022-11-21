@@ -214,7 +214,7 @@ if (!jeeFrontEnd.dashboard) {
           var $divDisplayEq = $('#div_ob' + _object_id)
           var nbEqs = data.length
           if (nbEqs == 0) {
-            $divDisplayEq.closest('.div_object').remove()
+            $divDisplayEq.closest('.div_object').parent().remove()
             return
           } else {
             $divDisplayEq.closest('.div_object').removeClass('hidden')
