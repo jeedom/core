@@ -236,7 +236,7 @@ $(".eqLogicDisplayCard").on('click', function(event) {
         })
       },
       success: function(data) {
-        $('body .eqLogicAttr').value('')
+        document.getElementById('div_pageContainer').querySelectorAll('.eqLogicAttr').jeeValue('')
         if (isset(data) && isset(data.timeout) && data.timeout == 0) {
           data.timeout = ''
         }
@@ -321,15 +321,17 @@ $('.eqLogicDisplayCard').off('mouseup').on('mouseup', function(event) {
 
 /**************************EqLogic*********************************************/
 $('.eqLogicAction[data-action=copy]').off('click').on('click', function() {
-  if ($('.eqLogicAttr[data-l1key=id]').value() != undefined && $('.eqLogicAttr[data-l1key=id]').value() != '') {
+  var name = document.querySelector('.eqLogicAttr[data-l1key="name"]').jeeValue()
+  var id = document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue()
+  if (id != undefined && id != '') {
     bootbox.prompt({
       size: 'small',
-      value: $('.eqLogicAttr[data-l1key=name]').value(),
+      value: name,
       title: '{{Nom de la copie de l\'équipement ?}}',
       callback: function(result) {
         if (result !== null) {
           jeedom.eqLogic.copy({
-            id: $('.eqLogicAttr[data-l1key=id]').value(),
+            id: id,
             name: result,
             error: function(error) {
               $.fn.showAlert({
@@ -359,7 +361,7 @@ $('.eqLogicAction[data-action=copy]').off('click').on('click', function() {
 })
 
 $('.eqLogicAction[data-action=export]').off('click').on('click', function() {
-  window.open('core/php/export.php?type=eqLogic&id=' + $('.eqLogicAttr[data-l1key=id]').value(), "_blank", null)
+  window.open('core/php/export.php?type=eqLogic&id=' + document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue(), "_blank", null)
 })
 
 $('.eqLogicAction[data-action=save]').off('click').on('click', function() {
@@ -414,9 +416,9 @@ $('.eqLogicAction[data-action=save]').off('click').on('click', function() {
 })
 
 $('.eqLogicAction[data-action=remove]').off('click').on('click', function() {
-  if ($('.eqLogicAttr[data-l1key=id]').value() != undefined) {
+  if (document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue() != undefined) {
     jeedom.eqLogic.getUseBeforeRemove({
-      id: $('.eqLogicAttr[data-l1key=id]').value(),
+      id: document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue(),
       error: function(error) {
         $.fn.showAlert({
           message: error.message,
@@ -441,7 +443,7 @@ $('.eqLogicAction[data-action=remove]').off('click').on('click', function() {
           if (result) {
             jeedom.eqLogic.remove({
               type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
-              id: $('.eqLogicAttr[data-l1key=id]').value(),
+              id: document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue(),
               error: function(error) {
                 $.fn.showAlert({
                   message: error.message,
@@ -507,11 +509,11 @@ $('.eqLogicAction[data-action=add]').off('click').on('click', function() {
 $('.eqLogic .eqLogicAction[data-action=configure]').off('click').on('click', function() {
   var eqName = $('input.eqLogicAttr[data-l1key="name"]')
   eqName = (eqName.length ? ' : ' + eqName.val() : '')
-  $('#md_modal').dialog().load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $('.eqLogicAttr[data-l1key=id]').value()).dialog('open')
+  $('#md_modal').dialog().load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue()).dialog('open')
 });
 
 $('#in_searchEqlogic').off('keyup').keyup(function() {
-  var search = $(this).value()
+  var search = this.value
   if (search == '') {
     $('.eqLogicDisplayCard').show()
     return
