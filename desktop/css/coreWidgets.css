@@ -104,6 +104,7 @@ Desktop
     min-height: 16px;
     max-height: 16px;
     margin-bottom: 2px;
+    text-align: -webkit-center;
   }
   div.cmd-widget .value > .center-block {
     color: var(--txt-color);
@@ -622,6 +623,10 @@ Desktop
   }
   .shuttergauge .slider {
     left: 40px;
+    top: 18px !important;
+  }
+  .tableCmd .shuttergauge .slider {
+    left: 80px;
     top: 18px !important;
   }
   .shuttergauge .slider.ui-slider-vertical {
