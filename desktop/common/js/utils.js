@@ -145,7 +145,10 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 
   jeedomUtils.backgroundIMG = null
 
-  $.clearDivContent('div_pageContainer')
+  //Empty one page and remove listeners:
+  var div_pageContainer = document.getElementById('div_pageContainer')
+  div_pageContainer.empty()
+  div_pageContainer.replaceWith(div_pageContainer.cloneNode(true))
   $('body').off('mouseenter mouseleave')
   $('#div_pageContainer').off()
 
