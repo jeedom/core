@@ -318,7 +318,7 @@ sendVarToJS([
                 for (var i in data.icons) {
                   var test = (iconClasses && iconClasses[2] === data.icons[i].substr(4)) ? ' iconSelected' : ''
                   div += '<div class="divIconSel text-center' + test + '">'
-                  div += '<span class="cursor iconSel"><i class="' + data.icons[i] + ' ' + $('#sel_colorIcon').value() + '"></i></span><br/><span class="iconDesc">' + data.icons[i].substr(7) + '</span>'
+                  div += '<span class="cursor iconSel"><i class="' + data.icons[i] + ' ' + document.getElementById('sel_colorIcon').value + '"></i></span><br/><span class="iconDesc">' + data.icons[i].substr(7) + '</span>'
                   div += '</div>'
                 }
                 $('#' + jstreeId).siblings('.div_imageGallery').append(div)
@@ -334,7 +334,7 @@ sendVarToJS([
                 for (var i in matches) {
                   var selected = (iconClasses && iconClasses[2] === matches[i]) ? ' iconSelected' : ''
                   div += '<div class="divIconSel text-center' + selected + '">'
-                  div += '<span class="cursor iconSel"><i class=\'icon ' + matches[i] + ' ' + $('#sel_colorIcon').value() + '\'></i></span><br/><span class="iconDesc">' + matches[i].replace(category + '-', '') + '</span>'
+                  div += '<span class="cursor iconSel"><i class=\'icon ' + matches[i] + ' ' + document.getElementById('sel_colorIcon').value + '\'></i></span><br/><span class="iconDesc">' + matches[i].replace(category + '-', '') + '</span>'
                   div += '</div>'
                 }
                 $('#' + jstreeId).siblings('.div_imageGallery').append(div)
@@ -380,7 +380,7 @@ sendVarToJS([
   })
 
   $('#sel_colorIcon').off('change').on('change', function() {
-    $('.iconSel i').removeClass('icon_green icon_blue icon_orange icon_red icon_yellow').addClass($(this).value())
+    document.querySelectorAll('.iconSel i').removeClass('icon_green', 'icon_blue', 'icon_orange', 'icon_red', 'icon_yellow').addClass(this.value)
   })
 
   if (jeephp2js.md_iconSelector_selectIcon != "0") {
@@ -398,7 +398,7 @@ sendVarToJS([
     })
     setTimeout(function() {
       if (jeephp2js.md_iconSelector_colorIcon != "0") {
-        $('#sel_colorIcon').value(jeephp2js.md_iconSelector_colorIcon)
+        document.getElementById('sel_colorIcon').value = jeephp2js.md_iconSelector_colorIcon
       }
       elem = $('div.divIconSel.iconSelected')
       if (elem.position()) {
