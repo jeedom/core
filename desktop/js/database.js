@@ -130,8 +130,8 @@ if (!jeeFrontEnd.database) {
       return command
     },
     defineSQLsetGroup: function() {
-      var selectedTable = $('#sqlTable').value()
-      var operation = $('#sqlOperation').value()
+      var selectedTable = document.getElementById('sqlTable').value
+      var operation = document.getElementById('sqlOperation').value
       var options = '<div id="sqlSetOptions">'
       var name, type, extra
       for (var col in jeephp2js.tableList[selectedTable]) {
