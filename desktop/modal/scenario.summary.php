@@ -72,7 +72,7 @@ if (!jeeFrontEnd.md_scenarioSummary) {
       })
     },
     refreshScenarioSummary: function() {
-      $.clearDivContent('tbody_scenarioSummary')
+      document.emptyById('tbody_scenarioSummary')
       self = this
       jeedom.scenario.allOrderedByGroupObjectName({
         nocache: true,

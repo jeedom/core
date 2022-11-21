@@ -53,7 +53,7 @@ jeeP.$rawLogCheck.on('click').on('click', function() {
 })
 
 $(".li_log").on('click', function() {
-  $.clearDivContent('pre_globallog')
+  document.emptyById('pre_globallog')
   $(".li_log").removeClass('active')
   $(this).addClass('active')
   jeeP.$btGlobalLogStopStart.removeClass('btn-success')

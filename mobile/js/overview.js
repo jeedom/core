@@ -8,7 +8,7 @@ function initOverview() {
       $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(objects) {
-      $.clearDivContent('objectOverviewContainer')
+      document.emptyById('objectOverviewContainer')
       var summaries = []
       var _this, icon, _backUrl, div, synthAction, dataPage, dataOption, dataTitle
       for (var i in objects) {

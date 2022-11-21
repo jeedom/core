@@ -309,7 +309,7 @@ if (!jeeFrontEnd.scenario) {
           data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch
           $('#span_lastLaunch').text(data.lastLaunch)
 
-          $.clearDivContent('div_scenarioElement')
+          document.emptyById('div_scenarioElement')
           $('.provokeMode').empty()
           $('.scheduleMode').empty()
           $('.scenarioAttr[data-l1key=mode]').trigger('change')

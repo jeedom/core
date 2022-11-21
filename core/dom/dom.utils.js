@@ -118,6 +118,14 @@ Element.prototype.remove = function() {
   this.parentNode.removeChild(this)
 }
 
+Document.prototype.emptyById = function(_id) {
+  if (_id == '') return
+  if (!(_id instanceof Element)) {
+    var _id = document.getElementById(_id)
+  }
+  if (_id) return _id.empty()
+}
+
 /* Set and Get element values according to Jeedom data
 Must be high performance
 */

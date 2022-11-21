@@ -147,7 +147,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 
   //Empty one page and remove listeners:
   var div_pageContainer = document.getElementById('div_pageContainer')
-  div_pageContainer.empty()
+  document.emptyById(div_pageContainer)
   div_pageContainer.replaceWith(div_pageContainer.cloneNode(true))
   $('body').off('mouseenter mouseleave')
   $('#div_pageContainer').off()
@@ -718,7 +718,7 @@ jeedomUtils.initJeedomModals = function() {
   function emptyModal(_id='') {
     if (_id == '') return
     $('body').css({overflow: 'inherit'})
-    $.clearDivContent(_id)
+    document.emptyById(_id)
   }
 }
 

@@ -94,7 +94,7 @@ function displayView(html) {
     jeedomUtils.setBackgroundImage('')
   }
   try {
-    $.clearDivContent('div_displayView')
+    document.emptyById('div_displayView')
     $('#div_displayView').html(html.html).trigger('create')
   } catch(err) {
     console.log(err)
