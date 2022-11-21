@@ -643,23 +643,23 @@ if (!jeeFrontEnd.md_search) {
 
   $('.bt_selectEqLogic').on('click', function() {
     jeedom.eqLogic.getSelectModal({}, function(result) {
-      $('#in_searchFor_equipment').value(result.human)
-      $('#in_searchFor_equipment').attr('data-id', result.id)
+      document.getElementById('in_searchFor_equipment').value = result.human
+      document.getElementById('in_searchFor_equipment').setAttribute('data-id', result.id)
       jeeM.searchFor()
     })
   })
 
   $('.bt_selectCommand').on('click', function() {
     jeedom.cmd.getSelectModal({},function (result) {
-      $('#in_searchFor_command').value(result.human)
-      $('#in_searchFor_command').attr('data-id', result.cmd.id)
+      document.getElementById('in_searchFor_command').value = result.human
+      document.getElementById('in_searchFor_command').setAttribute('data-id', result.cmd.id)
       jeeM.searchFor()
      })
   })
 
   $('.bt_selectGeneric').on('click', function() {
     jeedom.config.getGenericTypeModal({type: 'all', object: false}, function(result) {
-      $('#in_searchFor_string').value(result.id)
+      document.getElementById('in_searchFor_string').value = result.id
     })
   })
 

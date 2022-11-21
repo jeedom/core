@@ -162,15 +162,15 @@ if (!jeeFrontEnd.md_datastore) {
 
   jeeM.$tableDataStore.on({
     'click': function(event) {
-      var tr = $(this).closest('tr')
-      if (tr.attr('data-datastore_id') == '') {
+      var tr = this.closest('tr')
+      if (tr.getAttribute('data-datastore_id') == '') {
         tr.remove()
         return
       }
-      bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer la variable}}' + ' : <span style="font-weight: bold ;">' + tr.find('.key').value() + '</span> ?', function(result) {
+      bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer la variable}}' + ' : <span style="font-weight: bold ;">' + tr.querySelector('.key').value + '</span> ?', function(result) {
         if (result) {
           jeedom.dataStore.remove({
-            id: tr.attr('data-dataStore_id'),
+            id: tr.getAttribute('data-dataStore_id'),
             error: function(error) {
               $('#div_dataStoreManagementAlert').showAlert({
                 message: error.message,
@@ -192,12 +192,12 @@ if (!jeeFrontEnd.md_datastore) {
 
   jeeM.$tableDataStore.on({
     'click': function(event) {
-      var tr = $(this).closest('tr');
+      var tr = this.closest('tr');
       jeedom.dataStore.save({
-        id: tr.attr('data-dataStore_id'),
-        value: tr.find('.value').value(),
+        id: tr.getAttribute('data-dataStore_id'),
+        value: tr.querySelector('.value').value,
         type: jeephp2js.md_dataStoreManagement_type,
-        key: tr.find('.key').value(),
+        key: tr.querySelector('.key').value,
         link_id: jeephp2js.md_dataStoreManagement_linkId,
         error: function(error) {
           $('#div_dataStoreManagementAlert').showAlert({

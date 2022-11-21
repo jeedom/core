@@ -83,16 +83,16 @@ $('#bt_selectGenericExpression').on('click', function(event) {
 })
 
 $('#ul_expressionHistory').off('click','.bt_expressionHistory').on('click','.bt_expressionHistory',function() {
-  $('#in_testExpression').value($(this).attr('data-command'))
-  $('#bt_executeExpressionOk').trigger('click')
+  document.getElementById('in_testExpression').value = this.getAttribute('data-command')
+  document.getElementById('bt_executeExpressionOk').triggerEvent('click')
 })
 
 $('#bt_executeExpressionOk').on('click',function() {
-  if ($('#in_testExpression').value() == '') {
+  var expression = document.getElementById('in_testExpression').value
+  if (expression == '') {
     $('#div_alertExpressionTest').showAlert({message: '{{L\'expression de test ne peut être vide}}', level: 'danger'})
     return
   }
-  var expression = $('#in_testExpression').value()
   if ($('.bt_expressionHistory[data-command="'+expression.replace(/"/g, '\\"')+'"]').html() == undefined) {
     $('#ul_expressionHistory').prepend('<li class="cursor list-group-item list-group-item-success bt_expressionHistory"  data-command="'+expression.replace(/"/g, '\\"')+'"><a>'+expression+'</a></li>')
   }

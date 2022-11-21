@@ -36,7 +36,7 @@ if (!isConnect()) {
 <script>
 $('#mod_cron_sel_scheduleMode').on('change', function() {
   $('#mod_cron_div_scheduleConfig').empty();
-  if ($(this).value() == 'once') {
+  if (this.value == 'once') {
     var html = '<div class="form-group">'
     html += '<label class="col-xs-3 control-label">{{En date du}}</label>'
     html += '<div class="col-xs-9">'
@@ -63,14 +63,14 @@ $('#mod_cron_sel_scheduleMode').on('change', function() {
     step: 15
   })
   $('#mod_cron_in_dateScenarioTrigger').on('change', function() {
-    if ($(this).value() != '') {
-      var date = new Date(Date.parse($(this).value().replace(/-/g, "/")))
+    if (this.value != '') {
+      var date = new Date(Date.parse(this.value.replace(/-/g, "/")))
       var minute = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes()
       var hour = (date.getHours() < 10 ? '0' : '') + date.getHours()
       var strdate = (date.getDate() < 10 ? '0' : '') + date.getDate()
       var month = ((date.getMonth() + 1) < 10 ? '0' : '') + (date.getMonth() + 1)
       var cron = minute + ' ' + hour + ' ' + strdate + ' ' + month + ' ' + date.getDay() + ' ' + date.getFullYear()
-      $('#mod_cron_span_cronResult').value(cron)
+      document.getElementById('mod_cron_span_cronResult').value = cron
     }
   })
 } else {
@@ -88,7 +88,7 @@ $('#mod_cron_sel_scheduleMode').on('change', function() {
       "30 Minutes" : "*/30 * * * *",
     },
     onChange: function() {
-      $('#mod_cron_span_cronResult').text($(this).cron("value"))
+      document.getElementById('mod_cron_span_cronResult').value = this.cron("value")
     }
   })
 }
@@ -99,6 +99,6 @@ $('#mod_cron_sel_scheduleMode').trigger('change')
 function mod_insertCron() {}
 
 mod_insertCron.getValue = function() {
-  return $('#mod_cron_span_cronResult').text()
+  return document.getElementById('mod_cron_span_cronResult').value
 }
 </script>

@@ -38,10 +38,10 @@ if (!isConnect()) {
   mod_insertScenario.setOptions = function(_options) {}
 
   mod_insertScenario.getId = function() {
-    return $('#mod_insertScenariocValue_value option:selected').attr('data-scenario_id');
+    return document.getElementById('mod_insertScenariocValue_value').selectedOptions[0].getAttribute('data-scenario_id')
   }
 
   mod_insertScenario.getValue = function() {
-    return $('#mod_insertScenariocValue_value').value()
+    return document.getElementById('mod_insertScenariocValue_value').value
   }
 </script>

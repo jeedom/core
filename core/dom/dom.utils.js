@@ -114,6 +114,9 @@ NodeList.prototype.last = function() {
   return Array.from(this).pop()
 }
 
+Element.prototype.remove = function() {
+  this.parentNode.removeChild(this)
+}
 
 /* Set and Get element values according to Jeedom data
 Must be high performance

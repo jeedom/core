@@ -72,7 +72,7 @@ sendVarToJS([
 
 <script>
 $('.viewAttr[data-l1key=display][data-l2key=icon]').on('dblclick', function() {
-  $('.viewAttr[data-l1key=display][data-l2key=icon]').value('');
+  document.querySelector('.viewAttr[data-l1key=display][data-l2key=icon]').jeeValue('')
 })
 
 $('#bt_chooseIcon').on('click', function() {
@@ -119,7 +119,7 @@ $('#bt_removeBackgroundImage').off('click').on('click', function() {
 })
 
 $('#bt_saveConfigureView').on('click', function() {
-  var view =  $('#div_viewConfigure').getValues('.viewAttr')[0]
+  var view = document.getElementById('div_viewConfigure').getJeeValues('.viewAttr')[0]
   jeedom.view.save({
     id : jeephp2js.md_viewConfigure_View.id,
     view: view,
@@ -133,6 +133,6 @@ $('#bt_saveConfigureView').on('click', function() {
 })
 
 if (isset(jeephp2js.md_viewConfigure_Id) && jeephp2js.md_viewConfigure_Id != '') {
-  $('#div_viewConfigure').setValues(jeephp2js.md_viewConfigure_View, '.viewAttr')
+  document.getElementById('div_viewConfigure').setJeeValues(jeephp2js.md_viewConfigure_View, '.viewAttr')
 }
 </script>

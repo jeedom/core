@@ -257,12 +257,12 @@ sendVarToJs('jeephp2js.md_userRights_rights', utils::o2a($user));
 </div>
 
 <script>
-  $('#div_tabUserRights').setValues(jeephp2js.md_userRights_rights, '.userAttr')
+  document.getElementById('div_tabUserRights').setJeeValues(jeephp2js.md_userRights_rights, '.userAttr')
   jeedomUtils.initTableSorter()
 
   $("#bt_usersRightsSave").on('click', function(event) {
     jeedom.user.save({
-      users: $('#div_tabUserRights').getValues('.userAttr'),
+      users: document.getElementById('div_tabUserRights').getJeeValues('.userAttr'),
       error: function(error) {
         $('#div_userRightAlert').showAlert({
           message: error.message,

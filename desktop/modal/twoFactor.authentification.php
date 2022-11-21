@@ -81,7 +81,7 @@ $google2fa_url = $google2fa->getQRCodeInline(
 <script>
 $('#bt_validateTestCode').on('click',function() {
   jeedom.user.validateTwoFactorCode({
-    code: $('#in_testCode').value(),
+    code: document.getElementById('in_testCode').value,
     enableTwoFactorAuthentification : 1,
     error: function(error) {
       $('#div_alertTwoFactorAuthentification').showAlert({message: error.message, level: 'danger'})
