@@ -106,6 +106,19 @@ function initOverview() {
       })
     }
   })
+
+  if (plugins.length > 0) {
+    var panel = '<center>'
+    for (var i in plugins) {
+      if (plugins[i].mobile == '') continue
+      if (plugins[i].displayMobilePanel == 0) continue
+      panel += '<a href="#" class="link ui-btn ui-btn-inline ui-btn-raised ui-mini" data-page="' + plugins[i].mobile + '" data-plugin="' + plugins[i].id + '" data-title="' + plugins[i].name + '">'
+      panel +=  plugins[i].name
+      panel +=  '</a> '
+    }
+    panel +=  '</center>'
+    $('#panelOverviewContainer').empty().html(panel);
+  }
 }
 
 function createSummaryObserver() {
