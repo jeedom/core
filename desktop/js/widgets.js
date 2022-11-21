@@ -515,7 +515,7 @@ $('.selectWidgetSubType').off('change').on('change', function() {
 })
 
 $('#div_templateReplace').off('click', '.chooseIcon').on('click', '.chooseIcon', function() {
-  var bt = $(this)
+  var bt = this
   jeedomUtils.chooseIcon(function(_icon) {
     bt.closest('.form-group').querySelector('.widgetsAttr[data-l1key=replace]').jeeValue(_icon)
   }, {
@@ -525,7 +525,7 @@ $('#div_templateReplace').off('click', '.chooseIcon').on('click', '.chooseIcon',
 })
 
 $('#div_templateTest').off('click', '.chooseIcon').on('click', '.chooseIcon', function() {
-  var bt = $(this)
+  var bt = this
   jeedomUtils.chooseIcon(function(_icon) {
     bt.closest('.input-group').querySelector('.testAttr').jeeValue(_icon)
   }, {
