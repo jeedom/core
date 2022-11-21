@@ -24,9 +24,9 @@ regex case sensitive
 /* Extension Functions
 */
 String.prototype.HTMLFormat = function() {
-  return this.replace(/[\u00A0-\u9999<>\&]/g, function (i) {
-    return '&#' + i.charCodeAt(0) + ';';
-  });
+  return this.replace(/[\u00A0-\u9999<>\&]/g, function(i) {
+    return '&#' + i.charCodeAt(0) + ';'
+  })
 }
 
 /* initEvent() deprecated
@@ -37,7 +37,7 @@ Element.prototype.triggerEvent = function(_eventName) {
 }
 */
 Element.prototype.triggerEvent = function(_eventName) {
-  var event = new Event(_eventName, {bubbles: true})
+  var event = new Event(_eventName, { bubbles: true })
   this.dispatchEvent(event)
 }
 
@@ -52,7 +52,7 @@ Element.prototype.seen = function() {
   this.style.display = ''
 }
 NodeList.prototype.seen = function() {
-  for (var idx=0; idx < this.length; idx++) {
+  for (var idx = 0; idx < this.length; idx++) {
     this[idx].seen()
   }
 }
@@ -60,7 +60,7 @@ Element.prototype.unseen = function() {
   this.style.display = 'none'
 }
 NodeList.prototype.unseen = function() {
-  for (var idx=0; idx < this.length; idx++) {
+  for (var idx = 0; idx < this.length; idx++) {
     this[idx].unseen()
   }
 }
@@ -74,7 +74,7 @@ Element.prototype.empty = function() {
   }
 }
 NodeList.prototype.empty = function() {
-  for (var idx=0; idx < this.length; idx++) {
+  for (var idx = 0; idx < this.length; idx++) {
     this[idx].empty()
   }
 }
@@ -84,7 +84,7 @@ Element.prototype.addClass = function(_className) {
   this.classList.add(_className)
 }
 NodeList.prototype.addClass = function() {
-  for (var idx=0; idx < this.length; idx++) {
+  for (var idx = 0; idx < this.length; idx++) {
     this[idx].addClass()
   }
 }
@@ -92,7 +92,7 @@ Element.prototype.removeClass = function(_className) {
   this.classList.remove(_className)
 }
 NodeList.prototype.removeClass = function() {
-  for (var idx=0; idx < this.length; idx++) {
+  for (var idx = 0; idx < this.length; idx++) {
     this[idx].removeClass()
   }
 }
@@ -100,7 +100,7 @@ Element.prototype.toggleClass = function(_className) {
   this.classList.toggle(_className)
 }
 NodeList.prototype.toggleClass = function() {
-  for (var idx=0; idx < this.length; idx++) {
+  for (var idx = 0; idx < this.length; idx++) {
     this[idx].toggleClass()
   }
 }
@@ -133,14 +133,14 @@ Element.prototype.getJeeValues = function(_attr, _depth) {
   var value = {}
   var idx, value, depthFound, thatElement, elValue, l1key, l2key, l3key
   var elements = this.findAtDepth(_attr, init(_depth, 0))
-  for (idx=0; idx < elements.length; idx++) {
+  for (idx = 0; idx < elements.length; idx++) {
     thatElement = elements[idx]
     elValue = thatElement.jeeValue()
     try {
       if ($.trim(elValue).substr(0, 1) == '{') {
         elValue = JSON.parse(thatElement.jeeValue())
       }
-    } catch (e) {}
+    } catch (e) { }
 
     l1key = thatElement.getAttribute('data-l1key')
     if (l1key !== null && l1key != '') {
@@ -189,7 +189,7 @@ Element.prototype.getJeeValues = function(_attr, _depth) {
 }
 NodeList.prototype.getJeeValues = function(_attr, _depth) {
   var values = [], elValues
-  for (var idx=0; idx < this.length; idx++) {
+  for (var idx = 0; idx < this.length; idx++) {
     elValues = this[idx].getJeeValues(_attr, _depth)
     values.push(elValues[0])
   }
@@ -217,7 +217,7 @@ Element.prototype.setJeeValues = function(_object, _attr) {
   }
 }
 NodeList.prototype.setJeeValues = function(_object, _attr) {
-  for (var idx=0; idx < this.length; idx++) {
+  for (var idx = 0; idx < this.length; idx++) {
     this[idx].setJeeValues(_object, _attr)
   }
 }
@@ -226,7 +226,7 @@ Element.prototype.jeeValue = function(_value) {
   if (isset(_value)) { //SET
     if (this.length > 1 && this.tagName != 'SELECT') {
       var idx
-      for (idx=0; idx < this.length; idx++) {
+      for (idx = 0; idx < this.length; idx++) {
         this[idx].jeeValue(_value)
       }
     } else {
@@ -263,7 +263,7 @@ Element.prototype.jeeValue = function(_value) {
       this.triggerEvent('change')
     }
   } else { //GET
-    var value = '';
+    var value = ''
     if (this.matches('input, select, textarea')) {
       if (this.getAttribute('type') == 'checkbox' || this.getAttribute('type') == 'radio') {
         value = (this.checked) ? '1' : '0'
@@ -275,7 +275,7 @@ Element.prototype.jeeValue = function(_value) {
       value = this.innerHTML
     }
     if (this.matches('a') && this.getAttribute('value') != undefined) {
-      value = this.getAttribute('value');
+      value = this.getAttribute('value')
     }
     if (value == '') {
       value = this.value
@@ -284,14 +284,14 @@ Element.prototype.jeeValue = function(_value) {
   }
 }
 NodeList.prototype.jeeValue = function(_value) {
-  for (var idx=0; idx < this.length; idx++) {
+  for (var idx = 0; idx < this.length; idx++) {
     this[idx].jeeValue(_value)
   }
 }
 
 //Global functions
 function in_array(a, b, d) {
-  var c = "";
+  var c = ""
   if (d)
     for (c in b) {
       if (b[c] === a)
@@ -300,61 +300,61 @@ function in_array(a, b, d) {
   else
     for (c in b)
       if (b[c] == a)
-        return !0;
+        return !0
   return !1
 }
 
 function json_decode(a) {
-  var b = window.JSON;
+  var b = window.JSON
   if ("object" === typeof b && "function" === typeof b.parse)
     try {
       return b.parse(a)
     } catch (d) {
       if (!(d instanceof SyntaxError))
-        throw Error("Unexpected error type in json_decode()");
-      window.php_js = window.php_js || {};
-      window.php_js.last_error_json = 4;
+        throw Error("Unexpected error type in json_decode()")
+      window.php_js = window.php_js || {}
+      window.php_js.last_error_json = 4
       return null
     }
-  b = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
-  b.lastIndex = 0;
+  b = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g
+  b.lastIndex = 0
   b.test(a) && (a = a.replace(b, function(a) {
     return "\\u" + ("0000" + a.charCodeAt(0).toString(16)).slice(-4)
-  }));
+  }))
   if (/^[\],:{}\s]*$/.test(a.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, "@").replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, "]").replace(/(?:^|:|,)(?:\s*\[)+/g, "")))
-    return a = eval("(" + a + ")");
-  window.php_js = window.php_js || {};
-  window.php_js.last_error_json = 4;
+    return a = eval("(" + a + ")")
+  window.php_js = window.php_js || {}
+  window.php_js.last_error_json = 4
   return null
 }
 
 function json_encode(a) {
-  var b, d = window.JSON;
+  var b, d = window.JSON
   try {
     if ("object" === typeof d && "function" === typeof d.stringify) {
-      b = d.stringify(a);
+      b = d.stringify(a)
       if (void 0 === b)
-        throw new SyntaxError("json_encode");
+        throw new SyntaxError("json_encode")
       return b
     }
     var c = function(a) {
-        var b = /[\\\"\u0000-\u001f\u007f-\u009f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
-          c = {
-            "\b": "\\b",
-            "\t": "\\t",
-            "\n": "\\n",
-            "\f": "\\f",
-            "\r": "\\r",
-            '"': '\\"',
-            "\\": "\\\\"
-          };
-        b.lastIndex = 0;
-        return b.test(a) ? '"' + a.replace(b, function(a) {
-          var b = c[a];
-          return "string" ===
-            typeof b ? b : "\\u" + ("0000" + a.charCodeAt(0).toString(16)).slice(-4)
-        }) + '"' : '"' + a + '"'
-      },
+      var b = /[\\\"\u0000-\u001f\u007f-\u009f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
+        c = {
+          "\b": "\\b",
+          "\t": "\\t",
+          "\n": "\\n",
+          "\f": "\\f",
+          "\r": "\\r",
+          '"': '\\"',
+          "\\": "\\\\"
+        }
+      b.lastIndex = 0
+      return b.test(a) ? '"' + a.replace(b, function(a) {
+        var b = c[a]
+        return "string" ===
+          typeof b ? b : "\\u" + ("0000" + a.charCodeAt(0).toString(16)).slice(-4)
+      }) + '"' : '"' + a + '"'
+    },
       e = function(a, b) {
         var d = "",
           f = 0,
@@ -362,44 +362,44 @@ function json_encode(a) {
           m = 0,
           s = d,
           k = [],
-          l = b[a];
-        l && ("object" === typeof l && "function" === typeof l.toJSON) && (l = l.toJSON(a));
+          l = b[a]
+        l && ("object" === typeof l && "function" === typeof l.toJSON) && (l = l.toJSON(a))
         switch (typeof l) {
           case "string":
-            return c(l);
+            return c(l)
           case "number":
-            return isFinite(l) ? String(l) : "null";
+            return isFinite(l) ? String(l) : "null"
           case "boolean":
           case "null":
-            return String(l);
+            return String(l)
           case "object":
             if (!l)
-              return "null";
+              return "null"
             if (window.PHPJS_Resource && l instanceof window.PHPJS_Resource || window.PHPJS_Resource && l instanceof window.PHPJS_Resource)
-              throw new SyntaxError("json_encode");
-            d += "    ";
-            k = [];
+              throw new SyntaxError("json_encode")
+            d += "    "
+            k = []
             if ("[object Array]" === Object.prototype.toString.apply(l)) {
-              m = l.length;
+              m = l.length
               for (f = 0; f < m; f += 1)
-                k[f] = e(f, l) || "null";
+                k[f] = e(f, l) || "null"
               return m = 0 === k.length ? "[]" : d ? "[\n" + d + k.join(",\n" + d) + "\n" + s + "]" : "[" + k.join(",") + "]"
             }
             for (f in l)
-              Object.hasOwnProperty.call(l, f) && (m = e(f, l)) && k.push(c(f) + (d ? ": " : ":") + m);
-            return m = 0 === k.length ? "{}" : d ? "{\n" + d + k.join(",\n" + d) + "\n" + s + "}" : "{" + k.join(",") + "}";
+              Object.hasOwnProperty.call(l, f) && (m = e(f, l)) && k.push(c(f) + (d ? ": " : ":") + m)
+            return m = 0 === k.length ? "{}" : d ? "{\n" + d + k.join(",\n" + d) + "\n" + s + "}" : "{" + k.join(",") + "}"
           default:
-            throw new SyntaxError("json_encode");
+            throw new SyntaxError("json_encode")
         }
-      };
+      }
     return e("", {
       "": a
     })
   } catch (f) {
     if (!(f instanceof SyntaxError))
-      throw Error("Unexpected error type in json_encode()");
-    window.php_js = window.php_js || {};
-    window.php_js.last_error_json = 4;
+      throw Error("Unexpected error type in json_encode()")
+    window.php_js = window.php_js || {}
+    window.php_js.last_error_json = 4
     return null
   }
 }
@@ -407,12 +407,12 @@ function json_encode(a) {
 function isset() {
   var a = arguments,
     b = a.length,
-    d = 0;
+    d = 0
   if (0 === b)
-    throw Error("Empty isset");
+    throw Error("Empty isset")
   for (; d !== b;) {
     if (void 0 === a[d] || null === a[d])
-      return !1;
+      return !1
     d++
   }
   return !0
@@ -464,33 +464,33 @@ function is_string(a) {
 
 function is_unicode(a) {
   if ("string" !== typeof a)
-    return !1;
+    return !1
   for (var b = [], d = RegExp("[\ud800-\udbff]([sS])", "g"), c = RegExp("([sS])[\udc00-\udfff]", "g"), e = RegExp("^[\udc00-\udfff]$"), f = RegExp("^[\ud800-\udbff]$"); null !== (b = d.exec(a));)
     if (!b[1] || !b[1].match(e))
-      return !1;
+      return !1
   for (; null !== (b = c.exec(a));)
     if (!b[1] || !b[1].match(f))
-      return !1;
+      return !1
   return !0
 }
 
 function is_array(a) {
   var b, d = function(a) {
     return (a = /\W*function\s+([\w\$]+)\s*\(/.exec(a)) ? a[1] : "(Anonymous)"
-  };
+  }
   if (!a || "object" !== typeof a)
-    return !1;
-  window.php_js = window.php_js || {};
-  window.php_js.ini = window.php_js.ini || {};
-  b = window.php_js.ini["phpjs.objectsAsArrays"];
+    return !1
+  window.php_js = window.php_js || {}
+  window.php_js.ini = window.php_js.ini || {}
+  b = window.php_js.ini["phpjs.objectsAsArrays"]
   return function(a) {
     if (!a || "object" !== typeof a || "number" !== typeof a.length)
-      return !1;
-    var b = a.length;
-    a[a.length] = "bogus";
+      return !1
+    var b = a.length
+    a[a.length] = "bogus"
     if (b !== a.length)
-      return a.length -= 1, !0;
-    delete a[a.length];
+      return a.length -= 1, !0
+    delete a[a.length]
     return !1
   }(a) || (!b || 0 !== parseInt(b.local_value, 10) && (!b.local_value.toLowerCase ||
     "off" !== b.local_value.toLowerCase())) && "[object Object]" === Object.prototype.toString.call(a) && "Object" === d(a.constructor)
@@ -501,7 +501,7 @@ function is_binary(a) {
 }
 
 function is_bool(a) {
-  return !0 === obj || !1 === obj
+  return 0 === a || 1 === a
 }
 
 function is_buffer(a) {
@@ -509,24 +509,24 @@ function is_buffer(a) {
 }
 
 function count(a, b) {
-  var d, c = 0;
+  var d, c = 0
   if (null === a || "undefined" === typeof a)
-    return 0;
+    return 0
   if (a.constructor !== Array && a.constructor !== Object)
-    return 1;
-  "COUNT_RECURSIVE" === b && (b = 1);
-  1 != b && (b = 0);
+    return 1
+  "COUNT_RECURSIVE" === b && (b = 1)
+  1 != b && (b = 0)
   for (d in a)
-    a.hasOwnProperty(d) && (c++, 1 != b || (!a[d] || a[d].constructor !== Array && a[d].constructor !== Object) || (c += this.count(a[d], 1)));
+    a.hasOwnProperty(d) && (c++, 1 != b || (!a[d] || a[d].constructor !== Array && a[d].constructor !== Object) || (c += this.count(a[d], 1)))
   return c
 }
 
 function init(_value, _default) {
   if (!isset(_default)) {
-    _default = '';
+    _default = ''
   }
   if (!isset(_value)) {
-    return _default;
+    return _default
   }
-  return _value;
+  return _value
 }
