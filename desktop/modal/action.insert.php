@@ -158,7 +158,7 @@ $(function() {
 })
 
 $('#mod_actionValue_sel').on('change',function() {
-  var value = $(this).value()
+  var value = this.value
   if (value == 'alert') value = 'alert2'
   $('.mod_actionValue_selDescription').hide()
   $('.mod_actionValue_selDescription.'+value).show()
@@ -172,7 +172,7 @@ mod_insertAction.setOptions = function(_options) {
   mod_insertAction.options = _options;
   if (init(_options.scenario, false) == false) {
     $('#mod_actionValue_sel option').each(function(index) {
-      if (jeedom.scenario.autoCompleteActionScOnly.includes($(this).value())) {
+      if (jeedom.scenario.autoCompleteActionScOnly.includes(this.value)) {
         $(this).hide()
       }
     })
@@ -182,6 +182,6 @@ mod_insertAction.setOptions = function(_options) {
 }
 
 mod_insertAction.getValue = function() {
-  return $('#mod_actionValue_sel').value()
+  return document.getElementById('mod_actionValue_sel').value
 }
 </script>

@@ -49,7 +49,8 @@ mod_insertCmd.options.eqLogic = {}
 mod_insertCmd.options.object = {}
 
 mod_insertCmd.setOptions = function(_options) {
-  mod_insertCmd.options = _options;
+  mod_insertCmd.options = _options
+  var _selectObject = document.getElementById('table_mod_insertCmdValue_valueEqLogicToMessage').querySelector('td.mod_insertCmdValue_object select')
   if (!isset(mod_insertCmd.options.cmd)) {
     mod_insertCmd.options.cmd = {}
   }
@@ -60,16 +61,17 @@ mod_insertCmd.setOptions = function(_options) {
     mod_insertCmd.options.object = {}
   }
   if (isset(mod_insertCmd.options.object.id)) {
-    $('#table_mod_insertCmdValue_valueEqLogicToMessage td.mod_insertCmdValue_object select').value(mod_insertCmd.options.object.id)
+    document.getElementById('table_mod_insertCmdValue_valueEqLogicToMessage').querySelector('td.mod_insertCmdValue_object select').value = mod_insertCmd.options.object.id
   }
   if (isset(mod_insertCmd.options.cmd.type)) {
     if (mod_insertCmd.options.cmd.type == "info") $('#thCmd').text("{{Commande info}}")
     if (mod_insertCmd.options.cmd.type == "action") $('#thCmd').text("{{Commande action}}")
   }
-  mod_insertCmd.changeObjectCmd($('#table_mod_insertCmdValue_valueEqLogicToMessage td.mod_insertCmdValue_object select'), mod_insertCmd.options)
+
+  mod_insertCmd.changeObjectCmd(_selectObject, mod_insertCmd.options)
   $('#table_mod_insertCmdValue_valueEqLogicToMessage').on({
     'change': function(event) {
-      mod_insertCmd.changeObjectCmd($('#table_mod_insertCmdValue_valueEqLogicToMessage td.mod_insertCmdValue_object select'), mod_insertCmd.options)
+      mod_insertCmd.changeObjectCmd(_selectObject, mod_insertCmd.options)
     }
   }, 'td.mod_insertCmdValue_object select')
 }
@@ -85,27 +87,27 @@ mod_insertCmd.getValue = function() {
 }
 
 mod_insertCmd.getCmdId = function() {
-  return $('#table_mod_insertCmdValue_valueEqLogicToMessage tbody tr:first .mod_insertCmdValue_cmd select').value()
+  return document.querySelector('#table_mod_insertCmdValue_valueEqLogicToMessage tbody tr').querySelector('.mod_insertCmdValue_cmd select').value
 }
 
 mod_insertCmd.getType = function() {
-  return $('#table_mod_insertCmdValue_valueEqLogicToMessage tbody tr:first .mod_insertCmdValue_cmd select option:selected').attr('data-type')
+  return document.querySelector('#table_mod_insertCmdValue_valueEqLogicToMessage tbody tr').querySelector('.mod_insertCmdValue_cmd select').selectedOptions[0].getAttribute('data-type')
 }
 
 mod_insertCmd.getSubType = function() {
-  return $('#table_mod_insertCmdValue_valueEqLogicToMessage tbody tr:first .mod_insertCmdValue_cmd select option:selected').attr('data-subType')
+  return document.querySelector('#table_mod_insertCmdValue_valueEqLogicToMessage tbody tr').querySelector('.mod_insertCmdValue_cmd select').selectedOptions[0].getAttribute('data-subType')
 }
 
 mod_insertCmd.changeObjectCmd = function(_select, _options) {
   jeedom.object.getEqLogic({
-    id: (_select.value() == '' ? -1 : _select.value()),
+    id: (_select.jeeValue() == '' ? -1 : _select.jeeValue()),
     orderByName : true,
     onlyHasCmds : _options.cmd,
     error: function(error) {
       $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(eqLogics) {
-      _select.closest('tr').find('.mod_insertCmdValue_eqLogic').empty()
+      _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic').empty()
       var selectEqLogic = '<select class="form-control">'
       for (var i in eqLogics) {
         if (init(mod_insertCmd.options.eqLogic.eqType_name, 'all') == 'all' || eqLogics[i].eqType_name == mod_insertCmd.options.eqLogic.eqType_name) {
@@ -113,31 +115,31 @@ mod_insertCmd.changeObjectCmd = function(_select, _options) {
         }
       }
       selectEqLogic += '</select>'
-      _select.closest('tr').find('.mod_insertCmdValue_eqLogic').append(selectEqLogic)
-      _select.closest('tr').find('.mod_insertCmdValue_eqLogic select').change(function() {
-        mod_insertCmd.changeEqLogic($(this), mod_insertCmd.options)
+      _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic').insertAdjacentHTML('beforeend', selectEqLogic)
+      _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic select').addEventListener('change', function() {
+        mod_insertCmd.changeEqLogic(this, mod_insertCmd.options)
       })
       if (isset(mod_insertCmd.options.object.id)) {
-        _select.closest('tr').find('.mod_insertCmdValue_eqLogic select').value(mod_insertCmd.options.eqLogic.id)
+        _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic select').jeeValue(mod_insertCmd.options.eqLogic.id)
       }
-      mod_insertCmd.changeEqLogic(_select.closest('tr').find('.mod_insertCmdValue_eqLogic select'), mod_insertCmd.options)
+      mod_insertCmd.changeEqLogic(_select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic select'), mod_insertCmd.options)
     }
   })
 }
 
 mod_insertCmd.changeEqLogic = function(_select) {
   jeedom.eqLogic.buildSelectCmd({
-    id: _select.value(),
+    id: _select.jeeValue(),
     filter: mod_insertCmd.options.cmd,
     error: function(error) {
       $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(html) {
-      _select.closest('tr').find('.mod_insertCmdValue_cmd').empty()
+      _select.closest('tr').querySelector('.mod_insertCmdValue_cmd').empty()
       var selectCmd = '<select class="form-control">'
       selectCmd += html
       selectCmd += '</select>'
-      _select.closest('tr').find('.mod_insertCmdValue_cmd').append(selectCmd)
+      _select.closest('tr').querySelector('.mod_insertCmdValue_cmd').insertAdjacentHTML('beforeend', selectCmd)
     }
   })
 }
