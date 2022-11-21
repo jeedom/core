@@ -30,10 +30,10 @@ document.addEventListener('DOMContentLoaded', function() {
   jeedomUtils._elBackground = $('#backgroundforJeedom')
   $(document)
     .ajaxStart(function() {
-      $.showLoading()
+      jeedomUtils.showLoading()
     })
     .ajaxStop(function() {
-      $.hideLoading()
+      jeedomUtils.hideLoading()
     })
 })
 
