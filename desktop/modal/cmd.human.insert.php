@@ -135,11 +135,13 @@ mod_insertCmd.changeEqLogic = function(_select) {
       $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(html) {
-      _select.closest('tr').querySelector('.mod_insertCmdValue_cmd').empty()
-      var selectCmd = '<select class="form-control">'
-      selectCmd += html
-      selectCmd += '</select>'
-      _select.closest('tr').querySelector('.mod_insertCmdValue_cmd').insertAdjacentHTML('beforeend', selectCmd)
+      try { //No tr on object without equipment
+        _select.closest('tr').querySelector('.mod_insertCmdValue_cmd').empty()
+        var selectCmd = '<select class="form-control">'
+        selectCmd += html
+        selectCmd += '</select>'
+        _select.closest('tr').querySelector('.mod_insertCmdValue_cmd').insertAdjacentHTML('beforeend', selectCmd)
+      } catch (error) { }
     }
   })
 }
