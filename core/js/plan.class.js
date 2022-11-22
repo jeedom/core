@@ -77,7 +77,7 @@ jeedom.plan.save = function(_params) {
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
     action: 'save',
-    plans: json_encode(_params.plans),
+    plans: JSON.stringify(_params.plans),
   };
   $.ajax(paramsAJAX);
 }
@@ -135,7 +135,7 @@ jeedom.plan.create = function(_params) {
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
     action: 'create',
-    plan: json_encode(_params.plan),
+    plan: JSON.stringify(_params.plan),
     version: _params.version
   };
   $.ajax(paramsAJAX);
@@ -217,7 +217,7 @@ jeedom.plan.saveHeader = function(_params) {
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
     action: 'savePlanHeader',
-    planHeader: json_encode(_params.planHeader)
+    planHeader: JSON.stringify(_params.planHeader)
   };
   $.ajax(paramsAJAX);
 }

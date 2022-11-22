@@ -30,7 +30,7 @@ jeedom.update.doAll = function(_params) {
     paramsAJAX.url = 'core/ajax/update.ajax.php';
     paramsAJAX.data = {
         action: 'updateAll',
-        options: json_encode(_params.options) || '',
+        options: JSON.stringify(_params.options) || '',
     };
     $.ajax(paramsAJAX);
 }
@@ -142,7 +142,7 @@ jeedom.update.save = function(_params) {
     paramsAJAX.url = 'core/ajax/update.ajax.php';
     paramsAJAX.data = {
         action: 'save',
-        update: json_encode(_params.update)
+        update: JSON.stringify(_params.update)
     };
     $.ajax(paramsAJAX);
 }
@@ -161,7 +161,7 @@ jeedom.update.saves = function(_params) {
     paramsAJAX.url = 'core/ajax/update.ajax.php';
     paramsAJAX.data = {
         action: 'saves',
-        updates: json_encode(_params.updates)
+        updates: JSON.stringify(_params.updates)
     };
     $.ajax(paramsAJAX);
 }

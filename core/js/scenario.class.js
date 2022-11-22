@@ -102,7 +102,7 @@ jeedom.scenario.saveAll = function(_params) {
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
     action: 'saveAll',
-    scenarios: json_encode(_params.scenarios),
+    scenarios: JSON.stringify(_params.scenarios),
   };
   $.ajax(paramsAJAX);
 }
@@ -121,7 +121,7 @@ jeedom.scenario.toHtml = function(_params) {
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
     action: 'toHtml',
-    id: ($.isArray(_params.id)) ? json_encode(_params.id) : _params.id,
+    id: ($.isArray(_params.id)) ? JSON.stringify(_params.id) : _params.id,
     version: _params.version
   };
   $.ajax(paramsAJAX);
@@ -364,7 +364,7 @@ jeedom.scenario.save = function(_params) {
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
     action: 'save',
-    scenario: json_encode(_params.scenario)
+    scenario: JSON.stringify(_params.scenario)
   };
   $.ajax(paramsAJAX);
 }
@@ -501,7 +501,7 @@ jeedom.scenario.setOrder = function(_params) {
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
     action: 'setOrder',
-    scenarios: json_encode(_params.scenarios)
+    scenarios: JSON.stringify(_params.scenarios)
   };
   $.ajax(paramsAJAX);
 }

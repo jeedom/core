@@ -57,7 +57,7 @@ jeedom.cmd.execute = function(_params) {
     jeedom.cmd.notifyEq(eqLogic, false)
   }
   if (_params.value != 'undefined' && (is_array(_params.value) || is_object(_params.value))) {
-    _params.value = json_encode(_params.value);
+    _params.value = JSON.stringify(_params.value);
   }
   var paramsRequired = ['id'];
   var paramsSpecifics = {
@@ -568,7 +568,7 @@ jeedom.cmd.save = function(_params) {
   paramsAJAX.url = 'core/ajax/cmd.ajax.php';
   paramsAJAX.data = {
     action: 'save',
-    cmd: json_encode(_params.cmd)
+    cmd: JSON.stringify(_params.cmd)
   };
   $.ajax(paramsAJAX);
 };
@@ -587,7 +587,7 @@ jeedom.cmd.setIsVisibles = function(_params) {
   paramsAJAX.url = 'core/ajax/cmd.ajax.php';
   paramsAJAX.data = {
     action: 'setIsVisibles',
-    cmds: json_encode(_params.cmds),
+    cmds: JSON.stringify(_params.cmds),
     isVisible: _params.isVisible
   };
   $.ajax(paramsAJAX);
@@ -612,7 +612,7 @@ jeedom.cmd.multiSave = function(_params) {
   paramsAJAX.url = 'core/ajax/cmd.ajax.php';
   paramsAJAX.data = {
     action: 'multiSave',
-    cmd: json_encode(_params.cmds)
+    cmd: JSON.stringify(_params.cmds)
   };
   $.ajax(paramsAJAX);
 };
@@ -1017,7 +1017,7 @@ jeedom.cmd.displayActionOption = function(_expression, _options, _callback) {
       action: 'actionToHtml',
       version: 'scenario',
       expression: _expression,
-      option: json_encode(_options)
+      option: JSON.stringify(_options)
     },
     dataType: 'json',
     async: ('function' == typeof(_callback)),
@@ -1060,7 +1060,7 @@ jeedom.cmd.displayActionsOption = function(_params) {
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
     action: 'actionToHtml',
-    params: json_encode(_params.params)
+    params: JSON.stringify(_params.params)
   };
   $.ajax(paramsAJAX);
 };
@@ -1117,7 +1117,7 @@ jeedom.cmd.setOrder = function(_params) {
   paramsAJAX.url = 'core/ajax/cmd.ajax.php';
   paramsAJAX.data = {
     action: 'setOrder',
-    cmds: json_encode(_params.cmds)
+    cmds: JSON.stringify(_params.cmds)
   };
   $.ajax(paramsAJAX);
 }

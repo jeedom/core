@@ -122,7 +122,7 @@ jeedom.config.save = function(_params) {
     paramsAJAX.url = 'core/ajax/config.ajax.php';
     paramsAJAX.data = {
         action: 'addKey',
-        value: json_encode(_params.configuration),
+        value: JSON.stringify(_params.configuration),
         plugin: _params.plugin || 'core'
     };
     $.ajax(paramsAJAX);
@@ -144,7 +144,7 @@ jeedom.config.load = function(_params) {
     paramsAJAX.url = 'core/ajax/config.ajax.php';
     paramsAJAX.data = {
         action: 'getKey',
-        key: ($.isArray(_params.configuration) || $.isPlainObject(_params.configuration)) ? json_encode(_params.configuration) : _params.configuration,
+        key: ($.isArray(_params.configuration) || $.isPlainObject(_params.configuration)) ? JSON.stringify(_params.configuration) : _params.configuration,
         plugin: _params.plugin || 'core',
         convertToHumanReadable: _params.convertToHumanReadable || false
     };
@@ -165,7 +165,7 @@ jeedom.config.remove = function(_params) {
     paramsAJAX.url = 'core/ajax/config.ajax.php';
     paramsAJAX.data = {
         action: 'removeKey',
-        key: ($.isArray(_params.configuration) || $.isPlainObject(_params.configuration)) ? json_encode(_params.configuration) : _params.configuration,
+        key: ($.isArray(_params.configuration) || $.isPlainObject(_params.configuration)) ? JSON.stringify(_params.configuration) : _params.configuration,
         plugin: _params.plugin || 'core'
     };
     $.ajax(paramsAJAX);

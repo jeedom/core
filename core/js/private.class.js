@@ -275,7 +275,7 @@ jeedom.private.checkAndGetParams = function(_params, _paramsSpecifics, _paramsRe
   //Convert all objects in params to json
   var param = null;
   for (var attr in params) {
-    params[attr] = (typeof params[attr] == 'object') ? json_encode(params[attr]) : params[attr];
+    params[attr] = (typeof params[attr] == 'object') ? JSON.stringify(params[attr]) : params[attr];
   }
 
   var paramsAJAX = jeedom.private.getParamsAJAX(params);

@@ -68,7 +68,7 @@ jeedom.widgets.save = function(_params) {
   paramsAJAX.url = 'core/ajax/widgets.ajax.php';
   paramsAJAX.data = {
     action: 'save',
-    widgets: json_encode(_params.widgets),
+    widgets: JSON.stringify(_params.widgets),
   };
   $.ajax(paramsAJAX);
 }

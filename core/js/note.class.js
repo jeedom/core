@@ -68,7 +68,7 @@ jeedom.note.save = function(_params) {
     paramsAJAX.url = 'core/ajax/note.ajax.php';
     paramsAJAX.data = {
         action: 'save',
-        note: json_encode(_params.note),
+        note: JSON.stringify(_params.note),
     };
     $.ajax(paramsAJAX);
 }

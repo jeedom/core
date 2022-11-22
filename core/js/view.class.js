@@ -67,7 +67,7 @@ jeedom.view.toHtml = function(_params) {
   paramsAJAX.url = 'core/ajax/view.ajax.php';
   paramsAJAX.data = {
     action: "get",
-    id: ($.isArray(_params.id)) ? json_encode(_params.id) : _params.id,
+    id: ($.isArray(_params.id)) ? JSON.stringify(_params.id) : _params.id,
     version: _params.version,
     html: true,
   };
@@ -114,7 +114,7 @@ jeedom.view.handleViewAjax = function(_params) {
       result.html += '<div class="chartToDraw">';
       for (var j in viewZone.viewData) {
         viewData = viewZone.viewData[j];
-        configuration = json_encode(viewData.configuration);
+        configuration = JSON.stringify(viewData.configuration);
         option = configuration.replace(/"/g, "'");
         result.html += '<div class="viewZoneData hidden" data-cmdId="'+viewData.link_id+'" data-option="'+option+'" data-el="'+div_id+'" data-height="'+viewZone.configuration.height+'" data-dateRange="'+viewZone.configuration.dateRange+'"></div>';
       }
@@ -165,7 +165,7 @@ jeedom.view.save = function(_params) {
   paramsAJAX.data = {
     action: 'save',
     view_id: _params.id,
-    view: json_encode(_params.view),
+    view: JSON.stringify(_params.view),
   };
   $.ajax(paramsAJAX);
 }
@@ -203,7 +203,7 @@ jeedom.view.setComponentOrder = function(_params) {
   paramsAJAX.url = 'core/ajax/view.ajax.php';
   paramsAJAX.data = {
     action: 'setComponentOrder',
-    components: json_encode(_params.components),
+    components: JSON.stringify(_params.components),
   };
   $.ajax(paramsAJAX);
 }
@@ -222,7 +222,7 @@ jeedom.view.setOrder = function(_params) {
   paramsAJAX.url = 'core/ajax/view.ajax.php';
   paramsAJAX.data = {
     action: 'setOrder',
-    views: json_encode(_params.views)
+    views: JSON.stringify(_params.views)
   };
   $.ajax(paramsAJAX);
 }

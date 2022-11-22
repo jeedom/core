@@ -48,7 +48,7 @@ jeedom.listener.save = function(_params) {
   paramsAJAX.url = 'core/ajax/listener.ajax.php';
   paramsAJAX.data = {
     action: 'save',
-    listeners: json_encode(_params.listeners),
+    listeners: JSON.stringify(_params.listeners),
   };
   $.ajax(paramsAJAX);
 }

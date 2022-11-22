@@ -1006,7 +1006,7 @@ jeedom.massEditSave = function(_params) {
   paramsAJAX.data = {
     action: 'massEditSave',
     type: _params.type,
-    objects: json_encode(_params.objects)
+    objects: JSON.stringify(_params.objects)
   }
   $.ajax(paramsAJAX)
 }

@@ -56,7 +56,7 @@ jeedom.plan3d.save = function(_params) {
     paramsAJAX.url = 'core/ajax/plan3d.ajax.php';
     paramsAJAX.data = {
         action: 'save',
-        plan3ds: json_encode(_params.plan3ds),
+        plan3ds: JSON.stringify(_params.plan3ds),
     };
     $.ajax(paramsAJAX);
 }
@@ -133,7 +133,7 @@ jeedom.plan3d.saveHeader = function(_params) {
     paramsAJAX.url = 'core/ajax/plan3d.ajax.php';
     paramsAJAX.data = {
         action: 'saveplan3dHeader',
-        plan3dHeader: json_encode(_params.plan3dHeader)
+        plan3dHeader: JSON.stringify(_params.plan3dHeader)
     };
     $.ajax(paramsAJAX);
 }

@@ -42,7 +42,7 @@ jeedom.object.getEqLogic = function(_params) {
     object_id: _params.id,
     onlyEnable: _params.onlyEnable || 0,
     orderByName: _params.orderByName || 0,
-    onlyHasCmds: json_encode(_params.onlyHasCmds) || 0
+    onlyHasCmds: JSON.stringify(_params.onlyHasCmds) || 0
   };
   $.ajax(paramsAJAX);
 }
@@ -119,7 +119,7 @@ jeedom.object.toHtml = function(_params) {
   paramsAJAX.url = 'core/ajax/object.ajax.php';
   paramsAJAX.data = {
     action: 'toHtml',
-    id: ($.isArray(_params.id)) ? json_encode(_params.id) : _params.id,
+    id: ($.isArray(_params.id)) ? JSON.stringify(_params.id) : _params.id,
     version: _params.version || 'dashboard',
     category: _params.category || 'all',
     summary: _params.summary || '',
@@ -187,7 +187,7 @@ jeedom.object.save = function(_params) {
   paramsAJAX.url = 'core/ajax/object.ajax.php';
   paramsAJAX.data = {
     action: 'save',
-    object: json_encode(_params.object),
+    object: JSON.stringify(_params.object),
   };
   $.ajax(paramsAJAX);
 }
@@ -255,7 +255,7 @@ jeedom.object.setOrder = function(_params) {
   paramsAJAX.url = 'core/ajax/object.ajax.php';
   paramsAJAX.data = {
     action: 'setOrder',
-    objects: json_encode(_params.objects)
+    objects: JSON.stringify(_params.objects)
   };
   $.ajax(paramsAJAX);
 }
@@ -370,7 +370,7 @@ jeedom.object.summaryUpdate = function(_params) {
   paramsAJAX.url = 'core/ajax/object.ajax.php';
   paramsAJAX.data = {
     action: 'getSummaryHtml',
-    ids: json_encode(sends),
+    ids: JSON.stringify(sends),
   };
   $.ajax(paramsAJAX);
 }

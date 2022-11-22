@@ -63,7 +63,7 @@ jeedom.eqLogic.save = function(_params) {
   paramsAJAX.data = {
     action: 'save',
     type: _params.type,
-    eqLogic: json_encode(_params.eqLogics),
+    eqLogic: JSON.stringify(_params.eqLogics),
   };
   $.ajax(paramsAJAX);
 }
@@ -123,7 +123,7 @@ jeedom.eqLogic.simpleSave = function(_params) {
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
     action: 'simpleSave',
-    eqLogic: json_encode(_params.eqLogic),
+    eqLogic: JSON.stringify(_params.eqLogic),
   };
   $.ajax(paramsAJAX);
 }
@@ -453,7 +453,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
     action: 'toHtml',
-    ids: json_encode(sends),
+    ids: JSON.stringify(sends),
   };
   $.ajax(paramsAJAX);
 }
@@ -602,7 +602,7 @@ jeedom.eqLogic.setOrder = function(_params) {
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
     action: 'setOrder',
-    eqLogics: json_encode(_params.eqLogics)
+    eqLogics: JSON.stringify(_params.eqLogics)
   };
   $.ajax(paramsAJAX);
 }
@@ -621,7 +621,7 @@ jeedom.eqLogic.setGenericType = function(_params) {
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
     action: 'setGenericType',
-    eqLogics: json_encode(_params.eqLogics)
+    eqLogics: JSON.stringify(_params.eqLogics)
   };
   $.ajax(paramsAJAX);
 }
@@ -640,7 +640,7 @@ jeedom.eqLogic.removes = function(_params) {
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
     action: 'removes',
-    eqLogics: json_encode(_params.eqLogics)
+    eqLogics: JSON.stringify(_params.eqLogics)
   };
   $.ajax(paramsAJAX);
 }
@@ -659,7 +659,7 @@ jeedom.eqLogic.setIsVisibles = function(_params) {
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
     action: 'setIsVisibles',
-    eqLogics: json_encode(_params.eqLogics),
+    eqLogics: JSON.stringify(_params.eqLogics),
     isVisible: _params.isVisible
   };
   $.ajax(paramsAJAX);
@@ -679,7 +679,7 @@ jeedom.eqLogic.setIsEnables = function(_params) {
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
     action: 'setIsEnables',
-    eqLogics: json_encode(_params.eqLogics),
+    eqLogics: JSON.stringify(_params.eqLogics),
     isEnable: _params.isEnable
   };
   $.ajax(paramsAJAX);

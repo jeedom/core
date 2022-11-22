@@ -86,7 +86,7 @@ jeedom.interact.save = function(_params) {
   paramsAJAX.url = 'core/ajax/interact.ajax.php';
   paramsAJAX.data = {
     action: 'save',
-    interact: json_encode(_params.interact),
+    interact: JSON.stringify(_params.interact),
   };
   $.ajax(paramsAJAX);
 }

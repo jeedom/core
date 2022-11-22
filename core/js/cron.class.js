@@ -67,7 +67,7 @@ jeedom.cron.save = function(_params) {
     paramsAJAX.url = 'core/ajax/cron.ajax.php';
     paramsAJAX.data = {
         action: 'save',
-        crons: json_encode(_params.crons),
+        crons: JSON.stringify(_params.crons),
     };
     $.ajax(paramsAJAX);
 }

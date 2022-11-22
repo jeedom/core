@@ -68,7 +68,7 @@ jeedom.user.save = function(_params) {
   paramsAJAX.url = 'core/ajax/user.ajax.php';
   paramsAJAX.data = {
     action: 'save',
-    users: json_encode(_params.users)
+    users: JSON.stringify(_params.users)
   };
   $.ajax(paramsAJAX);
 }
@@ -87,7 +87,7 @@ jeedom.user.saveProfils = function(_params) {
   paramsAJAX.url = 'core/ajax/user.ajax.php';
   paramsAJAX.data = {
     action: 'saveProfils',
-    profils: json_encode(_params.profils)
+    profils: JSON.stringify(_params.profils)
   };
   $.ajax(paramsAJAX);
 }
@@ -106,7 +106,7 @@ jeedom.user.get = function(_params) {
   paramsAJAX.url = 'core/ajax/user.ajax.php';
   paramsAJAX.data = {
     action: 'get',
-    profils: json_encode(_params.profils),
+    profils: JSON.stringify(_params.profils),
     id: _params.id || -1
   };
   $.ajax(paramsAJAX);
