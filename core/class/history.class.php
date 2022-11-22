@@ -341,7 +341,7 @@ class history {
 				$function = 'SUM';
 			}
 			if ($goupingType[1] == 'hour') {
-				$sql_tmpl = 'SELECT `cmd_id`,`datetime` as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
+				$sql_tmpl = 'SELECT `cmd_id`,DATE_FORMAT(`datetime`,\'%Y-%m-%d %H:00:00\') as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
 			} else {
 				$sql_tmpl = 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
 			}
