@@ -4611,9 +4611,10 @@
         "Début de la mise à jour de :": "アップデートの開始：",
         "Action de pré-update...": "Action de pré-update",
         "Post-installation de": "インストール後",
+        "Vérification des droits sur les fichiers...": "Vérification des droits sur les fichiers",
+        "OK": "OK",
         "Suppression des fichiers inutiles...": "Suppression des fichiers inutiles",
         "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur",
-        "OK": "OK",
         "END UPDATE SUCCESS": "END UPDATE SUCCESS",
         "Erreur lors de la récuperation de la derniere version de Jeedom, url :": "Erreur lors de la récuperation de la derniere version de Jeedom, url :",
         "Le logical ID ne peut pas être vide": "Le logical ID ne peut pas être vide"

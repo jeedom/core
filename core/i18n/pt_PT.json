@@ -4611,9 +4611,10 @@
         "Début de la mise à jour de :": "Início da atualização de:",
         "Action de pré-update...": "Ação de pré-atualização",
         "Post-installation de": "Pós-Instalação de",
+        "Vérification des droits sur les fichiers...": "Verificando permissões de arquivo",
+        "OK": "OK",
         "Suppression des fichiers inutiles...": "Excluindo arquivos desnecessários",
         "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "Não foi possível instalar o plugin. O nome do plugin é diferente do ID ou o plugin não está formado corretamente. Entre em contato com o autor",
-        "OK": "OK",
         "END UPDATE SUCCESS": "SUCESSO DA ATUALIZAÇÃO FINAL",
         "Erreur lors de la récuperation de la derniere version de Jeedom, url :": "Erro ao recuperar a versão mais recente do Jeedom, url:",
         "Le logical ID ne peut pas être vide": "O ID lógico não pode estar vazio"
