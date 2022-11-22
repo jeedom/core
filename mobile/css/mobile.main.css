@@ -1758,11 +1758,11 @@
   }
 
   .objectPreview .topPreview .objectSummaryParent[data-summary^="temp"] {
-    right: 55px;
+    right: 2px;
     font-size: 18px !important;
   }
   .objectPreview .topPreview .objectSummaryParent[data-summary="humidity"] {
-    right: 2px;
+    right: 55px;
     font-size: 18px !important;
   }
   .objectPreview .topPreview .objectSummaryParent[data-summary^="temp"] i,

@@ -1254,12 +1254,12 @@ div.div_viewZone legend.lg_viewZone {
   }
   .objectPreview .topPreview .objectSummaryParent[data-summary^="temp"] {
     top: 10px;
-    right: 58px;
+    right: 8px;
     font-size: 20px !important;
   }
   .objectPreview .topPreview .objectSummaryParent[data-summary="humidity"] {
     top: 10px;
-    right: 6px;
+    right: 60px;
     font-size: 20px !important;
   }
   .objectPreview .topPreview .objectSummaryParent[data-summary^="temp"] i,

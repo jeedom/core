@@ -321,9 +321,9 @@ jeeP.$modal.dialog({
   width: 500,
   height: 200,
   position: {
-    my: 'left top',
-    at: 'left+19 top+96',
-    of: window
+    my: 'center top',
+    at: 'center center-100',
+    of: $('#div_pageContainer')
   },
   open: function() {
     $('.ui-widget-overlay.ui-front').css('display', 'none')
