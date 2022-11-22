@@ -333,9 +333,9 @@ class history {
 		} else {
 			$goupingType = explode('::', $_groupingType);
 			$function = 'AVG';
-			if ($goupingType[0] == 'high') {
+			if ($goupingType[0] == 'high' || $goupingType[0] == 'max') {
 				$function = 'MAX';
-			} else	if ($goupingType[0] == 'low') {
+			} else	if ($goupingType[0] == 'low' || $goupingType[0] == 'min') {
 				$function = 'MIN';
 			} else	if ($goupingType[0] == 'sum') {
 				$function = 'SUM';
