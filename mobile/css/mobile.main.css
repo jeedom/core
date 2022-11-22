@@ -1022,6 +1022,11 @@
     display: none !important;
   }
 
+  /*panel */
+  body[data-page="panel"] #page legend {
+    background-color: rgba(var(--bg-color), var(--opacity)) !important;
+    margin: 5px 0 !important;
+  }
 
 /* ________________DIVERS */
   div.ui-header.ui-bar-inherit > a[data-rel=back]{

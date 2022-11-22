@@ -775,6 +775,12 @@ Desktop
     padding-right: 10px;
   }
 
+  /* Legend panel */
+  body[data-page="panel"] #div_pageContainer legend {
+    background-color: rgba(var(--bg-color), var(--opacity)) !important;
+    margin: 5px 0 !important;
+  }
+
   /* legend on equipements pages */
   :not(.div_object) > legend:not(.no-bordered) {
     text-align: left !important;
