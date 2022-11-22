@@ -568,27 +568,27 @@ sendVarToJS([
   })
 
   $('.sel_layout').on('change', function() {
-    $('.widget_layout').hide()
-    $('.widget_layout.' + $(this).value()).show()
+    document.querySelectorAll('.widget_layout').unseen()
+    document.querySelectorAll('.widget_layout.' + this.value).seen()
   })
 
   $('.advanceWidgetParameterDefault').off('change').on('change', function() {
-    if ($(this).value() == 1) {
-      $(this).closest('td').find('.advanceWidgetParameter').hide()
+    if (this.jeeValue() == 1) {
+      this.closest('td').querySelectorAll('.advanceWidgetParameter').unseen()
     } else {
-      $(this).closest('td').find('.advanceWidgetParameter').show()
+      this.closest('td').querySelectorAll('.advanceWidgetParameter').seen()
     }
   })
 
   $('.advanceWidgetParameterColorTransparent').off('change').on('change', function() {
-    if ($(this).value() == 1) {
-      $(this).closest('td').find('.advanceWidgetParameterColor').hide()
+    if (this.jeeValue() == 1) {
+      this.closest('td').querySelectorAll('.advanceWidgetParameterColor').unseen()
     } else {
-      $(this).closest('td').find('.advanceWidgetParameterColor').show()
+      this.closest('td').querySelectorAll('.advanceWidgetParameterColor').seen()
     }
   })
 
-  $('#div_displayEqLogicConfigure').setValues(jeephp2js.md_eqLogicConfigure_Info, '.eqLogicAttr')
+  document.getElementById('div_displayEqLogicConfigure').setJeeValues(jeephp2js.md_eqLogicConfigure_Info, '.eqLogicAttr')
 
   $('.bt_advanceCmdConfigurationOnEqLogicConfiguration').off('click').on('click', function() {
     $('#md_modal2').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open')
@@ -636,7 +636,7 @@ sendVarToJS([
   })
 
   $('#bt_eqLogicConfigureSave').on('click', function(event) {
-    var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0]
+    var eqLogic = document.getElementById('div_displayEqLogicConfigure').getJeeValues('.eqLogicAttr')[0]
     if (!isset(eqLogic.display)) {
       eqLogic.display = {}
     }
@@ -644,7 +644,7 @@ sendVarToJS([
       eqLogic.display.parameters = {}
     }
     $('#table_widgetParameters tbody tr').each(function() {
-      eqLogic.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value()
+      eqLogic.display.parameters[this.querySelector('.key').jeeValue()] = this.querySelector('.value').jeeValue()
     })
     jeedom.eqLogic.save({
       eqLogics: [eqLogic],
@@ -755,7 +755,7 @@ sendVarToJS([
               message: '{{Le remplacement des piles a été enregistré}}',
               level: 'success'
             })
-            $('.eqLogicAttr[data-l1key=configuration][data-l2key=batterytime]').value(yyyy + '-' + mm + '-' + dd + ' ' + hh + ':' + MM + ':' + ss)
+            document.querySelectorAll('.eqLogicAttr[data-l1key="configuration"][data-l2key="batterytime"]').jeeValue(yyyy + '-' + mm + '-' + dd + ' ' + hh + ':' + MM + ':' + ss)
           }
         })
       }

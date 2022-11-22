@@ -928,7 +928,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
   }
 
   $('.cmdAttr[data-l2key="timeline::enable"]').off('change').on('change', function() {
-    if ($(this).value() == 1) {
+    if (this.jeeValue() == 1) {
       $('.cmdAttr[data-l2key="timeline::folder"]').show()
     } else {
       $('.cmdAttr[data-l2key="timeline::folder"]').hide()
@@ -936,7 +936,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
   })
 
   $('.cmdAttr[data-l2key="influx::enable"]').off('change').on('change', function() {
-    if ($(this).value() == 1) {
+    if (this.jeeValue() == 1) {
       $('.selInflux').show()
     } else {
       $('.selInflux').hide()
@@ -994,9 +994,9 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
   })
 
   if (jeephp2js.md_cmdConfigure_cmdInfo.configuration && (!jeephp2js.md_cmdConfigure_cmdInfo.configuration.repeatEventManagement || jeephp2js.md_cmdConfigure_cmdInfo.configuration.repeatEventManagement == 'auto')) {
-    jeephp2js.md_cmdConfigure_cmdInfo.configuration.repeatEventManagement = 'never';
+    jeephp2js.md_cmdConfigure_cmdInfo.configuration.repeatEventManagement = 'never'
   }
-  $('#div_displayCmdConfigure').setValues(jeephp2js.md_cmdConfigure_cmdInfo, '.cmdAttr')
+  document.getElementById('div_displayCmdConfigure').setJeeValues(jeephp2js.md_cmdConfigure_cmdInfo, '.cmdAttr')
 
   $('#bt_cmdConfigureRawObject').off('click').on('click', function() {
     $('#md_modal3').dialog({
@@ -1198,7 +1198,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
   jeedomUtils.taAutosize()
 
   $('#bt_cmdConfigureSave').on('click', function(event) {
-    var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0]
+    var cmd = document.getElementById('div_displayCmdConfigure').getJeeValues('.cmdAttr')[0]
     if (!isset(cmd.display)) {
       cmd.display = {}
     }
@@ -1206,16 +1206,16 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
       cmd.display.parameters = {}
     }
     $('#table_widgetParametersCmd tbody tr').each(function() {
-      cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value()
+      cmd.display.parameters[this.querySelector('.key').jeeValue()] = this.querySelector('.value').jeeValue()
     })
-    var checkCmdParameter = $('#div_jeedomCheckCmdCmdOption').getValues('.expressionAttr')[0]
+    try {var checkCmdParameter = document.getElementById('div_jeedomCheckCmdCmdOption').getJeeValues('.expressionAttr')[0]} catch(e) {}
     if (isset(checkCmdParameter) && isset(checkCmdParameter.options)) {
       cmd.configuration.jeedomCheckCmdCmdActionOption = checkCmdParameter.options
     }
     cmd.configuration.actionCheckCmd = {};
-    cmd.configuration.actionCheckCmd = $('#div_actionCheckCmd .actionCheckCmd').getValues('.expressionAttr')
-    cmd.configuration.jeedomPreExecCmd = $('#div_actionPreExecCmd .actionPreExecCmd').getValues('.expressionAttr')
-    cmd.configuration.jeedomPostExecCmd = $('#div_actionPostExecCmd .actionPostExecCmd').getValues('.expressionAttr')
+    cmd.configuration.actionCheckCmd = document.querySelectorAll('#div_actionCheckCmd .actionCheckCmd').getJeeValues('.expressionAttr')
+    cmd.configuration.jeedomPreExecCmd = document.querySelectorAll('#div_actionPreExecCmd .actionPreExecCmd').getJeeValues('.expressionAttr')
+    cmd.configuration.jeedomPostExecCmd = document.querySelectorAll('#div_actionPostExecCmd .actionPostExecCmd').getJeeValues('.expressionAttr')
     jeedom.cmd.save({
       cmd: cmd,
       error: function(error) {
@@ -1264,7 +1264,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 
   $('#cmd_configuration').on({
     'click': function(event) {
-      var type = $(this).attr('data-type');
+      var type =this.getAttribute('data-type')
       var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]')
       jeedom.cmd.getSelectModal({
         cmd: {
@@ -1272,7 +1272,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         }
       }, function(result) {
         el.value(result.human)
-        jeedom.cmd.displayActionOption(el.value(), '', function(html) {
+        jeedom.cmd.displayActionOption(result.human, '', function(html) {
           el.closest('.' + type).find('.actionOptions').html(html)
           jeedomUtils.taAutosize()
         })
@@ -1282,11 +1282,11 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 
   $('#cmd_configuration').on({
     'click': function(event) {
-      var type = $(this).attr('data-type')
+      var type =this.getAttribute('data-type')
       var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]')
       jeedom.getSelectActionModal({}, function(result) {
         el.value(result.human)
-        jeedom.cmd.displayActionOption(el.value(), '', function(html) {
+        jeedom.cmd.displayActionOption(result.human, '', function(html) {
           el.closest('.' + type).find('.actionOptions').html(html)
           jeedomUtils.taAutosize()
         })
@@ -1296,10 +1296,10 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 
   $('#cmd_configuration').on({
     'focusout': function(event) {
-      var type = $(this).attr('data-type')
-      var expression = $(this).closest('.' + type).getValues('.expressionAttr')
+      var type = this.getAttribute('data-type')
+      var expression = this.closest('.' + type).getJeeValues('.expressionAttr')
       var el = $(this)
-      jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function(html) {
+      jeedom.cmd.displayActionOption(this.jeeValue(), init(expression[0].options), function(html) {
         el.closest('.' + type).find('.actionOptions').html(html)
         jeedomUtils.taAutosize()
       })
@@ -1335,8 +1335,10 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     div += '<div class="col-sm-7 actionOptions">'
     div += jeedom.cmd.displayActionOption(init(_action.cmd, ''), _action.options)
     div += '</div>'
-    $('#div_' + _type).append(div)
-    $('#div_' + _type + ' .' + _type + '').last().setValues(_action, '.expressionAttr')
+    let newDiv = document.createElement('div')
+    newDiv.innerHTML = div
+    newDiv.setJeeValues(_action, '.expressionAttr')
+    document.querySelector('#div_' + _type).appendChild(newDiv)
 
     jeedom.scenario.setAutoComplete({
       parent: $('#div_' + _type),
@@ -1345,7 +1347,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
   }
 
   $('#bt_cmdConfigureSaveOn').on('click', function() {
-    var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0]
+    var cmd = document.getElementById('div_displayCmdConfigure').getJeeValues('.cmdAttr')[0]
     if (!isset(cmd.display)) {
       cmd.display = {}
     }
@@ -1353,7 +1355,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
       cmd.display.parameters = {}
     }
     $('#table_widgetParametersCmd tbody tr').each(function() {
-      cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value()
+      cmd.display.parameters[this.querySelector('.key').jeeValue()] = this.querySelector('.value').jeeValue()
     })
     cmd = {
       display: cmd.display,
@@ -1368,11 +1370,11 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         if ($(this).attr('data-state') == 0) {
           state = true
           $(this).attr('data-state', 1).find('i').removeClass('fa-check-circle-o').addClass('fa-circle-o')
-          $('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd:visible').value(1)
+          document.querySelectorAll('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd:visible').jeeValue(1)
         } else {
           state = false
           $(this).attr('data-state', 0).find('i').removeClass('fa-circle-o').addClass('fa-check-circle-o')
-          $('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd:visible').value(0)
+          document.querySelectorAll('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd:visible').jeeValue(0)
         }
       });
 

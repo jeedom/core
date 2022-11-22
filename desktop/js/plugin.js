@@ -31,6 +31,7 @@ if (!jeeFrontEnd.plugin) {
       $.hideAlert()
       if ($('#md_modal').is(':visible')) {
         var $container = $('#md_modal #div_confPlugin')
+        var dom_container = document.querySelector('#md_modal #div_confPlugin')
         $('#md_modal #bt_returnToThumbnailDisplay').hide()
         $('#md_modal #div_resumePluginList').hide()
         $('#md_modal .li_plugin').removeClass('active')
@@ -38,6 +39,7 @@ if (!jeeFrontEnd.plugin) {
         $('#md_modal #div_confPlugin').show()
       } else {
         var $container = $('#div_confPlugin')
+        var dom_container = document.getElementById('div_confPlugin')
         $('#bt_returnToThumbnailDisplay').show()
         $('#div_resumePluginList').hide()
         $('.li_plugin').removeClass('active')
@@ -162,7 +164,6 @@ if (!jeeFrontEnd.plugin) {
           }
         }
           $spanRightButton.append('<a class="btn btn-danger btn-sm removePlugin roundedRight" data-market_logicalId="' + data.id + '"><i class="fas fa-trash"></i> {{Supprimer}}</a>');
-
 
           $container.find('#div_configPanel').hide()
 
@@ -294,6 +295,7 @@ if (!jeeFrontEnd.plugin) {
           $container.find('#div_plugin_log').append(log_conf)
 
           var $divPluginConfiguration = $container.find('#div_plugin_configuration')
+          var dom_divPluginConfiguration = dom_container.querySelector('#div_plugin_configuration')
           $divPluginConfiguration.empty()
           if (data.checkVersion != -1) {
             if (data.configurationPath != '' && data.activate == 1) {
@@ -305,7 +307,7 @@ if (!jeeFrontEnd.plugin) {
                   $divPluginConfiguration.closest('.panel').show()
                 }
                 jeedom.config.load({
-                  configuration: $divPluginConfiguration.getValues('.configKey')[0],
+                  configuration: dom_divPluginConfiguration.getJeeValues('.configKey')[0],
                   plugin: $container.find('#span_plugin_id').text(),
                   error: function(error) {
                     $.fn.showAlert({
@@ -314,18 +316,18 @@ if (!jeeFrontEnd.plugin) {
                     })
                   },
                   success: function(data) {
-                    $divPluginConfiguration.setValues(data, '.configKey')
-                    $divPluginConfiguration.parent().show()
+                    dom_divPluginConfiguration.setJeeValues(data, '.configKey')
+                    dom_divPluginConfiguration.parentNode.seen()
                     jeeFrontEnd.modifyWithoutSave = false
                   }
                 })
               })
             } else {
-              $divPluginConfiguration.closest('.panel').hide()
+              dom_divPluginConfiguration.closest('.panel').unseen()
             }
             jeedom.config.load({
-              configuration: $container.find('#div_plugin_panel').getValues('.configKey')[0],
-              plugin: $container.find('#span_plugin_id').text(),
+              configuration: dom_container.querySelector('#div_plugin_panel').getJeeValues('.configKey')[0],
+              plugin: dom_container.querySelector('#span_plugin_id').innerHTML,
               error: function(error) {
                 $.fn.showAlert({
                   message: error.message,
@@ -333,13 +335,13 @@ if (!jeeFrontEnd.plugin) {
                 })
               },
               success: function(data) {
-                $container.find('#div_plugin_panel').setValues(data, '.configKey')
+                dom_container.querySelector('#div_plugin_panel').setJeeValues(data, '.configKey')
                 jeeFrontEnd.modifyWithoutSave = false
               }
             })
             jeedom.config.load({
-              configuration: $container.find('#div_plugin_functionality').getValues('.configKey')[0],
-              plugin: $container.find('#span_plugin_id').text(),
+              configuration: dom_container.querySelector('#div_plugin_functionality').getJeeValues('.configKey')[0],
+              plugin: dom_container.querySelector('#span_plugin_id').innerHTML,
               error: function(error) {
                 $.fn.showAlert({
                   message: error.message,
@@ -347,12 +349,12 @@ if (!jeeFrontEnd.plugin) {
                 })
               },
               success: function(data) {
-                $container.find('#div_plugin_functionality').setValues(data, '.configKey')
+                dom_container.querySelector('#div_plugin_functionality').setJeeValues(data, '.configKey')
                 jeeFrontEnd.modifyWithoutSave = false
               }
             })
             jeedom.config.load({
-              configuration: $container.find('#div_plugin_log').getValues('.configKey')[0],
+              configuration: dom_container.querySelector('#div_plugin_log').getJeeValues('.configKey')[0],
               error: function(error) {
                 $.fn.showAlert({
                   message: error.message,
@@ -360,14 +362,14 @@ if (!jeeFrontEnd.plugin) {
                 })
               },
               success: function(data) {
-                $container.find('#div_plugin_log').setValues(data, '.configKey')
+                dom_container.querySelector('#div_plugin_log').setJeeValues(data, '.configKey')
                 jeeFrontEnd.modifyWithoutSave = false
               }
             })
           } else {
-            $container.find('#div_plugin_configuration').closest('.alert').hide()
+            dom_container.querySelector('#div_plugin_configuration').closest('.alert').unseen()
           }
-          $container.find('#div_confPlugin').show()
+          try {dom_container.querySelector('#div_confPlugin').seen()} catch(e) {}
           jeeFrontEnd.modifyWithoutSave = false
           if (!$('#md_modal').is(':visible')) {
             jeedomUtils.addOrUpdateUrl('id', $container.find('#span_plugin_id').text(), data.name + ' - ' + JEEDOM_PRODUCT_NAME)
@@ -380,8 +382,8 @@ if (!jeeFrontEnd.plugin) {
     },
     savePluginConfig: function(_param) {
       jeedom.config.save({
-        configuration: $('#div_plugin_configuration').getValues('.configKey')[0],
-        plugin: $('#span_plugin_id').text(),
+        configuration: document.getElementById('div_plugin_configuration').getJeeValues('.configKey')[0],
+        plugin: document.getElementById('span_plugin_id').innerHTML,
         error: function(error) {
           $.fn.showAlert({
             message: error.message,
@@ -397,7 +399,7 @@ if (!jeeFrontEnd.plugin) {
             level: 'success'
           })
           jeeFrontEnd.modifyWithoutSave = false;
-          var postSave = $('#span_plugin_id').text() + '_postSaveConfiguration'
+          var postSave = document.getElementById('span_plugin_id').innerHTML + '_postSaveConfiguration'
           if (typeof window[postSave] == 'function') {
             window[postSave]()
           }
@@ -405,7 +407,7 @@ if (!jeeFrontEnd.plugin) {
             _param.success(0)
           }
           if ($('#div_plugin_configuration .saveParam[data-l1key=relaunchDeamon]').html() != undefined) {
-            _param.relaunchDeamon = $('#div_plugin_configuration .saveParam[data-l1key=relaunchDeamon]').value()
+            _param.relaunchDeamon = document.querySelector('#div_plugin_configuration .saveParam[data-l1key=relaunchDeamon]').jeeValue()
           }
         }
       })
@@ -624,7 +626,7 @@ $('#div_resumePluginList').off('change', '.configKey').on('change', '.configKey:
 
 $('#bt_savePluginPanelConfig').off('click').on('click', function() {
   jeedom.config.save({
-    configuration: $('#div_plugin_panel').getValues('.configKey')[0],
+    configuration: document.getElementById('div_plugin_panel').getJeeValues('.configKey')[0],
     plugin: $('#span_plugin_id').text(),
     error: function(error) {
       $.fn.showAlert({
@@ -644,7 +646,7 @@ $('#bt_savePluginPanelConfig').off('click').on('click', function() {
 
 $('#bt_savePluginFunctionalityConfig').off('click').on('click', function() {
   jeedom.config.save({
-    configuration: $('#div_plugin_functionality').getValues('.configKey')[0],
+    configuration: document.getElementById('div_plugin_functionality').getJeeValues('.configKey')[0],
     plugin: $('#span_plugin_id').text(),
     error: function(error) {
       $.fn.showAlert({
@@ -664,7 +666,7 @@ $('#bt_savePluginFunctionalityConfig').off('click').on('click', function() {
 
 $('#bt_savePluginLogConfig').off('click').on('click', function() {
   jeedom.config.save({
-    configuration: $('#div_plugin_log').getValues('.configKey')[0],
+    configuration: document.getElementById('div_plugin_log').getJeeValues('.configKey')[0],
     error: function(error) {
       $.fn.showAlert({
         message: error.message,

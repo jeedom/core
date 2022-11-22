@@ -153,6 +153,7 @@ Element.prototype.remove = function() {
 
 //DOM appended element with script tag (template widget, scenario etc) aren't executed
 Element.prototype.html = function(_html) {
+  if (!isset(_html)) return this.innerHTML
   var newHtml = _html
   this.empty()
 
