@@ -112,8 +112,8 @@ $repos = update::listRepo();
 
 <script>
 $('.updateAttr[data-l1key=source]').on('change', function() {
-  $('.repoSource').hide()
-  $('.repoSource.repo_'+$(this).value()).show()
+  document.querySelectorAll('.repoSource').unseen()
+  document.querySelector('.repoSource.repo_' + this.value).seen()
 })
 
 $('#bt_uploadPlugin').fileupload({
@@ -124,14 +124,14 @@ $('#bt_uploadPlugin').fileupload({
       $('#div_repoAddAlert').showAlert({message: data.result.result, level: 'danger'})
       return
     }
-    $('.updateAttr[data-l1key=configuration][data-l2key='+$('#bt_uploadPlugin').attr('data-key')+']').value(data.result.result)
+    document.querySelector('.updateAttr[data-l1key="configuration"][data-l2key="' + document.getElementById('bt_uploadPlugin').getAttribute('data-key') + '"]').jeeValue(data.result.result)
   }
 })
 
 
 $('#bt_repoAddSaveUpdate').on('click', function() {
-  var source = $('.updateAttr[data-l1key=source]').value()
-  var update =  $('.repoSource.repo_'+source).getValues('.updateAttr')[0]
+  var source = document.querySelector('.updateAttr[data-l1key="source"]').jeeValue()
+  var update = document.querySelectorAll('.repoSource.repo_' + source).getJeeValue()('.updateAttr')[0]
   update.source = source
   jeedom.update.save({
     update : update,

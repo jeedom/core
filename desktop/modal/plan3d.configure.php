@@ -287,13 +287,13 @@ sendVarToJS('jeephp2js.md_plan3dConfigure_Id', $plan3d->getId());
     <script>
     $('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget::door::rotate"]').on('change', function() {
       $('.specificity.specificity_door .rotate').attr('disabled',false);
-      if($(this).value() != 1){
+      if (this.jeeValue() != 1) {
         $('.specificity.specificity_door .rotate').attr('disabled','disabled');
       }
     });
     $('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget::door::translate"]').on('change', function() {
       $('.specificity.specificity_door .translate').attr('disabled',false);
-      if($(this).value() != 1){
+      if (this.jeeValue() != 1) {
         $('.specificity.specificity_door .translate').attr('disabled','disabled');
       }
     });
@@ -344,7 +344,7 @@ sendVarToJS('jeephp2js.md_plan3dConfigure_Id', $plan3d->getId());
       div += '</div>';
       div += '</div>';
       $('#div_conditionColor').append(div);
-      $('#div_conditionColor .conditionalColor').last().setValues(_conditionalColor, '.conditionalColorAttr');
+      document.querySelectorAll('#div_conditionColor .conditionalColor').last().setJeeValues(_conditionalColor, '.conditionalColorAttr');
     }
 
     $("#div_conditionColor").sortable({axis: "y", cursor: "move", items: ".conditionalColor", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
@@ -392,7 +392,7 @@ sendVarToJS('jeephp2js.md_plan3dConfigure_Id', $plan3d->getId());
       div += '</div>';
       div += '</div>';
       $('#div_conditionShow').append(div);
-      $('#div_conditionShow .conditionalShow').last().setValues(_conditionalShow, '.conditionalShowAttr');
+      document.querySelectorAll('#div_conditionShow .conditionalShow').last().setJeeValues(_conditionalShow, '.conditionalShowAttr');
     }
 
     $("#div_conditionColor").sortable({axis: "y", cursor: "move", items: ".conditionalColor", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
@@ -402,49 +402,49 @@ sendVarToJS('jeephp2js.md_plan3dConfigure_Id', $plan3d->getId());
 
 <script>
 $('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget"]').on('change', function() {
-  $('.specificity').hide()
-  $('.specificity.specificity_'+$(this).value()).show()
+  document.querySelectorAll('.specificity').unseen()
+  document.querySelectorAll('.specificity.specificity_' + this.jeeValue()).seen()
 })
 
 $('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget"]').trigger('change')
 
 $('#fd_plan3dConfigure').off('click','#bt_selEqLogic').on('click','#bt_selEqLogic',  function(event) {
   jeedom.eqLogic.getSelectModal({}, function(result) {
-    $('.plan3dAttr[data-l1key=link_id]').value(result.human)
+    document.querySelector('.plan3dAttr[data-l1key="link_id"]').jeeValue(result.human)
   })
 })
 
 $('#fd_plan3dConfigure').off('click','#bt_selCmd').on('click','#bt_selCmd',  function(event) {
   jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function(result) {
-    $('.plan3dAttr[data-l1key=configuration][data-l2key="cmd::state"]').value(result.human)
+    document.querySelector('.plan3dAttr[data-l1key="configuration"][data-l2key="cmd::state"]').jeeValue(result.human)
   })
 })
 
 $('#fd_plan3dConfigure').off('click','#bt_selWindow').on('click','#bt_selWindow',  function(event) {
   jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function(result) {
-    $('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget::door::window"]').value(result.human)
+    document.querySelector('.plan3dAttr[data-l1key="configuration"][data-l2key="3d::widget::door::window"]').jeeValue(result.human)
   })
 })
 
 $('#fd_plan3dConfigure').off('click','#bt_selShutter').on('click','#bt_selShutter',  function(event) {
   jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function(result) {
-    $('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget::door::shutter"]').value(result.human)
+    document.querySelector('.plan3dAttr[data-l1key="configuration"][data-l2key="3d::widget::door::shutter"]').jeeValue(result.human)
   })
 })
 
 $('#fd_plan3dConfigure').off('click','#bt_addTextCommand').on('click','#bt_addTextCommand',  function(event) {
   jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function(result) {
-    $('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget::text::text"]').atCaret('insert',result.human)
+    document.querySelector('.plan3dAttr[data-l1key="configuration"][data-l2key="3d::widget::text::text"]').jeeValue(result.human)
   })
 })
 
 $('#bt_saveConfigurePlan3d').on('click', function() {
-  var plan3ds = $('#fd_plan3dConfigure').getValues('.plan3dAttr')
+  var plan3ds = document.getElementById('fd_plan3dConfigure').getJeeValues('.plan3dAttr')
   if (!isset(plan3ds[0].configuration)) {
     plan3ds[0].configuration = {}
   }
-  plan3ds[0].configuration['3d::widget::conditionalColor::condition'] = $('#div_conditionColor .conditionalColor').getValues('.conditionalColorAttr')
-  plan3ds[0].configuration['3d::widget::conditionalShow::condition'] = $('#div_conditionShow .conditionalShow').getValues('.conditionalShowAttr')
+  plan3ds[0].configuration['3d::widget::conditionalColor::condition'] = document.querySelectorAll('#div_conditionColor .conditionalColor').getJeeValues('.conditionalColorAttr')
+  plan3ds[0].configuration['3d::widget::conditionalShow::condition'] = document.querySelectorAll('#div_conditionShow .conditionalShow').getJeeValues('.conditionalShowAttr')
   jeedom.plan3d.save({
     plan3ds: plan3ds,
     error: function(error) {
@@ -460,7 +460,7 @@ $('#bt_saveConfigurePlan3d').on('click', function() {
 })
 
 $('#bt_removeConfigurePlan3d').on('click', function() {
-  var plan3ds = $('#fd_plan3dConfigure').getValues('.plan3dAttr')
+  var plan3ds = document.getElementById('fd_plan3dConfigure').getJeeValues('.plan3dAttr')
   if (!isset(plan3ds[0].configuration)) {
     plan3ds[0].configuration = {}
   }
@@ -495,7 +495,7 @@ if (isset(jeephp2js.md_plan3dConfigure_Id) && jeephp2js.md_plan3dConfigure_Id !=
         $('#div_alertPlan3dConfigure').showAlert({message: data.result, level: 'danger'})
         return
       }
-      $('#fd_plan3dConfigure').setValues(data.result, '.plan3dAttr')
+      document.getElementById('fd_plan3dConfigure').setJeeValues(data.result, '.plan3dAttr')
       if (isset(data.result.configuration) && isset(data.result.configuration['3d::widget::conditionalColor::condition'])) {
         for (var i in data.result.configuration['3d::widget::conditionalColor::condition']) {
           addConditionalColor(data.result.configuration['3d::widget::conditionalColor::condition'][i])

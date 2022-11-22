@@ -26,7 +26,7 @@ if (!jeeFrontEnd.database) {
     dbExecuteCommand: function(_command, _addToList) {
       if (!isset(_addToList)) _addToList = false
 
-      $.clearDivContent('div_commandResult')
+      document.emptyById('div_commandResult')
       jeedom.db({
         command: _command,
         error: function(error) {

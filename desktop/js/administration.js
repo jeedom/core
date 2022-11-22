@@ -437,7 +437,7 @@ $('#in_searchConfig').keyup(function() {
     $(this).replaceWith(el)
   })
 
-  $.clearDivContent('searchResult')
+  document.emptyById('searchResult')
   if (search == '') {
     $('.nav-tabs.nav-primary, .tab-content').show()
     jeedomUtils.dateTimePickerInit()

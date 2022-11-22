@@ -148,7 +148,7 @@ if (!jeeFrontEnd.history) {
     clearGraph: function() {
       if (!isset(jeedom.history.chart[this.__el__])) return
       jeedom.history.chart[this.__el__].comparing = false
-      $.clearDivContent(this.__el__)
+      document.emptyById(this.__el__)
       delete jeedom.history.chart[this.__el__]
       $('#bt_compare').removeClass('btn-danger').addClass('btn-success').addClass('disabled')
       $('#ul_history, #historyCalculs').find('.li_history.active').removeClass('active')

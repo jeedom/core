@@ -78,7 +78,7 @@ $('#bt_scenarioLogEmpty').on('click', function() {
     },
     success: function() {
       $('#div_alertScenarioLog').showAlert({message: '{{Log vidé avec succès}}', level: 'success'})
-      $.clearDivContent('pre_logScenarioDisplay')
+      document.emptyById('pre_logScenarioDisplay')
     }
   })
 })

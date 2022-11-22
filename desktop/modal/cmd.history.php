@@ -62,7 +62,7 @@ if (!jeeFrontEnd.md_history) {
       this.$pageContainer = $('#md_history')
       this.resizeDone = null
       delete jeedom.history.chart[this.__el__]
-      $.clearDivContent(this.__el__)
+      document.emptyById(this.__el__)
 
       this.md_modal = $('#md_history').parents('.ui-dialog-content.ui-widget-content')
       this.modal = this.md_modal.parents('.ui-dialog.ui-resizable')

@@ -39,6 +39,7 @@ Element.prototype.triggerEvent = function(_eventName) {
 Element.prototype.triggerEvent = function(_eventName) {
   var event = new Event(_eventName, { bubbles: true })
   this.dispatchEvent(event)
+  return this
 }
 
 
@@ -50,60 +51,90 @@ Element.prototype.isHidden = function() {
 }
 Element.prototype.seen = function() {
   this.style.display = ''
+  return this
 }
 NodeList.prototype.seen = function() {
   for (var idx = 0; idx < this.length; idx++) {
     this[idx].seen()
   }
+  return this
 }
 Element.prototype.unseen = function() {
   this.style.display = 'none'
+  return this
 }
 NodeList.prototype.unseen = function() {
   for (var idx = 0; idx < this.length; idx++) {
     this[idx].unseen()
   }
+  return this
 }
 
-/*
-Better use container.replaceChildren(...arrayOfNewChildren) or container.replaceChildren()
-*/
 Element.prototype.empty = function() {
   while (this.firstChild) {
     this.removeChild(this.lastChild)
   }
+  return this
 }
 NodeList.prototype.empty = function() {
   for (var idx = 0; idx < this.length; idx++) {
     this[idx].empty()
   }
+  return this
+}
+Document.prototype.emptyById = function(_id) {
+  if (_id == '') return
+  if (!(_id instanceof Element)) {
+    var _id = document.getElementById(_id)
+  }
+  if (_id) {
+    return _id.empty()
+  }
+  return null
 }
 
 //CSS Class manipulation
-Element.prototype.addClass = function(_className) {
-  this.classList.add(_className)
+Element.prototype.addClass = function(_className /*, _className... */) {
+  if (_className == '') return this
+  var args = Array.prototype.slice.call(arguments)
+  this.classList.add(...args)
+  return this
 }
-NodeList.prototype.addClass = function() {
+NodeList.prototype.addClass = function(_className /*, _className... */) {
+  if (_className == '') return this
+  var args = Array.prototype.slice.call(arguments)
   for (var idx = 0; idx < this.length; idx++) {
-    this[idx].addClass()
+    this[idx].addClass(...args)
   }
+  return this
 }
-Element.prototype.removeClass = function(_className) {
-  this.classList.remove(_className)
+
+Element.prototype.removeClass = function(_className /*, _className... */) {
+  if (_className == '') return this
+  var args = Array.prototype.slice.call(arguments)
+  this.classList.remove(...args)
+  return this
 }
-NodeList.prototype.removeClass = function() {
+NodeList.prototype.removeClass = function(_className /*, _className... */) {
+  if (_className == '') return this
+  var args = Array.prototype.slice.call(arguments)
   for (var idx = 0; idx < this.length; idx++) {
-    this[idx].removeClass()
+    this[idx].removeClass(...args)
   }
+  return this
 }
+
 Element.prototype.toggleClass = function(_className) {
   this.classList.toggle(_className)
+  return this
 }
 NodeList.prototype.toggleClass = function() {
   for (var idx = 0; idx < this.length; idx++) {
     this[idx].toggleClass()
   }
+  return this
 }
+
 Element.prototype.hasClass = function(_className) {
   return this.classList.contains(_className)
 }
@@ -116,7 +147,9 @@ NodeList.prototype.last = function() {
 
 Element.prototype.remove = function() {
   this.parentNode.removeChild(this)
+  return null
 }
+
 
 /* Set and Get element values according to Jeedom data
 Must be high performance
@@ -218,11 +251,13 @@ Element.prototype.setJeeValues = function(_object, _attr) {
       }
     }
   }
+  return this
 }
 NodeList.prototype.setJeeValues = function(_object, _attr) {
   for (var idx = 0; idx < this.length; idx++) {
     this[idx].setJeeValues(_object, _attr)
   }
+  return this
 }
 
 Element.prototype.jeeValue = function(_value) {
@@ -265,6 +300,7 @@ Element.prototype.jeeValue = function(_value) {
       }
       this.triggerEvent('change')
     }
+    return this
   } else { //GET
     var value = ''
     if (this.matches('input, select, textarea')) {

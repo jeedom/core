@@ -184,7 +184,7 @@ $('.bt_configurePlanComposant').off('click').on('click', function() {
 })
 
 $('.planHeaderAttr[data-l1key=configuration][data-l2key=icon]').on('dblclick', function() {
-  $('.planHeaderAttr[data-l1key=configuration][data-l2key=icon]').value('')
+  this.jeeValue('')
 })
 
 $('#bt_chooseIcon').on('click', function() {

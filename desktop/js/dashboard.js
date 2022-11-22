@@ -275,7 +275,7 @@ if (!jeeFrontEnd.dashboard) {
               $divDisplayEq.closest('.div_object').parent().remove();
               return;
             }
-            $.clearDivContent('div_ob' + _object_id)
+            document.emptyById('div_ob' + _object_id)
             $divDisplayEq.html(html)
           } catch (err) {
             console.log(err)
