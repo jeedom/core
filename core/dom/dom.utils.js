@@ -151,23 +151,38 @@ Element.prototype.remove = function() {
 }
 
 
+//DOM appended element with script tag (template widget, scenario etc) aren't executed
+Element.prototype.html = function(_html) {
+  var newHtml = _html
+  this.empty()
 
-/* TEST ONLY
-DOM appended element with script tag (template widget, scenario etc) aren't executed
-*/
-Element.prototype.evalScript = function() {
-  console.log('Element.prototype.evalScript', this)
-  var scriptTags = this.getElementsByTagName("script")
-  var head = document.getElementsByTagName("head")[0] ||  document.documentElement
-  for (var scriptTag of scriptTags) {
-    var data = (scriptTag.text || scriptTag.textContent || scriptTag.innerHTML || "" ),
-        script = document.createElement("script")
+  //create dom element:
+  var newEl = document.createElement('span')
+  newEl.innerHTML = _html
 
-    script.type = "text/javascript"
-    script.appendChild(document.createTextNode(data))
-    head.insertBefore(script, head.firstChild)
-    head.removeChild(script)
+  //Get out all scripts and reinjected executing by dom:
+  var arrData = []
+  var scriptTags = newEl.getElementsByTagName("script")
+
+  if (scriptTags.length == 0) {
+    this.empty().appendChild(newEl)
+  } else {
+    for (var scriptTag of scriptTags) {
+      var data = (scriptTag.text || scriptTag.textContent || scriptTag.innerHTML || "" )
+      if (data == '') continue
+      arrData.push(data)
+      newHtml = newHtml.replace(data, '')
+    }
+    newEl.innerHTML = newHtml.replaceAll('<script></script>', '')
+    this.empty().appendChild(newEl)
+    for (data of arrData) {
+      var script = document.createElement('script')
+      script.type = "text/javascript"
+      script.appendChild(document.createTextNode(data))
+      newEl.appendChild(script)
+    }
   }
+  newEl.replaceWith(...newEl.childNodes) //remove encapsulated span
   return this
 }
 

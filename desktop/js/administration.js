@@ -875,10 +875,10 @@ jeeP.$divConfig.on({
 jeeP.$divConfig.on({
   'focusout': function(event) {
     var expression = this.closest('.actionOnMessage').getJeeValues('.expressionAttr')
-    var el = $(this)
+    var el = this
     if (expression[0] && expression[0].options) {
       jeedom.cmd.displayActionOption(this.value, init(expression[0].options), function(html) {
-        el.closest('.actionOnMessage').find('.actionOptions').html(html)
+        el.closest('.actionOnMessage').querySelector('.actionOptions').html(html)
         jeedomUtils.taAutosize()
       })
     }
@@ -887,15 +887,15 @@ jeeP.$divConfig.on({
 
 jeeP.$divConfig.on({
   'click': function(event) {
-    var el = $(this).closest('.actionOnMessage').find('.expressionAttr[data-l1key=cmd]')
+    var el = this.closest('.actionOnMessage').querySelector('.expressionAttr[data-l1key=cmd]')
     jeedom.cmd.getSelectModal({
       cmd: {
         type: 'action'
       }
     }, function(result) {
-      el.value(result.human)
-      jeedom.cmd.displayActionOption(el.value(), '', function(html) {
-        el.closest('.actionOnMessage').find('.actionOptions').html(html)
+      el.jeeValue(result.human)
+      jeedom.cmd.displayActionOption(result.human, '', function(html) {
+        el.closest('.actionOnMessage').querySelector('.actionOptions').html(html)
         jeedomUtils.taAutosize()
       })
     })
@@ -904,11 +904,11 @@ jeeP.$divConfig.on({
 
 jeeP.$divConfig.on({
   'click': function(event) {
-    var el = $(this).closest('.actionOnMessage').find('.expressionAttr[data-l1key=cmd]')
+    var el = this.closest('.actionOnMessage').querySelector('.expressionAttr[data-l1key=cmd]')
     jeedom.getSelectActionModal({}, function(result) {
-      el.value(result.human)
-      jeedom.cmd.displayActionOption(el.value(), '', function(html) {
-        el.closest('.actionOnMessage').find('.actionOptions').html(html)
+      el.jeeValue(result.human)
+      jeedom.cmd.displayActionOption(result.human, '', function(html) {
+        el.closest('.actionOnMessage').querySelector('.actionOptions').html(html)
         jeedomUtils.taAutosize()
       })
     })
