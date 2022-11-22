@@ -354,7 +354,7 @@ class history {
 		if ($_endTime !== null) {
 			$sql_tmpl .= ' AND datetime<=:endTime';
 		}
-		if ($_groupingType != null || strpos($_groupingType, '::') === false) {
+		if ($_groupingType != null && strpos($_groupingType, '::') !== false) {
 			if ($goupingType[1] == 'week') {
 				$sql_tmpl .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`))';
 			} else if ($goupingType[1] == 'hour') {
