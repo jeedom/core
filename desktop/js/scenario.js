@@ -553,7 +553,7 @@ if (!jeeFrontEnd.scenario) {
           }
           var expression_txt = init(_expression.expression)
           if (typeof expression_txt != 'string') {
-            expression_txt = json_encode(expression_txt)
+            expression_txt = JSON.stringify(expression_txt)
           }
           retour += '</div>'
           retour += '<div class="col-xs-4" ><div class="input-group input-group-sm">'

@@ -1207,7 +1207,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
                   }
                   tr = tr.next()
                 }
-                el.find('.graphOptions').empty().append(json_encode(options))
+                el.find('.graphOptions').empty().append(JSON.stringify(options))
                 jeeP.savePlan(true)
                 $(this).dialog('close')
               }

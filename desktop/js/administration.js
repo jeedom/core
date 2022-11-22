@@ -151,7 +151,7 @@ if (!jeeFrontEnd.administration) {
         url: "core/ajax/config.ajax.php",
         data: {
           action: 'addKey',
-          value: json_encode(value)
+          value: JSON.stringify(value)
         },
         dataType: 'json',
         error: function(request, status, error) {
@@ -377,7 +377,7 @@ if (!jeeFrontEnd.administration) {
         url: "core/ajax/config.ajax.php",
         data: {
           action: 'addKey',
-          value: json_encode(value)
+          value: JSON.stringify(value)
         },
         dataType: 'json',
         error: function(request, status, error) {
@@ -526,7 +526,7 @@ $("#bt_saveGeneraleConfig").off('click').on('click', function(event) {
   var config = document.querySelectorAll('#config').getJeeValues('.configKey')[0]
   $('.bt_addActionOnMessage').each(function(){
     let channel = $(this).attr('data-channel');
-    config['actionOnMessage'+channel] = json_encode(document.querySelectorAll('#div_actionOnMessage'+channel+' .actionOnMessage').getJeeValues('.expressionAttr'))
+    config['actionOnMessage'+channel] = JSON.stringify(document.querySelectorAll('#div_actionOnMessage'+channel+' .actionOnMessage').getJeeValues('.expressionAttr'))
   })
   jeedom.config.save({
     configuration: config,
