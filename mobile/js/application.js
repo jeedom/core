@@ -3,6 +3,7 @@
 var jeedomUtils = {}
 jeedomUtils.backgroundIMG = null
 jeedomUtils._elBackground = null
+jeedomUtils.scrolling = false
 
 $(function() {
   $(document)
@@ -17,6 +18,24 @@ $(function() {
 window.addEventListener('error', function(event) {
   $.hideLoading()
 })
+
+
+var delayedExec = function(after, fn) {
+  var timer;
+  return function() {
+      timer && clearTimeout(timer);
+      timer = setTimeout(fn, after);
+  };
+};
+
+var scrollStopper = delayedExec(250, function() {
+  jeedomUtils.scrolling = false
+});
+
+window.addEventListener('scroll', function(e) {
+  jeedomUtils.scrolling = true
+  scrollStopper();
+});
 
 //allow shortcut as app:
 if ('serviceWorker' in navigator) {
