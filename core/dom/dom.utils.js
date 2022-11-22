@@ -151,6 +151,27 @@ Element.prototype.remove = function() {
 }
 
 
+
+/* TEST ONLY
+DOM appended element with script tag (template widget, scenario etc) aren't executed
+*/
+Element.prototype.evalScript = function() {
+  console.log('Element.prototype.evalScript', this)
+  var scriptTags = this.getElementsByTagName("script")
+  var head = document.getElementsByTagName("head")[0] ||  document.documentElement
+  for (var scriptTag of scriptTags) {
+    var data = (scriptTag.text || scriptTag.textContent || scriptTag.innerHTML || "" ),
+        script = document.createElement("script")
+
+    script.type = "text/javascript"
+    script.appendChild(document.createTextNode(data))
+    head.insertBefore(script, head.firstChild)
+    head.removeChild(script)
+  }
+  return this
+}
+
+
 /* Set and Get element values according to Jeedom data
 Must be high performance
 */
