@@ -328,7 +328,7 @@ class history {
 		if ($_endTime !== null) {
 			$values['endTime'] = $_endTime;
 		}
-		if ($_groupingType == null) {
+		if ($_groupingType == null && strpos($_groupingType, '::') !== false) {
 			$sql_tmpl = 'SELECT ' . DB::buildField(__CLASS__);
 		} else {
 			$goupingType = explode('::', $_groupingType);
@@ -354,7 +354,7 @@ class history {
 		if ($_endTime !== null) {
 			$sql_tmpl .= ' AND datetime<=:endTime';
 		}
-		if ($_groupingType != null) {
+		if ($_groupingType != null && strpos($_groupingType, '::') !== false) {
 			if ($goupingType[1] == 'week') {
 				$sql_tmpl .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`))';
 			} else if ($goupingType[1] == 'hour') {
