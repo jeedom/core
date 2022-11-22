@@ -157,7 +157,7 @@ $('.bt_configurePlan3dComposant').off('click').on('click', function() {
 });
 
 $('.plan3dHeaderAttr[data-l1key=configuration][data-l2key=icon]').on('dblclick', function() {
-  $('.plan3dHeaderAttr[data-l1key=configuration][data-l2key=icon]').value('')
+  this.jeeValue('')
 })
 
 $('#bt_upload3dModel').fileupload({
@@ -181,7 +181,7 @@ $('#bt_chooseIcon').on('click', function() {
 
 $('#bt_saveConfigureplan3dHeader').on('click', function() {
   jeedom.plan3d.saveHeader({
-    plan3dHeader: $('#div_plan3dHeaderConfigure').getValues('.plan3dHeaderAttr')[0],
+    plan3dHeader: document.getElementById('div_plan3dHeaderConfigure').getJeeValues('.plan3dHeaderAttr')[0],
     error: function(error) {
       $('#div_alertplan3dHeaderConfigure').showAlert({message: error.message, level: 'danger'})
     },
@@ -193,7 +193,7 @@ $('#bt_saveConfigureplan3dHeader').on('click', function() {
 
 $('#bt_removeConfigureplan3dHeader').on('click', function() {
   jeedom.plan3d.removeHeader({
-    id: $('#div_plan3dHeaderConfigure').getValues('.plan3dHeaderAttr')[0].id,
+    id: document.getElementById('div_plan3dHeaderConfigure').getJeeValues('.plan3dHeaderAttr')[0],
     error: function(error) {
       $('#div_alertplan3dHeaderConfigure').showAlert({message: error.message, level: 'danger'})
     },
@@ -204,6 +204,6 @@ $('#bt_removeConfigureplan3dHeader').on('click', function() {
 })
 
 if (isset(jeephp2js.md_plan3dHeaderConfigure_Id) && jeephp2js.md_plan3dHeaderConfigure_Id != '') {
-  $('#div_plan3dHeaderConfigure').setValues(jeephp2js.md_plan3dHeaderConfigure_plan3dHeader, '.plan3dHeaderAttr')
+  document.getElementById('div_plan3dHeaderConfigure').setJeeValues(jeephp2js.md_plan3dHeaderConfigure_plan3dHeader, '.plan3dHeaderAttr')
 }
 </script>

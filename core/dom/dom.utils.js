@@ -251,11 +251,13 @@ Element.prototype.setJeeValues = function(_object, _attr) {
       }
     }
   }
+  return this
 }
 NodeList.prototype.setJeeValues = function(_object, _attr) {
   for (var idx = 0; idx < this.length; idx++) {
     this[idx].setJeeValues(_object, _attr)
   }
+  return this
 }
 
 Element.prototype.jeeValue = function(_value) {
@@ -298,6 +300,7 @@ Element.prototype.jeeValue = function(_value) {
       }
       this.triggerEvent('change')
     }
+    return this
   } else { //GET
     var value = ''
     if (this.matches('input, select, textarea')) {

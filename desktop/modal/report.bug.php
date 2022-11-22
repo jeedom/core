@@ -88,7 +88,7 @@ if (!$first) {
             <option value=''>{{Aucun}}</option>
             <option value='support'>{{Assistance technique}}</option>
             <option value='Bug'>{{Rapport}}</option>
-            <option value='Amélioration'>{{Demande d'amélioration}}</option>
+            <option value='improvement'>{{Demande d'amélioration}}</option>
           </select>
         </div>
         <label class="col-sm-2 control-label">{{Catégorie}}</label>
@@ -150,14 +150,14 @@ if (!$first) {
 </form>
 
 <script>
-  $('.ticketAttr[data-l1key=options][data-l2key=page]').value(location.href)
+  document.querySelector('.ticketAttr[data-l1key="options"][data-l2key="page"]').jeeValue(location.href)
   if (getUrlVars('m') !== false) {
-    $('.ticketAttr[data-l1key=category]').value('plugin::' + getUrlVars('m'))
+    document.querySelector('.ticketAttr[data-l1key="category"]').jeeValue('plugin::' + getUrlVars('m'))
   }
 
   $('#bt_sendBugReport').on('click', function() {
-    var ticket = $('#form_reportBug').getValues('.ticketAttr')[0]
-    ticket.messages = $('#form_reportBug').getValues('.messageAttr')
+    var ticket = document.getElementById('form_reportBug').getJeeValues('.ticketAttr')[0]
+    ticket.messages = document.getElementById('form_reportBug').getJeeValues('.messageAttr')
     $.ajax({
       type: "POST",
       url: "core/ajax/repo.ajax.php",
@@ -199,23 +199,26 @@ if (!$first) {
   })
 
   $('.ticketAttr[data-l1key=type],.ticketAttr[data-l1key=category]').on('change', function() {
-    if ($('.ticketAttr[data-l1key=type]').value() == 'Bug' || $('.ticketAttr[data-l1key=type]').value() == 'Amélioration') {
+    var type = document.querySelector('.ticketAttr[data-l1key="type"]').value
+    var cat = document.querySelector('.ticketAttr[data-l1key="category"]').value
+    var catIssue = document.querySelector('.ticketAttr[data-l1key="category"]').selectedOptions[0].getAttribute('data-issue')
+
+    $.hideAlert()
+    if (type == 'Bug' || type == 'improvement') {
       $('#div_alertReportBug').showAlert({
         message: '{{ATTENTION : cette demande sera publique, il ne faut SURTOUT PAS mettre d\'information personnelle (mail, compte market, clé api...)}}',
         level: 'warning'
       })
-    } else {
-      $.hideAlert()
     }
-    $('#div_reportModalPrivateIssue').hide()
-    if ($('.ticketAttr[data-l1key=type]').value() == '' || $('.ticketAttr[data-l1key=category]').value() == '') {
-      $('#div_reportModalSendAction').hide()
+    document.getElementById('div_reportModalPrivateIssue').unseen()
+    if (type == '' || cat == '') {
+      document.getElementById('div_reportModalSendAction').unseen()
     } else {
-      if ($('.ticketAttr[data-l1key=category] option:selected').attr('data-issue') == '') {
-        $('#div_reportModalSendAction').show()
+      if (catIssue == '') {
+        document.getElementById('div_reportModalSendAction').seen()
       } else {
-        $('#div_reportModalPrivateIssue').show()
-        $('#bt_reportBugIssueUrl').attr('href', $('.ticketAttr[data-l1key=category] option:selected').attr('data-issue'))
+        document.getElementById('div_reportModalPrivateIssue').seen()
+        document.getElementById('bt_reportBugIssueUrl').setAttribute('href', catIssue)
       }
     }
   })

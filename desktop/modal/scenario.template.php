@@ -92,7 +92,7 @@ refreshScenarioTemplateList()
 $('#bt_scenarioTemplateConvert').on('click', function() {
   jeedom.scenario.convertToTemplate({
     id: jeephp2js.md_scenarioTemplate_scId,
-    template: $('#in_newTemplateName').value()+'.json',
+    template: document.getElementById('in_newTemplateName').value + '.json',
     error: function(error) {
       $('#md_scenarioTemplate').showAlert({message: error.message, level: 'danger'})
     },
@@ -123,7 +123,7 @@ $('#bt_scenarioTemplateRemove').on('click', function() {
 $('#bt_scenarioTemplateApply').on('click', function() {
   bootbox.confirm('{{Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel.}}', function(result) {
     if (result) {
-      var convert = $('.templateScenario').getValues('.templateScenarioAttr')
+      var convert = document.querySelectorAll('.templateScenario').getJeeValues('.templateScenarioAttr')
       jeedom.scenario.applyTemplate({
         template:$('#ul_scenarioTemplateList li.active').attr('data-template'),
         id: jeephp2js.md_scenarioTemplate_scId,
@@ -188,9 +188,9 @@ $('#bt_scenarioTemplateDownload').on('click',function() {
 
 $('#div_scenarioTemplate').on({
   'click': function(event) {
-    var el = $(this)
+    var el = this
     jeedom.cmd.getSelectModal({}, function(result) {
-      el.closest('.templateScenario').find('.templateScenarioAttr[data-l1key=end]').value(result.human)
+      el.closest('.templateScenario').querySelector('.templateScenarioAttr[data-l1key=end]').value = result.human
     })
   }
 }, '.bt_scenarioTemplateSelectCmd')

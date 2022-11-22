@@ -142,12 +142,13 @@ if (!jeeFrontEnd.md_scenarioSummary) {
             tr += '<a class="btn btn-danger tooltips btn-xs bt_summaryRemoveScenario" title="{{Supprimer ce scénario}}"><i class="far fa-trash-alt"></i></a> '
             tr += '</td>'
             tr += '</tr>'
-            var result = $(tr)
-            result.setValues(data[i], '.scenarioAttr')
-            table.push(result)
+            let newRow = document.createElement('tr')
+            newRow.innerHTML = tr
+            newRow.setJeeValues(data[i], '.scenarioAttr')
+            table.push(newRow)
           }
 
-          self.$tableScSummary.find('tbody').append(table)
+          document.getElementById('table_scenarioSummary').querySelector('tbody').append(...table)
           self.$tableScSummary.trigger("update")
 
           jeedom.timeline.autocompleteFolder()
@@ -229,7 +230,7 @@ $('#bt_refreshSummaryScenario').off().on('click', function() {
 })
 
 $('#bt_saveSummaryScenario').off().on('click', function() {
-  var scenarios = $('#table_scenarioSummary tbody .scenario').getValues('.scenarioAttr')
+  var scenarios = document.querySelector('#table_scenarioSummary tbody .scenario').getJeeValues('.scenarioAttr')
   jeedom.scenario.saveAll({
     scenarios : scenarios,
     error: function(error) {
