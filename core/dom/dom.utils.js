@@ -41,7 +41,12 @@ Element.prototype.triggerEvent = function(_eventName) {
   this.dispatchEvent(event)
   return this
 }
-
+NodeList.prototype.triggerEvent = function(_eventName) {
+  for (var idx = 0; idx < this.length; idx++) {
+    this[idx].triggerEvent(_eventName)
+  }
+  return this
+}
 
 /* Shortcuts Functions
 */

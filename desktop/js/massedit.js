@@ -24,20 +24,20 @@ if (!jeeFrontEnd.massedit) {
       window.jeeP = this
     },
     postInit: function() {
-      this._filterType_ = $('#sel_FilterByType').value()
+      this._filterType_ = document.getElementById('sel_FilterByType').value
       this._editIds_ = []
       this.setEdit()
     },
     resetUI: function() {
-      $('#filter').empty()
-      $('#bt_testFilter').addClass('disabled')
-      $('#testSQL').empty()
-      $('#testResult').empty().hide()
-      $('#edit').empty()
-      $('#execSQL').empty()
+      document.getElementById('filter').empty()
+      document.getElementById('bt_testFilter').addClass('disabled')
+      document.getElementById('testSQL').empty()
+      document.getElementById('testResult').empty().unseen()
+      document.getElementById('edit')?.empty()
+      document.getElementById('execSQL').empty()
     },
     addFilter: function() {
-      $('#bt_testFilter').removeClass('disabled')
+      document.getElementById('bt_testFilter').removeClass('disabled')
       var newFilterHtml = ''
       newFilterHtml += '<div class="form-group filter">'
 
@@ -82,7 +82,7 @@ if (!jeeFrontEnd.massedit) {
       newEditHtml += '</select>'
       newEditHtml += '</div>'
 
-      var editId = Math.random().toString(36).substr(2, 9)
+      var editId = 'j' + Math.random().toString(36).substr(2, 9)
       newEditHtml += '<div class="col-md-3 col-xs-3">'
       newEditHtml += '<input class="selectEditValue form-control input-sm" type="text" value="" list="' + editId + '_EditvaluesList" />'
       newEditHtml += '<datalist id="' + editId + '_EditvaluesList">'
@@ -104,11 +104,11 @@ if (!jeeFrontEnd.massedit) {
     getFilters: function() {
       var filters = []
       $('.form-group.filter').each(function(index) {
-        var key = $(this).find('.selectFilterKey').value()
-        var value = $("option:selected", $(this).find('.selectFilterValue')).text()
+        var key = this.querySelector('.selectFilterKey').value
+        var value = this.querySelector('select.selectFilterValue').selectedOptions[0].text
         var jValue = false
-        if (!$(this).find('.selectFilterJValue').is(':disabled')) {
-          var jValue = $("option:selected", $(this).find('.selectFilterJValue')).text()
+        if (!(this.querySelector('.selectFilterJValue').disabled)) {
+          var jValue = this.querySelector('select.selectFilterJValue').selectedOptions[0].text
         }
         filters.push({
           'key': key,
@@ -121,11 +121,11 @@ if (!jeeFrontEnd.massedit) {
     getEdits: function() {
       var edits = []
       $('#edit > .edit').each(function(index) {
-        var key = $(this).find('.selectEditKey').value()
-        var value = $(this).find('.selectEditValue').val()
+        var key = this.querySelector('select.selectEditKey').value
+        var value = this.querySelector('.selectEditValue').text
         var jValue = false
-        if (!$(this).find('.inputEditJValue').is(':disabled')) {
-          var jValue = $(this).find('.inputEditJValue').val()
+        if (!(this.querySelector('.inputEditJValue').disabled)) {
+          var jValue = this.querySelector('.inputEditJValue').value
         }
         edits.push({
           'key': key,
@@ -194,7 +194,6 @@ if (!jeeFrontEnd.massedit) {
       return sqlCmd
     },
     dbExecuteCommand: function(_command, _mode = 0) { // _mode 0: test, 1: exec, 2: get modified ids
-      //console.log('___dbExecuteCommand: ' + _mode + ' -> ' + _command)
       jeedom.db({
         async: false,
         command: _command,
@@ -205,7 +204,7 @@ if (!jeeFrontEnd.massedit) {
           })
         },
         success: function(result) {
-          $('#testResult').empty().show()
+          document.getElementById('testResult').empty().seen()
           if (_mode == 0) {
             for (var i in result.sql) {
               $('#testResult').append('<div class="btn btn-xs btn-primary testSqlDiv" data-id="' + result.sql[i].id + '" style="margin:3px;">' + result.sql[i].name + ' (' + result.sql[i].id + ')' + '</div>')
@@ -241,29 +240,29 @@ jeeFrontEnd.massedit.init()
 
 $(function() {
   jeeFrontEnd.massedit.postInit()
-  $('.selectEditKey').trigger('change')
+  document.querySelectorAll('.selectEditKey').triggerEvent('change')
 })
 
 //change filter type:
 $('#sel_FilterByType').off('change').on('change', function() {
   jeeP.resetUI()
-  jeeP._filterType_ = $(this).value()
+  jeeP._filterType_ = this.value
   jeeP.setEdit()
-  $('.selectEditKey').trigger('change')
+  document.querySelectorAll('.selectEditKey').triggerEvent('change')
 })
 
 //add filter:
 $('#bt_addFilter').off('click').on('click', function() {
   jeeP.addFilter()
-  $('#testResult').empty().hide()
-  $('#testSQL').empty()
+  document.getElementById('testResult').empty().unseen()
+  document.getElementById('testSQL').empty()
 })
 
 //remove filter:
 $('body').on({
   'click': function(event) {
-    $(this).closest('div.form-group').remove()
-    $('#testResult').empty().hide()
+    this.closest('div.form-group').remove()
+    document.getElementById('testResult').empty().unseen()
     if ($('.form-group.filter').length == 0) {
       $('#bt_testFilter').addClass('disabled')
     }
@@ -273,28 +272,32 @@ $('body').on({
 //change filter key:
 $('body').on({
   'change': function(event) {
-    var key = $(this).value()
-    var selectValues = $(this).closest('div.form-group').find('select.selectFilterValue')
-    var selectJValues = $(this).closest('div.form-group').find('select.selectFilterJValue')
+    var key = this.value
+    var selectValues = this.closest('div.form-group').querySelector('select.selectFilterValue')
+    var selectJValues = this.closest('div.form-group').querySelector('select.selectFilterJValue')
     selectValues.empty()
     selectJValues.empty()
 
     //set possible values for key
-    var option
+    var newOption
     if (typeof jeephp2js.typePossibilities[jeeP._filterType_][key][0] != 'undefined') {
-      selectJValues.prop('disabled', 'disabled')
+      selectJValues.disabled = true
       jeephp2js.typePossibilities[jeeP._filterType_][key].forEach(function(item, index) {
-        option = $("<option></option>").attr("value", index).text(item)
-        selectValues.append(option)
+        newOption = document.createElement('option')
+        newOption.text = item
+        newOption.value = index
+        selectValues.appendChild(newOption)
       })
     } else {
-      selectJValues.prop('disabled', false)
+      selectJValues.removeAttribute('disabled')
       var values = Object.keys(jeephp2js.typePossibilities[jeeP._filterType_][key])
       values.forEach((value, index) => {
-        option = $("<option></option>").attr("value", index).text(value)
-        selectValues.append(option)
+        newOption = document.createElement('option')
+        newOption.text = value
+        newOption.value = index
+        selectValues.appendChild(newOption)
       })
-      selectValues.change()
+      selectValues.triggerEvent('change')
     }
 
   }
@@ -303,24 +306,26 @@ $('body').on({
 //change filter value:
 $('body').on({
   'change': function(event) {
-    $('#testSQL').empty()
-    $('#testResult').empty().hide()
+    document.getElementById('testSQL').empty()
+    document.getElementById('testResult').empty().unseen()
 
-    var selectKey = $(this).closest('div.form-group').find('select.selectFilterKey')
-    var key = selectKey.value()
-    var value = $("option:selected", $(this)).text()
-    var selectJValues = $(this).closest('div.form-group').find('select.selectFilterJValue')
+    var selectKey = this.closest('div.form-group').querySelector('select.selectFilterKey')
+    var key = selectKey.value
+    var value = this.selectedOptions[0].text
+    var selectJValues = this.closest('div.form-group').querySelector('select.selectFilterJValue')
     selectJValues.empty()
 
     //does have json value ?
-    if (selectJValues.is(':disabled')) return false
+    if (selectJValues.disabled) return false
 
     //set json values for filter:
-    var option
+    var newOption
     var jValues = Object.keys(jeephp2js.typePossibilities[jeeP._filterType_][key][value])
     jValues.forEach((jValue, index) => {
-      option = $("<option></option>").attr("value", index).text(jeephp2js.typePossibilities[jeeP._filterType_][key][value][index])
-      selectJValues.append(option)
+      newOption = document.createElement('option')
+      newOption.text = jeephp2js.typePossibilities[jeeP._filterType_][key][value][index]
+      newOption.value = index
+      selectJValues.appendChild(newOption)
     })
   }
 }, 'select.selectFilterValue')
@@ -328,27 +333,29 @@ $('body').on({
 //change edit key:
 $('body').on({
   'change': function(event) {
-    var value = $(this).value()
-    $(this).closest('div.form-group').find('input.selectEditValue').val('')
-    var editValueId = $(this).closest('div.form-group').find('input.selectEditValue').attr('list')
-    var inputJValue = $(this).closest('div.form-group').find('input.inputEditJValue')
-    inputJValue.val('')
+    var value = this.value
+    this.closest('div.form-group').querySelector('input.selectEditValue').value = ''
+    var editValueId = this.closest('div.form-group').querySelector('input.selectEditValue').getAttribute('list')
+    var inputJValue = this.closest('div.form-group').querySelector('input.inputEditJValue')
+    inputJValue.value = ''
 
     //set possible values for key if necessary
-    var inputValues = $(this).closest('div.form-group').find('#' + editValueId)
+    var inputValues = this.closest('div.form-group').querySelector('#' + editValueId)
     inputValues.empty()
-    var key = $(this).value()
-    var option
+    var key = this.value
+    var newOption
     if (typeof jeephp2js.typePossibilities[jeeP._filterType_][key][0] != 'undefined') {
-      inputJValue.prop('disabled', 'disabled')
+      inputJValue.disabled = true
     } else {
-      inputJValue.prop('disabled', false)
+      inputJValue.removeAttribute('disabled')
       var values = Object.keys(jeephp2js.typePossibilities[jeeP._filterType_][key])
       values.forEach((value, index) => {
-        option = $("<option></option>").attr("value", value).text(value)
-        inputValues.append(option)
+        newOption = document.createElement('option')
+        newOption.text = value
+        newOption.value = value
+        inputValues.appendChild(newOption)
       })
-      inputValues.change()
+      inputValues.triggerEvent('change')
     }
   }
 }, 'select.selectEditKey')
@@ -356,26 +363,27 @@ $('body').on({
 //change edit value:
 $('body').on({
   'change': function(event) {
-    var key = $(this).closest('div.form-group').find('select.selectEditKey').val()
-    var value = $(this).closest('div.form-group').find('input.selectEditValue').val()
-
+    var key = this.closest('div.form-group').querySelector('select.selectEditKey').value
+    var value = this.closest('div.form-group').querySelector('input.selectEditValue').value
     if (!isset(jeephp2js.typePossibilities[jeeP._filterType_][key][value])) {
       return false
     }
 
-    var inputJValue = $(this).closest('div.form-group').find('input.inputEditJValue')
-    inputJValue.val('')
+    var inputJValue = this.closest('div.form-group').querySelector('input.inputEditJValue')
+    inputJValue.value = ''
     //set possible json values for value:
-    var editJValueId = inputJValue.attr('list')
-    var inputJValues = $(this).closest('div.form-group').find('#' + editJValueId)
+    var editJValueId = inputJValue.getAttribute('list')
+    var inputJValues = this.closest('div.form-group').querySelector('#' + editJValueId)
     inputJValues.empty()
 
     var jValues = jeephp2js.typePossibilities[jeeP._filterType_][key][value]
     if (!jValues || typeof jValues == 'string') return false
-    var option
+    var newOption
     jValues.forEach((jValue, index) => {
-      option = $("<option></option>").attr("value", jValue).text(jValue)
-      inputJValues.append(option)
+      newOption = document.createElement('option')
+      newOption.text = jValue
+      newOption.value = jValue
+      inputJValues.appendChild(newOption)
     })
   }
 }, 'input.selectEditValue')
@@ -386,7 +394,7 @@ $('body').on({
     event.preventDefault()
     event.stopPropagation()
     event.stopImmediatePropagation()
-    var thisId = $(this).attr('data-id')
+    var thisId = this.getAttribute('data-id')
     jeedom[jeeP._filterType_]['byId']({
       id: thisId,
       error: function(error) {
@@ -493,7 +501,7 @@ $("#bt_importFilter").change(function(event) {
 $('#bt_testFilter').off('click').on('click', function() {
   var filters = jeeP.getFilters()
   var sqlCmd = jeeP.getTestSQLstring(filters)
-  $('#testSQL').empty().append(sqlCmd)
+  document.getElementById('testSQL').empty().append(sqlCmd)
   jeeP.dbExecuteCommand(sqlCmd, 0)
 })
 
