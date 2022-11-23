@@ -435,7 +435,7 @@ jeedomUtils.setJeedomTheme = function() {
     if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themeShadows)
     jeedomUtils.triggerThemechange()
     let backgroundImgPath = jeedomUtils._elBackground.find('#bottom').css('background-image')
-    if (backgroundImgPath.indexOf('/data/') == -1) {
+    if (backgroundImgPath.indexOf('/data/') == -1 && backgroundImgPath.indexOf('/plugins/') == -1) {
       jeedomUtils.setBackgroundImage('')
     }
   }
