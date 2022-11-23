@@ -202,10 +202,7 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
       $('#div_displayEquipement .objectHtml').packery({gutter :0})
       setTimeout(function() {
         $('#div_displayEquipement .objectHtml').packery({gutter :0})
-      }, 1)
-      setTimeout(function() {
-        $('#div_displayEquipement .objectHtml').packery({gutter :0})
-      }, 50)
+      }, 250)
     }
   })
 }
@@ -276,10 +273,7 @@ function displayEqsBySummary(_objectsAll, _objectId, _summary) {
               $('#div_displayEquipement').trigger('create')
               setTimeout(function() {
                 $('#div_displayEquipement .objectHtml').packery({gutter :0})
-              }, 1)
-              setTimeout(function() {
-                $('#div_displayEquipement .objectHtml').packery({gutter :0})
-              }, 50)
+              }, 250)
             }
           }
         })
