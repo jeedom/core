@@ -145,9 +145,11 @@ NodeList.prototype.last = function() {
   return Array.from(this).pop()
 }
 
-Element.prototype.remove = function() {
-  this.parentNode.removeChild(this)
-  return null
+NodeList.prototype.remove = function() {
+  for (var idx = 0; idx < this.length; idx++) {
+    this[idx].remove()
+  }
+  return this
 }
 
 

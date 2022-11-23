@@ -122,15 +122,23 @@ if (!jeeFrontEnd.update) {
           })
         },
         success: function(data) {
-          var tr_update = []
+          let tbody = document.querySelector('#table_update tbody')
+          tbody.empty()
+
+          var tr_updates = []
           for (var i in data) {
             if (!isset(data[i].status)) continue
             if (data[i].type == 'core' || data[i].type == 'plugin') {
-              tr_update.push(jeeP.addUpdate(data[i]))
+              tr_updates.push(jeeP.addUpdate(data[i]))
             }
           }
-          $('#table_update tbody').empty().append(tr_update).trigger('update');
-          if (jeeP.hasUpdate) $('li a[href="#coreplugin"] i').style('color', 'var(--al-warning-color)')
+
+          for (var tr of tr_updates) {
+            tbody.appendChild(tr)
+          }
+          $('#table_update tbody').trigger('update')
+
+          if (jeeP.hasUpdate) document.querySelector('li a[href="#coreplugin"] i').style.color = 'var(--al-warning-color)'
         }
       })
 
@@ -145,7 +153,9 @@ if (!jeeFrontEnd.update) {
           })
         },
         success: function(data) {
-          $('#span_lastUpdateCheck').attr('title', '{{Dernière verification des mises à jour}}').value(data['update::lastCheck'])
+          let span = document.getElementById('span_lastUpdateCheck')
+          span.title = '{{Dernière verification des mises à jour}}'
+          span.jeeValue(data['update::lastCheck'])
         }
       })
     },
@@ -162,7 +172,7 @@ if (!jeeFrontEnd.update) {
         }
       }
 
-      var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">'
+      var tr = '<tr>'
       tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass + '" data-l1key="status"></span></td>'
       tr += '<td>'
       tr += '<span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name"></span>'
@@ -237,9 +247,13 @@ if (!jeeFrontEnd.update) {
       tr += '<a class="btn btn-info btn-xs checkUpdate"><i class="fas fa-check"></i><span class="hidden-1280"> {{Vérifier}}</span></a>'
       tr += '</td>'
       tr += '</tr>'
-      var html = $(tr)
-      html.setValues(_update, '.updateAttr')
-      return html
+      let newRow = document.createElement('tr')
+      newRow.innerHTML = tr
+      newRow.setAttribute('data-id', init(_update.id))
+      newRow.setAttribute('data-logicalId', init(_update.logicalId))
+      newRow.setAttribute('data-type', init(_update.type))
+      newRow.setJeeValues(_update, '.updateAttr')
+      return newRow
     },
     updateProgressBar: function() {
       if (jeeP.progress == -4) {
@@ -376,7 +390,7 @@ if (!jeeFrontEnd.update) {
 
         if (line != '') {
           newLogText += line + '\n'
-          this._pre_updateInfo_clean.value(newLogText)
+          this._pre_updateInfo_clean.value = newLogText
           if ($('[href="#log"]').parent().hasClass('active')) {
             $('#log').parents('.tab-content').scrollTop(1E10)
           }
@@ -401,22 +415,29 @@ if (!jeeFrontEnd.update) {
           })
         },
         success: function(data) {
-          var tr_update = []
-          $('.bt_OsPackageUpdate').addClass('disabled')
+          let tbody = document.querySelector('#table_update tbody')
+          tbody.empty()
+
+          var tr_updates = []
+          document.querySelectorAll('.bt_OsPackageUpdate').addClass('disabled')
           for (var i in data) {
             if (Object.keys(data[i]).length > 0) {
-              $('.bt_OsPackageUpdate[data-type=' + i + ']').removeClass('disabled')
+              document.querySelector('.bt_OsPackageUpdate[data-type=' + i + ']').removeClass('disabled')
               for (var j in data[i]) {
-                tr_update.push(jeeFrontEnd.update.addOsUpdate(data[i][j]))
+                tr_updates.push(jeeFrontEnd.update.addOsUpdate(data[i][j]))
               }
             }
           }
-          $('#table_osUpdate tbody').empty().append(tr_update).trigger('update')
+
+          for (var tr of tr_updates) {
+            tbody.appendChild(tr)
+          }
+          $('#table_osUpdate tbody').trigger('update')
         }
       })
     },
     addOsUpdate: function(_update) {
-      var tr = '<tr data-logicalId="' + init(_update.name) + '" data-type="' + init(_update.type) + '">'
+      var tr = '<tr>'
       tr += '<td>'
       tr += '<span class="osUpdateAttr" data-l1key="type"></span>'
       tr += '</td>'
@@ -428,9 +449,12 @@ if (!jeeFrontEnd.update) {
       tr += '<td>'
       tr += '</td>'
       tr += '</tr>'
-      var html = $(tr)
-      html.setValues(_update, '.osUpdateAttr')
-      return html
+      let newRow = document.createElement('tr')
+      newRow.innerHTML = tr
+      newRow.setAttribute('data-logicalId', init(_update.name))
+      newRow.setAttribute('data-type', init(_update.type))
+      newRow.setJeeValues(_update, '.osUpdateAttr')
+      return newRow
     }
   }
 }
@@ -461,8 +485,8 @@ $(function() {
 
   //create a second <pre> for cleaned text to avoid change event infinite loop:
   $('#pre_updateInfo').after($(jeeP.newLogClean)).hide()
-  jeeP._pre_updateInfo_clean = $('#pre_updateInfo_clean')
-  jeeP._pre_updateInfo_clean.show()
+  jeeP._pre_updateInfo_clean = document.getElementById('pre_updateInfo_clean')
+  jeeP._pre_updateInfo_clean.seen()
   jeeP.createUpdateObserver()
   jeedomUtils.setCheckContextMenu()
 })
@@ -532,12 +556,13 @@ $('#bt_updateJeedom').off('click').on('click', function() {
 })
 
 $('.updateOption[data-l1key=force]').off('click').on('click', function() {
-  if ($(this).value() == 1) {
-    $('#md_specifyUpdate .updateOption[data-l1key="backup::before"]').value(0);
-    $('#md_specifyUpdate .updateOption[data-l1key="backup::before"]').attr('disabled', 'disabled')
+  let mdSpec = document.getElementById('md_specifyUpdate')
+  if (this.jeeValue() == 1) {
+    mdSpec.querySelector('.updateOption[data-l1key="backup::before"]').jeeValue(0);
+    mdSpec.querySelector('.updateOption[data-l1key="backup::before"]').setAttribute('disabled', '')
   } else {
-    $('#md_specifyUpdate .updateOption[data-l1key="backup::before"]').value(1);
-    $('#md_specifyUpdate .updateOption[data-l1key="backup::before"]').attr('disabled', false)
+    mdSpec.querySelector('.updateOption[data-l1key="backup::before"]').jeeValue(1);
+    mdSpec.querySelector('.updateOption[data-l1key="backup::before"]').removeAttribute('disabled')
   }
 })
 

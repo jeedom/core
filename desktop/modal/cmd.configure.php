@@ -1339,6 +1339,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     newDiv.innerHTML = div
     newDiv.setJeeValues(_action, '.expressionAttr')
     document.querySelector('#div_' + _type).appendChild(newDiv)
+    newDiv.replaceWith(...newDiv.childNodes)
 
     jeedom.scenario.setAutoComplete({
       parent: $('#div_' + _type),
