@@ -103,11 +103,15 @@ step_3_database() {
   service_action status mariadb
   if [ $? -ne 0 ]; then
     service_action start mariadb
+    service_action start mysql
   fi
   service_action status mariadb
   if [ $? -ne 0 ]; then
-    echo "${ROUGE}Ne peut lancer mariadb - Annulation${NORMAL}"
-    exit 1
+    service_action status mysql
+    if [ $? -ne 0 ]; then
+      echo "${ROUGE}Ne peut lancer mariadb - Annulation${NORMAL}"
+      exit 1
+    fi
   fi
   
   echo "${VERT}étape 3 base de données réussie${NORMAL}"
@@ -183,8 +187,11 @@ step_7_jeedom_customization_mariadb() {
   
   service_action stop mariadb > /dev/null 2>&1
   if [ $? -ne 0 ]; then
-    echo "${ROUGE}Ne peut arrêter mariadb - Annulation${NORMAL}"
-    exit 1
+    service_action stop mysql > /dev/null 2>&1
+    if [ $? -ne 0 ]; then
+      echo "${ROUGE}Ne peut arrêter mariadb - Annulation${NORMAL}"
+      exit 1
+    fi
   fi
   
   rm /var/lib/mysql/ib_logfile*
@@ -209,8 +216,11 @@ step_7_jeedom_customization_mariadb() {
   
   service_action start mariadb > /dev/null 2>&1
   if [ $? -ne 0 ]; then
-    echo "${ROUGE}Ne peut lancer mariadb - Annulation${NORMAL}"
-    exit 1
+    service_action start mysql > /dev/null 2>&1
+    if [ $? -ne 0 ]; then
+      echo "${ROUGE}Ne peut lancer mariadb - Annulation${NORMAL}"
+      exit 1
+    fi
   fi
   
   echo "${VERT}étape 7 personnalisation de jeedom mariadb réussie${NORMAL}"
