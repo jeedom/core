@@ -90,7 +90,7 @@
   #span_nbMessage {
     position: absolute;
     top: 10px;
-    right: 10px;
+    right: 60px;
     font-weight: 400;
     z-index: 100 !important;
     border-radius: var(--border-radius);
