@@ -17,16 +17,22 @@
 "use strict"
 
 $('.li_type').on('click', function() {
-  $('.li_type').removeClass('active')
-  $(this).addClass('active')
-  $('.reportType').hide()
-  $('.reportType.' + $(this).attr('data-type')).show()
+  var currentType = document.querySelector('.li_type.active').getAttribute('data-type')
+  var newType = this.getAttribute('data-type')
+  document.querySelectorAll('.li_type').removeClass('active')
+  this.addClass('active')
+  document.querySelectorAll('.reportType').unseen()
+  document.querySelector('.reportType.' + newType).seen()
+  if (newType != currentType) {
+    document.querySelectorAll('#ul_report .li_report').remove()
+    document.getElementById('div_reportForm').unseen()
+  }
 })
 
 $('.li_reportType').on('click', function() {
-  $('.li_reportType').removeClass('active')
-  $(this).addClass('active')
-  getReportList($(this).attr('data-type'), $(this).attr('data-id'))
+  document.querySelectorAll('.li_reportType').removeClass('active')
+  this.addClass('active')
+  getReportList(this.getAttribute('data-type'), this.getAttribute('data-id'))
 })
 
 function getReportList(_type, _id) {
@@ -40,20 +46,20 @@ function getReportList(_type, _id) {
       })
     },
     success: function(data) {
-      $('#ul_report .li_report').remove()
+      document.querySelectorAll('#ul_report .li_report').remove()
       var ul = '';
       for (var i in data) {
         ul += '<li class="cursor li_report" data-type=' + _type + ' data-id=' + _id + ' data-report="' + i + '"><a>' + i + '</a></li>'
       }
-      $('#ul_report').append(ul)
+      document.getElementById('ul_report').insertAdjacentHTML('beforeend', ul)
     }
   })
 }
 
 $('#ul_report').on('click', '.li_report', function() {
-  $('.li_report').removeClass('active')
-  $(this).addClass('active')
-  getReport($(this).attr('data-type'), $(this).attr('data-id'), $(this).attr('data-report'))
+  document.querySelectorAll('.li_report').removeClass('active')
+  this.addClass('active')
+  getReport(this.getAttribute('data-type'), this.getAttribute('data-id'), this.getAttribute('data-report'))
 })
 
 function getReport(_type, _id, _report) {
@@ -68,13 +74,13 @@ function getReport(_type, _id, _report) {
       })
     },
     success: function(data) {
-      $('#div_reportForm').setValues(data, '.reportAttr')
-      $('#div_reportForm').show()
-      $('#div_imgreport').empty()
-      var type = $('#div_reportForm .reportAttr[data-l1key=type]').value()
-      var id = $('#div_reportForm .reportAttr[data-l1key=id]').value()
-      var filename = $('#div_reportForm .reportAttr[data-l1key=filename]').value()
-      var extension = $('#div_reportForm .reportAttr[data-l1key=extension]').value()
+      document.getElementById('div_reportForm').setJeeValues(data, '.reportAttr')
+      document.getElementById('div_reportForm').seen()
+      document.getElementById('div_imgreport')?.empty()
+      var type = document.querySelector('#div_reportForm .reportAttr[data-l1key=type]').jeeValue()
+      var id = document.querySelector('#div_reportForm .reportAttr[data-l1key=id]').jeeValue()
+      var filename = document.querySelector('#div_reportForm .reportAttr[data-l1key=filename]').jeeValue()
+      var extension =document.querySelector('#div_reportForm .reportAttr[data-l1key=extension]').jeeValue()
       if (extension != 'pdf') {
         $('#div_imgreport').append('<img class="img-responsive" src="core/php/downloadFile.php?pathfile=data/report/' + type + '/' + id + '/' + filename + '.' + extension + '" />')
       }
@@ -88,18 +94,20 @@ function getReport(_type, _id, _report) {
 
 
 $('#bt_download').on('click', function() {
-  var type = $('#div_reportForm .reportAttr[data-l1key=type]').value()
-  var id = $('#div_reportForm .reportAttr[data-l1key=id]').value()
-  var filename = $('#div_reportForm .reportAttr[data-l1key=filename]').value()
-  var extension = $('#div_reportForm .reportAttr[data-l1key=extension]').value()
+  var type = document.querySelector('#div_reportForm .reportAttr[data-l1key=type]').jeeValue()
+  var id = document.querySelector('#div_reportForm .reportAttr[data-l1key=id]').jeeValue()
+  var filename = document.querySelector('#div_reportForm .reportAttr[data-l1key=filename]').jeeValue()
+  var extension = document.querySelector('#div_reportForm .reportAttr[data-l1key=extension]').jeeValue()
   window.open('core/php/downloadFile.php?pathfile=data/report/' + type + '/' + id + '/' + filename + '.' + extension, "_blank", null)
-});
+})
 
 $('#bt_remove').on('click', function() {
-  var report = $('#div_reportForm .reportAttr[data-l1key=filename]').value() + '.' + $('#div_reportForm .reportAttr[data-l1key=extension]').value()
+  var filename = document.querySelector('#div_reportForm .reportAttr[data-l1key=filename]').jeeValue()
+  var extension = document.querySelector('#div_reportForm .reportAttr[data-l1key=extension]').jeeValue()
+  var report = filename + '.' + extension
   jeedom.report.remove({
-    type: $('#div_reportForm .reportAttr[data-l1key=type]').value(),
-    id: $('#div_reportForm .reportAttr[data-l1key=id]').value(),
+    type: document.querySelector('#div_reportForm .reportAttr[data-l1key=type]').jeeValue(),
+    id: document.querySelector('#div_reportForm .reportAttr[data-l1key=id]').jeeValue(),
     report: report,
     error: function(error) {
       $.fn.showAlert({
@@ -108,17 +116,17 @@ $('#bt_remove').on('click', function() {
       })
     },
     success: function(data) {
-      $('#div_reportForm').hide()
-      $('.li_report[data-report="' + report + '"]').remove()
-      $('.li_reportType.active .number').text($('.li_reportType.active .number').text() - 1)
+      document.getElementById('div_reportForm').unseen()
+      document.querySelector('.li_report[data-report="' + report + '"]').remove()
+      document.querySelector('.li_reportType.active .number').text = document.querySelector('.li_reportType.active .number').text - 1
     }
   })
 })
 
 $('#bt_removeAll').on('click', function() {
   jeedom.report.removeAll({
-    type: $('#div_reportForm .reportAttr[data-l1key=type]').value(),
-    id: $('#div_reportForm .reportAttr[data-l1key=id]').value(),
+    type: document.querySelector('#div_reportForm .reportAttr[data-l1key=type]').jeeValue(),
+    id: document.querySelector('#div_reportForm .reportAttr[data-l1key=id]').jeeValue(),
     error: function(error) {
       $.fn.showAlert({
         message: error.message,
@@ -126,9 +134,9 @@ $('#bt_removeAll').on('click', function() {
       })
     },
     success: function(data) {
-      $('#div_reportForm').hide()
-      $('.li_report').remove()
-      $('.li_reportType.active .number').text('0')
+      document.getElementById('div_reportForm').unseen()
+      document.querySelectorAll('.li_report').remove()
+      document.querySelector('.li_reportType.active .number').text = '0'
     }
   })
 })

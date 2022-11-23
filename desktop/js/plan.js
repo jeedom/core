@@ -58,7 +58,8 @@ if (!jeeFrontEnd.plan) {
       })
     },
     setColorSelect: function(_select) {
-      _select.css('background-color', _select.find('option:selected').val())
+      if (_select.tagName != 'SELECT') return
+      _select.style.backgroundColor = _select.selectedOptions[0].text.trim()
     },
     fullScreen: function(_mode) {
       if (_mode) {
@@ -190,65 +191,66 @@ if (!jeeFrontEnd.plan) {
         },
       })
     },
-    getObjectInfo: function(_object) {
-      if (_object.hasClass('eqLogic-widget')) {
+    getElementInfo: function(_element) {
+      if (_element.length) _element = _element[0]
+      if (_element.hasClass('eqLogic-widget')) {
         return {
           type: 'eqLogic',
-          id: _object.attr('data-eqLogic_id')
+          id: _element.getAttribute('data-eqLogic_id')
         }
       }
-      if (_object.hasClass('cmd-widget')) {
+      if (_element.hasClass('cmd-widget')) {
         return {
           type: 'cmd',
-          id: _object.attr('data-cmd_id')
+          id: _element.getAttribute('data-cmd_id')
         }
       }
-      if (_object.hasClass('scenario-widget')) {
+      if (_element.hasClass('scenario-widget')) {
         return {
           type: 'scenario',
-          id: _object.attr('data-scenario_id')
+          id: _element.getAttribute('data-scenario_id')
         }
       }
-      if (_object.hasClass('plan-link-widget')) {
+      if (_element.hasClass('plan-link-widget')) {
         return {
           type: 'plan',
-          id: _object.attr('data-link_id')
+          id: _element.getAttribute('data-link_id')
         }
       }
-      if (_object.hasClass('view-link-widget')) {
+      if (_element.hasClass('view-link-widget')) {
         return {
           type: 'view',
-          id: _object.attr('data-link_id')
+          id: _element.getAttribute('data-link_id')
         }
       }
-      if (_object.hasClass('graph-widget')) {
+      if (_element.hasClass('graph-widget')) {
         return {
           type: 'graph',
-          id: _object.attr('data-graph_id')
+          id: _element.getAttribute('data-graph_id')
         }
       }
-      if (_object.hasClass('text-widget')) {
+      if (_element.hasClass('text-widget')) {
         return {
           type: 'text',
-          id: _object.attr('data-text_id')
+          id: _element.getAttribute('data-text_id')
         }
       }
-      if (_object.hasClass('image-widget')) {
+      if (_element.hasClass('image-widget')) {
         return {
           type: 'image',
-          id: _object.attr('data-image_id')
+          id: _element.getAttribute('data-image_id')
         }
       }
-      if (_object.hasClass('zone-widget')) {
+      if (_element.hasClass('zone-widget')) {
         return {
           type: 'zone',
-          id: _object.attr('data-zone_id')
+          id: _element.getAttribute('data-zone_id')
         }
       }
-      if (_object.hasClass('summary-widget')) {
+      if (_element.hasClass('summary-widget')) {
         return {
           type: 'summary',
-          id: _object.attr('data-summary_id')
+          id: _element.getAttribute('data-summary_id')
         }
       }
     },
@@ -259,7 +261,7 @@ if (!jeeFrontEnd.plan) {
       var plans = []
       var info, plan, position
       $('.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').each(function() {
-        info = jeeP.getObjectInfo($(this))
+        info = jeeP.getElementInfo(this)
         plan = {}
         plan.position = {}
         plan.display = {}
@@ -270,7 +272,7 @@ if (!jeeFrontEnd.plan) {
         plan.display.height = $(this).outerHeight()
         plan.display.width = $(this).outerWidth()
         if (info.type == 'graph') {
-          plan.display.graph = json_decode($(this).find('.graphOptions').value())
+          plan.display.graph = json_decode(this.querySelector('.graphOptions').jeeValue())
         }
         if (!$(this).is(':visible')) {
           position = $(this).show().position()
@@ -1026,7 +1028,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
             selected: jeeFrontEnd.planEditOption.grid,
             events: {
               click: function(e) {
-                jeeFrontEnd.planEditOption.grid = $(this).value()
+                jeeFrontEnd.planEditOption.grid = this.jeeValue()
                 jeeP.initEditOption(1)
               }
             }
@@ -1038,7 +1040,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
             selected: jeeFrontEnd.planEditOption.highlight,
             events: {
               click: function(e) {
-                jeeFrontEnd.planEditOption.highlight = ($(this).value() == 1) ? false : true
+                jeeFrontEnd.planEditOption.highlight = (this.jeeValue() == 1) ? false : true
                 jeeP.initEditOption(1)
               }
             }
@@ -1169,21 +1171,24 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: '{{Configuration avancée}}',
         icon: 'fas fa-cog',
         disabled: function(key, opt) {
-          var info = jeeP.getObjectInfo($(this))
+          var info = jeeP.getElementInfo(this)
           return !(info.type == 'eqLogic' || info.type == 'cmd' || info.type == 'graph')
         },
         callback: function(key, opt) {
-          var info = jeeP.getObjectInfo($(this))
+          var info = jeeP.getElementInfo(this)
           if (info.type == 'graph') {
             var el = $(this)
+            var dom_el = this
+            if (dom_el.length) dom_el = dom_el[0]
+
             $('#md_modal').load('index.php?v=d&modal=cmd.graph.select', function() {
               $('#table_addViewData tbody tr .enable').prop('checked', false)
-              var options = json_decode(el.find('.graphOptions').value())
+              var options = json_decode(dom_el.querySelector('.graphOptions').jeeValue())
               for (var i in options) {
-                var tr = $('#table_addViewData tbody tr[data-link_id=' + options[i].link_id + ']')
-                tr.find('.enable').value(1)
-                tr.setValues(options[i], '.graphDataOption')
-                jeeP.setColorSelect(tr.find('.graphDataOption[data-l1key=configuration][data-l2key=graphColor]'))
+                var tr = document.querySelector('#table_addViewData tbody tr[data-link_id="' + options[i].link_id + '"]')
+                tr.querySelector('.enable').jeeValue(1)
+                tr.setJeeValues(options[i], '.graphDataOption')
+                jeeP.setColorSelect(tr.querySelector('.graphDataOption[data-l1key="configuration"][data-l2key="graphColor"]'))
               }
 
               //set modal options:
@@ -1197,12 +1202,12 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
                 $(this).dialog("close")
               }
               buttons[validateButtonText] = function() {
-                var tr = $('#table_addViewData tbody tr').first()
+                var tr = document.querySelector('#table_addViewData tbody tr')
                 var options = []
-                while (tr.attr('data-link_id') != undefined) {
-                  if (tr.find('.enable').is(':checked')) {
-                    var graphData = tr.getValues('.graphDataOption')[0]
-                    graphData.link_id = tr.attr('data-link_id')
+                while (tr.getAttribute('data-link_id') != undefined) {
+                  if (tr.querySelector('.enable').checked == true) {
+                    var graphData = tr.getJeeValues('.graphDataOption')[0]
+                    graphData.link_id = tr.getAttribute('data-link_id')
                     options.push(graphData)
                   }
                   tr = tr.next()
@@ -1248,11 +1253,11 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: '{{Dupliquer}}',
         icon: 'far fa-copy',
         disabled: function(key, opt) {
-          var info = jeeP.getObjectInfo($(this))
+          var info = jeeP.getElementInfo(this)
           return !(info.type == 'text' || info.type == 'graph' || info.type == 'zone')
         },
         callback: function(key, opt) {
-          var info = jeeP.getObjectInfo($(this))
+          var info = jeeP.getElementInfo(this)
           jeedom.plan.copy({
             id: $(this).attr('data-plan_id'),
             version: 'dashboard',
@@ -1273,7 +1278,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         type: 'checkbox',
         events: {
           click: function(opt) {
-            if ($(this).value() == 1) {
+            if (this.jeeValue() == 1) {
               opt.handleObj.data.$trigger.addClass('locked')
             } else {
               opt.handleObj.data.$trigger.removeClass('locked')
@@ -1409,7 +1414,7 @@ $('.div_displayObject').off('resize', '.graph-widget').on('resize', '.graph-widg
 })
 
 $('.graphDataOption[data-l1key=configuration][data-l2key=graphColor]').off('change').on('change', function() {
-  jeeP.setColorSelect($(this).closest('select'))
+  jeeP.setColorSelect(this.closest('select'))
 })
 
 $(function() {
