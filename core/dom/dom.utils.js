@@ -180,7 +180,11 @@ Element.prototype.html = function(_html) {
       var script = document.createElement('script')
       script.type = "text/javascript"
       script.appendChild(document.createTextNode(data))
-      newEl.appendChild(script)
+      if (newEl.firstChild) {
+        newEl.firstChild.appendChild(script)
+      } else {
+        newEl.appendChild(script)
+      }
     }
   }
   newEl.replaceWith(...newEl.childNodes) //remove encapsulated span

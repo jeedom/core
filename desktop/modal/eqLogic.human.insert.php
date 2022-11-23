@@ -44,16 +44,17 @@ if (!isConnect()) {
   mod_insertEqLogic.options = {}
   mod_insertEqLogic.options.eqLogic = {}
   mod_insertEqLogic.options.object = {}
-  mod_insertEqLogic.selectObject = document.getElementById('table_mod_insertCmdValue_valueEqLogicToMessage').querySelector('td.mod_insertEqLogicValue_object select')
 
   $('#table_mod_insertEqLogicValue_valueEqLogicToMessage').on({
     'change': function(event) {
-      mod_insertEqLogic.changeObjectEqLogic(mod_insertEqLogic.selectObject, mod_insertEqLogic.options)
+      let _select = document.getElementById('table_mod_insertEqLogicValue_valueEqLogicToMessage')?.querySelector('td.mod_insertEqLogicValue_object select')
+      mod_insertEqLogic.changeObjectEqLogic(_select, mod_insertEqLogic.options)
     }
   }, 'td.mod_insertEqLogicValue_object select')
 
   mod_insertEqLogic.setOptions = function(_options) {
     mod_insertEqLogic.options = _options
+    let _select = document.getElementById('table_mod_insertEqLogicValue_valueEqLogicToMessage')?.querySelector('td.mod_insertEqLogicValue_object select')
     if (!isset(mod_insertEqLogic.options.eqLogic)) {
       mod_insertEqLogic.options.eqLogic = {}
     }
@@ -61,14 +62,16 @@ if (!isConnect()) {
       mod_insertEqLogic.options.object = {}
     }
     if (isset(mod_insertEqLogic.options.object.id)) {
-      mod_insertEqLogic.selectObject.value = mod_insertEqLogic.options.object.id
+      _select.jeeValue(mod_insertEqLogic.options.object.id)
     }
-    mod_insertEqLogic.changeObjectEqLogic(mod_insertEqLogic.selectObject, mod_insertEqLogic.options)
+    mod_insertEqLogic.changeObjectEqLogic(_select, mod_insertEqLogic.options)
   }
 
   mod_insertEqLogic.getValue = function() {
-    var object_name = mod_insertEqLogic.selectObject.selectedOptions[0].replace(/&nbsp;/g, '')
-    var equipement_name = document.querySelector('#table_mod_insertEqLogicValue_valueEqLogicToMessage tbody tr').querySelector('.mod_insertEqLogicValue_eqLogic select').selectedOptions[0]
+    let _selectObject = document.querySelector('#table_mod_insertEqLogicValue_valueEqLogicToMessage tbody tr').querySelector('.mod_insertEqLogicValue_object select')
+    let _selectEq = document.querySelector('#table_mod_insertEqLogicValue_valueEqLogicToMessage tbody tr').querySelector('.mod_insertEqLogicValue_eqLogic select')
+    var object_name = _selectObject.selectedOptions[0].text.trim()
+    var equipement_name = _selectEq.selectedOptions[0].text.trim()
     if (equipement_name == undefined) {
       return ''
     }
@@ -100,5 +103,6 @@ if (!isConnect()) {
     })
   }
 
-  mod_insertEqLogic.changeObjectEqLogic(mod_insertEqLogic.selectObject, mod_insertEqLogic.options)
+  let _select = document.getElementById('table_mod_insertEqLogicValue_valueEqLogicToMessage')?.querySelector('td.mod_insertEqLogicValue_object select')
+  mod_insertEqLogic.changeObjectEqLogic(_select, mod_insertEqLogic.options)
 </script>

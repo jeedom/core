@@ -113,7 +113,7 @@ $repos = update::listRepo();
 <script>
 $('.updateAttr[data-l1key=source]').on('change', function() {
   document.querySelectorAll('.repoSource').unseen()
-  document.querySelector('.repoSource.repo_' + this.value).seen()
+  document.querySelector('.repoSource.repo_' + this.value)?.seen()
 })
 
 $('#bt_uploadPlugin').fileupload({
