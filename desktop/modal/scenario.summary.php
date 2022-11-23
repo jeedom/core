@@ -83,7 +83,7 @@ if (!jeeFrontEnd.md_scenarioSummary) {
         success : function(data) {
           var table = []
           for(var i in data){
-            var tr = '<tr class="scenario" data-id="' + init(data[i].id) + '">'
+            var tr = '<tr>'
             tr += '<td>'
             tr += '<span class="label label-info scenarioAttr" data-l1key="id"></span>'
             tr += '</td>'
@@ -144,6 +144,8 @@ if (!jeeFrontEnd.md_scenarioSummary) {
             tr += '</tr>'
             let newRow = document.createElement('tr')
             newRow.innerHTML = tr
+            newRow.addClass('scenario')
+            newRow.setAttribute('data-id', init(data[i].id))
             newRow.setJeeValues(data[i], '.scenarioAttr')
             table.push(newRow)
           }
