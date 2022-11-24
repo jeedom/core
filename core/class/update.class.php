@@ -452,8 +452,8 @@ class update {
 					$plugin = plugin::byId($this->getLogicalId());
 					$cibDir = __DIR__ . '/../../plugins/' . $this->getLogicalId();
 					log::add('update', 'alert',  __('Vérification des droits sur les fichiers...', __FILE__));
-					$cmd = system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $cibDir . '/*;';
-					$cmd .= system::getCmdSudo() . 'chmod 775 -R ' . $cibDir . '/*;';
+					$cmd = system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $cibDir . ';';
+					$cmd .= system::getCmdSudo() . 'chmod 775 -R ' . $cibDir . ';';
 					$cmd .= system::getCmdSudo() . 'chmod 775 -R ' . $cibDir . '/*;';
 					exec($cmd);
 					log::add('update', 'alert', __("OK", __FILE__) . "\n");
