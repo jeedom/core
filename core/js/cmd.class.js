@@ -828,8 +828,8 @@ jeedom.cmd.changeType = function(_cmd, _subType) {
         newOption.value = i
         selSubType.appendChild(newOption)
       }
-      _cmd.querySelector('.subType').empty();
-      _cmd.querySelector('.subType').appendChild(selSubType);
+      _cmd.querySelector('.subType')?.empty();
+      _cmd.querySelector('.subType')?.appendChild(selSubType);
       if (isset(_subType)) {
         _cmd.querySelector('.cmdAttr[data-l1key="subType"]').jeeValue(_subType);
         modifyWithoutSave = false;
