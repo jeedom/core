@@ -1,11 +1,13 @@
 # Changelog Jeedom V4.3
 
-- Autorisation d'une réponse libre dans ask si vous mettez * dans le champs des réponses possibles
-
 ## 4.3.11
 
+- Autorisation d'une réponse libre dans ask si vous mettez * dans le champs des réponses possibles
 - **Analyse / Historique** : Bugfix sur la comparaison d'historique (bug introduit en 4.3.10).
 - **Synthèse** : L'*Action depuis la synthèse* d'un objet est maintenant supportée sur la version mobile.
+- Correction des historiques lors d'utilisation de fonction d'agregation
+- Correction d'un bug sur l'installation d'un plugin par un autre plugin (Ex : mqtt2 installé par zwavejs)
+- Correction d'un bug sur les historique ou la valeur 0 pouvait écraser la valeur précedente
 
 ## 4.3.10
 
