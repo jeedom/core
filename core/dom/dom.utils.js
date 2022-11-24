@@ -18,7 +18,7 @@
 
 /*migration
 regex case sensitive
-^.*(?:.value\(|getValues|setValues).*$
+^.*(?:.value\(|getValues|setValues|findAtDepth).*$
 */
 
 /* Extension Functions
@@ -207,7 +207,7 @@ Element.prototype.findAtDepth = function(selector, maxDepth) {
   var depths = [], i
   if (maxDepth > 0) {
     for (i = 1; i <= maxDepth; i++) {
-      depths.push('> ' + new Array(i).join('* > ') + selector)
+      depths.push(':scope > ' + new Array(i).join('* > ') + selector)
     }
     selector = depths.join(', ')
   }

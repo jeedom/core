@@ -475,38 +475,38 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
   $('#fd_planConfigure').on({
     'click': function(event) {
       var type = this.getAttribute('data-type')
-      var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]')
+      var el = this.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
       jeedom.cmd.getSelectModal({
         cmd: {
           type: 'action'
         }
       }, function(result) {
-        el.value(result.human)
+        el.jeeValue(result.human)
         jeedom.cmd.displayActionOption(result.human, '', function(html) {
-          el.closest('.' + type).find('.actionOptions').html(html)
+          $(el).closest('.' + type).find('.actionOptions').html(html)
           jeedomUtils.taAutosize()
         })
       })
     }
   }, '.listCmdAction')
 
-  $('body').off('focusout', '.expressionAttr[data-l1key=cmd]').on('focusout', '.expressionAttr[data-l1key=cmd]', function(event) {
+  $('body').off('focusout', '.expressionAttr[data-l1key="cmd"]').on('focusout', '.expressionAttr[data-l1key="cmd"]', function(event) {
     var type = this.getAttribute('data-type')
-    var el = $(this)
-    jeedom.cmd.displayActionOption(el.value(), '', function(html) {
-      el.closest('.' + type).find('.actionOptions').html(html)
+    var el = this
+    jeedom.cmd.displayActionOption(el.jeeValue(), '', function(html) {
+      $(el).closest('.' + type).find('.actionOptions').html(html)
       jeedomUtils.taAutosize()
     })
   })
 
   $('body').off('click', '.bt_selectOtherActionExpression').on('click', '.bt_selectOtherActionExpression', function(event) {
-    var expression = $(this).closest('.expression')
+    var expression = this.closest('.expression')
     jeedom.getSelectActionModal({
       scenario: true
     }, function(result) {
-      expression.find('.expressionAttr[data-l1key=cmd]').value(result.human)
+      expression.querySelector('.expressionAttr[data-l1key="cmd"]').jeeValue(result.human)
       jeedom.cmd.displayActionOption(result.human, '', function(html) {
-        expression.find('.actionOptions').html(html)
+        $(expression).find('.actionOptions').html(html)
         jeedomUtils.taAutosize()
       })
     })
@@ -544,11 +544,6 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
     newDiv.setJeeValues(_action, '.expressionAttr')
     document.querySelector('#div_planConfigureAction' + _type).appendChild(newDiv)
     newDiv.replaceWith(...newDiv.childNodes)
-
-    /*
-    $('#div_planConfigureAction' + _type).append(div)
-    $('#div_planConfigureAction' + _type + ' .' + _type + '').last().setValues(_action, '.expressionAttr')
-    */
     jeedomUtils.taAutosize()
   }
 

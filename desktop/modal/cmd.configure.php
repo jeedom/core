@@ -1265,15 +1265,15 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
   $('#cmd_configuration').on({
     'click': function(event) {
       var type =this.getAttribute('data-type')
-      var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]')
+      var el = this.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
       jeedom.cmd.getSelectModal({
         cmd: {
           type: 'action'
         }
       }, function(result) {
-        el.value(result.human)
+        el.jeeValue(result.human)
         jeedom.cmd.displayActionOption(result.human, '', function(html) {
-          el.closest('.' + type).find('.actionOptions').html(html)
+          $(el).closest('.' + type).find('.actionOptions').html(html)
           jeedomUtils.taAutosize()
         })
       })
@@ -1283,11 +1283,11 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
   $('#cmd_configuration').on({
     'click': function(event) {
       var type =this.getAttribute('data-type')
-      var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]')
+      var el = this.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
       jeedom.getSelectActionModal({}, function(result) {
-        el.value(result.human)
+        el.jeeValue(result.human)
         jeedom.cmd.displayActionOption(result.human, '', function(html) {
-          el.closest('.' + type).find('.actionOptions').html(html)
+          $(el).closest('.' + type).find('.actionOptions').html(html)
           jeedomUtils.taAutosize()
         })
       })
