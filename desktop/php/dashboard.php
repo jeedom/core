@@ -140,7 +140,7 @@ $columns = config::byKey('dahsboard::column::size');
 			$margin = 8 * $_object->getConfiguration('parentNumber');
 			$dataHref = 'index.php?v=d&p=dashboard&object_id=' . $_object->getId();
 			$div .= '<div class="cursor li_object"><a data-object_id="' . $_object->getId() . '" data-href="' . $dataHref . '">';
-			$div .= '<span style="position:relative;left:' . $margin . 'px;">' . $_object->getHumanName(true, true) . '</a></span>';
+			$div .= '<span style="position:relative;left:' . $margin . 'px;">' . $_object->getHumanName(true, true) . '</span></a>';
 
 			$div .= $summaryCache[$_object->getId()];
 			$div .= '</div>';
