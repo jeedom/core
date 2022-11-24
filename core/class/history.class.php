@@ -381,7 +381,7 @@ class history {
 				if ($goupingType[1] == 'year') {
 					$time = 'YEAR';
 				}
-				$sql .= ' GROUP BY ' . $time . '(`datetime`)';
+				$sql .= ' GROUP BY ' . $time . '(DATE_SUB(`datetime`, INTERVAL 1 SECOND))';
 			}
 		}
 		$sql .= ' ORDER BY `datetime` ASC';
