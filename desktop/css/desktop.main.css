@@ -2577,6 +2577,9 @@ div.div_viewZone legend.lg_viewZone {
   [data-page=plugin] #div_state .panel-body {
     min-height: 150px;
   }
+  body[data-type="plugin"] #table_cmd td input.cmdAttr {
+    display: inline-block
+  }
   #md_modal #div_confPlugin .panel-body {
     min-height: 140px;
   }
