@@ -304,7 +304,7 @@ function setTheme() {
 
 							<li class="cursor">
 								<a>
-									<i class="fas fa-home"></i> <span class="hidden-sm hidden-md">{{Accueil}}</span> <b class="caret"></b></span>
+									<i class="fas fa-home"></i> <span class="hidden-sm hidden-md">{{Accueil}}</span> <b class="caret"></b>
 									<label class="drop-icon" for="drop-home"><i class="fas fa-chevron-down fa-2x"></i></label>
 								</a>
 								<input type="checkbox" id="drop-home">
