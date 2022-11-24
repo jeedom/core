@@ -564,28 +564,28 @@ $('#bt_addAction').off('click').on('click', function() {
 
 $('#div_conf').on({
   'focusout': function(event) {
-    var type = $(this).attr('data-type')
+    var type = this.getAttribute('data-type')
     var expression = this.closest('.' + type).getJeeValues('.expressionAttr')
-    var el = $(this)
-    jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function(html) {
-      el.closest('.' + type).find('.actionOptions').html(html)
+    var el = this
+    jeedom.cmd.displayActionOption(this.jeeValue(), init(expression[0].options), function(html) {
+      $(el).closest('.' + type).find('.actionOptions').html(html)
       jeedomUtils.taAutosize()
     })
   }
-}, '.cmdAction.expressionAttr[data-l1key=cmd]')
+}, '.cmdAction.expressionAttr[data-l1key="cmd"]')
 
 $('#div_conf').on({
   'click': function(event) {
-    var type = $(this).attr('data-type')
-    var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]')
+    var type = this.getAttribute('data-type')
+    var el = this.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
     jeedom.cmd.getSelectModal({
       cmd: {
         type: 'info'
       }
     }, function(result) {
-      el.value(result.human)
+      el.jeeValue(result.human)
       jeedom.cmd.displayActionOption(result.human, '', function(html) {
-        el.closest('.' + type).find('.actionOptions').html(html)
+        $(el).closest('.' + type).find('.actionOptions').html(html)
         jeedomUtils.taAutosize()
       })
     })
@@ -594,12 +594,12 @@ $('#div_conf').on({
 
 $('#div_conf').on({
   'click': function(event) {
-    var type = $(this).attr('data-type')
-    var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]')
+    var type = this.getAttribute('data-type')
+    var el = this.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
     jeedom.getSelectActionModal({}, function(result) {
-      el.value(result.human)
+      el.jeeValue(result.human)
       jeedom.cmd.displayActionOption(result.human, '', function(html) {
-        el.closest('.' + type).find('.actionOptions').html(html)
+        $(el).closest('.' + type).find('.actionOptions').html(html)
         jeedomUtils.taAutosize()
       })
     })
@@ -608,16 +608,16 @@ $('#div_conf').on({
 
 $('#div_conf').on({
   'click': function(event) {
-    var type = $(this).attr('data-type')
-    var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]')
+    var type = this.getAttribute('data-type')
+    var el = this.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
     jeedom.cmd.getSelectModal({
       cmd: {
         type: 'action'
       }
     }, function(result) {
-      el.value(result.human)
+      el.jeeValue(result.human)
       jeedom.cmd.displayActionOption(result.human, '', function(html) {
-        el.closest('.' + type).find('.actionOptions').html(html)
+        $(el).closest('.' + type).find('.actionOptions').html(html)
         jeedomUtils.taAutosize()
       })
     })
