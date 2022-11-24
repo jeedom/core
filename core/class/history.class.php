@@ -385,7 +385,6 @@ class history {
 			}
 		}
 		$sql .= ' ORDER BY `datetime` ASC';
-
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
