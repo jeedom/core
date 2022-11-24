@@ -386,7 +386,7 @@ class history {
 		$sql .= ' ORDER BY `datetime` ASC';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	public static function getOldestValue($_cmd_id, $_limit = 1) {
 		$values = array(
 			'cmd_id' => $_cmd_id
