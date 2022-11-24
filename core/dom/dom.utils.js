@@ -29,21 +29,22 @@ String.prototype.HTMLFormat = function() {
   })
 }
 
-/* initEvent() deprecated
-Element.prototype.triggerEvent = function(_eventName) {
-  var customEvent = document.createEvent('Event')
-  customEvent.initEvent(_eventName, true, true)
-  this.dispatchEvent(customEvent)
-}
-*/
-Element.prototype.triggerEvent = function(_eventName) {
-  var event = new Event(_eventName, { bubbles: true })
+Element.prototype.triggerEvent = function(_eventName, _params) {
+  if (!isset(_params)) {
+    _params = {}
+  }
+  _params.bubbles = _params.bubbles || true
+  _params.cancelable = _params.cancelable || false
+  _params.detail = _params.detail || undefined
+
+  var event = new Event(_eventName, _params)
   this.dispatchEvent(event)
+
   return this
 }
-NodeList.prototype.triggerEvent = function(_eventName) {
+NodeList.prototype.triggerEvent = function(_eventName, _params) {
   for (var idx = 0; idx < this.length; idx++) {
-    this[idx].triggerEvent(_eventName)
+    this[idx].triggerEvent(_eventName, _params)
   }
   return this
 }
