@@ -913,9 +913,9 @@ class history {
 		if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] && $cmd->getConfiguration('historizeMode', 'avg') != 'none' && $this->getValue() !== null && $_direct === false) {
 			if ($this->getTableName() == 'history') {
 				$time = strtotime($this->getDatetime());
-				$time -= $time % 300;
-				$this->setDatetime(date('Y-m-d H:i:s', $time));
 				if ($this->getValue() == 0) {
+					$time += $time % 300;
+					$this->setDatetime(date('Y-m-d H:i:00', $time));
 					$values = array(
 						'cmd_id' => $this->getCmd_id(),
 						'datetime' => date('Y-m-d H:i:00', strtotime($this->getDatetime())),
@@ -928,6 +928,8 @@ class history {
 					DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 					return;
 				}
+				$time -= $time % 300;
+				$this->setDatetime(date('Y-m-d H:i:00', $time));
 				$values = array(
 					'cmd_id' => $this->getCmd_id(),
 					'datetime' => $this->getDatetime(),
