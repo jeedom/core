@@ -801,11 +801,11 @@ jeedom.cmd.changeType = function(_cmd, _subType) {
 
   var type = _cmd.querySelector('.cmdAttr[data-l1key="type"]').jeeValue();
   if (type == 'action') {
-    _cmd.querySelector('.cmdAction[data-action="test"]').seen();
-    _cmd.querySelector('.cmdAttr[data-l1key="htmlstate"]').unseen();
+    _cmd.querySelector('.cmdAction[data-action="test"]')?.seen();
+    _cmd.querySelector('.cmdAttr[data-l1key="htmlstate"]')?.unseen();
   } else {
-    _cmd.querySelector('.cmdAction[data-action="test"]').unseen();
-    _cmd.querySelector('.cmdAttr[data-l1key="htmlstate"]').seen();
+    _cmd.querySelector('.cmdAction[data-action="test"]')?.unseen();
+    _cmd.querySelector('.cmdAttr[data-l1key="htmlstate"]')?.seen();
   }
 
   var selSubType = document.createElement('select')
@@ -855,6 +855,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
       for (var i in subtype) {
         if (isset(subtype[i].visible)) {
           var el = _cmd.querySelector('.cmdAttr[data-l1key="' + i + '"]');
+          if (!el) continue
           if (el.getAttribute('type') == 'checkbox' && el.parentNode.tagName.toLowerCase() == 'span') {
             el = el.parentNode;
           }
