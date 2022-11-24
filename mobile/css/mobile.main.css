@@ -1023,7 +1023,7 @@
   }
 
   /*panel */
-  body[data-page="panel"] #page legend {
+  body[data-plugin] #page legend {
     background-color: rgba(var(--bg-color), var(--opacity)) !important;
     margin: 5px 0 !important;
   }

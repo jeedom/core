@@ -630,6 +630,11 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
     jeedom.cmd.resetUpdateFunction();
     $('#page').hide().load(page, function() {
       $('body').attr('data-page', _page)
+      if (init(_plugin) != '') {
+        $('body').attr('data-plugin', _plugin)
+      }else{
+        $('body').attr('data-plugin', null)
+      }
       $('#page').trigger('create')
       jeedomUtils.setBackgroundImage('')
       window.history.pushState('', '', 'index.php?v=m&p=home')
