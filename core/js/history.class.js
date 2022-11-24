@@ -259,6 +259,10 @@ jeedom.history.drawChart = function(_params) {
       _params.round = data.result.round
       if (_params.round == 0) _params.round = 2
 
+      if(_params.option.unite){
+        data.result.unite = _params.option.unite;
+      }
+
       /*
       comparing true
       Chart exist (empty, not reset), first addSeries is reference, second addSeries is comparison
@@ -663,6 +667,11 @@ jeedom.history.drawChart = function(_params) {
         } else {
           if (_params.option.graphType == 'areaspline') {
             _params.option.graphType = 'area'
+          }
+          if(_params.calcul){
+            for (var i in data.result.data) {
+              data.result.data[i][1] = _params.calcul(data.result.data[i][1])
+            }
           }
           if(_params.option.invertData){
             for (var i in data.result.data) {
