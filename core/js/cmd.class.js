@@ -799,7 +799,7 @@ jeedom.cmd.changeType = function(_cmd, _subType) {
     _cmd = _cmd[0]
   }
 
-  var type = _cmd.querySelector('.cmdAttr[data-l1key=type]').jeeValue();
+  var type = _cmd.querySelector('.cmdAttr[data-l1key="type"]').jeeValue();
   if (type == 'action') {
     _cmd.querySelector('.cmdAction[data-action="test"]').seen();
     _cmd.querySelector('.cmdAttr[data-l1key="htmlstate"]').unseen();
