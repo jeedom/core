@@ -18,7 +18,7 @@
 
 /*migration
 regex case sensitive
-^.*(?:.value\(|getValues|setValues).*$
+^.*(?:.value\(|getValues|setValues|findAtDepth).*$
 */
 
 /* Extension Functions
