@@ -327,25 +327,28 @@ class history {
 		if ($_endTime !== null) {
 			$values['endTime'] = $_endTime;
 		}
-		if ($_groupingType == null) {
+		if ($_groupingType == null || strpos($_groupingType, '::') === false) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__);
 		} else {
 			$goupingType = explode('::', $_groupingType);
 			$function = 'AVG';
-			if ($goupingType[0] == 'high') {
+			if ($goupingType[0] == 'high' || $goupingType[0] == 'max') {
 				$function = 'MAX';
-			} else	if ($goupingType[0] == 'low') {
+			} else	if ($goupingType[0] == 'low' || $goupingType[0] == 'min') {
 				$function = 'MIN';
 			} else	if ($goupingType[0] == 'sum') {
 				$function = 'SUM';
 			}
 			if ($goupingType[1] == 'hour') {
-				$sql = 'SELECT `cmd_id`,`datetime` as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
+				$sql = 'SELECT `cmd_id`,DATE_FORMAT(`datetime`,\'%Y-%m-%d %H:00:00\') as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
 			} else {
 				$sql = 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
 			}
 		}
-		$sql .= ' FROM history
+		$sql .= ' FROM (';
+
+
+		$sql .= ' (SELECT * from history
 		WHERE value is not null AND cmd_id=:cmd_id ';
 		if ($_startTime !== null) {
 			$sql .= ' AND datetime>=:startTime';
@@ -353,50 +356,19 @@ class history {
 		if ($_endTime !== null) {
 			$sql .= ' AND datetime<=:endTime';
 		}
-		if ($_groupingType != null) {
-			if ($goupingType[1] == 'week') {
-				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`))';
-			} else if ($goupingType[1] == 'hour') {
-				$sql .= ' GROUP BY CONCAT(DATE(`datetime`), \'/\', HOUR(`datetime`))';
-			} else if ($goupingType[1] == 'month') {
-				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', MONTH(`datetime`))';
-			} else {
-				$time = 'DATE';
-				if ($goupingType[1] == 'year') {
-					$time = 'YEAR';
-				}
-				$sql .= ' GROUP BY ' . $time . '(`datetime`)';
-			}
-		}
-		$sql .= ' ORDER BY `datetime` ASC';
-		$result1 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-		if ($_groupingType == null) {
-			$sql = 'SELECT ' . DB::buildField(__CLASS__);
-		} else {
-			$goupingType = explode('::', $_groupingType);
-			$function = 'AVG';
-			if ($goupingType[0] == 'high') {
-				$function = 'MAX';
-			} else	if ($goupingType[0] == 'low') {
-				$function = 'MIN';
-			} else	if ($goupingType[0] == 'sum') {
-				$function = 'SUM';
-			}
-			if ($goupingType[1] == 'hour') {
-				$sql = 'SELECT `cmd_id`,`datetime` as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
-			} else {
-				$sql = 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
-			}
-		}
-		$sql .= ' FROM historyArch
+		$sql .= ') ';
+		$sql .= ' UNION ALL ';
+		$sql .= ' (SELECT * from historyArch
 		WHERE value is not null AND cmd_id=:cmd_id ';
 		if ($_startTime !== null) {
-			$sql .= ' AND `datetime`>=:startTime';
+			$sql .= ' AND DATE_SUB(`datetime`, INTERVAL 1 SECOND)>=:startTime';
 		}
 		if ($_endTime !== null) {
-			$sql .= ' AND `datetime`<=:endTime';
+			$sql .= ' AND DATE_SUB(`datetime`, INTERVAL 1 SECOND)<=:endTime';
 		}
-		if ($_groupingType != null) {
+		$sql .= ') ';
+		$sql .= ')a ';
+		if ($_groupingType != null && strpos($_groupingType, '::') !== false) {
 			if ($goupingType[1] == 'week') {
 				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`))';
 			} else if ($goupingType[1] == 'hour') {
@@ -408,15 +380,13 @@ class history {
 				if ($goupingType[1] == 'year') {
 					$time = 'YEAR';
 				}
-				$sql .= ' GROUP BY ' . $time . '(`datetime`)';
+				$sql .= ' GROUP BY ' . $time . '(DATE_SUB(`datetime`, INTERVAL 1 SECOND))';
 			}
 		}
 		$sql .= ' ORDER BY `datetime` ASC';
-		$result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, 'historyArch');
-
-		return array_merge($result2, $result1);
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	public static function getOldestValue($_cmd_id, $_limit = 1) {
 		$values = array(
 			'cmd_id' => $_cmd_id
@@ -963,8 +933,8 @@ class history {
 			if ($this->getTableName() == 'history') {
 				$time = strtotime($this->getDatetime());
 				$time -= $time % 300;
-				$this->setDatetime(date('Y-m-d H:i:s', $time));
 				if ($this->getValue() == 0) {
+					$this->setDatetime(date('Y-m-d H:i:00', $time + 300));
 					$values = array(
 						'cmd_id' => $this->getCmd_id(),
 						'datetime' => date('Y-m-d H:i:00', strtotime($this->getDatetime())),
@@ -977,6 +947,7 @@ class history {
 					DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 					return;
 				}
+				$this->setDatetime(date('Y-m-d H:i:s', $time));
 				$values = array(
 					'cmd_id' => $this->getCmd_id(),
 					'datetime' => $this->getDatetime(),

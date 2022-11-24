@@ -451,6 +451,12 @@ class update {
 				try {
 					$plugin = plugin::byId($this->getLogicalId());
 					$cibDir = __DIR__ . '/../../plugins/' . $this->getLogicalId();
+					log::add('update', 'alert',  __('Vérification des droits sur les fichiers...', __FILE__));
+					$cmd = system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $cibDir . ';';
+					$cmd .= system::getCmdSudo() . 'chmod 775 -R ' . $cibDir . ';';
+					$cmd .= system::getCmdSudo() . 'chmod 775 -R ' . $cibDir . '/*;';
+					exec($cmd);
+					log::add('update', 'alert', __("OK", __FILE__) . "\n");
 					log::add('update', 'alert',  __('Suppression des fichiers inutiles...', __FILE__));
 					foreach (array('3rdparty', '3rparty', 'desktop', 'mobile', 'core', 'docs', 'install', 'script', 'vendor', 'plugin_info') as $folder) {
 						if (!file_exists($cibDir . '/' . $folder)) {
