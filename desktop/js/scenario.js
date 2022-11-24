@@ -177,11 +177,11 @@ if (!jeeFrontEnd.scenario) {
           })
         },
         success: function(data) {
-          $.showLoading()
+          jeedomUtils.showLoading()
           for (var i in data) {
             $('#' + data[i].id).append(data[i].html.html)
           }
-          $.hideLoading()
+          jeedomUtils.hideLoading()
           jeedomUtils.taAutosize()
         }
       })
@@ -261,7 +261,7 @@ if (!jeeFrontEnd.scenario) {
     },
     printScenario: function(_id) {
       $.hideAlert()
-      $.showLoading()
+      jeedomUtils.showLoading()
       $('#emptyModeWarning').hide()
       jeedom.scenario.update[_id] = function(_options) {
         if (_options.scenario_id = !jeeP.dom_divScenario.getJeeValues('.scenarioAttr')[0]['id']) {
@@ -315,9 +315,6 @@ if (!jeeFrontEnd.scenario) {
           $('.provokeMode').empty()
           $('.scheduleMode').empty()
           $('.scenarioAttr[data-l1key=mode]').trigger('change')
-          for (var i in data.schedules) {
-            $('#div_schedules').schedule.display(data.schedules[i])
-          }
 
           jeedom.scenario.update[_id](data)
           if (data.isActive != 1) {

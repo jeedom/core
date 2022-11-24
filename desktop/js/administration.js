@@ -411,7 +411,7 @@ document.onkeydown = function(event) {
 }
 
 $(function() {
-  $.showLoading()
+  jeedomUtils.showLoading()
   if (getUrlVars('panel') != false) {
     $('a[href="#' + getUrlVars('panel') + '"]').click()
   }

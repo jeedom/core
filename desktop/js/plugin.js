@@ -46,7 +46,7 @@ if (!jeeFrontEnd.plugin) {
         $('.li_plugin[data-plugin_id=' + _pluginId + ']').addClass('active')
         $('#div_confPlugin').show()
       }
-      $.showLoading()
+      jeedomUtils.showLoading()
       jeedom.plugin.get({
         id: _pluginId,
         error: function(error) {

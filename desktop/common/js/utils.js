@@ -45,7 +45,7 @@ window.addEventListener('error', function(event) {
   }
   jeedomUtils.JS_ERROR.push(event)
   $('#bt_jsErrorModal').show()
-  $.hideLoading()
+  jeedomUtils.hideLoading()
 })
 
 if ('SecurityPolicyViolationEvent' in window) { // Check browser support of SecurityPolicyViolationEnevt interface
@@ -63,7 +63,7 @@ if ('SecurityPolicyViolationEvent' in window) { // Check browser support of Secu
     }
     jeedomUtils.JS_ERROR.push({"filename": event.documentURI, "lineno": "0", "message": msg})
     $('#bt_jsErrorModal').show()
-    $.hideLoading()
+    jeedomUtils.hideLoading()
   })
 }
 
@@ -78,7 +78,7 @@ var modifyWithoutSave = false
 jeedomUtils.checkPageModified = function() {
   if (jeeFrontEnd.modifyWithoutSave || modifyWithoutSave) {
     if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
-      $.hideLoading()
+      jeedomUtils.hideLoading()
       return true
     }
     modifyWithoutSave = false
