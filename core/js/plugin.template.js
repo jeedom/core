@@ -681,21 +681,21 @@ $("img.lazy").each(function() {
 
 function addCmdToTableDefault(_cmd) {
   if (document.getElementById('table_cmd') == null) return
-  if (document.querySelector('#table_cmd thead').innerHTML == '') {
+  if (document.querySelector('#table_cmd thead') == null) {
     table = '<thead>';
-		table += '<tr>';
-		table += '<th>{{Id}}</th>';
-		table += '<th>{{Nom}}</th>';
-		table += '<th>{{Type}}</th>';
-		table += '<th>{{Logical ID}}</th>';
-		table += '<th>{{Options}}</th>';
-		table += '<th>{{Paramètres}}</th>';
-		table += '<th>{{Etat}}</th>';
-		table += '<th>{{Action}}</th>';
-		table += '</tr>';
-		table += '</thead>';
-		table += '<tbody>';
-		table += '</tbody>';
+    table += '<tr>';
+    table += '<th>{{Id}}</th>';
+    table += '<th>{{Nom}}</th>';
+    table += '<th>{{Type}}</th>';
+    table += '<th>{{Logical ID}}</th>';
+    table += '<th>{{Options}}</th>';
+    table += '<th>{{Paramètres}}</th>';
+    table += '<th>{{Etat}}</th>';
+    table += '<th>{{Action}}</th>';
+    table += '</tr>';
+    table += '</thead>';
+    table += '<tbody>';
+    table += '</tbody>';
     document.getElementById('table_cmd').insertAdjacentHTML('beforeend', table)
   }
   if (!isset(_cmd)) {
@@ -756,8 +756,11 @@ function addCmdToTableDefault(_cmd) {
   tr += '<i class="fas fa-minus-circle pull-right cmdAction cursor" data-action="remove"></i>';
   tr += '</td>';
   tr += '</tr>';
-  document.querySelector('#table_cmd tbody').append(tr)
-  var tr = document.querySelectorAll('#table_cmd tbody tr').last()
+
+  let newRow = document.createElement('tr')
+  newRow.innerHTML = tr
+  document.getElementById('table_cmd').querySelector('tbody').appendChild(newRow)
+
   jeedom.eqLogic.buildSelectCmd({
     id: document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue(),
     filter: {type: 'info'},
@@ -765,10 +768,10 @@ function addCmdToTableDefault(_cmd) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function (result) {
-      tr.querySelector('.cmdAttr[data-l1key="value"]').insertAdjacentHTML('beforeend', result)
-      tr.setJeeValues(_cmd, '.cmdAttr')
+      newRow.querySelector('.cmdAttr[data-l1key="value"]').insertAdjacentHTML('beforeend', result)
+      newRow.setJeeValues(_cmd, '.cmdAttr')
       //cmd js class still use jquery, send $():
-      jeedom.cmd.changeType($(tr), init(_cmd.subType))
+      jeedom.cmd.changeType($(newRow), init(_cmd.subType))
     }
   });
 }
