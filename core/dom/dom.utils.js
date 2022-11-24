@@ -311,7 +311,7 @@ NodeList.prototype.setJeeValues = function(_object, _attr) {
 
 Element.prototype.jeeValue = function(_value) {
   if (isset(_value)) { //SET
-    if (this.length > 1 && this.tagName != 'SELECT') {
+    if (this.length > 1 && this.tagName.toLowerCase() != 'select') {
       var idx
       for (idx = 0; idx < this.length; idx++) {
         this[idx].jeeValue(_value)
@@ -378,6 +378,14 @@ NodeList.prototype.jeeValue = function(_value) {
 }
 
 //Global functions
+function isElement_jQuery(_element) {
+  return (_element instanceof jQuery && _element.length)
+}
+
+function isElement_DOM(_element) {
+  return (_element instanceof HTMLElement)
+}
+
 function in_array(a, b, d) {
   var c = ""
   if (d)

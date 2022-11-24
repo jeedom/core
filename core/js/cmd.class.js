@@ -795,15 +795,25 @@ jeedom.cmd.historyInfluxAll = function(_params) {
 };
 
 jeedom.cmd.changeType = function(_cmd, _subType) {
-  var selSubType = '<select style="width : 120px;margin-top : 5px;" class="cmdAttr form-control input-sm" data-l1key="subType">';
-  var type = _cmd.find('.cmdAttr[data-l1key=type]').value();
-  if(type == 'action'){
-    _cmd.find('.cmdAction[data-action=test]').show();
-    _cmd.find('.cmdAttr[data-l1key=htmlstate]').hide();
-  }else{
-    _cmd.find('.cmdAction[data-action=test]').hide();
-    _cmd.find('.cmdAttr[data-l1key=htmlstate]').show();
+  if (isElement_jQuery(_cmd)) {
+    _cmd = _cmd[0]
   }
+
+  var type = _cmd.querySelector('.cmdAttr[data-l1key=type]').jeeValue();
+  if (type == 'action') {
+    _cmd.querySelector('.cmdAction[data-action="test"]').seen();
+    _cmd.querySelector('.cmdAttr[data-l1key="htmlstate"]').unseen();
+  } else {
+    _cmd.querySelector('.cmdAction[data-action="test"]').unseen();
+    _cmd.querySelector('.cmdAttr[data-l1key="htmlstate"]').seen();
+  }
+
+  var selSubType = document.createElement('select')
+  selSubType.style.width = '120px'
+  selSubType.style.marginTop = '5px'
+  selSubType.addClass('cmdAttr', 'form-control', 'input-sm')
+  selSubType.setAttribute('data-l1key', 'subType')
+
   jeedom.getConfiguration({
     key: 'cmd:type:' + type + ':subtype',
     default: 0,
@@ -813,13 +823,15 @@ jeedom.cmd.changeType = function(_cmd, _subType) {
     },
     success: function(subType) {
       for (var i in subType) {
-        selSubType += '<option value="' + i + '">' + subType[i].name + '</option>';
+        newOption = document.createElement('option')
+        newOption.text = subType[i].name
+        newOption.value = i
+        selSubType.appendChild(newOption)
       }
-      selSubType += '</select>';
-      _cmd.find('.subType').empty();
-      _cmd.find('.subType').append(selSubType);
+      _cmd.querySelector('.subType').empty();
+      _cmd.querySelector('.subType').appendChild(selSubType);
       if (isset(_subType)) {
-        _cmd.find('.cmdAttr[data-l1key=subType]').value(_subType);
+        _cmd.querySelector('.cmdAttr[data-l1key="subType"]').jeeValue(_subType);
         modifyWithoutSave = false;
       }
       jeedom.cmd.changeSubType(_cmd);
@@ -828,8 +840,12 @@ jeedom.cmd.changeType = function(_cmd, _subType) {
 };
 
 jeedom.cmd.changeSubType = function(_cmd) {
+  if (isElement_jQuery(_cmd)) {
+    _cmd = _cmd[0]
+  }
+
   jeedom.getConfiguration({
-    key: 'cmd:type:' + _cmd.find('.cmdAttr[data-l1key=type]').value() + ':subtype:' + _cmd.find('.cmdAttr[data-l1key=subType]').value(),
+    key: 'cmd:type:' + _cmd.querySelector('.cmdAttr[data-l1key="type"]').jeeValue() + ':subtype:' + _cmd.querySelector('.cmdAttr[data-l1key="subType"]').jeeValue(),
     default: 0,
     async: false,
     error: function(error) {
@@ -838,99 +854,100 @@ jeedom.cmd.changeSubType = function(_cmd) {
     success: function(subtype) {
       for (var i in subtype) {
         if (isset(subtype[i].visible)) {
-          var el = _cmd.find('.cmdAttr[data-l1key=' + i + ']');
-          if (el.attr('type') == 'checkbox' && el.parent().is('span')) {
-            el = el.parent();
+          var el = _cmd.querySelector('.cmdAttr[data-l1key="' + i + '"]');
+          if (el.getAttribute('type') == 'checkbox' && el.parentNode.tagName.toLowerCase() == 'span') {
+            el = el.parentNode;
           }
           if (subtype[i].visible) {
             if (el.hasClass('bootstrapSwitch')) {
-              el.parent().parent().show();
-              el.parent().parent().removeClass('hide');
+              el.parentNode.parentNode.seen();
+              el.parentNode.parentNode.removeClass('hide');
             }
-            if (el.attr('type') == 'checkbox') {
-              el.parent().show();
-              el.parent().removeClass('hide');
+            if (el.getAttribute('type') == 'checkbox') {
+              el.parentNode.seen();
+              el.parentNode.removeClass('hide');
             }
-            el.show();
+            el.seen();
             el.removeClass('hide');
           } else {
             if (el.hasClass('bootstrapSwitch')) {
-              el.parent().parent().hide();
-              el.parent().parent().addClass('hide');
+              el.parentNode.parentNode.unseen();
+              el.parentNode.parentNode.addClass('hide');
             }
-            if (el.attr('type') == 'checkbox') {
-              el.parent().hide();
-              el.parent().addClass('hide');
+            if (el.getAttribute('type') == 'checkbox') {
+              el.parentNode.unseen();
+              el.parentNode.addClass('hide');
             }
-            el.hide();
+            el.unseen();
             el.addClass('hide');
           }
           if (isset(subtype[i].parentVisible)) {
             if (subtype[i].parentVisible) {
-              el.parent().show();
-              el.parent().removeClass('hide');
+              el.parentNode.seen();
+              el.parentNode.removeClass('hide');
             } else {
-              el.parent().hide();
-              el.parent().addClass('hide');
+              el.parentNode.unseen();
+              el.parentNode.addClass('hide');
             }
           }
         } else {
           for (var j in subtype[i]) {
-            var el = _cmd.find('.cmdAttr[data-l1key=' + i + '][data-l2key=' + j + ']');
-            if (el.attr('type') == 'checkbox' && el.parent().is('span')) {
-              el = el.parent();
+            var el = _cmd.querySelector('.cmdAttr[data-l1key="' + i + '"][data-l2key="' + j + '"]');
+            if (!el) continue
+            if (el.getAttribute('type') == 'checkbox' && el.parentNode.tagName.toLowerCase() == 'span') {
+              el = el.parentNode;
             }
 
             if (isset(subtype[i][j].visible)) {
               if (subtype[i][j].visible) {
                 if (el.hasClass('bootstrapSwitch')) {
-                  el.parent().parent().parent().show();
-                  el.parent().parent().parent().removeClass('hide');
+                  el.parentNode.parentNode.parentNode.seen();
+                  el.parentNode.parentNode.parentNode.removeClass('hide');
                 }
-                if (el.attr('type') == 'checkbox') {
-                  el.parent().show();
-                  el.parent().removeClass('hide');
+                if (el.getAttribute('type') == 'checkbox') {
+                  el.parentNode.seen();
+                  el.parentNode.removeClass('hide');
                 }
-                el.show();
+                el.seen();
                 el.removeClass('hide');
               } else {
                 if (el.hasClass('bootstrapSwitch')) {
-                  el.parent().parent().parent().hide();
-                  el.parent().parent().parent().addClass('hide');
+                  el.parentNode.parentNode.parentNode.unseen();
+                  el.parentNode.parentNode.parentNode.addClass('hide');
                 }
-                if (el.attr('type') == 'checkbox') {
-                  el.parent().hide();
-                  el.parent().addClass('hide');
+                if (el.getAttribute('type') == 'checkbox') {
+                  el.parentNode.unseen();
+                  el.parentNode.addClass('hide');
                 }
-                el.hide();
+                el.unseen();
                 el.addClass('hide');
               }
             }
             if (isset(subtype[i][j].parentVisible)) {
               if (subtype[i][j].parentVisible) {
-                el.parent().show();
-                el.parent().removeClass('hide');
+                el.parentNode.seen();
+                el.parentNode.removeClass('hide');
               } else {
-                el.parent().hide();
-                el.parent().addClass('hide');
+                el.parentNode.unseen();
+                el.parentNode.addClass('hide');
               }
             }
           }
         }
       }
 
-      if (_cmd.find('.cmdAttr[data-l1key=type]').value() == 'action') {
-        _cmd.find('.cmdAttr[data-l1key=value]').show();
-        _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').show();
-        _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdToValue]').show();
-        _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateValue]').hide();
-        _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateTime]').hide();
+      if (_cmd.querySelector('.cmdAttr[data-l1key="type"]').jeeValue() == 'action') {
+        _cmd.querySelector('.cmdAttr[data-l1key="value"]')?.seen();
+        _cmd.querySelector('.cmdAttr[data-l1key="configuration"][data-l2key="updateCmdId"]')?.seen();
+        _cmd.querySelector('.cmdAttr[data-l1key="configuration"][data-l2key="updateCmdToValue"]')?.seen();
+        _cmd.querySelector('.cmdAttr[data-l1key="configuration"][data-l2key="returnStateValue"]')?.unseen();
+        _cmd.querySelector('.cmdAttr[data-l1key="configuration"][data-l2key="returnStateTime"]')?.unseen();
       } else {
-        _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateValue]').show();
-        _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateTime]').show();
-        _cmd.find('.cmdAttr[data-l1key=value]').hide();
-        _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').hide();
-        _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdToValue]').hide();
+        _cmd.querySelector('.cmdAttr[data-l1key="configuration"][data-l2key="returnStateValue"]')?.seen();
+        _cmd.querySelector('.cmdAttr[data-l1key="configuration"][data-l2key="returnStateTime"]')?.seen();
+        _cmd.querySelector('.cmdAttr[data-l1key="value"]')?.unseen();
+        _cmd.querySelector('.cmdAttr[data-l1key="configuration"][data-l2key="updateCmdId"]')?.unseen();
+        _cmd.querySelector('.cmdAttr[data-l1key="configuration"][data-l2key="updateCmdToValue"]')?.unseen();
       }
       modifyWithoutSave = false;
     }

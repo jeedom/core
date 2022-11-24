@@ -772,8 +772,7 @@ function addCmdToTableDefault(_cmd) {
     success: function (result) {
       newRow.querySelector('.cmdAttr[data-l1key="value"]').insertAdjacentHTML('beforeend', result)
       newRow.setJeeValues(_cmd, '.cmdAttr')
-      //cmd js class still use jquery, send $():
-      jeedom.cmd.changeType($(newRow), init(_cmd.subType))
+      jeedom.cmd.changeType(newRow, init(_cmd.subType))
     }
   });
 }
