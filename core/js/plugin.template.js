@@ -426,7 +426,7 @@ $('.eqLogicAction[data-action=remove]').off('click').on('click', function() {
         })
       },
       success: function(data) {
-        var text = '{{Êtes-vous sûr de vouloir supprimer l\'équipement}} ' + eqType + ' <b>' + $('.eqLogicAttr[data-l1key=name]').value() + '</b> ?'
+        var text = '{{Êtes-vous sûr de vouloir supprimer l\'équipement}} ' + eqType + ' <b>' + document.querySelector('.eqLogicAttr[data-l1key="name"]').jeeValue() + '</b> ?'
         if (Object.keys(data).length > 0) {
           text += ' </br> {{Il est utilisé par ou utilise :}}</br>'
           var complement = null

@@ -92,7 +92,7 @@ function initEquipment(_object_id) {
   $('#in_searchDashboard').off('keyup').on('keyup',function() {
     window.scrollTo(0, 0)
     $('.div_displayEquipement').show()
-    var search = $(this).value()
+    var search = this.value
     if(search == '') {
       $('div.eqLogic-widget, div.scenario-widget').show()
       $('.objectHtml').packery()

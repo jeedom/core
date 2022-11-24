@@ -364,8 +364,8 @@ jeedom.cmd.test = function(_params) {
                       jeedom.cmd.execute({
                         id: _params.id,
                         value: {
-                          title: $('#in_testCmdTitle').value(),
-                          message: $('#ta_testCmdMessage').value()
+                          title: document.getElementById('in_testCmdTitle').jeeValue(),
+                          message: document.getElementById('ta_testCmdMessage').jeeValue()
                         },
                         cache: 0,
                         error: function(error) {
