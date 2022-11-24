@@ -329,7 +329,7 @@ class history {
 			$values['endTime'] = $_endTime;
 		}
 		if ($_groupingType == null || strpos($_groupingType, '::') === false) {
-			$sql_tmpl = 'SELECT ' . DB::buildField(__CLASS__);
+			$sql = 'SELECT ' . DB::buildField(__CLASS__);
 		} else {
 			$goupingType = explode('::', $_groupingType);
 			$function = 'AVG';
@@ -341,40 +341,51 @@ class history {
 				$function = 'SUM';
 			}
 			if ($goupingType[1] == 'hour') {
-				$sql_tmpl = 'SELECT `cmd_id`,DATE_FORMAT(`datetime`,\'%Y-%m-%d %H:00:00\') as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
+				$sql = 'SELECT `cmd_id`,DATE_FORMAT(`datetime`,\'%Y-%m-%d %H:00:00\') as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
 			} else {
-				$sql_tmpl = 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
+				$sql = 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
 			}
 		}
-		$sql_tmpl .= ' FROM #table#
+		$sql .= ' FROM (';
+
+
+		$sql .= ' (SELECT * from history
 		WHERE value is not null AND cmd_id=:cmd_id ';
 		if ($_startTime !== null) {
-			$sql_tmpl .= ' AND datetime>=:startTime';
+			$sql .= ' AND datetime>=:startTime';
 		}
 		if ($_endTime !== null) {
-			$sql_tmpl .= ' AND datetime<=:endTime';
+			$sql .= ' AND datetime<=:endTime';
 		}
+		$sql .= ') ';
+		$sql .= ' UNION ALL ';
+		$sql .= ' (SELECT * from historyArch
+		WHERE value is not null AND cmd_id=:cmd_id ';
+		if ($_startTime !== null) {
+			$sql .= ' AND DATE_SUB(`datetime`, INTERVAL 1 SECOND)>=:startTime';
+		}
+		if ($_endTime !== null) {
+			$sql .= ' AND DATE_SUB(`datetime`, INTERVAL 1 SECOND)<=:endTime';
+		}
+		$sql .= ') ';
+		$sql .= ')a ';
 		if ($_groupingType != null && strpos($_groupingType, '::') !== false) {
 			if ($goupingType[1] == 'week') {
-				$sql_tmpl .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`))';
+				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`))';
 			} else if ($goupingType[1] == 'hour') {
-				$sql_tmpl .= ' GROUP BY CONCAT(DATE(`datetime`), \'/\', HOUR(`datetime`))';
+				$sql .= ' GROUP BY CONCAT(DATE(`datetime`), \'/\', HOUR(`datetime`))';
 			} else if ($goupingType[1] == 'month') {
-				$sql_tmpl .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', MONTH(`datetime`))';
+				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', MONTH(`datetime`))';
 			} else {
 				$time = 'DATE';
 				if ($goupingType[1] == 'year') {
 					$time = 'YEAR';
 				}
-				$sql_tmpl .= ' GROUP BY ' . $time . '(`datetime`)';
+				$sql .= ' GROUP BY ' . $time . '(`datetime`)';
 			}
 		}
-		$sql_tmpl .= ' ORDER BY `datetime` ASC';
-		$sql = 'select * from (';
-		$sql .= '(' . str_replace('#table#', 'history', $sql_tmpl) . ')';
-		$sql .= ' UNION ALL ';
-		$sql .= '(' . str_replace('#table#', 'historyArch', $sql_tmpl) . ')';
-		$sql .= ')a  ORDER BY `datetime` ASC';
+		$sql .= ' ORDER BY `datetime` ASC';
+
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
