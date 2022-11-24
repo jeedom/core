@@ -68,7 +68,7 @@ if (init('rescue', 0) == 0) {
 			$plugin_menu .= '<label class="drop-icon" for="drop-' . $name . '"><i class="fas fa-chevron-down fa-2x"></i></label>';
 			$plugin_menu .= '</a>';
 			$plugin_menu .= '<input type="checkbox" id="drop-' . $name . '">';
-			$plugin_menu .= '</i><ul>';
+			$plugin_menu .= '<ul>';
 			$plugins = $cat[2];
 			foreach ($plugins as $pluginAr) {
 				$pluginObj = $pluginAr[1];
