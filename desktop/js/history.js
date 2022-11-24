@@ -63,7 +63,7 @@ if (!jeeFrontEnd.history) {
     */
     setChartOptions: function() {
       if (!isset(jeedom.history.chart[this.__el__])) return
-      var _prop = 'disabled'
+      var _disabled = true
       var currentSeries = jeedom.history.chart[this.__el__].chart.series.filter(key => !key.name.includes('Navigator '))
 
       if (currentSeries.length == 1) { //only one series in chart:
@@ -71,39 +71,47 @@ if (!jeeFrontEnd.history) {
         var isCalcul = $('li.li_history[data-cmd_id="' + serieId + '"]').find('a.history').attr('data-calcul') === undefined ? false : true
         if (isCalcul) {
           this.__lastId__ = null
-          $("#cb_derive, #cb_step").prop("checked", false)
-          $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', _prop)
-          $('#bt_compare').addClass('disabled')
+          document.getElementById('cb_derive').checked = false
+          document.querySelectorAll('#cb_derive, #cb_step').checked = false
+          document.querySelectorAll('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').forEach((element, index) => {
+            element.disabled = _disabled
+          })
+          document.getElementById('bt_compare').addClass('disabled')
         } else {
           this.__lastId__ = currentSeries[currentSeries.length - 1].userOptions.id
-          _prop = false
+          _disabled = false
           if (isset(currentSeries[0].userOptions.dataGrouping)) {
             var grouping = currentSeries[0].userOptions.dataGrouping.enabled
             if (grouping) {
               var groupingType = currentSeries[0].userOptions.dataGrouping.approximation + '::' + currentSeries[0].userOptions.dataGrouping.units[0][0]
-              $('#sel_groupingType').value(groupingType)
+              document.getElementById('sel_groupingType').value = groupingType
             } else {
-              $('#sel_groupingType').val($('#sel_groupingType option:first').val())
+              document.getElementById('sel_groupingType').selectedIndex = 0
             }
           }
 
           var type = currentSeries[0].userOptions.type
           if (type == 'areaspline') type = 'area'
-          $('#sel_chartType').value(type)
+          document.getElementById('sel_chartType').value = type
 
-          $("#cb_derive").prop("checked", currentSeries[0].userOptions.derive)
-          $("#cb_step").prop("checked", currentSeries[0].userOptions.step)
+          document.getElementById('cb_derive').checked = currentSeries[0].userOptions.derive
+          document.getElementById('cb_step').checked = currentSeries[0].userOptions.step
 
-          $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', _prop)
-          $('#bt_compare').removeClass('disabled')
+          document.querySelectorAll('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').forEach((element, index) => {
+            element.disabled = _disabled
+          })
+
+          document.getElementById('bt_compare').removeClass('disabled')
         }
       } else {
         this.__lastId__ = null
-        $('#sel_groupingType').val($('#sel_groupingType option:first').val())
-        $('#sel_chartType').val($('#sel_chartType option:first').val())
-        $("#cb_derive, #cb_step").prop("checked", false)
-        $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', _prop)
-        jeedom.history.chart[this.__el__].comparing ? $('#bt_compare').removeClass('disabled') : $('#bt_compare').addClass('disabled')
+        document.getElementById('sel_groupingType').selectedIndex = 0
+        document.getElementById('sel_chartType').selectedIndex = 0
+        document.querySelectorAll('#cb_derive, #cb_step').checked = false
+        document.querySelectorAll('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').forEach((element, index) => {
+          element.disabled = _disabled
+        })
+        jeedom.history.chart[this.__el__].comparing ? document.getElementById('bt_compare').removeClass('disabled') : document.getElementById('bt_compare').addClass('disabled')
       }
     },
     addChart: function(_cmd_id, _action, _options) {
@@ -124,8 +132,8 @@ if (!jeeFrontEnd.history) {
       }
 
       //Add series:
-      var dateStart = $('#in_startDate').value()
-      var dateEnd = $('#in_endDate').value()
+      var dateStart = document.getElementById('in_startDate').value
+      var dateEnd = document.getElementById('in_endDate').value
       jeedom.history.drawChart({
         cmd_id: _cmd_id,
         el: this.__el__,
@@ -150,8 +158,10 @@ if (!jeeFrontEnd.history) {
       jeedom.history.chart[this.__el__].comparing = false
       document.emptyById(this.__el__)
       delete jeedom.history.chart[this.__el__]
-      $('#bt_compare').removeClass('btn-danger').addClass('btn-success').addClass('disabled')
-      $('#ul_history, #historyCalculs').find('.li_history.active').removeClass('active')
+      document.getElementById('bt_compare').removeClass('btn-danger').addClass('btn-success', 'disabled')
+      document.querySelectorAll('#ul_history, #historyCalculs').forEach((element, index) => {
+        element.querySelectorAll('.li_history.active')?.removeClass('active')
+      })
       this.setChartOptions()
     },
     emptyHistory: function(_cmd_id, _date) {
@@ -185,10 +195,10 @@ if (!jeeFrontEnd.history) {
     compareChart: function(_cmd_id) {
       //compare:
       var fromStart, fromEnd, toStart, toEnd
-      fromStart = $('#in_compareStart1').value() + ' 00:00:00'
-      fromEnd = $('#in_compareEnd1').value() + ' 23:59:59'
-      toStart = $('#in_compareStart2').value() + ' 00:00:00'
-      toEnd = $('#in_compareEnd2').value() + ' 23:59:59'
+      fromStart = document.getElementById('in_compareStart1').value + ' 00:00:00'
+      fromEnd = document.getElementById('in_compareEnd1').value + ' 23:59:59'
+      toStart = document.getElementById('in_compareStart2').value + ' 00:00:00'
+      toEnd = document.getElementById('in_compareEnd2').value + ' 23:59:59'
 
       //Existing serie dateRange can vary, remove all series:
       jeedom.history.setAxisScales(this.__el__, {redraw: true, resetDateRange: true})
@@ -262,7 +272,7 @@ if (!jeeFrontEnd.history) {
 jeeFrontEnd.history.init()
 
 $(function() {
-  $('#in_searchHistory').val('').keyup()
+  document.getElementById('in_searchHistory').value = ''
   moment.locale(jeeFrontEnd.language.substring(0, 2))
   jeedomUtils.datePickerInit()
   jeeFrontEnd.history.postInit()
@@ -290,8 +300,8 @@ $('#bt_validChangeDate').on('click', function() {
 jeeP.$pageContainer.on({
   'click': function(event) {
     try {
-      var _startDate = moment($('#in_startDate').value(), 'YYYY-MM-DD')
-      var _endDate = $('#in_endDate').value()
+      var _startDate = moment(document.getElementById('in_startDate').value, 'YYYY-MM-DD')
+      var _endDate = document.getElementById('in_endDate').value
 
       var range = $(event.target).parent('g').attr('data-range')
       var newStartdDate = ''
@@ -308,8 +318,8 @@ jeeP.$pageContainer.on({
           break
       }
       if (newStartdDate !='') {
-        $('#in_startDate').value(newStartdDate)
-        $('#bt_validChangeDate').trigger('click')
+        document.getElementById('in_startDate').value = newStartdDate
+        document.getElementById('bt_validChangeDate').triggerEvent('click')
       }
     } catch (error) {}
   }
@@ -328,7 +338,7 @@ $('#bt_findCmdCalculHistory').on('click', function() {
   })
 })
 $('#bt_displayCalculHistory').on('click', function() {
-  var calcul = $('#in_calculHistory').value()
+  var calcul = document.getElementById('in_calculHistory').jeeValue()
   if (calcul != '') jeeP.addChart(calcul, 1)
 })
 $('#bt_configureCalculHistory').on('click', function() {
@@ -352,7 +362,7 @@ $('#sel_groupingType').off('change').on('change', function(event) {
   if (event.isTrigger == 3) return
   if (jeeP.__lastId__ == null) return
   var currentId = jeeP.__lastId__
-  var groupingType = $(this).value()
+  var groupingType = this.value
   $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active')
   jeeP.addChart(currentId, 0)
   jeedom.cmd.save({
@@ -378,7 +388,7 @@ $('#sel_chartType').off('change').on('change', function(event) {
   if (event.isTrigger == 3) return
   if (jeeP.__lastId__ == null) return
   var currentId = jeeP.__lastId__
-  var graphType = $(this).value()
+  var graphType = this.value
   $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active')
   jeeP.addChart(currentId, 0)
   jeedom.cmd.save({
@@ -405,7 +415,7 @@ $('#cb_derive').off('change').on('change', function(event) {
   if (event.isTrigger == 3) return
   if (jeeP.__lastId__ == null) return
   var currentId = jeeP.__lastId__
-  var graphDerive = $(this).value()
+  var graphDerive = this.value
   jeeP.addChart(currentId, 0)
   jeedom.cmd.save({
     cmd: {
@@ -430,7 +440,7 @@ $('#cb_step').off('change').on('change', function(event) {
   if (event.isTrigger == 3) return
   if (jeeP.__lastId__ == null) return
   var currentId = jeeP.__lastId__
-  var graphStep = $(this).value()
+  var graphStep = this.value
   jeeP.addChart(currentId, 0)
   jeedom.cmd.save({
     cmd: {
@@ -460,7 +470,7 @@ $('#bt_clearGraph').on('click', function() {
 //search filter opening:
 jeeP.$pageContainer.on({
   'keyup': function(event) {
-    if ($(this).value() == '') {
+    if (this.value == '') {
       $('#ul_history .cmdList').hide()
       $('.displayObject').find('i.fas').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right')
     } else {
@@ -546,36 +556,36 @@ jeeP.$pageContainer.on({
 
 //Compare period modal presets:
 $('#sel_setPeriod').off('change').on('change', function() {
-  var startDate = $('#in_compareEnd1').value()
-  var num = $(this).value().split('.')[0]
-  var type = $(this).value().split('.')[1]
+  var startDate = document.getElementById('in_compareEnd1').value
+  var num = this.value.split('.')[0]
+  var type = this.value.split('.')[1]
 
   var m_startDate = moment(startDate, 'YYYY-MM-DD HH:mm:ss')
   var endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
-  $('#in_compareStart1').value(endDate)
+  document.getElementById('in_compareStart1').value = endDate
 
   //range to compare with:
-  num = $('#sel_comparePeriod').value().split('.')[0]
-  type = $('#sel_comparePeriod').value().split('.')[1]
+  num = document.getElementById('sel_comparePeriod').value.split('.')[0]
+  type = document.getElementById('sel_comparePeriod').value.split('.')[1]
 
   startDate = endDate
   m_startDate = moment(startDate, 'YYYY-MM-DD HH:mm:ss')
   endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
-  $('#in_compareStart2').value(endDate)
+  document.getElementById('in_compareStart2').value = endDate
 })
 $('#sel_comparePeriod').off('change').on('change', function() {
-  var startDate = $('#in_compareEnd1').value()
-  var num = $(this).value().split('.')[0]
-  var type = $(this).value().split('.')[1]
+  var startDate = document.getElementById('in_compareEnd1').value
+  var num = this.value.split('.')[0]
+  var type = this.value.split('.')[1]
 
   var m_startDate = moment(startDate, 'YYYY-MM-DD HH:mm:ss')
   var endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
-  $('#in_compareEnd2').value(endDate)
+  document.getElementById('in_compareEnd2').value = endDate
 
-  startDate = $('#in_compareStart1').value()
+  startDate = document.getElementById('in_compareStart1').value
   m_startDate = moment(startDate, 'YYYY-MM-DD HH:mm:ss')
   endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
-  $('#in_compareStart2').value(endDate)
+  document.getElementById('in_compareStart2').value = endDate
 })
 
 //Load date ranges modal:
@@ -589,19 +599,19 @@ $("#md_getCompareRange").dialog({
     $(this).parent().css({
       'top': 120
     })
-    $('#in_compareStart1').value($('#in_startDate').value())
-    $('#sel_setPeriod').trigger('change')
-    $('#sel_comparePeriod').trigger('change')
+    document.getElementById('in_compareStart1').value = document.getElementById('in_startDate').value
+    document.getElementById('sel_setPeriod').triggerEvent('change')
+    document.getElementById('sel_comparePeriod').triggerEvent('change')
   },
   beforeClose: function(event, ui) {}
 })
 
 $('#md_getCompareRange').on({
   'change': function(event) {
-    var fromStart = moment($('#in_compareStart1').value() + ' 00:00:00', 'YYYY-MM-DD HH:mm:ss')
-    var fromEnd = moment($('#in_compareEnd1').value() + ' 23:59:59', 'YYYY-MM-DD HH:mm:ss')
-    var toStart = moment($('#in_compareStart2').value() + ' 00:00:00', 'YYYY-MM-DD HH:mm:ss')
-    var toEnd = moment($('#in_compareEnd2').value() + ' 23:59:59', 'YYYY-MM-DD HH:mm:ss')
+    var fromStart = moment(document.getElementById('in_compareStart1').value + ' 00:00:00', 'YYYY-MM-DD HH:mm:ss')
+    var fromEnd = moment(document.getElementById('in_compareEnd1').value + ' 23:59:59', 'YYYY-MM-DD HH:mm:ss')
+    var toStart = moment(document.getElementById('in_compareStart2').value + ' 00:00:00', 'YYYY-MM-DD HH:mm:ss')
+    var toEnd = moment(document.getElementById('in_compareEnd2').value + ' 23:59:59', 'YYYY-MM-DD HH:mm:ss')
 
     var diffPeriod = fromEnd.diff(fromStart, 'days')
     var cdiffPeriod = toEnd.diff(toStart, 'days')
