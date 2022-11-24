@@ -19,6 +19,7 @@
 if (!jeeFrontEnd.scenario) {
   jeeFrontEnd.scenario = {
     $divScenario: null,
+    dom_divScenario: null,
     tab: null,
     dataDefinedAction: null,
     PREV_FOCUS: null,
@@ -40,6 +41,7 @@ if (!jeeFrontEnd.scenario) {
       this.bt_undo = $('#bt_undo')
       this.bt_redo = $('#bt_redo')
       this.$divScenario = $('#div_editScenario')
+      this.dom_divScenario= document.getElementById('div_editScenario')
       window.jeeP = this
     },
     checkNoMode: function() {
@@ -157,10 +159,10 @@ if (!jeeFrontEnd.scenario) {
     },
     updateElementCollpase: function() {
       $('.bt_collapse').each(function() {
-        if ($(this).value() == 0) {
-          $(this).closest('.element').removeClass('elementCollapse')
+        if (this.jeeValue() == 0) {
+          this.closest('.element').removeClass('elementCollapse')
         } else {
-          $(this).closest('.element').addClass('elementCollapse')
+          this.closest('.element').addClass('elementCollapse')
         }
       })
     },
@@ -196,11 +198,11 @@ if (!jeeFrontEnd.scenario) {
 
         var action, scenario_id, enable
         $('.actionCheckCmd').each(function() {
-          action = $(this).find('input[data-type="actionCheckCmd"]').value()
+          action = this.querySelector('input[data-type="actionCheckCmd"]').jeeValue()
           if (action != "scenario") return true
-          scenario_id = $(this).find('select[data-l2key="scenario_id"]').value()
+          scenario_id = this.querySelector('select[data-l2key="scenario_id"]').jeeValue()
           if (scenario_id != scId) return true
-          enable = $(this).find('input[data-l2key="enable"]').value()
+          enable = this.querySelector('input[data-l2key="enable"]').jeeValue()
           action = {
             'cmdId': cmdId,
             'name': cmdName,
@@ -211,11 +213,11 @@ if (!jeeFrontEnd.scenario) {
         })
 
         $('.actionPreExecCmd').each(function() {
-          action = $(this).find('input[data-type="actionPreExecCmd"]').value()
+          action = this.querySelector('input[data-type="actionPreExecCmd"]').jeeValue()
           if (action != "scenario") return true
-          scenario_id = $(this).find('select[data-l2key="scenario_id"]').value()
+          scenario_id = this.querySelector('select[data-l2key="scenario_id"]').jeeValue()
           if (scenario_id != scId) return true
-          enable = $(this).find('input[data-l2key="enable"]').value()
+          enable = this.querySelector('input[data-l2key="enable"]').jeeValue()
           action = {
             'cmdId': cmdId,
             'name': cmdName,
@@ -226,11 +228,11 @@ if (!jeeFrontEnd.scenario) {
         })
 
         $('.actionPostExecCmd').each(function() {
-          action = $(this).find('input[data-type="actionPostExecCmd"]').value()
+          action = this.querySelector('input[data-type="actionPostExecCmd"]').jeeValue()
           if (action != "scenario") return true
-          scenario_id = $(this).find('select[data-l2key="scenario_id"]').value()
+          scenario_id = this.querySelector('select[data-l2key="scenario_id"]').jeeValue()
           if (scenario_id != scId) return true
-          enable = $(this).find('input[data-l2key="enable"]').value()
+          enable = this.querySelector('input[data-l2key="enable"]').jeeValue()
           action = {
             'cmdId': cmdId,
             'name': cmdName,
@@ -262,7 +264,7 @@ if (!jeeFrontEnd.scenario) {
       $.showLoading()
       $('#emptyModeWarning').hide()
       jeedom.scenario.update[_id] = function(_options) {
-        if (_options.scenario_id = !jeeP.$divScenario.getValues('.scenarioAttr')[0]['id']) {
+        if (_options.scenario_id = !jeeP.dom_divScenario.getJeeValues('.scenarioAttr')[0]['id']) {
           return
         }
         switch (_options.state) {
@@ -302,10 +304,10 @@ if (!jeeFrontEnd.scenario) {
           });
         },
         success: function(data) {
-          $('.scenarioAttr').value('')
+          document.querySelectorAll('.scenarioAttr').jeeValue('')
           $('.scenarioAttr[data-l1key=object_id] option').first().attr('selected', true)
           $('.scenarioAttr[data-l1key=object_id]').val('')
-          jeeP.$divScenario.setValues(data, '.scenarioAttr')
+          jeeP.dom_divScenario.setJeeValues(data, '.scenarioAttr')
           data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch
           $('#span_lastLaunch').text(data.lastLaunch)
 
@@ -428,7 +430,7 @@ if (!jeeFrontEnd.scenario) {
     },
     saveScenario: function(_callback) {
       $.hideAlert()
-      var scenario = this.$divScenario.getValues('.scenarioAttr')[0]
+      var scenario = this.dom_divScenario.getJeeValues('.scenarioAttr')[0]
       if (typeof scenario.trigger == 'undefined') {
         scenario.trigger = ''
       }
@@ -436,8 +438,8 @@ if (!jeeFrontEnd.scenario) {
         scenario.schedule = ''
       }
       var elements = []
-      $('#div_scenarioElement').children('.element').each(function() {
-        elements.push(jeeP.getElement($(this)))
+      document.getElementById('div_scenarioElement').querySelectorAll(':scope > .element').forEach(function(_el) {
+        elements.push(jeeP.getElement(_el))
       })
       scenario.elements = elements
       jeedom.scenario.save({
@@ -1062,38 +1064,47 @@ if (!jeeFrontEnd.scenario) {
       div += '</div>'
       return div
     },
-    getElement: function(_element) {
-      var element = _element.getValues('.elementAttr', 1)
+    getElement: function(dom_element) {
+      var element = dom_element.getJeeValues('.elementAttr', 1)
       if (element.length == 0) {
         return
       }
       element = element[0]
       element.subElements = []
 
-      var subElement, expression_dom, expression, id
-      _element.findAtDepth('.subElement', 2).each(function() {
-        subElement = $(this).getValues('.subElementAttr', 2)[0]
-        subElement.expressions = []
-        expression_dom = $(this).children('.expressions')
-        if (expression_dom.length == 0) {
-          expression_dom = $(this).children('legend').findAtDepth('.expressions', 2)
-        }
-        expression_dom.children('.expression').each(function() {
-          expression = $(this).getValues('.expressionAttr', 3)[0]
-          if (expression.type == 'element') {
-            expression.element = jeeP.getElement($(this).findAtDepth('.element', 2))
-          }
-          if (subElement.type == 'code') {
-            id = $(this).find('.expressionAttr[data-l1key=expression]').attr('id')
-            if (id != undefined && isset(jeeFrontEnd.scenario.editors[id])) {
-              expression.expression = jeeFrontEnd.scenario.editors[id].getValue()
-            }
-          }
-          subElement.expressions.push(expression)
+      //Single html element ?:
+      if (!dom_element.length) {
+        dom_element = [dom_element]
+      }
 
-        });
-        element.subElements.push(subElement)
-      });
+      var subElement, expression_dom, expression, id
+      dom_element.forEach(function(dom_el) {
+        dom_el.findAtDepth('.subElement', 2).forEach(function(_el) {
+          subElement = _el.getJeeValues('.subElementAttr', 2)[0]
+          subElement.expressions = []
+          expression_dom = _el.querySelector(':scope > .expressions')
+          if (expression_dom.length == 0) {
+            expression_dom = this.querySelector(':scope > legend').findAtDepth('.expressions', 2)
+          }
+
+          if (expression_dom != null) {
+            expression_dom.querySelectorAll(':scope > .expression').forEach(function(_exp) {
+              expression = _exp.getJeeValues('.expressionAttr', 3)[0]
+              if (expression.type == 'element') {
+                expression.element = jeeP.getElement(_exp.findAtDepth('.element', 2))
+              }
+              if (subElement.type == 'code') {
+                id = _exp.querySelector('.expressionAttr[data-l1key="expression"]').getAttribute('id')
+                if (id != undefined && isset(jeeFrontEnd.scenario.editors[id])) {
+                  expression.expression = jeeFrontEnd.scenario.editors[id].getValue()
+                }
+              }
+              subElement.expressions.push(expression)
+            })
+          }
+          element.subElements.push(subElement)
+        })
+      })
       return element
     },
     updateTooltips: function() {
@@ -1177,7 +1188,7 @@ if (!jeeFrontEnd.scenario) {
       this.bt_redo.addClass('disabled')
       var newStack = []
       $('#div_scenarioElement').children('.element').each(function() {
-        newStack.push(jeeP.getElement($(this)))
+        newStack.push(jeeP.getElement(this))
       })
 
       if (newStack == $(this.undoStack[state - 1])) return
@@ -1756,7 +1767,7 @@ $('#bt_scenarioTab').on('click', function() {
 })
 
 $('.scenarioAttr[data-l2key="timeline::enable"]').off('change').on('change', function() {
-  if ($(this).value() == 1) {
+  if (this.jeeValue() == 1) {
     $('.scenarioAttr[data-l2key="timeline::folder"]').show()
   } else {
     $('.scenarioAttr[data-l2key="timeline::folder"]').hide()
@@ -1811,7 +1822,7 @@ document.onkeydown = function(event) {
     event.preventDefault()
     $('#md_modal').dialog({
       title: "{{Log d'exécution du scénario}}"
-    }).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open')
+    }).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key=id]').jeeValue()).dialog('open')
     return
   }
 
@@ -1922,7 +1933,7 @@ $('#bt_chooseIcon').on('click', function() {
     _icon = '.' + _icon.replace(' ', '.')
   }
   jeedomUtils.chooseIcon(function(_icon) {
-    $('.scenarioAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon)
+    $('.scenarioAttr[data-l1key="display"][data-l2key="icon"]').empty().append(_icon)
   }, {
     icon: _icon
   })
@@ -1930,7 +1941,7 @@ $('#bt_chooseIcon').on('click', function() {
 })
 
 $('.scenarioAttr[data-l1key=display][data-l2key=icon]').on('dblclick', function() {
-  $('.scenarioAttr[data-l1key=display][data-l2key=icon]').value('')
+  document.querySelector('.scenarioAttr[data-l1key="display"][data-l2key="icon"]').value = ''
 })
 
 $('.scenarioAttr[data-l1key=group]').autocomplete({
@@ -1965,7 +1976,7 @@ $('.scenarioAttr[data-l1key=group]').autocomplete({
 $('.scenarioAttr[data-l1key=mode]').off('change').on('change', function() {
   $('#bt_addSchedule').removeClass('roundedRight')
   $('#bt_addTrigger').removeClass('roundedRight')
-  if ($(this).value() == 'schedule' || $(this).value() == 'all') {
+  if (this.jeeValue() == 'schedule' || this.jeeValue() == 'all') {
     $('.scheduleDisplay').show()
     $('#bt_addSchedule').show()
   } else {
@@ -1973,7 +1984,7 @@ $('.scenarioAttr[data-l1key=mode]').off('change').on('change', function() {
     $('#bt_addSchedule').hide()
     $('#bt_addTrigger').addClass('roundedRight')
   }
-  if ($(this).value() == 'provoke' || $(this).value() == 'all') {
+  if (this.jeeValue() == 'provoke' || this.jeeValue() == 'all') {
     $('.provokeDisplay').show()
     $('#bt_addTrigger').show()
   } else {
@@ -1981,7 +1992,7 @@ $('.scenarioAttr[data-l1key=mode]').off('change').on('change', function() {
     $('#bt_addTrigger').hide()
     $('#bt_addSchedule').addClass('roundedRight')
   }
-  if ($(this).value() == 'all') {
+  if (this.jeeValue() == 'all') {
     $('#bt_addSchedule').addClass('roundedRight')
   }
 })
@@ -2007,34 +2018,34 @@ jeeP.$divScenario.on('click', '.bt_removeSchedule', function(event) {
 })
 
 jeeP.$divScenario.on('click', '.bt_selectTrigger', function(event) {
-  var el = $(this)
+  var el = this
   jeedom.cmd.getSelectModal({
     cmd: {
       type: 'info'
     }
   }, function(result) {
-    el.closest('.trigger').find('.scenarioAttr[data-l1key=trigger]').value(result.human)
+    el.closest('.trigger').querySelector('.scenarioAttr[data-l1key="trigger"]').jeeValue(result.human)
   })
 })
 
 jeeP.$divScenario.on('click', '.bt_selectDataStoreTrigger', function(event) {
-  var el = $(this);
+  var el = this
   jeedom.dataStore.getSelectModal({
     cmd: {
       type: 'info'
     }
   }, function(result) {
-    el.closest('.trigger').find('.scenarioAttr[data-l1key=trigger]').value(result.human)
+    el.closest('.trigger').querySelector('.scenarioAttr[data-l1key="trigger"]').jeeValue(result.human)
   })
 })
 
 jeeP.$divScenario.on('click', '.bt_selectGenericTrigger', function(event) {
-  var el = $(this);
+  var el = this
   jeedom.config.getGenericTypeModal({
     type: 'info',
     object: true
   }, function(result) {
-    el.closest('.trigger').find('.scenarioAttr[data-l1key=trigger]').value('#' + result.human + '#')
+    el.closest('.trigger').querySelector('.scenarioAttr[data-l1key="trigger"]').jeeValue('#' + result.human + '#')
   })
 })
 
@@ -2071,12 +2082,12 @@ jeeP.$divScenario.on('click', '.bt_addScenarioElement', function(event) {
       var newEL = $(jeeP.addExpression({
         type: 'element',
         element: {
-          type: $("#in_addElementType").value()
+          type: document.getElementById("in_addElementType").jeeValue()
         }
       }))
     } else {
       var newEL = $(jeeP.addElement({
-        type: $("#in_addElementType").value()
+        type: document.getElementById("in_addElementType").jeeValue()
       }))
     }
     if (insertAfter) {
@@ -2098,21 +2109,21 @@ jeeP.$divScenario.on('click', '.bt_addScenarioElement', function(event) {
   })
 })
 $('#in_addElementType').off('change').on('change', function() {
-  $('.addElementTypeDescription').hide()
-  $('.addElementTypeDescription.' + $(this).value()).show()
+  document.querySelectorAll('.addElementTypeDescription').unseen()
+  document.querySelectorAll('.addElementTypeDescription.' + this.jeeValue()).seen()
 })
 
 $('#bt_logScenario').off('click').on('click', function() {
   $('#md_modal').dialog({
     title: "{{Log d'exécution du scénario}}"
-  }).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open')
+  }).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
 })
 
 $("#bt_copyScenario").off('click').on('click', function() {
   bootbox.prompt("{{Nom du scénario}} ?", function(result) {
     if (result !== null) {
       jeedom.scenario.copy({
-        id: $('.scenarioAttr[data-l1key=id]').value(),
+        id: document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue(),
         name: result,
         error: function(error) {
           $.fn.showAlert({
@@ -2131,30 +2142,30 @@ $("#bt_copyScenario").off('click').on('click', function() {
 $('#bt_graphScenario').off('click').on('click', function() {
   $('#md_modal').dialog({
     title: "{{Graphique de lien(s)}}"
-  }).load('index.php?v=d&modal=graph.link&filter_type=scenario&filter_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open')
+  }).load('index.php?v=d&modal=graph.link&filter_type=scenario&filter_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
 })
 
 $('#bt_editJsonScenario').on('click', function() {
   $('#md_modal').dialog({
     title: "{{Edition texte scénarios}}"
-  }).load('index.php?v=d&modal=scenario.jsonEdit&id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open')
+  }).load('index.php?v=d&modal=scenario.jsonEdit&id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
 })
 
 $('#bt_exportScenario').off('click').on('click', function() {
   $('#md_modal').dialog({
     title: "{{Export du scénario}}"
-  }).load('index.php?v=d&modal=scenario.export&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open')
+  }).load('index.php?v=d&modal=scenario.export&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
 })
 
 $('#bt_templateScenario').off('click').on('click', function() {
   $('#md_modal').dialog({
     title: "{{Template de scénario}}"
-  }).load('index.php?v=d&modal=scenario.template&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open')
+  }).load('index.php?v=d&modal=scenario.template&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
 })
 
 $("#bt_runScenario").off('click').on('click', function(event) {
   $.hideAlert()
-  var scenario_id = $('.scenarioAttr[data-l1key=id]').value()
+  var scenario_id = document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()
   var logmode = $('button[data-l2key="logmode"]').attr('value')
   if (event.ctrlKey || event.metaKey) {
     jeeP.saveScenario(function() {
@@ -2184,7 +2195,7 @@ $("#bt_runScenario").off('click').on('click', function(event) {
     })
   } else {
     jeedom.scenario.changeState({
-      id: $('.scenarioAttr[data-l1key=id]').value(),
+      id: document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue(),
       state: 'start',
       error: function(error) {
         $.fn.showAlert({
@@ -2204,7 +2215,7 @@ $("#bt_runScenario").off('click').on('click', function(event) {
 
 $("#bt_stopScenario").off('click').on('click', function() {
   jeedom.scenario.changeState({
-    id: $('.scenarioAttr[data-l1key=id]').value(),
+    id: document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue(),
     state: 'stop',
     error: function(error) {
       $.fn.showAlert({
@@ -2228,10 +2239,10 @@ $("#bt_saveScenario").off('click').on('click', function(event) {
 
 $("#bt_delScenario").off('click').on('click', function(event) {
   $.hideAlert()
-  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer le scénario}} <span style="font-weight: bold ;">' + $('.scenarioAttr[data-l1key=name]').value() + '</span> ?', function(result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer le scénario}} <span style="font-weight: bold ;">' + document.querySelector('.scenarioAttr[data-l1key="name"]').jeeValue() + '</span> ?', function(result) {
     if (result) {
       jeedom.scenario.remove({
-        id: $('.scenarioAttr[data-l1key=id]').value(),
+        id: document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue(),
         error: function(error) {
           $.fn.showAlert({
             message: error.message,
@@ -2251,25 +2262,26 @@ $("#bt_delScenario").off('click').on('click', function(event) {
 
 /*******************Element***********************/
 jeeP.$divScenario.on('change', '.subElementAttr[data-l1key=options][data-l2key=enable]', function() {
-  var checkbox = $(this)
+  var checkbox = this
   var element = checkbox.closest('.element')
-  if (checkbox.value() == 1) {
+  if (checkbox.checked) {
     element.removeClass('disableElement')
   } else {
     element.addClass('disableElement')
   }
-  var subElement = checkbox.closest('.element').find('.subElement:not(.noSortable)')
-  if (checkbox.value() == 1) {
-    subElement.find('.expressions').removeClass('disableSubElement')
+  var subElement = checkbox.closest('.element').querySelector('.subElement:not(.noSortable)')
+  if (!subElement) return
+  if (checkbox.checked) {
+    subElement.querySelectorAll('.expressions')?.removeClass('disableSubElement')
   } else {
-    subElement.find('.expressions').addClass('disableSubElement')
+    subElement.querySelectorAll('.expressions')?.addClass('disableSubElement')
   }
 })
 
 jeeP.$divScenario.on('change', '.expressionAttr[data-l1key=options][data-l2key=enable]', function() {
-  var checkbox = $(this)
+  var checkbox = this
   var element = checkbox.closest('.expression')
-  if (checkbox.value() == 1) {
+  if (checkbox.checked) {
     element.removeClass('disableSubElement')
   } else {
     element.addClass('disableSubElement')
@@ -2394,10 +2406,10 @@ $('body').on('click', '.modal-body .bt_selectCmdFromModal', function(event) {
 })
 
 jeeP.$divScenario.on('click', '.bt_selectCmdExpression', function(event) {
-  var el = $(this)
-  var expression = $(this).closest('.expression')
+  var el = this
+  var expression = this.closest('.expression')
   var type = 'info'
-  if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
+  if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
     type = 'action'
   }
 
@@ -2406,20 +2418,20 @@ jeeP.$divScenario.on('click', '.bt_selectCmdExpression', function(event) {
       type: type
     }
   }, function(result) {
-    if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
+    if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
       jeeP.setUndoStack()
-      expression.find('.expressionAttr[data-l1key=expression]').value(result.human)
-      jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function(html) {
-        expression.find('.expressionOptions').html(html)
+      expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(result.human)
+      jeedom.cmd.displayActionOption(expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(), '', function(html) {
+        $(expression).find('.expressionOptions').html(html)
         jeedomUtils.taAutosize()
         jeeP.updateTooltips()
       })
     }
 
-    if (expression.find('.expressionAttr[data-l1key=type]').value() == 'condition') {
-      var condType = el.closest('.subElement').get(0)
-      if (!$(condType).hasClass('subElementIF') && !$(condType).hasClass('subElementFOR')) {
-        expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', result.human)
+    if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'condition') {
+      var condType = el.closest('.subElement')
+      if (!condType.hasClass('subElementIF') && !condType.hasClass('subElementFOR')) {
+        $(expression).find('.expressionAttr[data-l1key="expression"]').atCaret('insert', result.human)
         return
       }
 
@@ -2432,7 +2444,7 @@ jeeP.$divScenario.on('click', '.bt_selectCmdExpression', function(event) {
           "{{Ne rien mettre}}": {
             className: "btn-default",
             callback: function() {
-              expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', result.human)
+              $(expression).find('.expressionAttr[data-l1key=expression]').atCaret('insert', result.human)
             }
           },
           success: {
@@ -2442,20 +2454,20 @@ jeeP.$divScenario.on('click', '.bt_selectCmdExpression', function(event) {
               jeeP.setUndoStack()
               jeeFrontEnd.modifyWithoutSave = true
               var condition = result.human
-              condition += ' ' + $('.conditionAttr[data-l1key=operator]').value()
+              condition += ' ' + document.querySelector('.conditionAttr[data-l1key="operator"]').jeeValue()
               if (result.cmd.subType == 'string') {
-                if ($('.conditionAttr[data-l1key=operator]').value() == 'matches') {
-                  condition += ' "/' + $('.conditionAttr[data-l1key=operande]').value() + '/"'
+                if (document.querySelector('.conditionAttr[data-l1key="operator"]').jeeValue() == 'matches') {
+                  condition += ' "/' + document.querySelector('.conditionAttr[data-l1key="operande"]').jeeValue() + '/"'
                 } else {
-                  condition += " '" + $('.conditionAttr[data-l1key=operande]').value() + "'"
+                  condition += " '" + document.querySelector('.conditionAttr[data-l1key="operande"]').jeeValue() + "'"
                 }
               } else {
-                condition += ' ' + $('.conditionAttr[data-l1key=operande]').value()
+                condition += ' ' + document.querySelector('.conditionAttr[data-l1key="operande"]').jeeValue()
               }
-              condition += ' ' + $('.conditionAttr[data-l1key=next]').value() + ' '
-              expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', condition)
-              if ($('.conditionAttr[data-l1key=next]').value() != '') {
-                el.click()
+              condition += ' ' + document.querySelector('.conditionAttr[data-l1key="next"]').jeeValue() + ' '
+              $(expression).find('.expressionAttr[data-l1key=expression]').atCaret('insert', condition)
+              if (document.querySelector('.conditionAttr[data-l1key="next"]').jeeValue() != '') {
+                el.triggerEvent('click')
               }
             }
           },
@@ -2466,27 +2478,27 @@ jeeP.$divScenario.on('click', '.bt_selectCmdExpression', function(event) {
 })
 
 jeeP.$divScenario.on('click', '.bt_selectOtherActionExpression', function(event) {
-  var expression = $(this).closest('.expression')
+  var expression = this.closest('.expression')
   jeedom.getSelectActionModal({
     scenario: true
   }, function(result) {
     jeeP.setUndoStack()
-    expression.find('.expressionAttr[data-l1key=expression]').value(result.human);
-    jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function(html) {
-      expression.find('.expressionOptions').html(html)
+    expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(result.human);
+    jeedom.cmd.displayActionOption(result.human, '', function(html) {
+      $(expression).find('.expressionOptions').html(html)
       jeedomUtils.taAutosize()
     })
   })
 })
 
 jeeP.$divScenario.on('click', '.bt_selectScenarioExpression', function(event) {
-  var expression = $(this).closest('.expression')
+  var expression = this.closest('.expression')
   jeedom.scenario.getSelectModal({}, function(result) {
-    if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
-      expression.find('.expressionAttr[data-l1key=expression]').value(result.human)
+    if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
+      expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(result.human)
     }
-    if (expression.find('.expressionAttr[data-l1key=type]').value() == 'condition') {
-      expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', result.human)
+    if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'condition') {
+      $(expression).find('.expressionAttr[data-l1key="expression"]').atCaret('insert', result.human)
     }
   })
 })
@@ -2494,28 +2506,28 @@ jeeP.$divScenario.on('click', '.bt_selectScenarioExpression', function(event) {
 jeeP.$divScenario.on('click', '.bt_selectGenericExpression', function(event) {
   var expression = $(this).closest('.expression')
   jeedom.config.getGenericTypeModal({type: 'info', object: true}, function(result) {
-    expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', result.human)
+    expression.find('.expressionAttr[data-l1key="expression"]').atCaret('insert', result.human)
   })
 })
 
 jeeP.$divScenario.on('click', '.bt_selectEqLogicExpression', function(event) {
-  var expression = $(this).closest('.expression')
+  var expression = this.closest('.expression')
   jeedom.eqLogic.getSelectModal({}, function(result) {
-    if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
-      expression.find('.expressionAttr[data-l1key=expression]').value(result.human)
+    if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
+      expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(result.human)
     }
-    if (expression.find('.expressionAttr[data-l1key=type]').value() == 'condition') {
-      expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', result.human)
+    if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'condition') {
+      $(expression).find('.expressionAttr[data-l1key="expression"]').atCaret('insert', result.human)
     }
   })
 })
 
-jeeP.$divScenario.on('focusout', '.expression .expressionAttr[data-l1key=expression]', function(event) {
-  var el = $(this)
-  if (el.closest('.expression').find('.expressionAttr[data-l1key=type]').value() == 'action') {
-    var expression = el.closest('.expression').getValues('.expressionAttr')
-    jeedom.cmd.displayActionOption(el.value(), init(expression[0].options), function(html) {
-      el.closest('.expression').find('.expressionOptions').html(html)
+jeeP.$divScenario.on('focusout', '.expression .expressionAttr[data-l1key="expression"]', function(event) {
+  var el = this
+  if (el.closest('.expression').querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
+    var expression = el.closest('.expression').getJeeValues('.expressionAttr')
+    jeedom.cmd.displayActionOption(el.jeeValue(), init(expression.options), function(html) {
+      $(el).closest('.expression').find('.expressionOptions').html(html)
       jeedomUtils.taAutosize()
       jeeP.updateTooltips()
     })
@@ -2524,7 +2536,7 @@ jeeP.$divScenario.on('focusout', '.expression .expressionAttr[data-l1key=express
 
 //COPY - PASTE
 jeeP.$divScenario.on('click', '.bt_copyElement', function(event) {
-  var clickedBloc = $(this).closest('.element')
+  var clickedBloc = this.closest('.element')
 
   jeeP.clipboard = jeeP.getElement(clickedBloc)
 
@@ -2657,7 +2669,7 @@ jeeP.$divScenario.on('mouseenter', '.bt_sortable', function() {
 
       if (ui.item.hasClass('element') && ui.item.parent().attr('id') != 'div_scenarioElement') {
         ui.item.find('.expressionAttr,.subElementAttr,.elementAttr').each(function() {
-          var value = $(this).value()
+          var value = this.jeeValue()
           if (value != undefined && value != '') {
             $(this).attr('data-tmp-value', value)
           }
@@ -2672,7 +2684,7 @@ jeeP.$divScenario.on('mouseenter', '.bt_sortable', function() {
         el.find('.expressionAttr,.subElementAttr,.elementAttr').each(function() {
           value = $(this).attr('data-tmp-value')
           if (value != undefined && value != '') {
-            $(this).value(value)
+            this.jeeValue(value)
           }
           $(this).removeAttr('data-tmp-value')
         })
