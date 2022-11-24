@@ -29,6 +29,18 @@ String.prototype.HTMLFormat = function() {
   })
 }
 
+String.prototype.stripAccents = function() {
+  var in_chrs = 'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ',
+    out_chrs = 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY',
+    transl = {}
+  eval('var chars_rgx = /[' + in_chrs + ']/g')
+  for (var i = 0; i < in_chrs.length; i++) {
+    transl[in_chrs.charAt(i)] = out_chrs.charAt(i)
+  }
+  return this.replace(chars_rgx, function(match) {
+    return transl[match]
+  })
+}
 Element.prototype.triggerEvent = function(_eventName, _params) {
   if (!isset(_params)) {
     _params = {}
@@ -52,6 +64,9 @@ NodeList.prototype.triggerEvent = function(_eventName, _params) {
 /* Shortcuts Functions
 */
 //Hide Show as seen(), unseen() as prototype show/hide are ever declared and fired by bootstrap and jquery
+Element.prototype.isVisible = function() {
+  return this.offsetWidth > 0 || this.offsetHeight > 0 || this.getClientRects().length > 0
+}
 Element.prototype.isHidden = function() {
   return (this.offsetParent === null)
 }
