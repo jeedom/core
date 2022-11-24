@@ -963,8 +963,8 @@ class history {
 			if ($this->getTableName() == 'history') {
 				$time = strtotime($this->getDatetime());
 				$time -= $time % 300;
-				$this->setDatetime(date('Y-m-d H:i:s', $time));
 				if ($this->getValue() == 0) {
+					$this->setDatetime(date('Y-m-d H:i:00', $time + 300));
 					$values = array(
 						'cmd_id' => $this->getCmd_id(),
 						'datetime' => date('Y-m-d H:i:00', strtotime($this->getDatetime())),
@@ -977,6 +977,7 @@ class history {
 					DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 					return;
 				}
+				$this->setDatetime(date('Y-m-d H:i:s', $time));
 				$values = array(
 					'cmd_id' => $this->getCmd_id(),
 					'datetime' => $this->getDatetime(),
