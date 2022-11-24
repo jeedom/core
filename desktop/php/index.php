@@ -68,7 +68,7 @@ if (init('rescue', 0) == 0) {
 			$plugin_menu .= '<label class="drop-icon" for="drop-' . $name . '"><i class="fas fa-chevron-down fa-2x"></i></label>';
 			$plugin_menu .= '</a>';
 			$plugin_menu .= '<input type="checkbox" id="drop-' . $name . '">';
-			$plugin_menu .= '</i><ul>';
+			$plugin_menu .= '<ul>';
 			$plugins = $cat[2];
 			foreach ($plugins as $pluginAr) {
 				$pluginObj = $pluginAr[1];
@@ -304,7 +304,7 @@ function setTheme() {
 
 							<li class="cursor">
 								<a>
-									<i class="fas fa-home"></i> <span class="hidden-sm hidden-md">{{Accueil}}</span> <b class="caret"></b></span>
+									<i class="fas fa-home"></i> <span class="hidden-sm hidden-md">{{Accueil}}</span> <b class="caret"></b>
 									<label class="drop-icon" for="drop-home"><i class="fas fa-chevron-down fa-2x"></i></label>
 								</a>
 								<input type="checkbox" id="drop-home">
