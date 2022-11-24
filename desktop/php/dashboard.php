@@ -88,7 +88,7 @@ $columns = config::byKey('dahsboard::column::size');
 		<div class="input-group-btn">
 			<a id="bt_resetDashboardSearch" class="btn" title="{{Vider le champ de recherche}}"><i class="fas fa-times"></i>
 			</a><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="{{Filtre par catégorie}}">
-				<i class="fas fa-filter"></i></i>&nbsp;&nbsp;&nbsp;<span class="caret"></span>
+				<i class="fas fa-filter"></i>&nbsp;&nbsp;&nbsp;<span class="caret"></span>
 			</button>
 			<ul id="categoryfilter" class="dropdown-menu" role="menu" style="top:28px;left:-110px;">
 				<li>
