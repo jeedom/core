@@ -704,7 +704,7 @@ function addCmdToTableDefault(_cmd) {
   if (!isset(_cmd.configuration)) {
     _cmd.configuration = {};
   }
-  var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
+  var tr = '<tr>';
   tr += '<td style="min-width:50px;width:70px;">';
   tr += '<span class="cmdAttr" data-l1key="id"></span>';
   tr += '</td>';
@@ -759,6 +759,8 @@ function addCmdToTableDefault(_cmd) {
 
   let newRow = document.createElement('tr')
   newRow.innerHTML = tr
+  newRow.addClass('cmd')
+  newRow.setAttribute('data-cmd_id', init(_cmd.id))
   document.getElementById('table_cmd').querySelector('tbody').appendChild(newRow)
 
   jeedom.eqLogic.buildSelectCmd({
