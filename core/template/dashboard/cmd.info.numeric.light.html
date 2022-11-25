@@ -1,21 +1,48 @@
 <div class="cmd cmd-widget #history#" data-type="info" data-subtype="numeric" data-template="light" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   <div class="title #hide_name#">
-    <div  class="cmdName">#name_display#</div>
+    <span class="cmdName">#name_display#</span>
   </div>
-  <div class="content-sm ">
-    <span class="iconCmd"></span>
+  <div class="content-sm">
+    <div class="iconCmd"></div>
   </div>
-  <template></template>
+  <div class="state">
+    <span class="value"></span> <span class="unit"></span>
+  </div>
+  <div class="timeCmd label label-default"></div>
+  <div class="cmdStats #hide_history#">
+    <span title="{{Minimum}}" class="tooltips">#minHistoryValue#</span>|<span title="{{Moyenne}}" class="tooltips">#averageHistoryValue#</span>|<span title="{{Maximum}}" class="tooltips">#maxHistoryValue#</span> <i class="#tendance#"></i>
+  </div>
+  <template>
+    <div>time : duration|date ({{Affiche durée ou date de la valeur}})</div>
+  </template>
   <script>
-    jeedom.cmd.addUpdateFunction('#id#',function(_options){
-        $('.cmd[data-cmd_id=#id#]').attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
-        if (parseFloat(_options.display_value) >= 1) {
-          $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lumiere-on"></i>');
-        } else {
-          $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lumiere-off"></i>');
+    jeedom.cmd.addUpdateFunction('#id#', function(_options) {
+      if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+        cmd.setAttribute('title', '{{Date de valeur}} : ' + _options.valueDate + '<br>{{Date de collecte}} : ' + _options.collectDate)
+        if ('#time#' == 'duration' || '#time#' == 'date') {
+          jeedom.cmd.displayDuration(_options.valueDate, cmd.querySelector('.timeCmd'), '#time#')
+        }
+
+        if (is_numeric(_options.value)) {
+          if (parseFloat(_options.display_value) >= 1) {
+            cmd.querySelector('.iconCmd').innerHTML = '<i class="icon icon_yellow jeedom-lumiere-on"></i>'
+          } else {
+            cmd.querySelector('.iconCmd').innerHTML = '<i class="icon jeedom-lumiere-off"></i>'
+          }
+
+          cmd.querySelector('.value').innerText = _options.display_value
+          cmd.querySelector('.unit').innerText = _options.unit
+        }
+
+        if (_options.alertLevel == 'warning') {
+          cmd.querySelector('.value').innerHTML = '<span class="label label-warning"><i class="fas fa-bell"></i> ' + _options.value + '</span>'
+        } else if (_options.alertLevel == 'danger') {
+          cmd.querySelector('.value').innerHTML = '<span class="label label-danger"><i class="fas fa-exclamation"></i> ' + _options.value + '</span>'
         }
       }
-    );
-    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
+    })
+
+    jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
+
   </script>
 </div>

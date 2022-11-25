@@ -1,8 +1,8 @@
-<div class="cmd cmd-widget shuttergauge" data-type="action" data-subtype="numeric" data-template="timeShutter" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+<div class="cmd cmd-widget shuttergauge" data-type="action" data-subtype="numeric" data-template="shutter" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   <div class="title #hide_name#">
-    <div class="cmdName">#name_display#</div>
+    <span class="cmdName">#name_display#</span>
   </div>
-  <div class="content-sm" data-cmd_id="#id#">
+  <div class="content-sm">
     <div class="shuttergauge-chart">
       <div class="shuttergauge-bckg cursor">
         <div class="shuttergauge-value"></div>
@@ -10,78 +10,74 @@
       <div id="widget_slider#id#" class="slider"></div>
     </div>
   </div>
-  <div class="value" data-cmd_id="#id#">
-    <div class="state"><strong>#value# #unite#</strong></div>
+  <div class="state">
+    <span class="value"></span> <span class="unit"></span>
   </div>
-  <span class="timeCmd label label-default #value_history#" data-type="info" data-cmd_id="#value_id#"></span>
+  <div class="timeCmd label label-default"></div>
   <template>
-    <div>color : rgb(20,20,20) ({{Couleur du curseur et valeur}})</div>
-    <div>time : date ({{Affiche l'info time sous forme de date}})</div>
-    <div>step : 0.5 ({{Pas utilisé pour le changement de valeur}})</div>
+    <div>color : rgb(20,20,20) ({{Couleur de l'indicateur de valeur}})</div>
+    <div>step : 1 ({{Pas du changement de valeur}})</div>
+    <div>invert : 1 ({{Inverse la position de l'indicateur de valeur}})</div>
+    <div>time : duration|date ({{Affiche durée ou date de la valeur}})</div>
   </template>
   <script>
-    var step#id# = 1
-    if ($.issetWidgetOptParam('#step#', 'step')) {
-      step#id# = parseFloat('#step#')
-    }
+    var step = (domUtils.issetWidgetOptParam('#step#', 'step')) ? parseFloat('#step#') : 1
 
-    var mySlider#id# = $.createWidgetSlider({
+    window['mySlider#id#'] = domUtils.createWidgetSlider({
       sliderDiv: document.getElementById('widget_slider#id#'),
       vertical: true,
-      state: ('#state#' == '') ? #minValue# : '#state#',
-      min: #minValue#,
-      max: #maxValue#,
-      step: step#id#,
+      state: ('#state#' == '') ? parseFloat('#minValue#') : '#state#',
+      min: parseFloat('#minValue#'),
+      max: parseFloat('#maxValue#'),
+      step: (domUtils.issetWidgetOptParam('#step#', 'step')) ? parseFloat('#step#') : 1,
       tooltips: true,
       format: true,
       unite: '#unite#'
     })
 
-    if ($.issetWidgetOptParam('#color#', 'color')) {
-      $('.cmd[data-cmd_id=#id#]').find('div.shuttergauge-value').style('background', '#color#', 'important')
-      $(mySlider#id#.target).find('.noUi-handle').style('background', '#color#', 'important')
-      $(mySlider#id#.target).find('.noUi-connect').style('background', '#color#', 'important')
-    }
-
-    mySlider#id#.on('change', function(values, handle) {
+    window['mySlider#id#'].on('change', function(values, handle) {
       let value = values[handle].replace('#unite#', '').trim()
-      let cmd = $('.cmd[data-cmd_uid=#uid#]')
-      if ('#invert#' == '1') {
-        let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
-        jeedom.cmd.execute({id: '#id#', value: {slider: maxValue - value}})
-      } else {
-        jeedom.cmd.execute({id: '#id#', value: {slider: value}})
-      }
+      jeedom.cmd.execute({ id: '#id#', value: { slider: value } })
     })
 
     jeedom.cmd.addUpdateFunction('#id#', function(_options) {
-      let cmd = $('.cmd[data-cmd_uid=#uid#]')
-      jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
-      cmd.attr('title', '{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
-      let position = _options.value
-      let minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
-      let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
-      if ('#invert#' == '1') {
-        position = maxValue - position
-      }
-      let height_#uid# = ((position - minValue) * 100) / (maxValue - minValue)
-      height_#uid# = 100 - (Math.round(parseFloat(height_#uid#) * 10) / 10)
-      cmd.find('.shuttergauge-value').height(height_#uid#+'%')
-      cmd.find('.state strong').first().text(_options.display_value+' '+_options.unit)
-      mySlider#id#.set(position)
-    });
+      if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+        cmd.setAttribute('title', '{{Date de valeur}} : ' + _options.valueDate + '<br>{{Date de collecte}} : ' + _options.collectDate)
+        jeedom.cmd.displayDuration(_options.valueDate, cmd.querySelector('.timeCmd'), '#time#')
 
-    $('.cmd[data-cmd_uid=#uid#] .shuttergauge-bckg').off().on('click', function() {
-      shutterPos = $('.cmd[data-cmd_uid=#uid#] .state strong').first().html()
-      let minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
-      let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
-      if (shutterPos > (maxValue - minValue) / 2) {
-        jeedom.cmd.execute({id: '#id#', value: {slider: minValue}})
-      } else {
-        jeedom.cmd.execute({id: '#id#', value: {slider: maxValue}})
+        if (is_numeric(_options.value)) {
+          let minValue = parseFloat('#minValue#'), maxValue = parseFloat('#maxValue#'), height = ((_options.value - minValue) * 100) / (maxValue - minValue)
+          if (height > maxValue) height = maxValue
+          if (height < minValue) height = minValue
+          if ('#invert#' != '1') {
+            height = 100 - (Math.round(parseFloat(height) * 10) / 10)
+          }
+
+          cmd.querySelector('.shuttergauge-value').style.height = height + '%'
+          cmd.querySelector('.value').innerText = _options.display_value
+          cmd.querySelector('.unit').innerText = _options.unit
+          window['mySlider#id#'].set(_options.value)
+        } else {
+          cmd.querySelector('.value').innerHTML = '<span class="label label-danger">' + _options.value + '</span>'
+        }
       }
     })
 
-    jeedom.cmd.refreshValue([{cmd_id:'#id#', value: '#state#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
+    document.querySelector('.cmd[data-cmd_uid="#uid#"] .shuttergauge-bckg').addEventListener('click', function() {
+      let minValue = parseFloat('#minValue#'), maxValue = parseFloat('#maxValue#'), shutterPos = parseFloat(document.querySelector('.cmd[data-cmd_uid=#uid#] .value').innerText)
+      if (shutterPos > (maxValue - minValue) / 2) {
+        jeedom.cmd.execute({ id: '#id#', value: { slider: minValue } })
+      } else {
+        jeedom.cmd.execute({ id: '#id#', value: { slider: maxValue } })
+      }
+    })
+
+    jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#state#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
+
+    if (domUtils.issetWidgetOptParam('#color#', 'color')) {
+      document.querySelector('.cmd[data-cmd_uid="#uid#"] .shuttergauge-value').style.setProperty('background-color', '#color#', 'important')
+      document.querySelector('.cmd[data-cmd_uid="#uid#"] .noUi-handle').style.setProperty('background-color', '#color#', 'important')
+      document.querySelector('.cmd[data-cmd_uid="#uid#"] .noUi-connect').style.setProperty('background-color', '#color#', 'important')
+    }
   </script>
 </div>

@@ -1,45 +1,58 @@
-<div class="cmd cmd-widget arcgauge #history#" data-type="info" data-subtype="numeric" data-template="default" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" title="{{Date de valeur}} : #valueDate#<br/>{{Date de collecte}} : #collectDate#" >
+<div class="cmd cmd-widget arcgauge #history#" data-type="info" data-subtype="numeric" data-template="default" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   <div class="title #hide_name#">
     <span class="cmdName">#name_display#</span>
   </div>
   <div class="content-sm">
-    <div class="gauge cursor #history#" data-cmd_id="#id#"></div>
-    <div class="gaugeValue" data-cmd_id="#id#"></div>
+    <div class="gauge cursor"></div>
+    <div class="gaugeValue"></div>
   </div>
-  <div class="state"><strong>#state# #unite#</strong></div>
+  <div class="state">
+    <span class="value"></span> <span class="unit"></span>
+  </div>
+  <div class="timeCmd label label-default"></div>
   <div class="cmdStats #hide_history#">
-    <span title='{{Min}}' class='tooltips'>#minHistoryValue#</span>|<span title='{{Moyenne}}' class='tooltips'>#averageHistoryValue#</span>|<span title='{{Max}}' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
+    <span title="{{Minimum}}" class="tooltips">#minHistoryValue#</span>|<span title="{{Moyenne}}" class="tooltips">#averageHistoryValue#</span>|<span title="{{Maximum}}" class="tooltips">#maxHistoryValue#</span> <i class="#tendance#"></i>
   </div>
   <template>
-    <div>color : rgb(20,20,20) ({{couleur de l'indicateur de valeur}})</div>
+    <div>color : rgb(20,20,20) ({{Couleur de l'indicateur de valeur}})</div>
+    <div>time : duration|date ({{Affiche durée ou date de la valeur}})</div>
   </template>
   <script>
-     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      let cmd = $('.cmd[data-cmd_id=#id#]')
-      let minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
-      let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
-      cmd.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
-      if (_options.value >= maxValue) {
-        maxValue = _options.value
-        var angle = 0
-      } else if (_options.value <= minValue) {
-        minValue = _options.value
-        var angle = -180
-      } else {
-        var angle = (((_options.value - minValue) * 180) / (maxValue - minValue)) - 180
+    jeedom.cmd.addUpdateFunction('#id#', function(_options) {
+      if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+        cmd.setAttribute('title', '{{Date de valeur}} : ' + _options.valueDate + '<br>{{Date de collecte}} : ' + _options.collectDate)
+        if ('#time#' == 'duration' || '#time#' == 'date') {
+          jeedom.cmd.displayDuration(_options.valueDate, cmd.querySelector('.timeCmd'), '#time#')
+        }
+
+        if (is_numeric(_options.value)) {
+          let minValue = parseFloat('#minValue#'), maxValue = parseFloat('#maxValue#')
+          var angle = (((_options.value - minValue) * 180) / (maxValue - minValue)) - 180
+          if (_options.value >= maxValue) {
+            angle = 0
+          } else if (_options.value <= minValue) {
+            angle = -180
+          }
+
+          cmd.querySelector('.gaugeValue').style.transform = 'scale(0.94) rotate(' + angle + 'deg)'
+          cmd.querySelector('.value').innerText = _options.display_value
+          cmd.querySelector('.unit').innerText = _options.unit
+        } else {
+          cmd.querySelector('.value').innerHTML = '<span class="label label-danger">' + _options.value + '</span>'
+        }
+
+        if (_options.alertLevel == 'warning') {
+          cmd.querySelector('.value').innerHTML = '<span class="label label-warning"><i class="fas fa-bell"></i> ' + _options.value + '</span>'
+        } else if (_options.alertLevel == 'danger') {
+          cmd.querySelector('.value').innerHTML = '<span class="label label-danger"><i class="fas fa-exclamation"></i> ' + _options.value + '</span>'
+        }
       }
-      cmd.find('.gaugeValue').css('transform', 'scale(0.94) rotate('+angle+'deg)')
-      cmd.find('.state strong').first().text(_options.display_value+' '+_options.unit)
-    });
+    })
 
-    if (is_numeric('#state#')) {
-      jeedom.cmd.refreshValue([{cmd_id:'#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
-    } else {
-      $('.cmd[data-cmd_uid=#uid#] .gauge').append('<center><span class="label label-danger">#state#</span></center>')
-    }
+    jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
 
-    if ($.issetWidgetOptParam('#color#', 'color')) {
-      $('.cmd[data-cmd_id=#id#] .gaugeValue').css('border-color', '#color#')
+    if (domUtils.issetWidgetOptParam('#color#', 'color')) {
+      document.querySelector('.cmd[data-cmd_uid="#uid#"] .gaugeValue').style.borderColor = '#color#'
     }
   </script>
 </div>

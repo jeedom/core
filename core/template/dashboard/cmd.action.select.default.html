@@ -1,20 +1,28 @@
 <div class="cmd cmd-widget reportModeHidden" data-type="action" data-subtype="select" data-template="default" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   <div class="title #hide_name#">
-    <div class="cmdName">#name_display#</div>
+    <span class="cmdName">#name_display#</span>
   </div>
-  <div class="content-xs">
+  <div class="content-sm">
     <select class="selectCmd">#listValue#</select>
   </div>
-  <template></template>
+  <div class="timeCmd label label-default"></div>
+  <template>
+    <div>time : duration|date ({{Affiche durée ou date de la valeur}})</div>
+  </template>
   <script>
-    $(".cmd[data-cmd_uid=#uid#] .selectCmd").on('change', function () {
-      jeedom.cmd.execute({id: '#id#', value: {select: $(this).value()}})
+    document.querySelector('.cmd[data-cmd_uid=#uid#] .selectCmd').addEventListener('change', function() {
+      jeedom.cmd.execute({ id: '#id#', value: { select: this.value } })
     })
 
-    jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      $(".cmd[data-cmd_uid=#uid#] .selectCmd").val(_options.display_value)
-    });
+    jeedom.cmd.addUpdateFunction('#id#', function(_options) {
+      if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+        if ('#time#' == 'duration' || '#time#' == 'date') {
+          jeedom.cmd.displayDuration(_options.valueDate, cmd.querySelector('.timeCmd'), '#time#')
+        }
+        cmd.querySelector('.selectCmd').value = _options.display_value
+      }
+    })
 
-    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
+    jeedom.cmd.refreshValue([{ cmd_id: '#id#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
   </script>
 </div>

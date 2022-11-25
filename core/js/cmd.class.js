@@ -1206,12 +1206,12 @@ jeedom.cmd.displayDuration = function(_date, _el, _type = 'duration') {
     } else {
       var dateString = moment(_date, 'YYYY-MM-DD HH:mm:ss').calendar(jeedom.config.locales['en_US'].calendar)
     }
-    _el.empty().append(dateString)
+    _el.innerText = dateString
     return true
   }
 
-  if (_el.attr('data-interval') != undefined) {
-    clearInterval(_el.attr('data-interval'))
+  if (_el.getAttribute('data-interval') != undefined) {
+    clearInterval(_el.getAttribute('data-interval'))
   }
 
   var tsDate = moment(_date).unix() * 1000
@@ -1231,14 +1231,14 @@ jeedom.cmd.displayDuration = function(_date, _el, _type = 'duration') {
   } else {
     var durationString = "0" + jeedom.config.locales[jeeFrontEnd.language].duration.second
   }
-  _el.empty().append(durationString)
+  _el.innerText = durationString
 
   //set refresh interval:
   var myinterval = setInterval(function() {
     var duration = moment.duration(moment() - moment(_date))
     var durationString = jeedom.cmd.formatMomentDuration(duration)
-    _el.empty().append(durationString)
+    _el.innerText = durationString
   }, interval)
 
-  _el.attr('data-interval', myinterval)
+  _el.setAttribute('data-interval', myinterval)
 }

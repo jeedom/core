@@ -1,56 +1,61 @@
 <div class="cmd cmd-widget #history#" data-type="info" data-subtype="binary" data-template="tmplimg" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#">
   <div class="title #hide_name#">
-    <div class="cmdName">#name_display#</div>
+    <span class="cmdName">#name_display#</span>
   </div>
   <div class="content-sm">
     <span class="imgCmd"></span>
   </div>
-  <div class="value">
-    <span class="timeCmd label label-default #history#" data-type="info"></span>
+  <div class="state">
+    <span class="value"></span>
   </div>
+  <span class="timeCmd label label-default #history#" data-type="info"></span>
   <template>
-    <div>time : date ({{Affiche l'info time sous forme de date}})</div>
+    <div>time : duration|date ({{Affiche durée ou date de la valeur}})</div>
   </template>
   <script>
-     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      let cmd = $('.cmd[data-cmd_id=#id#]')
-      if ('#_time_widget_#' == '1') {
-        jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
-      } else {
-        cmd.find('.timeCmd').parent().remove()
-      }
-      cmd.attr('title', '{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
-      if (_options.display_value == '1') {
-        cmd.attr('data-state','on')
-        cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_on_#", "#_img_dark_on_#"))
-      } else {
-        cmd.attr('data-state','off')
-        cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#", "#_img_dark_off_#"))
-      }
-      let style = ''
-      if (!isNaN('#_desktop_width_#')) {
-        style = 'max-width:#_desktop_width_#px !important;'
-      }
-      cmd.find('.imgCmd img').attr('style', style)
-      cmd.off('changeThemeEventCmd').on('changeThemeEventCmd',function (event, theme) {
-        if (cmd.attr('data-state') == 'on') {
-          cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_on_#", "#_img_dark_on_#"))
+    jeedom.cmd.addUpdateFunction('#id#', function(_options) {
+      if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+        cmd.setAttribute('title', '{{Date de valeur}} : ' + _options.valueDate + '<br>{{Date de collecte}} : ' + _options.collectDate)
+        if ('#_time_widget_#' == '1' || '#time#' == 'duration' || '#time#' == 'date') {
+          jeedom.cmd.displayDuration(_options.valueDate, cmd.querySelector('.timeCmd'), '#time#')
+        }
+
+
+        if (_options.value == 1) {
+          cmd.setAttribute('data-state', 1)
+          cmd.querySelector('.imgCmd').innerHTML = jeedom.widgets.getThemeImg("#_img_light_on_#", "#_img_dark_on_#")
+        } else if (_options.value == 0) {
+          cmd.setAttribute('data-state', 0)
+          cmd.querySelector('.imgCmd').innerHTML = jeedom.widgets.getThemeImg("#_img_light_off_#", "#_img_dark_off_#")
         } else {
-          cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#", "#_img_dark_off_#"))
+          cmd.querySelector('.value').innerHTML = '<span class="label label-danger">' + _options.value + '</span>'
         }
-        let style = ''
-        if (!isNaN('#_desktop_width_#')) {
-          style = 'width:#_desktop_width_#px !important;'
+
+        if (is_numeric('#_desktop_width_#') && is_object(img = cmd.querySelector('.imgCmd img'))) {
+          img.style.setProperty('width', '#_desktop_width_#px', 'important')
         }
-        cmd.find('.imgCmd img').attr('style', style)
+
+        if (_options.alertLevel == 'warning') {
+          cmd.querySelector('.value').innerHTML = '<span class="label label-warning"><i class="fas fa-bell"></i> ' + _options.value + '</span>'
+        } else if (_options.alertLevel == 'danger') {
+          cmd.querySelector('.value').innerHTML = '<span class="label label-danger"><i class="fas fa-exclamation"></i> ' + _options.value + '</span>'
+        }
+      }
+
+      $('body').on('changeThemeEvent', function() {
+        if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+          if (cmd.getAttribute('data-state') == 1) {
+            cmd.querySelector('.imgCmd').innerHTML = jeedom.widgets.getThemeImg("#_img_light_on_#", "#_img_dark_on_#")
+          } else {
+            cmd.querySelector('.imgCmd').innerHTML = jeedom.widgets.getThemeImg("#_img_light_off_#", "#_img_dark_off_#")
+          }
+          if (is_numeric('#_desktop_width_#') && is_object(img = cmd.querySelector('.imgCmd img'))) {
+            img.style.setProperty('width', '#_desktop_width_#px', 'important')
+          }
+        }
       })
-    });
-
-    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
-
-    $('body').on('changeThemeEvent', function (event,theme) {
-      $('.cmd[data-cmd_id=#id#]').trigger('changeThemeEventCmd',theme)
     })
+
+    jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
   </script>
-  <!-- parameters  #_mobile_width_# -->
 </div>

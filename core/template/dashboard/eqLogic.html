@@ -1,6 +1,6 @@
-<div class="eqLogic eqLogic-widget allowResize allowReorderCmd #custom_layout# #eqLogic_class# #class# #category#" data-eqType="#eqType#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#" style="width: #width#;height: #height#;#style#">
-  <center class="widget-name">
-    <span class="warning" title="#alert_name#">
+<div class="eqLogic eqLogic-widget text-center allowResize allowReorderCmd #custom_layout# #eqLogic_class# #class# #category#" data-eqType="#eqType#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#" style="width: #width#;height: #height#;#style#">
+  <div class="widget-name">
+    <span style="color:#background-color#" title="#alert_name#">
       <i class='#alert_icon#'></i>
     </span>
     <span class="cmd refresh pull-right cursor" data-cmd_id="#refresh_id#">
@@ -11,23 +11,21 @@
     </span>
     <span class="reportModeVisible">#name_display# <span class="object_name">#object_name#</span></span>
     <a href="#eqLink#" class="reportModeHidden">#name_display# <span class="object_name">#object_name#</span></a>
-  </center>
+  </div>
   <div class="#isVerticalAlign#">
-    <center>
-      #cmd#
-    </center>
+    #cmd#
   </div>
   #divGraphInfo#
   <script>
     if ('#panelLink#' == '') {
-      $('.eqLogic[data-eqLogic_uid=#uid#] .panelLink').remove()
+      document.querySelector('.eqLogic[data-eqLogic_uid="#uid#"] .panelLink').remove()
     }
     if ('#refresh_id#' != '') {
-      $('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function () {
-        jeedom.cmd.execute({id: '#refresh_id#'})
+      document.querySelector('.eqLogic[data-eqLogic_uid="#uid#"] .refresh').addEventListener('click', function() {
+        jeedom.cmd.execute({ id: '#refresh_id#' })
       })
     } else {
-      $('.eqLogic[data-eqLogic_uid=#uid#] .refresh').remove()
+      document.querySelector('.eqLogic[data-eqLogic_uid="#uid#"] .refresh').remove()
     }
   </script>
 </div>

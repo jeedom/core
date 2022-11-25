@@ -1,34 +1,46 @@
 <div class="cmd cmd-widget #history#" data-type="info" data-subtype="string" data-template="tmplmultistateline" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
   <div class="content-xs">
-    <span class="cmdName #hide_name#">#name_display# </span> <span class="iconCmdLine"></span>
+    <span class="cmdName #hide_name#">#name_display#</span> <span class="iconCmdLine"></span>
   </div>
-  <div class="value">
-    <span class="timeCmd label label-default #history#" data-type="info"></span>
+  <div class="state">
+    <span class="value"></span>
   </div>
+  <div class="timeCmd label label-default"></div>
   <template>
-    <div>time : date ({{Affiche l'info time sous forme de date}})</div>
+    <div>time : duration|date ({{Affiche durée ou date de la valeur}})</div>
   </template>
   <script>
-     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      let cmd = $('.cmd[data-cmd_id=#id#]')
-      if ('#_time_widget_#' == '1') {
-        jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
-      } else {
-        cmd.find('.timeCmd').parent().remove()
-      }
-      cmd.attr('title', '{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate+'<br/>{{Valeur}} : '+_options.display_value+'#unite#')
-      try {
-        let state = ''
-        #test#
-        cmd.find('.iconCmdLine').empty().append(state)
-      } catch (error) {
-        console.log(error)
-      }
-    });
-    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
+    jeedom.cmd.addUpdateFunction('#id#', function(_options) {
+      if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+        cmd.setAttribute('title', '{{Date de valeur}} : ' + _options.valueDate + '<br>{{Date de collecte}} : ' + _options.collectDate)
+        if ('#_time_widget_#' == '1' || '#time#' == 'duration' || '#time#' == 'date') {
+          jeedom.cmd.displayDuration(_options.valueDate, cmd.querySelector('.timeCmd'), '#time#')
+        }
 
-    $('body').on('changeThemeEvent', function (event, theme) {
-      $('.cmd[data-cmd_id=#id#]').trigger('changeThemeEventCmd',theme)
+        try {
+          let state = ''
+          #test#
+          cmd.querySelector('.iconCmdLine').innerHTML = state
+        } catch (error) {
+          console.log(error)
+        }
+
+        if (_options.alertLevel == 'warning') {
+          cmd.querySelector('.value').innerHTML = '<span class="label label-warning"><i class="fas fa-bell"></i> ' + _options.value + '</span>'
+        } else if (_options.alertLevel == 'danger') {
+          cmd.querySelector('.value').innerHTML = '<span class="label label-danger"><i class="fas fa-exclamation"></i> ' + _options.value + '</span>'
+        }
+      }
+
+      $('body').on('changeThemeEvent', function() {
+        if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+          let state = ''
+          #change_theme#
+          cmd.querySelector('.iconCmdLine').innerHTML = state
+        }
+      })
     })
+
+    jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: "#value#", display_value: "#state#", valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
   </script>
 </div>

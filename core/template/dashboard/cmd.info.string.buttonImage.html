@@ -1,14 +1,22 @@
-<div class="cmd cmd-widget #history#" data-type="info" data-subtype="string"data-template="buttonImage" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+<div class="cmd cmd-widget" data-type="info" data-subtype="string" data-template="buttonImage" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   <div class="content-sm">
     <a class="btn btn-sm btn-default action tooltips">#name_display#</a>
   </div>
   <template></template>
   <script>
-    $('.cmd[data-cmd_uid=#uid#] .action').on('click', function() {
-    $('#md_modal2').dialog({
-      title: "Image"
-    });
-    $('#md_modal2').load('index.php?v=d&modal=widget.modal&data=#state#&type=image').dialog('open');
-  });
+    document.querySelector('.cmd[data-cmd_uid="#uid#"] .action').addEventListener('click', function() {
+      $('#md_modal2').dialog({
+        title: "{{Image}}"
+      })
+      $('#md_modal2').load('index.php?v=d&modal=widget.modal&data=' + this.getAttribute('data-value') + '&type=image').dialog('open')
+    })
+
+    jeedom.cmd.addUpdateFunction('#id#', function(_options) {
+      if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+        cmd.querySelector('.action').setAttribute('data-value', encodeURIComponent(_options.value))
+      }
+    })
+
+    jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
   </script>
 </div>

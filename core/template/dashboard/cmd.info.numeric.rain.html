@@ -1,72 +1,71 @@
 <div class="cmd cmd-widget widget-rain #history#" data-type="info" data-subtype="numeric" data-template="rain" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-  <div class="title widget-rain-title #hide_name#">
-    <span class="cmdName">#name_display#</span><br/>
-    <span class="value"></span>
-    <span class="unite">#unite#</span>
+  <div class="title #hide_name#">
+    <span class="cmdName">#name_display#</span>
   </div>
-  <div class="content widget-rain-container">
-    <span class="plage unite" style="display:none;"></span>
-    <div class="widget-rain-main">
-    </div>
-    <div class="widget-rain-water">
+  <div class="state"><span class="value"></span> <span class="unit"></span></div>
+  <div class="content">
+    <div class="widget-rain-container">
+      <span class="plage cmdStats"></span>
+      <div class="widget-rain-water"></div>
     </div>
   </div>
+  <div class="timeCmd label label-default"></div>
   <div class="cmdStats #hide_history#">
-    <div class="col-xs-12 center-block">
-      <span title='{{Min}}' class='tooltips'>#minHistoryValue#</span>|<span title='{{Moyenne}}' class='tooltips'>#averageHistoryValue#</span>|<span title='{{Max}}' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
-    </div>
+    <span title="{{Minimum}}" class="tooltips">#minHistoryValue#</span>|<span title="{{Moyenne}}" class="tooltips">#averageHistoryValue#</span>|<span title="{{Maximum}}" class="tooltips">#maxHistoryValue#</span> <i class="#tendance#"></i>
   </div>
   <template>
-    <div>color : rgb(0, 155, 255) ({{Couleur de l'eau}}).</div>
-    <div>scale : 0.75 ({{Echelle du widget, entre 0 et 1}}).</div>
-    <div>showRange : 1 ({{Affiche les valeurs minimale et maximale de la commande}}).</div>
-    <div>animate : 0 ({{Pas d'animation}}).</div>
+    <div>color : rgb(0, 155, 255) ({{Couleur de l'eau}})</div>
+    <div>scale : 0.75 ({{Echelle du widget, entre 0 et 1}})</div>
+    <div>showRange : 1 ({{Affiche les mini et maxi de la commande}})</div>
+    <div>animate : 0 ({{Pas d'animation}})</div>
+    <div>time : duration|date ({{Affiche durée ou date de la valeur}})</div>
   </template>
   <script>
-    var waterSvg#id# = "<svg id='water#id#' width='115pt' height='128pt' viewBox='0 0 115 128' xmlns='http://www.w3.org/2000/svg'><path id='water#id#' fill='#00bbcc' stroke-width='.1' opacity='.8' d='M0 0h1.2c2.2.7 4.3 2 6.6 1.7C9.6 1.3 11.3.7 13 0h5c2 .7 4.3 2 6.7 1.7 1.8-.4 3.4-1 5-1.7h4.8c2.3.7 4.6 2.2 7 1.7 1.8-.5 3.3-1 5-1.7H51c2 .8 4.2 2.2 6.6 2 2-.3 4-1.3 5.7-2h4.7c2.2.7 4.2 2 6.5 1.7 2-.4 3.6-1 5.4-1.7H85c2.3.7 4.5 2 7 1.7 1.7-.4 3.3-1 5-1.7h4.7c2.3.7 4.6 2.2 7 1.7 1.7-.5 3.3-1 5-1.7h1.5v128H0V0z'/></svg>"
-    if ('#color#' != '#'+'color'+'#') {
-      waterSvg#id# = waterSvg#id#.replace("fill='#00bbcc'", "fill='#color#'")
+    var waterSvg = "<svg id='water#id#' width='115pt' height='128pt' viewBox='0 0 115 128' xmlns='http://www.w3.org/2000/svg'><path id='water#id#' fill='#00bbcc' stroke-width='.1' opacity='.8' d='M0 0h1.2c2.2.7 4.3 2 6.6 1.7C9.6 1.3 11.3.7 13 0h5c2 .7 4.3 2 6.7 1.7 1.8-.4 3.4-1 5-1.7h4.8c2.3.7 4.6 2.2 7 1.7 1.8-.5 3.3-1 5-1.7H51c2 .8 4.2 2.2 6.6 2 2-.3 4-1.3 5.7-2h4.7c2.2.7 4.2 2 6.5 1.7 2-.4 3.6-1 5.4-1.7H85c2.3.7 4.5 2 7 1.7 1.7-.4 3.3-1 5-1.7h4.7c2.3.7 4.6 2.2 7 1.7 1.7-.5 3.3-1 5-1.7h1.5v128H0V0z'/></svg>"
+    if (domUtils.issetWidgetOptParam('#color#', 'color')) {
+      waterSvg = waterSvg.replace("fill='#00bbcc'", "fill='#color#'")
     }
-    var waterSvg64#id# = window.btoa(waterSvg#id#)
-    var cmd#id# = $('.cmd[data-cmd_id=#id#]')
-    cmd#id#.find('.widget-rain-water').css('background', "url('data:image/svg+xml;base64," + waterSvg64#id# + "')")
+    document.querySelector('.cmd[data-cmd_uid="#uid#"] .widget-rain-water').style.background = "url('data:image/svg+xml;base64," + window.btoa(waterSvg) + "')"
 
-    jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      cmd#id#.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate+'<br/>{{Valeur}} : '+_options.display_value+'#unite#')
+    jeedom.cmd.addUpdateFunction('#id#', function(_options) {
+      if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+        cmd.setAttribute('title', '{{Date de valeur}} : ' + _options.valueDate + '<br>{{Date de collecte}} : ' + _options.collectDate)
+        if ('#time#' == 'duration' || '#time#' == 'date') {
+          jeedom.cmd.displayDuration(_options.valueDate, cmd.querySelector('.timeCmd'), '#time#')
+        }
 
-      var value_#id# = parseFloat(_options.value)
-      cmd#id#.find('.value').empty().append(_options.display_value)
+        if (is_numeric(_options.value)) {
+          let value = parseFloat(_options.value), minValue = parseFloat('#minValue#'), maxValue = parseFloat('#maxValue#')
+          if (value > maxValue) value = maxValue
+          if (value < minValue) value = minValue
+          var height = ((value - minValue) * 100) / (maxValue - minValue)
+          height = Math.round(parseFloat(height) * 10) / 10
 
-      var minValue_#id# = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
-      var maxValue_#id# = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
-      if (value_#id# >= maxValue_#id#) {
-        value_#id# = maxValue_#id#
-        cmd#id#.find('.value').css('color','var(--al-danger-color)')
-      } else {
-        cmd#id#.find('.value').css('color','')
+          cmd.querySelector('.widget-rain-water').style.height = height + '%'
+          cmd.querySelector('.value').innerText = _options.display_value
+          cmd.querySelector('.unit').innerText = _options.unit
+        } else {
+          cmd.querySelector('.value').innerHTML = '<span class="label label-danger">' + _options.value + '</span>'
+        }
+
+        if (_options.alertLevel == 'warning') {
+          cmd.querySelector('.value').innerHTML = '<span class="label label-warning"><i class="fas fa-bell"></i> ' + _options.value + '</span>'
+        } else if (_options.alertLevel == 'danger') {
+          cmd.querySelector('.value').innerHTML = '<span class="label label-danger"><i class="fas fa-exclamation"></i> ' + _options.value + '</span>'
+        }
       }
-      var height_#id# = ((value_#id# - minValue_#id#) * 100) / (maxValue_#id# - minValue_#id#)
-      height_#id# = Math.round(parseFloat(height_#id#) * 10) / 10
-      cmd#id#.find('.widget-rain-water').height(height_#id#+'%')
+    })
 
-      if ('#showRange#' == '1') {
-        cmd#id#.find('.plage').empty().append(minValue_#id# + ' | ' + maxValue_#id#)
-      }
-    });
+    jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
 
-    if ($.issetWidgetOptParam('#scale#', 'scale')) {
-      var rainContainer_#id# = cmd#id#.find('.widget-rain-container')
-      rainContainer_#id#.attr('style', 'height:' + rainContainer_#id#.height() * '#scale#' + 'px !important')
-      rainContainer_#id#.width(rainContainer_#id#.width() * '#scale#')
-      if ('#scale#' < '1') $('.cmd[data-cmd_id=#id#] .widget-rain-main').width(rainContainer_#id#.width() * '#scale#')
+    if (domUtils.issetWidgetOptParam('#scale#', 'scale')) {
+      document.querySelector('.cmd[data-cmd_uid="#uid#"] .widget-rain-container').style.transform = 'scale(#scale#)'
     }
     if ('#animate#' == '0') {
-      cmd#id#.find('.widget-rain-water').css('animation','none')
+      document.querySelector('.cmd[data-cmd_uid="#uid#"] .widget-rain-water').style.animation = 'none'
     }
     if ('#showRange#' == '1') {
-      cmd#id#.find('.plage').show()
+      document.querySelector('.cmd[data-cmd_uid="#uid#"] .plage').innerText = '#minValue# → #maxValue#'
     }
-
-    jeedom.cmd.refreshValue([{cmd_id:'#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
   </script>
 </div>

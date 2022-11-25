@@ -774,12 +774,12 @@ Desktop
   .div_object legend .objectDashLegend > a > i{
     padding-right: 10px;
   }
-
-  /* Legend panel */
-  body[data-page="panel"] #div_pageContainer legend {
-    background-color: rgba(var(--bg-color), var(--opacity)) !important;
-    margin: 5px 0 !important;
-  }
+  
+/* Legend panel */
+body[data-page="panel"] #div_pageContainer legend {
+  background-color: rgba(var(--bg-color), var(--opacity)) !important;
+  margin: 5px 0 !important;
+}
 
   /* legend on equipements pages */
   :not(.div_object) > legend:not(.no-bordered) {
@@ -1031,7 +1031,6 @@ div.div_viewZone legend.lg_viewZone {
     transition: transform 0.2s !important;
   }
   .counterReorderJeedom {
-    position: absolute;
     margin-top: 3px;
     margin-left: 3px;
     color: var(--eqTitle-color);
@@ -1389,11 +1388,6 @@ div.div_viewZone legend.lg_viewZone {
     margin-left: unset !important;
     margin-right: unset !important;
   }
-  select.selectCmd {
-    border: 0;
-    vertical-align: middle;
-    height: 2em;
-  }
 
   #mod_selectIcon .imgContainer {
     padding-top: 20px;
@@ -1693,15 +1687,15 @@ div.div_viewZone legend.lg_viewZone {
     display: none;
   }
 
-  div.eqLogic-widget .panelLink i {
-    color: var(--eqTitle-color) !important;
-    font-size: 12px !important;
-  }
+div.eqLogic-widget .panelLink i {
+  color: var(--eqTitle-color) !important;
+  font-size: 12px !important;
+}
 
-  div.eqLogic-widget.editingMode .panelLink {
-    display: none;
-  }
-  
+div.eqLogic-widget.editingMode .panelLink {
+  display: none;
+}
+
 
   div.eqLogic-widget .cmd.editOptions {
     position: absolute;
@@ -2834,7 +2828,6 @@ div.div_viewZone legend.lg_viewZone {
     border: none !important;
     padding: 0 !important;
     padding-left: 10px !important;
-    width: 100% !important;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -3294,10 +3287,6 @@ div.div_viewZone legend.lg_viewZone {
 
   :not(.eqLogic-widget) + table.tableCmd td {
     vertical-align: top !important;
-  }
-
-  .content {
-    background-color: rgb(var(--bg-color));
   }
 
   .well {

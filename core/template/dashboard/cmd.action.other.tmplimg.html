@@ -1,76 +1,60 @@
 <div class="cmd cmd-widget cursor" data-type="action" data-subtype="other" data-template="tmplimg" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   <div class="title #hide_name#">
-    <div  class="cmdName">#valueName#</div>
+    <span class="cmdName">#name_display#</span>
   </div>
-  <div class="content-sm ">
-    <span class="imgCmd"></span>
+  <div class="content-sm">
+    <span class="execute imgCmd"></span>
   </div>
-  <div class="value">
-    <span class="timeCmd label label-default #value_history#" data-type="info" data-cmd_id="#value_id#"></span>
-  </div>
+  <div class="timeCmd label label-default"></div>
   <template>
     <div>time : date ({{Affiche l'info time sous forme de date}})</div>
   </template>
   <script>
-    jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      let cmd = $('.cmd[data-cmd_id=#id#]')
-      if ('#_time_widget_#' != '1') {
-        cmd.find('.timeCmd').parent().remove()
-      }
-
-      if (_options.display_value == '1' || _options.display_value >= 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
-        cmd.attr('data-state','on')
-        if (jeedom.cmd.normalizeName('#name#') == 'on') {
-          cmd.hide()
-        }
-        else {
-          cmd.show().find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_on_#", "#_img_dark_on_#"))
-          if ('#_time_widget_#' == '1') {
-            jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
-          }
-        }
-      } else {
-        cmd.attr('data-state','off');
-        if (jeedom.cmd.normalizeName('#name#') == 'off') {
-          cmd.hide()
-        }
-        else {
-          cmd.show().find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#", "#_img_dark_off_#"))
-          if ('#_time_widget_#' == '1') {
-            jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
-          }
-        }
-      }
-
-      let style = ''
-      if (!isNaN('#_desktop_width_#')) {
-        style = 'width:#_desktop_width_#px !important;'
-      }
-      cmd.find('.imgCmd img').attr('style', style)
-
-      cmd.off('changeThemeEventCmd').on('achangeThemeEventCmd', function(event, theme) {
-        if (cmd.attr('data-state') == 'on') {
-          cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_on_#", "#_img_dark_on_#"))
-        }
-        else {
-          cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#", "#_img_dark_off_#"))
-        }
-        let style = ''
-        if (!isNaN('#_desktop_width_#')) {
-          style = 'width:#_desktop_width_#px !important;'
-        }
-        cmd.find('.imgCmd img').attr('style',style)
-      })
-    });
-    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
-
-    $('.cmd[data-cmd_uid=#uid#] .imgCmd').off().on('click', function () {
-      jeedom.cmd.execute({id: '#id#'})
+    document.querySelector('.cmd[data-cmd_uid=#uid#] .execute').addEventListener('click', function() {
+      jeedom.cmd.execute({ id: '#id#' })
     })
 
-    $('body').on('changeThemeEvent', function (event,theme) {
-      $('.cmd[data-cmd_id=#id#]').trigger('changeThemeEventCmd', theme)
+    jeedom.cmd.addUpdateFunction('#id#', function(_options) {
+      if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+        if ('#_time_widget_#' == '1' || '#time#' == 'duration' || '#time#' == 'date') {
+          jeedom.cmd.displayDuration(_options.valueDate, cmd.querySelector('.timeCmd'), '#time#')
+        }
+
+        if (_options.display_value >= 1 || _options.display_value == 'on') {
+          if (jeedom.cmd.normalizeName('#name#') == 'on') {
+            cmd.unseen()
+          } else {
+            cmd.seen()
+            cmd.querySelector('.imgCmd').innerHTML = jeedom.widgets.getThemeImg("#_img_light_on_#", "#_img_dark_on_#")
+          }
+        } else {
+          if (jeedom.cmd.normalizeName('#name#') == 'off') {
+            cmd.unseen()
+          } else {
+            cmd.seen()
+            cmd.querySelector('.imgCmd').innerHTML = jeedom.widgets.getThemeImg("#_img_light_off_#", "#_img_dark_off_#")
+          }
+        }
+
+        if (is_numeric('#_desktop_width_#') && is_object(img = cmd.querySelector('.imgCmd img'))) {
+          img.style.setProperty('width', '#_desktop_width_#px', 'important')
+        }
+
+        $('body').on('changeThemeEvent', function() {
+          if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+            if (cmd.getAttribute('data-state') == 1) {
+              cmd.querySelector('.imgCmd').innerHTML = jeedom.widgets.getThemeImg("#_img_light_on_#", "#_img_dark_on_#")
+            } else {
+              cmd.querySelector('.imgCmd').innerHTML = jeedom.widgets.getThemeImg("#_img_light_off_#", "#_img_dark_off_#")
+            }
+            if (is_numeric('#_desktop_width_#') && is_object(img = cmd.querySelector('.imgCmd img'))) {
+              img.style.setProperty('width', '#_desktop_width_#px', 'important')
+            }
+          }
+        })
+      }
     })
+
+    jeedom.cmd.refreshValue([{ cmd_id: '#id#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
   </script>
-  <!-- parameters  #_mobile_width_# -->
 </div>

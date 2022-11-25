@@ -1,39 +1,61 @@
 <div class="cmd cmd-widget shuttergauge #history#" data-type="info" data-subtype="numeric" data-template="shutter" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   <div class="title #hide_name#">
-    <div class="cmdName">#name_display#</div>
+    <span class="cmdName">#name_display#</span>
   </div>
-  <div class="content-sm " data-cmd_id="#id#">
+  <div class="content-sm">
     <div class="shuttergauge-chart">
       <div class="shuttergauge-bckg">
         <div class="shuttergauge-value"></div>
       </div>
     </div>
   </div>
-  <div class="value" data-cmd_id="#id#">
-    <div class="state"><strong>#state# #unite#</strong></div>
+  <div class="state">
+    <span class="value"></span> <span class="unit"></span>
   </div>
+  <div class="timeCmd label label-default"></div>
   <div class="cmdStats #hide_history#">
-    <span title='{{Min}}' class='tooltips'>#minHistoryValue#</span>|<span title='{{Moyenne}}' class='tooltips'>#averageHistoryValue#</span>|<span title='{{Max}}' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
+    <span title="{{Minimum}}" class="tooltips">#minHistoryValue#</span>|<span title="{{Moyenne}}" class="tooltips">#averageHistoryValue#</span>|<span title="{{Maximum}}" class="tooltips">#maxHistoryValue#</span> <i class="#tendance#"></i>
   </div>
   <template>
-    <div>color : rgb(20,20,20) ({{Couleur du curseur et valeur}})</div>
+    <div>color : rgb(20,20,20) ({{Couleur de l'indicateur de valeur}})</div>
+    <div>invert : 1 ({{Inverse la position de l'indicateur de valeur}})</div>
+    <div>time : duration|date ({{Affiche durée ou date de la valeur}})</div>
   </template>
   <script>
-     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      let cmd = $('.cmd[data-cmd_id=#id#]')
-      let minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
-      let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
-      let height = ((_options.value - minValue) * 100) / (maxValue - minValue)
-      cmd.attr('title', '{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
-      height = 100 - (Math.round(parseFloat(height) * 10) / 10)
-      cmd.find('.shuttergauge-value').height(height+'%')
-      cmd.find('.state strong').first().text(_options.display_value+' '+_options.unit)
-    });
+    jeedom.cmd.addUpdateFunction('#id#', function(_options) {
+      if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+        cmd.setAttribute('title', '{{Date de valeur}} : ' + _options.valueDate + '<br>{{Date de collecte}} : ' + _options.collectDate)
+        if ('#time#' == 'duration' || '#time#' == 'date') {
+          jeedom.cmd.displayDuration(_options.valueDate, cmd.querySelector('.timeCmd'), '#time#')
+        }
 
-    jeedom.cmd.refreshValue([{cmd_id: '#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
+        if (is_numeric(_options.value)) {
+          let minValue = parseFloat('#minValue#'), maxValue = parseFloat('#maxValue#'), height = ((_options.value - minValue) * 100) / (maxValue - minValue)
+          if (height > maxValue) height = maxValue
+          if (height < minValue) height = minValue
+          if ('#invert#' != '1') {
+            height = 100 - (Math.round(parseFloat(height) * 10) / 10)
+          }
 
-    if ($.issetWidgetOptParam('#color#', 'color')) {
-      $('.cmd[data-cmd_id=#id#]').find('div.shuttergauge-value').style('background', '#color#', 'important')
+          cmd.querySelector('.shuttergauge-value').style.height = height + '%'
+          cmd.querySelector('.value').innerText = _options.display_value
+          cmd.querySelector('.unit').innerText = _options.unit
+        } else {
+          cmd.querySelector('.value').innerHTML = '<span class="label label-danger">' + _options.value + '</span>'
+        }
+
+        if (_options.alertLevel == 'warning') {
+          cmd.querySelector('.value').innerHTML = '<span class="label label-warning"><i class="fas fa-bell"></i> ' + _options.value + '</span>'
+        } else if (_options.alertLevel == 'danger') {
+          cmd.querySelector('.value').innerHTML = '<span class="label label-danger"><i class="fas fa-exclamation"></i> ' + _options.value + '</span>'
+        }
+      }
+    })
+
+    jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
+
+    if (domUtils.issetWidgetOptParam('#color#', 'color')) {
+      document.querySelector('.cmd[data-cmd_uid="#uid#"] .shuttergauge-value').style.setProperty('background-color', '#color#', 'important')
     }
   </script>
 </div>

@@ -1,24 +1,42 @@
 <div class="cmd cmd-widget #history#" data-type="info" data-subtype="numeric" data-template="tile" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   <div class="title #hide_name#">
-    <div  class="cmdName">#name_display#</div>
+    <span class="cmdName">#name_display#</span>
   </div>
   <div class="content-sm">
-    <span class="pull-right unit">#unite#</span>
-    <span class="pull-right state"></span>
-  </div>
-  <div class="value #hide_history#">
-    <div class="col-xs-12 center-block">
-      <span title='{{Min}}' class='tooltips'>#minHistoryValue#</span>|<span title='{{Moyenne}}' class='tooltips'>#averageHistoryValue#</span>|<span title='{{Max}}' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
+    <div>
+      <span class="value state"></span> <span class="unit pull-right"></span>
     </div>
   </div>
-  <template></template>
+  <div class="timeCmd label label-default"></div>
+  <div class="cmdStats #hide_history#">
+    <span title="{{Minimum}}" class="tooltips">#minHistoryValue#</span>|<span title="{{Moyenne}}" class="tooltips">#averageHistoryValue#</span>|<span title="{{Maximum}}" class="tooltips">#maxHistoryValue#</span> <i class="#tendance#"></i>
+  </div>
+  <template>
+    <div>time : duration|date ({{Affiche durée ou date de la valeur}})</div>
+  </template>
   <script>
-     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      $('.cmd[data-cmd_id=#id#]').attr('title', '{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
-      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value)
-      $('.cmd[data-cmd_id=#id#] .unit').empty().append(_options.unit)
-    });
+    jeedom.cmd.addUpdateFunction('#id#', function(_options) {
+      if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+        cmd.setAttribute('title', '{{Date de valeur}} : ' + _options.valueDate + '<br>{{Date de collecte}} : ' + _options.collectDate)
+        if ('#time#' == 'duration' || '#time#' == 'date') {
+          jeedom.cmd.displayDuration(_options.valueDate, cmd.querySelector('.timeCmd'), '#time#')
+        }
 
-    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
+        if (is_numeric(_options.value)) {
+          cmd.querySelector('.value').innerText = _options.display_value
+          cmd.querySelector('.unit').innerText = _options.unit
+        } else {
+          cmd.querySelector('.value').innerHTML = '<span class="label label-danger">' + _options.value + '</span>'
+        }
+
+        if (_options.alertLevel == 'warning') {
+          cmd.querySelector('.value').innerHTML = '<span class="label label-warning"><i class="fas fa-bell"></i> ' + _options.value + '</span>'
+        } else if (_options.alertLevel == 'danger') {
+          cmd.querySelector('.value').innerHTML = '<span class="label label-danger"><i class="fas fa-exclamation"></i> ' + _options.value + '</span>'
+        }
+      }
+    })
+
+    jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
   </script>
 </div>

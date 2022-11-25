@@ -1,29 +1,30 @@
 <div class="cmd cmd-widget #history#" data-type="info" data-subtype="string" data-template="multiline" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   <div class="content-xs">
-    <span class="cmdName #hide_name#">#name_display# </span><strong class="state" ></strong>
+    <div class="cmdName #hide_name#">#name_display# <span class="value"></span> <strong class="unit"></strong></div>
   </div>
   <template>
-    <div>maxHeight : 20 ({{Hauteur maximale en pixel}}).</div>
+    <div>maxHeight : 20 ({{Hauteur maximale en pixel}})</div>
   </template>
   <script>
-     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      let cmd = $('.cmd[data-cmd_id=#id#]')
-      cmd.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
-      cmd.find('.state').empty().append(_options.display_value+' #unite#');
-      if (_options.alertLevel) {
-        cmd.removeClass('label label-warning label-danger')
+    jeedom.cmd.addUpdateFunction('#id#', function(_options) {
+      if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+        cmd.setAttribute('title', '{{Date de valeur}} : ' + _options.valueDate + '<br>{{Date de collecte}} : ' + _options.collectDate)
+
+        cmd.querySelector('.value').innerText = _options.display_value
+        cmd.querySelector('.unit').innerText = _options.unit
+
         if (_options.alertLevel == 'warning') {
-          cmd.addClass('label label-warning')
+          cmd.querySelector('.value').innerHTML = '<span class="label label-warning"><i class="fas fa-bell"></i> ' + _options.value + '</span>'
         } else if (_options.alertLevel == 'danger') {
-          cmd.addClass('label label-danger')
+          cmd.querySelector('.value').innerHTML = '<span class="label label-danger"><i class="fas fa-exclamation"></i> ' + _options.value + '</span>'
         }
       }
-    });
-    
-    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
-    
-    if (!isNaN(parseInt('#maxHeight#'))) {
-      $('.cmd[data-cmd_id=#id#]').css('max-height',parseInt('#maxHeight#')+'px')
+    })
+
+    jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: "#value#", display_value: "#state#", valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
+
+    if (is_numeric('#maxHeight#')) {
+      document.querySelector('.cmd[data-cmd_uid="#uid#"] .content-xs').style.height = '#maxHeight#px'
     }
   </script>
 </div>

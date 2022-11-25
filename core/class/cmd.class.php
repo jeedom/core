@@ -1398,11 +1398,11 @@ class cmd {
 
 					//ltrim avoid js variable starting with # error
 					$replace['#test#'] .= 'if (' . ltrim($test['operation'], '#') . ') {' . "\n";
-					$replace['#test#'] .= 'cmd.attr("data-state", ' . $i . ')' . "\n";
+					$replace['#test#'] .= 'cmd.setAttribute("data-state", ' . $i . ')' . "\n";
 					$replace['#test#'] .= 'state = jeedom.widgets.getThemeImg("' . $test['state_light'] . '", "' . $test['state_dark'] . '")' . "\n";
 					$replace['#test#'] .= "}\n";
 
-					$replace['#change_theme#'] .= 'if (cmd.attr("data-state") == ' . $i . ') {' . "\n";
+					$replace['#change_theme#'] .= 'if (cmd.getAttribute("data-state") == ' . $i . ') {' . "\n";
 					$replace['#change_theme#'] .= 'state = jeedom.widgets.getThemeImg("' . $test['state_light'] . '", "' . $test['state_dark'] . '")' . "\n";
 					$replace['#change_theme#'] .= "}\n";
 					$i++;
@@ -1542,39 +1542,28 @@ class cmd {
 		if ($this->getType() == 'info') {
 			$replace['#value#'] = '';
 			$replace['#tendance#'] = '';
-			if ($this->getEqLogic()->getIsEnable() == 0) {
-				$template = getTemplate('core', $_version, 'cmd.error');
-				$replace['#value#'] = 'N/A';
-				$replace['#state#'] = $replace['#value#'];
-			} else {
-				$replace['#value#'] = $this->execCmd();
-				if (strpos($replace['#value#'], 'error::') !== false) {
-					$template = getTemplate('core', $_version, 'cmd.error');
-					$replace['#value#'] = str_replace('error::', '', $replace['#value#']);
+			$replace['#value#'] = $this->execCmd();
+			if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
+				$replace['#value#'] = ($replace['#value#'] == 1) ? 0 : 1;
+			}
+			if ($this->getSubType() == 'numeric' && trim($replace['#value#']) === '') {
+				$replace['#value#'] = 0;
+			}
+			if ($this->getSubType() == 'numeric' && trim($replace['#unite#']) != '') {
+				if ($this->getConfiguration('historizeRound') !== '' && is_numeric($this->getConfiguration('historizeRound')) && $this->getConfiguration('historizeRound') >= 0) {
+					$round = $this->getConfiguration('historizeRound');
 				} else {
-					if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
-						$replace['#value#'] = ($replace['#value#'] == 1) ? 0 : 1;
-					}
-					if ($this->getSubType() == 'numeric' && trim($replace['#value#']) === '') {
-						$replace['#value#'] = 0;
-					}
-					if ($this->getSubType() == 'numeric' && trim($replace['#unite#']) != '') {
-						if ($this->getConfiguration('historizeRound') !== '' && is_numeric($this->getConfiguration('historizeRound')) && $this->getConfiguration('historizeRound') >= 0) {
-							$round = $this->getConfiguration('historizeRound');
-						} else {
-							$round = 99;
-						}
-						$valueInfo = self::autoValueArray($replace['#value#'], $round, $replace['#unite#']);
-						$replace['#state#'] = $valueInfo[0];
-						$replace['#unite#'] = $valueInfo[1];
-					}
+					$round = 99;
 				}
-				if (!isset($replace['#state#'])) {
-					$replace['#state#'] = $replace['#value#'];
-				}
-				if (method_exists($this, 'formatValueWidget')) {
-					$replace['#state#'] = $this->formatValueWidget($replace['#state#']);
-				}
+				$valueInfo = self::autoValueArray($replace['#value#'], $round, $replace['#unite#']);
+				$replace['#state#'] = $valueInfo[0];
+				$replace['#unite#'] = $valueInfo[1];
+			}
+			if (!isset($replace['#state#'])) {
+				$replace['#state#'] = $replace['#value#'];
+			}
+			if (method_exists($this, 'formatValueWidget')) {
+				$replace['#state#'] = $this->formatValueWidget($replace['#state#']);
 			}
 
 			$replace['#state#'] = str_replace(array("\'", "'", "\n"), array("'", "\'", '<br/>'), $replace['#state#']);

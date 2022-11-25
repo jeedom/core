@@ -1,16 +1,28 @@
 <div class="cmd cmd-widget" data-type="action" data-subtype="color" data-template="default" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-  <div class="content-xs">
-    <input class="input-sm btn action action_colorpicker_change form-control cursor" type="color">
+  <div class="title #hide_name#">
+    <span class="cmdName">#name_display#</span>
   </div>
-  <template></template>
+  <div class="content-sm">
+    <input class="input-sm action action_colorpicker_change" type="color">
+  </div>
+  <div class="timeCmd label label-default"></div>
+  <template>
+    <div>time : duration|date ({{Affiche durée ou date de la valeur}})</div>
+  </template>
   <script>
-     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      $('.cmd[data-cmd_uid=#uid#]:last .action_colorpicker_change').off('change')
-      $('.cmd[data-cmd_uid=#uid#] .action_colorpicker_change').value((_options.display_value != '') ? _options.display_value.substr(0,7) : _options.display_value)
-      $('.cmd[data-cmd_uid=#uid#]:last .action_colorpicker_change').on('change', function() {
-        jeedom.cmd.execute({id: '#id#', value: {color: $(this).value()}});
-      })
-    });
-    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
+    document.querySelector('.cmd[data-cmd_uid=#uid#] .action_colorpicker_change').addEventListener('change', function() {
+      jeedom.cmd.execute({ id: '#id#', value: { color: this.value } })
+    })
+
+    jeedom.cmd.addUpdateFunction('#id#', function(_options) {
+      if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+        if ('#time#' == 'duration' || '#time#' == 'date') {
+          jeedom.cmd.displayDuration(_options.valueDate, cmd.querySelector('.timeCmd'), '#time#')
+        }
+        cmd.querySelector('.action_colorpicker_change').value = (_options.display_value != '') ? _options.display_value.substr(0, 7) : '#000000'
+      }
+    })
+
+    jeedom.cmd.refreshValue([{ cmd_id: '#id#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
   </script>
 </div>

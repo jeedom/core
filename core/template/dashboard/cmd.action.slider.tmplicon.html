@@ -1,72 +1,65 @@
 <div class="cmd cmd-widget #history#" data-type="action" data-subtype="numeric" data-template="tmplicon" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   <div class="title #hide_name#">
-    <div class="cmdName">#name_display#</div>
+    <span class="cmdName">#name_display#</span>
   </div>
-  <div class="content-sm ">
-    <span class="cursor iconCmd#uid# iconCmd"></span>
+  <div class="content">
+    <div class="cursor execute iconCmd"></div>
+    <div id="widget_slider#id#" class="slider"></div>
   </div>
-  <div class="value">
-    <div id="widget_slider#id#" class="slider full-width-slider"></div>
-    <span class="timeCmd label label-default #value_history#" data-type="info" data-cmd_id="#value_id#"></span>
-  </div>
+  <div class="timeCmd label label-default"></div>
   <template>
     <div>color : rgb(20,20,20) ({{Couleur du curseur et valeur}})</div>
-    <div>time : date ({{Affiche l'info time sous forme de date}})</div>
-    <div>step : 0.5 ({{Pas utilisé pour le changement de valeur}})</div>
+    <div>step : 1 ({{Pas du changement de valeur}})</div>
+    <div>time : duration|date ({{Affiche durée ou date de la valeur}})</div>
   </template>
   <script>
-    var step#id# = 1
-    if ($.issetWidgetOptParam('#step#', 'step')) {
-      step#id# = parseFloat('#step#')
-    }
-    var mySlider#id# = $.createWidgetSlider({
+    window['mySlider#id#'] = domUtils.createWidgetSlider({
       sliderDiv: document.getElementById('widget_slider#id#'),
-      state: ('#state#' == '') ? #minValue# : '#state#',
-      min: #minValue#,
-      max: #maxValue#,
-      step: step#id#,
+      state: ('#state#' == '') ? parseFloat('#minValue#') : '#state#',
+      min: parseFloat('#minValue#'),
+      max: parseFloat('#maxValue#'),
+      step: (domUtils.issetWidgetOptParam('#step#', 'step')) ? parseFloat('#step#') : 1,
       tooltips: true,
       format: true,
       unite: '#unite#'
     })
 
-    if ($.issetWidgetOptParam('#color#', 'color')) {
-      $(mySlider#id#.target).find('.noUi-handle').style('background', '#color#', 'important')
-      $(mySlider#id#.target).find('.noUi-connect').style('background', '#color#', 'important')
-    }
-
-    mySlider#id#.on('change', function(values, handle) {
-      jeedom.cmd.execute({id: '#id#', value: {slider: values[handle].replace('#unite#', '').trim()}})
+    window['mySlider#id#'].on('change', function(values, handle) {
+      jeedom.cmd.execute({ id: '#id#', value: { slider: values[handle].replace('#unite#', '').trim() } })
     })
 
-    $('.cmd[data-cmd_id=#id#] .iconCmd').on('click', function() {
-      if ($(this).attr('data-state') == 'on') {
-        let value = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
-        jeedom.cmd.execute({id: '#id#', value: {slider: value}})
+    document.querySelector('.cmd[data-cmd_uid="#uid#"] .execute').addEventListener('click', function() {
+      if (this.getAttribute('data-state') == 'on') {
+        jeedom.cmd.execute({ id: '#id#', value: { slider: parseFloat('#minValue#') } })
       } else {
-        let value = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
-        jeedom.cmd.execute({id: '#id#', value: {slider: value}})
+        jeedom.cmd.execute({ id: '#id#', value: { slider: parseFloat('#maxValue#') } })
       }
     })
 
-    jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      let cmd = $('.cmd[data-cmd_id=#id#]')
-        if ('#_time_widget_#' == '1') {
-          jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
-        } else {
-          cmd.find('.timeCmd').remove()
+    jeedom.cmd.addUpdateFunction('#id#', function(_options) {
+      if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+        if ('#_time_widget_#' == '1' || '#time#' == 'duration' || '#time#' == 'date') {
+          jeedom.cmd.displayDuration(_options.valueDate, cmd.querySelector('.timeCmd'), '#time#')
         }
+        if (_options.value) {
+          window['mySlider#id#'].set(_options.value)
+          let iconCmd = cmd.querySelector('.iconCmd')
+          if (_options.value > parseFloat('#minValue#')) {
+            iconCmd.innerHTML = "#_icon_on_#"
+            iconCmd.setAttribute('data-state', 'on')
+          } else {
+            iconCmd.innerHTML = "#_icon_off_#"
+            iconCmd.setAttribute('data-state', 'off')
+          }
+        }
+      }
+    })
 
-        let minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
-        let maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
-        let stateValue = ('#state#' == '') ? 0 : parseInt(_options.value)
-        mySlider#id#.set(stateValue)
-        if (stateValue > minValue) {
-          cmd.find('.iconCmd').empty().append("#_icon_on_#").attr('data-state', 'on')
-        } else {
-          cmd.find('.iconCmd').empty().append("#_icon_off_#").attr('data-state', 'off')
-        }
-      });
-    jeedom.cmd.refreshValue([{cmd_id: '#id#', value: '#state#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
+    jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#state#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
+
+    if (domUtils.issetWidgetOptParam('#color#', 'color')) {
+      document.querySelector('.cmd[data-cmd_uid="#uid#"] .noUi-handle').style.setProperty('background-color', '#color#', 'important')
+      document.querySelector('.cmd[data-cmd_uid="#uid#"] .noUi-connect').style.setProperty('background-color', '#color#', 'important')
+    }
   </script>
 </div>

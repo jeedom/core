@@ -66,11 +66,11 @@ $JEEDOM_INTERNAL_CONFIG = array(
 		'alerting' => array('name' => __('Alerte des commandes', __FILE__), 'icon' => '<i class="far fa-bell"></i>')
 	),
 	'alerts' => array(
-		'timeout' => array('name' => __('Timeout', __FILE__), 'icon' => 'far fa-clock', 'level' => 6, 'check' => false, 'color' => '#FF0000'),
-		'batterywarning' => array('name' => __('Batterie en Warning', __FILE__), 'icon' => 'fas fa-battery-quarter', 'level' => 2, 'check' => false, 'color' => '#FFAB00'),
-		'batterydanger' => array('name' => __('Batterie en Danger', __FILE__), 'icon' => 'fas fa-battery-empty', 'level' => 3, 'check' => false, 'color' => '#FF0000'),
-		'warning' => array('name' => __('Warning', __FILE__), 'icon' => 'fas fa-bell', 'level' => 4, 'check' => true, 'color' => '#FFAB00'),
-		'danger' => array('name' => __('Danger', __FILE__), 'icon' => 'fas fa-exclamation', 'level' => 5, 'check' => true, 'color' => '#FF0000'),
+		'timeout' => array('name' => __('Timeout', __FILE__), 'icon' => 'far fa-clock', 'level' => 6, 'check' => false, 'color' => 'var(--al-danger-color)'),
+		'batterywarning' => array('name' => __('Batterie en Warning', __FILE__), 'icon' => 'fas fa-battery-quarter', 'level' => 2, 'check' => false, 'color' => 'var(--al-warning-color)'),
+		'batterydanger' => array('name' => __('Batterie en Danger', __FILE__), 'icon' => 'fas fa-battery-empty', 'level' => 3, 'check' => false, 'color' => 'var(--al-danger-color)'),
+		'warning' => array('name' => __('Warning', __FILE__), 'icon' => 'fas fa-bell', 'level' => 4, 'check' => true, 'color' => 'var(--al-warning-color)'),
+		'danger' => array('name' => __('Danger', __FILE__), 'icon' => 'fas fa-exclamation', 'level' => 5, 'check' => true, 'color' => 'var(--al-danger-color)'),
 	),
 	'cmd' => array(
 		'widgets' => array(

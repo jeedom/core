@@ -1,6 +1,6 @@
 <div class="cmd cmd-widget widget-compass #history#" data-type="info" data-subtype="numeric" data-template="compass" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   <div class="title #hide_name#">
-    <div  class="cmdName">#name_display#</div>
+    <span class="cmdName">#name_display#</span>
   </div>
   <div class="content-lg">
     <div class="widget-compass-container">
@@ -8,45 +8,65 @@
       <div class="widget-compass-needle-placer">
         <div class="widget-compass-needle"></div>
       </div>
-      <div class="state"></div>
-      <div class="winDir"></div>
+      <div class="state">
+        <div class="value"></div>
+        <div class="winDir"></div>
+      </div>
     </div>
   </div>
+  <div class="timeCmd label label-default"></div>
   <div class="cmdStats #hide_history#">
-    <div class="col-xs-12 center-block">
-      <span title='{{Min}}' class='tooltips'>#minHistoryValue#</span>|<span title='{{Moyenne}}' class='tooltips'>#averageHistoryValue#</span>|<span title='{{Max}}' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
-    </div>
+    <span title="{{Minimum}}" class="tooltips">#minHistoryValue#</span>|<span title="{{Moyenne}}" class="tooltips">#averageHistoryValue#</span>|<span title="{{Maximum}}" class="tooltips">#maxHistoryValue#</span> <i class="#tendance#"></i>
   </div>
   <template>
-    <div>needle_color : rgb(90, 200, 30) ({{couleur de l'aiguille}}).</div>
-    <div>ns_color : rgb(250, 210, 0) ({{couleur des secteurs Nord et Sud}}).</div>
-    <div>oe_color : rgb(0, 155, 255) ({{couleur des secteurs Ouest et Nord}}).</div>
-    <div>scale : 0.75 ({{Echelle du widget, entre 0 et 1}}).</div>
+    <div>needle_color : rgb(90, 200, 30) ({{Couleur de l'aiguille}})</div>
+    <div>ns_color : rgb(250, 210, 0) ({{Couleur des secteurs Nord et Sud}})</div>
+    <div>oe_color : rgb(0, 155, 255) ({{Couleur des secteurs Ouest et Est}})</div>
+    <div>scale : 0.75 ({{Echelle du widget, entre 0 et 1}})</div>
+    <div>time : duration|date ({{Affiche durée ou date de la valeur}})</div>
   </template>
   <script>
-    var cmd#id# = $('.cmd[data-cmd_id=#id#]')
-    jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      cmd#id#.attr('title', '{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
-      let directions#id# = ['{{Nord}}', '{{Nord-Est}}', '{{Est}}', '{{Sud-Est}}', '{{Sud}}', '{{Sud-Ouest}}', '{{Ouest}}', '{{Nord-Ouest}}']
-      var windDir#id# = directions#id#[Math.round(((_options.display_value %= 360) < 0 ? _options.display_value + 360 : _options.display_value) / 45) % 8]
-      cmd#id#.find('.widget-compass-needle-placer').css('transform', 'rotate(' + _options.display_value +'deg)')
-      cmd#id#.find('.state').text(_options.display_value.toString()+'°')
-      cmd#id#.find('.winDir').html(windDir#id#)
-    });
+    jeedom.cmd.addUpdateFunction('#id#', function(_options) {
+      if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+        cmd.setAttribute('title', '{{Date de valeur}} : ' + _options.valueDate + '<br>{{Date de collecte}} : ' + _options.collectDate)
+        if ('#time#' == 'duration' || '#time#' == 'date') {
+          jeedom.cmd.displayDuration(_options.valueDate, cmd.querySelector('.timeCmd'), '#time#')
+        }
 
-    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
+        if (is_numeric(_options.value)) {
+          let directions = ['{{Nord}}', '{{Nord-Est}}', '{{Est}}', '{{Sud-Est}}', '{{Sud}}', '{{Sud-Ouest}}', '{{Ouest}}', '{{Nord-Ouest}}']
+          var windDir = directions[Math.round(((_options.display_value %= 360) < 0 ? _options.display_value + 360 : _options.display_value) / 45) % 8]
 
-    if ($.issetWidgetOptParam('#needle_color#', 'needle_color')) {
-      cmd#id#.find('.widget-compass-needle').css('border-top-color','#needle_color#')
+          cmd.querySelector('.widget-compass-needle-placer').style.transform = 'rotate(' + _options.display_value + 'deg)'
+          cmd.querySelector('.value').innerText = _options.display_value + '°'
+          cmd.querySelector('.winDir').innerText = windDir
+        } else {
+          cmd.querySelector('.value').innerHTML = '<span class="label label-danger">' + _options.value + '</span>'
+        }
+
+        if (_options.alertLevel == 'warning') {
+          cmd.querySelector('.value').innerHTML = '<span class="label label-warning"><i class="fas fa-bell"></i> ' + _options.value + '°</span>'
+        } else if (_options.alertLevel == 'danger') {
+          cmd.querySelector('.value').innerHTML = '<span class="label label-danger"><i class="fas fa-exclamation"></i> ' + _options.value + '°</span>'
+        }
+      }
+    })
+
+    jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
+
+    if (domUtils.issetWidgetOptParam('#needle_color#', 'needle_color')) {
+      document.querySelector('.cmd[data-cmd_uid="#uid#"] .widget-compass-needle').style.borderTopColor = '#needle_color#'
     }
-    if ($.issetWidgetOptParam('#ns_color#', 'ns_color')) {
-      cmd#id#.find('.widget-compass-outline').css({'border-top-color' : '#ns_color#', 'border-bottom-color' : '#ns_color#'})
+    if (domUtils.issetWidgetOptParam('#ns_color#', 'ns_color')) {
+      document.querySelector('.cmd[data-cmd_uid="#uid#"] .widget-compass-outline').style.borderTopColor = '#ns_color#'
+      document.querySelector('.cmd[data-cmd_uid="#uid#"] .widget-compass-outline').style.borderBottomColor = '#ns_color#'
     }
-    if ($.issetWidgetOptParam('#oe_color#', 'oe_color')) {
-      cmd#id#.find('.widget-compass-outline').css({'border-left-color' : '#oe_color#', 'border-right-color' : '#oe_color#'})
+    if (domUtils.issetWidgetOptParam('#oe_color#', 'oe_color')) {
+      document.querySelector('.cmd[data-cmd_uid="#uid#"] .widget-compass-outline').style.borderLeftmColor = '#oe_color#'
+      document.querySelector('.cmd[data-cmd_uid="#uid#"] .widget-compass-outline').style.borderRightmColor = '#oe_color#'
     }
-    if ($.issetWidgetOptParam('#scale#', 'scale')) {
-      cmd#id#.find('.widget-compass-container').css('transform','scale(#scale#)')
+    if (domUtils.issetWidgetOptParam('#scale#', 'scale')) {
+      document.querySelector('.cmd[data-cmd_uid="#uid#"] .widget-compass-container').style.transform = 'scale(#scale#)'
     }
   </script>
 </div>

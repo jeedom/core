@@ -1,53 +1,43 @@
 <div class="cmd cmd-widget cursor" data-type="action" data-subtype="other" data-template="tmplicon" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   <div class="title #hide_name#">
-    <div  class="cmdName">#valueName#</div>
+    <span class="cmdName">#name_display#</span>
   </div>
-  <div class="content-sm ">
-    <span class="iconCmd"></span>
+  <div class="content-sm">
+    <span class="execute iconCmd"></span>
   </div>
-  <div class="value">
-    <span class="timeCmd label label-default #value_history#" data-type="info" data-cmd_id="#value_id#"></span>
-  </div>
+  <div class="timeCmd label label-default"></div>
   <template>
     <div>time : date ({{Affiche l'info time sous forme de date}})</div>
   </template>
   <script>
-     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      let cmd = $('.cmd[data-cmd_id=#id#]')
-      if ('#_time_widget_#' != '1') {
-        cmd.find('.timeCmd').parent().remove()
-      }
-
-      if (String(_options.display_value).length == 0) {
-	       cmd.find('.iconCmd').empty().append((jeedom.cmd.normalizeName('#name#') == 'off') ? "#_icon_off_#" : "#_icon_on_#");
-      }
-      else if (_options.display_value == '1' || _options.display_value >= 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
-        if (jeedom.cmd.normalizeName('#name#') == 'on') {
-          cmd.hide()
-        }
-        else {
-          cmd.show().find('.iconCmd').empty().append("#_icon_on_#")
-          if ('#_time_widget_#' == '1') {
-            jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
-          }
-        }
-      }
-      else {
-        if (jeedom.cmd.normalizeName('#name#') == 'off') {
-          cmd.hide()
-        }
-        else {
-          cmd.show().find('.iconCmd').empty().append("#_icon_off_#")
-          if ('#_time_widget_#' == '1') {
-            jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
-          }
-        }
-      }
-    });
-    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
-
-    $('.cmd[data-cmd_uid=#uid#] .iconCmd').off().on('click', function () {
-      jeedom.cmd.execute({id: '#id#'})
+    document.querySelector('.cmd[data-cmd_uid=#uid#] .execute').addEventListener('click', function() {
+      jeedom.cmd.execute({ id: '#id#' })
     })
+
+    jeedom.cmd.addUpdateFunction('#id#', function(_options) {
+      if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+        if ('#_time_widget_#' == '1' || '#time#' == 'duration' || '#time#' == 'date') {
+          jeedom.cmd.displayDuration(_options.valueDate, cmd.querySelector('.timeCmd'), '#time#')
+        }
+
+        if (_options.display_value >= 1 || _options.display_value == 'on') {
+          if (jeedom.cmd.normalizeName('#name#') == 'on') {
+            cmd.unseen()
+          } else {
+            cmd.seen()
+            cmd.querySelector('.iconCmd').innerHTML = "#_icon_on_#"
+          }
+        } else {
+          if (jeedom.cmd.normalizeName('#name#') == 'off') {
+            cmd.unseen()
+          } else {
+            cmd.seen()
+            cmd.querySelector('.iconCmd').innerHTML = "#_icon_off_#"
+          }
+        }
+      }
+    })
+
+    jeedom.cmd.refreshValue([{ cmd_id: '#id#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
   </script>
 </div>

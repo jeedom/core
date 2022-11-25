@@ -3,51 +3,59 @@
     <span class="cmdName #hide_name#">#valueName#</span>
     <label class="binarySwitch">
       <input type="checkbox" class="binarySwitch">
-      <span class="binarySwitch">
+      <span class="binarySwitch execute">
         <span class="binarySwitchHandle"></span>
       </span>
     </label>
   </div>
+  <div class="timeCmd label label-default"></div>
   <template>
     <div>color : rgb(20,20,20) ({{couleur d'arrière plan}})</div>
     <div>color_switch : rgb(230,230,230) ({{couleur de la pastille}})</div>
+    <div>time : duration|date ({{Affiche durée ou date de la valeur}})</div>
   </template>
   <script>
-    //if not name, centered:
-    $('.cmd[data-cmd_id=#id#]').find('.cmdName.hidden').parent().removeClass('widthx2')
-
-    if ($.issetWidgetOptParam('#color#', 'color')) {
-      $('.cmd[data-cmd_uid=#uid#] span.binarySwitch').css('background', '#color#')
-    }
-    if ($.issetWidgetOptParam('#color_switch#', 'color_switch')) {
-      $('.cmd[data-cmd_uid=#uid#] span.binarySwitchHandle').style('background-color', '#color_switch#', 'important')
-    }
-
-    jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      if (['1', 1, '99', 99, 'on'].includes(_options.display_value)) {
-        if (jeedom.cmd.normalizeName('#name#') == 'on') {
-          $('.cmd[data-cmd_id=#id#]').hide()
-        } else {
-          $('.cmd[data-cmd_id=#id#]').show()
-        }
-        $('.cmd[data-cmd_id=#id#]').find('input.binarySwitch').prop('checked', true)
-
-      } else if (['0', 0, 'off'].includes(_options.display_value)) {
-        if (jeedom.cmd.normalizeName('#name#') == 'off') {
-          $('.cmd[data-cmd_id=#id#]').hide()
-        } else {
-          $('.cmd[data-cmd_id=#id#]').show()
-        }
-        $('.cmd[data-cmd_id=#id#]').find('input.binarySwitch').prop('checked', false)
-      }
-    });
-
-    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
-
-    $('.cmd[data-cmd_uid=#uid#] span.binarySwitch').off().on('click', function (event) {
-      jeedom.cmd.execute({id: '#id#'})
+    document.querySelector('.cmd[data-cmd_uid=#uid#] .execute').addEventListener('click', function(event) {
+      jeedom.cmd.execute({ id: '#id#' })
       event.preventDefault()
       event.stopPropagation()
     })
+
+    jeedom.cmd.addUpdateFunction('#id#', function(_options) {
+      if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+        if ('#time#' == 'duration' || '#time#' == 'date') {
+          jeedom.cmd.displayDuration(_options.valueDate, cmd.querySelector('.timeCmd'), '#time#')
+        }
+
+        if (_options.display_value >= 1 || _options.display_value == 'on') {
+          if (jeedom.cmd.normalizeName('#name#') == 'on') {
+            cmd.unseen()
+          } else {
+            cmd.seen()
+            cmd.querySelector('input.binarySwitch').checked = true
+          }
+        } else {
+          if (jeedom.cmd.normalizeName('#name#') == 'off') {
+            cmd.unseen()
+          } else {
+            cmd.seen()
+            cmd.querySelector('input.binarySwitch').checked = false
+          }
+        }
+      }
+
+      if (is_object(cmd.querySelector('.cmdName.hidden'))) {
+        cmd.querySelector('label.binarySwitch').style.float = 'unset'
+      }
+    })
+
+    jeedom.cmd.refreshValue([{ cmd_id: '#id#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
+
+    if (domUtils.issetWidgetOptParam('#color#', 'color')) {
+      document.querySelector('.cmd[data-cmd_uid="#uid#"] span.binarySwitch').style.backgroundColor = '#color#'
+    }
+    if (domUtils.issetWidgetOptParam('#color_switch#', 'color_switch')) {
+      document.querySelector('.cmd[data-cmd_uid="#uid#"] span.binarySwitchHandle').style.setProperty('background-color', '#color_switch#', 'important')
+    }
   </script>
 </div>
