@@ -5,6 +5,13 @@ jeedomUtils.backgroundIMG = null
 jeedomUtils._elBackground = null
 jeedomUtils.scrolling = false
 
+jeedomUtils.showLoading = function() {
+ 
+}
+jeedomUtils.hideLoading = function() {
+  
+}
+
 $(function() {
   $(document)
   .ajaxStart(function () {
