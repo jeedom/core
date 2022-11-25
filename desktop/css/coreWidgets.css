@@ -532,21 +532,16 @@ Desktop
     height: 80px;
   }
   div.cmd-widget.widget-compass .state {
-    height: 16px;
-    width:100%;
-    font-size: 16px !important;
     position: absolute;
-    bottom: 50%;
+    font-size: 16px !important;
   }
   div.cmd-widget.widget-compass .winDir {
     font-size: 11px !important;
   }
   div.cmd-widget.widget-compass .widget-compass-outline {
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    width: 80px;
+    height: 80px;
     border: 6px solid var(--txt-color);
     border-top: 6px solid var(--al-info-color);
     border-bottom: 6px solid var(--al-info-color);
