@@ -5,11 +5,20 @@ jeedomUtils.backgroundIMG = null
 jeedomUtils._elBackground = null
 jeedomUtils.scrolling = false
 
+jeedomUtils.loadingTimeout = null
 jeedomUtils.showLoading = function() {
-  $.showLoading()
+  document.getElementById('div_jeedomLoading').seen()
+  //Hanging timeout:
+  clearTimeout(jeedomUtils.loadingTimeout)
+  jeedomUtils.loadingTimeout = setTimeout(() => {
+    if (!document.getElementById('div_jeedomLoading').isHidden()) {
+      jeedomUtils.hideLoading()
+      jeedomUtils.showAlert({level: 'danger', message: 'Operation Timeout: Something has gone wrong!'})
+    }
+  }, 20 * 1000)
 }
 jeedomUtils.hideLoading = function() {
-  $.hideLoading()
+  document.getElementById('div_jeedomLoading').unseen()
 }
 
 $(function() {
