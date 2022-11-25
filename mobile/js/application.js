@@ -6,10 +6,10 @@ jeedomUtils._elBackground = null
 jeedomUtils.scrolling = false
 
 jeedomUtils.showLoading = function() {
- 
+  $.showLoading()
 }
 jeedomUtils.hideLoading = function() {
-  
+  $.hideLoading()
 }
 
 $(function() {
