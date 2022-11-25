@@ -10,7 +10,7 @@
 <script>
   $('.listCmdInfo[data-uid=#uid#]').off('click').on('click', function () {
     jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function (result) {
-      $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=value]').atCaret('insert', result.human);
-    });
-  });
+      document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="value"]').insertAtCursor(result.human)
+    })
+  })
 </script>

@@ -53,14 +53,20 @@
       $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function (views) {
-      var options = ''
-      options += '<option value="">{{Aucune}}</option>'
+      var select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="view_id"]')
+      var newOption = document.createElement('option')
+      newOption.text = '{{Aucune}}'
+      newOption.value = ''
+      select.appendChild(newOption)
       for (var i in views) {
-        options += '<option value="' + views[i].id + '">' + views[i].name + '</option>'
+        newOption = document.createElement('option')
+        newOption.text = views[i].name
+        newOption.value = views[i].id
+        select.appendChild(newOption)
       }
-      $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=view_id]').append(options)
-      if ('#view_id#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=view_id] option[value=#view_id#]').html() != undefined) {
-        $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=view_id]').value('#view_id#')
+
+      if ('#view_id#' != '' && select.querySelector('option[value="#view_id#"]')?.innerHTML != undefined) {
+        select.value = '#view_id#'
       }
     }
   })
@@ -70,14 +76,20 @@
       $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function (plans) {
-      var options = ''
-      options += '<option value="">{{Aucun}}</option>'
+      var select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="plan_id"]')
+      var newOption = document.createElement('option')
+      newOption.text = '{{Aucun}}'
+      newOption.value = ''
+      select.appendChild(newOption)
       for (var i in plans) {
-        options += '<option value="' + plans[i].id + '">' + plans[i].name + '</option>'
+        newOption = document.createElement('option')
+        newOption.text = plans[i].name
+        newOption.value = plans[i].id
+        select.appendChild(newOption)
       }
-      $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plan_id]').append(options)
-      if ('#plan_id#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plan_id] option[value=#plan_id#]').html() != undefined) {
-        $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plan_id]').value('#plan_id#')
+
+      if ('#plan_id#' != '' && select.querySelector('option[value="#plan_id#"]')?.innerHTML != '') {
+        select.value = '#plan_id#'
       }
     }
   })
@@ -87,17 +99,20 @@
       $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function (plugins) {
-      var options = '';
-      options += '<option value="">{{Aucun}}</option>'
+      var select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="plugin_id"]')
+      var newOption = document.createElement('option')
+      newOption.text = '{{Aucun}}'
+      newOption.value = ''
+      select.appendChild(newOption)
       for (var i in plugins) {
-        if (plugins[i].display == '') {
-          continue
-        }
-        options += '<option value="' + plugins[i].id + '">' + plugins[i].name + '</option>'
+        newOption = document.createElement('option')
+        newOption.text = plugins[i].name
+        newOption.value = plugins[i].id
+        select.appendChild(newOption)
       }
-      $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plugin_id]').append(options)
-      if ('#plugin_id#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plugin_id] option[value=#plugin_id#]').html() != undefined) {
-        $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plugin_id]').value('#plugin_id#')
+
+      if ('#plugin_id#' != '' && select.querySelector('option[value="#plugin_id#"]')?.innerHTML != '') {
+        select.value = '#plugin_id#'
       }
     }
   })
@@ -107,43 +122,50 @@
       $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function (timelines) {
-      var options = ''
-      options += '<option value="main">{{Principal}}</option>'
+      var select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="timeline"]')
+      var newOption = document.createElement('option')
+      newOption.text = '{{Principale}}'
+      newOption.value = ''
+      select.appendChild(newOption)
       for (var i in timelines) {
         if (timelines[i] == 'main') {
-          continue;
+          continue
         }
-        options += '<option value="' + timelines[i] + '">' + timelines[i] + '</option>'
+        newOption = document.createElement('option')
+        newOption.text = timelines[i]
+        newOption.value = timelines[i]
+        select.appendChild(newOption)
       }
-      $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=timeline]').append(options)
-      if ('#timeline#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=timeline] option[value=#timeline#]').html() != undefined) {
-        $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=timeline]').value('#timeline#')
+
+      if ('#timeline#' != '' && select.querySelector('option[value="#timeline#"]')?.innerHTML != '') {
+        select.value = '#timeline#'
       }
     }
   })
 
-  $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=type]').change(function() {
-    $(this).closest('select').removeClass('roundedRight')
-    $('.type[data-uid=#uid#]').hide()
-    $('.'+$(this).value()+'[data-uid=#uid#]').show()
-    if ($(this).value() == 'eqAnalyse') {
-      $(this).closest('select').addClass('roundedRight')
+  $('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="type"]').change(function() {
+    this.closest('select').removeClass('roundedRight')
+    document.querySelectorAll('.type[data-uid="#uid#"]').unseen()
+    try { document.querySelector('span.' + this.value + '[data-uid="#uid#"]').style.display = 'table-cell'} catch (e) { }
+    document.querySelectorAll('select.' + this.value + '[data-uid="#uid#"]')?.seen()
+    if (this.value == 'eqAnalyse') {
+      this.closest('select').addClass('roundedRight')
     }
   })
 
-  $('.listCmdMessage[data-uid=#uid#]').off('click').on('click', function() {
+  $('.listCmdMessage[data-uid="#uid#"]').off('click').on('click', function() {
     jeedom.cmd.getSelectModal({cmd: {type: 'action',subType : 'message'}}, function(result) {
-      $('.expressionAttr[data-l1key=options][data-l2key=cmd][data-uid=#uid#]').atCaret('insert', result.human)
+      document.querySelector('.expressionAttr[data-l1key="options"][data-l2key="cmd"][data-uid="#uid#"]').insertAtCursor(result.human)
     })
   })
 
-  if ('#export_type#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=export_type] option[value=#export_type#]').html() != undefined) {
-    $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=export_type]').val('#export_type#').trigger('change')
+  if ('#export_type#' != '' && document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="export_type"] option[value="#export_type#"]')?.innerHTML != '') {
+    document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="export_type"]').value = '#export_type#'
   }
-  if ('#type#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=type] option[value=#type#]').html() != undefined) {
-    $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=type]').val('#type#').trigger('change')
+  if ('#type#' != '' && document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="type"] option[value="#type#"]')?.innerHTML != '') {
+    document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="type"]').value = '#type#'
   }
   if ('#url#' != '') {
-    $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=url]').val('#url#').trigger('change')
+    document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="url"]').value = '#url#'
   }
 </script>

@@ -27,28 +27,28 @@
       },
       success: function(_objectsList) {
         _objectsList = '<option value="-1">{{Tous}}</option>' + _objectsList
-        $('select.expressionAttr[data-uid=#uid#]').append(_objectsList)
+        $('select.expressionAttr[data-uid="#uid#"]').append(_objectsList)
         
-        if ('#object#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=object] option[value=#object#]').html() != undefined) {
-        $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=object]').value('#object#');
-      }
+        if ('#object#' != '' && document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="object"] option[value="#object#"]').innerHTML != '') {
+          document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="object"]').value = '#object#'
+        }
       }
     })
 
-  $('.listGenericTypeInfo[data-uid=#uid#]').off('click').on('click', function () {
+  $('.listGenericTypeInfo[data-uid="#uid#"]').off('click').on('click', function () {
     jeedom.config.getGenericTypeModal({type: 'info', object: false}, function (result) {
-      $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=type]').val('').atCaret('insert', result.id)
+      document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="type"]').value = result.id
     })
   })
-  $('.listGenericTypeAction[data-uid=#uid#]').off('click').on('click', function () {
+  $('.listGenericTypeAction[data-uid="#uid#"]').off('click').on('click', function () {
     jeedom.config.getGenericTypeModal({type: 'action', object: false}, function (result) {
-      $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=type]').val('').atCaret('insert', result.id)
+      document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="type"]').value = result.id
     })
   })
 
-  $('.listCmdInfo[data-uid=#uid#]').off('click').on('click', function () {
+  $('.listCmdInfo[data-uid="#uid#"]').off('click').on('click', function () {
     jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function (result) {
-      $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=value]').atCaret('insert', result.human);
-    });
-  });
+      document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="value"]').insertAtCursor(result.human)
+    })
+  })
 </script>

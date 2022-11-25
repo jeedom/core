@@ -25,14 +25,14 @@
   </span>
 </div>
 <script>
-  $('.listCmdInfo[data-uid=#uid#]').off('click').on('click', function() {
-    jeedom.cmd.getSelectModal({cmd: {type: 'info',isHistorized : true}}, function(result) {
-      $('.expressionAttr[data-l1key=options][data-l2key=cmd][data-uid=#uid#]').atCaret('insert',result.human);
-    });
-  });
-  $('.listCmdAction[data-uid=#uid#]').off('click').on('click', function() {
-    jeedom.cmd.getSelectModal({cmd: {type: 'action',subType : 'message'}}, function(result) {
-      $('.expressionAttr[data-l1key=options][data-l2key=cmd][data-uid=#uid#]').atCaret('insert',result.human);
-    });
-  });
+  $('.listCmdInfo[data-uid="#uid#"]').off('click').on('click', function() {
+    jeedom.cmd.getSelectModal({cmd: {type: 'info', isHistorized : true}}, function(result) {
+      document.querySelector('.expressionAttr[data-l1key="options"][data-l2key="cmd"][data-uid="#uid#"]').insertAtCursor(result.human)
+    })
+  })
+  $('.listCmdAction[data-uid="#uid#"]').off('click').on('click', function() {
+    jeedom.cmd.getSelectModal({cmd: {type: 'action', subType : 'message'}}, function(result) {
+      document.querySelector('.expressionAttr[data-l1key="options"][data-l2key="cmd"][data-uid="#uid#"]').insertAtCursor(result.human)
+    })
+  })
 </script>
