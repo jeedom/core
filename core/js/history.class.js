@@ -191,7 +191,7 @@ jeedom.history.modalchangePoint = function(event, _this, _params) {
 }
 
 jeedom.history.drawChart = function(_params) {
-  $.showLoading();
+  jeedomUtils.showLoading();
   if ($.type(_params.dateRange) == 'object') {
     _params.dateRange = JSON.stringify(_params.dateRange);
   }
@@ -1040,7 +1040,7 @@ jeedom.history.drawChart = function(_params) {
         jeedom.history.chart[_params.el].chart.xAxis[0].addPlotBand(plotband[i])
       }
 
-      $.hideLoading()
+      jeedomUtils.hideLoading()
       if (typeof(init(_params.success)) == 'function') {
         _params.success(data.result)
       }
