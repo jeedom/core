@@ -48,7 +48,7 @@ $(function() {
 })
 
 $("#bt_saveProfils").on('click', function(event) {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   var profil = document.getElementById('div_userProfils').getJeeValues('.userAttr')[0]
   if (jeephp2js.profils_user_id == -1) {
     if (profil.password != document.getElementById('in_passwordCheck').value) {

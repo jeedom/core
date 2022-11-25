@@ -203,7 +203,7 @@ if (!$first) {
     var cat = document.querySelector('.ticketAttr[data-l1key="category"]').value
     var catIssue = document.querySelector('.ticketAttr[data-l1key="category"]').selectedOptions[0].getAttribute('data-issue')
 
-    $.hideAlert()
+    jeedomUtils.hideAlert()
     if (type == 'Bug' || type == 'improvement') {
       $('#div_alertReportBug').showAlert({
         message: '{{ATTENTION : cette demande sera publique, il ne faut SURTOUT PAS mettre d\'information personnelle (mail, compte market, clé api...)}}',

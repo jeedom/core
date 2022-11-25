@@ -143,7 +143,7 @@ if (!jeeFrontEnd.md_datastore) {
 }
 
 (function() {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   var jeeM = jeeFrontEnd.md_datastore
   jeeM.init()
 

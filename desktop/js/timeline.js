@@ -225,7 +225,7 @@ $('#bt_removeTimelineEvent').on('click', function() {
 })
 
 $('#bt_tabTimeline').on('click', function() {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   jeeP.displayTimeline()
 })
 

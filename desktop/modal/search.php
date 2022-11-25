@@ -622,7 +622,7 @@ if (!jeeFrontEnd.md_search) {
 
 /* ------            Search UI            -------*/
 (function() {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   var jeeM = jeeFrontEnd.md_search
   jeeM.init()
 

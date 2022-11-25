@@ -24,7 +24,7 @@ if (!jeeFrontEnd.object) {
       this.getObjectList()
     },
     printObject: function(_id) {
-      $.hideAlert()
+      jeedomUtils.hideAlert()
       var objName = $('.objectListContainer .objectDisplayCard[data-object_id="' + _id + '"]').attr('data-object_name')
       var objIcon = $('.objectListContainer .objectDisplayCard[data-object_id="' + _id + '"]').attr('data-object_icon')
       this.loadObjectConfiguration(_id)
@@ -823,7 +823,7 @@ document.getElementById('bt_saveObject').addEventListener('click', function (eve
 })
 
 $("#bt_removeObject").on('click', function(event) {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + $('.objectDisplayCard.active .name').text().trim() + '</span> ?', function(result) {
     if (result) {
       var removeId = $('.objectDisplayCard.active').attr('data-object_id')

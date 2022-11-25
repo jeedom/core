@@ -172,14 +172,14 @@ $('#div_administration').on({
 
 
 $("#bt_addUser").on('click', function(event) {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   document.getElementById('in_newUserLogin').value = ''
   document.getElementById('in_newUserMdp').value = ''
   $('#md_newUser').modal('show')
 })
 
 $("#bt_newUserSave").on('click', function(event) {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   var user = [{
     login: document.getElementById('in_newUserLogin').value,
     password: document.getElementById('in_newUserMdp').value
@@ -229,7 +229,7 @@ $("#bt_saveUser").on('click', function(event) {
 })
 
 $("#table_user").on('click', ".bt_del_user", function(event) {
-  $.hideAlert();
+  jeedomUtils.hideAlert();
   var user = {
     id: this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
   }
@@ -257,7 +257,7 @@ $("#table_user").on('click', ".bt_del_user", function(event) {
 })
 
 $("#table_user").on('click', ".bt_change_mdp_user", function(event) {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   var user = {
     id: this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML,
     login: this.closest('tr').querySelector('input[data-l1key="login"]').value
@@ -287,7 +287,7 @@ $("#table_user").on('click', ".bt_change_mdp_user", function(event) {
 })
 
 $("#table_user").on('click', ".bt_changeHash", function(event) {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   var user = {
     id: this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
   }

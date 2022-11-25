@@ -124,7 +124,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   }
 
   if (isset(bootbox)) bootbox.hideAll()
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   jeedomUtils.datePickerDestroy()
   jeedomUtils.autocompleteDestroy()
   jeedomUtils.cleanModals()
@@ -362,12 +362,13 @@ jeedomUtils.showAlert = function(_options) {
 }
 
 jeedomUtils.hideAlert = function() {
+  window.toastr.clear()
+
   //Deprecated, old div_alert may be used on plugins:
-  document.querySelector('.jqAlert').forEach(function(element) {
+  document.querySelectorAll('.jqAlert').forEach(function(element) {
     element.innerHTML = ''
     element.unseen()
   })
-  window.toastr.clear()
 }
 
 jeedomUtils.loadingTimeout = null

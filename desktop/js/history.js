@@ -509,7 +509,7 @@ jeeP.$pageContainer.on({
 
 jeeP.$pageContainer.on({
   'click': function(event) {
-    $.hideAlert()
+    jeedomUtils.hideAlert()
     if (event.target.className.includes('remove') || event.target.className.includes('export')) return
     if (isset(jeedom.history.chart[jeeP.__el__]) && jeedom.history.chart[jeeP.__el__].comparing) return
 
@@ -535,7 +535,7 @@ jeeP.$pageContainer.on({
 
 jeeP.$pageContainer.on({
   'click': function(event) {
-    $.hideAlert()
+    jeedomUtils.hideAlert()
     var bt_remove = $(this)
     bootbox.prompt('{{Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\'historique de}} <span style="font-weight: bold ;"> ' + bt_remove.closest('.li_history').find('.history').text() + '</span> (laissez vide pour tout supprimer) ?', function(result) {
       if (result !== null) {

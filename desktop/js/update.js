@@ -32,7 +32,7 @@ if (!jeeFrontEnd.update) {
       this._UpdateObserver_ = null
     },
     checkAllUpdate: function() {
-      $.hideAlert()
+      jeedomUtils.hideAlert()
       $('.progressbarContainer').addClass('hidden')
       jeedom.update.checkAll({
         error: function(error) {
@@ -465,7 +465,7 @@ jeeP.printUpdate()
 
 $(function() {
   if (jeephp2js.isUpdating == '1') {
-    $.hideAlert()
+    jeedomUtils.hideAlert()
     jeeP.progress = 7
     $('.progressbarContainer').removeClass('hidden')
     $('.bt_refreshOsPackageUpdate').addClass('disabled')
@@ -569,7 +569,7 @@ $('.updateOption[data-l1key=force]').off('click').on('click', function() {
 $('#bt_doUpdate').off('click').on('click', function() {
   $("#md_specifyUpdate").dialog('close')
   var options = document.getElementById('md_specifyUpdate').getJeeValues('.updateOption')[0]
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   jeeP.progress = 0
   $('.progressbarContainer').removeClass('hidden')
   $('.bt_refreshOsPackageUpdate').addClass('disabled')
@@ -615,7 +615,7 @@ $('#table_update').on({
         $('.progressbarContainer').removeClass('hidden')
         $('.bt_refreshOsPackageUpdate').addClass('disabled')
         jeeP.updateProgressBar()
-        $.hideAlert()
+        jeedomUtils.hideAlert()
         jeedom.update.do({
           id: id,
           error: function(error) {
@@ -639,7 +639,7 @@ $('#table_update').on({
     var logicalId = $(this).closest('tr').attr('data-logicalid')
     bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer :}}' + ' ' + logicalId + ' ?', function(result) {
       if (result) {
-        $.hideAlert();
+        jeedomUtils.hideAlert();
         jeedom.update.remove({
           id: id,
           error: function(error) {
@@ -660,7 +660,7 @@ $('#table_update').on({
 $('#table_update').on({
   'click': function(event) {
     var id = $(this).closest('tr').attr('data-id')
-    $.hideAlert()
+    jeedomUtils.hideAlert()
     jeedom.update.check({
       id: id,
       error: function(error) {

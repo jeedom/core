@@ -77,7 +77,7 @@ if (!jeeFrontEnd.md_noteManager) {
 }
 
 (function() {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   var jeeM = jeeFrontEnd.md_noteManager
   jeeM.init()
 

@@ -260,7 +260,7 @@ if (!jeeFrontEnd.scenario) {
       $('.defined_actions').append(htmlActions)
     },
     printScenario: function(_id) {
-      $.hideAlert()
+      jeedomUtils.hideAlert()
       jeedomUtils.showLoading()
       $('#emptyModeWarning').hide()
       jeedom.scenario.update[_id] = function(_options) {
@@ -426,7 +426,7 @@ if (!jeeFrontEnd.scenario) {
       })
     },
     saveScenario: function(_callback) {
-      $.hideAlert()
+      jeedomUtils.hideAlert()
       var scenario = this.dom_divScenario.getJeeValues('.scenarioAttr')[0]
       if (typeof scenario.trigger == 'undefined') {
         scenario.trigger = ''
@@ -1897,7 +1897,7 @@ $(function() {
 })
 
 $('.scenario_link_getUsedBy, .scenario_link_getUse').off('click', '.scenario_link').on('click', '.scenario_link', function(event) {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   if (event.ctrlKey || event.metaKey) {
     var url = '/index.php?v=d&p=scenario&id=' + $(this).attr('data-scenario_id')
     window.open(url).focus()
@@ -1917,7 +1917,7 @@ $('.scenario_link_getUsedBy, .scenario_link_getUse').off('mouseup', '.scenario_l
 })
 
 $('.defined_actions').off('click', '.action_link').on('click', '.action_link', function(event) {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   var cmdId = $(this).attr('data-cmd_id')
   $('#md_modal').dialog().load('index.php?v=d&modal=cmd.configure&cmd_id=' + cmdId).dialog('open')
 
@@ -2161,7 +2161,7 @@ $('#bt_templateScenario').off('click').on('click', function() {
 })
 
 $("#bt_runScenario").off('click').on('click', function(event) {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   var scenario_id = document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()
   var logmode = $('button[data-l2key="logmode"]').attr('value')
   if (event.ctrlKey || event.metaKey) {
@@ -2235,7 +2235,7 @@ $("#bt_saveScenario").off('click').on('click', function(event) {
 })
 
 $("#bt_delScenario").off('click').on('click', function(event) {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer le scénario}} <span style="font-weight: bold ;">' + document.querySelector('.scenarioAttr[data-l1key="name"]').jeeValue() + '</span> ?', function(result) {
     if (result) {
       jeedom.scenario.remove({

@@ -162,7 +162,7 @@ $(function() {
 })
 
 $("#bt_saveBackup").on('click', function(event) {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   jeedom.config.save({
     configuration: document.getElementById('backup').getJeeValues('.configKey')[0],
     error: function(error) {
@@ -198,7 +198,7 @@ $(".bt_backupJeedom").on('click', function(event) {
   var el = $(this)
   bootbox.confirm('{{Êtes-vous sûr de vouloir faire une sauvegarde de}} ' + JEEDOM_PRODUCT_NAME + ' {{? Une fois lancée cette opération ne peut être annulée}}', function(result) {
     if (result) {
-      $.hideAlert()
+      jeedomUtils.hideAlert()
       el.find('.fa-sync').show()
       jeedom.backup.backup({
         error: function(error) {
@@ -219,7 +219,7 @@ $("#bt_restoreJeedom").on('click', function(event) {
   var el = $(this)
   bootbox.confirm('{{Êtes-vous sûr de vouloir restaurer}} ' + JEEDOM_PRODUCT_NAME + ' {{avec la sauvegarde}} <b>' + $('#sel_restoreBackup option:selected').text() + '</b> ? {{Une fois lancée cette opération ne peut être annulée.}} <span style="color:red;font-weight: bold;">{{IMPORTANT la restauration d\'un backup est une opération risquée et n\'est à utiliser qu\'en dernier recours}}.</span>', function(result) {
     if (result) {
-      $.hideAlert()
+      jeedomUtils.hideAlert()
       el.find('.fa-sync').show()
       jeedom.backup.restoreLocal({
         backup: document.getElementById('sel_restoreBackup').value,

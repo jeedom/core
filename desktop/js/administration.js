@@ -520,7 +520,7 @@ jeedom.config.load({
 })
 
 $("#bt_saveGeneraleConfig").off('click').on('click', function(event) {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   jeeP.saveConvertColor()
   jeeP.saveObjectSummary()
   var config = document.querySelectorAll('#config').getJeeValues('.configKey')[0]
@@ -589,7 +589,7 @@ jeeP.$divConfig.off('change', '.configKey').on('change', '.configKey:visible', f
 
 /**************************GENERAL***********************************/
 $('#bt_forceSyncHour').on('click', function() {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   jeedom.forceSyncHour({
     error: function(error) {
       $.fn.showAlert({
@@ -780,7 +780,7 @@ $('#bt_networkTab').on('click', function() {
 })
 
 $('#bt_restartDns').on('click', function() {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   jeedom.config.save({
     configuration: document.querySelectorAll('#config').getJeeValues('.configKey')[0],
     error: function(error) {
@@ -807,7 +807,7 @@ $('#bt_restartDns').on('click', function() {
 })
 
 $('#bt_haltDns').on('click', function() {
-  $.hideAlert();
+  jeedomUtils.hideAlert();
   jeedom.config.save({
     configuration: document.querySelectorAll('#config').getJeeValues('.configKey')[0],
     error: function(error) {
@@ -1230,12 +1230,12 @@ jeeP.$divConfig.on({
 }, '.configKey[data-l1key="cache::engine"]')
 
 $("#bt_cleanCache").on('click', function(event) {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   jeeP.cleanCache()
 })
 
 $("#bt_flushCache").on('click', function(event) {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   bootbox.confirm('{{Attention ceci est une opération risquée (vidage du cache), Confirmez vous vouloir la faire ?}}', function(result) {
     if (result) {
       jeeP.flushCache()
@@ -1244,13 +1244,13 @@ $("#bt_flushCache").on('click', function(event) {
 })
 
 $("#bt_flushWidgetCache").on('click', function(event) {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   jeeP.flushWidgetCache()
 })
 
 /**************************API***********************************/
 $(".bt_regenerate_api").on('click', function(event) {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   var el = this
   bootbox.confirm('{{Êtes-vous sûr de vouloir réinitialiser la clé API de}}' + ' ' + el.attr('data-plugin') + ' ?', function(result) {
     if (result) {

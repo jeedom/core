@@ -80,7 +80,7 @@ if ($selectPlugin != '') {
   "use strict"
 
   $(function() {
-    $.hideAlert()
+    jeedomUtils.hideAlert()
     jeedomUtils.initTableSorter()
     $('#table_message')[0].config.widgetOptions.resizable_widths = ['50px', '140px', '20%', '', '90px', '120px']
     $('#table_message').trigger('applyWidgets')

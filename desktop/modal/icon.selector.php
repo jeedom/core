@@ -287,7 +287,7 @@ sendVarToJS([
   })
 
   function printFileFolder(_path, jstreeId) {
-    $.hideAlert()
+    jeedomUtils.hideAlert()
     jeedom.getFileFolder({
       type: 'files',
       path: _path,
@@ -367,7 +367,7 @@ sendVarToJS([
   }
 
   $('#mod_selectIcon ul.nav.nav-tabs li a').click(function() {
-    $.hideAlert()
+    jeedomUtils.hideAlert()
     var tabhref = $(this).attr('href')
     if (tabhref === '#tabicon') {
       $('#sel_colorIcon').show()
@@ -432,7 +432,7 @@ sendVarToJS([
   })
 
   $('#tabimg .div_imageGallery').off('click').on('click', '.bt_removeImg', function() {
-    $.hideAlert()
+    jeedomUtils.hideAlert()
     var filepath = $(this).attr('data-realfilepath')
     bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cette image}} <strong>' + filepath + '</strong> ?', function(result) {
       if (result) {

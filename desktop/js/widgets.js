@@ -108,7 +108,7 @@ if (!jeeFrontEnd.widgets) {
       })
     },
     printWidget: function(_id) {
-      $.hideAlert()
+      jeedomUtils.hideAlert()
       $('#div_conf').show()
       $('#div_widgetsList').hide()
       $('#div_templateTest').empty()

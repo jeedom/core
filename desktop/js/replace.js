@@ -395,7 +395,7 @@ $('#bt_replace').on('click', function() {
     message: "<b>{{Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !}}</b>" + "<br>" +  "{{Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?}}",
     callback: function(result) {
       if (result) {
-        $.hideAlert()
+        jeedomUtils.hideAlert()
 
         var opt_replaceEqs = $('#opt_replaceEqs').is(':checked')
         var opt_hideEqs = $('#opt_hideEqs').is(':checked')

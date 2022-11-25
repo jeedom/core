@@ -169,7 +169,7 @@ $('#div_pageContainer').on('click', '.bt_gotoViewZone', function() {
 $('#bt_editViewWidgetOrder').off('click').on('click', function() {
   if ($(this).attr('data-mode') == 1) {
     $('#md_modal').dialog('close')
-    $.hideAlert()
+    jeedomUtils.hideAlert()
     $(this).attr('data-mode', 0)
     $('.counterReorderJeedom').remove()
     jeeP.editWidgetMode(0)

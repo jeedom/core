@@ -619,7 +619,7 @@ $('#bt_editDashboardWidgetOrder').on('click', function() {
     jeeFrontEnd.modifyWithoutSave = false
     $('#md_modal').dialog('close')
     $('div.eqLogic-widget .tooltipstered, div.scenario-widget .tooltipstered').tooltipster('enable')
-    $.hideAlert()
+    jeedomUtils.hideAlert()
     $(this).attr('data-mode', 0)
     jeeP.editWidgetMode(0)
     $(this).css('color', 'black')

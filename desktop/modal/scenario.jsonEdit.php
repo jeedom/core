@@ -70,7 +70,7 @@ fileEditor.getWrapperElement().style.height = ($('#ta_scenarioJsonEdit_scenario'
 fileEditor.refresh()
 
 $('#bt_saveSummaryScenario').on('click', function() {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   if (fileEditor == undefined) {
     $('#div_alertScenarioJsonEdit').showAlert({message: '{{Erreur editeur non défini}}', level: 'danger'})
     return

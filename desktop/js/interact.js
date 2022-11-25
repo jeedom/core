@@ -23,7 +23,7 @@ if (!jeeFrontEnd.interact) {
       this.actionOptions = []
     },
     printInteract: function(_id) {
-      $.hideAlert()
+      jeedomUtils.hideAlert()
       document.getElementById('div_conf').seen()
       document.getElementById('interactThumbnailDisplay').unseen()
       document.querySelectorAll('.interactDisplayCard').removeClass('active')
@@ -537,7 +537,7 @@ $("#bt_addInteract,#bt_addInteract2").on('click', function() {
 })
 
 $("#bt_removeInteract").on('click', function() {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer l\'interaction}} <span style="font-weight: bold ;">' + $('.interactDisplayCard.active .name').text() + '</span> ?', function(result) {
     if (result) {
       jeedom.interact.remove({

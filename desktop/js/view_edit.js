@@ -22,7 +22,7 @@ if (!jeeFrontEnd.view_edit) {
       window.jeeP = this
     },
     saveView: function(_viewResult) {
-      $.hideAlert()
+      jeedomUtils.hideAlert()
       var view = document.getElementById('div_view').getJeeValues('.viewAttr')[0]
       view.zones = []
       var viewZoneInfo, line, col
@@ -350,7 +350,7 @@ $('.viewAttr[data-l1key=display][data-l2key=icon]').on('dblclick', function() {
 })
 
 $(".li_view").on('click', function(event) {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   $(".li_view").removeClass('active')
   $(this).addClass('active')
   $('#div_view').show()
@@ -425,7 +425,7 @@ $('#bt_saveView').on('click', function(event) {
 })
 
 $("#bt_removeView").on('click', function(event) {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer la vue}} <span style="font-weight: bold ;">' + $(".li_view.active a").text() + '</span> ?', function(result) {
     if (result) {
       jeedom.view.remove({

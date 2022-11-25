@@ -124,7 +124,7 @@ if (!isConnect()) {
 jeedomUtils.initTableSorter()
 
 $('#table_ObjectSummary .bt_removeObject').on('click', function(event) {
-  $.hideAlert()
+  jeedomUtils.hideAlert()
   var id = $(this).closest('tr.tr_object').attr('data-object_id')
   var name = $(this).closest('tr.tr_object').attr('data-object_name')
   bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + name + '</span> ?', function(result) {

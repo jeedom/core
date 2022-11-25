@@ -28,7 +28,7 @@ if (!jeeFrontEnd.plugin) {
       window.jeeP = this
     },
     displayPlugin: function(_pluginId) {
-      $.hideAlert()
+      jeedomUtils.hideAlert()
       if ($('#md_modal').is(':visible')) {
         var $container = $('#md_modal #div_confPlugin')
         var dom_container = document.querySelector('#md_modal #div_confPlugin')
@@ -574,7 +574,7 @@ $('#span_right_button').on({
     var _el = $(this)
     bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer le plugin}} <span style="font-weight: bold ;">' + $('#span_plugin_name').text() + '</span> ?', function(result) {
       if (result) {
-        $.hideAlert()
+        jeedomUtils.hideAlert()
         jeedom.update.remove({
           id: _el.attr('data-market_logicalId'),
           error: function(error) {

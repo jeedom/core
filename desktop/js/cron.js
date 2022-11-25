@@ -58,7 +58,7 @@ if (!jeeFrontEnd.cron) {
       })
     },
     addCron: function(_cron) {
-      $.hideAlert()
+      jeedomUtils.hideAlert()
       var disabled = ''
       if (init(_cron.deamon) == 1) {
         disabled = 'disabled'
@@ -152,7 +152,7 @@ if (!jeeFrontEnd.cron) {
       })
     },
     addListener: function(_listener) {
-      $.hideAlert()
+      jeedomUtils.hideAlert()
       var disabled = ''
       var tr = '<tr>'
       tr += '<td class="option"><span class="listenerAttr" data-l1key="id"></span></td>'
