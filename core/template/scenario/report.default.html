@@ -160,10 +160,14 @@
   })
 
   if ('#export_type#' != '' && document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="export_type"] option[value="#export_type#"]')?.innerHTML != '') {
-    document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="export_type"]').value = '#export_type#'
+    let select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="export_type"]')
+    select.value = '#export_type#'
+    select.triggerEvent('change')
   }
   if ('#type#' != '' && document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="type"] option[value="#type#"]')?.innerHTML != '') {
-    document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="type"]').value = '#type#'
+    let select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="type"]')
+    select.value = '#type#'
+    select.triggerEvent('change')
   }
   if ('#url#' != '') {
     document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="url"]').value = '#url#'
