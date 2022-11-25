@@ -572,9 +572,9 @@ $('#div_viewZones').on('click', '.bt_removeAddViewTable', function() {
 })
 
 $('#div_viewZones').on('click', '.bt_listEquipementInfo', function() {
-  var el = $(this)
+  var el = this
   jeedom.cmd.getSelectModal({}, function(result) {
-    el.closest('td').find('input.viewDataAttr[data-l1key=configuration]').atCaret('insert', result.human)
+    el.closest('td').querySelector('input.viewDataAttr[data-l1key="configuration"]').insertAtCursor(result.human)
   })
 })
 

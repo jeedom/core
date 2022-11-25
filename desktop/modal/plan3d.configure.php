@@ -314,9 +314,9 @@ sendVarToJS('jeephp2js.md_plan3dConfigure_Id', $plan3d->getId());
     });
 
     $('#fd_plan3dConfigure').off('click','.listCmdInfoConditionalColor').on('click','.listCmdInfoConditionalColor',  function(event) {
-      var el = $(this).closest('.conditionalColor').find('.conditionalColorAttr[data-l1key=cmd]');
+      var el = this.closest('.conditionalColor').querySelector('.conditionalColorAttr[data-l1key="cmd"]');
       jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function(result) {
-        el.atCaret('insert',result.human);
+        el.insertAtCursor(result.human);
       });
     });
 
@@ -366,9 +366,9 @@ sendVarToJS('jeephp2js.md_plan3dConfigure_Id', $plan3d->getId());
     });
 
     $('#fd_plan3dConfigure').off('click','.listCmdInfoConditionalShow').on('click','.listCmdInfoConditionalShow',  function(event) {
-      var el = $(this).closest('.conditionalShow').find('.conditionalShowAttr[data-l1key=cmd]');
+      var el = this.closest('.conditionalShow').querySelector('.conditionalShowAttr[data-l1key="cmd"]');
       jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function(result) {
-        el.atCaret('insert',result.human);
+        el.insertAtCursor(result.human);
       });
     });
 

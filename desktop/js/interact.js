@@ -433,7 +433,7 @@ $('#div_conf').on({
         type: 'info'
       }
     }, function(result) {
-      $('.interactAttr[data-l1key=reply]').atCaret('insert', result.human)
+      document.querySelector('.interactAttr[data-l1key="reply"]').insertAtCursor(result.human)
     })
   }
 }, '.listEquipementInfoReply')

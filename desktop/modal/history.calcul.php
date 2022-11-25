@@ -81,9 +81,9 @@ $('#table_calculHisotry tbody').on('click','.bt_removeCalculHistory',function() 
 })
 
 $('#table_calculHisotry tbody').on('click','.bt_findCmdCalculHistory',function() {
-	var tr = $(this).closest('tr')
+	var tr = this.closest('tr')
 	jeedom.cmd.getSelectModal({cmd: {type: 'info',subType : 'numeric',isHistorized : 1}}, function(result) {
-		tr.find('.calculHistoryAttr[data-l1key=calcul]').atCaret('insert', result.human)
+		tr.querySelector('.calculHistoryAttr[data-l1key="calcul"]').insertAtCursor(result.human)
 	})
 })
 

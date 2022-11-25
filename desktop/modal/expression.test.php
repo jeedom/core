@@ -56,29 +56,26 @@ $('#in_testExpression').keypress(function(event) {
 })
 
 $('#bt_searchInfoCmd').on('click', function() {
-  var el = $(this);
   jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
-    $('#in_testExpression').atCaret('insert', result.human)
+    document.getElementById('in_testExpression').insertAtCursor(result.human)
   })
 })
 
 $('#bt_searchScenario').on('click', function() {
-  var el = $(this)
   jeedom.scenario.getSelectModal({}, function(result) {
-    $('#in_testExpression').atCaret('insert', result.human)
+    document.getElementById('in_testExpression').insertAtCursor(result.human)
   })
 })
 
 $('#bt_searchEqLogic').on('click', function() {
-  var el = $(this)
   jeedom.eqLogic.getSelectModal({}, function(result) {
-    $('#in_testExpression').atCaret('insert', result.human)
+    document.getElementById('in_testExpression').insertAtCursor(result.human)
   })
 })
 
 $('#bt_selectGenericExpression').on('click', function(event) {
   jeedom.config.getGenericTypeModal({type: 'info', object: true}, function(result) {
-    $('#in_testExpression').atCaret('insert', result.human)
+    document.getElementById('in_testExpression').insertAtCursor(result.human)
   })
 })
 

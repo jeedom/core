@@ -923,7 +923,7 @@ $('.bt_selectAlertCmd').on('click', function() {
       subType: 'message'
     }
   }, function(result) {
-    $('.configKey[data-l1key="alert::' + type + 'Cmd"]').atCaret('insert', result.human)
+    document.querySelector('.configKey[data-l1key="alert::' + type + 'Cmd"]').insertAtCursor(result.human)
   })
 })
 

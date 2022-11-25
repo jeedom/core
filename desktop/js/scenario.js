@@ -1864,9 +1864,9 @@ jeeP.$divScenario.on('click', 'input:not([type="checkbox"]).expressionAttr, text
   })
 })
 jeeP.$divScenario.on('click', '.bt_selectBootboxCmdExpression', function(event) {
-  var expression = $(this).siblings('.expression')
+  var expression = this.parentNode.querySelector('.expression')
   jeedom.cmd.getSelectModal({}, function(result) {
-    expression.atCaret('insert', result.human)
+    expression.insertAtCursor(result.human)
   })
 })
 
@@ -2428,7 +2428,7 @@ jeeP.$divScenario.on('click', '.bt_selectCmdExpression', function(event) {
     if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'condition') {
       var condType = el.closest('.subElement')
       if (!condType.hasClass('subElementIF') && !condType.hasClass('subElementFOR')) {
-        $(expression).find('.expressionAttr[data-l1key="expression"]').atCaret('insert', result.human)
+        expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
         return
       }
 
@@ -2441,7 +2441,7 @@ jeeP.$divScenario.on('click', '.bt_selectCmdExpression', function(event) {
           "{{Ne rien mettre}}": {
             className: "btn-default",
             callback: function() {
-              $(expression).find('.expressionAttr[data-l1key=expression]').atCaret('insert', result.human)
+              expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
             }
           },
           success: {
@@ -2462,7 +2462,7 @@ jeeP.$divScenario.on('click', '.bt_selectCmdExpression', function(event) {
                 condition += ' ' + document.querySelector('.conditionAttr[data-l1key="operande"]').jeeValue()
               }
               condition += ' ' + document.querySelector('.conditionAttr[data-l1key="next"]').jeeValue() + ' '
-              $(expression).find('.expressionAttr[data-l1key=expression]').atCaret('insert', condition)
+              expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
               if (document.querySelector('.conditionAttr[data-l1key="next"]').jeeValue() != '') {
                 el.triggerEvent('click')
               }
@@ -2495,15 +2495,15 @@ jeeP.$divScenario.on('click', '.bt_selectScenarioExpression', function(event) {
       expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(result.human)
     }
     if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'condition') {
-      $(expression).find('.expressionAttr[data-l1key="expression"]').atCaret('insert', result.human)
+      expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
     }
   })
 })
 
 jeeP.$divScenario.on('click', '.bt_selectGenericExpression', function(event) {
-  var expression = $(this).closest('.expression')
+  var expression = this.closest('.expression')
   jeedom.config.getGenericTypeModal({type: 'info', object: true}, function(result) {
-    expression.find('.expressionAttr[data-l1key="expression"]').atCaret('insert', result.human)
+    expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
   })
 })
 
@@ -2514,7 +2514,7 @@ jeeP.$divScenario.on('click', '.bt_selectEqLogicExpression', function(event) {
       expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(result.human)
     }
     if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'condition') {
-      $(expression).find('.expressionAttr[data-l1key="expression"]').atCaret('insert', result.human)
+      expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
     }
   })
 })

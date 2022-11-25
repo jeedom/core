@@ -334,7 +334,7 @@ $('#bt_findCmdCalculHistory').on('click', function() {
       isHistorized: 1
     }
   }, function(result) {
-    $('#in_calculHistory').atCaret('insert', result.human)
+    document.getElementById('in_calculHistory').insertAtCursor(result.human)
   })
 })
 $('#bt_displayCalculHistory').on('click', function() {

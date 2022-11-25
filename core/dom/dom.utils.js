@@ -41,6 +41,7 @@ String.prototype.stripAccents = function() {
     return transl[match]
   })
 }
+
 Element.prototype.triggerEvent = function(_eventName, _params) {
   if (!isset(_params)) {
     _params = {}
@@ -173,7 +174,6 @@ NodeList.prototype.remove = function() {
   return this
 }
 
-
 //DOM appended element with script tag (template widget, scenario etc) aren't executed
 Element.prototype.html = function(_html) {
   if (!isset(_html)) return this.innerHTML
@@ -211,6 +211,17 @@ Element.prototype.html = function(_html) {
     }
   }
   newEl.replaceWith(...newEl.childNodes) //remove encapsulated span
+  return this
+}
+
+Element.prototype.insertAtCursor = function(_valueString) {
+  if (this.selectionStart || this.selectionStart == '0') {
+    var startPos = this.selectionStart
+    var endPos = this.selectionEnd
+    this.value = this.value.substring(0, startPos) + _valueString + this.value.substring(endPos, this.value.length)
+  } else {
+    this.value += _valueString
+  }
   return this
 }
 
