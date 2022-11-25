@@ -154,7 +154,7 @@ jeedom.log.clear = function(_params) {
 }
 
 jeedom.log.autoupdate = function(_params) {
-  if (!isset(_params['once'])) {
+  if (!isset(_params.once)) {
     _params['once'] = 0
   }
   if (!isset(_params.callNumber)) {
@@ -168,54 +168,65 @@ jeedom.log.autoupdate = function(_params) {
     console.log('[jeedom.log.autoupdate] No display')
     return
   }
-  if (!_params['display'].is(':visible')) {
+
+  //Deprecated use with jQuery objects by plugins:
+  if (_params.callNumber == 0) {
+    if (isElement_jQuery(_params.log)) _params.log = _params.log[0]
+    if (isElement_jQuery(_params.display)) _params.display = _params.display[0]
+    if (isElement_jQuery(_params.search)) _params.search = _params.search[0]
+    if (isElement_jQuery(_params.control)) _params.control = _params.control[0]
+  }
+
+  if (!_params.display.isVisible()) return
+
+
+  if (_params.callNumber > 0 && isset(_params.control) && _params.control.getAttribute('data-state') != 1) {
     return
   }
-  if (_params.callNumber > 0 && isset(_params['control']) && _params['control'].attr('data-state') != 1) {
-    return
-  }
-  if (_params.callNumber > 0 && isset(jeedom.log.currentAutoupdate[_params.display.uniqueId().attr('id')]) && jeedom.log.currentAutoupdate[_params.display.uniqueId().attr('id')].log != _params.log) {
+  if (_params.callNumber > 0 && isset(jeedom.log.currentAutoupdate[_params.display.getAttribute('id')]) && jeedom.log.currentAutoupdate[_params.display.getAttribute('id')].log != _params.log) {
     return
   }
   if (_params.callNumber == 0) {
     if (isset(_params.default_search)) {
-      _params['search'].value(_params.default_search);
+      _params.search.value = _params.default_search
     }
-    _params.display.scrollTop(_params.display.height() + 200000);
-    if (_params['control'].attr('data-state') == 0 && _params['once'] == 0) {
-      _params['control'].attr('data-state', 1);
+    _params.display.scrollTop = _params.display.offsetHeight + 200000
+    if (_params.control.getAttribute('data-state') == 0 && _params.once == 0) {
+      _params.control.setAttribute('data-state', 1)
     }
-    _params['control'].off('click').on('click', function() {
-      if ($(this).attr('data-state') == 1) {
-        $(this).attr('data-state', 0);
-        $(this).removeClass('btn-warning').addClass('btn-success');
-        $(this).html('<i class="fa fa-play"></i><span class="hidden-768"> {{Reprendre}}</span>');
+    $(_params.control).off('click').on('click', function() {
+      if (this.getAttribute('data-state') == 1) {
+        this.setAttribute('data-state', 0)
+        this.removeClass('btn-warning').addClass('btn-success')
+        $(this).html('<i class="fa fa-play"></i><span class="hidden-768"> {{Reprendre}}</span>')
       } else {
-        $(this).removeClass('btn-success').addClass('btn-warning');
-        $(this).html('<i class="fa fa-pause"></i><span class="hidden-768"> {{Pause}}</span>');
-        $(this).attr('data-state', 1);
-        _params.display.scrollTop(_params.display.height() + 200000);
-        _params['once'] = 0;
-        jeedom.log.autoupdate(_params);
+        this.removeClass('btn-success').addClass('btn-warning')
+        $(this).html('<i class="fa fa-pause"></i><span class="hidden-768"> {{Pause}}</span>')
+        this.setAttribute('data-state', 1)
+        _params.display.scrollTop = _params.display.offsetHeight + 200000
+        _params.once = 0
+        jeedom.log.autoupdate(_params)
       }
-    });
+    })
 
-    _params['search'].off('keypress').on('keypress', function() {
-      if (_params['control'].attr('data-state') == 0) {
-        _params['control'].trigger('click');
+    $(_params.search).off('keypress').on('keypress', function() {
+      if (_params.control.getAttribute('data-state') == 0) {
+        _params.control.triggerEvent('click')
       }
-    });
+    })
   }
-  _params.callNumber++;
-  jeedom.log.currentAutoupdate[_params.display.uniqueId().attr('id')] = {
-    log: _params.log
-  };
+  _params.callNumber++
 
-  if (_params.callNumber > 0 && (_params.display.scrollTop() + _params.display.innerHeight() + 1) < _params.display[0].scrollHeight) {
-    if (_params['control'].attr('data-state') == 1) {
-      _params['control'].trigger('click');
+  jeedom.log.currentAutoupdate[_params.display.getAttribute('id')] = {
+    log: _params.log
+  }
+
+
+  if (_params.callNumber > 0 && (_params.display.scrollTop + _params.display.offsetHeight + 1) < _params.display.scrollHeight) {
+    if (_params.control.getAttribute('data-state') == 1) {
+      _params.control.triggerEvent('click')
     }
-    return;
+    return
   }
 
   jeedom.log.get({
@@ -225,13 +236,13 @@ jeedom.log.autoupdate = function(_params) {
     success: function(result) {
       var log = ''
       var line
-      var isSysLog = (_params.display[0].id == 'pre_globallog') ? true : false
-      var isScenaroLog = (_params.display[0].id == 'pre_scenariolog') ? true : false
+      var isSysLog = (_params.display.id == 'pre_globallog') ? true : false
+      var isScenaroLog = (_params.display.id == 'pre_scenariolog') ? true : false
 
-      if ($.isArray(result)) {
+      if (is_array(result)) {
         //line by line, numbered for system log:
         for (var i in result.reverse()) {
-          if (!isset(_params['search']) || _params['search'].value() == '' || result[i].toLowerCase().indexOf(_params['search'].value().toLowerCase()) != -1) {
+          if (!isset(_params.search) || _params.search.value == '' || result[i].toLowerCase().indexOf(_params['search'].value.toLowerCase()) != -1) {
             line = $.trim(result[i])
             if (isSysLog) {
               log += i.padStart(4, 0) + '|' + line + "\n"
@@ -242,22 +253,21 @@ jeedom.log.autoupdate = function(_params) {
         }
       }
 
-      var $brutlogcheck = $('#brutlogcheck')
-
+      var dom_brutlogcheck = document.getElementById('brutlogcheck')
       var colorMe = false
-      var isAuto = ($brutlogcheck.attr('autoswitch') == 1) ? true : false
+      var isAuto = (dom_brutlogcheck.getAttribute('autoswitch') == 1) ? true : false
       var isLong = (log.length > jeedom.log.coloredThreshold) ? true : false
 
-      if (!$brutlogcheck.is(':checked') && !isLong) {
+      if (!dom_brutlogcheck.checked && !isLong) {
         colorMe = true
-      } else if (isLong && !isAuto && !$brutlogcheck.is(':checked')) {
+      } else if (isLong && !isAuto && !dom_brutlogcheck.checked) {
         colorMe = true
       } else if (isLong && isAuto && _params.callNumber == 1) {
         colorMe = false
-        $brutlogcheck.prop('checked', true)
+        dom_brutlogcheck.checked = true
       } else if (!isLong && isAuto && _params.callNumber == 1) {
         colorMe = true
-        $brutlogcheck.prop('checked', false)
+        dom_brutlogcheck.checked = false
       }
 
       if (colorMe) {
@@ -268,11 +278,11 @@ jeedom.log.autoupdate = function(_params) {
         }
         _params.display.html(log)
       } else {
-        _params.display.text(log)
+        _params.display.innerHTML = log
       }
 
-      if (_params['once'] != 1) {
-        _params.display.scrollTop(_params.display.height() + 200000);
+      if (_params.once != 1) {
+        _params.display.scrollTop = _params.display.offsetHeight + 200000
         if (jeedom.log.timeout !== null) {
           clearTimeout(jeedom.log.timeout)
         }

@@ -56,23 +56,23 @@ var $rawLogCheck = $('#brutlogcheck')
 $rawLogCheck.on('click').on('click', function () {
   $rawLogCheck.attr('autoswitch', 0)
 
-  var scroll = $('#pre_eventlog').scrollTop()
+  var scroll =document.getElementById('pre_eventlog').scrollTop
   jeedom.log.autoupdate({
     log: jeephp2js.md_logDislay_Name,
-    display: $('#pre_eventlog'),
-    search: $('#in_eventLogSearch'),
-    control: $('#bt_eventLogStopStart'),
+    display: document.getElementById('pre_eventlog'),
+    search: document.getElementById('in_eventLogSearch'),
+    control: document.getElementById('bt_eventLogStopStart'),
     once: 1
   })
-  $('#pre_eventlog').scrollTop(scroll)
+  document.getElementById('pre_eventlog').scrollTop = scroll
 })
 
 jeedom.log.autoupdate({
   log: jeephp2js.md_logDislay_Name,
   default_search: jeephp2js.md_logDislay_defaultSearch,
-  display: $('#pre_eventlog'),
-  search: $('#in_eventLogSearch'),
-  control: $('#bt_eventLogStopStart')
+  display: document.getElementById('pre_eventlog'),
+  search: document.getElementById('in_eventLogSearch'),
+  control: document.getElementById('bt_eventLogStopStart')
 })
 
 $('#bt_resetLogSearch').on('click', function () {
