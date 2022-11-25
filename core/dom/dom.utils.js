@@ -33,7 +33,7 @@ String.prototype.stripAccents = function() {
   var in_chrs = 'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ',
     out_chrs = 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY',
     transl = {}
-  eval('var chars_rgx = /[' + in_chrs + ']/g')
+  var chars_rgx = eval('/[' + in_chrs + ']/g')
   for (var i = 0; i < in_chrs.length; i++) {
     transl[in_chrs.charAt(i)] = out_chrs.charAt(i)
   }
@@ -192,7 +192,7 @@ Element.prototype.html = function(_html) {
     this.empty().appendChild(newEl)
   } else {
     for (var scriptTag of scriptTags) {
-      var data = (scriptTag.text || scriptTag.textContent || scriptTag.innerHTML || "" )
+      var data = (scriptTag.text || scriptTag.textContent || scriptTag.innerHTML || "")
       if (data == '') continue
       arrData.push(data)
       newHtml = newHtml.replace(data, '')
