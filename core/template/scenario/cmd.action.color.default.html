@@ -7,13 +7,13 @@
   </span>
 </div>
 <script>
-  $('.listCmdInfo[data-uid=#uid#]').off('click').on('click', function () {
+  $('.listCmdInfo[data-uid="#uid#"]').off('click').on('click', function () {
     var el = $(this);
     jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function (result) {
-      $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=color]').value(result.human);
-    });
-  });
-  $('.colorChooser[data-uid=#uid#]').off('change').on('change', function () {
-    $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=color]').value($(this).value())
-  });
+      document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="color"]').value = result.human
+    })
+  })
+  $('.colorChooser[data-uid="#uid#"]').off('change').on('change', function () {
+    document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="color"]').value = this.value
+  })
 </script>

@@ -5,7 +5,7 @@
   </select>
 </div>
 <script>
-  if ('#state#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=state] option[value=#state#]').html() != undefined) {
-    $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=state]').value('#state#');
+  if ('#state#' != '' && document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="state"] option[value="#state#"]')?.innerHTML != '') {
+    document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="state"]').value = '#state#'
   }
 </script>

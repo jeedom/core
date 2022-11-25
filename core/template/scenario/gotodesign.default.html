@@ -8,15 +8,18 @@
       $.fn.showAlert({message: error.message, level: 'danger'});
     },
     success: function (plans) {
-      var options = '';
+      var select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="plan_id"]')
+      var newOption
       for (var i in plans) {
-        options += '<option value="' + plans[i].id + '">' + plans[i].name + '</option>';
+        newOption = document.createElement('option')
+        newOption.text = plans[i].name
+        newOption.value = plans[i].id
+        select.appendChild(newOption)
       }
-      $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plan_id]').append(options);
-      
-      if ('#plan_id#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plan_id] option[value=#plan_id#]').html() != undefined) {
-        $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plan_id]').value('#plan_id#');
+
+      if ('#plan_id#' != '' && document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="plan_id"] option[value="#plan_id#"]')?.innerHTML != '') {
+        document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="plan_id"]').value = '#plan_id#'
       }
     }
-  });
+  })
 </script>
