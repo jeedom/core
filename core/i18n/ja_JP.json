@@ -4695,8 +4695,7 @@
         "Activer": "アクティブ",
         "Désactiver": "非アクティブ化",
         "Remise à zéro des SI": "ISのリセット",
-        "Tags": "タグ",
-        "Aucun": "何でもありません"
+        "Tags": "タグ"
     },
     "core\/template\/scenario\/wait.default.html": {
         "Condition": "条件",
@@ -4840,7 +4839,7 @@
         "Option(s)": "オプション（複数可）",
         "Aucune": "Aucune",
         "Aucun": "Aucun",
-        "Principal": "Principal"
+        "Principale": "Principale"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",

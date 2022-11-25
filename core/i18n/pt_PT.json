@@ -4695,8 +4695,7 @@
         "Activer": "Ativar",
         "Désactiver": "Desativar",
         "Remise à zéro des SI": "Reiniciar a zero os SE",
-        "Tags": "Separadores",
-        "Aucun": "Nenhum"
+        "Tags": "Separadores"
     },
     "core\/template\/scenario\/wait.default.html": {
         "Condition": "Condição",
@@ -4840,7 +4839,7 @@
         "Option(s)": "Opção(s)",
         "Aucune": "Nenhuma",
         "Aucun": "Nenhum",
-        "Principal": "Formar-se"
+        "Principale": "Principal"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Você não está autorizado a realizar esta ação, IP:",

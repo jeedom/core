@@ -4695,8 +4695,7 @@
         "Activer": "Enable",
         "Désactiver": "Disable",
         "Remise à zéro des SI": "Reset IF",
-        "Tags": "Tags",
-        "Aucun": "None"
+        "Tags": "Tags"
     },
     "core\/template\/scenario\/wait.default.html": {
         "Condition": "Condition",
@@ -4840,7 +4839,7 @@
         "Option(s)": "Option",
         "Aucune": "None",
         "Aucun": "None",
-        "Principal": "Main"
+        "Principale": "Main"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "You are not authorized to perform this action, IP :",

@@ -4695,8 +4695,7 @@
         "Activer": "Activar",
         "Désactiver": "Desactivar",
         "Remise à zéro des SI": "Restablecimiento de IS",
-        "Tags": "Etiquetas",
-        "Aucun": "No"
+        "Tags": "Etiquetas"
     },
     "core\/template\/scenario\/wait.default.html": {
         "Condition": "Condición",
@@ -4840,7 +4839,7 @@
         "Option(s)": "Opción(es)",
         "Aucune": "Alguna",
         "Aucun": "No",
-        "Principal": "Importante"
+        "Principale": "Principal"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "No está autorizado para realizar esta acción, IP:",
