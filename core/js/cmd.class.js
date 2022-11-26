@@ -1199,6 +1199,7 @@ jeedom.cmd.formatMomentDuration = function(_duration) {
 }
 
 jeedom.cmd.displayDuration = function(_date, _el, _type = 'duration') {
+  if (isElement_jQuery(_el)) _el = _el[0] //Deprecated, keep for mobile during transition
   if (_type == 'date') {
     moment.locale(jeeFrontEnd.language.substring(0, 2))
     if (isset(jeedom.config.locales[jeeFrontEnd.language].calendar)) {
@@ -1210,7 +1211,7 @@ jeedom.cmd.displayDuration = function(_date, _el, _type = 'duration') {
     return true
   }
 
-  if (_el.getAttribute('data-interval') != undefined) {
+  if (_el.getAttribute('data-interval') != null) {
     clearInterval(_el.getAttribute('data-interval'))
   }
 

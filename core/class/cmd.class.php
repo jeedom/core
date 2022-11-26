@@ -1397,14 +1397,26 @@ class cmd {
 					$test['operation'] = str_replace('"', "'", str_replace('#value#', '_options.display_value', $test['operation']));
 
 					//ltrim avoid js variable starting with # error
-					$replace['#test#'] .= 'if (' . ltrim($test['operation'], '#') . ') {' . "\n";
-					$replace['#test#'] .= 'cmd.setAttribute("data-state", ' . $i . ')' . "\n";
-					$replace['#test#'] .= 'state = jeedom.widgets.getThemeImg("' . $test['state_light'] . '", "' . $test['state_dark'] . '")' . "\n";
-					$replace['#test#'] .= "}\n";
+					if ($_version == 'dashboard') {
+						$replace['#test#'] .= 'if (' . ltrim($test['operation'], '#') . ') {' . "\n";
+						$replace['#test#'] .= 'cmd.setAttribute("data-state", ' . $i . ')' . "\n";
+						$replace['#test#'] .= 'state = jeedom.widgets.getThemeImg("' . $test['state_light'] . '", "' . $test['state_dark'] . '")' . "\n";
+						$replace['#test#'] .= "}\n";
 
-					$replace['#change_theme#'] .= 'if (cmd.getAttribute("data-state") == ' . $i . ') {' . "\n";
-					$replace['#change_theme#'] .= 'state = jeedom.widgets.getThemeImg("' . $test['state_light'] . '", "' . $test['state_dark'] . '")' . "\n";
-					$replace['#change_theme#'] .= "}\n";
+						$replace['#change_theme#'] .= 'if (cmd.getAttribute("data-state") == ' . $i . ') {' . "\n";
+						$replace['#change_theme#'] .= 'state = jeedom.widgets.getThemeImg("' . $test['state_light'] . '", "' . $test['state_dark'] . '")' . "\n";
+						$replace['#change_theme#'] .= "}\n";
+					} else {  //Deprecated, keep for mobile during transition
+						$replace['#test#'] .= 'if (' . ltrim($test['operation'], '#') . ') {' . "\n";
+						$replace['#test#'] .= 'cmd.attr("data-state", ' . $i . ')' . "\n";
+						$replace['#test#'] .= 'state = jeedom.widgets.getThemeImg("' . $test['state_light'] . '", "' . $test['state_dark'] . '")' . "\n";
+						$replace['#test#'] .= "}\n";
+
+						$replace['#change_theme#'] .= 'if (cmd.attr("data-state") == ' . $i . ') {' . "\n";
+						$replace['#change_theme#'] .= 'state = jeedom.widgets.getThemeImg("' . $test['state_light'] . '", "' . $test['state_dark'] . '")' . "\n";
+						$replace['#change_theme#'] .= "}\n";
+					}
+
 					$i++;
 				}
 			}
