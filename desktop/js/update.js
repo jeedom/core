@@ -81,7 +81,7 @@ if (!jeeFrontEnd.update) {
                   clearTimeout(jeeP.alertTimeout)
                 }
                 _autoUpdate = 0
-                $('.bt_refreshOsPackageUpdate').removeClass('disabled')
+                document.querySelectorAll('.bt_refreshOsPackageUpdate').removeClass('disabled')
                 jeedomUtils.reloadPagePrompt('{{Mise(s) à jour terminée(s) avec succès.}}')
               }
               //update error:
@@ -97,18 +97,18 @@ if (!jeeFrontEnd.update) {
                   level: 'danger'
                 })
                 _autoUpdate = 0
-                $('.bt_refreshOsPackageUpdate').removeClass('disabled')
+                document.querySelectorAll('.bt_refreshOsPackageUpdate').removeClass('disabled')
               }
             }
           }
-          $('#pre_' + _log + 'Info').text(log)
+          document.getElementById('pre_' + _log + 'Info').innerHTML = log
           if (init(_autoUpdate, 0) == 1) {
             setTimeout(function() {
               jeeP.getJeedomLog(_autoUpdate, _log)
             }, 1000);
           } else {
-            $('#bt_' + _log + 'Jeedom .fa-refresh').hide()
-            $('.bt_' + _log + 'Jeedom .fa-refresh').hide()
+            document.getElementById('bt_' + _log + 'Jeedom .fa-refresh')?.unseen()
+            document.querySelectorAll('.bt_' + _log + 'Jeedom .fa-refresh')?.unseen()
           }
         }
       })
@@ -324,7 +324,7 @@ if (!jeeFrontEnd.update) {
       if (targetNode) this._UpdateObserver_.observe(targetNode, this.observerConfig)
     },
     cleanUpdateLog: function() {
-      var currentUpdateText = $('#pre_updateInfo').text()
+      var currentUpdateText = document.getElementById('pre_updateInfo').innerHTML
       if (currentUpdateText == '') return false
       if (this.prevUpdateText == currentUpdateText) return false
       var lines = currentUpdateText.split("\n")
@@ -390,9 +390,9 @@ if (!jeeFrontEnd.update) {
 
         if (line != '') {
           newLogText += line + '\n'
-          this._pre_updateInfo_clean.value = newLogText
-          if ($('[href="#log"]').parent().hasClass('active')) {
-            $('#log').parents('.tab-content').scrollTop(1E10)
+          this._pre_updateInfo_clean.innerHTML = newLogText
+          if (document.querySelector('[href="#log"]').parentNode.hasClass('active')) {
+            document.getElementById('log').parentNode.scrollTop = 1E10
           }
           this.prevUpdateText = currentUpdateText
           if (jeeP.progress == 100) {
