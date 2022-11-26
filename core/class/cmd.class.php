@@ -1008,10 +1008,11 @@ class cmd {
 		if ($this->getType() == 'action' && $this->getIsHistorized() == 1) {
 			$this->setIsHistorized(0);
 		}
-		if ($this->getIsHistorized() == 0 && $this->getType() == 'info' && $this->getSubType() == 'string') {
+		if ($this->getIsHistorized() == 0 && $this->getType() == 'info' && $this->getSubType() != 'string') {
 			$this->setDisplay('showStatsOnmobile', 0);
 			$this->setDisplay('showStatsOndashboard', 0);
-		} else {
+		}
+		if ($this->getType() == 'action') {
 			$this->setDisplay('showStatsOnmobile', null);
 			$this->setDisplay('showStatsOndashboard', null);
 		}
