@@ -213,7 +213,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   //$body.off('jeedom_page_load').on('jeedom_page_load', function() {
   document.body.addEventListener('jeedom_page_load', event => {
-    console.log('JS utils page load', event)
     if (getUrlVars('saveSuccessFull') == 1) {
       jeedomUtils.showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'})
       jeeFrontEnd.PREVIOUS_PAGE=window.location.href.split('&saveSuccessFull')[0]+window.location.hash
