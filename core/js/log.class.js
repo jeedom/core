@@ -257,6 +257,9 @@ jeedom.log.autoupdate = function(_params) {
       var dom_brutlogcheck = document.getElementById('brutlogcheck')
       if (dom_brutlogcheck == null) {
         var isAuto = false
+        dom_brutlogcheck = {
+          checked: false
+        }
       } else {
         var isAuto = (dom_brutlogcheck.getAttribute('autoswitch') == 1) ? true : false
       }
