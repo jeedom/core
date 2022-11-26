@@ -26,28 +26,29 @@ if (!jeeFrontEnd.health) {
 
 jeeFrontEnd.health.init()
 
-$('.bt_configurationPlugin').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Configuration du plugin}}"
-  }).load('index.php?v=d&p=plugin&ajax=1&id=' + $(this).attr('data-pluginid')).dialog('open')
-})
+document.getElementById('accordionHealth').addEventListener('click', event => {
+  if (event.target.matches('.bt_configurationPlugin')) {
+    $('#md_modal').dialog({
+      title: "{{Configuration du plugin}}"
+    }).load('index.php?v=d&p=plugin&ajax=1&id=' + event.target.getAttribute('data-pluginid')).dialog('open')
+  }
 
-$('.bt_healthSpecific').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Santé}} " + $(this).attr('data-pluginname')
-  }).load('index.php?v=d&plugin=' + $(this).attr('data-pluginid') + '&modal=health').dialog('open')
-})
+  if (event.target.matches('.bt_healthSpecific')) {
+    $('#md_modal').dialog({
+      title: "{{Santé}} " + event.target.getAttribute('data-pluginname')
+    }).load('index.php?v=d&plugin=' + event.target.getAttribute('data-pluginid') + '&modal=health').dialog('open')
+  }
 
-$('#bt_benchmarkJeedom').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Jeedom benchmark}}"
-  }).load('index.php?v=d&modal=jeedom.benchmark').dialog('open')
-})
+  if (event.target.matches('#bt_benchmarkJeedom')) {
+    $('#md_modal').dialog({
+      title: "{{Jeedom benchmark}}"
+    }).load('index.php?v=d&modal=jeedom.benchmark').dialog('open')
+  }
 
-$(function() {
-  $('.panel-title').click(function(event) {
-    if (!$(event.target).is('a.accordion-toggle') && !$(event.target).hasClass('pull-right')) {
-      $(this).find('a.accordion-toggle').trigger('click')
+  if (event.target.matches('.panel-title')) {
+    if (!event.target.matches('a.accordion-toggle') && !event.target.hasClass('pull-right')) {
+      event.target.querySelector('a.accordion-toggle').triggerEvent('click')
     }
-  })
+  }
 })
+

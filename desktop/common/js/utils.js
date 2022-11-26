@@ -153,6 +153,11 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   $('#div_pageContainer').off()
 
   $('#div_pageContainer').load(url, function() {
+    //catch ready state:
+    jeedomUtils.readyCheckInterval = setInterval(function() {
+      if (document.readyState == "complete") jeedomUtils.onDOMComplete()
+    }, 10)
+
     if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').html() != undefined) {
       $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').trigger('click')
     }
@@ -172,45 +177,50 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
     if (window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]').length != 0) {
       $('.nav-tabs a[href="'+window.location.hash+'"]').click()
     }
-
-    setTimeout(function() {
-      modifyWithoutSave = false
-      jeeFrontEnd.modifyWithoutSave = false
-    }, 500)
   })
-
-  setTimeout(function() {
-    //scenarios uses special tooltips not requiring destroy.
-    if ($('body').attr('data-page') != 'scenario') {
-      if (jeedomUtils.OBSERVER !== null) {
-        var targetNode = document.getElementById('div_mainContainer')
-        if (targetNode) jeedomUtils.OBSERVER.observe(targetNode, jeedomUtils.observerConfig)
-      } else {
-        jeedomUtils.createObserver()
-      }
-    }
-  }, 500)
-
   return
+}
+
+/* Allow dom completed with one page design, without jQuery
+*/
+jeedomUtils.readyCheckInterval = null
+jeedomUtils.onDOMComplete = function() {
+  clearInterval(jeedomUtils.readyCheckInterval)
+  document.body.triggerEvent('jeedom_page_load')
+  document.getElementById('div_pageContainer').triggerEvent('jeedom_container_loaded')
+
+  jeeFrontEnd.modifyWithoutSave = false
+
+  //scenarios uses special tooltips not requiring destroy.
+  if (document.body.getAttribute('data-page') != 'scenario') {
+    if (jeedomUtils.OBSERVER !== null) {
+      var targetNode = document.getElementById('div_mainContainer')
+      if (targetNode) jeedomUtils.OBSERVER.observe(targetNode, jeedomUtils.observerConfig)
+    } else {
+      jeedomUtils.createObserver()
+    }
+  }
+  jeedomUtils.initTooltips()
 }
 
 document.addEventListener('DOMContentLoaded', function() {
   var $body = $('body')
   if (getDeviceType()['type'] == 'desktop') jeedomUtils.userDeviceType = 'desktop'
-  $body.attr('data-device', jeedomUtils.userDeviceType)
-
+  document.body.setAttribute('data-device', jeedomUtils.userDeviceType)
+  document.body.setAttribute('data-page', getUrlVars('p'))
   document.body.style.setProperty('--bkg-opacity-light', jeedom.theme['interface::background::opacitylight'])
   document.body.style.setProperty('--bkg-opacity-dark', jeedom.theme['interface::background::opacitydark'])
 
-  $body.attr('data-page', getUrlVars('p'))
-  $body.off('jeedom_page_load').on('jeedom_page_load', function() {
+  //$body.off('jeedom_page_load').on('jeedom_page_load', function() {
+  document.body.addEventListener('jeedom_page_load', event => {
+    console.log('JS utils page load', event)
     if (getUrlVars('saveSuccessFull') == 1) {
-      $.fn.showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'})
+      jeedomUtils.showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'})
       jeeFrontEnd.PREVIOUS_PAGE=window.location.href.split('&saveSuccessFull')[0]+window.location.hash
       window.history.replaceState({}, document.title, window.location.href.split('&saveSuccessFull')[0]+window.location.hash)
     }
     if (getUrlVars('removeSuccessFull') == 1) {
-      $.fn.showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'})
+      jeedomUtils.showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'})
       jeeFrontEnd.PREVIOUS_PAGE=window.location.href.split('&removeSuccessFull')[0]+window.location.hash
       window.history.replaceState({}, document.title, window.location.href.split('&removeSuccessFull')[0]+window.location.hash)
     }
@@ -235,6 +245,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     window.location.hash = event.target.hash
   })
+
   window.addEventListener('hashchange', function(event) {
     jeeFrontEnd.NO_POPSTAT = true
     setTimeout(function() {
@@ -275,11 +286,7 @@ document.addEventListener('DOMContentLoaded', function() {
     jeedomUtils.setBackgroundImage('')
   }
 
-  setTimeout(function() {
-    jeedomUtils.initTooltips()
-    jeedomUtils.createObserver()
-    $body.trigger('jeedom_page_load')
-  }, 1)
+  jeedomUtils.onDOMComplete()
 })
 
 //Toastr____________ options for jeedom.notify() toastr, need jeedom.theme set!

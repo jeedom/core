@@ -157,9 +157,10 @@ if (!jeeFrontEnd.timeline) {
 
 jeeFrontEnd.timeline.init()
 
-$(function() {
+document.getElementById('div_pageContainer').addEventListener('jeedom_container_loaded', event => {
   jeeP.displayTimeline()
 })
+
 
 //searching
 $('#in_searchTimeline').keyup(function() {
