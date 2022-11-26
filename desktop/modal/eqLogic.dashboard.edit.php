@@ -395,10 +395,13 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
             $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showIconAndNamemobile"></td>';
             $display .= '</tr>';
 
-            $display .= '<tr><td>{{Afficher les statistiques}}</td>';
-            $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showStatsOndashboard" checked></td>';
-            $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showStatsOnmobile" checked></td>';
-            $display .= '</tr>';
+            if ($cmd->getType() == 'info' && $cmd->getSubType() != 'string') {
+              $display .= '<tr><td>{{Afficher les statistiques}}</td>';
+              $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showStatsOndashboard" checked></td>';
+              $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showStatsOnmobile" checked></td>';
+              $display .= '</tr>';
+            }
+
 
             $display .= '<tr><td>{{Retour à la ligne avant}}</td>';
             $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="forceReturnLineBefore" ></td></tr>';

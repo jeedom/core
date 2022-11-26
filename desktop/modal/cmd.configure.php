@@ -768,7 +768,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               </tr>
             <?php }
             ?>
-            <?php if (config::byKey('displayStatsWidget') == 1 && $cmd->getSubType() != 'string' && $cmd->widgetPossibility('custom::displayStats')) { ?>
+            <?php if (config::byKey('displayStatsWidget') == 1 && $cmd->getType() == 'info' && $cmd->getSubType() != 'string' && $cmd->widgetPossibility('custom::displayStats')) { ?>
               <tr>
                 <td>{{Afficher les statistiques}}</td>
                 <?php
