@@ -426,7 +426,8 @@ Desktop
     width: 90px;
   }
 
-  div.arcgauge .cmdName {
+  div.arcgauge .title {
+    max-width: 100px;
     overflow: hidden;
   }
   div.arcgauge .gauge,
