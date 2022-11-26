@@ -253,9 +253,13 @@ jeedom.log.autoupdate = function(_params) {
         }
       }
 
-      var dom_brutlogcheck = document.getElementById('brutlogcheck')
       var colorMe = false
-      var isAuto = (dom_brutlogcheck.getAttribute('autoswitch') == 1) ? true : false
+      var dom_brutlogcheck = document.getElementById('brutlogcheck')
+      if (dom_brutlogcheck == null) {
+        var isAuto = false
+      } else {
+        var isAuto = (dom_brutlogcheck.getAttribute('autoswitch') == 1) ? true : false
+      }
       var isLong = (log.length > jeedom.log.coloredThreshold) ? true : false
 
       if (!dom_brutlogcheck.checked && !isLong) {
