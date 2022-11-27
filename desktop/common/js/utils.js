@@ -27,7 +27,7 @@ jeedomUtils.tileHeightSteps = Array.apply(null, {length: 10}).map(function(value
 
 
 document.addEventListener('DOMContentLoaded', function() {
-  jeedomUtils._elBackground = $('#backgroundforJeedom')
+  jeedomUtils._elBackground = document.getElementById('backgroundforJeedom')
   $(document)
     .ajaxStart(function() {
       jeedomUtils.showLoading()
@@ -44,7 +44,7 @@ window.addEventListener('error', function(event) {
     return
   }
   jeedomUtils.JS_ERROR.push(event)
-  $('#bt_jsErrorModal').show()
+  document.getElementById('bt_jsErrorModal').seen()
   jeedomUtils.hideLoading()
 })
 
@@ -62,7 +62,7 @@ if ('SecurityPolicyViolationEvent' in window) { // Check browser support of Secu
       }
     }
     jeedomUtils.JS_ERROR.push({"filename": event.documentURI, "lineno": "0", "message": msg})
-    $('#bt_jsErrorModal').show()
+    document.getElementById('bt_jsErrorModal').seen()
     jeedomUtils.hideLoading()
   })
 }
@@ -71,17 +71,17 @@ if ('SecurityPolicyViolationEvent' in window) { // Check browser support of Secu
 setInterval(function() {
   var dateJeed = new Date
   dateJeed.setTime((new Date).getTime() + ((new Date).getTimezoneOffset() + jeeFrontEnd.serverTZoffsetMin)*60000 + jeeFrontEnd.clientServerDiffDatetime)
-  $('#horloge').text(dateJeed.toLocaleTimeString())
+  document.getElementById('horloge').innerHTML = dateJeed.toLocaleTimeString()
 }, 1000)
 
 var modifyWithoutSave = false
 jeedomUtils.checkPageModified = function() {
-  if (jeeFrontEnd.modifyWithoutSave || modifyWithoutSave) {
+  if (jeeFrontEnd.modifyWithoutSave || window.modifyWithoutSave) {
     if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
       jeedomUtils.hideLoading()
       return true
     }
-    modifyWithoutSave = false
+    window.modifyWithoutSave = false
     jeeFrontEnd.modifyWithoutSave = false
     return false
   }
@@ -102,7 +102,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   jeedom.cmd.resetUpdateFunction()
 
   $.contextMenu('destroy')
-  $('.context-menu-root').remove()
+  document.querySelectorAll('.context-menu-root').remove()
 
   $(window).off('resize')
 
@@ -114,7 +114,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
     try {
       if (jeeFrontEnd.PREVIOUS_PAGE == null) {
         window.history.replaceState('','', 'index.php?'+window.location.href.split("index.php?")[1])
-        jeeFrontEnd.PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1]
+        jeeFrontEnd.PREVIOUS_PAGE = 'index.php?' + window.location.href.split("index.php?")[1]
       }
       if (jeeFrontEnd.PREVIOUS_PAGE == null || jeeFrontEnd.PREVIOUS_PAGE != _url) {
         window.history.pushState('','', _url)
@@ -137,10 +137,10 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   $('body').off('changeThemeEvent')
 
   if (_url.indexOf('#') == -1) {
-    var url = _url+'&ajax=1'
+    var url = _url + '&ajax=1'
   } else {
     var n = _url.lastIndexOf("#")
-    var url = _url.substring(0,n)+"&ajax=1"+_url.substring(n)
+    var url = _url.substring(0,n) + "&ajax=1" + _url.substring(n)
   }
 
   jeedomUtils.backgroundIMG = null
@@ -156,9 +156,11 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
     if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').html() != undefined) {
       $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').trigger('click')
     }
-    $('#bt_getHelpPage').attr('data-page', getUrlVars('p')).attr('data-plugin', getUrlVars('m'))
+    document.getElementById('bt_getHelpPage').setAttribute('data-page', getUrlVars('p'))
+    document.getElementById('bt_getHelpPage').setAttribute('data-plugin', getUrlVars('m')  || '')
     jeedomUtils.initPage()
-    $('body').attr('data-page', getUrlVars('p')).trigger('jeedom_page_load')
+    document.body.setAttribute('data-page', getUrlVars('p')  || '')
+    document.body.triggerEvent('jeedom_page_load')
 
     //dashboard page on object will set its own background:
     if (!_url.includes('dashboard&object_id')) {
@@ -170,7 +172,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
     }
 
     if (window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]').length != 0) {
-      $('.nav-tabs a[href="'+window.location.hash+'"]').click()
+      $('.nav-tabs a[href="' + window.location.hash+'"]').click()
     }
 
     setTimeout(function() {
@@ -204,20 +206,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
   $body.off('jeedom_page_load').on('jeedom_page_load', function() {
     if (getUrlVars('saveSuccessFull') == 1) {
-      $.fn.showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'})
+      jeedomUtils.showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'})
       jeeFrontEnd.PREVIOUS_PAGE=window.location.href.split('&saveSuccessFull')[0]+window.location.hash
       window.history.replaceState({}, document.title, window.location.href.split('&saveSuccessFull')[0]+window.location.hash)
     }
     if (getUrlVars('removeSuccessFull') == 1) {
-      $.fn.showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'})
+      jeedomUtils.showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'})
       jeeFrontEnd.PREVIOUS_PAGE=window.location.href.split('&removeSuccessFull')[0]+window.location.hash
       window.history.replaceState({}, document.title, window.location.href.split('&removeSuccessFull')[0]+window.location.hash)
     }
   })
 
   //tab in url:
-  if (window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]').length != 0) {
-    $('.nav-tabs a[href="'+window.location.hash+'"]').click()
+  var tab = document.querySelector('.nav-tabs a[href="' + window.location.hash + '"]')
+  if (window.location.hash != '' && tab != null) {
+     tab.triggerEvent('click')
+    //$('.nav-tabs a[href="'+window.location.hash+'"]').click()
   }
 
   //browser history:
@@ -225,12 +229,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (event.target.hash == '') {
       return
     }
-    if ($(this).closest('.ui-dialog-content').html() !== undefined) {
+    if (event.target.closest('.ui-dialog-content')?.innerHTML !== undefined) {
       return
     }
     if (jeeFrontEnd.PREVIOUS_PAGE == null) {
-      window.history.replaceState('','', 'index.php?'+window.location.href.split("index.php?")[1])
-      jeeFrontEnd.PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1]
+      window.history.replaceState('','', 'index.php?' + window.location.href.split("index.php?")[1])
+      jeeFrontEnd.PREVIOUS_PAGE = 'index.php?' + window.location.href.split("index.php?")[1]
     }
     window.location.hash = event.target.hash
   })
@@ -246,18 +250,19 @@ document.addEventListener('DOMContentLoaded', function() {
         jeeFrontEnd.NO_POPSTAT = false
         return
       }
-      if (window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]:visible').length != 0) {
-        $('.nav-tabs a[href="'+window.location.hash+'"]').click()
-      } else if (jeeFrontEnd.PREVIOUS_PAGE !== null && jeeFrontEnd.PREVIOUS_PAGE.includes('#') && jeeFrontEnd.PREVIOUS_PAGE.split('#')[0] != 'index.php?'+window.location.href.split("index.php?")[1].split('#')[0]) {
+      var tab = document.querySelector('.nav-tabs a[href="' + window.location.hash + '"]')
+      if (window.location.hash != '' && tab != null) {
+         tab.triggerEvent('click')
+      } else if (jeeFrontEnd.PREVIOUS_PAGE !== null && jeeFrontEnd.PREVIOUS_PAGE.includes('#') && jeeFrontEnd.PREVIOUS_PAGE.split('#')[0] != 'index.php?' + window.location.href.split("index.php?")[1].split('#')[0]) {
         if (jeedomUtils.checkPageModified()) return
-        jeedomUtils.loadPage('index.php?'+window.location.href.split("index.php?")[1],true)
-        jeeFrontEnd.PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1]
+        jeedomUtils.loadPage('index.php?' + window.location.href.split("index.php?")[1], true)
+        jeeFrontEnd.PREVIOUS_PAGE = 'index.php?' + window.location.href.split("index.php?")[1]
       }
       return
     }
     if (jeedomUtils.checkPageModified()) return
-    jeedomUtils.loadPage('index.php?'+window.location.href.split("index.php?")[1],true)
-    jeeFrontEnd.PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1]
+    jeedomUtils.loadPage('index.php?' + window.location.href.split("index.php?")[1], true)
+    jeeFrontEnd.PREVIOUS_PAGE = 'index.php?' + window.location.href.split("index.php?")[1]
   })
 
   jeedomUtils.setJeedomTheme()
@@ -388,26 +393,27 @@ jeedomUtils.hideLoading = function() {
 
 //Jeedom theme__
 jeedomUtils.setJeedomTheme = function() {
-  var $body = $('body')
-
   if (getCookie('currentTheme') == 'alternate') {
     var themeButton = '<i class="fas fa-adjust"></i> {{Thème principal}}'
-    $('#bt_switchTheme').html(themeButton)
-    $('#bootstrap_theme_css').attr('data-nochange', 1)
+    document.getElementById('bt_switchTheme').html(themeButton)
+    document.getElementById('bootstrap_theme_css').setAttribute('data-nochange', 1)
   }
-
   if (jeedom.theme.currentTheme) {
-    $body.attr('data-theme', jeedom.theme.currentTheme)
+    document.body.setAttribute('data-theme', jeedom.theme.currentTheme)
+    if (jeedom.theme.currentTheme == jeedom.theme.default_bootstrap_theme_night) {
+      var themeButton = '<i class="fas fa-adjust"></i> {{Thème principal}}'
+      document.getElementById('bt_switchTheme').html(themeButton)
+    }
   }
 
   //button event:
-  $body.on('click', '#bt_switchTheme', function() {
+  document.getElementById('bt_switchTheme').addEventListener('click', function(){
     jeedomUtils.closeJeedomMenu()
     jeedomUtils.switchTheme()
   })
 
   jeedomUtils.changeTheme = function(_theme) {
-    var currentTheme = $('body').attr('data-theme').toLowerCase()
+    var currentTheme = document.body.getAttribute('data-theme').toLowerCase()
     if (_theme == 'toggle' || !currentTheme.endsWith(_theme)) {
       jeedomUtils.switchTheme()
     }
@@ -418,20 +424,20 @@ jeedomUtils.setJeedomTheme = function() {
     var themeShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/shadows.css'
     var themeCook = 'alternate'
     var themeButton = '<i class="fas fa-adjust"></i> {{Thème principal}}'
-    $('#bootstrap_theme_css').attr('data-nochange', 1)
+    document.getElementById('bootstrap_theme_css').setAttribute('data-nochange', 1)
 
     if ($('#bootstrap_theme_css').attr('href').split('?md5')[0] == theme) {
-      $body.attr('data-theme', jeedom.theme.default_bootstrap_theme)
+      document.body.setAttribute('data-theme', jeedom.theme.default_bootstrap_theme)
       theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/'+jeedom.theme.default_bootstrap_theme+'.css'
       themeShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/shadows.css';
       themeCook = 'default'
       themeButton = '<i class="fas fa-adjust"></i> {{Thème alternatif}}'
     } else {
-      $body.attr('data-theme', jeedom.theme.default_bootstrap_theme_night)
+      document.body.setAttribute('data-theme', jeedom.theme.default_bootstrap_theme_night)
     }
     setCookie('currentTheme', themeCook, 30)
-    $('#bootstrap_theme_css').attr('href', theme)
-    $('#bt_switchTheme').html(themeButton)
+    document.getElementById('bootstrap_theme_css').setAttribute('href', theme)
+    document.getElementById('bt_switchTheme').html(themeButton)
     if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themeShadows)
     jeedomUtils.triggerThemechange()
     let backgroundImgPath = jeedomUtils._elBackground.find('#bottom').css('background-image')
@@ -442,19 +448,19 @@ jeedomUtils.setJeedomTheme = function() {
 
   if (typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' && Object.keys(jeedom.theme.css).length > 0) {
     for (var i in jeedom.theme.css) {
-      document.body.style.setProperty(i,jeedom.theme.css[i])
+      document.body.style.setProperty(i, jeedom.theme.css[i])
     }
   }
 
   if (typeof jeedom.theme['interface::advance::coloredIcons'] != 'undefined' && jeedom.theme['interface::advance::coloredIcons'] == '1') {
-    $body.attr('data-coloredIcons', 1)
+    document.body.setAttribute('data-coloredIcons', 1)
   } else {
-    $body.attr('data-coloredIcons', 0)
+    document.body.setAttribute('data-coloredIcons', 0)
   }
   if (typeof jeedom.theme['interface::advance::coloredcats'] != 'undefined' && jeedom.theme['interface::advance::coloredcats'] == '1') {
-    $body.attr('data-coloredcats', 1)
+    document.body.setAttribute('data-coloredcats', 1)
   } else {
-    $body.attr('data-coloredcats', 0)
+    document.body.setAttribute('data-coloredcats', 0)
   }
 }
 
@@ -471,7 +477,7 @@ jeedomUtils.changeJeedomThemeAuto = function() {
 }
 
 jeedomUtils.checkThemechange = function() {
-  if (getCookie('currentTheme') == 'alternate' || $('#bootstrap_theme_css').attr('data-nochange') == 1) return
+  if (getCookie('currentTheme') == 'alternate' || document.getElementById('bootstrap_theme_css')?.getAttribute('data-nochange') == 1) return
 
   var theme = jeedom.theme.default_bootstrap_theme_night
   var themeCss = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css'
@@ -482,16 +488,16 @@ jeedomUtils.checkThemechange = function() {
     themeCss = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/' + jeedom.theme.default_bootstrap_theme + '.css'
   }
 
-  var currentTheme = $('#bootstrap_theme_css').attr('href')
+  var currentTheme = document.getElementById('bootstrap_theme_css').getAttribute('href')
   if (currentTheme.indexOf('?md5') != -1) {
     currentTheme = currentTheme.substring(0, currentTheme.indexOf('?md5'))
   }
   if (currentTheme != themeCss) {
     $.get(themeCss)
     .done(function() {
-      $('#bootstrap_theme_css').attr('href', themeCss)
-      $('body').attr('data-theme',theme)
-      if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', 'core/themes/'+theme+'/desktop/shadows.css')
+      document.getElementById('bootstrap_theme_css').setAttribute('href', themeCss)
+      document.body.setAttribute('data-theme', theme)
+      if (document.getElementById('shadows_theme_css') != null) document.getElementById('shadows_theme_css').setAttribute('href', 'core/themes/' + theme + '/desktop/shadows.css')
       jeedomUtils.setBackgroundImage('')
       jeedomUtils.triggerThemechange()
     })
@@ -503,17 +509,17 @@ jeedomUtils.checkThemechange = function() {
 
 jeedomUtils.triggerThemechange = function() {
   //set jeedom logo:
-  if ($('body')[0].hasAttribute('data-theme')) {
-    var currentTheme = $('body').attr('data-theme')
+  if (document.body.hasAttribute('data-theme')) {
+    var currentTheme = document.body.getAttribute('data-theme')
     if (currentTheme.endsWith('Dark')) {
-      $('#homeLogoImg').attr('src', jeedom.theme.logo_dark)
+      document.getElementById('homeLogoImg').attr('src', jeedom.theme.logo_dark)
     } else {
-      $('#homeLogoImg').attr('src', jeedom.theme.logo_light)
+      document.getElementById('homeLogoImg').attr('src', jeedom.theme.logo_light)
     }
   }
 
   //trigger event for widgets:
-  if ($('body').attr('data-page') && ['dashboard', 'view', 'plan','widgets'].includes($('body').attr('data-page')) ) {
+  if (document.body.hasAttribute('data-page') && ['dashboard', 'view', 'plan','widgets'].includes(document.body.getAttribute('data-page')) ) {
     if (currentTheme.endsWith('Light')) {
       $('body').trigger('changeThemeEvent', ['Light'])
     } else {
@@ -543,7 +549,7 @@ jeedomUtils.setBackgroundImage = function(_path) {
       else {
         _path = jeedom.theme['interface::background::dashboard']
       }
-    } else if (['display', 'eqAnalyse', 'log', 'timeline', 'history', 'report', 'health', 'administration', 'profils', 'update', 'backup', 'cron', 'user'].indexOf($('body').attr('data-page')) != -1) {
+    } else if (['display', 'eqAnalyse', 'log', 'timeline', 'history', 'report', 'health', 'administration', 'profils', 'update', 'backup', 'cron', 'user'].indexOf(document.body.getAttribute('data-page')) != -1) {
       if(jeedom.theme.product_interface_image){
         _path = jeedom.theme.product_interface_image
       }
@@ -551,8 +557,8 @@ jeedomUtils.setBackgroundImage = function(_path) {
         _path = jeedom.theme['interface::background::analysis']
       }
     } else {
-      if ($('body').attr('data-page') != 'false') {
-        if(jeedom.theme.product_interface_image){
+      if (document.body.hasAttribute('data-page')) {
+        if (jeedom.theme.product_interface_image) {
           _path = jeedom.theme.product_interface_image
         }
         else {
@@ -561,7 +567,7 @@ jeedomUtils.setBackgroundImage = function(_path) {
       }
     }
 
-    if (!jeedomUtils._elBackground) jeedomUtils._elBackground = $('#backgroundforJeedom')
+    if (!jeedomUtils._elBackground) jeedomUtils._elBackground = document.getElementById('backgroundforJeedom')
 
     if (_path.substring(0, 4) == 'core') {
       jeedomUtils._elBackground.removeClass('custom')
@@ -577,21 +583,22 @@ jeedomUtils.setBackgroundImage = function(_path) {
 }
 
 jeedomUtils.transitionJeedomBackground = function(_path) {
-  if ($('body').attr('data-theme') == 'core2019_Dark') {
-    var opacity = $('body').style('--bkg-opacity-dark')
+  if (document.body.getAttribute('data-theme') == 'core2019_Dark') {
+    var opacity = document.body.style.getPropertyValue('--bkg-opacity-dark')
   } else {
-    var opacity = $('body').style('--bkg-opacity-light')
+    var opacity = document.body.style.getPropertyValue('--bkg-opacity-light')
   }
 
-  if (jeedomUtils._elBackground.find('#bottom').css('background-image').indexOf(_path) != -1 && jeedomUtils._elBackground.find('#bottom').css('opacity') == opacity) {
+  if (jeedomUtils._elBackground.querySelector('#bottom')?.style.backgroundImage.indexOf(_path) != -1 && jeedomUtils._elBackground.querySelector('#bottom')?.style.opacity == opacity) {
     return
   }
 
   _path = 'url("../../../../' + _path + '")'
-  jeedomUtils._elBackground.find('#top').css('background-image', _path).fadeTo(350, opacity)
-  jeedomUtils._elBackground.find('#bottom').fadeOut(300, 'linear', function() {
-    $(this).css('background-image', _path).show()
-    jeedomUtils._elBackground.find('#top').hide()
+  $(jeedomUtils._elBackground).find('#top').css('background-image', _path).fadeTo(350, opacity)
+  $(jeedomUtils._elBackground).find('#bottom').fadeOut(300, 'linear', function() {
+    this.style.backgroundImage = _path
+    this.seen()
+    jeedomUtils._elBackground.querySelector('#top').unseen()
   })
 }
 
@@ -610,7 +617,7 @@ jeedomUtils.initJeedomModals = function() {
     }
   }
 
-  $('body').on('show', '.modal',function() {
+  $('body').on('show', '.modal', function() {
     document.activeElement.blur()
     $(this).find('.modal-body :input:visible').first().focus()
   });
@@ -763,71 +770,72 @@ jeedomUtils.setJeedomGlobalUI = function() {
   jeedomUtils.setButtonCtrlHandler('#bt_showDatastoreVariable', '{{Variables}}', 'dataStore.management&type=scenario', '#md_modal', false)
   jeedomUtils.setButtonCtrlHandler('#bt_showSearching', '{{Recherche}}', 'search', '#md_modal')
 
-  $('#bt_gotoDashboard').on('click',function(event) {
-    if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
+  document.getElementById('bt_gotoDashboard').addEventListener('click', function() {
+    if (!getDeviceType()['type'] == 'desktop' || window.innerWidth < 768) {
       event.stopPropagation()
       return
     }
     jeedomUtils.loadPage('index.php?v=d&p=dashboard')
   })
 
-  $('#bt_gotoView').on('click',function(event) {
-    if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
+  document.getElementById('bt_gotoView').addEventListener('click', function() {
+    if (!getDeviceType()['type'] == 'desktop' || window.innerWidth < 768) {
       event.stopPropagation()
       return
     }
     jeedomUtils.loadPage('index.php?v=d&p=view')
   })
 
-  $('#bt_gotoPlan').on('click',function(event) {
-    if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
+  document.getElementById('bt_gotoPlan').addEventListener('click', function() {
+    if (!getDeviceType()['type'] == 'desktop' || window.innerWidth < 768) {
       event.stopPropagation()
       return
     }
     jeedomUtils.loadPage('index.php?v=d&p=plan')
   })
 
-  $('#bt_gotoPlan3d').on('click',function(event) {
-    if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
+  document.getElementById('bt_gotoPlan3d').addEventListener('click', function() {
+    if (!getDeviceType()['type'] == 'desktop' || window.innerWidth < 768) {
       event.stopPropagation()
       return
     }
     jeedomUtils.loadPage('index.php?v=d&p=plan3d')
   })
 
-  $('#bt_jeedomAbout').on('click', function() {
+  document.getElementById('bt_jeedomAbout').addEventListener('click', function() {
     jeedomUtils.closeJeedomMenu()
     $('#md_modal').dialog({title: "{{A propos}}"}).load('index.php?v=d&modal=about').dialog('open')
   })
 
-  $('#bt_getHelpPage').on('click',function() {
+  document.getElementById('bt_getHelpPage').addEventListener('click', function(event) {
     jeedom.getDocumentationUrl({
-      plugin: $(this).attr('data-plugin'),
-      page: $(this).attr('data-page'),
-      theme: $('body').attr('data-theme'),
+      plugin: this.getAttribute('data-plugin'),
+      page: this.getAttribute('data-page'),
+      theme: document.body.getAttribute('data-theme'),
       error: function(error) {
         $.fn.showAlert({message: error.message, level: 'danger'})
       },
       success: function(url) {
         window.open(url,'_blank')
       }
-    });
+    })
   })
 
-  $('.bt_reportBug').on('click',function(event) {
-    if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
-      event.preventDefault()
+  document.querySelector('.bt_reportBug').addEventListener('click', function() {
+    if (!getDeviceType()['type'] == 'desktop' || window.innerWidth < 768) {
+      event.stopPropagation()
       return
     }
     jeedomUtils.closeJeedomMenu()
     $('#md_reportBug').load('index.php?v=d&modal=report.bug').dialog('open')
   })
 
-  $('#bt_messageModal').on('click',function() {
+  document.getElementById('bt_messageModal').addEventListener('click', function() {
     jeedomUtils.closeModal('md_modal')
     $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&modal=message.display').dialog('open')
   })
-  $('#bt_jsErrorModal').on('click',function() {
+
+  document.getElementById('bt_jsErrorModal').addEventListener('click', function() {
     jeedomUtils.closeModal('md_modal')
     $('#md_modal').dialog({title: "{{Erreur Javascript}}"}).load('index.php?v=d&modal=js.error').dialog('open')
   })
@@ -909,7 +917,7 @@ jeedomUtils.initPage = function() {
     jeedomUtils.initTooltips()
   }, 750)
   try {
-    if (getDeviceType()['type'] == 'desktop') $("input[id^='in_search']").first().focus()
+    if (getDeviceType()['type'] == 'desktop') document.querySelector("input[id^='in_search']")?.focus()
   } catch (error) {}
   jeedomUtils.initDisplayAsTable()
 }
