@@ -1613,6 +1613,8 @@ class scenarioExpression {
 					$answer = explode(';', $options['answer']);
 					if (($key = array_search('*', $answer)) !== false) {
 						unset($answer[$key]);
+						if (count($answer) >= 1) $answer = array_values($answer);
+						else $answer = array("");
 					}
 					$options_cmd = array('title' => $options['question'], 'message' => $options['question'], 'answer' => $answer, 'timeout' => $limit, 'variable' => $options['variable']);
 
@@ -1631,7 +1633,7 @@ class scenarioExpression {
 					$this->setLog($scenario, __('Demande', __FILE__) . ' ' . json_encode($options_cmd));
 					$cmd->setCache('ask::variable', $options['variable']);
 					$cmd->setCache('ask::endtime', strtotime('now') + $limit);
-					$cmd->setCache('ask::answer', $options_cmd['answer']);
+					$cmd->setCache('ask::answer', explode(';', $options['answer']));
 					$cmd->execCmd($options_cmd);
 					$occurence = 0;
 					$value = '';
