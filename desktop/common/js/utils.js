@@ -197,18 +197,12 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 document.addEventListener('DOMContentLoaded', function() {
   var $body = $('body')
   if (getDeviceType()['type'] == 'desktop') jeedomUtils.userDeviceType = 'desktop'
-  $body.attr('data-device', jeedomUtils.userDeviceType)
-
+  document.body.setAttribute('data-device', jeedomUtils.userDeviceType)
+  document.body.setAttribute('data-page', getUrlVars('p'))
   document.body.style.setProperty('--bkg-opacity-light', jeedom.theme['interface::background::opacitylight'])
   document.body.style.setProperty('--bkg-opacity-dark', jeedom.theme['interface::background::opacitydark'])
 
-<<<<<<< HEAD
-  //$body.off('jeedom_page_load').on('jeedom_page_load', function() {
-  document.body.addEventListener('jeedom_page_load', event => {
-=======
-  $body.attr('data-page', getUrlVars('p'))
   $body.off('jeedom_page_load').on('jeedom_page_load', function() {
->>>>>>> parent of 46dd65855 (TEST jeedomUtils.onDOMComplete())
     if (getUrlVars('saveSuccessFull') == 1) {
       $.fn.showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'})
       jeeFrontEnd.PREVIOUS_PAGE=window.location.href.split('&saveSuccessFull')[0]+window.location.hash

@@ -51,4 +51,3 @@ document.getElementById('accordionHealth').addEventListener('click', event => {
     }
   }
 })
-

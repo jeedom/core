@@ -157,10 +157,6 @@ if (!jeeFrontEnd.timeline) {
 
 jeeFrontEnd.timeline.init()
 
-$(function() {
-  jeeP.displayTimeline()
-})
-
 //searching
 $('#in_searchTimeline').keyup(function() {
   var search = this.value
@@ -255,3 +251,4 @@ $('#bt_refreshTimeline').on('click', function() {
   jeeP.displayTimeline()
 })
 
+jeeP.displayTimeline()
