@@ -1207,7 +1207,7 @@ jeedom.cmd.displayDuration = function(_date, _el, _type = 'duration') {
     } else {
       var dateString = moment(_date, 'YYYY-MM-DD HH:mm:ss').calendar(jeedom.config.locales['en_US'].calendar)
     }
-    _el.innerText = dateString
+    _el.innerHTML = dateString
     return true
   }
 
@@ -1232,13 +1232,13 @@ jeedom.cmd.displayDuration = function(_date, _el, _type = 'duration') {
   } else {
     var durationString = "0" + jeedom.config.locales[jeeFrontEnd.language].duration.second
   }
-  _el.innerText = durationString
+  _el.innerHTML = durationString
 
   //set refresh interval:
   var myinterval = setInterval(function() {
     var duration = moment.duration(moment() - moment(_date))
     var durationString = jeedom.cmd.formatMomentDuration(duration)
-    _el.innerText = durationString
+    _el.innerHTML = durationString
   }, interval)
 
   _el.setAttribute('data-interval', myinterval)
