@@ -512,9 +512,9 @@ jeedomUtils.triggerThemechange = function() {
   if (document.body.hasAttribute('data-theme')) {
     var currentTheme = document.body.getAttribute('data-theme')
     if (currentTheme.endsWith('Dark')) {
-      document.getElementById('homeLogoImg').attr('src', jeedom.theme.logo_dark)
+      document.getElementById('homeLogoImg')?.setAttribute('src', jeedom.theme.logo_dark)
     } else {
-      document.getElementById('homeLogoImg').attr('src', jeedom.theme.logo_light)
+      document.getElementById('homeLogoImg')?.setAttribute('src', jeedom.theme.logo_light)
     }
   }
 
