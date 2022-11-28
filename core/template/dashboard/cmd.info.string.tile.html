@@ -19,8 +19,8 @@
           jeedom.cmd.displayDuration(_options.valueDate, cmd.querySelector('.timeCmd'), '#time#')
         }
 
-        cmd.querySelector('.value').innerText = _options.display_value
-        cmd.querySelector('.unit').innerText = _options.unit
+        cmd.querySelector('.value').innerHTML = _options.display_value
+        cmd.querySelector('.unit').innerHTML = _options.unit
 
         if (_options.alertLevel == 'warning') {
           cmd.querySelector('.value').innerHTML = '<span class="label label-warning"><i class="fas fa-bell"></i> ' + _options.value + '</span>'
@@ -30,6 +30,6 @@
       }
     })
 
-    jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: "#value#", display_value: "#state#", valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
+    jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
   </script>
 </div>

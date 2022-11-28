@@ -36,11 +36,6 @@ Desktop
     padding: 0 5px 5px 5px;
   }
 
-  div.cmd-widget + br {
-    margin: 7px;
-    display: block;
-  }
-
   .eqLogic-widget.hideEqLogicName .widget-name {
     display: none !important;
   }
@@ -70,7 +65,7 @@ Desktop
     margin: 0;
   }
   div.cmd-widget .content-sm {
-    height: 40px !important;
+    height: 35px !important;
   }
   div.cmd-widget .content {
     height: 60px !important;

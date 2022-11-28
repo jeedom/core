@@ -465,7 +465,7 @@ jeedom.eqLogic.initGraphInfo = function(_eqLogicId) {
     $('div.eqLogic[data-eqlogic_id=' + _eqLogicId + '] div.cmd-widget[data-cmd_id="' + cmdId + '"] .cmdName').prepend('<span class="graphInfoCmd">• </span>')
     setTimeout(function() {
       jeedom.eqLogic.drawGraphInfo(cmdId)
-    }, 5)
+    }, 1)
   }
 }
 
