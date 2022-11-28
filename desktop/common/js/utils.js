@@ -440,7 +440,7 @@ jeedomUtils.setJeedomTheme = function() {
     document.getElementById('bt_switchTheme').html(themeButton)
     if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themeShadows)
     jeedomUtils.triggerThemechange()
-    let backgroundImgPath = jeedomUtils._elBackground.find('#bottom').css('background-image')
+    let backgroundImgPath = jeedomUtils._elBackground.querySelector('#bottom').style.backgroundImage
     if (backgroundImgPath.indexOf('/data/') == -1 && backgroundImgPath.indexOf('/plugins/') == -1) {
       jeedomUtils.setBackgroundImage('')
     }
