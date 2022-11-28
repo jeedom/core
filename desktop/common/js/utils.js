@@ -534,15 +534,17 @@ jeedomUtils.setBackgroundImage = function(_path) {
   if (!isset(jeedom) || !isset(jeedom.theme) || !isset(jeedom.theme.showBackgroundImg) || jeedom.theme.showBackgroundImg == 0) {
     return
   }
+  if (!jeedomUtils._elBackground) jeedomUtils._elBackground = document.getElementById('backgroundforJeedom')
   if (_path === null) {
-    jeedomUtils._elBackground.find('#bottom').css('background-image', 'url("")').show()
+    jeedomUtils._elBackground.querySelector('#bottom').css.backgroundImage = 'url("")'
+    jeedomUtils._elBackground.querySelector('#bottom').seen()
   } else if (_path === '') {
     var mode = 'light'
-    if ($('body').attr('data-theme') == 'core2019_Dark') {
+    if (document.body.getAttribute('data-theme') == 'core2019_Dark') {
       mode = 'dark'
     }
 
-    if (['dashboard', 'overview', 'home', 'equipment'].indexOf($('body').attr('data-page')) != -1) {
+    if (['dashboard', 'overview', 'home', 'equipment'].indexOf(document.body.getAttribute('data-page')) != -1) {
       if(jeedom.theme.product_interface_image){
         _path = jeedom.theme.product_interface_image
       }
@@ -567,8 +569,6 @@ jeedomUtils.setBackgroundImage = function(_path) {
       }
     }
 
-    if (!jeedomUtils._elBackground) jeedomUtils._elBackground = document.getElementById('backgroundforJeedom')
-
     if (_path.substring(0, 4) == 'core') {
       jeedomUtils._elBackground.removeClass('custom')
       _path += mode + '.jpg'
@@ -590,18 +590,20 @@ jeedomUtils.transitionJeedomBackground = function(_path) {
     var opacity = document.body.style.getPropertyValue('--bkg-opacity-light')
   }
 
-  if (jeedomUtils._elBackground.querySelector('#top')?.style.backgroundImage == _path && jeedomUtils._elBackground.querySelector('#top')?.style.opacity == opacity) {
+  var top = jeedomUtils._elBackground.querySelector('#top')
+  var bottom = jeedomUtils._elBackground.querySelector('#bottom')
+  if (top.style.backgroundImage == _path && top.style.opacity == opacity) {
     return
   }
 
   Promise.all([
     function() {
-      jeedomUtils._elBackground.querySelector('#top').style.backgroundImage = _path
-      jeedomUtils._elBackground.querySelector('#top').fade('in', 280, opacity)
+      top.style.backgroundImage = _path
+      top.fade('in', 280, opacity)
     }(),
     function() {
-      jeedomUtils._elBackground.querySelector('#bottom').fade('out', 280, 0)
-      jeedomUtils._elBackground.querySelector('#bottom').style.backgroundImage = _path
+      bottom.fade('out', 280, 0)
+      bottom.style.backgroundImage = _path
     }(),
   ]).then(() => {
   }).catch((err) => console.log(err))
