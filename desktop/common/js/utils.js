@@ -908,6 +908,7 @@ jeedomUtils.initPage = function() {
   $.initTableFilter()
   jeedomUtils.initHelp()
   jeedomUtils.initTextArea()
+
   $('.nav-tabs a').on('click',function() {
     $(this).tab('show')
     $('#div_mainContainer').scrollTop(0)
@@ -923,33 +924,49 @@ jeedomUtils.initPage = function() {
 }
 
 jeedomUtils.initDisplayAsTable = function() {
-  var $buttonAsTable = $('#bt_displayAsTable')
-  if ($buttonAsTable.length) {
+  var buttonAsTable = document.getElementById('bt_displayAsTable')
+  if (buttonAsTable != null) {
     if (getCookie('jeedom_displayAsTable') == 'true' || jeedom.theme.theme_displayAsTable == 1) {
-      $('#bt_displayAsTable').data('state', '1').addClass('active')
-      $($buttonAsTable.data('card')).addClass('displayAsTable')
-      if ($($buttonAsTable.data('container')).length > 1) {
-        $($buttonAsTable.data('container')).first().addClass('containerAsTable')
+      buttonAsTable.dataset.state = 1
+      buttonAsTable.addClass('active')
+      var cardClass = buttonAsTable.dataset.card
+      if (cardClass != undefined) {
+        document.querySelectorAll(cardClass)?.addClass('displayAsTable')
+      }
+      var containerClass = buttonAsTable.dataset.container
+      if (containerClass != undefined) {
+        document.querySelector(containerClass)?.addClass('containerAsTable')
       }
     }
 
-    $buttonAsTable.off('click').on('click', function () {
-      if ($(this).data('state') == "0") {
-        $(this).data('state', '1').addClass('active')
+    buttonAsTable.addEventListener('click', function() {
+      if (this.dataset.state == '0') {
+        this.dataset.state = '1'
+        this.addClass('active')
         setCookie('jeedom_displayAsTable', 'true', 7)
-        $($(this).data('card')).addClass('displayAsTable')
-        if ($($(this).data('container')).length > 1) {
-          $($(this).data('container')).first().addClass('containerAsTable')
+
+        try {
+          document.querySelectorAll(this.dataset.card)?.addClass('displayAsTable')
+          document.querySelector(this.dataset.container)?.addClass('containerAsTable')
+        } catch (error) {
+          console.error('showAlert: ' + error)
         }
       } else {
-        $(this).data('state', '0').removeClass('active')
+        this.dataset.state = '0'
+        this.removeClass('active')
         setCookie('jeedom_displayAsTable', 'false', 7)
-        $($(this).data('card')).removeClass('displayAsTable')
-        $($(this).data('container')).first().removeClass('containerAsTable')
+
+        try {
+          document.querySelectorAll(this.dataset.card)?.removeClass('displayAsTable')
+          document.querySelector(this.dataset.container)?.removeClass('containerAsTable')
+        } catch (error) {
+          console.error('showAlert: ' + error)
+        }
       }
     })
   }
 }
+
 
 jeedomUtils.OBSERVER = null
 jeedomUtils.observerConfig = {
@@ -1012,17 +1029,19 @@ jeedomUtils.initTooltips = function(_el) {
 jeedomUtils.initTextArea = function() {
   $('body').on('change keyup keydown paste cut', 'textarea.autogrow', function() {
     $(this).height(0).height(this.scrollHeight)
-  });
+  })
 }
 
 jeedomUtils.initReportMode = function() {
   if (getUrlVars('report') == 1) {
-    $('header').hide()
-    $('footer').hide()
-    $('#div_mainContainer').css('margin-top', '-50px')
-    $('#wrap').css('margin-bottom', '0px')
-    $('.reportModeVisible').show()
-    $('.reportModeHidden').hide()
+    document.querySelectorAll('header')?.unseen()
+    document.querySelectorAll('footer')?.unseen()
+    let mainContainer = document.getElementById('div_mainContainer')
+    if(mainContainer != null) mainContainer.style.marginTop = '-50px'
+    let wrap = document.getElementById('wrap')
+    if(wrap != null) wrap.style.marginBottom = '0px'
+    document.querySelectorAll('.reportModeVisible')?.seen()
+    document.querySelectorAll('.reportModeHidden')?.unseen()
   }
 }
 
@@ -1148,15 +1167,15 @@ jeedomUtils.uniqId = function(_prefix) {
   }
   var result = _prefix +'-'+ jeedomUtils.uniqId_count + '-' + Math.random().toString(36).substring(8)
   jeedomUtils.uniqId_count++
-  if ($('#'+result).length) {
+  if (document.getElementById(result) != null) {
     return jeedomUtils.uniqId(_prefix)
   }
   return result
 }
 
 jeedomUtils.taAutosize = function() {
-  autosize($('.ta_autosize'))
-  autosize.update($('.ta_autosize'))
+  autosize(document.querySelectorAll('.ta_autosize'))
+  autosize.update(document.querySelectorAll('.ta_autosize'))
 }
 
 jeedomUtils.hexToRgb = function(hex) {
@@ -1227,33 +1246,33 @@ jeedomUtils.addOrUpdateUrl = function(_param, _value, _title) {
 jeedomUtils.userDeviceType = 'mobile'
 jeedomUtils.setJeedomMenu = function() {
   $('body').on('click', 'a', function(event) {
-    if ($(this).hasClass('noOnePageLoad')) {
+    if (this.hasClass('noOnePageLoad')) {
       return
     }
-    if ($(this).hasClass('fancybox-nav')) {
+    if (this.hasClass('fancybox-nav')) {
       return
     }
-    if ($(this).attr('href') == undefined || $(this).attr('href') == '' || $(this).attr('href') == '#') {
+    if (this.getAttribute('href') == undefined || this.getAttribute('href') == '' || this.getAttribute('href') == '#') {
       return
     }
-    if ($(this).attr('href').match("^data:")) {
+    if (this.getAttribute('href').match("^data:")) {
       return
     }
-    if ($(this).attr('href').match("^http")) {
+    if (this.getAttribute('href').match("^http")) {
       return
     }
-    if ($(this).attr('href').match("^#")) {
+    if (this.getAttribute('href').match("^#")) {
       return
     }
-    if ($(this).attr('target') == '_blank') {
+    if (this.getAttribute('target') == '_blank') {
       return
     }
 
-    if (!$(this).hasClass('navbar-brand')) jeedomUtils.closeJeedomMenu()
+    if (!this.hasClass('navbar-brand')) jeedomUtils.closeJeedomMenu()
 
     event.preventDefault()
     event.stopPropagation()
-    jeedomUtils.loadPage($(this).attr('href'))
+    jeedomUtils.loadPage(this.getAttribute('href'))
   })
 
   //one submenu opened at a time in mobile:
@@ -1309,13 +1328,13 @@ jeedomUtils.setJeedomMenu = function() {
 }
 
 jeedomUtils.closeJeedomMenu = function() {
-  $('#jeedomMenuBar .navbar-nav').addClass('disabled')
+  document.querySelectorAll('#jeedomMenuBar .navbar-nav')?.addClass('disabled')
   setTimeout(function() {
-    $('#jeedomMenuBar .navbar-nav').removeClass('disabled')
+    document.querySelectorAll('#jeedomMenuBar .navbar-nav')?.removeClass('disabled')
   }, 250)
 
-  if ($(window).width() < 768) {
-    $('#jeedomMenuBar .navbar-collapse.in').removeClass('in')
+  if (window.innerWidth < 768) {
+    document.querySelectorAll('#jeedomMenuBar .navbar-collapse.in')?.removeClass('in')
   }
 }
 
@@ -1512,7 +1531,9 @@ jeedomUtils.closeModal = function(_modals='') {
 }
 
 jeedomUtils.cleanModals = function(_modals='') {
-  $('.ui-dialog .cleanableModal').parent('.ui-dialog').remove()
+  document.querySelectorAll('.ui-dialog .cleanableModal')?.forEach(function(element) {
+    element.closest('.ui-dialog')?.remove()
+  })
 }
 
 //Context menu on checkbox
@@ -1591,34 +1612,8 @@ jeedomUtils.setCheckContextMenu = function(_callback) {
 }
 
 
-//Extensions__
-jQuery.fn.setCursorPosition = function(position) {
-  if(this.lengh == 0) return this;
-  return $(this).setSelection(position, position)
-}
-
-jQuery.fn.setSelection = function(selectionStart, selectionEnd) {
-  if(this.lengh == 0) return this;
-  input = this[0]
-  if (input.createTextRange) {
-    var range = input.createTextRange()
-    range.collapse(true)
-    range.moveEnd('character', selectionEnd)
-    range.moveStart('character', selectionStart)
-    range.select()
-  } else if (input.setSelectionRange) {
-    input.focus()
-    input.setSelectionRange(selectionStart, selectionEnd)
-  }
-  return this
-}
-
-$.ui.dialog.prototype._focusTabbable = $.noop //avoid ui-dialog focus on inputs when opening
-
-
 
 //Deprecated functions:
-
 /**
  * Send message to alert about deprecated function.
  * @param {string} _oldFnName
@@ -1630,7 +1625,7 @@ $.ui.dialog.prototype._focusTabbable = $.noop //avoid ui-dialog focus on inputs 
 jeedomUtils.deprecatedFunc= function(_oldFnName, _newFnName, _since, _to, _line) {
   var msg = `!WARNING! Deprecated function ${_oldFnName} since Core v${_since}: Use new Core v${_to} ${_newFnName}() function.`
 
-  if ($('body').attr('data-type') == 'plugin') {
+  if (document.body.getAttribute('data-type') == 'plugin') {
     var _pluginId = $('body').attr('data-page')
     jeedom.plugin.get({
         id: _pluginId,
@@ -1656,7 +1651,7 @@ jeedomUtils.deprecatedFunc= function(_oldFnName, _newFnName, _since, _to, _line)
     var isShown = jeedomUtils.JS_ERROR.filter(v => v.message == msg)
     if (isShown.length < 1) {
       jeedomUtils.JS_ERROR.push(jsError)
-      $('#bt_jsErrorModal').show()
+      document.getElementById('bt_jsErrorModal')?.seen()
     }
   }, 500)
 }
