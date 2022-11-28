@@ -174,6 +174,37 @@ NodeList.prototype.remove = function() {
   return this
 }
 
+Element.prototype.fade = function(type, ms, _opacity) {
+  var isIn = type === 'in',
+    opacity = isIn ? 0 : _opacity,
+    interval = 12,
+    duration = ms,
+    gap = interval / duration,
+    self = this;
+
+  if (isIn) {
+    self.style.opacity = 0
+    self.seen()
+  }
+
+  function func() {
+    if (isIn) {
+      opacity += gap
+      if (opacity > _opacity) opacity = _opacity
+    } else {
+      opacity -= gap
+      if (opacity < 0) opacity = 0
+    }
+    self.style.opacity = opacity
+
+    if (opacity <= 0) self.unseen()
+    if (opacity <= 0 || opacity >= _opacity) window.clearInterval(fading)
+  }
+
+  var fading = window.setInterval(func, interval)
+  return this
+}
+
 //DOM appended element with script tag (template widget, scenario etc) aren't executed
 Element.prototype.html = function(_html) {
   if (!isset(_html)) return this.innerHTML
@@ -444,7 +475,6 @@ domUtils.createWidgetSlider = function(_options) {
 
   return noUiSlider.create(_options.sliderDiv, createOptions)
 }
-
 
 
 //Global functions

@@ -583,24 +583,30 @@ jeedomUtils.setBackgroundImage = function(_path) {
 }
 
 jeedomUtils.transitionJeedomBackground = function(_path) {
+  _path = 'url("../../../../' + _path + '")'
   if (document.body.getAttribute('data-theme') == 'core2019_Dark') {
     var opacity = document.body.style.getPropertyValue('--bkg-opacity-dark')
   } else {
     var opacity = document.body.style.getPropertyValue('--bkg-opacity-light')
   }
 
-  if (jeedomUtils._elBackground.querySelector('#bottom')?.style.backgroundImage.indexOf(_path) != -1 && jeedomUtils._elBackground.querySelector('#bottom')?.style.opacity == opacity) {
+  if (jeedomUtils._elBackground.querySelector('#top')?.style.backgroundImage == _path && jeedomUtils._elBackground.querySelector('#top')?.style.opacity == opacity) {
     return
   }
 
-  _path = 'url("../../../../' + _path + '")'
-  $(jeedomUtils._elBackground).find('#top').css('background-image', _path).fadeTo(350, opacity)
-  $(jeedomUtils._elBackground).find('#bottom').fadeOut(300, 'linear', function() {
-    this.style.backgroundImage = _path
-    this.seen()
-    jeedomUtils._elBackground.querySelector('#top').unseen()
-  })
+  Promise.all([
+    function() {
+      jeedomUtils._elBackground.querySelector('#top').style.backgroundImage = _path
+      jeedomUtils._elBackground.querySelector('#top').fade('in', 280, opacity)
+    }(),
+    function() {
+      jeedomUtils._elBackground.querySelector('#bottom').fade('out', 280, 0)
+      jeedomUtils._elBackground.querySelector('#bottom').style.backgroundImage = _path
+    }(),
+  ]).then(() => {
+  }).catch((err) => console.log(err))
 }
+
 
 //Jeedom UI__
 jeedomUtils.initJeedomModals = function() {
