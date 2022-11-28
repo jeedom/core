@@ -1188,6 +1188,7 @@ jeedomUtils.uniqId = function(_prefix) {
 }
 
 jeedomUtils.taAutosize = function() {
+  //http://www.jacklmoore.com/autosize/
   autosize(document.querySelectorAll('.ta_autosize'))
   autosize.update(document.querySelectorAll('.ta_autosize'))
 }
@@ -1625,7 +1626,27 @@ jeedomUtils.setCheckContextMenu = function(_callback) {
   })
 }
 
-
+//Need jQuery and jQuery UI plugin loaded:
+jQuery.fn.setCursorPosition = function(position) {
+  if (this.lengh == 0) return this
+  return $(this).setSelection(position, position)
+}
+jQuery.fn.setSelection = function(selectionStart, selectionEnd) {
+  if (this.lengh == 0) return this
+  input = this[0]
+  if (input.createTextRange) {
+    var range = input.createTextRange()
+    range.collapse(true)
+    range.moveEnd('character', selectionEnd)
+    range.moveStart('character', selectionStart)
+    range.select()
+  } else if (input.setSelectionRange) {
+    input.focus()
+    input.setSelectionRange(selectionStart, selectionEnd)
+  }
+  return this
+}
+$.ui.dialog.prototype._focusTabbable = $.noop //avoid ui-dialog focus on inputs when opening
 
 //Deprecated functions:
 /**
@@ -1636,7 +1657,7 @@ jeedomUtils.setCheckContextMenu = function(_callback) {
  * @param {string} _to
  * @param {string} _line
  */
-jeedomUtils.deprecatedFunc= function(_oldFnName, _newFnName, _since, _to, _line) {
+jeedomUtils.deprecatedFunc = function(_oldFnName, _newFnName, _since, _to, _line) {
   var msg = `!WARNING! Deprecated function ${_oldFnName} since Core v${_since}: Use new Core v${_to} ${_newFnName}() function.`
 
   if (document.body.getAttribute('data-type') == 'plugin') {
