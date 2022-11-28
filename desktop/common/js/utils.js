@@ -843,8 +843,6 @@ jeedomUtils.setJeedomGlobalUI = function() {
   })
 
   document.body.addEventListener('keydown', function(event) {
-    console.log('keydown on body', event)
-
     //search input escape:
     if (event.target.matches('input[id^="in_search"]')) {
       if (event.key == 'Escape') {
