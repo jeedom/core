@@ -758,8 +758,10 @@ jeedomUtils.setJeedomGlobalUI = function() {
     $('#md_modal').dialog({title: "{{Bienvenue dans Jeedom}}"}).load('index.php?v=d&modal=first.use').dialog('open')
   }
 
-  $(window).bind('beforeunload', function() { //keep old root for plugins
-    if (jeeFrontEnd.modifyWithoutSave || modifyWithoutSave) {
+  window.addEventListener( 'beforeunload', function(event) {
+    event.preventDefault()
+    //keep old root for plugins
+    if (jeeFrontEnd.modifyWithoutSave || window.modifyWithoutSave) {
       return '{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}';
     }
   })
@@ -840,65 +842,83 @@ jeedomUtils.setJeedomGlobalUI = function() {
     $('#md_modal').dialog({title: "{{Erreur Javascript}}"}).load('index.php?v=d&modal=js.error').dialog('open')
   })
 
-  $('body').on('click', '.objectSummaryParent', function() {
-    //action summary:
-    if (event.ctrlKey) return
+  document.body.addEventListener('keydown', function(event) {
+    console.log('keydown on body', event)
 
-    if ($('body').attr('data-page') == "overview" && $(this).parents('.objectSummaryglobal').length == 0) return false
-
-    var url = 'index.php?v=d&p=dashboard&summary=' + $(this).data('summary') + '&object_id=' + $(this).data('object_id')
-    if (window.location.href.includes('&btover=1') || ($('body').attr('data-page') != "dashboard" && jeeFrontEnd.userProfils.homePage == 'core::overview')) {
-      url += '&btover=1'
+    //search input escape:
+    if (event.target.matches('input[id^="in_search"]')) {
+      if (event.key == 'Escape') {
+        event.stopPropagation()
+        var els = (( els = document.querySelectorAll('#categoryfilter li .catFilterKey')) != null ? els.forEach(function(item) {item.checked = true}) : null)
+        var els = (( els = document.querySelectorAll('#dashTopBar button.dropdown-toggle')) != null ? els.removeClass('warning') : null)
+        event.target.value = ''
+        return
+      }
     }
-    jeedomUtils.loadPage(url)
   })
 
-  $('body').on('click', '.objectSummaryAction', function(event) {
-    if (!event.ctrlKey) {
+  document.body.addEventListener('click', function(event) {
+    //Summary display:
+    if (!event.ctrlKey && event.target.parentNode != null && (event.target.parentNode.matches('.objectSummaryParent') || event.target.matches('.objectSummaryParent'))) {
+      event.stopPropagation()
+      var _el = event.target.matches('.objectSummaryParent') ? event.target : event.target.parentNode
+
+      if (document.body.getAttribute('data-page') == "overview" && _el.closest('.objectSummaryglobal') == null) return false
+
+      var url = 'index.php?v=d&p=dashboard&summary=' + _el.dataset.summary + '&object_id=' + _el.dataset.object_id
+      if (window.location.href.includes('&btover=1') || (document.body.getAttribute('data-page') != "dashboard" && jeeFrontEnd.userProfils.homePage == 'core::overview')) {
+        url += '&btover=1'
+      }
+      jeedomUtils.loadPage(url)
       return
     }
-    jeedomUtils.mouseX = event.originalEvent.x
-    jeedomUtils.mouseY = event.originalEvent.y
-    jeedomUtils.closeModal()
-    $('#md_modal').dialog({title: "{{Action sur résumé}}"}).load('index.php?v=d&modal=summary.action&summary='+$(this).attr('data-summary')+'&object_id='+$(this).attr('data-object_id'))
-  })
+    //Summary action:
+    if (event.ctrlKey && event.target.parentNode != null && (event.target.parentNode.matches('.objectSummaryAction') || event.target.matches('.objectSummaryAction'))) {
+      event.stopPropagation()
+      jeedomUtils.mouseX = event.clientX
+      jeedomUtils.mouseY = event.clientY
+      jeedomUtils.closeModal()
 
-  $('body').off('click','.jeeHelper[data-helper=cron]').on('click','.jeeHelper[data-helper=cron]',function() {
-    var el = this.closest('div').querySelector('input')
-    jeedom.getCronSelectModal({}, function(result) {
-      el.jeeValue(result.value)
-    })
-  })
-
-  //close all modales on outside click
-  $('body').on('click', '.ui-widget-overlay', function(event) {
-    $(".ui-dialog-content").dialog("close")
-  })
-
-  //search input escape:
-  $('body').on({
-    'keydown': function(event) {
-      if (event.key == 'Escape') {
-        $('#categoryfilter li .catFilterKey').prop("checked", true)
-        $('#dashTopBar button.dropdown-toggle').removeClass('warning')
-        $(this).val('').keyup()
-      }
+      var _el = event.target.matches('.objectSummaryAction') ? event.target : event.target.parentNode
+      var url = 'index.php?v=d&modal=summary.action&summary=' + _el.dataset.summary + '&object_id=' + _el.dataset.object_id
+      $('#md_modal').dialog({title: "{{Action sur résumé}}"}).load(url)
+      return
     }
-  }, 'input[id^="in_search"]')
 
-  //button show password
-  $('body').on({
-    'click': function(event) {
-      $.hideAlert()
-      var el = $(this)
-      el.closest('.input-group').find('input').toggleClass('inputPassword')
-      if (el.find('.fas').hasClass('fa-eye-slash')) {
-        el.find('.fas').removeClass('fa-eye-slash').addClass('fa-eye')
+    //close all modales on outside click
+    if (event.target.matches('.ui-widget-overlay')) {
+      event.stopPropagation()
+      $('.ui-dialog-content').dialog("close")
+      return
+    }
+
+    //display cron modal construction:
+    if (event.target.parentNode != null && (event.target.parentNode.matches('.jeeHelper[data-helper=cron]') || event.target.matches('.jeeHelper[data-helper=cron]'))) {
+      event.stopPropagation()
+      var input = event.target.closest('div').querySelector('input')
+      if (input) {
+        jeedom.getCronSelectModal({}, function(result) {
+          input.value = result.value
+        })
+      }
+      return
+    }
+
+    //buton show password:
+    if (event.target.parentNode != null && (event.target.parentNode.matches('a.bt_showPass') || event.target.matches('a.bt_showPass'))) {
+      event.stopPropagation()
+      var _el = event.target.matches('a.bt_showPass') ? event.target : event.target.parentNode
+      console.log('clicked .bt_showPass')
+      jeedomUtils.hideAlert()
+      _el.closest('.input-group').querySelector('input').toggleClass('inputPassword')
+      if (_el.querySelector('.fas').hasClass('fa-eye-slash')) {
+        _el.querySelector('.fas').removeClass('fa-eye-slash').addClass('fa-eye')
       } else {
-        el.find('.fas').removeClass('fa-eye').addClass('fa-eye-slash')
+        _el.querySelector('.fas').removeClass('fa-eye').addClass('fa-eye-slash')
       }
+      return
     }
-  }, '.bt_showPass')
+  })
 }
 
 //Initiators__
@@ -948,9 +968,7 @@ jeedomUtils.initDisplayAsTable = function() {
         try {
           document.querySelectorAll(this.dataset.card)?.addClass('displayAsTable')
           document.querySelector(this.dataset.container)?.addClass('containerAsTable')
-        } catch (error) {
-          console.error('showAlert: ' + error)
-        }
+        } catch (error) { }
       } else {
         this.dataset.state = '0'
         this.removeClass('active')
@@ -959,9 +977,7 @@ jeedomUtils.initDisplayAsTable = function() {
         try {
           document.querySelectorAll(this.dataset.card)?.removeClass('displayAsTable')
           document.querySelector(this.dataset.container)?.removeClass('containerAsTable')
-        } catch (error) {
-          console.error('showAlert: ' + error)
-        }
+        } catch (error) { }
       }
     })
   }
