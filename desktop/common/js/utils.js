@@ -758,11 +758,11 @@ jeedomUtils.setJeedomGlobalUI = function() {
     $('#md_modal').dialog({title: "{{Bienvenue dans Jeedom}}"}).load('index.php?v=d&modal=first.use').dialog('open')
   }
 
-  window.addEventListener( 'beforeunload', function(event) {
-    event.preventDefault()
+  window.addEventListener('beforeunload', function(event) {
     //keep old root for plugins
-    if (jeeFrontEnd.modifyWithoutSave || window.modifyWithoutSave) {
-      return '{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}';
+    if (jeeFrontEnd.modifyWithoutSave == true || window.modifyWithoutSave == true) {
+      event.preventDefault()
+      return '{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}'
     }
   })
 
