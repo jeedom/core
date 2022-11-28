@@ -440,7 +440,7 @@ jeedom.cmd.refreshValue = function(_params) {
     if (document.querySelector('.eqlogicbackgraph[data-cmdid="' + _params[i].cmd_id + '"]') != null) {
       jeedom.eqLogic.drawGraphInfo(_params[i].cmd_id)
     }
-    if (cmd = document.querySelector('.cmd[data-cmd_id="' + _params[i].cmd_id + '"]').hasClass('noRefresh')) {
+    if (document.querySelector('.cmd[data-cmd_id="' + _params[i].cmd_id + '"]')?.hasClass('noRefresh')) {
       continue
     }
     if (!isset(jeedom.cmd.update) || !isset(jeedom.cmd.update[_params[i].cmd_id])) {
