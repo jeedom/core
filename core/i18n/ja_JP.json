@@ -532,6 +532,7 @@
         "Style de la case (CSS)": "ボックススタイル（CSS）",
         "Commandes": "コマンド",
         "Paramètres d'affichage des commandes.<br>En disposition standard, l'ordre des commandes est modifiable par glisser-déposer.": "Paramètres d'affichage des commandes.<br>En disposition standard, l'ordre des commandes est modifiable par glisser-déposer",
+        "Name": "Name",
         "Visible": "目に見えます",
         "Type générique": "Type générique",
         "Afficher le nom": "表示名",

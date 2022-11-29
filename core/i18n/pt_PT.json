@@ -532,6 +532,7 @@
         "Style de la case (CSS)": "Estilo da caixa (CSS)",
         "Commandes": "Comandos",
         "Paramètres d'affichage des commandes.<br>En disposition standard, l'ordre des commandes est modifiable par glisser-déposer.": "Configurações de exibição do pedido.<br> No layout padrão, a ordem dos comandos pode ser modificada arrastando e soltando",
+        "Name": "Nome",
         "Visible": "Visível",
         "Type générique": "Tipo genérico",
         "Afficher le nom": "Mostrar nome",
