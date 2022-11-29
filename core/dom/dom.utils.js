@@ -210,6 +210,7 @@ Element.prototype.html = function(_html) {
   //get ?
   if (!isset(_html)) return this.innerHTML
 
+  var documentFragment = document.createDocumentFragment()
   var newEl = document.createElement('span')
   newEl.innerHTML = _html
 
@@ -217,7 +218,6 @@ Element.prototype.html = function(_html) {
   */
   function filterReinjectScripts(_el) {
     _el.childNodes.forEach(function(element) {
-      if (element.wholeText == "\n") return
       if (element.tagName == 'SCRIPT') {
         try {
           var script = document.createElement('script')
@@ -236,8 +236,10 @@ Element.prototype.html = function(_html) {
 
   var newFilteredEl = filterReinjectScripts(newEl)
 
-  this.empty().appendChild(newFilteredEl)
-  newFilteredEl.replaceWith(...newEl.childNodes) //remove encapsulated span
+  documentFragment.appendChild(newFilteredEl)
+  newFilteredEl.replaceWith(...newFilteredEl.childNodes) //remove encapsulated span
+
+  this.empty().appendChild(documentFragment)
   return this
 
   //__________________OLD
