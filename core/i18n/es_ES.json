@@ -532,6 +532,7 @@
         "Style de la case (CSS)": "Cuadro de estilo (CSS)",
         "Commandes": "Comandos",
         "Paramètres d'affichage des commandes.<br>En disposition standard, l'ordre des commandes est modifiable par glisser-déposer.": "Ordenar la configuración de visualización.<br> En el diseño estándar, el orden de los comandos se puede modificar arrastrando y soltando",
+        "Name": "Nombre",
         "Visible": "Visible",
         "Type générique": "Tipo genérico",
         "Afficher le nom": "Mostrar el nombre",

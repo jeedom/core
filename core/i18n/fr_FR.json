@@ -532,6 +532,7 @@
         "Style de la case (CSS)": "Style de la case (CSS)",
         "Commandes": "Commandes",
         "Paramètres d'affichage des commandes.<br>En disposition standard, l'ordre des commandes est modifiable par glisser-déposer.": "Paramètres d'affichage des commandes.<br>En disposition standard, l'ordre des commandes est modifiable par glisser-déposer.",
+        "Name": "Name",
         "Visible": "Visible",
         "Type générique": "Type générique",
         "Afficher le nom": "Afficher le nom",

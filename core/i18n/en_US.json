@@ -532,6 +532,7 @@
         "Style de la case (CSS)": "Cell style (CSS)",
         "Commandes": "Commands",
         "Paramètres d'affichage des commandes.<br>En disposition standard, l'ordre des commandes est modifiable par glisser-déposer.": "Order display settings.<br> In the standard layout, the order of the commands can be modified by dragging and dropping",
+        "Name": "Name",
         "Visible": "Visible",
         "Type générique": "Generic type",
         "Afficher le nom": "Show name",
