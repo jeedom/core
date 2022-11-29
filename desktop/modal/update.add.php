@@ -131,7 +131,7 @@ $('#bt_uploadPlugin').fileupload({
 
 $('#bt_repoAddSaveUpdate').on('click', function() {
   var source = document.querySelector('.updateAttr[data-l1key="source"]').jeeValue()
-  var update = document.querySelectorAll('.repoSource.repo_' + source).getJeeValue()('.updateAttr')[0]
+  var update = document.querySelectorAll('.repoSource.repo_' + source).getJeeValues()('.updateAttr')[0]
   update.source = source
   jeedom.update.save({
     update : update,

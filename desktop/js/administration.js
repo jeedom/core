@@ -737,7 +737,7 @@ jeeP.$divConfig.on({
     let externalPort = document.querySelector('.configKey[data-l1key="externalPort"]')
     let externalComplement = document.querySelector('.configKey[data-l1key="externalComplement"]')
     setTimeout(function() {
-      if (document.querySelector('.configKey[data-l1key="market::allowDNS"]').jeeValue() == 1 && document.querySelector('.configKey[data-l1key="network::disableMangement"]').jeeValue() == 0) {
+      if (document.querySelector('.configKey[data-l1key="market::allowDNS"]')?.jeeValue() == 1 && document.querySelector('.configKey[data-l1key="network::disableMangement"]')?.jeeValue() == 0) {
         document.querySelector('.configKey[data-l1key="externalProtocol"]').setAttribute('disabled', '')
         externalAddr.setAttribute('disabled', '')
         externalAddr.jeeValue('')
