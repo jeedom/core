@@ -596,20 +596,13 @@ jeedomUtils.transitionJeedomBackground = function(_path) {
     return
   }
 
-  Promise.all([
-    function() {
-      top.style.backgroundImage = _path
-      top.seen()
-      top.fade('in', 280, opacity)
-    }(),
-    function() {
-      bottom.fade('out', 280, 0)
-      bottom.style.backgroundImage = _path
-      bottom.unseen()
-    }(),
-  ]).then(() => {
 
-  }).catch((err) => console.log(err))
+  top.style.opacity = 0
+  top.style.backgroundImage = _path
+  top.fade(300, opacity)
+  bottom.fade(260, 0, function() {
+    bottom.style.backgroundImage = _path
+  })
 }
 
 

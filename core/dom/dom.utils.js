@@ -174,37 +174,38 @@ NodeList.prototype.remove = function() {
   return this
 }
 
-Element.prototype.fade = function(_type, _ms, _opacity) {
-  var isIn = _type === 'in'
-
-  if (!isset(_opacity) && isIn) _opacity = 1
-  if (!isset(_opacity) && !isIn) _opacity = 0
-  var opacity = isIn ? 0 : _opacity,
-      interval = 12,
-      duration = _ms,
-      gap = interval / duration,
+Element.prototype.fade = function(_delayms, _opacity, _callback) {
+  var opacity = parseInt(this.style.opacity) || 0
+  var interval = 25,
+      gap = interval / _delayms,
+      delay = 0,
       self = this
 
+  if (opacity > _opacity) gap = gap * -1
 
-  if (isIn) {
-    self.style.opacity = 0
-    self.seen()
-  }
-
-  function func() {
-    if (isIn) {
-      opacity += gap
-      if (opacity > _opacity) opacity = _opacity
-    } else {
-      opacity -= gap
-      if (opacity < 0) opacity = 0
+  var func = function() {
+    let stop = false
+    delay += interval
+    opacity = opacity + gap
+    if (gap > 0 && opacity >= _opacity) {
+      opacity = _opacity
+      stop = true
+    }
+    if (gap < 0 && opacity <= 0) {
+      opacity = 0
+      self.unseen()
+      stop = true
     }
     self.style.opacity = opacity
-
-    if (opacity <= 0) self.unseen()
-    if (opacity <= 0 || opacity >= _opacity) window.clearInterval(fading)
+    if (stop) {
+      window.clearInterval(fading)
+      if (typeof _callback === 'function') {
+          _callback()
+      }
+    }
   }
 
+  self.seen()
   var fading = window.setInterval(func, interval)
   return this
 }
