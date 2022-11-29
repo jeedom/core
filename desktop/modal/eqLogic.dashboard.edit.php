@@ -349,7 +349,6 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
             $thisclassAttrib = 'cmdAttr' . $cmd->getId();
             $display .= '<div class="cmdConfig" style="padding: 2px;" data-attribclass="' . $thisclassAttrib . '" data-id="' . $cmd->getId() . '">';
             $display .= '<span class="' . $thisclassAttrib . ' hidden" data-l1key="id"></span>';
-            $display .= '<span class="' . $thisclassAttrib . ' hidden" data-l1key="name"></span>';
 
             if ($cmd->getType() == 'info') {
               $display .= '<a class="btn btn-default btn-info btn-xs bt_cmdConfig" data-toggle="collapse" data-target="#cmdConfig' . $cmd->getId() . '">' . $cmd->getName() . ' (' . $cmd->getType() . ' | ' . $cmd->getSubType() . ')</a>';
@@ -359,6 +358,9 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 
             $display .= '<div id="cmdConfig' . $cmd->getId() . '" class="collapse" style="margin-top: 8px;">';
             $display .= '<table class="table table-bordered table-condensed">';
+
+            //Editable name:
+            $display .= '<tr><td>{{Name}}</td><td colspan="2"><input class="input-sm ' . $thisclassAttrib . '" data-l1key="name" style="width: 100%;"></td>';
 
             //visible and td widths:
             $display .= '<tr><td>{{Visible}}<input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="isVisible" style="float: right"></td>';
