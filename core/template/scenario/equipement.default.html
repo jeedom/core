@@ -15,10 +15,10 @@
 <script>
   $('.listEquipementInfo[data-uid="#uid#"]').off('click').on('click', function() {
     jeedom.eqLogic.getSelectModal({cmd: {type: 'info'}}, function(result) {
-      document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key=""eqLogic""]').value = result.human
+      document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="eqLogic"]').value = result.human
     });
   });
-  if ('#action#' != '' && document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key=action] option[value="#action#"]')?.innerHTML != '') {
+  if ('#action#' != '' && document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="action"] option[value="#action#"]')?.innerHTML != '') {
     document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="action"]').value = '#action#'
   }
 </script>
