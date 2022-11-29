@@ -207,6 +207,40 @@ Element.prototype.fade = function(type, ms, _opacity) {
 
 //DOM appended element with script tag (template widget, scenario etc) aren't executed
 Element.prototype.html = function(_html) {
+  //get ?
+  if (!isset(_html)) return this.innerHTML
+
+  var newEl = document.createElement('span')
+  newEl.innerHTML = _html
+
+  /*Must inject DOM script element to get executed:
+  */
+  function filterReinjectScripts(_el) {
+    _el.childNodes.forEach(function(element) {
+      if (element.wholeText == "\n") return
+      if (element.tagName == 'SCRIPT') {
+        try {
+          var script = document.createElement('script')
+          script.type = "text/javascript"
+          script.appendChild(document.createTextNode(element.innerHTML))
+          element.replaceWith(script)
+        } catch(e) {}
+      }
+      //recurse childs:
+      if (element.childNodes.length) {
+        filterReinjectScripts(element)
+      }
+    })
+    return _el
+  }
+
+  var newFilteredEl = filterReinjectScripts(newEl)
+
+  this.empty().appendChild(newFilteredEl)
+  newFilteredEl.replaceWith(...newEl.childNodes) //remove encapsulated span
+  return this
+
+  //__________________OLD
   if (!isset(_html)) return this.innerHTML
   var newHtml = _html
   this.empty()
