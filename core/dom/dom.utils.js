@@ -16,11 +16,6 @@
 
 "use strict"
 
-/*migration
-regex case sensitive
-^.*(?:.value\(|getValues|setValues|findAtDepth).*$
-*/
-
 /* Extension Functions
 */
 String.prototype.HTMLFormat = function() {
@@ -210,82 +205,6 @@ Element.prototype.fade = function(_delayms, _opacity, _callback) {
   return this
 }
 
-//DOM appended element with script tag (template widget, scenario etc) aren't executed
-Element.prototype.html = function(_html) {
-  //get ?
-  if (!isset(_html)) return this.innerHTML
-
-  var documentFragment = document.createDocumentFragment()
-  var newEl = document.createElement('span')
-  newEl.innerHTML = _html
-
-  /*Must inject DOM script element to get executed:
-  */
-  function filterReinjectScripts(_el) {
-    _el.childNodes.forEach(function(element) {
-      if (element.tagName == 'SCRIPT') {
-        try {
-          var script = document.createElement('script')
-          script.type = "text/javascript"
-          script.appendChild(document.createTextNode(element.innerHTML))
-          element.replaceWith(script)
-        } catch(e) {}
-      }
-      //recurse childs:
-      if (element.childNodes.length) {
-        filterReinjectScripts(element)
-      }
-    })
-    return _el
-  }
-
-  var newFilteredEl = filterReinjectScripts(newEl)
-
-  documentFragment.appendChild(newFilteredEl)
-  newFilteredEl.replaceWith(...newFilteredEl.childNodes) //remove encapsulated span
-
-  this.empty().appendChild(documentFragment)
-  return this
-
-  //__________________OLD
-  if (!isset(_html)) return this.innerHTML
-  var newHtml = _html
-  this.empty()
-
-  //create dom element:
-  var newEl = document.createElement('span')
-  newEl.innerHTML = _html
-
-  //Get out all scripts and reinjected executing by dom:
-  var arrData = []
-  var scriptTags = newEl.getElementsByTagName("script")
-
-  if (scriptTags.length == 0) {
-    this.empty().appendChild(newEl)
-  } else {
-    for (var scriptTag of scriptTags) {
-      var data = (scriptTag.text || scriptTag.textContent || scriptTag.innerHTML || "")
-      if (data == '') continue
-      arrData.push(data)
-      newHtml = newHtml.replace(data, '')
-    }
-    newEl.innerHTML = newHtml.replaceAll('<script></script>', '')
-    this.empty().appendChild(newEl)
-    for (data of arrData) {
-      var script = document.createElement('script')
-      script.type = "text/javascript"
-      script.appendChild(document.createTextNode(data))
-      if (newEl.firstChild) {
-        newEl.firstChild.appendChild(script)
-      } else {
-        newEl.appendChild(script)
-      }
-    }
-  }
-  newEl.replaceWith(...newEl.childNodes) //remove encapsulated span
-  return this
-}
-
 Element.prototype.insertAtCursor = function(_valueString) {
   if (this.selectionStart || this.selectionStart == '0') {
     var startPos = this.selectionStart
@@ -296,6 +215,7 @@ Element.prototype.insertAtCursor = function(_valueString) {
   }
   return this
 }
+
 
 
 /* Set and Get element values according to Jeedom data
@@ -473,6 +393,47 @@ NodeList.prototype.jeeValue = function(_value) {
   for (var idx = 0; idx < this.length; idx++) {
     this[idx].jeeValue(_value)
   }
+}
+
+//DOM appended element with script tag (template widget, scenario etc) aren't executed
+Element.prototype.html = function(_html, _append) {
+  //get ?
+  if (!isset(_html)) return this.innerHTML
+
+    if (!isset(_append)) _append = false
+
+  var documentFragment = document.createDocumentFragment()
+  var newEl = document.createElement('span')
+  newEl.innerHTML = _html
+
+  /*Must inject DOM script element to get executed:
+  */
+  function filterReinjectScripts(_el) {
+    _el.childNodes.forEach(function(element) {
+      if (element.tagName == 'SCRIPT') {
+        try {
+          var script = document.createElement('script')
+          script.type = "text/javascript"
+          script.appendChild(document.createTextNode(element.innerHTML))
+          element.replaceWith(script)
+        } catch(e) {}
+      }
+      //recurse childs:
+      if (element.childNodes.length) {
+        filterReinjectScripts(element)
+      }
+    })
+    return _el
+  }
+
+  var newFilteredEl = filterReinjectScripts(newEl)
+
+  documentFragment.appendChild(newFilteredEl)
+  newFilteredEl.replaceWith(...newFilteredEl.childNodes) //remove encapsulated span
+
+  if (!_append) this.empty()
+  this.appendChild(documentFragment)
+  return this
 }
 
 

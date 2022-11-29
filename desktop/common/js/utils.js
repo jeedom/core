@@ -596,7 +596,6 @@ jeedomUtils.transitionJeedomBackground = function(_path) {
     return
   }
 
-
   top.style.opacity = 0
   top.style.backgroundImage = _path
   top.fade(300, opacity)
