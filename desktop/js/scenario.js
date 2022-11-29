@@ -171,7 +171,7 @@ if (!jeeFrontEnd.scenario) {
         params: this.actionOptions,
         async: false,
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -298,7 +298,7 @@ if (!jeeFrontEnd.scenario) {
       jeedom.scenario.get({
         id: _id,
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           });
@@ -442,7 +442,7 @@ if (!jeeFrontEnd.scenario) {
       jeedom.scenario.save({
         scenario: scenario,
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -1447,7 +1447,7 @@ $(function() {
     jeedom.scenario.allOrderedByGroupObjectName({
       asGroup: 1,
       error: function(error) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -1586,7 +1586,7 @@ $(function() {
             jeedom.scenario.save({
               scenario : scenario,
               error: function(error) {
-                $.fn.showAlert({message: error.message, level: 'danger'})
+                jeedomUtils.showAlert({message: error.message, level: 'danger'})
               },
               success: function(data) {
                 $('.scenarioDisplayCard[data-scenario_id="' + data.id + '"]').appendTo($('div.scenarioListContainer[data-groupName="' + key + '"]'))
@@ -1609,7 +1609,7 @@ $(function() {
             jeedom.scenario.save({
               scenario : scenario,
               error: function(error) {
-                $.fn.showAlert({message: error.message, level: 'danger'})
+                jeedomUtils.showAlert({message: error.message, level: 'danger'})
               },
               success: function(data) {
                 $('.scenarioDisplayCard[data-scenario_id="' + data.id + '"]').find('.name .label').replaceWith(humanName)
@@ -1627,7 +1627,7 @@ $(function() {
             jeedom.scenario.save({
               scenario : scenario,
               error: function(error) {
-                $.fn.showAlert({message: error.message, level: 'danger'})
+                jeedomUtils.showAlert({message: error.message, level: 'danger'})
               },
               success: function(data) {
                 $('.scenarioDisplayCard[data-scenario_id="' + data.id + '"]').addClass('inactive')
@@ -1644,7 +1644,7 @@ $(function() {
             jeedom.scenario.save({
               scenario : scenario,
               error: function(error) {
-                $.fn.showAlert({message: error.message, level: 'danger'})
+                jeedomUtils.showAlert({message: error.message, level: 'danger'})
               },
               success: function(data) {
                 $('.scenarioDisplayCard[data-scenario_id="' + data.id + '"]').removeClass('inactive')
@@ -1670,7 +1670,7 @@ $("#bt_addScenario").off('click').on('click', function(event) {
           name: result
         },
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           });
@@ -1707,7 +1707,7 @@ $("#bt_changeAllScenarioState").off('click').on('click', function() {
           enableScenario: el.attr('data-state')
         },
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -1957,7 +1957,7 @@ $('.scenarioAttr[data-l1key=group]').autocomplete({
       },
       success: function(data) {
         if (data.state != 'ok') {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: data.result,
             level: 'danger'
           })
@@ -2123,7 +2123,7 @@ $("#bt_copyScenario").off('click').on('click', function() {
         id: document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue(),
         name: result,
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -2170,13 +2170,13 @@ $("#bt_runScenario").off('click').on('click', function(event) {
         id: scenario_id,
         state: 'start',
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
         success: function() {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: '{{Lancement du scénario réussi}}',
             level: 'success'
           })
@@ -2195,13 +2195,13 @@ $("#bt_runScenario").off('click').on('click', function(event) {
       id: document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue(),
       state: 'start',
       error: function(error) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
       },
       success: function() {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: '{{Lancement du scénario réussi}}',
           level: 'success'
         })
@@ -2215,13 +2215,13 @@ $("#bt_stopScenario").off('click').on('click', function() {
     id: document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue(),
     state: 'stop',
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
     },
     success: function() {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: '{{Arrêt du scénario réussi}}',
         level: 'success'
       })
@@ -2241,7 +2241,7 @@ $("#bt_delScenario").off('click').on('click', function(event) {
       jeedom.scenario.remove({
         id: document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue(),
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -2328,7 +2328,7 @@ jeeP.$divScenario.on('click', '.bt_showElse', function(event) {
     $(this).closest('.element').children('.subElementELSE').show()
   } else {
     if ($(this).closest('.element').children('.subElementELSE').children('.expressions').children('.expression').length > 0) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: "{{Le bloc Sinon ne peut être masqué s'il contient des éléments.}}",
         level: 'danger'
       })

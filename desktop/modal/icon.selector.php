@@ -146,7 +146,7 @@ sendVarToJS([
           type: 'folders',
           path: path,
           error: function(error) {
-            $.fn.showAlert({
+            jeedomUtils.showAlert({
               message: error.message,
               level: 'danger'
             })
@@ -176,7 +176,7 @@ sendVarToJS([
         src: data.node.a_attr['data-path'],
         dst: newPath,
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -222,7 +222,7 @@ sendVarToJS([
                 name: '{{Nouveau}}',
                 path: node.a_attr['data-path'],
                 error: function(error) {
-                  $.fn.showAlert({
+                  jeedomUtils.showAlert({
                     message: error.message,
                     level: 'danger'
                   })
@@ -260,7 +260,7 @@ sendVarToJS([
                   jeedom.deleteFolder({
                     path: node.a_attr['data-path'],
                     error: function(error) {
-                      $.fn.showAlert({
+                      jeedomUtils.showAlert({
                         message: error.message,
                         level: 'danger'
                       })
@@ -292,7 +292,7 @@ sendVarToJS([
       type: 'files',
       path: _path,
       error: function(error) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -421,7 +421,7 @@ sendVarToJS([
     },
     done: function(e, data) {
       if (data.result.state != 'ok') {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: data.result.result,
           level: 'danger'
         })
@@ -439,7 +439,7 @@ sendVarToJS([
         jeedom.removeImageIcon({
           filepath: filepath,
           error: function(error) {
-            $.fn.showAlert({
+            jeedomUtils.showAlert({
               message: error.message,
               level: 'danger'
             })

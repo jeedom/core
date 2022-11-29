@@ -818,7 +818,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
       page: this.getAttribute('data-page'),
       theme: document.body.getAttribute('data-theme'),
       error: function(error) {
-        $.fn.showAlert({message: error.message, level: 'danger'})
+        jeedomUtils.showAlert({message: error.message, level: 'danger'})
       },
       success: function(url) {
         window.open(url,'_blank')
@@ -1668,7 +1668,7 @@ jeedomUtils.deprecatedFunc = function(_oldFnName, _newFnName, _since, _to, _line
     jeedom.plugin.get({
         id: _pluginId,
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })

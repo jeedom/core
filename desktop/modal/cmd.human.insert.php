@@ -104,7 +104,7 @@ mod_insertCmd.changeObjectCmd = function(_select, _options) {
     orderByName : true,
     onlyHasCmds : _options.cmd,
     error: function(error) {
-      $.fn.showAlert({message: error.message, level: 'danger'})
+      jeedomUtils.showAlert({message: error.message, level: 'danger'})
     },
     success: function(eqLogics) {
       _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic').empty()
@@ -132,7 +132,7 @@ mod_insertCmd.changeEqLogic = function(_select) {
     id: _select.jeeValue(),
     filter: mod_insertCmd.options.cmd,
     error: function(error) {
-      $.fn.showAlert({message: error.message, level: 'danger'})
+      jeedomUtils.showAlert({message: error.message, level: 'danger'})
     },
     success: function(html) {
       try { //No tr on object without equipment

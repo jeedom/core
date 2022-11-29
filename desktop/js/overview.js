@@ -85,7 +85,7 @@ if (!jeeFrontEnd.overview) {
         version: 'dashboard',
         summary: _summary,
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -111,7 +111,7 @@ if (!jeeFrontEnd.overview) {
               id: data[i].id,
               version: 'dashboard',
               error: function(error) {
-                $.fn.showAlert({
+                jeedomUtils.showAlert({
                   message: error.message,
                   level: 'danger'
                 })

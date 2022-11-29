@@ -44,11 +44,11 @@ if (!jeeFrontEnd.editor) {
       //button create inside options modal:
       $('#bt_widgetCreate').off('click').on('click', function() {
         if (document.getElementById('sel_widgetSubtype').value == '') {
-          $.fn.showAlert({message: '{{Le sous-type ne peut être vide}}', level: 'danger'})
+          jeedomUtils.showAlert({message: '{{Le sous-type ne peut être vide}}', level: 'danger'})
           return
         }
         if (document.getElementById('in_widgetName').value == '') {
-          $.fn.showAlert({message: '{{Le nom ne peut être vide}}', level: 'danger'})
+          jeedomUtils.showAlert({message: '{{Le nom ne peut être vide}}', level: 'danger'})
           return
         }
         var name = 'cmd.'+document.getElementById('sel_widgetType').value+'.'+document.getElementById('sel_widgetSubtype').value+'.'+document.getElementById('in_widgetName').value+'.html'
@@ -57,11 +57,11 @@ if (!jeeFrontEnd.editor) {
           path: filePath,
           name: name,
           error: function(error) {
-            $.fn.showAlert({message: error.message, level: 'danger'})
+            jeedomUtils.showAlert({message: error.message, level: 'danger'})
           },
           success: function() {
             $("#md_widgetCreate").dialog('close')
-            $.fn.showAlert({message: '{{Fichier enregistré avec succès}}', level: 'success'})
+            jeedomUtils.showAlert({message: '{{Fichier enregistré avec succès}}', level: 'success'})
             var hash = jeeP.getHashFromPath(filePath.replace('data/customTemplates/', '').replace('/', ''))
             jeeFrontEnd.editor._elfInstance.exec('open', hash)
             //jeeFrontEnd.editor._elfInstance.exec('reload')
@@ -128,14 +128,14 @@ if (!jeeFrontEnd.editor) {
               'enableCustomCss': this.config.toString()
             },
             error: function(error) {
-              $.fn.showAlert({
+              jeedomUtils.showAlert({
                 message: error.message,
                 level: 'danger'
               })
               this.config = 1-this.config
             },
             success: function(data) {
-              $.fn.showAlert({
+              jeedomUtils.showAlert({
                 message: '{{Configutation sauvegardée}}',
                 level: 'success'
               })

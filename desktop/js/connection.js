@@ -39,7 +39,7 @@ $('#bt_login_validate').on('click', function() {
         $('#div_twoFactorCode').show()
         return
       }
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -72,7 +72,7 @@ $('#bt_change_validate').on('click', function() {
   if ($('#in_change_password').val() != '' && $('#in_change_password').val() == $('#in_change_passwordToo').val()) {
     jeedom.user.get({
       error: function() {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -84,7 +84,7 @@ $('#bt_change_validate').on('click', function() {
         jeedom.user.saveProfils({
           profils: user,
           error: function(error) {
-            $.fn.showAlert({
+            jeedomUtils.showAlert({
               message: error.message,
               level: 'danger'
             })
@@ -94,7 +94,7 @@ $('#bt_change_validate').on('click', function() {
             jeedom.config.load({
               configuration: 'market::username',
               error: function(error) {
-                $.fn.showAlert({
+                jeedomUtils.showAlert({
                   message: error.message,
                   level: 'danger'
                 })
@@ -112,7 +112,7 @@ $('#bt_change_validate').on('click', function() {
       }
     })
   } else {
-    $.fn.showAlert({
+    jeedomUtils.showAlert({
       message: '{{Le mot de passe est vide ou ne correspond pas à la confirmation.}}',
       level: 'danger'
     })
@@ -128,7 +128,7 @@ $('#bt_login_validate_market').on('click', function() {
       'market::username': username
     },
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -139,7 +139,7 @@ $('#bt_login_validate_market').on('click', function() {
           'market::password': password
         },
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -149,7 +149,7 @@ $('#bt_login_validate_market').on('click', function() {
           jeedom.repo.test({
             repo: 'market',
             error: function(error) {
-              $.fn.showAlert({
+              jeedomUtils.showAlert({
                 message: error.message,
                 level: 'danger'
               })

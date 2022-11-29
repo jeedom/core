@@ -425,7 +425,7 @@ $('#bt_replace').on('click', function() {
         })
 
         if (opt_replaceEqs && Object.keys(replaceEqs).length === 0) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: '{{Aucun équipement à remplacer}}',
             level: 'info'
           })
@@ -434,7 +434,7 @@ $('#bt_replace').on('click', function() {
         }
 
         if (!opt_replaceEqs && Object.keys(replaceCmds).length === 0) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: '{{Aucune commande à remplacer}}',
             level: 'info'
           })
@@ -453,10 +453,10 @@ $('#bt_replace').on('click', function() {
           eqlogics: replaceEqs,
           cmds: replaceCmds,
           error: function(error) {
-            $.fn.showAlert({message: error.message, level: 'danger'})
+            jeedomUtils.showAlert({message: error.message, level: 'danger'})
           },
           success: function(data) {
-            $.fn.showAlert({
+            jeedomUtils.showAlert({
               message: '{{Remplacement effectué}}' + ' : eqLogics: ' + data.eqlogics + ' | commands: ' + data.cmds,
               level: 'success'
             })

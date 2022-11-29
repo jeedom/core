@@ -24,14 +24,14 @@ if (!jeeFrontEnd.user) {
     checkUsersLogins: function(_users) {
       _users = _users.map(a => a.login)
       if (_users.includes('')) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: '{{Le login d\'un utilisateur ne peut être vide !}}',
           level: 'danger'
         })
         return false
       }
       if (new Set(_users).size !== _users.length) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
         message: '{{Deux utilisateurs ne peuvent avoir le même login !}}',
           level: 'danger'
         })
@@ -43,7 +43,7 @@ if (!jeeFrontEnd.user) {
       jeedomUtils.showLoading()
       jeedom.user.all({
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -187,14 +187,14 @@ $("#bt_newUserSave").on('click', function(event) {
   jeedom.user.save({
     users: user,
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
     },
     success: function() {
       jeeP.printUsers()
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: '{{Sauvegarde effectuée}}',
         level: 'success'
       })
@@ -212,14 +212,14 @@ $("#bt_saveUser").on('click', function(event) {
   jeedom.user.save({
     users: users,
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
     },
     success: function() {
       jeeP.printUsers()
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: '{{Sauvegarde effectuée}}',
         level: 'success'
       })
@@ -239,14 +239,14 @@ $("#table_user").on('click', ".bt_del_user", function(event) {
       jeedom.user.remove({
         id: user.id,
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
         success: function() {
           jeeP.printUsers()
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: '{{L\'utilisateur a bien été supprimé}}',
             level: 'success'
           })
@@ -268,14 +268,14 @@ $("#table_user").on('click', ".bt_change_mdp_user", function(event) {
       jeedom.user.save({
         users: [user],
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
         success: function() {
           jeeP.printUsers()
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: '{{Sauvegarde effectuée}}',
             level: 'success'
           })
@@ -297,14 +297,14 @@ $("#table_user").on('click', ".bt_changeHash", function(event) {
       jeedom.user.save({
         users: [user],
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
         success: function() {
           jeeP.printUsers()
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: '{{Modification effectuée}}',
             level: 'success'
           })
@@ -327,7 +327,7 @@ $('#bt_supportAccess').on('click', function() {
   jeedom.user.supportAccess({
     enable: $(this).attr('data-enable'),
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -364,7 +364,7 @@ $('#table_user').on('click', '.bt_disableTwoFactorAuthentification', function() 
   jeedom.user.removeTwoFactorCode({
     id: this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML,
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -394,7 +394,7 @@ $('#table_user').on('click', '.bt_copy_user_rights', function() {
     })
   })
   if (select_list.length == 0) {
-    $.fn.showAlert({
+    jeedomUtils.showAlert({
       message: '{{Vous n\'avez aucun autre utilisateur à profil limité}}',
       level: 'warning'
     })
@@ -411,13 +411,13 @@ $('#table_user').on('click', '.bt_copy_user_rights', function() {
         to: to,
         from: from,
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
         success: function(data) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: '{{Droits copié avec succes}}',
             level: 'success'
           })
@@ -434,7 +434,7 @@ $('.bt_deleteSession').on('click', function() {
   jeedom.user.deleteSession({
     id: id,
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -452,7 +452,7 @@ $('.bt_removeRegisterDevice').on('click', function() {
     key: key,
     user_id: user_id,
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -466,7 +466,7 @@ $('.bt_removeRegisterDevice').on('click', function() {
 $('#bt_removeAllRegisterDevice').on('click', function() {
   jeedom.user.removeRegisterDevice({
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })

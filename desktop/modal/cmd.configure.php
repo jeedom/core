@@ -885,7 +885,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           jeedom.cmd.getHumanCmdName({
             id: thisValue,
             error: function(error) {
-              $.fn.showAlert({
+              jeedomUtils.showAlert({
                 message: error.message,
                 level: 'danger'
               })

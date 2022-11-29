@@ -54,13 +54,13 @@ if (!jeeFrontEnd.view_edit) {
         id: document.querySelector(".li_view.active").getAttribute('data-view_id'),
         view: view,
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
         success: function() {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: '{{Modification enregistrée}}',
             level: 'success'
           })
@@ -330,7 +330,7 @@ $("#ul_view").sortable({
     jeedom.view.setOrder({
       views: views,
       error: function(error) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -357,7 +357,7 @@ $(".li_view").on('click', function(event) {
   jeedom.view.get({
     id: $(this).attr('data-view_id'),
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -401,7 +401,7 @@ $("#bt_addView").on('click', function(event) {
           name: result
         },
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -431,7 +431,7 @@ $("#bt_removeView").on('click', function(event) {
       jeedom.view.remove({
         id: $(".li_view.active").attr('data-view_id'),
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })

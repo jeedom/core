@@ -40,7 +40,7 @@ function getReportList(_type, _id) {
     type: _type,
     id: _id,
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -68,7 +68,7 @@ function getReport(_type, _id, _report) {
     id: _id,
     report: _report,
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -110,7 +110,7 @@ $('#bt_remove').on('click', function() {
     id: document.querySelector('#div_reportForm .reportAttr[data-l1key=id]').jeeValue(),
     report: report,
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -128,7 +128,7 @@ $('#bt_removeAll').on('click', function() {
     type: document.querySelector('#div_reportForm .reportAttr[data-l1key=type]').jeeValue(),
     id: document.querySelector('#div_reportForm .reportAttr[data-l1key=id]').jeeValue(),
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })

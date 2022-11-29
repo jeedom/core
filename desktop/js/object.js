@@ -41,7 +41,7 @@ if (!jeeFrontEnd.object) {
         dataType: 'json',
         done: function(e, data) {
           if (data.result.state != 'ok') {
-            $.fn.showAlert({
+            jeedomUtils.showAlert({
               message: data.result.result,
               level: 'danger'
             })
@@ -54,7 +54,7 @@ if (!jeeFrontEnd.object) {
           } else {
             $('.objectImg').hide()
           }
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: '{{Image de fond ajoutée avec succès}}',
             level: 'success'
           })
@@ -69,7 +69,7 @@ if (!jeeFrontEnd.object) {
         id: _id,
         cache: false,
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -203,7 +203,7 @@ if (!jeeFrontEnd.object) {
         onlyEnable: '0',
         getCmd: '1',
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -326,7 +326,7 @@ if (!jeeFrontEnd.object) {
         onlyVisible: 0,
         noCache: true,
         error: function(error) {
-          $.fn.showAlert({message: error.message, level: 'danger'})
+          jeedomUtils.showAlert({message: error.message, level: 'danger'})
         },
         success: function(data) {
           jeeFrontEnd.object.objectList = Array()
@@ -544,7 +544,7 @@ $(function() {
             jeedom.object.save({
               object: object,
               error: function(error) {
-                $.fn.showAlert({message: error.message, level: 'danger'})
+                jeedomUtils.showAlert({message: error.message, level: 'danger'})
               },
               success: function(data) {
                 var $object = $('.objectDisplayCard[data-object_id="' + data.id + '"]')
@@ -573,7 +573,7 @@ $(function() {
             jeedom.object.setOrder({
               objects: objects,
               error: function(error) {
-                $.fn.showAlert({message: error.message, level: 'danger'})
+                jeedomUtils.showAlert({message: error.message, level: 'danger'})
               },
               success: function() {
                 jeeP.getObjectList(true)
@@ -590,7 +590,7 @@ $(function() {
             jeedom.object.save({
               object : object,
               error: function(error) {
-                $.fn.showAlert({message: error.message, level: 'danger'})
+                jeedomUtils.showAlert({message: error.message, level: 'danger'})
               },
               success: function(data) {
                 $('.objectDisplayCard[data-object_id="' + data.id + '"]').addClass('inactive')
@@ -607,7 +607,7 @@ $(function() {
             jeedom.object.save({
               object : object,
               error: function(error) {
-                $.fn.showAlert({message: error.message, level: 'danger'})
+                jeedomUtils.showAlert({message: error.message, level: 'danger'})
               },
               success: function(data) {
                 $('.objectDisplayCard[data-object_id="' + data.id + '"]').removeClass('inactive')
@@ -651,7 +651,7 @@ $(function() {
           jeedom.object.save({
             object : object,
             error: function(error) {
-              $.fn.showAlert({message: error.message, level: 'danger'})
+              jeedomUtils.showAlert({message: error.message, level: 'danger'})
             },
             success: function(data) {}
           })
@@ -678,13 +678,13 @@ $('#bt_libraryBackgroundImage').on('click', function() {
       id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML,
       file: $('.objectImg img').data('filename'),
       error: function(error) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
       },
       success: function(data) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: '{{Image de fond appliquée avec succès}}',
           level: 'success'
         })
@@ -701,14 +701,14 @@ $('#bt_removeBackgroundImage').off('click').on('click', function() {
       jeedom.object.removeImage({
         id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML,
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
         success: function() {
           $('.objectImg').hide()
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: '{{Image de fond enlevée}}',
             level: 'success'
           })
@@ -763,7 +763,7 @@ $("#bt_addObject, #bt_addObject2").on('click', function(event) {
           isVisible: 1
         },
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -804,7 +804,7 @@ document.getElementById('bt_saveObject').addEventListener('click', function (eve
   jeedom.object.save({
     object: object,
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -829,7 +829,7 @@ $("#bt_removeObject").on('click', function(event) {
       jeedom.object.remove({
         id: removeId,
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })

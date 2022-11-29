@@ -192,7 +192,7 @@ $refresh = array();
           id: plugin_id,
           forceRestart: 1,
           error: function(error) {
-            $.fn.showAlert({
+            jeedomUtils.showAlert({
               message: error.message,
               level: 'danger'
             })
@@ -213,7 +213,7 @@ $refresh = array();
     jeedom.plugin.deamonStop({
       id: plugin_id,
       error: function(error) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -234,7 +234,7 @@ $refresh = array();
       id: plugin_id,
       mode: mode,
       error: function(error) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })

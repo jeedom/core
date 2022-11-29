@@ -90,7 +90,7 @@ if (!jeeFrontEnd.interact) {
             params: jeeP.actionOptions,
             async: false,
             error: function(error) {
-              $.fn.showAlert({
+              jeedomUtils.showAlert({
                 message: error.message,
                 level: 'danger'
               })
@@ -226,7 +226,7 @@ $(function() {
     $.contextMenu('destroy', $('.nav.nav-tabs'))
     jeedom.interact.all({
       error: function(error) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -324,7 +324,7 @@ $('.interactAttr[data-l1key=group]').autocomplete({
       },
       success: function(data) {
         if (data.state != 'ok') {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: data.result,
             level: 'danger'
           })
@@ -406,7 +406,7 @@ $('#bt_duplicate').on('click', function() {
       jeedom.interact.save({
         interact: interact,
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -475,14 +475,14 @@ $("#bt_saveInteract").on('click', function() {
   jeedom.interact.save({
     interact: interact,
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
     },
     success: function(data) {
       $('.interactDisplayCard[data-interact_id=' + data.id + ']').click()
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: '{{Sauvegarde réussie avec succès}}',
         level: 'success'
       })
@@ -498,13 +498,13 @@ $("#bt_regenerateInteract,#bt_regenerateInteract2").on('click', function() {
           query: result
         },
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
         success: function(data) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: '{{Toutes les interactions ont été régénérées}}',
             level: 'success'
           })
@@ -522,7 +522,7 @@ $("#bt_addInteract,#bt_addInteract2").on('click', function() {
           query: result
         },
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -543,7 +543,7 @@ $("#bt_removeInteract").on('click', function() {
       jeedom.interact.remove({
         id: $('.interactDisplayCard.active').attr('data-interact_id'),
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })

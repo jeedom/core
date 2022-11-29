@@ -77,7 +77,7 @@ function testUsb() {
 		dataType: 'json',
 		global: false,
 		error: function(request, status, error) {
-			$.fn.showAlert({
+			jeedomUtils.showAlert({
 				message: error.message,
 				level: 'danger'
 			});
@@ -122,7 +122,7 @@ function stepTwo() {
 	/* Lancement du backup */
 	jeedom.backup.backup({
 		error: function(error) {
-			$.fn.showAlert({
+			jeedomUtils.showAlert({
 				message: error.message,
 				level: 'danger'
 			});
@@ -201,7 +201,7 @@ function getJeedomLog(_autoUpdate, _log) {
 							_autoUpdate = 0;
 							final();
 						} else if (data.result[i].indexOf('[END BACKUP ERROR]') != -1) {
-							$.fn.showAlert({
+							jeedomUtils.showAlert({
 								message: '{{L\'opération a échoué.}}',
 								level: 'danger'
 							});
@@ -334,7 +334,7 @@ function backupToUsb() {
 		dataType: 'json',
 		global: false,
 		error: function(request, status, error) {
-			$.fn.showAlert({
+			jeedomUtils.showAlert({
 				message: error.message,
 				level: 'danger'
 			});
@@ -406,7 +406,7 @@ function UpImage(go) {
 			dataType: 'json',
 			global: false,
 			error: function(request, status, error) {
-				$.fn.showAlert({
+				jeedomUtils.showAlert({
 					message: error.message,
 					level: 'danger'
 				});
@@ -438,7 +438,7 @@ function renameImage() {
 		dataType: 'json',
 		global: false,
 		error: function(request, status, error) {
-			$.fn.showAlert({
+			jeedomUtils.showAlert({
 				message: error.message,
 				level: 'danger'
 			});
@@ -506,7 +506,7 @@ function finalisation(go) {
 					global: false,
 					error: function(request, status, error) {
 						console.log('Ajax User Error');
-						$.fn.showAlert({
+						jeedomUtils.showAlert({
 							message: error.message,
 							level: 'danger'
 						});
@@ -532,7 +532,7 @@ function final() {
 		dataType: 'json',
 		global: false,
 		error: function(request, status, error) {
-			$.fn.showAlert({
+			jeedomUtils.showAlert({
 				message: error.message,
 				level: 'danger'
 			});
@@ -553,7 +553,7 @@ function installBackup() {
 		dataType: 'json',
 		global: false,
 		error: function(request, status, error) {
-			$.fn.showAlert({
+			jeedomUtils.showAlert({
 				message: error.message,
 				level: 'danger'
 			});
@@ -576,7 +576,7 @@ function setStep(stepValue) {
 		dataType: 'json',
 		global: false,
 		error: function(request, status, error) {
-			$.fn.showAlert({
+			jeedomUtils.showAlert({
 				message: error.message,
 				level: 'danger'
 			});
@@ -595,7 +595,7 @@ function returnStep() {
 		dataType: 'json',
 		global: false,
 		error: function(request, status, error) {
-			$.fn.showAlert({
+			jeedomUtils.showAlert({
 				message: error.message,
 				level: 'danger'
 			});
@@ -612,7 +612,7 @@ function returnStep() {
 					dataType: 'json',
 					global: false,
 					error: function(request, status, error) {
-						$.fn.showAlert({
+						jeedomUtils.showAlert({
 							message: error.message,
 							level: 'danger'
 						});

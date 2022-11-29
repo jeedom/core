@@ -36,7 +36,7 @@ if (!jeeFrontEnd.update) {
       $('.progressbarContainer').addClass('hidden')
       jeedom.update.checkAll({
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -92,7 +92,7 @@ if (!jeeFrontEnd.update) {
                 if (jeeP.alertTimeout != null) {
                   clearTimeout(jeeP.alertTimeout)
                 }
-                $.fn.showAlert({
+                jeedomUtils.showAlert({
                   message: '{{L\'opération a échoué. Veuillez aller sur l\'onglet informations et consulter la log pour savoir pourquoi.}}',
                   level: 'danger'
                 })
@@ -116,7 +116,7 @@ if (!jeeFrontEnd.update) {
     printUpdate: function() {
       jeedom.update.get({
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -147,7 +147,7 @@ if (!jeeFrontEnd.update) {
           "update::lastCheck": 0
         },
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -298,7 +298,7 @@ if (!jeeFrontEnd.update) {
     alertTimeout: function() {
       jeeP.progress = -4
       this.updateProgressBar()
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: '{{La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)}}',
         level: 'warning'
       })
@@ -409,7 +409,7 @@ if (!jeeFrontEnd.update) {
         type: 'all',
         forceRefresh: _forceRefresh,
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -510,13 +510,13 @@ $('.bt_OsPackageUpdate').off('click').on('click',function(){
     jeedom.systemUpgradablePackage({
       type : type,
       error: function(error) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
       },
       success: function(data) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: '{{Mise à jour lancée avec succès.}}',
           level: 'success'
         })
@@ -577,7 +577,7 @@ $('#bt_doUpdate').off('click').on('click', function() {
   jeedom.update.doAll({
     options: options,
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -619,7 +619,7 @@ $('#table_update').on({
         jeedom.update.do({
           id: id,
           error: function(error) {
-            $.fn.showAlert({
+            jeedomUtils.showAlert({
               message: error.message,
               level: 'danger'
             })
@@ -643,7 +643,7 @@ $('#table_update').on({
         jeedom.update.remove({
           id: id,
           error: function(error) {
-            $.fn.showAlert({
+            jeedomUtils.showAlert({
               message: error.message,
               level: 'danger'
             })
@@ -664,7 +664,7 @@ $('#table_update').on({
     jeedom.update.check({
       id: id,
       error: function(error) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -680,7 +680,7 @@ $('#bt_saveUpdate').on('click', function() {
   jeedom.update.saves({
     updates: document.querySelectorAll('tbody tr').getJeeValues('.updateAttr'),
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -696,7 +696,7 @@ $('body').off('click', '#bt_changelogCore').on('click', '#bt_changelogCore', fun
     page: 'changelog',
     theme: $('body').attr('data-theme'),
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })

@@ -133,13 +133,13 @@ if (!jeedomUI) {
         jeedom.eqLogic.setOrder({
           eqLogics: eqLogics,
           error: function (error) {
-            $.fn.showAlert({message: error.message, level: 'danger'})
+            jeedomUtils.showAlert({message: error.message, level: 'danger'})
           },
           success:function(data){
             jeedom.cmd.setOrder({
               cmds: cmds,
               error: function (error) {
-                $.fn.showAlert({message: error.message, level: 'danger'})
+                jeedomUtils.showAlert({message: error.message, level: 'danger'})
               }
             });
           }
@@ -147,7 +147,7 @@ if (!jeedomUI) {
         jeedom.scenario.setOrder({
           scenarios: scenarios,
           error: function (error) {
-            $.fn.showAlert({message: error.message, level: 'danger'})
+            jeedomUtils.showAlert({message: error.message, level: 'danger'})
           }
         })
       } else if (init(_params['view']) == 1) {
@@ -178,13 +178,13 @@ if (!jeedomUI) {
         jeedom.view.setComponentOrder({
           components: components,
           error: function (error) {
-            $.fn.showAlert({message: error.message, level: 'danger'})
+            jeedomUtils.showAlert({message: error.message, level: 'danger'})
           },
           success:function(data){
             jeedom.cmd.setOrder({
               cmds: cmds,
               error: function (error) {
-                $.fn.showAlert({message: error.message, level: 'danger'})
+                jeedomUtils.showAlert({message: error.message, level: 'danger'})
               }
             })
           }

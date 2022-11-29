@@ -26,7 +26,7 @@ if (!jeeFrontEnd.dashboardit) {
         id: _object_id,
         version: 'dashboard',
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })

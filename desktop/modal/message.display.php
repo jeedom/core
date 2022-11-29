@@ -98,7 +98,7 @@ if ($selectPlugin != '') {
     jeedom.message.clear({
       plugin: document.getElementById('sel_plugin').jeeValue(),
       error: function(error) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -122,7 +122,7 @@ if ($selectPlugin != '') {
       jeedom.message.remove({
         id: tr.attr('data-message_id'),
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })

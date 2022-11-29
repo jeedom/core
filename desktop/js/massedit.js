@@ -198,7 +198,7 @@ if (!jeeFrontEnd.massedit) {
         async: false,
         command: _command,
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -398,7 +398,7 @@ $('body').on({
     jeedom[jeeP._filterType_]['byId']({
       id: thisId,
       error: function(error) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -448,7 +448,7 @@ $('#bt_exportFilter').off('click').on('click', function() {
 $("#bt_importFilter").change(function(event) {
   var uploadedFile = event.target.files[0]
   if (uploadedFile.type !== "application/json") {
-    $.fn.showAlert({
+    jeedomUtils.showAlert({
       message: "{{L'import d'édition en masse se fait au format json.}}",
       level: 'danger'
     })
@@ -490,7 +490,7 @@ $("#bt_importFilter").change(function(event) {
       }
     }
   } else {
-    $.fn.showAlert({
+    jeedomUtils.showAlert({
       message: "{{Problème lors de la lecture du fichier.}}",
       level: 'danger'
     })

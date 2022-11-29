@@ -213,7 +213,7 @@ if (!jeeFrontEnd.dashboard) {
         version: 'dashboard',
         summary: jeeP.url_summary,
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -238,7 +238,7 @@ if (!jeeFrontEnd.dashboard) {
               id: data[i].id,
               version: 'dashboard',
               error: function(error) {
-                $.fn.showAlert({
+                jeedomUtils.showAlert({
                   message: error.message,
                   level: 'danger'
                 })
@@ -273,7 +273,7 @@ if (!jeeFrontEnd.dashboard) {
         summary: jeeP.url_summary,
         tag: jeeP.url_tag,
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })

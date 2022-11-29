@@ -45,7 +45,7 @@ if (!jeeFrontEnd.plan) {
               name: result
             },
             error: function(error) {
-              $.fn.showAlert({
+              jeedomUtils.showAlert({
                 message: error.message,
                 level: 'danger'
               })
@@ -74,7 +74,7 @@ if (!jeeFrontEnd.plan) {
         plan: _plan,
         version: 'dashboard',
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -100,7 +100,7 @@ if (!jeeFrontEnd.plan) {
           if (error.code == -32005) {
             var result = prompt("{{Veuillez indiquer le code ?}}", "")
             if (result == null) {
-              $.fn.showAlert({
+              jeedomUtils.showAlert({
                 message: error.message,
                 level: 'danger'
               })
@@ -109,7 +109,7 @@ if (!jeeFrontEnd.plan) {
             jeeP.displayPlan(result)
           } else {
             jeephp2js.planHeader_id = -1
-            $.fn.showAlert({
+            jeedomUtils.showAlert({
               message: error.message,
               level: 'danger'
             })
@@ -165,7 +165,7 @@ if (!jeeFrontEnd.plan) {
           jeedom.plan.byPlanHeader({
             id: jeephp2js.planHeader_id,
             error: function(error) {
-              $.fn.showAlert({
+              jeedomUtils.showAlert({
                 message: error.message,
                 level: 'danger'
               })
@@ -289,7 +289,7 @@ if (!jeeFrontEnd.plan) {
         async: _async || true,
         global: false,
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -1059,13 +1059,13 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
               jeedom.plan.removeHeader({
                 id: jeephp2js.planHeader_id,
                 error: function(error) {
-                  $.fn.showAlert({
+                  jeedomUtils.showAlert({
                     message: error.message,
                     level: 'danger'
                   })
                 },
                 success: function() {
-                  $.fn.showAlert({
+                  jeedomUtils.showAlert({
                     message: 'Design supprimé',
                     level: 'success'
                   })
@@ -1100,7 +1100,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
                 name: result,
                 id: jeephp2js.planHeader_id,
                 error: function(error) {
-                  $.fn.showAlert({
+                  jeedomUtils.showAlert({
                     message: error.message,
                     level: 'danger'
                   })
@@ -1238,7 +1238,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
           jeedom.plan.remove({
             id: $(this).attr('data-plan_id'),
             error: function(error) {
-              $.fn.showAlert({
+              jeedomUtils.showAlert({
                 message: error.message,
                 level: 'danger'
               })
@@ -1262,7 +1262,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
             id: $(this).attr('data-plan_id'),
             version: 'dashboard',
             error: function(error) {
-              $.fn.showAlert({
+              jeedomUtils.showAlert({
                 message: error.message,
                 level: 'danger'
               })
@@ -1322,7 +1322,7 @@ jeeP.$pageContainer.on('click', '.zone-widget:not(.zoneEqLogic)', function() {
     jeedom.plan.execute({
       id: el.attr('data-plan_id'),
       error: function(error) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })

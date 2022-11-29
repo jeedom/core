@@ -179,13 +179,13 @@ if (!jeeFrontEnd.history) {
         },
         success: function(data) {
           if (data.state != 'ok') {
-            $.fn.showAlert({
+            jeedomUtils.showAlert({
               message: data.result,
               level: 'danger'
             })
             return
           }
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: '{{Historique supprimé avec succès}}',
             level: 'success'
           })
@@ -373,7 +373,7 @@ $('#sel_groupingType').off('change').on('change', function(event) {
       }
     },
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -399,7 +399,7 @@ $('#sel_chartType').off('change').on('change', function(event) {
       }
     },
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -425,7 +425,7 @@ $('#cb_derive').off('change').on('change', function(event) {
       }
     },
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -450,7 +450,7 @@ $('#cb_step').off('change').on('change', function(event) {
       }
     },
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })

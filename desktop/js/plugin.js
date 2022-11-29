@@ -50,7 +50,7 @@ if (!jeeFrontEnd.plugin) {
       jeedom.plugin.get({
         id: _pluginId,
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -310,7 +310,7 @@ if (!jeeFrontEnd.plugin) {
                   configuration: dom_divPluginConfiguration.getJeeValues('.configKey')[0],
                   plugin: $container.find('#span_plugin_id').text(),
                   error: function(error) {
-                    $.fn.showAlert({
+                    jeedomUtils.showAlert({
                       message: error.message,
                       level: 'danger'
                     })
@@ -329,7 +329,7 @@ if (!jeeFrontEnd.plugin) {
               configuration: dom_container.querySelector('#div_plugin_panel').getJeeValues('.configKey')[0],
               plugin: dom_container.querySelector('#span_plugin_id').innerHTML,
               error: function(error) {
-                $.fn.showAlert({
+                jeedomUtils.showAlert({
                   message: error.message,
                   level: 'danger'
                 })
@@ -343,7 +343,7 @@ if (!jeeFrontEnd.plugin) {
               configuration: dom_container.querySelector('#div_plugin_functionality').getJeeValues('.configKey')[0],
               plugin: dom_container.querySelector('#span_plugin_id').innerHTML,
               error: function(error) {
-                $.fn.showAlert({
+                jeedomUtils.showAlert({
                   message: error.message,
                   level: 'danger'
                 })
@@ -356,7 +356,7 @@ if (!jeeFrontEnd.plugin) {
             jeedom.config.load({
               configuration: dom_container.querySelector('#div_plugin_log').getJeeValues('.configKey')[0],
               error: function(error) {
-                $.fn.showAlert({
+                jeedomUtils.showAlert({
                   message: error.message,
                   level: 'danger'
                 })
@@ -385,7 +385,7 @@ if (!jeeFrontEnd.plugin) {
         configuration: document.getElementById('div_plugin_configuration').getJeeValues('.configKey')[0],
         plugin: document.getElementById('span_plugin_id').innerHTML,
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           });
@@ -394,7 +394,7 @@ if (!jeeFrontEnd.plugin) {
           if (!isset(_param)) {
             _param = {}
           }
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: '{{Sauvegarde effectuée}}',
             level: 'success'
           })
@@ -496,7 +496,7 @@ $('.pullInstall').on('click', function() {
   jeedom.repo.pullInstall({
     repo: $(this).attr('data-repo'),
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -505,7 +505,7 @@ $('.pullInstall').on('click', function() {
       if (data.number > 0) {
         jeedomUtils.reloadPagePrompt('{{De nouveaux plugins ont été installés}} (' + data.number + ').')
       } else {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: '{{Synchronisation réussi. Aucun nouveau plugin installé.}}',
           level: 'success'
         })
@@ -578,7 +578,7 @@ $('#span_right_button').on({
         jeedom.update.remove({
           id: _el.attr('data-market_logicalId'),
           error: function(error) {
-            $.fn.showAlert({
+            jeedomUtils.showAlert({
               message: error.message,
               level: 'danger'
             })
@@ -599,7 +599,7 @@ $('#div_plugin_toggleState').on({
       id: _el.attr('data-plugin_id'),
       state: _el.attr('data-state'),
       error: function(error) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -629,13 +629,13 @@ $('#bt_savePluginPanelConfig').off('click').on('click', function() {
     configuration: document.getElementById('div_plugin_panel').getJeeValues('.configKey')[0],
     plugin: $('#span_plugin_id').text(),
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
     },
     success: function() {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: '{{Sauvegarde de la configuration des panneaux effectuée}}',
         level: 'success'
       })
@@ -649,13 +649,13 @@ $('#bt_savePluginFunctionalityConfig').off('click').on('click', function() {
     configuration: document.getElementById('div_plugin_functionality').getJeeValues('.configKey')[0],
     plugin: $('#span_plugin_id').text(),
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
     },
     success: function() {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: '{{Sauvegarde des fonctionalités effectuée}}',
         level: 'success'
       })
@@ -668,13 +668,13 @@ $('#bt_savePluginLogConfig').off('click').on('click', function() {
   jeedom.config.save({
     configuration: document.getElementById('div_plugin_log').getJeeValues('.configKey')[0],
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
     },
     success: function() {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: '{{Sauvegarde de la configuration des logs effectuée}}',
         level: 'success'
       })

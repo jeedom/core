@@ -139,7 +139,7 @@ $dependancy_info = $plugin->dependancy_info();
     jeedom.plugin.dependancyInstall({
       id: plugin_id,
       error: function(error) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -158,7 +158,7 @@ $dependancy_info = $plugin->dependancy_info();
       id: plugin_id,
       mode: mode,
       error: function(error) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })

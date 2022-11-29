@@ -753,7 +753,7 @@ if (!jeeFrontEnd.md_search) {
       page: 'search',
       theme: $('body').attr('data-theme'),
       error: function(error) {
-      $.fn.showAlert({message: error.message, level: 'danger'})
+      jeedomUtils.showAlert({message: error.message, level: 'danger'})
       },
       success: function(url) {
       window.open(url,'_blank')

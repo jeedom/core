@@ -30,7 +30,7 @@ if (!jeeFrontEnd.database) {
       jeedom.db({
         command: _command,
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })

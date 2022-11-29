@@ -174,7 +174,7 @@ $('#bt_editViewWidgetOrder').off('click').on('click', function() {
     $('.counterReorderJeedom').remove()
     jeeP.editWidgetMode(0)
   } else {
-    $.fn.showAlert({
+    jeedomUtils.showAlert({
       message: "{{Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre.}}",
       level: 'info'
     })
@@ -189,7 +189,7 @@ if (jeephp2js.view_id != '') {
     version: 'dashboard',
     useCache: true,
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })

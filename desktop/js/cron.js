@@ -174,7 +174,7 @@ if (!jeeFrontEnd.cron) {
       jeedom.plugin.all({
         activateOnly: true,
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -187,7 +187,7 @@ if (!jeeFrontEnd.cron) {
               id: plugins[i].id,
               async: false,
               error: function(error) {
-                $.fn.showAlert({
+                jeedomUtils.showAlert({
                   message: error.message,
                   level: 'danger'
                 })
@@ -257,7 +257,7 @@ $("#bt_save").on('click', function() {
   jeedom.cron.save({
     crons: document.querySelectorAll('#table_cron tbody tr').getJeeValues('.cronAttr'),
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -275,7 +275,7 @@ $("#bt_changeCronState").on('click', function() {
       enableCron: el.attr('data-state')
     },
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -304,7 +304,7 @@ jeeP.$tableCron.on({
       state: 'stop',
       id: this.closest('tr').querySelector('span[data-l1key="id"]').innerHTML,
       error: function(error) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -322,7 +322,7 @@ jeeP.$tableCron.on({
       state: 'start',
       id: this.closest('tr').querySelector('span[data-l1key="id"]').innerHTML,
       error: function(error) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -386,7 +386,7 @@ $('#table_deamon tbody').on('click', '.bt_deamonAction', function() {
       id: plugin,
       forceRestart: 1,
       error: function(error) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -399,7 +399,7 @@ $('#table_deamon tbody').on('click', '.bt_deamonAction', function() {
     jeedom.plugin.deamonStop({
       id: plugin,
       error: function(error) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -413,7 +413,7 @@ $('#table_deamon tbody').on('click', '.bt_deamonAction', function() {
       id: plugin,
       mode: 1,
       error: function(error) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -427,7 +427,7 @@ $('#table_deamon tbody').on('click', '.bt_deamonAction', function() {
       id: plugin,
       mode: 0,
       error: function(error) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })

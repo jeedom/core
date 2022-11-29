@@ -33,7 +33,7 @@ if (!jeeFrontEnd.eqAnalyse) {
     displayDeadCmd: function() {
       jeedom.cmd.getDeadCmd({
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })

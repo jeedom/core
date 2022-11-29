@@ -25,7 +25,7 @@ if (!jeeFrontEnd.timeline) {
       jeedom.timeline.byFolder({
         folder: document.getElementById('sel_timelineFolder').jeeValue(),
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -205,13 +205,13 @@ $('#sel_timelineFolder').off('change').on('change', function() {
 $('#bt_removeTimelineEvent').on('click', function() {
   jeedom.timeline.deleteAll({
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
     },
     success: function(data) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: '{{Evènements de la timeline supprimés avec succès}}',
         level: 'success'
       })
