@@ -24,7 +24,6 @@ if (!jeeFrontEnd.object) {
       this.getObjectList()
     },
     printObject: function(_id) {
-      jeedomUtils.hideAlert()
       var objName = $('.objectListContainer .objectDisplayCard[data-object_id="' + _id + '"]').attr('data-object_name')
       var objIcon = $('.objectListContainer .objectDisplayCard[data-object_id="' + _id + '"]').attr('data-object_icon')
       this.loadObjectConfiguration(_id)
@@ -911,6 +910,7 @@ $('#div_pageContainer').on({
       el.jeeValue(result.human)
       jeeP.updateSummaryTabNbr(type)
       jeeP.updateSummaryButton(result.human, type, true)
+      jeeFrontEnd.modifyWithoutSave = true
     })
     $('body').trigger('mod_insertCmdValue_Visible')
   }
