@@ -1439,6 +1439,11 @@ class jeedom {
 
 		$return = array('eqlogics' => 0, 'cmds' => 0);
 
+      	//replace equipment where used:
+      	foreach ($_eqlogics as $_sourceId => $_targetId) {
+          jeedom::replaceTag(array('eqLogic'.$_sourceId => 'eqLogic'.$_targetId));
+        }
+
 		//for each source eqlogic:
 		if ($_options['replaceEqs'] == "true") {
 			foreach ($_eqlogics as $_sourceId => $_targetId) {
