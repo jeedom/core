@@ -174,13 +174,17 @@ NodeList.prototype.remove = function() {
   return this
 }
 
-Element.prototype.fade = function(type, ms, _opacity) {
-  var isIn = type === 'in',
-    opacity = isIn ? 0 : _opacity,
-    interval = 12,
-    duration = ms,
-    gap = interval / duration,
-    self = this;
+Element.prototype.fade = function(_type, _ms, _opacity) {
+  var isIn = _type === 'in'
+
+  if (!isset(_opacity) && isIn) _opacity = 1
+  if (!isset(_opacity) && !isIn) _opacity = 0
+  var opacity = isIn ? 0 : _opacity,
+      interval = 12,
+      duration = _ms,
+      gap = interval / duration,
+      self = this
+
 
   if (isIn) {
     self.style.opacity = 0
