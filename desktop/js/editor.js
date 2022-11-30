@@ -189,8 +189,6 @@ jeeFrontEnd.editor.init()
 $(function() {
   CodeMirror.modeURL = "3rdparty/codemirror/mode/%N/%N.js"
 
-
-
   var options = {
     url: 'core/php/editor.connector.php?root='+root,
     baseUrl: '3rdparty/elfinder/',
@@ -357,6 +355,7 @@ $(function() {
   }
 
   jeeP._elfInstance = $('#elfinder').elfinder(options).elfinder('instance')
+  jeeP._elfInstance.options.windowCloseConfirm = []
 
   $('#elfinder').css("height", $(window).height() - 50)
   $('.ui-state-default.elfinder-navbar.ui-resizable').css('height', '100%')
