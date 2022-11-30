@@ -256,6 +256,11 @@ $('#eqSource').on({
     var targetEqId = $(this).val()
     var targetEqName = $(this).find('option[value="' + targetEqId + '"]').attr('data-name')
 
+    //open cmds ul:
+    if ($(this).value() != '' && !$(this).closest('ul.eqLogic').find('ul').is(":visible")) {
+      $(this).closest('ul.eqLogic').find('ul').show()
+    }
+
     //Do not replace itself!
     if (sourceEqId == targetEqId) {
       jeedomUtils.toastMsg('warning', "{{Vous ne pouvez pas remplacer un équipement par lui même.}}")
@@ -266,7 +271,7 @@ $('#eqSource').on({
     }
 
     //Is ever replacing by this eqLogic:
-    if (is_array(jeeP.replacerEqList) && jeeP.replacerEqList.includes(targetEqId)) {
+    if ($(this).value() != '' && is_array(jeeP.replacerEqList) && jeeP.replacerEqList.includes(targetEqId)) {
       jeedomUtils.toastMsg('warning', "{{Cet équipement remplace déjà un autre équipement.}}")
       $(this).val('').keyup()
       jeeP.resetCmdSelects(sourceEqId)
