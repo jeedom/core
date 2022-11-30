@@ -1659,9 +1659,17 @@ div.div_viewZone legend.lg_viewZone {
     font-weight: 300;
     padding-right: 22px;
     padding-left: 12px;
-    max-height: 45px;
-    overflow: hidden;
+    max-height: 22px;
   }
+  div.eqLogic.eqLogic-widget .widget-name > a {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-clamp: 2;
+  }
+
   div.eqLogic-widget .cmd.refresh {
     margin-top: 5px !important;
     position: absolute;
