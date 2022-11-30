@@ -48,6 +48,13 @@ Desktop
   div.cmd-widget .cmdName {
     font-size: 12px;
     font-weight: 400;
+    line-height: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    line-clamp: 1;
   }
 
   div.cmd-widget div[class^="content"] {

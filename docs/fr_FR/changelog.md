@@ -8,10 +8,13 @@
 
 ### 4.4 : Nouveautés / Améliorations
 
-- **Historique** : La modale d'historique et la page Historique permettent d'utiliser les boutons *Week, Month, Year* pour recharger un historique plus large.
+- **Historique** : La modale d'historique et la page Historique permettent d'utiliser les boutons *Week, Month, Year* pour recharger dynamiquement un historique plus large.
 - **Menu Jeedom** : Un délai de 0.25s a été introduit sur l'ouverture des sous-menus.
 - **Fenêtre de sélection d'image** : Ajout d'un menu contextuel permettant d'envoyer des images et de créer, renommer ou supprimer un dossier.
 - **Dashboard** : Possibilité d'afficher plusieurs objets cote à cote (Réglages → Système → Configuration / Interface).
+- **Dashboard** : La fenêtre d'édition des tuiles en Mode Edition permet de renommer les commandes.
+- **Outils / Remplacer** : Cet outil propose maintenant un mode *Copier*, permettant de copier les configurations d'équipements et de commandes, sans les remplacer dans les scénarios etc.
+- **Timeline** : La Timeline charge maintenant les 35 premiers évènements. En bas de page, plusieurs boutons permettent de charger dynamiquement les évènements suivant.
 - **Administration** : Possibilité de différencier les actions sur erreur ou sur alerte de commande.
 - Un menu contextuel a été ajouté à différent endroits sur les checkboxs pour les sélectionner toutes, aucun, ou inverser la sélection (voir [Doc dev](https://doc.jeedom.com/fr_FR/dev/core4.4)).
 
@@ -21,9 +24,15 @@
 > Les tuiles s'adaptent aux dimensions de la grille et peuvent faire une fois, deux fois etc. ces valeurs en hauteur ou largeur. Il faudra certainement passer en [mode Edition du Dashboard](https://doc.jeedom.com/fr_FR/core/4.4/dashboard#Mode%20%C3%A9dition) pour affiner la taille de certaines tuiles après la mise à jour.
 
 
+> **Remarque**
+>
+> Les widgets Core ont été réécrit en pure js / css. Il faudra éditer le Dashboard (Mode Edition, puis bouton ⁝ sur les tuiles) et utiliser l'option *Retour à la ligne après* sur certaines commandes pour retrouver le même aspect visuel.
+> Tous les widgets Core supportent maintenant l'affichage des *time*, en ajoutant un paramètre optionnel *time* / *duration* ou *date*.
+
+
 ### 4.4 : Autre
 
-- **Core** : Début du développement en js pur, sans jQuery. Voir [doc dev](https://doc.jeedom.com/fr_FR/dev/core4.4).
+- **Core** : Début du développement en pure js, sans jQuery. Voir [doc dev](https://doc.jeedom.com/fr_FR/dev/core4.4).
 
 ### 4.4 : Notes
 
@@ -31,6 +40,21 @@
 
 
 # Changelog Jeedom V4.3
+
+## 4.3.11
+
+- Autorisation d'une réponse libre dans *ask* si vous mettez * dans le champs des réponses possibles.
+- **Analyse / Historique** : Bugfix sur la comparaison d'historique (bug introduit en 4.3.10).
+- **Synthèse** : L'*Action depuis la synthèse* d'un objet est maintenant supportée sur la version mobile.
+- Correction des historiques lors d'utilisation de fonction d’agrégation.
+- Correction d'un bug sur l'installation d'un plugin par un autre plugin (Ex : mqtt2 installé par zwavejs).
+- Correction d'un bug sur les historique ou la valeur 0 pouvait écraser la valeur précédente.
+
+## 4.3.10
+
+- **Analyse / Historique** : Correction de bugs sur la suppression d'historique.
+- Correction de l'affichage de la valeur dans la fenêtre de configuration d'une commande.
+- Ajout d'informations et de contrôle sur l'outil de remplacement.
 
 ## 4.3.9
 
