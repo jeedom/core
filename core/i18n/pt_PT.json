@@ -1745,7 +1745,7 @@
         "Gestion DNS": "Gestão de DNS",
         "Attention : cette fonctionnalité n\\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le": "Atenção: este recurso não está disponível no service pack community (consulte o service pack na página do seu perfil na",
         "Utiliser les DNS": "Use DNS",
-        "Mode": "Modo",
+        "Mode": "Moda",
         "Openvpn (standard)": "Openvpn (padrão)",
         "Wireguard (alpha)": "Wireguard (alfa)",
         "Statut DNS": "Estado do DNS",
@@ -2019,7 +2019,6 @@
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Sauvegarde Système": "Backup do sistema",
         "Reset": "Redefinir",
-        "Filtrer": "Filtro",
         "Remplacer": "Substituir",
         "Filtres": "Filtros",
         "Filtre par objet": "Filtrar por objeto",
@@ -2028,7 +2027,11 @@
         "Aucun": "Não",
         "Filtre par plugin": "Filtrar por plug-in",
         "Plugins": "Plug-ins",
+        "Filtrer": "Filtro",
         "Options": "Opções",
+        "Mode": "Moda",
+        "Remplace l’équipement et ses commandes (scénarios, etc.) ou copie seulement les propriétés souhaitées.": "Substitui o equipamento e seus comandos (cenários, etc.) ou copia apenas as propriedades desejadas",
+        "Copier": "Copiar",
         "Copier la configuration de l'équipement source": "Copiar configuração do dispositivo de origem",
         "Copie les propriétés de l’équipement source (objet parent, catégories, visibilité, positionnement dashboard, designs, vues, etc) sur l’équipement cible.": "Copia as propriedades do dispositivo de origem (objeto pai, categorias, visibilidade, posicionamento do painel, designs, visualizações etc.) para o dispositivo de destino",
         "Cacher l'équipement source": "Ocultar equipamento de origem",
@@ -3114,8 +3117,8 @@
         "Vous ne pouvez pas remplacer un équipement par un équipement de même nom.": "Você não pode substituir equipamentos por equipamentos de mesmo nome",
         "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "É altamente recomendável fazer um backup do sistema antes de usar esta ferramenta!",
         "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Tem certeza de que deseja Substituir este equipamento e comandos?",
-        "Aucun équipement à remplacer": "Nenhum equipamento para substituir",
-        "Aucune commande à remplacer": "Não há pedidos para substituir",
+        "Aucun équipement à remplacer ou copier": "Nenhum equipamento para substituir ou copiar",
+        "Aucune commande à remplacer ou copier": "Nenhum comando para substituir ou copiar",
         "Remplacement effectué": "Substituição feita"
     },
     "desktop\/js\/eqAnalyse.js": {
@@ -3599,7 +3602,7 @@
         "Enregistrement caméra": "Gravação da câmera",
         "Snapshot caméra": "Imagem instantânea da câmera",
         "Mode Etat": "Estado do Modo",
-        "Mode": "Modo",
+        "Mode": "Moda",
         "Changer Mode": "Alterar Modo",
         "Sirène Etat": "Estado Sirene",
         "Sirène Bouton Off": "Botão da sirene desativado",
@@ -4256,7 +4259,7 @@
         "De nouvelles mises à jour sont disponibles": "Novas atualizações estão disponíveis",
         "Vous pouvez arrêter le système": "Pode parar o sistema",
         "Vous pouvez lancer le redémarrage du système": "Pode lançar a reinicialização do sistema",
-        "Aucun équipement ou commande à remplacer": "Nenhum equipamento ou controles para substituir"
+        "Aucun équipement ou commande à remplacer ou copier": "Nenhum equipamento ou controles para substituir ou copiar"
     },
     "core\/class\/interactQuery.class.php": {
         "Correspondance trouvée :": "A correspondência encontrada:",

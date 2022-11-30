@@ -2019,7 +2019,6 @@
         "401 - Accès non autorisé": "401 - Accès non autorisé",
         "Sauvegarde Système": "Sauvegarde Système",
         "Reset": "Reset",
-        "Filtrer": "Filtrer",
         "Remplacer": "Remplacer",
         "Filtres": "Filtres",
         "Filtre par objet": "Filtre par objet",
@@ -2028,7 +2027,11 @@
         "Aucun": "Aucun",
         "Filtre par plugin": "Filtre par plugin",
         "Plugins": "Plugins",
+        "Filtrer": "Filtrer",
         "Options": "Options",
+        "Mode": "Mode",
+        "Remplace l’équipement et ses commandes (scénarios, etc.) ou copie seulement les propriétés souhaitées.": "Remplace l’équipement et ses commandes (scénarios, etc.) ou copie seulement les propriétés souhaitées",
+        "Copier": "Copier",
         "Copier la configuration de l'équipement source": "Copier la configuration de l'équipement source",
         "Copie les propriétés de l’équipement source (objet parent, catégories, visibilité, positionnement dashboard, designs, vues, etc) sur l’équipement cible.": "Copie les propriétés de l’équipement source (objet parent, catégories, visibilité, positionnement dashboard, designs, vues, etc) sur l’équipement cible",
         "Cacher l'équipement source": "Cacher l'équipement source",
@@ -3114,8 +3117,8 @@
         "Vous ne pouvez pas remplacer un équipement par un équipement de même nom.": "Vous ne pouvez pas remplacer un équipement par un équipement de même nom",
         "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
         "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?",
-        "Aucun équipement à remplacer": "Aucun équipement à remplacer",
-        "Aucune commande à remplacer": "Aucune commande à remplacer",
+        "Aucun équipement à remplacer ou copier": "Aucun équipement à remplacer ou copier",
+        "Aucune commande à remplacer ou copier": "Aucune commande à remplacer ou copier",
         "Remplacement effectué": "Remplacement effectué"
     },
     "desktop\/js\/eqAnalyse.js": {
@@ -4256,7 +4259,7 @@
         "De nouvelles mises à jour sont disponibles": "De nouvelles mises à jour sont disponibles",
         "Vous pouvez arrêter le système": "Vous pouvez arrêter le système",
         "Vous pouvez lancer le redémarrage du système": "Vous pouvez lancer le redémarrage du système",
-        "Aucun équipement ou commande à remplacer": "Aucun équipement ou commande à remplacer"
+        "Aucun équipement ou commande à remplacer ou copier": "Aucun équipement ou commande à remplacer ou copier"
     },
     "core\/class\/interactQuery.class.php": {
         "Correspondance trouvée :": "Korespondensi ditemukan:",

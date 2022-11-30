@@ -487,7 +487,7 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Scénario introuvable": "Escenario no encontrado",
         "Télécharger": "Descargar",
-        "Copier": "Copia"
+        "Copier": "Copiar"
     },
     "desktop\/modal\/eqLogic.dashboard.edit.php": {
         "Accès non autorisé": "Acceso no autorizado",
@@ -2019,7 +2019,6 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Sauvegarde Système": "Copia de seguridad del sistema",
         "Reset": "Reiniciar",
-        "Filtrer": "Filtrar",
         "Remplacer": "Reemplazar",
         "Filtres": "Filtros",
         "Filtre par objet": "Filtrar por objeto",
@@ -2028,7 +2027,11 @@
         "Aucun": "No",
         "Filtre par plugin": "Filtrar por complemento",
         "Plugins": "Complementos",
+        "Filtrer": "Filtrar",
         "Options": "Opciones",
+        "Mode": "Moda",
+        "Remplace l’équipement et ses commandes (scénarios, etc.) ou copie seulement les propriétés souhaitées.": "Reemplaza el equipo y sus comandos (escenarios, etc.) o copia solo las propiedades deseadas",
+        "Copier": "Copiar",
         "Copier la configuration de l'équipement source": "Copiar la configuración del dispositivo de origen",
         "Copie les propriétés de l’équipement source (objet parent, catégories, visibilité, positionnement dashboard, designs, vues, etc) sur l’équipement cible.": "Copia las propiedades del dispositivo de origen (objeto principal, categorías, visibilidad, posicionamiento del tablero, diseños, vistas, etc.) al dispositivo de destino",
         "Cacher l'équipement source": "Ocultar equipo fuente",
@@ -3114,8 +3117,8 @@
         "Vous ne pouvez pas remplacer un équipement par un équipement de même nom.": "No puede reemplazar el equipo con el equipo del mismo nombre",
         "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "¡Se recomienda encarecidamente hacer una copia de seguridad del sistema antes de usar esta herramienta!",
         "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "¿Está seguro de que desea reemplazar este equipo y comandos?",
-        "Aucun équipement à remplacer": "No hay equipo para reemplazar",
-        "Aucune commande à remplacer": "No hay pedidos para reemplazar",
+        "Aucun équipement à remplacer ou copier": "No hay equipo para reemplazar o copiar",
+        "Aucune commande à remplacer ou copier": "No hay comandos para reemplazar o copiar",
         "Remplacement effectué": "Reemplazo hecho"
     },
     "desktop\/js\/eqAnalyse.js": {
@@ -3599,7 +3602,7 @@
         "Enregistrement caméra": "Grabación de la cámara",
         "Snapshot caméra": "Instantánea de cámara",
         "Mode Etat": "Modo de estado",
-        "Mode": "Modo",
+        "Mode": "Moda",
         "Changer Mode": "Modo de cambio",
         "Sirène Etat": "Estado de Sirena",
         "Sirène Bouton Off": "Desactivar Sirena",
@@ -4256,7 +4259,7 @@
         "De nouvelles mises à jour sont disponibles": "Nuevas actualizaciones están disponibles",
         "Vous pouvez arrêter le système": "Puedes parar el sistema",
         "Vous pouvez lancer le redémarrage du système": "Puedes iniciar el reinicio del sistema",
-        "Aucun équipement ou commande à remplacer": "No hay equipos o controles para reemplazar"
+        "Aucun équipement ou commande à remplacer ou copier": "No hay equipos o controles para reemplazar o copiar"
     },
     "core\/class\/interactQuery.class.php": {
         "Correspondance trouvée :": "Correspondencia encontrada :",
