@@ -326,9 +326,11 @@ $(function() {
               //this.myCodeMirror = null
             },
             save : function(textarea, editor) {
-              textarea.parentNode.closest('div.ui-dialog.elfinder-dialog-edit').style.zIndex = 1001
               textarea.value = this.myCodeMirror.getValue()
               jeeP.killTooltips()
+              setTimeout(() => {
+                textarea.parentNode.closest('div.ui-dialog.elfinder-dialog-edit').style.zIndex = 1001
+              }, 150)
               //this.myCodeMirror = null
             }
           }
