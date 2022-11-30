@@ -42,7 +42,6 @@ Desktop
 
   div.cmd-widget .title {
     color: var(--txt-color);
-    width: 100%;
     height: 16px;
   }
 
@@ -65,7 +64,7 @@ Desktop
     margin: 0;
   }
   div.cmd-widget .content-sm {
-    height: 35px !important;
+    height: 40px !important;
   }
   div.cmd-widget .content {
     height: 60px !important;
@@ -219,8 +218,9 @@ Desktop
   }
   div.cmd-widget .slider.noUi-vertical .noUi-base {
     width: 7px;
-    height: 50px;
+    height: 45px;
     left: 5.5px;
+    top: -2px;
     z-index: 20;
   }
   div.cmd-widget .slider .noUi-connects {
@@ -417,14 +417,6 @@ Desktop
     position: relative;
     clip-path: polygon(0 -5px, 100% -5px, 100% 100%, 0 100%);
   }
-  div.arcgauge .state {
-    width: 90px;
-  }
-
-  div.arcgauge .title {
-    max-width: 100px;
-    overflow: hidden;
-  }
   div.arcgauge .gauge,
   div.arcgauge .gaugeValue {
     position: absolute;
@@ -484,7 +476,7 @@ Desktop
     height: 40px;
   }
   .shuttergauge .slider {
-    bottom: 45px;
+    bottom: 35px;
     left: 45px;
   }
 
