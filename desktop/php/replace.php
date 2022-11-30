@@ -21,8 +21,7 @@ sendVarToJS([
   <div class="input-group">
       <span class="input-group-btn">
           <a href="index.php?v=d&p=backup" class="btn btn-success btn-sm roundedLeft"><i class="fas fa-save"></i> {{Sauvegarde Système}}
-          </a><a class="btn btn-info btn-sm roundedLeft" id="bt_clearReplace"><i class="fas fa-times"></i> {{Reset}}
-          </a><a class="btn btn-success btn-sm" id="bt_applyFilters"><i class="fas fa-filter"></i> {{Filtrer}}
+          </a><a class="btn btn-info btn-sm" id="bt_clearReplace"><i class="fas fa-times"></i> {{Reset}}
           </a><a class="btn btn-danger btn-sm roundedRight" id="bt_replace"><i class="fas fa-random"></i> {{Remplacer}}</a>
       </span>
   </div>
@@ -84,6 +83,10 @@ sendVarToJS([
                 </ul>
               </div>
 
+              <div class="col-lg-1 col-md-2 col-xs-3">
+                <a class="btn btn-success" id="bt_applyFilters"><i class="fas fa-filter"></i> {{Filtrer}}</a>
+              </div>
+
             </div>
         </div>
       </div>
@@ -100,11 +103,23 @@ sendVarToJS([
             <div class="panel-body">
 
               <div class="form-group col-lg-12">
+                <label class="col-lg-4 col-md-6 col-sm-6 col-xs-10 control-label">{{Mode}}
+                <sup><i class="fas fa-question-circle" title="{{Remplace l’équipement et ses commandes (scénarios, etc.) ou copie seulement les propriétés souhaitées.}}"></i></sup>
+                </label>
+                <div class="col-lg-2">
+                  <select id="opt_mode" class="form-control">
+                    <option value="replace">{{Remplacer}}</option>
+                    <option value="copy">{{Copier}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group col-lg-12">
                 <label class="col-lg-4 col-md-6 col-sm-6 col-xs-10 control-label">{{Copier la configuration de l'équipement source}}
                 <sup><i class="fas fa-question-circle" title="{{Copie les propriétés de l’équipement source (objet parent, catégories, visibilité, positionnement dashboard, designs, vues, etc) sur l’équipement cible.}}"></i></sup>
                 </label>
                 <div class="col-lg-1">
-                  <input id="opt_replaceEqs" type="checkbox" class="form-control" />
+                  <input id="opt_copyEqProperties" type="checkbox" class="form-control" />
                 </div>
               </div>
 

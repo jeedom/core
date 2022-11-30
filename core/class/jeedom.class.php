@@ -1429,27 +1429,35 @@ class jeedom {
 			throw new Exception('Missmatch arguments');
 		}
 		if (count($_eqlogics) == 0 && count($_cmds) == 0) {
-			throw new Exception('{{Aucun équipement ou commande à remplacer}}');
+			throw new Exception('{{Aucun équipement ou commande à remplacer ou copier}}');
 		}
-		foreach (['replaceEqs', 'hideEqs', 'copyCmdProperties', 'removeCmdHistory', 'copyCmdHistory'] as $key) {
+		foreach (['copyEqProperties', 'hideEqs', 'copyCmdProperties', 'removeCmdHistory', 'copyCmdHistory'] as $key) {
 			if (!isset($_options[$key])) {
 				$_options[$key] = false;
 			}
 		}
+		if (!isset($_options['mode'])) {
+			$_options['mode'] = 'replace';
+		}
+
+		$_mode = $_options['mode'];
 
 		$return = array('eqlogics' => 0, 'cmds' => 0);
 
-      	//replace equipment where used:
-      	foreach ($_eqlogics as $_sourceId => $_targetId) {
-      		$sourceEq = eqLogic::byId($_sourceId);
-			$targetEq = eqLogic::byId($_targetId);
-			if (!is_object($sourceEq) || !is_object($targetEq)) continue;
-			jeedom::replaceTag(array('eqLogic'.$_sourceId => 'eqLogic'.$_targetId));
-			$return['eqlogics'] += 1;
-        }
+		if ($_mode == 'replace') {
+			//replace equipment where used:
+	      	foreach ($_eqlogics as $_sourceId => $_targetId) {
+	      		$sourceEq = eqLogic::byId($_sourceId);
+				$targetEq = eqLogic::byId($_targetId);
+				if (!is_object($sourceEq) || !is_object($targetEq)) continue;
+				jeedom::replaceTag(array('eqLogic'.$_sourceId => 'eqLogic'.$_targetId));
+				$return['eqlogics'] += 1;
+	        }
+		}
+
 
 		//for each source eqlogic:
-		if ($_options['replaceEqs'] == "true") {
+		if ($_options['copyEqProperties'] == "true") {
 			foreach ($_eqlogics as $_sourceId => $_targetId) {
 				$sourceEq = eqLogic::byId($_sourceId);
 				$targetEq = eqLogic::byId($_targetId);
@@ -1478,7 +1486,7 @@ class jeedom {
 				}
 
 				//Migrate eqLogic configurations:
-				$targetEq = eqLogic::migrateEqlogic($_sourceId, $_targetId);
+				$targetEq = eqLogic::migrateEqlogic($_sourceId, $_targetId, $_mode);
 
 				//migrate graphInfo if cmd known:
 				$var = $sourceEq->getDisplay('backGraph::info', '0');
@@ -1528,12 +1536,13 @@ class jeedom {
 
 			//copy properties:
 			if ($_options['copyCmdProperties'] == "true") {
-
 				$targetCmd = cmd::migrateCmd($_sourceId, $_targetId);
 			}
 
-			//replace command where used:
-			jeedom::replaceTag(array('#' . str_replace('#', '', $sourceCmd->getId()) . '#' => '#' . str_replace('#', '', $targetCmd->getId()) . '#'));
+			if ($_mode == 'replace') {
+				//replace command where used:
+				jeedom::replaceTag(array('#' . str_replace('#', '', $sourceCmd->getId()) . '#' => '#' . str_replace('#', '', $targetCmd->getId()) . '#'));
+			}
 
 			//remove history:
 			if ($_options['removeCmdHistory'] == "true" && $targetCmd->getType() == 'info') {

@@ -329,7 +329,7 @@ $('#bt_clearReplace').on('click', function() {
     $(this).prop("checked", true)
   })
 
-  $('#opt_replaceEqs').prop("checked", false)
+  $('#opt_copyEqProperties').prop("checked", false)
   $('#opt_hideEqs').prop("checked", false)
   $('#opt_copyCmdProperties').prop("checked", false)
   $('#opt_removeHistory').prop("checked", false)
@@ -402,7 +402,8 @@ $('#bt_replace').on('click', function() {
       if (result) {
         jeedomUtils.hideAlert()
 
-        var opt_replaceEqs = $('#opt_replaceEqs').is(':checked')
+        var opt_mode = $('#opt_mode').value()
+        var opt_copyEqProperties = $('#opt_copyEqProperties').is(':checked')
         var opt_hideEqs = $('#opt_hideEqs').is(':checked')
         var opt_copyCmdProperties = $('#opt_copyCmdProperties').is(':checked')
         var opt_removeHistory = $('#opt_removeHistory').is(':checked')
@@ -429,18 +430,18 @@ $('#bt_replace').on('click', function() {
           }
         })
 
-        if (opt_replaceEqs && Object.keys(replaceEqs).length === 0) {
+        if (opt_copyEqProperties && Object.keys(replaceEqs).length === 0) {
           jeedomUtils.showAlert({
-            message: '{{Aucun équipement à remplacer}}',
+            message: '{{Aucun équipement à remplacer ou copier}}',
             level: 'info'
           })
           bootbox.hideAll()
           return true
         }
 
-        if (!opt_replaceEqs && Object.keys(replaceCmds).length === 0) {
+        if (!opt_copyEqProperties && Object.keys(replaceCmds).length === 0) {
           jeedomUtils.showAlert({
-            message: '{{Aucune commande à remplacer}}',
+            message: '{{Aucune commande à remplacer ou copier}}',
             level: 'info'
           })
           bootbox.hideAll()
@@ -449,7 +450,8 @@ $('#bt_replace').on('click', function() {
 
         jeedom.massReplace({
           options: {
-            replaceEqs: opt_replaceEqs,
+            mode: opt_mode,
+            copyEqProperties: opt_copyEqProperties,
             hideEqs: opt_hideEqs,
             copyCmdProperties: opt_copyCmdProperties,
             removeCmdHistory: opt_removeHistory,
