@@ -39,7 +39,7 @@ class timeline {
     FROM timeline';
     return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
   }
-  
+
   public static function byDateRange($_startTime, $_endTime=null) {
     if ($_endTime == null) {
       $_endTime = $_startTime;
@@ -54,12 +54,34 @@ class timeline {
     AND `datetime`<=:endTime';
     return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
   }
-  
-  public static function byFolder($_folder = 'main') {
+
+  public static function getLength($_folder = 'main') {
+    if ($_folder == 'main') {
+      $sql = 'SELECT COUNT(`id`) FROM `timeline`';
+      $count = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+      return $count['COUNT(`id`)'];
+    }
+    $values = array(
+      'folder' => '(^|,)'.$_folder.'($|,)',
+    );
+    $sql = 'SELECT count(`id`) ' . '
+    FROM `timeline`
+    WHERE folder REGEXP :folder';
+    $count = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+    return $count['COUNT(`id`)'];
+  }
+
+  public static function byFolder($_folder = 'main', $_start=0, $_end=0) {
     self::cleaning();
-    if($_folder == 'main'){
+    $_start = intval($_start);
+    $_end = intval($_end);
+    if ($_folder == 'main') {
       $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
       FROM timeline';
+      $sql .= ' ORDER BY id DESC';
+      if ($_start != 0 || $_end != 0) {
+        $sql .= ' LIMIT '. $_start . ',' . $_end;
+      }
       return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
     }
     $values = array(
@@ -68,9 +90,13 @@ class timeline {
     $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
     FROM timeline
     WHERE folder REGEXP :folder';
+    $sql .= ' ORDER BY id DESC';
+    if ($_start != 0 || $_end != 0) {
+      $sql .= ' LIMIT '. $_start . ',' . $_end;
+    }
     return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
   }
-  
+
   public static function byId($_id) {
     $values = array(
       'id' => $_id,
@@ -80,7 +106,7 @@ class timeline {
     WHERE id=:id';
     return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
   }
-  
+
   public static function cleaning($_all = false) {
     //reset:
     if ($_all) {
@@ -98,7 +124,7 @@ class timeline {
     $sql .= 't1.folder = t2.folder AND ';
     $sql .= 't1.link_id = t2.link_id';
     DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-    
+
     //clean:
     $sql = 'SELECT count(id) as number FROM timeline';
     $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
@@ -112,7 +138,7 @@ class timeline {
     $sql = 'DELETE FROM timeline ORDER BY `datetime` ASC LIMIT '.$delete_number;
     DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
   }
-  
+
   public static function listFolder(){
     $sql = 'SELECT DISTINCT(folder) as folder
     FROM timeline';
@@ -132,10 +158,10 @@ class timeline {
     }
     return $return;
   }
-  
-  
-  /*     * *********************Méthodes d'instance************************* */
-  
+
+
+  /*     * *********************M hodes d'instance************************* */
+
   public function preSave(){
     if($this->getDatetime() == ''){
       $this->setDatetime(date('Y-m-d H:i:s'));
@@ -144,16 +170,16 @@ class timeline {
       $this->setFolder('main');
     }
   }
-  
+
   public function save() {
     DB::save($this);
     return true;
   }
-  
+
   public function remove() {
     DB::remove($this);
   }
-  
+
   public function hasRight($_user = null){
     switch ($this->getType()) {
       case 'cmd':
@@ -171,14 +197,14 @@ class timeline {
     }
     return false;
   }
-  
+
   public function getDisplay() {
     $return = array();
     $return['date'] = $this->getDatetime();
     $return['type'] = $this->getType();
     $return['group'] = $this->getSubtype();
     $return['folder'] = $this->getFolder();
-    
+
     switch ($this->getType()) {
       case 'cmd':
       $cmd = cmd::byId($this->getLink_id());
@@ -190,7 +216,7 @@ class timeline {
       $return['object'] = is_object($object) ? $object->getId() : 'aucun';
       $return['plugins'] = $eqLogic->getEqType_name();
       $return['category'] = $eqLogic->getCategory();
-      
+
       $name = str_replace(array('<br/><strong>','</strong>'), '',  $this->getName());
       $name = str_replace('<span class="label"', '<span class="label-sm"',  $name);
       if ($cmd->getType() == 'action') {

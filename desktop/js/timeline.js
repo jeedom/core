@@ -20,10 +20,25 @@ if (!jeeFrontEnd.timeline) {
   jeeFrontEnd.timeline = {
     init: function() {
       window.jeeP = this
+      this.loadStart = 0
+      this.loadEnd = 35
+      if (user_isAdmin != 1) {
+        document.querySelector('.bt_configureCmd')?.remove()
+        document.querySelector('.bt_gotoScenario')?.remove()
+      }
     },
     displayTimeline: function() {
+      document.querySelector('#timelineContainer #events').empty()
+      jeeP.displayTimelineSegment(jeeP.loadStart, jeeP.loadEnd)
+    },
+    displayTimelineSegment: function(_start, _end) {
+      if (!isset(_start)) _start = jeeP.loadStart
+      if (!isset(_end)) _end = jeeP.loadEnd
+
       jeedom.timeline.byFolder({
-        folder: document.getElementById('sel_timelineFolder').jeeValue(),
+        folder: document.getElementById('sel_timelineFolder').value,
+        start: _start,
+        end: _end,
         error: function(error) {
           jeedomUtils.showAlert({
             message: error.message,
@@ -31,7 +46,6 @@ if (!jeeFrontEnd.timeline) {
           })
         },
         success: function(data) {
-          $('#timelineContainer ul').empty()
           if (data.length == 0) return
           data.sort(jeeP.sortByDateConsistentASC)
           data = data.reverse()
@@ -40,11 +54,20 @@ if (!jeeFrontEnd.timeline) {
 
           moment.locale(jeeFrontEnd.language.substring(0, 2))
 
-          var isFirstOfDay, isLastOfDay = false
-          var nextDate, thisDateTs = false
-          var prevDate = moment().format("YYYY-MM-DD")
-          var prevDateTs = moment().unix()
-          var content = '<div class="label-warning day">' + moment(data[0].date).format('ddd YYYY-MM-DD') + '</div>'
+          var lastEvent = document.querySelector('#timelineContainer #events li.event:last-child')
+          if (lastEvent != null) {
+            var isFirstOfDay = data[0].date.substring(0, 10) != lastEvent.querySelector('div.date').innerHTML.substring(4) ? true : false
+            var isLastOfDay = false
+            var prevDate = moment(lastEvent.querySelector('div.date').innerHTML, 'ddd  YYYY-MM-DD').format("YYYY-MM-DD")
+            var prevDateTs = moment(prevDate + lastEvent.querySelector('div.time').innerHTML).unix()
+            var content = ''
+          } else {
+            var isFirstOfDay, isLastOfDay = false
+            var nextDate, thisDateTs = false
+            var prevDate = moment().format("YYYY-MM-DD")
+            var prevDateTs = moment().unix()
+            var content = '<div class="label-warning day">' + moment(data[0].date).format('ddd YYYY-MM-DD') + '</div>'
+          }
 
           var thisData, date, dateFull, time, lineClass, style, height, li
           for (var i in data) {
@@ -66,13 +89,15 @@ if (!jeeFrontEnd.timeline) {
               }
             }
 
-            //actual time marker:
-            if (i == 0) {
-              li = '<li style="background-color:transparent!important;">'
-              li += '<div class="time typeInfo">' + moment().format('HH:mm:ss') + '</div>'
-              li += '<div class="date">' + dateFull + '</div>'
-              li += '</li>'
-              content += li
+            if (lastEvent == null) {
+              //actual time marker:
+              if (i == 0) {
+                li = '<li style="background-color:transparent!important;">'
+                li += '<div class="time typeInfo">' + moment().format('HH:mm:ss') + '</div>'
+                li += '<div class="date">' + dateFull + '</div>'
+                li += '</li>'
+                content += li
+              }
             }
 
             //time spacing:
@@ -85,7 +110,12 @@ if (!jeeFrontEnd.timeline) {
               height = Math.abs((thisDateTs - moment(data[parseInt(i) + 1].date.substring(0, 19)).unix()) / decayFactor)
               style += 'margin-bottom:' + height + 'px!important;'
             }
-            li = '<li style="' + style + '">'
+            if (style != '') {
+              li = '<li class="event" style="' + style + '">'
+            } else {
+              li = '<li class="event">'
+            }
+
             li += '<div>'
 
             //scenario or cmd info/action:
@@ -129,13 +159,13 @@ if (!jeeFrontEnd.timeline) {
             prevDateTs = thisDateTs
             isFirstOfDay = isLastOfDay = false
           }
-          $('#timelineContainer ul').empty().append(content)
-          if (user_isAdmin != 1) {
-            $('.bt_configureCmd').remove()
-            $('.bt_gotoScenario').remove()
-          }
+          document.querySelector('#timelineContainer #events').insertAdjacentHTML('beforeend', content)
+          //$('#timelineContainer ul').empty().append(content)
+
+          document.getElementById('timelineBottom').seen()
         }
       })
+
     },
     sortByDateConsistentASC: function(itemA, itemB) {
       var valueA = itemA.date
@@ -212,7 +242,7 @@ $('#bt_removeTimelineEvent').on('click', function() {
     },
     success: function(data) {
       jeedomUtils.showAlert({
-        message: '{{Evènements de la timeline supprimés avec succès}}',
+        message: '{{Ev ements de la timeline supprim  avec succ }}',
         level: 'success'
       })
       jeeP.displayTimeline()
@@ -249,6 +279,13 @@ $('#timelineContainer ul').on('click', '.bt_configureCmd', function() {
 
 $('#bt_refreshTimeline').on('click', function() {
   jeeP.displayTimeline()
+})
+
+$('#timelineBottom a.bt_loadMore').on('click', function() {
+  var more = parseInt($(this).attr('data-load'))
+  jeeP.loadStart = jeeP.loadEnd + 1
+  jeeP.loadEnd += more
+  jeeP.displayTimelineSegment(jeeP.loadStart, jeeP.loadEnd)
 })
 
 jeeP.displayTimeline()

@@ -16,6 +16,25 @@
 
 jeedom.timeline = function() {};
 
+jeedom.timeline.getLength = function(_params) {
+  var paramsRequired = [];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/timeline.ajax.php';
+  paramsAJAX.data = {
+    action: 'getLength',
+    folder: _params.folder || 'main'
+  };
+  $.ajax(paramsAJAX);
+}
+
 jeedom.timeline.byFolder = function(_params) {
   var paramsRequired = [];
   var paramsSpecifics = {};
@@ -30,7 +49,9 @@ jeedom.timeline.byFolder = function(_params) {
   paramsAJAX.url = 'core/ajax/timeline.ajax.php';
   paramsAJAX.data = {
     action: 'byFolder',
-    folder: _params.folder || 'main'
+    folder: _params.folder || 'main',
+    start: _params.start || 0,
+    end: _params.end || 0
   };
   $.ajax(paramsAJAX);
 }
