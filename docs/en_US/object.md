@@ -60,7 +60,7 @@ Here are the different characteristics to configure an object :
 - **Visible** : Check this box to make this object visible.
 - **Hide on the Dashboard** : Check this box to hide the object on the Dashboard. It is still kept in the list, which allows it to be displayed, but only explicitly.
 - **Hide on summary** : Check this box to hide the object on the summary'. It is still kept in the list, which allows it to be displayed, but only explicitly.
-- **Action from synthesis** : Here you can indicate a view or a design to go to when you click on the object from the Summary. *Defect : Dashboard*.
+- **Action from Synthesis** : Here you can indicate a view or a design to go to when you click on the object from the Summary. *Defect : Dashboard*.
 
 #### Display :
 

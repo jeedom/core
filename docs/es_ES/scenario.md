@@ -1,7 +1,7 @@
 # Escenarios
 **Herramientas → Escenarios**
 
-<small>[Raccourcis clavier/ /souris](shortcuts.md)</ /small>
+<small>[Raccourcis clavier/souris](shortcuts.md)</small>
 
 Cerebro real de la automatización del hogar, los escenarios permiten interactuar con el mundo real de una manera *inteligente*.
 
@@ -88,7 +88,7 @@ En la pestaña **General**, encontramos los principales parámetros del escenari
 
 > **Modo de punta programado**
 >
-> El modo programado usa sintaxis **Cron**. Por ejemplo, puede ejecutar un escenario cada 20 minutos con  ``*/ /20 * * * *``, o a las 5 a.m. para arreglar una multitud de cosas para el día con ``0 5 * * *``. La ? a la derecha de un programa le permite configurarlo sin ser un especialista en sintaxis de Cron.
+> El modo programado usa sintaxis **Cron**. Por ejemplo, puede ejecutar un escenario cada 20 minutos con  ``*/20 * * * *``, o a las 5 a.m. para arreglar una multitud de cosas para el día con ``0 5 * * *``. La ? a la derecha de un programa le permite configurarlo sin ser un especialista en sintaxis de Cron.
 
 ## Pestaña Escenario
 
@@ -197,7 +197,7 @@ El bloque de código le permite ejecutar código php. Por lo tanto, es muy poten
 >
 > Adición de una función de búsqueda en el bloque de Código : Buscar : Ctrl + F luego Enter, Siguiente resultado : Ctrl + G, resultado anterior : Ctrl + Mayús + G
 
-[Escenarios : Pequeños códigos con amigos](https:/ // /kiboost.github.io/ /jeedom_docs/ /jeedomV4Tips/ /CodesScenario/ /)
+[Escenarios : Pequeños códigos con amigos](https://kiboost.github.io/jeedom_docs/jeedomV4Tips/CodesScenario/)
 
 ### Bloque de comentarios
 
@@ -236,7 +236,7 @@ Hay desencadenantes específicos (distintos de los proporcionados por los comand
 - ``#variable(nom_variable)#`` : Cambiar el valor de la variable name_name.
 - ``#genericType (GENÉRICO, #[Object]#)#`` : Cambio de un comando de información de tipo GENÉRICO genérico, en el objeto Objeto.
 
-También puede activar un escenario utilizando la API HTTP descrita [aquí](https:/ // /doc.jeedom.com/es_ES/core/ /4.1/ /api_http).
+También puede activar un escenario utilizando la API HTTP descrita [aquí](https://doc.jeedom.com/es_ES/core/4.1/api_http).
 
 ### Operadores de comparación y enlaces entre condiciones
 
@@ -248,14 +248,14 @@ Puede utilizar cualquiera de los siguientes símbolos para realizar comparacione
 - ``<`` : Estrictamente menor que.
 - ``<=`` : Menor o igual que.
 - ``!=`` : Diferente de, no es igual a.
-- ``matches`` : Contiene. Ex : ``[Salle de bain][Hydrometrie][etat] matches "/ /humide/ /"``.
-- ``not(…​ matches …​)`` : No contiene. Ex :  ``not([Salle de bain][Hydrometrie][etat] matches "/ /humide/ /")``.
+- ``matches`` : Contiene. Ex : ``[Salle de bain][Hydrometrie][etat] matches "/humide/"``.
+- ``not(…​ matches …​)`` : No contiene. Ex :  ``not([Salle de bain][Hydrometrie][etat] matches "/humide/")``.
 
 Puedes combinar cualquier comparación con los siguientes operadores :
 
-- ``YY`` : y. También es posible utilizar : ``ET`` / / ``et`` / / ``AND`` / / ``and`` pero puede que no funcione bien con algunas funciones php.
-- ``||`` : Dónde. También es posible utilizar : ``OU`` / / ``ou`` / / ``OR`` / / ``or`` pero puede que no funcione bien con algunas funciones php.
-- ``xor``  : o exclusivo. También es posible utilizar : ``XOR`` / / ``^`` pero puede que no funcione bien con algunas funciones php.
+- ``YY`` : y. También es posible utilizar : ``ET`` / ``et`` / ``AND`` / ``and`` pero puede que no funcione bien con algunas funciones php.
+- ``||`` : Dónde. También es posible utilizar : ``OU`` / ``ou`` / ``OR`` / ``or`` pero puede que no funcione bien con algunas funciones php.
+- ``xor``  : o exclusivo. También es posible utilizar : ``XOR`` / ``^`` pero puede que no funcione bien con algunas funciones php.
 
 ### Etiquetas
 
@@ -263,7 +263,7 @@ Una etiqueta se reemplaza durante la ejecución del escenario por su valor. Pued
 
 > **Consejo**
 >
-> Para mostrar los ceros iniciales, use la función Fecha (). Ver [aquí](https:/ // /www.php.net/ /manual/ /fr/ /datetime.format.php).
+> Para mostrar los ceros iniciales, use la función Fecha (). Ver [aquí](https://www.php.net/manual/fr/datetime.format.php).
 
 - ``#seconde#`` : Segundo actual (sin ceros a la izquierda, ej : 6 para 08:07:06).
 - ``#hour#`` : Hora actual en formato de 24 h (sin ceros a la izquierda)). Ex : 8 para 08:07:06 o 17 para 17:15.
@@ -301,19 +301,19 @@ También tiene las siguientes etiquetas adicionales si su escenario fue desencad
 
 Hay varias funciones disponibles para el equipo :
 
-- ``average(commande,période)`` Y ``averageBetween(commande,start,end)`` : Indique el promedio del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``average(commande,période)`` Y ``averageBetween(commande,start,end)`` : Indique el promedio del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``averageTemporal(commande,période)`` Y ``averageTemporalBetween(commande,start,end)`` : Indique el promedio de los valores del pedido ponderado por su duración de existencia durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``averageTemporal(commande,période)`` Y ``averageTemporalBetween(commande,start,end)`` : Indique el promedio de los valores del pedido ponderado por su duración de existencia durante el período (período=[mes, día, hora, min] o [expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``min(commande,période)`` Y ``minBetween(commande,start,end)`` : Dar el pedido mínimo durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``min(commande,période)`` Y ``minBetween(commande,start,end)`` : Dar el pedido mínimo durante el período (período=[mes, día, hora, min] o [expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``max(commande,période)`` Y ``maxBetween(commande,start,end)`` : Dar el máximo del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``max(commande,période)`` Y ``maxBetween(commande,start,end)`` : Dar el máximo del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``duration(commande, valeur, période)`` Y ``durationbetween(commande,valeur,start,end)`` : Indique la duración en minutos durante los cuales el equipo tuvo el valor elegido durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``duration(commande, valeur, période)`` Y ``durationbetween(commande,valeur,start,end)`` : Indique la duración en minutos durante los cuales el equipo tuvo el valor elegido durante el período (período=[mes, día, hora, min] o [expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``statistics(commande,calcul,période)`` Y ``statisticsBetween(commande,calcul,start,end)`` : Proporcione el resultado de diferentes cálculos estadísticos (suma, recuento, estándar, varianza, promedio, mínimo, máximo) durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``statistics(commande,calcul,période)`` Y ``statisticsBetween(commande,calcul,start,end)`` : Proporcione el resultado de diferentes cálculos estadísticos (suma, recuento, estándar, varianza, promedio, mínimo, máximo) durante el período (período=[mes, día, hora, min] o [expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``tendance(commande,période,seuil)`` : Da la tendencia del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``tendance(commande,période,seuil)`` : Da la tendencia del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
 - ``stateDuration(commande)`` : Da la duración en segundos desde el último cambio de valor.
     -1 : No existe historial o el valor no existe en el historial.
@@ -330,9 +330,9 @@ Hay varias funciones disponibles para el equipo :
 - ``age(commande)`` : Da la edad en segundos del valor del comando (``collecDate``)
     -1 : El comando no existe o no es de tipo información.
 
-- ``stateChanges(commande,[valeur], période)`` Y ``stateChangesBetween(commande, [valeur], start, end)`` : Da el número de cambios de estado (hacia un cierto valor si se indica, o si no se indica en comparación con su valor actual) durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``stateChanges(commande,[valeur], période)`` Y ``stateChangesBetween(commande, [valeur], start, end)`` : Da el número de cambios de estado (hacia un cierto valor si se indica, o si no se indica en comparación con su valor actual) durante el período (período=[mes, día, hora, min] o [expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``lastBetween(commande,start,end)`` : Da el último valor registrado para el dispositivo entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``lastBetween(commande,start,end)`` : Da el último valor registrado para el dispositivo entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
 - ``variable(mavariable,valeur par défaut)`` : Recupera el valor de una variable o el valor deseado por defecto.
 
@@ -349,11 +349,11 @@ Hay varias funciones disponibles para el equipo :
 - ``lastScenarioExecution(scenario)`` : Da la duración en segundos desde el último lanzamiento del escenario.
     0 : El escenario no existe
 
-- ``collectDate(cmd,[format])`` : Devuelve la fecha de la última recopilación de datos para el comando colocado como parámetro, el segundo parámetro opcional se usa para especificar el formato de retorno (detalles [aquí](https:/ // /www.php.net/ /manual/ /fr/ /datetime.format.php)).
+- ``collectDate(cmd,[format])`` : Devuelve la fecha de la última recopilación de datos para el comando colocado como parámetro, el segundo parámetro opcional se usa para especificar el formato de retorno (detalles [aquí](https://www.php.net/manual/fr/datetime.format.php)).
     -1 : No se pudo encontrar el comando,
     -2 : El comando no es de tipo info.
 
-- ``valueDate(cmd,[format])`` : Devuelve la fecha del último valor conocido para el comando colocado como parámetro, el segundo parámetro opcional se usa para especificar el formato de retorno (detalles [aquí](https:/ // /www.php.net/ /manual/ /fr/ /datetime.format.php)).
+- ``valueDate(cmd,[format])`` : Devuelve la fecha del último valor conocido para el comando colocado como parámetro, el segundo parámetro opcional se usa para especificar el formato de retorno (detalles [aquí](https://www.php.net/manual/fr/datetime.format.php)).
     -1 : No se pudo encontrar el comando,
     -2 : El comando no es de tipo info.
 
@@ -368,11 +368,11 @@ Hay varias funciones disponibles para el equipo :
 
 - ``name(type,commande)`` : Se utiliza para recuperar el nombre del pedido, equipo u objeto. Tipo : cmd, eqLogic u objeto.
 
-- ``lastCommunication(equipment,[format])`` : Devuelve la fecha de la última comunicación para el dispositivo dada como parámetro, el segundo parámetro opcional se usa para especificar el formato de retorno (detalles [aquí](https:/ // /www.php.net/ /manual/ /fr/ /datetime.format.php)). Un retorno de -1 significa que no se puede encontrar el equipo.
+- ``lastCommunication(equipment,[format])`` : Devuelve la fecha de la última comunicación para el dispositivo dada como parámetro, el segundo parámetro opcional se usa para especificar el formato de retorno (detalles [aquí](https://www.php.net/manual/fr/datetime.format.php)). Un retorno de -1 significa que no se puede encontrar el equipo.
 
 - ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Devuelve un color calculado en relación con un valor en el intervalo color_start / color_end. El valor debe estar entre min_value y max_value.
 
-Los períodos e intervalos de estas funciones también se pueden usar con [Expresiones PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php) como por ejemplo :
+Los períodos e intervalos de estas funciones también se pueden usar con [Expresiones PHP](http://php.net/manual/fr/datetime.formats.relative.php) como por ejemplo :
 
 - ``Now`` : Ahora.
 - ``Today`` : 00:00 hoy (permite, por ejemplo, obtener resultados para el día si entre ``Today`` y ``Now``).
@@ -432,7 +432,7 @@ También se puede usar una caja de herramientas de funciones genéricas para rea
 - ``time_between(time,start,end)`` : Se usa para probar si un tiempo está entre dos valores con ``time=temps`` (Ex : 1530), ``start=temps``, ``end=temps``. Los valores iniciales y finales pueden estar a caballo entre la medianoche.
 - ``time_diff(date1,date2[,format, round])`` : Se usa para descubrir la diferencia entre dos fechas (las fechas deben estar en el formato AAAA / MM / DD HH:MM:SS). Por defecto, el método devuelve la diferencia en día (s). Puedes preguntarlo en segundos (s), minutos (m), horas (h). Ejemplo en segundos ``time_diff(2019-02-02 14:55:00,2019-02-25 14:55:00,s)``. La diferencia se devuelve en absoluto, a menos que especifique ``f`` (``sf``, ``mf``, ``hf``, ``df``). También puedes usar ``dhms`` quien no devolverá ejemplo ``7j 2h 5min 46s``. El parámetro de redondeo opcional se redondea a x decimales (2 por defecto). Ex: ``time_diff(2020-02-21 20:55:28,2020-02-28 23:01:14,df, 4)``.
 - ``formatTime(time)`` : Formatea el retorno de una cadena ``#time#``.
-- ``floor(time/ /60)`` : Convierte segundos a minutos o minutos a horas (``floor(time/ /3600)`` por segundos a horas).
+- ``floor(time/60)`` : Convierte segundos a minutos o minutos a horas (``floor(time/3600)`` por segundos a horas).
 - ``convertDuration(secondes)`` : Convierte segundos a d / h / min / s.
 
 Y ejemplos prácticos :
@@ -444,13 +444,13 @@ Y ejemplos prácticos :
 | ``randomColor(40,60)``                 | Devuelve un color aleatorio cercano al verde.
 | ``trigger(#[Salle de bain][Hydrometrie][Humidité]#)``   | 1 si es bueno ``#[Salle de bain][Hydrometrie][Humidité]#`` quien inició el escenario de lo contrario 0  |
 | ``triggerValue()`` | 80 si la hidrometría de ``#[Salle de bain][Hydrometrie][Humidité]#`` es 80% y eso es ``#[Salle de bain][Hydrometrie][Humidité]#`` quien desencadenó el escenario. Si el escenario no fue activado por un comando, devuelve "falso".                         |
-| ``round(#[Salle de bain][Hydrometrie][Humidité]# / / 10)`` | Devuelve 9 si el porcentaje de humedad y 85                     |
+| ``round(#[Salle de bain][Hydrometrie][Humidité]# / 10)`` | Devuelve 9 si el porcentaje de humedad y 85                     |
 | ``odd(3)``                             | Devuelve 1                            |
 | ``median(15,25,20)``                   | Devuelve 20
 | ``avg(10,15,18)``                      | Devuelve 14.3                     |
 | ``time_op(#time#, -90)``               | si son las 4:50 p.m., regrese : 1 650-1 130 = 1520                          |
 | ``formatTime(1650)``                   | Devuelve 4:50 p.m                        |
-| ``floor(130/ /60)``                     | Devuelve 2 (minutos si 130 s, u horas si 130 m)                      |
+| ``floor(130/60)``                     | Devuelve 2 (minutos si 130 s, u horas si 130 m)                      |
 | ``convertDuration(3600)``             | Devuelve 1h 0min 0s                      |
 | ``convertDuration(duration(#[Chauffage][Module chaudière][Etat]#,1, first day of this month)*60)`` | Devuelve el tiempo de encendido en días / horas / minutos del tiempo de transición al estado 1 del módulo desde el primer día del mes |
 

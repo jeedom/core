@@ -3,7 +3,7 @@
 
 Esta página le permite reunir en una sola página los diferentes elementos configurados en su Jeedom. También da acceso a funciones para organizar equipos y controles, a su configuración avanzada y para mostrar las posibilidades de configuración.
 
-{% include lightbox.html src="images/ /doc-display_01.jpg" data="Display" title="Display" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+{% include lightbox.html src="images/doc-display_01.jpg" data="Display" title="Display" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 ## Informations
 
@@ -38,7 +38,7 @@ Para cada objeto, junto a su etiqueta, hay dos botones disponibles.
 
 En cada equipo encontramos :
 
-- A **casilla de verificación** para seleccionar el equipo (puede seleccionar varios). Si se selecciona al menos un dispositivo, tiene botones de acción que aparecen en la esquina superior izquierda para **borrar**, regresar **visible**/ /**invisible**,  **activo**/ /**Inactivo** equipo seleccionado.
+- A **casilla de verificación** para seleccionar el equipo (puede seleccionar varios). Si se selecciona al menos un dispositivo, tiene botones de acción que aparecen en la esquina superior izquierda para **borrar**, regresar **visible**/**invisible**,  **activo**/**Inactivo** equipo seleccionado.
 - L'**identificación** equipo.
 - La **tipo** equipo : Identificador del complemento al que pertenece.
 - La **apellido** equipo.

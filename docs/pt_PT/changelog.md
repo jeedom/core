@@ -8,10 +8,13 @@
 
 ### 4.4 : Notícias / Melhorias
 
-- **Histórico** : O modal de histórico e a página de histórico permitem usar botões *Semana, Mês, Ano* para recarregar um histórico maior.
+- **Histórico** : O modal de histórico e a página de histórico permitem usar botões *Semana, Mês, Ano* para recarregar dinamicamente um histórico maior.
 - **Menu Jeedom** : Um atraso de 0.25s foi introduzido na abertura de submenus.
 - **Janela de seleção de imagem** : Adicionado um menu de contexto para enviar imagens e criar, renomear ou excluir uma pasta.
 - **Painel** : Capacidade de exibir vários objetos lado a lado (Configurações → Sistema → Configuração / Interface).
+- **Painel** : A janela de edição do bloco Edit Mode permite que os comandos sejam renomeados.
+- **Ferramentas / Substituir** : Esta ferramenta agora oferece um modo *Copiar*, permitindo copiar as configurações de equipamentos e comandos, sem substituí-los nos cenários etc.
+- **Linha do tempo** : A linha do tempo agora carrega os primeiros 35 eventos. Na parte inferior da página, vários botões permitem que você carregue dinamicamente os seguintes eventos.
 - **Administração** : Possibilidade de diferenciar ações em caso de erro ou alerta de comando.
 - Um menu contextual foi adicionado em diferentes locais nas caixas de seleção para selecionar tudo, nenhum ou inverter a seleção (consulte [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.4)).
 
@@ -19,6 +22,12 @@
 >
 > No **Painel** e a **Visualizações**, Núcleo v4.4 agora redimensiona automaticamente os blocos para criar uma grade perfeita. As unidades (menor altura e menor largura de um ladrilho) desta grade são definidas em **Configurações → Sistema → Configuração / Interface** por valores *Passo vertical* e *Arremesso horizontal*. O valor que *Margem* definindo o espaço entre as telhas.
 > Os ladrilhos se adaptam às dimensões da grade e podem ser feitos uma, duas vezes etc. esses valores em altura ou largura. Certamente será necessário passar [Modo de edição do painel](https://doc.jeedom.com/pt_PT/core/4.4/dashboard#Mode%20%C3%A9dition) para ajustar o tamanho de alguns blocos após a atualização.
+
+
+> **Observação**
+>
+> Widgets principais foram reescritos em js/css puro. Será necessário editar o Dashboard (Modo Editar, depois botão ⁝ nos tiles) e usar a opção *Quebra de linha depois* em certos comandos para encontrar o mesmo aspecto visual.
+> Todos os widgets Core agora suportam a exibição *Tempo*, adicionando um parâmetro opcional *Tempo* / *duração* Onde *encontro*.
 
 
 ### 4.4 : Autre
@@ -31,6 +40,21 @@
 
 
 # Changelog Jeedom V4.3
+
+## 4.3.11
+
+- Autorização de resposta livre em *perguntar* se você colocar * no campo de respostas possíveis.
+- **Análise / História** : Correção de bug na comparação do histórico (bug introduzido na versão 4.3.10).
+- **Síntese** : L'*Ação da Síntese* de um objeto agora é suportado na versão móvel.
+- Correção de históricos ao usar a função de agregação.
+- Corrigido um bug na instalação de um plugin por outro plugin (Ex : mqtt2 instalado por zwavejs).
+- Corrigido um bug no histórico em que o valor 0 poderia sobrescrever o valor anterior.
+
+## 4.3.10
+
+- **Análise / História** : Erros corrigidos na exclusão do histórico.
+- Exibição de valor fixo na janela de configuração de comando.
+- Adicionadas informações e controle da ferramenta de substituição.
 
 ## 4.3.9
 

@@ -8,10 +8,13 @@
 
 ### 4.4 : Neuigkeiten / Verbesserungen
 
-- **Historisch** : Verlaufsmodal und Verlaufsseite ermöglichen die Verwendung von Schaltflächen *Woche, Monat, Jahr* um einen größeren Verlauf neu zu laden.
+- **Historisch** : Verlaufsmodal und Verlaufsseite ermöglichen die Verwendung von Schaltflächen *Woche, Monat, Jahr* um einen größeren Verlauf dynamisch neu zu laden.
 - **Jeedom-Menü** : Eine Verzögerung von 0.25s wurde beim Öffnen von Untermenüs eingeführt.
 - **Bildauswahlfenster** : Kontextmenü zum Senden von Bildern und Erstellen, Umbenennen oder Löschen eines Ordners hinzugefügt.
 - **Armaturenbrett** : Möglichkeit, mehrere Objekte nebeneinander anzuzeigen (Einstellungen → System → Konfiguration / Schnittstelle).
+- **Armaturenbrett** : Das Kachel-Bearbeitungsfenster des Bearbeitungsmodus ermöglicht das Umbenennen von Befehlen.
+- **Werkzeuge / Ersetzen** : Dieses Tool bietet nun einen Modus *Kopieren*, Ermöglicht das Kopieren der Konfigurationen von Geräten und Befehlen, ohne sie in den Szenarien usw. zu ersetzen.
+- **Zeitleiste** : Die Timeline lädt jetzt die ersten 35 Ereignisse. Unten auf der Seite ermöglichen mehrere Schaltflächen das dynamische Laden der folgenden Ereignisse.
 - **Verwaltung** : Möglichkeit, Aktionen bei Fehler oder Befehlsalarm zu unterscheiden.
 - Ein Kontextmenü wurde an verschiedenen Stellen zu den Kontrollkästchen hinzugefügt, um alle oder keine auszuwählen oder die Auswahl umzukehren (siehe [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.4)).
 
@@ -19,6 +22,12 @@
 >
 > Auf der **Armaturenbrett** und die **Ansichten**, Kern v4.4 ändert jetzt automatisch die Größe von Kacheln, um ein nahtloses Raster zu erstellen. Die Einheiten (kleinste Höhe und kleinste Breite einer Kachel) dieses Rasters sind in definiert **Einstellungen → System → Konfiguration / Schnittstelle** nach Werten *Vertikale Steigung* und *Horizontale Tonhöhe*. Der Wert *Rand* Definieren des Raums zwischen den Kacheln.
 > Die Fliesen passen sich den Abmessungen des Rasters an und können einmal, zweimal usw. diese Werte in Höhe oder Breite. Es wird sicherlich notwendig sein, zu bestehen [Dashboard-Bearbeitungsmodus](https://doc.jeedom.com/de_DE/core/4.4/dashboard#Mode%20%C3%A9dition) um die Größe einiger Kacheln nach dem Update zu optimieren.
+
+
+> **Anmerkung**
+>
+> Kern-Widgets wurden in reinem js/css neu geschrieben. Es ist notwendig, das Dashboard zu bearbeiten (Bearbeitungsmodus, dann Schaltfläche ⁝ auf den Kacheln) und die Option zu verwenden *Zeilenumbruch danach* bei bestimmten Befehlen, um denselben visuellen Aspekt zu finden.
+> Alle Core-Widgets unterstützen jetzt die Anzeige *Zeit*, durch Hinzufügen eines optionalen Parameters *Zeit* / *Dauer* Wo *Datum*.
 
 
 ### 4.4 : Autre
@@ -31,6 +40,21 @@
 
 
 # Änderungsprotokoll Jeedom V4.3
+
+## 4.3.11
+
+- Autorisierung einer kostenlosen Antwort in *Fragen* wenn Sie * in das Antwortfeld eingeben.
+- **Analyse / Geschichte** : Bugfix beim Historienvergleich (Bug eingeführt in 4.3.10).
+- **Synthese** : L'*Aktion aus der Synthese* eines Objekts wird jetzt auf der mobilen Version unterstützt.
+- Korrektur von Historien bei Verwendung der Aggregationsfunktion.
+- Fehler bei der Installation eines Plugins durch ein anderes Plugin behoben (Bsp : mqtt2 von zwavejs installiert).
+- Es wurde ein Fehler im Verlauf behoben, bei dem der Wert 0 den vorherigen Wert überschreiben konnte.
+
+## 4.3.10
+
+- **Analyse / Geschichte** : Fehler beim Löschen des Verlaufs behoben.
+- Festwertanzeige im Befehlskonfigurationsfenster.
+- Ersatzwerkzeuginformationen und -steuerung hinzugefügt.
 
 ## 4.3.9
 

@@ -8,10 +8,13 @@
 
 ### 4.4 : News / Improvements
 
-- **Historical** : History modal and History page allow to use buttons *Week, Month, Year* to reload a larger history.
+- **Historical** : History modal and History page allow to use buttons *Week, Month, Year* to dynamically reload a larger history.
 - **Jeedom menu** : A delay of 0.25s was introduced on opening submenus.
 - **Image selection window** : Added a context menu for sending images and creating, renaming or deleting a folder.
 - **Dashboard** : Ability to display several objects side by side (Settings → System → Configuration / Interface).
+- **Dashboard** : Edit Mode tile editing window allows commands to be renamed.
+- **Tools / Replace** : This tool now offers a mode *To copy*, allowing to copy the configurations of equipment and commands, without replacing them in the scenarios etc.
+- **Timeline** : The Timeline now loads the first 35 events. At the bottom of the page, several buttons allow you to dynamically load the following events.
 - **Administration** : Possibility to differentiate actions on error or on command alert.
 - A contextual menu has been added in different places on the checkboxes to select all, none, or invert the selection (see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.4)).
 
@@ -19,6 +22,12 @@
 >
 > On the **Dashboard** and the **Views**, Core v4.4 now automatically resizes tiles to build a seamless grid. The units (smallest height and smallest width of a tile) of this grid are defined in **Settings → System → Configuration / Interface** by values *Vertical pitch* and *Horizontal pitch*. The value *Margin* defining the space between the tiles.
 > The tiles adapt to the dimensions of the grid and can be done once, twice etc. these values in height or width. It will certainly be necessary to pass [Dashboard edit mode](https://doc.jeedom.com/en_US/core/4.4/dashboard#Mode%20%C3%A9dition) to fine-tune the size of some tiles after the update.
+
+
+> **Remark**
+>
+> Core widgets have been rewritten in pure js/css. It will be necessary to edit the Dashboard (Edit Mode, then button ⁝ on the tiles) and use the option *Line wrap after* on certain commands to find the same visual aspect.
+> All Core widgets now support displaying *time*, by adding an optional parameter *time* / *duration* Where *date*.
 
 
 ### 4.4 : Autre
@@ -31,6 +40,21 @@
 
 
 # Changelog Jeedom V4.3
+
+## 4.3.11
+
+- Authorization of a free answer in *ask* if you put * in the possible answers field.
+- **Analysis / History** : Bugfix on history comparison (bug introduced in 4.3.10).
+- **Synthesis** : L'*Action from Synthesis* of an object is now supported on the mobile version.
+- Correction of histories when using aggregation function.
+- Fixed a bug on the installation of a plugin by another plugin (Ex : mqtt2 installed by zwavejs).
+- Fixed a bug on the history where the value 0 could overwrite the previous value.
+
+## 4.3.10
+
+- **Analysis / History** : Fixed bugs on history deletion.
+- Fixed value display in command configuration window.
+- Added replacement tool information and control.
 
 ## 4.3.9
 

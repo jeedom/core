@@ -8,10 +8,13 @@
 
 ### 4.4 : Noticias / Mejoras
 
-- **Histórico** : El modal de historial y la página de historial permiten usar botones *Semana, Mes, Año* para recargar una historia más grande.
+- **Histórico** : El modal de historial y la página de historial permiten usar botones *Semana, Mes, Año* para recargar dinámicamente un historial más grande.
 - **Menú Jeedom** : Un retraso de 0.25s se introdujo en la apertura de submenús.
 - **Ventana de selección de imagen** : Se agregó un menú contextual para enviar imágenes y crear, renombrar o eliminar una carpeta.
 - **Tablero** : Capacidad para mostrar varios objetos uno al lado del otro (Configuración → Sistema → Configuración / Interfaz).
+- **Tablero** : La ventana de edición de mosaicos del modo de edición permite cambiar el nombre de los comandos.
+- **Herramientas / Reemplazar** : Esta herramienta ahora ofrece un modo *Copiar*, permitiendo copiar las configuraciones de equipos y comandos, sin reemplazarlos en los escenarios, etc.
+- **Línea de tiempo** : La línea de tiempo ahora carga los primeros 35 eventos. En la parte inferior de la página, varios botones le permiten cargar dinámicamente los siguientes eventos.
 - **Administración** : Posibilidad de diferenciar acciones en caso de error o de alerta de comando.
 - Se ha agregado un menú contextual en diferentes lugares en las casillas de verificación para seleccionar todo, ninguno o invertir la selección (ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.4)).
 
@@ -19,6 +22,12 @@
 >
 > Sobre **Tablero** y los **Puntos de vista**, Núcleo v4.4 ahora cambia automáticamente el tamaño de los mosaicos para crear una cuadrícula perfecta. Las unidades (la altura más pequeña y el ancho más pequeño de un mosaico) de esta cuadrícula se definen en **Ajustes → Sistema → Configuración / Interfaz** por valores *Tono vertical* y *Paso horizontal*. El valor *Margen* definiendo el espacio entre las baldosas.
 > Los mosaicos se adaptan a las dimensiones de la cuadrícula y se pueden hacer una, dos veces, etc. estos valores en alto o ancho. Sin duda será necesario pasar [Modo de edición del tablero](https://doc.jeedom.com/es_ES/core/4.4/dashboard#Mode%20%C3%A9dition) para ajustar el tamaño de algunos mosaicos después de la actualización.
+
+
+> **Observación**
+>
+> Los widgets principales se han reescrito en js/css puro. Será necesario editar el Tablero (Modo Editar, luego botón ⁝ en los mosaicos) y usar la opción *Ajuste de línea después* en ciertos comandos para encontrar el mismo aspecto visual.
+> Todos los widgets principales ahora admiten la visualización *tiempo*, agregando un parámetro opcional *tiempo* / *duración* Dónde *fecha*.
 
 
 ### 4.4 : Autre
@@ -31,6 +40,21 @@
 
 
 # Registro de cambios Jeedom V4.3
+
+## 4.3.11
+
+- Autorización de una respuesta libre en *pedir* si pones * en el campo de posibles respuestas.
+- **Análisis / Historia** : Corrección de errores en la comparación del historial (error introducido en 4.3.10).
+- **Síntesis** : L'*Acción de Síntesis* de un objeto ahora es compatible con la versión móvil.
+- Corrección de historiales al usar la función de agregación.
+- Se corrigió un error en la instalación de un complemento por otro complemento (Ej : mqtt2 instalado por zwavejs).
+- Se corrigió un error en el historial donde el valor 0 podía sobrescribir el valor anterior.
+
+## 4.3.10
+
+- **Análisis / Historia** : Se corrigieron errores en la eliminación del historial.
+- Visualización de valores fijos en la ventana de configuración de comandos.
+- Se agregó información y control de la herramienta de reemplazo.
 
 ## 4.3.9
 

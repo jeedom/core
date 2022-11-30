@@ -60,7 +60,7 @@ Aqui estão as diferentes características para configurar um objeto :
 - **Visível** : Marque esta caixa para tornar este objeto visível.
 - **Esconder o painel de instrumentos** : Marque esta caixa para ocultar o objeto no painel. Ele ainda é mantido na lista, o que permite que seja exibido, mas apenas explicitamente.
 - **Ocultar no resumo** : Marque esta caixa para ocultar o objeto no resumo'. Ele ainda é mantido na lista, o que permite que seja exibido, mas apenas explicitamente.
-- **Ação de síntese** : Aqui você pode indicar uma vista ou desenho para ir ao clicar no objeto do Resumo. *Defeito : Painel*.
+- **Ação da Síntese** : Aqui você pode indicar uma vista ou desenho para ir ao clicar no objeto do Resumo. *Defeito : Painel*.
 
 #### Exibição :
 

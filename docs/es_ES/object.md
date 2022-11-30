@@ -60,7 +60,7 @@ Aquí están las diferentes características para configurar un objeto :
 - **Visible** : Marque esta casilla para hacer visible este objeto.
 - **Ocultar en el tablero** : Marque esta casilla para ocultar el objeto en el Tablero. Todavía se mantiene en la lista, lo que permite que se muestre, pero solo explícitamente.
 - **Ocultar en resumen** : Marque esta casilla para ocultar el objeto en el resumen'. Todavía se mantiene en la lista, lo que permite que se muestre, pero solo explícitamente.
-- **Acción de síntesis** : Aquí puede indicar una vista o un diseño al que ir cuando haga clic en el objeto del Resumen. *Defecto : Tablero*.
+- **Acción de Síntesis** : Aquí puede indicar una vista o un diseño al que ir cuando haga clic en el objeto del Resumen. *Defecto : Tablero*.
 
 #### Monitor :
 
