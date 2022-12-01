@@ -51,7 +51,7 @@ jeedom.timeline.byFolder = function(_params) {
     action: 'byFolder',
     folder: _params.folder || 'main',
     start: _params.start || 0,
-    end: _params.end || 0
+    offset: _params.offset || 0
   };
   $.ajax(paramsAJAX);
 }

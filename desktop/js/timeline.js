@@ -21,7 +21,7 @@ if (!jeeFrontEnd.timeline) {
     init: function() {
       window.jeeP = this
       this.loadStart = 0
-      this.loadEnd = 35
+      this.loadOffset = 35
       if (user_isAdmin != 1) {
         document.querySelector('.bt_configureCmd')?.remove()
         document.querySelector('.bt_gotoScenario')?.remove()
@@ -29,16 +29,16 @@ if (!jeeFrontEnd.timeline) {
     },
     displayTimeline: function() {
       document.querySelector('#timelineContainer #events').empty()
-      jeeP.displayTimelineSegment(jeeP.loadStart, jeeP.loadEnd)
+      jeeP.displayTimelineSegment(jeeP.loadStart, jeeP.loadOffset)
     },
-    displayTimelineSegment: function(_start, _end) {
+    displayTimelineSegment: function(_start, _offset) {
       if (!isset(_start)) _start = jeeP.loadStart
-      if (!isset(_end)) _end = jeeP.loadEnd
+      if (!isset(_offset)) _offset = jeeP.loadOffset
 
       jeedom.timeline.byFolder({
         folder: document.getElementById('sel_timelineFolder').value,
         start: _start,
-        end: _end,
+        offset: _offset,
         error: function(error) {
           jeedomUtils.showAlert({
             message: error.message,
@@ -59,7 +59,7 @@ if (!jeeFrontEnd.timeline) {
             var isFirstOfDay = data[0].date.substring(0, 10) != lastEvent.querySelector('div.date').innerHTML.substring(4) ? true : false
             var isLastOfDay = false
             var prevDate = moment(lastEvent.querySelector('div.date').innerHTML, 'ddd  YYYY-MM-DD').format("YYYY-MM-DD")
-            var prevDateTs = moment(prevDate + lastEvent.querySelector('div.time').innerHTML).unix()
+            var prevDateTs = moment(prevDate + ' ' + lastEvent.querySelector('div.time').innerHTML, "YYYY-MM-DD hh:mm:ss").unix()
             var content = ''
           } else {
             var isFirstOfDay, isLastOfDay = false
@@ -283,9 +283,9 @@ $('#bt_refreshTimeline').on('click', function() {
 
 $('#timelineBottom a.bt_loadMore').on('click', function() {
   var more = parseInt($(this).attr('data-load'))
-  jeeP.loadStart = jeeP.loadEnd + 1
-  jeeP.loadEnd += more
-  jeeP.displayTimelineSegment(jeeP.loadStart, jeeP.loadEnd)
+  jeeP.loadStart = jeeP.loadStart + jeeP.loadOffset + 1
+  jeeP.loadOffset = more
+  jeeP.displayTimelineSegment(jeeP.loadStart, jeeP.loadOffset)
 })
 
 jeeP.displayTimeline()

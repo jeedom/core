@@ -71,16 +71,16 @@ class timeline {
     return $count['COUNT(`id`)'];
   }
 
-  public static function byFolder($_folder = 'main', $_start=0, $_end=0) {
-    self::cleaning();
+  public static function byFolder($_folder = 'main', $_start=0, $_offset=0) {
     $_start = intval($_start);
-    $_end = intval($_end);
+    $_offset = intval($_offset);
+    if ($_offset == 0) self::cleaning();
     if ($_folder == 'main') {
       $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
       FROM timeline';
-      $sql .= ' ORDER BY id DESC';
-      if ($_start != 0 || $_end != 0) {
-        $sql .= ' LIMIT '. $_start . ',' . $_end;
+      $sql .= ' ORDER BY datetime DESC';
+      if ($_start != 0 || $_offset != 0) {
+        $sql .= ' LIMIT '. $_start . ',' . $_offset;
       }
       return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
     }
@@ -90,9 +90,9 @@ class timeline {
     $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
     FROM timeline
     WHERE folder REGEXP :folder';
-    $sql .= ' ORDER BY id DESC';
-    if ($_start != 0 || $_end != 0) {
-      $sql .= ' LIMIT '. $_start . ',' . $_end;
+    $sql .= ' ORDER BY datetime DESC';
+    if ($_start != 0 || $_offset != 0) {
+      $sql .= ' LIMIT '. $_start . ',' . $_offset;
     }
     return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
   }

@@ -33,7 +33,7 @@ try {
 
   if (init('action') == 'byFolder') {
     $return = array();
-    $events = timeline::byFolder(init('folder', 'main'), init('start', 0), init('end', 0));
+    $events = timeline::byFolder(init('folder', 'main'), init('start', 0), init('offset', 0));
     foreach ($events as $event) {
       if(!$event->hasRight()){
         continue;
