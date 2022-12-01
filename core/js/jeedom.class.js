@@ -194,7 +194,7 @@ jeedom.init = function() {
 
   $body.addEventListener('jeedom::gotoplan', function(_event) {
     if (getUrlVars('p') == 'plan' && 'function' == typeof (jeeFrontEnd.plan.displayPlan)) {
-      if (_event.detail != document.getElementById('sel_planHeader').getAttribute('data-link_id')) {
+      if (_event.detail != jeephp2js.planHeader_id) {
         jeephp2js.planHeader_id = _event.detail
         jeeFrontEnd.plan.displayPlan()
       }
