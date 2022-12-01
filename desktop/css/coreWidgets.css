@@ -43,11 +43,23 @@ Desktop
   div.cmd-widget .title {
     color: var(--txt-color);
     height: 16px;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  div.cmd-widget .title > .cmdName {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   div.cmd-widget .cmdName {
     font-size: 12px;
     font-weight: 400;
+    line-height: 13px;
   }
 
   div.cmd-widget div[class^="content"] {
