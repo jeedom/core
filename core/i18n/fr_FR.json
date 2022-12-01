@@ -75,7 +75,16 @@
         "Historique": "Historique",
         "Préviens moi": "Préviens moi",
         "Me prévenir si": "Me prévenir si",
+        "Timeline": "Timeline",
+        "Santé": "Santé",
+        "Logs": "Logs",
+        "Analyse équipement": "Analyse équipement",
+        "Notes": "Notes",
+        "Crons": "Crons",
+        "Démons": "Démons",
+        "Message": "Message",
         "Synthèse": "Synthèse",
+        "Vue": "Vue",
         "Accueil": "Accueil"
     },
     "mobile\/js\/scenario.js": {

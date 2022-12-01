@@ -75,7 +75,16 @@
         "Historique": "歴史的",
         "Préviens moi": "私に警告",
         "Me prévenir si": "なら、私に通知",
+        "Timeline": "Timeline",
+        "Santé": "Santé",
+        "Logs": "Logs",
+        "Analyse équipement": "Analyse équipement",
+        "Notes": "Notes",
+        "Crons": "Crons",
+        "Démons": "Démons",
+        "Message": "Message",
         "Synthèse": "合成",
+        "Vue": "Vue",
         "Accueil": "家庭"
     },
     "mobile\/js\/scenario.js": {

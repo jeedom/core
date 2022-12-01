@@ -75,7 +75,16 @@
         "Historique": "Historis",
         "Préviens moi": "Memperingatkan saya",
         "Me prévenir si": "Beritahu saya jika",
+        "Timeline": "Timeline",
+        "Santé": "Santé",
+        "Logs": "Logs",
+        "Analyse équipement": "Analyse équipement",
+        "Notes": "Notes",
+        "Crons": "Crons",
+        "Démons": "Démons",
+        "Message": "Message",
         "Synthèse": "Synthèse",
+        "Vue": "Vue",
         "Accueil": "Rumah"
     },
     "mobile\/js\/scenario.js": {
