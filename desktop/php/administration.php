@@ -805,6 +805,10 @@ user::isBan();
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
 								<input type="text" class="configKey form-control" data-l1key="timeline::maxevent" />
 							</div>
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-8 control-label">{{Evènements actuels}} : </label>
+							<div class="col-lg-3 col-md-2 col-sm-1 col-xs-4">
+								 <span id="timelineEvents" class="label label-sm label-primary"><?php echo timeline::getLength(); ?></span>
+							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-8 control-label">{{Supprimer tous les évènements de la Timeline}}</label>

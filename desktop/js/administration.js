@@ -843,8 +843,9 @@ $('#bt_removeTimelineEvent').on('click', function() {
       })
     },
     success: function(data) {
+      var cmd = (cmd = document.getElementById('timelineEvents')) ? cmd.innerHTML = 0 : null
       jeedomUtils.showAlert({
-        message: '{{Evènement de la timeline supprimé avec succès}}',
+        message: '{{Evènements de la timeline supprimés avec succès}}',
         level: 'success'
       })
     }
