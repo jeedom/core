@@ -36,9 +36,9 @@ $date = array(
 		</ul>
 		<div id="timelineBottom" class="panel" style="text-align: center; display: none;">
 			<div class="panel-body">
-				<a class="bt_loadMore btn btn-success input-sm noCorner" data-load="50"><i class="fas fa-plus-square"></i></i> 50</a>
-				<a class="bt_loadMore btn btn-success input-sm noCorner" data-load="100"><i class="fas fa-plus-square"></i></i> 100</a>
-				<a class="bt_loadMore btn btn-success input-sm noCorner" data-load="200"><i class="fas fa-plus-square"></i></i> 200</a>
+				<a class="bt_loadMore btn btn-success input-sm noCorner" data-load="50"><i class="fas fa-plus-square"></i> 50</a>
+				<a class="bt_loadMore btn btn-success input-sm noCorner" data-load="100"><i class="fas fa-plus-square"></i> 100</a>
+				<a class="bt_loadMore btn btn-success input-sm noCorner" data-load="200"><i class="fas fa-plus-square"></i> 200</a>
 			</div>
 		</div>
 	</div>
