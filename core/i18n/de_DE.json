@@ -13,11 +13,11 @@
     "mobile\/js\/home.js": {
         "Timeline": "Zeitleiste",
         "Logs": "Protokolle",
-        "Analyse équipement": "Ausrüstungsanalyse",
+        "Analyse équipement": "Geräte Analyse",
         "Notes": "Bewertungen",
-        "Crons": "Kronen",
-        "Démons": "Dämonen",
-        "Santé": "Die Gesundheit",
+        "Crons": "Cron",
+        "Démons": "Daemon",
+        "Santé": "Gesundheit",
         "Basculer le thème": "Thema umschalten",
         "Version desktop": "Desktop Version",
         "Forcer mise à jour": "Aktualisierung erzwingen",
@@ -39,7 +39,7 @@
         "Rafraichir": "Auffrischen",
         "Version desktop": "Desktop-Version",
         "Démons": "Dämonen",
-        "Santé": "Die Gesundheit"
+        "Santé": "Gesundheit"
     },
     "mobile\/js\/message.js": {
         "Vider": "Leer"
@@ -47,8 +47,8 @@
     "mobile\/js\/health.js": {
         "Rafraichir": "Aktualisieren",
         "Version desktop": "Desktop Version",
-        "Démons": "Dämonen",
-        "Crons": "Kronen"
+        "Démons": "Daemon",
+        "Crons": "Cron"
     },
     "mobile\/js\/timeline.js": {
         "Rafraîchir": "Aktualisieren",
@@ -58,8 +58,8 @@
     "mobile\/js\/deamon.js": {
         "Rafraichir": "Aktualisieren",
         "Version desktop": "Desktop Version",
-        "Crons": "Kronen",
-        "Santé": "Die Gesundheit"
+        "Crons": "Cron",
+        "Santé": "Gesundheit"
     },
     "mobile\/js\/equipment.js": {
         "Tout": "Alles",
@@ -632,7 +632,7 @@
         "Scénario": "Szenario",
         "Actions": "Lager",
         "Design": "Entwurf",
-        "Vue": "Gesehen",
+        "Vue": "Aussicht",
         "Interaction": "Interaktion",
         "Note": "Notiz",
         "Voir les logs": "Siehe die Protokolle",
@@ -1392,7 +1392,7 @@
         "Statut démon": "Dämonenstatus",
         "erreurs": "Fehler",
         "en cours": "In Bearbeitung",
-        "Santé": "Die Gesundheit",
+        "Santé": "Gesundheit",
         "Configuration du plugin": "Plugin Konfiguration",
         "Santé de": "Gesundheit von",
         "Benchmark Jeedom": "Jeedom Benchmark",
@@ -1425,7 +1425,7 @@
         "Accueil": "Mein Haus",
         "Synthèse": "Synthese",
         "Dashboard": "Instrumententafel",
-        "Vue": "Gesehen",
+        "Vue": "Aussicht",
         "Design": "Entwurf",
         "Design 3D": "3D-Design",
         "Analyse": "Analysieren",
@@ -1436,14 +1436,14 @@
         "Timeline": "Zeitleiste",
         "Historique": "Chronik",
         "Rapport": "Bericht",
-        "Santé": "Die Gesundheit",
+        "Santé": "Gesundheit",
         "Outils": "Werkzeuge",
         "Objets": "Objekte",
         "Scénarios": "Szenarien",
         "Interactions": "Interaktion",
         "Widgets": "Widgets",
         "Types d'équipement": "Gerätearten",
-        "Notes": "Bewertungen",
+        "Notes": "Hinweis",
         "Testeur expression": "Expressionstester",
         "Variables": "Variablen",
         "Recherche": "Suche",
@@ -2094,7 +2094,7 @@
         "Error 401 Unauthorized": "Fehler 401 Nicht autorisiert",
         "Dashboard": "Instrumententafel",
         "Synthèse": "Synthese",
-        "Vue": "Gesehen",
+        "Vue": "Aussicht",
         "Design": "Entwurf",
         "Design 3D": "3D-Design",
         "Sauvegarder": "Speichern",
@@ -2518,7 +2518,7 @@
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Dashboard": "Instrumententafel",
-        "Vue": "Gesehen",
+        "Vue": "Aussicht",
         "Design": "Entwurf",
         "Design 3D": "3D-Design",
         "Gestion": "Management",
@@ -2941,7 +2941,7 @@
     },
     "desktop\/js\/health.js": {
         "Configuration du plugin": "Plugin Konfiguration",
-        "Santé": "Die Gesundheit",
+        "Santé": "Gesundheit",
         "Jeedom benchmark": "Jeedom Benchmark"
     },
     "desktop\/js\/dashboard.js": {
@@ -3302,7 +3302,7 @@
         "Thème alternatif": "Alternatives Thema",
         "Bienvenue dans Jeedom": "Willkommen in Jeedom",
         "Evénements en temps réel": "Echtzeitereignisse",
-        "Notes": "Bewertungen",
+        "Notes": "Hinweis",
         "Testeur d'expression": "Expressionstester",
         "Variables": "Variablen",
         "Recherche": "Suche",
@@ -3332,7 +3332,7 @@
         "Timeline": "Zeitleiste",
         "Rapports": "Verhältnis",
         "Remplacement": "Ersatz",
-        "Santé": "Die Gesundheit",
+        "Santé": "Gesundheit",
         "Objets": "Objekte",
         "Scénarios": "Szenarien",
         "Interactions": "Interaktion",
@@ -3541,7 +3541,7 @@
         "Objets connectés": "Verbundene Objekte",
         "Confort": "Komfort",
         "Monitoring": "Überwachung",
-        "Santé": "Die Gesundheit",
+        "Santé": "Gesundheit",
         "Nature": "Natur",
         "Alerte des commandes": "Bestellungen alarmieren",
         "Timeout": "Zeitüberschreitung",
@@ -3828,7 +3828,7 @@
         "Aucune méthode correspondante à :": "Keine Methode entsprechend:"
     },
     "core\/ajax\/jeedom.ajax.php": {
-        "Vue": "Gesehen",
+        "Vue": "Aussicht",
         "Objet": "Objekt",
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Aucune documentation trouvée": "Keine Dokumentation gefunden",
@@ -4365,7 +4365,7 @@
     },
     "core\/class\/view.class.php": {
         "Le nom de la vue ne peut pas être vide": "Der Ansichtsname darf nicht leer sein",
-        "Vue": "Gesehen",
+        "Vue": "Aussicht",
         "Vue :": "Ansicht:"
     },
     "core\/class\/system.class.php": {
@@ -4839,7 +4839,7 @@
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "Export",
-        "Vue": "Gesehen",
+        "Vue": "Aussicht",
         "Design": "Entwurf",
         "Plugin": "Plugin",
         "Batteries": "Batterien",
