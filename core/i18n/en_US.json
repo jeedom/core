@@ -14,8 +14,8 @@
         "Timeline": "Timeline",
         "Logs": "Logs",
         "Analyse équipement": "Equipment analysis",
-        "Notes": "Ratings",
-        "Crons": "Crons",
+        "Notes": "Note",
+        "Crons": "Cron",
         "Démons": "Daemons",
         "Santé": "Health",
         "Basculer le thème": "Toggle theme",
@@ -142,12 +142,12 @@
         "Nom": "Name",
         "Status": "Status",
         "Date lancement": "Date start",
-        "Action": "Stock"
+        "Action": "Action"
     },
     "mobile\/html\/notes.html": {
         "Ajouter": "Add",
-        "Sauvegarder": "To safeguard",
-        "Supprimer": "Remove",
+        "Sauvegarder": "Save",
+        "Supprimer": "Delete",
         "Titre": "Title",
         "Texte": "Text"
     },
@@ -164,7 +164,7 @@
     },
     "mobile\/html\/home.html": {
         "Equipements": "Equipments",
-        "Messages": "Posts",
+        "Messages": "Message",
         "Message(s)": "Message",
         "Vues": "View",
         "Designs": "Designs",
