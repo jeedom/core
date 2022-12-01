@@ -24,15 +24,15 @@ jeedomUtils.hideLoading = function() {
 $(function() {
   $(document)
   .ajaxStart(function () {
-    $.showLoading()
+    jeedomUtils.showLoading()
   })
   .ajaxStop(function () {
-    $.hideLoading()
+    jeedomUtils.hideLoading()
   })
 })
 
 window.addEventListener('error', function(event) {
-  $.hideLoading()
+  jeedomUtils.hideLoading()
 })
 
 
@@ -500,12 +500,27 @@ jeedomUtils.initApplication = function(_reinit) {
           $.include(include, function() {
             deviceInfo = getDeviceType()
             jeedom.object.summaryUpdate([{object_id:'global'}])
-
             if (APP_MODE) {
               jeedomUtils.loadPage('home', 'Accueil')
             } else {
-              if (getUrlVars('p') == 'view') {
-                jeedomUtils.loadPage('view', 'Vue', getUrlVars('view_id'));
+              var redirect = getUrlVars('p')
+              var redirections = [
+                {page: 'timeline', title: '{{Timeline}}'},
+                {page: 'health', title: '{{Santé}}'},
+                {page: 'log', title: '{{Logs}}'},
+                {page: 'eqAnalyse', title: '{{Analyse équipement}}'},
+                {page: 'notes', title: '{{Notes}}'},
+                {page: 'cron', title: '{{Crons}}'},
+                {page: 'deamon', title: '{{Démons}}'},
+                {page: 'message', title: '{{Message}}'},
+                {page: 'overview', title: "<i class=\'fab fa-hubspot\'></i> {{Synthèse}}"}
+              ]
+              if (redirect && redirections.map(i => i.page).includes(redirect)) {
+                for (var redir of redirections) {
+                  if (redir.page == redirect) jeedomUtils.loadPage(redir.page, redir.title)
+                }
+              } else if (redirect == 'view') {
+                jeedomUtils.loadPage('view', '{{Vue}}', getUrlVars('view_id'));
               } else if (isset(jeeFrontEnd.userProfils) && jeeFrontEnd.userProfils != null && isset(jeeFrontEnd.userProfils.homePageMobile) && jeeFrontEnd.userProfils.homePageMobile != 'home') {
                 var res = jeeFrontEnd.userProfils.homePageMobile.split("::")
                 if (res[0] == 'core') {
@@ -531,7 +546,7 @@ jeedomUtils.initApplication = function(_reinit) {
                   jeedomUtils.loadPage(res[1], 'Plugin', '', res[0])
                 }
               } else {
-                jeedomUtils.loadPage('home', '{{Accueil}}')
+                  jeedomUtils.loadPage('home', '{{Accueil}}')
               }
             }
 
@@ -560,7 +575,7 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
     PAGE_HISTORY[PAGE_HISTORY.length - 1].scroll = $(document).scrollTop()
   }
   if (!isset(_dialog) || !_dialog) {
-    PAGE_HISTORY.push({page : _page, title : _title,option : _option, plugin : _plugin})
+    PAGE_HISTORY.push({page: _page, title: _title, option: _option, plugin: _plugin})
   }
 
   $.showLoading()
@@ -653,7 +668,8 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
       }
       $('#page').trigger('create')
       jeedomUtils.setBackgroundImage('')
-      window.history.pushState('', '', 'index.php?v=m&p=home')
+      window.history.pushState('', '', 'index.php?v=m&p=' + _page)
+
       var functionName = ''
       if (init(_plugin) != '') {
         functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase()
