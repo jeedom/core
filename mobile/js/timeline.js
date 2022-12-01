@@ -22,20 +22,22 @@ function initTimeline() {
       }
       rightPanel += '</ul>'
       jeedomUtils.loadPanel(rightPanel)
-      $('.changeTimelineFolder').off('click').on('click',function() {
-        $('.changeTimelineFolder').removeClass('active')
+      $('#bottompanel a.changeTimelineFolder').off('click').on('click',function() {
+        $('#bottompanel a.changeTimelineFolder').removeClass('active')
         $(this).addClass('active')
         $('#bottompanel').panel('close')
         window.loadStart = 0
-      window.loadOffset = 35
+        window.loadOffset = 35
         displayTimeline(window.loadStart, window.loadOffset)
       })
+
       $('#bt_refreshTimeline').on('click',function() {
         $('#bottompanel').panel('close')
         window.loadStart = 0
-      window.loadOffset = 35
+        window.loadOffset = 35
         displayTimeline(window.loadStart, window.loadOffset)
       })
+
       $('#timelineBottom a.bt_loadMore').on('click', function() {
         var more = parseInt($(this).attr('data-load'))
         window.loadStart = window.loadStart + window.loadOffset + 1
@@ -43,7 +45,17 @@ function initTimeline() {
         displayTimelineSegment(window.loadStart, window.loadOffset)
       })
 
-      console.log(window.loadStart + ' >> ' + window.loadOffset)
+
+      window.onscroll = function(event) {
+        if (window.isScrolling) return
+        if (window.scrollY >= document.getElementById('timelineContainer').scrollHeight - window.innerHeight) {
+          window.isScrolling = true
+          window.loadStart = window.loadStart + window.loadOffset + 1
+          window.loadOffset = 50
+          displayTimelineSegment(window.loadStart, window.loadOffset)
+        }
+      }
+
       displayTimeline(window.loadStart, window.loadOffset)
     }
   })
@@ -51,7 +63,7 @@ function initTimeline() {
 
 
 
-//Nearly same functions desktop/mobile apart jeeP, folder selector, dateFull:
+//Nearly same functions desktop/mobile apart jeeP, folder selector, dateFull, window.isScrolling:
 function displayTimeline() {
   document.querySelector('#timelineContainer #events').empty()
   displayTimelineSegment(window.loadStart, window.loadOffset)
@@ -61,7 +73,7 @@ function displayTimelineSegment(_start, _offset) {
   if (!isset(_offset)) _offset = jeeP.loadOffset
 
   jeedom.timeline.byFolder({
-    folder: document.querySelector('.changeTimelineFolder.active').value,
+    folder: document.querySelector('#bottompanel .changeTimelineFolder.active').getAttribute('data-value'),
     start: _start,
     offset: _offset,
     error: function(error) {
@@ -186,6 +198,7 @@ function displayTimelineSegment(_start, _offset) {
       document.querySelector('#timelineContainer #events').insertAdjacentHTML('beforeend', content)
       //$('#timelineContainer ul').empty().append(content)
 
+      window.isScrolling = false
       document.getElementById('timelineBottom').seen()
     }
   })

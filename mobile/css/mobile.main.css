@@ -1151,9 +1151,6 @@
   #timelineContainer .html .tml-cmd > span >span i {
     color: var(--linkHoverLight-color) !important;
   }
-  #timelineContainer ul .tml-folder {
-    display: none;
-  }
 
   #timelineContainer ul {
     padding-top: 15px;
@@ -1316,6 +1313,11 @@
   #timelineContainer div.date {
     top: 3px;
     left: -85px;
+  }
+  #timelineContainer .tml-folder {
+    position: absolute;
+    top: 6px;
+    right: 2px;
   }
   @media screen and (max-width: 780px) and (orientation: portrait) {
     #timelineContainer div.type,

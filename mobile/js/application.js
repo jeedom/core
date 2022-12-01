@@ -563,6 +563,7 @@ jeedomUtils.initApplication = function(_reinit) {
 }
 
 jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
+  window.onscroll = null
   //handle default mobile home switching:
   if (Array.isArray(_page)) {
     _title = _page[1]
