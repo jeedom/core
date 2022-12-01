@@ -1291,8 +1291,8 @@ class scenarioExpression {
 						$replace2[$replace_string] = self::triggerValue($_scenario);
 					} elseif ($function == 'triggerId') {
 						$replace2[$replace_string] = self::triggerId($_scenario);
-					} elseif ($function == 'triggerNoChange') {
-						$replace2[$replace_string] = self::triggerNoChange($arguments[0], $_scenario);
+					} elseif ($function == 'triggerChange') {
+						$replace2[$replace_string] = self::triggerChange($arguments[0], $_scenario);
 					} elseif ($function == 'tag') {
 						if (!isset($arguments[0])) {
 							$arguments[0] = '';
