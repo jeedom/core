@@ -479,6 +479,12 @@ user::isBan();
 								<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::coloredcats" data-reload="1" />
 							</div>
 						</div>
+						<div class="form-group">
+							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Ne pas mettre de . devant les commandes graphée}}</label>
+							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+								<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::doNotHighlightGraphCmd" data-reload="1" />
+							</div>
+						</div>
 
 						<legend>{{Images de fond}}</legend>
 						<div class="form-group">
@@ -807,7 +813,7 @@ user::isBan();
 							</div>
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-8 control-label">{{Evènements actuels}} : </label>
 							<div class="col-lg-3 col-md-2 col-sm-1 col-xs-4">
-								 <span id="timelineEvents" class="label label-sm label-primary"><?php echo timeline::getLength(); ?></span>
+								<span id="timelineEvents" class="label label-sm label-primary"><?php echo timeline::getLength(); ?></span>
 							</div>
 						</div>
 						<div class="form-group">

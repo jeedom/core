@@ -458,11 +458,13 @@ jeedom.eqLogic.refreshValue = function(_params) {
   $.ajax(paramsAJAX);
 }
 
-jeedom.eqLogic.initGraphInfo = function(_eqLogicId) {
+jeedom.eqLogic.initGraphInfo = function(_eqLogicId,_doNotHighlightGraphCmd) {
   var divGraph = $('div.eqLogic[data-eqlogic_id=' + _eqLogicId + '] div.eqlogicbackgraph')
   if (divGraph.length) {
     var cmdId = divGraph.data('cmdid')
-    $('div.eqLogic[data-eqlogic_id=' + _eqLogicId + '] div.cmd-widget[data-cmd_id="' + cmdId + '"] .cmdName').prepend('<span class="graphInfoCmd">• </span>')
+    if(!_doNotHighlightGraphCmd || _doNotHighlightGraphCmd === false){
+      $('div.eqLogic[data-eqlogic_id=' + _eqLogicId + '] div.cmd-widget[data-cmd_id="' + cmdId + '"] .cmdName').prepend('<span class="graphInfoCmd">• </span>')
+    }
     setTimeout(function() {
       jeedom.eqLogic.drawGraphInfo(cmdId)
     }, 1)

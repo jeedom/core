@@ -831,7 +831,8 @@ class eqLogic {
 
 		//History graph:
 		if ($this->getDisplay('backGraph::info', 0) != 0 && is_object(cmd::byId($this->getDisplay('backGraph::info')))) {
-			$replace['#divGraphInfo#'] = '<div class="eqlogicbackgraph" data-cmdid="' . $this->getDisplay('backGraph::info') . '" data-format="' . $this->getDisplay('backGraph::format', 'day') . '" data-type="' . $this->getDisplay('backGraph::type', 'areaspline') . '" data-color="' . $this->getDisplay('backGraph::color', '#4572A7') . '"><script>jeedom.eqLogic.initGraphInfo(' . $this->getId() . ')</script></div>';
+			$doNotHighlightGraphCmd = (config::byKey('interface::advance::doNotHighlightGraphCmd') == 1) ? 'true' : 'false';
+			$replace['#divGraphInfo#'] = '<div class="eqlogicbackgraph" data-cmdid="' . $this->getDisplay('backGraph::info') . '" data-format="' . $this->getDisplay('backGraph::format', 'day') . '" data-type="' . $this->getDisplay('backGraph::type', 'areaspline') . '" data-color="' . $this->getDisplay('backGraph::color', '#4572A7') . '"><script>jeedom.eqLogic.initGraphInfo(' . $this->getId() . ',' . $doNotHighlightGraphCmd . ')</script></div>';
 			$height = $this->getDisplay('backGraph::height', '0');
 			if ($height != '0') {
 				$replace['#isVerticalAlign#'] = 0;
