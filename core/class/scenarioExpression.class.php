@@ -914,7 +914,7 @@ class scenarioExpression {
 		$limit = (is_numeric($during)) ? $during : 60;
 		$cmd = cmd::byId(str_replace('#', '', $_scenario->getRealTrigger()));
 		if (!is_object($cmd)) {
-			return 0;
+			return -1;
 		}
 		$init_value = $cmd->execCmd();
 		while (true) {
@@ -927,7 +927,7 @@ class scenarioExpression {
 			$occurence++;
 			sleep(1);
 		}
-		return 0;
+		return -2;
 	}
 
 	public static function triggerId(&$_scenario = null) {
