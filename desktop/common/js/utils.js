@@ -104,8 +104,6 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   $.contextMenu('destroy')
   document.querySelectorAll('.context-menu-root').remove()
 
-  $(window).off('resize')
-
   try {
     $(".ui-dialog-content").dialog("close")
   } catch(e) {}
@@ -149,8 +147,11 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   var div_pageContainer = document.getElementById('div_pageContainer')
   document.emptyById(div_pageContainer)
   div_pageContainer.replaceWith(div_pageContainer.cloneNode(true))
+
+  domUtils.unRegisterEvents()
+  //Migrate to registerEvent() and delete:
   $('body').off('mouseenter mouseleave')
-  $('#div_pageContainer').off()
+  $(window).off('resize')
 
   $('#div_pageContainer').load(url, function() {
     if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').html() != undefined) {
@@ -183,7 +184,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 
   setTimeout(function() {
     //scenarios uses special tooltips not requiring destroy.
-    if ($('body').attr('data-page') != 'scenario') {
+    if (document.body.getAttribute('data-page') != 'scenario') {
       if (jeedomUtils.OBSERVER !== null) {
         var targetNode = document.getElementById('div_mainContainer')
         if (targetNode) jeedomUtils.OBSERVER.observe(targetNode, jeedomUtils.observerConfig)
@@ -1054,9 +1055,9 @@ jeedomUtils.initReportMode = function() {
     document.querySelectorAll('header')?.unseen()
     document.querySelectorAll('footer')?.unseen()
     let mainContainer = document.getElementById('div_mainContainer')
-    if(mainContainer != null) mainContainer.style.marginTop = '-50px'
+    if (mainContainer != null) mainContainer.style.marginTop = '-50px'
     let wrap = document.getElementById('wrap')
-    if(wrap != null) wrap.style.marginBottom = '0px'
+    if (wrap != null) wrap.style.marginBottom = '0px'
     document.querySelectorAll('.reportModeVisible')?.seen()
     document.querySelectorAll('.reportModeHidden')?.unseen()
   }

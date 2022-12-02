@@ -16,6 +16,13 @@
 
 "use strict"
 
+/* DOM utils namespace
+*/
+var domUtils = {
+  __description: 'DOM related Jeedom functions.'
+}
+
+
 /* Extension Functions
 */
 String.prototype.HTMLFormat = function() {
@@ -437,12 +444,65 @@ Element.prototype.html = function(_html, _append) {
 }
 
 
-/* DOM utils namespace
+
+/* ____________Listeners Management____________
+All events on #div_pageContainer and underneath are removed at jeedomUtils.loadPage() (div_pageContainer empty and cloned:
+
+Events higher in DOM will persist if not referenced and removed at loadPage()
+
+Usage:
+window.registerEvent("resize", function() {console.log('timeline page resized')})
+window.unRegisterEvent('resize') //will remove all set resize events
+
+document.getElementById('div_mainContainer').registerEvent('scroll', function timelineAutoLoad(event) {console.log('timeline page scrolling')})
+document.getElementById('div_mainContainer').unRegisterEvent('scroll', 'timelineAutoLoad') // remove only this listener for scroll
+
+domUtils.unRegisterEvents() implemented at jeedomUtils.loadPage()!
 */
-var domUtils = {
-  __description: 'DOM related Jeedom functions.'
+domUtils.registeredEvents = []
+domUtils.unRegisterEvents = function() {
+  for (var listener of domUtils.registeredEvents) {
+    listener.element.removeEventListener(listener.type, listener.callback, false)
+  }
+  domUtils.registeredEvents = []
+}
+EventTarget.prototype.registerEvent = function(_type, _callback) {
+  if (typeof _callback !== 'function') return
+  domUtils.registeredEvents.push({
+    element: this,
+    type: _type,
+    id: _callback.name || '',
+    callback: _callback
+  })
+  this.addEventListener(_type, _callback)
+  return this
+}
+EventTarget.prototype.unRegisterEvent = function(_type, _id) {
+  var listeners = []
+  if (!isset(_type) && !isset(_id)) {
+    listeners = domUtils.registeredEvents.filter(listen => listen.element == this)
+  }
+  if (isset(_type) && !isset(_id)) {
+    listeners = domUtils.registeredEvents.filter(listen => listen.type == _type && listen.element == this)
+  }
+  if (!isset(_type) && isset(_id)) {
+    listeners = domUtils.registeredEvents.filter(listen => listen.id == _id && listen.element == this)
+  }
+  if (isset(_type) && isset(_id)) {
+    listeners = domUtils.registeredEvents.filter(listen => listen.type == _type && listen.id == _id && listen.element == this)
+  }
+
+  for (var listener of listeners) {
+    this.removeEventListener(listener.type, listener.callback, false)
+    domUtils.registeredEvents = domUtils.registeredEvents.filter(ev => !listeners.includes(ev))
+  }
+
+  return this
 }
 
+
+/* Widgets
+*/
 domUtils.issetWidgetOptParam = function(_def, _param) {
   if (_def != '#' + _param + '#') return true
   return false
