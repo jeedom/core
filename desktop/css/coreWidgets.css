@@ -62,6 +62,10 @@ Desktop
     line-height: 13px;
   }
 
+  div.cmd-widget .value > .label {
+    padding: 1px 3px;
+  }
+
   div.cmd-widget div[class^="content"] {
     display: flex;
     justify-content: center;
@@ -72,7 +76,7 @@ Desktop
   div.cmd-widget .content-xs {
     display: block!important;
     color: var(--txt-color);
-    height: 14px;
+    max-height: 26px;
     margin: 0;
   }
   div.cmd-widget .content-sm {
