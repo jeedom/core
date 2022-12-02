@@ -907,7 +907,7 @@ class scenarioExpression {
 		return '#' . $color->red . $color->green . $color->blue;
 	}
 
-	public static function triggerChange($_during, $_scenario) {
+	public static function triggerChange($_during, &$_scenario = null) {
 		$occurence = 0;
 		$limit = 60;
 		$during = jeedom::evaluateExpression($_during);
