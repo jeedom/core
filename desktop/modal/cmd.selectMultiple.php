@@ -19,13 +19,13 @@ if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
 $cmd = cmd::byId(init('cmd_id'));
-if(is_object($cmd)){
+if (is_object($cmd)) {
   $listeCmds = cmd::byTypeSubType($cmd->getType(), $cmd->getSubType());
-}else{
+} else {
   $listeCmds = cmd::byTypeSubType(init('type'), init('subtype'));
 }
-if(!is_array($listeCmds) || count($listeCmds) == 0){
-  throw new Exception(__('Aucune commande trouvée',__FILE__));
+if (!is_array($listeCmds) || count($listeCmds) == 0) {
+  throw new Exception(__('Aucune commande trouvée', __FILE__));
 }
 ?>
 
@@ -34,12 +34,13 @@ if(!is_array($listeCmds) || count($listeCmds) == 0){
   <a class="btn btn-default roundedLeft" id="bt_cmdConfigureSelectMultipleAlertToogle" data-state="0"><i class="far fa-circle"></i> {{Inverser}}
   </a><a class="btn btn-success roundedRight" id="bt_cmdConfigureSelectMultipleAlertApply"><i class="fas fa-check"></i> {{Valider}}</a>
 </div>
-<br/>
+<br />
 <table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureSelectMultiple" style="width:100% !important;">
   <thead>
     <tr>
       <th data-sorter="false" data-filter="false"></th>
       <th>{{Objet}}</th>
+      <th>{{Plugin}}</th>
       <th>{{Equipement}}</th>
       <th>{{Nom}}</th>
     </tr>
@@ -62,12 +63,17 @@ if(!is_array($listeCmds) || count($listeCmds) == 0){
       }
       $tr .= '</td>';
       $tr .= '<td>';
-      if(is_object($object)){
+      if (is_object($object)) {
         $tr .= $object->getName();
       }
       $tr .= '</td>';
       $tr .= '<td>';
-      if(is_object($eqLogic)){
+      if (is_object($eqLogic)) {
+        $tr .= $eqLogic->getEqType_name();
+      }
+      $tr .= '</td>';
+      $tr .= '<td>';
+      if (is_object($eqLogic)) {
         $tr .= $eqLogic->getName();
       }
       $tr .= '</td>';
