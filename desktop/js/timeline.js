@@ -162,6 +162,7 @@ if (!jeeFrontEnd.timeline) {
           document.querySelector('#timelineContainer #events').insertAdjacentHTML('beforeend', content)
           //$('#timelineContainer ul').empty().append(content)
 
+          jeeP.isScrolling = false
           document.getElementById('timelineBottom').seen()
         }
       })
@@ -287,5 +288,18 @@ $('#timelineBottom a.bt_loadMore').on('click', function() {
   jeeP.loadOffset = more
   jeeP.displayTimelineSegment(jeeP.loadStart, jeeP.loadOffset)
 })
+
+
+document.getElementById('div_mainContainer').registerEvent('scroll', function (event) {
+  if (jeeP != undefined && jeeP.isScrolling) return
+  let container = document.getElementById('div_mainContainer')
+  if (container.scrollTop >= container.scrollHeight - window.innerHeight) {
+    jeeP.isScrolling = true
+    jeeP.loadStart = jeeP.loadStart + jeeP.loadOffset + 1
+    jeeP.loadOffset = 50
+    jeeP.displayTimelineSegment(jeeP.loadStart, jeeP.loadOffset)
+  }
+})
+
 
 jeeP.displayTimeline()
