@@ -42,10 +42,10 @@
             cmd.querySelector('input.binarySwitch').checked = false
           }
         }
-      }
 
-      if (is_object(cmd.querySelector('.cmdName.hidden'))) {
-        cmd.querySelector('label.binarySwitch').style.float = 'unset'
+        if (cmd.querySelector('.cmdName').hasClass('hidden')) {
+          cmd.querySelector('label.binarySwitch').style.float = 'unset'
+        }
       }
     })
 
