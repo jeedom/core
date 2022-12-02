@@ -1791,6 +1791,7 @@ div.eqLogic-widget.editingMode .panelLink {
     color: var(--txt-color);
     width: 210px !important;
     height: 155px !important;
+    margin: 3px !important;
   }
   #battery .eqLogic-widget .widget-name {
     text-align: center;

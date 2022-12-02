@@ -126,16 +126,14 @@ $("#tab_deadCmd").off("click").on("click", function() {
 })
 
 jeeP.$alertListContainer.packery({
-  itemSelector: "#alertEqlogic .eqLogic-widget",
-  gutter: 2
+  itemSelector: "#alertEqlogic .eqLogic-widget"
 })
 
 $('.alerts, .batteries').on('click', function() {
   setTimeout(function() {
     jeedomUtils.positionEqLogic()
     jeeP.$alertListContainer.packery({
-      itemSelector: "#alertEqlogic .eqLogic-widget",
-      gutter: 2
+      itemSelector: "#alertEqlogic .eqLogic-widget"
     })
   }, 10)
 })
