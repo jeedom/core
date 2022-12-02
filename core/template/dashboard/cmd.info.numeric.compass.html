@@ -38,8 +38,8 @@
           var windDir = directions[Math.round(((_options.display_value %= 360) < 0 ? _options.display_value + 360 : _options.display_value) / 45) % 8]
 
           cmd.querySelector('.widget-compass-needle-placer').style.transform = 'rotate(' + _options.display_value + 'deg)'
-          cmd.querySelector('.value').innerText = _options.display_value + '°'
-          cmd.querySelector('.winDir').innerText = windDir
+          cmd.querySelector('.value').innerHTML = _options.display_value + '°'
+          cmd.querySelector('.winDir').innerHTML = windDir
         } else {
           cmd.querySelector('.value').innerHTML = '<span class="label label-danger">' + _options.value + '</span>'
         }

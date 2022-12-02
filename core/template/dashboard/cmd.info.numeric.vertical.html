@@ -34,8 +34,8 @@
           height = Math.round(parseFloat(height) * 10) / 10
 
           cmd.querySelector('.vgauge-value').style.height = height + '%'
-          cmd.querySelector('.value').innerText = _options.display_value
-          cmd.querySelector('.unit').innerText = _options.unit
+          cmd.querySelector('.value').innerHTML = _options.display_value
+          cmd.querySelector('.unit').innerHTML = _options.unit
         } else {
           cmd.querySelector('.value').innerHTML = '<span class="label label-danger">' + _options.value + '</span>'
         }

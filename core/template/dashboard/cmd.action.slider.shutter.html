@@ -56,8 +56,8 @@
           }
 
           cmd.querySelector('.shuttergauge-value').style.height = height + '%'
-          cmd.querySelector('.value').innerText = _options.display_value
-          cmd.querySelector('.unit').innerText = _options.unit
+          cmd.querySelector('.value').innerHTML = _options.display_value
+          cmd.querySelector('.unit').innerHTML = _options.unit
           window['mySlider#id#'].set(_options.value)
         } else {
           cmd.querySelector('.value').innerHTML = '<span class="label label-danger">' + _options.value + '</span>'
@@ -66,7 +66,7 @@
     })
 
     document.querySelector('.cmd[data-cmd_uid="#uid#"] .shuttergauge-bckg').addEventListener('click', function() {
-      let minValue = parseFloat('#minValue#'), maxValue = parseFloat('#maxValue#'), shutterPos = parseFloat(document.querySelector('.cmd[data-cmd_uid=#uid#] .value').innerText)
+      let minValue = parseFloat('#minValue#'), maxValue = parseFloat('#maxValue#'), shutterPos = parseFloat(window['mySlider#id#'].get())
       if (shutterPos > (maxValue - minValue) / 2) {
         jeedom.cmd.execute({ id: '#id#', value: { slider: minValue } })
       } else {

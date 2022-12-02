@@ -10,8 +10,8 @@
       if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
         cmd.setAttribute('title', '{{Date de valeur}} : ' + _options.valueDate + '<br>{{Date de collecte}} : ' + _options.collectDate)
 
-        cmd.querySelector('.value').innerText = _options.display_value
-        cmd.querySelector('.unit').innerText = _options.unit
+        cmd.querySelector('.value').innerHTML = _options.display_value
+        cmd.querySelector('.unit').innerHTML = _options.unit
 
         if (_options.alertLevel == 'warning') {
           cmd.querySelector('.value').innerHTML = '<span class="label label-warning"><i class="fas fa-bell"></i> ' + _options.value + '</span>'
