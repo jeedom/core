@@ -513,7 +513,7 @@ jeedomUtils.initApplication = function(_reinit) {
                 {page: 'cron', title: '{{Crons}}'},
                 {page: 'deamon', title: '{{Démons}}'},
                 {page: 'message', title: '{{Message}}'},
-                {page: 'overview', title: "<i class=\'fab fa-hubspot\'></i> {{Synthèse}}"}
+                // break alternate home button {page: 'overview', title: "<i class=\'fab fa-hubspot\'></i> {{Synthèse}}"}
               ]
               if (redirect && redirections.map(i => i.page).includes(redirect)) {
                 for (var redir of redirections) {
@@ -618,6 +618,7 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
     page += '&modal='+_page
   } else {
     //alternate between defaultMobilePage and home:
+
     var thisPage = $('body').attr('data-page')
     if (defaultMobilePage != null && defaultMobilePage[0] != thisPage && _page == 'home') {
       _page = defaultMobilePage[0]
