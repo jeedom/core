@@ -1368,16 +1368,23 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
       jeedomUtils.initTableSorter()
       $('#bt_cmdConfigureSelectMultipleAlertToogle').off('click').on('click', function() {
         var state = false
-        if ($(this).attr('data-state') == 0) {
+        console.log('click', this.getAttribute('data-state'))
+        if (this.getAttribute('data-state') == 0) {
           state = true
-          $(this).attr('data-state', 1).find('i').removeClass('fa-check-circle-o').addClass('fa-circle-o')
-          document.querySelectorAll('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd:visible').jeeValue(1)
+          this.setAttribute('data-state', 1)
+          this.querySelector('i').classList = 'far fa-check-circle'
+          document.querySelectorAll('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd').forEach( (element) => {
+            if (element.isVisible()) element.jeeValue(1)
+          })
         } else {
           state = false
-          $(this).attr('data-state', 0).find('i').removeClass('fa-circle-o').addClass('fa-check-circle-o')
-          document.querySelectorAll('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd:visible').jeeValue(0)
+          this.setAttribute('data-state', 0)
+          this.querySelector('i').classList = 'far fa-circle'
+          document.querySelectorAll('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd').forEach( (element) => {
+            if (element.isVisible()) element.jeeValue(0)
+          })
         }
-      });
+      })
 
       $('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function() {
         $('#table_cmdConfigureSelectMultiple tbody tr').each(function() {
