@@ -1233,6 +1233,7 @@
         "Inverser": "Inverter",
         "Valider": "Validar",
         "Objet": "Objeto",
+        "Plugin": "Plugar",
         "Equipement": "Equipamento",
         "Nom": "Nome"
     },
@@ -1701,6 +1702,7 @@
         "Coloration des icônes de widgets en fonction de leur état.<br>Modifiable par scénario, setColoredIcon ('Coloration des icônes').": "Cor dos ícones dos widgets de acordo com seu estado. <br> Editável por cenário, setColoredIcon ('Cor do ícone')",
         "Catégories colorées": "Categorias coloridas",
         "Colorisation du titre des tuiles en fonction de la catégorie.": "Cor do título dos blocos de acordo com a categoria",
+        "Ne pas mettre de . devant les commandes graphée": "Não coloque . na frente de comandos gráficos",
         "Images de fond": "Imagens de fundo",
         "Afficher les images de fond": "Mostrar imagens de fundo",
         "Flou des fonds des objets": "Desfocar fundo dos objetos",

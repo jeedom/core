@@ -1233,6 +1233,7 @@
         "Inverser": "逆",
         "Valider": "検証",
         "Objet": "オブジェクト",
+        "Plugin": "Plugin",
         "Equipement": "設備",
         "Nom": "表題"
     },
@@ -1701,6 +1702,7 @@
         "Coloration des icônes de widgets en fonction de leur état.<br>Modifiable par scénario, setColoredIcon ('Coloration des icônes').": "状態に応じたウィジェットアイコンの色付け。 <br>シナリオ、setColoredIcon（「アイコンの色付け」）で編集可能。",
         "Catégories colorées": "Catégories colorées",
         "Colorisation du titre des tuiles en fonction de la catégorie.": "Colorisation du titre des tuiles en fonction de la catégorie",
+        "Ne pas mettre de . devant les commandes graphée": "Ne pas mettre de . devant les commandes graphée",
         "Images de fond": "Images de fond",
         "Afficher les images de fond": "背景画像を表示する",
         "Flou des fonds des objets": "Flou des fonds des objets",

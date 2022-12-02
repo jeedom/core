@@ -1233,6 +1233,7 @@
         "Inverser": "Invertir",
         "Valider": "Validar",
         "Objet": "Objeto",
+        "Plugin": "Enchufar",
         "Equipement": "Dispositivos",
         "Nom": "Nombre"
     },
@@ -1701,6 +1702,7 @@
         "Coloration des icônes de widgets en fonction de leur état.<br>Modifiable par scénario, setColoredIcon ('Coloration des icônes').": "Coloración de iconos de widgets según su estado. <br> Editable por escenario, setColoredIcon ('Coloración de icono')",
         "Catégories colorées": "Categorías coloreadas",
         "Colorisation du titre des tuiles en fonction de la catégorie.": "Coloración del título de los mosaicos según la categoría",
+        "Ne pas mettre de . devant les commandes graphée": "No pongas . delante de comandos graficados",
         "Images de fond": "Imágenes de fondo",
         "Afficher les images de fond": "Mostrar imágenes de fondo",
         "Flou des fonds des objets": "Fondos borrosos de objetos",

@@ -1233,6 +1233,7 @@
         "Inverser": "Umgekehrt",
         "Valider": "Validate",
         "Objet": "Objekt",
+        "Plugin": "Plugin",
         "Equipement": "Gerät",
         "Nom": "Name"
     },
@@ -1701,6 +1702,7 @@
         "Coloration des icônes de widgets en fonction de leur état.<br>Modifiable par scénario, setColoredIcon ('Coloration des icônes').": "Färbung von Widget-Symbolen nach ihrem Status. <br> Nach Szenario bearbeitbar, setColoredIcon ('Symbolfärbung')",
         "Catégories colorées": "Farbige Kategorien",
         "Colorisation du titre des tuiles en fonction de la catégorie.": "Farbgebung des Titels der Kacheln entsprechend der Kategorie",
+        "Ne pas mettre de . devant les commandes graphée": "Nicht setzen. vor grafisch dargestellten Befehlen",
         "Images de fond": "Hintergrundbilder",
         "Afficher les images de fond": "Hintergrundbilder anzeigen",
         "Flou des fonds des objets": "Verschwommene Hintergründe von Objekten",

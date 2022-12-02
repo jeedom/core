@@ -1233,6 +1233,7 @@
         "Inverser": "Inverser",
         "Valider": "Valider",
         "Objet": "Objet",
+        "Plugin": "Plugin",
         "Equipement": "Equipement",
         "Nom": "Nom"
     },
@@ -1701,6 +1702,7 @@
         "Coloration des icônes de widgets en fonction de leur état.<br>Modifiable par scénario, setColoredIcon ('Coloration des icônes').": "Coloration des icônes de widgets en fonction de leur état.<br>Modifiable par scénario, setColoredIcon ('Coloration des icônes').",
         "Catégories colorées": "Catégories colorées",
         "Colorisation du titre des tuiles en fonction de la catégorie.": "Colorisation du titre des tuiles en fonction de la catégorie.",
+        "Ne pas mettre de . devant les commandes graphée": "Ne pas mettre de . devant les commandes graphée",
         "Images de fond": "Images de fond",
         "Afficher les images de fond": "Afficher les images de fond",
         "Flou des fonds des objets": "Flou des fonds des objets",
