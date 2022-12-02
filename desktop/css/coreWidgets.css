@@ -33,7 +33,7 @@ Desktop
     min-width: 100px;
     display: inline-block;
     vertical-align: top;
-    padding: 0 5px 5px 0px;
+    padding: 0 5px 0px 5px;
   }
 
   .eqLogic-widget.hideEqLogicName .widget-name {
