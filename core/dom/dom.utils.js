@@ -201,7 +201,7 @@ Element.prototype.fade = function(_delayms, _opacity, _callback) {
     if (stop) {
       window.clearInterval(fading)
       if (typeof _callback === 'function') {
-          _callback()
+        _callback()
       }
     }
   }
@@ -401,39 +401,50 @@ NodeList.prototype.jeeValue = function(_value) {
   }
 }
 
+
+
+
+
+
 //DOM appended element with script tag (template widget, scenario etc) aren't executed
+domUtils.element2dom = function(_element, _container) {
+  _element.childNodes.forEach(function(element) {
+    if (element !== undefined && element.nodeName === 'SCRIPT') {
+      var script = document.createElement('script')
+      if (element.type) {
+        script.type = element.type
+      } else {
+        script.type = "text/javascript"
+      }
+      Array.prototype.forEach.call(element.attributes, function(attr) {
+        script.setAttribute(attr.nodeName, attr.nodeValue)
+      })
+      if (element.src != '') {
+        script.src = element.src
+        script.onload = async function () {
+          domUtils.element2dom(element, _container)
+        }
+        _container.appendChild(script)
+      } else {
+        script.text = element.text
+        element.replaceWith(script)
+      }
+    } else if (element !== undefined && element.childNodes.length) {
+       domUtils.element2dom(element, _container)
+    }
+  })
+  return _element
+}
 Element.prototype.html = function(_html, _append) {
   //get ?
   if (!isset(_html)) return this.innerHTML
 
-    if (!isset(_append)) _append = false
+  if (!isset(_append)) _append = false
 
   var documentFragment = document.createDocumentFragment()
   var newEl = document.createElement('span')
   newEl.innerHTML = _html
-
-  /*Must inject DOM script element to get executed:
-  */
-  function filterReinjectScripts(_el) {
-    _el.childNodes.forEach(function(element) {
-      if (element.tagName == 'SCRIPT') {
-        try {
-          var script = document.createElement('script')
-          script.type = "text/javascript"
-          script.appendChild(document.createTextNode(element.innerHTML))
-          element.replaceWith(script)
-        } catch(e) {}
-      }
-      //recurse childs:
-      if (element.childNodes.length) {
-        filterReinjectScripts(element)
-      }
-    })
-    return _el
-  }
-
-  var newFilteredEl = filterReinjectScripts(newEl)
-
+  var newFilteredEl = domUtils.element2dom(newEl, this)
   documentFragment.appendChild(newFilteredEl)
   newFilteredEl.replaceWith(...newFilteredEl.childNodes) //remove encapsulated span
 
@@ -441,6 +452,31 @@ Element.prototype.html = function(_html, _append) {
   this.appendChild(documentFragment)
   return this
 }
+
+Element.prototype.load = async function(_path, _callback) {
+  var self = this
+  var request = new Request(_path, {
+    method: 'GET'
+  })
+
+  fetch(request).then(function(responseObj) {
+    if (!responseObj.ok) {
+      console.error(responseObj)
+    }
+    return responseObj.text()
+  }).then(function(rawHtml) {
+    self.html(rawHtml)
+    if (typeof _callback === 'function') {
+      _callback()
+    }
+  }).catch(function(err) {
+      console.error('err:', err)
+  })
+}
+
+
+
+
 
 
 

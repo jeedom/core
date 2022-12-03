@@ -153,7 +153,8 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   $('body').off('mouseenter mouseleave')
   $(window).off('resize')
 
-  $('#div_pageContainer').load(url, function() {
+  //$('#div_pageContainer').load(url, function() {
+  document.getElementById('div_pageContainer').load(url, function() {
     if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').html() != undefined) {
       $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').trigger('click')
     }

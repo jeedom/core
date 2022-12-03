@@ -211,7 +211,7 @@ if (!jeeFrontEnd.dashboard) {
         onlyEnable: '1',
         onlyVisible: '0',
         version: 'dashboard',
-        summary: jeeP.url_summary,
+        summary: this.url_summary,
         error: function(error) {
           jeedomUtils.showAlert({
             message: error.message,
@@ -266,12 +266,13 @@ if (!jeeFrontEnd.dashboard) {
       })
     },
     getObjectHtml: function(_object_id) {
+      self = this
       jeedom.object.toHtml({
         id: _object_id,
         version: 'dashboard',
         category: 'all',
-        summary: jeeP.url_summary,
-        tag: jeeP.url_tag,
+        summary: self.url_summary,
+        tag: self.url_tag,
         error: function(error) {
           jeedomUtils.showAlert({
             message: error.message,
@@ -293,7 +294,7 @@ if (!jeeFrontEnd.dashboard) {
           if (typeof jeeP == 'undefined') {
             return
           }
-          if (jeeP.url_summary != '') {
+          if (self.url_summary != '') {
             if (Array.from(dom_divDisplayEq.querySelectorAll('div.eqLogic-widget, div.scenario-widget')).filter(item => item.isVisible()).length == 0) {
               dom_divDisplayEq.closest('.div_object').remove()
               return
@@ -308,8 +309,8 @@ if (!jeeFrontEnd.dashboard) {
           }
 
           //synch category filter:
-          if (jeeP.url_category != 'all') {
-            let cat = jeeP.url_category.charAt(0).toUpperCase() + jeeP.url_category.slice(1)
+          if (self.url_category != 'all') {
+            let cat = self.url_category.charAt(0).toUpperCase() + self.url_category.slice(1)
             document.getElementById('dashTopBar button.dropdown-toggle').addClass('warning')
             document.querySelectorAll('#categoryfilter .catFilterKey').forEach(function(element) {
               element.checked = false
@@ -353,18 +354,28 @@ if (!jeeFrontEnd.dashboard) {
     },
   }
 }
-
 jeeFrontEnd.dashboard.init()
-
 if (jeeP.url_summary != '') {
-  document.querySelectorAll('#bt_displayObject, #bt_editDashboardWidgetOrder').forEach(function(element) {
-    element.parentNode.remove()
-  })
+    document.querySelectorAll('#bt_displayObject, #bt_editDashboardWidgetOrder').forEach(function(element) {
+      element.parentNode.remove()
+    })
 }
 
 $('.cmd.cmd-widget.tooltipstered').tooltipster('destroy')
 
 $(function() {
+  if (jeeP.url_summary != '') {
+    document.querySelectorAll('div.div_object').forEach(function(div_object) {
+      var objId = div_object.getAttribute('data-object_id')
+      jeeFrontEnd.dashboard.getObjectHtmlFromSummary(objId)
+    })
+  } else {
+    document.querySelectorAll('div.div_object').forEach(function(div_object) {
+      var objId = div_object.getAttribute('data-object_id')
+      jeeFrontEnd.dashboard.getObjectHtml(objId)
+    })
+  }
+
   setTimeout(function() {
     if (typeof jeephp2js.rootObjectId != 'undefined') {
       jeedom.object.getImgPath({
@@ -673,3 +684,4 @@ $('#div_pageContainer').on({
     $('#md_modal').load('index.php?v=d&modal=eqLogic.dashboard.edit&eqLogic_id=' + eqId).dialog('open')
   }
 }, '.editOptions')
+

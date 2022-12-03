@@ -174,12 +174,6 @@ $columns = config::byKey('dahsboard::column::size');
 		</span>
 		</legend>';
 		$div .= '<div class="div_displayEquipement posEqWidthRef" id="div_ob' . $objectId . '">';
-
-		if ($toSummary) {
-			$div .= '<script>jeeFrontEnd.dashboard.getObjectHtmlFromSummary(' . $objectId . ')</script>';
-		} else {
-			$div .= '<script>jeeFrontEnd.dashboard.getObjectHtml(' . $objectId . ')</script>';
-		}
 		$div .= '</div></div></div>';
 		echo $div;
 	}

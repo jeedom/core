@@ -36,6 +36,7 @@ if (!jeeFrontEnd.overview) {
       this.modalContent = this.modal.find('.ui-dialog-content.ui-widget-content')
       this.checkResumeEmpty()
       this.createSummaryObserver()
+      jeedomUtils.hideLoading()
     },
     createSummaryObserver: function() {
       this._SummaryObserver_ = new MutationObserver(function(mutations) {
