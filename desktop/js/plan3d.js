@@ -13,7 +13,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-window.addEventListener('click', function(event) {
+window.registerEvent('click', function(event) {
   if (!event.path) {
     return
   }
@@ -104,7 +104,7 @@ $('#bt_plan3dHeaderFullScreen').on('click', function() {
   window.location.href = 'index.php?v=d&fullscreen=1&p=plan3d&plan3d_id=' + plan3dHeader_id
 })
 
-document.body.addEventListener('cmd::update', function(_event) {
+document.body.registerEvent('cmd::update', function(_event) {
   if (EDIT_MODE) {
     return
   }
@@ -121,7 +121,7 @@ document.body.addEventListener('cmd::update', function(_event) {
   }
 })
 
-window.addEventListener('resize', function() {
+window.registerEvent('resize', function() {
   if (getUrlVars('fullscreen') == '1') {
     $('#div_colPlan3d').height($('html').height())
   } else {
@@ -136,7 +136,7 @@ window.addEventListener('resize', function() {
   } catch (error) { }
 }, false)
 
-window.addEventListener('dblclick', function() {
+window.registerEvent('dblclick', function() {
   if (!isset(event.path)) return
   if (!EDIT_MODE || event.path[0].nodeName != 'CANVAS') {
     return
@@ -153,8 +153,8 @@ window.addEventListener('dblclick', function() {
   }
 }, false)
 
-window.addEventListener('click', handleClick3d, false)
-window.addEventListener('touchend', handleClick3d, false)
+window.registerEvent('click', handleClick3d, false)
+window.registerEvent('touchend', handleClick3d, false)
 
 function handleClick3d(event) {
   if (!isset(event.path)) return

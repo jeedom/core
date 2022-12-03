@@ -279,11 +279,10 @@ $(function() {
 })
 
 //handle resizing:
-$(window).resize(function() {
+window.registerEvent("resize", function history(event) {
   clearTimeout(jeeFrontEnd.history.resizeDone)
   jeeP.resizeDone = setTimeout(function() { jeeP.resizeDn() }, 100)
 })
-
 
 /************Left button list UI***********/
 $('#bt_validChangeDate').on('click', function() {

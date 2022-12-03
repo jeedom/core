@@ -104,8 +104,8 @@ $(function() {
   }
 
   jeedomUtils.initTableSorter()
-  $(window).on('resize', function () {
-    if ($('#ul_tabBatteryAlert li.alerts').hasClass('active')) {
+  window.registerEvent("resize", function eqAnalyse(event) {
+    if (document.querySelector('#ul_tabBatteryAlert li.alerts').hasClass('active')) {
       jeedomUtils.positionEqLogic()
     }
   })

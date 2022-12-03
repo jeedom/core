@@ -365,7 +365,7 @@ $(function() {
 })
 
 //resize explorer in browser window:
-$(window).resize(function() {
-  $('#elfinder').css("width", $(window).width())
-  $('#elfinder').css("height", $(window).height() - 50)
+window.registerEvent("resize", function(event) {
+  document.getElementById('elfinder').style.width = (window.offsetWidth) + 'px'
+  document.getElementById('elfinder').style.height = (window.innerHeight - document.getElementById('jeedomMenuBar').offsetHeight) + 'px'
 })

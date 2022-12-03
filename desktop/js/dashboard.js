@@ -390,7 +390,7 @@ $(function() {
   }, 750)
 
   jeeP.postInit()
-  $(window).on('resize', function (event) {
+  window.registerEvent("resize", function dashboard(event) {
     if (event.isTrigger) return
     jeedomUtils.positionEqLogic()
   })
