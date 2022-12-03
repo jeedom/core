@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.3
 
+## 4.3.12
+
+- Optimisation sur les historiques.
+- Bugfix Synthèse en mobile.
+- Bugfix widget shutter en mobile.
+
 ## 4.3.11
 
 - Autorisation d'une réponse libre dans *ask* si vous mettez * dans le champs des réponses possibles.
