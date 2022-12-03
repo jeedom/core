@@ -24,7 +24,7 @@ function initOverview() {
           }
 
           synthAction = _this.configuration.synthToAction
-          if (synthAction != "-1" && synthAction != 'synthToDashboard') {
+          if (synthAction != undefined && synthAction != "-1" && synthAction != 'synthToDashboard') {
             if (synthAction == 'synthToView') {
               dataPage = 'view'
               dataOption = _this.configuration.synthToView
