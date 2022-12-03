@@ -58,7 +58,7 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 				</div>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="alertEqlogic">
-				<div class="alertListContainer">
+				<div class="alertListContainer posEqWidthRef">
 					<?php
 					$hasAlert = false;
 					foreach ($eqLogicsAll as $eqLogic) {

@@ -173,7 +173,7 @@ $columns = config::byKey('dahsboard::column::size');
 		<i class="fas fa-expand pull-right cursor bt_editDashboardTilesAutoResizeUp" id="expandTiles_object_' . $objectId . '" title="{{Régler toutes les tuiles à la hauteur de la plus haute.}}" data-mode="0" style="display: none;"></i>
 		</span>
 		</legend>';
-		$div .= '<div class="div_displayEquipement" id="div_ob' . $objectId . '">';
+		$div .= '<div class="div_displayEquipement posEqWidthRef" id="div_ob' . $objectId . '">';
 
 		if ($toSummary) {
 			$div .= '<script>jeeFrontEnd.dashboard.getObjectHtmlFromSummary(' . $objectId . ')</script>';

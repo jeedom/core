@@ -39,7 +39,7 @@ function buildJsTree($_object){
   </div>
 
   <div class="col-lg-10 col-md-9 col-sm-8">
-    <div class="div_displayEquipement"></div>
+    <div class="div_displayEquipement posEqWidthRef"></div>
   </div>
 </div>
 

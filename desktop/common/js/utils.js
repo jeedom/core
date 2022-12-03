@@ -1361,8 +1361,8 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
   var margin = jeedom.theme['widget::margin'] + 'px ' + jeedom.theme['widget::margin']*2 + 'px ' + jeedom.theme['widget::margin'] + 'px 0'
 
   //Get full width, step columns, to fill right space:
-  if (document.getElementsByClassName('div_displayEquipement').length > 0) {
-    var containerWidth = document.getElementsByClassName('div_displayEquipement')[0].offsetWidth
+  if (document.getElementsByClassName('posEqWidthRef').length > 0) {
+    var containerWidth = document.getElementsByClassName('posEqWidthRef')[0].offsetWidth
   } else {
     var containerWidth = window.innerWidth - 22
   }
@@ -1390,6 +1390,7 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
   } else {
     var width, height, idx, element
     var elements = document.querySelectorAll('div.eqLogic-widget, div.scenario-widget')
+
     for (idx=0; idx < elements.length; idx++) {
       tile = elements[idx]
       if (tile.dataset.confWidth === undefined) {
@@ -1408,7 +1409,6 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
   }
 }
 jeedomUtils.getClosestInArray = function(_num, _refAr) {
-  //_refAr must be incremental ordered!
   return _refAr.reduce(function(prev, curr) {
     return (Math.abs(curr - _num) < Math.abs(prev - _num) ? curr : prev)
   })

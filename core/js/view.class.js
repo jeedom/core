@@ -102,7 +102,7 @@ jeedom.view.handleViewAjax = function(_params) {
     div_id = 'div_viewZone' + viewZone.id + Date.now();
     /*         * *****************viewZone widget***************** */
     if (viewZone.type == 'widget') {
-      result.html += '<div id="' + div_id + '" class="eqLogicZone" data-viewZone-id="' + viewZone.id + '">';
+      result.html += '<div id="' + div_id + '" class="eqLogicZone posEqWidthRef" data-viewZone-id="' + viewZone.id + '">';
       for (var j in viewZone.viewData) {
         viewData = viewZone.viewData[j];
         result.html += viewData.html;
