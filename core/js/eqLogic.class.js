@@ -471,6 +471,7 @@ jeedom.eqLogic.initGraphInfo = function(_eqLogicId,_doNotHighlightGraphCmd) {
 
 jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
   var drawEqEl = document.querySelector('.eqlogicbackgraph[data-cmdid="' + _cmdId + '"]')
+  if (drawEqEl == null) return
   drawEqEl.empty()
   if (drawEqEl.length == 0) return false
   if (drawEqEl.hasClass('fixedbackgraph')) {
