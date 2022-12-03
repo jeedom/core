@@ -1368,7 +1368,7 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
   }
   var cols = Math.floor(containerWidth / jeedomUtils.tileWidthStep) + 1
   var tileWidthAdd = containerWidth - (cols * jeedomUtils.tileWidthStep)
-  var widthStep = Math.round( jeedomUtils.tileWidthStep + (tileWidthAdd / cols) - (2 * parseInt(jeedom.theme['widget::margin'])) )
+  var widthStep = jeedomUtils.tileWidthStep + (tileWidthAdd / cols) - (2 * parseInt(jeedom.theme['widget::margin']))
   var widthSteps = Array.apply(null, {length: 10}).map(function(value, index) {return (index + 1) * widthStep})
 
   if (_id != undefined) {
