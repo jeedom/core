@@ -43,7 +43,7 @@ String.prototype.stripAccents = function() {
   })
 }
 
-Element.prototype.triggerEvent = function(_eventName, _params) {
+EventTarget.prototype.triggerEvent = function(_eventName, _params) {
   if (!isset(_params)) {
     _params = {}
   }
