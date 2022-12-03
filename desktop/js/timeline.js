@@ -289,9 +289,8 @@ $('#timelineBottom a.bt_loadMore').on('click', function() {
   jeeP.displayTimelineSegment(jeeP.loadStart, jeeP.loadOffset)
 })
 
-
 document.getElementById('div_mainContainer').registerEvent('scroll', function (event) {
-  if (jeeP != undefined && jeeP.isScrolling) return
+  if (jeeP == undefined || jeeP.isScrolling) return
   let container = document.getElementById('div_mainContainer')
   if (container.scrollTop >= container.scrollHeight - window.innerHeight) {
     jeeP.isScrolling = true
@@ -300,6 +299,5 @@ document.getElementById('div_mainContainer').registerEvent('scroll', function (e
     jeeP.displayTimelineSegment(jeeP.loadStart, jeeP.loadOffset)
   }
 })
-
 
 jeeP.displayTimeline()

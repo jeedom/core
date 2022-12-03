@@ -22,7 +22,6 @@ var domUtils = {
   __description: 'DOM related Jeedom functions.'
 }
 
-
 /* Extension Functions
 */
 String.prototype.HTMLFormat = function() {
@@ -446,18 +445,18 @@ Element.prototype.html = function(_html, _append) {
 
 
 /* ____________Listeners Management____________
-All events on #div_pageContainer and underneath are removed at jeedomUtils.loadPage() (div_pageContainer empty and cloned:
+All events on #div_pageContainer and underneath are removed at jeedomUtils.loadPage() (div_pageContainer empty and cloned):
 
 Events higher in DOM will persist if not referenced and removed at loadPage()
 
 Usage:
-window.registerEvent("resize", function() {console.log('timeline page resized')})
-window.unRegisterEvent('resize') //will remove all set resize events
+>> window.registerEvent("resize", function() {console.log('page resized')})
+<< window.unRegisterEvent('resize') //will remove all set resize events
 
-document.getElementById('div_mainContainer').registerEvent('scroll', function timelineAutoLoad(event) {console.log('timeline page scrolling')})
-document.getElementById('div_mainContainer').unRegisterEvent('scroll', 'timelineAutoLoad') // remove only this listener for scroll
+>> document.getElementById('div_mainContainer').registerEvent('scroll', function timelineAutoLoad(event) {console.log('page scroll')})
+<< document.getElementById('div_mainContainer').unRegisterEvent('scroll', 'timelineAutoLoad') // remove only this listener for scroll
 
-domUtils.unRegisterEvents() implemented at jeedomUtils.loadPage()!
+<< domUtils.unRegisterEvents() implemented at jeedomUtils.loadPage()!
 */
 domUtils.registeredEvents = []
 domUtils.unRegisterEvents = function() {
@@ -466,31 +465,22 @@ domUtils.unRegisterEvents = function() {
   }
   domUtils.registeredEvents = []
 }
-EventTarget.prototype.registerEvent = function(_type, _callback) {
-  if (typeof _callback !== 'function') return
+EventTarget.prototype.registerEvent = function(_type, listener) {
+  if (typeof listener !== 'function') return
   domUtils.registeredEvents.push({
     element: this,
     type: _type,
-    id: _callback.name || '',
-    callback: _callback
+    id: listener.name || '',
+    callback: listener
   })
-  this.addEventListener(_type, _callback)
+  this.addEventListener(_type, listener)
   return this
 }
 EventTarget.prototype.unRegisterEvent = function(_type, _id) {
-  var listeners = []
-  if (!isset(_type) && !isset(_id)) {
-    listeners = domUtils.registeredEvents.filter(listen => listen.element == this)
-  }
-  if (isset(_type) && !isset(_id)) {
-    listeners = domUtils.registeredEvents.filter(listen => listen.type == _type && listen.element == this)
-  }
-  if (!isset(_type) && isset(_id)) {
-    listeners = domUtils.registeredEvents.filter(listen => listen.id == _id && listen.element == this)
-  }
-  if (isset(_type) && isset(_id)) {
-    listeners = domUtils.registeredEvents.filter(listen => listen.type == _type && listen.id == _id && listen.element == this)
-  }
+  var self = this
+  var listeners = domUtils.registeredEvents.filter(function(listener) {
+    return ( (_type? listener.type == _type : true) && (_id? listener.id == _id : true) && listener.element == self)
+  })
 
   for (var listener of listeners) {
     this.removeEventListener(listener.type, listener.callback, false)
