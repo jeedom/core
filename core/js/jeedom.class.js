@@ -217,10 +217,10 @@ jeedom.init = function() {
           options.ttl = _event.detail.ttl
         }
         if (getUrlVars('p') == _event.detail.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _event.detail.page)) {
-          $.fn.showAlert(options)
+          jeedomUtils.showAlert(options)
         }
       } else {
-        $.fn.showAlert(_event.detail)
+        jeedomUtils.showAlert(_event.detail)
       }
     }
   })
@@ -292,7 +292,7 @@ jeedom.MESSAGE_NUMBER
 jeedom.refreshMessageNumber = function() {
   jeedom.message.number({
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -313,7 +313,7 @@ jeedom.refreshUpdateNumber = function() {
   if (jeedom.update == undefined) return //mobile
   jeedom.update.number({
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })

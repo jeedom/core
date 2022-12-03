@@ -39,7 +39,7 @@ $(function() {
     jeedom.eqLogic.byType({
       type: pluginId,
       error: function(error) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -230,7 +230,7 @@ $(".eqLogicDisplayCard").on('click', function(event) {
       getCmdState : 1,
       error: function(error) {
         $.hideLoading()
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -334,7 +334,7 @@ $('.eqLogicAction[data-action=copy]').off('click').on('click', function() {
             id: id,
             name: result,
             error: function(error) {
-              $.fn.showAlert({
+              jeedomUtils.showAlert({
                 message: error.message,
                 level: 'danger'
               });
@@ -382,7 +382,7 @@ $('.eqLogicAction[data-action=save]').off('click').on('click', function() {
     id: $(this).attr('data-eqLogic_id'),
     eqLogics: eqLogics,
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -420,7 +420,7 @@ $('.eqLogicAction[data-action=remove]').off('click').on('click', function() {
     jeedom.eqLogic.getUseBeforeRemove({
       id: document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue(),
       error: function(error) {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -445,7 +445,7 @@ $('.eqLogicAction[data-action=remove]').off('click').on('click', function() {
               type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
               id: document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue(),
               error: function(error) {
-                $.fn.showAlert({
+                jeedomUtils.showAlert({
                   message: error.message,
                   level: 'danger'
                 })
@@ -468,7 +468,7 @@ $('.eqLogicAction[data-action=remove]').off('click').on('click', function() {
       }
     })
   } else {
-    $.fn.showAlert({
+    jeedomUtils.showAlert({
       message: '{{Veuillez d\'abord sélectionner un}} ' + eqType,
       level: 'danger'
     })
@@ -484,7 +484,7 @@ $('.eqLogicAction[data-action=add]').off('click').on('click', function() {
           name: result
         }],
         error: function(error) {
-          $.fn.showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           });
@@ -584,7 +584,7 @@ $('#div_pageContainer').on('click', '.cmd .cmdAction[data-action=test]', functio
       id: id
     })
   } else {
-    $.fn.showAlert({
+    jeedomUtils.showAlert({
       message: '{{Veuillez activer l\'équipement avant de tester une de ses commandes}}',
       level: 'warning'
     })

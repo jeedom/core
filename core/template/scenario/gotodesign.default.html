@@ -5,7 +5,7 @@
 <script>
   jeedom.plan.allHeader({
     error: function (error) {
-      $.fn.showAlert({message: error.message, level: 'danger'});
+      jeedomUtils.showAlert({message: error.message, level: 'danger'});
     },
     success: function (plans) {
       var select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="plan_id"]')

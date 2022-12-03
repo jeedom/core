@@ -110,13 +110,13 @@ jeedom.history.changePoint = function(_params) {
   var paramsRequired = ['cmd_id', 'datetime', 'value', 'oldValue'];
   var paramsSpecifics = {
     error: function(error) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       });
     },
     success: function(result) {
-      $.fn.showAlert({
+      jeedomUtils.showAlert({
         message: '{{La valeur a été éditée avec succès}}',
         level: 'success'
       });
@@ -224,7 +224,7 @@ jeedom.history.drawChart = function(_params) {
     success: function(data) {
       //check history exist:
       if (data.state != 'ok') {
-        $.fn.showAlert({
+        jeedomUtils.showAlert({
           message: data.result,
           level: 'danger'
         });
@@ -243,7 +243,7 @@ jeedom.history.drawChart = function(_params) {
           } else {
             message += (init(data.result.dateEnd) != '') ? ' {{jusqu\'au}} ' + data.result.dateEnd : '';
           }
-          $('#div_alertHistory').showAlert({
+          jeedomUtils.showAlert({
             message: message,
             level: 'warning'
           });

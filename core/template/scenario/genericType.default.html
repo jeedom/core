@@ -23,7 +23,7 @@
   jeedom.object.getUISelectList({
       none: 0,
       error: function(error) {
-        $.fn.showAlert({message: error.message, level: 'danger'})
+        jeedomUtils.showAlert({message: error.message, level: 'danger'})
       },
       success: function(_objectsList) {
         _objectsList = '<option value="-1">{{Tous}}</option>' + _objectsList

@@ -287,7 +287,9 @@ document.addEventListener('DOMContentLoaded', function() {
   }, 1)
 })
 
-//Toastr____________ options for jeedom.notify() toastr, need jeedom.theme set!
+/*Toastr____________ options for jeedom.notify() toastr, need jeedom.theme set!
+jQuery dependant, will have to migrate to pure js!
+*/
 toastr.options = {
   "newestOnTop": true,
   "closeButton": true,

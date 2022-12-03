@@ -479,7 +479,7 @@ EventTarget.prototype.registerEvent = function(_type, listener) {
 EventTarget.prototype.unRegisterEvent = function(_type, _id) {
   var self = this
   var listeners = domUtils.registeredEvents.filter(function(listener) {
-    return ( (_type? listener.type == _type : true) && (_id? listener.id == _id : true) && listener.element == self)
+    return ( (_type? listener.type == _type : true) && (_id? listener.id == _id : true) && listener.element == self )
   })
 
   for (var listener of listeners) {

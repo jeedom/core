@@ -22,7 +22,7 @@
   jeedom.scenario.allOrderedByGroupObjectName({
     asGroup: 0,
     error: function (error) {
-      $.fn.showAlert({message: error.message, level: 'danger'});
+      jeedomUtils.showAlert({message: error.message, level: 'danger'});
     },
     success: function (scenarios) {
       var select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="scenario_id"]')
