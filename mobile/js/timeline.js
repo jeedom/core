@@ -77,7 +77,7 @@ function displayTimelineSegment(_start, _offset) {
     start: _start,
     offset: _offset,
     error: function(error) {
-      jeedomUtils.showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })

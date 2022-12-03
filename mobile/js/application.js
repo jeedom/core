@@ -13,7 +13,7 @@ jeedomUtils.showLoading = function() {
   jeedomUtils.loadingTimeout = setTimeout(() => {
     if (!document.getElementById('div_jeedomLoading').isHidden()) {
       jeedomUtils.hideLoading()
-      jeedomUtils.showAlert({level: 'danger', message: 'Operation Timeout: Something has gone wrong!'})
+      $.fn.showAlert({level: 'danger', message: 'Operation Timeout: Something has gone wrong!'})
     }
   }, 20 * 1000)
 }
