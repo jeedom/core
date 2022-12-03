@@ -459,20 +459,19 @@ jeedom.eqLogic.refreshValue = function(_params) {
 }
 
 jeedom.eqLogic.initGraphInfo = function(_eqLogicId,_doNotHighlightGraphCmd) {
-  var divGraph = $('div.eqLogic[data-eqlogic_id=' + _eqLogicId + '] div.eqlogicbackgraph')
-  if (divGraph.length) {
-    var cmdId = divGraph.data('cmdid')
-    if(!_doNotHighlightGraphCmd || _doNotHighlightGraphCmd === false){
-      $('div.eqLogic[data-eqlogic_id=' + _eqLogicId + '] div.cmd-widget[data-cmd_id="' + cmdId + '"] .cmdName').prepend('<span class="graphInfoCmd">• </span>')
+  var divGraph = document.querySelector('div.eqLogic[data-eqlogic_id="' + _eqLogicId + '"] div.eqlogicbackgraph')
+  if (divGraph != null) {
+    var cmdId = divGraph.dataset.cmdid
+    if (!_doNotHighlightGraphCmd || _doNotHighlightGraphCmd === false) {
+      document.querySelector('div.eqLogic[data-eqlogic_id="' + _eqLogicId + '"] div.cmd-widget[data-cmd_id="' + cmdId + '"] .cmdName')?.insertAdjacentHTML('afterbegin', '<span class="graphInfoCmd">• </span>')
     }
-    setTimeout(function() {
-      jeedom.eqLogic.drawGraphInfo(cmdId)
-    }, 1)
+    jeedom.eqLogic.drawGraphInfo(cmdId)
   }
 }
 
 jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
-  var drawEqEl = $('.eqlogicbackgraph[data-cmdid=' + _cmdId + ']')
+  var drawEqEl = document.querySelector('.eqlogicbackgraph[data-cmdid="' + _cmdId + '"]')
+  drawEqEl.empty()
   if (drawEqEl.length == 0) return false
   if (drawEqEl.hasClass('fixedbackgraph')) {
     var topMargin = 0
@@ -481,7 +480,7 @@ jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
   }
   var dateEnd = moment().format('YYYY-MM-DD HH:mm:ss')
   var dateStart
-  var decay = drawEqEl.data('format')
+  var decay = drawEqEl.dataset.format
   switch (decay) {
     case 'hour':
       jeedom.eqLogic.backGraphIntervals[_cmdId] = 2 * 60 * 1000
@@ -521,16 +520,17 @@ jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
       var minValue = result.cmd.subType == 'binary' ? 0 : Math.min.apply(null, values)
       var maxValue = result.cmd.subType == 'binary' ? 1.1 : Math.max.apply(null, values) * 1.01
       result.data.push([now, result.data.slice(-1)[0][1]])
-      drawEqEl.empty().highcharts({
+      new Highcharts.StockChart({
         chart: {
-          type: drawEqEl.data('type'),
+          renderTo: drawEqEl,
+          type: drawEqEl.dataset.type,
           borderWidth: 0,
           spacingTop: 0,
           spacingRight: 0,
           spacingBottom: 0,
           spacingLeft: 0,
           plotBorderWidth: 0,
-          margin: minValue < 0 ? [topMargin, 0, 5, 0] : [topMargin, 0, 0, 0]
+          margin: minValue < 0 ? [topMargin, 0, 5, 0] : [topMargin, 0, 0, 0],
         },
         title: {
           text: ''
@@ -539,6 +539,9 @@ jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
           enabled: false
         },
         rangeSelector: {
+          enabled: false
+        },
+        navigator: {
           enabled: false
         },
         legend: {
@@ -563,8 +566,8 @@ jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
         },
         series: [{
           data: result.data,
-          color: drawEqEl.data('color'),
-          step: drawEqEl.data('type') == 'area' ? 1 : 0,
+          color: drawEqEl.dataset.color,
+          step: drawEqEl.dataset.type == 'area' ? 1 : 0,
           fillOpacity: 0.25,
           enableMouseTracking: false,
           animation: false,
@@ -585,7 +588,7 @@ jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
           enabled: false
         }
       })
-      drawEqEl.prepend('<span class="eqLogicGraphPeriod">' + decay.charAt(0) + '</span>')
+      drawEqEl.insertAdjacentHTML('afterbegin', '<span class="eqLogicGraphPeriod">' + decay.charAt(0) + '</span>')
     }
   })
 }
