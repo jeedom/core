@@ -68,7 +68,6 @@ jeedom.changes = function() {
       var cmd_update = []
       var eqLogic_update = []
       var object_summary_update = []
-      var $body = document.body
       for (var i in data.result) {
         if (data.result[i].name == 'cmd::update') {
           cmd_update.push(data.result[i].option)
@@ -84,22 +83,22 @@ jeedom.changes = function() {
         }
         if (isset(data.result[i].option)) {
           if (['scenario::update', 'ui::update', 'jeedom::gotoplan', 'jeedom::alert', 'jeedom::alertPopup', 'jeedom::coloredIcons', 'message::refreshMessageNumber', 'update::refreshUpdateNumber', 'notify', 'checkThemechange', 'changeTheme'].includes(data.result[i].name)) {
-            $body.dispatchEvent(new CustomEvent(data.result[i].name, { detail: data.result[i].option }))
+            document.body.dispatchEvent(new CustomEvent(data.result[i].name, { detail: data.result[i].option }))
           } else {
             $('body').trigger(data.result[i].name, data.result[i].option)
           }
         } else {
-          $body.dispatchEvent(new CustomEvent(data.result[i].name))
+          document.body.dispatchEvent(new CustomEvent(data.result[i].name))
         }
       }
       if (cmd_update.length > 0) {
-        $body.dispatchEvent(new CustomEvent('cmd::update', { detail: cmd_update }))
+        document.body.dispatchEvent(new CustomEvent('cmd::update', { detail: cmd_update }))
       }
       if (eqLogic_update.length > 0) {
-        $body.dispatchEvent(new CustomEvent('eqLogic::update', { detail: eqLogic_update }))
+        document.body.dispatchEvent(new CustomEvent('eqLogic::update', { detail: eqLogic_update }))
       }
       if (object_summary_update.length > 0) {
-        $body.dispatchEvent(new CustomEvent('jeeObject::summary::update', { detail: object_summary_update }))
+        document.body.dispatchEvent(new CustomEvent('jeeObject::summary::update', { detail: object_summary_update }))
       }
       jeedom.changes_timeout = setTimeout(jeedom.changes, 1)
     },
@@ -158,25 +157,23 @@ jeedom.init = function() {
     ]
   })
 
-  var $body = document.body
-
-  $body.addEventListener('cmd::update', function(_event) {
+  document.body.addEventListener('cmd::update', function(_event) {
     jeedom.cmd.refreshValue(_event.detail)
   })
 
-  $body.addEventListener('eqLogic::update', function(_event) {
+  document.body.addEventListener('eqLogic::update', function(_event) {
     jeedom.eqLogic.refreshValue(_event.detail)
   })
 
-  $body.addEventListener('jeeObject::summary::update', function(_event) {
+  document.body.addEventListener('jeeObject::summary::update', function(_event) {
     jeedom.object.summaryUpdate(_event.detail)
   })
 
-  $body.addEventListener('scenario::update', function(_event) {
+  document.body.addEventListener('scenario::update', function(_event) {
     jeedom.scenario.refreshValue(_event.detail)
   })
 
-  $body.addEventListener('ui::update', function(_event) {
+  document.body.addEventListener('ui::update', function(_event) {
     if (isset(_event.detail.page) && _event.detail.page != '') {
       if ($.mobile) {
         if (!PAGE_HISTORY || PAGE_HISTORY.length == 0 || !PAGE_HISTORY[PAGE_HISTORY.length - 1].page || PAGE_HISTORY[PAGE_HISTORY.length - 1].page != _event.detail.page) {
@@ -192,7 +189,7 @@ jeedom.init = function() {
     document.querySelectorAll(_event.detail.container).setJeeValues(_event.detail.data, _event.detail.type)
   })
 
-  $body.addEventListener('jeedom::gotoplan', function(_event) {
+  document.body.addEventListener('jeedom::gotoplan', function(_event) {
     if (getUrlVars('p') == 'plan' && 'function' == typeof (jeeFrontEnd.plan.displayPlan)) {
       if (_event.detail != jeephp2js.planHeader_id) {
         jeephp2js.planHeader_id = _event.detail
@@ -201,7 +198,7 @@ jeedom.init = function() {
     }
   })
 
-  $body.addEventListener('jeedom::alert', function(_event) {
+  document.body.addEventListener('jeedom::alert', function(_event) {
     if (!isset(_event.detail.message) || $.trim(_event.detail.message) == '') {
       if (isset(_event.detail.page) && _event.detail.page != '') {
         if (getUrlVars('p') == _event.detail.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _event.detail.page)) {
@@ -228,27 +225,27 @@ jeedom.init = function() {
     }
   })
 
-  $body.addEventListener('jeedom::alertPopup', function(_event) {
+  document.body.addEventListener('jeedom::alertPopup', function(_event) {
     alert(_event.detail)
   })
 
-  $body.addEventListener('jeedom::coloredIcons', function(_event) {
-    $body.setAttribute('data-coloredIcons', _event.detail)
+  document.body.addEventListener('jeedom::coloredIcons', function(_event) {
+    document.body.setAttribute('data-coloredIcons', _event.detail)
   })
 
-  $body.addEventListener('message::refreshMessageNumber', function() {
+  document.body.addEventListener('message::refreshMessageNumber', function() {
     jeedom.refreshMessageNumber()
   })
 
-  $body.addEventListener('update::refreshUpdateNumber', function() {
+  document.body.addEventListener('update::refreshUpdateNumber', function() {
     jeedom.refreshUpdateNumber()
   })
 
-  $body.addEventListener('notify', function(_event) {
+  document.body.addEventListener('notify', function(_event) {
     jeedom.notify(_event.detail.title, _event.detail.message, _event.detail.theme)
   })
 
-  $body.addEventListener('checkThemechange', function(_event) {
+  document.body.addEventListener('checkThemechange', function(_event) {
     if ($.mobile) {
       document.getElementById('jQMnDColor').setAttribute('data-nochange', 0)
     } else {
@@ -267,7 +264,7 @@ jeedom.init = function() {
     jeedomUtils.checkThemechange()
   })
 
-  $body.addEventListener('changeTheme', function(_event) {
+  document.body.addEventListener('changeTheme', function(_event) {
     jeedomUtils.changeTheme(_event.detail)
   })
   if (typeof user_id !== 'undefined') {
