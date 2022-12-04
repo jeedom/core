@@ -1264,7 +1264,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 
   $('#cmd_configuration').on({
     'click': function(event) {
-      var type =this.getAttribute('data-type')
+      var type = this.getAttribute('data-type')
       var el = this.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
       jeedom.cmd.getSelectModal({
         cmd: {
@@ -1282,7 +1282,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 
   $('#cmd_configuration').on({
     'click': function(event) {
-      var type =this.getAttribute('data-type')
+      var type = this.getAttribute('data-type')
       var el = this.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
       jeedom.getSelectActionModal({}, function(result) {
         el.jeeValue(result.human)
@@ -1298,13 +1298,13 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     'focusout': function(event) {
       var type = this.getAttribute('data-type')
       var expression = this.closest('.' + type).getJeeValues('.expressionAttr')
-      var el = $(this)
+      var el = this
       jeedom.cmd.displayActionOption(this.jeeValue(), init(expression[0].options), function(html) {
-        el.closest('.' + type).find('.actionOptions').html(html)
+        $(el).closest('.' + type).find('.actionOptions').html(html)
         jeedomUtils.taAutosize()
       })
     }
-  }, '.cmdAction.expressionAttr[data-l1key=cmd]')
+  }, '.cmdAction.expressionAttr[data-l1key="cmd"]')
 
   function addActionCmd(_action, _type, _name) {
     if (!isset(_action)) {
@@ -1335,8 +1335,9 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     div += '<div class="col-sm-7 actionOptions">'
     div += jeedom.cmd.displayActionOption(init(_action.cmd, ''), _action.options)
     div += '</div>'
+
     let newDiv = document.createElement('div')
-    newDiv.innerHTML = div
+    newDiv.html(div)
     newDiv.setJeeValues(_action, '.expressionAttr')
     document.querySelector('#div_' + _type).appendChild(newDiv)
     newDiv.replaceWith(...newDiv.childNodes)
