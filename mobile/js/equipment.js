@@ -17,7 +17,9 @@ function initEquipment(_object_id) {
   }
 
   //set hamburger panel:
+  jeedomUtils.showLoading()
   jeedom.object.all({
+    global: false,
     error: function(error) {
       $.fn.showAlert({message: error.message, level: 'danger'})
     },
@@ -69,7 +71,7 @@ function initEquipment(_object_id) {
 
   if (isset(_object_id)) {
     jeedom.object.getImgPath({
-      id : _object_id,
+      id: _object_id,
       success : function(_path) {
         jeedomUtils.setBackgroundImage(_path)
       }
@@ -155,11 +157,14 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
     id: _objectId,
     version: 'mobile',
     summary: _summary,
+    global: false,
     error: function(error) {
       $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(html) {
+      jeedomUtils.showLoading()
       if (_objectId == 'all' || _objectId == '') {
+        $('#div_displayEquipement').empty()
         var div = ''
         var summaries = []
         var id, icon, objectName
@@ -183,7 +188,8 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
           summaries.push({object_id : id})
         }
         try {
-          $('#div_displayEquipement').empty().html(div).trigger('create')
+          $('#div_displayEquipement').html(div).trigger('create')
+          jeedomUtils.setTileSize('.eqLogic, .scenario')
           jeedom.object.summaryUpdate(summaries)
         } catch(err) {
           console.log(err)
@@ -196,13 +202,14 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
         div += '</div></div></div>'
 
         $('#div_displayEquipement').empty().html(div).trigger('create')
+        jeedomUtils.setTileSize('.eqLogic, .scenario')
         jeedom.object.summaryUpdate([{object_id:_objectId}])
       }
-      jeedomUtils.setTileSize('.eqLogic, .scenario')
       $('#div_displayEquipement .objectHtml').packery({gutter :0})
-      setTimeout(function() {
-        $('#div_displayEquipement .objectHtml').packery({gutter :0})
-      }, 250)
+    },
+    complete: function() {
+      jeedomUtils.hideLoading()
+      window.triggerEvent('resize')
     }
   })
 }
@@ -234,6 +241,7 @@ function displayObjectsBySummary(_objectsAll, _summary) {
     jeedom.object.summaryUpdate([{object_id: thisObject.id}])
   }
   $('*').trigger('create')
+  window.triggerEvent('resize')
 }
 
 var summaryObjEqs = []
@@ -273,6 +281,7 @@ function displayEqsBySummary(_objectsAll, _objectId, _summary) {
               $('#div_displayEquipement').trigger('create')
               setTimeout(function() {
                 $('#div_displayEquipement .objectHtml').packery({gutter :0})
+                window.triggerEvent('resize')
               }, 250)
             }
           }
