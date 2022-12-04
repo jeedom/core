@@ -558,6 +558,9 @@ domUtils.ajax = function(_params) {
     if (request.status === 200) {
       if (typeof _params.success === 'function') {
         _params.success(JSON.parse(request.responseText))
+        if (typeof _params.complete === 'function') {
+          _params.complete()
+        }
       } else {
         return JSON.parse(request.responseText)
       }
@@ -579,18 +582,21 @@ domUtils.ajax = function(_params) {
     }
   })
   .then(function(response) {
-    if (typeof _params.complete === 'function') {
-      _params.complete()
-    }
-    domUtils.countAjax(1, _params.global)
+
     return response.json()
   })
   .then(function(jsonObj) {
     if (typeof _params.success === 'function') {
       _params.success(jsonObj)
     }
+  }).then(function() {
+    domUtils.countAjax(1, _params.global)
+    if (typeof _params.complete === 'function') {
+      _params.complete()
+    }
   })
   .catch(function(error) {
+    domUtils.countAjax(1, _params.global)
     if (typeof _params.error === 'function') {
       _params.error(error.message)
     }
