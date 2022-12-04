@@ -553,8 +553,6 @@ domUtils.ajax = function(_params) {
     request.open(_params.type.toLowerCase(), _params.url, false)
     request.send(new URLSearchParams(_params.data))
 
-    domUtils.countAjax(1, _params.global)
-
     if (request.status === 200) {
       if (typeof _params.success === 'function') {
         _params.success(JSON.parse(request.responseText))
@@ -564,12 +562,14 @@ domUtils.ajax = function(_params) {
       } else {
         return JSON.parse(request.responseText)
       }
+      domUtils.countAjax(1, _params.global)
     } else {
       if (typeof _params.error === 'function') {
         _params.error(request.statusText)
       } else {
         console.error(request.statusText)
       }
+      domUtils.countAjax(1, _params.global)
     }
   }
 

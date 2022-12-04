@@ -580,15 +580,13 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
     PAGE_HISTORY.push({page: _page, title: _title, option: _option, plugin: _plugin})
   }
 
-  $.showLoading()
-  $('#searchContainer').hide()
+  jeedomUtils.showLoading()
+  document.getElementById('searchContainer')?.unseen()
   try {
     $('#bottompanel').panel('close')
     $('#bottompanel_mainoption').panel('close')
     $('.ui-popup').popup('close')
-  } catch (e) {
-
-  }
+  } catch (e) { }
   if (isset(_title)) {
     if (!isset(_dialog) || !_dialog) {
       $('#pageTitle').empty().append(_title)
@@ -663,11 +661,11 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
   } else {
     jeedom.cmd.resetUpdateFunction();
     $('#page').hide().load(page, function() {
-      $('body').attr('data-page', _page)
+      document.body.setAttribute('data-page', _page)
       if (init(_plugin) != '') {
-        $('body').attr('data-plugin', _plugin)
+        document.body.setAttribute('data-plugin', _plugin)
       }else{
-        $('body').attr('data-plugin', null)
+        document.body.setAttribute('data-plugin', null)
       }
       $('#page').trigger('create')
       jeedomUtils.setBackgroundImage('')
@@ -689,15 +687,16 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
       }
       Waves.init()
       if (APP_MODE) {
-        $('div[data-role=header]').remove()
-        $('#pagecontainer').css('padding-top',0)
+        document.querySelectorAll('div[data-role=header]')?.remove()
+        var node = (document.getElementById(pagecontainer)) ? node.style.paddingTop = 0 : null
       } else {
-        $('#pagecontainer').css('padding-top','72px')
+        var node = (document.getElementById(pagecontainer)) ? node.style.paddingTop = '72px' : null
         setTimeout(function() {
-          $('#pagecontainer').css('padding-top','72px')
+          var node = (document.getElementById(pagecontainer)) ? node.style.paddingTop = '72px' : null
         }, 100)
       }
-      $('#page').fadeIn(400)
+      document.getElementById('page').fade(400, 1)
+      //$('#page').fadeIn(400)
     })
   }
 
@@ -787,19 +786,20 @@ jeedomUtils.setTileSize = function(_filter) {
     jeedom.theme['widget::margin'] = 4
   }
   var bsize = deviceInfo.bSize
-  $(_filter).each(function() {
-    $(this).css({'margin':'0px', 'padding':'0px'})
-    if ($(this).hasClass('col2')) {
-      $(this).width(bsize * 2)
-    } else if ($(this).hasClass('col1')) {
-      $(this).width(bsize - jeedom.theme['widget::margin'])
-    } else if(jeedom.theme['interface::mobile::onecolumn'] == 1) {
-      $(this).width(bsize * 2)
-    }else{
-      $(this).width(bsize - jeedom.theme['widget::margin'])
+
+  document.querySelectorAll(_filter)?.forEach( function(node) {
+    Object.assign(node.style, {margin:"0px", padding:"0px"})
+    if (node.hasClass('col2')) {
+      node.style.width = (bsize * 2) + 'px'
+    } else if (node.hasClass('col1')) {
+      node.style.width = (bsize - jeedom.theme['widget::margin']) + 'px'
+    } else if (jeedom.theme['interface::mobile::onecolumn'] == 1) {
+      node.style.width = (bsize * 2) + 'px'
+    } else {
+      node.style.width = (bsize - jeedom.theme['widget::margin']) + 'px'
     }
-    $(this).css('margin',jeedom.theme['widget::margin']+'px')
-  });
+    node.style.margin = jeedom.theme['widget::margin'] + 'px'
+  })
 }
 
 function init(_value, _default) {
