@@ -17,6 +17,7 @@ jeedomUtils.showLoading = function() {
     }
   }, 20 * 1000)
 }
+jeedomUtils.showAlert = $.fn.showAlert
 jeedomUtils.hideLoading = function() {
   document.getElementById('div_jeedomLoading').unseen()
 }
@@ -790,7 +791,7 @@ jeedomUtils.setTileSize = function(_filter) {
     $(this).css({'margin':'0px', 'padding':'0px'})
     if ($(this).hasClass('col2')) {
       $(this).width(bsize * 2)
-    }else if ($(this).hasClass('col1')) {
+    } else if ($(this).hasClass('col1')) {
       $(this).width(bsize - jeedom.theme['widget::margin'])
     } else if(jeedom.theme['interface::mobile::onecolumn'] == 1) {
       $(this).width(bsize * 2)
