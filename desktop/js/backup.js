@@ -43,7 +43,7 @@ if (!jeeFrontEnd.backup) {
       })
     },
     getJeedomLog: function(_autoUpdate, _log) {
-      $.ajax({
+      domUtils.ajax({
         type: 'POST',
         url: 'core/ajax/log.ajax.php',
         data: {

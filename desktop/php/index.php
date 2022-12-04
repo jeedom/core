@@ -161,6 +161,7 @@ function setTheme() {
 
 	<?php
 	include_file('core', 'icon.inc', 'php');
+	include_file('core', 'dom.utils', 'dom');
 	include_file('3rdparty', 'roboto/roboto', 'css');
 	include_file('3rdparty', 'camingocode/camingocode', 'css');
 	include_file('3rdparty', 'text-security/text-security-disc', 'css');
@@ -239,7 +240,6 @@ function setTheme() {
 		'jeeFrontEnd.language' => $configs['language'],
 		'jeedom.theme' => $jeedom_theme
 	]);
-	include_file('core', 'dom.utils', 'dom');
 	include_file('desktop/common', 'utils', 'js');
 
 	if (init('report') == 1) {

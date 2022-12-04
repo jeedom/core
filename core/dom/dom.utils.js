@@ -21,6 +21,25 @@
 var domUtils = {
   __description: 'DOM related Jeedom functions.'
 }
+//jeedomUtils not loaded before first ajax calls:
+domUtils.ajaxCalling = 0
+domUtils.loadingTimeout = null
+domUtils.showLoading = function() {
+  document.getElementById('div_jeedomLoading')?.seen()
+  //Hanging timeout:
+  clearTimeout(domUtils.loadingTimeout)
+  domUtils.loadingTimeout = setTimeout(() => {
+    if (!document.getElementById('div_jeedomLoading')?.isHidden()) {
+      domUtils.hideLoading()
+      domUtils.ajaxCalling --
+      if (jeedomUtils) jeedomUtils.showAlert({level: 'danger', message: 'Operation Timeout: Something has gone wrong!'})
+    }
+  }, 20 * 1000)
+}
+domUtils.hideLoading = function() {
+  document.getElementById('div_jeedomLoading')?.unseen()
+}
+
 
 /* Extension Functions
 */
@@ -401,8 +420,40 @@ NodeList.prototype.jeeValue = function(_value) {
   }
 }
 
+domUtils.extend = function(_object /*, _object... */) {
+  var extended = {}
+  var deep = false
+  var i = 0
+  var length = arguments.length
 
+  // Check if a deep merge
+  if ( Object.prototype.toString.call( arguments[0] ) === '[object Boolean]' ) {
+    deep = arguments[0]
+    i++
+  }
 
+  // Merge the object into the extended object
+  var merge = function (obj) {
+    for ( var prop in obj ) {
+      if ( Object.prototype.hasOwnProperty.call( obj, prop ) ) {
+        // If deep merge and property is an object, merge properties
+        if ( deep && Object.prototype.toString.call(obj[prop]) === '[object Object]' ) {
+          extended[prop] = extend( true, extended[prop], obj[prop] )
+        } else {
+          extended[prop] = obj[prop]
+        }
+      }
+    }
+  }
+
+  // Loop through each object and conduct a merge
+  for ( ; i < length; i++ ) {
+    var obj = arguments[i]
+    merge(obj)
+  }
+
+  return extended
+}
 
 
 
@@ -453,7 +504,7 @@ Element.prototype.html = function(_html, _append) {
   return this
 }
 
-Element.prototype.load = async function(_path, _callback) {
+Element.prototype.load = function(_path, _callback) {
   var self = this
   var request = new Request(_path, {
     method: 'GET'
@@ -474,6 +525,78 @@ Element.prototype.load = async function(_path, _callback) {
   })
 }
 
+
+
+/* ____________Ajax Management____________
+*/
+domUtils.countAjax = function (_type, _global) {
+  if (_global === false) return
+  if (_type == 0) {
+    domUtils.ajaxCalling ++
+    if (domUtils.ajaxCalling == 1) domUtils.showLoading()
+  } else {
+    domUtils.ajaxCalling --
+    if (domUtils.ajaxCalling <= 0) domUtils.hideLoading()
+  }
+  //Should not but may:
+  if (domUtils.ajaxCalling < 0) {
+    domUtils.ajaxCalling = 0
+    domUtils.hideLoading()
+  }
+}
+domUtils.ajax = function(_params) {
+  domUtils.countAjax(0, _params.global)
+
+  //Synchronous request:
+  if (_params.async && _params.async === false) {
+    const request = new XMLHttpRequest()
+    request.open(_params.type.toLowerCase(), _params.url, false)
+    request.send(new URLSearchParams(_params.data))
+
+    domUtils.countAjax(1, _params.global)
+
+    if (request.status === 200) {
+      if (typeof _params.success === 'function') {
+        _params.success(JSON.parse(request.responseText))
+      } else {
+        return JSON.parse(request.responseText)
+      }
+    } else {
+      if (typeof _params.error === 'function') {
+        _params.error(request.statusText)
+      } else {
+        console.error(request.statusText)
+      }
+    }
+  }
+
+  //Asynchronous request:
+  fetch(_params.url, {
+    method: _params.type.toLowerCase(),
+    body: new URLSearchParams(_params.data),
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    }
+  })
+  .then(function(response) {
+    if (typeof _params.complete === 'function') {
+      _params.complete()
+    }
+    domUtils.countAjax(1, _params.global)
+    return response.json()
+  })
+  .then(function(jsonObj) {
+    if (typeof _params.success === 'function') {
+      _params.success(jsonObj)
+    }
+  })
+  .catch(function(error) {
+    if (typeof _params.error === 'function') {
+      _params.error(error.message)
+    }
+  })
+
+}
 
 
 

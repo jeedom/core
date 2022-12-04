@@ -310,7 +310,7 @@ $(function() {
 
 $('.interactAttr[data-l1key=group]').autocomplete({
   source: function(request, response, url) {
-    $.ajax({
+    domUtils.ajax({
       type: 'POST',
       url: 'core/ajax/interact.ajax.php',
       data: {

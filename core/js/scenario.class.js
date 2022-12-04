@@ -38,7 +38,7 @@ jeedom.scenario.all = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   if (isset(jeedom.scenario.cache.all) && jeedom.scenario.cache.all != null && init(_params.nocache, false) == false) {
     params.success(jeedom.scenario.cache.all);
     return;
@@ -48,7 +48,7 @@ jeedom.scenario.all = function(_params) {
   paramsAJAX.data = {
     action: 'all',
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.scenario.allOrderedByGroupObjectName = function(_params) {
@@ -69,7 +69,7 @@ jeedom.scenario.allOrderedByGroupObjectName = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   /*
   if (!asTag && isset(jeedom.scenario.cache.byGroupObjectName) && isset(jeedom.scenario.cache.byGroupObjectName[asGroup]) && jeedom.scenario.cache.byGroupObjectName[asGroup] != null  && init(_params.nocache, false) == false) {
     params.success(jeedom.scenario.cache.byGroupObjectName[asGroup])
@@ -83,7 +83,7 @@ jeedom.scenario.allOrderedByGroupObjectName = function(_params) {
     asGroup: asGroup,
     asTag: asTag
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.scenario.saveAll = function(_params) {
@@ -97,14 +97,14 @@ jeedom.scenario.saveAll = function(_params) {
   }
   delete jeedom.scenario.cache.all
   delete jeedom.scenario.cache.byGroupObjectName
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
     action: 'saveAll',
     scenarios: JSON.stringify(_params.scenarios),
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.scenario.toHtml = function(_params) {
@@ -116,7 +116,7 @@ jeedom.scenario.toHtml = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
@@ -124,7 +124,7 @@ jeedom.scenario.toHtml = function(_params) {
     id: ($.isArray(_params.id)) ? JSON.stringify(_params.id) : _params.id,
     version: _params.version
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.scenario.changeState = function(_params) {
@@ -138,7 +138,7 @@ jeedom.scenario.changeState = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
@@ -146,7 +146,7 @@ jeedom.scenario.changeState = function(_params) {
     id: _params.id,
     state: _params.state
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.scenario.getTemplate = function(_params) {
@@ -160,13 +160,13 @@ jeedom.scenario.getTemplate = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
     action: 'getTemplate',
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.scenario.convertToTemplate = function(_params) {
@@ -178,7 +178,7 @@ jeedom.scenario.convertToTemplate = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
@@ -186,7 +186,7 @@ jeedom.scenario.convertToTemplate = function(_params) {
     id: _params.id,
     template: _params.template || '',
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.scenario.removeTemplate = function(_params) {
@@ -198,14 +198,14 @@ jeedom.scenario.removeTemplate = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
     action: 'removeTemplate',
     template: _params.template,
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.scenario.loadTemplateDiff = function(_params) {
@@ -217,7 +217,7 @@ jeedom.scenario.loadTemplateDiff = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
@@ -225,7 +225,7 @@ jeedom.scenario.loadTemplateDiff = function(_params) {
     template: _params.template,
     id: _params.id,
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.scenario.applyTemplate = function(_params) {
@@ -237,7 +237,7 @@ jeedom.scenario.applyTemplate = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
@@ -246,7 +246,7 @@ jeedom.scenario.applyTemplate = function(_params) {
     id: _params.id,
     convert: _params.convert,
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.scenario.refreshValue = function(_params) {
@@ -277,7 +277,7 @@ jeedom.scenario.refreshValue = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
@@ -285,7 +285,7 @@ jeedom.scenario.refreshValue = function(_params) {
     id: _params.scenario_id,
     version: _params.version || version
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.scenario.copy = function(_params) {
@@ -299,7 +299,7 @@ jeedom.scenario.copy = function(_params) {
   }
   delete jeedom.scenario.cache.all
   delete jeedom.scenario.cache.byGroupObjectName
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
@@ -307,7 +307,7 @@ jeedom.scenario.copy = function(_params) {
     id: _params.id,
     name: _params.name
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.scenario.byId = function(_params) {
@@ -319,14 +319,14 @@ jeedom.scenario.byId = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
     action: 'byId',
     id: _params.id
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.scenario.get = function(_params) {
@@ -338,14 +338,14 @@ jeedom.scenario.get = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
     action: 'get',
     id: _params.id
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.scenario.save = function(_params) {
@@ -359,14 +359,14 @@ jeedom.scenario.save = function(_params) {
   }
   delete jeedom.scenario.cache.all
   delete jeedom.scenario.cache.byGroupObjectName
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
     action: 'save',
     scenario: JSON.stringify(_params.scenario)
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.scenario.remove = function(_params) {
@@ -380,14 +380,14 @@ jeedom.scenario.remove = function(_params) {
   }
   delete jeedom.scenario.cache.all
   delete jeedom.scenario.cache.byGroupObjectName
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
     action: 'remove',
     id: _params.id
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.scenario.clearAllLogs = function(_params) {
@@ -399,13 +399,13 @@ jeedom.scenario.clearAllLogs = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
     action: 'clearAllLogs'
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.scenario.emptyLog = function(_params) {
@@ -417,14 +417,14 @@ jeedom.scenario.emptyLog = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
     action: 'emptyLog',
     id: _params.id
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.scenario.getSelectModal = function(_options, callback) {
@@ -477,14 +477,14 @@ jeedom.scenario.testExpression = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
     action: 'testExpression',
     expression: _params.expression
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.scenario.setOrder = function(_params) {
@@ -496,14 +496,14 @@ jeedom.scenario.setOrder = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
     action: 'setOrder',
     scenarios: JSON.stringify(_params.scenarios)
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 /* Conditions Autocomplete */

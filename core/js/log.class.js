@@ -30,13 +30,13 @@ jeedom.log.list = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/log.ajax.php';
   paramsAJAX.data = {
     action: 'list',
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.log.removeAll = function(_params) {
@@ -50,24 +50,24 @@ jeedom.log.removeAll = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/log.ajax.php';
   paramsAJAX.data = {
     action: 'removeAll',
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.log.getScTranslations = function(_params) {
   var paramsSpecifics = {};
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/log.ajax.php';
   paramsAJAX.data = {
     action: 'getScTranslations'
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.log.get = function(_params) {
@@ -81,14 +81,14 @@ jeedom.log.get = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/log.ajax.php';
   paramsAJAX.data = {
     action: 'get',
     log: _params.log
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.log.remove = function(_params) {
@@ -102,14 +102,14 @@ jeedom.log.remove = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/log.ajax.php';
   paramsAJAX.data = {
     action: 'remove',
     log: _params.log
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.log.clearAll = function(_params) {
@@ -123,13 +123,13 @@ jeedom.log.clearAll = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/log.ajax.php';
   paramsAJAX.data = {
     action: 'clearAll',
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.log.clear = function(_params) {
@@ -143,14 +143,14 @@ jeedom.log.clear = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/log.ajax.php';
   paramsAJAX.data = {
     action: 'clear',
     log: _params.log
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.log.autoupdate = function(_params) {

@@ -25,13 +25,13 @@ jeedom.interact.all = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/interact.ajax.php';
   paramsAJAX.data = {
     action: "all",
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.interact.remove = function(_params) {
@@ -43,14 +43,14 @@ jeedom.interact.remove = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/interact.ajax.php';
   paramsAJAX.data = {
     action: "remove",
     id: _params.id
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.interact.get = function(_params) {
@@ -62,14 +62,14 @@ jeedom.interact.get = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/interact.ajax.php';
   paramsAJAX.data = {
     action: "byId",
     id: _params.id
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.interact.save = function(_params) {
@@ -81,14 +81,14 @@ jeedom.interact.save = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/interact.ajax.php';
   paramsAJAX.data = {
     action: 'save',
     interact: JSON.stringify(_params.interact),
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.interact.regenerateInteract = function(_params) {
@@ -100,13 +100,13 @@ jeedom.interact.regenerateInteract = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/interact.ajax.php';
   paramsAJAX.data = {
     action: 'regenerateInteract',
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.interact.execute = function(_params) {
@@ -118,12 +118,12 @@ jeedom.interact.execute = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/interact.ajax.php';
   paramsAJAX.data = {
     action: 'execute',
     query: _params.query,
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }

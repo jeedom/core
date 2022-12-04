@@ -25,14 +25,14 @@ jeedom.timeline.getLength = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/timeline.ajax.php';
   paramsAJAX.data = {
     action: 'getLength',
     folder: _params.folder || 'main'
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.timeline.byFolder = function(_params) {
@@ -44,7 +44,7 @@ jeedom.timeline.byFolder = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/timeline.ajax.php';
   paramsAJAX.data = {
@@ -53,7 +53,7 @@ jeedom.timeline.byFolder = function(_params) {
     start: _params.start || 0,
     offset: _params.offset || 0
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.timeline.deleteAll = function(_params) {
@@ -65,13 +65,13 @@ jeedom.timeline.deleteAll = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/timeline.ajax.php';
   paramsAJAX.data = {
     action: 'deleteAll'
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.timeline.listFolder = function(_params) {
@@ -83,13 +83,13 @@ jeedom.timeline.listFolder = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/timeline.ajax.php';
   paramsAJAX.data = {
     action: 'listFolder'
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.timeline.autocompleteFolder = function() {

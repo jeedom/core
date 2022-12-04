@@ -1943,7 +1943,7 @@ $('.scenarioAttr[data-l1key=display][data-l2key=icon]').on('dblclick', function(
 
 $('.scenarioAttr[data-l1key=group]').autocomplete({
   source: function(request, response, url) {
-    $.ajax({
+    domUtils.ajax({
       type: 'POST',
       url: 'core/ajax/scenario.ajax.php',
       data: {

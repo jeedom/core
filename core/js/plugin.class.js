@@ -35,14 +35,14 @@ jeedom.plugin.all = function(_params) {
     _params.success(jeedom.plugin.cache.all);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plugin.ajax.php';
   paramsAJAX.data = {
     action: 'all',
     activateOnly: _params.activateOnly || false
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.plugin.toggle = function(_params) {
@@ -54,7 +54,7 @@ jeedom.plugin.toggle = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plugin.ajax.php';
   paramsAJAX.data = {
@@ -62,7 +62,7 @@ jeedom.plugin.toggle = function(_params) {
     id: _params.id,
     state: _params.state
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.plugin.get = function(_params) {
@@ -74,14 +74,14 @@ jeedom.plugin.get = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plugin.ajax.php';
   paramsAJAX.data = {
     action: 'getConf',
     id: _params.id
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.plugin.getDependancyInfo = function(_params) {
@@ -95,14 +95,14 @@ jeedom.plugin.getDependancyInfo = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plugin.ajax.php';
   paramsAJAX.data = {
     action: 'getDependancyInfo',
     id: _params.id
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.plugin.dependancyInstall = function(_params) {
@@ -114,14 +114,14 @@ jeedom.plugin.dependancyInstall = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plugin.ajax.php';
   paramsAJAX.data = {
     action: 'dependancyInstall',
     id: _params.id
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.plugin.dependancyChangeAutoMode = function(_params) {
@@ -133,7 +133,7 @@ jeedom.plugin.dependancyChangeAutoMode = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plugin.ajax.php';
   paramsAJAX.data = {
@@ -141,7 +141,7 @@ jeedom.plugin.dependancyChangeAutoMode = function(_params) {
     id: _params.id,
     mode: _params.mode
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.plugin.getDeamonInfo = function(_params) {
@@ -155,14 +155,14 @@ jeedom.plugin.getDeamonInfo = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plugin.ajax.php';
   paramsAJAX.data = {
     action: 'getDeamonInfo',
     id: _params.id
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.plugin.deamonStart = function(_params) {
@@ -174,7 +174,7 @@ jeedom.plugin.deamonStart = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plugin.ajax.php';
   paramsAJAX.data = {
@@ -183,7 +183,7 @@ jeedom.plugin.deamonStart = function(_params) {
     debug: _params.debug || 0,
     forceRestart: _params.forceRestart || 0
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.plugin.deamonStop = function(_params) {
@@ -195,14 +195,14 @@ jeedom.plugin.deamonStop = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plugin.ajax.php';
   paramsAJAX.data = {
     action: 'deamonStop',
     id: _params.id
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.plugin.deamonChangeAutoMode = function(_params) {
@@ -214,7 +214,7 @@ jeedom.plugin.deamonChangeAutoMode = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plugin.ajax.php';
   paramsAJAX.data = {
@@ -222,5 +222,5 @@ jeedom.plugin.deamonChangeAutoMode = function(_params) {
     id: _params.id,
     mode: _params.mode
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }

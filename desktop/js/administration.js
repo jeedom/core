@@ -46,7 +46,7 @@ if (!jeeFrontEnd.administration) {
     },
     //-> summary
     printObjectSummary: function() {
-      $.ajax({
+      domUtils.ajax({
         type: "POST",
         url: "core/ajax/config.ajax.php",
         data: {
@@ -54,6 +54,7 @@ if (!jeeFrontEnd.administration) {
           key: 'object:summary'
         },
         dataType: 'json',
+        global: false,
         error: function(request, status, error) {
           handleAjaxError(request, status, error)
         },
@@ -146,7 +147,7 @@ if (!jeeFrontEnd.administration) {
       var value = {
         'object:summary': summary
       }
-      $.ajax({
+      domUtils.ajax({
         type: "POST",
         url: "core/ajax/config.ajax.php",
         data: {
@@ -154,6 +155,7 @@ if (!jeeFrontEnd.administration) {
           value: JSON.stringify(value)
         },
         dataType: 'json',
+        global: false,
         error: function(request, status, error) {
           handleAjaxError(request, status, error)
         },
@@ -323,7 +325,7 @@ if (!jeeFrontEnd.administration) {
     },
     //-> color convertion
     printConvertColor: function() {
-      $.ajax({
+      domUtils.ajax({
         type: "POST",
         url: "core/ajax/config.ajax.php",
         data: {
@@ -331,6 +333,7 @@ if (!jeeFrontEnd.administration) {
           key: 'convertColor'
         },
         dataType: 'json',
+        global: false,
         error: function(request, status, error) {
           handleAjaxError(request, status, error)
         },
@@ -372,7 +375,7 @@ if (!jeeFrontEnd.administration) {
         colors[element.querySelector('.color').jeeValue()] = element.querySelector('.html').jeeValue()
       })
       value.convertColor = colors
-      $.ajax({
+      domUtils.ajax({
         type: "POST",
         url: "core/ajax/config.ajax.php",
         data: {
@@ -380,6 +383,7 @@ if (!jeeFrontEnd.administration) {
           value: JSON.stringify(value)
         },
         dataType: 'json',
+        global: false,
         error: function(request, status, error) {
           handleAjaxError(request, status, error)
         },
@@ -607,13 +611,14 @@ $('#bt_forceSyncHour').on('click', function() {
 })
 
 $('#bt_resetHour').on('click', function() {
-  $.ajax({
+  domUtils.ajax({
     type: "POST",
     url: "core/ajax/jeedom.ajax.php",
     data: {
       action: "resetHour"
     },
     dataType: 'json',
+    global: false,
     error: function(request, status, error) {
       handleAjaxError(request, status, error)
     },
@@ -631,13 +636,14 @@ $('#bt_resetHour').on('click', function() {
 })
 
 $('#bt_resetHwKey').on('click', function() {
-  $.ajax({
+  domUtils.ajax({
     type: "POST",
     url: "core/ajax/jeedom.ajax.php",
     data: {
       action: "resetHwKey"
     },
     dataType: 'json',
+    global: false,
     error: function(request, status, error) {
       handleAjaxError(request, status, error)
     },
@@ -1004,7 +1010,7 @@ jeeP.$divConfig.on({
 jeeP.$divConfig.on({
   'click': function(event) {
     var objectSummary = this.closest('.objectSummary').querySelectorAll('.objectSummaryAttr[data-l1key=key]').jeeValue()
-    $.ajax({
+    domUtils.ajax({
       type: "POST",
       url: "core/ajax/object.ajax.php",
       data: {
@@ -1125,7 +1131,7 @@ $("#bt_testLdapConnection").on('click', function(event) {
     },
     success: function() {
       jeeFrontEnd.modifyWithoutSave = false
-      $.ajax({
+      domUtils.ajax({
         type: 'POST',
         url: 'core/ajax/user.ajax.php',
         data: {
@@ -1255,7 +1261,7 @@ $(".bt_regenerate_api").on('click', function(event) {
   var el = this
   bootbox.confirm('{{Êtes-vous sûr de vouloir réinitialiser la clé API de}}' + ' ' + el.attr('data-plugin') + ' ?', function(result) {
     if (result) {
-      $.ajax({
+      domUtils.ajax({
         type: "POST",
         url: "core/ajax/config.ajax.php",
         data: {

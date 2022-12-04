@@ -25,13 +25,13 @@ jeedom.network.restartDns = function(_params) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/network.ajax.php';
     paramsAJAX.data = {
         action: 'restartDns',
     };
-    $.ajax(paramsAJAX);
+    domUtils.ajax(paramsAJAX);
 }
 
 jeedom.network.stopDns = function(_params) {
@@ -43,13 +43,13 @@ jeedom.network.stopDns = function(_params) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/network.ajax.php';
     paramsAJAX.data = {
         action: 'stopDns',
     };
-    $.ajax(paramsAJAX);
+    domUtils.ajax(paramsAJAX);
 }
 
 jeedom.network.getInterfacesInfo = function(_params) {
@@ -61,11 +61,11 @@ jeedom.network.getInterfacesInfo = function(_params) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/network.ajax.php';
     paramsAJAX.data = {
         action: 'getInterfacesInfo'
     };
-    $.ajax(paramsAJAX);
+    domUtils.ajax(paramsAJAX);
 }

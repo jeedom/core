@@ -27,7 +27,7 @@ function getTemplate(_folder, _version, _filename, _replace) {
     var path = 'plugins/' + _folder + '/desktop/template/' + _version + '/' + _filename;
   }
   var template = '';
-  $.ajax({
+  domUtils.ajax({
     type: "POST",
     url: path,
     async: false,

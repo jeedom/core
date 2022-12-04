@@ -116,14 +116,14 @@ jeedom.changes = function() {
     (paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics)
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics)
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/event.ajax.php'
   paramsAJAX.data = {
     action: 'changes',
     datetime: jeedom.datetime,
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.init = function() {
@@ -354,14 +354,14 @@ jeedom.getStringUsedBy = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'getStringUsedBy',
     search: _params.search
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.getIdUsedBy = function(_params) {
@@ -373,14 +373,14 @@ jeedom.getIdUsedBy = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'getIdUsedBy',
     search: _params.search
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.getConfiguration = function(_params) {
@@ -404,7 +404,7 @@ jeedom.getConfiguration = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   if (jeedom.cache.getConfiguration != null) {
     var keys = _params.key.split(':')
     var result = jeedom.cache.getConfiguration
@@ -422,7 +422,7 @@ jeedom.getConfiguration = function(_params) {
     action: 'getConfiguration',
     key: ''
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.haltSystem = function(_params) {
@@ -434,13 +434,13 @@ jeedom.haltSystem = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'haltSystem',
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.ssh = function(_params) {
@@ -458,14 +458,14 @@ jeedom.ssh = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'ssh',
     command: command
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
   return 'Execute command : ' + command
 }
 
@@ -484,14 +484,14 @@ jeedom.db = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'db',
     command: command
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
   return 'Execute command : ' + command
 }
 
@@ -504,14 +504,14 @@ jeedom.dbcorrectTable = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'dbcorrectTable',
     table: _params.table
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.rebootSystem = function(_params) {
@@ -523,13 +523,13 @@ jeedom.rebootSystem = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'rebootSystem',
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.systemCorrectPackage = function(_params) {
@@ -541,14 +541,14 @@ jeedom.systemCorrectPackage = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'systemCorrectPackage',
     package: _params.package
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.health = function(_params) {
@@ -560,13 +560,13 @@ jeedom.health = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'health',
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.forceSyncHour = function(_params) {
@@ -578,13 +578,13 @@ jeedom.forceSyncHour = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'forceSyncHour',
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.getCronSelectModal = function(_options, _callback) {
@@ -670,7 +670,7 @@ jeedom.getGraphData = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
@@ -678,7 +678,7 @@ jeedom.getGraphData = function(_params) {
     filter_type: params.filter_type || null,
     filter_id: params.filter_id || null,
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.getDocumentationUrl = function(_params) {
@@ -690,7 +690,7 @@ jeedom.getDocumentationUrl = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
@@ -699,7 +699,7 @@ jeedom.getDocumentationUrl = function(_params) {
     page: params.page || null,
     theme: params.theme || null,
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.addWarnme = function(_params) {
@@ -711,7 +711,7 @@ jeedom.addWarnme = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
@@ -719,7 +719,7 @@ jeedom.addWarnme = function(_params) {
     cmd_id: params.cmd_id,
     test: params.test,
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.getFileFolder = function(_params) {
@@ -731,7 +731,7 @@ jeedom.getFileFolder = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
@@ -739,7 +739,7 @@ jeedom.getFileFolder = function(_params) {
     type: _params.type,
     path: _params.path,
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.getFileContent = function(_params) {
@@ -751,14 +751,14 @@ jeedom.getFileContent = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'getFileContent',
     path: _params.path,
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.setFileContent = function(_params) {
@@ -770,7 +770,7 @@ jeedom.setFileContent = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
@@ -778,7 +778,7 @@ jeedom.setFileContent = function(_params) {
     path: _params.path,
     content: _params.content,
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.deleteFile = function(_params) {
@@ -790,14 +790,14 @@ jeedom.deleteFile = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'deleteFile',
     path: _params.path,
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.createFolder = function(_params) {
@@ -809,7 +809,7 @@ jeedom.createFolder = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
@@ -817,7 +817,7 @@ jeedom.createFolder = function(_params) {
     path: _params.path,
     name: _params.name,
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.renameFolder = function(_params) {
@@ -829,7 +829,7 @@ jeedom.renameFolder = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
@@ -837,7 +837,7 @@ jeedom.renameFolder = function(_params) {
     src: _params.src,
     dst: _params.dst
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.deleteFolder = function(_params) {
@@ -849,14 +849,14 @@ jeedom.deleteFolder = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'deleteFolder',
     path: _params.path
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.createFile = function(_params) {
@@ -868,7 +868,7 @@ jeedom.createFile = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
@@ -876,7 +876,7 @@ jeedom.createFile = function(_params) {
     path: _params.path,
     name: _params.name,
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.emptyRemoveHistory = function(_params) {
@@ -888,13 +888,13 @@ jeedom.emptyRemoveHistory = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'emptyRemoveHistory',
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.version = function(_params) {
@@ -906,13 +906,13 @@ jeedom.version = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'version'
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.removeImageIcon = function(_params) {
@@ -924,14 +924,14 @@ jeedom.removeImageIcon = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'removeImageIcon',
     filepath: _params.filepath
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.cleanFileSystemRight = function(_params) {
@@ -943,13 +943,13 @@ jeedom.cleanFileSystemRight = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'cleanFileSystemRight'
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.consistency = function(_params) {
@@ -961,13 +961,13 @@ jeedom.consistency = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'consistency'
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.cleanDatabase = function(_params) {
@@ -979,13 +979,13 @@ jeedom.cleanDatabase = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'cleanDatabase'
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.massEditSave = function(_params) {
@@ -997,7 +997,7 @@ jeedom.massEditSave = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
@@ -1005,7 +1005,7 @@ jeedom.massEditSave = function(_params) {
     type: _params.type,
     objects: JSON.stringify(_params.objects)
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.massReplace = function(_params) {
@@ -1017,7 +1017,7 @@ jeedom.massReplace = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
@@ -1026,7 +1026,7 @@ jeedom.massReplace = function(_params) {
     eqlogics: _params.eqlogics,
     cmds: _params.cmds
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.systemGetUpgradablePackage = function(_params) {
@@ -1038,7 +1038,7 @@ jeedom.systemGetUpgradablePackage = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
@@ -1046,7 +1046,7 @@ jeedom.systemGetUpgradablePackage = function(_params) {
     type: _params.type,
     forceRefresh: _params.forceRefresh || false
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.systemUpgradablePackage = function(_params) {
@@ -1058,12 +1058,12 @@ jeedom.systemUpgradablePackage = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
   paramsAJAX.data = {
     action: 'systemUpgradablePackage',
     type: _params.type,
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }

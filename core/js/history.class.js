@@ -35,7 +35,7 @@ jeedom.history.get = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/cmd.ajax.php';
   paramsAJAX.data = {
@@ -44,7 +44,7 @@ jeedom.history.get = function(_params) {
     dateStart: _params.dateStart || '',
     dateEnd: _params.dateEnd || '',
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.history.getInitDates = function(_params) {
@@ -56,13 +56,13 @@ jeedom.history.getInitDates = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/cmd.ajax.php';
   paramsAJAX.data = {
     action: 'getInitDates'
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.history.copyHistoryToCmd = function(_params) {
@@ -74,7 +74,7 @@ jeedom.history.copyHistoryToCmd = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/cmd.ajax.php';
   paramsAJAX.data = {
@@ -82,7 +82,7 @@ jeedom.history.copyHistoryToCmd = function(_params) {
     source_id: _params.source_id,
     target_id: _params.target_id
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.history.generatePlotBand = function(_startTime, _endTime) {
@@ -144,7 +144,7 @@ jeedom.history.changePoint = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/cmd.ajax.php';
   paramsAJAX.data = {
@@ -154,7 +154,7 @@ jeedom.history.changePoint = function(_params) {
     value: _params.value,
     oldValue: _params.oldValue
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.history.modalchangePoint = function(event, _this, _params) {
@@ -201,7 +201,7 @@ jeedom.history.drawChart = function(_params) {
   var _visible = (isset(_params.visible)) ? _params.visible : true
 
   //get command history
-  $.ajax({
+  domUtils.ajax({
     type: "POST",
     url: "core/ajax/cmd.ajax.php",
     data: {
@@ -234,7 +234,7 @@ jeedom.history.drawChart = function(_params) {
       //check is there is some data and manage alerts:
       if (data.result.data.length < 1) {
         if (_params.option.displayAlert == false) {
-          return;
+          return
         }
         if (!_params.noError) {
           var message = '{{Il n\'existe encore aucun historique pour cette commande :}} ' + data.result.history_name;
@@ -247,13 +247,13 @@ jeedom.history.drawChart = function(_params) {
             message: message,
             level: 'warning'
           });
-          if (typeof(init(_params.success)) == 'function') {
+          if (typeof(init(_params.success)) === 'function') {
             _params.success({
               'error': message
             })
           }
         }
-        return;
+        return
       }
 
       _params.round = data.result.round

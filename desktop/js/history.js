@@ -165,7 +165,7 @@ if (!jeeFrontEnd.history) {
       this.setChartOptions()
     },
     emptyHistory: function(_cmd_id, _date) {
-      $.ajax({
+      domUtils.ajax({
         type: "POST",
         url: "core/ajax/cmd.ajax.php",
         data: {

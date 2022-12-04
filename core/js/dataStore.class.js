@@ -25,7 +25,7 @@ jeedom.dataStore.save = function(_params) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.async = _params.async || true;
 
@@ -38,7 +38,7 @@ jeedom.dataStore.save = function(_params) {
         key: _params.key,
         link_id: _params.link_id,
     };
-    $.ajax(paramsAJAX);
+    domUtils.ajax(paramsAJAX);
 }
 
 jeedom.dataStore.byTypeLinkIdKey = function(_params) {
@@ -50,7 +50,7 @@ jeedom.dataStore.byTypeLinkIdKey = function(_params) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/dataStore.ajax.php';
     paramsAJAX.data = {
@@ -60,7 +60,7 @@ jeedom.dataStore.byTypeLinkIdKey = function(_params) {
         key: _params.key,
         usedBy: _params.usedBy
     };
-    $.ajax(paramsAJAX);
+    domUtils.ajax(paramsAJAX);
 }
 
 jeedom.dataStore.all = function(_params) {
@@ -72,7 +72,7 @@ jeedom.dataStore.all = function(_params) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/dataStore.ajax.php';
     paramsAJAX.data = {
@@ -80,7 +80,7 @@ jeedom.dataStore.all = function(_params) {
         type: _params.type,
         usedBy: _params.usedBy
     };
-    $.ajax(paramsAJAX);
+    domUtils.ajax(paramsAJAX);
 }
 
 jeedom.dataStore.getSelectModal = function(_options, callback) {
@@ -132,12 +132,12 @@ jeedom.dataStore.remove = function(_params) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/dataStore.ajax.php';
     paramsAJAX.data = {
         action: 'remove',
         id: _params.id
     };
-    $.ajax(paramsAJAX);
+    domUtils.ajax(paramsAJAX);
 }

@@ -479,7 +479,7 @@ $('#bt_removeConfigurePlan3d').on('click', function() {
 })
 
 if (isset(jeephp2js.md_plan3dConfigure_Id) && jeephp2js.md_plan3dConfigure_Id != '') {
-  $.ajax({
+  domUtils.ajax({
     type: "POST",
     url: "core/ajax/plan3d.ajax.php",
     data: {

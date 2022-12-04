@@ -270,7 +270,7 @@ jeedom.private.checkAndGetParams = function(_params, _paramsSpecifics, _paramsRe
   //Throw execption if error
   jeedom.private.checkParamsRequired(_params, _paramsRequired || []);
   //Merge default and function specific parameters
-  var params = $.extend({}, jeedom.private.default_params, _paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, _paramsSpecifics, _params || {});
 
   //Convert all objects in params to json
   var param = null;

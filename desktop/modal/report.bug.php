@@ -158,7 +158,7 @@ if (!$first) {
   $('#bt_sendBugReport').on('click', function() {
     var ticket = document.getElementById('form_reportBug').getJeeValues('.ticketAttr')[0]
     ticket.messages = document.getElementById('form_reportBug').getJeeValues('.messageAttr')
-    $.ajax({
+    domUtils.ajax({
       type: "POST",
       url: "core/ajax/repo.ajax.php",
       data: {

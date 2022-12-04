@@ -26,7 +26,7 @@ jeedom.plan.remove = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
@@ -36,7 +36,7 @@ jeedom.plan.remove = function(_params) {
     link_id: _params.link_id || '',
     planHeader_id: _params.planHeader_id || ''
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.plan.execute = function(_params) {
@@ -50,14 +50,14 @@ jeedom.plan.execute = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
     action: 'execute',
     id: _params.id
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.plan.save = function(_params) {
@@ -71,7 +71,7 @@ jeedom.plan.save = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
 
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
@@ -79,7 +79,7 @@ jeedom.plan.save = function(_params) {
     action: 'save',
     plans: JSON.stringify(_params.plans),
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.plan.byId = function(_params) {
@@ -91,14 +91,14 @@ jeedom.plan.byId = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
     action: 'get',
     id: _params.id
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.plan.getObjectPlan = function(_params) {
@@ -110,7 +110,7 @@ jeedom.plan.getObjectPlan = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
@@ -118,7 +118,7 @@ jeedom.plan.getObjectPlan = function(_params) {
     id: _params.id,
     version: _params.version || 'dashboard'
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.plan.create = function(_params) {
@@ -130,7 +130,7 @@ jeedom.plan.create = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
@@ -138,7 +138,7 @@ jeedom.plan.create = function(_params) {
     plan: JSON.stringify(_params.plan),
     version: _params.version
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.plan.copy = function(_params) {
@@ -150,7 +150,7 @@ jeedom.plan.copy = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
@@ -160,7 +160,7 @@ jeedom.plan.copy = function(_params) {
     link_id: _params.link_id || '',
     planHeader_id: _params.planHeader_id || ''
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.plan.byPlanHeader = function(_params) {
@@ -172,7 +172,7 @@ jeedom.plan.byPlanHeader = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
@@ -181,7 +181,7 @@ jeedom.plan.byPlanHeader = function(_params) {
     noHtml: _params.noHtml,
     version: _params.version || 'dashboard'
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.plan.removeImageHeader = function(_params) {
@@ -193,14 +193,14 @@ jeedom.plan.removeImageHeader = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
     action: 'removeImageHeader',
     id: _params.planHeader_id
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.plan.saveHeader = function(_params) {
@@ -212,14 +212,14 @@ jeedom.plan.saveHeader = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
     action: 'savePlanHeader',
     planHeader: JSON.stringify(_params.planHeader)
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.plan.copyHeader = function(_params) {
@@ -231,7 +231,7 @@ jeedom.plan.copyHeader = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
@@ -239,7 +239,7 @@ jeedom.plan.copyHeader = function(_params) {
     id: _params.id,
     name: _params.name
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.plan.removeHeader = function(_params) {
@@ -251,14 +251,14 @@ jeedom.plan.removeHeader = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
     action: 'removePlanHeader',
     id: _params.id
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.plan.getHeader = function(_params) {
@@ -270,7 +270,7 @@ jeedom.plan.getHeader = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
@@ -278,7 +278,7 @@ jeedom.plan.getHeader = function(_params) {
     id: _params.id,
     code: _params.code
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.plan.allHeader = function(_params) {
@@ -295,7 +295,7 @@ jeedom.plan.allHeader = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   if (isset(jeedom.plan.cache.all)) {
     params.success(jeedom.plan.cache.all);
     return;
@@ -305,5 +305,5 @@ jeedom.plan.allHeader = function(_params) {
   paramsAJAX.data = {
     action: 'allHeader',
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }

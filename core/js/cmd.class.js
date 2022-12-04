@@ -177,7 +177,7 @@ jeedom.cmd.execute = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   var cache = 1
@@ -198,7 +198,7 @@ jeedom.cmd.execute = function(_params) {
   if (typeof user_id != "undefined") {
     paramsAJAX.data.user_id = user_id
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.cmd.test = function(_params) {
@@ -397,14 +397,14 @@ jeedom.cmd.test = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'getCmd',
     id: _params.id,
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.cmd.refreshByEqLogic = function(_params) {
@@ -491,7 +491,7 @@ jeedom.cmd.getWidgetHelp = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
@@ -500,7 +500,7 @@ jeedom.cmd.getWidgetHelp = function(_params) {
     version: _params.version,
     widgetName: _params.widgetName
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.cmd.toHtml = function(_params) {
@@ -512,7 +512,7 @@ jeedom.cmd.toHtml = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
@@ -520,7 +520,7 @@ jeedom.cmd.toHtml = function(_params) {
     id: _params.id,
     version: _params.version
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.cmd.replaceCmd = function(_params) {
@@ -532,7 +532,7 @@ jeedom.cmd.replaceCmd = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
@@ -540,7 +540,7 @@ jeedom.cmd.replaceCmd = function(_params) {
     source_id: _params.source_id,
     target_id: _params.target_id
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.cmd.save = function(_params) {
@@ -562,14 +562,14 @@ jeedom.cmd.save = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'save',
     cmd: JSON.stringify(_params.cmd)
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.cmd.setIsVisibles = function(_params) {
@@ -581,7 +581,7 @@ jeedom.cmd.setIsVisibles = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
@@ -589,7 +589,7 @@ jeedom.cmd.setIsVisibles = function(_params) {
     cmds: JSON.stringify(_params.cmds),
     isVisible: _params.isVisible
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.cmd.multiSave = function(_params) {
@@ -606,14 +606,14 @@ jeedom.cmd.multiSave = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'multiSave',
     cmd: JSON.stringify(_params.cmds)
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.cmd.byId = function(_params) {
@@ -630,7 +630,7 @@ jeedom.cmd.byId = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   if (isset(jeedom.cmd.cache.byId[params.id]) && init(params.noCache, false) == false) {
     params.success(jeedom.cmd.cache.byId[params.id])
     return
@@ -641,7 +641,7 @@ jeedom.cmd.byId = function(_params) {
     action: 'byId',
     id: _params.id
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.cmd.getHumanCmdName = function(_params) {
@@ -658,7 +658,7 @@ jeedom.cmd.getHumanCmdName = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   if (isset(jeedom.cmd.cache.byId[params.id]) && init(params.noCache, false) == false) {
     params.success(jeedom.cmd.cache.byId[params.id])
     return
@@ -669,7 +669,7 @@ jeedom.cmd.getHumanCmdName = function(_params) {
     action: 'getHumanCmdName',
     id: _params.id
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.cmd.byHumanName = function(_params) {
@@ -686,7 +686,7 @@ jeedom.cmd.byHumanName = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   if (isset(jeedom.cmd.cache.byHumanName[params.humanName]) && init(params.noCache, false) == false) {
     params.success(jeedom.cmd.cache.byHumanName[params.humanName])
     return
@@ -697,7 +697,7 @@ jeedom.cmd.byHumanName = function(_params) {
     action: 'byHumanName',
     humanName: _params.humanName
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.cmd.usedBy = function(_params) {
@@ -709,14 +709,14 @@ jeedom.cmd.usedBy = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'usedBy',
     id: _params.id
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.cmd.dropInflux = function(_params) {
@@ -728,14 +728,14 @@ jeedom.cmd.dropInflux = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'dropInflux',
     cmd_id: _params.cmd_id
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.cmd.historyInflux = function(_params) {
@@ -747,14 +747,14 @@ jeedom.cmd.historyInflux = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'historyInflux',
     cmd_id: _params.cmd_id
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.cmd.dropDatabaseInflux = function(_params) {
@@ -766,13 +766,13 @@ jeedom.cmd.dropDatabaseInflux = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'dropDatabaseInflux'
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.cmd.historyInfluxAll = function(_params) {
@@ -784,13 +784,13 @@ jeedom.cmd.historyInfluxAll = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'historyInfluxAll'
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.cmd.changeType = function(_cmd, _subType) {
@@ -1016,7 +1016,7 @@ jeedom.cmd.displayActionOption = function(_expression, _options, _callback) {
     return ''
   }
 
-  if ($('body').attr('data-page') != "scenario") {
+  if (document.body.getAttribute('data-page') != "scenario") {
     if (jeedom.scenario.autoCompleteActionScOnly.includes(_expression)) {
       if ('function' == typeof (_callback)) {
         _callback('Unsupported')
@@ -1027,7 +1027,7 @@ jeedom.cmd.displayActionOption = function(_expression, _options, _callback) {
   }
 
   var html = ''
-  $.ajax({
+  domUtils.ajax({
     type: "POST",
     url: "core/ajax/scenario.ajax.php",
     data: {
@@ -1071,7 +1071,7 @@ jeedom.cmd.displayActionsOption = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.async = _params.async || true
   paramsAJAX.url = 'core/ajax/scenario.ajax.php'
@@ -1079,7 +1079,7 @@ jeedom.cmd.displayActionsOption = function(_params) {
     action: 'actionToHtml',
     params: JSON.stringify(_params.params)
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.cmd.normalizeName = function(_tagname) {
@@ -1129,14 +1129,14 @@ jeedom.cmd.setOrder = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'setOrder',
     cmds: JSON.stringify(_params.cmds)
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.cmd.getDeadCmd = function(_params) {
@@ -1148,13 +1148,13 @@ jeedom.cmd.getDeadCmd = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   var paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'getDeadCmd'
   }
-  $.ajax(paramsAJAX)
+  domUtils.ajax(paramsAJAX)
 }
 
 /* time widgets */

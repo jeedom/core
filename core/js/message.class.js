@@ -27,14 +27,14 @@ jeedom.message.all = function(_params) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/message.ajax.php';
     paramsAJAX.data = {
         action: "all",
         plugin: _params.plugin || ''
     };
-    $.ajax(paramsAJAX);
+    domUtils.ajax(paramsAJAX);
 }
 
 jeedom.message.remove = function(_params) {
@@ -46,14 +46,14 @@ jeedom.message.remove = function(_params) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/message.ajax.php';
     paramsAJAX.data = {
         action: 'removeMessage',
         id: _params.id,
     };
-    $.ajax(paramsAJAX);
+    domUtils.ajax(paramsAJAX);
 }
 
 jeedom.message.clear = function(_params) {
@@ -65,14 +65,14 @@ jeedom.message.clear = function(_params) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/message.ajax.php';
     paramsAJAX.data = {
         action: 'clearMessage',
         plugin: _params.plugin || ''
     };
-    $.ajax(paramsAJAX);
+    domUtils.ajax(paramsAJAX);
 }
 
 jeedom.message.number = function(_params) {
@@ -86,11 +86,11 @@ jeedom.message.number = function(_params) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/message.ajax.php';
     paramsAJAX.data = {
         action: 'nbMessage',
     };
-    $.ajax(paramsAJAX);
+    domUtils.ajax(paramsAJAX);
 }

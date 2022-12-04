@@ -26,13 +26,13 @@ jeedom.user.all = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/user.ajax.php';
   paramsAJAX.data = {
     action: 'all',
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.user.remove = function(_params) {
@@ -44,14 +44,14 @@ jeedom.user.remove = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/user.ajax.php';
   paramsAJAX.data = {
     action: 'remove',
     id: _params.id
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.user.save = function(_params) {
@@ -63,14 +63,14 @@ jeedom.user.save = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/user.ajax.php';
   paramsAJAX.data = {
     action: 'save',
     users: JSON.stringify(_params.users)
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.user.saveProfils = function(_params) {
@@ -82,14 +82,14 @@ jeedom.user.saveProfils = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/user.ajax.php';
   paramsAJAX.data = {
     action: 'saveProfils',
     profils: JSON.stringify(_params.profils)
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.user.get = function(_params) {
@@ -101,7 +101,7 @@ jeedom.user.get = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/user.ajax.php';
   paramsAJAX.data = {
@@ -109,7 +109,7 @@ jeedom.user.get = function(_params) {
     profils: JSON.stringify(_params.profils),
     id: _params.id || -1
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.user.isConnect = function(_params) {
@@ -137,14 +137,14 @@ jeedom.user.isConnect = function(_params) {
       (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
       return;
     }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/user.ajax.php';
     paramsAJAX.global = false;
     paramsAJAX.data = {
       action: 'isConnect',
     };
-    $.ajax(paramsAJAX);
+    domUtils.ajax(paramsAJAX);
   } else {
     if ('function' == typeof(_params.success)) {
       _params.success(true);
@@ -161,7 +161,7 @@ jeedom.user.validateTwoFactorCode = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/user.ajax.php';
   paramsAJAX.data = {
@@ -169,7 +169,7 @@ jeedom.user.validateTwoFactorCode = function(_params) {
     code: _params.code,
     enableTwoFactorAuthentification: _params.enableTwoFactorAuthentification || 0
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.user.removeTwoFactorCode = function(_params) {
@@ -181,14 +181,14 @@ jeedom.user.removeTwoFactorCode = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/user.ajax.php';
   paramsAJAX.data = {
     action: 'removeTwoFactorCode',
     id: _params.id,
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.user.useTwoFactorAuthentification = function(_params) {
@@ -202,14 +202,14 @@ jeedom.user.useTwoFactorAuthentification = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/user.ajax.php';
   paramsAJAX.data = {
     action: 'useTwoFactorAuthentification',
     login: _params.login
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.user.login = function(_params) {
@@ -221,7 +221,7 @@ jeedom.user.login = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/user.ajax.php';
   paramsAJAX.data = {
@@ -231,7 +231,7 @@ jeedom.user.login = function(_params) {
     twoFactorCode: _params.twoFactorCode || '',
     storeConnection: _params.storeConnection || 0,
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.user.refresh = function(_params) {
@@ -243,13 +243,13 @@ jeedom.user.refresh = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/user.ajax.php';
   paramsAJAX.data = {
     action: 'refresh',
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.user.removeBanIp = function(_params) {
@@ -261,13 +261,13 @@ jeedom.user.removeBanIp = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/user.ajax.php';
   paramsAJAX.data = {
     action: 'removeBanIp',
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.user.removeRegisterDevice = function(_params) {
@@ -279,7 +279,7 @@ jeedom.user.removeRegisterDevice = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/user.ajax.php';
   paramsAJAX.data = {
@@ -287,7 +287,7 @@ jeedom.user.removeRegisterDevice = function(_params) {
     key: _params.key,
     user_id: _params.user_id || ''
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.user.deleteSession = function(_params) {
@@ -299,14 +299,14 @@ jeedom.user.deleteSession = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/user.ajax.php';
   paramsAJAX.data = {
     action: 'deleteSession',
     id: _params.id
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.user.supportAccess = function(_params) {
@@ -318,14 +318,14 @@ jeedom.user.supportAccess = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/user.ajax.php';
   paramsAJAX.data = {
     action: 'supportAccess',
     enable: _params.enable
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.user.copyRights = function(_params) {
@@ -337,7 +337,7 @@ jeedom.user.copyRights = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/user.ajax.php';
   paramsAJAX.data = {
@@ -345,5 +345,5 @@ jeedom.user.copyRights = function(_params) {
     from: _params.from,
     to: _params.to
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }

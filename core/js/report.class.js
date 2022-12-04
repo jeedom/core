@@ -25,7 +25,7 @@ jeedom.report.list = function(_params) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/report.ajax.php';
     paramsAJAX.data = {
@@ -33,7 +33,7 @@ jeedom.report.list = function(_params) {
         id: _params.id,
         type: _params.type
     };
-    $.ajax(paramsAJAX);
+    domUtils.ajax(paramsAJAX);
 }
 
 jeedom.report.get = function(_params) {
@@ -45,7 +45,7 @@ jeedom.report.get = function(_params) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/report.ajax.php';
     paramsAJAX.data = {
@@ -54,7 +54,7 @@ jeedom.report.get = function(_params) {
         type: _params.type,
         report: _params.report
     };
-    $.ajax(paramsAJAX);
+    domUtils.ajax(paramsAJAX);
 }
 
 jeedom.report.remove = function(_params) {
@@ -66,7 +66,7 @@ jeedom.report.remove = function(_params) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/report.ajax.php';
     paramsAJAX.data = {
@@ -75,7 +75,7 @@ jeedom.report.remove = function(_params) {
         type: _params.type,
         report: _params.report
     };
-    $.ajax(paramsAJAX);
+    domUtils.ajax(paramsAJAX);
 }
 
 jeedom.report.removeAll = function(_params) {
@@ -87,7 +87,7 @@ jeedom.report.removeAll = function(_params) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/report.ajax.php';
     paramsAJAX.data = {
@@ -95,5 +95,5 @@ jeedom.report.removeAll = function(_params) {
         id: _params.id,
         type: _params.type
     };
-    $.ajax(paramsAJAX);
+    domUtils.ajax(paramsAJAX);
 }

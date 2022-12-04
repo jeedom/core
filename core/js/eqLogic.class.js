@@ -56,7 +56,7 @@ jeedom.eqLogic.save = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.async = _params.async || true;
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
@@ -65,7 +65,7 @@ jeedom.eqLogic.save = function(_params) {
     type: _params.type,
     eqLogic: JSON.stringify(_params.eqLogics),
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.eqLogic.byType = function(_params) {
@@ -77,14 +77,14 @@ jeedom.eqLogic.byType = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
     action: 'listByType',
     type: _params.type,
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.eqLogic.byObjectId = function(_params) {
@@ -96,7 +96,7 @@ jeedom.eqLogic.byObjectId = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
@@ -106,7 +106,7 @@ jeedom.eqLogic.byObjectId = function(_params) {
     onlyEnable: _params.onlyEnable || 1,
     getCmd: _params.getCmd || 0
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.eqLogic.simpleSave = function(_params) {
@@ -118,14 +118,14 @@ jeedom.eqLogic.simpleSave = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
     action: 'simpleSave',
     eqLogic: JSON.stringify(_params.eqLogic),
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.eqLogic.getUseBeforeRemove = function(_params) {
@@ -137,14 +137,14 @@ jeedom.eqLogic.getUseBeforeRemove = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
     action: 'getUseBeforeRemove',
     id: _params.id
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.eqLogic.usedBy = function(_params) {
@@ -156,14 +156,14 @@ jeedom.eqLogic.usedBy = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
     action: 'usedBy',
     id: _params.id
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.eqLogic.remove = function(_params) {
@@ -182,7 +182,7 @@ jeedom.eqLogic.remove = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
@@ -190,7 +190,7 @@ jeedom.eqLogic.remove = function(_params) {
     type: _params.type,
     id: _params.id
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.eqLogic.copy = function(_params) {
@@ -209,7 +209,7 @@ jeedom.eqLogic.copy = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
@@ -217,7 +217,7 @@ jeedom.eqLogic.copy = function(_params) {
     name: _params.name,
     id: _params.id
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.eqLogic.print = function(_params) {
@@ -236,7 +236,7 @@ jeedom.eqLogic.print = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
@@ -246,7 +246,7 @@ jeedom.eqLogic.print = function(_params) {
     status: _params.status || 0,
     getCmdState: _params.getCmdState || 0
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.eqLogic.toHtml = function(_params) {
@@ -258,7 +258,7 @@ jeedom.eqLogic.toHtml = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
@@ -266,7 +266,7 @@ jeedom.eqLogic.toHtml = function(_params) {
     id: _params.id,
     version: _params.version
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.eqLogic.getCmd = function(_params) {
@@ -287,14 +287,14 @@ jeedom.eqLogic.getCmd = function(_params) {
     _params.success(jeedom.eqLogic.cache.getCmd[_params.id]);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/cmd.ajax.php';
   paramsAJAX.data = {
     action: 'byEqLogic',
     eqLogic_id: _params.id
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.eqLogic.byId = function(_params) {
@@ -315,14 +315,14 @@ jeedom.eqLogic.byId = function(_params) {
     _params.success(jeedom.eqLogic.cache.byId[_params.id]);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
     action: 'byId',
     id: _params.id
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.eqLogic.buildSelectCmd = function(_params) {
@@ -448,14 +448,14 @@ jeedom.eqLogic.refreshValue = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
     action: 'toHtml',
     ids: JSON.stringify(sends),
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.eqLogic.initGraphInfo = function(_eqLogicId,_doNotHighlightGraphCmd) {
@@ -603,14 +603,14 @@ jeedom.eqLogic.setOrder = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
     action: 'setOrder',
     eqLogics: JSON.stringify(_params.eqLogics)
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.eqLogic.setGenericType = function(_params) {
@@ -622,14 +622,14 @@ jeedom.eqLogic.setGenericType = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
     action: 'setGenericType',
     eqLogics: JSON.stringify(_params.eqLogics)
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.eqLogic.removes = function(_params) {
@@ -641,14 +641,14 @@ jeedom.eqLogic.removes = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
     action: 'removes',
     eqLogics: JSON.stringify(_params.eqLogics)
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.eqLogic.setIsVisibles = function(_params) {
@@ -660,7 +660,7 @@ jeedom.eqLogic.setIsVisibles = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
@@ -668,7 +668,7 @@ jeedom.eqLogic.setIsVisibles = function(_params) {
     eqLogics: JSON.stringify(_params.eqLogics),
     isVisible: _params.isVisible
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.eqLogic.setIsEnables = function(_params) {
@@ -680,7 +680,7 @@ jeedom.eqLogic.setIsEnables = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
@@ -688,7 +688,7 @@ jeedom.eqLogic.setIsEnables = function(_params) {
     eqLogics: JSON.stringify(_params.eqLogics),
     isEnable: _params.isEnable
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.eqLogic.htmlAlert = function(_params) {
@@ -700,14 +700,14 @@ jeedom.eqLogic.htmlAlert = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
     action: 'htmlAlert',
     version: _params.version
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 jeedom.eqLogic.htmlBattery = function(_params) {
@@ -719,14 +719,14 @@ jeedom.eqLogic.htmlBattery = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
     action: 'htmlBattery',
     version: _params.version
   };
-  $.ajax(paramsAJAX);
+  domUtils.ajax(paramsAJAX);
 }
 
 // deprecated v4.2 -> remove v4.5 (used by plugins!)

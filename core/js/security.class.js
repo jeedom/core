@@ -25,14 +25,14 @@ jeedom.security.remove = function(_params) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/connection.ajax.php';
     paramsAJAX.data = {
         action: 'remove',
         id: _params.id
     };
-    $.ajax(paramsAJAX);
+    domUtils.ajax(paramsAJAX);
 }
 
 jeedom.security.ban = function(_params) {
@@ -44,12 +44,12 @@ jeedom.security.ban = function(_params) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/connection.ajax.php';
     paramsAJAX.data = {
         action: 'ban',
         id: _params.id
     };
-    $.ajax(paramsAJAX);
+    domUtils.ajax(paramsAJAX);
 }
