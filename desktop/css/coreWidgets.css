@@ -266,12 +266,10 @@ Desktop
     background: transparent;
   }
   div.cmd-widget .slider .noUi-handle {
-    top: -5px;
     height: 1.3em;
     width: 1.3em;
     border-radius: 50%;
     background: var(--link-color);
-    left: 0;
   }
   div.cmd-widget .slider .noUi-handle:before,
   div.cmd-widget .slider .noUi-handle::after {
@@ -301,8 +299,13 @@ Desktop
     cursor: pointer;
     outline: none;
   }
+  div.cmd-widget .slider.noUi-horizontal .noUi-handle {
+    left: 60px;
+    top: -5px;
+  }
   div.cmd-widget .slider.noUi-vertical .noUi-handle {
     left: -12.5px;
+    top: 40px;
   }
   div.cmd-widget .slider .noUi-handle:focus {
     outline: none;
