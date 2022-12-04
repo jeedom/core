@@ -548,7 +548,7 @@ domUtils.ajax = function(_params) {
   domUtils.countAjax(0, _params.global)
 
   //Synchronous request:
-  if (_params.async && _params.async === false) {
+  if (isset(_params.async) && _params.async === false) {
     const request = new XMLHttpRequest()
     request.open(_params.type.toLowerCase(), _params.url, false)
     request.send(new URLSearchParams(_params.data))
