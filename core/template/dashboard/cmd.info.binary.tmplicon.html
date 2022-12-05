@@ -1,14 +1,17 @@
 <div class="cmd cmd-widget #history#" data-type="info" data-subtype="binary" data-template="tmplicon" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#">
   <div class="title #hide_name#">
-    <span class="cmdName">#name_display#</span>
+    <div class="cmdName">#name_display#</div>
   </div>
-  <div class="content-sm">
+  <div class="content">
     <span class="iconCmd"></span>
   </div>
   <div class="state">
     <span class="value"></span>
   </div>
   <div class="timeCmd label label-default #history#" data-type="info"></div>
+  <div class="cmdStats #hide_history#">
+    <span title="{{Minimum}}" class="tooltips">#minHistoryValue#</span>|<span title="{{Moyenne}}" class="tooltips">#averageHistoryValue#</span>|<span title="{{Maximum}}" class="tooltips">#maxHistoryValue#</span> <i class="#tendance#"></i>
+  </div>
   <template>
     <div>time : duration|date ({{Affiche durée ou date de la valeur}})</div>
   </template>

@@ -21,9 +21,9 @@ var jeedomUtils = {
   backgroundIMG: null,
   _elBackground: null
 }
-jeedomUtils.tileWidthStep = parseInt(jeedom.theme['widget::step::width']) >= 120 ? parseInt(jeedom.theme['widget::step::width']) : 240,
-jeedomUtils.tileHeightStep = parseInt(jeedom.theme['widget::step::height']) >= 100 ? parseInt(jeedom.theme['widget::step::height']) : 200,
-jeedomUtils.tileHeightSteps = Array.apply(null, {length: 10}).map(function(value, index) {return (index + 1) * jeedomUtils.tileHeightStep})
+jeedomUtils.tileWidthStep = parseInt(jeedom.theme['widget::step::width']) >= 110 ? parseInt(jeedom.theme['widget::step::width']) : 330,
+  jeedomUtils.tileHeightStep = parseInt(jeedom.theme['widget::step::height']) >= 100 ? parseInt(jeedom.theme['widget::step::height']) : 200,
+  jeedomUtils.tileHeightSteps = Array.apply(null, { length: 10 }).map(function(value, index) { return (index + 1) * jeedomUtils.tileHeightStep })
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -61,7 +61,7 @@ if ('SecurityPolicyViolationEvent' in window) { // Check browser support of Secu
           var msg = `{{La ressource "${uri}" a été chargée, mais elle va contre la directive de Content Security Policy :<br /> "${violation.trim()}"}}`
       }
     }
-    jeedomUtils.JS_ERROR.push({"filename": event.documentURI, "lineno": "0", "message": msg})
+    jeedomUtils.JS_ERROR.push({ "filename": event.documentURI, "lineno": "0", "message": msg })
     document.getElementById('bt_jsErrorModal').seen()
     jeedomUtils.hideLoading()
   })
@@ -70,7 +70,7 @@ if ('SecurityPolicyViolationEvent' in window) { // Check browser support of Secu
 //UI Time display:
 setInterval(function() {
   var dateJeed = new Date
-  dateJeed.setTime((new Date).getTime() + ((new Date).getTimezoneOffset() + jeeFrontEnd.serverTZoffsetMin)*60000 + jeeFrontEnd.clientServerDiffDatetime)
+  dateJeed.setTime((new Date).getTime() + ((new Date).getTimezoneOffset() + jeeFrontEnd.serverTZoffsetMin) * 60000 + jeeFrontEnd.clientServerDiffDatetime)
   document.getElementById('horloge').innerHTML = dateJeed.toLocaleTimeString()
 }, 1000)
 
@@ -106,19 +106,19 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 
   try {
     $(".ui-dialog-content").dialog("close")
-  } catch(e) {}
+  } catch (e) { }
 
   if (!isset(_noPushHistory) || _noPushHistory == false) {
     try {
       if (jeeFrontEnd.PREVIOUS_PAGE == null) {
-        window.history.replaceState('','', 'index.php?'+window.location.href.split("index.php?")[1])
+        window.history.replaceState('', '', 'index.php?' + window.location.href.split("index.php?")[1])
         jeeFrontEnd.PREVIOUS_PAGE = 'index.php?' + window.location.href.split("index.php?")[1]
       }
       if (jeeFrontEnd.PREVIOUS_PAGE == null || jeeFrontEnd.PREVIOUS_PAGE != _url) {
-        window.history.pushState('','', _url)
+        window.history.pushState('', '', _url)
         jeeFrontEnd.PREVIOUS_PAGE = _url
       }
-    } catch(e) {}
+    } catch (e) { }
   }
 
   if (isset(bootbox)) bootbox.hideAll()
@@ -138,7 +138,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
     var url = _url + '&ajax=1'
   } else {
     var n = _url.lastIndexOf("#")
-    var url = _url.substring(0,n) + "&ajax=1" + _url.substring(n)
+    var url = _url.substring(0, n) + "&ajax=1" + _url.substring(n)
   }
 
   jeedomUtils.backgroundIMG = null
@@ -156,9 +156,9 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   //$('#div_pageContainer').load(url, function() {
   document.getElementById('div_pageContainer').load(url, function() {
     document.getElementById('bt_getHelpPage').setAttribute('data-page', getUrlVars('p'))
-    document.getElementById('bt_getHelpPage').setAttribute('data-plugin', getUrlVars('m')  || '')
+    document.getElementById('bt_getHelpPage').setAttribute('data-plugin', getUrlVars('m') || '')
     jeedomUtils.initPage()
-    document.body.setAttribute('data-page', getUrlVars('p')  || '')
+    document.body.setAttribute('data-page', getUrlVars('p') || '')
     document.body.triggerEvent('jeedom_page_load')
 
     //dashboard page on object will set its own background:
@@ -207,26 +207,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
   $body.off('jeedom_page_load').on('jeedom_page_load', function() {
     if (getUrlVars('saveSuccessFull') == 1) {
-      jeedomUtils.showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'})
-      jeeFrontEnd.PREVIOUS_PAGE=window.location.href.split('&saveSuccessFull')[0]+window.location.hash
-      window.history.replaceState({}, document.title, window.location.href.split('&saveSuccessFull')[0]+window.location.hash)
+      jeedomUtils.showAlert({ message: '{{Sauvegarde effectuée avec succès}}', level: 'success' })
+      jeeFrontEnd.PREVIOUS_PAGE = window.location.href.split('&saveSuccessFull')[0] + window.location.hash
+      window.history.replaceState({}, document.title, window.location.href.split('&saveSuccessFull')[0] + window.location.hash)
     }
     if (getUrlVars('removeSuccessFull') == 1) {
-      jeedomUtils.showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'})
-      jeeFrontEnd.PREVIOUS_PAGE=window.location.href.split('&removeSuccessFull')[0]+window.location.hash
-      window.history.replaceState({}, document.title, window.location.href.split('&removeSuccessFull')[0]+window.location.hash)
+      jeedomUtils.showAlert({ message: '{{Suppression effectuée avec succès}}', level: 'success' })
+      jeeFrontEnd.PREVIOUS_PAGE = window.location.href.split('&removeSuccessFull')[0] + window.location.hash
+      window.history.replaceState({}, document.title, window.location.href.split('&removeSuccessFull')[0] + window.location.hash)
     }
   })
 
   //tab in url:
   var tab = document.querySelector('.nav-tabs a[href="' + window.location.hash + '"]')
   if (window.location.hash != '' && tab != null) {
-     tab.triggerEvent('click')
+    tab.triggerEvent('click')
     //$('.nav-tabs a[href="'+window.location.hash+'"]').click()
   }
 
   //browser history:
-  $body.on('shown.bs.tab','.nav-tabs a', function(event) {
+  $body.on('shown.bs.tab', '.nav-tabs a', function(event) {
     if (event.target.hash == '') {
       return
     }
@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', function() {
       return
     }
     if (jeeFrontEnd.PREVIOUS_PAGE == null) {
-      window.history.replaceState('','', 'index.php?' + window.location.href.split("index.php?")[1])
+      window.history.replaceState('', '', 'index.php?' + window.location.href.split("index.php?")[1])
       jeeFrontEnd.PREVIOUS_PAGE = 'index.php?' + window.location.href.split("index.php?")[1]
     }
     window.location.hash = event.target.hash
@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function() {
     jeeFrontEnd.NO_POPSTAT = true
     setTimeout(function() {
       jeeFrontEnd.NO_POPSTAT = false
-    },200)
+    }, 200)
   })
   window.addEventListener('popstate', function(event) {
     if (event.state === null) {
@@ -253,7 +253,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       var tab = document.querySelector('.nav-tabs a[href="' + window.location.hash + '"]')
       if (window.location.hash != '' && tab != null) {
-         tab.triggerEvent('click')
+        tab.triggerEvent('click')
       } else if (jeeFrontEnd.PREVIOUS_PAGE !== null && jeeFrontEnd.PREVIOUS_PAGE.includes('#') && jeeFrontEnd.PREVIOUS_PAGE.split('#')[0] != 'index.php?' + window.location.href.split("index.php?")[1].split('#')[0]) {
         if (jeedomUtils.checkPageModified()) return
         jeedomUtils.loadPage('index.php?' + window.location.href.split("index.php?")[1], true)
@@ -306,7 +306,7 @@ toastr.options = {
   "progressBar": true,
   "onclick": function() {
     window.toastr.clear()
-    $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&modal=message.display').dialog('open')
+    $('#md_modal').dialog({ title: "{{Centre de Messages}}" }).load('index.php?v=d&modal=message.display').dialog('open')
   }
 }
 jeedomUtils.toastrUIoptions = {
@@ -386,7 +386,7 @@ jeedomUtils.showLoading = function() {
   jeedomUtils.loadingTimeout = setTimeout(() => {
     if (!document.getElementById('div_jeedomLoading').isHidden()) {
       jeedomUtils.hideLoading()
-      jeedomUtils.showAlert({level: 'danger', message: 'Operation Timeout: Something has gone wrong!'})
+      jeedomUtils.showAlert({ level: 'danger', message: 'Operation Timeout: Something has gone wrong!' })
     }
   }, 20 * 1000)
 }
@@ -410,7 +410,7 @@ jeedomUtils.setJeedomTheme = function() {
   }
 
   //button event:
-  document.getElementById('bt_switchTheme').addEventListener('click', function(){
+  document.getElementById('bt_switchTheme').addEventListener('click', function() {
     jeedomUtils.closeJeedomMenu()
     jeedomUtils.switchTheme()
   })
@@ -423,16 +423,16 @@ jeedomUtils.setJeedomTheme = function() {
   }
 
   jeedomUtils.switchTheme = function() {
-    var theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/'+jeedom.theme.default_bootstrap_theme_night+'.css'
-    var themeShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/shadows.css'
+    var theme = 'core/themes/' + jeedom.theme.default_bootstrap_theme_night + '/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css'
+    var themeShadows = 'core/themes/' + jeedom.theme.default_bootstrap_theme_night + '/desktop/shadows.css'
     var themeCook = 'alternate'
     var themeButton = '<i class="fas fa-adjust"></i> {{Thème principal}}'
     document.getElementById('bootstrap_theme_css').setAttribute('data-nochange', 1)
 
     if ($('#bootstrap_theme_css').attr('href').split('?md5')[0] == theme) {
       document.body.setAttribute('data-theme', jeedom.theme.default_bootstrap_theme)
-      theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/'+jeedom.theme.default_bootstrap_theme+'.css'
-      themeShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/shadows.css';
+      theme = 'core/themes/' + jeedom.theme.default_bootstrap_theme + '/desktop/' + jeedom.theme.default_bootstrap_theme + '.css'
+      themeShadows = 'core/themes/' + jeedom.theme.default_bootstrap_theme + '/desktop/shadows.css'
       themeCook = 'default'
       themeButton = '<i class="fas fa-adjust"></i> {{Thème alternatif}}'
     } else {
@@ -483,12 +483,12 @@ jeedomUtils.checkThemechange = function() {
   if (getCookie('currentTheme') == 'alternate' || document.getElementById('bootstrap_theme_css')?.getAttribute('data-nochange') == 1) return
 
   var theme = jeedom.theme.default_bootstrap_theme_night
-  var themeCss = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css'
-  var currentTime = parseInt((new Date()).getHours()*100 + (new Date()).getMinutes())
+  var themeCss = 'core/themes/' + jeedom.theme.default_bootstrap_theme_night + '/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css'
+  var currentTime = parseInt((new Date()).getHours() * 100 + (new Date()).getMinutes())
 
-  if (parseInt(jeedom.theme.theme_start_day_hour.replace(':','')) <  currentTime && parseInt(jeedom.theme.theme_end_day_hour.replace(':','')) > currentTime) {
-    theme  = jeedom.theme.default_bootstrap_theme
-    themeCss = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/' + jeedom.theme.default_bootstrap_theme + '.css'
+  if (parseInt(jeedom.theme.theme_start_day_hour.replace(':', '')) < currentTime && parseInt(jeedom.theme.theme_end_day_hour.replace(':', '')) > currentTime) {
+    theme = jeedom.theme.default_bootstrap_theme
+    themeCss = 'core/themes/' + jeedom.theme.default_bootstrap_theme + '/desktop/' + jeedom.theme.default_bootstrap_theme + '.css'
   }
 
   var currentTheme = document.getElementById('bootstrap_theme_css').getAttribute('href')
@@ -497,16 +497,16 @@ jeedomUtils.checkThemechange = function() {
   }
   if (currentTheme != themeCss) {
     $.get(themeCss)
-    .done(function() {
-      document.getElementById('bootstrap_theme_css').setAttribute('href', themeCss)
-      document.body.setAttribute('data-theme', theme)
-      if (document.getElementById('shadows_theme_css') != null) document.getElementById('shadows_theme_css').setAttribute('href', 'core/themes/' + theme + '/desktop/shadows.css')
-      jeedomUtils.setBackgroundImage('')
-      jeedomUtils.triggerThemechange()
-    })
-    .fail(function() {
-      console.error("changeThemeAuto: can't find theme file " + themeCss)
-    })
+      .done(function() {
+        document.getElementById('bootstrap_theme_css').setAttribute('href', themeCss)
+        document.body.setAttribute('data-theme', theme)
+        if (document.getElementById('shadows_theme_css') != null) document.getElementById('shadows_theme_css').setAttribute('href', 'core/themes/' + theme + '/desktop/shadows.css')
+        jeedomUtils.setBackgroundImage('')
+        jeedomUtils.triggerThemechange()
+      })
+      .fail(function() {
+        console.error("changeThemeAuto: can't find theme file " + themeCss)
+      })
   }
 }
 
@@ -522,7 +522,7 @@ jeedomUtils.triggerThemechange = function() {
   }
 
   //trigger event for widgets:
-  if (document.body.hasAttribute('data-page') && ['dashboard', 'view', 'plan','widgets'].includes(document.body.getAttribute('data-page')) ) {
+  if (document.body.hasAttribute('data-page') && ['dashboard', 'view', 'plan', 'widgets'].includes(document.body.getAttribute('data-page'))) {
     if (currentTheme.endsWith('Light')) {
       $('body').trigger('changeThemeEvent', ['Light'])
     } else {
@@ -548,14 +548,14 @@ jeedomUtils.setBackgroundImage = function(_path) {
     }
 
     if (['dashboard', 'overview', 'home', 'equipment'].indexOf(document.body.getAttribute('data-page')) != -1) {
-      if(jeedom.theme.product_interface_image){
+      if (jeedom.theme.product_interface_image) {
         _path = jeedom.theme.product_interface_image
       }
       else {
         _path = jeedom.theme['interface::background::dashboard']
       }
     } else if (['display', 'eqAnalyse', 'log', 'timeline', 'history', 'report', 'health', 'administration', 'profils', 'update', 'backup', 'cron', 'user'].indexOf(document.body.getAttribute('data-page')) != -1) {
-      if(jeedom.theme.product_interface_image){
+      if (jeedom.theme.product_interface_image) {
         _path = jeedom.theme.product_interface_image
       }
       else {
@@ -610,15 +610,15 @@ jeedomUtils.transitionJeedomBackground = function(_path) {
 
 //Jeedom UI__
 jeedomUtils.initJeedomModals = function() {
-  $.fn.modal.Constructor.prototype.enforceFocus = function() {}
+  $.fn.modal.Constructor.prototype.enforceFocus = function() { }
 
-  if (isset(jeeFrontEnd.language) ) {
+  if (isset(jeeFrontEnd.language)) {
     var lang = jeeFrontEnd.language.substr(0, 2)
     var supportedLangs = ['fr', 'de', 'es']
-    if ( lang != 'en' && supportedLangs.includes(lang) ) {
-      bootbox.addLocale('fr', {OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Annuler'})
-      bootbox.addLocale('de', {OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Abbrechen'})
-      bootbox.addLocale('es', {OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Anular'})
+    if (lang != 'en' && supportedLangs.includes(lang)) {
+      bootbox.addLocale('fr', { OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Annuler' })
+      bootbox.addLocale('de', { OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Abbrechen' })
+      bootbox.addLocale('es', { OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Anular' })
       bootbox.setLocale('fr') //needed for date format
     }
   }
@@ -626,9 +626,9 @@ jeedomUtils.initJeedomModals = function() {
   $('body').on('show', '.modal', function() {
     document.activeElement.blur()
     $(this).find('.modal-body :input:visible').first().focus()
-  });
+  })
 
-  $('body').on('focusin','.bootbox-input', function(event) {
+  $('body').on('focusin', '.bootbox-input', function(event) {
     event.stopPropagation()
   })
 
@@ -644,14 +644,14 @@ jeedomUtils.initJeedomModals = function() {
     width: ((jQuery(window).width() - 100) < 900) ? (jQuery(window).width() - 100) : 900,
     position: { my: 'center center-10', at: 'center center', of: window },
     open: function() {
-      $('body').css({overflow: 'hidden'})
+      $('body').css({ overflow: 'hidden' })
       $(this).closest('.ui-dialog').find(':button').blur()
       $(this).dialog({
         height: ((jQuery(window).height() - 100) < 700) ? jQuery(window).height() - 100 : 700,
         width: ((jQuery(window).width() - 100) < 900) ? (jQuery(window).width() - 100) : 900,
         position: { my: 'center center-10', at: 'center center', of: window }
       })
-      setTimeout(function() {jeedomUtils.initTooltips($('#md_reportBug'))}, 500)
+      setTimeout(function() { jeedomUtils.initTooltips($('#md_reportBug')) }, 500)
     },
     beforeClose: function(event, ui) {
       emptyModal('md_reportBug')
@@ -664,16 +664,16 @@ jeedomUtils.initJeedomModals = function() {
     closeText: '',
     height: (jQuery(window).height() - 125),
     width: ((jQuery(window).width() - 50) < 1500) ? (jQuery(window).width() - 50) : 1500,
-    position: {my: 'center top+80', at: 'center top', of: window},
+    position: { my: 'center top+80', at: 'center top', of: window },
     open: function() {
-      $('body').css({overflow: 'hidden'})
+      $('body').css({ overflow: 'hidden' })
       $(this).closest('.ui-dialog').find(':button').blur()
       $(this).dialog({
         height: (jQuery(window).height() - 125),
         width: ((jQuery(window).width() - 50) < 1500) ? (jQuery(window).width() - 50) : 1500,
-        position: {my: 'center top+80', at: 'center top', of: window}
+        position: { my: 'center top+80', at: 'center top', of: window }
       })
-      setTimeout(function() {jeedomUtils.initTooltips($('#md_modal'))}, 500)
+      setTimeout(function() { jeedomUtils.initTooltips($('#md_modal')) }, 500)
     },
     beforeClose: function(event, ui) {
       $(this).parent('.ui-dialog').removeClass('summaryActionMain')
@@ -688,16 +688,16 @@ jeedomUtils.initJeedomModals = function() {
     closeText: '',
     height: (jQuery(window).height() - 125),
     width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
-    position: {my: 'center bottom-50', at: 'center bottom',  of: window},
+    position: { my: 'center bottom-50', at: 'center bottom', of: window },
     open: function() {
-      $('body').css({overflow: 'hidden'})
+      $('body').css({ overflow: 'hidden' })
       $(this).closest('.ui-dialog').find(':button').blur()
       $(this).dialog({
         height: (jQuery(window).height() - 125),
         width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
-        position: {my: 'center bottom-50', at: 'center bottom',  of: window},
+        position: { my: 'center bottom-50', at: 'center bottom', of: window },
       })
-      setTimeout(function() {jeedomUtils.initTooltips($('#md_modal2'))}, 500)
+      setTimeout(function() { jeedomUtils.initTooltips($('#md_modal2')) }, 500)
     },
     beforeClose: function(event, ui) {
       emptyModal('md_modal2')
@@ -711,16 +711,16 @@ jeedomUtils.initJeedomModals = function() {
     closeText: '',
     height: (jQuery(window).height() - 125),
     width: ((jQuery(window).width() - 250) < 1000) ? (jQuery(window).width() - 50) : 1000,
-    position: {my: 'center bottom-50', at: 'center bottom',  of: window},
+    position: { my: 'center bottom-50', at: 'center bottom', of: window },
     open: function() {
-      $('body').css({overflow: 'hidden'})
+      $('body').css({ overflow: 'hidden' })
       $(this).closest('.ui-dialog').find(':button').blur()
       $(this).dialog({
-        height : (jQuery(window).height() - 125),
-        width : ((jQuery(window).width() - 250) < 1000) ? (jQuery(window).width() - 50) : 1000,
-        position: {my: 'center bottom-50', at: 'center bottom',  of: window},
+        height: (jQuery(window).height() - 125),
+        width: ((jQuery(window).width() - 250) < 1000) ? (jQuery(window).width() - 50) : 1000,
+        position: { my: 'center bottom-50', at: 'center bottom', of: window },
       })
-      setTimeout(function() {jeedomUtils.initTooltips($('#md_modal3'))}, 500)
+      setTimeout(function() { jeedomUtils.initTooltips($('#md_modal3')) }, 500)
     },
     beforeClose: function(event, ui) {
       emptyModal('md_modal3')
@@ -728,31 +728,31 @@ jeedomUtils.initJeedomModals = function() {
     }
   })
 
-  function emptyModal(_id='') {
+  function emptyModal(_id = '') {
     if (_id == '') return
-    $('body').css({overflow: 'inherit'})
+    $('body').css({ overflow: 'inherit' })
     document.emptyById(_id)
   }
 }
 
-jeedomUtils.setButtonCtrlHandler = function(_button, _title, _uri, _modal='#md_modal', _open=true) {
+jeedomUtils.setButtonCtrlHandler = function(_button, _title, _uri, _modal = '#md_modal', _open = true) {
   $(_button).on('click', function(event) {
     jeedomUtils.closeJeedomMenu()
     try {
       if (jeedomUI.isEditing == true) return false
-    } catch (error) {}
+    } catch (error) { }
     if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
       var title = encodeURI(_title)
-      var url = '/index.php?v=d&p=modaldisplay&loadmodal='+_uri+'&title=' + title
+      var url = '/index.php?v=d&p=modaldisplay&loadmodal=' + _uri + '&title=' + title
       window.open(url).focus()
     } else {
       $(_modal).dialog('close')
-      $(_modal).dialog({title: _title}).load('index.php?v=d&modal='+_uri)
+      $(_modal).dialog({ title: _title }).load('index.php?v=d&modal=' + _uri)
       if (_open) $(_modal).dialog('open')
     }
   })
   $(_button).on('mouseup', function(event) {
-    if( event.which == 2 ) {
+    if (event.which == 2) {
       event.preventDefault()
       $(_button).trigger(jQuery.Event('click', { ctrlKey: true }))
     }
@@ -761,7 +761,7 @@ jeedomUtils.setButtonCtrlHandler = function(_button, _title, _uri, _modal='#md_m
 
 jeedomUtils.setJeedomGlobalUI = function() {
   if (typeof jeeFrontEnd.jeedom_firstUse != 'undefined' && isset(jeeFrontEnd.jeedom_firstUse) && jeeFrontEnd.jeedom_firstUse == 1 && getUrlVars('noFirstUse') != 1) {
-    $('#md_modal').dialog({title: "{{Bienvenue dans Jeedom}}"}).load('index.php?v=d&modal=first.use').dialog('open')
+    $('#md_modal').dialog({ title: "{{Bienvenue dans Jeedom}}" }).load('index.php?v=d&modal=first.use').dialog('open')
   }
 
   window.addEventListener('beforeunload', function(event) {
@@ -812,7 +812,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
 
   document.getElementById('bt_jeedomAbout').addEventListener('click', function() {
     jeedomUtils.closeJeedomMenu()
-    $('#md_modal').dialog({title: "{{A propos}}"}).load('index.php?v=d&modal=about').dialog('open')
+    $('#md_modal').dialog({ title: "{{A propos}}" }).load('index.php?v=d&modal=about').dialog('open')
   })
 
   document.getElementById('bt_getHelpPage').addEventListener('click', function(event) {
@@ -821,10 +821,10 @@ jeedomUtils.setJeedomGlobalUI = function() {
       page: this.getAttribute('data-page'),
       theme: document.body.getAttribute('data-theme'),
       error: function(error) {
-        jeedomUtils.showAlert({message: error.message, level: 'danger'})
+        jeedomUtils.showAlert({ message: error.message, level: 'danger' })
       },
       success: function(url) {
-        window.open(url,'_blank')
+        window.open(url, '_blank')
       }
     })
   })
@@ -840,12 +840,12 @@ jeedomUtils.setJeedomGlobalUI = function() {
 
   document.getElementById('bt_messageModal').addEventListener('click', function() {
     jeedomUtils.closeModal('md_modal')
-    $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&modal=message.display').dialog('open')
+    $('#md_modal').dialog({ title: "{{Centre de Messages}}" }).load('index.php?v=d&modal=message.display').dialog('open')
   })
 
   document.getElementById('bt_jsErrorModal').addEventListener('click', function() {
     jeedomUtils.closeModal('md_modal')
-    $('#md_modal').dialog({title: "{{Erreur Javascript}}"}).load('index.php?v=d&modal=js.error').dialog('open')
+    $('#md_modal').dialog({ title: "{{Erreur Javascript}}" }).load('index.php?v=d&modal=js.error').dialog('open')
   })
 
   document.body.addEventListener('keydown', function(event) {
@@ -853,8 +853,8 @@ jeedomUtils.setJeedomGlobalUI = function() {
     if (event.target.matches('input[id^="in_search"]')) {
       if (event.key == 'Escape') {
         event.stopPropagation()
-        var els = (( els = document.querySelectorAll('#categoryfilter li .catFilterKey')) != null ? els.forEach(function(item) {item.checked = true}) : null)
-        var els = (( els = document.querySelectorAll('#dashTopBar button.dropdown-toggle')) != null ? els.removeClass('warning') : null)
+        var els = ((els = document.querySelectorAll('#categoryfilter li .catFilterKey')) != null ? els.forEach(function(item) { item.checked = true }) : null)
+        var els = ((els = document.querySelectorAll('#dashTopBar button.dropdown-toggle')) != null ? els.removeClass('warning') : null)
         event.target.value = ''
         return
       }
@@ -885,7 +885,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
 
       var _el = event.target.matches('.objectSummaryAction') ? event.target : event.target.parentNode
       var url = 'index.php?v=d&modal=summary.action&summary=' + _el.dataset.summary + '&object_id=' + _el.dataset.object_id
-      $('#md_modal').dialog({title: "{{Action sur résumé}}"}).load(url)
+      $('#md_modal').dialog({ title: "{{Action sur résumé}}" }).load(url)
       return
     }
 
@@ -933,7 +933,7 @@ jeedomUtils.initPage = function() {
   jeedomUtils.initHelp()
   jeedomUtils.initTextArea()
 
-  $('.nav-tabs a').on('click',function() {
+  $('.nav-tabs a').on('click', function() {
     $(this).tab('show')
     $('#div_mainContainer').scrollTop(0)
   })
@@ -943,7 +943,7 @@ jeedomUtils.initPage = function() {
   }, 750)
   try {
     if (getDeviceType()['type'] == 'desktop') document.querySelector("input[id^='in_search']")?.focus()
-  } catch (error) {}
+  } catch (error) { }
   jeedomUtils.initDisplayAsTable()
 }
 
@@ -1000,7 +1000,7 @@ jeedomUtils.createObserver = function() {
   if (mainContent) {
     jeedomUtils.OBSERVER = new MutationObserver(function(mutations) {
       mutations.forEach(function(mutation) {
-        if ( mutation.type == 'childList' ) {
+        if (mutation.type == 'childList') {
           if (mutation.addedNodes.length >= 1) {
             if (mutation.addedNodes[0].nodeName != '#text') {
               jeedomUtils.initTooltips($(mutation.target))
@@ -1030,12 +1030,12 @@ jeedomUtils.initTooltips = function(_el) {
       var me = _el.closest('.cmd-widget[title]')
       if (me.hasClass('tooltipstered')) me.tooltipster('destroy')
       me.tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
-      return;
+      return
     }
 
     if (_el.hasClass('tooltips') && !_el.hasClass('tooltipstered') || _el.is('[title]')) {
-      if (_el.is('[title]') && _el.hasClass('tooltipstered')){
-        _el.tooltipster('destroy');
+      if (_el.is('[title]') && _el.hasClass('tooltipstered')) {
+        _el.tooltipster('destroy')
       }
       _el.tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
     }
@@ -1074,7 +1074,7 @@ jeedomUtils.initTableSorter = function(filter) {
     widgets.push('filter')
   }
   $('table.tablesorter').tablesorter({
-    dateFormat : "yyyy-mm-dd",
+    dateFormat: "yyyy-mm-dd",
     theme: "bootstrap",
     widthFixed: false,
     widgets: widgets,
@@ -1089,16 +1089,16 @@ jeedomUtils.initTableSorter = function(filter) {
       stickyHeaders_offset: $('header.navbar-fixed-top').height()
     },
     cssIcon: 'tablesorter-icon',
-    initialized : function(table) {
+    initialized: function(table) {
       $(table).find('thead .tablesorter-header-inner').append('<i class="tablesorter-icon"></i>')
     }
-  }).css('width','')
+  }).css('width', '')
 }
 
 jeedomUtils.initHelp = function() {
   $('.help').each(function() {
     if ($(this).attr('data-help') != undefined) {
-      $(this).append(' <sup><i class="fas fa-question-circle tooltips" title="'+$(this).attr('data-help')+'"></i></sup>')
+      $(this).append(' <sup><i class="fas fa-question-circle tooltips" title="' + $(this).attr('data-help') + '"></i></sup>')
     }
   })
 }
@@ -1108,7 +1108,7 @@ jeedomUtils.autocompleteDestroy = function() {
 }
 
 jeedomUtils.datePickerInit = function() {
-  var datePickerRegion = jeeFrontEnd.language.substring(0,2)
+  var datePickerRegion = jeeFrontEnd.language.substring(0, 2)
   if (isset($.datepicker.regional[datePickerRegion])) {
     var datePickerRegional = $.datepicker.regional[datePickerRegion]
   } else {
@@ -1139,7 +1139,7 @@ jeedomUtils.initSpinners = function() {
 }
 
 jeedomUtils.datePickerDestroy = function() {
-  $('.in_datepicker').datepicker( "destroy" )
+  $('.in_datepicker').datepicker("destroy")
   $('.in_datepicker').removeClass("hasDatepicker").removeAttr('id')
   $('#ui-datepicker-div').remove()
 
@@ -1152,15 +1152,15 @@ jeedomUtils.datePickerDestroy = function() {
 jeedomUtils.normTextLower = function(_text) {
   try {
     var result = _text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
-  } catch(error) {
+  } catch (error) {
     var result = ''
   }
   return result
 }
 
 jeedomUtils.linkify = function(inputText) {
-  if(!inputText || inputText == '' || inputText === null){
-    return '';
+  if (!inputText || inputText == '' || inputText === null) {
+    return ''
   }
   var replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim
   var replacedText = inputText.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>')
@@ -1185,7 +1185,7 @@ jeedomUtils.uniqId = function(_prefix) {
   if (typeof _prefix == 'undefined') {
     _prefix = 'jee-uniq'
   }
-  var result = _prefix +'-'+ jeedomUtils.uniqId_count + '-' + Math.random().toString(36).substring(8)
+  var result = _prefix + '-' + jeedomUtils.uniqId_count + '-' + Math.random().toString(36).substring(8)
   jeedomUtils.uniqId_count++
   if (document.getElementById(result) != null) {
     return jeedomUtils.uniqId(_prefix)
@@ -1219,10 +1219,10 @@ jeedomUtils.rgbToHex = function(r, g, b) {
     if (r.startsWith('rgb')) {
       r = r.replace('rgb', '')
     }
-    if (r.startsWith('(')){
+    if (r.startsWith('(')) {
       r = r.replace('(', '')
     }
-    if (r.endsWith(')')){
+    if (r.endsWith(')')) {
       r = r.replace(')', '')
     }
     var strAr = r.split(',')
@@ -1248,14 +1248,14 @@ jeedomUtils.addOrUpdateUrl = function(_param, _value, _title) {
     if (url.indexOf('#') != -1) {
       url = url.substring(0, url.indexOf('#'))
     }
-    if (jeeFrontEnd.PREVIOUS_PAGE != 'index.php?'+window.location.href.split("index.php?")[1]) {
-      window.history.pushState('','', window.location.href)
+    if (jeeFrontEnd.PREVIOUS_PAGE != 'index.php?' + window.location.href.split("index.php?")[1]) {
+      window.history.pushState('', '', window.location.href)
     }
     if (_title && _title != '') {
       document.title = _title
     }
-    window.history.pushState('','', url.toString())
-    jeeFrontEnd.PREVIOUS_PAGE = 'index.php?'+url.split("index.php?")[1]
+    window.history.pushState('', '', url.toString())
+    jeeFrontEnd.PREVIOUS_PAGE = 'index.php?' + url.split("index.php?")[1]
   } else {
     if (_title && _title != '') {
       document.title = _title
@@ -1360,7 +1360,7 @@ jeedomUtils.closeJeedomMenu = function() {
 }
 
 jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
-  var margin = jeedom.theme['widget::margin'] + 'px ' + jeedom.theme['widget::margin']*2 + 'px ' + jeedom.theme['widget::margin'] + 'px 0'
+  var margin = jeedom.theme['widget::margin'] + 'px ' + jeedom.theme['widget::margin'] * 2 + 'px ' + jeedom.theme['widget::margin'] + 'px 0'
 
   //Get full width, step columns, to fill right space:
   if (document.getElementsByClassName('posEqWidthRef').length > 0) {
@@ -1371,10 +1371,10 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
   var cols = Math.floor(containerWidth / jeedomUtils.tileWidthStep) + 1
   var tileWidthAdd = containerWidth - (cols * jeedomUtils.tileWidthStep)
   var widthStep = jeedomUtils.tileWidthStep + (tileWidthAdd / cols) - (2 * parseInt(jeedom.theme['widget::margin']))
-  var widthSteps = Array.apply(null, {length: 10}).map(function(value, index) {return (index + 1) * widthStep})
+  var widthSteps = Array.apply(null, { length: 10 }).map(function(value, index) { return (index + 1) * widthStep })
 
   if (_id != undefined) {
-    var tile = (_scenario) ? document.querySelector('.scenario-widget[data-scenario_id="'+_id+'"]') : document.querySelector('.eqLogic-widget[data-eqlogic_id="'+_id+'"]')
+    var tile = (_scenario) ? document.querySelector('.scenario-widget[data-scenario_id="' + _id + '"]') : document.querySelector('.eqLogic-widget[data-eqlogic_id="' + _id + '"]')
     if (init(_preResize, true)) {
       Object.assign(tile.style, {
         width: (Math.floor(tile.width() / jeedom.theme['widget::step::width']) * jeedom.theme['widget::step::width'] - (2 * jeedom.theme['widget::margin'])) + 'px',
@@ -1393,7 +1393,7 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
     var width, height, idx, element
     var elements = document.querySelectorAll('div.eqLogic-widget, div.scenario-widget')
 
-    for (idx=0; idx < elements.length; idx++) {
+    for (idx = 0; idx < elements.length; idx++) {
       tile = elements[idx]
       if (tile.dataset.confWidth === undefined) {
         tile.dataset.confWidth = tile.offsetWidth
@@ -1474,18 +1474,18 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
       width: 1500,
       open: function() {
         if ((jQuery(window).width() - 50) < 1500) {
-          $('#mod_selectIcon').dialog({width: jQuery(window).width() - 50})
+          $('#mod_selectIcon').dialog({ width: jQuery(window).width() - 50 })
         }
-        $('body').css({overflow: 'hidden'});
-        setTimeout(function() {jeedomUtils.initTooltips($("#mod_selectIcon"))},500)
+        $('body').css({ overflow: 'hidden' })
+        setTimeout(function() { jeedomUtils.initTooltips($("#mod_selectIcon")) }, 500)
       },
       beforeClose: function(event, ui) {
-        $('body').css({overflow: 'inherit'})
+        $('body').css({ overflow: 'inherit' })
       }
-    });
+    })
   }
   var url = 'index.php?v=d&modal=icon.selector'
-  if(_params && _params.img && _params.img === true) {
+  if (_params && _params.img && _params.img === true) {
     url += '&showimg=1'
   }
   if (_params && _params.icon) {
@@ -1494,7 +1494,7 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
     replaceAr.forEach(function(element) {
       if (icon.includes(element)) {
         icon = icon.replace(element, '')
-        _params.color = (!_params.color) ? element : _params.color;
+        _params.color = (!_params.color) ? element : _params.color
       }
     })
     icon = icon.trim().split(' ').join('.')
@@ -1506,13 +1506,13 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
   if (_params && _params.object_id) {
     url += '&object_id=' + _params.object_id
   }
-  $('#mod_selectIcon').empty().load(url,function() {
+  $('#mod_selectIcon').empty().load(url, function() {
     $("#mod_selectIcon").dialog('option', 'buttons', {
       "Annuler": function() {
         $(this).dialog("close")
       },
       "Valider": function() {
-        var icon = $('.iconSelected .iconSel').html();
+        var icon = $('.iconSelected .iconSel').html()
         if (icon == undefined) {
           icon = ''
         }
@@ -1529,14 +1529,14 @@ jeedomUtils.getOpenedModal = function() {
   var _return = false
   var modals = ['md_reportBug', 'md_modal', 'md_modal2', 'md_modal3', 'ui-id-5']
   modals.forEach(function(_modal) {
-    if ($('.ui-dialog[aria-describedby="'+_modal+'"]').is(':visible') == true) {
+    if ($('.ui-dialog[aria-describedby="' + _modal + '"]').is(':visible') == true) {
       _return = _modal
     }
   })
   return _return
 }
 
-jeedomUtils.closeModal = function(_modals='') {
+jeedomUtils.closeModal = function(_modals = '') {
   if (_modals == '') {
     _modals = ['md_reportBug', 'md_modal', 'md_modal2', 'md_modal3', 'ui-id-5']
   }
@@ -1545,13 +1545,13 @@ jeedomUtils.closeModal = function(_modals='') {
   }
   _modals.forEach(function(_modal) {
     try {
-      $('#'+_modal).dialog('close')
-    } catch (error) {}
+      $('#' + _modal).dialog('close')
+    } catch (error) { }
 
   })
 }
 
-jeedomUtils.cleanModals = function(_modals='') {
+jeedomUtils.cleanModals = function(_modals = '') {
   document.querySelectorAll('.ui-dialog .cleanableModal')?.forEach(function(element) {
     element.closest('.ui-dialog')?.remove()
   })
@@ -1582,16 +1582,16 @@ jeedomUtils.setCheckboxStateByType = function(_type, _state, _callback) {
 }
 jeedomUtils.getElementType = function(_el) {
   let thisType = ''
-  if (_el.is('input')) thisType = 'input[type="'+_el.attr('type')+'"]'
+  if (_el.is('input')) thisType = 'input[type="' + _el.attr('type') + '"]'
 
   if (_el.attr("data-context")) {
-    thisType += '[data-context="'+_el.attr("data-context")+'"]'
+    thisType += '[data-context="' + _el.attr("data-context") + '"]'
   } else {
     if (_el.attr("data-l1key")) {
-      thisType += '[data-l1key="'+_el.attr("data-l1key")+'"]'
+      thisType += '[data-l1key="' + _el.attr("data-l1key") + '"]'
     }
     if (_el.attr("data-l2key")) {
-      thisType += '[data-l2key="'+_el.attr("data-l2key")+'"]'
+      thisType += '[data-l2key="' + _el.attr("data-l2key") + '"]'
     }
   }
 
@@ -1669,17 +1669,17 @@ jeedomUtils.deprecatedFunc = function(_oldFnName, _newFnName, _since, _to, _line
   if (document.body.getAttribute('data-type') == 'plugin') {
     var _pluginId = $('body').attr('data-page')
     jeedom.plugin.get({
-        id: _pluginId,
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          msg += ' plugin: ' + _pluginId + ' | require: ' + data.require
-        }
-      })
+      id: _pluginId,
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(data) {
+        msg += ' plugin: ' + _pluginId + ' | require: ' + data.require
+      }
+    })
   }
 
   setTimeout(() => {

@@ -24,7 +24,7 @@
     jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: "#value#", display_value: "#state#", valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
 
     if (is_numeric('#maxHeight#')) {
-      document.querySelector('.cmd[data-cmd_uid="#uid#"] .content-xs').style.height = '#maxHeight#px'
+      document.querySelector('.cmd[data-cmd_uid="#uid#"] .content-xs').style.minHeight = '#maxHeight#px'
     }
   </script>
 </div>

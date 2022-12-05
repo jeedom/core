@@ -4,597 +4,661 @@ Desktop
 */
 
 /* ____________________Global */
-  [data-page=plan3d] .verticalAlign {
-    z-index : auto !important;
-  }
+[data-page=plan3d] .verticalAlign {
+  z-index: auto !important;
+}
 
-  div.eqlogicbackgraph {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: -100;
-    opacity: 0.65;
-  }
-  div.eqlogicbackgraph  path.highcharts-graph {
-    stroke-width: 2;
-  }
-  div.eqlogicbackgraph .eqLogicGraphPeriod {
-    font-size: 11px;
-    position: absolute;
-    bottom: 1px;
-    right: 2px;
-    z-index: 1;
-  }
+div.eqlogicbackgraph {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: -100;
+  opacity: 0.65;
+}
 
-  div.eqLogic-widget div.cmd-widget {
-    padding: 0;
-    min-width: 100px;
-    display: inline-block;
-    vertical-align: top;
-    padding: 0 5px 0px 5px;
-    min-height: 20px;
-  }
+div.eqlogicbackgraph path.highcharts-graph {
+  stroke-width: 2;
+}
 
-  .eqLogic-widget.hideEqLogicName .widget-name {
-    display: none !important;
-  }
+div.eqlogicbackgraph .eqLogicGraphPeriod {
+  font-size: 11px;
+  position: absolute;
+  bottom: 1px;
+  right: 2px;
+  z-index: 1;
+}
 
-  div.cmd-widget .title {
-    color: var(--txt-color);
-    height: 16px;
-    max-width: 100px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+div.eqLogic-widget div.cmd-widget {
+  min-width: 90px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: top;
+}
 
-  div.cmd-widget .title > .cmdName {
-    max-width: 100px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+.eqLogic-widget.hideEqLogicName .widget-name {
+  display: none !important;
+}
 
-  div.cmd-widget .cmdName {
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 13px;
-  }
+div.cmd-widget .title>.cmdName {
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
-  div.cmd-widget .value > .label {
-    padding: 1px 3px;
-  }
+div.cmd-widget .cmdName {
+  color: var(--txt-color);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
 
-  div.cmd-widget div[class^="content"] {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
+div.cmd-widget .value>.label {
+  padding: 1px 3px;
+}
 
-  div.cmd-widget .content-xs {
-    display: block!important;
-    color: var(--txt-color);
-    max-height: 26px;
-    margin: 0;
-  }
-  div.cmd-widget .content-sm {
-    height: 40px !important;
-  }
-  div.cmd-widget .content {
-    height: 60px !important;
-  }
-  div.cmd-widget .content-lg {
-    height: 80px !important;
-  }
+div.cmd-widget .content-xs {
+  display: block !important;
+  color: var(--txt-color);
+  max-height: 26px;
+}
 
-  div.cmd-widget .value {
-    font-weight: bold;
-    width: 100%;
-    height: 16px;
-    margin-bottom: 2px;
-  }
+div.cmd-widget .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-width: 90px;
+  min-height: 40px;
+  padding: 2px;
+}
 
-  .timeCmd.label {
-    color: var(--txt-color);
-    background: rgb(var(--bg-color));
-    position: relative;
-    padding: 2px 5px !important;
-    font-size: 11px !important;
-  }
+div.cmd-widget .value {
+  font-weight: bold;
+  width: 100%;
+  height: 16px;
+  margin-bottom: 2px;
+}
 
-  .timeCmd.label:first-letter {
-    text-transform: uppercase;
-  }
+.timeCmd.label {
+  color: var(--txt-color);
+  background: rgb(var(--bg-color));
+  position: relative;
+  padding: 2px 5px !important;
+  margin: 2px 0px;
+  font-size: 11px !important;
+}
 
-  div.cmd-widget div[class^="content"] > select {
-    font-size: 16px !important;
-    height: 22px;
-    width: 75%;
-  }
-  div.cmd-widget div[class^="content"] > select > option {
-    font-size: 12px !important;
-  }
-  div.cmd-widget[data-subtype="select"]::after {
-    font-size: 14px;
-    top: 5px!important;
-    right: 5px;
-  }
-  div.eqLogic_layout_table table.tableCmd {
-    width: 100%;
-  }
-  div.eqLogic_layout_table table.tableCmd td {
-    vertical-align: top;
-  }
-  .eqLogic.eqLogic-widget > .widget-name {
-    margin-bottom: 5px;
-  }
+.timeCmd.label:first-letter {
+  text-transform: uppercase;
+}
 
-  .cmdStats {
-    color: var(--txt-color) !important;
-    font-size: 10px !important;
-    padding: 5px 0 5px 0;
-  }
+div.eqLogic_layout_table table.tableCmd {
+  width: 100%;
+}
 
-  .verticalAlign {
-    position: relative;
-    transform: translateY(-50%);
-    top: calc(50% - 18px);
-    z-index: -1;
-  }
-  [data-page="widgets"] .verticalAlign {
-    z-index: 1;
-  }
+div.eqLogic_layout_table table.tableCmd td {
+  vertical-align: top;
+}
+
+div.eqLogic_layout_table table.tableCmd td.tableCenter {
+  vertical-align: middle !important;
+}
+
+.eqLogic.eqLogic-widget>.widget-name {
+  margin-bottom: 5px;
+}
+
+.cmdStats {
+  color: var(--txt-color) !important;
+  font-size: 10px !important;
+  line-height: 14px;
+  margin-bottom: 2px;
+}
+
+.verticalAlign {
+  position: relative;
+  transform: translateY(-50%);
+  top: calc(50% - 18px);
+  z-index: -1;
+}
+
+[data-page="widgets"] .verticalAlign {
+  z-index: 1;
+}
 
 /* ____________________Sliders */
-  .ui-slider-handle {
-    font-size: 13px;
-    border-radius: 8px !important;
-    background-color: var(--link-color) !important;
-    cursor: pointer !important;
-    touch-action: none;
-  }
-  .ui-slider-handle:active,
-  .ui-slider-handle:focus,
-  .ui-slider-handle:hover,
-  .ui-slider-handle.ui-state-focus,
-  .ui-slider-handle.ui-state-default {
-    outline: none;
-  }
-  .ui-slider-horizontal .ui-slider-handle {
-    top: -6px !important;
-  }
-  .ui-slider-vertical .ui-slider-handle {
-    left: -6px !important;
-  }
-  .ui-slider-horizontal {
-    height: 3.2px !important;
-  }
-  .ui-slider-vertical {
-    width: 3.2px !important;
-  }
-  .slider.ui-slider {
-    background: var(--el-defaultColor) !important;
-    border: none !important;
-  }
+.ui-slider-handle {
+  font-size: 13px;
+  border-radius: 8px !important;
+  background-color: var(--link-color) !important;
+  cursor: pointer !important;
+  touch-action: none;
+}
 
-  .slider.ui-slider-horizontal {
-    position: relative;
-    margin: 5px;
-    width: 65px;
-    left: 0;
-  }
-  .slider.ui-slider-vertical {
-    margin: 5px;
-    height: 48px;
-  }
+.ui-slider-handle:active,
+.ui-slider-handle:focus,
+.ui-slider-handle:hover,
+.ui-slider-handle.ui-state-focus,
+.ui-slider-handle.ui-state-default {
+  outline: none;
+}
 
-  .ui-slider .ui-slider-range,
-  .ui-slider .ui-corner-all.ui-slider-range {
-    background-color: var(--link-color) !important;
-    background-image: none !important;
-    border-radius: 2px !important;
-    border-color: transparent !important;
-    box-shadow: none;
-  }
-  .ui-slider.ui-slider-vertical .ui-slider-range {
-    left: -0.5px;
-    width: 4.7px;
-  }
-  .ui-slider.ui-slider-horizontal .ui-slider-range {
-    top: -0.5px;
-    height: 4.7px;
-  }
+.ui-slider-horizontal .ui-slider-handle {
+  top: -6px !important;
+}
 
-  .sliderValue {
-    font-size: 12px;
-    color: var(--link-color);
-    font-weight: normal;
-    position: absolute;
-    z-index: 1;
-  }
-  .ui-slider-horizontal > .sliderValue {
-    top: -7px;
-    right: -22px;
-  }
-  .ui-slider-vertical > .sliderValue {
-    bottom: -14px;
-    right: -15px;
-    width: 25px;
-  }
+.ui-slider-vertical .ui-slider-handle {
+  left: -6px !important;
+}
+
+.ui-slider-horizontal {
+  height: 3.2px !important;
+}
+
+.ui-slider-vertical {
+  width: 3.2px !important;
+}
+
+.slider.ui-slider {
+  background: var(--el-defaultColor) !important;
+  border: none !important;
+}
+
+.slider.ui-slider-horizontal {
+  position: relative;
+  margin: 5px;
+  width: 65px;
+  left: 0;
+}
+
+.slider.ui-slider-vertical {
+  margin: 5px;
+  height: 48px;
+}
+
+.ui-slider .ui-slider-range,
+.ui-slider .ui-corner-all.ui-slider-range {
+  background-color: var(--link-color) !important;
+  background-image: none !important;
+  border-radius: 2px !important;
+  border-color: transparent !important;
+  box-shadow: none;
+}
+
+.ui-slider.ui-slider-vertical .ui-slider-range {
+  left: -0.5px;
+  width: 4.7px;
+}
+
+.ui-slider.ui-slider-horizontal .ui-slider-range {
+  top: -0.5px;
+  height: 4.7px;
+}
+
+.sliderValue {
+  font-size: 12px;
+  color: var(--link-color);
+  font-weight: normal;
+  position: absolute;
+  z-index: 1;
+}
+
+.ui-slider-horizontal>.sliderValue {
+  top: -7px;
+  right: -22px;
+}
+
+.ui-slider-vertical>.sliderValue {
+  bottom: -14px;
+  right: -15px;
+  width: 25px;
+}
 
 /* v4.2 nouislider */
-  div.cmd-widget .slider.noUi-horizontal {
-    width: 70px;
-    margin-top: 10px;
-  }
-  div.cmd-widget .slider.noUi-horizontal .noUi-base {
-    z-index: 20;
-  }
-  div.cmd-widget .slider.noUi-vertical .noUi-base {
-    width: 7px;
-    height: 45px;
-    left: 5.5px;
-    top: -2px;
-    z-index: 20;
-  }
-  div.cmd-widget .slider .noUi-connects {
-    background: var(--el-defaultColor) !important;
-    border-radius: 0;
-    cursor: pointer;
-  }
-  div.cmd-widget .slider.noUi-horizontal .noUi-connects {
-    height: 5px;
-  }
-  div.cmd-widget .slider.noUi-vertical .noUi-connects {
-    width: 5px;
-  }
-  div.cmd-widget .slider .noUi-connects > .noUi-connect {
-    background: var(--link-color);
-  }
-  div.cmd-widget .slider.noUi-horizontal .noUi-connects > .noUi-connect {
-    height: 7px !important;
-  }
-  div.cmd-widget .slider.noUi-vertical .noUi-connects > .noUi-connect {
-    width: 8px !important;
-  }
-  div.cmd-widget .slider,
-  div.cmd-widget .slider .noUi-handle {
-    border: none;
-    box-shadow: none;
-    background: transparent;
-  }
-  div.cmd-widget .slider .noUi-handle {
-    height: 1.3em;
-    width: 1.3em;
-    border-radius: 50%;
-    background: var(--link-color);
-  }
-  div.cmd-widget .slider .noUi-handle:before,
-  div.cmd-widget .slider .noUi-handle::after {
-    display: none;
-  }
-  div.cmd-widget .slider .noUi-tooltip {
-    display: none;
-    font-family: 'Roboto';
-    font-size: 12px;
-    border: none;
-    background: var(--btnEq-default-color);
-    color: var(--link-color);
-  }
-  div.cmd-widget .slider .noUi-handle:hover .noUi-tooltip {
-    display: block;
-  }
-  div.cmd-widget .slider.noUi-horizontal .noUi-tooltip {
-    bottom: 100%;
-  }
-  div.cmd-widget .slider.noUi-vertical .noUi-tooltip {
-    right: 120%;
-  }
-  div.cmd-widget .slider .noUi-active .noUi-tooltip {
-    display: block;
-  }
-  div.cmd-widget .slider .noUi-handle {
-    cursor: pointer;
-    outline: none;
-  }
-  div.cmd-widget .slider.noUi-horizontal .noUi-handle {
-    left: 60px;
-    top: -5px;
-  }
-  div.cmd-widget .slider.noUi-vertical .noUi-handle {
-    left: -12.5px;
-    top: 40px;
-  }
-  div.cmd-widget .slider .noUi-handle:focus {
-    outline: none;
-  }
+div.cmd-widget .slider.noUi-horizontal {
+  width: 70px;
+  margin-top: 10px;
+}
+
+div.cmd-widget .slider.noUi-vertical {
+  height: 45px;
+  margin: 5px auto;
+}
+
+div.cmd-widget .slider.noUi-horizontal .noUi-base {
+  z-index: 20;
+}
+
+div.cmd-widget .slider.noUi-vertical .noUi-base {
+  width: 7px;
+  left: 5.5px;
+  z-index: 20;
+}
+
+div.cmd-widget .slider .noUi-connects {
+  background: var(--el-defaultColor) !important;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+div.cmd-widget .slider.noUi-horizontal .noUi-connects {
+  height: 5px;
+}
+
+div.cmd-widget .slider.noUi-vertical .noUi-connects {
+  width: 5px;
+}
+
+div.cmd-widget .slider .noUi-connects>.noUi-connect {
+  background: var(--link-color);
+}
+
+div.cmd-widget .slider.noUi-horizontal .noUi-connects>.noUi-connect {
+  height: 7px !important;
+}
+
+div.cmd-widget .slider.noUi-vertical .noUi-connects>.noUi-connect {
+  width: 8px !important;
+}
+
+div.cmd-widget .slider,
+div.cmd-widget .slider .noUi-handle {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+div.cmd-widget .slider .noUi-handle {
+  height: 1.3em;
+  width: 1.3em;
+  border-radius: 50%;
+  background: var(--link-color);
+}
+
+div.cmd-widget .slider .noUi-handle:before,
+div.cmd-widget .slider .noUi-handle::after {
+  display: none;
+}
+
+div.cmd-widget .slider .noUi-tooltip {
+  display: none;
+  font-family: 'Roboto';
+  font-size: 12px;
+  border: none;
+  background: var(--btnEq-default-color);
+  color: var(--link-color);
+}
+
+div.cmd-widget .slider .noUi-handle:hover .noUi-tooltip {
+  display: block;
+}
+
+div.cmd-widget .slider.noUi-horizontal .noUi-tooltip {
+  bottom: 100%;
+}
+
+div.cmd-widget .slider.noUi-vertical .noUi-tooltip {
+  right: 120%;
+}
+
+div.cmd-widget .slider .noUi-active .noUi-tooltip {
+  display: block;
+}
+
+div.cmd-widget .slider .noUi-handle {
+  cursor: pointer;
+  outline: none;
+}
+
+div.cmd-widget .slider.noUi-horizontal .noUi-handle {
+  right: -8.5px;
+}
+
+div.cmd-widget .slider.noUi-vertical .noUi-handle {
+  bottom: -8px;
+  left: -12.5px;
+}
+
+div.cmd-widget .slider .noUi-handle:focus {
+  outline: none;
+}
 
 /* ____________________Specifics */
-  div.cmd-widget[data-type="action"][data-subtype="other"][data-template="default"] {
-    min-width: unset;
-    padding: 0;
-    margin-right: 2px;
-  }
-  div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="value"] input {
-    font-size: 12px;
-    padding: 2px;
-  }
-  div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="value"] .ui-button-icon.ui-icon {
-    margin-top: -8px;
-  }
-  div.cmd-widget[data-type="action"][data-subtype="other"][data-template="tmpliconline"] .iconCmdLine {
-    font-size: 1.2em;
-  }
-  div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .buttons {
-    width: 130px;
-  }
-  div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .in_value {
-    width: 70px;
-  }
-  div.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] {
-    overflow: hidden;
-  }
-  div.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] .message {
-    margin: 5px 0 !important;
-    resize: none !important;
-  }
-  div.cmd-widget[data-type="info"][data-subtype="string"][data-template="error"],
-  div.cmd-widget[data-type="info"][data-subtype="binary"][data-template="tmpliconline"],
-  div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="line"],
-  div.cmd-widget[data-type="info"][data-subtype="string"][data-template="default"],
-  div.cmd-widget[data-type="info"][data-subtype="string"][data-template="tmplmultistateline"],
-  div.cmd-widget[data-type="action"][data-subtype="select"][data-template="default"],
-  div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] {
-    display: block;
-  }
-  div.cmd-widget[data-type="info"][data-subtype="binary"][data-template="tmpliconline"] .content-xs,
-  div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="line"] .content-xs,
-  div.cmd-widget[data-type="info"][data-subtype="string"][data-template="default"] .content-xs,
-  div.cmd-widget[data-type="info"][data-subtype="string"][data-template="tmplmultistateline"] .content-xs {
-    overflow: hidden;
-  }
-  div.cmd-widget[data-type="info"][data-template="tile"] .state {
-    font-size: 2em;
-  }
-  div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="badge"] .state {
-    padding: 6px;
-  }
-  div.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline"] {
-    display: block;
-    overflow: auto;
-  }
-  div.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline"] .content-xs {
-    height: 20px;
-  }
+div.cmd-widget[data-type="action"][data-subtype="other"][data-template="default"] {
+  min-width: unset;
+  margin: 1px;
+}
+
+div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="value"] input {
+  font-size: 12px;
+  height: 24px;
+  padding: 2px;
+}
+
+div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="value"] .ui-button-icon.ui-icon {
+  margin-top: -8px;
+}
+
+div.cmd-widget[data-type="action"][data-subtype="other"][data-template="tmpliconline"] .iconCmdLine {
+  font-size: 1.2em;
+}
+
+div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .buttons {
+  width: 130px;
+}
+
+div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .in_value {
+  width: 70px;
+}
+
+div.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] {
+  overflow: hidden;
+}
+
+div.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] .message {
+  margin: 5px 0 !important;
+  resize: none !important;
+}
+
+div.cmd-widget[data-type="action"][data-subtype="select"] .content {
+  font-size: 16px !important;
+  height: 22px;
+  width: 75%;
+}
+
+div.cmd-widget[data-type="info"][data-subtype="binary"][data-template="tmpliconline"],
+div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="line"],
+div.cmd-widget[data-type="info"][data-subtype="string"][data-template="default"],
+div.cmd-widget[data-type="info"][data-subtype="string"][data-template="tmplmultistateline"],
+div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] {
+  display: block;
+}
+
+div.cmd-widget[data-type="info"][data-subtype="binary"][data-template="tmpliconline"] .content-xs,
+div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="line"] .content-xs,
+div.cmd-widget[data-type="info"][data-subtype="string"][data-template="default"] .content-xs,
+div.cmd-widget[data-type="info"][data-subtype="string"][data-template="tmplmultistateline"] .content-xs {
+  overflow: hidden;
+}
+
+div.cmd-widget[data-type="info"][data-template="tile"] .state {
+  font-size: 2em;
+}
+
+div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="badge"] .state {
+  padding: 6px;
+}
+
+div.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline"] {
+  display: block;
+  overflow: auto;
+}
+
+div.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline"] .content-xs {
+  height: 20px;
+}
 
 /* ____________________binarySwitch */
-  div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] .content-xs {
-    max-width: 140px;
-    margin: auto;
-    height:22px;
-    padding-top: 2px;
-  }
-  div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] .content-xs .cmdName {
-    float: left;
-  }
-  label.binarySwitch {
-    position: relative;
-    float: right;
-    width: 40px;
-    height: 20px;
-    margin-bottom: 0;
-    top: -3px;
-  }
-  label.binarySwitch input {
-    display: none;
-  }
-  span.binarySwitch {
-    border-radius: 1em;
-  }
-  span.binarySwitchHandle {
-    position: absolute;
-    height: 16px;
-    width: 16px;
-    left: 4px;
-    bottom: 2px;
-    background-color: var(--link-color);
-    transition: .4s;
-    border-radius: 50%;
-  }
-  label.binarySwitch > input:checked + span.binarySwitch > span.binarySwitchHandle {
-    left: unset;
-    right: 4px !important;
-  }
-  label.binarySwitch > input + span.binarySwitch {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    transition: .4s;
-    background-color: var(--btnEq-default-color);
-  }
-  label.binarySwitch > input:checked + span.binarySwitch {
-    background-color: var(--el-defaultColor);
-  }
-  [data-coloredicons="1"] label.binarySwitch > input:checked + span.binarySwitch {
-    background-color: var(--bt-success-color);
-  }
-  [data-theme="core2019_Dark"][data-coloredicons="1"] label.binarySwitch > input:checked + span.binarySwitch > span.binarySwitchHandle {
-    background-color: var(--btnEq-default-color) !important;
-  }
+div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] .content-xs {
+  max-width: 140px;
+  margin: auto;
+  height: 24px;
+  padding-top: 2px;
+}
+
+div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] .content-xs .cmdName {
+  float: left;
+}
+
+label.binarySwitch {
+  position: relative;
+  float: right;
+  width: 40px;
+  height: 20px;
+  margin-bottom: 0;
+}
+
+label.binarySwitch input {
+  display: none;
+}
+
+span.binarySwitch {
+  border-radius: 1em;
+}
+
+span.binarySwitchHandle {
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 2px;
+  background-color: var(--link-color);
+  transition: .4s;
+  border-radius: 50%;
+}
+
+label.binarySwitch>input:checked+span.binarySwitch>span.binarySwitchHandle {
+  left: unset;
+  right: 4px !important;
+}
+
+label.binarySwitch>input+span.binarySwitch {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: .4s;
+  background-color: var(--btnEq-default-color);
+}
+
+label.binarySwitch>input:checked+span.binarySwitch {
+  background-color: var(--el-defaultColor);
+}
+
+[data-coloredicons="1"] label.binarySwitch>input:checked+span.binarySwitch {
+  background-color: var(--bt-success-color);
+}
+
+[data-theme="core2019_Dark"][data-coloredicons="1"] label.binarySwitch>input:checked+span.binarySwitch>span.binarySwitchHandle {
+  background-color: var(--btnEq-default-color) !important;
+}
 
 /* ____________________others */
-  .cmd-widget.widget-hygrothermographe {
-    width: 220px;
-    height: 220px;
-  }
+.cmd-widget.widget-hygrothermographe {
+  width: 220px;
+  height: 220px;
+}
 
-  div.arcgauge .content-sm  {
-    position: relative;
-    clip-path: polygon(0 -5px, 100% -5px, 100% 100%, 0 100%);
-  }
-  div.arcgauge .gauge,
-  div.arcgauge .gaugeValue {
-    position: absolute;
-    top: 0;
-    width: 85px;
-    height: 45px;
-    border-top-left-radius: 84px;
-    border-top-right-radius: 84px;
-    border: 4px solid var(--el-defaultColor);
-    border-bottom: 0 !important;
-  }
-  div.arcgauge .gaugeValue {
-    border: 6px solid var(--link-color);
-    transform-origin: 42px 42px;
-    transform: scale(0.94) rotate(-180deg);
-  }
+div.arcgauge .content {
+  position: relative;
+  clip-path: polygon(0 -5px, 100% -5px, 100% 100%, 0 100%);
+}
 
-  .hgauge-value,
-  .vgauge-value,
-  .shuttergauge-value {
-    background: var(--link-color);
-  }
-  .hgauge-bckg,
-  .vgauge-bckg {
-    background: var(--el-defaultColor);
-  }
-  .hgauge-bckg {
-    position:relative;
-    width: 70px;
-    height: 5px;
-    left: 0;
-  }
-  .vgauge-bckg {
-    position: relative;
-    top: -4px;
-    left: -6px;
-    width: 5px;
-    height: 38px;
-    margin-bottom: -7px;
-  }
-  .hgauge,
-  .vgauge,
-  .shuttergauge {
-    width: 90px;
-    max-width: 90px;
-    line-height: 10px;
-  }
+div.arcgauge .gauge,
+div.arcgauge .gaugeValue {
+  position: absolute;
+  top: 0;
+  width: 85px;
+  height: 45px;
+  border-top-left-radius: 84px;
+  border-top-right-radius: 84px;
+  border: 4px solid var(--el-defaultColor);
+  border-bottom: 0 !important;
+}
 
-  .shuttergauge-bckg {
-    width: 39px;
-    height: 40px;
-    border-top: 5px solid var(--el-defaultColor);
-    border-left: 3px solid var(--el-defaultColor);
-    border-right: 3px solid var(--el-defaultColor);
-  }
-  .shuttergauge-chart {
-    height: 40px;
-  }
-  .shuttergauge .slider {
-    bottom: 35px;
-    left: 45px;
-  }
+div.arcgauge .gaugeValue {
+  border: 6px solid var(--link-color);
+  transform-origin: 42px 42px;
+  transform: scale(0.94) rotate(-180deg);
+}
 
-  .shuttergauge .noUi-pips {
-    top: 5px;
-    left: -12px;
-  }
-  .shuttergauge .noUi-marker.noUi-marker-vertical.noUi-marker-large {
-    height: 1.15px;
-    width: 10px;
-  }
-  .shuttergauge .noUi-marker.noUi-marker-vertical.noUi-marker-normal {
-    height: 1.15px;
-    width: 5px;
-  }
-  .shuttergauge .noUi-value.noUi-value-vertical.noUi-value-large {
-    left: 5px;
-  }
+.hgauge-value,
+.vgauge-value,
+.shuttergauge-value {
+  background: var(--link-color);
+}
 
-  .hgauge .content-sm {
-    width: 70px !important;
-    margin: auto;
-  }
-  .hgauge-value {
-    position: relative;
-    padding: 0;
-    margin-top: -1px;
-    height: 10px;
-    align-self: flex-start;
-  }
-  .vgauge-value {
-    position: absolute;
-    bottom: 0;
-    width: 10px;
-    margin-left: 4px;
-  }
+.hgauge-bckg,
+.vgauge-bckg {
+  background: var(--el-defaultColor);
+}
+
+.hgauge-bckg {
+  position: relative;
+  width: 70px;
+  height: 5px;
+}
+
+.vgauge-bckg {
+  position: relative;
+  top: -4px;
+  left: -5px;
+  width: 5px;
+  height: 40px;
+  margin-bottom: -7px;
+}
+
+.hgauge,
+.vgauge,
+.shuttergauge {
+  width: 90px;
+  max-width: 90px;
+  line-height: 10px;
+}
+
+.shuttergauge-bckg {
+  width: 39px;
+  height: 40px;
+  border-top: 5px solid var(--el-defaultColor);
+  border-left: 3px solid var(--el-defaultColor);
+  border-right: 3px solid var(--el-defaultColor);
+}
+
+.shuttergauge-chart {
+  height: 40px;
+}
+
+.shuttergauge .slider {
+  height: 38px !important;
+  bottom: 40px;
+  left: 35px;
+}
+
+.shuttergauge .noUi-pips {
+  top: 5px;
+  left: -12px;
+}
+
+.shuttergauge .noUi-marker.noUi-marker-vertical.noUi-marker-large {
+  height: 1.15px;
+  width: 10px;
+}
+
+.shuttergauge .noUi-marker.noUi-marker-vertical.noUi-marker-normal {
+  height: 1.15px;
+  width: 5px;
+}
+
+.shuttergauge .noUi-value.noUi-value-vertical.noUi-value-large {
+  left: 5px;
+}
+
+
+.hgauge-value {
+  position: relative;
+  max-width: 70px;
+  top: -1px;
+  left: 10px;
+  height: 10px;
+  align-self: flex-start;
+}
+
+.vgauge-value {
+  position: absolute;
+  bottom: 0;
+  width: 10px;
+  margin-left: 4px;
+}
 
 /* ____________________Compass */
-  div.cmd-widget.widget-compass .widget-compass-container {
-    width: 80px;
-    height: 80px;
-  }
-  div.cmd-widget.widget-compass .state {
-    position: absolute;
-    font-size: 16px !important;
-  }
-  div.cmd-widget.widget-compass .winDir {
-    font-size: 11px !important;
-  }
-  div.cmd-widget.widget-compass .widget-compass-outline {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    border: 6px solid var(--txt-color);
-    border-top: 6px solid var(--al-info-color);
-    border-bottom: 6px solid var(--al-info-color);
-    border-radius: 50%;
-  }
-  div.cmd-widget.widget-compass .widget-compass-needle-placer {
-    margin-top: -3px;
-    margin-left: -3px;
-    width: 86px;
-    height: 86px;
-  }
-  div.cmd-widget.widget-compass .widget-compass-needle {
-    position: relative;
-    width: 0px;
-    height: 0px;
-    border: 8px solid transparent;
-    border-top: 22px solid var(--al-warning-color);
-    left: 37px;
-  }
+div.cmd-widget.widget-compass .widget-compass-container {
+  width: 80px;
+  height: 80px;
+}
+
+div.cmd-widget.widget-compass .state {
+  position: absolute;
+  font-size: 16px !important;
+}
+
+div.cmd-widget.widget-compass .winDir {
+  font-size: 11px !important;
+}
+
+div.cmd-widget.widget-compass .widget-compass-outline {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border: 6px solid var(--txt-color);
+  border-top: 6px solid var(--al-info-color);
+  border-bottom: 6px solid var(--al-info-color);
+  border-radius: 50%;
+}
+
+div.cmd-widget.widget-compass .widget-compass-needle-placer {
+  margin-top: -3px;
+  margin-left: -3px;
+  width: 86px;
+  height: 86px;
+}
+
+div.cmd-widget.widget-compass .widget-compass-needle {
+  position: relative;
+  width: 0px;
+  height: 0px;
+  border: 8px solid transparent;
+  border-top: 22px solid var(--al-warning-color);
+  left: 35px;
+}
 
 /* ____________________Rain */
-  @keyframes jeedomWidgetRainWaterAnimation{from{background-position:0 0}to{background-position:100000% 0}}
-
-  div.cmd-widget.widget-rain .widget-rain-water {
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
-    transition: water 3s ease-out;
-    z-index: 0;
-    animation: jeedomWidgetRainWaterAnimation 3000s linear infinite;
+@keyframes jeedomWidgetRainWaterAnimation {
+  from {
+    background-position: 0 0
   }
 
-  div.cmd-widget.widget-rain .widget-rain-container {
-    background: url(../../core/template/mobile/cmd.info.numeric.rain/marker.svg) no-repeat;
-    background-size: cover;
-    position: relative;
-    height: 60px;
-    width: 80px;
-    z-index: 20;
+  to {
+    background-position: 100000% 0
   }
+}
 
-  div.cmd-widget.widget-rain .widget-rain-container .plage {
-    position: absolute;
-    right: 20px;
-    bottom: 0;
-    z-index: 2;
-  }
+div.cmd-widget.widget-rain .widget-rain-water {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  transition: water 3s ease-out;
+  z-index: 0;
+  animation: jeedomWidgetRainWaterAnimation 3000s linear infinite;
+}
+
+div.cmd-widget.widget-rain .widget-rain-container {
+  background: url(../../core/template/mobile/cmd.info.numeric.rain/marker.svg) no-repeat;
+  background-size: cover;
+  position: relative;
+  height: 60px;
+  width: 80px;
+  z-index: 20;
+}
+
+div.cmd-widget.widget-rain .widget-rain-container .plage {
+  position: absolute;
+  right: 20px;
+  bottom: 0;
+  z-index: 2;
+}
