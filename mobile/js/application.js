@@ -659,8 +659,11 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
       $('#popupDialog').trigger('create').popup('open')
     })
   } else {
-    jeedom.cmd.resetUpdateFunction();
+    jeedom.cmd.resetUpdateFunction()
+
+    $.ajaxSetup({global: false})
     $('#page').hide().load(page, function() {
+      $.ajaxSetup({global: undefined})
       document.body.setAttribute('data-page', _page)
       if (init(_plugin) != '') {
         document.body.setAttribute('data-plugin', _plugin)

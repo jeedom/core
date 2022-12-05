@@ -19,6 +19,7 @@ function initEquipment(_object_id) {
   //set hamburger panel:
   jeedomUtils.showLoading()
   jeedom.object.all({
+    global: false,
     error: function(error) {
       $.fn.showAlert({message: error.message, level: 'danger'})
     },
@@ -152,15 +153,16 @@ function initEquipment(_object_id) {
 
 //objects:
 function displayEqsByObject(objects_info, _objectId, _summary) {
+  jeedomUtils.showLoading()
   jeedom.object.toHtml({
     id: _objectId,
     version: 'mobile',
     summary: _summary,
+    global: false,
     error: function(error) {
       $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(html) {
-      jeedomUtils.showLoading()
       if (_objectId == 'all' || _objectId == '') {
         $('#div_displayEquipement').empty()
         var div = ''

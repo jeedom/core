@@ -331,6 +331,7 @@ jeedom.log.stringColorReplace = function(_str) {
 //scenario log replacement:
 jeedom.log.colorScReplacement = null
 jeedom.log.getScTranslations({
+  global: false,
   success: function(result) {
     jeedom.log.colorScReplacement = JSON.parse(result)
     jeedom.log.colorScReplacement[' Start : '] = {

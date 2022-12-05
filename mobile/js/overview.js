@@ -104,6 +104,7 @@ function initOverview() {
         jeedomUtils.loadPanel(false)
         jeedomUtils.loadPage('equipment', '<i class=\'fas fa-globe\'></i> {{Tous}}', 'all')
       })
+      jeedomUtils.hideLoading()
     }
   })
 
