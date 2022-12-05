@@ -198,7 +198,6 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
         div += '<div class="card-title has-supporting-text"><center><span class="objectSummaryContainer objectSummary'+_objectId+'" data-version="mobile"></span></center></div></div><div class="objectHtml">'
         div += html
         div += '</div></div></div>'
-
         $('#div_displayEquipement').empty().html(div).trigger('create')
         jeedomUtils.setTileSize('.eqLogic, .scenario')
         jeedom.object.summaryUpdate([{object_id:_objectId}])
@@ -255,11 +254,9 @@ function displayEqsBySummary(_objectsAll, _objectId, _summary) {
       $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(eqLogics) {
-      var nbEqs = eqLogics.length
-      if (nbEqs == 0) return
+      if (eqLogics.length == 0) return
       for (var j in eqLogics) {
         if (summaryObjEqs[_objectId].includes(eqLogics[j].id)) {
-          nbEqs--
           return
         }
         summaryObjEqs[_objectId].push(eqLogics[j].id)
@@ -270,21 +267,17 @@ function displayEqsBySummary(_objectsAll, _objectId, _summary) {
             $.fn.showAlert({message: error.message, level: 'danger'})
           },
           success: function(html) {
-            $('.div_displayEquipement[data-objectid="'+_objectId+'"] > .objectHtml').append(html.html)
             $('.div_displayEquipement[data-objectid="'+_objectId+'"]').removeClass('hidden')
-            nbEqs--
-            //is last ajax:
-            if (nbEqs == 0) {
-              jeedomUtils.setTileSize('.eqLogic')
-              $('#div_displayEquipement').trigger('create')
-              setTimeout(function() {
-                $('#div_displayEquipement .objectHtml').packery({gutter :0})
-                window.triggerEvent('resize')
-              }, 250)
-            }
+            $('.div_displayEquipement[data-objectid="'+_objectId+'"] > .objectHtml').append(html.html).trigger('create')
+            jeedomUtils.setTileSize('.eqLogic')
+            $('.div_displayEquipement[data-objectid="'+_objectId+'"]').packery({gutter :0})
           }
         })
       }
+    },
+    complete: function() {
+      jeedomUtils.hideLoading()
+      window.triggerEvent('resize')
     }
   })
 }
