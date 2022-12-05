@@ -34,6 +34,7 @@ Desktop
     display: inline-block;
     vertical-align: top;
     padding: 0 5px 0px 5px;
+    min-height: 20px;
   }
 
   .eqLogic-widget.hideEqLogicName .widget-name {
@@ -374,6 +375,7 @@ Desktop
     max-width: 140px;
     margin: auto;
     height:22px;
+    padding-top: 2px;
   }
   div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] .content-xs .cmdName {
     float: left;
