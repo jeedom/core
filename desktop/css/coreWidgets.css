@@ -365,16 +365,20 @@ div.cmd-widget[data-type="action"][data-subtype="message"][data-template="defaul
   resize: none !important;
 }
 
-div.cmd-widget[data-type="action"][data-subtype="select"] .content {
+div.cmd-widget[data-type="action"][data-subtype="select"] div[class^="content"] {
+  width: 80%;
+}
+
+div.cmd-widget div[class^="content"]>select {
   font-size: 16px !important;
   height: 22px;
-  width: 75%;
 }
 
 div.cmd-widget[data-type="info"][data-subtype="binary"][data-template="tmpliconline"],
 div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="line"],
 div.cmd-widget[data-type="info"][data-subtype="string"][data-template="default"],
 div.cmd-widget[data-type="info"][data-subtype="string"][data-template="tmplmultistateline"],
+div.cmd-widget[data-type="action"][data-subtype="other"][data-template="tmpliconline"],
 div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] {
   display: block;
 }
