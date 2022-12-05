@@ -58,6 +58,11 @@ div.cmd-widget .cmdName {
   font-weight: 400;
 }
 
+div.cmd-widget .cmdName>i,
+div.cmd-widget .iconCmdLine>i {
+  font-size: 16px;
+}
+
 div.cmd-widget .value>.label {
   padding: 1px 3px;
 }
@@ -341,10 +346,6 @@ div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="value"]
 
 div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="value"] .ui-button-icon.ui-icon {
   margin-top: -8px;
-}
-
-div.cmd-widget[data-type="action"][data-subtype="other"][data-template="tmpliconline"] .iconCmdLine {
-  font-size: 1.2em;
 }
 
 div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .buttons {
