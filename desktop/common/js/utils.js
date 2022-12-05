@@ -155,9 +155,6 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 
   //$('#div_pageContainer').load(url, function() {
   document.getElementById('div_pageContainer').load(url, function() {
-    if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').html() != undefined) {
-      $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').trigger('click')
-    }
     document.getElementById('bt_getHelpPage').setAttribute('data-page', getUrlVars('p'))
     document.getElementById('bt_getHelpPage').setAttribute('data-plugin', getUrlVars('m')  || '')
     jeedomUtils.initPage()
@@ -173,9 +170,11 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
       }
     }
 
-    if (window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]').length != 0) {
-      $('.nav-tabs a[href="' + window.location.hash+'"]').click()
-    }
+    setTimeout(function() {
+      if (window.location.hash != '' && document.querySelector('ul.nav-tabs a[href="' + window.location.hash + '"]') != null) {
+        document.querySelector('ul.nav-tabs a[href="' + window.location.hash + '"]').triggerEvent('click')
+      }
+    }, 150) //let time for plugin page!
 
     setTimeout(function() {
       modifyWithoutSave = false

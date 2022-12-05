@@ -22,8 +22,8 @@ document.onkeydown = function(event) {
 
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
-    if ($('.eqLogicAction[data-action=save]').is(':visible')) {
-      $(".eqLogicAction[data-action=save]").click()
+    if ($('.eqLogicAction[data-action="save"]').is(':visible')) {
+      $('.eqLogicAction[data-action="save"]').click()
       return
     }
   }
@@ -180,13 +180,13 @@ $('#div_pageContainer').on({
   }
 }, '.cmd .cmdAttr:visible, .eqLogic .eqLogicAttr:visible')
 
-$('.eqLogicAction[data-action=gotoPluginConf]').on('click', function() {
+$('.eqLogicAction[data-action="gotoPluginConf"]').on('click', function() {
   $('#md_modal').dialog({
     title: "{{Configuration du plugin}}"
   }).load('index.php?v=d&p=plugin&ajax=1&id=' + eqType).dialog('open')
 })
 
-$('.eqLogicAction[data-action=returnToThumbnailDisplay]').removeAttr('href').off('click').on('click', function(event) {
+$('.eqLogicAction[data-action="returnToThumbnailDisplay"]').removeAttr('href').off('click').on('click', function(event) {
   setTimeout(function() {
     $('.nav li.active').removeClass('active')
     $('a[href="#' + $('.tab-pane.active').attr('id') + '"]').closest('li').addClass('active')
@@ -320,7 +320,7 @@ $('.eqLogicDisplayCard').off('mouseup').on('mouseup', function(event) {
 
 
 /**************************EqLogic*********************************************/
-$('.eqLogicAction[data-action=copy]').off('click').on('click', function() {
+$('.eqLogicAction[data-action="copy"]').off('click').on('click', function() {
   var name = document.querySelector('.eqLogicAttr[data-l1key="name"]').jeeValue()
   var id = document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue()
   if (id != undefined && id != '') {
@@ -360,11 +360,11 @@ $('.eqLogicAction[data-action=copy]').off('click').on('click', function() {
   }
 })
 
-$('.eqLogicAction[data-action=export]').off('click').on('click', function() {
+$('.eqLogicAction[data-action="export"]').off('click').on('click', function() {
   window.open('core/php/export.php?type=eqLogic&id=' + document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue(), "_blank", null)
 })
 
-$('.eqLogicAction[data-action=save]').off('click').on('click', function() {
+$('.eqLogicAction[data-action="save"]').off('click').on('click', function() {
   var eqLogics = []
   $('.eqLogic').each(function() {
     if ($(this).is(':visible')) {
@@ -405,9 +405,10 @@ $('.eqLogicAction[data-action=save]').off('click').on('click', function() {
       }
       url += 'id=' + id + '&saveSuccessFull=1'
 
-      if (document.location.toString().match('#')) {
-        url += '#' + document.location.toString().split('#')[1]
+      if (window.location.hash != '') {
+        url += window.location.hash
       }
+
       jeedomUtils.loadPage(url)
       modifyWithoutSave = false
     }
@@ -415,7 +416,7 @@ $('.eqLogicAction[data-action=save]').off('click').on('click', function() {
   return false
 })
 
-$('.eqLogicAction[data-action=remove]').off('click').on('click', function() {
+$('.eqLogicAction[data-action="remove"]').off('click').on('click', function() {
   if (document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue() != undefined) {
     jeedom.eqLogic.getUseBeforeRemove({
       id: document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue(),
@@ -475,7 +476,7 @@ $('.eqLogicAction[data-action=remove]').off('click').on('click', function() {
   }
 })
 
-$('.eqLogicAction[data-action=add]').off('click').on('click', function() {
+$('.eqLogicAction[data-action="add"]').off('click').on('click', function() {
   bootbox.prompt("{{Nom de l'équipement ?}}", function(result) {
     if (result !== null) {
       jeedom.eqLogic.save({
@@ -506,7 +507,7 @@ $('.eqLogicAction[data-action=add]').off('click').on('click', function() {
   })
 })
 
-$('.eqLogic .eqLogicAction[data-action=configure]').off('click').on('click', function() {
+$('.eqLogic .eqLogicAction[data-action="configure"]').off('click').on('click', function() {
   var eqName = $('input.eqLogicAttr[data-l1key="name"]')
   eqName = (eqName.length ? ' : ' + eqName.val() : '')
   $('#md_modal').dialog().load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue()).dialog('open')
