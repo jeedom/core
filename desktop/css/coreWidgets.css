@@ -227,8 +227,8 @@ div.cmd-widget .slider.noUi-horizontal {
 }
 
 div.cmd-widget .slider.noUi-vertical {
-  height: 45px;
-  margin: 5px auto;
+  height: 40px;
+  margin: 4px auto;
 }
 
 div.cmd-widget .slider.noUi-horizontal .noUi-base {
@@ -529,21 +529,20 @@ div.arcgauge .gaugeValue {
 }
 
 .shuttergauge-bckg {
-  width: 39px;
-  height: 40px;
+  width: 35px;
+  height: 36px;
   border-top: 5px solid var(--el-defaultColor);
   border-left: 3px solid var(--el-defaultColor);
   border-right: 3px solid var(--el-defaultColor);
 }
 
 .shuttergauge-chart {
-  height: 40px;
+  height: 36px;
 }
 
 .shuttergauge .slider {
-  height: 38px !important;
-  bottom: 40px;
-  left: 35px;
+  bottom: 36px;
+  left: 32px;
 }
 
 .shuttergauge .noUi-pips {
