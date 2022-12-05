@@ -5,6 +5,7 @@
 - Optimisation sur les historiques.
 - Bugfix Synthèse en mobile.
 - Bugfix widget shutter en mobile.
+- Bugfix des courbes de tuile avec info binaire.
 
 ## 4.3.11
 
