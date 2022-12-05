@@ -582,17 +582,16 @@ domUtils.ajax = function(_params) {
     }
   })
   .then(function(response) {
-
     return response.json()
   })
   .then(function(jsonObj) {
+    domUtils.countAjax(1, _params.global)
     if (typeof _params.success === 'function') {
-      _params.success(jsonObj)
+      return _params.success(jsonObj)
     }
   }).then(function() {
-    domUtils.countAjax(1, _params.global)
     if (typeof _params.complete === 'function') {
-      _params.complete()
+      return _params.complete()
     }
   })
   .catch(function(error) {

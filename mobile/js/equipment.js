@@ -19,7 +19,6 @@ function initEquipment(_object_id) {
   //set hamburger panel:
   jeedomUtils.showLoading()
   jeedom.object.all({
-    global: false,
     error: function(error) {
       $.fn.showAlert({message: error.message, level: 'danger'})
     },
@@ -157,7 +156,6 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
     id: _objectId,
     version: 'mobile',
     summary: _summary,
-    global: false,
     error: function(error) {
       $.fn.showAlert({message: error.message, level: 'danger'})
     },
