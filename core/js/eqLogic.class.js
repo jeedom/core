@@ -520,7 +520,6 @@ jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
       })
       var minValue = result.cmd.subType == 'binary' ? 0 : Math.min.apply(null, values)
       var maxValue = result.cmd.subType == 'binary' ? 1.1 : Math.max.apply(null, values) * 1.01
-      var groupPixelWidth = result.cmd.subType == 'binary' ? 0 : 0.5
       result.data.push([now, result.data.slice(-1)[0][1]])
       new Highcharts.StockChart({
         chart: {
@@ -550,6 +549,8 @@ jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
           enabled: false
         },
         xAxis: {
+          type: 'datetime',
+          ordinal: false,
           visible: false,
           minPadding: 0,
           maxPadding: 0
@@ -581,7 +582,7 @@ jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
             approximation: 'high',
             enabled: true,
             forced: true,
-            groupPixelWidth: groupPixelWidth
+            groupPixelWidth: result.cmd.subType == 'binary' ? 0 : 0.5
           },
         }],
         exporting: {
