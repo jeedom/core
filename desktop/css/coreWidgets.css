@@ -80,9 +80,7 @@ div.cmd-widget .content {
 
 div.cmd-widget .value {
   font-weight: bold;
-  width: 100%;
   height: 16px;
-  margin-bottom: 2px;
 }
 
 .timeCmd.label {
