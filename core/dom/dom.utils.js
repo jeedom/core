@@ -506,22 +506,25 @@ Element.prototype.html = function(_html, _append) {
 
 Element.prototype.load = function(_path, _callback) {
   var self = this
-  var request = new Request(_path, {
-    method: 'GET'
-  })
 
-  fetch(request).then(function(responseObj) {
-    if (!responseObj.ok) {
-      console.error(responseObj)
+  domUtils.ajax({
+    url: _path,
+    async: true,
+    type: 'GET',
+    global: true,
+    dataType: 'html',
+    error: function(error) {
+      jeedomUtils.showAlert({
+        message: error.message,
+        level: 'danger'
+      })
+    },
+    success: function(rawHtml) {
+      self.html(rawHtml)
+      if (typeof _callback === 'function') {
+        _callback()
+      }
     }
-    return responseObj.text()
-  }).then(function(rawHtml) {
-    self.html(rawHtml)
-    if (typeof _callback === 'function') {
-      _callback()
-    }
-  }).catch(function(err) {
-      console.error('err:', err)
   })
 }
 
@@ -552,7 +555,6 @@ domUtils.ajax = function(_params) {
     const request = new XMLHttpRequest()
     request.open(_params.type.toLowerCase(), _params.url, false)
     request.send(new URLSearchParams(_params.data))
-
     if (request.status === 200) {
       if (typeof _params.success === 'function') {
         _params.success(JSON.parse(request.responseText))
@@ -571,36 +573,48 @@ domUtils.ajax = function(_params) {
       }
       domUtils.countAjax(1, _params.global)
     }
+  } else {
+    //Asynchronous request:
+    var url = _params.url
+    if (_params.type.toLowerCase() == 'get' && is_object(_params.data)) url = url + '?' + new URLSearchParams(_params.data)
+    fetch(url, {
+      method: _params.type.toLowerCase(),
+      body: _params.type.toLowerCase() == 'post' ? new URLSearchParams(_params.data) : null,
+      headers: _params.type.toLowerCase() == 'post' ? {"Content-Type": "application/x-www-form-urlencoded"} : new Headers()
+    })
+    .then(function(response) {
+      if (!response.ok) {
+        if (typeof _params.error === 'function') {
+          _params.error(error.message)
+        } else {
+          throw Error(response.statusText)
+        }
+        return
+      }
+      if (_params.dataType == 'json') {
+        return response.json()
+      } else {
+        return response.text()
+      }
+    })
+    .then(function(obj) {
+      if (typeof _params.success === 'function') {
+        return _params.success(obj)
+      }
+      return obj
+    }).then(function() {
+      domUtils.countAjax(1, _params.global)
+      if (typeof _params.complete === 'function') {
+        return _params.complete()
+      }
+    })
+    .catch(function(error) {
+      domUtils.countAjax(1, _params.global)
+      if (typeof _params.error === 'function') {
+        _params.error(error.message)
+      }
+    })
   }
-
-  //Asynchronous request:
-  fetch(_params.url, {
-    method: _params.type.toLowerCase(),
-    body: new URLSearchParams(_params.data),
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    }
-  })
-  .then(function(response) {
-    return response.json()
-  })
-  .then(function(jsonObj) {
-    domUtils.countAjax(1, _params.global)
-    if (typeof _params.success === 'function') {
-      return _params.success(jsonObj)
-    }
-  }).then(function() {
-    if (typeof _params.complete === 'function') {
-      return _params.complete()
-    }
-  })
-  .catch(function(error) {
-    domUtils.countAjax(1, _params.global)
-    if (typeof _params.error === 'function') {
-      _params.error(error.message)
-    }
-  })
-
 }
 
 
