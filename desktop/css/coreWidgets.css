@@ -66,7 +66,6 @@ div.cmd-widget .content-xs {
   display: block !important;
   color: var(--txt-color);
   line-height: 16px;
-  max-height: 26px;
 }
 
 div.cmd-widget .content,
@@ -392,6 +391,7 @@ div.cmd-widget[data-type="info"][data-subtype="string"][data-template="tmplmulti
 
 div.cmd-widget[data-type="info"][data-template="tile"] .state {
   font-size: 2em;
+  line-height: 24px;
 }
 
 div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="badge"] .state {
@@ -401,6 +401,7 @@ div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="badge"] 
 div.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline"] {
   display: block;
   overflow: auto;
+  max-height: 24px;
 }
 
 /* ____________________binarySwitch */

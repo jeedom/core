@@ -3,7 +3,7 @@
     <div class="cmdName #hide_name#">#name_display# <span class="value"></span> <strong class="unit"></strong></div>
   </div>
   <template>
-    <div>maxHeight : 20 ({{Hauteur maximale en pixel}})</div>
+    <div>maxHeight : 24 ({{Hauteur maximale en pixel}})</div>
   </template>
   <script>
     jeedom.cmd.addUpdateFunction('#id#', function(_options) {
@@ -24,7 +24,7 @@
     jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: "#value#", display_value: "#state#", valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
 
     if (is_numeric('#maxHeight#')) {
-      document.querySelector('.cmd[data-cmd_uid="#uid#"] .content-xs').style.maxHeight = '#maxHeight#px'
+      document.querySelector('.cmd[data-cmd_uid="#uid#"]').style.maxHeight = '#maxHeight#px'
     }
   </script>
 </div>
