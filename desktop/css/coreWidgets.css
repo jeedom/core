@@ -335,7 +335,6 @@ div.cmd-widget[data-type="action"][data-subtype="other"][data-template="default"
 
 div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="value"] input {
   font-size: 12px;
-  height: 24px;
   padding: 2px;
 }
 
@@ -522,14 +521,6 @@ div.arcgauge .gaugeValue {
   width: 5px;
   height: 40px;
   margin-bottom: -7px;
-}
-
-.hgauge,
-.vgauge,
-.shuttergauge {
-  width: 90px;
-  max-width: 90px;
-  line-height: 10px;
 }
 
 .shuttergauge-bckg {
