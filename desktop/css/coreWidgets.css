@@ -53,9 +53,9 @@ div.cmd-widget .title>.cmdName {
 
 div.cmd-widget .cmdName {
   color: var(--txt-color);
+  line-height: 16px;
   font-size: 12px;
   font-weight: 400;
-  line-height: 16px;
 }
 
 div.cmd-widget .value>.label {
@@ -65,10 +65,13 @@ div.cmd-widget .value>.label {
 div.cmd-widget .content-xs {
   display: block !important;
   color: var(--txt-color);
+  line-height: 16px;
   max-height: 26px;
 }
 
-div.cmd-widget .content {
+div.cmd-widget .content,
+div.cmd-widget .content-sm,
+div.cmd-widget .content-lg {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -80,7 +83,6 @@ div.cmd-widget .content {
 
 div.cmd-widget .value {
   font-weight: bold;
-  height: 16px;
 }
 
 .timeCmd.label {
@@ -510,12 +512,15 @@ div.arcgauge .gaugeValue {
   height: 5px;
 }
 
+.vgauge-chart {
+  height: 36px;
+}
+
 .vgauge-bckg {
   position: relative;
-  top: -4px;
-  left: -5px;
+  left: -6px;
   width: 5px;
-  height: 40px;
+  height: 36px;
   margin-bottom: -7px;
 }
 
@@ -561,7 +566,7 @@ div.arcgauge .gaugeValue {
   position: relative;
   max-width: 70px;
   top: -1px;
-  left: 10px;
+  left: 8px;
   height: 10px;
   align-self: flex-start;
 }
