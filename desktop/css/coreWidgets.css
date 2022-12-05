@@ -330,7 +330,7 @@ div.cmd-widget .slider .noUi-handle:focus {
 /* ____________________Specifics */
 div.cmd-widget[data-type="action"][data-subtype="other"][data-template="default"] {
   min-width: unset;
-  margin: 1px;
+  margin: 5px 1px;
 }
 
 div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="value"] input {
