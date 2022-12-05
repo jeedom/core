@@ -567,6 +567,7 @@ jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
           fillOpacity: 0.25,
           enableMouseTracking: false,
           animation: false,
+          pointWidth: 2,
           marker: {
             enabled: false
           },
