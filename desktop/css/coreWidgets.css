@@ -32,6 +32,8 @@ div.eqlogicbackgraph .eqLogicGraphPeriod {
 
 div.eqLogic-widget div.cmd-widget {
   min-width: 90px;
+  max-width: 95%;
+  margin: auto;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -395,10 +397,6 @@ div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="badge"] 
 div.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline"] {
   display: block;
   overflow: auto;
-}
-
-div.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline"] .content-xs {
-  height: 20px;
 }
 
 /* ____________________binarySwitch */
