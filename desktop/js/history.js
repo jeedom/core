@@ -72,7 +72,7 @@ if (!jeeFrontEnd.history) {
         if (isCalcul) {
           this.__lastId__ = null
           document.getElementById('cb_derive').checked = false
-          document.querySelectorAll('#cb_derive, #cb_step').checked = false
+          document.getElementById('cb_step').checked = false
           document.querySelectorAll('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').forEach((element, index) => {
             element.disabled = _disabled
           })
@@ -93,10 +93,8 @@ if (!jeeFrontEnd.history) {
           var type = currentSeries[0].userOptions.type
           if (type == 'areaspline') type = 'area'
           document.getElementById('sel_chartType').value = type
-
           document.getElementById('cb_derive').checked = currentSeries[0].userOptions.derive
           document.getElementById('cb_step').checked = currentSeries[0].userOptions.step
-
           document.querySelectorAll('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').forEach((element, index) => {
             element.disabled = _disabled
           })
@@ -107,7 +105,8 @@ if (!jeeFrontEnd.history) {
         this.__lastId__ = null
         document.getElementById('sel_groupingType').selectedIndex = 0
         document.getElementById('sel_chartType').selectedIndex = 0
-        document.querySelectorAll('#cb_derive, #cb_step').checked = false
+        document.getElementById('cb_derive').checked = false
+        document.getElementById('cb_step').checked = false
         document.querySelectorAll('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').forEach((element, index) => {
           element.disabled = _disabled
         })
@@ -414,7 +413,7 @@ $('#cb_derive').off('change').on('change', function(event) {
   if (event.isTrigger == 3) return
   if (jeeP.__lastId__ == null) return
   var currentId = jeeP.__lastId__
-  var graphDerive = this.value
+  var graphDerive = this.checked ? '1' : '0'
   jeeP.addChart(currentId, 0)
   jeedom.cmd.save({
     cmd: {
@@ -439,7 +438,7 @@ $('#cb_step').off('change').on('change', function(event) {
   if (event.isTrigger == 3) return
   if (jeeP.__lastId__ == null) return
   var currentId = jeeP.__lastId__
-  var graphStep = this.value
+  var graphStep = this.checked ? '1' : '0'
   jeeP.addChart(currentId, 0)
   jeedom.cmd.save({
     cmd: {
