@@ -778,6 +778,7 @@ $("#bt_addObject, #bt_addObject2").on('click', function(event) {
 })
 
 $('.objectAttr[data-l1key=display][data-l2key=icon]').on('dblclick', function() {
+  jeeFrontEnd.modifyWithoutSave = true
   this.innerHTML = ''
 })
 

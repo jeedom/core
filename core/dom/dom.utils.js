@@ -403,7 +403,7 @@ Element.prototype.jeeValue = function(_value) {
       }
     }
     if (this.matches('div, span, p')) {
-      value = this.innerHTML
+      value = this.innerHTML || null
     }
     if (this.matches('a') && this.getAttribute('value') != undefined) {
       value = this.getAttribute('value')

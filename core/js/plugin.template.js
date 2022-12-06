@@ -167,7 +167,7 @@ $(function() {
       delay: 500,
       distance: 30,
       stop: function(event, ui) {
-        modifyWithoutSave = true
+        jeeFrontEnd.modifyWithoutSave = true
       }
     })
   }
@@ -176,7 +176,7 @@ $(function() {
 
 $('#div_pageContainer').on({
   'change': function(event) {
-    modifyWithoutSave = true
+    jeeFrontEnd.modifyWithoutSave = true
   }
 }, '.cmd .cmdAttr:visible, .eqLogic .eqLogicAttr:visible')
 
@@ -298,9 +298,9 @@ $(".eqLogicDisplayCard").on('click', function(event) {
 
         jeedomUtils.addOrUpdateUrl('id', data.id)
         $.hideLoading()
-        modifyWithoutSave = false
+        jeeFrontEnd.modifyWithoutSave = false
         setTimeout(function() {
-          modifyWithoutSave = false
+          jeeFrontEnd.modifyWithoutSave = false
         }, 1000)
       }
     })
@@ -340,7 +340,7 @@ $('.eqLogicAction[data-action="copy"]').off('click').on('click', function() {
               });
             },
             success: function(data) {
-              modifyWithoutSave = false
+              jeeFrontEnd.modifyWithoutSave = false
               var vars = getUrlVars()
               var url = 'index.php?'
               for (var i in vars) {
@@ -388,7 +388,7 @@ $('.eqLogicAction[data-action="save"]').off('click').on('click', function() {
       })
     },
     success: function(data) {
-      modifyWithoutSave = false
+      jeeFrontEnd.modifyWithoutSave = false
       var vars = getUrlVars()
       var url = 'index.php?'
       for (var i in vars) {
@@ -410,7 +410,7 @@ $('.eqLogicAction[data-action="save"]').off('click').on('click', function() {
       }
 
       jeedomUtils.loadPage(url)
-      modifyWithoutSave = false
+      jeeFrontEnd.modifyWithoutSave = false
     }
   })
   return false
@@ -459,7 +459,7 @@ $('.eqLogicAction[data-action="remove"]').off('click').on('click', function() {
                     url += i + '=' + vars[i].replace('#', '') + '&'
                   }
                 }
-                modifyWithoutSave = false
+                jeeFrontEnd.modifyWithoutSave = false
                 url += 'removeSuccessFull=1'
                 jeedomUtils.loadPage(url)
               }
@@ -498,7 +498,7 @@ $('.eqLogicAction[data-action="add"]').off('click').on('click', function() {
               url += i + '=' + vars[i].replace('#', '') + '&'
             }
           }
-          modifyWithoutSave = false
+          jeeFrontEnd.modifyWithoutSave = false
           url += 'id=' + _data.id + '&saveSuccessFull=1'
           jeedomUtils.loadPage(url)
         }
@@ -545,29 +545,29 @@ $('.cmdAction[data-action=add]').on('click', function() {
     addCmdToTableDefault();
   }
   $('.cmd:last .cmdAttr[data-l1key=type]').trigger('change')
-  modifyWithoutSave = true
+  jeeFrontEnd.modifyWithoutSave = true
 })
 
 $('#div_pageContainer').on('click', '.cmd .cmdAction[data-l1key=chooseIcon]', function() {
   var cmd = $(this).closest('.cmd')
   jeedomUtils.chooseIcon(function(_icon) {
     cmd.find('.cmdAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon)
-    modifyWithoutSave = true
+    jeeFrontEnd.modifyWithoutSave = true
   })
 })
 
-$('#div_pageContainer').on('click', '.cmd .cmdAttr[data-l1key=display][data-l2key=icon]', function() {
-  modifyWithoutSave = true
-  $(this).empty()
+$('#div_pageContainer').on('dblclick', '.cmd .cmdAttr[data-l1key=display][data-l2key=icon]', function() {
+  jeeFrontEnd.modifyWithoutSave = true
+  this.innerHTML = ''
 })
 
 $('#div_pageContainer').on('click', '.cmd .cmdAction[data-action=remove]', function() {
-  modifyWithoutSave = true
+  jeeFrontEnd.modifyWithoutSave = true
   $(this).closest('tr').remove()
 })
 
 $('#div_pageContainer').on('click', '.cmd .cmdAction[data-action=copy]', function() {
-  modifyWithoutSave = true
+  jeeFrontEnd.modifyWithoutSave = true
   var cmd = this.closest('.cmd').getJeeValues('.cmdAttr')[0]
   cmd.id = ''
   if (typeof addCmdToTable == 'function') {
