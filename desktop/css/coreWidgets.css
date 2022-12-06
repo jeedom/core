@@ -33,7 +33,6 @@ div.eqlogicbackgraph .eqLogicGraphPeriod {
 div.eqLogic-widget div.cmd-widget {
   min-width: 85px;
   max-width: 95%;
-  margin: auto;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -69,9 +68,9 @@ div.cmd-widget .value>.label {
 }
 
 div.cmd-widget .content-xs {
-  display: block !important;
   color: var(--txt-color);
   line-height: 16px;
+  padding: 0 2px;
 }
 
 div.cmd-widget .content,
@@ -83,7 +82,7 @@ div.cmd-widget .content-lg {
   flex-direction: column;
   min-width: 100%;
   min-height: 40px;
-  padding: 2px;
+  padding: 0 2px;
 }
 
 div.cmd-widget .value {
@@ -374,22 +373,6 @@ div.cmd-widget div[class^="content"]>select {
   height: 22px;
 }
 
-div.cmd-widget[data-type="info"][data-subtype="binary"][data-template="tmpliconline"],
-div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="line"],
-div.cmd-widget[data-type="info"][data-subtype="string"][data-template="default"],
-div.cmd-widget[data-type="info"][data-subtype="string"][data-template="tmplmultistateline"],
-div.cmd-widget[data-type="action"][data-subtype="other"][data-template="tmpliconline"],
-div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] {
-  display: block;
-}
-
-div.cmd-widget[data-type="info"][data-subtype="binary"][data-template="tmpliconline"] .content-xs,
-div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="line"] .content-xs,
-div.cmd-widget[data-type="info"][data-subtype="string"][data-template="default"] .content-xs,
-div.cmd-widget[data-type="info"][data-subtype="string"][data-template="tmplmultistateline"] .content-xs {
-  overflow: hidden;
-}
-
 div.cmd-widget[data-type="info"][data-template="tile"] .state {
   font-size: 2em;
   line-height: 24px;
@@ -400,26 +383,23 @@ div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="badge"] 
 }
 
 div.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline"] {
-  display: block;
+  width: 100%;
   overflow: auto;
   max-height: 24px;
 }
 
 /* ____________________binarySwitch */
 div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] .content-xs {
-  max-width: 140px;
-  margin: auto;
+  width: 140px;
+  max-width: 95%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   height: 24px;
-  padding-top: 2px;
-}
-
-div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] .content-xs .cmdName {
-  float: left;
 }
 
 label.binarySwitch {
   position: relative;
-  float: right;
   width: 40px;
   height: 20px;
   margin-bottom: 0;
