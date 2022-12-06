@@ -394,13 +394,15 @@ class history {
 			$sql .= ' FROM (';
 			$sql .= ' (SELECT * from history
 			WHERE value is not null AND cmd_id=:cmd_id ';
+			$sql .= ' ORDER BY datetime DESC LIMIT ' .  ($countData) . ',1';
 			$sql .= ') ';
 			$sql .= ' UNION ALL ';
 			$sql .= ' (SELECT * from historyArch
 			WHERE value is not null AND cmd_id=:cmd_id ';
+			$sql .= ' ORDER BY datetime DESC LIMIT ' .  ($countData) . ',1';
 			$sql .= ') ';
 			$sql .= ')a ';
-			$sql .= ' ORDER BY datetime DESC LIMIT ' .  ($countData) . ',1';
+			$sql .= ' ORDER BY datetime DESC LIMIT 1';
 			$row = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 			if ($row != null) {
 				array_unshift($return, $row);
