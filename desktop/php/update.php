@@ -79,7 +79,7 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 				<table class="ui-table-reflow table table-condensed table-bordered tablesorter" id="table_update">
 					<thead>
 						<tr>
-							<th style="width:50px;">{{Etat}}</th>
+							<th>{{Etat}}</th>
 							<th>{{Nom}}</th>
 							<th data-sorter="shortDate">{{Version installée}}</th>
 							<th data-sorter="shortDate">{{Dernière version}}</th>

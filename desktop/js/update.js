@@ -415,7 +415,7 @@ if (!jeeFrontEnd.update) {
           })
         },
         success: function(data) {
-          let tbody = document.querySelector('#table_update tbody')
+          let tbody = document.querySelector('#table_osUpdate tbody')
           tbody.empty()
 
           var tr_updates = []
@@ -477,7 +477,9 @@ $(function() {
   $('#table_update').on('sortEnd', function(e, t) {
     $("#table_update tbody").prepend($('tr[data-type="core"]'))
   })
-  $('#table_update').trigger('sorton', [
+
+  $('#table_update')[0].config.widgetOptions.resizable_widths = ['80px', '', '', '', '', '', '']
+  $('#table_update').trigger('applyWidgets').trigger('sorton', [
     [
       [0, 1]
     ]
