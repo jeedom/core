@@ -24,10 +24,10 @@
         }
 
 
-        if (_options.value == 1) {
+        if (_options.display_value == 1) {
           cmd.setAttribute('data-state', 1)
           cmd.querySelector('.imgCmd').innerHTML = jeedom.widgets.getThemeImg("#_img_light_on_#", "#_img_dark_on_#")
-        } else if (_options.value == 0) {
+        } else if (_options.display_value == 0) {
           cmd.setAttribute('data-state', 0)
           cmd.querySelector('.imgCmd').innerHTML = jeedom.widgets.getThemeImg("#_img_light_off_#", "#_img_dark_off_#")
         } else {

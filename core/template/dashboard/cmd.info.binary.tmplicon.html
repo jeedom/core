@@ -23,9 +23,9 @@
           jeedom.cmd.displayDuration(_options.valueDate, cmd.querySelector('.timeCmd'), '#time#')
         }
 
-        if (_options.value == 1) {
+        if (_options.display_value == 1) {
           cmd.querySelector('.iconCmd').innerHTML = "#_icon_on_#"
-        } else if (_options.value == 0) {
+        } else if (_options.display_value == 0) {
           cmd.querySelector('.iconCmd').innerHTML = "#_icon_off_#"
         } else {
           cmd.querySelector('.value').innerHTML = '<span class="label label-danger">' + _options.value + '</span>'
