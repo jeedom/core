@@ -509,9 +509,9 @@ Element.prototype.load = function(_path, _callback) {
 
   domUtils.ajax({
     url: _path,
-    async: true,
-    type: 'GET',
-    global: true,
+    async: domUtils.ajaxSettings.async,
+    type: 'get',
+    global: domUtils.ajaxSettings.global,
     dataType: 'html',
     error: function(error) {
       jeedomUtils.showAlert({
@@ -532,7 +532,18 @@ Element.prototype.load = function(_path, _callback) {
 
 /* ____________Ajax Management____________
 */
-domUtils.countAjax = function (_type, _global) {
+domUtils.ajaxSettings = {
+  async: true,
+  global: true,
+  dataType: 'json',
+  type: 'post'
+}
+domUtils.ajaxSetup = function(_params) {
+  for (const key in _params) {
+    domUtils.ajaxSettings[key] = _params[key]
+  }
+}
+domUtils.countAjax = function(_type, _global) {
   if (_global === false) return
   if (_type == 0) {
     domUtils.ajaxCalling ++
@@ -548,12 +559,19 @@ domUtils.countAjax = function (_type, _global) {
   }
 }
 domUtils.ajax = function(_params) {
+  _params.global = isset(_params.global) ? _params.global : domUtils.ajaxSettings.global
+  _params.async = isset(_params.async) ? _params.async : domUtils.ajaxSettings.async
+  _params.dataType = isset(_params.dataType) ? _params.dataType : domUtils.ajaxSettings.dataType
+  _params.type = isset(_params.type) ? _params.type : domUtils.ajaxSettings.type
+
   domUtils.countAjax(0, _params.global)
 
-  //Synchronous request:
-  if (isset(_params.async) && _params.async === false) {
+  var isGet = _params.type.toLowerCase() == 'get' ? true : false
+  var isJson = _params.dataType.toLowerCase() == 'json' ? true : false
+
+  if (_params.async === false) { //Synchronous request:
     const request = new XMLHttpRequest()
-    request.open(_params.type.toLowerCase(), _params.url, false)
+    request.open(_params.type, _params.url, false)
     request.send(new URLSearchParams(_params.data))
     if (request.status === 200) {
       if (typeof _params.success === 'function') {
@@ -562,7 +580,11 @@ domUtils.ajax = function(_params) {
           _params.complete()
         }
       } else {
-        return JSON.parse(request.responseText)
+        if (isJson) {
+          return JSON.parse(request.responseText)
+        } else {
+          return request.responseText
+        }
       }
       domUtils.countAjax(1, _params.global)
     } else {
@@ -573,14 +595,15 @@ domUtils.ajax = function(_params) {
       }
       domUtils.countAjax(1, _params.global)
     }
-  } else {
-    //Asynchronous request:
+  } else { //Asynchronous request:
     var url = _params.url
-    if (_params.type.toLowerCase() == 'get' && is_object(_params.data)) url = url + '?' + new URLSearchParams(_params.data)
+    if (isGet && is_object(_params.data)) {
+      url = url + '?' + new URLSearchParams(_params.data)
+    }
     fetch(url, {
-      method: _params.type.toLowerCase(),
-      body: _params.type.toLowerCase() == 'post' ? new URLSearchParams(_params.data) : null,
-      headers: _params.type.toLowerCase() == 'post' ? {"Content-Type": "application/x-www-form-urlencoded"} : new Headers()
+      method: _params.type,
+      body: !isGet ? new URLSearchParams(_params.data) : null,
+      headers: !isGet ? {"Content-Type": "application/x-www-form-urlencoded"} : new Headers()
     })
     .then(function(response) {
       if (!response.ok) {
@@ -591,7 +614,7 @@ domUtils.ajax = function(_params) {
         }
         return
       }
-      if (_params.dataType == 'json') {
+      if (isJson) {
         return response.json()
       } else {
         return response.text()
