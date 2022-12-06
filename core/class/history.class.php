@@ -20,574 +20,574 @@
 require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class history {
-    /*     * *************************Attributs****************************** */
+	/*     * *************************Attributs****************************** */
 
-    protected $cmd_id;
-    protected $value;
-    protected $datetime;
-    protected $_changed = false;
-    protected $_tableName = 'history';
+	protected $cmd_id;
+	protected $value;
+	protected $datetime;
+	protected $_changed = false;
+	protected $_tableName = 'history';
 
-    /*     * ***********************Methode static*************************** */
+	/*     * ***********************Methode static*************************** */
 
-    public static function checkCurrentValueAndHistory() {
-        $sql = 'SELECT DISTINCT(cmd_id)
+	public static function checkCurrentValueAndHistory() {
+		$sql = 'SELECT DISTINCT(cmd_id)
         FROM history';
-        $cmd_ids = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
-        foreach ($cmd_ids as $cmd_id) {
-            $cmd = cmd::byId($cmd_id['cmd_id']);
-            if (!is_object($cmd) || $cmd->getType() != 'info') {
-                continue;
-            }
-            $values = array(
-                'cmd_id' => $cmd->getId(),
-            );
-            $sql = 'SELECT ' . DB::buildField(__CLASS__);
-            $sql .= ' FROM history
+		$cmd_ids = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
+		foreach ($cmd_ids as $cmd_id) {
+			$cmd = cmd::byId($cmd_id['cmd_id']);
+			if (!is_object($cmd) || $cmd->getType() != 'info') {
+				continue;
+			}
+			$values = array(
+				'cmd_id' => $cmd->getId(),
+			);
+			$sql = 'SELECT ' . DB::buildField(__CLASS__);
+			$sql .= ' FROM history
             WHERE cmd_id=:cmd_id ';
-            $sql .= ' ORDER BY `datetime` DESC LIMIT 1';
-            $history = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, 'history');
-            $cmd->execCmd();
-            if (strtotime($cmd->getCollectDate()) < strtotime($history->getDatetime())) {
-                $cmd->setCache('collectDate', $history->getDatetime());
-                $cmd->setCache(array(
-                    'value' => $history->getValue(),
-                    'collectDate' => $history->getDatetime()
-                ));
-            }
-        }
-    }
+			$sql .= ' ORDER BY `datetime` DESC LIMIT 1';
+			$history = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, 'history');
+			$cmd->execCmd();
+			if (strtotime($cmd->getCollectDate()) < strtotime($history->getDatetime())) {
+				$cmd->setCache('collectDate', $history->getDatetime());
+				$cmd->setCache(array(
+					'value' => $history->getValue(),
+					'collectDate' => $history->getDatetime()
+				));
+			}
+		}
+	}
 
-    public static function exportToCSV($histories) {
-        if (!is_array($histories)) {
-            $histories = array($histories);
-        }
-        $return = '"' . __('Commande', __FILE__) . '";"' . '"' . __('Date', __FILE__) . '";"' . __('Valeur', __FILE__) . '"' . "\n";
-        foreach ($histories as $history) {
-            $return .=  '"' . $history->getCmd()->getHumanName() . '";"' . '"' . $history->getDatetime() . '";"' . $history->getValue() . '"' . "\n";
-        }
-        return $return;
-    }
+	public static function exportToCSV($histories) {
+		if (!is_array($histories)) {
+			$histories = array($histories);
+		}
+		$return = '"' . __('Commande', __FILE__) . '";"' . '"' . __('Date', __FILE__) . '";"' . __('Valeur', __FILE__) . '"' . "\n";
+		foreach ($histories as $history) {
+			$return .=  '"' . $history->getCmd()->getHumanName() . '";"' . '"' . $history->getDatetime() . '";"' . $history->getValue() . '"' . "\n";
+		}
+		return $return;
+	}
 
-    public static function copyHistoryToCmd($_source_id, $_target_id) {
-        $source_cmd = cmd::byId(str_replace('#', '', $_source_id));
-        if (!is_object($source_cmd)) {
-            throw new Exception(__('La commande source n\'existe pas :', __FILE__) . ' ' . $_source_id);
-        }
-        if ($source_cmd->getIsHistorized() != 1) {
-            throw new Exception(__('La commande source n\'est pas historisée', __FILE__));
-        }
-        if ($source_cmd->getType() != 'info') {
-            throw new Exception(__('La commande source n\'est pas de type info', __FILE__));
-        }
-        $target_cmd = cmd::byId(str_replace('#', '', $_target_id));
-        if (!is_object($target_cmd)) {
-            throw new Exception(__('La commande cible n\'existe pas :', __FILE__) . ' ' . $_target_id);
-        }
-        if ($target_cmd->getType() != 'info') {
-            throw new Exception(__('La commande cible n\'est pas de type info', __FILE__));
-        }
-        if ($target_cmd->getSubType() != $source_cmd->getSubType()) {
-            throw new Exception(__('Le sous-type de la commande cible n\'est pas le même que celui de la commande source', __FILE__));
-        }
-        if ($target_cmd->getIsHistorized() != 1) {
-            $target_cmd->setIsHistorized(1);
-            $target_cmd->save();
-        }
-        $values = array(
-            'source_id' => $source_cmd->getId(),
-        );
-        $sql = 'REPLACE INTO `history` (`cmd_id`,`datetime`,`value`)
+	public static function copyHistoryToCmd($_source_id, $_target_id) {
+		$source_cmd = cmd::byId(str_replace('#', '', $_source_id));
+		if (!is_object($source_cmd)) {
+			throw new Exception(__('La commande source n\'existe pas :', __FILE__) . ' ' . $_source_id);
+		}
+		if ($source_cmd->getIsHistorized() != 1) {
+			throw new Exception(__('La commande source n\'est pas historisée', __FILE__));
+		}
+		if ($source_cmd->getType() != 'info') {
+			throw new Exception(__('La commande source n\'est pas de type info', __FILE__));
+		}
+		$target_cmd = cmd::byId(str_replace('#', '', $_target_id));
+		if (!is_object($target_cmd)) {
+			throw new Exception(__('La commande cible n\'existe pas :', __FILE__) . ' ' . $_target_id);
+		}
+		if ($target_cmd->getType() != 'info') {
+			throw new Exception(__('La commande cible n\'est pas de type info', __FILE__));
+		}
+		if ($target_cmd->getSubType() != $source_cmd->getSubType()) {
+			throw new Exception(__('Le sous-type de la commande cible n\'est pas le même que celui de la commande source', __FILE__));
+		}
+		if ($target_cmd->getIsHistorized() != 1) {
+			$target_cmd->setIsHistorized(1);
+			$target_cmd->save();
+		}
+		$values = array(
+			'source_id' => $source_cmd->getId(),
+		);
+		$sql = 'REPLACE INTO `history` (`cmd_id`,`datetime`,`value`)
         SELECT ' . $target_cmd->getId() . ',`datetime`,`value` FROM `history` WHERE cmd_id=:source_id';
-        DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 
-        $sql = 'REPLACE INTO `historyArch` (`cmd_id`,`datetime`,`value`)
+		$sql = 'REPLACE INTO `historyArch` (`cmd_id`,`datetime`,`value`)
         SELECT ' . $target_cmd->getId() . ',`datetime`,`value` FROM `historyArch` WHERE cmd_id=:source_id';
-        DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-    }
+		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+	}
 
-    public static function byCmdIdDatetime($_cmd_id, $_startTime, $_endTime = null, $_oldValue = null) {
-        if ($_endTime == null) {
-            $_endTime = $_startTime;
-        }
-        $values = array(
-            'cmd_id' => $_cmd_id,
-            'startTime' => $_startTime,
-            'endTime' => $_endTime,
-        );
-        if ($_oldValue != null) {
-            $values['oldValue'] = $_oldValue;
-        }
-        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+	public static function byCmdIdDatetime($_cmd_id, $_startTime, $_endTime = null, $_oldValue = null) {
+		if ($_endTime == null) {
+			$_endTime = $_startTime;
+		}
+		$values = array(
+			'cmd_id' => $_cmd_id,
+			'startTime' => $_startTime,
+			'endTime' => $_endTime,
+		);
+		if ($_oldValue != null) {
+			$values['oldValue'] = $_oldValue;
+		}
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM history
         WHERE cmd_id=:cmd_id
         AND `datetime`>=:startTime
         AND `datetime`<=:endTime';
-        if ($_oldValue != null) {
-            $sql .= ' AND `value`=:oldValue';
-        }
-        $result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
-        if (!is_object($result)) {
-            $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		if ($_oldValue != null) {
+			$sql .= ' AND `value`=:oldValue';
+		}
+		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+		if (!is_object($result)) {
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
             FROM historyArch
             WHERE cmd_id=:cmd_id
             AND `datetime`>=:startTime
             AND `datetime`<=:endTime';
-            if ($_oldValue != null) {
-                $sql .= ' AND `value`=:oldValue';
-            }
-            $result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, 'historyArch');
-            if (is_object($result)) {
-                $result->setTableName('historyArch');
-            }
-        } else {
-            $result->setTableName('history');
-        }
-        return $result;
-    }
+			if ($_oldValue != null) {
+				$sql .= ' AND `value`=:oldValue';
+			}
+			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, 'historyArch');
+			if (is_object($result)) {
+				$result->setTableName('historyArch');
+			}
+		} else {
+			$result->setTableName('history');
+		}
+		return $result;
+	}
 
-    /**
-     * Value of a command on a given date
-     */
-    public static function byCmdIdAtDatetime($_cmd_id, $_time) {
-        $values = array(
-            'cmd_id' => $_cmd_id,
-            'time' => $_time,
-        );
-        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+	/**
+	 * Value of a command on a given date
+	 */
+	public static function byCmdIdAtDatetime($_cmd_id, $_time) {
+		$values = array(
+			'cmd_id' => $_cmd_id,
+			'time' => $_time,
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM history
         WHERE cmd_id=:cmd_id
         AND `datetime`<=:time
         ORDER BY `datetime` DESC LIMIT 1';
-        $result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
-        if (!is_object($result)) {
-            $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+		if (!is_object($result)) {
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
             FROM historyArch
             WHERE cmd_id=:cmd_id
             AND `datetime`<=:time
             ORDER BY `datetime` DESC LIMIT 1';
-            $result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, 'historyArch');
-            if (is_object($result)) {
-                $result->setTableName('historyArch');
-            }
-        } else {
-            $result->setTableName('history');
-        }
-        return $result;
-    }
+			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, 'historyArch');
+			if (is_object($result)) {
+				$result->setTableName('historyArch');
+			}
+		} else {
+			$result->setTableName('history');
+		}
+		return $result;
+	}
 
-    /**
-     * Archive data from history into historyArch
-     */
-    public static function archive() {
-        global $JEEDOM_INTERNAL_CONFIG;
-        $sql = 'DELETE FROM history WHERE `value` IS NULL';
-        DB::Prepare($sql, array());
-        $sql = 'DELETE FROM historyArch WHERE `value` IS NULL';
-        DB::Prepare($sql, array());
-        $sql = 'DELETE FROM history WHERE `datetime` <= "2000-01-01 01:00:00" OR  `datetime` >= "2025-01-01 01:00:00"';
-        DB::Prepare($sql, array());
-        $sql = 'DELETE FROM historyArch WHERE `datetime` <= "2000-01-01 01:00:00" OR  `datetime` >= "2025-01-01 01:00:00"';
-        DB::Prepare($sql, array());
-        $sql = 'DELETE FROM history WHERE `value` IS NULL';
-        DB::Prepare($sql, array());
-        $sql = 'DELETE FROM historyArch WHERE `value` IS NULL';
-        DB::Prepare($sql, array());
-        if (config::byKey('historyArchivePackage') < 1) {
-            config::save('historyArchivePackage', 1);
-        }
-        if (config::byKey('historyArchiveTime') < 2) {
-            config::save('historyArchiveTime', 2);
-        }
-        if (config::byKey('historyArchivePackage') >= config::byKey('historyArchiveTime')) {
-            config::save('historyArchivePackage', config::byKey('historyArchiveTime') - 1);
-        }
-        if (config::byKey('historyArchivePackage') >= config::byKey('historyArchiveTime')) {
-            config::save('historyArchivePackage', config::byKey('historyArchiveTime') - 1);
-        }
-        $archiveDatetime = (config::byKey('historyArchiveTime') < 1) ? date('Y-m-d H:i:s', strtotime('- 1 hours')) : date('Y-m-d H:i:s', strtotime('- ' . config::byKey('historyArchiveTime', 'core', 1) . ' hours'));
-        if (config::byKey('historyArchivePackage') < 1) {
-            $archivePackage = '00:' . config::byKey('historyArchivePackage') * 60 . ':00';
-        } else {
-            $archivePackage = config::byKey('historyArchivePackage') . ':00:00';
-            if (strlen($archivePackage) < 8) {
-                $archivePackage = '0' . $archivePackage;
-            }
-        }
-        if ($archiveDatetime === false) {
-            $archiveDatetime = date('Y-m-d H:i:s', strtotime('- 1 hours'));
-        }
-        $values = array(
-            'archiveDatetime' => $archiveDatetime,
-        );
-        $sql = 'SELECT DISTINCT(cmd_id)
+	/**
+	 * Archive data from history into historyArch
+	 */
+	public static function archive() {
+		global $JEEDOM_INTERNAL_CONFIG;
+		$sql = 'DELETE FROM history WHERE `value` IS NULL';
+		DB::Prepare($sql, array());
+		$sql = 'DELETE FROM historyArch WHERE `value` IS NULL';
+		DB::Prepare($sql, array());
+		$sql = 'DELETE FROM history WHERE `datetime` <= "2000-01-01 01:00:00" OR  `datetime` >= "2025-01-01 01:00:00"';
+		DB::Prepare($sql, array());
+		$sql = 'DELETE FROM historyArch WHERE `datetime` <= "2000-01-01 01:00:00" OR  `datetime` >= "2025-01-01 01:00:00"';
+		DB::Prepare($sql, array());
+		$sql = 'DELETE FROM history WHERE `value` IS NULL';
+		DB::Prepare($sql, array());
+		$sql = 'DELETE FROM historyArch WHERE `value` IS NULL';
+		DB::Prepare($sql, array());
+		if (config::byKey('historyArchivePackage') < 1) {
+			config::save('historyArchivePackage', 1);
+		}
+		if (config::byKey('historyArchiveTime') < 2) {
+			config::save('historyArchiveTime', 2);
+		}
+		if (config::byKey('historyArchivePackage') >= config::byKey('historyArchiveTime')) {
+			config::save('historyArchivePackage', config::byKey('historyArchiveTime') - 1);
+		}
+		if (config::byKey('historyArchivePackage') >= config::byKey('historyArchiveTime')) {
+			config::save('historyArchivePackage', config::byKey('historyArchiveTime') - 1);
+		}
+		$archiveDatetime = (config::byKey('historyArchiveTime') < 1) ? date('Y-m-d H:i:s', strtotime('- 1 hours')) : date('Y-m-d H:i:s', strtotime('- ' . config::byKey('historyArchiveTime', 'core', 1) . ' hours'));
+		if (config::byKey('historyArchivePackage') < 1) {
+			$archivePackage = '00:' . config::byKey('historyArchivePackage') * 60 . ':00';
+		} else {
+			$archivePackage = config::byKey('historyArchivePackage') . ':00:00';
+			if (strlen($archivePackage) < 8) {
+				$archivePackage = '0' . $archivePackage;
+			}
+		}
+		if ($archiveDatetime === false) {
+			$archiveDatetime = date('Y-m-d H:i:s', strtotime('- 1 hours'));
+		}
+		$values = array(
+			'archiveDatetime' => $archiveDatetime,
+		);
+		$sql = 'SELECT DISTINCT(cmd_id)
         FROM history
         WHERE `datetime`<:archiveDatetime';
-        $list_sensors = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
-        foreach ($list_sensors as $sensors) {
-            try {
-                $cmd = cmd::byId($sensors['cmd_id']);
-                if (!is_object($cmd) || $cmd->getType() != 'info' || $cmd->getIsHistorized() != 1) {
-                    $values = array(
-                        'cmd_id' => $sensors['cmd_id']
-                    );
-                    $sql = 'DELETE FROM history WHERE cmd_id=:cmd_id';
-                    DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-                    $sql = 'DELETE FROM historyArch WHERE cmd_id=:cmd_id';
-                    DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-                    continue;
-                }
-                $purgeTime = false;
-                if ($cmd->getConfiguration('historyPurge', '') != '') {
-                    $purgeTime = date('Y-m-d H:i:s', strtotime($cmd->getConfiguration('historyPurge', '')));
-                } else if (config::byKey('historyPurge') != '') {
-                    $purgeTime = date('Y-m-d H:i:s', strtotime(config::byKey('historyPurge')));
-                }
-                if ($purgeTime !== false) {
-                    $values = array(
-                        'cmd_id' => $cmd->getId(),
-                        'datetime' => $purgeTime,
-                    );
-                    $sql = 'DELETE FROM historyArch WHERE cmd_id=:cmd_id AND `datetime` < :datetime';
-                    DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-                }
-                if (!$JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] || $cmd->getConfiguration('historizeMode', 'avg') == 'none') {
-                    $values = array(
-                        'cmd_id' => $cmd->getId(),
-                        'archiveTime' => $archiveDatetime
-                    );
-                    $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		$list_sensors = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
+		foreach ($list_sensors as $sensors) {
+			try {
+				$cmd = cmd::byId($sensors['cmd_id']);
+				if (!is_object($cmd) || $cmd->getType() != 'info' || $cmd->getIsHistorized() != 1) {
+					$values = array(
+						'cmd_id' => $sensors['cmd_id']
+					);
+					$sql = 'DELETE FROM history WHERE cmd_id=:cmd_id';
+					DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+					$sql = 'DELETE FROM historyArch WHERE cmd_id=:cmd_id';
+					DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+					continue;
+				}
+				$purgeTime = false;
+				if ($cmd->getConfiguration('historyPurge', '') != '') {
+					$purgeTime = date('Y-m-d H:i:s', strtotime($cmd->getConfiguration('historyPurge', '')));
+				} else if (config::byKey('historyPurge') != '') {
+					$purgeTime = date('Y-m-d H:i:s', strtotime(config::byKey('historyPurge')));
+				}
+				if ($purgeTime !== false) {
+					$values = array(
+						'cmd_id' => $cmd->getId(),
+						'datetime' => $purgeTime,
+					);
+					$sql = 'DELETE FROM historyArch WHERE cmd_id=:cmd_id AND `datetime` < :datetime';
+					DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+				}
+				if (!$JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] || $cmd->getConfiguration('historizeMode', 'avg') == 'none') {
+					$values = array(
+						'cmd_id' => $cmd->getId(),
+						'archiveTime' => $archiveDatetime
+					);
+					$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
                     FROM history
                     WHERE `datetime` <= :archiveTime
                     AND cmd_id=:cmd_id
                     AND `value` IS NOT NULL
                     ORDER BY `datetime` ASC';
-                    $history = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-                    $countHistory = count($history);
-                    if ($countHistory > 0) {
-                        if ($cmd->getConfiguration('historizeMode', 'avg') == 'none') {
-                            for ($i = 0; $i < $countHistory; $i++) {
-                                $history[$i]->setTableName('historyArch');
-                                $history[$i]->save();
-                            }
-                        } else {
-                            if ($countHistory > 1) {
-                                for ($i = 1; $i < $countHistory; $i++) {
-                                    if ($history[$i]->getValue() != $history[$i - 1]->getValue()) {
-                                        $history[$i]->setTableName('historyArch');
-                                        $history[$i]->save();
-                                    }
-                                }
-                            }
-                            $history[0]->setTableName('historyArch');
-                            $history[0]->save();
-                        }
-                    }
-                    $sql = 'DELETE FROM history
+					$history = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+					$countHistory = count($history);
+					if ($countHistory > 0) {
+						if ($cmd->getConfiguration('historizeMode', 'avg') == 'none') {
+							for ($i = 0; $i < $countHistory; $i++) {
+								$history[$i]->setTableName('historyArch');
+								$history[$i]->save();
+							}
+						} else {
+							if ($countHistory > 1) {
+								for ($i = 1; $i < $countHistory; $i++) {
+									if ($history[$i]->getValue() != $history[$i - 1]->getValue()) {
+										$history[$i]->setTableName('historyArch');
+										$history[$i]->save();
+									}
+								}
+							}
+							$history[0]->setTableName('historyArch');
+							$history[0]->save();
+						}
+					}
+					$sql = 'DELETE FROM history
                     WHERE `datetime` <= :archiveTime
                     AND cmd_id=:cmd_id';
-                    DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-                    continue;
-                }
-                $mode = $cmd->getConfiguration('historizeMode', 'avg');
-                $values = array(
-                    'cmd_id' => $sensors['cmd_id'],
-                    'archivePackage' => config::byKey('historyArchivePackage') * 3600,
-                    'archiveTime' => $archiveDatetime
-                );
-                $round = (is_numeric($cmd->getConfiguration('historizeRound'))) ? $cmd->getConfiguration('historizeRound') : 2;
-                $sql = 'REPLACE INTO historyArch(cmd_id,`datetime`,value) SELECT cmd_id,MIN(`datetime`),' . $mode . '(CAST(value AS DECIMAL(12,' . $round . '))) as value
+					DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+					continue;
+				}
+				$mode = $cmd->getConfiguration('historizeMode', 'avg');
+				$values = array(
+					'cmd_id' => $sensors['cmd_id'],
+					'archivePackage' => config::byKey('historyArchivePackage') * 3600,
+					'archiveTime' => $archiveDatetime
+				);
+				$round = (is_numeric($cmd->getConfiguration('historizeRound'))) ? $cmd->getConfiguration('historizeRound') : 2;
+				$sql = 'REPLACE INTO historyArch(cmd_id,`datetime`,value) SELECT cmd_id,MIN(`datetime`),' . $mode . '(CAST(value AS DECIMAL(12,' . $round . '))) as value
                 FROM history
                 WHERE `datetime` <= :archiveTime
                 AND cmd_id=:cmd_id
                 AND `value` IS NOT NULL
                 GROUP BY UNIX_TIMESTAMP(`datetime`) DIV :archivePackage';
-                try {
-                    DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-                } catch (Exception $e) {
-                    log::add('history', 'error', __('Erreur l\'archivage des historiques :', __FILE__) . ' ' . json_encode($values) . '  => ' . $e->getMessage());
-                    continue;
-                }
-                $values = array('cmd_id' => $sensors['cmd_id'], 'archiveTime' => $archiveDatetime);
-                $sql = 'DELETE FROM history
+				try {
+					DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+				} catch (Exception $e) {
+					log::add('history', 'error', __('Erreur l\'archivage des historiques :', __FILE__) . ' ' . json_encode($values) . '  => ' . $e->getMessage());
+					continue;
+				}
+				$values = array('cmd_id' => $sensors['cmd_id'], 'archiveTime' => $archiveDatetime);
+				$sql = 'DELETE FROM history
                 WHERE `datetime` <= :archiveTime
                 AND cmd_id=:cmd_id';
-                DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-            } catch (\Exception $e) {
-            }
-        }
-    }
+				DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+			} catch (\Exception $e) {
+			}
+		}
+	}
 
-    public static function all($_cmd_id, $_startTime = null, $_endTime = null, $_groupingType = null) {
-        $values = array(
-            'cmd_id' => $_cmd_id,
-        );
-        if ($_startTime !== null) {
-            $values['startTime'] = date('Y-m-d H:i:s', strtotime($_startTime) + 1);
-        }
-        if ($_endTime !== null) {
-            $values['endTime'] = $_endTime;
-        }
-        if ($_groupingType == null || strpos($_groupingType, '::') === false) {
-            $sql = 'SELECT ' . DB::buildField(__CLASS__);
-        } else {
-            $goupingType = explode('::', $_groupingType);
-            $function = 'AVG';
-            if ($goupingType[0] == 'high' || $goupingType[0] == 'max') {
-                $function = 'MAX';
-            } else  if ($goupingType[0] == 'low' || $goupingType[0] == 'min') {
-                $function = 'MIN';
-            } else  if ($goupingType[0] == 'sum') {
-                $function = 'SUM';
-            }
-            if ($goupingType[1] == 'hour') {
-                $sql = 'SELECT `cmd_id`,DATE_FORMAT(`datetime`,\'%Y-%m-%d %H:00:00\') as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
-            } else {
-                $sql = 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
-            }
-        }
-        $sql .= ' FROM (';
-        $sql .= ' (SELECT * from history
+	public static function all($_cmd_id, $_startTime = null, $_endTime = null, $_groupingType = null) {
+		$values = array(
+			'cmd_id' => $_cmd_id,
+		);
+		if ($_startTime !== null) {
+			$values['startTime'] = date('Y-m-d H:i:s', strtotime($_startTime) + 1);
+		}
+		if ($_endTime !== null) {
+			$values['endTime'] = $_endTime;
+		}
+		if ($_groupingType == null || strpos($_groupingType, '::') === false) {
+			$sql = 'SELECT ' . DB::buildField(__CLASS__);
+		} else {
+			$goupingType = explode('::', $_groupingType);
+			$function = 'AVG';
+			if ($goupingType[0] == 'high' || $goupingType[0] == 'max') {
+				$function = 'MAX';
+			} else  if ($goupingType[0] == 'low' || $goupingType[0] == 'min') {
+				$function = 'MIN';
+			} else  if ($goupingType[0] == 'sum') {
+				$function = 'SUM';
+			}
+			if ($goupingType[1] == 'hour') {
+				$sql = 'SELECT `cmd_id`,DATE_FORMAT(`datetime`,\'%Y-%m-%d %H:00:00\') as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
+			} else {
+				$sql = 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
+			}
+		}
+		$sql .= ' FROM (';
+		$sql .= ' (SELECT * from history
         WHERE value is not null AND cmd_id=:cmd_id ';
-        if ($_startTime !== null) {
-            $sql .= ' AND datetime>=:startTime';
-        }
-        if ($_endTime !== null) {
-            $sql .= ' AND datetime<=:endTime';
-        }
-        $sql .= ') ';
-        $sql .= ' UNION ALL ';
-        $sql .= ' (SELECT * from historyArch
+		if ($_startTime !== null) {
+			$sql .= ' AND datetime>=:startTime';
+		}
+		if ($_endTime !== null) {
+			$sql .= ' AND datetime<=:endTime';
+		}
+		$sql .= ') ';
+		$sql .= ' UNION ALL ';
+		$sql .= ' (SELECT * from historyArch
         WHERE value is not null AND cmd_id=:cmd_id ';
-        if ($_startTime !== null) {
-            $sql .= ' AND `datetime`>=:startTime';
-        }
-        if ($_endTime !== null) {
-            $sql .= ' AND `datetime`<=:endTime';
-        }
-        $sql .= ') ';
-        $sql .= ')a ';
-        if ($_groupingType != null && strpos($_groupingType, '::') !== false) {
-            if ($goupingType[1] == 'week') {
-                $sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`))';
-            } else if ($goupingType[1] == 'hour') {
-                $sql .= ' GROUP BY CONCAT(DATE(`datetime`), \'/\', HOUR(`datetime`))';
-            } else if ($goupingType[1] == 'month') {
-                $sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', MONTH(`datetime`))';
-            } else {
-                $time = 'DATE';
-                if ($goupingType[1] == 'year') {
-                    $time = 'YEAR';
-                }
-                $sql .= ' GROUP BY ' . $time . '(DATE_SUB(`datetime`, INTERVAL 1 SECOND))';
-            }
-        }
-        $sql .= ' ORDER BY `datetime` ASC';
-        $return = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+		if ($_startTime !== null) {
+			$sql .= ' AND `datetime`>=:startTime';
+		}
+		if ($_endTime !== null) {
+			$sql .= ' AND `datetime`<=:endTime';
+		}
+		$sql .= ') ';
+		$sql .= ')a ';
+		if ($_groupingType != null && strpos($_groupingType, '::') !== false) {
+			if ($goupingType[1] == 'week') {
+				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`))';
+			} else if ($goupingType[1] == 'hour') {
+				$sql .= ' GROUP BY CONCAT(DATE(`datetime`), \'/\', HOUR(`datetime`))';
+			} else if ($goupingType[1] == 'month') {
+				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', MONTH(`datetime`))';
+			} else {
+				$time = 'DATE';
+				if ($goupingType[1] == 'year') {
+					$time = 'YEAR';
+				}
+				$sql .= ' GROUP BY ' . $time . '(DATE_SUB(`datetime`, INTERVAL 1 SECOND))';
+			}
+		}
+		$sql .= ' ORDER BY `datetime` ASC';
+		$return = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 
 
-        //Get previous last value before dateStart
-        $doit = false;
-        $debugCmdId = 9256;
+		//Get previous last value before dateStart
+		$doit = false;
+		$debugCmdId = 9256;
 
-        if ($doit) {
-            $countData = count($return);
-            if ($_cmd_id == $debugCmdId) log::add('SQL_history', 'alert', '>>>>>>>>>>>>>> return: ' . $_cmd_id . ' / ' . $_startTime . ' / ' . $_endTime);
-            if ($_cmd_id == $debugCmdId) log::add('SQL_history', 'alert', '>> return: ' . $countData . ' : ' . json_encode(utils::o2a($return), JSON_UNESCAPED_UNICODE));
+		if ($doit) {
+			$countData = count($return);
+			if ($_cmd_id == $debugCmdId) log::add('SQL_history', 'alert', '>>>>>>>>>>>>>> return: ' . $_cmd_id . ' / ' . $_startTime . ' / ' . $_endTime);
+			if ($_cmd_id == $debugCmdId) log::add('SQL_history', 'alert', '>> return: ' . $countData . ' : ' . json_encode(utils::o2a($return), JSON_UNESCAPED_UNICODE));
 
-            //Total number of histories available:
-            $sql = 'SELECT ( SELECT COUNT(cmd_id) FROM history WHERE cmd_id='.$_cmd_id.' ) AS count1, ( SELECT COUNT(cmd_id) FROM historyArch WHERE cmd_id='.$_cmd_id.' ) AS count2';
-            $count = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-            $countHistory = $count['count1'];
-            $countHistoryArch = $count['count2'];
+			//Total number of histories available:
+			$sql = 'SELECT ( SELECT COUNT(cmd_id) FROM history WHERE cmd_id=' . $_cmd_id . ' ) AS count1, ( SELECT COUNT(cmd_id) FROM historyArch WHERE cmd_id=' . $_cmd_id . ' ) AS count2';
+			$count = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+			$countHistory = $count['count1'];
+			$countHistoryArch = $count['count2'];
 
-            if ($_cmd_id == $debugCmdId) log::add('SQL_history', 'alert', 'Available hist / arch: ' . $countHistory . ' / ' . $countHistoryArch);
+			if ($_cmd_id == $debugCmdId) log::add('SQL_history', 'alert', 'Available hist / arch: ' . $countHistory . ' / ' . $countHistoryArch);
 
 
-            if ($countHistory == 0 && $countHistoryArch == 0) { //Nothing
-                return $return;
-            } elseif ($countHistory > $countData) { //More values in history
-                $sql = 'SELECT ' . DB::buildField(__CLASS__);
-                $sql .= ' FROM history WHERE cmd_id=' . $_cmd_id;
-                $sql .= ' ORDER BY datetime DESC LIMIT ' .  strval($countData) .',1';
-                $preValue = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+			if ($countHistory == 0 && $countHistoryArch == 0) { //Nothing
+				return $return;
+			} elseif ($countHistory > $countData) { //More values in history
+				$sql = 'SELECT ' . DB::buildField(__CLASS__);
+				$sql .= ' FROM history WHERE cmd_id=' . $_cmd_id;
+				$sql .= ' ORDER BY datetime DESC LIMIT ' .  strval($countData) . ',1';
+				$preValue = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 
-                if ($_cmd_id == $debugCmdId) log::add('SQL_history', 'alert', '>> history preValue: ' . json_encode(utils::o2a($preValue), JSON_UNESCAPED_UNICODE));
+				if ($_cmd_id == $debugCmdId) log::add('SQL_history', 'alert', '>> history preValue: ' . json_encode(utils::o2a($preValue), JSON_UNESCAPED_UNICODE));
 
-                if (count($preValue) == 1) {
-                    array_unshift($return, $preValue[0]);
-                    if ($_cmd_id == $debugCmdId) log::add('SQL_history', 'alert', '>> history return: ' . $countData . ' : ' . json_encode(utils::o2a($return), JSON_UNESCAPED_UNICODE));
-                }
-            } elseif ($countHistory <= $countData && $countHistoryArch >= ($countData + 1 - $countHistory)) { //More values only in historyArch
-                $sql = 'SELECT ' . DB::buildField(__CLASS__);
-                $sql .= ' FROM historyArch WHERE cmd_id=' . $_cmd_id;
-                $sql .= ' ORDER BY datetime DESC LIMIT ' .  strval($countData - $countHistory) .',1';
-                $preValue = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+				if (count($preValue) == 1) {
+					array_unshift($return, $preValue[0]);
+					if ($_cmd_id == $debugCmdId) log::add('SQL_history', 'alert', '>> history return: ' . $countData . ' : ' . json_encode(utils::o2a($return), JSON_UNESCAPED_UNICODE));
+				}
+			} elseif ($countHistory <= $countData && $countHistoryArch >= ($countData + 1 - $countHistory)) { //More values only in historyArch
+				$sql = 'SELECT ' . DB::buildField(__CLASS__);
+				$sql .= ' FROM historyArch WHERE cmd_id=' . $_cmd_id;
+				$sql .= ' ORDER BY datetime DESC LIMIT ' .  strval($countData - $countHistory) . ',1';
+				$preValue = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 
-                if ($_cmd_id == $debugCmdId) log::add('SQL_history', 'alert', '>> historyArch preValue: ' . json_encode(utils::o2a($preValue), JSON_UNESCAPED_UNICODE));
+				if ($_cmd_id == $debugCmdId) log::add('SQL_history', 'alert', '>> historyArch preValue: ' . json_encode(utils::o2a($preValue), JSON_UNESCAPED_UNICODE));
 
-                if (count($preValue) == 1) {
-                    array_unshift($return, $preValue[0]);
-                    if ($_cmd_id == $debugCmdId) log::add('SQL_history', 'alert', '>> historyArch return: ' . count($preReturn) . ' : ' . json_encode(utils::o2a($preReturn), JSON_UNESCAPED_UNICODE));
-                }
-            }
-        }
+				if (count($preValue) == 1) {
+					array_unshift($return, $preValue[0]);
+					if ($_cmd_id == $debugCmdId) log::add('SQL_history', 'alert', '>> historyArch return: ' . count($return) . ' : ' . json_encode(utils::o2a($return), JSON_UNESCAPED_UNICODE));
+				}
+			}
+		}
 
-        return $return;
-    }
+		return $return;
+	}
 
-    public static function getOldestValue($_cmd_id, $_limit = 1) {
-        $values = array(
-            'cmd_id' => $_cmd_id
-        );
-        $_limit = intval($_limit);
-        if ($_limit > 0 && $_limit < 100) {
-            $sql = 'SELECT ' . DB::buildField(__CLASS__);
-            $sql .= ' FROM historyArch WHERE cmd_id=:cmd_id ORDER BY `datetime` ASC LIMIT ' . $_limit;
-            $result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, 'historyArch');
-            return array_merge($result);
-        }
-        return array();
-    }
+	public static function getOldestValue($_cmd_id, $_limit = 1) {
+		$values = array(
+			'cmd_id' => $_cmd_id
+		);
+		$_limit = intval($_limit);
+		if ($_limit > 0 && $_limit < 100) {
+			$sql = 'SELECT ' . DB::buildField(__CLASS__);
+			$sql .= ' FROM historyArch WHERE cmd_id=:cmd_id ORDER BY `datetime` ASC LIMIT ' . $_limit;
+			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, 'historyArch');
+			return array_merge($result);
+		}
+		return array();
+	}
 
-    public static function removes($_cmd_id, $_startTime = null, $_endTime = null) {
-        $values = array(
-            'cmd_id' => $_cmd_id,
-        );
-        if ($_startTime !== null) {
-            $values['startTime'] = $_startTime;
-        }
-        if ($_endTime !== null) {
-            $values['endTime'] = $_endTime;
-        }
-        $sql_tmpl = 'DELETE FROM #table#
+	public static function removes($_cmd_id, $_startTime = null, $_endTime = null) {
+		$values = array(
+			'cmd_id' => $_cmd_id,
+		);
+		if ($_startTime !== null) {
+			$values['startTime'] = $_startTime;
+		}
+		if ($_endTime !== null) {
+			$values['endTime'] = $_endTime;
+		}
+		$sql_tmpl = 'DELETE FROM #table#
         WHERE cmd_id=:cmd_id ';
-        if ($_startTime !== null) {
-            $sql_tmpl .= ' AND datetime>=:startTime';
-        }
-        if ($_endTime !== null) {
-            $sql_tmpl .= ' AND datetime<=:endTime';
-        }
-        DB::Prepare(str_replace('#table#', 'history', $sql_tmpl), $values, DB::FETCH_TYPE_ROW);
-        DB::Prepare(str_replace('#table#', 'historyArch', $sql_tmpl), $values, DB::FETCH_TYPE_ROW);
-        return true;
-    }
+		if ($_startTime !== null) {
+			$sql_tmpl .= ' AND datetime>=:startTime';
+		}
+		if ($_endTime !== null) {
+			$sql_tmpl .= ' AND datetime<=:endTime';
+		}
+		DB::Prepare(str_replace('#table#', 'history', $sql_tmpl), $values, DB::FETCH_TYPE_ROW);
+		DB::Prepare(str_replace('#table#', 'historyArch', $sql_tmpl), $values, DB::FETCH_TYPE_ROW);
+		return true;
+	}
 
-    public static function getPlurality($_cmd_id, $_startTime = null, $_endTime = null, $_period = 'day', $_offset = 0) {
-        $values = array(
-            'cmd_id' => $_cmd_id,
-        );
-        if ($_startTime !== null) {
-            $values['startTime'] = $_startTime;
-        }
-        if ($_endTime !== null) {
-            $values['endTime'] = $_endTime;
-        }
-        switch ($_period) {
-            case 'day':
-                if ($_offset == 0) {
-                    $select = 'SELECT cmd_id,MAX(CAST(value AS DECIMAL(12,2))) as `value`,DATE_FORMAT(`datetime`,"%Y-%m-%d 00:00:00") as `datetime`';
-                } elseif ($_offset > 0) {
-                    $select = 'SELECT cmd_id,MAX(CAST(value AS DECIMAL(12,2))) as `value`,DATE_FORMAT(DATE_ADD(`datetime`, INTERVAL ' . $_offset . ' HOUR),"%Y-%m-%d 00:00:00") as `datetime`';
-                } else {
-                    $select = 'SELECT cmd_id,MAX(CAST(value AS DECIMAL(12,2))) as `value`,DATE_FORMAT(DATE_SUB(`datetime`, INTERVAL ' . abs($_offset) . ' HOUR),"%Y-%m-%d 00:00:00") as `datetime`';
-                }
-                break;
-            case 'month':
-                $select = 'SELECT cmd_id,MAX(CAST(value AS DECIMAL(12,2))) as `value`,DATE_FORMAT(`datetime`,"%Y-%m-01 00:00:00") as `datetime`';
-                break;
-            case 'year':
-                $select = 'SELECT cmd_id,MAX(CAST(value AS DECIMAL(12,2))) as `value`,DATE_FORMAT(`datetime`,"%Y-01-01 00:00:00") as `datetime`';
-                break;
-            default:
-                $select = 'SELECT ' . DB::buildField(__CLASS__);
-                break;
-        }
-        switch ($_period) {
-            case 'day':
-                if ($_offset == 0) {
-                    $groupBy = ' GROUP BY date(`datetime`)';
-                } elseif ($_offset > 0) {
-                    $groupBy = ' GROUP BY date(DATE_ADD(`datetime`, INTERVAL ' . $_offset . ' HOUR))';
-                } else {
-                    $groupBy = ' GROUP BY date(DATE_SUB(`datetime`, INTERVAL ' . abs($_offset) . ' HOUR))';
-                }
-                break;
-            case 'month':
-                $groupBy = ' GROUP BY month(DATE_ADD(`datetime`, INTERVAL ' . $_offset . ' DAY))';
-                break;
-            case 'year':
-                $groupBy = ' GROUP BY YEAR(DATE_ADD(`datetime`, INTERVAL ' . $_offset . ' MONTH))';
-                break;
-            default:
-                $groupBy = '';
-                break;
-        }
-        $sql = $select . '
+	public static function getPlurality($_cmd_id, $_startTime = null, $_endTime = null, $_period = 'day', $_offset = 0) {
+		$values = array(
+			'cmd_id' => $_cmd_id,
+		);
+		if ($_startTime !== null) {
+			$values['startTime'] = $_startTime;
+		}
+		if ($_endTime !== null) {
+			$values['endTime'] = $_endTime;
+		}
+		switch ($_period) {
+			case 'day':
+				if ($_offset == 0) {
+					$select = 'SELECT cmd_id,MAX(CAST(value AS DECIMAL(12,2))) as `value`,DATE_FORMAT(`datetime`,"%Y-%m-%d 00:00:00") as `datetime`';
+				} elseif ($_offset > 0) {
+					$select = 'SELECT cmd_id,MAX(CAST(value AS DECIMAL(12,2))) as `value`,DATE_FORMAT(DATE_ADD(`datetime`, INTERVAL ' . $_offset . ' HOUR),"%Y-%m-%d 00:00:00") as `datetime`';
+				} else {
+					$select = 'SELECT cmd_id,MAX(CAST(value AS DECIMAL(12,2))) as `value`,DATE_FORMAT(DATE_SUB(`datetime`, INTERVAL ' . abs($_offset) . ' HOUR),"%Y-%m-%d 00:00:00") as `datetime`';
+				}
+				break;
+			case 'month':
+				$select = 'SELECT cmd_id,MAX(CAST(value AS DECIMAL(12,2))) as `value`,DATE_FORMAT(`datetime`,"%Y-%m-01 00:00:00") as `datetime`';
+				break;
+			case 'year':
+				$select = 'SELECT cmd_id,MAX(CAST(value AS DECIMAL(12,2))) as `value`,DATE_FORMAT(`datetime`,"%Y-01-01 00:00:00") as `datetime`';
+				break;
+			default:
+				$select = 'SELECT ' . DB::buildField(__CLASS__);
+				break;
+		}
+		switch ($_period) {
+			case 'day':
+				if ($_offset == 0) {
+					$groupBy = ' GROUP BY date(`datetime`)';
+				} elseif ($_offset > 0) {
+					$groupBy = ' GROUP BY date(DATE_ADD(`datetime`, INTERVAL ' . $_offset . ' HOUR))';
+				} else {
+					$groupBy = ' GROUP BY date(DATE_SUB(`datetime`, INTERVAL ' . abs($_offset) . ' HOUR))';
+				}
+				break;
+			case 'month':
+				$groupBy = ' GROUP BY month(DATE_ADD(`datetime`, INTERVAL ' . $_offset . ' DAY))';
+				break;
+			case 'year':
+				$groupBy = ' GROUP BY YEAR(DATE_ADD(`datetime`, INTERVAL ' . $_offset . ' MONTH))';
+				break;
+			default:
+				$groupBy = '';
+				break;
+		}
+		$sql = $select . '
         FROM (
         ' . $select . '
         FROM history
         WHERE cmd_id=:cmd_id ';
-        if ($_startTime !== null) {
-            $sql .= ' AND datetime>=:startTime';
-        }
-        if ($_endTime !== null) {
-            $sql .= ' AND datetime<=:endTime';
-        }
-        $sql .= $groupBy;
-        $sql .= ' UNION ALL
+		if ($_startTime !== null) {
+			$sql .= ' AND datetime>=:startTime';
+		}
+		if ($_endTime !== null) {
+			$sql .= ' AND datetime<=:endTime';
+		}
+		$sql .= $groupBy;
+		$sql .= ' UNION ALL
         ' . $select . '
         FROM historyArch
         WHERE cmd_id=:cmd_id';
-        if ($_startTime !== null) {
-            $sql .= ' AND `datetime`>=:startTime';
-        }
-        if ($_endTime !== null) {
-            $sql .= ' AND `datetime`<=:endTime';
-        }
-        $sql .= $groupBy;
-        $sql .= ' ) as dt ';
-        $sql .= $groupBy;
-        $sql .= ' ORDER BY `datetime` ASC ';
-        return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-    }
+		if ($_startTime !== null) {
+			$sql .= ' AND `datetime`>=:startTime';
+		}
+		if ($_endTime !== null) {
+			$sql .= ' AND `datetime`<=:endTime';
+		}
+		$sql .= $groupBy;
+		$sql .= ' ) as dt ';
+		$sql .= $groupBy;
+		$sql .= ' ORDER BY `datetime` ASC ';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
 
-    public static function getTemporalAvg($_cmd_id, $_startTime, $_endTime) {
-        $histories = self::all($_cmd_id, $_startTime, $_endTime);
-        if (is_object($lastHistory = self::byCmdIdAtDatetime($_cmd_id, $_startTime))) {
-            $histories = array_merge(array($lastHistory), $histories);
-        }
+	public static function getTemporalAvg($_cmd_id, $_startTime, $_endTime) {
+		$histories = self::all($_cmd_id, $_startTime, $_endTime);
+		if (is_object($lastHistory = self::byCmdIdAtDatetime($_cmd_id, $_startTime))) {
+			$histories = array_merge(array($lastHistory), $histories);
+		}
 
-        if (count($histories) == 0) {
-            return -1;
-        }
-        $cValue = $histories[0]->getValue();
-        if (count($histories) == 1) {
-            return $cValue;
-        }
-        $cTime = strtotime($_startTime);
-        $sum = 0;
-        foreach ($histories as $history) {
-            if (strtotime($history->getDatetime()) < strtotime($_startTime)) {
-                continue;
-            }
-            $sum += $cValue * (strtotime($history->getDatetime()) - $cTime);
-            $cValue = $history->getValue();
-            $cTime = strtotime($history->getDatetime());
-        }
-        if (strtotime($_endTime) > $cTime) {
-            $sum += $cValue * (strtotime($_endTime) - $cTime);
-        }
-        return $sum / (strtotime($_endTime) - strtotime($_startTime));
-    }
+		if (count($histories) == 0) {
+			return -1;
+		}
+		$cValue = $histories[0]->getValue();
+		if (count($histories) == 1) {
+			return $cValue;
+		}
+		$cTime = strtotime($_startTime);
+		$sum = 0;
+		foreach ($histories as $history) {
+			if (strtotime($history->getDatetime()) < strtotime($_startTime)) {
+				continue;
+			}
+			$sum += $cValue * (strtotime($history->getDatetime()) - $cTime);
+			$cValue = $history->getValue();
+			$cTime = strtotime($history->getDatetime());
+		}
+		if (strtotime($_endTime) > $cTime) {
+			$sum += $cValue * (strtotime($_endTime) - $cTime);
+		}
+		return $sum / (strtotime($_endTime) - strtotime($_startTime));
+	}
 
-    public static function getStatistique($_cmd_id, $_startTime, $_endTime) {
-        $values = array(
-            'cmd_id' => $_cmd_id,
-            'startTime' => $_startTime,
-            'endTime' => $_endTime,
-        );
-        $sql = 'SELECT AVG(CAST(value AS DECIMAL(12,2))) as avg, MIN(CAST(value AS DECIMAL(12,2))) as min, MAX(CAST(value AS DECIMAL(12,2))) as max, SUM(CAST(value AS DECIMAL(12,2))) as sum, COUNT(CAST(value AS DECIMAL(12,2))) as count, STD(CAST(value AS DECIMAL(12,2))) as std, VARIANCE(CAST(value AS DECIMAL(12,2))) as variance
+	public static function getStatistique($_cmd_id, $_startTime, $_endTime) {
+		$values = array(
+			'cmd_id' => $_cmd_id,
+			'startTime' => $_startTime,
+			'endTime' => $_endTime,
+		);
+		$sql = 'SELECT AVG(CAST(value AS DECIMAL(12,2))) as avg, MIN(CAST(value AS DECIMAL(12,2))) as min, MAX(CAST(value AS DECIMAL(12,2))) as max, SUM(CAST(value AS DECIMAL(12,2))) as sum, COUNT(CAST(value AS DECIMAL(12,2))) as count, STD(CAST(value AS DECIMAL(12,2))) as std, VARIANCE(CAST(value AS DECIMAL(12,2))) as variance
         FROM (
         SELECT *
         FROM history
@@ -602,16 +602,16 @@ class history {
         AND `datetime`<=:endTime
         ) as dt';
 
-        $result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-        if (!is_array($result)) {
-            $result = array();
-        }
-        $values = array(
-            'cmd_id' => $_cmd_id,
-            'startTime' => $_startTime,
-            'endTime' => $_endTime,
-        );
-        $sql = 'SELECT value as `last`
+		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		if (!is_array($result)) {
+			$result = array();
+		}
+		$values = array(
+			'cmd_id' => $_cmd_id,
+			'startTime' => $_startTime,
+			'endTime' => $_endTime,
+		);
+		$sql = 'SELECT value as `last`
         FROM (
         SELECT *
         FROM history
@@ -628,224 +628,224 @@ class history {
         ORDER BY `datetime` DESC
         LIMIT 1';
 
-        $result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-        if (!is_array($result2)) {
-            $result2 = array();
-        }
-        $return = array_merge($result, $result2);
-        foreach ($return as $key => &$value) {
-            if ($value === '') {
-                $value = 0;
-            }
-        }
-        return $return;
-    }
+		$result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		if (!is_array($result2)) {
+			$result2 = array();
+		}
+		$return = array_merge($result, $result2);
+		foreach ($return as $key => &$value) {
+			if ($value === '') {
+				$value = 0;
+			}
+		}
+		return $return;
+	}
 
-    public static function getTendance($_cmd_id, $_startTime, $_endTime) {
-        $values = array();
-        foreach (self::all($_cmd_id, $_startTime, $_endTime) as $history) {
-            $values[] = $history->getValue();
-        }
-        if (count($values) == 0) {
-            $x_mean = 0;
-        } else {
-            $x_mean = array_sum(array_keys($values)) / count($values);
-        }
-        if (count($values) == 0) {
-            $y_mean = 0;
-        } else {
-            $y_mean = array_sum($values) / count($values);
-        }
-        $base = 0.0;
-        $divisor = 0.0;
-        foreach ($values as $i => $value) {
-            $base += ($i - $x_mean) * ($value - $y_mean);
-            $divisor += ($i - $x_mean) * ($i - $x_mean);
-        }
-        if ($divisor == 0) {
-            return 0;
-        }
-        return ($base / $divisor);
-    }
+	public static function getTendance($_cmd_id, $_startTime, $_endTime) {
+		$values = array();
+		foreach (self::all($_cmd_id, $_startTime, $_endTime) as $history) {
+			$values[] = $history->getValue();
+		}
+		if (count($values) == 0) {
+			$x_mean = 0;
+		} else {
+			$x_mean = array_sum(array_keys($values)) / count($values);
+		}
+		if (count($values) == 0) {
+			$y_mean = 0;
+		} else {
+			$y_mean = array_sum($values) / count($values);
+		}
+		$base = 0.0;
+		$divisor = 0.0;
+		foreach ($values as $i => $value) {
+			$base += ($i - $x_mean) * ($value - $y_mean);
+			$divisor += ($i - $x_mean) * ($i - $x_mean);
+		}
+		if ($divisor == 0) {
+			return 0;
+		}
+		return ($base / $divisor);
+	}
 
-    public static function stateDuration($_cmd_id, $_value = null) {
-        $cmd = cmd::byId($_cmd_id);
-        if (!is_object($cmd)) {
-            throw new Exception(__('Commande introuvable :', __FILE__) . ' ' . $_cmd_id);
-        }
-        if ($cmd->getIsHistorized() != 1) {
-            return -2;
-        }
-        $histories = array_reverse(history::all($_cmd_id));
-        $c = count($histories);
-        if ($c == 0) {
-            return -1;
-        }
-        $currentValue = $histories[0]->getValue();
-        for ($i = 0; $i < $c - 1; $i++) {
-            $nextValue = $histories[$i + 1]->getValue();
-            if ($currentValue != $nextValue) {
-                break;
-            }
-        }
-        $dateTo = date('Y-m-d H:i:s');
-        $duration = strtotime($dateTo) - strtotime($histories[$i]->getDatetime());
-        return $duration;
-    }
+	public static function stateDuration($_cmd_id, $_value = null) {
+		$cmd = cmd::byId($_cmd_id);
+		if (!is_object($cmd)) {
+			throw new Exception(__('Commande introuvable :', __FILE__) . ' ' . $_cmd_id);
+		}
+		if ($cmd->getIsHistorized() != 1) {
+			return -2;
+		}
+		$histories = array_reverse(history::all($_cmd_id));
+		$c = count($histories);
+		if ($c == 0) {
+			return -1;
+		}
+		$currentValue = $histories[0]->getValue();
+		for ($i = 0; $i < $c - 1; $i++) {
+			$nextValue = $histories[$i + 1]->getValue();
+			if ($currentValue != $nextValue) {
+				break;
+			}
+		}
+		$dateTo = date('Y-m-d H:i:s');
+		$duration = strtotime($dateTo) - strtotime($histories[$i]->getDatetime());
+		return $duration;
+	}
 
-    public static function lastStateDuration($_cmd_id, $_value = null) {
-        $cmd = cmd::byId($_cmd_id);
-        if (!is_object($cmd)) {
-            throw new Exception(__('Commande introuvable :', __FILE__) . ' ' . $_cmd_id);
-        }
-        if ($cmd->getIsHistorized() != 1) {
-            return -2;
-        }
-        $_value = str_replace(',', '.', $_value);
-        $_value = trim($_value);
-        $_decimal = strlen(substr(strrchr($_value, '.'), 1));
-        $histories = array_reverse(history::all($_cmd_id));
-        $c = count($histories);
-        if ($c == 0) {
-            return -1;
-        }
-        $currentValue = $histories[0]->getValue();
-        if (is_numeric($_value)) {
-            $currentValue = round($currentValue, $_decimal);
-        }
-        $duration = 0;
-        $dateTo = date('Y-m-d H:i:s');
-        if ($_value === null || $_value == $currentValue) {
-            $_value = $currentValue;
-            $duration = strtotime($dateTo) - strtotime($histories[0]->getDatetime());
-        }
-        $started = 0;
-        for ($i = 0; $i < $c; $i++) {
-            $history = $histories[$i];
-            $value = $history->getValue();
-            if (is_numeric($_value)) {
-                $value = round($value, $_decimal);
-            }
-            $date = $history->getDatetime();
-            //same state as current:
-            if ($_value == $currentValue && $_value != $value) {
-                return $duration;
-            }
-            //different state as current:
-            if ($_value != $currentValue && $i > 0) {
-                $prevValue = $histories[$i - 1]->getValue();
-                if (is_numeric($_value)) {
-                    $prevValue = round($prevValue, $_decimal);
-                }
-                if ($_value == $value && $_value != $prevValue) {
-                    $started = 1;
-                    $duration = 0;
-                }
-                if ($_value != $value && $started == 1) {
-                    return $duration;
-                }
-            }
-            if ($i > 0) {
-                $duration += strtotime($histories[$i - 1]->getDatetime()) - strtotime($date);
-            }
-        }
-        return -1;
-    }
+	public static function lastStateDuration($_cmd_id, $_value = null) {
+		$cmd = cmd::byId($_cmd_id);
+		if (!is_object($cmd)) {
+			throw new Exception(__('Commande introuvable :', __FILE__) . ' ' . $_cmd_id);
+		}
+		if ($cmd->getIsHistorized() != 1) {
+			return -2;
+		}
+		$_value = str_replace(',', '.', $_value);
+		$_value = trim($_value);
+		$_decimal = strlen(substr(strrchr($_value, '.'), 1));
+		$histories = array_reverse(history::all($_cmd_id));
+		$c = count($histories);
+		if ($c == 0) {
+			return -1;
+		}
+		$currentValue = $histories[0]->getValue();
+		if (is_numeric($_value)) {
+			$currentValue = round($currentValue, $_decimal);
+		}
+		$duration = 0;
+		$dateTo = date('Y-m-d H:i:s');
+		if ($_value === null || $_value == $currentValue) {
+			$_value = $currentValue;
+			$duration = strtotime($dateTo) - strtotime($histories[0]->getDatetime());
+		}
+		$started = 0;
+		for ($i = 0; $i < $c; $i++) {
+			$history = $histories[$i];
+			$value = $history->getValue();
+			if (is_numeric($_value)) {
+				$value = round($value, $_decimal);
+			}
+			$date = $history->getDatetime();
+			//same state as current:
+			if ($_value == $currentValue && $_value != $value) {
+				return $duration;
+			}
+			//different state as current:
+			if ($_value != $currentValue && $i > 0) {
+				$prevValue = $histories[$i - 1]->getValue();
+				if (is_numeric($_value)) {
+					$prevValue = round($prevValue, $_decimal);
+				}
+				if ($_value == $value && $_value != $prevValue) {
+					$started = 1;
+					$duration = 0;
+				}
+				if ($_value != $value && $started == 1) {
+					return $duration;
+				}
+			}
+			if ($i > 0) {
+				$duration += strtotime($histories[$i - 1]->getDatetime()) - strtotime($date);
+			}
+		}
+		return -1;
+	}
 
-    public static function lastChangeStateDuration($_cmd_id, $_value) {
-        $cmd = cmd::byId($_cmd_id);
-        if (!is_object($cmd)) {
-            throw new Exception(__('Commande introuvable :', __FILE__) . ' ' . $_cmd_id);
-        }
-        if ($cmd->getIsHistorized() != 1) {
-            return -2;
-        }
-        $_value = str_replace(',', '.', $_value);
-        $_value = trim($_value);
-        $_decimal = strlen(substr(strrchr($_value, '.'), 1));
-        $histories = array_reverse(history::all($_cmd_id));
-        $c = count($histories);
-        if ($c == 0) {
-            return -1;
-        }
-        $currentValue = $histories[0]->getValue();
-        if (is_numeric($_value)) {
-            $currentValue = round($currentValue, $_decimal);
-        }
-        $dateTo = date('Y-m-d H:i:s');
-        $duration = strtotime($dateTo) - strtotime($histories[0]->getDatetime());
-        if ($_value === null) {
-            $_value = $currentValue;
-        }
-        for ($i = 0; $i < $c - 1; $i++) {
-            $history = $histories[$i];
-            $value = $history->getValue();
-            if (is_numeric($_value)) {
-                $value = round($value, $_decimal);
-            }
-            $date = $history->getDatetime();
-            //same state as current:
-            if ($_value == $currentValue) {
-                $nextValue = $histories[$i + 1]->getValue();
-                if (is_numeric($_value)) {
-                    $nextValue = round($nextValue, $_decimal);
-                }
-                if ($_value != $nextValue && isset($histories[$i - 1])) {
-                    $duration += strtotime($histories[$i - 1]->getDatetime()) - strtotime($date);
-                    return $duration;
-                }
-                if ($_value != $nextValue) {
-                    return $duration;
-                }
-            }
-            //different state as current:
-            if ($_value != $currentValue && $i > 0) {
-                $nextValue = $histories[$i + 1]->getValue();
-                if (is_numeric($_value)) {
-                    $nextValue = round($nextValue, $_decimal);
-                }
-                if ($_value == $value && $_value != $nextValue && isset($histories[$i - 1])) {
-                    $duration += strtotime($histories[$i - 1]->getDatetime()) - strtotime($date);
-                    return $duration;
-                }
-            }
-            if ($i > 0) {
-                $duration += strtotime($histories[$i - 1]->getDatetime()) - strtotime($date);
-            }
-        }
-        return -1;
-    }
+	public static function lastChangeStateDuration($_cmd_id, $_value) {
+		$cmd = cmd::byId($_cmd_id);
+		if (!is_object($cmd)) {
+			throw new Exception(__('Commande introuvable :', __FILE__) . ' ' . $_cmd_id);
+		}
+		if ($cmd->getIsHistorized() != 1) {
+			return -2;
+		}
+		$_value = str_replace(',', '.', $_value);
+		$_value = trim($_value);
+		$_decimal = strlen(substr(strrchr($_value, '.'), 1));
+		$histories = array_reverse(history::all($_cmd_id));
+		$c = count($histories);
+		if ($c == 0) {
+			return -1;
+		}
+		$currentValue = $histories[0]->getValue();
+		if (is_numeric($_value)) {
+			$currentValue = round($currentValue, $_decimal);
+		}
+		$dateTo = date('Y-m-d H:i:s');
+		$duration = strtotime($dateTo) - strtotime($histories[0]->getDatetime());
+		if ($_value === null) {
+			$_value = $currentValue;
+		}
+		for ($i = 0; $i < $c - 1; $i++) {
+			$history = $histories[$i];
+			$value = $history->getValue();
+			if (is_numeric($_value)) {
+				$value = round($value, $_decimal);
+			}
+			$date = $history->getDatetime();
+			//same state as current:
+			if ($_value == $currentValue) {
+				$nextValue = $histories[$i + 1]->getValue();
+				if (is_numeric($_value)) {
+					$nextValue = round($nextValue, $_decimal);
+				}
+				if ($_value != $nextValue && isset($histories[$i - 1])) {
+					$duration += strtotime($histories[$i - 1]->getDatetime()) - strtotime($date);
+					return $duration;
+				}
+				if ($_value != $nextValue) {
+					return $duration;
+				}
+			}
+			//different state as current:
+			if ($_value != $currentValue && $i > 0) {
+				$nextValue = $histories[$i + 1]->getValue();
+				if (is_numeric($_value)) {
+					$nextValue = round($nextValue, $_decimal);
+				}
+				if ($_value == $value && $_value != $nextValue && isset($histories[$i - 1])) {
+					$duration += strtotime($histories[$i - 1]->getDatetime()) - strtotime($date);
+					return $duration;
+				}
+			}
+			if ($i > 0) {
+				$duration += strtotime($histories[$i - 1]->getDatetime()) - strtotime($date);
+			}
+		}
+		return -1;
+	}
 
-    public static function stateChanges($_cmd_id, $_value = null, $_startTime = null, $_endTime = null) {
-        $cmd = cmd::byId($_cmd_id);
-        if (!is_object($cmd)) {
-            throw new Exception(__('Commande introuvable :', __FILE__) . ' ' . $_cmd_id);
-        }
-        if ($_value === null) {
-            $_value = $cmd->execCmd();
-        }
-        $_dateTime = '';
+	public static function stateChanges($_cmd_id, $_value = null, $_startTime = null, $_endTime = null) {
+		$cmd = cmd::byId($_cmd_id);
+		if (!is_object($cmd)) {
+			throw new Exception(__('Commande introuvable :', __FILE__) . ' ' . $_cmd_id);
+		}
+		if ($_value === null) {
+			$_value = $cmd->execCmd();
+		}
+		$_dateTime = '';
 
-        if ($_startTime !== null) {
-            $_dateTime = ' AND `datetime`>="' . $_startTime . '"';
-        }
+		if ($_startTime !== null) {
+			$_dateTime = ' AND `datetime`>="' . $_startTime . '"';
+		}
 
-        if ($_endTime === null) {
-            $_dateTime .= ' AND `datetime`<="' . date('Y-m-d H:i:s') . '"';
-        } else {
-            $_dateTime .= ' AND `datetime`<="' . $_endTime . '"';
-        }
+		if ($_endTime === null) {
+			$_dateTime .= ' AND `datetime`<="' . date('Y-m-d H:i:s') . '"';
+		} else {
+			$_dateTime .= ' AND `datetime`<="' . $_endTime . '"';
+		}
 
-        if ($cmd->getSubType() != 'string') {
-            $_value = str_replace(',', '.', $_value);
-            $_decimal = strlen(substr(strrchr($_value, "."), 1));
-            $_condition = ' ROUND(CAST(value AS DECIMAL(12,2)),' . $_decimal . ') = ' . $_value;
-        } else {
-            $_condition = ' value = ' . $_value;
-        }
+		if ($cmd->getSubType() != 'string') {
+			$_value = str_replace(',', '.', $_value);
+			$_decimal = strlen(substr(strrchr($_value, "."), 1));
+			$_condition = ' ROUND(CAST(value AS DECIMAL(12,2)),' . $_decimal . ') = ' . $_value;
+		} else {
+			$_condition = ' value = ' . $_value;
+		}
 
-        $values = array('cmd_id' => $_cmd_id,);
-        $sql = 'SELECT count(*) as changes
+		$values = array('cmd_id' => $_cmd_id,);
+		$sql = 'SELECT count(*) as changes
         FROM (SELECT t1.*
             FROM (
                 SELECT *
@@ -860,231 +860,231 @@ class history {
         ) as t1
         where ' . $_condition . '';
 
-        $result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-        return $result['changes'];
-    }
+		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		return $result['changes'];
+	}
 
-    public static function emptyHistory($_cmd_id, $_date = '') {
-        $values = array(
-            'cmd_id' => $_cmd_id,
-        );
-        if ($_date != '') {
-            $values['date'] = $_date;
-        }
-        $sql = 'DELETE FROM history WHERE cmd_id=:cmd_id';
-        if ($_date != '') {
-            $sql .= ' AND `datetime` <= :date';
-        }
-        DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-        $sql = 'DELETE FROM historyArch WHERE cmd_id=:cmd_id';
-        if ($_date != '') {
-            $sql .= ' AND `datetime` <= :date';
-        }
-        return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-    }
+	public static function emptyHistory($_cmd_id, $_date = '') {
+		$values = array(
+			'cmd_id' => $_cmd_id,
+		);
+		if ($_date != '') {
+			$values['date'] = $_date;
+		}
+		$sql = 'DELETE FROM history WHERE cmd_id=:cmd_id';
+		if ($_date != '') {
+			$sql .= ' AND `datetime` <= :date';
+		}
+		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		$sql = 'DELETE FROM historyArch WHERE cmd_id=:cmd_id';
+		if ($_date != '') {
+			$sql .= ' AND `datetime` <= :date';
+		}
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+	}
 
-    public static function getHistoryFromCalcul($_strcalcul, $_dateStart = null, $_dateEnd = null, $_noCalcul = false, $_groupingType = null) {
-        $now = strtotime('now');
-        $value = array();
-        $cmd_histories = array();
-        preg_match_all("/#([0-9]*)#/", $_strcalcul, $matches);
-        if (count($matches[1]) > 0) {
-            foreach ($matches[1] as $cmd_id) {
-                if (is_numeric($cmd_id)) {
-                    $cmd = cmd::byId($cmd_id);
-                    if (is_object($cmd) && $cmd->getIsHistorized() == 1) {
-                        $prevDatetime = null;
-                        $prevValue = 0;
-                        $histories_cmd = $cmd->getHistory($_dateStart, $_dateEnd, $_groupingType);
-                        $histories_cmd_count = count($histories_cmd);
-                        for ($i = 0; $i < $histories_cmd_count; $i++) {
-                            if (!isset($cmd_histories[$histories_cmd[$i]->getDatetime()])) {
-                                $cmd_histories[$histories_cmd[$i]->getDatetime()] = array();
-                            }
-                            $cmd_histories[$histories_cmd[$i]->getDatetime()]['#' . $cmd_id . '#'] = $histories_cmd[$i]->getValue();
-                        }
-                    }
-                }
-            }
-            ksort($cmd_histories);
-            $prevData = null;
-            foreach ($cmd_histories as $datetime => &$cmd_history) {
-                if (count($matches[1]) != count($cmd_history)) {
-                    if ($prevData == null) {
-                        $prevData = $cmd_history;
-                        continue;
-                    }
-                    foreach ($matches[1] as $cmd_id) {
-                        if (!isset($cmd_history['#' . $cmd_id . '#']) && isset($prevData['#' . $cmd_id . '#'])) {
-                            $cmd_history['#' . $cmd_id . '#'] = $prevData['#' . $cmd_id . '#'];
-                        }
-                    }
-                }
-                $prevData = $cmd_history;
-                if (count($matches[1]) != count($cmd_history)) {
-                    continue;
-                }
-                $datetime = floatval(strtotime($datetime . ' UTC'));
-                $calcul = template_replace($cmd_history, $_strcalcul);
-                if ($_noCalcul) {
-                    $value[$datetime] = $calcul;
-                    continue;
-                }
-                try {
-                    $result = floatval(jeedom::evaluateExpression($calcul));
-                    $value[$datetime] = $result;
-                } catch (Exception $e) {
-                } catch (Error $e) {
-                }
-            }
-        } else {
-            $value = $_strcalcul;
-        }
-        if (is_array($value)) {
-            ksort($value);
-        }
-        return $value;
-    }
+	public static function getHistoryFromCalcul($_strcalcul, $_dateStart = null, $_dateEnd = null, $_noCalcul = false, $_groupingType = null) {
+		$now = strtotime('now');
+		$value = array();
+		$cmd_histories = array();
+		preg_match_all("/#([0-9]*)#/", $_strcalcul, $matches);
+		if (count($matches[1]) > 0) {
+			foreach ($matches[1] as $cmd_id) {
+				if (is_numeric($cmd_id)) {
+					$cmd = cmd::byId($cmd_id);
+					if (is_object($cmd) && $cmd->getIsHistorized() == 1) {
+						$prevDatetime = null;
+						$prevValue = 0;
+						$histories_cmd = $cmd->getHistory($_dateStart, $_dateEnd, $_groupingType);
+						$histories_cmd_count = count($histories_cmd);
+						for ($i = 0; $i < $histories_cmd_count; $i++) {
+							if (!isset($cmd_histories[$histories_cmd[$i]->getDatetime()])) {
+								$cmd_histories[$histories_cmd[$i]->getDatetime()] = array();
+							}
+							$cmd_histories[$histories_cmd[$i]->getDatetime()]['#' . $cmd_id . '#'] = $histories_cmd[$i]->getValue();
+						}
+					}
+				}
+			}
+			ksort($cmd_histories);
+			$prevData = null;
+			foreach ($cmd_histories as $datetime => &$cmd_history) {
+				if (count($matches[1]) != count($cmd_history)) {
+					if ($prevData == null) {
+						$prevData = $cmd_history;
+						continue;
+					}
+					foreach ($matches[1] as $cmd_id) {
+						if (!isset($cmd_history['#' . $cmd_id . '#']) && isset($prevData['#' . $cmd_id . '#'])) {
+							$cmd_history['#' . $cmd_id . '#'] = $prevData['#' . $cmd_id . '#'];
+						}
+					}
+				}
+				$prevData = $cmd_history;
+				if (count($matches[1]) != count($cmd_history)) {
+					continue;
+				}
+				$datetime = floatval(strtotime($datetime . ' UTC'));
+				$calcul = template_replace($cmd_history, $_strcalcul);
+				if ($_noCalcul) {
+					$value[$datetime] = $calcul;
+					continue;
+				}
+				try {
+					$result = floatval(jeedom::evaluateExpression($calcul));
+					$value[$datetime] = $result;
+				} catch (Exception $e) {
+				} catch (Error $e) {
+				}
+			}
+		} else {
+			$value = $_strcalcul;
+		}
+		if (is_array($value)) {
+			ksort($value);
+		}
+		return $value;
+	}
 
-    /*     * *********************Methode d'instance************************* */
+	/*     * *********************Methode d'instance************************* */
 
-    public function save($_cmd = null, $_direct = false) {
-        if ($this->getValue() === null) {
-            return;
-        }
-        global $JEEDOM_INTERNAL_CONFIG;
-        if ($_cmd === null) {
-            $cmd = $this->getCmd();
-            if (!is_object($cmd)) {
-                self::emptyHistory($this->getCmd_id());
-                return;
-            }
-        } else {
-            $cmd = $_cmd;
-        }
-        if ($this->getDatetime() == '') {
-            $this->setDatetime(date('Y-m-d H:i:s'));
-        }
-        if ($cmd->getConfiguration('historizeRound') !== '' && is_numeric($cmd->getConfiguration('historizeRound')) && $cmd->getConfiguration('historizeRound') >= 0 && $this->getValue() !== null) {
-            $this->setValue(round($this->getValue(), $cmd->getConfiguration('historizeRound')));
-        }
-        if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] && $cmd->getConfiguration('historizeMode', 'avg') != 'none' && $this->getValue() !== null && $_direct === false) {
-            if ($this->getTableName() == 'history') {
-                $time = strtotime($this->getDatetime());
-                $time -= $time % 300;
-                if ($this->getValue() == 0) {
-                    $this->setDatetime(date('Y-m-d H:i:00', $time + 300));
-                    $values = array(
-                        'cmd_id' => $this->getCmd_id(),
-                        'datetime' => date('Y-m-d H:i:00', strtotime($this->getDatetime())),
-                        'value' => $this->getValue(),
-                    );
-                    $sql = 'REPLACE INTO history
+	public function save($_cmd = null, $_direct = false) {
+		if ($this->getValue() === null) {
+			return;
+		}
+		global $JEEDOM_INTERNAL_CONFIG;
+		if ($_cmd === null) {
+			$cmd = $this->getCmd();
+			if (!is_object($cmd)) {
+				self::emptyHistory($this->getCmd_id());
+				return;
+			}
+		} else {
+			$cmd = $_cmd;
+		}
+		if ($this->getDatetime() == '') {
+			$this->setDatetime(date('Y-m-d H:i:s'));
+		}
+		if ($cmd->getConfiguration('historizeRound') !== '' && is_numeric($cmd->getConfiguration('historizeRound')) && $cmd->getConfiguration('historizeRound') >= 0 && $this->getValue() !== null) {
+			$this->setValue(round($this->getValue(), $cmd->getConfiguration('historizeRound')));
+		}
+		if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] && $cmd->getConfiguration('historizeMode', 'avg') != 'none' && $this->getValue() !== null && $_direct === false) {
+			if ($this->getTableName() == 'history') {
+				$time = strtotime($this->getDatetime());
+				$time -= $time % 300;
+				if ($this->getValue() == 0) {
+					$this->setDatetime(date('Y-m-d H:i:00', $time + 300));
+					$values = array(
+						'cmd_id' => $this->getCmd_id(),
+						'datetime' => date('Y-m-d H:i:00', strtotime($this->getDatetime())),
+						'value' => $this->getValue(),
+					);
+					$sql = 'REPLACE INTO history
                     SET cmd_id=:cmd_id,
                     `datetime`=:datetime,
                     value=:value';
-                    DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-                    return;
-                }
-                $this->setDatetime(date('Y-m-d H:i:00', $time));
-                $values = array(
-                    'cmd_id' => $this->getCmd_id(),
-                    'datetime' => $this->getDatetime(),
-                );
-                $sql = 'SELECT `value`
+					DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+					return;
+				}
+				$this->setDatetime(date('Y-m-d H:i:00', $time));
+				$values = array(
+					'cmd_id' => $this->getCmd_id(),
+					'datetime' => $this->getDatetime(),
+				);
+				$sql = 'SELECT `value`
                 FROM history
                 WHERE cmd_id=:cmd_id
                 AND `datetime`=:datetime';
-                $result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-                $round = (is_numeric($cmd->getConfiguration('historizeRound'))) ? $cmd->getConfiguration('historizeRound') : 2;
-                if ($result !== false) {
-                    switch ($cmd->getConfiguration('historizeMode', 'avg')) {
-                        case 'avg':
-                            $this->setValue(round(($result['value'] + $this->getValue()) / 2, $round));
-                            break;
-                        case 'min':
-                            $this->setValue(round(min($result['value'], $this->getValue()), $round));
-                            break;
-                        case 'max':
-                            $this->setValue(round(max($result['value'], $this->getValue()), $round));
-                            break;
-                    }
-                    if ($result['value'] === $this->getValue()) {
-                        return;
-                    }
-                }
-            }
-        }
-        $values = array(
-            'cmd_id' => $this->getCmd_id(),
-            'datetime' => $this->getDatetime(),
-            'value' => $this->getValue(),
-        );
-        if ($values['value'] === '') {
-            $values['value'] = null;
-        }
-        $sql = 'REPLACE INTO ' . $this->getTableName() . '
+				$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+				$round = (is_numeric($cmd->getConfiguration('historizeRound'))) ? $cmd->getConfiguration('historizeRound') : 2;
+				if ($result !== false) {
+					switch ($cmd->getConfiguration('historizeMode', 'avg')) {
+						case 'avg':
+							$this->setValue(round(($result['value'] + $this->getValue()) / 2, $round));
+							break;
+						case 'min':
+							$this->setValue(round(min($result['value'], $this->getValue()), $round));
+							break;
+						case 'max':
+							$this->setValue(round(max($result['value'], $this->getValue()), $round));
+							break;
+					}
+					if ($result['value'] === $this->getValue()) {
+						return;
+					}
+				}
+			}
+		}
+		$values = array(
+			'cmd_id' => $this->getCmd_id(),
+			'datetime' => $this->getDatetime(),
+			'value' => $this->getValue(),
+		);
+		if ($values['value'] === '') {
+			$values['value'] = null;
+		}
+		$sql = 'REPLACE INTO ' . $this->getTableName() . '
         SET cmd_id=:cmd_id,
         `datetime`=:datetime,
         value=:value';
-        DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-    }
+		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+	}
 
-    public function remove() {
-        DB::remove($this);
-    }
+	public function remove() {
+		DB::remove($this);
+	}
 
-    /*     * **********************Getteur Setteur*************************** */
+	/*     * **********************Getteur Setteur*************************** */
 
-    public function getCmd_id() {
-        return $this->cmd_id;
-    }
+	public function getCmd_id() {
+		return $this->cmd_id;
+	}
 
-    public function getCmd() {
-        return cmd::byId($this->cmd_id);
-    }
+	public function getCmd() {
+		return cmd::byId($this->cmd_id);
+	}
 
-    public function getValue() {
-        return $this->value;
-    }
+	public function getValue() {
+		return $this->value;
+	}
 
-    public function getDatetime() {
-        return $this->datetime;
-    }
+	public function getDatetime() {
+		return $this->datetime;
+	}
 
-    public function getTableName() {
-        return $this->_tableName;
-    }
+	public function getTableName() {
+		return $this->_tableName;
+	}
 
-    public function setTableName($_tableName) {
-        $this->_tableName = $_tableName;
-        return $this;
-    }
+	public function setTableName($_tableName) {
+		$this->_tableName = $_tableName;
+		return $this;
+	}
 
-    public function setCmd_id($_cmd_id) {
-        $this->_changed = utils::attrChanged($this->_changed, $this->cmd_id, $_cmd_id);
-        $this->cmd_id = $_cmd_id;
-        return $this;
-    }
+	public function setCmd_id($_cmd_id) {
+		$this->_changed = utils::attrChanged($this->_changed, $this->cmd_id, $_cmd_id);
+		$this->cmd_id = $_cmd_id;
+		return $this;
+	}
 
-    public function setValue($_value) {
-        $this->_changed = utils::attrChanged($this->_changed, $this->value, $_value);
-        $this->value = $_value;
-        return $this;
-    }
+	public function setValue($_value) {
+		$this->_changed = utils::attrChanged($this->_changed, $this->value, $_value);
+		$this->value = $_value;
+		return $this;
+	}
 
-    public function setDatetime($_datetime) {
-        $this->_changed = utils::attrChanged($this->_changed, $this->datetime, $_datetime);
-        $this->datetime = $_datetime;
-        return $this;
-    }
+	public function setDatetime($_datetime) {
+		$this->_changed = utils::attrChanged($this->_changed, $this->datetime, $_datetime);
+		$this->datetime = $_datetime;
+		return $this;
+	}
 
-    public function getChanged() {
-        return $this->_changed;
-    }
+	public function getChanged() {
+		return $this->_changed;
+	}
 
-    public function setChanged($_changed) {
-        $this->_changed = $_changed;
-        return $this;
-    }
+	public function setChanged($_changed) {
+		$this->_changed = $_changed;
+		return $this;
+	}
 }
