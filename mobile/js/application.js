@@ -661,9 +661,8 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
   } else {
     jeedom.cmd.resetUpdateFunction()
 
-    $.ajaxSetup({global: false})
-    $('#page').hide().load(page, function() {
-      $.ajaxSetup({global: undefined})
+    //$('#page').hide().load(page, function() {
+    document.getElementById('page').unseen().load(page, function() {
       document.body.setAttribute('data-page', _page)
       if (init(_plugin) != '') {
         document.body.setAttribute('data-plugin', _plugin)

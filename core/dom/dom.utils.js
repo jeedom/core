@@ -471,11 +471,23 @@ domUtils.element2dom = function(_element, _container) {
         script.setAttribute(attr.nodeName, attr.nodeValue)
       })
       if (element.src != '') {
-        script.src = element.src
-        script.onload = async function () {
-          domUtils.element2dom(element, _container)
+        if (element.src.includes('getJS.php?file=')) {
+          var sourceCode = domUtils.ajax({
+            url: element.src,
+            async: false,
+            type: 'get',
+            dataType: 'html',
+            global: true
+          })
+          script.removeAttribute('src')
+          script.text = sourceCode
+          element.replaceWith(script)
+        } else {
+          script.onload = async function () {
+            domUtils.element2dom(element, _container)
+          }
+          _container.appendChild(script)
         }
-        _container.appendChild(script)
       } else {
         script.text = element.text
         element.replaceWith(script)
@@ -603,7 +615,7 @@ domUtils.ajax = function(_params) {
     fetch(url, {
       method: _params.type,
       body: !isGet ? new URLSearchParams(_params.data) : null,
-      headers: !isGet ? {"Content-Type": "application/x-www-form-urlencoded"} : new Headers()
+      headers: isGet ? new Headers() : {"Content-Type": "application/x-www-form-urlencoded"}
     })
     .then(function(response) {
       if (!response.ok) {
