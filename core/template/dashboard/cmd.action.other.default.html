@@ -9,7 +9,7 @@
     })
     var prevElement = document.querySelector('.cmd[data-cmd_uid=#uid#]').previousElementSibling
     var prevElementSubtype = prevElement.getAttribute('data-subtype')
-    if (prevElementSubtype != undefined && prevElementSubtype != 'other' && prevElement.style.display != 'block') {
+    if (prevElementSubtype != undefined && prevElementSubtype != 'other' && getComputedStyle(prevElement).display != 'block') {
       document.querySelector('.cmd[data-cmd_uid=#uid#]').insertAdjacentHTML('beforeBegin', '<br>')
     }
     if ('#name#' != '#name_display#') {
