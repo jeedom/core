@@ -336,8 +336,7 @@ div.cmd-widget .slider .noUi-handle:focus {
 
 /* ____________________Specifics */
 div.cmd-widget[data-type="action"][data-subtype="other"][data-template="default"] {
-  min-width: unset;
-  margin: 5px 1px;
+  min-width: auto;
 }
 
 div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="value"] input {
@@ -488,7 +487,7 @@ div.arcgauge .gauge,
 div.arcgauge .gaugeValue {
   position: absolute;
   top: 0;
-  width: 85px;
+  width: 84px;
   height: 45px;
   border-top-left-radius: 84px;
   border-top-right-radius: 84px;
