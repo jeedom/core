@@ -31,7 +31,7 @@ div.eqlogicbackgraph .eqLogicGraphPeriod {
 }
 
 div.eqLogic-widget div.cmd-widget {
-  min-width: 90px;
+  min-width: 85px;
   max-width: 95%;
   margin: auto;
   display: inline-flex;
@@ -81,7 +81,7 @@ div.cmd-widget .content-lg {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  min-width: 90px;
+  min-width: 100%;
   min-height: 40px;
   padding: 2px;
 }
