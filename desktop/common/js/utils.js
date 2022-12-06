@@ -398,19 +398,19 @@ jeedomUtils.hideLoading = function() {
 jeedomUtils.setJeedomTheme = function() {
   if (getCookie('currentTheme') == 'alternate') {
     var themeButton = '<i class="fas fa-adjust"></i> {{Thème principal}}'
-    document.getElementById('bt_switchTheme').html(themeButton)
+    document.getElementById('bt_switchTheme')?.html(themeButton)
     document.getElementById('bootstrap_theme_css').setAttribute('data-nochange', 1)
   }
   if (jeedom.theme.currentTheme) {
     document.body.setAttribute('data-theme', jeedom.theme.currentTheme)
     if (jeedom.theme.currentTheme == jeedom.theme.default_bootstrap_theme_night) {
       var themeButton = '<i class="fas fa-adjust"></i> {{Thème principal}}'
-      document.getElementById('bt_switchTheme').html(themeButton)
+      document.getElementById('bt_switchTheme')?.html(themeButton)
     }
   }
 
   //button event:
-  document.getElementById('bt_switchTheme').addEventListener('click', function() {
+  document.getElementById('bt_switchTheme')?.addEventListener('click', function() {
     jeedomUtils.closeJeedomMenu()
     jeedomUtils.switchTheme()
   })
