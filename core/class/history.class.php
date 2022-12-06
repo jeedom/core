@@ -391,13 +391,16 @@ class history {
 		$debugCmdId = 9256;
 
 		if ($doit) {
+			$values = array(
+				'cmd_id' => $_cmd_id,
+			);
 			$countData = count($return);
 			if ($_cmd_id == $debugCmdId) log::add('SQL_history', 'alert', '>>>>>>>>>>>>>> return: ' . $_cmd_id . ' / ' . $_startTime . ' / ' . $_endTime);
 			if ($_cmd_id == $debugCmdId) log::add('SQL_history', 'alert', '>> return: ' . $countData . ' : ' . json_encode(utils::o2a($return), JSON_UNESCAPED_UNICODE));
 
 			//Total number of histories available:
-			$sql = 'SELECT ( SELECT COUNT(cmd_id) FROM history WHERE cmd_id=' . $_cmd_id . ' ) AS count1, ( SELECT COUNT(cmd_id) FROM historyArch WHERE cmd_id=' . $_cmd_id . ' ) AS count2';
-			$count = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+			$sql = 'SELECT ( SELECT COUNT(cmd_id) FROM history WHERE cmd_id=:cmd_id ) AS count1, ( SELECT COUNT(cmd_id) FROM historyArch WHERE cmd_id=' . $_cmd_id . ' ) AS count2';
+			$count = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 			$countHistory = $count['count1'];
 			$countHistoryArch = $count['count2'];
 
@@ -408,9 +411,9 @@ class history {
 				return $return;
 			} elseif ($countHistory > $countData) { //More values in history
 				$sql = 'SELECT ' . DB::buildField(__CLASS__);
-				$sql .= ' FROM history WHERE cmd_id=' . $_cmd_id;
+				$sql .= ' FROM history WHERE cmd_id=:cmd_id';
 				$sql .= ' ORDER BY datetime DESC LIMIT ' .  strval($countData) . ',1';
-				$preValue = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+				$preValue = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 
 				if ($_cmd_id == $debugCmdId) log::add('SQL_history', 'alert', '>> history preValue: ' . json_encode(utils::o2a($preValue), JSON_UNESCAPED_UNICODE));
 
@@ -420,9 +423,9 @@ class history {
 				}
 			} elseif ($countHistory <= $countData && $countHistoryArch >= ($countData + 1 - $countHistory)) { //More values only in historyArch
 				$sql = 'SELECT ' . DB::buildField(__CLASS__);
-				$sql .= ' FROM historyArch WHERE cmd_id=' . $_cmd_id;
+				$sql .= ' FROM historyArch WHERE cmd_id=:cmd_id';
 				$sql .= ' ORDER BY datetime DESC LIMIT ' .  strval($countData - $countHistory) . ',1';
-				$preValue = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+				$preValue = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 
 				if ($_cmd_id == $debugCmdId) log::add('SQL_history', 'alert', '>> historyArch preValue: ' . json_encode(utils::o2a($preValue), JSON_UNESCAPED_UNICODE));
 
