@@ -60,7 +60,8 @@ div.cmd-widget .cmdName {
 
 div.cmd-widget .cmdName>i,
 div.cmd-widget .iconCmdLine>i {
-  font-size: 16px;
+  font-size: 15px;
+  vertical-align: bottom;
 }
 
 div.cmd-widget .value>.label {
