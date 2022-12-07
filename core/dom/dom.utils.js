@@ -480,10 +480,13 @@ domUtils.element2dom = function(_element, _container) {
             global: true
           })
           script.removeAttribute('src')
+          script.setAttribute('data-from', element.src)
           script.text = sourceCode
-          element.replaceWith(script)
+          var parent = element.parentNode
+          element.remove()
+          parent.appendChild(script)
         } else {
-          script.onload = async function () {
+          script.onload = async function() {
             domUtils.element2dom(element, _container)
           }
           _container.appendChild(script)
@@ -585,7 +588,7 @@ domUtils.ajax = function(_params) {
     const request = new XMLHttpRequest()
     request.open(_params.type, _params.url, false)
     request.send(new URLSearchParams(_params.data))
-    if (request.status === 200) {
+    if (request.status === 200) { //Answer ok
       if (typeof _params.success === 'function') {
         _params.success(JSON.parse(request.responseText))
         if (typeof _params.complete === 'function') {
@@ -599,7 +602,7 @@ domUtils.ajax = function(_params) {
         }
       }
       domUtils.countAjax(1, _params.global)
-    } else {
+    } else { //Weird thing happened
       if (typeof _params.error === 'function') {
         _params.error(request.statusText)
       } else {
@@ -618,7 +621,7 @@ domUtils.ajax = function(_params) {
       headers: isGet ? new Headers() : {"Content-Type": "application/x-www-form-urlencoded"}
     })
     .then(function(response) {
-      if (!response.ok) {
+      if (!response.ok) { //Weird thing happened
         if (typeof _params.error === 'function') {
           _params.error(error.message)
         } else {

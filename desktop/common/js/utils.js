@@ -198,14 +198,14 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  var $body = $('body')
+
   if (getDeviceType()['type'] == 'desktop') jeedomUtils.userDeviceType = 'desktop'
   document.body.setAttribute('data-device', jeedomUtils.userDeviceType)
   document.body.setAttribute('data-page', getUrlVars('p'))
   document.body.style.setProperty('--bkg-opacity-light', jeedom.theme['interface::background::opacitylight'])
   document.body.style.setProperty('--bkg-opacity-dark', jeedom.theme['interface::background::opacitydark'])
 
-  $body.off('jeedom_page_load').on('jeedom_page_load', function() {
+  document.body.addEventListener('jeedom_page_load', function(event) {
     if (getUrlVars('saveSuccessFull') == 1) {
       jeedomUtils.showAlert({ message: '{{Sauvegarde effectuée avec succès}}', level: 'success' })
       jeeFrontEnd.PREVIOUS_PAGE = window.location.href.split('&saveSuccessFull')[0] + window.location.hash
@@ -226,6 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   //browser history:
+  var $body = $('body')
   $body.on('shown.bs.tab', '.nav-tabs a', function(event) {
     if (event.target.hash == '') {
       return
