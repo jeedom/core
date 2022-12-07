@@ -257,7 +257,7 @@ if (!jeeFrontEnd.plan) {
     savePlan: function(_refreshDisplay, _async) {
       if (jeephp2js.planHeader_id == -1) return
 
-      jeedomUtils.showLoading()
+      domUtils.showLoading()
       var plans = []
       var info, plan, position
       $('.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').each(function() {
@@ -298,7 +298,7 @@ if (!jeeFrontEnd.plan) {
           if (init(_refreshDisplay, false)) {
             jeeP.displayPlan()
           }
-          jeedomUtils.hideLoading()
+          domUtils.hideLoading()
         },
       })
     },

@@ -25,15 +25,14 @@ jeedomUtils.tileWidthStep = parseInt(jeedom.theme['widget::step::width']) >= 110
   jeedomUtils.tileHeightStep = parseInt(jeedom.theme['widget::step::height']) >= 100 ? parseInt(jeedom.theme['widget::step::height']) : 200,
   jeedomUtils.tileHeightSteps = Array.apply(null, { length: 10 }).map(function(value, index) { return (index + 1) * jeedomUtils.tileHeightStep })
 
-
 document.addEventListener('DOMContentLoaded', function() {
   jeedomUtils._elBackground = document.getElementById('backgroundforJeedom')
   $(document)
     .ajaxStart(function() {
-      jeedomUtils.showLoading()
+      domUtils.showLoading()
     })
     .ajaxStop(function() {
-      jeedomUtils.hideLoading()
+      domUtils.hideLoading()
     })
 })
 
@@ -45,7 +44,7 @@ window.addEventListener('error', function(event) {
   }
   jeedomUtils.JS_ERROR.push(event)
   document.getElementById('bt_jsErrorModal').seen()
-  jeedomUtils.hideLoading()
+  domUtils.hideLoading()
 })
 
 if ('SecurityPolicyViolationEvent' in window) { // Check browser support of SecurityPolicyViolationEnevt interface
@@ -63,7 +62,7 @@ if ('SecurityPolicyViolationEvent' in window) { // Check browser support of Secu
     }
     jeedomUtils.JS_ERROR.push({ "filename": event.documentURI, "lineno": "0", "message": msg })
     document.getElementById('bt_jsErrorModal').seen()
-    jeedomUtils.hideLoading()
+    domUtils.hideLoading()
   })
 }
 
@@ -78,7 +77,7 @@ var modifyWithoutSave = false
 jeedomUtils.checkPageModified = function() {
   if (jeeFrontEnd.modifyWithoutSave || window.modifyWithoutSave) {
     if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
-      jeedomUtils.hideLoading()
+      domUtils.hideLoading()
       return true
     }
     window.modifyWithoutSave = false
@@ -198,7 +197,6 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-
   if (getDeviceType()['type'] == 'desktop') jeedomUtils.userDeviceType = 'desktop'
   document.body.setAttribute('data-device', jeedomUtils.userDeviceType)
   document.body.setAttribute('data-page', getUrlVars('p'))
@@ -377,22 +375,6 @@ jeedomUtils.hideAlert = function() {
     element.innerHTML = ''
     element.unseen()
   })
-}
-
-jeedomUtils.loadingTimeout = null
-jeedomUtils.showLoading = function() {
-  document.getElementById('div_jeedomLoading').seen()
-  //Hanging timeout:
-  clearTimeout(jeedomUtils.loadingTimeout)
-  jeedomUtils.loadingTimeout = setTimeout(() => {
-    if (!document.getElementById('div_jeedomLoading').isHidden()) {
-      jeedomUtils.hideLoading()
-      jeedomUtils.showAlert({ level: 'danger', message: 'Operation Timeout: Something has gone wrong!' })
-    }
-  }, 20 * 1000)
-}
-jeedomUtils.hideLoading = function() {
-  document.getElementById('div_jeedomLoading').unseen()
 }
 
 //Jeedom theme__

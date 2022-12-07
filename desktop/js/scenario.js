@@ -177,11 +177,11 @@ if (!jeeFrontEnd.scenario) {
           })
         },
         success: function(data) {
-          jeedomUtils.showLoading()
+          domUtils.showLoading()
           for (var i in data) {
             $('#' + data[i].id).append(data[i].html.html)
           }
-          jeedomUtils.hideLoading()
+          domUtils.hideLoading()
           jeedomUtils.taAutosize()
         }
       })
@@ -261,7 +261,7 @@ if (!jeeFrontEnd.scenario) {
     },
     printScenario: function(_id) {
       jeedomUtils.hideAlert()
-      jeedomUtils.showLoading()
+      domUtils.showLoading()
       $('#emptyModeWarning').hide()
       jeedom.scenario.update[_id] = function(_options) {
         if (_options.scenario_id = !jeeP.dom_divScenario.getJeeValues('.scenarioAttr')[0]['id']) {

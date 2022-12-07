@@ -128,10 +128,10 @@ if (!jeeFrontEnd.md_history) {
       //store size/pos:
       this.modal.find('.ui-draggable-handle').on('mouseup', function(event) {
         jeeFrontEnd.md_history.modal.data({
-          'width':jeeFrontEnd.md_history.modal.width(),
-          'height':jeeFrontEnd.md_history.modal.height(),
-          'top':jeeFrontEnd.md_history.modal.css('top'),
-          'left':jeeFrontEnd.md_history.modal.css('left')
+          'width': jeeFrontEnd.md_history.modal.width(),
+          'height': jeeFrontEnd.md_history.modal.height(),
+          'top': jeeFrontEnd.md_history.modal.css('top'),
+          'left': jeeFrontEnd.md_history.modal.css('left')
         })
       })
 

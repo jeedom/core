@@ -40,7 +40,7 @@ if (!jeeFrontEnd.user) {
       return true
     },
     printUsers: function() {
-      jeedomUtils.showLoading()
+      domUtils.showLoading()
       jeedom.user.all({
         error: function(error) {
           jeedomUtils.showAlert({
@@ -126,7 +126,7 @@ if (!jeeFrontEnd.user) {
           }
           document.querySelector('#table_user tbody').appendChild(fragment)
           jeeFrontEnd.modifyWithoutSave = false
-          jeedomUtils.hideLoading()
+          domUtils.hideLoading()
         }
       })
     },

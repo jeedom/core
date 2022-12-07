@@ -204,7 +204,7 @@ function display3d(_id) {
       if (!data.configuration || !data.configuration.path || !data.configuration.objfile) {
         return
       }
-      jeedomUtils.showLoading()
+      domUtils.showLoading()
       projector = new THREE.Projector()
       mouseVector = new THREE.Vector3()
       THREE.Vector3.Zero = new THREE.Vector3(0, 0, 0)
@@ -230,11 +230,11 @@ function display3d(_id) {
       renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT)
       container.appendChild(renderer.domElement)
       if (data.configuration.mtlfile && data.configuration.mtlfile != '') {
-        jeedomUtils.showLoading()
+        domUtils.showLoading()
         var mtlLoader = new THREE.MTLLoader()
         mtlLoader.setPath(data.configuration.path)
         mtlLoader.load(data.configuration.mtlfile, function(materials) {
-          jeedomUtils.showLoading()
+          domUtils.showLoading()
           materials.lights = false
           materials.preload()
           var objLoader = new THREE.OBJLoader()
@@ -249,7 +249,7 @@ function display3d(_id) {
             scene.add(object)
             camera.lookAt(object.position)
             add3dObjects(_id)
-            jeedomUtils.hideLoading()
+            domUtils.hideLoading()
           }, function(progress) {
             $('#span_loadPercent3dPlan').remove()
             $('body').append('<span id="span_loadPercent3dPlan" style="font-size:4em;z-index:9999;position:fixed;top: 40%;left : 47%;">2/2 : ' + Math.round((progress.loaded / progress.total) * 100) + '%' + '</span>')
@@ -263,7 +263,7 @@ function display3d(_id) {
           console.log(error)
         })
       } else {
-        jeedomUtils.showLoading()
+        domUtils.showLoading()
         var objLoader = new THREE.OBJLoader()
         objLoader.load(data.configuration.path + data.configuration.objfile, function(object) {
           $('#span_loadPercent3dPlan').remove()
@@ -275,7 +275,7 @@ function display3d(_id) {
           scene.add(object)
           camera.lookAt(object.position)
           add3dObjects(_id)
-          jeedomUtils.hideLoading()
+          domUtils.hideLoading()
         }, function(progress) {
           $('#span_loadPercent3dPlan').remove()
           $('body').append('<span id="span_loadPercent3dPlan" style="font-size:4em;z-index:9999;position:fixed;top: 40%;left : 51%;">' + Math.round((progress.loaded / progress.total) * 100) + '%' + '</span>')

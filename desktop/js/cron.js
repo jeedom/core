@@ -39,7 +39,7 @@ if (!jeeFrontEnd.cron) {
     printCron: function() {
       jeedom.cron.all({
         success: function(data) {
-          jeedomUtils.showLoading()
+          domUtils.showLoading()
           var table = document.getElementById('table_cron').querySelector('tbody')
           table.empty()
           for (var i in data) {
@@ -53,7 +53,7 @@ if (!jeeFrontEnd.cron) {
           setTimeout(function() {
             jeeFrontEnd.modifyWithoutSave = false
           }, 1000)
-          jeedomUtils.hideLoading()
+          domUtils.hideLoading()
         }
       })
     },
@@ -137,7 +137,7 @@ if (!jeeFrontEnd.cron) {
     printListener: function() {
       jeedom.listener.all({
         success: function(data) {
-          jeedomUtils.showLoading()
+          domUtils.showLoading()
           var table = document.getElementById('table_listener').querySelector('tbody')
           table.empty()
           for (var i in data) {
@@ -147,7 +147,7 @@ if (!jeeFrontEnd.cron) {
             table.appendChild(newRow)
           }
           jeeFrontEnd.modifyWithoutSave = false
-          jeedomUtils.hideLoading()
+          domUtils.hideLoading()
         }
       })
     },
