@@ -812,7 +812,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
     })
   })
 
-  document.querySelector('.bt_reportBug').addEventListener('click', function() {
+  document.querySelector('.bt_reportBug')?.addEventListener('click', function() {
     if (!getDeviceType()['type'] == 'desktop' || window.innerWidth < 768) {
       event.stopPropagation()
       return
