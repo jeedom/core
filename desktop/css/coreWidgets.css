@@ -30,13 +30,21 @@ div.eqlogicbackgraph .eqLogicGraphPeriod {
   z-index: 1;
 }
 
+div.eqLogic-widget div.cmds {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  width: 100%;
+  height: calc(100% - 30px);
+  padding: 5px 5px 3px 5px;
+}
+
 div.eqLogic-widget div.cmd-widget {
-  min-width: 85px;
-  max-width: 95%;
+  min-width: 80px;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  vertical-align: top;
 }
 
 .eqLogic-widget.hideEqLogicName .widget-name {
@@ -70,7 +78,6 @@ div.cmd-widget .value>.label {
 div.cmd-widget .content-xs {
   color: var(--txt-color);
   line-height: 16px;
-  padding: 0 2px;
 }
 
 div.cmd-widget .content,
@@ -82,7 +89,12 @@ div.cmd-widget .content-lg {
   flex-direction: column;
   min-width: 100%;
   min-height: 40px;
-  padding: 0 2px;
+}
+
+div.cmd-widget .content.content-inline {
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-start;
 }
 
 div.cmd-widget .value {
@@ -94,12 +106,15 @@ div.cmd-widget .value {
   background: rgb(var(--bg-color));
   position: relative;
   padding: 2px 5px !important;
-  margin: 2px 0px;
   font-size: 11px !important;
 }
 
 .timeCmd.label:first-letter {
   text-transform: uppercase;
+}
+
+div.eqLogic-widget div.cmds div.break {
+  flex-basis: 100%;
 }
 
 div.eqLogic_layout_table table.tableCmd {
@@ -114,22 +129,14 @@ div.eqLogic_layout_table table.tableCmd td.tableCenter {
   vertical-align: middle !important;
 }
 
-.eqLogic.eqLogic-widget>.widget-name {
-  margin-bottom: 5px;
-}
-
 .cmdStats {
   color: var(--txt-color) !important;
   font-size: 10px !important;
   line-height: 14px;
-  margin-bottom: 2px;
 }
 
 .verticalAlign {
-  position: relative;
-  transform: translateY(-50%);
-  top: calc(50% - 18px);
-  z-index: -1;
+  align-content: center;
 }
 
 [data-page="widgets"] .verticalAlign {
@@ -227,12 +234,13 @@ div.eqLogic_layout_table table.tableCmd td.tableCenter {
 /* v4.2 nouislider */
 div.cmd-widget .slider.noUi-horizontal {
   width: 70px;
-  margin-top: 10px;
+  margin-top: 14px;
 }
 
 div.cmd-widget .slider.noUi-vertical {
   height: 40px;
-  margin: 4px auto;
+  width: 7px;
+  margin: 6px 0;
 }
 
 div.cmd-widget .slider.noUi-horizontal .noUi-base {
@@ -241,7 +249,6 @@ div.cmd-widget .slider.noUi-horizontal .noUi-base {
 
 div.cmd-widget .slider.noUi-vertical .noUi-base {
   width: 7px;
-  left: 5.5px;
   z-index: 20;
 }
 
@@ -322,6 +329,7 @@ div.cmd-widget .slider .noUi-handle {
 
 div.cmd-widget .slider.noUi-horizontal .noUi-handle {
   right: -8.5px;
+  top: -5.5px;
 }
 
 div.cmd-widget .slider.noUi-vertical .noUi-handle {
@@ -336,6 +344,8 @@ div.cmd-widget .slider .noUi-handle:focus {
 /* ____________________Specifics */
 div.cmd-widget[data-type="action"][data-subtype="other"][data-template="default"] {
   min-width: auto;
+  display: inline-flex;
+  padding: 0 2px;
 }
 
 div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="value"] input {
@@ -365,7 +375,7 @@ div.cmd-widget[data-type="action"][data-subtype="message"][data-template="defaul
 }
 
 div.cmd-widget[data-type="action"][data-subtype="select"] div[class^="content"] {
-  width: 80%;
+  width: 85%;
 }
 
 div.cmd-widget div[class^="content"]>select {
@@ -499,32 +509,27 @@ div.arcgauge .gaugeValue {
 }
 
 .vgauge-chart {
-  height: 36px;
+  height: 40px;
 }
 
 .vgauge-bckg {
   position: relative;
   left: -6px;
   width: 5px;
-  height: 36px;
+  height: 40px;
   margin-bottom: -7px;
 }
 
 .shuttergauge-bckg {
-  width: 35px;
-  height: 36px;
+  width: 39px;
+  height: 40px;
   border-top: 5px solid var(--el-defaultColor);
   border-left: 3px solid var(--el-defaultColor);
   border-right: 3px solid var(--el-defaultColor);
 }
 
 .shuttergauge-chart {
-  height: 36px;
-}
-
-.shuttergauge .slider {
-  bottom: 36px;
-  left: 32px;
+  height: 40px;
 }
 
 .shuttergauge .noUi-pips {
@@ -546,12 +551,11 @@ div.arcgauge .gaugeValue {
   left: 5px;
 }
 
-
 .hgauge-value {
   position: relative;
   max-width: 70px;
   top: -1px;
-  left: 8px;
+  left: 10px;
   height: 10px;
   align-self: flex-start;
 }

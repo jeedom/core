@@ -4,12 +4,23 @@
   </div>
   <template></template>
   <script>
-    document.querySelector('.cmd[data-cmd_uid=#uid#] .execute').addEventListener('click', function() {
+    var cmd = document.querySelector('.cmd[data-cmd_uid=#uid#]')
+    cmd.querySelector('.execute').addEventListener('click', function() {
       jeedom.cmd.execute({ id: '#id#' })
     })
 
+    var prevElement = cmd.previousElementSibling
+    if (prevElement.hasClass('action-buttons')) {
+      prevElement.appendChild(cmd)
+    } else {
+      let div = document.createElement('div')
+      div.setAttribute('class', 'action-buttons')
+      div.appendChild(cmd)
+      prevElement.insertAdjacentElement('afterend', div)
+    }
+
     if ('#name#' != '#name_display#') {
-      document.querySelector('.cmd[data-cmd_uid=#uid#] .execute').setAttribute('title', '#name#')
+      cmd.querySelector('.execute').setAttribute('title', '#name#')
     }
   </script>
 </div>

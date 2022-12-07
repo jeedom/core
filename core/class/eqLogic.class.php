@@ -855,12 +855,12 @@ class eqLogic {
 					}
 					$tag = '#cmd::' . $this->getDisplay('layout::' . $_version . '::table::cmd::' . $cmd->getId() . '::line', 1) . '::' . $this->getDisplay('layout::' . $_version . '::table::cmd::' . $cmd->getId() . '::column', 1) . '#';
 					if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
-						$table['tag'][$tag] .= '<br/>';
+						$table['tag'][$tag] .= '<div class="break"></div>';
 					}
 					$table['tag'][$tag] .= $cmd->toHtml($_version, '');
 					$br_before = 0;
 					if ($cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
-						$table['tag'][$tag] .= '<br/>';
+						$table['tag'][$tag] .= '<div class="break"></div>';
 						$br_before = 1;
 					}
 				}
@@ -876,12 +876,12 @@ class eqLogic {
 						continue;
 					}
 					if ($_version == 'dashboard' && $br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
-						$cmd_html .= '<br/>';
+						$cmd_html .= '<div class="break"></div>';
 					}
 					$cmd_html .= $cmd->toHtml($_version, '');
 					$br_before = 0;
 					if ($_version == 'dashboard' && $cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
-						$cmd_html .= '<br/>';
+						$cmd_html .= '<div class="break"></div>';
 						$br_before = 1;
 					}
 				}
