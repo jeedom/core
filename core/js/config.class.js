@@ -197,26 +197,25 @@ jeedom.config.getGenericTypeModal = function(_options, callback) {
     if (!isset(_options.type)) {
         _options.type = 'info';
     }
-    if ($("#mod_insertGenericType").length != 0) {
-        $("#mod_insertGenericType").remove();
+    if (document.getElementById('mod_insertGenericType') != null) {
+        document.getElementById('mod_insertGenericType').remove()
     }
-    $('body').append('<div id="mod_insertGenericType" title="{{Sélectionner un type générique}}" ></div>');
+
+    document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertGenericType" title="{{Sélectionner un type générique}}" ></div>')
     $("#mod_insertGenericType").dialog({
         closeText: '',
         autoOpen: false,
         modal: true,
         height: 250,
         width: 800
-    });
-    jQuery.ajaxSetup({
-        async: false
-    });
+    })
+
     var url = 'index.php?v=d&modal=genericType.human.insert&type=' + _options.type
     if (_options.object) url += '&object=' + _options.object
-    $('#mod_insertGenericType').load(url);
-    jQuery.ajaxSetup({
-        async: true
-    });
+    domUtils.ajaxSetup({async: false})
+    document.getElementById('mod_insertGenericType').load(url)
+    domUtils.ajaxSetup({async: true})
+
     mod_insertGenericType.setOptions(_options);
     $("#mod_insertGenericType").dialog('option', 'buttons', {
         "{{Annuler}}": function() {
@@ -226,7 +225,7 @@ jeedom.config.getGenericTypeModal = function(_options, callback) {
             var retour = {};
             retour.human = mod_insertGenericType.getValue();
             retour.id = mod_insertGenericType.getId();
-            if ($.trim(retour) != '') {
+            if (retour.human.trim() != '') {
                 callback(retour);
             }
             $(this).dialog('close');
