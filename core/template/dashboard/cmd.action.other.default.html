@@ -16,8 +16,8 @@
     } else if (nextElement?.getAttribute('data-subtype') == 'other' && nextElement?.getAttribute('data-template') == 'default') {
       let div = document.createElement('div')
       div.setAttribute('class', 'action-buttons')
+      cmd.insertAdjacentElement('beforebegin', div)
       div.appendChild(cmd)
-      prevElement?.insertAdjacentElement('afterend', div)
     }
 
     if ('#name#' != '#name_display#') {
