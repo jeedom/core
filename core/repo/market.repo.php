@@ -402,7 +402,7 @@ class repo_market {
 
 	public static function cron5() {
 		try {
-			if (config::byKey('service::monitoring::enable') && config::byKey('cloud::monitoring::disable', 0) == 0) {
+			if (config::byKey('service::monitoring::enable') && config::byKey('cloud::monitoring::disable', 'core', 0) == 0) {
 				sleep(rand(1, 120));
 				$data = array(
 					'health' => jeedom::health(),
