@@ -41,7 +41,7 @@
         if ('#_time_widget_#' == '1' || '#time#' == 'duration' || '#time#' == 'date') {
           jeedom.cmd.displayDuration(_options.valueDate, cmd.querySelector('.timeCmd'), '#time#')
         }
-        if (_options.value) {
+        if (_options.value != undefined) {
           window['mySlider#id#'].set(_options.value)
           let iconCmd = cmd.querySelector('.iconCmd')
           if (_options.value > parseFloat('#minValue#')) {
