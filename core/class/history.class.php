@@ -322,7 +322,7 @@ class history {
 			'cmd_id' => $_cmd_id,
 		);
 		if ($_startTime !== null) {
-			$values['startTime'] = $_startTime;
+			$values['startTime'] = date('Y-m-d H:i:s', strtotime($_startTime) + 1);
 		}
 		if ($_endTime !== null) {
 			$values['endTime'] = $_endTime;
@@ -346,8 +346,6 @@ class history {
 			}
 		}
 		$sql .= ' FROM (';
-
-
 		$sql .= ' (SELECT * from history
 		WHERE value is not null AND cmd_id=:cmd_id ';
 		if ($_startTime !== null) {
@@ -361,10 +359,10 @@ class history {
 		$sql .= ' (SELECT * from historyArch
 		WHERE value is not null AND cmd_id=:cmd_id ';
 		if ($_startTime !== null) {
-			$sql .= ' AND DATE_SUB(`datetime`, INTERVAL 1 SECOND)>=:startTime';
+			$sql .= ' AND `datetime`>=:startTime';
 		}
 		if ($_endTime !== null) {
-			$sql .= ' AND DATE_SUB(`datetime`, INTERVAL 1 SECOND)<=:endTime';
+			$sql .= ' AND `datetime`<=:endTime';
 		}
 		$sql .= ') ';
 		$sql .= ')a ';

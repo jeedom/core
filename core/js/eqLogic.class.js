@@ -543,6 +543,8 @@ jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
           enabled: false
         },
         xAxis: {
+          type: 'datetime',
+          ordinal: false,
           visible: false,
           minPadding: 0,
           maxPadding: 0
@@ -566,6 +568,7 @@ jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
           fillOpacity: 0.25,
           enableMouseTracking: false,
           animation: false,
+          pointWidth: 2,
           marker: {
             enabled: false
           },
@@ -573,7 +576,7 @@ jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
             approximation: 'high',
             enabled: true,
             forced: true,
-            groupPixelWidth: 0.5
+            groupPixelWidth: result.cmd.subType == 'binary' ? 0 : 0.5
           },
         }],
         exporting: {

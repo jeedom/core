@@ -51,11 +51,13 @@
     });
 
     $('.cmd[data-cmd_uid=#uid#] .shuttergauge-bckg').off().on('click', function() {
-      shutterPos = $('.cmd[data-cmd_uid=#uid#] .state strong').first().html()
+      shutterPos = $('.cmd[data-cmd_uid=#uid#] .state strong').first().html().replace('#unite#', '').trim()
+      var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+      var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
       if (shutterPos > (maxValue - minValue) / 2) {
-        jeedom.cmd.execute({id: '#id#', value: {slider: #minValue#}})
+        jeedom.cmd.execute({id: '#id#', value: {slider: minValue}})
       } else {
-        jeedom.cmd.execute({id: '#id#', value: {slider: #maxValue#}})
+        jeedom.cmd.execute({id: '#id#', value: {slider: maxValue}})
       }
     })
 
