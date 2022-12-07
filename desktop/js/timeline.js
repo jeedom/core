@@ -279,6 +279,8 @@ $('#timelineContainer ul').on('click', '.bt_configureCmd', function() {
 })
 
 $('#bt_refreshTimeline').on('click', function() {
+  jeeP.loadStart = 0
+  jeeP.loadOffset = 35
   jeeP.displayTimeline()
 })
 
