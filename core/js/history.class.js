@@ -164,8 +164,9 @@ jeedom.history.modalchangePoint = function(event, _this, _params) {
 
   var deviceInfo = getDeviceType()
   if ($.mobile || deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') return
-  if ($('#md_modal2').is(':visible')) return
-  if ($('#md_modal1').is(':visible')) return
+
+  if (document.getElementById('md_modal1').isVisible()) return
+  if (document.getElementById('md_modal2').isVisible()) return
   if (jeedom.history.chart[_this.series.chart._jeeId].comparing) return
 
   if (isset(_params.cmd.display.groupingType) && _params.cmd.display.groupingType != '') {
@@ -435,14 +436,13 @@ jeedom.history.drawChart = function(_params) {
           render: function(event) {
             //shift dotted zones clipPaths to ensure no overlapping step mode:
             var solidClip = null;
-            $('.highcharts-zone-graph-0.customSolidZone').each(function() {
-              solidClip = $(this).attr('clip-path').replace('url(#', '#').replace(')', '')
-              $(solidClip).css('transform', 'translate(5px)')
+            document.querySelectorAll('.highcharts-zone-graph-0.customSolidZone').forEach(function(element) {
+              solidClip = element.getAttribute('clip-path').replace('url(#', '#').replace(')', '')
+              document.querySelector(solidClip).style.transform = 'translate(5px)'
             })
-            var customClip = null;
-            $('.highcharts-zone-graph-1.customDotZone').each(function() {
-              customClip = $(this).attr('clip-path').replace('url(#', '#').replace(')', '')
-              $(customClip).css('transform', 'translate(5px)')
+            document.querySelectorAll('.highcharts-zone-graph-1.customDotZone').forEach(function(element) {
+              customClip = element.getAttribute('clip-path').replace('url(#', '#').replace(')', '')
+              document.querySelector(customClip).style.transform = 'translate(5px)'
             })
           },
           addSeries: function(event) {
@@ -1220,8 +1220,8 @@ jeedom.history.initLegendContextMenu = function(_chartId) {
       //legend bottom graph, open menu upside if possible:
       var menuHeight = opt.$menu[0].clientHeight
       var menuWidth = opt.$menu[0].clientWidth
-      var winHeight = $(window).height()
-      var winWidth = $(window).width()
+      var winHeight = window.innerHeight
+      var winWidth = window.innerWidth
 
       var newTop =  y - menuHeight
       var newLeft = x
@@ -1235,7 +1235,7 @@ jeedom.history.initLegendContextMenu = function(_chartId) {
       opt.$menu.css({top: newTop, left: newLeft})
     },
     build: function($trigger) {
-      var __ctxel__ = $($trigger[0].parentNode).closest('div.chartContainer').attr('id')
+      var __ctxel__ = $trigger[0].parentNode.closest('div.chartContainer').getAttribute('id')
       var chart = jeedom.history.chart[__ctxel__].chart
       if (!chart) return false
       if (jeedom.history.chart[chart._jeeId].type == 'pie') return false
@@ -1268,14 +1268,14 @@ jeedom.history.initLegendContextMenu = function(_chartId) {
       return {
         callback: function(key, options) {
           if (key == 'showall') {
-            $(chart.series).each(function(idx, item) {
-              item.show()
+            chart.series.forEach(function(serie) {
+              serie.show()
             })
             return
           }
           if (key == 'isolate') {
-            $(chart.series).each(function(idx, item) {
-              item.hide()
+            chart.series.forEach(function(serie) {
+              serie.hide()
             })
             chart.series[serieId].show()
             return
@@ -1753,7 +1753,7 @@ Remove all series/yAxis from chart:
 jeedom.history.emptyChart = function(_chartId, _yAxis) {
   if (jeedom.history.chart[_chartId] === undefined) return false
   if (!isset(_yAxis)) _yAxis = false
-  $(jeedom.history.chart[_chartId].chart.series).each(function(i, series) {
+  jeedom.history.chart[_chartId].chart.series.forEach(function(series) {
     if (series.options && !isNaN(series.options.id)) {
       if (!series.name.includes('Navigator ')) {
         var cmd_id = series.options.id
@@ -1799,7 +1799,7 @@ jeedom.history.handleRangeButton = function(_button, _chartId) {
     var dateEnd = jeedom.history.chart[_chartId].dateEnd
     var done = 0
     var cmd_id, cmd_option
-    $(jeedom.history.chart[_chartId].chart.series).each(function(i, series) {
+    jeedom.history.chart[_chartId].chart.series.forEach(function(series) {
       if (series.options && !isNaN(series.options.id)) {
         cmd_id = series.options.id
         cmd_option = cmds[cmd_id].option

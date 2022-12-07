@@ -280,7 +280,7 @@ jeedom.getPageType = function(_modal) {
       if (modalType != '') return modalType
     }
   }
-  var dataPage = $('body').attr('data-page')
+  var dataPage = document.body.getAttribute('data-page')
   if (dataPage == '') {
     return 'unknown'
   } else {
@@ -300,9 +300,9 @@ jeedom.refreshMessageNumber = function() {
     success: function(_number) {
       jeedom.MESSAGE_NUMBER = _number
       if (_number == 0 || _number == '0') {
-        $('#span_nbMessage').hide()
+        document.getElementById('span_nbMessage').unseen()
       } else {
-        $('#span_nbMessage').html(_number).show()
+        document.getElementById('span_nbMessage').seen().innertHTML = _number
       }
     }
   })
@@ -321,9 +321,9 @@ jeedom.refreshUpdateNumber = function() {
     success: function(_number) {
       jeedom.UPDATE_NUMBER = _number
       if (_number == 0 || _number == '0') {
-        $('#span_nbUpdate').hide()
+        document.getElementById('span_nbUpdate').unseen()
       } else {
-        $('#span_nbUpdate').html(_number).show()
+        document.getElementById('span_nbUpdate').seen().innertHTML = _number
       }
     }
   })
@@ -588,23 +588,23 @@ jeedom.forceSyncHour = function(_params) {
 }
 
 jeedom.getCronSelectModal = function(_options, _callback) {
-  if ($("#mod_insertCronValue").length == 0) {
-    $('body').append('<div id="mod_insertCronValue" title="{{Assistant cron}}" ></div>')
-    $("#mod_insertCronValue").dialog({
-      closeText: '',
-      autoOpen: false,
-      modal: true,
-      height: 310,
-      width: 800
-    })
-    jQuery.ajaxSetup({
-      async: false
-    })
-    $('#mod_insertCronValue').load('index.php?v=d&modal=cron.human.insert')
-    jQuery.ajaxSetup({
-      async: true
-    })
+  if (document.getElementById('mod_insertCronValue') != null) {
+    document.getElementById('mod_insertCronValue').remove()
   }
+
+  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertCronValue" title="{{Assistant cron}}" ></div>')
+  $("#mod_insertCronValue").dialog({
+    closeText: '',
+    autoOpen: false,
+    modal: true,
+    height: 310,
+    width: 800
+  })
+
+  domUtils.ajaxSetup({async: false})
+  document.getElementById('mod_insertCronValue').load('index.php?v=d&modal=cron.human.insert')
+  domUtils.ajaxSetup({async: true})
+
   $("#mod_insertCronValue").dialog('option', 'buttons', {
     "{{Annuler}}": function() {
       $(this).dialog("close")
@@ -613,7 +613,7 @@ jeedom.getCronSelectModal = function(_options, _callback) {
       var retour = {}
       retour.cron = {}
       retour.value = mod_insertCron.getValue()
-      if ($.trim(retour) != '' && 'function' == typeof (_callback)) {
+      if (retour.value.trim() != '' && 'function' == typeof (_callback)) {
         _callback(retour)
       }
       $(this).dialog('close')
@@ -623,26 +623,26 @@ jeedom.getCronSelectModal = function(_options, _callback) {
 }
 
 jeedom.getSelectActionModal = function(_options, _callback) {
+  console.log('jeedom.getSelectActionModal')
   if (!isset(_options)) {
     _options = {}
   }
-  if ($("#mod_insertActionValue").length == 0) {
-    $('body').append('<div id="mod_insertActionValue" title="{{Sélectionner la commande}}" ></div>')
-    $("#mod_insertActionValue").dialog({
-      closeText: '',
-      autoOpen: false,
-      modal: true,
-      height: 310,
-      width: 800
-    })
-    jQuery.ajaxSetup({
-      async: false
-    })
-    $('#mod_insertActionValue').load('index.php?v=d&modal=action.insert')
-    jQuery.ajaxSetup({
-      async: true
-    })
+  if (document.getElementById('mod_insertActionValue') != null) {
+    document.getElementById('mod_insertActionValue').remove()
   }
+
+  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertActionValue" title="{{Sélectionner la commande}}" ></div>')
+  $("#mod_insertActionValue").dialog({
+    closeText: '',
+    autoOpen: false,
+    modal: true,
+    height: 310,
+    width: 800
+  })
+  domUtils.ajaxSetup({async: false})
+  document.getElementById('mod_insertActionValue').load('index.php?v=d&modal=action.insert')
+  domUtils.ajaxSetup({async: true})
+
   mod_insertAction.setOptions(_options)
   $("#mod_insertActionValue").dialog('option', 'buttons', {
     "{{Annuler}}": function() {
@@ -652,7 +652,7 @@ jeedom.getSelectActionModal = function(_options, _callback) {
       var retour = {}
       retour.action = {}
       retour.human = mod_insertAction.getValue()
-      if ($.trim(retour) != '' && 'function' == typeof (_callback)) {
+      if (retour.human.trim() != '' && 'function' == typeof (_callback)) {
         _callback(retour)
       }
       $(this).dialog('close')
