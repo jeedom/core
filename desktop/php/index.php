@@ -160,8 +160,8 @@ function setTheme() {
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 	<?php
-	include_file('core', 'icon.inc', 'php');
 	include_file('core', 'dom.utils', 'dom');
+	include_file('core', 'icon.inc', 'php');
 	include_file('3rdparty', 'roboto/roboto', 'css');
 	include_file('3rdparty', 'camingocode/camingocode', 'css');
 	include_file('3rdparty', 'text-security/text-security-disc', 'css');
