@@ -10,9 +10,10 @@
     })
 
     var prevElement = cmd.previousElementSibling
+    var nextElement = cmd.nextElementSibling
     if (prevElement?.hasClass('action-buttons')) {
       prevElement.appendChild(cmd)
-    } else {
+    } else if (nextElement?.getAttribute('data-subtype') == 'other' && nextElement?.getAttribute('data-template') == 'default') {
       let div = document.createElement('div')
       div.setAttribute('class', 'action-buttons')
       div.appendChild(cmd)
