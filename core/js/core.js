@@ -48,20 +48,20 @@ function getTemplate(_folder, _version, _filename, _replace) {
   return template;
 }
 
+//deprecated, use domeUtils.handleAjaxError()
 function handleAjaxError(_request, _status, _error, _div_alert) {
-  $.hideLoading();
-  var div_alert = init(_div_alert, $('#div_alert'));
+  domUtils.hideLoading()
   if (_request.status != '0') {
     if (init(_request.responseText, '') != '') {
-      div_alert.showAlert({
+      jeedomUtils.showAlert({
         message: _request.responseText,
         level: 'danger'
-      });
+      })
     } else {
-      div_alert.showAlert({
+      jeedomUtils.showAlert({
         message: _request.status + ' : ' + _error,
         level: 'danger'
-      });
+      })
     }
   }
 }

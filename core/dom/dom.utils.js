@@ -547,11 +547,29 @@ Element.prototype.load = function(_path, _callback) {
 
 /* ____________Ajax Management____________
 */
+domUtils.handleAjaxError = function(_request, _status, _error) {
+  console.log('handleAjaxError', _request, _status, _error)
+  domUtils.hideLoading()
+  if (_request.status != '0') {
+    if (init(_request.responseText, '') != '') {
+      jeedomUtils.showAlert({
+        message: _request.responseText,
+        level: 'danger'
+      })
+    } else {
+      jeedomUtils.showAlert({
+        message: _request.status + ' : ' + _error,
+        level: 'danger'
+      })
+    }
+  }
+}
 domUtils.ajaxSettings = {
   async: true,
   global: true,
   dataType: 'json',
-  type: 'post'
+  type: 'post',
+  error_callback: domUtils.handleAjaxError
 }
 domUtils.ajaxSetup = function(_params) {
   for (const key in _params) {
@@ -578,6 +596,9 @@ domUtils.ajax = function(_params) {
   _params.async = isset(_params.async) ? _params.async : domUtils.ajaxSettings.async
   _params.dataType = isset(_params.dataType) ? _params.dataType : domUtils.ajaxSettings.dataType
   _params.type = isset(_params.type) ? _params.type : domUtils.ajaxSettings.type
+  _params.success = (typeof _params.success === 'function') ? _params.success : function() {return arguments}
+  _params.complete = (typeof _params.complete === 'function') ? _params.complete : function() {return arguments}
+  _params.onError = (typeof _params.error === 'function') ? _params.error : domUtils.ajaxSettings.error_callback
 
   domUtils.countAjax(0, _params.global)
 
@@ -589,48 +610,27 @@ domUtils.ajax = function(_params) {
     request.open(_params.type, _params.url, false)
     request.send(new URLSearchParams(_params.data))
     if (request.status === 200) { //Answer ok
-      if (typeof _params.success === 'function') {
-        if (isJson) {
-          _params.success(JSON.parse(request.responseText))
-        } else {
-          _params.success(request.responseText)
-        }
-        if (typeof _params.complete === 'function') {
-          _params.complete()
-        }
-      } else {
-        if (isJson) {
-          return JSON.parse(request.responseText)
-        } else {
-          return request.responseText
-        }
-      }
       domUtils.countAjax(1, _params.global)
+      isJson ? _params.success(JSON.parse(request.responseText)) : _params.success(request.responseText)
     } else { //Weird thing happened
-      if (typeof _params.error === 'function') {
-        _params.error(request.statusText)
-      } else {
-        console.error(request.statusText)
-      }
       domUtils.countAjax(1, _params.global)
+      _params.onError('', '', error)
     }
+    _params.complete()
   } else { //Asynchronous request:
     var url = _params.url
+    var request
     if (isGet && is_object(_params.data)) {
       url = url + '?' + new URLSearchParams(_params.data)
     }
     fetch(url, {
       method: _params.type,
-      body: !isGet ? new URLSearchParams(_params.data) : null,
+      body: isGet ? null : new URLSearchParams(_params.data),
       headers: isGet ? new Headers() : {"Content-Type": "application/x-www-form-urlencoded"}
     })
     .then(function(response) {
-      if (!response.ok) { //Weird thing happened
-        if (typeof _params.error === 'function') {
-          _params.error(error.message)
-        } else {
-          throw Error(response.statusText)
-        }
+      if (!response.ok) {
+        _params.onError(response, response.status, response.statusText)
         return
       }
       if (isJson) {
@@ -640,21 +640,14 @@ domUtils.ajax = function(_params) {
       }
     })
     .then(function(obj) {
-      if (typeof _params.success === 'function') {
-        return _params.success(obj)
-      }
-      return obj
-    }).then(function() {
+      return _params.success(obj)
+    }).then(async function() {
       domUtils.countAjax(1, _params.global)
-      if (typeof _params.complete === 'function') {
-        return _params.complete()
-      }
+      return _params.complete()
     })
     .catch(function(error) {
       domUtils.countAjax(1, _params.global)
-      if (typeof _params.error === 'function') {
-        _params.error(error.message)
-      }
+      _params.onError('', '', error)
     })
   }
 }
