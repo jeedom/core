@@ -2,16 +2,16 @@
   <div class="title #hide_name#">
     <div class="cmdName">#name_display#</div>
   </div>
-  <div class="content">
+  <div class="content content-inline">
     <div class="shuttergauge-chart">
       <div class="shuttergauge-bckg cursor">
         <div class="shuttergauge-value"></div>
       </div>
-      <div id="widget_slider#id#" class="slider"></div>
+      <div class="state">
+        <span class="value"></span> <span class="unit"></span>
+      </div>
     </div>
-  </div>
-  <div class="state">
-    <span class="value"></span> <span class="unit"></span>
+    <div id="widget_slider#id#" class="slider"></div>
   </div>
   <div class="timeCmd label label-default #value_history#" data-type="info" data-cmd_id="#value_id#"></div>
   <template>

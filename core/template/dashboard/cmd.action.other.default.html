@@ -10,13 +10,13 @@
     })
 
     var prevElement = cmd.previousElementSibling
-    if (prevElement.hasClass('action-buttons')) {
+    if (prevElement?.hasClass('action-buttons')) {
       prevElement.appendChild(cmd)
     } else {
       let div = document.createElement('div')
       div.setAttribute('class', 'action-buttons')
       div.appendChild(cmd)
-      prevElement.insertAdjacentElement('afterend', div)
+      prevElement?.insertAdjacentElement('afterend', div)
     }
 
     if ('#name#' != '#name_display#') {
