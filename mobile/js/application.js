@@ -81,7 +81,7 @@ $(function() {
     }, 200)
   })
 
-  if (getUrlVars('app_mode') == 1) {
+  if (getUrlVars('app_mode') == 1 || window.ReactNativeWebView != undefined) {
     APP_MODE = true
     jeedomUtils._elBackground.height('100%').css('top','0')
     $('#pagecontainer').prepend($('#searchContainer'))
@@ -765,6 +765,27 @@ $(document).on('panelclose', function(event) {
   $(document).scrollTop(PANEL_SCROLL)
 })
 
+jeedomUtils.postToApp = function(_action, _options) {
+  	var message = {}
+	if (window.ReactNativeWebView != undefined) {
+		message.action = _action
+		message.options = _options
+		window.ReactNativeWebView.postMessage(JSON.stringify(message))
+	}
+}
+
+jeedomUtils.appMobile = {};
+
+jeedomUtils.appMobile.vibration = function(type = "impactMedium"){
+  jeedomUtils.postToApp('vibration', {type: type})
+}
+jeedomUtils.appMobile.notifee = function(title,body, time){
+  jeedomUtils.postToApp('notifee',{title:title,body:body,time:time});
+}
+jeedomUtils.appMobile.modal = function() {
+  jeedomUtils.postToApp('modal',{});
+}
+
 jeedomUtils.MESSAGE_NUMBER = null
 jeedomUtils.refreshMessageNumber = function() {
   jeedom.message.number({
@@ -781,10 +802,14 @@ jeedomUtils.refreshMessageNumber = function() {
 }
 
 jeedomUtils.notify = function(_title, _text) {
-  new $.nd2Toast({
+  if(window.ReactNativeWebView != undefined){
+    jeedomUtils.appMobile.notifee(_title, _text, 3000);
+  }else{
+    new $.nd2Toast({
     message :  _title + ':  ' + _text,
     ttl : 3000
   })
+  }
 }
 
 jeedomUtils.setTileSize = function(_filter) {
