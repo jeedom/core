@@ -145,7 +145,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 
   //Empty one page and remove listeners:
   var div_pageContainer = document.getElementById('div_pageContainer')
-  document.emptyById(div_pageContainer)
+  div_pageContainer.empty()
   div_pageContainer.replaceWith(div_pageContainer.cloneNode(true))
 
   domUtils.unRegisterEvents()

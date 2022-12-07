@@ -333,7 +333,6 @@ if (!jeeFrontEnd.dashboard) {
       })
     },
     displayChildObject: function(_object_id, _recursion) {
-      console.log('displayChildObject', _object_id)
       if (_recursion === false) {
         document.querySelectorAll('.div_object').forEach(function(div_object, idx) {
           if (div_object.getAttribute('data-object_id') == _object_id) {
@@ -355,6 +354,7 @@ if (!jeeFrontEnd.dashboard) {
   }
 }
 jeeFrontEnd.dashboard.init()
+
 if (jeeP.url_summary != '') {
     document.querySelectorAll('#bt_displayObject, #bt_editDashboardWidgetOrder').forEach(function(element) {
       element.parentNode.remove()

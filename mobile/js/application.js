@@ -619,7 +619,6 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
     page += '&modal='+_page
   } else {
     //alternate between defaultMobilePage and home:
-
     var thisPage = document.body.getAttribute('data-page')
     if (defaultMobilePage != null && defaultMobilePage[0] != thisPage && _page == 'home') {
       _page = defaultMobilePage[0]
@@ -663,8 +662,7 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
   } else {
     jeedom.cmd.resetUpdateFunction()
 
-    //$('#page').hide().load(page, function() {
-    document.getElementById('page').unseen().load(page, function() {
+    $('#page').hide().load(page, function() {
       document.body.setAttribute('data-page', _page)
       if (init(_plugin) != '') {
         document.body.setAttribute('data-plugin', _plugin)
@@ -745,6 +743,10 @@ jeedomUtils.loadPanel = function(_content) {
     }
   } catch(e) {}
 }
+
+
+
+
 
 $(document).on('panelbeforeopen', function(event) {
   PANEL_SCROLL = $(document).scrollTop()
