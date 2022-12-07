@@ -31,7 +31,9 @@
     })
 
     jeedom.scenario.update['#id#'] = function(_options) {
-      $('#lastLaunch#id#').html(_options.lastLaunch)
+      if (isset(_options.name)) {
+        $('.scenario[data-scenario_id=#id#] .widget-name a').empty().append(_options.name)
+      }
 
       if (typeof _options.icon != 'undefined' && _options.icon != '') {
         $('.scenario[data-scenario_id=#id#] .iconCmd').empty().append(_options.icon)
@@ -59,7 +61,8 @@
         $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=activate]').show()
         $('.scenario[data-scenario_id=#id#]').addClass('inactive')
       }
+      $('#lastLaunch#id#').html(_options.lastLaunch)
     }
-    jeedom.scenario.update['#id#']({isActive: '#isActive#', state: '#state#', lastLaunch: '#lastLaunch#', icon: '#icon#'})
+    jeedom.scenario.update['#id#']({isActive: '#isActive#', state: '#state#', lastLaunch: '#lastLaunch#', icon: '#icon#', name: '#name#'})
   </script>
 </div>

@@ -1057,7 +1057,7 @@ class scenario {
 		$this->emptyCacheWidget();
 		if ($this->_changeState) {
 			$this->_changeState = false;
-			event::add('scenario::update', array('scenario_id' => $this->getId(), 'isActive' => $this->getIsActive(), 'state' => $this->getState(), 'lastLaunch' => $this->getLastLaunch(), 'icon' => $this->getIcon()));
+			event::add('scenario::update', array('scenario_id' => $this->getId(), 'isActive' => $this->getIsActive(), 'state' => $this->getState(), 'lastLaunch' => $this->getLastLaunch(), 'name' => $this->getName(), 'icon' => $this->getIcon()));
 		}
 		return true;
 	}

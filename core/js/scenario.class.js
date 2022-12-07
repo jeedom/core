@@ -265,6 +265,13 @@ jeedom.scenario.refreshValue = function(_params) {
   var paramsSpecifics = {
     global: false,
     success: function(result) {
+      try {
+        var tile = domUtils.parseHTML(result)
+        sc.empty().appendChild(tile)
+        sc.querySelector('.scenario-widget').replaceWith(...sc.querySelector('scenario-widget').childNodes)
+      } catch (error) {
+        console.error(error)
+      }
       var tile = domUtils.parseHTML(result)
       sc.empty().appendChild(result.childNodes)
       if (jeedomUtils.userDeviceType == undefined) {
