@@ -501,21 +501,21 @@ domUtils.element2dom = function(_element, _container) {
   })
   return _element
 }
-Element.prototype.html = function(_html, _append) {
-  //get ?
-  if (!isset(_html)) return this.innerHTML
-
-  if (!isset(_append)) _append = false
-
+domUtils.parseHTML = function(_htmlString) {
   var documentFragment = document.createDocumentFragment()
   var newEl = document.createElement('span')
-  newEl.innerHTML = _html
-  var newFilteredEl = domUtils.element2dom(newEl, this)
+  newEl.innerHTML = _htmlString
+  var newFilteredEl = domUtils.element2dom(newEl, documentFragment)
   documentFragment.appendChild(newFilteredEl)
-  newFilteredEl.replaceWith(...newFilteredEl.childNodes) //remove encapsulated span
+  newFilteredEl.replaceWith(...newFilteredEl.childNodes)
+  return documentFragment
+}
+Element.prototype.html = function(_htmlString, _append) {
+  //get ?
+  if (!isset(_htmlString)) return this.innerHTML
 
-  if (!_append) this.empty()
-  this.appendChild(documentFragment)
+  if (!isset(_append) || _append === false) this.empty()
+  this.appendChild(domUtils.parseHTML(_htmlString))
   return this
 }
 
