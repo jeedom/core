@@ -194,14 +194,15 @@ jeedom.log.autoupdate = function(_params) {
     if (_params.control.getAttribute('data-state') == 0 && _params.once == 0) {
       _params.control.setAttribute('data-state', 1)
     }
-    $(_params.control).off('click').on('click', function() {
+
+    _params.control.unRegisterEvent('click').registerEvent('click', function (event) {
       if (this.getAttribute('data-state') == 1) {
         this.setAttribute('data-state', 0)
         this.removeClass('btn-warning').addClass('btn-success')
-        $(this).html('<i class="fa fa-play"></i><span class="hidden-768"> {{Reprendre}}</span>')
+        this.html('<i class="fa fa-play"></i><span class="hidden-768"> {{Reprendre}}</span>')
       } else {
         this.removeClass('btn-success').addClass('btn-warning')
-        $(this).html('<i class="fa fa-pause"></i><span class="hidden-768"> {{Pause}}</span>')
+        this.html('<i class="fa fa-pause"></i><span class="hidden-768"> {{Pause}}</span>')
         this.setAttribute('data-state', 1)
         _params.display.scrollTop = _params.display.offsetHeight + 200000
         _params.once = 0
@@ -209,9 +210,9 @@ jeedom.log.autoupdate = function(_params) {
       }
     })
 
-    $(_params.search).off('keypress').on('keypress', function() {
+    _params.search.unRegisterEvent('keypress').registerEvent('keypress', function (event) {
       if (_params.control.getAttribute('data-state') == 0) {
-        _params.control.triggerEvent('click')
+        _params.control.click()
       }
     })
   }
