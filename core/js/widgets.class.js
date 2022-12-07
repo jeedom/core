@@ -152,13 +152,13 @@ jeedom.widgets.replacement = function(_params) {
 
 jeedom.widgets.getThemeImg = function(_light, _dark) {
   if (_light != '' && _dark == '') {
-    return _light;
+    return _light
   }
   if (_light == '' && _dark != '') {
-    return _dark;
+    return _dark
   }
-  if ($('body')[0].hasAttribute('data-theme')) {
-    if ($('body').attr('data-theme').endsWith('Light')) return _light;
+  if (document.body.hasAttribute('data-theme')) {
+    if (document.body.getAttribute('data-theme').endsWith('Light')) return _light
   }
-  return _dark;
+  return _dark
 }

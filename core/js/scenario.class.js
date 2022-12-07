@@ -256,17 +256,19 @@ jeedom.scenario.refreshValue = function(_params) {
       return;
     }
   }
-  if ($('.scenario[data-scenario_id=' + _params.scenario_id + ']').html() == undefined) {
-    return;
+  var sc = document.querySelector('.scenario-widget[data-scenario_id="' + _params.scenario_id + '"]')
+  if (sc == null) {
+    return
   }
-  var version = $('.scenario[data-scenario_id=' + _params.scenario_id + ']').attr('data-version');
+  var version = sc.getAttribute('data-version')
   var paramsRequired = ['id'];
   var paramsSpecifics = {
     global: false,
     success: function(result) {
-      $('.scenario[data-scenario_id=' + params.scenario_id + ']').empty().html($(result).children());
-      if ($.mobile) {
-        $('.scenario[data-scenario_id=' + params.scenario_id + ']').trigger("create");
+      var tile = domUtils.parseHTML(result)
+      sc.empty().appendChild(result.childNodes)
+      if (jeedomUtils.userDeviceType == undefined) {
+        sc.triggerEvent('create')
         jeedomUtils.setTileSize('.scenario');
       }
     }
@@ -431,24 +433,21 @@ jeedom.scenario.getSelectModal = function(_options, callback) {
   if (!isset(_options)) {
     _options = {};
   }
-  if ($("#mod_insertScenarioValue").length != 0) {
-    $("#mod_insertScenarioValue").remove();
+  if (document.getElementById('mod_insertScenarioValue') != null) {
+    document.getElementById('mod_insertScenarioValue').remove()
   }
-  $('body').append('<div id="mod_insertScenarioValue" title="{{Sélectionner le scénario}}" ></div>');
+
+  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertScenarioValue" title="{{Sélectionner le scénario}}" ></div>')
   $("#mod_insertScenarioValue").dialog({
     closeText: '',
     autoOpen: false,
     modal: true,
     height: 250,
     width: 800
-  });
-  jQuery.ajaxSetup({
-    async: false
-  });
-  $('#mod_insertScenarioValue').load('index.php?v=d&modal=scenario.human.insert');
-  jQuery.ajaxSetup({
-    async: true
-  });
+  })
+  domUtils.ajaxSetup({async: false})
+  document.getElementById('mod_insertScenarioValue').load('index.php?v=d&modal=scenario.human.insert')
+  domUtils.ajaxSetup({async: true})
 
   mod_insertScenario.setOptions(_options);
   $("#mod_insertScenarioValue").dialog('option', 'buttons', {
@@ -456,16 +455,16 @@ jeedom.scenario.getSelectModal = function(_options, callback) {
       $(this).dialog("close");
     },
     "{{Valider}}": function() {
-      var retour = {};
-      retour.human = mod_insertScenario.getValue();
-      retour.id = mod_insertScenario.getId();
-      if ($.trim(retour) != '') {
-        callback(retour);
+      var retour = {}
+      retour.human = mod_insertScenario.getValue()
+      retour.id = mod_insertScenario.getId()
+      if (retour.human.trim() != '') {
+        callback(retour)
       }
-      $(this).dialog('close');
+      $(this).dialog('close')
     }
-  });
-  $('#mod_insertScenarioValue').dialog('open');
+  })
+  $('#mod_insertScenarioValue').dialog('open')
 }
 
 jeedom.scenario.testExpression = function(_params) {
@@ -587,7 +586,7 @@ jeedom.scenario.setAutoComplete = function(_params) {
 
   _params.parent.find('.expression').each(function() {
     if (this.querySelector('.expressionAttr[data-l1key="type"]').value == 'condition') {
-      $(this).find('.expressionAttr[data-l1key=' + _params.type + ']').autocomplete({
+      $(this).find('.expressionAttr[data-l1key="' + _params.type + '"]').autocomplete({
         minLength: 1,
         source: function(request, response) {
           //return last term after last space:
@@ -623,17 +622,17 @@ jeedom.scenario.setAutoComplete = function(_params) {
       })
     }
 
-    if (this.querySelector('.expressionAttr[data-l1key=type]').value == 'action') {
-        if ($('body').attr('data-page') == "scenario") {
+    if (this.querySelector('.expressionAttr[data-l1key="type"]').value == 'action') {
+        if (document.body.getAttribute('data-page') == 'scenario') {
           jeedom.scenario.autoCompleteActionContext = jeedom.scenario.autoCompleteAction.concat(jeedom.scenario.autoCompleteActionScOnly)
         } else {
           jeedom.scenario.autoCompleteActionContext = jeedom.scenario.autoCompleteAction
         }
 
-      $(this).find('.expressionAttr[data-l1key=' + _params.type + ']').autocomplete({
+      $(this).find('.expressionAttr[data-l1key="' + _params.type + '"]').autocomplete({
         source: jeedom.scenario.autoCompleteActionContext,
         close: function(event, ui) {
-          $(this).blur()
+          this.blur()
         }
       })
     }
