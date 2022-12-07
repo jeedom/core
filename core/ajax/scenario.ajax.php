@@ -86,7 +86,8 @@ try {
 	if (init('action') == 'testExpression') {
 		$return = array();
 		$scenario = null;
-		$return['evaluate'] = scenarioExpression::setTags(jeedom::fromHumanReadable(init('expression')), $scenario, true);
+		$expr = jeedom::fromHumanReadable(init('expression'));
+		$return['evaluate'] = scenarioExpression::setTags($expr, $scenario, true);
 		$return['result'] = evaluate($return['evaluate']);
 		$return['correct'] = 'ok';
 		if (trim($return['result']) == trim($return['evaluate'])) {
@@ -335,7 +336,7 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		$scenarios = scenario::all();
-		foreach($scenarios as $scenario) {
+		foreach ($scenarios as $scenario) {
 			if (file_exists(__DIR__ . '/../../log/scenarioLog/scenario' . $scenario->getId() . '.log')) {
 				unlink(__DIR__ . '/../../log/scenarioLog/scenario' . $scenario->getId() . '.log');
 			}
