@@ -265,7 +265,7 @@ Element.prototype.getJeeValues = function(_attr, _depth) {
     thatElement = elements[idx]
     elValue = thatElement.jeeValue()
     try {
-      if ($.trim(elValue).substr(0, 1) == '{') {
+      if (elValue.trim().substr(0, 1) == '{') {
         elValue = JSON.parse(thatElement.jeeValue())
       }
     } catch (e) { }
@@ -590,7 +590,11 @@ domUtils.ajax = function(_params) {
     request.send(new URLSearchParams(_params.data))
     if (request.status === 200) { //Answer ok
       if (typeof _params.success === 'function') {
-        _params.success(JSON.parse(request.responseText))
+        if (isJson) {
+          _params.success(JSON.parse(request.responseText))
+        } else {
+          _params.success(request.responseText)
+        }
         if (typeof _params.complete === 'function') {
           _params.complete()
         }
