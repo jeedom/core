@@ -20,9 +20,9 @@ jeedom.eqLogic.backGraphIntervals = {};
 
 jeedom.eqLogic.changeDisplayObjectName = function(_display) {
   if (_display) {
-    $('div.eqLogic-widget').addClass('displayObjectName');
+    document.querySelectorAll('div.eqLogic-widget').addClass('displayObjectName')
   } else {
-    $('div.eqLogic-widget').removeClass('displayObjectName');
+    document.querySelectorAll('div.eqLogic-widget').removeClass('displayObjectName')
   }
 }
 
@@ -353,24 +353,24 @@ jeedom.eqLogic.getSelectModal = function(_options, callback) {
   if (!isset(_options)) {
     _options = {};
   }
-  if ($("#mod_insertEqLogicValue").length == 0) {
-    $('body').append('<div id="mod_insertEqLogicValue" title="{{Sélectionner un équipement}}" ></div>');
-
-    $("#mod_insertEqLogicValue").dialog({
-      closeText: '',
-      autoOpen: false,
-      modal: true,
-      height: 250,
-      width: 800
-    });
-    jQuery.ajaxSetup({
-      async: false
-    });
-    $('#mod_insertEqLogicValue').load('index.php?v=d&modal=eqLogic.human.insert');
-    jQuery.ajaxSetup({
-      async: true
-    });
+  if (document.getElementById('mod_insertEqLogicValue') != null) {
+      document.getElementById('mod_insertEqLogicValue').remove()
   }
+
+  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertEqLogicValue" title="{{Sélectionner un équipement}}" ></div>')
+
+  $("#mod_insertEqLogicValue").dialog({
+    closeText: '',
+    autoOpen: false,
+    modal: true,
+    height: 250,
+    width: 800
+  })
+
+  domUtils.ajaxSetup({async: false})
+  document.getElementById('mod_insertEqLogicValue').load('index.php?v=d&modal=eqLogic.human.insert')
+  domUtils.ajaxSetup({async: true})
+
   mod_insertEqLogic.setOptions(_options);
   $("#mod_insertEqLogicValue").dialog('option', 'buttons', {
     "{{Annuler}}": function() {
@@ -395,16 +395,16 @@ jeedom.eqLogic.refreshValue = function(_params) {
   var sends = {};
   var eqLogic = null;
   for (var i in _params) {
-    eqLogic = $('.eqLogic[data-eqLogic_id=' + _params[i].eqLogic_id + ']');
-    if (eqLogic.html() == undefined || eqLogic.attr('data-version') == undefined) {
+    eqLogic = document.querySelector('.eqLogic[data-eqLogic_id="' + _params[i].eqLogic_id + '"]');
+    if (eqLogic == null || eqLogic.getAttribute('data-version') == undefined) {
       continue;
     }
     eqLogics[_params[i].eqLogic_id] = {
       eqLogic: eqLogic,
-      version: eqLogic.attr('data-version')
+      version: eqLogic.getAttribute('data-version')
     };
     sends[_params[i].eqLogic_id] = {
-      version: eqLogic.attr('data-version')
+      version: eqLogic.getAttribute('data-version')
     };
   }
   if (Object.keys(eqLogics).length == 0) {
@@ -417,27 +417,26 @@ jeedom.eqLogic.refreshValue = function(_params) {
       var eqLogic = null;
       var uid = null;
       for (var i in result) {
-        html = $(result[i].html);
+        tile = domUtils.parseHTML(result[i].html);
         eqLogic = eqLogics[i].eqLogic;
-        uid = html.attr('data-eqLogic_uid');
-        if (uid != 'undefined') {
-          eqLogic.attr('data-eqLogic_uid', uid);
+        if (isElement_jQuery(eqLogic)) eqLogic = eqLogic[0]
+        uid = tile.childNodes[0].getAttribute('data-eqLogic_uid');
+        if (uid != undefined) {
+          eqLogic.setAttribute('data-eqLogic_uid', uid);
         }
-        eqLogic.addClass(html.attr('class'));
-        if (!html.hasClass('eqLogic_layout_table')) {
-          eqLogic.removeClass('eqLogic_layout_table');
+        eqLogic.classList = tile.childNodes[0].classList
+        try {
+          eqLogic.empty().appendChild(tile)
+          eqLogic.querySelector('.eqLogic-widget').replaceWith(...eqLogic.querySelector('.eqLogic-widget').childNodes)
+        } catch (error) {
+          console.error(error)
         }
-        if (!html.hasClass('eqLogic_default_table')) {
-          eqLogic.removeClass('eqLogic_default_table');
-        }
-        eqLogic.empty().html(html.children()).trigger('change');
-        if ($.mobile) {
-          $('.eqLogic[data-eqLogic_id=' + i + ']').trigger("create");
-          jeedomUtils.setTileSize('.eqLogic');
-        } else {
-          if (typeof editWidgetMode == 'function') {
-            editWidgetMode();
-          }
+        eqLogic.triggerEvent('change')
+        if (jeedomUtils.userDeviceType == undefined) {
+          eqLogic.triggerEvent('create')
+          jeedomUtils.setTileSize('.eqLogic')
+        } else if (typeof jeeFrontEnd.dashboard.editWidgetMode == 'function') {
+          jeeFrontEnd.dashboard.editWidgetMode();
         }
       }
     }
