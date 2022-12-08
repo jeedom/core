@@ -1489,6 +1489,9 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
   if (_params && _params.object_id) {
     url += '&object_id=' + _params.object_id
   }
+  if (_params && _params.path) {
+    url += '&path=' + _params.path
+  }
   $('#mod_selectIcon').empty().load(url, function() {
     $("#mod_selectIcon").dialog('option', 'buttons', {
       "Annuler": function() {
