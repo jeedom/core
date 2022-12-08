@@ -1494,10 +1494,10 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
   }
   $('#mod_selectIcon').empty().load(url, function() {
     $("#mod_selectIcon").dialog('option', 'buttons', {
-      "Annuler": function() {
+      "{{Annuler}}": function() {
         $(this).dialog("close")
       },
-      "Valider": function() {
+      "{{Valider}}": function() {
         var icon = $('.iconSelected .iconSel').html()
         if (icon == undefined) {
           icon = ''
