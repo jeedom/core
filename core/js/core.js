@@ -123,10 +123,11 @@ function getCookie(name) {
 function getDeviceType() {
   var ua = navigator.userAgent
   var result = {}
-  result.width = document.getElementById('pagecontainer').innerWidth
+  result.width = window.innerWidth
   result.type = 'desktop'
   result.subType = ''
   result.bSize = 220
+  console.log(result)
 
   if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
     result.type = 'tablet'
@@ -144,7 +145,7 @@ function getDeviceType() {
 
   if (result.subType == 'android') {
     result.width = screen.width
-    if (document.getElementById('pagecontainer').innerWidth > 899) {
+    if (window.innerWidth > 899) {
       result.type = 'tablet'
     }
   }
