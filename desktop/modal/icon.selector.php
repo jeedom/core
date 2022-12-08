@@ -66,7 +66,7 @@ sendVarToJS([
         <div id="treeFolder-icon" class="div_treeFolder">
           <ul id="ul_Folder-bg">
             <?php
-            $scanPaths = array(__DIR__ . '/../../core/css/icon', __DIR__ . '/../../data/fonts');
+            $scanPaths = (init('path', '') != '') ? [__DIR__ . '/../../' . init('path')] : array(__DIR__ . '/../../core/css/icon', __DIR__ . '/../../data/fonts');
             foreach ($scanPaths as $root) {
               $ls = ls($root, '*', false, array('folders'));
               foreach ($ls as $dir) {
@@ -76,7 +76,9 @@ sendVarToJS([
                 echo '<li><a data-path="' . $root . '/' . $dir . '">' . ucfirst(str_replace(array('/', '_'), array('', ' '), $dir)) . '</a></li>';
               }
             }
-            echo '<li><a data-path="'.__DIR__ . '/../../3rdparty/font-awesome5/">Font-Awesome</a></li>';
+            if (init('path', '') == '') {
+              echo '<li><a data-path="' . __DIR__ . '/../../3rdparty/font-awesome5/">Font-Awesome</a></li>';
+            }
             ?>
           </ul>
         </div>
