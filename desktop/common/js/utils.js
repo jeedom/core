@@ -21,9 +21,9 @@ var jeedomUtils = {
   backgroundIMG: null,
   _elBackground: null
 }
-jeedomUtils.tileWidthStep = parseInt(jeedom.theme['widget::step::width']) >= 110 ? parseInt(jeedom.theme['widget::step::width']) : 330,
-  jeedomUtils.tileHeightStep = parseInt(jeedom.theme['widget::step::height']) >= 100 ? parseInt(jeedom.theme['widget::step::height']) : 200,
-  jeedomUtils.tileHeightSteps = Array.apply(null, { length: 10 }).map(function(value, index) { return (index + 1) * jeedomUtils.tileHeightStep })
+jeedomUtils.tileWidthStep = parseInt(jeedom.theme['widget::step::width']) > 110 ? parseInt(jeedom.theme['widget::step::width']) : 110
+jeedomUtils.tileHeightStep = parseInt(jeedom.theme['widget::step::height']) > 100 ? parseInt(jeedom.theme['widget::step::height']) : 100
+jeedomUtils.tileHeightSteps = Array.apply(null, { length: 10 }).map(function(value, index) { return (index + 1) * jeedomUtils.tileHeightStep })
 
 document.addEventListener('DOMContentLoaded', function() {
   jeedomUtils._elBackground = document.getElementById('backgroundforJeedom')
@@ -1009,7 +1009,7 @@ jeedomUtils.initTooltips = function(_el) {
   if (!_el) {
     try {
       $('.tooltips:not(.tooltipstered), [title]:not(.ui-button)').tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
-    } catch(e) { }
+    } catch (e) { }
   } else {
     //cmd update:
     if (_el.parents('.cmd-widget[title]').length) {
