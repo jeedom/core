@@ -43,7 +43,7 @@ window.addEventListener('error', function(event) {
     return
   }
   jeedomUtils.JS_ERROR.push(event)
-  document.getElementById('bt_jsErrorModal').seen()
+  document.getElementById('bt_jsErrorModal')?.seen()
   domUtils.hideLoading()
 })
 

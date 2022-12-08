@@ -549,26 +549,24 @@ Element.prototype.load = function(_path, _callback) {
 */
 domUtils.handleAjaxError = function(_request, _status, _error) {
   domUtils.hideLoading()
-  if (_request.status != '0') {
-    if (init(_request.responseText, '') != '') {
-      jeedomUtils.showAlert({
-        message: _request.responseText,
-        level: 'danger'
-      })
-    } else {
-      jeedomUtils.showAlert({
-        message: _request.status + ' : ' + _error,
-        level: 'danger'
-      })
-    }
+  if (is_object(_request)) {
+    jeedomUtils.showAlert({
+      message: _request.url + ' : ' + _request.status + ' error: ' + _error,
+      level: 'danger'
+    })
+  } else {
+    jeedomUtils.showAlert({
+      message: _request + ' : ' + _status + ' error: ' + _error,
+      level: 'danger'
+    })
   }
+
 }
 domUtils.ajaxSettings = {
   async: true,
   global: true,
   dataType: 'json',
-  type: 'post',
-  error_callback: domUtils.handleAjaxError
+  type: 'post'
 }
 domUtils.ajaxSetup = function(_params) {
   for (const key in _params) {
@@ -597,7 +595,7 @@ domUtils.ajax = function(_params) {
   _params.type = isset(_params.type) ? _params.type : domUtils.ajaxSettings.type
   _params.success = (typeof _params.success === 'function') ? _params.success : function() {return arguments}
   _params.complete = (typeof _params.complete === 'function') ? _params.complete : function() {return arguments}
-  _params.onError = (typeof _params.error === 'function') ? _params.error : domUtils.ajaxSettings.error_callback
+  _params.onError = (typeof _params.error === 'function') ? _params.error : null
 
   domUtils.countAjax(0, _params.global)
 
@@ -613,6 +611,8 @@ domUtils.ajax = function(_params) {
       isJson ? _params.success(JSON.parse(request.responseText)) : _params.success(request.responseText)
     } else { //Weird thing happened
       domUtils.countAjax(1, _params.global)
+      domUtils.handleAjaxError(response, response.status, response.statusText)
+      if (_params.onError) _params.onError(error)
       _params.onError('', '', error)
     }
     _params.complete()
@@ -625,12 +625,12 @@ domUtils.ajax = function(_params) {
     fetch(url, {
       method: _params.type,
       body: isGet ? null : new URLSearchParams(_params.data),
-      headers: isGet ? new Headers() : {"Content-Type": "application/x-www-form-urlencoded"}
+      headers: isGet ? new Headers() : {"Content-Type": "application/x-www-form-urlencoded"},
     })
     .then(function(response) {
       if (!response.ok) {
-        _params.onError(response, response.status, response.statusText)
-        return
+        domUtils.handleAjaxError(response, response.status, response.statusText)
+        return response
       }
       if (isJson) {
         return response.json()
@@ -646,7 +646,14 @@ domUtils.ajax = function(_params) {
     })
     .catch(function(error) {
       domUtils.countAjax(1, _params.global)
-      _params.onError('', '', error)
+
+      if (_params.url != 'core/ajax/event.ajax.php' || _params.data.action != 'changes') {
+        var msg = 'domUtils.ajax(' + _params.url + ') ' + _params.type + ' async: ' + _params.async
+        domUtils.handleAjaxError(msg, _params.data, error)
+        console.error(msg, _params.data, error)
+      }
+
+      if (_params.onError) _params.onError(error)
     })
   }
 }
