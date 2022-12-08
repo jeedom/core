@@ -1002,11 +1002,14 @@ jeedomUtils.TOOLTIPSOPTIONS = {
   arrow: false,
   delay: 650,
   interactive: false,
-  contentAsHTML: true
+  contentAsHTML: true,
+  debug: false
 }
 jeedomUtils.initTooltips = function(_el) {
   if (!_el) {
-    $('.tooltips:not(.tooltipstered), [title]:not(.ui-button)').tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
+    try {
+      $('.tooltips:not(.tooltipstered), [title]:not(.ui-button)').tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
+    } catch(e) { }
   } else {
     //cmd update:
     if (_el.parents('.cmd-widget[title]').length) {
@@ -1025,7 +1028,6 @@ jeedomUtils.initTooltips = function(_el) {
 
     _el.find('.tooltipstered[title]').tooltipster('destroy')
     _el.find('.tooltips:not(.tooltipstered), [title]').tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
-
   }
 }
 

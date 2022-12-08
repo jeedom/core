@@ -174,7 +174,7 @@ if (!jeeFrontEnd.editor) {
         $('.elfinder-workzone .tooltipstered').tooltipster('destroy')
       } catch(error) {}
       try {
-        $('.elfinder-workzone [title]').removeAttr('title')
+        $('#elfinder [title]').removeAttr('title')
       } catch(error) {}
       }, 500)
     },
@@ -357,11 +357,21 @@ $(function() {
     }
   }
 
-  jeeP._elfInstance = $('#elfinder').elfinder(options).elfinder('instance')
-  jeeP._elfInstance.options.windowCloseConfirm = []
 
-  $('#elfinder').css("height", $(window).height() - 50)
-  $('.ui-state-default.elfinder-navbar.ui-resizable').css('height', '100%')
+  jeeP.loadTimer = window.setInterval(function() {
+    if (typeof window.elFinder == 'function') {
+      window.clearInterval(jeeP.loadTimer)
+      jeeP._elfInstance = $('#elfinder').elfinder(options).elfinder('instance')
+      jeeP._elfInstance.options.windowCloseConfirm = []
+
+      $('#elfinder').css("height", $(window).height() - 50)
+      $('.ui-state-default.elfinder-navbar.ui-resizable').css('height', '100%')
+
+      jeeP.killTooltips()
+    }
+  }, 100)
+
+
 })
 
 //resize explorer in browser window:
