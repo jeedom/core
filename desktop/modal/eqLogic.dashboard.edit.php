@@ -282,7 +282,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                 </div>
 
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">{{Style cases}}</label>
+                  <label class="col-sm-2 control-label">{{Style cellules}}</label>
                   <div class="col-sm-10">
                     <textarea class="eqLogicAttr form-control" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="styletd"></textarea>
                   </div>
@@ -292,45 +292,47 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 
             <div class="widget_layout table" style="display: none;">
               <label><i class="fas fa-th-large"></i> {{Mise en forme détaillée}}</label>
-              <table class="table table-bordered table-condensed table-responsive" id="tableCmdLayoutConfiguration">
-                <tbody>
-                  <?php
-                  $table = array();
-                  foreach (($eqLogic->getCmd(null, null, true)) as $cmd) {
-                    $line = $eqLogic->getDisplay('layout::dashboard::table::cmd::' . $cmd->getId() . '::line', 1);
-                    $column = $eqLogic->getDisplay('layout::dashboard::table::cmd::' . $cmd->getId() . '::column', 1);
-                    if (!isset($table[$line])) {
-                      $table[$line] = array();
-                    }
-                    if (!isset($table[$line][$column])) {
-                      $table[$line][$column] = array();
-                    }
-                    $table[$line][$column][] = $cmd;
-                  }
-                  $getDisplayDasboardNbLine = $eqLogic->getDisplay('layout::dashboard::table::nbLine', 1);
-                  $getDisplayDasboardNbColumn = $eqLogic->getDisplay('layout::dashboard::table::nbColumn', 1);
-                  for ($i = 1; $i <= $getDisplayDasboardNbLine; $i++) {
-                    $tr = '<tr>';
-                    for ($j = 1; $j <= $getDisplayDasboardNbColumn; $j++) {
-                      $tr .= '<td data-line="' . $i . '" data-column="' . $j . '">';
-                      $string_cmd = '<center class="cmdLayoutContainer" style="min-height:30px;">';
-                      if (isset($table[$i][$j]) && count($table[$i][$j]) > 0) {
-                        foreach ($table[$i][$j] as $cmd) {
-                          $string_cmd .= '<span class="label label-default cmdLayout cursor" data-cmd_id="' . $cmd->getId() . '" style="margin:2px;">' . $cmd->getName() . '</span>';
-                        }
+              <div class="table-responsive">
+                <table class="table table-bordered table-condensed table-responsive" id="tableCmdLayoutConfiguration">
+                  <tbody>
+                    <?php
+                    $table = array();
+                    foreach (($eqLogic->getCmd(null, null, true)) as $cmd) {
+                      $line = $eqLogic->getDisplay('layout::dashboard::table::cmd::' . $cmd->getId() . '::line', 1);
+                      $column = $eqLogic->getDisplay('layout::dashboard::table::cmd::' . $cmd->getId() . '::column', 1);
+                      if (!isset($table[$line])) {
+                        $table[$line] = array();
                       }
-                      $tr .= $string_cmd . '</center>';
-                      $tr .= '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' . $i . '::' . $j . '" placeholder="{{Texte de la case}}">';
-                      $tr .= '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' . $i . '::' . $j . '" placeholder="{{Style de la case (CSS)}}">';
-
-                      $tr .= '</td>';
+                      if (!isset($table[$line][$column])) {
+                        $table[$line][$column] = array();
+                      }
+                      $table[$line][$column][] = $cmd;
                     }
-                    $tr .= '</tr>';
-                    echo $tr;
-                  }
-                  ?>
-                </tbody>
-              </table>
+                    $getDisplayDasboardNbLine = $eqLogic->getDisplay('layout::dashboard::table::nbLine', 1);
+                    $getDisplayDasboardNbColumn = $eqLogic->getDisplay('layout::dashboard::table::nbColumn', 1);
+                    for ($i = 1; $i <= $getDisplayDasboardNbLine; $i++) {
+                      $tr = '<tr>';
+                      for ($j = 1; $j <= $getDisplayDasboardNbColumn; $j++) {
+                        $tr .= '<td data-line="' . $i . '" data-column="' . $j . '">';
+                        $string_cmd = '<div class="cmdLayoutContainer text-center" style="min-height:30px;">';
+                        if (isset($table[$i][$j]) && count($table[$i][$j]) > 0) {
+                          foreach ($table[$i][$j] as $cmd) {
+                            $string_cmd .= '<span class="label label-default cmdLayout cursor" data-cmd_id="' . $cmd->getId() . '" style="margin:2px;">' . $cmd->getName() . '</span>';
+                          }
+                        }
+                        $tr .= $string_cmd . '</div>';
+                        $tr .= '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' . $i . '::' . $j . '" placeholder="{{Texte de la cellule}}">';
+                        $tr .= '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' . $i . '::' . $j . '" placeholder="{{Style CSS ou attribut(s) HTML}}">';
+
+                        $tr .= '</td>';
+                      }
+                      $tr .= '</tr>';
+                      echo $tr;
+                    }
+                    ?>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -548,8 +550,8 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
   function getNewLayoutTd(row, col) {
     var newTd = '<td data-line="' + row + '" data-column="' + col + '">'
     newTd += '<center class="cmdLayoutContainer"></center>'
-    newTd += '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' + row + '::' + col + '" placeholder="{{Texte de la case}}">'
-    newTd += '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' + row + '::' + col + '" placeholder="{{Style de la case (CSS)}}">'
+    newTd += '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' + row + '::' + col + '" placeholder="{{Texte de la cellule}}">'
+    newTd += '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' + row + '::' + col + '" placeholder="{{Style CSS ou attribut(s) HTML}}">'
     newTd += '</td>'
     return newTd
   }
