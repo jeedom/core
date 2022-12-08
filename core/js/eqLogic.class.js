@@ -353,10 +353,8 @@ jeedom.eqLogic.getSelectModal = function(_options, callback) {
   if (!isset(_options)) {
     _options = {};
   }
-  if (document.getElementById('mod_insertEqLogicValue') != null) {
-      document.getElementById('mod_insertEqLogicValue').remove()
-  }
 
+  document.getElementById('mod_insertEqLogicValue')?.remove()
   document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertEqLogicValue" title="{{Sélectionner un équipement}}" ></div>')
 
   $("#mod_insertEqLogicValue").dialog({

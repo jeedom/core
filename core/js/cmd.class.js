@@ -969,10 +969,7 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
     _options = {}
   }
 
-  if (document.getElementById('mod_insertCmdValue') != null) {
-    document.getElementById('mod_insertCmdValue').remove()
-  }
-
+  document.getElementById('mod_insertCmdValue')?.remove()
   document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertCmdValue" title="{{Sélectionner la commande}}" ></div>')
   $("#mod_insertCmdValue").dialog({
     closeText: '',
