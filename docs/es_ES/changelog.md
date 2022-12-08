@@ -11,28 +11,32 @@
 - **Histórico** : El modal de historial y la página de historial permiten usar botones *Semana, Mes, Año* para recargar dinámicamente un historial más grande.
 - **Menú Jeedom** : Un retraso de 0.25s se introdujo en la apertura de submenús.
 - **Ventana de selección de imagen** : Se agregó un menú contextual para enviar imágenes y crear, renombrar o eliminar una carpeta.
-- **Tablero** : Capacidad para mostrar varios objetos uno al lado del otro (Configuración → Sistema → Configuración / Interfaz).
+- **Ventana de selección de iconos** : Posibilidad de agregar un parámetro `ruta` al llamar a `jeedomUtils.chooseIcon` por un complemento para mostrar solo sus iconos.
+- **Tablero** : Capacidad para mostrar varios objetos uno al lado del otro *(Ajustes → Sistema → Configuración / Interfaz)*.
 - **Tablero** : La ventana de edición de mosaicos del modo de edición permite cambiar el nombre de los comandos.
-- **Herramientas / Reemplazar** : Esta herramienta ahora ofrece un modo *Copiar*, permitiendo copiar las configuraciones de equipos y comandos, sin reemplazarlos en los escenarios, etc.
+- **Tablero** : En el diseño de la tabla, posibilidad de insertar atributos HTML *(colspan/rowspan en particular)* para cada celda.
+- **Equipo** : Capacidad para deshabilitar las plantillas de widgets de los complementos que los usan para volver a la pantalla predeterminada de Jeedom *(ventana de configuración del dispositivo)*.
+- **Herramientas / Reemplazar** : Esta herramienta ahora ofrece un modo *Copiar*, permitiendo copiar las configuraciones de equipos y comandos, sin reemplazarlos en los escenarios y otros.
 - **Línea de tiempo** : La línea de tiempo ahora carga los primeros 35 eventos. En la parte inferior de la página, varios botones le permiten cargar dinámicamente los siguientes eventos.
 - **Administración** : Posibilidad de diferenciar acciones en caso de error o de alerta de comando.
-- Se ha agregado un menú contextual en diferentes lugares en las casillas de verificación para seleccionar todo, ninguno o invertir la selección (ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.4)).
+- Se ha añadido un menú contextual en diferentes lugares al nivel de los checkboxes para seleccionarlos todos, ninguno, o invertir la selección *(ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.4))*.
 
-> **Observación**
+>**Observación**
 >
-> Sobre **Tablero** y los **Puntos de vista**, Núcleo v4.4 ahora cambia automáticamente el tamaño de los mosaicos para crear una cuadrícula perfecta. Las unidades (la altura más pequeña y el ancho más pequeño de un mosaico) de esta cuadrícula se definen en **Ajustes → Sistema → Configuración / Interfaz** por valores *Tono vertical* y *Paso horizontal*. El valor *Margen* definiendo el espacio entre las baldosas.
-> Los mosaicos se adaptan a las dimensiones de la cuadrícula y se pueden hacer una, dos veces, etc. estos valores en alto o ancho. Sin duda será necesario pasar [Modo de edición del tablero](https://doc.jeedom.com/es_ES/core/4.4/dashboard#Mode%20%C3%A9dition) para ajustar el tamaño de algunos mosaicos después de la actualización.
+>Sobre **Tablero** y los **Puntos de vista**, Núcleo v4.4 ahora cambia automáticamente el tamaño de los mosaicos para crear una cuadrícula perfecta. Las unidades (la altura más pequeña y el ancho más pequeño de un mosaico) de esta cuadrícula se definen en **Ajustes → Sistema → Configuración / Interfaz** por valores *Paso vertical (mínimo 100)* y *Paso horizontal (mínimo 110)*. El valor *Margen* definiendo el espacio entre las baldosas.
+>Los mosaicos se adaptan a las dimensiones de la cuadrícula y se pueden hacer una, dos veces, etc. estos valores en alto o ancho. Sin duda será necesario pasar [Modo de edición del tablero](https://doc.jeedom.com/es_ES/core/4.4/dashboard#Mode%20%C3%A9dition) para ajustar el tamaño de algunos mosaicos después de la actualización.
 
 
-> **Observación**
+>**Observación**
 >
-> Los widgets principales se han reescrito en js/css puro. Será necesario editar el Tablero (Modo Editar, luego botón ⁝ en los mosaicos) y usar la opción *Ajuste de línea después* en ciertos comandos para encontrar el mismo aspecto visual.
-> Todos los widgets principales ahora admiten la visualización *tiempo*, agregando un parámetro opcional *tiempo* / *duración* Dónde *fecha*.
+>Los widgets principales se han reescrito en js/css puro. Tendrás que editar el Dashboard *(Editar luego botón ⁝ en los mosaicos)* y usa la opcion *Ajuste de línea después* en ciertos comandos para encontrar el mismo aspecto visual.
+>Todos los widgets principales ahora admiten la visualización *tiempo*, agregando un parámetro opcional *tiempo* / *duración* Dónde *fecha*.
 
 
 ### 4.4 : Autre
 
 - **Centro** : Inicio de desarrollo en js puro, sin jQuery. Ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.4).
+- **Centro** : Lista más detallada de dispositivos USB.
 
 ### 4.4 : Notes
 

@@ -11,28 +11,32 @@
 - **Histórico** : O modal de histórico e a página de histórico permitem usar botões *Semana, Mês, Ano* para recarregar dinamicamente um histórico maior.
 - **Menu Jeedom** : Um atraso de 0.25s foi introduzido na abertura de submenus.
 - **Janela de seleção de imagem** : Adicionado um menu de contexto para enviar imagens e criar, renomear ou excluir uma pasta.
-- **Painel** : Capacidade de exibir vários objetos lado a lado (Configurações → Sistema → Configuração / Interface).
+- **Janela de seleção de ícones** : Capacidade de adicionar um parâmetro `path` ao chamar `jeedomUtils.chooseIcon` por um plug-in para exibir apenas seus ícones.
+- **Painel** : Capacidade de exibir vários objetos lado a lado *(Configurações → Sistema → Configuração / Interface)*.
 - **Painel** : A janela de edição do bloco Edit Mode permite que os comandos sejam renomeados.
-- **Ferramentas / Substituir** : Esta ferramenta agora oferece um modo *Copiar*, permitindo copiar as configurações de equipamentos e comandos, sem substituí-los nos cenários etc.
+- **Painel** : No layout da tabela, possibilidade de inserir atributos HTML *(colspan/rowspan em particular)* para cada célula.
+- **Equipamento** : Capacidade de desativar os modelos de widget de plug-ins que os utilizam para retornar à exibição padrão do Jeedom *(janela de configuração do dispositivo)*.
+- **Ferramentas / Substituir** : Esta ferramenta agora oferece um modo *Copiar*, permitindo copiar as configurações de equipamentos e comandos, sem substituí-los nos cenários e outros.
 - **Linha do tempo** : A linha do tempo agora carrega os primeiros 35 eventos. Na parte inferior da página, vários botões permitem que você carregue dinamicamente os seguintes eventos.
 - **Administração** : Possibilidade de diferenciar ações em caso de erro ou alerta de comando.
-- Um menu contextual foi adicionado em diferentes locais nas caixas de seleção para selecionar tudo, nenhum ou inverter a seleção (consulte [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.4)).
+- Um menu contextual foi adicionado em diferentes lugares ao nível das caixas de seleção para selecionar todas, nenhuma ou inverter a seleção *(consulte [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.4))*.
 
-> **Observação**
+>**Observação**
 >
-> No **Painel** e a **Visualizações**, Núcleo v4.4 agora redimensiona automaticamente os blocos para criar uma grade perfeita. As unidades (menor altura e menor largura de um ladrilho) desta grade são definidas em **Configurações → Sistema → Configuração / Interface** por valores *Passo vertical* e *Arremesso horizontal*. O valor que *Margem* definindo o espaço entre as telhas.
-> Os ladrilhos se adaptam às dimensões da grade e podem ser feitos uma, duas vezes etc. esses valores em altura ou largura. Certamente será necessário passar [Modo de edição do painel](https://doc.jeedom.com/pt_PT/core/4.4/dashboard#Mode%20%C3%A9dition) para ajustar o tamanho de alguns blocos após a atualização.
+>No **Painel** e a **Visualizações**, Núcleo v4.4 agora redimensiona automaticamente os blocos para criar uma grade perfeita. As unidades (menor altura e menor largura de um ladrilho) desta grade são definidas em **Configurações → Sistema → Configuração / Interface** por valores *Passo vertical (mínimo 100)* e *Passo horizontal (mínimo 110)*. O valor que *Margem* definindo o espaço entre as telhas.
+>Os ladrilhos se adaptam às dimensões da grade e podem ser feitos uma, duas vezes etc. esses valores em altura ou largura. Certamente será necessário passar [Modo de edição do painel](https://doc.jeedom.com/pt_PT/core/4.4/dashboard#Mode%20%C3%A9dition) para ajustar o tamanho de alguns blocos após a atualização.
 
 
-> **Observação**
+>**Observação**
 >
-> Widgets principais foram reescritos em js/css puro. Será necessário editar o Dashboard (Modo Editar, depois botão ⁝ nos tiles) e usar a opção *Quebra de linha depois* em certos comandos para encontrar o mesmo aspecto visual.
-> Todos os widgets Core agora suportam a exibição *Tempo*, adicionando um parâmetro opcional *Tempo* / *duração* Onde *encontro*.
+>Widgets principais foram reescritos em js/css puro. Você terá que editar o Painel *(Edite, em seguida, botão ⁝ nos ladrilhos)* e use a opção *Quebra de linha depois* em certos comandos para encontrar o mesmo aspecto visual.
+>Todos os widgets Core agora suportam a exibição *Tempo*, adicionando um parâmetro opcional *Tempo* / *duração* Onde *encontro*.
 
 
 ### 4.4 : Autre
 
 - **Essencial** : Início do desenvolvimento em js puro, sem jQuery. Ver [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.4).
+- **Essencial** : Listagem mais detalhada de dispositivos USB.
 
 ### 4.4 : Notes
 

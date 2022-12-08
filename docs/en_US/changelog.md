@@ -11,28 +11,32 @@
 - **Historical** : History modal and History page allow to use buttons *Week, Month, Year* to dynamically reload a larger history.
 - **Jeedom menu** : A delay of 0.25s was introduced on opening submenus.
 - **Image selection window** : Added a context menu for sending images and creating, renaming or deleting a folder.
-- **Dashboard** : Ability to display several objects side by side (Settings → System → Configuration / Interface).
+- **Icon selection window** : Ability to add a `path` parameter when calling `jeedomUtils.chooseIcon` by a plugin to display only its icons.
+- **Dashboard** : Ability to display multiple objects side by side *(Settings → System → Configuration / Interface)*.
 - **Dashboard** : Edit Mode tile editing window allows commands to be renamed.
-- **Tools / Replace** : This tool now offers a mode *To copy*, allowing to copy the configurations of equipment and commands, without replacing them in the scenarios etc.
+- **Dashboard** : In table layout, possibility to insert HTML attributes *(colspan/rowspan in particular)* for each cell.
+- **Equipment** : Ability to disable the widget templates of plugins that use them to return to the Jeedom default display *(device configuration window)*.
+- **Tools / Replace** : This tool now offers a mode *To copy*, allowing to copy the configurations of equipment and commands, without replacing them in the scenarios and others.
 - **Timeline** : The Timeline now loads the first 35 events. At the bottom of the page, several buttons allow you to dynamically load the following events.
 - **Administration** : Possibility to differentiate actions on error or on command alert.
-- A contextual menu has been added in different places on the checkboxes to select all, none, or invert the selection (see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.4)).
+- A contextual menu has been added in different places at the level of the checkboxes to select them all, none, or invert the selection *(see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.4))*.
 
-> **Remark**
+>**Remark**
 >
-> On the **Dashboard** and the **Views**, Core v4.4 now automatically resizes tiles to build a seamless grid. The units (smallest height and smallest width of a tile) of this grid are defined in **Settings → System → Configuration / Interface** by values *Vertical pitch* and *Horizontal pitch*. The value *Margin* defining the space between the tiles.
-> The tiles adapt to the dimensions of the grid and can be done once, twice etc. these values in height or width. It will certainly be necessary to pass [Dashboard edit mode](https://doc.jeedom.com/en_US/core/4.4/dashboard#Mode%20%C3%A9dition) to fine-tune the size of some tiles after the update.
+>On the **Dashboard** and the **Views**, Core v4.4 now automatically resizes tiles to build a seamless grid. The units (smallest height and smallest width of a tile) of this grid are defined in **Settings → System → Configuration / Interface** by values *Vertical pitch (minimum 100)* and *Horizontal pitch (minimum 110)*. The value *Margin* defining the space between the tiles.
+>The tiles adapt to the dimensions of the grid and can be done once, twice etc. these values in height or width. It will certainly be necessary to pass [Dashboard edit mode](https://doc.jeedom.com/en_US/core/4.4/dashboard#Mode%20%C3%A9dition) to fine-tune the size of some tiles after the update.
 
 
-> **Remark**
+>**Remark**
 >
-> Core widgets have been rewritten in pure js/css. It will be necessary to edit the Dashboard (Edit Mode, then button ⁝ on the tiles) and use the option *Line wrap after* on certain commands to find the same visual aspect.
-> All Core widgets now support displaying *time*, by adding an optional parameter *time* / *duration* Where *date*.
+>Core widgets have been rewritten in pure js/css. You will have to edit the Dashboard *(Edit then button ⁝ on the tiles)* and use the option *Line wrap after* on certain commands to find the same visual aspect.
+>All Core widgets now support displaying *time*, by adding an optional parameter *time* / *duration* Where *date*.
 
 
 ### 4.4 : Autre
 
 - **Core** : Start of development in pure js, without jQuery. See [doc dev](https://doc.jeedom.com/en_US/dev/core4.4).
+- **Core** : More detailed listing of USB devices.
 
 ### 4.4 : Notes
 
