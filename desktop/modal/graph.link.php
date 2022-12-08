@@ -71,7 +71,7 @@ function render() {
         .attr('alignment-baseline','central')
         .attr('text-anchor','middle')
         .attr('font-weight',node.data.fontweight)
-    if (typeof node.data.image != 'undefined' && $.trim(node.data.image) != '') {
+    if (typeof node.data.image != 'undefined' && node.data.image.trim() != '') {
       img = Viva.Graph.svg('image')
           .attr('width', node.data.width)
           .attr('height', node.data.height)
@@ -82,7 +82,7 @@ function render() {
         img.attr('class','nodeNoActive')
       }
       text.attr('y', -node.data.height/2 -7)
-    } else if (typeof node.data.icon != 'undefined' && $.trim(node.data.icon) != '') {
+    } else if (typeof node.data.icon != 'undefined' && node.data.icon.trim() != '') {
       img = Viva.Graph.svg('text')
           .attr("font-family",node.data.fontfamily)
           .attr("font-size",node.data.fontsize)
@@ -98,7 +98,7 @@ function render() {
         text.attr("font-size", "1.5em")
         img.attr("font-size", "3em")
       }
-    } else if (typeof node.data.shape != 'undefined' && $.trim(node.data.shape) != '') {
+    } else if (typeof node.data.shape != 'undefined' && node.data.shape.trim() != '') {
       img = Viva.Graph.svg(node.data.shape)
           .attr("width", node.data.width)
           .attr("height", node.data.height)
@@ -109,7 +109,7 @@ function render() {
           .attr("height", 24)
           .attr("fill", 'black')
     }
-    if (typeof node.data.title != 'undefined' && $.trim(node.data.title) != '') {
+    if (typeof node.data.title != 'undefined' && node.data.title.trim() != '') {
       ui.attr('title',node.data.title)
     }
     ui.append(text)

@@ -530,7 +530,7 @@ if (!jeeFrontEnd.scenario) {
             retour += _expression.element.html
           } else {
             var element = jeeP.addElement(_expression.element, true)
-            if ($.trim(element) == '') {
+            if (element.trim() == '') {
               return ''
             }
             retour += element

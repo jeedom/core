@@ -998,7 +998,7 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
       retour.cmd.id = mod_insertCmd.getCmdId()
       retour.cmd.type = mod_insertCmd.getType()
       retour.cmd.subType = mod_insertCmd.getSubType()
-      if ($.trim(retour) != '' && 'function' == typeof (_callback)) {
+      if (retour.human.trim() != '' && 'function' == typeof (_callback)) {
         _callback(retour)
       }
       $(this).dialog('close')

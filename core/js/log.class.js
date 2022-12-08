@@ -244,7 +244,7 @@ jeedom.log.autoupdate = function(_params) {
         //line by line, numbered for system log:
         for (var i in result.reverse()) {
           if (!isset(_params.search) || _params.search.value == '' || result[i].toLowerCase().indexOf(_params['search'].value.toLowerCase()) != -1) {
-            line = $.trim(result[i])
+            line = result[i].trim()
             if (isSysLog) {
               log += i.padStart(4, 0) + '|' + line + "\n"
             } else {

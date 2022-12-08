@@ -108,7 +108,7 @@ jeedom.dataStore.getSelectModal = function(_options, callback) {
             var retour = {};
             retour.human = mod_insertDataStore.getValue();
             retour.id = mod_insertDataStore.getId();
-            if ($.trim(retour) != '') {
+            if (retour.human.trim() != '') {
                 callback(retour);
             }
             $(this).dialog('close');

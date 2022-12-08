@@ -199,7 +199,7 @@ jeedom.init = function() {
   })
 
   document.body.addEventListener('jeedom::alert', function(_event) {
-    if (!isset(_event.detail.message) || $.trim(_event.detail.message) == '') {
+    if (!isset(_event.detail.message) || _event.detail.message.trim() == '') {
       if (isset(_event.detail.page) && _event.detail.page != '') {
         if (getUrlVars('p') == _event.detail.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _event.detail.page)) {
           $.hideAlert()

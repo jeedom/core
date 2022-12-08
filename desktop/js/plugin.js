@@ -68,7 +68,7 @@ if (!jeeFrontEnd.plugin) {
           }
 
           $container.find('#span_plugin_license').html(data.license)
-          if ($.trim(data.installation) == '' || $.trim(data.installation) == 'Aucune') {
+          if (data.installation.trim() == '' || data.installation.trim() == 'Aucune') {
             $container.find('#span_plugin_installation').closest('.panel').hide()
           } else {
             $container.find('#span_plugin_installation').html(data.installation).closest('.panel').show()
@@ -300,7 +300,7 @@ if (!jeeFrontEnd.plugin) {
           if (data.checkVersion != -1) {
             if (data.configurationPath != '' && data.activate == 1) {
               $divPluginConfiguration.load('index.php?v=d&plugin=' + data.id + '&configure=1', function() {
-                if ($.trim($divPluginConfiguration.html()) == '') {
+                if ($divPluginConfiguration.html().trim() == '') {
                   $divPluginConfiguration.closest('.panel').hide()
                   return
                 } else {

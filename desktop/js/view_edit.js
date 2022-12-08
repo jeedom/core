@@ -484,7 +484,7 @@ $('#bt_addviewZone').on('click', function() {
 })
 
 $('#bt_addEditviewZoneSave').on('click', function() {
-  if ($.trim($('#in_addEditviewZoneName').val()) != '') {
+  if ($('#in_addEditviewZoneName').val().trim() != '') {
     var viewZone = {
       name: document.getElementById('in_addEditviewZoneName').innerHTML,
       emplacement: document.getElementById('in_addEditviewZoneEmplacement').innerHTML,
