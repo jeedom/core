@@ -4,7 +4,7 @@
     },
     "mobile\/modal\/warnme.html": {
         "Valeur": "Valor",
-        "Annuler": "Anular",
+        "Annuler": "Cancelar",
         "Ok": "OK"
     },
     "mobile\/js\/log.js": {
@@ -2238,7 +2238,7 @@
         "Equipement": "Dispositivo",
         "Graphique": "Gráfico",
         "Tableau": "Panel",
-        "Annuler": "Anular"
+        "Annuler": "Cancelar"
     },
     "desktop\/php\/scenario.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -2313,7 +2313,7 @@
         "A": "PARA",
         "Code": "Código",
         "Commentaire": "Comentario",
-        "Annuler": "Anular"
+        "Annuler": "Cancelar"
     },
     "desktop\/php\/connection.php": {
         "Connexion": "Conexión",
@@ -2471,7 +2471,7 @@
         "Supprimer": "Borrar",
         "Identifiant": "Identificador",
         "Mot de passe": "Contraseña",
-        "Annuler": "Anular",
+        "Annuler": "Cancelar",
         "Ajouter": "Añadir"
     },
     "desktop\/php\/database.php": {
@@ -2981,7 +2981,7 @@
         "Paramètres d\\'affichage": "Pantalla de ajustes",
         "Configuration du composant": "Configuración de componentes",
         "Configuration avancée": "Configuración avanzada",
-        "Annuler": "Anular",
+        "Annuler": "Cancelar",
         "Valider": "Validar",
         "Supprimer": "Eliminar",
         "Dupliquer": "Duplicar",
@@ -3408,7 +3408,7 @@
         "Message": "Mensaje",
         " Message de test": "Mensaje de prueba",
         "Ceci est un test de message pour la commande": "Este es un mensaje de prueba para el comando",
-        "Annuler": "Anular",
+        "Annuler": "Cancelar",
         "Ok": "OK",
         "Info": "Información",
         "Action": "Acción",
@@ -3417,12 +3417,12 @@
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Seleccione el escenario",
-        "Annuler": "Anular",
+        "Annuler": "Cancelar",
         "Valider": "Validar"
     },
     "core\/js\/eqLogic.class.js": {
         "Sélectionner un équipement": "Seleccione un dispositivo",
-        "Annuler": "Anular",
+        "Annuler": "Cancelar",
         "Valider": "Validar"
     },
     "core\/js\/plugin.template.js": {
@@ -3485,13 +3485,13 @@
         "Vendredi": "Viernes",
         "Samedi": "Sábado",
         "Assistant cron": "Asistente cron",
-        "Annuler": "Anular",
+        "Annuler": "Cancelar",
         "Valider": "Validar",
         "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Seleccionar una variable",
-        "Annuler": "Anular",
+        "Annuler": "Cancelar",
         "Valider": "Validar"
     },
     "core\/js\/config.class.js": {

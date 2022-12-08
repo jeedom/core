@@ -903,7 +903,7 @@
     },
     "desktop\/modal\/cmd.configureHistory.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Valider": "Para validar",
+        "Valider": "Validar",
         "Commandes :": "Pedidos:",
         "Commandes historisées :": "Pedidos históricos:",
         "Commandes timeline :": "Comandos da linha cronológica:",
@@ -1232,7 +1232,7 @@
         "Aucune commande trouvée": "Nenhum comando encontrado",
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Inverser": "Inverter",
-        "Valider": "Para validar",
+        "Valider": "Validar",
         "Objet": "Objeto",
         "Plugin": "Plugar",
         "Equipement": "Equipamento",
@@ -2982,7 +2982,7 @@
         "Configuration du composant": "Configuração de componentes",
         "Configuration avancée": "Configuração avançada",
         "Annuler": "Cancelar",
-        "Valider": "Para validar",
+        "Valider": "Validar",
         "Supprimer": "Retirar",
         "Dupliquer": "Duplicar",
         "Verrouiller": "Trancar"
@@ -3288,7 +3288,7 @@
         "Le bloc Sinon ne peut être masqué s'il contient des éléments.": "O bloco SENÂO não se pode ocultar se contiver elementos",
         "Ajout d'une nouvelle condition": "Adicionar uma nova condição",
         "Ne rien mettre": "Não ponha nada",
-        "Valider": "Para validar"
+        "Valider": "Validar"
     },
     "desktop\/common\/js\/ui.js": {
         "Historique": "Histórico"
@@ -3413,17 +3413,17 @@
         "Info": "Informações",
         "Action": "Açao",
         "Sélectionner la commande": "Selecione o comando",
-        "Valider": "Para validar"
+        "Valider": "Validar"
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Selecione o cenário",
         "Annuler": "Cancelar",
-        "Valider": "Para validar"
+        "Valider": "Confirmar"
     },
     "core\/js\/eqLogic.class.js": {
         "Sélectionner un équipement": "Selecione o equipamento",
         "Annuler": "Cancelar",
-        "Valider": "Para validar"
+        "Valider": "Validar"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Configuração de plugin",
@@ -3486,18 +3486,18 @@
         "Samedi": "Sábado",
         "Assistant cron": "Assistente de cron",
         "Annuler": "Cancelar",
-        "Valider": "Para validar",
+        "Valider": "Confirmar",
         "Sélectionner la commande": "Selecione o comando"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Selecione uma variável",
         "Annuler": "Cancelar",
-        "Valider": "Para validar"
+        "Valider": "Validar"
     },
     "core\/js\/config.class.js": {
         "Sélectionner un type générique": "Selecione um tipo genérico",
         "Annuler": "Cancelar",
-        "Valider": "Para validar"
+        "Valider": "Validar"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "O valor foi editado com sucesso",

@@ -4,7 +4,7 @@
     },
     "mobile\/modal\/warnme.html": {
         "Valeur": "Value",
-        "Annuler": "To cancel",
+        "Annuler": "Cancel",
         "Ok": "OK"
     },
     "mobile\/js\/log.js": {
@@ -903,7 +903,7 @@
     },
     "desktop\/modal\/cmd.configureHistory.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Valider": "To validate",
+        "Valider": "Save",
         "Commandes :": "Commands:",
         "Commandes historisées :": "Historized commands:",
         "Commandes timeline :": "Timeline commands:",
@@ -1232,7 +1232,7 @@
         "Aucune commande trouvée": "No commands found",
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Inverser": "Invert",
-        "Valider": "To validate",
+        "Valider": "Validate",
         "Objet": "Object",
         "Plugin": "Plugin",
         "Equipement": "Equipment",
@@ -2238,7 +2238,7 @@
         "Equipement": "Equipment",
         "Graphique": "Graphic",
         "Tableau": "Table",
-        "Annuler": "To cancel"
+        "Annuler": "Cancel"
     },
     "desktop\/php\/scenario.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -2313,7 +2313,7 @@
         "A": "At",
         "Code": "Coded",
         "Commentaire": "Comment",
-        "Annuler": "To cancel"
+        "Annuler": "Cancel"
     },
     "desktop\/php\/connection.php": {
         "Connexion": "Connection",
@@ -2471,7 +2471,7 @@
         "Supprimer": "Delete",
         "Identifiant": "Login",
         "Mot de passe": "Password",
-        "Annuler": "To cancel",
+        "Annuler": "Cancel",
         "Ajouter": "Add"
     },
     "desktop\/php\/database.php": {
@@ -2981,8 +2981,8 @@
         "Paramètres d\\'affichage": "Display settings",
         "Configuration du composant": "Component configuration",
         "Configuration avancée": "Advanced configuration",
-        "Annuler": "To cancel",
-        "Valider": "To validate",
+        "Annuler": "Cancel",
+        "Valider": "Validate",
         "Supprimer": "Delete",
         "Dupliquer": "Duplicate",
         "Verrouiller": "Lock"
@@ -3288,7 +3288,7 @@
         "Le bloc Sinon ne peut être masqué s'il contient des éléments.": "The Else block cannot be hidden if it contains elements",
         "Ajout d'une nouvelle condition": "Adding a new condition",
         "Ne rien mettre": "Put nothing",
-        "Valider": "To validate"
+        "Valider": "Ok"
     },
     "desktop\/common\/js\/ui.js": {
         "Historique": "History"
@@ -3408,22 +3408,22 @@
         "Message": "Message",
         " Message de test": "Test message",
         "Ceci est un test de message pour la commande": "This is a test message for the command",
-        "Annuler": "To cancel",
+        "Annuler": "Cancel",
         "Ok": "OK",
         "Info": "Information",
         "Action": "Stock",
         "Sélectionner la commande": "Select command",
-        "Valider": "To validate"
+        "Valider": "Ok"
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Select the scenario",
-        "Annuler": "To cancel",
-        "Valider": "To validate"
+        "Annuler": "Cancel",
+        "Valider": "Ok"
     },
     "core\/js\/eqLogic.class.js": {
         "Sélectionner un équipement": "Select equipment",
-        "Annuler": "To cancel",
-        "Valider": "To validate"
+        "Annuler": "Cancel",
+        "Valider": "Ok"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Plugin configuration",
@@ -3485,19 +3485,19 @@
         "Vendredi": "Friday",
         "Samedi": "Saturday",
         "Assistant cron": "Cron assistant",
-        "Annuler": "To cancel",
-        "Valider": "To validate",
+        "Annuler": "Cancel",
+        "Valider": "Ok",
         "Sélectionner la commande": "Select command"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Select a variable",
-        "Annuler": "To cancel",
-        "Valider": "To validate"
+        "Annuler": "Cancel",
+        "Valider": "Ok"
     },
     "core\/js\/config.class.js": {
         "Sélectionner un type générique": "Select a generic type",
-        "Annuler": "To cancel",
-        "Valider": "To validate"
+        "Annuler": "Cancel",
+        "Valider": "Ok"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "The value was successfully edited",

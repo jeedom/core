@@ -903,7 +903,7 @@
     },
     "desktop\/modal\/cmd.configureHistory.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Valider": "Bestätigen",
+        "Valider": "Validate",
         "Commandes :": "Aufträge :",
         "Commandes historisées :": "Historische Ordnungen:",
         "Commandes timeline :": "Timeline-Befehle:",
@@ -1232,7 +1232,7 @@
         "Aucune commande trouvée": "Keine Befehle gefunden",
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Inverser": "Umgekehrt",
-        "Valider": "Bestätigen",
+        "Valider": "Validate",
         "Objet": "Objekt",
         "Plugin": "Plugin",
         "Equipement": "Gerät",
@@ -2982,7 +2982,7 @@
         "Configuration du composant": "Komponentenkonfiguration",
         "Configuration avancée": "Erweiterte Konfiguration",
         "Annuler": "Abbrechen",
-        "Valider": "Bestätigen",
+        "Valider": "Validate",
         "Supprimer": "Entfernen",
         "Dupliquer": "Duplikat",
         "Verrouiller": "Schloss"
@@ -3288,7 +3288,7 @@
         "Le bloc Sinon ne peut être masqué s'il contient des éléments.": "Der Else-Block kann nicht ausgeblendet werden, wenn er Elemente enthält",
         "Ajout d'une nouvelle condition": "Einfügung einer neuen Bedingung",
         "Ne rien mettre": "Setzen Sie nichts",
-        "Valider": "Bestätigen"
+        "Valider": "Validate"
     },
     "desktop\/common\/js\/ui.js": {
         "Historique": "Chronik"
@@ -3413,17 +3413,17 @@
         "Info": "Die Info",
         "Action": "Aktion",
         "Sélectionner la commande": "Befehl auswählen",
-        "Valider": "Bestätigen"
+        "Valider": "Validate"
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Wählen Sie das Szenario aus",
         "Annuler": "Abbrechen",
-        "Valider": "Bestätigen"
+        "Valider": "Validate"
     },
     "core\/js\/eqLogic.class.js": {
         "Sélectionner un équipement": "Ausrüstung auswählen",
         "Annuler": "Abbrechen",
-        "Valider": "Bestätigen"
+        "Valider": "Validate"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Plugin Konfiguration",
@@ -3486,13 +3486,13 @@
         "Samedi": "Samstag",
         "Assistant cron": "Cron Assistent",
         "Annuler": "Abbrechen",
-        "Valider": "Bestätigen",
+        "Valider": "Validate",
         "Sélectionner la commande": "Befehl auswählen"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Wählen Sie eine Variable aus",
         "Annuler": "Abbrechen",
-        "Valider": "Bestätigen"
+        "Valider": "Validate"
     },
     "core\/js\/config.class.js": {
         "Sélectionner un type générique": "Wählen Sie einen generischen Typ aus",
