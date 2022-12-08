@@ -123,6 +123,12 @@ function getTemplate($_folder, $_version, $_filename, $_plugin = '') {
 }
 
 function template_replace($_array, $_subject) {
+	$eqLogic = eqLogic::byId($_array['#id#']);
+	if (is_object($eqLogic) && $eqLogic->getDisplay('widgetTmpl', 1) == 0 && !isset($_array['#eqLogic_class#'])) {
+		$reflected = new ReflectionClass($eqLogic->getEqType_name());
+		$method = $reflected->getParentClass()->getMethod('toHtml');
+		return $method->invokeArgs($eqLogic, [$_array['#version#']]);
+	}
 	return str_replace(array_keys($_array), array_values($_array), $_subject);
 }
 
@@ -998,7 +1004,7 @@ function evaluate($_string) {
 	} else {
 		$c = 0;
 	}
-	$expr = preg_replace("/([^=<>!])=([^=])/", "$1==$2", $string); // Replace all '=' by '==' and avoid '==' '===' '>=' '<=' '!=' '!==' 
+	$expr = preg_replace("/([^=<>!])=([^=])/", "$1==$2", $string); // Replace all '=' by '==' and avoid '==' '===' '>=' '<=' '!=' '!=='
 	if ($c > 0) {
 		for ($i = 0; $i < $c; $i++) {
 			$expr = str_replace('--preparsed' . $i . '--', $matches[0][$i], $expr);
