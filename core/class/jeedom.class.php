@@ -612,6 +612,9 @@ class jeedom {
 						)
 						done';
 			foreach (explode("\n", shell_exec($script)) as $line) {
+				if (strpos($line, 'Host_Controller') !== false) {
+					continue;
+				}
 				$infos = explode("::", $line);
 				if (trim($infos[0]) == '' || trim($infos[1]) == '') {
 					continue;
