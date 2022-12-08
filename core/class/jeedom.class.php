@@ -613,6 +613,9 @@ class jeedom {
 						done';
 			foreach (explode("\n", shell_exec($script)) as $line) {
 				$infos = explode("::", $line);
+				if (trim($infos[0]) == '' || trim($infos[1]) == '') {
+					continue;
+				}
 				$usbMapping[$infos[1]] = $infos[0];
 			}
 			foreach (ls('/dev/', 'ttyUSB*') as $usb) {
