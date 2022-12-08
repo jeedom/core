@@ -834,7 +834,7 @@ jeedom.cmd.changeType = function(_cmd, _subType) {
       _cmd.querySelector('.subType')?.appendChild(selSubType)
       
       if (isset(_subType)) {
-        _cmd.querySelector('.cmdAttr[data-l1key="subType"],.cmdAttr[data-l1key="subtype"]')?.jeeValue(_subType)
+        _cmd.querySelector('.cmdAttr[data-l1key="subType" i]')?.jeeValue(_subType)
         modifyWithoutSave = false
       }
       jeedom.cmd.changeSubType(_cmd)
@@ -847,7 +847,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
     _cmd = _cmd[0]
   }
   jeedom.getConfiguration({
-    key: 'cmd:type:' + _cmd.querySelector('.cmdAttr[data-l1key="type"],.cmdAttr[data-l1key="subtype"]').jeeValue() + ':subtype:' + _cmd.querySelector('.cmdAttr[data-l1key="subType"],.cmdAttr[data-l1key="subtype"]').jeeValue(),
+    key: 'cmd:type:' + _cmd.querySelector('.cmdAttr[data-l1key="type"]').jeeValue() + ':subtype:' + _cmd.querySelector('.cmdAttr[data-l1key="subType" i]').jeeValue(),
     default: 0,
     async: false,
     error: function(error) {
