@@ -69,6 +69,12 @@ div.cmd-widget .iconCmdLine>i {
   vertical-align: bottom;
 }
 
+div.cmd-widget .iconCmdLine>img {
+  max-width: 15px;
+  max-height: 15px;
+  vertical-align: bottom;
+}
+
 div.cmd-widget .value>.label {
   padding: 1px 3px;
 }
@@ -76,7 +82,8 @@ div.cmd-widget .value>.label {
 div.cmd-widget .content-xs {
   color: var(--txt-color);
   line-height: 16px;
-  margin: 0 5px;
+  min-width: 100px;
+  padding: 0 5px;
 }
 
 div.cmd-widget .content,
@@ -393,6 +400,11 @@ div.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline
   overflow: auto;
   max-height: 24px;
 }
+
+div.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline"]::-webkit-scrollbar {
+  width: 5px;
+}
+
 
 /* ____________________binarySwitch */
 div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] .content-xs {
