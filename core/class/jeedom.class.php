@@ -609,15 +609,16 @@ class jeedom {
 				$vendor = trim(str_replace(array('E: ID_VENDOR=', '"'), '', $line));
 			}
 			if (strpos($line, 'E: DEVLINKS=') !== false) {
-				$serial_by_id = explode(' ',trim(str_replace(array('E: DEVLINKS=', '"'), '', $line)));
-				if (count($serial_by_id)>1){
-					$serial_by_id = $serial_by_id[1];
-				} else {
-					$serial_by_id = '';
+				$serial_by_ids = explode(' ',trim(str_replace(array('E: DEVLINKS=', '"'), '', $line)));
+				foreach ($serial_by_ids as $serial_links){
+					if (strpos($serial_links,'/serial/by-id') !== false){
+						$serial_by_id = trim($serial_links);
+						break;
+					}
 				}
 			}
 		}
-		$path = '/dev/' . $usb;
+		$path = '/dev/' . $_usb;
 		if ($serial_by_id != '') {
 			$path = $serial_by_id;
 		}
