@@ -38,6 +38,7 @@ jeedom.cmd.notifyEq = function(_eqlogic, _hide) {
   } else {
     _eqlogic.querySelector('.widget-name').insertAdjacentHTML('afterbegin', '<span class="cmd refresh pull-right remove"><i class="fas fa-sync"></i></span>')
   }
+  var refresh = _eqlogic.querySelector('.cmd.refresh')
   if (_hide && refresh != null) {
     setTimeout(function() {
       if (refresh.hasClass('remove')) {
