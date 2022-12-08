@@ -1492,24 +1492,23 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
   if (_params && _params.path) {
     url += '&path=' + encodeURIComponent(_params.path)
   }
-}
-$('#mod_selectIcon').empty().load(url, function() {
-  $("#mod_selectIcon").dialog('option', 'buttons', {
-    "Annuler": function() {
-      $(this).dialog("close")
-    },
-    "Valider": function() {
-      var icon = $('.iconSelected .iconSel').html()
-      if (icon == undefined) {
-        icon = ''
+  $('#mod_selectIcon').empty().load(url, function() {
+    $("#mod_selectIcon").dialog('option', 'buttons', {
+      "Annuler": function() {
+        $(this).dialog("close")
+      },
+      "Valider": function() {
+        var icon = $('.iconSelected .iconSel').html()
+        if (icon == undefined) {
+          icon = ''
+        }
+        icon = icon.replace(/"/g, "'")
+        _callback(icon)
+        $(this).dialog('close')
       }
-      icon = icon.replace(/"/g, "'")
-      _callback(icon)
-      $(this).dialog('close')
-    }
+    })
+    $('#mod_selectIcon').dialog('open')
   })
-  $('#mod_selectIcon').dialog('open')
-})
 }
 
 jeedomUtils.getOpenedModal = function() {
