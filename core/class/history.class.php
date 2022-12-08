@@ -405,6 +405,7 @@ class history {
 			$sql .= ' ORDER BY datetime DESC LIMIT 1';
 			$row = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 			if ($row != null) {
+				$row->setDatetime(date('Y-m-d H:i:s', strtotime($_endTime) - 1));
 				array_unshift($return, $row);
 			}
 		}
