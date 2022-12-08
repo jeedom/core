@@ -386,7 +386,7 @@ sendVarToJS([
             </div>
           </form>
 
-          <div class="widget_layout table" style="display: none;">
+          <div class="widget_layout table" style="display: none;overflow-x:auto;">
             <legend><i class="fas fa-th-large"></i> {{Mise en forme détaillée}}</legend>
             <table class="table table-bordered table-condensed" id="tableCmdLayoutConfiguration">
               <tbody>
