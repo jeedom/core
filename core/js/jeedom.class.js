@@ -274,10 +274,10 @@ jeedom.init = function() {
 
 jeedom.getPageType = function(_modal) {
   if (isset(_modal) && _modal == true) {
-    var modal = $('.ui-dialog:visible').first()
-    if (modal.length) {
-      var modalType = $(this).find('div[data-modalType]').first().attr('data-modalType')
-      if (modalType != '') return modalType
+    var modal = Array.prototype.slice.call(document.querySelectorAll('.ui-dialog')).filter(item => item.isVisible())
+    if (modal.length > 0) {
+      var modalType = modal[0].querySelector('div[data-modalType]')?.getAttribute('data-modalType')
+      if (modalType != undefined) return modalType
     }
   }
   var dataPage = document.body.getAttribute('data-page')
