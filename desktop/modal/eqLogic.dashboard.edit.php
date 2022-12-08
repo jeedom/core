@@ -57,62 +57,66 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
       </h3>
       <div id="optParams" class="panel-collapse collapse">
         <div class="panel-body">
-          <form class="form-horizontal">
-            <label><i class="fas fa-chart-line"></i> {{Graphique de fond}}</label>
-            <div class="form-group">
-              <label class="col-sm-2 control-label">{{Information}}</label>
-              <div class="col-sm-4">
-                <select class="eqLogicAttr form-control input-sm sel_backGraphInfo" data-l1key="display" data-l2key="backGraph::info">
-                  <option value="0">{{Aucune}}</option>
-                  <?php
-                  $options = '';
-                  foreach (($eqLogic->getCmd('info')) as $cmd) {
-                    if ($cmd->getIsHistorized()) {
-                      $options .= '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
+          <?php if ($eqLogic->widgetPossibility('custom::graph')) {
+          ?>
+            <form class="form-horizontal">
+              <label><i class="fas fa-chart-line"></i> {{Graphique de fond}}</label>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">{{Information}}</label>
+                <div class="col-sm-4">
+                  <select class="eqLogicAttr form-control input-sm sel_backGraphInfo" data-l1key="display" data-l2key="backGraph::info">
+                    <option value="0">{{Aucune}}</option>
+                    <?php
+                    $options = '';
+                    foreach (($eqLogic->getCmd('info')) as $cmd) {
+                      if ($cmd->getIsHistorized()) {
+                        $options .= '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
+                      }
                     }
-                  }
-                  echo $options;
-                  ?>
-                </select>
+                    echo $options;
+                    ?>
+                  </select>
+                </div>
+
+                <label class="col-sm-2 control-label">{{Couleur}}</label>
+                <div class="col-sm-4">
+                  <input type="color" class="eqLogicAttr form-control input-sm" value="#4572A7" data-l1key="display" data-l2key="backGraph::color">
+                </div>
               </div>
 
-              <label class="col-sm-2 control-label">{{Couleur}}</label>
-              <div class="col-sm-4">
-                <input type="color" class="eqLogicAttr form-control input-sm" value="#4572A7" data-l1key="display" data-l2key="backGraph::color">
-              </div>
-            </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">{{Période}}</label>
+                <div class="col-sm-4">
+                  <select class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="backGraph::format">
+                    <option value="month">{{Mois}}</option>
+                    <option value="week">{{Semaine}}</option>
+                    <option value="day">{{Jour}}</option>
+                    <option value="hour">{{Heure}}</option>
+                  </select>
+                </div>
 
-            <div class="form-group">
-              <label class="col-sm-2 control-label">{{Période}}</label>
-              <div class="col-sm-4">
-                <select class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="backGraph::format">
-                  <option value="month">{{Mois}}</option>
-                  <option value="week">{{Semaine}}</option>
-                  <option value="day">{{Jour}}</option>
-                  <option value="hour">{{Heure}}</option>
-                </select>
+                <label class="col-sm-2 control-label">{{Hauteur}}</label>
+                <div class="col-sm-4">
+                  <input type="number" class="eqLogicAttr form-control input-sm ui-spinner" value="" data-l1key="display" data-l2key="backGraph::height" placeholder="{{Automatique}}">
+                </div>
               </div>
 
-              <label class="col-sm-2 control-label">{{Hauteur}}</label>
-              <div class="col-sm-4">
-                <input type="number" class="eqLogicAttr form-control input-sm ui-spinner" value="" data-l1key="display" data-l2key="backGraph::height" placeholder="{{Automatique}}">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">{{Type}}</label>
+                <div class="col-sm-4">
+                  <select class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="backGraph::type">
+                    <option value="areaspline">{{Courbe}}</option>
+                    <option value="area">{{Escalier}}</option>
+                    <option value="column">{{Barres verticales}}</option>
+                  </select>
+                </div>
               </div>
-            </div>
+            </form>
+            <br>
 
-            <div class="form-group">
-              <label class="col-sm-2 control-label">{{Type}}</label>
-              <div class="col-sm-4">
-                <select class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="backGraph::type">
-                  <option value="areaspline">{{Courbe}}</option>
-                  <option value="area">{{Escalier}}</option>
-                  <option value="column">{{Barres verticales}}</option>
-                </select>
-              </div>
-            </div>
-          </form>
-          <br>
-
-          <?php if (is_array($eqLogic->widgetPossibility('parameters')) && count($eqLogic->widgetPossibility('parameters')) > 0) { ?>
+          <?php }
+          if ($eqLogic->getDisplay('widgetTmpl', 1) == 1 && is_array($eqLogic->widgetPossibility('parameters')) && count($eqLogic->widgetPossibility('parameters')) > 0) {
+          ?>
             <label><i class="fas fa-pencil-ruler"></i> {{Widget}}</label>
             <table class="table table-bordered table-condensed">
               <thead>
@@ -221,8 +225,9 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                 ?>
               </tbody>
             </table>
-          <?php }
-          ?>
+        <?php }
+        }
+        ?>
         </div>
       </div>
     </div>
@@ -330,115 +335,114 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
           </div>
         </div>
       </div>
-  <?php }
-  }
-  ?>
+    <?php }
+    ?>
 
-  <!-- Commands -->
-  <div id="panel_cmds" class="panel panel-default">
-    <h3 class="panel-title">
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#commands"><i class="fas fa-list-alt"></i> {{Commandes}}</a>
-      <sup class="pull-right"><i class="fas fa-question-circle" title="{{Paramètres d'affichage des commandes.<br>En disposition standard, l'ordre des commandes est modifiable par glisser-déposer.}}"></i></sup>
-    </h3>
-    <div id="commands" class="panel-collapse collapse">
-      <div class="panel-body">
-        <div id="div_eqLogicCmds">
-          <?php
-          $display = '';
-          foreach (($eqLogic->getCmd()) as $cmd) {
-            $thisclassAttrib = 'cmdAttr' . $cmd->getId();
-            $display .= '<div class="cmdConfig" style="padding: 2px;" data-attribclass="' . $thisclassAttrib . '" data-id="' . $cmd->getId() . '">';
-            $display .= '<span class="' . $thisclassAttrib . ' hidden" data-l1key="id"></span>';
+    <!-- Commands -->
+    <div id="panel_cmds" class="panel panel-default">
+      <h3 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#commands"><i class="fas fa-list-alt"></i> {{Commandes}}</a>
+        <sup class="pull-right"><i class="fas fa-question-circle" title="{{Paramètres d'affichage des commandes.<br>En disposition standard, l'ordre des commandes est modifiable par glisser-déposer.}}"></i></sup>
+      </h3>
+      <div id="commands" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div id="div_eqLogicCmds">
+            <?php
+            $display = '';
+            foreach (($eqLogic->getCmd()) as $cmd) {
+              $thisclassAttrib = 'cmdAttr' . $cmd->getId();
+              $display .= '<div class="cmdConfig" style="padding: 2px;" data-attribclass="' . $thisclassAttrib . '" data-id="' . $cmd->getId() . '">';
+              $display .= '<span class="' . $thisclassAttrib . ' hidden" data-l1key="id"></span>';
 
-            if ($cmd->getType() == 'info') {
-              $display .= '<a class="btn btn-default btn-info btn-xs bt_cmdConfig" data-toggle="collapse" data-target="#cmdConfig' . $cmd->getId() . '">' . $cmd->getName() . ' (' . $cmd->getType() . ' | ' . $cmd->getSubType() . ')</a>';
-            } else {
-              $display .= '<a class="btn btn-default btn-warning btn-xs bt_cmdConfig" data-toggle="collapse" data-target="#cmdConfig' . $cmd->getId() . '">' . $cmd->getName() . ' (' . $cmd->getType() . ' | ' . $cmd->getSubType() . ')</a>';
-            }
+              if ($cmd->getType() == 'info') {
+                $display .= '<a class="btn btn-default btn-info btn-xs bt_cmdConfig" data-toggle="collapse" data-target="#cmdConfig' . $cmd->getId() . '">' . $cmd->getName() . ' (' . $cmd->getType() . ' | ' . $cmd->getSubType() . ')</a>';
+              } else {
+                $display .= '<a class="btn btn-default btn-warning btn-xs bt_cmdConfig" data-toggle="collapse" data-target="#cmdConfig' . $cmd->getId() . '">' . $cmd->getName() . ' (' . $cmd->getType() . ' | ' . $cmd->getSubType() . ')</a>';
+              }
 
-            $display .= '<div id="cmdConfig' . $cmd->getId() . '" class="collapse" style="margin-top: 8px;">';
-            $display .= '<table class="table table-bordered table-condensed">';
+              $display .= '<div id="cmdConfig' . $cmd->getId() . '" class="collapse" style="margin-top: 8px;">';
+              $display .= '<table class="table table-bordered table-condensed">';
 
-            //Editable name:
-            $display .= '<tr><td>{{Name}}</td><td colspan="2"><input class="input-sm ' . $thisclassAttrib . '" data-l1key="name" style="width: 100%;"></td>';
+              //Editable name:
+              $display .= '<tr><td>{{Name}}</td><td colspan="2"><input class="input-sm ' . $thisclassAttrib . '" data-l1key="name" style="width: 100%;"></td>';
 
-            //visible and td widths:
-            $display .= '<tr><td>{{Visible}}<input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="isVisible" style="float: right"></td>';
+              //visible and td widths:
+              $display .= '<tr><td>{{Visible}}<input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="isVisible" style="float: right"></td>';
 
-            foreach ((jeedom::getConfiguration('eqLogic:displayType')) as $key => $value) {
-              $display .= '<td width="28%"><strong>' . $value['name'] . '</strong></td>';
-            }
+              foreach ((jeedom::getConfiguration('eqLogic:displayType')) as $key => $value) {
+                $display .= '<td width="28%"><strong>' . $value['name'] . '</strong></td>';
+              }
 
-            //generic type:
-            $display .= '<tr><td>{{Type générique}}</td>';
-            $display .= '<td colspan="2"><select class="input-sm ' . $thisclassAttrib . '" data-l1key="generic_type">';
-            $display .= $cmd->getGenericTypeSelectOptions();
-            $display .= '</select></td></tr>';
+              //generic type:
+              $display .= '<tr><td>{{Type générique}}</td>';
+              $display .= '<td colspan="2"><select class="input-sm ' . $thisclassAttrib . '" data-l1key="generic_type">';
+              $display .= $cmd->getGenericTypeSelectOptions();
+              $display .= '</select></td></tr>';
 
-            $display .= '<tr><td>{{Widget}}</td>';
-            //select dashboard widget
-            $display .= '<td class="widgetPossibilityDashboard" style="display: none;"><select class="input-sm ' . $thisclassAttrib . '" data-l1key="template" data-l2key="dashboard">';
-            $display .= $cmd->getWidgetsSelectOptions('dashboard', $cmd_widgetDashboard);
-            $display .= '</select></td>';
+              $display .= '<tr><td>{{Widget}}</td>';
+              //select dashboard widget
+              $display .= '<td class="widgetPossibilityDashboard" style="display: none;"><select class="input-sm ' . $thisclassAttrib . '" data-l1key="template" data-l2key="dashboard">';
+              $display .= $cmd->getWidgetsSelectOptions('dashboard', $cmd_widgetDashboard);
+              $display .= '</select></td>';
 
-            //select mobile widget:
-            $display .= '<td class="widgetPossibilityMobile" style="display: none;"><select class="input-sm ' . $thisclassAttrib . '" data-l1key="template" data-l2key="mobile">';
-            $display .= $cmd->getWidgetsSelectOptions('mobile', $cmd_widgetMobile);
-            $display .= '</select></td>';
-            $display .= '</tr>';
-
-            $display .= '<tr><td>{{Afficher le nom}}</td>';
-            $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showNameOndashboard" checked></td>';
-            $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showNameOnmobile" checked></td>';
-            $display .= '</tr>';
-
-            $display .= "<tr><td>{{Afficher le nom ET l'icône}}</td>";
-            $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showIconAndNamedashboard"></td>';
-            $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showIconAndNamemobile"></td>';
-            $display .= '</tr>';
-
-            if ($cmd->getType() == 'info' && $cmd->getSubType() != 'string') {
-              $display .= '<tr><td>{{Afficher les statistiques}}</td>';
-              $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showStatsOndashboard" checked></td>';
-              $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showStatsOnmobile" checked></td>';
+              //select mobile widget:
+              $display .= '<td class="widgetPossibilityMobile" style="display: none;"><select class="input-sm ' . $thisclassAttrib . '" data-l1key="template" data-l2key="mobile">';
+              $display .= $cmd->getWidgetsSelectOptions('mobile', $cmd_widgetMobile);
+              $display .= '</select></td>';
               $display .= '</tr>';
-            }
 
+              $display .= '<tr><td>{{Afficher le nom}}</td>';
+              $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showNameOndashboard" checked></td>';
+              $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showNameOnmobile" checked></td>';
+              $display .= '</tr>';
 
-            $display .= '<tr><td>{{Retour à la ligne avant}}</td>';
-            $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="forceReturnLineBefore" ></td></tr>';
+              $display .= "<tr><td>{{Afficher le nom ET l'icône}}</td>";
+              $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showIconAndNamedashboard"></td>';
+              $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showIconAndNamemobile"></td>';
+              $display .= '</tr>';
 
-            $display .= '<tr><td>{{Retour à la ligne après}}</td>';
-            $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="forceReturnLineAfter" ></td></tr>';
-
-            $display .= '<tr><td>{{Paramètres optionnels}}</td>';
-            $display .= '<td colspan="2"><a class="btn btn-xs btn-success addWidgetParametersCmd pull-right"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a></td></tr>';
-
-            $display .= '<tr><td colspan="3"><div class="optionalParamHelp ' . $thisclassAttrib . '"></div></td></tr>';
-
-            if ($cmd->getDisplay('parameters') != '') {
-              foreach (($cmd->getDisplay('parameters')) as $key => $value) {
-                $display .= '<tr class="cmdoptparam text-center">';
-                $display .= '<td colspan="3">';
-                $display .= '<input class="key" value="' . $key . '" style="width:45%;">';
-                $display .= ' <input class="value" value="' . $value . '" style="width:45%;">';
-                $display .= '<a class="btn btn-danger btn-xs pull-right removeWidgetParameter"><i class="fas fa-trash-alt"></i></a>';
-                $display .= '</td>';
+              if ($cmd->getType() == 'info' && $cmd->getSubType() != 'string') {
+                $display .= '<tr><td>{{Afficher les statistiques}}</td>';
+                $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showStatsOndashboard" checked></td>';
+                $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showStatsOnmobile" checked></td>';
                 $display .= '</tr>';
               }
+
+
+              $display .= '<tr><td>{{Retour à la ligne avant}}</td>';
+              $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="forceReturnLineBefore" ></td></tr>';
+
+              $display .= '<tr><td>{{Retour à la ligne après}}</td>';
+              $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="forceReturnLineAfter" ></td></tr>';
+
+              $display .= '<tr><td>{{Paramètres optionnels}}</td>';
+              $display .= '<td colspan="2"><a class="btn btn-xs btn-success addWidgetParametersCmd pull-right"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a></td></tr>';
+
+              $display .= '<tr><td colspan="3"><div class="optionalParamHelp ' . $thisclassAttrib . '"></div></td></tr>';
+
+              if ($cmd->getDisplay('parameters') != '') {
+                foreach (($cmd->getDisplay('parameters')) as $key => $value) {
+                  $display .= '<tr class="cmdoptparam text-center">';
+                  $display .= '<td colspan="3">';
+                  $display .= '<input class="key" value="' . $key . '" style="width:45%;">';
+                  $display .= ' <input class="value" value="' . $value . '" style="width:45%;">';
+                  $display .= '<a class="btn btn-danger btn-xs pull-right removeWidgetParameter"><i class="fas fa-trash-alt"></i></a>';
+                  $display .= '</td>';
+                  $display .= '</tr>';
+                }
+              }
+
+              $display .= '</table>';
+
+              $display .= '</div>';
+              $display .= '</div>';
             }
-
-            $display .= '</table>';
-
-            $display .= '</div>';
-            $display .= '</div>';
-          }
-          echo $display;
-          ?>
+            echo $display;
+            ?>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 </div>
 
 <script>
@@ -718,7 +722,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
     if (!isset(eqLogic.display)) eqLogic.display = {}
     if (!isset(eqLogic.display.parameters)) eqLogic.display.parameters = {}
     //tile optionnal parameters:
-    document.querySelectorAll('#table_widgetParameters tbody tr').forEach(function (element) {
+    document.querySelectorAll('#table_widgetParameters tbody tr').forEach(function(element) {
       eqLogic.display.parameters[element.querySelector('.key').jeeValue()] = element.querySelector('.value').jeeValue()
     })
 
@@ -731,7 +735,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
       if (!isset(cmd.display)) cmd.display = {}
       if (!isset(cmd.display.parameters)) cmd.display.parameters = {}
       //cmd optionnal parameters:
-      this.querySelectorAll('tr.cmdoptparam').forEach(function (element) {
+      this.querySelectorAll('tr.cmdoptparam').forEach(function(element) {
         cmd.display.parameters[element.querySelector('.key').jeeValue()] = element.querySelector('.value').jeeValue()
       })
       eqLogic.cmd.push(cmd);
