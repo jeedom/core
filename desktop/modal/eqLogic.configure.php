@@ -43,13 +43,10 @@ sendVarToJS([
   <ul class="nav nav-tabs" role="tablist" id="eqLogicConfigureTab">
     <li role="presentation" class="active"><a href="#eqLogic_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-info-circle"></i> {{Informations}}</a></li>
     <?php if ($eqLogic->widgetPossibility('custom')) {
-    ?>
-      <li role="presentation"><a href="#eqLogic_display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-desktop"></i> {{Affichage}}</a></li>
-      <?php if ($eqLogic->widgetPossibility('custom::layout')) {
-      ?>
-        <li role="presentation"><a href="#eqLogic_layout" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-th"></i> {{Disposition}}</a></li>
-    <?php
-      }
+      echo '<li role="presentation"><a href="#eqLogic_display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-desktop"></i> {{Affichage}}</a></li>';
+    }
+    if ($eqLogic->widgetPossibility('custom::layout')) {
+      echo '<li role="presentation"><a href="#eqLogic_layout" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-th"></i> {{Disposition}}</a></li>';
     }
     ?>
     <li role="presentation"><a href="#eqLogic_alert" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> {{Alertes}}</a></li>
@@ -77,6 +74,13 @@ sendVarToJS([
           <div class="col-sm-3">
             <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked>{{Activer}}</label>
             <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked>{{Visible}}</label>
+            <?php
+            $class = new ReflectionClass($eqLogic->getEqType_name());
+            $method_toHtml = $class->getMethod('toHtml');
+            if ($method_toHtml->class == $eqLogic->getEqType_name()) {
+              echo '<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="widgetTmpl" checked>{{Template de widget}}</label>';
+            }
+            ?>
           </div>
 
           <label class="col-sm-2 control-label">{{ID logique}}</label>
@@ -163,62 +167,65 @@ sendVarToJS([
     <?php if ($eqLogic->widgetPossibility('custom')) {
     ?>
       <div role="tabpanel" class="tab-pane" id="eqLogic_display">
-        <form class="form-horizontal">
-          <legend><i class="fas fa-chart-line"></i> {{Graphique de fond}}</legend>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">{{Information}}</label>
-            <div class="col-sm-3">
-              <select class="eqLogicAttr form-control input-sm sel_backGraphInfo" data-l1key="display" data-l2key="backGraph::info">
-                <option value="0">{{Aucune}}</option>
-                <?php
-                $options = '';
-                foreach (($eqLogic->getCmd('info')) as $cmd) {
-                  if ($cmd->getIsHistorized()) {
-                    $options .= '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
+        <?php if ($eqLogic->widgetPossibility('custom::graph')) {
+        ?>
+          <form class="form-horizontal">
+            <legend><i class="fas fa-chart-line"></i> {{Graphique de fond}}</legend>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">{{Information}}</label>
+              <div class="col-sm-3">
+                <select class="eqLogicAttr form-control input-sm sel_backGraphInfo" data-l1key="display" data-l2key="backGraph::info">
+                  <option value="0">{{Aucune}}</option>
+                  <?php
+                  $options = '';
+                  foreach (($eqLogic->getCmd('info')) as $cmd) {
+                    if ($cmd->getIsHistorized()) {
+                      $options .= '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
+                    }
                   }
-                }
-                echo $options;
-                ?>
-              </select>
+                  echo $options;
+                  ?>
+                </select>
+              </div>
+
+              <label class="col-sm-2 control-label">{{Couleur}}</label>
+              <div class="col-sm-3">
+                <input type="color" class="eqLogicAttr form-control input-sm" value="#4572A7" data-l1key="display" data-l2key="backGraph::color">
+              </div>
             </div>
 
-            <label class="col-sm-2 control-label">{{Couleur}}</label>
-            <div class="col-sm-3">
-              <input type="color" class="eqLogicAttr form-control input-sm" value="#4572A7" data-l1key="display" data-l2key="backGraph::color">
-            </div>
-          </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">{{Période}}</label>
+              <div class="col-sm-3">
+                <select class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="backGraph::format">
+                  <option value="month">{{Mois}}</option>
+                  <option value="week">{{Semaine}}</option>
+                  <option value="day">{{Jour}}</option>
+                  <option value="hour">{{Heure}}</option>
+                </select>
+              </div>
 
-          <div class="form-group">
-            <label class="col-sm-2 control-label">{{Période}}</label>
-            <div class="col-sm-3">
-              <select class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="backGraph::format">
-                <option value="month">{{Mois}}</option>
-                <option value="week">{{Semaine}}</option>
-                <option value="day">{{Jour}}</option>
-                <option value="hour">{{Heure}}</option>
-              </select>
+              <label class="col-sm-2 control-label">{{Hauteur}} <sub>px</sub></label>
+              <div class="col-sm-3">
+                <input type="number" class="eqLogicAttr form-control input-sm ui-spinner" value="" data-l1key="display" data-l2key="backGraph::height" placeholder="{{Automatique}}">
+              </div>
             </div>
 
-            <label class="col-sm-2 control-label">{{Hauteur}} <sub>px</sub></label>
-            <div class="col-sm-3">
-              <input type="number" class="eqLogicAttr form-control input-sm ui-spinner" value="" data-l1key="display" data-l2key="backGraph::height" placeholder="{{Automatique}}">
+            <div class="form-group">
+              <label class="col-sm-2 control-label">{{Type}}</label>
+              <div class="col-sm-3">
+                <select class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="backGraph::type">
+                  <option value="areaspline">{{Courbe}}</option>
+                  <option value="area">{{Escalier}}</option>
+                  <option value="column">{{Barres verticales}}</option>
+                </select>
+              </div>
             </div>
-          </div>
+          </form>
 
-          <div class="form-group">
-            <label class="col-sm-2 control-label">{{Type}}</label>
-            <div class="col-sm-3">
-              <select class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="backGraph::type">
-                <option value="areaspline">{{Courbe}}</option>
-                <option value="area">{{Escalier}}</option>
-                <option value="column">{{Barres verticales}}</option>
-              </select>
-            </div>
-          </div>
-        </form>
-
-        <?php if (is_array($eqLogic->widgetPossibility('parameters')) && count($eqLogic->widgetPossibility('parameters')) > 0) { ?>
-          <legend><i class="fas fa-pencil-ruler"></i> {{Widget}}</legend>
+        <?php }
+        if ($eqLogic->getDisplay('widgetTmpl', 1) == 1 && is_array($eqLogic->widgetPossibility('parameters')) && count($eqLogic->widgetPossibility('parameters')) > 0) { ?>
+          <legend><i class="fas fa-pencil-ruler"></i> {{Paramêtres du template}}</legend>
           <table class="table table-bordered table-condensed">
             <thead>
               <tr>
@@ -323,8 +330,9 @@ sendVarToJS([
               ?>
             </tbody>
           </table>
-        <?php }
-        ?>
+      <?php }
+      }
+      ?>
       </div>
 
       <?php if ($eqLogic->widgetPossibility('custom::layout')) {
@@ -421,44 +429,43 @@ sendVarToJS([
             </table>
           </div>
         </div>
-    <?php }
-    }
-    ?>
+      <?php }
+      ?>
 
-    <div role="tabpanel" class="tab-pane" id="eqLogic_alert">
-      <form class="form-horizontal">
-        <legend><i class="fas fa-satellite-dish"></i> {{Communication}}</legend>
-        <div class="form-group">
-          <label class="col-sm-2 control-label">{{En alerte}} <sub>{{minutes}}</sub></label>
-          <div class="col-sm-3 input-group">
-            <span class="input-group-addon input-sm roundedLeft" style="background-color:var(--al-danger-color)!important;"><i class="far fa-clock"></i> {{Danger si}} <i class="fas fa-greater-than-equal"></i></span>
-            <input type="number" class="eqLogicAttr form-control input-sm roundedRight" data-l1key="timeout">
+      <div role="tabpanel" class="tab-pane" id="eqLogic_alert">
+        <form class="form-horizontal">
+          <legend><i class="fas fa-satellite-dish"></i> {{Communication}}</legend>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">{{En alerte}} <sub>{{minutes}}</sub></label>
+            <div class="col-sm-3 input-group">
+              <span class="input-group-addon input-sm roundedLeft" style="background-color:var(--al-danger-color)!important;"><i class="far fa-clock"></i> {{Danger si}} <i class="fas fa-greater-than-equal"></i></span>
+              <input type="number" class="eqLogicAttr form-control input-sm roundedRight" data-l1key="timeout">
+            </div>
           </div>
-        </div>
 
-        <legend><i class="fas fa-battery-three-quarters"></i> {{Batterie}}<a class="btn btn-success btn-xs pull-right" id="bt_resetbattery"><i class="fas fa-battery-full"></i> {{Pile(s) neuve(s)}}</a></legend>
-        <div class="form-group">
-          <label class="col-sm-2 control-label">{{Type de pile}}</label>
-          <div class="col-sm-3">
-            <input class="eqLogicAttr form-control input-sm" data-l1key="configuration" data-l2key="battery_type"></input>
+          <legend><i class="fas fa-battery-three-quarters"></i> {{Batterie}}<a class="btn btn-success btn-xs pull-right" id="bt_resetbattery"><i class="fas fa-battery-full"></i> {{Pile(s) neuve(s)}}</a></legend>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">{{Type de pile}}</label>
+            <div class="col-sm-3">
+              <input class="eqLogicAttr form-control input-sm" data-l1key="configuration" data-l2key="battery_type"></input>
+            </div>
+            <label class="col-sm-2 control-label">{{Changement de pile}}</label>
+            <div class="col-sm-3">
+              <span class="eqLogicAttr label label-sm label-info" data-l1key="configuration" data-l2key="batterytime"></span>
+            </div>
           </div>
-          <label class="col-sm-2 control-label">{{Changement de pile}}</label>
-          <div class="col-sm-3">
-            <span class="eqLogicAttr label label-sm label-info" data-l1key="configuration" data-l2key="batterytime"></span>
-          </div>
-        </div>
 
-        <div class="form-group">
-          <label class="col-sm-2 control-label">{{En alerte}} <sub>%</sub></label>
-          <div class="col-sm-8 input-group">
-            <span class="input-group-addon input-sm roundedLeft" style="background-color:var(--al-danger-color)!important;"><i class="fas fa-battery-empty"></i> {{Danger si}} <i class="fas fa-less-than-equal"></i></span>
-            <input type="number" class="eqLogicAttr form-control input-sm" data-l1key="configuration" data-l2key="battery_danger_threshold">
-            <span class="input-group-addon input-sm" style="background-color:var(--al-warning-color)!important;"><i class="fas fa-battery-quarter"></i> {{Attention si}} <i class="fas fa-less-than-equal"></i></span>
-            <input type="number" class="eqLogicAttr form-control input-sm roundedRight" data-l1key="configuration" data-l2key="battery_warning_threshold">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">{{En alerte}} <sub>%</sub></label>
+            <div class="col-sm-8 input-group">
+              <span class="input-group-addon input-sm roundedLeft" style="background-color:var(--al-danger-color)!important;"><i class="fas fa-battery-empty"></i> {{Danger si}} <i class="fas fa-less-than-equal"></i></span>
+              <input type="number" class="eqLogicAttr form-control input-sm" data-l1key="configuration" data-l2key="battery_danger_threshold">
+              <span class="input-group-addon input-sm" style="background-color:var(--al-warning-color)!important;"><i class="fas fa-battery-quarter"></i> {{Attention si}} <i class="fas fa-less-than-equal"></i></span>
+              <input type="number" class="eqLogicAttr form-control input-sm roundedRight" data-l1key="configuration" data-l2key="battery_warning_threshold">
+            </div>
           </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
 
   </div>
 </div>
