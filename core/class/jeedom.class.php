@@ -596,40 +596,66 @@ class jeedom {
 	}
 
 	/*************************************************USB********************************************************/
-
+	public static function getUsbDetails($_usb = '', $_usbMapping = array()) {
+		$vendor = '';
+		$model = '';
+		$serial = '';
+		$serial_by_id ='';
+		foreach (explode("\n", shell_exec('udevadm info --name=/dev/' . $_usb . ' --query=all')) as $line) {
+			if (strpos($line, 'E: ID_MODEL=') !== false) {
+				$model = trim(str_replace(array('E: ID_MODEL=', '"'), '', $line));
+			}
+			if (strpos($line, 'E: ID_VENDOR=') !== false) {
+				$vendor = trim(str_replace(array('E: ID_VENDOR=', '"'), '', $line));
+			}
+			if (strpos($line, 'E: DEVLINKS=') !== false) {
+				$serial_by_id = explode(' ',trim(str_replace(array('E: DEVLINKS=', '"'), '', $line)));
+				if (count($serial_by_id)>1){
+					$serial_by_id = $serial_by_id[1];
+				} else {
+					$serial_by_id = '';
+				}
+			}
+		}
+		$path = '/dev/' . $usb;
+		if ($serial_by_id != '') {
+			$path = $serial_by_id;
+		}
+		if ($vendor == '' && $model == '') {
+			$_usbMapping[$path] = $path;
+		} else {
+			$name = trim($vendor . ' ' . $model);
+			$number = 2;
+			while (isset($result[$name])) {
+				$name = trim($vendor . ' ' . $model . ' ' . $number);
+				$number++;
+			}
+			$_usbMapping[$name] = $path;
+		}
+		return $_usbMapping;
+	}
+	
+	public static function getUsbLegacy($_usbMapping = array()) {
+		foreach (ls('/dev/', 'ttyUSB*') as $usb) {
+			$_usbMapping['/dev/' . $usb] = '/dev/' . $usb;
+		}
+		foreach (ls('/dev/', 'ttyACM*') as $value) {
+			$_usbMapping['/dev/' . $value] = '/dev/' . $value;
+		}
+		return $_usbMapping;
+	}
+	
 	public static function getUsbMapping($_name = '', $_getGPIO = false) {
 		$cache = cache::byKey('jeedom::usbMapping');
 		if (!is_json($cache->getValue()) || $_name == '') {
 			$usbMapping = array();
 			foreach (ls('/dev/', 'ttyUSB*') as $usb) {
-				$vendor = '';
-				$model = '';
-				$serial = '';
-				foreach (explode("\n", shell_exec('/sbin/udevadm info --name=/dev/' . $usb . ' --query=all')) as $line) {
-					if (strpos($line, 'E: ID_MODEL=') !== false) {
-						$model = trim(str_replace(array('E: ID_MODEL=', '"'), '', $line));
-					}
-					if (strpos($line, 'E: ID_VENDOR=') !== false) {
-						$vendor = trim(str_replace(array('E: ID_VENDOR=', '"'), '', $line));
-					}
-					if (strpos($line, 'E: ID_SERIAL=') !== false) {
-						$serial = trim(str_replace(array('E: ID_SERIAL=', '"'), '', $line));
-					}
-				}
-				if ($serial != '') {
-					$usbMapping[$serial] = '/dev/' . $usb;
-				} elseif ($vendor == '' && $model == '') {
-					$usbMapping['/dev/' . $usb] = '/dev/' . $usb;
-				} else {
-					$name = trim($vendor . ' ' . $model);
-					$number = 2;
-					while (isset($usbMapping[$name])) {
-						$name = trim($vendor . ' ' . $model . ' ' . $number);
-						$number++;
-					}
-					$usbMapping[$name] = '/dev/' . $usb;
-				}
+				$usbMapping = self::getUsbDetails($usb,$usbMapping);
 			}
+			foreach (ls('/dev/', 'ttyACM*') as $value) {
+				$usbMapping = self::getUsbDetails($value,$usbMapping);
+			}
+			$usbMapping = self::getUsbLegacy($usbMapping);
 			if ($_getGPIO) {
 				if (file_exists('/dev/ttyAMA0')) {
 					$usbMapping['Raspberry pi'] = '/dev/ttyAMA0';
@@ -660,9 +686,6 @@ class jeedom {
 				}
 				if (file_exists('/dev/ttyAML1')) {
 					$usbMapping['Odroid ARMBIAN (Buster)'] = '/dev/ttyAML1';
-				}
-				foreach (ls('/dev/', 'ttyACM*') as $value) {
-					$usbMapping['/dev/' . $value] = '/dev/' . $value;
 				}
 			}
 			cache::set('jeedom::usbMapping', json_encode($usbMapping));
