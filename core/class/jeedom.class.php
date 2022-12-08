@@ -604,6 +604,7 @@ class jeedom {
 			foreach (ls('/dev/', 'ttyUSB*') as $usb) {
 				$vendor = '';
 				$model = '';
+				$serial = '';
 				foreach (explode("\n", shell_exec('/sbin/udevadm info --name=/dev/' . $usb . ' --query=all')) as $line) {
 					if (strpos($line, 'E: ID_MODEL=') !== false) {
 						$model = trim(str_replace(array('E: ID_MODEL=', '"'), '', $line));
@@ -611,8 +612,13 @@ class jeedom {
 					if (strpos($line, 'E: ID_VENDOR=') !== false) {
 						$vendor = trim(str_replace(array('E: ID_VENDOR=', '"'), '', $line));
 					}
+					if (strpos($line, 'E: ID_SERIAL=') !== false) {
+						$serial = trim(str_replace(array('E: ID_SERIAL=', '"'), '', $line));
+					}
 				}
-				if ($vendor == '' && $model == '') {
+				if ($serial != '') {
+					$usbMapping[$serial] = '/dev/' . $usb;
+				} elseif ($vendor == '' && $model == '') {
 					$usbMapping['/dev/' . $usb] = '/dev/' . $usb;
 				} else {
 					$name = trim($vendor . ' ' . $model);
