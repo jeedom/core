@@ -601,6 +601,20 @@ class jeedom {
 		$cache = cache::byKey('jeedom::usbMapping');
 		if (!is_json($cache->getValue()) || $_name == '') {
 			$usbMapping = array();
+			$script = 'for sysdevpath in $(find /sys/bus/usb/devices/usb*/ -name dev); do
+						(
+							syspath="${sysdevpath%/dev}"
+							devname="$(udevadm info -q name -p $syspath)"
+							[[ "$devname" == "bus/"* ]] && exit
+							eval "$(udevadm info -q property --export -p $syspath)"
+							[[ -z "$ID_SERIAL" ]] && exit
+							echo "/dev/$devname::$ID_SERIAL"
+						)
+						done';
+			foreach (explode("\n", shell_exec($script)) as $line) {
+				$infos = explode("::", $line);
+				$usbMapping[$infos[1]] = $infos[0];
+			}
 			foreach (ls('/dev/', 'ttyUSB*') as $usb) {
 				$vendor = '';
 				$model = '';
@@ -1446,13 +1460,13 @@ class jeedom {
 
 		if ($_mode == 'replace') {
 			//replace equipment where used:
-	      	foreach ($_eqlogics as $_sourceId => $_targetId) {
-	      		$sourceEq = eqLogic::byId($_sourceId);
+			foreach ($_eqlogics as $_sourceId => $_targetId) {
+				$sourceEq = eqLogic::byId($_sourceId);
 				$targetEq = eqLogic::byId($_targetId);
 				if (!is_object($sourceEq) || !is_object($targetEq)) continue;
-				jeedom::replaceTag(array('eqLogic'.$_sourceId => 'eqLogic'.$_targetId));
+				jeedom::replaceTag(array('eqLogic' . $_sourceId => 'eqLogic' . $_targetId));
 				$return['eqlogics'] += 1;
-	        }
+			}
 		}
 
 
