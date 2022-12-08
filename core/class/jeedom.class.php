@@ -601,26 +601,6 @@ class jeedom {
 		$cache = cache::byKey('jeedom::usbMapping');
 		if (!is_json($cache->getValue()) || $_name == '') {
 			$usbMapping = array();
-			$script = 'for sysdevpath in $(find /sys/bus/usb/devices/usb*/ -name dev); do
-						(
-							syspath="${sysdevpath%/dev}"
-							devname="$(udevadm info -q name -p $syspath)"
-							[[ "$devname" == "bus/"* ]] && exit
-							eval "$(udevadm info -q property --export -p $syspath)"
-							[[ -z "$ID_SERIAL" ]] && exit
-							echo "/dev/$devname::$ID_SERIAL"
-						)
-						done';
-			foreach (explode("\n", shell_exec($script)) as $line) {
-				if (strpos($line, 'Host_Controller') !== false) {
-					continue;
-				}
-				$infos = explode("::", $line);
-				if (trim($infos[0]) == '' || trim($infos[1]) == '') {
-					continue;
-				}
-				$usbMapping[$infos[1]] = $infos[0];
-			}
 			foreach (ls('/dev/', 'ttyUSB*') as $usb) {
 				$vendor = '';
 				$model = '';
