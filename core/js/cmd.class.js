@@ -31,17 +31,18 @@ jeedom.cmd.notifyEq = function(_eqlogic, _hide) {
   if (!_eqlogic) {
     return
   }
-  if (_eqlogic.find('.cmd.refresh').length) {
-    _eqlogic.find('.cmd.refresh').addClass('spinning')
+  if (isElement_jQuery(_eqlogic)) _eqlogic = _eqlogic[0]
+  if (_eqlogic.querySelector('.cmd.refresh') != null) {
+    _eqlogic.querySelector('.cmd.refresh').addClass('spinning')
   } else {
-    _eqlogic.find('.widget-name').prepend('<span class="cmd refresh pull-right remove"><i class="fas fa-sync"></i></span>')
+    _eqlogic.querySelector('.widget-name').prepend('<span class="cmd refresh pull-right remove"><i class="fas fa-sync"></i></span>')
   }
   if (_hide) {
     setTimeout(function() {
-      if (_eqlogic.find('.cmd.refresh').hasClass('remove')) {
-        _eqlogic.find('.cmd.refresh').remove()
+      if (_eqlogic.querySelector('.cmd.refresh').hasClass('remove')) {
+        _eqlogic.querySelector('.cmd.refresh').remove()
       } else {
-        _eqlogic.find('.cmd.refresh').removeClass('spinning')
+        _eqlogic.querySelector('.cmd.refresh').removeClass('spinning')
       }
     }, 1000)
   }
@@ -53,7 +54,7 @@ jeedom.cmd.execute = function(_params) {
   }
   var notify = _params.notify || true
   if (notify) {
-    var eqLogic = $('.cmd[data-cmd_id=' + _params.id + ']').closest('div.eqLogic-widget')
+    var eqLogic = document.querySelector('.cmd[data-cmd_id="' + _params.id + '"]').closest('div.eqLogic-widget')
     jeedom.cmd.notifyEq(eqLogic, false)
   }
   if (_params.value != 'undefined' && (is_array(_params.value) || is_object(_params.value))) {
@@ -216,7 +217,7 @@ jeedom.cmd.test = function(_params) {
             cache: 0,
             notify: false,
             success: function(result) {
-              $(_params.alert).showAlert({
+              jeedomUtils.showAlert({
                 message: '{{Résultat de la commande :}}' + ' ' + result,
                 level: 'success'
               })
@@ -230,13 +231,13 @@ jeedom.cmd.test = function(_params) {
                 id: _params.id,
                 cache: 0,
                 error: function(error) {
-                  $(_params.alert).showAlert({
+                  jeedomUtils.showAlert({
                     message: error.message,
                     level: 'danger'
                   })
                 },
                 success: function() {
-                  $(_params.alert).showAlert({
+                  jeedomUtils.showAlert({
                     message: '{{Action exécutée avec succès}}',
                     level: 'success'
                   })
@@ -262,13 +263,13 @@ jeedom.cmd.test = function(_params) {
                     },
                     cache: 0,
                     error: function(error) {
-                      $(_params.alert).showAlert({
+                      jeedomUtils.showAlert({
                         message: error.message,
                         level: 'danger'
                       })
                     },
                     success: function() {
-                      $(_params.alert).showAlert({
+                      jeedomUtils.showAlert({
                         message: '{{Action exécutée avec succès}}',
                         level: 'success'
                       })
@@ -292,13 +293,13 @@ jeedom.cmd.test = function(_params) {
                     },
                     cache: 0,
                     error: function(error) {
-                      $(_params.alert).showAlert({
+                      jeedomUtils.showAlert({
                         message: error.message,
                         level: 'danger'
                       })
                     },
                     success: function() {
-                      $(_params.alert).showAlert({
+                      jeedomUtils.showAlert({
                         message: '{{Action exécutée avec succès}}',
                         level: 'success'
                       })
@@ -328,13 +329,13 @@ jeedom.cmd.test = function(_params) {
                     },
                     cache: 0,
                     error: function(error) {
-                      $(_params.alert).showAlert({
+                      jeedomUtils.showAlert({
                         message: error.message,
                         level: 'danger'
                       })
                     },
                     success: function() {
-                      $(_params.alert).showAlert({
+                      jeedomUtils.showAlert({
                         message: '{{Action exécutée avec succès}}',
                         level: 'success'
                       })
@@ -375,7 +376,7 @@ jeedom.cmd.test = function(_params) {
                           })
                         },
                         success: function() {
-                          $(_params.alert).showAlert({
+                          jeedomUtils.showAlert({
                             message: '{{Action exécutée avec succès}}',
                             level: 'success'
                           })
@@ -407,6 +408,7 @@ jeedom.cmd.test = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
+//deprecated
 jeedom.cmd.refreshByEqLogic = function(_params) {
   var cmds = $('.cmd[data-eqLogic_id=' + _params.eqLogic_id + ']')
   if (cmds.length == 0) {
@@ -966,23 +968,21 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
   if (!isset(_options)) {
     _options = {}
   }
-  if ($("#mod_insertCmdValue").length == 0) {
-    $('body').append('<div id="mod_insertCmdValue" title="{{Sélectionner la commande}}" ></div>')
-    $("#mod_insertCmdValue").dialog({
-      closeText: '',
-      autoOpen: false,
-      modal: true,
-      height: 250,
-      width: 800
-    })
-    jQuery.ajaxSetup({
-      async: false
-    })
-    $('#mod_insertCmdValue').load('index.php?v=d&modal=cmd.human.insert')
-    jQuery.ajaxSetup({
-      async: true
-    })
-  }
+
+  document.getElementById('mod_insertCmdValue')?.remove()
+  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertCmdValue" title="{{Sélectionner la commande}}" ></div>')
+  $("#mod_insertCmdValue").dialog({
+    closeText: '',
+    autoOpen: false,
+    modal: true,
+    height: 250,
+    width: 800
+  })
+
+  domUtils.ajaxSetup({async: false})
+  document.getElementById('mod_insertCmdValue').load('index.php?v=d&modal=cmd.human.insert')
+  domUtils.ajaxSetup({async: true})
+
   mod_insertCmd.setOptions(_options)
   $("#mod_insertCmdValue").dialog('option', 'buttons', {
     "{{Annuler}}": function() {

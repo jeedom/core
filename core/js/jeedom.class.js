@@ -588,10 +588,7 @@ jeedom.forceSyncHour = function(_params) {
 }
 
 jeedom.getCronSelectModal = function(_options, _callback) {
-  if (document.getElementById('mod_insertCronValue') != null) {
-    document.getElementById('mod_insertCronValue').remove()
-  }
-
+  document.getElementById('mod_insertCronValue')?.remove()
   document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertCronValue" title="{{Assistant cron}}" ></div>')
   $("#mod_insertCronValue").dialog({
     closeText: '',
@@ -627,10 +624,8 @@ jeedom.getSelectActionModal = function(_options, _callback) {
   if (!isset(_options)) {
     _options = {}
   }
-  if (document.getElementById('mod_insertActionValue') != null) {
-    document.getElementById('mod_insertActionValue').remove()
-  }
 
+  document.getElementById('mod_insertActionValue')?.remove()
   document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertActionValue" title="{{Sélectionner la commande}}" ></div>')
   $("#mod_insertActionValue").dialog({
     closeText: '',

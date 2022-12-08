@@ -548,7 +548,6 @@ Element.prototype.load = function(_path, _callback) {
 /* ____________Ajax Management____________
 */
 domUtils.handleAjaxError = function(_request, _status, _error) {
-  console.log('handleAjaxError', _request, _status, _error)
   domUtils.hideLoading()
   if (_request.status != '0') {
     if (init(_request.responseText, '') != '') {

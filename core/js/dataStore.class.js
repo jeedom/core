@@ -87,10 +87,7 @@ jeedom.dataStore.getSelectModal = function(_options, callback) {
     if (!isset(_options)) {
         _options = {};
     }
-    if (document.getElementById('mod_insertDataStoreValue') != null) {
-        document.getElementById('mod_insertDataStoreValue').remove()
-    }
-
+    document.getElementById('mod_insertDataStoreValue')?.remove()
     document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertDataStoreValue" title="{{Sélectionner une variable}}" ></div>')
     $("#mod_insertDataStoreValue").dialog({
         closeText: '',

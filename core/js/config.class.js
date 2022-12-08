@@ -197,10 +197,7 @@ jeedom.config.getGenericTypeModal = function(_options, callback) {
     if (!isset(_options.type)) {
         _options.type = 'info';
     }
-    if (document.getElementById('mod_insertGenericType') != null) {
-        document.getElementById('mod_insertGenericType').remove()
-    }
-
+    document.getElementById('mod_insertGenericType')?.remove()
     document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertGenericType" title="{{Sélectionner un type générique}}" ></div>')
     $("#mod_insertGenericType").dialog({
         closeText: '',
