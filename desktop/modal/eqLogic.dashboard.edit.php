@@ -117,7 +117,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
           <?php }
           if ($eqLogic->getDisplay('widgetTmpl', 1) == 1 && is_array($eqLogic->widgetPossibility('parameters')) && count($eqLogic->widgetPossibility('parameters')) > 0) {
           ?>
-            <label><i class="fas fa-pencil-ruler"></i> {{Widget}}</label>
+            <label><i class="fas fa-pencil-ruler"></i> {{Paramètres du template}}</label>
             <table class="table table-bordered table-condensed">
               <thead>
                 <tr>

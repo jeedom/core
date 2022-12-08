@@ -225,7 +225,7 @@ sendVarToJS([
 
         <?php }
         if ($eqLogic->getDisplay('widgetTmpl', 1) == 1 && is_array($eqLogic->widgetPossibility('parameters')) && count($eqLogic->widgetPossibility('parameters')) > 0) { ?>
-          <legend><i class="fas fa-pencil-ruler"></i> {{Paramêtres du template}}</legend>
+          <legend><i class="fas fa-pencil-ruler"></i> {{Paramètres du template}}</legend>
           <table class="table table-bordered table-condensed">
             <thead>
               <tr>
