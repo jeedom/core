@@ -127,7 +127,6 @@ function getDeviceType() {
   result.type = 'desktop'
   result.subType = ''
   result.bSize = 220
-  console.log(result)
 
   if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
     result.type = 'tablet'
