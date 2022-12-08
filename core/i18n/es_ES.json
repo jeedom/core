@@ -4,7 +4,7 @@
     },
     "mobile\/modal\/warnme.html": {
         "Valeur": "Valor",
-        "Annuler": "Cancelar",
+        "Annuler": "Anular",
         "Ok": "OK"
     },
     "mobile\/js\/log.js": {
@@ -2238,7 +2238,7 @@
         "Equipement": "Dispositivo",
         "Graphique": "Gráfico",
         "Tableau": "Panel",
-        "Annuler": "Cancelar"
+        "Annuler": "Anular"
     },
     "desktop\/php\/scenario.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -2313,7 +2313,7 @@
         "A": "PARA",
         "Code": "Código",
         "Commentaire": "Comentario",
-        "Annuler": "Cancelar"
+        "Annuler": "Anular"
     },
     "desktop\/php\/connection.php": {
         "Connexion": "Conexión",
@@ -2471,7 +2471,7 @@
         "Supprimer": "Borrar",
         "Identifiant": "Identificador",
         "Mot de passe": "Contraseña",
-        "Annuler": "Cancelar",
+        "Annuler": "Anular",
         "Ajouter": "Añadir"
     },
     "desktop\/php\/database.php": {
@@ -2981,7 +2981,7 @@
         "Paramètres d\\'affichage": "Pantalla de ajustes",
         "Configuration du composant": "Configuración de componentes",
         "Configuration avancée": "Configuración avanzada",
-        "Annuler": "Cancelar",
+        "Annuler": "Anular",
         "Valider": "Validar",
         "Supprimer": "Eliminar",
         "Dupliquer": "Duplicar",
@@ -3316,6 +3316,8 @@
         "Recharger": "Recargar",
         "Rester sur la page": "Quédate en la página",
         "Choisir une illustration": "Elige una ilustración",
+        "Annuler": "Anular",
+        "Valider": "Validar",
         "Sélectionner tout": "Seleccionar todo",
         "Désélectionner tout": "Deseleccionar todo",
         "Inverser la sélection": "Invertir selección"
@@ -3406,7 +3408,7 @@
         "Message": "Mensaje",
         " Message de test": "Mensaje de prueba",
         "Ceci est un test de message pour la commande": "Este es un mensaje de prueba para el comando",
-        "Annuler": "Cancelar",
+        "Annuler": "Anular",
         "Ok": "OK",
         "Info": "Información",
         "Action": "Acción",
@@ -3415,12 +3417,12 @@
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Seleccione el escenario",
-        "Annuler": "Cancelar",
+        "Annuler": "Anular",
         "Valider": "Validar"
     },
     "core\/js\/eqLogic.class.js": {
         "Sélectionner un équipement": "Seleccione un dispositivo",
-        "Annuler": "Cancelar",
+        "Annuler": "Anular",
         "Valider": "Validar"
     },
     "core\/js\/plugin.template.js": {
@@ -3483,13 +3485,13 @@
         "Vendredi": "Viernes",
         "Samedi": "Sábado",
         "Assistant cron": "Asistente cron",
-        "Annuler": "Cancelar",
+        "Annuler": "Anular",
         "Valider": "Validar",
         "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Seleccionar una variable",
-        "Annuler": "Cancelar",
+        "Annuler": "Anular",
         "Valider": "Validar"
     },
     "core\/js\/config.class.js": {
