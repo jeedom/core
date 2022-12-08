@@ -973,9 +973,9 @@ jeedomUtils.initDisplayAsTable = function() {
 
 jeedomUtils.OBSERVER = null
 jeedomUtils.observerConfig = {
-  attributes: true,
+  attributes: false,
   childList: true,
-  characterData: true,
+  characterData: false,
   subtree: true
 }
 jeedomUtils.createObserver = function() {

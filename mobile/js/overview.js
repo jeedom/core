@@ -8,7 +8,7 @@ function initOverview() {
       $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(objects) {
-      document.emptyById('objectOverviewContainer')
+      $('#objectOverviewContainer').empty()
       var summaries = []
       var _this, icon, _backUrl, div, synthAction, dataPage, dataOption, dataTitle
       for (var i in objects) {
@@ -135,7 +135,7 @@ function initOverview() {
 function createSummaryObserver() {
   var _SummaryObserver_ = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
-      if (mutation.type == 'childList' && mutation.target.className == 'resume') {
+      if (mutation.type == 'childList' && mutation.target.parentNode?.className == 'resume') {
         try {
           updateSummary(mutation.addedNodes[0].className)
         } catch {}
@@ -144,9 +144,9 @@ function createSummaryObserver() {
   })
 
   var observerConfig = {
-    attributes: true,
+    attributes: false,
     childList: true,
-    characterData: true,
+    characterData: false,
     subtree: true
   }
 

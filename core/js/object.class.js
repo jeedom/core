@@ -282,7 +282,7 @@ jeedom.object.getUISelectList = function(_params) {
 
 
 jeedom.object.summaryUpdate = function(_params) {
-  var objects = {};
+  var summaryUpdate = {};
   var sends = {};
   var object = null;
   var summarySpan = null;
@@ -290,71 +290,82 @@ jeedom.object.summaryUpdate = function(_params) {
   var updated = null;
   var icon = null;
 
+  //modifiy html summaries icons / numbers both desktop/mobile. Synthesis placement done by synthetis mutation observer.
   for (var i in _params) {
-    object = $('.objectSummary' + _params[i].object_id);
-    if (object.html() == undefined || object.attr('data-version') == undefined) {
-      continue;
-    }
-    if (isset(_params[i]['keys'])) {
-      updated = false;
-      for (var key in _params[i]['keys']) {
-        summarySpan = object.find('.objectSummaryParent[data-summary="' + key + '"]')
-        keySpan = summarySpan.find('.objectSummary' + key);
-        if (summarySpan.html() != undefined) {
-          updated = true;
-          //hide if no display if nul:
-          if (summarySpan.attr('data-displayZeroValue') == 0 && _params[i]['keys'][key]['value'] === 0) {
-            summarySpan.hide();
-            continue;
-          }
-          if (_params[i]['keys'][key]['value'] === null) {
-            continue;
-          }
-          try {
-            //update icon and value:
-            icon = decodeURIComponent(summarySpan.attr('data-icon')).replaceAll('+', ' ')
-            if (_params[i]['keys'][key]['value'] == 0 && summarySpan.attr('data-iconnul') != '') {
-              icon = decodeURIComponent(summarySpan.attr('data-iconnul')).replaceAll('+', ' ')
-            }
-            summarySpan.find('i').remove()
-            summarySpan.prepend(icon).show()
+    //object can be global summary element, or nodelist of object summary and dashOverviewPrev summary
+    objectSummaryList = Array.from(document.querySelectorAll('.objectSummary' + _params[i].object_id))
+    if (objectSummaryList.length == 0) continue
+    version = objectSummaryList[0].getAttribute('data-version')
+    if (version == undefined) continue
 
-            //update number:
-            if (_params[i]['keys'][key]['value'] == 0 && summarySpan.attr('data-hidenulnumber') == '1') {
-              keySpan.empty()
-            } else {
-              keySpan.empty().append(_params[i]['keys'][key]['value']).show()
+    if (isset(_params[i]['keys'])) {
+      objectSummaryList.forEach(function(objectSummary) {
+        updated = false;
+        for (var key in _params[i]['keys']) {
+          summarySpan = objectSummary.querySelector('.objectSummaryParent[data-summary="' + key + '"]')
+          if (summarySpan == null) return //summary hided in object option
+          keySpan = summarySpan.querySelector('.objectSummary' + key)
+          if (summarySpan != null) {
+            updated = true
+            //hide if no display if nul:
+            if (summarySpan.getAttribute('data-displayZeroValue') == 0 && _params[i]['keys'][key]['value'] === 0) {
+              summarySpan.unseen()
+              return
             }
-          } catch(e) {}
+            if (_params[i]['keys'][key]['value'] === null) {
+              return
+            }
+            try {
+              //update icon and value:
+              icon = decodeURIComponent(summarySpan.getAttribute('data-icon')).replaceAll('+', ' ')
+              if (_params[i]['keys'][key]['value'] == 0 && summarySpan.getAttribute('data-iconnul') != '') {
+                icon = decodeURIComponent(summarySpan.getAttribute('data-iconnul')).replaceAll('+', ' ')
+              }
+              summarySpan.querySelector('i').remove()
+              summarySpan.seen().insertAdjacentHTML('afterbegin', icon)
+
+              //update number:
+              if (_params[i]['keys'][key]['value'] == 0 && summarySpan.getAttribute('data-hidenulnumber') == '1') {
+                keySpan.empty()
+              } else {
+                keySpan.empty().seen().insertAdjacentHTML('beforeend', _params[i]['keys'][key]['value'])
+              }
+            } catch(e) {}
+          }
         }
-      }
-      if ((updated && !isset(_params[i]['force'])) || (updated && _params[i]['force'] != 1)) {
-        continue;
-      }
+        if ((updated && !isset(_params[i]['force'])) || (updated && _params[i]['force'] != 1)) {
+          return
+        }
+      })
     }
-    objects[_params[i].object_id] = {
-      object: object,
-      version: object.attr('data-version')
-    };
+    summaryUpdate[_params[i].object_id] = {
+      objectSummaryList: objectSummaryList,
+      version: version
+    }
     sends[_params[i].object_id] = {
-      version: object.attr('data-version')
-    };
+      version: version
+    }
   }
-  if (Object.keys(objects).length == 0) {
-    return;
+  if (Object.keys(summaryUpdate).length == 0) {
+    return
   }
+
   var paramsRequired = [];
   var paramsSpecifics = {
     global: false,
     success: function(result) {
-      for (var i in result) {
-        objects[i].object.replaceWith($(result[i].html))
-        if ($('.objectSummary' + i).closest('.objectSummaryHide') != []) {
-          if ($(result[i].html).html() == '') {
-            $('.objectSummary' + i).closest('.objectSummaryHide').hide()
-          } else {
-            $('.objectSummary' + i).closest('.objectSummaryHide').show()
-          }
+      //Manage summaries creation on mobile
+      if (jeedomUtils.userDeviceType == 'desktop') return
+      for (var id in result) {
+        try {
+          summaryUpdate[id].objectSummaryList.forEach(function(objectSummary) {
+            if (objectSummary.querySelector('.objectSummary' + id) != null) return //summary ever created
+            summary = domUtils.parseHTML(result[id].html)
+            objectSummary.empty().appendChild(summary)
+            objectSummary.querySelector('.objectSummary' + id).replaceWith(...objectSummary.querySelector('.objectSummary' + id).childNodes)
+          })
+        } catch (error) {
+          console.error(error)
         }
       }
     }
@@ -365,6 +376,7 @@ jeedom.object.summaryUpdate = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
+
   var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/object.ajax.php';
@@ -373,6 +385,7 @@ jeedom.object.summaryUpdate = function(_params) {
     ids: JSON.stringify(sends),
   };
   domUtils.ajax(paramsAJAX);
+
 }
 
 jeedom.object.getImgPath = function(_params) {

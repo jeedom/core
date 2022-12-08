@@ -181,7 +181,7 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
           objectName = objectName.charAt(0).toUpperCase() + objectName.slice(1)
           div += '<span>' + icon + '</span> ' + objectName
           div += '</legend>'
-          div += '<div class="nd2-card objectSummaryHide" style="max-width:100% !important"><div class="card-title has-supporting-text"><center><span class="objectSummaryContainer objectSummary'+id+'" data-version="mobile"></span></center></div></div>'
+          div += '<div class="nd2-card" style="max-width:100% !important"><div class="card-title has-supporting-text"><center><span class="objectSummaryContainer objectSummary'+id+'" data-version="mobile"></span></center></div></div>'
           div += '<div class="objectHtml">'
           div += html[i]
           div += '</div></div></div>'
@@ -196,7 +196,7 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
         }
       } else {
         div = '<div class="div_displayEquipement" data-objectid="'+_objectId+'">'
-        div += '<div class="nd2-card objectSummaryHide" style="max-width:100% !important">'
+        div += '<div class="nd2-card" style="max-width:100% !important">'
         div += '<div class="card-title has-supporting-text"><center><span class="objectSummaryContainer objectSummary'+_objectId+'" data-version="mobile"></span></center></div></div><div class="objectHtml">'
         div += html
         div += '</div></div></div>'
@@ -231,7 +231,7 @@ function displayObjectsBySummary(_objectsAll, _summary) {
     objectName = objectName.charAt(0).toUpperCase() + objectName.slice(1)
     div += '<span>' + icon + '</span> ' + objectName
     div += '</legend>'
-    div += '<div class="nd2-card objectSummaryHide" style="max-width:100% !important"><div class="card-title has-supporting-text"><center><span class="objectSummaryContainer objectSummary'+thisObject.id+'" data-version="mobile"></span></center></div></div>'
+    div += '<div class="nd2-card" style="max-width:100% !important"><div class="card-title has-supporting-text"><center><span class="objectSummaryContainer objectSummary'+thisObject.id+'" data-version="mobile"></span></center></div></div>'
     div += '<div class="objectHtml">'
     div += '</div>'
     div += '</div>'

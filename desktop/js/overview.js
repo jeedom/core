@@ -22,9 +22,9 @@ if (!jeeFrontEnd.overview) {
     summaryObjEqs: [],
     _SummaryObserver_: null,
     observerConfig: {
-      attributes: true,
+      attributes: false,
       childList: true,
-      characterData: true,
+      characterData: false,
       subtree: true
     },
     init: function() {

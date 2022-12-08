@@ -4,6 +4,7 @@ var jeedomUtils = {}
 jeedomUtils.backgroundIMG = null
 jeedomUtils._elBackground = null
 jeedomUtils.scrolling = false
+jeedomUtils.userDeviceType = 'mobile'
 
 jeedomUtils.loadingTimeout = null
 jeedomUtils.showLoading = function() {
