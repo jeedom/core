@@ -2523,7 +2523,7 @@ jeeP.$divScenario.on('focusout', '.expression .expressionAttr[data-l1key="expres
   var el = this
   if (el.closest('.expression').querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
     var expression = el.closest('.expression').getJeeValues('.expressionAttr')
-    jeedom.cmd.displayActionOption(el.jeeValue(), init(expression.options), function(html) {
+    jeedom.cmd.displayActionOption(el.jeeValue(), init(expression[0].options), function(html) {
       $(el).closest('.expression').find('.expressionOptions').html(html)
       jeedomUtils.taAutosize()
       jeeP.updateTooltips()
