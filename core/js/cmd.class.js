@@ -32,17 +32,18 @@ jeedom.cmd.notifyEq = function(_eqlogic, _hide) {
     return
   }
   if (isElement_jQuery(_eqlogic)) _eqlogic = _eqlogic[0]
-  if (_eqlogic.querySelector('.cmd.refresh') != null) {
-    _eqlogic.querySelector('.cmd.refresh').addClass('spinning')
+  var refresh = _eqlogic.querySelector('.cmd.refresh')
+  if (refresh != null) {
+    refresh.addClass('spinning')
   } else {
-    _eqlogic.querySelector('.widget-name').prepend('<span class="cmd refresh pull-right remove"><i class="fas fa-sync"></i></span>')
+    _eqlogic.querySelector('.widget-name').insertAdjacentHTML('afterbegin', '<span class="cmd refresh pull-right remove"><i class="fas fa-sync"></i></span>')
   }
-  if (_hide) {
+  if (_hide && refresh != null) {
     setTimeout(function() {
-      if (_eqlogic.querySelector('.cmd.refresh').hasClass('remove')) {
-        _eqlogic.querySelector('.cmd.refresh').remove()
+      if (refresh.hasClass('remove')) {
+        refresh.remove()
       } else {
-        _eqlogic.querySelector('.cmd.refresh').removeClass('spinning')
+        refresh.removeClass('spinning')
       }
     }, 1000)
   }
@@ -823,7 +824,7 @@ jeedom.cmd.changeType = function(_cmd, _subType) {
       _params.error(error)
     },
     success: function(subType) {
-      
+
       for (var i in subType) {
         newOption = document.createElement('option')
         newOption.text = subType[i].name
@@ -832,7 +833,7 @@ jeedom.cmd.changeType = function(_cmd, _subType) {
       }
       _cmd.querySelector('.subType')?.empty()
       _cmd.querySelector('.subType')?.appendChild(selSubType)
-      
+
       if (isset(_subType)) {
         _cmd.querySelector('.cmdAttr[data-l1key="subType" i]')?.jeeValue(_subType)
         modifyWithoutSave = false
@@ -980,9 +981,9 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
     width: 800
   })
 
-  domUtils.ajaxSetup({async: false})
+  domUtils.ajaxSetup({ async: false })
   document.getElementById('mod_insertCmdValue').load('index.php?v=d&modal=cmd.human.insert')
-  domUtils.ajaxSetup({async: true})
+  domUtils.ajaxSetup({ async: true })
 
   mod_insertCmd.setOptions(_options)
   $("#mod_insertCmdValue").dialog('option', 'buttons', {
