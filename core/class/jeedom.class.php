@@ -658,35 +658,35 @@ class jeedom {
 			}
 			$usbMapping = self::getUsbLegacy($usbMapping);
 			if ($_getGPIO) {
-				if (file_exists('/dev/ttyAMA0')) {
-					$usbMapping['Raspberry pi'] = '/dev/ttyAMA0';
-				}
-				foreach (ls('/dev/', 'ttyAMA*') as $value) {
-					$usbMapping['/dev/' . $value] = '/dev/' . $value;
-				}
-				if (file_exists('/dev/ttymxc0')) {
-					$usbMapping['Jeedom board'] = '/dev/ttymxc0';
-				}
-				if (file_exists('/dev/S2')) {
-					$usbMapping['Banana PI'] = '/dev/S2';
-				}
-				if (file_exists('/dev/ttyS2')) {
-					$usbMapping['Jeedom Atlas'] = '/dev/ttyS2';
+				if (file_exists('/dev/ttyS0')) {
+					$usbMapping['Cubiboard'] = '/dev/ttyS0';
 				}
 				if (file_exists('/dev/ttyS1')) {
 					$usbMapping['Jeedom Luna Zwave'] = '/dev/ttyS1';
 				}
-				if (file_exists('/dev/ttyS0')) {
-					$usbMapping['Cubiboard'] = '/dev/ttyS0';
+				if (file_exists('/dev/ttyS1')) {
+					$usbMapping['Odroid C2'] = '/dev/ttyS1';
+				}
+				if (file_exists('/dev/ttyS2')) {
+					$usbMapping['Jeedom Atlas'] = '/dev/ttyS2';
 				}
 				if (file_exists('/dev/ttyS3')) {
 					$usbMapping['Orange PI'] = '/dev/ttyS3';
 				}
-				if (file_exists('/dev/ttyS1')) {
-					$usbMapping['Odroid C2'] = '/dev/ttyS1';
+				if (file_exists('/dev/ttymxc0')) {
+					$usbMapping['Jeedom board'] = '/dev/ttymxc0';
 				}
 				if (file_exists('/dev/ttyAML1')) {
 					$usbMapping['Odroid ARMBIAN (Buster)'] = '/dev/ttyAML1';
+				}
+				if (file_exists('/dev/ttyAMA0')) {
+					$usbMapping['Raspberry pi'] = '/dev/ttyAMA0';
+				}
+				if (file_exists('/dev/S2')) {
+					$usbMapping['Banana PI'] = '/dev/S2';
+				}
+				foreach (ls('/dev/', 'ttyAMA*') as $value) {
+					$usbMapping['/dev/' . $value] = '/dev/' . $value;
 				}
 			}
 			cache::set('jeedom::usbMapping', json_encode($usbMapping));
