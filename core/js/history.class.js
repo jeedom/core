@@ -165,8 +165,8 @@ jeedom.history.modalchangePoint = function(event, _this, _params) {
   var deviceInfo = getDeviceType()
   if ($.mobile || deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') return
 
-  if (document.getElementById('md_modal1').isVisible()) return
-  if (document.getElementById('md_modal2').isVisible()) return
+  if (document.getElementById('md_modal1')?.isVisible()) return
+  if (document.getElementById('md_modal2')?.isVisible()) return
   if (jeedom.history.chart[_this.series.chart._jeeId].comparing) return
 
   if (isset(_params.cmd.display.groupingType) && _params.cmd.display.groupingType != '') {

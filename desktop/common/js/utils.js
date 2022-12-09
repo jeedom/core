@@ -146,8 +146,8 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   var div_pageContainer = document.getElementById('div_pageContainer')
   div_pageContainer.empty()
   div_pageContainer.replaceWith(div_pageContainer.cloneNode(true))
-
   domUtils.unRegisterEvents()
+
   //Deprecated: Migrate to registerEvent() and delete:
   document.onkeydown = null
   $('body').off('mouseenter mouseleave')

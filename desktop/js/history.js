@@ -273,7 +273,6 @@ jeeFrontEnd.history.init()
 document.getElementById('in_searchHistory').value = ''
 moment.locale(jeeFrontEnd.language.substring(0, 2))
 jeedomUtils.datePickerInit()
-jeeFrontEnd.history.postInit()
 
 //handle resizing:
 window.registerEvent("resize", function history(event) {
@@ -645,3 +644,5 @@ $('#bt_doCompare').off('click').on('click', function() {
   })
   jeeP.compareChart(jeeP.__lastId__)
 })
+
+jeeFrontEnd.history.postInit()
