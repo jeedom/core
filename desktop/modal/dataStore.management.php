@@ -147,18 +147,16 @@ if (!jeeFrontEnd.md_datastore) {
   var jeeM = jeeFrontEnd.md_datastore
   jeeM.init()
 
-  $(function() {
-    jeedomUtils.initTableSorter()
-    jeeM.refreshDataStoreMangementTable()
-    jeeM.$tableDataStore[0].config.widgetOptions.resizable_widths = ['150px', '150px', '', '90px']
-    jeeM.$tableDataStore.trigger('applyWidgets')
-      .trigger('resizableReset')
-      .trigger('sorton', [
-        [
-          [0, 0]
-        ]
-      ])
-  })
+  jeedomUtils.initTableSorter()
+  jeeM.refreshDataStoreMangementTable()
+  jeeM.$tableDataStore[0].config.widgetOptions.resizable_widths = ['150px', '150px', '', '90px']
+  jeeM.$tableDataStore.trigger('applyWidgets')
+    .trigger('resizableReset')
+    .trigger('sorton', [
+      [
+        [0, 0]
+      ]
+    ])
 
   jeeM.$tableDataStore.on({
     'click': function(event) {

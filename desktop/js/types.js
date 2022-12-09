@@ -92,29 +92,27 @@ if (!jeeFrontEnd.types) {
 
 jeeFrontEnd.types.init()
 
-$(function() {
-  jeeP.setQueryButtons()
+jeeP.setQueryButtons()
 
-  $("#md_applyCmdsTypes").dialog({
-    closeText: '',
-    autoOpen: false,
-    modal: true,
-    width: 'calc(80% - 200px)',
-    height: 'auto',
-    open: function() {
-      $(this).parent().css({
-        'top': 120
-      })
-      $(this).css('max-height', $(document).height() - 250)
-    },
-    beforeClose: function(event, ui) {
-      $('#md_applyCmdsTypes .maincontainer').empty()
-      $('#bt_applyCmdsTypes').show()
-    }
-  })
-
-  $('#md_applyCmdsTypes').removeClass('hidden')
+$("#md_applyCmdsTypes").dialog({
+  closeText: '',
+  autoOpen: false,
+  modal: true,
+  width: 'calc(80% - 200px)',
+  height: 'auto',
+  open: function() {
+    $(this).parent().css({
+      'top': 120
+    })
+    $(this).css('max-height', $(document).height() - 250)
+  },
+  beforeClose: function(event, ui) {
+    $('#md_applyCmdsTypes .maincontainer').empty()
+    $('#bt_applyCmdsTypes').show()
+  }
 })
+
+$('#md_applyCmdsTypes').removeClass('hidden')
 
 //searching:
 $('#in_searchTypes').on('keyup', function() {

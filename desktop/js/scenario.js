@@ -1441,8 +1441,7 @@ $('#div_pageContainer').on({
 }, '.context-menu-root')
 
 //tabs context menu
-$(function() {
-  try {
+try {
     $.contextMenu('destroy', $('.nav.nav-tabs'))
     jeedom.scenario.allOrderedByGroupObjectName({
       asGroup: 1,
@@ -1500,11 +1499,10 @@ $(function() {
       }
     })
   } catch (err) {}
-})
+
 
 //general context menu
-$(function() {
-  try {
+try {
     $.contextMenu({
     selector: "#accordionScenario .scenarioDisplayCard",
     appendTo: 'div#div_pageContainer',
@@ -1658,7 +1656,6 @@ $(function() {
     }
   })
   } catch (err) {}
-})
 
 
 /* ---------Scenario Management UI---------- */
@@ -1804,7 +1801,7 @@ $('#bt_scenarioThumbnailDisplay').off('click').on('click', function() {
 
 
 /* ---------Scenario UI---------- */
-document.onkeydown = function(event) {
+document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
 
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
@@ -1836,7 +1833,7 @@ document.onkeydown = function(event) {
     jeeP.PREV_FOCUS = null
     return
   }
-}
+})
 
 //ctrl-click input popup
 jeeP.$divScenario.on('click', 'input:not([type="checkbox"]).expressionAttr, textarea.expressionAttr', function(event) {
@@ -1877,24 +1874,22 @@ $('#div_scenarioElement').on('click', ':input', function() {
   jeeP.PREV_FOCUS = $(this)
 })
 
-$(function() {
-  jeedom.timeline.autocompleteFolder()
-  $('sub.itemsNumber').html('(' + $('.scenarioDisplayCard').length + ')')
-  if (jeephp2js.initSearch != 0) {
-    setTimeout(function() {
-      $('#bt_scenarioTab').trigger('click')
-      $('#bt_resetInsideScenarioSearch').trigger('click')
-      setTimeout(function() {
-        $('#in_searchInsideScenario').val(jeephp2js.initSearch).keyup().blur().focus()
-      }, 500)
-    }, 200)
-  }
-
-  //trigger:
+jeedom.timeline.autocompleteFolder()
+$('sub.itemsNumber').html('(' + $('.scenarioDisplayCard').length + ')')
+if (jeephp2js.initSearch != 0) {
   setTimeout(function() {
-    jeeP.checkNoMode()
-  }, 250)
-})
+    $('#bt_scenarioTab').trigger('click')
+    $('#bt_resetInsideScenarioSearch').trigger('click')
+    setTimeout(function() {
+      $('#in_searchInsideScenario').val(jeephp2js.initSearch).keyup().blur().focus()
+    }, 500)
+  }, 200)
+}
+
+//trigger:
+setTimeout(function() {
+  jeeP.checkNoMode()
+}, 250)
 
 $('.scenario_link_getUsedBy, .scenario_link_getUse').off('click', '.scenario_link').on('click', '.scenario_link', function(event) {
   jeedomUtils.hideAlert()

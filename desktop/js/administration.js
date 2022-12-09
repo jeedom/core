@@ -414,21 +414,19 @@ document.onkeydown = function(event) {
   }
 }
 
-$(function() {
-  domUtils.showLoading()
-  if (getUrlVars('panel') != false) {
-    $('a[href="#' + getUrlVars('panel') + '"]').click()
-  }
+domUtils.showLoading()
+if (getUrlVars('panel') != false) {
+  $('a[href="#' + getUrlVars('panel') + '"]').click()
+}
 
-  jeedomUtils.dateTimePickerInit()
-  jeedomUtils.initSpinners()
-  jeedomUtils.setCheckContextMenu()
-  jeeP.printConvertColor()
-  setTimeout(function() {
-    jeeP.updateTooltips()
-    jeeFrontEnd.modifyWithoutSave = false
-  }, 500)
-})
+jeedomUtils.dateTimePickerInit()
+jeedomUtils.initSpinners()
+jeedomUtils.setCheckContextMenu()
+jeeP.printConvertColor()
+setTimeout(function() {
+  jeeP.updateTooltips()
+  jeeFrontEnd.modifyWithoutSave = false
+}, 500)
 
 //searching
 $('#in_searchConfig').keyup(function() {
@@ -1384,3 +1382,5 @@ $('.bt_resetColor').on('click', function() {
     }
   })
 })
+
+jeeFrontEnd.modifyWithoutSave = false

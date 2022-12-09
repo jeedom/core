@@ -186,185 +186,183 @@ if (!jeeFrontEnd.editor) {
 
 jeeFrontEnd.editor.init()
 
-domUtils(function() {
-  CodeMirror.modeURL = "3rdparty/codemirror/mode/%N/%N.js"
+CodeMirror.modeURL = "3rdparty/codemirror/mode/%N/%N.js"
 
-  var options = {
-    url: 'core/php/editor.connector.php?root='+root,
-    baseUrl: '3rdparty/elfinder/',
-    cssAutoLoad: false,
-    lang: jeeFrontEnd.language.substring(0, 2),
-    startPathHash: jeeP.hashRoot,
-    rememberLastDir: false,
-    defaultView: 'list',
-    sound: false,
-    sort: 'kindDirsFirst',
-    sortDirect: 'kindDirsFirst',
-    mimesCanMakeEmpty: {
-      "text/css": "css",
-      "text/html": "html",
-      "text/javascript": "js",
-      "application/javascript": "js",
-      "text/plain": "txt",
-      "text/x-php": "php"
+var options = {
+  url: 'core/php/editor.connector.php?root='+root,
+  baseUrl: '3rdparty/elfinder/',
+  cssAutoLoad: false,
+  lang: jeeFrontEnd.language.substring(0, 2),
+  startPathHash: jeeP.hashRoot,
+  rememberLastDir: false,
+  defaultView: 'list',
+  sound: false,
+  sort: 'kindDirsFirst',
+  sortDirect: 'kindDirsFirst',
+  mimesCanMakeEmpty: {
+    "text/css": "css",
+    "text/html": "html",
+    "text/javascript": "js",
+    "application/javascript": "js",
+    "text/plain": "txt",
+    "text/x-php": "php"
+  },
+  contextmenu: {
+    cwd: ['reload', 'back', '|', 'upload', 'mkdir', 'mkfile', 'paste', '|', 'info'],
+    files: ['cmdedit', 'edit', '|', 'rename' ,'|', 'getfile' , 'download', '|', 'copy', 'cut', 'paste', 'duplicate', '|','rm', '|', 'archive', 'extract', '|', 'info', 'places']
+  },
+  fancyDateFormat: 'Y-m-d H:i',
+  dateFormat: 'Y-m-d H:i',
+  timeFormat: 'H:i',
+  uiOptions: {
+    toolbar: [
+      ['back', 'forward'],
+      ['reload', 'sort'],
+      ['home', 'up'],
+      ['mkdir', 'mkfile', 'upload','download'],
+      ['info'],
+      ['copy', 'cut', 'paste'],
+      ['edit','duplicate', 'rename', 'rm'],
+      ['extract', 'archive'],
+      ['search'],
+      ['view'],
+      ['preference']
+    ]
+  },
+  handlers: {
+    dblclick: function(event, elfinderInstance)
+    {
+      elfinderInstance.exec('edit')
+      return false
     },
-    contextmenu: {
-      cwd: ['reload', 'back', '|', 'upload', 'mkdir', 'mkfile', 'paste', '|', 'info'],
-      files: ['cmdedit', 'edit', '|', 'rename' ,'|', 'getfile' , 'download', '|', 'copy', 'cut', 'paste', 'duplicate', '|','rm', '|', 'archive', 'extract', '|', 'info', 'places']
+    init: function(event, elfinderInstance)
+    {
+      if (jeephp2js.editorType == 'custom') {
+        elfinderInstance._commands.jee_onoffcustom.getActive()
+      }
+      jeeP.killTooltips()
     },
-    fancyDateFormat: 'Y-m-d H:i',
-    dateFormat: 'Y-m-d H:i',
-    timeFormat: 'H:i',
-    uiOptions: {
-      toolbar: [
-        ['back', 'forward'],
-        ['reload', 'sort'],
-        ['home', 'up'],
-        ['mkdir', 'mkfile', 'upload','download'],
-        ['info'],
-        ['copy', 'cut', 'paste'],
-        ['edit','duplicate', 'rename', 'rm'],
-        ['extract', 'archive'],
-        ['search'],
-        ['view'],
-        ['preference']
+    open: function(event, elfinderInstance)
+    {
+      jeeP.killTooltips()
+    },
+  },
+  commandsOptions: {
+    edit: {
+      editors: [
+        {
+          //mimes : ['text/html', 'text/javascript', 'application/javascript'],
+          //exts  : ['htm', 'html', 'xhtml', 'js'],
+          info : {
+            name : '{{Editer}}'
+          },
+          load : function(textarea) {
+            self = this
+            var elfinderInstance = $('#elfinder').elfinder(options).elfinder('instance')
+            var fileUrl = elfinderInstance.url(self.file.hash)
+            fileUrl = fileUrl.replace('/core/php/../../', '')
+            var $modal = $(textarea).closest('.ui-front')
+            $modal.find('.elfinder-dialog-title').html(fileUrl)
+
+            this.myCodeMirror = CodeMirror.fromTextArea(textarea, {
+              styleActiveLine: true,
+              lineNumbers: true,
+              lineWrapping: true,
+              matchBrackets: true,
+              autoRefresh: true,
+              foldGutter: true,
+              gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+            })
+            var editor = this.myCodeMirror
+
+            //Auto mode set:
+            var info, m, mode, spec;
+            if (!info) {
+              info = CodeMirror.findModeByMIME(self.file.mime);
+            }
+            if (!info && (m = self.file.name.match(/.+\.([^.]+)$/))) {
+              info = CodeMirror.findModeByExtension(m[1]);
+            }
+            if (info) {
+              mode = info.mode
+              spec = info.mime
+              editor.setOption('mode', spec)
+              CodeMirror.autoLoadMode(editor, mode)
+            }
+
+            //is python ?
+            if (self.file.mime == 'text/x-python') {
+              self.myCodeMirror.setOption('mode', {
+                  name: "python",
+                  version: 3,
+                  singleLineStringErrors: false
+                }
+              )
+              self.myCodeMirror.setOption('indentUnit', 4)
+              self.myCodeMirror.setOption('smartIndent', false)
+            }
+
+            $(".cm-s-default").style('height', '100%', 'important')
+            editor.setOption('theme', 'monokai')
+
+            $modal.width('75%').css('left', '15%')
+
+            //expand on resize modal:
+            $('.elfinder-dialog-edit').resize(function() {
+              editor.refresh()
+            })
+
+            setTimeout(function() {
+              editor.scrollIntoView({line:0, char:0}, 20)
+              editor.setOption("extraKeys", {
+                "Ctrl-Y": cm => CodeMirror.commands.foldAll(cm),
+                "Ctrl-I": cm => CodeMirror.commands.unfoldAll(cm)
+              })
+
+            }, 250)
+          },
+          close : function(textarea, instance) {
+            //this.myCodeMirror = null
+          },
+          save : function(textarea, editor) {
+            textarea.value = this.myCodeMirror.getValue()
+            jeeP.killTooltips()
+            setTimeout(() => {
+              textarea.parentNode.closest('div.ui-dialog.elfinder-dialog-edit').style.zIndex = 1001
+            }, 150)
+            //this.myCodeMirror = null
+          }
+        }
       ]
     },
-    handlers: {
-      dblclick: function(event, elfinderInstance)
-      {
-        elfinderInstance.exec('edit')
-        return false
-      },
-      init: function(event, elfinderInstance)
-      {
-        if (jeephp2js.editorType == 'custom') {
-          elfinderInstance._commands.jee_onoffcustom.getActive()
-        }
-        jeeP.killTooltips()
-      },
-      open: function(event, elfinderInstance)
-      {
-        jeeP.killTooltips()
-      },
-    },
-    commandsOptions: {
-      edit: {
-        editors: [
-          {
-            //mimes : ['text/html', 'text/javascript', 'application/javascript'],
-            //exts  : ['htm', 'html', 'xhtml', 'js'],
-            info : {
-              name : '{{Editer}}'
-            },
-            load : function(textarea) {
-              self = this
-              var elfinderInstance = $('#elfinder').elfinder(options).elfinder('instance')
-              var fileUrl = elfinderInstance.url(self.file.hash)
-              fileUrl = fileUrl.replace('/core/php/../../', '')
-              var $modal = $(textarea).closest('.ui-front')
-              $modal.find('.elfinder-dialog-title').html(fileUrl)
+  }
+}
 
-              this.myCodeMirror = CodeMirror.fromTextArea(textarea, {
-                styleActiveLine: true,
-                lineNumbers: true,
-                lineWrapping: true,
-                matchBrackets: true,
-                autoRefresh: true,
-                foldGutter: true,
-                gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
-              })
-              var editor = this.myCodeMirror
+//custom editor settings:
+if (jeephp2js.editorType != '') {
+  //remove places in toolbar:
+  options.ui = ['toolbar', 'tree', 'path', 'stat']
 
-              //Auto mode set:
-              var info, m, mode, spec;
-              if (!info) {
-                info = CodeMirror.findModeByMIME(self.file.mime);
-              }
-              if (!info && (m = self.file.name.match(/.+\.([^.]+)$/))) {
-                info = CodeMirror.findModeByExtension(m[1]);
-              }
-              if (info) {
-                mode = info.mode
-                spec = info.mime
-                editor.setOption('mode', spec)
-                CodeMirror.autoLoadMode(editor, mode)
-              }
-
-              //is python ?
-              if (self.file.mime == 'text/x-python') {
-                self.myCodeMirror.setOption('mode', {
-                    name: "python",
-                    version: 3,
-                    singleLineStringErrors: false
-                  }
-                )
-                self.myCodeMirror.setOption('indentUnit', 4)
-                self.myCodeMirror.setOption('smartIndent', false)
-              }
-
-              $(".cm-s-default").style('height', '100%', 'important')
-              editor.setOption('theme', 'monokai')
-
-              $modal.width('75%').css('left', '15%')
-
-              //expand on resize modal:
-              $('.elfinder-dialog-edit').resize(function() {
-                editor.refresh()
-              })
-
-              setTimeout(function() {
-                editor.scrollIntoView({line:0, char:0}, 20)
-                editor.setOption("extraKeys", {
-                  "Ctrl-Y": cm => CodeMirror.commands.foldAll(cm),
-                  "Ctrl-I": cm => CodeMirror.commands.unfoldAll(cm)
-                })
-
-              }, 250)
-            },
-            close : function(textarea, instance) {
-              //this.myCodeMirror = null
-            },
-            save : function(textarea, editor) {
-              textarea.value = this.myCodeMirror.getValue()
-              jeeP.killTooltips()
-              setTimeout(() => {
-                textarea.parentNode.closest('div.ui-dialog.elfinder-dialog-edit').style.zIndex = 1001
-              }, 150)
-              //this.myCodeMirror = null
-            }
-          }
-        ]
-      },
-    }
+  if (jeephp2js.editorType == 'widget') {
+    options = jeeP.setCommandCreatewidget(options)
+    options.url = 'core/php/editor.connector.php?type=widget'
+    options.startPathHash = jeeP.getHashFromPath('data/customTemplates')
   }
 
-  //custom editor settings:
-  if (jeephp2js.editorType != '') {
-    //remove places in toolbar:
-    options.ui = ['toolbar', 'tree', 'path', 'stat']
-
-    if (jeephp2js.editorType == 'widget') {
-      options = jeeP.setCommandCreatewidget(options)
-      options.url = 'core/php/editor.connector.php?type=widget'
-      options.startPathHash = jeeP.getHashFromPath('data/customTemplates')
-    }
-
-    if (jeephp2js.editorType == 'custom') {
-      options = jeeP.setCommandCustom(options)
-      options.url = 'core/php/editor.connector.php?type=custom'
-      options.startPathHash = jeeP.getHashFromPath('desktop/custom')
-    }
+  if (jeephp2js.editorType == 'custom') {
+    options = jeeP.setCommandCustom(options)
+    options.url = 'core/php/editor.connector.php?type=custom'
+    options.startPathHash = jeeP.getHashFromPath('desktop/custom')
   }
+}
 
-  jeeP._elfInstance = $('#elfinder').elfinder(options).elfinder('instance')
-  jeeP._elfInstance.options.windowCloseConfirm = []
+jeeP._elfInstance = $('#elfinder').elfinder(options).elfinder('instance')
+jeeP._elfInstance.options.windowCloseConfirm = []
 
-  $('#elfinder').css("height", $(window).height() - 50)
-  $('.ui-state-default.elfinder-navbar.ui-resizable').css('height', '100%')
+$('#elfinder').css("height", $(window).height() - 50)
+$('.ui-state-default.elfinder-navbar.ui-resizable').css('height', '100%')
 
-  jeeP.killTooltips()
-})
+jeeP.killTooltips()
 
 //resize explorer in browser window:
 window.registerEvent("resize", function(event) {

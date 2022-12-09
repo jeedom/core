@@ -143,21 +143,18 @@ if (!jeeFrontEnd.view) {
 
 jeeFrontEnd.view.init()
 
-$(function() {
-  setTimeout(function() {
-    $('input', 'textarea', 'select').click(function() {
-      $(this).focus()
-    })
-  }, 750)
-
-  jeedomUI.isEditing = false
-  jeedomUI.setEqSignals()
-  jeedomUI.setHistoryModalHandler()
-  window.registerEvent("resize", function view(event) {
-    if (event.isTrigger) return
-    jeedomUtils.positionEqLogic()
+setTimeout(function() {
+  $('input', 'textarea', 'select').click(function() {
+    $(this).focus()
   })
+}, 750)
 
+jeedomUI.isEditing = false
+jeedomUI.setEqSignals()
+jeedomUI.setHistoryModalHandler()
+window.registerEvent("resize", function view(event) {
+  if (event.isTrigger) return
+  jeedomUtils.positionEqLogic()
 })
 
 $('#div_pageContainer').on('click', '.bt_gotoViewZone', function() {

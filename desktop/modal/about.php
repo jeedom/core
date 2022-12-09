@@ -80,24 +80,22 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
 </div>
 
 <script>
-$(function() {
-  var currentTheme = $('body').attr('data-theme')
-  if (currentTheme !== undefined && currentTheme.endsWith('Dark')) {
-    $('#logoJeedom').attr('src', jeedom.theme.logo_dark)
-  }
-  var parentWidth = $( window ).width()
-  var parentHeight = $( window ).height()
-  if (parentWidth > 850 && parentHeight > 750) {
-    $('#md_modal').dialog("option", "width", 800).dialog("option", "height", 650)
-    $("#md_modal").dialog({
-      position: {
-        my: "center center",
-        at: "center center",
-        of: window
-      }
-    })
-  }
-})
+var currentTheme = $('body').attr('data-theme')
+if (currentTheme !== undefined && currentTheme.endsWith('Dark')) {
+  $('#logoJeedom').attr('src', jeedom.theme.logo_dark)
+}
+var parentWidth = $( window ).width()
+var parentHeight = $( window ).height()
+if (parentWidth > 850 && parentHeight > 750) {
+  $('#md_modal').dialog("option", "width", 800).dialog("option", "height", 650)
+  $("#md_modal").dialog({
+    position: {
+      my: "center center",
+      at: "center center",
+      of: window
+    }
+  })
+}
 
 $('body').off('click','#bt_changelogCore').on('click','#bt_changelogCore',function() {
   jeedom.getDocumentationUrl({

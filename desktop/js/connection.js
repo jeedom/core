@@ -194,32 +194,30 @@ $('#in_change_passwordToo').keypress(function(event) {
   }
 })
 
-$(function() {
-  $('#bootstrap_theme_css').attr('href', 'core/themes/core2019_Light/desktop/core2019_Light.css')
+$('#bootstrap_theme_css').attr('href', 'core/themes/core2019_Light/desktop/core2019_Light.css')
 
-  document.title = JEEDOM_PRODUCT_NAME + ' - Login'
+document.title = JEEDOM_PRODUCT_NAME + ' - Login'
 
-  $(".veen .login-btn button").click(function() {
-    $('.veen .wrapper').removeClass('move')
-    $('.body').css('background', '#ff4931')
-    $(".veen .rgstr-btn button").removeClass('active')
-    $(this).addClass('active')
-  })
-
-  window.setTimeout(function() {
-    $('.veen').removeClass('zoomIn')
-    $('.btn_help').removeClass('bounceInUp')
-  }, 5000)
-
-  window.setTimeout(function() {
-    window.setInterval(function() {
-      $('.btn_help').animateCss('shake')
-      window.setTimeout(function() {
-        $('.btn_help').removeClass('shake')
-      }, 3000)
-    }, 5000)
-  }, 10000)
+$(".veen .login-btn button").click(function() {
+  $('.veen .wrapper').removeClass('move')
+  $('.body').css('background', '#ff4931')
+  $(".veen .rgstr-btn button").removeClass('active')
+  $(this).addClass('active')
 })
+
+window.setTimeout(function() {
+  $('.veen').removeClass('zoomIn')
+  $('.btn_help').removeClass('bounceInUp')
+}, 5000)
+
+window.setTimeout(function() {
+  window.setInterval(function() {
+    $('.btn_help').animateCss('shake')
+    window.setTimeout(function() {
+      $('.btn_help').removeClass('shake')
+    }, 3000)
+  }, 5000)
+}, 10000)
 
 var marketdemande = function() {
   $('.veen .wrapper').removeClass('move')

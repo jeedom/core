@@ -43,16 +43,14 @@ if (!jeeFrontEnd.modaldisplay) {
 
 jeeFrontEnd.modaldisplay.init()
 
-$(function() {
-  document.title = decodeURI(jeeP.title)
-  $('#modalTitle').html('<i class="far fa-window-maximize"></i> ' + decodeURI(jeeP.title))
-  $('#modalDisplay').empty().load(jeeP.url, function(data) {
-    $('body').attr('data-page', getUrlVars('p'))
-    $('#bt_getHelpPage').attr('data-page', getUrlVars('p')).attr('data-plugin', getUrlVars('m'))
-    jeedomUtils.initPage()
-    $('body').trigger('jeedom_page_load')
-    if (window.location.hash != '' && $('.nav-tabs a[href="' + window.location.hash + '"]').length != 0) {
-      $('.nav-tabs a[href="' + window.location.hash + '"]').click()
-    }
-  })
+document.title = decodeURI(jeeP.title)
+$('#modalTitle').html('<i class="far fa-window-maximize"></i> ' + decodeURI(jeeP.title))
+$('#modalDisplay').empty().load(jeeP.url, function(data) {
+  $('body').attr('data-page', getUrlVars('p'))
+  $('#bt_getHelpPage').attr('data-page', getUrlVars('p')).attr('data-plugin', getUrlVars('m'))
+  jeedomUtils.initPage()
+  $('body').trigger('jeedom_page_load')
+  if (window.location.hash != '' && $('.nav-tabs a[href="' + window.location.hash + '"]').length != 0) {
+    $('.nav-tabs a[href="' + window.location.hash + '"]').click()
+  }
 })

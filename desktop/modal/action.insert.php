@@ -149,13 +149,11 @@ if (!isConnect()) {
 </div>
 
 <script>
-$(function() {
-  var select = $('#mod_actionValue_sel')
-  select.html(select.find('option').sort(function(x, y) {
-    return $(x).text() > $(y).text() ? 1 : -1
-  }))
-  select.prop("selectedIndex", 0).trigger("change")
-})
+var select = $('#mod_actionValue_sel')
+select.html(select.find('option').sort(function(x, y) {
+  return $(x).text() > $(y).text() ? 1 : -1
+}))
+select.prop("selectedIndex", 0).trigger("change")
 
 $('#mod_actionValue_sel').on('change',function() {
   var value = this.value

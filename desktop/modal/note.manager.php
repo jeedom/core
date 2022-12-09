@@ -81,14 +81,12 @@ if (!jeeFrontEnd.md_noteManager) {
   var jeeM = jeeFrontEnd.md_noteManager
   jeeM.init()
 
-  $(function() {
-    jeedomUtils.taAutosize()
-    if (jeephp2js.md_noteManagemer_noteId != '') {
-      setTimeout(function(){
-        $('li.li_noteDisplay[data-id="' + jeephp2js.md_noteManagemer_noteId + '"]').trigger('click')
-      }, 500)
-    }
-  })
+  jeedomUtils.taAutosize()
+  if (jeephp2js.md_noteManagemer_noteId != '') {
+    setTimeout(function(){
+      $('li.li_noteDisplay[data-id="' + jeephp2js.md_noteManagemer_noteId + '"]').trigger('click')
+    }, 500)
+  }
 
   $('#bt_noteManagerAdd').on('click',function() {
     document.querySelectorAll('#div_noteManagerDisplay .noteAttr').jeeValue('')

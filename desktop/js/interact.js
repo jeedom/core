@@ -162,15 +162,13 @@ document.onkeydown = function(event) {
   }
 }
 
-$(function() {
-  $('sub.itemsNumber').html('(' + $('.interactDisplayCard').length + ')')
+$('sub.itemsNumber').html('(' + $('.interactDisplayCard').length + ')')
 
-  if (is_numeric(getUrlVars('id'))) {
-    if ($('.interactDisplayCard[data-interact_id=' + getUrlVars('id') + ']').length != 0) {
-      $('.interactDisplayCard[data-interact_id=' + getUrlVars('id') + ']').click()
-    }
+if (is_numeric(getUrlVars('id'))) {
+  if ($('.interactDisplayCard[data-interact_id=' + getUrlVars('id') + ']').length != 0) {
+    $('.interactDisplayCard[data-interact_id=' + getUrlVars('id') + ']').click()
   }
-})
+}
 
 //searching
 $('#in_searchInteract').keyup(function() {
@@ -221,8 +219,7 @@ $('#bt_closeAll').off('click').on('click', function() {
 })
 
 //contextMenu:
-$(function() {
-  try {
+try {
     $.contextMenu('destroy', $('.nav.nav-tabs'))
     jeedom.interact.all({
       error: function(error) {
@@ -306,7 +303,6 @@ $(function() {
       }
     })
   } catch (err) {}
-})
 
 $('.interactAttr[data-l1key=group]').autocomplete({
   source: function(request, response, url) {

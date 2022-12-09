@@ -35,17 +35,15 @@ document.onkeydown = function(event) {
   }
 }
 
-$(function() {
-  jeedomUtils.initTableSorter()
-  $('#tableDevices')[0].config.widgetOptions.resizable_widths = ['', '180px', '180px', '80px']
-  $('#tableDevices').trigger('applyWidgets')
-    .trigger('resizableReset')
-    .trigger('sorton', [
-      [
-        [2, 1]
-      ]
-    ])
-})
+jeedomUtils.initTableSorter()
+$('#tableDevices')[0].config.widgetOptions.resizable_widths = ['', '180px', '180px', '80px']
+$('#tableDevices').trigger('applyWidgets')
+  .trigger('resizableReset')
+  .trigger('sorton', [
+    [
+      [2, 1]
+    ]
+  ])
 
 $("#bt_saveProfils").on('click', function(event) {
   jeedomUtils.hideAlert()

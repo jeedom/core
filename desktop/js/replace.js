@@ -94,9 +94,7 @@ if (!jeeFrontEnd.replace) {
 
 jeeFrontEnd.replace.init()
 
-$(function() {
-  jeedomUtils.initTooltips()
-})
+jeedomUtils.initTooltips()
 
 //searching:
 $('#in_searchByName').on('keyup', function() {

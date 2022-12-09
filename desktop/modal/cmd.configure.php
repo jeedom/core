@@ -847,70 +847,68 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 </div>
 
 <script>
-  $(function() {
-    if ($('body').attr('data-page') == "widgets") {
-      $('a[href="#cmd_display"]').click()
-    }
+  if ($('body').attr('data-page') == "widgets") {
+    $('a[href="#cmd_display"]').click()
+  }
 
-    if (jeephp2js.md_cmdConfigure_cmdInfo.type == 'info') {
-      $('#bt_cmdConfigureTest').remove()
-      $('#bt_cmdConfigureGraph').addClass('roundedLeft')
-    }
+  if (jeephp2js.md_cmdConfigure_cmdInfo.type == 'info') {
+    $('#bt_cmdConfigureTest').remove()
+    $('#bt_cmdConfigureGraph').addClass('roundedLeft')
+  }
 
-    //modal title:
-    var title = '{{Configuration commande}}'
-    title += ' : ' + jeephp2js.md_cmdConfigure_cmdInfo.eqLogicHumanName
-    title += ' <span class="cmdName">[' + jeephp2js.md_cmdConfigure_cmdInfo.name + '] <em>(' + jeephp2js.md_cmdConfigure_cmdInfo.type + ')</em></span>'
-    $('#cmdConfigureTab').parents('.ui-dialog').find('.ui-dialog-title').html(title)
-    if ($('#eqLogicConfigureTab').length) {
-      $('#cmdConfigureTab').parents('.ui-dialog').css('top', "50px")
-    }
+  //modal title:
+  var title = '{{Configuration commande}}'
+  title += ' : ' + jeephp2js.md_cmdConfigure_cmdInfo.eqLogicHumanName
+  title += ' <span class="cmdName">[' + jeephp2js.md_cmdConfigure_cmdInfo.name + '] <em>(' + jeephp2js.md_cmdConfigure_cmdInfo.type + ')</em></span>'
+  $('#cmdConfigureTab').parents('.ui-dialog').find('.ui-dialog-title').html(title)
+  if ($('#eqLogicConfigureTab').length) {
+    $('#cmdConfigureTab').parents('.ui-dialog').css('top', "50px")
+  }
 
-    //widgets default if empty:
-    var dashWidget = $('select[data-l2key="dashboard"]')
-    if (dashWidget.val() == null) dashWidget.val($('select[data-l2key="dashboard"] option:first').val())
-    var mobileWidget = $('select[data-l2key="mobile"]')
-    if (mobileWidget.val() == null) mobileWidget.val($('select[data-l2key="mobile"] option:first').val())
+  //widgets default if empty:
+  var dashWidget = $('select[data-l2key="dashboard"]')
+  if (dashWidget.val() == null) dashWidget.val($('select[data-l2key="dashboard"] option:first').val())
+  var mobileWidget = $('select[data-l2key="mobile"]')
+  if (mobileWidget.val() == null) mobileWidget.val($('select[data-l2key="mobile"] option:first').val())
 
-    //format update linked cmds:
-    var spanValues = $('#cmd_information .cmdAttr[data-l1key="value"]')
-    var values = spanValues.html()
-    spanValues.hide()
-    if (values != '') {
-      var arrValues = values.split('#')
-      var spans = ''
-      var span
-      arrValues.forEach(function(thisValue) {
-        if (thisValue != '' && !thisValue.includes('#')) {
-          jeedom.cmd.getHumanCmdName({
-            id: thisValue,
-            error: function(error) {
-              jeedomUtils.showAlert({
-                message: error.message,
-                level: 'danger'
-              })
-            },
-            success: function(data) {
-              var span = '<span class="label label-primary">' + data + '</span><br>'
-              spanValues.parent().prepend(span)
-            }
-          })
-        } else {
-          if (thisValue != '') {
-            span = '<span class="label label-primary">#' + thisValue + '#</span><br>'
+  //format update linked cmds:
+  var spanValues = $('#cmd_information .cmdAttr[data-l1key="value"]')
+  var values = spanValues.html()
+  spanValues.hide()
+  if (values != '') {
+    var arrValues = values.split('#')
+    var spans = ''
+    var span
+    arrValues.forEach(function(thisValue) {
+      if (thisValue != '' && !thisValue.includes('#')) {
+        jeedom.cmd.getHumanCmdName({
+          id: thisValue,
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function(data) {
+            var span = '<span class="label label-primary">' + data + '</span><br>'
             spanValues.parent().prepend(span)
           }
+        })
+      } else {
+        if (thisValue != '') {
+          span = '<span class="label label-primary">#' + thisValue + '#</span><br>'
+          spanValues.parent().prepend(span)
         }
-      })
-    }
-
-    jeedom.timeline.autocompleteFolder()
-
-    displayWidgetHelp($('#cmd_display select[data-l1key="template"][data-l2key="dashboard"]').val())
-
-    $('#cmd_display select[data-l1key="template"][data-l2key="dashboard"]').off('change').on('change', function() {
-      displayWidgetHelp($(this).val())
+      }
     })
+  }
+
+  jeedom.timeline.autocompleteFolder()
+
+  displayWidgetHelp($('#cmd_display select[data-l1key="template"][data-l2key="dashboard"]').val())
+
+  $('#cmd_display select[data-l1key="template"][data-l2key="dashboard"]').off('change').on('change', function() {
+    displayWidgetHelp($(this).val())
   })
 
   function displayWidgetHelp(widgetName) {

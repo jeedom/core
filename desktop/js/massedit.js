@@ -238,10 +238,8 @@ if (!jeeFrontEnd.massedit) {
 
 jeeFrontEnd.massedit.init()
 
-$(function() {
-  jeeFrontEnd.massedit.postInit()
-  document.querySelectorAll('.selectEditKey').triggerEvent('change')
-})
+jeeFrontEnd.massedit.postInit()
+document.querySelectorAll('.selectEditKey').triggerEvent('change')
 
 //change filter type:
 $('#sel_FilterByType').off('change').on('change', function() {

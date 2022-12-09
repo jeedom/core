@@ -151,9 +151,7 @@ if (!jeeFrontEnd.md_history) {
   var jeeM = jeeFrontEnd.md_history
   jeeM.init(jeephp2js.md_history_cmdId)
 
-  $(function() {
-    jeedomUtils.datePickerInit()
-  })
+  jeedomUtils.datePickerInit()
 
   //handle resizing:
   jeeM.md_modal.on('dialogresize', function() {

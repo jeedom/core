@@ -449,66 +449,62 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 
 <script>
   $('.ui-widget-overlay').hide()
-  var modal
+  var modal = $('#md_modal').parents('.ui-dialog.ui-resizable')
 
-  $(function() {
-    modal = $('#md_modal').parents('.ui-dialog.ui-resizable')
+  //modal title:
+  var title = "{{Configuration de la tuile}}"
+  title += ' : ' + jeephp2js.md_eqLogicDashEdit_eqInfo.name
+  title += ' <span class="cmdName"><em>(' + jeephp2js.md_eqLogicDashEdit_eqInfo.eqType_name + ')</em></span>'
+  modal.find('.ui-dialog-title').html(title)
 
-    //modal title:
-    var title = "{{Configuration de la tuile}}"
-    title += ' : ' + jeephp2js.md_eqLogicDashEdit_eqInfo.name
-    title += ' <span class="cmdName"><em>(' + jeephp2js.md_eqLogicDashEdit_eqInfo.eqType_name + ')</em></span>'
-    modal.find('.ui-dialog-title').html(title)
-
-    //add save buttons:
-    var button = {
-      "Dummy": {
-        class: 'hidden'
-      },
-      "Save": {
-        text: "{{Sauvegarder}}",
-        click: editSaveEqlogic
-      }
+  //add save buttons:
+  var button = {
+    "Dummy": {
+      class: 'hidden'
+    },
+    "Save": {
+      text: "{{Sauvegarder}}",
+      click: editSaveEqlogic
     }
-    $('#md_modal').dialog('option', 'buttons', button)
+  }
+  $('#md_modal').dialog('option', 'buttons', button)
 
-    //remove dialog buttons and bindings before closing:
-    $('#md_modal').on('dialogbeforeclose', function(event, ui) {
-      modal.find('.ui-dialog-buttonpane').remove()
-      modal.find('.ui-draggable-handle').off('mouseup')
-      $(this).off('dialogbeforeclose')
-    })
-
-    setModal()
-
-    //display options:
-    this.getElementById('div_displayEqLogicConfigure').setJeeValues(jeephp2js.md_eqLogicDashEdit_eqInfo, '.eqLogicAttr')
-
-    var panelCmds = document.getElementById('panel_cmds')
-    var id, cmdInfo, dashWidget, mobileWidget
-    panelCmds.querySelectorAll('.cmdConfig').forEach(function(element) {
-      var id = element.dataset.id
-      var cmdInfo = jeephp2js.md_eqLogicDashEdit_allCmdsInfo[id]
-      if (cmdInfo.widgetPossibilityDashboard == true) element.querySelector('.widgetPossibilityDashboard').seen()
-      if (cmdInfo.widgetPossibilityMobile == true) element.querySelector('.widgetPossibilityMobile').seen()
-      panelCmds.setJeeValues(cmdInfo, '.cmdAttr' + id)
-
-      //widgets default if empty:
-      var dashWidget = element.querySelector('select[data-l2key="dashboard"]')
-      if (dashWidget.value == '') dashWidget.selectedIndex = 0
-      var mobileWidget = element.querySelector('select[data-l2key="mobile"]')
-      if (mobileWidget.value == '') mobileWidget.selectedIndex = 0
-    })
-
-    setTableLayoutSortable()
-    jeedomUtils.initTooltips()
-    jeedomUtils.initSpinners()
-
-    //layout default or table for cmd order:
-    if ($('.sel_layout').val() == 'default') {
-      $('input[data-l2key="layout::dashboard::table::nbLine"], input[data-l2key="layout::dashboard::table::nbColumn"]').val(1)
-    }
+  //remove dialog buttons and bindings before closing:
+  $('#md_modal').on('dialogbeforeclose', function(event, ui) {
+    modal.find('.ui-dialog-buttonpane').remove()
+    modal.find('.ui-draggable-handle').off('mouseup')
+    $(this).off('dialogbeforeclose')
   })
+
+  setModal()
+
+  //display options:
+  document.getElementById('div_displayEqLogicConfigure').setJeeValues(jeephp2js.md_eqLogicDashEdit_eqInfo, '.eqLogicAttr')
+
+  var panelCmds = document.getElementById('panel_cmds')
+  var id, cmdInfo, dashWidget, mobileWidget
+  panelCmds.querySelectorAll('.cmdConfig').forEach(function(element) {
+    var id = element.dataset.id
+    var cmdInfo = jeephp2js.md_eqLogicDashEdit_allCmdsInfo[id]
+    if (cmdInfo.widgetPossibilityDashboard == true) element.querySelector('.widgetPossibilityDashboard').seen()
+    if (cmdInfo.widgetPossibilityMobile == true) element.querySelector('.widgetPossibilityMobile').seen()
+    panelCmds.setJeeValues(cmdInfo, '.cmdAttr' + id)
+
+    //widgets default if empty:
+    var dashWidget = element.querySelector('select[data-l2key="dashboard"]')
+    if (dashWidget.value == '') dashWidget.selectedIndex = 0
+    var mobileWidget = element.querySelector('select[data-l2key="mobile"]')
+    if (mobileWidget.value == '') mobileWidget.selectedIndex = 0
+  })
+
+  setTableLayoutSortable()
+  jeedomUtils.initTooltips()
+  jeedomUtils.initSpinners()
+
+  //layout default or table for cmd order:
+  if ($('.sel_layout').val() == 'default') {
+    $('input[data-l2key="layout::dashboard::table::nbLine"], input[data-l2key="layout::dashboard::table::nbColumn"]').val(1)
+  }
 
   function setModal() {
     //check previous size/pos:
@@ -652,14 +648,12 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
     $(this).closest('tr').remove()
   })
 
-  $(function() {
-    $('#commands select[data-l1key="template"][data-l2key="dashboard"]').each(function() {
-      displayWidgetHelp($(this).val(), $(this).closest('.cmdConfig').attr('data-id'))
-    })
+  $('#commands select[data-l1key="template"][data-l2key="dashboard"]').each(function() {
+    displayWidgetHelp($(this).val(), $(this).closest('.cmdConfig').attr('data-id'))
+  })
 
-    $('#commands select[data-l1key="template"][data-l2key="dashboard"]').off('change').on('change', function() {
-      displayWidgetHelp($(this).val(), $(this).closest('.cmdConfig').attr('data-id'))
-    })
+  $('#commands select[data-l1key="template"][data-l2key="dashboard"]').off('change').on('change', function() {
+    displayWidgetHelp($(this).val(), $(this).closest('.cmdConfig').attr('data-id'))
   })
 
   function displayWidgetHelp(widgetName, cmdId) {

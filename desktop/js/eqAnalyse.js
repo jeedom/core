@@ -89,26 +89,24 @@ jeeFrontEnd.eqAnalyse.init()
 
 $('.alertListContainer .jeedomAlreadyPosition').removeClass('jeedomAlreadyPosition')
 
-$(function() {
-  //tabs icons colors:
-  if ($('div.batteryListContainer div.eqLogic-widget.critical').length) {
-    $('a[href="#battery"] > i').addClass('danger')
-  } else if ($('div.batteryListContainer div.eqLogic-widget.warning').length) {
-    $('a[href="#battery"] > i').addClass('warning')
-  } else {
-    $('a[href="#battery"] > i').addClass('success')
-  }
+//tabs icons colors:
+if ($('div.batteryListContainer div.eqLogic-widget.critical').length) {
+  $('a[href="#battery"] > i').addClass('danger')
+} else if ($('div.batteryListContainer div.eqLogic-widget.warning').length) {
+  $('a[href="#battery"] > i').addClass('warning')
+} else {
+  $('a[href="#battery"] > i').addClass('success')
+}
 
-  if ($('div.alertListContainer div.eqLogic-widget').length) {
-    $('a[href="#alertEqlogic"] > i').addClass('warning')
-  }
+if ($('div.alertListContainer div.eqLogic-widget').length) {
+  $('a[href="#alertEqlogic"] > i').addClass('warning')
+}
 
-  jeedomUtils.initTableSorter()
-  window.registerEvent("resize", function eqAnalyse(event) {
-    if (document.querySelector('#ul_tabBatteryAlert li.alerts').hasClass('active')) {
-      jeedomUtils.positionEqLogic()
-    }
-  })
+jeedomUtils.initTableSorter()
+window.registerEvent("resize", function eqAnalyse(event) {
+  if (document.querySelector('#ul_tabBatteryAlert li.alerts').hasClass('active')) {
+    jeedomUtils.positionEqLogic()
+  }
 })
 
 //update tablesorter on tab click:

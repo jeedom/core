@@ -29,14 +29,12 @@ if (!jeeFrontEnd.log) {
 jeeFrontEnd.log.init()
 
 //autoclick first log:
-$(function() {
-  var logfile = getUrlVars('logfile')
-  if ($('#div_displayLogList .li_log[data-log="' + logfile + '"]').length) {
-    $('#div_displayLogList .li_log[data-log="' + logfile + '"]').trigger('click')
-  } else {
-    $('#div_displayLogList .li_log').first().trigger('click')
-  }
-})
+var logfile = getUrlVars('logfile')
+if ($('#div_displayLogList .li_log[data-log="' + logfile + '"]').length) {
+  $('#div_displayLogList .li_log[data-log="' + logfile + '"]').trigger('click')
+} else {
+  $('#div_displayLogList .li_log').first().trigger('click')
+}
 
 jeeP.$rawLogCheck.on('click').on('click', function() {
   jeeP.$rawLogCheck.attr('autoswitch', 0)

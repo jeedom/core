@@ -27,7 +27,6 @@ if (!jeeFrontEnd.backup) {
         this.updateRepoListBackup(jeephp2js.repoList[i])
       }
 
-      $.showLoading()
       jeedom.config.load({
         configuration: document.getElementById('backup').getJeeValues('.configKey')[0],
         error: function(error) {
@@ -149,16 +148,14 @@ if (!jeeFrontEnd.backup) {
 
 jeeFrontEnd.backup.init()
 
-document.onkeydown = function(event) {
+jeeFrontEnd.backup.postInit()
+
+document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
     $("#bt_saveBackup").click()
   }
-}
-
-$(function() {
-  jeeFrontEnd.backup.postInit()
 })
 
 $("#bt_saveBackup").on('click', function(event) {

@@ -26,12 +26,9 @@ if (!jeeFrontEnd.system) {
 
 jeeFrontEnd.system.init()
 
-$(function() {
-    $('ul.bs-sidenav li a').each(function() {
-      $(this).prop('title', $(this).attr('data-command'))
-    })
+$('ul.bs-sidenav li a').each(function() {
+  $(this).prop('title', $(this).attr('data-command'))
 })
-
 
 $('.bt_systemCommand').off('click').on('click', function() {
   var command = $(this).attr('data-command')

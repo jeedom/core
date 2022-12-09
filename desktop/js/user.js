@@ -125,6 +125,18 @@ if (!jeeFrontEnd.user) {
             newRow.setJeeValues(data[i], '.userAttr')
           }
           document.querySelector('#table_user tbody').appendChild(fragment)
+
+          var $tableDevices = $('#tableDevices')
+          jeedomUtils.initTableSorter()
+          $tableDevices[0].config.widgetOptions.resizable_widths = ['', '250px', '180px', '180px', '80px']
+          $tableDevices.trigger('applyWidgets')
+            .trigger('resizableReset')
+            .trigger('sorton', [
+              [
+                [3, 1]
+              ]
+            ])
+
           jeeFrontEnd.modifyWithoutSave = false
           domUtils.hideLoading()
         }
@@ -138,25 +150,11 @@ jeeP.printUsers()
 
 document.onkeydown = function(event) {
   if (jeedomUtils.getOpenedModal()) return
-
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
     $('#bt_saveUser').click()
   }
 }
-
-var $tableDevices = $('#tableDevices')
-$(function() {
-  jeedomUtils.initTableSorter()
-  $tableDevices[0].config.widgetOptions.resizable_widths = ['', '250px', '180px', '180px', '80px']
-  $tableDevices.trigger('applyWidgets')
-    .trigger('resizableReset')
-    .trigger('sorton', [
-      [
-        [3, 1]
-      ]
-    ])
-})
 
 
 $('#div_administration').on({

@@ -158,13 +158,11 @@ if (!jeeFrontEnd.database) {
 
 jeeFrontEnd.database.init()
 
-$(function() {
-  window.registerEvent("resize", function db(event) {
-    var tHeight = document.getElementById('dbCommands').offsetHeight  + document.getElementById('jeedomMenuBar').offsetHeight + 10
-    document.getElementById('div_commandResult').style.height = (window.innerHeight - tHeight) + 'px'
-  })
-  window.triggerEvent('resize')
+window.registerEvent("resize", function db(event) {
+  var tHeight = document.getElementById('dbCommands').offsetHeight  + document.getElementById('jeedomMenuBar').offsetHeight + 10
+  document.getElementById('div_commandResult').style.height = (window.innerHeight - tHeight) + 'px'
 })
+window.triggerEvent('resize')
 
 $('.bt_dbCommand').off('click').on('click', function() {
   var command = $(this).attr('data-command')

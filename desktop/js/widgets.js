@@ -245,9 +245,7 @@ document.onkeydown = function(event) {
   }
 }
 
-$(function() {
-  $('sub.itemsNumber').html('(' + $('.widgetsDisplayCard').length + ')')
-})
+$('sub.itemsNumber').html('(' + $('.widgetsDisplayCard').length + ')')
 
 //searching
 $('#in_searchWidgets').keyup(function() {
@@ -290,8 +288,7 @@ $('#bt_resetWidgetsSearch').off('click').on('click', function() {
 })
 
 //context menu
-$(function() {
-  try {
+try {
     $.contextMenu('destroy', $('.nav.nav-tabs'))
     jeedom.widgets.all({
       error: function(error) {
@@ -354,7 +351,6 @@ $(function() {
       }
     })
   } catch (err) { }
-})
 
 $('#bt_chooseIcon').on('click', function() {
   var _icon = false

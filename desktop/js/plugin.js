@@ -417,24 +417,22 @@ if (!jeeFrontEnd.plugin) {
 
 jeeFrontEnd.plugin.init()
 
-$(function() {
-  $('sub.itemsNumber').html('(' + $('.pluginDisplayCard').length + ')')
+$('sub.itemsNumber').html('(' + $('.pluginDisplayCard').length + ')')
 
-  //is plugin id in url to go to configuration:
-  if (typeof(jeephp2js.selPluginId) !== "undefined" && jeephp2js.selPluginId != -1) {
-    if ($('#md_modal').is(':visible')) {
-      var $container = $('#md_modal #div_resumePluginList')
-    } else {
-      var $container = $('#div_resumePluginList')
-    }
-    if ($container.find('.pluginDisplayCard[data-plugin_id=' + jeephp2js.selPluginId + ']').length != 0) {
-      $container.find('.pluginDisplayCard[data-plugin_id=' + jeephp2js.selPluginId + ']').click()
-    } else {
-      $container.find('.pluginDisplayCard').first().click()
-    }
-    jeedomUtils.initTooltips()
+//is plugin id in url to go to configuration:
+if (typeof(jeephp2js.selPluginId) !== "undefined" && jeephp2js.selPluginId != -1) {
+  if ($('#md_modal').is(':visible')) {
+    var $container = $('#md_modal #div_resumePluginList')
+  } else {
+    var $container = $('#div_resumePluginList')
   }
-})
+  if ($container.find('.pluginDisplayCard[data-plugin_id=' + jeephp2js.selPluginId + ']').length != 0) {
+    $container.find('.pluginDisplayCard[data-plugin_id=' + jeephp2js.selPluginId + ']').click()
+  } else {
+    $container.find('.pluginDisplayCard').first().click()
+  }
+  jeedomUtils.initTooltips()
+}
 
 document.onkeydown = function(event) {
   if (jeedomUtils.getOpenedModal()) return

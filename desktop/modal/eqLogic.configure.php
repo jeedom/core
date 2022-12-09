@@ -472,27 +472,25 @@ sendVarToJS([
 </div>
 
 <script>
-  $(function() {
-    //check if coming from clicking on battery in eqanalyse:
-    if ($('body').attr('data-page') == "eqAnalyse") {
-      $('#eqLogicConfigureTab > li > a[href="#eqLogic_alert"]').click()
-    }
+  //check if coming from clicking on battery in eqanalyse:
+  if ($('body').attr('data-page') == "eqAnalyse") {
+    $('#eqLogicConfigureTab > li > a[href="#eqLogic_alert"]').click()
+  }
 
-    //modal title:
-    var title = "{{Configuration de l'équipement}}"
-    title += ' : ' + jeephp2js.md_eqLogicConfigure_Info.name
-    title += ' <span class="cmdName"><em>(' + jeephp2js.md_eqLogicConfigure_Info.eqType_name + ')</em></span>'
-    $('#eqLogicConfigureTab').parents('.ui-dialog').find('.ui-dialog-title').html(title)
+  //modal title:
+  var title = "{{Configuration de l'équipement}}"
+  title += ' : ' + jeephp2js.md_eqLogicConfigure_Info.name
+  title += ' <span class="cmdName"><em>(' + jeephp2js.md_eqLogicConfigure_Info.eqType_name + ')</em></span>'
+  $('#eqLogicConfigureTab').parents('.ui-dialog').find('.ui-dialog-title').html(title)
 
-    //check some values:
-    var nbColumn = $('input[data-l2key="layout::dashboard::table::nbColumn"]').val()
-    if (nbColumn == '') $('input[data-l2key="layout::dashboard::table::nbColumn"]').val(1)
-    var nbLine = $('input[data-l2key="layout::dashboard::table::nbLine"]').val()
-    if (nbLine == '') $('input[data-l2key="layout::dashboard::table::nbLine"]').val(1)
+  //check some values:
+  var nbColumn = $('input[data-l2key="layout::dashboard::table::nbColumn"]').val()
+  if (nbColumn == '') $('input[data-l2key="layout::dashboard::table::nbColumn"]').val(1)
+  var nbLine = $('input[data-l2key="layout::dashboard::table::nbLine"]').val()
+  if (nbLine == '') $('input[data-l2key="layout::dashboard::table::nbLine"]').val(1)
 
-    setTableLayoutSortable()
-    jeedomUtils.initSpinners()
-  })
+  setTableLayoutSortable()
+  jeedomUtils.initSpinners()
 
   function setTableLayoutSortable() {
     $('#tableCmdLayoutConfiguration tbody td .cmdLayoutContainer').sortable({

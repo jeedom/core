@@ -294,50 +294,48 @@ include_file('3rdparty', 'jquery.tablesorter/_jeedom/pager-custom-constrols', 'j
 
   }
 
-  $(function() {
-    jeedomUtils.initTableSorter()
-    $tableCmdConfigureHistory[0].config.widgetOptions.resizable_widths = ['', '120px', '115px', '130px', '160px', '120px', '120px', '130px', '95px']
-    $tableCmdConfigureHistory[0].config.checkboxVisible = true
-    $tableCmdConfigureHistory.trigger('resizableReset')
-    $tableCmdConfigureHistory.width('100%')
-    setTableParser()
+  jeedomUtils.initTableSorter()
+  $tableCmdConfigureHistory[0].config.widgetOptions.resizable_widths = ['', '120px', '115px', '130px', '160px', '120px', '120px', '130px', '95px']
+  $tableCmdConfigureHistory[0].config.checkboxVisible = true
+  $tableCmdConfigureHistory.trigger('resizableReset')
+  $tableCmdConfigureHistory.width('100%')
+  setTableParser()
 
-    // initialize pager:
-    var $pager = $('.pager')
-    $.tablesorter.customPagerControls({
-      table: $tableCmdConfigureHistory, // point at correct table (string or jQuery object)
-      pager: $pager, // pager wrapper (string or jQuery object)
-      pageSize: '.left a', // container for page sizes
-      currentPage: '.right a', // container for page selectors
-      ends: 2, // number of pages to show of either end
-      aroundCurrent: 1, // number of pages surrounding the current page
-      link: '<a href="#">{page}</a>', // page element; use {page} to include the page number
-      currentClass: 'current', // current page class name
-      adjacentSpacer: '<span> | </span>', // spacer for page numbers next to each other
-      distanceSpacer: '<span> &#133; <span>', // spacer for page numbers away from each other (ellipsis = &#133;)
-      addKeyboard: true, // use left,right,up,down,pageUp,pageDown,home, or end to change current page
-      pageKeyStep: 10, // page step to use for pageUp and pageDown
-    })
-    $tableCmdConfigureHistory.tablesorterPager({
-      container: $pager,
-      size: 15,
-      savePages: false,
-      page: 0,
-      pageReset: 0,
-      removeRows: false,
-      countChildRows: false,
-      output: 'showing: {startRow} to {endRow} ({filteredRows})'
-    })
-
-
-    if (jeephp2js.md_cmdConfigureHistory_numCmds < 500) {
-      jeedomUtils.initTooltips($tableCmdConfigureHistory)
-    }
-    if (jeephp2js.md_cmdConfigureHistory_numCmds < 1000) {
-      jeedom.timeline.autocompleteFolder()
-    }
-    setTimeout(function() {
-      $tableCmdConfigureHistory.closest('.ui-dialog').resize()
-    }, 500)
+  // initialize pager:
+  var $pager = $('.pager')
+  $.tablesorter.customPagerControls({
+    table: $tableCmdConfigureHistory, // point at correct table (string or jQuery object)
+    pager: $pager, // pager wrapper (string or jQuery object)
+    pageSize: '.left a', // container for page sizes
+    currentPage: '.right a', // container for page selectors
+    ends: 2, // number of pages to show of either end
+    aroundCurrent: 1, // number of pages surrounding the current page
+    link: '<a href="#">{page}</a>', // page element; use {page} to include the page number
+    currentClass: 'current', // current page class name
+    adjacentSpacer: '<span> | </span>', // spacer for page numbers next to each other
+    distanceSpacer: '<span> &#133; <span>', // spacer for page numbers away from each other (ellipsis = &#133;)
+    addKeyboard: true, // use left,right,up,down,pageUp,pageDown,home, or end to change current page
+    pageKeyStep: 10, // page step to use for pageUp and pageDown
   })
+  $tableCmdConfigureHistory.tablesorterPager({
+    container: $pager,
+    size: 15,
+    savePages: false,
+    page: 0,
+    pageReset: 0,
+    removeRows: false,
+    countChildRows: false,
+    output: 'showing: {startRow} to {endRow} ({filteredRows})'
+  })
+
+
+  if (jeephp2js.md_cmdConfigureHistory_numCmds < 500) {
+    jeedomUtils.initTooltips($tableCmdConfigureHistory)
+  }
+  if (jeephp2js.md_cmdConfigureHistory_numCmds < 1000) {
+    jeedom.timeline.autocompleteFolder()
+  }
+  setTimeout(function() {
+    $tableCmdConfigureHistory.closest('.ui-dialog').resize()
+  }, 500)
 </script>

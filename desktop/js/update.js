@@ -139,6 +139,26 @@ if (!jeeFrontEnd.update) {
           $('#table_update tbody').trigger('update')
 
           if (jeeP.hasUpdate) document.querySelector('li a[href="#coreplugin"] i').style.color = 'var(--al-warning-color)'
+
+          $('#md_specifyUpdate').removeClass('hidden')
+
+          $('#table_update').on('sortEnd', function(e, t) {
+            $("#table_update tbody").prepend($('tr[data-type="core"]'))
+          })
+
+          $('#table_update')[0].config.widgetOptions.resizable_widths = ['80px', '', '', '', '', '', '']
+          $('#table_update').trigger('applyWidgets').trigger('sorton', [
+            [
+              [0, 1]
+            ]
+          ])
+
+          //create a second <pre> for cleaned text to avoid change event infinite loop:
+          $('#pre_updateInfo').after($(jeeP.newLogClean)).hide()
+          jeeP._pre_updateInfo_clean = document.getElementById('pre_updateInfo_clean')
+          jeeP._pre_updateInfo_clean.seen()
+          jeeP.createUpdateObserver()
+          jeedomUtils.setCheckContextMenu()
         }
       })
 
@@ -463,35 +483,14 @@ jeeFrontEnd.update.init()
 
 jeeP.printUpdate()
 
-$(function() {
-  if (jeephp2js.isUpdating == '1') {
-    jeedomUtils.hideAlert()
-    jeeP.progress = 7
-    $('.progressbarContainer').removeClass('hidden')
-    $('.bt_refreshOsPackageUpdate').addClass('disabled')
-    jeeP.updateProgressBar()
-    jeeP.getJeedomLog(1, 'update')
-  }
-  $('#md_specifyUpdate').removeClass('hidden')
-
-  $('#table_update').on('sortEnd', function(e, t) {
-    $("#table_update tbody").prepend($('tr[data-type="core"]'))
-  })
-
-  $('#table_update')[0].config.widgetOptions.resizable_widths = ['80px', '', '', '', '', '', '']
-  $('#table_update').trigger('applyWidgets').trigger('sorton', [
-    [
-      [0, 1]
-    ]
-  ])
-
-  //create a second <pre> for cleaned text to avoid change event infinite loop:
-  $('#pre_updateInfo').after($(jeeP.newLogClean)).hide()
-  jeeP._pre_updateInfo_clean = document.getElementById('pre_updateInfo_clean')
-  jeeP._pre_updateInfo_clean.seen()
-  jeeP.createUpdateObserver()
-  jeedomUtils.setCheckContextMenu()
-})
+if (jeephp2js.isUpdating == '1') {
+  jeedomUtils.hideAlert()
+  jeeP.progress = 7
+  $('.progressbarContainer').removeClass('hidden')
+  $('.bt_refreshOsPackageUpdate').addClass('disabled')
+  jeeP.updateProgressBar()
+  jeeP.getJeedomLog(1, 'update')
+}
 
 
 $('.bt_refreshOsPackageUpdate').off('click').on('click', function() {
