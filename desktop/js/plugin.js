@@ -419,21 +419,6 @@ jeeFrontEnd.plugin.init()
 
 $('sub.itemsNumber').html('(' + $('.pluginDisplayCard').length + ')')
 
-//is plugin id in url to go to configuration:
-if (typeof(jeephp2js.selPluginId) !== "undefined" && jeephp2js.selPluginId != -1) {
-  if ($('#md_modal').is(':visible')) {
-    var $container = $('#md_modal #div_resumePluginList')
-  } else {
-    var $container = $('#div_resumePluginList')
-  }
-  if ($container.find('.pluginDisplayCard[data-plugin_id=' + jeephp2js.selPluginId + ']').length != 0) {
-    $container.find('.pluginDisplayCard[data-plugin_id=' + jeephp2js.selPluginId + ']').click()
-  } else {
-    $container.find('.pluginDisplayCard').first().click()
-  }
-  jeedomUtils.initTooltips()
-}
-
 document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
 
@@ -694,3 +679,18 @@ $('#div_configLog').on({
     }
   }
 }, '.bt_plugin_conf_view_log')
+
+//is plugin id in url to go to configuration:
+if (typeof(jeephp2js.selPluginId) !== "undefined" && jeephp2js.selPluginId != -1) {
+  if ($('#md_modal').is(':visible')) {
+    var $container = $('#md_modal #div_resumePluginList')
+  } else {
+    var $container = $('#div_resumePluginList')
+  }
+  if ($container.find('.pluginDisplayCard[data-plugin_id=' + jeephp2js.selPluginId + ']').length != 0) {
+    $container.find('.pluginDisplayCard[data-plugin_id=' + jeephp2js.selPluginId + ']').click()
+  } else {
+    $container.find('.pluginDisplayCard').first().click()
+  }
+  jeedomUtils.initTooltips()
+}
