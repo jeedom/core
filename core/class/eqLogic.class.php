@@ -844,20 +844,17 @@ class eqLogic {
 			case 'table':
 				$replace['#eqLogic_class#'] = 'eqLogic_layout_table';
 				$table = self::generateHtmlTable($this->getDisplay('layout::' . $_version . '::table::nbLine', 1), $this->getDisplay('layout::' . $_version . '::table::nbColumn', 1), $this->getDisplay('layout::' . $_version . '::table::parameters'));
-				$br_before = 0;
 				foreach ($this->getCmd(null, null, true) as $cmd) {
 					if (isset($replace['#refresh_id#']) && $cmd->getId() == $replace['#refresh_id#']) {
 						continue;
 					}
 					$tag = '#cmd::' . $this->getDisplay('layout::' . $_version . '::table::cmd::' . $cmd->getId() . '::line', 1) . '::' . $this->getDisplay('layout::' . $_version . '::table::cmd::' . $cmd->getId() . '::column', 1) . '#';
-					if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
+					if ($cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
 						$table['tag'][$tag] .= '<div class="break"></div>';
 					}
 					$table['tag'][$tag] .= $cmd->toHtml($_version, '');
-					$br_before = 0;
 					if ($cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
 						$table['tag'][$tag] .= '<div class="break"></div>';
-						$br_before = 1;
 					}
 				}
 				$replace['#cmd#'] = template_replace($table['tag'], $table['html']);
@@ -866,19 +863,16 @@ class eqLogic {
 			default:
 				$replace['#eqLogic_class#'] = 'eqLogic_layout_default';
 				$cmd_html = '';
-				$br_before = 0;
 				foreach ($this->getCmd(null, null, true) as $cmd) {
 					if (isset($replace['#refresh_id#']) && $cmd->getId() == $replace['#refresh_id#']) {
 						continue;
 					}
-					if ($_version == 'dashboard' && $br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
+					if ($_version == 'dashboard' && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
 						$cmd_html .= '<div class="break"></div>';
 					}
 					$cmd_html .= $cmd->toHtml($_version, '');
-					$br_before = 0;
 					if ($_version == 'dashboard' && $cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
 						$cmd_html .= '<div class="break"></div>';
-						$br_before = 1;
 					}
 				}
 				$replace['#cmd#'] = $cmd_html;
