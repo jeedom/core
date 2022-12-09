@@ -182,6 +182,33 @@ if (!jeeFrontEnd.overview) {
 }
 
 jeeFrontEnd.overview.init()
+
+//Dialog summary opening:
+jeeP.$modal = $("#md_overviewSummary")
+jeeP.$modal.dialog({
+  closeText: '',
+  autoOpen: false,
+  modal: true,
+  width: 500,
+  height: 200,
+  position: {
+    my: 'center top',
+    at: 'center center-100',
+    of: $('#div_pageContainer')
+  },
+  open: function() {
+    $('.ui-widget-overlay.ui-front').css('display', 'none')
+    //catch infos updates by main mutationobserver (jeedomUtils.loadPage disconnect/reconnect it):
+    if (jeedomUtils.OBSERVER) {
+      var summaryModal = document.getElementById('summaryEqlogics')
+      jeedomUtils.OBSERVER.observe(summaryModal, jeedomUtils.observerConfig)
+    }
+  },
+  beforeClose: function(event, ui) {
+    $('.ui-widget-overlay.ui-front').css('display')
+  }
+})
+
 //infos/actions tile signals:
 jeedomUI.isEditing = false
 jeedomUI.setEqSignals()
@@ -201,7 +228,7 @@ $('.objectPreview').each(function() {
 })
 
 jeeFrontEnd.overview.postInit()
-$('.resume').show()
+document.querySelectorAll('.resume').seen()
 
 //summary modal events:
 jeeP.$summaryContainer.packery()
@@ -213,6 +240,7 @@ jeeP.modalContent.off().on('click', function(event) {
     jeeP.$modal.dialog('close')
   }
 })
+
 //history in summary modal:
 jeeP.modalContent.on({
   'click': function(event) {
@@ -232,7 +260,6 @@ jeeP.modalContent.on({
     }).load('index.php?v=d&modal=cmd.history&id=' + cmdIds).dialog('open')
   }
 }, 'div.eqLogic-widget .history')
-
 
 //buttons:
 $('#div_pageContainer').on({
@@ -312,28 +339,3 @@ $('.objectPreview .name').off('mouseup').on('mouseup', function(event) {
   }
 })
 
-//Dialog summary opening:
-jeeP.$modal = $("#md_overviewSummary")
-jeeP.$modal.dialog({
-  closeText: '',
-  autoOpen: false,
-  modal: true,
-  width: 500,
-  height: 200,
-  position: {
-    my: 'center top',
-    at: 'center center-100',
-    of: $('#div_pageContainer')
-  },
-  open: function() {
-    $('.ui-widget-overlay.ui-front').css('display', 'none')
-    //catch infos updates by main mutationobserver (jeedomUtils.loadPage disconnect/reconnect it):
-    if (jeedomUtils.OBSERVER) {
-      var summaryModal = document.getElementById('summaryEqlogics')
-      jeedomUtils.OBSERVER.observe(summaryModal, jeedomUtils.observerConfig)
-    }
-  },
-  beforeClose: function(event, ui) {
-    $('.ui-widget-overlay.ui-front').css('display')
-  }
-})
