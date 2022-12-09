@@ -148,9 +148,6 @@ $columns = config::byKey('dahsboard::column::size');
 		$div .= '</div>';
 		echo $div;
 	}
-
-	include_file('desktop', 'dashboard', 'js');
-
 	function formatJeedomObjectDiv($object, $toSummary = false) {
 		global $columns;
 		global $summaryCache;
@@ -220,4 +217,5 @@ $columns = config::byKey('dahsboard::column::size');
 
 <?php
 include_file('desktop/common', 'ui', 'js');
+include_file('desktop', 'dashboard', 'js');
 ?>

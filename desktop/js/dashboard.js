@@ -356,48 +356,44 @@ if (!jeeFrontEnd.dashboard) {
 jeeFrontEnd.dashboard.init()
 
 if (jeeP.url_summary != '') {
-    document.querySelectorAll('#bt_displayObject, #bt_editDashboardWidgetOrder').forEach(function(element) {
-      element.parentNode.remove()
-    })
+  document.querySelectorAll('#bt_displayObject, #bt_editDashboardWidgetOrder').forEach(function(element) {
+    element.parentNode.remove()
+  })
+  document.querySelectorAll('div.div_object').forEach(function(div_object) {
+    var objId = div_object.getAttribute('data-object_id')
+    jeeFrontEnd.dashboard.getObjectHtmlFromSummary(objId)
+  })
+} else {
+  document.querySelectorAll('div.div_object').forEach(function(div_object) {
+    var objId = div_object.getAttribute('data-object_id')
+    jeeFrontEnd.dashboard.getObjectHtml(objId)
+  })
 }
 
-$(function() {
-  if (jeeP.url_summary != '') {
-    document.querySelectorAll('div.div_object').forEach(function(div_object) {
-      var objId = div_object.getAttribute('data-object_id')
-      jeeFrontEnd.dashboard.getObjectHtmlFromSummary(objId)
-    })
-  } else {
-    document.querySelectorAll('div.div_object').forEach(function(div_object) {
-      var objId = div_object.getAttribute('data-object_id')
-      jeeFrontEnd.dashboard.getObjectHtml(objId)
-    })
-  }
-
-  if (typeof jeephp2js.rootObjectId != 'undefined') {
-    jeedom.object.getImgPath({
-      id: jeephp2js.rootObjectId,
-      success: function(_path) {
-        jeedomUtils.setBackgroundImage(_path)
-      }
-    })
-  }
-
-  document.getElementById('div_pageContainer').querySelectorAll('input', 'textarea', 'select').forEach(function(element) {
-    element.addEventListener('click', function (event) {
-      $(this).focus()
-    })
+if (typeof jeephp2js.rootObjectId != 'undefined') {
+  jeedom.object.getImgPath({
+    id: jeephp2js.rootObjectId,
+    success: function(_path) {
+      jeedomUtils.setBackgroundImage(_path)
+    }
   })
+}
 
-  jeeP.postInit()
-
-  document.querySelectorAll('#dashOverviewPrevSummaries > .objectSummaryContainer').unseen().addClass('shadowed')
-
-  window.registerEvent('resize', function dashboard(event) {
-    if (event.isTrigger) return
-    jeedomUtils.positionEqLogic()
+document.getElementById('div_pageContainer').querySelectorAll('input', 'textarea', 'select').forEach(function(element) {
+  element.addEventListener('click', function (event) {
+    $(this).focus()
   })
 })
+
+jeeP.postInit()
+
+document.querySelectorAll('#dashOverviewPrevSummaries > .objectSummaryContainer').unseen().addClass('shadowed')
+
+window.registerEvent('resize', function dashboard(event) {
+  if (event.isTrigger) return
+  jeedomUtils.positionEqLogic()
+})
+
 
 $('.cmd.cmd-widget.tooltipstered').tooltipster('destroy')
 
