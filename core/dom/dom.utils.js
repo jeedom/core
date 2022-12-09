@@ -19,11 +19,17 @@
 /* DOM utils namespace
 */
 var domUtils = {
-  __description: 'DOM related Jeedom functions.'
+  __description: 'DOM related Jeedom functions.',
+  ajaxCalling: 0,
+  loadingTimeout: null,
+  ajaxSettings: {
+    async: true,
+    global: true,
+    dataType: 'json',
+    type: 'post'
+  }
 }
-//jeedomUtils not loaded before first ajax calls:
-domUtils.ajaxCalling = 0
-domUtils.loadingTimeout = null
+
 domUtils.showLoading = function() {
   document.getElementById('div_jeedomLoading')?.seen()
   //Hanging timeout:
@@ -38,6 +44,7 @@ domUtils.showLoading = function() {
 }
 domUtils.hideLoading = function() {
   document.getElementById('div_jeedomLoading')?.unseen()
+  clearTimeout(domUtils.loadingTimeout)
 }
 
 
@@ -458,7 +465,7 @@ domUtils.extend = function(_object /*, _object... */) {
 
 
 //DOM appended element with script tag (template widget, scenario etc) aren't executed
-domUtils.element2dom = function(_element, _container) {
+domUtils.stringToElement = function(_element, _container) {
   _element.childNodes.forEach(function(element) {
     if (element !== undefined && element.nodeName === 'SCRIPT') {
       var script = document.createElement('script')
@@ -470,6 +477,12 @@ domUtils.element2dom = function(_element, _container) {
       Array.prototype.forEach.call(element.attributes, function(attr) {
         script.setAttribute(attr.nodeName, attr.nodeValue)
       })
+      script.async = false
+      script.defer = false
+      script.setAttribute('injext', '1')
+      script.onload = function() {
+        domUtils.stringToElement(element, _container)
+      }
       if (element.src != '') {
         if (element.src.includes('getJS.php?file=')) {
           var sourceCode = domUtils.ajax({
@@ -486,9 +499,6 @@ domUtils.element2dom = function(_element, _container) {
           element.remove()
           parent.appendChild(script)
         } else {
-          script.onload = async function() {
-            domUtils.element2dom(element, _container)
-          }
           _container.appendChild(script)
         }
       } else {
@@ -496,7 +506,7 @@ domUtils.element2dom = function(_element, _container) {
         element.replaceWith(script)
       }
     } else if (element !== undefined && element.childNodes.length) {
-       domUtils.element2dom(element, _container)
+       domUtils.stringToElement(element, _container)
     }
   })
   return _element
@@ -505,7 +515,7 @@ domUtils.parseHTML = function(_htmlString) {
   var documentFragment = document.createDocumentFragment()
   var newEl = document.createElement('span')
   newEl.innerHTML = _htmlString
-  var newFilteredEl = domUtils.element2dom(newEl, documentFragment)
+  var newFilteredEl = domUtils.stringToElement(newEl, documentFragment)
   documentFragment.appendChild(newFilteredEl)
   newFilteredEl.replaceWith(...newFilteredEl.childNodes)
   return documentFragment
@@ -562,12 +572,6 @@ domUtils.handleAjaxError = function(_request, _status, _error) {
   }
 
 }
-domUtils.ajaxSettings = {
-  async: true,
-  global: true,
-  dataType: 'json',
-  type: 'post'
-}
 domUtils.ajaxSetup = function(_params) {
   for (const key in _params) {
     domUtils.ajaxSettings[key] = _params[key]
@@ -580,12 +584,10 @@ domUtils.countAjax = function(_type, _global) {
     if (domUtils.ajaxCalling == 1) domUtils.showLoading()
   } else {
     domUtils.ajaxCalling --
-    if (domUtils.ajaxCalling <= 0) domUtils.hideLoading()
-  }
-  //Should not but may:
-  if (domUtils.ajaxCalling < 0) {
-    domUtils.ajaxCalling = 0
-    domUtils.hideLoading()
+    if (domUtils.ajaxCalling <= 0) {
+      domUtils.hideLoading()
+      domUtils.ajaxCalling = 0
+    }
   }
 }
 domUtils.ajax = function(_params) {
@@ -646,7 +648,6 @@ domUtils.ajax = function(_params) {
     })
     .catch(function(error) {
       domUtils.countAjax(1, _params.global)
-
       if (_params.url != 'core/ajax/event.ajax.php' || _params.data.action != 'changes') {
         var msg = 'domUtils.ajax(' + _params.url + ') ' + _params.type + ' async: ' + _params.async
         domUtils.handleAjaxError(msg, _params.data, error)
