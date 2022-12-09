@@ -751,10 +751,6 @@ class eqLogic {
 		}
 
 		//Automatic height when first displayed:
-		if ($this->getDisplay('height', 'auto') == 'auto') {
-			$replace['#height#'] = '110px';
-			$replace['#isVerticalAlign#'] = $replace['#isVerticalAlign#'] . ' autoResize';
-		}
 		if ($replace['#width#'] == 'auto') {
 			$replace['#width#'] = '230px';
 		}

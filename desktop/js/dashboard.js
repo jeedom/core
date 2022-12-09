@@ -361,8 +361,6 @@ if (jeeP.url_summary != '') {
     })
 }
 
-$('.cmd.cmd-widget.tooltipstered').tooltipster('destroy')
-
 $(function() {
   if (jeeP.url_summary != '') {
     document.querySelectorAll('div.div_object').forEach(function(div_object) {
@@ -376,36 +374,32 @@ $(function() {
     })
   }
 
-  setTimeout(function() {
-    if (typeof jeephp2js.rootObjectId != 'undefined') {
-      jeedom.object.getImgPath({
-        id: jeephp2js.rootObjectId,
-        success: function(_path) {
-          jeedomUtils.setBackgroundImage(_path)
-        }
-      })
-    }
-  }, 1)
-
-  //autoResize new created tiles:
-  setTimeout(function() {
-    if ($('div.eqLogic-widget > div.autoResize').length) jeedomUI.saveWidgetDisplay({
-      dashboard: 1
+  if (typeof jeephp2js.rootObjectId != 'undefined') {
+    jeedom.object.getImgPath({
+      id: jeephp2js.rootObjectId,
+      success: function(_path) {
+        jeedomUtils.setBackgroundImage(_path)
+      }
     })
-  }, 250)
+  }
 
-  setTimeout(function() {
-    $('input', 'textarea', 'select').click(function() {
+  document.getElementById('div_pageContainer').querySelectorAll('input', 'textarea', 'select').forEach(function(element) {
+    element.addEventListener('click', function (event) {
       $(this).focus()
     })
-  }, 750)
+  })
 
   jeeP.postInit()
-  window.registerEvent("resize", function dashboard(event) {
+
+  document.querySelectorAll('#dashOverviewPrevSummaries > .objectSummaryContainer').unseen().addClass('shadowed')
+
+  window.registerEvent('resize', function dashboard(event) {
     if (event.isTrigger) return
     jeedomUtils.positionEqLogic()
   })
 })
+
+$('.cmd.cmd-widget.tooltipstered').tooltipster('destroy')
 
 //searching
 $('#in_searchDashboard').off('keyup').on('keyup', function() {
@@ -523,10 +517,6 @@ $('#categoryfilter li a').on('mousedown', function(event) {
   jeeP.filterByCategory()
 })
 
-//Preview in Synthesis context:
-$(function() {
-  $('#dashOverviewPrevSummaries > .objectSummaryContainer').hide().addClass('shadowed')
-})
 $('#dashOverviewPrev').on({
   'mouseenter': function(event) {
     $('#dashOverviewPrevSummaries > .objectSummaryContainer').hide()

@@ -63,7 +63,6 @@ if ($lang != 'en') {
 	echo '<script src="' . $plufinSrc . '"></script>';
 }
 
-include_file("desktop", "editor", "js");
 ?>
 
 <div id="elfinder" class=""></div>
@@ -123,3 +122,7 @@ include_file("desktop", "editor", "js");
 </fieldset>
 </form>
 </div>
+
+<?php
+include_file("desktop", "editor", "js");
+?>

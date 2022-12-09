@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
     jeedomUtils.initTooltips()
     jeedomUtils.createObserver()
     $body.trigger('jeedom_page_load')
-  }, 1)
+  })
 })
 
 /*Toastr____________ options for jeedom.notify() toastr, need jeedom.theme set!
@@ -1009,7 +1009,7 @@ jeedomUtils.initTooltips = function(_el) {
   if (!_el) {
     try {
       $('.tooltips:not(.tooltipstered), [title]:not(.ui-button)').tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
-    } catch (e) { }
+    } catch(e) { }
   } else {
     //cmd update:
     if (_el.parents('.cmd-widget[title]').length) {
@@ -1763,3 +1763,8 @@ function getOpenedModal() {
 //Introduced in v4.3 -> obsolete 4.5 ?
 var jeedom_langage = jeeFrontEnd.language
 var userProfils = jeeFrontEnd.userProfils
+
+
+/*Migration purpose
+*/
+//var jq2 = jQuery.noConflict()

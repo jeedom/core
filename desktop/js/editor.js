@@ -186,7 +186,7 @@ if (!jeeFrontEnd.editor) {
 
 jeeFrontEnd.editor.init()
 
-$(function() {
+domUtils(function() {
   CodeMirror.modeURL = "3rdparty/codemirror/mode/%N/%N.js"
 
   var options = {
@@ -357,21 +357,13 @@ $(function() {
     }
   }
 
+  jeeP._elfInstance = $('#elfinder').elfinder(options).elfinder('instance')
+  jeeP._elfInstance.options.windowCloseConfirm = []
 
-  jeeP.loadTimer = window.setInterval(function() {
-    if (typeof window.elFinder == 'function') {
-      window.clearInterval(jeeP.loadTimer)
-      jeeP._elfInstance = $('#elfinder').elfinder(options).elfinder('instance')
-      jeeP._elfInstance.options.windowCloseConfirm = []
+  $('#elfinder').css("height", $(window).height() - 50)
+  $('.ui-state-default.elfinder-navbar.ui-resizable').css('height', '100%')
 
-      $('#elfinder').css("height", $(window).height() - 50)
-      $('.ui-state-default.elfinder-navbar.ui-resizable').css('height', '100%')
-
-      jeeP.killTooltips()
-    }
-  }, 100)
-
-
+  jeeP.killTooltips()
 })
 
 //resize explorer in browser window:
