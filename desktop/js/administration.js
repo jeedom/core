@@ -404,7 +404,7 @@ if (!jeeFrontEnd.administration) {
 
 jeeFrontEnd.administration.init()
 
-document.onkeydown = function(event) {
+document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
 
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
@@ -412,7 +412,7 @@ document.onkeydown = function(event) {
     $("#bt_saveGeneraleConfig").click()
     return
   }
-}
+})
 
 domUtils.showLoading()
 if (getUrlVars('panel') != false) {

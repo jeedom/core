@@ -434,14 +434,14 @@ if (typeof(jeephp2js.selPluginId) !== "undefined" && jeephp2js.selPluginId != -1
   jeedomUtils.initTooltips()
 }
 
-document.onkeydown = function(event) {
+document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
 
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
     $("#bt_savePluginConfig").click()
   }
-}
+})
 
 //searching:
 $('#in_searchPlugin').off('keyup').keyup(function() {

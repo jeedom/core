@@ -305,14 +305,14 @@ if (!jeeFrontEnd.view_edit) {
 
 jeeFrontEnd.view_edit.init()
 
-document.onkeydown = function(event) {
+document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
 
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
     $('#bt_saveView').click()
   }
-}
+})
 
 $("#ul_view").sortable({
   axis: "y",

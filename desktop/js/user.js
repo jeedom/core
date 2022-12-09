@@ -148,13 +148,13 @@ if (!jeeFrontEnd.user) {
 jeeFrontEnd.user.init()
 jeeP.printUsers()
 
-document.onkeydown = function(event) {
+document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
     $('#bt_saveUser').click()
   }
-}
+})
 
 
 $('#div_administration').on({
