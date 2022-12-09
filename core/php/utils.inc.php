@@ -123,10 +123,12 @@ function getTemplate($_folder, $_version, $_filename, $_plugin = '') {
 }
 
 function template_replace($_array, $_subject) {
-	if (isset($_array['#eqType#']) && is_object($eqLogic = eqLogic::byId($_array['#id#'])) && $eqLogic->getDisplay('widgetTmpl', 1) == 0 && !isset($_array['#eqLogic_class#'])) {
-		$reflected = new ReflectionClass($eqLogic->getEqType_name());
-		$method = $reflected->getParentClass()->getMethod('toHtml');
-		return $method->invokeArgs($eqLogic, [$_array['#version#']]);
+	if (strpos($_array['#uid#'], 'eqLogic') !== false && (!isset($_array['#calledFrom#']) || $_array['#calledFrom#'] != 'eqLogic')) {
+		if (is_object($eqLogic = eqLogic::byId($_array['#id#'])) && $eqLogic->getDisplay('widgetTmpl', 1) == 0) {
+			$reflected = new ReflectionClass($eqLogic->getEqType_name());
+			$method = $reflected->getParentClass()->getMethod('toHtml');
+			return $method->invokeArgs($eqLogic, [$_array['#version#']]);
+		}
 	}
 	return str_replace(array_keys($_array), array_values($_array), $_subject);
 }

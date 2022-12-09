@@ -2378,7 +2378,10 @@ class cmd {
 		$class = new ReflectionClass($this->getEqType_name());
 		$method_toHtml = $class->getMethod('toHtml');
 		$return = array();
-		if ($method_toHtml->class == 'eqLogic') {
+		if ($method_toHtml->class == 'eqLogic' || $this->getEqLogic()->getDisplay('widgetTmpl', 1) == 0) {
+			if (strpos($_key, 'custom') !== false) {
+				return true;
+			}
 			$return['custom'] = true;
 		} else {
 			$return['custom'] = false;

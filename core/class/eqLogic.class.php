@@ -750,7 +750,7 @@ class eqLogic {
 			}
 		}
 
-		//Automatic height when first displayed:
+		//Automatic width when first displayed:
 		if ($replace['#width#'] == 'auto') {
 			$replace['#width#'] = '230px';
 		}
@@ -839,7 +839,7 @@ class eqLogic {
 			return $replace;
 		}
 		$_version = jeedom::versionAlias($_version);
-
+		$replace['#calledFrom#'] = __CLASS__;
 		switch ($this->getDisplay('layout::' . $_version)) {
 			case 'table':
 				$replace['#eqLogic_class#'] = 'eqLogic_layout_table';
