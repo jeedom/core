@@ -164,9 +164,10 @@ if (!jeeFrontEnd.overview) {
                   })
 
                   //check is inside screen:
-                  var modalLeft = parseInt(self.modal[0].style['left'])
+                  var modal = self.$modal[0].parentNode
+                  var modalLeft = modal.offsetLeft
                   if (modalLeft + fullWidth + 26 > brwSize.width || modalLeft < 5) {
-                    self.modal.css('left', brwSize.width - fullWidth - 50)
+                    modal.style.left = brwSize.width - fullWidth - 50 + 'px'
                   }
 
                   jeedomUtils.initTooltips($('#md_overviewSummary'))
@@ -181,59 +182,57 @@ if (!jeeFrontEnd.overview) {
 }
 
 jeeFrontEnd.overview.init()
+//infos/actions tile signals:
+jeedomUI.isEditing = false
+jeedomUI.setEqSignals()
 
-$(function() {
-  //infos/actions tile signals:
-  jeedomUI.isEditing = false
-  jeedomUI.setEqSignals()
-
-  //move to top summary:
-  $('.objectPreview').each(function() {
-    var parent = $(this).find('.topPreview')
-    $(this).find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').each(function() {
-      $(this).detach().appendTo(parent)
-    })
-
-    $(this).find('.objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="motion"]').last().addClass('last')
-
-    if ($(this).find('.objectSummaryParent[data-summary="temperature"]').length == 0 && $(this).find('.objectSummaryParent[data-summary^=temp]').length > 0) {
-      $(this).find('.objectSummaryParent[data-summary^=temp]').first().detach().appendTo(parent)
-    }
+//move to top summary:
+$('.objectPreview').each(function() {
+  var parent = $(this).find('.topPreview')
+  $(this).find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').each(function() {
+    $(this).detach().appendTo(parent)
   })
 
-  jeeFrontEnd.overview.postInit()
-  $('.resume').show()
+  $(this).find('.objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="motion"]').last().addClass('last')
 
-  //summary modal events:
-  jeeP.$summaryContainer.packery()
-  jeeP.modal.resize(function() {
-    jeeP.$summaryContainer.packery()
-  })
-  jeeP.modalContent.off().on('click', function(event) {
-    if (!$(event.target).parents('.eqLogic-widget').length) {
-      jeeP.$modal.dialog('close')
-    }
-  })
-  //history in summary modal:
-  jeeP.modalContent.on({
-    'click': function(event) {
-      event.stopImmediatePropagation()
-      event.stopPropagation()
-      if (event.ctrlKey || event.metaKey) {
-        var cmdIds = []
-        $(this).closest('div.eqLogic-widget').find('.history[data-cmd_id]').each(function() {
-          cmdIds.push($(this).data('cmd_id'))
-        })
-        cmdIds = cmdIds.join('-')
-      } else {
-        var cmdIds = $(this).closest('.history[data-cmd_id]').data('cmd_id')
-      }
-      $('#md_modal2').dialog({
-        title: "{{Historique}}"
-      }).load('index.php?v=d&modal=cmd.history&id=' + cmdIds).dialog('open')
-    }
-  }, 'div.eqLogic-widget .history')
+  if ($(this).find('.objectSummaryParent[data-summary="temperature"]').length == 0 && $(this).find('.objectSummaryParent[data-summary^=temp]').length > 0) {
+    $(this).find('.objectSummaryParent[data-summary^=temp]').first().detach().appendTo(parent)
+  }
 })
+
+jeeFrontEnd.overview.postInit()
+$('.resume').show()
+
+//summary modal events:
+jeeP.$summaryContainer.packery()
+jeeP.modal.resize(function() {
+  jeeP.$summaryContainer.packery()
+})
+jeeP.modalContent.off().on('click', function(event) {
+  if (!$(event.target).parents('.eqLogic-widget').length) {
+    jeeP.$modal.dialog('close')
+  }
+})
+//history in summary modal:
+jeeP.modalContent.on({
+  'click': function(event) {
+    event.stopImmediatePropagation()
+    event.stopPropagation()
+    if (event.ctrlKey || event.metaKey) {
+      var cmdIds = []
+      $(this).closest('div.eqLogic-widget').find('.history[data-cmd_id]').each(function() {
+        cmdIds.push($(this).data('cmd_id'))
+      })
+      cmdIds = cmdIds.join('-')
+    } else {
+      var cmdIds = $(this).closest('.history[data-cmd_id]').data('cmd_id')
+    }
+    $('#md_modal2').dialog({
+      title: "{{Historique}}"
+    }).load('index.php?v=d&modal=cmd.history&id=' + cmdIds).dialog('open')
+  }
+}, 'div.eqLogic-widget .history')
+
 
 //buttons:
 $('#div_pageContainer').on({
