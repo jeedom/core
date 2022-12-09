@@ -120,7 +120,8 @@ div.cmd-widget .value {
 }
 
 div.eqLogic-widget div.cmds div.break {
-  flex-basis: 100%;
+  width: 100%;
+  height: 0;
 }
 
 div.eqLogic_layout_table table.tableCmd td {
