@@ -735,7 +735,7 @@ for (var i in jeephp2js.planHeader) {
 }
 
 if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
-  document.onkeydown = function(event) {
+  document.registerEvent('keydown', function(event) {
     if (jeedomUtils.getOpenedModal()) return
 
     if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
@@ -750,16 +750,16 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
       jeeP.$pageContainer.data('jeeFrontEnd.planEditOption.state', jeeFrontEnd.planEditOption.state)
       jeeP.initEditOption(jeeFrontEnd.planEditOption.state)
     }
-  }
+  })
 } else {
-  document.onkeydown = function(event) {
+  document.registerEvent('keydown', function(event) {
     if (jeedomUtils.getOpenedModal()) return
 
     if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
       event.preventDefault()
       jeeP.savePlan()
     }
-  }
+  })
 }
 
 if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {

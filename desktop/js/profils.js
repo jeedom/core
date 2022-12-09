@@ -28,12 +28,12 @@ if (!jeeFrontEnd.profils) {
 
 jeeFrontEnd.profils.init()
 
-document.onkeydown = function(event) {
+document.registerEvent('keydown', function(event) {
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
     $("#bt_saveProfils").click()
   }
-}
+})
 
 jeedomUtils.initTableSorter()
 $('#tableDevices')[0].config.widgetOptions.resizable_widths = ['', '180px', '180px', '80px']

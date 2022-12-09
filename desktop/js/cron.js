@@ -229,14 +229,14 @@ if (!jeeFrontEnd.cron) {
 
 jeeFrontEnd.cron.init()
 
-document.onkeydown = function(event) {
+document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
 
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
     $("#bt_save").click()
   }
-}
+})
 
 $("#bt_refreshCron").on('click', function() {
   jeeP.printCron()
