@@ -83,7 +83,6 @@ div.cmd-widget .content-xs {
   color: var(--txt-color);
   line-height: 16px;
   min-width: 100px;
-  padding: 0 5px;
 }
 
 div.cmd-widget .content,
@@ -101,6 +100,7 @@ div.cmd-widget .content.content-inline {
   flex-direction: row;
   justify-content: space-evenly;
   align-items: flex-start;
+  min-width: 100px;
 }
 
 div.cmd-widget .value {
