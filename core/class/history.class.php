@@ -384,12 +384,12 @@ class history {
 		}
 		$sql .= ' ORDER BY `datetime` ASC';
 		$return = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-
-		if ($_groupingType == null || strpos($_groupingType, '::') === false) {
+                $countData = count($return);
+		if ($countData > 0 && ($_groupingType == null || strpos($_groupingType, '::') === false)) {
 			$values = array(
 				'cmd_id' => $_cmd_id,
 			);
-			$countData = count($return);
+			
 			$sql = 'SELECT ' . DB::buildField(__CLASS__);
 			$sql .= ' FROM (';
 			$sql .= ' (SELECT * from history
