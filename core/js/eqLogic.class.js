@@ -508,6 +508,7 @@ jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
     cmd_id: _cmdId,
     dateStart: dateStart,
     dateEnd: dateEnd,
+    addFirstPreviousValue : true,
     success: function(result) {
       if (result.data.length == 0) return false
       if (result.timelineOnly) return false

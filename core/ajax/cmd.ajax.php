@@ -422,7 +422,7 @@ try {
 			if ($derive) {
 				$groupingType = '';
 			}
-			$histories = $cmd->getHistory($dateStart, $dateEnd, $groupingType);
+			$histories = $cmd->getHistory($dateStart, $dateEnd, $groupingType, init('addFirstPreviousValue', false));
 			$return['cmd_name'] = $cmd->getName();
 			$return['history_name'] = $cmd->getHumanName();
 			$return['unite'] = $cmd->getUnite();
@@ -459,7 +459,7 @@ try {
 				$data[] = $info_history;
 			}
 		} else {
-			$histories = history::getHistoryFromCalcul(jeedom::fromHumanReadable(init('id')), $dateStart, $dateEnd, init('allowZero', false), init('groupingType'));
+			$histories = history::getHistoryFromCalcul(jeedom::fromHumanReadable(init('id')), $dateStart, $dateEnd, init('allowZero', false), init('groupingType'), init('addFirstPreviousValue', false));
 			if (is_array($histories)) {
 				foreach ($histories as $datetime => $value) {
 					$info_history = array();

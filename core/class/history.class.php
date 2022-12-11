@@ -318,7 +318,7 @@ class history {
 		}
 	}
 
-	public static function all($_cmd_id, $_startTime = null, $_endTime = null, $_groupingType = null) {
+	public static function all($_cmd_id, $_startTime = null, $_endTime = null, $_groupingType = null, $_addFirstPreviousValue = false) {
 		$values = array(
 			'cmd_id' => $_cmd_id,
 		);
@@ -384,12 +384,11 @@ class history {
 		}
 		$sql .= ' ORDER BY `datetime` ASC';
 		$return = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-                $countData = count($return);
-		if ($countData > 0 && ($_groupingType == null || strpos($_groupingType, '::') === false)) {
+		$countData = count($return);
+		if ($_addFirstPreviousValue && $countData > 0 && ($_groupingType == null || strpos($_groupingType, '::') === false)) {
 			$values = array(
 				'cmd_id' => $_cmd_id,
 			);
-			
 			$sql = 'SELECT ' . DB::buildField(__CLASS__);
 			$sql .= ' FROM (';
 			$sql .= ' (SELECT * from history

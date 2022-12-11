@@ -43,6 +43,7 @@ jeedom.history.get = function(_params) {
     id: _params.cmd_id,
     dateStart: _params.dateStart || '',
     dateEnd: _params.dateEnd || '',
+    addFirstPreviousValue : _params.addFirstPreviousValue || false,
   };
   domUtils.ajax(paramsAJAX);
 }
@@ -216,6 +217,7 @@ jeedom.history.drawChart = function(_params) {
       groupingType: _params.option.groupingType || '',
       lastPointToEnd: _params.option.lastPointToEnd || 0,
       allowFuture: _params.option.allowFuture || 0,
+      addFirstPreviousValue: _params.addFirstPreviousValue || 0
     },
     dataType: 'json',
     global: _params.global || true,
