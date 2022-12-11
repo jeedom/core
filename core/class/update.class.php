@@ -549,6 +549,10 @@ class update {
 		if ($this->getName() == '') {
 			$this->setName($this->getLogicalId());
 		}
+		$repo = self::listRepo();
+		if ($this->getSource() != 'default' && !isset($repo[$this->getSource()])) {
+			throw new Exception(__('Source de mise à jour invalide : ', __FILE__) . $this->getSource());
+		}
 	}
 
 	public function save() {
