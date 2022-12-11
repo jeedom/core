@@ -4637,7 +4637,8 @@
         "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "Das Plugin kann nicht installiert werden. Der Name des Plugins unterscheidet sich von der ID oder das Plugin ist nicht richtig gebildet. Bitte kontaktieren Sie den Autor",
         "END UPDATE SUCCESS": "END UPDATE ERFOLG",
         "Erreur lors de la récuperation de la derniere version de Jeedom, url :": "Fehler beim Abrufen der neuesten Version von Jeedom, URL:",
-        "Le logical ID ne peut pas être vide": "Die logische ID darf nicht leer sein"
+        "Le logical ID ne peut pas être vide": "Die logische ID darf nicht leer sein",
+        "Source de mise à jour invalide : ": "Ungültige Updatequelle:"
     },
     "core\/class\/listener.class.php": {
         "[Erreur] Classe ou fonction non trouvée": "[Fehler] Klasse oder Funktion nicht gefunden",
