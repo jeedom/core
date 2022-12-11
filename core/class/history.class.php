@@ -384,21 +384,21 @@ class history {
 		}
 		$sql .= ' ORDER BY `datetime` ASC';
 		$return = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-		$countData = count($return);
-		if ($_addFirstPreviousValue && $countData > 0 && ($_groupingType == null || strpos($_groupingType, '::') === false)) {
+		if ($_addFirstPreviousValue && count($return) > 0 && ($_groupingType == null || strpos($_groupingType, '::') === false)) {
 			$values = array(
 				'cmd_id' => $_cmd_id,
+				'startTime' => $_startTime
 			);
 			$sql = 'SELECT ' . DB::buildField(__CLASS__);
 			$sql .= ' FROM (';
 			$sql .= ' (SELECT * from history
-			WHERE value is not null AND cmd_id=:cmd_id ';
-			$sql .= ' ORDER BY datetime DESC LIMIT ' .  ($countData) . ',1';
+			WHERE value is not null AND cmd_id=:cmd_id AND `datetime`<=:startTime';
+			$sql .= ' ORDER BY datetime DESC LIMIT 1';
 			$sql .= ') ';
 			$sql .= ' UNION ALL ';
 			$sql .= ' (SELECT * from historyArch
-			WHERE value is not null AND cmd_id=:cmd_id ';
-			$sql .= ' ORDER BY datetime DESC LIMIT ' .  ($countData) . ',1';
+			WHERE value is not null AND cmd_id=:cmd_id AND `datetime`<=:startTime';
+			$sql .= ' ORDER BY datetime DESC LIMIT 1';
 			$sql .= ') ';
 			$sql .= ')a ';
 			$sql .= ' ORDER BY datetime DESC LIMIT 1';
