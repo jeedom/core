@@ -463,75 +463,80 @@ domUtils.extend = function(_object /*, _object... */) {
 }
 
 
-
-//DOM appended element with script tag (template widget, scenario etc) aren't executed
-domUtils.stringToElement = function(_element, _container) {
-  _element.childNodes.forEach(function(element) {
-    if (element !== undefined && element.nodeName === 'SCRIPT') {
-      var script = document.createElement('script')
-      if (element.type) {
-        script.type = element.type
-      } else {
-        script.type = "text/javascript"
-      }
-      Array.prototype.forEach.call(element.attributes, function(attr) {
-        script.setAttribute(attr.nodeName, attr.nodeValue)
-      })
-      script.async = false
-      script.defer = false
-      script.setAttribute('injext', '1')
-      script.onload = function() {
-        domUtils.stringToElement(element, _container)
-      }
-      if (element.src != '') {
-        if (element.src.includes('getJS.php?file=')) {
-          var sourceCode = domUtils.ajax({
-            url: element.src,
-            async: false,
-            type: 'get',
-            dataType: 'html',
-            global: true
-          })
-          script.removeAttribute('src')
-          script.setAttribute('data-from', element.src)
-          script.text = sourceCode
-          var parent = element.parentNode
-          element.remove()
-          parent.appendChild(script)
-        } else {
-          _container.appendChild(script)
-        }
-      } else {
-        script.text = element.text
-        element.replaceWith(script)
-      }
-    } else if (element !== undefined && element.childNodes.length) {
-       domUtils.stringToElement(element, _container)
+/* ____________DOM Inection Management____________
+*/
+//Parse script tags and recreate them dynamically to be loaded and executed in order
+domUtils.loadScript = function(_scripts, _idx, _callback) {
+  if (_idx == undefined || _idx === null) _idx = 0
+  if (_idx >= _scripts.length) {
+    if (typeof _callback === 'function') {
+      return _callback()
     }
+    return
+  }
+  let element = _scripts[_idx]
+  let script = document.createElement('script')
+  script.type = (element.type) ? element.type : "text/javascript"
+  Array.prototype.forEach.call(element.attributes, function(attr) {
+    script.setAttribute(attr.nodeName, attr.nodeValue)
   })
-  return _element
+  script.setAttribute('injext', '1')
+  if (element.src != '') {
+    script.src = element.src
+    script.onload = function() {
+      domUtils.loadScript(_scripts, _idx + 1, _callback)
+    }
+    element.replaceWith(script)
+  } else {
+    script.text = element.text
+    element.replaceWith(script)
+    domUtils.loadScript(_scripts,_idx + 1, _callback)
+  }
 }
+
+//Cannot contain script src="" as they won't load until inserted in DOM
 domUtils.parseHTML = function(_htmlString) {
-  var documentFragment = document.createDocumentFragment()
   var newEl = document.createElement('span')
   newEl.innerHTML = _htmlString
-  var newFilteredEl = domUtils.stringToElement(newEl, documentFragment)
-  documentFragment.appendChild(newFilteredEl)
-  newFilteredEl.replaceWith(...newFilteredEl.childNodes)
-  return documentFragment
+  newEl.querySelectorAll('script[src]')?.remove()
+
+  newEl.querySelectorAll('script').forEach(function(element) {
+    let script = document.createElement('script')
+    script.setAttribute('injext', '1')
+    script.text = element.text
+    element.replaceWith(script)
+  })
+
+  return newEl
 }
-Element.prototype.html = function(_htmlString, _append) {
-  //get ?
+
+Element.prototype.html = function(_htmlString, _append, _callback) {
   if (!isset(_htmlString)) return this.innerHTML
-
   if (!isset(_append) || _append === false) this.empty()
-  this.appendChild(domUtils.parseHTML(_htmlString))
-  return this
-}
 
-Element.prototype.load = function(_path, _callback) {
+  domUtils.isLoading = true
   var self = this
 
+  var template = document.createElement('template')
+  template.innerHTML = _htmlString
+  self.appendChild(template.content)
+
+  domUtils.loadScript(self.querySelectorAll('script'), 0, function() {
+    domUtils.isLoading = false
+    if (typeof _callback === 'function') {
+      return _callback(self)
+    } else {
+      return self
+    }
+  })
+  return self
+}
+
+
+domUtils.isLoading = false
+Element.prototype.load = function(_path, _callback) {
+  var self = this
+  domUtils.isLoading = true
   domUtils.ajax({
     url: _path,
     async: domUtils.ajaxSettings.async,
@@ -545,10 +550,12 @@ Element.prototype.load = function(_path, _callback) {
       })
     },
     success: function(rawHtml) {
-      self.html(rawHtml)
-      if (typeof _callback === 'function') {
-        _callback()
-      }
+      self.html(rawHtml, false, function() {
+        domUtils.isLoading = false
+        if (typeof _callback === 'function') {
+          _callback()
+        }
+      })
     }
   })
 }
@@ -662,8 +669,6 @@ domUtils.ajax = function(_params) {
 
 
 
-
-
 /* ____________Listeners Management____________
 All events on #div_pageContainer and underneath are removed at jeedomUtils.loadPage() (div_pageContainer empty and cloned):
 
@@ -745,7 +750,10 @@ domUtils.createWidgetSlider = function(_options) {
     createOptions.direction = 'rtl'
   }
 
-  return noUiSlider.create(_options.sliderDiv, createOptions)
+  try {
+    return noUiSlider.create(_options.sliderDiv, createOptions)
+  } catch(error) { }
+    console.error('domUtils.createWidgetSlider error:', _options.sliderDiv, createOptions)
 }
 
 

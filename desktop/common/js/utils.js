@@ -16,6 +16,7 @@
 
 "use strict"
 
+
 var jeedomUtils = {
   __description: 'Loaded once for every desktop/mobile page. Global UI functions and variables.',
   backgroundIMG: null,
@@ -24,6 +25,21 @@ var jeedomUtils = {
 jeedomUtils.tileWidthStep = parseInt(jeedom.theme['widget::step::width']) > 110 ? parseInt(jeedom.theme['widget::step::width']) : 110
 jeedomUtils.tileHeightStep = parseInt(jeedom.theme['widget::step::height']) > 100 ? parseInt(jeedom.theme['widget::step::height']) : 100
 jeedomUtils.tileHeightSteps = Array.apply(null, { length: 10 }).map(function(value, index) { return (index + 1) * jeedomUtils.tileHeightStep })
+
+/*Hijack jQuery ready function, still used in plugins
+*/
+jeedomUtils.$readyFn = jQuery.fn.ready
+$.fn.extend({
+  ready: function() {
+    if (domUtils.isLoading == false) {
+      jeedomUtils.$readyFn.apply(this, arguments)
+    } else {
+      setTimeout(function(event) {
+        jQuery.fn.ready.apply(this, arguments[1])
+      }, 100, this, arguments)
+    }
+  }
+})
 
 document.addEventListener('DOMContentLoaded', function() {
   jeedomUtils._elBackground = document.getElementById('backgroundforJeedom')
@@ -153,7 +169,9 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   $('body').off('mouseenter mouseleave')
   $(window).off('resize')
 
-  //$('#div_pageContainer').load(url, function() {
+  document.getElementById('div_mainContainer').querySelectorAll('script')?.remove()
+  document.querySelectorAll('script[injext]')?.remove()
+
   document.getElementById('div_pageContainer').load(url, function() {
     document.getElementById('bt_getHelpPage').setAttribute('data-page', getUrlVars('p'))
     document.getElementById('bt_getHelpPage').setAttribute('data-plugin', getUrlVars('m') || '')

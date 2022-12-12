@@ -152,7 +152,7 @@ function sendVarToJS($_varName, $_value = '') {
 	}
 	$jsVar = '<script>';
 	foreach ($_varName as $name => $value) {
-		$value = (is_array($value)) ? 'jQuery.parseJSON("' . addslashes(json_encode($value, JSON_UNESCAPED_UNICODE)) . '")'	: '"' . $value . '"';
+		$value = (is_array($value)) ? 'JSON.parse("' . addslashes(json_encode($value, JSON_UNESCAPED_UNICODE)) . '")'	: '"' . $value . '"';
 		if (strpos($name, '.') === false) {
 			$jsVar .= 'var ' . $name . ' = ' . $value . "\n";
 		} else {
