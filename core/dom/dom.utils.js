@@ -454,7 +454,6 @@ domUtils.extend = function(_object /*, _object... */) {
   return extended
 }
 
-
 /* ____________DOM Inection Management____________
 */
 //Parse script tags and recreate them dynamically to be loaded and executed in order
@@ -520,8 +519,6 @@ Element.prototype.html = function(_htmlString, _append, _callback) {
   return self
 }
 
-
-
 Element.prototype.load = function(_path, _callback) {
   let self = this
   domUtils.isLoading = true
@@ -547,8 +544,6 @@ Element.prototype.load = function(_path, _callback) {
     }
   })
 }
-
-
 
 /* ____________Ajax Management____________
 */
