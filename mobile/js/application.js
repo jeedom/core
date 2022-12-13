@@ -152,7 +152,7 @@ $(window).on('popstate', function(event) {
   if (PAGE_HISTORY.length <= 1) return
 
   PAGE_HISTORY.pop()
-  var history_page = PAGE_HISTORY.pop()
+  let history_page = PAGE_HISTORY.pop()
   if (!history_page || !history_page.page) {
     return
   }
@@ -175,7 +175,7 @@ jeedomUtils.setBackgroundImage = function(_path) {
   if (_path === null) {
     jeedomUtils._elBackground.find('#bottom').css('background-image', 'url("")').show()
   } else if (_path === '') {
-    var mode = 'light'
+    let mode = 'light'
     if ($('body').attr('data-theme') == 'core2019_Dark') {
       mode = 'dark'
     }
@@ -206,16 +206,15 @@ jeedomUtils.transitionJeedomBackground = function(_path) {
 }
 
 jeedomUtils.changeTheme = function(_theme) {
-  var currentTheme = $('body').attr('data-theme').toLowerCase()
-  if (_theme == 'toggle' || !currentTheme.endsWith(_theme)) {
+  if (_theme == 'toggle' || !document.body.getAttribute('data-theme').toLowerCase().endsWith(_theme)) {
     jeedomUtils.switchTheme(jeedom.theme)
   }
 }
 
 jeedomUtils.switchTheme = function(themeConfig) {
-  var theme = 'core/themes/' + themeConfig.mobile_theme_color_night + '/mobile/' + themeConfig.mobile_theme_color_night + '.css'
-  var themeShadows = 'core/themes/' + themeConfig.mobile_theme_color_night + '/mobile/shadows.css'
-  var themeCook = 'alternate'
+  let theme = 'core/themes/' + themeConfig.mobile_theme_color_night + '/mobile/' + themeConfig.mobile_theme_color_night + '.css'
+  let themeShadows = 'core/themes/' + themeConfig.mobile_theme_color_night + '/mobile/shadows.css'
+  let themeCook = 'alternate'
 
   if (document.getElementById('jQMnDColor').attributes.href.value == theme) {
     document.body.setAttribute('data-theme', themeConfig.mobile_theme_color)
@@ -237,7 +236,7 @@ jeedomUtils.switchTheme = function(themeConfig) {
 
 jeedomUtils.triggerThemechange = function() {
   //set jeedom logo:
-  var currentTheme = document.body.getAttribute('data-theme')
+  let currentTheme = document.body.getAttribute('data-theme')
   if (currentTheme.endsWith('Dark')) {
     $('#homeLogoImg').attr('src', jeedom.theme.logo_mobile_dark)
   } else {
@@ -267,8 +266,8 @@ jeedomUtils.changeThemeAuto = function(_ambiantLight){
       if (sensor.illuminance < 200 && sensor.illuminance > 50) {
         return
       }
-      var theme = jeedom.theme.mobile_theme_color
-      var themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color+'/mobile/' + jeedom.theme.mobile_theme_color + '.css'
+      let theme = jeedom.theme.mobile_theme_color
+      let themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color+'/mobile/' + jeedom.theme.mobile_theme_color + '.css'
       if (sensor.illuminance < 50) {
         theme = jeedom.theme.mobile_theme_color_night
         themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color_night+'/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
@@ -278,8 +277,8 @@ jeedomUtils.changeThemeAuto = function(_ambiantLight){
           if (sensor.illuminance < 100 && sensor.illuminance > 50) {
             return
           }
-          var theme = jeedom.theme.mobile_theme_color
-          var themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color+'/mobile/' + jeedom.theme.mobile_theme_color + '.css'
+          let theme = jeedom.theme.mobile_theme_color
+          let themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color+'/mobile/' + jeedom.theme.mobile_theme_color + '.css'
           if (sensor.illuminance < 50) {
             theme = jeedom.theme.mobile_theme_color_night
             themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color_night+'/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
@@ -302,25 +301,21 @@ jeedomUtils.changeThemeAuto = function(_ambiantLight){
 }
 
 jeedomUtils.checkThemechange = function() {
-  var $jQMnDColor = $('#jQMnDColor')
-  if ($jQMnDColor.attr('data-nochange') == 1) return
-
-  var defaultTheme = jeedom.theme.mobile_theme_color
-  var defaultThemeCss = 'core/themes/' + defaultTheme + '/mobile/' + defaultTheme + '.css'
-  if (jeedom.theme.theme_changeAccordingTime == "0" && defaultThemeCss == $jQMnDColor.attr('href')) return
-
-  var theme = jeedom.theme.mobile_theme_color_night
-  var themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color_night+'/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
-  var currentTime = parseInt((new Date()).getHours()*100 + (new Date()).getMinutes())
-
+  let jQMnDColor = document.getElementById('jQMnDColor')
+  if (jQMnDColor.getAttribute('data-nochange') == 1) return
+  let defaultTheme = jeedom.theme.mobile_theme_color
+  let defaultThemeCss = 'core/themes/' + defaultTheme + '/mobile/' + defaultTheme + '.css'
+  if (jeedom.theme.theme_changeAccordingTime == "0" && defaultThemeCss == jQMnDColor.getAttribute('href')) return
+  let theme = jeedom.theme.mobile_theme_color_night
+  let themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color_night+'/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
+  let currentTime = parseInt((new Date()).getHours()*100 + (new Date()).getMinutes())
   if (parseInt(jeedom.theme.theme_start_day_hour.replace(':','')) <  currentTime && parseInt(jeedom.theme.theme_end_day_hour.replace(':','')) >  currentTime) {
     theme = jeedom.theme.mobile_theme_color
     themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color+'/mobile/' + jeedom.theme.mobile_theme_color + '.css'
   }
-
-  if ($jQMnDColor.attr('href') != themeCss) {
-    $('body').attr('data-theme',theme)
-    $('#jQMnDColor').attr('href', themeCss)
+  if (jQMnDColor.getAttribute('href') != themeCss) {
+    document.body.setAttribute('data-theme',theme)
+    jQMnDColor.setAttribute('href', themeCss)
     jeedomUtils.setBackgroundImage(jeedomUtils.backgroundIMG)
     jeedomUtils.triggerThemechange()
   }
@@ -328,7 +323,7 @@ jeedomUtils.checkThemechange = function() {
 
 
 jeedomUtils.insertHeader = function(rel, href, size=null, media=null, id=null, type=null) {
-  var link = document.createElement('link')
+  let link = document.createElement('link')
   link.rel = rel
   link.href = href
   if (size != null) {
@@ -347,7 +342,7 @@ jeedomUtils.insertHeader = function(rel, href, size=null, media=null, id=null, t
 }
 
 function isset() {
-  var a = arguments, b = a.length, d = 0
+  let a = arguments, b = a.length, d = 0
   if (0 === b)
   throw Error("Empty isset")
   for (; d !== b; ) {
@@ -421,9 +416,9 @@ jeedomUtils.initApplication = function(_reinit) {
         plugins = data.result.plugins
         jeeFrontEnd.userProfils = data.result.userProfils
         jeedom.init()
-        var include = []
+        let include = []
         if (typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' && Object.keys(jeedom.theme.css).length > 0) {
-          for(var i in jeedom.theme.css) {
+          for(let i in jeedom.theme.css) {
             document.body.style.setProperty(i,jeedom.theme.css[i])
           }
         }
@@ -447,8 +442,8 @@ jeedomUtils.initApplication = function(_reinit) {
         }
 
         //set theme
-        var widget_shadow = true
-        var useAdvance = 0
+        let widget_shadow = true
+        let useAdvance = 0
         if (typeof jeedom.theme != 'undefined') {
           if (typeof jeedom.theme['interface::advance::enable'] != 'undefined') {
             useAdvance = parseInt(jeedom.theme['interface::advance::enable'])
@@ -457,12 +452,12 @@ jeedomUtils.initApplication = function(_reinit) {
             widget_shadow = false
           }
         }
-        var themeWich = 'default'
+        let themeWich = 'default'
         if (getCookie('currentThemeMobile') == 'alternate') {
           themeWich = 'alternate'
         }
-        var themeCSS = false
-        var themeShadowCSS = false
+        let themeCSS = false
+        let themeShadowCSS = false
         if (themeWich == 'default') {
           themeCSS = 'core/themes/' + jeedom.theme.mobile_theme_color + '/mobile/' + jeedom.theme.mobile_theme_color + '.css'
           themeShadowCSS = 'core/themes/' + jeedom.theme.mobile_theme_color + '/mobile/shadows.css'
@@ -471,9 +466,9 @@ jeedomUtils.initApplication = function(_reinit) {
           themeCSS = 'core/themes/' + jeedom.theme.mobile_theme_color_night + '/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
           themeShadowCSS = 'core/themes/' + jeedom.theme.mobile_theme_color_night + '/mobile/shadows.css'
           document.body.setAttribute('data-theme', jeedom.theme.mobile_theme_color_night)
-          $('#jQMnDColor').attr('href', themeCSS).attr('data-nochange',1)
+          document.getElementById('jQMnDColor').asetAttributettr('href', themeCSS).setAttribute('data-nochange',1)
         }
-        $('#jQMnDColor').attr('href', themeCSS)
+        document.getElementById('jQMnDColor').setAttribute('href', themeCSS)
 
         jeedomUtils.changeThemeAuto()
         jeedomUtils.checkThemechange()
@@ -492,7 +487,7 @@ jeedomUtils.initApplication = function(_reinit) {
         }
 
         jeedomUtils.triggerThemechange()
-        for(var i in plugins){
+        for(let i in plugins){
           if (plugins[i].eventjs == 1) {
             include.push('plugins/'+plugins[i].id+'/mobile/js/event.js')
           }
@@ -506,8 +501,8 @@ jeedomUtils.initApplication = function(_reinit) {
             if (APP_MODE) {
               jeedomUtils.loadPage('home', 'Accueil')
             } else {
-              var redirect = getUrlVars('p')
-              var redirections = [
+              let redirect = getUrlVars('p')
+              let redirections = [
                 {page: 'timeline', title: '{{Timeline}}'},
                 {page: 'health', title: '{{Santé}}'},
                 {page: 'log', title: '{{Logs}}'},
@@ -519,13 +514,13 @@ jeedomUtils.initApplication = function(_reinit) {
                 // break alternate home button {page: 'overview', title: "<i class=\'fab fa-hubspot\'></i> {{Synthèse}}"}
               ]
               if (redirect && redirections.map(i => i.page).includes(redirect)) {
-                for (var redir of redirections) {
+                for (let redir of redirections) {
                   if (redir.page == redirect) jeedomUtils.loadPage(redir.page, redir.title)
                 }
               } else if (redirect == 'view') {
                 jeedomUtils.loadPage('view', '{{Vue}}', getUrlVars('view_id'));
               } else if (isset(jeeFrontEnd.userProfils) && jeeFrontEnd.userProfils != null && isset(jeeFrontEnd.userProfils.homePageMobile) && jeeFrontEnd.userProfils.homePageMobile != 'home') {
-                var res = jeeFrontEnd.userProfils.homePageMobile.split("::")
+                let res = jeeFrontEnd.userProfils.homePageMobile.split("::")
                 if (res[0] == 'core') {
                   switch (res[1]) {
                     case 'overview':
@@ -591,9 +586,9 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
   } catch (e) { }
   if (isset(_title)) {
     if (!isset(_dialog) || !_dialog) {
-      $('#pageTitle').empty().append(_title)
+      document.getElementById('pageTitle').empty().html(_title)
     } else {
-      $('#popupDialog .nd-title').text(_title)
+      document.getElementById('popupDialog').getElementsByClassName('nd-title').html(_title)
     }
   }
   if (_page == 'connection') {
@@ -614,7 +609,7 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
     return
   }
 
-  var page = 'index.php?v=m&ajax=1'
+  let page = 'index.php?v=m&ajax=1'
   if (isset(_dialog) && _dialog) {
     page += '&modal='+_page
   } else {
@@ -698,10 +693,8 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
         }, 100)
       }
       document.getElementById('page').fade(400, 1)
-      //$('#page').fadeIn(400)
     })
   }
-
   setTimeout(function() {
     if ($.active == 0) $.hideLoading()
   }, 1500)
@@ -744,10 +737,6 @@ jeedomUtils.loadPanel = function(_content) {
   } catch(e) {}
 }
 
-
-
-
-
 $(document).on('panelbeforeopen', function(event) {
   PANEL_SCROLL = $(document).scrollTop()
   event.stopImmediatePropagation()
@@ -766,7 +755,7 @@ $(document).on('panelclose', function(event) {
 })
 
 jeedomUtils.postToApp = function(_action, _options) {
-  	var message = {}
+  let message = {}
 	if (window.ReactNativeWebView != undefined) {
 		message.action = _action
 		message.options = _options
@@ -806,9 +795,9 @@ jeedomUtils.notify = function(_title, _text) {
     jeedomUtils.appMobile.notifee(_title, _text, 3000);
   }else{
     new $.nd2Toast({
-    message :  _title + ':  ' + _text,
-    ttl : 3000
-  })
+      message :  _title + ':  ' + _text,
+      ttl : 3000
+    })
   }
 }
 
@@ -816,7 +805,7 @@ jeedomUtils.setTileSize = function(_filter) {
   if (typeof jeedom.theme['widget::margin'] == 'undefined') {
     jeedom.theme['widget::margin'] = 4
   }
-  var bsize = deviceInfo.bSize
+  let bsize = deviceInfo.bSize
 
   document.querySelectorAll(_filter)?.forEach( function(node) {
     Object.assign(node.style, {margin:"0px", padding:"0px"})
