@@ -494,20 +494,19 @@ domUtils.loadScript = function(_scripts, _idx, _callback) {
   }
 }
 
-//Cannot contain script src="" as they won't load until inserted in DOM
+//Scripts with src won't load until inserted in DOM
 domUtils.parseHTML = function(_htmlString) {
-  let newEl = document.createElement('span')
+  let newEl = document.createElement('template')
   newEl.innerHTML = _htmlString
-  newEl.querySelectorAll('script[src]')?.remove()
 
-  newEl.querySelectorAll('script').forEach(function(element) {
+  newEl.content.querySelectorAll('script').forEach(function(element) {
     let script = document.createElement('script')
     script.setAttribute('injext', '1')
-    script.text = element.text
+    element.src != '' ? script.src = element.src : script.text = element.text
     element.replaceWith(script)
   })
 
-  return newEl
+  return newEl.content
 }
 
 Element.prototype.html = function(_htmlString, _append, _callback) {
