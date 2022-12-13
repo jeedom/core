@@ -302,7 +302,7 @@ jeedom.refreshMessageNumber = function() {
       if (_number == 0 || _number == '0') {
         document.getElementById('span_nbMessage').unseen()
       } else {
-        document.getElementById('span_nbMessage').seen().innertHTML = _number
+        document.getElementById('span_nbMessage').seen().textContent = _number
       }
     }
   })
@@ -323,7 +323,7 @@ jeedom.refreshUpdateNumber = function() {
       if (_number == 0 || _number == '0') {
         document.getElementById('span_nbUpdate').unseen()
       } else {
-        document.getElementById('span_nbUpdate').seen().innertHTML = _number
+        document.getElementById('span_nbUpdate').seen().textContent = _number
       }
     }
   })
