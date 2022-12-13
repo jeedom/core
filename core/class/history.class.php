@@ -322,7 +322,7 @@ class history {
 			'cmd_id' => $_cmd_id,
 		);
 		if ($_startTime !== null) {
-			$values['startTime'] = date('Y-m-d H:i:s', strtotime($_startTime) + 1);
+			$values['startTime'] = $_startTime;
 		}
 		if ($_endTime !== null) {
 			$values['endTime'] = $_endTime;
