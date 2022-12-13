@@ -706,6 +706,12 @@ domUtils.issetWidgetOptParam = function(_def, _param) {
 }
 
 domUtils.createWidgetSlider = function(_options) {
+  try {
+    if (_options.sliderDiv.hasClass('slider') && _options.sliderDiv.noUiSlider) {
+      _options.sliderDiv.noUiSlider.destroy()
+    }
+  } catch(error) { }
+
   let createOptions = {
     start: [_options.state],
     connect: [true, false],
@@ -735,8 +741,8 @@ domUtils.createWidgetSlider = function(_options) {
   try {
     return noUiSlider.create(_options.sliderDiv, createOptions)
   } catch(error) { }
-    console.error('domUtils.createWidgetSlider error:', _options.sliderDiv, createOptions)
 }
+
 
 
 //Global functions
