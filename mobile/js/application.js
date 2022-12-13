@@ -597,8 +597,7 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
     }
   }
   if (_page == 'connection') {
-    var page = 'index.php?v=m&ajax=1&p=' + _page
-    //$('#page').load(page, function() {
+    let page = 'index.php?v=m&ajax=1&p=' + _page
     document.getElementById('page').load(page, function() {
       document.body.setAttribute('data-page', 'connection')
       $('#page').trigger('create')
@@ -634,7 +633,7 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
   }
 
   if (isset(_dialog) && _dialog) {
-    $('#popupDialog .content').load(page, function() {
+    document.getElementById('popupDialog').getElementsByClassName('content')[0].load(page, function() {
       var functionName = ''
       if (init(_plugin) != '') {
         functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase()
@@ -663,7 +662,7 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
   } else {
     jeedom.cmd.resetUpdateFunction()
 
-    $('#page').hide().load(page, function() {
+    document.getElementById('page').load(page, function() {
       document.body.setAttribute('data-page', _page)
       if (init(_plugin) != '') {
         document.body.setAttribute('data-plugin', _plugin)
@@ -714,7 +713,7 @@ jeedomUtils.loadModal = function(_name, _callback) {
       $('#div_popup').empty().popup("close")
       $("[data-role=popup]").popup("close")
     } else {
-      $('#div_popup').empty().load(_name, function() {
+      document.getElementById('div_popup').empty().load(_name, function() {
         $('#div_popup').trigger('create').popup("open")
         if ('function' == typeof (_callback)) {
           _callback()
