@@ -687,14 +687,15 @@ EventTarget.prototype.registerEvent = function(_type, listener) {
 }
 
 EventTarget.prototype.unRegisterEvent = function(_type, _id) {
+  var self = this
   let listeners = domUtils.registeredEvents.filter(function(listener) {
-    return ( (_type? listener.type == _type : true) && (_id? listener.id == _id : true) && listener.element == self )
+    return ( (isset(_type)? listener.type == _type : true) && (isset(_id)? listener.id == _id : true) && listener.element == self )
   })
   for (let listener of listeners) {
-    this.removeEventListener(listener.type, listener.callback, false)
+    self.removeEventListener(listener.type, listener.callback, false)
     domUtils.registeredEvents = domUtils.registeredEvents.filter(ev => !listeners.includes(ev))
   }
-  return this
+  return self
 }
 
 
