@@ -8,7 +8,7 @@ function initEquipment(_object_id) {
 
   if (isset(_object_id)) {
     if (_object_id == '') _object_id == 'all'
-    let summary = ''
+    var summary = ''
     if (_object_id.indexOf(':') != -1) {
       let temp = _object_id.split(':')
       _object_id = temp[0]
@@ -92,7 +92,7 @@ function initEquipment(_object_id) {
   $('#in_searchDashboard').off('keyup').on('keyup',function() {
     window.scrollTo(0, 0)
     $('.div_displayEquipement').show()
-    let search = this.value
+    var search = this.value
     if(search == '') {
       $('div.eqLogic-widget, div.scenario-widget').show()
       $('.objectHtml').packery()
@@ -123,7 +123,7 @@ function initEquipment(_object_id) {
       }
     })
     $('.scenario-widget').each(function() {
-      match = false
+      let match = false
       if (match || jeedomUtils.normTextLower($(this).find('.widget-name').text()).indexOf(search) >= 0) {
         match = true
       }
@@ -217,6 +217,7 @@ function displayObjectsBySummary(_objectsAll, _summary) {
   //show objects hidden:
   for (let i in _objectsAll) {
     let thisObject = _objectsAll[i]
+    let summaries = []
     let  div = '<div class="div_displayEquipement hidden" data-objectid="'+thisObject.id+'">'
     div += '<legend>'
     let icon = ''
