@@ -503,15 +503,13 @@ domUtils.parseHTML = function(_htmlString) {
 Element.prototype.html = function(_htmlString, _append, _callback) {
   if (!isset(_htmlString)) return this.innerHTML
   if (!isset(_append) || _append === false) this.empty()
-
   domUtils.isLoading = true
-  let self = this
-
   let template = document.createElement('template')
   template.innerHTML = _htmlString
-  self.appendChild(template.content)
+  this.appendChild(template.content)
 
-  domUtils.loadScript(self.querySelectorAll('script'), 0, function() {
+  let self = this
+  domUtils.loadScript(this.querySelectorAll('script'), 0, function() {
     domUtils.isLoading = false
     if (typeof _callback === 'function') {
       return _callback(self)
