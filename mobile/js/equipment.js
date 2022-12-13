@@ -1,18 +1,18 @@
 "use strict"
 
 function initEquipment(_object_id) {
-  $('#searchContainer').show();
-  var objectMapping = {}
-  var objects_info = {}
-  var objectsAll = {}
+  document.getElementById('searchContainer').seen();
+  let objectMapping = {}
+  let objects_info = {}
+  let objectsAll = {}
 
   if (isset(_object_id)) {
     if (_object_id == '') _object_id == 'all'
-    var summary = ''
+    let summary = ''
     if (_object_id.indexOf(':') != -1) {
-      var temp = _object_id.split(':')
+      let temp = _object_id.split(':')
       _object_id = temp[0]
-      var summary = temp[1]
+      summary = temp[1]
     }
   }
 
@@ -28,20 +28,18 @@ function initEquipment(_object_id) {
         objectsAll = objects
       }
 
-      var summaries = []
-      var li = '<ul data-role="listview" data-inset="false">'
+      let summaries = []
+      let li = '<ul data-role="listview" data-inset="false">'
       li += '<li class="li-splitter">'
       li += '<div>'
       li += '<a href="#" class="link" data-page="equipment" data-title="<i class=\'fas fa-globe\'></i> {{Tout}}" data-option="all"><i class="fas fa-globe"> </i> {{Tout}}</a>'
       li += '<a href="#" class="link" data-page="overview" data-title="<i class=\'fab fa-hubspot\'></i> {{Synthèse}}" style="float: right;margin: 0;padding: 0 !important;"><i class="fab fa-hubspot"> </i> {{Synthèse}}</a>'
       li += '</div>'
       li += '</li>'
-
-      var icon, decay
-      for (var i in objects) {
+      for (let i in objects) {
         if (_object_id != '' && _object_id == objects[i].id) objectsAll = [objects[i]]
         if (objects[i].isVisible == 1) {
-          icon = ''
+          let icon = ''
           if (isset(objects[i].display) && isset(objects[i].display.icon)) {
             icon = objects[i].display.icon
           }
@@ -53,7 +51,7 @@ function initEquipment(_object_id) {
               objectMapping[objects[i].father_id] = [parseInt(objects[i].id)]
             }
           }
-          decay = 0
+          let decay = 0
           if (isset(objects[i].configuration) && isset(objects[i].configuration.parentNumber)) {
             decay = objects[i].configuration.parentNumber
           }
@@ -94,16 +92,15 @@ function initEquipment(_object_id) {
   $('#in_searchDashboard').off('keyup').on('keyup',function() {
     window.scrollTo(0, 0)
     $('.div_displayEquipement').show()
-    var search = this.value
+    let search = this.value
     if(search == '') {
       $('div.eqLogic-widget, div.scenario-widget').show()
       $('.objectHtml').packery()
       return
     }
     search = jeedomUtils.normTextLower(search)
-    let match
     $('div.eqLogic-widget').each(function() {
-      match = false
+      let match = false
       if (match || jeedomUtils.normTextLower($(this).find('.widget-name').text()).indexOf(search) >= 0) {
         match = true
       }
@@ -137,9 +134,8 @@ function initEquipment(_object_id) {
       }
     })
     $('.objectHtml').packery()
-    let count
     $('.objectHtml').each(function() {
-      count = $(this).find('.scenario-widget:visible').length + $(this).find('.eqLogic-widget:visible').length
+      let count = $(this).find('.scenario-widget:visible').length + $(this).find('.eqLogic-widget:visible').length
       if (count == 0) {
         $(this).closest('.div_displayEquipement').hide()
       }
@@ -221,7 +217,6 @@ function displayObjectsBySummary(_objectsAll, _summary) {
   //show objects hidden:
   for (let i in _objectsAll) {
     let thisObject = _objectsAll[i]
-    let summaries = []
     let  div = '<div class="div_displayEquipement hidden" data-objectid="'+thisObject.id+'">'
     div += '<legend>'
     let icon = ''
@@ -270,9 +265,9 @@ function displayEqsBySummary(_objectsAll, _objectId, _summary) {
             $.fn.showAlert({message: error.message, level: 'danger'})
           },
           success: function(html) {
-            document.querySelectorAll('.div_displayEquipement[data-objectid="'+_objectId+'"] > .objectHtml').html(html.html)
+            document.querySelectorAll('.div_displayEquipement[data-objectid="'+_objectId+'"] > .objectHtml').html(html.html).classList.remove("hidden")
             jeedomUtils.setTileSize('.eqLogic')
-            $('.div_displayEquipement[data-objectid="'+_objectId+'"]').removeClass('hidden').trigger('create').packery({gutter :0})
+            $('.div_displayEquipement[data-objectid="'+_objectId+'"]').trigger('create').packery({gutter :0})
           }
         })
       }
