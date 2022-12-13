@@ -474,22 +474,21 @@ domUtils.loadScript = function(_scripts, _idx, _callback) {
     }
     return
   }
-  let element = _scripts[_idx]
   let script = document.createElement('script')
-  script.type = (element.type) ? element.type : "text/javascript"
-  Array.prototype.forEach.call(element.attributes, function(attr) {
+  script.type = (_scripts[_idx].type) ? _scripts[_idx].type : "text/javascript"
+  Array.prototype.forEach.call(_scripts[_idx].attributes, function(attr) {
     script.setAttribute(attr.nodeName, attr.nodeValue)
   })
   script.setAttribute('injext', '1')
-  if (element.src != '') {
-    script.src = element.src
+  if (_scripts[_idx].src != '') {
+    script.src = _scripts[_idx].src
     script.onload = function() {
       domUtils.loadScript(_scripts, _idx + 1, _callback)
     }
-    element.replaceWith(script)
+    _scripts[_idx].replaceWith(script)
   } else {
-    script.text = element.text
-    element.replaceWith(script)
+    script.text = _scripts[_idx].text
+    _scripts[_idx].replaceWith(script)
     domUtils.loadScript(_scripts,_idx + 1, _callback)
   }
 }
