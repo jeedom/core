@@ -951,8 +951,8 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     closeText: '',
     autoOpen: false,
     modal: true,
-    height: (jQuery(window).height() - 150),
-    width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
+    height: (window.innerHeight - 150),
+    width: ((window.innerWidth - 150) < 1200) ? (window.innerWidth - 50) : 1200,
     position: {
       my: 'center',
       at: 'center',
