@@ -9,9 +9,9 @@ function initOverview() {
     },
     success: function(objects) {
       $('#objectOverviewContainer').empty()
-      var summaries = []
-      var _this, icon, _backUrl, div, synthAction, dataPage, dataOption, dataTitle
-      for (var i in objects) {
+      let summaries = []
+      let _this, icon, _backUrl, div, synthAction, dataPage, dataOption, dataTitle
+      for (let i in objects) {
         if (objects[i].isVisible == 1 && objects[i].configuration.hideOnOverview != 1) {
           _this = objects[i]
           icon = ''
@@ -65,9 +65,8 @@ function initOverview() {
 
       setTimeout(function() {
         //move to top summary:
-        var parent
         $('.objectPreview').each(function() {
-          parent = $(this).find('.topPreview')
+          let parent = $(this).find('.topPreview')
           $(this).find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').each(function() {
             $(this).detach().appendTo(parent)
           })
@@ -143,21 +142,21 @@ function createSummaryObserver() {
     })
   })
 
-  var observerConfig = {
+  let observerConfig = {
     attributes: false,
     childList: true,
     characterData: false,
     subtree: true
   }
 
-  var targetNode = document.getElementById('objectOverviewContainer')
+  let targetNode = document.getElementById('objectOverviewContainer')
   if (targetNode) _SummaryObserver_.observe(targetNode, observerConfig)
 }
 
 function updateSummary(_className) {
   _className = _className.replace('objectSummaryContainer ', '')
-  var parent = $('.' + _className).closest('.objectPreview')
-  var pResume = parent.find('.resume')
+  let parent = $('.' + _className).closest('.objectPreview')
+  let pResume = parent.find('.resume')
   parent.find('.topPreview').find('.objectSummaryParent').remove()
   pResume.find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').each(function() {
     $(this).detach().appendTo(parent.find('.topPreview'))

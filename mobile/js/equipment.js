@@ -1,18 +1,18 @@
 "use strict"
 
 function initEquipment(_object_id) {
-  document.getElementById('searchContainer').show();
-  let objectMapping = {}
-  let objects_info = {}
-  let objectsAll = {}
+  $('#searchContainer').show();
+  var objectMapping = {}
+  var objects_info = {}
+  var objectsAll = {}
 
   if (isset(_object_id)) {
     if (_object_id == '') _object_id == 'all'
-    let summary = ''
+    var summary = ''
     if (_object_id.indexOf(':') != -1) {
-      let temp = _object_id.split(':')
+      var temp = _object_id.split(':')
       _object_id = temp[0]
-      summary = temp[1]
+      var summary = temp[1]
     }
   }
 
@@ -28,8 +28,8 @@ function initEquipment(_object_id) {
         objectsAll = objects
       }
 
-      let summaries = []
-      let li = '<ul data-role="listview" data-inset="false">'
+      var summaries = []
+      var li = '<ul data-role="listview" data-inset="false">'
       li += '<li class="li-splitter">'
       li += '<div>'
       li += '<a href="#" class="link" data-page="equipment" data-title="<i class=\'fas fa-globe\'></i> {{Tout}}" data-option="all"><i class="fas fa-globe"> </i> {{Tout}}</a>'
@@ -37,8 +37,8 @@ function initEquipment(_object_id) {
       li += '</div>'
       li += '</li>'
 
-      let icon, decay
-      for (let i in objects) {
+      var icon, decay
+      for (var i in objects) {
         if (_object_id != '' && _object_id == objects[i].id) objectsAll = [objects[i]]
         if (objects[i].isVisible == 1) {
           icon = ''
@@ -101,45 +101,47 @@ function initEquipment(_object_id) {
       return
     }
     search = jeedomUtils.normTextLower(search)
-    document.querySelectorAll('div.eqLogic-widget').each(function(el) {
-      let match = false
-      if (match || jeedomUtils.normTextLower(el.querySelectorAll('.widget-name').text()).indexOf(search) >= 0) {
+    let match
+    $('div.eqLogic-widget').each(function() {
+      match = false
+      if (match || jeedomUtils.normTextLower($(this).find('.widget-name').text()).indexOf(search) >= 0) {
         match = true
       }
-      if (match || (el.getAttribute('data-tags') != undefined && jeedomUtils.normTextLower(el.getAttribute('data-tags')).indexOf(search) >= 0)) {
+      if (match || ($(this).attr('data-tags') != undefined && jeedomUtils.normTextLower($(this).attr('data-tags')).indexOf(search) >= 0)) {
         match = true
       }
-      if (match ||(el.getAttribute('data-category') != undefined && jeedomUtils.normTextLower(el.getAttribute('data-category')).indexOf(search) >= 0)) {
+      if (match ||($(this).attr('data-category') != undefined && jeedomUtils.normTextLower($(this).attr('data-category')).indexOf(search) >= 0)) {
         match = true
       }
-      if (match ||(el.getAttribute('data-eqType') != undefined && jeedomUtils.normTextLower(el.getAttribute('data-eqType')).indexOf(search) >= 0)) {
+      if (match ||($(this).attr('data-eqType') != undefined && jeedomUtils.normTextLower($(this).attr('data-eqType')).indexOf(search) >= 0)) {
         match = true
       }
-      if (match ||(el.getAttribute('data-translate-category') != undefined && jeedomUtils.normTextLower(el.getAttribute('data-translate-category')).indexOf(search) >= 0)) {
+      if (match ||($(this).attr('data-translate-category') != undefined && jeedomUtils.normTextLower($(this).attr('data-translate-category')).indexOf(search) >= 0)) {
         match = true
       }
       if (match) {
-        el.show()
+        $(this).show()
       } else {
-        el.hide()
+        $(this).hide()
       }
     })
-    document.querySelectorAll('.scenario-widget').each(function(el) {
-      let match = false
-      if (match || jeedomUtils.normTextLower(el.querySelectorAll('.widget-name').text()).indexOf(search) >= 0) {
+    $('.scenario-widget').each(function() {
+      match = false
+      if (match || jeedomUtils.normTextLower($(this).find('.widget-name').text()).indexOf(search) >= 0) {
         match = true
       }
       if (match) {
-        el.show()
+        $(this).show()
       } else {
-        el.hide()
+        $(this).hide()
       }
     })
     $('.objectHtml').packery()
-    document.querySelectorAll('.objectHtml').each(function(el) {
-      let count = el.querySelectorAll('.scenario-widget:visible').length + el.querySelectorAll('.eqLogic-widget:visible').length
+    let count
+    $('.objectHtml').each(function() {
+      count = $(this).find('.scenario-widget:visible').length + $(this).find('.eqLogic-widget:visible').length
       if (count == 0) {
-        el.closest('.div_displayEquipement').hide()
+        $(this).closest('.div_displayEquipement').hide()
       }
     })
   })
@@ -194,7 +196,7 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
           console.log(err)
         }
       } else {
-        div = '<div class="div_displayEquipement" data-objectid="'+_objectId+'">'
+        let div = '<div class="div_displayEquipement" data-objectid="'+_objectId+'">'
         div += '<div class="nd2-card" style="max-width:100% !important">'
         div += '<div class="card-title has-supporting-text"><center><span class="objectSummaryContainer objectSummary'+_objectId+'" data-version="mobile"></span></center></div></div><div class="objectHtml">'
         div += html
@@ -217,17 +219,16 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
 function displayObjectsBySummary(_objectsAll, _summary) {
   document.getElementById('div_displayEquipement').empty()
   //show objects hidden:
-  let thisObject, summaries, icon, objectName, div
   for (let i in _objectsAll) {
-    thisObject = _objectsAll[i]
-    summaries = []
-    div = '<div class="div_displayEquipement hidden" data-objectid="'+thisObject.id+'">'
+    let thisObject = _objectsAll[i]
+    let summaries = []
+    let  div = '<div class="div_displayEquipement hidden" data-objectid="'+thisObject.id+'">'
     div += '<legend>'
-    icon = ''
+    let icon = ''
     if (isset(thisObject.display) && isset(thisObject.display.icon)) {
       icon = thisObject.display.icon
     }
-    objectName = thisObject.name
+    let objectName = thisObject.name
     objectName = objectName.charAt(0).toUpperCase() + objectName.slice(1)
     div += '<span>' + icon + '</span> ' + objectName
     div += '</legend>'
@@ -269,9 +270,9 @@ function displayEqsBySummary(_objectsAll, _objectId, _summary) {
             $.fn.showAlert({message: error.message, level: 'danger'})
           },
           success: function(html) {
-            document.querySelectorAll('.div_displayEquipement[data-objectid="'+_objectId+'"] > .objectHtml').html(html.html).classList.remove("hidden")
+            document.querySelectorAll('.div_displayEquipement[data-objectid="'+_objectId+'"] > .objectHtml').html(html.html)
             jeedomUtils.setTileSize('.eqLogic')
-            $('.div_displayEquipement[data-objectid="'+_objectId+'"]').trigger('create').packery({gutter :0})
+            $('.div_displayEquipement[data-objectid="'+_objectId+'"]').removeClass('hidden').trigger('create').packery({gutter :0})
           }
         })
       }
