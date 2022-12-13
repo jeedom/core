@@ -16,7 +16,6 @@
 
 "use strict"
 
-
 var jeedomUtils = {
   __description: 'Loaded once for every desktop/mobile page. Global UI functions and variables.',
   backgroundIMG: null,
@@ -216,6 +215,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+  jeedom.init()
   if (getDeviceType()['type'] == 'desktop') jeedomUtils.userDeviceType = 'desktop'
   document.body.setAttribute('data-device', jeedomUtils.userDeviceType)
   document.body.setAttribute('data-page', getUrlVars('p'))

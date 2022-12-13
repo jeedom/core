@@ -14,12 +14,6 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-$(function() {
-  if (!$.mobile) {
-    jeedom.init();
-  }
-});
-
 function getTemplate(_folder, _version, _filename, _replace) {
   if (_folder == 'core') {
     var path = _folder + '/template/' + _version + '/' + _filename;
