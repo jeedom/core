@@ -1,18 +1,18 @@
 "use strict"
 
 function initEquipment(_object_id) {
-  $('#searchContainer').show();
-  var objectMapping = {}
-  var objects_info = {}
-  var objectsAll = {}
+  document.getElementById('searchContainer').show();
+  let objectMapping = {}
+  let objects_info = {}
+  let objectsAll = {}
 
   if (isset(_object_id)) {
     if (_object_id == '') _object_id == 'all'
-    var summary = ''
+    let summary = ''
     if (_object_id.indexOf(':') != -1) {
-      var temp = _object_id.split(':')
+      let temp = _object_id.split(':')
       _object_id = temp[0]
-      var summary = temp[1]
+      summary = temp[1]
     }
   }
 
@@ -28,8 +28,8 @@ function initEquipment(_object_id) {
         objectsAll = objects
       }
 
-      var summaries = []
-      var li = '<ul data-role="listview" data-inset="false">'
+      let summaries = []
+      let li = '<ul data-role="listview" data-inset="false">'
       li += '<li class="li-splitter">'
       li += '<div>'
       li += '<a href="#" class="link" data-page="equipment" data-title="<i class=\'fas fa-globe\'></i> {{Tout}}" data-option="all"><i class="fas fa-globe"> </i> {{Tout}}</a>'
@@ -37,8 +37,8 @@ function initEquipment(_object_id) {
       li += '</div>'
       li += '</li>'
 
-      var icon, decay
-      for (var i in objects) {
+      let icon, decay
+      for (let i in objects) {
         if (_object_id != '' && _object_id == objects[i].id) objectsAll = [objects[i]]
         if (objects[i].isVisible == 1) {
           icon = ''
@@ -101,47 +101,45 @@ function initEquipment(_object_id) {
       return
     }
     search = jeedomUtils.normTextLower(search)
-    var match
-    $('div.eqLogic-widget').each(function() {
-      match = false
-      if (match || jeedomUtils.normTextLower($(this).find('.widget-name').text()).indexOf(search) >= 0) {
+    document.querySelectorAll('div.eqLogic-widget').each(function(el) {
+      let match = false
+      if (match || jeedomUtils.normTextLower(el.querySelectorAll('.widget-name').text()).indexOf(search) >= 0) {
         match = true
       }
-      if (match || ($(this).attr('data-tags') != undefined && jeedomUtils.normTextLower($(this).attr('data-tags')).indexOf(search) >= 0)) {
+      if (match || (el.getAttribute('data-tags') != undefined && jeedomUtils.normTextLower(el.getAttribute('data-tags')).indexOf(search) >= 0)) {
         match = true
       }
-      if (match ||($(this).attr('data-category') != undefined && jeedomUtils.normTextLower($(this).attr('data-category')).indexOf(search) >= 0)) {
+      if (match ||(el.getAttribute('data-category') != undefined && jeedomUtils.normTextLower(el.getAttribute('data-category')).indexOf(search) >= 0)) {
         match = true
       }
-      if (match ||($(this).attr('data-eqType') != undefined && jeedomUtils.normTextLower($(this).attr('data-eqType')).indexOf(search) >= 0)) {
+      if (match ||(el.getAttribute('data-eqType') != undefined && jeedomUtils.normTextLower(el.getAttribute('data-eqType')).indexOf(search) >= 0)) {
         match = true
       }
-      if (match ||($(this).attr('data-translate-category') != undefined && jeedomUtils.normTextLower($(this).attr('data-translate-category')).indexOf(search) >= 0)) {
+      if (match ||(el.getAttribute('data-translate-category') != undefined && jeedomUtils.normTextLower(el.getAttribute('data-translate-category')).indexOf(search) >= 0)) {
         match = true
       }
       if (match) {
-        $(this).show()
+        el.show()
       } else {
-        $(this).hide()
+        el.hide()
       }
     })
-    $('.scenario-widget').each(function() {
-      match = false
-      if (match || jeedomUtils.normTextLower($(this).find('.widget-name').text()).indexOf(search) >= 0) {
+    document.querySelectorAll('.scenario-widget').each(function(el) {
+      let match = false
+      if (match || jeedomUtils.normTextLower(el.querySelectorAll('.widget-name').text()).indexOf(search) >= 0) {
         match = true
       }
       if (match) {
-        $(this).show()
+        el.show()
       } else {
-        $(this).hide()
+        el.hide()
       }
     })
     $('.objectHtml').packery()
-    var count
-    $('.objectHtml').each(function() {
-      count = $(this).find('.scenario-widget:visible').length + $(this).find('.eqLogic-widget:visible').length
+    document.querySelectorAll('.objectHtml').each(function(el) {
+      let count = el.querySelectorAll('.scenario-widget:visible').length + el.querySelectorAll('.eqLogic-widget:visible').length
       if (count == 0) {
-        $(this).closest('.div_displayEquipement').hide()
+        el.closest('.div_displayEquipement').hide()
       }
     })
   })
@@ -164,10 +162,10 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
     },
     success: function(html) {
       if (_objectId == 'all' || _objectId == '') {
-        $('#div_displayEquipement').empty()
-        var div = ''
-        var summaries = []
-        var id, icon, objectName
+        document.getElementById('div_displayEquipement').empty()
+        let div = ''
+        let summaries = []
+        let id, icon, objectName
         for (var i in html) {
           id = i.split('::')[1]
           if (!isset(objects_info[id])) continue
@@ -188,7 +186,8 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
           summaries.push({object_id : id})
         }
         try {
-          $('#div_displayEquipement').html(div).trigger('create')
+          document.getElementById('div_displayEquipement').html(div)
+          $('#div_displayEquipement').trigger('create')
           jeedomUtils.setTileSize('.eqLogic, .scenario')
           jeedom.object.summaryUpdate(summaries)
         } catch(err) {
@@ -200,7 +199,8 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
         div += '<div class="card-title has-supporting-text"><center><span class="objectSummaryContainer objectSummary'+_objectId+'" data-version="mobile"></span></center></div></div><div class="objectHtml">'
         div += html
         div += '</div></div></div>'
-        $('#div_displayEquipement').empty().html(div).trigger('create')
+        document.getElementById('div_displayEquipement').empty().html(div)
+        $('#div_displayEquipement').trigger('create')
         jeedomUtils.setTileSize('.eqLogic, .scenario')
         jeedom.object.summaryUpdate([{object_id:_objectId}])
       }
@@ -215,10 +215,10 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
 
 //summary:
 function displayObjectsBySummary(_objectsAll, _summary) {
-  $('#div_displayEquipement').empty()
+  document.getElementById('div_displayEquipement').empty()
   //show objects hidden:
-  var thisObject, summaries, icon, objectName, div
-  for (var i in _objectsAll) {
+  let thisObject, summaries, icon, objectName, div
+  for (let i in _objectsAll) {
     thisObject = _objectsAll[i]
     summaries = []
     div = '<div class="div_displayEquipement hidden" data-objectid="'+thisObject.id+'">'
@@ -235,7 +235,7 @@ function displayObjectsBySummary(_objectsAll, _summary) {
     div += '<div class="objectHtml">'
     div += '</div>'
     div += '</div>'
-    $('#div_displayEquipement').append(div)
+    document.getElementById('div_displayEquipement').html(div);
     displayEqsBySummary(_objectsAll, thisObject.id, _summary)
     jeedom.object.summaryUpdate([{object_id: thisObject.id}])
   }
@@ -243,7 +243,7 @@ function displayObjectsBySummary(_objectsAll, _summary) {
   window.triggerEvent('resize')
 }
 
-var summaryObjEqs = []
+let summaryObjEqs = []
 function displayEqsBySummary(_objectsAll, _objectId, _summary) {
   summaryObjEqs[_objectId] = []
   jeedom.object.getEqLogicsFromSummary({
@@ -257,7 +257,7 @@ function displayEqsBySummary(_objectsAll, _objectId, _summary) {
     },
     success: function(eqLogics) {
       if (eqLogics.length == 0) return
-      for (var j in eqLogics) {
+      for (let j in eqLogics) {
         if (summaryObjEqs[_objectId].includes(eqLogics[j].id)) {
           return
         }
@@ -269,10 +269,9 @@ function displayEqsBySummary(_objectsAll, _objectId, _summary) {
             $.fn.showAlert({message: error.message, level: 'danger'})
           },
           success: function(html) {
-            $('.div_displayEquipement[data-objectid="'+_objectId+'"]').removeClass('hidden')
-            $('.div_displayEquipement[data-objectid="'+_objectId+'"] > .objectHtml').append(html.html).trigger('create')
+            document.querySelectorAll('.div_displayEquipement[data-objectid="'+_objectId+'"] > .objectHtml').html(html.html).classList.remove("hidden")
             jeedomUtils.setTileSize('.eqLogic')
-            $('.div_displayEquipement[data-objectid="'+_objectId+'"]').packery({gutter :0})
+            $('.div_displayEquipement[data-objectid="'+_objectId+'"]').trigger('create').packery({gutter :0})
           }
         })
       }
