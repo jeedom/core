@@ -359,7 +359,7 @@ jeedom.object.summaryUpdate = function(_params) {
       for (var id in result) {
         try {
           summaryUpdate[id].objectSummaryList.forEach(function(objectSummary) {
-            if (objectSummary.querySelector('.objectSummary' + id) != null) return //summary ever created
+            if (objectSummary.hasChildNodes()) return  //summary ever created
             summary = domUtils.parseHTML(result[id].html)
             objectSummary.empty().appendChild(summary)
             objectSummary.querySelector('.objectSummary' + id).replaceWith(...objectSummary.querySelector('.objectSummary' + id).childNodes)

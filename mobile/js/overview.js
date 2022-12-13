@@ -52,7 +52,7 @@ function initOverview() {
             div += '</div>'
             div += '<div class="bottomPreview bottomCorner">'
               div += '<div class="resume" style="display:none;">'
-              div += '<span class="objectSummary'+_this.id+'" data-version="mobile"></span>'
+              div += '<span class="objectSummaryContainer objectSummary'+_this.id+'" data-version="mobile"></span>'
               div += '</div>'
             div += '</div>'
           div += '</div>'
@@ -135,7 +135,7 @@ function initOverview() {
 function createSummaryObserver() {
   var _SummaryObserver_ = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
-      if (mutation.type == 'childList' && mutation.target.parentNode?.className == 'resume') {
+      if (mutation.type == 'childList' && mutation.target.className == 'resume') {
         try {
           updateSummary(mutation.addedNodes[0].className)
         } catch {}
@@ -156,7 +156,7 @@ function createSummaryObserver() {
 
 function updateSummary(_className) {
   _className = _className.replace('objectSummaryContainer ', '')
-  var parent = $('.'+_className).closest('.objectPreview')
+  var parent = $('.' + _className).closest('.objectPreview')
   var pResume = parent.find('.resume')
   parent.find('.topPreview').find('.objectSummaryParent').remove()
   pResume.find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').each(function() {

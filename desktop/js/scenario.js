@@ -559,7 +559,7 @@ if (!jeeFrontEnd.scenario) {
           retour += '<span class="input-group-btn">'
           retour += '<button class="btn btn-default bt_removeExpression roundedLeft" type="button" tooltip="{{Supprimer l\'action}}"><i class="fas fa-minus-circle"></i></button>'
           retour += '</span>'
-          retour += '<input class="expressionAttr form-control" data-l1key="expression" value="' + expression_txt.replace(/"/g, '&quot;') + '"/>'
+          retour += '<input class="expressionAttr form-control" data-l1key="expression" prevalue="' + init(_expression.expression) + '" value="' + expression_txt.replace(/"/g, '&quot;') + '"/>'
           retour += '<span class="input-group-btn">'
           retour += '<button class="btn btn-default bt_selectOtherActionExpression" type="button" tooltip="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></button>'
           retour += '<button class="btn btn-default bt_selectCmdExpression roundedRight" type="button" tooltip="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i></button>'
@@ -2515,13 +2515,15 @@ jeeP.$divScenario.on('click', '.bt_selectEqLogicExpression', function(event) {
 })
 
 jeeP.$divScenario.on('focusout', '.expression .expressionAttr[data-l1key="expression"]', function(event) {
+  if (this.getAttribute('prevalue') == this.value) return
   var el = this
-  if (el.closest('.expression').querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
+  if (el.closest('.expression').querySelector('.expressionAttr[data-l1key="type"]').value == 'action') {
     var expression = el.closest('.expression').getJeeValues('.expressionAttr')
-    jeedom.cmd.displayActionOption(el.jeeValue(), init(expression[0].options), function(html) {
+    jeedom.cmd.displayActionOption(el.value, init(expression[0].options), function(html) {
       $(el).closest('.expression').find('.expressionOptions').html(html)
       jeedomUtils.taAutosize()
       jeeP.updateTooltips()
+      el.setAttribute('prevalue', el.value)
     })
   }
 })
