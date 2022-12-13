@@ -22,6 +22,7 @@ var domUtils = {
   __description: 'DOM related Jeedom functions.',
   ajaxCalling: 0,
   loadingTimeout: null,
+  isLoading : false,
   ajaxSettings: {
     async: true,
     global: true,
@@ -42,11 +43,11 @@ domUtils.showLoading = function() {
     }
   }, 20 * 1000)
 }
+
 domUtils.hideLoading = function() {
   document.getElementById('div_jeedomLoading')?.unseen()
   clearTimeout(domUtils.loadingTimeout)
 }
-
 
 /* Extension Functions
 */
@@ -57,11 +58,11 @@ String.prototype.HTMLFormat = function() {
 }
 
 String.prototype.stripAccents = function() {
-  var in_chrs = 'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ',
+  let in_chrs = 'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ',
     out_chrs = 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY',
     transl = {}
-  var chars_rgx = eval('/[' + in_chrs + ']/g')
-  for (var i = 0; i < in_chrs.length; i++) {
+  let chars_rgx = eval('/[' + in_chrs + ']/g')
+  for (let i = 0; i < in_chrs.length; i++) {
     transl[in_chrs.charAt(i)] = out_chrs.charAt(i)
   }
   return this.replace(chars_rgx, function(match) {
@@ -76,14 +77,13 @@ EventTarget.prototype.triggerEvent = function(_eventName, _params) {
   _params.bubbles = _params.bubbles || true
   _params.cancelable = _params.cancelable || false
   _params.detail = _params.detail || undefined
-
-  var event = new Event(_eventName, _params)
+  let event = new Event(_eventName, _params)
   this.dispatchEvent(event)
-
   return this
 }
+
 NodeList.prototype.triggerEvent = function(_eventName, _params) {
-  for (var idx = 0; idx < this.length; idx++) {
+  for (let idx = 0; idx < this.length; idx++) {
     this[idx].triggerEvent(_eventName, _params)
   }
   return this
@@ -145,14 +145,14 @@ Document.prototype.emptyById = function(_id) {
 //CSS Class manipulation
 Element.prototype.addClass = function(_className /*, _className... */) {
   if (_className == '') return this
-  var args = Array.prototype.slice.call(arguments)
+  let args = Array.prototype.slice.call(arguments)
   this.classList.add(...args)
   return this
 }
 NodeList.prototype.addClass = function(_className /*, _className... */) {
   if (_className == '') return this
-  var args = Array.prototype.slice.call(arguments)
-  for (var idx = 0; idx < this.length; idx++) {
+  let args = Array.prototype.slice.call(arguments)
+  for (let idx = 0; idx < this.length; idx++) {
     this[idx].addClass(...args)
   }
   return this
@@ -160,14 +160,14 @@ NodeList.prototype.addClass = function(_className /*, _className... */) {
 
 Element.prototype.removeClass = function(_className /*, _className... */) {
   if (_className == '') return this
-  var args = Array.prototype.slice.call(arguments)
+  let args = Array.prototype.slice.call(arguments)
   this.classList.remove(...args)
   return this
 }
 NodeList.prototype.removeClass = function(_className /*, _className... */) {
   if (_className == '') return this
-  var args = Array.prototype.slice.call(arguments)
-  for (var idx = 0; idx < this.length; idx++) {
+  let args = Array.prototype.slice.call(arguments)
+  for (let idx = 0; idx < this.length; idx++) {
     this[idx].removeClass(...args)
   }
   return this
@@ -178,7 +178,7 @@ Element.prototype.toggleClass = function(_className) {
   return this
 }
 NodeList.prototype.toggleClass = function() {
-  for (var idx = 0; idx < this.length; idx++) {
+  for (let idx = 0; idx < this.length; idx++) {
     this[idx].toggleClass()
   }
   return this
@@ -195,22 +195,22 @@ NodeList.prototype.last = function() {
 }
 
 NodeList.prototype.remove = function() {
-  for (var idx = 0; idx < this.length; idx++) {
+  for (let idx = 0; idx < this.length; idx++) {
     this[idx].remove()
   }
   return this
 }
 
 Element.prototype.fade = function(_delayms, _opacity, _callback) {
-  var opacity = parseInt(this.style.opacity) || 0
-  var interval = 25,
+  let opacity = parseInt(this.style.opacity) || 0
+  let interval = 25,
       gap = interval / _delayms,
       delay = 0,
       self = this
 
   if (opacity > _opacity) gap = gap * -1
 
-  var func = function() {
+  let func = function() {
     let stop = false
     delay += interval
     opacity = opacity + gap
@@ -239,9 +239,7 @@ Element.prototype.fade = function(_delayms, _opacity, _callback) {
 
 Element.prototype.insertAtCursor = function(_valueString) {
   if (this.selectionStart || this.selectionStart == '0') {
-    var startPos = this.selectionStart
-    var endPos = this.selectionEnd
-    this.value = this.value.substring(0, startPos) + _valueString + this.value.substring(endPos, this.value.length)
+    this.value = this.value.substring(0, this.selectionStart) + _valueString + this.value.substring(this.selectionEnd, this.value.length)
   } else {
     this.value += _valueString
   }
@@ -254,7 +252,7 @@ Element.prototype.insertAtCursor = function(_valueString) {
 Must be high performance
 */
 Element.prototype.findAtDepth = function(selector, maxDepth) {
-  var depths = [], i
+  let depths = [], i
   if (maxDepth > 0) {
     for (i = 1; i <= maxDepth; i++) {
       depths.push(':scope > ' + new Array(i).join('* > ') + selector)
@@ -265,9 +263,9 @@ Element.prototype.findAtDepth = function(selector, maxDepth) {
 }
 
 Element.prototype.getJeeValues = function(_attr, _depth) {
-  var value = {}
-  var idx, value, depthFound, thatElement, elValue, l1key, l2key, l3key
-  var elements = this.findAtDepth(_attr, init(_depth, 0))
+  let value = {}
+  let idx, depthFound, thatElement, elValue, l1key, l2key, l3key
+  let elements = this.findAtDepth(_attr, init(_depth, 0))
   for (idx = 0; idx < elements.length; idx++) {
     thatElement = elements[idx]
     elValue = thatElement.jeeValue()
@@ -323,8 +321,8 @@ Element.prototype.getJeeValues = function(_attr, _depth) {
   return [value]
 }
 NodeList.prototype.getJeeValues = function(_attr, _depth) {
-  var values = [], elValues
-  for (var idx = 0; idx < this.length; idx++) {
+  let values = [], elValues
+  for (let idx = 0; idx < this.length; idx++) {
     elValues = this[idx].getJeeValues(_attr, _depth)
     values.push(elValues[0])
   }
@@ -332,16 +330,16 @@ NodeList.prototype.getJeeValues = function(_attr, _depth) {
 }
 
 Element.prototype.setJeeValues = function(_object, _attr) {
-  var selector
-  for (var i in _object) {
+  let selector
+  for (let i in _object) {
     selector = _attr + '[data-l1key="' + i + '"]'
     if ((!is_array(_object[i]) || (this.querySelector(selector) !== null && this.querySelector(selector).getAttribute('multiple') == 'multiple')) && !is_object(_object[i])) {
       this.querySelectorAll(_attr + '[data-l1key="' + i + '"]').jeeValue(_object[i])
     } else {
-      for (var j in _object[i]) {
+      for (let j in _object[i]) {
         selector = _attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"]'
         if ((is_array(_object[i][j]) || (this.querySelector(selector) !== null && this.querySelector(selector).getAttribute('multiple') == 'multiple')) || is_object(_object[i][j])) {
-          for (var k in _object[i][j]) {
+          for (let k in _object[i][j]) {
             this.querySelectorAll(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"][data-l3key="' + k + '"]').jeeValue(_object[i][j][k])
           }
         } else {
@@ -353,7 +351,7 @@ Element.prototype.setJeeValues = function(_object, _attr) {
   return this
 }
 NodeList.prototype.setJeeValues = function(_object, _attr) {
-  for (var idx = 0; idx < this.length; idx++) {
+  for (let idx = 0; idx < this.length; idx++) {
     this[idx].setJeeValues(_object, _attr)
   }
   return this
@@ -362,8 +360,7 @@ NodeList.prototype.setJeeValues = function(_object, _attr) {
 Element.prototype.jeeValue = function(_value) {
   if (isset(_value)) { //SET
     if (this.length > 1 && this.tagName.toLowerCase() != 'select') {
-      var idx
-      for (idx = 0; idx < this.length; idx++) {
+      for (let idx = 0; idx < this.length; idx++) {
         this[idx].jeeValue(_value)
       }
     } else {
@@ -401,7 +398,7 @@ Element.prototype.jeeValue = function(_value) {
     }
     return this
   } else { //GET
-    var value = ''
+    let value = ''
     if (this.matches('input, select, textarea')) {
       if (this.getAttribute('type') == 'checkbox' || this.getAttribute('type') == 'radio') {
         value = (this.checked) ? '1' : '0'
@@ -422,26 +419,24 @@ Element.prototype.jeeValue = function(_value) {
   }
 }
 NodeList.prototype.jeeValue = function(_value) {
-  for (var idx = 0; idx < this.length; idx++) {
+  for (let idx = 0; idx < this.length; idx++) {
     this[idx].jeeValue(_value)
   }
 }
 
 domUtils.extend = function(_object /*, _object... */) {
-  var extended = {}
-  var deep = false
-  var i = 0
-  var length = arguments.length
-
+  let extended = {}
+  let deep = false
+  let i = 0
+  let length = arguments.length
   // Check if a deep merge
   if ( Object.prototype.toString.call( arguments[0] ) === '[object Boolean]' ) {
     deep = arguments[0]
     i++
   }
-
   // Merge the object into the extended object
-  var merge = function (obj) {
-    for ( var prop in obj ) {
+  let merge = function (obj) {
+    for (let prop in obj ) {
       if ( Object.prototype.hasOwnProperty.call( obj, prop ) ) {
         // If deep merge and property is an object, merge properties
         if ( deep && Object.prototype.toString.call(obj[prop]) === '[object Object]' ) {
@@ -452,13 +447,10 @@ domUtils.extend = function(_object /*, _object... */) {
       }
     }
   }
-
   // Loop through each object and conduct a merge
   for ( ; i < length; i++ ) {
-    var obj = arguments[i]
-    merge(obj)
+    merge(arguments[i])
   }
-
   return extended
 }
 
@@ -531,7 +523,7 @@ Element.prototype.html = function(_htmlString, _append, _callback) {
 }
 
 
-domUtils.isLoading = false
+
 Element.prototype.load = function(_path, _callback) {
   let self = this
   domUtils.isLoading = true
@@ -575,13 +567,14 @@ domUtils.handleAjaxError = function(_request, _status, _error) {
       level: 'danger'
     })
   }
-
 }
+
 domUtils.ajaxSetup = function(_params) {
   for (const key in _params) {
     domUtils.ajaxSettings[key] = _params[key]
   }
 }
+
 domUtils.countAjax = function(_type, _global) {
   if (_global === false) return
   if (_type == 0) {
@@ -595,6 +588,7 @@ domUtils.countAjax = function(_type, _global) {
     }
   }
 }
+
 domUtils.ajax = function(_params) {
   _params.global = isset(_params.global) ? _params.global : domUtils.ajaxSettings.global
   _params.async = isset(_params.async) ? _params.async : domUtils.ajaxSettings.async
@@ -606,8 +600,8 @@ domUtils.ajax = function(_params) {
 
   domUtils.countAjax(0, _params.global)
 
-  var isGet = _params.type.toLowerCase() == 'get' ? true : false
-  var isJson = _params.dataType.toLowerCase() == 'json' ? true : false
+  let isGet = _params.type.toLowerCase() == 'get' ? true : false
+  let isJson = _params.dataType.toLowerCase() == 'json' ? true : false
 
   if (_params.async === false) { //Synchronous request:
     const request = new XMLHttpRequest()
@@ -624,8 +618,7 @@ domUtils.ajax = function(_params) {
     }
     _params.complete()
   } else { //Asynchronous request:
-    var url = _params.url
-    var request
+    let url = _params.url
     if (isGet && is_object(_params.data)) {
       url = url + '?' + new URLSearchParams(_params.data)
     }
@@ -654,11 +647,10 @@ domUtils.ajax = function(_params) {
     .catch(function(error) {
       domUtils.countAjax(1, _params.global)
       if (_params.url != 'core/ajax/event.ajax.php' || _params.data.action != 'changes') {
-        var msg = 'domUtils.ajax(' + _params.url + ') ' + _params.type + ' async: ' + _params.async
+        let msg = 'domUtils.ajax(' + _params.url + ') ' + _params.type + ' async: ' + _params.async
         domUtils.handleAjaxError(msg, _params.data, error)
         console.error(msg, _params.data, error)
       }
-
       if (_params.onError) _params.onError(error)
     })
   }
@@ -683,11 +675,12 @@ Usage:
 */
 domUtils.registeredEvents = []
 domUtils.unRegisterEvents = function() {
-  for (var listener of domUtils.registeredEvents) {
+  for (let listener of domUtils.registeredEvents) {
     listener.element.removeEventListener(listener.type, listener.callback, false)
   }
   domUtils.registeredEvents = []
 }
+
 EventTarget.prototype.registerEvent = function(_type, listener) {
   if (typeof listener !== 'function') return
   domUtils.registeredEvents.push({
@@ -699,17 +692,15 @@ EventTarget.prototype.registerEvent = function(_type, listener) {
   this.addEventListener(_type, listener)
   return this
 }
+
 EventTarget.prototype.unRegisterEvent = function(_type, _id) {
-  var self = this
-  var listeners = domUtils.registeredEvents.filter(function(listener) {
+  let listeners = domUtils.registeredEvents.filter(function(listener) {
     return ( (_type? listener.type == _type : true) && (_id? listener.id == _id : true) && listener.element == self )
   })
-
-  for (var listener of listeners) {
+  for (let listener of listeners) {
     this.removeEventListener(listener.type, listener.callback, false)
     domUtils.registeredEvents = domUtils.registeredEvents.filter(ev => !listeners.includes(ev))
   }
-
   return this
 }
 
@@ -722,7 +713,7 @@ domUtils.issetWidgetOptParam = function(_def, _param) {
 }
 
 domUtils.createWidgetSlider = function(_options) {
-  var createOptions = {
+  let createOptions = {
     start: [_options.state],
     connect: [true, false],
     step: _options.step,
@@ -737,7 +728,7 @@ domUtils.createWidgetSlider = function(_options) {
     createOptions.format = {
       from: Number,
       to: function(value) {
-        var dec = _options.step.toString().includes('.') ? (_options.step.toString().length - 1) - _options.step.toString().indexOf('.') : 0
+        let dec = _options.step.toString().includes('.') ? (_options.step.toString().length - 1) - _options.step.toString().indexOf('.') : 0
         return ((Math.round(value * (100 / _options.step)) / (100 / _options.step)).toFixed(dec) + ' ' + _options.unite).trim()
       }
     }
@@ -765,7 +756,7 @@ function isElement_DOM(_element) {
 }
 
 function in_array(a, b, d) {
-  var c = ""
+  let c = ""
   if (d)
     for (c in b) {
       if (b[c] === a)
@@ -779,7 +770,7 @@ function in_array(a, b, d) {
 }
 
 function json_decode(a) {
-  var b = window.JSON
+  let b = window.JSON
   if ("object" === typeof b && "function" === typeof b.parse)
     try {
       return b.parse(a)
@@ -803,7 +794,7 @@ function json_decode(a) {
 }
 
 function json_encode(a) {
-  var b, d = window.JSON
+  let b, d = window.JSON
   try {
     if ("object" === typeof d && "function" === typeof d.stringify) {
       b = d.stringify(a)
@@ -879,7 +870,7 @@ function json_encode(a) {
 }
 
 function isset() {
-  var a = arguments,
+  let a = arguments,
     b = a.length,
     d = 0
   if (0 === b)
@@ -949,7 +940,7 @@ function is_unicode(a) {
 }
 
 function is_array(a) {
-  var b, d = function(a) {
+  let b, d = function(a) {
     return (a = /\W*function\s+([\w\$]+)\s*\(/.exec(a)) ? a[1] : "(Anonymous)"
   }
   if (!a || "object" !== typeof a)
@@ -983,7 +974,7 @@ function is_buffer(a) {
 }
 
 function count(a, b) {
-  var d, c = 0
+  let d, c = 0
   if (null === a || "undefined" === typeof a)
     return 0
   if (a.constructor !== Array && a.constructor !== Object)
