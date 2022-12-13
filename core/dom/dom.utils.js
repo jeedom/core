@@ -496,7 +496,7 @@ domUtils.loadScript = function(_scripts, _idx, _callback) {
 
 //Cannot contain script src="" as they won't load until inserted in DOM
 domUtils.parseHTML = function(_htmlString) {
-  var newEl = document.createElement('span')
+  let newEl = document.createElement('span')
   newEl.innerHTML = _htmlString
   newEl.querySelectorAll('script[src]')?.remove()
 
@@ -515,9 +515,9 @@ Element.prototype.html = function(_htmlString, _append, _callback) {
   if (!isset(_append) || _append === false) this.empty()
 
   domUtils.isLoading = true
-  var self = this
+  let self = this
 
-  var template = document.createElement('template')
+  let template = document.createElement('template')
   template.innerHTML = _htmlString
   self.appendChild(template.content)
 
@@ -535,7 +535,7 @@ Element.prototype.html = function(_htmlString, _append, _callback) {
 
 domUtils.isLoading = false
 Element.prototype.load = function(_path, _callback) {
-  var self = this
+  let self = this
   domUtils.isLoading = true
   domUtils.ajax({
     url: _path,
