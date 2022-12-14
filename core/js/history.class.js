@@ -921,12 +921,14 @@ jeedom.history.drawChart = function(_params) {
               margin: 5,
               handles: {
                 lineWidth: 0,
-                width: 5,
+                width: 8,
                 height: 40
               },
               series: {
-                includeInCSVExport: false
-              }
+                type: _params.option.graphType,
+                dataGrouping: dataGrouping,
+                includeInCSVExport: false,
+              },
             },
             scrollbar: {
               barBackgroundColor: 'var(--txt-color)',
@@ -1015,7 +1017,7 @@ jeedom.history.drawChart = function(_params) {
               }
             }, false)
             //add axis to chart:
-            series.yAxis = _params.cmd_id+'-yAxis'
+            series.yAxis = _params.cmd_id + '-yAxis'
             jeedom.history.chart[_params.el].chart.addAxis(yAxis, false, false)
           }
           //add series to graph:
