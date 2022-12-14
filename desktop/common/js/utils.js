@@ -30,7 +30,7 @@ jeedomUtils.tileHeightSteps = Array.apply(null, { length: 10 }).map(function(val
 */
 jeedomUtils.$readyFn = jQuery.fn.ready
 jQuery.fn.ready = function() {
-  if (domUtils.isLoading === false) {
+  if (domUtils._DOMloading <= 0) {
     jeedomUtils.$readyFn.apply(this, arguments)
   } else {
     setTimeout(function() {
@@ -38,7 +38,7 @@ jQuery.fn.ready = function() {
     }, 100, this, arguments)
   }
 }
-
+//Deprecated, keep for plugins using jQuery ajax call
 document.addEventListener('DOMContentLoaded', function() {
   jeedomUtils._elBackground = document.getElementById('backgroundforJeedom')
   $(document)

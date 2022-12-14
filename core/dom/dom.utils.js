@@ -18,18 +18,32 @@
 
 /* DOM utils namespace
 */
-var domUtils = {
+var domUtils = function() {
+  if (typeof arguments[0] == 'function') {
+    if (domUtils._debug) console.log('[ >> domUtils ready register func << ]', arguments[0])
+    if (domUtils._ajaxCalling < 0 && domUtils._DOMloading < 0) {
+      if (domUtils._debug) console.log('[ >> domUtils ready register func << ] no loading / no ajax -> exec now!')
+      arguments[0]()
+      return
+    }
+    domUtils.registeredFuncs.push(arguments[0])
+  }
+}
+Object.assign(domUtils, {
   __description: 'DOM related Jeedom functions.',
-  ajaxCalling: 0,
+  ajaxCalling: 1,
+  DOMloading: 1,
   loadingTimeout: null,
-  isLoading : false,
+  _debug: false,
   ajaxSettings: {
     async: true,
     global: true,
     dataType: 'json',
     type: 'post'
-  }
-}
+  },
+  registeredEvents: [],
+  registeredFuncs: []
+})
 
 domUtils.showLoading = function() {
   document.getElementById('div_jeedomLoading')?.seen()
@@ -43,11 +57,50 @@ domUtils.showLoading = function() {
     }
   }, 20 * 1000)
 }
-
 domUtils.hideLoading = function() {
   document.getElementById('div_jeedomLoading')?.unseen()
   clearTimeout(domUtils.loadingTimeout)
 }
+
+domUtils.DOMReady = function() {
+  if (domUtils._debug) console.log('[ >> domUtils.DOMReady] registeredFuncs?', domUtils.registeredFuncs)
+  domUtils.hideLoading()
+  for (var i = 0; i < domUtils.registeredFuncs.length; i++) {
+    var f = domUtils.registeredFuncs.shift()
+    if (domUtils._debug) console.log('[ >> domUtils.DOMReady] exec deferred func:', f)
+    f()
+  }
+}
+
+Object.defineProperty(domUtils, 'ajaxCalling', {
+  enumerable: true,
+  get: function() {
+    return this._ajaxCalling
+  },
+  set: function(number) {
+    this._ajaxCalling = number < 0 ? 0 : number
+    if (number <= 0 && domUtils._DOMloading <= 0) {
+      domUtils.DOMReady()
+    }
+  }
+})
+Object.defineProperty(domUtils, 'DOMloading', {
+  enumerable: true,
+  get: function() {
+    return this._DOMloading
+  },
+  set: function(number) {
+    this._DOMloading = number < 0 ? 0 : number
+    if (number <= 0 && domUtils._ajaxCalling <= 0) {
+      domUtils.DOMReady()
+    }
+  }
+})
+
+document.addEventListener('DOMContentLoaded', function() {
+  domUtils.DOMloading = domUtils._DOMloading || 0
+  domUtils.ajaxCalling = domUtils._ajaxCalling || 0
+})
 
 /* Extension Functions
 */
@@ -459,7 +512,8 @@ domUtils.extend = function(_object /*, _object... */) {
   return extended
 }
 
-/* ____________DOM Inection Management____________
+
+/* ____________DOM Injection Management____________
 */
 //Parse script tags and recreate them dynamically to be loaded and executed in order
 domUtils.loadScript = function(_scripts, _idx, _callback) {
@@ -507,14 +561,14 @@ domUtils.parseHTML = function(_htmlString) {
 Element.prototype.html = function(_htmlString, _append, _callback) {
   if (!isset(_htmlString)) return this.innerHTML
   if (!isset(_append) || _append === false) this.empty()
-  domUtils.isLoading = true
+  domUtils.DOMloading ++
   let template = document.createElement('template')
   template.innerHTML = _htmlString
   this.appendChild(template.content)
 
   let self = this
   domUtils.loadScript(this.querySelectorAll('script'), 0, function() {
-    domUtils.isLoading = false
+    domUtils.DOMloading --
     if (typeof _callback === 'function') {
       return _callback(self)
     } else {
@@ -526,7 +580,7 @@ Element.prototype.html = function(_htmlString, _append, _callback) {
 
 Element.prototype.load = function(_path, _callback) {
   let self = this
-  domUtils.isLoading = true
+  domUtils.DOMloading ++
   domUtils.ajax({
     url: _path,
     async: domUtils.ajaxSettings.async,
@@ -541,7 +595,7 @@ Element.prototype.load = function(_path, _callback) {
     },
     success: function(rawHtml) {
       self.html(rawHtml, false, function() {
-        domUtils.isLoading = false
+        domUtils.DOMloading --
         if (typeof _callback === 'function') {
           _callback()
         }
@@ -580,10 +634,6 @@ domUtils.countAjax = function(_type, _global) {
     if (domUtils.ajaxCalling == 1) domUtils.showLoading()
   } else {
     domUtils.ajaxCalling --
-    if (domUtils.ajaxCalling <= 0) {
-      domUtils.hideLoading()
-      domUtils.ajaxCalling = 0
-    }
   }
 }
 
@@ -671,7 +721,6 @@ Usage:
 
 << domUtils.unRegisterEvents() implemented at jeedomUtils.loadPage()!
 */
-domUtils.registeredEvents = []
 domUtils.unRegisterEvents = function() {
   for (let listener of domUtils.registeredEvents) {
     listener.element.removeEventListener(listener.type, listener.callback, false)
