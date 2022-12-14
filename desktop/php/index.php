@@ -174,6 +174,8 @@ function setTheme() {
 	?>
 	<script>
 		jeeFrontEnd.jeedomVersion = '<?php echo jeedom::version() ?>';
+		jeeFrontEnd.coreBranch = '<?php echo config::byKey('core::branch') ?>';
+		jeeFrontEnd.hardware_name = '<?php echo config::byKey('hardware_name') ?>';
 		jeeFrontEnd.clientDatetime = new Date();
 		jeeFrontEnd.clientServerDiffDatetime = (<?php echo microtime(TRUE); ?> * 1000) - jeeFrontEnd.clientDatetime.getTime();
 		jeeFrontEnd.serverTZoffsetMin = <?php echo getTZoffsetMin() ?>;
