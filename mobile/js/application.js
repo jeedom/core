@@ -586,7 +586,7 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
   } catch (e) { }
   if (isset(_title)) {
     if (!isset(_dialog) || !_dialog) {
-      document.getElementById('pageTitle').empty().html(_title)
+      document.getElementById('pageTitle')?.empty().html(_title)
     } else {
       document.getElementById('popupDialog').getElementsByClassName('nd-title').html(_title)
     }
