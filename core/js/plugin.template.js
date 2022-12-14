@@ -14,165 +14,48 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-$('body').attr('data-type', 'plugin')
-$('.nav-tabs a:not(.eqLogicAction)').first().click()
+document.body.setAttribute('data-type', 'plugin')
+document.querySelector('.nav-tabs a:not(.eqLogicAction)')?.click()
 
-document.onkeydown = function(event) {
-  if (jeedomUtils.getOpenedModal()) return
-
-  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
-    event.preventDefault()
-    if ($('.eqLogicAction[data-action="save"]').is(':visible')) {
-      $('.eqLogicAction[data-action="save"]').click()
-      return
-    }
-  }
-}
-
-//contextMenu
-$(function() {
-  try {
-    if ('undefined' !== typeof Core_noEqContextMenu) return false
-    if ($('.nav.nav-tabs').length == 0) return false
-    $.contextMenu('destroy', $('.nav.nav-tabs'))
-    pluginId = $('body').attr('data-page')
-    jeedom.eqLogic.byType({
-      type: pluginId,
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function(_eqs) {
-        if (_eqs.length == 0) {
-          return;
-        }
-        var eqsGroups = []
-        for (var i = 0; i < _eqs.length; i++) {
-          eq = _eqs[i]
-          humanName = eq.humanName
-          humanCut = humanName.split(']')
-          group = humanCut[0].substr(1)
-          name = humanCut[1].substr(1)
-          eqsGroups.push(group)
-        }
-        eqsGroups = Array.from(new Set(eqsGroups))
-        eqsGroups.sort()
-        var eqsList = []
-        for (var i = 0; i < eqsGroups.length; i++) {
-          group = eqsGroups[i]
-          eqsList[group] = []
-          for (j = 0; j < _eqs.length; j++) {
-            eq = _eqs[j]
-            humanName = eq.humanName
-            humanCut = humanName.split(']')
-            eqGroup = humanCut[0].substr(1)
-            name = humanCut[1].substr(1)
-            if (eqGroup.toLowerCase() != group.toLowerCase()) continue
-            eqsList[group].push([name, eq.id])
-          }
-        }
-        //set context menu!
-        var contextmenuitems = {}
-        var uniqId = 0
-        for (var group in eqsList) {
-          groupEq = eqsList[group]
-          items = {}
-          for (var index in groupEq) {
-            eq = groupEq[index]
-            eqName = eq[0]
-            eqId = eq[1]
-            items[uniqId] = {
-              'name': eqName,
-              'id': eqId
-            }
-            uniqId++
-          }
-          contextmenuitems[group] = {
-            'name': group,
-            'items': items
-          }
-        }
-        if (Object.entries(contextmenuitems).length > 0 && contextmenuitems.constructor === Object) {
-          $('.nav.nav-tabs').contextMenu({
-            selector: 'li',
-            autoHide: true,
-            zIndex: 9999,
-            className: 'eq-context-menu',
-            callback: function(key, options, event) {
-              if (!jeedomUtils.checkPageModified()) {
-                tab = null
-                tabObj = null
-                if (document.location.toString().match('#')) {
-                  tab = '#' + document.location.toString().split('#')[1]
-                  if (tab != '#') {
-                    tabObj = $('a[href="' + tab + '"]')
-                  }
-                }
-                $.hideAlert()
-                if (event.ctrlKey || event.originalEvent.which == 2) {
-                  var type = $('body').attr('data-page')
-                  var url = 'index.php?v=d&m=' + type + '&p=' + type + '&id=' + options.commands[key].id
-                  if (tabObj) url += tab
-                  window.open(url).focus()
-                } else {
-                  $('.eqLogicDisplayCard[data-eqLogic_id="' + options.commands[key].id + '"]').click()
-                  if (tabObj) tabObj.click()
-                }
-              }
-            },
-            items: contextmenuitems
-          })
-        }
-      }
-    })
-  } catch (err) {
-    console.log(err)
-  }
-})
 
 //displayAsTable if plugin support it:
-if ($('#bt_pluginDisplayAsTable').length) {
-  $('#bt_pluginDisplayAsTable').removeClass('hidden') //Not shown on previous core versions
-  if (getCookie('jeedom_displayAsTable') == 'true' || jeedom.theme.theme_displayAsTable == 1) {
-    $('#bt_pluginDisplayAsTable').data('state', '1').addClass('active')
-    if ($('#bt_pluginDisplayAsTable[data-coreSupport="1"]').length) {
-      $('.eqLogicDisplayCard').addClass('displayAsTable')
-      $('.eqLogicDisplayCard .hiddenAsCard').removeClass('hidden')
-      $('.eqLogicThumbnailContainer').first().addClass('containerAsTable')
-    }
-  }
-  //core event:
-  $('#bt_pluginDisplayAsTable[data-coreSupport="1"]').off('click').on('click', function() {
-    if ($(this).data('state') == "0") {
-      $(this).data('state', '1').addClass('active')
-      setCookie('jeedom_displayAsTable', 'true', 2)
-      $('.eqLogicDisplayCard').addClass('displayAsTable')
-      $('.eqLogicDisplayCard .hiddenAsCard').removeClass('hidden')
-      $('.eqLogicThumbnailContainer').first().addClass('containerAsTable')
-    } else {
-      $(this).data('state', '0').removeClass('active')
-      setCookie('jeedom_displayAsTable', 'false', 2)
-      $('.eqLogicDisplayCard').removeClass('displayAsTable')
-      $('.eqLogicDisplayCard .hiddenAsCard').addClass('hidden')
-      $('.eqLogicThumbnailContainer').first().removeClass('containerAsTable')
-    }
-  })
-}
-
-$(function() {
-  if ($("#table_cmd").sortable("instance")) {
-    $("#table_cmd").sortable({
-      delay: 500,
-      distance: 30,
-      stop: function(event, ui) {
-        jeeFrontEnd.modifyWithoutSave = true
+!function() {
+  var butDisp = document.getElementById('bt_pluginDisplayAsTable')
+  var coreSupport = butDisp.dataset.coresupport == '1' ? true : false
+  if (butDisp != null) {
+    butDisp.removeClass('hidden') //Not shown on previous core versions
+    if (getCookie('jeedom_displayAsTable') == 'true' || jeedom.theme.theme_displayAsTable == 1) {
+      butDisp.addClass('active').dataset.sate = '1'
+      if (coreSupport) {
+        document.querySelectorAll('.eqLogicDisplayCard')?.addClass('displayAsTable')
+        document.querySelectorAll('.eqLogicDisplayCard .hiddenAsCard')?.removeClass('hidden')
+        document.querySelector('.eqLogicThumbnailContainer').addClass('containerAsTable')
       }
-    })
+    }
+    //core event:
+    if (coreSupport) {
+      butDisp.unRegisterEvent('click').registerEvent('click', function(event) {
+        if (butDisp.dataset.sate == '0') {
+          butDisp.addClass('active').dataset.sate = '1'
+          setCookie('jeedom_displayAsTable', 'true', 2)
+          document.querySelectorAll('.eqLogicDisplayCard')?.addClass('displayAsTable')
+          document.querySelectorAll('.eqLogicDisplayCard .hiddenAsCard')?.removeClass('hidden')
+          document.querySelector('.eqLogicThumbnailContainer').addClass('containerAsTable')
+        } else {
+          butDisp.removeClass('active').dataset.sate = '0'
+          setCookie('jeedom_displayAsTable', 'false', 2)
+          document.querySelectorAll('.eqLogicDisplayCard')?.removeClass('displayAsTable')
+          document.querySelectorAll('.eqLogicDisplayCard .hiddenAsCard')?.addClass('hidden')
+          document.querySelector('.eqLogicThumbnailContainer').removeClass('containerAsTable')
+        }
+      })
+    }
   }
-})
+}()
 
+$('#bt_resetSearch').on('click', function() {
+  document.getElementById('in_searchEqlogic').jeeValue('').triggerEvent('keyup')
+})
 
 $('#div_pageContainer').on({
   'change': function(event) {
@@ -318,6 +201,11 @@ $('.eqLogicDisplayCard').off('mouseup').on('mouseup', function(event) {
   }
 })
 
+if (is_numeric(getUrlVars('id'))) {
+  if ((bt = document.querySelector('.eqLogicThumbnailContainer .eqLogicDisplayCard[data-eqLogic_id="' + getUrlVars('id') + '"]'))) {
+    bt.click()
+  }
+}
 
 /**************************EqLogic*********************************************/
 $('.eqLogicAction[data-action="copy"]').off('click').on('click', function() {
@@ -530,13 +418,6 @@ $('#in_searchEqlogic').off('keyup').keyup(function() {
   })
 })
 
-/*
- * Remise à zéro du champ de Recherche
- */
-$('#bt_resetSearch').on('click', function() {
-  $('#in_searchEqlogic').val('').keyup()
-})
-
 /**************************CMD*********************************************/
 $('.cmdAction[data-action=add]').on('click', function() {
   if(typeof addCmdToTable == 'function'){
@@ -604,20 +485,133 @@ $('#div_pageContainer').on('click', '.cmd .cmdAction[data-action=configure]', fu
   $('#md_modal').dialog().load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-cmd_id')).dialog('open')
 })
 
-if (is_numeric(getUrlVars('id'))) {
-  if ($('#ul_eqLogic .li_eqLogic[data-eqLogic_id=' + getUrlVars('id') + ']').length != 0) {
-    $('#ul_eqLogic .li_eqLogic[data-eqLogic_id=' + getUrlVars('id') + ']').click()
-  } else if ($('.eqLogicThumbnailContainer .eqLogicDisplayCard[data-eqLogic_id=' + getUrlVars('id') + ']').length != 0) {
-    $('.eqLogicThumbnailContainer .eqLogicDisplayCard[data-eqLogic_id=' + getUrlVars('id') + ']').click();
-  } else if ($('.eqLogicThumbnailDisplay').html() == undefined) {
-    $('#ul_eqLogic .li_eqLogic').first().click()
-  }
-} else {
-  if ($('.eqLogicThumbnailDisplay').html() == undefined) {
-    $('#ul_eqLogic .li_eqLogic').first().click()
-  }
-}
 
+
+//contextMenu
+domUtils(function() {
+  try {
+    if (typeof Core_noEqContextMenu !== 'undefined') return false
+    if (document.querySelector('.nav.nav-tabs') == null) return false
+    $.contextMenu('destroy', $('.nav.nav-tabs'))
+    var pluginId = document.body.getAttribute('data-page') || getUrlVars('p')
+    jeedom.eqLogic.byType({
+      type: pluginId,
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(_eqs) {
+        if (_eqs.length == 0) {
+          return;
+        }
+        var eqsGroups = []
+        var humanName, humanCut, group, name
+        for (var i = 0; i < _eqs.length; i++) {
+          humanName = _eqs[i].humanName
+          humanCut = humanName.split(']')
+          group = humanCut[0].substr(1)
+          name = humanCut[1].substr(1)
+          eqsGroups.push(group)
+        }
+        eqsGroups = Array.from(new Set(eqsGroups))
+        eqsGroups.sort()
+        var eqsList = [], group, eqGroup
+        for (var i = 0; i < eqsGroups.length; i++) {
+          group = eqsGroups[i]
+          eqsList[group] = []
+          for (var j = 0; j < _eqs.length; j++) {
+            humanName = _eqs[j].humanName
+            humanCut = humanName.split(']')
+            eqGroup = humanCut[0].substr(1)
+            name = humanCut[1].substr(1)
+            if (eqGroup.toLowerCase() != group.toLowerCase()) continue
+            eqsList[group].push([name, _eqs[j].id])
+          }
+        }
+        //set context menu!
+        var contextmenuitems = {}
+        var uniqId = 0, groupEq, items
+        for (var group in eqsList) {
+          groupEq = eqsList[group]
+          items = {}
+          for (var index in groupEq) {
+            items[uniqId] = {
+              'name': groupEq[index][0],
+              'id': groupEq[index][1]
+            }
+            uniqId++
+          }
+          contextmenuitems[group] = {
+            'name': group,
+            'items': items
+          }
+        }
+        if (Object.entries(contextmenuitems).length > 0 && contextmenuitems.constructor === Object) {
+          $('.nav.nav-tabs').contextMenu({
+            selector: 'li',
+            autoHide: true,
+            zIndex: 9999,
+            className: 'eq-context-menu',
+            callback: function(key, options, event) {
+              if (!jeedomUtils.checkPageModified()) {
+                let tab = null
+                let tabObj = null
+                if (document.location.toString().match('#')) {
+                  tab = '#' + document.location.toString().split('#')[1]
+                  if (tab != '#') {
+                    tabObj = document.querySelector('a[href="' + tab + '"]')
+                  }
+                }
+                $.hideAlert()
+                if (event.ctrlKey || event.originalEvent.which == 2) {
+                  var type = document.body.getAttribute('data-page')
+                  var url = 'index.php?v=d&m=' + type + '&p=' + type + '&id=' + options.commands[key].id
+                  if (tabObj) url += tab
+                  window.open(url).focus()
+                } else {
+                  document.querySelector('.eqLogicDisplayCard[data-eqLogic_id="' + options.commands[key].id + '"]')?.click()
+                  if (tabObj) tabObj.click()
+                }
+              }
+            },
+            items: contextmenuitems
+          })
+        }
+      }
+    })
+  } catch (err) {
+    console.log(err)
+  }
+})
+
+domUtils(function() {
+  document.registerEvent('keydown', function(event) {
+    if (jeedomUtils.getOpenedModal()) return
+
+    if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+      event.preventDefault()
+      let bt = document.querySelector('.eqLogicAction[data-action="save"]')
+      if (bt != null && bt.isVisible()) {
+        bt.click()
+        return
+      }
+    }
+  })
+
+  if ($("#table_cmd").sortable("instance")) {
+    $("#table_cmd").sortable({
+      delay: 500,
+      distance: 30,
+      stop: function(event, ui) {
+        jeeFrontEnd.modifyWithoutSave = true
+      }
+    })
+  }
+})
+
+/* Let's see if it break ?
 $("img.lazy").lazyload({
   event: "sporty"
 })
@@ -678,7 +672,7 @@ $("img.lazy").each(function() {
     el.trigger("sporty")
   }
 })
-
+*/
 
 function addCmdToTableDefault(_cmd) {
   if (document.getElementById('table_cmd') == null) return

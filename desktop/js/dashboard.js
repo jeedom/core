@@ -466,7 +466,7 @@ $('#bt_resetDashboardSearch').on('click', function() {
   if (jeedomUI.isEditing) return
   $('#categoryfilter li .catFilterKey').prop("checked", true)
   $('#dashTopBar button.dropdown-toggle').removeClass('warning')
-  $('#in_searchDashboard').val('').keyup()
+  document.getElementById('in_searchDashboard').jeeValue('').triggerEvent('keyup')
 })
 
 
