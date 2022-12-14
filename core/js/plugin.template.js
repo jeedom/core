@@ -21,6 +21,7 @@ document.querySelector('.nav-tabs a:not(.eqLogicAction)')?.click()
 //displayAsTable if plugin support it:
 !function() {
   var butDisp = document.getElementById('bt_pluginDisplayAsTable')
+  if (!butDisp) return
   var coreSupport = butDisp.dataset.coresupport == '1' ? true : false
   if (butDisp != null) {
     butDisp.removeClass('hidden') //Not shown on previous core versions
