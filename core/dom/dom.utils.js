@@ -23,7 +23,7 @@ var domUtils = function() {
     if (domUtils._debug) console.log('[ >> domUtils ready register func << ]', arguments[0])
     if (domUtils._ajaxCalling < 0 && domUtils._DOMloading < 0) {
       if (domUtils._debug) console.log('[ >> domUtils ready register func << ] no loading / no ajax -> exec now!')
-      arguments[0]()
+      arguments[0].apply(this)
       return
     }
     domUtils.registeredFuncs.push(arguments[0])
@@ -66,9 +66,9 @@ domUtils.DOMReady = function() {
   if (domUtils._debug) console.log('[ >> domUtils.DOMReady] registeredFuncs?', domUtils.registeredFuncs)
   domUtils.hideLoading()
   for (var i = 0; i < domUtils.registeredFuncs.length; i++) {
-    var f = domUtils.registeredFuncs.shift()
+    let f = domUtils.registeredFuncs.shift()
     if (domUtils._debug) console.log('[ >> domUtils.DOMReady] exec deferred func:', f)
-    f()
+    f.apply(this)
   }
 }
 
@@ -98,8 +98,10 @@ Object.defineProperty(domUtils, 'DOMloading', {
 })
 
 document.addEventListener('DOMContentLoaded', function() {
-  domUtils.DOMloading = domUtils._DOMloading || 0
-  domUtils.ajaxCalling = domUtils._ajaxCalling || 0
+  setTimeout(function() { //document.readyState still interactive
+    domUtils.DOMloading = domUtils._DOMloading || 0
+    domUtils.ajaxCalling = domUtils._ajaxCalling || 0
+  }, 100)
 })
 
 /* Extension Functions

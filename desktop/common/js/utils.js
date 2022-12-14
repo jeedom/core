@@ -171,10 +171,11 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   document.querySelectorAll('script[injext]')?.remove()
 
   document.getElementById('div_pageContainer').load(url, function() {
+    document.body.setAttribute('data-page', getUrlVars('p') || '')
     document.getElementById('bt_getHelpPage').setAttribute('data-page', getUrlVars('p'))
     document.getElementById('bt_getHelpPage').setAttribute('data-plugin', getUrlVars('m') || '')
     jeedomUtils.initPage()
-    document.body.setAttribute('data-page', getUrlVars('p') || '')
+
     document.body.triggerEvent('jeedom_page_load')
 
     //dashboard page on object will set its own background:
@@ -195,7 +196,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
     setTimeout(function() {
       modifyWithoutSave = false
       jeeFrontEnd.modifyWithoutSave = false
-    }, 500)
+    }, 250)
   })
 
   setTimeout(function() {
