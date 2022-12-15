@@ -37,6 +37,7 @@
 
 - **Kern** : Beginn der Entwicklung in reinem js, ohne jQuery. Sehen [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.4).
 - **Kern** : Detailliertere Auflistung von USB-Geräten.
+- **Lib** : Aktualisieren Sie Highchart v9.3.2 bis v10.3.2 (Das Modul *solide Lehre* nicht mehr importiert).
 
 ### 4.4 : Notes
 

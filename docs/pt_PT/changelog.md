@@ -37,6 +37,7 @@
 
 - **Essencial** : Início do desenvolvimento em js puro, sem jQuery. Ver [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.4).
 - **Essencial** : Listagem mais detalhada de dispositivos USB.
+- **Livre** : Atualizar Highchart v9.3.2 a v10.3.2 (O módulo *calibre sólido* não é mais importado).
 
 ### 4.4 : Notes
 
