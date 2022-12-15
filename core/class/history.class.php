@@ -149,29 +149,37 @@ class history {
 	/**
 	 * Value of a command on a given date
 	 */
-	public static function byCmdIdAtDatetime($_cmd_id, $_time) {
+	public static function byCmdIdAtDatetime($_cmd_id, $_time, $_previous = true) {
+		$operator = '<=';
+		$direction = 'DESC';
+		$tables = [__CLASS__, 'historyArch'];
+		if (!$_previous) {
+			$operator = '>=';
+			$direction = 'ASC';
+			$tables = ['historyArch', __CLASS__];
+		}
 		$values = array(
 			'cmd_id' => $_cmd_id,
 			'time' => $_time,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM history
+        FROM ' . $tables[0] . '
         WHERE cmd_id=:cmd_id
-        AND `datetime`<=:time
-        ORDER BY `datetime` DESC LIMIT 1';
-		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+        AND `datetime`' . $operator . ':time
+        ORDER BY `datetime` ' . $direction . ' LIMIT 1';
+		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, $tables[0]);
 		if (!is_object($result)) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-            FROM historyArch
-            WHERE cmd_id=:cmd_id
-            AND `datetime`<=:time
-            ORDER BY `datetime` DESC LIMIT 1';
-			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, 'historyArch');
+          FROM ' . $tables[1] . '
+          WHERE cmd_id=:cmd_id
+          AND `datetime`' . $operator . ':time
+        	ORDER BY `datetime` ' . $direction . ' LIMIT 1';
+			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, $tables[1]);
 			if (is_object($result)) {
-				$result->setTableName('historyArch');
+				$result->setTableName($tables[1]);
 			}
 		} else {
-			$result->setTableName('history');
+			$result->setTableName($tables[0]);
 		}
 		return $result;
 	}
