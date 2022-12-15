@@ -37,6 +37,7 @@
 
 - **Centro** : Inicio de desarrollo en js puro, sin jQuery. Ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.4).
 - **Centro** : Lista más detallada de dispositivos USB.
+- **Liberación** : Actualizar Highchart v9.3.2 a v10.3.2 (El módulo *calibre sólido* ya no importa).
 
 ### 4.4 : Notes
 

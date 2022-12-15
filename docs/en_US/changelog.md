@@ -37,6 +37,7 @@
 
 - **Core** : Start of development in pure js, without jQuery. See [doc dev](https://doc.jeedom.com/en_US/dev/core4.4).
 - **Core** : More detailed listing of USB devices.
+- **Lib** : Update Highchart v9.3.2 to v10.3.2 (The module *solid gauge* no longer imported).
 
 ### 4.4 : Notes
 
