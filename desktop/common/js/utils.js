@@ -662,15 +662,15 @@ jeedomUtils.initJeedomModals = function() {
     autoOpen: false,
     modal: true,
     closeText: '',
-    height: ((jQuery(window).height() - 100) < 700) ? jQuery(window).height() - 100 : 700,
-    width: ((jQuery(window).width() - 100) < 900) ? (jQuery(window).width() - 100) : 900,
+    height: ((window.innerHeight - 100) < 700) ? window.innerHeight - 100 : 700,
+    width: ((window.innerWidth - 100) < 900) ? (window.innerWidth - 100) : 900,
     position: { my: 'center center-10', at: 'center center', of: window },
     open: function() {
-      $('body').css({ overflow: 'hidden' })
-      $(this).closest('.ui-dialog').find(':button').blur()
+      document.body.style.overflow = 'hidden'
+      this.closest('.ui-dialog').querySelectorAll('button, input[type="button"]')?.forEach(el => { el.blur() })
       $(this).dialog({
-        height: ((jQuery(window).height() - 100) < 700) ? jQuery(window).height() - 100 : 700,
-        width: ((jQuery(window).width() - 100) < 900) ? (jQuery(window).width() - 100) : 900,
+        height: ((window.innerHeight - 100) < 700) ? window.innerHeight - 100 : 700,
+        width: ((window.innerWidth - 100) < 900) ? (window.innerWidth - 100) : 900,
         position: { my: 'center center-10', at: 'center center', of: window }
       })
       setTimeout(function() { jeedomUtils.initTooltips($('#md_reportBug')) }, 500)
@@ -684,15 +684,15 @@ jeedomUtils.initJeedomModals = function() {
     autoOpen: false,
     modal: true,
     closeText: '',
-    height: (jQuery(window).height() - 125),
-    width: ((jQuery(window).width() - 50) < 1500) ? (jQuery(window).width() - 50) : 1500,
+    height: (window.innerHeight - 125),
+    width: ((window.innerWidth - 50) < 1500) ? (window.innerWidth - 50) : 1500,
     position: { my: 'center top+80', at: 'center top', of: window },
     open: function() {
-      $('body').css({ overflow: 'hidden' })
-      $(this).closest('.ui-dialog').find(':button').blur()
+      document.body.style.overflow = 'hidden'
+      this.closest('.ui-dialog').querySelectorAll('button, input[type="button"]')?.forEach(el => { el.blur() })
       $(this).dialog({
-        height: (jQuery(window).height() - 125),
-        width: ((jQuery(window).width() - 50) < 1500) ? (jQuery(window).width() - 50) : 1500,
+        height: (window.innerHeight - 125),
+        width: ((window.innerWidth - 50) < 1500) ? (window.innerWidth - 50) : 1500,
         position: { my: 'center top+80', at: 'center top', of: window }
       })
       setTimeout(function() { jeedomUtils.initTooltips($('#md_modal')) }, 500)
@@ -708,15 +708,15 @@ jeedomUtils.initJeedomModals = function() {
     autoOpen: false,
     modal: true,
     closeText: '',
-    height: (jQuery(window).height() - 125),
-    width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
+    height: (window.innerHeight - 125),
+    width: ((window.innerWidth - 150) < 1200) ? (window.innerWidth - 50) : 1200,
     position: { my: 'center bottom-50', at: 'center bottom', of: window },
     open: function() {
-      $('body').css({ overflow: 'hidden' })
-      $(this).closest('.ui-dialog').find(':button').blur()
+      document.body.style.overflow = 'hidden'
+      this.closest('.ui-dialog').querySelectorAll('button, input[type="button"]')?.forEach(el => { el.blur() })
       $(this).dialog({
-        height: (jQuery(window).height() - 125),
-        width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
+        height: (window.innerHeight - 125),
+        width: ((window.innerWidth - 150) < 1200) ? (window.innerWidth - 50) : 1200,
         position: { my: 'center bottom-50', at: 'center bottom', of: window },
       })
       setTimeout(function() { jeedomUtils.initTooltips($('#md_modal2')) }, 500)
@@ -731,15 +731,15 @@ jeedomUtils.initJeedomModals = function() {
     autoOpen: false,
     modal: true,
     closeText: '',
-    height: (jQuery(window).height() - 125),
-    width: ((jQuery(window).width() - 250) < 1000) ? (jQuery(window).width() - 50) : 1000,
+    height: (window.innerHeight - 125),
+    width: ((window.innerWidth - 250) < 1000) ? (window.innerWidth - 50) : 1000,
     position: { my: 'center bottom-50', at: 'center bottom', of: window },
     open: function() {
-      $('body').css({ overflow: 'hidden' })
-      $(this).closest('.ui-dialog').find(':button').blur()
+      document.body.style.overflow = 'hidden'
+      this.closest('.ui-dialog').querySelectorAll('button, input[type="button"]')?.forEach(el => { el.blur() })
       $(this).dialog({
-        height: (jQuery(window).height() - 125),
-        width: ((jQuery(window).width() - 250) < 1000) ? (jQuery(window).width() - 50) : 1000,
+        height: (window.innerHeight - 125),
+        width: ((window.innerWidth - 250) < 1000) ? (window.innerWidth - 50) : 1000,
         position: { my: 'center bottom-50', at: 'center bottom', of: window },
       })
       setTimeout(function() { jeedomUtils.initTooltips($('#md_modal3')) }, 500)
@@ -752,8 +752,8 @@ jeedomUtils.initJeedomModals = function() {
 
   function emptyModal(_id = '') {
     if (_id == '') return
-    $('body').css({ overflow: 'inherit' })
-    document.emptyById(_id)
+    document.body.style.overflow = 'inherit'
+    document.getElementById(_id).empty()
   }
 }
 
@@ -1120,15 +1120,15 @@ jeedomUtils.initTableSorter = function(filter) {
 }
 
 jeedomUtils.initHelp = function() {
-  $('.help').each(function() {
-    if ($(this).attr('data-help') != undefined) {
-      $(this).append(' <sup><i class="fas fa-question-circle tooltips" title="' + $(this).attr('data-help') + '"></i></sup>')
+  document.querySelectorAll('.help').forEach(element => {
+    if (element.getAttribute('data-help') != undefined) {
+      element.insertAdjacentHTML('beforeend', ' <sup><i class="fas fa-question-circle tooltips" title="' + element.getAttribute('data-help') + '"></i></sup>')
     }
   })
 }
 
 jeedomUtils.autocompleteDestroy = function() {
-  $('ul.ui-autocomplete, div.ui-helper-hidden-accessible').remove()
+  document.querySelectorAll('ul.ui-autocomplete, div.ui-helper-hidden-accessible')?.remove()
 }
 
 jeedomUtils.datePickerInit = function() {
@@ -1164,12 +1164,14 @@ jeedomUtils.initSpinners = function() {
 
 jeedomUtils.datePickerDestroy = function() {
   $('.in_datepicker').datepicker("destroy")
-  $('.in_datepicker').removeClass("hasDatepicker").removeAttr('id')
-  $('#ui-datepicker-div').remove()
+  document.querySelectorAll('.in_datepicker')?.forEach(element => {
+    element.removeClass('hasDatepicker').removeAttribute('id')
+  })
+  document.getElementById('ui-datepicker-div')?.remove()
 
   //datetime:
   $('input.isdatepicker').datetimepicker('destroy')
-  $('.xdsoft_datetimepicker').remove()
+  document.querySelectorAll('.xdsoft_datetimepicker')?.remove()
 }
 
 //General functions__
@@ -1494,13 +1496,13 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
       closeText: '',
       autoOpen: false,
       modal: true,
-      height: (jQuery(window).height() - 150),
+      height: (window.innerHeight - 150),
       width: 1500,
       open: function() {
-        if ((jQuery(window).width() - 50) < 1500) {
-          $('#mod_selectIcon').dialog({ width: jQuery(window).width() - 50 })
+        if ((window.innerWidth - 50) < 1500) {
+          $('#mod_selectIcon').dialog({ width: window.innerWidth - 50 })
         }
-        $('body').css({ overflow: 'hidden' })
+        document.body.style.overflow = 'hidden'
         setTimeout(function() { jeedomUtils.initTooltips($("#mod_selectIcon")) }, 500)
       },
       beforeClose: function(event, ui) {

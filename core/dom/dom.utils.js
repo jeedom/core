@@ -137,7 +137,6 @@ EventTarget.prototype.triggerEvent = function(_eventName, _params) {
   this.dispatchEvent(event)
   return this
 }
-
 NodeList.prototype.triggerEvent = function(_eventName, _params) {
   for (let idx = 0; idx < this.length; idx++) {
     this[idx].triggerEvent(_eventName, _params)
