@@ -218,7 +218,7 @@ function displayObjectsBySummary(_objectsAll, _summary) {
   for (let i in _objectsAll) {
     let thisObject = _objectsAll[i]
     let summaries = []
-    let  div = '<div class="div_displayEquipement hidden" data-objectid="'+thisObject.id+'">'
+    let  div = '<div class="div_displayEquipement hidden" data-objectid="' + thisObject.id + '">'
     div += '<legend>'
     let icon = ''
     if (isset(thisObject.display) && isset(thisObject.display.icon)) {
@@ -232,15 +232,15 @@ function displayObjectsBySummary(_objectsAll, _summary) {
     div += '<div class="objectHtml">'
     div += '</div>'
     div += '</div>'
-    document.getElementById('div_displayEquipement').html(div);
+    document.getElementById('div_displayEquipement').html(div, true)
     displayEqsBySummary(_objectsAll, thisObject.id, _summary)
     jeedom.object.summaryUpdate([{object_id: thisObject.id}])
   }
-  $('*').trigger('create')
+  document.getElementById('div_displayEquipement').triggerEvent('create')
   window.triggerEvent('resize')
 }
 
-let summaryObjEqs = []
+var summaryObjEqs = []
 function displayEqsBySummary(_objectsAll, _objectId, _summary) {
   summaryObjEqs[_objectId] = []
   jeedom.object.getEqLogicsFromSummary({
@@ -266,7 +266,10 @@ function displayEqsBySummary(_objectsAll, _objectId, _summary) {
             $.fn.showAlert({message: error.message, level: 'danger'})
           },
           success: function(html) {
-            document.querySelectorAll('.div_displayEquipement[data-objectid="'+_objectId+'"] > .objectHtml').html(html.html).classList.remove("hidden")
+            document.querySelector('.div_displayEquipement[data-objectid="'+_objectId+'"]').removeClass('hidden')
+            document.querySelectorAll('.div_displayEquipement[data-objectid="'+_objectId+'"] > .objectHtml').forEach(function(element) {
+              element.html(html.html, true)
+            })
             jeedomUtils.setTileSize('.eqLogic')
             $('.div_displayEquipement[data-objectid="'+_objectId+'"]').trigger('create').packery({gutter :0})
           }
