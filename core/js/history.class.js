@@ -23,10 +23,11 @@ jeedom.history.get = function(_params) {
   var paramsSpecifics = {
     global: _params.global || true,
     pre_success: function(data) {
+      if (data.result == undefined) return data
       if (isset(jeedom.cmd.cache.byId[data.result.id])) {
         delete jeedom.cmd.cache.byId[data.result.id];
       }
-      return data;
+      return data
     }
   };
   try {
