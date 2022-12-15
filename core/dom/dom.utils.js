@@ -439,9 +439,7 @@ Element.prototype.jeeValue = function(_value) {
         }
       } else if (this.matches('textarea')) {
         this.value = init(_value)
-      } else if (this.matches('span')) {
-        this.textContent = init(_value)
-      } else if (this.matches('div, p, pre')) {
+      } else if (this.matches('span', 'div, p, pre')) {
         this.innerHTML = init(_value)
       } else if (this.matches('button') && this.hasClass('dropdown-toggle')) {
         var button = this
@@ -464,10 +462,7 @@ Element.prototype.jeeValue = function(_value) {
         value = this.value
       }
     }
-    if (this.matches('span')) {
-      value = this.textContent || null
-    }
-    if (this.matches('div, p')) {
+    if (this.matches('span', 'div, p')) {
       value = this.innerHTML || null
     }
     if (this.matches('a') && this.getAttribute('value') != undefined) {
