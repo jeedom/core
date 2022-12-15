@@ -451,7 +451,7 @@ jeedomUtils.setJeedomTheme = function() {
     var themeButton = '<i class="fas fa-adjust"></i> {{Thème principal}}'
     document.getElementById('bootstrap_theme_css').setAttribute('data-nochange', 1)
 
-    if ($('#bootstrap_theme_css').attr('href').split('?md5')[0] == theme) {
+    if (document.getElementById('bootstrap_theme_css').getAttribute('href').split('?md5')[0] == theme) {
       document.body.setAttribute('data-theme', jeedom.theme.default_bootstrap_theme)
       theme = 'core/themes/' + jeedom.theme.default_bootstrap_theme + '/desktop/' + jeedom.theme.default_bootstrap_theme + '.css'
       themeShadows = 'core/themes/' + jeedom.theme.default_bootstrap_theme + '/desktop/shadows.css'
@@ -463,7 +463,7 @@ jeedomUtils.setJeedomTheme = function() {
     setCookie('currentTheme', themeCook, 30)
     document.getElementById('bootstrap_theme_css').setAttribute('href', theme)
     document.getElementById('bt_switchTheme').html(themeButton)
-    if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themeShadows)
+    if (document.getElementById('shadows_theme_css') != null) document.getElementById('shadows_theme_css').href = themeShadows
     jeedomUtils.triggerThemechange()
     let backgroundImgPath = jeedomUtils._elBackground.querySelector('#bottom').style.backgroundImage
     if (backgroundImgPath.indexOf('/data/') == -1 && backgroundImgPath.indexOf('/plugins/') == -1) {

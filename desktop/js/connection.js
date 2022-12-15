@@ -194,7 +194,7 @@ $('#in_change_passwordToo').keypress(function(event) {
   }
 })
 
-$('#bootstrap_theme_css').attr('href', 'core/themes/core2019_Light/desktop/core2019_Light.css')
+document.getElementById('bootstrap_theme_css').href = 'core/themes/core2019_Light/desktop/core2019_Light.css'
 
 document.title = JEEDOM_PRODUCT_NAME + ' - Login'
 
