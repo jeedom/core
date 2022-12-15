@@ -42,7 +42,8 @@ Object.assign(domUtils, {
     type: 'post'
   },
   registeredEvents: [],
-  registeredFuncs: []
+  registeredFuncs: [],
+  headInjexted: []
 })
 
 domUtils.showLoading = function() {
@@ -533,11 +534,25 @@ domUtils.loadScript = function(_scripts, _idx, _callback) {
   })
   script.setAttribute('injext', '1')
   if (_scripts[_idx].src != '') {
-    script.src = _scripts[_idx].src
-    script.onload = function() {
-      domUtils.loadScript(_scripts, _idx + 1, _callback)
+    //stock in head ?
+    if (_scripts[_idx].src.includes('desktop/common/js') || _scripts[_idx].src.includes('/3rdparty/')) {
+      if (domUtils.headInjexted.includes(_scripts[_idx].src)) {
+        _scripts[_idx].remove()
+        domUtils.loadScript(_scripts, _idx + 1, _callback)
+      } else {
+        script.onload = function() {
+          domUtils.loadScript(_scripts, _idx + 1, _callback)
+        }
+        _scripts[_idx].remove()
+        document.head.appendChild(script)
+        domUtils.headInjexted.push(_scripts[_idx].src)
+      }
+    } else {
+      script.onload = function() {
+        domUtils.loadScript(_scripts, _idx + 1, _callback)
+      }
+      _scripts[_idx].replaceWith(script)
     }
-    _scripts[_idx].replaceWith(script)
   } else {
     script.text = _scripts[_idx].text
     _scripts[_idx].replaceWith(script)
@@ -566,6 +581,19 @@ Element.prototype.html = function(_htmlString, _append, _callback) {
   domUtils.DOMloading ++
   let template = document.createElement('template')
   template.innerHTML = _htmlString
+
+  //Filter head CSS
+  template.content.querySelectorAll('link[rel="stylesheet"]').forEach(stylesheet => {
+    if (stylesheet.href.includes('desktop/common/css') || stylesheet.href.includes('/3rdparty/')) {
+      if (!domUtils.headInjexted.includes(stylesheet.href)) {
+        stylesheet.setAttribute('injext', '1')
+        domUtils.headInjexted.push(stylesheet.href)
+        document.head.appendChild(stylesheet)
+      } else {
+        stylesheet.remove()
+      }
+    }
+  })
   this.appendChild(template.content)
 
   let self = this
@@ -576,7 +604,7 @@ Element.prototype.html = function(_htmlString, _append, _callback) {
     } else {
       return self
     }
-  })
+  }, document.head)
   return self
 }
 

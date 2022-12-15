@@ -214,6 +214,8 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   return
 }
 
+/* First time loading, all next goes by loadpage()
+*/
 document.addEventListener('DOMContentLoaded', function() {
   jeedom.init()
   if (getDeviceType()['type'] == 'desktop') jeedomUtils.userDeviceType = 'desktop'
@@ -303,7 +305,25 @@ document.addEventListener('DOMContentLoaded', function() {
     jeedomUtils.createObserver()
     $body.trigger('jeedom_page_load')
   })
+
+  /*Move and register common scripts/css to not reload them:
+    Managed on loadPage() by domUtils.loadScript() and domUtils.html()
+  */
+  document.getElementById('div_pageContainer').querySelectorAll('script').forEach(script => {
+    if (script.src.includes('desktop/common/js') || script.src.includes('/3rdparty/')) {
+      domUtils.headInjexted.push(script.src)
+      document.head.appendChild(script)
+    }
+  })
+  document.getElementById('div_pageContainer').querySelectorAll('link[rel="stylesheet"]').forEach(stylesheet => {
+    if (stylesheet.href.includes('desktop/common/css') || stylesheet.href.includes('/3rdparty/')) {
+      stylesheet.setAttribute('injext', '1')
+      domUtils.headInjexted.push(stylesheet.href)
+      document.head.appendChild(stylesheet)
+    }
+  })
 })
+
 
 /*Toastr____________ options for jeedom.notify() toastr, need jeedom.theme set!
 jQuery dependant, will have to migrate to pure js!
