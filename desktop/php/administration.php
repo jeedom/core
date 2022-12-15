@@ -332,7 +332,7 @@ user::isBan();
 						<div class="form-group">
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème Desktop principal}}</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<select class="form-control configKey" data-l1key="default_bootstrap_theme" data-reload="1">
+								<select class="form-control configKey" data-l1key="jeedom_theme_main" data-reload="1">
 									<?php
 									foreach ((ls(__DIR__ . '/../../core/themes')) as $dir) {
 										if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
@@ -344,7 +344,7 @@ user::isBan();
 							</div>
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème Desktop alternatif}}</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<select class="form-control configKey" data-l1key="default_bootstrap_theme_night" data-reload="1">
+								<select class="form-control configKey" data-l1key="jeedom_theme_alternate" data-reload="1">
 									<?php
 									foreach ((ls(__DIR__ . '/../../core/themes')) as $dir) {
 										if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {

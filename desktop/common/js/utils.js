@@ -421,11 +421,11 @@ jeedomUtils.setJeedomTheme = function() {
   if (getCookie('currentTheme') == 'alternate') {
     var themeButton = '<i class="fas fa-adjust"></i> {{Thème principal}}'
     document.getElementById('bt_switchTheme')?.html(themeButton)
-    document.getElementById('bootstrap_theme_css').setAttribute('data-nochange', 1)
+    document.getElementById('jeedom_theme_currentcss').setAttribute('data-nochange', 1)
   }
   if (jeedom.theme.currentTheme) {
     document.body.setAttribute('data-theme', jeedom.theme.currentTheme)
-    if (jeedom.theme.currentTheme == jeedom.theme.default_bootstrap_theme_night) {
+    if (jeedom.theme.currentTheme == jeedom.theme.jeedom_theme_alternate) {
       var themeButton = '<i class="fas fa-adjust"></i> {{Thème principal}}'
       document.getElementById('bt_switchTheme')?.html(themeButton)
     }
@@ -445,23 +445,23 @@ jeedomUtils.setJeedomTheme = function() {
   }
 
   jeedomUtils.switchTheme = function() {
-    var theme = 'core/themes/' + jeedom.theme.default_bootstrap_theme_night + '/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css'
-    var themeShadows = 'core/themes/' + jeedom.theme.default_bootstrap_theme_night + '/desktop/shadows.css'
+    var theme = 'core/themes/' + jeedom.theme.jeedom_theme_alternate + '/desktop/' + jeedom.theme.jeedom_theme_alternate + '.css'
+    var themeShadows = 'core/themes/' + jeedom.theme.jeedom_theme_alternate + '/desktop/shadows.css'
     var themeCook = 'alternate'
     var themeButton = '<i class="fas fa-adjust"></i> {{Thème principal}}'
-    document.getElementById('bootstrap_theme_css').setAttribute('data-nochange', 1)
+    document.getElementById('jeedom_theme_currentcss').setAttribute('data-nochange', 1)
 
-    if (document.getElementById('bootstrap_theme_css').getAttribute('href').split('?md5')[0] == theme) {
-      document.body.setAttribute('data-theme', jeedom.theme.default_bootstrap_theme)
-      theme = 'core/themes/' + jeedom.theme.default_bootstrap_theme + '/desktop/' + jeedom.theme.default_bootstrap_theme + '.css'
-      themeShadows = 'core/themes/' + jeedom.theme.default_bootstrap_theme + '/desktop/shadows.css'
+    if (document.getElementById('jeedom_theme_currentcss').getAttribute('href').split('?md5')[0] == theme) {
+      document.body.setAttribute('data-theme', jeedom.theme.jeedom_theme_main)
+      theme = 'core/themes/' + jeedom.theme.jeedom_theme_main + '/desktop/' + jeedom.theme.jeedom_theme_main + '.css'
+      themeShadows = 'core/themes/' + jeedom.theme.jeedom_theme_main + '/desktop/shadows.css'
       themeCook = 'default'
       themeButton = '<i class="fas fa-adjust"></i> {{Thème alternatif}}'
     } else {
-      document.body.setAttribute('data-theme', jeedom.theme.default_bootstrap_theme_night)
+      document.body.setAttribute('data-theme', jeedom.theme.jeedom_theme_alternate)
     }
     setCookie('currentTheme', themeCook, 30)
-    document.getElementById('bootstrap_theme_css').setAttribute('href', theme)
+    document.getElementById('jeedom_theme_currentcss').setAttribute('href', theme)
     document.getElementById('bt_switchTheme').html(themeButton)
     if (document.getElementById('shadows_theme_css') != null) document.getElementById('shadows_theme_css').href = themeShadows
     jeedomUtils.triggerThemechange()
@@ -492,8 +492,8 @@ jeedomUtils.setJeedomTheme = function() {
 jeedomUtils.changeJeedomThemeAuto = function() {
   if (typeof jeedom.theme == 'undefined') return
   if (typeof jeedom.theme.theme_changeAccordingTime == 'undefined' || jeedom.theme.theme_changeAccordingTime == 0) return
-  if (typeof jeedom.theme.default_bootstrap_theme == 'undefined' || typeof jeedom.theme.default_bootstrap_theme_night == 'undefined') return
-  if (jeedom.theme.default_bootstrap_theme == jeedom.theme.default_bootstrap_theme_night) return
+  if (typeof jeedom.theme.jeedom_theme_main == 'undefined' || typeof jeedom.theme.jeedom_theme_alternate == 'undefined') return
+  if (jeedom.theme.jeedom_theme_main == jeedom.theme.jeedom_theme_alternate) return
 
   jeedomUtils.checkThemechange()
   setInterval(function() {
@@ -502,25 +502,25 @@ jeedomUtils.changeJeedomThemeAuto = function() {
 }
 
 jeedomUtils.checkThemechange = function() {
-  if (getCookie('currentTheme') == 'alternate' || document.getElementById('bootstrap_theme_css')?.getAttribute('data-nochange') == 1) return
+  if (getCookie('currentTheme') == 'alternate' || document.getElementById('jeedom_theme_currentcss')?.getAttribute('data-nochange') == 1) return
 
-  var theme = jeedom.theme.default_bootstrap_theme_night
-  var themeCss = 'core/themes/' + jeedom.theme.default_bootstrap_theme_night + '/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css'
+  var theme = jeedom.theme.jeedom_theme_alternate
+  var themeCss = 'core/themes/' + jeedom.theme.jeedom_theme_alternate + '/desktop/' + jeedom.theme.jeedom_theme_alternate + '.css'
   var currentTime = parseInt((new Date()).getHours() * 100 + (new Date()).getMinutes())
 
   if (parseInt(jeedom.theme.theme_start_day_hour.replace(':', '')) < currentTime && parseInt(jeedom.theme.theme_end_day_hour.replace(':', '')) > currentTime) {
-    theme = jeedom.theme.default_bootstrap_theme
-    themeCss = 'core/themes/' + jeedom.theme.default_bootstrap_theme + '/desktop/' + jeedom.theme.default_bootstrap_theme + '.css'
+    theme = jeedom.theme.jeedom_theme_main
+    themeCss = 'core/themes/' + jeedom.theme.jeedom_theme_main + '/desktop/' + jeedom.theme.jeedom_theme_main + '.css'
   }
 
-  var currentTheme = document.getElementById('bootstrap_theme_css').getAttribute('href')
+  var currentTheme = document.getElementById('jeedom_theme_currentcss').getAttribute('href')
   if (currentTheme.indexOf('?md5') != -1) {
     currentTheme = currentTheme.substring(0, currentTheme.indexOf('?md5'))
   }
   if (currentTheme != themeCss) {
     $.get(themeCss)
       .done(function() {
-        document.getElementById('bootstrap_theme_css').setAttribute('href', themeCss)
+        document.getElementById('jeedom_theme_currentcss').setAttribute('href', themeCss)
         document.body.setAttribute('data-theme', theme)
         if (document.getElementById('shadows_theme_css') != null) document.getElementById('shadows_theme_css').setAttribute('href', 'core/themes/' + theme + '/desktop/shadows.css')
         jeedomUtils.setBackgroundImage('')

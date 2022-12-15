@@ -252,7 +252,7 @@ jeedom.init = function() {
     if ($.mobile) {
       document.getElementById('jQMnDColor').setAttribute('data-nochange', 0)
     } else {
-      document.getElementById('bootstrap_theme_css').setAttribute('data-nochange', 0)
+      document.getElementById('jeedom_theme_currentcss').setAttribute('data-nochange', 0)
     }
 
     if (isset(_event.detail.theme_start_day_hour)) {

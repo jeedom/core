@@ -113,22 +113,22 @@ function setTheme() {
 	global $jeedom_theme, $homeLogoSrc;
 	$homeLogoSrc = config::byKey('logo_light');
 	$dataNoChange = false;
-	$themeCss = '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css?md5=' . md5(__DIR__ . '/../../core/themes/core2019_Light/desktop/core2019_Light.css') . '" rel="stylesheet">';
+	$themeCss = '<link id="jeedom_theme_currentcss" href="core/themes/core2019_Light/desktop/core2019_Light.css?md5=' . md5(__DIR__ . '/../../core/themes/core2019_Light/desktop/core2019_Light.css') . '" rel="stylesheet">';
 	$themeJs = 'core2019_Light/desktop/core2019_Light';
 
 	$themeDefinition = $jeedom_theme['current_desktop_theme'];
 	if (isset($_COOKIE['currentTheme'])) {
 		if ($_COOKIE['currentTheme'] == 'alternate') {
-			$themeDefinition = $jeedom_theme['default_bootstrap_theme_night'];
+			$themeDefinition = $jeedom_theme['jeedom_theme_alternate'];
 			$dataNoChange = true;
 		} else {
-			$themeDefinition = $jeedom_theme['default_bootstrap_theme'];
+			$themeDefinition = $jeedom_theme['jeedom_theme_main'];
 			$dataNoChange = true;
 		}
 	}
 	if (init('rescue', 0) == 0) {
 		if (is_dir(__DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.css')) {
-			$themeCss = '<link id="bootstrap_theme_css" href="core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.css?md5=' . md5(__DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.css') . '" rel="stylesheet">';
+			$themeCss = '<link id="jeedom_theme_currentcss" href="core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.css?md5=' . md5(__DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.css') . '" rel="stylesheet">';
 			if ($dataNoChange) $themeCss = str_replace('rel="stylesheet"', 'rel="stylesheet" data-nochange="1"', $themeCss);
 		}
 	}
@@ -488,7 +488,7 @@ function setTheme() {
 									<?php } ?>
 									<li><a href="index.php?v=d&p=profils"><i class="fas fa-briefcase"></i> {{Préférences}}</a></li>
 									<li class="divider"></li>
-									<?php if ($jeedom_theme['default_bootstrap_theme'] != $jeedom_theme['default_bootstrap_theme_night']) { ?>
+									<?php if ($jeedom_theme['jeedom_theme_main'] != $jeedom_theme['jeedom_theme_alternate']) { ?>
 										<li><a id="bt_switchTheme"><i class="fas fa-adjust"></i> {{Thème alternatif}}</a></li>
 									<?php } ?>
 									<li><a href="index.php?v=m" class="noOnePageLoad"><i class="fas fa-mobile"></i> {{Version mobile}}</a></li>

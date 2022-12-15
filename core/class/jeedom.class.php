@@ -47,8 +47,8 @@ class jeedom {
 
 	public static function getThemeConfig() {
 		$key = array(
-			'default_bootstrap_theme',
-			'default_bootstrap_theme_night',
+			'jeedom_theme_main',
+			'jeedom_theme_alternate',
 			'product_name',
 			'product_icon',
 			'product_icon_apple',
@@ -90,10 +90,10 @@ class jeedom {
 		);
 
 		$return = config::byKeys($key);
-		$return['current_desktop_theme'] = $return['default_bootstrap_theme'];
+		$return['current_desktop_theme'] = $return['jeedom_theme_main'];
 		$return['current_mobile_theme'] = $return['mobile_theme_color'];
 		if ($return['theme_changeAccordingTime'] == 1 && (date('Gi') < intval(str_replace(':', '', $return['theme_start_day_hour'])) || date('Gi') > intval(str_replace(':', '', $return['theme_end_day_hour'])))) {
-			$return['current_desktop_theme'] = $return['default_bootstrap_theme_night'];
+			$return['current_desktop_theme'] = $return['jeedom_theme_alternate'];
 			$return['current_mobile_theme'] = $return['mobile_theme_color_night'];
 		}
 

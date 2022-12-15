@@ -82,7 +82,7 @@ try {
 		if (init('theme') != '' || init('theme') == 'false') {
 			if (strpos(init('theme'), 'Dark') !== false)
 				$theme = 'dark';
-		} elseif (strpos(config::byKey('default_bootstrap_theme'), 'Dark') !== false) {
+		} elseif (strpos(config::byKey('jeedom_theme_main'), 'Dark') !== false) {
 			$theme = 'dark';
 		}
 
