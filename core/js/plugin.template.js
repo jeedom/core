@@ -603,8 +603,19 @@ domUtils(function() {
 
   if ($("#table_cmd").sortable("instance")) {
     $("#table_cmd").sortable({
-      delay: 500,
-      distance: 30,
+      delay: 350,
+      distance: 20,
+      cursor: "move",
+      axis: 'y',
+      items: "tr.cmd",
+      appendTo: $("#table_cmd tbody"),
+      zIndex: 0,
+      forceHelperSize: true,
+      forcePlaceholderSize: true,
+      placeholder: "sortable-placeholder",
+      start: function(event, ui) {
+        ui.placeholder[0].style.setProperty('height', event.target.querySelector('tbody tr').clientHeight + 20 + 'px', 'important')
+      },
       stop: function(event, ui) {
         jeeFrontEnd.modifyWithoutSave = true
       }

@@ -700,11 +700,15 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
   $("#div_eqLogicCmds").sortable({
     axis: "y",
     cursor: "move",
-    items: ".cmdConfig",
-    handle: ".bt_cmdConfig",
-    placeholder: "ui-state-highlight",
-    tolerance: "intersect",
-    forcePlaceholderSize: true
+    items: "div.cmdConfig",
+    zIndex: 0,
+    tolerance: "pointer",
+    forceHelperSize: true,
+    forcePlaceholderSize: true,
+    placeholder: "sortable-cmd-placeholder",
+    start: function(event, ui) {
+      ui.placeholder[0].style.setProperty('height', ui.item[0].innerHeight, 'important')
+    }
   })
 
   /* modal */
@@ -712,6 +716,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
     $('.collapse').collapse('hide')
   })
 
+  $('.sel_layout').trigger('change')
   function editSaveEqlogic() {
     //get eqLogic:
     var eqLogic = document.getElementById('div_displayEqLogicConfigure').getJeeValues('.eqLogicAttr')[0]

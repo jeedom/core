@@ -3618,8 +3618,8 @@ div.eqLogic-widget.editingMode .panelLink {
   }
 
   /* sortable ui */
-  .sortable-placeholder,
-  .ui-sortable-placeholder {
+  #div_scenarioElement .sortable-placeholder,
+  #div_scenarioElement .ui-sortable-placeholder {
     display: none;
   }
   .ui-sortable-helper {
@@ -3652,6 +3652,22 @@ div.eqLogic-widget.editingMode .panelLink {
   #div_scenarioElement .subElementCODE .expressions > .expression.noSortable.col-xs-12 {
     width: 100% !important;
   }
+
+/* plugin.template sortable */
+  #table_cmd tbody tr.sortable-placeholder {
+    background-color: var(--logo-primary-color) !important;
+  }
+  #table_cmd tbody tr.ui-sortable-helper {
+    background: transparent !important;
+  }
+  #table_cmd tbody tr.ui-sortable-helper input,
+  #table_cmd tbody tr.ui-sortable-helper select,
+  #table_cmd tbody tr.ui-sortable-helper textarea,
+  #table_cmd tbody tr.ui-sortable-helper > td .btn,
+  #table_cmd tbody tr.ui-sortable-helper > td span.cmdAttr {
+    opacity: 0.75 !important;
+  }
+
 
   .expressions,
   .element,
