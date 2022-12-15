@@ -451,32 +451,40 @@ function isset() {
   }
 
   $.createWidgetSlider = function(_options) {
-    var createOptions = {
-      start: [_options.state],
-      connect: [true, false],
-      step: _options.step,
-      range: {
-        'min': _options.min,
-        'max': _options.max
-      },
-      tooltips: _options.tooltips
+  try {
+    if (_options.sliderDiv.hasClass('slider') && _options.sliderDiv.noUiSlider) {
+      _options.sliderDiv.noUiSlider.destroy()
     }
+  } catch(error) { }
 
-    if (isset(_options.format) && _options.format == true) {
-      createOptions.format = {
-        from: Number,
-        to: function(value) {
-          var dec = _options.step.toString().includes('.') ? (_options.step.toString().length - 1) - _options.step.toString().indexOf('.') : 0
-          return ((Math.round(value * (100 / _options.step)) / (100 / _options.step)).toFixed(dec) + ' ' + _options.unite).trim()
-        }
+  let createOptions = {
+    start: [_options.state],
+    connect: [true, false],
+    step: _options.step,
+    range: {
+      'min': _options.min,
+      'max': _options.max
+    },
+    tooltips: _options.tooltips
+  }
+
+  if (isset(_options.format) && _options.format == true) {
+    createOptions.format = {
+      from: Number,
+      to: function(value) {
+        let dec = _options.step.toString().includes('.') ? (_options.step.toString().length - 1) - _options.step.toString().indexOf('.') : 0
+        return ((Math.round(value * (100 / _options.step)) / (100 / _options.step)).toFixed(dec) + ' ' + _options.unite).trim()
       }
     }
-
-    if (isset(_options.vertical) && _options.vertical == true) {
-      createOptions.orientation = 'vertical'
-      createOptions.direction = 'rtl'
-    }
-
-    return noUiSlider.create(_options.sliderDiv, createOptions)
   }
+
+  if (isset(_options.vertical) && _options.vertical == true) {
+    createOptions.orientation = 'vertical'
+    createOptions.direction = 'rtl'
+  }
+
+  try {
+    return noUiSlider.create(_options.sliderDiv, createOptions)
+  } catch(error) { }
+}
 })(jQuery)
