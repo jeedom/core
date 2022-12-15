@@ -21,18 +21,18 @@
         }
 
         if (_options.display_value >= 1 || _options.display_value == 'on') {
+          cmd.setAttribute('data-state', 1)
           if (jeedom.cmd.normalizeName('#name#') == 'on') {
             cmd.unseen()
           } else {
-            cmd.seen()
-            cmd.querySelector('.imgCmd').innerHTML = jeedom.widgets.getThemeImg("#_img_light_on_#", "#_img_dark_on_#")
+            cmd.seen().querySelector('.imgCmd').innerHTML = jeedom.widgets.getThemeImg("#_img_light_on_#", "#_img_dark_on_#")
           }
         } else {
+          cmd.setAttribute('data-state', 0)
           if (jeedom.cmd.normalizeName('#name#') == 'off') {
             cmd.unseen()
           } else {
-            cmd.seen()
-            cmd.querySelector('.imgCmd').innerHTML = jeedom.widgets.getThemeImg("#_img_light_off_#", "#_img_dark_off_#")
+            cmd.seen().querySelector('.imgCmd').innerHTML = jeedom.widgets.getThemeImg("#_img_light_off_#", "#_img_dark_off_#")
           }
         }
 
