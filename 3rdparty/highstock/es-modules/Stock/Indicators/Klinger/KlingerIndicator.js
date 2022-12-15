@@ -10,10 +10,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -21,9 +23,14 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import MultipleLinesComposition from '../MultipleLinesComposition.js';
 import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
-var _a = SeriesRegistry.seriesTypes, SMAIndicator = _a.sma, EMAIndicator = _a.ema;
+var _a = SeriesRegistry.seriesTypes, EMAIndicator = _a.ema, SMAIndicator = _a.sma;
 import U from '../../../Core/Utilities.js';
 var correctFloat = U.correctFloat, error = U.error, extend = U.extend, isArray = U.isArray, merge = U.merge;
+/* *
+ *
+ *  Class
+ *
+ * */
 /**
  * The Klinger oscillator series type.
  *
@@ -256,6 +263,11 @@ SeriesRegistry.registerSeriesType('klinger', KlingerIndicator);
  *
  * */
 export default KlingerIndicator;
+/* *
+ *
+ *  API Options
+ *
+ * */
 /**
  * A Klinger oscillator. If the [type](#series.klinger.type)
  * option is not specified, it is inherited from [chart.type](#chart.type).

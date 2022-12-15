@@ -14,10 +14,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -29,7 +31,7 @@ import Color from '../../Color/Color.js';
 var color = Color.parse;
 import H from '../../Globals.js';
 var charts = H.charts, deg2rad = H.deg2rad;
-import Math3D from '../../../Extensions/Math3D.js';
+import Math3D from '../../Math3D.js';
 var perspective = Math3D.perspective, shapeArea = Math3D.shapeArea;
 import SVGElement from './SVGElement.js';
 import SVGElement3D from './SVGElement3D.js';
@@ -165,7 +167,7 @@ var SVGRenderer3D = /** @class */ (function (_super) {
                 var chart = charts[renderer.chartIndex], vertexes2d = perspective(this.vertexes, chart, this.insidePlotArea), path = renderer.toLinePath(vertexes2d, true), area = shapeArea(vertexes2d);
                 hash.d = path;
                 hash.visibility = (this.enabled && area > 0) ?
-                    'visible' : 'hidden';
+                    'inherit' : 'hidden';
             }
             return SVGElement.prototype.attr.apply(this, arguments);
         };

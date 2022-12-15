@@ -77,9 +77,8 @@ function getColor(node, options) {
  * Returns a map from level number to its given options.
  */
 function getLevelOptions(params) {
-    var result = null, defaults, converted, i, from, to, levels;
+    var result = {}, defaults, converted, i, from, to, levels;
     if (isObject(params)) {
-        result = {};
         from = isNumber(params.from) ? params.from : 1;
         levels = params.levels;
         converted = {};

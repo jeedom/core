@@ -12,37 +12,31 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import A from '../Animation/AnimationUtilities.js';
-var animObject = A.animObject;
 import Axis from '../Axis/Axis.js';
 import Chart from '../Chart/Chart.js';
 import F from '../../Core/FormatUtilities.js';
 var format = F.format;
-import D from '../DefaultOptions.js';
+import D from '../Defaults.js';
 var getOptions = D.getOptions;
+import NavigatorDefaults from '../../Stock/Navigator/NavigatorDefaults.js';
+import RangeSelectorDefaults from '../../Stock/RangeSelector/RangeSelectorDefaults.js';
+import ScrollbarDefaults from '../../Stock/Scrollbar/ScrollbarDefaults.js';
 import Series from '../Series/Series.js';
 import SVGRenderer from '../Renderer/SVG/SVGRenderer.js';
 import U from '../Utilities.js';
 var addEvent = U.addEvent, clamp = U.clamp, defined = U.defined, extend = U.extend, find = U.find, isNumber = U.isNumber, isString = U.isString, merge = U.merge, pick = U.pick, splat = U.splat;
 import '../Pointer.js';
-// Has a dependency on Navigator due to the use of
-// defaultOptions.navigator
-import '../Navigator.js';
-// Has a dependency on Scrollbar due to the use of
-// defaultOptions.scrollbar
-import '../Scrollbar.js';
-// Has a dependency on RangeSelector due to the use of
-// defaultOptions.rangeSelector
-import '../../Extensions/RangeSelector.js';
 /* *
  *
  *  Class
@@ -83,7 +77,7 @@ var StockChart = /** @class */ (function (_super) {
         var defaultOptions = getOptions(), xAxisOptions = userOptions.xAxis, yAxisOptions = userOptions.yAxis, 
         // Always disable startOnTick:true on the main axis when the
         // navigator is enabled (#1090)
-        navigatorEnabled = pick(userOptions.navigator && userOptions.navigator.enabled, defaultOptions.navigator.enabled, true);
+        navigatorEnabled = pick(userOptions.navigator && userOptions.navigator.enabled, NavigatorDefaults.enabled, true);
         // Avoid doing these twice
         userOptions.xAxis = userOptions.yAxis = void 0;
         var options = merge({
@@ -92,19 +86,20 @@ var StockChart = /** @class */ (function (_super) {
                     enabled: true,
                     type: 'x'
                 },
-                pinchType: 'x'
+                zooming: {
+                    pinchType: 'x'
+                }
             },
             navigator: {
                 enabled: navigatorEnabled
             },
             scrollbar: {
                 // #4988 - check if setOptions was called
-                enabled: pick((defaultOptions.scrollbar &&
-                    defaultOptions.scrollbar.enabled), true)
+                enabled: pick(ScrollbarDefaults.enabled, true)
             },
             rangeSelector: {
                 // #4988 - check if setOptions was called
-                enabled: pick(defaultOptions.rangeSelector.enabled, true)
+                enabled: pick(RangeSelectorDefaults.rangeSelector.enabled, true)
             },
             title: {
                 text: null
@@ -226,13 +221,6 @@ function getDefaultAxisOptions(type, options) {
                 y: -2
             },
             opposite: pick(options.opposite, true),
-            /**
-             * @default {highcharts} true
-             * @default {highstock} false
-             * @apioption yAxis.showLastLabel
-             *
-             * @private
-             */
             showLastLabel: !!(
             // #6104, show last label by default for category axes
             options.categories ||
@@ -252,10 +240,9 @@ function getDefaultAxisOptions(type, options) {
  */
 function getForcedAxisOptions(type, chartOptions) {
     if (type === 'xAxis') {
-        var defaultOptions = getOptions(), 
-        // Always disable startOnTick:true on the main axis when the
-        // navigator is enabled (#1090)
-        navigatorEnabled = pick(chartOptions.navigator && chartOptions.navigator.enabled, defaultOptions.navigator.enabled, true);
+        // Always disable startOnTick:true on the main axis when the navigator
+        // is enabled (#1090)
+        var navigatorEnabled = pick(chartOptions.navigator && chartOptions.navigator.enabled, NavigatorDefaults.enabled, true);
         var axisOptions = {
             type: 'datetime',
             categories: void 0
@@ -387,7 +374,7 @@ addEvent(Axis, 'getPlotLinePath', function (e) {
                 uniqueAxes.push(axis2);
             }
         });
-        transVal = pick(translatedValue, axis.translate(value, null, null, e.old));
+        transVal = pick(translatedValue, axis.translate(value, void 0, void 0, e.old));
         if (isNumber(transVal)) {
             if (axis.horiz) {
                 uniqueAxes.forEach(function (axis2) {
@@ -499,7 +486,7 @@ addEvent(Axis, 'afterDrawCrosshair', function (event) {
     if (!crossLabel) {
         crossLabel = this.crossLabel = chart.renderer
             .label('', 0, void 0, options.shape || 'callout')
-            .addClass('highcharts-crosshair-label highcharts-color-' + (point ?
+            .addClass('highcharts-crosshair-label highcharts-color-' + (point && point.series ?
             point.series.colorIndex :
             this.series[0] && this.series[0].colorIndex))
             .attr({
@@ -515,12 +502,12 @@ addEvent(Axis, 'afterDrawCrosshair', function (event) {
                 .attr({
                 fill: options.backgroundColor ||
                     point && point.series && point.series.color || // #14888
-                    "#666666" /* neutralColor60 */,
+                    "#666666" /* Palette.neutralColor60 */,
                 stroke: options.borderColor || '',
                 'stroke-width': options.borderWidth || 0
             })
                 .css(extend({
-                color: "#ffffff" /* backgroundColor */,
+                color: "#ffffff" /* Palette.backgroundColor */,
                 fontWeight: 'normal',
                 fontSize: '11px',
                 textAlign: 'center'
@@ -548,7 +535,7 @@ addEvent(Axis, 'afterDrawCrosshair', function (event) {
         this.toValue(horiz ? e.chartX : e.chartY);
     // Crosshair should be rendered within Axis range (#7219). Also, the point
     // of currentPriceIndicator should be inside the plot area, #14879.
-    var isInside = point ?
+    var isInside = point && point.series ?
         point.series.isPointInside(point) :
         (isNumber(value) && value > min && value < max);
     var text = '';
@@ -562,7 +549,7 @@ addEvent(Axis, 'afterDrawCrosshair', function (event) {
         text: text,
         x: posx,
         y: posy,
-        visibility: isInside ? 'visible' : 'hidden'
+        visibility: isInside ? 'inherit' : 'hidden'
     });
     crossBox = crossLabel.getBBox();
     // now it is placed we can correct its position
@@ -632,7 +619,7 @@ addEvent(Chart, 'update', function (e) {
     // case (#6615)
     if ('scrollbar' in options && this.navigator) {
         merge(true, this.options.scrollbar, options.scrollbar);
-        this.navigator.update({}, false);
+        this.navigator.update({});
         delete options.scrollbar;
     }
 });

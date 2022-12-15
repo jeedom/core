@@ -151,12 +151,13 @@ var FocusBorderComposition;
             this.removeFocusBorder();
         }
         // Add the border rect
-        var bb = this.getBBox(), pad = pick(margin, 3);
+        var bb = this.getBBox(), pad = pick(margin, 3), parent = this.parentGroup, scaleX = this.scaleX || parent && parent.scaleX, scaleY = this.scaleY || parent && parent.scaleY, oneDefined = scaleX ? !scaleY : scaleY, scaleBoth = oneDefined ? Math.abs(scaleX || scaleY || 1) :
+            (Math.abs(scaleX || 1) + Math.abs(scaleY || 1)) / 2;
         bb.x += this.translateX ? this.translateX : 0;
         bb.y += this.translateY ? this.translateY : 0;
         var borderPosX = bb.x - pad, borderPosY = bb.y - pad, borderWidth = bb.width + 2 * pad, borderHeight = bb.height + 2 * pad;
-        // For text elements, apply x and y offset, #11397.
         /**
+         * For text elements, apply x and y offset, #11397.
          * @private
          */
         function getTextAnchorCorrection(text) {
@@ -203,16 +204,16 @@ var FocusBorderComposition;
                 }
             }
         }
-        this.focusBorder = this.renderer.rect(borderPosX, borderPosY, borderWidth, borderHeight, parseInt((attribs && attribs.r || 0).toString(), 10))
+        this.focusBorder = this.renderer.rect(borderPosX, borderPosY, borderWidth, borderHeight, parseInt((attribs && attribs.r || 0).toString(), 10) / scaleBoth)
             .addClass('highcharts-focus-border')
             .attr({
             zIndex: 99
         })
-            .add(this.parentGroup);
+            .add(parent);
         if (!this.renderer.styledMode) {
             this.focusBorder.attr({
                 stroke: attribs && attribs.stroke,
-                'stroke-width': attribs && attribs.strokeWidth
+                'stroke-width': (attribs && attribs.strokeWidth || 0) / scaleBoth
             });
         }
         avgElementAddUpdateFocusBorderHooks(this, margin, attribs);

@@ -8,7 +8,7 @@
  *
  * */
 'use strict';
-import StackItem from '../../Extensions/Stacking.js';
+import StackItem from './Stacking/StackItem.js';
 import U from '../Utilities.js';
 var addEvent = U.addEvent, find = U.find, fireEvent = U.fireEvent, isArray = U.isArray, isNumber = U.isNumber, pick = U.pick;
 /* *

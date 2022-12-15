@@ -132,7 +132,7 @@ var exporting = {
      * Path where Highcharts will look for export module dependencies to
      * load on demand if they don't already exist on `window`. Should currently
      * point to location of [CanVG](https://github.com/canvg/canvg) library,
-     * [jsPDF](https://github.com/yWorks/jsPDF) and
+     * [jsPDF](https://github.com/parallax/jsPDF) and
      * [svg2pdf.js](https://github.com/yWorks/svg2pdf.js), required for client
      * side export in certain browsers.
      *
@@ -196,6 +196,54 @@ var exporting = {
      * @since 2.0
      */
     url: 'https://export.highcharts.com/',
+    /**
+     * Settings for a custom font for the exported PDF, when using the
+     * `offline-exporting` module. This is used for languages containing
+     * non-ASCII characters, like Chinese, Russian, Japanese etc.
+     *
+     * As described in the [jsPDF
+     * docs](https://github.com/parallax/jsPDF#use-of-unicode-characters--utf-8),
+     * the 14 standard fonts in PDF are limited to the ASCII-codepage.
+     * Therefore, in order to support other text in the exported PDF, one or
+     * more TTF font files have to be passed on to the exporting module.
+     *
+     * See more in [the
+     * docs](https://www.highcharts.com/docs/export-module/client-side-export).
+     *
+     * @sample {highcharts} highcharts/exporting/offline-download-pdffont/
+     *         Download PDF in a language containing non-Latin characters.
+     *
+     * @since 10.0.0
+     * @requires modules/offline-exporting
+     */
+    pdfFont: {
+        /**
+         * The TTF font file for normal `font-style`. If font variations like
+         * `bold` or `italic` are not defined, the `normal` font will be used
+         * for those too.
+         *
+         * @type string|undefined
+         */
+        normal: void 0,
+        /**
+         * The TTF font file for bold text.
+         *
+         * @type string|undefined
+         */
+        bold: void 0,
+        /**
+         * The TTF font file for bold and italic text.
+         *
+         * @type string|undefined
+         */
+        bolditalic: void 0,
+        /**
+         * The TTF font file for italic text.
+         *
+         * @type string|undefined
+         */
+        italic: void 0
+    },
     /**
      * When printing the chart from the menu item in the burger menu, if
      * the on-screen chart exceeds this width, it is resized. After printing
@@ -381,7 +429,9 @@ var exporting = {
         viewFullscreen: {
             textKey: 'viewFullscreen',
             onclick: function () {
-                this.fullscreen.toggle();
+                if (this.fullscreen) {
+                    this.fullscreen.toggle();
+                }
             }
         },
         /**
@@ -453,8 +503,6 @@ var lang = {
      * in full screen.
      *
      * @since 8.0.1
-     *
-     * @private
      */
     viewFullscreen: 'View in full screen',
     /**
@@ -462,8 +510,6 @@ var lang = {
      * from full screen.
      *
      * @since 8.0.1
-     *
-     * @private
      */
     exitFullscreen: 'Exit from full screen',
     /**
@@ -471,8 +517,6 @@ var lang = {
      *
      * @since    3.0.1
      * @requires modules/exporting
-     *
-     * @private
      */
     printChart: 'Print chart',
     /**
@@ -480,8 +524,6 @@ var lang = {
      *
      * @since    2.0
      * @requires modules/exporting
-     *
-     * @private
      */
     downloadPNG: 'Download PNG image',
     /**
@@ -489,8 +531,6 @@ var lang = {
      *
      * @since    2.0
      * @requires modules/exporting
-     *
-     * @private
      */
     downloadJPEG: 'Download JPEG image',
     /**
@@ -498,8 +538,6 @@ var lang = {
      *
      * @since    2.0
      * @requires modules/exporting
-     *
-     * @private
      */
     downloadPDF: 'Download PDF document',
     /**
@@ -507,8 +545,6 @@ var lang = {
      *
      * @since    2.0
      * @requires modules/exporting
-     *
-     * @private
      */
     downloadSVG: 'Download SVG vector image',
     /**
@@ -517,11 +553,16 @@ var lang = {
      *
      * @since    3.0
      * @requires modules/exporting
-     *
-     * @private
      */
     contextButtonTitle: 'Chart context menu'
 };
+/**
+ * A collection of options for buttons and menus appearing in the exporting
+ * module or in Stock Tools.
+ *
+ * @requires     modules/exporting
+ * @optionparent navigation
+ */
 var navigation = {
     /**
      * A collection of options for buttons appearing in the exporting
@@ -531,8 +572,6 @@ var navigation = {
      * `.highcharts-contextbutton` and `.highcharts-button-symbol` classes.
      *
      * @requires modules/exporting
-     *
-     * @private
      */
     buttonOptions: {
         /**
@@ -603,6 +642,8 @@ var navigation = {
          *
          * @sample highcharts/exporting/buttons-text/
          *         Full text button
+         * @sample highcharts/exporting/buttons-text-usehtml/
+         *         Icon using CSS font in text
          * @sample highcharts/exporting/buttons-text-symbol/
          *         Combined symbol and text
          *
@@ -610,6 +651,18 @@ var navigation = {
          * @default   null
          * @since     3.0
          * @apioption navigation.buttonOptions.text
+         */
+        /**
+         * Whether to use HTML for rendering the button. HTML allows for things
+         * like inline CSS or image-based icons.
+         *
+         * @sample highcharts/exporting/buttons-text-usehtml/
+         *         Icon using CSS font in text
+         *
+         * @type      boolean
+         * @default   false
+         * @since 10.3.0
+         * @apioption navigation.buttonOptions.useHTML
          */
         /**
          * The vertical offset of the button's position relative to its
@@ -652,7 +705,7 @@ var navigation = {
          * @type  {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
          * @since 2.0
          */
-        symbolFill: "#666666" /* neutralColor60 */,
+        symbolFill: "#666666" /* Palette.neutralColor60 */,
         /**
          * The color of the symbol's stroke or line.
          *
@@ -662,7 +715,7 @@ var navigation = {
          * @type  {Highcharts.ColorString}
          * @since 2.0
          */
-        symbolStroke: "#666666" /* neutralColor60 */,
+        symbolStroke: "#666666" /* Palette.neutralColor60 */,
         /**
          * The pixel stroke width of the symbol on the button.
          *
@@ -695,6 +748,7 @@ var navigation = {
              */
             /**
              * Default stroke for the buttons.
+             *
              * @type      {Highcharts.ColorString}
              * @default   none
              * @apioption navigation.buttonOptions.theme.stroke
@@ -718,14 +772,12 @@ var navigation = {
      * @type    {Highcharts.CSSObject}
      * @default {"border": "1px solid #999999", "background": "#ffffff", "padding": "5px 0"}
      * @since   2.0
-     *
-     * @private
      */
     menuStyle: {
         /** @ignore-option */
-        border: "1px solid " + "#999999" /* neutralColor40 */,
+        border: "1px solid ".concat("#999999" /* Palette.neutralColor40 */),
         /** @ignore-option */
-        background: "#ffffff" /* backgroundColor */,
+        background: "#ffffff" /* Palette.backgroundColor */,
         /** @ignore-option */
         padding: '5px 0'
     },
@@ -744,14 +796,12 @@ var navigation = {
      * @type    {Highcharts.CSSObject}
      * @default {"padding": "0.5em 1em", "color": "#333333", "background": "none", "fontSize": "11px/14px", "transition": "background 250ms, color 250ms"}
      * @since   2.0
-     *
-     * @private
      */
     menuItemStyle: {
         /** @ignore-option */
         padding: '0.5em 1em',
         /** @ignore-option */
-        color: "#333333" /* neutralColor80 */,
+        color: "#333333" /* Palette.neutralColor80 */,
         /** @ignore-option */
         background: 'none',
         /** @ignore-option */
@@ -773,14 +823,12 @@ var navigation = {
      * @type    {Highcharts.CSSObject}
      * @default {"background": "#335cad", "color": "#ffffff"}
      * @since   2.0
-     *
-     * @private
      */
     menuItemHoverStyle: {
         /** @ignore-option */
-        background: "#335cad" /* highlightColor80 */,
+        background: "#335cad" /* Palette.highlightColor80 */,
         /** @ignore-option */
-        color: "#ffffff" /* backgroundColor */
+        color: "#ffffff" /* Palette.backgroundColor */
     }
 };
 /* *

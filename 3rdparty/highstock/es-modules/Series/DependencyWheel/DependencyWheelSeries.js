@@ -14,10 +14,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -26,8 +28,10 @@ var __extends = (this && this.__extends) || (function () {
 import A from '../../Core/Animation/AnimationUtilities.js';
 var animObject = A.animObject;
 import DependencyWheelPoint from './DependencyWheelPoint.js';
+import DependencyWheelSeriesDefaults from './DependencyWheelSeriesDefaults.js';
 import H from '../../Core/Globals.js';
 var deg2rad = H.deg2rad;
+import SankeyColumnComposition from '../Sankey/SankeyColumnComposition.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var _a = SeriesRegistry.seriesTypes, PieSeries = _a.pie, SankeySeries = _a.sankey;
 import U from '../../Core/Utilities.js';
@@ -99,7 +103,6 @@ var DependencyWheelSeries = /** @class */ (function (_super) {
     };
     DependencyWheelSeries.prototype.createNode = function (id) {
         var node = SankeySeries.prototype.createNode.call(this, id);
-        node.index = this.nodes.length - 1;
         /**
          * Return the sum of incoming and outgoing links.
          * @private
@@ -155,7 +158,7 @@ var DependencyWheelSeries = /** @class */ (function (_super) {
      * @private
      */
     DependencyWheelSeries.prototype.createNodeColumns = function () {
-        var columns = [this.createNodeColumn()];
+        var columns = [SankeyColumnComposition.compose([], this)];
         this.nodes.forEach(function (node) {
             node.column = 0;
             columns[0].push(node);
@@ -260,37 +263,7 @@ var DependencyWheelSeries = /** @class */ (function (_super) {
             }
         });
     };
-    /**
-     * A dependency wheel chart is a type of flow diagram, where all nodes are
-     * laid out in a circle, and the flow between the are drawn as link bands.
-     *
-     * @sample highcharts/demo/dependency-wheel/
-     *         Dependency wheel
-     *
-     * @extends      plotOptions.sankey
-     * @exclude      dataSorting
-     * @since        7.1.0
-     * @product      highcharts
-     * @requires     modules/dependency-wheel
-     * @optionparent plotOptions.dependencywheel
-     */
-    DependencyWheelSeries.defaultOptions = merge(SankeySeries.defaultOptions, {
-        /**
-         * The center of the wheel relative to the plot area. Can be
-         * percentages or pixel values. The default behaviour is to
-         * center the wheel inside the plot area.
-         *
-         * @type    {Array<number|string|null>}
-         * @default [null, null]
-         * @product highcharts
-         */
-        center: [null, null],
-        curveFactor: 0.6,
-        /**
-         * The start angle of the dependency wheel, in degrees where 0 is up.
-         */
-        startAngle: 0
-    });
+    DependencyWheelSeries.defaultOptions = merge(SankeySeries.defaultOptions, DependencyWheelSeriesDefaults);
     return DependencyWheelSeries;
 }(SankeySeries));
 extend(DependencyWheelSeries.prototype, {
@@ -305,64 +278,3 @@ SeriesRegistry.registerSeriesType('dependencywheel', DependencyWheelSeries);
  *
  * */
 export default DependencyWheelSeries;
-/* *
- *
- *  API Options
- *
- * */
-/**
- * A `dependencywheel` series. If the [type](#series.dependencywheel.type)
- * option is not specified, it is inherited from [chart.type](#chart.type).
- *
- * @extends   series,plotOptions.dependencywheel
- * @exclude   dataSorting
- * @product   highcharts
- * @requires  modules/sankey
- * @requires  modules/dependency-wheel
- * @apioption series.dependencywheel
- */
-/**
- * A collection of options for the individual nodes. The nodes in a dependency
- * diagram are auto-generated instances of `Highcharts.Point`, but options can
- * be applied here and linked by the `id`.
- *
- * @extends   series.sankey.nodes
- * @type      {Array<*>}
- * @product   highcharts
- * @excluding offset
- * @apioption series.dependencywheel.nodes
- */
-/**
- * An array of data points for the series. For the `dependencywheel` series
- * type, points can be given in the following way:
- *
- * An array of objects with named values. The following snippet shows only a
- * few settings, see the complete options set below. If the total number of data
- * points exceeds the series' [turboThreshold](#series.area.turboThreshold),
- * this option is not available.
- *
- *  ```js
- *     data: [{
- *         from: 'Category1',
- *         to: 'Category2',
- *         weight: 2
- *     }, {
- *         from: 'Category1',
- *         to: 'Category3',
- *         weight: 5
- *     }]
- *  ```
- *
- * @type      {Array<*>}
- * @extends   series.sankey.data
- * @product   highcharts
- * @excluding outgoing, dataLabels
- * @apioption series.dependencywheel.data
- */
-/**
- * Individual data label for each node. The options are the same as
- * the ones for [series.dependencywheel.dataLabels](#series.dependencywheel.dataLabels).
- *
- * @apioption series.dependencywheel.nodes.dataLabels
- */
-''; // adds doclets above to the transpiled file

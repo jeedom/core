@@ -12,10 +12,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -24,56 +26,46 @@ var __extends = (this && this.__extends) || (function () {
 import Axis from './Axis.js';
 import U from '../Utilities.js';
 var addEvent = U.addEvent, merge = U.merge, pick = U.pick, splat = U.splat;
-/* eslint-disable valid-jsdoc */
+/* *
+ *
+ *  Constants
+ *
+ * */
+var composedClasses = [];
+/* *
+ *
+ *  Functions
+ *
+ * */
 /**
- * 3D chart with support of z coordinates.
  * @private
- * @class
  */
-var ZChart = /** @class */ (function () {
-    function ZChart() {
+function chartAddZAxis(options) {
+    return new ZAxis(this, options);
+}
+/**
+ * Get the Z axis in addition to the default X and Y.
+ * @private
+ */
+function onChartAfterGetAxes() {
+    var _this = this;
+    var zAxisOptions = this.options.zAxis = splat(this.options.zAxis || {});
+    if (!this.is3d()) {
+        return;
     }
-    /* *
-     *
-     *  Static Functions
-     *
-     * */
-    ZChart.compose = function (ChartClass) {
-        addEvent(ChartClass, 'afterGetAxes', ZChart.onAfterGetAxes);
-        var chartProto = ChartClass.prototype;
-        chartProto.addZAxis = ZChart.wrapAddZAxis;
-        chartProto.collectionsWithInit.zAxis = [chartProto.addZAxis];
-        chartProto.collectionsWithUpdate.push('zAxis');
-    };
-    /**
-     * Get the Z axis in addition to the default X and Y.
-     * @private
-     */
-    ZChart.onAfterGetAxes = function () {
-        var chart = this;
-        var options = this.options;
-        var zAxisOptions = options.zAxis = splat(options.zAxis || {});
-        if (!chart.is3d()) {
-            return;
-        }
-        chart.zAxis = [];
-        zAxisOptions.forEach(function (axisOptions, i) {
-            axisOptions.index = i;
-            // Z-Axis is shown horizontally, so it's kind of a X-Axis
-            axisOptions.isX = true;
-            chart
-                .addZAxis(axisOptions)
-                .setScale();
-        });
-    };
-    /**
-     * @private
-     */
-    ZChart.wrapAddZAxis = function (options) {
-        return new ZAxis(this, options);
-    };
-    return ZChart;
-}());
+    this.zAxis = [];
+    zAxisOptions.forEach(function (axisOptions, i) {
+        axisOptions.index = i;
+        // Z-Axis is shown horizontally, so it's kind of a X-Axis
+        axisOptions.isX = true;
+        _this.addZAxis(axisOptions).setScale();
+    });
+}
+/* *
+ *
+ *  Class
+ *
+ * */
 /**
  * 3D axis for z coordinates.
  */
@@ -81,7 +73,7 @@ var ZAxis = /** @class */ (function (_super) {
     __extends(ZAxis, _super);
     /* *
      *
-     *  Constructors
+     *  Constructor
      *
      * */
     function ZAxis(chart, userOptions) {
@@ -91,32 +83,47 @@ var ZAxis = /** @class */ (function (_super) {
     }
     /* *
      *
+     *  Static Properties
+     *
+     * */
+    ZAxis.compose = function (ChartClass) {
+        if (composedClasses.indexOf(ChartClass) === -1) {
+            composedClasses.push(ChartClass);
+            addEvent(ChartClass, 'afterGetAxes', onChartAfterGetAxes);
+            var chartProto = ChartClass.prototype;
+            chartProto.addZAxis = chartAddZAxis;
+            chartProto.collectionsWithInit.zAxis = [chartProto.addZAxis];
+            chartProto.collectionsWithUpdate.push('zAxis');
+        }
+    };
+    /* *
+     *
      *  Functions
      *
      * */
     ZAxis.prototype.getSeriesExtremes = function () {
-        var axis = this;
-        var chart = axis.chart;
-        axis.hasVisibleSeries = false;
+        var _this = this;
+        var chart = this.chart;
+        this.hasVisibleSeries = false;
         // Reset properties in case we're redrawing (#3353)
-        axis.dataMin = axis.dataMax = axis.ignoreMinPadding = (axis.ignoreMaxPadding = void 0);
-        if (axis.stacking) {
-            axis.stacking.buildStacks();
+        this.dataMin = this.dataMax = this.ignoreMinPadding = (this.ignoreMaxPadding = void 0);
+        if (this.stacking) {
+            this.stacking.buildStacks();
         }
         // loop through this axis' series
-        axis.series.forEach(function (series) {
+        this.series.forEach(function (series) {
             if (series.visible ||
                 !chart.options.chart.ignoreHiddenSeries) {
-                var seriesOptions = series.options, zData = void 0, threshold = seriesOptions.threshold;
-                axis.hasVisibleSeries = true;
+                var threshold = series.options.threshold;
+                _this.hasVisibleSeries = true;
                 // Validate threshold in logarithmic axes
-                if (axis.positiveValuesOnly && threshold <= 0) {
+                if (_this.positiveValuesOnly && threshold <= 0) {
                     threshold = void 0;
                 }
-                zData = series.zData;
+                var zData = series.zData;
                 if (zData.length) {
-                    axis.dataMin = Math.min(pick(axis.dataMin, zData[0]), Math.min.apply(null, zData));
-                    axis.dataMax = Math.max(pick(axis.dataMax, zData[0]), Math.max.apply(null, zData));
+                    _this.dataMin = Math.min(pick(_this.dataMin, zData[0]), Math.min.apply(null, zData));
+                    _this.dataMax = Math.max(pick(_this.dataMax, zData[0]), Math.max.apply(null, zData));
                 }
             }
         });
@@ -125,12 +132,11 @@ var ZAxis = /** @class */ (function (_super) {
      * @private
      */
     ZAxis.prototype.setAxisSize = function () {
-        var axis = this;
-        var chart = axis.chart;
+        var chart = this.chart;
         _super.prototype.setAxisSize.call(this);
-        axis.width = axis.len = (chart.options.chart.options3d &&
+        this.width = this.len = (chart.options.chart.options3d &&
             chart.options.chart.options3d.depth) || 0;
-        axis.right = chart.chartWidth - axis.width - axis.left;
+        this.right = chart.chartWidth - this.width - this.left;
     };
     /**
      * @private
@@ -145,12 +151,11 @@ var ZAxis = /** @class */ (function (_super) {
         _super.prototype.setOptions.call(this, userOptions);
         this.coll = 'zAxis';
     };
-    /* *
-     *
-     *  Static Properties
-     *
-     * */
-    ZAxis.ZChartComposition = ZChart;
     return ZAxis;
 }(Axis));
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default ZAxis;

@@ -16,10 +16,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -36,6 +38,7 @@ import SunburstUtilities from './SunburstUtilities.js';
 import TU from '../TreeUtilities.js';
 var getColor = TU.getColor, getLevelOptions = TU.getLevelOptions, setTreeValues = TU.setTreeValues, updateRootId = TU.updateRootId;
 import U from '../../Core/Utilities.js';
+import SunburstNode from './SunburstNode.js';
 var error = U.error, extend = U.extend, isNumber = U.isNumber, isObject = U.isObject, isString = U.isString, merge = U.merge, splat = U.splat;
 /* *
  *
@@ -98,7 +101,7 @@ function getDlOptions(params) {
             if (point.innerArcLength < 1 &&
                 point.outerArcLength > shape.radius) {
                 rotationRad = 0;
-                // Triger setTextPath function to get textOutline etc.
+                // Trigger setTextPath function to get textOutline etc.
                 if (point.dataLabelPath && rotationMode === 'circular') {
                     options.textPath = {
                         enabled: true
@@ -122,7 +125,7 @@ function getDlOptions(params) {
             else {
                 // Trigger the destroyTextPath function
                 if (point.dataLabel &&
-                    point.dataLabel.textPathWrapper &&
+                    point.dataLabel.textPath &&
                     rotationMode === 'circular') {
                     options.textPath = {
                         enabled: false
@@ -273,7 +276,7 @@ function getDrillId(point, idRoot, mapIdToNode) {
 }
 // eslint-disable-next-line require-jsdoc
 function cbSetTreeValuesBefore(node, options) {
-    var mapIdToNode = options.mapIdToNode, nodeParent = mapIdToNode[node.parent], series = options.series, chart = series.chart, points = series.points, point = points[node.i], colors = (series.options.colors || chart && chart.options.colors), colorInfo = getColor(node, {
+    var mapIdToNode = options.mapIdToNode, parent = node.parent, nodeParent = parent ? mapIdToNode[parent] : void 0, series = options.series, chart = series.chart, points = series.points, point = points[node.i], colors = series.options.colors || chart && chart.options.colors, colorInfo = getColor(node, {
         colors: colors,
         colorIndex: series.colorIndex,
         index: options.index,
@@ -389,7 +392,7 @@ var SunburstSeries = /** @class */ (function (_super) {
                 if (s.dataLabelsGroup) {
                     s.dataLabelsGroup.animate({
                         opacity: 1,
-                        visibility: 'visible'
+                        visibility: 'inherit'
                     });
                 }
             };
@@ -530,7 +533,7 @@ var SunburstSeries = /** @class */ (function (_super) {
         }, this);
     };
     SunburstSeries.prototype.translate = function () {
-        var series = this, options = series.options, positions = series.center = getCenter.call(series), radians = series.startAndEndRadians = getStartAndEndRadians(options.startAngle, options.endAngle), innerRadius = positions[3] / 2, outerRadius = positions[2] / 2, diffRadius = outerRadius - innerRadius, 
+        var series = this, options = series.options, positions = series.center = series.getCenter(), radians = series.startAndEndRadians = getStartAndEndRadians(options.startAngle, options.endAngle), innerRadius = positions[3] / 2, outerRadius = positions[2] / 2, diffRadius = outerRadius - innerRadius, 
         // NOTE: updateRootId modifies series.
         rootId = updateRootId(series), mapIdToNode = series.nodeMap, mapOptionsToLevel, idTop, nodeRoot = mapIdToNode && mapIdToNode[rootId], nodeTop, tree, values, nodeIds = {};
         series.shapeRoot = nodeRoot && nodeRoot.shapeArgs;
@@ -539,7 +542,6 @@ var SunburstSeries = /** @class */ (function (_super) {
         // @todo Only if series.isDirtyData is true
         tree = series.tree = series.getTree();
         // Render traverseUpButton, after series.nodeMap i calculated.
-        series.renderTraverseUpButton(rootId);
         mapIdToNode = series.nodeMap;
         nodeRoot = mapIdToNode[rootId];
         idTop = isString(nodeRoot.parent) ? nodeRoot.parent : '';
@@ -613,9 +615,19 @@ var SunburstSeries = /** @class */ (function (_super) {
      * @product      highcharts
      * @requires     modules/sunburst.js
      * @optionparent plotOptions.sunburst
+     *
      * @private
      */
     SunburstSeries.defaultOptions = merge(TreemapSeries.defaultOptions, {
+        /**
+         * Options for the breadcrumbs, the navigation at the top leading the
+         * way up through the traversed levels.
+         *
+         * @since 10.0.0
+         * @product   highcharts
+         * @extends   navigation.breadcrumbs
+         * @optionparent plotOptions.sunburst.breadcrumbs
+         */
         /**
          * Set options on specific levels. Takes precedence over series options,
          * but not point options.
@@ -650,6 +662,13 @@ var SunburstSeries = /** @class */ (function (_super) {
          *
          * @type      {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
          * @apioption plotOptions.sunburst.levels.color
+         */
+        /**
+         * Determines whether the chart should receive one color per point based
+         * on this level.
+         *
+         * @type      {boolean}
+         * @apioption plotOptions.sunburst.levels.colorByPoint
          */
         /**
          * Can set a `colorVariation` on all points which lies on the same
@@ -724,6 +743,8 @@ var SunburstSeries = /** @class */ (function (_super) {
          * @type    {Array<number|string>}
          * @default ["50%", "50%"]
          * @product highcharts
+         *
+         * @private
          */
         center: ['50%', '50%'],
         colorByPoint: false,
@@ -731,10 +752,14 @@ var SunburstSeries = /** @class */ (function (_super) {
          * Disable inherited opacity from Treemap series.
          *
          * @ignore-option
+         *
+         * @private
          */
         opacity: 1,
         /**
          * @declare Highcharts.SeriesSunburstDataLabelsOptionsObject
+         *
+         * @private
          */
         dataLabels: {
             allowOverlap: true,
@@ -766,6 +791,8 @@ var SunburstSeries = /** @class */ (function (_super) {
          * Which point to use as a root in the visualization.
          *
          * @type {string}
+         *
+         * @private
          */
         rootId: void 0,
         /**
@@ -773,6 +800,8 @@ var SunburstSeries = /** @class */ (function (_super) {
          * set to false the first level visible when drilling is considered
          * to be level one. Otherwise the level will be the same as the tree
          * structure.
+         *
+         * @private
          */
         levelIsConstant: true,
         /**
@@ -782,6 +811,8 @@ var SunburstSeries = /** @class */ (function (_super) {
          *         Sunburst with various sizes per level
          *
          * @since 6.0.5
+         *
+         * @private
          */
         levelSize: {
             /**
@@ -812,11 +843,14 @@ var SunburstSeries = /** @class */ (function (_super) {
             unit: 'weight'
         },
         /**
-         * Options for the button appearing when traversing down in a treemap.
+         * Options for the button appearing when traversing down in a sunburst.
+         * Since v9.3.3 the `traverseUpButton` is replaced by `breadcrumbs`.
          *
          * @extends   plotOptions.treemap.traverseUpButton
          * @since     6.0.0
+         * @deprecated
          * @apioption plotOptions.sunburst.traverseUpButton
+         *
          */
         /**
          * If a point is sliced, moved out from the center, how many pixels
@@ -826,6 +860,8 @@ var SunburstSeries = /** @class */ (function (_super) {
          *         Sliced sunburst
          *
          * @since 6.0.4
+         *
+         * @private
          */
         slicedOffset: 10
     });
@@ -833,8 +869,12 @@ var SunburstSeries = /** @class */ (function (_super) {
 }(TreemapSeries));
 extend(SunburstSeries.prototype, {
     drawDataLabels: noop,
+    getCenter: getCenter,
+    // Mark that the sunburst is supported by the series on point feature.
+    onPointSupported: true,
     pointAttribs: ColumnSeries.prototype.pointAttribs,
     pointClass: SunburstPoint,
+    NodeClass: SunburstNode,
     utils: SunburstUtilities
 });
 SeriesRegistry.registerSeriesType('sunburst', SunburstSeries);

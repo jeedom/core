@@ -10,10 +10,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -23,7 +25,11 @@ import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
 var SMAIndicator = SeriesRegistry.seriesTypes.sma;
 import U from '../../../Core/Utilities.js';
 var extend = U.extend, merge = U.merge, correctFloat = U.correctFloat, pick = U.pick;
-/* eslint-disable valid-jsdoc */
+/* *
+ *
+ *  Functions
+ *
+ * */
 // Utils:
 /**
  * @private
@@ -52,12 +58,17 @@ function accumulatePoints(sum, yVal, i, index, subtract) {
 var DPOIndicator = /** @class */ (function (_super) {
     __extends(DPOIndicator, _super);
     function DPOIndicator() {
+        /* *
+         *
+         *  Static Properties
+         *
+         * */
         var _this = _super !== null && _super.apply(this, arguments) || this;
         /* *
-        *
-        *   Properties
-        *
-        * */
+         *
+         *   Properties
+         *
+         * */
         _this.options = void 0;
         _this.data = void 0;
         _this.points = void 0;
@@ -68,9 +79,6 @@ var DPOIndicator = /** @class */ (function (_super) {
      *  Functions
      *
      * */
-    /**
-     * @lends Highcharts.Series#
-     */
     DPOIndicator.prototype.getValues = function (series, params) {
         var period = params.period, index = params.index, offset = Math.floor(period / 2 + 1), range = period + offset, xVal = series.xData || [], yVal = series.yData || [], yValLen = yVal.length, 
         // 0- date, 1- Detrended Price Oscillator
@@ -146,6 +154,11 @@ SeriesRegistry.registerSeriesType('dpo', DPOIndicator);
  *
  * */
 export default DPOIndicator;
+/* *
+ *
+ *  API Options
+ *
+ * */
 /**
  * A Detrended Price Oscillator. If the [type](#series.dpo.type) option is not
  * specified, it is inherited from [chart.type](#chart.type).

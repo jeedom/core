@@ -10,10 +10,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -29,7 +31,6 @@ var extend = U.extend, isArray = U.isArray, merge = U.merge;
  *  Functions
  *
  * */
-/* eslint-disable valid-jsdoc */
 // Utils:
 /**
  * @private
@@ -151,10 +152,12 @@ var BBIndicator = /** @class */ (function (_super) {
          * @sample {highstock} stock/indicators/indicator-area-fill
          *      Background fill between lines.
          *
-         * @type      {Highcharts.Color}
-         * @since 9.3.2
+         * @type      {Highcharts.ColorType}
+         * @since     9.3.2
          * @apioption plotOptions.bb.fillColor
-         *
+         */
+        /**
+         * Parameters used in calculation of the regression points.
          */
         params: {
             period: 20,
@@ -169,7 +172,7 @@ var BBIndicator = /** @class */ (function (_super) {
          */
         bottomLine: {
             /**
-             * Styles for a bottom line.
+             * Styles for the bottom line.
              */
             styles: {
                 /**
@@ -191,9 +194,18 @@ var BBIndicator = /** @class */ (function (_super) {
          * @extends plotOptions.bb.bottomLine
          */
         topLine: {
+            /**
+             * Styles for the top line.
+             */
             styles: {
+                /**
+                 * Pixel width of the line.
+                 */
                 lineWidth: 1,
                 /**
+                 * Color of the line. If not set, it's inherited from
+                 * [plotOptions.bb.color](#plotOptions.bb.color).
+                 *
                  * @type {Highcharts.ColorString}
                  */
                 lineColor: void 0
@@ -213,10 +225,10 @@ var BBIndicator = /** @class */ (function (_super) {
 }(SMAIndicator));
 extend(BBIndicator.prototype, {
     areaLinesNames: ['top', 'bottom'],
-    pointArrayMap: ['top', 'middle', 'bottom'],
-    pointValKey: 'middle',
+    linesApiNames: ['topLine', 'bottomLine'],
     nameComponents: ['period', 'standardDeviation'],
-    linesApiNames: ['topLine', 'bottomLine']
+    pointArrayMap: ['top', 'middle', 'bottom'],
+    pointValKey: 'middle'
 });
 MultipleLinesComposition.compose(BBIndicator);
 SeriesRegistry.registerSeriesType('bb', BBIndicator);
@@ -226,6 +238,11 @@ SeriesRegistry.registerSeriesType('bb', BBIndicator);
  *
  * */
 export default BBIndicator;
+/* *
+ *
+ *  API Options
+ *
+ * */
 /**
  * A bollinger bands indicator. If the [type](#series.bb.type) option is not
  * specified, it is inherited from [chart.type](#chart.type).

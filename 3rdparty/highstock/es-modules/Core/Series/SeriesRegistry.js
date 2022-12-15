@@ -9,11 +9,11 @@
  * */
 'use strict';
 import H from '../Globals.js';
-import D from '../DefaultOptions.js';
+import D from '../Defaults.js';
 var defaultOptions = D.defaultOptions;
 import Point from './Point.js';
 import U from '../Utilities.js';
-var error = U.error, extendClass = U.extendClass, merge = U.merge;
+var extendClass = U.extendClass, merge = U.merge;
 /* *
  *
  *  Namespace
@@ -36,43 +36,21 @@ var SeriesRegistry;
      *  Functions
      *
      * */
-    /* eslint-disable valid-jsdoc */
-    /**
-     * Internal function to initialize an individual series.
-     * @private
-     */
-    function getSeries(chart, options) {
-        if (options === void 0) { options = {}; }
-        var optionsChart = chart.options.chart, type = (options.type ||
-            optionsChart.type ||
-            optionsChart.defaultSeriesType ||
-            ''), SeriesClass = SeriesRegistry.seriesTypes[type];
-        // No such series type
-        if (!SeriesRegistry) {
-            error(17, true, chart, { missingModuleFor: type });
-        }
-        var series = new SeriesClass();
-        if (typeof series.init === 'function') {
-            series.init(chart, options);
-        }
-        return series;
-    }
-    SeriesRegistry.getSeries = getSeries;
     /**
      * Registers class pattern of a series.
      *
      * @private
      */
-    function registerSeriesType(seriesType, seriesClass) {
-        var defaultPlotOptions = defaultOptions.plotOptions || {}, seriesOptions = seriesClass.defaultOptions;
-        if (!seriesClass.prototype.pointClass) {
-            seriesClass.prototype.pointClass = Point;
+    function registerSeriesType(seriesType, SeriesClass) {
+        var defaultPlotOptions = defaultOptions.plotOptions || {}, seriesOptions = SeriesClass.defaultOptions, seriesProto = SeriesClass.prototype;
+        seriesProto.type = seriesType;
+        if (!seriesProto.pointClass) {
+            seriesProto.pointClass = Point;
         }
-        seriesClass.prototype.type = seriesType;
         if (seriesOptions) {
             defaultPlotOptions[seriesType] = seriesOptions;
         }
-        SeriesRegistry.seriesTypes[seriesType] = seriesClass;
+        SeriesRegistry.seriesTypes[seriesType] = SeriesClass;
     }
     SeriesRegistry.registerSeriesType = registerSeriesType;
     /**
@@ -117,7 +95,6 @@ var SeriesRegistry;
         return SeriesRegistry.seriesTypes[type];
     }
     SeriesRegistry.seriesType = seriesType;
-    /* eslint-enable valid-jsdoc */
 })(SeriesRegistry || (SeriesRegistry = {}));
 /* *
  *

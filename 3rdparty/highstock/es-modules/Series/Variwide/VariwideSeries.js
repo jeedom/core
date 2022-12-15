@@ -14,10 +14,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -25,10 +27,10 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var ColumnSeries = SeriesRegistry.seriesTypes.column;
+import VariwideComposition from './VariwideComposition.js';
 import VariwidePoint from './VariwidePoint.js';
 import U from '../../Core/Utilities.js';
 var extend = U.extend, merge = U.merge, pick = U.pick;
-import './VariwideComposition.js';
 /* *
  *
  *  Class
@@ -44,10 +46,15 @@ import './VariwideComposition.js';
 var VariwideSeries = /** @class */ (function (_super) {
     __extends(VariwideSeries, _super);
     function VariwideSeries() {
+        /* *
+         *
+         *  Static Properties
+         *
+         * */
         var _this = _super !== null && _super.apply(this, arguments) || this;
         /* *
          *
-         * Properties
+         *  Properties
          *
          * */
         _this.data = void 0;
@@ -79,7 +86,6 @@ var VariwideSeries = /** @class */ (function (_super) {
         }
         return;
     };
-    /* eslint-disable valid-jsdoc */
     /**
      * Translate an x value inside a given category index into the distorted
      * axis translation.
@@ -164,10 +170,15 @@ var VariwideSeries = /** @class */ (function (_super) {
             this.correctStackLabels();
         }
     };
-    // Function that corrects stack labels positions
+    /**
+     * Function that corrects stack labels positions
+     * @private
+     */
     VariwideSeries.prototype.correctStackLabels = function () {
-        var series = this, options = series.options, yAxis = series.yAxis, pointStack, pointWidth, stack, xValue;
-        series.points.forEach(function (point) {
+        var series = this, options = series.options, yAxis = series.yAxis;
+        var pointStack, pointWidth, stack, xValue;
+        for (var _i = 0, _a = series.points; _i < _a.length; _i++) {
+            var point = _a[_i];
             xValue = point.x;
             pointWidth = point.shapeArgs.width;
             stack = yAxis.stacking.stacks[(series.negStacks &&
@@ -182,13 +193,9 @@ var VariwideSeries = /** @class */ (function (_super) {
                     pointStack.setOffset(-(pointWidth / 2) || 0, pointWidth || 0, void 0, void 0, point.plotX);
                 }
             }
-        });
+        }
     };
-    /* *
-     *
-     * Static properties
-     *
-     * */
+    VariwideSeries.compose = VariwideComposition.compose;
     /**
      * A variwide chart (related to marimekko chart) is a column chart with a
      * variable width expressing a third dimension.
@@ -231,13 +238,13 @@ extend(VariwideSeries.prototype, {
 SeriesRegistry.registerSeriesType('variwide', VariwideSeries);
 /* *
  *
- * Default export
+ *  Default Export
  *
  * */
 export default VariwideSeries;
 /* *
  *
- * API Options
+ *  API Options
  *
  * */
 /**

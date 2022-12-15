@@ -164,6 +164,7 @@ var ForcedMarkersComposition;
         else if (series.a11yMarkersForced) {
             delete series.a11yMarkersForced;
             unforceSeriesMarkerOptions(series);
+            delete series.resetA11yMarkerOptions;
         }
     }
     /**
@@ -189,20 +190,20 @@ var ForcedMarkersComposition;
         });
     }
     /**
+     * Reset markers to normal
      * @private
      */
     function unforceSeriesMarkerOptions(series) {
         var resetMarkerOptions = series.resetA11yMarkerOptions;
         if (resetMarkerOptions) {
-            merge(true, series.options, {
+            var originalOpactiy = resetMarkerOptions.states &&
+                resetMarkerOptions.states.normal &&
+                resetMarkerOptions.states.normal.opacity;
+            series.update({
                 marker: {
                     enabled: resetMarkerOptions.enabled,
                     states: {
-                        normal: {
-                            opacity: resetMarkerOptions.states &&
-                                resetMarkerOptions.states.normal &&
-                                resetMarkerOptions.states.normal.opacity
-                        }
+                        normal: { opacity: originalOpactiy }
                     }
                 }
             });

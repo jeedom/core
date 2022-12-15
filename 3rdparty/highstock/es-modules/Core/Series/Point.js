@@ -11,7 +11,7 @@
 import AST from '../Renderer/HTML/AST.js';
 import A from '../Animation/AnimationUtilities.js';
 var animObject = A.animObject;
-import D from '../DefaultOptions.js';
+import D from '../Defaults.js';
 var defaultOptions = D.defaultOptions;
 import F from '../FormatUtilities.js';
 var format = F.format;
@@ -44,17 +44,9 @@ var Point = /** @class */ (function () {
          * point. For other axes it holds the X value.
          *
          * @name Highcharts.Point#category
-         * @type {string}
+         * @type {number|string}
          */
         this.category = void 0;
-        /**
-         * The point's current color index, used in styled mode instead of
-         * `color`. The color index is inserted in class names used for styling.
-         *
-         * @name Highcharts.Point#colorIndex
-         * @type {number}
-         */
-        this.colorIndex = void 0;
         this.formatPrefix = 'point';
         this.id = void 0;
         this.isNull = false;
@@ -114,6 +106,15 @@ var Point = /** @class */ (function () {
          * @type {Highcharts.Series}
          */
         this.series = void 0;
+        /**
+         * The attributes of the rendered SVG shape like in `column` or `pie`
+         * series.
+         *
+         * @readonly
+         * @name Highcharts.Point#shapeArgs
+         * @type {Readonly<Highcharts.SVGAttributes>|undefined}
+         */
+        this.shapeArgs = void 0;
         /**
          * The total of values in either a stack for stacked series, or a pie in a
          * pie series.
@@ -207,7 +208,7 @@ var Point = /** @class */ (function () {
         if (pointValKey) {
             point.y = Point.prototype.getNestedProperty.call(point, pointValKey);
         }
-        point.isNull = pick(point.isValid && !point.isValid(), point.x === null || !isNumber(point.y)); // #3571, check for NaN
+        point.isNull = this.isValid && !this.isValid();
         point.formatPrefix = point.isNull ? 'null' : 'point'; // #9233, #10874
         // The point is initially selected by options (#5777)
         if (point.selected) {
@@ -256,7 +257,10 @@ var Point = /** @class */ (function () {
          */
         function destroyPoint() {
             // Remove all events and elements
-            if (point.graphic || point.dataLabel || point.dataLabels) {
+            if (point.graphic ||
+                point.graphics ||
+                point.dataLabel ||
+                point.dataLabels) {
                 removeEvent(point);
                 point.destroyElements();
             }
@@ -264,7 +268,8 @@ var Point = /** @class */ (function () {
                 point[prop] = null;
             }
         }
-        if (point.legendItem) { // pies have legend items
+        if (point.legendItem) {
+            // pies have legend items
             chart.legend.destroyItem(point);
         }
         if (hoverPoints) {
@@ -378,10 +383,10 @@ var Point = /** @class */ (function () {
         var prop, i;
         kinds = kinds || { graphic: 1, dataLabel: 1 };
         if (kinds.graphic) {
-            props.push('graphic', 'upperGraphic', 'shadowGroup');
+            props.push('graphic', 'shadowGroup');
         }
         if (kinds.dataLabel) {
-            props.push('dataLabel', 'dataLabelUpper', 'connector');
+            props.push('dataLabel', 'dataLabelPath', 'dataLabelUpper', 'connector');
         }
         i = props.length;
         while (i--) {
@@ -390,7 +395,11 @@ var Point = /** @class */ (function () {
                 graphicalProps.singular.push(prop);
             }
         }
-        ['dataLabel', 'connector'].forEach(function (prop) {
+        [
+            'graphic',
+            'dataLabel',
+            'connector'
+        ].forEach(function (prop) {
             var plural = prop + 's';
             if (kinds[prop] && point[plural]) {
                 graphicalProps.plural.push(plural);
@@ -502,6 +511,14 @@ var Point = /** @class */ (function () {
         return this;
     };
     /**
+     * Determine if point is valid.
+     * @private
+     * @function Highcharts.Point#isValid
+     */
+    Point.prototype.isValid = function () {
+        return this.x !== null && isNumber(this.y);
+    };
+    /**
      * Transform number or array configs into objects. Also called for object
      * configs. Used internally to unify the different configuration formats for
      * points. For example, a simple number `10` in a line series will be
@@ -594,6 +611,13 @@ var Point = /** @class */ (function () {
             }
             colorIndex = series.colorIndex;
         }
+        /**
+         * The point's current color index, used in styled mode instead of
+         * `color`. The color index is inserted in class names used for styling.
+         *
+         * @name Highcharts.Point#colorIndex
+         * @type {number|undefined}
+         */
         this.colorIndex = pick(this.options.colorIndex, colorIndex);
         /**
          * The point's current color.
@@ -634,6 +658,9 @@ var Point = /** @class */ (function () {
             return result[key];
         }, object);
         return object;
+    };
+    Point.prototype.shouldDraw = function () {
+        return !this.isNull;
     };
     /**
      * Extendable method for formatting each point's tooltip line.
@@ -710,14 +737,14 @@ var Point = /** @class */ (function () {
         function update() {
             point.applyOptions(options);
             // Update visuals, #4146
-            // Handle dummy graphic elements for a11y, #12718
-            var hasDummyGraphic = graphic && point.hasDummyGraphic;
+            // Handle mock graphic elements for a11y, #12718
+            var hasMockGraphic = graphic && point.hasMockGraphic;
             var shouldDestroyGraphic = point.y === null ?
-                !hasDummyGraphic :
-                hasDummyGraphic;
+                !hasMockGraphic :
+                hasMockGraphic;
             if (graphic && shouldDestroyGraphic) {
                 point.graphic = graphic.destroy();
-                delete point.hasDummyGraphic;
+                delete point.hasMockGraphic;
             }
             if (isObject(options, true)) {
                 // Destroy so we can get new elements
@@ -959,8 +986,8 @@ var Point = /** @class */ (function () {
             markerAttribs = series.markerAttribs(point, state);
         }
         // Apply hover styles to the existing point
-        // Prevent from dummy null points (#14966)
-        if (point.graphic && !point.hasDummyGraphic) {
+        // Prevent from mocked null points (#14966)
+        if (point.graphic && !point.hasMockGraphic) {
             if (previousState) {
                 point.graphic.removeClass('highcharts-point-' + previousState);
             }
@@ -970,21 +997,18 @@ var Point = /** @class */ (function () {
             if (!chart.styledMode) {
                 pointAttribs = series.pointAttribs(point, state);
                 pointAttribsAnimation = pick(chart.options.chart.animation, stateOptions.animation);
+                var opacity_1 = pointAttribs.opacity;
                 // Some inactive points (e.g. slices in pie) should apply
                 // opacity also for their labels
-                if (series.options.inactiveOtherPoints &&
-                    isNumber(pointAttribs.opacity)) {
+                if (series.options.inactiveOtherPoints && isNumber(opacity_1)) {
                     (point.dataLabels || []).forEach(function (label) {
-                        if (label) {
-                            label.animate({
-                                opacity: pointAttribs.opacity
-                            }, pointAttribsAnimation);
+                        if (label &&
+                            !label.hasClass('highcharts-data-label-hidden')) {
+                            label.animate({ opacity: opacity_1 }, pointAttribsAnimation);
                         }
                     });
                     if (point.connector) {
-                        point.connector.animate({
-                            opacity: pointAttribs.opacity
-                        }, pointAttribsAnimation);
+                        point.connector.animate({ opacity: opacity_1 }, pointAttribsAnimation);
                     }
                 }
                 point.graphic.animate(pointAttribs, pointAttribsAnimation);
@@ -1133,7 +1157,7 @@ export default Point;
 * @type {Highcharts.Point}
 */
 /**
- * Configuration hash for the data label and tooltip formatters.
+ * Configuration for the data label and tooltip formatters.
  *
  * @interface Highcharts.PointLabelObject
  */ /**
@@ -1175,7 +1199,7 @@ export default Point;
 */ /**
 * The y value of the point.
 * @name Highcharts.PointLabelObject#y
-* @type {number|undefined}
+* @type {number|null|undefined}
 */
 /**
  * Gets fired when the mouse leaves the area close to the point.

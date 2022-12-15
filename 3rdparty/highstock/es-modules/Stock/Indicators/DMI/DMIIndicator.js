@@ -13,10 +13,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -106,10 +108,14 @@ var DMIIndicator = /** @class */ (function (_super) {
         }
         var prevSmoothedPlusDM = 0, prevSmoothedMinusDM = 0, prevSmoothedTR = 0, i;
         for (i = 1; i < yValLen; i++) {
-            var smoothedPlusDM = void 0, smoothedMinusDM = void 0, smoothedTR = void 0, plusDM = void 0, // +DM
-            minusDM = void 0, // -DM
-            TR = void 0, plusDI = void 0, // +DI
-            minusDI = void 0, // -DI
+            var smoothedPlusDM = void 0, smoothedMinusDM = void 0, smoothedTR = void 0, plusDM = // +DM
+             void 0, // +DM
+            minusDM = // -DM
+             void 0, // -DM
+            TR = void 0, plusDI = // +DI
+             void 0, // +DI
+            minusDI = // -DI
+             void 0, // -DI
             DX = void 0;
             if (i <= period) {
                 plusDM = this.calculateDM(yVal, i, true);
@@ -213,7 +219,7 @@ var DMIIndicator = /** @class */ (function (_super) {
                  *
                  * @type {Highcharts.ColorString}
                  */
-                lineColor: "#06b535" /* positiveColor */ // green-ish
+                lineColor: "#06b535" /* Palette.positiveColor */ // green-ish
             }
         },
         /**
@@ -233,7 +239,7 @@ var DMIIndicator = /** @class */ (function (_super) {
                  *
                  * @type {Highcharts.ColorString}
                  */
-                lineColor: "#f21313" /* negativeColor */ // red-ish
+                lineColor: "#f21313" /* Palette.negativeColor */ // red-ish
             }
         },
         dataGrouping: {
@@ -258,6 +264,11 @@ SeriesRegistry.registerSeriesType('dmi', DMIIndicator);
  *
  * */
 export default DMIIndicator;
+/* *
+ *
+ *  API Options
+ *
+ * */
 /**
  * The Directional Movement Index (DMI) indicator series.
  * If the [type](#series.dmi.type) option is not

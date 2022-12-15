@@ -90,9 +90,15 @@ var ProxyElement = /** @class */ (function () {
     ProxyElement.prototype.updateTarget = function (target, attributes) {
         this.target = target;
         this.updateCSSClassName();
+        var attrs = attributes || {};
+        Object.keys(attrs).forEach(function (a) {
+            if (attrs[a] === null) {
+                delete attrs[a];
+            }
+        });
         attr(this.buttonElement, merge({
             'aria-label': this.getTargetAttr(target.click, 'aria-label')
-        }, attributes));
+        }, attrs));
         this.eventProvider.removeAddedEvents();
         this.addProxyEventsToButton(this.buttonElement, target.click);
         this.refreshPosition();
@@ -189,12 +195,14 @@ var ProxyElement = /** @class */ (function () {
         var posElement = this.target.visual || clickTargetElement;
         var chartDiv = this.chart.renderTo;
         if (chartDiv && posElement && posElement.getBoundingClientRect) {
-            var rectEl = posElement.getBoundingClientRect(), rectDiv = chartDiv.getBoundingClientRect();
+            var rectEl = posElement.getBoundingClientRect(), chartPos = this.chart.pointer.getChartPosition();
             return {
-                x: rectEl.left - rectDiv.left,
-                y: rectEl.top - rectDiv.top,
-                width: rectEl.right - rectEl.left,
-                height: rectEl.bottom - rectEl.top
+                x: (rectEl.left - chartPos.left) / chartPos.scaleX,
+                y: (rectEl.top - chartPos.top) / chartPos.scaleY,
+                width: rectEl.right / chartPos.scaleX -
+                    rectEl.left / chartPos.scaleX,
+                height: rectEl.bottom / chartPos.scaleY -
+                    rectEl.top / chartPos.scaleY
             };
         }
         return { x: 0, y: 0, width: 1, height: 1 };

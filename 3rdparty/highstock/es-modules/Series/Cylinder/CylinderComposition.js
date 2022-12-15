@@ -16,7 +16,7 @@ import Color from '../../Core/Color/Color.js';
 var color = Color.parse;
 import H from '../../Core/Globals.js';
 var charts = H.charts, deg2rad = H.deg2rad;
-import Math3D from '../../Extensions/Math3D.js';
+import Math3D from '../../Core/Math3D.js';
 var perspective = Math3D.perspective;
 import RendererRegistry from '../../Core/Renderer/RendererRegistry.js';
 import U from '../../Core/Utilities.js';

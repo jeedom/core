@@ -7,22 +7,24 @@
  *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
  *
  * */
+'use strict';
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import AreaSeries from '../Area/AreaSeries.js';
-import Point from '../../Core/Series/Point.js';
-var pointProto = Point.prototype;
+import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
+var _a = SeriesRegistry.seriesTypes.area.prototype, AreaPoint = _a.pointClass, areaProto = _a.pointClass.prototype;
 import U from '../../Core/Utilities.js';
 var defined = U.defined, isNumber = U.isNumber;
 /* *
@@ -39,13 +41,19 @@ var AreaRangePoint = /** @class */ (function (_super) {
          *
          * */
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        /**
+         * Range series only. The high or maximum value for each data point.
+         * @name Highcharts.Point#high
+         * @type {number|undefined}
+         */
         _this.high = void 0;
+        /**
+         * Range series only. The low or minimum value for each data point.
+         * @name Highcharts.Point#low
+         * @type {number|undefined}
+         */
         _this.low = void 0;
         _this.options = void 0;
-        _this.plotHigh = void 0;
-        _this.plotLow = void 0;
-        _this.plotHighX = void 0;
-        _this.plotLowX = void 0;
         _this.plotX = void 0;
         _this.series = void 0;
         return _this;
@@ -73,18 +81,18 @@ var AreaRangePoint = /** @class */ (function (_super) {
             series.stateMarkerGraphic = series.upperStateMarkerGraphic;
         }
         // Change state also for the top marker
-        this.graphic = this.upperGraphic;
+        this.graphic = this.graphics && this.graphics[1];
         this.plotY = this.plotHigh;
-        if (isPolar) {
+        if (isPolar && isNumber(this.plotHighX)) {
             this.plotX = this.plotHighX;
         }
         // Top state:
-        pointProto.setState.apply(this, arguments);
+        areaProto.setState.apply(this, arguments);
         this.state = prevState;
         // Now restore defaults
         this.plotY = this.plotLow;
-        this.graphic = this.lowerGraphic;
-        if (isPolar) {
+        this.graphic = this.graphics && this.graphics[0];
+        if (isPolar && isNumber(this.plotLowX)) {
             this.plotX = this.plotLowX;
         }
         if (series.stateMarkerGraphic) {
@@ -94,25 +102,26 @@ var AreaRangePoint = /** @class */ (function (_super) {
             // to avoid reference duplication (#7021)
             series.lowerStateMarkerGraphic = void 0;
         }
-        pointProto.setState.apply(this, arguments);
+        areaProto.setState.apply(this, arguments);
     };
     AreaRangePoint.prototype.haloPath = function () {
-        var isPolar = this.series.chart.polar, path = [];
+        var isPolar = this.series.chart.polar;
+        var path = [];
         // Bottom halo
         this.plotY = this.plotLow;
-        if (isPolar) {
+        if (isPolar && isNumber(this.plotLowX)) {
             this.plotX = this.plotLowX;
         }
         if (this.isInside) {
-            path = pointProto.haloPath.apply(this, arguments);
+            path = areaProto.haloPath.apply(this, arguments);
         }
         // Top halo
         this.plotY = this.plotHigh;
-        if (isPolar) {
+        if (isPolar && isNumber(this.plotHighX)) {
             this.plotX = this.plotHighX;
         }
         if (this.isTopInside) {
-            path = path.concat(pointProto.haloPath.apply(this, arguments));
+            path = path.concat(areaProto.haloPath.apply(this, arguments));
         }
         return path;
     };
@@ -120,10 +129,10 @@ var AreaRangePoint = /** @class */ (function (_super) {
         return isNumber(this.low) && isNumber(this.high);
     };
     return AreaRangePoint;
-}(AreaSeries.prototype.pointClass));
+}(AreaPoint));
 /* *
  *
- *  Default export
+ *  Default Export
  *
  * */
 export default AreaRangePoint;

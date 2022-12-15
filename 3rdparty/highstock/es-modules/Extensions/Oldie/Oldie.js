@@ -13,10 +13,10 @@
 import Chart from '../../Core/Chart/Chart.js';
 import Color from '../../Core/Color/Color.js';
 var color = Color.parse;
+import D from '../../Core/Defaults.js';
+var getOptions = D.getOptions;
 import H from '../../Core/Globals.js';
 var deg2rad = H.deg2rad, doc = H.doc, noop = H.noop, svg = H.svg, win = H.win;
-import D from '../../Core/DefaultOptions.js';
-var getOptions = D.getOptions;
 import Pointer from '../../Core/Pointer.js';
 import RendererRegistry from '../../Core/Renderer/RendererRegistry.js';
 import SVGElement from '../../Core/Renderer/SVG/SVGElement.js';
@@ -36,7 +36,7 @@ var VMLRenderer, VMLElement;
  * @apioption global.VMLRadialGradientURL
  */
 getOptions().global.VMLRadialGradientURL =
-    'http://code.highcharts.com/9.3.2/gfx/vml-radial-gradient.png';
+    'http://code.highcharts.com/10.3.2/gfx/vml-radial-gradient.png';
 // Utilites
 if (doc && !doc.defaultView) {
     H.getStyle = U.getStyle = function getStyle(el, prop) {
@@ -498,7 +498,7 @@ if (!svg) {
                     // apply the opacity
                     markup = [
                         '<stroke color="',
-                        shadowOptions.color || "#000000" /* neutralColor100 */,
+                        shadowOptions.color || "#000000" /* Palette.neutralColor100 */,
                         '" opacity="', shadowElementOpacity * i, '"/>'
                     ];
                     createElement(renderer.prepVML(markup), null, null, shadow);

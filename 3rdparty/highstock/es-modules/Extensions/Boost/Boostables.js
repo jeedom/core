@@ -9,9 +9,16 @@
  *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
  *
  * */
+'use strict';
+/* *
+ *
+ *  Constants
+ *
+ * */
 // These are the series we allow boosting for.
-var boostables = [
+var Boostables = [
     'area',
+    'areaspline',
     'arearange',
     'column',
     'columnrange',
@@ -22,4 +29,9 @@ var boostables = [
     'bubble',
     'treemap'
 ];
-export default boostables;
+/* *
+ *
+ *  Default Export
+ *
+ * */
+export default Boostables;

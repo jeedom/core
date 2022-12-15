@@ -37,6 +37,7 @@
 
 - **Core** : Début du développement en pure js, sans jQuery. Voir [doc dev](https://doc.jeedom.com/fr_FR/dev/core4.4).
 - **Core** : Listing plus détaillé des périphériques USB.
+- **Lib** : Update Font Highchart v9.3.2 vers v10.3.2 (Le module *solid-gauge* n'est plus importé).
 
 ### 4.4 : Notes
 

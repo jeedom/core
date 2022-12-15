@@ -411,7 +411,7 @@ var AxisResizer = /** @class */ (function () {
              * @type     {Highcharts.ColorString}
              * @requires modules/drag-panes
              */
-            lineColor: "#cccccc" /* neutralColor20 */,
+            lineColor: "#cccccc" /* Palette.neutralColor20 */,
             /**
              * Dash style of the control line.
              *

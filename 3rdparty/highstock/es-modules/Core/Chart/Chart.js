@@ -11,6 +11,8 @@
 import A from '../Animation/AnimationUtilities.js';
 var animate = A.animate, animObject = A.animObject, setAnimation = A.setAnimation;
 import Axis from '../Axis/Axis.js';
+import D from '../Defaults.js';
+var defaultOptions = D.defaultOptions, defaultTime = D.defaultTime;
 import FormatUtilities from '../FormatUtilities.js';
 var numberFormat = FormatUtilities.numberFormat;
 import Foundation from '../Foundation.js';
@@ -19,8 +21,6 @@ import H from '../Globals.js';
 var charts = H.charts, doc = H.doc, marginNames = H.marginNames, svg = H.svg, win = H.win;
 import Legend from '../Legend/Legend.js';
 import MSPointer from '../MSPointer.js';
-import D from '../DefaultOptions.js';
-var defaultOptions = D.defaultOptions, defaultTime = D.defaultTime;
 import Pointer from '../Pointer.js';
 import RendererRegistry from '../Renderer/RendererRegistry.js';
 import SeriesRegistry from '../Series/SeriesRegistry.js';
@@ -29,7 +29,7 @@ import SVGRenderer from '../Renderer/SVG/SVGRenderer.js';
 import Time from '../Time.js';
 import U from '../Utilities.js';
 import AST from '../Renderer/HTML/AST.js';
-var addEvent = U.addEvent, attr = U.attr, cleanRecursively = U.cleanRecursively, createElement = U.createElement, css = U.css, defined = U.defined, discardElement = U.discardElement, erase = U.erase, error = U.error, extend = U.extend, find = U.find, fireEvent = U.fireEvent, getStyle = U.getStyle, isArray = U.isArray, isFunction = U.isFunction, isNumber = U.isNumber, isObject = U.isObject, isString = U.isString, merge = U.merge, objectEach = U.objectEach, pick = U.pick, pInt = U.pInt, relativeLength = U.relativeLength, removeEvent = U.removeEvent, splat = U.splat, syncTimeout = U.syncTimeout, uniqueKey = U.uniqueKey;
+var addEvent = U.addEvent, attr = U.attr, cleanRecursively = U.cleanRecursively, createElement = U.createElement, css = U.css, defined = U.defined, discardElement = U.discardElement, erase = U.erase, error = U.error, extend = U.extend, find = U.find, fireEvent = U.fireEvent, getStyle = U.getStyle, isArray = U.isArray, isNumber = U.isNumber, isObject = U.isObject, isString = U.isString, merge = U.merge, objectEach = U.objectEach, pick = U.pick, pInt = U.pInt, relativeLength = U.relativeLength, removeEvent = U.removeEvent, splat = U.splat, syncTimeout = U.syncTimeout, uniqueKey = U.uniqueKey;
 /* *
  *
  *  Class
@@ -219,6 +219,15 @@ var Chart = /** @class */ (function () {
             this.labelCollectors = [];
             this.callback = callback;
             this.isResizing = 0;
+            var zooming = optionsChart.zooming = optionsChart.zooming || {};
+            // Other options have no default so just pick
+            if (userOptions.chart && !userOptions.chart.zooming) {
+                zooming.resetButton = optionsChart.resetZoomButton;
+            }
+            zooming.key = pick(zooming.key, optionsChart.zoomKey);
+            zooming.pinchType = pick(zooming.pinchType, optionsChart.pinchType);
+            zooming.singleTouch = pick(zooming.singleTouch, optionsChart.zoomBySingleTouch);
+            zooming.type = pick(zooming.type, optionsChart.zoomType);
             /**
              * The options structure for the chart after merging
              * {@link #defaultOptions} and {@link #userOptions}. It contains
@@ -417,10 +426,12 @@ var Chart = /** @class */ (function () {
         var series = options.series, box = (options.visiblePlotOnly && scrollablePlotBox) || plotBox, x = options.inverted ? plotY : plotX, y = options.inverted ? plotX : plotY, e = {
             x: x,
             y: y,
-            isInsidePlot: true
+            isInsidePlot: true,
+            options: options
         };
         if (!options.ignoreX) {
-            var xAxis = (series && (inverted ? series.yAxis : series.xAxis)) || {
+            var xAxis = (series &&
+                (inverted && !this.polar ? series.yAxis : series.xAxis)) || {
                 pos: plotLeft,
                 len: Infinity
             };
@@ -432,7 +443,7 @@ var Chart = /** @class */ (function () {
             }
         }
         if (!options.ignoreY && e.isInsidePlot) {
-            var yAxis = (series && (inverted ? series.xAxis : series.yAxis)) || {
+            var yAxis = (options.axis && !options.axis.isXAxis && options.axis) || (series && (inverted ? series.xAxis : series.yAxis)) || {
                 pos: plotTop,
                 len: Infinity
             };
@@ -747,10 +758,10 @@ var Chart = /** @class */ (function () {
         var chart = this;
         // Default style
         var style = name === 'title' ? {
-            color: "#333333" /* neutralColor80 */,
+            color: "#333333" /* Palette.neutralColor80 */,
             fontSize: this.options.isStock ? '16px' : '18px' // #2944
         } : {
-            color: "#666666" /* neutralColor60 */
+            color: "#666666" /* Palette.neutralColor60 */
         };
         // Merge default options with explicit options
         var options = this.options[name] = merge(
@@ -1943,8 +1954,31 @@ var Chart = /** @class */ (function () {
         if (defined(this.index)) {
             this.setReflow(this.options.chart.reflow);
         }
+        this.warnIfA11yModuleNotLoaded();
         // Don't run again
         this.hasLoaded = true;
+    };
+    /**
+     * Emit console warning if the a11y module is not loaded.
+     */
+    Chart.prototype.warnIfA11yModuleNotLoaded = function () {
+        var _a = this, options = _a.options, title = _a.title;
+        if (options && !this.accessibility) {
+            // Make chart behave as an image with the title as alt text
+            this.renderer.boxWrapper.attr({
+                role: 'img',
+                'aria-label': ((title && title.element.textContent) || ''
+                // #17753, < is not allowed in SVG attributes
+                ).replace(/</g, '&lt;')
+            });
+            if (!(options.accessibility && options.accessibility.enabled === false)) {
+                error('Highcharts warning: Consider including the ' +
+                    '"accessibility.js" module to make your chart more ' +
+                    'usable for people with disabilities. Set the ' +
+                    '"accessibility.enabled" option to false to remove this ' +
+                    'warning. See https://www.highcharts.com/docs/accessibility/accessibility-module.', false, this);
+            }
+        }
     };
     /**
      * Add a series to the chart after render time. Note that this method should
@@ -2494,7 +2528,7 @@ var Chart = /** @class */ (function () {
      * @emits Highcharts.Chart#event:beforeShowResetZoom
      */
     Chart.prototype.showResetZoom = function () {
-        var chart = this, lang = defaultOptions.lang, btnOptions = chart.options.chart.resetZoomButton, theme = btnOptions.theme, states = theme.states, alignTo = (btnOptions.relativeTo === 'chart' ||
+        var chart = this, lang = defaultOptions.lang, btnOptions = chart.options.chart.zooming.resetButton, theme = btnOptions.theme, alignTo = (btnOptions.relativeTo === 'chart' ||
             btnOptions.relativeTo === 'spacingBox' ?
             null :
             'scrollablePlotBox');
@@ -2506,7 +2540,7 @@ var Chart = /** @class */ (function () {
         }
         fireEvent(this, 'beforeShowResetZoom', null, function () {
             chart.resetZoomButton = chart.renderer
-                .button(lang.resetZoom, null, null, zoomOut, theme, states && states.hover)
+                .button(lang.resetZoom, null, null, zoomOut, theme)
                 .attr({
                 align: btnOptions.position.align,
                 title: lang.resetZoomTitle
@@ -2536,8 +2570,7 @@ var Chart = /** @class */ (function () {
      * @param {Highcharts.SelectEventObject} event
      */
     Chart.prototype.zoom = function (event) {
-        var chart = this, pointer = chart.pointer, mouseDownPos = chart.inverted ?
-            pointer.mouseDownX : pointer.mouseDownY;
+        var chart = this, pointer = chart.pointer;
         var displayButton = false, hasZoomed;
         // If zoom is called with no arguments, reset the axes
         if (!event || event.resetSelection) {
@@ -2548,20 +2581,12 @@ var Chart = /** @class */ (function () {
         }
         else { // else, zoom in on all axes
             event.xAxis.concat(event.yAxis).forEach(function (axisData) {
-                var axis = axisData.axis, axisStartPos = chart.inverted ? axis.left : axis.top, axisEndPos = chart.inverted ?
-                    axisStartPos + axis.width : axisStartPos + axis.height, isXAxis = axis.isXAxis;
-                var isWithinPane = false;
-                // Check if zoomed area is within the pane (#1289).
-                // In case of multiple panes only one pane should be zoomed.
-                if ((!isXAxis &&
-                    mouseDownPos >= axisStartPos &&
-                    mouseDownPos <= axisEndPos) ||
-                    isXAxis ||
-                    !defined(mouseDownPos)) {
-                    isWithinPane = true;
-                }
+                var axis = axisData.axis, isXAxis = axis.isXAxis;
                 // don't zoom more than minRange
-                if (pointer[isXAxis ? 'zoomX' : 'zoomY'] && isWithinPane) {
+                if (pointer[isXAxis ? 'zoomX' : 'zoomY'] &&
+                    (defined(pointer.mouseDownX) &&
+                        defined(pointer.mouseDownY) &&
+                        chart.isInsidePlot(pointer.mouseDownX - chart.plotLeft, pointer.mouseDownY - chart.plotTop, { axis: axis })) || !defined(chart.inverted ? pointer.mouseDownX : pointer.mouseDownY)) {
                     hasZoomed = axis.zoom(axisData.min, axisData.max);
                     if (axis.displayBtn) {
                         displayButton = true;
@@ -2598,8 +2623,7 @@ var Chart = /** @class */ (function () {
             {
                 enabled: panning,
                 type: 'x'
-            }), chartOptions = chart.options.chart, hasMapNavigation = chart.options.mapNavigation &&
-            chart.options.mapNavigation.enabled;
+            }), chartOptions = chart.options.chart;
         if (chartOptions && chartOptions.panning) {
             chartOptions.panning = panningOptions;
         }
@@ -2685,7 +2709,6 @@ var Chart = /** @class */ (function () {
                         newMax <= paddedMax) {
                         axis.setExtremes(newMin, newMax, false, false, { trigger: 'pan' });
                         if (!chart.resetZoomButton &&
-                            !hasMapNavigation &&
                             // Show reset zoom button only when both newMin and
                             // newMax values are between padded axis range.
                             newMin !== paddedMin &&
@@ -2721,6 +2744,8 @@ extend(Chart.prototype, {
      *
      * Note: We need to define these references after initializers are bound to
      * chart's prototype.
+     *
+     * @private
      */
     collectionsWithInit: {
         // collectionName: [ initializingMethod, [extraArguments] ]
@@ -2731,6 +2756,7 @@ extend(Chart.prototype, {
     /**
      * These collections (arrays) implement update() methods with support for
      * one-to-one option.
+     * @private
      */
     collectionsWithUpdate: [
         'xAxis',
@@ -2740,6 +2766,7 @@ extend(Chart.prototype, {
     /**
      * These properties cause isDirtyBox to be set to true when updating. Can be
      * extended from plugins.
+     * @private
      */
     propsRequireDirtyBox: [
         'backgroundColor',
@@ -2756,7 +2783,7 @@ extend(Chart.prototype, {
     /**
      * These properties require a full reflow of chart elements, best
      * implemented through running `Chart.setSize` internally (#8190).
-     * @type {Array}
+     * @private
      */
     propsRequireReflow: [
         'margin',
@@ -2773,6 +2800,7 @@ extend(Chart.prototype, {
     /**
      * These properties cause all series to be updated when updating. Can be
      * extended from plugins.
+     * @private
      */
     propsRequireUpdateSeries: [
         'chart.inverted',
@@ -2888,6 +2916,9 @@ export default Chart;
 /**
  * @interface Highcharts.ChartIsInsideOptionsObject
  */ /**
+* @name Highcharts.ChartIsInsideOptionsObject#axis
+* @type {Highcharts.Axis|undefined}
+*/ /**
 * @name Highcharts.ChartIsInsideOptionsObject#ignoreX
 * @type {boolean|undefined}
 */ /**

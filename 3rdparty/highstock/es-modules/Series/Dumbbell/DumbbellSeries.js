@@ -12,10 +12,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -82,6 +84,9 @@ var DumbbellSeries = /** @class */ (function (_super) {
             seriesOptions.states.hover &&
             seriesOptions.states.hover.connectorWidthPlus, 1), dashStyle = pick(pointOptions.dashStyle, seriesOptions.dashStyle), pointTop = pick(point.plotLow, point.plotY), pxThreshold = yAxis.toPixels(seriesOptions.threshold || 0, true), pointHeight = chart.inverted ?
             yAxis.len - pxThreshold : pxThreshold, pointBottom = pick(point.plotHigh, pointHeight), attribs, origProps;
+        if (typeof pointTop !== 'number') {
+            return {};
+        }
         if (point.state) {
             connectorWidth = connectorWidth + connectorWidthPlus;
         }
@@ -101,7 +106,7 @@ var DumbbellSeries = /** @class */ (function (_super) {
             connectorWidth = 0;
         }
         // Connector should reflect upper marker's zone color
-        if (point.upperGraphic) {
+        if (point.graphics && point.graphics[1]) {
             origProps = {
                 y: point.y,
                 zone: point.zone
@@ -210,21 +215,22 @@ var DumbbellSeries = /** @class */ (function (_super) {
         // Draw connectors and color upper markers
         while (i < pointLength) {
             point = series.points[i];
+            var _a = point.graphics || [], lowerGraphic = _a[0], upperGraphic = _a[1];
             series.drawConnector(point);
-            if (point.upperGraphic) {
-                point.upperGraphic.element.point = point;
-                point.upperGraphic.addClass('highcharts-lollipop-high');
+            if (upperGraphic) {
+                upperGraphic.element.point = point;
+                upperGraphic.addClass('highcharts-lollipop-high');
             }
             point.connector.element.point = point;
-            if (point.lowerGraphic) {
+            if (lowerGraphic) {
                 zoneColor = point.zone && point.zone.color;
                 lowerGraphicColor = pick(point.options.lowColor, seriesLowColor, point.options.color, zoneColor, point.color, series.color);
                 if (!chart.styledMode) {
-                    point.lowerGraphic.attr({
+                    lowerGraphic.attr({
                         fill: lowerGraphicColor
                     });
                 }
-                point.lowerGraphic.addClass('highcharts-lollipop-low');
+                lowerGraphic.addClass('highcharts-lollipop-low');
             }
             i++;
         }
@@ -316,7 +322,7 @@ var DumbbellSeries = /** @class */ (function (_super) {
          * @since 8.0.0
          * @product   highcharts highstock
          */
-        lowColor: "#333333" /* neutralColor80 */,
+        lowColor: "#333333" /* Palette.neutralColor80 */,
         /**
          * Color of the line that connects the dumbbell point's values.
          * By default it is the series' color.

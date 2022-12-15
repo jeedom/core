@@ -9,10 +9,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -22,7 +24,11 @@ import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
 var SMAIndicator = SeriesRegistry.seriesTypes.sma;
 import U from '../../../Core/Utilities.js';
 var isArray = U.isArray, merge = U.merge;
-/* eslint-disable valid-jsdoc */
+/* *
+ *
+ *  Functions
+ *
+ * */
 // Utils:
 /**
  * @private
@@ -42,10 +48,9 @@ function meanDeviation(arr, sma) {
     }
     return sum;
 }
-/* eslint-enable valid-jsdoc */
 /* *
  *
- * Class
+ *  Class
  *
  * */
 /**
@@ -60,6 +65,11 @@ function meanDeviation(arr, sma) {
 var CCIIndicator = /** @class */ (function (_super) {
     __extends(CCIIndicator, _super);
     function CCIIndicator() {
+        /* *
+         *
+         *  Static Properties
+         *
+         * */
         var _this = _super !== null && _super.apply(this, arguments) || this;
         /* *
          *
@@ -139,6 +149,11 @@ SeriesRegistry.registerSeriesType('cci', CCIIndicator);
  *
  * */
 export default CCIIndicator;
+/* *
+ *
+ *  API Options
+ *
+ * */
 /**
  * A `CCI` series. If the [type](#series.cci.type) option is not
  * specified, it is inherited from [chart.type](#chart.type).

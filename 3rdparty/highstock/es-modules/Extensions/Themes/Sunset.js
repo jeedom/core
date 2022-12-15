@@ -13,7 +13,7 @@
  *
  * */
 'use strict';
-import D from '../../Core/DefaultOptions.js';
+import D from '../../Core/Defaults.js';
 var setOptions = D.setOptions;
 /* *
  *

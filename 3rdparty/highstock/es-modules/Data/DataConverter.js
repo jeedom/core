@@ -207,7 +207,7 @@ var DataConverter = /** @class */ (function () {
      * Converted value as a string.
      */
     DataConverter.prototype.asString = function (value) {
-        return "" + value;
+        return "".concat(value);
     };
     /**
      * Trim a string from whitespaces.
@@ -466,6 +466,11 @@ var DataConverter = /** @class */ (function () {
         }
         return format;
     };
+    /* *
+     *
+     *  Static Properties
+     *
+     * */
     /**
      * Default options
      */

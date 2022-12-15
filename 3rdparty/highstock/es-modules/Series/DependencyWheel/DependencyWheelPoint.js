@@ -14,10 +14,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -26,7 +28,7 @@ var __extends = (this && this.__extends) || (function () {
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var SankeyPoint = SeriesRegistry.seriesTypes.sankey.prototype.pointClass;
 import U from '../../Core/Utilities.js';
-var extend = U.extend;
+var wrap = U.wrap;
 /* *
  *
  *  Class
@@ -64,18 +66,30 @@ var DependencyWheelPoint = /** @class */ (function (_super) {
      * @private
      */
     DependencyWheelPoint.prototype.getDataLabelPath = function (label) {
+        var _this = this;
         var renderer = this.series.chart.renderer, shapeArgs = this.shapeArgs, upperHalf = this.angle < 0 || this.angle > Math.PI, start = shapeArgs.start || 0, end = shapeArgs.end || 0;
+        // First time
         if (!this.dataLabelPath) {
-            this.dataLabelPath = renderer
-                .arc({
-                open: true,
-                longArc: Math.abs(Math.abs(start) - Math.abs(end)) < Math.PI ? 0 : 1
-            })
-                // Add it inside the data label group so it gets destroyed
-                // with the label
-                .add(label);
+            // Destroy the path with the label
+            wrap(label, 'destroy', function (proceed) {
+                if (_this.dataLabelPath) {
+                    _this.dataLabelPath = _this.dataLabelPath.destroy();
+                }
+                return proceed.call(label);
+            });
+            // Subsequent times
         }
-        this.dataLabelPath.attr({
+        else {
+            this.dataLabelPath = this.dataLabelPath.destroy();
+            delete this.dataLabelPath;
+        }
+        // All times
+        this.dataLabelPath = renderer
+            .arc({
+            open: true,
+            longArc: Math.abs(Math.abs(start) - Math.abs(end)) < Math.PI ? 0 : 1
+        })
+            .attr({
             x: shapeArgs.x,
             y: shapeArgs.y,
             r: (shapeArgs.r +
@@ -83,7 +97,8 @@ var DependencyWheelPoint = /** @class */ (function (_super) {
             start: (upperHalf ? start : end),
             end: (upperHalf ? end : start),
             clockwise: +upperHalf
-        });
+        })
+            .add(renderer.defs);
         return this.dataLabelPath;
     };
     DependencyWheelPoint.prototype.isValid = function () {

@@ -12,10 +12,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -91,7 +93,9 @@ var AreaSeries = /** @class */ (function (_super) {
             ]);
         });
         props.forEach(function (prop) {
-            var areaKey = prop[0], area = series[areaKey], verb = area ? 'animate' : 'attr', attribs = {};
+            var areaKey = prop[0], attribs = {};
+            var area = series[areaKey];
+            var verb = area ? 'animate' : 'attr';
             // Create or update the area
             if (area) { // update
                 area.endX = series.preventGraphAnimation ?
@@ -121,15 +125,16 @@ var AreaSeries = /** @class */ (function (_super) {
      * @private
      */
     AreaSeries.prototype.getGraphPath = function (points) {
-        var getGraphPath = LineSeries.prototype.getGraphPath, graphPath, options = this.options, stacking = options.stacking, yAxis = this.yAxis, topPath, bottomPath, bottomPoints = [], graphPoints = [], seriesIndex = this.index, i, areaPath, plotX, stacks = yAxis.stacking.stacks[this.stackKey], threshold = options.threshold, translatedThreshold = Math.round(// #10909
-        yAxis.getThreshold(options.threshold)), isNull, yBottom, connectNulls = pick(// #10574
+        var getGraphPath = LineSeries.prototype.getGraphPath, options = this.options, stacking = options.stacking, yAxis = this.yAxis, bottomPoints = [], graphPoints = [], seriesIndex = this.index, stacks = yAxis.stacking.stacks[this.stackKey], threshold = options.threshold, translatedThreshold = Math.round(// #10909
+        yAxis.getThreshold(options.threshold)), connectNulls = pick(// #10574
         options.connectNulls, stacking === 'percent'), 
         // To display null points in underlying stacked series, this
         // series graph must be broken, and the area also fall down to
         // fill the gap left by the null point. #2069
         addDummyPoints = function (i, otherI, side) {
             var point = points[i], stackedValues = stacking &&
-                stacks[point.x].points[seriesIndex], nullVal = point[side + 'Null'] || 0, cliffVal = point[side + 'Cliff'] || 0, top, bottom, isNull = true;
+                stacks[point.x].points[seriesIndex], nullVal = point[side + 'Null'] || 0, cliffVal = point[side + 'Cliff'] || 0;
+            var top, bottom, isNull = true;
             if (cliffVal || nullVal) {
                 top = (nullVal ?
                     stackedValues[0] :
@@ -161,13 +166,14 @@ var AreaSeries = /** @class */ (function (_super) {
                 });
             }
         };
+        var plotX, isNull, yBottom;
         // Find what points to use
         points = points || this.points;
         // Fill in missing points
         if (stacking) {
             points = this.getStackPoints(points);
         }
-        for (i = 0; i < points.length; i++) {
+        for (var i = 0, iEnd = points.length; i < iEnd; ++i) {
             // Reset after series.update of stacking property (#12033)
             if (!stacking) {
                 points[i].leftCliff = points[i].rightCliff =
@@ -197,19 +203,19 @@ var AreaSeries = /** @class */ (function (_super) {
                 }
             }
         }
-        topPath = getGraphPath.call(this, graphPoints, true, true);
+        var topPath = getGraphPath.call(this, graphPoints, true, true);
         bottomPoints.reversed = true;
-        bottomPath = getGraphPath.call(this, bottomPoints, true, true);
+        var bottomPath = getGraphPath.call(this, bottomPoints, true, true);
         var firstBottomPoint = bottomPath[0];
         if (firstBottomPoint && firstBottomPoint[0] === 'M') {
             bottomPath[0] = ['L', firstBottomPoint[1], firstBottomPoint[2]];
         }
-        areaPath = topPath.concat(bottomPath);
+        var areaPath = topPath.concat(bottomPath);
         if (areaPath.length) {
             areaPath.push(['Z']);
         }
         // TODO: don't set leftCliff and rightCliff when connectNulls?
-        graphPath = getGraphPath
+        var graphPath = getGraphPath
             .call(this, graphPoints, false, connectNulls);
         areaPath.xMap = topPath.xMap;
         this.areaPath = areaPath;
@@ -255,7 +261,8 @@ var AreaSeries = /** @class */ (function (_super) {
                             'rightNull' :
                             'leftNull', cliffName = direction === 1 ?
                             'rightCliff' :
-                            'leftCliff', cliff = 0, otherStack = stack[keys[idx + direction]];
+                            'leftCliff', otherStack = stack[keys[idx + direction]];
+                        var cliff = 0;
                         // If there is a stack next to this one,
                         // to the left or to the right...
                         if (otherStack) {
@@ -362,7 +369,7 @@ var AreaSeries = /** @class */ (function (_super) {
          * @sample {highcharts} highcharts/plotoptions/area-fillcolor-gradient/
          *         Gradient
          *
-         * @type      {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
+         * @type {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
          * @product   highcharts highstock
          * @apioption plotOptions.area.fillColor
          */
@@ -399,7 +406,7 @@ var AreaSeries = /** @class */ (function (_super) {
          * @sample {highcharts} highcharts/plotoptions/area-linecolor/
          *         Dark gray line
          *
-         * @type      {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
+         * @type {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
          * @product   highcharts highstock
          * @apioption plotOptions.area.lineColor
          */
@@ -414,7 +421,7 @@ var AreaSeries = /** @class */ (function (_super) {
          * @sample {highcharts} highcharts/css/series-negative-color/
          *         Negative color in styled mode
          *
-         * @type      {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
+         * @type {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
          * @since     3.0
          * @product   highcharts
          * @apioption plotOptions.area.negativeFillColor

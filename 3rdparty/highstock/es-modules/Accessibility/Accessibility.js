@@ -10,12 +10,14 @@
  *
  * */
 'use strict';
-import D from '../Core/DefaultOptions.js';
+import D from '../Core/Defaults.js';
 var defaultOptions = D.defaultOptions;
 import H from '../Core/Globals.js';
 var doc = H.doc;
 import U from '../Core/Utilities.js';
 var addEvent = U.addEvent, extend = U.extend, fireEvent = U.fireEvent, merge = U.merge;
+import HU from './Utils/HTMLUtilities.js';
+var removeElement = HU.removeElement;
 import A11yI18n from './A11yI18n.js';
 import ContainerComponent from './Components/ContainerComponent.js';
 import FocusBorder from './FocusBorder.js';
@@ -30,8 +32,8 @@ import SeriesComponent from './Components/SeriesComponent/SeriesComponent.js';
 import ZoomComponent from './Components/ZoomComponent.js';
 import whcm from './HighContrastMode.js';
 import highContrastTheme from './HighContrastTheme.js';
-import defaultOptionsA11Y from './Options/Options.js';
-import defaultLangOptions from './Options/LangOptions.js';
+import defaultOptionsA11Y from './Options/A11yDefaults.js';
+import defaultLangOptions from './Options/LangDefaults.js';
 import copyDeprecatedOptions from './Options/DeprecatedOptions.js';
 /* *
  *
@@ -184,6 +186,10 @@ var Accessibility = /** @class */ (function () {
         if (this.proxyProvider) {
             this.proxyProvider.destroy();
         }
+        // Remove announcer container
+        if (chart.announcerContainer) {
+            removeElement(chart.announcerContainer);
+        }
         // Kill keyboard nav
         if (this.keyboardNavigation) {
             this.keyboardNavigation.destroy();
@@ -317,14 +323,13 @@ var Accessibility = /** @class */ (function () {
     /**
      * @private
      */
-    function compose(AxisClass, ChartClass, LegendClass, PointClass, SeriesClass, SVGElementClass, RangeSelectorClass) {
+    function compose(ChartClass, LegendClass, PointClass, SeriesClass, SVGElementClass, RangeSelectorClass) {
         // ordered:
         KeyboardNavigation.compose(ChartClass);
         NewDataAnnouncer.compose(SeriesClass);
         LegendComponent.compose(ChartClass, LegendClass);
         MenuComponent.compose(ChartClass);
         SeriesComponent.compose(ChartClass, PointClass, SeriesClass);
-        ZoomComponent.compose(AxisClass);
         // RangeSelector
         A11yI18n.compose(ChartClass);
         FocusBorder.compose(ChartClass, SVGElementClass);
@@ -345,7 +350,7 @@ var Accessibility = /** @class */ (function () {
                 });
             });
             // Direct updates (events happen after render)
-            ['afterDrilldown', 'drillupall'].forEach(function (event) {
+            ['afterApplyDrilldown', 'drillupall'].forEach(function (event) {
                 addEvent(ChartClass, event, function chartOnAfterDrilldown() {
                     var a11y = this.accessibility;
                     if (a11y && !a11y.zombie) {

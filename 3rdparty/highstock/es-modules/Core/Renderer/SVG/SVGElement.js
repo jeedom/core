@@ -10,12 +10,11 @@
 'use strict';
 import A from '../../Animation/AnimationUtilities.js';
 var animate = A.animate, animObject = A.animObject, stop = A.stop;
-import AST from '../HTML/AST.js';
 import Color from '../../Color/Color.js';
 import H from '../../Globals.js';
 var deg2rad = H.deg2rad, doc = H.doc, noop = H.noop, svg = H.svg, SVG_NS = H.SVG_NS, win = H.win;
 import U from '../../Utilities.js';
-var addEvent = U.addEvent, attr = U.attr, createElement = U.createElement, css = U.css, defined = U.defined, erase = U.erase, extend = U.extend, fireEvent = U.fireEvent, isArray = U.isArray, isFunction = U.isFunction, isNumber = U.isNumber, isString = U.isString, merge = U.merge, objectEach = U.objectEach, pick = U.pick, pInt = U.pInt, syncTimeout = U.syncTimeout, uniqueKey = U.uniqueKey;
+var addEvent = U.addEvent, attr = U.attr, createElement = U.createElement, css = U.css, defined = U.defined, erase = U.erase, extend = U.extend, fireEvent = U.fireEvent, isArray = U.isArray, isFunction = U.isFunction, isNumber = U.isNumber, isString = U.isString, merge = U.merge, objectEach = U.objectEach, pick = U.pick, pInt = U.pInt, removeEvent = U.removeEvent, syncTimeout = U.syncTimeout, uniqueKey = U.uniqueKey;
 /* *
  *
  *  Class
@@ -135,8 +134,6 @@ var SVGElement = /** @class */ (function () {
         if (parent) {
             this.parentGroup = parent;
         }
-        // Mark as inverted
-        this.parentInverted = parent && parent.inverted;
         // Build formatted text
         if (typeof this.textStr !== 'undefined' &&
             this.element.nodeName === 'text' // Not for SVGLabel instances
@@ -351,7 +348,7 @@ var SVGElement = /** @class */ (function () {
             }, deferTime);
         }
         else {
-            this.attr(params, void 0, complete);
+            this.attr(params, void 0, complete || animOptions.complete);
             // Call the end step synchronously
             objectEach(params, function (val, prop) {
                 if (animOptions.step) {
@@ -396,9 +393,6 @@ var SVGElement = /** @class */ (function () {
         var strokeWidth = parts[0];
         if (strokeWidth && strokeWidth !== 'none' && H.svg) {
             this.fakeTS = true; // Fake text shadow
-            // In order to get the right y position of the clone,
-            // copy over the y setter
-            this.ySetter = this.xSetter;
             // Since the stroke is applied on center of the actual outline, we
             // need to double it to get the correct stroke-width outside the
             // glyphs.
@@ -417,27 +411,32 @@ var SVGElement = /** @class */ (function () {
             });
             // For each of the tspans and text nodes, create a copy in the
             // outline.
-            [].forEach.call(elem.childNodes, function (childNode) {
+            var parentElem = elem.querySelector('textPath') || elem;
+            [].forEach.call(parentElem.childNodes, function (childNode) {
                 var clone = childNode.cloneNode(true);
                 if (clone.removeAttribute) {
-                    ['fill', 'stroke', 'stroke-width', 'stroke'].forEach(function (prop) { return clone.removeAttribute(prop); });
+                    ['fill', 'stroke', 'stroke-width', 'stroke'].forEach(function (prop) { return clone
+                        .removeAttribute(prop); });
                 }
                 outline_1.appendChild(clone);
             });
+            // Collect the sum of dy from all children, included nested ones
+            var totalHeight_1 = 0;
+            [].forEach.call(parentElem.querySelectorAll('text tspan'), function (element) {
+                totalHeight_1 += Number(element.getAttribute('dy'));
+            });
             // Insert an absolutely positioned break before the original text
             // to keep it in place
-            var br_1 = doc.createElementNS(SVG_NS, 'tspan');
-            br_1.textContent = '\u200B';
-            // Copy x and y if not null
-            ['x', 'y'].forEach(function (key) {
-                var value = elem.getAttribute(key);
-                if (value) {
-                    br_1.setAttribute(key, value);
-                }
+            var br = doc.createElementNS(SVG_NS, 'tspan');
+            br.textContent = '\u200B';
+            // Reset the position for the following text
+            attr(br, {
+                x: Number(elem.getAttribute('x')),
+                dy: -totalHeight_1
             });
             // Insert the outline
-            outline_1.appendChild(br_1);
-            elem.insertBefore(outline_1, elem.firstChild);
+            outline_1.appendChild(br);
+            parentElem.insertBefore(outline_1, parentElem.firstChild);
         }
     };
     /**
@@ -731,22 +730,17 @@ var SVGElement = /** @class */ (function () {
      *         Return the SVG element for chaining.
      */
     SVGElement.prototype.css = function (styles) {
-        var oldStyles = this.styles, newStyles = {}, elem = this.element, 
-        // These CSS properties are interpreted internally by the SVG
-        // renderer, but are not supported by SVG and should not be added to
-        // the DOM. In styled mode, no CSS should find its way to the DOM
-        // whatsoever (#6173, #6474).
-        svgPseudoProps = ['textOutline', 'textOverflow', 'width'];
-        var textWidth, serializedCss = '', hyphenate, hasNew = !oldStyles;
+        var oldStyles = this.styles, newStyles = {}, elem = this.element;
+        var textWidth, hasNew = !oldStyles;
         // convert legacy
-        if (styles && styles.color) {
+        if (styles.color) {
             styles.fill = styles.color;
         }
         // Filter out existing styles to increase performance (#2640)
         if (oldStyles) {
-            objectEach(styles, function (style, n) {
-                if (oldStyles && oldStyles[n] !== style) {
-                    newStyles[n] = style;
+            objectEach(styles, function (value, n) {
+                if (oldStyles && oldStyles[n] !== value) {
+                    newStyles[n] = value;
                     hasNew = true;
                 }
             });
@@ -757,41 +751,30 @@ var SVGElement = /** @class */ (function () {
                 styles = extend(oldStyles, newStyles);
             }
             // Get the text width from style
-            if (styles) {
-                // Previously set, unset it (#8234)
-                if (styles.width === null || styles.width === 'auto') {
-                    delete this.textWidth;
-                    // Apply new
-                }
-                else if (elem.nodeName.toLowerCase() === 'text' &&
-                    styles.width) {
-                    textWidth = this.textWidth = pInt(styles.width);
-                }
+            // Previously set, unset it (#8234)
+            if (styles.width === null || styles.width === 'auto') {
+                delete this.textWidth;
+                // Apply new
+            }
+            else if (elem.nodeName.toLowerCase() === 'text' &&
+                styles.width) {
+                textWidth = this.textWidth = pInt(styles.width);
             }
             // store object
             this.styles = styles;
             if (textWidth && (!svg && this.renderer.forExport)) {
                 delete styles.width;
             }
-            // Serialize and set style attribute
-            if (elem.namespaceURI === this.SVG_NS) { // #7633
-                hyphenate = function (a, b) {
-                    return '-' + b.toLowerCase();
-                };
-                objectEach(styles, function (style, n) {
-                    if (svgPseudoProps.indexOf(n) === -1) {
-                        serializedCss +=
-                            n.replace(/([A-Z])/g, hyphenate) + ':' +
-                                style + ';';
-                    }
-                });
-                if (serializedCss) {
-                    attr(elem, 'style', serializedCss); // #1881
-                }
+            var stylesToApply_1 = merge(styles);
+            if (elem.namespaceURI === this.SVG_NS) {
+                // These CSS properties are interpreted internally by the SVG
+                // renderer, but are not supported by SVG and should not be
+                // added to the DOM. In styled mode, no CSS should find its way
+                // to the DOM whatsoever (#6173, #6474).
+                ['textOutline', 'textOverflow', 'width'].forEach(function (key) { return (stylesToApply_1 &&
+                    delete stylesToApply_1[key]); });
             }
-            else {
-                css(elem, styles);
-            }
+            css(elem, stylesToApply_1);
             if (this.added) {
                 // Rebuild text after added. Cache mechanisms in the buildText
                 // will prevent building if there are no significant changes.
@@ -799,7 +782,7 @@ var SVGElement = /** @class */ (function () {
                     this.renderer.buildText(this);
                 }
                 // Apply text outline after added
-                if (styles && styles.textOutline) {
+                if (styles.textOutline) {
                     this.applyTextOutline(styles.textOutline);
                 }
             }
@@ -920,42 +903,6 @@ var SVGElement = /** @class */ (function () {
     };
     /**
      * @private
-     */
-    SVGElement.prototype.destroyTextPath = function (elem, path) {
-        var textElement = elem.getElementsByTagName('text')[0];
-        var childNodes;
-        if (textElement) {
-            // Remove textPath attributes
-            textElement.removeAttribute('dx');
-            textElement.removeAttribute('dy');
-            // Remove ID's:
-            path.element.setAttribute('id', '');
-            // Check if textElement includes textPath,
-            if (this.textPathWrapper &&
-                textElement.getElementsByTagName('textPath').length) {
-                // Move nodes to <text>
-                childNodes = this.textPathWrapper.element.childNodes;
-                // Now move all <tspan>'s and text nodes to the <textPath> node
-                while (childNodes.length) {
-                    textElement.appendChild(childNodes[0]);
-                }
-                // Remove <textPath> from the DOM
-                textElement.removeChild(this.textPathWrapper.element);
-            }
-        }
-        else if (elem.getAttribute('dx') || elem.getAttribute('dy')) {
-            // Remove textPath attributes from elem
-            // to get correct text-outline position
-            elem.removeAttribute('dx');
-            elem.removeAttribute('dy');
-        }
-        if (this.textPathWrapper) {
-            // Set textPathWrapper to undefined and destroy it
-            this.textPathWrapper = this.textPathWrapper.destroy();
-        }
-    };
-    /**
-     * @private
      * @function Highcharts.SVGElement#dSettter
      * @param {number|string|Highcharts.SVGPathArray} value
      * @param {string} key
@@ -1004,7 +951,7 @@ var SVGElement = /** @class */ (function () {
             duration: pick(duration, 150),
             complete: function () {
                 // #3088, assuming we're only using this for tooltips
-                elemWrapper.attr({ y: -9999 }).hide();
+                elemWrapper.hide();
             }
         });
     };
@@ -1048,10 +995,9 @@ var SVGElement = /** @class */ (function () {
      *         The bounding box with `x`, `y`, `width` and `height` properties.
      */
     SVGElement.prototype.getBBox = function (reload, rot) {
-        var wrapper = this, renderer = wrapper.renderer, element = wrapper.element, styles = wrapper.styles, textStr = wrapper.textStr, cache = renderer.cache, cacheKeys = renderer.cacheKeys, isSVG = element.namespaceURI === wrapper.SVG_NS, rotation = pick(rot, wrapper.rotation, 0), fontSize = renderer.styledMode ? (element &&
+        var wrapper = this, alignValue = wrapper.alignValue, element = wrapper.element, renderer = wrapper.renderer, styles = wrapper.styles, textStr = wrapper.textStr, cache = renderer.cache, cacheKeys = renderer.cacheKeys, isSVG = element.namespaceURI === wrapper.SVG_NS, rotation = pick(rot, wrapper.rotation, 0), fontSize = renderer.styledMode ? (element &&
             SVGElement.prototype.getStyle.call(element, 'font-size')) : (styles && styles.fontSize);
-        var bBox, // = wrapper.bBox,
-        width, height, toggleTextShadowShim, cacheKey;
+        var bBox, width, height, toggleTextShadowShim, cacheKey;
         // Avoid undefined and null (#7316)
         if (defined(textStr)) {
             cacheKey = textStr.toString();
@@ -1068,6 +1014,7 @@ var SVGElement = /** @class */ (function () {
                 rotation,
                 fontSize,
                 wrapper.textWidth,
+                alignValue,
                 styles && styles.textOverflow,
                 styles && styles.fontWeight // #12163
             ].join(',');
@@ -1097,9 +1044,12 @@ var SVGElement = /** @class */ (function () {
                         // SVG: use extend because IE9 is not allowed to change
                         // width and height in case of rotation (below)
                         extend({}, element.getBBox()) : {
-                        // Legacy IE in export mode
+                        // HTML elements with `exporting.allowHTML` and
+                        // legacy IE in export mode
                         width: element.offsetWidth,
-                        height: element.offsetHeight
+                        height: element.offsetHeight,
+                        x: 0,
+                        y: 0
                     };
                     // #3842
                     if (isFunction(toggleTextShadowShim)) {
@@ -1113,7 +1063,7 @@ var SVGElement = /** @class */ (function () {
                 // other condition is for Opera that returns a width of
                 // -Infinity on hidden elements.
                 if (!bBox || bBox.width < 0) {
-                    bBox = { width: 0, height: 0 };
+                    bBox = { x: 0, y: 0, width: 0, height: 0 };
                 }
                 // VML Renderer or useHTML within SVG
             }
@@ -1137,16 +1087,25 @@ var SVGElement = /** @class */ (function () {
                     bBox.height = height = ({
                         '11px,17': 14,
                         '13px,20': 16
-                    }[(fontSize || '') + "," + Math.round(height)] ||
+                    }["".concat(fontSize || '', ",").concat(Math.round(height))] ||
                         height);
                 }
                 // Adjust for rotated text
                 if (rotation) {
-                    var rad = rotation * deg2rad;
-                    bBox.width = Math.abs(height * Math.sin(rad)) +
-                        Math.abs(width * Math.cos(rad));
-                    bBox.height = Math.abs(height * Math.cos(rad)) +
-                        Math.abs(width * Math.sin(rad));
+                    var baseline = Number(element.getAttribute('y') || 0) - bBox.y, alignFactor = {
+                        'right': 1,
+                        'center': 0.5
+                    }[alignValue || 0] || 0, rad = rotation * deg2rad, rad90 = (rotation - 90) * deg2rad, wCosRad = width * Math.cos(rad), wSinRad = width * Math.sin(rad), cosRad90 = Math.cos(rad90), sinRad90 = Math.sin(rad90), 
+                    // Find the starting point on the left side baseline of
+                    // the text
+                    pX = bBox.x + alignFactor * (width - wCosRad), pY = bBox.y + baseline - alignFactor * wSinRad, 
+                    // Find all corners
+                    aX = pX + baseline * cosRad90, bX = aX + wCosRad, cX = bX - height * cosRad90, dX = cX - wCosRad, aY = pY + baseline * sinRad90, bY = aY + wSinRad, cY = bY - height * sinRad90, dY = cY - wSinRad;
+                    // Deduct the bounding box from the corners
+                    bBox.x = Math.min(aX, bX, cX, dX);
+                    bBox.y = Math.min(aY, bY, cY, dY);
+                    bBox.width = Math.max(aX, bX, cX, dX) - bBox.x;
+                    bBox.height = Math.max(aY, bY, cY, dY) - bBox.y;
                 }
             }
             // Cache it. When loading a chart in a hidden iframe in Firefox and
@@ -1205,21 +1164,11 @@ var SVGElement = /** @class */ (function () {
      *
      * @function Highcharts.SVGElement#hide
      *
-     * @param {boolean} [hideByTranslation=false]
-     *        The flag to determine if element should be hidden by moving out
-     *        of the viewport. Used for example for dataLabels.
-     *
      * @return {Highcharts.SVGElement}
      *         Returns the SVGElement for chaining.
      */
-    SVGElement.prototype.hide = function (hideByTranslation) {
-        if (hideByTranslation) {
-            this.attr({ y: -9999 });
-        }
-        else {
-            this.attr({ visibility: 'hidden' });
-        }
-        return this;
+    SVGElement.prototype.hide = function () {
+        return this.attr({ visibility: 'hidden' });
     };
     /**
      * @private
@@ -1258,25 +1207,6 @@ var SVGElement = /** @class */ (function () {
          */
         this.renderer = renderer;
         fireEvent(this, 'afterInit');
-    };
-    /**
-     * Invert a group, rotate and flip. This is used internally on inverted
-     * charts, where the points and graphs are drawn as if not inverted, then
-     * the series group elements are inverted.
-     *
-     * @function Highcharts.SVGElement#invert
-     *
-     * @param {boolean} inverted
-     *        Whether to invert or not. An inverted shape can be un-inverted by
-     *        setting it to false.
-     *
-     * @return {Highcharts.SVGElement}
-     *         Return the SVGElement for chaining.
-     */
-    SVGElement.prototype.invert = function (inverted) {
-        this.inverted = inverted;
-        this.updateTransform();
-        return this;
     };
     /**
      * Add an event listener. This is a simple setter that replaces the
@@ -1333,7 +1263,7 @@ var SVGElement = /** @class */ (function () {
     SVGElement.prototype.removeClass = function (className) {
         return this.attr('class', ('' + this.attr('class'))
             .replace(isString(className) ?
-            new RegExp("(^| )" + className + "( |$)") : // #12064, #13590
+            new RegExp("(^| )".concat(className, "( |$)")) : // #12064, #13590
             className, ' ')
             .replace(/ +/g, ' ')
             .trim());
@@ -1390,20 +1320,27 @@ var SVGElement = /** @class */ (function () {
         return this;
     };
     /**
-     * @private
+     * Set a text path for a `text` or `label` element, allowing the text to
+     * flow along a path.
+     *
+     * In order to unset the path for an existing element, call `setTextPath`
+     * with `{ enabled: false }` as the second argument.
+     *
+     * @sample highcharts/members/renderer-textpath/ Text path demonstrated
+     *
      * @function Highcharts.SVGElement#setTextPath
-     * @param {Highcharts.SVGElement} path
-     * Path to follow.
+     *
+     * @param {Highcharts.SVGElement|undefined} path
+     *        Path to follow. If undefined, it allows changing options for the
+     *        existing path.
+     *
      * @param {Highcharts.DataLabelsTextPathOptionsObject} textPathOptions
-     * Options.
-     * @return {Highcharts.SVGElement}
-     * Returns the SVGElement for chaining.
+     *        Options.
+     *
+     * @return {Highcharts.SVGElement} Returns the SVGElement for chaining.
      */
     SVGElement.prototype.setTextPath = function (path, textPathOptions) {
-        var elem = this.element, textNode = this.text ? this.text.element : elem, attribsMap = {
-            textAnchor: 'text-anchor'
-        };
-        var adder = false, textPathElement, textPathId, textPathWrapper = this.textPathWrapper, firstTime = !textPathWrapper;
+        var _this = this;
         // Defaults
         textPathOptions = merge(true, {
             enabled: true,
@@ -1413,109 +1350,65 @@ var SVGElement = /** @class */ (function () {
                 textAnchor: 'middle'
             }
         }, textPathOptions);
-        var attrs = AST.filterUserAttributes(textPathOptions.attributes);
-        if (path && textPathOptions && textPathOptions.enabled) {
-            // In case of fixed width for a text, string is rebuilt
-            // (e.g. ellipsis is applied), so we need to rebuild textPath too
-            if (textPathWrapper &&
-                textPathWrapper.element.parentNode === null) {
-                // When buildText functionality was triggered again
-                // and deletes textPathWrapper parentNode
-                firstTime = true;
-                textPathWrapper = textPathWrapper.destroy();
-            }
-            else if (textPathWrapper) {
-                // Case after drillup when spans were added into
-                // the DOM outside the textPathWrapper parentGroup
-                this.removeTextOutline.call(textPathWrapper.parentGroup);
-            }
-            // label() has padding, text() doesn't
-            if (this.options && this.options.padding) {
-                attrs.dx = -this.options.padding;
-            }
-            if (!textPathWrapper) {
-                // Create <textPath>, defer the DOM adder
-                this.textPathWrapper = textPathWrapper =
-                    this.renderer.createElement('textPath');
-                adder = true;
-            }
-            textPathElement = textPathWrapper.element;
-            // Set ID for the path
-            textPathId = path.element.getAttribute('id');
-            if (!textPathId) {
-                path.element.setAttribute('id', textPathId = uniqueKey());
-            }
-            // Change DOM structure, by placing <textPath> tag in <text>
-            if (firstTime) {
-                // Adjust the position
-                textNode.setAttribute('y', 0); // Firefox
-                if (isNumber(attrs.dx)) {
-                    textNode.setAttribute('x', -attrs.dx);
-                }
-                // Move all <tspan>'s and text nodes to the <textPath> node. Do
-                // not move other elements like <title> or <path>
-                var childNodes = [].slice.call(textNode.childNodes);
-                for (var i = 0; i < childNodes.length; i++) {
-                    var childNode = childNodes[i];
-                    if (childNode.nodeType === win.Node.TEXT_NODE ||
-                        childNode.nodeName === 'tspan') {
-                        textPathElement.appendChild(childNode);
-                    }
-                }
-            }
-            // Add <textPath> to the DOM
-            if (adder && textPathWrapper) {
-                textPathWrapper.add({ element: textNode });
-            }
-            // Set basic options:
-            // Use `setAttributeNS` because Safari needs this..
-            textPathElement.setAttributeNS('http://www.w3.org/1999/xlink', 'href', this.renderer.url + '#' + textPathId);
-            // Presentation attributes:
-            // dx/dy options must by set on <text> (parent),
-            // the rest should be set on <textPath>
-            if (defined(attrs.dy)) {
-                textPathElement.parentNode
-                    .setAttribute('dy', attrs.dy);
-                delete attrs.dy;
-            }
-            if (defined(attrs.dx)) {
-                textPathElement.parentNode
-                    .setAttribute('dx', attrs.dx);
-                delete attrs.dx;
-            }
-            // Additional attributes
-            objectEach(attrs, function (val, key) {
-                textPathElement.setAttribute(attribsMap[key] || key, val);
-            });
-            // Remove translation, text that follows path does not need that
-            elem.removeAttribute('transform');
-            // Remove shadows and text outlines
-            this.removeTextOutline.call(textPathWrapper);
-            // Remove background and border for label(), see #10545
-            // Alternatively, we can disable setting background rects in
-            // series.drawDataLabels()
-            if (this.text && !this.renderer.styledMode) {
-                this.attr({
-                    fill: 'none',
-                    'stroke-width': 0
-                });
-            }
-            // Disable some functions
-            this.updateTransform = noop;
-            this.applyTextOutline = noop;
+        var url = this.renderer.url, textWrapper = this.text || this, textPath = textWrapper.textPath, attributes = textPathOptions.attributes, enabled = textPathOptions.enabled;
+        path = path || (textPath && textPath.path);
+        // Remove previously added event
+        if (textPath) {
+            textPath.undo();
         }
-        else if (textPathWrapper) {
-            // Reset to prototype
-            delete this.updateTransform;
-            delete this.applyTextOutline;
-            // Restore DOM structure:
-            this.destroyTextPath(elem, path);
-            // Bring attributes back
-            this.updateTransform();
-            // Set textOutline back for text()
-            if (this.options && this.options.rotation) {
-                this.applyTextOutline(this.options.style.textOutline);
-            }
+        if (path && enabled) {
+            var undo = addEvent(textWrapper, 'afterModifyTree', function (e) {
+                if (path && enabled) {
+                    // Set ID for the path
+                    var textPathId = path.attr('id');
+                    if (!textPathId) {
+                        path.attr('id', textPathId = uniqueKey());
+                    }
+                    // Set attributes for the <text>
+                    var textAttribs = {
+                        // dx/dy options must by set on <text> (parent), the
+                        // rest should be set on <textPath>
+                        x: 0,
+                        y: 0
+                    };
+                    if (defined(attributes.dx)) {
+                        textAttribs.dx = attributes.dx;
+                        delete attributes.dx;
+                    }
+                    if (defined(attributes.dy)) {
+                        textAttribs.dy = attributes.dy;
+                        delete attributes.dy;
+                    }
+                    textWrapper.attr(textAttribs);
+                    // Handle label properties
+                    _this.attr({ transform: '' });
+                    if (_this.box) {
+                        _this.box = _this.box.destroy();
+                    }
+                    // Wrap the nodes in a textPath
+                    var children = e.nodes.slice(0);
+                    e.nodes.length = 0;
+                    e.nodes[0] = {
+                        tagName: 'textPath',
+                        attributes: extend(attributes, {
+                            'text-anchor': attributes.textAnchor,
+                            href: "".concat(url, "#").concat(textPathId)
+                        }),
+                        children: children
+                    };
+                }
+            });
+            // Set the reference
+            textWrapper.textPath = { path: path, undo: undo };
+        }
+        else {
+            textWrapper.attr({ dx: 0, dy: 0 });
+            delete textWrapper.textPath;
+        }
+        if (this.added) {
+            // Rebuild text after added
+            textWrapper.textCache = '';
+            this.renderer.buildText(textWrapper);
         }
         return this;
     };
@@ -1548,10 +1441,10 @@ var SVGElement = /** @class */ (function () {
      *         Returns the SVGElement for chaining.
      */
     SVGElement.prototype.shadow = function (shadowOptions, group, cutOff) {
-        var shadows = [], element = this.element, oldShadowOptions = this.oldShadowOptions, defaultShadowOptions = {
-            color: "#000000" /* neutralColor100 */,
-            offsetX: this.parentInverted ? -1 : 1,
-            offsetY: this.parentInverted ? -1 : 1,
+        var shadows = [], _a = this, element = _a.element, oldShadowOptions = _a.oldShadowOptions, parentGroup = _a.parentGroup, parentInverted = parentGroup && parentGroup.rotation === 90, defaultShadowOptions = {
+            color: "#000000" /* Palette.neutralColor100 */,
+            offsetX: parentInverted ? -1 : 1,
+            offsetY: parentInverted ? -1 : 1,
             opacity: 0.15,
             width: 3
         };
@@ -1584,15 +1477,15 @@ var SVGElement = /** @class */ (function () {
         }
         else if (!this.shadows) {
             shadowElementOpacity = options.opacity / options.width;
-            transform = this.parentInverted ?
-                "translate(" + options.offsetY + ", " + options.offsetX + ")" :
-                "translate(" + options.offsetX + ", " + options.offsetY + ")";
+            transform = parentInverted ?
+                "translate(".concat(options.offsetY, ", ").concat(options.offsetX, ")") :
+                "translate(".concat(options.offsetX, ", ").concat(options.offsetY, ")");
             for (i = 1; i <= options.width; i++) {
                 shadow = element.cloneNode(false);
                 strokeWidth = (options.width * 2) + 1 - (2 * i);
                 attr(shadow, {
                     stroke: (shadowOptions.color ||
-                        "#000000" /* neutralColor100 */),
+                        "#000000" /* Palette.neutralColor100 */),
                     'stroke-opacity': shadowElementOpacity * i,
                     'stroke-width': strokeWidth,
                     transform: transform,
@@ -1620,7 +1513,7 @@ var SVGElement = /** @class */ (function () {
      *
      * @function Highcharts.SVGElement#show
      *
-     * @param {boolean} [inherit=false]
+     * @param {boolean} [inherit=true]
      *        Set the visibility attribute to `inherit` rather than `visible`.
      *        The difference is that an element with `visibility="visible"`
      *        will be visible even if the parent is hidden.
@@ -1629,12 +1522,11 @@ var SVGElement = /** @class */ (function () {
      *         Returns the SVGElement for chaining.
      */
     SVGElement.prototype.show = function (inherit) {
+        if (inherit === void 0) { inherit = true; }
         return this.attr({ visibility: inherit ? 'inherit' : 'visible' });
     };
     /**
-     * WebKit and Batik have problems with a stroke-width of zero, so in this
-     * case we remove the stroke attribute altogether. #1270, #1369, #3065,
-     * #3072.
+     * Set the stroke-width and record it on the SVGElement
      *
      * @private
      * @function Highcharts.SVGElement#strokeSetter
@@ -1642,24 +1534,10 @@ var SVGElement = /** @class */ (function () {
      * @param {string} key
      * @param {Highcharts.SVGDOMElement} element
      */
-    SVGElement.prototype.strokeSetter = function (value, key, element) {
+    SVGElement.prototype['stroke-widthSetter'] = function (value, key, element) {
+        // Record it for quick access in getter
         this[key] = value;
-        // Only apply the stroke attribute if the stroke width is defined and
-        // larger than 0
-        if (this.stroke && this['stroke-width']) {
-            // Use prototype as instance may be overridden
-            SVGElement.prototype.fillSetter.call(this, this.stroke, 'stroke', element);
-            element.setAttribute('stroke-width', this['stroke-width']);
-            this.hasStroke = true;
-        }
-        else if (key === 'stroke-width' && value === 0 && this.hasStroke) {
-            element.removeAttribute('stroke');
-            this.hasStroke = false;
-        }
-        else if (this.renderer.styledMode && this['stroke-width']) {
-            element.setAttribute('stroke-width', this['stroke-width']);
-            this.hasStroke = true;
-        }
+        element.setAttribute(key, value);
     };
     /**
      * Get the computed stroke width in pixel values. This is used extensively
@@ -1850,14 +1728,7 @@ var SVGElement = /** @class */ (function () {
      * @function Highcharts.SVGElement#updateTransform
      */
     SVGElement.prototype.updateTransform = function () {
-        var wrapper = this, scaleX = wrapper.scaleX, scaleY = wrapper.scaleY, inverted = wrapper.inverted, rotation = wrapper.rotation, matrix = wrapper.matrix, element = wrapper.element;
-        var translateX = wrapper.translateX || 0, translateY = wrapper.translateY || 0;
-        // Flipping affects translate as adjustment for flipping around the
-        // group's axis
-        if (inverted) {
-            translateX += wrapper.width;
-            translateY += wrapper.height;
-        }
+        var _a = this, element = _a.element, matrix = _a.matrix, _b = _a.rotation, rotation = _b === void 0 ? 0 : _b, scaleX = _a.scaleX, scaleY = _a.scaleY, _c = _a.translateX, translateX = _c === void 0 ? 0 : _c, _d = _a.translateY, translateY = _d === void 0 ? 0 : _d;
         // Apply translate. Nearly all transformed elements have translation,
         // so instead of checking for translate = 0, do it always (#1767,
         // #1846).
@@ -1866,11 +1737,8 @@ var SVGElement = /** @class */ (function () {
         if (defined(matrix)) {
             transform.push('matrix(' + matrix.join(',') + ')');
         }
-        // apply rotation
-        if (inverted) {
-            transform.push('rotate(90) scale(-1,1)');
-        }
-        else if (rotation) { // text rotation
+        // Apply rotation
+        if (rotation) { // text rotation or inverted chart
             transform.push('rotate(' + rotation + ' ' +
                 pick(this.rotationOriginX, element.getAttribute('x'), 0) +
                 ' ' +
@@ -1880,7 +1748,7 @@ var SVGElement = /** @class */ (function () {
         if (defined(scaleX) || defined(scaleY)) {
             transform.push('scale(' + pick(scaleX, 1) + ' ' + pick(scaleY, 1) + ')');
         }
-        if (transform.length) {
+        if (transform.length && !(this.text || this).textPath) {
             element.setAttribute('transform', transform.join(' '));
         }
     };
@@ -1991,7 +1859,7 @@ var SVGElement = /** @class */ (function () {
     return SVGElement;
 }());
 // Some shared setters and getters
-SVGElement.prototype['stroke-widthSetter'] = SVGElement.prototype.strokeSetter;
+SVGElement.prototype.strokeSetter = SVGElement.prototype.fillSetter;
 SVGElement.prototype.yGetter = SVGElement.prototype.xGetter;
 SVGElement.prototype.matrixSetter =
     SVGElement.prototype.rotationOriginXSetter =
@@ -2120,6 +1988,12 @@ export default SVGElement;
 */ /**
 * @name Highcharts.SVGAttributes#d
 * @type {string|Highcharts.SVGPathArray|undefined}
+*/ /**
+* @name Highcharts.SVGAttributes#dx
+* @type {number|undefined}
+*/ /**
+* @name Highcharts.SVGAttributes#dy
+* @type {number|undefined}
 */ /**
 * @name Highcharts.SVGAttributes#fill
 * @type {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject|undefined}

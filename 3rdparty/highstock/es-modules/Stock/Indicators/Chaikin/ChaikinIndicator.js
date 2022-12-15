@@ -10,18 +10,20 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+import AD from '../AD/ADIndicator.js'; // For historic reasons, AD is built into Chaikin
 import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
-import '../AD/ADIndicator.js'; // For historic reasons, AD i built into Chaikin
-var _a = SeriesRegistry.seriesTypes, AD = _a.ad, EMAIndicator = _a.ema;
+var EMAIndicator = SeriesRegistry.seriesTypes.ema;
 import U from '../../../Core/Utilities.js';
 var correctFloat = U.correctFloat, extend = U.extend, merge = U.merge, error = U.error;
 /* *
@@ -170,6 +172,11 @@ SeriesRegistry.registerSeriesType('chaikin', ChaikinIndicator);
  *
  * */
 export default ChaikinIndicator;
+/* *
+ *
+ *  API Options
+ *
+ * */
 /**
  * A `Chaikin Oscillator` series. If the [type](#series.chaikin.type)
  * option is not specified, it is inherited from [chart.type](#chart.type).

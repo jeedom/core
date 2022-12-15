@@ -3,18 +3,30 @@
  *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
  *
  * */
-/**
- * Callback to modify annotation's possitioner controls.
- *
- * @callback Highcharts.AnnotationControlPointPositionerFunction
- * @param {Highcharts.AnnotationControlPoint} this
- * @param {Highcharts.AnnotationControllable} target
- * @return {Highcharts.PositionObject}
- */
+'use strict';
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+import EventEmitter from './EventEmitter.js';
 import U from '../../Core/Utilities.js';
 var merge = U.merge, pick = U.pick;
-import eventEmitterMixin from './Mixins/EventEmitterMixin.js';
-/* eslint-disable no-invalid-this, valid-jsdoc */
+/* *
+ *
+ *  Class
+ *
+ * */
 /**
  * A control point class which is a connection between controllable
  * transform methods and a user actions.
@@ -38,27 +50,16 @@ import eventEmitterMixin from './Mixins/EventEmitterMixin.js';
  * @param {number} [index]
  * Point index.
  */
-var ControlPoint = /** @class */ (function () {
+var ControlPoint = /** @class */ (function (_super) {
+    __extends(ControlPoint, _super);
+    /* *
+     *
+     *  Constructor
+     *
+     * */
     function ControlPoint(chart, target, options, index) {
-        /**
-         *
-         * Properties
-         *
-         */
-        this.addEvents = eventEmitterMixin.addEvents;
-        this.graphic = void 0;
-        this.mouseMoveToRadians = eventEmitterMixin.mouseMoveToRadians;
-        this.mouseMoveToScale = eventEmitterMixin.mouseMoveToScale;
-        this.mouseMoveToTranslation = eventEmitterMixin.mouseMoveToTranslation;
-        this.onDrag = eventEmitterMixin.onDrag;
-        this.onMouseDown = eventEmitterMixin.onMouseDown;
-        this.onMouseUp = eventEmitterMixin.onMouseUp;
-        this.removeDocEvents = eventEmitterMixin.removeDocEvents;
-        /**
-         *
-         * Functions
-         *
-         */
+        var _this = _super.call(this) || this;
+        _this.graphic = void 0;
         /**
          * List of events for `anntation.options.events` that should not be
          * added to `annotation.graphic` but to the `annotation`.
@@ -66,24 +67,38 @@ var ControlPoint = /** @class */ (function () {
          * @name Highcharts.AnnotationControlPoint#nonDOMEvents
          * @type {Array<string>}
          */
-        this.nonDOMEvents = ['drag'];
-        this.chart = chart;
-        this.target = target;
-        this.options = options;
-        this.index = pick(options.index, index);
+        _this.nonDOMEvents = ['drag'];
+        _this.chart = chart;
+        _this.target = target;
+        _this.options = options;
+        _this.index = pick(options.index, index);
+        return _this;
     }
+    /* *
+     *
+     *  Functions
+     *
+     * */
     /**
-     * Set the visibility of the control point.
-     *
-     * @function Highcharts.AnnotationControlPoint#setVisibility
-     *
-     * @param {boolean} visible
-     * Visibility of the control point.
-     *
+     * Destroy the control point.
+     * @private
      */
-    ControlPoint.prototype.setVisibility = function (visible) {
-        this.graphic.attr('visibility', visible ? 'visible' : 'hidden');
-        this.options.visible = visible;
+    ControlPoint.prototype.destroy = function () {
+        _super.prototype.destroy.call(this);
+        if (this.graphic) {
+            this.graphic = this.graphic.destroy();
+        }
+        this.chart = null;
+        this.target = null;
+        this.options = null;
+    };
+    /**
+     * Redraw the control point.
+     * @private
+     * @param {boolean} [animation]
+     */
+    ControlPoint.prototype.redraw = function (animation) {
+        this.graphic[animation ? 'animate' : 'attr'](this.options.positioner.call(this, this.target));
     };
     /**
      * Render the control point.
@@ -100,25 +115,17 @@ var ControlPoint = /** @class */ (function () {
         this.addEvents();
     };
     /**
-     * Redraw the control point.
-     * @private
-     * @param {boolean} [animation]
+     * Set the visibility of the control point.
+     *
+     * @function Highcharts.AnnotationControlPoint#setVisibility
+     *
+     * @param {boolean} visible
+     * Visibility of the control point.
+     *
      */
-    ControlPoint.prototype.redraw = function (animation) {
-        this.graphic[animation ? 'animate' : 'attr'](this.options.positioner.call(this, this.target));
-    };
-    /**
-     * Destroy the control point.
-     * @private
-     */
-    ControlPoint.prototype.destroy = function () {
-        eventEmitterMixin.destroy.call(this);
-        if (this.graphic) {
-            this.graphic = this.graphic.destroy();
-        }
-        this.chart = null;
-        this.target = null;
-        this.options = null;
+    ControlPoint.prototype.setVisibility = function (visible) {
+        this.graphic[visible ? 'show' : 'hide']();
+        this.options.visible = visible;
     };
     /**
      * Update the control point.
@@ -127,7 +134,6 @@ var ControlPoint = /** @class */ (function () {
      *
      * @param {Partial<Highcharts.AnnotationControlPointOptionsObject>} userOptions
      * New options for the control point.
-     *
      */
     ControlPoint.prototype.update = function (userOptions) {
         var chart = this.chart, target = this.target, index = this.index, options = merge(true, this.options, userOptions);
@@ -137,5 +143,24 @@ var ControlPoint = /** @class */ (function () {
         this.redraw();
     };
     return ControlPoint;
-}());
+}(EventEmitter));
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default ControlPoint;
+/* *
+ *
+ *  API Declarations
+ *
+ * */
+/**
+ * Callback to modify annotation's possitioner controls.
+ *
+ * @callback Highcharts.AnnotationControlPointPositionerFunction
+ * @param {Highcharts.AnnotationControlPoint} this
+ * @param {Highcharts.AnnotationControllable} target
+ * @return {Highcharts.PositionObject}
+ */
+(''); // keeps doclets above in JS file

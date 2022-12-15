@@ -117,7 +117,7 @@ var NewDataAnnouncer = /** @class */ (function () {
      */
     NewDataAnnouncer.prototype.addEventListeners = function () {
         var announcer = this, chart = this.chart, e = this.eventProvider;
-        e.addEvent(chart, 'afterDrilldown', function () {
+        e.addEvent(chart, 'afterApplyDrilldown', function () {
             announcer.lastAnnouncementTime = 0;
         });
         e.addEvent(chart, 'afterAddSeries', function (e) {

@@ -62,6 +62,11 @@
 'use strict';
 import U from '../../Core/Utilities.js';
 var error = U.error, pick = U.pick;
+/* *
+ *
+ *  Functions
+ *
+ * */
 /* eslint-disable valid-jsdoc */
 /**
  * Set a new option on a root prop, where the option is defined as an array of
@@ -115,7 +120,7 @@ function copyDeprecatedChartOptions(chart) {
         var _a;
         if (chartOptions[prop]) {
             a11yOptions[prop] = chartOptions[prop];
-            error(32, false, chart, (_a = {}, _a["chart." + prop] = "use accessibility." + prop, _a));
+            error(32, false, chart, (_a = {}, _a["chart.".concat(prop)] = "use accessibility.".concat(prop), _a));
         }
     });
 }
@@ -172,7 +177,7 @@ function copyDeprecatedSeriesOptions(chart) {
                 oldOption === 'skipKeyboardNavigation' ?
                     !optionVal : optionVal);
                 error(32, false, chart, (_a = {},
-                    _a["series." + oldOption] = ('series.' +
+                    _a["series.".concat(oldOption)] = ('series.' +
                         oldToNewSeriesOptions[oldOption].join('.')),
                     _a));
             }
@@ -247,4 +252,9 @@ function copyDeprecatedOptions(chart) {
     copyDeprecatedKeyboardNavigationOptions(chart);
     copyDeprecatedLangOptions(chart);
 }
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default copyDeprecatedOptions;

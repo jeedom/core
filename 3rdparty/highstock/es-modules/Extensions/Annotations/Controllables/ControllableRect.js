@@ -3,17 +3,31 @@
  *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
  *
  * */
-import ControllableMixin from '../Mixins/ControllableMixin.js';
+'use strict';
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+import Controllable from './Controllable.js';
 import ControllablePath from './ControllablePath.js';
 import U from '../../../Core/Utilities.js';
 var merge = U.merge;
-/**
- * @typedef {Annotation.ControllablePath.AttrsMap}
- *          Annotation.ControllableRect.AttrsMap
- * @property {string} width=width
- * @property {string} height=height
- */
-/* eslint-disable no-invalid-this, valid-jsdoc */
+/* *
+ *
+ *  Class
+ *
+ * */
 /**
  * A controllable rect class.
  *
@@ -32,43 +46,23 @@ var merge = U.merge;
  * @param {number} index
  * Index of the rectangle
  */
-var ControllableRect = /** @class */ (function () {
+var ControllableRect = /** @class */ (function (_super) {
+    __extends(ControllableRect, _super);
     /* *
      *
      *  Constructors
      *
      * */
     function ControllableRect(annotation, options, index) {
+        var _this = _super.call(this, annotation, options, index, 'shape') || this;
         /* *
          *
          *  Properties
          *
          * */
-        this.addControlPoints = ControllableMixin.addControlPoints;
-        this.anchor = ControllableMixin.anchor;
-        this.attr = ControllableMixin.attr;
-        this.attrsFromOptions = ControllableMixin.attrsFromOptions;
-        this.destroy = ControllableMixin.destroy;
-        this.getPointsOptions = ControllableMixin.getPointsOptions;
-        this.init = ControllableMixin.init;
-        this.linkPoints = ControllableMixin.linkPoints;
-        this.point = ControllableMixin.point;
-        this.rotate = ControllableMixin.rotate;
-        this.scale = ControllableMixin.scale;
-        this.setControlPointsVisibility = (ControllableMixin.setControlPointsVisibility);
-        this.shouldBeDrawn = ControllableMixin.shouldBeDrawn;
-        this.transform = ControllableMixin.transform;
-        this.transformPoint = ControllableMixin.transformPoint;
-        this.translatePoint = ControllableMixin.translatePoint;
-        this.translateShape = ControllableMixin.translateShape;
-        this.update = ControllableMixin.update;
-        /**
-         * @type 'rect'
-         */
-        this.type = 'rect';
-        this.translate = ControllableMixin.translateShape;
-        this.init(annotation, options, index);
-        this.collection = 'shapes';
+        _this.type = 'rect';
+        _this.translate = _super.prototype.translateShape;
+        return _this;
     }
     /* *
      *
@@ -81,26 +75,28 @@ var ControllableRect = /** @class */ (function () {
             .rect(0, -9e9, 0, 0)
             .attr(attrs)
             .add(parent);
-        ControllableMixin.render.call(this);
+        _super.prototype.render.call(this);
     };
     ControllableRect.prototype.redraw = function (animation) {
-        var position = this.anchor(this.points[0]).absolutePosition;
-        if (position) {
-            this.graphic[animation ? 'animate' : 'attr']({
-                x: position.x,
-                y: position.y,
-                width: this.options.width,
-                height: this.options.height
-            });
+        if (this.graphic) {
+            var position = this.anchor(this.points[0]).absolutePosition;
+            if (position) {
+                this.graphic[animation ? 'animate' : 'attr']({
+                    x: position.x,
+                    y: position.y,
+                    width: this.options.width,
+                    height: this.options.height
+                });
+            }
+            else {
+                this.attr({
+                    x: 0,
+                    y: -9e9
+                });
+            }
+            this.graphic.placed = Boolean(position);
         }
-        else {
-            this.attr({
-                x: 0,
-                y: -9e9
-            });
-        }
-        this.graphic.placed = Boolean(position);
-        ControllableMixin.redraw.call(this, animation);
+        _super.prototype.redraw.call(this, animation);
     };
     /* *
      *
@@ -117,5 +113,10 @@ var ControllableRect = /** @class */ (function () {
         height: 'height'
     });
     return ControllableRect;
-}());
+}(Controllable));
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default ControllableRect;

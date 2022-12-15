@@ -6,10 +6,30 @@
  *
  * */
 'use strict';
-import ControllableMixin from '../Mixins/ControllableMixin.js';
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+import Controllable from './Controllable.js';
 import ControllablePath from './ControllablePath.js';
 import U from '../../../Core/Utilities.js';
 var merge = U.merge, defined = U.defined;
+/* *
+ *
+ *  Class
+ *
+ * */
 /**
  * A controllable ellipse class.
  *
@@ -23,44 +43,31 @@ var merge = U.merge, defined = U.defined;
  * @param {Highcharts.AnnotationsShapeOptions} options a shape's options
  * @param {number} index of the Ellipse
  */
-var ControllableEllipse = /** @class */ (function () {
+var ControllableEllipse = /** @class */ (function (_super) {
+    __extends(ControllableEllipse, _super);
     /* *
      *
      *  Constructor
      *
      * */
     function ControllableEllipse(annotation, options, index) {
+        var _this = _super.call(this, annotation, options, index, 'shape') || this;
         /* *
          *
          *  Properties
          *
          * */
-        this.addControlPoints = ControllableMixin.addControlPoints;
-        this.anchor = ControllableMixin.anchor;
-        this.attr = ControllableMixin.attr;
-        this.attrsFromOptions = ControllableMixin.attrsFromOptions;
-        this.destroy = ControllableMixin.destroy;
-        this.getPointsOptions = ControllableMixin.getPointsOptions;
-        this.linkPoints = ControllableMixin.linkPoints;
-        this.point = ControllableMixin.point;
-        this.scale = ControllableMixin.scale;
-        this.setControlPointsVisibility = (ControllableMixin.setControlPointsVisibility);
-        this.shouldBeDrawn = ControllableMixin.shouldBeDrawn;
-        this.transform = ControllableMixin.transform;
-        this.translatePoint = ControllableMixin.translatePoint;
-        this.transformPoint = ControllableMixin.transformPoint;
-        /**
-         * @type 'ellipse'
-         */
-        this.type = 'ellipse';
-        this.init(annotation, options, index);
-        this.collection = 'shapes';
+        _this.type = 'ellipse';
+        return _this;
     }
     /* *
      *
      *  Functions
      *
      * */
+    /**
+     * @private
+     */
     ControllableEllipse.prototype.init = function (annotation, options, index) {
         if (defined(options.yAxis)) {
             options.points.forEach(function (point) {
@@ -72,32 +79,38 @@ var ControllableEllipse = /** @class */ (function () {
                 point.xAxis = options.xAxis;
             });
         }
-        ControllableMixin.init.call(this, annotation, options, index);
+        _super.prototype.init.call(this, annotation, options, index);
     };
     /**
-     *
      * Render the element
-     * @param parent parent SVG element.
+     * @private
+     * @param parent
+     *        Parent SVG element.
      */
     ControllableEllipse.prototype.render = function (parent) {
         this.graphic = this.annotation.chart.renderer.createElement('ellipse')
             .attr(this.attrsFromOptions(this.options))
             .add(parent);
-        ControllableMixin.render.call(this);
+        _super.prototype.render.call(this);
     };
     /**
-     * Translate the points.
-     * Mostly used to handle dragging of the ellipse.
+     * Translate the points. Mostly used to handle dragging of the ellipse.
+     * @private
      */
     ControllableEllipse.prototype.translate = function (dx, dy) {
-        ControllableMixin.translateShape.call(this, dx, dy, true);
+        _super.prototype.translateShape.call(this, dx, dy, true);
     };
     /**
      * Get the distance from the line to the point.
-     * @param point1 first point which is on the line
-     * @param point2 second point
-     * @param x0 point's x value from which you want to calculate the distance from
-     * @param y0 point's y value from which you want to calculate the distance from
+     * @private
+     * @param point1
+     *        First point which is on the line
+     * @param point2
+     *        Second point
+     * @param x0
+     *        Point's x value from which you want to calculate the distance from
+     * @param y0
+     *        Point's y value from which you want to calculate the distance from
      */
     ControllableEllipse.prototype.getDistanceFromLine = function (point1, point2, x0, y0) {
         return Math.abs((point2.y - point1.y) * x0 - (point2.x - point1.x) * y0 +
@@ -107,8 +120,11 @@ var ControllableEllipse = /** @class */ (function () {
     /**
      * The fuction calculates the svg attributes of the ellipse, and returns all
      * parameters neccessary to draw the ellipse.
-     * @param position absolute position of the first point in points array
-     * @param position2 absolute position of the second point in points array
+     * @private
+     * @param position
+     *        Absolute position of the first point in points array
+     * @param position2
+     *        Absolute position of the second point in points array
      */
     ControllableEllipse.prototype.getAttrs = function (position, position2) {
         var x1 = position.x, y1 = position.y, x2 = position2.x, y2 = position2.y, cx = (x1 + x2) / 2, cy = (y1 + y2) / 2, rx = Math.sqrt((x1 - x2) * (x1 - x2) / 4 + (y1 - y2) * (y1 - y2) / 4), tan = (y2 - y1) / (x2 - x1);
@@ -121,6 +137,7 @@ var ControllableEllipse = /** @class */ (function () {
     };
     /**
      * Get the value of minor radius of the ellipse.
+     * @private
      */
     ControllableEllipse.prototype.getRY = function () {
         var yAxis = this.getYAxis();
@@ -129,7 +146,8 @@ var ControllableEllipse = /** @class */ (function () {
             this.options.ry;
     };
     /**
-     * get the yAxis object to which the ellipse is pinned.
+     * Get the yAxis object to which the ellipse is pinned.
+     * @private
      */
     ControllableEllipse.prototype.getYAxis = function () {
         var yAxisIndex = this.options.yAxis;
@@ -137,47 +155,56 @@ var ControllableEllipse = /** @class */ (function () {
     };
     /**
      * Get the absolute coordinates of the MockPoint
-     * @param point MockPoint that is added through options
+     * @private
+     * @param point
+     *        MockPoint that is added through options
      */
     ControllableEllipse.prototype.getAbsolutePosition = function (point) {
         return this.anchor(point).absolutePosition;
     };
     /**
-     *
      * Redraw the element
-     * @param animation display an annimation
+     * @private
+     * @param animation
+     *        Display an annimation
      */
     ControllableEllipse.prototype.redraw = function (animation) {
-        var position = this.getAbsolutePosition(this.points[0]), position2 = this.getAbsolutePosition(this.points[1]), attrs = this.getAttrs(position, position2);
-        if (position) {
-            this.graphic[animation ? 'animate' : 'attr']({
-                cx: attrs.cx,
-                cy: attrs.cy,
-                rx: attrs.rx,
-                ry: attrs.ry,
-                rotation: attrs.angle,
-                rotationOriginX: attrs.cx,
-                rotationOriginY: attrs.cy
-            });
+        if (this.graphic) {
+            var position = this.getAbsolutePosition(this.points[0]), position2 = this.getAbsolutePosition(this.points[1]), attrs = this.getAttrs(position, position2);
+            if (position) {
+                this.graphic[animation ? 'animate' : 'attr']({
+                    cx: attrs.cx,
+                    cy: attrs.cy,
+                    rx: attrs.rx,
+                    ry: attrs.ry,
+                    rotation: attrs.angle,
+                    rotationOriginX: attrs.cx,
+                    rotationOriginY: attrs.cy
+                });
+            }
+            else {
+                this.graphic.attr({
+                    x: 0,
+                    y: -9e9
+                });
+            }
+            this.graphic.placed = Boolean(position);
         }
-        else {
-            this.graphic.attr({
-                x: 0,
-                y: -9e9
-            });
-        }
-        this.graphic.placed = Boolean(position);
-        ControllableMixin.redraw.call(this, animation);
+        _super.prototype.redraw.call(this, animation);
     };
     /**
      * Set the radius Y.
-     *
-     * @param {number} ry a radius in y direction to be set
+     * @private
+     * @param {number} ry
+     *        A radius in y direction to be set
      */
     ControllableEllipse.prototype.setYRadius = function (ry) {
+        var shapes = this.annotation.userOptions.shapes;
         this.options.ry = ry;
-        this.annotation.userOptions.shapes[0].ry = ry;
-        this.annotation.options.shapes[0].ry = ry;
+        if (shapes && shapes[0]) {
+            shapes[0].ry = ry;
+            shapes[0].ry = ry;
+        }
     };
     /* *
      *
@@ -195,5 +222,10 @@ var ControllableEllipse = /** @class */ (function () {
         ry: 'ry'
     });
     return ControllableEllipse;
-}());
+}(Controllable));
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default ControllableEllipse;

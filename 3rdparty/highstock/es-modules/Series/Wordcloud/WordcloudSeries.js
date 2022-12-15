@@ -14,15 +14,18 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+import DPU from '../DrawPointUtilities.js';
 import H from '../../Core/Globals.js';
 var noop = H.noop;
 import Series from '../../Core/Series/Series.js';
@@ -227,7 +230,7 @@ var WordcloudSeries = /** @class */ (function (_super) {
                     delete attr.y;
                 }
             }
-            point.draw({
+            DPU.draw(point, {
                 animatableAttribs: animate,
                 attribs: attr,
                 css: css,
@@ -268,13 +271,12 @@ var WordcloudSeries = /** @class */ (function (_super) {
      * A word cloud is a visualization of a set of words, where the size and
      * placement of a word is determined by how it is weighted.
      *
-     * @sample highcharts/demo/wordcloud
-     *         Word Cloud chart
+     * @sample highcharts/demo/wordcloud Word Cloud chart
      *
      * @extends      plotOptions.column
      * @excluding    allAreas, boostThreshold, clip, colorAxis, compare,
-     *               compareBase, crisp, cropTreshold, dataGrouping, dataLabels,
-     *               depth, dragDrop, edgeColor, findNearestPointBy,
+     *               compareBase, crisp, cropThreshold, dataGrouping,
+     *               dataLabels, depth, dragDrop, edgeColor, findNearestPointBy,
      *               getExtremesFromAll, grouping, groupPadding, groupZPadding,
      *               joinBy, maxPointWidth, minPointLength, navigatorOptions,
      *               negativeColor, pointInterval, pointIntervalUnit,
@@ -296,7 +298,7 @@ var WordcloudSeries = /** @class */ (function (_super) {
          * NB! This option is currently not decided to be published in the API,
          * and is therefore marked as private.
          *
-         * @private
+         * @ignore-option
          */
         allowExtendPlayingField: true,
         animation: {
@@ -304,8 +306,12 @@ var WordcloudSeries = /** @class */ (function (_super) {
             duration: 500
         },
         borderWidth: 0,
+        /**
+         * @ignore-option
+         */
         clip: false,
         colorByPoint: true,
+        cropThreshold: Infinity,
         /**
          * A threshold determining the minimum font size that can be applied to
          * a word.
@@ -489,7 +495,7 @@ export default WordcloudSeries;
  * @type      {string}
  * @since     6.0.0
  * @product   highcharts
- * @apioption series.sunburst.data.name
+ * @apioption series.wordcloud.data.name
  */
 /**
  * The weighting of a word. The weight decides the relative size of a word
@@ -498,6 +504,6 @@ export default WordcloudSeries;
  * @type      {number}
  * @since     6.0.0
  * @product   highcharts
- * @apioption series.sunburst.data.weight
+ * @apioption series.wordcloud.data.weight
  */
 ''; // detach doclets above

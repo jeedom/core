@@ -33,7 +33,7 @@ var addEvent = U.addEvent, merge = U.merge, wrap = U.wrap;
  * @apioption xAxis.currentDateIndicator
  */
 var defaultOptions = {
-    color: "#ccd6eb" /* highlightColor20 */,
+    color: "#ccd6eb" /* Palette.highlightColor20 */,
     width: 2,
     /**
      * @declare Highcharts.AxisCurrentDateIndicatorLabelOptions

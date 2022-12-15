@@ -12,30 +12,90 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import Axis from '../../Core/Axis/Axis.js';
 import BubbleLegendComposition from './BubbleLegendComposition.js';
 import BubblePoint from './BubblePoint.js';
 import Color from '../../Core/Color/Color.js';
 var color = Color.parse;
 import H from '../../Core/Globals.js';
 var noop = H.noop;
-import Series from '../../Core/Series/Series.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
-var _a = SeriesRegistry.seriesTypes, ColumnSeries = _a.column, ScatterSeries = _a.scatter;
+var Series = SeriesRegistry.series, _a = SeriesRegistry.seriesTypes, columnProto = _a.column.prototype, ScatterSeries = _a.scatter;
 import U from '../../Core/Utilities.js';
 var addEvent = U.addEvent, arrayMax = U.arrayMax, arrayMin = U.arrayMin, clamp = U.clamp, extend = U.extend, isNumber = U.isNumber, merge = U.merge, pick = U.pick;
-import '../Column/ColumnSeries.js';
-import '../Scatter/ScatterSeries.js';
-import './BubbleLegendItem.js';
+/* *
+ *
+ *  Constants
+ *
+ * */
+var composedClasses = [];
+/* *
+ *
+ *  Functions
+ *
+ * */
+/**
+ * Add logic to pad each axis with the amount of pixels necessary to avoid the
+ * bubbles to overflow.
+ */
+function axisBeforePadding() {
+    var _this = this;
+    var axisLength = this.len, chart = this.chart, isXAxis = this.isXAxis, dataKey = isXAxis ? 'xData' : 'yData', min = this.min, range = this.max - min;
+    var pxMin = 0, pxMax = axisLength, transA = axisLength / range, hasActiveSeries;
+    // Handle padding on the second pass, or on redraw
+    this.series.forEach(function (series) {
+        if (series.bubblePadding &&
+            (series.visible || !chart.options.chart.ignoreHiddenSeries)) {
+            // Correction for #1673
+            _this.allowZoomOutside = true;
+            hasActiveSeries = true;
+            var data = series[dataKey];
+            if (isXAxis) {
+                (series.onPoint || series).getRadii(0, 0, series);
+                if (series.onPoint) {
+                    series.radii = series.onPoint.radii;
+                }
+            }
+            if (range > 0) {
+                var i = data.length;
+                while (i--) {
+                    if (isNumber(data[i]) &&
+                        _this.dataMin <= data[i] &&
+                        data[i] <= _this.max) {
+                        var radius = series.radii && series.radii[i] || 0;
+                        pxMin = Math.min(((data[i] - min) * transA) - radius, pxMin);
+                        pxMax = Math.max(((data[i] - min) * transA) + radius, pxMax);
+                    }
+                }
+            }
+        }
+    });
+    // Apply the padding to the min and max properties
+    if (hasActiveSeries && range > 0 && !this.logarithmic) {
+        pxMax -= axisLength;
+        transA *= (axisLength +
+            Math.max(0, pxMin) - // #8901
+            Math.min(pxMax, axisLength)) / axisLength;
+        [
+            ['min', 'userMin', pxMin],
+            ['max', 'userMax', pxMax]
+        ].forEach(function (keys) {
+            if (typeof pick(_this.options[keys[0]], _this[keys[1]]) === 'undefined') {
+                _this[keys[0]] += keys[2] / transA;
+            }
+        });
+    }
+}
 /* *
  *
  *  Class
@@ -64,14 +124,24 @@ var BubbleSeries = /** @class */ (function (_super) {
         _this.yData = void 0;
         _this.zData = void 0;
         return _this;
-        /* eslint-enable valid-jsdoc */
     }
+    /* *
+     *
+     *  Static Functions
+     *
+     * */
+    BubbleSeries.compose = function (AxisClass, ChartClass, LegendClass, SeriesClass) {
+        BubbleLegendComposition.compose(ChartClass, LegendClass, SeriesClass);
+        if (composedClasses.indexOf(AxisClass) === -1) {
+            composedClasses.push(AxisClass);
+            AxisClass.prototype.beforePadding = axisBeforePadding;
+        }
+    };
     /* *
      *
      *  Functions
      *
      * */
-    /* eslint-disable valid-jsdoc */
     /**
      * Perform animation on the bubbles
      * @private
@@ -106,7 +176,8 @@ var BubbleSeries = /** @class */ (function (_super) {
      */
     BubbleSeries.prototype.getRadii = function () {
         var _this = this;
-        var len, i, zData = this.zData, yData = this.yData, radii = [], value, zExtremes = this.chart.bubbleZExtremes;
+        var zData = this.zData, yData = this.yData, radii = [];
+        var len, i, value, zExtremes = this.chart.bubbleZExtremes;
         var _a = this.getPxExtremes(), minPxSize = _a.minPxSize, maxPxSize = _a.maxPxSize;
         // Get the collective Z extremes of all bubblish series. The chart-level
         // `bubbleZExtremes` are only computed once, and reset on `updatedData`
@@ -118,7 +189,7 @@ var BubbleSeries = /** @class */ (function (_super) {
             this.chart.series.forEach(function (otherSeries) {
                 if (otherSeries.bubblePadding && (otherSeries.visible ||
                     !_this.chart.options.chart.ignoreHiddenSeries)) {
-                    var zExtremes_1 = otherSeries.getZExtremes();
+                    var zExtremes_1 = (otherSeries.onPoint || otherSeries).getZExtremes();
                     if (zExtremes_1) {
                         zMin_1 = Math.min(zMin_1 || zExtremes_1.zMin, zExtremes_1.zMin);
                         zMax_1 = Math.max(zMax_1 || zExtremes_1.zMax, zExtremes_1.zMax);
@@ -138,7 +209,7 @@ var BubbleSeries = /** @class */ (function (_super) {
         for (i = 0, len = zData.length; i < len; i++) {
             value = zData[i];
             // Separate method to get individual radius for bubbleLegend
-            radii.push(this.getRadius(zExtremes.zMin, zExtremes.zMax, minPxSize, maxPxSize, value, yData[i]));
+            radii.push(this.getRadius(zExtremes.zMin, zExtremes.zMax, minPxSize, maxPxSize, value, yData && yData[i]));
         }
         this.radii = radii;
     };
@@ -147,7 +218,8 @@ var BubbleSeries = /** @class */ (function (_super) {
      * @private
      */
     BubbleSeries.prototype.getRadius = function (zMin, zMax, minSize, maxSize, value, yValue) {
-        var options = this.options, sizeByArea = options.sizeBy !== 'width', zThreshold = options.zThreshold, zRange = zMax - zMin, pos = 0.5;
+        var options = this.options, sizeByArea = options.sizeBy !== 'width', zThreshold = options.zThreshold;
+        var zRange = zMax - zMin, pos = 0.5;
         // #8608 - bubble should be visible when z is undefined
         if (yValue === null || value === null) {
             return null;
@@ -231,6 +303,7 @@ var BubbleSeries = /** @class */ (function (_super) {
             else { // below zThreshold
                 // #1691
                 point.shapeArgs = point.plotY = point.dlBox = void 0;
+                point.isInside = false; // #17281
             }
         }
     };
@@ -262,7 +335,6 @@ var BubbleSeries = /** @class */ (function (_super) {
             }
         }
     };
-    BubbleSeries.compose = BubbleLegendComposition.compose;
     /**
      * A bubble series is a three dimensional series type where each point
      * renders an X, Y and Z value. Each points is drawn as a bubble where the
@@ -501,7 +573,7 @@ var BubbleSeries = /** @class */ (function (_super) {
     return BubbleSeries;
 }(ScatterSeries));
 extend(BubbleSeries.prototype, {
-    alignDataLabel: ColumnSeries.prototype.alignDataLabel,
+    alignDataLabel: columnProto.alignDataLabel,
     applyZones: noop,
     bubblePadding: true,
     buildKDTree: noop,
@@ -518,57 +590,10 @@ extend(BubbleSeries.prototype, {
 addEvent(BubbleSeries, 'updatedData', function (e) {
     delete e.target.chart.bubbleZExtremes;
 });
-/* *
- *
- *  Axis ?
- *
- * */
-// Add logic to pad each axis with the amount of pixels necessary to avoid the
-// bubbles to overflow.
-Axis.prototype.beforePadding = function () {
-    var axis = this, axisLength = this.len, chart = this.chart, pxMin = 0, pxMax = axisLength, isXAxis = this.isXAxis, dataKey = isXAxis ? 'xData' : 'yData', min = this.min, range = this.max - min, transA = axisLength / range, hasActiveSeries;
-    // Handle padding on the second pass, or on redraw
-    this.series.forEach(function (series) {
-        if (series.bubblePadding &&
-            (series.visible || !chart.options.chart.ignoreHiddenSeries)) {
-            // Correction for #1673
-            axis.allowZoomOutside = true;
-            hasActiveSeries = true;
-            var data = series[dataKey];
-            if (isXAxis) {
-                series.getRadii(0, 0, series);
-            }
-            if (range > 0) {
-                var i = data.length;
-                while (i--) {
-                    if (isNumber(data[i]) &&
-                        axis.dataMin <= data[i] &&
-                        data[i] <= axis.max) {
-                        var radius = series.radii && series.radii[i] || 0;
-                        pxMin = Math.min(((data[i] - min) * transA) - radius, pxMin);
-                        pxMax = Math.max(((data[i] - min) * transA) + radius, pxMax);
-                    }
-                }
-            }
-        }
-    });
-    // Apply the padding to the min and max properties
-    if (hasActiveSeries && range > 0 && !this.logarithmic) {
-        pxMax -= axisLength;
-        transA *= (axisLength +
-            Math.max(0, pxMin) - // #8901
-            Math.min(pxMax, axisLength)) / axisLength;
-        [
-            ['min', 'userMin', pxMin],
-            ['max', 'userMax', pxMax]
-        ].forEach(function (keys) {
-            if (typeof pick(axis.options[keys[0]], axis[keys[1]]) === 'undefined') {
-                axis[keys[0]] += keys[2] / transA;
-            }
-        });
-    }
-    /* eslint-enable valid-jsdoc */
-};
+// After removing series, delete the chart-level Z extremes cache, #17502.
+addEvent(BubbleSeries, 'remove', function (e) {
+    delete e.target.chart.bubbleZExtremes;
+});
 SeriesRegistry.registerSeriesType('bubble', BubbleSeries);
 /* *
  *

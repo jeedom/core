@@ -162,7 +162,7 @@ var Color = /** @class */ (function () {
                 return 'rgb(' + rgba[0] + ',' + rgba[1] + ',' + rgba[2] + ')';
             }
             if (format === 'a') {
-                return "" + rgba[3];
+                return "".concat(rgba[3]);
             }
             return 'rgba(' + rgba.join(',') + ')';
         }

@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2020-2021 Highsoft AS
+ *  (c) 2020-2022 Highsoft AS
  *
  *  License: www.highcharts.com/license
  *
@@ -16,10 +16,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -89,7 +91,7 @@ var InvertModifier = /** @class */ (function (_super) {
             modified.setColumns(this.modifyTable(table.clone()).getColumns(), void 0, eventDetail);
         }
         else {
-            modified.setCell("" + rowIndex, modifiedRowIndex, cellValue, eventDetail);
+            modified.setCell("".concat(rowIndex), modifiedRowIndex, cellValue, eventDetail);
         }
         return table;
     };
@@ -133,7 +135,7 @@ var InvertModifier = /** @class */ (function (_super) {
             modifiedRowIndex = (modified.getRowIndexBy('columnNames', columnName) ||
                 modified.getRowCount());
             for (var j = 0, j2 = rowIndex, jEnd = column.length; j < jEnd; ++j, ++j2) {
-                modified.setCell("" + j2, modifiedRowIndex, column[j], eventDetail);
+                modified.setCell("".concat(j2), modifiedRowIndex, column[j], eventDetail);
             }
         }
         return table;
@@ -174,11 +176,11 @@ var InvertModifier = /** @class */ (function (_super) {
         for (var i = 0, i2 = rowIndex, iEnd = rows.length, row = void 0; i < iEnd; ++i, ++i2) {
             row = rows[i];
             if (row instanceof Array) {
-                modified.setColumn("" + i2, row);
+                modified.setColumn("".concat(i2), row);
             }
             else {
                 for (var j = 0, jEnd = columnNames.length; j < jEnd; ++j) {
-                    modified.setCell("" + i2, j, row[columnNames[j]], eventDetail);
+                    modified.setCell("".concat(i2), j, row[columnNames[j]], eventDetail);
                 }
             }
         }
@@ -202,7 +204,7 @@ var InvertModifier = /** @class */ (function (_super) {
         var modified = table.modified;
         if (table.hasColumns(['columnNames'])) { // inverted table
             var columnNames = ((table.deleteColumns(['columnNames']) || {})
-                .columnNames || []).map(function (column) { return "" + column; }), columns = {};
+                .columnNames || []).map(function (column) { return "".concat(column); }), columns = {};
             for (var i = 0, iEnd = table.getRowCount(), row = void 0; i < iEnd; ++i) {
                 row = table.getRow(i);
                 if (row) {
@@ -217,7 +219,7 @@ var InvertModifier = /** @class */ (function (_super) {
             for (var i = 0, iEnd = table.getRowCount(), row = void 0; i < iEnd; ++i) {
                 row = table.getRow(i);
                 if (row) {
-                    columns["" + i] = row;
+                    columns["".concat(i)] = row;
                 }
             }
             columns.columnNames = table.getColumnNames();

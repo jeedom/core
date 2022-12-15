@@ -4,11 +4,30 @@
  *
  * */
 'use strict';
-import ControllableMixin from '../Mixins/ControllableMixin.js';
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+import Controllable from './Controllable.js';
 import ControllablePath from './ControllablePath.js';
 import U from '../../../Core/Utilities.js';
 var merge = U.merge;
-/* eslint-disable no-invalid-this, valid-jsdoc */
+/* *
+ *
+ *  Class
+ *
+ * */
 /**
  * A controllable circle class.
  *
@@ -22,79 +41,68 @@ var merge = U.merge;
  * @param {Highcharts.AnnotationsShapeOptions} options a shape's options
  * @param {number} index of the circle
  */
-var ControllableCircle = /** @class */ (function () {
+var ControllableCircle = /** @class */ (function (_super) {
+    __extends(ControllableCircle, _super);
     /* *
      *
      *  Constructors
      *
      * */
     function ControllableCircle(annotation, options, index) {
+        var _this = _super.call(this, annotation, options, index, 'shape') || this;
         /* *
          *
          *  Properties
          *
          * */
-        this.addControlPoints = ControllableMixin.addControlPoints;
-        this.anchor = ControllableMixin.anchor;
-        this.attr = ControllableMixin.attr;
-        this.attrsFromOptions = ControllableMixin.attrsFromOptions;
-        this.destroy = ControllableMixin.destroy;
-        this.getPointsOptions = ControllableMixin.getPointsOptions;
-        this.init = ControllableMixin.init;
-        this.linkPoints = ControllableMixin.linkPoints;
-        this.point = ControllableMixin.point;
-        this.rotate = ControllableMixin.rotate;
-        this.scale = ControllableMixin.scale;
-        this.setControlPointsVisibility = (ControllableMixin.setControlPointsVisibility);
-        this.shouldBeDrawn = ControllableMixin.shouldBeDrawn;
-        this.transform = ControllableMixin.transform;
-        this.transformPoint = ControllableMixin.transformPoint;
-        this.translatePoint = ControllableMixin.translatePoint;
-        this.translateShape = ControllableMixin.translateShape;
-        this.update = ControllableMixin.update;
-        /**
-         * @type 'circle'
-         */
-        this.type = 'circle';
-        this.translate = ControllableMixin.translateShape;
-        this.init(annotation, options, index);
-        this.collection = 'shapes';
+        _this.type = 'circle';
+        _this.translate = _super.prototype.translateShape;
+        return _this;
     }
     /* *
      *
      *  Functions
      *
      * */
+    /**
+     * @private
+     */
+    ControllableCircle.prototype.redraw = function (animation) {
+        if (this.graphic) {
+            var position = this.anchor(this.points[0]).absolutePosition;
+            if (position) {
+                this.graphic[animation ? 'animate' : 'attr']({
+                    x: position.x,
+                    y: position.y,
+                    r: this.options.r
+                });
+            }
+            else {
+                this.graphic.attr({
+                    x: 0,
+                    y: -9e9
+                });
+            }
+            this.graphic.placed = !!position;
+        }
+        _super.prototype.redraw.call(this, animation);
+    };
+    /**
+     * @private
+     */
     ControllableCircle.prototype.render = function (parent) {
         var attrs = this.attrsFromOptions(this.options);
         this.graphic = this.annotation.chart.renderer
             .circle(0, -9e9, 0)
             .attr(attrs)
             .add(parent);
-        ControllableMixin.render.call(this);
-    };
-    ControllableCircle.prototype.redraw = function (animation) {
-        var position = this.anchor(this.points[0]).absolutePosition;
-        if (position) {
-            this.graphic[animation ? 'animate' : 'attr']({
-                x: position.x,
-                y: position.y,
-                r: this.options.r
-            });
-        }
-        else {
-            this.graphic.attr({
-                x: 0,
-                y: -9e9
-            });
-        }
-        this.graphic.placed = Boolean(position);
-        ControllableMixin.redraw.call(this, animation);
+        _super.prototype.render.call(this);
     };
     /**
      * Set the radius.
-     *
-     * @param {number} r a radius to be set
+     * @private
+     * @param {number} r
+     *        A radius to be set
      */
     ControllableCircle.prototype.setRadius = function (r) {
         this.options.r = r;
@@ -113,5 +121,10 @@ var ControllableCircle = /** @class */ (function () {
      */
     ControllableCircle.attrsMap = merge(ControllablePath.attrsMap, { r: 'r' });
     return ControllableCircle;
-}());
+}(Controllable));
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default ControllableCircle;

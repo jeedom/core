@@ -21,10 +21,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -33,7 +35,7 @@ var __extends = (this && this.__extends) || (function () {
 import ColumnSeries from '../Column/ColumnSeries.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 import U from '../../Core/Utilities.js';
-var extend = U.extend, merge = U.merge, objectEach = U.objectEach, pick = U.pick;
+var extend = U.extend, merge = U.merge, pick = U.pick;
 import '../Column/ColumnSeries.js';
 /* *
  *
@@ -75,9 +77,9 @@ var DotPlotSeries = /** @class */ (function (_super) {
         var series = this, renderer = series.chart.renderer, seriesMarkerOptions = this.options.marker, itemPaddingTranslated = this.yAxis.transA *
             series.options.itemPadding, borderWidth = this.borderWidth, crisp = borderWidth % 2 ? 0.5 : 1;
         this.points.forEach(function (point) {
-            var yPos, attr, graphics, itemY, pointAttr, pointMarkerOptions = point.marker || {}, symbol = (pointMarkerOptions.symbol ||
+            var yPos, attr, graphics, pointAttr, pointMarkerOptions = point.marker || {}, symbol = (pointMarkerOptions.symbol ||
                 seriesMarkerOptions.symbol), radius = pick(pointMarkerOptions.radius, seriesMarkerOptions.radius), size, yTop, isSquare = symbol !== 'rect', x, y;
-            point.graphics = graphics = point.graphics || {};
+            point.graphics = graphics = point.graphics || [];
             pointAttr = point.pointAttr ?
                 (point.pointAttr[point.selected ? 'selected' : ''] ||
                     series.pointAttr['']) :
@@ -91,10 +93,10 @@ var DotPlotSeries = /** @class */ (function (_super) {
                 if (!point.graphic) {
                     point.graphic = renderer.g('point').add(series.group);
                 }
-                itemY = point.y;
                 yTop = pick(point.stackY, point.y);
                 size = Math.min(point.pointWidth, series.yAxis.transA - itemPaddingTranslated);
-                for (yPos = yTop; yPos > yTop - point.y; yPos--) {
+                var i = Math.floor(yTop);
+                for (yPos = yTop; yPos > yTop - point.y; yPos--, i--) {
                     x = point.barX + (isSquare ?
                         point.pointWidth / 2 - size / 2 :
                         0);
@@ -111,22 +113,21 @@ var DotPlotSeries = /** @class */ (function (_super) {
                         height: Math.round(size),
                         r: radius
                     };
-                    if (graphics[itemY]) {
-                        graphics[itemY].animate(attr);
+                    if (graphics[i]) {
+                        graphics[i].animate(attr);
                     }
                     else {
-                        graphics[itemY] = renderer.symbol(symbol)
+                        graphics[i] = renderer.symbol(symbol)
                             .attr(extend(attr, pointAttr))
                             .add(point.graphic);
                     }
-                    graphics[itemY].isActive = true;
-                    itemY--;
+                    graphics[i].isActive = true;
                 }
             }
-            objectEach(graphics, function (graphic, key) {
+            graphics.forEach(function (graphic, i) {
                 if (!graphic.isActive) {
                     graphic.destroy();
-                    delete graphic[key];
+                    graphics.splice(i, 1);
                 }
                 else {
                     graphic.isActive = false;

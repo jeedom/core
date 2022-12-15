@@ -30,7 +30,7 @@ var defined = U.defined, find = U.find, fireEvent = U.fireEvent;
 function fireEventOnWrappedOrUnwrappedElement(el, eventObject) {
     var type = eventObject.type;
     var hcEvents = el.hcEvents;
-    if (doc.createEvent &&
+    if ((doc.createEvent) &&
         (el.dispatchEvent || el.fireEvent)) {
         if (el.dispatchEvent) {
             el.dispatchEvent(eventObject);
@@ -113,9 +113,9 @@ function getCategoryAxisRangeDesc(axis) {
  * @private
  */
 function getAxisTimeLengthDesc(axis) {
-    var chart = axis.chart, range = {};
+    var chart = axis.chart, range = {}, min = axis.dataMin || axis.min || 0, max = axis.dataMax || axis.max || 0;
     var rangeUnit = 'Seconds';
-    range.Seconds = ((axis.max || 0) - (axis.min || 0)) / 1000;
+    range.Seconds = (max - min) / 1000;
     range.Minutes = range.Seconds / 60;
     range.Hours = range.Minutes / 60;
     range.Days = range.Hours / 24;
@@ -142,8 +142,13 @@ function getAxisFromToDescription(axis) {
     var chart = axis.chart, options = chart.options, dateRangeFormat = (options &&
         options.accessibility &&
         options.accessibility.screenReaderSection.axisRangeDateFormat ||
-        ''), format = function (axisKey) {
-        return axis.dateTime ? chart.time.dateFormat(dateRangeFormat, axis[axisKey]) : axis[axisKey];
+        ''), extremes = {
+        min: axis.dataMin || axis.min || 0,
+        max: axis.dataMax || axis.max || 0
+    }, format = function (key) {
+        return axis.dateTime ?
+            chart.time.dateFormat(dateRangeFormat, extremes[key]) :
+            extremes[key].toString();
     };
     return chart.langFormat('accessibility.axis.rangeFromTo', {
         chart: chart,

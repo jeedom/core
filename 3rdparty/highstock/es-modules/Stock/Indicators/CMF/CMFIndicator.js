@@ -16,10 +16,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -29,6 +31,11 @@ import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
 var SMAIndicator = SeriesRegistry.seriesTypes.sma;
 import U from '../../../Core/Utilities.js';
 var merge = U.merge;
+/* *
+ *
+ *  Class
+ *
+ * */
 /**
  * The CMF series type.
  *
@@ -41,6 +48,11 @@ var merge = U.merge;
 var CMFIndicator = /** @class */ (function (_super) {
     __extends(CMFIndicator, _super);
     function CMFIndicator() {
+        /* *
+         *
+         *  Static Properties
+         *
+         * */
         var _this = _super !== null && _super.apply(this, arguments) || this;
         /* *
          *
@@ -56,6 +68,11 @@ var CMFIndicator = /** @class */ (function (_super) {
         _this.nameBase = 'Chaikin Money Flow';
         return _this;
     }
+    /* *
+     *
+     *  Functions
+     *
+     * */
     /**
      * Checks if the series and volumeSeries are accessible, number of
      * points.x is longer than period, is series has OHLC data
@@ -228,6 +245,11 @@ SeriesRegistry.registerSeriesType('cmf', CMFIndicator);
  *
  * */
 export default CMFIndicator;
+/* *
+ *
+ *  API Options
+ *
+ * */
 /**
  * A `CMF` series. If the [type](#series.cmf.type) option is not
  * specified, it is inherited from [chart.type](#chart.type).

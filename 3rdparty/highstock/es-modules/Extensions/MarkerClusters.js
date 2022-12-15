@@ -15,7 +15,7 @@
 import A from '../Core/Animation/AnimationUtilities.js';
 var animObject = A.animObject;
 import Chart from '../Core/Chart/Chart.js';
-import D from '../Core/DefaultOptions.js';
+import D from '../Core/Defaults.js';
 var defaultOptions = D.defaultOptions;
 import Point from '../Core/Series/Point.js';
 import Series from '../Core/Series/Series.js';
@@ -239,7 +239,7 @@ var clusterDefaultOptions = {
         /** @internal */
         lineWidth: 0,
         /** @internal */
-        lineColor: "#ffffff" /* backgroundColor */
+        lineColor: "#ffffff" /* Palette.backgroundColor */
     },
     /**
      * Fires when the cluster point is clicked and `drillToCluster` is enabled.
@@ -346,6 +346,8 @@ var clusterDefaultOptions = {
          * @sample maps/marker-clusters/europe/
          *         Format tooltip for clusters using tooltip.formatter
          *
+         * @type      {string}
+         * @default   Clustered points: {point.clusterPointsAmount}
          * @apioption tooltip.clusterFormat
          */
         clusterFormat: '<span>Clustered points: ' +
@@ -868,7 +870,7 @@ Scatter.prototype.markerClusterAlgorithms = {
         return group;
     },
     optimizedKmeans: function (processedXData, processedYData, dataIndexes, options) {
-        var series = this, xAxis = series.xAxis, yAxis = series.yAxis, pointMaxDistance = options.processedDistance ||
+        var series = this, pointMaxDistance = options.processedDistance ||
             clusterDefaultOptions.layoutAlgorithm.gridSize, group = {}, extremes = series.getRealExtremes(), clusterMarkerOptions = (series.options.cluster || {}).marker, offset, distance, radius;
         if (!series.markerClusterInfo || (series.initMaxX && series.initMaxX < extremes.maxX ||
             series.initMinX && series.initMinX > extremes.minX ||
@@ -1209,13 +1211,27 @@ Scatter.prototype.hideClusteredData = function () {
 };
 // Override the generatePoints method by adding a reference to grouped data.
 Scatter.prototype.generatePoints = function () {
-    var series = this, chart = series.chart, mapView = chart.mapView, xAxis = series.xAxis, yAxis = series.yAxis, clusterOptions = series.options.cluster, realExtremes = series.getRealExtremes(), visibleXData = [], visibleYData = [], visibleDataIndexes = [], oldPointsState, oldDataLen, oldMarkerClusterInfo, kmeansThreshold, cropDataOffsetX, cropDataOffsetY, seriesMinX, seriesMaxX, seriesMinY, seriesMaxY, type, algorithm, clusteredData, groupedData, layoutAlgOptions, point, i;
+    var series = this, chart = series.chart, mapView = chart.mapView, xData = series.xData, yData = series.yData, clusterOptions = series.options.cluster, realExtremes = series.getRealExtremes(), visibleXData = [], visibleYData = [], visibleDataIndexes = [];
+    var oldPointsState, oldDataLen, oldMarkerClusterInfo, kmeansThreshold, cropDataOffsetX, cropDataOffsetY, seriesMinX, seriesMaxX, seriesMinY, seriesMaxY, type, algorithm, clusteredData, groupedData, layoutAlgOptions, point, i;
+    // For map point series, we need to resolve lon, lat and geometry options
+    // and project them on the plane in order to get x and y. In the regular
+    // series flow, this is not done until the `translate` method because the
+    // resulting [x, y] position depends on inset positions in the MapView.
+    if (mapView && series.is('mappoint') && xData && yData) {
+        (series.options.data || []).forEach(function (p, i) {
+            var xy = series.projectPoint(p);
+            if (xy) {
+                xData[i] = xy.x;
+                yData[i] = xy.y;
+            }
+        });
+    }
     if (clusterOptions &&
         clusterOptions.enabled &&
-        series.xData &&
-        series.xData.length &&
-        series.yData &&
-        series.yData.length &&
+        xData &&
+        xData.length &&
+        yData &&
+        yData.length &&
         !chart.polar) {
         type = clusterOptions.layoutAlgorithm.type;
         layoutAlgOptions = clusterOptions.layoutAlgorithm;
@@ -1231,34 +1247,34 @@ Scatter.prototype.generatePoints = function () {
         cropDataOffsetX = Math.abs(p1.x - p2.x);
         cropDataOffsetY = Math.abs(p1.y - p2.y);
         // Get only visible data.
-        for (i = 0; i < series.xData.length; i++) {
+        for (i = 0; i < xData.length; i++) {
             if (!series.dataMaxX) {
                 if (!defined(seriesMaxX) ||
                     !defined(seriesMinX) ||
                     !defined(seriesMaxY) ||
                     !defined(seriesMinY)) {
-                    seriesMaxX = seriesMinX = series.xData[i];
-                    seriesMaxY = seriesMinY = series.yData[i];
+                    seriesMaxX = seriesMinX = xData[i];
+                    seriesMaxY = seriesMinY = yData[i];
                 }
-                else if (isNumber(series.yData[i]) &&
+                else if (isNumber(yData[i]) &&
                     isNumber(seriesMaxY) &&
                     isNumber(seriesMinY)) {
-                    seriesMaxX = Math.max(series.xData[i], seriesMaxX);
-                    seriesMinX = Math.min(series.xData[i], seriesMinX);
-                    seriesMaxY = Math.max(series.yData[i] || seriesMaxY, seriesMaxY);
-                    seriesMinY = Math.min(series.yData[i] || seriesMinY, seriesMinY);
+                    seriesMaxX = Math.max(xData[i], seriesMaxX);
+                    seriesMinX = Math.min(xData[i], seriesMinX);
+                    seriesMaxY = Math.max(yData[i] || seriesMaxY, seriesMaxY);
+                    seriesMinY = Math.min(yData[i] || seriesMinY, seriesMinY);
                 }
             }
             // Crop data to visible ones with appropriate offset to prevent
             // cluster size changes on the edge of the plot area.
-            if (series.xData[i] >= (realExtremes.minX - cropDataOffsetX) &&
-                series.xData[i] <= (realExtremes.maxX + cropDataOffsetX) &&
-                (series.yData[i] || realExtremes.minY) >=
+            if (xData[i] >= (realExtremes.minX - cropDataOffsetX) &&
+                xData[i] <= (realExtremes.maxX + cropDataOffsetX) &&
+                (yData[i] || realExtremes.minY) >=
                     (realExtremes.minY - cropDataOffsetY) &&
-                (series.yData[i] || realExtremes.maxY) <=
+                (yData[i] || realExtremes.maxY) <=
                     (realExtremes.maxY + cropDataOffsetY)) {
-                visibleXData.push(series.xData[i]);
-                visibleYData.push(series.yData[i]);
+                visibleXData.push(xData[i]);
+                visibleYData.push(yData[i]);
                 visibleDataIndexes.push(i);
             }
         }
@@ -1303,7 +1319,7 @@ Scatter.prototype.generatePoints = function () {
             oldPointsState = {};
         }
         // Save points old state info.
-        oldDataLen = series.xData.length;
+        oldDataLen = xData.length;
         oldMarkerClusterInfo = series.markerClusterInfo;
         if (clusteredData) {
             series.processedXData = clusteredData.groupedXData;

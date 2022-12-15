@@ -13,7 +13,7 @@ var getDeferredAnimation = A.getDeferredAnimation;
 import F from '../FormatUtilities.js';
 var format = F.format;
 import U from '../Utilities.js';
-var defined = U.defined, extend = U.extend, fireEvent = U.fireEvent, isArray = U.isArray, merge = U.merge, objectEach = U.objectEach, pick = U.pick, splat = U.splat;
+var defined = U.defined, extend = U.extend, fireEvent = U.fireEvent, isArray = U.isArray, isString = U.isString, merge = U.merge, objectEach = U.objectEach, pick = U.pick, splat = U.splat;
 /* *
  *
  *  Composition
@@ -44,21 +44,24 @@ var DataLabel;
      * @private
      */
     function alignDataLabel(point, dataLabel, options, alignTo, isNew) {
-        var series = this, chart = this.chart, inverted = this.isCartesian && chart.inverted, enabledDataSorting = this.enabledDataSorting, plotX = pick(point.dlBox && point.dlBox.centerX, point.plotX, -9999), plotY = pick(point.plotY, -9999), bBox = dataLabel.getBBox(), rotation = options.rotation, align = options.align, isInsidePlot = chart.isInsidePlot(plotX, Math.round(plotY), {
-            inverted: inverted,
-            paneCoordinates: true,
-            series: series
-        }), setStartPos = function (alignOptions) {
+        var series = this, chart = this.chart, inverted = this.isCartesian && chart.inverted, enabledDataSorting = this.enabledDataSorting, plotX = point.plotX, plotY = point.plotY, rotation = options.rotation, align = options.align, isInsidePlot = defined(plotX) &&
+            defined(plotY) &&
+            chart.isInsidePlot(plotX, Math.round(plotY), {
+                inverted: inverted,
+                paneCoordinates: true,
+                series: series
+            }), setStartPos = function (alignOptions) {
             if (enabledDataSorting && series.xAxis && !justify) {
                 series.setDataLabelStartPos(point, dataLabel, isNew, isInsidePlot, alignOptions);
             }
         };
-        var baseline, normRotation, negRotation, rotCorr, // rotation correction
+        var baseline, rotCorr, // rotation correction
         // Math.round for rounding errors (#2683), alignTo to allow column
         // labels (#2700)
         alignAttr, // the final position;
         justify = pick(options.overflow, (enabledDataSorting ? 'none' : 'justify')) === 'justify', visible = this.visible &&
             point.visible !== false &&
+            defined(plotX) &&
             (point.series.forceDL ||
                 (enabledDataSorting && !justify) ||
                 isInsidePlot ||
@@ -76,7 +79,11 @@ var DataLabel;
                         paneCoordinates: true,
                         series: series
                     })));
-        if (visible) {
+        if (visible && defined(plotX) && defined(plotY)) {
+            if (rotation) {
+                dataLabel.attr({ align: align });
+            }
+            var bBox = dataLabel.getBBox(true), bBoxCorrection = [0, 0];
             baseline = chart.renderer.fontMetrics(chart.styledMode ? void 0 : options.style.fontSize, dataLabel).b;
             // The alignment box is a singular point
             alignTo = extend({
@@ -105,27 +112,12 @@ var DataLabel;
                         { top: 0, middle: 0.5, bottom: 1 }[options.verticalAlign] *
                             alignTo.height)
                 };
+                bBoxCorrection = [
+                    bBox.x - Number(dataLabel.attr('x')),
+                    bBox.y - Number(dataLabel.attr('y'))
+                ];
                 setStartPos(alignAttr); // data sorting
-                dataLabel[isNew ? 'attr' : 'animate'](alignAttr)
-                    .attr({
-                    align: align
-                });
-                // Compensate for the rotated label sticking out on the sides
-                normRotation = (rotation + 720) % 360;
-                negRotation = normRotation > 180 && normRotation < 360;
-                if (align === 'left') {
-                    alignAttr.y -= negRotation ? bBox.height : 0;
-                }
-                else if (align === 'center') {
-                    alignAttr.x -= bBox.width / 2;
-                    alignAttr.y -= bBox.height / 2;
-                }
-                else if (align === 'right') {
-                    alignAttr.x -= bBox.width;
-                    alignAttr.y -= negRotation ? 0 : bBox.height;
-                }
-                dataLabel.placed = true;
-                dataLabel.alignAttr = alignAttr;
+                dataLabel[isNew ? 'attr' : 'animate'](alignAttr);
             }
             else {
                 setStartPos(alignTo); // data sorting
@@ -138,12 +130,36 @@ var DataLabel;
                 // Now check that the data label is within the plot area
             }
             else if (pick(options.crop, true)) {
+                var x = alignAttr.x, y = alignAttr.y;
+                x += bBoxCorrection[0];
+                y += bBoxCorrection[1];
+                // Uncomment this block to visualize the bounding boxes used for
+                // determining visibility
+                /*
+                chart.renderer.rect(
+                    chart.plotLeft + alignAttr.x + bBox.x,
+                    chart.plotTop + alignAttr.y + bBox.y + 9999,
+                    bBox.width,
+                    bBox.height
+                ).attr({
+                    stroke: 'rgba(0, 0, 0, 0.3)',
+                    'stroke-width': 0.5
+                }).add();
+                chart.renderer.circle(
+                    chart.plotLeft + alignAttr.x,
+                    chart.plotTop + alignAttr.y,
+                    2
+                ).attr({
+                    fill: 'red',
+                    zIndex: 20
+                }).add();
+                // */
                 visible =
-                    chart.isInsidePlot(alignAttr.x, alignAttr.y, {
+                    chart.isInsidePlot(x, y, {
                         paneCoordinates: true,
                         series: series
                     }) &&
-                        chart.isInsidePlot(alignAttr.x + bBox.width, alignAttr.y + bBox.height, {
+                        chart.isInsidePlot(x + bBox.width, y + bBox.height, {
                             paneCoordinates: true,
                             series: series
                         });
@@ -152,12 +168,8 @@ var DataLabel;
             // arrow pointing to thie point
             if (options.shape && !rotation) {
                 dataLabel[isNew ? 'attr' : 'animate']({
-                    anchorX: inverted ?
-                        chart.plotWidth - point.plotY :
-                        point.plotX,
-                    anchorY: inverted ?
-                        chart.plotHeight - point.plotX :
-                        point.plotY
+                    anchorX: inverted ? chart.plotWidth - plotY : plotX,
+                    anchorY: inverted ? chart.plotHeight - plotX : plotY
                 });
             }
         }
@@ -167,8 +179,11 @@ var DataLabel;
         }
         // Show or hide based on the final aligned position
         if (!visible && (!enabledDataSorting || justify)) {
-            dataLabel.hide(true);
+            dataLabel.hide();
             dataLabel.placed = false; // don't animate back in
+        }
+        else {
+            dataLabel.show();
         }
     }
     /**
@@ -211,8 +226,11 @@ var DataLabel;
      * Draw the data labels
      * @private
      */
-    function drawDataLabels() {
-        var series = this, chart = series.chart, seriesOptions = series.options, points = series.points, hasRendered = series.hasRendered || 0, renderer = chart.renderer;
+    function drawDataLabels(points) {
+        if (points === void 0) { points = this.points; }
+        var series = this, chart = series.chart, seriesOptions = series.options, hasRendered = series.hasRendered || 0, renderer = chart.renderer, _a = chart.options.chart, backgroundColor = _a.backgroundColor, plotBackgroundColor = _a.plotBackgroundColor, contrastColor = renderer.getContrast((isString(plotBackgroundColor) && plotBackgroundColor) ||
+            (isString(backgroundColor) && backgroundColor) ||
+            "#000000" /* Palette.neutralColor100 */);
         var seriesDlOptions = seriesOptions.dataLabels, pointOptions, dataLabelsGroup;
         var dataLabelAnim = seriesDlOptions.animation, animationConfig = seriesDlOptions.defer ?
             getDeferredAnimation(chart, dataLabelAnim, series) :
@@ -235,7 +253,7 @@ var DataLabel;
                 var group = series.dataLabelsGroup;
                 if (group) {
                     if (series.visible) { // #2597, #3023, #3024
-                        dataLabelsGroup.show(true);
+                        dataLabelsGroup.show();
                     }
                     group[seriesOptions.animation ? 'animate' : 'attr']({ opacity: 1 }, animationConfig);
                 }
@@ -259,8 +277,8 @@ var DataLabel;
                         point.connectors[i] :
                         point.connector;
                     var labelConfig, formatString, labelText, style, rotation, attr, dataLabel = point.dataLabels ?
-                        point.dataLabels[i] : point.dataLabel;
-                    var labelDistance = pick(labelOptions.distance, point.labelDistance), isNew = !dataLabel;
+                        point.dataLabels[i] : point.dataLabel, isNew = !dataLabel;
+                    var labelDistance = pick(labelOptions.distance, point.labelDistance);
                     if (labelEnabled) {
                         // Create individual options structure that can be
                         // extended without affecting others
@@ -274,7 +292,7 @@ var DataLabel;
                         rotation = labelOptions.rotation;
                         if (!chart.styledMode) {
                             // Determine the color
-                            style.color = pick(labelOptions.color, style.color, series.color, "#000000" /* neutralColor100 */);
+                            style.color = pick(labelOptions.color, style.color, series.color, "#000000" /* Palette.neutralColor100 */);
                             // Get automated contrast color
                             if (style.color === 'contrast') {
                                 point.contrastColor = renderer.getContrast((point.color || series.color));
@@ -283,7 +301,7 @@ var DataLabel;
                                     labelDistance < 0 ||
                                     !!seriesOptions.stacking ?
                                     point.contrastColor :
-                                    "#000000" /* neutralColor100 */;
+                                    contrastColor;
                             }
                             else {
                                 delete point.contrastColor;
@@ -314,7 +332,15 @@ var DataLabel;
                     // #820
                     if (dataLabel && (!labelEnabled ||
                         !defined(labelText) ||
-                        !!dataLabel.div !== !!labelOptions.useHTML)) {
+                        !!dataLabel.div !== !!labelOptions.useHTML ||
+                        (
+                        // Change from no rotation to rotation and
+                        // vice versa. Don't use defined() because
+                        // rotation = 0 means also rotation = undefined
+                        (!dataLabel.rotation ||
+                            !labelOptions.rotation) &&
+                            dataLabel.rotation !== labelOptions.rotation))) {
+                        isNew = true;
                         point.dataLabel = dataLabel =
                             point.dataLabel && point.dataLabel.destroy();
                         if (point.dataLabels) {
@@ -352,10 +378,10 @@ var DataLabel;
                             point.dataLabels = point.dataLabels || [];
                             dataLabel = point.dataLabels[i] = rotation ?
                                 // Labels don't rotate, use text element
-                                renderer.text(labelText, 0, -9999, labelOptions.useHTML)
+                                renderer.text(labelText, 0, 0, labelOptions.useHTML)
                                     .addClass('highcharts-data-label') :
                                 // We can use label
-                                renderer.label(labelText, 0, -9999, labelOptions.shape, null, null, labelOptions.useHTML, null, 'data-label');
+                                renderer.label(labelText, 0, 0, labelOptions.shape, null, null, labelOptions.useHTML, null, 'data-label');
                             // Store for backwards compatibility
                             if (!i) {
                                 point.dataLabel = dataLabel;
@@ -380,21 +406,26 @@ var DataLabel;
                             // read text bounding box
                             dataLabel.css(style).shadow(labelOptions.shadow);
                         }
-                        if (!dataLabel.added) {
-                            dataLabel.add(dataLabelsGroup);
-                        }
-                        if (labelOptions.textPath && !labelOptions.useHTML) {
+                        var textPathOptions = labelOptions[point.formatPrefix + 'TextPath'] ||
+                            labelOptions.textPath;
+                        if (textPathOptions && !labelOptions.useHTML) {
                             dataLabel.setTextPath((point.getDataLabelPath &&
-                                point.getDataLabelPath(dataLabel)) || point.graphic, labelOptions.textPath);
+                                point.getDataLabelPath(dataLabel)) || point.graphic, textPathOptions);
                             if (point.dataLabelPath &&
-                                !labelOptions.textPath.enabled) {
+                                !textPathOptions.enabled) {
                                 // clean the DOM
                                 point.dataLabelPath = (point.dataLabelPath.destroy());
                             }
                         }
+                        if (!dataLabel.added) {
+                            dataLabel.add(dataLabelsGroup);
+                        }
                         // Now the data label is created and placed at 0,0, so
                         // we need to align it
                         series.alignDataLabel(point, dataLabel, labelOptions, null, isNew);
+                    }
+                    else if (dataLabel) {
+                        dataLabel.hide();
                     }
                 });
             });

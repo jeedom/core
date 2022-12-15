@@ -12,10 +12,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -66,11 +68,11 @@ var HeatmapPoint = /** @class */ (function (_super) {
         var point = this, series = point.series, seriesOptions = series.options, xPad = (seriesOptions.colsize || 1) / 2, yPad = (seriesOptions.rowsize || 1) / 2, xAxis = series.xAxis, yAxis = series.yAxis, markerOptions = point.options.marker || series.options.marker, pointPlacement = series.pointPlacementToXValue(), // #7860
         pointPadding = pick(point.pointPadding, seriesOptions.pointPadding, 0), cellAttr = {
             x1: clamp(Math.round(xAxis.len -
-                (xAxis.translate(point.x - xPad, false, true, false, true, -pointPlacement) || 0)), -xAxis.len, 2 * xAxis.len),
+                xAxis.translate(point.x - xPad, false, true, false, true, -pointPlacement)), -xAxis.len, 2 * xAxis.len),
             x2: clamp(Math.round(xAxis.len -
-                (xAxis.translate(point.x + xPad, false, true, false, true, -pointPlacement) || 0)), -xAxis.len, 2 * xAxis.len),
-            y1: clamp(Math.round((yAxis.translate(point.y - yPad, false, true, false, true) || 0)), -yAxis.len, 2 * yAxis.len),
-            y2: clamp(Math.round((yAxis.translate(point.y + yPad, false, true, false, true) || 0)), -yAxis.len, 2 * yAxis.len)
+                xAxis.translate(point.x + xPad, false, true, false, true, -pointPlacement)), -xAxis.len, 2 * xAxis.len),
+            y1: clamp(Math.round(yAxis.translate(point.y - yPad, false, true, false, true)), -yAxis.len, 2 * yAxis.len),
+            y2: clamp(Math.round(yAxis.translate(point.y + yPad, false, true, false, true)), -yAxis.len, 2 * yAxis.len)
         };
         var dimensions = [['width', 'x'], ['height', 'y']];
         // Handle marker's fixed width, and height values including border

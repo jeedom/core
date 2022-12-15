@@ -19,10 +19,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -34,12 +36,14 @@ import Color from '../../Core/Color/Color.js';
 var color = Color.parse;
 import CU from '../../Core/Geometry/CircleUtilities.js';
 var getAreaOfIntersectionBetweenCircles = CU.getAreaOfIntersectionBetweenCircles, getCirclesIntersectionPolygon = CU.getCirclesIntersectionPolygon, isCircle1CompletelyOverlappingCircle2 = CU.isCircle1CompletelyOverlappingCircle2, isPointInsideAllCircles = CU.isPointInsideAllCircles, isPointOutsideAllCircles = CU.isPointOutsideAllCircles;
+import DPU from '../DrawPointUtilities.js';
 import GU from '../../Core/Geometry/GeometryUtilities.js';
 var getCenterOfPoints = GU.getCenterOfPoints;
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var ScatterSeries = SeriesRegistry.seriesTypes.scatter;
 import VennPoint from './VennPoint.js';
 import VennUtils from './VennUtils.js';
+import LegendSymbol from '../../Core/Legend/LegendSymbol.js';
 import U from '../../Core/Utilities.js';
 var addEvent = U.addEvent, extend = U.extend, isArray = U.isArray, isNumber = U.isNumber, isObject = U.isObject, isString = U.isString, merge = U.merge;
 /* *
@@ -339,7 +343,7 @@ var VennSeries = /** @class */ (function (_super) {
                 extend(attribs, series.pointAttribs(point, point.state));
             }
             // Draw the point graphic.
-            point.draw({
+            DPU.draw(point, {
                 isNew: !point.graphic,
                 animatableAttribs: shapeArgs,
                 attribs: attribs,
@@ -464,6 +468,8 @@ var VennSeries = /** @class */ (function (_super) {
      *         Venn diagram
      * @sample {highcharts} highcharts/demo/euler-diagram/
      *         Euler diagram
+     * @sample {highcharts} highcharts/series-venn/point-legend/
+     *         Venn diagram with a legend
      *
      * @extends      plotOptions.scatter
      * @excluding    connectEnds, connectNulls, cropThreshold, dragDrop,
@@ -478,7 +484,7 @@ var VennSeries = /** @class */ (function (_super) {
      * @optionparent plotOptions.venn
      */
     VennSeries.defaultOptions = merge(ScatterSeries.defaultOptions, {
-        borderColor: "#cccccc" /* neutralColor20 */,
+        borderColor: "#cccccc" /* Palette.neutralColor20 */,
         borderDashStyle: 'solid',
         borderWidth: 1,
         brighten: 0,
@@ -496,23 +502,33 @@ var VennSeries = /** @class */ (function (_super) {
          * @private
          */
         inactiveOtherPoints: true,
+        /**
+         * @ignore-option
+         * @private
+         */
         marker: false,
         opacity: 0.75,
         showInLegend: false,
+        /**
+         * @ignore-option
+         *
+         * @private
+         */
+        legendType: 'point',
         states: {
             /**
              * @excluding halo
              */
             hover: {
                 opacity: 1,
-                borderColor: "#333333" /* neutralColor80 */
+                borderColor: "#333333" /* Palette.neutralColor80 */
             },
             /**
              * @excluding halo
              */
             select: {
-                color: "#cccccc" /* neutralColor20 */,
-                borderColor: "#000000" /* neutralColor100 */,
+                color: "#cccccc" /* Palette.neutralColor20 */,
+                borderColor: "#000000" /* Palette.neutralColor100 */,
                 animation: false
             },
             inactive: {
@@ -528,6 +544,7 @@ var VennSeries = /** @class */ (function (_super) {
 extend(VennSeries.prototype, {
     axisTypes: [],
     directTouch: true,
+    drawLegendSymbol: LegendSymbol.drawRectangle,
     isCartesian: false,
     pointArrayMap: ['value'],
     pointClass: VennPoint,

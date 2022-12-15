@@ -13,7 +13,7 @@ import H from '../Core/Globals.js';
 var doc = H.doc;
 import U from '../Core/Utilities.js';
 var addEvent = U.addEvent, extend = U.extend, isNumber = U.isNumber, merge = U.merge, objectEach = U.objectEach, pick = U.pick;
-import './MapNavigationOptionsDefault.js';
+import './MapNavigationDefaults.js';
 /* eslint-disable no-invalid-this, valid-jsdoc */
 /**
  * @private
@@ -41,6 +41,7 @@ function stopEvent(e) {
  *        The Chart instance.
  */
 function MapNavigation(chart) {
+    this.navButtons = [];
     this.init(chart);
 }
 /**
@@ -55,7 +56,6 @@ function MapNavigation(chart) {
  */
 MapNavigation.prototype.init = function (chart) {
     this.chart = chart;
-    chart.mapNavButtons = [];
 };
 /**
  * Update the map navigation with new options. Calling this is the same as
@@ -69,10 +69,10 @@ MapNavigation.prototype.init = function (chart) {
  * @return {void}
  */
 MapNavigation.prototype.update = function (options) {
-    var chart = this.chart, o = chart.options.mapNavigation, attr, states, hoverStates, selectStates, outerHandler = function (e) {
+    var mapNav = this, chart = this.chart, o = chart.options.mapNavigation, attr, outerHandler = function (e) {
         this.handler.call(chart, e);
         stopEvent(e); // Stop default click event (#4444)
-    }, mapNavButtons = chart.mapNavButtons;
+    }, navButtons = mapNav.navButtons;
     // Merge in new options in case of update, and register back to chart
     // options.
     if (options) {
@@ -80,10 +80,15 @@ MapNavigation.prototype.update = function (options) {
             merge(chart.options.mapNavigation, options);
     }
     // Destroy buttons in case of dynamic update
-    while (mapNavButtons.length) {
-        mapNavButtons.pop().destroy();
+    while (navButtons.length) {
+        navButtons.pop().destroy();
     }
     if (pick(o.enableButtons, o.enabled) && !chart.renderer.forExport) {
+        if (!mapNav.navButtonsGroup) {
+            mapNav.navButtonsGroup = chart.renderer.g().attr({
+                zIndex: 4 // #4955, // #8392
+            }).add();
+        }
         objectEach(o.buttons, function (buttonOptions, n) {
             buttonOptions = merge(o.buttonOptions, buttonOptions);
             // Presentational
@@ -91,13 +96,9 @@ MapNavigation.prototype.update = function (options) {
                 attr = buttonOptions.theme;
                 attr.style = merge(buttonOptions.theme.style, buttonOptions.style // #3203
                 );
-                states = attr.states;
-                hoverStates = states && states.hover;
-                selectStates = states && states.select;
-                delete attr.states;
             }
             var button = chart.renderer
-                .button(buttonOptions.text || '', 0, 0, outerHandler, attr, hoverStates, selectStates, void 0, n === 'zoomIn' ? 'topbutton' : 'bottombutton')
+                .button(buttonOptions.text || '', 0, 0, outerHandler, attr, void 0, void 0, void 0, n === 'zoomIn' ? 'topbutton' : 'bottombutton')
                 .addClass('highcharts-map-navigation highcharts-' + {
                 zoomIn: 'zoom-in',
                 zoomOut: 'zoom-out'
@@ -109,11 +110,11 @@ MapNavigation.prototype.update = function (options) {
                 padding: buttonOptions.padding,
                 zIndex: 5
             })
-                .add();
+                .add(mapNav.navButtonsGroup);
             button.handler = buttonOptions.onclick;
             // Stop double click event (#4444)
             addEvent(button.element, 'dblclick', stopEvent);
-            mapNavButtons.push(button);
+            navButtons.push(button);
             extend(buttonOptions, {
                 width: button.width,
                 height: 2 * button.height
@@ -132,6 +133,41 @@ MapNavigation.prototype.update = function (options) {
                 button.align(buttonOptions, false, buttonOptions.alignTo);
             }
         });
+        // Borrowed from overlapping-datalabels. Consider a shared module.
+        var isIntersectRect_1 = function (box1, box2) { return !(box2.x >= box1.x + box1.width ||
+            box2.x + box2.width <= box1.x ||
+            box2.y >= box1.y + box1.height ||
+            box2.y + box2.height <= box1.y); };
+        // Check the mapNavigation buttons collision with exporting button
+        // and translate the mapNavigation button if they overlap.
+        var adjustMapNavBtn = function () {
+            var expBtnBBox = chart.exportingGroup && chart.exportingGroup.getBBox();
+            if (expBtnBBox) {
+                var navBtnsBBox = mapNav.navButtonsGroup.getBBox();
+                // If buttons overlap
+                if (isIntersectRect_1(expBtnBBox, navBtnsBBox)) {
+                    // Adjust the mapNav buttons' position by translating them
+                    // above or below the exporting button
+                    var aboveExpBtn = -navBtnsBBox.y - navBtnsBBox.height +
+                        expBtnBBox.y - 5, belowExpBtn = expBtnBBox.y + expBtnBBox.height -
+                        navBtnsBBox.y + 5, mapNavVerticalAlign = o.buttonOptions && o.buttonOptions.verticalAlign;
+                    // If bottom aligned and adjusting the mapNav button would
+                    // translate it out of the plotBox, translate it up
+                    // instead of down
+                    mapNav.navButtonsGroup.attr({
+                        translateY: mapNavVerticalAlign === 'bottom' ?
+                            aboveExpBtn :
+                            belowExpBtn
+                    });
+                }
+            }
+        };
+        if (!chart.hasLoaded) {
+            // Align it after the plotBox is known (#12776) and after the
+            // hamburger button's position is known so they don't overlap
+            // (#15782)
+            addEvent(chart, 'render', adjustMapNavBtn);
+        }
     }
     this.updateEvents(o);
 };
@@ -229,6 +265,7 @@ extend(Chart.prototype, /** @lends Chart.prototype */ {
      *
      * Deprecated as of v9.3 in favor of [MapView.zoomBy](https://api.highcharts.com/class-reference/Highcharts.MapView#zoomBy).
      *
+     * @deprecated
      * @function Highcharts.Chart#mapZoom
      *
      * @param {number} [howMuch]

@@ -18,10 +18,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -123,9 +125,10 @@ var CSVStore = /** @class */ (function (_super) {
         }
         store.emit({ type: 'load', detail: eventDetail, table: store.table });
         ajax({
-            url: store.liveDataURL,
+            url: store.liveDataURL || '',
             dataType: 'text',
             success: function (csv) {
+                csv = "".concat(csv);
                 store.parser.parse({ csv: csv });
                 // On inital fetch we need to set the columns
                 store.table.setColumns(store.parser.getTable().getColumns());
@@ -219,7 +222,7 @@ var CSVStore = /** @class */ (function (_super) {
         var rowArray = [];
         // Add the names as the first row if they should be exported
         if (exportNames) {
-            csvRows.push(columnNames.map(function (columnName) { return "\"" + columnName + "\""; }).join(itemDelimiter));
+            csvRows.push(columnNames.map(function (columnName) { return "\"".concat(columnName, "\""); }).join(itemDelimiter));
         }
         for (var columnIndex = 0; columnIndex < columnsCount; columnIndex++) {
             var columnName = columnNames[columnIndex], column = columnValues[columnIndex], columnLength = column.length;
@@ -235,13 +238,13 @@ var CSVStore = /** @class */ (function (_super) {
                 }
                 // Prefer datatype from metadata
                 if (columnDataType === 'string') {
-                    cellValue = "\"" + cellValue + "\"";
+                    cellValue = "\"".concat(cellValue, "\"");
                 }
                 else if (typeof cellValue === 'number') {
                     cellValue = String(cellValue).replace('.', decimalPoint);
                 }
                 else if (typeof cellValue === 'string') {
-                    cellValue = "\"" + cellValue + "\"";
+                    cellValue = "\"".concat(cellValue, "\"");
                 }
                 rowArray[rowIndex][columnIndex] = cellValue;
                 // On the final column, push the row to the CSV

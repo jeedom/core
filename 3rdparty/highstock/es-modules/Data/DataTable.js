@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2020-2021 Highsoft AS
+ *  (c) 2020-2022 Highsoft AS
  *
  *  License: www.highcharts.com/license
  *
@@ -12,12 +12,14 @@
  *
  * */
 'use strict';
-var __spreadArrays = (this && this.__spreadArrays) || function () {
-    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-    for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-    return r;
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
 };
 import DataPromise from './DataPromise.js';
 import U from '../Core/Utilities.js';
@@ -418,7 +420,7 @@ var DataTable = /** @class */ (function () {
             case 'number':
                 return (isNaN(cellValue) && !useNaN ? null : cellValue);
         }
-        cellValue = parseFloat("" + cellValue);
+        cellValue = parseFloat("".concat(cellValue));
         return (isNaN(cellValue) && !useNaN ? null : cellValue);
     };
     /**
@@ -440,7 +442,7 @@ var DataTable = /** @class */ (function () {
         columnNameOrAlias = (table.aliasMap[columnNameOrAlias] ||
             columnNameOrAlias);
         var column = table.columns[columnNameOrAlias];
-        return "" + (column && column[rowIndex]);
+        return "".concat((column && column[rowIndex]));
     };
     /**
      * Fetches the given column by the canonical column name or by an alias.
@@ -577,7 +579,7 @@ var DataTable = /** @class */ (function () {
      * @function Highcharts.DataTable#getRow
      *
      * @param {number} rowIndex
-     * Row index.
+     * Row index to retrieve. First row has index 0.
      *
      * @param {Array<string>} [columnNamesOrAliases]
      * Column names or aliases in order to retrieve.
@@ -962,8 +964,8 @@ var DataTable = /** @class */ (function () {
                     tableColumn.push.apply(tableColumn, column);
                 }
                 else {
-                    tableColumn.splice.apply(tableColumn, __spreadArrays([rowIndex,
-                        (column.length - rowIndex)], column));
+                    tableColumn.splice.apply(tableColumn, __spreadArray([rowIndex,
+                        (column.length - rowIndex)], column, false));
                 }
                 table.rowCount = Math.max(table.rowCount, tableColumn.length);
             }

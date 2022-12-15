@@ -12,10 +12,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -24,7 +26,7 @@ var __extends = (this && this.__extends) || (function () {
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var ScatterSeries = SeriesRegistry.seriesTypes.scatter;
 import U from '../../Core/Utilities.js';
-var isNumber = U.isNumber, merge = U.merge;
+var isNumber = U.isNumber;
 /* *
  *
  *  Class
@@ -33,11 +35,6 @@ var isNumber = U.isNumber, merge = U.merge;
 var MapPointPoint = /** @class */ (function (_super) {
     __extends(MapPointPoint, _super);
     function MapPointPoint() {
-        /* *
-         *
-         *  Properties
-         *
-         * */
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.options = void 0;
         _this.series = void 0;
@@ -50,16 +47,10 @@ var MapPointPoint = /** @class */ (function (_super) {
      *
      * */
     /* eslint-disable valid-jsdoc */
-    MapPointPoint.prototype.applyOptions = function (options, x) {
-        var mergedOptions = (typeof options.lat !== 'undefined' &&
-            typeof options.lon !== 'undefined' ?
-            merge(options, this.series.chart.fromLatLonToPoint(options)) :
-            options);
-        return _super.prototype.applyOptions.call(this, mergedOptions, x);
-    };
     MapPointPoint.prototype.isValid = function () {
         return Boolean(this.options.geometry ||
-            (isNumber(this.x) && isNumber(this.y)));
+            (isNumber(this.x) && isNumber(this.y)) ||
+            (isNumber(this.options.lon) && isNumber(this.options.lat)));
     };
     return MapPointPoint;
 }(ScatterSeries.prototype.pointClass));

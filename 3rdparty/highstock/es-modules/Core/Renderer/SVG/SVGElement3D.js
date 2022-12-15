@@ -31,10 +31,21 @@ SVGElement3D.base = {
         var elem3d = this, renderer = elem3d.renderer, paths = renderer[elem3d.pathType + 'Path'](args), zIndexes = paths.zIndexes;
         // build parts
         elem3d.parts.forEach(function (part) {
-            elem3d[part] = renderer.path(paths[part]).attr({
+            var attribs = {
                 'class': 'highcharts-3d-' + part,
                 zIndex: zIndexes[part] || 0
-            }).add(elem3d);
+            };
+            if (renderer.styledMode) {
+                if (part === 'top') {
+                    attribs.filter = 'url(#highcharts-brighter)';
+                }
+                else if (part === 'side') {
+                    attribs.filter = 'url(#highcharts-darker)';
+                }
+            }
+            elem3d[part] = renderer.path(paths[part])
+                .attr(attribs)
+                .add(elem3d);
         });
         elem3d.attr({
             'stroke-linejoin': 'round',
@@ -126,11 +137,12 @@ SVGElement3D.cuboid = merge(SVGElement3D.base, {
             this.attr({
                 zIndex: paths.zIndexes.group
             });
-            // If sides that are forced to render changed, recalculate
-            // colors.
+            // If sides that are forced to render changed, recalculate colors.
             if (forcedSides !== this.forcedSides) {
                 this.forcedSides = forcedSides;
-                SVGElement3D.cuboid.fillSetter.call(this, this.fill);
+                if (!this.renderer.styledMode) {
+                    SVGElement3D.cuboid.fillSetter.call(this, this.fill);
+                }
             }
         }
         else {

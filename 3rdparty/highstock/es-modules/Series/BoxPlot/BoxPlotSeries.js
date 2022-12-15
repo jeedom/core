@@ -12,10 +12,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -247,9 +249,12 @@ var BoxPlotSeries = /** @class */ (function (_super) {
      * @optionparent plotOptions.boxplot
      */
     BoxPlotSeries.defaultOptions = merge(ColumnSeries.defaultOptions, {
+        /**
+         * @type {number|null}
+         */
         threshold: null,
         tooltip: {
-            pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> ' +
+            pointFormat: '<span style="color:{point.color}">\u25CF</span> <b>' +
                 '{series.name}</b><br/>' +
                 'Maximum: {point.high}<br/>' +
                 'Upper quartile: {point.q3}<br/>' +
@@ -284,7 +289,7 @@ var BoxPlotSeries = /** @class */ (function (_super) {
          * @since   3.0
          * @product highcharts
          */
-        fillColor: "#ffffff" /* backgroundColor */,
+        fillColor: "#ffffff" /* Palette.backgroundColor */,
         /**
          * The width of the line surrounding the box. If any of
          * [stemWidth](#plotOptions.boxplot.stemWidth),

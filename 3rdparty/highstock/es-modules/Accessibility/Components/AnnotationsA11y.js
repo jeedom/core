@@ -111,7 +111,7 @@ function getAnnotationListItems(chart) {
     var labels = getChartAnnotationLabels(chart);
     return labels.map(function (label) {
         var desc = escapeStringForHTML(stripHTMLTagsFromString(getAnnotationLabelDescription(label)));
-        return desc ? "<li>" + desc + "</li>" : '';
+        return desc ? "<li>".concat(desc, "</li>") : '';
     });
 }
 /**
@@ -127,7 +127,7 @@ function getAnnotationsInfoHTML(chart) {
         return '';
     }
     var annotationItems = getAnnotationListItems(chart);
-    return "<ul style=\"list-style-type: none\">" + annotationItems.join(' ') + "</ul>";
+    return "<ul style=\"list-style-type: none\">".concat(annotationItems.join(' '), "</ul>");
 }
 /**
  * Return the texts for the annotation(s) connected to a point, or empty array
@@ -144,7 +144,7 @@ function getPointAnnotationTexts(point) {
     if (!pointLabels.length) {
         return [];
     }
-    return pointLabels.map(function (label) { return "" + getLabelText(label); });
+    return pointLabels.map(function (label) { return "".concat(getLabelText(label)); });
 }
 /* *
  *

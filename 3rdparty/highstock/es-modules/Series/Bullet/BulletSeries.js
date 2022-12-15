@@ -12,10 +12,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -164,8 +166,7 @@ var BulletSeries = /** @class */ (function (_super) {
      * @function Highcharts.Series#getExtremes
      */
     BulletSeries.prototype.getExtremes = function (yData) {
-        var dataExtremes = _super.prototype.getExtremes.call(this, yData), series = this, targetData = series.targetData;
-        var yMax, yMin;
+        var dataExtremes = _super.prototype.getExtremes.call(this, yData), targetData = this.targetData;
         if (targetData && targetData.length) {
             var targetExtremes = _super.prototype.getExtremes.call(this, targetData);
             if (isNumber(targetExtremes.dataMin)) {

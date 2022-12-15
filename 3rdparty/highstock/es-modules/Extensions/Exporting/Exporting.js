@@ -13,12 +13,13 @@
 import AST from '../../Core/Renderer/HTML/AST.js';
 import Chart from '../../Core/Chart/Chart.js';
 import ChartNavigationComposition from '../../Core/Chart/ChartNavigationComposition.js';
-import D from '../../Core/DefaultOptions.js';
-var defaultOptions = D.defaultOptions;
+import D from '../../Core/Defaults.js';
+var defaultOptions = D.defaultOptions, setOptions = D.setOptions;
 import ExportingDefaults from './ExportingDefaults.js';
 import ExportingSymbols from './ExportingSymbols.js';
+import Fullscreen from './Fullscreen.js';
 import G from '../../Core/Globals.js';
-var doc = G.doc, win = G.win;
+var doc = G.doc, SVG_NS = G.SVG_NS, win = G.win;
 import HU from '../../Core/HttpUtilities.js';
 import U from '../../Core/Utilities.js';
 var addEvent = U.addEvent, css = U.css, createElement = U.createElement, discardElement = U.discardElement, extend = U.extend, find = U.find, fireEvent = U.fireEvent, isObject = U.isObject, merge = U.merge, objectEach = U.objectEach, pick = U.pick, removeEvent = U.removeEvent, uniqueKey = U.uniqueKey;
@@ -41,16 +42,17 @@ var Exporting;
      * */
     var composedClasses = [];
     // These CSS properties are not inlined. Remember camelCase.
-    var inlineBlacklist = [
+    var inlineDenylist = [
         /-/,
         /^(clipPath|cssText|d|height|width)$/,
         /^font$/,
         /[lL]ogical(Width|Height)$/,
+        /^parentRule$/,
         /perspective/,
         /TapHighlightColor/,
         /^transition/,
-        /^length$/ // #7700
-        // /^text (border|color|cursor|height|webkitBorder)/
+        /^length$/,
+        /^[0-9]+$/ // #17538
     ];
     // These ones are translated to attributes rather than styles
     var inlineToAttributes = [
@@ -63,7 +65,7 @@ var Exporting;
         'x',
         'y'
     ];
-    Exporting.inlineWhitelist = [];
+    Exporting.inlineAllowlist = [];
     var unstyledElements = [
         'clipPath',
         'defs',
@@ -103,13 +105,12 @@ var Exporting;
         if (btnOptions.enabled === false || !btnOptions.theme) {
             return;
         }
-        var attr = btnOptions.theme, states = attr.states, hover = states && states.hover, select = states && states.select;
+        var attr = btnOptions.theme;
         var callback;
         if (!chart.styledMode) {
-            attr.fill = pick(attr.fill, "#ffffff" /* backgroundColor */);
+            attr.fill = pick(attr.fill, "#ffffff" /* Palette.backgroundColor */);
             attr.stroke = pick(attr.stroke, 'none');
         }
-        delete attr.states;
         if (onclick) {
             callback = function (e) {
                 if (e) {
@@ -140,11 +141,11 @@ var Exporting;
         }
         if (!chart.styledMode) {
             attr['stroke-linecap'] = 'round';
-            attr.fill = pick(attr.fill, "#ffffff" /* backgroundColor */);
+            attr.fill = pick(attr.fill, "#ffffff" /* Palette.backgroundColor */);
             attr.stroke = pick(attr.stroke, 'none');
         }
         var button = renderer
-            .button(btnOptions.text, 0, 0, callback, attr, hover, select)
+            .button(btnOptions.text, 0, 0, callback, attr, void 0, void 0, void 0, void 0, btnOptions.useHTML)
             .addClass(options.className)
             .attr({
             title: pick(chart.options.lang[btnOptions._titleKey || btnOptions.titleKey], '')
@@ -308,6 +309,7 @@ var Exporting;
      */
     function compose(ChartClass, SVGRendererClass) {
         ExportingSymbols.compose(SVGRendererClass);
+        Fullscreen.compose(ChartClass);
         if (composedClasses.indexOf(ChartClass) === -1) {
             composedClasses.push(ChartClass);
             var chartProto = ChartClass.prototype;
@@ -341,6 +343,15 @@ var Exporting;
                     }
                 });
             }
+        }
+        if (composedClasses.indexOf(setOptions) === -1) {
+            composedClasses.push(setOptions);
+            defaultOptions.exporting = merge(ExportingDefaults.exporting, defaultOptions.exporting);
+            defaultOptions.lang = merge(ExportingDefaults.lang, defaultOptions.lang);
+            // Buttons and menus are collected in a separate config option set
+            // called 'navigation'. This can be extended later to add control
+            // buttons like zoom and pan right click menus.
+            defaultOptions.navigation = merge(ExportingDefaults.navigation, defaultOptions.navigation);
         }
     }
     Exporting.compose = compose;
@@ -463,7 +474,7 @@ var Exporting;
                             };
                             css(element, extend({
                                 cursor: 'pointer'
-                            }, navOptions.menuItemStyle));
+                            }, navOptions.menuItemStyle || {}));
                         }
                     }
                     // Keep references to menu divs to be able to destroy them
@@ -813,7 +824,7 @@ var Exporting;
      * @requires modules/exporting
      */
     function inlineStyles() {
-        var blacklist = inlineBlacklist, whitelist = Exporting.inlineWhitelist, // For IE
+        var denylist = inlineDenylist, allowlist = Exporting.inlineAllowlist, // For IE
         defaultStyles = {};
         var dummySVG;
         // Create an iframe where we read default styles without pollution from
@@ -825,10 +836,10 @@ var Exporting;
             visibility: 'hidden'
         });
         doc.body.appendChild(iframe);
-        var iframeDoc = iframe.contentWindow.document;
-        iframeDoc.open();
-        iframeDoc.write('<svg xmlns="http://www.w3.org/2000/svg"></svg>');
-        iframeDoc.close();
+        var iframeDoc = (iframe.contentWindow && iframe.contentWindow.document);
+        if (iframeDoc) {
+            iframeDoc.body.appendChild(iframeDoc.createElementNS(SVG_NS, 'svg'));
+        }
         /**
          * Call this on all elements and recurse to children
          * @private
@@ -836,9 +847,10 @@ var Exporting;
          *        Element child
              */
         function recurse(node) {
-            var styles, parentStyles, cssText = '', dummy, styleAttr, blacklisted, whitelisted, i;
+            var filteredStyles = {};
+            var styles, parentStyles, dummy, denylisted, allowlisted, i;
             /**
-             * Check computed styles and whether they are in the white/blacklist
+             * Check computed styles and whether they are in the allow/denylist
              * for styles or atttributes.
              * @private
              * @param {string} val
@@ -847,27 +859,27 @@ var Exporting;
              *        Style property name
                      */
             function filterStyles(val, prop) {
-                // Check against whitelist & blacklist
-                blacklisted = whitelisted = false;
-                if (whitelist.length) {
-                    // Styled mode in IE has a whitelist instead.
-                    // Exclude all props not in this list.
-                    i = whitelist.length;
-                    while (i-- && !whitelisted) {
-                        whitelisted = whitelist[i].test(prop);
+                // Check against allowlist & denylist
+                denylisted = allowlisted = false;
+                if (allowlist.length) {
+                    // Styled mode in IE has a allowlist instead. Exclude all
+                    // props not in this list.
+                    i = allowlist.length;
+                    while (i-- && !allowlisted) {
+                        allowlisted = allowlist[i].test(prop);
                     }
-                    blacklisted = !whitelisted;
+                    denylisted = !allowlisted;
                 }
                 // Explicitly remove empty transforms
                 if (prop === 'transform' && val === 'none') {
-                    blacklisted = true;
+                    denylisted = true;
                 }
-                i = blacklist.length;
-                while (i-- && !blacklisted) {
-                    blacklisted = (blacklist[i].test(prop) ||
+                i = denylist.length;
+                while (i-- && !denylisted) {
+                    denylisted = (denylist[i].test(prop) ||
                         typeof val === 'function');
                 }
-                if (!blacklisted) {
+                if (!denylisted) {
                     // If parent node has the same style, it gets inherited, no
                     // need to inline it. Top-level props should be diffed
                     // against parent (#7687).
@@ -883,12 +895,13 @@ var Exporting;
                             // Styles
                         }
                         else {
-                            cssText += hyphenate(prop) + ':' + val + ';';
+                            filteredStyles[prop] = val;
                         }
                     }
                 }
             }
-            if (node.nodeType === 1 &&
+            if (iframeDoc &&
+                node.nodeType === 1 &&
                 unstyledElements.indexOf(node.nodeName) === -1) {
                 styles = win.getComputedStyle(node, null);
                 parentStyles = node.nodeName === 'svg' ?
@@ -907,8 +920,16 @@ var Exporting;
                     dummySVG = iframeDoc.getElementsByTagName('svg')[0];
                     dummy = iframeDoc.createElementNS(node.namespaceURI, node.nodeName);
                     dummySVG.appendChild(dummy);
-                    // Copy, so we can remove the node
-                    defaultStyles[node.nodeName] = merge(win.getComputedStyle(dummy, null));
+                    // Get the defaults into a standard object (simple merge
+                    // won't do)
+                    var s = win.getComputedStyle(dummy, null), defaults = {};
+                    for (var key in s) {
+                        if (typeof s[key] === 'string' &&
+                            !/^[0-9]+$/.test(key)) {
+                            defaults[key] = s[key];
+                        }
+                    }
+                    defaultStyles[node.nodeName] = defaults;
                     // Remove default fill, otherwise text disappears when
                     // exported
                     if (node.nodeName === 'text') {
@@ -917,20 +938,19 @@ var Exporting;
                     dummySVG.removeChild(dummy);
                 }
                 // Loop through all styles and add them inline if they are ok
-                if (G.isFirefox || G.isMS) {
-                    // Some browsers put lots of styles on the prototype
-                    for (var p in styles) { // eslint-disable-line guard-for-in
+                for (var p in styles) {
+                    if (
+                    // Some browsers put lots of styles on the prototype...
+                    G.isFirefox ||
+                        G.isMS ||
+                        G.isSafari || // #16902
+                        // ... Chrome puts them on the instance
+                        Object.hasOwnProperty.call(styles, p)) {
                         filterStyles(styles[p], p);
                     }
                 }
-                else {
-                    objectEach(styles, filterStyles);
-                }
                 // Apply styles
-                if (cssText) {
-                    styleAttr = node.getAttribute('style');
-                    node.setAttribute('style', (styleAttr ? styleAttr + ';' : '') + cssText);
-                }
+                css(node, filteredStyles);
                 // Set default stroke width (needed at least for IE)
                 if (node.nodeName === 'svg') {
                     node.setAttribute('stroke-width', '1px');
@@ -945,7 +965,7 @@ var Exporting;
         /**
          * Remove the dummy objects used to get defaults
          * @private
-             */
+         */
         function tearDown() {
             dummySVG.parentNode.removeChild(dummySVG);
             // Remove trash from DOM that stayed after each exporting
@@ -1002,7 +1022,7 @@ var Exporting;
                 update('exporting', options, redraw);
             }
         };
-        // Register update() method for navigation. Can not be set the same way
+        // Register update() method for navigation. Cannot be set the same way
         // as for exporting, because navigation options are shared with bindings
         // which has separate update() logic.
         ChartNavigationComposition
@@ -1132,24 +1152,6 @@ var Exporting;
 })(Exporting || (Exporting = {}));
 /* *
  *
- *  Registry
- *
- * */
-defaultOptions.exporting = merge(ExportingDefaults.exporting, defaultOptions.exporting);
-defaultOptions.lang = merge(ExportingDefaults.lang, defaultOptions.lang);
-// Buttons and menus are collected in a separate config option set called
-// 'navigation'. This can be extended later to add control buttons like
-// zoom and pan right click menus.
-/**
- * A collection of options for buttons and menus appearing in the exporting
- * module or in Stock Tools.
- *
- * @requires     modules/exporting
- * @optionparent navigation
- */
-defaultOptions.navigation = merge(ExportingDefaults.navigation, defaultOptions.navigation);
-/* *
- *
  *  Default Export
  *
  * */
@@ -1165,7 +1167,7 @@ export default Exporting;
  *
  * @callback Highcharts.ExportingAfterPrintCallbackFunction
  *
- * @param {Highcharts.Chart} chart
+ * @param {Highcharts.Chart} this
  *        The chart on which the event occured.
  *
  * @param {global.Event} event
@@ -1177,7 +1179,7 @@ export default Exporting;
  *
  * @callback Highcharts.ExportingBeforePrintCallbackFunction
  *
- * @param {Highcharts.Chart} chart
+ * @param {Highcharts.Chart} this
  *        The chart on which the event occured.
  *
  * @param {global.Event} event

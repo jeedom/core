@@ -8,37 +8,43 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import Annotation from '../Annotations.js';
+import Annotation from '../Annotation.js';
 import ControlPoint from '../ControlPoint.js';
 import CrookedLine from './CrookedLine.js';
 import MockPoint from '../MockPoint.js';
 import U from '../../../Core/Utilities.js';
 var merge = U.merge;
-/* eslint-disable no-invalid-this, valid-jsdoc */
+/* *
+ *
+ *  Functions
+ *
+ * */
 /**
  * @private
  */
 function getSecondCoordinate(p1, p2, x) {
     return (p2.y - p1.y) / (p2.x - p1.x) * (x - p1.x) + p1.y;
 }
+/* *
+ *
+ *  Class
+ *
+ * */
 var Tunnel = /** @class */ (function (_super) {
     __extends(Tunnel, _super);
-    /* *
-     *
-     * Constructors
-     *
-     * */
-    function Tunnel(chart, options) {
-        return _super.call(this, chart, options) || this;
+    function Tunnel() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     /* *
      *
@@ -118,6 +124,7 @@ var Tunnel = /** @class */ (function (_super) {
         this.translatePoint(0, dh, 3);
         this.options.typeOptions.height = this.points[3].y -
             this.points[0].y;
+        this.userOptions.typeOptions.height = this.options.typeOptions.height;
     };
     return Tunnel;
 }(CrookedLine));
@@ -197,11 +204,6 @@ Tunnel.prototype.defaultOptions = merge(CrookedLine.prototype.defaultOptions,
         }
     }
 });
-/* *
- *
- *  Registry
- *
- * */
 Annotation.types.tunnel = Tunnel;
 /* *
  *

@@ -197,7 +197,7 @@ var Fx = /** @class */ (function () {
     Fx.prototype.step = function (gotoEnd) {
         var t = +new Date(), options = this.options, elem = this.elem, complete = options.complete, duration = options.duration, curAnim = options.curAnim;
         var ret, done;
-        if (elem.attr && !elem.element) { // #2616, element is destroyed
+        if ((elem.attr) && !elem.element) { // #2616, element is destroyed
             ret = false;
         }
         else if (gotoEnd || t >= duration + this.startTime) {

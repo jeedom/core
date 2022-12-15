@@ -9,7 +9,7 @@
  * */
 'use strict';
 import AxisDefaults from './AxisDefaults.js';
-import D from '../DefaultOptions.js';
+import D from '../Defaults.js';
 var defaultOptions = D.defaultOptions;
 import H from '../Globals.js';
 var noop = H.noop;
@@ -582,16 +582,31 @@ var RadialAxis;
     function onAxisAfterInit() {
         var chart = this.chart, options = this.options, isHidden = chart.angular && this.isXAxis, pane = this.pane, paneOptions = pane && pane.options;
         if (!isHidden && pane && (chart.angular || chart.polar)) {
+            var fullCircle = Math.PI * 2, 
             // Start and end angle options are given in degrees relative to
             // top, while internal computations are in radians relative to
             // right (like SVG).
+            start = (pick(paneOptions.startAngle, 0) - 90) * Math.PI / 180, end = (pick(paneOptions.endAngle, pick(paneOptions.startAngle, 0) + 360) - 90) * Math.PI / 180;
             // Y axis in polar charts
             this.angleRad = (options.angle || 0) * Math.PI / 180;
             // Gauges
-            this.startAngleRad =
-                (paneOptions.startAngle - 90) * Math.PI / 180;
-            this.endAngleRad = (pick(paneOptions.endAngle, paneOptions.startAngle + 360) - 90) * Math.PI / 180; // Gauges
+            this.startAngleRad = start;
+            this.endAngleRad = end;
             this.offset = options.offset || 0;
+            // Normalize Start and End to <0, 2*PI> range
+            // (in degrees: <0,360>)
+            var normalizedStart = (start % fullCircle + fullCircle) %
+                fullCircle, normalizedEnd = (end % fullCircle + fullCircle) % fullCircle;
+            // Move normalized angles to <-PI, PI> range (<-180, 180>)
+            // to match values returned by Math.atan2()
+            if (normalizedStart > Math.PI) {
+                normalizedStart -= fullCircle;
+            }
+            if (normalizedEnd > Math.PI) {
+                normalizedEnd -= fullCircle;
+            }
+            this.normalizedStartAngleRad = normalizedStart;
+            this.normalizedEndAngleRad = normalizedEnd;
         }
     }
     /**
@@ -661,7 +676,6 @@ var RadialAxis;
         // Disable certain features on angular and polar axes
         if (angular || polar) {
             this.isRadial = true;
-            chartOptions.chart.zoomType = null;
             if (!this.labelCollector) {
                 this.labelCollector = this.createLabelCollector();
             }

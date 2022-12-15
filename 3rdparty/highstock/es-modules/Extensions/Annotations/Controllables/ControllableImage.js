@@ -4,9 +4,28 @@
  *
  * */
 'use strict';
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+import Controllable from './Controllable.js';
 import ControllableLabel from './ControllableLabel.js';
-import ControllableMixin from '../Mixins/ControllableMixin.js';
-/* eslint-disable no-invalid-this, valid-jsdoc */
+/* *
+ *
+ *  Class
+ *
+ * */
 /**
  * A controllable image class.
  *
@@ -25,43 +44,23 @@ import ControllableMixin from '../Mixins/ControllableMixin.js';
  * @param {number} index
  * Index of the image.
  */
-var ControllableImage = /** @class */ (function () {
+var ControllableImage = /** @class */ (function (_super) {
+    __extends(ControllableImage, _super);
     /* *
      *
      *  Constructors
      *
      * */
     function ControllableImage(annotation, options, index) {
+        var _this = _super.call(this, annotation, options, index, 'shape') || this;
         /* *
          *
          *  Properties
          *
          * */
-        this.addControlPoints = ControllableMixin.addControlPoints;
-        this.anchor = ControllableMixin.anchor;
-        this.attr = ControllableMixin.attr;
-        this.attrsFromOptions = ControllableMixin.attrsFromOptions;
-        this.destroy = ControllableMixin.destroy;
-        this.getPointsOptions = ControllableMixin.getPointsOptions;
-        this.init = ControllableMixin.init;
-        this.linkPoints = ControllableMixin.linkPoints;
-        this.point = ControllableMixin.point;
-        this.rotate = ControllableMixin.rotate;
-        this.scale = ControllableMixin.scale;
-        this.setControlPointsVisibility = (ControllableMixin.setControlPointsVisibility);
-        this.shouldBeDrawn = ControllableMixin.shouldBeDrawn;
-        this.transform = ControllableMixin.transform;
-        this.transformPoint = ControllableMixin.transformPoint;
-        this.translatePoint = ControllableMixin.translatePoint;
-        this.translateShape = ControllableMixin.translateShape;
-        this.update = ControllableMixin.update;
-        /**
-         * @type 'image'
-         */
-        this.type = 'image';
-        this.translate = ControllableMixin.translateShape;
-        this.init(annotation, options, index);
-        this.collection = 'shapes';
+        _this.type = 'image';
+        _this.translate = _super.prototype.translateShape;
+        return _this;
     }
     ControllableImage.prototype.render = function (parent) {
         var attrs = this.attrsFromOptions(this.options), options = this.options;
@@ -71,24 +70,26 @@ var ControllableImage = /** @class */ (function () {
             .add(parent);
         this.graphic.width = options.width;
         this.graphic.height = options.height;
-        ControllableMixin.render.call(this);
+        _super.prototype.render.call(this);
     };
     ControllableImage.prototype.redraw = function (animation) {
-        var anchor = this.anchor(this.points[0]), position = ControllableLabel.prototype.position.call(this, anchor);
-        if (position) {
-            this.graphic[animation ? 'animate' : 'attr']({
-                x: position.x,
-                y: position.y
-            });
+        if (this.graphic) {
+            var anchor = this.anchor(this.points[0]), position = ControllableLabel.prototype.position.call(this, anchor);
+            if (position) {
+                this.graphic[animation ? 'animate' : 'attr']({
+                    x: position.x,
+                    y: position.y
+                });
+            }
+            else {
+                this.graphic.attr({
+                    x: 0,
+                    y: -9e9
+                });
+            }
+            this.graphic.placed = Boolean(position);
         }
-        else {
-            this.graphic.attr({
-                x: 0,
-                y: -9e9
-            });
-        }
-        this.graphic.placed = Boolean(position);
-        ControllableMixin.redraw.call(this, animation);
+        _super.prototype.redraw.call(this, animation);
     };
     /* *
      *
@@ -107,5 +108,10 @@ var ControllableImage = /** @class */ (function () {
         zIndex: 'zIndex'
     };
     return ControllableImage;
-}());
+}(Controllable));
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default ControllableImage;

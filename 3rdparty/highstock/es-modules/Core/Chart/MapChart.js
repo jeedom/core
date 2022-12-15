@@ -12,22 +12,23 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
 import Chart from './Chart.js';
-import D from '../DefaultOptions.js';
+import D from '../Defaults.js';
 var getOptions = D.getOptions;
-import MapView from '../../Maps/MapView.js';
 import SVGRenderer from '../Renderer/SVG/SVGRenderer.js';
 import U from '../Utilities.js';
-var addEvent = U.addEvent, clamp = U.clamp, isNumber = U.isNumber, merge = U.merge, pick = U.pick;
+var merge = U.merge, pick = U.pick;
 import '../../Maps/MapSymbols.js';
 /**
  * Map-optimized chart. Use {@link Highcharts.Chart|Chart} for common charts.
@@ -61,10 +62,6 @@ var MapChart = /** @class */ (function (_super) {
      * @emits Highcharts.MapChart#event:afterInit
      */
     MapChart.prototype.init = function (userOptions, callback) {
-        // Initialize the MapView after initialization, but before firstRender
-        addEvent(this, 'afterInit', function () {
-            this.mapView = new MapView(this, this.options.mapView);
-        });
         var defaultCreditsOptions = getOptions().credits;
         var options = merge({
             chart: {

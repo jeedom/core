@@ -68,7 +68,7 @@ var hasOldSafariBug = H.isSafari &&
  * @class
  * @name Highcharts.Time
  *
- * @param {Highcharts.TimeOptions} options
+ * @param {Highcharts.TimeOptions} [options]
  * Time options as defined in [chart.options.time](/highcharts/time).
  */
 var Time = /** @class */ (function () {
@@ -199,16 +199,17 @@ var Time = /** @class */ (function () {
      * @private
      * @function Highcharts.Time#update
      *
-     * @param {Highcharts.TimeOptions} options
+     * @param {Highcharts.TimeOptions} [options]
      *
      */
     Time.prototype.update = function (options) {
-        var useUTC = pick(options && options.useUTC, true), time = this;
-        this.options = options = merge(true, this.options || {}, options);
+        if (options === void 0) { options = {}; }
+        var useUTC = pick(options.useUTC, true);
+        this.options = options = merge(true, this.options, options);
         // Allow using a different Date class
         this.Date = options.Date || win.Date || Date;
         this.useUTC = useUTC;
-        this.timezoneOffset = (useUTC && options.timezoneOffset);
+        this.timezoneOffset = (useUTC && options.timezoneOffset) || void 0;
         this.getTimezoneOffset = this.timezoneOffsetFunction();
         /*
          * The time object has options allowing for variable time zones, meaning
@@ -633,7 +634,9 @@ var Time = /** @class */ (function () {
             hour: 6,
             day: 3
         };
-        var format, n, lastN = 'millisecond'; // for sub-millisecond data, #4223
+        var n = 'millisecond', 
+        // for sub-millisecond data, #4223
+        lastN = n;
         for (n in timeUnits) { // eslint-disable-line guard-for-in
             // If the range is exactly one week and we're looking at a
             // Sunday/Monday, go for the week format
@@ -660,10 +663,7 @@ var Time = /** @class */ (function () {
                 lastN = n;
             }
         }
-        if (n) {
-            format = this.resolveDTLFormat(dateTimeLabelFormats[n]).main;
-        }
-        return format;
+        return this.resolveDTLFormat(dateTimeLabelFormats[n]).main;
     };
     return Time;
 }());
@@ -686,7 +686,7 @@ export default Time;
 * The count.
 *
 * @name Highcharts.TimeNormalizedObject#count
-* @type {number}
+* @type {number|undefined}
 */ /**
 * The interval in axis values (ms).
 *

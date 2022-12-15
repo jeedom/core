@@ -14,16 +14,18 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import DrawPointComposition from '../DrawPointComposition.js';
+import DPU from '../DrawPointUtilities.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var Point = SeriesRegistry.series.prototype.pointClass, _a = SeriesRegistry.seriesTypes, PiePoint = _a.pie.prototype.pointClass, ScatterPoint = _a.scatter.prototype.pointClass;
 import U from '../../Core/Utilities.js';
@@ -46,6 +48,7 @@ var TreemapPoint = /** @class */ (function (_super) {
         _this.node = void 0;
         _this.options = void 0;
         _this.series = void 0;
+        _this.shapeType = 'rect';
         _this.value = void 0;
         return _this;
         /* eslint-enable valid-jsdoc */
@@ -56,6 +59,9 @@ var TreemapPoint = /** @class */ (function (_super) {
      *
      * */
     /* eslint-disable valid-jsdoc */
+    TreemapPoint.prototype.draw = function (params) {
+        DPU.draw(this, params);
+    };
     TreemapPoint.prototype.getClassName = function () {
         var className = Point.prototype.getClassName.call(this), series = this.series, options = series.options;
         // Above the current level
@@ -98,7 +104,6 @@ var TreemapPoint = /** @class */ (function (_super) {
 extend(TreemapPoint.prototype, {
     setVisible: PiePoint.prototype.setVisible
 });
-DrawPointComposition.compose(TreemapPoint);
 /* *
  *
  *  Default Export

@@ -11,7 +11,7 @@
  * */
 'use strict';
 import Axis from '../../Core/Axis/Axis.js';
-import D from '../../Core/DefaultOptions.js';
+import D from '../../Core/Defaults.js';
 var setOptions = D.setOptions;
 import VMLAxis3D from './VMLAxis3D.js';
 var VMLRenderer3D = /** @class */ (function () {

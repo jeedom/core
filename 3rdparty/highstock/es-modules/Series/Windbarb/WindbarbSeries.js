@@ -14,10 +14,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -25,8 +27,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import A from '../../Core/Animation/AnimationUtilities.js';
 var animObject = A.animObject;
+import ApproximationRegistry from '../../Extensions/DataGrouping/ApproximationRegistry.js';
 import H from '../../Core/Globals.js';
-var noop = H.noop;
 import OnSeriesComposition from '../OnSeriesComposition.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var Series = SeriesRegistry.series, ColumnSeries = SeriesRegistry.seriesTypes.column;
@@ -73,8 +75,8 @@ var WindbarbSeries = /** @class */ (function (_super) {
      * @private
      */
     WindbarbSeries.registerApproximation = function () {
-        if (H.approximations && !H.approximations.windbarb) {
-            H.approximations.windbarb = function (values, directions) {
+        if (!ApproximationRegistry.windbarb) {
+            ApproximationRegistry.windbarb = function (values, directions) {
                 var vectorX = 0, vectorY = 0, i, len = values.length;
                 for (i = 0; i < len; i++) {
                     vectorX += values[i] * Math.cos(directions[i] * H.deg2rad);
@@ -348,11 +350,11 @@ extend(WindbarbSeries.prototype, {
         'Gentle breeze', 'Moderate breeze', 'Fresh breeze',
         'Strong breeze', 'Near gale', 'Gale', 'Strong gale', 'Storm',
         'Violent storm', 'Hurricane'],
+    invertible: false,
     parallelArrays: ['x', 'value', 'direction'],
     pointArrayMap: ['value', 'direction'],
     pointClass: WindbarbPoint,
     trackerGroups: ['markerGroup'],
-    invertGroups: noop,
     translate: function () {
         var beaufortFloor = this.beaufortFloor, beaufortName = this.beaufortName;
         OnSeriesComposition.translate.call(this);

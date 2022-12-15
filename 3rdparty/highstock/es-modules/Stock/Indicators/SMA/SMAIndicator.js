@@ -10,10 +10,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -24,7 +26,6 @@ import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
 var LineSeries = SeriesRegistry.seriesTypes.line;
 import U from '../../../Core/Utilities.js';
 var addEvent = U.addEvent, error = U.error, extend = U.extend, isArray = U.isArray, merge = U.merge, pick = U.pick, splat = U.splat;
-import './SMAComposition.js';
 /* *
  *
  *  Class
@@ -178,11 +179,18 @@ var SMAIndicator = /** @class */ (function (_super) {
      * @private
      */
     SMAIndicator.prototype.recalculateValues = function () {
-        var indicator = this, oldData = indicator.points || [], oldDataLength = (indicator.xData || []).length, processedData = (indicator.getValues(indicator.linkedParent, indicator.options.params) || {
+        var indicator = this, oldData = indicator.points || [], oldDataLength = (indicator.xData || []).length, emptySet = {
             values: [],
             xData: [],
             yData: []
-        }), croppedDataValues = [], overwriteData = true, oldFirstPointIndex, oldLastPointIndex, croppedData, min, max, i;
+        }, processedData, croppedDataValues = [], overwriteData = true, oldFirstPointIndex, oldLastPointIndex, croppedData, min, max, i;
+        // Updating an indicator with redraw=false may destroy data.
+        // If there will be a following update for the parent series,
+        // we will try to access Series object without any properties
+        // (except for prototyped ones). This is what happens
+        // for example when using Axis.setDataGrouping(). See #16670
+        processedData = indicator.linkedParent.options ?
+            (indicator.getValues(indicator.linkedParent, indicator.options.params) || emptySet) : emptySet;
         // We need to update points to reflect changes in all,
         // x and y's, values. However, do it only for non-grouped
         // data - grouping does it for us (#8572)
@@ -364,4 +372,4 @@ export default SMAIndicator;
  * @requires  stock/indicators/indicators
  * @apioption series.sma
  */
-''; // adds doclet above to the transpiled file
+(''); // adds doclet above to the transpiled file

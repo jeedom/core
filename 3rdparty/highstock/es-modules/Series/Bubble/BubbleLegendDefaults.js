@@ -165,7 +165,7 @@ var BubbleLegendDefaults = {
             /** @ignore-option */
             fontSize: '10px',
             /** @ignore-option */
-            color: "#000000" /* neutralColor100 */
+            color: "#000000" /* Palette.neutralColor100 */
         },
         /**
          * The x position offset of the label relative to the

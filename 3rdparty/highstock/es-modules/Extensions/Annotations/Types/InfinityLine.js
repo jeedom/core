@@ -8,16 +8,18 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import Annotation from '../Annotations.js';
+import Annotation from '../Annotation.js';
 import CrookedLine from './CrookedLine.js';
 import MockPoint from '../MockPoint.js';
 import U from '../../../Core/Utilities.js';
@@ -27,25 +29,20 @@ var merge = U.merge;
  *  Class
  *
  * */
-/* eslint-disable no-invalid-this, valid-jsdoc */
 var InfinityLine = /** @class */ (function (_super) {
     __extends(InfinityLine, _super);
-    /* *
-     *
-     *  Constructors
-     *
-     * */
-    function InfinityLine(chart, options) {
-        return _super.call(this, chart, options) || this;
+    function InfinityLine() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     /* *
      *
-     * Static Functions
+     *  Static Functions
      *
      * */
     InfinityLine.edgePoint = function (startIndex, endIndex) {
         return function (target) {
-            var annotation = target.annotation, points = annotation.points, type = annotation.options.typeOptions.type;
+            var annotation = target.annotation, type = annotation.options.typeOptions.type;
+            var points = annotation.points;
             if (type === 'horizontalLine' || type === 'verticalLine') {
                 // Horizontal and vertical lines have only one point,
                 // make a copy of it:
@@ -76,7 +73,8 @@ var InfinityLine = /** @class */ (function (_super) {
         var chart = firstPoint.series.chart, xAxis = firstPoint.series.xAxis, yAxis = secondPoint.series.yAxis, firstPointPixels = MockPoint.pointToPixels(firstPoint), secondPointPixels = MockPoint.pointToPixels(secondPoint), deltaX = secondPointPixels.x - firstPointPixels.x, deltaY = secondPointPixels.y - firstPointPixels.y, xAxisMin = xAxis.left, xAxisMax = xAxisMin + xAxis.width, yAxisMin = yAxis.top, yAxisMax = yAxisMin + yAxis.height, xLimit = deltaX < 0 ? xAxisMin : xAxisMax, yLimit = deltaY < 0 ? yAxisMin : yAxisMax, edgePoint = {
             x: deltaX === 0 ? firstPointPixels.x : xLimit,
             y: deltaY === 0 ? firstPointPixels.y : yLimit
-        }, edgePointX, edgePointY, swap;
+        };
+        var edgePointX, edgePointY, swap;
         if (deltaX !== 0 && deltaY !== 0) {
             edgePointY = InfinityLine.findEdgeCoordinate(firstPointPixels, secondPointPixels, 'y', xLimit);
             edgePointX = InfinityLine.findEdgeCoordinate(firstPointPixels, secondPointPixels, 'x', yLimit);
@@ -121,21 +119,16 @@ var InfinityLine = /** @class */ (function (_super) {
         }), 0);
         typeOptions.line = line.options;
     };
-    /**
+    /* *
      *
-     * Static Properties
+     *  Static Properties
      *
-     */
+     * */
     InfinityLine.endEdgePoint = InfinityLine.edgePoint(0, 1);
     InfinityLine.startEdgePoint = InfinityLine.edgePoint(1, 0);
     return InfinityLine;
 }(CrookedLine));
 InfinityLine.prototype.defaultOptions = merge(CrookedLine.prototype.defaultOptions, {});
-/* *
- *
- *  Registry
- *
- * */
 Annotation.types.infinityLine = InfinityLine;
 /* *
  *

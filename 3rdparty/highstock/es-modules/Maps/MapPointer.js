@@ -12,10 +12,26 @@ import Pointer from '../Core/Pointer.js';
 import U from '../Core/Utilities.js';
 var defined = U.defined, extend = U.extend, pick = U.pick, wrap = U.wrap;
 /* eslint-disable no-invalid-this */
+var normalize = Pointer.prototype.normalize;
 var totalWheelDelta = 0;
 var totalWheelDeltaTimer;
 // Extend the Pointer
 extend(Pointer.prototype, {
+    // Add lon and lat information to pointer events
+    normalize: function (e, chartPosition) {
+        var chart = this.chart;
+        e = normalize.call(this, e, chartPosition);
+        if (chart && chart.mapView) {
+            var lonLat = chart.mapView.pixelsToLonLat({
+                x: e.chartX - chart.plotLeft,
+                y: e.chartY - chart.plotTop
+            });
+            if (lonLat) {
+                extend(e, lonLat);
+            }
+        }
+        return e;
+    },
     // The event handler for the doubleclick event
     onContainerDblClick: function (e) {
         var chart = this.chart;
@@ -67,7 +83,7 @@ wrap(Pointer.prototype, 'zoomOption', function (proceed) {
     var mapNavigation = this.chart.options.mapNavigation;
     // Pinch status
     if (pick(mapNavigation.enableTouchZoom, mapNavigation.enabled)) {
-        this.chart.options.chart.pinchType = 'xy';
+        this.chart.options.chart.zooming.pinchType = 'xy';
     }
     proceed.apply(this, [].slice.call(arguments, 1));
 });

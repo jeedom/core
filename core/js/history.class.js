@@ -562,7 +562,10 @@ jeedom.history.drawChart = function(_params) {
             },
             credits: { enabled: false },
             exporting: {
-              enabled: _params.enableExport || ($.mobile) ? false : true
+              enabled: _params.enableExport || ($.mobile) ? false : true,
+              csv: {
+                  dateFormat: '%Y-%m-%d'
+              },
             },
             tooltip: {
               pointFormat: '{point.y} {series.userOptions.unite}<br/>{series.userOptions.shortName}',
@@ -814,7 +817,10 @@ jeedom.history.drawChart = function(_params) {
               }
             },
             exporting: {
-              enabled: _params.enableExport || ($.mobile) ? false : true
+              enabled: _params.enableExport || ($.mobile) ? false : true,
+              csv: {
+                  dateFormat: '%Y-%m-%d'
+              },
             },
             rangeSelector: {
               allButtonsEnabled: true,
@@ -927,7 +933,6 @@ jeedom.history.drawChart = function(_params) {
               series: {
                 type: _params.option.graphType,
                 dataGrouping: dataGrouping,
-                includeInCSVExport: false,
               },
             },
             scrollbar: {
@@ -1091,7 +1096,7 @@ jeedom.history.initChart = function(_chartId, _options) {
   var xStart = (jeedom.history.chart[thisId].rangeSelector === undefined ? -15 : 0)
 
   //Tracking button:
-  jeedom.history.chart[thisId].btTracking = jeedom.history.chart[thisId].chart.renderer.button('<i class="fas fa-hand-pointer"></i>', null, null, null, null, null, null, null, null, true)
+  jeedom.history.chart[thisId].btTracking = jeedom.history.chart[thisId].chart.renderer.button('<i class="fas fa-hand-pointer"></i>', undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true)
   .attr({
     id: 'hc_bt_tracking',
     height: 10,
@@ -1099,7 +1104,7 @@ jeedom.history.initChart = function(_chartId, _options) {
     align: 'right',
     title: "{{Opacité des courbes au suivi de la souris}}"
   })
-  .on('click', function(event) {
+  .on('click', function() {
     jeedom.history.toggleTracking(thisId)
   })
   .add()
@@ -1117,7 +1122,7 @@ jeedom.history.initChart = function(_chartId, _options) {
   }
 
   //yAxis scaling by unit:
-  jeedom.history.chart[thisId].btToggleyaxisbyunit = jeedom.history.chart[thisId].chart.renderer.button('<i class="icon divers-viral"></i>', null, null, null, null, null, null, null, null, true)
+  jeedom.history.chart[thisId].btToggleyaxisbyunit = jeedom.history.chart[thisId].chart.renderer.button('<i class="icon divers-viral"></i>', undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true)
   .attr({
     id: 'hc_bt_YaxisByUnit',
     height: 10,
@@ -1125,7 +1130,7 @@ jeedom.history.initChart = function(_chartId, _options) {
     align: 'right',
     title: "{{Groupement des axes Y par unité}}"
   })
-  .on('click', function(event) {
+  .on('click', function() {
     if (jeedom.history.chart[thisId].zoom) return false
     jeedom.history.chart[thisId].yAxisByUnit = !jeedom.history.chart[thisId].yAxisByUnit
     if (!jeedom.history.chart[thisId].yAxisByUnit) {
@@ -1150,7 +1155,7 @@ jeedom.history.initChart = function(_chartId, _options) {
   }
 
   //toggle yAxis scaling:
-  jeedom.history.chart[thisId].btToggleyaxisScaling = jeedom.history.chart[thisId].chart.renderer.button('<i class="fas fa-compress-alt"></i>', null, null, null, null, null, null, null, null, true)
+  jeedom.history.chart[thisId].btToggleyaxisScaling = jeedom.history.chart[thisId].chart.renderer.button('<i class="fas fa-compress-alt"></i>', undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true)
   .attr({
     id: 'hc_bt_toggleYaxisScale',
     height: 10,
@@ -1158,7 +1163,7 @@ jeedom.history.initChart = function(_chartId, _options) {
     align: 'right',
     title: "{{Echelle independante des axes Y}}"
   })
-  .on('click', function(event) {
+  .on('click', function() {
     jeedom.history.toggleyAxisScaling(thisId)
   })
   .add()
@@ -1177,7 +1182,7 @@ jeedom.history.initChart = function(_chartId, _options) {
 
 
   //toggle yAxis visible button:
-  jeedom.history.chart[thisId].btToggleyaxisVisible = jeedom.history.chart[thisId].chart.renderer.button(' <i class="fas fa-ruler-vertical"></i>', null, null, null, null, null, null, null, null, true)
+  jeedom.history.chart[thisId].btToggleyaxisVisible = jeedom.history.chart[thisId].chart.renderer.button(' <i class="fas fa-ruler-vertical"></i>', undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true)
   .attr({
     id: 'hc_bt_toggleYaxis',
     height: 10,
@@ -1185,7 +1190,7 @@ jeedom.history.initChart = function(_chartId, _options) {
     align: 'right',
     title: "{{Affichage des axes Y}}"
   })
-  .on('click', function(event) {
+  .on('click', function() {
     jeedom.history.toggleYaxisVisible(thisId)
   })
   .add()

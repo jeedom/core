@@ -16,6 +16,12 @@ import U from '../../Core/Utilities.js';
 var css = U.css;
 /* *
  *
+ *  Constants
+ *
+ * */
+var simulatedEventTarget = win.EventTarget && new win.EventTarget() || 'none';
+/* *
+ *
  *  Functions
  *
  * */
@@ -133,10 +139,12 @@ function getElement(id) {
     return doc.getElementById(id);
 }
 /**
- * Get a fake mouse event of a given type
+ * Get a fake mouse event of a given type. If relatedTarget is not given,
+ * it will point to simulatedEventTarget, as an indicator that the event
+ * is fake.
  * @private
  */
-function getFakeMouseEvent(type, position) {
+function getFakeMouseEvent(type, position, relatedTarget) {
     var pos = position || {
         x: 0,
         y: 0
@@ -146,6 +154,9 @@ function getFakeMouseEvent(type, position) {
             bubbles: true,
             cancelable: true,
             composed: true,
+            button: 0,
+            buttons: 1,
+            relatedTarget: relatedTarget || simulatedEventTarget,
             view: win,
             detail: type === 'click' ? 1 : 0,
             screenX: pos.x,
@@ -299,6 +310,7 @@ var HTMLUtilities = {
     removeClass: removeClass,
     removeElement: removeElement,
     reverseChildNodes: reverseChildNodes,
+    simulatedEventTarget: simulatedEventTarget,
     stripHTMLTagsFromString: stripHTMLTagsFromString,
     visuallyHideElement: visuallyHideElement
 };

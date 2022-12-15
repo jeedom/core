@@ -16,10 +16,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -30,6 +32,7 @@ import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var _a = SeriesRegistry.seriesTypes, ColumnSeries = _a.column, LineSeries = _a.line;
 import SVGElement from '../../Core/Renderer/SVG/SVGElement.js';
 import TimelinePoint from './TimelinePoint.js';
+import TimelineSeriesDefaults from './TimelineSeriesDefaults.js';
 import U from '../../Core/Utilities.js';
 var addEvent = U.addEvent, arrayMax = U.arrayMax, arrayMin = U.arrayMin, defined = U.defined, extend = U.extend, merge = U.merge, pick = U.pick;
 /* *
@@ -272,161 +275,7 @@ var TimelineSeries = /** @class */ (function (_super) {
         _super.prototype.processData.call(this, arguments);
         return;
     };
-    /**
-     * The timeline series presents given events along a drawn line.
-     *
-     * @sample highcharts/series-timeline/alternate-labels
-     *         Timeline series
-     * @sample highcharts/series-timeline/inverted
-     *         Inverted timeline
-     * @sample highcharts/series-timeline/datetime-axis
-     *         With true datetime axis
-     *
-     * @extends      plotOptions.line
-     * @since        7.0.0
-     * @product      highcharts
-     * @excluding    animationLimit, boostThreshold, connectEnds, connectNulls,
-     *               cropThreshold, dashStyle, findNearestPointBy,
-     *               getExtremesFromAll, lineWidth, negativeColor,
-     *               pointInterval, pointIntervalUnit, pointPlacement,
-     *               pointStart, softThreshold, stacking, step, threshold,
-     *               turboThreshold, zoneAxis, zones, dataSorting,
-     *               boostBlending
-     * @requires     modules/timeline
-     * @optionparent plotOptions.timeline
-     */
-    TimelineSeries.defaultOptions = merge(LineSeries.defaultOptions, {
-        colorByPoint: true,
-        stickyTracking: false,
-        ignoreHiddenPoint: true,
-        /**
-         * @ignore
-         * @private
-         */
-        legendType: 'point',
-        lineWidth: 4,
-        tooltip: {
-            headerFormat: '<span style="color:{point.color}">\u25CF</span> ' +
-                '<span style="font-size: 10px"> {point.key}</span><br/>',
-            pointFormat: '{point.description}'
-        },
-        states: {
-            hover: {
-                lineWidthPlus: 0
-            }
-        },
-        /**
-         * @declare Highcharts.TimelineDataLabelsOptionsObject
-         *
-         * @private
-         */
-        dataLabels: {
-            enabled: true,
-            allowOverlap: true,
-            /**
-             * Whether to position data labels alternately. For example, if
-             * [distance](#plotOptions.timeline.dataLabels.distance)
-             * is set equal to `100`, then data labels will be positioned
-             * alternately (on both sides of the point) at a distance of 100px.
-             *
-             * @sample {highcharts} highcharts/series-timeline/alternate-disabled
-             *         Alternate disabled
-             */
-            alternate: true,
-            backgroundColor: "#ffffff" /* backgroundColor */,
-            borderWidth: 1,
-            borderColor: "#999999" /* neutralColor40 */,
-            borderRadius: 3,
-            color: "#333333" /* neutralColor80 */,
-            /**
-             * The color of the line connecting the data label to the point.
-             * The default color is the same as the point's color.
-             *
-             * In styled mode, the connector stroke is given in the
-             * `.highcharts-data-label-connector` class.
-             *
-             * @sample {highcharts} highcharts/series-timeline/connector-styles
-             *         Custom connector width and color
-             *
-             * @type      {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
-             * @apioption plotOptions.timeline.dataLabels.connectorColor
-             */
-            /**
-             * The width of the line connecting the data label to the point.
-             *
-             * In styled mode, the connector stroke width is given in the
-             * `.highcharts-data-label-connector` class.
-             *
-             * @sample {highcharts} highcharts/series-timeline/connector-styles
-             *         Custom connector width and color
-             */
-            connectorWidth: 1,
-            /**
-             * A pixel value defining the distance between the data label and
-             * the point. Negative numbers puts the label on top of the point.
-             */
-            distance: 100,
-            // eslint-disable-next-line valid-jsdoc
-            /**
-             * @type    {Highcharts.TimelineDataLabelsFormatterCallbackFunction}
-             * @default function () {
-             *   let format;
-             *
-             *   if (!this.series.chart.styledMode) {
-             *       format = '<span style="color:' + this.point.color +
-             *           '">● </span>';
-             *   } else {
-             *       format = '<span>● </span>';
-             *   }
-             *   format += '<span>' + (this.key || '') + '</span><br/>' +
-             *       (this.point.label || '');
-             *   return format;
-             * }
-             */
-            formatter: function () {
-                var format;
-                if (!this.series.chart.styledMode) {
-                    format = '<span style="color:' + this.point.color +
-                        '">● </span>';
-                }
-                else {
-                    format = '<span>● </span>';
-                }
-                format += '<span class="highcharts-strong">' +
-                    (this.key || '') + '</span><br/>' +
-                    (this.point.label || '');
-                return format;
-            },
-            style: {
-                /** @internal */
-                textOutline: 'none',
-                /** @internal */
-                fontWeight: 'normal',
-                /** @internal */
-                fontSize: '12px'
-            },
-            /**
-             * Shadow options for the data label.
-             *
-             * @type {boolean|Highcharts.CSSObject}
-             */
-            shadow: false,
-            /**
-             * @type      {number}
-             * @apioption plotOptions.timeline.dataLabels.width
-             */
-            verticalAlign: 'middle'
-        },
-        marker: {
-            enabledThreshold: 0,
-            symbol: 'square',
-            radius: 6,
-            lineWidth: 2,
-            height: 15
-        },
-        showInLegend: false,
-        colorKey: 'x'
-    });
+    TimelineSeries.defaultOptions = merge(LineSeries.defaultOptions, TimelineSeriesDefaults);
     return TimelineSeries;
 }(LineSeries));
 extend(TimelineSeries.prototype, {
@@ -476,77 +325,3 @@ export default TimelineSeries;
 * @type {Highcharts.Series}
 */
 ''; // dettach doclets above
-/* *
- *
- *  API Options
- *
- * */
-/**
- * The `timeline` series. If the [type](#series.timeline.type) option is
- * not specified, it is inherited from [chart.type](#chart.type).
- *
- * @extends   series,plotOptions.timeline
- * @excluding animationLimit, boostThreshold, connectEnds, connectNulls,
- *            cropThreshold, dashStyle, dataParser, dataURL, findNearestPointBy,
- *            getExtremesFromAll, lineWidth, negativeColor,
- *            pointInterval, pointIntervalUnit, pointPlacement, pointStart,
- *            softThreshold, stacking, stack, step, threshold, turboThreshold,
- *            zoneAxis, zones, dataSorting, boostBlending
- * @product   highcharts
- * @requires  modules/timeline
- * @apioption series.timeline
- */
-/**
- * An array of data points for the series. For the `timeline` series type,
- * points can be given with three general parameters, `name`, `label`,
- * and `description`:
- *
- * Example:
- *
- * ```js
- * series: [{
- *    type: 'timeline',
- *    data: [{
- *        name: 'Jan 2018',
- *        label: 'Some event label',
- *        description: 'Description to show in tooltip'
- *    }]
- * }]
- * ```
- * If all points additionally have the `x` values, and xAxis type is set to
- * `datetime`, then events are laid out on a true time axis, where their
- * placement reflects the actual time between them.
- *
- * @sample {highcharts} highcharts/series-timeline/alternate-labels
- *         Alternate labels
- * @sample {highcharts} highcharts/series-timeline/datetime-axis
- *         Real time intervals
- *
- * @type      {Array<*>}
- * @extends   series.line.data
- * @excluding marker, y
- * @product   highcharts
- * @apioption series.timeline.data
- */
-/**
- * The name of event.
- *
- * @type      {string}
- * @product   highcharts
- * @apioption series.timeline.data.name
- */
-/**
- * The label of event.
- *
- * @type      {string}
- * @product   highcharts
- * @apioption series.timeline.data.label
- */
-/**
- * The description of event. This description will be shown in tooltip.
- *
- * @type      {string}
- * @product   highcharts
- * @apioption series.timeline.data.description
- */
-''; // adds doclets above to transpiled file

@@ -11,10 +11,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -203,14 +205,13 @@ var SVGLabel = /** @class */ (function (_super) {
      * box and add it before the text in the DOM.
      */
     SVGLabel.prototype.onAdd = function () {
-        var str = this.textStr;
         this.text.add(this);
         this.attr({
             // Alignment is available now  (#3295, 0 not rendered if given
             // as a value)
-            text: (defined(str) ? str : ''),
-            x: this.x,
-            y: this.y
+            text: pick(this.textStr, ''),
+            x: this.x || 0,
+            y: this.y || 0
         });
         if (this.box && defined(this.anchorX)) {
             this.attr({
@@ -268,19 +269,19 @@ var SVGLabel = /** @class */ (function (_super) {
      * the new bounding box and reflect it in the border box.
      */
     SVGLabel.prototype.updateBoxSize = function () {
-        var style = this.text.element.style, attribs = {}, padding = this.padding, 
+        var text = this.text, style = text.element.style, attribs = {}, padding = this.padding, 
         // #12165 error when width is null (auto)
         // #12163 when fontweight: bold, recalculate bBox withot cache
         // #3295 && 3514 box failure when string equals 0
         bBox = this.bBox = (((!isNumber(this.widthSetting) ||
             !isNumber(this.heightSetting) ||
-            this.textAlign) && defined(this.text.textStr)) ?
-            this.text.getBBox() :
+            this.textAlign) && defined(text.textStr)) ?
+            text.getBBox() :
             SVGLabel.emptyBBox);
         var crispAdjust;
         this.width = this.getPaddedWidth();
         this.height = (this.heightSetting || bBox.height || 0) + 2 * padding;
-        var metrics = this.renderer.fontMetrics(style && style.fontSize, this.text);
+        var metrics = this.renderer.fontMetrics(style && style.fontSize, text);
         // Update the label-scoped y offset. Math.min because of inline
         // style (#9400)
         this.baselineOffset = padding + Math.min(
@@ -293,7 +294,7 @@ var SVGLabel = /** @class */ (function (_super) {
         if (this.heightSetting) {
             this.baselineOffset += (this.heightSetting - metrics.h) / 2;
         }
-        if (this.needsBox) {
+        if (this.needsBox && !text.textPath) {
             // Create the border box if it is not already present
             if (!this.box) {
                 // Symbol definition exists (#5324)
@@ -323,31 +324,33 @@ var SVGLabel = /** @class */ (function (_super) {
      */
     SVGLabel.prototype.updateTextPadding = function () {
         var text = this.text;
-        this.updateBoxSize();
-        // Determine y based on the baseline
-        var textY = this.baseline ? 0 : this.baselineOffset;
-        var textX = pick(this.paddingLeft, this.padding);
-        // compensate for alignment
-        if (defined(this.widthSetting) &&
-            this.bBox &&
-            (this.textAlign === 'center' || this.textAlign === 'right')) {
-            textX += { center: 0.5, right: 1 }[this.textAlign] * (this.widthSetting - this.bBox.width);
-        }
-        // update if anything changed
-        if (textX !== text.x || textY !== text.y) {
-            text.attr('x', textX);
-            // #8159 - prevent misplaced data labels in treemap
-            // (useHTML: true)
-            if (text.hasBoxWidthChanged) {
-                this.bBox = text.getBBox(true);
+        if (!text.textPath) {
+            this.updateBoxSize();
+            // Determine y based on the baseline
+            var textY = this.baseline ? 0 : this.baselineOffset;
+            var textX = pick(this.paddingLeft, this.padding);
+            // compensate for alignment
+            if (defined(this.widthSetting) &&
+                this.bBox &&
+                (this.textAlign === 'center' || this.textAlign === 'right')) {
+                textX += { center: 0.5, right: 1 }[this.textAlign] * (this.widthSetting - this.bBox.width);
             }
-            if (typeof textY !== 'undefined') {
-                text.attr('y', textY);
+            // update if anything changed
+            if (textX !== text.x || textY !== text.y) {
+                text.attr('x', textX);
+                // #8159 - prevent misplaced data labels in treemap
+                // (useHTML: true)
+                if (text.hasBoxWidthChanged) {
+                    this.bBox = text.getBBox(true);
+                }
+                if (typeof textY !== 'undefined') {
+                    text.attr('y', textY);
+                }
             }
+            // record current values
+            text.x = textX;
+            text.y = textY;
         }
-        // record current values
-        text.x = textX;
-        text.y = textY;
     };
     SVGLabel.prototype.widthSetter = function (value) {
         // width:auto => null

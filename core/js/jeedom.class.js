@@ -134,6 +134,9 @@ jeedom.init = function() {
   }
   var cssComputedStyle = getComputedStyle(document.documentElement)
   Highcharts.setOptions({
+    accessibility: {
+      enabled: false
+    },
     jeedom: {
       opacityHigh: 0.85,
       opacityLow: 0.1

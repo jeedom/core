@@ -13,7 +13,7 @@
  * */
 import AST from '../Core/Renderer/HTML/AST.js';
 import Chart from '../Core/Chart/Chart.js';
-import D from '../Core/DefaultOptions.js';
+import D from '../Core/Defaults.js';
 var getOptions = D.getOptions;
 import U from '../Core/Utilities.js';
 var addEvent = U.addEvent, extend = U.extend;
@@ -117,7 +117,7 @@ defaultOptions.noData = {
         /** @ignore */
         fontSize: '12px',
         /** @ignore */
-        color: "#666666" /* neutralColor60 */
+        color: "#666666" /* Palette.neutralColor60 */
     }
 };
 /**

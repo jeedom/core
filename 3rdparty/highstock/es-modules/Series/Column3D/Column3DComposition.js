@@ -13,10 +13,10 @@ var columnProto = ColumnSeries.prototype;
 import H from '../../Core/Globals.js';
 var svg = H.svg;
 import Series from '../../Core/Series/Series.js';
-import Math3D from '../../Extensions/Math3D.js';
+import Math3D from '../../Core/Math3D.js';
 var perspective = Math3D.perspective;
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
-import StackItem from '../../Extensions/Stacking.js';
+import StackItem from '../../Core/Axis/Stacking/StackItem.js';
 import U from '../../Core/Utilities.js';
 var addEvent = U.addEvent, pick = U.pick, wrap = U.wrap;
 /* *

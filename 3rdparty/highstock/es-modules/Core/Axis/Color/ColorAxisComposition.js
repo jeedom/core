@@ -155,7 +155,7 @@ var ColorAxisComposition;
      */
     function onLegendAfterColorizeItem(e) {
         if (e.visible && e.item.legendColor) {
-            e.item.legendSymbol.attr({
+            e.item.legendItem.symbol.attr({
                 fill: e.item.legendColor
             });
         }
@@ -230,7 +230,9 @@ var ColorAxisComposition;
                     point.color || series.color);
             if (color && point.color !== color) {
                 point.color = color;
-                if (series.options.legendType === 'point' && point.legendItem) {
+                if (series.options.legendType === 'point' &&
+                    point.legendItem &&
+                    point.legendItem.label) {
                     series.chart.legend.colorizeItem(point, point.visible);
                 }
             }

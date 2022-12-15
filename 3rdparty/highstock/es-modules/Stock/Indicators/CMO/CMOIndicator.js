@@ -10,10 +10,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -23,7 +25,11 @@ import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
 var SMAIndicator = SeriesRegistry.seriesTypes.sma;
 import U from '../../../Core/Utilities.js';
 var isNumber = U.isNumber, merge = U.merge;
-/* eslint-enable require-jsdoc */
+/* *
+ *
+ *  Class
+ *
+ * */
 /**
  * The CMO series type.
  *
@@ -36,6 +42,11 @@ var isNumber = U.isNumber, merge = U.merge;
 var CMOIndicator = /** @class */ (function (_super) {
     __extends(CMOIndicator, _super);
     function CMOIndicator() {
+        /* *
+         *
+         *  Static Properties
+         *
+         * */
         var _this = _super !== null && _super.apply(this, arguments) || this;
         /* *
          *
@@ -151,6 +162,11 @@ SeriesRegistry.registerSeriesType('cmo', CMOIndicator);
  *
  * */
 export default CMOIndicator;
+/* *
+ *
+ *  API Options
+ *
+ * */
 /**
  * A `CMO` series. If the [type](#series.cmo.type) option is not
  * specified, it is inherited from [chart.type](#chart.type).

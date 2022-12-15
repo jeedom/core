@@ -12,10 +12,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -29,7 +31,6 @@ import U from '../../Core/Utilities.js';
 var arrayMax = U.arrayMax, arrayMin = U.arrayMin, correctFloat = U.correctFloat, extend = U.extend, isNumber = U.isNumber, merge = U.merge, objectEach = U.objectEach, pick = U.pick;
 import WaterfallAxis from '../../Core/Axis/WaterfallAxis.js';
 import WaterfallPoint from './WaterfallPoint.js';
-import '../../Core/DefaultOptions.js';
 /**
  * Returns true if the key is a direct property of the object.
  * @private
@@ -83,34 +84,30 @@ var WaterfallSeries = /** @class */ (function (_super) {
      * */
     // After generating points, set y-values for all sums.
     WaterfallSeries.prototype.generatePoints = function () {
-        var point, len, i, y;
         // Parent call:
         ColumnSeries.prototype.generatePoints.apply(this);
-        for (i = 0, len = this.points.length; i < len; i++) {
-            point = this.points[i];
-            y = this.processedYData[i];
-            // override point value for sums
-            // #3710 Update point does not propagate to sum
-            if (point.isIntermediateSum || point.isSum) {
+        for (var i = 0, len = this.points.length; i < len; i++) {
+            var point = this.points[i], y = this.processedYData[i];
+            // Override point value for sums. #3710 Update point does not
+            // propagate to sum
+            if (isNumber(y) && (point.isIntermediateSum || point.isSum)) {
                 point.y = correctFloat(y);
             }
         }
     };
     // Translate data points from raw values
     WaterfallSeries.prototype.translate = function () {
-        var series = this, options = series.options, yAxis = series.yAxis, y, minPointLength = pick(options.minPointLength, 5), halfMinPointLength = minPointLength / 2, threshold = options.threshold || 0, previousY = threshold, previousIntermediate = threshold, stacking = options.stacking, actualStack = yAxis.waterfall.stacks[series.stackKey], total, yPos, hPos;
+        var series = this, options = series.options, yAxis = series.yAxis, minPointLength = pick(options.minPointLength, 5), halfMinPointLength = minPointLength / 2, threshold = options.threshold || 0, stacking = options.stacking, actualStack = yAxis.waterfall.stacks[series.stackKey];
+        var previousIntermediate = threshold, previousY = threshold, y, total, yPos, hPos;
         // run column series translate
         ColumnSeries.prototype.translate.apply(series);
         var points = series.points;
         for (var i = 0; i < points.length; i++) {
-            var point = points[i];
-            var yValue = series.processedYData[i];
-            var shapeArgs = point.shapeArgs;
+            var point = points[i], yValue = series.processedYData[i], shapeArgs = point.shapeArgs;
             if (!shapeArgs || !isNumber(yValue)) {
                 continue;
             }
-            var range = [0, yValue];
-            var pointY = point.y;
+            var range = [0, yValue], pointY = point.y;
             // code responsible for correct positions of stacked points
             // starts here
             if (stacking) {
@@ -141,14 +138,16 @@ var WaterfallSeries = /** @class */ (function (_super) {
                             y = total - pointY;
                         }
                         if (!actualStackX.posTotal) {
-                            if (ownProp(actualStackX, 'absolutePos')) {
+                            if (isNumber(actualStackX.absolutePos) &&
+                                ownProp(actualStackX, 'absolutePos')) {
                                 actualStackX.posTotal =
                                     actualStackX.absolutePos;
                                 delete actualStackX.absolutePos;
                             }
                         }
                         if (!actualStackX.negTotal) {
-                            if (ownProp(actualStackX, 'absoluteNeg')) {
+                            if (isNumber(actualStackX.absoluteNeg) &&
+                                ownProp(actualStackX, 'absoluteNeg')) {
                                 actualStackX.negTotal =
                                     actualStackX.absoluteNeg;
                                 delete actualStackX.absoluteNeg;
@@ -171,9 +170,9 @@ var WaterfallSeries = /** @class */ (function (_super) {
                         hPos = y - pointY;
                     }
                     point.below = yPos <= threshold;
-                    shapeArgs.y = yAxis.translate(yPos, false, true, false, true) || 0;
+                    shapeArgs.y = yAxis.translate(yPos, false, true, false, true);
                     shapeArgs.height = Math.abs(shapeArgs.y -
-                        (yAxis.translate(hPos, false, true, false, true) || 0));
+                        yAxis.translate(hPos, false, true, false, true));
                     var dummyStackItem = yAxis.waterfall.dummyStackItem;
                     if (dummyStackItem) {
                         dummyStackItem.x = i;
@@ -185,11 +184,11 @@ var WaterfallSeries = /** @class */ (function (_super) {
             else {
                 // up points
                 y = Math.max(previousY, previousY + pointY) + range[0];
-                shapeArgs.y = yAxis.translate(y, false, true, false, true) || 0;
+                shapeArgs.y = yAxis.translate(y, false, true, false, true);
                 // sum points
                 if (point.isSum) {
-                    shapeArgs.y = yAxis.translate(range[1], false, true, false, true) || 0;
-                    shapeArgs.height = Math.min(yAxis.translate(range[0], false, true, false, true) || 0, yAxis.len) - shapeArgs.y; // #4256
+                    shapeArgs.y = yAxis.translate(range[1], false, true, false, true);
+                    shapeArgs.height = Math.min(yAxis.translate(range[0], false, true, false, true), yAxis.len) - shapeArgs.y; // #4256
                     point.below = range[1] <= threshold;
                 }
                 else if (point.isIntermediateSum) {
@@ -207,9 +206,9 @@ var WaterfallSeries = /** @class */ (function (_super) {
                         hPos ^= yPos;
                         yPos ^= hPos;
                     }
-                    shapeArgs.y = yAxis.translate(yPos, false, true, false, true) || 0;
+                    shapeArgs.y = yAxis.translate(yPos, false, true, false, true);
                     shapeArgs.height = Math.abs(shapeArgs.y -
-                        Math.min(yAxis.translate(hPos, false, true, false, true) || 0, yAxis.len));
+                        Math.min(yAxis.translate(hPos, false, true, false, true), yAxis.len));
                     previousIntermediate += range[1];
                     point.below = yPos <= threshold;
                     // If it's not the sum point, update previous stack end position
@@ -217,8 +216,8 @@ var WaterfallSeries = /** @class */ (function (_super) {
                 }
                 else {
                     shapeArgs.height = yValue > 0 ?
-                        (yAxis.translate(previousY, false, true, false, true) || 0) - shapeArgs.y :
-                        (yAxis.translate(previousY, false, true, false, true) || 0) - (yAxis.translate(previousY - yValue, false, true, false, true) || 0);
+                        yAxis.translate(previousY, false, true, false, true) - shapeArgs.y :
+                        yAxis.translate(previousY, false, true, false, true) - yAxis.translate(previousY - yValue, false, true, false, true);
                     previousY += yValue;
                     point.below = previousY < threshold;
                 }
@@ -264,6 +263,8 @@ var WaterfallSeries = /** @class */ (function (_super) {
                     point.tooltipPos[1] = tooltipY;
                 }
             }
+            // Check point position after recalculation (#16788)
+            point.isInside = this.isPointInside(point);
         }
     };
     // Call default processData then override yData to reflect waterfall's
@@ -318,12 +319,12 @@ var WaterfallSeries = /** @class */ (function (_super) {
     };
     // Postprocess mapping between options and SVG attributes
     WaterfallSeries.prototype.pointAttribs = function (point, state) {
-        var upColor = this.options.upColor, attr;
+        var upColor = this.options.upColor;
         // Set or reset up color (#3710, update to negative)
         if (upColor && !point.options.color) {
-            point.color = point.y > 0 ? upColor : null;
+            point.color = point.y > 0 ? upColor : void 0;
         }
-        attr = ColumnSeries.prototype.pointAttribs.call(this, point, state);
+        var attr = ColumnSeries.prototype.pointAttribs.call(this, point, state);
         // The dashStyle option in waterfall applies to the graph, not
         // the points
         delete attr.dashstyle;
@@ -350,7 +351,7 @@ var WaterfallSeries = /** @class */ (function (_super) {
                 // value
                 if (stacking) {
                     connectorThreshold = prevStackX.connectorThreshold;
-                    yPos = Math.round((yAxis.translate(connectorThreshold, 0, 1, 0, 1) +
+                    yPos = Math.round((yAxis.translate(connectorThreshold, false, true, false, true) +
                         (reversedYAxis ? isPos : 0))) - graphNormalizer;
                 }
                 else {
@@ -392,14 +393,16 @@ var WaterfallSeries = /** @class */ (function (_super) {
     // crisp rendering.
     WaterfallSeries.prototype.drawGraph = function () {
         LineSeries.prototype.drawGraph.call(this);
-        this.graph.attr({
-            d: this.getCrispPath()
-        });
+        if (this.graph) {
+            this.graph.attr({
+                d: this.getCrispPath()
+            });
+        }
     };
     // Waterfall has stacking along the x-values too.
     WaterfallSeries.prototype.setStackedPoints = function () {
-        var series = this, options = series.options, waterfallStacks = series.yAxis.waterfall.stacks, seriesThreshold = options.threshold, stackThreshold = seriesThreshold || 0, interSum = stackThreshold, stackKey = series.stackKey, xData = series.xData, xLength = xData.length, actualStack, actualStackX, totalYVal, actualSum, prevSum, statesLen, posTotal, negTotal, xPoint, yVal, x, alreadyChanged, changed;
-        // function responsible for calculating correct values for stackState
+        var series = this, options = series.options, waterfallStacks = series.yAxis.waterfall.stacks, seriesThreshold = options.threshold || 0, stackThreshold = seriesThreshold, interSum = stackThreshold, stackKey = series.stackKey, xData = series.xData, xLength = xData.length, actualStackX, totalYVal, actualSum, prevSum, statesLen, posTotal, negTotal, xPoint, yVal, x, alreadyChanged, changed;
+        // Function responsible for calculating correct values for stackState
         // array of each stack item. The arguments are: firstS - the value for
         // the first state, nextS - the difference between the previous and the
         // newest state, sInx - counter used in the for that updates each state
@@ -407,16 +410,18 @@ var WaterfallSeries = /** @class */ (function (_super) {
         // they need to be updated (if point isn't a total sum)
         // eslint-disable-next-line require-jsdoc
         function calculateStackState(firstS, nextS, sInx, sOff) {
-            if (!statesLen) {
-                actualStackX.stackState[0] = firstS;
-                statesLen = actualStackX.stackState.length;
-            }
-            else {
-                for (sInx; sInx < statesLen; sInx++) {
-                    actualStackX.stackState[sInx] += sOff;
+            if (actualStackX) {
+                if (!statesLen) {
+                    actualStackX.stackState[0] = firstS;
+                    statesLen = actualStackX.stackState.length;
                 }
+                else {
+                    for (sInx; sInx < statesLen; sInx++) {
+                        actualStackX.stackState[sInx] += sOff;
+                    }
+                }
+                actualStackX.stackState.push(actualStackX.stackState[statesLen - 1] + nextS);
             }
-            actualStackX.stackState.push(actualStackX.stackState[statesLen - 1] + nextS);
         }
         series.yAxis.stacking.usePercentage = false;
         totalYVal = actualSum = prevSum = stackThreshold;
@@ -425,9 +430,9 @@ var WaterfallSeries = /** @class */ (function (_super) {
             !series.chart.options.chart.ignoreHiddenSeries) {
             changed = waterfallStacks.changed;
             alreadyChanged = waterfallStacks.alreadyChanged;
-            // in case of a redraw, stack for each x value must be
-            // emptied (only for the first series in a specific stack)
-            // and recalculated once more
+            // In case of a redraw, stack for each x value must be emptied (only
+            // for the first series in a specific stack) and recalculated once
+            // more
             if (alreadyChanged &&
                 alreadyChanged.indexOf(stackKey) < 0) {
                 changed = true;
@@ -435,62 +440,62 @@ var WaterfallSeries = /** @class */ (function (_super) {
             if (!waterfallStacks[stackKey]) {
                 waterfallStacks[stackKey] = {};
             }
-            actualStack = waterfallStacks[stackKey];
-            for (var i = 0; i < xLength; i++) {
-                x = xData[i];
-                if (!actualStack[x] || changed) {
-                    actualStack[x] = {
-                        negTotal: 0,
-                        posTotal: 0,
-                        stackTotal: 0,
-                        threshold: 0,
-                        stateIndex: 0,
-                        stackState: [],
-                        label: ((changed &&
-                            actualStack[x]) ?
-                            actualStack[x].label :
-                            void 0)
-                    };
-                }
-                actualStackX = actualStack[x];
-                yVal = series.yData[i];
-                if (yVal >= 0) {
-                    actualStackX.posTotal += yVal;
-                }
-                else {
-                    actualStackX.negTotal += yVal;
-                }
-                // points do not exist yet, so raw data is used
-                xPoint = options.data[i];
-                posTotal = actualStackX.absolutePos =
-                    actualStackX.posTotal;
-                negTotal = actualStackX.absoluteNeg =
-                    actualStackX.negTotal;
-                actualStackX.stackTotal = posTotal + negTotal;
-                statesLen = actualStackX.stackState.length;
-                if (xPoint && xPoint.isIntermediateSum) {
-                    calculateStackState(prevSum, actualSum, 0, prevSum);
-                    prevSum = actualSum;
-                    actualSum = seriesThreshold;
-                    // swapping values
-                    stackThreshold ^= interSum;
-                    interSum ^= stackThreshold;
-                    stackThreshold ^= interSum;
-                }
-                else if (xPoint && xPoint.isSum) {
-                    calculateStackState(seriesThreshold, totalYVal, statesLen);
-                    stackThreshold = seriesThreshold;
-                }
-                else {
-                    calculateStackState(stackThreshold, yVal, 0, totalYVal);
-                    if (xPoint) {
-                        totalYVal += yVal;
-                        actualSum += yVal;
+            var actualStack = waterfallStacks[stackKey];
+            if (actualStack) {
+                for (var i = 0; i < xLength; i++) {
+                    x = xData[i];
+                    if (!actualStack[x] || changed) {
+                        actualStack[x] = {
+                            negTotal: 0,
+                            posTotal: 0,
+                            stackTotal: 0,
+                            threshold: 0,
+                            stateIndex: 0,
+                            stackState: [],
+                            label: ((changed &&
+                                actualStack[x]) ?
+                                actualStack[x].label :
+                                void 0)
+                        };
                     }
+                    actualStackX = actualStack[x];
+                    yVal = series.yData[i];
+                    if (yVal >= 0) {
+                        actualStackX.posTotal += yVal;
+                    }
+                    else {
+                        actualStackX.negTotal += yVal;
+                    }
+                    // points do not exist yet, so raw data is used
+                    xPoint = options.data[i];
+                    posTotal = actualStackX.absolutePos = actualStackX.posTotal;
+                    negTotal = actualStackX.absoluteNeg = actualStackX.negTotal;
+                    actualStackX.stackTotal = posTotal + negTotal;
+                    statesLen = actualStackX.stackState.length;
+                    if (xPoint && xPoint.isIntermediateSum) {
+                        calculateStackState(prevSum, actualSum, 0, prevSum);
+                        prevSum = actualSum;
+                        actualSum = seriesThreshold;
+                        // swapping values
+                        stackThreshold ^= interSum;
+                        interSum ^= stackThreshold;
+                        stackThreshold ^= interSum;
+                    }
+                    else if (xPoint && xPoint.isSum) {
+                        calculateStackState(seriesThreshold, totalYVal, statesLen, 0);
+                        stackThreshold = seriesThreshold;
+                    }
+                    else {
+                        calculateStackState(stackThreshold, yVal, 0, totalYVal);
+                        if (xPoint) {
+                            totalYVal += yVal;
+                            actualSum += yVal;
+                        }
+                    }
+                    actualStackX.stateIndex++;
+                    actualStackX.threshold = stackThreshold;
+                    stackThreshold += actualStackX.stackTotal;
                 }
-                actualStackX.stateIndex++;
-                actualStackX.threshold = stackThreshold;
-                stackThreshold += actualStackX.stackTotal;
             }
             waterfallStacks.changed = false;
             if (!waterfallStacks.alreadyChanged) {
@@ -590,7 +595,7 @@ var WaterfallSeries = /** @class */ (function (_super) {
          * @since   3.0
          * @product highcharts
          */
-        lineColor: "#333333" /* neutralColor80 */,
+        lineColor: "#333333" /* Palette.neutralColor80 */,
         /**
          * A name for the dash style to use for the line connecting the columns
          * of the waterfall series. Possible values: Dash, DashDot, Dot,
@@ -615,7 +620,7 @@ var WaterfallSeries = /** @class */ (function (_super) {
          * @since   3.0
          * @product highcharts
          */
-        borderColor: "#333333" /* neutralColor80 */,
+        borderColor: "#333333" /* Palette.neutralColor80 */,
         states: {
             hover: {
                 lineWidthPlus: 0 // #3126

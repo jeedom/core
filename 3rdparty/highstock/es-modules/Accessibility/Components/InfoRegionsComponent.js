@@ -14,10 +14,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -90,11 +92,12 @@ function buildTypeDescriptionFromSeries(chart, types, context) {
  * @return {string} The text description of the chart type.
  */
 function getTypeDescription(chart, types) {
-    var firstType = types[0], firstSeries = chart.series && chart.series[0] || {}, formatContext = {
+    var firstType = types[0], firstSeries = chart.series && chart.series[0] || {}, mapTitle = chart.mapView && chart.mapView.geoMap &&
+        chart.mapView.geoMap.title, formatContext = {
         numSeries: chart.series.length,
         numPoints: firstSeries.points && firstSeries.points.length,
         chart: chart,
-        mapTitle: firstSeries.mapTitle
+        mapTitle: mapTitle
     };
     if (!firstType) {
         return getTypeDescForEmptyChart(chart, formatContext);
@@ -155,12 +158,15 @@ var InfoRegionsComponent = /** @class */ (function (_super) {
         this.addEvent(chart, 'aftergetTableAST', function (e) {
             component.onDataTableCreated(e);
         });
-        this.addEvent(chart, 'afterViewData', function (tableDiv) {
-            component.dataTableDiv = tableDiv;
-            // Use small delay to give browsers & AT time to register new table
-            setTimeout(function () {
-                component.focusDataTable();
-            }, 300);
+        this.addEvent(chart, 'afterViewData', function (e) {
+            if (e.wasHidden) {
+                component.dataTableDiv = e.element;
+                // Use a small delay to give browsers & AT time to
+                // register the new table.
+                setTimeout(function () {
+                    component.focusDataTable();
+                }, 300);
+            }
         });
         this.announcer = new Announcer(chart, 'assertive');
     };
@@ -280,27 +286,28 @@ var InfoRegionsComponent = /** @class */ (function (_super) {
             if (sectionDiv.parentNode) {
                 sectionDiv.parentNode.removeChild(sectionDiv);
             }
-            delete region.element;
+            region.element = null;
         }
     };
     /**
+     * Apply a11y attributes to a screen reader info section
      * @private
      * @param {Highcharts.HTMLDOMElement} sectionDiv The section element
      * @param {string} regionKey Name/key of the region we are setting attrs for
      */
     InfoRegionsComponent.prototype.setScreenReaderSectionAttribs = function (sectionDiv, regionKey) {
-        var labelLangKey = ('accessibility.screenReaderSection.' + regionKey + 'RegionLabel'), chart = this.chart, labelText = chart.langFormat(labelLangKey, { chart: chart, chartTitle: getChartTitle(chart) }), sectionId = 'highcharts-screen-reader-region-' + regionKey + '-' +
-            chart.index;
+        var chart = this.chart, labelText = chart.langFormat('accessibility.screenReaderSection.' + regionKey +
+            'RegionLabel', { chart: chart, chartTitle: getChartTitle(chart) }), sectionId = "highcharts-screen-reader-region-".concat(regionKey, "-").concat(chart.index);
         attr(sectionDiv, {
             id: sectionId,
-            'aria-label': labelText
+            'aria-label': labelText || void 0
         });
         // Sections are wrapped to be positioned relatively to chart in case
         // elements inside are tabbed to.
         sectionDiv.style.position = 'relative';
-        if (chart.options.accessibility.landmarkVerbosity === 'all' &&
-            labelText) {
-            sectionDiv.setAttribute('role', 'region');
+        if (labelText) {
+            sectionDiv.setAttribute('role', chart.options.accessibility.landmarkVerbosity === 'all' ?
+                'region' : 'group');
         }
     };
     /**
@@ -499,7 +506,10 @@ var InfoRegionsComponent = /** @class */ (function (_super) {
             return axes.length > 1 || axes[0] &&
                 pick(axes[0].options.accessibility &&
                     axes[0].options.accessibility.enabled, defaultCondition);
-        }, hasNoMap = !!chart.types && chart.types.indexOf('map') < 0, hasCartesian = !!chart.hasCartesianSeries, showXAxes = shouldDescribeColl('xAxis', !chart.angular && hasCartesian && hasNoMap), showYAxes = shouldDescribeColl('yAxis', hasCartesian && hasNoMap), desc = {};
+        }, hasNoMap = !!chart.types &&
+            chart.types.indexOf('map') < 0 &&
+            chart.types.indexOf('treemap') < 0 &&
+            chart.types.indexOf('tilemap') < 0, hasCartesian = !!chart.hasCartesianSeries, showXAxes = shouldDescribeColl('xAxis', !chart.angular && hasCartesian && hasNoMap), showYAxes = shouldDescribeColl('yAxis', hasCartesian && hasNoMap), desc = {};
         if (showXAxes) {
             desc.xAxis = this.getAxisDescriptionText('xAxis');
         }

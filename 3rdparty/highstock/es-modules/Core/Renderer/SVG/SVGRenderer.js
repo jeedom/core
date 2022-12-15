@@ -193,7 +193,7 @@ var SVGRenderer = /** @class */ (function () {
         this.url = this.getReferenceURL();
         // Add description
         var desc = this.createElement('desc').add();
-        desc.element.appendChild(doc.createTextNode('Created with Highcharts 9.3.2'));
+        desc.element.appendChild(doc.createTextNode('Created with Highcharts 10.3.2'));
         renderer.defs = this.createElement('defs').add();
         renderer.allowHTML = allowHTML;
         renderer.forExport = forExport;
@@ -305,7 +305,7 @@ var SVGRenderer = /** @class */ (function () {
                                     id: 'hitme',
                                     width: 8,
                                     height: 8,
-                                    'clip-path': "url(#" + id + ")",
+                                    'clip-path': "url(#".concat(id, ")"),
                                     fill: 'rgba(0,0,0,0.001)'
                                 }
                             }]
@@ -457,27 +457,31 @@ var SVGRenderer = /** @class */ (function () {
         new TextBuilder(wrapper).buildSVG();
     };
     /**
-     * Returns white for dark colors and black for bright colors.
+     * Returns white for dark colors and black for bright colors, based on W3C's
+     * definition of [Relative luminance](
+     * https://www.w3.org/WAI/GL/wiki/Relative_luminance).
      *
      * @function Highcharts.SVGRenderer#getContrast
      *
-     * @param {Highcharts.ColorString} rgba
+     * @param {Highcharts.ColorString} color
      * The color to get the contrast for.
      *
      * @return {Highcharts.ColorString}
      * The contrast color, either `#000000` or `#FFFFFF`.
      */
-    SVGRenderer.prototype.getContrast = function (rgba) {
-        rgba = Color.parse(rgba).rgba;
-        // The threshold may be discussed. Here's a proposal for adding
-        // different weight to the color channels (#6216)
-        rgba[0] *= 1; // red
-        rgba[1] *= 1.2; // green
-        rgba[2] *= 0.5; // blue
-        return rgba[0] + rgba[1] + rgba[2] >
-            1.8 * 255 ?
-            '#000000' :
-            '#FFFFFF';
+    SVGRenderer.prototype.getContrast = function (color) {
+        // #6216, #17273
+        var rgba = Color.parse(color).rgba
+            .map(function (b8) {
+            var c = b8 / 255;
+            return c <= 0.03928 ?
+                c / 12.92 :
+                Math.pow((c + 0.055) / 1.055, 2.4);
+        });
+        // Relative luminance
+        var l = 0.2126 * rgba[0] + 0.7152 * rgba[1] + 0.0722 * rgba[2];
+        // Use white or black based on which provides more contrast
+        return 1.05 / (l + 0.05) > (l + 0.05) / 0.05 ? '#FFFFFF' : '#000000';
     };
     /**
      * Create a button with preset states.
@@ -502,7 +506,7 @@ var SVGRenderer = /** @class */ (function () {
      * @param {Highcharts.SVGAttributes} [hoverState]
      * SVG attributes for the hover state.
      *
-     * @param {Highcharts.SVGAttributes} [pressedState]
+     * @param {Highcharts.SVGAttributes} [selectState]
      * SVG attributes for the pressed state.
      *
      * @param {Highcharts.SVGAttributes} [disabledState]
@@ -512,66 +516,64 @@ var SVGRenderer = /** @class */ (function () {
      * The shape type.
      *
      * @param {boolean} [useHTML=false]
-     * Wether to use HTML to render the label.
+     * Whether to use HTML to render the label.
      *
      * @return {Highcharts.SVGElement}
      * The button element.
      */
-    SVGRenderer.prototype.button = function (text, x, y, callback, theme, hoverState, pressedState, disabledState, shape, useHTML) {
-        var label = this.label(text, x, y, shape, void 0, void 0, useHTML, void 0, 'button'), styledMode = this.styledMode;
-        var curState = 0, 
-        // Make a copy of normalState (#13798)
-        // (reference to options.rangeSelector.buttonTheme)
-        normalState = theme ? merge(theme) : {};
-        var userNormalStyle = normalState && normalState.style || {};
-        // Remove stylable attributes
-        normalState = AST.filterUserAttributes(normalState);
+    SVGRenderer.prototype.button = function (text, x, y, callback, theme, hoverState, selectState, disabledState, shape, useHTML) {
+        if (theme === void 0) { theme = {}; }
+        var label = this.label(text, x, y, shape, void 0, void 0, useHTML, void 0, 'button'), styledMode = this.styledMode, states = theme.states || {};
+        var curState = 0;
+        theme = merge(theme);
+        delete theme.states;
+        var normalStyle = merge({
+            color: "#333333" /* Palette.neutralColor80 */,
+            cursor: 'pointer',
+            fontWeight: 'normal'
+        }, theme.style);
+        delete theme.style;
+        // Remove stylable attributes. Pass in the ButtonThemeObject and get the
+        // SVGAttributes subset back.
+        var normalState = AST.filterUserAttributes(theme);
         // Default, non-stylable attributes
         label.attr(merge({ padding: 8, r: 2 }, normalState));
-        // Presentational
-        var normalStyle, hoverStyle, pressedStyle, disabledStyle;
+        // Presentational. The string type is a mistake, it is just for
+        // compliance with SVGAttribute and is not used in button theme.
+        var hoverStyle, selectStyle, disabledStyle;
         if (!styledMode) {
             // Normal state - prepare the attributes
             normalState = merge({
-                fill: "#f7f7f7" /* neutralColor3 */,
-                stroke: "#cccccc" /* neutralColor20 */,
-                'stroke-width': 1,
-                style: {
-                    color: "#333333" /* neutralColor80 */,
-                    cursor: 'pointer',
-                    fontWeight: 'normal'
-                }
-            }, {
-                style: userNormalStyle
+                fill: "#f7f7f7" /* Palette.neutralColor3 */,
+                stroke: "#cccccc" /* Palette.neutralColor20 */,
+                'stroke-width': 1
             }, normalState);
-            normalStyle = normalState.style;
-            delete normalState.style;
             // Hover state
             hoverState = merge(normalState, {
-                fill: "#e6e6e6" /* neutralColor10 */
-            }, AST.filterUserAttributes(hoverState || {}));
+                fill: "#e6e6e6" /* Palette.neutralColor10 */
+            }, AST.filterUserAttributes(hoverState || states.hover || {}));
             hoverStyle = hoverState.style;
             delete hoverState.style;
             // Pressed state
-            pressedState = merge(normalState, {
-                fill: "#e6ebf5" /* highlightColor10 */,
+            selectState = merge(normalState, {
+                fill: "#e6ebf5" /* Palette.highlightColor10 */,
                 style: {
-                    color: "#000000" /* neutralColor100 */,
+                    color: "#000000" /* Palette.neutralColor100 */,
                     fontWeight: 'bold'
                 }
-            }, AST.filterUserAttributes(pressedState || {}));
-            pressedStyle = pressedState.style;
-            delete pressedState.style;
+            }, AST.filterUserAttributes(selectState || states.select || {}));
+            selectStyle = selectState.style;
+            delete selectState.style;
             // Disabled state
             disabledState = merge(normalState, {
                 style: {
-                    color: "#cccccc" /* neutralColor20 */
+                    color: "#cccccc" /* Palette.neutralColor20 */
                 }
-            }, AST.filterUserAttributes(disabledState || {}));
+            }, AST.filterUserAttributes(disabledState || states.disabled || {}));
             disabledStyle = disabledState.style;
             delete disabledState.style;
         }
-        // Add the events. IE9 and IE10 need mouseover and mouseout to funciton
+        // Add the events. IE9 and IE10 need mouseover and mouseout to function
         // (#667).
         addEvent(label.element, isMS ? 'mouseover' : 'mouseenter', function () {
             if (curState !== 3) {
@@ -598,15 +600,18 @@ var SVGRenderer = /** @class */ (function () {
                     .attr([
                     normalState,
                     hoverState,
-                    pressedState,
+                    selectState,
                     disabledState
-                ][state || 0])
-                    .css([
+                ][state || 0]);
+                var css_1 = [
                     normalStyle,
                     hoverStyle,
-                    pressedStyle,
+                    selectStyle,
                     disabledStyle
-                ][state || 0]);
+                ][state || 0];
+                if (isObject(css_1)) {
+                    label.css(css_1);
+                }
             }
         };
         // Presentational attributes
@@ -614,6 +619,15 @@ var SVGRenderer = /** @class */ (function () {
             label
                 .attr(normalState)
                 .css(extend({ cursor: 'default' }, normalStyle));
+            // HTML labels don't need to handle pointer events because click and
+            // mouseenter/mouseleave is bound to the underlying <g> element.
+            // Should this be reconsidered, we need more complex logic to share
+            // events between the <g> and its <div> counterpart, and avoid
+            // triggering mouseenter/mouseleave when hovering from one to the
+            // other (#17440).
+            if (useHTML) {
+                label.text.css({ pointerEvents: 'none' });
+            }
         }
         return label
             .on('touchstart', function (e) { return e.stopPropagation(); })
@@ -1094,9 +1108,11 @@ var SVGRenderer = /** @class */ (function () {
              */
             ['width', 'height'].forEach(function (key) {
                 img_1[key + 'Setter'] = function (value, key) {
-                    var imgSize = this['img' + key];
                     this[key] = value;
+                    var _a = this, alignByTranslate = _a.alignByTranslate, element = _a.element, width = _a.width, height = _a.height, imgwidth = _a.imgwidth, imgheight = _a.imgheight;
+                    var imgSize = this['img' + key];
                     if (defined(imgSize)) {
+                        var scale = 1;
                         // Scale and center the image within its container.
                         // The name `backgroundSize` is taken from the CSS spec,
                         // but the value `within` is made up. Other possible
@@ -1104,19 +1120,22 @@ var SVGRenderer = /** @class */ (function () {
                         // implemented if needed.
                         if (options &&
                             options.backgroundSize === 'within' &&
-                            this.width &&
-                            this.height) {
-                            imgSize = Math.round(imgSize * Math.min(this.width / this.imgwidth, this.height / this.imgheight));
+                            width &&
+                            height) {
+                            scale = Math.min(width / imgwidth, height / imgheight);
+                            imgSize = Math.round(imgSize * scale);
+                            // Update both width and height to keep the ratio
+                            // correct (#17315)
+                            attr(element, {
+                                width: Math.round(imgwidth * scale),
+                                height: Math.round(imgheight * scale)
+                            });
                         }
-                        if (this.element) {
-                            this.element.setAttribute(key, imgSize);
+                        else if (element) {
+                            element.setAttribute(key, imgSize);
                         }
-                        if (!this.alignByTranslate) {
-                            var translate = ((this[key] || 0) - imgSize) / 2;
-                            var attribs = key === 'width' ?
-                                { translateX: translate } :
-                                { translateY: translate };
-                            this.attr(attribs);
+                        if (!alignByTranslate) {
+                            this.translate(((width || 0) - (imgSize * scale)) / 2, ((height || 0) - (imgSize * scale)) / 2);
                         }
                     }
                 };
@@ -1293,7 +1312,7 @@ var SVGRenderer = /** @class */ (function () {
      */
     SVGRenderer.prototype.fontMetrics = function (fontSize, elem) {
         if ((this.styledMode || !/px/.test(fontSize)) &&
-            win.getComputedStyle // old IE doesn't support it
+            (win.getComputedStyle) // old IE doesn't support it
         ) {
             fontSize = elem && SVGElement.prototype.getStyle.call(elem, 'font-size');
         }
@@ -1610,7 +1629,7 @@ var SVGRenderer = /** @class */ (function () {
      *        coordinates it should be pinned to.
      *
      * @param {boolean} [useHTML=false]
-     *        Wether to use HTML to render the label.
+     *        Whether to use HTML to render the label.
      *
      * @param {boolean} [baseline=false]
      *        Whether to position the label relative to the text baseline,

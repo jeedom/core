@@ -14,10 +14,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -27,7 +29,11 @@ import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
 var SMAIndicator = SeriesRegistry.seriesTypes.sma;
 import U from '../../../Core/Utilities.js';
 var extend = U.extend, merge = U.merge, error = U.error, isArray = U.isArray;
-/* eslint-disable require-jsdoc */
+/* *
+ *
+ *  Functions
+ *
+ * */
 // Utils:
 function sumArray(array) {
     return array.reduce(function (prev, cur) {
@@ -43,7 +49,6 @@ function calculateTypicalPrice(point) {
 function calculateRawMoneyFlow(typicalPrice, volume) {
     return typicalPrice * volume;
 }
-/* eslint-enable require-jsdoc */
 /* *
  *
  *  Class
@@ -61,22 +66,27 @@ function calculateRawMoneyFlow(typicalPrice, volume) {
 var MFIIndicator = /** @class */ (function (_super) {
     __extends(MFIIndicator, _super);
     function MFIIndicator() {
+        /* *
+         *
+         *  Static Properties
+         *
+         * */
         var _this = _super !== null && _super.apply(this, arguments) || this;
         /* *
-        *
-        *  Properties
-        *
-        * */
+         *
+         *  Properties
+         *
+         * */
         _this.data = void 0;
         _this.options = void 0;
         _this.points = void 0;
         return _this;
     }
     /* *
-    *
-    *  Functions
-    *
-    * */
+     *
+     *  Functions
+     *
+     * */
     MFIIndicator.prototype.getValues = function (series, params) {
         var period = params.period, xVal = series.xData, yVal = series.yData, yValLen = yVal ? yVal.length : 0, decimals = params.decimals, 
         // MFI starts calculations from the second point
@@ -183,6 +193,11 @@ SeriesRegistry.registerSeriesType('mfi', MFIIndicator);
  *
  * */
 export default MFIIndicator;
+/* *
+ *
+ *  API Options
+ *
+ * */
 /**
  * A `MFI` series. If the [type](#series.mfi.type) option is not specified, it
  * is inherited from [chart.type](#chart.type).

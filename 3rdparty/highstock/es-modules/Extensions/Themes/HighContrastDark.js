@@ -14,7 +14,7 @@
  *
  * */
 'use strict';
-import D from '../../Core/DefaultOptions.js';
+import D from '../../Core/Defaults.js';
 var setOptions = D.setOptions;
 /* *
  *
@@ -31,16 +31,16 @@ var HighContrastDarkTheme;
     var textBright = '#F0F0F3';
     HighContrastDarkTheme.options = {
         colors: [
-            '#a6f0ff',
-            '#70d49e',
-            '#e898a5',
-            '#007faa',
-            '#f9db72',
-            '#f45b5b',
-            '#1e824c',
-            '#e7934c',
-            '#dadfe1',
-            '#a0618b'
+            '#67B9EE',
+            '#CEEDA5',
+            '#9F6AE1',
+            '#FEA26E',
+            '#6BA48F',
+            '#EA3535',
+            '#8D96B7',
+            '#ECCA15',
+            '#20AA09',
+            '#E0C3E4'
         ],
         chart: {
             backgroundColor: '#1f1f20',

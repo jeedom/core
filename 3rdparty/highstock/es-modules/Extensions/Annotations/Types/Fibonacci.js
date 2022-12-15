@@ -8,22 +8,31 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import Annotation from '../Annotations.js';
+import Annotation from '../Annotation.js';
 import MockPoint from '../MockPoint.js';
 import Tunnel from './Tunnel.js';
 import U from '../../../Core/Utilities.js';
 var merge = U.merge;
-/* eslint-disable no-invalid-this, valid-jsdoc */
-var createPathDGenerator = function (retracementIndex, isBackground) {
+/* *
+ *
+ *  Functions
+ *
+ * */
+/**
+ * @private
+ */
+function createPathDGenerator(retracementIndex, isBackground) {
     return function () {
         var annotation = this.annotation;
         if (!annotation.startRetracements || !annotation.endRetracements) {
@@ -32,28 +41,28 @@ var createPathDGenerator = function (retracementIndex, isBackground) {
         var leftTop = this.anchor(annotation.startRetracements[retracementIndex]).absolutePosition, rightTop = this.anchor(annotation.endRetracements[retracementIndex]).absolutePosition, d = [
             ['M', Math.round(leftTop.x), Math.round(leftTop.y)],
             ['L', Math.round(rightTop.x), Math.round(rightTop.y)]
-        ], rightBottom, leftBottom;
+        ];
         if (isBackground) {
-            rightBottom = this.anchor(annotation.endRetracements[retracementIndex - 1]).absolutePosition;
-            leftBottom = this.anchor(annotation.startRetracements[retracementIndex - 1]).absolutePosition;
+            var rightBottom = this.anchor(annotation.endRetracements[retracementIndex - 1]).absolutePosition;
+            var leftBottom = this.anchor(annotation.startRetracements[retracementIndex - 1]).absolutePosition;
             d.push(['L', Math.round(rightBottom.x), Math.round(rightBottom.y)], ['L', Math.round(leftBottom.x), Math.round(leftBottom.y)]);
         }
         return d;
     };
-};
+}
+/* *
+ *
+ *  Class
+ *
+ * */
 var Fibonacci = /** @class */ (function (_super) {
     __extends(Fibonacci, _super);
-    /* *
-     *
-     * Constructors
-     *
-     * */
-    function Fibonacci(chart, options) {
-        return _super.call(this, chart, options) || this;
+    function Fibonacci() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     /* *
      *
-     * Functions
+     *  Functions
      *
      * */
     Fibonacci.prototype.linkPoints = function () {
@@ -62,14 +71,15 @@ var Fibonacci = /** @class */ (function (_super) {
         return;
     };
     Fibonacci.prototype.linkRetracementsPoints = function () {
+        var _this = this;
         var points = this.points, startDiff = points[0].y - points[3].y, endDiff = points[1].y - points[2].y, startX = points[0].x, endX = points[1].x;
         Fibonacci.levels.forEach(function (level, i) {
             var startRetracement = points[0].y - startDiff * level, endRetracement = points[1].y - endDiff * level;
-            this.startRetracements = this.startRetracements || [];
-            this.endRetracements = this.endRetracements || [];
-            this.linkRetracementPoint(i, startX, startRetracement, this.startRetracements);
-            this.linkRetracementPoint(i, endX, endRetracement, this.endRetracements);
-        }, this);
+            _this.startRetracements = _this.startRetracements || [];
+            _this.endRetracements = _this.endRetracements || [];
+            _this.linkRetracementPoint(i, startX, startRetracement, _this.startRetracements);
+            _this.linkRetracementPoint(i, endX, endRetracement, _this.endRetracements);
+        });
     };
     Fibonacci.prototype.linkRetracementPoint = function (pointIndex, x, y, retracements) {
         var point = retracements[pointIndex], typeOptions = this.options.typeOptions;
@@ -119,7 +129,7 @@ var Fibonacci = /** @class */ (function (_super) {
     };
     /* *
      *
-     * Static properties
+     *  Static Properties
      *
      * */
     Fibonacci.levels = [0, 0.236, 0.382, 0.5, 0.618, 0.786, 1];
@@ -167,7 +177,7 @@ Fibonacci.prototype.defaultOptions = merge(Tunnel.prototype.defaultOptions,
         /**
          * The color of line.
          */
-        lineColor: "#999999" /* neutralColor40 */,
+        lineColor: "#999999" /* Palette.neutralColor40 */,
         /**
          * An array of colors for the lines.
          */

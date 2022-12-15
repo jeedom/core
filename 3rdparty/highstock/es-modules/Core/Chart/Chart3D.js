@@ -12,10 +12,10 @@
 'use strict';
 import Color from '../Color/Color.js';
 var color = Color.parse;
-import Math3D from '../../Extensions/Math3D.js';
-var perspective = Math3D.perspective, shapeArea3D = Math3D.shapeArea3D;
-import D from '../DefaultOptions.js';
+import D from '../Defaults.js';
 var genericDefaultOptions = D.defaultOptions;
+import Math3D from '../Math3D.js';
+var perspective = Math3D.perspective, shapeArea3D = Math3D.shapeArea3D;
 import U from '../Utilities.js';
 var addEvent = U.addEvent, isArray = U.isArray, merge = U.merge, pick = U.pick, wrap = U.wrap;
 var Chart3D;
@@ -469,7 +469,7 @@ var Chart3D;
              */
             options3d: {
                 /**
-                 * Wether to render the chart using the 3D functionality.
+                 * Whether to render the chart using the 3D functionality.
                  *
                  * @since   4.0
                  * @product highcharts
@@ -672,8 +672,8 @@ var Chart3D;
         addEvent(ChartClass, 'beforeRedraw', onBeforeRedraw);
         addEvent(ChartClass, 'beforeRender', onBeforeRender);
         wrap(chartProto, 'isInsidePlot', wrapIsInsidePlot);
-        wrap(ChartClass, 'renderSeries', wrapRenderSeries);
-        wrap(ChartClass, 'setClassName', wrapSetClassName);
+        wrap(chartProto, 'renderSeries', wrapRenderSeries);
+        wrap(chartProto, 'setClassName', wrapSetClassName);
     }
     Chart3D.compose = compose;
     /**
@@ -1494,17 +1494,7 @@ var Chart3D;
      */
     function onAfterGetContainer() {
         if (this.styledMode) {
-            this.renderer.definition({
-                tagName: 'style',
-                textContent: '.highcharts-3d-top{' +
-                    'filter: url(#highcharts-brighter)' +
-                    '}\n' +
-                    '.highcharts-3d-side{' +
-                    'filter: url(#highcharts-darker)' +
-                    '}\n'
-            });
-            // Add add definitions used by brighter and darker faces of the
-            // cuboids.
+            // Add definitions used by brighter and darker faces of the cuboids.
             [{
                     name: 'darker',
                     slope: 0.6

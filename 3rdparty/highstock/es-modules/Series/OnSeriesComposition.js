@@ -57,9 +57,9 @@ var OnSeriesComposition;
      *
      * @private
      */
-    function getPlotBox() {
+    function getPlotBox(name) {
         return seriesProto.getPlotBox.call((this.options.onSeries &&
-            this.chart.get(this.options.onSeries)) || this);
+            this.chart.get(this.options.onSeries)) || this, name);
     }
     OnSeriesComposition.getPlotBox = getPlotBox;
     /**

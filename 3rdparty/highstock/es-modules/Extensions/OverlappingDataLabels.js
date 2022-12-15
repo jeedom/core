@@ -34,9 +34,7 @@ addEvent(Chart, 'render', function collectAndHide() {
             !yAxis.options.stackLabels.allowOverlap) {
             objectEach(yAxis.stacking.stacks, function (stack) {
                 objectEach(stack, function (stackItem) {
-                    if (stackItem.label &&
-                        stackItem.label.visibility !== 'hidden' // #15607
-                    ) {
+                    if (stackItem.label) {
                         labels.push(stackItem.label);
                     }
                 });
@@ -162,7 +160,10 @@ Chart.prototype.hideOverlappingLabels = function (labels) {
                 box2 &&
                 label1 !== label2 && // #6465, polar chart with connectEnds
                 label1.newOpacity !== 0 &&
-                label2.newOpacity !== 0) {
+                label2.newOpacity !== 0 &&
+                // #15863 dataLabels are no longer hidden by translation
+                label1.visibility !== 'hidden' &&
+                label2.visibility !== 'hidden') {
                 if (isIntersectRect(box1, box2)) {
                     (label1.labelrank < label2.labelrank ? label1 : label2)
                         .newOpacity = 0;

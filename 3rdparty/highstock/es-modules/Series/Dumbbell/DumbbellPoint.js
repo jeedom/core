@@ -12,10 +12,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -62,11 +64,12 @@ var DumbbellPoint = /** @class */ (function (_super) {
         this.pointSetState.apply(this, arguments);
         if (!point.state) {
             verb = 'animate';
-            if (point.lowerGraphic && !chart.styledMode) {
-                point.lowerGraphic.attr({
+            var _a = point.graphics || [], lowerGraphic = _a[0], upperGraphic = _a[1];
+            if (lowerGraphic && !chart.styledMode) {
+                lowerGraphic.attr({
                     fill: lowerGraphicColor
                 });
-                if (point.upperGraphic) {
+                if (upperGraphic) {
                     origProps = {
                         y: point.y,
                         zone: point.zone
@@ -74,7 +77,7 @@ var DumbbellPoint = /** @class */ (function (_super) {
                     point.y = point.high;
                     point.zone = point.zone ? point.getZone() : void 0;
                     upperGraphicColor = pick(point.marker ? point.marker.fillColor : void 0, seriesMarker ? seriesMarker.fillColor : void 0, pointOptions.color, point.zone ? point.zone.color : void 0, point.color);
-                    point.upperGraphic.attr({
+                    upperGraphic.attr({
                         fill: upperGraphicColor
                     });
                     extend(point, origProps);

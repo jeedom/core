@@ -10,23 +10,29 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+import ApproximationRegistry from '../../../Extensions/DataGrouping/ApproximationRegistry.js';
 import Color from '../../../Core/Color/Color.js';
 var color = Color.parse;
-import H from '../../../Core/Globals.js';
 import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
 var SMAIndicator = SeriesRegistry.seriesTypes.sma;
 import U from '../../../Core/Utilities.js';
 var defined = U.defined, extend = U.extend, isArray = U.isArray, isNumber = U.isNumber, merge = U.merge, objectEach = U.objectEach;
-/* eslint-disable require-jsdoc */
+/* *
+ *
+ *  Functions
+ *
+ * */
 // Utils:
 function maxHigh(arr) {
     return arr.reduce(function (max, res) {
@@ -99,17 +105,22 @@ function drawSenkouSpan(opt) {
 // Data integrity in Ichimoku is different than default 'averages':
 // Point: [undefined, value, value, ...] is correct
 // Point: [undefined, undefined, undefined, ...] is incorrect
-H.approximations['ichimoku-averages'] = function () {
+// @todo compose
+ApproximationRegistry['ichimoku-averages'] = function () {
     var ret = [], isEmptyRange;
     [].forEach.call(arguments, function (arr, i) {
-        ret.push(H.approximations.average(arr));
+        ret.push(ApproximationRegistry.average(arr));
         isEmptyRange = !isEmptyRange && typeof ret[i] === 'undefined';
     });
     // Return undefined when first elem. is undefined and let
     // sum method handle null (#7377)
     return isEmptyRange ? void 0 : ret;
 };
-/* eslint-enable require-jsdoc */
+/* *
+ *
+ *  Class
+ *
+ * */
 /**
  * The IKH series type.
  *
@@ -119,20 +130,20 @@ H.approximations['ichimoku-averages'] = function () {
  *
  * @augments Highcharts.Series
  */
-/* *
-*
-* Class
-*
-* */
 var IKHIndicator = /** @class */ (function (_super) {
     __extends(IKHIndicator, _super);
     function IKHIndicator() {
+        /* *
+         *
+         *  Static Properties
+         *
+         * */
         var _this = _super !== null && _super.apply(this, arguments) || this;
         /* *
-        *
-        *  Properties
-        *
-        * */
+         *
+         *  Properties
+         *
+         * */
         _this.data = void 0;
         _this.options = void 0;
         _this.points = void 0;
@@ -143,10 +154,10 @@ var IKHIndicator = /** @class */ (function (_super) {
         return _this;
     }
     /* *
-    *
-    * Functions
-    *
-    * */
+     *
+     * Functions
+     *
+     * */
     IKHIndicator.prototype.init = function () {
         SeriesRegistry.seriesTypes.sma.prototype.init.apply(this, arguments);
         // Set default color for lines:
@@ -295,7 +306,7 @@ var IKHIndicator = /** @class */ (function (_super) {
             lineIndex++;
         });
         // Generate senkouSpan area:
-        // If graphColection exist then remove svg
+        // If graphCollection exist then remove svg
         // element and indicator property
         if (indicator.graphCollection) {
             indicator.graphCollection.forEach(function (graphName) {
@@ -303,7 +314,7 @@ var IKHIndicator = /** @class */ (function (_super) {
                 delete indicator[graphName];
             });
         }
-        // Clean grapCollection or initialize it
+        // Clean graphCollection or initialize it
         indicator.graphCollection = [];
         // When user set negativeColor property
         if (negativeColor && ikhMap.senkouSpanA[0] && ikhMap.senkouSpanB[0]) {
@@ -321,7 +332,7 @@ var IKHIndicator = /** @class */ (function (_super) {
                 if (Math.floor(sectionPoints.length / 2) >= 1) {
                     var x = Math.floor(sectionPoints.length / 2);
                     // When middle points has equal values
-                    // Compare all ponints plotY value sum
+                    // Compare all points plotY value sum
                     if (sectionPoints[x].plotY === sectionNextPoints[x].plotY) {
                         pointsPlotYSum = 0;
                         nextPointsPlotYSum = 0;
@@ -450,22 +461,25 @@ var IKHIndicator = /** @class */ (function (_super) {
             if (typeof IKH[i] === 'undefined') {
                 IKH[i] = [];
             }
-            if (typeof IKH[i + period] === 'undefined') {
-                IKH[i + period] = [];
+            if (typeof IKH[i + period - 1] === 'undefined') {
+                IKH[i + period - 1] = [];
             }
-            IKH[i + period][0] = TS;
-            IKH[i + period][1] = KS;
-            IKH[i + period][2] = void 0;
-            IKH[i][2] = CS;
+            IKH[i + period - 1][0] = TS;
+            IKH[i + period - 1][1] = KS;
+            IKH[i + period - 1][2] = void 0;
+            if (typeof IKH[i + 1] === 'undefined') {
+                IKH[i + 1] = [];
+            }
+            IKH[i + 1][2] = CS;
             if (i <= period) {
-                IKH[i + period][3] = void 0;
-                IKH[i + period][4] = void 0;
+                IKH[i + period - 1][3] = void 0;
+                IKH[i + period - 1][4] = void 0;
             }
-            if (typeof IKH[i + 2 * period] === 'undefined') {
-                IKH[i + 2 * period] = [];
+            if (typeof IKH[i + 2 * period - 2] === 'undefined') {
+                IKH[i + 2 * period - 2] = [];
             }
-            IKH[i + 2 * period][3] = SSA;
-            IKH[i + 2 * period][4] = SSB;
+            IKH[i + 2 * period - 2][3] = SSA;
+            IKH[i + 2 * period - 2][4] = SSB;
             xData.push(date);
         }
         // Add timestamps for further points
@@ -666,7 +680,17 @@ extend(IKHIndicator.prototype, {
     nameComponents: ['periodSenkouSpanB', 'period', 'periodTenkan']
 });
 SeriesRegistry.registerSeriesType('ikh', IKHIndicator);
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default IKHIndicator;
+/* *
+ *
+ *  API Options
+ *
+ * */
 /**
  * A `IKH` series. If the [type](#series.ikh.type) option is not
  * specified, it is inherited from [chart.type](#chart.type).

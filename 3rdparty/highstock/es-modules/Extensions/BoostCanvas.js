@@ -13,6 +13,10 @@
  *
  * */
 'use strict';
+import BoostChart from './Boost/BoostChart.js';
+var getBoostClipRect = BoostChart.getBoostClipRect, isChartSeriesBoosting = BoostChart.isChartSeriesBoosting;
+import BoostSeries from './Boost/BoostSeries.js';
+var destroyGraphics = BoostSeries.destroyGraphics;
 import Chart from '../Core/Chart/Chart.js';
 import Color from '../Core/Color/Color.js';
 var color = Color.parse;
@@ -23,6 +27,10 @@ import SeriesRegistry from '../Core/Series/SeriesRegistry.js';
 var seriesTypes = SeriesRegistry.seriesTypes;
 import U from '../Core/Utilities.js';
 var addEvent = U.addEvent, extend = U.extend, fireEvent = U.fireEvent, isNumber = U.isNumber, merge = U.merge, pick = U.pick, wrap = U.wrap;
+// Use a blank pixel for clearing canvas (#17182)
+var b64BlankPixel = (
+/* eslint-disable-next-line max-len */
+'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
 var CHUNK_SIZE = 50000, destroyLoadingDiv;
 /* eslint-disable no-invalid-this, valid-jsdoc */
 /**
@@ -79,58 +87,65 @@ var initCanvasBoost = function () {
          * @function Highcharts.Series#getContext
          */
         getContext: function () {
-            var chart = this.chart, width = chart.chartWidth, height = chart.chartHeight, targetGroup = chart.seriesGroup || this.group, target = this, ctx, swapXY = function (proceed, x, y, a, b, c, d) {
+            var chart = this.chart, target = isChartSeriesBoosting(chart) ? chart : this, targetGroup = (target === chart ?
+                chart.seriesGroup :
+                chart.seriesGroup || this.group);
+            var width = chart.chartWidth, height = chart.chartHeight, ctx, swapXY = function (proceed, x, y, a, b, c, d) {
                 proceed.call(this, y, x, a, b, c, d);
             };
-            if (chart.isChartSeriesBoosting()) {
-                target = chart;
-                targetGroup = chart.seriesGroup;
-            }
-            ctx = target.ctx;
-            if (!target.canvas) {
-                target.canvas = doc.createElement('canvas');
-                target.renderTarget = chart.renderer
+            var boost = target.boost =
+                target.boost ||
+                    {};
+            ctx = boost.targetCtx;
+            if (!boost.canvas) {
+                boost.canvas = doc.createElement('canvas');
+                boost.target = chart.renderer
                     .image('', 0, 0, width, height)
                     .addClass('highcharts-boost-canvas')
                     .add(targetGroup);
-                target.ctx = ctx = target.canvas.getContext('2d');
+                ctx = boost.targetCtx =
+                    boost.canvas.getContext('2d');
                 if (chart.inverted) {
                     ['moveTo', 'lineTo', 'rect', 'arc'].forEach(function (fn) {
                         wrap(ctx, fn, swapXY);
                     });
                 }
-                target.boostCopy = function () {
-                    target.renderTarget.attr({
-                        href: target.canvas.toDataURL('image/png')
+                boost.copy = function () {
+                    boost.target.attr({
+                        href: boost.canvas.toDataURL('image/png')
                     });
                 };
-                target.boostClear = function () {
-                    ctx.clearRect(0, 0, target.canvas.width, target.canvas.height);
-                    if (target === this) {
-                        target.renderTarget.attr({ href: '' });
+                boost.clear = function () {
+                    ctx.clearRect(0, 0, boost.canvas.width, boost.canvas.height);
+                    if (target === boost.target) {
+                        boost.target.attr({
+                            href: b64BlankPixel
+                        });
                     }
                 };
-                target.boostClipRect = chart.renderer.clipRect();
-                target.renderTarget.clip(target.boostClipRect);
+                boost.clipRect = chart.renderer.clipRect();
+                boost.target.clip(boost.clipRect);
             }
             else if (!(target instanceof Chart)) {
                 // ctx.clearRect(0, 0, width, height);
             }
-            if (target.canvas.width !== width) {
-                target.canvas.width = width;
+            if (boost.canvas.width !== width) {
+                boost.canvas.width = width;
             }
-            if (target.canvas.height !== height) {
-                target.canvas.height = height;
+            if (boost.canvas.height !== height) {
+                boost.canvas.height = height;
             }
-            target.renderTarget.attr({
+            boost.target.attr({
                 x: 0,
                 y: 0,
                 width: width,
                 height: height,
                 style: 'pointer-events: none',
-                href: ''
+                href: b64BlankPixel
             });
-            target.boostClipRect.attr(chart.getBoostClipRect(target));
+            if (boost.clipRect) {
+                boost.clipRect.attr(getBoostClipRect(chart, target));
+            }
             return ctx;
         },
         /**
@@ -140,15 +155,16 @@ var initCanvasBoost = function () {
          * @function Highcharts.Series#canvasToSVG
          */
         canvasToSVG: function () {
-            if (!this.chart.isChartSeriesBoosting()) {
-                if (this.boostCopy || this.chart.boostCopy) {
-                    (this.boostCopy || this.chart.boostCopy)();
+            if (!isChartSeriesBoosting(this.chart)) {
+                if (this.boost && this.boost.copy) {
+                    this.boost.copy();
+                }
+                else if (this.chart.boost && this.chart.boost.copy) {
+                    this.chart.boost.copy();
                 }
             }
-            else {
-                if (this.boostClear) {
-                    this.boostClear();
-                }
+            else if (this.boost && this.boost.clear) {
+                this.boost.clear();
             }
         },
         cvsLineTo: function (ctx, clientX, plotY) {
@@ -258,13 +274,13 @@ var initCanvasBoost = function () {
                         i: cropStart + i
                     });
                 }
-            };
-            if (this.renderTarget) {
-                this.renderTarget.attr({ 'href': '' });
+            }, boost = this.boost || {};
+            if (boost.target) {
+                boost.target.attr({ href: b64BlankPixel });
             }
             // If we are zooming out from SVG mode, destroy the graphics
             if (this.points || this.graph) {
-                this.destroyGraphics();
+                destroyGraphics(this);
             }
             // The group
             series.plotGroup('group', 'series', series.visible ? 'visible' : 'hidden', options.zIndex, chart.seriesGroup);
@@ -276,8 +292,8 @@ var initCanvasBoost = function () {
             points = this.points = [];
             ctx = this.getContext();
             series.buildKDTree = noop; // Do not start building while drawing
-            if (this.boostClear) {
-                this.boostClear();
+            if (boost.clear) {
+                boost.clear();
             }
             // if (this.canvas) {
             //     ctx.clearRect(
@@ -294,7 +310,7 @@ var initCanvasBoost = function () {
             if (rawData.length > 99999) {
                 chart.options.loading = merge(loadingOptions, {
                     labelStyle: {
-                        backgroundColor: color("#ffffff" /* backgroundColor */).setOpacity(0.75).get(),
+                        backgroundColor: color("#ffffff" /* Palette.backgroundColor */).setOpacity(0.75).get(),
                         padding: '1em',
                         borderRadius: '0.5em'
                     },
@@ -404,8 +420,13 @@ var initCanvasBoost = function () {
                     }
                     wasNull = isNull && !connectNulls;
                     if (i % CHUNK_SIZE === 0) {
-                        if (series.boostCopy || series.chart.boostCopy) {
-                            (series.boostCopy || series.chart.boostCopy)();
+                        if (series.boost &&
+                            series.boost.copy) {
+                            series.boost.copy();
+                        }
+                        else if (series.chart.boost &&
+                            series.chart.boost.copy) {
+                            series.chart.boost.copy();
                         }
                     }
                 }
@@ -487,19 +508,20 @@ var initCanvasBoost = function () {
          * @private
          */
         function canvasToSVG() {
-            if (chart.boostCopy) {
-                chart.boostCopy();
+            if (chart.boost && chart.boost.copy) {
+                chart.boost.copy();
             }
         }
         /**
          * @private
          */
         function clear() {
-            if (chart.renderTarget) {
-                chart.renderTarget.attr({ href: '' });
+            var boost = this.boost || {};
+            if (boost.target) {
+                boost.target.attr({ href: b64BlankPixel });
             }
-            if (chart.canvas) {
-                chart.canvas.getContext('2d').clearRect(0, 0, chart.canvas.width, chart.canvas.height);
+            if (boost.canvas) {
+                boost.canvas.getContext('2d').clearRect(0, 0, boost.canvas.width, boost.canvas.height);
             }
         }
         addEvent(chart, 'predraw', clear);

@@ -13,16 +13,18 @@
 'use strict';
 import AST from '../../Core/Renderer/HTML/AST.js';
 import Chart from '../../Core/Chart/Chart.js';
-import D from '../../Core/DefaultOptions.js';
+import D from '../../Core/Defaults.js';
 var defaultOptions = D.defaultOptions;
 import DownloadURL from '../DownloadURL.js';
 var downloadURL = DownloadURL.downloadURL;
 import Exporting from '../Exporting/Exporting.js';
 import H from '../../Core/Globals.js';
 var win = H.win, doc = H.doc;
+import HU from '../../Core/HttpUtilities.js';
+var ajax = HU.ajax;
 import OfflineExportingDefaults from './OfflineExportingDefaults.js';
 import U from '../../Core/Utilities.js';
-var addEvent = U.addEvent, error = U.error, extend = U.extend, fireEvent = U.fireEvent, merge = U.merge;
+var addEvent = U.addEvent, error = U.error, extend = U.extend, fireEvent = U.fireEvent, pick = U.pick, merge = U.merge;
 AST.allowedAttributes.push('data-z-index', 'fill-opacity', 'rx', 'ry', 'stroke-dasharray', 'stroke-linejoin', 'text-anchor', 'transform', 'version', 'viewBox', 'visibility', 'xmlns', 'xmlns:xlink');
 AST.allowedTags.push('desc', 'clippath', 'g');
 /* *
@@ -110,9 +112,82 @@ var OfflineExporting;
             '.' +
             (imageType === 'image/svg+xml' ?
                 'svg' : imageType.split('/')[1])), scale = options.scale || 1;
-        var svgurl, blob, finallyHandler, libURL = (options.libURL || defaultOptions.exporting.libURL), objectURLRevoke = true;
+        var svgurl, blob, finallyHandler, libURL = (options.libURL || defaultOptions.exporting.libURL), objectURLRevoke = true, pdfFont = options.pdfFont;
         // Allow libURL to end with or without fordward slash
         libURL = libURL.slice(-1) !== '/' ? libURL + '/' : libURL;
+        /*
+         * Detect if we need to load TTF fonts for the PDF, then load them and
+         * proceed.
+         *
+         * @private
+         */
+        var loadPdfFonts = function (svgElement, callback) {
+            var hasNonASCII = function (s) { return (
+            // eslint-disable-next-line no-control-regex
+            /[^\u0000-\u007F\u200B]+/.test(s)); };
+            // Register an event in order to add the font once jsPDF is
+            // initialized
+            var addFont = function (variant, base64) {
+                win.jspdf.jsPDF.API.events.push([
+                    'initialized',
+                    function () {
+                        this.addFileToVFS(variant, base64);
+                        this.addFont(variant, 'HighchartsFont', variant);
+                        if (!this.getFontList().HighchartsFont) {
+                            this.setFont('HighchartsFont');
+                        }
+                    }
+                ]);
+            };
+            // If there are no non-ASCII characters in the SVG, do not use
+            // bother downloading the font files
+            if (pdfFont && !hasNonASCII(svgElement.textContent || '')) {
+                pdfFont = void 0;
+            }
+            // Add new font if the URL is declared, #6417.
+            var variants = ['normal', 'italic', 'bold', 'bolditalic'];
+            // Shift the first element off the variants and add as a font.
+            // Then asynchronously trigger the next variant until calling the
+            // callback when the variants are empty.
+            var normalBase64;
+            var shiftAndLoadVariant = function () {
+                var variant = variants.shift();
+                // All variants shifted and possibly loaded, proceed
+                if (!variant) {
+                    return callback();
+                }
+                var url = pdfFont && pdfFont[variant];
+                if (url) {
+                    ajax({
+                        url: url,
+                        responseType: 'blob',
+                        success: function (data, xhr) {
+                            var reader = new FileReader();
+                            reader.onloadend = function () {
+                                if (typeof this.result === 'string') {
+                                    var base64 = this.result.split(',')[1];
+                                    addFont(variant, base64);
+                                    if (variant === 'normal') {
+                                        normalBase64 = base64;
+                                    }
+                                }
+                                shiftAndLoadVariant();
+                            };
+                            reader.readAsDataURL(xhr.response);
+                        },
+                        error: shiftAndLoadVariant
+                    });
+                }
+                else {
+                    // For other variants, fall back to normal text weight/style
+                    if (normalBase64) {
+                        addFont(variant, normalBase64);
+                    }
+                    shiftAndLoadVariant();
+                }
+            };
+            shiftAndLoadVariant();
+        };
         /*
          * @private
          */
@@ -137,13 +212,17 @@ var OfflineExporting;
             // Workaround for the text styling. Making sure it does pick up
             // settings for parent elements.
             [].forEach.call(textElements, function (el) {
-                // Workaround for the text styling. making sure it does pick up@
+                // Workaround for the text styling. making sure it does pick up
                 // the root element
                 ['font-family', 'font-size'].forEach(function (property) {
                     setStylePropertyFromParents(el, property);
                 });
-                el.style['font-family'] = (el.style['font-family'] &&
-                    el.style['font-family'].split(' ').splice(-1));
+                el.style.fontFamily = pdfFont && pdfFont.normal ?
+                    // Custom PDF font
+                    'HighchartsFont' :
+                    // Generic font (serif, sans-serif etc)
+                    String(el.style.fontFamily &&
+                        el.style.fontFamily.split(' ').splice(-1));
                 // Workaround for plotband with width, removing title from text
                 // nodes
                 titleElements = el.getElementsByTagName('title');
@@ -151,15 +230,21 @@ var OfflineExporting;
                     el.removeChild(titleElement);
                 });
             });
-            var svgData = svgToPdf(dummySVGContainer.firstChild, 0);
-            try {
-                downloadURL(svgData, filename);
-                if (successCallback) {
-                    successCallback();
-                }
-            }
-            catch (e) {
-                failCallback(e);
+            var svgNode = dummySVGContainer.querySelector('svg');
+            if (svgNode) {
+                loadPdfFonts(svgNode, function () {
+                    svgToPdf(svgNode, 0, function (pdfData) {
+                        try {
+                            downloadURL(pdfData, filename);
+                            if (successCallback) {
+                                successCallback();
+                            }
+                        }
+                        catch (e) {
+                            failCallback(e);
+                        }
+                    });
+                });
             }
         };
         // Initiate download depending on file type
@@ -185,7 +270,7 @@ var OfflineExporting;
             }
         }
         else if (imageType === 'application/pdf') {
-            if (win.jsPDF && win.svg2pdf) {
+            if (win.jspdf && win.jspdf.jsPDF) {
                 downloadPDF();
             }
             else {
@@ -194,9 +279,7 @@ var OfflineExporting;
                 // solution would be nice, but this will do for now.
                 objectURLRevoke = true;
                 getScript(libURL + 'jspdf.js', function () {
-                    getScript(libURL + 'svg2pdf.js', function () {
-                        downloadPDF();
-                    });
+                    getScript(libURL + 'svg2pdf.js', downloadPDF);
                 });
             }
         }
@@ -331,11 +414,11 @@ var OfflineExporting;
                     href.indexOf('data:') !== 0);
             });
         };
-        // If we are on IE and in styled mode, add a whitelist to the renderer
+        // If we are on IE and in styled mode, add an allowlist to the renderer
         // for inline styles that we want to pass through. There are so many
-        // styles by default in IE that we don't want to blacklist them all.
-        if (H.isMS && chart.styledMode && !Exporting.inlineWhitelist.length) {
-            Exporting.inlineWhitelist.push(/^blockSize/, /^border/, /^caretColor/, /^color/, /^columnRule/, /^columnRuleColor/, /^cssFloat/, /^cursor/, /^fill$/, /^fillOpacity/, /^font/, /^inlineSize/, /^length/, /^lineHeight/, /^opacity/, /^outline/, /^parentRule/, /^rx$/, /^ry$/, /^stroke/, /^textAlign/, /^textAnchor/, /^textDecoration/, /^transform/, /^vectorEffect/, /^visibility/, /^x$/, /^y$/);
+        // styles by default in IE that we don't want to denylist them all.
+        if (H.isMS && chart.styledMode && !Exporting.inlineAllowlist.length) {
+            Exporting.inlineAllowlist.push(/^blockSize/, /^border/, /^caretColor/, /^color/, /^columnRule/, /^columnRuleColor/, /^cssFloat/, /^cursor/, /^fill$/, /^fillOpacity/, /^font/, /^inlineSize/, /^length/, /^lineHeight/, /^opacity/, /^outline/, /^parentRule/, /^rx$/, /^ry$/, /^stroke/, /^textAlign/, /^textAnchor/, /^textDecoration/, /^transform/, /^vectorEffect/, /^visibility/, /^x$/, /^y$/);
         }
         // Always fall back on:
         // - MS browsers: Embedded images JPEG/PNG, or any PDF
@@ -571,8 +654,8 @@ var OfflineExporting;
     /**
      * @private
      */
-    function svgToPdf(svgElement, margin) {
-        var width = svgElement.width.baseVal.value + 2 * margin, height = svgElement.height.baseVal.value + 2 * margin, pdf = new win.jsPDF(// eslint-disable-line new-cap
+    function svgToPdf(svgElement, margin, callback) {
+        var width = Number(svgElement.getAttribute('width')) + 2 * margin, height = Number(svgElement.getAttribute('height')) + 2 * margin, pdfDoc = new win.jspdf.jsPDF(// eslint-disable-line new-cap
         // setting orientation to portrait if height exceeds width
         height > width ? 'p' : 'l', 'pt', [width, height]);
         // Workaround for #7090, hidden elements were drawn anyway. It comes
@@ -604,8 +687,13 @@ var OfflineExporting;
                 tspan.setAttribute('dx', -5);
             }
         });
-        win.svg2pdf(svgElement, pdf, { removeInvalid: true });
-        return pdf.output('datauristring');
+        pdfDoc.svg(svgElement, {
+            x: 0,
+            y: 0,
+            width: width,
+            height: height,
+            removeInvalid: true
+        }).then(function () { return callback(pdfDoc.output('datauristring')); });
     }
     OfflineExporting.svgToPdf = svgToPdf;
 })(OfflineExporting || (OfflineExporting = {}));

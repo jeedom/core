@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2020-2021 Highsoft AS
+ *  (c) 2020-2022 Highsoft AS
  *
  *  License: www.highcharts.com/license
  *
@@ -52,7 +52,7 @@ var DataParser = /** @class */ (function () {
         if (headers === void 0) { headers = []; }
         var table = new DataTable();
         for (var i = 0, iEnd = Math.max(headers.length, columns.length); i < iEnd; ++i) {
-            table.setColumn(headers[i] || "" + i, columns[i]);
+            table.setColumn(headers[i] || "".concat(i), columns[i]);
         }
         return table;
     };

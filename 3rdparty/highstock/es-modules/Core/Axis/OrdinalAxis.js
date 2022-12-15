@@ -407,9 +407,10 @@ var OrdinalAxis;
             // how many ordinal units did we move?
             movedUnits = (mouseDownX - chartX) / pointPixelWidth, 
             // get index of all the chart's points
-            extendedAxis = {
+            extendedOrdinalPositions = xAxis.ordinal.getExtendedPositions(), extendedAxis = {
                 ordinal: {
-                    positions: xAxis.ordinal.getExtendedPositions()
+                    positions: extendedOrdinalPositions,
+                    extendedOrdinalPositions: extendedOrdinalPositions
                 }
             }, index2val_1 = xAxis.index2val, val2lin_1 = xAxis.val2lin;
             var trimmedRange = void 0, ordinalPositions = void 0, searchAxisLeft = void 0, searchAxisRight = void 0;
@@ -605,11 +606,26 @@ var OrdinalAxis;
          */
         Additions.prototype.beforeSetTickPositions = function () {
             var axis = this.axis, ordinal = axis.ordinal, extremes = axis.getExtremes(), min = extremes.min, max = extremes.max, hasBreaks = axis.isXAxis && !!axis.options.breaks, isOrdinal = axis.options.ordinal, ignoreHiddenSeries = axis.chart.options.chart.ignoreHiddenSeries;
-            var len, uniqueOrdinalPositions, dist, minIndex, maxIndex, slope, i, ordinalPositions = [], overscrollPointsRange = Number.MAX_VALUE, useOrdinal = false;
+            var len, uniqueOrdinalPositions, dist, minIndex, maxIndex, slope, i, ordinalPositions = [], overscrollPointsRange = Number.MAX_VALUE, useOrdinal = false, adjustOrdinalExtremesPoints = false, isBoosted = false;
             // Apply the ordinal logic
             if (isOrdinal || hasBreaks) { // #4167 YAxis is never ordinal ?
+                var distanceBetweenPoint_1 = 0;
                 axis.series.forEach(function (series, i) {
                     uniqueOrdinalPositions = [];
+                    // For an axis with multiple series, check if the distance
+                    // between points is identical throughout all series.
+                    if (i > 0 &&
+                        series.options.id !== 'highcharts-navigator-series' &&
+                        series.processedXData.length > 1) {
+                        adjustOrdinalExtremesPoints =
+                            distanceBetweenPoint_1 !== series.processedXData[1] -
+                                series.processedXData[0];
+                    }
+                    distanceBetweenPoint_1 =
+                        series.processedXData[1] - series.processedXData[0];
+                    if (series.boosted) {
+                        isBoosted = series.boosted;
+                    }
                     if ((!ignoreHiddenSeries || series.visible !== false) &&
                         (series
                             .takeOrdinalPosition !== false ||
@@ -644,6 +660,14 @@ var OrdinalAxis;
                         }
                     }
                 });
+                // If the distance between points is not identical throughout
+                // all series, remove the first and last ordinal position to
+                // avoid enabling ordinal logic when it is not needed, #17405.
+                // Only for boosted series because changes are negligible.
+                if (adjustOrdinalExtremesPoints && isBoosted) {
+                    ordinalPositions.pop();
+                    ordinalPositions.shift();
+                }
                 // cache the length
                 len = ordinalPositions.length;
                 // Check if we really need the overhead of mapping axis data

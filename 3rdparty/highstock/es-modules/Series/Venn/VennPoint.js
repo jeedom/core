@@ -19,18 +19,19 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import DrawPointComposition from '../DrawPointComposition.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
-var ScatterSeries = SeriesRegistry.seriesTypes.scatter;
+var ScatterPoint = SeriesRegistry.seriesTypes.scatter.prototype.pointClass;
 import U from '../../Core/Utilities.js';
 var extend = U.extend, isNumber = U.isNumber;
 /* *
@@ -66,8 +67,7 @@ var VennPoint = /** @class */ (function (_super) {
         return !!this.shapeArgs;
     };
     return VennPoint;
-}(ScatterSeries.prototype.pointClass));
-DrawPointComposition.compose(VennPoint);
+}(ScatterPoint));
 /* *
  *
  *  Default Export

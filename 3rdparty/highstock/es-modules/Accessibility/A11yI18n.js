@@ -14,7 +14,7 @@
 import F from '../Core/FormatUtilities.js';
 var format = F.format;
 import U from '../Core/Utilities.js';
-var pick = U.pick;
+var getNestedProperty = U.getNestedProperty, pick = U.pick;
 /* *
  *
  *  Composition
@@ -71,7 +71,7 @@ var A11yI18nComposition;
             var eachEnd = statement.slice(eachStart).indexOf(')') + eachStart, preEach = statement.substring(0, eachStart), postEach = statement.substring(eachEnd + 1), eachStatement = statement.substring(eachStart + 6, eachEnd), eachArguments = eachStatement.split(',');
             var lenArg = Number(eachArguments[1]), len = void 0;
             result = '';
-            arr = ctx[eachArguments[0]];
+            arr = getNestedProperty(eachArguments[0], ctx);
             if (arr) {
                 lenArg = isNaN(lenArg) ? arr.length : lenArg;
                 len = lenArg < 0 ?
@@ -86,7 +86,7 @@ var A11yI18nComposition;
         }
         // Dealing with a plural-function?
         if (pluralStart > -1) {
-            var pluralEnd = (statement.slice(pluralStart).indexOf(')') + pluralStart), pluralStatement = statement.substring(pluralStart + 8, pluralEnd), pluralArguments = pluralStatement.split(','), num = Number(ctx[pluralArguments[0]]);
+            var pluralEnd = (statement.slice(pluralStart).indexOf(')') + pluralStart), pluralStatement = statement.substring(pluralStart + 8, pluralEnd), pluralArguments = pluralStatement.split(','), num = Number(getNestedProperty(pluralArguments[0], ctx));
             switch (num) {
                 case 0:
                     result = pick(pluralArguments[4], pluralArguments[1]);
@@ -106,7 +106,7 @@ var A11yI18nComposition;
         if (indexStart > -1) {
             var arrayName = statement.substring(0, indexStart), ix = Number(statement.substring(indexStart + 1, indexEnd));
             var val = void 0;
-            arr = ctx[arrayName];
+            arr = getNestedProperty(arrayName, ctx);
             if (!isNaN(ix) && arr) {
                 if (ix < 0) {
                     val = arr[arr.length + ix];

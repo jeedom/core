@@ -24,7 +24,7 @@ import Chart from '../Core/Chart/Chart.js';
 import Series from '../Core/Series/Series.js';
 import RendererRegistry from '../Core/Renderer/RendererRegistry.js';
 import U from '../Core/Utilities.js';
-var addEvent = U.addEvent, createElement = U.createElement, merge = U.merge, pick = U.pick;
+var addEvent = U.addEvent, createElement = U.createElement, defined = U.defined, merge = U.merge, pick = U.pick;
 /* eslint-disable no-invalid-this, valid-jsdoc */
 addEvent(Chart, 'afterSetChartSize', function (e) {
     var scrollablePlotArea = this.options.chart.scrollablePlotArea, scrollableMinWidth = scrollablePlotArea && scrollablePlotArea.minWidth, scrollableMinHeight = scrollablePlotArea && scrollablePlotArea.minHeight, scrollablePixelsX, scrollablePixelsY, corrections;
@@ -51,7 +51,7 @@ addEvent(Chart, 'afterSetChartSize', function (e) {
         }
         else if (scrollableMinHeight) {
             this.scrollablePixelsY = scrollablePixelsY = Math.max(0, scrollableMinHeight - this.chartHeight);
-            if (scrollablePixelsY) {
+            if (defined(scrollablePixelsY)) {
                 this.scrollablePlotBox = (this.renderer.scrollablePlotBox = merge(this.plotBox));
                 this.plotBox.height = this.plotHeight += scrollablePixelsY;
                 if (this.inverted) {
@@ -134,9 +134,14 @@ Chart.prototype.setUpScrolling = function () {
     }, css, this.scrollingParent);
     // On scroll, reset the chart position because it applies to the scrolled
     // container
+    var lastHoverPoint;
     addEvent(this.scrollingContainer, 'scroll', function () {
         if (_this.pointer) {
             delete _this.pointer.chartPosition;
+            if (_this.hoverPoint) {
+                lastHoverPoint = _this.hoverPoint;
+            }
+            _this.pointer.runPointActions(void 0, lastHoverPoint, true);
         }
     });
     this.innerContainer = createElement('div', {
@@ -181,7 +186,7 @@ Chart.prototype.moveFixedElements = function () {
         axisClass = '.highcharts-yaxis';
     }
     if (axisClass) {
-        fixedSelectors.push(axisClass + ":not(.highcharts-radial-axis)", axisClass + "-labels:not(.highcharts-radial-axis-labels)");
+        fixedSelectors.push("".concat(axisClass, ":not(.highcharts-radial-axis)"), "".concat(axisClass, "-labels:not(.highcharts-radial-axis-labels)"));
     }
     fixedSelectors.forEach(function (className) {
         [].forEach.call(container.querySelectorAll(className), function (elem) {
@@ -227,7 +232,7 @@ Chart.prototype.applyFixed = function () {
             .addClass('highcharts-scrollable-mask')
             .add();
         addEvent(this, 'afterShowResetZoom', this.moveFixedElements);
-        addEvent(this, 'afterDrilldown', this.moveFixedElements);
+        addEvent(this, 'afterApplyDrilldown', this.moveFixedElements);
         addEvent(this, 'afterLayOutTitles', this.moveFixedElements);
     }
     else {
@@ -336,7 +341,7 @@ addEvent(Series, 'show', function () {
  *         Scrollable plot area
  * @sample highcharts/chart/scrollable-plotarea-vertical
  *         Vertically scrollable plot area
- * @sample {gantt} highcharts/chart/scrollable-plotarea-vertical
+ * @sample {gantt} gantt/chart/scrollable-plotarea-vertical
  *         Gantt chart with vertically scrollable plot area
  *
  * @since     6.1.0
@@ -348,6 +353,7 @@ addEvent(Series, 'show', function () {
  * area will become scrollable.
  *
  * @type      {number}
+ * @since     7.1.2
  * @apioption chart.scrollablePlotArea.minHeight
  */
 /**
@@ -355,6 +361,7 @@ addEvent(Series, 'show', function () {
  * area will become scrollable.
  *
  * @type      {number}
+ * @since     6.1.0
  * @apioption chart.scrollablePlotArea.minWidth
  */
 /**
@@ -363,6 +370,7 @@ addEvent(Series, 'show', function () {
  * Typically we would use 1 if the chart has right aligned Y axes.
  *
  * @type      {number}
+ * @since     6.1.0
  * @apioption chart.scrollablePlotArea.scrollPositionX
  */
 /**
@@ -370,6 +378,7 @@ addEvent(Series, 'show', function () {
  * 1, where 0 aligns the plot area to the top and 1 aligns it to the bottom.
  *
  * @type      {number}
+ * @since     7.1.2
  * @apioption chart.scrollablePlotArea.scrollPositionY
  */
 /**

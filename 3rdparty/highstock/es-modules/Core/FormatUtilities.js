@@ -8,7 +8,7 @@
  *
  * */
 'use strict';
-import D from './DefaultOptions.js';
+import D from './Defaults.js';
 var defaultOptions = D.defaultOptions, defaultTime = D.defaultTime;
 import U from './Utilities.js';
 var getNestedProperty = U.getNestedProperty, isNumber = U.isNumber, pick = U.pick, pInt = U.pInt;

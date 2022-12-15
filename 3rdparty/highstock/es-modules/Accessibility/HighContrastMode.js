@@ -35,15 +35,15 @@ function isHighContrastModeActive() {
         var testDiv = doc.createElement('div');
         var imageSrc = 'data:image/gif;base64,' +
             'R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
-        testDiv.style.backgroundImage = "url(" + imageSrc + ")"; // #13071
+        testDiv.style.backgroundImage = "url(".concat(imageSrc, ")"); // #13071
         doc.body.appendChild(testDiv);
         var bi = (testDiv.currentStyle ||
             win.getComputedStyle(testDiv)).backgroundImage;
         doc.body.removeChild(testDiv);
         return bi === 'none';
     }
-    // Not used for other browsers
-    return false;
+    // Other browsers use the forced-colors standard
+    return win.matchMedia && win.matchMedia('(forced-colors: active)').matches;
 }
 /**
  * Force high contrast theme for the chart. The default theme is defined in

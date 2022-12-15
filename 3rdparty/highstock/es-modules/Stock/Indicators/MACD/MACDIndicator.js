@@ -10,10 +10,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -22,14 +24,14 @@ var __extends = (this && this.__extends) || (function () {
 import H from '../../../Core/Globals.js';
 var noop = H.noop;
 import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
-var _a = SeriesRegistry.seriesTypes, SMAIndicator = _a.sma, ColumnSeries = _a.column;
+var _a = SeriesRegistry.seriesTypes, ColumnSeries = _a.column, SMAIndicator = _a.sma;
 import U from '../../../Core/Utilities.js';
 var extend = U.extend, correctFloat = U.correctFloat, defined = U.defined, merge = U.merge;
-/**
+/* *
  *
- * Class
+ *  Class
  *
- */
+ * */
 /**
  * The MACD series type.
  *
@@ -42,12 +44,17 @@ var extend = U.extend, correctFloat = U.correctFloat, defined = U.defined, merge
 var MACDIndicator = /** @class */ (function (_super) {
     __extends(MACDIndicator, _super);
     function MACDIndicator() {
+        /* *
+         *
+         *  Static Properties
+         *
+         * */
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        /**
+        /* *
          *
-         * Properties
+         *  Properties
          *
-         */
+         * */
         _this.data = void 0;
         _this.options = void 0;
         _this.points = void 0;
@@ -58,29 +65,37 @@ var MACDIndicator = /** @class */ (function (_super) {
         _this.signalZones = void 0;
         return _this;
     }
-    /**
+    /* *
      *
-     * Functions
+     *  Functions
      *
-     */
+     * */
     MACDIndicator.prototype.init = function () {
         SeriesRegistry.seriesTypes.sma.prototype.init.apply(this, arguments);
+        var originalColor = this.color, originalColorIndex = this.userOptions._colorIndex;
         // Check whether series is initialized. It may be not initialized,
         // when any of required indicators is missing.
         if (this.options) {
-            // Set default color for a signal line and the histogram:
-            this.options = merge({
-                signalLine: {
-                    styles: {
-                        lineColor: this.color
-                    }
-                },
-                macdLine: {
-                    styles: {
-                        color: this.color
-                    }
+            // If the default colour doesn't set, get the next available from
+            // the array and apply it #15608.
+            if (defined(this.userOptions._colorIndex)) {
+                if (this.options.signalLine &&
+                    this.options.signalLine.styles &&
+                    !this.options.signalLine.styles.lineColor) {
+                    this.userOptions._colorIndex++;
+                    this.getCyclic('color', void 0, this.chart.options.colors);
+                    this.options.signalLine.styles.lineColor =
+                        this.color;
                 }
-            }, this.options);
+                if (this.options.macdLine &&
+                    this.options.macdLine.styles &&
+                    !this.options.macdLine.styles.lineColor) {
+                    this.userOptions._colorIndex++;
+                    this.getCyclic('color', void 0, this.chart.options.colors);
+                    this.options.macdLine.styles.lineColor =
+                        this.color;
+                }
+            }
             // Zones have indexes automatically calculated, we need to
             // translate them to support multiple lines within one indicator
             this.macdZones = {
@@ -93,6 +108,9 @@ var MACDIndicator = /** @class */ (function (_super) {
             };
             this.resetZones = true;
         }
+        // Reset color and index #15608.
+        this.color = originalColor;
+        this.userOptions._colorIndex = originalColorIndex;
     };
     MACDIndicator.prototype.toYData = function (point) {
         return [point.y, point.signal, point.MACD];
@@ -387,6 +405,11 @@ SeriesRegistry.registerSeriesType('macd', MACDIndicator);
  *
  * */
 export default MACDIndicator;
+/* *
+ *
+ *  API Options
+ *
+ * */
 /**
  * A `MACD` series. If the [type](#series.macd.type) option is not
  * specified, it is inherited from [chart.type](#chart.type).

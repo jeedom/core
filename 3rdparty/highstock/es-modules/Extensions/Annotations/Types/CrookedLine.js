@@ -8,30 +8,31 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import Annotation from '../Annotations.js';
+import Annotation from '../Annotation.js';
 import ControlPoint from '../ControlPoint.js';
 import MockPoint from '../MockPoint.js';
 import U from '../../../Core/Utilities.js';
 var merge = U.merge;
-/* eslint-disable no-invalid-this, valid-jsdoc */
+/* *
+ *
+ *  Class
+ *
+ * */
 var CrookedLine = /** @class */ (function (_super) {
     __extends(CrookedLine, _super);
-    /* *
-     *
-     * Constructors
-     *
-     * */
-    function CrookedLine(chart, options) {
-        return _super.call(this, chart, options) || this;
+    function CrookedLine() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     /* *
      *
@@ -67,11 +68,9 @@ var CrookedLine = /** @class */ (function (_super) {
     CrookedLine.prototype.addShapes = function () {
         var typeOptions = this.options.typeOptions, shape = this.initShape(merge(typeOptions.line, {
             type: 'path',
-            points: this.points.map(function (_point, i) {
-                return function (target) {
-                    return target.annotation.points[i];
-                };
-            })
+            points: this.points.map(function (_point, i) { return (function (target) {
+                return target.annotation.points[i];
+            }); })
         }), 0);
         typeOptions.line = shape.options;
     };
@@ -171,15 +170,10 @@ CrookedLine.prototype.defaultOptions = merge(Annotation.prototype.defaultOptions
         }
     }
 });
-/* *
- *
- *  Registry
- *
- * */
 Annotation.types.crookedLine = CrookedLine;
 /* *
  *
- *  Export Default
+ *  Default Export
  *
  * */
 export default CrookedLine;

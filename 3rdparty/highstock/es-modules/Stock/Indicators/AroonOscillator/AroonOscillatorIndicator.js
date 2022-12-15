@@ -10,10 +10,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -24,7 +26,6 @@ import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
 var AroonIndicator = SeriesRegistry.seriesTypes.aroon;
 import U from '../../../Core/Utilities.js';
 var extend = U.extend, merge = U.merge;
-var AROON = SeriesRegistry.seriesTypes.aroon;
 /* *
  *
  *  Class
@@ -66,7 +67,7 @@ var AroonOscillatorIndicator = /** @class */ (function (_super) {
     AroonOscillatorIndicator.prototype.getValues = function (series, params) {
         // 0- date, 1- Aroon Oscillator
         var ARO = [], xData = [], yData = [], aroon, aroonUp, aroonDown, oscillator, i;
-        aroon = AROON.prototype.getValues.call(this, series, params);
+        aroon = _super.prototype.getValues.call(this, series, params);
         for (i = 0; i < aroon.yData.length; i++) {
             aroonUp = aroon.yData[i][0];
             aroonDown = aroon.yData[i][1];
@@ -122,6 +123,11 @@ SeriesRegistry.registerSeriesType('aroonoscillator', AroonOscillatorIndicator);
  *
  * */
 export default AroonOscillatorIndicator;
+/* *
+ *
+ *  API Options
+ *
+ * */
 /**
  * An `Aroon Oscillator` series. If the [type](#series.aroonoscillator.type)
  * option is not specified, it is inherited from [chart.type](#chart.type).

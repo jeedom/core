@@ -10,10 +10,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -24,7 +26,11 @@ import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
 var SMAIndicator = SeriesRegistry.seriesTypes.sma;
 import U from '../../../Core/Utilities.js';
 var extend = U.extend, merge = U.merge, pick = U.pick;
-/* eslint-disable valid-jsdoc */
+/* *
+ *
+ *  Functions
+ *
+ * */
 // Utils
 // Index of element with extreme value from array (min or max)
 /**
@@ -41,7 +47,6 @@ function getExtremeIndexInArray(arr, extreme) {
     }
     return valueIndex;
 }
-/* eslint-enable valid-jsdoc */
 /* *
  *
  *  Class
@@ -59,6 +64,11 @@ function getExtremeIndexInArray(arr, extreme) {
 var AroonIndicator = /** @class */ (function (_super) {
     __extends(AroonIndicator, _super);
     function AroonIndicator() {
+        /* *
+         *
+         *  Static Properties
+         *
+         * */
         var _this = _super !== null && _super.apply(this, arguments) || this;
         /* *
          *
@@ -180,6 +190,11 @@ SeriesRegistry.registerSeriesType('aroon', AroonIndicator);
  *
  * */
 export default AroonIndicator;
+/* *
+ *
+ *  API Options
+ *
+ * */
 /**
  * A Aroon indicator. If the [type](#series.aroon.type) option is not
  * specified, it is inherited from [chart.type](#chart.type).

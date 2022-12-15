@@ -15,7 +15,7 @@
  *  Imports
  *
  * */
-import D from '../../Core/DefaultOptions.js';
+import D from '../../Core/Defaults.js';
 var defaultOptions = D.defaultOptions;
 import U from '../../Core/Utilities.js';
 var merge = U.merge;

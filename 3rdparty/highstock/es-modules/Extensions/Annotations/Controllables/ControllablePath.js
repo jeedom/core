@@ -4,14 +4,98 @@
  *
  * */
 'use strict';
-import ControllableMixin from '../Mixins/ControllableMixin.js';
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+import Controllable from './Controllable.js';
+import ControllableDefaults from './ControllableDefaults.js';
+var defaultMarkers = ControllableDefaults.defaultMarkers;
 import H from '../../../Core/Globals.js';
-import MarkerMixin from '../Mixins/MarkerMixin.js';
 import U from '../../../Core/Utilities.js';
-var extend = U.extend;
+var addEvent = U.addEvent, defined = U.defined, extend = U.extend, merge = U.merge, uniqueKey = U.uniqueKey;
+/* *
+ *
+ *  Constants
+ *
+ * */
+var composedClasses = [];
+var markerEndSetter = createMarkerSetter('marker-end');
+var markerStartSetter = createMarkerSetter('marker-start');
 // See TRACKER_FILL in highcharts.src.js
 var TRACKER_FILL = 'rgba(192,192,192,' + (H.svg ? 0.0001 : 0.002) + ')';
-/* eslint-disable no-invalid-this, valid-jsdoc */
+/* *
+ *
+ *  Functions
+ *
+ * */
+/**
+ * @private
+ */
+function createMarkerSetter(markerType) {
+    return function (value) {
+        this.attr(markerType, 'url(#' + value + ')');
+    };
+}
+/**
+ * @private
+ */
+function onChartAfterGetContainer() {
+    this.options.defs = merge(defaultMarkers, this.options.defs || {});
+    // objectEach(this.options.defs, function (def): void {
+    //     const attributes = def.attributes;
+    //     if (
+    //         def.tagName === 'marker' &&
+    //         attributes &&
+    //         attributes.id &&
+    //         attributes.display !== 'none'
+    //     ) {
+    //         this.renderer.addMarker(attributes.id, def);
+    //     }
+    // }, this);
+}
+/**
+ * @private
+ */
+function svgRendererAddMarker(id, markerOptions) {
+    var options = { attributes: { id: id } };
+    var attrs = {
+        stroke: markerOptions.color || 'none',
+        fill: markerOptions.color || 'rgba(0, 0, 0, 0.75)'
+    };
+    options.children = (markerOptions.children &&
+        markerOptions.children.map(function (child) {
+            return merge(attrs, child);
+        }));
+    var ast = merge(true, {
+        attributes: {
+            markerWidth: 20,
+            markerHeight: 20,
+            refX: 0,
+            refY: 0,
+            orient: 'auto'
+        }
+    }, markerOptions, options);
+    var marker = this.definition(ast);
+    marker.id = id;
+    return marker;
+}
+/* *
+ *
+ *  Class
+ *
+ * */
 /**
  * A controllable path class.
  *
@@ -30,44 +114,39 @@ var TRACKER_FILL = 'rgba(192,192,192,' + (H.svg ? 0.0001 : 0.002) + ')';
  * @param {number} index
  * Index of the path.
  */
-var ControllablePath = /** @class */ (function () {
+var ControllablePath = /** @class */ (function (_super) {
+    __extends(ControllablePath, _super);
     /* *
      *
      *  Constructors
      *
      * */
     function ControllablePath(annotation, options, index) {
+        var _this = _super.call(this, annotation, options, index, 'shape') || this;
         /* *
          *
          *  Properties
          *
          * */
-        this.addControlPoints = ControllableMixin.addControlPoints;
-        this.anchor = ControllableMixin.anchor;
-        this.attr = ControllableMixin.attr;
-        this.attrsFromOptions = ControllableMixin.attrsFromOptions;
-        this.destroy = ControllableMixin.destroy;
-        this.getPointsOptions = ControllableMixin.getPointsOptions;
-        this.init = ControllableMixin.init;
-        this.linkPoints = ControllableMixin.linkPoints;
-        this.point = ControllableMixin.point;
-        this.rotate = ControllableMixin.rotate;
-        this.scale = ControllableMixin.scale;
-        this.setControlPointsVisibility = (ControllableMixin.setControlPointsVisibility);
-        this.setMarkers = MarkerMixin.setItemMarkers;
-        this.transform = ControllableMixin.transform;
-        this.transformPoint = ControllableMixin.transformPoint;
-        this.translate = ControllableMixin.translate;
-        this.translatePoint = ControllableMixin.translatePoint;
-        this.translateShape = ControllableMixin.translateShape;
-        this.update = ControllableMixin.update;
-        /**
-         * @type 'path'
-         */
-        this.type = 'path';
-        this.init(annotation, options, index);
-        this.collection = 'shapes';
+        _this.type = 'path';
+        return _this;
     }
+    /* *
+     *
+     *  Static Functions
+     *
+     * */
+    ControllablePath.compose = function (ChartClass, SVGRendererClass) {
+        if (composedClasses.indexOf(ChartClass) === -1) {
+            composedClasses.push(ChartClass);
+            addEvent(ChartClass, 'afterGetContainer', onChartAfterGetContainer);
+        }
+        if (composedClasses.indexOf(SVGRendererClass) === -1) {
+            composedClasses.push(SVGRendererClass);
+            var svgRendererProto = SVGRendererClass.prototype;
+            svgRendererProto.addMarker = svgRendererAddMarker;
+        }
+    };
     /* *
      *
      *  Functions
@@ -86,7 +165,8 @@ var ControllablePath = /** @class */ (function () {
                 dOption.call(this) :
                 dOption;
         }
-        var points = this.points, len = points.length, showPath = len, point = points[0], position = showPath && this.anchor(point).absolutePosition, pointIndex = 0, command, d = [];
+        var points = this.points, len = points.length, d = [];
+        var showPath = len, point = points[0], position = showPath && this.anchor(point).absolutePosition, pointIndex = 0, command;
         if (position) {
             d.push(['M', position.x, position.y]);
             while (++pointIndex < len && showPath) {
@@ -105,13 +185,12 @@ var ControllablePath = /** @class */ (function () {
                 showPath = point.series.visible;
             }
         }
-        return showPath ?
+        return (showPath && this.graphic ?
             this.chart.renderer.crispLine(d, this.graphic.strokeWidth()) :
-            null;
+            null);
     };
     ControllablePath.prototype.shouldBeDrawn = function () {
-        return (ControllableMixin.shouldBeDrawn.call(this) ||
-            Boolean(this.options.d));
+        return _super.prototype.shouldBeDrawn.call(this) || !!this.options.d;
     };
     ControllablePath.prototype.render = function (parent) {
         var options = this.options, attrs = this.attrsFromOptions(options);
@@ -138,25 +217,57 @@ var ControllablePath = /** @class */ (function () {
                     options.snap * 2
             });
         }
-        ControllableMixin.render.call(this);
-        extend(this.graphic, {
-            markerStartSetter: MarkerMixin.markerStartSetter,
-            markerEndSetter: MarkerMixin.markerEndSetter
-        });
+        _super.prototype.render.call(this);
+        extend(this.graphic, { markerStartSetter: markerStartSetter, markerEndSetter: markerEndSetter });
         this.setMarkers(this);
     };
     ControllablePath.prototype.redraw = function (animation) {
-        var d = this.toD(), action = animation ? 'animate' : 'attr';
-        if (d) {
-            this.graphic[action]({ d: d });
-            this.tracker[action]({ d: d });
+        if (this.graphic) {
+            var d = this.toD(), action = animation ? 'animate' : 'attr';
+            if (d) {
+                this.graphic[action]({ d: d });
+                this.tracker[action]({ d: d });
+            }
+            else {
+                this.graphic.attr({ d: 'M 0 ' + -9e9 });
+                this.tracker.attr({ d: 'M 0 ' + -9e9 });
+            }
+            this.graphic.placed = this.tracker.placed = !!d;
         }
-        else {
-            this.graphic.attr({ d: 'M 0 ' + -9e9 });
-            this.tracker.attr({ d: 'M 0 ' + -9e9 });
-        }
-        this.graphic.placed = this.tracker.placed = Boolean(d);
-        ControllableMixin.redraw.call(this, animation);
+        _super.prototype.redraw.call(this, animation);
+    };
+    /**
+     * Set markers.
+     * @private
+     * @param {Highcharts.AnnotationControllablePath} item
+     */
+    ControllablePath.prototype.setMarkers = function (item) {
+        var itemOptions = item.options, chart = item.chart, defs = chart.options.defs, fill = itemOptions.fill, color = defined(fill) && fill !== 'none' ?
+            fill :
+            itemOptions.stroke;
+        var setMarker = function (markerType) {
+            var markerId = itemOptions[markerType], def, predefinedMarker, key, marker;
+            if (markerId) {
+                for (key in defs) { // eslint-disable-line guard-for-in
+                    def = defs[key];
+                    if ((markerId === (def.attributes && def.attributes.id) ||
+                        // Legacy, for
+                        // unit-tests/annotations/annotations-shapes
+                        markerId === def.id) &&
+                        def.tagName === 'marker') {
+                        predefinedMarker = def;
+                        break;
+                    }
+                }
+                if (predefinedMarker) {
+                    marker = item[markerType] = chart.renderer
+                        .addMarker((itemOptions.id || uniqueKey()) + '-' + markerId, merge(predefinedMarker, { color: color }));
+                    item.attr(markerType, marker.getAttribute('id'));
+                }
+            }
+        };
+        ['markerStart', 'markerEnd']
+            .forEach(setMarker);
     };
     /* *
      *
@@ -177,5 +288,10 @@ var ControllablePath = /** @class */ (function () {
         zIndex: 'zIndex'
     };
     return ControllablePath;
-}());
+}(Controllable));
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default ControllablePath;

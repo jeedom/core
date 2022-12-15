@@ -28,11 +28,11 @@ var dataURLtoBlob = Highcharts.dataURLtoBlob = function (dataURL) {
         .match(/data:([^;]*)(;base64)?,([0-9A-Za-z+/]+)/);
     if (parts &&
         parts.length > 3 &&
-        win.atob &&
+        (win.atob) &&
         win.ArrayBuffer &&
         win.Uint8Array &&
         win.Blob &&
-        domurl.createObjectURL) {
+        (domurl.createObjectURL)) {
         // Try to convert data URL to Blob
         var binStr = win.atob(parts[3]), buf = new win.ArrayBuffer(binStr.length), binary = new win.Uint8Array(buf);
         for (var i = 0; i < binary.length; ++i) {
@@ -63,7 +63,7 @@ var downloadURL = Highcharts.downloadURL = function (dataURL, filename) {
         nav.msSaveOrOpenBlob(dataURL, filename);
         return;
     }
-    dataURL = "" + dataURL;
+    dataURL = "".concat(dataURL);
     // Some browsers have limitations for data URL lengths. Try to convert to
     // Blob or fall back. Edge always needs that blob.
     var isOldEdgeBrowser = /Edge\/\d+/.test(nav.userAgent);

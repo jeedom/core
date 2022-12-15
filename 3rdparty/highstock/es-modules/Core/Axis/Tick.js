@@ -113,7 +113,8 @@ var Tick = /** @class */ (function () {
                 dateTimeLabelFormat = dateTimeLabelFormats.main;
             }
             else if (isNumber(value)) { // #1441
-                dateTimeLabelFormat = axis.dateTime.getXDateFormat(value, (options.dateTimeLabelFormats || {}));
+                dateTimeLabelFormat = axis.dateTime.getXDateFormat(value, options.dateTimeLabelFormats ||
+                    {});
             }
         }
         // set properties for access in render method
@@ -155,7 +156,7 @@ var Tick = /** @class */ (function () {
                 return labelOptions.formatter.call(ctx, ctx);
             }
             if (labelOptions.format) {
-                ctx.text = axis.defaultLabelFormatter.call(ctx);
+                ctx.text = axis.defaultLabelFormatter.call(ctx, ctx);
                 return F.format(labelOptions.format, ctx, chart);
             }
             return axis.defaultLabelFormatter.call(ctx, ctx);
@@ -270,7 +271,7 @@ var Tick = /** @class */ (function () {
     Tick.prototype.getPosition = function (horiz, tickPos, tickmarkOffset, old) {
         var axis = this.axis, chart = axis.chart, cHeight = (old && chart.oldChartHeight) || chart.chartHeight, pos = {
             x: horiz ?
-                correctFloat(axis.translate(tickPos + tickmarkOffset, null, null, old) +
+                correctFloat(axis.translate(tickPos + tickmarkOffset, void 0, void 0, old) +
                     axis.transB) :
                 (axis.left +
                     axis.offset +
@@ -286,7 +287,7 @@ var Tick = /** @class */ (function () {
                     axis.offset -
                     (axis.opposite ? axis.height : 0)) :
                 correctFloat(cHeight -
-                    axis.translate(tickPos + tickmarkOffset, null, null, old) -
+                    axis.translate(tickPos + tickmarkOffset, void 0, void 0, old) -
                     axis.transB)
         };
         // Chrome workaround for #10516
@@ -307,19 +308,22 @@ var Tick = /** @class */ (function () {
         labelOffsetCorrection = (!horiz && !axis.reserveSpaceDefault ?
             -axis.labelOffset * (axis.labelAlign === 'center' ? 0.5 : 1) :
             0), pos = {};
-        var yOffset = labelOptions.y, line;
-        if (!defined(yOffset)) {
-            if (axis.side === 0) {
-                yOffset = label.rotation ? -8 : -label.getBBox().height;
-            }
-            else if (axis.side === 2) {
-                yOffset = rotCorr.y + 8;
-            }
-            else {
-                // #3140, #3140
-                yOffset = Math.cos(label.rotation * deg2rad) *
-                    (rotCorr.y - label.getBBox(false, 0).height / 2);
-            }
+        var yOffset, line;
+        if (axis.side === 0) {
+            yOffset = label.rotation ? -8 : -label.getBBox().height;
+        }
+        else if (axis.side === 2) {
+            yOffset = rotCorr.y + 8;
+        }
+        else {
+            // #3140, #3140
+            yOffset = Math.cos(label.rotation * deg2rad) *
+                (rotCorr.y - label.getBBox(false, 0).height / 2);
+        }
+        if (defined(labelOptions.y)) {
+            yOffset = axis.side === 0 && axis.horiz ?
+                labelOptions.y + yOffset :
+                labelOptions.y;
         }
         x = x +
             labelOptions.x +
@@ -647,11 +651,11 @@ var Tick = /** @class */ (function () {
             // Set the new position, and show or hide
             if (show && isNumber(xy.y)) {
                 xy.opacity = opacity;
-                label[tick.isNewLabel ? 'attr' : 'animate'](xy);
+                label[tick.isNewLabel ? 'attr' : 'animate'](xy).show(true);
                 tick.isNewLabel = false;
             }
             else {
-                label.attr('y', -9999); // #1338
+                label.hide(); // #1338, #15863
                 tick.isNewLabel = true;
             }
         }

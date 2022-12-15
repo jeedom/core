@@ -72,10 +72,13 @@ var ProxyProvider = /** @class */ (function () {
     /**
      * Create a group that will contain proxy elements. The group order is
      * automatically updated according to the last group order keys.
+     *
+     * Returns the added group.
      */
     ProxyProvider.prototype.addGroup = function (groupKey, groupType, attributes) {
-        if (this.groups[groupKey]) {
-            return;
+        var existingGroup = this.groups[groupKey];
+        if (existingGroup) {
+            return existingGroup.groupElement;
         }
         var proxyContainer = this.domElementProvider.createElement(groupType);
         // If we want to add a role to the group, and still use e.g.
@@ -104,6 +107,7 @@ var ProxyProvider = /** @class */ (function () {
         // won't have to reorder the whole set of groups.
         this.afterChartProxyPosContainer.appendChild(groupElement);
         this.updateGroupOrder(this.groupOrder);
+        return groupElement;
     };
     /**
      * Update HTML attributes of a group.
@@ -286,6 +290,10 @@ var ProxyProvider = /** @class */ (function () {
      */
     ProxyProvider.prototype.updatePosContainerPositions = function () {
         var chart = this.chart;
+        // If exporting, don't add these containers to the DOM.
+        if (chart.renderer.forExport) {
+            return;
+        }
         var rendererSVGEl = chart.renderer.box;
         chart.container.insertBefore(this.afterChartProxyPosContainer, rendererSVGEl.nextSibling);
         chart.container.insertBefore(this.beforeChartProxyPosContainer, rendererSVGEl);

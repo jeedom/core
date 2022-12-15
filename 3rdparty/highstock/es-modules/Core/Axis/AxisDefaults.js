@@ -201,7 +201,7 @@ var AxisDefaults;
          * @sample {highcharts} highcharts/xaxis/crosshair-both/
          *         Crosshair on both axes
          * @sample {highstock} stock/xaxis/crosshairs-xy/
-         *         Crosshair on both axes
+         *         Crosshair on both axes, with y axis label
          * @sample {highmaps} highcharts/xaxis/crosshair-both/
          *         Crosshair on both axes
          *
@@ -966,7 +966,7 @@ var AxisDefaults;
              */
             style: {
                 /** @internal */
-                color: "#666666" /* neutralColor60 */,
+                color: "#666666" /* Palette.neutralColor60 */,
                 /** @internal */
                 cursor: 'default',
                 /** @internal */
@@ -1427,7 +1427,9 @@ var AxisDefaults;
          * @sample {highstock} stock/xaxis/showfirstlabel/
          *         Labels below plot lines on Y axis
          *
-         * @product   highcharts highstock gantt
+         * @type    {boolean}
+         * @default undefined
+         * @product highcharts highstock gantt
          */
         showLastLabel: true,
         /**
@@ -1801,7 +1803,7 @@ var AxisDefaults;
              */
             style: {
                 /** @internal */
-                color: "#666666" /* neutralColor60 */
+                color: "#666666" /* Palette.neutralColor60 */
             }
         },
         /**
@@ -1918,7 +1920,7 @@ var AxisDefaults;
          * @type    {Highcharts.ColorType}
          * @default #f2f2f2
          */
-        minorGridLineColor: "#f2f2f2" /* neutralColor5 */,
+        minorGridLineColor: "#f2f2f2" /* Palette.neutralColor5 */,
         /**
          * Width of the minor, secondary grid lines.
          *
@@ -1944,7 +1946,7 @@ var AxisDefaults;
          * @type    {Highcharts.ColorType}
          * @default #999999
          */
-        minorTickColor: "#999999" /* neutralColor40 */,
+        minorTickColor: "#999999" /* Palette.neutralColor40 */,
         /**
          * The color of the line marking the axis itself.
          *
@@ -1965,7 +1967,7 @@ var AxisDefaults;
          * @type    {Highcharts.ColorType}
          * @default #ccd6eb
          */
-        lineColor: "#ccd6eb" /* highlightColor20 */,
+        lineColor: "#ccd6eb" /* Palette.highlightColor20 */,
         /**
          * The width of the line marking the axis itself.
          *
@@ -2002,7 +2004,7 @@ var AxisDefaults;
          * @type    {Highcharts.ColorType}
          * @default #e6e6e6
          */
-        gridLineColor: "#e6e6e6" /* neutralColor10 */,
+        gridLineColor: "#e6e6e6" /* Palette.neutralColor10 */,
         /**
          * The width of the grid lines extending the ticks across the plot area.
          * Defaults to 1 on the Y axis and 0 on the X axis, except for 3d
@@ -2060,7 +2062,7 @@ var AxisDefaults;
          * @type    {Highcharts.ColorType}
          * @default #ccd6eb
          */
-        tickColor: "#ccd6eb" /* highlightColor20 */
+        tickColor: "#ccd6eb" /* Palette.highlightColor20 */
         // tickWidth: 1
     };
     /**
@@ -2188,11 +2190,11 @@ var AxisDefaults;
          * [data classes](https://api.highcharts.com/highmaps#colorAxis.dataClasses)
          * from the Highmaps color axis.
          *
+         * @sample {highcharts} highcharts/demo/gauge-solid/
+         *         Gauge with stops
+         *
          * @see [minColor](#yAxis.minColor)
          * @see [maxColor](#yAxis.maxColor)
-         *
-         * @sample {highcharts} highcharts/demo/gauge-solid/
-         *         True by default
          *
          * @type      {Array<Array<number,Highcharts.ColorType>>}
          * @since     4.0
@@ -2294,6 +2296,18 @@ var AxisDefaults;
          * @see [tickPositions](#xAxis.tickPositions)
          */
         tickPixelInterval: 72,
+        /**
+         * Whether to show the last tick label.
+         *
+         * @productdesc {highcharts|gantt}
+         * Defaults to `true` on cartesian charts, and `false` on polar charts.
+         *
+         * @productdesc {highstock}
+         * Defaults to `true` for categorized yAxis and `false` for other types
+         * of yAxis.
+         *
+         * @default undefined
+         */
         showLastLabel: true,
         /**
          * @extends xAxis.labels
@@ -2346,8 +2360,7 @@ var AxisDefaults;
              *         Solid gauge labels auto aligned
              *
              * @type       {Highcharts.AlignValue}
-             * @default    {highcharts|highmaps} right
-             * @default    {highstock} left
+             * @default    {highstock} right
              * @apioption  yAxis.labels.align
              */
             /**
@@ -2833,7 +2846,7 @@ var AxisDefaults;
             formatter: function () {
                 var numberFormatter = this.axis.chart.numberFormatter;
                 /* eslint-enable valid-jsdoc */
-                return numberFormatter(this.total, -1);
+                return numberFormatter(this.total || 0, -1);
             },
             /**
              * CSS styles for the label.
@@ -2850,7 +2863,7 @@ var AxisDefaults;
              */
             style: {
                 /** @internal */
-                color: "#000000" /* neutralColor100 */,
+                color: "#000000" /* Palette.neutralColor100 */,
                 /** @internal */
                 fontSize: '11px',
                 /** @internal */

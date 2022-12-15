@@ -10,7 +10,7 @@
  *
  * */
 'use strict';
-import D from '../../Core/DefaultOptions.js';
+import D from '../../Core/Defaults.js';
 var setOptions = D.setOptions;
 import U from '../../Core/Utilities.js';
 var createElement = U.createElement;

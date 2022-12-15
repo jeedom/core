@@ -172,7 +172,7 @@ var LogarithmicAxis;
                     axisLength;
                 interval = pick(filteredTickIntervalOption, log.minorAutoInterval, (realMax - realMin) *
                     tickPixelIntervalOption / (totalPixelLength || 1));
-                interval = normalizeTickInterval(interval, void 0, getMagnitude(interval));
+                interval = normalizeTickInterval(interval);
                 positions = axis.getLinearTickPositions(interval, realMin, realMax).map(log.log2lin);
                 if (!minor) {
                     log.minorAutoInterval = interval / 5;

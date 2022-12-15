@@ -10,10 +10,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -23,12 +25,20 @@ import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
 var SMAIndicator = SeriesRegistry.seriesTypes.sma;
 import U from '../../../Core/Utilities.js';
 var extend = U.extend, isArray = U.isArray, merge = U.merge;
-/* eslint-disable require-jsdoc */
+/* *
+ *
+ *  Functions
+ *
+ * */
 function populateAverage(xVal, yVal, i, period, index) {
     var mmY = yVal[i - 1][index] - yVal[i - period - 1][index], mmX = xVal[i - 1];
     return [mmX, mmY];
 }
-/* eslint-enable require-jsdoc */
+/* *
+ *
+ *  Class
+ *
+ * */
 /**
  * The Momentum series type.
  *
@@ -41,12 +51,27 @@ function populateAverage(xVal, yVal, i, period, index) {
 var MomentumIndicator = /** @class */ (function (_super) {
     __extends(MomentumIndicator, _super);
     function MomentumIndicator() {
+        /* *
+         *
+         *  Static Properties
+         *
+         * */
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        /* *
+         *
+         *  Properties
+         *
+         * */
         _this.data = void 0;
         _this.options = void 0;
         _this.points = void 0;
         return _this;
     }
+    /* *
+     *
+     *  Functions
+     *
+     * */
     MomentumIndicator.prototype.getValues = function (series, params) {
         var period = params.period, index = params.index, xVal = series.xData, yVal = series.yData, yValLen = yVal ? yVal.length : 0, yValue = yVal[0], MM = [], xData = [], yData = [], i, MMPoint;
         if (xVal.length <= period) {
@@ -106,6 +131,11 @@ SeriesRegistry.registerSeriesType('momentum', MomentumIndicator);
  *
  * */
 export default MomentumIndicator;
+/* *
+ *
+ *  API Options
+ *
+ * */
 /**
  * A `Momentum` series. If the [type](#series.momentum.type) option is not
  * specified, it is inherited from [chart.type](#chart.type).

@@ -12,17 +12,19 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
 import Color from '../../Core/Color/Color.js';
-import ColorMapMixin from '../ColorMapMixin.js';
+import ColorMapComposition from '../ColorMapComposition.js';
 import HeatmapPoint from './HeatmapPoint.js';
 import LegendSymbol from '../../Core/Legend/LegendSymbol.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
@@ -85,25 +87,6 @@ var HeatmapSeries = /** @class */ (function (_super) {
             this.points.forEach(function (point) {
                 if (point.graphic) {
                     point.graphic[_this.chart.styledMode ? 'css' : 'animate'](_this.colorAttribs(point));
-                    // @todo
-                    // Applying the border radius here is not optimal. It should
-                    // be set in the shapeArgs or returned from `markerAttribs`.
-                    // However, Series.drawPoints does not pick up markerAttribs
-                    // to be passed over to `renderer.symbol`. Also, image
-                    // symbols are not positioned by their top left corner like
-                    // other symbols are. This should be refactored, then we
-                    // could save ourselves some tests for .hasImage etc. And
-                    // the evaluation of borderRadius would be moved to
-                    // `markerAttribs`.
-                    if (_this.options.borderRadius) {
-                        point.graphic.attr({
-                            r: _this.options.borderRadius
-                        });
-                    }
-                    // Saving option for reapplying later
-                    // when changing point's states (#16165)
-                    (point.shapeArgs || {}).r = _this.options.borderRadius;
-                    (point.shapeArgs || {}).d = point.graphic.pathArray;
                     if (point.value === null) { // #15708
                         point.graphic.addClass('highcharts-null-point');
                     }
@@ -157,6 +140,18 @@ var HeatmapSeries = /** @class */ (function (_super) {
         this.yAxis.axisPointRange = options.rowsize || 1;
         // Bind new symbol names
         symbols.ellipse = symbols.circle;
+        // @todo
+        //
+        // Setting the border radius here is a workaround. It should be set in
+        // the shapeArgs or returned from `markerAttribs`. However,
+        // Series.drawPoints does not pick up markerAttribs to be passed over to
+        // `renderer.symbol`. Also, image symbols are not positioned by their
+        // top left corner like other symbols are. This should be refactored,
+        // then we could save ourselves some tests for .hasImage etc. And the
+        // evaluation of borderRadius would be moved to `markerAttribs`.
+        if (options.marker) {
+            options.marker.r = options.borderRadius;
+        }
     };
     /**
      * @private
@@ -270,7 +265,7 @@ var HeatmapSeries = /** @class */ (function (_super) {
                 clientX: (cellAttr.x1 + cellAttr.x2) / 2,
                 shapeType: 'path',
                 shapeArgs: merge(true, shapeArgs, {
-                    d: symbols[shape](shapeArgs.x, shapeArgs.y, shapeArgs.width, shapeArgs.height)
+                    d: symbols[shape](shapeArgs.x, shapeArgs.y, shapeArgs.width, shapeArgs.height, { r: options.borderRadius })
                 })
             };
             if (hasImage) {
@@ -310,7 +305,11 @@ var HeatmapSeries = /** @class */ (function (_super) {
          */
         animation: false,
         /**
-         * The border radius for each heatmap item.
+         * The border radius for each heatmap item. The border's color and
+         * width can be set in marker options.
+         *
+         * @see [lineColor](#plotOptions.heatmap.marker.lineColor)
+         * @see [lineWidth](#plotOptions.heatmap.marker.lineWidth)
          */
         borderRadius: 0,
         /**
@@ -375,7 +374,7 @@ var HeatmapSeries = /** @class */ (function (_super) {
          *
          * @type {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
          */
-        nullColor: "#f7f7f7" /* neutralColor3 */,
+        nullColor: "#f7f7f7" /* Palette.neutralColor3 */,
         dataLabels: {
             formatter: function () {
                 var numberFormatter = this.series.chart.numberFormatter;
@@ -385,6 +384,9 @@ var HeatmapSeries = /** @class */ (function (_super) {
             inside: true,
             verticalAlign: 'middle',
             crop: false,
+            /**
+             * @ignore-option
+             */
             overflow: false,
             padding: 0 // #3837
         },
@@ -556,25 +558,26 @@ var HeatmapSeries = /** @class */ (function (_super) {
     return HeatmapSeries;
 }(ScatterSeries));
 extend(HeatmapSeries.prototype, {
+    axisTypes: ColorMapComposition.seriesMembers.axisTypes,
+    colorKey: ColorMapComposition.seriesMembers.colorKey,
+    directTouch: true,
+    getExtremesFromAll: true,
+    parallelArrays: ColorMapComposition.seriesMembers.parallelArrays,
+    pointArrayMap: ['y', 'value'],
+    pointClass: HeatmapPoint,
+    trackerGroups: ColorMapComposition.seriesMembers.trackerGroups,
     /**
      * @private
      */
     alignDataLabel: ColumnSeries.prototype.alignDataLabel,
-    axisTypes: ColorMapMixin.SeriesMixin.axisTypes,
-    colorAttribs: ColorMapMixin.SeriesMixin.colorAttribs,
-    colorKey: ColorMapMixin.SeriesMixin.colorKey,
-    directTouch: true,
+    colorAttribs: ColorMapComposition.seriesMembers.colorAttribs,
     /**
      * @private
      */
     drawLegendSymbol: LegendSymbol.drawRectangle,
-    getExtremesFromAll: true,
-    getSymbol: Series.prototype.getSymbol,
-    parallelArrays: ColorMapMixin.SeriesMixin.parallelArrays,
-    pointArrayMap: ['y', 'value'],
-    pointClass: HeatmapPoint,
-    trackerGroups: ColorMapMixin.SeriesMixin.trackerGroups
+    getSymbol: Series.prototype.getSymbol
 });
+ColorMapComposition.compose(HeatmapSeries);
 SeriesRegistry.registerSeriesType('heatmap', HeatmapSeries);
 /* *
  *

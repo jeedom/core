@@ -8,20 +8,19 @@
  *
  * */
 'use strict';
-import Chart from '../../Core/Chart/Chart.js';
 import ErrorMessages from './ErrorMessages.js';
 import H from '../../Core/Globals.js';
-var charts = H.charts;
-import D from '../../Core/DefaultOptions.js';
+import D from '../../Core/Defaults.js';
 var setOptions = D.setOptions;
 import U from '../../Core/Utilities.js';
 var addEvent = U.addEvent, find = U.find, isNumber = U.isNumber;
 /* *
  *
- *  Compositions
+ *  Constants
  *
  * */
-setOptions({
+var composedClasses = [];
+var defaultOptions = {
     /**
      * @optionparent chart
      */
@@ -38,22 +37,61 @@ setOptions({
          */
         displayErrors: true
     }
-});
-/* eslint-disable no-invalid-this */
-addEvent(H, 'displayError', function (e) {
+};
+/* *
+ *
+ *  Functions
+ *
+ * */
+/**
+ * @private
+ */
+function compose(ChartClass) {
+    if (composedClasses.indexOf(ChartClass) === -1) {
+        composedClasses.push(ChartClass);
+        addEvent(ChartClass, 'beforeRedraw', onChartBeforeRedraw);
+    }
+    if (composedClasses.indexOf(H) === -1) {
+        composedClasses.push(H);
+        addEvent(H, 'displayError', onHighchartsDisplayError);
+    }
+    if (composedClasses.indexOf(setOptions) === -1) {
+        composedClasses.push(setOptions);
+        setOptions(defaultOptions);
+    }
+}
+/**
+ * @private
+ */
+function onChartBeforeRedraw() {
+    var errorElements = this.errorElements;
+    if (errorElements && errorElements.length) {
+        for (var _i = 0, errorElements_1 = errorElements; _i < errorElements_1.length; _i++) {
+            var el = errorElements_1[_i];
+            el.destroy();
+        }
+    }
+    delete this.errorElements;
+}
+/**
+ * @private
+ */
+function onHighchartsDisplayError(e) {
     // Display error on the chart causing the error or the last created chart.
-    var chart = e.chart ||
-        find(charts.slice().reverse(), function (c) { return !!c; });
+    var chart = (e.chart ||
+        find(this.charts.slice().reverse(), function (c) { return !!c; }));
     if (!chart) {
         return;
     }
-    var code = e.code, msg, options = chart.options.chart, renderer = chart.renderer, chartWidth, chartHeight;
+    var code = e.code, options = chart.options.chart, renderer = chart.renderer;
+    var msg, chartWidth, chartHeight;
     if (chart.errorElements) {
-        chart.errorElements.forEach(function (el) {
+        for (var _i = 0, _a = chart.errorElements; _i < _a.length; _i++) {
+            var el = _a[_i];
             if (el) {
                 el.destroy();
             }
-        });
+        }
     }
     if (options && options.displayErrors && renderer) {
         chart.errorElements = [];
@@ -89,13 +127,13 @@ addEvent(H, 'displayError', function (e) {
             y: chartHeight - chart.errorElements[1].getBBox().height
         });
     }
-});
-addEvent(Chart, 'beforeRedraw', function () {
-    var errorElements = this.errorElements;
-    if (errorElements && errorElements.length) {
-        errorElements.forEach(function (el) {
-            el.destroy();
-        });
-    }
-    delete this.errorElements;
-});
+}
+/* *
+ *
+ *  Default Export
+ *
+ * */
+var Debugger = {
+    compose: compose
+};
+export default Debugger;

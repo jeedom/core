@@ -12,10 +12,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -32,7 +34,7 @@ var pick = U.pick, merge = U.merge, extend = U.extend;
  *
  * */
 /**
- * lollipop series type
+ * Lollipop series type
  *
  * @private
  * @class
@@ -46,7 +48,7 @@ var LollipopSeries = /** @class */ (function (_super) {
     function LollipopSeries() {
         /* *
          *
-         *  Static properties
+         *  Static Properties
          *
          * */
         var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -60,6 +62,11 @@ var LollipopSeries = /** @class */ (function (_super) {
         _this.points = void 0;
         return _this;
     }
+    /* *
+     *
+     *  Functions
+     *
+     * */
     LollipopSeries.prototype.toYData = function (point) {
         return [pick(point.y, point.low)];
     };
@@ -78,7 +85,7 @@ var LollipopSeries = /** @class */ (function (_super) {
      * @product      highcharts highstock
      * @excluding    fillColor, fillOpacity, lineWidth, stack, stacking,
      *               lowColor, stickyTracking, trackByArea
-     * @since 8.0.0
+     * @since        8.0.0
      * @optionparent plotOptions.lollipop
      */
     LollipopSeries.defaultOptions = merge(DumbbellSeries.defaultOptions, {
@@ -129,7 +136,7 @@ export default LollipopSeries;
  * The `lollipop` series. If the [type](#series.lollipop.type) option is
  * not specified, it is inherited from [chart.type](#chart.type).
  *
- * @extends   series,plotOptions.lollipop,
+ * @extends   series,plotOptions.lollipop
  * @excluding boostThreshold, boostBlending
  * @product   highcharts highstock
  * @requires  highcharts-more
@@ -200,10 +207,10 @@ export default LollipopSeries;
  * @apioption series.lollipop.data
  */
 /**
-* The y value of the point.
-*
-* @type      {number|null}
-* @product   highcharts highstock
-* @apioption series.line.data.y
-*/
-''; // adds doclets above to transpiled file
+ * The y value of the point.
+ *
+ * @type      {number|null}
+ * @product   highcharts highstock
+ * @apioption series.line.data.y
+ */
+(''); // adds doclets above to transpiled file

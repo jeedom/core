@@ -179,10 +179,12 @@ var DateTimeAxis;
          * @private
          */
         Additions.prototype.getXDateFormat = function (x, dateTimeLabelFormats) {
-            var axis = this.axis;
+            var axis = this.axis, time = axis.chart.time;
             return axis.closestPointRange ?
-                axis.chart.time.getDateFormat(axis.closestPointRange, x, axis.options.startOfWeek, dateTimeLabelFormats) || dateTimeLabelFormats.year : // #2546, 2581
-                dateTimeLabelFormats.day;
+                time.getDateFormat(axis.closestPointRange, x, axis.options.startOfWeek, dateTimeLabelFormats) ||
+                    // #2546, 2581
+                    time.resolveDTLFormat(dateTimeLabelFormats.year).main :
+                time.resolveDTLFormat(dateTimeLabelFormats.day).main;
         };
         return Additions;
     }());

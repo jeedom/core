@@ -12,10 +12,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -118,12 +120,19 @@ var PiePoint = /** @class */ (function (_super) {
         return isNumber(this.y) && this.y >= 0;
     };
     /**
-     * Toggle the visibility of the pie slice.
-     * @private
+     * Toggle the visibility of a pie slice or other data point. Note that this
+     * method is available only for some series, like pie, treemap and sunburst.
      *
-     * @param {boolean} vis
-     * Whether to show the slice or not. If undefined, the visibility is
-     * toggled.
+     * @function Highcharts.Point#setVisible
+     *
+     * @param {boolean} [vis]
+     * True to show the pie slice or other data point, false to hide. If
+     * undefined, the visibility is toggled.
+     *
+     * @param {boolean} [redraw] Whether to redraw the chart after the point is
+     * altered. If doing more operations on the chart, it is a good idea to set
+     * redraw to false and call {@link Chart#redraw|chart.redraw()} after.
+     *
      */
     PiePoint.prototype.setVisible = function (vis, redraw) {
         var _this = this;

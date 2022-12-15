@@ -12,10 +12,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -25,6 +27,11 @@ import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var LineSeries = SeriesRegistry.seriesTypes.line;
 import U from '../../Core/Utilities.js';
 var merge = U.merge, pick = U.pick;
+/* *
+ *
+ *  Class
+ *
+ * */
 /**
  * Spline series type.
  *
@@ -67,7 +74,8 @@ var SplineSeries = /** @class */ (function (_super) {
         var 
         // 1 means control points midway between points, 2 means 1/3
         // from the point, 3 is 1/4 etc
-        smoothing = 1.5, denom = smoothing + 1, plotX = point.plotX || 0, plotY = point.plotY || 0, lastPoint = points[i - 1], nextPoint = points[i + 1], leftContX, leftContY, rightContX, rightContY, ret;
+        smoothing = 1.5, denom = smoothing + 1, plotX = point.plotX || 0, plotY = point.plotY || 0, lastPoint = points[i - 1], nextPoint = points[i + 1];
+        var leftContX, leftContY, rightContX, rightContY;
         /**
          * @private
          */
@@ -80,7 +88,8 @@ var SplineSeries = /** @class */ (function (_super) {
         }
         // Find control points
         if (doCurve(lastPoint) && doCurve(nextPoint)) {
-            var lastX = lastPoint.plotX || 0, lastY = lastPoint.plotY || 0, nextX = nextPoint.plotX || 0, nextY = nextPoint.plotY || 0, correction = 0;
+            var lastX = lastPoint.plotX || 0, lastY = lastPoint.plotY || 0, nextX = nextPoint.plotX || 0, nextY = nextPoint.plotY || 0;
+            var correction = 0;
             leftContX = (smoothing * plotX + lastX) / denom;
             leftContY = (smoothing * plotY + lastY) / denom;
             rightContX = (smoothing * plotX + nextX) / denom;
@@ -166,7 +175,7 @@ var SplineSeries = /** @class */ (function (_super) {
                 .add();
         }
         // */
-        ret = [
+        var ret = [
             'C',
             pick(lastPoint.rightContX, lastPoint.plotX, 0),
             pick(lastPoint.rightContY, lastPoint.plotY, 0),

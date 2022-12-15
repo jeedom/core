@@ -17,7 +17,7 @@ import U from '../Core/Utilities.js';
 var addEvent = U.addEvent, fireEvent = U.fireEvent;
 import EventProvider from './Utils/EventProvider.js';
 import HTMLUtilities from './Utils/HTMLUtilities.js';
-var getElement = HTMLUtilities.getElement;
+var getElement = HTMLUtilities.getElement, simulatedEventTarget = HTMLUtilities.simulatedEventTarget;
 /* *
  *
  *  Class
@@ -83,7 +83,7 @@ var KeyboardNavigation = /** @class */ (function () {
         ep.addEvent(this.tabindexContainer, 'keydown', function (e) { return _this.onKeydown(e); });
         ep.addEvent(this.tabindexContainer, 'focus', function (e) { return _this.onFocus(e); });
         ['mouseup', 'touchend'].forEach(function (eventName) {
-            return ep.addEvent(doc, eventName, function () { return _this.onMouseUp(); });
+            return ep.addEvent(doc, eventName, function (e) { return _this.onMouseUp(e); });
         });
         ['mousedown', 'touchstart'].forEach(function (eventName) {
             return ep.addEvent(chart.renderTo, eventName, function () {
@@ -124,90 +124,22 @@ var KeyboardNavigation = /** @class */ (function () {
         }
     };
     /**
-     * Function to run on container focus
+     * We use an exit anchor to move focus out of chart whenever we want, by
+     * setting focus to this div and not preventing the default tab action. We
+     * also use this when users come back into the chart by tabbing back, in
+     * order to navigate from the end of the chart.
      * @private
-     * @param {global.FocusEvent} e Browser focus event.
      */
-    KeyboardNavigation.prototype.onFocus = function (e) {
-        var chart = this.chart;
-        var focusComesFromChart = (e.relatedTarget &&
-            chart.container.contains(e.relatedTarget));
-        // Init keyboard nav if tabbing into chart
-        if (!this.exiting &&
-            !this.tabbingInBackwards &&
-            !this.isClickingChart &&
-            !focusComesFromChart &&
-            this.modules[0]) {
-            this.modules[0].init(1);
+    KeyboardNavigation.prototype.updateExitAnchor = function () {
+        var endMarkerId = "highcharts-end-of-chart-marker-".concat(this.chart.index), endMarker = getElement(endMarkerId);
+        this.removeExitAnchor();
+        if (endMarker) {
+            this.makeElementAnExitAnchor(endMarker);
+            this.exitAnchor = endMarker;
         }
-        this.exiting = false;
-    };
-    /**
-     * Reset chart navigation state if we click outside the chart and it's
-     * not already reset.
-     * @private
-     */
-    KeyboardNavigation.prototype.onMouseUp = function () {
-        delete this.isClickingChart;
-        if (!this.keyboardReset && !this.pointerIsOverChart) {
-            var chart = this.chart, curMod = this.modules &&
-                this.modules[this.currentModuleIx || 0];
-            if (curMod && curMod.terminate) {
-                curMod.terminate();
-            }
-            if (chart.focusElement) {
-                chart.focusElement.removeFocusBorder();
-            }
-            this.currentModuleIx = 0;
-            this.keyboardReset = true;
+        else {
+            this.createExitAnchor();
         }
-    };
-    /**
-     * Function to run on keydown
-     * @private
-     * @param {global.KeyboardEvent} ev Browser keydown event.
-     */
-    KeyboardNavigation.prototype.onKeydown = function (ev) {
-        var e = ev || win.event, curNavModule = (this.modules &&
-            this.modules.length &&
-            this.modules[this.currentModuleIx]);
-        var preventDefault;
-        // Used for resetting nav state when clicking outside chart
-        this.keyboardReset = false;
-        // Used for sending focus out of the chart by the modules.
-        this.exiting = false;
-        // If there is a nav module for the current index, run it.
-        // Otherwise, we are outside of the chart in some direction.
-        if (curNavModule) {
-            var response = curNavModule.run(e);
-            if (response === curNavModule.response.success) {
-                preventDefault = true;
-            }
-            else if (response === curNavModule.response.prev) {
-                preventDefault = this.prev();
-            }
-            else if (response === curNavModule.response.next) {
-                preventDefault = this.next();
-            }
-            if (preventDefault) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
-        }
-    };
-    /**
-     * Go to previous module.
-     * @private
-     */
-    KeyboardNavigation.prototype.prev = function () {
-        return this.move(-1);
-    };
-    /**
-     * Go to next module.
-     * @private
-     */
-    KeyboardNavigation.prototype.next = function () {
-        return this.move(1);
     };
     /**
      * Move to prev/next module.
@@ -242,7 +174,7 @@ var KeyboardNavigation = /** @class */ (function () {
         // Set focus to chart or exit anchor depending on direction
         this.exiting = true;
         if (direction > 0) {
-            this.exitAnchor.focus();
+            this.exitAnchor && this.exitAnchor.focus();
         }
         else {
             this.tabindexContainer.focus();
@@ -250,21 +182,84 @@ var KeyboardNavigation = /** @class */ (function () {
         return false;
     };
     /**
-     * We use an exit anchor to move focus out of chart whenever we want, by
-     * setting focus to this div and not preventing the default tab action. We
-     * also use this when users come back into the chart by tabbing back, in
-     * order to navigate from the end of the chart.
+     * Function to run on container focus
+     * @private
+     * @param {global.FocusEvent} e Browser focus event.
+     */
+    KeyboardNavigation.prototype.onFocus = function (e) {
+        var chart = this.chart;
+        var focusComesFromChart = (e.relatedTarget &&
+            chart.container.contains(e.relatedTarget));
+        // Init keyboard nav if tabbing into chart
+        if (!this.exiting &&
+            !this.tabbingInBackwards &&
+            !this.isClickingChart &&
+            !focusComesFromChart) {
+            var ix = this.getFirstValidModuleIx();
+            if (ix !== null) {
+                this.currentModuleIx = ix;
+                this.modules[ix].init(1);
+            }
+        }
+        this.exiting = false;
+    };
+    /**
+     * Reset chart navigation state if we mouse click and it's not already
+     * reset. Reset fully if outside the chart, otherwise just hide focus
+     * indicator.
      * @private
      */
-    KeyboardNavigation.prototype.updateExitAnchor = function () {
-        var endMarkerId = ('highcharts-end-of-chart-marker-' + this.chart.index), endMarker = getElement(endMarkerId);
-        this.removeExitAnchor();
-        if (endMarker) {
-            this.makeElementAnExitAnchor(endMarker);
-            this.exitAnchor = endMarker;
+    KeyboardNavigation.prototype.onMouseUp = function (e) {
+        delete this.isClickingChart;
+        if (!this.keyboardReset &&
+            e.relatedTarget !== simulatedEventTarget) {
+            var chart = this.chart;
+            if (!this.pointerIsOverChart) {
+                var curMod = this.modules &&
+                    this.modules[this.currentModuleIx || 0];
+                if (curMod && curMod.terminate) {
+                    curMod.terminate();
+                }
+                this.currentModuleIx = 0;
+            }
+            if (chart.focusElement) {
+                chart.focusElement.removeFocusBorder();
+                delete chart.focusElement;
+            }
+            this.keyboardReset = true;
         }
-        else {
-            this.createExitAnchor();
+    };
+    /**
+     * Function to run on keydown
+     * @private
+     * @param {global.KeyboardEvent} ev Browser keydown event.
+     */
+    KeyboardNavigation.prototype.onKeydown = function (ev) {
+        var e = ev || win.event, curNavModule = (this.modules &&
+            this.modules.length &&
+            this.modules[this.currentModuleIx]);
+        var preventDefault;
+        // Used for resetting nav state when clicking outside chart
+        this.keyboardReset = false;
+        // Used for sending focus out of the chart by the modules.
+        this.exiting = false;
+        // If there is a nav module for the current index, run it.
+        // Otherwise, we are outside of the chart in some direction.
+        if (curNavModule) {
+            var response = curNavModule.run(e);
+            if (response === curNavModule.response.success) {
+                preventDefault = true;
+            }
+            else if (response === curNavModule.response.prev) {
+                preventDefault = this.move(-1);
+            }
+            else if (response === curNavModule.response.next) {
+                preventDefault = this.move(1);
+            }
+            if (preventDefault) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
         }
     };
     /**
@@ -291,6 +286,17 @@ var KeyboardNavigation = /** @class */ (function () {
         }
     };
     /**
+     * Add new exit anchor to the chart.
+     * @private
+     */
+    KeyboardNavigation.prototype.createExitAnchor = function () {
+        var chart = this.chart, exitAnchor = this.exitAnchor = doc.createElement('div');
+        chart.renderTo.appendChild(exitAnchor);
+        this.makeElementAnExitAnchor(exitAnchor);
+    };
+    /**
+     * Add attributes and events to an element to make it function as an
+     * exit anchor.
      * @private
      */
     KeyboardNavigation.prototype.makeElementAnExitAnchor = function (el) {
@@ -302,26 +308,17 @@ var KeyboardNavigation = /** @class */ (function () {
         this.addExitAnchorEventsToEl(el);
     };
     /**
-     * Add new exit anchor to the chart.
-     *
-     * @private
-     */
-    KeyboardNavigation.prototype.createExitAnchor = function () {
-        var chart = this.chart, exitAnchor = this.exitAnchor = doc.createElement('div');
-        chart.renderTo.appendChild(exitAnchor);
-        this.makeElementAnExitAnchor(exitAnchor);
-    };
-    /**
+     * Destroy the exit anchor and remove from DOM.
      * @private
      */
     KeyboardNavigation.prototype.removeExitAnchor = function () {
         if (this.exitAnchor && this.exitAnchor.parentNode) {
-            this.exitAnchor.parentNode
-                .removeChild(this.exitAnchor);
+            this.exitAnchor.parentNode.removeChild(this.exitAnchor);
             delete this.exitAnchor;
         }
     };
     /**
+     * Add focus handler to exit anchor element.
      * @private
      */
     KeyboardNavigation.prototype.addExitAnchorEventsToEl = function (element) {
@@ -329,6 +326,9 @@ var KeyboardNavigation = /** @class */ (function () {
         this.eventProvider.addEvent(element, 'focus', function (ev) {
             var e = ev || win.event, focusComesFromChart = (e.relatedTarget &&
                 chart.container.contains(e.relatedTarget)), comingInBackwards = !(focusComesFromChart || keyboardNavigation.exiting);
+            if (chart.focusElement) {
+                delete chart.focusElement;
+            }
             if (comingInBackwards) {
                 // Focus the container instead
                 keyboardNavigation.tabbingInBackwards = true;
@@ -346,7 +346,7 @@ var KeyboardNavigation = /** @class */ (function () {
                     if (curModule &&
                         curModule.validate && !curModule.validate()) {
                         // Invalid. Try moving backwards to find next valid.
-                        keyboardNavigation.prev();
+                        keyboardNavigation.move(-1);
                     }
                     else if (curModule) {
                         // We have a valid module, init it
@@ -359,6 +359,21 @@ var KeyboardNavigation = /** @class */ (function () {
                 keyboardNavigation.exiting = false;
             }
         });
+    };
+    /**
+     * Get the ix of the first module that either does not require validation or
+     * validates positively.
+     * @private
+     */
+    KeyboardNavigation.prototype.getFirstValidModuleIx = function () {
+        var len = this.modules.length;
+        for (var i = 0; i < len; ++i) {
+            var mod = this.modules[i];
+            if (!mod.validate || mod.validate()) {
+                return i;
+            }
+        }
+        return null;
     };
     /**
      * Remove all traces of keyboard navigation.
@@ -395,6 +410,7 @@ var KeyboardNavigation = /** @class */ (function () {
      * */
     /* eslint-disable valid-jsdoc */
     /**
+     * Composition function.
      * @private
      */
     function compose(ChartClass) {

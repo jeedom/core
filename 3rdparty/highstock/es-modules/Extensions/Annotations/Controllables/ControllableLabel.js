@@ -4,22 +4,80 @@
  *
  * */
 'use strict';
-/* *
- *
- *  Imports
- *
- * */
-import '../../../Core/Renderer/SVG/SVGRenderer.js';
-import ControllableMixin from '../Mixins/ControllableMixin.js';
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+import Controllable from './Controllable.js';
 import F from '../../../Core/FormatUtilities.js';
 var format = F.format;
 import MockPoint from '../MockPoint.js';
-import SVGRenderer from '../../../Core/Renderer/SVG/SVGRenderer.js';
-var symbols = SVGRenderer.prototype.symbols;
 import Tooltip from '../../../Core/Tooltip.js';
 import U from '../../../Core/Utilities.js';
 var extend = U.extend, isNumber = U.isNumber, pick = U.pick;
-/* eslint-disable no-invalid-this, valid-jsdoc */
+/* *
+ *
+ *  Constants
+ *
+ * */
+var composedClasses = [];
+/* *
+ *
+ *  Functions
+ *
+ * */
+/**
+ * General symbol definition for labels with connector
+ * @private
+ */
+function symbolConnector(x, y, w, h, options) {
+    var anchorX = options && options.anchorX, anchorY = options && options.anchorY;
+    var path, yOffset, lateral = w / 2;
+    if (isNumber(anchorX) && isNumber(anchorY)) {
+        path = [['M', anchorX, anchorY]];
+        // Prefer 45 deg connectors
+        yOffset = y - anchorY;
+        if (yOffset < 0) {
+            yOffset = -h - yOffset;
+        }
+        if (yOffset < w) {
+            lateral = anchorX < x + (w / 2) ? yOffset : w - yOffset;
+        }
+        // Anchor below label
+        if (anchorY > y + h) {
+            path.push(['L', x + lateral, y + h]);
+            // Anchor above label
+        }
+        else if (anchorY < y) {
+            path.push(['L', x + lateral, y]);
+            // Anchor left of label
+        }
+        else if (anchorX < x) {
+            path.push(['L', x, y + h / 2]);
+            // Anchor right of label
+        }
+        else if (anchorX > x + w) {
+            path.push(['L', x + w, y + h / 2]);
+        }
+    }
+    return path || [];
+}
+/* *
+ *
+ *  Class
+ *
+ * */
 /**
  * A controllable label class.
  *
@@ -36,36 +94,15 @@ var extend = U.extend, isNumber = U.isNumber, pick = U.pick;
  * @param {number} index
  * Index of the label.
  */
-var ControllableLabel = /** @class */ (function () {
+var ControllableLabel = /** @class */ (function (_super) {
+    __extends(ControllableLabel, _super);
     /* *
      *
      *  Constructors
      *
      * */
     function ControllableLabel(annotation, options, index) {
-        /* *
-         *
-         *  Properties
-         *
-         * */
-        this.addControlPoints = ControllableMixin.addControlPoints;
-        this.attr = ControllableMixin.attr;
-        this.attrsFromOptions = ControllableMixin.attrsFromOptions;
-        this.destroy = ControllableMixin.destroy;
-        this.getPointsOptions = ControllableMixin.getPointsOptions;
-        this.init = ControllableMixin.init;
-        this.linkPoints = ControllableMixin.linkPoints;
-        this.point = ControllableMixin.point;
-        this.rotate = ControllableMixin.rotate;
-        this.scale = ControllableMixin.scale;
-        this.setControlPointsVisibility = (ControllableMixin.setControlPointsVisibility);
-        this.shouldBeDrawn = ControllableMixin.shouldBeDrawn;
-        this.transform = ControllableMixin.transform;
-        this.transformPoint = ControllableMixin.transformPoint;
-        this.translateShape = ControllableMixin.translateShape;
-        this.update = ControllableMixin.update;
-        this.init(annotation, options, index);
-        this.collection = 'labels';
+        return _super.call(this, annotation, options, index, 'label') || this;
     }
     /* *
      *
@@ -109,6 +146,13 @@ var ControllableLabel = /** @class */ (function () {
             x: Math.round(x),
             y: Math.round(y)
         };
+    };
+    ControllableLabel.compose = function (SVGRendererClass) {
+        if (composedClasses.indexOf(SVGRendererClass) === -1) {
+            composedClasses.push(SVGRendererClass);
+            var svgRendererProto = SVGRendererClass.prototype;
+            svgRendererProto.symbols.connector = symbolConnector;
+        }
     };
     /**
      * Returns new alignment options for a label if the label is outside the
@@ -185,7 +229,7 @@ var ControllableLabel = /** @class */ (function () {
      * @param {number} dy translation for y coordinate
      */
     ControllableLabel.prototype.translatePoint = function (dx, dy) {
-        ControllableMixin.translatePoint.call(this, dx, dy, 0);
+        _super.prototype.translatePoint.call(this, dx, dy, 0);
     };
     /**
      * Translate x and y position relative to the label's anchor.
@@ -232,13 +276,17 @@ var ControllableLabel = /** @class */ (function () {
             this.graphic.addClass(options.className);
         }
         this.graphic.labelrank = options.labelrank;
-        ControllableMixin.render.call(this);
+        _super.prototype.render.call(this);
     };
     ControllableLabel.prototype.redraw = function (animation) {
         var options = this.options, text = this.text || options.format || options.text, label = this.graphic, point = this.points[0];
+        if (!label) {
+            this.redraw(animation);
+            return;
+        }
         label.attr({
             text: text ?
-                format(text, point.getLabelConfig(), this.annotation.chart) :
+                format(String(text), point.getLabelConfig(), this.annotation.chart) :
                 options.formatter.call(point, this)
         });
         var anchor = this.anchor(point);
@@ -256,7 +304,7 @@ var ControllableLabel = /** @class */ (function () {
             });
         }
         label.placed = !!attrs;
-        ControllableMixin.redraw.call(this, animation);
+        _super.prototype.redraw.call(this, animation);
     };
     /**
      * All basic shapes don't support alignTo() method except label.
@@ -264,7 +312,7 @@ var ControllableLabel = /** @class */ (function () {
      * options.
      */
     ControllableLabel.prototype.anchor = function (_point) {
-        var anchor = ControllableMixin.anchor.apply(this, arguments), x = this.options.x || 0, y = this.options.y || 0;
+        var anchor = _super.prototype.anchor.apply(this, arguments), x = this.options.x || 0, y = this.options.y || 0;
         anchor.absolutePosition.x -= x;
         anchor.absolutePosition.y -= y;
         anchor.relativePosition.x -= x;
@@ -278,8 +326,8 @@ var ControllableLabel = /** @class */ (function () {
         var item = this.graphic, chart = this.annotation.chart, point = this.points[0], itemOptions = this.options, anchorAbsolutePosition = anchor.absolutePosition, anchorRelativePosition = anchor.relativePosition;
         var itemPosition, alignTo, itemPosRelativeX, itemPosRelativeY, showItem = point.series.visible &&
             MockPoint.prototype.isInsidePlot.call(point);
-        var _a = item.width, width = _a === void 0 ? 0 : _a, _b = item.height, height = _b === void 0 ? 0 : _b;
-        if (showItem) {
+        if (item && showItem) {
+            var _a = item.width, width = _a === void 0 ? 0 : _a, _b = item.height, height = _b === void 0 ? 0 : _b;
             if (itemOptions.distance) {
                 itemPosition = Tooltip.prototype.getPosition.call({
                     chart: chart,
@@ -347,41 +395,10 @@ var ControllableLabel = /** @class */ (function () {
      */
     ControllableLabel.shapesWithoutBackground = ['connector'];
     return ControllableLabel;
-}());
+}(Controllable));
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default ControllableLabel;
-/**
- * General symbol definition for labels with connector
- * @private
- */
-symbols.connector = function (x, y, w, h, options) {
-    var anchorX = options && options.anchorX, anchorY = options && options.anchorY;
-    var path, yOffset, lateral = w / 2;
-    if (isNumber(anchorX) && isNumber(anchorY)) {
-        path = [['M', anchorX, anchorY]];
-        // Prefer 45 deg connectors
-        yOffset = y - anchorY;
-        if (yOffset < 0) {
-            yOffset = -h - yOffset;
-        }
-        if (yOffset < w) {
-            lateral = anchorX < x + (w / 2) ? yOffset : w - yOffset;
-        }
-        // Anchor below label
-        if (anchorY > y + h) {
-            path.push(['L', x + lateral, y + h]);
-            // Anchor above label
-        }
-        else if (anchorY < y) {
-            path.push(['L', x + lateral, y]);
-            // Anchor left of label
-        }
-        else if (anchorX < x) {
-            path.push(['L', x, y + h / 2]);
-            // Anchor right of label
-        }
-        else if (anchorX > x + w) {
-            path.push(['L', x + w, y + h / 2]);
-        }
-    }
-    return path || [];
-};

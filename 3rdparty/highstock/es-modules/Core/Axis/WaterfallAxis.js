@@ -8,7 +8,7 @@
  *
  * */
 'use strict';
-import StackItem from '../../Extensions/Stacking.js';
+import StackItem from './Stacking/StackItem.js';
 import U from '../Utilities.js';
 var addEvent = U.addEvent, objectEach = U.objectEach;
 /**
@@ -58,20 +58,23 @@ var WaterfallAxis;
          * @function Highcharts.Axis#renderWaterfallStackTotals
          */
         Composition.prototype.renderStackTotals = function () {
-            var yAxis = this.axis, waterfallStacks = yAxis.waterfall.stacks, stackTotalGroup = (yAxis.stacking && yAxis.stacking.stackTotalGroup), dummyStackItem = new StackItem(yAxis, yAxis.options.stackLabels, false, 0, void 0);
+            var yAxis = this.axis, waterfallStacks = yAxis.waterfall.stacks, stackTotalGroup = (yAxis.stacking && yAxis.stacking.stackTotalGroup), dummyStackItem = new StackItem(yAxis, yAxis.options.stackLabels || {}, false, 0, void 0);
             this.dummyStackItem = dummyStackItem;
             // Render each waterfall stack total
-            objectEach(waterfallStacks, function (type) {
-                objectEach(type, function (stackItem) {
-                    dummyStackItem.total = stackItem.stackTotal;
-                    if (stackItem.label) {
-                        dummyStackItem.label = stackItem.label;
-                    }
-                    StackItem.prototype.render.call(dummyStackItem, stackTotalGroup);
-                    stackItem.label = dummyStackItem.label;
-                    delete dummyStackItem.label;
+            if (stackTotalGroup) {
+                objectEach(waterfallStacks, function (type) {
+                    objectEach(type, function (stackItem, key) {
+                        dummyStackItem.total = stackItem.stackTotal;
+                        dummyStackItem.x = +key;
+                        if (stackItem.label) {
+                            dummyStackItem.label = stackItem.label;
+                        }
+                        StackItem.prototype.render.call(dummyStackItem, stackTotalGroup);
+                        stackItem.label = dummyStackItem.label;
+                        delete dummyStackItem.label;
+                    });
                 });
-            });
+            }
             dummyStackItem.total = null;
         };
         return Composition;

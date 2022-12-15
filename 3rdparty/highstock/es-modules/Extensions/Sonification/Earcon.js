@@ -83,7 +83,7 @@ var Earcon = /** @class */ (function () {
             var instrument = typeof opts.instrument === 'string' ?
                 Instrument.definitions[opts.instrument] : opts.instrument, instrumentOpts = merge(opts.playOptions);
             var instrOnEnd, instrumentCopy, copyId = '';
-            if (instrument && instrument.play) {
+            if (instrument && (instrument.play)) {
                 if (opts.playOptions) {
                     instrumentOpts.pan = pick(masterPan, instrumentOpts.pan);
                     // Handle onEnd
