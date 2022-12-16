@@ -443,7 +443,11 @@ Element.prototype.jeeValue = function(_value) {
         value = this.value
       }
     }
-    if (this.matches('span', 'div, p')) {
+    if (this.matches('span')) {
+      value = this.innerHTML || this.textContent
+      if (value == '') value = null
+    }
+    if (this.matches('div, p')) {
       value = this.innerHTML || null
     }
     if (this.matches('a') && this.getAttribute('value') != undefined) {
