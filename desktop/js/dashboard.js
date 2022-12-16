@@ -73,14 +73,14 @@ if (!jeeFrontEnd.dashboard) {
 
       document.querySelectorAll('#div_displayObject div.div_object').forEach(function(div_object) {
         var visible = false
-        Array.from(div_object.querySelectorAll('div.div_displayEquipement > div')).every(function(div) {
+        div_object.querySelectorAll('div.div_displayEquipement > div').forEach(function(div) {
           if (div.isVisible()) {
             visible = true
             return false
           }
         })
         if (visible) {
-          div_object.unseen()
+          div_object.seen()
         } else {
           div_object.seen()
         }
