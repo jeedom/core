@@ -126,24 +126,6 @@ String.prototype.stripAccents = function() {
   })
 }
 
-EventTarget.prototype.triggerEvent = function(_eventName, _params) {
-  if (!isset(_params)) {
-    _params = {}
-  }
-  _params.bubbles = _params.bubbles || true
-  _params.cancelable = _params.cancelable || false
-  _params.detail = _params.detail || undefined
-  let event = new Event(_eventName, _params)
-  this.dispatchEvent(event)
-  return this
-}
-NodeList.prototype.triggerEvent = function(_eventName, _params) {
-  for (let idx = 0; idx < this.length; idx++) {
-    this[idx].triggerEvent(_eventName, _params)
-  }
-  return this
-}
-
 /* Shortcuts Functions
 */
 //Hide Show as seen(), unseen() as prototype show/hide are ever declared and fired by bootstrap and jquery
@@ -776,6 +758,23 @@ EventTarget.prototype.unRegisterEvent = function(_type, _id) {
   return self
 }
 
+EventTarget.prototype.triggerEvent = function(_eventName, _params) {
+  if (!isset(_params)) {
+    _params = {}
+  }
+  _params.bubbles = _params.bubbles || true
+  _params.cancelable = _params.cancelable || false
+  _params.detail = _params.detail || undefined
+  let event = new CustomEvent(_eventName, _params)
+  this.dispatchEvent(event)
+  return this
+}
+NodeList.prototype.triggerEvent = function(_eventName, _params) {
+  for (let idx = 0; idx < this.length; idx++) {
+    this[idx].triggerEvent(_eventName, _params)
+  }
+  return this
+}
 
 /* Widgets
 */

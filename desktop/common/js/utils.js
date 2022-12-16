@@ -546,9 +546,9 @@ jeedomUtils.triggerThemechange = function() {
   //trigger event for widgets:
   if (document.body.hasAttribute('data-page') && ['dashboard', 'view', 'plan', 'widgets'].includes(document.body.getAttribute('data-page'))) {
     if (currentTheme.endsWith('Light')) {
-      $('body').trigger('changeThemeEvent', ['Light'])
+      document.body.triggerEvent('changeThemeEvent', {detail: {theme: 'Light'}})
     } else {
-      $('body').trigger('changeThemeEvent', ['Dark'])
+      document.body.triggerEvent('changeThemeEvent', {detail: {theme: 'Dark'}})
     }
   }
 }
@@ -757,13 +757,14 @@ jeedomUtils.initJeedomModals = function() {
   }
 }
 
-jeedomUtils.setButtonCtrlHandler = function(_button, _title, _uri, _modal = '#md_modal', _open = true) {
-  $(_button).on('click', function(event) {
+jeedomUtils.setButtonCtrlHandler = function(_buttonId, _title, _uri, _modal = '#md_modal', _open = true) {
+  document.getElementById(_buttonId).addEventListener('click', event => {
     jeedomUtils.closeJeedomMenu()
     try {
       if (jeedomUI.isEditing == true) return false
     } catch (error) { }
-    if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
+
+    if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
       var title = encodeURI(_title)
       var url = '/index.php?v=d&p=modaldisplay&loadmodal=' + _uri + '&title=' + title
       window.open(url).focus()
@@ -773,10 +774,11 @@ jeedomUtils.setButtonCtrlHandler = function(_button, _title, _uri, _modal = '#md
       if (_open) $(_modal).dialog('open')
     }
   })
-  $(_button).on('mouseup', function(event) {
+
+  document.getElementById(_buttonId).addEventListener('mouseup', event => {
     if (event.which == 2) {
       event.preventDefault()
-      $(_button).trigger(jQuery.Event('click', { ctrlKey: true }))
+      event.target.triggerEvent('click', {detail: {ctrlKey: true}})
     }
   })
 }
@@ -794,11 +796,11 @@ jeedomUtils.setJeedomGlobalUI = function() {
     }
   })
 
-  jeedomUtils.setButtonCtrlHandler('#bt_showEventInRealTime', '{{Evénements en temps réel}}', 'log.display&log=event', '#md_modal')
-  jeedomUtils.setButtonCtrlHandler('#bt_showNoteManager', '{{Notes}}', 'note.manager', '#md_modal')
-  jeedomUtils.setButtonCtrlHandler('#bt_showExpressionTesting', "{{Testeur d'expression}}", 'expression.test', '#md_modal')
-  jeedomUtils.setButtonCtrlHandler('#bt_showDatastoreVariable', '{{Variables}}', 'dataStore.management&type=scenario', '#md_modal', false)
-  jeedomUtils.setButtonCtrlHandler('#bt_showSearching', '{{Recherche}}', 'search', '#md_modal')
+  jeedomUtils.setButtonCtrlHandler('bt_showEventInRealTime', '{{Evénements en temps réel}}', 'log.display&log=event', '#md_modal')
+  jeedomUtils.setButtonCtrlHandler('bt_showNoteManager', '{{Notes}}', 'note.manager', '#md_modal')
+  jeedomUtils.setButtonCtrlHandler('bt_showExpressionTesting', "{{Testeur d'expression}}", 'expression.test', '#md_modal')
+  jeedomUtils.setButtonCtrlHandler('bt_showDatastoreVariable', '{{Variables}}', 'dataStore.management&type=scenario', '#md_modal', false)
+  jeedomUtils.setButtonCtrlHandler('bt_showSearching', '{{Recherche}}', 'search', '#md_modal')
 
   document.getElementById('bt_gotoDashboard').addEventListener('click', function() {
     if (!getDeviceType()['type'] == 'desktop' || window.innerWidth < 768) {
@@ -1323,54 +1325,63 @@ jeedomUtils.setJeedomMenu = function() {
   })
 
   //one submenu opened at a time in mobile:
-  $('body').on('click', '#jeedomMenuBar .navbar-nav > li > input', function() {
-    var checked = $(this).prop("checked")
-    $('#jeedomMenuBar .navbar-nav li > input').prop("checked", false)
-    $(this).prop("checked", checked)
-  })
-  $('body').on('click', '#jeedomMenuBar .navbar-nav > li > ul > li > input', function() {
-    var checked = $(this).prop("checked")
-    $('#jeedomMenuBar .navbar-nav > li > ul > li > input').prop("checked", false)
-    $(this).prop("checked", checked)
+  document.getElementById('jeedomMenuBar').addEventListener('click', event => {
+    if (event.target.matches('.navbar-nav > li > input')) {
+      var checked = event.target.checked
+      document.querySelectorAll('#jeedomMenuBar .navbar-nav li > input').forEach(input => {
+        input.checked = false
+      })
+      event.target.checked = checked
+    }
+
+    if (event.target.matches('.navbar-nav > li > ul > li > input')) {
+      var checked = event.target.checked
+      document.querySelectorAll('#jeedomMenuBar .navbar-nav > li > ul > li > input').forEach(input => {
+        input.checked = false
+      })
+      event.target.checked = checked
+    }
   })
 
   if (typeof user_isAdmin !== 'undefined' && user_isAdmin == 1) {
-    $('li.navTime #configName').on('click', function(event) {
+    document.getElementById('configName').addEventListener('click', event => {
       //center mouse click event to new tab:
-      if (event.newTab) {
+      if (isset(event.detail) && event.detail.newtab) {
         var url = 'index.php?v=d&p=administration'
         window.open(url).focus()
         return false
       }
 
       //shortcuts:
-      if (event.originalEvent.ctrlKey && event.originalEvent.altKey) {
+      if (event.ctrlKey && event.altKey) {
         jeedomUtils.loadPage('index.php?v=d&p=massedit')
         return false
       }
-      if (event.originalEvent.ctrlKey) {
+      if (event.ctrlKey) {
         jeedomUtils.loadPage('index.php?v=d&p=system')
         return false
       }
-      if (event.originalEvent.altKey) {
+      if (event.altKey) {
         jeedomUtils.loadPage('index.php?v=d&p=database')
         return false
       }
-      if (event.originalEvent.shiftKey) {
+      if (event.shiftKey) {
         jeedomUtils.loadPage('index.php?v=d&p=editor')
         return false
       }
 
       //open configuration:
       jeedomUtils.loadPage('index.php?v=d&p=administration')
+
     })
 
-    $('li.navTime #configName').on('mouseup', function(event) {
+    document.getElementById('configName').addEventListener('mouseup', event => {
       if (event.which == 2) {
         event.preventDefault()
-        $(this).trigger(jQuery.Event('click', { newTab: true }))
+        event.target.triggerEvent('click', {detail: {newtab: true}})
       }
     })
+
   }
 }
 
