@@ -499,8 +499,26 @@ jeedomUtils.initApplication = function(_reinit) {
             deviceInfo = getDeviceType()
             jeedom.object.summaryUpdate([{object_id:'global'}])
             if (APP_MODE) {
-              jeedomUtils.loadPage('home', 'Accueil')
+              jeedomUtils.loadPage('home', '{{Accueil}}')
             } else {
+              //store default mobile page user preference:
+              if (isset(jeeFrontEnd.userProfils) && jeeFrontEnd.userProfils != null && isset(jeeFrontEnd.userProfils.homePageMobile) && jeeFrontEnd.userProfils.homePageMobile != 'home') {
+                let res = jeeFrontEnd.userProfils.homePageMobile.split("::")
+                if (res[0] == 'core') {
+                  switch (res[1]) {
+                    case 'overview':
+                      defaultMobilePage = ['overview', "<i class=\'fab fa-hubspot\'></i> {{Synthèse}}"]
+                      break
+                    case 'dashboard':
+                      defaultMobilePage = ['equipment', jeeFrontEnd.userProfils.defaultMobileObjectName, jeeFrontEnd.userProfils.defaultMobileObject]
+                      break
+                    case 'view':
+                      defaultMobilePage = ['view', jeeFrontEnd.userProfils.defaultMobileViewName, jeeFrontEnd.userProfils.defaultMobileView]
+                      break
+                  }
+                }
+              }
+
               let redirect = getUrlVars('p')
               let redirections = [
                 {page: 'timeline', title: '{{Timeline}}'},
@@ -511,11 +529,16 @@ jeedomUtils.initApplication = function(_reinit) {
                 {page: 'cron', title: '{{Crons}}'},
                 {page: 'deamon', title: '{{Démons}}'},
                 {page: 'message', title: '{{Message}}'},
-                // break alternate home button {page: 'overview', title: "<i class=\'fab fa-hubspot\'></i> {{Synthèse}}"}
+                {page: 'overview', title: "<i class=\'fab fa-hubspot\'></i> {{Synthèse}}"},
+                {page: 'home', title: "{{Accueil}}"},
               ]
+              window.redirected = false
               if (redirect && redirections.map(i => i.page).includes(redirect)) {
                 for (let redir of redirections) {
-                  if (redir.page == redirect) jeedomUtils.loadPage(redir.page, redir.title)
+                  if (redir.page == redirect) {
+                    window.redirected = true
+                    jeedomUtils.loadPage(redir.page, redir.title)
+                  }
                 }
               } else if (redirect == 'view') {
                 jeedomUtils.loadPage('view', '{{Vue}}', getUrlVars('view_id'));
@@ -524,21 +547,17 @@ jeedomUtils.initApplication = function(_reinit) {
                 if (res[0] == 'core') {
                   switch (res[1]) {
                     case 'overview':
-                    defaultMobilePage = ['overview', "<i class=\'fab fa-hubspot\'></i> {{Synthèse}}"]
-                    jeedomUtils.loadPage(defaultMobilePage)
-                    break
+                      jeedomUtils.loadPage(defaultMobilePage)
+                      break
                     case 'dashboard':
-                    defaultMobilePage = ['equipment', jeeFrontEnd.userProfils.defaultMobileObjectName, jeeFrontEnd.userProfils.defaultMobileObject]
-                    jeedomUtils.loadPage(defaultMobilePage)
-                    break
+                      jeedomUtils.loadPage(defaultMobilePage)
+                      break
                     case 'plan':
-                    defaultMobilePage = null
-                    window.location.href = 'index.php?v=d&p=plan&plan_id=' + jeeFrontEnd.userProfils.defaultMobilePlan
-                    break
+                      window.location.href = 'index.php?v=d&p=plan&plan_id=' + jeeFrontEnd.userProfils.defaultMobilePlan
+                      break
                     case 'view':
-                    defaultMobilePage = ['view', jeeFrontEnd.userProfils.defaultMobileViewName, jeeFrontEnd.userProfils.defaultMobileView]
-                    jeedomUtils.loadPage(defaultMobilePage)
-                    break
+                      jeedomUtils.loadPage(defaultMobilePage)
+                      break
                   }
                 } else {
                   jeedomUtils.loadPage(res[1], 'Plugin', '', res[0])
@@ -549,9 +568,9 @@ jeedomUtils.initApplication = function(_reinit) {
             }
 
             if (APP_MODE) {
-              $('#pagecontainer').css('padding-top',0)
+              document.getElementById('pagecontainer').style.paddingTop = '0'
             } else {
-              $('#pagecontainer').css('padding-top','72px')
+              document.getElementById('pagecontainer').style.paddingTop = '72px'
             }
           })
         })
@@ -562,13 +581,15 @@ jeedomUtils.initApplication = function(_reinit) {
 
 jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
   window.onscroll = null
+
   //handle default mobile home switching:
   if (Array.isArray(_page)) {
+    _page = _page[0]
     _title = _page[1]
     _option = _page[2]
-    _page = _page[0]
   }
   CURRENT_PAGE = _page
+
   //handle browser history:
   if (PAGE_HISTORY[PAGE_HISTORY.length - 1]) {
     PAGE_HISTORY[PAGE_HISTORY.length - 1].scroll = $(document).scrollTop()
@@ -613,14 +634,15 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
   if (isset(_dialog) && _dialog) {
     page += '&modal='+_page
   } else {
-    //alternate between defaultMobilePage and home:
-    var thisPage = document.body.getAttribute('data-page')
-    if (defaultMobilePage != null && defaultMobilePage[0] != thisPage && _page == 'home') {
+
+    //Alternate between defaultMobilePage and home:
+    if (window.redirected === false && defaultMobilePage != null && defaultMobilePage[0] != document.body.getAttribute('data-page') && _page == 'home') {
       _page = defaultMobilePage[0]
       _title = defaultMobilePage[1]
       _option = defaultMobilePage[2]
       $('#pageTitle').empty().append(_title)
     }
+    window.redirected = false
     page += '&p=' + _page
   }
   if (init(_plugin) != '') {
