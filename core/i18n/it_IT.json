@@ -75,6 +75,8 @@
         "Historique": "Storico",
         "Préviens moi": "Mi avvisate",
         "Me prévenir si": "Avvisami se",
+        "Accueil": "Principale",
+        "Synthèse": "Sintesi",
         "Timeline": "Timeline",
         "Santé": "Santé",
         "Logs": "Logs",
@@ -83,9 +85,7 @@
         "Crons": "Crons",
         "Démons": "Démons",
         "Message": "Message",
-        "Synthèse": "Sintesi",
-        "Vue": "Vue",
-        "Accueil": "Principale"
+        "Vue": "Vue"
     },
     "mobile\/js\/scenario.js": {
         "Aucun": "Nessuno"

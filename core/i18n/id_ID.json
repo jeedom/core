@@ -75,6 +75,8 @@
         "Historique": "Historis",
         "Préviens moi": "Memperingatkan saya",
         "Me prévenir si": "Beritahu saya jika",
+        "Accueil": "Rumah",
+        "Synthèse": "Synthèse",
         "Timeline": "Timeline",
         "Santé": "Santé",
         "Logs": "Logs",
@@ -83,9 +85,7 @@
         "Crons": "Crons",
         "Démons": "Démons",
         "Message": "Message",
-        "Synthèse": "Synthèse",
-        "Vue": "Vue",
-        "Accueil": "Rumah"
+        "Vue": "Vue"
     },
     "mobile\/js\/scenario.js": {
         "Aucun": "Tak ada"

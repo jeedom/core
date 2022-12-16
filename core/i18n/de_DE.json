@@ -75,6 +75,8 @@
         "Historique": "Chronik",
         "Préviens moi": "Lassen Sie mich wissen",
         "Me prévenir si": "Warne mich, wenn",
+        "Accueil": "Mein Haus",
+        "Synthèse": "Synthese",
         "Timeline": "Zeitleiste",
         "Santé": "Die Gesundheit",
         "Logs": "Protokolle",
@@ -83,9 +85,7 @@
         "Crons": "Kronen",
         "Démons": "Dämonen",
         "Message": "Nachricht",
-        "Synthèse": "Synthese",
-        "Vue": "Gesehen",
-        "Accueil": "Mein Haus"
+        "Vue": "Gesehen"
     },
     "mobile\/js\/scenario.js": {
         "Aucun": "Nein"

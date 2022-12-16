@@ -75,6 +75,8 @@
         "Historique": "歴史的",
         "Préviens moi": "私に警告",
         "Me prévenir si": "なら、私に通知",
+        "Accueil": "家庭",
+        "Synthèse": "合成",
         "Timeline": "Timeline",
         "Santé": "Santé",
         "Logs": "Logs",
@@ -83,9 +85,7 @@
         "Crons": "Crons",
         "Démons": "Démons",
         "Message": "Message",
-        "Synthèse": "合成",
-        "Vue": "Vue",
-        "Accueil": "家庭"
+        "Vue": "Vue"
     },
     "mobile\/js\/scenario.js": {
         "Aucun": "何でもありません"

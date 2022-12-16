@@ -21,27 +21,24 @@
 - **Administration** : Possibility to differentiate actions on error or on command alert.
 - A contextual menu has been added in different places at the level of the checkboxes to select them all, none, or invert the selection *(see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.4))*.
 
->**Remark**
->
->On the **Dashboard** and the **Views**, Core v4.4 now automatically resizes tiles to build a seamless grid. The units (smallest height and smallest width of a tile) of this grid are defined in **Settings → System → Configuration / Interface** by values *Vertical pitch (minimum 100)* and *Horizontal pitch (minimum 110)*. The value *Margin* defining the space between the tiles.
->The tiles adapt to the dimensions of the grid and can be done once, twice etc. these values in height or width. It will certainly be necessary to pass [Dashboard edit mode](https://doc.jeedom.com/en_US/core/4.4/dashboard#Mode%20%C3%A9dition) to fine-tune the size of some tiles after the update.
-
-
->**Remark**
->
->Core widgets have been rewritten in pure js/css. You will have to edit the Dashboard *(Edit then button ⁝ on the tiles)* and use the option *Line wrap after* on certain commands to find the same visual aspect.
->All Core widgets now support displaying *time*, by adding an optional parameter *time* / *duration* Where *date*.
-
-
 ### 4.4 : Autre
 
 - **Core** : Start of development in pure js, without jQuery. See [doc dev](https://doc.jeedom.com/en_US/dev/core4.4).
 - **Core** : More detailed listing of USB devices.
 - **Lib** : Update Highchart v9.3.2 to v10.3.2 (The module *solid gauge* no longer imported).
 
-### 4.4 : Notes
+### 4.4 : Remarques
 
-*RAS*
+>**Dashboard**
+>
+>On the **Dashboard** and the **Views**, Core v4.4 now automatically resizes tiles to build a seamless grid. The units (smallest height and smallest width of a tile) of this grid are defined in **Settings → System → Configuration / Interface** by values *Vertical pitch (minimum 100)* and *Horizontal pitch (minimum 110)*. The value *Margin* defining the space between the tiles.
+>The tiles adapt to the dimensions of the grid and can be done once, twice etc. these values in height or width. It will certainly be necessary to pass [Dashboard edit mode](https://doc.jeedom.com/en_US/core/4.4/dashboard#Mode%20%C3%A9dition) to fine-tune the size of some tiles after the update.
+
+
+>**Widgets**
+>
+>Core widgets have been rewritten in pure js/css. You will have to edit the Dashboard *(Edit then button ⁝ on the tiles)* and use the option *Line wrap after* on certain commands to find the same visual aspect.
+>All Core widgets now support displaying *time*, by adding an optional parameter *time* / *duration* Where *date*.
 
 
 # Changelog Jeedom V4.3

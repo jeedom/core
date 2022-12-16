@@ -75,6 +75,8 @@
         "Historique": "История",
         "Préviens moi": "предупредить меня",
         "Me prévenir si": "Сообщите мне, если",
+        "Accueil": "Домой",
+        "Synthèse": "Synthèse",
         "Timeline": "Timeline",
         "Santé": "Santé",
         "Logs": "Logs",
@@ -83,9 +85,7 @@
         "Crons": "Crons",
         "Démons": "Démons",
         "Message": "Message",
-        "Synthèse": "Synthèse",
-        "Vue": "Vue",
-        "Accueil": "Домой"
+        "Vue": "Vue"
     },
     "mobile\/js\/scenario.js": {
         "Aucun": "Нет"

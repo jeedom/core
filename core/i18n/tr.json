@@ -75,6 +75,8 @@
         "Historique": "Geçmiş",
         "Préviens moi": "Beni uyar",
         "Me prévenir si": "Eğer bana bildir",
+        "Accueil": "Ana sayfa",
+        "Synthèse": "Sentez",
         "Timeline": "Timeline",
         "Santé": "Santé",
         "Logs": "Logs",
@@ -83,9 +85,7 @@
         "Crons": "Crons",
         "Démons": "Démons",
         "Message": "Message",
-        "Synthèse": "Sentez",
-        "Vue": "Vue",
-        "Accueil": "Ana sayfa"
+        "Vue": "Vue"
     },
     "mobile\/js\/scenario.js": {
         "Aucun": "Hiçbir"
