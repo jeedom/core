@@ -1795,6 +1795,7 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   #battery .eqLogic-widget .widget-name {
     text-align: center;
+    margin-bottom: 20px;
   }
   #battery .eqLogic-widget .widget-name > a {
     display:block;

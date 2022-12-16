@@ -141,6 +141,9 @@ $(function() {
   $('body').on('click', '#span_nbMessage', function() {
     jeedomUtils.loadPage('message', 'Messages')
   })
+  $('body').on('click', '#bt_changeTheme', function() {
+    jeedomUtils.changeTheme('toggle')
+  })
 })
 
 var PAGE_HISTORY = []
@@ -615,7 +618,7 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
   }
   if (_page == 'connection') {
     let page = 'index.php?v=m&ajax=1&p=' + _page
-    document.getElementById('page').load(page, function() {
+    $('#page').load(page, function() {
       document.body.setAttribute('data-page', 'connection')
       $('#page').trigger('create')
       if (APP_MODE) {
@@ -651,7 +654,7 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
   }
 
   if (isset(_dialog) && _dialog) {
-    document.getElementById('popupDialog').getElementsByClassName('content')[0].load(page, function() {
+    $('#popupDialog .content')[0].load(page, function() {
       var functionName = ''
       if (init(_plugin) != '') {
         functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase()
@@ -680,13 +683,9 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
   } else {
     jeedom.cmd.resetUpdateFunction()
 
-    var elPageContainer = document.getElementById('pagecontainer')
-    document.querySelectorAll('.ui-panel-dismiss')?.remove()
-    elPageContainer.replaceWith(elPageContainer.cloneNode(true)) //remove all events!
-
-    jeedom.object.summaryUpdate([{object_id:'global'}])
-    document.getElementById('page').load(page, function() {
+    $('#page').load(page, function() {
       document.body.setAttribute('data-page', _page)
+
       if (init(_plugin) != '') {
         document.body.setAttribute('data-plugin', _plugin)
       } else {
@@ -734,7 +733,7 @@ jeedomUtils.loadModal = function(_name, _callback) {
       $('#div_popup').empty().popup("close")
       $("[data-role=popup]").popup("close")
     } else {
-      document.getElementById('div_popup').empty().load(_name, function() {
+      $('#div_popup').empty().load(_name, function() {
         $('#div_popup').trigger('create').popup("open")
         if ('function' == typeof (_callback)) {
           _callback()
