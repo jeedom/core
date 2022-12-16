@@ -466,9 +466,9 @@ jeedomUtils.initApplication = function(_reinit) {
           themeCSS = 'core/themes/' + jeedom.theme.mobile_theme_color_night + '/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
           themeShadowCSS = 'core/themes/' + jeedom.theme.mobile_theme_color_night + '/mobile/shadows.css'
           document.body.setAttribute('data-theme', jeedom.theme.mobile_theme_color_night)
-          document.getElementById('jQMnDColor').asetAttributettr('href', themeCSS).setAttribute('data-nochange',1)
+          document.getElementById('jQMnDColor').setAttribute('data-nochange', '1')
         }
-        document.getElementById('jQMnDColor').setAttribute('href', themeCSS)
+        document.getElementById('jQMnDColor').href = themeCSS
 
         jeedomUtils.changeThemeAuto()
         jeedomUtils.checkThemechange()
@@ -680,11 +680,12 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
   } else {
     jeedom.cmd.resetUpdateFunction()
 
-    var elPageContainer =document.getElementById('pagecontainer')
+    var elPageContainer = document.getElementById('pagecontainer')
     document.querySelectorAll('.ui-panel-dismiss')?.remove()
     elPageContainer.replaceWith(elPageContainer.cloneNode(true)) //remove all events!
 
-    document.getElementById('page').empty().load(page, function() {
+    jeedom.object.summaryUpdate([{object_id:'global'}])
+    document.getElementById('page').load(page, function() {
       document.body.setAttribute('data-page', _page)
       if (init(_plugin) != '') {
         document.body.setAttribute('data-plugin', _plugin)
