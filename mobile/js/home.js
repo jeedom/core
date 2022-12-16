@@ -206,9 +206,9 @@ function initHome() {
     })
   }
 
-loadConfig('name');
-loadConfig('mbState');
-loadConfig('product_name');
+  loadConfig('name')
+  loadConfig('mbState')
+  loadConfig('product_name')
 
   if (!APP_MODE) {
     setTimeout(function() {

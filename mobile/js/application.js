@@ -493,8 +493,9 @@ jeedomUtils.initApplication = function(_reinit) {
           }
         }
 
+        //load some css, then ...
         $.get("core/php/icon.inc.php", function (data) {
-          $("head").append(data)
+          document.head.insertAdjacentHTML('beforeend', data)
           $.include(include, function() {
             deviceInfo = getDeviceType()
             jeedom.object.summaryUpdate([{object_id:'global'}])
@@ -607,9 +608,9 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
   } catch (e) { }
   if (isset(_title)) {
     if (!isset(_dialog) || !_dialog) {
-      document.getElementById('pageTitle')?.empty().html(_title)
+      document.getElementById('pageTitle')?.empty().insertAdjacentHTML('beforeend', _title)
     } else {
-      document.getElementById('popupDialog').getElementsByClassName('nd-title').html(_title)
+      document.getElementById('popupDialog').getElementsByClassName('nd-title').insertAdjacentHTML('beforeend',_title)
     }
   }
   if (_page == 'connection') {
@@ -679,11 +680,15 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
   } else {
     jeedom.cmd.resetUpdateFunction()
 
-    document.getElementById('page').load(page, function() {
+    var elPageContainer =document.getElementById('pagecontainer')
+    document.querySelectorAll('.ui-panel-dismiss')?.remove()
+    elPageContainer.replaceWith(elPageContainer.cloneNode(true)) //remove all events!
+
+    document.getElementById('page').empty().load(page, function() {
       document.body.setAttribute('data-page', _page)
       if (init(_plugin) != '') {
         document.body.setAttribute('data-plugin', _plugin)
-      }else{
+      } else {
         document.body.setAttribute('data-plugin', null)
       }
       $('#page').trigger('create')
