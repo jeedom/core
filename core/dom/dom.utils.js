@@ -738,15 +738,15 @@ domUtils.unRegisterEvents = function() {
   domUtils.registeredEvents = []
 }
 
-EventTarget.prototype.registerEvent = function(_type, listener) {
-  if (typeof listener !== 'function') return
+EventTarget.prototype.registerEvent = function(_type, _listener, _options) {
+  if (typeof _listener !== 'function') return
   domUtils.registeredEvents.push({
     element: this,
     type: _type,
-    id: listener.name || '',
-    callback: listener
+    id: _listener.name || '',
+    callback: _listener
   })
-  this.addEventListener(_type, listener)
+  this.addEventListener(_type, _listener, _options)
   return this
 }
 
