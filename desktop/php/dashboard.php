@@ -166,8 +166,8 @@ $columns = config::byKey('dahsboard::column::size');
 		if (isset($summaryCache[$objectId])) {
 			$div .= '<span>' . $summaryCache[$objectId] . '</span>';
 		}
-		$div .= '<i class="fas fa-compress pull-right cursor bt_editDashboardTilesAutoResizeDown" id="compressTiles_object_' . $objectId . '" title="{{Régler toutes les tuiles à la hauteur de la moins haute.}}" data-mode="0" style="display: none;"></i>
-		<i class="fas fa-expand pull-right cursor bt_editDashboardTilesAutoResizeUp" id="expandTiles_object_' . $objectId . '" title="{{Régler toutes les tuiles à la hauteur de la plus haute.}}" data-mode="0" style="display: none;"></i>
+		$div .= '<i class="fas fa-compress pull-right cursor bt_editDashboardTilesAutoResizeDown" title="{{Régler toutes les tuiles à la hauteur de la moins haute.}}" data-obecjtId="' . $objectId . '" style="display: none;"></i>
+		<i class="fas fa-expand pull-right cursor bt_editDashboardTilesAutoResizeUp" title="{{Régler toutes les tuiles à la hauteur de la plus haute.}}" data-obecjtId="' . $objectId . '" style="display: none;"></i>
 		</span>
 		</legend>';
 		$div .= '<div class="div_displayEquipement posEqWidthRef" id="div_ob' . $objectId . '">';

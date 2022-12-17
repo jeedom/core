@@ -240,7 +240,7 @@ NodeList.prototype.remove = function() {
 
 Element.prototype.fade = function(_delayms, _opacity, _callback) {
   let opacity = parseInt(this.style.opacity) || 0
-  let interval = 25,
+  let interval = 50,
       gap = interval / _delayms,
       delay = 0,
       self = this

@@ -293,12 +293,12 @@ document.addEventListener('DOMContentLoaded', function() {
   jeedomUtils.initJeedomModals()
   jeedomUtils.setJeedomGlobalUI()
 
-  jeedomUtils.initPage()
   if (jeedomUtils.backgroundIMG != null) {
     jeedomUtils.setBackgroundImage(jeedomUtils.backgroundIMG)
   } else {
     jeedomUtils.setBackgroundImage('')
   }
+  jeedomUtils.initPage()
 
   setTimeout(function() {
     jeedomUtils.initTooltips()
@@ -623,8 +623,8 @@ jeedomUtils.transitionJeedomBackground = function(_path) {
 
   top.style.opacity = 0
   top.style.backgroundImage = _path
-  top.fade(300, opacity)
-  bottom.fade(260, 0, function() {
+  top.fade(250, opacity)
+  bottom.fade(200, 0, function() {
     bottom.style.backgroundImage = _path
   })
 }
