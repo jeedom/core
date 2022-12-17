@@ -2794,7 +2794,6 @@
         "Configuration de l\\'objet": "Konfiguration des Objekts"
     },
     "desktop\/js\/view.js": {
-        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre.": "Sie befinden sich im Bearbeitungsmodus. Sie können die Kacheln verschieben, ihre Größe ändern und die Befehle (Reihenfolge, Widget) mit der Schaltfläche rechts neben dem Titel bearbeiten",
         "Configuration Affichage": "Konfiguration anzeigen"
     },
     "desktop\/js\/view_edit.js": {

@@ -2794,7 +2794,6 @@
         "Configuration de l\\'objet": "Objeto de configuración \\'s"
     },
     "desktop\/js\/view.js": {
-        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre.": "Estás en modo de edición. Puede mover los mosaicos, cambiar su tamaño y editar los comandos (orden, widget) con el botón a la derecha del título",
         "Configuration Affichage": "Configuración de pantalla"
     },
     "desktop\/js\/view_edit.js": {
