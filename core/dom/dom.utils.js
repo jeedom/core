@@ -228,7 +228,7 @@ Element.prototype.hasClass = function(_className) {
 
 //Misc
 NodeList.prototype.last = function() {
-  return Array.from(this).pop()
+  return Array.from(this).pop() || null
 }
 
 NodeList.prototype.remove = function() {
