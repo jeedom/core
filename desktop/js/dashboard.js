@@ -95,6 +95,7 @@ if (!jeeFrontEnd.dashboard) {
       $('#div_displayObject div.div_displayEquipement').packery()
     },
     editWidgetMode: function(_mode, _save) {
+      if (document.getElementById('bt_editDashboardWidgetOrder') == null) return
       if (!isset(_mode)) {
         if (document.getElementById('bt_editDashboardWidgetOrder').getAttribute('data-mode') != undefined && document.getElementById('bt_editDashboardWidgetOrder').getAttribute('data-mode') == 1) {
           this.editWidgetMode(0, false)

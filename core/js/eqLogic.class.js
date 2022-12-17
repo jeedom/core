@@ -433,7 +433,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
         if (jeedomUtils.userDeviceType == undefined) {
           eqLogic.triggerEvent('create')
           jeedomUtils.setTileSize('.eqLogic')
-        } else if (jeeFrontEnd.dashboard && jeeFrontEnd.dashboard.editWidgetMode && typeof jeeFrontEnd.dashboard.editWidgetMode == 'function') {
+        } else if (jeeFrontEnd.dashboard && jeeFrontEnd.dashboard.editWidgetMode && typeof jeeFrontEnd.dashboard.editWidgetMode == 'function' && document.getElementById('bt_editDashboardWidgetOrder') != null) {
           jeeFrontEnd.dashboard.editWidgetMode();
         }
       }

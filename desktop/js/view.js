@@ -172,10 +172,6 @@ $('#bt_editViewWidgetOrder').off('click').on('click', function() {
     $('.counterReorderJeedom').remove()
     jeeP.editWidgetMode(0)
   } else {
-    jeedomUtils.showAlert({
-      message: "{{Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre.}}",
-      level: 'info'
-    })
     $(this).attr('data-mode', 1)
     jeeP.editWidgetMode(1)
   }
