@@ -30,8 +30,8 @@ if (!jeedomUI) {
       var itemElems = _container.packery('getItemElements')
       var _draggingOrder = jeedomUI.orders[jeedomUI.draggingId]
       var _newOrders = {}
-      $(itemElems).each( function(i, itemElem ) {
-        _newOrders[$(this).attr('data-editId')] = i + 1
+      itemElems.forEach(function(itemElem, i) {
+        _newOrders[itemElem.getAttribute('data-editId')] = i + 1
       })
       var _draggingNewOrder = _newOrders[jeedomUI.draggingId]
       //----->moved jeedomUI.draggingId from _draggingOrder to _draggingNewOrder
@@ -45,29 +45,30 @@ if (!jeedomUI) {
 
       //set dom positions:
       var arrKeys = Object.keys(_finalOrder)
-      var arrLength = arrKeys.length
       var firstElId = arrKeys.find(key => _finalOrder[key] === 1)
-      $('.ui-draggable[data-editId="'+firstElId+'"]').parent().prepend($('.ui-draggable[data-editId="'+firstElId+'"]'))
+      var firstEl = document.querySelector('.ui-draggable[data-editId="'+firstElId+'"]')
+      firstEl.parentNode.insertBefore(firstEl, firstEl.parentNode.firstChild)
 
-      for (var i = 2; i < arrLength + 1; i++) {
-        var thisId = arrKeys.find(key => _finalOrder[key] === i)
-        var prevId = arrKeys.find(key => _finalOrder[key] === i-1)
-        $('.ui-draggable[data-editId="'+prevId+'"]').after($('.ui-draggable[data-editId="'+thisId+'"]'))
+      var thisId, prevId, thisEl, prevEl
+      for (var i = 2; i < arrKeys.length + 1; i++) {
+        thisId = arrKeys.find(key => _finalOrder[key] === i)
+        thisEl = document.querySelector('.ui-draggable[data-editId="'+thisId+'"]')
+        prevId = arrKeys.find(key => _finalOrder[key] === i-1)
+        prevEl =  document.querySelector('.ui-draggable[data-editId="'+prevId+'"]')
+        if (thisEl && prevEl) prevEl.parentNode.insertBefore(thisEl, prevEl.nextSibling)
       }
 
       //reload from dom positions:
       _container.packery('reloadItems').packery()
 
       itemElems = _container.packery('getItemElements')
-      $(itemElems).each(function(i, itemElem) {
-        $(itemElem).attr(_orderAttr, i + 1)
-        var value = i + 1
+
+      itemElems.forEach(function(itemElem, i) {
+        itemElem.setAttribute(_orderAttr, i + 1)
         if (jeedomUI.isEditing) {
-          if ($(itemElem).find(".counterReorderJeedom").length) {
-            $(itemElem).find(".counterReorderJeedom").text(value)
-          } else {
-            $(itemElem).prepend('<span class="counterReorderJeedom pull-left">'+value+'</span>')
-          }
+          itemElem.querySelector('.counterReorderJeedom').textContent = (i + 1).toString()
+        } else {
+          itemElem.insertAdjacentHTML('afterbegin', '<span class="counterReorderJeedom pull-left">'+(i + 1).toString()+'</span>')
         }
       })
     },
@@ -82,49 +83,51 @@ if (!jeedomUI) {
         _params = {}
       }
       var cmds = []
+      //Get all commands for display default eqLogic:
+      document.querySelectorAll('div.eqLogic-widget:not(div.eqLogic_layout_table)').forEach(function(el_eqLogic) {
+        var order = 1
+        el_eqLogic.querySelectorAll('.cmd').forEach(function(el_cmd) {
+          var cmd = {}
+          cmd.id = el_cmd.getAttribute('data-cmd_id') || undefined
+          cmd.order = order
+          cmds.push(cmd)
+          order++
+        })
+      })
+      //Get all commands for display table eqLogic:
+      document.querySelectorAll('div.eqLogic-widget.eqLogic_layout_table').forEach(function(el_eqLogic) {
+        var order = 1
+        el_eqLogic.querySelectorAll('.cmd').forEach(function(el_cmd) {
+          var cmd = {}
+          cmd.id = el_cmd.getAttribute('data-cmd_id') || undefined
+          cmd.line = el_cmd.closest('td')?.getAttribute('data-line') || undefined
+          cmd.column = el_cmd.closest('td')?.getAttribute('data-column') || undefined
+          cmd.order = order
+          cmds.push(cmd)
+          order++
+        })
+      })
+
+      //Get size/order tile:
       var eqLogics = []
       var scenarios = []
-      $('div.eqLogic-widget:not(div.eqLogic_layout_table)').each(function() {
-        var eqLogic = $(this)
-        var order = 1
-        eqLogic.find('.cmd').each(function() {
-          var cmd = {};
-          cmd.id = $(this).attr('data-cmd_id')
-          cmd.order = order
-          cmds.push(cmd)
-          order++
-        })
-      })
-      $('div.eqLogic-widget.eqLogic_layout_table').each(function() {
-        var eqLogic = $(this)
-        var order = 1
-        eqLogic.find('.cmd').each(function() {
-          var cmd = {}
-          cmd.id = $(this).attr('data-cmd_id')
-          cmd.line = $(this).closest('td').attr('data-line')
-          cmd.column = $(this).closest('td').attr('data-column')
-          cmd.order = order
-          cmds.push(cmd)
-          order++
-        })
-      })
       if (init(_params['dashboard']) == 1) {
-        $('.div_displayEquipement').each(function() {
+        document.querySelectorAll('.div_displayEquipement').forEach(function(el_display) {
           var order = 1
-          $(this).find('div.eqLogic-widget, div.scenario-widget').each(function() {
-            if ($(this).hasClass('eqLogic-widget')) {
-              var eqLogic = {id :$(this).attr('data-eqlogic_id')}
+          el_display.querySelectorAll('div.eqLogic-widget, div.scenario-widget').forEach(function(el_tile) {
+            if (el_tile.hasClass('eqLogic-widget')) {
+              var eqLogic = {id: el_tile.getAttribute('data-eqlogic_id')}
               eqLogic.display = {}
-              eqLogic.display.width =  Math.floor($(this).outerWidth() / 2) * 2 + 'px'
-              eqLogic.display.height = Math.floor($(this).outerHeight() / 2) * 2+ 'px'
-              eqLogic.order = ($(this).attr('data-order') != undefined) ? $(this).attr('data-order') : order
+              eqLogic.display.width = Math.floor(el_tile.offsetWidth / 2) * 2 + 'px'
+              eqLogic.display.height = Math.floor(el_tile.offsetHeight / 2) * 2+ 'px'
+              eqLogic.order = el_tile.getAttribute('data-order') || order
               eqLogics.push(eqLogic)
-            } else if ($(this).hasClass('scenario-widget')) {
-              var scenario = {id :$(this).attr('data-scenario_id')}
+            } else if (el_tile.hasClass('scenario-widget')) {
+              var scenario = {id: el_tile.getAttribute('data-scenario_id')}
               scenario.display = {}
-              scenario.display.width =  Math.floor($(this).outerWidth() / 2) * 2 + 'px'
-              scenario.display.height = Math.floor($(this).outerHeight() / 2) * 2+ 'px'
-              scenario.order = ($(this).attr('data-order') != undefined) ? $(this).attr('data-order') : order
+              scenario.display.width = Math.floor(el_tile.offsetWidth / 2) * 2 + 'px'
+              scenario.display.height = Math.floor(el_tile.offsetHeight / 2) * 2+ 'px'
+              scenario.order = el_tile.getAttribute('data-order') || order
               scenarios.push(scenario)
             }
             order++
@@ -150,26 +153,28 @@ if (!jeedomUI) {
             jeedomUtils.showAlert({message: error.message, level: 'danger'})
           }
         })
-      } else if (init(_params['view']) == 1) {
+      }
+
+      if (init(_params['view']) == 1) {
         var components = []
-        $('.eqLogicZone').each(function() {
+        document.querySelectorAll('.eqLogicZone').forEach(function(el_zone) {
           var order = 1
-          $(this).find('.eqLogic-widget,.scenario-widget').each(function() {
-            if ($(this).hasClass('eqLogic-widget')) {
-              var eqLogic = {id :$(this).attr('data-eqlogic_id'),type:'eqLogic'}
+          el_zone.querySelectorAll('.eqLogic-widget,.scenario-widget').forEach(function(el_tile) {
+            if (el_tile.hasClass('eqLogic-widget')) {
+              var eqLogic = {id: el_tile.getAttribute('data-eqlogic_id'), type:'eqLogic'}
               eqLogic.display = {}
-              eqLogic.display.width =  Math.floor($(this).outerWidth() / 2) * 2 + 'px'
-              eqLogic.display.height = Math.floor($(this).outerHeight() / 2) * 2+ 'px'
-              eqLogic.viewZone_id = $(this).closest('.eqLogicZone').attr('data-viewZone-id')
-              eqLogic.viewOrder = ($(this).attr('data-viewOrder') != undefined) ? $(this).attr('data-viewOrder') : order
+              eqLogic.display.width = Math.floor(el_tile.offsetWidth / 2) * 2 + 'px'
+              eqLogic.display.height = Math.floor(el_tile.offsetHeight / 2) * 2+ 'px'
+              eqLogic.viewZone_id = el_tile.closest('.eqLogicZone').getAttribute('data-viewZone-id') || undefined
+              eqLogic.viewOrder = el_tile.getAttribute('data-viewOrder') || order
               components.push(eqLogic)
-            } else if ($(this).hasClass('scenario-widget')) {
-              var scenario = {id :$(this).attr('data-scenario_id'),type:'scenario'}
+            } else if (el_tile.hasClass('scenario-widget')) {
+              var scenario = {id: el_tile.getAttribute('data-scenario_id'), type:'scenario'}
               scenario.display = {}
-              scenario.display.width =  Math.floor($(this).outerWidth() / 2) * 2 + 'px'
-              scenario.display.height = Math.floor($(this).outerHeight() / 2) * 2+ 'px'
-              scenario.viewZone_id = $(this).closest('.eqLogicZone').attr('data-viewZone-id')
-              scenario.viewOrder = ($(this).attr('data-viewOrder') != undefined) ? $(this).attr('data-viewOrder') : order
+              scenario.display.width = Math.floor(el_tile.offsetWidth / 2) * 2 + 'px'
+              scenario.display.height = Math.floor(el_tile.offsetHeight / 2) * 2+ 'px'
+              scenario.viewZone_id = el_tile.closest('.eqLogicZone').getAttribute('data-viewZone-id') || undefined
+              scenario.viewOrder = el_tile.getAttribute('data-viewOrder') || order
               components.push(scenario)
             }
             order++
@@ -199,25 +204,32 @@ if (!jeedomUI) {
     infos/actions tile signals
     */
     setEqSignals: function() {
-      $('body').off('mouseenter').off('mouseleave')
-      .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]', function (event) {
-        if(!jeedomUI.isEditing) $(this).closest('div.eqLogic-widget').addClass('eqSignalAction')
-      })
-      .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]', function (event) {
-        if(!jeedomUI.isEditing) $(this).closest('div.eqLogic-widget').removeClass('eqSignalAction')
-      })
-      .on('mouseenter','div.eqLogic-widget .cmd-widget.history[data-type="info"]', function (event) {
-        if(!jeedomUI.isEditing) $(this).closest('div.eqLogic-widget').addClass('eqSignalInfo')
-      })
-      .on('mouseleave','div.eqLogic-widget .cmd-widget.history[data-type="info"]', function (event) {
-        if(!jeedomUI.isEditing) $(this).closest('div.eqLogic-widget').removeClass('eqSignalInfo')
-      })
-      .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd', function (event) {
-        if(!jeedomUI.isEditing) $(this).closest('div.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
-      })
-      .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd', function (event) {
-        if(!jeedomUI.isEditing) $(this).closest('div.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
-      })
+      document.body.unRegisterEvent('mouseenter', 'eqLogicSignalMouseenter')
+      document.body.registerEvent('mouseenter', function eqLogicSignalMouseenter(event) {
+        if (jeedomUI.isEditing) return false
+        if (event.target.matches('.cmd-widget[data-type="action"]:not([data-subtype="select"])')) {
+          event.target.closest('div.eqLogic-widget').addClass('eqSignalAction')
+        }
+        if (event.target.matches('.cmd-widget.history[data-type="info"]')) {
+          event.target.closest('div.eqLogic-widget').addClass('eqSignalInfo')
+        }
+        if (event.target.matches('.cmd-widget[data-type="action"] .timeCmd')) {
+          event.target.closest('div.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
+        }
+      }, {capture: true})
+      document.body.unRegisterEvent('mouseleave', 'eqLogicSignalMouseleave')
+      document.body.registerEvent('mouseleave', function eqLogicSignalMouseleave(event) {
+        if (jeedomUI.isEditing) return false
+        if (event.target.matches('.cmd-widget[data-type="action"]:not([data-subtype="select"])')) {
+          event.target.closest('div.eqLogic-widget').removeClass('eqSignalAction')
+        }
+        if (event.target.matches('.cmd-widget.history[data-type="info"]')) {
+          event.target.closest('div.eqLogic-widget').removeClass('eqSignalInfo')
+        }
+        if (event.target.matches('.cmd-widget[data-type="action"] .timeCmd')) {
+          event.target.closest('div.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
+        }
+      }, {capture: true})
     },
 
     /*
@@ -226,22 +238,25 @@ if (!jeedomUI) {
     Handle history modal openning on infos
     */
     setHistoryModalHandler: function() {
-      $('#div_pageContainer').off('click', '.history, .timeCmd.history').on('click', '.history, .timeCmd.history', function (event) {
+      document.getElementById('div_pageContainer').unRegisterEvent('click', 'historyModalHandler')
+      document.getElementById('div_pageContainer').registerEvent('click', function historyModalHandler(event) {
         if (jeedomUI.isEditing) return false
+        if (event.target.closest('.history[data-cmd_id]') == null) return false
         event.stopImmediatePropagation()
         event.stopPropagation()
-        if ((event.ctrlKey || event.metaKey) && $(this).closest('div.eqLogic.eqLogic-widget').html() != undefined) {
+
+        if ((event.ctrlKey || event.metaKey) && event.target.closest('div.eqLogic.eqLogic-widget') != null) {
           var cmdIds = []
-          $(this).closest('div.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
-            cmdIds.push($(this).data('cmd_id'))
+          event.target.closest('div.eqLogic.eqLogic-widget').querySelectorAll('.history[data-cmd_id]')?.forEach(function (element) {
+            cmdIds.push(element.dataset.cmd_id)
           })
           cmdIds = [...new Set(cmdIds)]
           cmdIds = cmdIds.join('-')
         } else {
-          var cmdIds = $(this).closest('.history[data-cmd_id]').data('cmd_id')
+          var cmdIds = event.target.closest('.history[data-cmd_id]').dataset.cmd_id
         }
         $('#md_modal2').dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + cmdIds).dialog('open')
-      })
+      }, {capture: false})
     },
   }
 }
