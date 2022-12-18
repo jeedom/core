@@ -472,11 +472,6 @@ label.binarySwitch>input:checked+span.binarySwitch {
 }
 
 /* ____________________others */
-.cmd-widget.widget-hygrothermographe {
-  width: 220px;
-  height: 220px;
-}
-
 div.arcgauge .content {
   position: relative;
   clip-path: polygon(0 -5px, 100% -5px, 100% 100%, 0 100%);

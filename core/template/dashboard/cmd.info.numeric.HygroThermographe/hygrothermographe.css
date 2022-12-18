@@ -1,0 +1,71 @@
+@font-face {
+	font-family: "Digital-7";
+	src: url("font/digital-7.eot?") format("eot"),
+		url("font/digital-7.woff") format("woff"),
+		url("font/digital-7.ttf") format("truetype"),
+		url("font/digital-7.svg#Digital-7") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+
+div.widget-hygrothermographe {
+	width: 200px;
+	background-image: url('No.ext_100_Dark.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
+	margin: 5px 0;
+}
+
+div.widget-hygrothermographe>div {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+	font-family: "Digital-7";
+	color: #181818;
+	padding: 3px 0 3px 5px;
+}
+
+.widget-hygrothermographe div.temperature {
+	height: 110px;
+	align-content: flex-end;
+}
+
+.widget-hygrothermographe div.humidity {
+	height: 90px;
+	align-content: flex-start;
+}
+
+.widget-hygrothermographe span.intNumTemp {
+	font-size: 60px;
+	line-height: 45px;
+	letter-spacing: 0.05em;
+}
+
+.widget-hygrothermographe span.decNumTemp {
+	font-size: 30px;
+}
+
+.widget-hygrothermographe span.uniteTemp,
+.widget-hygrothermographe span.uniteHumidity {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.widget-hygrothermographe span.intNumHumidity {
+	font-size: 50px;
+	line-height: 40px;
+	letter-spacing: 0.05em;
+}
+
+.widget-hygrothermographe span.decNumHumidity {
+	font-size: 25px;
+}
+
+.widget-hygrothermographe .cmdStats {
+	flex-basis: 100%;
+	line-height: 10px !important;
+	color: #181818 !important;
+}
