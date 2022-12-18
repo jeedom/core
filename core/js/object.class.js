@@ -290,7 +290,7 @@ jeedom.object.summaryUpdate = function(_params) {
   var updated = null;
   var icon = null;
 
-  //modifiy html summaries icons / numbers both desktop/mobile. Synthesis placement done by synthetis mutation observer.
+  //modifiy html summaries icons / numbers both desktop/mobile.
   for (var i in _params) {
     //object can be global summary element, or nodelist of object summary and dashOverviewPrev summary
     objectSummaryList = Array.from(document.querySelectorAll('.objectSummary' + _params[i].object_id))
@@ -298,12 +298,16 @@ jeedom.object.summaryUpdate = function(_params) {
     version = objectSummaryList[0].getAttribute('data-version')
     if (version == undefined) continue
 
+    var updated
     if (isset(_params[i]['keys'])) {
       objectSummaryList.forEach(function(objectSummary) {
-        updated = false;
+        updated = false
         for (var key in _params[i]['keys']) {
           summarySpan = objectSummary.querySelector('.objectSummaryParent[data-summary="' + key + '"]')
-          if (summarySpan == null) return //summary hided in object option
+          if (summarySpan == null) {
+            summarySpan = document.querySelector('div.objectPreview[data-object_id="' + _params[i].object_id + '"]').querySelector('.objectSummaryParent[data-summary="' + key + '"]')//          objectSummary.querySelector('.objectSummaryParent[data-summary="' + key + '"]') objectPreview
+            }
+          if (summarySpan == null) continue //summary hiden in object option
           keySpan = summarySpan.querySelector('.objectSummary' + key)
           if (summarySpan != null) {
             updated = true
@@ -355,6 +359,7 @@ jeedom.object.summaryUpdate = function(_params) {
     global: false,
     success: function(result) {
       //Manage summaries creation on mobile
+      //Could be enhanced to dynamically add / remove summary on creation/deletion on object page
       if (jeedomUtils.userDeviceType == 'desktop') return
       for (var id in result) {
         try {
