@@ -708,13 +708,44 @@ class jeeObject {
 	}
 
 	public function save($_direct = false) {
+		//force refresh all summaries:
+		$events = array();
+		try {
+			$global = array();
+			$summaries = $this->getConfiguration('summary');
+			if (is_array($summaries)) {
+				$event = array('object_id' => $this->getId(), 'keys' => array(), 'force' => 1);
+				foreach ($summaries as $key => $summary) {
+					$value = $this->getSummary($key);
+					$event['keys'][$key] = array('value' => $value);
+					$global[$key] = 1;
+				}
+				$events[] = $event;
+			}
+
+			if (count($global) > 0) {
+				$event = array('object_id' => 'global', 'keys' => array(), 'force' => 1);
+				foreach ($global as $key => $value) {
+					try {
+						$result = jeeObject::getGlobalSummary($key);
+						$event['keys'][$key] = array('value' => $result);
+					} catch (Exception $e) {
+					}
+				}
+				$events[] = $event;
+			}
+			if (count($events) > 0) {
+				event::adds('jeeObject::summary::update', $events);
+			}
+		} catch (\Exception $e) {
+		}
+
 		if ($this->_changed) {
 			cache::set('globalSummaryHtmldashboard', '');
 			cache::set('globalSummaryHtmlmobile', '');
 			$this->setCache('summaryHtmldashboard', '');
 			$this->setCache('summaryHtmlmobile', '');
 		}
-
 		$return = DB::save($this, $_direct);
 
 		//check childs parentNumber consistency:

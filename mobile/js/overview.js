@@ -46,7 +46,7 @@ function initOverview() {
             dataTitle = icon.replace(/\"/g, "\'") + ' ' + _this.name.replace(/\"/g, "\'")
           }
 
-          div = '<div class="objectPreview cursor shadowed fullCorner" style="background:url('+_backUrl+')" data-page="' + dataPage + '" data-option="'+dataOption+'" data-page="equipment" data-title="' + dataTitle + '">'
+          div = '<div class="objectPreview cursor shadowed fullCorner" style="background:url('+_backUrl+')" data-object_id="'+dataOption+'" data-page="' + dataPage + '" data-option="'+dataOption+'" data-page="equipment" data-title="' + dataTitle + '">'
             div += '<div class="topPreview topCorner">'
               div += '<span class="name">'+icon +' '+_this.name+'</span>'
             div += '</div>'
@@ -62,32 +62,25 @@ function initOverview() {
         }
       }
       jeedom.object.summaryUpdate(summaries)
-
       setTimeout(function() {
         //move to top summary:
-        $('.objectPreview').each(function() {
-          let parent = $(this).find('.topPreview')
-          $(this).find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').each(function() {
-            $(this).detach().appendTo(parent)
+        document.querySelectorAll('.objectPreview').forEach(function(element) {
+          var parent = element.querySelector('.topPreview')
+          element.querySelectorAll('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').forEach(function(el) {
+            parent.appendChild(el)
           })
-
-          $(this).find('.objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="motion"]').last().addClass('last')
-
-          if ($(this).find('.objectSummaryParent[data-summary="temperature"]').length == 0 && $(this).find('.objectSummaryParent[data-summary^=temp]').length > 0) {
-            $(this).find('.objectSummaryParent[data-summary^=temp]').first().detach().appendTo(parent)
+          element.querySelectorAll('.objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="motion"]')?.last()?.addClass('last')
+          if (element.querySelector('.objectSummaryParent[data-summary="temperature"]') != null && element.querySelector('.objectSummaryParent[data-summary^="temp"]') != null) {
+            parent.appendChild(element.querySelector('.objectSummaryParent[data-summary^="temp"]'))
           }
-
-          //get bigger if too much summaries:
-          if ($(this).find('.bottomPreview .objectSummaryParent').length > 18) $(this).addClass('big')
         })
-
-        $('.resume').show()
+        document.querySelectorAll('.resume').seen()
         createSummaryObserver()
-      }, 500)
+      }, 250)
 
       $('.objectPreview').off('click').on('click', function(event) {
-      if (event.target !== this) return
-      if ($(event.target).hasClass('topPreview') || $(event.target).hasClass('name')) return
+        if (event.target !== this) return
+        if ($(event.target).hasClass('topPreview') || $(event.target).hasClass('name')) return
         jeedomUtils.loadModal(false)
         jeedomUtils.loadPanel(false)
         if ($(this).data('option').toString() == '') {
@@ -134,7 +127,7 @@ function initOverview() {
 function createSummaryObserver() {
   var _SummaryObserver_ = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
-      if (mutation.type == 'childList' && mutation.target.className == 'resume') {
+      if (mutation.type == 'childList' && mutation.target.hasClass('objectSummaryContainer')) {
         try {
           updateSummary(mutation.addedNodes[0].className)
         } catch {}
@@ -155,14 +148,16 @@ function createSummaryObserver() {
 
 function updateSummary(_className) {
   _className = _className.replace('objectSummaryContainer ', '')
-  let parent = $('.' + _className).closest('.objectPreview')
-  let pResume = parent.find('.resume')
-  parent.find('.topPreview').find('.objectSummaryParent').remove()
-  pResume.find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').each(function() {
-    $(this).detach().appendTo(parent.find('.topPreview'))
+  var parent = document.querySelector('.' + _className).closest('.objectPreview')
+  if (parent == null) return
+  parent.querySelector('.topPreview')?.querySelectorAll('.objectSummaryParent')?.remove()
+  var pResume = parent.querySelector('.resume')
+  if (pResume == null) return
+  pResume.querySelectorAll('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').forEach(function(element) {
+    parent.querySelector('.topPreview').appendChild(element)
   })
-  parent.find('.objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="motion"]').last().addClass('last')
-  if (pResume.find('.objectSummaryParent[data-summary="temperature"]').length == 0 && pResume.find('.objectSummaryParent[data-summary^=temp]').length > 0) {
-    pResume.find('.objectSummaryParent[data-summary^=temp]').first().detach().appendTo(parent.find('.topPreview'))
+  parent.querySelectorAll('.objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="motion"]')?.last()?.addClass('last')
+  if (pResume.querySelector('.objectSummaryParent[data-summary="temperature"]') != null && pResume.querySelector('.objectSummaryParent[data-summary^="temp"]') != null ) {
+    parent.find('.topPreview').appendChild(pResume.querySelector('.objectSummaryParent[data-summary^="temp"]'))
   }
 }

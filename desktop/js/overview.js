@@ -41,7 +41,7 @@ if (!jeeFrontEnd.overview) {
     createSummaryObserver: function() {
       this._SummaryObserver_ = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
-          if (mutation.type == 'childList' && mutation.target.className == 'resume') {
+          if (mutation.type == 'childList' && mutation.target.hasClass('objectSummaryContainer')) {
             try {
               jeeP.updateSummary(mutation.addedNodes[0].className)
             } catch {}
@@ -52,29 +52,32 @@ if (!jeeFrontEnd.overview) {
       var targetNode = document.getElementById('objectOverviewContainer')
       if (targetNode) this._SummaryObserver_.observe(targetNode, this.observerConfig)
     },
-    checkResumeEmpty: function() {
-      var button
-      $('.objectPreview ').each(function() {
-        if (!$(this).find('.objectSummaryParent').length) {
-          button = '<span class="bt_config"><i class="fas fa-cogs"></i></span>'
-          $(this).find('.bt_config').remove()
-          $(this).find('.topPreview').append(button)
-        }
-      })
-    },
     updateSummary: function(_className) {
       _className = _className.replace('objectSummaryContainer ', '')
-      var parent = $('.' + _className).closest('.objectPreview')
-      var pResume = parent.find('.resume')
-      parent.find('.topPreview').find('.objectSummaryParent').remove()
-      pResume.find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').each(function() {
-        $(this).detach().appendTo(parent.find('.topPreview'))
+      var parent = document.querySelector('.' + _className).closest('.objectPreview')
+      if (parent == null) return
+      parent.querySelector('.topPreview')?.querySelectorAll('.objectSummaryParent')?.remove()
+      var pResume = parent.querySelector('.resume')
+      if (pResume == null) return
+      pResume.querySelectorAll('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').forEach(function(element) {
+        parent.querySelector('.topPreview').appendChild(element)
       })
-      parent.find('.objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="motion"]').last().addClass('last')
-      if (pResume.find('.objectSummaryParent[data-summary="temperature"]').length == 0 && pResume.find('.objectSummaryParent[data-summary^=temp]').length > 0) {
-        pResume.find('.objectSummaryParent[data-summary^=temp]').first().detach().appendTo(parent.find('.topPreview'))
+      parent.querySelectorAll('.objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="motion"]')?.last()?.addClass('last')
+      if (pResume.querySelector('.objectSummaryParent[data-summary="temperature"]') != null && pResume.querySelector('.objectSummaryParent[data-summary^="temp"]') != null ) {
+        parent.find('.topPreview').appendChild(pResume.querySelector('.objectSummaryParent[data-summary^="temp"]'))
       }
       this.checkResumeEmpty()
+    },
+    checkResumeEmpty: function() {
+      var button
+      document.querySelectorAll('.objectPreview').forEach(function(element) {
+        var visibles = [...element.querySelectorAll('.objectSummaryParent')].filter(el => el.isVisible())
+        if (visibles.length == 0) {
+          button = '<span class="bt_config"><i class="fas fa-cogs"></i></span>'
+          element.querySelector('.bt_config')?.remove()
+          element.querySelector('.topPreview').insertAdjacentHTML('beforeend', button)
+        }
+      })
     },
     getSummaryHtml: function(_object_id, _summary, _title) {
       this.summaryObjEqs[_object_id] = []
@@ -135,9 +138,9 @@ if (!jeeFrontEnd.overview) {
                   var thisWidth = 0
                   var thisHeight = 0
 
-                  $('#md_overviewSummary div.eqLogic-widget').each(function(index) {
-                    thisWidth = $(this).outerWidth(true)
-                    thisHeight = $(this).outerHeight(true)
+                  document.querySelectorAll('#md_overviewSummary div.eqLogic-widget').forEach(function(element) {
+                    thisWidth = element.offsetWidth
+                    thisHeight = element.offsetHeight
                     if (fullHeight == 0 || fullHeight < thisHeight + 5) fullHeight = thisHeight + 5
                     if ((fullWidth + thisWidth + 150) < brwSize.width) {
                       fullWidth += thisWidth + 7
@@ -183,6 +186,18 @@ if (!jeeFrontEnd.overview) {
 
 jeeFrontEnd.overview.init()
 
+//move to top summary:
+document.querySelectorAll('.objectPreview').forEach(function(element) {
+  var parent = element.querySelector('.topPreview')
+  element.querySelectorAll('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').forEach(function(el) {
+    parent.appendChild(el)
+  })
+  element.querySelectorAll('.objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="motion"]')?.last()?.addClass('last')
+  if (element.querySelector('.objectSummaryParent[data-summary="temperature"]') != null && element.querySelector('.objectSummaryParent[data-summary^="temp"]') != null) {
+    parent.appendChild(element.querySelector('.objectSummaryParent[data-summary^="temp"]'))
+  }
+})
+
 //Dialog summary opening:
 jeeP.$modal = $("#md_overviewSummary")
 jeeP.$modal.dialog({
@@ -197,7 +212,7 @@ jeeP.$modal.dialog({
     of: $('#div_pageContainer')
   },
   open: function() {
-    $('.ui-widget-overlay.ui-front').css('display', 'none')
+    document.querySelectorAll('.ui-widget-overlay.ui-front').forEach(dialog => { dialog.style.display = 'none'})
     //catch infos updates by main mutationobserver (jeedomUtils.loadPage disconnect/reconnect it):
     if (jeedomUtils.OBSERVER) {
       var summaryModal = document.getElementById('summaryEqlogics')
@@ -205,7 +220,7 @@ jeeP.$modal.dialog({
     }
   },
   beforeClose: function(event, ui) {
-    $('.ui-widget-overlay.ui-front').css('display')
+    document.querySelectorAll('.ui-widget-overlay.ui-front').forEach(dialog => { dialog.style.display = null})
   }
 })
 
@@ -213,129 +228,117 @@ jeeP.$modal.dialog({
 jeedomUI.isEditing = false
 jeedomUI.setEqSignals()
 
-//move to top summary:
-$('.objectPreview').each(function() {
-  var parent = $(this).find('.topPreview')
-  $(this).find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').each(function() {
-    $(this).detach().appendTo(parent)
-  })
-
-  $(this).find('.objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="motion"]').last().addClass('last')
-
-  if ($(this).find('.objectSummaryParent[data-summary="temperature"]').length == 0 && $(this).find('.objectSummaryParent[data-summary^=temp]').length > 0) {
-    $(this).find('.objectSummaryParent[data-summary^=temp]').first().detach().appendTo(parent)
-  }
-})
-
+document.querySelectorAll('.resume')?.seen()
 jeeFrontEnd.overview.postInit()
-document.querySelectorAll('.resume').seen()
 
 //summary modal events:
 jeeP.$summaryContainer.packery()
 jeeP.modal.resize(function() {
   jeeP.$summaryContainer.packery()
 })
-jeeP.modalContent.off().on('click', function(event) {
-  if (!$(event.target).parents('.eqLogic-widget').length) {
-    jeeP.$modal.dialog('close')
-  }
-})
 
-//history in summary modal:
-jeeP.modalContent.on({
-  'click': function(event) {
+jeeP.modalContent[0].addEventListener('click', function(event) {
+  if (event.target.closest('div.eqLogic-widget') == null) { //modal background click
+    jeeP.$modal.dialog('close')
+    return
+  }
+
+  if (event.target.matches('div.eqLogic-widget .history') || event.target.closest('.cmd-widget.history') != null ) { //history in summary modal
     event.stopImmediatePropagation()
     event.stopPropagation()
     if (event.ctrlKey || event.metaKey) {
       var cmdIds = []
-      $(this).closest('div.eqLogic-widget').find('.history[data-cmd_id]').each(function() {
-        cmdIds.push($(this).data('cmd_id'))
+      event.target.closest('div.eqLogic-widget').querySelectorAll('.history[data-cmd_id]').forEach(function(cmd) {
+        cmdIds.push(cmd.getAttribute('data-cmd_id'))
       })
       cmdIds = cmdIds.join('-')
     } else {
-      var cmdIds = $(this).closest('.history[data-cmd_id]').data('cmd_id')
+      var cmdIds = event.target.closest('.history[data-cmd_id]').getAttribute('data-cmd_id')
     }
     $('#md_modal2').dialog({
       title: "{{Historique}}"
     }).load('index.php?v=d&modal=cmd.history&id=' + cmdIds).dialog('open')
   }
-}, 'div.eqLogic-widget .history')
+}, {capture: false})
 
-//buttons:
-$('#div_pageContainer').on({
-  'click': function(event) {
-    var objectId = $(this).closest('.objectPreview').data('object_id')
-    var url = 'index.php?v=d&p=object&id=' + objectId + '#summarytab'
-    jeedomUtils.loadPage(url)
+
+//div_pageContainer events delegation:
+document.getElementById('div_pageContainer').addEventListener('click', function(event) {
+  if (event.target.matches('.objectPreview .name')) {
+    var url = 'index.php?v=d&p=dashboard&object_id=' + event.target.closest('.objectPreview').getAttribute('data-object_id')
+    if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
+      window.open(url).focus()
+    } else {
+      jeedomUtils.loadPage(url)
+    }
+    return
   }
-}, '.objectPreview .bt_config')
 
-$('#objectOverviewContainer').on({
-  'click': function(event) {
+  if (event.target.matches('.objectPreview') || event.target.parentNode.hasClass('resume')) {
+    var url = event.target.getAttribute('data-url') || event.target.closest('.objectPreview').getAttribute('data-url')
+    if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
+      window.open(url).focus()
+    } else {
+      jeedomUtils.loadPage(url)
+    }
+    return
+  }
+
+  if (event.target.matches('.objectSummaryParent > i, .objectSummaryParent > sup, .objectSummaryParent > sup > span')) {
     //action summary:
     if (event.ctrlKey) return
 
     event.stopPropagation()
     event.preventDefault()
-    var objectId = $(this).closest('.objectPreview').attr('data-object_id')
-    var summaryType = $(this).attr('data-summary')
-    var icon = $(this).get(0).firstChild.outerHTML
+    var objectId = event.target.closest('.objectPreview').getAttribute('data-object_id')
+    var summaryType = event.target.closest('.objectSummaryParent').getAttribute('data-summary')
+    var icon = event.target.closest('.objectSummaryParent').querySelector('i')?.outerHTML
     if (icon) {
-      var title = icon + ' ' + $(this).closest('.objectPreview').find('.topPreview .name').text()
+      var title = icon + ' ' +  event.target.closest('.objectPreview').querySelector('.topPreview .name').textContent
     } else {
-      var title = $(this).closest('.objectPreview').find('.topPreview .name').text()
+      var title = event.target.closest('.objectPreview').querySelector('.topPreview .name').textContent
     }
     jeeP.getSummaryHtml(objectId, summaryType, title)
+    return
   }
-}, '.objectSummaryParent')
 
-
-//Tile click or center-click
-$('.objectPreview').off('click').on('click', function(event) {
-  if (event.target !== this && !$(event.target).hasClass('bottomPreview')) return
-  var url = $(this).attr('data-url')
-  if (event.ctrlKey || event.metaKey) {
-    window.open(url).focus()
-  } else {
+  if (event.target.matches('.objectPreview .bt_config, .objectPreview .bt_config i')) {
+    var objectId = event.target.closest('.objectPreview').getAttribute('data-object_id')
+    var url = 'index.php?v=d&p=object&id=' + objectId + '#summarytab'
     jeedomUtils.loadPage(url)
+    return
   }
-  return false
+
 })
-$('.objectPreview').off('mouseup').on('mouseup', function(event) {
-  if (event.which == 2) {
-    var target = event.target
-    if ($(target).hasClass('topPreview') || $(target).hasClass('name')) return
-    if (target !== this && !$(target).hasClass('bottomPreview')) {
-      target = $(target).closest('.objectSummaryParent')
-      var url = 'index.php?v=d&p=dashboard&summary=' + target.data('summary') + '&object_id=' + $(this).data('object_id') + '&childs=0'
-      window.open(url).focus()
-    } else {
+
+document.getElementById('div_pageContainer').addEventListener('mouseup', function(event) {
+  if (event.target.matches('.objectPreview .name')) {
+    if (event.which == 2) {
       event.preventDefault()
-      var id = $(this).attr('data-object_id')
-      $('.objectPreview[data-object_id="' + id + '"]').trigger(jQuery.Event('click', {
-        ctrlKey: true
-      }))
+      var id = event.target.closest('.objectPreview').getAttribute('data-object_id')
+      document.querySelector('.objectPreview[data-object_id="' + id + '"] .name').triggerEvent('click', {detail: {ctrlKey: true}})
     }
+    return
   }
-})
 
-//Tile name click or center-click
-$('.objectPreview .name').off('click').on('click', function(event) {
-  var url = 'index.php?v=d&p=dashboard&object_id=' + $(this).closest('.objectPreview').attr('data-object_id')
-  if (event.ctrlKey || event.metaKey) {
-    window.open(url).focus()
-  } else {
-    jeedomUtils.loadPage(url)
+  if (event.target.matches('.objectPreview') || event.target.parentNode.hasClass('resume')) {
+    if (event.which == 2) {
+      if (event.target.hasClass('topPreview') || event.target.hasClass('name')) return
+      event.preventDefault()
+      var id = event.target.getAttribute('data-object_id') || event.target.closest('.objectPreview').getAttribute('data-object_id')
+      document.querySelector('.objectPreview[data-object_id="' + id + '"]').triggerEvent('click', {detail: {ctrlKey: true}})
+    }
+    return
   }
-  return false
-})
-$('.objectPreview .name').off('mouseup').on('mouseup', function(event) {
-  if (event.which == 2) {
-    event.preventDefault()
-    var id = $(this).closest('.objectPreview').attr('data-object_id')
-    $('.objectPreview[data-object_id="' + id + '"] .name').trigger(jQuery.Event('click', {
-      ctrlKey: true
-    }))
+
+  if (event.target.matches('.objectSummaryParent > i, .objectSummaryParent > sup, .objectSummaryParent > sup > span')) {
+    if (event.which == 2) {
+      var target = event.target.closest('.objectSummaryParent')
+      var id = event.target.closest('.objectPreview').getAttribute('data-object_id')
+      var url = 'index.php?v=d&p=dashboard&summary=' + target.getAttribute('data-summary') + '&object_id=' + id + '&childs=0'
+      window.open(url).focus()
+      return
+    }
   }
 })
 

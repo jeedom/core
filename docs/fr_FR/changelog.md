@@ -16,6 +16,7 @@
 - **Dashboard** : La fenêtre d'édition des tuiles en Mode Edition permet de renommer les commandes.
 - **Dashboard** : En disposition tableau, possibilité d'insérer des attributs HTML *(colspan/rowspan notamment)* pour chaque cellule.
 - **Equipements** : Possibilité de désactiver les templates de widget des plugins qui en utilisent pour revenir à l'affichage par défaut Jeedom *(fenêtre de configuration de l'équipement)*.
+- **Objet** : La suppression ou la création d'un résumé entraine l'update du résumé global et de l'objet.
 - **Outils / Remplacer** : Cet outil propose maintenant un mode *Copier*, permettant de copier les configurations d'équipements et de commandes, sans les remplacer dans les scénarios et autres.
 - **Timeline** : La Timeline charge maintenant les 35 premiers événements. En bas de page, plusieurs boutons permettent de charger dynamiquement les évènements suivant.
 - **Administration** : Possibilité de différencier les actions sur erreur ou sur alerte de commande.

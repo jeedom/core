@@ -305,10 +305,8 @@ jeedom.object.summaryUpdate = function(_params) {
         for (var key in _params[i]['keys']) {
           summarySpan = objectSummary.querySelector('.objectSummaryParent[data-summary="' + key + '"]')
           if (summarySpan == null) {
-            summarySpan = document.querySelector('div.objectPreview[data-object_id="' + _params[i].object_id + '"]').querySelector('.objectSummaryParent[data-summary="' + key + '"]')//          objectSummary.querySelector('.objectSummaryParent[data-summary="' + key + '"]') objectPreview
+            summarySpan = document.querySelector('div.objectPreview[data-object_id="' + _params[i].object_id + '"]')?.querySelector('.objectSummaryParent[data-summary="' + key + '"]')
             }
-          if (summarySpan == null) continue //summary hiden in object option
-          keySpan = summarySpan.querySelector('.objectSummary' + key)
           if (summarySpan != null) {
             updated = true
             //hide if no display if nul:
@@ -329,6 +327,7 @@ jeedom.object.summaryUpdate = function(_params) {
               summarySpan.seen().insertAdjacentHTML('afterbegin', icon)
 
               //update number:
+              keySpan = summarySpan.querySelector('.objectSummary' + key)
               if (_params[i]['keys'][key]['value'] == 0 && summarySpan.getAttribute('data-hidenulnumber') == '1') {
                 keySpan.empty()
               } else {
@@ -342,6 +341,7 @@ jeedom.object.summaryUpdate = function(_params) {
         }
       })
     }
+    //existing summaries updated, may got some creation or deletation: (admin postConfig_object_summary() or object save())
     summaryUpdate[_params[i].object_id] = {
       objectSummaryList: objectSummaryList,
       version: version
@@ -358,13 +358,9 @@ jeedom.object.summaryUpdate = function(_params) {
   var paramsSpecifics = {
     global: false,
     success: function(result) {
-      //Manage summaries creation on mobile
-      //Could be enhanced to dynamically add / remove summary on creation/deletion on object page
-      if (jeedomUtils.userDeviceType == 'desktop') return
       for (var id in result) {
         try {
           summaryUpdate[id].objectSummaryList.forEach(function(objectSummary) {
-            if (objectSummary.hasChildNodes()) return  //summary ever created
             summary = domUtils.parseHTML(result[id].html)
             objectSummary.empty().appendChild(summary)
             objectSummary.querySelector('.objectSummary' + id).replaceWith(...objectSummary.querySelector('.objectSummary' + id).childNodes)
