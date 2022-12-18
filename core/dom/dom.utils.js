@@ -130,7 +130,7 @@ String.prototype.stripAccents = function() {
 */
 //Hide Show as seen(), unseen() as prototype show/hide are ever declared and fired by bootstrap and jquery
 Element.prototype.isVisible = function() {
-  return this.offsetWidth > 0 || this.offsetHeight > 0 || this.getClientRects().length > 0
+  return this.offsetWidth > 0 || this.offsetHeight > 0 || this.getClientRects().length > 0 || this.offsetParent != null
 }
 Element.prototype.isHidden = function() {
   return (this.offsetParent === null)
