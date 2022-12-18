@@ -20,31 +20,25 @@
   <script>
     if ('#generic_type#' == 'TEMPERATURE') {
       let visible = document.querySelector('.cmd[data-cmd_id="#id#"]')
-      visible.style.backgroundImage = "url('core/template/dashboard/cmd.info.numeric.HygroThermographe/No.ext_100_" + document.body.getAttribute('data-theme').split('_')[1] + ".png')"
       visible.querySelector('.temperature').setAttribute('data-cmd_id', '#id#')
       visible.querySelector('.temperature').classList += ' #history#'
-      if (domUtils.issetWidgetOptParam('#scale#', 'scale')) {
-        applyScale(visible, '#scale#')
-      }
+      visible.style.backgroundImage = "url('core/template/dashboard/cmd.info.numeric.HygroThermographe/No.ext_100_" + document.body.getAttribute('data-theme').split('_')[1] + ".png')"
       document.body.addEventListener('changeThemeEvent', function(event) {
         visible.style.backgroundImage = "url('core/template/dashboard/cmd.info.numeric.HygroThermographe/No.ext_100_" + event.detail.theme + ".png')"
       })
     } if ('#generic_type#' == 'HUMIDITY') {
       let hidden = document.querySelector('.cmd[data-cmd_id="#id#"]')
-      hidden.unseen()
       if (is_object(visible = hidden.parentNode.querySelector('.widget-hygrothermographe:not([data-cmd_id="#id#"])'))) {
         visible.setAttribute('data-hidden_id', hidden.getAttribute('data-cmd_id'))
         visible.querySelector('.humidity').setAttribute('data-cmd_id', hidden.getAttribute('data-cmd_id'))
         visible.querySelector('.humidity').classList += ' #history#'
-        if (domUtils.issetWidgetOptParam('#scale#', 'scale')) {
-          applyScale(visible, '#scale#')
-        }
         let html = hidden.querySelector('.cmdStats').innerHTML
         if (!html.includes('#')) {
           visible.querySelector('.humidity .cmdStats').innerHTML = html
         } else {
           visible.querySelector('.humidity .cmdStats').addClass('hidden')
         }
+        hidden.remove()
       }
     }
 
@@ -65,15 +59,17 @@
 
     jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
 
-    function applyScale(_widget, _scale) {
-      _widget.style.width = 200 * '#scale#' + 'px'
-      _widget.querySelector('.temperature').style.height = 110 * '#scale#' + 'px'
-      _widget.querySelector('.humidity').style.height = 90 * '#scale#' + 'px'
-      _widget.querySelectorAll('.fontDigital').forEach(function(e) {
-        let size = parseInt(window.getComputedStyle(e).fontSize)
-        let lineHeight = parseInt(window.getComputedStyle(e).lineHeight)
-        e.style.fontSize = size * '#scale#' + 'px'
-        e.style.lineHeight = lineHeight * '#scale#' + 'px'
+    if (domUtils.issetWidgetOptParam('#scale#', 'scale')) {
+      let widget = (is_object(document.querySelector('.cmd[data-hidden_id="#id#"]'))) ? document.querySelector('.cmd[data-hidden_id="#id#"]') : document.querySelector('.cmd[data-cmd_id="#id#"]')
+      let scale = parseFloat('#scale#')
+      widget.style.width = 220 * scale + 'px'
+      widget.querySelector('.temperature').style.height = 110 * scale + 'px'
+      widget.querySelector('.humidity').style.height = 90 * scale + 'px'
+      widget.querySelectorAll('.fontDigital').forEach(function(e) {
+        let size = parseFloat(window.getComputedStyle(e).fontSize)
+        e.style.fontSize = size * scale + 'px'
+        let lineHeight = parseFloat(window.getComputedStyle(e).lineHeight)
+        e.style.lineHeight = lineHeight * scale + 'px'
       })
     }
   </script>
