@@ -25,7 +25,7 @@ if (!jeeFrontEnd.editor) {
       this._elfInstance = null
     },
     setCommandCreatewidget: function(options) {
-      $('#bt_getHelpPage').attr('data-page','widgets')
+      document.getElementById('bt_getHelpPage').setAttribute('data-page', 'widgets')
       //initiate widget options modal:
       $("#md_widgetCreate").dialog({
         closeText: '',
@@ -34,10 +34,10 @@ if (!jeeFrontEnd.editor) {
         height: 280,
         width: 300,
         open: function() {
-          $("body").css({overflow: 'hidden'})
+          document.body.style.overflow = 'hidden'
         },
         beforeClose: function(event, ui) {
-          $("body").css({overflow: 'inherit'})
+          document.body.style.overflow = 'inherit'
         }
       })
 
@@ -88,9 +88,9 @@ if (!jeeFrontEnd.editor) {
           $('#sel_widgetType').trigger('change')
 
           $("#md_widgetCreate").keydown(function (event) {
-              if (event.keyCode == $.ui.keyCode.ENTER) {
-                  $('#bt_widgetCreate').trigger('click')
-              }
+            if (event.keyCode == $.ui.keyCode.ENTER) {
+              $('#bt_widgetCreate').trigger('click')
+            }
           })
           return $.Deferred().done()
         }
@@ -359,8 +359,8 @@ if (jeephp2js.editorType != '') {
 jeeP._elfInstance = $('#elfinder').elfinder(options).elfinder('instance')
 jeeP._elfInstance.options.windowCloseConfirm = []
 
-$('#elfinder').css("height", $(window).height() - 50)
-$('.ui-state-default.elfinder-navbar.ui-resizable').css('height', '100%')
+document.getElementById('elfinder').style.height = (window.innerHeight - document.getElementById('jeedomMenuBar').offsetHeight) + 'px'
+document.querySelectorAll('.ui-state-default.elfinder-navbar.ui-resizable').forEach(el => { el.style.height = '100%'})
 
 jeeP.killTooltips()
 

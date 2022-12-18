@@ -241,7 +241,7 @@ if (!jeeFrontEnd.history) {
         configuration: 'calculHistory',
         convertToHumanReadable : true,
         error: function(error) {
-          $.showAlert({message: error.message, level: 'danger'})
+          jeedomUtils.showAlert({message: error.message, level: 'danger'})
         },
         success: function(data) {
           if (!$el) return
