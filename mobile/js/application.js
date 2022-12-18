@@ -59,9 +59,9 @@ window.addEventListener('scroll', function(e) {
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('sw.js').then(function(registration) {
-      console.log('ServiceWorker registration successful with scope: ', registration.scope)
+      console.info('ServiceWorker registration successful with scope: ', registration.scope)
     }, function(err) {
-      console.log('ServiceWorker registration failed: ', err)
+      console.info('ServiceWorker registration failed: ', err)
     })
   })
 }
@@ -588,9 +588,9 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
 
   //handle default mobile home switching:
   if (Array.isArray(_page)) {
-    _page = _page[0]
     _title = _page[1]
     _option = _page[2]
+    _page = _page[0]
   }
   CURRENT_PAGE = _page
 
@@ -609,13 +609,15 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
     $('#bottompanel_mainoption').panel('close')
     $('.ui-popup').popup('close')
   } catch (e) { }
+
   if (isset(_title)) {
     if (!isset(_dialog) || !_dialog) {
       document.getElementById('pageTitle')?.empty().insertAdjacentHTML('beforeend', _title)
     } else {
-      document.getElementById('popupDialog').getElementsByClassName('nd-title').insertAdjacentHTML('beforeend',_title)
+      document.getElementById('popupDialog').getElementsByClassName('nd-title').insertAdjacentHTML('beforeend', _title)
     }
   }
+
   if (_page == 'connection') {
     let page = 'index.php?v=m&ajax=1&p=' + _page
     $('#page').load(page, function() {
@@ -638,13 +640,12 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
   if (isset(_dialog) && _dialog) {
     page += '&modal='+_page
   } else {
-
     //Alternate between defaultMobilePage and home:
     if (window.redirected === false && defaultMobilePage != null && defaultMobilePage[0] != document.body.getAttribute('data-page') && _page == 'home') {
       _page = defaultMobilePage[0]
       _title = defaultMobilePage[1]
       _option = defaultMobilePage[2]
-      $('#pageTitle').empty().append(_title)
+      document.getElementById('pageTitle')?.empty().insertAdjacentHTML('beforeend', _title)
     }
     window.redirected = false
     page += '&p=' + _page
