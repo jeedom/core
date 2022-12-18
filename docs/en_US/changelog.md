@@ -16,6 +16,7 @@
 - **Dashboard** : Edit Mode tile editing window allows commands to be renamed.
 - **Dashboard** : In table layout, possibility to insert HTML attributes *(colspan/rowspan in particular)* for each cell.
 - **Equipment** : Ability to disable the widget templates of plugins that use them to return to the Jeedom default display *(device configuration window)*.
+- **Object** : Deleting or creating a summary results in the update of the global summary and the subject.
 - **Tools / Replace** : This tool now offers a mode *To copy*, allowing to copy the configurations of equipment and commands, without replacing them in the scenarios and others.
 - **Timeline** : The Timeline now loads the first 35 events. At the bottom of the page, several buttons allow you to dynamically load the following events.
 - **Administration** : Possibility to differentiate actions on error or on command alert.

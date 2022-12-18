@@ -16,6 +16,7 @@
 - **Painel** : A janela de edição do bloco Edit Mode permite que os comandos sejam renomeados.
 - **Painel** : No layout da tabela, possibilidade de inserir atributos HTML *(colspan/rowspan em particular)* para cada célula.
 - **Equipamento** : Capacidade de desativar os modelos de widget de plug-ins que os utilizam para retornar à exibição padrão do Jeedom *(janela de configuração do dispositivo)*.
+- **Objeto** : Excluir ou criar um resumo resulta na atualização do resumo global e do assunto.
 - **Ferramentas / Substituir** : Esta ferramenta agora oferece um modo *Copiar*, permitindo copiar as configurações de equipamentos e comandos, sem substituí-los nos cenários e outros.
 - **Linha do tempo** : A linha do tempo agora carrega os primeiros 35 eventos. Na parte inferior da página, vários botões permitem que você carregue dinamicamente os seguintes eventos.
 - **Administração** : Possibilidade de diferenciar ações em caso de erro ou alerta de comando.

@@ -16,6 +16,7 @@
 - **Armaturenbrett** : Das Kachel-Bearbeitungsfenster des Bearbeitungsmodus ermöglicht das Umbenennen von Befehlen.
 - **Armaturenbrett** : Im Tabellenlayout Möglichkeit zum Einfügen von HTML-Attributen *(insbesondere colspan/rowspan)* für jede Zelle.
 - **Ausrüstung** : Möglichkeit, die Widget-Vorlagen von Plugins zu deaktivieren, die sie verwenden, um zur Jeedom-Standardanzeige zurückzukehren *(Gerätekonfigurationsfenster)*.
+- **Objekt** : Das Löschen oder Erstellen einer Zusammenfassung führt zur Aktualisierung der globalen Zusammenfassung und des Betreffs.
 - **Werkzeuge / Ersetzen** : Dieses Tool bietet nun einen Modus *Kopieren*, ermöglicht das Kopieren der Konfigurationen von Geräten und Befehlen, ohne sie in den Szenarien und anderen zu ersetzen.
 - **Zeitleiste** : Die Timeline lädt jetzt die ersten 35 Ereignisse. Unten auf der Seite ermöglichen mehrere Schaltflächen das dynamische Laden der folgenden Ereignisse.
 - **Verwaltung** : Möglichkeit, Aktionen bei Fehler oder Befehlsalarm zu unterscheiden.

@@ -16,6 +16,7 @@
 - **Tablero** : La ventana de edición de mosaicos del modo de edición permite cambiar el nombre de los comandos.
 - **Tablero** : En el diseño de la tabla, posibilidad de insertar atributos HTML *(colspan/rowspan en particular)* para cada celda.
 - **Equipo** : Capacidad para deshabilitar las plantillas de widgets de los complementos que los usan para volver a la pantalla predeterminada de Jeedom *(ventana de configuración del dispositivo)*.
+- **Objeto** : Eliminar o crear un resumen da como resultado la actualización del resumen global y el tema.
 - **Herramientas / Reemplazar** : Esta herramienta ahora ofrece un modo *Copiar*, permitiendo copiar las configuraciones de equipos y comandos, sin reemplazarlos en los escenarios y otros.
 - **Línea de tiempo** : La línea de tiempo ahora carga los primeros 35 eventos. En la parte inferior de la página, varios botones le permiten cargar dinámicamente los siguientes eventos.
 - **Administración** : Posibilidad de diferenciar acciones en caso de error o de alerta de comando.

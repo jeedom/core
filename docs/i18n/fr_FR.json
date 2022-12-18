@@ -775,6 +775,8 @@
         "Equipements": "Equipements",
         "fenêtre de configuration de l'équipement": "fenêtre de configuration de l'équipement",
         "Possibilité de désactiver les templates de widget des plugins qui en utilisent pour revenir à l'affichage par défaut Jeedom": "Possibilité de désactiver les templates de widget des plugins qui en utilisent pour revenir à l'affichage par défaut Jeedom",
+        "Objet": "Objet",
+        "La suppression ou la création d'un résumé entraine l'update du résumé global et de l'objet": "La suppression ou la création d'un résumé entraine l'update du résumé global et de l'objet",
         "Outils \/ Remplacer": "Outils \/ Remplacer",
         "Copier": "Copier",
         "Cet outil propose maintenant un mode": "Cet outil propose maintenant un mode",
