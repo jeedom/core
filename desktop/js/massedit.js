@@ -120,12 +120,12 @@ if (!jeeFrontEnd.massedit) {
     },
     getEdits: function() {
       var edits = []
-      $('#edit > .edit').each(function(index) {
-        var key = this.querySelector('select.selectEditKey').value
-        var value = this.querySelector('.selectEditValue').text
+      document.querySelectorAll('#edit > .edit').forEach(function(edit) {
+        var key = edit.querySelector('select.selectEditKey').value
+        var value = edit.querySelector('.selectEditValue').value
         var jValue = false
-        if (!(this.querySelector('.inputEditJValue').disabled)) {
-          var jValue = this.querySelector('.inputEditJValue').value
+        if (edit.querySelector('.inputEditJValue').disabled != null) {
+          var jValue = edit.querySelector('.inputEditJValue').value
         }
         edits.push({
           'key': key,
@@ -440,7 +440,7 @@ $('#bt_exportFilter').off('click').on('click', function() {
     'filters': filters,
     'edits': edits
   }
-  downloadObjectAsJson(jsonData, 'jeedom_massEdit_' + new Date().toISOString().slice(0, 10))
+  jeeP.downloadObjectAsJson(jsonData, 'jeedom_massEdit_' + new Date().toISOString().slice(0, 10))
 })
 
 $("#bt_importFilter").change(function(event) {
