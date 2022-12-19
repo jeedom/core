@@ -19,20 +19,17 @@ if (!isConnect()) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
-<form class="form-inline" id="mod_insertCmdValue_valueEqLogicToMessage">
-  <div class="form-group mod_insertCmdValue_object">
-    <select class='form-control'>
-      <?php echo jeeObject::getUISelectList(); ?>
-    </select>
-  </div>
-  <div class="form-group mod_insertCmdValue_eqLogic">
-
-  </div>
-  <div class="form-group mod_insertCmdValue_cmd">
-
-  </div>
-</form>
-
+<center>
+  <form class="form-inline" id="mod_insertCmdValue_valueEqLogicToMessage">
+    <div class="form-group mod_insertCmdValue_object">
+      <select class='form-control'>
+        <?php echo jeeObject::getUISelectList(); ?>
+      </select>
+    </div>
+    <div class="form-group mod_insertCmdValue_eqLogic"></div>
+    <div class="form-group mod_insertCmdValue_cmd"></div>
+  </form>
+</center>
 <script>
   function mod_insertCmd() {}
 
