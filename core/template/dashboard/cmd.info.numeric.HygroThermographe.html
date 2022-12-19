@@ -1,35 +1,35 @@
-<div class="cmd cmd-widget widget-hygrothermographe" data-type="info" data-subtype="numeric" data-template="HygroThermographe" data-cmd_id="#id#">
+<div class="cmd cmd-widget widget-hygrothermographe" data-type="info" data-subtype="numeric" data-template="HygroThermographe" data-cmd_id="#id#" data-cmd_uid="#uid#" data-eqLogic_id="#eqLogic_id#">
   <link rel="stylesheet" href="core/template/dashboard/cmd.info.numeric.HygroThermographe/hygrothermographe.css">
   <div class="temperature">
-    <span class="intNumTemp fontDigital value"></span>
-    <span class="decNumTemp fontDigital value"></span>
-    <span class="uniteTemp fontDigital">°C</span>
+    <span class="intNumTemp value"></span>
+    <span class="decNumTemp value"></span>
+    <span class="uniteTemp">°C</span>
     <div class="cmdStats #hide_history#">
       <span title="{{Minimum}}" class="tooltips">#minHistoryValue#</span>|<span title="{{Moyenne}}" class="tooltips">#averageHistoryValue#</span>|<span title="{{Maximum}}" class="tooltips">#maxHistoryValue#</span> <i class="#tendance#"></i>
     </div>
   </div>
   <div class="humidity">
-    <span class="intNumHumidity fontDigital value"></span>
-    <span class="decNumHumidity fontDigital value"></span>
-    <span class="uniteHumidity fontDigital">%</span>
+    <span class="intNumHumidity value"></span>
+    <span class="decNumHumidity value"></span>
+    <span class="uniteHumidity">%</span>
     <div class="cmdStats"></div>
   </div>
   <template>
-    <div>scale : 0.75 ({{Echelle du widget, 0.5 minimum}}).</div>
+    <div>scale : 0.75 ({{Echelle du widget}}).</div>
   </template>
   <script>
     if ('#generic_type#' == 'TEMPERATURE') {
-      let visible = document.querySelector('.cmd[data-cmd_id="#id#"]')
+      let visible = document.querySelector('.cmd[data-cmd_uid="#uid#"]')
+      changeTheme(visible)
       visible.querySelector('.temperature').setAttribute('data-cmd_id', '#id#')
       visible.querySelector('.temperature').classList += ' #history#'
-      visible.style.backgroundImage = "url('core/template/dashboard/cmd.info.numeric.HygroThermographe/No.ext_100_" + document.body.getAttribute('data-theme').split('_')[1] + ".png')"
       document.body.addEventListener('changeThemeEvent', function(event) {
-        visible.style.backgroundImage = "url('core/template/dashboard/cmd.info.numeric.HygroThermographe/No.ext_100_" + event.detail.theme + ".png')"
+        changeTheme(visible)
       })
     } if ('#generic_type#' == 'HUMIDITY') {
-      let hidden = document.querySelector('.cmd[data-cmd_id="#id#"]')
-      if (is_object(visible = hidden.parentNode.querySelector('.widget-hygrothermographe:not([data-cmd_id="#id#"])'))) {
-        visible.setAttribute('data-hidden_id', hidden.getAttribute('data-cmd_id'))
+      let hidden = document.querySelector('.cmd[data-cmd_uid="#uid#"]')
+      if (is_object(visible = hidden.parentNode.querySelector('.widget-hygrothermographe:not([data-cmd_uid="#uid#"])'))) {
+        visible.setAttribute('data-hidden_uid', hidden.getAttribute('data-cmd_uid'))
         visible.querySelector('.humidity').setAttribute('data-cmd_id', hidden.getAttribute('data-cmd_id'))
         visible.querySelector('.humidity').classList += ' #history#'
         let html = hidden.querySelector('.cmdStats').innerHTML
@@ -45,32 +45,38 @@
     jeedom.cmd.addUpdateFunction('#id#', function(_options) {
       let n = parseFloat(_options.display_value).toFixed(1), _int = n.split('.')[0], _dec = n.split('.')[1]
       if ('#generic_type#' == 'TEMPERATURE') {
-        let widget = document.querySelector('.cmd[data-cmd_id="#id#"]')
-        widget.querySelector('.temperature').setAttribute('title', '{{Date de valeur}}: ' + _options.valueDate + '<br>{{Date de collecte}}: ' + _options.collectDate)
-        widget.querySelector('.intNumTemp').innerText = _int + '.'
-        widget.querySelector('.decNumTemp').innerText = _dec
+        if (is_object(widget = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+          widget.querySelector('.temperature').setAttribute('title', '{{Date de valeur}}: ' + _options.valueDate + '<br>{{Date de collecte}}: ' + _options.collectDate)
+          widget.querySelector('.intNumTemp').innerText = _int + '.'
+          widget.querySelector('.decNumTemp').innerText = _dec
+        }
       } else if ('#generic_type#' == 'HUMIDITY') {
-        let widget = document.querySelector('.cmd[data-hidden_id="#id#"]')
-        widget.querySelector('.humidity').setAttribute('title', '{{Date de valeur}}: ' + _options.valueDate + '<br>{{Date de collecte}}: ' + _options.collectDate)
-        widget.querySelector('.intNumHumidity').innerText = _int + '.'
-        widget.querySelector('.decNumHumidity').innerText = _dec
+        if (is_object(widget = document.querySelector('.cmd[data-hidden_uid="#uid#"]'))) {
+          widget.querySelector('.humidity').setAttribute('title', '{{Date de valeur}}: ' + _options.valueDate + '<br>{{Date de collecte}}: ' + _options.collectDate)
+          widget.querySelector('.intNumHumidity').innerText = _int + '.'
+          widget.querySelector('.decNumHumidity').innerText = _dec
+        }
       }
     })
 
     jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
 
     if (domUtils.issetWidgetOptParam('#scale#', 'scale')) {
-      let widget = (is_object(document.querySelector('.cmd[data-hidden_id="#id#"]'))) ? document.querySelector('.cmd[data-hidden_id="#id#"]') : document.querySelector('.cmd[data-cmd_id="#id#"]')
+      let widget = (is_object(document.querySelector('.cmd[data-hidden_uid="#uid#"]'))) ? document.querySelector('.cmd[data-hidden_uid="#uid#"]') : document.querySelector('.cmd[data-cmd_uid="#uid#"]')
       let scale = parseFloat('#scale#')
-      widget.style.width = 220 * scale + 'px'
+      widget.style.width = 200 * scale + 'px'
       widget.querySelector('.temperature').style.height = 110 * scale + 'px'
+      widget.querySelector('.temperature').style.fontSize = 20 * scale + 'px'
       widget.querySelector('.humidity').style.height = 90 * scale + 'px'
-      widget.querySelectorAll('.fontDigital').forEach(function(e) {
-        let size = parseFloat(window.getComputedStyle(e).fontSize)
-        e.style.fontSize = size * scale + 'px'
-        let lineHeight = parseFloat(window.getComputedStyle(e).lineHeight)
-        e.style.lineHeight = lineHeight * scale + 'px'
-      })
+      widget.querySelector('.humidity').style.fontSize = 20 * scale + 'px'
+    }
+
+    function changeTheme(_widget) {
+      let theme = document.body.getAttribute('data-theme').split('_')[1]
+      if (theme == 'Legacy') {
+        theme = 'Light'
+      }
+      _widget.style.backgroundImage = "url('core/template/dashboard/cmd.info.numeric.HygroThermographe/No.ext_100_" + theme + ".png')"
     }
   </script>
 </div>

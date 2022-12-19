@@ -9,23 +9,21 @@
 }
 
 div.widget-hygrothermographe {
-	width: 220px;
-	background-image: url('No.ext_100_Dark.png');
+	width: 200px;
 	background-size: contain;
 	background-repeat: no-repeat;
-	background-position: center center;
-	margin: 5px 0;
+	margin-bottom: 5px;
 }
 
 div.widget-hygrothermographe>div {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	align-content: center;
 	justify-content: center;
 	font-family: "Digital-7";
 	color: #181818;
-	padding: 3px 0 3px 5px;
+	font-size: 20px;
+	padding-left: 0.25em;
 }
 
 .widget-hygrothermographe div.temperature {
@@ -39,33 +37,35 @@ div.widget-hygrothermographe>div {
 }
 
 .widget-hygrothermographe span.intNumTemp {
-	font-size: 60px;
-	line-height: 45px;
+	font-size: 3em;
+	line-height: 0.9em;
 	letter-spacing: 0.05em;
 }
 
 .widget-hygrothermographe span.decNumTemp {
-	font-size: 30px;
+	font-size: 1.5em;
 }
 
 .widget-hygrothermographe span.uniteTemp,
 .widget-hygrothermographe span.uniteHumidity {
-	font-size: 15px;
+	font-size: 0.75em;
 	font-weight: bold;
 }
 
 .widget-hygrothermographe span.intNumHumidity {
-	font-size: 50px;
-	line-height: 40px;
+	font-size: 2.5em;
+	line-height: 1em;
 	letter-spacing: 0.05em;
 }
 
 .widget-hygrothermographe span.decNumHumidity {
-	font-size: 25px;
+	font-size: 1.25em;
 }
 
 .widget-hygrothermographe .cmdStats {
 	flex-basis: 100%;
-	line-height: 10px !important;
+	font-size: 0.6em !important;
+	line-height: 0.6em !important;
 	color: #181818 !important;
+	margin-top: -0.5em;
 }
