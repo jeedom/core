@@ -43,21 +43,22 @@
           cmd.querySelector('.value').innerHTML = '<span class="label label-danger"><i class="fas fa-exclamation"></i> ' + _options.value + '</span>'
         }
       }
-
-      $('body').on('changeThemeEvent', function() {
-        if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
-          if (cmd.getAttribute('data-state') == 1) {
-            cmd.querySelector('.imgCmd').innerHTML = jeedom.widgets.getThemeImg("#_img_light_on_#", "#_img_dark_on_#")
-          } else {
-            cmd.querySelector('.imgCmd').innerHTML = jeedom.widgets.getThemeImg("#_img_light_off_#", "#_img_dark_off_#")
-          }
-          if (is_numeric('#_desktop_width_#') && is_object(img = cmd.querySelector('.imgCmd img'))) {
-            img.style.setProperty('width', '#_desktop_width_#px', 'important')
-          }
-        }
-      })
     })
 
     jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
+
+    document.body.addEventListener('changeThemeEvent', function() {
+      if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+        if (cmd.getAttribute('data-state') == 1) {
+          cmd.querySelector('.imgCmd').innerHTML = jeedom.widgets.getThemeImg("#_img_light_on_#", "#_img_dark_on_#")
+        } else {
+          cmd.querySelector('.imgCmd').innerHTML = jeedom.widgets.getThemeImg("#_img_light_off_#", "#_img_dark_off_#")
+        }
+
+        if (is_numeric('#_desktop_width_#') && is_object(img = cmd.querySelector('.imgCmd img'))) {
+          img.style.setProperty('width', '#_desktop_width_#px', 'important')
+        }
+      }
+    })
   </script>
 </div>
