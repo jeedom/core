@@ -801,9 +801,10 @@ jeedom.cmd.changeType = function(_cmd, _subType) {
   if (isElement_jQuery(_cmd)) {
     _cmd = _cmd[0]
   }
-
-  var type = _cmd.querySelector('.cmdAttr[data-l1key="type"]').jeeValue()
-  if (type == 'action') {
+  if ((type = _cmd.querySelector('.cmdAttr[data-l1key="type"]')) === null) {
+    return
+  }
+  if (type.jeeValue() == 'action') {
     _cmd.querySelector('.cmdAction[data-action="test"]')?.seen()
     _cmd.querySelector('.cmdAttr[data-l1key="htmlstate"]')?.unseen()
   } else {
@@ -818,7 +819,7 @@ jeedom.cmd.changeType = function(_cmd, _subType) {
   selSubType.setAttribute('data-l1key', 'subType')
 
   jeedom.getConfiguration({
-    key: 'cmd:type:' + type + ':subtype',
+    key: 'cmd:type:' + type.jeeValue() + ':subtype',
     default: 0,
     async: false,
     error: function(error) {
@@ -848,8 +849,11 @@ jeedom.cmd.changeSubType = function(_cmd) {
   if (isElement_jQuery(_cmd)) {
     _cmd = _cmd[0]
   }
+  if ((type = _cmd.querySelector('.cmdAttr[data-l1key="type"]')) === null || (subtype = _cmd.querySelector('.cmdAttr[data-l1key="subType" i]')) === null) {
+    return
+  }
   jeedom.getConfiguration({
-    key: 'cmd:type:' + _cmd.querySelector('.cmdAttr[data-l1key="type"]').jeeValue() + ':subtype:' + _cmd.querySelector('.cmdAttr[data-l1key="subType" i]').jeeValue(),
+    key: 'cmd:type:' + type.jeeValue() + ':subtype:' + subtype.jeeValue(),
     default: 0,
     async: false,
     error: function(error) {
@@ -941,7 +945,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
         }
       }
 
-      if (_cmd.querySelector('.cmdAttr[data-l1key="type"]').jeeValue() == 'action') {
+      if (type.jeeValue() == 'action') {
         _cmd.querySelector('.cmdAttr[data-l1key="value"]')?.seen()
         _cmd.querySelector('.cmdAttr[data-l1key="configuration"][data-l2key="updateCmdId"]')?.seen()
         _cmd.querySelector('.cmdAttr[data-l1key="configuration"][data-l2key="updateCmdToValue"]')?.seen()

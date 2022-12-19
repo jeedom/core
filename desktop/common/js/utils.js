@@ -101,6 +101,7 @@ jeedomUtils.checkPageModified = function() {
 }
 
 var printEqLogic = undefined
+var addCmdToTable = undefined
 //OnePage design PageLoader -------------------------------------
 jeedomUtils.loadPage = function(_url, _noPushHistory) {
   jeeFrontEnd.PREVIOUS_LOCATION = window.location.href
@@ -143,7 +144,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   jeedom.scenario.update = []
   jeephp2js = {}
   delete window.jeeP
-  printEqLogic = undefined
+  printEqLogic = addCmdToTable = undefined
   if (jeedomUtils.OBSERVER !== null) jeedomUtils.OBSERVER.disconnect()
   $('body').off('changeThemeEvent')
 
@@ -239,10 +240,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
   //tab in url:
   var tab = document.querySelector('.nav-tabs a[href="' + window.location.hash + '"]')
-  if(tab == null){
+  if (tab == null) {
     tab = document.querySelector('.nav-tabs a[data-target="' + window.location.hash + '"]')
   }
-  
+
   if (window.location.hash != '' && tab != null) {
     tab.triggerEvent('click')
     //$('.nav-tabs a[href="'+window.location.hash+'"]').click()
@@ -550,9 +551,9 @@ jeedomUtils.triggerThemechange = function() {
   //trigger event for widgets:
   if (document.body.hasAttribute('data-page') && ['dashboard', 'view', 'plan', 'widgets'].includes(document.body.getAttribute('data-page'))) {
     if (currentTheme.endsWith('Light')) {
-      document.body.triggerEvent('changeThemeEvent', {detail: {theme: 'Light'}})
+      document.body.triggerEvent('changeThemeEvent', { detail: { theme: 'Light' } })
     } else {
-      document.body.triggerEvent('changeThemeEvent', {detail: {theme: 'Dark'}})
+      document.body.triggerEvent('changeThemeEvent', { detail: { theme: 'Dark' } })
     }
   }
 }
@@ -782,7 +783,7 @@ jeedomUtils.setButtonCtrlHandler = function(_buttonId, _title, _uri, _modal = '#
   document.getElementById(_buttonId).addEventListener('mouseup', event => {
     if (event.which == 2) {
       event.preventDefault()
-      event.target.triggerEvent('click', {detail: {ctrlKey: true}})
+      event.target.triggerEvent('click', { detail: { ctrlKey: true } })
     }
   })
 }
@@ -1049,7 +1050,7 @@ jeedomUtils.initTooltips = function(_el) {
   if (!_el) {
     try {
       $('.tooltips:not(.tooltipstered), [title]:not(.ui-button)').tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
-    } catch(e) { }
+    } catch (e) { }
   } else {
     //cmd update:
     if (_el.parents('.cmd-widget[title]').length) {
@@ -1377,7 +1378,7 @@ jeedomUtils.setJeedomMenu = function() {
     document.getElementById('configName').addEventListener('mouseup', event => {
       if (event.which == 2) {
         event.preventDefault()
-        event.target.triggerEvent('click', {detail: {newtab: true}})
+        event.target.triggerEvent('click', { detail: { newtab: true } })
       }
     })
 
@@ -1601,7 +1602,7 @@ jeedomUtils.setCheckboxStateByType = function(_type, _state, _callback) {
   if (!isset(_type)) return false
   if (!isset(_state)) _state = -1
   var checkboxes = document.querySelectorAll(_type)
-if (checkboxes == null) return
+  if (checkboxes == null) return
   var isCallback = (isset(_callback) && typeof _callback === 'function') ? true : false
   var execCallback = false
   checkboxes.forEach(function(checkbox) {
