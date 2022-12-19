@@ -220,16 +220,18 @@ class system {
 			case 'pip3':
 				$ignore_package = array('dbus-python', 'gpg', 'pycairo', 'pycurl', 'PyGObject');
 				$datas = json_decode(shell_exec(system::getCmdSudo() . ' pip3 list --outdated --format=json 2>/dev/null'), true);
-				foreach ($datas as $value) {
-					if (in_array($value['name'], $ignore_package)) {
-						continue;
+				if (count($datas) > 0) {
+					foreach ($datas as $value) {
+						if (in_array($value['name'], $ignore_package)) {
+							continue;
+						}
+						$return[$_type][$value['name']] = array(
+							'name' => $value['name'],
+							'type' => 'pip3',
+							'current_version' => $value['version'],
+							'new_version' => $value['latest_version'],
+						);
 					}
-					$return[$_type][$value['name']] = array(
-						'name' => $value['name'],
-						'type' => 'pip3',
-						'current_version' => $value['version'],
-						'new_version' => $value['latest_version'],
-					);
 				}
 				break;
 			case 'pip2':
@@ -237,13 +239,15 @@ class system {
 					return array();
 				}
 				$datas = json_decode(shell_exec(system::getCmdSudo() . ' pip list --outdated --format=json 2>/dev/null'), true);
-				foreach ($datas as $value) {
-					$return[$_type][$value['name']] = array(
-						'name' => $value['name'],
-						'type' => 'pip2',
-						'current_version' => $value['version'],
-						'new_version' => $value['latest_version'],
-					);
+				if (count($datas) > 0) {
+					foreach ($datas as $value) {
+						$return[$_type][$value['name']] = array(
+							'name' => $value['name'],
+							'type' => 'pip2',
+							'current_version' => $value['version'],
+							'new_version' => $value['latest_version'],
+						);
+					}
 				}
 				break;
 		}
