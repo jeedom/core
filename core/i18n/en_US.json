@@ -486,6 +486,9 @@
     },
     "desktop\/modal\/cmd.human.insert.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
+        "Objet": "Object",
+        "Equipement": "Equipment",
+        "Commande": "Ordered",
         "Commande info": "Info command",
         "Commande action": "Action command"
     },
@@ -618,7 +621,7 @@
         "Rechercher": "Search",
         "Recherche par": "Search by",
         "Equipement": "Equipment",
-        "Commande": "Command",
+        "Commande": "Ordered",
         "Variable": "Variable",
         "Plugin": "Plugin",
         "Mot": "Word",
@@ -1110,7 +1113,7 @@
         "Voulu par": "Need by",
         "Version": "Version",
         "Remarque": "Note",
-        "Commande": "Command",
+        "Commande": "Ordered",
         "Action": "Stock",
         "Incompatible avec l\\'OS": "Incompatible with OS",
         "Mise à jour": "Update",
@@ -1322,7 +1325,7 @@
         "Attention : peut être source de problèmes.": "Warning: can cause problems",
         "Appliquer le css personnalisé sur": "Apply custom css on",
         "Commandes": "Commands",
-        "Commande": "Command",
+        "Commande": "Ordered",
         "Masquer": "Hide",
         "Taille de la police": "Font size",
         "Alignement du texte": "Text alignment",
@@ -2158,7 +2161,7 @@
         "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "EXPERIMENTAL: It is strongly recommended to perform a system backup before using this tool!",
         "Filtre": "Filter",
         "Equipement": "Equipment",
-        "Commande": "Command",
+        "Commande": "Ordered",
         "Objet": "Object",
         "Scénario": "Scenario",
         "Ajouter un filtre": "Add filter",
@@ -2421,7 +2424,7 @@
         "Rechercher | nom | :not(nom": "Search | name | : not (name",
         "Aucun équipement en Alerte.": "No equipment on alert",
         "Equipement": "Equipment",
-        "Commande": "Command",
+        "Commande": "Ordered",
         "Type": "Kind",
         "Actions": "Shares",
         "Action sur état": "State action",
@@ -3147,7 +3150,7 @@
     "desktop\/js\/object.js": {
         "Envoyer": "Send",
         "Image de fond ajoutée avec succès": "Background image successfully added",
-        "Commande": "Command",
+        "Commande": "Ordered",
         "Activer": "Activate",
         "Inverser": "Invert",
         "Résumé(s)": "Summary",
@@ -3450,7 +3453,7 @@
         "Etat": "State",
         "Action": "Stock",
         "La valeur de la commande vaut par défaut la commande": "The value of the command is by default the command",
-        "Commande": "Command",
+        "Commande": "Ordered",
         "Valeur retour d\\'état": "Status return value",
         "Durée avant retour d\\'état (min)": "Duration before status return (min)",
         "Commande d\\'information à mettre à jour": "Information command to update",
@@ -3978,7 +3981,7 @@
         "Commande inconnue :": "Unknown command:",
         "Aucun point ne correspond pour l\\'historique :": "No point corresponds for the history:",
         "Jeedom": "Jeedom",
-        "Commande": "Command",
+        "Commande": "Ordered",
         "Objet": "Object",
         "Scénario": "Scenario",
         "Interaction": "Interaction",
@@ -4198,7 +4201,7 @@
         "La commande source n\\'existe pas": "Source command does not exist",
         "La commande cible n\\'existe pas": "Target command does not exist",
         "Erreur lors de la migration de commande": "Error while migrating command",
-        "Commande": "Command"
+        "Commande": "Ordered"
     },
     "core\/class\/jeedom.class.php": {
         "Administration": "Settings",
@@ -4315,7 +4318,7 @@
         "aucune valeur": "no value"
     },
     "core\/class\/history.class.php": {
-        "Commande": "Command",
+        "Commande": "Ordered",
         "Date": "Date",
         "Valeur": "Value",
         "La commande source n\\'existe pas :": "The source command does not exist:",
@@ -4787,7 +4790,7 @@
         "Sélectionner la commande": "Select command"
     },
     "core\/template\/scenario\/event.default.html": {
-        "Commande": "Command",
+        "Commande": "Ordered",
         "Valeur": "Value",
         "Sélectionner la commande": "Select command"
     },
