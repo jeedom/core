@@ -390,7 +390,7 @@
         "Aucun": "No",
         "Visualisation": "Visualización",
         "Visualisation et exécution": "Visualización y ejecución",
-        "Equipement": "Dispositivos",
+        "Equipement": "Equipo",
         "Droits": "Permisos",
         "Scénario": "Escenario",
         "Sauvegarde effectuée": "Guardado correctamente"
@@ -486,6 +486,9 @@
     },
     "desktop\/modal\/cmd.human.insert.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Objet": "Objeto",
+        "Equipement": "Equipo",
+        "Commande": "Ordenado",
         "Commande info": "Comando de información",
         "Commande action": "Comando de acción"
     },
@@ -554,7 +557,7 @@
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Objet": "Objeto",
-        "Equipement": "Dispositivo"
+        "Equipement": "Equipo"
     },
     "desktop\/modal\/plan3d.configure.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -563,7 +566,7 @@
         "Supprimer": "Eliminar",
         "Nom": "Nombre",
         "Type de lien": "Tipo de enlace",
-        "Equipement": "Dispositivos",
+        "Equipement": "Equipo",
         "Lien": "Enlace",
         "Rechercher d\\'un équipement": "Buscar dispositivo",
         "Spécificité": "Especificidad",
@@ -617,8 +620,8 @@
         "Résumé Domotique": "Resumen Domótica",
         "Rechercher": "Buscar",
         "Recherche par": "Buscar por",
-        "Equipement": "Dispositivo",
-        "Commande": "Comando",
+        "Equipement": "Equipo",
+        "Commande": "Ordenado",
         "Variable": "Variable",
         "Plugin": "Enchufar",
         "Mot": "Palabra",
@@ -738,7 +741,7 @@
         "Cette commande remplace l'ID": "Este comando reemplaza el ID",
         "Cette commande remplace la commande": "Esta orden reemplaza la orden",
         "Remplacer cette commande par la commande": "Reemplazar este comando por el comando",
-        "Equipement": "Dispositivo",
+        "Equipement": "Equipo",
         "Commandes": "Comandos",
         "Scénario": "Escenario",
         "Résumés": "Resúmenes",
@@ -1110,7 +1113,7 @@
         "Voulu par": "Buscado por",
         "Version": "Versión",
         "Remarque": "Observación",
-        "Commande": "Comando",
+        "Commande": "Ordenado",
         "Action": "Acción",
         "Incompatible avec l\\'OS": "Incompatible con OS",
         "Mise à jour": "Actualización",
@@ -1233,7 +1236,7 @@
         "Valider": "Validar",
         "Objet": "Objeto",
         "Plugin": "Enchufar",
-        "Equipement": "Dispositivos",
+        "Equipement": "Equipo",
         "Nom": "Nombre"
     },
     "desktop\/modal\/cmd.history.php": {
@@ -1322,7 +1325,7 @@
         "Attention : peut être source de problèmes.": "Advertencia: puede causar problemas",
         "Appliquer le css personnalisé sur": "Aplicar CSS personalizado en",
         "Commandes": "Comandos",
-        "Commande": "Comando",
+        "Commande": "Ordenado",
         "Masquer": "Ocultar",
         "Taille de la police": "Tamaño de fuente",
         "Alignement du texte": "Alineación de texto",
@@ -1338,7 +1341,7 @@
         "Macro binaire": "Macro binario",
         "Widget au survol": "Resumen del Widget",
         "Action": "Acción",
-        "Equipement": "Dispositivos",
+        "Equipement": "Equipo",
         "Afficher au survol": "Mostrar en paso elevado",
         "Afficher sur un clic": "Mostrar en un clic",
         "Position": "Posición",
@@ -2235,7 +2238,7 @@
         "Ajouter\/Editer viewZone": "Añadir\/Editar viewZone",
         "Nom": "Nombre",
         "Type": "Tipo",
-        "Equipement": "Dispositivo",
+        "Equipement": "Equipo",
         "Graphique": "Gráfico",
         "Tableau": "Panel",
         "Annuler": "Cancelar"
@@ -2406,7 +2409,7 @@
         "Catégories": "Categorías",
         "Sans catégorie": "Sin categoría",
         "Visibles": "Visible",
-        "Equipement": "Dispositivos",
+        "Equipement": "Equipo",
         "Tous": "Todos"
     },
     "desktop\/php\/eqAnalyse.php": {
@@ -2420,8 +2423,8 @@
         "Commandes orphelines": "Controles huérfanos",
         "Rechercher | nom | :not(nom": "Buscar | nombre | : sin nombre",
         "Aucun équipement en Alerte.": "No hay equipos en alerta",
-        "Equipement": "Dispositivos",
-        "Commande": "Comando",
+        "Equipement": "Equipo",
+        "Commande": "Ordenado",
         "Type": "Tipo",
         "Actions": "Acciones",
         "Action sur état": "Acción estatal",
@@ -3147,7 +3150,7 @@
     "desktop\/js\/object.js": {
         "Envoyer": "Enviar",
         "Image de fond ajoutée avec succès": "Imagen de fondo agregada correctamente",
-        "Commande": "Comando",
+        "Commande": "Ordenado",
         "Activer": "Activar",
         "Inverser": "Invertir",
         "Résumé(s)": "Resumen (s)",
@@ -3978,7 +3981,7 @@
         "Commande inconnue :": "Comando desconocido:",
         "Aucun point ne correspond pour l\\'historique :": "Ningún punto corresponde para el historial:",
         "Jeedom": "Jeedom",
-        "Commande": "Comando",
+        "Commande": "Ordenado",
         "Objet": "Objeto",
         "Scénario": "Escenario",
         "Interaction": "Interacción",
@@ -4198,7 +4201,7 @@
         "La commande source n\\'existe pas": "El comando fuente no existe",
         "La commande cible n\\'existe pas": "El comando de destino no existe",
         "Erreur lors de la migration de commande": "Error al migrar orden",
-        "Commande": "Comando"
+        "Commande": "Ordenado"
     },
     "core\/class\/jeedom.class.php": {
         "Administration": "Administración",
@@ -4315,7 +4318,7 @@
         "aucune valeur": "ningún valor"
     },
     "core\/class\/history.class.php": {
-        "Commande": "Comando",
+        "Commande": "Ordenado",
         "Date": "Fecha",
         "Valeur": "Valor",
         "La commande source n\\'existe pas :": "El comando fuente no existe:",
@@ -4459,7 +4462,7 @@
         "L\\'équipement source n\\'existe pas": "El equipo fuente no existe",
         "L\\'équipement cible n\\'existe pas": "El dispositivo de destino no existe",
         "Erreur lors de la migration d\\'équipement": "Error al migrar equipo",
-        "Equipement": "Dispositivos",
+        "Equipement": "Equipo",
         "Action": "Acción"
     },
     "core\/class\/interactDef.class.php": {
@@ -4758,7 +4761,7 @@
         "Nom": "Nombre"
     },
     "core\/template\/scenario\/equipement.default.html": {
-        "Equipement": "Dispositivos",
+        "Equipement": "Equipo",
         "Sélectionner un équipement": "Seleccionar dispositivo",
         "Action": "Acción",
         "Visible": "Visible",
@@ -4787,7 +4790,7 @@
         "Sélectionner la commande": "Seleccionar el comando"
     },
     "core\/template\/scenario\/event.default.html": {
-        "Commande": "Comando",
+        "Commande": "Ordenado",
         "Valeur": "Valor",
         "Sélectionner la commande": "Seleccionar el comando"
     },
