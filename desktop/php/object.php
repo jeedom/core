@@ -308,6 +308,7 @@ $synthToActions = array(
 					<form class="form-horizontal">
 						<fieldset>
 							<legend style="cursor:default;"><i class="fas fa-cog"></i>  {{Configuration des résumés}}</legend>
+							<div class="table-responsive">
 							<table class="table">
 								<thead>
 									<tr>
@@ -362,6 +363,7 @@ $synthToActions = array(
 								echo $echo;
 								?>
 							</table>
+							</div>
 						</fieldset>
 					</form>
 					<form class="form-horizontal">
