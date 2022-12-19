@@ -411,7 +411,7 @@ if (!jeeFrontEnd.update) {
         if (line != '') {
           newLogText += line + '\n'
           this._pre_updateInfo_clean.innerHTML = newLogText
-          if (document.querySelector('[href="#log"]').parentNode.hasClass('active')) {
+          if (document.querySelector('[data-target="#log"]').parentNode.hasClass('active')) {
             document.getElementById('log').parentNode.scrollTop = 1E10
           }
           this.prevUpdateText = currentUpdateText
