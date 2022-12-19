@@ -189,8 +189,8 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
     }
 
     setTimeout(function() {
-      if (window.location.hash != '' && document.querySelector('ul.nav-tabs a[href="' + window.location.hash + '"]') != null) {
-        document.querySelector('ul.nav-tabs a[href="' + window.location.hash + '"]').triggerEvent('click')
+      if (window.location.hash != '' && document.querySelector('ul.nav-tabs a[data-target="' + window.location.hash + '"]') != null) {
+        document.querySelector('ul.nav-tabs a[data-target="' + window.location.hash + '"]').triggerEvent('click')
       }
     }, 150) //let time for plugin page!
 
@@ -239,9 +239,9 @@ document.addEventListener('DOMContentLoaded', function() {
   })
 
   //tab in url:
-  var tab = document.querySelector('.nav-tabs a[href="' + window.location.hash + '"]')
+  var tab = document.querySelector('.nav-tabs a[data-target="' + window.location.hash + '"]')
   if (tab == null) {
-    tab = document.querySelector('.nav-tabs a[data-target="' + window.location.hash + '"]')
+    tab = document.querySelector('.nav-tabs a[href="' + window.location.hash + '"]')
   }
 
   if (window.location.hash != '' && tab != null) {
@@ -252,7 +252,7 @@ document.addEventListener('DOMContentLoaded', function() {
   //browser history:
   var $body = $('body')
   $body.on('shown.bs.tab', '.nav-tabs a', function(event) {
-    if (event.target.hash == '') {
+    if (event.target.getAttribute('data-target') == '') {
       return
     }
     if (event.target.closest('.ui-dialog-content')?.innerHTML !== undefined) {
@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', function() {
       window.history.replaceState('', '', 'index.php?' + window.location.href.split("index.php?")[1])
       jeeFrontEnd.PREVIOUS_PAGE = 'index.php?' + window.location.href.split("index.php?")[1]
     }
-    window.location.hash = event.target.hash
+    window.location.hash = event.target.getAttribute('data-target')
   })
   window.addEventListener('hashchange', function(event) {
     jeeFrontEnd.NO_POPSTAT = true
@@ -551,9 +551,9 @@ jeedomUtils.triggerThemechange = function() {
   //trigger event for widgets:
   if (document.body.hasAttribute('data-page') && ['dashboard', 'view', 'plan', 'widgets'].includes(document.body.getAttribute('data-page'))) {
     if (currentTheme.endsWith('Light')) {
-      document.body.triggerEvent('changeThemeEvent', { detail: { theme: 'Light' } })
+      document.body.triggerEvent('changeThemeEvent', {detail: {theme: 'Light'}})
     } else {
-      document.body.triggerEvent('changeThemeEvent', { detail: { theme: 'Dark' } })
+      document.body.triggerEvent('changeThemeEvent', {detail: {theme: 'Dark'}})
     }
   }
 }
@@ -783,7 +783,7 @@ jeedomUtils.setButtonCtrlHandler = function(_buttonId, _title, _uri, _modal = '#
   document.getElementById(_buttonId).addEventListener('mouseup', event => {
     if (event.which == 2) {
       event.preventDefault()
-      event.target.triggerEvent('click', { detail: { ctrlKey: true } })
+      event.target.triggerEvent('click', {detail: {ctrlKey: true}})
     }
   })
 }
@@ -941,7 +941,6 @@ jeedomUtils.setJeedomGlobalUI = function() {
     if (event.target.parentNode != null && (event.target.parentNode.matches('a.bt_showPass') || event.target.matches('a.bt_showPass'))) {
       event.stopPropagation()
       var _el = event.target.matches('a.bt_showPass') ? event.target : event.target.parentNode
-      console.log('clicked .bt_showPass')
       jeedomUtils.hideAlert()
       _el.closest('.input-group').querySelector('input').toggleClass('inputPassword')
       if (_el.querySelector('.fas').hasClass('fa-eye-slash')) {
@@ -1050,7 +1049,7 @@ jeedomUtils.initTooltips = function(_el) {
   if (!_el) {
     try {
       $('.tooltips:not(.tooltipstered), [title]:not(.ui-button)').tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
-    } catch (e) { }
+    } catch(e) { }
   } else {
     //cmd update:
     if (_el.parents('.cmd-widget[title]').length) {
@@ -1378,7 +1377,7 @@ jeedomUtils.setJeedomMenu = function() {
     document.getElementById('configName').addEventListener('mouseup', event => {
       if (event.which == 2) {
         event.preventDefault()
-        event.target.triggerEvent('click', { detail: { newtab: true } })
+        event.target.triggerEvent('click', {detail: {newtab: true}})
       }
     })
 
@@ -1602,7 +1601,7 @@ jeedomUtils.setCheckboxStateByType = function(_type, _state, _callback) {
   if (!isset(_type)) return false
   if (!isset(_state)) _state = -1
   var checkboxes = document.querySelectorAll(_type)
-  if (checkboxes == null) return
+if (checkboxes == null) return
   var isCallback = (isset(_callback) && typeof _callback === 'function') ? true : false
   var execCallback = false
   checkboxes.forEach(function(checkbox) {
