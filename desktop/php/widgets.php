@@ -26,7 +26,7 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
     $thisDiv .= '<div class="panel-heading">';
     $thisDiv .= '<h3 class="panel-title">';
     $thisDiv .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#widget_' . $_type . '">' . $title . ' - ';
-    $thisDiv .= $c . ($c > 1 ? ' widgets' : ' widget') . '</a>';
+    $thisDiv .= $c . ($c > 1 ? ' {{widgets}}' : ' {{widget}}') . '</a>';
     $thisDiv .= '</h3>';
     $thisDiv .= '</div>';
     $thisDiv .= '<div id="widget_' . $_type . '" class="panel-collapse collapse">';
