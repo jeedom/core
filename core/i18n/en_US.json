@@ -4687,7 +4687,7 @@
         "Message par défaut": "Default message",
         "Ne pas afficher le champ message": "Do not display the message field",
         "Image": "Image",
-        "Echelle du widget, 0.5 minimum": "Widget scale, 0.5 minimum",
+        "Echelle du widget": "Widget Scale",
         "Activer": "Activate",
         "Desactiver": "Deactivate",
         "Log d'exécution du scénario": "Scenario execution log",
