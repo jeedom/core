@@ -98,7 +98,7 @@ if (!jeeFrontEnd.plugin) {
             $container.find('#span_plugin_source').html('')
           }
 
-          $container.find('#div_state .openPluginPage').attr("href", 'index.php?v=d&m=' + data.index + '&p=' + data.index)
+          $container.find('#div_state .openPluginPage').attr("data-plugin_id", data.id)
 
           if (data.checkVersion != -1) {
             if (data.require <= jeeFrontEnd.jeedomVersion) {
@@ -450,10 +450,18 @@ $('#bt_resetPluginSearch').on('click', function() {
   $('#in_searchPlugin').val('').keyup()
 })
 
-//displayAsTable open plugin:
-$('div.pluginDisplayCard .bt_openPluginPage').off('click').on('click', function(event) {
+//displayAsTable or conf open plugin:
+$('div.pluginDisplayCard .bt_openPluginPage, #div_confPlugin .openPluginPage').off('click').on('click', function(event) {
   event.stopPropagation()
-  var pluginId = $(this).closest('div.pluginDisplayCard').attr('data-plugin_id')
+  if (event.target.closest('.pluginDisplayCard')?.hasClass('inactive') || event.target.closest('#div_state')?.querySelector('a.togglePlugin')?.getAttribute('data-state') == '1') {
+    bootbox.alert('{{Vous devez activer ce plugin pour y accéder.}}')
+    return false
+  }
+  if (event.target.closest('.pluginDisplayCard') != null) {
+    var pluginId = event.target.closest('.pluginDisplayCard').getAttribute('data-plugin_id')
+  } else {
+    var pluginId = event.target.getAttribute('data-plugin_id')
+  }
   var url = '/index.php?v=d&m=' + pluginId + '&p=' + pluginId
   if (event.ctrlKey || event.metaKey) {
     window.open(url).focus()
@@ -462,15 +470,22 @@ $('div.pluginDisplayCard .bt_openPluginPage').off('click').on('click', function(
   }
   return false
 })
-$('div.pluginDisplayCard .bt_openPluginPage').off('mouseup').on('mouseup', function(event) {
+$('div.pluginDisplayCard .bt_openPluginPage, #div_confPlugin .openPluginPage').off('mouseup').on('mouseup', function(event) {
   if (event.which == 2) {
     event.stopPropagation()
     event.preventDefault()
-    var pluginId = $(this).closest('div.pluginDisplayCard').attr('data-plugin_id')
-    $('.pluginDisplayCard[data-plugin_id="' + pluginId + '"] .bt_openPluginPage').trigger(jQuery.Event('click', {
-      ctrlKey: true,
-      pluginId: pluginId
-    }))
+    if (event.target.closest('.pluginDisplayCard') != null) {
+      var pluginId = event.target.closest('.pluginDisplayCard').getAttribute('data-plugin_id')
+      $('.pluginDisplayCard[data-plugin_id="' + pluginId + '"] .bt_openPluginPage').trigger(jQuery.Event('click', {
+        ctrlKey: true,
+        pluginId: pluginId
+      }))
+    } else {
+      $('#div_confPlugin .openPluginPage').trigger(jQuery.Event('click', {
+        ctrlKey: true,
+        pluginId: pluginId
+      }))
+    }
   }
 })
 
