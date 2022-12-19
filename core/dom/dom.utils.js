@@ -283,7 +283,11 @@ Element.prototype.insertAtCursor = function(_valueString) {
   return this
 }
 
-
+Element.prototype.uniqueId = function(_prefix) {
+  if (!isset(_prefix)) _prefix = 'jee-id-'
+  this.setAttribute('id', _prefix + Math.floor(Math.random() * Date.now()).toString(16))
+  return this
+}
 
 /* Set and Get element values according to Jeedom data
 Must be high performance

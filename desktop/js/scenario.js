@@ -1169,14 +1169,13 @@ if (!jeeFrontEnd.scenario) {
       for (var i in loadStack) {
         elements += this.addElement(loadStack[i])
       }
-
-      $('#div_scenarioElement').append(elements)
-
+      document.getElementById('div_scenarioElement').empty().html(elements, true)
       //Synch collapsed elements:
-      $('i.fa-eye-slash').each(function() {
-        $(this).parents('.element').first().addClass('elementCollapse')
+      /*
+      document.querySelectorAll('i.fa-eye-slash').forEach(eye => {
+        eye.closest(.element).addClass('elementCollapse')
       })
-
+      */
       this.updateElseToggle()
       this.setScenarioActionsOptions()
     },
@@ -1185,11 +1184,12 @@ if (!jeeFrontEnd.scenario) {
       this.bt_undo.removeClass('disabled')
       this.bt_redo.addClass('disabled')
       var newStack = []
-      $('#div_scenarioElement').children('.element').each(function() {
-        newStack.push(jeeP.getElement(this))
+
+      document.getElementById('div_scenarioElement').querySelectorAll(':scope > .element').forEach(element => {
+        newStack.push(jeeP.getElement(element))
       })
 
-      if (newStack == $(this.undoStack[state - 1])) return
+      if (newStack == this.undoStack[state - 1]) return
       if (state == 0) {
         state = this.undoState = this.undoStack.length
         this.reDo = 0
