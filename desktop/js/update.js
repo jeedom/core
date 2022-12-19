@@ -138,7 +138,7 @@ if (!jeeFrontEnd.update) {
           }
           $('#table_update tbody').trigger('update')
 
-          if (jeeP.hasUpdate) document.querySelector('li a[href="#coreplugin"] i').style.color = 'var(--al-warning-color)'
+          if (jeeP.hasUpdate) document.querySelector('li a[data-target="#coreplugin"] i').style.color = 'var(--al-warning-color)'
 
           $('#md_specifyUpdate').removeClass('hidden')
 
@@ -590,7 +590,7 @@ $('#bt_doUpdate').off('click').on('click', function() {
 })
 
 $('#bt_checkAllUpdate').off('click').on('click', function() {
-  if ($('a[href="#log"]').parent().hasClass('active')) $('a[href="#coreplugin"]').trigger('click')
+  if ($('a[data-target="#log"]').parent().hasClass('active')) $('a[data-target="#coreplugin"]').trigger('click')
   jeeP.checkAllUpdate()
 })
 
