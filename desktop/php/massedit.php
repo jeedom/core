@@ -24,11 +24,11 @@ scanDB('cmd');
 scanDB('object');
 scanDB('scenario');
 //sorting all this:
-foreach($typePossibilities as &$item) {
+foreach ($typePossibilities as &$item) {
   ksort($item);
 }
-foreach($typePossibilities as &$item) {
-  foreach($item as &$key) {
+foreach ($typePossibilities as &$item) {
+  foreach ($item as &$key) {
     if (!isset($key[0])) continue;
     if (!is_string($key[0])) {
       uksort($key, function ($a, $b) {
@@ -58,7 +58,7 @@ function scanDB($_table) {
     return false;
   }
   foreach ($items as $item) {
-    $sqlQuery = 'SELECT * FROM `'.$_table.'` WHERE `id` = '.$item->getId();
+    $sqlQuery = 'SELECT * FROM `' . $_table . '` WHERE `id` = ' . $item->getId();
     $result = DB::prepare($sqlQuery, array('db_name' => $CONFIG['db']['dbname']), DB::FETCH_TYPE_ALL);
     foreach ($result[0] as $key => $value) {
       if ($value == '' || $value == '[]') continue;
@@ -80,7 +80,8 @@ function scanDB($_table) {
               array_push($typePossibilities[$_table][$key][$jkey], $jvalue);
             }
           }
-        } catch (Exception $e) {}
+        } catch (Exception $e) {
+        }
       } else {
         if (!in_array($value, $typePossibilities[$_table][$key])) {
           array_push($typePossibilities[$_table][$key], $value);
@@ -99,14 +100,14 @@ function scanDB($_table) {
         <span class="input-group-btn">
           <a href="index.php?v=d&p=backup" class="btn btn-success btn-sm roundedLeft"><i class="fas fa-save"></i> {{Sauvegarde Système}}
           </a><a class="btn btn-info btn-sm" id="bt_exportFilter"><i class="fas fa-file-export"></i> {{Exporter}}
-          </a><span class="btn btn-info btn-sm btn-file"><i class="fas fa-file-import"></i> {{Importer}}<input  id="bt_importFilter" type="file" name="file" style="display:inline-block;"></span>
+          </a><span class="btn btn-info btn-sm btn-file"><i class="fas fa-file-import"></i> {{Importer}}<input id="bt_importFilter" type="file" name="file" style="display:inline-block;"></span>
           </a><a class="btn btn-danger btn-sm roundedRight" id="bt_execMassEdit"><i class="fas fa-fill-drip"></i> {{Exécuter}}</a>
         </span>
       </div>
     </div>
 
     <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-fill-drip"></i> {{Editeur en masse}}</a></li>
+      <li role="presentation" class="active"><a data-target="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-fill-drip"></i> {{Editeur en masse}}</a></li>
     </ul>
 
     <div class="tab-content">
@@ -191,4 +192,4 @@ function scanDB($_table) {
   </div>
 </div>
 
-<?php include_file('desktop', 'massedit', 'js');?>
+<?php include_file('desktop', 'massedit', 'js'); ?>

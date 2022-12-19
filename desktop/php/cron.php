@@ -7,15 +7,15 @@ if (!isConnect('admin')) {
 <div class="row row-overflow">
   <div class="hasfloatingbar col-xs-12">
     <div class="floatingbar">
-        <div class="input-group">
-          <span class="input-group-btn">
-            <?php
-            if (config::byKey('enableCron') == 0) {
-              echo '<a class="btn btn-success btn-sm roundedLeft" id="bt_changeCronState" data-state="1"><i class="fas fa-check"></i> {{Activer le système cron}}';
-            } else {
-              echo '<a class="btn btn-danger btn-sm roundedLeft" id="bt_changeCronState" data-state="0"><i class="fas fa-times"></i> {{Désactiver le système cron}}';
-            }
-            ?>
+      <div class="input-group">
+        <span class="input-group-btn">
+          <?php
+          if (config::byKey('enableCron') == 0) {
+            echo '<a class="btn btn-success btn-sm roundedLeft" id="bt_changeCronState" data-state="1"><i class="fas fa-check"></i> {{Activer le système cron}}';
+          } else {
+            echo '<a class="btn btn-danger btn-sm roundedLeft" id="bt_changeCronState" data-state="0"><i class="fas fa-times"></i> {{Désactiver le système cron}}';
+          }
+          ?>
           <a class="btn btn-sm" id="bt_refreshCron"><i class="fas fa-sync"></i> {{Rafraîchir}}
           </a><a class="btn btn-sm" id="bt_addCron"><i class="fas fa-plus-circle"></i> {{Ajouter}}
           </a><a class="btn btn-success roundedRight btn-sm" id="bt_save"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
@@ -24,9 +24,9 @@ if (!isConnect('admin')) {
     </div>
 
     <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active"><a href="#cron" role="tab" data-toggle="tab"><i class="fas fa-clock"></i> {{Cron}}</a></li>
-      <li role="presentation"><a href="#listener" role="tab" data-toggle="tab"><i class="fas fa-assistive-listening-systems"></i> {{Listener}}</a></li>
-      <li role="presentation"><a href="#deamon" role="tab" data-toggle="tab"><i class="fas fa-bug" ></i> {{Démon}}</a></li>
+      <li role="presentation" class="active"><a data-target="#cron" role="tab" data-toggle="tab"><i class="fas fa-clock"></i> {{Cron}}</a></li>
+      <li role="presentation"><a data-target="#listener" role="tab" data-toggle="tab"><i class="fas fa-assistive-listening-systems"></i> {{Listener}}</a></li>
+      <li role="presentation"><a data-target="#deamon" role="tab" data-toggle="tab"><i class="fas fa-bug"></i> {{Démon}}</a></li>
     </ul>
 
     <div class="tab-content">
@@ -54,7 +54,7 @@ if (!isConnect('admin')) {
       </div>
 
       <div role="tabpanel" class="tab-pane" id="listener">
-        <table id="table_listener" class="ui-table-reflow table table-bordered table-condensed" >
+        <table id="table_listener" class="ui-table-reflow table table-bordered table-condensed">
           <thead>
             <tr>
               <th style="width: 40px;">#</th>
@@ -71,7 +71,7 @@ if (!isConnect('admin')) {
 
       <div role="tabpanel" class="tab-pane" id="deamon">
         <a id="bt_refreshDeamon" class="btn btn-sm btn-default pull-right" style="margin-top: 5px;"><i class="fas fa-sync"></i> {{Rafraîchir}}</a>
-        <table id="table_deamon" class="ui-table-reflow table table-bordered table-condensed" >
+        <table id="table_deamon" class="ui-table-reflow table table-bordered table-condensed">
           <thead>
             <tr>
               <th>{{Nom}}</th>
@@ -88,4 +88,4 @@ if (!isConnect('admin')) {
   </div>
 </div>
 
-<?php include_file('desktop', 'cron', 'js');?>
+<?php include_file('desktop', 'cron', 'js'); ?>

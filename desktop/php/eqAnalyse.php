@@ -32,19 +32,19 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 		</div>
 
 		<ul class="nav nav-tabs reportModeHidden" role="tablist" id="ul_tabBatteryAlert">
-			<li role="presentation" class="active batteries"><a href="#battery" aria-controls="battery" role="tab" data-toggle="tab"><i class="fas fa-battery-full"></i> <span class="hidden-992">{{Batteries}}</span></a></li>
-			<li role="presentation" class="alerts"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> <span class="hidden-992">{{Equipements en alerte}}</span></a></li>
-			<li role="presentation" id="tab_actionCmd"><a href="#actionCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> <span class="hidden-992">{{Actions définies}}</span></a></li>
-			<li role="presentation" id="tab_alertCmd"><a href="#alertCmd" aria-controls="alertCmd" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> <span class="hidden-992">{{Alertes définies}}</span></a></li>
-			<li role="presentation" id="tab_pushCmd"><a href="#pushCmd" aria-controls="pushCmd" role="tab" data-toggle="tab"><i class="fas fa-upload"></i> <span class="hidden-992">{{Push définis}}</span></a></li>
-			<li role="presentation" id="tab_deadCmd"><a href="#deadCmd" aria-controls="deadCmd" role="tab" data-toggle="tab"><i class="fab fa-snapchat-ghost"></i> <span class="hidden-992">{{Commandes orphelines}}</span></a></li>
+			<li role="presentation" class="active batteries"><a data-target="#battery" aria-controls="battery" role="tab" data-toggle="tab"><i class="fas fa-battery-full"></i> <span class="hidden-992">{{Batteries}}</span></a></li>
+			<li role="presentation" class="alerts"><a data-target="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> <span class="hidden-992">{{Equipements en alerte}}</span></a></li>
+			<li role="presentation" id="tab_actionCmd"><a data-target="#actionCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> <span class="hidden-992">{{Actions définies}}</span></a></li>
+			<li role="presentation" id="tab_alertCmd"><a data-target="#alertCmd" aria-controls="alertCmd" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> <span class="hidden-992">{{Alertes définies}}</span></a></li>
+			<li role="presentation" id="tab_pushCmd"><a data-target="#pushCmd" aria-controls="pushCmd" role="tab" data-toggle="tab"><i class="fas fa-upload"></i> <span class="hidden-992">{{Push définis}}</span></a></li>
+			<li role="presentation" id="tab_deadCmd"><a data-target="#deadCmd" aria-controls="deadCmd" role="tab" data-toggle="tab"><i class="fab fa-snapchat-ghost"></i> <span class="hidden-992">{{Commandes orphelines}}</span></a></li>
 		</ul>
 
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="battery">
-				<br/>
+				<br />
 				<div class="input-group" style="margin-bottom:5px;">
-					<input class="form-control roundedLeft" placeholder="{{Rechercher | nom | :not(nom}}" id="in_search"/>
+					<input class="form-control roundedLeft" placeholder="{{Rechercher | nom | :not(nom}}" id="in_search" />
 					<div class="input-group-btn">
 						<a id="bt_resetSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
 					</div>
@@ -116,7 +116,7 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 									$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Pré-exécution}}</td><td>';
 									$actions = '';
 									foreach ($cmd->getConfiguration('jeedomPreExecCmd') as $actionCmd) {
-										$actions .= '<div>'.scenarioExpression::humanAction($actionCmd).'</div>';
+										$actions .= '<div>' . scenarioExpression::humanAction($actionCmd) . '</div>';
 									}
 									$div .= trim($actions);
 									$div .= '</td>';
@@ -129,7 +129,7 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 									$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Post-exécution}}</td><td>';
 									$actions = '';
 									foreach (($cmd->getConfiguration('jeedomPostExecCmd')) as $actionCmd) {
-										$actions .= '<div>'.scenarioExpression::humanAction($actionCmd).'</div>';
+										$actions .= '<div>' . scenarioExpression::humanAction($actionCmd) . '</div>';
 									}
 									$div .= trim($actions);
 									$div .= '</td>';
@@ -182,31 +182,31 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 						foreach ($eqLogicsAll as $eqLogic) {
 							$div = '';
 							foreach (($eqLogic->getCmd('info')) as $cmd) {
-								$timelineEnable = $cmd->getConfiguration('timeline::enable',false);
-								$pushEnable = $cmd->getConfiguration('jeedomPushUrl','');
-								$influxEnable = $cmd->getConfiguration('influx::enable',false);
+								$timelineEnable = $cmd->getConfiguration('timeline::enable', false);
+								$pushEnable = $cmd->getConfiguration('jeedomPushUrl', '');
+								$influxEnable = $cmd->getConfiguration('influx::enable', false);
 								if ($timelineEnable || $pushEnable != '' || $influxEnable) {
 									$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>';
 									if ($timelineEnable) {
-										$folder= '';
-										if ($cmd->getConfiguration('timeline::folder','') != '') {
-											$folder = ' {{sur le folder}} ' . $cmd->getConfiguration('timeline::folder','');
+										$folder = '';
+										if ($cmd->getConfiguration('timeline::folder', '') != '') {
+											$folder = ' {{sur le folder}} ' . $cmd->getConfiguration('timeline::folder', '');
 										}
 										$div .= '<div>- {{Timeline active}}' . $folder . '</div>';
 									}
 									if ($influxEnable) {
 										$nameCmd = $cmd->getName();
 										$nameEqLogic = $eqLogic->getName();
-										if ($cmd->getConfiguration('influx::namecmd','') != '') {
+										if ($cmd->getConfiguration('influx::namecmd', '') != '') {
 											$nameCmd = $cmd->getConfiguration('influx::namecmd');
 										}
-										if ($cmd->getConfiguration('influx::nameEq','') != '') {
+										if ($cmd->getConfiguration('influx::nameEq', '') != '') {
 											$nameEqLogic = $cmd->getConfiguration('influx::nameEq');
 										}
-										$div .= '<div>- {{Influx actif}} : ' . $nameCmd . '-' . $nameEqLogic.'</div>';
+										$div .= '<div>- {{Influx actif}} : ' . $nameCmd . '-' . $nameEqLogic . '</div>';
 									}
-									if ($pushEnable != ''){
-										$div .= '<div>- {{Push actif sur}} : ' . $pushEnable.'</div>';
+									if ($pushEnable != '') {
+										$div .= '<div>- {{Push actif sur}} : ' . $pushEnable . '</div>';
 									}
 									$div .= '</td>';
 									$div .= '<td>';
@@ -311,4 +311,4 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 	</div>
 </div>
 
-<?php include_file('desktop', 'eqAnalyse', 'js');?>
+<?php include_file('desktop', 'eqAnalyse', 'js'); ?>

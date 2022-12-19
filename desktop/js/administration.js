@@ -26,8 +26,8 @@ if (!jeeFrontEnd.administration) {
 
       //Back to tab:
       var _url = window.location.href
-      if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').html() != undefined) {
-        $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').trigger('click')
+      if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[data-target="#' + _url.split('#')[1] + '"]').html() != undefined) {
+        $('.nav-tabs a[data-target="#' + _url.split('#')[1] + '"]').trigger('click')
       }
     },
     updateTooltips: function() {

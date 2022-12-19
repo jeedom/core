@@ -31,20 +31,20 @@ user::isBan();
 		</div>
 
 		<ul class="nav nav-tabs nav-primary" role="tablist">
-			<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-wrench" title="{{Général}}"></i><span> {{Général}}</span></a></li>
-			<li role="presentation"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-laptop" title="{{Interface}}"></i><span> {{Interface}}</span></a></li>
-			<li role="presentation"><a id="bt_networkTab" href="#networktab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-rss" title="{{Réseaux}}"></i><span> {{Réseaux}}</span></a></li>
-			<li role="presentation"><a href="#logtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="far fa-file" title="{{Logs}}"></i><span> {{Logs}}</span></a></li>
-			<li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-table" title="{{Résumés}}"></i><span> {{Résumés}}</span></a></li>
-			<li role="presentation"><a href="#eqlogictab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon divers-svg" title="{{Equipements}}"></i><span> {{Equipements}}</span></a></li>
-			<li role="presentation"><a href="#repporttab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-newspaper" title="{{Rapports}}"></i><span> {{Rapports}}</span></a></li>
-			<li role="presentation"><a href="#graphlinktab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-sitemap" title="{{Liens}}"></i><span> {{Liens}}</span></a></li>
-			<li role="presentation"><a href="#interacttab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-microphone" title="{{Interactions}}"></i><span> {{Interactions}}</span></a></li>
-			<li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-shield-alt" title="{{Securité}}"></i><span> {{Securité}}</span></a></li>
-			<li role="presentation"><a href="#updatetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-credit-card" title="{{Mises à jour}}"></i><span> {{Mises à jour/Market}}</span></a></li>
-			<li role="presentation"><a href="#cachetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="far fa-hdd" title="{{Cache}}"></i><span> {{Cache}}</span></a></li>
-			<li role="presentation"><a href="#apitab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-key" title="{{API}}"></i><span> {{API}}</span></a></li>
-			<li role="presentation"><a href="#ostab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-terminal" title="{{OS/DB}}"></i><span> {{OS/DB}}</span></a></li>
+			<li role="presentation" class="active"><a data-target="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-wrench" title="{{Général}}"></i><span> {{Général}}</span></a></li>
+			<li role="presentation"><a data-target="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-laptop" title="{{Interface}}"></i><span> {{Interface}}</span></a></li>
+			<li role="presentation"><a id="bt_networkTab" data-target="#networktab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-rss" title="{{Réseaux}}"></i><span> {{Réseaux}}</span></a></li>
+			<li role="presentation"><a data-target="#logtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="far fa-file" title="{{Logs}}"></i><span> {{Logs}}</span></a></li>
+			<li role="presentation"><a data-target="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-table" title="{{Résumés}}"></i><span> {{Résumés}}</span></a></li>
+			<li role="presentation"><a data-target="#eqlogictab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon divers-svg" title="{{Equipements}}"></i><span> {{Equipements}}</span></a></li>
+			<li role="presentation"><a data-target="#repporttab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-newspaper" title="{{Rapports}}"></i><span> {{Rapports}}</span></a></li>
+			<li role="presentation"><a data-target="#graphlinktab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-sitemap" title="{{Liens}}"></i><span> {{Liens}}</span></a></li>
+			<li role="presentation"><a data-target="#interacttab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-microphone" title="{{Interactions}}"></i><span> {{Interactions}}</span></a></li>
+			<li role="presentation"><a data-target="#securitytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-shield-alt" title="{{Securité}}"></i><span> {{Securité}}</span></a></li>
+			<li role="presentation"><a data-target="#updatetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-credit-card" title="{{Mises à jour}}"></i><span> {{Mises à jour/Market}}</span></a></li>
+			<li role="presentation"><a data-target="#cachetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="far fa-hdd" title="{{Cache}}"></i><span> {{Cache}}</span></a></li>
+			<li role="presentation"><a data-target="#apitab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-key" title="{{API}}"></i><span> {{API}}</span></a></li>
+			<li role="presentation"><a data-target="#ostab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-terminal" title="{{OS/DB}}"></i><span> {{OS/DB}}</span></a></li>
 		</ul>
 
 		<div class="tab-content">
@@ -863,8 +863,8 @@ user::isBan();
 				<hr />
 
 				<ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" class="active"><a href="#log_alertes" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> {{Action sur alertes}}</a></li>
-					<li role="presentation"><a href="#log_log" role="tab" data-toggle="tab"><i class="fas fa-file"></i> {{Niveau de Logs}}</a></li>
+					<li role="presentation" class="active"><a data-target="#log_alertes" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> {{Action sur alertes}}</a></li>
+					<li role="presentation"><a data-target="#log_log" role="tab" data-toggle="tab"><i class="fas fa-file"></i> {{Niveau de Logs}}</a></li>
 				</ul>
 
 				<div class="tab-content">
@@ -1793,7 +1793,7 @@ user::isBan();
 									foreach ($repos as $key => $value) {
 										$name = (isset($value['configuration']['translate_name'])) ? $value['configuration']['translate_name'] : $value['name'];
 										$active = ($key == 'market') ? 'active' : '';
-										echo '<li role="presentation" class="' . $active . '"><a href="#tab' . $key . '" aria-controls="tab' . $key . '" role="tab" data-toggle="tab">' . $name . '</a></li>';
+										echo '<li role="presentation" class="' . $active . '"><a data-target="#tab' . $key . '" aria-controls="tab' . $key . '" role="tab" data-toggle="tab">' . $name . '</a></li>';
 									}
 									?>
 								</ul>

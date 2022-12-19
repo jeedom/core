@@ -122,7 +122,7 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
 
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
-      <li role="presentation" class="active"><a href="#widgetstab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Widgets}}</a></li>
+      <li role="presentation" class="active"><a data-target="#widgetstab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Widgets}}</a></li>
     </ul>
 
     <div class="tab-content">

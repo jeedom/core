@@ -22,7 +22,7 @@ if (count($scenarioNoGroup) > 0) {
 	$hasScenario = true;
 }
 
-function jeedom_displayScenarioGroup($_group='', $_index=-1) {
+function jeedom_displayScenarioGroup($_group = '', $_index = -1) {
 	global $scenarios;
 	$thisDiv = '';
 
@@ -32,25 +32,25 @@ function jeedom_displayScenarioGroup($_group='', $_index=-1) {
 		$id = 'config_none';
 	} else {
 		$groupName = $_group;
-		$href = '#config_'.$_index;
-		$id = 'config_'.$_index;
+		$href = '#config_' . $_index;
+		$id = 'config_' . $_index;
 	}
 	$thisDiv .= '<div class="panel panel-default">';
 	$thisDiv .= '<div class="panel-heading">';
 	$thisDiv .= '<h3 class="panel-title">';
-	$thisDiv .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" data-groupName="' . $groupName . '" aria-expanded="false" href="'.$href.'">' . $groupName . ' - ';
+	$thisDiv .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" data-groupName="' . $groupName . '" aria-expanded="false" href="' . $href . '">' . $groupName . ' - ';
 	$c = count($scenarios[$groupName]);
-	$thisDiv .= $c. ($c > 1 ? ' scénarios' : ' scénario').'</a>';
+	$thisDiv .= $c . ($c > 1 ? ' scénarios' : ' scénario') . '</a>';
 	$thisDiv .= '</h3>';
 	$thisDiv .= '</div>';
-	$thisDiv .= '<div id="'.$id.'" class="panel-collapse collapse">';
+	$thisDiv .= '<div id="' . $id . '" class="panel-collapse collapse">';
 	$thisDiv .= '<div class="panel-body">';
 	$thisDiv .= '<div class="scenarioListContainer" data-groupName="' . $groupName . '">';
 	foreach ($scenarios[$groupName] as $scenario) {
 		$inactive = ($scenario->getIsActive()) ? '' : 'inactive';
-		$thisDiv .= '<div class="scenarioDisplayCard cursor '.$inactive.'" data-scenario_id="' . $scenario->getId() . '">';
+		$thisDiv .= '<div class="scenarioDisplayCard cursor ' . $inactive . '" data-scenario_id="' . $scenario->getId() . '">';
 		if ($scenario->getDisplay('icon') != '') {
-			$thisDiv .= '<span>'.$scenario->getDisplay('icon').'</span>';
+			$thisDiv .= '<span>' . $scenario->getDisplay('icon') . '</span>';
 		} else {
 			$thisDiv .= '<span><i class="icon noicon jeedom-clap_cinema"></i></span>';
 		}
@@ -58,8 +58,8 @@ function jeedom_displayScenarioGroup($_group='', $_index=-1) {
 		$thisDiv .= '<span class="name">' . $scenario->getHumanName(true, true, true, true) . '</span>';
 
 		$thisDiv .= '<span class="hiddenAsCard displayTableRight">';
-			$thisDiv .= '<span>'.$scenario->getLastLaunch().'</span>';
-			$thisDiv .= '<a class="btn btn-default btn-xs bt_ViewLog"><i class="far fa-file"></i></a>';
+		$thisDiv .= '<span>' . $scenario->getLastLaunch() . '</span>';
+		$thisDiv .= '<a class="btn btn-default btn-xs bt_ViewLog"><i class="far fa-file"></i></a>';
 		$thisDiv .= '</span>';
 
 		$thisDiv .= '</div>';
@@ -92,7 +92,7 @@ sendVarToJS([
 
 <div class="row row-overflow">
 	<div id="scenarioThumbnailDisplay" class="col-xs-12">
-		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
+		<legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
 		<div class="scenarioListContainer <?php echo (jeedom::getThemeConfig()['theme_displayAsTable'] == 1) ? ' containerAsTable' : ''; ?>">
 			<div class="cursor logoPrimary" id="bt_addScenario">
 				<div class="center"><i class="fas fa-plus-circle"></i></div>
@@ -102,12 +102,12 @@ sendVarToJS([
 				<div class="center"><i class="far fa-trash-alt"></i></div>
 				<span class="txtColor">{{Supprimer les logs}}</span>
 			</div>
-			<?php if (config::byKey('enableScenario') == 0) {?>
+			<?php if (config::byKey('enableScenario') == 0) { ?>
 				<div class="cursor success" id="bt_changeAllScenarioState" data-state="1">
 					<div class="center"><i class="fas fa-check"></i></div>
 					<span class="txtColor">{{Activer scénarios}}</span>
 				</div>
-			<?php } else {?>
+			<?php } else { ?>
 				<div class="cursor danger" id="bt_changeAllScenarioState" data-state="0">
 					<div class="center"><i class="fas fa-times"></i></div>
 					<span class="txtColor">{{Désactiver scénarios}}</span>
@@ -119,7 +119,7 @@ sendVarToJS([
 			</div>
 		</div>
 
-		<legend><i class="icon jeedom-clap_cinema"></i>  {{Mes scénarios}} <sub class="itemsNumber"></sub></legend>
+		<legend><i class="icon jeedom-clap_cinema"></i> {{Mes scénarios}} <sub class="itemsNumber"></sub></legend>
 		<?php
 		if ($hasScenario == false) {
 			echo "<br/><br/><br/><div class='center'><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter pour commencer</span></div>";
@@ -157,62 +157,62 @@ sendVarToJS([
 		?>
 	</div>
 
-	<div id="div_editScenario" class="hasfloatingbar col-xs-12" style="display: none;" >
-        <div class="floatingbar">
-          <div class="input-group">
-              <span class="input-group-btn">
-                  <span id="span_ongoing" class="label label-sm"></span>
+	<div id="div_editScenario" class="hasfloatingbar col-xs-12" style="display: none;">
+		<div class="floatingbar">
+			<div class="input-group">
+				<span class="input-group-btn">
+					<span id="span_ongoing" class="label label-sm"></span>
 
-                  <a id="bt_undo" class="disabled btn btn-sm roundedLeft" title="{{Etat précédent}} (Ctrl+Shift+Z)" style="margin:0"><i class="fas fa-undo"></i>
-                  </a><a id="bt_redo" class="disabled btn btn-sm" title="{{Etat suivant}} (Ctrl+Shift+Y)" style="margin:0"><i class="fas fa-redo"></i></a>
+					<a id="bt_undo" class="disabled btn btn-sm roundedLeft" title="{{Etat précédent}} (Ctrl+Shift+Z)" style="margin:0"><i class="fas fa-undo"></i>
+					</a><a id="bt_redo" class="disabled btn btn-sm" title="{{Etat suivant}} (Ctrl+Shift+Y)" style="margin:0"><i class="fas fa-redo"></i></a>
 
-                  <a class="btn btn-sm bt_addScenarioElement"><i class="fas fa-plus-circle"></i> <span class="hidden-768">{{Ajouter bloc}}</span>
-                  </a><a class="btn btn-sm" id="bt_logScenario" title="{{Log (Ctrl+l)}}"><i class="far fa-file-alt"></i>
-                  </a><a class="btn btn-sm" id="bt_copyScenario" title="{{Dupliquer}}"><i class="fas fa-copy"></i>
-                  </a><a class="btn btn-sm" id="bt_graphScenario" title="{{Liens}}"><i class="fas fa-object-group"></i>
-                  </a><a class="btn btn-sm" id="bt_editJsonScenario" title="{{Edition texte}}"> <i class="far fa-edit"></i>
-                  </a><a class="btn btn-sm" id="bt_exportScenario" title="{{Exporter}}"><i class="fas fa-share"></i>
-                  </a><a class="btn btn-sm" id="bt_templateScenario" title="{{Template}}"><i class="fas fa-cubes"></i></a>
+					<a class="btn btn-sm bt_addScenarioElement"><i class="fas fa-plus-circle"></i> <span class="hidden-768">{{Ajouter bloc}}</span>
+					</a><a class="btn btn-sm" id="bt_logScenario" title="{{Log (Ctrl+l)}}"><i class="far fa-file-alt"></i>
+					</a><a class="btn btn-sm" id="bt_copyScenario" title="{{Dupliquer}}"><i class="fas fa-copy"></i>
+					</a><a class="btn btn-sm" id="bt_graphScenario" title="{{Liens}}"><i class="fas fa-object-group"></i>
+					</a><a class="btn btn-sm" id="bt_editJsonScenario" title="{{Edition texte}}"> <i class="far fa-edit"></i>
+					</a><a class="btn btn-sm" id="bt_exportScenario" title="{{Exporter}}"><i class="fas fa-share"></i>
+					</a><a class="btn btn-sm" id="bt_templateScenario" title="{{Template}}"><i class="fas fa-cubes"></i></a>
 
-                  <input class="input-sm" placeholder="{{Rechercher}}" id="in_searchInsideScenario" style="min-width: 120px;display:none;"/>
-                  <a id="bt_resetInsideScenarioSearch" class="disabled btn btn-sm" data-state="0" style="width:30px" title="{{Rechercher}}"><i class="fas fa-search"></i></a>
+					<input class="input-sm" placeholder="{{Rechercher}}" id="in_searchInsideScenario" style="min-width: 120px;display:none;" />
+					<a id="bt_resetInsideScenarioSearch" class="disabled btn btn-sm" data-state="0" style="width:30px" title="{{Rechercher}}"><i class="fas fa-search"></i></a>
 
-                  <a class="btn btn-warning btn-sm" id="bt_runScenario" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.<br>Ctrl+click pour sauvegarder, executer et ouvrir le log}}'><i class="fas fa-gamepad"></i> <span class="hidden-768">{{Exécuter}}</span>
-                  </a><a class="btn btn-danger btn-sm" id="bt_stopScenario"><i class="fas fa-stop"></i> {{Arrêter}}
-                  </a><a class="btn btn-success btn-sm" id="bt_saveScenario"><i class="fas fa-check-circle"></i> <span class="hidden-768">{{Sauvegarder}}</span>
-                  </a><a class="btn btn-danger btn-sm roundedRight" id="bt_delScenario"><i class="fas fa-minus-circle"></i> <span class="hidden-768">{{Supprimer}}</span></a>
-              </span>
-          </div>
-        </div>
+					<a class="btn btn-warning btn-sm" id="bt_runScenario" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.<br>Ctrl+click pour sauvegarder, executer et ouvrir le log}}'><i class="fas fa-gamepad"></i> <span class="hidden-768">{{Exécuter}}</span>
+					</a><a class="btn btn-danger btn-sm" id="bt_stopScenario"><i class="fas fa-stop"></i> {{Arrêter}}
+					</a><a class="btn btn-success btn-sm" id="bt_saveScenario"><i class="fas fa-check-circle"></i> <span class="hidden-768">{{Sauvegarder}}</span>
+					</a><a class="btn btn-danger btn-sm roundedRight" id="bt_delScenario"><i class="fas fa-minus-circle"></i> <span class="hidden-768">{{Supprimer}}</span></a>
+				</span>
+			</div>
+		</div>
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_scenarioThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
-			<li role="presentation" class="active"><a id="bt_generalTab" href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Général}} (ID : <span class="scenarioAttr" data-l1key="id" ></span>)</a></li>
-			<li role="presentation"><a id="bt_scenarioTab" href="#scenariotab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-filter"></i> {{Scénario}}</a></li>
+			<li role="presentation" class="active"><a id="bt_generalTab" data-target="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Général}} (ID : <span class="scenarioAttr" data-l1key="id"></span>)</a></li>
+			<li role="presentation"><a id="bt_scenarioTab" data-target="#scenariotab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-filter"></i> {{Scénario}}</a></li>
 		</ul>
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="generaltab">
-				<br/>
+				<br />
 				<div class="row">
 					<div class="col-sm-6">
 						<form class="form-horizontal">
 							<fieldset>
 								<legend><i class="fas fa-users-cog"></i> {{Paramètres}}</legend>
 								<div class="form-group">
-									<label class="col-xs-5 control-label" >{{Nom du scénario}}</label>
+									<label class="col-xs-5 control-label">{{Nom du scénario}}</label>
 									<div class="col-xs-6">
-										<input class="form-control scenarioAttr" data-l1key="name" type="text" placeholder="{{Nom du scénario}}"/>
+										<input class="form-control scenarioAttr" data-l1key="name" type="text" placeholder="{{Nom du scénario}}" />
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-xs-5 control-label" >{{Nom à afficher}}</label>
+									<label class="col-xs-5 control-label">{{Nom à afficher}}</label>
 									<div class="col-xs-6">
-										<input class="form-control scenarioAttr" title="{{Ne rien mettre pour laisser le nom par défaut}}" data-l1key="display" data-l2key="name" type="text" placeholder="{{Nom à afficher}}"/>
+										<input class="form-control scenarioAttr" title="{{Ne rien mettre pour laisser le nom par défaut}}" data-l1key="display" data-l2key="name" type="text" placeholder="{{Nom à afficher}}" />
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-xs-5 control-label" >{{Groupe}}</label>
+									<label class="col-xs-5 control-label">{{Groupe}}</label>
 									<div class="col-xs-6">
-										<input class="form-control scenarioAttr" data-l1key="group" type="text" placeholder="{{Groupe du scénario}}"/>
+										<input class="form-control scenarioAttr" data-l1key="group" type="text" placeholder="{{Groupe du scénario}}" />
 									</div>
 								</div>
 								<div class="form-group">
@@ -228,7 +228,7 @@ sendVarToJS([
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-xs-5 control-label" >{{Objet parent}}</label>
+									<label class="col-xs-5 control-label">{{Objet parent}}</label>
 									<div class="col-xs-6">
 										<select class="form-control scenarioAttr" data-l1key="object_id">
 											<?php echo jeeObject::getUISelectList(); ?>
@@ -302,7 +302,7 @@ sendVarToJS([
 							<fieldset>
 								<legend><i class="fas fa-play-circle"></i> {{Déclenchement}}</legend>
 								<div class="form-group">
-									<label class="col-sm-3 col-xs-6 control-label" >{{Mode du scénario}}</label>
+									<label class="col-sm-3 col-xs-6 control-label">{{Mode du scénario}}</label>
 									<div class="col-sm-9 col-xs-6">
 										<div class="input-group">
 											<select class="form-control roundedLeft scenarioAttr" data-l1key="mode">
@@ -320,9 +320,9 @@ sendVarToJS([
 								</div>
 								<div class="scheduleDisplay" style="display: none;">
 									<div class="form-group">
-										<label class="col-xs-3 control-label" >{{Précédent}}</label>
-										<div class="col-xs-3" ><span class="scenarioAttr label label-primary" data-l1key="forecast" data-l2key="prevDate" data-l3key="date"></span></div>
-										<label class="col-xs-3 control-label" >{{Prochain}}</label>
+										<label class="col-xs-3 control-label">{{Précédent}}</label>
+										<div class="col-xs-3"><span class="scenarioAttr label label-primary" data-l1key="forecast" data-l2key="prevDate" data-l3key="date"></span></div>
+										<label class="col-xs-3 control-label">{{Prochain}}</label>
 										<div class="col-xs-3"><span class="scenarioAttr label label-success" data-l1key="forecast" data-l2key="nextDate" data-l3key="date"></span></div>
 									</div>
 									<div class="scheduleMode"></div>
@@ -391,7 +391,7 @@ sendVarToJS([
 					<option value="code">{{Code}}</option>
 					<option value="comment">{{Commentaire}}</option>
 				</select>
-				<br/>
+				<br />
 				<div class="alert alert-info addElementTypeDescription if">
 					Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.
 				</div>

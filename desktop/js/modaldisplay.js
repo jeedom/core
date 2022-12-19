@@ -50,7 +50,11 @@ $('#modalDisplay').empty().load(jeeP.url, function(data) {
   $('#bt_getHelpPage').attr('data-page', getUrlVars('p')).attr('data-plugin', getUrlVars('m'))
   jeedomUtils.initPage()
   $('body').trigger('jeedom_page_load')
-  if (window.location.hash != '' && $('.nav-tabs a[href="' + window.location.hash + '"]').length != 0) {
-    $('.nav-tabs a[href="' + window.location.hash + '"]').click()
+  var tab = $('.nav-tabs a[href="' + window.location.hash + '"]')
+  if($('.nav-tabs a[href="' + window.location.hash + '"]').length == 0){
+    tab = $('.nav-tabs a[data-target="' + window.location.hash + '"]')
+  }
+  if (window.location.hash != '' && tab.length != 0) {
+    tab.click()
   }
 })

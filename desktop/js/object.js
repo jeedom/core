@@ -156,7 +156,7 @@ if (!jeeFrontEnd.object) {
           var hash = window.location.hash
           jeedomUtils.addOrUpdateUrl('id', data.id)
           if (hash == '') {
-            $('.nav-tabs a[href="#objecttab"]').click()
+            $('.nav-tabs a[data-target="#objecttab"]').click()
           } else {
             window.location.hash = hash
           }

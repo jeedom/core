@@ -239,6 +239,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
   //tab in url:
   var tab = document.querySelector('.nav-tabs a[href="' + window.location.hash + '"]')
+  if(tab == null){
+    tab = document.querySelector('.nav-tabs a[data-target="' + window.location.hash + '"]')
+  }
+  
   if (window.location.hash != '' && tab != null) {
     tab.triggerEvent('click')
     //$('.nav-tabs a[href="'+window.location.hash+'"]').click()

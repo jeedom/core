@@ -67,11 +67,11 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 		</div>
 
 		<ul class="nav nav-tabs" role="tablist">
-			<li role="presentation" class="active"><a href="#coreplugin" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-archive"></i> {{Core et plugins}}</a></li>
+			<li role="presentation" class="active"><a data-target="#coreplugin" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-archive"></i> {{Core et plugins}}</a></li>
 			<?php if (!in_array(jeedom::getHardwareName(), array('miniplus', 'smart', 'Atlas', 'Luna'))) { ?>
-				<li role="presentation"><a href="#os" aria-controls="profile" role="tab" data-toggle="tab" class="bt_refreshOsPackageUpdate" data-forceRefresh="0"><i class="fas fa-box"></i> {{OS/Package}}</a></li>
+				<li role="presentation"><a data-target="#os" aria-controls="profile" role="tab" data-toggle="tab" class="bt_refreshOsPackageUpdate" data-forceRefresh="0"><i class="fas fa-box"></i> {{OS/Package}}</a></li>
 			<?php } ?>
-			<li role="presentation"><a href="#log" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-info"></i> {{Informations}}</a></li>
+			<li role="presentation"><a data-target="#log" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-info"></i> {{Informations}}</a></li>
 		</ul>
 
 		<div class="tab-content">
