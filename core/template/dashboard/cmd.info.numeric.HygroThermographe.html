@@ -23,7 +23,7 @@
       changeTheme(visible)
       visible.querySelector('.temperature').setAttribute('data-cmd_id', '#id#')
       visible.querySelector('.temperature').classList += ' #history#'
-      document.body.addEventListener('changeThemeEvent', function(event) {
+      document.body.addEventListener('changeThemeEvent', function() {
         changeTheme(visible)
       })
     } if ('#generic_type#' == 'HUMIDITY') {
