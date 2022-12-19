@@ -44,20 +44,20 @@
           cmd.querySelector('.value').innerHTML = '<span class="label label-danger"><i class="fas fa-exclamation"></i> ' + _options.value + '</span>'
         }
       }
-
-      $('body').on('changeThemeEvent', function() {
-        if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
-          let state = ''
-          #change_theme#
-          cmd.querySelector('.iconCmd').innerHTML = state
-          if (is_numeric('#_desktop_width_#') && is_object(img = cmd.querySelector('.iconCmd img'))) {
-            img.style.setProperty('width', '#_desktop_width_#px', 'important')
-          }
-        }
-      })
     })
 
     jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
 
+    document.body.addEventListener('changeThemeEvent', function() {
+      if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+        let state = ''
+        #change_theme#
+        cmd.querySelector('.iconCmd').innerHTML = state
+
+        if (is_numeric('#_desktop_width_#') && is_object(img = cmd.querySelector('.iconCmd img'))) {
+          img.style.setProperty('width', '#_desktop_width_#px', 'important')
+        }
+      }
+    })
   </script>
 </div>
