@@ -240,21 +240,19 @@ $synthToActions = array(
 						<div class="col-lg-6">
 							<legend><i class="fas fa-swatchbook"></i> {{Affichage}}</legend>
 							<div class="form-group">
-								<label class="col-xs-12 col-sm-3 control-label">{{Icône}}
+								<label class="col-sm-3 control-label">{{Icône}}
 									<sup><i class="fas fa-question-circle tooltips" title="{{Activer l'option 'Icônes widgets colorées' dans Interface si nécessaire.}}"></i></sup>
 								</label>
-								<div class="col-xs-2">
+								<div class="col-sm-2">
 									<div class="objectAttr" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></div>
 								</div>
-								<div class="col-xs-2">
+								<div class="col-sm-2">
 									<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label">{{Couleurs personnalisées}}</label>
-								<div class="col-sm-7">
-									<input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="useCustomColor"/>
-								</div>
+								<label class="col-sm-3 control-label checkbox-inline">{{Couleurs personnalisées}}</label>
+								<input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="useCustomColor"/>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label">{{Couleur du tag}}
