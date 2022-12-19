@@ -46,9 +46,9 @@ $objectOptions = jeeObject::getUISelectList(false);
 		</div>
 
 		<ul class="nav nav-tabs" role="tablist">
-			<li role="presentation" class="active"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-briefcase"></i> {{Préférences}}</a></li>
+			<li role="presentation" class="active"><a data-target="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-briefcase"></i> {{Préférences}}</a></li>
 			<?php if (init('user_id') == '') { ?>
-				<li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon securite-key1"></i> {{Sécurité}}</a></li>
+				<li role="presentation"><a data-target="#securitytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon securite-key1"></i> {{Sécurité}}</a></li>
 			<?php } ?>
 		</ul>
 
@@ -62,12 +62,12 @@ $objectOptions = jeeObject::getUISelectList(false);
 							<label class="col-lg-2 col-sm-4 col-xs-12 control-label"><i class="far fa-file"></i> {{Page par défaut}}
 								<sup><i class="fas fa-question-circle tooltips" title="{{Page affichée après connexion}}"></i></sup>
 							</label>
-							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-desktop"></i>  {{Desktop}}</div>
+							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-desktop"></i> {{Desktop}}</div>
 							<div class="col-sm-2 col-xs-6">
 								<select class="form-control userAttr" data-l1key="options" data-l2key="homePage">
 									<?php
 									foreach ($homePageDesktop as $key => $value) {
-										echo '<option value="'.$key.'">'.$value.'</option>';
+										echo '<option value="' . $key . '">' . $value . '</option>';
 									}
 									?>
 								</select>
@@ -78,7 +78,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 									<option value="home">{{Accueil}}</option>
 									<?php
 									foreach ($homePageMobile as $key => $value) {
-										echo '<option value="'.$key.'">'.$value.'</option>';
+										echo '<option value="' . $key . '">' . $value . '</option>';
 									}
 									?>
 								</select>
@@ -88,11 +88,11 @@ $objectOptions = jeeObject::getUISelectList(false);
 							<label class="col-lg-2 col-sm-4 col-xs-12 control-label"><i class="fas fa-columns"></i> {{Objet par défaut}}
 								<sup><i class="fas fa-question-circle tooltips" title="{{Objet affiché lors de l’arrivée sur le dashboard}}"></i></sup>
 							</label>
-							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-desktop"></i>  {{Desktop}}</div>
+							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-desktop"></i> {{Desktop}}</div>
 							<div class="col-sm-2 col-xs-6">
 								<select class="form-control userAttr" data-l1key="options" data-l2key="defaultDashboardObject">
 									<?php
-										echo $objectOptions;
+									echo $objectOptions;
 									?>
 								</select>
 							</div>
@@ -101,7 +101,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 								<select class="form-control userAttr" data-l1key="options" data-l2key="defaultMobileObject">
 									<option value="all">{{Tout}}</option>
 									<?php
-										echo $objectOptions;
+									echo $objectOptions;
 									?>
 								</select>
 							</div>
@@ -111,7 +111,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 							<label class="col-lg-2 col-sm-4 col-xs-12 control-label"><i class="fas fa-eye"></i> {{Vue par défaut}}
 								<sup><i class="fas fa-question-circle tooltips" title="{{Vue affichée lors de l’arrivée sur le dashboard}}"></i></sup>
 							</label>
-							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-desktop"></i>  {{Desktop}}</div>
+							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-desktop"></i> {{Desktop}}</div>
 							<div class="col-sm-2 col-xs-6">
 								<select class="form-control userAttr" data-l1key="options" data-l2key="defaultDesktopView">
 									<?php
@@ -119,7 +119,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 										if (!$view->hasRight('r')) {
 											continue;
 										}
-										echo '<option value="'.$view->getId().'">'.$view->getName().'</option>';
+										echo '<option value="' . $view->getId() . '">' . $view->getName() . '</option>';
 									}
 									?>
 								</select>
@@ -132,7 +132,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 										if (!$view->hasRight('r')) {
 											continue;
 										}
-										echo '<option value="'.$view->getId().'">'.$view->getName().'</option>';
+										echo '<option value="' . $view->getId() . '">' . $view->getName() . '</option>';
 									}
 									?>
 								</select>
@@ -141,7 +141,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 						<div class="form-group">
 							<label class="col-lg-2 col-sm-4 col-xs-6 control-label">{{Déplier le panneau des vues}}</label>
 							<div class="col-sm-1 col-xs-6">
-								<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayViewByDefault"/>
+								<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayViewByDefault" />
 							</div>
 						</div>
 						<hr class="hrPrimary">
@@ -157,7 +157,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 										if (!$plan->hasRight('r')) {
 											continue;
 										}
-										echo '<option value="'.$plan->getId().'">'.$plan->getName().'</option>';
+										echo '<option value="' . $plan->getId() . '">' . $plan->getName() . '</option>';
 									}
 									?>
 								</select>
@@ -170,7 +170,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 										if (!$plan->hasRight('r')) {
 											continue;
 										}
-										echo '<option value="'.$plan->getId().'">'.$plan->getName().'</option>';
+										echo '<option value="' . $plan->getId() . '">' . $plan->getName() . '</option>';
 									}
 									?>
 								</select>
@@ -187,12 +187,12 @@ $objectOptions = jeeObject::getUISelectList(false);
 							<label class="col-lg-2 col-sm-4 col-xs-12 control-label"><i class="fas fa-paint-brush"></i> {{Design 3D par défaut}}
 								<sup><i class="fas fa-question-circle tooltips" title="{{Design 3D affiché lors de l’arrivée sur le dashboard}}"></i></sup>
 							</label>
-							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-desktop"></i>  {{Desktop}}</div>
+							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-desktop"></i> {{Desktop}}</div>
 							<div class="col-sm-2 col-xs-6">
 								<select class="form-control userAttr" data-l1key="options" data-l2key="defaultDashboardPlan3d">
 									<?php
 									foreach ((plan3dHeader::all()) as $plan) {
-										echo '<option value="'.$plan->getId().'">'.$plan->getName().'</option>';
+										echo '<option value="' . $plan->getId() . '">' . $plan->getName() . '</option>';
 									}
 									?>
 								</select>
@@ -202,7 +202,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 								<select class="form-control userAttr" data-l1key="options" data-l2key="defaultMobilePlan3d">
 									<?php
 									foreach ((plan3dHeader::all()) as $plan) {
-										echo '<option value="'.$plan->getId().'">'.$plan->getName().'</option>';
+										echo '<option value="' . $plan->getId() . '">' . $plan->getName() . '</option>';
 									}
 									?>
 								</select>
@@ -237,25 +237,25 @@ $objectOptions = jeeObject::getUISelectList(false);
 								if (!isset($specialAttributes['user']) || !is_array($specialAttributes['user']) || count($specialAttributes['user']) == 0) {
 									continue;
 								}
-								$div = '<legend><i class="fas fa-users-cog"></i> {{Informations complémentaires demandées par}} '.$plugin->getName().'</legend>';
+								$div = '<legend><i class="fas fa-users-cog"></i> {{Informations complémentaires demandées par}} ' . $plugin->getName() . '</legend>';
 								foreach ($specialAttributes['user'] as $key => $config) {
 									$div .= '<div class="form-group">';
-									$div .= '<label class="col-lg-2 col-sm-4 col-xs-2 control-label">'.$config['name'][translate::getLanguage()].'</label>';
+									$div .= '<label class="col-lg-2 col-sm-4 col-xs-2 control-label">' . $config['name'][translate::getLanguage()] . '</label>';
 									$div .= '<div class="col-lg-2 col-sm-4 col-xs-3">';
 									switch ($config['type']) {
 										case 'input':
-										$div .= '<input class="form-control userAttr" data-l1key="options" data-l2key="plugin::'.$plugin->getId().'::'.$key.'"/>';
-										break;
+											$div .= '<input class="form-control userAttr" data-l1key="options" data-l2key="plugin::' . $plugin->getId() . '::' . $key . '"/>';
+											break;
 										case 'number':
-										$div .= '<input type="number" class="form-control userAttr" data-l1key="options" data-l2key="plugin::'.$plugin->getId().'::'.$key.'" min="'.(isset($config['min']) ? $config['min'] : '').'" max="'.(isset($config['max']) ? $config['max'] : '').'" />';
-										break;
+											$div .= '<input type="number" class="form-control userAttr" data-l1key="options" data-l2key="plugin::' . $plugin->getId() . '::' . $key . '" min="' . (isset($config['min']) ? $config['min'] : '') . '" max="' . (isset($config['max']) ? $config['max'] : '') . '" />';
+											break;
 										case 'select':
-										$div .= '<select class="form-control userAttr" data-l1key="options" data-l2key="plugin::'.$plugin->getId().'::'.$key.'">';
-										foreach ($config['values'] as $value) {
-											$div .= '<option value="'.$value['value'].'">'.$value['name'].'</option>';
-										}
-										$div .= '</select>';
-										break;
+											$div .= '<select class="form-control userAttr" data-l1key="options" data-l2key="plugin::' . $plugin->getId() . '::' . $key . '">';
+											foreach ($config['values'] as $value) {
+												$div .= '<option value="' . $value['value'] . '">' . $value['name'] . '</option>';
+											}
+											$div .= '</select>';
+											break;
 									}
 									$div .= '</div>';
 									$div .= '</div>';
@@ -263,7 +263,6 @@ $objectOptions = jeeObject::getUISelectList(false);
 								}
 							}
 						} catch (\Exception $e) {
-
 						}
 						?>
 					</fieldset>
@@ -271,12 +270,12 @@ $objectOptions = jeeObject::getUISelectList(false);
 			</div>
 			<?php if (init('user_id') == '') { ?>
 				<div role="tabpanel" class="tab-pane" id="securitytab">
-					<br/>
+					<br />
 					<form class="form-horizontal">
 						<fieldset>
 							<legend><i class="fas fa-user-secret"></i> {{Utilisateur}}</legend>
 							<?php if (config::byKey('sso:allowRemoteUser') != 1) {
-								?>
+							?>
 								<div class="form-group">
 									<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Authentification en 2 étapes}}</label>
 									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
@@ -284,7 +283,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 									</div>
 									<?php
 									if ($user->getOptions('twoFactorAuthentification', 0) == 1) {
-										?>
+									?>
 										<label class="col-lg-1 col-md-2 col-sm-2 col-xs-2 control-label">{{Actif}}</label>
 										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 											<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="twoFactorAuthentification" />
@@ -372,7 +371,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 									foreach (($user->getOptions('registerDevice')) as $key => $value) {
 										$tr = '';
 										$tr .= '<tr data-key="' . $key . '">';
-										$tr .= '<td title="'.$key.'">';
+										$tr .= '<td title="' . $key . '">';
 										$tr .= substr($key, 0, 20) . '...';
 										$tr .= '</td>';
 										$tr .= '<td>';
@@ -398,4 +397,4 @@ $objectOptions = jeeObject::getUISelectList(false);
 	</div>
 </div>
 
-<?php include_file("desktop", "profils", "js");?>
+<?php include_file("desktop", "profils", "js"); ?>
