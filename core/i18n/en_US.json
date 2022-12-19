@@ -2777,6 +2777,7 @@
         "Heartbeat (min)": "Heartbeat (min)",
         "Redémarrer démon": "Restart daemon",
         "Sauvegarde effectuée": "Backup completed",
+        "Vous devez activer ce plugin pour y accéder.": "You must activate this plugin to access it",
         "De nouveaux plugins ont été installés": "New plugins have been installed",
         "Synchronisation réussi. Aucun nouveau plugin installé.": "Synchronization successful. No new plugin installed",
         "Market": "Market",
