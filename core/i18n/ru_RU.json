@@ -2172,6 +2172,8 @@
     },
     "desktop\/php\/widgets.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
+        "widgets": "Widgets",
+        "widget": "widget",
         "Gestion": "Управление",
         "Ajouter": "Добавить",
         "Importer": "Importer",
@@ -2241,6 +2243,8 @@
     "desktop\/php\/scenario.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Aucun": "Нет",
+        "scénarios": "scénarios",
+        "scénario": "Сценарий",
         "Gestion": "Управление",
         "Ajouter": "Добавить",
         "Supprimer les logs": "Supprimer les logs",
@@ -2355,6 +2359,8 @@
     "desktop\/php\/interact.php": {
         "Aucun": "Aucun",
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
+        "interactions": "interactions",
+        "interaction": "interaction",
         "Gestion": "Управление",
         "Ajouter": "Добавить",
         "Regénérer": "регенерировать",
@@ -3261,6 +3267,8 @@
         "Bloc A": "Блок А",
         "Bloc Code": "Блочный код",
         "Bloc Commentaire": "Блок комментариев",
+        "scénarios": "scénarios",
+        "scénario": "Сценарий",
         "Log d'exécution du scénario": "Журнал запуска скрипта",
         "Rendre inactif": "Rendre inactif",
         "Rendre actif": "Rendre actif",

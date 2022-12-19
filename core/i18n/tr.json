@@ -2172,6 +2172,8 @@
     },
     "desktop\/php\/widgets.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
+        "widgets": "Widget'lar",
+        "widget": "widget",
         "Gestion": "Idare",
         "Ajouter": "Ekle",
         "Importer": "Importer",
@@ -2241,6 +2243,8 @@
     "desktop\/php\/scenario.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
         "Aucun": "Hiçbir",
+        "scénarios": "scénarios",
+        "scénario": "Senaryo",
         "Gestion": "Idare",
         "Ajouter": "Ekle",
         "Supprimer les logs": "Supprimer les logs",
@@ -2355,6 +2359,8 @@
     "desktop\/php\/interact.php": {
         "Aucun": "Aucun",
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
+        "interactions": "interactions",
+        "interaction": "interaction",
         "Gestion": "Idare",
         "Ajouter": "Ekle",
         "Regénérer": "Tekrar üret",
@@ -3261,6 +3267,8 @@
         "Bloc A": "Bloc A",
         "Bloc Code": "Bloc Code",
         "Bloc Commentaire": "Bloc Commentaire",
+        "scénarios": "scénarios",
+        "scénario": "Senaryo",
         "Log d'exécution du scénario": "Senaryonun çalışma logu",
         "Rendre inactif": "Rendre inactif",
         "Rendre actif": "Rendre actif",

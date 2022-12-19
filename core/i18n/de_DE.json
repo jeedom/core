@@ -2172,6 +2172,8 @@
     },
     "desktop\/php\/widgets.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "widgets": "Widgets",
+        "widget": "Widget",
         "Gestion": "Management",
         "Ajouter": "Hinzufügen",
         "Importer": "Import",
@@ -2241,6 +2243,8 @@
     "desktop\/php\/scenario.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Aucun": "Nein",
+        "scénarios": "Szenarien",
+        "scénario": "Szenario",
         "Gestion": "Management",
         "Ajouter": "Hinzufügen",
         "Supprimer les logs": "Protokolle löschen",
@@ -2355,6 +2359,8 @@
     "desktop\/php\/interact.php": {
         "Aucun": "Nein",
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "interactions": "Interaktionen",
+        "interaction": "Interaktion",
         "Gestion": "Management",
         "Ajouter": "Hinzufügen",
         "Regénérer": "Regenerat",
@@ -3261,6 +3267,8 @@
         "Bloc A": "Block A",
         "Bloc Code": "Blockcode",
         "Bloc Commentaire": "Kommentarblock",
+        "scénarios": "Szenarien",
+        "scénario": "Szenario",
         "Log d'exécution du scénario": "Ausführungs Protokoll des Szenarios",
         "Rendre inactif": "Inaktiv machen",
         "Rendre actif": "Aktivieren",

@@ -2172,6 +2172,8 @@
     },
     "desktop\/php\/widgets.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
+        "widgets": "ウィジェット",
+        "widget": "widget",
         "Gestion": "管理",
         "Ajouter": "加えます",
         "Importer": "インポート",
@@ -2241,6 +2243,8 @@
     "desktop\/php\/scenario.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
         "Aucun": "何でもありません",
+        "scénarios": "scénarios",
+        "scénario": "シナリオ",
         "Gestion": "管理",
         "Ajouter": "加えます",
         "Supprimer les logs": "Supprimer les logs",
@@ -2355,6 +2359,8 @@
     "desktop\/php\/interact.php": {
         "Aucun": "Aucun",
         "401 - Accès non autorisé": "401-不正アクセス",
+        "interactions": "interactions",
+        "interaction": "interaction",
         "Gestion": "管理",
         "Ajouter": "加えます",
         "Regénérer": "再生成",
@@ -3261,6 +3267,8 @@
         "Bloc A": "ブロックA",
         "Bloc Code": "ブロックコード",
         "Bloc Commentaire": "コメントブロック",
+        "scénarios": "scénarios",
+        "scénario": "シナリオ",
         "Log d'exécution du scénario": "スクリプトの実行をログに記録します",
         "Rendre inactif": "Rendre inactif",
         "Rendre actif": "Rendre actif",

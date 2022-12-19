@@ -2172,6 +2172,8 @@
     },
     "desktop\/php\/widgets.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "widgets": "widgets",
+        "widget": "widget",
         "Gestion": "Gestion",
         "Ajouter": "Ajouter",
         "Importer": "Importer",
@@ -2241,6 +2243,8 @@
     "desktop\/php\/scenario.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
         "Aucun": "Aucun",
+        "scénarios": "scénarios",
+        "scénario": "scénario",
         "Gestion": "Gestion",
         "Ajouter": "Ajouter",
         "Supprimer les logs": "Supprimer les logs",
@@ -2355,6 +2359,8 @@
     "desktop\/php\/interact.php": {
         "Aucun": "Aucun",
         "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "interactions": "interactions",
+        "interaction": "interaction",
         "Gestion": "Gestion",
         "Ajouter": "Ajouter",
         "Regénérer": "Regénérer",
@@ -3261,6 +3267,8 @@
         "Bloc A": "Bloc A",
         "Bloc Code": "Bloc Code",
         "Bloc Commentaire": "Bloc Commentaire",
+        "scénarios": "scénarios",
+        "scénario": "scénario",
         "Log d'exécution du scénario": "Log d'exécution du scénario",
         "Rendre inactif": "Rendre inactif",
         "Rendre actif": "Rendre actif",

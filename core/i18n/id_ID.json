@@ -2172,6 +2172,8 @@
     },
     "desktop\/php\/widgets.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
+        "widgets": "Widgets",
+        "widget": "widget",
         "Gestion": "Manajemen",
         "Ajouter": "Tambahan",
         "Importer": "Importer",
@@ -2241,6 +2243,8 @@
     "desktop\/php\/scenario.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Aucun": "Tak ada",
+        "scénarios": "scénarios",
+        "scénario": "Skenario",
         "Gestion": "Manajemen",
         "Ajouter": "Tambahan",
         "Supprimer les logs": "Supprimer les logs",
@@ -2355,6 +2359,8 @@
     "desktop\/php\/interact.php": {
         "Aucun": "Aucun",
         "401 - Accès non autorisé": "401 - Akses tidak sah",
+        "interactions": "interactions",
+        "interaction": "interaction",
         "Gestion": "Manajemen",
         "Ajouter": "Tambahan",
         "Regénérer": "Diperbaiki",
@@ -3261,6 +3267,8 @@
         "Bloc A": "Bloc A",
         "Bloc Code": "Bloc Code",
         "Bloc Commentaire": "Bloc Commentaire",
+        "scénarios": "scénarios",
+        "scénario": "Skenario",
         "Log d'exécution du scénario": "Log eksekusi script",
         "Rendre inactif": "Rendre inactif",
         "Rendre actif": "Rendre actif",
