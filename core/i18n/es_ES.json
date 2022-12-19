@@ -486,9 +486,6 @@
     },
     "desktop\/modal\/cmd.human.insert.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Objet": "Objeto",
-        "Equipement": "Dispositivo",
-        "Commande": "Comando",
         "Commande info": "Comando de información",
         "Commande action": "Comando de acción"
     },

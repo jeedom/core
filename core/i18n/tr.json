@@ -486,9 +486,6 @@
     },
     "desktop\/modal\/cmd.human.insert.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
-        "Objet": "Konu",
-        "Equipement": "Cihaz",
-        "Commande": "Komuta",
         "Commande info": "Commande info",
         "Commande action": "Commande action"
     },
