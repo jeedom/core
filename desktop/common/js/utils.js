@@ -806,7 +806,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
   jeedomUtils.setButtonCtrlHandler('bt_showDatastoreVariable', '{{Variables}}', 'dataStore.management&type=scenario', '#md_modal', false)
   jeedomUtils.setButtonCtrlHandler('bt_showSearching', '{{Recherche}}', 'search', '#md_modal')
 
-  document.getElementById('bt_gotoDashboard').addEventListener('click', function() {
+  document.getElementById('bt_gotoDashboard').addEventListener('click', function(event) {
     if (!getDeviceType()['type'] == 'desktop' || window.innerWidth < 768) {
       event.stopPropagation()
       return
@@ -814,7 +814,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
     jeedomUtils.loadPage('index.php?v=d&p=dashboard')
   })
 
-  document.getElementById('bt_gotoView').addEventListener('click', function() {
+  document.getElementById('bt_gotoView').addEventListener('click', function(event) {
     if (!getDeviceType()['type'] == 'desktop' || window.innerWidth < 768) {
       event.stopPropagation()
       return
@@ -822,7 +822,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
     jeedomUtils.loadPage('index.php?v=d&p=view')
   })
 
-  document.getElementById('bt_gotoPlan').addEventListener('click', function() {
+  document.getElementById('bt_gotoPlan').addEventListener('click', function(event) {
     if (!getDeviceType()['type'] == 'desktop' || window.innerWidth < 768) {
       event.stopPropagation()
       return
@@ -830,7 +830,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
     jeedomUtils.loadPage('index.php?v=d&p=plan')
   })
 
-  document.getElementById('bt_gotoPlan3d').addEventListener('click', function() {
+  document.getElementById('bt_gotoPlan3d').addEventListener('click', function(event) {
     if (!getDeviceType()['type'] == 'desktop' || window.innerWidth < 768) {
       event.stopPropagation()
       return
@@ -838,7 +838,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
     jeedomUtils.loadPage('index.php?v=d&p=plan3d')
   })
 
-  document.getElementById('bt_jeedomAbout').addEventListener('click', function() {
+  document.getElementById('bt_jeedomAbout').addEventListener('click', function(event) {
     jeedomUtils.closeJeedomMenu()
     $('#md_modal').dialog({ title: "{{A propos}}" }).load('index.php?v=d&modal=about').dialog('open')
   })
@@ -857,7 +857,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
     })
   })
 
-  document.querySelector('.bt_reportBug')?.addEventListener('click', function() {
+  document.querySelector('.bt_reportBug')?.addEventListener('click', function(event) {
     if (!getDeviceType()['type'] == 'desktop' || window.innerWidth < 768) {
       event.stopPropagation()
       return
@@ -866,12 +866,12 @@ jeedomUtils.setJeedomGlobalUI = function() {
     $('#md_reportBug').load('index.php?v=d&modal=report.bug').dialog('open')
   })
 
-  document.getElementById('bt_messageModal').addEventListener('click', function() {
+  document.getElementById('bt_messageModal').addEventListener('click', function(event) {
     jeedomUtils.closeModal('md_modal')
     $('#md_modal').dialog({ title: "{{Centre de Messages}}" }).load('index.php?v=d&modal=message.display').dialog('open')
   })
 
-  document.getElementById('bt_jsErrorModal').addEventListener('click', function() {
+  document.getElementById('bt_jsErrorModal').addEventListener('click', function(event) {
     jeedomUtils.closeModal('md_modal')
     $('#md_modal').dialog({ title: "{{Erreur Javascript}}" }).load('index.php?v=d&modal=js.error').dialog('open')
   })
@@ -961,11 +961,6 @@ jeedomUtils.initPage = function() {
   jeedomUtils.initHelp()
   jeedomUtils.initTextArea()
 
-  $('.nav-tabs a').on('click', function() {
-    $(this).tab('show')
-    $('#div_mainContainer').scrollTop(0)
-  })
-
   setTimeout(function() {
     jeedomUtils.initTooltips()
   }, 750)
@@ -991,7 +986,7 @@ jeedomUtils.initDisplayAsTable = function() {
       }
     }
 
-    buttonAsTable.addEventListener('click', function() {
+    buttonAsTable.addEventListener('click', function(event) {
       if (this.dataset.state == '0') {
         this.dataset.state = '1'
         this.addClass('active')

@@ -373,7 +373,7 @@ $synthToActions = array(
 								$active = 'active';
 								$echo = '';
 								foreach ($config_objSummary as $key => $value) {
-									$echo .= '<li class="' . $active . '"><a href="#summarytab' . $key . '" role="tab" data-toggle="tab">' . $value['icon'] . ' ' . $value['name'] . '</i>  <span class="tabnumber summarytabnumber' . $key . '"></span></a></li>';
+									$echo .= '<li class="' . $active . '"><a data-target="#summarytab' . $key . '" role="tab" data-toggle="tab">' . $value['icon'] . ' ' . $value['name'] . '</i>  <span class="tabnumber summarytabnumber' . $key . '"></span></a></li>';
 									$active = '';
 								}
 								echo $echo;
