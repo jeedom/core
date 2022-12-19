@@ -70,10 +70,10 @@ $('.eqLogicAction[data-action="gotoPluginConf"]').on('click', function() {
   }).load('index.php?v=d&p=plugin&ajax=1&id=' + eqType).dialog('open')
 })
 
-$('.eqLogicAction[data-action="returnToThumbnailDisplay"]').removeAttr('href').off('click').on('click', function(event) {
+$('.eqLogicAction[data-action="returnToThumbnailDisplay"]').removeAttr('data-target').off('click').on('click', function(event) {
   setTimeout(function() {
     $('.nav li.active').removeClass('active')
-    $('a[href="#' + $('.tab-pane.active').attr('id') + '"]').closest('li').addClass('active')
+    $('a[data-target="#' + $('.tab-pane.active').attr('id') + '"]').closest('li').addClass('active')
   }, 500)
   if (jeedomUtils.checkPageModified()) return
   $.hideAlert()
@@ -562,7 +562,7 @@ domUtils(function() {
                 if (document.location.toString().match('#')) {
                   tab = '#' + document.location.toString().split('#')[1]
                   if (tab != '#') {
-                    tabObj = document.querySelector('a[href="' + tab + '"]')
+                    tabObj = document.querySelector('a[data-target="' + tab + '"]')
                   }
                 }
                 $.hideAlert()
