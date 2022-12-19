@@ -390,7 +390,7 @@
         "Aucun": "Nein",
         "Visualisation": "Visualisierung",
         "Visualisation et exécution": "Visualisierung und Ausführung",
-        "Equipement": "Ausrüstung",
+        "Equipement": "Gerät",
         "Droits": "Rechte",
         "Scénario": "Szenario",
         "Sauvegarde effectuée": "Sicherung abgeschlossen"
@@ -557,7 +557,7 @@
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Objet": "Objekt",
-        "Equipement": "Ausrüstung"
+        "Equipement": "Gerät"
     },
     "desktop\/modal\/plan3d.configure.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -566,7 +566,7 @@
         "Supprimer": "Entfernen",
         "Nom": "Name",
         "Type de lien": "Art des Links",
-        "Equipement": "Ausrüstung",
+        "Equipement": "Gerät",
         "Lien": "Link",
         "Rechercher d\\'un équipement": "Suche nach Ausrüstung",
         "Spécificité": "Spezifität",
@@ -620,8 +620,8 @@
         "Résumé Domotique": "Übersicht Haus-Automatisierung",
         "Rechercher": "Suchen nach",
         "Recherche par": "Suche nach",
-        "Equipement": "Ausrüstung",
-        "Commande": "Bestellt",
+        "Equipement": "Gerät",
+        "Commande": "Befehl",
         "Variable": "Variable",
         "Plugin": "Plugin",
         "Mot": "Wort",
@@ -741,7 +741,7 @@
         "Cette commande remplace l'ID": "Dieser Befehl ersetzt die ID",
         "Cette commande remplace la commande": "Dieser Befehl ersetzt den Befehl",
         "Remplacer cette commande par la commande": "Diesen Befehl durch den Befehl ersetzen",
-        "Equipement": "Ausrüstung",
+        "Equipement": "Gerät",
         "Commandes": "Befehle",
         "Scénario": "Szenario",
         "Résumés": "Zusammenfassungen",
@@ -1113,7 +1113,7 @@
         "Voulu par": "Gesucht von",
         "Version": "Ausführung",
         "Remarque": "Bemerkung",
-        "Commande": "Bestellt",
+        "Commande": "Befehl",
         "Action": "Aktion",
         "Incompatible avec l\\'OS": "Inkompatibel mit Betriebssystem",
         "Mise à jour": "Update",
@@ -1236,7 +1236,7 @@
         "Valider": "Validate",
         "Objet": "Objekt",
         "Plugin": "Plugin",
-        "Equipement": "Ausrüstung",
+        "Equipement": "Gerät",
         "Nom": "Name"
     },
     "desktop\/modal\/cmd.history.php": {
@@ -1325,7 +1325,7 @@
         "Attention : peut être source de problèmes.": "Warnung: Kann Probleme verursachen",
         "Appliquer le css personnalisé sur": "Wenden Sie benutzerdefiniertes CSS auf an",
         "Commandes": "Befehle",
-        "Commande": "Bestellt",
+        "Commande": "Befehl",
         "Masquer": "Auszublenden",
         "Taille de la police": "Schriftgröße",
         "Alignement du texte": "Textausrichtung",
@@ -1341,7 +1341,7 @@
         "Macro binaire": "Binäres Makro",
         "Widget au survol": "Hover-Widget",
         "Action": "Aktion",
-        "Equipement": "Ausrüstung",
+        "Equipement": "Gerät",
         "Afficher au survol": "Show auf Überführung",
         "Afficher sur un clic": "Ansicht mit einem Klick",
         "Position": "Position",
@@ -2238,7 +2238,7 @@
         "Ajouter\/Editer viewZone": "ViewZone einfügen \/ bearbeiten",
         "Nom": "Name",
         "Type": "Typ",
-        "Equipement": "Ausrüstung",
+        "Equipement": "Gerät",
         "Graphique": "Grafik",
         "Tableau": "Tabelle",
         "Annuler": "Abbrechen"
@@ -2409,7 +2409,7 @@
         "Catégories": "Kategorien",
         "Sans catégorie": "Ohne Kategorie",
         "Visibles": "Sichtbar",
-        "Equipement": "Ausrüstung",
+        "Equipement": "Gerät",
         "Tous": "Alle"
     },
     "desktop\/php\/eqAnalyse.php": {
@@ -2423,8 +2423,8 @@
         "Commandes orphelines": "Orphan Orders",
         "Rechercher | nom | :not(nom": "Suche | Name | : nicht (Name",
         "Aucun équipement en Alerte.": "Keine Ausrüstung in Alarmbereitschaft",
-        "Equipement": "Ausrüstung",
-        "Commande": "Bestellt",
+        "Equipement": "Gerät",
+        "Commande": "Befehl",
         "Type": "Typ",
         "Actions": "Aktionen",
         "Action sur état": "Staatliche Aktion",
@@ -3150,7 +3150,7 @@
     "desktop\/js\/object.js": {
         "Envoyer": "Senden",
         "Image de fond ajoutée avec succès": "Hintergrundbild erfolgreich hinzugefügt",
-        "Commande": "Bestellt",
+        "Commande": "Befehl",
         "Activer": "Aktivieren",
         "Inverser": "Umgekehrt",
         "Résumé(s)": "Zusammenfassung (en)",
@@ -3981,7 +3981,7 @@
         "Commande inconnue :": "Unbekannter Befehl:",
         "Aucun point ne correspond pour l\\'historique :": "Für die Geschichte entspricht kein Punkt:",
         "Jeedom": "Jeedom",
-        "Commande": "Bestellt",
+        "Commande": "Befehl",
         "Objet": "Objekt",
         "Scénario": "Szenario",
         "Interaction": "Interaktion",
@@ -4201,7 +4201,7 @@
         "La commande source n\\'existe pas": "Quellbefehl existiert nicht",
         "La commande cible n\\'existe pas": "Zielbefehl existiert nicht",
         "Erreur lors de la migration de commande": "Fehler beim Migrieren der Bestellung",
-        "Commande": "Bestellt"
+        "Commande": "Befehl"
     },
     "core\/class\/jeedom.class.php": {
         "Administration": "Verwaltung",
@@ -4318,7 +4318,7 @@
         "aucune valeur": "kein Wert"
     },
     "core\/class\/history.class.php": {
-        "Commande": "Bestellt",
+        "Commande": "Befehl",
         "Date": "Datum",
         "Valeur": "Wert",
         "La commande source n\\'existe pas :": "Der Quellbefehl existiert nicht:",
@@ -4462,7 +4462,7 @@
         "L\\'équipement source n\\'existe pas": "Quellgeräte sind nicht vorhanden",
         "L\\'équipement cible n\\'existe pas": "Das Zielgerät existiert nicht",
         "Erreur lors de la migration d\\'équipement": "Fehler beim Migrieren von Geräten",
-        "Equipement": "Ausrüstung",
+        "Equipement": "Gerät",
         "Action": "Aktion"
     },
     "core\/class\/interactDef.class.php": {
@@ -4761,7 +4761,7 @@
         "Nom": "Name"
     },
     "core\/template\/scenario\/equipement.default.html": {
-        "Equipement": "Ausrüstung",
+        "Equipement": "Gerät",
         "Sélectionner un équipement": "Ausrüstung auswählen",
         "Action": "Aktion",
         "Visible": "Sichtbar",
@@ -4790,7 +4790,7 @@
         "Sélectionner la commande": "Befehl auswählen"
     },
     "core\/template\/scenario\/event.default.html": {
-        "Commande": "Bestellt",
+        "Commande": "Befehl",
         "Valeur": "Wert",
         "Sélectionner la commande": "Befehl auswählen"
     },

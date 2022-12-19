@@ -621,7 +621,7 @@
         "Rechercher": "Pesquisar",
         "Recherche par": "Pesquisar por",
         "Equipement": "Equipamento",
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "Variable": "Variável",
         "Plugin": "Plugar",
         "Mot": "Palavra",
@@ -1113,7 +1113,7 @@
         "Voulu par": "Procurado por",
         "Version": "Versão",
         "Remarque": "Nota",
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "Action": "Ação",
         "Incompatible avec l\\'OS": "Incompatível com sistema operativo",
         "Mise à jour": "Actualização",
@@ -1325,7 +1325,7 @@
         "Attention : peut être source de problèmes.": "Aviso: pode causar problemas",
         "Appliquer le css personnalisé sur": "Aplicar css personalizado em",
         "Commandes": "Comandos",
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "Masquer": "Esconder",
         "Taille de la police": "Tamanho da fonte",
         "Alignement du texte": "Alinhamento de texto",
@@ -2161,7 +2161,7 @@
         "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "EXPERIMENTAL: É altamente recomendável fazer um backup do sistema antes de usar esta ferramenta!",
         "Filtre": "Filtrar",
         "Equipement": "Equipamento",
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "Objet": "Objeto",
         "Scénario": "Cenário",
         "Ajouter un filtre": "Adicionar filtro",
@@ -2424,7 +2424,7 @@
         "Rechercher | nom | :not(nom": "Pesquisa | nome | :not(nome",
         "Aucun équipement en Alerte.": "Nenhum equipamento em Alerta",
         "Equipement": "Equipamento",
-        "Commande": "Ordenado",
+        "Commande": "Ordem",
         "Type": "Tipo",
         "Actions": "Ações",
         "Action sur état": "Ação sobre estado",
@@ -3150,7 +3150,7 @@
     "desktop\/js\/object.js": {
         "Envoyer": "Enviar",
         "Image de fond ajoutée avec succès": "Imagem de fundo adicionada com sucesso",
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "Activer": "Ativar",
         "Inverser": "Inverter",
         "Résumé(s)": "Resumo(s)",
@@ -3453,7 +3453,7 @@
         "Etat": "Estado",
         "Action": "Ações",
         "La valeur de la commande vaut par défaut la commande": "O valor do comando é por padrão o comando",
-        "Commande": "Ordenado",
+        "Commande": "Encomendado",
         "Valeur retour d\\'état": "Valor de retorno de status",
         "Durée avant retour d\\'état (min)": "Duração antes do retorno do status (min)",
         "Commande d\\'information à mettre à jour": "Informações do pedido para atualizar",
@@ -3981,7 +3981,7 @@
         "Commande inconnue :": "Comando desconhecido:",
         "Aucun point ne correspond pour l\\'historique :": "Nenhum ponto corresponde ao histórico:",
         "Jeedom": "Jeedom",
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "Objet": "Objeto",
         "Scénario": "Cenário",
         "Interaction": "Interação",
@@ -4201,7 +4201,7 @@
         "La commande source n\\'existe pas": "Comando fonte não existe",
         "La commande cible n\\'existe pas": "O comando de destino não existe",
         "Erreur lors de la migration de commande": "Erro ao migrar o pedido",
-        "Commande": "Ordenado"
+        "Commande": "Ordem"
     },
     "core\/class\/jeedom.class.php": {
         "Administration": "Administração",
@@ -4318,7 +4318,7 @@
         "aucune valeur": "nenhum valor"
     },
     "core\/class\/history.class.php": {
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "Date": "Data",
         "Valeur": "Valor",
         "La commande source n\\'existe pas :": "O comando source não existe:",
@@ -4790,7 +4790,7 @@
         "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/event.default.html": {
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "Valeur": "Valor",
         "Sélectionner la commande": "Selecione o comando"
     },
