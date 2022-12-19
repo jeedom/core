@@ -978,10 +978,9 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
     closeText: '',
     autoOpen: false,
     modal: true,
-    height: 210,
-    width: (window.outerWidth > 800) ? 800 : 0.9*window.outerWidth
+    height: 250,
+    width: 800
   })
-
 
   domUtils.ajaxSetup({ async: false })
   document.getElementById('mod_insertCmdValue').load('index.php?v=d&modal=cmd.human.insert')

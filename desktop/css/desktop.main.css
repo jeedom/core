@@ -5332,16 +5332,14 @@ div.eqLogic-widget.editingMode .panelLink {
     body[data-page="update"] tbody > tr > td > span {
       width: 100%
     }
-  }
-
-  @media ( max-width: 768px ) {
     .nav-tabs {
       display: inline-flex;
       width: 100%;
       overflow-x: auto;
       border-bottom: 2px solid #DDD;
       -ms-overflow-style: none; /*// IE 10+*/
-      overflow: -moz-scrollbars-none;/*// Firefox*/}
+      overflow: -moz-scrollbars-none;/*// Firefox*/
+    }
     .nav-tabs>li.active>a,
     .nav-tabs>li.active>a:focus,
     .nav-tabs>li.active>a:hover {
@@ -5380,4 +5378,36 @@ div.eqLogic-widget.editingMode .panelLink {
     .nav-tabs::-webkit-scrollbar {
       display: none; /*Safari and Chrome*/
     }
+
+    div.ui-dialog {
+      max-width: 90vw !important;
+      left: calc(10vw / 2) !important;
+    }
+    div.ui-dialog .ui-dialog-content{
+      max-width: calc(90vw - 25px) !important;
+    }
+
+    div.ui-dialog table[id*=mod_insert].table tbody {
+      width: 100% !important;
+      display: flex;
+    }
+    div.ui-dialog table[id*=mod_insert].table,
+    div.ui-dialog table[id*=mod_insert].table td,
+    div.ui-dialog table[id*=mod_insert].table tr,
+    div.ui-dialog table[id*=mod_insert].table th {
+      display: block;
+      text-align: left;
+    }
+    div.ui-dialog table[id*=mod_insert].table.table-condensed tbody th,
+    div.ui-dialog table[id*=mod_insert].table.table-condensed tbody tr,
+    div.ui-dialog table[id*=mod_insert].table.table-condensed tbody td {
+      margin: 0;
+      height: 30px !important;
+      margin-bottom: 7px !important;
+      width: 100%;
+    }
+    div.ui-dialog table[id*=mod_insert] thead {
+      display: none;
+    }
+
   }

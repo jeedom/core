@@ -961,10 +961,10 @@ jeedomUtils.initPage = function() {
   jeedomUtils.initHelp()
   jeedomUtils.initTextArea()
 
-  /*$('.nav-tabs a').on('click', function() {
+  $('.nav-tabs a').on('click', function() {
     $(this).tab('show')
     $('#div_mainContainer').scrollTop(0)
-  })*/
+  })
 
   setTimeout(function() {
     jeedomUtils.initTooltips()
