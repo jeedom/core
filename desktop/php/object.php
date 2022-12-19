@@ -74,18 +74,18 @@ $synthToActions = array(
 		<div class="floatingbar">
 			<div class="input-group">
 				<span class="input-group-btn">
-					<a class="btn btn-sm roundedLeft" id="bt_graphObject"><i class="fas fa-object-group"></i> {{Liens}}
-					</a><a class="btn btn-success btn-sm" id="bt_saveObject"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
-					</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeObject"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+					<a class="btn btn-sm roundedLeft" id="bt_graphObject"><i class="fas fa-object-group"></i> <span class="hidden-xs">{{Liens}}</span>
+					</a><a class="btn btn-success btn-sm" id="bt_saveObject"><i class="fas fa-check-circle"></i> <span class="hidden-xs">{{Sauvegarder}}</span>
+					</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeObject"><i class="fas fa-minus-circle"></i> <span class="hidden-xs">{{Supprimer}}</span></a>
 				</span>
 			</div>
 		</div>
 
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
-			<li role="presentation" class="active"><a href="#objecttab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Objet}} (ID : <span class="objectAttr" data-l1key="id" ></span>)</a></a></li>
-			<li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Résumé}}</a></li>
-			<li role="presentation"><a href="#eqlogicsTab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Résumé par équipements}}</a></li>
+			<li role="presentation" class="active"><a href="#objecttab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i>  <span class="hidden-xs">{{Objet}} (ID : <span class="objectAttr" data-l1key="id" ></span>)</span></a></a></li>
+			<li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> <span class="hidden-xs">{{Résumé}}</span></a></li>
+			<li role="presentation"><a href="#eqlogicsTab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> <span class="hidden-xs">{{Résumé par équipements}}</span></a></li>
 		</ul>
 
 		<div class="tab-content">
@@ -374,7 +374,7 @@ $synthToActions = array(
 								$active = 'active';
 								$echo = '';
 								foreach ($config_objSummary as $key => $value) {
-									$echo .= '<li class="' . $active . '"><a href="#summarytab' . $key . '" role="tab" data-toggle="tab">' . $value['icon'] . ' ' . $value['name'] . '</i>  <span class="tabnumber summarytabnumber' . $key . '"></span></a></li>';
+									$echo .= '<li class="' . $active . '"><a href="#summarytab' . $key . '" role="tab" data-toggle="tab">' . $value['icon'] . '  <span class="hidden-xs">' . $value['name'] . '</span></i>  <span class="tabnumber summarytabnumber' . $key . '"></span></a></li>';
 									$active = '';
 								}
 								echo $echo;
