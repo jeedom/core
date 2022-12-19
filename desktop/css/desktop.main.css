@@ -5333,3 +5333,51 @@ div.eqLogic-widget.editingMode .panelLink {
       width: 100%
     }
   }
+
+  @media ( max-width: 768px ) {
+    .nav-tabs {
+      display: inline-flex;
+      width: 100%;
+      overflow-x: auto;
+      border-bottom: 2px solid #DDD;
+      -ms-overflow-style: none; /*// IE 10+*/
+      overflow: -moz-scrollbars-none;/*// Firefox*/}
+    .nav-tabs>li.active>a,
+    .nav-tabs>li.active>a:focus,
+    .nav-tabs>li.active>a:hover {
+      border-width: 0;
+    }
+    .nav-tabs>li>a {
+      border: none;
+      color: #666;
+      white-space: nowrap;
+    }
+    .nav-tabs>li>a::after {
+      content: "";
+      background: #4285F4;
+      height: 2px;
+      position: absolute;
+      width: 100%;
+      left: 0px;
+      bottom: 1px;
+      transition: all 250ms ease 0s;
+      transform: scale(0);
+    }
+    .nav-tabs>li.active>a::after,
+    .nav-tabs>li:hover>a::after {
+      transform: scale(1);
+    }
+    .tab-nav>li>a::after {
+      background: #21527d none repeat scroll 0% 0%;
+      color: #fff;
+    }
+    .tab-pane {
+      padding: 15px 0;
+    }
+    .tab-content {
+      padding: 20px
+    }
+    .nav-tabs::-webkit-scrollbar {
+      display: none; /*Safari and Chrome*/
+    }
+  }
