@@ -979,10 +979,7 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
     autoOpen: false,
     modal: true,
     height: 210,
-    width:'90%',
-    create: function( event, ui ) {
-    	$(this).parent().css("maxWidth", "800px");
-  	}
+    width: (window.outerWidth > 800) ? 800 : 0.9*window.outerWidth
   })
 
 
