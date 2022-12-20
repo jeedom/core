@@ -103,6 +103,7 @@ jeedomUtils.checkPageModified = function() {
   }
 }
 
+var prePrintEqLogic = undefined
 var printEqLogic = undefined
 var addCmdToTable = undefined
 //OnePage design PageLoader -------------------------------------
@@ -147,7 +148,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   jeedom.scenario.update = []
   jeephp2js = {}
   delete window.jeeP
-  printEqLogic = addCmdToTable = undefined
+  prePrintEqLogic = printEqLogic = addCmdToTable = undefined
   if (jeedomUtils.OBSERVER !== null) jeedomUtils.OBSERVER.disconnect()
   $('body').off('changeThemeEvent')
 
@@ -550,9 +551,9 @@ jeedomUtils.triggerThemechange = function() {
   //trigger event for widgets:
   if (document.body.hasAttribute('data-page') && ['dashboard', 'view', 'plan', 'widgets'].includes(document.body.getAttribute('data-page'))) {
     if (currentTheme.endsWith('Dark')) {
-      document.body.triggerEvent('changeThemeEvent', {detail: {theme: 'Dark'}})
+      document.body.triggerEvent('changeThemeEvent', { detail: { theme: 'Dark' } })
     } else {
-      document.body.triggerEvent('changeThemeEvent', {detail: {theme: 'Light'}}) //Legacy theme is a light one
+      document.body.triggerEvent('changeThemeEvent', { detail: { theme: 'Light' } }) //Legacy theme is a light one
     }
   }
 }
@@ -785,7 +786,7 @@ jeedomUtils.setButtonCtrlHandler = function(_buttonId, _title, _uri, _modal = '#
   document.getElementById(_buttonId).addEventListener('mouseup', event => {
     if (event.which == 2) {
       event.preventDefault()
-      event.target.triggerEvent('click', {detail: {ctrlKey: true}})
+      event.target.triggerEvent('click', { detail: { ctrlKey: true } })
     }
   })
 }
@@ -1051,7 +1052,7 @@ jeedomUtils.initTooltips = function(_el) {
   if (!_el) {
     try {
       $('.tooltips:not(.tooltipstered), [title]:not(.ui-button)').tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
-    } catch(e) { }
+    } catch (e) { }
   } else {
     //cmd update:
     if (_el.parents('.cmd-widget[title]').length) {
@@ -1379,7 +1380,7 @@ jeedomUtils.setJeedomMenu = function() {
     document.getElementById('configName').addEventListener('mouseup', event => {
       if (event.which == 2) {
         event.preventDefault()
-        event.target.triggerEvent('click', {detail: {newtab: true}})
+        event.target.triggerEvent('click', { detail: { newtab: true } })
       }
     })
 
@@ -1603,7 +1604,7 @@ jeedomUtils.setCheckboxStateByType = function(_type, _state, _callback) {
   if (!isset(_type)) return false
   if (!isset(_state)) _state = -1
   var checkboxes = document.querySelectorAll(_type)
-if (checkboxes == null) return
+  if (checkboxes == null) return
   var isCallback = (isset(_callback) && typeof _callback === 'function') ? true : false
   var execCallback = false
   checkboxes.forEach(function(checkbox) {
