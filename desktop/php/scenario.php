@@ -166,13 +166,13 @@ sendVarToJS([
 					<a id="bt_undo" class="disabled btn btn-sm roundedLeft" title="{{Etat précédent}} (Ctrl+Shift+Z)" style="margin:0"><i class="fas fa-undo"></i>
 					</a><a id="bt_redo" class="disabled btn btn-sm" title="{{Etat suivant}} (Ctrl+Shift+Y)" style="margin:0"><i class="fas fa-redo"></i></a>
 
-					<a class="btn btn-sm bt_addScenarioElement"><i class="fas fa-plus-circle"></i> <span class="hidden-768">{{Ajouter bloc}}</span>
-					</a><a class="btn btn-sm" id="bt_logScenario" title="{{Log (Ctrl+l)}}"><i class="far fa-file-alt"></i>
-					</a><a class="btn btn-sm" id="bt_copyScenario" title="{{Dupliquer}}"><i class="fas fa-copy"></i>
-					</a><a class="btn btn-sm" id="bt_graphScenario" title="{{Liens}}"><i class="fas fa-object-group"></i>
-					</a><a class="btn btn-sm" id="bt_editJsonScenario" title="{{Edition texte}}"> <i class="far fa-edit"></i>
-					</a><a class="btn btn-sm" id="bt_exportScenario" title="{{Exporter}}"><i class="fas fa-share"></i>
-					</a><a class="btn btn-sm" id="bt_templateScenario" title="{{Template}}"><i class="fas fa-cubes"></i></a>
+					<a id="bt_addScenarioElement" class="btn btn-sm"><i class="fas fa-plus-circle"></i> <span class="hidden-768">{{Ajouter bloc}}</span>
+					</a><a id="bt_logScenario" class="btn btn-sm" title="{{Log (Ctrl+l)}}"><i class="far fa-file-alt"></i>
+					</a><a id="bt_copyScenario" class="btn btn-sm" title="{{Dupliquer}}"><i class="fas fa-copy"></i>
+					</a><a id="bt_graphScenario" class="btn btn-sm" title="{{Liens}}"><i class="fas fa-object-group"></i>
+					</a><a id="bt_editJsonScenario" class="btn btn-sm" title="{{Edition texte}}"> <i class="far fa-edit"></i>
+					</a><a id="bt_exportScenario" class="btn btn-sm" title="{{Exporter}}"><i class="fas fa-share"></i>
+					</a><a id="bt_templateScenario" class="btn btn-sm" title="{{Template}}"><i class="fas fa-cubes"></i></a>
 
 					<input class="input-sm" placeholder="{{Rechercher}}" id="in_searchInsideScenario" style="min-width: 120px;display:none;" />
 					<a id="bt_resetInsideScenarioSearch" class="disabled btn btn-sm" data-state="0" style="width:30px" title="{{Rechercher}}"><i class="fas fa-search"></i></a>
@@ -365,67 +365,67 @@ sendVarToJS([
 				</div>
 			</div>
 
-
 			<div role="tabpanel" class="tab-pane" id="scenariotab">
 				<div id="div_scenarioElement" class="element"></div>
+
+				<div class="modal fade" id="md_addElement">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button class="close" data-dismiss="modal">×</button>
+								<h4>{{Ajouter un bloc}}</h4>
+							</div>
+							<div class="modal-body">
+								<select id="in_addElementType" class="form-control">
+									<option value="if">{{Si/Alors/Sinon}}</option>
+									<option value="action">{{Action}}</option>
+									<option value="for">{{Boucle}}</option>
+									<option value="in">{{Dans}}</option>
+									<option value="at">{{A}}</option>
+									<option value="code">{{Code}}</option>
+									<option value="comment">{{Commentaire}}</option>
+								</select>
+								<br />
+								<div class="alert alert-info addElementTypeDescription if">
+									Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.
+								</div>
+
+								<div class="alert alert-info addElementTypeDescription action" style="display:none;">
+									Permet de lancer une action, sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON.
+								</div>
+
+								<div class="alert alert-info addElementTypeDescription for" style="display:none;">
+									Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : Permet de répéter une action de 1 à X, c’est-à-dire X fois.
+								</div>
+
+								<div class="alert alert-info addElementTypeDescription in" style="display:none;">
+									Permet de faire une action dans X min. Par exemple : Dans 5 min, éteindre la lumière.
+								</div>
+
+								<div class="alert alert-info addElementTypeDescription at" style="display:none;">
+									A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30, ouvrir les volets.
+								</div>
+
+								<div class="alert alert-info addElementTypeDescription code" style="display:none;">
+									Cet élément permet de rajouter dans votre scénario de la programmation à l’aide d’un code, PHP/Shell, etc.
+								</div>
+
+								<div class="alert alert-info addElementTypeDescription comment" style="display:none;">
+									Permet de commenter votre scénario.
+								</div>
+
+							</div>
+							<div class="modal-footer">
+								<a class="btn btn-danger" data-dismiss="modal"><i class="fas fa-minus-circle"></i> {{Annuler}}</a>
+								<a class="btn btn-success" id="bt_addElementSave"><i class="fas fa-check-circle"></i> {{Ajouter}}</a>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
+
 		</div>
 
-	</div>
-</div>
-
-<div class="modal fade" id="md_addElement">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button class="close" data-dismiss="modal">×</button>
-				<h4>{{Ajouter un bloc}}</h4>
-			</div>
-			<div class="modal-body">
-				<select id="in_addElementType" class="form-control">
-					<option value="if">{{Si/Alors/Sinon}}</option>
-					<option value="action">{{Action}}</option>
-					<option value="for">{{Boucle}}</option>
-					<option value="in">{{Dans}}</option>
-					<option value="at">{{A}}</option>
-					<option value="code">{{Code}}</option>
-					<option value="comment">{{Commentaire}}</option>
-				</select>
-				<br />
-				<div class="alert alert-info addElementTypeDescription if">
-					Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.
-				</div>
-
-				<div class="alert alert-info addElementTypeDescription action" style="display:none;">
-					Permet de lancer une action, sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON.
-				</div>
-
-				<div class="alert alert-info addElementTypeDescription for" style="display:none;">
-					Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : Permet de répéter une action de 1 à X, c’est-à-dire X fois.
-				</div>
-
-				<div class="alert alert-info addElementTypeDescription in" style="display:none;">
-					Permet de faire une action dans X min. Par exemple : Dans 5 min, éteindre la lumière.
-				</div>
-
-				<div class="alert alert-info addElementTypeDescription at" style="display:none;">
-					A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30, ouvrir les volets.
-				</div>
-
-				<div class="alert alert-info addElementTypeDescription code" style="display:none;">
-					Cet élément permet de rajouter dans votre scénario de la programmation à l’aide d’un code, PHP/Shell, etc.
-				</div>
-
-				<div class="alert alert-info addElementTypeDescription comment" style="display:none;">
-					Permet de commenter votre scénario.
-				</div>
-
-			</div>
-			<div class="modal-footer">
-				<a class="btn btn-danger" data-dismiss="modal"><i class="fas fa-minus-circle"></i> {{Annuler}}</a>
-				<a class="btn btn-success" id="bt_addElementSave"><i class="fas fa-check-circle"></i> {{Ajouter}}</a>
-			</div>
-		</div>
 	</div>
 </div>
 

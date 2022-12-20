@@ -51,7 +51,37 @@ if (!jeeFrontEnd.scenario) {
     },
     postInit: function() {
       jeedom.timeline.autocompleteFolder()
+      $('.scenarioAttr[data-l1key="group"]').autocomplete({
+        source: function(request, response, url) {
+          domUtils.ajax({
+            type: 'POST',
+            url: 'core/ajax/scenario.ajax.php',
+            data: {
+              action: 'autoCompleteGroup',
+              term: request.term
+            },
+            dataType: 'json',
+            global: false,
+            error: function(request, status, error) {
+              handleAjaxError(request, status, error)
+            },
+            success: function(data) {
+              if (data.state != 'ok') {
+                jeedomUtils.showAlert({
+                  message: data.result,
+                  level: 'danger'
+                })
+                return
+              }
+              response(data.result)
+            }
+          })
+        },
+        minLength: 1,
+      })
+
       document.querySelector('sub.itemsNumber').innerHTML = '(' + document.querySelectorAll('.scenarioDisplayCard').length + ')'
+
       if (jeephp2js.initSearch != 0) {
         setTimeout(function() {
           document.getElementById('bt_scenarioTab').triggerEvent('click')
@@ -1334,420 +1364,6 @@ if (!jeeFrontEnd.scenario) {
 jeeFrontEnd.scenario.init()
 
 
-
-
-
-
-
-//general tab
-$('.scenarioAttr[data-l1key="display"][data-l2key="icon"]').on('dblclick', function() {
-  document.querySelector('.scenarioAttr[data-l1key="display"][data-l2key="icon"]').innerHTML = ''
-})
-
-$('.scenarioAttr[data-l1key="group"]').autocomplete({
-  source: function(request, response, url) {
-    domUtils.ajax({
-      type: 'POST',
-      url: 'core/ajax/scenario.ajax.php',
-      data: {
-        action: 'autoCompleteGroup',
-        term: request.term
-      },
-      dataType: 'json',
-      global: false,
-      error: function(request, status, error) {
-        handleAjaxError(request, status, error)
-      },
-      success: function(data) {
-        if (data.state != 'ok') {
-          jeedomUtils.showAlert({
-            message: data.result,
-            level: 'danger'
-          })
-          return
-        }
-        response(data.result)
-      }
-    })
-  },
-  minLength: 1,
-})
-
-$('.scenarioAttr[data-l1key="mode"]').off('change').on('change', function() {
-  $('#bt_addSchedule').removeClass('roundedRight')
-  $('#bt_addTrigger').removeClass('roundedRight')
-  if (this.jeeValue() == 'schedule' || this.jeeValue() == 'all') {
-    $('.scheduleDisplay').show()
-    $('#bt_addSchedule').show()
-  } else {
-    $('.scheduleDisplay').hide()
-    $('#bt_addSchedule').hide()
-    $('#bt_addTrigger').addClass('roundedRight')
-  }
-  if (this.jeeValue() == 'provoke' || this.jeeValue() == 'all') {
-    $('.provokeDisplay').show()
-    $('#bt_addTrigger').show()
-  } else {
-    $('.provokeDisplay').hide()
-    $('#bt_addTrigger').hide()
-    $('#bt_addSchedule').addClass('roundedRight')
-  }
-  if (this.jeeValue() == 'all') {
-    $('#bt_addSchedule').addClass('roundedRight')
-  }
-})
-
-$('#bt_addTrigger').off('click').on('click', function() {
-  jeeP.addTrigger('')
-  jeeP.checkNoTriggeringMode()
-})
-
-$('#bt_addSchedule').off('click').on('click', function() {
-  jeeP.addSchedule('')
-  jeeP.checkNoTriggeringMode()
-})
-
-jeeP.$divScenario.on('click', '.bt_removeTrigger', function(event) {
-  $(this).closest('.trigger').remove()
-  jeeP.checkNoTriggeringMode()
-})
-
-jeeP.$divScenario.on('click', '.bt_removeSchedule', function(event) {
-  $(this).closest('.schedule').remove()
-  jeeP.checkNoTriggeringMode()
-})
-
-jeeP.$divScenario.on('click', '.bt_selectTrigger', function(event) {
-  var el = this
-  jeedom.cmd.getSelectModal({
-    cmd: {
-      type: 'info'
-    }
-  }, function(result) {
-    el.closest('.trigger').querySelector('.scenarioAttr[data-l1key="trigger"]').jeeValue(result.human)
-  })
-})
-
-jeeP.$divScenario.on('click', '.bt_selectDataStoreTrigger', function(event) {
-  var el = this
-  jeedom.dataStore.getSelectModal({
-    cmd: {
-      type: 'info'
-    }
-  }, function(result) {
-    el.closest('.trigger').querySelector('.scenarioAttr[data-l1key="trigger"]').jeeValue(result.human)
-  })
-})
-
-jeeP.$divScenario.on('click', '.bt_selectGenericTrigger', function(event) {
-  var el = this
-  jeedom.config.getGenericTypeModal({
-    type: 'info',
-    object: true
-  }, function(result) {
-    el.closest('.trigger').querySelector('.scenarioAttr[data-l1key="trigger"]').jeeValue('#' + result.human + '#')
-  })
-})
-
-
-//Scenario bar:
-
-//inside searching
-$('#in_searchInsideScenario').keyup(function() {
-  var search = this.value
-  $('#div_scenarioElement .insideSearch').removeClass('insideSearch')
-  $('#div_scenarioElement div.CodeMirror.CodeMirror-wrap').each(function() {
-    $(this).get(0).CodeMirror.setCursor(0)
-  })
-
-  if (search == '' || search.length < 3) {
-    $('i.fa-eye-slash').each(function() {
-      $(this).parents('.element').first().addClass('elementCollapse')
-    })
-    return
-  }
-  search = jeedomUtils.normTextLower(search)
-
-  //search code blocks:
-  var cmEditor, code, cursor
-  $('#div_scenarioElement div.elementCODE').each(function() {
-    try {
-      cmEditor = $(this).find('div.CodeMirror.CodeMirror-wrap').get(0).CodeMirror
-      code = jeedomUtils.normTextLower(cmEditor.getValue())
-      if (code.indexOf(search) >= 0) {
-        $(this).removeClass('elementCollapse')
-        cursor = cmEditor.getSearchCursor(search, CodeMirror.Pos(cmEditor.firstLine(), 0), {
-          caseFold: true,
-          multiline: true
-        })
-        if (cursor.find(false)) {
-          cmEditor.setSelection(cursor.from(), cursor.to())
-        }
-      } else {
-        $(this).addClass('elementCollapse')
-        cmEditor.setCursor(0)
-      }
-    } catch {}
-  })
-  //search in expressions:
-  var text
-  $('#div_scenarioElement div.element:not(.elementCODE) .expressionAttr').each(function() {
-    text = jeedomUtils.normTextLower($(this).val())
-    if (text.indexOf(search) >= 0) {
-      $(this).addClass('insideSearch')
-      $(this).parents('.element').removeClass('elementCollapse')
-    }
-  })
-})
-$('#bt_resetInsideScenarioSearch').on('click', function() {
-  var btn = $(this)
-  if (btn.hasClass('disabled')) return
-  var searchField = $('#in_searchInsideScenario')
-  if (btn.data('state') == '0') {
-    //show search:
-    searchField.show()
-    btn.find('i').removeClass('fa-search').addClass('fa-times')
-    btn.data('state', '1')
-    //open code blocks for later search:
-    $('#div_scenarioElement div.elementCODE.elementCollapse').each(function() {
-      $(this).removeClass('elementCollapse')
-      $(this).find('textarea[data-l1key="expression"]').show()
-    })
-    jeeP.setEditors()
-    $('textarea[data-l1key="expression"]').hide()
-    searchField.focus()
-  } else {
-    if (searchField.val() == '') {
-      $('i.fa-eye-slash').each(function() {
-        $(this).parents('.element').first().addClass('elementCollapse')
-      })
-      btn.find('i').removeClass('fa-times').addClass('fa-search')
-      searchField.hide()
-      btn.data('state', '0')
-    } else {
-      searchField.val('').keyup()
-    }
-  }
-})
-
-jeeP.$divScenario.on('click', '.bt_addScenarioElement', function(event) {
-  if (!window.location.href.includes('#scenariotab')) document.getElementById('bt_scenarioTab').triggerEvent('click')
-  jeeP.addElementSave = {
-    expression: false,
-    insertAfter: false,
-    elementDiv: null
-  }
-
-  //is scenario empty:
-  if (document.getElementById('div_scenarioElement').querySelectorAll(':scope > .element').length == 0) {
-    jeeP.addElementSave.elementDiv = document.getElementById('div_scenarioElement')
-    jeeP.addElementSave.elementDiv.querySelector('.span_noScenarioElement').remove()
-  } else {
-    //had focus ?
-    if (jeeP.PREV_FOCUS != null && jeeP.PREV_FOCUS.closest('div.element') != null) {
-      jeeP.addElementSave.insertAfter = true
-      jeeP.addElementSave.elementDiv = jeeP.PREV_FOCUS.closest('div.element')
-      if (jeeP.addElementSave.elementDiv.parentNode.getAttribute('id') != 'div_scenarioElement') {
-        jeeP.addElementSave.elementDiv = elementDiv.closest('.expression')
-        jeeP.addElementSave.expression = true
-      }
-    } else {
-      jeeP.addElementSave.elementDiv = document.getElementById('div_scenarioElement')
-    }
-  }
-
-  $('#md_addElement').modal('show')
-
-})
-$("#bt_addElementSave").off('click').on('click', function(event) {
-    jeeP.setUndoStack()
-    if (jeeP.addElementSave.expression) {
-      var newEL = domUtils.parseHTML(jeeP.addExpression({
-          type: 'element',
-          element: {
-            type: document.getElementById("in_addElementType").jeeValue()
-          }
-        })
-      )
-    } else {
-      var newEL = domUtils.parseHTML(jeeP.addElement({
-          type: document.getElementById("in_addElementType").jeeValue()
-        })
-      )
-    }
-
-    if (jeeP.addElementSave.insertAfter) {
-      newEL = jeeP.addElementSave.elementDiv.parentNode.insertBefore(newEL.childNodes[0], jeeP.addElementSave.elementDiv.nextSibling)
-    } else {
-      newEL = jeeP.addElementSave.elementDiv.appendChild(newEL.childNodes[0])
-    }
-    newEL.addClass('disableElement')
-
-    jeeP.setEditors()
-    jeeP.updateSortable()
-    jeeP.updateElseToggle()
-    $('#md_addElement').modal('hide')
-    jeeFrontEnd.modifyWithoutSave = true
-    jeeP.updateTooltips()
-    jeedom.scenario.setAutoComplete()
-    setTimeout(function() {
-      newEL.removeClass('disableElement')
-    }, 600)
-  })
-
-
-$('#in_addElementType').off('change').on('change', function() {
-  document.querySelectorAll('.addElementTypeDescription').unseen()
-  document.querySelectorAll('.addElementTypeDescription.' + this.jeeValue()).seen()
-})
-
-$('#bt_logScenario').off('click').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Log d'exécution du scénario}}"
-  }).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
-})
-
-$("#bt_copyScenario").off('click').on('click', function() {
-  bootbox.prompt("{{Nom du scénario}} ?", function(result) {
-    if (result !== null) {
-      jeedom.scenario.copy({
-        id: document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue(),
-        name: result,
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          jeedomUtils.loadPage('index.php?v=d&p=scenario&id=' + data.id)
-        }
-      })
-    }
-  })
-})
-
-$('#bt_graphScenario').off('click').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Graphique de lien(s)}}"
-  }).load('index.php?v=d&modal=graph.link&filter_type=scenario&filter_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
-})
-
-$('#bt_editJsonScenario').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Edition texte scénarios}}"
-  }).load('index.php?v=d&modal=scenario.jsonEdit&id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
-})
-
-$('#bt_exportScenario').off('click').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Export du scénario}}"
-  }).load('index.php?v=d&modal=scenario.export&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
-})
-
-$('#bt_templateScenario').off('click').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Template de scénario}}"
-  }).load('index.php?v=d&modal=scenario.template&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
-})
-
-$("#bt_runScenario").off('click').on('click', function(event) {
-  jeedomUtils.hideAlert()
-  var scenario_id = document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()
-  var logmode = $('button[data-l2key="logmode"]').attr('value')
-  if (event.ctrlKey || event.metaKey) {
-    jeeP.saveScenario(function() {
-      jeedom.scenario.changeState({
-        id: scenario_id,
-        state: 'start',
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function() {
-          jeedomUtils.showAlert({
-            message: '{{Lancement du scénario réussi}}',
-            level: 'success'
-          })
-          if (logmode != 'none') {
-            $('#md_modal').dialog({
-                title: "{{Log d'exécution du scénario}}"
-              })
-              .load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + scenario_id)
-              .dialog('open')
-          }
-        }
-      })
-    })
-  } else {
-    jeedom.scenario.changeState({
-      id: document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue(),
-      state: 'start',
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function() {
-        jeedomUtils.showAlert({
-          message: '{{Lancement du scénario réussi}}',
-          level: 'success'
-        })
-      }
-    })
-  }
-})
-
-$("#bt_stopScenario").off('click').on('click', function() {
-  jeedom.scenario.changeState({
-    id: document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue(),
-    state: 'stop',
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function() {
-      jeedomUtils.showAlert({
-        message: '{{Arrêt du scénario réussi}}',
-        level: 'success'
-      })
-    }
-  })
-})
-
-$("#bt_saveScenario").off('click').on('click', function(event) {
-  jeeP.saveScenario()
-  jeeP.clipboard = null
-})
-
-$("#bt_delScenario").off('click').on('click', function(event) {
-  jeedomUtils.hideAlert()
-  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer le scénario}} <span style="font-weight: bold ;">' + document.querySelector('.scenarioAttr[data-l1key="name"]').jeeValue() + '</span> ?', function(result) {
-    if (result) {
-      jeedom.scenario.remove({
-        id: document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue(),
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function() {
-          jeeFrontEnd.modifyWithoutSave = false
-          jeeP.resetUndo()
-          jeedomUtils.loadPage('index.php?v=d&p=scenario')
-        }
-      })
-    }
-  })
-})
-
-
 /*******************Element***********************/
 jeeP.$divScenario.on('change', '.subElementAttr[data-l1key="options"][data-l2key="enable"]', function() {
   var checkbox = this
@@ -2013,89 +1629,6 @@ jeeP.$divScenario.on('focusout', '.expression .expressionAttr[data-l1key="expres
   }
 })
 
-//COPY - PASTE
-jeeP.$divScenario.on('click', '.bt_copyElement', function(event) {
-  var clickedBloc = this.closest('.element')
-
-  jeeP.clipboard = jeeP.getElement(clickedBloc)
-
-  //delete all id in properties to make it unique:
-  jeeP.removeObjectProp(jeeP.clipboard, 'id')
-  localStorage.removeItem('jeedomScCopy')
-  localStorage.setItem('jeedomScCopy', JSON.stringify(jeeP.clipboard))
-
-  //cut:
-  if (event.ctrlKey || event.metaKey) {
-    jeeP.setUndoStack()
-    clickedBloc.remove()
-  }
-  jeeFrontEnd.modifyWithoutSave = true
-})
-
-jeeP.$divScenario.on('click', '.bt_pasteElement', function(event) {
-  if (localStorage.getItem('jeedomScCopy')) {
-    jeeP.clipboard = JSON.parse(localStorage.getItem('jeedomScCopy'))
-  } else {
-    return false
-  }
-  var clickedBloc = $(this).closest('.element')
-
-  jeeP.setUndoStack()
-  jeeP.actionOptions = []
-  var pastedElement = jeeP.addElement(jeeP.clipboard)
-  pastedElement = $(pastedElement)
-
-  //Are we pasting inside an expresion:
-  if (clickedBloc.parent('#div_scenarioElement').length) {
-    //get the element if copied from an expression:
-    if (pastedElement.hasClass('expression')) {
-      pastedElement = pastedElement.find('.element')
-    }
-    pastedElement.insertAfter(clickedBloc)
-  } else {
-    //make it an expression if not yet:
-    if (pastedElement.hasClass('expression')) {
-      pastedElement.insertAfter(clickedBloc.parent().parent())
-    } else {
-      var newDiv = '<div class="expression sortable col-xs-12">'
-      newDiv += '<input class="expressionAttr" data-l1key="type" style="display: none;" value="element">'
-      newDiv += '<div class="col-xs-12" id="insertHere">'
-      newDiv += '</div>'
-      newDiv += '</div>'
-      $(newDiv).insertAfter(clickedBloc.parent().parent())
-      pastedElement.appendTo('#insertHere')
-    }
-  }
-
-  $('#insertHere').removeAttr('id')
-
-  //Synch collapsed elements:
-  pastedElement.find('i.fa-eye-slash').each(function() {
-    $(this).parents('.element').first().addClass('elementCollapse')
-  })
-  //Synch disabled elements:
-  pastedElement.find('input[data-l1key="options"][data-l2key="enable"]:not(:checked)').each(function() {
-    $(this).trigger('change')
-  })
-
-  jeeP.updateElseToggle()
-
-  //replace:
-  if (event.ctrlKey || event.metaKey) {
-    clickedBloc.remove()
-  }
-
-  jeeP.setScenarioActionsOptions()
-  jeeP.updateSortable()
-  jeedom.scenario.setAutoComplete()
-  jeeP.setEditors()
-  jeeP.updateTooltips()
-
-  setTimeout(function() { jeeP.updateTooltips() }, 500)
-
-  jeeFrontEnd.modifyWithoutSave = true
-})
-
 jeeP.$divScenario.on('mouseenter', '.bt_sortable', function() {
   var expressions = $(this).closest('.expressions')
   $("#div_scenarioElement").sortable({
@@ -2205,17 +1738,6 @@ jeeP.$divScenario.on('click', '.subElementAttr[data-l1key="options"][data-l2key=
   }
 })
 
-
-
-jeeP.$divScenario.on('shown.bs.dropdown', '.dropdown', function() {
-  if ( $(this).offset().top > window.innerHeight - 220) {
-    $(this).addClass('dropup')
-  }
-})
-jeeP.$divScenario.on('hidden.bs.dropdown', '.dropdown', function() {
-  this.removeClass("dropup")
-})
-
 jeeP.$divScenario.on('click', '.fromSubElement', function(event) {
   var elementType = $(this).attr('data-type')
   jeeP.setUndoStack()
@@ -2239,6 +1761,92 @@ jeeP.$divScenario.on('click', '.fromSubElement', function(event) {
     newEL.removeClass('disableElement')
   }, 600)
 })
+
+
+//COPY - PASTE
+jeeP.$divScenario.on('click', '.bt_copyElement', function(event) {
+  var clickedBloc = this.closest('.element')
+
+  jeeP.clipboard = jeeP.getElement(clickedBloc)
+
+  //delete all id in properties to make it unique:
+  jeeP.removeObjectProp(jeeP.clipboard, 'id')
+  localStorage.removeItem('jeedomScCopy')
+  localStorage.setItem('jeedomScCopy', JSON.stringify(jeeP.clipboard))
+
+  //cut:
+  if (event.ctrlKey || event.metaKey) {
+    jeeP.setUndoStack()
+    clickedBloc.remove()
+  }
+  jeeFrontEnd.modifyWithoutSave = true
+})
+
+jeeP.$divScenario.on('click', '.bt_pasteElement', function(event) {
+  if (localStorage.getItem('jeedomScCopy')) {
+    jeeP.clipboard = JSON.parse(localStorage.getItem('jeedomScCopy'))
+  } else {
+    return false
+  }
+  var clickedBloc = $(this).closest('.element')
+
+  jeeP.setUndoStack()
+  jeeP.actionOptions = []
+  var pastedElement = jeeP.addElement(jeeP.clipboard)
+  pastedElement = $(pastedElement)
+
+  //Are we pasting inside an expresion:
+  if (clickedBloc.parent('#div_scenarioElement').length) {
+    //get the element if copied from an expression:
+    if (pastedElement.hasClass('expression')) {
+      pastedElement = pastedElement.find('.element')
+    }
+    pastedElement.insertAfter(clickedBloc)
+  } else {
+    //make it an expression if not yet:
+    if (pastedElement.hasClass('expression')) {
+      pastedElement.insertAfter(clickedBloc.parent().parent())
+    } else {
+      var newDiv = '<div class="expression sortable col-xs-12">'
+      newDiv += '<input class="expressionAttr" data-l1key="type" style="display: none;" value="element">'
+      newDiv += '<div class="col-xs-12" id="insertHere">'
+      newDiv += '</div>'
+      newDiv += '</div>'
+      $(newDiv).insertAfter(clickedBloc.parent().parent())
+      pastedElement.appendTo('#insertHere')
+    }
+  }
+
+  $('#insertHere').removeAttr('id')
+
+  //Synch collapsed elements:
+  pastedElement.find('i.fa-eye-slash').each(function() {
+    $(this).parents('.element').first().addClass('elementCollapse')
+  })
+  //Synch disabled elements:
+  pastedElement.find('input[data-l1key="options"][data-l2key="enable"]:not(:checked)').each(function() {
+    $(this).trigger('change')
+  })
+
+  jeeP.updateElseToggle()
+
+  //replace:
+  if (event.ctrlKey || event.metaKey) {
+    clickedBloc.remove()
+  }
+
+  jeeP.setScenarioActionsOptions()
+  jeeP.updateSortable()
+  jeedom.scenario.setAutoComplete()
+  jeeP.setEditors()
+  jeeP.updateTooltips()
+
+  setTimeout(function() { jeeP.updateTooltips() }, 500)
+
+  jeeFrontEnd.modifyWithoutSave = true
+})
+
+
 
 
 //Register events on top of page container:
@@ -2384,11 +1992,88 @@ document.getElementById('bt_scenarioTab').addEventListener('click', function(eve
   }, 50)
 })
 
+//Specials
+document.querySelector('.scenarioAttr[data-l1key="mode"]').addEventListener('change', function(event) {
+  document.getElementById('bt_addSchedule').removeClass('roundedRight')
+  document.getElementById('bt_addTrigger').removeClass('roundedRight')
+  if (event.target.value == 'schedule' || event.target.value == 'all') {
+    document.querySelectorAll('.scheduleDisplay').seen()
+    document.getElementById('bt_addSchedule').seen()
+  } else {
+    document.querySelectorAll('.scheduleDisplay').unseen()
+    document.getElementById('bt_addSchedule').unseen()
+    document.getElementById('bt_addTrigger').addClass('roundedRight')
+  }
+  if (event.target.value == 'provoke' || event.target.value == 'all') {
+    document.querySelectorAll('.provokeDisplay').seen()
+    document.getElementById('bt_addTrigger').seen()
+  } else {
+    document.querySelectorAll('.provokeDisplay').unseen()
+    document.getElementById('bt_addTrigger').unseen()
+    document.getElementById('bt_addSchedule').addClass('roundedRight')
+  }
+  if (event.target.value == 'all') {
+    document.getElementById('bt_addSchedule').addClass('roundedRight')
+  }
+})
+
+document.getElementById('in_addElementType').addEventListener('change', function(event) {
+  document.querySelectorAll('.addElementTypeDescription').unseen()
+  document.querySelectorAll('.addElementTypeDescription.' + this.jeeValue()).seen()
+})
+
+document.getElementById('in_searchInsideScenario').addEventListener('keyup', function(event) {
+  var search = this.value
+  document.querySelectorAll('#div_scenarioElement .insideSearch').removeClass('insideSearch')
+  document.querySelectorAll('#div_scenarioElement div.CodeMirror.CodeMirror-wrap').forEach( _code => {
+    _code.CodeMirror.setCursor(0)
+  })
+  if (search == '' || search.length < 3) {
+    document.querySelectorAll('i.fa-eye-slash').forEach( _bt => {
+      _bt.closest('.element')?.addClass('elementCollapse')
+    })
+    return
+  }
+  search = jeedomUtils.normTextLower(search)
+
+  //search code blocks:
+  var cmEditor, code, cursor
+  document.querySelectorAll('#div_scenarioElement div.elementCODE').forEach( _code => {
+    try {
+      cmEditor = _code.querySelector('div.CodeMirror.CodeMirror-wrap').CodeMirror
+      code = jeedomUtils.normTextLower(cmEditor.getValue())
+      if (code.indexOf(search) >= 0) {
+        _code.removeClass('elementCollapse')
+        cursor = cmEditor.getSearchCursor(search, CodeMirror.Pos(cmEditor.firstLine(), 0), {
+          caseFold: true,
+          multiline: true
+        })
+        if (cursor.find(false)) {
+          cmEditor.setSelection(cursor.from(), cursor.to())
+        }
+      } else {
+        _code.addClass('elementCollapse')
+        cmEditor.setCursor(0)
+      }
+    } catch {}
+  })
+  //search in expressions:
+  var text
+  document.querySelectorAll('#div_scenarioElement div.element:not(.elementCODE) .expressionAttr').forEach( _expr => {
+    text = jeedomUtils.normTextLower(_expr.value)
+    if (text.indexOf(search) >= 0) {
+      _expr.addClass('insideSearch')
+      _expr.closest('.element').removeClass('elementCollapse')
+    }
+  })
+})
+
+
+
 
 /*Events delegations
 */
 document.getElementById('div_pageContainer').addEventListener('mouseleave', function(event) {
-  //console.log('mouseleave __div_pageContainer', event)
   if (event.target.matches('.context-menu-root')) { //Handle auto hide context menu
     setTimeout(function() {
       event.target.triggerEvent('contextmenu:hide')
@@ -2397,10 +2082,9 @@ document.getElementById('div_pageContainer').addEventListener('mouseleave', func
   }
 }, {capture: true})
 
+
 //_________________Root page events:
 document.getElementById('in_searchScenario').addEventListener('keyup', function(event) {
-  console.log('keyup __in_searchScenario', event)
-
   var search = this.value
   if (search == '') {
     document.querySelectorAll('.accordion-toggle[aria-expanded="true"]').forEach(function(accordion) {
@@ -2437,8 +2121,6 @@ document.getElementById('in_searchScenario').addEventListener('keyup', function(
 })
 
 document.getElementById('scenarioThumbnailDisplay').addEventListener('click', function(event) {
-  console.log('click __scenarioThumbnailDisplay', event)
-
   if (!event.target.matches('a.accordion-toggle')) {
     event.preventDefault()
     event.stopImmediatePropagation()
@@ -2486,8 +2168,6 @@ document.getElementById('scenarioThumbnailDisplay').addEventListener('click', fu
 })
 
 document.getElementById('scenarioThumbnailDisplay').addEventListener('mouseup', function(event) {
-  console.log('mouseup __scenarioThumbnailDisplay', event)
-
   if (event.target.matches('#accordionScenario .scenarioDisplayCard') || event.target.closest('.scenarioDisplayCard') != null) {
     if (event.which == 2) {
       event.preventDefault()
@@ -2499,9 +2179,227 @@ document.getElementById('scenarioThumbnailDisplay').addEventListener('mouseup', 
 })
 
 
+
 //_________________Floating bar events:
 document.getElementById('div_editScenario').querySelector('div.floatingbar').addEventListener('click', function(event) {
-  console.log('click __floatingbar', event)
+  if (event.target.matches('#bt_logScenario, #bt_logScenario *')) {
+    $('#md_modal').dialog({
+      title: "{{Log d'exécution du scénario}}"
+    }).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
+    return
+  }
+
+  if (event.target.matches('#bt_copyScenario, #bt_copyScenario *')) {
+    bootbox.prompt("{{Nom du scénario}} ?", function(result) {
+      if (result !== null) {
+        jeedom.scenario.copy({
+          id: document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue(),
+          name: result,
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function(data) {
+            jeedomUtils.loadPage('index.php?v=d&p=scenario&id=' + data.id)
+          }
+        })
+      }
+    })
+    return
+  }
+
+  if (event.target.matches('#bt_graphScenario, #bt_graphScenario *')) {
+    $('#md_modal').dialog({
+      title: "{{Graphique de lien(s)}}"
+    }).load('index.php?v=d&modal=graph.link&filter_type=scenario&filter_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
+    return
+  }
+
+  if (event.target.matches('#bt_editJsonScenario, #bt_editJsonScenario *')) {
+    $('#md_modal').dialog({
+      title: "{{Edition texte scénarios}}"
+    }).load('index.php?v=d&modal=scenario.jsonEdit&id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
+    return
+  }
+
+  if (event.target.matches('#bt_exportScenario, #bt_exportScenario *')) {
+    $('#md_modal').dialog({
+      title: "{{Export du scénario}}"
+    }).load('index.php?v=d&modal=scenario.export&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
+    return
+  }
+
+  if (event.target.matches('#bt_templateScenario, #bt_templateScenario *')) {
+    $('#md_modal').dialog({
+      title: "{{Template de scénario}}"
+    }).load('index.php?v=d&modal=scenario.template&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
+    return
+  }
+
+  if (event.target.matches('#bt_runScenario, #bt_runScenario *')) {
+    jeedomUtils.hideAlert()
+    var scenario_id = document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()
+    var logmode = $('button[data-l2key="logmode"]').attr('value')
+    if (event.ctrlKey || event.metaKey) {
+      jeeP.saveScenario(function() {
+        jeedom.scenario.changeState({
+          id: scenario_id,
+          state: 'start',
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function() {
+            jeedomUtils.showAlert({
+              message: '{{Lancement du scénario réussi}}',
+              level: 'success'
+            })
+            if (logmode != 'none') {
+              $('#md_modal').dialog({
+                  title: "{{Log d'exécution du scénario}}"
+                })
+                .load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + scenario_id)
+                .dialog('open')
+            }
+          }
+        })
+      })
+    } else {
+      jeedom.scenario.changeState({
+        id: document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue(),
+        state: 'start',
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function() {
+          jeedomUtils.showAlert({
+            message: '{{Lancement du scénario réussi}}',
+            level: 'success'
+          })
+        }
+      })
+    }
+    return
+  }
+
+  if (event.target.matches('#bt_stopScenario, #bt_stopScenario *')) {
+    jeedom.scenario.changeState({
+      id: document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue(),
+      state: 'stop',
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function() {
+        jeedomUtils.showAlert({
+          message: '{{Arrêt du scénario réussi}}',
+          level: 'success'
+        })
+      }
+    })
+    return
+  }
+
+  if (event.target.matches('#bt_saveScenario, #bt_saveScenario *')) {
+    jeeP.saveScenario()
+    jeeP.clipboard = null
+    return
+  }
+
+  if (event.target.matches('#bt_delScenario, #bt_delScenario *')) {
+    jeedomUtils.hideAlert()
+    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer le scénario}} <span style="font-weight: bold ;">' + document.querySelector('.scenarioAttr[data-l1key="name"]').jeeValue() + '</span> ?', function(result) {
+      if (result) {
+        jeedom.scenario.remove({
+          id: document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue(),
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function() {
+            jeeFrontEnd.modifyWithoutSave = false
+            jeeP.resetUndo()
+            jeedomUtils.loadPage('index.php?v=d&p=scenario')
+          }
+        })
+      }
+    })
+    return
+  }
+
+  if (event.target.matches('#bt_addScenarioElement, #bt_addScenarioElement *')) {
+    if (!window.location.href.includes('#scenariotab')) document.getElementById('bt_scenarioTab').triggerEvent('click')
+    jeeP.addElementSave = {
+      expression: false,
+      insertAfter: false,
+      elementDiv: null
+    }
+
+    //is scenario empty:
+    if (document.getElementById('div_scenarioElement').querySelectorAll(':scope > .element').length == 0) {
+      jeeP.addElementSave.elementDiv = document.getElementById('div_scenarioElement')
+      jeeP.addElementSave.elementDiv.querySelector('.span_noScenarioElement').remove()
+    } else {
+      //had focus ?
+      if (jeeP.PREV_FOCUS != null && jeeP.PREV_FOCUS.closest('div.element') != null) {
+        jeeP.addElementSave.insertAfter = true
+        jeeP.addElementSave.elementDiv = jeeP.PREV_FOCUS.closest('div.element')
+        if (jeeP.addElementSave.elementDiv.parentNode.getAttribute('id') != 'div_scenarioElement') {
+          jeeP.addElementSave.elementDiv = elementDiv.closest('.expression')
+          jeeP.addElementSave.expression = true
+        }
+      } else {
+        jeeP.addElementSave.elementDiv = document.getElementById('div_scenarioElement')
+      }
+    }
+
+    $('#md_addElement').modal('show') //=> #bt_addElementSave
+    return
+  }
+
+  if (event.target.matches('#bt_resetInsideScenarioSearch, #bt_resetInsideScenarioSearch *')) {
+    var btn = document.getElementById('bt_resetInsideScenarioSearch')
+    if (btn.hasClass('disabled')) return
+    var searchField = document.getElementById('in_searchInsideScenario')
+    if (btn.getAttribute('data-state') == '0') {
+      //show search:
+      searchField.seen()
+      btn.querySelectorAll('i').removeClass('fa-search').addClass('fa-times')
+      btn.setAttribute('data-state', '1')
+      //open code blocks for later search:
+      document.querySelectorAll('#div_scenarioElement div.elementCODE.elementCollapse').forEach(_code =>  {
+        _code.removeClass('elementCollapse')
+        _code.querySelector('textarea[data-l1key="expression"]').show()
+      })
+      jeeP.setEditors()
+      document.querySelectorAll('textarea[data-l1key="expression"]').unseen()
+      searchField.focus()
+    } else {
+      if (searchField.value  == '') {
+        document.querySelectorAll('i.fa-eye-slash').forEach(_bt => {
+          _bt.closest('.element').addClass('elementCollapse')
+        })
+        btn.querySelector('i').removeClass('fa-times').addClass('fa-search')
+        searchField.unseen()
+        btn.setAttribute('data-state', '0')
+      } else {
+        searchField.value = ''
+        searchField.triggerEvent('keyup')
+      }
+    }
+    return
+  }
 
   if (event.target.matches('#bt_undo, #bt_undo i')) {
     if (!jeedomUtils.getOpenedModal()) {
@@ -2519,10 +2417,11 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
   }
 })
 
+
+
+
 //General tab events:
 document.getElementById('generaltab').addEventListener('click', function(event) {
-  console.log('click __generaltab', event)
-
   if (event.target.matches('.scenarioAttr[data-l2key="timeline::enable"]')) {
     if (event.target.checked) {
       document.querySelector('.scenarioAttr[data-l2key="timeline::folder"]').seen()
@@ -2565,11 +2464,68 @@ document.getElementById('generaltab').addEventListener('click', function(event) 
     jeeFrontEnd.modifyWithoutSave = true
     return
   }
+
+  if (event.target.matches('#bt_addTrigger, #bt_addTrigger i')) {
+    jeeP.addTrigger('')
+    jeeP.checkNoTriggeringMode()
+    return
+  }
+
+  if (event.target.matches('#bt_addSchedule, #bt_addSchedule i')) {
+    jeeP.addSchedule('')
+    jeeP.checkNoTriggeringMode()
+    return
+  }
+
+  if (event.target.matches('.bt_removeTrigger, .bt_removeTrigger i')) {
+    event.target.closest('.trigger').remove()
+    jeeP.checkNoTriggeringMode()
+    return
+  }
+
+  if (event.target.matches('.bt_removeSchedule, .bt_removeSchedule i')) {
+    event.target.closest('.schedule').remove()
+    jeeP.checkNoTriggeringMode()
+    return
+  }
+
+  if (event.target.matches('.bt_selectTrigger, .bt_selectTrigger i')) {
+    var el = event.target
+    jeedom.cmd.getSelectModal({
+      cmd: {
+        type: 'info'
+      }
+    }, function(result) {
+      el.closest('.trigger').querySelector('.scenarioAttr[data-l1key="trigger"]').jeeValue(result.human)
+    })
+    return
+  }
+
+  if (event.target.matches('.bt_selectDataStoreTrigger, .bt_selectDataStoreTrigger i')) {
+    var el = event.target
+    jeedom.dataStore.getSelectModal({
+      cmd: {
+        type: 'info'
+      }
+    }, function(result) {
+      el.closest('.trigger').querySelector('.scenarioAttr[data-l1key="trigger"]').jeeValue(result.human)
+    })
+    return
+  }
+
+  if (event.target.matches('.bt_selectGenericTrigger, .bt_selectGenericTrigger i')) {
+    var el = event.target
+    jeedom.config.getGenericTypeModal({
+      type: 'info',
+      object: true
+    }, function(result) {
+      el.closest('.trigger').querySelector('.scenarioAttr[data-l1key="trigger"]').jeeValue('#' + result.human + '#')
+    })
+    return
+  }
 })
 
 document.getElementById('generaltab').addEventListener('mouseup', function(event) {
-  console.log('mouseup __generaltab', event)
-
   if (event.target.matches('.scenario_link')) {
     if (event.which == 2) {
       event.preventDefault()
@@ -2579,14 +2535,62 @@ document.getElementById('generaltab').addEventListener('mouseup', function(event
   }
 })
 
+document.getElementById('generaltab').addEventListener('dblclick', function(event) {
+  if (event.target.matches('.scenarioAttr[data-l1key="display"][data-l2key="icon"] i')) {
+    document.querySelector('.scenarioAttr[data-l1key="display"][data-l2key="icon"]').innerHTML = ''
+    jeeFrontEnd.modifyWithoutSave = true
+    return
+  }
+})
+
+
 
 //_________________Scenario tab events:
 document.getElementById('scenariotab').addEventListener('click', function(event) {
   console.log('click __div_scenarioElement', event)
 
-  if (event.target.tagName === 'INPUT') { jeeP.PREV_FOCUS = event.target }
+  if (event.target.matches('#bt_addElementSave, #bt_addElementSave *')) { //Ok button from ass new block modal
+    jeeP.setUndoStack()
+    jeeFrontEnd.modifyWithoutSave = true
+    if (jeeP.addElementSave.expression) {
+      var newEL = domUtils.parseHTML(jeeP.addExpression({
+          type: 'element',
+          element: {
+            type: document.getElementById("in_addElementType").jeeValue()
+          }
+        })
+      )
+    } else {
+      var newEL = domUtils.parseHTML(jeeP.addElement({
+          type: document.getElementById("in_addElementType").jeeValue()
+        })
+      )
+    }
+
+    if (jeeP.addElementSave.insertAfter) {
+      newEL = jeeP.addElementSave.elementDiv.parentNode.insertBefore(newEL.childNodes[0], jeeP.addElementSave.elementDiv.nextSibling)
+    } else {
+      newEL = jeeP.addElementSave.elementDiv.appendChild(newEL.childNodes[0])
+    }
+    newEL.addClass('disableElement')
+
+    jeeP.setEditors()
+    jeeP.updateSortable()
+    jeeP.updateElseToggle()
+    $('#md_addElement').modal('hide')
+    setTimeout(function() {
+      newEL.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
+    }, 350)
+    jeeP.updateTooltips()
+    jeedom.scenario.setAutoComplete()
+    setTimeout(function() {
+      newEL.removeClass('disableElement')
+    }, 1000)
+    return
+  }
 
   if (event.target.matches('input:not([type="checkbox"]).expressionAttr, textarea.expressionAttr')) { //ctrl-click input popup
+    jeeP.PREV_FOCUS = event.target //Place new block next
     if (event.ctrlKey) {
       var $thisInput = $(event.target)
       var selfInput = event.target
@@ -2598,7 +2602,6 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
         container: $('#scenariotab'),
         backdrop: false,
         onShown: function(event) {
-          console.log('onShown', event)
           event.target.addClass('bootboxScInput')
           event.target.querySelector('.bootbox-input-textarea').addClass('expression').insertAdjacentHTML('afterend', button)
           event.target.querySelector('.bootbox-input-textarea').value = selfInput.value
@@ -2624,7 +2627,13 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
 
 document.getElementById('scenariotab').addEventListener('mouseenter', function(event) {
   //console.log('mouseenter __div_scenarioElement', event)
-
+  if (event.target.matches('button.dropdown-toggle, button.dropdown-toggle *')) {
+    if (event.clientY > window.innerHeight - 220) {
+      event.target.closest('div.dropdown').addClass('dropup')
+    } else {
+      event.target.closest('div.dropdown').removeClass('dropup')
+    }
+  }
 }, {capture: true})
 
 document.getElementById('scenariotab').addEventListener('mousedown', function(event) {
@@ -2634,7 +2643,13 @@ document.getElementById('scenariotab').addEventListener('mousedown', function(ev
 
 document.getElementById('scenariotab').addEventListener('mouseout', function(event) {
   //console.log('mouseout __div_scenarioElement', event)
-
+  if (event.target.matches('button.dropdown-toggle, button.dropdown-toggle *')) {
+    if (event.clientY > window.innerHeight - 220) {
+      event.target.closest('div.dropdown').addClass('dropup')
+    } else {
+      event.target.closest('div.dropdown').removeClass('dropup')
+    }
+  }
 })
 
 
