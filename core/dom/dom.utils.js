@@ -263,7 +263,6 @@ Element.prototype.fade = function(_delayms, _opacity, _callback) {
     self.style.opacity = opacity
     if (stop) {
       window.clearInterval(fading)
-      self.style.opacity = 1
       if (typeof _callback === 'function') {
         _callback()
       }

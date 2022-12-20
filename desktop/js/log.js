@@ -41,7 +41,7 @@ jeeP.$rawLogCheck.on('click').on('click', function() {
 
   var scroll = $('#pre_globallog').scrollTop()
   jeedom.log.autoupdate({
-    log: document.querySelector('li.li_log.active').getAttribute('data-log'),
+    log: document.querySelector('li.li_log.active')?.getAttribute('data-log'),
     display: document.getElementById('pre_globallog'),
     search: document.getElementById('in_searchGlobalLog'),
     control: document.getElementById('bt_globalLogStopStart'),

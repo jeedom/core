@@ -2626,10 +2626,12 @@ document.getElementById('scenariotab').addEventListener('mouseenter', function(e
   //console.log('mouseenter __div_scenarioElement', event)
 
 }, {capture: true})
+
 document.getElementById('scenariotab').addEventListener('mousedown', function(event) {
   console.log('mousedown __div_scenarioElement', event)
 
 })
+
 document.getElementById('scenariotab').addEventListener('mouseout', function(event) {
   //console.log('mouseout __div_scenarioElement', event)
 

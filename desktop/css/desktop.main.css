@@ -2661,7 +2661,7 @@ div.eqLogic-widget.editingMode .panelLink {
     margin: 0 14px;
   }
 
- 
+
 
   .btn-file {
     position: relative;
@@ -5256,7 +5256,7 @@ div.eqLogic-widget.editingMode .panelLink {
       display: grid;
       top: 0px !important;
       right: 0;
-      text-align: right;
+      text-align: right !important;
     }
 
     #summaryGlobalMain {
