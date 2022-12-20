@@ -33,7 +33,7 @@ $('#bt_login_validate').on('click', function() {
     username: document.getElementById('in_login_username').value,
     password: document.getElementById('in_login_password').value,
     twoFactorCode: document.getElementById('in_twoFactorCode').value,
-    storeConnection: document.getElementById('cb_storeConnection').checked,
+    storeConnection: (document.getElementById('cb_storeConnection').checked) ? 1 : 0,
     error: function(error) {
       if (error.code == -32012) {
         $('#div_twoFactorCode').show()
