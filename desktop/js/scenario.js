@@ -1250,13 +1250,13 @@ if (!jeeFrontEnd.scenario) {
     //Code Editors:
     setEditors: function() {
       var expression, code
-      $('.expressionAttr[data-l1key="type"][value="code"]').each(function() {
-        expression = $(this).closest('.expression')
-        code = expression.find('.expressionAttr[data-l1key="expression"]')
-        $(this).find('.blocPreview').html(code.val())
-        if (code.attr('id') == undefined && code.is(':visible')) {
+      document.querySelectorAll('.expressionAttr[data-l1key="type"][value="code"]').forEach(function(elCode) {
+        expression = elCode.closest('.expression')
+        code = expression.querySelector('.expressionAttr[data-l1key="expression"]')
+        elCode.querySelector('.blocPreview')?.html(code.value)
+        if (code.getAttribute('id') == undefined && code.isVisible()) {
           code.uniqueId()
-          var id = code.attr('id')
+          var id = code.getAttribute('id')
           setTimeout(function() {
             jeeP.editors[id] = CodeMirror.fromTextArea(document.getElementById(id), {
               lineNumbers: true,
@@ -1278,21 +1278,21 @@ if (!jeeFrontEnd.scenario) {
     resetEditors: function() {
       this.editors = []
       var expression, code
-      $('.expressionAttr[data-l1key="type"][value="code"]').each(function() {
-        expression = $(this).closest('.expression')
-        code = expression.find('.expressionAttr[data-l1key="expression"]')
-        code.removeAttr('id').show()
-        expression.find('.CodeMirror.CodeMirror-wrap').remove()
+      document.querySelectorAll('.expressionAttr[data-l1key="type"][value="code"]').forEach(function(elCode) {
+        expression = elCode.closest('.expression')
+        code = expression.querySelector('.expressionAttr[data-l1key="expression"]')
+        code. removeAttribute('id').show()
+        expression.querySelectorAll('.CodeMirror.CodeMirror-wrap').remove()
       })
       this.setEditors()
     },
     syncEditors: function() {
       var expression, code, id
-      $('.expressionAttr[data-l1key="type"][value="code"]').each(function() {
-        expression = $(this).closest('.expression')
-        code = expression.find('.expressionAttr[data-l1key="expression"]')
-        id = code.attr('id')
-        if (isset(jeeP.editors[id])) code.html(jeeP.editors[id].getValue())
+      document.querySelectorAll('.expressionAttr[data-l1key="type"][value="code"]').forEach(function(elCode) {
+        expression = elCode.closest('.expression')
+        code = expression.querySelector('.expressionAttr[data-l1key="expression"]')
+        id = code.getAttribute('id')
+        if (isset(jeeP.editors[id])) code.html(jeeP.editors[id].getValue()) //codemirror getValue()!
       })
     },
   }
@@ -1334,12 +1334,12 @@ $('#in_searchScenario').keyup(function() {
   $('.panel-collapse[data-show=0]').collapse('hide')
 })
 $('#bt_openAll').off('click').on('click', function() {
-  $(".accordion-toggle[aria-expanded='false']").each(function() {
+  $('.accordion-toggle[aria-expanded="false"]').each(function() {
     $(this).click()
   })
 })
 $('#bt_closeAll').off('click').on('click', function() {
-  $(".accordion-toggle[aria-expanded='true']").each(function() {
+  $('.accordion-toggle[aria-expanded="true"]').each(function() {
     $(this).click()
   })
 })
@@ -2254,7 +2254,7 @@ $("#bt_delScenario").off('click').on('click', function(event) {
 
 
 /*******************Element***********************/
-jeeP.$divScenario.on('change', '.subElementAttr[data-l1key=options][data-l2key=enable]', function() {
+jeeP.$divScenario.on('change', '.subElementAttr[data-l1key="options"][data-l2key="enable"]', function() {
   var checkbox = this
   var element = checkbox.closest('.element')
   if (checkbox.checked) {
@@ -2271,7 +2271,7 @@ jeeP.$divScenario.on('change', '.subElementAttr[data-l1key=options][data-l2key=e
   }
 })
 
-jeeP.$divScenario.on('change', '.expressionAttr[data-l1key=options][data-l2key=enable]', function() {
+jeeP.$divScenario.on('change', '.expressionAttr[data-l1key="options"][data-l2key="enable"]', function() {
   var checkbox = this
   var element = checkbox.closest('.expression')
   if (checkbox.checked) {
@@ -2353,8 +2353,8 @@ jeeP.$divScenario.on('click', '.bt_collapse', function(event) {
         txt = _el.find('.expressions .expression').first().find('input.form-control').first().val()
         if (!txt) txt = _el.find('.expression textarea').val()
       } else if (_el.hasClass('elementCODE')) {
-        id = _el.find('.expressionAttr[data-l1key=expression]').attr('id')
-        if (isset(jeeP.editors[id])) txt = jeeP.editors[id].getValue()
+        id = _el.find('.expressionAttr[data-l1key="expression"]').attr('id')
+        if (isset(jeeP.editors[id])) txt = jeeP.editors[id].getJeeValue()
       } else {
         //comment
         txt = _el.find('.expression textarea').val().HTMLFormat()
@@ -2713,7 +2713,7 @@ jeeP.$divScenario.on('mouseout', '.bt_sortable', function() {
   $("#div_scenarioElement").sortable("disable")
 })
 
-jeeP.$divScenario.on('click', '.subElementAttr[data-l1key=options][data-l2key=allowRepeatCondition]', function() {
+jeeP.$divScenario.on('click', '.subElementAttr[data-l1key="options"][data-l2key="allowRepeatCondition"]', function() {
   if ($(this).attr('value') == 0) {
     $(this).attr('value', 1).html('<span><i class="fas fa-ban text-danger"></i></span>')
   } else {
@@ -2723,7 +2723,7 @@ jeeP.$divScenario.on('click', '.subElementAttr[data-l1key=options][data-l2key=al
 
 /**************** Initialisation **********************/
 if (is_numeric(getUrlVars('id'))) {
-  if ($('.scenarioDisplayCard[data-scenario_id=' + getUrlVars('id') + ']').length != 0) {
+  if ($('.scenarioDisplayCard[data-scenario_id="' + getUrlVars('id') + '"]').length != 0) {
     $('.scenarioDisplayCard[data-scenario_id=' + getUrlVars('id') + ']').click()
   }
 }
