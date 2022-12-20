@@ -2661,11 +2661,7 @@ div.eqLogic-widget.editingMode .panelLink {
     margin: 0 14px;
   }
 
-  @media ( min-width: 768px ) {
-    fieldset > div {
-      padding-left: 1em;
-    }
-  }
+ 
 
   .btn-file {
     position: relative;
@@ -5193,6 +5189,9 @@ div.eqLogic-widget.editingMode .panelLink {
     }
     .navbar-collapse.collapse {
       height: 50px !important;
+    }
+    fieldset > div {
+      padding-left: 1em;
     }
   }
 
