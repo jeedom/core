@@ -386,7 +386,7 @@ $synthToActions = array(
 								foreach ($config_objSummary as $key => $value) {
 									$echo .=  '<div role="tabpanel" class="tab-pane type' . $key . $active . '" data-type="' . $key . '" id="summarytab' . $key . '">';
 									$echo .=  '<a class="btn btn-sm btn-success pull-right addSummary" data-type="' . $key . '"><i class="fas fa-plus-circle"></i> {{Ajouter une commande}}</a>';
-									$echo .=  '<br/>';
+									$echo .=  '<br/><br/>';
 									$echo .=  '<div class="div_summary" data-type="' . $key . '"></div>';
 									$echo .=  '</div>';
 									$active = '';

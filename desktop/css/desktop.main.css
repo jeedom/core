@@ -2660,8 +2660,11 @@ div.eqLogic-widget.editingMode .panelLink {
   fieldset {
     margin: 0 14px;
   }
-  fieldset > div {
-    padding-left: 1em;
+
+  @media ( min-width: 768px ) {
+    fieldset > div {
+      padding-left: 1em;
+    }
   }
 
   .btn-file {
@@ -5370,11 +5373,11 @@ div.eqLogic-widget.editingMode .panelLink {
       color: #fff;
     }
     .tab-pane {
-      padding: 15px 0;
+      padding: 5px 0;
     }
-    .tab-content {
+    /*.tab-content {
       padding: 20px
-    }
+    }*/
     .nav-tabs::-webkit-scrollbar {
       display: none; /*Safari and Chrome*/
     }
