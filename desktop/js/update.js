@@ -225,7 +225,7 @@ if (!jeeFrontEnd.update) {
       tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="updateDate">' + _update.updateDate + '</span></td>'
       tr += '<td>'
       if (_update.type != 'core') {
-        tr += '<input type="checkbox" class="updateAttr checkContext" data-l1key="configuration" data-l2key="doNotUpdate" title="{{Sauvegarder pour conserver les modications}}"><span class="hidden-1280">{{Ne pas mettre à jour}}</span>'
+        tr += '<input type="checkbox" class="updateAttr checkContext" data-l1key="configuration" data-l2key="doNotUpdate" title="{{Sauvegarder pour conserver les modifications}}"><span class="hidden-1280">{{Ne pas mettre à jour}}</span>'
       }
       tr += '</td>'
       tr += '<td>'
