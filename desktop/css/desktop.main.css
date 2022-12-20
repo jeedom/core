@@ -5296,6 +5296,10 @@ div.eqLogic-widget.editingMode .panelLink {
 
 /* ________________________________________TABLE REFLOW FLEX */
   @media ( max-width: 768px ) {
+    div:not(.ui-dialog) > .floatingbar {
+      text-align: unset;
+    }
+
     table.ui-table-reflow thead {
       position: relative !important;
     }
