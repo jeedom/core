@@ -35,7 +35,7 @@ natcasesort($list_logfile);
 		</div>
 	</div>
 	<br /><br />
-	<div class="col-lg-2 col-md-3 col-sm-4" id="div_displayLogList">
+	<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12" id="div_displayLogList">
 		<ul id="ul_object" class="nav nav-list bs-sidenav">
 			<li style="margin-bottom: 5px;">
 				<div class="input-group">
@@ -73,8 +73,7 @@ natcasesort($list_logfile);
 			?>
 		</ul>
 	</div>
-	<div class="col-lg-10 col-md-9 col-sm-8">
-
+	<div class="col-lg-10 col-md-9 col-sm-12 col-xs-12">
 		<pre id='pre_globallog'></pre>
 	</div>
 </div>
