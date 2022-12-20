@@ -82,8 +82,8 @@ if ('SecurityPolicyViolationEvent' in window) { // Check browser support of Secu
 
 //UI Time display:
 setInterval(function() {
-  if(document.getElementById('horloge') === null){
-    return;
+  if (document.getElementById('horloge') === null) {
+    return
   }
   let dateJeed = new Date
   dateJeed.setTime((new Date).getTime() + ((new Date).getTimezoneOffset() + jeeFrontEnd.serverTZoffsetMin) * 60000 + jeeFrontEnd.clientServerDiffDatetime)
@@ -249,12 +249,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (window.location.hash != '' && tab != null) {
     tab.triggerEvent('click')
-    //$('.nav-tabs a[href="'+window.location.hash+'"]').click()
   }
 
   //browser history:
-  var $body = $('body')
-  $body.on('shown.bs.tab', '.nav-tabs a', function(event) {
+
+  //custom jQuery event can't use pur js event listener
+  $('body').on('shown.bs.tab', '.nav-tabs a', function(event) {
     if (event.target.getAttribute('data-target') == '') {
       return
     }
@@ -311,7 +311,7 @@ document.addEventListener('DOMContentLoaded', function() {
   setTimeout(function() {
     jeedomUtils.initTooltips()
     jeedomUtils.createObserver()
-    $body.trigger('jeedom_page_load')
+    document.body.triggerEvent('jeedom_page_load')
   })
 
   /*Move and register common scripts/css to not reload them:
@@ -510,8 +510,10 @@ jeedomUtils.changeJeedomThemeAuto = function() {
 }
 
 jeedomUtils.checkThemechange = function() {
+  //User forced current theme:
   if (getCookie('currentTheme') == 'alternate' || document.getElementById('jeedom_theme_currentcss')?.getAttribute('data-nochange') == 1) return
 
+  //Should have themeCss, check currentTheme:
   var theme = jeedom.theme.jeedom_theme_alternate
   var themeCss = 'core/themes/' + jeedom.theme.jeedom_theme_alternate + '/desktop/' + jeedom.theme.jeedom_theme_alternate + '.css'
   var currentTime = parseInt((new Date()).getHours() * 100 + (new Date()).getMinutes())
@@ -526,17 +528,11 @@ jeedomUtils.checkThemechange = function() {
     currentTheme = currentTheme.substring(0, currentTheme.indexOf('?md5'))
   }
   if (currentTheme != themeCss) {
-    $.get(themeCss)
-      .done(function() {
-        document.getElementById('jeedom_theme_currentcss').setAttribute('href', themeCss)
-        document.body.setAttribute('data-theme', theme)
-        if (document.getElementById('shadows_theme_css') != null) document.getElementById('shadows_theme_css').setAttribute('href', 'core/themes/' + theme + '/desktop/shadows.css')
-        jeedomUtils.setBackgroundImage('')
-        jeedomUtils.triggerThemechange()
-      })
-      .fail(function() {
-        console.error("changeThemeAuto: can't find theme file " + themeCss)
-      })
+    document.body.setAttribute('data-theme', theme)
+    document.getElementById('jeedom_theme_currentcss').setAttribute('href', themeCss)
+    document.getElementById('shadows_theme_css')?.setAttribute('href', 'core/themes/' + theme + '/desktop/shadows.css')
+    jeedomUtils.setBackgroundImage('')
+    jeedomUtils.triggerThemechange()
   }
 }
 
@@ -553,10 +549,10 @@ jeedomUtils.triggerThemechange = function() {
 
   //trigger event for widgets:
   if (document.body.hasAttribute('data-page') && ['dashboard', 'view', 'plan', 'widgets'].includes(document.body.getAttribute('data-page'))) {
-    if (currentTheme.endsWith('Light')) {
-      document.body.triggerEvent('changeThemeEvent', {detail: {theme: 'Light'}})
-    } else {
+    if (currentTheme.endsWith('Dark')) {
       document.body.triggerEvent('changeThemeEvent', {detail: {theme: 'Dark'}})
+    } else {
+      document.body.triggerEvent('changeThemeEvent', {detail: {theme: 'Light'}}) //Legacy theme is a light one
     }
   }
 }
@@ -766,8 +762,8 @@ jeedomUtils.initJeedomModals = function() {
 }
 
 jeedomUtils.setButtonCtrlHandler = function(_buttonId, _title, _uri, _modal = '#md_modal', _open = true) {
-  if(document.getElementById(_buttonId) === null){
-    return;
+  if (document.getElementById(_buttonId) === null) {
+    return
   }
   document.getElementById(_buttonId).addEventListener('click', event => {
     jeedomUtils.closeJeedomMenu()

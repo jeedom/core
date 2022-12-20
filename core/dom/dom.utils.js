@@ -840,18 +840,14 @@ function isElement_DOM(_element) {
   return (_element instanceof HTMLElement)
 }
 
-function in_array(a, b, d) {
-  let c = ""
-  if (d)
-    for (c in b) {
-      if (b[c] === a)
-        return !0
-    }
-  else
-    for (c in b)
-      if (b[c] == a)
-        return !0
-  return !1
+function init(_value, _default) {
+  if (!isset(_default)) {
+    _default = ''
+  }
+  if (!isset(_value)) {
+    return _default
+  }
+  return _value
 }
 
 function json_decode(a) {
@@ -968,6 +964,21 @@ function isset() {
   return !0
 }
 
+//Prefer [array].includes()
+function in_array(a, b, d) {
+  let c = ""
+  if (d)
+    for (c in b) {
+      if (b[c] === a)
+        return !0
+    }
+  else
+    for (c in b)
+      if (b[c] == a)
+        return !0
+  return !1
+}
+
 function is_double(a) {
   return this.is_float(a)
 }
@@ -1024,6 +1035,7 @@ function is_unicode(a) {
   return !0
 }
 
+//Prefer Array.isArray(a)
 function is_array(a) {
   let b, d = function(a) {
     return (a = /\W*function\s+([\w\$]+)\s*\(/.exec(a)) ? a[1] : "(Anonymous)"
@@ -1071,12 +1083,3 @@ function count(a, b) {
   return c
 }
 
-function init(_value, _default) {
-  if (!isset(_default)) {
-    _default = ''
-  }
-  if (!isset(_value)) {
-    return _default
-  }
-  return _value
-}
