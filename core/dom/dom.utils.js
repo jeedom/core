@@ -263,6 +263,7 @@ Element.prototype.fade = function(_delayms, _opacity, _callback) {
     self.style.opacity = opacity
     if (stop) {
       window.clearInterval(fading)
+      self.style.opacity = 1
       if (typeof _callback === 'function') {
         _callback()
       }
@@ -424,7 +425,7 @@ Element.prototype.jeeValue = function(_value) {
         }
       } else if (this.matches('textarea')) {
         this.value = init(_value)
-      } else if (this.matches('span', 'div, p, pre')) {
+      } else if (this.matches('span, div, p, pre')) {
         this.innerHTML = init(_value)
       } else if (this.matches('button') && this.hasClass('dropdown-toggle')) {
         var button = this
