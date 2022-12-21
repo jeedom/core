@@ -16,8 +16,11 @@
 - **Dashboard** : Edit Mode tile editing window allows commands to be renamed.
 - **Dashboard** : In table layout, possibility to insert HTML attributes *(colspan/rowspan in particular)* for each cell.
 - **Equipment** : Ability to disable the widget templates of plugins that use them to return to the Jeedom default display *(device configuration window)*.
+- **Equipment** : Equipment made inactive automatically disappears from all pages. Reactivated equipment reappears on the dashboard if the parent object is already present.
+- **Equipment** : Equipment made invisible automatically disappears from the dashboard. The redisplayed equipment reappears on the dashboard if the parent object is already present.
+- **Analysis > Devices > Devices on alert** : Devices that go into alert automatically appear and those that come out of an alert automatically disappear.
 - **Object** : Deleting or creating a summary results in the update of the global summary and the subject.
-- **Tools / Replace** : This tool now offers a mode *To copy*, allowing to copy the configurations of equipment and commands, without replacing them in the scenarios and others.
+- **Tools > Replace** : This tool now offers a mode *To copy*, allowing to copy the configurations of equipment and commands, without replacing them in the scenarios and others.
 - **Timeline** : The Timeline now loads the first 35 events. At the bottom of the page, several buttons allow you to dynamically load the following events.
 - **Administration** : Possibility to differentiate actions on error or on command alert.
 - A contextual menu has been added in different places at the level of the checkboxes to select them all, none, or invert the selection *(see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.4))*.

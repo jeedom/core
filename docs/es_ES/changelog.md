@@ -16,8 +16,11 @@
 - **Tablero** : La ventana de edición de mosaicos del modo de edición permite cambiar el nombre de los comandos.
 - **Tablero** : En el diseño de la tabla, posibilidad de insertar atributos HTML *(colspan/rowspan en particular)* para cada celda.
 - **Equipo** : Capacidad para deshabilitar las plantillas de widgets de los complementos que los usan para volver a la pantalla predeterminada de Jeedom *(ventana de configuración del dispositivo)*.
+- **Equipo** : El equipo inactivo desaparece automáticamente de todas las páginas. El equipo reactivado vuelve a aparecer en el tablero si el objeto principal ya está presente.
+- **Equipo** : El equipo invisible desaparece automáticamente del tablero. El equipo que se vuelve a mostrar vuelve a aparecer en el tablero si el objeto principal ya está presente.
+- **Análisis > Dispositivos > Dispositivos en alerta** : Los dispositivos que entran en alerta aparecen automáticamente y los que salen de alerta desaparecen automáticamente.
 - **Objeto** : Eliminar o crear un resumen da como resultado la actualización del resumen global y el tema.
-- **Herramientas / Reemplazar** : Esta herramienta ahora ofrece un modo *Copiar*, permitiendo copiar las configuraciones de equipos y comandos, sin reemplazarlos en los escenarios y otros.
+- **Herramientas > Reemplazar** : Esta herramienta ahora ofrece un modo *Copiar*, permitiendo copiar las configuraciones de equipos y comandos, sin reemplazarlos en los escenarios y otros.
 - **Línea de tiempo** : La línea de tiempo ahora carga los primeros 35 eventos. En la parte inferior de la página, varios botones le permiten cargar dinámicamente los siguientes eventos.
 - **Administración** : Posibilidad de diferenciar acciones en caso de error o de alerta de comando.
 - Se ha añadido un menú contextual en diferentes lugares al nivel de los checkboxes para seleccionarlos todos, ninguno, o invertir la selección *(ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.4))*.
