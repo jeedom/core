@@ -208,15 +208,15 @@ if (!jeedomUI) {
       document.body.registerEvent('mouseenter', function eqLogicSignalMouseenter(event) {
         if (jeedomUI.isEditing) return false
         if (event.target.matches('.cmd-widget[data-type="action"]:not([data-subtype="select"])')) {
-          event.target.closest('div.eqLogic-widget').addClass('eqSignalAction')
+          event.target.closest('div.eqLogic-widget')?.addClass('eqSignalAction')
           return
         }
         if (event.target.matches('.cmd-widget.history[data-type="info"]')) {
-          event.target.closest('div.eqLogic-widget').addClass('eqSignalInfo')
+          event.target.closest('div.eqLogic-widget')?.addClass('eqSignalInfo')
           return
         }
         if (event.target.matches('.cmd-widget[data-type="action"] .timeCmd')) {
-          event.target.closest('div.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
+          event.target.closest('div.eqLogic-widget')?.removeClass('eqSignalAction').addClass('eqSignalInfo')
           return
         }
       }, {capture: true})
@@ -224,15 +224,15 @@ if (!jeedomUI) {
       document.body.registerEvent('mouseleave', function eqLogicSignalMouseleave(event) {
         if (jeedomUI.isEditing) return false
         if (event.target.matches('.cmd-widget[data-type="action"]:not([data-subtype="select"])')) {
-          event.target.closest('div.eqLogic-widget').removeClass('eqSignalAction')
+          event.target.closest('div.eqLogic-widget')?.removeClass('eqSignalAction')
           return
         }
         if (event.target.matches('.cmd-widget.history[data-type="info"]')) {
-          event.target.closest('div.eqLogic-widget').removeClass('eqSignalInfo')
+          event.target.closest('div.eqLogic-widget')?.removeClass('eqSignalInfo')
           return
         }
         if (event.target.matches('.cmd-widget[data-type="action"] .timeCmd')) {
-          event.target.closest('div.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
+          event.target.closest('div.eqLogic-widget')?.removeClass('eqSignalInfo').addClass('eqSignalAction')
           return
         }
       }, {capture: true})
