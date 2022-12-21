@@ -81,6 +81,7 @@ if (!jeeFrontEnd.scenario) {
       })
 
       document.querySelector('sub.itemsNumber').innerHTML = '(' + document.querySelectorAll('.scenarioDisplayCard').length + ')'
+      this.setSortables()
 
       if (jeephp2js.initSearch != 0) {
         setTimeout(function() {
@@ -188,6 +189,98 @@ if (!jeeFrontEnd.scenario) {
       }
     },
     //Scenario loading
+    setSortables: function() {
+      $("#div_scenarioElement").sortable({
+        handle: '.bt_sortable',
+        cursor: 'move',
+        grid: [5, 15],
+        items: '.sortable',
+        appendTo: $('#div_scenarioElement'),
+        zIndex: 0,
+        opacity: 0.5,
+        forcePlaceholderSize: true,
+        placeholder: 'sortable-placeholder',
+        start: function(event, ui) {
+          $('.dropdown.open').removeClass('open')
+          if (ui.placeholder.parents('.expressions').find('.sortable').length < 3) {
+            ui.placeholder.parents('.expressions').find('.sortable.empty').show()
+          }
+        },
+        change: function(event, ui) {
+          if (ui.placeholder.next().length == 0) {
+            ui.placeholder.addClass('sortable-placeholderLast')
+          } else {
+            ui.placeholder.removeClass('sortable-placeholderLast')
+          }
+
+          var getClass = true
+          if (ui.placeholder.parent().hasClass('subElement')) {
+            getClass = false
+          }
+          if (ui.helper.hasClass('expressionACTION') && ui.placeholder.parent().attr('id') == 'div_scenarioElement') {
+            getClass = false
+          }
+          var thisSub = ui.placeholder.parents('.expressions').parents('.subElement')
+          if (thisSub.hasClass('subElementCOMMENT') || thisSub.hasClass('subElementCODE')) {
+            getClass = false
+          }
+
+          if (getClass) {
+            ui.placeholder.addClass('sortable-placeholder')
+          } else {
+            ui.placeholder.removeClass('sortable-placeholder')
+          }
+        },
+        update: function(event, ui) {
+          if (ui.item.closest('.subElement').hasClass('subElementCOMMENT')) {
+            $("#div_scenarioElement").sortable('cancel')
+          }
+          if (ui.item.findAtDepth('.element', 2).length == 1 && ui.item.parent().attr('id') == 'div_scenarioElement') {
+            ui.item.replaceWith(ui.item.findAtDepth('.element', 2))
+          }
+
+          if (ui.item.hasClass('element') && ui.item.parent().attr('id') != 'div_scenarioElement') {
+            ui.item.find('.expressionAttr,.subElementAttr,.elementAttr').each(function() {
+              var value = this.jeeValue()
+              if (value != undefined && value != '') {
+                $(this).attr('data-tmp-value', value)
+              }
+            })
+            var el = $(jeeP.addExpression({
+              type: 'element',
+              element: {
+                html: ui.item.wrapAll("<div/>").parent().html()
+              }
+            }))
+            var value
+            el.find('.expressionAttr,.subElementAttr,.elementAttr').each(function() {
+              value = $(this).attr('data-tmp-value')
+              if (value != undefined && value != '') {
+                this.jeeValue(value)
+              }
+              $(this).removeAttr('data-tmp-value')
+            })
+            ui.item.parent().replaceWith(el)
+          }
+
+          if (ui.item.hasClass('expression') && ui.item.parent().attr('id') == 'div_scenarioElement') {
+            $("#div_scenarioElement").sortable("cancel")
+          }
+          if (ui.item.closest('.subElement').hasClass('noSortable')) {
+            $("#div_scenarioElement").sortable("cancel")
+          }
+
+          jeeP.updateTooltips()
+          jeeP.updateSortable()
+        },
+        stop: function(event, ui) {
+          ui.item.attr('style', '')
+          jeeP.setUndoStack()
+          jeeFrontEnd.modifyWithoutSave = true
+        }
+      })
+      $("#div_scenarioElement").sortable("enable")
+    },
     updateSortable: function() {
       document.querySelectorAll('.element').removeClass('sortable')
       document.querySelectorAll('#div_scenarioElement > .element').addClass('sortable')
@@ -2075,8 +2168,6 @@ document.getElementById('generaltab').addEventListener('dblclick', function(even
 
 //_________________Scenario tab events:
 document.getElementById('scenariotab').addEventListener('click', function(event) {
-  console.log('click __div_scenarioElement', event)
-
   if (event.target.matches('#bt_addElementSave, #bt_addElementSave *')) { //Ok button from new block modal
     jeeP.setUndoStack()
     jeeFrontEnd.modifyWithoutSave = true
@@ -2223,7 +2314,6 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     for (changeThis of changeThese) {
       var icon = changeThis.querySelector(':scope > i')
       if (open) { // -> Collapse!
-        console.log('Collapse -->', icon)
         icon.removeClass('fa-eye').addClass('fa-eye-slash')
         changeThis.closest('.element').addClass('elementCollapse')
         changeThis.setAttribute('value', 1)
@@ -2251,7 +2341,6 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
           if (txt) _blocPreview.innerHTML = txt.substring(0, 200)
         })
       } else { // -> Uncollapse!
-        console.log('Uncollapse -->', icon)
         icon.addClass('fa-eye').removeClass('fa-eye-slash')
         changeThis.closest('.element').removeClass('elementCollapse')
         changeThis.setAttribute('value', 0)
@@ -2539,7 +2628,6 @@ document.getElementById('scenariotab').addEventListener('change', function(event
 })
 
 document.getElementById('scenariotab').addEventListener('mouseenter', function(event) {
-  //console.log('mouseenter __div_scenarioElement', event)
   if (event.target.matches('button.dropdown-toggle, button.dropdown-toggle *')) {
     if (event.clientY > window.innerHeight - 220) {
       event.target.closest('div.dropdown').addClass('dropup')
@@ -2549,13 +2637,7 @@ document.getElementById('scenariotab').addEventListener('mouseenter', function(e
   }
 }, {capture: true})
 
-document.getElementById('scenariotab').addEventListener('mousedown', function(event) {
-  console.log('mousedown __div_scenarioElement', event)
-
-})
-
 document.getElementById('scenariotab').addEventListener('mouseout', function(event) {
-  //console.log('mouseout __div_scenarioElement', event)
   if (event.target.matches('button.dropdown-toggle, button.dropdown-toggle *')) {
     if (event.clientY > window.innerHeight - 220) {
       event.target.closest('div.dropdown').addClass('dropup')
@@ -2579,112 +2661,6 @@ document.getElementById('scenariotab').addEventListener('focusout', function(eve
       })
     }
   }
-})
-
-
-
-/*******************Element***********************/
-
-
-jeeP.$divScenario.on('mouseenter', '.bt_sortable', function(event) {
-  var expressions = $(this).closest('.expressions')
-  $("#div_scenarioElement").sortable({
-    cursor: "move",
-    grid: [5, 15],
-    items: ".sortable",
-    appendTo: $("#div_scenarioElement"),
-    zIndex: 0,
-    opacity: 0.5,
-    forcePlaceholderSize: true,
-    placeholder: "sortable-placeholder",
-    start: function(event, ui) {
-      $('.dropdown.open').removeClass('open')
-      if (expressions.find('.sortable').length < 3) {
-        expressions.find('.sortable.empty').show()
-      }
-    },
-    change: function(event, ui) {
-      if (ui.placeholder.next().length == 0) {
-        ui.placeholder.addClass('sortable-placeholderLast')
-      } else {
-        ui.placeholder.removeClass('sortable-placeholderLast')
-      }
-
-      var getClass = true
-      if (ui.placeholder.parent().hasClass('subElement')) {
-        getClass = false
-      }
-      if (ui.helper.hasClass('expressionACTION') && ui.placeholder.parent().attr('id') == 'div_scenarioElement') {
-        getClass = false
-      }
-      var thisSub = ui.placeholder.parents('.expressions').parents('.subElement')
-      if (thisSub.hasClass('subElementCOMMENT') || thisSub.hasClass('subElementCODE')) {
-        getClass = false
-      }
-
-      if (getClass) {
-        ui.placeholder.addClass('sortable-placeholder')
-      } else {
-        ui.placeholder.removeClass('sortable-placeholder')
-      }
-    },
-    update: function(event, ui) {
-      if (ui.item.closest('.subElement').hasClass('subElementCOMMENT')) {
-        $("#div_scenarioElement").sortable('cancel')
-      }
-      if (ui.item.findAtDepth('.element', 2).length == 1 && ui.item.parent().attr('id') == 'div_scenarioElement') {
-        ui.item.replaceWith(ui.item.findAtDepth('.element', 2))
-      }
-
-      if (ui.item.hasClass('element') && ui.item.parent().attr('id') != 'div_scenarioElement') {
-        ui.item.find('.expressionAttr,.subElementAttr,.elementAttr').each(function() {
-          var value = this.jeeValue()
-          if (value != undefined && value != '') {
-            $(this).attr('data-tmp-value', value)
-          }
-        })
-        var el = $(jeeP.addExpression({
-          type: 'element',
-          element: {
-            html: ui.item.wrapAll("<div/>").parent().html()
-          }
-        }))
-        var value
-        el.find('.expressionAttr,.subElementAttr,.elementAttr').each(function() {
-          value = $(this).attr('data-tmp-value')
-          if (value != undefined && value != '') {
-            this.jeeValue(value)
-          }
-          $(this).removeAttr('data-tmp-value')
-        })
-        ui.item.parent().replaceWith(el)
-      }
-
-      if (ui.item.hasClass('expression') && ui.item.parent().attr('id') == 'div_scenarioElement') {
-        $("#div_scenarioElement").sortable("cancel")
-      }
-      if (ui.item.closest('.subElement').hasClass('noSortable')) {
-        $("#div_scenarioElement").sortable("cancel")
-      }
-
-      jeeP.updateTooltips()
-      jeeP.updateSortable()
-    },
-    stop: function(event, ui) {
-      $("#div_scenarioElement").sortable("disable")
-      ui.item.attr('style', '')
-      jeeFrontEnd.modifyWithoutSave = true
-    }
-  })
-  $("#div_scenarioElement").sortable("enable")
-})
-
-jeeP.$divScenario.on('mousedown', '.bt_sortable', function(event) {
-  jeeP.setUndoStack()
-})
-
-jeeP.$divScenario.on('mouseout', '.bt_sortable', function(event) {
-  $("#div_scenarioElement").sortable("disable")
 })
 
 
