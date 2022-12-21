@@ -410,6 +410,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
   }
   var paramsSpecifics = {
     global: false,
+    noDisplayError: true,
     success: function(result) {
       var html = null;
       var eqLogic = null;
@@ -505,6 +506,7 @@ jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
 
   jeedom.history.get({
     global: false,
+    noDisplayError: true,
     cmd_id: _cmdId,
     dateStart: dateStart,
     dateEnd: dateEnd,

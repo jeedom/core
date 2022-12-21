@@ -60,6 +60,7 @@ jeedom.changes = function() {
   var paramsRequired = []
   var paramsSpecifics = {
     global: false,
+    noDisplayError: true,
     success: function(data) {
       if (jeedom.connect > 0) {
         jeedom.connect = 0

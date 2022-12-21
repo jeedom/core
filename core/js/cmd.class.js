@@ -423,6 +423,7 @@ jeedom.cmd.refreshByEqLogic = function(_params) {
     }
     jeedom.cmd.toHtml({
       global: false,
+      noDisplayError: true,
       id: $(this).attr('data-cmd_id'),
       version: $(this).attr('data-version'),
       success: function(data) {

@@ -659,6 +659,7 @@ domUtils.ajax = function(_params) {
   _params.success = (typeof _params.success === 'function') ? _params.success : function() {return arguments}
   _params.complete = (typeof _params.complete === 'function') ? _params.complete : function() {return arguments}
   _params.onError = (typeof _params.error === 'function') ? _params.error : null
+  _params.noDisplayError = isset(_params.noDisplayError) ? _params.noDisplayError : false
 
   domUtils.countAjax(0, _params.global)
 
@@ -708,7 +709,7 @@ domUtils.ajax = function(_params) {
     })
     .catch(function(error) {
       domUtils.countAjax(1, _params.global)
-      if (_params.url != 'core/ajax/event.ajax.php' || _params.data.action != 'changes') {
+      if (!_params.noDisplayError) {
         let msg = 'domUtils.ajax(' + _params.url + ') ' + _params.type + ' async: ' + _params.async
         domUtils.handleAjaxError(msg, _params.data, error)
         console.error(msg, _params.data, error)

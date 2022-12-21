@@ -79,6 +79,7 @@ jeedom.message.number = function(_params) {
     var paramsRequired = [];
     var paramsSpecifics = {
         global: false,
+        noDisplayError: true,
     };
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
