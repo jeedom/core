@@ -172,13 +172,13 @@ $(".eqLogicDisplayCard").on('click', function(event) {
           'change': function(event) {
             jeedom.cmd.changeType($(this).closest('.cmd'))
           }
-        }, '.cmd .cmdAttr[data-l1key=type]')
+        }, '.cmd .cmdAttr[data-l1key="type"]')
 
         $('#div_pageContainer').on({
           'change': function(event) {
             jeedom.cmd.changeSubType($(this).closest('.cmd'))
           }
-        }, '.cmd .cmdAttr[data-l1key=subType]')
+        }, '.cmd .cmdAttr[data-l1key="subType"]')
 
         jeedomUtils.addOrUpdateUrl('id', data.id)
         $.hideLoading()
@@ -420,35 +420,35 @@ $('#in_searchEqlogic').off('keyup').keyup(function() {
 })
 
 /**************************CMD*********************************************/
-$('.cmdAction[data-action=add]').on('click', function() {
+$('.cmdAction[data-action="add"]').on('click', function() {
   if(typeof addCmdToTable == 'function'){
     addCmdToTable()
   }else{
     addCmdToTableDefault();
   }
-  $('.cmd:last .cmdAttr[data-l1key=type]').trigger('change')
+  $('.cmd:last .cmdAttr[data-l1key="type"]').trigger('change')
   jeeFrontEnd.modifyWithoutSave = true
 })
 
-$('#div_pageContainer').on('click', '.cmd .cmdAction[data-l1key=chooseIcon]', function() {
+$('#div_pageContainer').on('click', '.cmd .cmdAction[data-l1key="chooseIcon"]', function() {
   var cmd = $(this).closest('.cmd')
   jeedomUtils.chooseIcon(function(_icon) {
-    cmd.find('.cmdAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon)
+    cmd.find('.cmdAttr[data-l1key="display"][data-l2key="icon"]').empty().append(_icon)
     jeeFrontEnd.modifyWithoutSave = true
   })
 })
 
-$('#div_pageContainer').on('dblclick', '.cmd .cmdAttr[data-l1key=display][data-l2key=icon]', function() {
+$('#div_pageContainer').on('dblclick', '.cmd .cmdAttr[data-l1key="display"][data-l2key="icon"]', function() {
   jeeFrontEnd.modifyWithoutSave = true
   this.innerHTML = ''
 })
 
-$('#div_pageContainer').on('click', '.cmd .cmdAction[data-action=remove]', function() {
+$('#div_pageContainer').on('click', '.cmd .cmdAction[data-action="remove"]', function() {
   jeeFrontEnd.modifyWithoutSave = true
   $(this).closest('tr').remove()
 })
 
-$('#div_pageContainer').on('click', '.cmd .cmdAction[data-action=copy]', function() {
+$('#div_pageContainer').on('click', '.cmd .cmdAction[data-action="copy"]', function() {
   jeeFrontEnd.modifyWithoutSave = true
   var cmd = this.closest('.cmd').getJeeValues('.cmdAttr')[0]
   cmd.id = ''
@@ -459,9 +459,9 @@ $('#div_pageContainer').on('click', '.cmd .cmdAction[data-action=copy]', functio
   }
 })
 
-$('#div_pageContainer').on('click', '.cmd .cmdAction[data-action=test]', function(event) {
+$('#div_pageContainer').on('click', '.cmd .cmdAction[data-action="test"]', function(event) {
   $.hideAlert()
-  if ($('.eqLogicAttr[data-l1key=isEnable]').is(':checked')) {
+  if ($('.eqLogicAttr[data-l1key="isEnable"]').is(':checked')) {
     var id = $(this).closest('.cmd').attr('data-cmd_id')
     jeedom.cmd.test({
       id: id
@@ -482,7 +482,7 @@ $('#div_pageContainer').on('dblclick', '.cmd', function() {
   $('#md_modal').dialog().load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-cmd_id')).dialog('open')
 })
 
-$('#div_pageContainer').on('click', '.cmd .cmdAction[data-action=configure]', function() {
+$('#div_pageContainer').on('click', '.cmd .cmdAction[data-action="configure"]', function() {
   $('#md_modal').dialog().load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-cmd_id')).dialog('open')
 })
 
