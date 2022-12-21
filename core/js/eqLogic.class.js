@@ -396,7 +396,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
   for (var i in _params) {
     eqLogic = document.querySelector('.eqLogic[data-eqLogic_id="' + _params[i].eqLogic_id + '"]')
     if (eqLogic != null) {
-      if (_params[i].visible == 0 && page != 'widgets' && page != 'eqAnalyse' || _params[i].enable == 0) {
+      if (_params[i].visible == 0 && page == 'dashboard' || _params[i].enable == 0) {
         let parent = eqLogic.parentNode
         eqLogic.remove()
         if (parent.querySelectorAll('.eqLogic').length == 0) {
