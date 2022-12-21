@@ -1367,7 +1367,6 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
       jeedomUtils.initTableSorter()
       $('#bt_cmdConfigureSelectMultipleAlertToogle').off('click').on('click', function() {
         var state = false
-        console.log('click', this.getAttribute('data-state'))
         if (this.getAttribute('data-state') == 0) {
           state = true
           this.setAttribute('data-state', 1)

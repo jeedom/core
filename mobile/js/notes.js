@@ -41,7 +41,6 @@ function initNotes(note_id) {
   }
 
   $('#bt_noteManagerAdd').on('click',function() {
-    console.log('click add')
     $('#div_noteManagerDisplay .noteAttr').value('')
     $('#ul_noteList li.active').removeClass('active')
   })

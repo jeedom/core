@@ -623,7 +623,6 @@ jeedom.getCronSelectModal = function(_options, _callback) {
 }
 
 jeedom.getSelectActionModal = function(_options, _callback) {
-  console.log('jeedom.getSelectActionModal')
   if (!isset(_options)) {
     _options = {}
   }
