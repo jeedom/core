@@ -164,12 +164,6 @@ document.registerEvent('keydown', function(event) {
 
 $('sub.itemsNumber').html('(' + $('.interactDisplayCard').length + ')')
 
-if (is_numeric(getUrlVars('id'))) {
-  if ($('.interactDisplayCard[data-interact_id=' + getUrlVars('id') + ']').length != 0) {
-    $('.interactDisplayCard[data-interact_id=' + getUrlVars('id') + ']').click()
-  }
-}
-
 //searching
 $('#in_searchInteract').keyup(function() {
   var search = this.value
@@ -627,3 +621,10 @@ $('#div_conf').on({
     jeeFrontEnd.modifyWithoutSave = true
   }
 }, '.bt_removeAction')
+
+
+if (is_numeric(getUrlVars('id'))) {
+  if ($('.interactDisplayCard[data-interact_id=' + getUrlVars('id') + ']').length != 0) {
+    $('.interactDisplayCard[data-interact_id=' + getUrlVars('id') + ']').click()
+  }
+}
