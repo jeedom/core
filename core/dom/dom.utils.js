@@ -39,7 +39,8 @@ Object.assign(domUtils, {
     async: true,
     global: true,
     dataType: 'json',
-    type: 'post'
+    type: 'post',
+    noDisplayError: false
   },
   registeredEvents: [],
   registeredFuncs: [],
@@ -656,10 +657,10 @@ domUtils.ajax = function(_params) {
   _params.async = isset(_params.async) ? _params.async : domUtils.ajaxSettings.async
   _params.dataType = isset(_params.dataType) ? _params.dataType : domUtils.ajaxSettings.dataType
   _params.type = isset(_params.type) ? _params.type : domUtils.ajaxSettings.type
+  _params.noDisplayError = isset(_params.noDisplayError) ? _params.noDisplayError : domUtils.ajaxSettings.noDisplayError
   _params.success = (typeof _params.success === 'function') ? _params.success : function() {return arguments}
   _params.complete = (typeof _params.complete === 'function') ? _params.complete : function() {return arguments}
   _params.onError = (typeof _params.error === 'function') ? _params.error : null
-  _params.noDisplayError = isset(_params.noDisplayError) ? _params.noDisplayError : false
 
   domUtils.countAjax(0, _params.global)
 
