@@ -711,9 +711,11 @@ domUtils.ajax = function(_params) {
     .catch(function(error) {
       domUtils.countAjax(1, _params.global)
       if (!_params.noDisplayError) {
-        let msg = 'domUtils.ajax(' + _params.url + ') ' + _params.type + ' async: ' + _params.async
-        domUtils.handleAjaxError(msg, _params.data, error)
-        console.error(msg, _params.data, error)
+        if (_params.url != 'core/ajax/event.ajax.php' || _params.data.action != 'changes') {
+          let msg = 'domUtils.ajax(' + _params.url + ') ' + _params.type + ' async: ' + _params.async
+          domUtils.handleAjaxError(msg, _params.data, error)
+          console.error(msg, _params.data, error)
+        }
       }
       if (_params.onError) _params.onError(error)
     })
