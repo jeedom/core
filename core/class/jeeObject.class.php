@@ -648,14 +648,23 @@ class jeeObject {
 		}
 	}
 
+	public static function cronDaily() {
+		foreach (self::all() as $object) {
+			if ($object->getConfiguration('orderEqLogicByUsage::auto') == 1) {
+				$object->orderEqLogicByUsage();
+			}
+		}
+	}
+
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function orderEqLogicByUsage() {
 		$eqLogics = array();
 		foreach ($this->getEqLogic() as $eqLogic) {
+			$usage = $eqLogic->getUsage();
 			$eqLogics[$eqLogic->getId()] = array(
 				'eqLogic' => $eqLogic,
-				'usage' => $eqLogic->getUsage()['total'],
+				'usage' => $usage['automation'] + $usage['ui'] + $usage['history'],
 			);
 		}
 		usort($eqLogics, create_function('$a, $b', '

@@ -295,6 +295,10 @@ $synthToActions = array(
 									<a class="btn btn-sm btn-warning" id="bt_orderEqLogicByUsage"><i class="fas fa-sort-numeric-down"></i> {{Réordonner}}</a>
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label checkbox-inline">{{Réordonner automatiquement}}</label>
+								<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="orderEqLogicByUsage::auto" />
+							</div>
 						</div>
 
 					</fieldset>

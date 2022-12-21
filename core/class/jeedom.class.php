@@ -600,7 +600,7 @@ class jeedom {
 		$vendor = '';
 		$model = '';
 		$serial = '';
-		$serial_by_id ='';
+		$serial_by_id = '';
 		foreach (explode("\n", shell_exec('udevadm info --name=/dev/' . $_usb . ' --query=all')) as $line) {
 			if (strpos($line, 'E: ID_MODEL=') !== false) {
 				$model = trim(str_replace(array('E: ID_MODEL=', '"'), '', $line));
@@ -609,9 +609,9 @@ class jeedom {
 				$vendor = trim(str_replace(array('E: ID_VENDOR=', '"'), '', $line));
 			}
 			if (strpos($line, 'E: DEVLINKS=') !== false) {
-				$serial_by_ids = explode(' ',trim(str_replace(array('E: DEVLINKS=', '"'), '', $line)));
-				foreach ($serial_by_ids as $serial_links){
-					if (strpos($serial_links,'/serial/by-id') !== false){
+				$serial_by_ids = explode(' ', trim(str_replace(array('E: DEVLINKS=', '"'), '', $line)));
+				foreach ($serial_by_ids as $serial_links) {
+					if (strpos($serial_links, '/serial/by-id') !== false) {
 						$serial_by_id = trim($serial_links);
 						break;
 					}
@@ -635,7 +635,7 @@ class jeedom {
 		}
 		return $_usbMapping;
 	}
-	
+
 	public static function getUsbLegacy($_usbMapping = array()) {
 		foreach (ls('/dev/', 'ttyUSB*') as $usb) {
 			$_usbMapping['/dev/' . $usb] = '/dev/' . $usb;
@@ -645,16 +645,16 @@ class jeedom {
 		}
 		return $_usbMapping;
 	}
-	
+
 	public static function getUsbMapping($_name = '', $_getGPIO = false) {
 		$cache = cache::byKey('jeedom::usbMapping');
 		if (!is_json($cache->getValue()) || $_name == '') {
 			$usbMapping = array();
 			foreach (ls('/dev/', 'ttyUSB*') as $usb) {
-				$usbMapping = self::getUsbDetails($usb,$usbMapping);
+				$usbMapping = self::getUsbDetails($usb, $usbMapping);
 			}
 			foreach (ls('/dev/', 'ttyACM*') as $value) {
-				$usbMapping = self::getUsbDetails($value,$usbMapping);
+				$usbMapping = self::getUsbDetails($value, $usbMapping);
 			}
 			$usbMapping = self::getUsbLegacy($usbMapping);
 			if ($_getGPIO) {
@@ -1163,6 +1163,7 @@ class jeedom {
 			cache::clean();
 			listener::clean();
 			user::regenerateHash();
+			jeeObject::cronDaily();
 		} catch (Exception $e) {
 			log::add('jeedom', 'error', $e->getMessage());
 		} catch (Error $e) {

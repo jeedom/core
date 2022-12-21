@@ -1618,8 +1618,7 @@ class eqLogic {
 		$return = array(
 			'automation' => 0,
 			'ui' => 0,
-			'history' => 0,
-			'total' => 0
+			'history' => 0
 		);
 		foreach ($this->getCmd() as $cmd) {
 			$usage = $cmd->getCache(array('usage::automation', 'usage::ui', 'usage::history'));
@@ -1633,7 +1632,6 @@ class eqLogic {
 				$return['history'] += $usage['usage::history'];
 			}
 		}
-		$return['total'] = $return['automation'] + $return['ui'] + $return['history'];
 		return $return;
 	}
 
