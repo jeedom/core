@@ -21,6 +21,7 @@
 - **Zeitleiste** : Die Timeline lädt jetzt die ersten 35 Ereignisse. Unten auf der Seite ermöglichen mehrere Schaltflächen das dynamische Laden der folgenden Ereignisse.
 - **Verwaltung** : Möglichkeit, Aktionen bei Fehler oder Befehlsalarm zu unterscheiden.
 - Ein Kontextmenü wurde an verschiedenen Stellen auf der Ebene der Kontrollkästchen hinzugefügt, um alle oder keine auszuwählen oder die Auswahl umzukehren *(siehe [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.4))*.
+- **Armaturenbrett** : Möglichkeit auf der Objektkonfigurationsseite, jeedom zu bitten, die Ausrüstung entsprechend ihrer Verwendung neu zu ordnen
 
 ### 4.4 : Autre
 

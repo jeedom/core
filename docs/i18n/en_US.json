@@ -1296,6 +1296,7 @@
         "Possibilité de différencier les actions sur erreur ou sur alerte de commande": "Possibility to differentiate actions on error or on command alert",
         "Doc dev": "Doc dev",
         "Un menu contextuel a été ajouté à différents endroits au niveau des cases à cocher pour les sélectionner toutes, aucunes, ou inverser la sélection *(voir": "A contextual menu has been added in different places at the level of the checkboxes to select them all, none, or invert the selection *(see",
+        "possibilité sur la page de configuration des objets de demander a jeedom de reordonner les équipements en fonction de leur utilisation": "possibility on the object configuration page to ask jeedom to reorder the equipment according to their use",
         "doc dev": "doc dev",
         "Début du développement en pure js, sans jQuery. Voir": "Start of development in pure js, without jQuery. See",
         "Listing plus détaillé des périphériques USB": "More detailed listing of USB devices",

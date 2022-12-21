@@ -21,6 +21,7 @@
 - **Timeline** : The Timeline now loads the first 35 events. At the bottom of the page, several buttons allow you to dynamically load the following events.
 - **Administration** : Possibility to differentiate actions on error or on command alert.
 - A contextual menu has been added in different places at the level of the checkboxes to select them all, none, or invert the selection *(see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.4))*.
+- **Dashboard** : possibility on the object configuration page to ask jeedom to reorder the equipment according to their use
 
 ### 4.4 : Autre
 

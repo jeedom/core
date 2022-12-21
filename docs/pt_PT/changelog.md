@@ -21,6 +21,7 @@
 - **Linha do tempo** : A linha do tempo agora carrega os primeiros 35 eventos. Na parte inferior da página, vários botões permitem que você carregue dinamicamente os seguintes eventos.
 - **Administração** : Possibilidade de diferenciar ações em caso de erro ou alerta de comando.
 - Um menu contextual foi adicionado em diferentes lugares ao nível das caixas de seleção para selecionar todas, nenhuma ou inverter a seleção *(consulte [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.4))*.
+- **Painel** : possibilidade na página de configuração do objeto para pedir jeedom para reordenar o equipamento de acordo com seu uso
 
 ### 4.4 : Autre
 

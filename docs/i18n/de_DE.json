@@ -1296,6 +1296,7 @@
         "Possibilité de différencier les actions sur erreur ou sur alerte de commande": "Möglichkeit, Aktionen bei Fehler oder Befehlsalarm zu unterscheiden",
         "Doc dev": "Doc-Entwickler",
         "Un menu contextuel a été ajouté à différents endroits au niveau des cases à cocher pour les sélectionner toutes, aucunes, ou inverser la sélection *(voir": "Ein Kontextmenü wurde an verschiedenen Stellen auf der Ebene der Kontrollkästchen hinzugefügt, um alle oder keine auszuwählen oder die Auswahl umzukehren *(siehe",
+        "possibilité sur la page de configuration des objets de demander a jeedom de reordonner les équipements en fonction de leur utilisation": "Möglichkeit auf der Objektkonfigurationsseite, jeedom zu bitten, die Ausrüstung entsprechend ihrer Verwendung neu zu ordnen",
         "doc dev": "Doc-Entwickler",
         "Début du développement en pure js, sans jQuery. Voir": "Beginn der Entwicklung in reinem js, ohne jQuery. Sehen",
         "Listing plus détaillé des périphériques USB": "Detailliertere Auflistung von USB-Geräten",
