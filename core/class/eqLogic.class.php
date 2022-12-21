@@ -1191,7 +1191,7 @@ class eqLogic {
 	public function refreshWidget() {
 		$this->_needRefreshWidget = false;
 		$this->emptyCacheWidget();
-		event::add('eqLogic::update', array('eqLogic_id' => $this->getId()));
+		event::add('eqLogic::update', array('eqLogic_id' => $this->getId(), 'visible' => $this->getIsVisible(), 'enable' => $this->getIsEnable()));
 	}
 
 	public function hasRight($_right, $_user = null) {
