@@ -1116,7 +1116,7 @@ class cmd {
 	 */
 	public function execCmd($_options = null, $_sendNodeJsEvent = false, $_quote = false) {
 		if ($this->getType() == 'info') {
-			$state = $this->getCache(array('collectDate', 'valueDate', 'value'));
+			$state = $this->getCache(array('collectDate', 'valueDate', 'value', 'usage'));
 			if (isset($state['collectDate'])) {
 				$this->setCollectDate($state['collectDate']);
 			} else {
@@ -1169,6 +1169,14 @@ class cmd {
 			$this->preExecCmd($options);
 			$value = $this->formatValue($this->execute($options), $_quote);
 			$this->postExecCmd($options);
+			$usage = $this->getCache(array('usage::automation', 'usage::ui'));
+			if (isset($_options['user_login'])) {
+				$usage['usage::ui'] = ($usage['usage::ui'] === '') ? 0 : $usage['usage::ui'];
+				$this->setCache('usage::ui', $usage['usage::ui'] + 1);
+			} else {
+				$usage['usage::automation'] = ($usage['usage::automation'] === '') ? 0 : $usage['usage::automation'];
+				$this->setCache('usage::automation', $usage['usage::automation'] + 1);
+			}
 		} catch (Exception $e) {
 			$type = $eqLogic->getEqType_name();
 			if (config::byKey('numberOfTryBeforeEqLogicDisable') > 0 && $eqLogic->getConfiguration('nerverFail') != 1) {

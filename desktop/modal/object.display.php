@@ -36,6 +36,9 @@ if (count($array) == 0) {
   throw new Exception(__('L\'objet n\'a aucun élément :', __FILE__) . ' ' . print_r($array, true));
 }
 $otherInfo = array();
+if (method_exists($object, 'getCache') && !isset($array['cache'])) {
+  $array['cache'] = $object->getCache();
+}
 
 if ($class == 'cron' && $array['class'] == 'scenario' && $array['function'] == 'doIn') {
   $scenario = scenario::byId($array['option']['scenario_id']);
@@ -44,6 +47,7 @@ if ($class == 'cron' && $array['class'] == 'scenario' && $array['function'] == '
     $otherInfo['doIn'] = __('Scénario :', __FILE__) . ' ' . $scenario->getName() . "\n" . str_replace(array('"'), array("'"), $scenarioElement->export());
   }
 }
+
 ?>
 
 <form class="form-horizontal">

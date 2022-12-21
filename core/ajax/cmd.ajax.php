@@ -403,6 +403,8 @@ try {
 			if (!is_object($cmd)) {
 				throw new Exception(__('Commande ID inconnu :', __FILE__) . ' ' . init('id'));
 			}
+			$usage = $cmd->getCache('usage::history', 0);
+			$cmd->setCache('usage::history', $usage + 1);
 
 			$return['round'] = intval($cmd->getConfiguration('historizeRound'));
 
