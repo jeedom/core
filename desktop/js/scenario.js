@@ -2108,12 +2108,12 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     $('#md_addElement').modal('hide')
     setTimeout(function() {
       newEL.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
-    }, 350)
+    }, 250)
     jeeP.updateTooltips()
     jeedom.scenario.setAutoComplete()
     setTimeout(function() {
       newEL.removeClass('disableElement')
-    }, 750)
+    }, 500)
     return
   }
 
@@ -2152,6 +2152,285 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     return
   }
 
+  if (event.target.matches('.bt_removeElement, .bt_removeElement *')) {
+    var button = event.target
+    if (event.ctrlKey || event.metaKey) {
+      if (button.closest('.expression') != null) {
+        jeeP.setUndoStack()
+        button.closest('.expression').remove()
+      } else {
+        jeeP.setUndoStack()
+        button.closest('.element').remove()
+      }
+    } else {
+      bootbox.confirm("{{Êtes-vous sûr de vouloir supprimer ce bloc ?}}", function(result) {
+        if (result) {
+          if (button.closest('.expression') != null) {
+            jeeP.setUndoStack()
+            button.closest('.expression').remove()
+          } else {
+            jeeP.setUndoStack()
+            button.closest('.element').remove()
+          }
+        }
+      })
+    }
+    jeeFrontEnd.modifyWithoutSave = true
+    jeeP.PREV_FOCUS = null
+    return
+  }
+
+  if (event.target.matches('.bt_addAction, .bt_addAction *')) {
+    jeeP.setUndoStack()
+    event.target.closest('.subElement').querySelector(':scope > .expressions').insertAdjacentHTML('beforeend', jeeP.addExpression( {type: 'action'} ))
+    jeedom.scenario.setAutoComplete()
+    jeeP.updateSortable()
+    jeeP.updateTooltips()
+    return
+  }
+
+  if (event.target.matches('.bt_showElse, .bt_showElse *')) {
+    let icon = event.target.querySelector(':scope > i') || event.target
+    let elElse = event.target.closest('.element').querySelector(':scope > .subElementELSE')
+    if (icon == null) return
+    if (icon.hasClass('fa-sort-down')) {
+      icon.removeClass('fa-sort-down').addClass('fa-sort-up')
+      elElse.seen()
+    } else {
+      if (elElse.querySelector(':scope > .expressions')?.querySelector(':scope > .expression') != null) {
+        jeedomUtils.showAlert({
+          message: "{{Le bloc Sinon ne peut être masqué s'il contient des éléments.}}",
+          level: 'warning'
+        })
+        return
+      }
+      icon.removeClass('fa-sort-up').addClass('fa-sort-down')
+      elElse.unseen()
+    }
+    return
+  }
+
+  if (event.target.matches('.bt_collapse, .bt_collapse *')) {
+    var changeThis = event.target.closest('.bt_collapse') || event.target
+    var open = changeThis.querySelector(':scope > i').hasClass('fa-eye') ? true : false
+
+    if (event.ctrlKey || event.metaKey) {
+      changeThese = changeThis.closest('.expressions')?.querySelectorAll('.bt_collapse') || document.querySelectorAll('.bt_collapse')
+    } else {
+      var changeThese = [changeThis]
+    }
+
+    for (changeThis of changeThese) {
+      var icon = changeThis.querySelector(':scope > i')
+      if (open) { // -> Collapse!
+        console.log('Collapse -->', icon)
+        icon.removeClass('fa-eye').addClass('fa-eye-slash')
+        changeThis.closest('.element').addClass('elementCollapse')
+        changeThis.setAttribute('value', 1)
+        changeThis.setAttribute('tooltip', "{{Afficher ce bloc.<br>Ctrl+click: tous.}}")
+        //update action, comment and code blocPreview:
+        var txt, _el, id
+        changeThis.closest('.element').querySelectorAll('.blocPreview').forEach(function(_blocPreview) {
+          txt = '<i>Unfound</i>'
+          _el = _blocPreview.closest('.element')
+          if (_el.hasClass('elementACTION')) {
+            txt = _el.querySelector('.expressions .expression').querySelector('input.form-control').value
+            if (!txt) txt = _el.querySelector('.expression textarea').value
+          } else if (_el.hasClass('elementCODE')) {
+            id = _el.querySelector('.expressionAttr[data-l1key="expression"]').getAttribute('id')
+            if (isset(jeeP.editors[id])) txt = jeeP.editors[id].getValue()
+          } else {
+            //comment
+            txt = (_el.querySelector('.expression textarea').value).HTMLFormat()
+            if (typeof txt === 'object') {
+              txt = JSON.stringify(expression.expression)
+            }
+            txt = '<b>' + txt.split('\n')[0] + '</b>' + txt.replace(txt.split('\n')[0], '')
+            if (!txt) txt = _el.querySelector('.expression input.form-control').value
+          }
+          if (txt) _blocPreview.innerHTML = txt.substring(0, 200)
+        })
+      } else { // -> Uncollapse!
+        console.log('Uncollapse -->', icon)
+        icon.addClass('fa-eye').removeClass('fa-eye-slash')
+        changeThis.closest('.element').removeClass('elementCollapse')
+        changeThis.setAttribute('value', 0)
+        changeThis.setAttribute('tooltip', "{{Masquer ce bloc.<br>Ctrl+click: tous.}}")
+        jeeP.setEditors()
+      }
+    }
+    jeeP.updateTooltips()
+    return
+  }
+
+  if (event.target.matches('.bt_removeExpression, .bt_removeExpression *')) {
+    jeeP.setUndoStack()
+    event.target.closest('.expression').remove()
+    jeeP.updateSortable()
+    return
+  }
+
+  if (event.target.matches('.bt_selectCmdExpression, .bt_selectCmdExpression *')) {
+    var el = event.target.closest('.bt_selectCmdExpression') || event.target
+    var expression = event.target.closest('.expression')
+    var type = 'info'
+    if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
+      type = 'action'
+    }
+
+    jeedom.cmd.getSelectModal({
+      cmd: {
+        type: type
+      }
+    }, function(result) {
+      if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
+        jeeP.setUndoStack()
+        expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(result.human)
+        jeedom.cmd.displayActionOption(expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(), '', function(html) {
+          $(expression).find('.expressionOptions').html(html)
+          jeedomUtils.taAutosize()
+          jeeP.updateTooltips()
+        })
+      }
+
+      if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'condition') {
+        var condType = el.closest('.subElement')
+        if (!condType.hasClass('subElementIF') && !condType.hasClass('subElementFOR')) {
+          expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
+          return
+        }
+
+        var message = jeeP.getSelectCmdExpressionMessage(result.cmd.subType, result.human)
+        bootbox.dialog({
+          title: "{{Ajout d'une nouvelle condition}}",
+          message: message,
+          size: 'large',
+          buttons: {
+            "{{Ne rien mettre}}": {
+              className: "btn-default",
+              callback: function() {
+                expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
+              }
+            },
+            success: {
+              label: "{{Valider}}",
+              className: "btn-primary",
+              callback: function() {
+                jeeP.setUndoStack()
+                jeeFrontEnd.modifyWithoutSave = true
+                var condition = result.human
+                condition += ' ' + document.querySelector('.conditionAttr[data-l1key="operator"]').jeeValue()
+                if (result.cmd.subType == 'string') {
+                  if (document.querySelector('.conditionAttr[data-l1key="operator"]').jeeValue() == 'matches') {
+                    condition += ' "/' + document.querySelector('.conditionAttr[data-l1key="operande"]').jeeValue() + '/"'
+                  } else {
+                    condition += " '" + document.querySelector('.conditionAttr[data-l1key="operande"]').jeeValue() + "'"
+                  }
+                } else {
+                  condition += ' ' + document.querySelector('.conditionAttr[data-l1key="operande"]').jeeValue()
+                }
+                condition += ' ' + document.querySelector('.conditionAttr[data-l1key="next"]').jeeValue() + ' '
+                expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(condition)
+
+                if (document.querySelector('.conditionAttr[data-l1key="next"]').jeeValue() != '') {
+                  el.triggerEvent('click')
+                }
+              }
+            },
+          }
+        })
+      }
+    })
+    return
+  }
+
+  if (event.target.matches('.bt_selectOtherActionExpression, .bt_selectOtherActionExpression *')) {
+    var expression = event.target.closest('.expression')
+    jeedom.getSelectActionModal({
+      scenario: true
+    }, function(result) {
+      jeeP.setUndoStack()
+      expression.querySelector('.expressionAttr[data-l1key="expression"]').value = result.human
+      jeedom.cmd.displayActionOption(result.human, '', function(html) {
+        expression.querySelector('.expressionOptions').html(html)
+        jeedomUtils.taAutosize()
+      })
+    })
+    return
+  }
+
+  if (event.target.matches('.bt_selectScenarioExpression, .bt_selectScenarioExpression *')) {
+    var expression = event.target.closest('.expression')
+    jeedom.scenario.getSelectModal({}, function(result) {
+      if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
+        expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(result.human)
+      }
+      if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'condition') {
+        expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
+      }
+    })
+    return
+  }
+
+  if (event.target.matches('.bt_selectGenericExpression, .bt_selectGenericExpression *')) {
+    var expression = event.target.closest('.expression')
+    jeedom.config.getGenericTypeModal({type: 'info', object: true}, function(result) {
+      expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
+    })
+    return
+  }
+
+  if (event.target.matches('.bt_selectEqLogicExpression, .bt_selectEqLogicExpression *')) {
+    var expression = event.target.closest('.expression')
+    jeedom.eqLogic.getSelectModal({}, function(result) {
+      if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
+        expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(result.human)
+      }
+      if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'condition') {
+        expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
+      }
+    })
+    return
+  }
+
+  if (event.target.matches('.subElementAttr[data-l2key="allowRepeatCondition"], .subElementAttr[data-l2key="allowRepeatCondition"] *')) {
+    var el = event.target.closest('.subElementAttr') || event.target
+    if (el.getAttribute('value') == '0') {
+      el.setAttribute('value', '1')
+      el.html('<span><i class="fas fa-ban text-danger"></i></span>')
+    } else {
+      el.setAttribute('value', '0')
+      el.html('<span><i class="fas fa-sync"></span>')
+    }
+    return
+  }
+
+  if (event.target.matches('.fromSubElement, .fromSubElement *')) {
+    var el = event.target.closest('.fromSubElement') || event.target
+    jeeP.setUndoStack()
+
+    var elementDiv = el.closest('.subElement').querySelector('.expressions')
+    var newEL = domUtils.parseHTML(jeeP.addExpression({
+      type: 'element',
+      element: {
+        type: el.getAttribute('data-type')
+      }
+    }))
+    elementDiv.appendChild(newEL)
+    elementDiv.lastChild.addClass('disableElement')
+
+    jeeP.setEditors()
+    jeeP.updateSortable()
+    jeeP.updateElseToggle()
+    jeeFrontEnd.modifyWithoutSave = true
+    jeeP.updateTooltips()
+    jeedom.scenario.setAutoComplete()
+    setTimeout(function() {
+      elementDiv.lastChild.removeClass('disableElement')
+    }, 600)
+    return
+  }
+
   //COPY - PASTE
   if (event.target.matches('i.bt_copyElement')) {
     var clickedBloc = event.target.closest('.element')
@@ -2169,6 +2448,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
       clickedBloc.closest('.expression').remove()
     }
     jeeFrontEnd.modifyWithoutSave = true
+    return
   }
 
   if (event.target.matches('i.bt_pasteElement')) {
@@ -2224,6 +2504,37 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     setTimeout(function() { jeeP.updateTooltips() }, 500)
 
     jeeFrontEnd.modifyWithoutSave = true
+    return
+  }
+})
+
+document.getElementById('scenariotab').addEventListener('change', function(event) {
+  if (event.target.matches('.subElementAttr[data-l1key="options"][data-l2key="enable"]')) {
+    var checkbox = event.target
+    var element = checkbox.closest('.element')
+    if (checkbox.checked) {
+      element.removeClass('disableElement')
+    } else {
+      element.addClass('disableElement')
+    }
+    var subElement = checkbox.closest('.element').querySelector('.subElement:not(.noSortable)')
+    if (!subElement) return
+    if (checkbox.checked) {
+      subElement.querySelectorAll('.expressions')?.removeClass('disableSubElement')
+    } else {
+      subElement.querySelectorAll('.expressions')?.addClass('disableSubElement')
+    }
+    return
+  }
+
+  if (event.target.matches('.expressionAttr[data-l1key="options"][data-l2key="enable"]')) {
+    var element = event.target.closest('.expression')
+    if (event.target.checked) {
+      element.removeClass('disableSubElement')
+    } else {
+      element.addClass('disableSubElement')
+    }
+    return
   }
 })
 
@@ -2254,276 +2565,28 @@ document.getElementById('scenariotab').addEventListener('mouseout', function(eve
   }
 })
 
-
+document.getElementById('scenariotab').addEventListener('focusout', function(event) {
+  if (event.target.matches('.expression .expressionAttr[data-l1key="expression"]')) {
+    if (event.target.getAttribute('prevalue') == event.target.value) return
+    var el = event.target
+    if (el.closest('.expression').querySelector('.expressionAttr[data-l1key="type"]').value == 'action') {
+      var expression = el.closest('.expression').getJeeValues('.expressionAttr')
+      jeedom.cmd.displayActionOption(el.value, init(expression[0].options), function(html) {
+        $(el).closest('.expression').find('.expressionOptions').html(html)
+        jeedomUtils.taAutosize()
+        jeeP.updateTooltips()
+        el.setAttribute('prevalue', el.value)
+      })
+    }
+  }
+})
 
 
 
 /*******************Element***********************/
-jeeP.$divScenario.on('change', '.subElementAttr[data-l1key="options"][data-l2key="enable"]', function() {
-  var checkbox = this
-  var element = checkbox.closest('.element')
-  if (checkbox.checked) {
-    element.removeClass('disableElement')
-  } else {
-    element.addClass('disableElement')
-  }
-  var subElement = checkbox.closest('.element').querySelector('.subElement:not(.noSortable)')
-  if (!subElement) return
-  if (checkbox.checked) {
-    subElement.querySelectorAll('.expressions')?.removeClass('disableSubElement')
-  } else {
-    subElement.querySelectorAll('.expressions')?.addClass('disableSubElement')
-  }
-})
-
-jeeP.$divScenario.on('change', '.expressionAttr[data-l1key="options"][data-l2key="enable"]', function() {
-  var checkbox = this
-  var element = checkbox.closest('.expression')
-  if (checkbox.checked) {
-    element.removeClass('disableSubElement')
-  } else {
-    element.addClass('disableSubElement')
-  }
-})
-
-jeeP.$divScenario.on('click', '.bt_removeElement', function(event) {
-  var button = $(this)
-  if (event.ctrlKey || event.metaKey) {
-    if (button.closest('.expression').length != 0) {
-      jeeP.setUndoStack()
-      button.closest('.expression').remove()
-    } else {
-      jeeP.setUndoStack()
-      button.closest('.element').remove()
-    }
-  } else {
-    bootbox.confirm("{{Êtes-vous sûr de vouloir supprimer ce bloc ?}}", function(result) {
-      if (result) {
-        if (button.closest('.expression').length != 0) {
-          jeeP.setUndoStack()
-          button.closest('.expression').remove()
-        } else {
-          jeeP.setUndoStack()
-          button.closest('.element').remove()
-        }
-      }
-    })
-  }
-  jeeFrontEnd.modifyWithoutSave = true
-  jeeP.PREV_FOCUS = null
-})
-
-jeeP.$divScenario.on('click', '.bt_addAction', function(event) {
-  jeeP.setUndoStack()
-  $(this).closest('.subElement').children('.expressions').append(jeeP.addExpression({
-    type: 'action'
-  }))
-  jeedom.scenario.setAutoComplete()
-  jeeP.updateSortable()
-  jeeP.updateTooltips()
-})
-
-jeeP.$divScenario.on('click', '.bt_showElse', function(event) {
-  if ($(this).children('i').hasClass('fa-sort-down')) {
-    $(this).children('i').removeClass('fa-sort-down').addClass('fa-sort-up')
-    $(this).closest('.element').children('.subElementELSE').show()
-  } else {
-    if ($(this).closest('.element').children('.subElementELSE').children('.expressions').children('.expression').length > 0) {
-      jeedomUtils.showAlert({
-        message: "{{Le bloc Sinon ne peut être masqué s'il contient des éléments.}}",
-        level: 'danger'
-      })
-      return
-    }
-    $(this).children('i').removeClass('fa-sort-up').addClass('fa-sort-down')
-    $(this).closest('.element').children('.subElementELSE').hide()
-  }
-})
-
-jeeP.$divScenario.on('click', '.bt_collapse', function(event) {
-  var changeThis = $(this)
-  if (event.ctrlKey || event.metaKey) changeThis = $('.element').find('.bt_collapse')
-  if ($(this).children('i').hasClass('fa-eye')) {
-    // -> Collapse!
-    changeThis.children('i').removeClass('fa-eye').addClass('fa-eye-slash')
-    changeThis.closest('.element').addClass('elementCollapse')
-    changeThis.attr('value', 1)
-    changeThis.attr('title', "{{Afficher ce bloc.<br>Ctrl+click: tous.}}")
-    //update action, comment and code blocPreview:
-    var txt, _el, id
-    changeThis.closest('.element').find('.blocPreview').each(function() {
-      txt = '<i>Unfound</i>'
-      _el = $(this).closest('.element')
-      if (_el.hasClass('elementACTION')) {
-        txt = _el.find('.expressions .expression').first().find('input.form-control').first().val()
-        if (!txt) txt = _el.find('.expression textarea').val()
-      } else if (_el.hasClass('elementCODE')) {
-        id = _el.find('.expressionAttr[data-l1key="expression"]').attr('id')
-        if (isset(jeeP.editors[id])) txt = jeeP.editors[id].getJeeValue()
-      } else {
-        //comment
-        txt = _el.find('.expression textarea').val().HTMLFormat()
-        if (typeof txt === 'object') {
-          txt = JSON.stringify(expression.expression)
-        }
-        txt = '<b>' + txt.split('\n')[0] + '</b>' + txt.replace(txt.split('\n')[0], '')
-        if (!txt) txt = _el.find('.expression input.form-control').val()
-      }
-      if (txt) $(this).html(txt.substring(0, 200))
-    })
-    jeeP.updateTooltips()
-  } else {
-    // -> Uncollapse!
-    changeThis.children('i').addClass('fa-eye').removeClass('fa-eye-slash')
-    changeThis.closest('.element').removeClass('elementCollapse')
-    changeThis.attr('value', 0)
-    changeThis.attr('title', "{{Masquer ce bloc.<br>Ctrl+click: tous.}}")
-    jeeP.setEditors()
-    jeeP.updateTooltips()
-  }
-})
-
-jeeP.$divScenario.on('click', '.bt_removeExpression', function(event) {
-  jeeP.setUndoStack()
-  $(this).closest('.expression').remove()
-  jeeP.updateSortable()
-})
 
 
-
-jeeP.$divScenario.on('click', '.bt_selectCmdExpression', function(event) {
-  var el = this
-  var expression = this.closest('.expression')
-  var type = 'info'
-  if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
-    type = 'action'
-  }
-
-  jeedom.cmd.getSelectModal({
-    cmd: {
-      type: type
-    }
-  }, function(result) {
-    if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
-      jeeP.setUndoStack()
-      expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(result.human)
-      jeedom.cmd.displayActionOption(expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(), '', function(html) {
-        $(expression).find('.expressionOptions').html(html)
-        jeedomUtils.taAutosize()
-        jeeP.updateTooltips()
-      })
-    }
-
-    if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'condition') {
-      var condType = el.closest('.subElement')
-      if (!condType.hasClass('subElementIF') && !condType.hasClass('subElementFOR')) {
-        expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
-        return
-      }
-
-      var message = jeeP.getSelectCmdExpressionMessage(result.cmd.subType, result.human)
-      bootbox.dialog({
-        title: "{{Ajout d'une nouvelle condition}}",
-        message: message,
-        size: 'large',
-        buttons: {
-          "{{Ne rien mettre}}": {
-            className: "btn-default",
-            callback: function() {
-              expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
-            }
-          },
-          success: {
-            label: "{{Valider}}",
-            className: "btn-primary",
-            callback: function() {
-              jeeP.setUndoStack()
-              jeeFrontEnd.modifyWithoutSave = true
-              var condition = result.human
-              condition += ' ' + document.querySelector('.conditionAttr[data-l1key="operator"]').jeeValue()
-              if (result.cmd.subType == 'string') {
-                if (document.querySelector('.conditionAttr[data-l1key="operator"]').jeeValue() == 'matches') {
-                  condition += ' "/' + document.querySelector('.conditionAttr[data-l1key="operande"]').jeeValue() + '/"'
-                } else {
-                  condition += " '" + document.querySelector('.conditionAttr[data-l1key="operande"]').jeeValue() + "'"
-                }
-              } else {
-                condition += ' ' + document.querySelector('.conditionAttr[data-l1key="operande"]').jeeValue()
-              }
-              condition += ' ' + document.querySelector('.conditionAttr[data-l1key="next"]').jeeValue() + ' '
-              expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(condition)
-
-              if (document.querySelector('.conditionAttr[data-l1key="next"]').jeeValue() != '') {
-                el.triggerEvent('click')
-              }
-            }
-          },
-        }
-      })
-    }
-  })
-})
-
-jeeP.$divScenario.on('click', '.bt_selectOtherActionExpression', function(event) {
-  var expression = this.closest('.expression')
-  jeedom.getSelectActionModal({
-    scenario: true
-  }, function(result) {
-    jeeP.setUndoStack()
-    expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(result.human);
-    jeedom.cmd.displayActionOption(result.human, '', function(html) {
-      $(expression).find('.expressionOptions').html(html)
-      jeedomUtils.taAutosize()
-    })
-  })
-})
-
-jeeP.$divScenario.on('click', '.bt_selectScenarioExpression', function(event) {
-  var expression = this.closest('.expression')
-  jeedom.scenario.getSelectModal({}, function(result) {
-    if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
-      expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(result.human)
-    }
-    if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'condition') {
-      expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
-    }
-  })
-})
-
-jeeP.$divScenario.on('click', '.bt_selectGenericExpression', function(event) {
-  var expression = this.closest('.expression')
-  jeedom.config.getGenericTypeModal({type: 'info', object: true}, function(result) {
-    expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
-  })
-})
-
-jeeP.$divScenario.on('click', '.bt_selectEqLogicExpression', function(event) {
-  var expression = this.closest('.expression')
-  jeedom.eqLogic.getSelectModal({}, function(result) {
-    if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
-      expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(result.human)
-    }
-    if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'condition') {
-      expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
-    }
-  })
-})
-
-jeeP.$divScenario.on('focusout', '.expression .expressionAttr[data-l1key="expression"]', function(event) {
-  if (this.getAttribute('prevalue') == this.value) return
-  var el = this
-  if (el.closest('.expression').querySelector('.expressionAttr[data-l1key="type"]').value == 'action') {
-    var expression = el.closest('.expression').getJeeValues('.expressionAttr')
-    jeedom.cmd.displayActionOption(el.value, init(expression[0].options), function(html) {
-      $(el).closest('.expression').find('.expressionOptions').html(html)
-      jeedomUtils.taAutosize()
-      jeeP.updateTooltips()
-      el.setAttribute('prevalue', el.value)
-    })
-  }
-})
-
-jeeP.$divScenario.on('mouseenter', '.bt_sortable', function() {
+jeeP.$divScenario.on('mouseenter', '.bt_sortable', function(event) {
   var expressions = $(this).closest('.expressions')
   $("#div_scenarioElement").sortable({
     cursor: "move",
@@ -2616,47 +2679,13 @@ jeeP.$divScenario.on('mouseenter', '.bt_sortable', function() {
   $("#div_scenarioElement").sortable("enable")
 })
 
-jeeP.$divScenario.on('mousedown', '.bt_sortable', function() {
+jeeP.$divScenario.on('mousedown', '.bt_sortable', function(event) {
   jeeP.setUndoStack()
 })
 
-jeeP.$divScenario.on('mouseout', '.bt_sortable', function() {
+jeeP.$divScenario.on('mouseout', '.bt_sortable', function(event) {
   $("#div_scenarioElement").sortable("disable")
 })
-
-jeeP.$divScenario.on('click', '.subElementAttr[data-l1key="options"][data-l2key="allowRepeatCondition"]', function() {
-  if ($(this).attr('value') == 0) {
-    $(this).attr('value', 1).html('<span><i class="fas fa-ban text-danger"></i></span>')
-  } else {
-    $(this).attr('value', 0).html('<span><i class="fas fa-sync"></span>')
-  }
-})
-
-jeeP.$divScenario.on('click', '.fromSubElement', function(event) {
-  var elementType = $(this).attr('data-type')
-  jeeP.setUndoStack()
-
-  var elementDiv = $(this).closest('.subElement').find('.expressions').eq(0)
-  var newEL = $(jeeP.addExpression({
-    type: 'element',
-    element: {
-      type: elementType
-    }
-  }))
-  elementDiv.append(newEL.addClass('disableElement'))
-
-  jeeP.setEditors()
-  jeeP.updateSortable()
-  jeeP.updateElseToggle()
-  jeeFrontEnd.modifyWithoutSave = true
-  jeeP.updateTooltips()
-  jeedom.scenario.setAutoComplete()
-  setTimeout(function() {
-    newEL.removeClass('disableElement')
-  }, 600)
-})
-
-
 
 
 
