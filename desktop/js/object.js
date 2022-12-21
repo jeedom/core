@@ -707,6 +707,28 @@ $('#bt_removeBackgroundImage').off('click').on('click', function() {
   return false
 })
 
+$('#bt_orderEqLogicByUsage').off('click').on('click', function() {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir réordonner les équipements pas utilisation ?}}', function(result) {
+    if (result) {
+      jeedom.object.orderEqLogicByUsage({
+        id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function() {
+          jeedomUtils.showAlert({
+            message: '{{Equipements réoordonnés avec succes}}',
+            level: 'success'
+          })
+        },
+      })
+    }
+  })
+})
+
 $('#bt_returnToThumbnailDisplay').on('click', function() {
   setTimeout(function() {
     $('.nav li.active').removeClass('active')

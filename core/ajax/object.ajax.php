@@ -84,6 +84,19 @@ try {
 		ajax::success(utils::o2a($object));
 	}
 
+	if (init('action') == 'orderEqLogicByUsage') {
+		unautorizedInDemo();
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		$object = jeeObject::byId(init('id'));
+		if (!is_object($object)) {
+			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
+		}
+		$object->orderEqLogicByUsage();
+		ajax::success(utils::o2a($object));
+	}
+
 	if (init('action') == 'getChild') {
 		$object = jeeObject::byId(init('id'));
 		if (!is_object($object)) {

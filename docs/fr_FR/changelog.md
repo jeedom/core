@@ -21,6 +21,7 @@
 - **Timeline** : La Timeline charge maintenant les 35 premiers événements. En bas de page, plusieurs boutons permettent de charger dynamiquement les évènements suivant.
 - **Administration** : Possibilité de différencier les actions sur erreur ou sur alerte de commande.
 - Un menu contextuel a été ajouté à différents endroits au niveau des cases à cocher pour les sélectionner toutes, aucunes, ou inverser la sélection *(voir [Doc dev](https://doc.jeedom.com/fr_FR/dev/core4.4))*.
+- **Dashboard** : possibilité sur la page de configuration des objets de demander a jeedom de reordonner les équipements en fonction de leur utilisation
 
 ### 4.4 : Autre
 

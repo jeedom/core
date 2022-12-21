@@ -289,6 +289,12 @@ $synthToActions = array(
 									<img class="img-responsive" src="" width="240px" />
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">{{Réordonner les équipements par utilisation}}</label>
+								<div class="col-sm-7">
+									<a class="btn btn-sm btn-warning" id="bt_orderEqLogicByUsage"><i class="fas fa-sort-numeric-down"></i> {{Réordonner}}</a>
+								</div>
+							</div>
 						</div>
 
 					</fieldset>

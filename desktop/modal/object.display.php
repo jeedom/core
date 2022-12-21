@@ -47,6 +47,9 @@ if ($class == 'cron' && $array['class'] == 'scenario' && $array['function'] == '
     $otherInfo['doIn'] = __('Scénario :', __FILE__) . ' ' . $scenario->getName() . "\n" . str_replace(array('"'), array("'"), $scenarioElement->export());
   }
 }
+if ($class == 'eqLogic') {
+  $array['usage'] = $object->getUsage();
+}
 
 ?>
 

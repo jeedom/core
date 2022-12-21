@@ -220,6 +220,25 @@ jeedom.object.byId = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
+jeedom.object.orderEqLogicByUsage = function(_params) {
+  var paramsRequired = ['id'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/object.ajax.php';
+  paramsAJAX.data = {
+    action: 'orderEqLogicByUsage',
+    id: _params.id
+  };
+  domUtils.ajax(paramsAJAX);
+}
+
 jeedom.object.getActionSummary = function(_params) {
   var paramsRequired = ['object_id', 'summary'];
   var paramsSpecifics = {};

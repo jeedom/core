@@ -1614,6 +1614,29 @@ class eqLogic {
 		return $return;
 	}
 
+	public function getUsage() {
+		$return = array(
+			'automation' => 0,
+			'ui' => 0,
+			'history' => 0,
+			'total' => 0
+		);
+		foreach ($this->getCmd() as $cmd) {
+			$usage = $cmd->getCache(array('usage::automation', 'usage::ui', 'usage::history'));
+			if ($usage['usage::automation'] > 0) {
+				$return['automation'] += $usage['usage::automation'];
+			}
+			if ($usage['usage::ui'] > 0) {
+				$return['ui'] += $usage['usage::ui'];
+			}
+			if ($usage['usage::history'] > 0) {
+				$return['history'] += $usage['usage::history'];
+			}
+		}
+		$return['total'] = $return['automation'] + $return['ui'] + $return['history'];
+		return $return;
+	}
+
 	/*     * **********************Getteur Setteur*************************** */
 
 	public function getId() {

@@ -650,6 +650,28 @@ class jeeObject {
 
 	/*     * *********************Méthodes d'instance************************* */
 
+	public function orderEqLogicByUsage() {
+		$eqLogics = array();
+		foreach ($this->getEqLogic() as $eqLogic) {
+			$eqLogics[$eqLogic->getId()] = array(
+				'eqLogic' => $eqLogic,
+				'usage' => $eqLogic->getUsage()['total'],
+			);
+		}
+		usort($eqLogics, create_function('$a, $b', '
+        if ($a["usage"] == $b["usage"]){
+            return 0;
+        }
+        return ($a["usage"] >  $b["usage"]) ? -1 : 1;
+    '));
+		$order = 0;
+		foreach ($eqLogics as $eqLogic) {
+			$eqLogic['eqLogic']->setOrder($order);
+			$eqLogic['eqLogic']->save(true);
+			$order++;
+		}
+	}
+
 	public function summaryAction($_cmd, $_options = null) {
 		$eqLogics = $this->getEqLogicBySummary($_cmd->getConfiguration('summary::key'), true, false);
 		foreach ($eqLogics as $eqLogic) {
