@@ -1416,8 +1416,8 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
     var tile = (_scenario) ? document.querySelector('.scenario-widget[data-scenario_id="' + _id + '"]') : document.querySelector('.eqLogic-widget[data-eqlogic_id="' + _id + '"]')
     if (init(_preResize, true)) {
       Object.assign(tile.style, {
-        width: (Math.floor(tile.width() / jeedom.theme['widget::step::width']) * jeedom.theme['widget::step::width'] - (2 * jeedom.theme['widget::margin'])) + 'px',
-        height: (Math.floor(tile.height() / jeedom.theme['widget::step::height']) * jeedom.theme['widget::step::height'] - (2 * jeedom.theme['widget::margin'])) + 'px'
+        width: (Math.floor(tile.style.width / jeedom.theme['widget::step::width']) * jeedom.theme['widget::step::width'] - (2 * jeedom.theme['widget::margin'])) + 'px',
+        height: (Math.floor(tile.style.height / jeedom.theme['widget::step::height']) * jeedom.theme['widget::step::height'] - (2 * jeedom.theme['widget::margin'])) + 'px'
       })
     }
     var width = jeedomUtils.getClosestInArray(tile.offsetWidth, widthSteps)
