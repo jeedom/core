@@ -441,7 +441,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
               } else {
                 object_div.html(result[i].html, true)
               }
-              jeedomUtils.positionEqLogic()
+              jeedomUtils.positionEqLogic(result[i].id)
               let pckryContainer = $(object_div).packery('destroy').packery({ isLayoutInstant: true })
               pckryContainer.packery('bindUIDraggableEvents', pckryContainer.find('div.eqLogic-widget'))
 
@@ -449,10 +449,9 @@ jeedom.eqLogic.refreshValue = function(_params) {
                 element.setAttribute('data-order', idx + 1)
               })
             }
-          }
-          else if (page == 'eqAnalyse' && tile.childNodes[0].querySelector('.widget-name>span>i').hasClass('fas')) {
+          } else if (page == 'eqAnalyse' && tile.childNodes[0].querySelector('.widget-name>span>i').hasClass('fas')) {
             document.querySelector('.alertListContainer').html(result[i].html, true)
-            jeedomUtils.positionEqLogic()
+            jeedomUtils.positionEqLogic(result[i].id, false)
             $('.alertListContainer').packery('destroy').packery({ itemSelector: "#alertEqlogic .eqLogic-widget" })
           }
         } else {
