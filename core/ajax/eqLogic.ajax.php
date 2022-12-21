@@ -68,6 +68,7 @@ try {
 					'id' => $eqLogic->getId(),
 					'type' => $eqLogic->getEqType_name(),
 					'object_id' => $eqLogic->getObject_id(),
+					'order' => $eqLogic->getOrder()
 				);
 			}
 			ajax::success($return);
