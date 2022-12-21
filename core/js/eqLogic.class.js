@@ -429,7 +429,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
       for (var i in result) {
         tile = domUtils.parseHTML(result[i].html)
         if (tile.childNodes.length == 0) {
-          return
+          continue
         }
         eqLogic = eqLogics[i].eqLogic
         if (isElement_jQuery(eqLogic)) eqLogic = eqLogic[0]
