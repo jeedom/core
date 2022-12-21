@@ -26,19 +26,19 @@ if (!jeeFrontEnd.view_edit) {
       var view = document.getElementById('div_view').getJeeValues('.viewAttr')[0]
       view.zones = []
       var viewZoneInfo, line, col
-      $('.viewZone').each(function() {
-        viewZoneInfo = this.getJeeValues('.viewZoneAttr')[0]
+      document.querySelectorAll('.viewZone').forEach(function(_viewZone) {
+        viewZoneInfo = _viewZone.getJeeValues('.viewZoneAttr')[0]
         if (viewZoneInfo.type == 'table') {
           viewZoneInfo.viewData = [{
             'configuration': {}
           }]
           line = 0
           col = 0
-          $(this).find('table tbody tr').each(function() {
+          document.querySelectorAll('table tbody tr').forEach(function(_tr) {
             viewZoneInfo.viewData[0]['configuration'][line] = {}
             col = 0
-            $(this).find('td input').each(function() {
-              viewZoneInfo.viewData[0]['configuration'][line][col] = this.jeeValue()
+            _tr.querySelectorAll('td input').forEach(function(_tdInput) {
+              viewZoneInfo.viewData[0]['configuration'][line][col] = _tdInput.jeeValue()
               col++
             })
             line++
@@ -46,7 +46,7 @@ if (!jeeFrontEnd.view_edit) {
           viewZoneInfo.configuration.nbcol = col
           viewZoneInfo.configuration.nbline = line
         } else {
-          viewZoneInfo.viewData = this.querySelectorAll('.viewData').getJeeValues('.viewDataAttr')
+          viewZoneInfo.viewData = _viewZone.querySelectorAll('.viewData').getJeeValues('.viewDataAttr')
         }
         view.zones.push(viewZoneInfo)
       })
@@ -195,7 +195,7 @@ if (!jeeFrontEnd.view_edit) {
       if (!isset(_viewData.configuration) || _viewData.configuration == '') {
         _viewData.configuration = {}
       }
-      var tr = '<tr class="viewData" style="cursor : move;">'
+      var tr = '<tr>'
       tr += '<td><i class="far fa-trash-alt cursor bt_removeViewData"></i></td>'
 
       tr += '<td>'
@@ -279,6 +279,8 @@ if (!jeeFrontEnd.view_edit) {
 
       let newRow = document.createElement("tr")
       newRow.innerHTML = tr
+      newRow.addClass('viewData')
+      newRow.style = "cursor : move;"
       newRow.setJeeValues(_viewData, '.viewDataAttr')
       return newRow
     },
@@ -286,7 +288,7 @@ if (!jeeFrontEnd.view_edit) {
       if (!isset(_viewData.configuration) || _viewData.configuration == '') {
         _viewData.configuration = {}
       }
-      var tr = '<tr class="viewData" style="cursor : move;">'
+      var tr = '<tr>'
       tr += '<td><i class="far fa-trash-alt cursor bt_removeViewData"></i></td>'
       tr += '<td>'
       tr += '<input class="viewDataAttr" data-l1key="link_id" style="display  : none;"/>'
@@ -297,6 +299,8 @@ if (!jeeFrontEnd.view_edit) {
 
       let newRow = document.createElement("tr")
       newRow.innerHTML = tr
+      newRow.addClass('viewData')
+      newRow.style = "cursor : move;"
       newRow.setJeeValues(_viewData, '.viewDataAttr')
       return newRow
     },
