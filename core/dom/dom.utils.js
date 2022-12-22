@@ -21,7 +21,7 @@
 var domUtils = function() {
   if (typeof arguments[0] == 'function') {
     if (domUtils._debug) console.log('[ >> domUtils ready register func << ]', arguments[0])
-    if (domUtils._ajaxCalling < 0 && domUtils._DOMloading < 0) {
+    if (domUtils._ajaxCalling <= 0 && domUtils._DOMloading <= 0) {
       if (domUtils._debug) console.log('[ >> domUtils ready register func << ] no loading / no ajax -> exec now!')
       arguments[0].apply(this)
       return
@@ -626,12 +626,12 @@ domUtils.handleAjaxError = function(_request, _status, _error) {
   if (is_object(_request)) {
     jeedomUtils.showAlert({
       message: _request.url + ' : ' + _request.status + ' error: ' + _error,
-      level: 'danger'
+      level: 'warning'
     })
   } else {
     jeedomUtils.showAlert({
       message: _request + ' : ' + _status + ' error: ' + _error,
-      level: 'danger'
+      level: 'warning'
     })
   }
 }
@@ -659,7 +659,7 @@ domUtils.ajax = function(_params) {
   _params.type = isset(_params.type) ? _params.type : domUtils.ajaxSettings.type
   _params.noDisplayError = isset(_params.noDisplayError) ? _params.noDisplayError : domUtils.ajaxSettings.noDisplayError
   _params.success = (typeof _params.success === 'function') ? _params.success : function() {return arguments}
-  _params.complete = (typeof _params.complete === 'function') ? _params.complete : function() {return arguments}
+  _params.complete = (typeof _params.complete === 'function') ? _params.complete : function() { }
   _params.onError = (typeof _params.error === 'function') ? _params.error : null
 
   domUtils.countAjax(0, _params.global)
@@ -688,13 +688,20 @@ domUtils.ajax = function(_params) {
     }
     fetch(url, {
       method: _params.type,
+      mode: 'cors',
+      credentials: 'include',
       body: isGet ? null : new URLSearchParams(_params.data),
       headers: isGet ? new Headers() : {"Content-Type": "application/x-www-form-urlencoded"},
     })
-    .then(function(response) {
+    .then(function(response, reject) {
       if (!response.ok) {
-        domUtils.handleAjaxError(response, response.status, response.statusText)
-        return response
+        if (response.status != 504) domUtils.handleAjaxError(response, response.status, response.statusText)
+        const rejectReponse = {
+          "error_type": "SERVER_ERROR",
+          "error": true
+        }
+        domUtils.countAjax(1, _params.global)
+        return reject(rejectReponse)
       }
       if (isJson) {
         return response.json()
@@ -706,7 +713,7 @@ domUtils.ajax = function(_params) {
       return _params.success(obj)
     }).then(async function() {
       domUtils.countAjax(1, _params.global)
-      return _params.complete()
+      _params.complete()
     })
     .catch(function(error) {
       domUtils.countAjax(1, _params.global)
@@ -1086,4 +1093,3 @@ function count(a, b) {
     a.hasOwnProperty(d) && (c++, 1 != b || (!a[d] || a[d].constructor !== Array && a[d].constructor !== Object) || (c += this.count(a[d], 1)))
   return c
 }
-

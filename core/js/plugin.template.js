@@ -128,7 +128,7 @@ $(".eqLogicDisplayCard").on('click', function(event) {
         if (!isset(data.category.opening)) $('input[data-l2key="opening"]').prop('checked', false)
 
         if ('function' == typeof(printEqLogic)) {
-          printEqLogic(data)
+          setTimeout(() => { printEqLogic(data) })
         }
         $('.cmd').remove()
         for (var i in data.cmd) {
