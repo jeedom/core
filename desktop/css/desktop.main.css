@@ -4328,6 +4328,10 @@ div.eqLogic-widget.editingMode .panelLink {
     user-select: none;
   }
 
+  .div_backgroundPlan > .div_displayObject.editingMode a {
+    pointer-events: none !important;
+  }
+
   .div_backgroundPlan #div_grid {
     position: absolute;
     padding: 0;
