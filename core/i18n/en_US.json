@@ -1795,6 +1795,7 @@
         "SyslogUdp": "SyslogUdp",
         "Adresse syslog UDP": "UDP syslog address",
         "Port syslog UDP": "UDP syslog port",
+        "Facility syslog UDP": "UDP syslog faciliy",
         "Format des logs": "Log format",
         "Nombre de lignes maximum dans un fichier de log": "Maximum lines per log file",
         "Niveau de log par défaut": "Default log level",

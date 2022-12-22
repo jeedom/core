@@ -1795,6 +1795,7 @@
         "SyslogUdp": "SyslogUdp",
         "Adresse syslog UDP": "Endereço syslog UDP",
         "Port syslog UDP": "Porta syslog UDP",
+        "Facility syslog UDP": "UDP syslog faciliy",
         "Format des logs": "Formato dos registos",
         "Nombre de lignes maximum dans un fichier de log": "O número máximo de linhas num arquivo de registo",
         "Niveau de log par défaut": "Nível de registo predefinido",

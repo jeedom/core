@@ -1795,6 +1795,7 @@
         "SyslogUdp": "SyslogUdp",
         "Adresse syslog UDP": "Alamat syslog UDP",
         "Port syslog UDP": "Syslog UDP Pelabuhan",
+        "Facility syslog UDP": "UDP syslog faciliy",
         "Format des logs": "Format log",
         "Nombre de lignes maximum dans un fichier de log": "Jumlah maksimum baris dalam file log",
         "Niveau de log par défaut": "Tingkat default log",

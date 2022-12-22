@@ -67,6 +67,7 @@
     },
     "mobile\/js\/notes.js": {
         "Note sauvegardée avec succès": "Note sauvegardée avec succès",
+
         "Voulez-vous vraiment supprimer la note :": "Voulez-vous vraiment supprimer la note :",
         "Note supprimée avec succès": "Note supprimée avec succès"
     },
@@ -1795,6 +1796,7 @@
         "SyslogUdp": "SyslogUdp",
         "Adresse syslog UDP": "Adresse syslog UDP",
         "Port syslog UDP": "Port syslog UDP",
+        "Facility syslog UDP": "Facility syslog UDP",
         "Format des logs": "Format des logs",
         "Nombre de lignes maximum dans un fichier de log": "Nombre de lignes maximum dans un fichier de log",
         "Niveau de log par défaut": "Niveau de log par défaut",

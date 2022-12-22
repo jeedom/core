@@ -1795,6 +1795,7 @@
         "SyslogUdp": "Udp Syslog",
         "Adresse syslog UDP": "UDP-Syslog-Adresse",
         "Port syslog UDP": "Syslog-UDP-Port",
+        "Facility syslog UDP": "UDP syslog faciliy",
         "Format des logs": "Format der Protokolle",
         "Nombre de lignes maximum dans un fichier de log": "Maximale Anzahl der Zeilen in einer Log-Datei",
         "Niveau de log par défaut": "Standard-Protokollebene",

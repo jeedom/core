@@ -927,6 +927,12 @@ user::isBan();
 											<input type="text" class="configKey form-control" data-l1key="log::syslogudpport" />
 										</div>
 									</div>
+									<div class="form-group">
+										<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Facility syslog UDP}}</label>
+										<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+											<input type="text" class="configKey form-control" data-l1key="log::syslogudpfacility" />
+										</div>
+									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Format des logs}}</label>

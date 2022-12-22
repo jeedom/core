@@ -1795,6 +1795,7 @@
         "SyslogUdp": "SyslogUdp",
         "Adresse syslog UDP": "アドレスのsyslog UDP",
         "Port syslog UDP": "SyslogのUDPポート",
+        "Facility syslog UDP": "UDP syslog faciliy",
         "Format des logs": "フォーマットのログ",
         "Nombre de lignes maximum dans un fichier de log": "ログファイルの最大行数",
         "Niveau de log par défaut": "デフォルトのログレベル",
