@@ -136,6 +136,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
         window.history.pushState('', '', _url)
         jeeFrontEnd.PREVIOUS_PAGE = _url
       }
+    document.body.setAttribute('data-page', getUrlVars('p') || '')
     } catch (e) { }
   }
 
@@ -175,6 +176,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   document.getElementById('div_mainContainer').querySelectorAll('script')?.remove()
   document.querySelectorAll('script[injext]')?.remove()
 
+  //AJAX LOAD URL INTO PAGE CONTAINER:
   document.getElementById('div_pageContainer').load(url, function() {
     document.body.setAttribute('data-page', getUrlVars('p') || '')
     document.getElementById('bt_getHelpPage').setAttribute('data-page', getUrlVars('p'))
@@ -184,7 +186,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
     document.body.triggerEvent('jeedom_page_load')
 
     //dashboard page on object will set its own background:
-    if (!_url.includes('dashboard&object_id')) {
+    if (!_url.includes('dashboard')) {
       if (jeedomUtils.backgroundIMG !== null) {
         jeedomUtils.setBackgroundImage(jeedomUtils.backgroundIMG)
       } else {
@@ -574,14 +576,14 @@ jeedomUtils.setBackgroundImage = function(_path) {
       mode = 'dark'
     }
 
-    if (['dashboard', 'overview', 'home', 'equipment'].indexOf(document.body.getAttribute('data-page')) != -1) {
+    if (['dashboard', 'overview', 'home', 'equipment'].includes(document.body.getAttribute('data-page'))) {
       if (jeedom.theme.product_interface_image) {
         _path = jeedom.theme.product_interface_image
       }
       else {
         _path = jeedom.theme['interface::background::dashboard']
       }
-    } else if (['display', 'eqAnalyse', 'log', 'timeline', 'history', 'report', 'health', 'administration', 'profils', 'update', 'backup', 'cron', 'user'].indexOf(document.body.getAttribute('data-page')) != -1) {
+    } else if (['display', 'eqAnalyse', 'log', 'timeline', 'history', 'report', 'health', 'administration', 'profils', 'update', 'backup', 'cron', 'user'].includes(document.body.getAttribute('data-page'))) {
       if (jeedom.theme.product_interface_image) {
         _path = jeedom.theme.product_interface_image
       }

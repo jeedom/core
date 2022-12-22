@@ -351,6 +351,7 @@ if (!jeeFrontEnd.dashboard) {
     },
   }
 }
+
 jeeFrontEnd.dashboard.init()
 
 if (jeeP.url_summary != '') {
@@ -530,7 +531,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
-  if (event.target.matches('.li_object, .li_object span, .li_object i')) {            //document.getElementById('dashOverviewPrev').contains(event.target)) { //Dashboard mode list:
+  if (event.target.matches('.li_object, .li_object span, .li_object i')) { //Dashboard mode list:
     var object_id = event.target.closest('a')?.getAttribute('data-object_id')
     if (document.querySelector('.div_object[data-object_id="' + object_id + '"]') != null) {
       jeedom.object.getImgPath({
