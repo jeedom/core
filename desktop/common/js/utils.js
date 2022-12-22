@@ -195,8 +195,11 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
     }
 
     setTimeout(function() {
-      if (window.location.hash != '' && document.querySelector('ul.nav-tabs a[data-target="' + window.location.hash + '"]') != null) {
-        document.querySelector('ul.nav-tabs a[data-target="' + window.location.hash + '"]').triggerEvent('click')
+      if (window.location.hash != '') {
+        var tab = document.querySelector('.nav-tabs a[data-target="' + window.location.hash + '"]') || document.querySelector('.nav-tabs a[href="' + window.location.hash + '"]')
+        if (tab != null) {
+          tab.triggerEvent('click')
+        }
       }
     }, 150) //let time for plugin page!
 
@@ -249,7 +252,6 @@ document.addEventListener('DOMContentLoaded', function() {
   if (tab == null) {
     tab = document.querySelector('.nav-tabs a[href="' + window.location.hash + '"]')
   }
-
   if (window.location.hash != '' && tab != null) {
     tab.triggerEvent('click')
   }
@@ -258,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   //custom jQuery event can't use pur js event listener
   $('body').on('shown.bs.tab', '.nav-tabs a', function(event) {
-    if (event.target.getAttribute('data-target') == '') {
+    if (event.target.getAttribute('data-target') == '' && event.target.getAttribute('href') == '') {
       return
     }
     if (event.target.closest('.ui-dialog-content')?.innerHTML !== undefined) {
@@ -268,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function() {
       window.history.replaceState('', '', 'index.php?' + window.location.href.split("index.php?")[1])
       jeeFrontEnd.PREVIOUS_PAGE = 'index.php?' + window.location.href.split("index.php?")[1]
     }
-    window.location.hash = event.target.getAttribute('data-target')
+    window.location.hash = event.target.getAttribute('data-target') || event.target.getAttribute('href')
   })
   window.addEventListener('hashchange', function(event) {
     jeeFrontEnd.NO_POPSTAT = true
@@ -282,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function() {
         jeeFrontEnd.NO_POPSTAT = false
         return
       }
-      var tab = document.querySelector('.nav-tabs a[href="' + window.location.hash + '"]')
+      var tab = document.querySelector('.nav-tabs a[data-target="' + window.location.hash + '"]') || document.querySelector('.nav-tabs a[href="' + window.location.hash + '"]')
       if (window.location.hash != '' && tab != null) {
         tab.triggerEvent('click')
       } else if (jeeFrontEnd.PREVIOUS_PAGE !== null && jeeFrontEnd.PREVIOUS_PAGE.includes('#') && jeeFrontEnd.PREVIOUS_PAGE.split('#')[0] != 'index.php?' + window.location.href.split("index.php?")[1].split('#')[0]) {
