@@ -244,7 +244,6 @@ if (!jeeFrontEnd.dashboard) {
               success: function(html) {
                 if (html.html != '') {
                   dom_divDisplayEq.html(html.html, true)
-                  //$(dom_divDisplayEq).append(html.html)
                 }
                 nbEqs--
 
