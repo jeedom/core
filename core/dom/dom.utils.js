@@ -697,11 +697,13 @@ domUtils.ajax = function(_params) {
       if (!response.ok) {
         if (response.status != 504) domUtils.handleAjaxError(response, response.status, response.statusText)
         const rejectReponse = {
-          "error_type": "SERVER_ERROR",
-          "error": true
+          error_type: "SERVER_ERROR",
+          error: true
         }
+
+        if (reject != undefined) rejectReponse.error_type = reject
         domUtils.countAjax(1, _params.global)
-        return reject(rejectReponse)
+        return Promise.reject(rejectReponse)
       }
       if (isJson) {
         return response.json()
