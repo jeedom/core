@@ -270,7 +270,7 @@ if (!jeeFrontEnd.scenario) {
             $("#div_scenarioElement").sortable("cancel")
           }
 
-          jeeP.updateTooltips()
+          jeedomUtils.initTooltips()
           jeeP.updateSortable()
         },
         stop: function(event, ui) {
@@ -554,27 +554,11 @@ if (!jeeFrontEnd.scenario) {
           domUtils(function() {
             jeeP.setEditors()
             jeeP.checkNoTriggeringMode()
-            jeeP.updateTooltips()
+            jeedomUtils.initTooltips()
             jeedom.scenario.setAutoComplete()
             jeeP.resetUndo()
             jeeFrontEnd.modifyWithoutSave = false
           })
-
-          /*
-          setTimeout(function() {
-            jeeP.setEditors()
-          }, 100)
-          jeeFrontEnd.modifyWithoutSave = false
-          jeeP.resetUndo()
-          setTimeout(function() {
-            jeeFrontEnd.modifyWithoutSave = false
-          }, 1000)
-          setTimeout(function() {
-            jeeP.checkNoTriggeringMode()
-            jeeP.updateTooltips()
-          }, 500)
-          */
-
 
           document.getElementById('humanNameTag').innerHTML = data.humanNameTag
         }
@@ -623,9 +607,9 @@ if (!jeeFrontEnd.scenario) {
       div += '<div class="input-group">'
       div += '<input class="scenarioAttr input-sm form-control roundedLeft" data-l1key="trigger" value="' + _trigger.replace(/"/g, '&quot;') + '" >'
       div += '<span class="input-group-btn">'
-      div += '<a class="btn btn-default btn-sm cursor bt_selectTrigger" tooltip="{{Choisir une commande}}"><i class="fas fa-list-alt"></i></a>'
-      div += '<a class="btn btn-default btn-sm cursor bt_selectGenericTrigger" tooltip="{{Choisir un Type Générique}}"><i class="fas fa-puzzle-piece"></i></a>'
-      div += '<a class="btn btn-default btn-sm cursor bt_selectDataStoreTrigger" tooltip="{{Choisir une variable}}"><i class="fas fa-calculator"></i></a>'
+      div += '<a class="btn btn-default btn-sm cursor bt_selectTrigger" title="{{Choisir une commande}}"><i class="fas fa-list-alt"></i></a>'
+      div += '<a class="btn btn-default btn-sm cursor bt_selectGenericTrigger" title="{{Choisir un Type Générique}}"><i class="fas fa-puzzle-piece"></i></a>'
+      div += '<a class="btn btn-default btn-sm cursor bt_selectDataStoreTrigger" title="{{Choisir une variable}}"><i class="fas fa-calculator"></i></a>'
       div += '<a class="btn btn-default btn-sm cursor bt_removeTrigger roundedRight"><i class="fas fa-minus-circle"></i></a>'
       div += '</span>'
       div += '</div>'
@@ -672,10 +656,10 @@ if (!jeeFrontEnd.scenario) {
           retour += '<div class="input-group input-group-sm" >'
           retour += '<input class="expressionAttr form-control roundedLeft" data-l1key="expression" value="' + init(_expression.expression) + '" />'
           retour += '<span class="input-group-btn">'
-          retour += '<button type="button" class="btn btn-default cursor bt_selectCmdExpression" tooltip="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></button>'
-          retour += '<button type="button" class="btn btn-default cursor bt_selectGenericExpression" tooltip="{{Rechercher un type générique}}"><i class="fas fa-puzzle-piece"></i></button>'
-          retour += '<button type="button" class="btn btn-default cursor bt_selectScenarioExpression" tooltip="{{Rechercher un scénario}}"><i class="fas fa-history"></i></button>'
-          retour += '<button type="button" class="btn btn-default cursor bt_selectEqLogicExpression roundedRight"  tooltip="{{Rechercher un équipement}}"><i class="fas fa-cube"></i></button>'
+          retour += '<button type="button" class="btn btn-default cursor bt_selectCmdExpression" title="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></button>'
+          retour += '<button type="button" class="btn btn-default cursor bt_selectGenericExpression" title="{{Rechercher un type générique}}"><i class="fas fa-puzzle-piece"></i></button>'
+          retour += '<button type="button" class="btn btn-default cursor bt_selectScenarioExpression" title="{{Rechercher un scénario}}"><i class="fas fa-history"></i></button>'
+          retour += '<button type="button" class="btn btn-default cursor bt_selectEqLogicExpression roundedRight"  title="{{Rechercher un équipement}}"><i class="fas fa-cube"></i></button>'
           retour += '</span>'
           retour += '</div>'
           break
@@ -696,14 +680,14 @@ if (!jeeFrontEnd.scenario) {
           retour += '<div class="col-xs-1" >'
           retour += '<i class="fas fa-arrows-alt-v cursor bt_sortable" ></i>'
           if (!isset(_expression.options) || !isset(_expression.options.enable) || _expression.options.enable == 1) {
-            retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked  tooltip="{{Décocher pour désactiver l\'action}}"/>'
+            retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked  title="{{Décocher pour désactiver l\'action}}"/>'
           } else {
-            retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable"  tooltip="{{Décocher pour désactiver l\'action}}"/>'
+            retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable"  title="{{Décocher pour désactiver l\'action}}"/>'
           }
           if (!isset(_expression.options) || !isset(_expression.options.background) || _expression.options.background == 0) {
-            retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background"  tooltip="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>'
+            retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background"  title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>'
           } else {
-            retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" checked  tooltip="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>'
+            retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" checked  title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>'
           }
           var expression_txt = init(_expression.expression)
           if (typeof expression_txt != 'string') {
@@ -712,12 +696,12 @@ if (!jeeFrontEnd.scenario) {
           retour += '</div>'
           retour += '<div class="col-xs-4" ><div class="input-group input-group-sm">'
           retour += '<span class="input-group-btn">'
-          retour += '<button class="btn btn-default bt_removeExpression roundedLeft" type="button" tooltip="{{Supprimer l\'action}}"><i class="fas fa-minus-circle"></i></button>'
+          retour += '<button class="btn btn-default bt_removeExpression roundedLeft" type="button" title="{{Supprimer l\'action}}"><i class="fas fa-minus-circle"></i></button>'
           retour += '</span>'
           retour += '<input class="expressionAttr form-control" data-l1key="expression" prevalue="' + init(_expression.expression) + '" value="' + expression_txt.replace(/"/g, '&quot;') + '"/>'
           retour += '<span class="input-group-btn">'
-          retour += '<button class="btn btn-default bt_selectOtherActionExpression" type="button" tooltip="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></button>'
-          retour += '<button class="btn btn-default bt_selectCmdExpression roundedRight" type="button" tooltip="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i></button>'
+          retour += '<button class="btn btn-default bt_selectOtherActionExpression" type="button" title="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></button>'
+          retour += '<button class="btn btn-default bt_selectCmdExpression roundedRight" type="button" title="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i></button>'
           retour += '</span>'
           retour += '</div></div>'
           var actionOption_id = jeedomUtils.uniqId()
@@ -797,23 +781,23 @@ if (!jeeFrontEnd.scenario) {
           retour += '<div>'
           retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor" ></i>'
           if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
           } else {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
           }
           if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
-            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />'
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />'
           } else {
-            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />'
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" />'
           }
           retour += '</div>'
           retour += '<div><legend >{{SI}}</legend></div>'
 
           retour += '<div >'
           if (!isset(_subElement.options) || !isset(_subElement.options.allowRepeatCondition) || _subElement.options.allowRepeatCondition == 0) {
-            retour += '<a class="bt_repeat cursor subElementAttr" tooltip="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="0"><span><i class="fas fa-sync"></i></span></a>'
+            retour += '<a class="bt_repeat cursor subElementAttr" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="0"><span><i class="fas fa-sync"></i></span></a>'
           } else {
-            retour += '<a class="bt_repeat cursor subElementAttr" tooltip="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="1"><span><i class="fas fa-ban text-danger"></i></span></a>'
+            retour += '<a class="bt_repeat cursor subElementAttr" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="1"><span><i class="fas fa-ban text-danger"></i></span></a>'
           }
           retour += '</div>'
 
@@ -866,14 +850,14 @@ if (!jeeFrontEnd.scenario) {
           retour += '<div>'
           retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
           if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
           } else {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
           }
           if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
-            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />'
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />'
           } else {
-            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />'
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" />'
           }
           retour += '</div>'
           retour += '<div>'
@@ -896,18 +880,18 @@ if (!jeeFrontEnd.scenario) {
           retour += '<div>'
           retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
           if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
           } else {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
           }
           if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
-            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />'
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />'
           } else {
-            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />'
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" />'
           }
           retour += '</div>'
           retour += '<div>'
-          retour += '<legend tooltip="{{Action DANS x minutes}}">{{DANS}}</legend>'
+          retour += '<legend title="{{Action DANS x minutes}}">{{DANS}}</legend>'
           retour += '</div>'
           retour += '<div class="expressions" >'
           var expression = {
@@ -926,14 +910,14 @@ if (!jeeFrontEnd.scenario) {
           retour += '<div>'
           retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
           if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
           } else {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
           }
           if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
-            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />'
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />'
           } else {
-            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />'
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" />'
           }
           retour += '</div>'
           retour += '<div>'
@@ -972,14 +956,14 @@ if (!jeeFrontEnd.scenario) {
           retour += '<div>'
           retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
           if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
           } else {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
           }
           if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
-            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />'
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />'
           } else {
-            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />'
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" />'
           }
           retour += '</div>'
           retour += '<div>'
@@ -1005,9 +989,9 @@ if (!jeeFrontEnd.scenario) {
           retour += '<div>'
           retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
           if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
           } else {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
           }
           retour += '</div>'
           retour += '<div>'
@@ -1038,14 +1022,14 @@ if (!jeeFrontEnd.scenario) {
           retour += '<div>'
           retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
           if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
           } else {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
           }
           if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
-            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />'
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />'
           } else {
-            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />'
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" />'
           }
           retour += '<legend class="legendHidden">{{ACTION}}</legend>'
           if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
@@ -1078,9 +1062,9 @@ if (!jeeFrontEnd.scenario) {
       return retour
     },
     addElButtons: function(_retour) {
-      _retour += '  <div><i class="fas fa-minus-circle pull-right cursor bt_removeElement" tooltip="{{Supprimer ce bloc.<br>Ctrl+Click: Supprimer sans confirmation.}}"></i></div>'
-      _retour += '  <div><i class="fas fa-copy pull-right cursor bt_copyElement" tooltip="{{Copier ce bloc.<br>Ctrl+Click: Couper ce bloc.}}"></i></div>'
-      _retour += '  <div><i class="fas fa-paste pull-right cursor bt_pasteElement" tooltip="{{Coller un bloc après celui-ci.<br>Ctrl+Click: remplacer ce bloc par le bloc copié.}}"></i></div>'
+      _retour += '  <div><i class="fas fa-minus-circle pull-right cursor bt_removeElement" title="{{Supprimer ce bloc.<br>Ctrl+Click: Supprimer sans confirmation.}}"></i></div>'
+      _retour += '  <div><i class="fas fa-copy pull-right cursor bt_copyElement" title="{{Copier ce bloc.<br>Ctrl+Click: Couper ce bloc.}}"></i></div>'
+      _retour += '  <div><i class="fas fa-paste pull-right cursor bt_pasteElement" title="{{Coller un bloc après celui-ci.<br>Ctrl+Click: remplacer ce bloc par le bloc copié.}}"></i></div>'
       return _retour
     },
     addElement: function(_element) {
@@ -1259,20 +1243,12 @@ if (!jeeFrontEnd.scenario) {
       })
       return element
     },
-    updateTooltips: function() {
-      //in scenarios, for faster undo/redo, tooltips are specially created with tooltip attribute and copied as title to keep track of it!
-      var toTips = document.querySelectorAll('[tooltip]:not(.tooltipstered)')
-      toTips.forEach(function(_tooltip) {
-        _tooltip.setAttribute('title', _tooltip.getAttribute('tooltip'))
-      })
-      $(toTips).tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
-    },
     getAddButton: function(_type,_caret) {
       if (!isset(_caret)) _caret = false
       var retour = ''
       if (_caret) {
         retour += '<div class="input-group">'
-        retour += '<button class="bt_showElse btn btn-xs btn-default roundedLeft" type="button" data-toggle="dropdown" tooltip="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">'
+        retour += '<button class="bt_showElse btn btn-xs btn-default roundedLeft" type="button" data-toggle="dropdown" title="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">'
         retour += '<i class="fas fa-sort-up"></i>'
         retour += '</button>'
         retour += '<span class="input-group-btn">'
@@ -1384,7 +1360,7 @@ if (!jeeFrontEnd.scenario) {
       } catch (error) {
         console.log('undo ERROR:', error)
       }
-      setTimeout(function() { jeeP.updateTooltips() }, 500)
+      setTimeout(function() { jeedomUtils.initTooltips() }, 500)
       jeedom.scenario.setAutoComplete()
       this.resetEditors()
     },
@@ -1403,7 +1379,7 @@ if (!jeeFrontEnd.scenario) {
       } catch (error) {
         console.log('redo ERROR:', error)
       }
-      setTimeout(function() { jeeP.updateTooltips() }, 500)
+      setTimeout(function() { jeedomUtils.initTooltips() }, 500)
       jeedom.scenario.setAutoComplete()
       this.resetEditors()
     },
@@ -2200,7 +2176,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     setTimeout(function() {
       newEL.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
     }, 250)
-    jeeP.updateTooltips()
+    jeedomUtils.initTooltips()
     jeedom.scenario.setAutoComplete()
     setTimeout(function() {
       newEL.removeClass('disableElement')
@@ -2276,7 +2252,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     event.target.closest('.subElement').querySelector(':scope > .expressions').insertAdjacentHTML('beforeend', jeeP.addExpression( {type: 'action'} ))
     jeedom.scenario.setAutoComplete()
     jeeP.updateSortable()
-    jeeP.updateTooltips()
+    jeedomUtils.initTooltips()
     return
   }
 
@@ -2317,7 +2293,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
         icon.removeClass('fa-eye').addClass('fa-eye-slash')
         changeThis.closest('.element').addClass('elementCollapse')
         changeThis.setAttribute('value', 1)
-        changeThis.setAttribute('tooltip', "{{Afficher ce bloc.<br>Ctrl+click: tous.}}")
+        changeThis.setAttribute('title', "{{Afficher ce bloc.<br>Ctrl+click: tous.}}")
         //update action, comment and code blocPreview:
         var txt, _el, id
         changeThis.closest('.element').querySelectorAll('.blocPreview').forEach(function(_blocPreview) {
@@ -2344,11 +2320,11 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
         icon.addClass('fa-eye').removeClass('fa-eye-slash')
         changeThis.closest('.element').removeClass('elementCollapse')
         changeThis.setAttribute('value', 0)
-        changeThis.setAttribute('tooltip', "{{Masquer ce bloc.<br>Ctrl+click: tous.}}")
+        changeThis.setAttribute('title', "{{Masquer ce bloc.<br>Ctrl+click: tous.}}")
         jeeP.setEditors()
       }
     }
-    jeeP.updateTooltips()
+    jeedomUtils.initTooltips()
     return
   }
 
@@ -2378,7 +2354,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
         jeedom.cmd.displayActionOption(expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(), '', function(html) {
           $(expression).find('.expressionOptions').html(html)
           jeedomUtils.taAutosize()
-          jeeP.updateTooltips()
+          jeedomUtils.initTooltips()
         })
       }
 
@@ -2512,7 +2488,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     jeeP.updateSortable()
     jeeP.updateElseToggle()
     jeeFrontEnd.modifyWithoutSave = true
-    jeeP.updateTooltips()
+    jeedomUtils.initTooltips()
     jeedom.scenario.setAutoComplete()
     setTimeout(function() {
       elementDiv.lastChild.removeClass('disableElement')
@@ -2588,9 +2564,9 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     jeeP.updateSortable()
     jeedom.scenario.setAutoComplete()
     jeeP.setEditors()
-    jeeP.updateTooltips()
+    jeedomUtils.initTooltips()
 
-    setTimeout(function() { jeeP.updateTooltips() }, 500)
+    setTimeout(function() { jeedomUtils.initTooltips() }, 500)
 
     jeeFrontEnd.modifyWithoutSave = true
     return
@@ -2656,7 +2632,7 @@ document.getElementById('scenariotab').addEventListener('focusout', function(eve
       jeedom.cmd.displayActionOption(el.value, init(expression[0].options), function(html) {
         $(el).closest('.expression').find('.expressionOptions').html(html)
         jeedomUtils.taAutosize()
-        jeeP.updateTooltips()
+        jeedomUtils.initTooltips()
         el.setAttribute('prevalue', el.value)
       })
     }

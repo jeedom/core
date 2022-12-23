@@ -187,8 +187,8 @@ function setTheme() {
 	include_file('core', 'core', 'js');
 	include_file('core', 'js.inc', 'php');
 
-	include_file('3rdparty', 'nouislider/nouislider', 'js');
-	include_file('3rdparty', 'nouislider/nouislider', 'css');
+	include_file('3rdparty', 'nouislider/nouislider', 'js'); //$less
+	include_file('3rdparty', 'nouislider/nouislider', 'css'); //$less
 	include_file('3rdparty', 'bootstrap/bootstrap.min', 'js');
 	include_file('3rdparty', 'jquery.ui/jquery-ui.min', 'js');
 	include_file('3rdparty', 'jquery.ui/jquery.ui.datepicker.fr', 'js');
@@ -196,20 +196,19 @@ function setTheme() {
 	include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'js');
 	include_file('3rdparty', 'bootbox/bootbox.min', 'js');
 
-	include_file('3rdparty', 'highstock/highstock', 'js');
-	include_file('3rdparty', 'highstock/highcharts-more', 'js');
+	include_file('3rdparty', 'highstock/highstock', 'js'); //$less
+	include_file('3rdparty', 'highstock/highcharts-more', 'js'); //$less
 	//include_file('3rdparty', 'highstock/modules/solid-gauge', 'js');
-	include_file('3rdparty', 'highstock/modules/exporting', 'js');
+	include_file('3rdparty', 'highstock/modules/exporting', 'js'); //$less
 	//include_file('3rdparty', 'highstock/modules/offline-exporting', 'js');
 	//include_file('3rdparty', 'highstock/modules/export-data', 'js');
 
 	include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js');
 	include_file('3rdparty', 'jwerty/jwerty', 'js');
-	include_file('3rdparty', 'jquery.packery/jquery.packery', 'js');
+	include_file('3rdparty', 'jquery.packery/jquery.packery', 'js'); //$less with draggability lib
 	include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
-	include_file('3rdparty', 'jquery.tooltipster/js/tooltipster.bundle.min', 'js');
-	include_file('3rdparty', 'jquery.tooltipster/css/tooltipster.bundle.min', 'css');
-	include_file('3rdparty', 'codemirror/lib/codemirror', 'js');
+
+	include_file('3rdparty', 'codemirror/lib/codemirror', 'js'); //$less
 	include_file('3rdparty', 'codemirror/lib/codemirror', 'css');
 	include_file('3rdparty', 'codemirror/addon/edit/matchbrackets', 'js');
 	include_file('3rdparty', 'codemirror/mode/htmlmixed/htmlmixed', 'js');
@@ -219,6 +218,7 @@ function setTheme() {
 	include_file('3rdparty', 'codemirror/mode/javascript/javascript', 'js');
 	include_file('3rdparty', 'codemirror/mode/css/css', 'js');
 	include_file('3rdparty', 'codemirror/mode/python/python', 'js');
+
 	include_file('3rdparty', 'jquery.tree/themes/default/style.min', 'css');
 	include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
 	include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
@@ -233,8 +233,12 @@ function setTheme() {
 	include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
 	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'css');
 	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'js');
-	include_file('3rdparty', 'autosize/autosize.min', 'js');
-	include_file('3rdparty', 'moment/moment-with-locales.min', 'js');
+	include_file('3rdparty', 'autosize/autosize.min', 'js'); //$less
+	include_file('3rdparty', 'moment/moment-with-locales.min', 'js'); //$less
+
+	//New $less libs
+	include_file('3rdparty', 'popper/popper.min', 'js');
+	include_file('3rdparty', 'tippy/tippy.min', 'js');
 
 	//set theme before loading utils:
 	include_file('desktop', 'bootstrap', 'css');

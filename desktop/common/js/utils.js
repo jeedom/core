@@ -150,7 +150,6 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   jeephp2js = {}
   delete window.jeeP
   prePrintEqLogic = printEqLogic = addCmdToTable = undefined
-  if (jeedomUtils.OBSERVER !== null) jeedomUtils.OBSERVER.disconnect()
   $('body').off('changeThemeEvent')
 
   if (_url.indexOf('#') == -1) {
@@ -208,18 +207,6 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
       jeeFrontEnd.modifyWithoutSave = false
     }, 250)
   })
-
-  setTimeout(function() {
-    //scenarios uses special tooltips not requiring destroy.
-    if (document.body.getAttribute('data-page') != 'scenario') {
-      if (jeedomUtils.OBSERVER !== null) {
-        var targetNode = document.getElementById('div_mainContainer')
-        if (targetNode) jeedomUtils.OBSERVER.observe(targetNode, jeedomUtils.observerConfig)
-      } else {
-        jeedomUtils.createObserver()
-      }
-    }
-  }, 500)
 
   return
 }
@@ -315,7 +302,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   setTimeout(function() {
     jeedomUtils.initTooltips()
-    jeedomUtils.createObserver()
     document.body.triggerEvent('jeedom_page_load')
   })
 
@@ -1018,63 +1004,72 @@ jeedomUtils.initDisplayAsTable = function() {
 }
 
 
-jeedomUtils.OBSERVER = null
-jeedomUtils.observerConfig = {
-  attributes: false,
-  childList: true,
-  characterData: false,
-  subtree: true
-}
-jeedomUtils.createObserver = function() {
-  var mainContent = document.getElementById('div_mainContainer')
-  if (mainContent) {
-    jeedomUtils.OBSERVER = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutation) {
-        if (mutation.type == 'childList') {
-          if (mutation.addedNodes.length >= 1) {
-            if (mutation.addedNodes[0].nodeName != '#text') {
-              jeedomUtils.initTooltips($(mutation.target))
-            }
-          }
-        } else if (mutation.type == 'attributes') {
-          if (mutation.attributeName == 'title') jeedomUtils.initTooltips($(mutation.target))
-        }
-      })
-    })
-    jeedomUtils.OBSERVER.observe(mainContent, jeedomUtils.observerConfig)
-  }
-}
-
 jeedomUtils.TOOLTIPSOPTIONS = {
-  arrow: false,
-  delay: 650,
-  interactive: false,
-  contentAsHTML: true,
-  debug: false
+  onTrigger: (instance, event) => {
+    if (instance.reference.getAttribute('title') != null) {
+      instance.reference.setAttribute('data-title', instance.reference.getAttribute('title'))
+      instance.reference.removeAttribute('title')
+    }
+    if (instance.reference.getAttribute('title') == null && instance.reference.getAttribute('data-title') == null) {
+      return false
+    }
+    instance.setContent(instance.reference.getAttribute('data-title'))
+    return true
+  },
+  lazy: false,
+  onCreate: (instance) => {
+    instance.reference.addClass('tippied')
+  },
+  arrow: true,
+  allowHTML: true,
+  distance: 10,
+  delay: [50, 0],
+  //trigger: 'click',
+  //hideOnClick: false
 }
 jeedomUtils.initTooltips = function(_el) {
+  document.querySelectorAll('.tippied').forEach(_tip => {
+      _tip._tippy.destroy()
+    })
+
+  var selector = '[tooltip], [title]:not(.ui-button)'
   if (!_el) {
-    try {
-      $('.tooltips:not(.tooltipstered), [title]:not(.ui-button)').tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
-    } catch (e) { }
-  } else {
-    //cmd update:
-    if (_el.parents('.cmd-widget[title]').length) {
-      var me = _el.closest('.cmd-widget[title]')
-      if (me.hasClass('tooltipstered')) me.tooltipster('destroy')
-      me.tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
-      return
-    }
-
-    if (_el.hasClass('tooltips') && !_el.hasClass('tooltipstered') || _el.is('[title]')) {
-      if (_el.is('[title]') && _el.hasClass('tooltipstered')) {
-        _el.tooltipster('destroy')
+    document.querySelectorAll(selector).forEach(_tip => {
+      if (_tip.getAttribute('title') != null) {
+        _tip.setAttribute('data-title', _tip.getAttribute('title'))
+        _tip.removeAttribute('title')
       }
-      _el.tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
+      if (_tip.getAttribute('tooltip') != null) {
+        _tip.setAttribute('data-title', _tip.getAttribute('tooltip'))
+        _tip.removeAttribute('tooltip')
+      }
+    })
+    tippy('[data-title]' , jeedomUtils.TOOLTIPSOPTIONS)
+  } else {
+    if (_el.length && _el.lengh > 0) {
+      var items = _el.querySelectorAll(selector)
+      tippy(items , jeedomUtils.TOOLTIPSOPTIONS)
+    } else {
+      tippy(_el, jeedomUtils.TOOLTIPSOPTIONS)
     }
-
-    _el.find('.tooltipstered[title]').tooltipster('destroy')
-    _el.find('.tooltips:not(.tooltipstered), [title]').tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
+  }
+}
+jeedomUtils.disableTooltips = function(_el) {
+  if (!_el) {
+    document.querySelectorAll('.tippied').forEach(_tip => {
+      _tip._tippy.disable()
+    })
+  } else {
+    _el._tippy.disable()
+  }
+}
+jeedomUtils.enableTooltips = function(_el) {
+  if (!_el) {
+    document.querySelectorAll('.tippied').forEach(_tip => {
+      _tip._tippy.enable()
+    })
+  } else {
+    _el._tippy.enable()
   }
 }
 

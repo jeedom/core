@@ -596,7 +596,7 @@ $('#bt_checkAllUpdate').off('click').on('click', function() {
 
 $('#table_update').on({
   'click': function(event) {
-    $(this).tooltipster('open')
+    this._tippy.show()
     if ($(this).is(':checked')) {
       $(this).closest('tr').find('a.btn.update').addClass('disabled')
     } else {

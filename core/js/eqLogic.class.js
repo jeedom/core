@@ -454,6 +454,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
           } else if (page == 'eqAnalyse' && result[i].alert != '') {
             document.querySelector('.alertListContainer').html(result[i].html, true)
             jeedomUtils.positionEqLogic(result[i].id, false)
+            jeedomUtils.initTooltips()
             $('.alertListContainer').packery('destroy').packery({ itemSelector: "#alertEqlogic .eqLogic-widget" })
           }
         } else {
@@ -484,6 +485,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
             console.error(error)
           }
           eqLogic.triggerEvent('change')
+          jeedomUtils.initTooltips()
         }
 
         if (jeedomUtils.userDeviceType == undefined) {

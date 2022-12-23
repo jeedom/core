@@ -4911,28 +4911,45 @@ div.eqLogic-widget.editingMode .panelLink {
     font-size: 16px;
   }
 
-/* ______TooltipSter */
-  .tooltipWrapper {
-    display: none;
-  }
-  .tooltipster-sidetip .tooltipster-box {
-    background: var(--al-info-color);
-    border: none;
-    border-radius: var(--border-radius) !important;
-  }
-
-  .tooltipster-sidetip .tooltipster-content {
+/* ______tippy-tooltip */
+  .tippy-box {
+    background-color: var(--al-info-color);
     color: var(--linkHoverLight-color);
-    padding: 2px 8px 4px 8px;
+    font-size: 14px;
+    border: none !important;
+  }
+  .tippy-box[data-placement^='top'] > .tippy-arrow:before {
+    border-top-color: var(--al-info-color) !important;
+  }
+  .tippy-box[data-placement^='bottom'] > .tippy-arrow:before {
+    border-bottom-color: var(--al-info-color) !important;
+  }
+  .tippy-box[data-placement^='left'] > .tippy-arrow:before {
+    border-left-color: var(--al-info-color) !important;
+  }
+  .tippy-box[data-placement^='right'] > .tippy-arrow:before {
+    border-right-color: var(--al-info-color) !important;
   }
 
-  body[data-coloredcats="0"] .tooltipster-sidetip .tooltipster-box {
-    background: rgba(var(--eq-bg-color), 1) !important;
-    border: 1px solid var(--el-defaultColor) !important;
+  body[data-coloredcats="0"] .tippy-box {
+    background-color: rgba(var(--eq-bg-color), 1);
+    border: 1px solid var(--el-defaultColor);
+    color: var(--link-color);
   }
-  body[data-coloredcats="0"] .tooltipster-sidetip .tooltipster-content {
-    color: var(--link-color) !important;
+  body[data-coloredcats="0"] .tippy-box[data-placement^='top'] > .tippy-arrow:before {
+    border-top-color: rgba(var(--eq-bg-color), 1) !important;
   }
+  body[data-coloredcats="0"] .tippy-box[data-placement^='bottom'] > .tippy-arrow:before {
+    border-bottom-color: rgba(var(--eq-bg-color), 1) !important;
+  }
+  body[data-coloredcats="0"] .tippy-box[data-placement^='left'] > .tippy-arrow:before {
+    border-left-color: rgba(var(--eq-bg-color), 1) !important;
+  }
+  body[data-coloredcats="0"] .tippy-box[data-placement^='right'] > .tippy-arrow:before {
+    border-right-color: rgba(var(--eq-bg-color), 1) !important;
+  }
+
+
 
 /* ____________________ROUNDING */
   ::-moz-color-swatch {

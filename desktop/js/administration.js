@@ -30,13 +30,6 @@ if (!jeeFrontEnd.administration) {
         $('.nav-tabs a[data-target="#' + _url.split('#')[1] + '"]').trigger('click')
       }
     },
-    updateTooltips: function() {
-      //management of tooltip with search engine. In scenarios, tooltips are specially created with tooltip attribute and copied as title to keep track of it!
-      $('[tooltip]:not(.tooltipstered)').each(function() {
-        $(this).attr('title', $(this).attr('tooltip'))
-      })
-      $('[tooltip]:not(.tooltipstered)').tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
-    },
     initSearchLinks: function() {
       $('#searchResult a[role="searchTabLink"]').on('click', function() {
         var tabId = $(this).attr('href')
@@ -424,7 +417,7 @@ jeedomUtils.initSpinners()
 jeedomUtils.setCheckContextMenu()
 jeeP.printConvertColor()
 setTimeout(function() {
-  jeeP.updateTooltips()
+  jeedomUtils.initTooltips()
   jeeFrontEnd.modifyWithoutSave = false
 }, 500)
 
@@ -439,11 +432,11 @@ $('#in_searchConfig').keyup(function() {
     $(this).replaceWith(el)
   })
 
-  document.emptyById('searchResult')
+  document.getElementById('searchResult').empty()
   if (search == '') {
     $('.nav-tabs.nav-primary, .tab-content').show()
     jeedomUtils.dateTimePickerInit()
-    jeeP.updateTooltips()
+    jeedomUtils.initTooltips()
     return
   }
   if (search.length < 3) return
@@ -456,7 +449,7 @@ $('#in_searchConfig').keyup(function() {
   $('.form-group > .control-label').each(function() {
     thisTabLink = false
     text = jeedomUtils.normTextLower($(this).text())
-    tooltip = $(this).find('sup i').attr('tooltip')
+    tooltip = $(this).find('sup i').attr('data-title')
     if (tooltip) {
       tooltip = jeedomUtils.normTextLower(tooltip)
     } else {
@@ -480,16 +473,13 @@ $('#in_searchConfig').keyup(function() {
         searchId = Math.random()
         el.attr('searchId', searchId)
         el.replaceWith('<span searchId=' + searchId + '></span>')
-        el.find('.tooltipstered').each(function() {
-          $(this).removeClass('tooltipstered')
-        })
         thisTabLink.append(el)
       }
     }
   })
   jeedomUtils.dateTimePickerInit()
   jeeP.initSearchLinks()
-  jeeP.updateTooltips()
+  jeedomUtils.initTooltips()
 })
 
 $('#bt_resetConfigSearch').on('click', function() {

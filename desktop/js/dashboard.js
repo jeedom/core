@@ -33,7 +33,6 @@ if (!jeeFrontEnd.dashboard) {
       jeedomUI.setEqSignals()
       jeedomUI.setHistoryModalHandler()
       document.querySelectorAll('#dashOverviewPrevSummaries > .objectSummaryContainer').unseen().addClass('shadowed')
-      $('.cmd.cmd-widget.tooltipstered').tooltipster('destroy')
     },
     resetCategoryFilter: function() {
       document.querySelectorAll('#categoryfilter .catFilterKey').forEach(function(element) {
@@ -449,14 +448,14 @@ document.getElementById('bt_editDashboardWidgetOrder')?.addEventListener('click'
     jeedomUtils.hideAlert()
     jeeFrontEnd.modifyWithoutSave = false
     $('#md_modal').dialog('close')
-    $('div.eqLogic-widget .tooltipstered, div.scenario-widget .tooltipstered').tooltipster('enable')
+    jeedomUtils.enableTooltips()
     document.querySelectorAll('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').unseen()
     document.querySelectorAll('.counterReorderJeedom').remove()
     jeeP.editWidgetMode(0)
     $('.div_displayEquipement').packery()
   } else {
     bt.setAttribute('data-mode', 1)
-    $('div.eqLogic-widget .tooltipstered, div.scenario-widget .tooltipstered').tooltipster('disable')
+    jeedomUtils.disableTooltips()
     document.querySelectorAll('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').seen()
     jeeP.editWidgetMode(1)
   }

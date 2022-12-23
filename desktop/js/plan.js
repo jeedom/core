@@ -596,7 +596,7 @@ if (!jeeFrontEnd.plan) {
         jeeFrontEnd.planEditOption.state = true
         jeeP.pageContainer.dataset.planEditState = true
 
-        $('.tooltipstered').tooltipster('disable')
+        jeedomUtils.disableTooltips()
         this.planContainer.addClass('editingMode')
         jeedom.cmd.disableExecute = true
 
@@ -663,7 +663,7 @@ if (!jeeFrontEnd.plan) {
         jeedom.cmd.disableExecute = false
         this.planContainer.removeClass('editingMode')
         try {
-          $('.tooltipstered').tooltipster('enable')
+          jeedomUtils.enableTooltips()
           $editItems.draggable('destroy').removeClass('editingMode')
           $('.plan-link-widget, .view-link-widget, .graph-widget, .div_displayObject >.eqLogic-widget, .scenario-widget, .text-widget, .image-widget, .zone-widget, .summary-widget').resizable("destroy")
         } catch (e) {}

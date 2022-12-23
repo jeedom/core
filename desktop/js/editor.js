@@ -148,7 +148,6 @@ if (!jeeFrontEnd.editor) {
           var myClass = ''
           var myIcon = ''
           var $button = $('#elfinder .elfinder-button-icon-jee_onoffcustom + .elfinder-button-text')
-          try { $button.closest('.ui-state-default.tooltipstered').tooltipster('destroy') } catch (error) {}
           if (this.config == 1) {
             myClass = 'btn-warning'
             myIcon = ' <i class="fas fa-toggle-on"></i>'
@@ -170,9 +169,6 @@ if (!jeeFrontEnd.editor) {
     },
     killTooltips: function() {
       setTimeout(function() {
-      try {
-        $('.elfinder-workzone .tooltipstered').tooltipster('destroy')
-      } catch(error) {}
       try {
         $('#elfinder [title]').removeAttr('title')
       } catch(error) {}
