@@ -403,7 +403,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
           if (page == 'dashboard') {
             parent.parentNode.remove()
           }
-        } else if (page != 'plan') {
+        } else if ($(parent).data('packery') != undefined) {
           $(parent).packery()
         }
         continue
@@ -436,7 +436,9 @@ jeedom.eqLogic.refreshValue = function(_params) {
         if (eqLogic == null) {
           if (page == 'dashboard') {
             if ((object_div = document.getElementById('div_ob' + result[i].object_id)) != null) {
-              if ((previousEqLogic = object_div.querySelector('.eqLogic[data-order="' + (result[i].order - 1) + '"]')) != null) {
+              if (object_div.querySelector('.eqLogic')?.getAttribute('data-order') >= result[i].order) {
+                object_div.querySelector('.eqLogic').before(tile)
+              } else if ((previousEqLogic = object_div.querySelector('.eqLogic[data-order="' + (result[i].order - 1) + '"]')) != null) {
                 previousEqLogic.after(tile)
               } else {
                 object_div.html(result[i].html, true)
@@ -449,13 +451,13 @@ jeedom.eqLogic.refreshValue = function(_params) {
                 element.setAttribute('data-order', idx + 1)
               })
             }
-          } else if (page == 'eqAnalyse' && tile.childNodes[0].querySelector('.widget-name>span>i').hasClass('fas')) {
+          } else if (page == 'eqAnalyse' && result[i].alert != '') {
             document.querySelector('.alertListContainer').html(result[i].html, true)
             jeedomUtils.positionEqLogic(result[i].id, false)
             $('.alertListContainer').packery('destroy').packery({ itemSelector: "#alertEqlogic .eqLogic-widget" })
           }
         } else {
-          if (page == 'eqAnalyse' && !tile.childNodes[0].querySelector('.widget-name>span>i').hasClass('fas')) {
+          if (page == 'eqAnalyse' && result[i].alert == '') {
             eqLogic.remove()
             if (document.querySelector('.alertListContainer').querySelectorAll('.eqLogic').length > 0) {
               $('.alertListContainer').packery()

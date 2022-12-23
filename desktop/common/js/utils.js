@@ -136,7 +136,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
         window.history.pushState('', '', _url)
         jeeFrontEnd.PREVIOUS_PAGE = _url
       }
-    document.body.setAttribute('data-page', getUrlVars('p') || '')
+      document.body.setAttribute('data-page', getUrlVars('p') || '')
     } catch (e) { }
   }
 
@@ -1432,6 +1432,7 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
       height: (height + (2 * jeedomUtils.tileHeightSteps.indexOf(height) * parseInt(jeedom.theme['widget::margin']))) + 'px',
       margin: margin
     })
+    tile.classList.add('jeedomAlreadyPosition')
   } else {
     var width, height, idx, element
     var elements = document.querySelectorAll('div.eqLogic-widget, div.scenario-widget')
@@ -1449,7 +1450,7 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
         height: (height + (2 * jeedomUtils.tileHeightSteps.indexOf(height) * parseInt(jeedom.theme['widget::margin']))) + 'px',
         margin: margin
       })
-      tile.classList.add("jeedomAlreadyPosition")
+      tile.classList.add('jeedomAlreadyPosition')
     }
   }
 }
