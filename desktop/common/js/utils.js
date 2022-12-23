@@ -1029,8 +1029,8 @@ jeedomUtils.TOOLTIPSOPTIONS = {
 }
 jeedomUtils.initTooltips = function(_el) {
   document.querySelectorAll('.tippied').forEach(_tip => {
-      _tip._tippy.destroy()
-    })
+    if (_tip._tippy) _tip._tippy.destroy()
+  })
 
   var selector = '[tooltip], [title]:not(.ui-button)'
   if (!_el) {

@@ -450,22 +450,22 @@ $('#in_searchConfig').keyup(function() {
     thisTabLink = false
     text = jeedomUtils.normTextLower($(this).text())
     tooltip = $(this).find('sup i').attr('data-title')
-    if (tooltip) {
+    if (tooltip != undefined) {
       tooltip = jeedomUtils.normTextLower(tooltip)
     } else {
       tooltip = ''
     }
-    if (text.indexOf(search) >= 0 || tooltip.indexOf(search) >= 0) {
+    if (text.includes(search) || (tooltip != '' && tooltip.includes(search))) {
       //get element tab to create link to:
       tabId = $(this).closest('div[role="tabpanel"]').attr('id')
       if (!tabsArr.includes(tabId)) {
-        tabName = $('ul.nav-primary a[href="#' + tabId + '"]').html()
+        tabName = $('ul.nav-primary a[data-target="#' + tabId + '"]').html()
         if (tabName != undefined) {
-          $('#searchResult').append('<div><a role="searchTabLink" href="#' + tabId + '">' + tabName + '</a></div>')
+          $('#searchResult').append('<div><a role="searchTabLink" data-target="#' + tabId + '">' + tabName + '</a></div>')
           tabsArr.push(tabId)
         }
       }
-      thisTabLink = $('#searchResult a[role="searchTabLink"][href="#' + tabId + '"]').parent()
+      thisTabLink = $('#searchResult a[role="searchTabLink"][data-target="#' + tabId + '"]').parent()
 
       el = $(this).closest('.form-group')
       //Is this form-group not in result yet:
