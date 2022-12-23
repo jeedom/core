@@ -571,7 +571,6 @@ class plugin {
 				if (isset($dependancy_info['progress_file']) && file_exists($dependancy_info['progress_file'])) {
 					shell_exec('rm ' . $dependancy_info['progress_file']);
 				}
-				config::save('deamonAutoMode', 0, $plugin->getId());
 				log::add($plugin->getId(), 'error', __('Attention : l\'installation des dépendances a dépassé le temps maximum autorisé :', __FILE__) . ' ' . $plugin->getMaxDependancyInstallTime() . 'min');
 			}
 			try {
