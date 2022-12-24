@@ -1006,6 +1006,7 @@ jeedomUtils.initDisplayAsTable = function() {
 
 jeedomUtils.TOOLTIPSOPTIONS = {
   onTrigger: (instance, event) => {
+    if (instance.reference.getAttribute('data-title') == '') return false
     instance.setContent(instance.reference.getAttribute('data-title'))
     return true
   },
@@ -1028,11 +1029,7 @@ jeedomUtils.initTooltips = function(_el) {
     items = document.querySelectorAll(selector)
   } else {
     if (isElement_jQuery(_el)) _el = _el[0] //Deprecated, J plugins
-    if (_el.length && _el.lengh > 0) {
-      items = _el.querySelectorAll(selector)
-    } else {
-      items = [_el]
-    }
+    items = _el.querySelectorAll(selector)
   }
 
   items.forEach(_tip => {
