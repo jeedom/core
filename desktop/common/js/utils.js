@@ -1006,13 +1006,6 @@ jeedomUtils.initDisplayAsTable = function() {
 
 jeedomUtils.TOOLTIPSOPTIONS = {
   onTrigger: (instance, event) => {
-    if (instance.reference.getAttribute('title') != null) {
-      instance.reference.setAttribute('data-title', instance.reference.getAttribute('title'))
-      instance.reference.removeAttribute('title')
-    }
-    if (instance.reference.getAttribute('title') == null && instance.reference.getAttribute('data-title') == null) {
-      return false
-    }
     instance.setContent(instance.reference.getAttribute('data-title'))
     return true
   },
@@ -1028,49 +1021,44 @@ jeedomUtils.TOOLTIPSOPTIONS = {
   //hideOnClick: false
 }
 jeedomUtils.initTooltips = function(_el) {
-  document.querySelectorAll('.tippied').forEach(_tip => {
-    if (_tip._tippy) _tip._tippy.destroy()
-  })
+  var selector = '[tooltip]:not(.tippied), [title]:not(.tippied):not(.ui-button)'
+  var items = null
 
-  var selector = '[tooltip], [title]:not(.ui-button)'
   if (!_el) {
-    document.querySelectorAll(selector).forEach(_tip => {
-      if (_tip.getAttribute('title') != null) {
-        _tip.setAttribute('data-title', _tip.getAttribute('title'))
-        _tip.removeAttribute('title')
-      }
-      if (_tip.getAttribute('tooltip') != null) {
-        _tip.setAttribute('data-title', _tip.getAttribute('tooltip'))
-        _tip.removeAttribute('tooltip')
-      }
-    })
-    tippy('[data-title]' , jeedomUtils.TOOLTIPSOPTIONS)
+    items = document.querySelectorAll(selector)
   } else {
+    if (isElement_jQuery(_el)) _el = _el[0] //Deprecated, J plugins
     if (_el.length && _el.lengh > 0) {
-      var items = _el.querySelectorAll(selector)
-      tippy(items , jeedomUtils.TOOLTIPSOPTIONS)
+      items = _el.querySelectorAll(selector)
     } else {
-      tippy(_el, jeedomUtils.TOOLTIPSOPTIONS)
+      items = [_el]
     }
   }
+
+  items.forEach(_tip => {
+    if (_tip.getAttribute('title') != null) {
+      _tip.setAttribute('data-title', _tip.getAttribute('title'))
+      _tip.removeAttribute('title')
+    }
+    if (_tip.getAttribute('tooltip') != null) {
+      _tip.setAttribute('data-title', _tip.getAttribute('tooltip'))
+      _tip.removeAttribute('tooltip')
+    }
+  })
+
+  tippy(items , jeedomUtils.TOOLTIPSOPTIONS)
 }
-jeedomUtils.disableTooltips = function(_el) {
-  if (!_el) {
-    document.querySelectorAll('.tippied').forEach(_tip => {
-      _tip._tippy.disable()
-    })
-  } else {
-    _el._tippy.disable()
-  }
+
+
+jeedomUtils.disableTooltips = function() {
+  document.querySelectorAll('.tippied').forEach(_tip => {
+    if (_tip._tippy) _tip._tippy.disable()
+  })
 }
-jeedomUtils.enableTooltips = function(_el) {
-  if (!_el) {
-    document.querySelectorAll('.tippied').forEach(_tip => {
-      _tip._tippy.enable()
-    })
-  } else {
-    _el._tippy.enable()
-  }
+jeedomUtils.enableTooltips = function() {
+  document.querySelectorAll('.tippied').forEach(_tip => {
+    if (_tip._tippy) _tip._tippy.enable()
+  })
 }
 
 jeedomUtils.initTextArea = function() {
