@@ -161,11 +161,9 @@ jeedom.log.autoupdate = function(_params) {
     _params.callNumber = 0
   }
   if (!isset(_params.log)) {
-    console.log('[jeedom.log.autoupdate] No logfile')
     return
   }
   if (!isset(_params.display)) {
-    console.log('[jeedom.log.autoupdate] No display')
     return
   }
 
@@ -296,7 +294,7 @@ jeedom.log.autoupdate = function(_params) {
         }
         jeedom.log.timeout = setTimeout(function() {
           jeedom.log.autoupdate(_params)
-        }, 1000)
+        }, dom_brutlogcheck.checked ? 1000 : 2000)
       }
     },
     error: function() {
