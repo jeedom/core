@@ -1946,7 +1946,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
     //is scenario empty:
     if (document.getElementById('div_scenarioElement').querySelectorAll(':scope > .element').length == 0) {
       jeeP.addElementSave.elementDiv = document.getElementById('div_scenarioElement')
-      jeeP.addElementSave.elementDiv.querySelector('.span_noScenarioElement').remove()
+      jeeP.addElementSave.elementDiv.querySelector('.span_noScenarioElement')?.remove()
     } else {
       //had focus ?
       if (jeeP.PREV_FOCUS != null && jeeP.PREV_FOCUS.closest('div.element') != null) {

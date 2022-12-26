@@ -375,7 +375,7 @@ if (!jeeFrontEnd.plugin) {
             jeedomUtils.addOrUpdateUrl('id', $container.find('#span_plugin_id').text(), data.name + ' - ' + JEEDOM_PRODUCT_NAME)
           }
           setTimeout(function() {
-            jeedomUtils.initTooltips($container.find("#div_confPlugin"))
+            jeedomUtils.initTooltips(document.getElementById("div_confPlugin"))
           }, 500)
         }
       })

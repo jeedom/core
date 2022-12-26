@@ -1025,7 +1025,7 @@ jeedomUtils.initTooltips = function(_el) {
   var selector = '[tooltip]:not(.tippied), [title]:not(.tippied):not(.ui-button)'
   var items = null
 
-  if (!_el) {
+  if (!isset(_el)) {
     items = document.querySelectorAll(selector)
   } else {
     if (isElement_jQuery(_el)) _el = _el[0] //Deprecated, J plugins
