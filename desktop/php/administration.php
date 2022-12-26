@@ -21,7 +21,7 @@ user::isBan();
 				<a id="bt_resetConfigSearch" class="btn" style="width:30px"><i class="fas fa-times"></i> </a>
 			</div>
 			<div class="input-group-btn">
-				<a id="bt_saveGeneraleConfig" class="btn btn-success roundedRight"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+				<a id="bt_saveGeneraleConfig" class="btn btn-success roundedRight" type="button"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 			</div>
 		</div>
 		<div>

@@ -148,9 +148,12 @@ if (!jeeFrontEnd.administration) {
           value: JSON.stringify(value)
         },
         dataType: 'json',
-        global: false,
-        error: function(request, status, error) {
-          handleAjaxError(request, status, error)
+        noDisplayError: true,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
         },
         success: function(data) {
           if (data.state != 'ok') {
@@ -516,10 +519,11 @@ $("#bt_saveGeneraleConfig").off('click').on('click', function(event) {
   jeeP.saveConvertColor()
   jeeP.saveObjectSummary()
   var config = document.querySelectorAll('#config').getJeeValues('.configKey')[0]
-  $('.bt_addActionOnMessage').each(function(){
-    let channel = $(this).attr('data-channel');
-    config['actionOnMessage'+channel] = JSON.stringify(document.querySelectorAll('#div_actionOnMessage'+channel+' .actionOnMessage').getJeeValues('.expressionAttr'))
+  document.querySelectorAll('.bt_addActionOnMessage').forEach(_bt => {
+    let channel = _bt.getAttribute('data-channel')
+    config['actionOnMessage' + channel] = JSON.stringify(document.querySelectorAll('#div_actionOnMessage' + channel + ' .actionOnMessage').getJeeValues('.expressionAttr'))
   })
+
   jeedom.config.save({
     configuration: config,
     error: function(error) {
@@ -550,6 +554,7 @@ $("#bt_saveGeneraleConfig").off('click').on('click', function(event) {
             reloadPage = true
           }
           if (reloadPage) {
+            jeeFrontEnd.modifyWithoutSave = false
             var url = 'index.php?v=d&p=administration&saveSuccessFull=1'
             if (window.location.hash != '') {
               url += window.location.hash

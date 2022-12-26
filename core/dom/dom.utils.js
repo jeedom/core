@@ -514,10 +514,12 @@ domUtils.ajax = function(_params) {
     }
     fetch(url, {
       method: _params.type,
-      mode: 'cors',
-      credentials: 'include',
       body: isGet ? null : new URLSearchParams(_params.data),
       headers: isGet ? new Headers() : {"Content-Type": "application/x-www-form-urlencoded"},
+      redirect: 'follow',
+      referrerPolicy: 'no-referrer',
+      mode: 'cors',
+      credentials: 'same-origin'
     })
     .then(function(response, reject) {
       if (!response.ok) {
@@ -542,6 +544,7 @@ domUtils.ajax = function(_params) {
     }).then(async function() {
       domUtils.countAjax(1, _params.global)
       _params.complete()
+      return
     })
     .catch(function(error) {
       domUtils.countAjax(1, _params.global)
@@ -551,8 +554,10 @@ domUtils.ajax = function(_params) {
           domUtils.handleAjaxError(msg, _params.data, error)
           console.error(msg, _params.data, error)
         }
+        if (_params.onError) {
+          _params.onError(error)
+        }
       }
-      if (_params.onError) _params.onError(error)
     })
   }
 }
