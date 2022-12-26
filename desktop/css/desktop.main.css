@@ -4916,6 +4916,7 @@ div.eqLogic-widget.editingMode .panelLink {
     background-color: var(--al-info-color);
     color: var(--linkHoverLight-color);
     font-size: 14px;
+    max-width: 30vw !important;
     border: none !important;
   }
   .tippy-box[data-placement^='top'] > .tippy-arrow:before {
