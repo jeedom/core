@@ -50,9 +50,11 @@ if (!jeeFrontEnd.scenario) {
       window.jeeP = this
     },
     postInit: function() {
+      //autocomplete timeline input:
       jeedom.timeline.autocompleteFolder()
-      $('.scenarioAttr[data-l1key="group"]').autocomplete({
-        source: function(request, response, url) {
+      //autocomplete group input:
+      document.querySelector('.scenarioAttr[data-l1key="group"]').jeeComplete({
+          source: function(request, response, url) {
           domUtils.ajax({
             type: 'POST',
             url: 'core/ajax/scenario.ajax.php',
@@ -2244,6 +2246,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     }
     jeeFrontEnd.modifyWithoutSave = true
     jeeP.PREV_FOCUS = null
+    domUtils.syncJeecompletes()
     return
   }
 

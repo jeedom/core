@@ -4422,6 +4422,25 @@ div.eqLogic-widget.editingMode .panelLink {
   }
 
 /* ____________________DIALOGS */
+  ul.jeeComplete {
+    position: absolute;
+    list-style-type: none;
+    color: var(--txt-color);
+    background-color: var(--form-bg-color);
+    padding: 5px 10px;
+  }
+  ul.jeeComplete > li.jeeCompleteItem {
+    cursor: pointer;
+  }
+  ul.jeeComplete > li.jeeCompleteItem:hover,
+  ul.jeeComplete > li.jeeCompleteItem:focus,
+  ul.jeeComplete > li.jeeCompleteItem.active {
+    cursor: pointer;
+    color: var(--linkHoverLight-color);
+    background-color: var(--sc-formTxt-color);
+  }
+
+
   #div_displayEqLogicConfigure #commands div.optionalParamHelp,
   #div_displayCmdConfigure #optionalParamHelp {
     padding-left: 10px;
@@ -4916,7 +4935,7 @@ div.eqLogic-widget.editingMode .panelLink {
     background-color: var(--al-info-color);
     color: var(--linkHoverLight-color);
     font-size: 14px;
-    max-width: 30vw !important;
+    max-width: 40vw !important;
     border: none !important;
   }
   .tippy-box[data-placement^='top'] > .tippy-arrow:before {

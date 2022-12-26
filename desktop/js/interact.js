@@ -298,7 +298,7 @@ try {
     })
   } catch (err) {}
 
-$('.interactAttr[data-l1key=group]').autocomplete({
+document.querySelector('.interactAttr[data-l1key="group"]').jeeComplete({
   source: function(request, response, url) {
     domUtils.ajax({
       type: 'POST',

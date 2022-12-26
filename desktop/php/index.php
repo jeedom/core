@@ -161,6 +161,7 @@ function setTheme() {
 
 	<?php
 	include_file('core', 'dom.utils', 'dom');
+	include_file('core', 'dom.ui', 'dom');
 	include_file('core', 'icon.inc', 'php');
 	include_file('3rdparty', 'roboto/roboto', 'css');
 	include_file('3rdparty', 'camingocode/camingocode', 'css');

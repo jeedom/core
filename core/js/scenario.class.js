@@ -587,13 +587,16 @@ jeedom.scenario.autoCompleteActionScOnly = [
 jeedom.scenario.setAutoComplete = function(_params) {
   if (!isset(_params)) {
     _params = {}
-    _params.parent = $('#div_scenarioElement')
+    _params.parent = document.getElementById('div_scenarioElement')
     _params.type = 'expression'
   }
 
-  _params.parent.find('.expression').each(function() {
-    if (this.querySelector('.expressionAttr[data-l1key="type"]').value == 'condition') {
-      $(this).find('.expressionAttr[data-l1key="' + _params.type + '"]').autocomplete({
+  if (isElement_jQuery(_params.parent)) _params.parent = _params.parent[0]
+
+  _params.parent.querySelectorAll('.expression')?.forEach(_expr => {
+    if (_expr.querySelector('.expressionAttr[data-l1key="type"]').value == 'condition') {
+      _expr.querySelector('.expressionAttr[data-l1key="' + _params.type + '"]').jeeComplete({
+        id: 'scenarioConditionAutocomplete',
         minLength: 1,
         source: function(request, response) {
           //return last term after last space:
@@ -601,47 +604,44 @@ jeedom.scenario.setAutoComplete = function(_params) {
           var term = values[values.length - 1]
           if (term == '') return false //only space entered
           response(
-            $.ui.autocomplete.filter(jeedom.scenario.autoCompleteCondition, term)
+            jeedom.scenario.autoCompleteCondition.filter(item => item.includes(term))
           )
         },
-        response: function(event, ui) {
+        response: function(event, data) {
           //remove leading # from all values:
-          $.each(ui.content, function(index, _obj) {
-            _obj.label = _obj.label.substr(1)
-            _obj.value = _obj.label
+          data.content.forEach(_content => {
+            _content.text = _content.text.substr(1)
+            _content.value = _content.value.substr(1)
           })
         },
-        focus: function() {
+        focus: function(event) {
           event.preventDefault()
           return false
         },
-        select: function(event, ui) {
-          //update input value:
-          if (this.value.substr(-1) == '#') {
-            this.value = this.value.slice(0, -1) + ui.item.value
+        select: function(event, data) {
+          if (data.value.substr(-1) == '#') {
+            data.value = data.value.slice(0, -1) + data.value
           } else {
-            var values = this.value.split(' ')
+            var values = data.value.split(' ')
             var term = values[values.length - 1]
-            this.value = this.value.slice(0, -term.length) + ui.item.value
+            data.value = data.value.slice(0, -term.length) + data.value
           }
-          return false
         }
       })
     }
 
-    if (this.querySelector('.expressionAttr[data-l1key="type"]').value == 'action') {
+    if (_expr.querySelector('.expressionAttr[data-l1key="type"]').value == 'action') {
         if (document.body.getAttribute('data-page') == 'scenario') {
           jeedom.scenario.autoCompleteActionContext = jeedom.scenario.autoCompleteAction.concat(jeedom.scenario.autoCompleteActionScOnly)
         } else {
           jeedom.scenario.autoCompleteActionContext = jeedom.scenario.autoCompleteAction
         }
 
-      $(this).find('.expressionAttr[data-l1key="' + _params.type + '"]').autocomplete({
-        source: jeedom.scenario.autoCompleteActionContext,
-        close: function(event, ui) {
-          this.blur()
-        }
-      })
+        _expr.querySelector('.expressionAttr[data-l1key="' + _params.type + '"]').jeeComplete({
+          source: jeedom.scenario.autoCompleteActionContext,
+          id: 'scenarioActionAutocomplete',
+          forceSingle: true
+        })
     }
   })
 }

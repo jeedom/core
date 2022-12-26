@@ -247,7 +247,7 @@ if (!jeeFrontEnd.administration) {
       })
 
       jeedom.scenario.setAutoComplete({
-        parent: $('#div_actionOnMessage'+_channel),
+        parent: document.getElementById('div_actionOnMessage'+_channel),
         type: 'cmd'
       })
     },

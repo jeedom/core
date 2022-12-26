@@ -182,6 +182,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
     document.getElementById('bt_getHelpPage').setAttribute('data-plugin', getUrlVars('m') || '')
     jeedomUtils.initPage()
 
+    domUtils.syncJeeCompletes()
     document.body.triggerEvent('jeedom_page_load')
 
     //dashboard page on object will set its own background:
@@ -1115,6 +1116,7 @@ jeedomUtils.initHelp = function() {
   })
 }
 
+//Deprecated, plugins may use, old jQuery ui autocomplete
 jeedomUtils.autocompleteDestroy = function() {
   document.querySelectorAll('ul.ui-autocomplete, div.ui-helper-hidden-accessible')?.remove()
 }

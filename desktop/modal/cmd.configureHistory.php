@@ -237,8 +237,6 @@ include_file('3rdparty', 'jquery.tablesorter/_jeedom/pager-custom-constrols', 'j
     $(this).closest('tr').attr('data-change', '1')
   })
 
-
-
   $('select[data-l2key="historyPurge"]').on('change', function() {
     $tableCmdConfigureHistory.trigger('updateCell', [$(this).parent()])
   })
@@ -332,7 +330,8 @@ include_file('3rdparty', 'jquery.tablesorter/_jeedom/pager-custom-constrols', 'j
   if (jeephp2js.md_cmdConfigureHistory_numCmds < 500) {
     jeedomUtils.initTooltips($tableCmdConfigureHistory)
   }
-  if (jeephp2js.md_cmdConfigureHistory_numCmds < 1000) {
+
+  if (jeephp2js.md_cmdConfigureHistory_numCmds < 1500) {
     jeedom.timeline.autocompleteFolder()
   }
   setTimeout(function() {
