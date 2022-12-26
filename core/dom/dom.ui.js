@@ -522,17 +522,14 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
 }
 
 domUtils.syncJeeCompletes = function() {
-  console.log('syncJeeCompletes')
   var jeeItems = document.querySelectorAll('ul.jeeComplete')
   jeeItems.forEach(_jee => {
     var existing = []
-    console.log('_jee', _jee)
     _jee._jeeComplete.references.forEach(_ref => {
       if (_ref.isConnected === true) {
         existing.push(_ref)
       }
     })
-    console.log('existing', existing)
     if (existing.length > 0) {
       _jee._jeeComplete.references = existing
     } else {
