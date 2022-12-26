@@ -166,8 +166,6 @@ function setTheme() {
 	include_file('3rdparty', 'roboto/roboto', 'css');
 	include_file('3rdparty', 'camingocode/camingocode', 'css');
 	include_file('3rdparty', 'text-security/text-security-disc', 'css');
-	include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'css');
-	include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
 	include_file('3rdparty', 'jquery/jquery.min', 'js');
 	include_file('3rdparty', 'jquery.utils/jquery.utils', 'js');
 
@@ -188,28 +186,35 @@ function setTheme() {
 	include_file('core', 'core', 'js');
 	include_file('core', 'js.inc', 'php');
 
-	include_file('3rdparty', 'nouislider/nouislider', 'js'); //$less
-	include_file('3rdparty', 'nouislider/nouislider', 'css'); //$less
 	include_file('3rdparty', 'bootstrap/bootstrap.min', 'js');
 	include_file('3rdparty', 'jquery.ui/jquery-ui.min', 'js');
-	include_file('3rdparty', 'jquery.ui/jquery.ui.datepicker.fr', 'js');
+	include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
+	include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap.min', 'css');
 	include_file('3rdparty', 'jquery.ui-touch-punch/jquery.ui.touch-punch.min', 'js');
+	include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'css');
 	include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'js');
 	include_file('3rdparty', 'bootbox/bootbox.min', 'js');
-
-	include_file('3rdparty', 'highstock/highstock', 'js'); //$less
-	include_file('3rdparty', 'highstock/highcharts-more', 'js'); //$less
-	//include_file('3rdparty', 'highstock/modules/solid-gauge', 'js');
-	include_file('3rdparty', 'highstock/modules/exporting', 'js'); //$less
-	//include_file('3rdparty', 'highstock/modules/offline-exporting', 'js');
-	//include_file('3rdparty', 'highstock/modules/export-data', 'js');
-
-	include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js');
-	include_file('3rdparty', 'jwerty/jwerty', 'js');
-	include_file('3rdparty', 'jquery.packery/jquery.packery', 'js'); //$less with draggability lib
+	include_file('3rdparty', 'jquery.ui/jquery.ui.datepicker.fr', 'js'); //Provide french traduction in date pickers
+	include_file('3rdparty', 'jquery.datetimepicker/jquery.datetimepicker', 'js');
+	include_file('3rdparty', 'jquery.datetimepicker/jquery.datetimepicker', 'css');
+	include_file('3rdparty', 'jquery.tree/themes/default/style.min', 'css');
+	include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
+	include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
+	include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
+	include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
+	include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
+	include_file('3rdparty', 'jquery.tablesorter/parsers/parser-input-select.min', 'js');
+	include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
+	include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
+	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'css');
+	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'js');
 	include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
+	include_file('3rdparty', 'jquery.packery/jquery.packery', 'js'); //$less with draggability lib
+	//include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js');
+	//include_file('3rdparty', 'jwerty/jwerty', 'js');
 
-	include_file('3rdparty', 'codemirror/lib/codemirror', 'js'); //$less
+	//jQuery less libs:
+	include_file('3rdparty', 'codemirror/lib/codemirror', 'js');
 	include_file('3rdparty', 'codemirror/lib/codemirror', 'css');
 	include_file('3rdparty', 'codemirror/addon/edit/matchbrackets', 'js');
 	include_file('3rdparty', 'codemirror/mode/htmlmixed/htmlmixed', 'js');
@@ -220,22 +225,16 @@ function setTheme() {
 	include_file('3rdparty', 'codemirror/mode/css/css', 'js');
 	include_file('3rdparty', 'codemirror/mode/python/python', 'js');
 
-	include_file('3rdparty', 'jquery.tree/themes/default/style.min', 'css');
-	include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
-	include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
-	include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
-	include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap.min', 'css');
-	include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
-	include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
-	include_file('3rdparty', 'jquery.tablesorter/parsers/parser-input-select.min', 'js');
-	include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'js');
-	include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'css');
-	include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
-	include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
-	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'css');
-	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'js');
-	include_file('3rdparty', 'autosize/autosize.min', 'js'); //$less
-	include_file('3rdparty', 'moment/moment-with-locales.min', 'js'); //$less
+	include_file('3rdparty', 'highstock/highstock', 'js');
+	include_file('3rdparty', 'highstock/highcharts-more', 'js');
+	//include_file('3rdparty', 'highstock/modules/solid-gauge', 'js');
+	include_file('3rdparty', 'highstock/modules/exporting', 'js');
+	//include_file('3rdparty', 'highstock/modules/offline-exporting', 'js');
+	//include_file('3rdparty', 'highstock/modules/export-data', 'js');
+	include_file('3rdparty', 'nouislider/nouislider', 'js');
+	include_file('3rdparty', 'nouislider/nouislider', 'css');
+	include_file('3rdparty', 'autosize/autosize.min', 'js');
+	include_file('3rdparty', 'moment/moment-with-locales.min', 'js');
 
 	//New $less libs
 	include_file('3rdparty', 'popper/popper.min', 'js');
