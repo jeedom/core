@@ -254,6 +254,7 @@ if (!jeeFrontEnd.dashboard) {
                     dom_divDisplayEq.closest('.div_object').remove()
                     return
                   }
+                  jeedomUtils.initTooltips()
                 }
               }
             })
@@ -321,6 +322,7 @@ if (!jeeFrontEnd.dashboard) {
           document.querySelectorAll('div.eqLogic-widget, div.scenario-widget').forEach(function(element, idx) {
             element.setAttribute('data-order', idx + 1)
           })
+          jeedomUtils.initTooltips()
 
           pckryContainer.on('dragItemPositioned', function() {
             jeedomUI.orderItems(pckryContainer)
