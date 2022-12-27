@@ -195,6 +195,19 @@ Element.prototype.insertAtCursor = function(_valueString) {
 }
 
 
+
+Element.prototype.closestAll = function(_selector) {
+  //var parents = this.parentNode.querySelectorAll(':scope > :nth-child(' + Array.from(this.parentNode.children).indexOf(this) + 1 +')') //Empty nodeList
+  var parents = []
+  var parent = this.closest(_selector)
+  while (parent != null) {
+    parents.push(parent)
+    parent = parent.parentNode.closest(_selector)
+  }
+  return parents
+}
+
+
 /* Widgets
 */
 domUtils.issetWidgetOptParam = function(_def, _param) {
@@ -363,7 +376,9 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
     _options.data.container.style.top = inputPos.top + _options.data.item.offsetHeight + 'px'
     _options.data.container.style.left = inputPos.left + 'px'
     _options.data.container.style.width = _options.data.item.offsetWidth + 'px'
-    _options.data.container.seen()
+    setTimeout(function() {
+      _options.data.container.seen()
+    }, 250)
   }
 
   /*Events
