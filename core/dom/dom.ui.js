@@ -374,7 +374,6 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
       if (selectedLi == null) return
       var selected = selectedLi.firstChild
       var ulContainer = document.getElementById(_options.id)
-      console.log('ulContainer:', ulContainer._jeeComplete.reference)
       //set selected value and send to registered select option:
       _options.data.value = selected.getAttribute('data-value')
       _options.data.text = selected.textContent
