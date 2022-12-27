@@ -447,19 +447,17 @@ Element.prototype.load = function(_path, _callback) {
 
 /* ____________Ajax Management____________
 */
-domUtils.handleAjaxError = function(_request, _status, _error) {
+domUtils.handleAjaxError = function(_request, _status, _error, _params) {
   domUtils.hideLoading()
-  if (is_object(_request)) {
-    jeedomUtils.showAlert({
-      message: _request.url + ' : ' + _request.status + ' error: ' + _error,
-      level: 'warning'
-    })
-  } else {
-    jeedomUtils.showAlert({
-      message: _request + ' : ' + _status + ' error: ' + _error,
-      level: 'warning'
-    })
+  var msg = _request + ' : ' + _status + ' /error: ' + _error
+  if (isset(_params)) {
+    msg += ' /async:' + _params.async + ' /type:' + _params.type + ' /dataType:' + _params.dataType + ' /action:' + _params.data.action
   }
+  jeedomUtils.showAlert({
+    message: msg,
+    level: 'warning',
+    ttl: 15000
+  })
 }
 
 domUtils.ajaxSetup = function(_params) {
@@ -515,48 +513,55 @@ domUtils.ajax = function(_params) {
     fetch(url, {
       method: _params.type,
       body: isGet ? null : new URLSearchParams(_params.data),
-      headers: isGet ? new Headers() : {"Content-Type": "application/x-www-form-urlencoded"},
+      headers: isGet ? new Headers() : {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"},
       redirect: 'follow',
       referrerPolicy: 'no-referrer',
       mode: 'cors',
-      credentials: 'same-origin'
+      credentials: 'same-origin',
+      signal: (_params.url == 'core/ajax/event.ajax.php' && _params.data.action == 'changes') ? null : AbortSignal.timeout(5000) //changes polling!
     })
-    .then(function(response, reject) {
+    .then( response => {
       if (!response.ok) {
-        if (response.status != 504) domUtils.handleAjaxError(response, response.status, response.statusText)
-        const rejectReponse = {
-          error_type: "SERVER_ERROR",
-          error: true
-        }
-
-        if (reject != undefined) rejectReponse.error_type = reject
         domUtils.countAjax(1, _params.global)
-        return Promise.reject(rejectReponse)
+        throw response
       }
       if (isJson) {
         return response.json()
       } else {
         return response.text()
       }
+      return response
     })
-    .then(function(obj) {
+    .then( obj => {
       return _params.success(obj)
     }).then(async function() {
       domUtils.countAjax(1, _params.global)
       _params.complete()
       return
     })
-    .catch(function(error) {
+    .catch( error => {
       domUtils.countAjax(1, _params.global)
-      if (!_params.noDisplayError) {
-        if (_params.url != 'core/ajax/event.ajax.php' || _params.data.action != 'changes') {
-          let msg = 'domUtils.ajax(' + _params.url + ') ' + _params.type + ' async: ' + _params.async
-          domUtils.handleAjaxError(msg, _params.data, error)
-          console.error(msg, _params.data, error)
+      if (typeof error.text === 'function') { //catch from fetch return
+        console.error('[Bad Fetch response]', error, _params)
+        error.text().then(errorMessage => {
+          this.props.dispatch(displayTheError(errorMessage))
+        })
+      } else { //catch from fetch error
+        /* Production code:
+        if (error.code == 20) return
+        if (_params.data.action == 'changes') return
+        if (!_params.noDisplayError) {
+          domUtils.handleAjaxError(_params.url, error.name, error.message, _params)
+          if (_params.onError) {
+            _params.onError(error)
+          }
         }
-        if (_params.onError) {
-          _params.onError(error)
-        }
+        */
+
+        //Alpha test code:
+        console.log('[Fetch Server Error]', 'name:', error.name, ' | message:', error.message, ' | code:', error.code, ' | request:', _params.url, ' | action:', _params.data.action, _params)
+        console.dir(error)
+        domUtils.handleAjaxError(_params.url, error.name, error.message, _params)
       }
     })
   }
