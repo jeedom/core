@@ -485,6 +485,7 @@ domUtils.ajax = function(_params) {
   _params.success = (typeof _params.success === 'function') ? _params.success : function() {return arguments}
   _params.complete = (typeof _params.complete === 'function') ? _params.complete : function() { }
   _params.onError = (typeof _params.error === 'function') ? _params.error : null
+  _params.timeoutRetry = _params.timeoutRetry || 0
 
   domUtils.countAjax(0, _params.global)
 
@@ -518,7 +519,7 @@ domUtils.ajax = function(_params) {
       referrerPolicy: 'no-referrer',
       mode: 'cors',
       credentials: 'same-origin',
-      signal: (_params.url == 'core/ajax/event.ajax.php' && _params.data.action == 'changes') ? null : AbortSignal.timeout(5000) //changes polling!
+      signal: (_params.url == 'core/ajax/event.ajax.php' && _params.data.action == 'changes') ? null : AbortSignal.timeout(10000) //changes polling!
     })
     .then( response => {
       if (!response.ok) {
@@ -543,7 +544,14 @@ domUtils.ajax = function(_params) {
       domUtils.countAjax(1, _params.global)
       if (typeof error.text === 'function') { //catch from fetch return
         error.text().then(errorMessage => {
-          console.error('[Bad Fetch response]', error, errorMessage, _params)
+          if (error.status == 504 && _params.timeoutRetry < 2) { //Gateway Timeout
+            //Timeout, retry:
+            console.log('Timeout Error, retrying:', _params.timeoutRetry)
+            _params.timeoutRetry ++
+            domUtils.ajax(_params)
+          } else {
+            console.error('[Bad Fetch response]', error, errorMessage, _params)
+          }
         })
       } else { //catch from fetch error
         /* Production code:
