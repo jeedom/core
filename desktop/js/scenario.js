@@ -91,8 +91,8 @@ if (!jeeFrontEnd.scenario) {
           document.getElementById('bt_resetInsideScenarioSearch').triggerEvent('click')
           setTimeout(function() {
             document.getElementById('in_searchInsideScenario').value = jeephp2js.initSearch
-            document.getElementById('in_searchInsideScenario').keyup().blur().focus()
-          }, 500)
+            document.getElementById('in_searchInsideScenario').triggerEvent('keyup').focus()
+          }, 1000)
         }, 200)
       }
     },
@@ -1640,7 +1640,7 @@ document.getElementById('in_searchInsideScenario').addEventListener('keyup', fun
     try {
       cmEditor = _code.querySelector('div.CodeMirror.CodeMirror-wrap').CodeMirror
       code = jeedomUtils.normTextLower(cmEditor.getValue())
-      if (code.indexOf(search) >= 0) {
+      if (code.includes(search)) {
         _code.removeClass('elementCollapse')
         cursor = cmEditor.getSearchCursor(search, CodeMirror.Pos(cmEditor.firstLine(), 0), {
           caseFold: true,
@@ -1659,9 +1659,11 @@ document.getElementById('in_searchInsideScenario').addEventListener('keyup', fun
   var text
   document.querySelectorAll('#div_scenarioElement div.element:not(.elementCODE) .expressionAttr').forEach( _expr => {
     text = jeedomUtils.normTextLower(_expr.value)
-    if (text.indexOf(search) >= 0) {
+    if (text.includes(search)) {
       _expr.addClass('insideSearch')
-      _expr.closest('.element').removeClass('elementCollapse')
+      _expr.closestAll('.element').forEach( _parent => {
+        _parent.removeClass('elementCollapse')
+      })
     }
   })
 })
@@ -2655,7 +2657,10 @@ if (is_numeric(jeeP.loadId)) {
   document.querySelector('.scenarioDisplayCard[data-scenario_id="' + jeeP.loadId + '"]')?.triggerEvent('click')
 }
 
-jeeFrontEnd.scenario.postInit()
+domUtils(function() {
+  jeeFrontEnd.scenario.postInit()
+})
+
 
 //tabs context menu
 try {
