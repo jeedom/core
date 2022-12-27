@@ -42,7 +42,6 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="battery">
-				<br />
 				<div class="input-group" style="margin-bottom:5px;">
 					<input class="form-control roundedLeft" placeholder="{{Rechercher | nom | :not(nom}}" id="in_search" />
 					<div class="input-group-btn">
