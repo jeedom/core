@@ -542,9 +542,8 @@ domUtils.ajax = function(_params) {
     .catch( error => {
       domUtils.countAjax(1, _params.global)
       if (typeof error.text === 'function') { //catch from fetch return
-        console.error('[Bad Fetch response]', error, _params)
         error.text().then(errorMessage => {
-          this.props.dispatch(displayTheError(errorMessage))
+          console.error('[Bad Fetch response]', error, errorMessage, _params)
         })
       } else { //catch from fetch error
         /* Production code:
