@@ -1007,6 +1007,10 @@ jeedomUtils.initDisplayAsTable = function() {
 
 jeedomUtils.TOOLTIPSOPTIONS = {
   onTrigger: (instance, event) => {
+    if (instance.reference.getAttribute('title') != null) {
+      instance.reference.setAttribute('data-title', instance.reference.getAttribute('title'))
+      instance.reference.removeAttribute('title')
+    }
     if (instance.reference.getAttribute('data-title') == '') return false
     instance.setContent(instance.reference.getAttribute('data-title'))
     return true
