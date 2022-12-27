@@ -544,9 +544,9 @@ domUtils.ajax = function(_params) {
       domUtils.countAjax(1, _params.global)
       if (typeof error.text === 'function') { //catch from fetch return
         error.text().then(errorMessage => {
-          if (error.status == 504 && _params.timeoutRetry < 2) { //Gateway Timeout
+          if ((error.status == 504 || error.status == 500) && _params.timeoutRetry < 3) { //Gateway Timeout
             //Timeout, retry:
-            console.log('Timeout Error, retrying:', _params.timeoutRetry)
+            console.log('[Timeout Error], retrying:', error, errorMessage, _params)
             _params.timeoutRetry ++
             domUtils.ajax(_params)
           } else {
