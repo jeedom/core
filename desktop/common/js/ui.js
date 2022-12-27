@@ -47,7 +47,9 @@ if (!jeedomUI) {
       var arrKeys = Object.keys(_finalOrder)
       var firstElId = arrKeys.find(key => _finalOrder[key] === 1)
       var firstEl = document.querySelector('.ui-draggable[data-editId="'+firstElId+'"]')
-      firstEl.parentNode.insertBefore(firstEl, firstEl.parentNode.firstChild)
+      if (firstEl != null) {
+        firstEl.parentNode.insertBefore(firstEl, firstEl.parentNode.firstChild)
+      }
 
       var thisId, prevId, thisEl, prevEl
       for (var i = 2; i < arrKeys.length + 1; i++) {
