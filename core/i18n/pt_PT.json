@@ -75,7 +75,6 @@
         "Historique": "Histórico",
         "Préviens moi": "Avisar-me",
         "Me prévenir si": "Notifique-me se",
-        "Accueil": "Início",
         "Synthèse": "Síntese",
         "Timeline": "Linha do tempo",
         "Santé": "Saúde",
@@ -85,6 +84,7 @@
         "Crons": "Crons",
         "Démons": "Demônios",
         "Message": "Mensagem",
+        "Accueil": "Início",
         "Vue": "Visto"
     },
     "mobile\/js\/scenario.js": {
@@ -900,7 +900,7 @@
         "Description": "Descrição",
         "Action": "Ação",
         "Occurrences": "Ocorrências",
-        "Centre de Messages": "Centro de mensagens"
+        "Centre de Messages": "Central de mensagens"
     },
     "desktop\/modal\/cmd.configureHistory.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -3318,7 +3318,6 @@
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Atenção está a deixar uma página com dados modificados que não foram guardados. Deseja continuar?",
         "Sauvegarde effectuée avec succès": "Backup concluído com êxito",
         "Suppression effectuée avec succès": "Eliminado com sucesso",
-        "Centre de Messages": "Centro de Mensagens",
         "Thème principal": "Tema principal",
         "Thème alternatif": "Tema alternativo",
         "Bienvenue dans Jeedom": "Bem-vindo ao Jeedom",
@@ -3328,6 +3327,7 @@
         "Variables": "Variáveis",
         "Recherche": "Pesquisar",
         "A propos": "Sobre",
+        "Centre de Messages": "Central de mensagens",
         "Erreur Javascript": "Erro de Javascript",
         "Action sur résumé": "Ação no resumo",
         "Voulez vous recharger la page maintenant ?": "Quer recarregar a página agora?",
@@ -3502,6 +3502,7 @@
         "Jeudi": "Quinta",
         "Vendredi": "Sexta",
         "Samedi": "Sábado",
+        "Centre de Messages": "Central de mensagens",
         "Assistant cron": "Assistente de cron",
         "Annuler": "Cancelar",
         "Valider": "Confirmar",
@@ -4885,6 +4886,9 @@
         "Aucune": "Nenhuma",
         "Aucun": "Nenhum",
         "Principale": "Principal"
+    },
+    "core\/dom\/dom.ui.js": {
+        "Centre de Messages": "Central de mensagens"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Você não está autorizado a realizar esta ação, IP:",

@@ -75,7 +75,6 @@
         "Historique": "History",
         "Préviens moi": "Notify me",
         "Me prévenir si": "Notify me if",
-        "Accueil": "Home",
         "Synthèse": "Synthesis",
         "Timeline": "Timeline",
         "Santé": "Health",
@@ -85,6 +84,7 @@
         "Crons": "Crons",
         "Démons": "Demons",
         "Message": "Message",
+        "Accueil": "Home",
         "Vue": "Seen"
     },
     "mobile\/js\/scenario.js": {
@@ -895,10 +895,10 @@
         "Tout": "All",
         "Rafraichir": "Refresh",
         "Vider": "Clear",
-        "Date et heure": "Date and hour",
+        "Date et heure": "Time",
         "Source": "Source",
         "Description": "Description",
-        "Action": "Stock",
+        "Action": "Action",
         "Occurrences": "Occurrences",
         "Centre de Messages": "Message Center"
     },
@@ -3318,7 +3318,6 @@
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "You have modified settings that haven\\'t been saved. Are you sure you want to continue?",
         "Sauvegarde effectuée avec succès": "Successfully saved",
         "Suppression effectuée avec succès": "Successful deletion",
-        "Centre de Messages": "Message Center",
         "Thème principal": "Main theme",
         "Thème alternatif": "Alternative theme",
         "Bienvenue dans Jeedom": "Welcome to Jeedom",
@@ -3328,6 +3327,7 @@
         "Variables": "Variables",
         "Recherche": "Search",
         "A propos": "About",
+        "Centre de Messages": "Message Center",
         "Erreur Javascript": "Javascript error",
         "Action sur résumé": "Action on summary",
         "Voulez vous recharger la page maintenant ?": "Do you want to reload the page now?",
@@ -3502,6 +3502,7 @@
         "Jeudi": "Thursday",
         "Vendredi": "Friday",
         "Samedi": "Saturday",
+        "Centre de Messages": "Message Center",
         "Assistant cron": "Cron assistant",
         "Annuler": "Cancel",
         "Valider": "Ok",
@@ -4885,6 +4886,9 @@
         "Aucune": "None",
         "Aucun": "None",
         "Principale": "Main"
+    },
+    "core\/dom\/dom.ui.js": {
+        "Centre de Messages": "Message Center"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "You are not authorized to perform this action, IP :",

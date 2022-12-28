@@ -75,7 +75,6 @@
         "Historique": "歴史的",
         "Préviens moi": "私に警告",
         "Me prévenir si": "なら、私に通知",
-        "Accueil": "家庭",
         "Synthèse": "合成",
         "Timeline": "Timeline",
         "Santé": "Santé",
@@ -85,6 +84,7 @@
         "Crons": "Crons",
         "Démons": "Démons",
         "Message": "Message",
+        "Accueil": "家庭",
         "Vue": "Vue"
     },
     "mobile\/js\/scenario.js": {
@@ -3318,7 +3318,6 @@
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "保存されていない変更されたデータを含むページを離れていることに注意してください。続行しますか？",
         "Sauvegarde effectuée avec succès": "バックアップが正常に完了",
         "Suppression effectuée avec succès": "削除に成功",
-        "Centre de Messages": "メッセージセンター",
         "Thème principal": "メインテーマ",
         "Thème alternatif": "代替テーマ",
         "Bienvenue dans Jeedom": "Jeedomへようこそ",
@@ -3328,6 +3327,7 @@
         "Variables": "Variables",
         "Recherche": "Recherche",
         "A propos": "について",
+        "Centre de Messages": "メッセージセンター",
         "Erreur Javascript": "Javascriptエラー",
         "Action sur résumé": "Action sur résumé",
         "Voulez vous recharger la page maintenant ?": "Voulez vous recharger la page maintenant ?",
@@ -3502,6 +3502,7 @@
         "Jeudi": "Jeudi",
         "Vendredi": "Vendredi",
         "Samedi": "Samedi",
+        "Centre de Messages": "Centre de Messages",
         "Assistant cron": "クローンアシスタント",
         "Annuler": "キャンセル",
         "Valider": "検証",
@@ -4885,6 +4886,9 @@
         "Aucune": "Aucune",
         "Aucun": "Aucun",
         "Principale": "Principale"
+    },
+    "core\/dom\/dom.ui.js": {
+        "Centre de Messages": "Centre de Messages"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",

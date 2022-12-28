@@ -75,7 +75,6 @@
         "Historique": "Chronik",
         "Préviens moi": "Lassen Sie mich wissen",
         "Me prévenir si": "Warne mich, wenn",
-        "Accueil": "Mein Haus",
         "Synthèse": "Synthese",
         "Timeline": "Zeitleiste",
         "Santé": "Die Gesundheit",
@@ -85,6 +84,7 @@
         "Crons": "Kronen",
         "Démons": "Dämonen",
         "Message": "Nachricht",
+        "Accueil": "Mein Haus",
         "Vue": "Gesehen"
     },
     "mobile\/js\/scenario.js": {
@@ -3318,7 +3318,6 @@
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Vorsicht! Sie verlassen einer Seite mit modifizierten und nicht gespeicherten Daten. Wollen Sie weitermachen?",
         "Sauvegarde effectuée avec succès": "Speichern erfolgreich abgeschlossen",
         "Suppression effectuée avec succès": "Erfolgreiches Löschen",
-        "Centre de Messages": "Nachrichtencenter",
         "Thème principal": "Hauptthema",
         "Thème alternatif": "Alternatives Thema",
         "Bienvenue dans Jeedom": "Willkommen in Jeedom",
@@ -3328,6 +3327,7 @@
         "Variables": "Variablen",
         "Recherche": "Suche",
         "A propos": "Über",
+        "Centre de Messages": "Nachrichtenzentrum",
         "Erreur Javascript": "Javascript-Fehler",
         "Action sur résumé": "Aktion auf Zusammenfassung",
         "Voulez vous recharger la page maintenant ?": "Möchten Sie die Seite jetzt neu laden?",
@@ -3502,6 +3502,7 @@
         "Jeudi": "Donnerstag",
         "Vendredi": "Freitag",
         "Samedi": "Samstag",
+        "Centre de Messages": "Nachrichtenzentrum",
         "Assistant cron": "Cron Assistent",
         "Annuler": "Abbrechen",
         "Valider": "Validate",
@@ -4885,6 +4886,9 @@
         "Aucune": "Irgendein",
         "Aucun": "Nein",
         "Principale": "Hauptsächlich"
+    },
+    "core\/dom\/dom.ui.js": {
+        "Centre de Messages": "Nachrichtenzentrum"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Sie sind nicht berechtigt, diese Aktion auszuführen, IP:",

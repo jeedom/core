@@ -75,7 +75,6 @@
         "Historique": "Historique",
         "Préviens moi": "Préviens moi",
         "Me prévenir si": "Me prévenir si",
-        "Accueil": "Accueil",
         "Synthèse": "Synthèse",
         "Timeline": "Timeline",
         "Santé": "Santé",
@@ -85,6 +84,7 @@
         "Crons": "Crons",
         "Démons": "Démons",
         "Message": "Message",
+        "Accueil": "Accueil",
         "Vue": "Vue"
     },
     "mobile\/js\/scenario.js": {
@@ -3318,7 +3318,6 @@
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?",
         "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
         "Suppression effectuée avec succès": "Suppression effectuée avec succès",
-        "Centre de Messages": "Centre de Messages",
         "Thème principal": "Thème principal",
         "Thème alternatif": "Thème alternatif",
         "Bienvenue dans Jeedom": "Bienvenue dans Jeedom",
@@ -3328,6 +3327,7 @@
         "Variables": "Variables",
         "Recherche": "Recherche",
         "A propos": "A propos",
+        "Centre de Messages": "Centre de Messages",
         "Erreur Javascript": "Erreur Javascript",
         "Action sur résumé": "Action sur résumé",
         "Voulez vous recharger la page maintenant ?": "Voulez vous recharger la page maintenant ?",
@@ -3502,6 +3502,7 @@
         "Jeudi": "Jeudi",
         "Vendredi": "Vendredi",
         "Samedi": "Samedi",
+        "Centre de Messages": "Centre de Messages",
         "Assistant cron": "Assistant cron",
         "Annuler": "Annuler",
         "Valider": "Valider",
@@ -4885,6 +4886,9 @@
         "Aucune": "Aucune",
         "Aucun": "Aucun",
         "Principale": "Principale"
+    },
+    "core\/dom\/dom.ui.js": {
+        "Centre de Messages": "Centre de Messages"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",

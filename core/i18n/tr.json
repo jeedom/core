@@ -75,7 +75,6 @@
         "Historique": "Geçmiş",
         "Préviens moi": "Beni uyar",
         "Me prévenir si": "Eğer bana bildir",
-        "Accueil": "Ana sayfa",
         "Synthèse": "Sentez",
         "Timeline": "Timeline",
         "Santé": "Santé",
@@ -85,6 +84,7 @@
         "Crons": "Crons",
         "Démons": "Démons",
         "Message": "Message",
+        "Accueil": "Ana sayfa",
         "Vue": "Vue"
     },
     "mobile\/js\/scenario.js": {
@@ -3318,7 +3318,6 @@
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Dikkat modifie verikeri bulunan bi sayfayı terk etmek uzerisiniz. Devam etmekden eminmisiniz?",
         "Sauvegarde effectuée avec succès": "Kayıt başarıyla sonuçlandı",
         "Suppression effectuée avec succès": "Silme başarıyla sonuçlandı",
-        "Centre de Messages": "Centre de Messages",
         "Thème principal": "Thème principal",
         "Thème alternatif": "Thème alternatif",
         "Bienvenue dans Jeedom": "Jeedom\\'a hoşgeldiniz",
@@ -3328,6 +3327,7 @@
         "Variables": "Variables",
         "Recherche": "Recherche",
         "A propos": "Hakkında",
+        "Centre de Messages": "Centre de Messages",
         "Erreur Javascript": "Erreur Javascript",
         "Action sur résumé": "Action sur résumé",
         "Voulez vous recharger la page maintenant ?": "Voulez vous recharger la page maintenant ?",
@@ -3502,6 +3502,7 @@
         "Jeudi": "Jeudi",
         "Vendredi": "Vendredi",
         "Samedi": "Samedi",
+        "Centre de Messages": "Centre de Messages",
         "Assistant cron": "Cron asistanı",
         "Annuler": "Iptal et",
         "Valider": "Onaylayın",
@@ -4885,6 +4886,9 @@
         "Aucune": "Aucune",
         "Aucun": "Aucun",
         "Principale": "Principale"
+    },
+    "core\/dom\/dom.ui.js": {
+        "Centre de Messages": "Centre de Messages"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",

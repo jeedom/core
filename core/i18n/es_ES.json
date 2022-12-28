@@ -75,7 +75,6 @@
         "Historique": "Historial",
         "Préviens moi": "Avísame",
         "Me prévenir si": "Notifícame si",
-        "Accueil": "Inicio",
         "Synthèse": "Síntesis",
         "Timeline": "Línea de tiempo",
         "Santé": "Salud",
@@ -85,6 +84,7 @@
         "Crons": "Crones",
         "Démons": "Demonios",
         "Message": "Mensaje",
+        "Accueil": "Inicio",
         "Vue": "Visto"
     },
     "mobile\/js\/scenario.js": {
@@ -3318,7 +3318,6 @@
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Advertencia: Usted está dejando una página con datos modificados sin guardar. ¿Quiere continuar?",
         "Sauvegarde effectuée avec succès": "Guardado correctamente",
         "Suppression effectuée avec succès": "Eliminación exitosa",
-        "Centre de Messages": "Centro de mensajes",
         "Thème principal": "Tema principal",
         "Thème alternatif": "Tema alternativo",
         "Bienvenue dans Jeedom": "Bienvenido a Jeedom",
@@ -3328,6 +3327,7 @@
         "Variables": "Variables",
         "Recherche": "Buscar",
         "A propos": "A proposito",
+        "Centre de Messages": "Centro de mensajes",
         "Erreur Javascript": "Error de Javascript",
         "Action sur résumé": "Acción sobre el resumen",
         "Voulez vous recharger la page maintenant ?": "¿Quieres volver a cargar la página ahora?",
@@ -3502,6 +3502,7 @@
         "Jeudi": "Jueves",
         "Vendredi": "Viernes",
         "Samedi": "Sábado",
+        "Centre de Messages": "Centro de mensajes",
         "Assistant cron": "Asistente cron",
         "Annuler": "Cancelar",
         "Valider": "Validar",
@@ -4885,6 +4886,9 @@
         "Aucune": "Alguna",
         "Aucun": "No",
         "Principale": "Principal"
+    },
+    "core\/dom\/dom.ui.js": {
+        "Centre de Messages": "Centro de mensajes"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "No está autorizado para realizar esta acción, IP:",
