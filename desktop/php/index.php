@@ -189,10 +189,7 @@ function setTheme() {
 	include_file('3rdparty', 'bootstrap/bootstrap.min', 'js');
 	include_file('3rdparty', 'jquery.ui/jquery-ui.min', 'js');
 	include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
-	include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap.min', 'css');
 	include_file('3rdparty', 'jquery.ui-touch-punch/jquery.ui.touch-punch.min', 'js');
-	include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'css');
-	include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'js');
 	include_file('3rdparty', 'bootbox/bootbox.min', 'js');
 	include_file('3rdparty', 'jquery.ui/jquery.ui.datepicker.fr', 'js'); //Provide french traduction in date pickers
 	include_file('3rdparty', 'jquery.datetimepicker/jquery.datetimepicker', 'js');
@@ -201,6 +198,7 @@ function setTheme() {
 	include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
 	include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
 	include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
+	include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap.min', 'css');
 	include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
 	include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
 	include_file('3rdparty', 'jquery.tablesorter/parsers/parser-input-select.min', 'js');
@@ -231,6 +229,7 @@ function setTheme() {
 	include_file('3rdparty', 'highstock/modules/exporting', 'js');
 	//include_file('3rdparty', 'highstock/modules/offline-exporting', 'js');
 	//include_file('3rdparty', 'highstock/modules/export-data', 'js');
+
 	include_file('3rdparty', 'nouislider/nouislider', 'js');
 	include_file('3rdparty', 'nouislider/nouislider', 'css');
 	include_file('3rdparty', 'autosize/autosize.min', 'js');

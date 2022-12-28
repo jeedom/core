@@ -552,3 +552,187 @@ domUtils.syncJeeCompletes = function() {
   })
 }
 
+var jeeDialog = (function()
+{
+    'use strict'
+
+    /*________________TOASTR
+    jeeDialog.toast({
+      level: 'warning',
+      title: 'I\'m a toast!',
+      message: 'What about a coffee ?',
+      timeOut: 5000,
+      extendedTimeOut: 4000,
+      onclick: function() {
+        jeeDialog.clearToasts()
+        $('#md_modal').dialog({ title: "{{Centre de Messages}}" }).load('index.php?v=d&modal=message.display').dialog('open')
+      }
+    })
+    */
+    var _toast = function(_options) {
+      var defaultOptions = {
+        id: 'jeeToastContainer',
+        positionClass: jeedom.theme['interface::toast::position'] || 'toast-bottom-right',
+        title: '',
+        message: '',
+        level: 'info',
+        timeOut: jeedom.theme['interface::toast::duration'] * 1000 || 3000,
+        extendedTimeOut: jeedom.theme['interface::toast::duration'] * 1000 || 3000,
+        emptyBefore: false,
+        attachTo: false,
+        onclick: function(event) {
+          event.target.closest('.toast').remove()
+        }
+      }
+      //Merge defaults and submitted options:
+      _options = domUtils.extend(defaultOptions, _options)
+      _options.timeOut = parseInt(_options.timeOut)
+      _options.extendedTimeOut = parseInt(_options.extendedTimeOut)
+
+      var toastContainer = document.getElementById('jeeToastContainer')
+      if (toastContainer == null) {
+        toastContainer = document.createElement('div')
+        toastContainer.setAttribute('id', _options.id)
+        toastContainer.addClass('jeeToastContainer', _options.positionClass)
+        document.body.appendChild(toastContainer)
+      } else {
+        if (_options.emptyBefore) {
+          toastContainer.empty()
+        }
+      }
+
+      //Main toast div:
+      var toast = document.createElement('div')
+      toast.addClass('jeeToast', 'toast', 'toast-'+_options.level)
+      //Child title div:
+      var toastTitle = document.createElement('div')
+      toastTitle.addClass('jeeToast', 'toastTitle')
+      toastTitle.innerHTML = _options.title
+      toast.appendChild(toastTitle)
+      //Child message div:
+      var toastMessage = document.createElement('div')
+      toastMessage.innerHTML = _options.message
+      toastMessage.addClass('jeeToast', 'toastMessage')
+      toast.appendChild(toastMessage)
+      //Child progress bar:
+      if (_options.timeOut > 0) {
+        _options.progressIntervalId = null
+        var toastProgress = document.createElement('div')
+        toastProgress.addClass('jeeToast', 'toastProgress')
+        toast.appendChild(toastProgress)
+      }
+
+      //Add to container:
+      toastContainer.appendChild(toast)
+
+      if (_options.attachTo) {
+        try {
+          var attachTo = document.querySelector(options.attach)
+          if (attachTo != null) {
+            attachTo.appendChild(toastContainer)
+          }
+        } catch (error) { }
+      } else {
+        if (toastContainer.parentNode != document.body) {
+          document.body.appendChild(toastContainer)
+        }
+      }
+
+      //Register element _toast object:
+      if (_options.timeOut > 0) {
+        toast._toast = {}
+        toast._toast.setHideTimeout = function(_delay) {
+          toast._toast.hideTimeoutId = setTimeout(function() {
+            toast.remove()
+            if (toastContainer.childNodes.length == 0) {
+              _clearToasts()
+            }
+          }, _delay)
+        }
+        toast._toast.setHideTimeout(_options.timeOut)
+
+        //Progress bar:
+        toast._toast.progressBar = toastProgress
+        toast._toast.updateProgress = function(timeout) {
+          var percentage = ((toast._toast.progressBarHideETA - (new Date().getTime())) / parseFloat(timeout)) * 100
+          toast._toast.progressBar.style.width = percentage + '%'
+        }
+        toast._toast.progressBarHideETA = new Date().getTime() + parseFloat(_options.timeOut)
+        toast._toast.progressIntervalId = setInterval(toast._toast.updateProgress, 10, _options.timeOut)
+
+        //Events:
+        toast.addEventListener('mouseenter', function(event) {
+          clearTimeout(event.target._toast.hideTimeoutId)
+          clearInterval(event.target._toast.progressIntervalId)
+          event.target.querySelector('.toastProgress').unseen()
+          event.target.setAttribute('style', 'padding-bottom: 6px')
+        })
+        toast.addEventListener('mouseleave', function(event) {
+          event.target._toast.setHideTimeout(_options.extendedTimeOut)
+          event.target._toast.progressBarHideETA = new Date().getTime() + parseFloat(_options.extendedTimeOut)
+          event.target._toast.progressIntervalId = setInterval(event.target._toast.updateProgress, 10, _options.extendedTimeOut)
+          event.target.querySelector('.toastProgress').seen()
+          event.target.removeAttribute('style')
+        })
+      } else {
+        toast.style.paddingBottom = '6px'
+      }
+
+      toast.addEventListener('click', function(event) {
+        _options.onclick(event)
+      })
+      return toast
+    }
+    var _clearToasts = function() {
+      document.querySelectorAll('.jeeToastContainer')?.remove()
+      return true
+    }
+
+    /*________________DIALOG --WIP!!!!
+    */
+    var _create = function(_options) {
+      console.log('jeeDialog _create', _options)
+
+      var defaultOptions = {
+        autoOpen: false,
+        classes: '',
+
+      }
+
+      //Merge defaults and submitted options:
+      _options = domUtils.extend(defaultOptions, _options)
+
+      _options.id = _options.id || domUtils.uniqueId()
+
+      console.log('merged _options:', _options)
+
+      var _diagMain = document.createElement('div')
+      _diagMain.setAttribute('id', _options.id)
+
+      //classes
+      //title part
+      //content part
+      //buttons part
+
+      if (!autoOpen) _diagMain.style.display = 'none'
+      document.body.appendChild(_diagMain)
+      return _diagMain
+    }
+
+    /*________________PROMPT --WIP!!!!
+    */
+
+    return { //Accessible functions: jeeDialog.toast(_options), ...
+      _description: 'Jeedom dialog function handling modals and alert messages. /core/dom/dom.ui.js',
+      toast: function(_options) {
+        return _toast(_options)
+      },
+      clearToasts: function() {
+        return _clearToasts()
+      },
+      create: function(_options) {
+        return _create(_options)
+      },
+
+    }
+})()

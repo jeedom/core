@@ -116,7 +116,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   }
 
   jeedomUtils.closeJeedomMenu()
-  window.toastr.clear()
+  jeeDialog.clearToasts()
   jeedom.cmd.resetUpdateFunction()
 
   $.contextMenu('destroy')
@@ -324,92 +324,26 @@ document.addEventListener('DOMContentLoaded', function() {
   })
 })
 
-
-/*Toastr____________ options for jeedom.notify() toastr, need jeedom.theme set!
-jQuery dependant, will have to migrate to pure js!
-*/
-toastr.options = {
-  "newestOnTop": true,
-  "closeButton": true,
-  "debug": false,
-  "positionClass": jeedom.theme['interface::toast::position'],
-  "showDuration": "300",
-  "hideDuration": "1000",
-  "timeOut": parseInt(jeedom.theme['interface::toast::duration']) * 1000,
-  "extendedTimeOut": "1500",
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut",
-  "progressBar": true,
-  "onclick": function() {
-    window.toastr.clear()
-    $('#md_modal').dialog({ title: "{{Centre de Messages}}" }).load('index.php?v=d&modal=message.display').dialog('open')
-  }
-}
-jeedomUtils.toastrUIoptions = {
-  "newestOnTop": true,
-  "closeButton": true,
-  "tapToDismiss": false,
-  "debug": false,
-  "positionClass": jeedom.theme['interface::toast::position'],
-  "showDuration": "300",
-  "hideDuration": "1000",
-  "timeOut": parseInt(jeedom.theme['interface::toast::duration']) * 1000,
-  "extendedTimeOut": "1500",
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut",
-  "progressBar": true,
-  "onclick": function(event) {
-    event.clickToClose = true
-  }
-}
-
 jeedomUtils.showAlert = function(_options) {
   var options = init(_options, {})
+  options.title = init(options.title, '')
   options.message = init(options.message, '')
   options.level = init(options.level, '')
   options.emptyBefore = init(options.emptyBefore, false)
-  options.show = init(options.show, true)
-  options.attach = init(options.attach, false)
-  if (!options.ttl) {
-    if (options.level == 'danger') {
-      options.ttl = 0
-    } else {
-      options.ttl = 5000
-    }
+  options.timeOut = init(options.timeOut, parseInt(jeedom.theme['interface::toast::duration']) * 1000)
+  options.extendedTimeOut = init(options.extendedTimeOut, parseInt(jeedom.theme['interface::toast::duration']) * 1000)
+  if (options.level == 'danger') {
+    options.timeOut = 0
   }
-  if (options.level == 'danger') options.level = 'error'
-  if (options.emptyBefore == true) {
-    window.toastr.clear()
-  }
-  let options_toastr = jeedomUtils.toastrUIoptions
-  options_toastr.timeOut = options.ttl
+  options.attachTo = init(options.attach, false)
 
-  toastr[options.level](options.message, ' ', options_toastr)
-
-  var toastContainer = document.getElementById('toast-container')
-  if (options.attach) {
-    try {
-      var attachTo = document.querySelector(options.attach)
-      if (attachTo != null) {
-        attachTo.appendChild(toastContainer)
-        toastContainer.style.position = 'absolute'
-      }
-    } catch (error) {
-      console.error('jeedomUtils.showAlert: ' + error)
-    }
-  } else {
-    toastContainer.style.position = ''
-  }
+  jeeDialog.toast(options)
 }
 
 jeedomUtils.hideAlert = function() {
-  window.toastr.clear()
+  jeeDialog.clearToasts()
 
-  //Deprecated, old div_alert may be used on plugins:
+  //Deprecated, old div_alert may be used by plugins:
   document.querySelectorAll('.jqAlert').forEach(function(element) {
     element.innerHTML = ''
     element.unseen()
