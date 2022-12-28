@@ -900,7 +900,7 @@
         "Description": "Descrição",
         "Action": "Ação",
         "Occurrences": "Ocorrências",
-        "Centre de Messages": "Central de mensagens"
+        "Centre de Messages": "Centro de mensagens"
     },
     "desktop\/modal\/cmd.configureHistory.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -3327,7 +3327,7 @@
         "Variables": "Variáveis",
         "Recherche": "Pesquisar",
         "A propos": "Sobre",
-        "Centre de Messages": "Central de mensagens",
+        "Centre de Messages": "Centro de Mensagens",
         "Erreur Javascript": "Erro de Javascript",
         "Action sur résumé": "Ação no resumo",
         "Voulez vous recharger la page maintenant ?": "Quer recarregar a página agora?",
