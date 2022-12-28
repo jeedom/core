@@ -542,21 +542,28 @@ domUtils.ajax = function(_params) {
     })
     .catch( error => {
       domUtils.countAjax(1, _params.global)
-      if (typeof error.text === 'function') { //catch from fetch return
+      if (typeof error.text === 'function') { //Catched from fetch return
         error.text().then(errorMessage => {
-          if ((error.status == 504 || error.status == 500) && _params.timeoutRetry < 3) { //Gateway Timeout
+          if ((error.status == 504 || error.status == 500 || (error.status == 502 && error.headers.get('server') == 'openresty'))) { //Gateway Timeout or Internal Server Error
             //Timeout, retry:
-            console.log('[Timeout Error], retrying:', error, errorMessage, _params)
-            _params.timeoutRetry ++
-            domUtils.ajax(_params)
+            if (_params.timeoutRetry < 3) {
+              console.log('[Timeout Error], retrying:', error, errorMessage, _params)
+              _params.timeoutRetry ++
+              domUtils.ajax(_params)
+              return
+            } else {
+              console.warn('[Timeout Error], retried two times:', error, errorMessage, _params)
+            }
           } else {
-            console.error('[Bad Fetch response]', error, errorMessage, _params)
+            console.warn('[Bad Fetch response]', error, errorMessage, _params)
           }
         })
-      } else { //catch from fetch error
-        /* Production code:
-        if (error.code == 20) return
-        if (_params.data.action == 'changes') return
+      } else { //Catched from fetch error
+        if (error.code == 20) return //NetworkError when attempting to fetch resource.
+        if (error.name == 'TypeError' && error.message.includes('NetworkError')) return //The operation was aborted.
+
+        //if (_params.data.action == 'changes') return
+        /*
         if (!_params.noDisplayError) {
           domUtils.handleAjaxError(_params.url, error.name, error.message, _params)
           if (_params.onError) {
@@ -566,7 +573,7 @@ domUtils.ajax = function(_params) {
         */
 
         //Alpha test code:
-        console.log('[Fetch Server Error]', 'name:', error.name, ' | message:', error.message, ' | code:', error.code, ' | request:', _params.url, ' | action:', _params.data.action, _params)
+        console.warn('[Fetch Server Error]', 'name:', error.name, ' | message:', error.message, ' | code:', error.code, ' | request:', _params.url, ' | action:', _params.data.action, _params)
         console.dir(error)
         domUtils.handleAjaxError(_params.url, error.name, error.message, _params)
       }
