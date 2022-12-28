@@ -115,6 +115,10 @@ Element.prototype.uniqueId = function(_prefix) {
   this.setAttribute('id', _prefix + Math.floor(Math.random() * Date.now()).toString(16))
   return this
 }
+domUtils.uniqueId = function(_prefix) {
+  if (!isset(_prefix)) _prefix = 'jee-id-'
+  return _prefix + Math.floor(Math.random() * Date.now()).toString(16)
+}
 
 /* Set and Get element values according to Jeedom data
 Must be high performance
@@ -627,6 +631,14 @@ EventTarget.prototype.unRegisterEvent = function(_type, _id) {
     domUtils.registeredEvents = domUtils.registeredEvents.filter(ev => !listeners.includes(ev))
   }
   return self
+}
+
+EventTarget.prototype.getRegisteredEvent = function(_type, _id) {
+  var self = this
+  let listeners = domUtils.registeredEvents.filter(function(listener) {
+    return ( (isset(_type)? listener.type == _type : true) && (isset(_id)? listener.id == _id : true) && listener.element == self )
+  })
+  return listeners
 }
 
 EventTarget.prototype.triggerEvent = function(_eventName, _params) {
