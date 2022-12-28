@@ -502,74 +502,70 @@ jeedomUtils.initApplication = function(_reinit) {
           $.include(include, function() {
             deviceInfo = getDeviceType()
             jeedom.object.summaryUpdate([{object_id:'global'}])
-            if (APP_MODE) {
-              jeedomUtils.loadPage('home', '{{Accueil}}')
-            } else {
-              //store default mobile page user preference:
-              if (isset(jeeFrontEnd.userProfils) && jeeFrontEnd.userProfils != null && isset(jeeFrontEnd.userProfils.homePageMobile) && jeeFrontEnd.userProfils.homePageMobile != 'home') {
-                let res = jeeFrontEnd.userProfils.homePageMobile.split("::")
-                if (res[0] == 'core') {
-                  switch (res[1]) {
-                    case 'overview':
-                      defaultMobilePage = ['overview', "<i class=\'fab fa-hubspot\'></i> {{Synthèse}}"]
-                      break
-                    case 'dashboard':
-                      defaultMobilePage = ['equipment', jeeFrontEnd.userProfils.defaultMobileObjectName, jeeFrontEnd.userProfils.defaultMobileObject]
-                      break
-                    case 'view':
-                      defaultMobilePage = ['view', jeeFrontEnd.userProfils.defaultMobileViewName, jeeFrontEnd.userProfils.defaultMobileView]
-                      break
-                  }
-                }
-              }
+	      //store default mobile page user preference:
+	      if (isset(jeeFrontEnd.userProfils) && jeeFrontEnd.userProfils != null && isset(jeeFrontEnd.userProfils.homePageMobile) && jeeFrontEnd.userProfils.homePageMobile != 'home') {
+		let res = jeeFrontEnd.userProfils.homePageMobile.split("::")
+		if (res[0] == 'core') {
+		  switch (res[1]) {
+		    case 'overview':
+		      defaultMobilePage = ['overview', "<i class=\'fab fa-hubspot\'></i> {{Synthèse}}"]
+		      break
+		    case 'dashboard':
+		      defaultMobilePage = ['equipment', jeeFrontEnd.userProfils.defaultMobileObjectName, jeeFrontEnd.userProfils.defaultMobileObject]
+		      break
+		    case 'view':
+		      defaultMobilePage = ['view', jeeFrontEnd.userProfils.defaultMobileViewName, jeeFrontEnd.userProfils.defaultMobileView]
+		      break
+		  }
+		}
+	      }
 
-              let redirect = getUrlVars('p')
-              let redirections = [
-                {page: 'timeline', title: '{{Timeline}}'},
-                {page: 'health', title: '{{Santé}}'},
-                {page: 'log', title: '{{Logs}}'},
-                {page: 'eqAnalyse', title: '{{Analyse équipement}}'},
-                {page: 'notes', title: '{{Notes}}'},
-                {page: 'cron', title: '{{Crons}}'},
-                {page: 'deamon', title: '{{Démons}}'},
-                {page: 'message', title: '{{Message}}'},
-                {page: 'overview', title: "<i class=\'fab fa-hubspot\'></i> {{Synthèse}}"},
-                {page: 'home', title: "{{Accueil}}"},
-              ]
-              window.redirected = false
-              if (redirect && redirections.map(i => i.page).includes(redirect)) {
-                for (let redir of redirections) {
-                  if (redir.page == redirect) {
-                    window.redirected = true
-                    jeedomUtils.loadPage(redir.page, redir.title)
-                  }
-                }
-              } else if (redirect == 'view') {
-                jeedomUtils.loadPage('view', '{{Vue}}', getUrlVars('view_id'));
-              } else if (isset(jeeFrontEnd.userProfils) && jeeFrontEnd.userProfils != null && isset(jeeFrontEnd.userProfils.homePageMobile) && jeeFrontEnd.userProfils.homePageMobile != 'home') {
-                let res = jeeFrontEnd.userProfils.homePageMobile.split("::")
-                if (res[0] == 'core') {
-                  switch (res[1]) {
-                    case 'overview':
-                      jeedomUtils.loadPage(defaultMobilePage)
-                      break
-                    case 'dashboard':
-                      jeedomUtils.loadPage(defaultMobilePage)
-                      break
-                    case 'plan':
-                      window.location.href = 'index.php?v=d&p=plan&plan_id=' + jeeFrontEnd.userProfils.defaultMobilePlan
-                      break
-                    case 'view':
-                      jeedomUtils.loadPage(defaultMobilePage)
-                      break
-                  }
-                } else {
-                  jeedomUtils.loadPage(res[1], 'Plugin', '', res[0])
-                }
-              } else {
-                  jeedomUtils.loadPage('home', '{{Accueil}}')
-              }
-            }
+	      let redirect = getUrlVars('p')
+	      let redirections = [
+		{page: 'timeline', title: '{{Timeline}}'},
+		{page: 'health', title: '{{Santé}}'},
+		{page: 'log', title: '{{Logs}}'},
+		{page: 'eqAnalyse', title: '{{Analyse équipement}}'},
+		{page: 'notes', title: '{{Notes}}'},
+		{page: 'cron', title: '{{Crons}}'},
+		{page: 'deamon', title: '{{Démons}}'},
+		{page: 'message', title: '{{Message}}'},
+		{page: 'overview', title: "<i class=\'fab fa-hubspot\'></i> {{Synthèse}}"},
+		{page: 'home', title: "{{Accueil}}"},
+	      ]
+	      window.redirected = false
+	      if (redirect && redirections.map(i => i.page).includes(redirect)) {
+		for (let redir of redirections) {
+		  if (redir.page == redirect) {
+		    window.redirected = true
+		    jeedomUtils.loadPage(redir.page, redir.title)
+		  }
+		}
+	      } else if (redirect == 'view') {
+		jeedomUtils.loadPage('view', '{{Vue}}', getUrlVars('view_id'));
+	      } else if (isset(jeeFrontEnd.userProfils) && jeeFrontEnd.userProfils != null && isset(jeeFrontEnd.userProfils.homePageMobile) && jeeFrontEnd.userProfils.homePageMobile != 'home') {
+		let res = jeeFrontEnd.userProfils.homePageMobile.split("::")
+		if (res[0] == 'core') {
+		  switch (res[1]) {
+		    case 'overview':
+		      jeedomUtils.loadPage(defaultMobilePage)
+		      break
+		    case 'dashboard':
+		      jeedomUtils.loadPage(defaultMobilePage)
+		      break
+		    case 'plan':
+		      window.location.href = 'index.php?v=d&p=plan&plan_id=' + jeeFrontEnd.userProfils.defaultMobilePlan
+		      break
+		    case 'view':
+		      jeedomUtils.loadPage(defaultMobilePage)
+		      break
+		  }
+		} else {
+		  jeedomUtils.loadPage(res[1], 'Plugin', '', res[0])
+		}
+	      } else {
+		  jeedomUtils.loadPage('home', '{{Accueil}}')
+	      }
 
             if (APP_MODE) {
               document.getElementById('pagecontainer').style.paddingTop = '0'
