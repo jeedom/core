@@ -705,7 +705,7 @@ $('.bt_uploadImage').each(function() {
 jeeP.$divConfig.on({
   'click': function(event) {
     var dataPage = $(this).attr('data-page')
-    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cette image de fond ?}}', function(result) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer cette image de fond ?}}', function(result) {
       if (result) {
         jeedom.config.removeImage({
           id: dataPage,
@@ -1056,7 +1056,7 @@ jeeP.$divConfig.on({
 
 /**************************EQUIPMENT***********************************/
 $('#bt_influxDelete').off('click').on('click', function() {
-  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer la base d\'InfluxDB}}', function(result) {
+  jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer la base d\'InfluxDB}}', function(result) {
     if (result) {
       jeedom.cmd.dropDatabaseInflux({
         error: function(error) {
@@ -1077,7 +1077,7 @@ $('#bt_influxDelete').off('click').on('click', function() {
 })
 
 $('#bt_influxHistory').off('click').on('click', function() {
-  bootbox.confirm('{{Êtes-vous sûr de vouloir envoyer tout l\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes.}}', function(result) {
+  jeeDialog.confirm('{{Êtes-vous sûr de vouloir envoyer tout l\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes.}}', function(result) {
     if (result) {
       jeedom.cmd.historyInfluxAll({
         error: function(error) {
@@ -1236,7 +1236,7 @@ $("#bt_cleanCache").on('click', function(event) {
 
 $("#bt_flushCache").on('click', function(event) {
   jeedomUtils.hideAlert()
-  bootbox.confirm('{{Attention ceci est une opération risquée (vidage du cache), Confirmez vous vouloir la faire ?}}', function(result) {
+  jeeDialog.confirm('{{Attention ceci est une opération risquée (vidage du cache), Confirmez vous vouloir la faire ?}}', function(result) {
     if (result) {
       jeeP.flushCache()
     }
@@ -1252,7 +1252,7 @@ $("#bt_flushWidgetCache").on('click', function(event) {
 $(".bt_regenerate_api").on('click', function(event) {
   jeedomUtils.hideAlert()
   var el = this
-  bootbox.confirm('{{Êtes-vous sûr de vouloir réinitialiser la clé API de}}' + ' ' + el.attr('data-plugin') + ' ?', function(result) {
+  jeeDialog.confirm('{{Êtes-vous sûr de vouloir réinitialiser la clé API de}}' + ' ' + el.attr('data-plugin') + ' ?', function(result) {
     if (result) {
       domUtils.ajax({
         type: "POST",

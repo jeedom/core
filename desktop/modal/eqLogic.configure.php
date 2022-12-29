@@ -712,7 +712,7 @@ sendVarToJS([
   }
 
   $('#bt_eqLogicConfigureRemove').on('click', function() {
-    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cet équipement ?}}', function(result) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer cet équipement ?}}', function(result) {
       if (result) {
         jeedom.eqLogic.remove({
           id: jeephp2js.md_eqLogicConfigure_Info.id,
@@ -735,7 +735,7 @@ sendVarToJS([
   })
 
   $('#bt_resetbattery').on('click', function() {
-    bootbox.confirm("{{Confirmer le remplacement des piles ? Cette action enregistrera le dernier de changement de piles à la date d'aujourd'hui.}}", function(result) {
+    jeeDialog.confirm("{{Confirmer le remplacement des piles ? Cette action enregistrera le dernier de changement de piles à la date d'aujourd'hui.}}", function(result) {
       if (result) {
         var eqLogic = {}
         eqLogic['id'] = jeephp2js.md_eqLogicConfigure_Info.id

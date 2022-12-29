@@ -121,7 +121,7 @@ $('#bt_scenarioTemplateRemove').on('click', function() {
 })
 
 $('#bt_scenarioTemplateApply').on('click', function() {
-  bootbox.confirm('{{Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel.}}', function(result) {
+  jeeDialog.confirm('{{Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel.}}', function(result) {
     if (result) {
       var convert = document.querySelectorAll('.templateScenario').getJeeValues('.templateScenarioAttr')
       jeedom.scenario.applyTemplate({

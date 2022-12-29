@@ -257,7 +257,7 @@ sendVarToJS([
             "label": "{{Supprimer}}",
             "icon": "fas fa-folder-minus",
             "action": function() {
-              bootbox.confirm("{{Etes-vous sûr de vouloir supprimer le dossier}} <strong>" + tree.get_node(node.parent).text + "/" + node.text + "</strong> ?<br>{{Attention : le contenu du dossier sera définitivement supprimé lors de l'opération.}}", function(result) {
+              jeeDialog.confirm("{{Etes-vous sûr de vouloir supprimer le dossier}} <strong>" + tree.get_node(node.parent).text + "/" + node.text + "</strong> ?<br>{{Attention : le contenu du dossier sera définitivement supprimé lors de l'opération.}}", function(result) {
                 if (result) {
                   jeedom.deleteFolder({
                     path: node.a_attr['data-path'],
@@ -436,7 +436,7 @@ sendVarToJS([
   $('#tabimg .div_imageGallery').off('click').on('click', '.bt_removeImg', function() {
     jeedomUtils.hideAlert()
     var filepath = $(this).attr('data-realfilepath')
-    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cette image}} <strong>' + filepath + '</strong> ?', function(result) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer cette image}} <strong>' + filepath + '</strong> ?', function(result) {
       if (result) {
         jeedom.removeImageIcon({
           filepath: filepath,

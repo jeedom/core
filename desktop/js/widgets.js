@@ -555,7 +555,7 @@ $('#div_templateTest').off('click', '.bt_removeTest').on('click', '.bt_removeTes
 })
 
 $("#bt_addWidgets").off('click').on('click', function(event) {
-  bootbox.prompt("{{Nom du widget}} ?", function(result) {
+  jeeDialog.prompt("{{Nom du widget}} ?", function(result) {
     if (result !== null) {
       jeedom.widgets.save({
         widgets: {
@@ -633,7 +633,7 @@ $("#bt_saveWidgets").on('click', function(event) {
 })
 
 $('#bt_removeWidgets').on('click', function(event) {
-  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer le widget}} <span style="font-weight: bold ;">' + $('input[data-l1key="name"]').val() + '</span> ?', function(result) {
+  jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer le widget}} <span style="font-weight: bold ;">' + $('input[data-l1key="name"]').val() + '</span> ?', function(result) {
     if (result) {
       jeedom.widgets.remove({
         id: document.querySelector('.widgetsAttr[data-l1key=id]').jeeValue(),
@@ -682,7 +682,7 @@ $("#uploadFile").change(function(event) {
   }
 
   if (uploadedFile) {
-    bootbox.prompt("{{Nom du widget}} ?", function(result) {
+    jeeDialog.prompt("{{Nom du widget}} ?", function(result) {
       if (result !== null) {
         jeedom.widgets.save({
           widgets: {

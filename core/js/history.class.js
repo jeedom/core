@@ -172,14 +172,14 @@ jeedom.history.modalchangePoint = function(event, _this, _params) {
   if (jeedom.history.chart[_this.series.chart._jeeId].comparing) return
 
   if (isset(_params.cmd.display.groupingType) && _params.cmd.display.groupingType != '') {
-    bootbox.alert('{{Impossible de modifier une valeur sur une courbe avec groupement}}' + ' (' + _params.cmd.display.groupingType + ')')
+    jeeDialog.alert('{{Impossible de modifier une valeur sur une courbe avec groupement}}' + ' (' + _params.cmd.display.groupingType + ')')
     return
   }
 
   var id = _this.series.userOptions.id
   var datetime = Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', _this.x)
   var value = _this.y
-  bootbox.prompt("{{Edition de la série :}} <b>" + _this.series.name + "</b> {{et du point de}} <b>" + datetime + "</b> ({{valeur :}} <b>" + value + "</b>) ? {{Ne rien mettre pour supprimer la valeur}}", function(result) {
+  jeeDialog.prompt("{{Edition de la série :}} <b>" + _this.series.name + "</b> {{et du point de}} <b>" + datetime + "</b> ({{valeur :}} <b>" + value + "</b>) ? {{Ne rien mettre pour supprimer la valeur}}", function(result) {
     if (result !== null) {
       jeedom.history.changePoint({
         cmd_id: id,

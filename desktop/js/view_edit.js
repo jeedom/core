@@ -397,7 +397,7 @@ $('#bt_viewResult').on('click', function() {
 })
 
 $("#bt_addView").on('click', function(event) {
-  bootbox.prompt("{{Nom de la vue ?}}", function(result) {
+  jeeDialog.prompt("{{Nom de la vue ?}}", function(result) {
     if (result !== null) {
       jeedom.view.save({
         id: '',
@@ -430,7 +430,7 @@ $('#bt_saveView').on('click', function(event) {
 
 $("#bt_removeView").on('click', function(event) {
   jeedomUtils.hideAlert()
-  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer la vue}} <span style="font-weight: bold ;">' + $(".li_view.active a").text() + '</span> ?', function(result) {
+  jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer la vue}} <span style="font-weight: bold ;">' + $(".li_view.active a").text() + '</span> ?', function(result) {
     if (result) {
       jeedom.view.remove({
         id: $(".li_view.active").attr('data-view_id'),

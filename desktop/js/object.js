@@ -684,7 +684,7 @@ $('#bt_libraryBackgroundImage').on('click', function() {
 })
 
 $('#bt_removeBackgroundImage').off('click').on('click', function() {
-  bootbox.confirm('{{Êtes-vous sûr de vouloir enlever l\'image de fond de cet objet ?}}', function(result) {
+  jeeDialog.confirm('{{Êtes-vous sûr de vouloir enlever l\'image de fond de cet objet ?}}', function(result) {
     if (result) {
       jeedom.object.removeImage({
         id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML,
@@ -708,7 +708,7 @@ $('#bt_removeBackgroundImage').off('click').on('click', function() {
 })
 
 $('#bt_orderEqLogicByUsage').off('click').on('click', function() {
-  bootbox.confirm('{{Êtes-vous sûr de vouloir réordonner les équipements pas utilisation ?}}', function(result) {
+  jeeDialog.confirm('{{Êtes-vous sûr de vouloir réordonner les équipements pas utilisation ?}}', function(result) {
     if (result) {
       jeedom.object.orderEqLogicByUsage({
         id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML,
@@ -765,7 +765,7 @@ $('select[data-l2key="synthToAction"]').off().on('change', function() {
 })
 
 $("#bt_addObject, #bt_addObject2").on('click', function(event) {
-  bootbox.prompt("{{Nom du nouvel objet}} ?", function(result) {
+  jeeDialog.prompt("{{Nom du nouvel objet}} ?", function(result) {
     if (result !== null) {
       jeedom.object.save({
         object: {
@@ -834,7 +834,7 @@ document.getElementById('bt_saveObject').addEventListener('click', function (eve
 
 $("#bt_removeObject").on('click', function(event) {
   jeedomUtils.hideAlert()
-  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + $('.objectDisplayCard.active .name').text().trim() + '</span> ?', function(result) {
+  jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + $('.objectDisplayCard.active .name').text().trim() + '</span> ?', function(result) {
     if (result) {
       var removeId = $('.objectDisplayCard.active').attr('data-object_id')
       jeedom.object.remove({

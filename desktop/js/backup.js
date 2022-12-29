@@ -193,7 +193,7 @@ $("#bt_saveBackup").on('click', function(event) {
 
 $(".bt_backupJeedom").on('click', function(event) {
   var el = $(this)
-  bootbox.confirm('{{Êtes-vous sûr de vouloir faire une sauvegarde de}} ' + JEEDOM_PRODUCT_NAME + ' {{? Une fois lancée cette opération ne peut être annulée}}', function(result) {
+  jeeDialog.confirm('{{Êtes-vous sûr de vouloir faire une sauvegarde de}} ' + JEEDOM_PRODUCT_NAME + ' {{? Une fois lancée cette opération ne peut être annulée}}', function(result) {
     if (result) {
       jeedomUtils.hideAlert()
       el.find('.fa-sync').show()
@@ -214,7 +214,7 @@ $(".bt_backupJeedom").on('click', function(event) {
 
 $("#bt_restoreJeedom").on('click', function(event) {
   var el = $(this)
-  bootbox.confirm('{{Êtes-vous sûr de vouloir restaurer}} ' + JEEDOM_PRODUCT_NAME + ' {{avec la sauvegarde}} <b>' + $('#sel_restoreBackup option:selected').text() + '</b> ? {{Une fois lancée cette opération ne peut être annulée.}} <span style="color:red;font-weight: bold;">{{IMPORTANT la restauration d\'un backup est une opération risquée et n\'est à utiliser qu\'en dernier recours}}.</span>', function(result) {
+  jeeDialog.confirm('{{Êtes-vous sûr de vouloir restaurer}} ' + JEEDOM_PRODUCT_NAME + ' {{avec la sauvegarde}} <b>' + $('#sel_restoreBackup option:selected').text() + '</b> ? {{Une fois lancée cette opération ne peut être annulée.}} <span style="color:red;font-weight: bold;">{{IMPORTANT la restauration d\'un backup est une opération risquée et n\'est à utiliser qu\'en dernier recours}}.</span>', function(result) {
     if (result) {
       jeedomUtils.hideAlert()
       el.find('.fa-sync').show()
@@ -236,7 +236,7 @@ $("#bt_restoreJeedom").on('click', function(event) {
 
 $("#bt_removeBackup").on('click', function(event) {
   var el = $(this)
-  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer la sauvegarde}} <b>' + $('#sel_restoreBackup option:selected').text() + '</b> ?', function(result) {
+  jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer la sauvegarde}} <b>' + $('#sel_restoreBackup option:selected').text() + '</b> ?', function(result) {
     if (result) {
       el.find('.fa-sync').show()
       jeedom.backup.remove({
@@ -284,7 +284,7 @@ $('#bt_uploadBackup').fileupload({
 
 $(".bt_uploadCloudBackup").on('click', function(event) {
   var el = $(this)
-  bootbox.confirm('{{Êtes-vous sûr de vouloir envoyer une sauvegarde de}} ' + JEEDOM_PRODUCT_NAME + ' {{sur le cloud ? Une fois lancée cette opération ne peut être annulée}}', function(result) {
+  jeeDialog.confirm('{{Êtes-vous sûr de vouloir envoyer une sauvegarde de}} ' + JEEDOM_PRODUCT_NAME + ' {{sur le cloud ? Une fois lancée cette opération ne peut être annulée}}', function(result) {
     if (result) {
       el.find('.fa-sync').show()
       jeedom.backup.uploadCloud({
@@ -305,7 +305,7 @@ $(".bt_uploadCloudBackup").on('click', function(event) {
 
 $(".bt_restoreRepoBackup").on('click', function(event) {
   var el = this
-  bootbox.confirm('{{Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud}} <b>' + $('#sel_restoreCloudBackup option:selected').text() + '</b> ?', function(result) {
+  jeeDialog.confirm('{{Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud}} <b>' + $('#sel_restoreCloudBackup option:selected').text() + '</b> ?', function(result) {
     if (result) {
       el.querySelector('.fa-sync').seen()
       jeedom.backup.restoreCloud({

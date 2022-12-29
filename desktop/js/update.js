@@ -504,9 +504,9 @@ $('.bt_OsPackageUpdate').off('click').on('click',function(){
     return;
   }
   let type = $(this).attr('data-type');
-  bootbox.confirm('{{Êtes-vous sûr de vouloir mettre à jour les packages de type}}' + ' : ' + type + ' ? {{Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes}}.', function(result) {
-    if(!result){
-      return;
+  jeeDialog.confirm('{{Êtes-vous sûr de vouloir mettre à jour les packages de type}}' + ' : ' + type + ' ? {{Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes}}.', function(result) {
+    if (!result) {
+      return
     }
     jeedom.systemUpgradablePackage({
       type : type,
@@ -610,7 +610,7 @@ $('#table_update').on({
     if ($(this).hasClass('disabled')) return
     var id = $(this).closest('tr').attr('data-id')
     var logicalId = $(this).closest('tr').attr('data-logicalid')
-    bootbox.confirm('{{Êtes-vous sûr de vouloir mettre à jour :}}' + ' ' + logicalId + ' ?', function(result) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir mettre à jour :}}' + ' ' + logicalId + ' ?', function(result) {
       if (result) {
         jeeP.progress = -1;
         $('.progressbarContainer').removeClass('hidden')
@@ -638,7 +638,7 @@ $('#table_update').on({
   'click': function(event) {
     var id = $(this).closest('tr').attr('data-id');
     var logicalId = $(this).closest('tr').attr('data-logicalid')
-    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer :}}' + ' ' + logicalId + ' ?', function(result) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer :}}' + ' ' + logicalId + ' ?', function(result) {
       if (result) {
         jeedomUtils.hideAlert();
         jeedom.update.remove({

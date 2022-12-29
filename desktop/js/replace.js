@@ -394,7 +394,7 @@ $('#bt_applyFilters').on('click', function() {
 })
 
 $('#bt_replace').on('click', function() {
-  bootbox.confirm({
+  jeeDialog.confirm({
     message: "<b>{{Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !}}</b>" + "<br>" +  "{{Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?}}",
     callback: function(result) {
       if (result) {
@@ -433,7 +433,6 @@ $('#bt_replace').on('click', function() {
             message: '{{Aucun équipement à remplacer ou copier}}',
             level: 'info'
           })
-          bootbox.hideAll()
           return true
         }
 
@@ -442,7 +441,6 @@ $('#bt_replace').on('click', function() {
             message: '{{Aucune commande à remplacer ou copier}}',
             level: 'info'
           })
-          bootbox.hideAll()
           return true
         }
 

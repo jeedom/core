@@ -99,7 +99,7 @@ $('.bt_correctTable').off('click').on('click',function() {
   } else {
     var text = '{{Êtes-vous sûr de vouloir corriger la table}}' + ' ' + el.data('table') + ' ?'
   }
-  bootbox.confirm(text, function(result) {
+  jeeDialog.confirm(text, function(result) {
     if (result) {
       jeedom.dbcorrectTable({
         table : el.data('table'),

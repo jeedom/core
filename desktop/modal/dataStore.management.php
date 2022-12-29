@@ -165,7 +165,7 @@ if (!jeeFrontEnd.md_datastore) {
         tr.remove()
         return
       }
-      bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer la variable}}' + ' : <span style="font-weight: bold ;">' + tr.querySelector('.key').value + '</span> ?', function(result) {
+      jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer la variable}}' + ' : <span style="font-weight: bold ;">' + tr.querySelector('.key').value + '</span> ?', function(result) {
         if (result) {
           jeedom.dataStore.remove({
             id: tr.getAttribute('data-dataStore_id'),

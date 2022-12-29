@@ -564,6 +564,7 @@ jeedomUtils.transitionJeedomBackground = function(_path) {
 jeedomUtils.initJeedomModals = function() {
   $.fn.modal.Constructor.prototype.enforceFocus = function() { }
 
+  //Deprecated bootbox, keep for plugins
   if (isset(jeeFrontEnd.language)) {
     var lang = jeeFrontEnd.language.substr(0, 2)
     var supportedLangs = ['fr', 'de', 'es']
@@ -575,18 +576,18 @@ jeedomUtils.initJeedomModals = function() {
     }
   }
 
+  //Deprecated bootbox, keep for plugins
   $('body').on('show', '.modal', function() {
     document.activeElement.blur()
     $(this).find('.modal-body :input:visible').first().focus()
   })
-
   $('body').on('focusin', '.bootbox-input', function(event) {
     event.stopPropagation()
   })
-
   $('.bootbox.modal').on('shown.bs.modal', function() {
     $(this).find(".bootbox-accept").focus()
   })
+
 
   $('#md_reportBug').dialog({
     autoOpen: false,
@@ -1405,17 +1406,17 @@ jeedomUtils.showHelpModal = function(_name, _plugin) {
 }
 
 jeedomUtils.reloadPagePrompt = function(_title) {
-  bootbox.confirm({
+  jeeDialog.confirm({
     title: '<h4><i class="success fas fa-check-circle"></i> ' + _title + '</h4>',
     message: '{{Voulez vous recharger la page maintenant ?}}',
     buttons: {
       confirm: {
         label: '{{Recharger}}',
-        className: 'btn-success'
+        className: 'success'
       },
       cancel: {
         label: '{{Rester sur la page}}',
-        className: 'btn-info'
+        className: 'info'
       }
     },
     callback: function(result) {

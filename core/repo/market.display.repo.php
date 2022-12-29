@@ -326,7 +326,7 @@ if (count($market->getImg('screenshot')) > 0) {
 			},
 			success: function(data) {
 				if (market_display_info.type == 'plugin') {
-					bootbox.confirm('{{Voulez-vous aller sur la page de configuration de votre nouveau plugin ?}}', function(result) {
+					jeeDialog.confirm('{{Voulez-vous aller sur la page de configuration de votre nouveau plugin ?}}', function(result) {
 						if (result) {
 							jeedomUtils.loadPage('index.php?v=d&p=plugin&id=' + logicalId);
 						}

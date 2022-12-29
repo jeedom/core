@@ -154,7 +154,7 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt ')) > 0) {
     } else {
       var text = '{{Êtes-vous sûr de vouloir installer le package}} ' + el.data('package') + ' ?'
     }
-    bootbox.confirm(text, function(result) {
+    jeeDialog.confirm(text, function(result) {
       if (result) {
         jeedom.systemCorrectPackage({
           package: el.data('package'),

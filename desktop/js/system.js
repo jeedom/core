@@ -34,7 +34,7 @@ $('.bt_systemCommand').off('click').on('click', function() {
   var command = $(this).attr('data-command')
   $('#pre_commandResult').empty()
   if ($(this).parent().hasClass('list-group-item-danger')) {
-    bootbox.confirm('{{Êtes-vous sûr de vouloir éxécuter cette commande :}} <strong>' + command + '</strong> ? {{Celle-ci est classé en dangereuse}}', function(result) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir éxécuter cette commande :}} <strong>' + command + '</strong> ? {{Celle-ci est classé en dangereuse}}', function(result) {
       if (result) {
         jeedom.ssh({
           command: command,

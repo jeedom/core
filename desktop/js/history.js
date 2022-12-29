@@ -532,7 +532,12 @@ jeeP.$pageContainer.on({
   'click': function(event) {
     jeedomUtils.hideAlert()
     var bt_remove = $(this)
-    bootbox.prompt('{{Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\'historique de}} <span style="font-weight: bold ;"> ' + bt_remove.closest('.li_history').find('.history').text() + '</span> (laissez vide pour tout supprimer) ?', function(result) {
+    jeeDialog.prompt({
+      inputType: 'date',
+      pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}',
+      placeholder: 'yyyy-mm-dd hh:mm:ss',
+      message: '{{Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\'historique de}} <span style="font-weight: bold ;"> ' + bt_remove.closest('.li_history').find('.history').text() + '</span> (laissez vide pour tout supprimer) ?'
+      }, function(result) {
       if (result !== null) {
         jeeP.emptyHistory(bt_remove.closest('.li_history').attr('data-cmd_id'), result)
       }

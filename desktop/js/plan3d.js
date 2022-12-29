@@ -80,7 +80,7 @@ $('#bt_plan3dHeaderConfigure').on('click', function() {
 })
 
 $('#bt_plan3dHeaderAdd').on('click', function() {
-  bootbox.prompt("{{Nom du design 3D ?}}", function(result) {
+  jeeDialog.prompt("{{Nom du design 3D ?}}", function(result) {
     if (result !== null) {
       jeedom.plan3d.saveHeader({
         plan3dHeader: {

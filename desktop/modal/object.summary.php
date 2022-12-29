@@ -127,7 +127,7 @@ $('#table_ObjectSummary .bt_removeObject').on('click', function(event) {
   jeedomUtils.hideAlert()
   var id = $(this).closest('tr.tr_object').attr('data-object_id')
   var name = $(this).closest('tr.tr_object').attr('data-object_name')
-  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + name + '</span> ?', function(result) {
+  jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + name + '</span> ?', function(result) {
     if (result) {
       jeedom.object.remove({
         id: id,

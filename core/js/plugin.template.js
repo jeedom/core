@@ -213,8 +213,7 @@ $('.eqLogicAction[data-action="copy"]').off('click').on('click', function() {
   var name = document.querySelector('.eqLogicAttr[data-l1key="name"]').jeeValue()
   var id = document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue()
   if (id != undefined && id != '') {
-    bootbox.prompt({
-      size: 'small',
+    jeeDialog.prompt({
       value: name,
       title: '{{Nom de la copie de l\'équipement ?}}',
       callback: function(result) {
@@ -239,6 +238,7 @@ $('.eqLogicAction[data-action="copy"]').off('click').on('click', function() {
               }
               url += 'id=' + data.id + '&saveSuccessFull=1'
               jeedomUtils.loadPage(url)
+              //deprecated 4.4
               bootbox.hideAll()
             }
           })
@@ -329,7 +329,7 @@ $('.eqLogicAction[data-action="remove"]').off('click').on('click', function() {
           }
         }
         text = text.substring(0, text.length - 2)
-        bootbox.confirm(text, function(result) {
+        jeeDialog.confirm(text, function(result) {
           if (result) {
             jeedom.eqLogic.remove({
               type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
@@ -366,7 +366,7 @@ $('.eqLogicAction[data-action="remove"]').off('click').on('click', function() {
 })
 
 $('.eqLogicAction[data-action="add"]').off('click').on('click', function() {
-  bootbox.prompt("{{Nom de l'équipement ?}}", function(result) {
+  jeeDialog.prompt("{{Nom de l'équipement ?}}", function(result) {
     if (result !== null) {
       jeedom.eqLogic.save({
         type: eqType,

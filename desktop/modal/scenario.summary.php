@@ -159,7 +159,7 @@ if (!jeeFrontEnd.md_scenarioSummary) {
             jeedomUtils.hideAlert()
             var id = $(this).closest('tr').attr('data-id')
             var name = $(this).closest('tr').find('span[data-l1key="humanName"]').text()
-            bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer le scénario}} <span style="font-weight: bold ;">' + name + '</span> ?', function(result) {
+            jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer le scénario}} <span style="font-weight: bold ;">' + name + '</span> ?', function(result) {
               if (result) {
                 jeedom.scenario.remove({
                   id: id,

@@ -89,7 +89,7 @@ jeedom.cmd.execute = function(_params) {
               return data
             }
           } else {
-            bootbox.prompt("{{Veuillez indiquer le code ?}}", function(result) {
+            jeeDialog.prompt("{{Veuillez indiquer le code ?}}", function(result) {
               if (result != null) {
                 _params.codeAccess = result
                 jeedom.cmd.execute(_params)
@@ -133,7 +133,7 @@ jeedom.cmd.execute = function(_params) {
               return data
             }
           } else {
-            bootbox.confirm("{{Êtes-vous sûr de vouloir faire cette action ?}}", function(result) {
+            jeeDialog.confirm("{{Êtes-vous sûr de vouloir faire cette action ?}}", function(result) {
               if (result) {
                 _params.confirmAction = 1
                 jeedom.cmd.execute(_params)
@@ -247,13 +247,11 @@ jeedom.cmd.test = function(_params) {
               })
               break
             case 'slider':
-              bootbox.prompt({
-                title: "This is a prompt with a range input!",
-                inputType: 'range',
-                min: result.configuration.minValue || 0,
-                max: result.configuration.maxValue || 100,
-                step: 1,
-                value: 50,
+              let min = result.configuration.minValue || 0
+              let max = result.configuration.maxValue || 100
+              jeeDialog.prompt({
+                title: '{{Entrer une valeur entre}}' + ' ' + min + ' ' + '{{et}}' + ' ' + max ,
+                value: parseInt(min) + (parseInt(max) / 2),
                 callback: function(result) {
                   if (result === null) {
                     return
@@ -281,8 +279,9 @@ jeedom.cmd.test = function(_params) {
               })
               break
             case 'color':
-              bootbox.prompt({
+              jeeDialog.prompt({
                 title: "{{Quelle couleur (#rrggbb) ?}}",
+                placeholder: '#rrggbb',
                 value: '#ff000',
                 callback: function(result) {
                   if (result === null) {
@@ -316,7 +315,7 @@ jeedom.cmd.test = function(_params) {
               for (let i in values) {
                 inputOptions.push({ text: values[i].split('|')[1], value: values[i].split('|')[0] })
               }
-              bootbox.prompt({
+              jeeDialog.prompt({
                 title: "{{Valeur ?}}",
                 inputType: 'select',
                 inputOptions: inputOptions,
@@ -348,44 +347,33 @@ jeedom.cmd.test = function(_params) {
               break
             case 'message':
               var productName = JEEDOM_PRODUCT_NAME
-              bootbox.dialog({
+              jeeDialog.prompt({
                 title: "{{Message}}",
-                message: '<form class="bootbox-form"><input id="in_testCmdTitle" class="bootbox-input bootbox-input-text form-control" autocomplete="off" type="text" value="' + productName + '{{ Message de test}}"><br/><br/><textarea  id="ta_testCmdMessage" class="bootbox-input bootbox-input-textarea form-control">{{Ceci est un test de message pour la commande}} ' + result.name + '</textarea></form>',
-                size: 'large',
-                buttons: {
-                  cancel: {
-                    label: "{{Annuler}}",
-                    className: 'btn-warning',
-                    callback: function() {
-
-                    }
-                  },
-                  success: {
-                    label: "{{Ok}}",
-                    className: "btn-success",
-                    callback: function() {
-                      jeedom.cmd.execute({
-                        id: _params.id,
-                        value: {
-                          title: document.getElementById('in_testCmdTitle').jeeValue(),
-                          message: document.getElementById('ta_testCmdMessage').jeeValue()
-                        },
-                        cache: 0,
-                        error: function(error) {
-                          jeedomUtils.showAlert({
-                            message: error.message,
-                            level: 'danger'
-                          })
-                        },
-                        success: function() {
-                          jeedomUtils.showAlert({
-                            message: '{{Action exécutée avec succès}}',
-                            level: 'success'
-                          })
-                        }
-                      })
-                    }
-                  },
+                message: '<form class="bootbox-form"><input class="promptAttr" data-l1key="title" autocomplete="off" type="text" value="' + productName + '{{ Message de test}}"><br/><br/><textarea data-l1key="message" class="promptAttr">{{Ceci est un test de message pour la commande}} ' + result.name + '</textarea></form>',
+                inputType: false,
+                callback: function(result) {
+                  if (result) {
+                    jeedom.cmd.execute({
+                      id: _params.id,
+                      value: {
+                        title: result.title,
+                        message: result.message
+                      },
+                      cache: 0,
+                      error: function(error) {
+                        jeedomUtils.showAlert({
+                          message: error.message,
+                          level: 'danger'
+                        })
+                      },
+                      success: function() {
+                        jeedomUtils.showAlert({
+                          message: '{{Action exécutée avec succès}}',
+                          level: 'success'
+                        })
+                      }
+                    })
+                  }
                 }
               })
               break

@@ -454,7 +454,7 @@ $('#bt_resetPluginSearch').on('click', function() {
 $('div.pluginDisplayCard .bt_openPluginPage, #div_confPlugin .openPluginPage').off('click').on('click', function(event) {
   event.stopPropagation()
   if (event.target.closest('.pluginDisplayCard')?.hasClass('inactive') || event.target.closest('#div_state')?.querySelector('a.togglePlugin')?.getAttribute('data-state') == '1') {
-    bootbox.alert('{{Vous devez activer ce plugin pour y accéder.}}')
+    jeeDialog.alert('{{Vous devez activer ce plugin pour y accéder.}}')
     return false
   }
   if (event.target.closest('.pluginDisplayCard') != null) {
@@ -570,7 +570,7 @@ $('body').off('click', '.bt_refreshPluginInfo').on('click', '.bt_refreshPluginIn
 $('#span_right_button').on({
   'click': function(event) {
     var _el = $(this)
-    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer le plugin}} <span style="font-weight: bold ;">' + $('#span_plugin_name').text() + '</span> ?', function(result) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer le plugin}} <span style="font-weight: bold ;">' + $('#span_plugin_name').text() + '</span> ?', function(result) {
       if (result) {
         jeedomUtils.hideAlert()
         jeedom.update.remove({

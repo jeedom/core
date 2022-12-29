@@ -35,13 +35,13 @@ if (!isConnect('admin')) {
 <script type="text/javascript">
 	var rebooti = '0';
 	var testjeedom = '0';
-	bootbox.confirm('{{Êtes-vous sûr de vouloir arrêter le système ?}}', function (result) {
+	jeeDialog.confirm('{{Êtes-vous sûr de vouloir arrêter le système ?}}', function (result) {
 		if (result) {
 			jeedom.haltSystem();
 			setTimeout('reboot_jeedom(rebooti)', 10000);
 			setTimeout("$('#progressbar_reboot').width('50%');", 5000);
 			$('#progressbar_reboot').width('5%');
-		}else{
+		} else {
 			jeedomUtils.loadPage('index.php?v=d&p=dashboard');
 		}
 	});

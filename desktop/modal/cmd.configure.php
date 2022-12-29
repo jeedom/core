@@ -1009,7 +1009,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
   })
 
   $('#bt_influxDelete').off('click').on('click', function() {
-    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\'InfluxDB}}', function(result) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\'InfluxDB}}', function(result) {
       if (result) {
         jeedom.cmd.dropInflux({
           cmd_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
@@ -1031,7 +1031,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
   })
 
   $('#bt_influxHistory').off('click').on('click', function() {
-    bootbox.confirm('{{Êtes-vous sûr de vouloir envoyer tout l\'historique de cette commande à InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute.}}', function(result) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir envoyer tout l\'historique de cette commande à InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute.}}', function(result) {
       if (result) {
         jeedom.cmd.historyInflux({
           cmd_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
@@ -1061,7 +1061,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     }, function(result) {
       var target_id = result.cmd.id
       var name = result.human
-      bootbox.confirm('{{Êtes-vous sûr de vouloir copier l\'historique de}} <strong>' + jeephp2js.md_cmdConfigure_cmdInfo.name + '</strong> {{vers}} <strong>' + name + '</strong> ? {{Il est conseillé de vider l\'historique de la commande}} : <strong>' + name + '</strong> {{avant la copie}}', function(result) {
+      jeeDialog.confirm('{{Êtes-vous sûr de vouloir copier l\'historique de}} <strong>' + jeephp2js.md_cmdConfigure_cmdInfo.name + '</strong> {{vers}} <strong>' + name + '</strong> ? {{Il est conseillé de vider l\'historique de la commande}} : <strong>' + name + '</strong> {{avant la copie}}', function(result) {
         if (result) {
           jeedom.history.copyHistoryToCmd({
             source_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
@@ -1093,7 +1093,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     }, function(result) {
       var target_id = result.cmd.id
       var name = result.human
-      bootbox.confirm('{{Êtes-vous sûr de vouloir remplacer}} <strong>' + jeephp2js.md_cmdConfigure_cmdInfoString + '</strong> {{par}} : <br/><strong>' + name + '</strong> ?', function(result) {
+      jeeDialog.confirm('{{Êtes-vous sûr de vouloir remplacer}} <strong>' + jeephp2js.md_cmdConfigure_cmdInfoString + '</strong> {{par}} : <br/><strong>' + name + '</strong> ?', function(result) {
         if (result) {
           jeedom.cmd.replaceCmd({
             source_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
@@ -1125,7 +1125,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     }, function(result) {
       var target_id = result.cmd.id
       var name = result.human
-      bootbox.confirm('{{Êtes-vous sûr de vouloir remplacer l\'ID}} <strong>' + name + '</strong> {{par}} : <br/><strong>' + jeephp2js.md_cmdConfigure_cmdInfoString + '</strong> ?', function(result) {
+      jeeDialog.confirm('{{Êtes-vous sûr de vouloir remplacer l\'ID}} <strong>' + name + '</strong> {{par}} : <br/><strong>' + jeephp2js.md_cmdConfigure_cmdInfoString + '</strong> ?', function(result) {
         if (result) {
           jeedom.cmd.replaceCmd({
             source_id: target_id,
@@ -1153,7 +1153,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     if (target_id == null) {
       return
     }
-    bootbox.confirm('{{Êtes-vous sûr de vouloir remplacer la commande}} id : <strong>' + target_id + '</strong> {{par}} : <br/><strong>' + jeephp2js.md_cmdConfigure_cmdInfoString + '</strong> ?', function(result) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir remplacer la commande}} id : <strong>' + target_id + '</strong> {{par}} : <br/><strong>' + jeephp2js.md_cmdConfigure_cmdInfoString + '</strong> ?', function(result) {
       if (result) {
         jeedom.cmd.replaceCmd({
           source_id: target_id,

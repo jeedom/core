@@ -365,7 +365,7 @@ $('.cb_selCmd').on('change', function() {
 })
 
 $('#bt_removeEqlogic').on('click', function() {
-  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer tous ces équipements ?}}', function(result) {
+  jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer tous ces équipements ?}}', function(result) {
     if (result) {
       var eqLogics = []
       $('.cb_selEqLogic').each(function() {
@@ -458,7 +458,7 @@ $('.bt_setIsEnable').on('click', function() {
 })
 
 $('#bt_emptyRemoveHistory').on('click', function() {
-  bootbox.confirm('{{Êtes-vous sûr de vouloir vider l\'historique de suppression ?}}', function(result) {
+  jeeDialog.confirm('{{Êtes-vous sûr de vouloir vider l\'historique de suppression ?}}', function(result) {
     if (result) {
       jeedom.emptyRemoveHistory({
         error: function(error) {

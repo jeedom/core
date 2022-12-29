@@ -232,7 +232,7 @@ $("#table_user").on('click', ".bt_del_user", function(event) {
     id: this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
   }
   var userName = this.closest('tr').querySelector('input[data-l1key="login"]').value
-  bootbox.confirm('{{Vous allez supprimer l\'utilisateur :}}' + ' ' + userName, function(result) {
+  jeeDialog.confirm('{{Vous allez supprimer l\'utilisateur :}}' + ' ' + userName, function(result) {
     if (result) {
       jeedom.user.remove({
         id: user.id,
@@ -260,7 +260,7 @@ $("#table_user").on('click', ".bt_change_mdp_user", function(event) {
     id: this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML,
     login: this.closest('tr').querySelector('input[data-l1key="login"]').value
   }
-  bootbox.prompt("{{Quel est le nouveau mot de passe ?}}", function(result) {
+  jeeDialog.prompt("{{Quel est le nouveau mot de passe ?}}", function(result) {
     if (result !== null) {
       user.password = result
       jeedom.user.save({
@@ -289,7 +289,7 @@ $("#table_user").on('click', ".bt_changeHash", function(event) {
   var user = {
     id: this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
   }
-  bootbox.confirm("{{Êtes-vous sûr de vouloir changer la clef API de l\'utilisateur ?}}", function(result) {
+  jeeDialog.confirm("{{Êtes-vous sûr de vouloir changer la clef API de l\'utilisateur ?}}", function(result) {
     if (result) {
       user.hash = ''
       jeedom.user.save({
@@ -398,7 +398,7 @@ $('#table_user').on('click', '.bt_copy_user_rights', function() {
     })
     return
   }
-  bootbox.prompt({
+  jeeDialog.prompt({
     title: "{{Vous voulez copier les droit de }}<strong> " + this.closest('tr').querySelector('.userAttr[data-l1key="login"]').value + "</strong> {{vers}} ?",
     value: select_list[0].value,
     inputType: 'select',

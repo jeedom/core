@@ -214,7 +214,7 @@ $('.eqLogicSortable').sortable({
 
     //reset types on commands ?
     if (jeeP.sortFromGenericId != genericId && genericId == '') {
-      bootbox.confirm({
+      jeeDialog.confirm({
         message: "{{Supprimer les types generiques sur les commandes ?}}",
         buttons: {
           confirm: {

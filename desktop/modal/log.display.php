@@ -93,7 +93,7 @@ $("#bt_logdisplayremoveLog").on('click', function(event) {
 
 $('#bt_logdisplaydownloadLog').click(function() {
   if ($('#pre_eventlog').text() == '') {
-    bootbox.alert('{{Le log est vide.}}')
+    jeeDialog.alert('{{Le log est vide.}}')
     return false
   }
   window.open('core/php/downloadFile.php?pathfile=log/' + jeephp2js.md_logDislay_Name, "_blank", null)

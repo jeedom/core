@@ -81,7 +81,7 @@ if (!jeeFrontEnd.plan) {
       }
     },
     createNewDesign: function() {
-      bootbox.prompt("{{Nom du design ?}}", function(result) {
+      jeeDialog.prompt("{{Nom du design ?}}", function(result) {
         if (result !== null) {
           jeedom.plan.saveHeader({
             planHeader: {
@@ -1033,7 +1033,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
           return !this.data('jeeFrontEnd.planEditOption.state')
         },
         callback: function(key, opt) {
-          bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer ce design ?}}', function(result) {
+          jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer ce design ?}}', function(result) {
             if (result) {
               jeedom.plan.removeHeader({
                 id: jeephp2js.planHeader_id,
@@ -1072,7 +1072,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
           return !this.data('jeeFrontEnd.planEditOption.state')
         },
         callback: function(key, opt) {
-          bootbox.prompt("{{Nom la copie du design ?}}", function(result) {
+          jeeDialog.prompt("{{Nom la copie du design ?}}", function(result) {
             if (result !== null) {
               jeeP.savePlan(false, false)
               jeedom.plan.copyHeader({

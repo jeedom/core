@@ -6,12 +6,12 @@ if(window.location.port != ''){
     ip = ip+':'+window.location.port;
   }
 
-bootbox.confirm('{{Êtes-vous sûr de vouloir redémarrer le système ?}}', function (result) {
+jeeDialog.confirm('{{Êtes-vous sûr de vouloir redémarrer le système ?}}', function (result) {
   if (result) {
     jeedom.rebootSystem();
     setTimeout(reboot_jeedom, 15000);
     $('#progressbar_reboot').width('5%');
-  }else{
+  } else {
     jeedomUtils.loadPage(ip+'/index.php?v=d&p=dashboard');
   }
 });

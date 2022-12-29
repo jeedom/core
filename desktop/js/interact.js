@@ -386,7 +386,7 @@ $('.interactDisplayCard').off('mouseup').on('mouseup', function(event) {
 })
 
 $('#bt_duplicate').on('click', function() {
-  bootbox.prompt("{{Nom}} ?", function(result) {
+  jeeDialog.prompt("{{Nom}} ?", function(result) {
     if (result !== null) {
       var interact = document.querySelectorAll('.interact').getJeeValues('.interactAttr')[0]
       interact.actions = {}
@@ -481,7 +481,7 @@ $("#bt_saveInteract").on('click', function() {
 })
 
 $("#bt_regenerateInteract,#bt_regenerateInteract2").on('click', function() {
-  bootbox.confirm('{{Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?}}', function(result) {
+  jeeDialog.confirm('{{Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?}}', function(result) {
     if (result) {
       jeedom.interact.regenerateInteract({
         interact: {
@@ -505,7 +505,7 @@ $("#bt_regenerateInteract,#bt_regenerateInteract2").on('click', function() {
 })
 
 $("#bt_addInteract,#bt_addInteract2").on('click', function() {
-  bootbox.prompt("{{Demande}} ?", function(result) {
+  jeeDialog.prompt("{{Demande}} ?", function(result) {
     if (result !== null) {
       jeedom.interact.save({
         interact: {
@@ -528,7 +528,7 @@ $("#bt_addInteract,#bt_addInteract2").on('click', function() {
 
 $("#bt_removeInteract").on('click', function() {
   jeedomUtils.hideAlert()
-  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer l\'interaction}} <span style="font-weight: bold ;">' + $('.interactDisplayCard.active .name').text() + '</span> ?', function(result) {
+  jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer l\'interaction}} <span style="font-weight: bold ;">' + $('.interactDisplayCard.active .name').text() + '</span> ?', function(result) {
     if (result) {
       jeedom.interact.remove({
         id: $('.interactDisplayCard.active').attr('data-interact_id'),

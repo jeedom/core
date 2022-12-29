@@ -1484,7 +1484,7 @@ document.registerEvent('keydown', function(event) {
 
 //Manage events outside parents delegations:
 document.getElementById('bt_addScenario').addEventListener('click', function(event) {
-  bootbox.prompt("{{Nom du scénario}} ?", function(result) {
+  jeeDialog.prompt("{{Nom du scénario}} ?", function(result) {
     if (result !== null) {
       jeedom.scenario.save({
         scenario: {
@@ -1521,7 +1521,7 @@ document.getElementById('bt_changeAllScenarioState').addEventListener('click', f
     var msg = '{{Êtes-vous sûr de vouloir activer les scénarios ?}}'
   }
 
-  bootbox.confirm(msg, function(result) {
+  jeeDialog.confirm(msg, function(result) {
     if (result) {
       jeedom.config.save({
         configuration: {
@@ -1542,7 +1542,7 @@ document.getElementById('bt_changeAllScenarioState').addEventListener('click', f
 })
 
 document.getElementById('bt_clearAllLogs').addEventListener('click', function(event) {
-  bootbox.confirm("{{Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?}}", function(result) {
+  jeeDialog.confirm("{{Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?}}", function(result) {
     if (result) {
       jeedom.scenario.clearAllLogs({
         error: function(error) {
@@ -1791,7 +1791,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
   }
 
   if (event.target.matches('#bt_copyScenario, #bt_copyScenario *')) {
-    bootbox.prompt("{{Nom du scénario}} ?", function(result) {
+    jeeDialog.prompt("{{Nom du scénario}} ?", function(result) {
       if (result !== null) {
         jeedom.scenario.copy({
           id: document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue(),
@@ -1918,7 +1918,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
 
   if (event.target.matches('#bt_delScenario, #bt_delScenario *')) {
     jeedomUtils.hideAlert()
-    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer le scénario}} <span style="font-weight: bold ;">' + document.querySelector('.scenarioAttr[data-l1key="name"]').jeeValue() + '</span> ?', function(result) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer le scénario}} <span style="font-weight: bold ;">' + document.querySelector('.scenarioAttr[data-l1key="name"]').jeeValue() + '</span> ?', function(result) {
       if (result) {
         jeedom.scenario.remove({
           id: document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue(),
@@ -2191,19 +2191,21 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
   if (event.target.matches('input:not([type="checkbox"]).expressionAttr, textarea.expressionAttr')) { //ctrl-click input popup
     jeeP.PREV_FOCUS = event.target //Place new block next
     if (event.ctrlKey) {
-      var $thisInput = $(event.target)
       var selfInput = event.target
-      var button = '<button class="btn btn-default bt_selectBootboxCmdExpression" type="button"><i class="fas fa-list-alt"></i></button>'
-      bootbox.prompt({
+      jeeDialog.prompt({
         title: '{{Edition}}',
-        size: 'large',
+        width: '80%',
         inputType: "textarea",
-        container: $('#scenariotab'),
+        value: selfInput.value,
+        container: document.getElementById('scenariotab'),
         backdrop: false,
-        onShown: function(event) {
-          event.target.addClass('bootboxScInput')
-          event.target.querySelector('.bootbox-input-textarea').addClass('expression').insertAdjacentHTML('afterend', button)
-          event.target.querySelector('.bootbox-input-textarea').value = selfInput.value
+        onShown: function(dialog) {
+          let button = document.createElement('button')
+          button.setAttribute('type', 'button')
+          button.innerHTML = '<i class="fas fa-list-alt"></i>'
+          button.classList = 'button bt_selectJeeDialogCmdExpression'
+          let footer = dialog.querySelector('.jeeDialogFooter')
+          footer.insertBefore(button, footer.firstChild)
         },
         callback: function(result) {
           if (result != null) {
@@ -2215,8 +2217,8 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     }
   }
 
-  if (event.target.matches('button.bt_selectBootboxCmdExpression, button.bt_selectBootboxCmdExpression i')) { //ctrl-click input popup getSelectModal
-    var expression = event.target.closest('.bootbox-form').querySelector('.expression')
+  if (event.target.matches('button.bt_selectJeeDialogCmdExpression, button.bt_selectJeeDialogCmdExpression i')) { //ctrl-click input popup getSelectModal
+    var expression = event.target.closest('.jeeDialogPrompt').querySelector('.promptAttr')
     jeedom.cmd.getSelectModal({}, function(result) {
       expression.insertAtCursor(result.human)
     })
@@ -2234,7 +2236,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
         button.closest('.element').remove()
       }
     } else {
-      bootbox.confirm("{{Êtes-vous sûr de vouloir supprimer ce bloc ?}}", function(result) {
+      jeeDialog.confirm("{{Êtes-vous sûr de vouloir supprimer ce bloc ?}}", function(result) {
         if (result) {
           if (button.closest('.expression') != null) {
             jeeP.setUndoStack()
@@ -2377,7 +2379,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
           size: 'large',
           buttons: {
             "{{Ne rien mettre}}": {
-              className: "btn-default",
+              className: "btn-success",
               callback: function() {
                 expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
               }
