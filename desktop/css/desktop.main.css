@@ -4707,12 +4707,18 @@ div.eqLogic-widget.editingMode .panelLink {
     position: absolute;
     width: 30%;
     overflow: hidden;
-    opacity: 0.9;
     z-index: 9999;
   }
-  div.jeeToastContainer:hover {
+  div.jeeToastContainer > div.jeeToast {
+    opacity: 0.9;
+  }
+  div.jeeToastContainer > div.jeeToast:hover {
     cursor: pointer;
     opacity: 1;
+    padding-bottom: 6px;
+  }
+  div.jeeToastContainer > div.jeeToast:hover div.toastProgress {
+    display: none;
   }
 
   div.jeeToastContainer > div.jeeToast {

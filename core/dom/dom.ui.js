@@ -664,15 +664,11 @@ var jeeDialog = (function()
         toast.addEventListener('mouseenter', function(event) {
           clearTimeout(event.target._toast.hideTimeoutId)
           clearInterval(event.target._toast.progressIntervalId)
-          event.target.querySelector('.toastProgress').unseen()
-          event.target.setAttribute('style', 'padding-bottom: 6px')
         })
         toast.addEventListener('mouseleave', function(event) {
           event.target._toast.setHideTimeout(_options.extendedTimeOut)
           event.target._toast.progressBarHideETA = new Date().getTime() + parseFloat(_options.extendedTimeOut)
           event.target._toast.progressIntervalId = setInterval(event.target._toast.updateProgress, 10, _options.extendedTimeOut)
-          event.target.querySelector('.toastProgress').seen()
-          event.target.removeAttribute('style')
         })
       } else {
         toast.style.paddingBottom = '6px'
