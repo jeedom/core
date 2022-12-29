@@ -85,6 +85,32 @@ function isset() {
   /*********************jquery alert*************************************/
   jQuery.fn.showAlert = function(_options) {
     var options = init(_options, {})
+    options.title = init(options.title, '')
+    options.message = init(options.message, '')
+    options.level = init(options.level, '')
+    options.emptyBefore = init(options.emptyBefore, false)
+    options.timeOut = init(options.timeOut, parseInt(jeedom.theme['interface::toast::duration']) * 1000)
+    options.extendedTimeOut = init(options.extendedTimeOut, parseInt(jeedom.theme['interface::toast::duration']) * 1000)
+    if (options.level == 'danger') {
+      options.timeOut = 0
+    }
+    if ($.mobile) {
+      if (options.ttl == 0) {
+        options.ttl = 5000
+      }
+      new $.nd2Toast({
+        message: options.message,
+        ttl: options.ttl
+      })
+      return
+    }
+
+    options.attachTo = init(options.attach, false)
+
+    jeeDialog.toast(options)
+
+    /*
+    var options = init(_options, {})
     options.message = init(options.message, '')
     options.level = init(options.level, '')
     options.emptyBefore = init(options.emptyBefore, false)
@@ -109,11 +135,14 @@ function isset() {
 
     if (options.level == 'danger') options.level = 'error'
     if (options.emptyBefore == true) {
-      window.toastr.clear()
+      jeeDialog.clearToasts()
     }
     let options_toastr = jeedomUtils.toastrUIoptions
     options_toastr.timeOut = options.ttl
     toastr[options.level](options.message, ' ', options_toastr)
+
+
+
     if (this.attr('id') && this.attr('id') != 'div_alert') {
       try {
         var modal = $(this).parent('.ui-dialog-content')
@@ -122,6 +151,7 @@ function isset() {
         console.error('showAlert: ' + error)
       }
     }
+    */
   }
 
   jQuery.fn.hideAlert = function() {
@@ -132,7 +162,7 @@ function isset() {
       jeedomUtils.initRowOverflow()
     }
 
-    window.toastr.clear()
+    jeeDialog.clearToasts()
     return $(this)
   }
 
@@ -145,7 +175,7 @@ function isset() {
         jeedomUtils.initRowOverflow()
       }
     }
-    window.toastr.clear()
+    jeeDialog.clearToasts()
   }
 
   /**********************Jquery.value******************************/
