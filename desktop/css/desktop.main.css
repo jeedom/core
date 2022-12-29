@@ -4562,6 +4562,103 @@ div.eqLogic-widget.editingMode .panelLink {
     margin-bottom: 5px;
   }
 
+  /* jeeDialog */
+  #jeeDialogBackdrop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 90;
+    background: var(--el-defaultColor);
+    opacity: 0.6;
+    backdrop-filter: blur(5px) !important;
+  }
+   div.jeeDialog {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3px;
+    transform: translate(0,0);
+    z-index: 1500;
+    background-color: rgb(var(--panel-bg-color));
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 6px 2px;
+  }
+  div.jeeDialog.jeeDialogAlert,
+  div.jeeDialog.jeeDialogConfirm,
+  div.jeeDialog.jeeDialogPrompt {
+    width: 600px;
+  }
+  div.jeeDialogTitle {
+    min-height: 20px;
+    margin: 5px;
+  }
+  div.jeeDialogTitle {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+  }
+  div.jeeDialogTitle button {
+    float: right;
+    font-size: 21px !important;
+    font-weight: 700;
+    line-height: 18px;
+    width: 32px;
+    font-size: 18px;
+    color: var(--link-color);
+    background: transparent;
+    border: none;
+  }
+  div.jeeDialogContent {
+    min-height: 20px;
+    margin: 5px;
+    font-size: 13px;
+  }
+  div.jeeDialogPrompt div.jeeDialogContent input,
+  div.jeeDialogPrompt div.jeeDialogContent textarea{
+    width: 100%;
+  }
+  div.jeeDialogFooter {
+    text-align: right;
+    min-height: 20px;
+    margin: 5px;
+  }
+  div.jeeDialog button:focus,
+  div.jeeDialog button:hover {
+    opacity: .75;
+  }
+  div.jeeDialogFooter button {
+    font-size: 12px;
+    border: none;
+    padding: 7px 8px;
+    margin-left: 5px;
+    height: 32px;
+    line-height: 18px;
+    cursor: pointer;
+    color: var(--linkHoverLight-color) !important;
+    background-color: var(--sc-formTxt-color);
+  }
+  div.jeeDialogFooter button > i {
+    color: var(--linkHoverLight-color) !important;
+  }
+  div.jeeDialogFooter button.info {
+    background-color: var(--al-info-color)!important;
+  }
+  div.jeeDialogFooter button.success {
+    background-color: var(--al-success-color)!important;
+  }
+  div.jeeDialogFooter button.warning {
+    background-color: var(--al-warning-color)!important;
+  }
+  div.jeeDialogFooter button.danger {
+    background-color: var(--al-danger-color)!important;
+  }
+
+
+
+
   /* history datepicker */
   .xdsoft_datetimepicker,
   .xdsoft_datetimepicker .blue-gradient-button {
@@ -5273,6 +5370,12 @@ div.eqLogic-widget.editingMode .panelLink {
     }
     .navbar-nav.navbar-right {
       display: none;
+    }
+
+    div.jeeDialog.jeeDialogAlert,
+    div.jeeDialog.jeeDialogConfirm,
+    div.jeeDialog.jeeDialogPrompt {
+      width: 90%;
     }
 
     [data-page="history"] #div_graph {
