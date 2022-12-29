@@ -3421,16 +3421,17 @@
         "Êtes-vous sûr de vouloir faire cette action ?": "Etes-vous sûr de vouloir faire cette action ?",
         "Résultat de la commande :": "Komutanın sonucu :",
         "Action exécutée avec succès": "İşlem başarıyla gerçekleştirildi",
+        "Entrer une valeur entre": "Entrer une valeur entre",
+        "et": "et",
         "Quelle couleur (#rrggbb) ?": "Quelle couleur (#rrggbb) ?",
         "Valeur ?": "Valeur ?",
         "Message": "Message",
         " Message de test": "Message de test",
         "Ceci est un test de message pour la commande": "Bu komuta için bi test mesajıdır",
-        "Annuler": "Iptal et",
-        "Ok": "Ok",
         "Info": "Bilgi",
         "Action": "Eylem",
         "Sélectionner la commande": "Komutayı seçin",
+        "Annuler": "Iptal et",
         "Valider": "Onaylayın"
     },
     "core\/js\/scenario.class.js": {
@@ -4888,7 +4889,8 @@
         "Principale": "Principale"
     },
     "core\/dom\/dom.ui.js": {
-        "Centre de Messages": "Centre de Messages"
+        "OK": "OK",
+        "Annuler": "Annuler"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",

@@ -3334,7 +3334,7 @@
         "Recharger": "Reload",
         "Rester sur la page": "Stay on the page",
         "Choisir une illustration": "Choose an illustration",
-        "Annuler": "To cancel",
+        "Annuler": "Cancel",
         "Valider": "To validate",
         "Sélectionner tout": "Select all",
         "Désélectionner tout": "Deselect all",
@@ -3421,16 +3421,17 @@
         "Êtes-vous sûr de vouloir faire cette action ?": "Are you sure you want to do this action?",
         "Résultat de la commande :": "Command result:",
         "Action exécutée avec succès": "Action successfully completed",
+        "Entrer une valeur entre": "Enter a value between",
+        "et": "and",
         "Quelle couleur (#rrggbb) ?": "What color (#rrggbb)?",
         "Valeur ?": "Value ?",
         "Message": "Message",
         " Message de test": "Test message",
         "Ceci est un test de message pour la commande": "This is a test message for the command",
-        "Annuler": "Cancel",
-        "Ok": "OK",
         "Info": "Information",
         "Action": "Stock",
         "Sélectionner la commande": "Select command",
+        "Annuler": "Cancel",
         "Valider": "Ok"
     },
     "core\/js\/scenario.class.js": {
@@ -4888,7 +4889,8 @@
         "Principale": "Main"
     },
     "core\/dom\/dom.ui.js": {
-        "Centre de Messages": "Message Center"
+        "OK": "Okay",
+        "Annuler": "Cancel"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "You are not authorized to perform this action, IP :",

@@ -3421,16 +3421,17 @@
         "Êtes-vous sûr de vouloir faire cette action ?": "Tem certeza de que deseja realizar esta ação?",
         "Résultat de la commande :": "Resultado do comando:",
         "Action exécutée avec succès": "Ação concluída com êxito",
+        "Entrer une valeur entre": "Insira um valor entre",
+        "et": "e",
         "Quelle couleur (#rrggbb) ?": "Qual cor (#rrggbb)?",
         "Valeur ?": "Valor ?",
         "Message": "Mensagem",
         " Message de test": "Mensagem de teste",
         "Ceci est un test de message pour la commande": "Esta é uma mensagem de teste para o comando",
-        "Annuler": "Cancelar",
-        "Ok": "OK",
         "Info": "Informações",
         "Action": "Açao",
         "Sélectionner la commande": "Selecione o comando",
+        "Annuler": "Cancelar",
         "Valider": "Validar"
     },
     "core\/js\/scenario.class.js": {
@@ -4888,7 +4889,8 @@
         "Principale": "Principal"
     },
     "core\/dom\/dom.ui.js": {
-        "Centre de Messages": "Central de mensagens"
+        "OK": "Ok",
+        "Annuler": "Cancelar"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Você não está autorizado a realizar esta ação, IP:",
