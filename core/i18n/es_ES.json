@@ -4,7 +4,7 @@
     },
     "mobile\/modal\/warnme.html": {
         "Valeur": "Valor",
-        "Annuler": "Anular",
+        "Annuler": "Cancelar",
         "Ok": "OK"
     },
     "mobile\/js\/log.js": {
@@ -311,7 +311,7 @@
         "Gestion automatique": "Gestión automática",
         "Dernier lancement": "Última ejecución",
         "Local": "Local",
-        "OK": "De acuerdo",
+        "OK": "Bueno",
         "NOK": "No está bien",
         "Désactiver": "Desactivar",
         "Activer": "Activar"
@@ -417,7 +417,7 @@
         "Gestion automatique": "Gestión automática",
         "Dernière installation": "Última instalación",
         "Local": "Local",
-        "OK": "De acuerdo",
+        "OK": "Bueno",
         "NOK": "No está bien",
         "Installation en cours": "Instalación en curso",
         "Relancer": "Reiniciar",
@@ -1376,7 +1376,7 @@
         "Etape 3 : vérification": "Paso 3: verificación",
         "Veuillez entrer le code fourni pour vérification et activation de la double authentification": "Ingrese el código provisto para la verificación y activación de la autenticación doble",
         "Code de test": "Código de prueba",
-        "OK": "De acuerdo",
+        "OK": "Bueno",
         "Configuration réussie": "Configuración exitosa",
         "Code invalide": "Código inválido"
     },
@@ -1387,7 +1387,7 @@
         "Port configuré": "Puerto configurado",
         "Aucune santé spécifique": "Ninguna Salud especificada",
         "Dépendances": "Dependencias",
-        "OK": "De acuerdo",
+        "OK": "Bueno",
         "NOK": "No está bien",
         "En cours": "En curso",
         "Configuration démon": "Configuración de demonio",
@@ -2245,7 +2245,7 @@
         "Equipement": "Dispositivo",
         "Graphique": "Gráfico",
         "Tableau": "Panel",
-        "Annuler": "Anular"
+        "Annuler": "Cancelar"
     },
     "desktop\/php\/scenario.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -2322,7 +2322,7 @@
         "A": "PARA",
         "Code": "Código",
         "Commentaire": "Comentario",
-        "Annuler": "Anular"
+        "Annuler": "Cancelar"
     },
     "desktop\/php\/connection.php": {
         "Connexion": "Conexión",
@@ -2482,7 +2482,7 @@
         "Supprimer": "Borrar",
         "Identifiant": "Identificador",
         "Mot de passe": "Contraseña",
-        "Annuler": "Anular",
+        "Annuler": "Cancelar",
         "Ajouter": "Añadir"
     },
     "desktop\/php\/database.php": {
@@ -2720,7 +2720,7 @@
         "Apache non securisé": "Apache no es seguro",
         "Apache sécurisé": "Apache seguro",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Haz clic en un comando a la izquierda o escribe un comando personalizado a continuación",
-        "OK": "De acuerdo"
+        "OK": "Bueno"
     },
     "desktop\/js\/update.js": {
         "Aucune mise à jour en cours.": "No hay actualizaciones en progreso",
@@ -2933,7 +2933,7 @@
         "Utilisateur limité": "Usuario limitado",
         "Activé": "Activado",
         "Désactivé": "Desactivado",
-        "OK": "De acuerdo",
+        "OK": "Bueno",
         "Désactiver": "Desactivar",
         "NOK": "No está bien",
         "Supprimer": "Eliminar",
@@ -2995,7 +2995,7 @@
         "Paramètres d\\'affichage": "Pantalla de ajustes",
         "Configuration du composant": "Configuración de componentes",
         "Configuration avancée": "Configuración avanzada",
-        "Annuler": "Anular",
+        "Annuler": "Cancelar",
         "Valider": "Validar",
         "Supprimer": "Eliminar",
         "Dupliquer": "Duplicar",
@@ -3431,17 +3431,17 @@
         "Info": "Información",
         "Action": "Acción",
         "Sélectionner la commande": "Seleccione el comando",
-        "Annuler": "Anular",
+        "Annuler": "Cancelar",
         "Valider": "Validar"
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Seleccione el escenario",
-        "Annuler": "Anular",
+        "Annuler": "Cancelar",
         "Valider": "Validar"
     },
     "core\/js\/eqLogic.class.js": {
         "Sélectionner un équipement": "Seleccione un dispositivo",
-        "Annuler": "Anular",
+        "Annuler": "Cancelar",
         "Valider": "Validar"
     },
     "core\/js\/plugin.template.js": {
@@ -3505,13 +3505,13 @@
         "Samedi": "Sábado",
         "Centre de Messages": "Centro de mensajes",
         "Assistant cron": "Asistente cron",
-        "Annuler": "Anular",
+        "Annuler": "Cancelar",
         "Valider": "Validar",
         "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Seleccionar una variable",
-        "Annuler": "Anular",
+        "Annuler": "Cancelar",
         "Valider": "Validar"
     },
     "core\/js\/config.class.js": {
@@ -4219,7 +4219,7 @@
         "Commande retour interactions": "Comando de retorno de interacción",
         "Commande sur": "Orden en",
         "Système à jour": "Sistema actualizado",
-        "OK": "De acuerdo",
+        "OK": "Bueno",
         "Cron actif": "Cron activo",
         "NOK": "No está bien",
         "Erreur cron : les crons sont désactivés. Allez dans Réglages -> Système -> Moteur de tâches pour les réactiver": "Error de cron: los crons están deshabilitados. Vaya a Configuración -> Sistema -> Motor de tareas para reactivarlos",
@@ -4651,7 +4651,7 @@
         "Action de pré-update...": "Acción previa a la actualización",
         "Post-installation de": "Post instalación",
         "Vérification des droits sur les fichiers...": "Comprobando los permisos del archivo",
-        "OK": "De acuerdo",
+        "OK": "Bueno",
         "Suppression des fichiers inutiles...": "Eliminando archivos innecesarios",
         "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "No se puede instalar el plugin. El nombre del plugin es diferente de la ID o el plugin no está formado correctamente. Por favor contacte al autor",
         "END UPDATE SUCCESS": "FINALIZAR EL ÉXITO",

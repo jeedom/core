@@ -4,7 +4,7 @@
     },
     "mobile\/modal\/warnme.html": {
         "Valeur": "Wert",
-        "Annuler": "Stornieren",
+        "Annuler": "Abbrechen",
         "Ok": "OK"
     },
     "mobile\/js\/log.js": {
@@ -311,7 +311,7 @@
         "Gestion automatique": "Automatisches management",
         "Dernier lancement": "Letzter Start",
         "Local": "Lokal",
-        "OK": "Okay",
+        "OK": "Ok",
         "NOK": "NOK",
         "Désactiver": "Deactivate",
         "Activer": "Aktivieren"
@@ -417,7 +417,7 @@
         "Gestion automatique": "Automatische Verwaltung",
         "Dernière installation": "Letzte Installation",
         "Local": "Lokal",
-        "OK": "Okay",
+        "OK": "Ok",
         "NOK": "NOK",
         "Installation en cours": "Installation läuft",
         "Relancer": "Beleben",
@@ -1376,7 +1376,7 @@
         "Etape 3 : vérification": "Schritt 3: Überprüfung",
         "Veuillez entrer le code fourni pour vérification et activation de la double authentification": "Bitte geben Sie den Code ein, der zur Überprüfung und Aktivierung der doppelten Authentifizierung bereitgestellt wird",
         "Code de test": "Testcode",
-        "OK": "Okay",
+        "OK": "Ok",
         "Configuration réussie": "Konfiguration erfolgreich",
         "Code invalide": "Ungültiger Code"
     },
@@ -1387,7 +1387,7 @@
         "Port configuré": "Konfigurierter Port",
         "Aucune santé spécifique": "Keine spezifische Gesundheit",
         "Dépendances": "Nebengebäude",
-        "OK": "Okay",
+        "OK": "Ok",
         "NOK": "NOK",
         "En cours": "In Bearbeitung",
         "Configuration démon": "Daemon-Konfiguration",
@@ -2245,7 +2245,7 @@
         "Equipement": "Gerät",
         "Graphique": "Grafik",
         "Tableau": "Tabelle",
-        "Annuler": "Stornieren"
+        "Annuler": "Abbrechen"
     },
     "desktop\/php\/scenario.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -2322,7 +2322,7 @@
         "A": "Bis",
         "Code": "CODE",
         "Commentaire": "Kommentar",
-        "Annuler": "Stornieren"
+        "Annuler": "Abbrechen"
     },
     "desktop\/php\/connection.php": {
         "Connexion": "Einloggen",
@@ -2482,7 +2482,7 @@
         "Supprimer": "Entfernen",
         "Identifiant": "Login",
         "Mot de passe": "Passwort",
-        "Annuler": "Stornieren",
+        "Annuler": "Abbrechen",
         "Ajouter": "Hinzufügen"
     },
     "desktop\/php\/database.php": {
@@ -2720,7 +2720,7 @@
         "Apache non securisé": "Apache nicht sicher",
         "Apache sécurisé": "Sicherer Apache",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Klicken Sie links auf eine Bestellung oder geben Sie unten eine benutzerdefinierte Bestellung ein",
-        "OK": "Okay"
+        "OK": "Ok"
     },
     "desktop\/js\/update.js": {
         "Aucune mise à jour en cours.": "Kein Update läuft",
@@ -2933,7 +2933,7 @@
         "Utilisateur limité": "Begrenzter Benutzer",
         "Activé": "Ermöglicht",
         "Désactivé": "Deaktiviert",
-        "OK": "Okay",
+        "OK": "Ok",
         "Désactiver": "Deactivate",
         "NOK": "NOK",
         "Supprimer": "Entfernen",
@@ -2995,7 +2995,7 @@
         "Paramètres d\\'affichage": "Anzeigeeinstellungen",
         "Configuration du composant": "Komponentenkonfiguration",
         "Configuration avancée": "Erweiterte Konfiguration",
-        "Annuler": "Stornieren",
+        "Annuler": "Abbrechen",
         "Valider": "Validate",
         "Supprimer": "Entfernen",
         "Dupliquer": "Duplikat",
@@ -3334,7 +3334,7 @@
         "Recharger": "Neu laden",
         "Rester sur la page": "Bleib auf der Seite",
         "Choisir une illustration": "Wählen Sie eine Illustration",
-        "Annuler": "Stornieren",
+        "Annuler": "Abbrechen",
         "Valider": "Bestätigen",
         "Sélectionner tout": "Wählen Sie Alle",
         "Désélectionner tout": "Alle abwählen",
@@ -3431,17 +3431,17 @@
         "Info": "Die Info",
         "Action": "Aktion",
         "Sélectionner la commande": "Befehl auswählen",
-        "Annuler": "Stornieren",
+        "Annuler": "Abbrechen",
         "Valider": "Validate"
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Wählen Sie das Szenario aus",
-        "Annuler": "Stornieren",
+        "Annuler": "Abbrechen",
         "Valider": "Validate"
     },
     "core\/js\/eqLogic.class.js": {
         "Sélectionner un équipement": "Ausrüstung auswählen",
-        "Annuler": "Stornieren",
+        "Annuler": "Abbrechen",
         "Valider": "Validate"
     },
     "core\/js\/plugin.template.js": {
@@ -3505,18 +3505,18 @@
         "Samedi": "Samstag",
         "Centre de Messages": "Nachrichtenzentrum",
         "Assistant cron": "Cron Assistent",
-        "Annuler": "Stornieren",
+        "Annuler": "Abbrechen",
         "Valider": "Validate",
         "Sélectionner la commande": "Befehl auswählen"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Wählen Sie eine Variable aus",
-        "Annuler": "Stornieren",
+        "Annuler": "Abbrechen",
         "Valider": "Validate"
     },
     "core\/js\/config.class.js": {
         "Sélectionner un type générique": "Wählen Sie einen generischen Typ aus",
-        "Annuler": "Stornieren",
+        "Annuler": "Abbrechen",
         "Valider": "Bestätigen"
     },
     "core\/js\/history.class.js": {
@@ -4219,7 +4219,7 @@
         "Commande retour interactions": "Interaktionsrückgabebefehl",
         "Commande sur": "Bestellen Sie am",
         "Système à jour": "Aktuelles System",
-        "OK": "Okay",
+        "OK": "Ok",
         "Cron actif": "Active Cron",
         "NOK": "NOK",
         "Erreur cron : les crons sont désactivés. Allez dans Réglages -> Système -> Moteur de tâches pour les réactiver": "Cron-Fehler: Cron sind deaktiviert. Gehen Sie zu Administration -> Cron-System, um sie wieder zu aktivieren",
@@ -4651,7 +4651,7 @@
         "Action de pré-update...": "Aktion vor dem Update",
         "Post-installation de": "Nachinstallation von",
         "Vérification des droits sur les fichiers...": "Dateiberechtigungen prüfen",
-        "OK": "Okay",
+        "OK": "In Ordnung",
         "Suppression des fichiers inutiles...": "Unnötige Dateien löschen",
         "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "Das Plugin kann nicht installiert werden. Der Name des Plugins unterscheidet sich von der ID oder das Plugin ist nicht richtig gebildet. Bitte kontaktieren Sie den Autor",
         "END UPDATE SUCCESS": "END UPDATE ERFOLG",
