@@ -190,7 +190,7 @@ function setTheme() {
 	include_file('3rdparty', 'jquery.ui/jquery-ui.min', 'js');
 	include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
 	include_file('3rdparty', 'jquery.ui-touch-punch/jquery.ui.touch-punch.min', 'js');
-	include_file('3rdparty', 'bootbox/bootbox.min', 'js');
+	include_file('3rdparty', 'bootbox/bootbox.min', 'js'); //Deprecated, keep for plugins
 	include_file('3rdparty', 'jquery.ui/jquery.ui.datepicker.fr', 'js'); //Provide french traduction in date pickers
 	include_file('3rdparty', 'jquery.datetimepicker/jquery.datetimepicker', 'js');
 	include_file('3rdparty', 'jquery.datetimepicker/jquery.datetimepicker', 'css');

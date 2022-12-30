@@ -4619,6 +4619,8 @@ div.eqLogic-widget.editingMode .panelLink {
   div.jeeDialogPrompt div.jeeDialogContent input,
   div.jeeDialogPrompt div.jeeDialogContent textarea{
     width: 100%;
+    padding: 4px !important;
+    margin-bottom: 5px !important;
   }
   div.jeeDialogFooter {
     text-align: right;

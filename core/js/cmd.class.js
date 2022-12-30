@@ -346,10 +346,12 @@ jeedom.cmd.test = function(_params) {
               })
               break
             case 'message':
-              var productName = JEEDOM_PRODUCT_NAME
+              let productName = JEEDOM_PRODUCT_NAME
+              let content = '<input class="promptAttr" data-l1key="title" autocomplete="off" type="text" placeholder="{{Titre pour la commande}} ' + result.name + '">'
+              content += '<textarea class="promptAttr" data-l1key="message" placeholder="{{Message pour la commande}} ' + result.name + '"></textarea>'
               jeeDialog.prompt({
                 title: "{{Message}}",
-                message: '<form class="bootbox-form"><input class="promptAttr" data-l1key="title" autocomplete="off" type="text" value="' + productName + '{{ Message de test}}"><br/><br/><textarea data-l1key="message" class="promptAttr">{{Ceci est un test de message pour la commande}} ' + result.name + '</textarea></form>',
+                message: content,
                 inputType: false,
                 callback: function(result) {
                   if (result) {
