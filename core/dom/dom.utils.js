@@ -480,6 +480,36 @@ domUtils.countAjax = function(_type, _global) {
   }
 }
 
+/*Handle nested multi-level js object to query string
+*/
+domUtils.getUrlString = function(params, keys = [], isArray = false) {
+  const p = Object.keys(params).map(key => {
+    let val = params[key]
+    if ("[object Object]" === Object.prototype.toString.call(val) || Array.isArray(val)) {
+      if (Array.isArray(params)) {
+        keys.push('')
+      } else {
+        keys.push(key)
+      }
+      return domUtils.getUrlString(val, keys, Array.isArray(val))
+    } else {
+      let tKey = key
+      if (keys.length > 0) {
+        const tKeys = isArray ? keys : [...keys, key]
+        tKey = tKeys.reduce((str, k) => { return '' === str ? k : `${str}[${k}]` }, '')
+      }
+      if (isArray) {
+        return `${ tKey }[]=${ val }`
+      } else {
+        return `${ tKey }=${ val }`
+      }
+    }
+  }).join('&')
+  keys.pop()
+  return p
+}
+
+
 domUtils.ajax = function(_params) {
   _params.global = isset(_params.global) ? _params.global : domUtils.ajaxSettings.global
   _params.async = isset(_params.async) ? _params.async : domUtils.ajaxSettings.async
@@ -495,6 +525,11 @@ domUtils.ajax = function(_params) {
 
   let isGet = _params.type.toLowerCase() == 'get' ? true : false
   let isJson = _params.dataType.toLowerCase() == 'json' ? true : false
+
+  if (isset(_params.data) && isJson) {
+    var data = domUtils.getUrlString(_params.data)
+  }
+
 
   if (_params.async === false) { //Synchronous request:
     const request = new XMLHttpRequest()
@@ -517,7 +552,7 @@ domUtils.ajax = function(_params) {
     }
     fetch(url, {
       method: _params.type,
-      body: isGet ? null : new URLSearchParams(_params.data),
+      body: isGet ? null : new URLSearchParams(data),
       headers: isGet ? new Headers() : {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"},
       redirect: 'follow',
       referrerPolicy: 'no-referrer',
