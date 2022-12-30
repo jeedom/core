@@ -1407,7 +1407,7 @@ jeedomUtils.showHelpModal = function(_name, _plugin) {
 
 jeedomUtils.reloadPagePrompt = function(_title) {
   jeeDialog.confirm({
-    title: '<h4><i class="success fas fa-check-circle"></i> ' + _title + '</h4>',
+    title: '<i class="success fas fa-check-circle"></i> ' + _title,
     message: '{{Voulez vous recharger la page maintenant ?}}',
     buttons: {
       confirm: {
