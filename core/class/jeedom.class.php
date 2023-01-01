@@ -805,9 +805,9 @@ class jeedom {
 				return false;
 			}
 		}
-		$minDateValue = new \DateTime('2017-01-01');
+		$minDateValue = new \DateTime('2022-01-01');
 		$mindate = strtotime($minDateValue->format('Y-m-d 00:00:00'));
-		$maxDateValue = $minDateValue->modify('+6 year')->format('Y-m-d 00:00:00');
+		$maxDateValue = $minDateValue->modify('+16 year')->format('Y-m-d 00:00:00');
 		$maxdate = strtotime($maxDateValue);
 		if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
 			self::forceSyncHour();
