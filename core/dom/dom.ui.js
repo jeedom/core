@@ -1193,6 +1193,10 @@ var jeeDialog = (function()
             document.getElementById('jeeDialogBackdrop')?.unseen()
             this.dialog.unseen()
           },
+          close: function() {
+            document.getElementById('jeeDialogBackdrop')?.remove()
+            this.dialog.remove()
+          }
           destroy: function() {
             document.getElementById('jeeDialogBackdrop')?.remove()
             this.dialog.remove()
