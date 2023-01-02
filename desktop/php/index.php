@@ -619,10 +619,6 @@ function setTheme() {
 				}
 				?>
 			</div>
-			<div id="md_modal"></div>
-			<div id="md_modal2"></div>
-			<div id="md_modal3"></div>
-			<div id="md_reportBug" title="{{Demande de support}}"></div>
 		</main>
 	<?php
 	}
@@ -630,6 +626,12 @@ function setTheme() {
 	<?php if (init('report') == 1 && init('delay', -1) != -1 && is_numeric(init('delay'))) { ?>
 		<iframe src='/core/php/sleep.php?delay=<?php echo init('delay') ?>' width=0 height=0></iframe>
 	<?php } ?>
+
+	<div id="md_modal"></div>
+	<div id="md_modal2"></div>
+	<div id="md_modal3"></div>
+	<div id="md_reportBug" title="{{Demande de support}}"></div>
+
 </body>
 
 </html>

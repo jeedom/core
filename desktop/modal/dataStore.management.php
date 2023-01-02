@@ -123,16 +123,6 @@ if (!jeeFrontEnd.md_datastore) {
           for (var i in data) {
             tr += self.getDatastoreTr(data[i])
           }
-          if (self.refreshCount == 0 && jeedom.getPageType() != 'modaldisplay') {
-            var varHeight = data.length * 31 + 220
-            self.$modal.dialog('open')
-            if (varHeight < self.$modal.height()) {
-              self.$modal.dialog({
-                height: varHeight
-              })
-            }
-          }
-
           self.$tableDataStore.find('tbody').append(tr)
           self.$tableDataStore.trigger("update")
           self.refreshCount += 1

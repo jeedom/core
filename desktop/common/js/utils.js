@@ -590,28 +590,6 @@ jeedomUtils.initJeedomModals = function() {
   })
 
 
-  $('#md_reportBug').dialog({
-    autoOpen: false,
-    modal: true,
-    closeText: '',
-    height: ((window.innerHeight - 100) < 700) ? window.innerHeight - 100 : 700,
-    width: ((window.innerWidth - 100) < 900) ? (window.innerWidth - 100) : 900,
-    position: { my: 'center center-10', at: 'center center', of: window },
-    open: function() {
-      document.body.style.overflow = 'hidden'
-      this.closest('.ui-dialog').querySelectorAll('button, input[type="button"]')?.forEach(el => { el.blur() })
-      $(this).dialog({
-        height: ((window.innerHeight - 100) < 700) ? window.innerHeight - 100 : 700,
-        width: ((window.innerWidth - 100) < 900) ? (window.innerWidth - 100) : 900,
-        position: { my: 'center center-10', at: 'center center', of: window }
-      })
-      setTimeout(function() { jeedomUtils.initTooltips($('#md_reportBug')) }, 500)
-    },
-    beforeClose: function(event, ui) {
-      emptyModal('md_reportBug')
-    }
-  })
-
   $('#md_modal').dialog({
     autoOpen: false,
     modal: true,
@@ -682,6 +660,28 @@ jeedomUtils.initJeedomModals = function() {
     }
   })
 
+  $('#md_reportBug').dialog({
+    autoOpen: false,
+    modal: true,
+    closeText: '',
+    height: ((window.innerHeight - 100) < 700) ? window.innerHeight - 100 : 700,
+    width: ((window.innerWidth - 100) < 900) ? (window.innerWidth - 100) : 900,
+    position: { my: 'center center-10', at: 'center center', of: window },
+    open: function() {
+      document.body.style.overflow = 'hidden'
+      this.closest('.ui-dialog').querySelectorAll('button, input[type="button"]')?.forEach(el => { el.blur() })
+      $(this).dialog({
+        height: ((window.innerHeight - 100) < 700) ? window.innerHeight - 100 : 700,
+        width: ((window.innerWidth - 100) < 900) ? (window.innerWidth - 100) : 900,
+        position: { my: 'center center-10', at: 'center center', of: window }
+      })
+      setTimeout(function() { jeedomUtils.initTooltips($('#md_reportBug')) }, 500)
+    },
+    beforeClose: function(event, ui) {
+      emptyModal('md_reportBug')
+    }
+  })
+
   function emptyModal(_id = '') {
     if (_id == '') return
     document.body.style.overflow = 'inherit'
@@ -689,7 +689,7 @@ jeedomUtils.initJeedomModals = function() {
   }
 }
 
-jeedomUtils.setButtonCtrlHandler = function(_buttonId, _title, _uri, _modal = '#md_modal', _open = true) {
+jeedomUtils.setButtonCtrlHandler = function(_buttonId, _title, _uri, _modal = 'jee_modal', _open = true) {
   if (document.getElementById(_buttonId) === null) {
     return
   }
@@ -704,9 +704,11 @@ jeedomUtils.setButtonCtrlHandler = function(_buttonId, _title, _uri, _modal = '#
       var url = '/index.php?v=d&p=modaldisplay&loadmodal=' + _uri + '&title=' + title
       window.open(url).focus()
     } else {
-      $(_modal).dialog('close')
-      $(_modal).dialog({ title: _title }).load('index.php?v=d&modal=' + _uri)
-      if (_open) $(_modal).dialog('open')
+      jeeDialog.dialog({
+        id: _modal,
+        title: _title,
+        contentUrl: 'index.php?v=d&modal=' + _uri
+      })
     }
   })
 
@@ -731,11 +733,11 @@ jeedomUtils.setJeedomGlobalUI = function() {
     }
   })
 
-  jeedomUtils.setButtonCtrlHandler('bt_showEventInRealTime', '{{Evénements en temps réel}}', 'log.display&log=event', '#md_modal')
-  jeedomUtils.setButtonCtrlHandler('bt_showNoteManager', '{{Notes}}', 'note.manager', '#md_modal')
-  jeedomUtils.setButtonCtrlHandler('bt_showExpressionTesting', "{{Testeur d'expression}}", 'expression.test', '#md_modal')
-  jeedomUtils.setButtonCtrlHandler('bt_showDatastoreVariable', '{{Variables}}', 'dataStore.management&type=scenario', '#md_modal', false)
-  jeedomUtils.setButtonCtrlHandler('bt_showSearching', '{{Recherche}}', 'search', '#md_modal')
+  jeedomUtils.setButtonCtrlHandler('bt_showEventInRealTime', '{{Evénements en temps réel}}', 'log.display&log=event', 'jee_modal')
+  jeedomUtils.setButtonCtrlHandler('bt_showNoteManager', '{{Notes}}', 'note.manager', 'jee_modal')
+  jeedomUtils.setButtonCtrlHandler('bt_showExpressionTesting', "{{Testeur d'expression}}", 'expression.test', 'jee_modal')
+  jeedomUtils.setButtonCtrlHandler('bt_showDatastoreVariable', '{{Variables}}', 'dataStore.management&type=scenario', 'jee_modal', false)
+  jeedomUtils.setButtonCtrlHandler('bt_showSearching', '{{Recherche}}', 'search', 'jee_modal')
 
   document.getElementById('bt_gotoDashboard')?.addEventListener('click', function(event) {
     if (!getDeviceType()['type'] == 'desktop' || window.innerWidth < 768) {

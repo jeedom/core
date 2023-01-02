@@ -21,18 +21,18 @@ if (!isConnect()) {
 ?>
 
 <div id="div_alertModalSearch" data-modalType="md_search"></div>
-<a id="bt_getHelpModal" class="cursor" style="position: absolute;right: 10px;top: 5px;" title="{{Aide}}"><i class="fas fa-question-circle" ></i></a>
+<a id="bt_getHelpModal" class="cursor" style="position: absolute;right: 20px;top: 35px;" title="{{Aide}}"><i class="fas fa-question-circle" ></i></a>
 <!-- Search engine UI -->
 <form class="form-horizontal shadowed">
   <div class="floatingbar">
-    <div class="input-group" style="margin-top: -25px;">
+    <div class="input-group">
       <div class="input-group-btn col-lg-6">
         <a class="btn btn-sm roundedLeft" href="index.php?v=d&p=display"><i class="fas fa-th"></i> {{Résumé Domotique}}
         </a><a class="btn btn-sm btn-success roundedRight" id="bt_search"><i class="fas fa-search"></i> {{Rechercher}}</a>
       </div>
     </div>
   </div>
-  <br/>
+  <br/><br/>
   <div class="form-group">
     <label class="col-lg-2 control-label">{{Recherche par}}</label>
     <div class="col-lg-4">
