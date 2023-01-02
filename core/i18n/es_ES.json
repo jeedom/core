@@ -390,7 +390,7 @@
         "Aucun": "No",
         "Visualisation": "Visualización",
         "Visualisation et exécution": "Visualización y ejecución",
-        "Equipement": "Equipo",
+        "Equipement": "Dispositivos",
         "Droits": "Permisos",
         "Scénario": "Escenario",
         "Sauvegarde effectuée": "Guardado correctamente"
@@ -529,7 +529,7 @@
         "Disposition": "Provisión",
         "Mise en forme de la tuile par défaut ou en mode tableau.": "Formatear el mosaico por defecto o en modo tabla",
         "Mise en forme générale": "Formato general",
-        "Tableau": "Mesa",
+        "Tableau": "Panel",
         "Centrer": "Centro",
         "Lignes": "Líneas",
         "Colonnes": "Columnas",
@@ -557,7 +557,7 @@
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Objet": "Objeto",
-        "Equipement": "Equipo"
+        "Equipement": "Dispositivo"
     },
     "desktop\/modal\/plan3d.configure.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -566,7 +566,7 @@
         "Supprimer": "Eliminar",
         "Nom": "Nombre",
         "Type de lien": "Tipo de enlace",
-        "Equipement": "Equipo",
+        "Equipement": "Dispositivos",
         "Lien": "Enlace",
         "Rechercher d\\'un équipement": "Buscar dispositivo",
         "Spécificité": "Especificidad",
@@ -620,7 +620,7 @@
         "Résumé Domotique": "Resumen Domótica",
         "Rechercher": "Buscar",
         "Recherche par": "Buscar por",
-        "Equipement": "Equipo",
+        "Equipement": "Dispositivo",
         "Commande": "Comando",
         "Variable": "Variable",
         "Plugin": "Enchufar",
@@ -741,7 +741,7 @@
         "Cette commande remplace l'ID": "Este comando reemplaza el ID",
         "Cette commande remplace la commande": "Esta orden reemplaza la orden",
         "Remplacer cette commande par la commande": "Reemplazar este comando por el comando",
-        "Equipement": "Equipo",
+        "Equipement": "Dispositivo",
         "Commandes": "Comandos",
         "Scénario": "Escenario",
         "Résumés": "Resúmenes",
@@ -1047,7 +1047,7 @@
         "Paramètres optionnels": "Parámetros opcionales",
         "Ajouter": "Para agregar",
         "Mise en forme générale": "Formato general",
-        "Tableau": "Mesa",
+        "Tableau": "Panel",
         "Centrer dans les cases": "Centro de las cajas",
         "Nombre de lignes": "Número de líneas",
         "Nombre de colonnes": "Número de columnas",
@@ -1236,7 +1236,7 @@
         "Valider": "Validar",
         "Objet": "Objeto",
         "Plugin": "Enchufar",
-        "Equipement": "Equipo",
+        "Equipement": "Dispositivos",
         "Nom": "Nombre"
     },
     "desktop\/modal\/cmd.history.php": {
@@ -1341,7 +1341,7 @@
         "Macro binaire": "Macro binario",
         "Widget au survol": "Resumen del Widget",
         "Action": "Acción",
-        "Equipement": "Equipo",
+        "Equipement": "Dispositivos",
         "Afficher au survol": "Mostrar en paso elevado",
         "Afficher sur un clic": "Mostrar en un clic",
         "Position": "Posición",
@@ -2413,7 +2413,7 @@
         "Catégories": "Categorías",
         "Sans catégorie": "Sin categoría",
         "Visibles": "Visible",
-        "Equipement": "Equipo",
+        "Equipement": "Dispositivos",
         "Tous": "Todos"
     },
     "desktop\/php\/eqAnalyse.php": {
@@ -2427,7 +2427,7 @@
         "Commandes orphelines": "Controles huérfanos",
         "Rechercher | nom | :not(nom": "Buscar | nombre | : sin nombre",
         "Aucun équipement en Alerte.": "No hay equipos en alerta",
-        "Equipement": "Equipo",
+        "Equipement": "Dispositivos",
         "Commande": "Comando",
         "Type": "Tipo",
         "Actions": "Acciones",
@@ -2460,7 +2460,7 @@
     "desktop\/php\/user.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Liste des utilisateurs": "Lista de usuarios",
-        "Ajouter un utilisateur": "Agregar usuario",
+        "Ajouter un utilisateur": "Añadir un usuario",
         "Activer accès support": "Activar acceso soporte",
         "Désactiver accès support": "Deshabilitar acceso de soporte",
         "Sauvegarder": "Guardar",
@@ -4475,7 +4475,7 @@
         "L\\'équipement source n\\'existe pas": "El equipo fuente no existe",
         "L\\'équipement cible n\\'existe pas": "El dispositivo de destino no existe",
         "Erreur lors de la migration d\\'équipement": "Error al migrar equipo",
-        "Equipement": "Equipo",
+        "Equipement": "Dispositivos",
         "Action": "Acción"
     },
     "core\/class\/interactDef.class.php": {
@@ -4774,7 +4774,7 @@
         "Nom": "Nombre"
     },
     "core\/template\/scenario\/equipement.default.html": {
-        "Equipement": "Equipo",
+        "Equipement": "Dispositivos",
         "Sélectionner un équipement": "Seleccionar dispositivo",
         "Action": "Acción",
         "Visible": "Visible",

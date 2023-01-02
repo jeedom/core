@@ -390,7 +390,7 @@
         "Aucun": "Nein",
         "Visualisation": "Visualisierung",
         "Visualisation et exécution": "Visualisierung und Ausführung",
-        "Equipement": "Ausrüstung",
+        "Equipement": "Gerät",
         "Droits": "Rechte",
         "Scénario": "Szenario",
         "Sauvegarde effectuée": "Sicherung abgeschlossen"
@@ -529,7 +529,7 @@
         "Disposition": "Bereitstellung",
         "Mise en forme de la tuile par défaut ou en mode tableau.": "Formatieren der Kachel standardmäßig oder im Tabellenmodus",
         "Mise en forme générale": "Allgemeine Formatierung",
-        "Tableau": "Tisch",
+        "Tableau": "Tabelle",
         "Centrer": "Center",
         "Lignes": "Linien",
         "Colonnes": "Säulen",
@@ -557,7 +557,7 @@
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Objet": "Objekt",
-        "Equipement": "Ausrüstung"
+        "Equipement": "Gerät"
     },
     "desktop\/modal\/plan3d.configure.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -566,7 +566,7 @@
         "Supprimer": "Entfernen",
         "Nom": "Name",
         "Type de lien": "Art des Links",
-        "Equipement": "Ausrüstung",
+        "Equipement": "Gerät",
         "Lien": "Link",
         "Rechercher d\\'un équipement": "Suche nach Ausrüstung",
         "Spécificité": "Spezifität",
@@ -620,7 +620,7 @@
         "Résumé Domotique": "Übersicht Haus-Automatisierung",
         "Rechercher": "Suchen nach",
         "Recherche par": "Suche nach",
-        "Equipement": "Ausrüstung",
+        "Equipement": "Gerät",
         "Commande": "Befehl",
         "Variable": "Variable",
         "Plugin": "Plugin",
@@ -741,7 +741,7 @@
         "Cette commande remplace l'ID": "Dieser Befehl ersetzt die ID",
         "Cette commande remplace la commande": "Dieser Befehl ersetzt den Befehl",
         "Remplacer cette commande par la commande": "Diesen Befehl durch den Befehl ersetzen",
-        "Equipement": "Ausrüstung",
+        "Equipement": "Gerät",
         "Commandes": "Befehle",
         "Scénario": "Szenario",
         "Résumés": "Zusammenfassungen",
@@ -1047,7 +1047,7 @@
         "Paramètres optionnels": "Optionale Parameter",
         "Ajouter": "Hinzufügen",
         "Mise en forme générale": "Allgemeine Formatierung",
-        "Tableau": "Tisch",
+        "Tableau": "Tabelle",
         "Centrer dans les cases": "In Kisten zentrieren",
         "Nombre de lignes": "Anzahl der Zeilen",
         "Nombre de colonnes": "Anzahl der Spalten",
@@ -1236,7 +1236,7 @@
         "Valider": "Validate",
         "Objet": "Objekt",
         "Plugin": "Plugin",
-        "Equipement": "Ausrüstung",
+        "Equipement": "Gerät",
         "Nom": "Name"
     },
     "desktop\/modal\/cmd.history.php": {
@@ -1341,7 +1341,7 @@
         "Macro binaire": "Binäres Makro",
         "Widget au survol": "Hover-Widget",
         "Action": "Aktion",
-        "Equipement": "Ausrüstung",
+        "Equipement": "Gerät",
         "Afficher au survol": "Show auf Überführung",
         "Afficher sur un clic": "Ansicht mit einem Klick",
         "Position": "Position",
@@ -2413,7 +2413,7 @@
         "Catégories": "Kategorien",
         "Sans catégorie": "Ohne Kategorie",
         "Visibles": "Sichtbar",
-        "Equipement": "Ausrüstung",
+        "Equipement": "Gerät",
         "Tous": "Alle"
     },
     "desktop\/php\/eqAnalyse.php": {
@@ -2427,7 +2427,7 @@
         "Commandes orphelines": "Orphan Orders",
         "Rechercher | nom | :not(nom": "Suche | Name | : nicht (Name",
         "Aucun équipement en Alerte.": "Keine Ausrüstung in Alarmbereitschaft",
-        "Equipement": "Ausrüstung",
+        "Equipement": "Gerät",
         "Commande": "Befehl",
         "Type": "Typ",
         "Actions": "Aktionen",
@@ -2460,7 +2460,7 @@
     "desktop\/php\/user.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Liste des utilisateurs": "Liste der Benutzer",
-        "Ajouter un utilisateur": "Nutzer hinzufügen",
+        "Ajouter un utilisateur": "Benutzer einfügen",
         "Activer accès support": "Aktivieren Sie den Support-Zugriff",
         "Désactiver accès support": "Deaktivieren Sie den Supportzugriff",
         "Sauvegarder": "Speichern",
@@ -4475,7 +4475,7 @@
         "L\\'équipement source n\\'existe pas": "Quellgeräte sind nicht vorhanden",
         "L\\'équipement cible n\\'existe pas": "Das Zielgerät existiert nicht",
         "Erreur lors de la migration d\\'équipement": "Fehler beim Migrieren von Geräten",
-        "Equipement": "Ausrüstung",
+        "Equipement": "Gerät",
         "Action": "Aktion"
     },
     "core\/class\/interactDef.class.php": {
@@ -4774,7 +4774,7 @@
         "Nom": "Name"
     },
     "core\/template\/scenario\/equipement.default.html": {
-        "Equipement": "Ausrüstung",
+        "Equipement": "Gerät",
         "Sélectionner un équipement": "Ausrüstung auswählen",
         "Action": "Aktion",
         "Visible": "Sichtbar",
