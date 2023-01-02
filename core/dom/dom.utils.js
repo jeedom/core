@@ -20,9 +20,7 @@
 */
 var domUtils = function() {
   if (typeof arguments[0] == 'function') {
-    if (domUtils._debug) console.log('[ >> domUtils ready register func << ]', arguments[0])
     if (domUtils._ajaxCalling <= 0 && domUtils._DOMloading <= 0) {
-      if (domUtils._debug) console.log('[ >> domUtils ready register func << ] no loading / no ajax -> exec now!')
       arguments[0].apply(this)
       return
     }
@@ -34,7 +32,6 @@ Object.assign(domUtils, {
   ajaxCalling: 1,
   DOMloading: 1,
   loadingTimeout: null,
-  _debug: false,
   ajaxSettings: {
     async: true,
     global: true,
@@ -48,11 +45,9 @@ Object.assign(domUtils, {
 })
 
 domUtils.DOMReady = function() {
-  if (domUtils._debug) console.log('[ >> domUtils.DOMReady] registeredFuncs?', domUtils.registeredFuncs)
   domUtils.hideLoading()
   for (var i = 0; i < domUtils.registeredFuncs.length; i++) {
     let f = domUtils.registeredFuncs.shift()
-    if (domUtils._debug) console.log('[ >> domUtils.DOMReady] exec deferred func:', f)
     f.apply(this)
   }
 }

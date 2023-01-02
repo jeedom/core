@@ -557,7 +557,6 @@ jeeDialog.toast() Handle toast
 jeeDialog.alert() / confirm() / prompt() Handle mini modals
 jeeDialog.modal() handle mini modal with predefined content
 jeeDialog.dialog() handle complete moveable/resiable dialogs
-
 */
 var jeeDialog = (function()
 {
@@ -793,14 +792,29 @@ var jeeDialog = (function()
     function setPosition(_dialog, _params) {
       _dialog.style = null
       if (_params.width) {
-        _dialog.style.width = _params.width
-        //Horizontally centered:
-        let bRect = document.body.getBoundingClientRect()
-        let mRect = _dialog.getBoundingClientRect()
-        _dialog.style.left = (bRect.width / 2) - (mRect.width / 2) + "px"
+        if (is_int(_params.width)) {
+          _dialog.style.width = _params.width + 'px'
+        } else {
+          _dialog.style.width = _params.width
+        }
+        if (_params.isMainDialog) {
+          //Horizontally centered:
+          let bRect = document.body.getBoundingClientRect()
+          let mRect = _dialog.getBoundingClientRect()
+          _dialog.style.left = (bRect.width / 2) - (mRect.width / 2) + "px"
+        }
       }
+
+      if (_params.height) {
+        if (is_int(_params.height)) {
+          _dialog.style.height = _params.height + 'px'
+        } else {
+          _dialog.style.height = _params.height
+        }
+      }
+
       if (_params.zIndex) _dialog.style.zIndex = _params.zIndex
-      if (_params.height) _dialog.style.height = _params.height
+
       _dialog.style.top = _params.top
     }
 
@@ -1250,7 +1264,22 @@ var jeeDialog = (function()
           top: '10vh',
           backdrop: true,
           buttons: {},
-          defaultButtons: {},
+          defaultButtons: {
+            cancel: {
+              label: '<i class="fa fa-times"></i> {{Annuler}}',
+              className: 'warning',
+              callback: {
+                click: function(event) { }
+              }
+            },
+            confirm: {
+              label: '<i class="fa fa-check"></i> {{OK}}',
+              className: 'success',
+              callback: {
+                click: function(event) { }
+              }
+            }
+          },
           title: 'Jeedom',
           setTitle: true,
           setContent: true,
@@ -1272,6 +1301,11 @@ var jeeDialog = (function()
           _options.top = "5vh"
         }
 
+        if (Object.keys(_options.buttons).length > 0) {
+          _options.setFooter = true
+        }
+
+        //DEBUG:
         _options.title = '[jeeDialog] ' + _options.title
 
         //Build dialog:
@@ -1307,9 +1341,6 @@ var jeeDialog = (function()
             this.dialog.remove()
           }
         }
-
-        //Set Dialog size:
-        setPosition(dialogContainer, _options)
 
         //____Set Moveable
         var nextLeft, nextTop, initialLeft, initialTop

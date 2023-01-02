@@ -2069,12 +2069,14 @@ document.getElementById('generaltab').addEventListener('click', function(event) 
   if (event.target.matches('#bt_addTrigger, #bt_addTrigger i')) {
     jeeP.addTrigger('')
     jeeP.checkNoTriggeringMode()
+    jeedomUtils.initTooltips()
     return
   }
 
   if (event.target.matches('#bt_addSchedule, #bt_addSchedule i')) {
     jeeP.addSchedule('')
     jeeP.checkNoTriggeringMode()
+    jeedomUtils.initTooltips()
     return
   }
 

@@ -226,6 +226,7 @@ div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > button.btClose {
 }
 
 div.jeeDialog.jeeDialogMain > div.jeeDialogContent {
+  position: relative;
   height: calc(100% - 35px);
   width: calc(100% - 10px);
   padding: 15px;
@@ -234,6 +235,14 @@ div.jeeDialog.jeeDialogMain > div.jeeDialogContent {
 div.jeeDialog.jeeDialogMain > div.jeeDialogContent .floatingbar {
   right: 40px;
   top: 40px;
+}
+
+div.jeeDialog.jeeDialogMain > div.jeeDialogFooter {
+  position: absolute;
+  --display: block;
+  width: calc(100% - 10px);
+  padding: 15px;
+  bottom: 0;
 }
 
 div.jeeDialog {
