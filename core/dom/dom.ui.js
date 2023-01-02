@@ -560,17 +560,7 @@ var jeeDialog = (function()
     }
     let self = this
 
-    /*________________TOASTR
-    jeeDialog.toast({
-      level: 'warning',
-      title: 'I\'m a toast!',
-      message: 'What about a coffee ?',
-      timeOut: 5000,
-      extendedTimeOut: 4000,
-      onclick: function() {
-        console.log('toast clicked')
-      }
-    })
+    /*________________TOAST
     */
     exports.toast = function(_options) {
       var defaultOptions = {
@@ -692,8 +682,6 @@ var jeeDialog = (function()
       return true
     }
 
-
-
     /* Dialogs / popups common:
     */
     exports.setDialogDefaults = function(_options) {
@@ -717,28 +705,6 @@ var jeeDialog = (function()
       }
       _options = domUtils.extend(commonDefaults, _options)
       return _options
-    }
-
-    function setPosition(_dialog, _params) {
-      //console.log('>> setPosition', _dialog, _params)
-      if (_params.width) _dialog.style.width = _params.width
-      if (_params.height) _dialog.style.height = _params.height
-      _dialog.style.top = _params.top
-    }
-
-    exports.addButton = function(_button, _footer) {
-      let button = document.createElement('button')
-      button.setAttribute('type', 'button')
-      button.setAttribute('data-type', _button[0])
-      button.innerHTML = _button[1].label
-      button.classList = 'button ' + _button[1].className
-      if (isset(_button[1].callback)) {
-        for (var [key, value] of Object.entries(_button[1].callback)) {
-          button.addEventListener(key, value)
-        }
-      }
-      _footer.appendChild(button)
-      return true
     }
 
     function setDialog(_params) {
@@ -765,7 +731,7 @@ var jeeDialog = (function()
         }
         template.appendChild(dialogTitle)
         dialogTitle.querySelector(':scope > .btClose').addEventListener('click', function(event) {
-          event.target.closest('div.jeeDialog').remove()
+          event.target.closest('div.jeeDialog')._jeeDialog.close()
           document.getElementById('jeeDialogBackdrop')?.remove()
         })
       }
@@ -799,6 +765,35 @@ var jeeDialog = (function()
       return template
     }
 
+    exports.addButton = function(_button, _footer) {
+      let button = document.createElement('button')
+      button.setAttribute('type', 'button')
+      button.setAttribute('data-type', _button[0])
+      button.innerHTML = _button[1].label
+      button.classList = 'button ' + _button[1].className
+      if (isset(_button[1].callback)) {
+        for (var [key, value] of Object.entries(_button[1].callback)) {
+          button.addEventListener(key, value)
+        }
+      }
+      _footer.appendChild(button)
+      return true
+    }
+
+    function setPosition(_dialog, _params) {
+      _dialog.style = null
+      if (_params.width) {
+        _dialog.style.width = _params.width
+        //Horizontally centered:
+        let bRect = document.body.getBoundingClientRect()
+        let mRect = _dialog.getBoundingClientRect()
+        _dialog.style.left = (bRect.width / 2) - (mRect.width / 2) + "px"
+      }
+      if (_params.zIndex) _dialog.style.zIndex = _params.zIndex
+      if (_params.height) _dialog.style.height = _params.height
+      _dialog.style.top = _params.top
+    }
+
     function setBackDrop(_params) {
       if (_params.backdrop) {
         var backDrop = document.getElementById('jeeDialogBackdrop')
@@ -808,15 +803,21 @@ var jeeDialog = (function()
           backDrop.unseen()
           document.body.appendChild(backDrop)
         }
+        if (_params.isMainDialog) {
+          backDrop.addEventListener('click', function(event) {
+            document.querySelectorAll('div.jeeDialog').forEach( _dialog => {
+              if (isset(_dialog._jeeDialog)) _dialog._jeeDialog.close(_dialog)
+            })
+          })
+        }
       } else {
         document.getElementById('jeeDialogBackdrop')?.remove()
       }
     }
 
-    /*________________POPUPS --WIP!!!!
+    /*________________PROMPTS
     */
     exports.alert = function(_options, _callback) {
-      //jeeDialog.alert('My default alert!', function(result) { console.log('callback:', result) })
       if (typeof _options === 'string') {
         _options = {
           message: _options
@@ -901,7 +902,6 @@ var jeeDialog = (function()
     }
 
     exports.confirm = function(_options, _callback) {
-      //jeeDialog.confirm('My default confirm!', function(result) { console.log('result:', result) })
       if (typeof _options === 'string') {
         _options = {
           message: _options
@@ -998,7 +998,6 @@ var jeeDialog = (function()
     }
 
     exports.prompt = function(_options, _callback) {
-      //jeeDialog.confirm('My default confirm!', function(result) { console.log('result:', result) })
       if (typeof _options === 'string') {
         _options = {
           title: _options
@@ -1163,6 +1162,7 @@ var jeeDialog = (function()
           }
         })
       }
+
       return dialogContainer
     }
 
@@ -1212,16 +1212,190 @@ var jeeDialog = (function()
     }
 
 
-
-    /*________________DIALOG --WIP!!!!
+    /*________________DIALOGS
     */
     exports.dialog = function(_options) {
-      console.log('>>> jeeDialog.dialog', _options)
+      //Require _options.id to construct and initialize a container:
+      if (!isset(_options)) _options = {}
+      if (!isset(_options.id)) _options.id = 'jee_modal'
 
-      //moveable
+      var dialogContainer = document.getElementById(_options.id)
+      if (dialogContainer == null) {
+        dialogContainer = document.createElement('div')
+        dialogContainer.setAttribute('id', _options.id)
+        dialogContainer.addClass('jeeDialog', 'jeeDialogMain')
+        dialogContainer.style.display = 'none'
+        document.body.appendChild(dialogContainer)
+      }
 
-      //resizeable
+      //First initialize dialog:
+      if (dialogContainer._jeeDialog == undefined) {
+        var defaultOptions = this.setDialogDefaults({
+          id: 'jee_modal',
+          show: true,
+          contentUrl: '',
+          zIndex: 1020,
+          width: '90vw',
+          height: '60vh',
+          top: '10vh',
+          backdrop: true,
+          buttons: {},
+          defaultButtons: {},
+          title: 'Jeedom',
+          setTitle: true,
+          setContent: true,
+          setFooter: false,
+        })
 
+        _options = domUtils.extend(defaultOptions, _options)
+        _options.isMainDialog = true
+
+        if (_options.id == 'jee_modal2') {
+          _options.zIndex = 1021
+          _options.width = '75vw'
+          _options.top = "7vh"
+        } else if (_options.id == 'jee_modal3') {
+          _options.zIndex = 1022
+          _options.width = '60vw'
+          _options.top = "5vh"
+        }
+
+        _options.title = '[jeeDialog] ' + _options.title
+
+        //Build dialog:
+        var dialog = setDialog(_options)
+        dialogContainer.append(...dialog.children)
+        dialogContainer.addClass('jeeDialog', 'jeeDialogMain')
+
+        //Register element _jeeDialog object:
+        dialogContainer._jeeDialog = {
+          options: _options,
+          dialog: dialogContainer,
+          show: function() {
+            document.body.style.overflow = 'hidden'
+            setBackDrop(_options)
+            document.getElementById('jeeDialogBackdrop')?.seen()
+            setPosition(this.dialog, _options)
+            this.dialog.seen()
+          },
+          hide: function() {
+            document.body.style.overflow = 'inehrit'
+            document.getElementById('jeeDialogBackdrop')?.unseen()
+            this.dialog.unseen()
+          },
+          close: function() {
+            document.body.style.overflow = 'inehrit'
+            document.getElementById('jeeDialogBackdrop')?.unseen()
+            this.dialog.querySelector('div.jeeDialogContent').empty()
+            this.dialog.unseen()
+          },
+          destroy: function() {
+            document.body.style.overflow = 'inehrit'
+            document.getElementById('jeeDialogBackdrop')?.remove()
+            this.dialog.remove()
+          }
+        }
+
+        //Set Dialog size:
+        setPosition(dialogContainer, _options)
+
+        //____Set Moveable
+        var nextLeft, nextTop, initialLeft, initialTop
+        var bodyRect = null
+        dialogContainer.querySelector('div.jeeDialogTitle').addEventListener('mousedown', dragStart, false)
+
+        function dragStart(event) {
+          event.preventDefault()
+          bodyRect = document.body.getBoundingClientRect()
+          let bRect = dialogContainer.getBoundingClientRect()
+          initialLeft = event.clientX - bRect.left
+          initialTop = event.clientY - bRect.top
+          document.body.addEventListener('mouseup', dragEnd, false)
+          document.body.addEventListener('mousemove', dragging, false)
+        }
+        function dragging(event) {
+          event.preventDefault()
+          let modalRect = dialogContainer.getBoundingClientRect()
+          nextLeft = event.clientX - initialLeft
+          nextTop = event.clientY - initialTop
+          if (nextTop <= 0) {
+            nextTop = 0
+          }
+          if (nextLeft >= (bodyRect.right - modalRect.width)) {
+            nextLeft = (bodyRect.right - modalRect.width)
+          }
+          if (nextTop >= (bodyRect.bottom - modalRect.height)) {
+            nextTop = (bodyRect.bottom - modalRect.height)
+          }
+          if (nextLeft <= 0) {
+            nextLeft = 0
+          }
+          dialogContainer.style.left = nextLeft + 'px'
+          dialogContainer.style.top = nextTop + 'px'
+        }
+        function dragEnd(event) {
+          document.body.removeEventListener('mouseup', dragEnd, false)
+          document.body.removeEventListener('mousemove', dragging, false)
+        }
+
+        //____Set Resizeable
+        var resizer, initialLeft, initialTop, initialWidth, initialHeight
+        var resizers = ['top', 'top-right', 'right', 'bottom-right', 'bottom', 'bottom-left', 'left', 'top-left']
+        resizers.forEach(handle => {
+          var div = document.createElement('div')
+          div.addClass('resizer', handle)
+          div.setAttribute('data-resize', handle)
+          dialogContainer.appendChild(div)
+          div.addEventListener('mousedown', resizeStart, false)
+        })
+        function resizeStart(event) {
+          event.preventDefault()
+          resizer = event.target.getAttribute('data-resize')
+          let bRect = dialogContainer.getBoundingClientRect()
+          initialLeft = bRect.left
+          initialTop = bRect.top
+          initialWidth = bRect.width
+          initialHeight = bRect.height
+          document.body.addEventListener('mouseup', resizeEnd, false)
+          document.body.addEventListener('mousemove', resizing, false)
+        }
+        function resizing(event) {
+          if (resizer.includes('top')) {
+            dialogContainer.style.top = event.clientY + 'px'
+            let height = initialHeight + (initialTop - event.clientY)
+            if (height > 200) dialogContainer.style.height = height + 'px'
+          }
+          if (resizer.includes('right')) {
+            let width = event.clientX - initialLeft
+            if (width > 350) dialogContainer.style.width = width + 'px'
+          }
+          if (resizer.includes('bottom')) {
+            let height = dialogContainer.style.height = event.clientY - initialTop
+            if (height > 200) dialogContainer.style.height = height + 'px'
+          }
+          if (resizer.includes('left')) {
+            dialogContainer.style.left = event.clientX + 'px'
+            let width = initialWidth + (initialLeft - event.clientX)
+            if (width > 350) dialogContainer.style.width = width + 'px'
+          }
+        }
+        function resizeEnd(event) {
+          document.body.removeEventListener('mouseup', resizeEnd, false)
+          document.body.removeEventListener('mousemove', resizing, false)
+        }
+      } else {
+        _options = domUtils.extend(dialogContainer._jeeDialog.options, _options)
+      }
+
+      if (_options.contentUrl != '') {
+        dialogContainer.querySelector('div.jeeDialogContent').load(_options.contentUrl)
+      }
+      if (_options.show) {
+        dialogContainer._jeeDialog.show()
+      }
+
+
+      return dialogContainer
     }
 
     return exports
