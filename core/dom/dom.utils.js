@@ -530,7 +530,6 @@ domUtils.ajax = function(_params) {
     var data = domUtils.getUrlString(_params.data)
   }
 
-
   if (_params.async === false) { //Synchronous request:
     const request = new XMLHttpRequest()
     request.open(_params.type, _params.url, false)
@@ -586,9 +585,10 @@ domUtils.ajax = function(_params) {
           if ((error.status == 504 || error.status == 500 || (error.status == 502 && error.headers.get('server') == 'openresty'))) { //Gateway Timeout or Internal Server Error
             //Timeout, retry:
             if (_params.timeoutRetry < 3) {
-              console.log('[Timeout Error], retrying:', error, errorMessage, _params)
               _params.timeoutRetry ++
-              domUtils.ajax(_params)
+              setTimeout( () => {
+                domUtils.ajax(_params)
+              }, 100)
               return
             } else {
               console.warn('[Timeout Error], retried two times:', error, errorMessage, _params)
@@ -601,20 +601,20 @@ domUtils.ajax = function(_params) {
         if (error.code == 20) return //NetworkError when attempting to fetch resource.
         if (error.name == 'TypeError' && error.message.includes('NetworkError')) return //The operation was aborted.
 
-        //if (_params.data.action == 'changes') return
-        /*
         if (!_params.noDisplayError) {
           domUtils.handleAjaxError(_params.url, error.name, error.message, _params)
           if (_params.onError) {
             _params.onError(error)
           }
         }
-        */
+
 
         //Alpha test code:
+        /*
         console.warn('[Fetch Server Error]', 'name:', error.name, ' | message:', error.message, ' | code:', error.code, ' | request:', _params.url, ' | action:', _params.data.action, _params)
         console.dir(error)
         domUtils.handleAjaxError(_params.url, error.name, error.message, _params)
+        */
       }
     })
   }
