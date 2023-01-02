@@ -552,6 +552,13 @@ domUtils.syncJeeCompletes = function() {
   })
 }
 
+/* jeeDialog()
+jeeDialog.toast() Handle toast
+jeeDialog.alert() / confirm() / prompt() Handle mini modals
+jeeDialog.modal() handle mini modal with predefined content
+jeeDialog.dialog() handle complete moveable/resiable dialogs
+
+*/
 var jeeDialog = (function()
 {
     'use strict'
@@ -621,9 +628,12 @@ var jeeDialog = (function()
 
       if (_options.attachTo) {
         try {
-          var attachTo = document.querySelector(options.attach)
-          if (attachTo != null) {
-            attachTo.appendChild(toastContainer)
+          if (typeof _options.attachTo === 'string') {
+            _options.attachTo = document.querySelector(_options.attachTo)
+          }
+
+          if (_options.attachTo != null) {
+            _options.attachTo.appendChild(toastContainer)
           }
         } catch (error) { }
       } else {

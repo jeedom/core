@@ -142,11 +142,6 @@ div.jeeDialogTitle {
   font-weight: 500;
   line-height: 21px;
 }
-div.jeeDialogTitle:before {
-    content: '\f105\00a0\00a0';
-    font-family: "Font Awesome 5 Free";
-    font-weight: 700;
-  }
 div.jeeDialogTitle button {
   float: right;
   font-size: 21px !important;
@@ -210,6 +205,11 @@ div.jeeDialog.jeeDialogMain {
   overflow: hidden;
   max-height: calc(100vh - 60px);
   max-width: calc(100vw - 10px);
+}
+div.jeeDialog.jeeDialogMain > div.jeeDialogTitle:before {
+  content: '\f105\00a0\00a0';
+  font-family: "Font Awesome 5 Free";
+  font-weight: 700;
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogTitle {
   margin: -3px;

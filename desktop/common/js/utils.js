@@ -336,7 +336,8 @@ jeedomUtils.showAlert = function(_options) {
   if (options.level == 'danger') {
     options.timeOut = 0
   }
-  options.attachTo = init(options.attach, false)
+  options.attachTo = init(_options.attachTo, false)
+  if (!options.attachTo) options.attachTo = init(_options.attach, false) //Deprecated, old toastr param
 
   jeeDialog.toast(options)
 }

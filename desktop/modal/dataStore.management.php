@@ -54,7 +54,7 @@ if (!jeeFrontEnd.md_datastore) {
   jeeFrontEnd.md_datastore = {
     init: function() {
       this.$tableDataStore = $('#table_dataStore')
-      this.$modal = $('#md_modal')
+      this.modal = document.getElementById('table_dataStore').closest('div.jeeDialogMain')
     },
     getDatastoreTr: function (_datastore = false) {
       var thisTr = ''
@@ -111,7 +111,8 @@ if (!jeeFrontEnd.md_datastore) {
         type: jeephp2js.md_dataStoreManagement_type,
         usedBy: 1,
         error: function(error) {
-          $('#div_dataStoreManagementAlert').showAlert({
+          jeedomUtils.showAlert({
+            attache: jeeM.modal,
             message: error.message,
             level: 'danger'
           })
@@ -158,13 +159,15 @@ if (!jeeFrontEnd.md_datastore) {
           jeedom.dataStore.remove({
             id: tr.getAttribute('data-dataStore_id'),
             error: function(error) {
-              $('#div_dataStoreManagementAlert').showAlert({
+              jeedomUtils.showAlert({
+                attache: jeeM.modal,
                 message: error.message,
                 level: 'danger'
               })
             },
             success: function(data) {
-              $('#div_dataStoreManagementAlert').showAlert({
+              jeedomUtils.showAlert({
+                attache: jeeM.modal,
                 message: '{{Dépôt de données supprimé}}',
                 level: 'success'
               })
@@ -186,13 +189,15 @@ if (!jeeFrontEnd.md_datastore) {
         key: tr.querySelector('.key').value,
         link_id: jeephp2js.md_dataStoreManagement_linkId,
         error: function(error) {
-          $('#div_dataStoreManagementAlert').showAlert({
+          jeedomUtils.showAlert({
+            attache: jeeM.modal,
             message: error.message,
             level: 'danger'
           })
         },
         success: function(data) {
-          $('#div_dataStoreManagementAlert').showAlert({
+          jeedomUtils.showAlert({
+            attachTo: jeeM.modal,
             message: '{{Dépôt de données sauvegardé}}',
             level: 'success'
           })
@@ -204,10 +209,12 @@ if (!jeeFrontEnd.md_datastore) {
 
   jeeM.$tableDataStore.on({
     'click': function(event) {
-      var tr = $(this).closest('tr')
-      $('#md_modal2').dialog({
-        title: "{{Graphique de lien(s)}}"
-      }).load('index.php?v=d&modal=graph.link&filter_type=dataStore&filter_id=' + tr.attr('data-dataStore_id')).dialog('open')
+      var trId = this.closest('tr').getAttribute('data-dataStore_id')
+      jeeDialog.dialog({
+        id: 'jee_modal2',
+        title: '{{Graphique de lien(s)}}',
+        contentUrl: 'index.php?v=d&modal=graph.link&filter_type=dataStore&filter_id=' + trId
+      })
     }
   }, '.bt_graphDataStore')
 
