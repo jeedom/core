@@ -114,6 +114,7 @@ div.jeeToastContainer > div.jeeToast.toast-danger {
   background: var(--el-defaultColor);
   opacity: 0.6;
   backdrop-filter: blur(5px) !important;
+  --backdrop-filter: blur(3px) brightness(80%) !important;
 }
  div.jeeDialog {
   position: absolute;

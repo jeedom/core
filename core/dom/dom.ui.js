@@ -1245,6 +1245,8 @@ var jeeDialog = (function()
           setTitle: true,
           setContent: true,
           setFooter: false,
+          callback: false,
+          afterResize: false
         })
 
         _options = domUtils.extend(defaultOptions, _options)
@@ -1382,13 +1384,17 @@ var jeeDialog = (function()
         function resizeEnd(event) {
           document.body.removeEventListener('mouseup', resizeEnd, false)
           document.body.removeEventListener('mousemove', resizing, false)
+          let afterResize = dialogContainer._jeeDialog.options.afterResize
+          if (afterResize) afterResize()
         }
       } else {
         _options = domUtils.extend(dialogContainer._jeeDialog.options, _options)
       }
 
       if (_options.contentUrl != '') {
-        dialogContainer.querySelector('div.jeeDialogContent').load(_options.contentUrl)
+        dialogContainer.querySelector('div.jeeDialogContent').load(_options.contentUrl, function() {
+          if (_options.callback) _options.callback()
+        })
       }
       if (_options.show) {
         dialogContainer._jeeDialog.show()

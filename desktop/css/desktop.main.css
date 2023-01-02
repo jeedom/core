@@ -1745,7 +1745,8 @@ div.eqLogic-widget.editingMode .panelLink {
     padding: 0 0 0 0!important;
   }
 
-  #md_modal table.tablesorter {
+  #md_modal table.tablesorter,
+  div.jeeDialogMain table.tablesorter {
     width: 100% !important;
     min-width: 100% !important;
     max-width:100% !important;

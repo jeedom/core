@@ -55,7 +55,6 @@ if (!jeeFrontEnd.md_datastore) {
     init: function() {
       this.$tableDataStore = $('#table_dataStore')
       this.$modal = $('#md_modal')
-      this.refreshCount = 0
     },
     getDatastoreTr: function (_datastore = false) {
       var thisTr = ''
@@ -125,7 +124,6 @@ if (!jeeFrontEnd.md_datastore) {
           }
           self.$tableDataStore.find('tbody').append(tr)
           self.$tableDataStore.trigger("update")
-          self.refreshCount += 1
         }
       })
     },
