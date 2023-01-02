@@ -1,0 +1,89 @@
+/*/*
+Deprecated CSS for plugins @Jeedom 2023
+Desktop
+*/
+
+/* jQuery autocomplete */
+.ui-autocomplete .ui-menu-item-wrapper,
+.ui-autocomplete .ui-menu-item-wrapper .ui-state-active {
+  cursor: pointer;
+  color: var(--txt-color);
+  background-color: var(--form-bg-color);
+  padding: 2px 5px;
+  border: none;
+}
+.ui-autocomplete .ui-menu-item-wrapper:hover {
+  color: var(--linkHoverLight-color);
+  background-color: var(--sc-formTxt-color);
+  border: none;
+}
+.ui-autocomplete.ui-front {
+  z-index: 5000;
+}
+
+/* bootbox */
+.bootbox.modal {
+  z-index: 9000;
+}
+.bootbox.modal.bootboxScInput {
+  z-index: 1010;
+}
+
+/* boostrap modal */
+.modal-footer .btn.bootbox-accept,
+.ui-dialog-buttonpane .ui-dialog-buttonset .ui-button {
+  color: var(--linkHoverLight-color) !important;
+  background-color: var(--al-success-color)!important;
+  border: none!important;
+}
+.modal-footer .btn.bootbox-cancel {
+  background-color: var(--al-warning-color)!important;
+}
+
+.modal-header {
+  border-bottom-width: 0 !important;
+}
+.modal-dialog {
+  top: 80px;
+  background-color: rgb(var(--panel-bg-color)) !important;
+  box-shadow: 0 0 6px 2px rgba(0,0,0,0.15) !important;
+}
+.modal-content {
+  background: transparent;
+}
+.modal-footer {
+  border-top-color: rgb(var(--bg-color))!important
+}
+.modal-footer .btn-default {
+  height: 32px;
+}
+.modal-footer button[data-bb-handler=cancel],
+.modal-footer a.btn[data-dismiss] {
+  background-color: var(--al-warning-color)!important;
+}
+.modal-footer button[data-bb-handler=confirm] {
+  background-color: var(--al-success-color)!important;
+}
+h4.modal-title {
+  font-size: 14px;
+}
+
+.close {
+  color: var(--link-color) !important;
+  opacity: 1;
+  border: none;
+}
+.close:hover {
+  opacity: 0.75;
+}
+
+.modal-backdrop {
+  z-index: 90 !important;
+  background: var(--el-defaultColor) !important;
+  opacity: 0.6 !important;
+  backdrop-filter: blur(2px);
+}
+
+.bootbox.modal, .modal-dialog, .modal-content, .modal-body, .modal-footer {
+  border-radius: var(--border-radius) !important;
+}
