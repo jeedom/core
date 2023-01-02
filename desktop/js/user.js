@@ -171,33 +171,37 @@ $('#div_administration').on({
 
 $("#bt_addUser").on('click', function(event) {
   jeedomUtils.hideAlert()
-  document.getElementById('in_newUserLogin').value = ''
-  document.getElementById('in_newUserMdp').value = ''
-  $('#md_newUser').modal('show')
-})
-
-$("#bt_newUserSave").on('click', function(event) {
-  jeedomUtils.hideAlert()
-  var user = [{
-    login: document.getElementById('in_newUserLogin').value,
-    password: document.getElementById('in_newUserMdp').value
-  }]
-  jeedom.user.save({
-    users: user,
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function() {
-      jeeP.printUsers()
-      jeedomUtils.showAlert({
-        message: '{{Sauvegarde effectuée}}',
-        level: 'success'
-      })
-      jeeFrontEnd.modifyWithoutSave = false
-      $('#md_newUser').modal('hide')
+  let content = '<input class="promptAttr" data-l1key="newUserLogin" autocomplete="off" type="text" placeholder="{{Identifiant}}">'
+  content += '<input class="promptAttr" data-l1key="newUserMdp" autocomplete="off" type="text" placeholder="{{Mot de passe}}">'
+  jeeDialog.prompt({
+    title: "{{Ajouter un utilisateur}}",
+    message: content,
+    inputType: false,
+    callback: function(result) {
+      if (result) {
+        var user = [{
+          login: result.newUserLogin,
+          password: result.newUserMdp
+        }]
+        console.log('user: ', user)
+        jeedom.user.save({
+          users: user,
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function() {
+            jeeP.printUsers()
+            jeedomUtils.showAlert({
+              message: '{{Sauvegarde effectuée}}',
+              level: 'success'
+            })
+            jeeFrontEnd.modifyWithoutSave = false
+          }
+        })
+      }
     }
   })
 })

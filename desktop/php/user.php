@@ -130,24 +130,4 @@ sendVarToJS('jeeFrontEnd.ldapEnable', config::byKey('ldap::enable'));
 	</table>
 </form>
 
-<div class="modal fade" id="md_newUser">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button class="close" data-dismiss="modal">×</button>
-				<h3>{{Ajouter un utilisateur}}</h3>
-			</div>
-			<div class="modal-body">
-				<div style="display: none;" id="div_newUserAlert"></div>
-				<input class="form-control" type="text" id="in_newUserLogin" placeholder="{{Identifiant}}" /><br /><br />
-				<input class="form-control" type="password" autocomplete="new-password" id="in_newUserMdp" placeholder="{{Mot de passe}}" />
-			</div>
-			<div class="modal-footer">
-				<a class="btn btn-default" data-dismiss="modal">{{Annuler}}</a>
-				<a class="btn btn-primary bootbox-accept" id="bt_newUserSave"><i class="fas fa-check-circle"></i> {{Ajouter}}</a>
-			</div>
-		</div>
-	</div>
-</div>
-
 <?php include_file("desktop", "user", "js"); ?>

@@ -481,24 +481,36 @@ $('#div_pageContainer').on({
 
 /*****************************viewZone****************************************/
 $('#bt_addviewZone').on('click', function() {
-  $('#in_addEditviewZoneEmplacement').val('')
-  $('#in_addEditviewZoneName').val('')
-  $('#sel_addEditviewZoneType').prop('disabled', false)
-  $('#md_addEditviewZone').modal('show')
-})
+  let content = '<input class="promptAttr" data-l1key="name" autocomplete="off" type="text" placeholder="{{Nom}}">'
+  content += '<select class="promptAttr" data-l1key="type" id="sel_addEditviewZoneType">'
+  content += '<option value="widget">{{Equipement}}</option>'
+  content += '<option value="graph">{{Graphique}}</option>'
+  content += '<option value="table">{{Tableau}}</option>'
+  content += '</select>'
 
-$('#bt_addEditviewZoneSave').on('click', function() {
-  if ($('#in_addEditviewZoneName').val().trim() != '') {
-    var viewZone = {
-      name: document.getElementById('in_addEditviewZoneName').innerHTML,
-      emplacement: document.getElementById('in_addEditviewZoneEmplacement').innerHTML,
-      type: document.getElementById('sel_addEditviewZoneType').value
+  jeeDialog.prompt({
+    title: "{{Ajouter/Editer viewZone}}",
+    message: content,
+    inputType: false,
+    callback: function(result) {
+      console.log('result:', result)
+      if (result) {
+        if (result.name == '') {
+          jeedomUtils.showAlert({
+            message: '{{Le nom de la viewZone ne peut être vide}}',
+            level: 'warning'
+          })
+          return
+        }
+        var viewZone = {
+          name: result.name,
+          emplacement: '',
+          type: result.type
+        }
+        jeeP.addEditviewZone(viewZone)
+      }
     }
-    jeeP.addEditviewZone(viewZone)
-    $('#md_addEditviewZone').modal('hide')
-  } else {
-    alert('{{Le nom de la viewZone ne peut être vide}}')
-  }
+  })
 })
 
 $('#div_pageContainer').on({

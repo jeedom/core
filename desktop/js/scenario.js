@@ -53,7 +53,7 @@ if (!jeeFrontEnd.scenario) {
       //autocomplete timeline input:
       jeedom.timeline.autocompleteFolder()
       //autocomplete group input:
-      document.querySelector('.scenarioAttr[data-l1key="group"]').jeeComplete({
+      document.querySelector('.scenarioAttr[data-l1key="group"]')?.jeeComplete({
           source: function(request, response, url) {
           domUtils.ajax({
             type: 'POST',
@@ -104,77 +104,6 @@ if (!jeeFrontEnd.scenario) {
       } else {
         document.getElementById('emptyModeWarning').seen()
       }
-    },
-    getSelectCmdExpressionMessage: function(subType, cmdHumanName) {
-      if (!['numeric', 'string', 'binary'].includes(subType)) return '{{Aucun choix possible}}'
-
-      var message = '<div class="row">'
-      message += '<div class="col-md-12">'
-      message += '<form class="form-horizontal" onsubmit="return false;">'
-      message += '<div class="form-group">'
-      message += '<label class="col-xs-5 control-label" >' + cmdHumanName + ' {{est}}</label>'
-
-      if (subType == 'numeric') {
-        message += '<div class="col-xs-3">'
-        message += '  <select class="conditionAttr form-control" data-l1key="operator">'
-        message += '    <option value="==">{{égal}}</option>'
-        message += '    <option value=">">{{supérieur}}</option>'
-        message += '    <option value="<">{{inférieur}}</option>'
-        message += '    <option value="!=">{{différent}}</option>'
-        message += '  </select>'
-        message += '</div>'
-        message += '<div class="col-xs-4">'
-        message += '  <input class="conditionAttr form-control radio-inline" data-l1key="operande" style="width: calc(100% - 45px);" />'
-        message += '  <button onclick="jeeFrontEnd.scenario.selectCmdFromModal(event)" type="button" class="btn btn-default cursor bt_selectCmdFromModal"><i class="fas fa-list-alt"></i></button>'
-        message += '</div>'
-        message += '</div>'
-      }
-
-      if (subType == 'string') {
-        message += '<div class="col-xs-2">'
-        message += '  <select class="conditionAttr form-control" data-l1key="operator">'
-        message += '    <option value="==">{{égale}}</option>'
-        message += '    <option value="matches">{{contient}}</option>'
-        message += '    <option value="!=">{{différent}}</option>'
-        message += '  </select>'
-        message += '</div>'
-        message += '<div class="col-xs-4">'
-        message += '  <input class="conditionAttr form-control radio-inline" data-l1key="operande" style="width: calc(100% - 45px);" />'
-        message += '  <button onclick="jeeFrontEnd.scenario.selectCmdFromModal(event)" type="button" class="btn btn-default cursor bt_selectCmdFromModal"><i class="fas fa-list-alt"></i></button>'
-        message += '</div>'
-        message += '</div>'
-      }
-
-      if (subType == 'binary') {
-        message += '<div class="col-xs-7">'
-        message += '<input class="conditionAttr" data-l1key="operator" value="==" style="display : none;" />'
-        message += '  <select class="conditionAttr form-control" data-l1key="operande">'
-        message += '    <option value="1">{{Ouvert}}</option>'
-        message += '    <option value="0">{{Fermé}}</option>'
-        message += '    <option value="1">{{Allumé}}</option>'
-        message += '    <option value="0">{{Eteint}}</option>'
-        message += '    <option value="1">{{Déclenché}}</option>'
-        message += '    <option value="0">{{Au repos}}</option>'
-        message += '  </select>'
-        message += '</div>'
-        message += '</div>'
-      }
-
-      message += '<div class="form-group">'
-      message += '<label class="col-xs-5 control-label" >{{Ensuite}}</label>'
-      message += '<div class="col-xs-3">'
-      message += '  <select class="conditionAttr form-control" data-l1key="next">'
-      message += '    <option value="">{{rien}}</option>'
-      message += '    <option value="&&">&& (AND)</option>'
-      message += '    <option value="||">|| (OR)</option>'
-      if (jeeFrontEnd.language == "fr_FR") message += '    <option value="ET">{{et}}</option>'
-      if (jeeFrontEnd.language == "fr_FR") message += '    <option value="OU">{{ou}}</option>'
-      message += '  </select>'
-      message += '</div>'
-      message += '</div>'
-      message += '</div></div>'
-      message += '</form></div></div>'
-      return message
     },
     //Copy / Paste
     removeObjectProp: function(obj, propToDelete) {
@@ -1294,8 +1223,79 @@ if (!jeeFrontEnd.scenario) {
       })
     },
     //misc
+    getSelectCmdExpressionMessage: function(subType, cmdHumanName) {
+      if (!['numeric', 'string', 'binary'].includes(subType)) return '{{Aucun choix possible}}'
+
+      var message = '<div class="row">'
+      message += '<div class="col-md-12">'
+      message += '<form class="form-horizontal" onsubmit="return false;">'
+      message += '<div class="form-group">'
+      message += '<label class="col-xs-5 control-label" >' + cmdHumanName + ' {{est}}</label>'
+
+      if (subType == 'numeric') {
+        message += '<div class="col-xs-3">'
+        message += '  <select class="conditionAttr form-control" data-l1key="operator">'
+        message += '    <option value="==">{{égal}}</option>'
+        message += '    <option value=">">{{supérieur}}</option>'
+        message += '    <option value="<">{{inférieur}}</option>'
+        message += '    <option value="!=">{{différent}}</option>'
+        message += '  </select>'
+        message += '</div>'
+        message += '<div class="col-xs-4">'
+        message += '<input class="conditionAttr form-control radio-inline" data-l1key="operande" style="width: calc(100% - 45px);" />'
+        message += '<button onclick="jeeFrontEnd.scenario.selectCmdFromModal(event)" type="button" class="btn btn-default cursor bt_selectCmdFromModal" style="margin-top: -5px;"><i class="fas fa-list-alt"></i></button>'
+        message += '</div>'
+        message += '</div>'
+      }
+
+      if (subType == 'string') {
+        message += '<div class="col-xs-2">'
+        message += '  <select class="conditionAttr form-control" data-l1key="operator">'
+        message += '    <option value="==">{{égale}}</option>'
+        message += '    <option value="matches">{{contient}}</option>'
+        message += '    <option value="!=">{{différent}}</option>'
+        message += '  </select>'
+        message += '</div>'
+        message += '<div class="col-xs-4">'
+        message += '<input class="conditionAttr form-control radio-inline" data-l1key="operande" style="width: calc(100% - 45px);" />'
+        message += '<button onclick="jeeFrontEnd.scenario.selectCmdFromModal(event)" type="button" class="btn btn-default cursor bt_selectCmdFromModal" style="margin-top: -5px;"><i class="fas fa-list-alt"></i></button>'
+        message += '</div>'
+        message += '</div>'
+      }
+
+      if (subType == 'binary') {
+        message += '<div class="col-xs-3">'
+        message += '<input class="conditionAttr" data-l1key="operator" value="==" style="display : none;" />'
+        message += '  <select class="conditionAttr form-control" data-l1key="operande">'
+        message += '    <option value="1">{{Ouvert}}</option>'
+        message += '    <option value="0">{{Fermé}}</option>'
+        message += '    <option value="1">{{Allumé}}</option>'
+        message += '    <option value="0">{{Eteint}}</option>'
+        message += '    <option value="1">{{Déclenché}}</option>'
+        message += '    <option value="0">{{Au repos}}</option>'
+        message += '  </select>'
+        message += '</div>'
+        message += '</div>'
+      }
+
+      message += '<div class="form-group">'
+      message += '<label class="col-xs-5 control-label" >{{Ensuite}}</label>'
+      message += '<div class="col-xs-3">'
+      message += '  <select class="conditionAttr form-control" data-l1key="next">'
+      message += '    <option value="">{{rien}}</option>'
+      message += '    <option value="&&">&& (AND)</option>'
+      message += '    <option value="||">|| (OR)</option>'
+      if (jeeFrontEnd.language == "fr_FR") message += '    <option value="ET">{{et}}</option>'
+      if (jeeFrontEnd.language == "fr_FR") message += '    <option value="OU">{{ou}}</option>'
+      message += '  </select>'
+      message += '</div>'
+      message += '</div>'
+      message += '</div></div>'
+      message += '</form></div></div>'
+      return message
+    },
     selectCmdFromModal: function(event) { //Condition chaining modals outside page_container, called from bt_selectCmdFromModal onclick()
-      var modal = event.target.closest('.bootbox.modal')
+      var modal = event.target.closest('.jeeDialogPrompt')
       modal.style.display = 'none'
       jeedom.cmd.getSelectModal({
         cmd: {
@@ -1360,7 +1360,7 @@ if (!jeeFrontEnd.scenario) {
         if (this.undoState < this.firstState) this.bt_undo.addClass('disabled')
         this.bt_redo.removeClass('disabled')
       } catch (error) {
-        console.log('undo ERROR:', error)
+        console.warn('undo ERROR:', error)
       }
       setTimeout(function() { jeedomUtils.initTooltips() }, 500)
       jeedom.scenario.setAutoComplete()
@@ -1379,7 +1379,7 @@ if (!jeeFrontEnd.scenario) {
 
         if (this.undoState < this.firstState - 1 || this.undoState + 2 >= this.undoStack.length) this.bt_redo.addClass('disabled')
       } catch (error) {
-        console.log('redo ERROR:', error)
+        console.warn('redo ERROR:', error)
       }
       setTimeout(function() { jeedomUtils.initTooltips() }, 500)
       jeedom.scenario.setAutoComplete()
@@ -1957,7 +1957,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
         jeeP.addElementSave.insertAfter = true
         jeeP.addElementSave.elementDiv = jeeP.PREV_FOCUS.closest('div.element')
         if (jeeP.addElementSave.elementDiv.parentNode.getAttribute('id') != 'div_scenarioElement') {
-          jeeP.addElementSave.elementDiv = elementDiv.closest('.expression')
+          jeeP.addElementSave.elementDiv = jeeP.addElementSave.elementDiv.closest('.expression')
           jeeP.addElementSave.expression = true
         }
       } else {
@@ -1965,7 +1965,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
       }
     }
 
-    $('#md_addElement').modal('show') //=> #bt_addElementSave
+    jeeDialog.modal(document.getElementById('md_addElement'))._jeeDialog.show() //=> #bt_addElementSave
     return
   }
 
@@ -2176,7 +2176,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     jeeP.setEditors()
     jeeP.updateSortable()
     jeeP.updateElseToggle()
-    $('#md_addElement').modal('hide')
+    jeeDialog.modal(document.getElementById('md_addElement'))._jeeDialog.hide()
     setTimeout(function() {
       newEL.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
     }, 250)
@@ -2186,6 +2186,10 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
       newEL.removeClass('disableElement')
     }, 500)
     return
+  }
+
+  if (event.target.matches('#bt_cancelElementSave, #bt_cancelElementSave *')) {
+    jeeDialog.modal(document.getElementById('md_addElement'))._jeeDialog.hide()
   }
 
   if (event.target.matches('input:not([type="checkbox"]).expressionAttr, textarea.expressionAttr')) { //ctrl-click input popup
@@ -2373,39 +2377,47 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
         }
 
         var message = jeeP.getSelectCmdExpressionMessage(result.cmd.subType, result.human)
-        bootbox.dialog({
+        jeeDialog.prompt({
           title: "{{Ajout d'une nouvelle condition}}",
+          inputType: false,
           message: message,
-          size: 'large',
+          width: '70%',
           buttons: {
-            "{{Ne rien mettre}}": {
-              className: "btn-success",
-              callback: function() {
-                expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
+            cancel: {
+              label: "{{Ne rien mettre}}",
+              className: "",
+              event: {
+                click: function(event) {
+                  expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
+                  event.target.closest('.jeeDialogPrompt')._jeeDialog.close()
+                }
               }
             },
-            success: {
+            confirm: {
               label: "{{Valider}}",
-              className: "btn-primary",
-              callback: function() {
-                jeeP.setUndoStack()
-                jeeFrontEnd.modifyWithoutSave = true
-                var condition = result.human
-                condition += ' ' + document.querySelector('.conditionAttr[data-l1key="operator"]').jeeValue()
-                if (result.cmd.subType == 'string') {
-                  if (document.querySelector('.conditionAttr[data-l1key="operator"]').jeeValue() == 'matches') {
-                    condition += ' "/' + document.querySelector('.conditionAttr[data-l1key="operande"]').jeeValue() + '/"'
+              className: "info",
+              event: {
+                click: function(event) {
+                  jeeP.setUndoStack()
+                  jeeFrontEnd.modifyWithoutSave = true
+                  var condition = result.human
+                  condition += ' ' + document.querySelector('.conditionAttr[data-l1key="operator"]').jeeValue()
+                  if (result.cmd.subType == 'string') {
+                    if (document.querySelector('.conditionAttr[data-l1key="operator"]').jeeValue() == 'matches') {
+                      condition += ' "/' + document.querySelector('.conditionAttr[data-l1key="operande"]').jeeValue() + '/"'
+                    } else {
+                      condition += " '" + document.querySelector('.conditionAttr[data-l1key="operande"]').jeeValue() + "'"
+                    }
                   } else {
-                    condition += " '" + document.querySelector('.conditionAttr[data-l1key="operande"]').jeeValue() + "'"
+                    condition += ' ' + document.querySelector('.conditionAttr[data-l1key="operande"]').jeeValue()
                   }
-                } else {
-                  condition += ' ' + document.querySelector('.conditionAttr[data-l1key="operande"]').jeeValue()
-                }
-                condition += ' ' + document.querySelector('.conditionAttr[data-l1key="next"]').jeeValue() + ' '
-                expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(condition)
+                  condition += ' ' + document.querySelector('.conditionAttr[data-l1key="next"]').jeeValue() + ' '
+                  expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(condition)
 
-                if (document.querySelector('.conditionAttr[data-l1key="next"]').jeeValue() != '') {
-                  el.triggerEvent('click')
+                  if (document.querySelector('.conditionAttr[data-l1key="next"]').jeeValue() != '') {
+                    el.triggerEvent('click')
+                  }
+                  event.target.closest('.jeeDialogPrompt')._jeeDialog.close()
                 }
               }
             },

@@ -751,17 +751,7 @@ var jeeDialog = (function()
       }
       _params = domUtils.extend(defaultParams, _params)
 
-      if (_params.backdrop) {
-        var backDrop = document.getElementById('jeeDialogBackdrop')
-        if (backDrop === null) {
-          backDrop = document.createElement('div')
-          backDrop.setAttribute('id',  'jeeDialogBackdrop')
-          backDrop.unseen()
-          document.body.appendChild(backDrop)
-        }
-      } else {
-        document.getElementById('jeeDialogBackdrop')?.remove()
-      }
+      setBackDrop(_params)
 
       var template = document.createElement('template')
       //Title part and close button:
@@ -799,6 +789,7 @@ var jeeDialog = (function()
           if (isset(_params.buttons[button[0]])) {
             button[1].label = _params.buttons[button[0]].label
             button[1].className = _params.buttons[button[0]].className
+            button[1].event = _params.buttons[button[0]].event
           }
           exports.addButton(button, dialogFooter)
         }
@@ -806,9 +797,23 @@ var jeeDialog = (function()
       return template
     }
 
+    function setBackDrop(_params) {
+      if (_params.backdrop) {
+        var backDrop = document.getElementById('jeeDialogBackdrop')
+        if (backDrop === null) {
+          backDrop = document.createElement('div')
+          backDrop.setAttribute('id',  'jeeDialogBackdrop')
+          backDrop.unseen()
+          document.body.appendChild(backDrop)
+        }
+      } else {
+        document.getElementById('jeeDialogBackdrop')?.remove()
+      }
+    }
+
     /*________________POPUPS --WIP!!!!
     */
-    exports.alert = function (_options, _callback) {
+    exports.alert = function(_options, _callback) {
       //jeeDialog.alert('My default alert!', function(result) { console.log('callback:', result) })
       if (typeof _options === 'string') {
         _options = {
@@ -858,7 +863,9 @@ var jeeDialog = (function()
       //Register element _jeeDialog object:
       dialogContainer._jeeDialog = {
         options: _options,
+        dialog: dialogContainer,
         close: function(dialog) {
+          if (dialog == undefined) dialog = this.dialog
           dialog._jeeDialog.options.beforeClose()
           document.getElementById('jeeDialogBackdrop')?.remove()
           dialog.remove()
@@ -884,12 +891,14 @@ var jeeDialog = (function()
       if (_options.autoOpen) {
         if (_options.backdrop) backDrop.seen()
         dialogContainer.style.display = ''
-        dialogContainer.querySelector('[data-type="confirm"]').focus()
+        setTimeout(function() {
+          dialogContainer.querySelector('button[data-type="confirm"]')?.focus()
+        })
       }
       return dialogContainer
     }
 
-    exports.confirm = function (_options, _callback) {
+    exports.confirm = function(_options, _callback) {
       //jeeDialog.confirm('My default confirm!', function(result) { console.log('result:', result) })
       if (typeof _options === 'string') {
         _options = {
@@ -952,7 +961,9 @@ var jeeDialog = (function()
       //Register element _jeeDialog object:
       dialogContainer._jeeDialog = {
         options: _options,
+        dialog: dialogContainer,
         close: function(dialog) {
+          if (dialog == undefined) dialog = this.dialog
           dialog._jeeDialog.options.beforeClose()
           document.getElementById('jeeDialogBackdrop')?.remove()
           dialog.remove()
@@ -978,16 +989,18 @@ var jeeDialog = (function()
       if (_options.autoOpen) {
         if (_options.backdrop) backDrop.seen()
         dialogContainer.style.display = ''
-        dialogContainer.querySelector('[data-type="confirm"]').focus()
+        setTimeout(function() {
+          dialogContainer.querySelector('button[data-type="confirm"]')?.focus()
+        })
       }
       return dialogContainer
     }
 
-    exports.prompt = function (_options, _callback) {
+    exports.prompt = function(_options, _callback) {
       //jeeDialog.confirm('My default confirm!', function(result) { console.log('result:', result) })
       if (typeof _options === 'string') {
         _options = {
-          message: _options
+          title: _options
         }
       }
       if (_options.callback && typeof _options.callback === 'function') _callback = _options.callback
@@ -1054,7 +1067,9 @@ var jeeDialog = (function()
       //Register element _jeeDialog object:
       dialogContainer._jeeDialog = {
         options: _options,
+        dialog: dialogContainer,
         close: function(dialog) {
+          if (dialog == undefined) dialog = this.dialog
           dialog._jeeDialog.options.beforeClose()
           document.getElementById('jeeDialogBackdrop')?.remove()
           dialog.remove()
@@ -1139,40 +1154,71 @@ var jeeDialog = (function()
         if (_options.backdrop) backDrop.seen()
         dialogContainer.style.display = ''
         _options.onShown(dialogContainer)
-        dialogContainer.querySelector('.promptAttr').focus()
+        setTimeout(function() {
+          var set = dialogContainer.querySelector('.promptAttr')
+          if (set != null) {
+            set.focus()
+          } else {
+            dialogContainer.querySelector('button[data-type="confirm"]')?.focus()
+          }
+        })
       }
       return dialogContainer
     }
 
+    exports.modal = function(_element, _options) {
+      console.log('>>>> jeeDialog modal', _element, _options)
+      if (!isset(_options)) _options = {}
+      var defaultOptions = this.setDialogDefaults({
+        width: false,
+        height: 'auto',
+        top: '20vh',
+        backdrop: true,
+        buttons: {},
+        _buttons: {}
+      })
+
+      if (_element._jeeDialog == undefined) {
+        _options = domUtils.extend(defaultOptions, _options)
+        //Register element _jeeDialog object:
+        _element._jeeDialog = {
+          options: _options,
+          dialog: _element,
+          show: function() {
+            setBackDrop(_options)
+            document.getElementById('jeeDialogBackdrop')?.seen()
+            this.dialog.seen()
+          },
+          hide: function() {
+            document.getElementById('jeeDialogBackdrop')?.unseen()
+            this.dialog.unseen()
+          },
+          destroy: function() {
+            document.getElementById('jeeDialogBackdrop')?.remove()
+            this.dialog.remove()
+          }
+        }
+        _element.querySelector(':scope > .btClose')?.addEventListener('click', function(event) {
+          event.target.closest('div.jeeDialog').remove()
+          document.getElementById('jeeDialogBackdrop')?.remove()
+        })
+        //Set Dialog size:
+        setPosition(_element, _options)
+      }
+      return _element
+    }
+
+
+
     /*________________DIALOG --WIP!!!!
     */
-    exports.create = function(_options) {
-      console.log('jeeDialog _create', _options)
+    exports.dialog = function(_options) {
+      console.log('>>> jeeDialog.dialog', _options)
 
-      var defaultOptions = {
-        autoOpen: false,
-        classes: '',
+      //moveable
 
-      }
+      //resizeable
 
-      //Merge defaults and submitted options:
-      _options = domUtils.extend(defaultOptions, _options)
-
-      _options.id = _options.id || domUtils.uniqueId()
-
-      console.log('merged _options:', _options)
-
-      var _diagMain = document.createElement('div')
-      _diagMain.setAttribute('id', _options.id)
-
-      //classes
-      //title part
-      //content part
-      //buttons part
-
-      if (!autoOpen) _diagMain.style.display = 'none'
-      _options.container.appendChild(_diagMain)
-      return _diagMain
     }
 
     return exports

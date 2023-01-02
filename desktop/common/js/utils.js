@@ -117,6 +117,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 
   jeedomUtils.closeJeedomMenu()
   jeeDialog.clearToasts()
+  jeedomUtils.closeJeeDialogs()
   jeedom.cmd.resetUpdateFunction()
 
   $.contextMenu('destroy')
@@ -1516,6 +1517,12 @@ jeedomUtils.closeModal = function(_modals = '') {
       $('#' + _modal).dialog('close')
     } catch (error) { }
 
+  })
+}
+
+jeedomUtils.closeJeeDialogs = function() {
+  document.querySelectorAll('div.jeeDialog').forEach( _dialog => {
+    _dialog._jeeDialog.close(_dialog)
   })
 }
 
