@@ -355,36 +355,42 @@ jeedom.eqLogic.getSelectModal = function(_options, callback) {
   }
 
   document.getElementById('mod_insertEqLogicValue')?.remove()
-  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertEqLogicValue" title="{{Sélectionner un équipement}}" ></div>')
-
-  $("#mod_insertEqLogicValue").dialog({
-    closeText: '',
-    autoOpen: false,
-    modal: true,
+  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertEqLogicValue"></div>')
+  jeeDialog.dialog({
+    id: 'mod_insertEqLogicValue',
+    title: '{{Sélectionner un équipement}}',
     height: 250,
-    width: 800
-  })
-
-  domUtils.ajaxSetup({ async: false })
-  document.getElementById('mod_insertEqLogicValue').load('index.php?v=d&modal=eqLogic.human.insert')
-  domUtils.ajaxSetup({ async: true })
-
-  mod_insertEqLogic.setOptions(_options)
-  $("#mod_insertEqLogicValue").dialog('option', 'buttons', {
-    "{{Annuler}}": function() {
-      $(this).dialog("close")
-    },
-    "{{Valider}}": function() {
-      var retour = {}
-      retour.human = mod_insertEqLogic.getValue()
-      retour.id = mod_insertEqLogic.getId()
-      if (retour.human.trim() != '') {
-        callback(retour)
+    width: 800,
+    top: '20vh',
+    contentUrl: 'index.php?v=d&modal=eqLogic.human.insert',
+    callback: function() { mod_insertEqLogic.setOptions(_options) },
+    buttons: {
+      confirm: {
+        label: '{{Valider}}',
+        className: 'success',
+        callback: {
+          click: function(event) {
+            var args = {}
+            args.human = mod_insertEqLogic.getValue()
+            args.id = mod_insertEqLogic.getId()
+            if (args.human.trim() != '') {
+                callback(args)
+            }
+            document.getElementById('mod_insertEqLogicValue')._jeeDialog.destroy()
+          }
+        }
+      },
+      cancel: {
+        label: '{{Annuler}}',
+        className: 'warning',
+        callback: {
+          click: function(event) {
+            document.getElementById('mod_insertEqLogicValue')._jeeDialog.destroy()
+          }
+        }
       }
-      $(this).dialog('close')
     }
   })
-  $('#mod_insertEqLogicValue').dialog('open')
 }
 
 jeedom.eqLogic.refreshValue = function(_params) {

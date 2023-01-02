@@ -774,7 +774,11 @@ jeedomUtils.setJeedomGlobalUI = function() {
 
   document.getElementById('bt_jeedomAbout')?.addEventListener('click', function(event) {
     jeedomUtils.closeJeedomMenu()
-    $('#md_modal').dialog({ title: "{{A propos}}" }).load('index.php?v=d&modal=about').dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: '{{A propos}}',
+      contentUrl: 'index.php?v=d&modal=about'
+    })
   })
 
   document.getElementById('bt_getHelpPage')?.addEventListener('click', function(event) {
@@ -801,13 +805,19 @@ jeedomUtils.setJeedomGlobalUI = function() {
   })
 
   document.getElementById('bt_messageModal')?.addEventListener('click', function(event) {
-    jeedomUtils.closeModal('md_modal')
-    $('#md_modal').dialog({ title: "{{Centre de Messages}}" }).load('index.php?v=d&modal=message.display').dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Centre de Messages}}",
+      contentUrl: 'index.php?v=d&modal=message.display'
+    })
   })
 
   document.getElementById('bt_jsErrorModal')?.addEventListener('click', function(event) {
-    jeedomUtils.closeModal('md_modal')
-    $('#md_modal').dialog({ title: "{{Erreur Javascript}}" }).load('index.php?v=d&modal=js.error').dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Erreur Javascript}}",
+      contentUrl: 'index.php?v=d&modal=js.error'
+    })
   })
 
   document.body.addEventListener('keydown', function(event) {

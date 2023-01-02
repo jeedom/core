@@ -343,7 +343,11 @@ jeedom.notify = function(_title, _text, _class_name) {
       message: _text,
       onclick: function() {
         jeeDialog.clearToasts()
-        $('#md_modal').dialog({ title: "{{Centre de Messages}}" }).load('index.php?v=d&modal=message.display').dialog('open')
+        jeeDialog.dialog({
+          id: 'jee_modal',
+          title: "{{Centre de Messages}}",
+          contentUrl: 'index.php?v=d&modal=message.display'
+        })
       }
     }
     if (isset(_class_name) != '') {
@@ -600,34 +604,41 @@ jeedom.forceSyncHour = function(_params) {
 
 jeedom.getCronSelectModal = function(_options, _callback) {
   document.getElementById('mod_insertCronValue')?.remove()
-  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertCronValue" title="{{Assistant cron}}" ></div>')
-  $("#mod_insertCronValue").dialog({
-    closeText: '',
-    autoOpen: false,
-    modal: true,
+  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertCronValue"></div>')
+  jeeDialog.dialog({
+    id: 'mod_insertCronValue',
+    title: '{{Assistant cron}}',
     height: 310,
-    width: 800
-  })
-
-  domUtils.ajaxSetup({async: false})
-  document.getElementById('mod_insertCronValue').load('index.php?v=d&modal=cron.human.insert')
-  domUtils.ajaxSetup({async: true})
-
-  $("#mod_insertCronValue").dialog('option', 'buttons', {
-    "{{Annuler}}": function() {
-      $(this).dialog("close")
-    },
-    "{{Valider}}": function() {
-      var retour = {}
-      retour.cron = {}
-      retour.value = mod_insertCron.getValue()
-      if (retour.value.trim() != '' && 'function' == typeof (_callback)) {
-        _callback(retour)
+    width: 800,
+    top: '20vh',
+    contentUrl: 'index.php?v=d&modal=cron.human.insert',
+    buttons: {
+      confirm: {
+        label: '{{Valider}}',
+        className: 'success',
+        callback: {
+          click: function(event) {
+            var args = {}
+            args.cron = {}
+            args.value = mod_insertCron.getValue()
+            if (args.value.trim() != '' && 'function' === typeof (_callback)) {
+              _callback(args)
+            }
+            document.getElementById('mod_insertCronValue')._jeeDialog.destroy()
+          }
+        }
+      },
+      cancel: {
+        label: '{{Annuler}}',
+        className: 'warning',
+        callback: {
+          click: function(event) {
+            document.getElementById('mod_insertCronValue')._jeeDialog.destroy()
+          }
+        }
       }
-      $(this).dialog('close')
     }
   })
-  $('#mod_insertCronValue').dialog('open')
 }
 
 jeedom.getSelectActionModal = function(_options, _callback) {
@@ -636,34 +647,41 @@ jeedom.getSelectActionModal = function(_options, _callback) {
   }
 
   document.getElementById('mod_insertActionValue')?.remove()
-  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertActionValue" title="{{Sélectionner la commande}}" ></div>')
-  $("#mod_insertActionValue").dialog({
-    closeText: '',
-    autoOpen: false,
-    modal: true,
+  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertActionValue"></div>')
+  jeeDialog.dialog({
+    id: 'mod_insertActionValue',
+    title: '{{Sélectionner la commande}}',
     height: 310,
-    width: 800
-  })
-  domUtils.ajaxSetup({async: false})
-  document.getElementById('mod_insertActionValue').load('index.php?v=d&modal=action.insert')
-  domUtils.ajaxSetup({async: true})
-
-  mod_insertAction.setOptions(_options)
-  $("#mod_insertActionValue").dialog('option', 'buttons', {
-    "{{Annuler}}": function() {
-      $(this).dialog("close")
-    },
-    "{{Valider}}": function() {
-      var retour = {}
-      retour.action = {}
-      retour.human = mod_insertAction.getValue()
-      if (retour.human.trim() != '' && 'function' == typeof (_callback)) {
-        _callback(retour)
+    width: 800,
+    top: '20vh',
+    contentUrl: 'index.php?v=d&modal=action.insert',
+    callback: function() { mod_insertAction.setOptions(_options) },
+    buttons: {
+      confirm: {
+        label: '{{Valider}}',
+        className: 'success',
+        callback: {
+          click: function(event) {
+            var args = {}
+            args.human = mod_insertAction.getValue()
+            if (args.human.trim() != '' && 'function' === typeof (_callback)) {
+              _callback(args)
+            }
+            document.getElementById('mod_insertActionValue')._jeeDialog.destroy()
+          }
+        }
+      },
+      cancel: {
+        label: '{{Annuler}}',
+        className: 'warning',
+        callback: {
+          click: function(event) {
+            document.getElementById('mod_insertActionValue')._jeeDialog.destroy()
+          }
+        }
       }
-      $(this).dialog('close')
     }
   })
-  $('#mod_insertActionValue').dialog('open')
 }
 
 jeedom.getGraphData = function(_params) {

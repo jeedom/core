@@ -968,41 +968,48 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
   }
 
   document.getElementById('mod_insertCmdValue')?.remove()
-  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertCmdValue" title="{{Sélectionner la commande}}" ></div>')
-  $("#mod_insertCmdValue").dialog({
-    closeText: '',
-    autoOpen: false,
-    modal: true,
+  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertCmdValue" ></div>')
+  jeeDialog.dialog({
+    id: 'mod_insertCmdValue',
+    title: '{{Sélectionner la commande}}',
     height: 250,
-    width: 800
-  })
-
-  domUtils.ajaxSetup({ async: false })
-  document.getElementById('mod_insertCmdValue').load('index.php?v=d&modal=cmd.human.insert')
-  domUtils.ajaxSetup({ async: true })
-
-  mod_insertCmd.setOptions(_options)
-  $("#mod_insertCmdValue").dialog('option', 'buttons', {
-    "{{Annuler}}": function() {
-      if (isset(_options.returnCancel) && 'function' == typeof (_callback)) {
-        _callback({})
+    width: 800,
+    top: '20vh',
+    contentUrl: 'index.php?v=d&modal=cmd.human.insert',
+    callback: function() { mod_insertCmd.setOptions(_options) },
+    buttons: {
+      confirm: {
+        label: '{{Valider}}',
+        className: 'success',
+        callback: {
+          click: function(event) {
+            var args = {}
+            args.cmd = {}
+            args.human = mod_insertCmd.getValue()
+            args.cmd.id = mod_insertCmd.getCmdId()
+            args.cmd.type = mod_insertCmd.getType()
+            args.cmd.subType = mod_insertCmd.getSubType()
+            if (args.human.trim() != '' && 'function' === typeof (_callback)) {
+              _callback(args)
+            }
+            document.getElementById('mod_insertCmdValue')._jeeDialog.destroy()
+          }
+        }
+      },
+      cancel: {
+        label: '{{Annuler}}',
+        className: 'warning',
+        callback: {
+          click: function(event) {
+            if (isset(_options.returnCancel) && 'function' === typeof (_callback)) {
+              _callback({})
+            }
+            document.getElementById('mod_insertCmdValue')._jeeDialog.destroy()
+          }
+        }
       }
-      $(this).dialog("close")
-    },
-    "{{Valider}}": function() {
-      var retour = {}
-      retour.cmd = {}
-      retour.human = mod_insertCmd.getValue()
-      retour.cmd.id = mod_insertCmd.getCmdId()
-      retour.cmd.type = mod_insertCmd.getType()
-      retour.cmd.subType = mod_insertCmd.getSubType()
-      if (retour.human.trim() != '' && 'function' == typeof (_callback)) {
-        _callback(retour)
-      }
-      $(this).dialog('close')
     }
   })
-  $('#mod_insertCmdValue').dialog('open')
 }
 
 jeedom.cmd.displayActionOption = function(_expression, _options, _callback) {

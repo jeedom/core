@@ -438,40 +438,45 @@ jeedom.scenario.emptyLog = function(_params) {
 
 jeedom.scenario.getSelectModal = function(_options, callback) {
   if (!isset(_options)) {
-    _options = {};
+    _options = {}
   }
-  if (document.getElementById('mod_insertScenarioValue') != null) {
-    document.getElementById('mod_insertScenarioValue').remove()
-  }
-
-  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertScenarioValue" title="{{Sélectionner le scénario}}" ></div>')
-  $("#mod_insertScenarioValue").dialog({
-    closeText: '',
-    autoOpen: false,
-    modal: true,
+  document.getElementById('mod_insertScenarioValue')?.remove()
+  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertScenarioValue"></div>')
+  jeeDialog.dialog({
+    id: 'mod_insertScenarioValue',
+    title: '{{Sélectionner le scénario}}',
     height: 250,
-    width: 800
-  })
-  domUtils.ajaxSetup({async: false})
-  document.getElementById('mod_insertScenarioValue').load('index.php?v=d&modal=scenario.human.insert')
-  domUtils.ajaxSetup({async: true})
-
-  mod_insertScenario.setOptions(_options);
-  $("#mod_insertScenarioValue").dialog('option', 'buttons', {
-    "{{Annuler}}": function() {
-      $(this).dialog("close");
-    },
-    "{{Valider}}": function() {
-      var retour = {}
-      retour.human = mod_insertScenario.getValue()
-      retour.id = mod_insertScenario.getId()
-      if (retour.human.trim() != '') {
-        callback(retour)
+    width: 800,
+    top: '20vh',
+    contentUrl: 'index.php?v=d&modal=scenario.human.insert',
+    callback: function() { mod_insertScenario.setOptions(_options) },
+    buttons: {
+      confirm: {
+        label: '{{Valider}}',
+        className: 'success',
+        callback: {
+          click: function(event) {
+            var args = {}
+            args.human = mod_insertScenario.getValue()
+            args.id = mod_insertScenario.getId()
+            if (args.human.trim() != '') {
+              callback(args)
+            }
+            document.getElementById('mod_insertScenarioValue')._jeeDialog.destroy()
+          }
+        }
+      },
+      cancel: {
+        label: '{{Annuler}}',
+        className: 'warning',
+        callback: {
+          click: function(event) {
+            document.getElementById('mod_insertScenarioValue')._jeeDialog.destroy()
+          }
+        }
       }
-      $(this).dialog('close')
     }
   })
-  $('#mod_insertScenarioValue').dialog('open')
 }
 
 jeedom.scenario.testExpression = function(_params) {
