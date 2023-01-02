@@ -1522,7 +1522,8 @@ jeedomUtils.closeModal = function(_modals = '') {
 
 jeedomUtils.closeJeeDialogs = function() {
   document.querySelectorAll('div.jeeDialog').forEach( _dialog => {
-    _dialog._jeeDialog.close(_dialog)
+    //uninitialized modal doesn't have _jeeDialog
+    if (isset(_dialog._jeeDialog)) _dialog._jeeDialog.close(_dialog)
   })
 }
 

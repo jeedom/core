@@ -2386,7 +2386,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
             cancel: {
               label: "{{Ne rien mettre}}",
               className: "",
-              event: {
+              callback: {
                 click: function(event) {
                   expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
                   event.target.closest('.jeeDialogPrompt')._jeeDialog.close()
@@ -2396,7 +2396,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
             confirm: {
               label: "{{Valider}}",
               className: "info",
-              event: {
+              callback: {
                 click: function(event) {
                   jeeP.setUndoStack()
                   jeeFrontEnd.modifyWithoutSave = true

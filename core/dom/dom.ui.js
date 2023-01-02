@@ -726,14 +726,14 @@ var jeeDialog = (function()
       _dialog.style.top = _params.top
     }
 
-    exports.addButton = function(_params, _footer) {
+    exports.addButton = function(_button, _footer) {
       let button = document.createElement('button')
       button.setAttribute('type', 'button')
-      button.setAttribute('data-type', _params[0])
-      button.innerHTML = _params[1].label
-      button.classList = 'button ' + _params[1].className
-      if (isset(_params[1].event)) {
-        for (var [key, value] of Object.entries(_params[1].event)) {
+      button.setAttribute('data-type', _button[0])
+      button.innerHTML = _button[1].label
+      button.classList = 'button ' + _button[1].className
+      if (isset(_button[1].callback)) {
+        for (var [key, value] of Object.entries(_button[1].callback)) {
           button.addEventListener(key, value)
         }
       }
@@ -785,11 +785,13 @@ var jeeDialog = (function()
         var dialogFooter = document.createElement('div')
         dialogFooter.addClass('jeeDialogFooter')
         template.appendChild(dialogFooter)
-        for (var button of Object.entries(_params._buttons)) {
+
+        for (var button of Object.entries(_params.defaultButtons)) {
+          //Get user buttons with merged default buttons callback:
           if (isset(_params.buttons[button[0]])) {
             button[1].label = _params.buttons[button[0]].label
             button[1].className = _params.buttons[button[0]].className
-            button[1].event = _params.buttons[button[0]].event
+            button[1].callback = _params.buttons[button[0]].callback || _params.defaultButtons[button[0]].callback
           }
           exports.addButton(button, dialogFooter)
         }
@@ -830,11 +832,11 @@ var jeeDialog = (function()
         message: '',
         backdrop: true,
         buttons: {},
-        _buttons: {
+        defaultButtons: {
           confirm: {
             label: '<i class="fa fa-check"></i> {{OK}}',
             className: 'success',
-            event: {
+            callback: {
               click: function(event) {
                 var dialog = event.target.closest('div.jeeDialog')
                 dialog._jeeDialog.close(dialog)
@@ -915,11 +917,11 @@ var jeeDialog = (function()
         message: '',
         backdrop: true,
         buttons: {},
-        _buttons: {
+        defaultButtons: {
           cancel: {
             label: '<i class="fa fa-times"></i> {{Annuler}}',
             className: 'warning',
-            event: {
+            callback: {
               click: function(event) {
                 var dialog = event.target.closest('div.jeeDialog')
                 dialog._jeeDialog.close(dialog)
@@ -932,7 +934,7 @@ var jeeDialog = (function()
           confirm: {
             label: '<i class="fa fa-check"></i> {{OK}}',
             className: 'success',
-            event: {
+            callback: {
               click: function(event) {
                 var dialog = event.target.closest('div.jeeDialog')
                 dialog._jeeDialog.close(dialog)
@@ -944,7 +946,6 @@ var jeeDialog = (function()
           }
         }
       })
-
       _options = domUtils.extend(defaultOptions, _options)
       _options = domUtils.extend({
         setTitle: true,
@@ -1018,11 +1019,11 @@ var jeeDialog = (function()
         inputOptions: false,
         backdrop: true,
         buttons: {},
-        _buttons: {
+        defaultButtons: {
           cancel: {
             label: '<i class="fa fa-times"></i> {{Annuler}}',
             className: 'warning',
-            event: {
+            callback: {
               click: function(event) {
                 var dialog = event.target.closest('div.jeeDialog')
                 dialog._jeeDialog.close(dialog)
@@ -1035,7 +1036,7 @@ var jeeDialog = (function()
           confirm: {
             label: '<i class="fa fa-check"></i> {{OK}}',
             className: 'success',
-            event: {
+            callback: {
               click: function(event) {
                 var dialog = event.target.closest('div.jeeDialog')
                 dialog._jeeDialog.close(dialog)
@@ -1120,7 +1121,6 @@ var jeeDialog = (function()
             content.addClass('promptAttr')
             if (_options.inputOptions) {
               _options.inputOptions.forEach(_option => {
-                console.log('option:', _option)
                 var opt = document.createElement("option")
                 opt.setAttribute('value', _option.value)
                 opt.textContent = _option.text
@@ -1167,7 +1167,6 @@ var jeeDialog = (function()
     }
 
     exports.modal = function(_element, _options) {
-      console.log('>>>> jeeDialog modal', _element, _options)
       if (!isset(_options)) _options = {}
       var defaultOptions = this.setDialogDefaults({
         width: false,
@@ -1175,7 +1174,7 @@ var jeeDialog = (function()
         top: '20vh',
         backdrop: true,
         buttons: {},
-        _buttons: {}
+        defaultButtons: {}
       })
 
       if (_element._jeeDialog == undefined) {
