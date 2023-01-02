@@ -3433,18 +3433,18 @@
         "Info": "Info",
         "Action": "Azione",
         "Sélectionner la commande": "Seleziona comando",
-        "Annuler": "Cancella",
-        "Valider": "Convalidare"
+        "Valider": "Convalidare",
+        "Annuler": "Cancella"
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Seleziona lo scenario",
-        "Annuler": "Cancella",
-        "Valider": "Convalidare"
+        "Valider": "Convalidare",
+        "Annuler": "Cancella"
     },
     "core\/js\/eqLogic.class.js": {
         "Sélectionner un équipement": "Seleziona attrezzatura",
-        "Annuler": "Cancella",
-        "Valider": "Convalidare"
+        "Valider": "Convalidare",
+        "Annuler": "Cancella"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Configurazione del plugin",
@@ -3507,19 +3507,19 @@
         "Samedi": "Samedi",
         "Centre de Messages": "Centre de Messages",
         "Assistant cron": "Assistente Cron",
-        "Annuler": "Cancella",
         "Valider": "Convalidare",
+        "Annuler": "Cancella",
         "Sélectionner la commande": "Seleziona comando"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Seleziona una variabile",
-        "Annuler": "Cancella",
-        "Valider": "Convalidare"
+        "Valider": "Convalidare",
+        "Annuler": "Cancella"
     },
     "core\/js\/config.class.js": {
         "Sélectionner un type générique": "Sélectionner un type générique",
-        "Annuler": "Annuler",
-        "Valider": "Valider"
+        "Valider": "Valider",
+        "Annuler": "Annuler"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "Il valore è stato modificato con successo",

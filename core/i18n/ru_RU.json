@@ -3433,18 +3433,18 @@
         "Info": "Информация",
         "Action": "Действие",
         "Sélectionner la commande": "Выберите команду",
-        "Annuler": "Отменить",
-        "Valider": "Validate"
+        "Valider": "Validate",
+        "Annuler": "Отменить"
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Выберите сценарий",
-        "Annuler": "Отменить",
-        "Valider": "Validate"
+        "Valider": "Validate",
+        "Annuler": "Отменить"
     },
     "core\/js\/eqLogic.class.js": {
         "Sélectionner un équipement": "Selectionner un équipement",
-        "Annuler": "Отменить",
-        "Valider": "Validate"
+        "Valider": "Validate",
+        "Annuler": "Отменить"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Конфигурация плагина",
@@ -3507,19 +3507,19 @@
         "Samedi": "Samedi",
         "Centre de Messages": "Centre de Messages",
         "Assistant cron": "Помощник cron",
-        "Annuler": "Отменить",
         "Valider": "Validate",
+        "Annuler": "Отменить",
         "Sélectionner la commande": "Выберите команду"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Выберите переменную",
-        "Annuler": "Отменить",
-        "Valider": "Validate"
+        "Valider": "Validate",
+        "Annuler": "Отменить"
     },
     "core\/js\/config.class.js": {
         "Sélectionner un type générique": "Sélectionner un type générique",
-        "Annuler": "Annuler",
-        "Valider": "Valider"
+        "Valider": "Valider",
+        "Annuler": "Annuler"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "Значение было успешно изменено",

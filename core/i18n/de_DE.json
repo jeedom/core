@@ -3433,18 +3433,18 @@
         "Info": "Die Info",
         "Action": "Aktion",
         "Sélectionner la commande": "Befehl auswählen",
-        "Annuler": "Abbrechen",
-        "Valider": "Validate"
+        "Valider": "Validate",
+        "Annuler": "Abbrechen"
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Wählen Sie das Szenario aus",
-        "Annuler": "Abbrechen",
-        "Valider": "Validate"
+        "Valider": "Validate",
+        "Annuler": "Abbrechen"
     },
     "core\/js\/eqLogic.class.js": {
         "Sélectionner un équipement": "Ausrüstung auswählen",
-        "Annuler": "Abbrechen",
-        "Valider": "Validate"
+        "Valider": "Validate",
+        "Annuler": "Abbrechen"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Plugin Konfiguration",
@@ -3507,19 +3507,19 @@
         "Samedi": "Samstag",
         "Centre de Messages": "Nachrichtenzentrum",
         "Assistant cron": "Cron Assistent",
-        "Annuler": "Abbrechen",
         "Valider": "Validate",
+        "Annuler": "Abbrechen",
         "Sélectionner la commande": "Befehl auswählen"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Wählen Sie eine Variable aus",
-        "Annuler": "Abbrechen",
-        "Valider": "Validate"
+        "Valider": "Validate",
+        "Annuler": "Abbrechen"
     },
     "core\/js\/config.class.js": {
         "Sélectionner un type générique": "Wählen Sie einen generischen Typ aus",
-        "Annuler": "Abbrechen",
-        "Valider": "Bestätigen"
+        "Valider": "Bestätigen",
+        "Annuler": "Abbrechen"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "Der Wert wurde erfolgreich bearbeitet",

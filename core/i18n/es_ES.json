@@ -3433,18 +3433,18 @@
         "Info": "Información",
         "Action": "Acción",
         "Sélectionner la commande": "Seleccione el comando",
-        "Annuler": "Cancelar",
-        "Valider": "Validar"
+        "Valider": "Validar",
+        "Annuler": "Cancelar"
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Seleccione el escenario",
-        "Annuler": "Cancelar",
-        "Valider": "Validar"
+        "Valider": "Validar",
+        "Annuler": "Cancelar"
     },
     "core\/js\/eqLogic.class.js": {
         "Sélectionner un équipement": "Seleccione un dispositivo",
-        "Annuler": "Cancelar",
-        "Valider": "Validar"
+        "Valider": "Validar",
+        "Annuler": "Cancelar"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Configuración del complemento",
@@ -3507,19 +3507,19 @@
         "Samedi": "Sábado",
         "Centre de Messages": "Centro de mensajes",
         "Assistant cron": "Asistente cron",
-        "Annuler": "Cancelar",
         "Valider": "Validar",
+        "Annuler": "Cancelar",
         "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Seleccionar una variable",
-        "Annuler": "Cancelar",
-        "Valider": "Validar"
+        "Valider": "Validar",
+        "Annuler": "Cancelar"
     },
     "core\/js\/config.class.js": {
         "Sélectionner un type générique": "Seleccione un tipo genérico",
-        "Annuler": "Anular",
-        "Valider": "Validar"
+        "Valider": "Validar",
+        "Annuler": "Anular"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "El valor ha sido editado correctamente",

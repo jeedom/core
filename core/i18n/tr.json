@@ -3433,18 +3433,18 @@
         "Info": "Bilgi",
         "Action": "Eylem",
         "Sélectionner la commande": "Komutayı seçin",
-        "Annuler": "Iptal et",
-        "Valider": "Onaylayın"
+        "Valider": "Onaylayın",
+        "Annuler": "Iptal et"
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Senaryoyu seçin",
-        "Annuler": "Iptal et",
-        "Valider": "Onaylayın"
+        "Valider": "Onaylayın",
+        "Annuler": "Iptal et"
     },
     "core\/js\/eqLogic.class.js": {
         "Sélectionner un équipement": "Ekipman seçin",
-        "Annuler": "Iptal et",
-        "Valider": "Onaylayın"
+        "Valider": "Onaylayın",
+        "Annuler": "Iptal et"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Eklentinin ayarları",
@@ -3507,19 +3507,19 @@
         "Samedi": "Samedi",
         "Centre de Messages": "Centre de Messages",
         "Assistant cron": "Cron asistanı",
-        "Annuler": "Iptal et",
         "Valider": "Onaylayın",
+        "Annuler": "Iptal et",
         "Sélectionner la commande": "Komutayı seçin"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Değişken seçin",
-        "Annuler": "Iptal et",
-        "Valider": "Onaylayın"
+        "Valider": "Onaylayın",
+        "Annuler": "Iptal et"
     },
     "core\/js\/config.class.js": {
         "Sélectionner un type générique": "Sélectionner un type générique",
-        "Annuler": "Annuler",
-        "Valider": "Valider"
+        "Valider": "Valider",
+        "Annuler": "Annuler"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "Değer başarıyla düzenlendi",

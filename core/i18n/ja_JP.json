@@ -3433,18 +3433,18 @@
         "Info": "インフォ",
         "Action": "アクション",
         "Sélectionner la commande": "コマンドを選択",
-        "Annuler": "キャンセル",
-        "Valider": "検証"
+        "Valider": "検証",
+        "Annuler": "キャンセル"
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "シナリオを選択",
-        "Annuler": "キャンセル",
-        "Valider": "検証"
+        "Valider": "検証",
+        "Annuler": "キャンセル"
     },
     "core\/js\/eqLogic.class.js": {
         "Sélectionner un équipement": "機器を選択",
-        "Annuler": "キャンセル",
-        "Valider": "検証"
+        "Valider": "検証",
+        "Annuler": "キャンセル"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "プラグイン構成",
@@ -3507,19 +3507,19 @@
         "Samedi": "Samedi",
         "Centre de Messages": "Centre de Messages",
         "Assistant cron": "クローンアシスタント",
-        "Annuler": "キャンセル",
         "Valider": "検証",
+        "Annuler": "キャンセル",
         "Sélectionner la commande": "コマンドを選択"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "変数を選択してください",
-        "Annuler": "キャンセル",
-        "Valider": "検証"
+        "Valider": "検証",
+        "Annuler": "キャンセル"
     },
     "core\/js\/config.class.js": {
         "Sélectionner un type générique": "Sélectionner un type générique",
-        "Annuler": "Annuler",
-        "Valider": "Valider"
+        "Valider": "Valider",
+        "Annuler": "Annuler"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "値が正常に編集されています",

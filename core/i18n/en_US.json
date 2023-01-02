@@ -3433,18 +3433,18 @@
         "Info": "Information",
         "Action": "Stock",
         "Sélectionner la commande": "Select command",
-        "Annuler": "Cancel",
-        "Valider": "Ok"
+        "Valider": "Ok",
+        "Annuler": "Cancel"
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Select the scenario",
-        "Annuler": "Cancel",
-        "Valider": "Ok"
+        "Valider": "Ok",
+        "Annuler": "Cancel"
     },
     "core\/js\/eqLogic.class.js": {
         "Sélectionner un équipement": "Select equipment",
-        "Annuler": "Cancel",
-        "Valider": "Ok"
+        "Valider": "Ok",
+        "Annuler": "Cancel"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Plugin configuration",
@@ -3507,19 +3507,19 @@
         "Samedi": "Saturday",
         "Centre de Messages": "Message Center",
         "Assistant cron": "Cron assistant",
-        "Annuler": "Cancel",
         "Valider": "Ok",
+        "Annuler": "Cancel",
         "Sélectionner la commande": "Select command"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Select a variable",
-        "Annuler": "Cancel",
-        "Valider": "Ok"
+        "Valider": "Ok",
+        "Annuler": "Cancel"
     },
     "core\/js\/config.class.js": {
         "Sélectionner un type générique": "Select a generic type",
-        "Annuler": "Cancel",
-        "Valider": "Ok"
+        "Valider": "Ok",
+        "Annuler": "Cancel"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "The value was successfully edited",

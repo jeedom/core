@@ -3433,18 +3433,18 @@
         "Info": "Info",
         "Action": "Tindakan",
         "Sélectionner la commande": "Pilih perintah",
-        "Annuler": "Tidak jadi",
-        "Valider": "Mengesahkan"
+        "Valider": "Mengesahkan",
+        "Annuler": "Tidak jadi"
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Pilih skenario",
-        "Annuler": "Tidak jadi",
-        "Valider": "Mengesahkan"
+        "Valider": "Mengesahkan",
+        "Annuler": "Tidak jadi"
     },
     "core\/js\/eqLogic.class.js": {
         "Sélectionner un équipement": "Selectionner un équipement",
-        "Annuler": "Tidak jadi",
-        "Valider": "Mengesahkan"
+        "Valider": "Mengesahkan",
+        "Annuler": "Tidak jadi"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Konfigurasi Plugin",
@@ -3507,19 +3507,19 @@
         "Samedi": "Samedi",
         "Centre de Messages": "Centre de Messages",
         "Assistant cron": "Asisten cron",
-        "Annuler": "Tidak jadi",
         "Valider": "Mengesahkan",
+        "Annuler": "Tidak jadi",
         "Sélectionner la commande": "Pilih perintah"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Pilih variabel",
-        "Annuler": "Tidak jadi",
-        "Valider": "Mengesahkan"
+        "Valider": "Mengesahkan",
+        "Annuler": "Tidak jadi"
     },
     "core\/js\/config.class.js": {
         "Sélectionner un type générique": "Sélectionner un type générique",
-        "Annuler": "Annuler",
-        "Valider": "Valider"
+        "Valider": "Valider",
+        "Annuler": "Annuler"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "Nilai telah berhasil diedit",
