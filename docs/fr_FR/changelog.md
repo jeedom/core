@@ -2,6 +2,12 @@
 Changelog
 =========
 
+## 3.3.60
+
+IMPORTANT : ceci sera la derniere mise à jour de la v3 il vous faut donc ABSOLUMENT mettre à jour en v4
+
+- Correction d'un soucis de date invalide suite au passage en 2023
+
 ## 3.3.59
 
 - Correction d'une faille de sécurité merci @Maxime Rinaudo et @Antoine Cervoise de Synacktiv (www.synacktiv.com)
