@@ -1196,7 +1196,7 @@ var jeeDialog = (function()
           close: function() {
             document.getElementById('jeeDialogBackdrop')?.remove()
             this.dialog.remove()
-          }
+          },
           destroy: function() {
             document.getElementById('jeeDialogBackdrop')?.remove()
             this.dialog.remove()
