@@ -1540,6 +1540,7 @@ jeedomUtils.closeJeeDialogs = function() {
   })
 }
 
+//Deprecated jQuery UI ui-dialog
 jeedomUtils.cleanModals = function(_modals = '') {
   document.querySelectorAll('.ui-dialog .cleanableModal')?.forEach(function(element) {
     element.closest('.ui-dialog')?.remove()

@@ -1286,31 +1286,29 @@ div.div_viewZone legend.lg_viewZone {
     border-bottom-right-radius: var(--border-radius) !important;
   }
 
-  div.ui-dialog[aria-describedby="md_overviewSummary"] {
+  #md_overviewSummary {
     box-shadow: none !important;
+    background: rgba(var(--defaultBkg-color), 0.8) !important;
     border: 1px solid rgba(var(--contrast-color), 0.15) !important;
   }
-  div.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar {
-    line-height: 12px;
+  #md_overviewSummary div.jeeDialogTitle {
+    line-height: 16px;
+    height: 22px;
+    padding: 2px;
     background: rgba(var(--defaultBkg-color), 0.95) !important;
   }
-  div.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar .ui-dialog-title {
+  #md_overviewSummary div.jeeDialogTitle > span.title {
     font-size: 14px;
     font-weight: 300;
     color: var(--link-color) !important;
+    padding-left: 7px;
   }
-  div.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar .ui-dialog-title:before {
+  #md_overviewSummary div.jeeDialogTitle > span.title:before {
     content: '';
   }
-  .ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar-close {
-    margin-top: -27px;
-    margin-right: -5px;
-  }
-  .ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar-close:before {
+  #md_overviewSummary div.jeeDialogTitle button.btClose {
     color: var(--link-color) !important;
-  }
-  #md_overviewSummary {
-    background: rgba(var(--defaultBkg-color), 0.8) !important;
+    margin-top: -2px;
   }
 
   /* ______Overview preview on dashboard */

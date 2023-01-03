@@ -536,8 +536,7 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
 }
 
 domUtils.syncJeeCompletes = function() {
-  var jeeItems = document.querySelectorAll('ul.jeeComplete')
-  jeeItems.forEach(_jee => {
+  document.querySelectorAll('ul.jeeComplete').forEach(_jee => {
     var existing = []
     _jee._jeeComplete.references.forEach(_ref => {
       if (_ref.isConnected === true) {
@@ -1322,6 +1321,7 @@ var jeeDialog = (function()
             document.body.style.overflow = 'hidden'
             setBackDrop(_options)
             document.getElementById('jeeDialogBackdrop')?.seen()
+            this.dialog._jeeDialog.options.open()
             setPosition(this.dialog, _options)
             this.dialog.seen()
           },
@@ -1333,6 +1333,7 @@ var jeeDialog = (function()
           close: function() {
             document.body.style.overflow = 'inehrit'
             document.getElementById('jeeDialogBackdrop')?.unseen()
+            this.dialog._jeeDialog.options.beforeClose()
             this.dialog.querySelector('div.jeeDialogContent').empty()
             this.dialog.unseen()
           },
