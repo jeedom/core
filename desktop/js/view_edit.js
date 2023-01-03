@@ -34,7 +34,7 @@ if (!jeeFrontEnd.view_edit) {
           }]
           line = 0
           col = 0
-          document.querySelectorAll('table tbody tr').forEach(function(_tr) {
+          _viewZone.querySelectorAll('table tbody tr').forEach(function(_tr) {
             viewZoneInfo.viewData[0]['configuration'][line] = {}
             col = 0
             _tr.querySelectorAll('td input').forEach(function(_tdInput) {
@@ -50,6 +50,7 @@ if (!jeeFrontEnd.view_edit) {
         }
         view.zones.push(viewZoneInfo)
       })
+      
       jeedom.view.save({
         id: document.querySelector(".li_view.active").getAttribute('data-view_id'),
         view: view,
