@@ -261,12 +261,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     window.location.hash = event.target.getAttribute('data-target') || event.target.getAttribute('href')
   })
+
   window.addEventListener('hashchange', function(event) {
     jeeFrontEnd.NO_POPSTAT = true
     setTimeout(function() {
       jeeFrontEnd.NO_POPSTAT = false
     }, 200)
   })
+
   window.addEventListener('popstate', function(event) {
     if (event.state === null) {
       if (jeeFrontEnd.NO_POPSTAT) {
@@ -903,6 +905,13 @@ jeedomUtils.initPage = function() {
   $.initTableFilter()
   jeedomUtils.initHelp()
   jeedomUtils.initTextArea()
+
+  $('.nav-tabs a').on('click', function(event) {
+    if (event.delegateTarget.getAttribute('data-action') == 'returnToThumbnailDisplay') {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+  })
 
   setTimeout(function() {
     jeedomUtils.initTooltips()
