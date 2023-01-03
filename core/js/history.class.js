@@ -16,7 +16,7 @@
 
 jeedom.history = function() {};
 jeedom.history.chart = [];
-jeedom.history.chartDrawTime = 500
+jeedom.history.chartDrawTime = 150
 
 jeedom.history.get = function(_params) {
   var paramsRequired = ['cmd_id', 'dateStart', 'dateEnd'];
@@ -1393,7 +1393,7 @@ jeedom.history.chartDone = function(_chartId) {
         jeedom.history.setAxisScales(_chartId)
         jeedom.history.chart[_chartId].chart.update({
           chart: {
-            animation: true,
+            animation: jeedom.history.chartDrawTime,
           },
           tooltip: {
             enabled: true,
