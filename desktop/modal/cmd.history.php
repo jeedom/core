@@ -68,21 +68,7 @@ if (!jeeFrontEnd.md_history) {
       this.modalContent.style.overflow = 'hidden'
       if (this.modal.data == undefined) this.modal.data = {}
       this.modal._jeeDialog.options.onResize = function(event) {
-        Object.assign(self.modal.data, {
-          width: self.modal.style.width,
-          height: self.modal.style.height,
-          top: self.modal.style.top,
-          left: self.modal.style.left
-        })
         self.resizeHighChartModal()
-      }
-      this.modal._jeeDialog.options.onMove = function(event) {
-        Object.assign(self.modal.data, {
-          width: self.modal.style.width,
-          height: self.modal.style.height,
-          top: self.modal.style.top,
-          left: self.modal.style.left
-        })
       }
 
       _cmdIds = [... new Set(_cmdIds.split('-'))]
@@ -90,16 +76,7 @@ if (!jeeFrontEnd.md_history) {
       this.done = _cmdIds.length
 
       //check previous size/pos:
-      var datas = this.modal.data
-      if (datas && datas.width && datas.height && datas.top && datas.left) {
-        Object.assign(this.modal.style, {
-          width: datas.width,
-          height: datas.height,
-          top: datas.top,
-          left: datas.left
-        })
-        this.resizeHighChartModal()
-      } else if (window.offsetWidth > 860) {
+      if (window.offsetWidth > 860) {
         var width = 800
         var height = 560
         Object.assign(this.modal.style, {
