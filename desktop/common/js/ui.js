@@ -263,7 +263,14 @@ if (!jeedomUI) {
         } else {
           var cmdIds = event.target.closest('.history[data-cmd_id]').dataset.cmd_id
         }
-        $('#md_modal2').dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + cmdIds).dialog('open')
+        jeeDialog.dialog({
+          id: 'jee_modal3',
+          width: '800px',
+          height: '500px',
+          top: '15vh',
+          title: '{{Historique}}',
+          contentUrl: 'index.php?v=d&modal=cmd.history&id=' + cmdIds
+        })
       }, {capture: false})
     },
   }

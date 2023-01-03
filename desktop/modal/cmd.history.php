@@ -54,44 +54,63 @@ if (!jeeFrontEnd.md_history) {
     __el__: 'div_modalGraph',
     done: null,
     loadIds: null,
-    resizeDone: null,
     init: function(_cmdIds) {
-      this.$divGraph = $('#' + this.__el__)
-      this.$divGraph.css('position', 'relative').css('width', '100%')
+      self = this
+      document.getElementById('div_modalGraph').style.position = 'relative'
+      document.getElementById('div_modalGraph').style.width = '100%'
 
       this.$pageContainer = $('#md_history')
-      this.resizeDone = null
       delete jeedom.history.chart[this.__el__]
-      document.emptyById(this.__el__)
+      document.getElementById(this.__el__).empty()
 
-      this.md_modal = $('#md_history').parents('.ui-dialog-content.ui-widget-content')
-      this.modal = this.md_modal.parents('.ui-dialog.ui-resizable')
+      this.modal = document.getElementById('div_modalGraph').closest('div.jeeDialogMain')
+      this.modalContent = this.modal.querySelector('div.jeeDialogContent')
+      this.modalContent.style.overflow = 'hidden'
+      if (this.modal.data == undefined) this.modal.data = {}
+      this.modal._jeeDialog.options.onResize = function(event) {
+        Object.assign(self.modal.data, {
+          width: self.modal.style.width,
+          height: self.modal.style.height,
+          top: self.modal.style.top,
+          left: self.modal.style.left
+        })
+        self.resizeHighChartModal()
+      }
+      this.modal._jeeDialog.options.onMove = function(event) {
+        Object.assign(self.modal.data, {
+          width: self.modal.style.width,
+          height: self.modal.style.height,
+          top: self.modal.style.top,
+          left: self.modal.style.left
+        })
+      }
 
-      _cmdIds = $.unique(_cmdIds.split('-'))
+      _cmdIds = [... new Set(_cmdIds.split('-'))]
       this.loadIds = _cmdIds.filter(Boolean)
       this.done = _cmdIds.length
 
       //check previous size/pos:
-      var datas = this.modal.data()
+      var datas = this.modal.data
       if (datas && datas.width && datas.height && datas.top && datas.left) {
-        this.modal.width(datas.width).height(datas.height).css({'top': datas.top, 'left': datas.left})
-        this.md_modal.width(datas.width-26).height(datas.height-40)
+        Object.assign(this.modal.style, {
+          width: datas.width,
+          height: datas.height,
+          top: datas.top,
+          left: datas.left
+        })
         this.resizeHighChartModal()
-      } else if ($(window).width() > 860) {
+      } else if (window.offsetWidth > 860) {
         var width = 800
         var height = 560
-        this.modal
-          .width(width)
-          .height(height)
-          .position({
-            my: "center",
-            at: "center",
-            of: window
-          })
-        this.md_modal.width(width-26).height(height-40)
+        Object.assign(this.modal.style, {
+          width: width + 'px',
+          height: height + 'px',
+          top: (window.offsetHeight / 2) + (height / 2) + 'px',
+          left: (window.offsetWidth / 2) + (width / 2) + 'px'
+        })
       }
 
-      self = this
+
       this.loadIds.forEach(function(cmd_id) {
         jeedom.history.drawChart({
           cmd_id: cmd_id,
@@ -111,34 +130,20 @@ if (!jeeFrontEnd.md_history) {
         })
       })
     },
-    resizeDn: function() {
-      this.modal.data({
-        'width': this.modal.width(),
-        'height': this.modal.height(),
-        'top': this.modal.css('top'),
-        'left': this.modal.css('left')
-      })
-      this.resizeHighChartModal()
-    },
     resizeHighChartModal: function() {
       if (!jeedom.history.chart[this.__el__]) return
-      jeedom.history.chart[this.__el__].chart.setSize(this.md_modal.width(), this.md_modal.height() - this.md_modal.find('#md_history .row').height()-10)
+      jeedom.history.chart[this.__el__].chart.setSize(
+        this.modalContent.offsetWidth - 0,
+        this.modalContent.offsetHeight - 40
+      )
     },
     setModal: function() {
-      //store size/pos:
-      this.modal.find('.ui-draggable-handle').on('mouseup', function(event) {
-        jeeFrontEnd.md_history.modal.data({
-          'width': jeeFrontEnd.md_history.modal.width(),
-          'height': jeeFrontEnd.md_history.modal.height(),
-          'top': jeeFrontEnd.md_history.modal.css('top'),
-          'left': jeeFrontEnd.md_history.modal.css('left')
-        })
-      })
-
       //only one history loaded:
       if (this.loadIds.length == 1) {
         if (isset(jeedom.history.chart[this.__el__]) && isset(jeedom.history.chart[this.__el__].chart)) {
-          this.modal.find('.ui-dialog-title').html(this.modal.find('.ui-dialog-title').html() + ' : ' + jeedom.history.chart[this.__el__].chart.series[0].name)
+          let titleEl = this.modal.querySelector('div.jeeDialogTitle > span.title')
+          let curTitle = titleEl.innerHTML
+          titleEl.innerHTML = curTitle  + ' : ' + jeedom.history.chart[this.__el__].chart.series[0].name
         }
       }
       this.resizeHighChartModal()
@@ -152,12 +157,6 @@ if (!jeeFrontEnd.md_history) {
   jeeM.init(jeephp2js.md_history_cmdId)
 
   jeedomUtils.datePickerInit()
-
-  //handle resizing:
-  jeeM.md_modal.on('dialogresize', function() {
-    clearTimeout(jeeM.resizeDone)
-    jeeM.resizeDone = setTimeout(function() { jeeM.resizeDn() }, 100)
-  })
 
   //Modal buttons:
   jeeM.$pageContainer.on({
