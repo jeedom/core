@@ -520,7 +520,7 @@ $('#div_pageContainer').on({
   }
 }, '.bt_removeviewZone')
 
-$('#div_viewZones').on({
+$('#div_pageContainer').on({
   'click': function(event) {
     $('#md_addEditviewZone').modal('show')
     $('#in_addEditviewZoneName').val($(this).closest('.viewZone').find('.viewZoneAttr[data-l1key=name]').html())
