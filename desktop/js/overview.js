@@ -18,7 +18,6 @@
 
 if (!jeeFrontEnd.overview) {
   jeeFrontEnd.overview = {
-    $summaryContainer: null,
     summaryObjEqs: [],
     _SummaryObserver_: null,
     observerConfig: {
@@ -31,12 +30,16 @@ if (!jeeFrontEnd.overview) {
       window.jeeP = this
     },
     postInit: function() {
-      this.$summaryContainer = $('#summaryEqlogics')
-      this.modal = this.$summaryContainer.parents('.ui-dialog.ui-resizable')
-      this.modalContent = this.modal.find('.ui-dialog-content.ui-widget-content')
+      //this.$summaryContainer = $('#summaryEqlogics')
+      this.modal = document.getElementById('md_overviewSummary')
+      this.modalContent = this.modal.querySelector('div.jeeDialogContent')
       this.checkResumeEmpty()
       this.createSummaryObserver()
       domUtils.hideLoading()
+      self = this
+      this.modal._jeeDialog.options.onResize = function(event) {
+        $(self.modalContent).packery()
+      }
     },
     createSummaryObserver: function() {
       this._SummaryObserver_ = new MutationObserver(function(mutations) {
@@ -96,12 +99,11 @@ if (!jeeFrontEnd.overview) {
         },
         success: function(data) {
           try {
-            self.$summaryContainer.empty().packery('destroy')
+            $(self.modalContent).empty().packery('destroy')
           } catch (e) {}
 
-          _title = $.parseHTML('<span>' + _title + '</span>')
-          jeeP.$modal.parent('.ui-dialog').find('span.ui-dialog-title').empty().append(_title)
-          jeeP.$modal.dialog('open')
+          jeeP.modal.querySelector('div.jeeDialogTitle > span.title').innerHTML = _title
+          jeeP.modal._jeeDialog.show()
 
           var nbEqs = data.length
           for (var i = 0; i < nbEqs; i++) {
@@ -122,7 +124,7 @@ if (!jeeFrontEnd.overview) {
               },
               success: function(html) {
                 if (html.html != '') {
-                  self.$summaryContainer.append(html.html)
+                  self.modalContent.html(html.html, true)
                 }
                 nbEqs--
 
@@ -156,24 +158,24 @@ if (!jeeFrontEnd.overview) {
 
                   fullWidth += 26
                   fullHeight += 51
-                  jeeP.$modal.dialog({
-                    width: fullWidth,
-                    height: fullHeight
-                  })
+                  jeeP.modal.style.width = fullWidth + 'px'
+                  jeeP.modal.style.height = fullHeight + 'px'
+                  let bRect = document.body.getBoundingClientRect()
+                  let mRect = jeeP.modal.getBoundingClientRect()
+                  jeeP.modal.style.left = (bRect.width / 2) - (mRect.width / 2) + "px"
 
-                  self.$summaryContainer.packery({
+                  $(self.modalContent).packery({
                     gutter: parseInt(jeedom.theme['widget::margin']) * 2,
                     isLayoutInstant: true
                   })
 
                   //check is inside screen:
-                  var modal = self.$modal[0].parentNode
-                  var modalLeft = modal.offsetLeft
+                  var modalLeft = self.modal.offsetLeft
                   if (modalLeft + fullWidth + 26 > brwSize.width || modalLeft < 5) {
                     modal.style.left = brwSize.width - fullWidth - 50 + 'px'
                   }
 
-                  jeedomUtils.initTooltips($('#md_overviewSummary'))
+                  jeedomUtils.initTooltips(document.getElementById('md_overviewSummary'))
                 }
               }
             })
@@ -183,6 +185,25 @@ if (!jeeFrontEnd.overview) {
     },
   }
 }
+
+
+//Set summary dialog:
+
+jeeDialog.dialog({
+  id: 'md_overviewSummary',
+  show: false,
+  backdrop: false,
+  width: 500,
+  height: 200,
+  retainPosition: true,
+  open: function() {
+    //catch infos updates by main mutationobserver (jeedomUtils.loadPage disconnect/reconnect it):
+    if (jeedomUtils.OBSERVER) {
+      var summaryModal = document.getElementById('summaryEqlogics')
+      jeedomUtils.OBSERVER.observe(summaryModal, jeedomUtils.observerConfig)
+    }
+  }
+})
 
 jeeFrontEnd.overview.init()
 
@@ -198,32 +219,6 @@ document.querySelectorAll('.objectPreview').forEach(function(element) {
   }
 })
 
-//Dialog summary opening:
-jeeP.$modal = $("#md_overviewSummary")
-jeeP.$modal.dialog({
-  closeText: '',
-  autoOpen: false,
-  modal: true,
-  width: 500,
-  height: 200,
-  position: {
-    my: 'center top',
-    at: 'center center-100',
-    of: $('#div_pageContainer')
-  },
-  open: function() {
-    document.querySelectorAll('.ui-widget-overlay.ui-front').forEach(dialog => { dialog.style.display = 'none'})
-    //catch infos updates by main mutationobserver (jeedomUtils.loadPage disconnect/reconnect it):
-    if (jeedomUtils.OBSERVER) {
-      var summaryModal = document.getElementById('summaryEqlogics')
-      jeedomUtils.OBSERVER.observe(summaryModal, jeedomUtils.observerConfig)
-    }
-  },
-  beforeClose: function(event, ui) {
-    document.querySelectorAll('.ui-widget-overlay.ui-front').forEach(dialog => { dialog.style.display = null})
-  }
-})
-
 //infos/actions tile signals:
 jeedomUI.isEditing = false
 jeedomUI.setEqSignals()
@@ -231,15 +226,13 @@ jeedomUI.setEqSignals()
 document.querySelectorAll('.resume')?.seen()
 jeeFrontEnd.overview.postInit()
 
-//summary modal events:
-jeeP.$summaryContainer.packery()
-jeeP.modal.resize(function() {
-  jeeP.$summaryContainer.packery()
-})
+//Init Packery:
+$(jeeP.modalContent).packery()
 
-jeeP.modalContent[0].addEventListener('click', function(event) {
+//summary modal events:
+jeeP.modalContent.addEventListener('click', function(event) {
   if (event.target.closest('div.eqLogic-widget') == null) { //modal background click
-    jeeP.$modal.dialog('close')
+    jeeP.modal._jeeDialog.close()
     return
   }
 
@@ -255,9 +248,16 @@ jeeP.modalContent[0].addEventListener('click', function(event) {
     } else {
       var cmdIds = event.target.closest('.history[data-cmd_id]').getAttribute('data-cmd_id')
     }
-    $('#md_modal2').dialog({
-      title: "{{Historique}}"
-    }).load('index.php?v=d&modal=cmd.history&id=' + cmdIds).dialog('open')
+    jeeDialog.dialog({
+      id: 'md_cmdHistory',
+      width: '800px',
+      height: '500px',
+      top: '15vh',
+      retainPosition: true,
+      zIndex: 1021,
+      title: '{{Historique}}',
+      contentUrl: 'index.php?v=d&modal=cmd.history&id=' + cmdIds
+    })
   }
 }, {capture: false})
 
@@ -308,7 +308,6 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     jeedomUtils.loadPage(url)
     return
   }
-
 })
 
 document.getElementById('div_pageContainer').addEventListener('mouseup', function(event) {

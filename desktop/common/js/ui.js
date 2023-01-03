@@ -264,10 +264,12 @@ if (!jeedomUI) {
           var cmdIds = event.target.closest('.history[data-cmd_id]').dataset.cmd_id
         }
         jeeDialog.dialog({
-          id: 'jee_modal3',
+          id: 'md_cmdHistory',
           width: '800px',
           height: '500px',
           top: '15vh',
+          retainPosition: true,
+          zIndex: 1021,
           title: '{{Historique}}',
           contentUrl: 'index.php?v=d&modal=cmd.history&id=' + cmdIds
         })
