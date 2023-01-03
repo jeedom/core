@@ -1252,6 +1252,9 @@ var jeeDialog = (function()
         document.body.appendChild(dialogContainer)
       }
 
+      //DEBUG:
+      _options.title = '[jeeDialog] ' + _options.title
+
       //First initialize dialog:
       if (dialogContainer._jeeDialog == undefined) {
         var defaultOptions = this.setDialogDefaults({
@@ -1289,25 +1292,22 @@ var jeeDialog = (function()
           onResize: false
         })
 
+        if (_options.id == 'jee_modal2') {
+          if (!isset(_options.zIndex)) _options.zIndex = 1021
+          if (!isset(_options.width)) _options.width = '75vw'
+          if (!isset(_options.top)) _options.top = "7vh"
+        } else if (_options.id == 'jee_modal3') {
+          if (!isset(_options.zIndex)) _options.zIndex = 1022
+          if (!isset(_options.width)) _options.width = '60vw'
+          if (!isset(_options.top)) _options.top = "5vh"
+        }
+
         _options = domUtils.extend(defaultOptions, _options)
         _options.isMainDialog = true
-
-        if (_options.id == 'jee_modal2') {
-          _options.zIndex = 1021
-          _options.width = '75vw'
-          _options.top = "7vh"
-        } else if (_options.id == 'jee_modal3') {
-          _options.zIndex = 1022
-          _options.width = '60vw'
-          _options.top = "5vh"
-        }
 
         if (Object.keys(_options.buttons).length > 0) {
           _options.setFooter = true
         }
-
-        //DEBUG:
-        _options.title = '[jeeDialog] ' + _options.title
 
         //Build dialog:
         var dialog = setDialog(_options)
@@ -1447,6 +1447,7 @@ var jeeDialog = (function()
         }
       } else {
         _options = domUtils.extend(dialogContainer._jeeDialog.options, _options)
+        dialogContainer.querySelector('div.jeeDialogTitle > span.title').innerHTML = _options.title
       }
 
       if (_options.contentUrl != '') {
@@ -1457,7 +1458,6 @@ var jeeDialog = (function()
       if (_options.show) {
         dialogContainer._jeeDialog.show()
       }
-
 
       return dialogContainer
     }

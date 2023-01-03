@@ -21,7 +21,7 @@ if (!isConnect()) {
 ?>
 
 <div id="div_alertModalSearch" data-modalType="md_search"></div>
-<a id="bt_getHelpModal" class="cursor" style="position: absolute;right: 20px;top: 35px;" title="{{Aide}}"><i class="fas fa-question-circle" ></i></a>
+<a id="bt_getHelpModal" class="cursor" style="position: absolute;right: 20px;top: 15px;" title="{{Aide}}"><i class="fas fa-question-circle" ></i></a>
 <!-- Search engine UI -->
 <form class="form-horizontal shadowed">
   <div class="floatingbar">
@@ -32,7 +32,7 @@ if (!isConnect()) {
       </div>
     </div>
   </div>
-  <br/><br/>
+  <br/>
   <div class="form-group">
     <label class="col-lg-2 control-label">{{Recherche par}}</label>
     <div class="col-lg-4">
@@ -215,6 +215,7 @@ if (!isConnect()) {
 if (!jeeFrontEnd.md_search) {
   jeeFrontEnd.md_search = {
     init: function() {
+      var self = this
       this.tableScSearch = $('#table_ScenarioSearch')
       this.tablePlanSearch = $('#table_DesignSearch')
       this.tableViewSearch = $('#table_ViewSearch')
@@ -239,6 +240,8 @@ if (!jeeFrontEnd.md_search) {
         table.trigger('resizableReset')
         table.trigger('sorton', [[[0,0]]])
       })
+      this.modal = document.getElementById('table_ScenarioSearch').closest('div.jeeDialogMain')
+      this.modal._jeeDialog.options.onResize = function(event) { self.updateTableSorters() }
       jeedomUtils.initTooltips()
     },
     emptyResultTables: function() {
@@ -254,6 +257,11 @@ if (!jeeFrontEnd.md_search) {
       if (thisSearch != '') {
         this['searchFor_' + searchType](thisSearch)
       }
+    },
+    updateTableSorters: function() {
+      document.querySelectorAll('table.tablesorter').forEach(_table => {
+        _table.triggerEvent('update')
+      })
     },
     /* ------            Searching            -------*/
     searchFor_variable: function(_searchFor) {
@@ -760,5 +768,10 @@ if (!jeeFrontEnd.md_search) {
       }
     })
   })
+
+  setTimeout(function() {
+    jeeM.updateTableSorters()
+  }, 200)
+
 })()
 </script>

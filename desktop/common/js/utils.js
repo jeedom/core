@@ -775,7 +775,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
   document.getElementById('bt_jeedomAbout')?.addEventListener('click', function(event) {
     jeedomUtils.closeJeedomMenu()
     jeeDialog.dialog({
-      id: 'jee_modal',
+      id: 'jee_modal3',
       title: '{{A propos}}',
       contentUrl: 'index.php?v=d&modal=about'
     })

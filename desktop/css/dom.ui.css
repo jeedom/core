@@ -158,6 +158,10 @@ div.jeeDialogContent {
   margin: 5px;
   font-size: 13px;
 }
+div.jeeDialogContent legend,
+div.jeeDialogContent .form-horizontal {
+  width: calc(100% - 15px);
+}
 div.jeeDialogPrompt div.jeeDialogContent input,
 div.jeeDialogPrompt div.jeeDialogContent textarea{
   width: 100%;
@@ -206,7 +210,7 @@ div.jeeDialog.jeeDialogMain {
   max-height: calc(100vh - 60px);
   max-width: calc(100vw - 10px);
 }
-div.jeeDialog.jeeDialogMain > div.jeeDialogTitle:before {
+div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > span.title:before {
   content: '\f105\00a0\00a0';
   font-family: "Font Awesome 5 Free";
   font-weight: 700;
@@ -223,7 +227,8 @@ div.jeeDialog.jeeDialogMain > div.jeeDialogTitle {
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > span.title {
   display: inline-block;
-  max-width: calc(100% - 50px);
+  max-width: calc(100% - 150px);
+  cursor: move !important;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -242,7 +247,7 @@ div.jeeDialog.jeeDialogMain > div.jeeDialogContent {
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogContent .floatingbar {
   right: 40px;
-  top: 40px;
+  top: 10px;
 }
 
 div.jeeDialog.jeeDialogMain > div.jeeDialogFooter {
