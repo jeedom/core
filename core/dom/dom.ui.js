@@ -1285,6 +1285,7 @@ var jeeDialog = (function()
           setContent: true,
           setFooter: false,
           callback: false,
+          onMove: false,
           onResize: false
         })
 
@@ -1346,7 +1347,7 @@ var jeeDialog = (function()
         var nextLeft, nextTop, initialLeft, initialTop
         var bodyRect = null
         dialogContainer.querySelector('div.jeeDialogTitle').addEventListener('mousedown', dragStart, false)
-
+        var onMove, moveDone
         function dragStart(event) {
           event.preventDefault()
           bodyRect = document.body.getBoundingClientRect()
@@ -1355,6 +1356,10 @@ var jeeDialog = (function()
           initialTop = event.clientY - bRect.top
           document.body.addEventListener('mouseup', dragEnd, false)
           document.body.addEventListener('mousemove', dragging, false)
+          onMove = dialogContainer._jeeDialog.options.onMove
+          if (onMove) {
+            moveDone = null
+          }
         }
         function dragging(event) {
           event.preventDefault()
@@ -1375,6 +1380,10 @@ var jeeDialog = (function()
           }
           dialogContainer.style.left = nextLeft + 'px'
           dialogContainer.style.top = nextTop + 'px'
+          if (onMove) {
+            clearTimeout(moveDone)
+            moveDone = setTimeout(function() { onMove(event) }, 100)
+          }
         }
         function dragEnd(event) {
           document.body.removeEventListener('mouseup', dragEnd, false)
@@ -1405,7 +1414,7 @@ var jeeDialog = (function()
           document.body.addEventListener('mousemove', resizing, false)
           onResize = dialogContainer._jeeDialog.options.onResize
           if (onResize) {
-            var resizeDone = null
+            resizeDone = null
           }
         }
         function resizing(event) {
