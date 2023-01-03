@@ -133,4 +133,10 @@ if ($selectPlugin != '') {
       })
     }
   }, '.removeMessage')
+
+  var modal = document.getElementById('table_message').closest('div.jeeDialogMain')
+  modal._jeeDialog.options.onResize = function(event) {
+    $('#table_message').trigger("update")
+  }
+
 </script>
