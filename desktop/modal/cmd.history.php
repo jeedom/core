@@ -29,20 +29,16 @@ if (trim($id) == '') {
 sendVarToJs('jeephp2js.md_history_cmdId', $id);
 ?>
 
-
 <div id="md_history" class="md_history" data-modalType="md_history">
-  <div class="row">
-    <div id="div_alertHistory" style="margin: 0 14px; display: none;"></div>
-    <div class="col-lg-12">
-      <div class="input-group input-group-sm">
-        <input id="in_startDate" class="form-control input-sm in_datepicker roundedLeft" style="width: 90px;" value="<?php echo $date['start'] ?>"/>
-        <input id="in_endDate" class="form-control input-sm in_datepicker" style="width: 90px;" value="<?php echo $date['end'] ?>"/>
-        <a class="btn btn-success btn-sm roundedRight" id='bt_validChangeDate' title="{{Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.}}">
-          <i class="fas fa-check"></i>
-        </a>
-        <a class="btn btn-success btn-sm pull-right" id='bt_openInHistory' title="{{Ouvrir dans Analyse / Historique.}}"><i class="fas fa-chart-line"></i></a>
-
-      </div>
+  <button id="bt_toggleOptions" class="btn" style="position: absolute; right: 8px; top: 0;z-index: 2;"><i class="fas fa-arrow-down"></i></button>
+  <div class="options col-lg-12" style="display:none;">
+    <div class="input-group input-group-sm">
+      <input id="in_startDate" class="form-control input-sm in_datepicker roundedLeft" style="width: 90px;" value="<?php echo $date['start'] ?>"/>
+      <input id="in_endDate" class="form-control input-sm in_datepicker" style="width: 90px;" value="<?php echo $date['end'] ?>"/>
+      <a class="btn btn-success btn-sm roundedRight" id='bt_validChangeDate' title="{{Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.}}">
+        <i class="fas fa-check"></i>
+      </a>
+      <a class="btn btn-success btn-sm pull-right" id='bt_openInHistory' title="{{Ouvrir dans Analyse / Historique.}}"><i class="fas fa-chart-line"></i></a>
     </div>
   </div>
   <div id="div_modalGraph" class="chartContainer"></div>
@@ -87,7 +83,6 @@ if (!jeeFrontEnd.md_history) {
         })
       }
 
-
       this.loadIds.forEach(function(cmd_id) {
         jeedom.history.drawChart({
           cmd_id: cmd_id,
@@ -109,12 +104,18 @@ if (!jeeFrontEnd.md_history) {
     },
     resizeHighChartModal: function() {
       if (!jeedom.history.chart[this.__el__]) return
+      let hDecay = 40
+      if (document.querySelector('#bt_toggleOptions i').hasClass('fa-arrow-down')) hDecay = 0
       jeedom.history.chart[this.__el__].chart.setSize(
-        this.modalContent.offsetWidth - 0,
-        this.modalContent.offsetHeight - 40
+        this.modalContent.offsetWidth,
+        this.modalContent.offsetHeight - hDecay
       )
     },
     setModal: function() {
+      document.querySelector('#md_history div.options').unseen()
+      document.querySelector('#md_history g.highcharts-range-selector-group')?.unseen()
+      document.querySelectorAll('.highcharts-button')?.unseen()
+
       //only one history loaded:
       if (this.loadIds.length == 1) {
         if (isset(jeedom.history.chart[this.__el__]) && isset(jeedom.history.chart[this.__el__].chart)) {
@@ -136,6 +137,22 @@ if (!jeeFrontEnd.md_history) {
   jeedomUtils.datePickerInit()
 
   //Modal buttons:
+  document.getElementById('bt_toggleOptions').addEventListener('click', function(event) {
+    let btIcon = document.querySelector('#bt_toggleOptions i')
+    if (btIcon.hasClass('fa-arrow-down')) {
+      btIcon.removeClass('fa-arrow-down').addClass('fa-arrow-up')
+      document.querySelector('#md_history div.options').seen()
+      document.querySelector('#md_history g.highcharts-range-selector-group')?.seen()
+      document.querySelectorAll('.highcharts-button')?.seen()
+      jeeM.resizeHighChartModal(true)
+    } else {
+      btIcon.removeClass('fa-arrow-up').addClass('fa-arrow-down')
+      document.querySelector('#md_history div.options').unseen()
+      document.querySelector('#md_history g.highcharts-range-selector-group')?.unseen()
+      document.querySelectorAll('.highcharts-button')?.unseen()
+      jeeM.resizeHighChartModal(false)
+    }
+  })
   jeeM.$pageContainer.on({
     'click': function(event) {
       jeeM.md_modal.dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + jeephp2js.md_history_cmdId + '&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open')

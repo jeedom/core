@@ -255,6 +255,7 @@ jeeP.modalContent.addEventListener('click', function(event) {
       top: '15vh',
       retainPosition: true,
       zIndex: 1021,
+      backdrop: false,
       title: '{{Historique}}',
       contentUrl: 'index.php?v=d&modal=cmd.history&id=' + cmdIds
     })
