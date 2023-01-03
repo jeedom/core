@@ -3351,7 +3351,7 @@ div.eqLogic-widget.editingMode .panelLink {
     box-shadow: none;
   }
   .jstree-default .jstree-clicked {
-    background-color: transparent;
+    background-color: transparent !important;
     border-right: 2.5px solid var(--logo-primary-color);
     box-shadow: none;
     font-weight: bold;

@@ -187,16 +187,15 @@ function setTheme() {
 	include_file('core', 'js.inc', 'php');
 
 	include_file('3rdparty', 'bootstrap/bootstrap.min', 'js');
-	include_file('3rdparty', 'jquery.ui/jquery-ui.min', 'js');
+	include_file('3rdparty', 'jquery.ui/jquery-ui.min', 'js'); //ui-dialog, replaced by jeeDialog.dialog()
 	include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
 	include_file('3rdparty', 'jquery.ui-touch-punch/jquery.ui.touch-punch.min', 'js');
 	include_file('3rdparty', 'bootbox/bootbox.min', 'js'); //Deprecated, keep for plugins
 	include_file('3rdparty', 'jquery.ui/jquery.ui.datepicker.fr', 'js'); //Provide french traduction in date pickers
 	include_file('3rdparty', 'jquery.datetimepicker/jquery.datetimepicker', 'js');
 	include_file('3rdparty', 'jquery.datetimepicker/jquery.datetimepicker', 'css');
-	include_file('3rdparty', 'jquery.tree/themes/default/style.min', 'css');
-	include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js'); //ui-dialog, replaced by jeeDialog.dialog()
 
+	include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
 	include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
 	include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
 
@@ -205,11 +204,13 @@ function setTheme() {
 	include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
 	include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
 	include_file('3rdparty', 'jquery.tablesorter/parsers/parser-input-select.min', 'js');
-
+	//Cron helper:
 	include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
 	include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
+	//ContextMenu
 	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'css');
 	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'js');
+
 	include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
 	include_file('3rdparty', 'jquery.packery/jquery.packery', 'js'); //$less with draggability lib
 	//include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js');

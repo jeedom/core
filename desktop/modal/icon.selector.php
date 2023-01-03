@@ -119,7 +119,12 @@ sendVarToJS([
     </div>
   <?php } ?>
 </div>
-<?php include_file('3rdparty', 'jquery.tree/jstree.min', 'js'); ?>
+
+<?php
+  include_file('3rdparty', 'jquery.tree/themes/default/style.min', 'css');
+  include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
+?>
+
 <script>
   $(document).ready(function() {
     // //move color_select/search_input in modal bottom
