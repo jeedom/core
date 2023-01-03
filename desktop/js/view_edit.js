@@ -514,21 +514,6 @@ $('#bt_addviewZone').on('click', function() {
   })
 })
 
-
-$('#bt_addEditviewZoneSave').on('click', function() {
-  if ($.trim($('#in_addEditviewZoneName').val()) != '') {
-    var viewZone = {
-      name: $('#in_addEditviewZoneName').value(),
-      emplacement: $('#in_addEditviewZoneEmplacement').value(),
-      type: $('#sel_addEditviewZoneType').value()
-    }
-    jeeP.addEditviewZone(viewZone)
-    $('#md_addEditviewZone').modal('hide')
-  } else {
-    alert('{{Le nom de la viewZone ne peut être vide}}')
-  }
-})
-
 $('#div_pageContainer').on({
   'click': function(event) {
     $(this).closest('.viewZone').remove()
@@ -537,11 +522,40 @@ $('#div_pageContainer').on({
 
 $('#div_pageContainer').on({
   'click': function(event) {
-    $('#md_addEditviewZone').modal('show')
-    $('#in_addEditviewZoneName').val($(this).closest('.viewZone').find('.viewZoneAttr[data-l1key=name]').html())
-    $('#sel_addEditviewZoneType').val($(this).closest('.viewZone').find('.viewZoneAttr[data-l1key=type]').val())
-    $('#sel_addEditviewZoneType').prop('disabled', true)
-    $('#in_addEditviewZoneEmplacement').val($(this).closest('.viewZone').attr('id'))
+
+    let type = $(this).closest('.viewZone').find('.viewZoneAttr[data-l1key=type]').val();
+    console.log($(this).closest('.viewZone').find('.viewZoneAttr[data-l1key=name]').html());
+    let content = '<input class="promptAttr" data-l1key="name" autocomplete="off" type="text" placeholder="{{Nom}}" value="'+$(this).closest('.viewZone').find('.viewZoneAttr[data-l1key=name]').html().replaceAll('"',"'")+'">'
+    content += '<input class="promptAttr" data-l1key="emplacement" type="text" value="'+$(this).closest('.viewZone').attr('id')+'" style="display:none;">'
+    content += '<select class="promptAttr" data-l1key="type" id="sel_addEditviewZoneType">'
+    content += (type == 'widget') ? '<option value="widget" selected>{{Equipement}}</option>' : '<option value="widget">{{Equipement}}</option>'
+    content += (type == 'graph') ? '<option value="graph" selected>{{Graphique}}</option>' : '<option value="graph">{{Graphique}}</option>'
+    content += (type == 'table') ? '<option value="table" selected>{{Tableau}}</option>' : '<option value="table">{{Tableau}}</option>'
+    content += '</select>'
+  
+    jeeDialog.prompt({
+      title: "{{Ajouter/Editer viewZone}}",
+      message: content,
+      inputType: false,
+      callback: function(result) {
+        console.log('result:', result)
+        if (result) {
+          if (result.name == '') {
+            jeedomUtils.showAlert({
+              message: '{{Le nom de la viewZone ne peut être vide}}',
+              level: 'warning'
+            })
+            return
+          }
+          var viewZone = {
+            name: result.name,
+            emplacement: result.emplacement,
+            type: result.type
+          }
+          jeeP.addEditviewZone(viewZone)
+        }
+      }
+    })
   }
 }, '.bt_editviewZone')
 
