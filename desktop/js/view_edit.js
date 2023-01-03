@@ -522,7 +522,6 @@ $('#div_pageContainer').on({
 
 $('#div_pageContainer').on({
   'click': function(event) {
-
     let type = $(this).closest('.viewZone').find('.viewZoneAttr[data-l1key=type]').val();
     console.log($(this).closest('.viewZone').find('.viewZoneAttr[data-l1key=name]').html());
     let content = '<input class="promptAttr" data-l1key="name" autocomplete="off" type="text" placeholder="{{Nom}}" value="'+$(this).closest('.viewZone').find('.viewZoneAttr[data-l1key=name]').html().replaceAll('"',"'")+'">'
@@ -532,7 +531,6 @@ $('#div_pageContainer').on({
     content += (type == 'graph') ? '<option value="graph" selected>{{Graphique}}</option>' : '<option value="graph">{{Graphique}}</option>'
     content += (type == 'table') ? '<option value="table" selected>{{Tableau}}</option>' : '<option value="table">{{Tableau}}</option>'
     content += '</select>'
-  
     jeeDialog.prompt({
       title: "{{Ajouter/Editer viewZone}}",
       message: content,
