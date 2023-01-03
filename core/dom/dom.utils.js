@@ -494,9 +494,9 @@ domUtils.getUrlString = function(params, keys = [], isArray = false) {
         tKey = tKeys.reduce((str, k) => { return '' === str ? k : `${str}[${k}]` }, '')
       }
       if (isArray) {
-        return `${ tKey }[]=${ val }`
+        return `${ tKey }[]=${ encodeURIComponent(val) }`
       } else {
-        return `${ tKey }=${ val }`
+        return `${ tKey }=${ encodeURIComponent(val) }`
       }
     }
   }).join('&')
