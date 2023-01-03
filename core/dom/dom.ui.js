@@ -1285,7 +1285,8 @@ var jeeDialog = (function()
           setContent: true,
           setFooter: false,
           callback: false,
-          afterResize: false
+          onMove: false,
+          onResize: false
         })
 
         _options = domUtils.extend(defaultOptions, _options)
@@ -1346,7 +1347,7 @@ var jeeDialog = (function()
         var nextLeft, nextTop, initialLeft, initialTop
         var bodyRect = null
         dialogContainer.querySelector('div.jeeDialogTitle').addEventListener('mousedown', dragStart, false)
-
+        var onMove, moveDone
         function dragStart(event) {
           event.preventDefault()
           bodyRect = document.body.getBoundingClientRect()
@@ -1355,6 +1356,10 @@ var jeeDialog = (function()
           initialTop = event.clientY - bRect.top
           document.body.addEventListener('mouseup', dragEnd, false)
           document.body.addEventListener('mousemove', dragging, false)
+          onMove = dialogContainer._jeeDialog.options.onMove
+          if (onMove) {
+            moveDone = null
+          }
         }
         function dragging(event) {
           event.preventDefault()
@@ -1375,6 +1380,10 @@ var jeeDialog = (function()
           }
           dialogContainer.style.left = nextLeft + 'px'
           dialogContainer.style.top = nextTop + 'px'
+          if (onMove) {
+            clearTimeout(moveDone)
+            moveDone = setTimeout(function() { onMove(event) }, 100)
+          }
         }
         function dragEnd(event) {
           document.body.removeEventListener('mouseup', dragEnd, false)
@@ -1391,6 +1400,8 @@ var jeeDialog = (function()
           dialogContainer.appendChild(div)
           div.addEventListener('mousedown', resizeStart, false)
         })
+        //Set onResize event:
+        var onResize, resizeDone
         function resizeStart(event) {
           event.preventDefault()
           resizer = event.target.getAttribute('data-resize')
@@ -1401,6 +1412,10 @@ var jeeDialog = (function()
           initialHeight = bRect.height
           document.body.addEventListener('mouseup', resizeEnd, false)
           document.body.addEventListener('mousemove', resizing, false)
+          onResize = dialogContainer._jeeDialog.options.onResize
+          if (onResize) {
+            resizeDone = null
+          }
         }
         function resizing(event) {
           if (resizer.includes('top')) {
@@ -1421,12 +1436,14 @@ var jeeDialog = (function()
             let width = initialWidth + (initialLeft - event.clientX)
             if (width > 350) dialogContainer.style.width = width + 'px'
           }
+          if (onResize) {
+            clearTimeout(resizeDone)
+            resizeDone = setTimeout(function() { onResize(event) }, 100)
+          }
         }
         function resizeEnd(event) {
           document.body.removeEventListener('mouseup', resizeEnd, false)
           document.body.removeEventListener('mousemove', resizing, false)
-          let afterResize = dialogContainer._jeeDialog.options.afterResize
-          if (afterResize) afterResize()
         }
       } else {
         _options = domUtils.extend(dialogContainer._jeeDialog.options, _options)

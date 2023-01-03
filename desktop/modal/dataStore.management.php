@@ -55,6 +55,9 @@ if (!jeeFrontEnd.md_datastore) {
     init: function() {
       this.$tableDataStore = $('#table_dataStore')
       this.modal = document.getElementById('table_dataStore').closest('div.jeeDialogMain')
+      this.modal._jeeDialog.options.onResize = function(event) {
+        self.$tableDataStore.trigger("update")
+      }
     },
     getDatastoreTr: function (_datastore = false) {
       var thisTr = ''

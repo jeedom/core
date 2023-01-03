@@ -214,11 +214,19 @@ div.jeeDialog.jeeDialogMain > div.jeeDialogTitle:before {
 div.jeeDialog.jeeDialogMain > div.jeeDialogTitle {
   margin: -3px;
   padding: 5px;
+  height: 30px;
   color: rgb(var(--bg-color));
   background-color: rgb(var(--contrast-color));
   font-size: 16px;
   font-weight: 400;
   cursor: move;
+}
+div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > span.title {
+  display: inline-block;
+  max-width: calc(100% - 50px);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > button.btClose {
   font-size: 26px !important;
@@ -229,7 +237,7 @@ div.jeeDialog.jeeDialogMain > div.jeeDialogContent {
   position: relative;
   height: calc(100% - 35px);
   width: calc(100% - 10px);
-  padding: 15px;
+  padding: 15px 0;
   overflow: auto;
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogContent .floatingbar {
