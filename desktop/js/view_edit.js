@@ -514,13 +514,28 @@ $('#bt_addviewZone').on('click', function() {
   })
 })
 
+
+$('#bt_addEditviewZoneSave').on('click', function() {
+  if ($.trim($('#in_addEditviewZoneName').val()) != '') {
+    var viewZone = {
+      name: $('#in_addEditviewZoneName').value(),
+      emplacement: $('#in_addEditviewZoneEmplacement').value(),
+      type: $('#sel_addEditviewZoneType').value()
+    }
+    jeeP.addEditviewZone(viewZone)
+    $('#md_addEditviewZone').modal('hide')
+  } else {
+    alert('{{Le nom de la viewZone ne peut être vide}}')
+  }
+})
+
 $('#div_pageContainer').on({
   'click': function(event) {
     $(this).closest('.viewZone').remove()
   }
 }, '.bt_removeviewZone')
 
-$('#div_viewZones').on({
+$('#div_pageContainer').on({
   'click': function(event) {
     $('#md_addEditviewZone').modal('show')
     $('#in_addEditviewZoneName').val($(this).closest('.viewZone').find('.viewZoneAttr[data-l1key=name]').html())
