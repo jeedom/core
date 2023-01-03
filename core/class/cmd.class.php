@@ -52,6 +52,7 @@ class cmd {
 	protected $_changed = false;
 	private static $_templateArray = array();
 	private static $_unite_conversion = array(
+		's' => array(60, 's', 'min', 'h'),
 		'W' => array(1000, 'W', 'kW', 'MW'),
 		'Wh' => array(1000, 'Wh', 'kWh', 'MWh'),
 		'io' => array(1024, 'io', 'Kio', 'Mio', 'Gio', 'Tio'),
