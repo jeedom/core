@@ -951,10 +951,7 @@ class scenarioExpression {
 
 	public static function triggerValue(&$_scenario = null) {
 		if ($_scenario !== null) {
-			$cmd = cmd::byId(str_replace('#', '', $_scenario->getRealTrigger()));
-			if (is_object($cmd)) {
-				return $cmd->execCmd();
-			}
+			return $_scenario->getRealTriggerValue();
 		}
 		return false;
 	}
