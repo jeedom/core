@@ -41,42 +41,4 @@ if (!isConnect('admin')) {
 		<div id="div_viewZones" style="margin-top: 10px;"></div>
 	</div>
 </div>
-
-<div class="modal fade" id="md_addEditviewZone">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title">{{Ajouter/Editer viewZone}}</h4>
-			</div>
-			<div class="modal-body">
-				<div class="alert alert-danger div_alert" style="display: none;" id="div_addEditviewZoneError"></div>
-				<input id="in_addEditviewZoneEmplacement" style="display : none;" />
-				<form class="form-horizontal" onsubmit="return false;">
-					<div class="form-group">
-						<label class="col-sm-2 control-label">{{Nom}}</label>
-						<div class="col-sm-10">
-							<input id="in_addEditviewZoneName" class="form-control" placeholder="{{Nom}}" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">{{Type}}</label>
-						<div class="col-sm-5">
-							<select class="form-control" id="sel_addEditviewZoneType">
-								<option value="widget">{{Equipement}}</option>
-								<option value="graph">{{Graphique}}</option>
-								<option value="table">{{Tableau}}</option>
-							</select>
-						</div>
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<a class="btn btn-danger" data-dismiss="modal">{{Annuler}}</a>
-				<a class="btn btn-success" id="bt_addEditviewZoneSave"><i class="fas fa-save"></i> {{Sauvegarder}}</a>
-			</div>
-		</div>
-	</div>
-</div>
-
 <?php include_file('desktop', 'view_edit', 'js'); ?>
