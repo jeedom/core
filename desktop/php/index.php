@@ -635,8 +635,6 @@ function setTheme() {
 	<div id="md_modal"></div>
 	<div id="md_modal2"></div>
 	<div id="md_modal3"></div>
-	<div id="md_reportBug" title="{{Demande de support}}"></div>
 
 </body>
-
 </html>

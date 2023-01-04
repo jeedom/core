@@ -592,7 +592,7 @@ jeedomUtils.initJeedomModals = function() {
     $(this).find(".bootbox-accept").focus()
   })
 
-
+  //Deprecated jQuery UI dialog, keep for plugins
   $('#md_modal').dialog({
     autoOpen: false,
     modal: true,
@@ -660,28 +660,6 @@ jeedomUtils.initJeedomModals = function() {
     beforeClose: function(event, ui) {
       emptyModal('md_modal3')
       $('#md_modal3').off('dialogresize')
-    }
-  })
-
-  $('#md_reportBug').dialog({
-    autoOpen: false,
-    modal: true,
-    closeText: '',
-    height: ((window.innerHeight - 100) < 700) ? window.innerHeight - 100 : 700,
-    width: ((window.innerWidth - 100) < 900) ? (window.innerWidth - 100) : 900,
-    position: { my: 'center center-10', at: 'center center', of: window },
-    open: function() {
-      document.body.style.overflow = 'hidden'
-      this.closest('.ui-dialog').querySelectorAll('button, input[type="button"]')?.forEach(el => { el.blur() })
-      $(this).dialog({
-        height: ((window.innerHeight - 100) < 700) ? window.innerHeight - 100 : 700,
-        width: ((window.innerWidth - 100) < 900) ? (window.innerWidth - 100) : 900,
-        position: { my: 'center center-10', at: 'center center', of: window }
-      })
-      setTimeout(function() { jeedomUtils.initTooltips($('#md_reportBug')) }, 500)
-    },
-    beforeClose: function(event, ui) {
-      emptyModal('md_reportBug')
     }
   })
 
@@ -803,7 +781,12 @@ jeedomUtils.setJeedomGlobalUI = function() {
       return
     }
     jeedomUtils.closeJeedomMenu()
-    $('#md_reportBug').load('index.php?v=d&modal=report.bug').dialog('open')
+    jeeDialog.dialog({
+      id: 'md_reportBug',
+      title: '<i class="fas fa-ticket-alt"></i> {{Demande de support}}',
+      width: '60%',
+      contentUrl: 'index.php?v=d&modal=report.bug'
+    })
   })
 
   document.getElementById('bt_messageModal')?.addEventListener('click', function(event) {
@@ -1518,7 +1501,7 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
 
 jeedomUtils.getOpenedModal = function() {
   var _return = false
-  var modals = ['md_reportBug', 'md_modal', 'md_modal2', 'md_modal3', 'ui-id-5']
+  var modals = ['md_modal', 'md_modal2', 'md_modal3']
   modals.forEach(function(_modal) {
     if ($('.ui-dialog[aria-describedby="' + _modal + '"]').is(':visible') == true) {
       _return = _modal
@@ -1529,7 +1512,7 @@ jeedomUtils.getOpenedModal = function() {
 
 jeedomUtils.closeModal = function(_modals = '') {
   if (_modals == '') {
-    _modals = ['md_reportBug', 'md_modal', 'md_modal2', 'md_modal3', 'ui-id-5']
+    _modals = ['md_modal', 'md_modal2', 'md_modal3']
   }
   if (!Array.isArray(_modals)) {
     _modals = [_modals]
