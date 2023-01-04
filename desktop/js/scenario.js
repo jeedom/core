@@ -1316,12 +1316,6 @@ if (!jeeFrontEnd.scenario) {
         elements += this.addElement(loadStack[i])
       }
       document.getElementById('div_scenarioElement').empty().html(elements, true)
-      //Synch collapsed elements:
-      /*
-      document.querySelectorAll('i.fa-eye-slash').forEach(eye => {
-        eye.closest(.element).addClass('elementCollapse')
-      })
-      */
       this.updateElseToggle()
       this.setScenarioActionsOptions()
     },
@@ -2369,7 +2363,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
         jeeP.setUndoStack()
         expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(result.human)
         jeedom.cmd.displayActionOption(expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(), '', function(html) {
-          $(expression).find('.expressionOptions').html(html)
+          expression.querySelector('.expressionOptions').html(html)
           jeedomUtils.taAutosize()
           jeedomUtils.initTooltips()
         })
@@ -2655,7 +2649,7 @@ document.getElementById('scenariotab').addEventListener('focusout', function(eve
     if (el.closest('.expression').querySelector('.expressionAttr[data-l1key="type"]').value == 'action') {
       var expression = el.closest('.expression').getJeeValues('.expressionAttr')
       jeedom.cmd.displayActionOption(el.value, init(expression[0].options), function(html) {
-        $(el).closest('.expression').find('.expressionOptions').html(html)
+        el.closest('.expression').querySelector('.expressionOptions').html(html)
         jeedomUtils.taAutosize()
         jeedomUtils.initTooltips()
         el.setAttribute('prevalue', el.value)

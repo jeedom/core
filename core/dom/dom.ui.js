@@ -385,9 +385,11 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
   }
 
   /*Events
+  click = mousedown + mouseup
+  use mousdown to fire before focusout
   */
   if (createEvents) {
-    _options.data.container.registerEvent('click', function jeeComplete(event) {
+    _options.data.container.registerEvent('mousedown', function jeeComplete(event) {
       var selectedLi = event.target.closest('li.jeeCompleteItem') || event.target
       if (selectedLi == null) return
       var selected = selectedLi.firstChild
@@ -412,9 +414,8 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
       }
       _options.data.container.unseen()
       setTimeout(()=> {
-        ulContainer._jeeComplete.reference.triggerEvent('blur')
+        ulContainer._jeeComplete.reference.blur()
       })
-
     }, {capture: true, buble: true})
   }
 
@@ -481,9 +482,11 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
     }
 
     if (event.key == 'Enter') {
-      _options.data.container.querySelector('li.jeeCompleteItem.active')?.firstChild.triggerEvent('click')
+      _options.data.container.querySelector('li.jeeCompleteItem.active')?.firstChild.triggerEvent('mousedown')
       _options.data.container.unseen()
-      event.target.blur()
+      setTimeout(()=> {
+        event.target.blur()
+      })
       return
     }
 

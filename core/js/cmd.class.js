@@ -1014,7 +1014,7 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
 
 jeedom.cmd.displayActionOption = function(_expression, _options, _callback) {
   if (_expression == '') {
-    if ('function' == typeof (_callback)) {
+    if (typeof _callback === 'function') {
       _callback('')
       return
     }
