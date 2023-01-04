@@ -57,6 +57,7 @@ class cmd {
 		'Wh' => array(1000, 'Wh', 'kWh', 'MWh'),
 		'io' => array(1024, 'io', 'Kio', 'Mio', 'Gio', 'Tio'),
 		'o' => array(1000, 'o', 'Ko', 'Mo', 'Go', 'To'),
+		'o/s' => array(1000, 'o/s', 'Ko/s', 'Mo/s', 'Go/s', 'To/s'),
 		'Bps' => array(1000, 'Bps', 'Kbps', 'Mbps', 'Gbps', 'Tbps'),
 		'Hz' => array(1000, 'Hz', 'kHz', 'MHz', 'GHz'),
 		'l' => array(1000, 'l', 'm<sup>3</sup>')
