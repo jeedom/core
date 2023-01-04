@@ -2351,7 +2351,6 @@
         "Rechercher | nom | id": "Suche | Name | Ich würde",
         "Liste": "Auflistung",
         "Sauvegarder": "Um zu schützen",
-        "Appliquer": "Bewerben",
         "Types inconnus": "Unbekannte Typen"
     },
     "desktop\/php\/overview.php": {
@@ -3132,13 +3131,13 @@
         "Non": "Nein",
         "Supprimer": "Löschen",
         "Types Génériques automatiques": "Automatische generische Typen",
+        "Appliquer": "Anwenden",
         "Types Génériques sauvegardés": "Generische Typen gespeichert",
         "Liste des Types Génériques (Core et Plugins)": "Liste der generischen Typen (Kern und Plugins)",
         "Générique": "Generisch",
         "Nom": "Name",
         "Type": "Typ",
-        "Sous type": "Untertyp",
-        "Commentaire": "Anmerkung"
+        "Sous type": "Untertyp"
     },
     "desktop\/js\/replace.js": {
         "Aucun": "Nein",

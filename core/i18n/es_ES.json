@@ -533,7 +533,7 @@
         "Centrer": "Centro",
         "Lignes": "Líneas",
         "Colonnes": "Columnas",
-        "Appliquer": "Aplicar",
+        "Appliquer": "Solicitar",
         "Style tableau": "Estilo de mesa",
         "Style cellules": "Estilo de celda",
         "Mise en forme détaillée": "Formato detallado",
@@ -1050,7 +1050,7 @@
         "Centrer dans les cases": "Centro de las cajas",
         "Nombre de lignes": "Número de líneas",
         "Nombre de colonnes": "Número de columnas",
-        "Appliquer": "Aplicar",
+        "Appliquer": "Solicitar",
         "Style du tableau": "Estilo de mesa",
         "Style des cellules": "Estilo de celda",
         "Mise en forme détaillée": "Formato detallado",
@@ -1179,7 +1179,7 @@
         "Supprimer": "Eliminar",
         "Télécharger": "Descargar",
         "Paramètres du scénario": "Parámetros del escenario",
-        "Appliquer": "Aplicar",
+        "Appliquer": "Solicitar",
         "Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel.": "¿Seguro que quieres aplicar esta plantilla? Esto sobrescribirá su escenario actual",
         "Template ajouté avec succès": "Plantilla añadido correctamente"
     },
@@ -2351,7 +2351,6 @@
         "Rechercher | nom | id": "Buscar | nombre | identificación",
         "Liste": "Listado",
         "Sauvegarder": "Para salvaguardar",
-        "Appliquer": "Aplicar",
         "Types inconnus": "Tipos desconocidos"
     },
     "desktop\/php\/overview.php": {
@@ -3132,13 +3131,13 @@
         "Non": "No",
         "Supprimer": "Borrar",
         "Types Génériques automatiques": "Tipos genéricos automáticos",
+        "Appliquer": "Solicitar",
         "Types Génériques sauvegardés": "Tipos genéricos guardados",
         "Liste des Types Génériques (Core et Plugins)": "Lista de tipos genéricos (núcleo y complementos)",
         "Générique": "Genérico",
         "Nom": "Apellido",
         "Type": "Escribe",
-        "Sous type": "Subtipo",
-        "Commentaire": "Observación"
+        "Sous type": "Subtipo"
     },
     "desktop\/js\/replace.js": {
         "Aucun": "No",

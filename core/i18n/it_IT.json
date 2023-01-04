@@ -2351,7 +2351,6 @@
         "Rechercher | nom | id": "Rechercher | nom | id",
         "Liste": "Liste",
         "Sauvegarder": "Sauvegarder",
-        "Appliquer": "Appliquer",
         "Types inconnus": "Types inconnus"
     },
     "desktop\/php\/overview.php": {
@@ -3132,13 +3131,13 @@
         "Non": "Non",
         "Supprimer": "Supprimer",
         "Types Génériques automatiques": "Types Génériques automatiques",
+        "Appliquer": "Appliquer",
         "Types Génériques sauvegardés": "Types Génériques sauvegardés",
         "Liste des Types Génériques (Core et Plugins)": "Liste des Types Génériques (Core et Plugins)",
         "Générique": "Générique",
         "Nom": "Nom",
         "Type": "Type",
-        "Sous type": "Sous type",
-        "Commentaire": "Commentaire"
+        "Sous type": "Sous type"
     },
     "desktop\/js\/replace.js": {
         "Aucun": "Aucun",
