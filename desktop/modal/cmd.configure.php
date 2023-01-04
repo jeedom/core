@@ -341,7 +341,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
       <br />
       <form class="form-horizontal">
         <fieldset>
-          <?php if (($cmd->getType() == 'info' && ($cmd->getSubType() == 'numeric' || $cmd->getSubType() == 'binary')) || ($cmd->getType() == 'action' && ($cmd->getSubType() == 'slider'))) {
+          <?php if (($cmd->getType() == 'info') || ($cmd->getType() == 'action' && ($cmd->getSubType() == 'slider'))) {
           ?>
             <legend><i class="fas fa-table"></i> {{Calcul et arrondi}}</legend>
             <div class="form-group">
