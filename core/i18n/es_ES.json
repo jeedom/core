@@ -533,7 +533,7 @@
         "Centrer": "Centro",
         "Lignes": "Líneas",
         "Colonnes": "Columnas",
-        "Appliquer": "Solicitar",
+        "Appliquer": "Aplicar",
         "Style tableau": "Estilo de mesa",
         "Style cellules": "Estilo de celda",
         "Mise en forme détaillée": "Formato detallado",
@@ -1050,7 +1050,7 @@
         "Centrer dans les cases": "Centro de las cajas",
         "Nombre de lignes": "Número de líneas",
         "Nombre de colonnes": "Número de columnas",
-        "Appliquer": "Solicitar",
+        "Appliquer": "Aplicar",
         "Style du tableau": "Estilo de mesa",
         "Style des cellules": "Estilo de celda",
         "Mise en forme détaillée": "Formato detallado",
@@ -1178,7 +1178,7 @@
         "Supprimer": "Eliminar",
         "Télécharger": "Descargar",
         "Paramètres du scénario": "Parámetros del escenario",
-        "Appliquer": "Solicitar",
+        "Appliquer": "Aplicar",
         "Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel.": "¿Seguro que quieres aplicar esta plantilla? Esto sobrescribirá su escenario actual",
         "Template ajouté avec succès": "Plantilla añadido correctamente"
     },
@@ -2350,7 +2350,7 @@
         "Rechercher | nom | id": "Buscar | nombre | identificación",
         "Liste": "Listado",
         "Sauvegarder": "Para salvaguardar",
-        "Appliquer": "Solicitar",
+        "Appliquer": "Aplicar",
         "Types inconnus": "Tipos desconocidos"
     },
     "desktop\/php\/overview.php": {
