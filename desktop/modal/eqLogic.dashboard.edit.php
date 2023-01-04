@@ -41,8 +41,7 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
 $cmd_widgetMobile = cmd::availableWidget('mobile');
 ?>
 
-<div style="display: none;" id="md_displayEqLogicConfigure" data-modalType="md_eqLogicDashEdit"></div>
-<div id="div_displayEqLogicConfigure" style="margin: 0 -13px; overflow: hidden;">
+<div id="div_displayEqLogicConfigure">
   <!-- Global parameters -->
   <span class="eqLogicAttr hidden" data-l1key="id"></span>
   <span class="eqLogicAttr hidden" data-l1key="name"></span>
@@ -448,35 +447,14 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 </div>
 
 <script>
-  $('.ui-widget-overlay').hide()
   var modal = $('#md_modal').parents('.ui-dialog.ui-resizable')
+  var modal = document.getElementById('div_displayEqLogicConfigure').closest('div.jeeDialogMain')
 
   //modal title:
   var title = "{{Configuration de la tuile}}"
   title += ' : ' + jeephp2js.md_eqLogicDashEdit_eqInfo.name
   title += ' <span class="cmdName"><em>(' + jeephp2js.md_eqLogicDashEdit_eqInfo.eqType_name + ')</em></span>'
-  modal.find('.ui-dialog-title').html(title)
-
-  //add save buttons:
-  var button = {
-    "Dummy": {
-      class: 'hidden'
-    },
-    "Save": {
-      text: "{{Sauvegarder}}",
-      click: editSaveEqlogic
-    }
-  }
-  $('#md_modal').dialog('option', 'buttons', button)
-
-  //remove dialog buttons and bindings before closing:
-  $('#md_modal').on('dialogbeforeclose', function(event, ui) {
-    modal.find('.ui-dialog-buttonpane').remove()
-    modal.find('.ui-draggable-handle').off('mouseup')
-    $(this).off('dialogbeforeclose')
-  })
-
-  setModal()
+  modal.querySelector('div.jeeDialogTitle > span.title').innerHTML = title
 
   //display options:
   document.getElementById('div_displayEqLogicConfigure').setJeeValues(jeephp2js.md_eqLogicDashEdit_eqInfo, '.eqLogicAttr')
@@ -504,35 +482,6 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
   //layout default or table for cmd order:
   if ($('.sel_layout').val() == 'default') {
     $('input[data-l2key="layout::dashboard::table::nbLine"], input[data-l2key="layout::dashboard::table::nbColumn"]').val(1)
-  }
-
-  function setModal() {
-    //check previous size/pos:
-    var datas = modal.data()
-    if (datas && datas.width && datas.height && datas.top && datas.left) {
-      modal.width(datas.width).height(datas.height).css('top', datas.top).css('left', datas.left)
-      $('#md_modal').height(datas.height - 100)
-    } else if ($(window).width() > 600) {
-      width = 550
-      height = 700
-      modal.width(width).height(height)
-      modal.position({
-        my: "right",
-        at: "right-50",
-        of: window
-      })
-      $('#md_modal').height(height - 100)
-    }
-
-    //store size/pos:
-    modal.find('.ui-draggable-handle').on('mouseup', function(event) {
-      modal.data({
-        'width': modal.width(),
-        'height': modal.height(),
-        'top': modal.css('top'),
-        'left': modal.css('left')
-      })
-    })
   }
 
   /* Equipement */
@@ -746,7 +695,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
       eqLogics: [eqLogic],
       type: jeephp2js.md_eqLogicDashEdit_eqInfo.eqType_name,
       error: function(error) {
-        $('#md_displayEqLogicConfigure').showAlert({
+        jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -792,10 +741,18 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
         })
 
         $('body').one('eqLogic::update', function(_event, _options) {
-          setTimeout(function() {
-            jeeFrontEnd.dashboard.editWidgetMode(0, false)
-            jeeFrontEnd.dashboard.editWidgetMode(1, false)
-          }, 250)
+          if (document.body.getAttribute('data-page' == 'dashboard')) {
+            setTimeout(function() {
+              jeeFrontEnd.dashboard.editWidgetMode(0, false)
+              jeeFrontEnd.dashboard.editWidgetMode(1, false)
+            }, 250)
+          }
+          if (document.body.getAttribute('data-page' == 'view')) {
+            setTimeout(function() {
+              jeeFrontEnd.view.editWidgetMode(0, false)
+              jeeFrontEnd.view.editWidgetMode(1, false)
+            }, 250)
+          }
 
         })
       }

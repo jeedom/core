@@ -99,8 +99,7 @@ if (!jeeFrontEnd.dashboard) {
         return
       }
       var divEquipements = $('div.div_displayEquipement')
-      if (_mode == 0) {
-        //Exit edit mode:
+      if (_mode == 0) { //Exit edit mode:
         document.querySelectorAll('.widget-name a.reportModeHidden, .scenario-widget .widget-name a').removeClass('disabled')
         jeedom.cmd.disableExecute = false
         jeedomUI.isEditing = false
@@ -122,8 +121,8 @@ if (!jeeFrontEnd.dashboard) {
 
         document.getElementById('in_searchDashboard').removeClass('editing').value = ''
         document.getElementById('in_searchDashboard').readOnly = false
-      } else {
-        //Enter edit mode!
+        if (!isset(_save) || _save) document.getElementById('md_dashEdit')?.remove()
+      } else { //Enter edit mode!
         document.querySelectorAll('.widget-name a.reportModeHidden, .scenario-widget .widget-name a').addClass('disabled')
         jeedomUI.isEditing = true
         jeedom.cmd.disableExecute = true
@@ -467,7 +466,32 @@ document.getElementById('bt_editDashboardWidgetOrder')?.addEventListener('click'
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
   if (event.target.matches('.editOptions')) { //Edit mode tile icon
     var eqId = event.target.closest('div.eqLogic-widget').getAttribute('data-eqlogic_id')
-    $('#md_modal').load('index.php?v=d&modal=eqLogic.dashboard.edit&eqLogic_id=' + eqId).dialog('open')
+    jeeDialog.dialog({
+      id: 'md_dashEdit',
+      width: '600px',
+      height: '500px',
+      top: '15vh',
+      buttons: {
+        confirm: {
+          label: '<i class="fa fa-check"></i> {{Appliquer}}',
+          className: 'success',
+          callback: {
+            click: function(event) {
+              editSaveEqlogic()
+            }
+          }
+        },
+        cancel: {
+          className: 'hidden'
+        }
+      },
+      retainPosition: true,
+      zIndex: 1021,
+      backdrop: false,
+      contentUrl: 'index.php?v=d&modal=eqLogic.dashboard.edit&eqLogic_id=' + eqId
+    })
+
+    //$('#md_modal').load('index.php?v=d&modal=eqLogic.dashboard.edit&eqLogic_id=' + eqId).dialog('open')
     return
   }
 

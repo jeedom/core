@@ -252,10 +252,10 @@ div.jeeDialog.jeeDialogMain > div.jeeDialogContent .floatingbar {
 
 div.jeeDialog.jeeDialogMain > div.jeeDialogFooter {
   position: absolute;
-  --display: block;
   width: calc(100% - 10px);
-  padding: 15px;
+  padding: 6px;
   bottom: 0;
+  background-color: rgb(var(--panel-bg-color));
 }
 
 div.jeeDialog {
