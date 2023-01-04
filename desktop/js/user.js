@@ -351,15 +351,19 @@ $('#table_user').off('change','.userAttr[data-l1key=options][data-l2key="api::mo
 })
 
 $('#table_user').on('click', '.bt_manage_restrict_rights', function() {
-  $('#md_modal').dialog({
-    title: "{{Gestion des droits (Utilisateur limité)}}"
-  }).load('index.php?v=d&modal=user.rights&id=' + this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML).dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Gestion des droits (Utilisateur limité)}}",
+    contentUrl: 'index.php?v=d&modal=user.rights&id=' + this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
+  })
 })
 
 $('#table_user').on('click', '.bt_manage_profils', function() {
-  $('#md_modal').dialog({
-    title: "{{Gestion du profils}}"
-  }).load('index.php?v=d&p=profils&ajax=1&user_id=' + this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML).dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Gestion du profils}}",
+    contentUrl: 'index.php?v=d&p=profils&ajax=1&user_id=' + this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
+  })
 })
 
 $('#table_user').on('click', '.bt_disableTwoFactorAuthentification', function() {

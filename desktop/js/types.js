@@ -86,6 +86,25 @@ if (!jeeFrontEnd.types) {
         return 1;
       }
       return 0;
+    },
+    //Modal apply:
+    applyModalGeneric: function() {
+      var container = $('#md_applyCmdsTypes .jeeDialogContent')
+      var genFamilyId = container.attr('data-generic')
+      var queryEq, genericName
+      container.find('.queryCmd').each(function() {
+        queryEq = $(this)
+        if ($(this).find('.cb_selCmd').is(':checked')) {
+          genericName = $(this).find('.modalCmdGenericSelect option:selected').text()
+          if (genericName != '{{Aucun}}') genericName = genFamilyId + jeephp2js.typeStringSep + genericName
+          $('div.eqlogicSortable[data-id="' + genFamilyId + '"] li.cmd[data-id="' + $(this).attr('data-id') + '"]').attr({
+            'data-changed': '1',
+            'data-generic': $(this).find('.modalCmdGenericSelect').val()
+          }).find('span.genericType').text(genericName)
+          jeeFrontEnd.modifyWithoutSave = true
+        }
+      })
+      jeeDialog.get('#md_applyCmdsTypes').close()
     }
   }
 }
@@ -93,26 +112,6 @@ if (!jeeFrontEnd.types) {
 jeeFrontEnd.types.init()
 
 jeeP.setQueryButtons()
-
-$("#md_applyCmdsTypes").dialog({
-  closeText: '',
-  autoOpen: false,
-  modal: true,
-  width: 'calc(80% - 200px)',
-  height: 'auto',
-  open: function() {
-    $(this).parent().css({
-      'top': 120
-    })
-    $(this).css('max-height', $(document).height() - 250)
-  },
-  beforeClose: function(event, ui) {
-    $('#md_applyCmdsTypes .maincontainer').empty()
-    $('#bt_applyCmdsTypes').show()
-  }
-})
-
-$('#md_applyCmdsTypes').removeClass('hidden')
 
 //searching:
 $('#in_searchTypes').on('keyup', function() {
@@ -497,12 +496,31 @@ $('.bt_queryCmdsTypes').off('click').on('click', function() {
     }
   }
 
-  //_______________modal!
-  $('#md_applyCmdsTypes').dialog({
-    title: "{{Types Génériques automatiques}} (" + genFamily + ")"
-  }).dialog('open')
+  //_______________modal
+  jeeDialog.dialog({
+    id: 'md_applyCmdsTypes',
+    title: "{{Types Génériques automatiques}} (" + genFamily + ")",
+    width: 'calc(80% - 200px)',
+    buttons: {
+      confirm: {
+        label: '<i class="fa fa-check"></i> {{Appliquer}}',
+        className: 'success',
+        callback: {
+          click: function(event) {
+            jeeFrontEnd.types.applyModalGeneric()
+          }
+        }
+      },
+      cancel: {
+        className: 'hidden'
+      }
+    },
+    onClose: function() {
+      jeeDialog.get('#md_applyCmdsTypes').destroy()
+    },
+  })
 
-  var container = $('#md_applyCmdsTypes .maincontainer')
+  var container = $('#md_applyCmdsTypes .jeeDialogContent')
   container.attr('data-generic', genFamilyId)
   var inner = '<br/>'
   var eqName, cmdName, thisCmd, thisClass, select
@@ -542,26 +560,6 @@ $('#md_applyCmdsTypes').on({
     }
   }
 }, '.cb_selCmd')
-
-$('#bt_applyCmdsTypes').off('click').on('click', function() {
-  var container = $('#md_applyCmdsTypes .maincontainer')
-  var genFamilyId = container.attr('data-generic')
-  var queryEq, genericName
-  container.find('.queryCmd').each(function() {
-    queryEq = $(this)
-    if ($(this).find('.cb_selCmd').is(':checked')) {
-      genericName = $(this).find('.modalCmdGenericSelect option:selected').text()
-      if (genericName != '{{Aucun}}') genericName = genFamilyId + jeephp2js.typeStringSep + genericName
-      $('div.eqlogicSortable[data-id="' + genFamilyId + '"] li.cmd[data-id="' + $(this).attr('data-id') + '"]').attr({
-        'data-changed': '1',
-        'data-generic': $(this).find('.modalCmdGenericSelect').val()
-      }).find('span.genericType').text(genericName)
-      jeeFrontEnd.modifyWithoutSave = true
-    }
-  })
-
-  $("#md_applyCmdsTypes").dialog('close')
-})
 
 $("#bt_saveGenericTypes").off('click').on('click', function(event) {
   //save eqLogics:
@@ -634,14 +632,17 @@ $("#bt_saveGenericTypes").off('click').on('click', function(event) {
 })
 
 $('#bt_listGenericTypes').off('click').on('click', function() {
-  $('#md_applyCmdsTypes').dialog({
-    title: "{{Liste des Types Génériques (Core et Plugins)}}"
-  }).dialog('open')
-  $('#bt_applyCmdsTypes').hide()
+  jeeDialog.dialog({
+    id: 'md_applyCmdsTypes',
+    title: "{{Liste des Types Génériques (Core et Plugins)}}",
+    width: 'calc(80% - 200px)',
+    onClose: function() {
+      jeeDialog.get('#md_applyCmdsTypes').destroy()
+    },
+  })
 
-  var container = $('#md_applyCmdsTypes .maincontainer')
+  var container = $('#md_applyCmdsTypes .jeeDialogContent')
   var inner = '<table class="table table-bordered table-condensed">'
-  //inner += '<td>{{Générique}}</td><td>{{Nom}}</td><td>{{Type}}</td><td>{{Sous type}}</td><td>{{Commentaire}}</td>'
   inner += '<td>{{Générique}}</td><td>{{Nom}}</td><td>{{Type}}</td><td>{{Sous type}}</td>'
 
   var family, familyName, generics, generic, infos, actions

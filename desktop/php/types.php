@@ -134,16 +134,6 @@ function jeedom_displayGenFamily($_family, $_familyId='') {
 
 <div class="panel-group" id="genericsContainer">
 
-<div id="md_applyCmdsTypes" class="cleanableModal hidden" style="overflow-x: hidden;">
-	<form class="form-horizontal">
-		<fieldset>
-			<div class="form-group maincontainer mediumText"></div>
-		</fieldset>
-	</form>
-	<br>
-	<a class="btn btn-warning pull-right" id="bt_applyCmdsTypes" style="top: 10px;position: absolute;right: 10px;"><i class="fas fa-check"></i> {{Appliquer}}</a>
-</div>
-
 <?php
 	echo jeedom_displayGenFamily(-1);
 	foreach ($families as $id => $name) {

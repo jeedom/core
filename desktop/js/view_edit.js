@@ -420,9 +420,11 @@ $("#bt_addView").on('click', function(event) {
 })
 
 $("#bt_editView").on('click', function(event) {
-  $('#md_modal').dialog({
-    title: "{{Configuration de la vue}}"
-  }).load('index.php?v=d&modal=view.configure&view_id=' + $('.li_view.active').attr('data-view_id')).dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Configuration de la vue}}",
+    contentUrl: 'index.php?v=d&modal=view.configure&view_id=' + document.querySelector('.li_view.active').getAttribute('data-view_id')
+  })
 })
 
 $('#bt_saveView').on('click', function(event) {

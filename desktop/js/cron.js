@@ -336,9 +336,11 @@ jeeP.$tableCron.on({
 
 jeeP.$tableCron.on({
   'click': function(event) {
-    $('#md_modal').dialog({
-      title: "{{Détails du cron}}"
-    }).load('index.php?v=d&modal=object.display&class=cron&id=' + this.closest('tr').querySelector('span[data-l1key="id"]').innerHTML).dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Détails du cron}}",
+      contentUrl: 'index.php?v=d&modal=object.display&class=cron&id=' + this.closest('tr').querySelector('span[data-l1key="id"]').innerHTML
+    })
   }
 }, '.display')
 
@@ -354,9 +356,11 @@ jeeP.$tableCron.on({
 
 $("#table_listener").on({
   'click': function(event) {
-    $('#md_modal').dialog({
-      title: "{{Détails du listener}}"
-    }).load('index.php?v=d&modal=object.display&class=listener&id=' + this.closest('tr').querySelector('span[data-l1key="id"]').innerHTML).dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Détails du listener}}",
+      contentUrl: 'index.php?v=d&modal=object.display&class=listener&id=' + this.closest('tr').querySelector('span[data-l1key="id"]').innerHTML
+    })
   }
 }, '.display')
 

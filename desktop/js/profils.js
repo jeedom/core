@@ -125,7 +125,8 @@ jeedom.user.get({
   },
   success: function(data) {
     document.getElementById('div_userProfils').setJeeValues(data, '.userAttr')
-    document.getElementById('in_passwordCheck').value = data.password
+    let pass = document.getElementById('in_passwordCheck')
+    if (pass) pass.value = data.password
     jeeFrontEnd.modifyWithoutSave = false
   }
 })

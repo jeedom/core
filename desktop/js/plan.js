@@ -1166,9 +1166,6 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
             jeeDialog.dialog({
               id: 'jee_modalGraph',
               title: '{{Configuration avancée}}',
-              width: '100%',
-              height: 'calc(100% - 50px)',
-              top: '50px',
               buttons: {
                 confirm: {
                   label: '{{Valider}}',

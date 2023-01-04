@@ -224,9 +224,11 @@ $('#bt_resetTimelineSearch').on('click', function() {
 })
 
 $('#bt_openCmdHistoryConfigure').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Configuration de l'historique des commandes}}"
-  }).load('index.php?v=d&modal=cmd.configureHistory').dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Configuration de l'historique des commandes}}",
+    contentUrl: 'index.php?v=d&modal=cmd.configureHistory'
+  })
 })
 
 $('#sel_timelineFolder').off('change').on('change', function() {
@@ -257,9 +259,11 @@ $('#bt_tabTimeline').on('click', function() {
 })
 
 $('#timelineContainer ul').on('click', '.bt_scenarioLog', function() {
-  $('#md_modal').dialog({
-    title: "{{Log d'exécution du scénario}}"
-  }).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $(this).closest('.tml-scenario').attr('data-id')).dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Log d'exécution du scénario}}",
+    contentUrl: 'index.php?v=d&modal=scenario.log.execution&scenario_id=' + this.closest('.tml-scenario').getAttribute('data-id')
+  })
 })
 
 $('#timelineContainer ul').on('click', '.bt_gotoScenario', function() {
@@ -267,9 +271,11 @@ $('#timelineContainer ul').on('click', '.bt_gotoScenario', function() {
 })
 
 $('#timelineContainer ul').on('click', '.bt_historicCmd', function() {
-  $('#md_modal2').dialog({
-    title: "{{Historique}}"
-  }).load('index.php?v=d&modal=cmd.history&id=' + $(this).closest('.tml-cmd').attr('data-id')).dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal2',
+    title: "{{Historique}}",
+    contentUrl: 'index.php?v=d&modal=cmd.history&id=' + this.closest('.tml-cmd').getAttribute('data-id')
+  })
 })
 
 $('#timelineContainer ul').on('click', '.bt_configureCmd', function() {

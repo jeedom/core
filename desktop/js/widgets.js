@@ -371,16 +371,13 @@ $('#bt_editCode').off('click').on('click', function() {
 })
 
 $('#bt_replaceWidget').off('click').on('click', function() {
-  $('#md_modal').load('index.php?v=d&modal=widget.replace').dialog('open')
-    .dialog("option", "width", 800).dialog("option", "height", 500)
-    .dialog({
-      title: "{{Remplacement de widget}}",
-      position: {
-        my: "center center",
-        at: "center center",
-        of: window
-      }
-    })
+  jeeDialog.dialog({
+    id: 'jee_modal2',
+    title: "{{Remplacement de widget}}",
+    width: 800,
+    height: 500,
+    contentUrl: 'index.php?v=d&modal=widget.replace'
+  })
 })
 
 $('#bt_applyToCmd').off('click').on('click', function() {
