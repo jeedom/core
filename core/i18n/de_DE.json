@@ -551,7 +551,6 @@
         "Retour à la ligne avant": "Zeilenumbruch vorher",
         "Retour à la ligne après": "Zeilenumbruch danach",
         "Configuration de la tuile": "Kachel-Setup",
-        "Sauvegarder": "Speichern",
         "Pas de description des paramètres optionnels sur ce Widget": "Keine Beschreibung optionaler Parameter auf diesem Widget"
     },
     "desktop\/modal\/eqLogic.human.insert.php": {
@@ -2351,7 +2350,7 @@
         "Rechercher | nom | id": "Suche | Name | Ich würde",
         "Liste": "Auflistung",
         "Sauvegarder": "Um zu schützen",
-        "Appliquer": "Bewerben",
+        "Appliquer": "Anwenden",
         "Types inconnus": "Unbekannte Typen"
     },
     "desktop\/php\/overview.php": {
@@ -2804,7 +2803,7 @@
         "Configuration de l\\'objet": "Konfiguration des Objekts"
     },
     "desktop\/js\/view.js": {
-        "Configuration Affichage": "Konfiguration anzeigen"
+        "Appliquer": "Anwenden"
     },
     "desktop\/js\/view_edit.js": {
         "Modification enregistrée": "Aufgezeichnete Änderung",
@@ -2964,7 +2963,8 @@
         "Jeedom benchmark": "Jeedom Benchmark"
     },
     "desktop\/js\/dashboard.js": {
-        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": "Sie befinden sich im Bearbeitungsmodus. Sie können die Kacheln verschieben, ihre Größe ändern und die Befehle (Reihenfolge, Widget) mit der Schaltfläche rechts neben dem Titel bearbeiten. Vergessen Sie nicht, den Bearbeitungsmodus zu verlassen, um zu speichern"
+        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": "Sie befinden sich im Bearbeitungsmodus. Sie können die Kacheln verschieben, ihre Größe ändern und die Befehle (Reihenfolge, Widget) mit der Schaltfläche rechts neben dem Titel bearbeiten. Vergessen Sie nicht, den Bearbeitungsmodus zu verlassen, um zu speichern",
+        "Appliquer": "Anwenden"
     },
     "desktop\/js\/plan.js": {
         "Nom du design ?": "Name des Designs?",

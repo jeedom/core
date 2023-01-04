@@ -551,7 +551,6 @@
         "Retour à la ligne avant": "Line wrap before",
         "Retour à la ligne après": "Line wrap after",
         "Configuration de la tuile": "Tile Setup",
-        "Sauvegarder": "Save",
         "Pas de description des paramètres optionnels sur ce Widget": "No description of optional parameters on this Widget"
     },
     "desktop\/modal\/eqLogic.human.insert.php": {
@@ -2804,7 +2803,7 @@
         "Configuration de l\\'objet": "Object configuration"
     },
     "desktop\/js\/view.js": {
-        "Configuration Affichage": "Display Configuration"
+        "Appliquer": "Apply"
     },
     "desktop\/js\/view_edit.js": {
         "Modification enregistrée": "Recorded change",
@@ -2964,7 +2963,8 @@
         "Jeedom benchmark": "Jeedom benchmark"
     },
     "desktop\/js\/dashboard.js": {
-        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": "You are in edit mode. You can move the tiles, resize them, and edit the commands (order, widget) with the button to the right of the title. Don't forget to exit edit mode to save"
+        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": "You are in edit mode. You can move the tiles, resize them, and edit the commands (order, widget) with the button to the right of the title. Don't forget to exit edit mode to save",
+        "Appliquer": "Apply"
     },
     "desktop\/js\/plan.js": {
         "Nom du design ?": "New design name ?",
