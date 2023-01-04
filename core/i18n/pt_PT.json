@@ -644,7 +644,7 @@
         "Ouvrir configuration de la commande.": "Abrir configuração da ordem",
         "Ouvrir la note.": "Abrir a nota",
         "Log d'exécution du scénario": "Registo de execução do cenário",
-        "Configuration de la commande": "Configuração do pedido"
+        "Configuration de la commande": "Configuração do comando"
     },
     "desktop\/modal\/report.bug.php": {
         "Attention nous avons detecté les soucis suivant :": "Atenção, detectamos os seguintes problemas:",
@@ -930,7 +930,7 @@
         "Jamais": "Nunca",
         "Purge": "Purgar",
         "Action": "Ação",
-        "Configuration de la commande": "Configuração do pedido",
+        "Configuration de la commande": "Configuração do comando",
         "Exporter la commande": "Exportar o comando",
         "Modifications sauvegardées avec succès": "Alterações guardadas com sucesso",
         "Dossier": "Ficheiro"
@@ -1469,7 +1469,7 @@
         "Thème alternatif": "Tema alternativo",
         "Version mobile": "Versão Móvel",
         "Rapport de bug": "Relatório de bug",
-        "Demande de support": "Pedido de suporte",
+        "Demande de support": "Solicitação de suporte",
         "Se déconnecter": "Sair",
         "Version": "Versão",
         "Nombre de messages": "Número de mensagens",
@@ -2875,7 +2875,7 @@
     "desktop\/js\/display.js": {
         "Configuration de l'objet": "Configuração do objeto",
         "Configuration de l'équipement": "Configuração do equipamento",
-        "Configuration de la commande": "Configuração do pedido",
+        "Configuration de la commande": "Configuração do comando",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Tem certeza de que deseja excluir todos estes equipamentos?",
         "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Tem certeza que deseja apagar o histórico de exclusões?",
         "Historique vidé avec succès": "Histórico apagado com sucesso"
@@ -2914,7 +2914,7 @@
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Remova este filtro",
-        "Configuration de la commande": "Configuração do pedido",
+        "Configuration de la commande": "Configuração de comando",
         "L'import d'édition en masse se fait au format json.": "A importação da edição em massa é feita no formato json",
         "Problème lors de la lecture du fichier.": "Problema ao ler o arquivo"
     },
@@ -2998,8 +2998,8 @@
         "Paramètres d\\'affichage": "Configurações da tela",
         "Configuration du composant": "Configuração de componentes",
         "Configuration avancée": "Configuração avançada",
-        "Annuler": "Cancelar",
         "Valider": "Validar",
+        "Annuler": "Cancelar",
         "Supprimer": "Retirar",
         "Dupliquer": "Duplicar",
         "Verrouiller": "Trancar"
@@ -3022,7 +3022,7 @@
         "Ev ements de la timeline supprim  avec succ ": "Eventos da linha do tempo excluídos com sucesso",
         "Log d'exécution du scénario": "Registo de execução do cenário",
         "Historique": "Histórico",
-        "Configuration de la commande": "Configuração do pedido"
+        "Configuration de la commande": "Configuração do comando"
     },
     "desktop\/js\/report.js": {
         "Le fichier PDF ne peut pas être visualisé dans ce navigateur, veuillez le télécharger.": "O arquivo PDF não pode ser visualizado neste navegador, faça o seu download"
@@ -3068,7 +3068,7 @@
         "Widgets": "Widgets",
         "Nom du widget": "Nome do widget",
         "Sauvegarde effectuée avec succès": "Backup concluído com êxito",
-        "Configuration de la commande": "Configuração do pedido",
+        "Configuration de la commande": "Configuração do comando",
         "Êtes-vous sûr de vouloir supprimer le widget": "Tem certeza que deseja remover o widget",
         "L'import de widget se fait au format json à partir d'un widget précédemment exporté.": "A importação do widget é feita no formato json a partir de um widget exportado anteriormente",
         "Fichier json non compatible.": "Arquivo Json não compatível",
@@ -3331,6 +3331,7 @@
         "Variables": "Variáveis",
         "Recherche": "Pesquisar",
         "A propos": "Sobre",
+        "Demande de support": "Solicitação de suporte",
         "Centre de Messages": "Centro de Mensagens",
         "Erreur Javascript": "Erro de Javascript",
         "Action sur résumé": "Ação no resumo",

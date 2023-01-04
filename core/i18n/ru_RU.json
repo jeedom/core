@@ -2998,8 +2998,8 @@
         "Paramètres d\\'affichage": "Параметры отображения",
         "Configuration du composant": "Конфигурация компонента",
         "Configuration avancée": "Расширенные настройки",
-        "Annuler": "Отменить",
         "Valider": "Validate",
+        "Annuler": "Отменить",
         "Supprimer": "удаление",
         "Dupliquer": "дубликат",
         "Verrouiller": "Блокировка"
@@ -3331,6 +3331,7 @@
         "Variables": "Variables",
         "Recherche": "Recherche",
         "A propos": "о",
+        "Demande de support": "Demande de support",
         "Centre de Messages": "Centre de Messages",
         "Erreur Javascript": "Erreur Javascript",
         "Action sur résumé": "Action sur résumé",

@@ -2998,8 +2998,8 @@
         "Paramètres d\\'affichage": "Parameters \\ Tampilan",
         "Configuration du composant": "Configuration du composant",
         "Configuration avancée": "Konfigurasi lanjutan",
-        "Annuler": "Tidak jadi",
         "Valider": "Mengesahkan",
+        "Annuler": "Tidak jadi",
         "Supprimer": "Menghapus",
         "Dupliquer": "Duplikat",
         "Verrouiller": "Mengunci"
@@ -3331,6 +3331,7 @@
         "Variables": "Variables",
         "Recherche": "Recherche",
         "A propos": "A propos",
+        "Demande de support": "Demande de support",
         "Centre de Messages": "Centre de Messages",
         "Erreur Javascript": "Erreur Javascript",
         "Action sur résumé": "Action sur résumé",

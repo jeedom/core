@@ -644,7 +644,7 @@
         "Ouvrir configuration de la commande.": "Abrir configuración del comando",
         "Ouvrir la note.": "Abrir la nota",
         "Log d'exécution du scénario": "Log de ejecución del escenario",
-        "Configuration de la commande": "Configuración de pedidos"
+        "Configuration de la commande": "Configuración del comando"
     },
     "desktop\/modal\/report.bug.php": {
         "Attention nous avons detecté les soucis suivant :": "Atención hemos detectado las siguientes inquietudes:",
@@ -930,7 +930,7 @@
         "Jamais": "Nunca",
         "Purge": "Purga",
         "Action": "Acción",
-        "Configuration de la commande": "Configuración de pedidos",
+        "Configuration de la commande": "Configuración del comando",
         "Exporter la commande": "Exportar el comando",
         "Modifications sauvegardées avec succès": "Cambios guardados exitosamente",
         "Dossier": "Carpetas"
@@ -2875,7 +2875,7 @@
     "desktop\/js\/display.js": {
         "Configuration de l'objet": "Configuración del objeto",
         "Configuration de l'équipement": "Configuración del equipo",
-        "Configuration de la commande": "Configuración de pedidos",
+        "Configuration de la commande": "Configuración del comando",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "¿Estás seguro de que deseas eliminar todo este equipo?",
         "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "¿Está seguro de que desea borrar el historial de eliminación?",
         "Historique vidé avec succès": "EL histórico se vació con éxito"
@@ -2914,7 +2914,7 @@
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Quitar este filtro",
-        "Configuration de la commande": "Configuración de pedidos",
+        "Configuration de la commande": "Configuración de comandos",
         "L'import d'édition en masse se fait au format json.": "La importación de la edición masiva se realiza en formato json",
         "Problème lors de la lecture du fichier.": "Problema al leer el archivo"
     },
@@ -2998,8 +2998,8 @@
         "Paramètres d\\'affichage": "Pantalla de ajustes",
         "Configuration du composant": "Configuración de componentes",
         "Configuration avancée": "Configuración avanzada",
-        "Annuler": "Cancelar",
         "Valider": "Validar",
+        "Annuler": "Cancelar",
         "Supprimer": "Eliminar",
         "Dupliquer": "Duplicar",
         "Verrouiller": "Cerrar"
@@ -3022,7 +3022,7 @@
         "Ev ements de la timeline supprim  avec succ ": "Eventos de la línea de tiempo eliminados con éxito",
         "Log d'exécution du scénario": "Log de ejecución de la escena",
         "Historique": "Historial",
-        "Configuration de la commande": "Configuración de pedidos"
+        "Configuration de la commande": "Configuración del comando"
     },
     "desktop\/js\/report.js": {
         "Le fichier PDF ne peut pas être visualisé dans ce navigateur, veuillez le télécharger.": "El archivo PDF no se puede ver en este navegador, descárguelo"
@@ -3068,7 +3068,7 @@
         "Widgets": "Widgets",
         "Nom du widget": "Nombre del widget",
         "Sauvegarde effectuée avec succès": "Guardado correctamente",
-        "Configuration de la commande": "Configuración de pedidos",
+        "Configuration de la commande": "Configuración del comando",
         "Êtes-vous sûr de vouloir supprimer le widget": "¿Estás seguro de que quieres eliminar el widget?",
         "L'import de widget se fait au format json à partir d'un widget précédemment exporté.": "La importación del widget se realiza en formato json desde un widget exportado previamente",
         "Fichier json non compatible.": "El archivo Json no es compatible",
@@ -3331,6 +3331,7 @@
         "Variables": "Variables",
         "Recherche": "Buscar",
         "A propos": "A proposito",
+        "Demande de support": "Solicitud de soporte",
         "Centre de Messages": "Centro de mensajes",
         "Erreur Javascript": "Error de Javascript",
         "Action sur résumé": "Acción sobre el resumen",
@@ -4632,7 +4633,7 @@
         "Message de": "Mensaje de"
     },
     "core\/class\/timeline.class.php": {
-        "Configuration de la commande": "Configuración de pedidos",
+        "Configuration de la commande": "Configuración del comando",
         "Historique": "Historial",
         "Scénario déclenché par": "Escenario desencadenado por",
         "Aller au scénario": "Ir al escenario",

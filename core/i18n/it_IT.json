@@ -2998,8 +2998,8 @@
         "Paramètres d\\'affichage": "Impostazioni di visualizzazione",
         "Configuration du composant": "Configurazione del componente",
         "Configuration avancée": "Configurazione avanzata",
-        "Annuler": "Cancella",
         "Valider": "Convalidare",
+        "Annuler": "Cancella",
         "Supprimer": "Rimuovere",
         "Dupliquer": "Duplicato",
         "Verrouiller": "Blocco"
@@ -3331,6 +3331,7 @@
         "Variables": "Variables",
         "Recherche": "Recherche",
         "A propos": "Su",
+        "Demande de support": "Demande de support",
         "Centre de Messages": "Centre de Messages",
         "Erreur Javascript": "Errore Javascript",
         "Action sur résumé": "Action sur résumé",

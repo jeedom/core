@@ -2998,8 +2998,8 @@
         "Paramètres d\\'affichage": "ディスプレイ設定",
         "Configuration du composant": "コンポーネント構成",
         "Configuration avancée": "高度な構成",
-        "Annuler": "キャンセル",
         "Valider": "検証",
+        "Annuler": "キャンセル",
         "Supprimer": "取り除きます",
         "Dupliquer": "重複",
         "Verrouiller": "ロック"
@@ -3331,6 +3331,7 @@
         "Variables": "Variables",
         "Recherche": "Recherche",
         "A propos": "について",
+        "Demande de support": "Demande de support",
         "Centre de Messages": "メッセージセンター",
         "Erreur Javascript": "Javascriptエラー",
         "Action sur résumé": "Action sur résumé",

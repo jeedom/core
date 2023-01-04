@@ -644,7 +644,7 @@
         "Ouvrir configuration de la commande.": "Open command configuration",
         "Ouvrir la note.": "Open the note",
         "Log d'exécution du scénario": "Scenario execution log",
-        "Configuration de la commande": "Order Setup"
+        "Configuration de la commande": "Command setup"
     },
     "desktop\/modal\/report.bug.php": {
         "Attention nous avons detecté les soucis suivant :": "Attention we have detected the following concerns:",
@@ -930,7 +930,7 @@
         "Jamais": "Never",
         "Purge": "Purge",
         "Action": "Action",
-        "Configuration de la commande": "Order Setup",
+        "Configuration de la commande": "Command setup",
         "Exporter la commande": "Export the command",
         "Modifications sauvegardées avec succès": "Changes successfully saved",
         "Dossier": "Folder"
@@ -2875,7 +2875,7 @@
     "desktop\/js\/display.js": {
         "Configuration de l'objet": "Object configuration",
         "Configuration de l'équipement": "Equipment configuration",
-        "Configuration de la commande": "Order Setup",
+        "Configuration de la commande": "Command setup",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Are you sure you want to delete all of this equipment?",
         "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Are you sure you want to clear the deletion history?",
         "Historique vidé avec succès": "History emptied successfully"
@@ -2914,7 +2914,7 @@
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Remove this filter",
-        "Configuration de la commande": "Order Setup",
+        "Configuration de la commande": "Command configuration",
         "L'import d'édition en masse se fait au format json.": "The mass edition import is done in json format",
         "Problème lors de la lecture du fichier.": "Problem while reading the file"
     },
@@ -2998,8 +2998,8 @@
         "Paramètres d\\'affichage": "Display settings",
         "Configuration du composant": "Component configuration",
         "Configuration avancée": "Advanced configuration",
-        "Annuler": "Cancel",
         "Valider": "Validate",
+        "Annuler": "Cancel",
         "Supprimer": "Delete",
         "Dupliquer": "Duplicate",
         "Verrouiller": "Lock"
@@ -3022,7 +3022,7 @@
         "Ev ements de la timeline supprim  avec succ ": "Timeline events successfully deleted",
         "Log d'exécution du scénario": "Scenario execution log",
         "Historique": "History",
-        "Configuration de la commande": "Order Setup"
+        "Configuration de la commande": "Command setup"
     },
     "desktop\/js\/report.js": {
         "Le fichier PDF ne peut pas être visualisé dans ce navigateur, veuillez le télécharger.": "The PDF file cannot be viewed in this browser, please download it"
@@ -3068,7 +3068,7 @@
         "Widgets": "Widgets",
         "Nom du widget": "Widget name",
         "Sauvegarde effectuée avec succès": "Successfully saved",
-        "Configuration de la commande": "Order Setup",
+        "Configuration de la commande": "Command setup",
         "Êtes-vous sûr de vouloir supprimer le widget": "Are you sure you want to remove the widget",
         "L'import de widget se fait au format json à partir d'un widget précédemment exporté.": "The widget import is done in json format from a previously exported widget",
         "Fichier json non compatible.": "Json file not compatible",
@@ -3331,6 +3331,7 @@
         "Variables": "Variables",
         "Recherche": "Search",
         "A propos": "About",
+        "Demande de support": "Support request",
         "Centre de Messages": "Message Center",
         "Erreur Javascript": "Javascript error",
         "Action sur résumé": "Action on summary",
@@ -4632,7 +4633,7 @@
         "Message de": "Message from"
     },
     "core\/class\/timeline.class.php": {
-        "Configuration de la commande": "Order Setup",
+        "Configuration de la commande": "Command setup",
         "Historique": "History",
         "Scénario déclenché par": "Scenario triggered by",
         "Aller au scénario": "Go to scenario",
