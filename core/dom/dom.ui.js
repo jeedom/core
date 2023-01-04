@@ -36,6 +36,9 @@ domUtils.hideLoading = function() {
   clearTimeout(domUtils.loadingTimeout)
 }
 
+/* HTMLCollection is live, NodeList is static and iterable
+*/
+//HTMLCollection.prototype.forEach = Array.prototype.forEach
 
 /* Shortcuts Functions
 */
@@ -1261,7 +1264,7 @@ var jeeDialog = (function()
           show: true,
           retainPosition: false,
           contentUrl: '',
-          zIndex: 1020,
+          zIndex: 1019,
           width: '90vw',
           height: '60vh',
           top: '10vh',

@@ -86,7 +86,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               </div>
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Nom}}</label>
-                <div class="col-xs-4">
+                <div class="col-xs-8">
                   <span class="cmdAttr label label-primary" data-l1key="name"></span>
                 </div>
               </div>
@@ -847,23 +847,20 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 </div>
 
 <script>
-  if ($('body').attr('data-page') == "widgets") {
-    $('a[href="#cmd_display"]').click()
+  if (document.body.getAttribute('data-page') == "widgets") {
+    document.querySelector('a[href="#cmd_display"]').click()
   }
-
   if (jeephp2js.md_cmdConfigure_cmdInfo.type == 'info') {
-    $('#bt_cmdConfigureTest').remove()
-    $('#bt_cmdConfigureGraph').addClass('roundedLeft')
+    document.getElementById('bt_cmdConfigureTest').remove()
+    document.getElementById('bt_cmdConfigureGraph').remove()
   }
 
   //modal title:
   var title = '{{Configuration commande}}'
   title += ' : ' + jeephp2js.md_cmdConfigure_cmdInfo.eqLogicHumanName
   title += ' <span class="cmdName">[' + jeephp2js.md_cmdConfigure_cmdInfo.name + '] <em>(' + jeephp2js.md_cmdConfigure_cmdInfo.type + ')</em></span>'
-  $('#cmdConfigureTab').parents('.ui-dialog').find('.ui-dialog-title').html(title)
-  if ($('#eqLogicConfigureTab').length) {
-    $('#cmdConfigureTab').parents('.ui-dialog').css('top', "50px")
-  }
+  var modal = document.getElementById('cmdConfigureTab').closest('.jeeDialogMain')
+  modal.querySelector('div.jeeDialogTitle > span.title').innerHTML = title
 
   //widgets default if empty:
   var dashWidget = $('select[data-l2key="dashboard"]')

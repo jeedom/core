@@ -581,9 +581,11 @@ $("#bt_addWidgets").off('click').on('click', function(event) {
 })
 
 $('#div_usedBy').off('click', '.cmdAdvanceConfigure').on('click', '.cmdAdvanceConfigure', function() {
-  $('#md_modal').dialog({
-    title: "{{Configuration de la commande}}"
-  }).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-cmd_id')).dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal2',
+    title: '{{Configuration de la commande}}',
+    contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + this.getAttribute('data-cmd_id')
+  })
 })
 
 $(".widgetsDisplayCard").off('click').on('click', function(event) {

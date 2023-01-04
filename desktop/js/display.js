@@ -269,16 +269,20 @@ $('.configureEqLogic').off('click').on('click', function() {
 })
 
 $('.configureCmd').off('click').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Configuration de la commande}}"
-  }).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-id')).dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal2',
+    title: '{{Configuration de la commande}}',
+    contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + this.closest('.cmd').getAttribute('data-id')
+  })
 })
 
 $('.cmd').off('dblclick').on('dblclick', function() {
   if ($(this).find('.configureCmd').length) {
-    $('#md_modal').dialog({
-      title: "{{Configuration de la commande}}"
-    }).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal2',
+      title: '{{Configuration de la commande}}',
+      contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + this.closest('.cmd').getAttribute('data-id')
+    })
   }
 })
 

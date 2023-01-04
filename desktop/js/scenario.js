@@ -2046,7 +2046,11 @@ document.getElementById('generaltab').addEventListener('click', function(event) 
   if (event.target.matches('.action_link')) {
     jeedomUtils.hideAlert()
     var cmdId = event.target.getAttribute('data-cmd_id')
-    $('#md_modal').dialog().load('index.php?v=d&modal=cmd.configure&cmd_id=' + cmdId).dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal2',
+      title: '{{Configuration de la commande}}',
+      contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + cmdId
+    })
     return
   }
 

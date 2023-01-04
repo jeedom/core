@@ -57,7 +57,7 @@ if (!jeeFrontEnd.view) {
         return
       }
       var divEquipements = $('.div_displayView')
-      if (_mode == 0 || _mode == '0') {
+      if (_mode == 0 || _mode == '0') { //Exit edit mode:
         jeeFrontEnd.modifyWithoutSave = false
         jeedomUI.isEditing = false
         jeedom.cmd.disableExecute = false
@@ -67,11 +67,12 @@ if (!jeeFrontEnd.view) {
         divEquipements.find('.cmd.editOptions').remove()
 
         if (!isset(_save) || _save) {
+          document.getElementById('md_dashEdit')?.remove()
           jeedomUI.saveWidgetDisplay({
             view: 1
           })
         }
-      } else {
+      } else { //Enter edit mode!
         jeedomUI.isEditing = true
         jeedom.cmd.disableExecute = true
         $('.eqLogic-widget, .scenario-widget').addClass('editingMode')
@@ -165,14 +166,14 @@ $('#div_pageContainer').on('click', '.bt_gotoViewZone', function() {
 })
 
 $('#bt_editViewWidgetOrder').off('click').on('click', function() {
-  if ($(this).attr('data-mode') == 1) {
-    $('#md_modal').dialog('close')
+  if (this.getAttribute('data-mode') == '1') {
+    document.getElementById('md_dashEdit')?.remove()
     jeedomUtils.hideAlert()
-    $(this).attr('data-mode', 0)
-    $('.counterReorderJeedom').remove()
+    this.setAttribute('data-mode', 0)
+    document.querySelectorAll('.counterReorderJeedom').remove()
     jeeP.editWidgetMode(0)
   } else {
-    $(this).attr('data-mode', 1)
+    this.setAttribute('data-mode', 1)
     jeeP.editWidgetMode(1)
   }
 })
@@ -284,10 +285,31 @@ $('.bt_displayView').on('click', function() {
 
 $('#div_pageContainer').on({
   'click': function(event) {
-    var eqId = $(this).closest('.eqLogic-widget').attr('data-eqlogic_id')
-    $('#md_modal').dialog({
-      title: "{{Configuration Affichage}}"
-    }).load('index.php?v=d&modal=eqLogic.dashboard.edit&eqLogic_id=' + eqId).dialog('open')
+    var eqId = this.closest('.eqLogic-widget').getAttribute('data-eqlogic_id')
+    jeeDialog.dialog({
+      id: 'md_dashEdit',
+      width: '600px',
+      height: '500px',
+      top: '15vh',
+      buttons: {
+        confirm: {
+          label: '<i class="fa fa-check"></i> {{Appliquer}}',
+          className: 'success',
+          callback: {
+            click: function(event) {
+              editSaveEqlogic()
+            }
+          }
+        },
+        cancel: {
+          className: 'hidden'
+        }
+      },
+      retainPosition: true,
+      zIndex: 1021,
+      backdrop: false,
+      contentUrl: 'index.php?v=d&modal=eqLogic.dashboard.edit&eqLogic_id=' + eqId
+    })
   }
 }, '.editOptions')
 

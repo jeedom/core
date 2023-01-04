@@ -551,7 +551,6 @@
         "Retour à la ligne avant": "Retour à la ligne avant",
         "Retour à la ligne après": "Retour à la ligne après",
         "Configuration de la tuile": "Configuration de la tuile",
-        "Sauvegarder": "Salva",
         "Pas de description des paramètres optionnels sur ce Widget": "Pas de description des paramètres optionnels sur ce Widget"
     },
     "desktop\/modal\/eqLogic.human.insert.php": {
@@ -2804,7 +2803,7 @@
         "Configuration de l\\'objet": "Oggetto Configuration \\ 's"
     },
     "desktop\/js\/view.js": {
-        "Configuration Affichage": "Configuration Affichage"
+        "Appliquer": "Appliquer"
     },
     "desktop\/js\/view_edit.js": {
         "Modification enregistrée": "Cambiamento registrato",
@@ -2964,7 +2963,8 @@
         "Jeedom benchmark": "Punto di riferimento Jeedom"
     },
     "desktop\/js\/dashboard.js": {
-        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder"
+        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder",
+        "Appliquer": "Appliquer"
     },
     "desktop\/js\/plan.js": {
         "Nom du design ?": "Nome del design?",

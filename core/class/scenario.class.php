@@ -42,6 +42,7 @@ class scenario {
 	private $_elements = array();
 	private $_changeState = false;
 	private $_realTrigger = '';
+	private $_realTriggerValue = '';
 	private $_return = true;
 	private $_tags = array();
 	private $_do = true;
@@ -855,6 +856,7 @@ class scenario {
 				$timeline->setOptions(array('trigger' => $cmd->getHumanName(true)));
 				$timeline->save();
 			}
+			$_triggerValue=$cmd->execCmd();
 		} else {
 			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('déclenché par :', __FILE__) . ' ' . $_trigger);
 			if ($this->getConfiguration('timeline::enable')) {
@@ -866,6 +868,7 @@ class scenario {
 				$timeline->setOptions(array('trigger' => ($_trigger == 'schedule') ? 'programmation' : $_trigger));
 				$timeline->save();
 			}
+			$_triggerValue='none';
 		}
 		if ($this->getState() == 'in progress' && $this->getConfiguration('allowMultiInstance', 0) == 0) {
 			return;
@@ -879,6 +882,7 @@ class scenario {
 		$this->setState('in progress');
 		$this->setPID(getmypid());
 		$this->setRealTrigger($_trigger);
+		$this->setRealTriggerValue($_triggerValue);
 		foreach (($this->getElement()) as $element) {
 			if (!$this->getDo()) {
 				break;
@@ -1411,6 +1415,9 @@ class scenario {
 			}
 			if (isset($return['_realTrigger'])) {
 				unset($return['_realTrigger']);
+			}
+			if (isset($return['_realTriggerValue'])) {
+				unset($return['_realTriggerValue']);
 			}
 			if (isset($return['_templateArray'])) {
 				unset($return['_templateArray']);
@@ -2022,6 +2029,22 @@ class scenario {
 	 */
 	public function setRealTrigger($_realTrigger) {
 		$this->_realTrigger = $_realTrigger;
+		return $this;
+	}
+	/**
+	 *
+	 * @return type
+	 */
+	public function getRealTriggerValue() {
+		return $this->_realTriggerValue;
+	}
+	/**
+	 *
+	 * @param type $_realTriggerValue
+	 * @return $this
+	 */
+	public function setRealTriggerValue($_realTriggerValue) {
+		$this->_realTriggerValue = $_realTriggerValue;
 		return $this;
 	}
 	/**

@@ -551,7 +551,6 @@
         "Retour à la ligne avant": "Ajuste de línea antes",
         "Retour à la ligne après": "Ajuste de línea después",
         "Configuration de la tuile": "Configuración de mosaico",
-        "Sauvegarder": "Guardar",
         "Pas de description des paramètres optionnels sur ce Widget": "No hay descripción de parámetros opcionales en este Widget"
     },
     "desktop\/modal\/eqLogic.human.insert.php": {
@@ -2804,7 +2803,7 @@
         "Configuration de l\\'objet": "Objeto de configuración \\'s"
     },
     "desktop\/js\/view.js": {
-        "Configuration Affichage": "Configuración de pantalla"
+        "Appliquer": "Solicitar"
     },
     "desktop\/js\/view_edit.js": {
         "Modification enregistrée": "Modificación registrada",
@@ -2964,7 +2963,8 @@
         "Jeedom benchmark": "Punto de referencia de Jeedom"
     },
     "desktop\/js\/dashboard.js": {
-        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": "Estás en modo de edición. Puede mover los mosaicos, cambiar su tamaño y editar los comandos (orden, widget) con el botón a la derecha del título. No olvide salir del modo de edición para guardar"
+        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": "Estás en modo de edición. Puede mover los mosaicos, cambiar su tamaño y editar los comandos (orden, widget) con el botón a la derecha del título. No olvide salir del modo de edición para guardar",
+        "Appliquer": "Solicitar"
     },
     "desktop\/js\/plan.js": {
         "Nom du design ?": "¿El nombre del diseño?",

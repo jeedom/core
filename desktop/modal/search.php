@@ -742,8 +742,12 @@ if (!jeeFrontEnd.md_search) {
 
   $('#table_CmdSearch').on({
     'click': function(event) {
-      var tr = $(this).closest('tr')
-      $('#md_modal2').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + tr.attr('data-id')).dialog('open')
+      var tr = this.closest('tr')
+      jeeDialog.dialog({
+        id: 'jee_modal2',
+        title: '{{Configuration de la commande}}',
+        contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + tr.getAttribute('data-id')
+      })
     }
   }, '.bt_openCmd')
 

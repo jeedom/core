@@ -273,9 +273,11 @@ $('#timelineContainer ul').on('click', '.bt_historicCmd', function() {
 })
 
 $('#timelineContainer ul').on('click', '.bt_configureCmd', function() {
-  $('#md_modal').dialog({
-    title: "{{Configuration de la commande}}"
-  }).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.tml-cmd').attr('data-id')).dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal2',
+    title: '{{Configuration de la commande}}',
+    contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + this.closest('.tml-cmd').getAttribute('data-id')
+  })
 })
 
 $('#bt_refreshTimeline').on('click', function() {
