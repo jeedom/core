@@ -1335,9 +1335,6 @@ var jeeDialog = (function()
         document.body.appendChild(dialogContainer)
       }
 
-      //DEBUG:
-      _options.title = '[jeeDialog] ' + _options.title
-
       //First initialize dialog:
       if (dialogContainer._jeeDialog == undefined) {
         var defaultOptions = this.setDialogDefaults({
@@ -1423,6 +1420,7 @@ var jeeDialog = (function()
             this.dialog._jeeDialog.options.beforeClose()
             this.dialog.querySelector('div.jeeDialogContent').empty()
             this.dialog.unseen()
+            this.dialog._jeeDialog.options.onClose()
           },
           destroy: function() {
             document.getElementById('jeeDialogBackdrop')?.remove()
