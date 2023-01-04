@@ -443,12 +443,11 @@ document.getElementById('in_searchDashboard')?.addEventListener('keyup', functio
 
 //Edit mode:
 document.getElementById('bt_editDashboardWidgetOrder')?.addEventListener('click', function(event) {
-  var bt =  event.target.matches('#bt_editDashboardWidgetOrder') ? event.target : event.target.parentNode
+  var bt = event.target.matches('#bt_editDashboardWidgetOrder') ? event.target : event.target.parentNode
   if (bt.getAttribute('data-mode') == 1) {
     bt.setAttribute('data-mode', 0)
     jeedomUtils.hideAlert()
     jeeFrontEnd.modifyWithoutSave = false
-    $('#md_modal').dialog('close')
     jeedomUtils.enableTooltips()
     document.querySelectorAll('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').unseen()
     document.querySelectorAll('.counterReorderJeedom').remove()
@@ -490,8 +489,6 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       backdrop: false,
       contentUrl: 'index.php?v=d&modal=eqLogic.dashboard.edit&eqLogic_id=' + eqId
     })
-
-    //$('#md_modal').load('index.php?v=d&modal=eqLogic.dashboard.edit&eqLogic_id=' + eqId).dialog('open')
     return
   }
 

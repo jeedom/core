@@ -1101,9 +1101,11 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         },
         callback: function(key, opt) {
           jeeP.savePlan(false, false)
-          $('#md_modal').dialog({
-            title: "{{Configuration du design}}"
-          }).load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + jeephp2js.planHeader_id).dialog('open')
+          jeeDialog.dialog({
+            id: 'jee_modal',
+            title: '{{Configuration du design}}',
+            contentUrl: 'index.php?v=d&modal=planHeader.configure&planHeader_id=' + jeephp2js.planHeader_id
+          })
         }
       },
       sep3: "---------",
@@ -1142,9 +1144,11 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         icon: 'fas fa-cogs',
         callback: function(key, opt) {
           jeeP.savePlan(false, false)
-          $('#md_modal').dialog({
-            title: "{{Configuration du composant}}"
-          }).load('index.php?v=d&modal=plan.configure&id=' + opt.$trigger[0].getAttribute('data-plan_id')).dialog('open')
+          jeeDialog.dialog({
+            id: 'jee_modal',
+            title: '{{Configuration du composant}}',
+            contentUrl: 'index.php?v=d&modal=plan.configure&id=' + opt.$trigger[0].getAttribute('data-plan_id')
+          })
         }
       },
       configuration: {
@@ -1159,51 +1163,60 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
           if (info.type == 'graph') {
             var dom_el = this
             if (dom_el.length) dom_el = dom_el[0]
-
-            $('#md_modal').load('index.php?v=d&modal=cmd.graph.select', function() {
-              document.querySelectorAll('#table_addViewData tbody tr .enable').forEach(_check => { _check.checked = false})
-              var options = json_decode(dom_el.querySelector('.graphOptions').jeeValue())
-              for (var i in options) {
-                var tr = document.querySelector('#table_addViewData tbody tr[data-link_id="' + options[i].link_id + '"]')
-                tr.querySelector('.enable').jeeValue(1)
-                tr.setJeeValues(options[i], '.graphDataOption')
-              }
-
-              //set modal options:
-              $('#md_modal').dialog({
-                title: "{{Configuration avancée}}"
-              })
-              var buttons = {}
-              var closeButtonText = "{{Annuler}}"
-              var validateButtonText = "{{Valider}}"
-              buttons[closeButtonText] = function() {
-                $(this).dialog("close")
-              }
-              buttons[validateButtonText] = function() {
-                var options = []
-                document.querySelectorAll('#table_addViewData tbody tr').forEach(_tr => {
-                  if (_tr.querySelector('.enable').checked == true) {
-                    var graphData = _tr.getJeeValues('.graphDataOption')[0]
-                    graphData.link_id = _tr.getAttribute('data-link_id')
-                    options.push(graphData)
+            jeeDialog.dialog({
+              id: 'jee_modalGraph',
+              title: '{{Configuration avancée}}',
+              width: '100%',
+              height: 'calc(100% - 50px)',
+              top: '50px',
+              buttons: {
+                confirm: {
+                  label: '{{Valider}}',
+                  className: 'success',
+                  callback: {
+                    click: function(event) {
+                      var options = []
+                      document.querySelectorAll('#table_addViewData tbody tr').forEach(_tr => {
+                        if (_tr.querySelector('.enable').checked == true) {
+                          var graphData = _tr.getJeeValues('.graphDataOption')[0]
+                          graphData.link_id = _tr.getAttribute('data-link_id')
+                          options.push(graphData)
+                        }
+                      })
+                      dom_el.querySelector('.graphOptions').empty().append(JSON.stringify(options))
+                      jeeP.savePlan(true)
+                      jeeFrontEnd.plan.setGraphResizes()
+                      event.target.closest('#jee_modalGraph')._jeeDialog.destroy()
+                    }
                   }
-                })
-                dom_el.querySelector('.graphOptions').empty().append(JSON.stringify(options))
-                jeeP.savePlan(true)
-                jeeFrontEnd.plan.setGraphResizes()
-                $(this).dialog('close')
+                },
+                cancel: {
+                  label: '{{Annuler}}',
+                  className: 'warning',
+                  callback: {
+                    click: function(event) {
+                      event.target.closest('#jee_modalGraph')._jeeDialog.destroy()
+                    }
+                  }
+                }
+              },
+              contentUrl: 'index.php?v=d&modal=cmd.graph.select',
+              callback: function() {
+                document.querySelectorAll('#table_addViewData tbody tr .enable').forEach(_check => { _check.checked = false})
+                var options = json_decode(dom_el.querySelector('.graphOptions').jeeValue())
+                for (var i in options) {
+                  var tr = document.querySelector('#table_addViewData tbody tr[data-link_id="' + options[i].link_id + '"]')
+                  tr.querySelector('.enable').jeeValue(1)
+                  tr.setJeeValues(options[i], '.graphDataOption')
+                }
               }
-              $('#md_modal').dialog({
-                buttons: buttons
-              })
-
-              $('#md_modal').on("dialogclose", function(event, ui) {
-                this.closest('div.ui-dialog')?.querySelector('div.ui-dialog-buttonpane')?.remove()
-              })
-              $('#md_modal').dialog('open')
             })
           } else {
-            $('#md_modal').load('index.php?v=d&modal=' + info.type + '.configure&' + info.type + '_id=' + info.id).dialog('open')
+            jeeDialog.dialog({
+              id: 'jee_modal',
+              title: '{{Configuration avancée}}',
+              contentUrl: 'index.php?v=d&modal=' + info.type + '.configure&' + info.type + '_id=' + info.id
+            })
           }
         }
       },

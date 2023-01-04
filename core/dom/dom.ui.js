@@ -1461,6 +1461,7 @@ var jeeDialog = (function()
       if (_options.contentUrl != '') {
         dialogContainer.querySelector('div.jeeDialogContent').load(_options.contentUrl, function() {
           if (_options.callback) _options.callback()
+          jeedomUtils.initTooltips()
         })
       }
       if (_options.show) {
