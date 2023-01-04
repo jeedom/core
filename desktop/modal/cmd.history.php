@@ -62,8 +62,7 @@ if (!jeeFrontEnd.md_history) {
       this.modal = document.getElementById('div_modalGraph').closest('div.jeeDialogMain')
       this.modalContent = this.modal.querySelector('div.jeeDialogContent')
       this.modalContent.style.overflow = 'hidden'
-      if (this.modal.data == undefined) this.modal.data = {}
-      this.modal._jeeDialog.options.onResize = function(event) {
+      jeeDialog.get(this.modal).options.onResize = function(event) {
         self.resizeHighChartModal()
       }
 

@@ -240,8 +240,7 @@ if (!jeeFrontEnd.md_search) {
         table.trigger('resizableReset')
         table.trigger('sorton', [[[0,0]]])
       })
-      this.modal = document.getElementById('table_ScenarioSearch').closest('div.jeeDialogMain')
-      this.modal._jeeDialog.options.onResize = function(event) { self.updateTableSorters() }
+      jeeDialog.get('#table_ScenarioSearch').options.onResize = function(event) { self.updateTableSorters() }
       jeedomUtils.initTooltips()
     },
     emptyResultTables: function() {

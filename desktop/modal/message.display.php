@@ -87,9 +87,13 @@ if ($selectPlugin != '') {
     .trigger('update')
 
   $("#sel_plugin").on('change', function(event) {
-    $('#md_modal').dialog({
-      title: "{{Centre de Messages}}"
-    }).load('index.php?v=d&modal=message.display&selectPlugin=' + encodeURI(document.getElementById('sel_plugin').jeeValue())).dialog('open')
+    jeeDialog.get(event.target).options.retainPosition = true
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Centre de Messages}}",
+      contentUrl: 'index.php?v=d&modal=message.display&selectPlugin=' + encodeURI(document.getElementById('sel_plugin').jeeValue())
+    })
+    jeeDialog.get(event.target).options.retainPosition = false
   })
 
   $("#bt_clearMessage").on('click', function(event) {
@@ -109,9 +113,13 @@ if ($selectPlugin != '') {
   })
 
   $('#bt_refreshMessage').on('click', function(event) {
-    $('#md_modal').dialog({
-      title: "{{Centre de Messages}}"
-    }).load('index.php?v=d&modal=message.display').dialog('open')
+    jeeDialog.get(event.target).options.retainPosition = true
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Centre de Messages}}",
+      contentUrl: 'index.php?v=d&modal=message.display'
+    })
+    jeeDialog.get(event.target).options.retainPosition = false
   })
 
   $('#table_message').on({
@@ -134,8 +142,7 @@ if ($selectPlugin != '') {
     }
   }, '.removeMessage')
 
-  var modal = document.getElementById('table_message').closest('div.jeeDialogMain')
-  modal._jeeDialog.options.onResize = function(event) {
+  jeeDialog.get('#table_message').options.onResize = function(event) {
     $('#table_message').trigger("update")
   }
 

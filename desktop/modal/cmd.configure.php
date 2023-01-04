@@ -859,8 +859,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
   var title = '{{Configuration commande}}'
   title += ' : ' + jeephp2js.md_cmdConfigure_cmdInfo.eqLogicHumanName
   title += ' <span class="cmdName">[' + jeephp2js.md_cmdConfigure_cmdInfo.name + '] <em>(' + jeephp2js.md_cmdConfigure_cmdInfo.type + ')</em></span>'
-  var modal = document.getElementById('cmdConfigureTab').closest('.jeeDialogMain')
-  modal.querySelector('div.jeeDialogTitle > span.title').innerHTML = title
+  jeeDialog.get('#cmdConfigureTab', 'title').querySelector('span.title').innerHTML = title
 
   //widgets default if empty:
   var dashWidget = $('select[data-l2key="dashboard"]')

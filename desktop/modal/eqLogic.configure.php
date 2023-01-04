@@ -481,8 +481,7 @@ sendVarToJS([
   var title = "{{Configuration de l'équipement}}"
   title += ' : ' + jeephp2js.md_eqLogicConfigure_Info.name
   title += ' <span class="cmdName"><em>(' + jeephp2js.md_eqLogicConfigure_Info.eqType_name + ')</em></span>'
-  var modal = document.getElementById('eqLogicConfigureTab').closest('.jeeDialogMain')
-  modal.querySelector('div.jeeDialogTitle > span.title').innerHTML = title
+  jeeDialog.get('#eqLogicConfigureTab', 'title').querySelector('span.title').innerHTML = title
 
   //check some values:
   var nbColumn = document.querySelector('input[data-l2key="layout::dashboard::table::nbColumn"]').value

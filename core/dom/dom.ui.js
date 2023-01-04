@@ -736,6 +736,7 @@ var jeeDialog = (function()
       var template = document.createElement('template')
       //Title part and close button:
       if (_params.setTitle) {
+
         var dialogTitle = document.createElement('div')
         dialogTitle.addClass('jeeDialogTitle')
         if (_params.title != '') {
@@ -842,6 +843,31 @@ var jeeDialog = (function()
       } else {
         document.getElementById('jeeDialogBackdrop')?.remove()
       }
+    }
+
+    /* getter
+    jeeDialog.get('#eqLogicConfigureTab', 'dialog')
+    jeeDialog.get(element, 'options')
+    jeeDialog.get(element, 'title')
+    eeDialog.get(element).destroy()
+    */
+    exports.get = function(_el, _option = '') {
+      if (!isset(_option) || _option == '') _option = 'options'
+      if (typeof _el === 'string') {
+        _el = document.querySelector(_el)
+      }
+      if (_option == 'options') {
+        return _el.closest('div.jeeDialog')._jeeDialog
+      } else if (_option == 'dialog') {
+        return _el.closest('div.jeeDialog')
+      } else if (_option == 'title') {
+        return _el.closest('div.jeeDialog').querySelector('div.jeeDialogTitle')
+      } else if (_option == 'content') {
+        return _el.closest('div.jeeDialog').querySelector('div.jeeDialogContent')
+      } else if (_option == 'footer') {
+        return _el.closest('div.jeeDialog').querySelector('div.jeeDialogFooter')
+      }
+      return null
     }
 
     /*________________PROMPTS
