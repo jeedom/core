@@ -742,9 +742,9 @@ var jeeDialog = (function()
           dialogTitle.addClass('jeeDialogTitle')
           let html = '<span class="title">' + _params.title + '</span>'
           html += '<div class="titleButtons">'
-          html += '<button class="btClose" type="button"><i class="fas fa-times"></i></button>'
-          html += '<button class="btToggleMaximize" type="button" data-state="0"><i class="far fa-window-maximize"></i></button>'
-          //html += '<button class="btMinimize" type="button"><i class="far fa-window-minimize"></i></button>'
+          html += '<button class="btClose" type="button"></button>'
+          html += '<button class="btToggleMaximize" type="button" data-state="0"></button>'
+          //html += '<button class="btMinimize" type="button"></button>'
           html += '</div>'
           dialogTitle.innerHTML = html
           template.appendChild(dialogTitle)
@@ -768,7 +768,6 @@ var jeeDialog = (function()
               dialog.style.left = 0
               dialog.style.top = '50px'
               dialog.style.zIndex = 1200
-              btn.querySelector('i').classList = 'fas fa-window-restore'
               btn.setAttribute('data-state', '1')
             } else { //Restore pos
               let pos = JSON.parse(btn.getAttribute('data-size'))
@@ -777,7 +776,6 @@ var jeeDialog = (function()
               dialog.style.left = pos.left
               dialog.style.top = pos.top
               dialog.style.zIndex = pos.zIndex
-              btn.querySelector('i').classList = 'far fa-window-maximize'
               btn.setAttribute('data-state', '0')
               btn.removeAttribute('data-size')
             }
@@ -795,7 +793,7 @@ var jeeDialog = (function()
         else {
           var dialogTitle = document.createElement('div')
           dialogTitle.addClass('jeeDialogTitle')
-          dialogTitle.innerHTML = '<span class="title">' + _params.title + '</span><button class="btClose" type="button">×</button>'
+          dialogTitle.innerHTML = '<span class="title">' + _params.title + '</span><button class="btClose" type="button"></button>'
           template.appendChild(dialogTitle)
 
           dialogTitle.querySelector(':scope > .btClose').addEventListener('click', function(event) {
@@ -1411,7 +1409,6 @@ var jeeDialog = (function()
             if (!_options.retainPosition || this.dialog.style.width == '') {
               setPosition(this.dialog, _options)
               let btn = this.dialog.querySelector('button.btToggleMaximize')
-              btn.querySelector('i').classList = 'far fa-window-maximize'
               btn.setAttribute('data-state', '0')
               btn.removeAttribute('data-size')
             }

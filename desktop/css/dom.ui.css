@@ -142,16 +142,22 @@ div.jeeDialogTitle {
   font-weight: 500;
   line-height: 21px;
 }
-div.jeeDialogTitle button {
+div.jeeDialog > div.jeeDialogTitle button {
   float: right;
-  font-size: 21px !important;
-  font-weight: 700;
   line-height: 18px;
-  width: 32px;
-  font-size: 18px;
-  color: var(--link-color);
-  background: transparent;
+  width: 18px;
+  height: 18px;
+  margin-left: 10px;
+  background-size: 72px 18px;
   border: none;
+  opacity: 0.7
+}
+[data-theme*="Dark"] div.jeeDialog:not(.jeeDialogMain) > div.jeeDialogTitle > button {
+  filter: invert(1);
+}
+div.jeeDialog:not(.jeeDialogMain) > div.jeeDialogTitle > button.btClose {
+  background: url('../../core/img/win_icons.png') no-repeat scroll -55px 0px;
+  background-size: 72px 18px;
 }
 div.jeeDialogContent {
   min-height: 20px;
@@ -181,7 +187,11 @@ div.jeeDialogFooter {
 }
 div.jeeDialog button:focus,
 div.jeeDialog button:hover {
-  opacity: .75;
+  opacity: .8;
+}
+div.jeeDialog > div.jeeDialogTitle button:focus,
+div.jeeDialog > div.jeeDialogTitle button:hover {
+  opacity: .5;
 }
 div.jeeDialogFooter button {
   font-size: 12px;
@@ -246,11 +256,26 @@ div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > button.btClose {
 div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons {
   position: absolute;
   top: 4px;
-  right: 5px;
+  right: 10px;
 }
-div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button {
-  font-size: 18px !important;
-  color: rgb(var(--bg-color));
+[data-theme*="Light"] div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button {
+  filter: invert(1);
+}
+div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button.btClose {
+  background: url('../../core/img/win_icons.png') no-repeat scroll -55px 0px;
+  background-size: 72px 18px;
+}
+div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button.btToggleMaximize {
+  background: url('../../core/img/win_icons.png') no-repeat scroll -36px 0px;
+  background-size: 72px 18px;
+}
+div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button.btToggleMaximize[data-state="1"] {
+  background: url('../../core/img/win_icons.png') no-repeat scroll -18px 0px;
+  background-size: 72px 18px;
+}
+div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button.minimize {
+  background: url('../../core/img/win_icons.png') no-repeat scroll 0 0;
+  background-size: 72px 18px;
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogContent {
   position: relative;
