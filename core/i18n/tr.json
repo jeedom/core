@@ -2998,8 +2998,8 @@
         "Paramètres d\\'affichage": "Ekran ayarları",
         "Configuration du composant": "Configuration du composant",
         "Configuration avancée": "Gelişmiş ayarlar",
-        "Annuler": "Iptal et",
         "Valider": "Onaylayın",
+        "Annuler": "Iptal et",
         "Supprimer": "Sil",
         "Dupliquer": "Kopyala",
         "Verrouiller": "Kilitle"
@@ -3331,6 +3331,7 @@
         "Variables": "Variables",
         "Recherche": "Recherche",
         "A propos": "Hakkında",
+        "Demande de support": "Demande de support",
         "Centre de Messages": "Centre de Messages",
         "Erreur Javascript": "Erreur Javascript",
         "Action sur résumé": "Action sur résumé",
