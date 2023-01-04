@@ -1066,6 +1066,7 @@
         "Changement de pile": "Changement de pile",
         "Attention si": "Attention si",
         "Configuration de l'équipement": "Configuration de l'équipement",
+        "Configuration de la commande": "Configuration de la commande",
         "Graphique des liens": "Linkler grafiği",
         "Informations brutes": "Brüt bilgiler",
         "Sauvegarde réussie": "Kayıt başarılı",
@@ -3152,7 +3153,7 @@
     },
     "desktop\/js\/eqAnalyse.js": {
         "Supprimée le": "Supprimée le",
-        "Configuration commande": "Komuta ayarları",
+        "Configuration de la commande": "Configuration de la commande",
         "Configuration de l'équipement": "Cihazın ayarları",
         "Configuration en masse": "Configuration en masse"
     },
@@ -3298,6 +3299,7 @@
         "Lancement du scénario réussi": "Senaryonun başlatılması başarılı",
         "Arrêt du scénario réussi": "Senaryonun durdurulması başarılı",
         "Êtes-vous sûr de vouloir supprimer le scénario": "Senaryoyu silmek istemenizden eminmisiniz",
+        "Configuration de la commande": "Configuration de la commande",
         "Edition": "Edition",
         "Êtes-vous sûr de vouloir supprimer ce bloc ?": "Êtes-vous sûr de vouloir supprimer ce bloc ?",
         "Le bloc Sinon ne peut être masqué s'il contient des éléments.": "Le bloc Sinon ne peut être masqué s'il contient des éléments",

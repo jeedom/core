@@ -644,7 +644,7 @@
         "Ouvrir configuration de la commande.": "Offene Auftragskonfiguration",
         "Ouvrir la note.": "Öffnen Sie die Notiz",
         "Log d'exécution du scénario": "Ausführungs Protokoll des Szenarios",
-        "Configuration de la commande": "Befehl Konfiguration"
+        "Configuration de la commande": "Bestellung einrichten"
     },
     "desktop\/modal\/report.bug.php": {
         "Attention nous avons detecté les soucis suivant :": "Achtung, wir haben folgende Bedenken festgestellt:",
@@ -930,7 +930,7 @@
         "Jamais": "Noch nie",
         "Purge": "Spülen",
         "Action": "Aktion",
-        "Configuration de la commande": "Befehl Konfiguration",
+        "Configuration de la commande": "Bestellung einrichten",
         "Exporter la commande": "Exportieren Sie die Bestellung",
         "Modifications sauvegardées avec succès": "Änderungen erfolgreich gespeichert",
         "Dossier": "Rekord"
@@ -1066,6 +1066,7 @@
         "Changement de pile": "Batteriewechsel",
         "Attention si": "Seien Sie vorsichtig, wenn",
         "Configuration de l'équipement": "Gerätekonfiguration",
+        "Configuration de la commande": "Bestellung einrichten",
         "Graphique des liens": "Grafik-Links",
         "Informations brutes": "Rohdaten",
         "Sauvegarde réussie": "Speichern erfolgreich",
@@ -2874,7 +2875,7 @@
     "desktop\/js\/display.js": {
         "Configuration de l'objet": "Objektkonfiguration",
         "Configuration de l'équipement": "Gerätekonfiguration",
-        "Configuration de la commande": "Befehl Konfiguration",
+        "Configuration de la commande": "Bestellung einrichten",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Möchten Sie wirklich alle diese Geräte löschen?",
         "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Möchten Sie den Löschverlauf wirklich löschen?",
         "Historique vidé avec succès": "Die Geschichte wurde erfolgreich geleert"
@@ -2913,7 +2914,7 @@
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Diesen Filter entfernen",
-        "Configuration de la commande": "Befehlskonfiguration",
+        "Configuration de la commande": "Bestellung einrichten",
         "L'import d'édition en masse se fait au format json.": "Der Masseneditionsimport erfolgt im JSON-Format",
         "Problème lors de la lecture du fichier.": "Problem beim Lesen der Datei"
     },
@@ -3021,7 +3022,7 @@
         "Ev ements de la timeline supprim  avec succ ": "Timeline-Ereignisse erfolgreich gelöscht",
         "Log d'exécution du scénario": "Ausführungs Protokoll des Szenarios",
         "Historique": "Chronik",
-        "Configuration de la commande": "Befehl Konfiguration"
+        "Configuration de la commande": "Bestellung einrichten"
     },
     "desktop\/js\/report.js": {
         "Le fichier PDF ne peut pas être visualisé dans ce navigateur, veuillez le télécharger.": "Die PDF-Datei kann in diesem Browser nicht angezeigt werden, bitte laden Sie sie herunter"
@@ -3067,7 +3068,7 @@
         "Widgets": "Widgets",
         "Nom du widget": "Widget Name",
         "Sauvegarde effectuée avec succès": "Speichern erfolgreich abgeschlossen",
-        "Configuration de la commande": "Befehl Konfiguration",
+        "Configuration de la commande": "Bestellung einrichten",
         "Êtes-vous sûr de vouloir supprimer le widget": "Möchten Sie das Widget wirklich entfernen?",
         "L'import de widget se fait au format json à partir d'un widget précédemment exporté.": "Der Widget-Import erfolgt im json-Format aus einem zuvor exportierten Widget",
         "Fichier json non compatible.": "Json-Datei nicht kompatibel",
@@ -3152,7 +3153,7 @@
     },
     "desktop\/js\/eqAnalyse.js": {
         "Supprimée le": "Gelöscht am",
-        "Configuration commande": "Steuerungskonfiguration",
+        "Configuration de la commande": "Bestellung einrichten",
         "Configuration de l'équipement": "Gerätekonfiguration",
         "Configuration en masse": "Massenkonfiguration"
     },
@@ -3298,6 +3299,7 @@
         "Lancement du scénario réussi": "Erfolgreicher Szenario-Start",
         "Arrêt du scénario réussi": "Erfolgreiche Beendigung des Szenarios",
         "Êtes-vous sûr de vouloir supprimer le scénario": "Möchten Sie das Szenario wirklich löschen?",
+        "Configuration de la commande": "Bestellung einrichten",
         "Edition": "Bearbeitung",
         "Êtes-vous sûr de vouloir supprimer ce bloc ?": "Möchten Sie diesen Block wirklich löschen?",
         "Le bloc Sinon ne peut être masqué s'il contient des éléments.": "Der Else-Block kann nicht ausgeblendet werden, wenn er Elemente enthält",
@@ -4630,7 +4632,7 @@
         "Message de": "Nachricht"
     },
     "core\/class\/timeline.class.php": {
-        "Configuration de la commande": "Befehl Konfiguration",
+        "Configuration de la commande": "Bestellung einrichten",
         "Historique": "Chronik",
         "Scénario déclenché par": "Szenario ausgelöst durch",
         "Aller au scénario": "Gehe zum Szenario",

@@ -644,7 +644,7 @@
         "Ouvrir configuration de la commande.": "Abrir configuração da ordem",
         "Ouvrir la note.": "Abrir a nota",
         "Log d'exécution du scénario": "Registo de execução do cenário",
-        "Configuration de la commande": "Configuração do comando"
+        "Configuration de la commande": "Configuração do pedido"
     },
     "desktop\/modal\/report.bug.php": {
         "Attention nous avons detecté les soucis suivant :": "Atenção, detectamos os seguintes problemas:",
@@ -930,7 +930,7 @@
         "Jamais": "Nunca",
         "Purge": "Purgar",
         "Action": "Ação",
-        "Configuration de la commande": "Configuração do comando",
+        "Configuration de la commande": "Configuração do pedido",
         "Exporter la commande": "Exportar o comando",
         "Modifications sauvegardées avec succès": "Alterações guardadas com sucesso",
         "Dossier": "Ficheiro"
@@ -1066,6 +1066,7 @@
         "Changement de pile": "Troca de bateria",
         "Attention si": "Tenha cuidado se",
         "Configuration de l'équipement": "Configuração do equipamento",
+        "Configuration de la commande": "Configuração do pedido",
         "Graphique des liens": "Gráfico das ligações",
         "Informations brutes": "Informações brutas",
         "Sauvegarde réussie": "Backup bem-sucedido",
@@ -2874,7 +2875,7 @@
     "desktop\/js\/display.js": {
         "Configuration de l'objet": "Configuração do objeto",
         "Configuration de l'équipement": "Configuração do equipamento",
-        "Configuration de la commande": "Configuração do comando",
+        "Configuration de la commande": "Configuração do pedido",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Tem certeza de que deseja excluir todos estes equipamentos?",
         "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Tem certeza que deseja apagar o histórico de exclusões?",
         "Historique vidé avec succès": "Histórico apagado com sucesso"
@@ -2913,7 +2914,7 @@
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Remova este filtro",
-        "Configuration de la commande": "Configuração de comando",
+        "Configuration de la commande": "Configuração do pedido",
         "L'import d'édition en masse se fait au format json.": "A importação da edição em massa é feita no formato json",
         "Problème lors de la lecture du fichier.": "Problema ao ler o arquivo"
     },
@@ -3021,7 +3022,7 @@
         "Ev ements de la timeline supprim  avec succ ": "Eventos da linha do tempo excluídos com sucesso",
         "Log d'exécution du scénario": "Registo de execução do cenário",
         "Historique": "Histórico",
-        "Configuration de la commande": "Configuração do comando"
+        "Configuration de la commande": "Configuração do pedido"
     },
     "desktop\/js\/report.js": {
         "Le fichier PDF ne peut pas être visualisé dans ce navigateur, veuillez le télécharger.": "O arquivo PDF não pode ser visualizado neste navegador, faça o seu download"
@@ -3067,7 +3068,7 @@
         "Widgets": "Widgets",
         "Nom du widget": "Nome do widget",
         "Sauvegarde effectuée avec succès": "Backup concluído com êxito",
-        "Configuration de la commande": "Configuração do comando",
+        "Configuration de la commande": "Configuração do pedido",
         "Êtes-vous sûr de vouloir supprimer le widget": "Tem certeza que deseja remover o widget",
         "L'import de widget se fait au format json à partir d'un widget précédemment exporté.": "A importação do widget é feita no formato json a partir de um widget exportado anteriormente",
         "Fichier json non compatible.": "Arquivo Json não compatível",
@@ -3152,7 +3153,7 @@
     },
     "desktop\/js\/eqAnalyse.js": {
         "Supprimée le": "Excluído em",
-        "Configuration commande": "Configuração de controlo",
+        "Configuration de la commande": "Configuração do pedido",
         "Configuration de l'équipement": "Configuração do equipamento",
         "Configuration en masse": "Configuração em massa"
     },
@@ -3298,6 +3299,7 @@
         "Lancement du scénario réussi": "Lançamento do cenário bem-sucedido",
         "Arrêt du scénario réussi": "Paragem do cenário bem-sucedida",
         "Êtes-vous sûr de vouloir supprimer le scénario": "Tem certeza de que deseja excluir o cenário",
+        "Configuration de la commande": "Configuração do pedido",
         "Edition": "Edição",
         "Êtes-vous sûr de vouloir supprimer ce bloc ?": "Tem certeza de que deseja excluir este bloco?",
         "Le bloc Sinon ne peut être masqué s'il contient des éléments.": "O bloco SENÂO não se pode ocultar se contiver elementos",

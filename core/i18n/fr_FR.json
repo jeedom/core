@@ -1066,6 +1066,7 @@
         "Changement de pile": "Changement de pile",
         "Attention si": "Attention si",
         "Configuration de l'équipement": "Configuration de l'équipement",
+        "Configuration de la commande": "Configuration de la commande",
         "Graphique des liens": "Graphique des liens",
         "Informations brutes": "Informations brutes",
         "Sauvegarde réussie": "Sauvegarde réussie",
@@ -3152,7 +3153,7 @@
     },
     "desktop\/js\/eqAnalyse.js": {
         "Supprimée le": "Supprimée le",
-        "Configuration commande": "Configuration commande",
+        "Configuration de la commande": "Configuration de la commande",
         "Configuration de l'équipement": "Configuration de l'équipement",
         "Configuration en masse": "Configuration en masse"
     },
@@ -3298,6 +3299,7 @@
         "Lancement du scénario réussi": "Lancement du scénario réussi",
         "Arrêt du scénario réussi": "Arrêt du scénario réussi",
         "Êtes-vous sûr de vouloir supprimer le scénario": "Êtes-vous sûr de vouloir supprimer le scénario",
+        "Configuration de la commande": "Configuration de la commande",
         "Edition": "Edition",
         "Êtes-vous sûr de vouloir supprimer ce bloc ?": "Êtes-vous sûr de vouloir supprimer ce bloc ?",
         "Le bloc Sinon ne peut être masqué s'il contient des éléments.": "Le bloc Sinon ne peut être masqué s'il contient des éléments.",

@@ -1066,6 +1066,7 @@
         "Changement de pile": "バッテリー交換",
         "Attention si": "Attention si",
         "Configuration de l'équipement": "Configuration de l'équipement",
+        "Configuration de la commande": "Configuration de la commande",
         "Graphique des liens": "グラフィックリンク",
         "Informations brutes": "生の情報",
         "Sauvegarde réussie": "成功したバックアップ",
@@ -3152,7 +3153,7 @@
     },
     "desktop\/js\/eqAnalyse.js": {
         "Supprimée le": "Supprimée le",
-        "Configuration commande": "コマンド構成",
+        "Configuration de la commande": "Configuration de la commande",
         "Configuration de l'équipement": "機器構成",
         "Configuration en masse": "マス構成"
     },
@@ -3298,6 +3299,7 @@
         "Lancement du scénario réussi": "成功したシナリオの起動",
         "Arrêt du scénario réussi": "シナリオの正常終了",
         "Êtes-vous sûr de vouloir supprimer le scénario": "シナリオを削除してもよろしいですか",
+        "Configuration de la commande": "Configuration de la commande",
         "Edition": "Edition",
         "Êtes-vous sûr de vouloir supprimer ce bloc ?": "このブロックを削除してもよろしいですか？",
         "Le bloc Sinon ne peut être masqué s'il contient des éléments.": "Le bloc Sinon ne peut être masqué s'il contient des éléments",

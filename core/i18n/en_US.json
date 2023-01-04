@@ -644,7 +644,7 @@
         "Ouvrir configuration de la commande.": "Open command configuration",
         "Ouvrir la note.": "Open the note",
         "Log d'exécution du scénario": "Scenario execution log",
-        "Configuration de la commande": "Command setup"
+        "Configuration de la commande": "Order Setup"
     },
     "desktop\/modal\/report.bug.php": {
         "Attention nous avons detecté les soucis suivant :": "Attention we have detected the following concerns:",
@@ -930,7 +930,7 @@
         "Jamais": "Never",
         "Purge": "Purge",
         "Action": "Action",
-        "Configuration de la commande": "Command setup",
+        "Configuration de la commande": "Order Setup",
         "Exporter la commande": "Export the command",
         "Modifications sauvegardées avec succès": "Changes successfully saved",
         "Dossier": "Folder"
@@ -1066,6 +1066,7 @@
         "Changement de pile": "Battery change",
         "Attention si": "Be careful if",
         "Configuration de l'équipement": "Equipment configuration",
+        "Configuration de la commande": "Order Setup",
         "Graphique des liens": "Chart link",
         "Informations brutes": "Raw informations",
         "Sauvegarde réussie": "Successful backup",
@@ -2874,7 +2875,7 @@
     "desktop\/js\/display.js": {
         "Configuration de l'objet": "Object configuration",
         "Configuration de l'équipement": "Equipment configuration",
-        "Configuration de la commande": "Command setup",
+        "Configuration de la commande": "Order Setup",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Are you sure you want to delete all of this equipment?",
         "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Are you sure you want to clear the deletion history?",
         "Historique vidé avec succès": "History emptied successfully"
@@ -2913,7 +2914,7 @@
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Remove this filter",
-        "Configuration de la commande": "Command configuration",
+        "Configuration de la commande": "Order Setup",
         "L'import d'édition en masse se fait au format json.": "The mass edition import is done in json format",
         "Problème lors de la lecture du fichier.": "Problem while reading the file"
     },
@@ -3021,7 +3022,7 @@
         "Ev ements de la timeline supprim  avec succ ": "Timeline events successfully deleted",
         "Log d'exécution du scénario": "Scenario execution log",
         "Historique": "History",
-        "Configuration de la commande": "Command setup"
+        "Configuration de la commande": "Order Setup"
     },
     "desktop\/js\/report.js": {
         "Le fichier PDF ne peut pas être visualisé dans ce navigateur, veuillez le télécharger.": "The PDF file cannot be viewed in this browser, please download it"
@@ -3067,7 +3068,7 @@
         "Widgets": "Widgets",
         "Nom du widget": "Widget name",
         "Sauvegarde effectuée avec succès": "Successfully saved",
-        "Configuration de la commande": "Command setup",
+        "Configuration de la commande": "Order Setup",
         "Êtes-vous sûr de vouloir supprimer le widget": "Are you sure you want to remove the widget",
         "L'import de widget se fait au format json à partir d'un widget précédemment exporté.": "The widget import is done in json format from a previously exported widget",
         "Fichier json non compatible.": "Json file not compatible",
@@ -3152,7 +3153,7 @@
     },
     "desktop\/js\/eqAnalyse.js": {
         "Supprimée le": "Deleted on",
-        "Configuration commande": "Control configuration",
+        "Configuration de la commande": "Order Setup",
         "Configuration de l'équipement": "Equipment configuration",
         "Configuration en masse": "Mass configuration"
     },
@@ -3298,6 +3299,7 @@
         "Lancement du scénario réussi": "Successful scenario launch",
         "Arrêt du scénario réussi": "Successful termination of the scenario",
         "Êtes-vous sûr de vouloir supprimer le scénario": "Are you sure you want to delete the scenario",
+        "Configuration de la commande": "Order Setup",
         "Edition": "Editing",
         "Êtes-vous sûr de vouloir supprimer ce bloc ?": "Are you sure you want to delete this block?",
         "Le bloc Sinon ne peut être masqué s'il contient des éléments.": "The Else block cannot be hidden if it contains elements",
@@ -4630,7 +4632,7 @@
         "Message de": "Message from"
     },
     "core\/class\/timeline.class.php": {
-        "Configuration de la commande": "Command setup",
+        "Configuration de la commande": "Order Setup",
         "Historique": "History",
         "Scénario déclenché par": "Scenario triggered by",
         "Aller au scénario": "Go to scenario",
