@@ -243,7 +243,15 @@ div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > button.btClose {
   font-size: 26px !important;
   color: rgb(var(--bg-color));
 }
-
+div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons {
+  position: absolute;
+  top: 4px;
+  right: 5px;
+}
+div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button {
+  font-size: 18px !important;
+  color: rgb(var(--bg-color));
+}
 div.jeeDialog.jeeDialogMain > div.jeeDialogContent {
   position: relative;
   height: calc(100% - 35px);

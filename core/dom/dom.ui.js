@@ -709,6 +709,7 @@ var jeeDialog = (function()
           to: 'center'
         },
         backdrop: true,
+        isMainDialog: false,
         container: document.body,
         open: function() { },
         onShown: function() { },
@@ -736,19 +737,72 @@ var jeeDialog = (function()
       var template = document.createElement('template')
       //Title part and close button:
       if (_params.setTitle) {
+        if (_params.isMainDialog) {
+          var dialogTitle = document.createElement('div')
+          dialogTitle.addClass('jeeDialogTitle')
+          let html = '<span class="title">' + _params.title + '</span>'
+          html += '<div class="titleButtons">'
+          html += '<button class="btClose" type="button"><i class="fas fa-times"></i></button>'
+          html += '<button class="btToggleMaximize" type="button" data-state="0"><i class="far fa-window-maximize"></i></button>'
+          //html += '<button class="btMinimize" type="button"><i class="far fa-window-minimize"></i></button>'
+          html += '</div>'
+          dialogTitle.innerHTML = html
+          template.appendChild(dialogTitle)
 
-        var dialogTitle = document.createElement('div')
-        dialogTitle.addClass('jeeDialogTitle')
-        if (_params.title != '') {
-          dialogTitle.innerHTML = '<span class="title">' + _params.title + '</span><button class="btClose" type="button">×</button>'
-        } else {
-          dialogTitle.innerHTML = '<span class="title"></span><button class="btClose" type="button">×</button>'
+          dialogTitle.querySelector('button.btClose').addEventListener('click', function(event) {
+            event.target.closest('div.jeeDialog')._jeeDialog.close()
+            document.getElementById('jeeDialogBackdrop')?.remove()
+          })
+          dialogTitle.querySelector('button.btToggleMaximize').addEventListener('click', function(event) {
+            let dialog = event.target.closest('div.jeeDialog')
+            let btn = event.target.closest('button.btToggleMaximize')
+            if (btn.getAttribute('data-state') == '0') { //Store pos and maximize
+              btn.setAttribute('data-size', JSON.stringify({width: dialog.style.width,
+                                                            height: dialog.style.height,
+                                                            left: dialog.style.left,
+                                                            top: dialog.style.top,
+                                                            zIndex: dialog.style.zIndex
+                                                          }))
+              dialog.style.width = '100%'
+              dialog.style.height = 'calc(100% - 50px)'
+              dialog.style.left = 0
+              dialog.style.top = '50px'
+              dialog.style.zIndex = 1200
+              btn.querySelector('i').classList = 'fas fa-window-restore'
+              btn.setAttribute('data-state', '1')
+            } else { //Restore pos
+              let pos = JSON.parse(btn.getAttribute('data-size'))
+              dialog.style.width = pos.width
+              dialog.style.height = pos.height
+              dialog.style.left = pos.left
+              dialog.style.top = pos.top
+              dialog.style.zIndex = pos.zIndex
+              btn.querySelector('i').classList = 'far fa-window-maximize'
+              btn.setAttribute('data-state', '0')
+              btn.removeAttribute('data-size')
+            }
+            let onResize = dialog._jeeDialog.options.onResize
+            if (onResize) {
+              setTimeout(function() { onResize(event) })
+            }
+          })
+          /*
+          dialogTitle.querySelector('button.btMinimize').addEventListener('click', function(event) {
+            //Do stuff!!
+          })
+          */
         }
-        template.appendChild(dialogTitle)
-        dialogTitle.querySelector(':scope > .btClose').addEventListener('click', function(event) {
-          event.target.closest('div.jeeDialog')._jeeDialog.close()
-          document.getElementById('jeeDialogBackdrop')?.remove()
-        })
+        else {
+          var dialogTitle = document.createElement('div')
+          dialogTitle.addClass('jeeDialogTitle')
+          dialogTitle.innerHTML = '<span class="title">' + _params.title + '</span><button class="btClose" type="button">×</button>'
+          template.appendChild(dialogTitle)
+
+          dialogTitle.querySelector(':scope > .btClose').addEventListener('click', function(event) {
+            event.target.closest('div.jeeDialog')._jeeDialog.close()
+            document.getElementById('jeeDialogBackdrop')?.remove()
+          })
+        }
       }
 
       //Content part:
@@ -1351,27 +1405,29 @@ var jeeDialog = (function()
           options: _options,
           dialog: dialogContainer,
           show: function() {
-            document.body.style.overflow = 'hidden'
             setBackDrop(_options)
             document.getElementById('jeeDialogBackdrop')?.seen()
             this.dialog._jeeDialog.options.onShown()
-            if (!_options.retainPosition || this.dialog.style.width == '') setPosition(this.dialog, _options)
+            if (!_options.retainPosition || this.dialog.style.width == '') {
+              setPosition(this.dialog, _options)
+              let btn = this.dialog.querySelector('button.btToggleMaximize')
+              btn.querySelector('i').classList = 'far fa-window-maximize'
+              btn.setAttribute('data-state', '0')
+              btn.removeAttribute('data-size')
+            }
             this.dialog.seen()
           },
           hide: function() {
-            document.body.style.overflow = 'inehrit'
             document.getElementById('jeeDialogBackdrop')?.unseen()
             this.dialog.unseen()
           },
           close: function() {
-            document.body.style.overflow = 'inehrit'
             document.getElementById('jeeDialogBackdrop')?.unseen()
             this.dialog._jeeDialog.options.beforeClose()
             this.dialog.querySelector('div.jeeDialogContent').empty()
             this.dialog.unseen()
           },
           destroy: function() {
-            document.body.style.overflow = 'inehrit'
             document.getElementById('jeeDialogBackdrop')?.remove()
             this.dialog.remove()
           }
@@ -1383,7 +1439,10 @@ var jeeDialog = (function()
         dialogContainer.querySelector('div.jeeDialogTitle').addEventListener('mousedown', dragStart, false)
         var onMove, moveDone
         function dragStart(event) {
+          if (event.target.matches('button')) return
           event.preventDefault()
+          let btn = event.target.querySelector('button.btToggleMaximize') || event.target.closest('button.btToggleMaximize')
+          if (btn == null || btn.getAttribute('data-state') == '1') return
           bodyRect = document.body.getBoundingClientRect()
           let bRect = dialogContainer.getBoundingClientRect()
           initialLeft = event.clientX - bRect.left
@@ -1437,7 +1496,10 @@ var jeeDialog = (function()
         //Set onResize event:
         var onResize, resizeDone
         function resizeStart(event) {
+          if (event.target.matches('button')) return
           event.preventDefault()
+          let btn = jeeDialog.get(event.target, 'title').querySelector('button.btToggleMaximize') || event.target.closest('button.btToggleMaximize')
+          if (btn == null || btn.getAttribute('data-state') == '1') return
           resizer = event.target.getAttribute('data-resize')
           let bRect = dialogContainer.getBoundingClientRect()
           initialLeft = bRect.left
