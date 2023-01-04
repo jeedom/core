@@ -378,10 +378,10 @@ if (count($market->getImg('screenshot')) > 0) {
 	});
 
 	$('.span_author').off('click').on('click', function() {
-		$('#md_modal2').dialog('close');
-		$('#md_modal').dialog({
-			title: "{{Market}}"
-		});
-		$('#md_modal').load('index.php?v=d&modal=update.list&type=plugin&repo=market&author=' + encodeURI($(this).attr('data-author'))).dialog('open');
-	});
+		jeeDialog.dialog({
+	        id: 'jee_modal',
+	        title: "{{Market}}",
+	        contentUrl: 'index.php?v=d&modal=update.list&type=plugin&repo=market&author=' + encodeURI(this.getAttribute('data-author')
+	    })
+	})
 </script>

@@ -5,10 +5,11 @@
   <template></template>
   <script>
     document.querySelector('.cmd[data-cmd_uid="#uid#"] .action').addEventListener('click', function() {
-      $('#md_modal2').dialog({
-        title: "{{Image}}"
+      jeeDialog.dialog({
+        id: 'jee_modal2',
+        title: "{{Image}}",
+        contentUrl: 'index.php?v=d&modal=widget.modal&data=' + this.getAttribute('data-value') + '&type=image'
       })
-      $('#md_modal2').load('index.php?v=d&modal=widget.modal&data=' + this.getAttribute('data-value') + '&type=image').dialog('open')
     })
 
     jeedom.cmd.addUpdateFunction('#id#', function(_options) {

@@ -439,8 +439,11 @@ $(function () {
 	});
 
 	$('.market').on('click', function () {
-		$('#md_modal2').dialog({title: "{{Market}}"});
-		$('#md_modal2').load('index.php?v=d&modal=update.display&type=' + $(this).attr('data-market_type') + '&id=' + $(this).attr('data-market_id')+'&repo=market').dialog('open');
+		jeeDialog.dialog({
+	        id: 'jee_modal2',
+	        title: "{{Market}}",
+	        contentUrl: 'index.php?v=d&modal=update.display&type=' + this.getAttribute('data-market_type') + '&id=' + this.getAttribute('data-market_id') + '&repo=market'
+	    })
 	});
 });
 </script>

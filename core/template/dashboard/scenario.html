@@ -15,19 +15,23 @@
   </div>
   <script>
     $('.scenario[data-scenario_id=#id#] .changeScenarioState').on('click', function() {
-      $('.scenario[data-scenario_id=#id#] .iconCmd').empty().append('<i class="fa fa-spinner fa-spin"></i>')
+      document.querySelector('.scenario[data-scenario_id="#id#"] .iconCmd').empty().innerHTML = '<i class="fa fa-spinner fa-spin"></i>'
       jeedom.scenario.changeState({
-        id: $(this).closest('.scenario').attr('data-scenario_id'),
-        state: $(this).attr('data-state'),
+        id: this.closest('.scenario').getAttribute('data-scenario_id'),
+        state: this.getAttribute('data-state'),
         error: function (error) {
           jeedomUtils.showAlert({message: error.message, level: 'danger'})
-          $('.scenario[data-scenario_id=#id#] .iconCmd').empty().append('<i class="fa fa-times"></i>')
+          document.querySelector('.scenario[data-scenario_id="#id#"] .iconCmd').empty().innerHTML = '<i class="fa fa-times"></i>'
         }
       })
     })
 
     $('.scenario[data-scenario_id=#id#] .scenario_ViewLog').off('click').on('click', function (event) {
-      $('#md_modal2').dialog({title: "{{Log d'exécution du scénario}}"}).load('index.php?v=d&modal=scenario.log.execution&scenario_id=#id#').dialog('open')
+      jeeDialog.dialog({
+        id: 'jee_modal2',
+        title: "{{Log d'exécution du scénario}}",
+        contentUrl: 'index.php?v=d&modal=scenario.log.execution&scenario_id=#id#'
+      })
     })
 
     jeedom.scenario.update['#id#'] = function(_options) {
