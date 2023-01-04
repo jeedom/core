@@ -137,9 +137,11 @@ $('.alerts, .batteries').on('click', function() {
 })
 
 $('.cmdAction[data-action=configure]').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Configuration commande}}"
-  }).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-cmd_id')).dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal2',
+    title: '{{Configuration de la commande}}',
+    contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + this.closest('.cmd').getAttribute('data-cmd_id')
+  })
 })
 
 //searching

@@ -224,9 +224,11 @@ include_file('3rdparty', 'jquery.tablesorter/_jeedom/pager-custom-constrols', 'j
   })
 
   $('.bt_configureHistoryAdvanceCmdConfiguration').off('click').on('click', function() {
-    $('#md_modal2').dialog({
-      title: "{{Configuration de la commande}}"
-    }).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal2',
+      title: '{{Configuration de la commande}}',
+      contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + this.getAttribute('data-id')
+    })
   })
 
   $(".bt_configureHistoryExportData").on('click', function() {

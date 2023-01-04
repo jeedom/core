@@ -473,21 +473,22 @@ sendVarToJS([
 
 <script>
   //check if coming from clicking on battery in eqanalyse:
-  if ($('body').attr('data-page') == "eqAnalyse") {
-    $('#eqLogicConfigureTab > li > a[href="#eqLogic_alert"]').click()
+  if (document.body.getAttribute('data-page') == "widgets") {
+    document.querySelector('#eqLogicConfigureTab > li > a[href="#eqLogic_alert"]').click()
   }
 
   //modal title:
   var title = "{{Configuration de l'équipement}}"
   title += ' : ' + jeephp2js.md_eqLogicConfigure_Info.name
   title += ' <span class="cmdName"><em>(' + jeephp2js.md_eqLogicConfigure_Info.eqType_name + ')</em></span>'
-  $('#eqLogicConfigureTab').parents('.ui-dialog').find('.ui-dialog-title').html(title)
+  var modal = document.getElementById('eqLogicConfigureTab').closest('.jeeDialogMain')
+  modal.querySelector('div.jeeDialogTitle > span.title').innerHTML = title
 
   //check some values:
-  var nbColumn = $('input[data-l2key="layout::dashboard::table::nbColumn"]').val()
-  if (nbColumn == '') $('input[data-l2key="layout::dashboard::table::nbColumn"]').val(1)
-  var nbLine = $('input[data-l2key="layout::dashboard::table::nbLine"]').val()
-  if (nbLine == '') $('input[data-l2key="layout::dashboard::table::nbLine"]').val(1)
+  var nbColumn = document.querySelector('input[data-l2key="layout::dashboard::table::nbColumn"]').value
+  if (nbColumn == '') document.querySelector('input[data-l2key="layout::dashboard::table::nbColumn"]').value = 1
+  var nbLine = document.querySelector('input[data-l2key="layout::dashboard::table::nbLine"]').value
+  if (nbLine == '') document.querySelector('input[data-l2key="layout::dashboard::table::nbLine"]').value = 1
 
   setTableLayoutSortable()
   jeedomUtils.initSpinners()
@@ -597,11 +598,19 @@ sendVarToJS([
   document.getElementById('div_displayEqLogicConfigure').setJeeValues(jeephp2js.md_eqLogicConfigure_Info, '.eqLogicAttr')
 
   $('.bt_advanceCmdConfigurationOnEqLogicConfiguration').off('click').on('click', function() {
-    $('#md_modal2').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal2',
+      title: '{{Configuration de la commande}}',
+      contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + this.getAttribute('data-id')
+    })
   })
 
   $('.advanceCmdConfigurationCmdConfigure').off('dblclick').on('dblclick', function() {
-    $('#md_modal2').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal2',
+      title: '{{Configuration de la commande}}',
+      contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + this.getAttribute('data-id')
+    })
   })
 
   $('#bt_eqLogicConfigureGraph').on('click', function() {

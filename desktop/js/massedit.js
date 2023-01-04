@@ -410,9 +410,11 @@ $('body').on({
           return true
         }
         if (jeeP._filterType_ == 'cmd') {
-          $('#md_modal').dialog({
-            title: "{{Configuration de la commande}}"
-          }).load('index.php?v=d&modal=cmd.configure&cmd_id=' + _item.id).dialog('open')
+          jeeDialog.dialog({
+            id: 'jee_modal2',
+            title: '{{Configuration de la commande}}',
+            contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + _item.id
+          })
           return true
         }
         if (jeeP._filterType_ == 'object') {
