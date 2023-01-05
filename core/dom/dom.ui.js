@@ -743,7 +743,7 @@ var jeeDialog = (function()
           let html = '<span class="title">' + _params.title + '</span>'
           html += '<div class="titleButtons">'
           html += '<button class="btClose" type="button"></button>'
-          html += '<button class="btToggleMaximize" type="button" data-state="0"></button>'
+          html += '<button class="btToggleMaximize" type="button"></button>'
           //html += '<button class="btMinimize" type="button"></button>'
           html += '</div>'
           dialogTitle.innerHTML = html
@@ -755,29 +755,10 @@ var jeeDialog = (function()
           })
           dialogTitle.querySelector('button.btToggleMaximize').addEventListener('click', function(event) {
             let dialog = event.target.closest('div.jeeDialog')
-            let btn = event.target.closest('button.btToggleMaximize')
-            if (btn.getAttribute('data-state') == '0') { //Store pos and maximize
-              btn.setAttribute('data-size', JSON.stringify({width: dialog.style.width,
-                                                            height: dialog.style.height,
-                                                            left: dialog.style.left,
-                                                            top: dialog.style.top,
-                                                            zIndex: dialog.style.zIndex
-                                                          }))
-              dialog.style.width = '100%'
-              dialog.style.height = 'calc(100% - 50px)'
-              dialog.style.left = 0
-              dialog.style.top = '50px'
-              dialog.style.zIndex = 1200
-              btn.setAttribute('data-state', '1')
-            } else { //Restore pos
-              let pos = JSON.parse(btn.getAttribute('data-size'))
-              dialog.style.width = pos.width
-              dialog.style.height = pos.height
-              dialog.style.left = pos.left
-              dialog.style.top = pos.top
-              dialog.style.zIndex = pos.zIndex
-              btn.setAttribute('data-state', '0')
-              btn.removeAttribute('data-size')
+            if (dialog.getAttribute('data-maximize') == '0') { //Not maximized
+              dialog.setAttribute('data-maximize', '1')
+            } else { //Restore
+              dialog.setAttribute('data-maximize', '0')
             }
             let onResize = dialog._jeeDialog.options.onResize
             if (onResize) {
@@ -1330,6 +1311,7 @@ var jeeDialog = (function()
       if (dialogContainer == null) {
         dialogContainer = document.createElement('div')
         dialogContainer.setAttribute('id', _options.id)
+        dialogContainer.setAttribute('data-maximize', '0')
         dialogContainer.addClass('jeeDialog', 'jeeDialogMain')
         dialogContainer.style.display = 'none'
         document.body.appendChild(dialogContainer)
@@ -1404,10 +1386,8 @@ var jeeDialog = (function()
             document.getElementById('jeeDialogBackdrop')?.seen()
             this.dialog._jeeDialog.options.onShown()
             if (!_options.retainPosition || this.dialog.style.width == '') {
+              this.dialog.setAttribute('data-maximize', '0')
               setPosition(this.dialog, _options)
-              let btn = this.dialog.querySelector('button.btToggleMaximize')
-              btn.setAttribute('data-state', '0')
-              btn.removeAttribute('data-size')
             }
             this.dialog.seen()
           },
@@ -1436,8 +1416,7 @@ var jeeDialog = (function()
         function dragStart(event) {
           if (event.target.matches('button')) return
           event.preventDefault()
-          let btn = event.target.querySelector('button.btToggleMaximize') || event.target.closest('button.btToggleMaximize')
-          if (btn == null || btn.getAttribute('data-state') == '1') return
+          if (dialogContainer.getAttribute('data-maximize') == '1') return
           bodyRect = document.body.getBoundingClientRect()
           let bRect = dialogContainer.getBoundingClientRect()
           initialLeft = event.clientX - bRect.left
@@ -1493,8 +1472,7 @@ var jeeDialog = (function()
         function resizeStart(event) {
           if (event.target.matches('button')) return
           event.preventDefault()
-          let btn = jeeDialog.get(event.target, 'title').querySelector('button.btToggleMaximize') || event.target.closest('button.btToggleMaximize')
-          if (btn == null || btn.getAttribute('data-state') == '1') return
+          if (dialogContainer.getAttribute('data-maximize') == '1') return
           resizer = event.target.getAttribute('data-resize')
           let bRect = dialogContainer.getBoundingClientRect()
           initialLeft = bRect.left

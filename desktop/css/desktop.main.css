@@ -1303,12 +1303,20 @@ div.div_viewZone legend.lg_viewZone {
     color: var(--link-color) !important;
     padding-left: 7px;
   }
+  [data-theme*="Light"] #md_overviewSummary div.jeeDialogTitle button {
+    filter: invert(0);
+  }
+  [data-theme*="Dark"] #md_overviewSummary div.jeeDialogTitle button {
+    filter: invert(1)
+  }
   #md_overviewSummary div.jeeDialogTitle > span.title:before {
     content: '';
   }
-  #md_overviewSummary div.jeeDialogTitle button.btClose {
-    color: var(--link-color) !important;
+  #md_overviewSummary div.jeeDialogTitle button {
     margin-top: -2px;
+  }
+  #md_overviewSummary div.jeeDialogTitle button:not(.btClose) {
+    display: none;
   }
 
   /* ______Overview preview on dashboard */
