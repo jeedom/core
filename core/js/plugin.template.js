@@ -259,22 +259,32 @@ $('.eqLogicAction[data-action="export"]').off('click').on('click', function() {
   window.open('core/php/export.php?type=eqLogic&id=' + document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue(), "_blank", null)
 })
 
-$('.eqLogicAction[data-action="save"]').off('click').on('click', function() {
+$('.eqLogicAction[data-action="save"]').off('click').on('click', function(event) {
+  jeeFrontEnd.modifyWithoutSave = false
+  modifyWithoutSave = false
   var eqLogics = []
   document.querySelectorAll('.eqLogic').forEach(_eqLogic => {
     if (_eqLogic.isVisible()) {
       var eqLogic = _eqLogic.getJeeValues('.eqLogicAttr')[0]
-      eqLogic.cmd = this.querySelectorAll('.cmd').getJeeValues('.cmdAttr')
+
+      //No subType will break:
+      _eqLogic.querySelectorAll('tr.cmd select[data-l1key="subType"]').forEach(_select => {
+        if (_select.value == '') {
+          _select.selectedIndex = 0
+        }
+      })
+
+      eqLogic.cmd = _eqLogic.querySelectorAll('.cmd').getJeeValues('.cmdAttr')
       if (typeof saveEqLogic === 'function') {
         eqLogic = saveEqLogic(eqLogic)
       }
       eqLogics.push(eqLogic)
     }
   })
-  let thisEqType = this.getAttribute('data-eqLogic_type')
+  let thisEqType = event.target.getAttribute('data-eqLogic_type')
   jeedom.eqLogic.save({
     type: thisEqType != null ? thisEqType : eqType,
-    id: this.getAttribute('data-eqLogic_id'),
+    id: null,
     eqLogics: eqLogics,
     error: function(error) {
       jeedomUtils.showAlert({
@@ -445,10 +455,13 @@ $('.cmdAction[data-action="add"]').on('click', function() {
 
 $('#div_pageContainer').on('click', '.cmd .cmdAction[data-l1key="chooseIcon"]', function() {
   var cmd = this.closest('.cmd')
+  var icon = cmd.parentNode.querySelector('[data-l2key="icon"] > i')
+  var params = {}
+  if (icon) params.icon = icon.attributes.class.value
   jeedomUtils.chooseIcon(function(_icon) {
     cmd.querySelector('.cmdAttr[data-l1key="display"][data-l2key="icon"]').empty().innerHTML = _icon
     jeeFrontEnd.modifyWithoutSave = true
-  })
+  }, params)
 })
 
 $('#div_pageContainer').on('dblclick', '.cmd .cmdAttr[data-l1key="display"][data-l2key="icon"]', function() {
