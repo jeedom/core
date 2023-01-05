@@ -253,7 +253,7 @@ try {
 	if ($request == '') {
 		$request = file_get_contents("php://input");
 	}
-	log::add('api', 'info', secureXSS($request) . ' - IP :' . $IP);
+	log::add('api', 'info', $request . ' - IP :' . $IP);
 
 	$jsonrpc = new jsonrpc($request);
 
