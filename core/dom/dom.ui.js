@@ -1409,112 +1409,116 @@ var jeeDialog = (function()
         //____Set Moveable
         var nextLeft, nextTop, initialLeft, initialTop
         var bodyRect = null
-        dialogContainer.querySelector('div.jeeDialogTitle').addEventListener('mousedown', dragStart, false)
-        var onMove, moveDone
-        function dragStart(event) {
-          if (event.target.matches('button')) return
-          event.preventDefault()
-          if (dialogContainer.getAttribute('data-maximize') == '1') return
-          bodyRect = document.body.getBoundingClientRect()
-          let bRect = dialogContainer.getBoundingClientRect()
-          initialLeft = event.clientX - bRect.left
-          initialTop = event.clientY - bRect.top
-          document.body.addEventListener('mouseup', dragEnd, false)
-          document.body.addEventListener('mousemove', dragging, false)
-          onMove = dialogContainer._jeeDialog.options.onMove
-          if (onMove) {
-            moveDone = null
+        var divTitle = dialogContainer.querySelector('div.jeeDialogTitle')
+        if (divTitle) {
+          divTitle.addEventListener('mousedown', dragStart, false)
+          var onMove, moveDone
+          function dragStart(event) {
+            if (event.target.matches('button')) return
+            event.preventDefault()
+            if (dialogContainer.getAttribute('data-maximize') == '1') return
+            bodyRect = document.body.getBoundingClientRect()
+            let bRect = dialogContainer.getBoundingClientRect()
+            initialLeft = event.clientX - bRect.left
+            initialTop = event.clientY - bRect.top
+            document.body.addEventListener('mouseup', dragEnd, false)
+            document.body.addEventListener('mousemove', dragging, false)
+            onMove = dialogContainer._jeeDialog.options.onMove
+            if (onMove) {
+              moveDone = null
+            }
           }
-        }
-        function dragging(event) {
-          event.preventDefault()
-          let modalRect = dialogContainer.getBoundingClientRect()
-          nextLeft = event.clientX - initialLeft
-          nextTop = event.clientY - initialTop
-          if (nextTop <= 0) {
-            nextTop = 0
+          function dragging(event) {
+            event.preventDefault()
+            let modalRect = dialogContainer.getBoundingClientRect()
+            nextLeft = event.clientX - initialLeft
+            nextTop = event.clientY - initialTop
+            if (nextTop <= 0) {
+              nextTop = 0
+            }
+            if (nextLeft >= (bodyRect.right - modalRect.width)) {
+              nextLeft = (bodyRect.right - modalRect.width)
+            }
+            if (nextTop >= (bodyRect.bottom - modalRect.height)) {
+              nextTop = (bodyRect.bottom - modalRect.height)
+            }
+            if (nextLeft <= 0) {
+              nextLeft = 0
+            }
+            dialogContainer.style.left = nextLeft + 'px'
+            dialogContainer.style.top = nextTop + 'px'
+            if (onMove) {
+              clearTimeout(moveDone)
+              moveDone = setTimeout(function() { onMove(event) }, 100)
+            }
           }
-          if (nextLeft >= (bodyRect.right - modalRect.width)) {
-            nextLeft = (bodyRect.right - modalRect.width)
+          function dragEnd(event) {
+            document.body.removeEventListener('mouseup', dragEnd, false)
+            document.body.removeEventListener('mousemove', dragging, false)
           }
-          if (nextTop >= (bodyRect.bottom - modalRect.height)) {
-            nextTop = (bodyRect.bottom - modalRect.height)
-          }
-          if (nextLeft <= 0) {
-            nextLeft = 0
-          }
-          dialogContainer.style.left = nextLeft + 'px'
-          dialogContainer.style.top = nextTop + 'px'
-          if (onMove) {
-            clearTimeout(moveDone)
-            moveDone = setTimeout(function() { onMove(event) }, 100)
-          }
-        }
-        function dragEnd(event) {
-          document.body.removeEventListener('mouseup', dragEnd, false)
-          document.body.removeEventListener('mousemove', dragging, false)
-        }
 
-        //____Set Resizeable
-        var resizer, initialLeft, initialTop, initialWidth, initialHeight
-        var resizers = ['top', 'top-right', 'right', 'bottom-right', 'bottom', 'bottom-left', 'left', 'top-left']
-        resizers.forEach(handle => {
-          var div = document.createElement('div')
-          div.addClass('resizer', handle)
-          div.setAttribute('data-resize', handle)
-          dialogContainer.appendChild(div)
-          div.addEventListener('mousedown', resizeStart, false)
-        })
-        //Set onResize event:
-        var onResize, resizeDone
-        function resizeStart(event) {
-          if (event.target.matches('button')) return
-          event.preventDefault()
-          if (dialogContainer.getAttribute('data-maximize') == '1') return
-          resizer = event.target.getAttribute('data-resize')
-          let bRect = dialogContainer.getBoundingClientRect()
-          initialLeft = bRect.left
-          initialTop = bRect.top
-          initialWidth = bRect.width
-          initialHeight = bRect.height
-          document.body.addEventListener('mouseup', resizeEnd, false)
-          document.body.addEventListener('mousemove', resizing, false)
-          onResize = dialogContainer._jeeDialog.options.onResize
-          if (onResize) {
-            resizeDone = null
+          //____Set Resizeable
+          var resizer, initialLeft, initialTop, initialWidth, initialHeight
+          var resizers = ['top', 'top-right', 'right', 'bottom-right', 'bottom', 'bottom-left', 'left', 'top-left']
+          resizers.forEach(handle => {
+            var div = document.createElement('div')
+            div.addClass('resizer', handle)
+            div.setAttribute('data-resize', handle)
+            dialogContainer.appendChild(div)
+            div.addEventListener('mousedown', resizeStart, false)
+          })
+          //Set onResize event:
+          var onResize, resizeDone
+          function resizeStart(event) {
+            if (event.target.matches('button')) return
+            event.preventDefault()
+            if (dialogContainer.getAttribute('data-maximize') == '1') return
+            resizer = event.target.getAttribute('data-resize')
+            let bRect = dialogContainer.getBoundingClientRect()
+            initialLeft = bRect.left
+            initialTop = bRect.top
+            initialWidth = bRect.width
+            initialHeight = bRect.height
+            document.body.addEventListener('mouseup', resizeEnd, false)
+            document.body.addEventListener('mousemove', resizing, false)
+            onResize = dialogContainer._jeeDialog.options.onResize
+            if (onResize) {
+              resizeDone = null
+            }
           }
-        }
-        function resizing(event) {
-          if (resizer.includes('top')) {
-            dialogContainer.style.top = event.clientY + 'px'
-            let height = initialHeight + (initialTop - event.clientY)
-            if (height > 200) dialogContainer.style.height = height + 'px'
+          function resizing(event) {
+            if (resizer.includes('top')) {
+              dialogContainer.style.top = event.clientY + 'px'
+              let height = initialHeight + (initialTop - event.clientY)
+              if (height > 200) dialogContainer.style.height = height + 'px'
+            }
+            if (resizer.includes('right')) {
+              let width = event.clientX - initialLeft
+              if (width > 350) dialogContainer.style.width = width + 'px'
+            }
+            if (resizer.includes('bottom')) {
+              let height = dialogContainer.style.height = event.clientY - initialTop
+              if (height > 200) dialogContainer.style.height = height + 'px'
+            }
+            if (resizer.includes('left')) {
+              dialogContainer.style.left = event.clientX + 'px'
+              let width = initialWidth + (initialLeft - event.clientX)
+              if (width > 350) dialogContainer.style.width = width + 'px'
+            }
+            if (onResize) {
+              clearTimeout(resizeDone)
+              resizeDone = setTimeout(function() { onResize(event) }, 100)
+            }
           }
-          if (resizer.includes('right')) {
-            let width = event.clientX - initialLeft
-            if (width > 350) dialogContainer.style.width = width + 'px'
+          function resizeEnd(event) {
+            document.body.removeEventListener('mouseup', resizeEnd, false)
+            document.body.removeEventListener('mousemove', resizing, false)
           }
-          if (resizer.includes('bottom')) {
-            let height = dialogContainer.style.height = event.clientY - initialTop
-            if (height > 200) dialogContainer.style.height = height + 'px'
-          }
-          if (resizer.includes('left')) {
-            dialogContainer.style.left = event.clientX + 'px'
-            let width = initialWidth + (initialLeft - event.clientX)
-            if (width > 350) dialogContainer.style.width = width + 'px'
-          }
-          if (onResize) {
-            clearTimeout(resizeDone)
-            resizeDone = setTimeout(function() { onResize(event) }, 100)
-          }
-        }
-        function resizeEnd(event) {
-          document.body.removeEventListener('mouseup', resizeEnd, false)
-          document.body.removeEventListener('mousemove', resizing, false)
         }
       } else {
         _options = domUtils.extend(dialogContainer._jeeDialog.options, _options)
-        dialogContainer.querySelector('div.jeeDialogTitle > span.title').innerHTML = _options.title
+        var spanTitle = dialogContainer.querySelector('div.jeeDialogTitle > span.title')
+        if (spanTitle) spanTitle.innerHTML = _options.title
       }
 
       if (_options.contentUrl != '') {

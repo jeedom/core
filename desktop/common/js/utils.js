@@ -848,13 +848,17 @@ jeedomUtils.setJeedomGlobalUI = function() {
     //Summary action:
     if (event.ctrlKey && event.target.parentNode != null && (event.target.parentNode.matches('.objectSummaryAction') || event.target.matches('.objectSummaryAction'))) {
       event.stopPropagation()
-      jeedomUtils.mouseX = event.clientX
-      jeedomUtils.mouseY = event.clientY
       jeedomUtils.closeModal()
+      jeedomUtils.closeJeeDialogs()
 
       var _el = event.target.matches('.objectSummaryAction') ? event.target : event.target.parentNode
       var url = 'index.php?v=d&modal=summary.action&summary=' + _el.dataset.summary + '&object_id=' + _el.dataset.object_id
-      $('#md_modal').dialog({ title: "{{Action sur résumé}}" }).load(url)
+      url += '&coords=' + event.clientX + '::' + event.clientY
+      jeeDialog.dialog({
+        id: 'md_summaryAction',
+        setTitle: false,
+        contentUrl: url
+      })
       return
     }
 
@@ -1520,6 +1524,7 @@ jeedomUtils.getOpenedModal = function() {
   return _return
 }
 
+//Deprecated 4.4 keep for plugins
 jeedomUtils.closeModal = function(_modals = '') {
   if (_modals == '') {
     _modals = ['md_modal', 'md_modal2', 'md_modal3']
