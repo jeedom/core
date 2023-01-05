@@ -1450,7 +1450,9 @@ class cmd {
 				}
 				if ($template == '') {
 					$defaultConfiguration = config::getDefaultConfiguration();
-					$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $defaultConfiguration['core']['widget::default::cmd::' . $this->getType() . '::' . $this->getSubType()];
+					$fullSuffix = $defaultConfiguration['core']['widget::default::cmd::' . $this->getType() . '::' . $this->getSubType()];
+					$suffix = explode('::', $fullSuffix)[1];
+					$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $suffix;
 					$template = getTemplate('core', $_version, $template_name);
 				}
 			}
