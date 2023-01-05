@@ -1300,6 +1300,7 @@
         "La Timeline charge maintenant les 35 premiers événements": "A linha do tempo agora carrega os primeiros 35 eventos",
         "En bas de page, plusieurs boutons permettent de charger dynamiquement les évènements suivant": "Na parte inferior da página, vários botões permitem que você carregue dinamicamente os seguintes eventos",
         "Possibilité de différencier les actions sur erreur ou sur alerte de commande": "Possibilidade de diferenciar ações em caso de erro ou alerta de comando",
+        "Possibilité de paramétrer les widgets par défaut des commandes": "Capacidade de definir widgets de comando padrão",
         "Doc dev": "Desenvolvedor de documentos",
         "Un menu contextuel a été ajouté à différents endroits au niveau des cases à cocher pour les sélectionner toutes, aucunes, ou inverser la sélection *(voir": "Um menu contextual foi adicionado em diferentes lugares ao nível das caixas de seleção para selecionar todas, nenhuma ou inverter a seleção *(consulte",
         "possibilité sur la page de configuration des objets de demander a jeedom de reordonner les équipements en fonction de leur utilisation": "possibilidade na página de configuração do objeto para pedir jeedom para reordenar o equipamento de acordo com seu uso",

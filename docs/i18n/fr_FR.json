@@ -792,6 +792,7 @@
         "En bas de page, plusieurs boutons permettent de charger dynamiquement les évènements suivant": "En bas de page, plusieurs boutons permettent de charger dynamiquement les évènements suivant",
         "Administration": "Administration",
         "Possibilité de différencier les actions sur erreur ou sur alerte de commande": "Possibilité de différencier les actions sur erreur ou sur alerte de commande",
+        "Possibilité de paramétrer les widgets par défaut des commandes": "Possibilité de paramétrer les widgets par défaut des commandes",
         "Doc dev": "Doc dev",
         "Un menu contextuel a été ajouté à différents endroits au niveau des cases à cocher pour les sélectionner toutes, aucunes, ou inverser la sélection *(voir": "Un menu contextuel a été ajouté à différents endroits au niveau des cases à cocher pour les sélectionner toutes, aucunes, ou inverser la sélection *(voir",
         "possibilité sur la page de configuration des objets de demander a jeedom de reordonner les équipements en fonction de leur utilisation": "possibilité sur la page de configuration des objets de demander a jeedom de reordonner les équipements en fonction de leur utilisation",
