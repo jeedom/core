@@ -571,26 +571,26 @@ user::isBan();
 
 						<legend>{{Widget de commande par défaut}}</legend>
 						<?php
-							$widgets_list = cmd::availableWidget('dashboard');
-							foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $type => $subtypes) {
-								$icon = '';
-								if ($type == 'info') $icon = '<i class="info fas fa-info-circle"></i> ';
-								if ($type == 'action') $icon = '<i class="warning fas fa-terminal"></i> ';
-								foreach ($subtypes['subtype'] as $subtype => $value) {
-									$div = '';
-									$div .= '<div class="form-group">';
-									$div .= '<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">' . $icon . $JEEDOM_INTERNAL_CONFIG['cmd']['type'][$type]['name'] . ' ' . $value['name'] . '</label>';
-									$div .= '<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">';
-									$div .= '<select class="configKey form-control" data-l1key="widget::default::cmd::' . $type . '::' . $subtype . '" >';
-									foreach ($widgets_list[$type][$subtype] as $widget) {
-										$div .= '<option value="' . $widget['location'] . '::' . $widget['name'] . '">' . $widget['name'] . '</option>';
-									}
-									$div .= '</select>';
-									$div .= '</div>';
-									$div .= '</div>';
-									echo $div;
+						$widgets_list = cmd::availableWidget('dashboard');
+						foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $type => $subtypes) {
+							$icon = '';
+							if ($type == 'info') $icon = '<i class="info fas fa-info-circle"></i> ';
+							if ($type == 'action') $icon = '<i class="warning fas fa-terminal"></i> ';
+							foreach ($subtypes['subtype'] as $subtype => $value) {
+								$div = '';
+								$div .= '<div class="form-group">';
+								$div .= '<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">' . $icon . $JEEDOM_INTERNAL_CONFIG['cmd']['type'][$type]['name'] . ' ' . $value['name'] . '</label>';
+								$div .= '<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">';
+								$div .= '<select class="configKey form-control" data-l1key="widget::default::cmd::' . $type . '::' . $subtype . '" >';
+								foreach ($widgets_list[$type][$subtype] as $widget) {
+									$div .= '<option value="' . $widget['location'] . '::' . $widget['name'] . '">[' . $widget['location'] . '] ' . $widget['name'] . '</option>';
 								}
+								$div .= '</select>';
+								$div .= '</div>';
+								$div .= '</div>';
+								echo $div;
 							}
+						}
 						?>
 
 						<legend>{{Personnalisation}}</legend>
