@@ -35,50 +35,46 @@ foreach ($virtual->getCmd() as $cmd) {
 }
 sendVarToJS([
   'jeephp2js.md_summaryAction_cmdToRemove' => $removeCmd,
-  'jeephp2js.md_summaryAction__eqHtml' => urlencode($virtual->toHtml('dashboard'))
+  'jeephp2js.md_summaryAction_eqHtml' => urlencode($virtual->toHtml('dashboard')),
+  'jeephp2js.md_summaryAction_coords' => init('coords')
 ]);
 ?>
 
 <div id="div_summaryAction" data-modalType="md_summaryAction"></div>
 
 <script>
-  var $divSummaryAction = $('#div_summaryAction')
+  var divSummaryAction = jeeDialog.get('#md_summaryAction', 'content').querySelector('#div_summaryAction')
 
   //remove commands prior to DOM injection:
-  var $eqLogic = $(decodeURIComponent(jeephp2js.md_summaryAction__eqHtml.replace(/\+/g, ' ')))
-  for (var i in jeephp2js.md_summaryAction_cmdToRemove) {
-    $eqLogic.find('.cmd.cmd-widget[data-cmd_id='+jeephp2js.md_summaryAction_cmdToRemove[i]+']').remove()
+  var eqLogic = domUtils.parseHTML(decodeURIComponent(jeephp2js.md_summaryAction_eqHtml.replace(/\+/g, ' '))).childNodes[0]
+  for (id of jeephp2js.md_summaryAction_cmdToRemove) {
+    eqLogic.querySelector('div.cmd.cmd-widget[data-cmd_id="' + id + '"]')?.remove()
   }
+
   //eqLogic UI:
-  $eqLogic.find('.widget-name').remove()
-  $eqLogic.attr('data-eqLogic_id', -1)
-  $eqLogic.find('.verticalAlign').removeClass('verticalAlign')
-
-  $divSummaryAction.prepend($eqLogic)
-
-  //modal:
-  $('#md_modal').parent('.ui-dialog').addClass('summaryActionMain')
-  $('#md_modal').dialog('open')
+  eqLogic.querySelector('div.widget-name')?.remove()
+  eqLogic.setAttribute('data-eqLogic_id', -1)
+  eqLogic.querySelector('.verticalAlign')?.removeClass('verticalAlign')
+  divSummaryAction.appendChild(eqLogic)
 
   //calcul commands width:
-  $eqLogic = $divSummaryAction.find('.eqLogic-widget')
   var eqWidth = 0
-  $eqLogic.find('.cmd-widget').each(function() {
-    eqWidth += $(this).outerWidth(true) + 5
+  eqLogic.querySelectorAll('div.cmd-widget').forEach(widget => {
+    eqWidth += widget.offsetWidth + 10
   })
-  $eqLogic.css('width', eqWidth)
+  eqLogic.style.width = eqWidth + 'px'
 
   //Set modal:
-  $('#md_modal').dialog({
-    height: $divSummaryAction.find('.eqLogic-widget').outerHeight(true) + 30,
-    width: $divSummaryAction.find('.eqLogic-widget').outerWidth(true) + 10
-  })
+  var modal = jeeDialog.get('#div_summaryAction', 'dialog')
 
-  var mouseY = jeedomUtils.mouseY - 20
-  if (mouseY < 55) mouseY = 55
-  $('#md_modal').parent('.ui-dialog').css({
-    top: mouseY,
-    left: jeedomUtils.mouseX - $('#md_modal').parent('.ui-dialog').width() / 2
-  })
+  modal.style.width = eqLogic.offsetWidth + 10 + 'px'
+  modal.style.height = eqLogic.offsetHeight + 20 + 'px'
+
+  var coords = jeephp2js.md_summaryAction_coords.split('::')
+  var mouseX = coords[0]
+  var mouseY = coords[1] - 20
+  if (mouseY < 55) mouseY = 55 //Prevent over menu
+  modal.style.left = mouseX - (modal.offsetWidth / 2) + 'px'
+  modal.style.top = mouseY + 'px'
 
 </script>

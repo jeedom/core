@@ -140,7 +140,7 @@ $('.cmdAction[data-action=configure]').on('click', function() {
   jeeDialog.dialog({
     id: 'jee_modal2',
     title: '{{Configuration de la commande}}',
-    contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + this.closest('.cmd').getAttribute('data-cmd_id')
+    contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + this.getAttribute('data-cmd_id')
   })
 })
 
@@ -180,13 +180,17 @@ $('#bt_resetSearch').on('click', function() {
 })
 
 $('.batteryTime').off('click').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Configuration de l'équipement}}"
-  }).load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).closest('.eqLogic').attr('data-eqlogic_id')).dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Configuration de l'équipement}}",
+    contentUrl: 'index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + this.closest('.eqLogic').getAttribute('data-eqlogic_id')
+  })
 })
 
 $('#bt_massConfigureEqLogic').off('click').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Configuration en masse}}"
-  }).load('index.php?v=d&modal=object.massEdit&type=eqLogic&fields=timeout,Alertes%20Communications').dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Configuration en masse}}",
+    contentUrl: 'index.php?v=d&modal=object.massEdit&type=eqLogic&fields=timeout,Alertes%20Communications'
+  })
 })

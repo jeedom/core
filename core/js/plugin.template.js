@@ -455,7 +455,7 @@ $('.cmdAction[data-action="add"]').on('click', function() {
 
 $('#div_pageContainer').on('click', '.cmd .cmdAction[data-l1key="chooseIcon"]', function() {
   var cmd = this.closest('.cmd')
-  var icon = cmd.parentNode.querySelector('[data-l2key="icon"] > i')
+  var icon = cmd.querySelector('[data-l2key="icon"] > i')
   var params = {}
   if (icon) params.icon = icon.attributes.class.value
   jeedomUtils.chooseIcon(function(_icon) {

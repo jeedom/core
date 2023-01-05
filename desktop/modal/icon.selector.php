@@ -41,24 +41,6 @@ sendVarToJS([
 </ul>
 
 <div class="tab-content" style="overflow-y:scroll;">
-  <div id="mySearch" class="input-group" style="margin-left:6px;margin-top:6px">
-    <div class="input-group-btn">
-      <select class="form-control roundedLeft" style="width:200px;display:none;" id="sel_colorIcon">
-        <option disabled>---{{Couleur des icônes}}---</option>
-        <option value="">{{Aucune couleur}}</option>
-        <option value="icon_blue" class="icon_blue">{{Icônes bleues}}</option>
-        <option value="icon_yellow" class="icon_yellow">{{Icônes jaunes}}</option>
-        <option value="icon_orange" class="icon_orange">{{Icônes oranges}}</option>
-        <option value="icon_red" class="icon_red">{{Icônes rouges}}</option>
-        <option value="icon_green" class="icon_green">{{Icônes vertes}}</option>
-      </select>
-    </div>
-    <input class="form-control" placeholder="{{Rechercher}}" id="in_searchIconSelector">
-    <div class="input-group-btn">
-      <a id="bt_resetSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
-    </div>
-  </div>
-
   <?php if (!$objectId) { ?>
     <div role="tabpanel" class="tab-pane active" id="tabicon">
       <div class="imgContainer">
@@ -120,21 +102,34 @@ sendVarToJS([
   <?php } ?>
 </div>
 
+<div id="mySearch" class="input-group">
+  <div class="input-group-btn">
+    <select class="form-control roundedLeft" style="width:200px;display:none;" id="sel_colorIcon">
+      <option disabled>---{{Couleur des icônes}}---</option>
+      <option value="">{{Aucune couleur}}</option>
+      <option value="icon_blue" class="icon_blue">{{Icônes bleues}}</option>
+      <option value="icon_yellow" class="icon_yellow">{{Icônes jaunes}}</option>
+      <option value="icon_orange" class="icon_orange">{{Icônes oranges}}</option>
+      <option value="icon_red" class="icon_red">{{Icônes rouges}}</option>
+      <option value="icon_green" class="icon_green">{{Icônes vertes}}</option>
+    </select>
+  </div>
+  <input class="form-control" placeholder="{{Rechercher}}" id="in_searchIconSelector">
+  <div class="input-group-btn">
+    <a id="bt_resetSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
+  </div>
+</div>
+
 <?php
   include_file('3rdparty', 'jquery.tree/themes/default/style.min', 'css');
   include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
 ?>
 
 <script>
-  $(document).ready(function() {
-    // //move color_select/search_input in modal bottom
-    var buttonSet = $('.ui-dialog[aria-describedby="mod_selectIcon"]').find('.ui-dialog-buttonpane')
-    buttonSet.find('#mySearch').remove()
-    var mySearch = $('.ui-dialog[aria-describedby="mod_selectIcon"]').find('#mySearch')
-    buttonSet.append(mySearch)
-
-    $('#treeFolder-img').prepend('<sup class="pull-right"><i class="fas fa-question-circle" title="{{Clic droit sur un dossier pour ouvrir le menu contextuel}}"></i></sup>')
-  })
+  var modal = jeeDialog.get('#sel_colorIcon', 'dialog')
+  var modalFooter = jeeDialog.get('#sel_colorIcon', 'footer')
+  var uiOptions = modal.querySelector('#mySearch')
+  modalFooter.insertBefore(uiOptions, modalFooter.firstChild)
 
   $('.div_treeFolder').off('click').on('select_node.jstree', function(node, selected) {
     $('#in_searchIconSelector').val('')
@@ -293,7 +288,8 @@ sendVarToJS([
     "plugins": ["contextmenu", "unique"]
   })
 
-  function printFileFolder(_path, jstreeId) {
+  //display icons from folder click:
+  function printFileFolder(_path, jstreeId, callback) {
     jeedomUtils.hideAlert()
     jeedom.getFileFolder({
       type: 'files',
@@ -329,7 +325,12 @@ sendVarToJS([
                   div += '</div>'
                 }
                 $('#' + jstreeId).siblings('.div_imageGallery').append(div)
-
+                if (isset(callback) && typeof callback === 'function') {
+                  setTimeout(function() {
+                    callback()
+                  })
+                }
+                return
               }
             })
 
@@ -345,6 +346,12 @@ sendVarToJS([
                   div += '</div>'
                 }
                 $('#' + jstreeId).siblings('.div_imageGallery').append(div)
+                if (isset(callback) && typeof callback === 'function') {
+                  setTimeout(function() {
+                    callback()
+                  })
+                }
+                return
               }
             })
           }
@@ -369,6 +376,11 @@ sendVarToJS([
 
         }
         $('#' + jstreeId).siblings('.div_imageGallery').append(div)
+        if (isset(callback) && typeof callback === 'function') {
+          setTimeout(function() {
+            callback()
+          })
+        }
       }
     })
   }
@@ -389,36 +401,6 @@ sendVarToJS([
   $('#sel_colorIcon').off('change').on('change', function() {
     document.querySelectorAll('.iconSel i').removeClass('icon_green', 'icon_blue', 'icon_orange', 'icon_red', 'icon_yellow').addClass(this.value)
   })
-
-  if (jeephp2js.md_iconSelector_selectIcon != "0") {
-    var iconClasses = jeephp2js.md_iconSelector_selectIcon.split('.')
-    if (iconClasses[1].substr(0, 2) === 'fa') {
-      iconClasses[1] = 'font-awesome5'
-    } else if (iconClasses[1] === 'icon') {
-      iconClasses[1] = iconClasses[2].split('-')[0]
-    }
-    $('a.jstree-anchor').each(function() {
-      if ($(this).data('path').includes('/' + iconClasses[1] + '/')) {
-        $(this).click()
-        return
-      }
-    })
-    setTimeout(function() {
-      if (jeephp2js.md_iconSelector_colorIcon != "0") {
-        document.getElementById('sel_colorIcon').value = jeephp2js.md_iconSelector_colorIcon
-      }
-      elem = $('div.divIconSel.iconSelected')
-      if (elem.position()) {
-        container = $('#mod_selectIcon > .tab-content')
-        pos = elem.position().top + container.scrollTop() - container.position().top
-        container.animate({
-          scrollTop: pos - 20
-        })
-      }
-    }, 250)
-  } else {
-    $('a.jstree-anchor').first().click()
-  }
 
   $('#bt_uploadImg').fileupload({
     add: function(e, data) {
@@ -467,7 +449,6 @@ sendVarToJS([
   $('.div_imageGallery').on('dblclick', '.divIconSel', function() {
     $('.divIconSel').removeClass('iconSelected')
     $(this).closest('.divIconSel').addClass('iconSelected')
-    $('#mod_selectIcon').dialog("option", "buttons")['Valider'].apply($('#mod_selectIcon'))
   })
 
   setTimeout(function() {
@@ -494,4 +475,36 @@ sendVarToJS([
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1)
   }
+
+  document.getElementById('treeFolder-img')?.insertAdjacentHTML('afterbegin', '<sup class="pull-right"><i class="fas fa-question-circle" title="{{Clic droit sur un dossier pour ouvrir le menu contextuel}}"></i></sup>')
+
+  if (jeephp2js.md_iconSelector_selectIcon != "0") {
+    var iconClasses = jeephp2js.md_iconSelector_selectIcon.split('.')
+    let lookPath = iconClasses[0]
+    if (iconClasses[0].substr(0, 2) === 'fa') {
+      lookPath = 'font-awesome5'
+    } else if (iconClasses[0] === 'icon') {
+      lookPath = iconClasses[1].split('-')[0]
+    }
+    document.querySelectorAll('a.jstree-anchor').forEach(_anchor => {
+      if (_anchor.dataset.path.includes('/' + lookPath + '/')) {
+        printFileFolder(_anchor.dataset.path, 'treeFolder-icon', function() {
+          if (jeephp2js.md_iconSelector_colorIcon != '') {
+            let select = document.getElementById('sel_colorIcon')
+            select.value = jeephp2js.md_iconSelector_colorIcon
+            select.triggerEvent('change')
+          }
+          //Select current icon:
+          let icon = document.querySelector('#tabicon div.div_imageGallery').querySelector('span.iconSel > i.' + iconClasses[1])
+          if (icon) {
+            icon.closest('div.divIconSel').addClass('iconSelected')
+            icon.scrollIntoView()
+          }
+        })
+      }
+    })
+  } else {
+    document.querySelector('a.jstree-anchor').click()
+  }
+
 </script>

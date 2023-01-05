@@ -86,3 +86,9 @@ if (!is_array($listeCmds) || count($listeCmds) == 0) {
     ?>
   </tbody>
 </table>
+
+<script>
+  jeeDialog.get('#md_cmdConfigureSelectMultipleAlert').options.onResize = function(event) {
+    document.getElementById('table_cmdConfigureSelectMultiple').triggerEvent("update")
+  }
+</script>

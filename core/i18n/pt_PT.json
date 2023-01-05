@@ -876,7 +876,6 @@
         "Icônes rouges": "Ícones vermelhos",
         "Icônes vertes": "Ícones verdes",
         "Rechercher": "Pesquisar",
-        "Clic droit sur un dossier pour ouvrir le menu contextuel": "Clique com o botão direito em uma pasta para abrir o menu de contexto",
         "Ajouter": "Adicionar",
         "Nouveau": "Novo",
         "Renommer": "Renomear",
@@ -1123,8 +1122,7 @@
         "Vérification des packages": "Verificação de pacotes",
         "Êtes-vous sûr de vouloir installer tous les packages non optionnels ?": "Tem certeza de que deseja instalar todos os pacotes não opcionais?",
         "Êtes-vous sûr de vouloir installer le package": "Tem certeza de que deseja instalar o pacote",
-        "Installation lancée cela peut prendre plusieurs dizaines de minutes.": "Instalação iniciada, isso pode levar várias dezenas de minutos",
-        "Installation des packages": "Instalação de pacotes"
+        "Installation lancée cela peut prendre plusieurs dizaines de minutes.": "Instalação iniciada, isso pode levar várias dezenas de minutos"
     },
     "desktop\/modal\/about.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -3338,8 +3336,8 @@
         "Recharger": "Recarregar",
         "Rester sur la page": "Ficar na página",
         "Choisir une illustration": "Escolha uma ilustração",
+        "Appliquer": "Aplicar",
         "Annuler": "Cancelar",
-        "Valider": "Para validar",
         "Sélectionner tout": "Selecionar tudo",
         "Désélectionner tout": "Desmarcar todos",
         "Inverser la sélection": "Seleção invertida"

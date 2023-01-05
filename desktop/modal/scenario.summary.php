@@ -177,8 +177,11 @@ if (!jeeFrontEnd.md_scenarioSummary) {
           })
 
           $('.bt_summaryViewLog').off().on('click', function() {
-            var tr = $(this).closest('tr')
-            $('#md_modal2').dialog({title: "{{Log d'exécution du scénario}}"}).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + tr.attr('data-id')).dialog('open')
+            jeeDialog.dialog({
+              id: 'jee_modal2',
+              title: "{{Log d'exécution du scénario}}",
+              contentUrl: 'index.php?v=d&modal=scenario.log.execution&scenario_id=' + this.closest('tr').getAttribute('data-id')
+            })
           })
 
           $('.bt_summaryStopScenario').off().on('click', function() {

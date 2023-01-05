@@ -34,16 +34,20 @@
 
 ### 4.4 : Remarques
 
->**Dashboard**
+> **Dashboard**
 >
->Sur le **Dashboard** et les **Vues**, le Core v4.4 redimensionne maintenant automatiquement les tuiles pour construire une grille homogène. Les unités (plus petite hauteur et plus petit largeur d'une tuile) de cette grille sont définies dans **Réglages → Système → Configuration / Interface** par les valeurs *Pas vertical (mini 100)* et *Pas horizontal (mini 110)*. La valeur *Marge* définissant l'espace entre les tuiles.
->Les tuiles s'adaptent aux dimensions de la grille et peuvent faire une fois, deux fois etc. ces valeurs en hauteur ou largeur. Il faudra certainement passer en [mode Edition du Dashboard](https://doc.jeedom.com/fr_FR/core/4.4/dashboard#Mode%20%C3%A9dition) pour affiner la taille de certaines tuiles après la mise à jour.
+> Sur le **Dashboard** et les **Vues**, le Core v4.4 redimensionne maintenant automatiquement les tuiles pour construire une grille homogène. Les unités (plus petite hauteur et plus petit largeur d'une tuile) de cette grille sont définies dans **Réglages → Système → Configuration / Interface** par les valeurs *Pas vertical (mini 100)* et *Pas horizontal (mini 110)*. La valeur *Marge* définissant l'espace entre les tuiles.
+> Les tuiles s'adaptent aux dimensions de la grille et peuvent faire une fois, deux fois etc. ces valeurs en hauteur ou largeur. Il faudra certainement passer en [mode Edition du Dashboard](https://doc.jeedom.com/fr_FR/core/4.4/dashboard#Mode%20%C3%A9dition) pour affiner la taille de certaines tuiles après la mise à jour.
 
 
->**Widgets**
+> **Widgets**
 >
->Les widgets Core ont été réécrit en pure js / css. Il faudra éditer le Dashboard *(Edition puis bouton ⁝ sur les tuiles)* et utiliser l'option *Retour à la ligne après* sur certaines commandes pour retrouver le même aspect visuel.
->Tous les widgets Core supportent maintenant l'affichage des *time*, en ajoutant un paramètre optionnel *time* / *duration* ou *date*.
+> Les widgets Core ont été réécrit en pure js / css. Il faudra éditer le Dashboard *(Edition puis bouton ⁝ sur les tuiles)* et utiliser l'option *Retour à la ligne après* sur certaines commandes pour retrouver le même aspect visuel.
+> Tous les widgets Core supportent maintenant l'affichage des *time*, en ajoutant un paramètre optionnel *time* / *duration* ou *date*.
+
+> **Boites de dialogue**
+>
+> Toutes les boites de dialogue (bootstrap, bootbox, jQuery UI) ont été migrées sur une lib interne du Core développée spécialement. Les boites de dialogue redimensionnable ont maintenant un bouton pour passer en *fullscreen*.
 
 
 # Changelog Jeedom V4.3

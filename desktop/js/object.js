@@ -653,9 +653,11 @@ try {
   } catch (err) {}
 
 $('#bt_graphObject').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Graphique des liens}}"
-  }).load('index.php?v=d&modal=graph.link&filter_type=object&filter_id=' + document.querySelector('.objectAttr[data-l1key="id"]').innerHTML).dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Graphique des liens}}",
+    contentUrl: 'index.php?v=d&modal=graph.link&filter_type=object&filter_id=' + document.querySelector('.objectAttr[data-l1key="id"]').innerHTML
+  })
 })
 
 $('#bt_libraryBackgroundImage').on('click', function() {
@@ -939,9 +941,11 @@ $('#div_pageContainer').on({
 
 //populate summary tab:
 $('.bt_showObjectSummary').off('click').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Vue d'ensemble des objets}}"
-  }).load('index.php?v=d&modal=object.summary').dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Vue d'ensemble des objets}}",
+    contentUrl: 'index.php?v=d&modal=object.summary'
+  })
 })
 
 //eqLogics tab searching

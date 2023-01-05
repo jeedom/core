@@ -163,14 +163,14 @@ if (!jeeFrontEnd.md_datastore) {
             id: tr.getAttribute('data-dataStore_id'),
             error: function(error) {
               jeedomUtils.showAlert({
-                attache: jeeM.modal,
+                attach: jeeM.modal,
                 message: error.message,
                 level: 'danger'
               })
             },
             success: function(data) {
               jeedomUtils.showAlert({
-                attache: jeeM.modal,
+                attach: jeeM.modal,
                 message: '{{Dépôt de données supprimé}}',
                 level: 'success'
               })

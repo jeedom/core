@@ -107,7 +107,11 @@ $('.bt_correctTable').off('click').on('click',function() {
           $('#div_dbCheckAlert').showAlert({message: error.message, level: 'danger'})
         },
         success : function() {
-          $('#md_modal').dialog({title: "{{Vérification base de données}}"}).load('index.php?v=d&modal=db.check').dialog('open')
+          jeeDialog.dialog({
+            id: 'jee_modal',
+            title: "{{Vérification base de données}}",
+            contentUrl: 'index.php?v=d&modal=db.check'
+          })
         }
       })
     }

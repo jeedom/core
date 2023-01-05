@@ -1114,21 +1114,22 @@ div.div_viewZone legend.lg_viewZone {
   }
 
   /* action summary */
-  div.ui-dialog.summaryActionMain > div.ui-dialog-content,
-  div.ui-dialog.summaryActionMain #md_modal {
-    margin: 0 !important;
-    padding: 0 !important;
-    width: unset !important;
-  }
-  div.ui-dialog.summaryActionMain > div.ui-dialog-titlebar {
-    display: none;
-  }
-
-  #div_summaryAction {
+  #md_summaryAction {
     display: flex;
     justify-content: center;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
   }
-  #div_summaryAction div.eqLogic-widget {
+  #md_summaryAction > div.jeeDialogContent {
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    margin-top: 5px !important;
+    height: 100%;
+  }
+  #md_summaryAction #div_summaryAction div.eqLogic-widget {
     position: relative;
     top: 5px;
     left: 2px;
@@ -1138,7 +1139,9 @@ div.div_viewZone legend.lg_viewZone {
     box-shadow: none;
     overflow: visible;
   }
-
+  #md_summaryAction #div_summaryAction div.cmd-widget {
+    padding: 5px;
+  }
   span.objectSummaryAction > i:hover {
     color: var(--al-warning-color) !important;
   }
@@ -3369,21 +3372,19 @@ div.eqLogic-widget.editingMode .panelLink {
     background-color: var(--form-bg-color);
   }
   .vakata-context {
-    background: var(--form-bg-color);
-    box-shadow: unset;
+    background: var(--form-bg-color) !important;
+    box-shadow: unset !important;
     z-index: 9999;
-    border: none;
+    border: none !important;
   }
   .vakata-context > li > a {
     color: var(--txt-color) !important;
     text-shadow: unset !important;
-
   }
   .vakata-context-hover > a {
     background: var(--btnEq-default-color) !important;
-    box-shadow: unset!important;
+    box-shadow: unset !important;
   }
-
   .vakata-contextmenu-sep, .vakata-context-separator > a {
     background: rgb(var(--bg-color)) !important;
     border-color: rgb(var(--bg-color)) !important;

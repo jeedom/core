@@ -48,8 +48,6 @@ jeedom.getGraphData({
 })
 
 function render() {
-  var hWindow = $('#div_graphLinkRenderer').parent().height()
-  $('#div_graphLinkRenderer').height(hWindow).css('overflow-y', 'hidden').css('overflow-x', 'hidden').css('padding-top','5px')
   var graphics = Viva.Graph.View.svgGraphics()
   highlightRelatedNodes = function(nodeId, isOn) {
     graph.forEachLinkedNode(nodeId, function(node, link) {

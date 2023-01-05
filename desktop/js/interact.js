@@ -355,9 +355,11 @@ $("#div_action").sortable({
 })
 
 $('.displayInteracQuery').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Liste des interactions}}"
-  }).load('index.php?v=d&modal=interact.query.display&interactDef_id=' + document.querySelector('.interactAttr[data-l1key=id]').value).dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Liste des interactions}}",
+    contentUrl: 'index.php?v=d&modal=interact.query.display&interactDef_id=' + document.querySelector('.interactAttr[data-l1key=id]').value
+  })
 })
 
 $('#bt_interactThumbnailDisplay').on('click', function() {
@@ -411,9 +413,11 @@ $('#bt_duplicate').on('click', function() {
 })
 
 $('#bt_testInteract,#bt_testInteract2').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Tester les interactions}}"
-  }).load('index.php?v=d&modal=interact.test').dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Tester les interactions}}",
+    contentUrl: 'index.php?v=d&modal=interact.test'
+  })
 })
 
 $('#div_conf').on({

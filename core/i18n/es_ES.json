@@ -533,7 +533,7 @@
         "Centrer": "Centro",
         "Lignes": "Líneas",
         "Colonnes": "Columnas",
-        "Appliquer": "Aplicar",
+        "Appliquer": "Solicitar",
         "Style tableau": "Estilo de mesa",
         "Style cellules": "Estilo de celda",
         "Mise en forme détaillée": "Formato detallado",
@@ -876,7 +876,6 @@
         "Icônes rouges": "Iconos rojos",
         "Icônes vertes": "Iconos verdes",
         "Rechercher": "Buscar",
-        "Clic droit sur un dossier pour ouvrir le menu contextuel": "Haga clic derecho en una carpeta para abrir el menú contextual",
         "Ajouter": "Para agregar",
         "Nouveau": "Nuevo",
         "Renommer": "Rebautizar",
@@ -1050,7 +1049,7 @@
         "Centrer dans les cases": "Centro de las cajas",
         "Nombre de lignes": "Número de líneas",
         "Nombre de colonnes": "Número de columnas",
-        "Appliquer": "Aplicar",
+        "Appliquer": "Solicitar",
         "Style du tableau": "Estilo de mesa",
         "Style des cellules": "Estilo de celda",
         "Mise en forme détaillée": "Formato detallado",
@@ -1123,8 +1122,7 @@
         "Vérification des packages": "Verificación de paquetes",
         "Êtes-vous sûr de vouloir installer tous les packages non optionnels ?": "¿Está seguro de que desea instalar todos los paquetes no opcionales?",
         "Êtes-vous sûr de vouloir installer le package": "¿Está seguro de que desea instalar el paquete?",
-        "Installation lancée cela peut prendre plusieurs dizaines de minutes.": "La instalación comenzó, esto puede tomar varias decenas de minutos",
-        "Installation des packages": "Instalacion de paquetes"
+        "Installation lancée cela peut prendre plusieurs dizaines de minutes.": "La instalación comenzó, esto puede tomar varias decenas de minutos"
     },
     "desktop\/modal\/about.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -1179,7 +1177,7 @@
         "Supprimer": "Eliminar",
         "Télécharger": "Descargar",
         "Paramètres du scénario": "Parámetros del escenario",
-        "Appliquer": "Aplicar",
+        "Appliquer": "Solicitar",
         "Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel.": "¿Seguro que quieres aplicar esta plantilla? Esto sobrescribirá su escenario actual",
         "Template ajouté avec succès": "Plantilla añadido correctamente"
     },
@@ -3338,8 +3336,8 @@
         "Recharger": "Recargar",
         "Rester sur la page": "Quédate en la página",
         "Choisir une illustration": "Elige una ilustración",
+        "Appliquer": "Solicitar",
         "Annuler": "Anular",
-        "Valider": "Validar",
         "Sélectionner tout": "Seleccionar todo",
         "Désélectionner tout": "Deseleccionar todo",
         "Inverser la sélection": "Invertir selección"
