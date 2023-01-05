@@ -197,8 +197,6 @@ Element.prototype.insertAtCursor = function(_valueString) {
   return this
 }
 
-
-
 Element.prototype.closestAll = function(_selector) {
   //var parents = this.parentNode.querySelectorAll(':scope > :nth-child(' + Array.from(this.parentNode.children).indexOf(this) + 1 +')') //Empty nodeList
   var parents = []

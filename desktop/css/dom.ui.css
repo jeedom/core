@@ -286,6 +286,34 @@ div.jeeDialog.jeeDialogMain[data-maximize="1"] {
   max-height: unset;
   max-width: unset;
 }
+
+#jeeMinimizeTray {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 2px;
+  max-width: 100%;
+  opacity: 0.85;
+  z-index: 1050;
+}
+#jeeMinimizeTray > div.jeeDialog > div:not(.jeeDialogTitle) {
+  display: none;
+}
+#jeeMinimizeTray > div.jeeDialog div.jeeDialogTitle  > span.title {
+  max-width: calc(100% - 70px) !important;
+}
+#jeeMinimizeTray > div.jeeDialog {
+  overFlow: hidden;
+  position: relative !important;
+  float: left;
+  cursor: pointer;
+  width: 300px !important;
+  height: 30px !important;
+  top: unset !important;
+  left: unset !important;
+  margin: 5px;
+}
+
 div.jeeDialog.jeeDialogMain > div.jeeDialogContent {
   position: relative;
   height: calc(100% - 35px);

@@ -703,7 +703,17 @@ jeedomUtils.setButtonCtrlHandler = function(_buttonId, _title, _uri, _modal = 'j
 
 jeedomUtils.setJeedomGlobalUI = function() {
   if (typeof jeeFrontEnd.jeedom_firstUse != 'undefined' && isset(jeeFrontEnd.jeedom_firstUse) && jeeFrontEnd.jeedom_firstUse == 1 && getUrlVars('noFirstUse') != 1) {
-    $('#md_modal').dialog({ title: "{{Bienvenue dans Jeedom}}" }).load('index.php?v=d&modal=first.use').dialog('open')
+    jeeDialog.dialog({
+      id: 'md_firstUse',
+      title: "{{Bienvenue dans Jeedom}}",
+      width: window.innerWidth > 800 ? 720 : '80vw',
+      height: window.innerHeight > 600 ? 400 : '80vw',
+      zIndex: 1040,
+      onClose: function() {
+        jeeDialog.get('#md_firstUse').destroy()
+      },
+      contentUrl: 'index.php?v=d&modal=first.use'
+    })
   }
 
   window.addEventListener('beforeunload', function(event) {
@@ -757,6 +767,8 @@ jeedomUtils.setJeedomGlobalUI = function() {
     jeeDialog.dialog({
       id: 'jee_modal3',
       title: '{{A propos}}',
+      width: window.innerWidth > 850 ? 800 : '80vw',
+      height: window.innerHeight > 750 ? 700 : '80vw',
       contentUrl: 'index.php?v=d&modal=about'
     })
   })
