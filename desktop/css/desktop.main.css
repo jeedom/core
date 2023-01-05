@@ -3372,21 +3372,19 @@ div.eqLogic-widget.editingMode .panelLink {
     background-color: var(--form-bg-color);
   }
   .vakata-context {
-    background: var(--form-bg-color);
-    box-shadow: unset;
+    background: var(--form-bg-color) !important;
+    box-shadow: unset !important;
     z-index: 9999;
-    border: none;
+    border: none !important;
   }
   .vakata-context > li > a {
     color: var(--txt-color) !important;
     text-shadow: unset !important;
-
   }
   .vakata-context-hover > a {
     background: var(--btnEq-default-color) !important;
-    box-shadow: unset!important;
+    box-shadow: unset !important;
   }
-
   .vakata-contextmenu-sep, .vakata-context-separator > a {
     background: rgb(var(--bg-color)) !important;
     border-color: rgb(var(--bg-color)) !important;

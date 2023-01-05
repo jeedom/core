@@ -476,6 +476,8 @@ sendVarToJS([
     return string.charAt(0).toUpperCase() + string.slice(1)
   }
 
+  document.getElementById('treeFolder-img')?.insertAdjacentHTML('afterbegin', '<sup class="pull-right"><i class="fas fa-question-circle" title="{{Clic droit sur un dossier pour ouvrir le menu contextuel}}"></i></sup>')
+
   if (jeephp2js.md_iconSelector_selectIcon != "0") {
     var iconClasses = jeephp2js.md_iconSelector_selectIcon.split('.')
     let lookPath = iconClasses[0]
