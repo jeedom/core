@@ -2020,7 +2020,7 @@ class cmd {
 		} elseif ($this->getConfiguration('alert::messageReturnBack') == 1) {
 			$message = __('Retour à la normal de ', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('valeur :', __FILE__) . ' ' . $_value . trim(' ' . $this->getUnite());
 			log::add('event', 'info', $message);
-			message::add($this->getEqLogic()->getEqType_name(), $message, '', '', true, 'alerting');
+			message::add($this->getEqLogic()->getEqType_name(), $message, '', '', true, 'alertingReturnBack');
 		}
 
 		if ($prevAlert != $maxAlert) {

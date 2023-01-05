@@ -63,7 +63,8 @@ $JEEDOM_INTERNAL_CONFIG = array(
 		),
 	),
 	'messageChannel' => array(
-		'alerting' => array('name' => __('Alerte des commandes', __FILE__), 'icon' => '<i class="far fa-bell"></i>')
+		'alerting' => array('name' => __('Alerte des commandes', __FILE__), 'icon' => '<i class="far fa-bell"></i>'),
+		'alertingReturnBack' => array('name' => __('Retour à l\'état normal des commandes', __FILE__), 'icon' => '<i class="fas fa-check"></i>')
 	),
 	'alerts' => array(
 		'timeout' => array('name' => __('Timeout', __FILE__), 'icon' => 'far fa-clock', 'level' => 6, 'check' => false, 'color' => 'var(--al-danger-color)'),

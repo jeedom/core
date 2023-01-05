@@ -840,22 +840,21 @@ user::isBan();
 							<div class="col-sm-10 col-xs-12"></div>
 						</div>
 						<div id="div_actionOnMessage"></div>
+						<hr />
 						<?php
 						foreach ($JEEDOM_INTERNAL_CONFIG['messageChannel'] as $k => $v) {
 							echo '<div class="form-group" data-channel="' . $k . '">';
-							echo '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-8 control-label">{{Action sur message, channel }} ' . $v['name'] . '</label>';
+							echo '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-8 control-label">' . $v['icon'] . ' {{Action sur message, channel }} ' . $v['name'] . '</label>';
 							echo '<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">';
 							echo '<a class="btn btn-sm btn-success bt_addActionOnMessage" data-channel="' . $k . '"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>';
 							echo '</div>';
 							echo '</div>';
 							echo '<div class="form-group">';
 							echo '<div class="col-sm-2 hidden-768"></div>';
-							echo '<div class="col-sm-10 col-xs-12">';
+							echo '<div class="col-sm-10 col-xs-12"></div>';
 							echo '</div>';
-							echo '</div>';
-							echo '<form class="form-horizontal">';
 							echo '<div id="div_actionOnMessage' . $k . '"></div>';
-							echo '</form>';
+							echo '<hr />';
 						}
 						?>
 					</fieldset>
