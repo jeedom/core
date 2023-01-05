@@ -1230,7 +1230,7 @@ class cmd {
 		if (!$_availWidgets) {
 			$_availWidgets = self::availableWidget($_version);
 		}
-		$display = '<option value="default">Défaut</option>';
+		$display = '<option value="default">' . __('Défaut', __FILE__) . '</option>';
 		if (is_array($_availWidgets[$this->getType()]) && is_array($_availWidgets[$this->getType()][$this->getSubType()]) && count($_availWidgets[$this->getType()][$this->getSubType()]) > 0) {
 			$types = array();
 			foreach ($_availWidgets[$this->getType()][$this->getSubType()] as $key => $info) {
