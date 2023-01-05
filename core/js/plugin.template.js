@@ -161,6 +161,9 @@ $(".eqLogicDisplayCard").on('click', function(event) {
           jeedom.cmd.addUpdateFunction(_cmdState.getAttribute('data-cmd_id'), function(_options) {
             _options.display_value = String(_options.display_value).replace(/<[^>]*>?/gm, '')
             let cmd = document.querySelector('.cmdTableState[data-cmd_id="' + _options.cmd_id + '"]')
+            if(cmd === null){
+              return;
+            }
             let title = '{{Date de collecte}} : ' + _options.collectDate + '<br/>{{Date de valeur}} ' + _options.valueDate
             if (_options.display_value.length > 50) {
               title += ' - ' + _options.display_value
