@@ -283,6 +283,8 @@ div.jeeDialog.jeeDialogMain[data-maximize="1"] {
   top: 50px !important;
   left:0 !important;
   z-index: 1200 !important;
+  max-height: unset;
+  max-width: unset;
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogContent {
   position: relative;
