@@ -269,13 +269,20 @@ div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button.btTog
   background: url('../../core/img/win_icons.png') no-repeat scroll -36px 0px;
   background-size: 72px 18px;
 }
-div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button.btToggleMaximize[data-state="1"] {
+div.jeeDialog.jeeDialogMain[data-maximize="1"] > div.jeeDialogTitle > div.titleButtons button.btToggleMaximize {
   background: url('../../core/img/win_icons.png') no-repeat scroll -18px 0px;
   background-size: 72px 18px;
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button.minimize {
   background: url('../../core/img/win_icons.png') no-repeat scroll 0 0;
   background-size: 72px 18px;
+}
+div.jeeDialog.jeeDialogMain[data-maximize="1"] {
+  height: calc(100% - 50px) !important;
+  width: 100% !important;
+  top: 50px !important;
+  left:0 !important;
+  z-index: 1200 !important;
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogContent {
   position: relative;
