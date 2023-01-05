@@ -34,16 +34,20 @@
 
 ### 4.4 : Remarques
 
->**Tablero**
+> **Tablero**
 >
->Sobre **Tablero** y los **Puntos de vista**, Núcleo v4.4 ahora cambia automáticamente el tamaño de los mosaicos para crear una cuadrícula perfecta. Las unidades (la altura más pequeña y el ancho más pequeño de un mosaico) de esta cuadrícula se definen en **Ajustes → Sistema → Configuración / Interfaz** por valores *Paso vertical (mínimo 100)* y *Paso horizontal (mínimo 110)*. El valor *Margen* definiendo el espacio entre las baldosas.
->Los mosaicos se adaptan a las dimensiones de la cuadrícula y se pueden hacer una, dos veces, etc. estos valores en alto o ancho. Sin duda será necesario pasar [Modo de edición del tablero](https://doc.jeedom.com/es_ES/core/4.4/dashboard#Mode%20%C3%A9dition) para ajustar el tamaño de algunos mosaicos después de la actualización.
+> Sobre **Tablero** y los **Puntos de vista**, Núcleo v4.4 ahora cambia automáticamente el tamaño de los mosaicos para crear una cuadrícula perfecta. Las unidades (la altura más pequeña y el ancho más pequeño de un mosaico) de esta cuadrícula se definen en **Ajustes → Sistema → Configuración / Interfaz** por valores *Paso vertical (mínimo 100)* y *Paso horizontal (mínimo 110)*. El valor *Margen* definiendo el espacio entre las baldosas.
+> Los mosaicos se adaptan a las dimensiones de la cuadrícula y se pueden hacer una, dos veces, etc. estos valores en alto o ancho. Sin duda será necesario pasar [Modo de edición del tablero](https://doc.jeedom.com/es_ES/core/4.4/dashboard#Mode%20%C3%A9dition) para ajustar el tamaño de algunos mosaicos después de la actualización.
 
 
->**Widgets**
+> **Widgets**
 >
->Los widgets principales se han reescrito en js/css puro. Tendrás que editar el Dashboard *(Editar luego botón ⁝ en los mosaicos)* y usa la opcion *Ajuste de línea después* en ciertos comandos para encontrar el mismo aspecto visual.
->Todos los widgets principales ahora admiten la visualización *tiempo*, agregando un parámetro opcional *tiempo* / *duración* Dónde *fecha*.
+> Los widgets principales se han reescrito en js/css puro. Tendrás que editar el Dashboard *(Editar luego botón ⁝ en los mosaicos)* y usa la opcion *Ajuste de línea después* en ciertos comandos para encontrar el mismo aspecto visual.
+> Todos los widgets principales ahora admiten la visualización *tiempo*, agregando un parámetro opcional *tiempo* / *duración* Dónde *fecha*.
+
+> **Cuadros de diálogo**
+>
+> Todos los cuadros de diálogo (bootstrap, bootbox, jQuery UI) se han migrado a una biblioteca interna Core especialmente desarrollada. Los cuadros de diálogo redimensionables ahora tienen un botón para cambiar *pantalla completa*.
 
 
 # Registro de cambios Jeedom V4.3

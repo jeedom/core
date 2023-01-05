@@ -876,7 +876,6 @@
         "Icônes rouges": "Red icons",
         "Icônes vertes": "Green icons",
         "Rechercher": "Search",
-        "Clic droit sur un dossier pour ouvrir le menu contextuel": "Right click on a folder to open the context menu",
         "Ajouter": "To add",
         "Nouveau": "New",
         "Renommer": "Rename",
@@ -1123,8 +1122,7 @@
         "Vérification des packages": "Verification of packages",
         "Êtes-vous sûr de vouloir installer tous les packages non optionnels ?": "Are you sure you want to install all non-optional packages?",
         "Êtes-vous sûr de vouloir installer le package": "Are you sure you want to install the package",
-        "Installation lancée cela peut prendre plusieurs dizaines de minutes.": "Installation started, this can take several tens of minutes",
-        "Installation des packages": "Installing packages"
+        "Installation lancée cela peut prendre plusieurs dizaines de minutes.": "Installation started, this can take several tens of minutes"
     },
     "desktop\/modal\/about.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -3338,8 +3336,8 @@
         "Recharger": "Reload",
         "Rester sur la page": "Stay on the page",
         "Choisir une illustration": "Choose an illustration",
+        "Appliquer": "Apply",
         "Annuler": "Cancel",
-        "Valider": "Validate",
         "Sélectionner tout": "Select all",
         "Désélectionner tout": "Deselect all",
         "Inverser la sélection": "Invert Selection"

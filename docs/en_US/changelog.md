@@ -34,16 +34,20 @@
 
 ### 4.4 : Remarques
 
->**Dashboard**
+> **Dashboard**
 >
->On the **Dashboard** and the **Views**, Core v4.4 now automatically resizes tiles to build a seamless grid. The units (smallest height and smallest width of a tile) of this grid are defined in **Settings → System → Configuration / Interface** by values *Vertical pitch (minimum 100)* and *Horizontal pitch (minimum 110)*. The value *Margin* defining the space between the tiles.
->The tiles adapt to the dimensions of the grid and can be done once, twice etc. these values in height or width. It will certainly be necessary to pass [Dashboard edit mode](https://doc.jeedom.com/en_US/core/4.4/dashboard#Mode%20%C3%A9dition) to fine-tune the size of some tiles after the update.
+> On the **Dashboard** and the **Views**, Core v4.4 now automatically resizes tiles to build a seamless grid. The units (smallest height and smallest width of a tile) of this grid are defined in **Settings → System → Configuration / Interface** by values *Vertical pitch (minimum 100)* and *Horizontal pitch (minimum 110)*. The value *Margin* defining the space between the tiles.
+> The tiles adapt to the dimensions of the grid and can be done once, twice etc. these values in height or width. It will certainly be necessary to pass [Dashboard edit mode](https://doc.jeedom.com/en_US/core/4.4/dashboard#Mode%20%C3%A9dition) to fine-tune the size of some tiles after the update.
 
 
->**Widgets**
+> **Widgets**
 >
->Core widgets have been rewritten in pure js/css. You will have to edit the Dashboard *(Edit then button ⁝ on the tiles)* and use the option *Line wrap after* on certain commands to find the same visual aspect.
->All Core widgets now support displaying *time*, by adding an optional parameter *time* / *duration* Where *date*.
+> Core widgets have been rewritten in pure js/css. You will have to edit the Dashboard *(Edit then button ⁝ on the tiles)* and use the option *Line wrap after* on certain commands to find the same visual aspect.
+> All Core widgets now support displaying *time*, by adding an optional parameter *time* / *duration* Where *date*.
+
+> **Dialog boxes**
+>
+> All dialog boxes (bootstrap, bootbox, jQuery UI) have been migrated to a specially developed Core internal lib. Resizable dialogs now have a button to switch to *fullscreen*.
 
 
 # Changelog Jeedom V4.3

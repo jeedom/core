@@ -876,7 +876,6 @@
         "Icônes rouges": "Icônes rouges",
         "Icônes vertes": "Icônes vertes",
         "Rechercher": "Pencarian",
-        "Clic droit sur un dossier pour ouvrir le menu contextuel": "Clic droit sur un dossier pour ouvrir le menu contextuel",
         "Ajouter": "Ajouter",
         "Nouveau": "Nouveau",
         "Renommer": "Renommer",
@@ -1123,8 +1122,7 @@
         "Vérification des packages": "Vérification des packages",
         "Êtes-vous sûr de vouloir installer tous les packages non optionnels ?": "Êtes-vous sûr de vouloir installer tous les packages non optionnels ?",
         "Êtes-vous sûr de vouloir installer le package": "Êtes-vous sûr de vouloir installer le package",
-        "Installation lancée cela peut prendre plusieurs dizaines de minutes.": "Installation lancée cela peut prendre plusieurs dizaines de minutes",
-        "Installation des packages": "Installation des packages"
+        "Installation lancée cela peut prendre plusieurs dizaines de minutes.": "Installation lancée cela peut prendre plusieurs dizaines de minutes"
     },
     "desktop\/modal\/about.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
@@ -3338,8 +3336,8 @@
         "Recharger": "Recharger",
         "Rester sur la page": "Rester sur la page",
         "Choisir une illustration": "Choisir une illustration",
+        "Appliquer": "Appliquer",
         "Annuler": "Annuler",
-        "Valider": "Valider",
         "Sélectionner tout": "Sélectionner tout",
         "Désélectionner tout": "Désélectionner tout",
         "Inverser la sélection": "Inverser la sélection"

@@ -34,16 +34,20 @@
 
 ### 4.4 : Remarques
 
->**Painel**
+> **Painel**
 >
->No **Painel** e a **Visualizações**, Núcleo v4.4 agora redimensiona automaticamente os blocos para criar uma grade perfeita. As unidades (menor altura e menor largura de um ladrilho) desta grade são definidas em **Configurações → Sistema → Configuração / Interface** por valores *Passo vertical (mínimo 100)* e *Passo horizontal (mínimo 110)*. O valor que *Margem* definindo o espaço entre as telhas.
->Os ladrilhos se adaptam às dimensões da grade e podem ser feitos uma, duas vezes etc. esses valores em altura ou largura. Certamente será necessário passar [Modo de edição do painel](https://doc.jeedom.com/pt_PT/core/4.4/dashboard#Mode%20%C3%A9dition) para ajustar o tamanho de alguns blocos após a atualização.
+> No **Painel** e a **Visualizações**, Núcleo v4.4 agora redimensiona automaticamente os blocos para criar uma grade perfeita. As unidades (menor altura e menor largura de um ladrilho) desta grade são definidas em **Configurações → Sistema → Configuração / Interface** por valores *Passo vertical (mínimo 100)* e *Passo horizontal (mínimo 110)*. O valor que *Margem* definindo o espaço entre as telhas.
+> Os ladrilhos se adaptam às dimensões da grade e podem ser feitos uma, duas vezes etc. esses valores em altura ou largura. Certamente será necessário passar [Modo de edição do painel](https://doc.jeedom.com/pt_PT/core/4.4/dashboard#Mode%20%C3%A9dition) para ajustar o tamanho de alguns blocos após a atualização.
 
 
->**Widgets**
+> **Widgets**
 >
->Widgets principais foram reescritos em js/css puro. Você terá que editar o Painel *(Edite, em seguida, botão ⁝ nos ladrilhos)* e use a opção *Quebra de linha depois* em certos comandos para encontrar o mesmo aspecto visual.
->Todos os widgets Core agora suportam a exibição *Tempo*, adicionando um parâmetro opcional *Tempo* / *duração* Onde *encontro*.
+> Widgets principais foram reescritos em js/css puro. Você terá que editar o Painel *(Edite, em seguida, botão ⁝ nos ladrilhos)* e use a opção *Quebra de linha depois* em certos comandos para encontrar o mesmo aspecto visual.
+> Todos os widgets Core agora suportam a exibição *Tempo*, adicionando um parâmetro opcional *Tempo* / *duração* Onde *encontro*.
+
+> **Caixa de diálogo**
+>
+> Todas as caixas de diálogo (bootstrap, bootbox, jQuery UI) foram migradas para uma biblioteca interna Core especialmente desenvolvida. Caixas de diálogo redimensionáveis agora têm um botão para alternar *tela cheia*.
 
 
 # Changelog Jeedom V4.3
