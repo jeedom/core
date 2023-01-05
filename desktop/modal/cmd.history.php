@@ -154,7 +154,13 @@ if (!jeeFrontEnd.md_history) {
   })
   jeeM.$pageContainer.on({
     'click': function(event) {
-      jeeM.md_modal.dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + jeephp2js.md_history_cmdId + '&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open')
+      let url = 'index.php?v=d&modal=cmd.history&id='
+      url += jeephp2js.md_history_cmdId + '&startDate=' + document.getElementById('in_startDate').value + '&endDate=' + document.getElementById('in_endDate').value
+      jeeDialog.dialog({
+        id: 'md_cmdHistory',
+        title: "{{Historique}}",
+        contentUrl: url
+      })
     }
   }, '#bt_validChangeDate')
 

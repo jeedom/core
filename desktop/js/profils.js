@@ -148,9 +148,11 @@ $('.bt_selectWarnMeCmd').on('click', function() {
 
 $('#bt_configureTwoFactorAuthentification').on('click', function() {
   var profil = document.getElementById('div_userProfils').getJeeValues('.userAttr')[0]
-  $('#md_modal').dialog({
-    title: "{{Authentification 2 étapes}}"
-  }).load('index.php?v=d&modal=twoFactor.authentification').dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Authentification 2 étapes}}",
+    contentUrl: 'index.php?v=d&modal=twoFactor.authentification'
+  })
 })
 
 if (jeephp2js.profils_user_id == -1) {

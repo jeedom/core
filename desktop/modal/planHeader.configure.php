@@ -179,8 +179,11 @@ $('.bt_removePlanComposant').off('click').on('click', function() {
 })
 
 $('.bt_configurePlanComposant').off('click').on('click', function() {
-  var tr = $(this).closest('tr')
-  $('#md_modal2').dialog({title: "{{Configuration du composant}}"}).load('index.php?v=d&modal=plan.configure&id='+tr.attr('data-id')).dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal2',
+    title: "{{Configuration du composant}}",
+    contentUrl: 'index.php?v=d&modal=plan.configure&id=' + this.closest('tr').getAttribute('data-id')
+  })
 })
 
 $('.planHeaderAttr[data-l1key=configuration][data-l2key=icon]').on('dblclick', function() {

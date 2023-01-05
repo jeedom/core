@@ -449,7 +449,6 @@ sendVarToJS([
   $('.div_imageGallery').on('dblclick', '.divIconSel', function() {
     $('.divIconSel').removeClass('iconSelected')
     $(this).closest('.divIconSel').addClass('iconSelected')
-    $('#mod_selectIcon').dialog("option", "buttons")['Valider'].apply($('#mod_selectIcon'))
   })
 
   setTimeout(function() {

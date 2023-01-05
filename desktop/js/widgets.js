@@ -389,10 +389,11 @@ $('#bt_applyToCmd').off('click').on('click', function() {
 
   let type = document.querySelector('.widgetsAttr[data-l1key="type"]').jeeValue()
   let subtype = document.querySelector('.widgetsAttr[data-l1key="subtype"]').jeeValue()
-  $('#md_modal').dialog({
-    title: "{{Appliquer ce widget à}}"
-  })
-    .load('index.php?v=d&modal=cmd.selectMultiple&type=' + type + '&subtype=' +subtype, function() {
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Appliquer ce widget à}}",
+    contentUrl: 'index.php?v=d&modal=cmd.selectMultiple&type=' + type + '&subtype=' + subtype,
+    callback: function() {
       jeedomUtils.initTableSorter()
 
       $('#table_cmdConfigureSelectMultiple tbody tr').each(function(index) {
@@ -483,7 +484,8 @@ $('#bt_applyToCmd').off('click').on('click', function() {
           }
         })
       })
-    }).dialog('open')
+    }
+  })
 })
 
 $('.widgetsAttr[data-l1key=display][data-l2key=icon]').off('dblclick').on('dblclick', function() {

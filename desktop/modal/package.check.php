@@ -142,9 +142,11 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt ')) > 0) {
 
 <script>
   $('#bt_refreshPackage').off('click').on('click', function() {
-    $('#md_modal').dialog({
-      title: "{{Vérification des packages}}"
-    }).load('index.php?v=d&modal=package.check').dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Vérification des packages}}",
+      contentUrl: 'index.php?v=d&modal=package.check'
+    })
   })
 
   $('.bt_correctPackage').off('click').on('click', function() {
@@ -169,9 +171,11 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt ')) > 0) {
               message: '{{Installation lancée cela peut prendre plusieurs dizaines de minutes.}}',
               level: 'success'
             })
-            $('#md_modal2').dialog({
-              title: "{{Installation des packages}}"
-            }).load('index.php?v=d&modal=log.display&log=packages').dialog('open')
+            jeeDialog.dialog({
+              id: 'jee_modal2',
+              title: "{{Vérification des packages}}",
+              contentUrl: 'index.php?v=d&modal=log.display&log=packages'
+            })
           }
         })
       }

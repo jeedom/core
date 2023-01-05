@@ -473,7 +473,7 @@ sendVarToJS([
 
 <script>
   //check if coming from clicking on battery in eqanalyse:
-  if (document.body.getAttribute('data-page') == "widgets") {
+  if (document.body.getAttribute('data-page') == "eqAnalyse") {
     document.querySelector('#eqLogicConfigureTab > li > a[href="#eqLogic_alert"]').click()
   }
 

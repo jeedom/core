@@ -738,7 +738,6 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
               $('.div_displayObject .summary-widget[data-summary_id=' + plan_configure_plan.plan.link_id + ']').remove()
             }
             jeeFrontEnd.plan.displayObject(plan.plan, plan.html, false)
-            $('#fd_planConfigure').closest("div.ui-dialog-content").dialog("close")
           }
         })
       }

@@ -257,15 +257,19 @@ $('.cmdSortable').sortable({
 
 //Modals:
 $('.configureObject').off('click').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Configuration de l'objet}}"
-  }).load('index.php?v=d&modal=object.configure&object_id=' + $(this).closest('.panel-heading').attr('data-id')).dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Configuration de l'objet}}",
+    contentUrl: 'index.php?v=d&modal=object.configure&object_id=' + this.closest('.panel-heading').getAttribute('data-id')
+  })
 })
 
 $('.configureEqLogic').off('click').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Configuration de l'équipement}}"
-  }).load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).closest('.eqLogic').attr('data-id')).dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Configuration de l'équipement}}",
+    contentUrl: 'index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + this.closest('.eqLogic').getAttribute('data-id')
+  })
 })
 
 $('.configureCmd').off('click').on('click', function() {
