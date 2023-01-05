@@ -109,7 +109,7 @@ $(".eqLogicDisplayCard").on('click', function(event) {
     }
     document.querySelectorAll('.eqLogicDisplayCard.active').removeClass('active')
     this.addClass('active')
-    document.querySelector('.nav-tabs a:not(.eqLogicAction)').click()
+    document.querySelector('.nav-tabs a:not(.eqLogicAction)')?.click()
     domUtils.showLoading()
     jeedom.eqLogic.print({
       type: thisEqType != null ? thisEqType : eqType,
@@ -117,7 +117,7 @@ $(".eqLogicDisplayCard").on('click', function(event) {
       status: 1,
       getCmdState : 1,
       error: function(error) {
-        jeedomUtils.hideLoading()
+        domUtils.hideLoading()
         jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
@@ -129,7 +129,7 @@ $(".eqLogicDisplayCard").on('click', function(event) {
           data.timeout = ''
         }
         document.getElementById('div_mainContainer').setJeeValues(data, '.eqLogicAttr')
-        if (!isset(data.category.opening)) document.querySelector('input[data-l2key="opening"]').checked = false
+        if (!isset(data.category.opening)) try { document.querySelector('input[data-l2key="opening"]').checked = false } catch (e) { }
 
         if (typeof printEqLogic === 'function') {
           setTimeout(() => { printEqLogic(data) })
@@ -161,8 +161,8 @@ $(".eqLogicDisplayCard").on('click', function(event) {
           jeedom.cmd.addUpdateFunction(_cmdState.getAttribute('data-cmd_id'), function(_options) {
             _options.display_value = String(_options.display_value).replace(/<[^>]*>?/gm, '')
             let cmd = document.querySelector('.cmdTableState[data-cmd_id="' + _options.cmd_id + '"]')
-            if(cmd === null){
-              return;
+            if (cmd === null) {
+              return
             }
             let title = '{{Date de collecte}} : ' + _options.collectDate + '<br/>{{Date de valeur}} ' + _options.valueDate
             if (_options.display_value.length > 50) {
@@ -206,7 +206,7 @@ $('.eqLogicDisplayCard').off('mouseup').on('mouseup', function(event) {
   if (event.which == 2) {
     event.preventDefault()
     var id = this.getAttribute('data-eqlogic_id')
-    document.querySelector('.eqLogicDisplayCard[data-eqlogic_id="' + id + '"]').triggerEvent('click', {detail: {ctrlKey: true}})
+    document.querySelector('.eqLogicDisplayCard[data-eqlogic_id="' + id + '"]')?.triggerEvent('click', {detail: {ctrlKey: true}})
   }
 })
 
