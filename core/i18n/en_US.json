@@ -1394,7 +1394,7 @@
         "erreurs": "errors",
         "en cours": "In progress",
         "Santé": "Health",
-        "Configuration du plugin": "Plugin Setup",
+        "Configuration du plugin": "Plugin configuration",
         "Santé de": "Health of",
         "Benchmark Jeedom": "Jeedom benchmark",
         "Plugins": "Plugins",
@@ -2957,7 +2957,7 @@
         "Droits copié avec succes": "Rights successfully copied"
     },
     "desktop\/js\/health.js": {
-        "Configuration du plugin": "Plugin Setup",
+        "Configuration du plugin": "Plugin configuration",
         "Santé": "Health",
         "Jeedom benchmark": "Jeedom benchmark"
     },
@@ -3446,7 +3446,7 @@
         "Annuler": "Cancel"
     },
     "core\/js\/plugin.template.js": {
-        "Configuration du plugin": "Plugin Setup",
+        "Configuration du plugin": "Plugin configuration",
         "Date de valeur": "Value date",
         "Date de collecte": "Collect date",
         "Nom de la copie de l\\'équipement ?": "Name of equipment copy?",

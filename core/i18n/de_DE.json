@@ -1394,7 +1394,7 @@
         "erreurs": "Fehler",
         "en cours": "In Bearbeitung",
         "Santé": "Gesundheit",
-        "Configuration du plugin": "Plugin-Setup",
+        "Configuration du plugin": "Plugin Konfiguration",
         "Santé de": "Gesundheit von",
         "Benchmark Jeedom": "Jeedom Benchmark",
         "Plugins": "Plugins",
@@ -2957,7 +2957,7 @@
         "Droits copié avec succes": "Rechte erfolgreich kopiert"
     },
     "desktop\/js\/health.js": {
-        "Configuration du plugin": "Plugin-Setup",
+        "Configuration du plugin": "Plugin Konfiguration",
         "Santé": "Gesundheit",
         "Jeedom benchmark": "Jeedom Benchmark"
     },
@@ -3446,7 +3446,7 @@
         "Annuler": "Abbrechen"
     },
     "core\/js\/plugin.template.js": {
-        "Configuration du plugin": "Plugin-Setup",
+        "Configuration du plugin": "Plugin Konfiguration",
         "Date de valeur": "Datum der Wertstellung",
         "Date de collecte": "Datum der Abholung",
         "Nom de la copie de l\\'équipement ?": "Name der Gerätekopie?",
@@ -3745,7 +3745,7 @@
         "Numérique": "Digital",
         "Binaire": "Binär",
         "Action": "Aktion",
-        "Défaut": "Standard",
+        "Défaut": "Fehler",
         "Curseur": "Cursor",
         "Message": "Nachricht",
         "Couleur": "Farbe",
