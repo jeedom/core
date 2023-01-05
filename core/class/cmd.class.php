@@ -1449,7 +1449,8 @@ class cmd {
 					}
 				}
 				if ($template == '') {
-					$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.default';
+					$defaultConfiguration = config::getDefaultConfiguration();
+					$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $defaultConfiguration['core']['widget::default::cmd::' . $this->getType() . '::' . $this->getSubType()];
 					$template = getTemplate('core', $_version, $template_name);
 				}
 			}
