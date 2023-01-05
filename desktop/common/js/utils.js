@@ -1446,27 +1446,6 @@ jeedomUtils.reloadPagePrompt = function(_title) {
 }
 
 jeedomUtils.chooseIcon = function(_callback, _params) {
-  if ($("#mod_selectIcon").length == 0) {
-    $('#div_pageContainer').append('<div id="mod_selectIcon"></div>')
-    $("#mod_selectIcon").dialog({
-      title: '{{Choisir une illustration}}',
-      closeText: '',
-      autoOpen: false,
-      modal: true,
-      height: (window.innerHeight - 150),
-      width: 1500,
-      open: function() {
-        if ((window.innerWidth - 50) < 1500) {
-          $('#mod_selectIcon').dialog({ width: window.innerWidth - 50 })
-        }
-        document.body.style.overflow = 'hidden'
-        setTimeout(function() { jeedomUtils.initTooltips($("#mod_selectIcon")) }, 500)
-      },
-      beforeClose: function(event, ui) {
-        $('body').css({ overflow: 'inherit' })
-      }
-    })
-  }
   var url = 'index.php?v=d&modal=icon.selector'
   if (_params && _params.img && _params.img === true) {
     url += '&showimg=1'
@@ -1492,22 +1471,41 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
   if (_params && _params.path) {
     url += '&path=' + encodeURIComponent(_params.path)
   }
-  $('#mod_selectIcon').empty().load(url, function() {
-    $("#mod_selectIcon").dialog('option', 'buttons', {
-      "{{Annuler}}": function() {
-        $(this).dialog("close")
-      },
-      "{{Valider}}": function() {
-        var icon = $('.iconSelected .iconSel').html()
-        if (icon == undefined) {
-          icon = ''
+  jeeDialog.dialog({
+    id: 'mod_selectIcon',
+    title: '{{Choisir une illustration}}',
+    width: (window.innerWidth - 50) < 1500 ? window.innerWidth - 50 : window.innerHeight - 150,
+    height: window.innerHeight - 150,
+    buttons: {
+      confirm: {
+        label: '{{Appliquer}}',
+        className: 'success',
+        callback: {
+          click: function(event) {
+            var icon = $('.iconSelected .iconSel').html()
+            if (icon == undefined) {
+              icon = ''
+            }
+            icon = icon.replace(/"/g, "'")
+            _callback(icon)
+            jeeDialog.get('#mod_selectIcon').close()
+          }
         }
-        icon = icon.replace(/"/g, "'")
-        _callback(icon)
-        $(this).dialog('close')
+      },
+      cancel: {
+        label: '{{Annuler}}',
+        className: 'warning',
+        callback: {
+          click: function(event) {
+            jeeDialog.get('#mod_selectIcon').close()
+          }
+        }
       }
-    })
-    $('#mod_selectIcon').dialog('open')
+    },
+    onClose: function() {
+      jeeDialog.get('#mod_selectIcon').destroy() //No twice footer select/search
+    },
+    contentUrl: url
   })
 }
 
