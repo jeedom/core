@@ -521,39 +521,62 @@ $('.bt_OsPackageUpdate').off('click').on('click',function(){
           message: '{{Mise à jour lancée avec succès.}}',
           level: 'success'
         })
-        $('#md_modal').dialog({
-          title: "{{Log de mise à jour}}"
-        }).load('index.php?v=d&modal=log.display&log=packages').dialog('open')
+        jeeDialog.dialog({
+          id: 'jee_modal',
+          title: "{{Log de mise à jour}}",
+          contentUrl: 'index.php?v=d&modal=log.display&log=packages'
+        })
       }
     })
   })
 });
 
-$("#md_specifyUpdate").dialog({
-  closeText: '',
-  autoOpen: false,
-  modal: true,
-  width: window.innerWidth > 500 ? 480 : window.innerWidth,
-  height: window.innerHeight > 500 ? 460 : window.innerHeight - 30,
-  open: function() {
-    $("body").css({
-      overflow: 'hidden'
-    })
-    $(this).parent().css({
-      'top': window.innerHeight > 500 ? 120 : 0
-    })
-  },
-  beforeClose: function(event, ui) {
-    $("body").css({
-      overflow: 'inherit'
-    })
-  }
-})
-
 $('#bt_updateJeedom').off('click').on('click', function() {
-  $('#md_specifyUpdate').dialog({
-    title: "{{Options}}"
-  }).dialog('open')
+  jeeDialog.dialog({
+    id: 'md_update',
+    title: "{{Options de mise à jour}}",
+    width: window.innerWidth > 500 ? 480 : window.innerWidth,
+    height: window.innerHeight > 500 ? 460 : window.innerHeight - 30,
+    top: window.innerHeight > 500 ? 120 : 0,
+    callback: function() {
+      var contentEl = jeeDialog.get('#md_update', 'content')
+      var newContent = document.getElementById('md_specifyUpdate')
+      contentEl.appendChild(newContent)
+      newContent.removeClass('hidden')
+    },
+    buttons: {
+      confirm: {
+        label: '{{Mettre à jour}}',
+        className: 'success',
+        callback: {
+          click: function(event) {
+            var options = document.getElementById('md_specifyUpdate').getJeeValues('.updateOption')[0]
+            jeedomUtils.hideAlert()
+            jeeDialog.get('#md_update').hide()
+            jeeP.progress = 0
+            $('.progressbarContainer').removeClass('hidden')
+            $('.bt_refreshOsPackageUpdate').addClass('disabled')
+            jeeP.updateProgressBar()
+            jeedom.update.doAll({
+              options: options,
+              error: function(error) {
+                jeedomUtils.showAlert({
+                  message: error.message,
+                  level: 'danger'
+                })
+              },
+              success: function() {
+                jeeP.getJeedomLog(1, 'update')
+              }
+            })
+          }
+        }
+      },
+      cancel: {
+        className: 'hidden'
+      }
+    },
+  })
 })
 
 $('.updateOption[data-l1key=force]').off('click').on('click', function() {
@@ -565,28 +588,6 @@ $('.updateOption[data-l1key=force]').off('click').on('click', function() {
     mdSpec.querySelector('.updateOption[data-l1key="backup::before"]').jeeValue(1);
     mdSpec.querySelector('.updateOption[data-l1key="backup::before"]').removeAttribute('disabled')
   }
-})
-
-$('#bt_doUpdate').off('click').on('click', function() {
-  $("#md_specifyUpdate").dialog('close')
-  var options = document.getElementById('md_specifyUpdate').getJeeValues('.updateOption')[0]
-  jeedomUtils.hideAlert()
-  jeeP.progress = 0
-  $('.progressbarContainer').removeClass('hidden')
-  $('.bt_refreshOsPackageUpdate').addClass('disabled')
-  jeeP.updateProgressBar()
-  jeedom.update.doAll({
-    options: options,
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function() {
-      jeeP.getJeedomLog(1, 'update')
-    }
-  })
 })
 
 $('#bt_checkAllUpdate').off('click').on('click', function() {

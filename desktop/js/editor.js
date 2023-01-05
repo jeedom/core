@@ -26,54 +26,6 @@ if (!jeeFrontEnd.editor) {
     },
     setCommandCreatewidget: function(options) {
       document.getElementById('bt_getHelpPage').setAttribute('data-page', 'widgets')
-      //initiate widget options modal:
-      $("#md_widgetCreate").dialog({
-        closeText: '',
-        autoOpen: false,
-        modal: true,
-        height: 280,
-        width: 300,
-        open: function() {
-          document.body.style.overflow = 'hidden'
-        },
-        beforeClose: function(event, ui) {
-          document.body.style.overflow = 'inherit'
-        }
-      })
-
-      //button create inside options modal:
-      $('#bt_widgetCreate').off('click').on('click', function() {
-        if (document.getElementById('sel_widgetSubtype').value == '') {
-          jeedomUtils.showAlert({message: '{{Le sous-type ne peut être vide}}', level: 'danger'})
-          return
-        }
-        if (document.getElementById('in_widgetName').value == '') {
-          jeedomUtils.showAlert({message: '{{Le nom ne peut être vide}}', level: 'danger'})
-          return
-        }
-        var name = 'cmd.'+document.getElementById('sel_widgetType').value+'.'+document.getElementById('sel_widgetSubtype').value+'.'+document.getElementById('in_widgetName').value+'.html'
-        var filePath = 'data/customTemplates/' + document.getElementById('sel_widgetVersion').value + '/'
-        jeedom.createFile({
-          path: filePath,
-          name: name,
-          error: function(error) {
-            jeedomUtils.showAlert({message: error.message, level: 'danger'})
-          },
-          success: function() {
-            $("#md_widgetCreate").dialog('close')
-            jeedomUtils.showAlert({message: '{{Fichier enregistré avec succès}}', level: 'success'})
-            var hash = jeeP.getHashFromPath(filePath.replace('data/customTemplates/', '').replace('/', ''))
-            jeeFrontEnd.editor._elfInstance.exec('open', hash)
-            //jeeFrontEnd.editor._elfInstance.exec('reload')
-
-            var path = filePath.replace('data/customTemplates/', '') + name
-            hash = jeeP.getHashFromPath(path)
-            setTimeout(function() {
-              jeeFrontEnd.editor._elfInstance.exec('edit', hash)
-            }, 350)
-          }
-        })
-      })
 
       //new custom command in elfinder:
       elFinder.prototype._options.commands.push('jee_createWidget')
@@ -84,13 +36,67 @@ if (!jeeFrontEnd.editor) {
             this.title = this.fm.i18n("{{Créer un Widget}}")
         }
         this.exec = function(hashes) {
-          $('#md_widgetCreate').dialog({title: "{{Options}}"}).dialog('open')
-          $('#sel_widgetType').trigger('change')
+          jeeDialog.dialog({
+            id: 'md_widgetCreation',
+            title: "{{Options}}",
+            height: 280,
+            width: 300,
+            callback: function() {
+              var contentEl = jeeDialog.get('#md_widgetCreation', 'content')
+              var newContent = document.getElementById('md_widgetCreate')
+              contentEl.appendChild(newContent)
+              newContent.removeClass('hidden')
 
-          $("#md_widgetCreate").keydown(function (event) {
-            if (event.keyCode == $.ui.keyCode.ENTER) {
-              $('#bt_widgetCreate').trigger('click')
-            }
+              $('#sel_widgetType').trigger('change')
+              $("#md_widgetCreate").keydown(function (event) {
+                if (event.keyCode == $.ui.keyCode.ENTER) {
+                  $('#bt_widgetCreate').trigger('click')
+                }
+              })
+            },
+            buttons: {
+              confirm: {
+                label: '<i class="fas fa-check"></i> {{Créer}}',
+                className: 'success',
+                callback: {
+                  click: function(event) {
+                    if (document.getElementById('sel_widgetSubtype').value == '') {
+                      jeedomUtils.showAlert({message: '{{Le sous-type ne peut être vide}}', level: 'danger'})
+                      return
+                    }
+                    if (document.getElementById('in_widgetName').value == '') {
+                      jeedomUtils.showAlert({message: '{{Le nom ne peut être vide}}', level: 'danger'})
+                      return
+                    }
+                    var name = 'cmd.'+document.getElementById('sel_widgetType').value+'.'+document.getElementById('sel_widgetSubtype').value+'.'+document.getElementById('in_widgetName').value+'.html'
+                    var filePath = 'data/customTemplates/' + document.getElementById('sel_widgetVersion').value + '/'
+                    jeedom.createFile({
+                      path: filePath,
+                      name: name,
+                      error: function(error) {
+                        jeedomUtils.showAlert({message: error.message, level: 'danger'})
+                      },
+                      success: function() {
+                        jeeDialog.get('#md_widgetCreation').hide()
+                        jeedomUtils.showAlert({message: '{{Fichier enregistré avec succès}}', level: 'success'})
+                        var hash = jeeP.getHashFromPath(filePath.replace('data/customTemplates/', '').replace('/', ''))
+                        jeeFrontEnd.editor._elfInstance.exec('open', hash)
+                        //jeeFrontEnd.editor._elfInstance.exec('reload')
+
+                        var path = filePath.replace('data/customTemplates/', '') + name
+                        hash = jeeP.getHashFromPath(path)
+                        setTimeout(function() {
+                          jeeFrontEnd.editor._elfInstance.exec('edit', hash)
+                        }, 350)
+                      }
+                    })
+                  }
+                }
+              },
+              cancel: {
+                className: 'hidden'
+              }
+            },
           })
           return $.Deferred().done()
         }

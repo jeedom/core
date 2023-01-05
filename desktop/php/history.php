@@ -144,7 +144,7 @@ $date = array(
 </div>
 
 <!--Compare Modal -->
-<div id="md_getCompareRange" class="cleanableModal hidden" style="overflow-x: hidden;">
+<div id="md_getCompareRange" class="hidden" style="overflow-x: hidden;">
 	<form class="form-horizontal">
 		<fieldset>
 			<div class="form-group">
@@ -201,7 +201,6 @@ $date = array(
 		</fieldset>
 	</form>
 	<br>
-	<a class="btn btn-success pull-right" id="bt_doCompare"><i class="fas fa-check"></i> {{Comparer}}</a>
 </div>
 <?php
 include_file("desktop", "history", "js");

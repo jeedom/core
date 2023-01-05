@@ -231,7 +231,7 @@ if (!jeeFrontEnd.history) {
           })
         }
       })
-      $('#md_getCompareRange').dialog('close')
+      jeeDialog.get('#md_historyCompare').hide()
     },
     setCalculList: function() {
       var $el = $('#historyCalculs')
@@ -590,23 +590,44 @@ $('#sel_comparePeriod').off('change').on('change', function() {
   document.getElementById('in_compareStart2').value = endDate
 })
 
-//Load date ranges modal:
-$("#md_getCompareRange").dialog({
-  closeText: '',
-  autoOpen: false,
-  modal: true,
+jeeDialog.dialog({
+  id: 'md_historyCompare',
+  title: "{{Période de comparaison}}",
+  show: false,
   width: 720,
   height: 260,
-  open: function() {
-    $(this).parent().css({
-      'top': 120
-    })
+  callback: function() {
+    var contentEl = jeeDialog.get('#md_historyCompare', 'content')
+    var newContent = document.getElementById('md_getCompareRange')
+    contentEl.appendChild(newContent)
+    newContent.removeClass('hidden')
+
     document.getElementById('in_compareStart1').value = document.getElementById('in_startDate').value
     document.getElementById('sel_setPeriod').triggerEvent('change')
     document.getElementById('sel_comparePeriod').triggerEvent('change')
   },
-  beforeClose: function(event, ui) {}
+  buttons: {
+    confirm: {
+      label: '<i class="fas fa-check"></i> {{Comparer}}',
+      className: 'success',
+      callback: {
+        click: function(event) {
+          jeedom.history.chart[jeeP.__el__].comparing = true
+          $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', true)
+          $('#bt_compare').removeClass('btn-success').addClass('btn-danger')
+          jeedom.history.chart[jeeP.__el__].chart.xAxis[1].update({
+            visible: true
+          })
+          jeeP.compareChart(jeeP.__lastId__)
+        }
+      }
+    },
+    cancel: {
+      className: 'hidden'
+    }
+  },
 })
+
 
 $('#md_getCompareRange').on({
   'change': function(event) {
@@ -620,9 +641,9 @@ $('#md_getCompareRange').on({
     var text = '{{Comparer}} ' + diffPeriod + ' {{jours avec}} ' + cdiffPeriod + ' {{jours il y a}} ' + $('#sel_comparePeriod option:selected').text()
     $('#md_getCompareRange .spanCompareDiffResult').text(text)
     if (diffPeriod != cdiffPeriod) {
-      $('#md_getCompareRange .spanCompareDiff').show()
+      jeeDialog.get('#md_historyCompare').show()
     } else {
-      $('#md_getCompareRange .spanCompareDiff').hide()
+      jeeDialog.get('#md_historyCompare').hide()
     }
   }
 }, 'input.in_datepicker')
@@ -631,25 +652,13 @@ $('#bt_compare').off().on('click', function() {
   if (!jeedom.history.chart[jeeP.__el__].comparing) { //Go comparing:
     if (jeeP.__lastId__ == null) return
     $(this).attr('data-cmdId', jeeP.__lastId__)
-    $('#md_getCompareRange').removeClass('hidden').dialog({
-      title: "{{Période de comparaison}}"
-    }).dialog('open')
+    jeeDialog.get('#md_historyCompare').show()
   } else { //Stop comparing:
     jeeP.clearGraph()
     jeeP.addChart($(this).attr('data-cmdId'))
     $('li.li_history[data-cmd_id="' + $(this).attr('data-cmdId') + '"]').addClass('active')
     $(this).removeClass('btn-danger').addClass('btn-success')
   }
-})
-
-$('#bt_doCompare').off('click').on('click', function() {
-  jeedom.history.chart[jeeP.__el__].comparing = true
-  $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', true)
-  $('#bt_compare').removeClass('btn-success').addClass('btn-danger')
-  jeedom.history.chart[jeeP.__el__].chart.xAxis[1].update({
-    visible: true
-  })
-  jeeP.compareChart(jeeP.__lastId__)
 })
 
 jeeFrontEnd.history.postInit()

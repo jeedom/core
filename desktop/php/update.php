@@ -129,7 +129,7 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 			</div>
 		</div>
 
-		<div id="md_specifyUpdate" class="cleanableModal hidden" style="overflow-x: hidden;">
+		<div id="md_specifyUpdate" class="hidden" style="overflow-x: hidden;">
 			<form class="form-horizontal">
 				<fieldset>
 					<div class="alert alert-warning">
@@ -178,25 +178,23 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 						<div class="col-xs-5">
 							<select id="sel_updateVersion" class="form-control updateOption" data-l1key="update::reapply">
 								<option value="">{{Aucune}}</option>
-								<?php
-								$updates = array();
-								foreach ((update::listCoreUpdate()) as $udpate) {
-									$updates[str_replace(array('.php', '.sql'), '', $udpate)] = str_replace(array('.php', '.sql'), '', $udpate);
-								}
-								usort($updates, 'version_compare');
-								$updates = array_reverse($updates);
-								foreach ($updates as $value) {
-									//if ($value < 4.0) continue;
-									echo '<option value="' . $value . '">' . $value . '</option>';
-								}
+									<?php
+									$updates = array();
+									foreach ((update::listCoreUpdate()) as $udpate) {
+										$updates[str_replace(array('.php', '.sql'), '', $udpate)] = str_replace(array('.php', '.sql'), '', $udpate);
+									}
+									usort($updates, 'version_compare');
+									$updates = array_reverse($updates);
+									foreach ($updates as $value) {
+										//if ($value < 4.0) continue;
+										echo '<option value="' . $value . '">' . $value . '</option>';
+									}
 								?>
 							</select>
 						</div>
 					</div>
 				</fieldset>
 			</form>
-			<br>
-			<a class="btn btn-warning pull-right" id="bt_doUpdate"><i class="fas fa-check"></i> {{Mettre à jour}}</a>
 		</div>
 	</div>
 </div>

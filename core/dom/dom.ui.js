@@ -786,7 +786,7 @@ var jeeDialog = (function()
       if (_params.setContent) {
         var dialogContent = document.createElement('div')
         dialogContent.addClass('jeeDialogContent')
-        if (_params.message != '') {
+        if (_params.message != undefined && _params.message != '') {
           dialogContent.innerHTML = '<div>' + _params.message + '</div>'
         }
         template.appendChild(dialogContent)
@@ -852,7 +852,11 @@ var jeeDialog = (function()
 
       if (_params.zIndex) _dialog.style.zIndex = _params.zIndex
 
-      _dialog.style.top = _params.top
+      if (is_int(_params.top)) {
+        _dialog.style.top = _params.top + 'px'
+      } else {
+        _dialog.style.top = _params.top
+      }
     }
 
     function setBackDrop(_params) {
@@ -1324,7 +1328,7 @@ var jeeDialog = (function()
           contentUrl: '',
           zIndex: 1019,
           width: '90vw',
-          height: '60vh',
+          height: '65vh',
           top: '10vh',
           backdrop: true,
           buttons: {},
@@ -1526,6 +1530,9 @@ var jeeDialog = (function()
           if (_options.callback) _options.callback()
           jeedomUtils.initTooltips()
         })
+      } else {
+        if (_options.callback) _options.callback()
+        jeedomUtils.initTooltips()
       }
       if (_options.show) {
         dialogContainer._jeeDialog.show()

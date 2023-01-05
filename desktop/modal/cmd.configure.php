@@ -977,9 +977,11 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
   })
 
   $('#bt_cmdConfigureGraph').on('click', function() {
-    $('#md_modal3').dialog({
-      title: "{{Graphique des liens}}"
-    }).load('index.php?v=d&modal=graph.link&filter_type=cmd&filter_id=' + jeephp2js.md_cmdConfigure_cmdInfo.id).dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal3',
+      title: "{{Graphique des liens}}",
+      contentUrl: 'index.php?v=d&modal=graph.link&filter_type=cmd&filter_id=' + jeephp2js.md_cmdConfigure_cmdInfo.id
+    })
   })
 
   $('#bt_influxDelete').off('click').on('click', function() {

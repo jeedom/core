@@ -517,15 +517,19 @@ $('.gotoUrlStore').on('click', function() {
 })
 
 $('.displayStore').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Market}}"
-  }).load('index.php?v=d&modal=update.list&type=plugin&repo=' + $(this).attr('data-repo')).dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Market}}",
+    contentUrl: 'index.php?v=d&modal=update.list&type=plugin&repo=' + this.getAttribute('data-repo')
+  })
 })
 
 $('#bt_addPluginFromOtherSource').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Ajouter un plugin}}"
-  }).load('index.php?v=d&modal=update.add').dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Ajouter un plugin}}",
+    contentUrl: 'index.php?v=d&modal=update.add'
+  })
 })
 
 $('.pluginDisplayCard').off('click').on('click', function(event) {
@@ -603,8 +607,13 @@ $('#div_plugin_toggleState').on({
         })
       },
       success: function() {
-        if ($('#md_modal').is(':visible')) {
-          $("#md_modal").load('index.php?v=d&p=plugin&ajax=1&id=' + _el.attr('data-plugin_id')).dialog('open')
+        if (document.getElementById('jee_modal')?.isVisible()) {
+          jeeDialog.dialog({
+            id: 'jee_modal',
+            title: '{{Configuration du plugin}}',
+            height: '85%',
+            contentUrl: 'index.php?v=d&p=plugin&ajax=1&id=' + _el.attr('data-plugin_id')
+          })
         } else {
           window.location.href = 'index.php?v=d&p=plugin&id=' + _el.attr('data-plugin_id')
         }
@@ -683,15 +692,12 @@ $('#bt_savePluginLogConfig').off('click').on('click', function() {
 
 $('#div_configLog').on({
   'click': function(event) {
-    if ($('#md_modal').is(':visible')) {
-      $('#md_modal2').dialog({
-        title: "{{Log du plugin}}" + ' ' + $(this).attr('data-log')
-      }).load('index.php?v=d&modal=log.display&log=' + escape($(this).attr('data-log'))).dialog('open')
-    } else {
-      $('#md_modal').dialog({
-        title: "{{Log du plugin}}" + ' ' + $(this).attr('data-log')
-      }).load('index.php?v=d&modal=log.display&log=' + escape($(this).attr('data-log'))).dialog('open')
-    }
+    let mId = document.getElementById('jee_modal')?.isVisible() ? 'jee_modal2' : 'jee_modal'
+    jeeDialog.dialog({
+      id: mId,
+      title: "{{Log du plugin}}" + ' ' + this.getAttribute('data-log'),
+      contentUrl: 'index.php?v=d&modal=log.display&log=' + escape(this.getAttribute('data-log'))
+    })
   }
 }, '.bt_plugin_conf_view_log')
 
