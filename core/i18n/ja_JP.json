@@ -1409,8 +1409,7 @@
         "Mobile": "Mobile",
         "Type": "Type",
         "Sous-type": "Sous-type",
-        "Nom": "Nom",
-        "Créer": "Créer"
+        "Nom": "Nom"
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
@@ -2732,7 +2731,7 @@
         "Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes": "Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes",
         "Mise à jour lancée avec succès.": "Mise à jour lancée avec succès",
         "Log de mise à jour": "Log de mise à jour",
-        "Options": "オプション",
+        "Options de mise à jour": "Options de mise à jour",
         "Êtes-vous sûr de vouloir mettre à jour :": "Êtes-vous sûr de vouloir mettre à jour :",
         "Êtes-vous sûr de vouloir supprimer :": "Êtes-vous sûr de vouloir supprimer :"
     },
@@ -2742,11 +2741,12 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "すべてのログを削除してもよろしいですか？"
     },
     "desktop\/js\/editor.js": {
+        "Créer un Widget": "Créer un Widget",
+        "Options": "Options",
+        "Créer": "Créer",
         "Le sous-type ne peut être vide": "Le sous-type ne peut être vide",
         "Le nom ne peut être vide": "Le nom ne peut être vide",
         "Fichier enregistré avec succès": "Fichier enregistré avec succès",
-        "Créer un Widget": "Créer un Widget",
-        "Options": "Options",
         "Activé": "Activé",
         "Personnalisation avancée active": "Personnalisation avancée active",
         "Désactivé": "Désactivé",
@@ -2790,6 +2790,7 @@
         "Ajouter un plugin": "プラグインを追加する",
         "Gestion Plugins": "プラグイン管理",
         "Êtes-vous sûr de vouloir supprimer le plugin": "Êtes-vous sûr de vouloir supprimer le plugin",
+        "Configuration du plugin": "Configuration du plugin",
         "Sauvegarde de la configuration des panneaux effectuée": "実行されたパネルの構成の保存",
         "Sauvegarde des fonctionalités effectuée": "実行された機能バックアップ",
         "Sauvegarde de la configuration des logs effectuée": "ログ構成が保存されました",
@@ -2904,10 +2905,10 @@
         "Configuration des formules de calcul": "式の設定",
         "Configuration de l'historique des commandes": "歴史Configurationフォームのコントロール",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "彼は\\「sの歴史を削除する必要がある前に、日付（S：M Y-するM d H）を記入してください",
+        "Période de comparaison": "Période de comparaison",
         "Comparer": "Comparer",
         "jours avec": "jours avec",
-        "jours il y a": "jours il y a",
-        "Période de comparaison": "Période de comparaison"
+        "jours il y a": "jours il y a"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Supprimer ce filtre",
@@ -4187,6 +4188,7 @@
         "Désactivation de": "Désactivation de",
         "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais": "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais",
         "Erreur exécution de la commande": "コマンドの実行エラー",
+        "Défaut": "Défaut",
         "Aucun paramètre optionnel disponible.": "Aucun paramètre optionnel disponible",
         "Aucune description trouvée pour ce Widget.": "Aucune description trouvée pour ce Widget",
         "Titre": "タイトル",

@@ -1394,7 +1394,7 @@
         "erreurs": "Fehler",
         "en cours": "In Bearbeitung",
         "Santé": "Gesundheit",
-        "Configuration du plugin": "Plugin Konfiguration",
+        "Configuration du plugin": "Plugin-Setup",
         "Santé de": "Gesundheit von",
         "Benchmark Jeedom": "Jeedom Benchmark",
         "Plugins": "Plugins",
@@ -1409,8 +1409,7 @@
         "Mobile": "Handy, Mobiltelefon",
         "Type": "Typ",
         "Sous-type": "Untertyp",
-        "Nom": "Name",
-        "Créer": "Erschaffen"
+        "Nom": "Name"
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -2732,7 +2731,7 @@
         "Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes": "Seien Sie vorsichtig, dieser Vorgang ist immer riskant und kann mehrere zehn Minuten dauern",
         "Mise à jour lancée avec succès.": "Update erfolgreich gestartet",
         "Log de mise à jour": "Protokoll aktualisieren",
-        "Options": "Optionen",
+        "Options de mise à jour": "Update-Optionen",
         "Êtes-vous sûr de vouloir mettre à jour :": "Möchten Sie wirklich aktualisieren:",
         "Êtes-vous sûr de vouloir supprimer :": "Sind Sie sicher, dass Sie löschen möchten:"
     },
@@ -2742,11 +2741,12 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Möchten Sie wirklich alle Protokolle löschen?"
     },
     "desktop\/js\/editor.js": {
+        "Créer un Widget": "Erstellen Sie ein Widget",
+        "Options": "Optionen",
+        "Créer": "Erschaffen",
         "Le sous-type ne peut être vide": "Untertyp darf nicht leer sein",
         "Le nom ne peut être vide": "Name darf nicht leer sein",
         "Fichier enregistré avec succès": "Datei erfolgreich gespeichert",
-        "Créer un Widget": "Erstellen Sie ein Widget",
-        "Options": "Optionen",
         "Activé": "Ermöglicht",
         "Personnalisation avancée active": "Erweiterte Anpassung aktiv",
         "Désactivé": "Deaktiviert",
@@ -2790,6 +2790,7 @@
         "Ajouter un plugin": "Fügen Sie ein Plugin hinzu",
         "Gestion Plugins": "Plugins-Verwaltung",
         "Êtes-vous sûr de vouloir supprimer le plugin": "Möchten Sie das Plugin wirklich entfernen?",
+        "Configuration du plugin": "Plugin-Setup",
         "Sauvegarde de la configuration des panneaux effectuée": "Speichern der Konfiguration der Panels durchgeführt",
         "Sauvegarde des fonctionalités effectuée": "Funktionssicherung durchgeführt",
         "Sauvegarde de la configuration des logs effectuée": "Protokollkonfiguration gespeichert",
@@ -2904,10 +2905,10 @@
         "Configuration des formules de calcul": "Konfiguration von Berechnungsformeln",
         "Configuration de l'historique des commandes": "Die Konfigurations-Chronik der Befehle",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Bitte geben sie das Datum der Chronik an(J-M-T H:M:S), welche gelöscht werden soll",
+        "Période de comparaison": "Vergleichszeitraum",
         "Comparer": "Vergleichen",
         "jours avec": "Tage mit",
-        "jours il y a": "Vor Tagen",
-        "Période de comparaison": "Vergleichszeitraum"
+        "jours il y a": "Vor Tagen"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Diesen Filter entfernen",
@@ -2956,7 +2957,7 @@
         "Droits copié avec succes": "Rechte erfolgreich kopiert"
     },
     "desktop\/js\/health.js": {
-        "Configuration du plugin": "Plugin Konfiguration",
+        "Configuration du plugin": "Plugin-Setup",
         "Santé": "Gesundheit",
         "Jeedom benchmark": "Jeedom Benchmark"
     },
@@ -3445,7 +3446,7 @@
         "Annuler": "Abbrechen"
     },
     "core\/js\/plugin.template.js": {
-        "Configuration du plugin": "Plugin Konfiguration",
+        "Configuration du plugin": "Plugin-Setup",
         "Date de valeur": "Datum der Wertstellung",
         "Date de collecte": "Datum der Abholung",
         "Nom de la copie de l\\'équipement ?": "Name der Gerätekopie?",
@@ -3744,7 +3745,7 @@
         "Numérique": "Digital",
         "Binaire": "Binär",
         "Action": "Aktion",
-        "Défaut": "Fehler",
+        "Défaut": "Standard",
         "Curseur": "Cursor",
         "Message": "Nachricht",
         "Couleur": "Farbe",
@@ -4187,6 +4188,7 @@
         "Désactivation de": "Deaktivierung von",
         "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais": "weil es in den letzten 3 Versuchen nicht oder falsch geantwortet hat",
         "Erreur exécution de la commande": "Befehlsausführungsfehler",
+        "Défaut": "Standard",
         "Aucun paramètre optionnel disponible.": "Keine optionalen Parameter verfügbar",
         "Aucune description trouvée pour ce Widget.": "Für dieses Widget wurde keine Beschreibung gefunden",
         "Titre": "Titel",

@@ -1394,7 +1394,7 @@
         "erreurs": "errors",
         "en cours": "In progress",
         "Santé": "Health",
-        "Configuration du plugin": "Plugin configuration",
+        "Configuration du plugin": "Plugin Setup",
         "Santé de": "Health of",
         "Benchmark Jeedom": "Jeedom benchmark",
         "Plugins": "Plugins",
@@ -1409,8 +1409,7 @@
         "Mobile": "Mobile",
         "Type": "Type",
         "Sous-type": "Subtype",
-        "Nom": "Name",
-        "Créer": "Create"
+        "Nom": "Name"
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -2732,7 +2731,7 @@
         "Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes": "Be careful, this operation is always risky and can take several tens of minutes",
         "Mise à jour lancée avec succès.": "Update launched successfully",
         "Log de mise à jour": "Update Log",
-        "Options": "Options",
+        "Options de mise à jour": "Update Options",
         "Êtes-vous sûr de vouloir mettre à jour :": "Are you sure you want to update:",
         "Êtes-vous sûr de vouloir supprimer :": "Are you sure you want to delete:"
     },
@@ -2742,11 +2741,12 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Are you sure you want to delete all logs?"
     },
     "desktop\/js\/editor.js": {
+        "Créer un Widget": "Create a Widget",
+        "Options": "Options",
+        "Créer": "To create",
         "Le sous-type ne peut être vide": "Subtype cannot be empty",
         "Le nom ne peut être vide": "Name cannot be empty",
         "Fichier enregistré avec succès": "File saved successfully",
-        "Créer un Widget": "Create a Widget",
-        "Options": "Options",
         "Activé": "Enabled",
         "Personnalisation avancée active": "Advanced customization active",
         "Désactivé": "Disabled",
@@ -2790,6 +2790,7 @@
         "Ajouter un plugin": "Add a plugin",
         "Gestion Plugins": "Plugins management",
         "Êtes-vous sûr de vouloir supprimer le plugin": "Are you sure you want to remove the plugin",
+        "Configuration du plugin": "Plugin Setup",
         "Sauvegarde de la configuration des panneaux effectuée": "Saving of the configuration of the panels carried out",
         "Sauvegarde des fonctionalités effectuée": "Functionality backup performed",
         "Sauvegarde de la configuration des logs effectuée": "Log configuration saved",
@@ -2904,10 +2905,10 @@
         "Configuration des formules de calcul": "Configuration of calculation formulas",
         "Configuration de l'historique des commandes": "Commands history setup",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Remove history before provided date (Y-m-d H:m:s)",
+        "Période de comparaison": "Comparison period",
         "Comparer": "Compare",
         "jours avec": "days with",
-        "jours il y a": "days there is",
-        "Période de comparaison": "Comparison period"
+        "jours il y a": "days there is"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Remove this filter",
@@ -2956,7 +2957,7 @@
         "Droits copié avec succes": "Rights successfully copied"
     },
     "desktop\/js\/health.js": {
-        "Configuration du plugin": "Plugin configuration",
+        "Configuration du plugin": "Plugin Setup",
         "Santé": "Health",
         "Jeedom benchmark": "Jeedom benchmark"
     },
@@ -3445,7 +3446,7 @@
         "Annuler": "Cancel"
     },
     "core\/js\/plugin.template.js": {
-        "Configuration du plugin": "Plugin configuration",
+        "Configuration du plugin": "Plugin Setup",
         "Date de valeur": "Value date",
         "Date de collecte": "Collect date",
         "Nom de la copie de l\\'équipement ?": "Name of equipment copy?",
@@ -3743,7 +3744,7 @@
         "Info": "Information",
         "Numérique": "Numeric",
         "Binaire": "Binary",
-        "Action": "Stock",
+        "Action": "Action",
         "Défaut": "Default",
         "Curseur": "Cursor",
         "Message": "Message",
@@ -4187,6 +4188,7 @@
         "Désactivation de": "Deactivation of",
         "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais": "because it did not respond or responded incorrectly during the last 3 attempts",
         "Erreur exécution de la commande": "Command execution error",
+        "Défaut": "Default",
         "Aucun paramètre optionnel disponible.": "No optional parameter available for this widget",
         "Aucune description trouvée pour ce Widget.": "No description found for this widget",
         "Titre": "Title",

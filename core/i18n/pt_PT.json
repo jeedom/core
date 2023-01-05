@@ -519,7 +519,7 @@
         "Escalier": "Escada",
         "Barres verticales": "Barras verticais",
         "Paramètres du template": "Configurações do modelo",
-        "Défaut": "Predefinido",
+        "Défaut": "Padrão",
         "Transparent": "Transparente",
         "Paramètres optionnels": "Parâmetros opcionais",
         "Ajouter": "Adicionar",
@@ -1040,7 +1040,7 @@
         "Escalier": "Escada",
         "Barres verticales": "Barras verticais",
         "Paramètres du template": "Parâmetros do modelo",
-        "Défaut": "Predefinido",
+        "Défaut": "Padrão",
         "Transparent": "Transparente",
         "Paramètres optionnels": "Parâmetros opcionais",
         "Ajouter": "Adicionar",
@@ -1157,7 +1157,7 @@
         "Erreur": "Erro",
         "En cours": "Em curso",
         "Arrêté": "Parado",
-        "Défaut": "Predefinido",
+        "Défaut": "Padrão",
         "Aucun": "Nenhum",
         "Temps réel": "Tempo real",
         "Dossier": "Ficheiro",
@@ -1312,7 +1312,7 @@
         "Masquer le nom": "Ocultar o nome",
         "Couleur de fond": "Cor de fundo",
         "Transparent": "Transparente",
-        "Défaut": "Predefinido",
+        "Défaut": "Padrão",
         "Couleur du texte": "Cor do texto",
         "Arrondis": "Arredondado",
         "Bordure": "Borda",
@@ -1394,7 +1394,7 @@
         "erreurs": "erros",
         "en cours": "Em curso",
         "Santé": "Problemas",
-        "Configuration du plugin": "Configuração de plugin",
+        "Configuration du plugin": "Configuração do plug-in",
         "Santé de": "Estado de",
         "Benchmark Jeedom": "Benchmark do Jeedom",
         "Plugins": "Plug-ins",
@@ -1409,8 +1409,7 @@
         "Mobile": "Móvel",
         "Type": "Tipo",
         "Sous-type": "Subtipo",
-        "Nom": "Nome",
-        "Créer": "Criar"
+        "Nom": "Nome"
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -1800,7 +1799,7 @@
         "Info": "Informações",
         "Warning": "Aviso",
         "Erreur": "Erro",
-        "Défaut": "Predefinido",
+        "Défaut": "Padrão",
         "Ajouter un type de résumé": "Adicionar um tipo de resumo",
         "Clé": "Chave",
         "Nom": "Nome",
@@ -2278,7 +2277,7 @@
         "Visible": "Visivél",
         "Objet parent": "Objeto pai",
         "Log": "Registo",
-        "Défaut": "Predefinido",
+        "Défaut": "Padrão",
         "Temps réel": "Tempo real",
         "Timeout": "Tempo limite",
         "Durée au delà de laquelle le scénario est coupé. 0 : pas de timeout.": "Duração além da qual o cenário é cortado. 0: sem tempo limite",
@@ -2732,7 +2731,7 @@
         "Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes": "Tenha cuidado, esta operação é sempre arriscada e pode levar várias dezenas de minutos",
         "Mise à jour lancée avec succès.": "Atualização iniciada com sucesso",
         "Log de mise à jour": "Atualizar registro",
-        "Options": "Opções",
+        "Options de mise à jour": "Opções de atualização",
         "Êtes-vous sûr de vouloir mettre à jour :": "Tem certeza que deseja atualizar:",
         "Êtes-vous sûr de vouloir supprimer :": "Tem certeza de que deseja excluir:"
     },
@@ -2742,11 +2741,12 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Tem certeza de que deseja excluir todos os logs?"
     },
     "desktop\/js\/editor.js": {
+        "Créer un Widget": "Criar um widget",
+        "Options": "Opções",
+        "Créer": "Para criar",
         "Le sous-type ne peut être vide": "O subtipo não pode estar vazio",
         "Le nom ne peut être vide": "O nome não pode estar vazio",
         "Fichier enregistré avec succès": "Arquivo guardado com sucesso",
-        "Créer un Widget": "Criar um widget",
-        "Options": "Opções",
         "Activé": "Ativado",
         "Personnalisation avancée active": "Personalização avançada ativa",
         "Désactivé": "Desativado",
@@ -2790,6 +2790,7 @@
         "Ajouter un plugin": "Adicionar um plugin",
         "Gestion Plugins": "Gestão de plugins",
         "Êtes-vous sûr de vouloir supprimer le plugin": "Tem certeza que deseja remover o plugin",
+        "Configuration du plugin": "Configuração do plug-in",
         "Sauvegarde de la configuration des panneaux effectuée": "Backup da configuração do painel concluído",
         "Sauvegarde des fonctionalités effectuée": "Backup das funcionalidades concluído",
         "Sauvegarde de la configuration des logs effectuée": "Salvar a configuração dos registos realizados",
@@ -2904,10 +2905,10 @@
         "Configuration des formules de calcul": "A configurar as fórmulas",
         "Configuration de l'historique des commandes": "Configuração do histórico dos comandos",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Por favor indicar a data  (A-m-d H:m:s) antes da qual quer remover o histórico de",
+        "Période de comparaison": "Período de comparação",
         "Comparer": "Comparar",
         "jours avec": "dias com",
-        "jours il y a": "dias atrás",
-        "Période de comparaison": "Período de comparação"
+        "jours il y a": "dias atrás"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Remova este filtro",
@@ -2956,7 +2957,7 @@
         "Droits copié avec succes": "Direitos copiados com sucesso"
     },
     "desktop\/js\/health.js": {
-        "Configuration du plugin": "Configuração de plugin",
+        "Configuration du plugin": "Configuração do plug-in",
         "Santé": "Estado",
         "Jeedom benchmark": "Benchmark Jeedom"
     },
@@ -3445,7 +3446,7 @@
         "Annuler": "Cancelar"
     },
     "core\/js\/plugin.template.js": {
-        "Configuration du plugin": "Configuração de plugin",
+        "Configuration du plugin": "Configuração do plug-in",
         "Date de valeur": "Data de validade",
         "Date de collecte": "Data de coleta",
         "Nom de la copie de l\\'équipement ?": "Nome da cópia do dispositivo?",
@@ -3744,7 +3745,7 @@
         "Numérique": "Digital",
         "Binaire": "Binário",
         "Action": "Ação",
-        "Défaut": "Predefinido",
+        "Défaut": "Padrão",
         "Curseur": "Slider",
         "Message": "Mensagem",
         "Couleur": "Cor",
@@ -4187,6 +4188,7 @@
         "Désactivation de": "Desativação de",
         "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais": "porque não respondeu ou respondeu incorretamente durante as últimas 3 tentativas",
         "Erreur exécution de la commande": "Erro ao executar o comando",
+        "Défaut": "Padrão",
         "Aucun paramètre optionnel disponible.": "Nenhum parâmetro opcional disponível",
         "Aucune description trouvée pour ce Widget.": "Nenhuma descrição encontrada para este widget",
         "Titre": "Título",
