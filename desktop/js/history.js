@@ -337,19 +337,21 @@ $('#bt_displayCalculHistory').on('click', function() {
   if (calcul != '') jeeP.addChart(calcul, 1)
 })
 $('#bt_configureCalculHistory').on('click', function() {
-  $('#md_modal').dialog({
+  jeeDialog.dialog({
+    id: 'jee_modal',
     title: "{{Configuration des formules de calcul}}",
-  }).load('index.php?v=d&modal=history.calcul').dialog('open')
-
-  $('#md_modal').on('dialogbeforeclose', function(event, ui) {
-    jeeP.setCalculList()
-    $(this).off('dialogbeforeclose')
+    beforeClose: function() {
+      jeeP.setCalculList()
+    },
+    contentUrl: 'index.php?v=d&modal=history.calcul'
   })
 })
 $('#bt_openCmdHistoryConfigure').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Configuration de l'historique des commandes}}"
-  }).load('index.php?v=d&modal=cmd.configureHistory').dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Configuration de l'historique des commandes}}",
+    contentUrl: 'index.php?v=d&modal=cmd.configureHistory'
+  })
 })
 
 //Right options:

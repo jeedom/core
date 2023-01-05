@@ -74,9 +74,11 @@ $('#bt_showAllObject').on('click', function() {
 })
 
 $('#bt_plan3dHeaderConfigure').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Configuration du plan 3D}}"
-  }).load('index.php?v=d&modal=plan3dHeader.configure&plan3dHeader_id=' + plan3dHeader_id).dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Configuration du plan 3D}}",
+    contentUrl: 'index.php?v=d&modal=plan3dHeader.configure&plan3dHeader_id=' + plan3dHeader_id
+  })
 })
 
 $('#bt_plan3dHeaderAdd').on('click', function() {
@@ -147,9 +149,11 @@ window.registerEvent('dblclick', function() {
   raycaster.setFromCamera(mouse, camera)
   var intersects = raycaster.intersectObjects(scene.children, true)
   if (intersects.length > 0 && intersects[0].object.name != '') {
-    $('#md_modal').dialog({
-      title: "{{Configuration de l\'objet}}"
-    }).load('index.php?v=d&modal=plan3d.configure&&plan3dHeader_id=' + plan3dHeader_id + '&name=' + intersects[0].object.name).dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Configuration de l\'objet}}",
+      contentUrl: 'index.php?v=d&modal=plan3d.configure&&plan3dHeader_id=' + plan3dHeader_id + '&name=' + intersects[0].object.name
+    })
   }
 }, false)
 

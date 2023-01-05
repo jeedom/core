@@ -153,7 +153,11 @@ $('.bt_removePlan3dComposant').off('click').on('click', function() {
 
 $('.bt_configurePlan3dComposant').off('click').on('click', function() {
   var tr = $(this).closest('tr')
-  $('#md_modal2').dialog({title: "{{Configuration du composant}}"}).load('index.php?v=d&modal=plan3d.configure&id='+tr.attr('data-id')).dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal2',
+    title: "{{Configuration du composant}}",
+    contentUrl: 'index.php?v=d&modal=plan3d.configure&id=' + tr.attr('data-id')
+  })
 });
 
 $('.plan3dHeaderAttr[data-l1key=configuration][data-l2key=icon]').on('dblclick', function() {

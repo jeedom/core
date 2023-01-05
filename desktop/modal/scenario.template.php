@@ -70,7 +70,7 @@ sendVarToJS('jeephp2js.md_scenarioTemplate_scId', init('scenario_id'));
 function refreshScenarioTemplateList() {
   jeedom.scenario.getTemplate({
     error: function(error) {
-      $('#md_scenarioTemplate').showAlert({message: error.message, level: 'danger'})
+      jeedomUtils.showAlert({message: error.message, level: 'danger'})
     },
     success: function(data) {
       $('#ul_scenarioTemplateList').empty()
@@ -94,28 +94,28 @@ $('#bt_scenarioTemplateConvert').on('click', function() {
     id: jeephp2js.md_scenarioTemplate_scId,
     template: document.getElementById('in_newTemplateName').value + '.json',
     error: function(error) {
-      $('#md_scenarioTemplate').showAlert({message: error.message, level: 'danger'})
+      jeedomUtils.showAlert({message: error.message, level: 'danger'})
     },
     success: function(data) {
       refreshScenarioTemplateList();
-      $('#md_scenarioTemplate').showAlert({message: 'Création du template réussie', level: 'success'})
+      jeedomUtils.showAlert({message: 'Création du template réussie', level: 'success'})
     }
   })
 })
 
 $('#bt_scenarioTemplateRemove').on('click', function() {
   if ($('#ul_scenarioTemplateList li.active').attr('data-template') == undefined) {
-    $('#md_scenarioTemplate').showAlert({message: 'Vous devez d\'abord sélectionner un template', level: 'danger'})
+    jeedomUtils.showAlert({message: 'Vous devez d\'abord sélectionner un template', level: 'danger'})
     return
   }
   jeedom.scenario.removeTemplate({
     template: $('#ul_scenarioTemplateList li.active').attr('data-template'),
     error: function(error) {
-      $('#md_scenarioTemplate').showAlert({message: error.message, level: 'danger'})
+      jeedomUtils.showAlert({message: error.message, level: 'danger'})
     },
     success: function(data) {
       refreshScenarioTemplateList()
-      $('#md_scenarioTemplate').showAlert({message: 'Suppression du template réussie', level: 'success'})
+      jeedomUtils.showAlert({message: 'Suppression du template réussie', level: 'success'})
     }
   })
 })
@@ -129,10 +129,9 @@ $('#bt_scenarioTemplateApply').on('click', function() {
         id: jeephp2js.md_scenarioTemplate_scId,
         convert: json_encode(convert),
         error: function(error) {
-          $('#md_scenarioTemplate').showAlert({message: error.message, level: 'danger'})
+          jeedomUtils.showAlert({message: error.message, level: 'danger'})
         },
         success: function(data) {
-          $('#md_modal').dialog('close')
           jeeFrontEnd.scenario.printScenario(jeephp2js.md_scenarioTemplate_scId)
           jeedomUtils.showAlert({message: 'Template appliqué avec succès.', level: 'success'})
         }
@@ -151,7 +150,7 @@ $('#ul_scenarioTemplateList').on({
       template: $(this).attr('data-template'),
       id: jeephp2js.md_scenarioTemplate_scId,
       error: function(error) {
-        $('#md_scenarioTemplate').showAlert({message: error.message, level: 'danger'})
+        jeedomUtils.showAlert({message: error.message, level: 'danger'})
       },
       success: function(data) {
         var html = ''
@@ -179,7 +178,7 @@ $('#ul_scenarioTemplateList').on({
 
 $('#bt_scenarioTemplateDownload').on('click',function() {
   if ($('#ul_scenarioTemplateList li.active').attr('data-template') == undefined) {
-    $('#md_scenarioTemplate').showAlert({message: 'Vous devez d\'abord sélectionner un template', level: 'danger'})
+    jeedomUtils.showAlert({message: 'Vous devez d\'abord sélectionner un template', level: 'danger'})
     return
   }
   var path = 'data/scenario/' + $('#ul_scenarioTemplateList li.active').attr('data-template')
@@ -200,10 +199,10 @@ $('#bt_uploadScenarioTemplate').fileupload({
   replaceFileInput: false,
   done: function(e, data) {
     if (data.result.state != 'ok') {
-      $('#md_scenarioTemplate').showAlert({message: data.result.result, level: 'danger'})
+      jeedomUtils.showAlert({message: data.result.result, level: 'danger'})
       return;
     }
-    $('#md_scenarioTemplate').showAlert({message: '{{Template ajouté avec succès}}', level: 'success'})
+    jeedomUtils.showAlert({message: '{{Template ajouté avec succès}}', level: 'success'})
     refreshScenarioTemplateList()
   }
 })

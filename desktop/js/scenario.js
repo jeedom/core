@@ -1455,9 +1455,11 @@ document.registerEvent('keydown', function(event) {
 
   if ((event.ctrlKey || event.metaKey) && event.which == 76) { //l
     event.preventDefault()
-    $('#md_modal').dialog({
-      title: "{{Log d'exécution du scénario}}"
-    }).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key=id]').jeeValue()).dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Log d'exécution du scénario}}",
+      contentUrl: 'index.php?v=d&modal=scenario.log.execution&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key=id]').jeeValue()
+    })
     return
   }
 
@@ -1557,9 +1559,11 @@ document.getElementById('bt_clearAllLogs').addEventListener('click', function(ev
 })
 
 document.getElementById('bt_showScenarioSummary').addEventListener('click', function(event) {
-  $('#md_modal').dialog({
-    title: "{{Vue d'ensemble des scénarios}}"
-  }).load('index.php?v=d&modal=scenario.summary').dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Vue d'ensemble des scénarios}}",
+    contentUrl:'index.php?v=d&modal=scenario.summary'
+  })
 })
 
 document.getElementById('bt_scenarioThumbnailDisplay').addEventListener('click', function(event) {
@@ -1742,9 +1746,11 @@ document.getElementById('scenarioThumbnailDisplay').addEventListener('click', fu
 
   if (event.target.matches('#accordionScenario .bt_ViewLog, #accordionScenario .bt_ViewLog i')) {
     var id = event.target.closest('.scenarioDisplayCard').getAttribute('data-scenario_id')
-    $('#md_modal2').dialog({
-      title: "{{Log d'exécution du scénario}}"
-    }).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + id).dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal2',
+      title: "{{Log d'exécution du scénario}}",
+      contentUrl: 'index.php?v=d&modal=scenario.log.execution&scenario_id=' + id
+    })
     return
   }
 
@@ -1778,9 +1784,11 @@ document.getElementById('scenarioThumbnailDisplay').addEventListener('mouseup', 
 //_________________Floating bar events:
 document.getElementById('div_editScenario').querySelector('div.floatingbar').addEventListener('click', function(event) {
   if (event.target.matches('#bt_logScenario, #bt_logScenario *')) {
-    $('#md_modal').dialog({
-      title: "{{Log d'exécution du scénario}}"
-    }).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Log d'exécution du scénario}}",
+      contentUrl: 'index.php?v=d&modal=scenario.log.execution&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()
+    })
     return
   }
 
@@ -1806,30 +1814,38 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
   }
 
   if (event.target.matches('#bt_graphScenario, #bt_graphScenario *')) {
-    $('#md_modal').dialog({
-      title: "{{Graphique de lien(s)}}"
-    }).load('index.php?v=d&modal=graph.link&filter_type=scenario&filter_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Graphique de lien(s)}}",
+      contentUrl: 'index.php?v=d&modal=graph.link&filter_type=scenario&filter_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()
+    })
     return
   }
 
   if (event.target.matches('#bt_editJsonScenario, #bt_editJsonScenario *')) {
-    $('#md_modal').dialog({
-      title: "{{Edition texte scénarios}}"
-    }).load('index.php?v=d&modal=scenario.jsonEdit&id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Edition texte scénarios}}",
+      contentUrl: 'index.php?v=d&modal=scenario.jsonEdit&id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()
+    })
     return
   }
 
   if (event.target.matches('#bt_exportScenario, #bt_exportScenario *')) {
-    $('#md_modal').dialog({
-      title: "{{Export du scénario}}"
-    }).load('index.php?v=d&modal=scenario.export&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Export du scénario}}",
+      contentUrl: 'index.php?v=d&modal=scenario.export&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()
+    })
     return
   }
 
   if (event.target.matches('#bt_templateScenario, #bt_templateScenario *')) {
-    $('#md_modal').dialog({
-      title: "{{Template de scénario}}"
-    }).load('index.php?v=d&modal=scenario.template&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Template de scénario}}",
+      contentUrl: 'index.php?v=d&modal=scenario.template&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()
+    })
     return
   }
 
@@ -1854,11 +1870,11 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
               level: 'success'
             })
             if (logmode != 'none') {
-              $('#md_modal').dialog({
-                  title: "{{Log d'exécution du scénario}}"
-                })
-                .load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + scenario_id)
-                .dialog('open')
+              jeeDialog.dialog({
+                id: 'jee_modal',
+                title: "{{Log d'exécution du scénario}}",
+                contentUrl: 'index.php?v=d&modal=scenario.log.execution&scenario_id=' + scenario_id
+              })
             }
           }
         })

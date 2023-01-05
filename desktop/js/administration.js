@@ -1281,12 +1281,6 @@ $(".bt_regenerate_api").on('click', function(event) {
 })
 
 /**************************OSDB***********************************/
-$('#bt_accessSystemAdministration').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Administration système}}"
-  }).load('index.php?v=d&modal=system.action').dialog('open')
-})
-
 $('#bt_cleanFileSystemRight').off('click').on('click', function() {
   jeedom.cleanFileSystemRight({
     error: function(error) {
@@ -1313,29 +1307,37 @@ $('#bt_consistency').off('click').on('click', function() {
       })
     },
     success: function(data) {
-      $('#md_modal2').dialog({
-        title: "{{Log consistency}}"
-      }).load('index.php?v=d&modal=log.display&log=consistency').dialog('open')
+      jeeDialog.dialog({
+        id: 'jee_modal2',
+        title: "{{Log consistency}}",
+        contentUrl: 'index.php?v=d&modal=log.display&log=consistency'
+      })
     }
   })
 })
 
 $('#bt_logConsistency').off('click').on('click', function() {
-  $('#md_modal2').dialog({
-    title: "{{Log consistency}}"
-  }).load('index.php?v=d&modal=log.display&log=consistency').dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal2',
+    title: "{{Log consistency}}",
+    contentUrl: 'index.php?v=d&modal=log.display&log=consistency'
+  })
 })
 
 $('#bt_checkDatabase').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Vérification base de données}}"
-  }).load('index.php?v=d&modal=db.check').dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Vérification base de données}}",
+    contentUrl: 'index.php?v=d&modal=db.check'
+  })
 })
 
 $('#bt_checkPackage').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Vérification des packages}}"
-  }).load('index.php?v=d&modal=package.check').dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Vérification des packages}}",
+    contentUrl: 'index.php?v=d&modal=package.check'
+  })
 })
 
 $('#bt_cleanDatabase').off('click').on('click', function() {
