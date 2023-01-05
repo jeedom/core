@@ -613,21 +613,27 @@ sendVarToJS([
   })
 
   $('#bt_eqLogicConfigureGraph').on('click', function() {
-    $('#md_modal2').dialog({
-      title: "{{Graphique des liens}}"
-    }).load('index.php?v=d&modal=graph.link&filter_type=eqLogic&filter_id=' + jeephp2js.md_eqLogicConfigure_Info.id).dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal2',
+      title: "{{Graphique des liens}}",
+      contentUrl: 'index.php?v=d&modal=graph.link&filter_type=eqLogic&filter_id=' + jeephp2js.md_eqLogicConfigure_Info.id
+    })
   })
 
   $('#bt_eqLogicConfigureRawObject').off('click').on('click', function() {
-    $('#md_modal2').dialog({
-      title: "{{Informations brutes}}"
-    }).load('index.php?v=d&modal=object.display&class=eqLogic&id=' + jeephp2js.md_eqLogicConfigure_Info.id).dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal2',
+      title: "{{Informations brutes}}",
+      contentUrl: 'index.php?v=d&modal=object.display&class=eqLogic&id=' + jeephp2js.md_eqLogicConfigure_Info.id
+    })
   })
 
   $('#bt_eqLogicConfigureLogRealTime').off('click').on('click', function() {
-    $('#md_modal2').dialog({
-      title: "{{Logs}}"
-    }).load('index.php?v=d&modal=log.display&log=event&search=' + jeephp2js.md_eqLogicConfigure_InfoSearchString).dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal2',
+      title: "{{Logs}}",
+      contentUrl: 'index.php?v=d&modal=log.display&log=event&search=' + jeephp2js.md_eqLogicConfigure_InfoSearchString
+    })
   })
 
   $('#table_widgetParameters').on('click', '.removeWidgetParameter', function() {
@@ -695,7 +701,7 @@ sendVarToJS([
 
             if (event.ctrlKey || event.metaKey) {
               setTimeout(function() {
-                $('#md_modal').dialog('close')
+                jeeDialog.get('#md_modal').close()
               }, 500)
             } else {
               var tab = $('#eqLogicConfigureTab > li.active > a').attr('href')
