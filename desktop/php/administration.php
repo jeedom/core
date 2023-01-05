@@ -480,24 +480,6 @@ user::isBan();
 							</div>
 						</div>
 
-						<legend>{{Widget par defaut}}</legend>
-						<?php
-						$widgets_list = cmd::availableWidget('dashboard');
-						foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $type => $subtypes) {
-							foreach ($subtypes['subtype'] as $subtype => $value) {
-								echo '<div class="form-group">';
-								echo '<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Widget}} ' . $JEEDOM_INTERNAL_CONFIG['cmd']['type'][$type]['name'] . ' ' . $value['name'] . '</label>';
-								echo '<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">';
-								echo '<select class="configKey form-control" data-l1key="widget::default::cmd::' . $type . '::' . $subtype . '" >';
-								foreach ($widgets_list[$type][$subtype] as $widget) {
-									echo '<option value="' . $widget['location'] . '::' . $widget['name'] . '">' . $widget['name'] . '</option>';
-								}
-								echo '</select>';
-								echo '</div>';
-								echo '</div>';
-							}
-						}
-						?>
 						<legend>{{Images de fond}}</legend>
 						<div class="form-group">
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Afficher les images de fond}}</label>
@@ -586,6 +568,30 @@ user::isBan();
 								<input type="number" min="0" max="30" step="1" class="configKey form-control ui-spinner" data-l1key="interface::toast::duration" data-reload="1" />
 							</div>
 						</div>
+
+						<legend>{{Widget de commande par défaut}}</legend>
+						<?php
+							$widgets_list = cmd::availableWidget('dashboard');
+							foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $type => $subtypes) {
+								$icon = '';
+								if ($type == 'info') $icon = '<i class="info fas fa-info-circle"></i> ';
+								if ($type == 'action') $icon = '<i class="warning fas fa-terminal"></i> ';
+								foreach ($subtypes['subtype'] as $subtype => $value) {
+									$div = '';
+									$div .= '<div class="form-group">';
+									$div .= '<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">' . $icon . $JEEDOM_INTERNAL_CONFIG['cmd']['type'][$type]['name'] . ' ' . $value['name'] . '</label>';
+									$div .= '<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">';
+									$div .= '<select class="configKey form-control" data-l1key="widget::default::cmd::' . $type . '::' . $subtype . '" >';
+									foreach ($widgets_list[$type][$subtype] as $widget) {
+										$div .= '<option value="' . $widget['location'] . '::' . $widget['name'] . '">' . $widget['name'] . '</option>';
+									}
+									$div .= '</select>';
+									$div .= '</div>';
+									$div .= '</div>';
+									echo $div;
+								}
+							}
+						?>
 
 						<legend>{{Personnalisation}}</legend>
 						<div class="form-group">

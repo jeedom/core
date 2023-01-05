@@ -194,32 +194,32 @@ sendVarToJS([
   })
 
   $(".div_treeFolder").jstree({
-    "core": {
-      "check_callback": true,
-      "force_text": true,
-      "themes": {
-        "icons": false
+    core: {
+      check_callback: true,
+      force_text: true,
+      themes: {
+        icons: false
       }
     },
-    "contextmenu": {
-      "items": function(node) {
+    contextmenu: {
+      items: function(node) {
         var tree = $.jstree.reference(node)
         if (tree.element[0].id !== 'treeFolder-img') {
           return false
         }
         var items = {
-          "upload": {
-            "separator_after": true,
-            "label": "{{Ajouter}}",
-            "icon": "fas fa-file-image",
-            "action": function() {
+          upload: {
+            separator_after: true,
+            label: "{{Ajouter}}",
+            icon: "fas fa-file-image",
+            action: function() {
               $('#bt_uploadImg').click()
             }
           },
-          "create": {
-            "label": "{{Nouveau}}",
-            "icon": "fas fa-folder-plus",
-            "action": function() {
+          create: {
+            label: "{{Nouveau}}",
+            icon: "fas fa-folder-plus",
+            action: function() {
               jeedom.createFolder({
                 name: '{{Nouveau}}',
                 path: node.a_attr['data-path'],
@@ -282,10 +282,10 @@ sendVarToJS([
         return items
       }
     },
-    "unique": {
-      "case_sensitive": true
+    unique: {
+      case_sensitive: true
     },
-    "plugins": ["contextmenu", "unique"]
+    plugins: ['contextmenu', 'unique']
   })
 
   //display icons from folder click:

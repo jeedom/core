@@ -23,6 +23,7 @@
 - **Outils > Remplacer** : Cet outil propose maintenant un mode *Copier*, permettant de copier les configurations d'équipements et de commandes, sans les remplacer dans les scénarios et autres.
 - **Timeline** : La Timeline charge maintenant les 35 premiers événements. En bas de page, plusieurs boutons permettent de charger dynamiquement les évènements suivant.
 - **Administration** : Possibilité de différencier les actions sur erreur ou sur alerte de commande.
+- **Administration** : Possibilité de paramétrer les widgets par défaut des commandes.
 - Un menu contextuel a été ajouté à différents endroits au niveau des cases à cocher pour les sélectionner toutes, aucunes, ou inverser la sélection *(voir [Doc dev](https://doc.jeedom.com/fr_FR/dev/core4.4))*.
 - **Dashboard** : possibilité sur la page de configuration des objets de demander a jeedom de reordonner les équipements en fonction de leur utilisation
 
