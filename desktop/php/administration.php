@@ -479,13 +479,25 @@ user::isBan();
 								<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::coloredcats" data-reload="1" />
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Ne pas mettre de . devant les commandes graphée}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::doNotHighlightGraphCmd" data-reload="1" />
-							</div>
-						</div>
 
+						<legend>{{Widget par defaut}}</legend>
+						<?php
+						$widgets_list = cmd::availableWidget('dashboard');
+						foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $type => $subtypes) {
+							foreach ($subtypes['subtype'] as $subtype => $value) {
+								echo '<div class="form-group">';
+								echo '<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Widget}} ' . $JEEDOM_INTERNAL_CONFIG['cmd']['type'][$type]['name'] . ' ' . $value['name'] . '</label>';
+								echo '<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">';
+								echo '<select class="configKey form-control" data-l1key="widget::default::cmd::' . $type . '::' . $subtype . '" >';
+								foreach ($widgets_list[$type][$subtype] as $widget) {
+									echo '<option value="' . $widget['location'] . '::' . $widget['name'] . '">' . $widget['name'] . '</option>';
+								}
+								echo '</select>';
+								echo '</div>';
+								echo '</div>';
+							}
+						}
+						?>
 						<legend>{{Images de fond}}</legend>
 						<div class="form-group">
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Afficher les images de fond}}</label>

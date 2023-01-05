@@ -1337,11 +1337,9 @@ class cmd {
 		$_version = jeedom::versionAlias($_version);
 		$replace = null;
 		$widget_template = $JEEDOM_INTERNAL_CONFIG['cmd']['widgets'];
-
-		if ($_widgetName == '') {
-			$widget_name = $this->getTemplate($_version, 'default');
-		} else {
-			$widget_name = $_widgetName;
+		$widget_name = ($_widgetName == '') ? $this->getTemplate($_version, config::byKey('widget::default::cmd::' . $this->getType() . '::' . $this->getSubType())) : $_widgetName;
+		if ($widget_name == 'default') {
+			$widget_name = config::byKey('widget::default::cmd::' . $this->getType() . '::' . $this->getSubType());
 		}
 
 		if (strpos($widget_name, '::') !== false) {

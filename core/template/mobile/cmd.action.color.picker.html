@@ -1,0 +1,13 @@
+<div class="cmd cmd-widget" data-type="action" data-subtype="color" data-template="default" data-version="#version#" data-eqLogic_id="#eqLogic_id#"  data-cmd_id="#id#" data-cmd_uid="#uid#">
+	<input type="color" class="action_colorpicker_change cursor" data-mini="true">
+	<script>
+		 jeedom.cmd.addUpdateFunction('#id#',function(_options) {
+			$('.cmd[data-cmd_uid=#uid#]:last .action_colorpicker_change').off('change')
+			$('.cmd[data-cmd_uid=#uid#] .action_colorpicker_change').value((_options.display_value != '') ? _options.display_value.substr(0,7) : _options.display_value)
+			$('.cmd[data-cmd_uid=#uid#]:last .action_colorpicker_change').on('change', function() {
+				jeedom.cmd.execute({id: '#id#', value: {color: $(this).value()}})
+			});
+		});
+		jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
+	</script>
+</div>

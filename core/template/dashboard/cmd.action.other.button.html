@@ -1,0 +1,27 @@
+<div class="cmd cmd-widget reportModeHidden" data-type="action" data-subtype="other" data-template="default" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+  <div class="content">
+    <a class="btn btn-sm btn-default execute tooltips">#name_display#</a>
+  </div>
+  <template></template>
+  <script>
+    var cmd = document.querySelector('.cmd[data-cmd_uid=#uid#]')
+    cmd.querySelector('.execute').addEventListener('click', function() {
+      jeedom.cmd.execute({ id: '#id#' })
+    })
+
+    var prevElement = cmd.previousElementSibling
+    var nextElement = cmd.nextElementSibling
+    if (prevElement?.hasClass('action-buttons')) {
+      prevElement.appendChild(cmd)
+    } else if (nextElement?.getAttribute('data-subtype') == 'other' && nextElement?.getAttribute('data-template') == 'default') {
+      let div = document.createElement('div')
+      div.setAttribute('class', 'action-buttons')
+      cmd.insertAdjacentElement('beforebegin', div)
+      div.appendChild(cmd)
+    }
+
+    if ('#name#' != '#name_display#') {
+      cmd.querySelector('.execute').setAttribute('title', '#name#')
+    }
+  </script>
+</div>
