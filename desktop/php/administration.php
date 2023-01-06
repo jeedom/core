@@ -572,19 +572,56 @@ user::isBan();
 						<legend>{{Widget de commande par défaut}}</legend>
 						<?php
 						$widgets_list = cmd::availableWidget('dashboard');
-						foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $type => $subtypes) {
+						foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $type => $subtypes) { //info or action
 							$icon = '';
 							if ($type == 'info') $icon = '<i class="info fas fa-info-circle"></i> ';
 							if ($type == 'action') $icon = '<i class="warning fas fa-terminal"></i> ';
-							foreach ($subtypes['subtype'] as $subtype => $value) {
+							foreach ($subtypes['subtype'] as $subtype => $value) { //Each subtype per info or action
 								$div = '';
 								$div .= '<div class="form-group">';
 								$div .= '<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">' . $icon . $JEEDOM_INTERNAL_CONFIG['cmd']['type'][$type]['name'] . ' ' . $value['name'] . '</label>';
 								$div .= '<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">';
 								$div .= '<select class="configKey form-control" data-l1key="widget::default::cmd::' . $type . '::' . $subtype . '" >';
+
+								$display = '';
+								$optGroup = array();
+								foreach ($widgets_list[$type][$subtype] as $key => $info) {
+									if (isset($info['type'])) {
+										$info['key'] = $key;
+										if (!isset($optGroup[$info['type']])) {
+											$optGroup[$info['type']][0] = $info;
+										} else {
+											array_push($optGroup[$info['type']], $info);
+										}
+									}
+								}
+
+								ksort($optGroup);
+								foreach ($optGroup as $group) {
+									usort($group, function ($a, $b) {
+										return strcmp($a['name'], $b['name']);
+									});
+									foreach ($group as $key => $widget) {
+										if ($widget['name'] == 'default') {
+											continue;
+										}
+										if ($key == 0) {
+											$display .= '<optgroup label="' . ucfirst($widget['type']) . '">';
+										}
+										if (isset($widget['location']) && $widget['location'] != 'core' && $widget['location'] != 'custom') {
+											$display .= '<option value="' . $widget['location'] . '::' . $widget['name'] . '">' . ucfirst($widget['location']) . '/' . ucfirst($widget['name']) . '</option>';
+										} else {
+											$display .= '<option value="' . $widget['location'] . '::' . $widget['name'] . '">' . ucfirst($widget['name']) . '</option>';
+										}
+									}
+									$display .= '</optgroup>';
+								}
+								$div .= $display;
+								/*
 								foreach ($widgets_list[$type][$subtype] as $widget) {
 									$div .= '<option value="' . $widget['location'] . '::' . $widget['name'] . '">[' . $widget['location'] . '] ' . $widget['name'] . '</option>';
 								}
+								*/
 								$div .= '</select>';
 								$div .= '</div>';
 								$div .= '</div>';
