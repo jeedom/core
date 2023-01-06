@@ -384,29 +384,35 @@ $(function () {
 	}, 500);
 
 	$('.bt_pluginFilter').on('click', function () {
-		$('#md_modal').load($(this).attr('data-href'));
+		let content = jeeDialog.get('#in_search', 'content')
+		content.load(this.getAttribute('data-href'))
 	});
 
 	$('#sel_categorie').on('change', function () {
-		$('#md_modal').load(this.getAttribute('data-href') + '&categorie=' + encodeURI(this.value));
+		let content = jeeDialog.get('#in_search', 'content')
+		content.load(this.getAttribute('data-href') + '&categorie=' + encodeURI(this.value))
 	});
 
 	$('#bt_search').on('click', function () {
-		$('#md_modal').load($(this).attr('data-href') + '&name=' + encodeURI($('#in_search').value()));
+		let content = jeeDialog.get('#in_search', 'content')
+		content.load(this.getAttribute('data-href') + '&name=' + encodeURI(document.getElementById('in_search').value))
 	});
 
 	$('#in_search').keypress(function (e) {
 		if (e.which == 13) {
-			$('#md_modal').load($(this).attr('data-href') + '&name=' + encodeURI($('#in_search').value()));
+			let content = jeeDialog.get('#in_search', 'content')
+			content.load(this.getAttribute('data-href') + '&name=' + encodeURI(document.getElementById('in_search').value))
 		}
 	});
 
 	$('#bt_returnMarketList').on('click', function () {
-		$('#md_modal').load($(this).attr('data-href'));
+		let content = jeeDialog.get('#in_search', 'content')
+		content.load(this.getAttribute('data-href'))
 	});
 
-	$('.marketMultiple').on('click',function(){
-		$('#md_modal').load($(this).attr('data-href') + '&name=' + encodeURI('.'+$(this).attr('data-market_name')));
+	$('.marketMultiple').on('click',function() {
+		let content = jeeDialog.get('#in_search', 'content')
+		content.load(this.getAttribute('data-href') + '&name=' + encodeURI('.' + this.getAttribute('data-market_name')))
 	});
 
 	$('.bt_installFilter').on('click', function () {
