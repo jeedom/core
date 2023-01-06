@@ -92,7 +92,7 @@
     },
     "mobile\/html\/scenariolog.html": {
         "Vider": "Leer",
-        "Pause": "Pause",
+        "Pause": "Unterbrechung",
         "Rechercher": "Suchen nach"
     },
     "mobile\/html\/history.html": {
@@ -193,7 +193,7 @@
         "Supprimer tous": "Alles löschen",
         "Supprimer": "Entfernen",
         "Vider": "Leer",
-        "Pause": "Pause",
+        "Pause": "Unterbrechung",
         "Rechercher": "Suchen nach"
     },
     "desktop\/modal\/scenario.human.insert.php": {
@@ -296,7 +296,7 @@
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Log brut": "Rohprotokoll",
         "Rechercher": "Suchen nach",
-        "Pause": "Pause",
+        "Pause": "Unterbrechung",
         "Télécharger": "Download",
         "Vider": "Leer",
         "Log vidé avec succès": "Protokoll erfolgreich geleert"
@@ -426,7 +426,7 @@
     },
     "desktop\/modal\/action.insert.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Pause": "Pause",
+        "Pause": "Unterbrechung",
         "Variable": "Variable",
         "Supprimer une variable": "Variable löschen",
         "Scénario": "Szenario",
@@ -843,7 +843,7 @@
         "Configuration": "Konfiguration",
         "Log brut": "Rohprotokoll",
         "Rechercher": "Suchen nach",
-        "Pause": "Pause",
+        "Pause": "Unterbrechung",
         "Télécharger": "Download",
         "Vider": "Leer",
         "Supprimer": "Entfernen",
@@ -2087,7 +2087,7 @@
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Log brut": "Rohprotokoll",
         "Rechercher": "Suchen nach",
-        "Pause": "Pause",
+        "Pause": "Unterbrechung",
         "Télécharger": "Download",
         "Vider": "Leer",
         "Vider tous": "Alles löschen",
@@ -2736,7 +2736,7 @@
         "Êtes-vous sûr de vouloir supprimer :": "Sind Sie sicher, dass Sie löschen möchten:"
     },
     "desktop\/js\/log.js": {
-        "Pause": "Pause",
+        "Pause": "Unterbrechung",
         "Êtes-vous sûr de vouloir vider tous les logs ?": "Möchten Sie wirklich alle Protokolle leeren?",
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Möchten Sie wirklich alle Protokolle löschen?"
     },
@@ -3480,7 +3480,7 @@
     },
     "core\/js\/log.class.js": {
         "Reprendre": "Zusammenfassung",
-        "Pause": "Pause"
+        "Pause": "Unterbrechung"
     },
     "core\/js\/jeedom.class.js": {
         "Erreur de connexion": "Verbindungsfehler",
@@ -3718,7 +3718,7 @@
         "Titre": "Titel",
         "Power": "Leistung",
         "Chaine": "Kette",
-        "Pause": "Pause",
+        "Pause": "Unterbrechung",
         "Lecture": "Lesen",
         "Stop": "STOP",
         "Suivant": "Folgende",
