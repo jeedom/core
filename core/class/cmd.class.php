@@ -839,6 +839,51 @@ class cmd {
 		return $return;
 	}
 
+	public static function getSelectOptionsByTypeAndSubtype($_type=false, $_subtype=false, $_version='dashboard', $_availWidgets = false) {
+		if ($_type === false || $_subtype === false) {
+			throw new Exception(__('Type ou sous-type de commande invalide', __FILE__));
+		}
+		if (!$_availWidgets) {
+			$_availWidgets = self::availableWidget($_version);
+		}
+		$display = '';
+		if (is_array($_availWidgets[$_type]) && is_array($_availWidgets[$_type][$_subtype]) && count($_availWidgets[$_type][$_subtype]) > 0) {
+			$types = array();
+			foreach ($_availWidgets[$_type][$_subtype] as $key => $info) {
+				if (isset($info['type'])) {
+					$info['key'] = $key;
+					if (!isset($types[$info['type']])) {
+						$types[$info['type']][0] = $info;
+					} else {
+						array_push($types[$info['type']], $info);
+					}
+				}
+			}
+
+			ksort($types);
+			foreach ($types as $type) {
+				usort($type, function ($a, $b) {
+					return strcmp($a['name'], $b['name']);
+				});
+				foreach ($type as $key => $widget) {
+					if ($widget['name'] == 'default') {
+						continue;
+					}
+					if ($key == 0) {
+						$display .= '<optgroup label="' . ucfirst($widget['type']) . '">';
+					}
+					if (isset($widget['location']) && $widget['location'] != 'core' && $widget['location'] != 'custom') {
+						$display .= '<option value="' . $widget['location'] . '::' . $widget['name'] . '">' . ucfirst($widget['location']) . '/' . ucfirst($widget['name']) . '</option>';
+					} else {
+						$display .= '<option value="' . $widget['location'] . '::' . $widget['name'] . '">' . ucfirst($widget['name']) . '</option>';
+					}
+				}
+				$display .= '</optgroup>';
+			}
+			return $display;
+		}
+	}
+
 	public static function returnState($_options) {
 		$cmd = cmd::byId($_options['cmd_id']);
 		if (is_object($cmd)) {
@@ -1231,41 +1276,7 @@ class cmd {
 			$_availWidgets = self::availableWidget($_version);
 		}
 		$display = '<option value="default">' . __('Défaut', __FILE__) . '</option>';
-		if (is_array($_availWidgets[$this->getType()]) && is_array($_availWidgets[$this->getType()][$this->getSubType()]) && count($_availWidgets[$this->getType()][$this->getSubType()]) > 0) {
-			$types = array();
-			foreach ($_availWidgets[$this->getType()][$this->getSubType()] as $key => $info) {
-				if (isset($info['type'])) {
-					$info['key'] = $key;
-					if (!isset($types[$info['type']])) {
-						$types[$info['type']][0] = $info;
-					} else {
-						array_push($types[$info['type']], $info);
-					}
-				}
-			}
-
-			ksort($types);
-			foreach ($types as $type) {
-				usort($type, function ($a, $b) {
-					return strcmp($a['name'], $b['name']);
-				});
-				foreach ($type as $key => $widget) {
-					if ($widget['name'] == 'default') {
-						continue;
-					}
-					if ($key == 0) {
-						$display .= '<optgroup label="' . ucfirst($widget['type']) . '">';
-					}
-					if (isset($widget['location']) && $widget['location'] != 'core' && $widget['location'] != 'custom') {
-						$display .= '<option value="' . $widget['location'] . '::' . $widget['name'] . '">' . ucfirst($widget['location']) . '/' . ucfirst($widget['name']) . '</option>';
-					} else {
-						$display .= '<option value="' . $widget['location'] . '::' . $widget['name'] . '">' . ucfirst($widget['name']) . '</option>';
-					}
-				}
-				$display .= '</optgroup>';
-			}
-			return $display;
-		}
+		return $display .= self::getSelectOptionsByTypeAndSubtype($this->getType(), $this->getSubType(), $_version, $_availWidgets);
 	}
 	public function getGenericTypeSelectOptions() {
 		$display = '<option value="">{{Aucun}}</option>';
