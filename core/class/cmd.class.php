@@ -903,29 +903,30 @@ class cmd {
 			return $_value;
 		}
 		if ($this->getType() == 'info') {
+			if ($this->getSubType() == 'numeric') { // Handle comma instead of period in a float value
+				$_value = floatval(str_replace(',', '.', $_value));
+			}
+			$calc = $this->getConfiguration('calculValueOffset');
+			if ($calc != '') {
+				try {
+					if (preg_match("/[a-zA-Z#]/", $_value)) { // Value is not just a number
+						$calc = str_replace('#value#', '"' . $_value . '"', str_replace('\'#value#\'', '#value#', str_replace('"#value#"', '#value#', $calc)));
+					} else { // Value is a number
+						$calc = str_replace('#value#', $_value, $calc);
+					}
+					$_value = jeedom::evaluateExpression($calc);
+				} catch (Exception $ex) {
+				} catch (Error $ex) {
+				}
+			}
 			switch ($this->getSubType()) {
 				case 'string':
-					if ($_quote) {
-						return '"' . $_value . '"';
-					}
-					return $_value;
 				case 'other':
 					if ($_quote) {
 						return '"' . $_value . '"';
 					}
 					return $_value;
 				case 'binary':
-					if ($this->getConfiguration('calculValueOffset') != '') {
-						try {
-							if (preg_match("/[a-zA-Z#]/", $_value)) {
-								$_value = jeedom::evaluateExpression(str_replace('#value#', '"' . $_value . '"', str_replace('\'#value#\'', '#value#', str_replace('"#value#"', '#value#', $this->getConfiguration('calculValueOffset')))));
-							} else {
-								$_value = jeedom::evaluateExpression(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
-							}
-						} catch (Exception $ex) {
-						} catch (Error $ex) {
-						}
-					}
 					if ($_value === true || $_value === 1) { // Handle literal values
 						$binary = true;
 					} elseif ((is_numeric(intval($_value)) && intval($_value) >= 1)) { // Handle number and numeric string
@@ -938,18 +939,6 @@ class cmd {
 					// Return int value negated according to invertBinary configuration
 					return intval($binary xor boolval($this->getConfiguration('invertBinary', false)));
 				case 'numeric':
-					$_value = floatval(str_replace(',', '.', $_value));
-					if ($this->getConfiguration('calculValueOffset') != '') {
-						try {
-							if (preg_match("/[a-zA-Z#]/", $_value)) {
-								$_value = jeedom::evaluateExpression(str_replace('#value#', '"' . $_value . '"', str_replace('\'#value#\'', '#value#', str_replace('"#value#"', '#value#', $this->getConfiguration('calculValueOffset')))));
-							} else {
-								$_value = jeedom::evaluateExpression(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
-							}
-						} catch (Exception $ex) {
-						} catch (Error $ex) {
-						}
-					}
 					if ($this->getConfiguration('historizeRound') !== '' && is_numeric($this->getConfiguration('historizeRound')) && $this->getConfiguration('historizeRound') >= 0) {
 						$_value = round($_value, $this->getConfiguration('historizeRound'));
 					}
