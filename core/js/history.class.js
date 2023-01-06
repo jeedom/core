@@ -195,7 +195,7 @@ jeedom.history.modalchangePoint = function(event, _this, _params) {
 
 jeedom.history.drawChart = function(_params) {
   domUtils.showLoading();
-  if ($.type(_params.dateRange) == 'object') {
+  if (is_object(_params.dateRange)) {
     _params.dateRange = JSON.stringify(_params.dateRange);
   }
   _params.option = init(_params.option, {
@@ -210,7 +210,7 @@ jeedom.history.drawChart = function(_params) {
     data: {
       action: "getHistory",
       id: _params.cmd_id,
-      dateRange: ($.type(_params.dateRange) == 'object') ? JSON.stringify(_params.dateRange) || '' : _params.dateRange || '',
+      dateRange: (is_object(_params.dateRange)) ? JSON.stringify(_params.dateRange) || '' : _params.dateRange || '',
       dateStart: _params.dateStart || '',
       dateEnd: _params.dateEnd || '',
       derive: _params.option.derive || '',

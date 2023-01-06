@@ -206,10 +206,10 @@ jeedom.init = function() {
     if (!isset(_event.detail.message) || _event.detail.message.trim() == '') {
       if (isset(_event.detail.page) && _event.detail.page != '') {
         if (getUrlVars('p') == _event.detail.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _event.detail.page)) {
-          $.hideAlert()
+          jeedomUtils.hideAlert()
         }
       } else {
-        $.hideAlert()
+        jeedomUtils.hideAlert()
       }
     } else {
       if (isset(_event.detail.page) && _event.detail.page != '') {

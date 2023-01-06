@@ -319,7 +319,7 @@ if (count($market->getImg('screenshot')) > 0) {
 			repo: 'market',
 			version: $(this).attr('data-version'),
 			error: function(error) {
-				$('#div_alertMarketDisplay').showAlert({
+				jeedomUtils.showAlert({
 					message: error.message,
 					level: 'danger'
 				});
@@ -335,7 +335,7 @@ if (count($market->getImg('screenshot')) > 0) {
 				if (typeof refreshListAfterMarketObjectInstall == 'function') {
 					refreshListAfterMarketObjectInstall()
 				}
-				$('#div_alertMarketDisplay').showAlert({
+				jeedomUtils.showAlert({
 					message: '{{Objet installé avec succès}}',
 					level: 'success'
 				})
@@ -350,13 +350,13 @@ if (count($market->getImg('screenshot')) > 0) {
 			id: id,
 			repo: 'market',
 			error: function(error) {
-				$('#div_alertMarketDisplay').showAlert({
+				jeedomUtils.showAlert({
 					message: error.message,
 					level: 'danger'
 				});
 			},
 			success: function(data) {
-				$.showLoading();
+				domUtils.showLoading();
 				window.location.reload();
 			}
 		});
@@ -369,7 +369,7 @@ if (count($market->getImg('screenshot')) > 0) {
 			repo: 'market',
 			rating: $(this).val(),
 			error: function(error) {
-				$('#div_alertMarketDisplay').showAlert({
+				jeedomUtils.showAlert({
 					message: error.message,
 					level: 'danger'
 				});
