@@ -162,7 +162,7 @@ function getJeedomLog(_autoUpdate, _log) {
 				return;
 			}
 			var log = '';
-			if ($.isArray(data.result)) {
+			if (Array.isArray(data.result)) {
 				for (var i in data.result.reverse()) {
 					log += data.result[i] + "\n";
 					if (FinalDown > 0) {

@@ -1152,19 +1152,19 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
   })
 
 
-  if (isset(jeephp2js.md_cmdConfigure_cmdInfo.configuration.actionCheckCmd) && $.isArray(jeephp2js.md_cmdConfigure_cmdInfo.configuration.actionCheckCmd) && jeephp2js.md_cmdConfigure_cmdInfo.configuration.actionCheckCmd.length != null) {
+  if (isset(jeephp2js.md_cmdConfigure_cmdInfo.configuration.actionCheckCmd) && Array.isArray(jeephp2js.md_cmdConfigure_cmdInfo.configuration.actionCheckCmd) && jeephp2js.md_cmdConfigure_cmdInfo.configuration.actionCheckCmd.length != null) {
     for (var i in jeephp2js.md_cmdConfigure_cmdInfo.configuration.actionCheckCmd) {
       addActionCmd(jeephp2js.md_cmdConfigure_cmdInfo.configuration.actionCheckCmd[i], 'actionCheckCmd', '{{Action}}')
     }
   }
 
-  if (isset(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPreExecCmd) && $.isArray(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPreExecCmd) && jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPreExecCmd.length != null) {
+  if (isset(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPreExecCmd) && Array.isArray(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPreExecCmd) && jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPreExecCmd.length != null) {
     for (var i in jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPreExecCmd) {
       addActionCmd(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPreExecCmd[i], 'actionPreExecCmd', '{{Action}}')
     }
   }
 
-  if (isset(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPostExecCmd) && $.isArray(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPostExecCmd) && jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPostExecCmd.length != null) {
+  if (isset(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPostExecCmd) && Array.isArray(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPostExecCmd) && jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPostExecCmd.length != null) {
     for (var i in jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPostExecCmd) {
       addActionCmd(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPostExecCmd[i], 'actionPostExecCmd', '{{Action}}')
     }

@@ -871,6 +871,9 @@ function is_object(a) {
   return "[object Array]" === Object.prototype.toString.call(a) ? !1 : null !== a && "object" === typeof a
 }
 
+function isPlainObject(obj) {
+  return Object.prototype.toString.call(obj) === '[object Object]';
+}
 function is_real(a) {
   return this.is_float(a)
 }

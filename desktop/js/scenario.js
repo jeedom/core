@@ -409,7 +409,7 @@ if (!jeeFrontEnd.scenario) {
             }
           }
 
-          if ($.isArray(data.schedule)) {
+          if (Array.isArray(data.schedule)) {
             for (var i in data.schedule) {
               if (data.schedule[i] != '' && data.schedule[i] != null) {
                 jeeP.addSchedule(data.schedule[i])

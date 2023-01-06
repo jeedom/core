@@ -64,7 +64,7 @@ if (!jeeFrontEnd.backup) {
             return
           }
           var log = ''
-          if ($.isArray(data.result)) {
+          if (Array.isArray(data.result)) {
             for (var i in data.result.reverse()) {
               log += data.result[i] + "\n"
               if (data.result[i].indexOf('[END ' + _log.toUpperCase() + ' SUCCESS]') != -1) {

@@ -67,7 +67,7 @@ jeedom.view.toHtml = function(_params) {
   paramsAJAX.url = 'core/ajax/view.ajax.php';
   paramsAJAX.data = {
     action: "get",
-    id: ($.isArray(_params.id)) ? JSON.stringify(_params.id) : _params.id,
+    id: (Array.isArray(_params.id)) ? JSON.stringify(_params.id) : _params.id,
     version: _params.version,
     html: true,
   };

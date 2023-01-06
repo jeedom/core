@@ -69,7 +69,7 @@ if (!jeeFrontEnd.update) {
             return
           }
           var log = ''
-          if ($.isArray(data.result)) {
+          if (Array.isArray(data.result)) {
             for (var i in data.result.reverse()) {
               log += data.result[i] + "\n"
               //Update end success:

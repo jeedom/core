@@ -459,7 +459,7 @@ jeedom.haltSystem = function(_params) {
 }
 
 jeedom.ssh = function(_params) {
-  if ($.isPlainObject(_params)) {
+  if (isPlainObject(_params)) {
     command = _params.command
   } else {
     command = _params
@@ -485,7 +485,7 @@ jeedom.ssh = function(_params) {
 }
 
 jeedom.db = function(_params) {
-  if ($.isPlainObject(_params)) {
+  if (isPlainObject(_params)) {
     command = _params.command
   } else {
     command = _params

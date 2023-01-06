@@ -121,7 +121,7 @@ jeedom.scenario.toHtml = function(_params) {
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
     action: 'toHtml',
-    id: ($.isArray(_params.id)) ? JSON.stringify(_params.id) : _params.id,
+    id: (Array.isArray(_params.id)) ? JSON.stringify(_params.id) : _params.id,
     version: _params.version
   };
   domUtils.ajax(paramsAJAX);
