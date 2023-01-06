@@ -1313,7 +1313,11 @@ var jeeDialog = (function()
       if (dialogContainer == null) {
         dialogContainer = document.createElement('div')
         dialogContainer.setAttribute('id', _options.id)
-        dialogContainer.setAttribute('data-maximize', '0')
+        if (_options.fullScreen) {
+          dialogContainer.setAttribute('data-maximize', '1')
+        } else {
+          dialogContainer.setAttribute('data-maximize', '0')
+        }
         dialogContainer.addClass('jeeDialog', 'jeeDialogMain')
         dialogContainer.style.display = 'none'
         document.body.appendChild(dialogContainer)
@@ -1325,6 +1329,7 @@ var jeeDialog = (function()
           id: 'jee_modal',
           show: true,
           retainPosition: false,
+          fullScreen: false,
           contentUrl: '',
           zIndex: 1019,
           width: '90vw',
@@ -1388,7 +1393,7 @@ var jeeDialog = (function()
             document.getElementById('jeeDialogBackdrop')?.seen()
             this.dialog._jeeDialog.options.onShown()
             if (!_options.retainPosition || this.dialog.style.width == '') {
-              this.dialog.setAttribute('data-maximize', '0')
+              if (!_options.fullScreen) this.dialog.setAttribute('data-maximize', '0')
               setPosition(this.dialog, _options)
             }
             this.dialog.seen()

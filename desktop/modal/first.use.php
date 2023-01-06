@@ -28,9 +28,16 @@ try {
 	<script>
 		$(document).ready(function() {
 			jeeDialog.dialog({
-				id: 'jee_modal',
+				id: 'md_firstConfig',
 				title: "{{Configuration de votre}} <?php echo config::byKey('product_name'); ?>",
-				contentUrl: 'index.php?v=d&plugin=jeeasy&modal=wizard'
+				fullScreen: true,
+				onClose: function() {
+			      jeeDialog.get('#md_firstConfig').destroy()
+			    },
+				contentUrl: 'index.php?v=d&plugin=jeeasy&modal=wizard',
+				callback: function() {
+			      jeeDialog.get('#md_firstConfig', 'title').querySelector('button.btClose').remove()
+			    }
 			})
 		})
 	</script>
