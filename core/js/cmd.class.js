@@ -402,27 +402,27 @@ jeedom.cmd.test = function(_params) {
 
 //deprecated
 jeedom.cmd.refreshByEqLogic = function(_params) {
-  var cmds = $('.cmd[data-eqLogic_id=' + _params.eqLogic_id + ']')
+  var cmds = document.querySelectorAll('.cmd[data-eqLogic_id="' + _params.eqLogic_id + '"]')
   if (cmds.length == 0) {
     return
   }
-  $(cmds).each(function() {
-    var cmd = $(this)
-    if (cmd.closest('.eqLogic[data-eqLogic_id=' + _params.eqLogic_id + ']').html() != undefined) {
+  cmds.forEach(_cmd => {
+    if (_cmd.closest('.eqLogic[data-eqLogic_id="' + _params.eqLogic_id + '"]') == null) {
       return true
     }
     jeedom.cmd.toHtml({
       global: false,
       noDisplayError: true,
-      id: $(this).attr('data-cmd_id'),
-      version: $(this).attr('data-version'),
+      id: _cmd.getAttribute('data-cmd_id'),
+      version: _cmd.getAttribute('data-version'),
       success: function(data) {
-        var html = $(data.html)
-        var uid = html.attr('data-cmd_uid')
+        var html = domUtils.parseHTML(data.html).childNodes[0]
+        var uid = html.getAttribute('data-cmd_uid')
         if (uid != 'undefined') {
-          cmd.attr('data-cmd_uid', uid)
+          cmd.setAttribute('data-cmd_uid', uid)
         }
-        cmd.empty().html(html.children()).attr("class", html.attr("class"))
+        cmd.empty().html(html)
+        cmd.setAttribute("class", html.getAttribute("class"))
       }
     })
   })
