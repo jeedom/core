@@ -4175,6 +4175,7 @@
     "core\/class\/cmd.class.php": {
         "Aucun": "Tak ada",
         "Impossible de traduire la couleur en code hexadécimal :": "Tidak dapat menerjemahkan warna dalam kode heksadesimal:",
+        "Type ou sous-type de commande invalide": "Type ou sous-type de commande invalide",
         "Le nom de la commande ne peut pas être vide :": "Le nom de la commande ne peut pas être vide :",
         "Le type de la commande ne peut pas être vide :": "Le type de la commande ne peut pas être vide :",
         "Le sous-type de la commande ne peut pas être vide :": "Le sous-type de la commande ne peut pas être vide :",

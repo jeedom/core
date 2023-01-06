@@ -4175,6 +4175,7 @@
     "core\/class\/cmd.class.php": {
         "Aucun": "いいえ",
         "Impossible de traduire la couleur en code hexadécimal :": "進コードで色を変換することができません。",
+        "Type ou sous-type de commande invalide": "Type ou sous-type de commande invalide",
         "Le nom de la commande ne peut pas être vide :": "Le nom de la commande ne peut pas être vide :",
         "Le type de la commande ne peut pas être vide :": "Le type de la commande ne peut pas être vide :",
         "Le sous-type de la commande ne peut pas être vide :": "Le sous-type de la commande ne peut pas être vide :",

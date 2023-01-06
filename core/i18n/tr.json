@@ -4175,6 +4175,7 @@
     "core\/class\/cmd.class.php": {
         "Aucun": "Hiçbir",
         "Impossible de traduire la couleur en code hexadécimal :": "Renk onaltılık koda çevrilemiyor:",
+        "Type ou sous-type de commande invalide": "Type ou sous-type de commande invalide",
         "Le nom de la commande ne peut pas être vide :": "Komutun adı boş olamaz:",
         "Le type de la commande ne peut pas être vide :": "Komutun türü boş olamaz:",
         "Le sous-type de la commande ne peut pas être vide :": "Komut alt türü boş bırakılamaz:",
