@@ -217,7 +217,8 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 */
 document.addEventListener('DOMContentLoaded', function() {
   jeedom.init()
-  if (getDeviceType()['type'] == 'desktop') jeedomUtils.userDeviceType = 'desktop'
+  jeedomUtils.userDeviceType = getDeviceType()['type']
+  jeedomUtils.userDeviceSubType = getDeviceType()['subType']
   document.body.setAttribute('data-device', jeedomUtils.userDeviceType)
   document.body.setAttribute('data-page', getUrlVars('p'))
   document.body.style.setProperty('--bkg-opacity-light', jeedom.theme['interface::background::opacitylight'])

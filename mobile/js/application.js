@@ -4,7 +4,6 @@ var jeedomUtils = {}
 jeedomUtils.backgroundIMG = null
 jeedomUtils._elBackground = null
 jeedomUtils.scrolling = false
-jeedomUtils.userDeviceType = 'mobile'
 
 jeedomUtils.loadingTimeout = null
 jeedomUtils.showLoading = function() {
@@ -409,6 +408,7 @@ jeedomUtils.initApplication = function(_reinit) {
         $('#favicon').attr("href", data.result.product_icon)
         jeedomUtils.loadModal(false)
         jeedomUtils.loadPanel(false)
+
         /*************Initialisation environement********************/
         jeeFrontEnd.serverDatetime  = data.result.serverDatetime
         jeeFrontEnd.clientDatetime = new Date()
@@ -419,6 +419,10 @@ jeedomUtils.initApplication = function(_reinit) {
         plugins = data.result.plugins
         jeeFrontEnd.userProfils = data.result.userProfils
         jeedom.init()
+        jeedomUtils.userDeviceType = getDeviceType()['type']
+        jeedomUtils.userDeviceSubType = getDeviceType()['subType']
+        document.body.setAttribute('data-device', jeedomUtils.userDeviceType)
+
         let include = []
         if (typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' && Object.keys(jeedom.theme.css).length > 0) {
           for(let i in jeedom.theme.css) {
