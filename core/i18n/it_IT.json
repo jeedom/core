@@ -4175,6 +4175,7 @@
     "core\/class\/cmd.class.php": {
         "Aucun": "Nessuno",
         "Impossible de traduire la couleur en code hexadécimal :": "Impossibile tradurre il colore in codice esadecimale:",
+        "Type ou sous-type de commande invalide": "Type ou sous-type de commande invalide",
         "Le nom de la commande ne peut pas être vide :": "Il nome del comando non può essere vuoto:",
         "Le type de la commande ne peut pas être vide :": "Il tipo di comando non può essere vuoto:",
         "Le sous-type de la commande ne peut pas être vide :": "Il sottotipo di comando non può essere vuoto:",

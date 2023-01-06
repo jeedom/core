@@ -4175,6 +4175,7 @@
     "core\/class\/cmd.class.php": {
         "Aucun": "Nein",
         "Impossible de traduire la couleur en code hexadécimal :": "Farbe kann nicht in hexadezimalen Code übersetzt werden:",
+        "Type ou sous-type de commande invalide": "Ungültiger Befehlstyp oder Untertyp",
         "Le nom de la commande ne peut pas être vide :": "Der Name des Befehls darf nicht leer sein:",
         "Le type de la commande ne peut pas être vide :": "Der Befehlstyp darf nicht leer sein:",
         "Le sous-type de la commande ne peut pas être vide :": "Der Befehlssubtyp darf nicht leer sein:",
