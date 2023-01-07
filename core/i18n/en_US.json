@@ -92,7 +92,7 @@
     },
     "mobile\/html\/scenariolog.html": {
         "Vider": "Clear",
-        "Pause": "Pause",
+        "Pause": "Break",
         "Rechercher": "Search"
     },
     "mobile\/html\/history.html": {
@@ -193,7 +193,7 @@
         "Supprimer tous": "Delete all",
         "Supprimer": "Delete",
         "Vider": "Clear",
-        "Pause": "Pause",
+        "Pause": "Break",
         "Rechercher": "Search"
     },
     "desktop\/modal\/scenario.human.insert.php": {
@@ -296,7 +296,7 @@
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Log brut": "Raw log",
         "Rechercher": "Search",
-        "Pause": "Pause",
+        "Pause": "Break",
         "Télécharger": "Download",
         "Vider": "Clear",
         "Log vidé avec succès": "Log successfully cleared"
@@ -426,7 +426,7 @@
     },
     "desktop\/modal\/action.insert.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Pause": "Pause",
+        "Pause": "Break",
         "Variable": "Variable",
         "Supprimer une variable": "Delete a variable",
         "Scénario": "Scenario",
@@ -843,7 +843,7 @@
         "Configuration": "Configuration",
         "Log brut": "Raw log",
         "Rechercher": "Search",
-        "Pause": "Pause",
+        "Pause": "Break",
         "Télécharger": "Download",
         "Vider": "Clear",
         "Supprimer": "Delete",
@@ -2087,7 +2087,7 @@
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Log brut": "Raw log",
         "Rechercher": "Search",
-        "Pause": "Pause",
+        "Pause": "Break",
         "Télécharger": "Download",
         "Vider": "Clear",
         "Vider tous": "Clear all",
@@ -2736,7 +2736,7 @@
         "Êtes-vous sûr de vouloir supprimer :": "Are you sure you want to delete:"
     },
     "desktop\/js\/log.js": {
-        "Pause": "Pause",
+        "Pause": "Break",
         "Êtes-vous sûr de vouloir vider tous les logs ?": "Are you sure you want to empty all logs?",
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Are you sure you want to delete all logs?"
     },
@@ -3480,7 +3480,7 @@
     },
     "core\/js\/log.class.js": {
         "Reprendre": "Resume",
-        "Pause": "Pause"
+        "Pause": "Break"
     },
     "core\/js\/jeedom.class.js": {
         "Erreur de connexion": "Connexion error",
@@ -3718,7 +3718,7 @@
         "Titre": "Title",
         "Power": "Power",
         "Chaine": "Chain",
-        "Pause": "Pause",
+        "Pause": "Break",
         "Lecture": "Play",
         "Stop": "Stop",
         "Suivant": "Next",
