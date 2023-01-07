@@ -879,7 +879,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
       return
     }
 
-    //close all modales on outside click
+    //close all modales on outside click - deprecated 4.4
     if (event.target.matches('.ui-widget-overlay')) {
       event.stopPropagation()
       $('.ui-dialog-content').dialog("close")
