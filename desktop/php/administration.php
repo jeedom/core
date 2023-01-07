@@ -384,11 +384,11 @@ user::isBan();
 						<div class="form-group">
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème principal de}}</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="text" class="configKey form-control isdatepicker" data-l1key="theme_start_day_hour" />
+								<input type="text" class="configKey form-control in_timepicker" data-l1key="theme_start_day_hour" />
 							</div>
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{à}}</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="text" class="configKey form-control isdatepicker" data-l1key="theme_end_day_hour" />
+								<input type="text" class="configKey form-control in_timepicker" data-l1key="theme_end_day_hour" />
 							</div>
 							<div class="col-lg-1 col-md-2 col-sm-2 col-xs-3">
 								<a id="bt_resetThemeCookie" class="btn btn-sm btn-primary form-control" tooltip="{{Supprimer le cookie de thème.}}"><i class="fas fa-eraser"></i>&nbsp;&nbsp;{{Cookie}}</a>

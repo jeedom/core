@@ -1125,7 +1125,8 @@ jeedomUtils.dateTimePickerInit = function(_step) {
   if (lang == 'fr') flatpickr.localize(flatpickr.l10ns.fr)
   if (lang == 'es') flatpickr.localize(flatpickr.l10ns.es)
 
-  document.querySelectorAll('input.isdatepicker').forEach(_input => {
+  // .isdatepicker deprecated 4.4
+  document.querySelectorAll('input.in_timepicker, input.isdatepicker').forEach(_input => {
     flatpickr(_input, {
       enableTime: true,
       noCalendar: true,
@@ -1136,21 +1137,21 @@ jeedomUtils.dateTimePickerInit = function(_step) {
   })
 }
 
-jeedomUtils.initSpinners = function() {
-  $('input[type="number"].ui-spinner').spinner({
-    icons: {
-      down: "ui-icon-triangle-1-s",
-      up: "ui-icon-triangle-1-n"
-    }
-  })
-}
-
 jeedomUtils.datePickerDestroy = function() {
   document.querySelectorAll('input.isdatepicker, input.in_datepicker').forEach(_input => {
     if (isset(_input._flatpickr)) _input._flatpickr.destroy()
   })
   document.querySelectorAll('body > div.flatpickr-calendar').forEach(_div => {
     _div.remove()
+  })
+}
+
+jeedomUtils.initSpinners = function() {
+  $('input[type="number"].ui-spinner').spinner({
+    icons: {
+      down: "ui-icon-triangle-1-s",
+      up: "ui-icon-triangle-1-n"
+    }
   })
 }
 
