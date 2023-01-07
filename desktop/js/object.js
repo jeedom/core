@@ -1027,3 +1027,12 @@ if (is_numeric(jeephp2js.selectId)) {
     $('.objectDisplayCard[data-object_id=' + jeephp2js.selectId + ']').click()
   }
 }
+
+//Register events on top of page container:
+
+//Manage events outside parents delegations:
+
+//Specials
+
+/*Events delegations
+*/

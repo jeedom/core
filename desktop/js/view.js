@@ -313,3 +313,11 @@ $('#div_pageContainer').on({
   }
 }, '.editOptions')
 
+//Register events on top of page container:
+
+//Manage events outside parents delegations:
+
+//Specials
+
+/*Events delegations
+*/

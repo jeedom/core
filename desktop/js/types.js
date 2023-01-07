@@ -683,3 +683,12 @@ $('#bt_listGenericTypes').off('click').on('click', function() {
   inner += '</table><br/>'
   container.empty().append(inner)
 })
+
+//Register events on top of page container:
+
+//Manage events outside parents delegations:
+
+//Specials
+
+/*Events delegations
+*/

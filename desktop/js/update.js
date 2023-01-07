@@ -709,3 +709,11 @@ $('body').off('click', '#bt_changelogCore').on('click', '#bt_changelogCore', fun
   })
 })
 
+//Register events on top of page container:
+
+//Manage events outside parents delegations:
+
+//Specials
+
+/*Events delegations
+*/

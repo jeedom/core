@@ -28,7 +28,7 @@ if (!jeeFrontEnd.history) {
       this.$pageContainer = $('#pageContainer')
     },
     postInit: function() {
-      this.$divGraph = $('#' + this.__el__)
+      this.divGraph = document.getElementById(this.__el__)
       this.setCalculList()
       delete jeedom.history.chart[this.__el__]
       this.setChartOptions()
@@ -50,9 +50,9 @@ if (!jeeFrontEnd.history) {
     },
     resizeDn: function() {
       if (jeedom.history.chart[this.__el__] === undefined) return
-      this.__chartHeight__ = this.$divGraph.height() - $('#div_historyOptions').outerHeight(true)
+      this.__chartHeight__ = this.divGraph.offsetHeight - document.getElementById('div_historyOptions').offsetHeight
       if (jeedom.history.chart[this.__el__].chart) {
-        jeedom.history.chart[this.__el__].chart.setSize(this.$divGraph.width(), this.__chartHeight__)
+        jeedom.history.chart[this.__el__].chart.setSize(this.divGraph.offsetWidth, this.__chartHeight__)
       }
     },
     highcharts_done_callback: function(_chartId) {
@@ -234,9 +234,9 @@ if (!jeeFrontEnd.history) {
       jeeDialog.get('#md_historyCompare').hide()
     },
     setCalculList: function() {
-      var $el = $('#historyCalculs')
+      var elCalculList = document.getElementById('historyCalculs')
       var isOpened = false
-      if ($el && $el.find('.displayObject i.fas').hasClass('fa-arrow-circle-down')) isOpened = true
+      if (elCalculList != null && elCalculList.querySelector('.displayObject i.fas')?.hasClass('fa-arrow-circle-down')) isOpened = true
       jeedom.config.load({
         configuration: 'calculHistory',
         convertToHumanReadable : true,
@@ -244,8 +244,8 @@ if (!jeeFrontEnd.history) {
           jeedomUtils.showAlert({message: error.message, level: 'danger'})
         },
         success: function(data) {
-          if (!$el) return
-          $el.empty()
+          if (!elCalculList) return
+          elCalculList.empty()
           if (data.length == 0) return
 
           var html = '<span class="label cursor displayObject" data-object_id="jeedom-config-calculs" style="background-color:var(--btn-default-color);color:var(--linkHoverLight-color);">{{Mes Calculs}} <i class="fas fa-arrow-circle-right"></i></span>'
@@ -260,8 +260,8 @@ if (!jeeFrontEnd.history) {
             }
           }
           html += '</div><br/>'
-          $el.append(html)
-          if (isOpened) $el.find('.displayObject').trigger('click')
+          elCalculList.insertAdjacentHTML('beforeend', html)
+          if (isOpened) elCalculList.querySelector('.displayObject').triggerEvent('click')
         }
       })
     }
@@ -281,17 +281,18 @@ window.registerEvent("resize", function history(event) {
 })
 
 /************Left button list UI***********/
-$('#bt_validChangeDate').on('click', function() {
+$('#bt_validChangeDate').on('click', function(event) {
   if (jeedom.history.chart[jeeP.__el__] === undefined) return
-  $('.highcharts-plot-band').remove()
-  $(jeedom.history.chart[jeeP.__el__].chart.series).each(function(i, serie) {
-    if (serie.options && !isNaN(serie.options.id)) {
-      var cmd_id = serie.options.id
+  document.querySelectorAll('.highcharts-plot-band').remove()
+  document.querySelectorAll(jeedom.history.chart[jeeP.__el__].chart.series).forEach(_series => {
+    if (_series.options && !isNaN(_series.options.id)) {
+      var cmd_id = _series.options.id
       jeeP.addChart(cmd_id, 0)
       jeeP.addChart(cmd_id, 1)
     }
   })
 })
+
 jeeP.$pageContainer.on({
   'click': function(event) {
     try {
@@ -321,7 +322,7 @@ jeeP.$pageContainer.on({
 }, 'g.highcharts-range-selector-group .highcharts-button.highcharts-button-disabled')
 
 
-$('#bt_findCmdCalculHistory').on('click', function() {
+$('#bt_findCmdCalculHistory').on('click', function(event) {
   jeedom.cmd.getSelectModal({
     cmd: {
       type: 'info',
@@ -332,11 +333,13 @@ $('#bt_findCmdCalculHistory').on('click', function() {
     document.getElementById('in_calculHistory').insertAtCursor(result.human)
   })
 })
-$('#bt_displayCalculHistory').on('click', function() {
+
+$('#bt_displayCalculHistory').on('click', function(event) {
   var calcul = document.getElementById('in_calculHistory').jeeValue()
   if (calcul != '') jeeP.addChart(calcul, 1)
 })
-$('#bt_configureCalculHistory').on('click', function() {
+
+$('#bt_configureCalculHistory').on('click', function(event) {
   jeeDialog.dialog({
     id: 'jee_modal',
     title: "{{Configuration des formules de calcul}}",
@@ -346,7 +349,8 @@ $('#bt_configureCalculHistory').on('click', function() {
     contentUrl: 'index.php?v=d&modal=history.calcul'
   })
 })
-$('#bt_openCmdHistoryConfigure').on('click', function() {
+
+$('#bt_openCmdHistoryConfigure').on('click', function(event) {
   jeeDialog.dialog({
     id: 'jee_modal',
     title: "{{Configuration de l'historique des commandes}}",
@@ -360,7 +364,7 @@ $('#sel_groupingType').off('change').on('change', function(event) {
   if (jeeP.__lastId__ == null) return
   var currentId = jeeP.__lastId__
   var groupingType = this.value
-  $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active')
+  document.querySelectorAll('.li_history[data-cmd_id="' + currentId + '"]').removeClass('active')
   jeeP.addChart(currentId, 0)
   jeedom.cmd.save({
     cmd: {
@@ -376,7 +380,7 @@ $('#sel_groupingType').off('change').on('change', function(event) {
       })
     },
     success: function() {
-      $('.li_history[data-cmd_id=' + currentId + '] .history').click()
+      document.querySelector('.li_history[data-cmd_id="' + currentId + '"] .history').click()
     }
   })
 })
@@ -386,7 +390,7 @@ $('#sel_chartType').off('change').on('change', function(event) {
   if (jeeP.__lastId__ == null) return
   var currentId = jeeP.__lastId__
   var graphType = this.value
-  $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active')
+  document.querySelectorAll('.li_history[data-cmd_id="' + currentId + '"]').removeClass('active')
   jeeP.addChart(currentId, 0)
   jeedom.cmd.save({
     cmd: {
@@ -402,7 +406,7 @@ $('#sel_chartType').off('change').on('change', function(event) {
       })
     },
     success: function() {
-      $('.li_history[data-cmd_id=' + currentId + ']').addClass('active')
+      document.querySelector('.li_history[data-cmd_id="' + currentId + '"] .history').click()
       jeeP.addChart(currentId)
     }
   })
@@ -460,25 +464,25 @@ $('#cb_step').off('change').on('change', function(event) {
 
 
 //Right buttons:
-$('#bt_clearGraph').on('click', function() {
+$('#bt_clearGraph').on('click', function(event) {
   jeeP.clearGraph()
 })
 
 //search filter opening:
 jeeP.$pageContainer.on({
   'keyup': function(event) {
-    if (this.value == '') {
-      $('#ul_history .cmdList').hide()
-      $('.displayObject').find('i.fas').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right')
+    if (event.target.value == '') {
+      document.querySelectorAll('#ul_history .cmdList').unseen()
+      document.querySelectorAll('.displayObject i.fas').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right')
     } else {
-      $('#ul_history .cmdList').show()
+      document.querySelectorAll('#ul_history .cmdList').seen()
       //let filtering job gone:
       setTimeout(function() {
-        $('#ul_history .cmdList').each(function() {
-          if ($(this).find('.li_history:visible').length > 0) {
-            $('.displayObject[data-object_id=' + $(this).attr('data-object_id') + ']').find('i.fas').removeClass('fa-arrow-circle-right').addClass('fa-arrow-circle-down')
+        document.querySelectorAll('#ul_history .cmdList').forEach(_cmd => {
+          if (_cmd.querySelectorAll('.li_history:not([style="display:none"]').length > 0) {
+            document.querySelector('.displayObject[data-object_id="' + _cmd.getAttribute('data-object_id') + '"] i.fas')?.removeClass('fa-arrow-circle-right').addClass('fa-arrow-circle-down')
           } else {
-            $('.displayObject[data-object_id=' + $(this).attr('data-object_id') + ']').find('i.fas').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right')
+            document.querySelector('.displayObject[data-object_id="' + _cmd.getAttribute('data-object_id') + '"] i.fas')?.removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right')
           }
         })
       }, 250)
@@ -486,20 +490,22 @@ jeeP.$pageContainer.on({
   }
 }, 'ul li input.filter')
 
-$('#bt_resetSearch').on('click', function() {
-  $('#in_searchHistory').val('').keyup()
+$('#bt_resetSearch').on('click', function(event) {
+  document.getElementById('in_searchHistory').value = ''
+  document.getElementById('in_searchHistory').triggerEvent('keyup')
 })
 
 //List of object / cmds event:
 jeeP.$pageContainer.on({
   'click': function(event) {
-    var list = $('.cmdList[data-object_id=' + $(this).attr('data-object_id') + ']')
-    if (list.is(':visible')) {
-      $(this).find('i.fas').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right')
-      list.hide()
+    let bt = event.target.closest('.displayObject')
+    let list = document.querySelector('.cmdList[data-object_id="' + bt.getAttribute('data-object_id') + '"]')
+    if (list.isVisible()) {
+      bt.querySelector('i.fas').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right')
+      list.unseen()
     } else {
-      $(this).find('i.fas').removeClass('fa-arrow-circle-right').addClass('fa-arrow-circle-down')
-      list.show()
+      bt.querySelector('i.fas').removeClass('fa-arrow-circle-right').addClass('fa-arrow-circle-down')
+      list.seen()
     }
   }
 }, '.displayObject')
@@ -507,24 +513,25 @@ jeeP.$pageContainer.on({
 jeeP.$pageContainer.on({
   'click': function(event) {
     jeedomUtils.hideAlert()
-    if (event.target.className.includes('remove') || event.target.className.includes('export')) return
+    let bt = event.target.closest('.history')
+    if (bt.hasClass('remove') || bt.hasClass('export')) return
     if (isset(jeedom.history.chart[jeeP.__el__]) && jeedom.history.chart[jeeP.__el__].comparing) return
 
     var options = null
-    if ($(this).hasClass('historycalcul')) {
+    if (bt.hasClass('historycalcul')) {
       var options = {
-        graphType: $(this).attr('data-graphtype'),
-        groupingType: $(this).attr('data-groupingtype'),
-        graphStep: ($(this).attr('data-graphstep') == 0) ? false : true,
-        name: $(this).text()
+        graphType: bt.getAttribute('data-graphtype'),
+        groupingType: bt.getAttribute('data-groupingtype'),
+        graphStep: (bt.getAttribute('data-graphstep') == 0) ? false : true,
+        name: bt.textContent
       }
     }
-    if ($(this).closest('.li_history').hasClass('active')) {
-      $(this).closest('.li_history').removeClass('active')
-      jeeP.addChart($(this).closest('.li_history').attr('data-cmd_id'), 0, options)
+    if (bt.closest('.li_history').hasClass('active')) {
+      bt.closest('.li_history').removeClass('active')
+      jeeP.addChart(bt.closest('.li_history').getAttribute('data-cmd_id'), 0, options)
     } else {
-      $(this).closest('.li_history').addClass('active')
-      jeeP.addChart($(this).closest('.li_history').attr('data-cmd_id'), 1, options)
+      bt.closest('.li_history').addClass('active')
+      jeeP.addChart(bt.closest('.li_history').getAttribute('data-cmd_id'), 1, options)
     }
     return false
   }
@@ -533,12 +540,12 @@ jeeP.$pageContainer.on({
 jeeP.$pageContainer.on({
   'click': function(event) {
     jeedomUtils.hideAlert()
-    var bt_remove = $(this)
+    var bt_remove = event.target
     jeeDialog.prompt({
       inputType: 'date',
       pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}',
       placeholder: 'yyyy-mm-dd hh:mm:ss',
-      message: '{{Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\'historique de}} <span style="font-weight: bold ;"> ' + bt_remove.closest('.li_history').find('.history').text() + '</span> (laissez vide pour tout supprimer) ?'
+      message: '{{Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\'historique de}} <span style="font-weight: bold ;"> ' + bt_remove.closest('.li_history').querySelector('.history').textContent + ' ?</span><br>({{Laissez vide pour tout supprimer}})'
       }, function(result) {
       if (result !== null) {
         jeeP.emptyHistory(bt_remove.closest('.li_history').attr('data-cmd_id'), result)
@@ -549,7 +556,7 @@ jeeP.$pageContainer.on({
 
 jeeP.$pageContainer.on({
   'click': function(event) {
-    window.open('core/php/export.php?type=cmdHistory&id=' + $(this).closest('.li_history').attr('data-cmd_id'), "_blank", null)
+    window.open('core/php/export.php?type=cmdHistory&id=' + event.target.closest('.li_history').getAttribute('data-cmd_id'), "_blank", null)
   }
 }, '.li_history .export')
 
@@ -557,10 +564,10 @@ jeeP.$pageContainer.on({
 //__________________Comparison functions
 
 //Compare period modal presets:
-$('#sel_setPeriod').off('change').on('change', function() {
+$('#sel_setPeriod').off('change').on('change', function(event) {
   var startDate = document.getElementById('in_compareEnd1').value
-  var num = this.value.split('.')[0]
-  var type = this.value.split('.')[1]
+  var num = event.target.value.split('.')[0]
+  var type = event.target.value.split('.')[1]
 
   var m_startDate = moment(startDate, 'YYYY-MM-DD HH:mm:ss')
   var endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
@@ -575,10 +582,10 @@ $('#sel_setPeriod').off('change').on('change', function() {
   endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
   document.getElementById('in_compareStart2').value = endDate
 })
-$('#sel_comparePeriod').off('change').on('change', function() {
+$('#sel_comparePeriod').off('change').on('change', function(event) {
   var startDate = document.getElementById('in_compareEnd1').value
-  var num = this.value.split('.')[0]
-  var type = this.value.split('.')[1]
+  var num = event.target.value.split('.')[0]
+  var type = event.target.value.split('.')[1]
 
   var m_startDate = moment(startDate, 'YYYY-MM-DD HH:mm:ss')
   var endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
@@ -613,8 +620,8 @@ jeeDialog.dialog({
       callback: {
         click: function(event) {
           jeedom.history.chart[jeeP.__el__].comparing = true
-          $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', true)
-          $('#bt_compare').removeClass('btn-success').addClass('btn-danger')
+          document.querySelectorAll('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').forEach(_check => { _ckeck.checked = true})
+          document.getElementById('bt_compare').removeClass('btn-success').addClass('btn-danger')
           jeedom.history.chart[jeeP.__el__].chart.xAxis[1].update({
             visible: true
           })
@@ -639,7 +646,7 @@ $('#md_getCompareRange').on({
     var diffPeriod = fromEnd.diff(fromStart, 'days')
     var cdiffPeriod = toEnd.diff(toStart, 'days')
     var text = '{{Comparer}} ' + diffPeriod + ' {{jours avec}} ' + cdiffPeriod + ' {{jours il y a}} ' + $('#sel_comparePeriod option:selected').text()
-    $('#md_getCompareRange .spanCompareDiffResult').text(text)
+    document.querySelector('#md_getCompareRange .spanCompareDiffResult').textContent = text
     if (diffPeriod != cdiffPeriod) {
       jeeDialog.get('#md_historyCompare').show()
     } else {
@@ -648,17 +655,27 @@ $('#md_getCompareRange').on({
   }
 }, 'input.in_datepicker')
 
-$('#bt_compare').off().on('click', function() {
+$('#bt_compare').off().on('click', function(event) {
+  let bt = event.target.closest('#bt_compare')
   if (!jeedom.history.chart[jeeP.__el__].comparing) { //Go comparing:
     if (jeeP.__lastId__ == null) return
-    $(this).attr('data-cmdId', jeeP.__lastId__)
+    bt.getAttribute('data-cmdId', jeeP.__lastId__)
     jeeDialog.get('#md_historyCompare').show()
   } else { //Stop comparing:
     jeeP.clearGraph()
-    jeeP.addChart($(this).attr('data-cmdId'))
-    $('li.li_history[data-cmd_id="' + $(this).attr('data-cmdId') + '"]').addClass('active')
-    $(this).removeClass('btn-danger').addClass('btn-success')
+    jeeP.addChart(bt.getAttribute('data-cmdId'))
+    document.querySelector('li.li_history[data-cmd_id="' + bt.getAttribute('data-cmdId') + '"]').addClass('active')
+    bt.removeClass('btn-danger').addClass('btn-success')
   }
 })
 
 jeeFrontEnd.history.postInit()
+
+//Register events on top of page container:
+
+//Manage events outside parents delegations:
+
+//Specials
+
+/*Events delegations
+*/

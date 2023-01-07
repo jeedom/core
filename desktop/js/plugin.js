@@ -715,3 +715,12 @@ if (typeof(jeephp2js.selPluginId) !== "undefined" && jeephp2js.selPluginId != -1
   }
   jeedomUtils.initTooltips()
 }
+
+//Register events on top of page container:
+
+//Manage events outside parents delegations:
+
+//Specials
+
+/*Events delegations
+*/

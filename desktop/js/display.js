@@ -470,14 +470,14 @@ $('#bt_emptyRemoveHistory').on('click', function() {
     if (result) {
       jeedom.emptyRemoveHistory({
         error: function(error) {
-          $('#div_alertRemoveHistory').showAlert({
+          jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
         success: function(data) {
           $('#table_removeHistory tbody').empty()
-          $('#div_alertRemoveHistory').showAlert({
+          jeedomUtils.showAlert({
             message: '{{Historique vidé avec succès}}',
             level: 'success'
           })
@@ -486,3 +486,12 @@ $('#bt_emptyRemoveHistory').on('click', function() {
     }
   })
 })
+
+//Register events on top of page container:
+
+//Manage events outside parents delegations:
+
+//Specials
+
+/*Events delegations
+*/

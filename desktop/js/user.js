@@ -483,3 +483,12 @@ $('#bt_removeAllRegisterDevice').on('click', function() {
     }
   })
 })
+
+//Register events on top of page container:
+
+//Manage events outside parents delegations:
+
+//Specials
+
+/*Events delegations
+*/

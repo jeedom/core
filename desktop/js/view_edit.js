@@ -672,3 +672,11 @@ $('#div_viewZones').on({
   }
 }, '.bt_addViewScenario')
 
+//Register events on top of page container:
+
+//Manage events outside parents delegations:
+
+//Specials
+
+/*Events delegations
+*/

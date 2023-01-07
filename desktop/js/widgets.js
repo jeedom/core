@@ -781,3 +781,12 @@ $("#bt_importWidgets").change(function(event) {
     return false
   }
 })
+
+//Register events on top of page container:
+
+//Manage events outside parents delegations:
+
+//Specials
+
+/*Events delegations
+*/

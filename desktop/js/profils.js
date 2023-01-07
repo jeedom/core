@@ -237,3 +237,12 @@ if (jeephp2js.profils_user_id == -1) {
     })
   })
 }
+
+//Register events on top of page container:
+
+//Manage events outside parents delegations:
+
+//Specials
+
+/*Events delegations
+*/

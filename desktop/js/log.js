@@ -164,3 +164,12 @@ $("#bt_removeAllLog").on('click', function(event) {
     }
   })
 })
+
+//Register events on top of page container:
+
+//Manage events outside parents delegations:
+
+//Specials
+
+/*Events delegations
+*/

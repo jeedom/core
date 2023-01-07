@@ -33,7 +33,7 @@ if (!jeeFrontEnd.dashboardit) {
         },
         success: function(html) {
           try {
-            $('.div_displayEquipement').html(html)
+            document.querySelector('div.div_displayEquipement').html(html).addClass('posEqWidthRef')
           } catch (err) {
             console.log(err)
           }
@@ -76,4 +76,10 @@ $("#div_treeObject").jstree({
 
 $('#in_searchObject').keyup(function() {
   $('#div_treeObject').jstree(true).search($('#in_searchObject').val())
+})
+
+//Resize responsive tiles:
+window.registerEvent('resize', function dashboard(event) {
+  if (event.isTrigger) return
+  jeedomUtils.positionEqLogic()
 })

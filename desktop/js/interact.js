@@ -632,3 +632,12 @@ if (is_numeric(getUrlVars('id'))) {
     $('.interactDisplayCard[data-interact_id=' + getUrlVars('id') + ']').click()
   }
 }
+
+//Register events on top of page container:
+
+//Manage events outside parents delegations:
+
+//Specials
+
+/*Events delegations
+*/

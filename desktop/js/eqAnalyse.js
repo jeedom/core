@@ -20,7 +20,6 @@ if (!jeeFrontEnd.eqAnalyse) {
   jeeFrontEnd.eqAnalyse = {
     init: function() {
       window.jeeP = this
-      this.$batteryContainer = $('div.batteryListContainer')
       this.$alertListContainer = $('div.alertListContainer')
       this.$tableDeadCmd = $('#table_deadCmd')
     },
@@ -127,7 +126,7 @@ jeeP.$alertListContainer.packery({
   itemSelector: "#alertEqlogic .eqLogic-widget"
 })
 
-$('.alerts, .batteries').on('click', function() {
+$('.alerts, .batteries').on('click', function(event) {
   setTimeout(function() {
     jeedomUtils.positionEqLogic()
     jeeP.$alertListContainer.packery({
@@ -136,7 +135,7 @@ $('.alerts, .batteries').on('click', function() {
   }, 10)
 })
 
-$('.cmdAction[data-action=configure]').on('click', function() {
+$('.cmdAction[data-action=configure]').on('click', function(event) {
   jeeDialog.dialog({
     id: 'jee_modal2',
     title: '{{Configuration de la commande}}',
@@ -145,14 +144,14 @@ $('.cmdAction[data-action=configure]').on('click', function() {
 })
 
 //searching
-jeeP.$eqlogics = jeeP.$batteryContainer.find('.eqLogic-widget')
-$('#in_search').off('keyup').on('keyup', function() {
-  if (jeeP.$eqlogics.length == 0) {
+jeeP.eqlogicsEls = document.querySelectorAll('div.batteryListContainer > div.eqLogic-widget')
+$('#in_search').off('keyup').on('keyup', function(event) {
+  if (jeeP.eqlogicsEls.length == 0) {
     return
   }
-  var search = this.value
+  var search = event.target.closest('#in_search').value
   if (search == '') {
-    jeeP.$eqlogics.show()
+    jeeP.eqlogicsEls.seen()
     return
   }
   search = jeedomUtils.normTextLower(search)
@@ -162,28 +161,29 @@ $('#in_search').off('keyup').on('keyup', function() {
   }
 
   var match, text
-  jeeP.$eqlogics.each(function() {
+  jeeP.eqlogicsEls.forEach(_el => {
     match = false
-    text = jeedomUtils.normTextLower($(this).find('.widget-name').text())
+    text = jeedomUtils.normTextLower(_el.querySelector('.widget-name').textContent)
     if (text.includes(search)) match = true
 
     if (not) match = !match
     if (match) {
-      $(this).show()
+      _el.seen()
     } else {
-      $(this).hide()
+      _el.unseen()
     }
   })
 })
-$('#bt_resetSearch').on('click', function() {
-  $('#in_search').val('').keyup()
+$('#bt_resetSearch').on('click', function(event) {
+  document.getElementById('in_search').value = ''
+  document.getElementById('in_search').triggerEvent('keyup')
 })
 
-$('.batteryTime').off('click').on('click', function() {
+$('.batteryTime').off('click').on('click', function(event) {
   jeeDialog.dialog({
     id: 'jee_modal',
     title: "{{Configuration de l'équipement}}",
-    contentUrl: 'index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + this.closest('.eqLogic').getAttribute('data-eqlogic_id')
+    contentUrl: 'index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + event.target.closest('div.eqLogic').getAttribute('data-eqlogic_id')
   })
 })
 
@@ -194,3 +194,12 @@ $('#bt_massConfigureEqLogic').off('click').on('click', function() {
     contentUrl: 'index.php?v=d&modal=object.massEdit&type=eqLogic&fields=timeout,Alertes%20Communications'
   })
 })
+
+//Register events on top of page container:
+
+//Manage events outside parents delegations:
+
+//Specials
+
+/*Events delegations
+*/

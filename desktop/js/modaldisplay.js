@@ -58,3 +58,12 @@ $('#modalDisplay').empty().load(jeeP.url, function(data) {
     tab.click()
   }
 })
+
+//Register events on top of page container:
+
+//Manage events outside parents delegations:
+
+//Specials
+
+/*Events delegations
+*/

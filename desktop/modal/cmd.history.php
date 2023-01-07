@@ -152,6 +152,7 @@ if (!jeeFrontEnd.md_history) {
       jeeM.resizeHighChartModal(false)
     }
   })
+
   jeeM.$pageContainer.on({
     'click': function(event) {
       let url = 'index.php?v=d&modal=cmd.history&id='

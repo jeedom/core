@@ -311,3 +311,12 @@ document.getElementById('div_mainContainer').registerEvent('scroll', function (e
 })
 
 jeeP.displayTimeline()
+
+//Register events on top of page container:
+
+//Manage events outside parents delegations:
+
+//Specials
+
+/*Events delegations
+*/

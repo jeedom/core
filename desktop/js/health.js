@@ -26,6 +26,8 @@ if (!jeeFrontEnd.health) {
 
 jeeFrontEnd.health.init()
 
+/*Events delegations
+*/
 document.getElementById('accordionHealth').addEventListener('click', event => {
   if (event.target.matches('.bt_configurationPlugin')) {
     jeeDialog.dialog({

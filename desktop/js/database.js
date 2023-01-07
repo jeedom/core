@@ -18,15 +18,12 @@
 
 if (!jeeFrontEnd.database) {
   jeeFrontEnd.database = {
-    $divCommandResult: null,
     init: function() {
       window.jeeP = this
-      this.$divCommandResult = $('#div_commandResult')
     },
     dbExecuteCommand: function(_command, _addToList) {
       if (!isset(_addToList)) _addToList = false
-
-      document.emptyById('div_commandResult')
+      document.getElementById('div_commandResult').empty()
       jeedom.db({
         command: _command,
         error: function(error) {
@@ -36,17 +33,19 @@ if (!jeeFrontEnd.database) {
           })
         },
         success: function(result) {
-          $('#h3_executeCommand').empty().append('{{Commande :}} "' + _command + '"<br/>{{Temps d\'éxécution}} :' + ' ' + result.time + 's')
-          jeeFrontEnd.database.$divCommandResult.append(jeeFrontEnd.database.dbGenerateTableFromResponse(result.sql))
-          $('#in_specificCommand').val(_command)
+          document.getElementById('h3_executeCommand').empty().innerHTML = '{{Commande :}} "' + _command + '"<br/>{{Temps d\'éxécution}} :' + ' ' + result.time + 's'
+          document.getElementById('div_commandResult').html(jeeFrontEnd.database.dbGenerateTableFromResponse(result.sql), true)
+          document.getElementById('in_specificCommand').value = _command
 
           if (_addToList) {
-            if ($('.bt_dbCommand[data-command="' + _command.replace(/"/g, '\\"') + '"]').html() == undefined) {
-              $('#ul_listSqlHistory').prepend('<li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="' + _command.replace(/"/g, '\\"') + '">' + _command + '</a></li>')
+            let listCmd = document.querySelector('.bt_dbCommand[data-command="' + _command.replace(/"/g, '\\"') + '"]')
+            if (listCmd == null) {
+              let add = '<li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="' + _command.replace(/"/g, '\\"') + '">' + _command + '</a></li>'
+              document.getElementById('ul_listSqlHistory').insertAdjacentHTML('afterbegin', add)
             }
-            var kids = $('#ul_listSqlHistory').children()
+            var kids = document.getElementById('ul_listSqlHistory').children
             if (kids.length >= 10) {
-              kids.last().remove()
+              document.getElementById('ul_listSqlHistory').lastElementChild.remove()
             }
           }
         }
@@ -94,9 +93,9 @@ if (!jeeFrontEnd.database) {
       if (operation == 'INSERT') {
         var col, cols, value, values
         cols = values = ''
-        $('#sqlSetOptions input.sqlSetter').each(function() {
-          col = $(this).attr('id')
-          value = $(this).val()
+        document.querySelectorAll('#sqlSetOptions input.sqlSetter').forEach( _setter => {
+          col = _setter.getAttribute('id')
+          value = _setter.value
           if (value != '') {
             cols += '`' + col + '`,'
             values += '' + value + ','
@@ -107,10 +106,10 @@ if (!jeeFrontEnd.database) {
 
       if (operation == 'UPDATE') {
         var col, value, isNull
-        $('#sqlSetOptions input.sqlSetter').each(function() {
-          col = $(this).attr('id')
-          value = $(this).val()
-          isNull = $(this).closest('.form-group').find('.checkSqlColNull').is(':checked')
+        document.querySelectorAll('#sqlSetOptions input.sqlSetter').forEach( _setter => {
+          col = _setter.getAttribute('id')
+          value = _setter.value
+          isNull = _setter.closest('.form-group').querySelector('.checkSqlColNull').checked
           if (value != '') {
             command += '`' + col + '`= ' + value + ','
           } else if (isNull) {
@@ -150,8 +149,7 @@ if (!jeeFrontEnd.database) {
         options += '</div>'
       }
       options += '</div>'
-
-      $('#sqlSetGroup > label').empty().append(options.slice(0, -1))
+      document.querySelector('#sqlSetGroup > label').empty().insertAdjacentHTML('beforeend', options.slice(0, -1))
     },
   }
 }
@@ -164,100 +162,110 @@ window.registerEvent("resize", function db(event) {
 })
 window.triggerEvent('resize')
 
-$('.bt_dbCommand').off('click').on('click', function() {
-  var command = $(this).attr('data-command')
+$('.bt_dbCommand').off('click').on('click', function(event) {
+  var command = event.target.getAttribute('data-command')
   jeeP.dbExecuteCommand(command, false)
 })
 
 $('#ul_listSqlHistory').off('click', '.bt_dbCommand').on('click', '.bt_dbCommand', function() {
-  var command = $(this).attr('data-command')
+  var command = event.target.getAttribute('data-command')
   jeeP.dbExecuteCommand(command, false)
 })
 
 $('#bt_validateSpecificCommand').off('click').on('click', function() {
-  var command = $('#in_specificCommand').val()
+  var command = document.getElementById('in_specificCommand').value
   jeeP.dbExecuteCommand(command, true)
 })
 $('#in_specificCommand').keypress(function(event) {
   if (event.which == 13) {
-    $('#bt_validateSpecificCommand').trigger('click')
+    document.getElementById('bt_validateSpecificCommand').triggerEvent('click')
   }
 })
 
 //*************************SQL constructor**************************
-$('#sqlOperation').off('change').on('change', function() {
-  var operation = this.value
+$('#sqlOperation').off('change').on('change', function(event) {
+  var operation = event.target.value
   switch (operation) {
     case 'SELECT':
-      $(this).removeClass('warning danger').addClass('info')
-      $('#sql_selector').parent().show()
-      $('#lblFrom').show().text('FROM')
+      event.target.removeClass('warning', 'danger').addClass('info')
+      document.getElementById('sql_selector').parentNode.seen()
+      document.getElementById('lblFrom').seen().innerHTML = 'FROM'
 
-      $('#sqlSetGroup').hide()
-      $('#sqlWhereGroup').show()
+      document.getElementById('sqlSetGroup').unseen()
+      document.getElementById('sqlWhereGroup').seen()
       break
     case 'INSERT':
-      $(this).removeClass('info danger').addClass('warning')
-      $('#sql_selector').parent().hide()
-      $('#lblFrom').show().text('INTO')
+      event.target.removeClass('info', 'danger').addClass('warning')
+      document.getElementById('sql_selector').parentNode.unseen()
+      document.getElementById('lblFrom').seen().innerHTML = 'INTO'
 
-      $('#sqlSetGroup').show()
-      $('#sqlWhereGroup').hide()
+      document.getElementById('sqlSetGroup').seen()
+      document.getElementById('sqlWhereGroup').unseen()
       jeeP.defineSQLsetGroup()
       break
     case 'UPDATE':
-      $(this).removeClass('info warning').addClass('danger')
-      $('#sql_selector').parent().hide()
-      $('#lblFrom').hide()
+      event.target.removeClass('info', 'warning').addClass('danger')
+      document.getElementById('sql_selector').parentNode.unseen()
+      document.getElementById('lblFrom').unseen()
 
-      $('#sqlSetGroup').show()
-      $('#sqlWhereGroup').show()
-      $('#checksqlwhere').prop('checked', true).trigger('change')
+      document.getElementById('sqlSetGroup').seen()
+      document.getElementById('sqlWhereGroup').seen()
+      document.getElementById('checksqlwhere').checked = true
+      document.getElementById('checksqlwhere').triggerEvent('change')
       jeeP.defineSQLsetGroup()
       break
     case 'DELETE':
-      $(this).removeClass('info warning').addClass('danger')
-      $('#sql_selector').parent().hide()
-      $('#lblFrom').show().text('FROM')
+      event.target.removeClass('info', 'warning').addClass('danger')
+      document.getElementById('sql_selector').parentNode.unseen()
+      document.getElementById('lblFrom').seen().innerHTML = 'FROM'
 
-      $('#sqlSetGroup').hide()
-      $('#sqlWhereGroup').show()
-      $('#checksqlwhere').prop('checked', true).trigger('change')
+      document.getElementById('sqlSetGroup').unseen()
+      document.getElementById('sqlWhereGroup').seen()
+      document.getElementById('checksqlwhere').checked = true
+      document.getElementById('checksqlwhere').triggerEvent('change')
       break
   }
-  $(window).trigger('resize')
+  window.triggerEvent('resize')
 })
 
-$('#sqlTable').off('change').on('change', function() {
-  var selectedTable = this.value
+$('#sqlTable').off('change').on('change', function(event) {
+  var selectedTable = event.target.closest('#sqlTable').value
   var options = ''
   for (var col in jeephp2js.tableList[selectedTable]) {
     options += '<option value="' + jeephp2js.tableList[selectedTable][col]['colName'] + '">' + jeephp2js.tableList[selectedTable][col]['colName'] + '</option>'
   }
-  $('#sqlWhere').empty().append(options)
+  document.getElementById('sqlWhere').innerHTML = options
 
   if (['INSERT', 'UPDATE'].includes(document.getElementById('sqlOperation').value)) {
     jeeP.defineSQLsetGroup()
   }
-  $(window).trigger('resize')
+  window.triggerEvent('resize')
 })
 
-$('#checksqlwhere').off('change').on('change', function() {
-  if (!$(this).is(':checked')) {
-    $('#sqlWhere, #sqlLike, #sqlLikeValue').addClass('disabled')
+$('#checksqlwhere').off('change').on('change', function(event) {
+  if (!event.target.closest('#checksqlwhere').checked) {
+    document.querySelectorAll('#sqlWhere, #sqlLike, #sqlLikeValue').addClass('disabled')
   } else {
-    $('#sqlWhere, #sqlLike, #sqlLikeValue').removeClass('disabled')
+    document.querySelectorAll('#sqlWhere, #sqlLike, #sqlLikeValue').removeClass('disabled')
   }
 })
 
-$('#bt_writeDynamicCommand').off('click').on('click', function() {
+$('#bt_writeDynamicCommand').off('click').on('click', function(event) {
   var sqlString = jeeP.constructSQLstring()
-  $('#in_specificCommand').val(sqlString)
+  document.getElementById('in_specificCommand').value = sqlString
 })
 
-$('#bt_execDynamicCommand').off('click').on('click', function() {
+$('#bt_execDynamicCommand').off('click').on('click', function(event) {
   var sqlString = jeeP.constructSQLstring()
-  $('#in_specificCommand').val(sqlString)
+  document.getElementById('in_specificCommand').value = sqlString
   jeeP.dbExecuteCommand(sqlString, true)
 })
 
+//Register events on top of page container:
+
+//Manage events outside parents delegations:
+
+//Specials
+
+/*Events delegations
+*/

@@ -527,3 +527,12 @@ $('#bt_execMassEdit').off('click').on('click', function() {
 
   jeeP._editIds_ = []
 })
+
+//Register events on top of page container:
+
+//Manage events outside parents delegations:
+
+//Specials
+
+/*Events delegations
+*/
