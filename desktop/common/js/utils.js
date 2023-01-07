@@ -326,6 +326,14 @@ document.addEventListener('DOMContentLoaded', function() {
       document.head.appendChild(stylesheet)
     }
   })
+
+  //flatpickr theme:
+  var flatpickrDarkCss = document.querySelector('head > link[rel="stylesheet"][href*="3rdparty/flatpickr/flatpickr.dark.css"]')
+  if (document.body.getAttribute('data-theme').endsWith('Dark')) {
+    flatpickrDarkCss.disabled = false
+  } else {
+    flatpickrDarkCss.disabled= true
+  }
 })
 
 jeedomUtils.showAlert = function(_options) {
@@ -485,6 +493,14 @@ jeedomUtils.triggerThemechange = function() {
     } else {
       document.body.triggerEvent('changeThemeEvent', { detail: { theme: 'Light' } }) //Legacy theme is a light one
     }
+  }
+
+  //Switch flatpickr theme:
+  var flatpickrDarkCss = document.querySelector('head > link[rel="stylesheet"][href*="3rdparty/flatpickr/flatpickr.dark.css"]')
+  if (currentTheme.endsWith('Dark')) {
+    flatpickrDarkCss.disabled = false
+  } else {
+    flatpickrDarkCss.disabled= true
   }
 }
 
@@ -1083,25 +1099,40 @@ jeedomUtils.autocompleteDestroy = function() {
   document.querySelectorAll('ul.ui-autocomplete, div.ui-helper-hidden-accessible')?.remove()
 }
 
-jeedomUtils.datePickerInit = function() {
-  var datePickerRegion = jeeFrontEnd.language.substring(0, 2)
-  if (isset($.datepicker.regional[datePickerRegion])) {
-    var datePickerRegional = $.datepicker.regional[datePickerRegion]
-  } else {
-    var datePickerRegional = $.datepicker.regional['en']
-  }
-  datePickerRegional.dateFormat = "yy-mm-dd"
-  $('.in_datepicker').datepicker(datePickerRegional)
+jeedomUtils.datePickerInit = function(_format, _selector) {
+  if (!isset(_format)) _format = 'Y-m-d'
+  let _enableTime = _format.includes(' ') ? true : false
+
+  if (!isset(_selector)) _selector = 'input.in_datepicker'
+
+  //Default us
+  let lang = jeeFrontEnd.language.substring(0, 2)
+  if (lang == 'fr') flatpickr.localize(flatpickr.l10ns.fr)
+  if (lang == 'es') flatpickr.localize(flatpickr.l10ns.es)
+
+  document.querySelectorAll(_selector).forEach(_input => {
+    flatpickr(_input, {
+      enableTime: _enableTime,
+      dateFormat: _format,
+      time_24hr: true,
+    })
+  })
 }
 
 jeedomUtils.dateTimePickerInit = function(_step) {
-  $('input.isdatepicker').datetimepicker('destroy')
-  $('.xdsoft_datetimepicker').remove()
-  if (!isset(_step)) _step = 10
-  $('input.isdatepicker').datetimepicker({
-    datepicker: false,
-    format: 'H:i',
-    step: _step
+  if (!isset(_step)) _step = 5
+  let lang = jeeFrontEnd.language.substring(0, 2)
+  if (lang == 'fr') flatpickr.localize(flatpickr.l10ns.fr)
+  if (lang == 'es') flatpickr.localize(flatpickr.l10ns.es)
+
+  document.querySelectorAll('input.isdatepicker').forEach(_input => {
+    flatpickr(_input, {
+      enableTime: true,
+      noCalendar: true,
+      dateFormat: "H:i",
+      time_24hr: true,
+      minuteIncrement: _step
+    })
   })
 }
 
@@ -1115,15 +1146,12 @@ jeedomUtils.initSpinners = function() {
 }
 
 jeedomUtils.datePickerDestroy = function() {
-  $('.in_datepicker').datepicker("destroy")
-  document.querySelectorAll('.in_datepicker')?.forEach(element => {
-    element.removeClass('hasDatepicker').removeAttribute('id')
+  document.querySelectorAll('input.isdatepicker, input.in_datepicker').forEach(_input => {
+    if (isset(_input._flatpickr)) _input._flatpickr.destroy()
   })
-  document.getElementById('ui-datepicker-div')?.remove()
-
-  //datetime:
-  $('input.isdatepicker').datetimepicker('destroy')
-  document.querySelectorAll('.xdsoft_datetimepicker')?.remove()
+  document.querySelectorAll('body > div.flatpickr-calendar').forEach(_div => {
+    _div.remove()
+  })
 }
 
 //General functions__

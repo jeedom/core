@@ -2710,7 +2710,7 @@ div.eqLogic-widget.editingMode .panelLink {
     padding: 0 12px !important;
   }
   .form-control:not(.btn):not(.expressionAttr):not(input),
-  input:not(.btn):not(.dial):not([type=radio]):not([type=image]):not(.expressionAttr):not(.knob):not([type=checkbox]),
+  input:not(.numInput):not(.btn):not(.dial):not([type=radio]):not([type=image]):not(.expressionAttr):not(.knob):not([type=checkbox]),
   textarea:not(.expressionAttr) {
     background-color: var(--form-bg-color) !important;
     color: var(--txt-color) !important;
@@ -4495,27 +4495,6 @@ div.eqLogic-widget.editingMode .panelLink {
     margin-bottom: 5px;
   }
 
-  /* history datepicker */
-  .xdsoft_datetimepicker,
-  .xdsoft_datetimepicker .blue-gradient-button {
-    font-family: "Roboto";
-  }
-  .hasDatepicker {
-    cursor: pointer;
-  }
-  #ui-datepicker-div {
-    background: rgb(var(--bg-color)) !important;
-    z-index: 1030 !important;
-  }
-  #ui-datepicker-div .ui-datepicker-header a {
-    color: red !important;
-    background: var(--link-color);
-  }
-  #ui-datepicker-div .ui-state-hover {
-    color: var(--linkHoverLight-color) !important;
-    background: var(--link-color);
-  }
-
   .ui-dialog .ui-dialog-buttonpane {
     margin: 0;
   }
@@ -4562,32 +4541,6 @@ div.eqLogic-widget.editingMode .panelLink {
 
   .ui-helper-clearfix {
     box-shadow: none !important;
-  }
-
-  /* datetime picker */
-  .xdsoft_datetimepicker {
-    box-shadow: none;
-    background: var(--bg-modal-color);
-    color: var(--txt-color);
-    font-family: "Roboto", Helvetica, Arial, sans-serif;
-    border: none;
-  }
-  .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box >div >div {
-    background: rgb(var(--bg-color));
-    border: none;
-    color: var(--txt-color);
-  }
-  .xdsoft_datetimepicker,
-  .xdsoft_timepicker,
-  .xdsoft_time_box {
-    border: none !important;
-  }
-  .xdsoft_time:hover {
-    background-color: var(--logo-primary-color) !important;
-  }
-  .xdsoft_datetimepicker .xdsoft_calendar td:hover,
-  .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box >div >div:hover {
-    background: var(--logo-primary-color) !important;
   }
 
   /* jqueryui spinner */
@@ -4792,7 +4745,18 @@ div.eqLogic-widget.editingMode .panelLink {
     height: 25px !important;
   }
 
-/* ______tippy-tooltip */
+  /* flatpickr */
+  div.flatpickr-calendar select,
+  div.flatpickr-calendar div.flatpickr-month input {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+  }
+  body[data-theme*="Dark"] div.flatpickr-calendar select {
+    background-image: none !important;
+  }
+
+  /* ______tippy-tooltip */
   .tippy-box {
     background-color: var(--al-info-color);
     color: var(--linkHoverLight-color);

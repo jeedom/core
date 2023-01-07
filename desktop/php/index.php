@@ -191,9 +191,6 @@ function setTheme() {
 	include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
 	include_file('3rdparty', 'jquery.ui-touch-punch/jquery.ui.touch-punch.min', 'js');
 	include_file('3rdparty', 'bootbox/bootbox.min', 'js'); //Deprecated, keep for plugins
-	include_file('3rdparty', 'jquery.ui/jquery.ui.datepicker.fr', 'js'); //Provide french traduction in date pickers
-	include_file('3rdparty', 'jquery.datetimepicker/jquery.datetimepicker', 'js');
-	include_file('3rdparty', 'jquery.datetimepicker/jquery.datetimepicker', 'css');
 
 	include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
 	include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
@@ -243,6 +240,11 @@ function setTheme() {
 	//New $less libs
 	include_file('3rdparty', 'popper/popper.min', 'js');
 	include_file('3rdparty', 'tippy/tippy.min', 'js');
+	include_file('3rdparty', 'flatpickr/flatpickr.min', 'css');
+	include_file('3rdparty', 'flatpickr/flatpickr.dark', 'css');
+	include_file('3rdparty', 'flatpickr/flatpickr.min', 'js');
+	include_file('3rdparty', 'flatpickr/l10n/fr', 'js');
+	include_file('3rdparty', 'flatpickr/l10n/es', 'js');
 
 	//set theme before loading utils:
 	include_file('desktop', 'bootstrap', 'css');
