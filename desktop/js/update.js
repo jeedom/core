@@ -140,8 +140,6 @@ if (!jeeFrontEnd.update) {
 
           if (jeeP.hasUpdate) document.querySelector('li a[data-target="#coreplugin"] i').style.color = 'var(--al-warning-color)'
 
-          $('#md_specifyUpdate').removeClass('hidden')
-
           $('#table_update').on('sortEnd', function(e, t) {
             $("#table_update tbody").prepend($('tr[data-type="core"]'))
           })
@@ -540,9 +538,13 @@ $('#bt_updateJeedom').off('click').on('click', function() {
     top: window.innerHeight > 500 ? 120 : 0,
     callback: function() {
       var contentEl = jeeDialog.get('#md_update', 'content')
-      var newContent = document.getElementById('md_specifyUpdate')
-      contentEl.appendChild(newContent)
-      newContent.removeClass('hidden')
+      if (contentEl.querySelector('#md_specifyUpdate') == null) {
+        var newContent = document.getElementById('md_specifyUpdate').cloneNode(true)
+        contentEl.appendChild(newContent)
+      }
+    },
+    onShown: function() {
+      jeeDialog.get('#md_update', 'content').querySelector('#md_specifyUpdate').removeClass('hidden')
     },
     buttons: {
       confirm: {
