@@ -110,7 +110,10 @@ NodeList.prototype.addClass = function(_className /*, _className... */) {
 }
 
 Element.prototype.removeClass = function(_className /*, _className... */) {
-  if (_className == '') return this
+  if (_className == '') {
+    this.classList = ''
+    return this
+  }
   let args = Array.prototype.slice.call(arguments)
   this.classList.remove(...args)
   return this
