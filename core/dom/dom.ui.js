@@ -1607,13 +1607,13 @@ var jeeCtxMenu = (function()
       className: '',
       trigger: 'right',
       autoHide: true,
-      callback: function(key, options, event) {} //Default item callback
+      callback: function(key, options, event) {}, //Default item callback
       events: {
         preShow: false, //Beforte show
         show: false, //Shown
         hide: false, //Before hide
-        activated: false
-      }
+        activated: false,
+      },
     }
 
     //Merge defaults and submitted options:
