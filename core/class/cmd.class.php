@@ -1278,6 +1278,7 @@ class cmd {
 		$display = '<option value="default">' . __('Défaut', __FILE__) . '</option>';
 		return $display .= self::getSelectOptionsByTypeAndSubtype($this->getType(), $this->getSubType(), $_version, $_availWidgets);
 	}
+
 	public function getGenericTypeSelectOptions() {
 		$display = '<option value="">{{Aucun}}</option>';
 		$groups = array();
@@ -1460,8 +1461,12 @@ class cmd {
 					}
 				}
 				if ($template == '') {
-					$defaultConfiguration = config::getDefaultConfiguration();
-					$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . explode('::', $defaultConfiguration['core']['widget::default::cmd::' . $this->getType() . '::' . $this->getSubType()])[1];
+					if ($_version == 'scenario') {
+						$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.default';
+					} else {
+						$defaultConfiguration = config::getDefaultConfiguration();
+						$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . explode('::', $defaultConfiguration['core']['widget::default::cmd::' . $this->getType() . '::' . $this->getSubType()])[1];
+					}
 					$template = getTemplate('core', $_version, $template_name);
 				}
 			}
