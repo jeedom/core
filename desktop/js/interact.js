@@ -96,7 +96,7 @@ if (!jeeFrontEnd.interact) {
             success: function(data) {
               for (var i in data) {
                 if (data[i].html != '') {
-                  document.getElementById(data[i].id).insertAdjacentHTML('beforeend', data[i].html.html)
+                  document.getElementById(data[i].id).html(data[i].html.html)
                 }
               }
               jeedomUtils.taAutosize()
