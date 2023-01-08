@@ -713,7 +713,7 @@ var jeeDialog = (function()
         onShown: function() { },
         beforeClose: function() {},
         onClose: function() {
-          document.getElementById('jeeDialogBackdrop')?.unseen()
+          cleanBackdrop()
         }
       }
       _options = domUtils.extend(commonDefaults, _options)
@@ -749,7 +749,7 @@ var jeeDialog = (function()
 
           dialogTitle.querySelector('button.btClose').addEventListener('click', function(event) {
             event.target.closest('div.jeeDialog')._jeeDialog.close()
-            document.getElementById('jeeDialogBackdrop')?.remove()
+            cleanBackdrop()
           })
           dialogTitle.querySelector('button.btToggleMaximize').addEventListener('click', function(event) {
             let dialog = event.target.closest('div.jeeDialog')
@@ -777,7 +777,7 @@ var jeeDialog = (function()
 
           dialogTitle.querySelector(':scope > .btClose').addEventListener('click', function(event) {
             event.target.closest('div.jeeDialog')._jeeDialog.close()
-            document.getElementById('jeeDialogBackdrop')?.remove()
+            cleanBackdrop()
           })
         }
       }
@@ -859,7 +859,7 @@ var jeeDialog = (function()
       }
     }
 
-    function setBackDrop(_params) {
+    function setBackDrop(_params, _show) {
       if (_params.backdrop) {
         var backDrop = document.getElementById('jeeDialogBackdrop')
         if (backDrop === null) {
@@ -875,6 +875,30 @@ var jeeDialog = (function()
             })
           })
         }
+        if (_show === true) backDrop.seen()
+      } else {
+        cleanBackdrop()
+      }
+    }
+
+    function cleanBackdrop() {
+      var jeeDialogs = document.querySelectorAll('div.jeeDialog')
+      var jeeDialogsWithBackdrop = 0
+      var keep = false
+      jeeDialogs.forEach( _dialog => {
+        if (isset(_dialog._jeeDialog)) {
+          console.log('got:', _dialog._jeeDialog.options.backdrop, _dialog.isVisible())
+          if (_dialog._jeeDialog.options.backdrop === true && _dialog.isVisible()) {
+            keep = true
+            jeeDialogsWithBackdrop++
+          } else if (_dialog._jeeDialog.options.backdrop === true) {
+            jeeDialogsWithBackdrop++
+          }
+        }
+      })
+      if (keep === true) return false
+      if (jeeDialogsWithBackdrop > 0) {
+        document.getElementById('jeeDialogBackdrop')?.unseen()
       } else {
         document.getElementById('jeeDialogBackdrop')?.remove()
       }
@@ -960,8 +984,8 @@ var jeeDialog = (function()
         close: function(dialog) {
           if (dialog == undefined) dialog = this.dialog
           dialog._jeeDialog.options.beforeClose()
-          document.getElementById('jeeDialogBackdrop')?.remove()
           dialog.remove()
+          cleanBackdrop()
         }
       }
 
@@ -1056,8 +1080,8 @@ var jeeDialog = (function()
         close: function(dialog) {
           if (dialog == undefined) dialog = this.dialog
           dialog._jeeDialog.options.beforeClose()
-          document.getElementById('jeeDialogBackdrop')?.remove()
           dialog.remove()
+          cleanBackdrop()
         }
       }
 
@@ -1161,8 +1185,8 @@ var jeeDialog = (function()
         close: function(dialog) {
           if (dialog == undefined) dialog = this.dialog
           dialog._jeeDialog.options.beforeClose()
-          document.getElementById('jeeDialogBackdrop')?.remove()
           dialog.remove()
+          cleanBackdrop()
         }
       }
 
@@ -1274,26 +1298,25 @@ var jeeDialog = (function()
           options: _options,
           dialog: _element,
           show: function() {
-            setBackDrop(_options)
-            document.getElementById('jeeDialogBackdrop')?.seen()
+            setBackDrop(_options, true)
             this.dialog.seen()
           },
           hide: function() {
-            document.getElementById('jeeDialogBackdrop')?.unseen()
             this.dialog.unseen()
+            cleanBackdrop()
           },
           close: function() {
-            document.getElementById('jeeDialogBackdrop')?.remove()
             this.dialog.remove()
+            cleanBackdrop()
           },
           destroy: function() {
-            document.getElementById('jeeDialogBackdrop')?.remove()
             this.dialog.remove()
+            cleanBackdrop()
           }
         }
         _element.querySelector(':scope > .btClose')?.addEventListener('click', function(event) {
+          cleanBackdrop()
           event.target.closest('div.jeeDialog').remove()
-          document.getElementById('jeeDialogBackdrop')?.remove()
         })
         //Set Dialog size:
         setPosition(_element, _options)
@@ -1389,8 +1412,7 @@ var jeeDialog = (function()
           options: _options,
           dialog: dialogContainer,
           show: function() {
-            setBackDrop(_options)
-            document.getElementById('jeeDialogBackdrop')?.seen()
+            setBackDrop(_options, true)
             this.dialog._jeeDialog.options.onShown()
             if (!_options.retainPosition || this.dialog.style.width == '') {
               if (!_options.fullScreen) this.dialog.setAttribute('data-maximize', '0')
@@ -1399,19 +1421,19 @@ var jeeDialog = (function()
             this.dialog.seen()
           },
           hide: function() {
-            document.getElementById('jeeDialogBackdrop')?.unseen()
             this.dialog.unseen()
+            cleanBackdrop()
           },
           close: function() {
-            document.getElementById('jeeDialogBackdrop')?.unseen()
             this.dialog._jeeDialog.options.beforeClose()
             this.dialog.querySelector('div.jeeDialogContent').empty()
             this.dialog.unseen()
             this.dialog._jeeDialog.options.onClose()
+            cleanBackdrop()
           },
           destroy: function() {
-            document.getElementById('jeeDialogBackdrop')?.remove()
             this.dialog.remove()
+            cleanBackdrop()
           }
         }
 
