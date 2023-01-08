@@ -130,6 +130,7 @@ sendVarToJS([
   var modalFooter = jeeDialog.get('#sel_colorIcon', 'footer')
   var uiOptions = modal.querySelector('#mySearch')
   modalFooter.insertBefore(uiOptions, modalFooter.firstChild)
+  document.getElementById('sel_colorIcon').selectedIndex = 1
 
   $('.div_treeFolder').off('click').on('select_node.jstree', function(node, selected) {
     $('#in_searchIconSelector').val('')
@@ -310,6 +311,7 @@ sendVarToJS([
         } else {
           var realPath = _path.substr(_path.search('3rdparty/'))
         }
+
         if (jstreeId === 'treeFolder-icon') {
           $('#sel_colorIcon').show()
           var category = realPath.slice(0, -1).split('/').pop()
@@ -376,11 +378,6 @@ sendVarToJS([
 
         }
         $('#' + jstreeId).siblings('.div_imageGallery').append(div)
-        if (isset(callback) && typeof callback === 'function') {
-          setTimeout(function() {
-            callback()
-          })
-        }
       }
     })
   }
@@ -486,14 +483,16 @@ sendVarToJS([
     } else if (iconClasses[0] === 'icon') {
       lookPath = iconClasses[1].split('-')[0]
     }
+    lookPath = '/' + lookPath + '/'
     document.querySelectorAll('a.jstree-anchor').forEach(_anchor => {
-      if (_anchor.dataset.path.includes('/' + lookPath + '/')) {
+      if (_anchor.dataset.path.includes(lookPath)) {
         printFileFolder(_anchor.dataset.path, 'treeFolder-icon', function() {
-          if (jeephp2js.md_iconSelector_colorIcon != '') {
+          if (jeephp2js.md_iconSelector_colorIcon != '0') {
             let select = document.getElementById('sel_colorIcon')
             select.value = jeephp2js.md_iconSelector_colorIcon
             select.triggerEvent('change')
           }
+          document.querySelector('.jstree-anchor[data-path*="' + lookPath + '"]')?.addClass('jstree-clicked')
           //Select current icon:
           let icon = document.querySelector('#tabicon div.div_imageGallery').querySelector('span.iconSel > i.' + iconClasses[1])
           if (icon) {
