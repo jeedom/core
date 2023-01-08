@@ -887,7 +887,6 @@ var jeeDialog = (function()
       var keep = false
       jeeDialogs.forEach( _dialog => {
         if (isset(_dialog._jeeDialog)) {
-          console.log('got:', _dialog._jeeDialog.options.backdrop, _dialog.isVisible())
           if (_dialog._jeeDialog.options.backdrop === true && _dialog.isVisible()) {
             keep = true
             jeeDialogsWithBackdrop++
