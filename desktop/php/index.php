@@ -210,7 +210,7 @@ function setTheme() {
 
 	include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
 	include_file('3rdparty', 'jquery.packery/jquery.packery', 'js'); //$less with draggability lib
-	//include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js');
+	include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js'); //Deprecated 4.4, keep for plugins
 	//include_file('3rdparty', 'jwerty/jwerty', 'js');
 
 	//jQuery less libs:
