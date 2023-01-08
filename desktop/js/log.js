@@ -20,58 +20,26 @@ if (!jeeFrontEnd.log) {
   jeeFrontEnd.log = {
     init: function() {
       window.jeeP = this
-      this.$rawLogCheck = $('#brutlogcheck')
-      this.$btGlobalLogStopStart = $('#bt_globalLogStopStart')
+      this.btGlobalLogStopStart = document.getElementById('bt_globalLogStopStart')
+      this.logListButtons = document.querySelectorAll('#ul_object .li_log')
+
+      //autoclick first log:
+      var logfile = getUrlVars('logfile')
+      var log = document.querySelector('#div_displayLogList .li_log[data-log="' + logfile + '"]')
+      if (log != null) {
+        log.click()
+      } else {
+        document.querySelector('#div_displayLogList .li_log')?.click()
+      }
     },
   }
 }
 
-jeeFrontEnd.log.init()
-
-//autoclick first log:
-var logfile = getUrlVars('logfile')
-if ($('#div_displayLogList .li_log[data-log="' + logfile + '"]').length) {
-  $('#div_displayLogList .li_log[data-log="' + logfile + '"]').trigger('click')
-} else {
-  $('#div_displayLogList .li_log').first().trigger('click')
-}
-
-jeeP.$rawLogCheck.on('click').on('click', function() {
-  jeeP.$rawLogCheck.attr('autoswitch', 0)
-
-  var scroll = $('#pre_globallog').scrollTop()
-  jeedom.log.autoupdate({
-    log: document.querySelector('li.li_log.active')?.getAttribute('data-log'),
-    display: document.getElementById('pre_globallog'),
-    search: document.getElementById('in_searchGlobalLog'),
-    control: document.getElementById('bt_globalLogStopStart'),
-    once: 1
-  })
-  $('#pre_globallog').scrollTop(scroll)
-})
-
-$('.li_log').on('click', function() {
-  document.emptyById('pre_globallog')
-  document.querySelectorAll('.li_log').removeClass('active')
-  this.addClass('active')
-  jeeP.$btGlobalLogStopStart.removeClass('btn-success')
-    .addClass('btn-warning')
-    .html('<i class="fas fa-pause"></i><span class="hidden-768"> {{Pause}}</span>')
-    .attr('data-state', 1)
-  jeedom.log.autoupdate({
-    log: this.getAttribute('data-log'),
-    display: document.getElementById('pre_globallog'),
-    search: document.getElementById('in_searchGlobalLog'),
-    control: document.getElementById('bt_globalLogStopStart')
-  })
-})
-
-
 //searching
-$('#in_searchLogFilter').keyup(function() {
-  var search = this.value
+document.getElementById('in_searchLogFilter')?.addEventListener('keyup', function(event) {
+  var search = event.target.value
   if (search == '') {
-    $('#ul_object .li_log').show()
+    jeeP.logListButtons.seen()
     return
   }
   var not = search.startsWith(":not(")
@@ -79,97 +47,136 @@ $('#in_searchLogFilter').keyup(function() {
     search = search.replace(':not(', '')
   }
   search = jeedomUtils.normTextLower(search)
-  $('#ul_object .li_log').hide()
+  jeeP.logListButtons.unseen()
   var match, text
-  $('#ul_object .li_log').each(function() {
+  jeeP.logListButtons.forEach(_bt => {
     match = false
-    text = jeedomUtils.normTextLower($(this).text())
+    text = jeedomUtils.normTextLower(_bt.textContent)
     if (text.includes(search)) {
       match = true
     }
-
     if (not) match = !match
     if (match) {
-      $(this).show()
-    }
-
-  })
-})
-$('#bt_resetLogFilterSearch').on('click', function() {
-  $('#in_searchLogFilter').val('').keyup()
-})
-
-$('#bt_resetGlobalLogSearch').on('click', function() {
-  $('#in_searchGlobalLog').val('').keyup()
-})
-
-$('#bt_downloadLog').click(function() {
-  window.open('core/php/downloadFile.php?pathfile=log/' + $('.li_log.active').attr('data-log'), "_blank", null)
-})
-
-$("#bt_clearLog").on('click', function(event) {
-  jeedom.log.clear({
-    log: $('.li_log.active').attr('data-log'),
-    success: function(data) {
-      $('.li_log.active a').html('<i class="fa fa-check"></i> ' + $('.li_log.active').attr('data-log'))
-      $('.li_log.active i').removeClass().addClass('fas fa-check')
-      if (jeeP.$btGlobalLogStopStart.attr('data-state') == 0) {
-        jeeP.$btGlobalLogStopStart.click()
-      }
+      _bt.seen()
     }
   })
 })
-
-$("#bt_clearAllLog").on('click', function(event) {
-  jeeDialog.confirm("{{Êtes-vous sûr de vouloir vider tous les logs ?}}", function(result) {
-    if (result) {
-      jeedom.log.clearAll({
-        error: function(error) {
-          $('#div_alertError').showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          jeedomUtils.loadPage('index.php?v=d&p=log')
-        }
-      })
-    }
-  })
-})
-
-$("#bt_removeLog").on('click', function(event) {
-  jeedom.log.remove({
-    log: $('.li_log.active').attr('data-log'),
-    success: function(data) {
-      jeedomUtils.loadPage('index.php?v=d&p=log');
-    }
-  })
-})
-
-$("#bt_removeAllLog").on('click', function(event) {
-  jeeDialog.confirm("{{Êtes-vous sûr de vouloir supprimer tous les logs ?}}", function(result) {
-    if (result) {
-      jeedom.log.removeAll({
-        error: function(error) {
-          $('#div_alertError').showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          jeedomUtils.loadPage('index.php?v=d&p=log')
-        }
-      })
-    }
-  })
-})
-
-//Register events on top of page container:
-
-//Manage events outside parents delegations:
-
-//Specials
 
 /*Events delegations
 */
+//div_pageContainer events delegation:
+document.getElementById('div_pageContainer').addEventListener('click', function(event) {
+  console.log('>>> click', event)
+  if (event.target.matches('#brutlogcheck')) {
+    event.target.setAttribute('autoswitch', 0)
+    let elPreGlobalLog = document.getElementById('pre_globallog')
+    var scroll = elPreGlobalLog.scrollTop
+    jeedom.log.autoupdate({
+      log: document.querySelector('li.li_log.active')?.getAttribute('data-log'),
+      display: document.getElementById('pre_globallog'),
+      search: document.getElementById('in_searchGlobalLog'),
+      control: jeeP.btGlobalLogStopStart,
+      once: 1
+    })
+    elPreGlobalLog.scrollTop = scroll
+    return
+  }
+
+  if (event.target.matches('.li_log, .li_log *')) {
+    let bt = event.target.closest('.li_log')
+    document.getElementById('pre_globallog').empty()
+    document.querySelectorAll('.li_log').removeClass('active')
+    bt.addClass('active')
+    jeeP.btGlobalLogStopStart.removeClass('btn-success')
+      .addClass('btn-warning')
+      .html('<i class="fas fa-pause"></i><span class="hidden-768"> {{Pause}}</span>')
+      .setAttribute('data-state', '1')
+    jeedom.log.autoupdate({
+      log: bt.getAttribute('data-log'),
+      display: document.getElementById('pre_globallog'),
+      search: document.getElementById('in_searchGlobalLog'),
+      control: jeeP.btGlobalLogStopStart
+    })
+    return
+  }
+
+  if (event.target.matches('#bt_downloadLog, #bt_downloadLog *')) {
+    window.open('core/php/downloadFile.php?pathfile=log/' + document.querySelector('.li_log.active').getAttribute('data-log'), "_blank", null)
+    return
+  }
+
+  if (event.target.matches('#bt_clearLog, #bt_clearLog *')) {
+    jeedom.log.clear({
+      log: document.querySelector('.li_log.active').getAttribute('data-log'),
+      success: function(data) {
+        document.querySelector('.li_log.active a').innerHTML = '<i class="fa fa-check"></i> ' + document.querySelector('.li_log.active').getAttribute('data-log')
+        document.querySelector('.li_log.active i').removeClass().addClass('fas', 'fa-check')
+        if (jeeP.btGlobalLogStopStart.getAttribute('data-state') == 0) {
+          jeeP.btGlobalLogStopStart.click()
+        }
+      }
+    })
+    return
+  }
+
+  if (event.target.matches('#bt_clearAllLog, #bt_clearAllLog *')) {
+    jeeDialog.confirm("{{Êtes-vous sûr de vouloir vider tous les logs ?}}", function(result) {
+      if (result) {
+        jeedom.log.clearAll({
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function(data) {
+            jeedomUtils.loadPage('index.php?v=d&p=log')
+          }
+        })
+      }
+    })
+    return
+  }
+
+  if (event.target.matches('#bt_removeLog, #bt_removeLog *')) {
+    jeedom.log.remove({
+      log: document.querySelector('.li_log.active').getAttribute('data-log'),
+      success: function(data) {
+        jeedomUtils.loadPage('index.php?v=d&p=log');
+      }
+    })
+    return
+  }
+
+  if (event.target.matches('#bt_removeAllLog, #bt_removeAllLog *')) {
+    jeeDialog.confirm("{{Êtes-vous sûr de vouloir supprimer tous les logs ?}}", function(result) {
+      if (result) {
+        jeedom.log.removeAll({
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function(data) {
+            jeedomUtils.loadPage('index.php?v=d&p=log')
+          }
+        })
+      }
+    })
+    return
+  }
+
+  if (event.target.matches('#bt_resetLogFilterSearch, #bt_resetLogFilterSearch *')) {
+    document.getElementById('in_searchLogFilter').value = ''
+    document.getElementById('in_searchLogFilter').triggerEvent('keyup')
+    return
+  }
+  if (event.target.matches('#bt_resetGlobalLogSearch, #bt_resetGlobalLogSearch *')) {
+    document.getElementById('in_searchGlobalLog').value = ''
+    document.getElementById('in_searchGlobalLog').triggerEvent('keyup')
+    return
+  }
+})
+
+jeeFrontEnd.log.init()
