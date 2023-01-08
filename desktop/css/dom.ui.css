@@ -132,6 +132,7 @@ div.jeeDialog.jeeDialogAlert,
 div.jeeDialog.jeeDialogConfirm,
 div.jeeDialog.jeeDialogPrompt {
   width: 600px;
+  z-index: 1030;
 }
 div.jeeDialogTitle {
   min-height: 20px;
@@ -226,6 +227,10 @@ div.jeeDialog.jeeDialogMain {
   max-height: calc(100vh - 60px);
   max-width: calc(100vw - 10px);
 }
+div.jeeDialog[id^='mod_insert'] {
+  z-index: 1030 !important;
+}
+
 div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > span.title:before {
   content: '\f105\00a0\00a0';
   font-family: "Font Awesome 5 Free";
