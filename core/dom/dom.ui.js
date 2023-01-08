@@ -918,7 +918,8 @@ var jeeDialog = (function()
         _el = document.querySelector(_el)
       }
       if (_option == 'options') {
-        return _el.closest('div.jeeDialog')._jeeDialog
+        let dialog = _el.closest('div.jeeDialog')
+        return (dialog != null ? dialog._jeeDialog : null)
       } else if (_option == 'dialog') {
         return _el.closest('div.jeeDialog')
       } else if (_option == 'title') {
@@ -1569,6 +1570,79 @@ var jeeDialog = (function()
 
       return dialogContainer
     }
+
+    return exports
+})()
+
+var jeeCtxMenu = (function()
+{
+  'use strict'
+  let exports = {
+    _description: 'Jeedom Core contextual menu lib. /core/dom/dom.ui.js'
+  }
+  let self = this
+
+  function setPosition(_ctxMenu, event) {
+    //Manage opening outside screen:
+    let bRect = document.body.getBoundingClientRect()
+    let cRect = _ctxMenu.getBoundingClientRect()
+
+    _ctxMenu.style.top = event.clientX + 'px'
+    _ctxMenu.style.left = event.clientY + 'px'
+  }
+
+  function _build(_params) {
+    if (_params.build != false) {
+      return
+    }
+  }
+
+  exports.init = function(_options) {
+    var defaultOptions = {
+      id: 'jee_ctxMenu',
+      selector: '',
+      appendTo: '',
+      zIndex: 1100,
+      build: false,
+      className: '',
+      trigger: 'right',
+      autoHide: true,
+      callback: function(key, options, event) {} //Default item callback
+      events: {
+        preShow: false, //Beforte show
+        show: false, //Shown
+        hide: false, //Before hide
+        activated: false
+      }
+    }
+
+    //Merge defaults and submitted options:
+    _options = domUtils.extend(defaultOptions, _options)
+
+    ctxMenuContainer = document.createElement('div')
+    ctxMenuContainer.setAttribute('id', _options.id)
+    ctxMenuContainer.addClass('jeeCtxMenu')
+    ctxMenuContainer.style.display = 'none'
+    // appendTo document.body.appendChild(ctxMenuContainer)
+
+    ctxMenuContainer._jeeCtxMenu = {
+      options: _options,
+      ctxMenu: ctxMenuContainer,
+      show: function(event) {
+        setPosition(this.ctxMenu, event.target)
+        this.ctxMenu.seen()
+      },
+      hide: function() {
+        this.ctxMenu.unseen()
+      },
+      destroy: function() {
+        this.ctxMenu.remove()
+      }
+    }
+
+    //Items events listeners
+
+  }
 
     return exports
 })()

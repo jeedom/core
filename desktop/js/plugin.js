@@ -429,7 +429,7 @@ document.registerEvent('keydown', function(event) {
 })
 
 //searching:
-$('#in_searchPlugin').off('keyup').keyup(function() {
+$('#in_searchPlugin').off('keyup').on('keyup', function(event) {
   var search = this.value
   if (search == '') {
     $('.pluginDisplayCard').show()
@@ -446,7 +446,7 @@ $('#in_searchPlugin').off('keyup').keyup(function() {
     }
   })
 })
-$('#bt_resetPluginSearch').on('click', function() {
+$('#bt_resetPluginSearch').on('click', function(event) {
   $('#in_searchPlugin').val('').keyup()
 })
 
@@ -490,7 +490,7 @@ $('div.pluginDisplayCard .bt_openPluginPage, #div_confPlugin .openPluginPage').o
 })
 
 //Plugin page:
-$('.pullInstall').on('click', function() {
+$('.pullInstall').on('click', function(event) {
   jeedom.repo.pullInstall({
     repo: $(this).attr('data-repo'),
     error: function(error) {
@@ -512,11 +512,11 @@ $('.pullInstall').on('click', function() {
   })
 })
 
-$('.gotoUrlStore').on('click', function() {
+$('.gotoUrlStore').on('click', function(event) {
   window.open($(this).attr('data-href'), '_blank');
 })
 
-$('.displayStore').on('click', function() {
+$('.displayStore').on('click', function(event) {
   jeeDialog.dialog({
     id: 'jee_modal',
     title: "{{Market}}",
@@ -524,7 +524,7 @@ $('.displayStore').on('click', function() {
   })
 })
 
-$('#bt_addPluginFromOtherSource').on('click', function() {
+$('#bt_addPluginFromOtherSource').on('click', function(event) {
   jeeDialog.dialog({
     id: 'jee_modal',
     title: "{{Ajouter un plugin}}",
@@ -556,7 +556,7 @@ $('div.pluginDisplayCard').off('mouseup').on('mouseup', function(event) {
 })
 
 //configuration page:
-$('#bt_returnToThumbnailDisplay').last().on('click', function() {
+$('#bt_returnToThumbnailDisplay').last().on('click', function(event) {
   setTimeout(function() {
     $('.nav li.active').removeClass('active')
     $('a[href="#' + $('.tab-pane.active').attr('id') + '"]').closest('li').addClass('active')
@@ -567,7 +567,7 @@ $('#bt_returnToThumbnailDisplay').last().on('click', function() {
   jeedomUtils.addOrUpdateUrl('id', null, '{{Gestion Plugins}} - ' + JEEDOM_PRODUCT_NAME)
 })
 
-$('body').off('click', '.bt_refreshPluginInfo').on('click', '.bt_refreshPluginInfo', function() {
+$('body').off('click', '.bt_refreshPluginInfo').on('click', '.bt_refreshPluginInfo', function(event) {
   $('.pluginDisplayCard[data-plugin_id=' + $('#span_plugin_id').text() + ']').click()
 })
 
@@ -627,11 +627,11 @@ $("#bt_savePluginConfig").on('click', function(event) {
   return false
 })
 
-$('#div_resumePluginList').off('change', '.configKey').on('change', '.configKey:visible', function() {
+$('#div_resumePluginList').off('change', '.configKey').on('change', '.configKey:visible', function(event) {
   jeeFrontEnd.modifyWithoutSave = true
 })
 
-$('#bt_savePluginPanelConfig').off('click').on('click', function() {
+$('#bt_savePluginPanelConfig').off('click').on('click', function(event) {
   jeedom.config.save({
     configuration: document.getElementById('div_plugin_panel').getJeeValues('.configKey')[0],
     plugin: $('#span_plugin_id').text(),
@@ -651,7 +651,7 @@ $('#bt_savePluginPanelConfig').off('click').on('click', function() {
   })
 })
 
-$('#bt_savePluginFunctionalityConfig').off('click').on('click', function() {
+$('#bt_savePluginFunctionalityConfig').off('click').on('click', function(event) {
   jeedom.config.save({
     configuration: document.getElementById('div_plugin_functionality').getJeeValues('.configKey')[0],
     plugin: $('#span_plugin_id').text(),
@@ -671,7 +671,7 @@ $('#bt_savePluginFunctionalityConfig').off('click').on('click', function() {
   })
 })
 
-$('#bt_savePluginLogConfig').off('click').on('click', function() {
+$('#bt_savePluginLogConfig').off('click').on('click', function(event) {
   jeedom.config.save({
     configuration: document.getElementById('div_plugin_log').getJeeValues('.configKey')[0],
     error: function(error) {

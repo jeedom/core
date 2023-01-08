@@ -64,9 +64,9 @@ if (!jeeFrontEnd.massedit) {
 
       newFilterHtml += '</div>'
 
-      var newFilter = $(newFilterHtml)
-      $('#filter').append(newFilter)
-      newFilter.find('.selectFilterKey').change()
+      document.getElementById('filter').insertAdjacentHTML('beforeend', newFilterHtml)
+      var newFilter = document.querySelectorAll('#filter > div.filter').last()
+      newFilter.querySelector('.selectFilterKey').triggerEvent('change')
       return newFilter
     },
     setEdit: function() {
@@ -98,17 +98,16 @@ if (!jeeFrontEnd.massedit) {
       newEditHtml += '</div>'
 
       newEditHtml += '</div>'
-
-      $('#edit').append($(newEditHtml))
+      document.getElementById('edit').insertAdjacentHTML('beforeend', newEditHtml)
     },
     getFilters: function() {
       var filters = []
-      $('.form-group.filter').each(function(index) {
-        var key = this.querySelector('.selectFilterKey').value
-        var value = this.querySelector('select.selectFilterValue').selectedOptions[0].text
+      document.querySelectorAll('#filter > div.filter').forEach(_filterEl => {
+        var key = _filterEl.querySelector('.selectFilterKey').value
+        var value = _filterEl.querySelector('select.selectFilterValue').selectedOptions[0].text
         var jValue = false
-        if (!(this.querySelector('.selectFilterJValue').disabled)) {
-          var jValue = this.querySelector('select.selectFilterJValue').selectedOptions[0].text
+        if (!(_filterEl.querySelector('.selectFilterJValue').disabled)) {
+          var jValue = _filterEl.querySelector('select.selectFilterJValue').selectedOptions[0].text
         }
         filters.push({
           'key': key,
@@ -205,16 +204,12 @@ if (!jeeFrontEnd.massedit) {
         },
         success: function(result) {
           document.getElementById('testResult').empty().seen()
+          var testResEl = document.getElementById('testResult')
           if (_mode == 0) {
             for (var i in result.sql) {
-              $('#testResult').append('<div class="btn btn-xs btn-primary testSqlDiv" data-id="' + result.sql[i].id + '" style="margin:3px;">' + result.sql[i].name + ' (' + result.sql[i].id + ')' + '</div>')
+              testResEl.insertAdjacentHTML('beforeend', '<div class="btn btn-xs btn-primary testSqlDiv" data-id="' + result.sql[i].id + '" style="margin:3px;">' + result.sql[i].name + ' (' + result.sql[i].id + ')' + '</div>')
             }
           }
-
-          if (_mode == 1) {
-
-          }
-
           if (_mode == 2) {
             jeeP._editIds_ = result.sql.map(function(d) {
               return d['id']
@@ -242,15 +237,15 @@ jeeFrontEnd.massedit.postInit()
 document.querySelectorAll('.selectEditKey').triggerEvent('change')
 
 //change filter type:
-$('#sel_FilterByType').off('change').on('change', function() {
+$('#sel_FilterByType').off('change').on('change', function(event) {
   jeeP.resetUI()
-  jeeP._filterType_ = this.value
+  jeeP._filterType_ = event.target.value
   jeeP.setEdit()
   document.querySelectorAll('.selectEditKey').triggerEvent('change')
 })
 
 //add filter:
-$('#bt_addFilter').off('click').on('click', function() {
+$('#bt_addFilter').off('click').on('click', function(event) {
   jeeP.addFilter()
   document.getElementById('testResult').empty().unseen()
   document.getElementById('testSQL').empty()
@@ -259,10 +254,10 @@ $('#bt_addFilter').off('click').on('click', function() {
 //remove filter:
 $('body').on({
   'click': function(event) {
-    this.closest('div.form-group').remove()
+    event.target.closest('div.form-group').remove()
     document.getElementById('testResult').empty().unseen()
-    if ($('.form-group.filter').length == 0) {
-      $('#bt_testFilter').addClass('disabled')
+    if (document.querySelectorAll('#filter > div.filter').length == 0) {
+      document.getElementById('bt_testFilter').addClass('disabled')
     }
   }
 }, 'a.bt_removeFilter')
@@ -270,9 +265,9 @@ $('body').on({
 //change filter key:
 $('body').on({
   'change': function(event) {
-    var key = this.value
-    var selectValues = this.closest('div.form-group').querySelector('select.selectFilterValue')
-    var selectJValues = this.closest('div.form-group').querySelector('select.selectFilterJValue')
+    var key = event.target.value
+    var selectValues = event.target.closest('div.form-group').querySelector('select.selectFilterValue')
+    var selectJValues = event.target.closest('div.form-group').querySelector('select.selectFilterJValue')
     selectValues.empty()
     selectJValues.empty()
 
@@ -307,10 +302,10 @@ $('body').on({
     document.getElementById('testSQL').empty()
     document.getElementById('testResult').empty().unseen()
 
-    var selectKey = this.closest('div.form-group').querySelector('select.selectFilterKey')
+    var selectKey = event.target.closest('div.form-group').querySelector('select.selectFilterKey')
     var key = selectKey.value
-    var value = this.selectedOptions[0].text
-    var selectJValues = this.closest('div.form-group').querySelector('select.selectFilterJValue')
+    var value = event.target.selectedOptions[0].text
+    var selectJValues = event.target.closest('div.form-group').querySelector('select.selectFilterJValue')
     selectJValues.empty()
 
     //does have json value ?
@@ -331,16 +326,16 @@ $('body').on({
 //change edit key:
 $('body').on({
   'change': function(event) {
-    var value = this.value
-    this.closest('div.form-group').querySelector('input.selectEditValue').value = ''
-    var editValueId = this.closest('div.form-group').querySelector('input.selectEditValue').getAttribute('list')
-    var inputJValue = this.closest('div.form-group').querySelector('input.inputEditJValue')
+    var value = event.target.value
+    event.target.closest('div.form-group').querySelector('input.selectEditValue').value = ''
+    var editValueId = event.target.closest('div.form-group').querySelector('input.selectEditValue').getAttribute('list')
+    var inputJValue = event.target.closest('div.form-group').querySelector('input.inputEditJValue')
     inputJValue.value = ''
 
     //set possible values for key if necessary
-    var inputValues = this.closest('div.form-group').querySelector('#' + editValueId)
+    var inputValues = event.target.closest('div.form-group').querySelector('#' + editValueId)
     inputValues.empty()
-    var key = this.value
+    var key = event.target.value
     var newOption
     if (typeof jeephp2js.typePossibilities[jeeP._filterType_][key][0] != 'undefined') {
       inputJValue.disabled = true
@@ -361,17 +356,17 @@ $('body').on({
 //change edit value:
 $('body').on({
   'change': function(event) {
-    var key = this.closest('div.form-group').querySelector('select.selectEditKey').value
-    var value = this.closest('div.form-group').querySelector('input.selectEditValue').value
+    var key = event.target.closest('div.form-group').querySelector('select.selectEditKey').value
+    var value = event.target.closest('div.form-group').querySelector('input.selectEditValue').value
     if (!isset(jeephp2js.typePossibilities[jeeP._filterType_][key][value])) {
       return false
     }
 
-    var inputJValue = this.closest('div.form-group').querySelector('input.inputEditJValue')
+    var inputJValue = event.target.closest('div.form-group').querySelector('input.inputEditJValue')
     inputJValue.value = ''
     //set possible json values for value:
     var editJValueId = inputJValue.getAttribute('list')
-    var inputJValues = this.closest('div.form-group').querySelector('#' + editJValueId)
+    var inputJValues = event.target.closest('div.form-group').querySelector('#' + editJValueId)
     inputJValues.empty()
 
     var jValues = jeephp2js.typePossibilities[jeeP._filterType_][key][value]
@@ -392,7 +387,7 @@ $('body').on({
     event.preventDefault()
     event.stopPropagation()
     event.stopImmediatePropagation()
-    var thisId = this.getAttribute('data-id')
+    var thisId = event.target.getAttribute('data-id')
     jeedom[jeeP._filterType_]['byId']({
       id: thisId,
       error: function(error) {
@@ -434,7 +429,7 @@ $('body').on({
 
 
 //page buttons:
-$('#bt_exportFilter').off('click').on('click', function() {
+$('#bt_exportFilter').off('click').on('click', function(event) {
   var filters = jeeP.getFilters()
   var edits = jeeP.getEdits()
   var jsonData = {
@@ -462,26 +457,31 @@ $("#bt_importFilter").change(function(event) {
       var newFilter
       try {
         //type:
-        $('#sel_FilterByType').val(massEditData.type).change()
+        document.getElementById('sel_FilterByType').value = massEditData.type
+        document.getElementById('sel_FilterByType').triggerEvent('change')
 
         //filters:
         for (var idx in massEditData.filters) {
           newFilter = jeeP.addFilter()
-          newFilter.find('.selectFilterKey').val(massEditData.filters[idx].key).change()
-          newFilter.find('.selectFilterValue option:contains(' + massEditData.filters[idx].value + ')').attr('selected', 'selected')
-          newFilter.find('.selectFilterValue').change()
+          newFilter.querySelector('.selectFilterKey').value = massEditData.filters[idx].key
+          newFilter.querySelector('.selectFilterKey').triggerEvent('change')
+
+          newFilter.querySelector('.selectFilterValue option:contains(' + massEditData.filters[idx].value + ')').selected = true
+          newFilter.querySelector('.selectFilterValue').triggerEvent('change')
           if (massEditData.filters[idx].jValue != false) {
-            newFilter.find('.selectFilterJValue').prop('disabled', false)
-            newFilter.find('.selectFilterJValue option:contains(' + massEditData.filters[idx].jValue + ')').attr('selected', 'selected')
+            newFilter.querySelector('.selectFilterJValue').removeAttribute('disabled')
+            newFilter.querySelector('.selectFilterJValue option:contains(' + massEditData.filters[idx].jValue + ')').selected = true
           }
         }
 
         //edits:
         for (var idx in massEditData.edits) {
-          $('.selectEditKey').val(massEditData.edits[idx].key).change()
-          $('.selectEditValue').val(massEditData.edits[idx].value)
+          document.querySelector('.selectEditKey').value = massEditData.edits[idx].key
+          document.querySelector('.selectEditKey').triggerEvent('change')
+          document.querySelector('.selectEditValue').value = massEditData.edits[idx].value
           if (massEditData.edits[idx].jValue != false) {
-            $('.inputEditJValue').prop('disabled', false).val(massEditData.edits[idx].jValue)
+            document.querySelector('.inputEditJValue').removeAttribute('disabled')
+            document.querySelector('.inputEditJValue').value = massEditData.edits[idx].jValue
           }
         }
 
@@ -515,7 +515,7 @@ $('#bt_execMassEdit').off('click').on('click', function() {
 
   //exec user edition:
   sqlCmd = jeeP.getExecSQLstring(filters, edits)
-  $('#execSQL').empty().append(sqlCmd + '<br>' + 'Editing items: ' + jeeP._editIds_.length)
+  document.getElementById('execSQL').empty().insertAdjacentHTML('beforeend', sqlCmd + '<br>' + 'Editing items: ' + jeeP._editIds_.length)
   jeeP.dbExecuteCommand(sqlCmd, 1)
 
   //clean spaces:

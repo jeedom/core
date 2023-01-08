@@ -450,7 +450,10 @@ domUtils.handleAjaxError = function(_request, _status, _error, _params) {
   domUtils.hideLoading()
   var msg = _request + ' : ' + _status + ' /error: ' + _error
   if (isset(_params)) {
-    msg += ' /async:' + _params.async + ' /type:' + _params.type + ' /dataType:' + _params.dataType + ' /action:' + _params.data.action
+    msg += ' /async:' + _params.async + ' /type:' + _params.type + ' /dataType:' + _params.dataType
+    if (isset(_params.data) && isset(_params.data.action)) {
+      msg += ' /action:' + _params.data.action
+    }
   }
   jeedomUtils.showAlert({
     message: msg,

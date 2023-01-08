@@ -374,7 +374,7 @@ document.registerEvent('keydown', function(event) {
 $('sub.itemsNumber').html('(' + $('.objectDisplayCard').length + ')')
 
 //searching
-$('#in_searchObject').keyup(function() {
+$('#in_searchObject').keyup(function(event) {
   var search = this.value
   if (search == '') {
     $('.objectDisplayCard').show()
@@ -399,7 +399,7 @@ $('#in_searchObject').keyup(function() {
     }
   })
 })
-$('#bt_resetObjectSearch').on('click', function() {
+$('#bt_resetObjectSearch').on('click', function(event) {
   $('#in_searchObject').val('').keyup()
 })
 
@@ -412,7 +412,7 @@ $('#div_pageContainer').on({
 
 //context menu
 try {
-    $.contextMenu({
+  $.contextMenu({
     selector: '.nav.nav-tabs',
     appendTo: 'div#div_pageContainer',
     build: function($trigger) {
@@ -446,11 +446,11 @@ try {
       }
     }
   })
-  } catch (err) {}
+} catch (err) {}
 
 //general context menu
 try {
-    $.contextMenu({
+  $.contextMenu({
     selector: "#objectPanel .objectDisplayCard",
     appendTo: 'div#div_pageContainer',
     build: function($trigger) {
@@ -650,9 +650,9 @@ try {
       }
     }
   })
-  } catch (err) {}
+} catch (err) {}
 
-$('#bt_graphObject').on('click', function() {
+$('#bt_graphObject').on('click', function(event) {
   jeeDialog.dialog({
     id: 'jee_modal',
     title: "{{Graphique des liens}}",
@@ -660,7 +660,7 @@ $('#bt_graphObject').on('click', function() {
   })
 })
 
-$('#bt_libraryBackgroundImage').on('click', function() {
+$('#bt_libraryBackgroundImage').on('click', function(event) {
   jeedomUtils.chooseIcon(function(_icon) {
     $('.objectImg').show().find('img').replaceWith(_icon)
     $('.objectImg img').attr('width', '240px')
@@ -685,7 +685,7 @@ $('#bt_libraryBackgroundImage').on('click', function() {
   })
 })
 
-$('#bt_removeBackgroundImage').off('click').on('click', function() {
+$('#bt_removeBackgroundImage').off('click').on('click', function(event) {
   jeeDialog.confirm('{{Êtes-vous sûr de vouloir enlever l\'image de fond de cet objet ?}}', function(result) {
     if (result) {
       jeedom.object.removeImage({
@@ -709,7 +709,7 @@ $('#bt_removeBackgroundImage').off('click').on('click', function() {
   return false
 })
 
-$('#bt_orderEqLogicByUsage').off('click').on('click', function() {
+$('#bt_orderEqLogicByUsage').off('click').on('click', function(event) {
   jeeDialog.confirm('{{Êtes-vous sûr de vouloir réordonner les équipements pas utilisation ?}}', function(result) {
     if (result) {
       jeedom.object.orderEqLogicByUsage({
@@ -731,7 +731,7 @@ $('#bt_orderEqLogicByUsage').off('click').on('click', function() {
   })
 })
 
-$('#bt_returnToThumbnailDisplay').on('click', function() {
+$('#bt_returnToThumbnailDisplay').on('click', function(event) {
   setTimeout(function() {
     $('.nav li.active').removeClass('active')
     $('a[href="#' + $('.tab-pane.active').attr('id') + '"]').closest('li').addClass('active')
@@ -761,7 +761,7 @@ $('.objectDisplayCard').off('mouseup').on('mouseup', function(event) {
   }
 })
 
-$('select[data-l2key="synthToAction"]').off().on('change', function() {
+$('select[data-l2key="synthToAction"]').off().on('change', function(event) {
   $('select[data-l2key="synthToView"], select[data-l2key="synthToPlan"], select[data-l2key="synthToPlan3d"]').parent().addClass('hidden')
   $('select[data-l2key="' + $(this).val() + '"]').parent().removeClass('hidden')
 })
@@ -789,7 +789,7 @@ $("#bt_addObject, #bt_addObject2").on('click', function(event) {
   })
 })
 
-$('.objectAttr[data-l1key=display][data-l2key=icon]').on('dblclick', function() {
+$('.objectAttr[data-l1key=display][data-l2key=icon]').on('dblclick', function(event) {
   jeeFrontEnd.modifyWithoutSave = true
   this.innerHTML = ''
 })
@@ -863,7 +863,7 @@ $("#bt_removeObject").on('click', function(event) {
   return false
 })
 
-$('#bt_chooseIcon').on('click', function() {
+$('#bt_chooseIcon').on('click', function(event) {
   var _icon = false
   var icon = false
   var color = false
@@ -885,23 +885,23 @@ $('#bt_chooseIcon').on('click', function() {
   })
 })
 
-$('#div_pageContainer').off('change', '.objectAttr').on('change', '.objectAttr:visible', function() {
+$('#div_pageContainer').off('change', '.objectAttr').on('change', '.objectAttr:visible', function(event) {
   jeeFrontEnd.modifyWithoutSave = true
 });
 
-$('.addSummary').on('click', function() {
+$('.addSummary').on('click', function(event) {
   var type = $(this).attr('data-type')
   jeeP.addSummaryInfo('.type' + type)
   jeeFrontEnd.modifyWithoutSave = true
 })
 
-$('.bt_checkAll').on('click', function() {
+$('.bt_checkAll').on('click', function(event) {
   $(this).closest('tr').find('input[type="checkbox"]').each(function() {
     $(this).prop("checked", true)
   })
 })
 
-$('.bt_checkNone').on('click', function() {
+$('.bt_checkNone').on('click', function(event) {
   $(this).closest('tr').find('input[type="checkbox"]').each(function() {
     $(this).prop("checked", false)
   })
@@ -940,7 +940,7 @@ $('#div_pageContainer').on({
 }, '.bt_removeSummary')
 
 //populate summary tab:
-$('.bt_showObjectSummary').off('click').on('click', function() {
+$('.bt_showObjectSummary').off('click').on('click', function(event) {
   jeeDialog.dialog({
     id: 'jee_modal',
     title: "{{Vue d'ensemble des objets}}",
@@ -949,7 +949,7 @@ $('.bt_showObjectSummary').off('click').on('click', function() {
 })
 
 //eqLogics tab searching
-$('#in_searchCmds').keyup(function() {
+$('#in_searchCmds').keyup(function(event) {
   var search = this.value
   if (search == '') {
     $('#eqLogicsCmds .panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
@@ -967,17 +967,17 @@ $('#in_searchCmds').keyup(function() {
   $('#eqLogicsCmds .panel-collapse[data-show=1]').collapse('show')
   $('#eqLogicsCmds .panel-collapse[data-show=0]').collapse('hide')
 })
-$('#bt_openAll').off('click').on('click', function() {
+$('#bt_openAll').off('click').on('click', function(event) {
   $(".accordion-toggle[aria-expanded='false']").each(function() {
     $(this).click()
   })
 })
-$('#bt_closeAll').off('click').on('click', function() {
+$('#bt_closeAll').off('click').on('click', function(event) {
   $(".accordion-toggle[aria-expanded='true']").each(function() {
     $(this).click()
   })
 })
-$('#bt_resetCmdSearch').on('click', function() {
+$('#bt_resetCmdSearch').on('click', function(event) {
   $('#in_searchCmds').val('').keyup()
 })
 
