@@ -481,12 +481,12 @@ sendVarToJS([
   var title = "{{Configuration de l'équipement}}"
   title += ' : ' + jeephp2js.md_eqLogicConfigure_Info.name
   title += ' <span class="cmdName"><em>(' + jeephp2js.md_eqLogicConfigure_Info.eqType_name + ')</em></span>'
-  let titleEl = jeeDialog.get('#eqLogicConfigureTab', 'title')
+  var titleEl = jeeDialog.get('#eqLogicConfigureTab', 'title')
   if (titleEl != null) {
     titleEl.querySelector('span.title').innerHTML = title
   } else {
     //Deprecated, some plugins may load old ui-dialog modale
-    document.getElementById('md_modal').closest('.ui-dialog').querySelector('.ui-dialog-title').innerHTML = title
+    document.getElementById('div_displayEqLogicConfigure').closest('.ui-dialog').querySelector('.ui-dialog-title').innerHTML = title
   }
 
   //check some values:
