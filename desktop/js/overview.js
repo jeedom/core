@@ -186,9 +186,7 @@ if (!jeeFrontEnd.overview) {
   }
 }
 
-
 //Set summary dialog:
-
 jeeDialog.dialog({
   id: 'md_overviewSummary',
   show: false,

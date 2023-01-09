@@ -261,7 +261,7 @@ if (!jeeFrontEnd.history) {
           }
           html += '</div><br/>'
           elCalculList.insertAdjacentHTML('beforeend', html)
-          if (isOpened) elCalculList.querySelector('.displayObject').triggerEvent('click')
+          if (isOpened) elCalculList.querySelector('.displayObject').click()
         }
       })
     }
@@ -315,7 +315,7 @@ jeeP.$pageContainer.on({
       }
       if (newStartdDate !='') {
         document.getElementById('in_startDate').value = newStartdDate
-        document.getElementById('bt_validChangeDate').triggerEvent('click')
+        document.getElementById('bt_validChangeDate').click()
       }
     } catch (error) {}
   }

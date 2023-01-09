@@ -81,7 +81,7 @@ $('#bt_selectGenericExpression').on('click', function(event) {
 
 $('#ul_expressionHistory').off('click','.bt_expressionHistory').on('click','.bt_expressionHistory',function() {
   document.getElementById('in_testExpression').value = this.getAttribute('data-command')
-  document.getElementById('bt_executeExpressionOk').triggerEvent('click')
+  document.getElementById('bt_executeExpressionOk').click()
 })
 
 $('#bt_executeExpressionOk').on('click',function() {

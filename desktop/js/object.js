@@ -416,7 +416,7 @@ $('#div_pageContainer').on({
 try {
   $.contextMenu({
     selector: '.nav.nav-tabs',
-    appendTo: 'div#div_pageContainer',
+    appendTo: 'body',
     build: function($trigger) {
       var thisObjectId = $('span.objectAttr[data-l1key="id"]').text()
       var contextmenuitems = {}

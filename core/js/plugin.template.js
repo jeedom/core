@@ -62,7 +62,6 @@ if (!jeeFrontEnd.pluginTemplate) {
       }
     },
     displayEqlogic: function(_type, _eqlogicId) {
-      console.log('displayEqlogic:', _type, _eqlogicId)
       jeedom.eqLogic.cache.getCmd = Array()
       document.querySelectorAll('.eqLogicThumbnailDisplay, .eqLogic').unseen()
       if (typeof prePrintEqLogic === 'function') {
@@ -553,7 +552,7 @@ $('.cmdAction[data-action="add"]').on('click', function() {
   } else {
     jeeFrontEnd.pluginTemplate.addCmdToTableDefault()
   }
-  document.querySelectorAll('.cmd:last .cmdAttr[data-l1key="type"]').triggerEvent('change')
+  document.querySelectorAll('.cmdAttr[data-l1key="type"]').last().triggerEvent('change')
   jeeFrontEnd.modifyWithoutSave = true
 })
 

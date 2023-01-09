@@ -178,7 +178,7 @@ $('#bt_validateSpecificCommand').off('click').on('click', function() {
 })
 $('#in_specificCommand').keypress(function(event) {
   if (event.which == 13) {
-    document.getElementById('bt_validateSpecificCommand').triggerEvent('click')
+    document.getElementById('bt_validateSpecificCommand').click()
   }
 })
 

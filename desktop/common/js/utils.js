@@ -199,7 +199,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
       if (window.location.hash != '') {
         var tab = document.querySelector('.nav-tabs a[data-target="' + window.location.hash + '"]') || document.querySelector('.nav-tabs a[href="' + window.location.hash + '"]')
         if (tab != null) {
-          tab.triggerEvent('click')
+          tab.click()
         }
       }
     }, 150) //let time for plugin page!
@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function() {
     tab = document.querySelector('.nav-tabs a[href="' + window.location.hash + '"]')
   }
   if (window.location.hash != '' && tab != null) {
-    tab.triggerEvent('click')
+    tab.click()
   }
 
   //browser history:
@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       var tab = document.querySelector('.nav-tabs a[data-target="' + window.location.hash + '"]') || document.querySelector('.nav-tabs a[href="' + window.location.hash + '"]')
       if (window.location.hash != '' && tab != null) {
-        tab.triggerEvent('click')
+        tab.click()
       } else if (jeeFrontEnd.PREVIOUS_PAGE !== null && jeeFrontEnd.PREVIOUS_PAGE.includes('#') && jeeFrontEnd.PREVIOUS_PAGE.split('#')[0] != 'index.php?' + window.location.href.split("index.php?")[1].split('#')[0]) {
         if (jeedomUtils.checkPageModified()) return
         jeedomUtils.loadPage('index.php?' + window.location.href.split("index.php?")[1], true)

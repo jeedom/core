@@ -555,7 +555,8 @@ domUtils.ajax = function(_params) {
       referrerPolicy: 'no-referrer',
       mode: 'cors',
       credentials: 'same-origin',
-      signal: (_params.url == 'core/ajax/event.ajax.php' && _params.data.action == 'changes') ? null : AbortSignal.timeout(10000) //changes polling!
+      //Safari AbortSignal.timeout not a functyion
+      //signal: (_params.url == 'core/ajax/event.ajax.php' && _params.data.action == 'changes') ? null : AbortSignal.timeout(10000) //changes polling!
     })
     .then( response => {
       if (!response.ok) {

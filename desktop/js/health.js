@@ -58,7 +58,7 @@ document.getElementById('accordionHealth').addEventListener('click', event => {
 
   if (event.target.matches('.panel-title')) {
     if (!event.target.matches('a.accordion-toggle') && !event.target.hasClass('pull-right')) {
-      event.target.querySelector('a.accordion-toggle').triggerEvent('click')
+      event.target.querySelector('a.accordion-toggle').click()
     }
     return
   }

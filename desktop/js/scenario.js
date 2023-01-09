@@ -87,8 +87,8 @@ if (!jeeFrontEnd.scenario) {
 
       if (jeephp2js.initSearch != 0) {
         setTimeout(function() {
-          document.getElementById('bt_scenarioTab').triggerEvent('click')
-          document.getElementById('bt_resetInsideScenarioSearch').triggerEvent('click')
+          document.getElementById('bt_scenarioTab').click()
+          document.getElementById('bt_resetInsideScenarioSearch').click()
           setTimeout(function() {
             document.getElementById('in_searchInsideScenario').value = jeephp2js.initSearch
             document.getElementById('in_searchInsideScenario').triggerEvent('keyup').focus()
@@ -227,7 +227,7 @@ if (!jeeFrontEnd.scenario) {
       document.querySelectorAll('.subElementELSE').forEach(function(elElse) {
         if (!elElse.closest('.element').querySelector(':scope > .subElementTHEN')?.querySelector('.bt_showElse i')?.hasClass('fa-sort-down')) {
           if (elElse.querySelector(':scope > .expressions')?.querySelectorAll(':scope > .expression').length == 0) {
-            elElse.closest('.element').querySelector(':scope > .subElementTHEN').querySelector('.bt_showElse').triggerEvent('click')
+            elElse.closest('.element').querySelector(':scope > .subElementTHEN').querySelector('.bt_showElse').click()
           }
         }
       })
@@ -1950,7 +1950,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
   }
 
   if (event.target.matches('#bt_addScenarioElement, #bt_addScenarioElement *')) {
-    if (!window.location.href.includes('#scenariotab')) document.getElementById('bt_scenarioTab').triggerEvent('click')
+    if (!window.location.href.includes('#scenariotab')) document.getElementById('bt_scenarioTab').click()
     jeeP.addElementSave = {
       expression: false,
       insertAfter: false,
@@ -2431,7 +2431,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
                   expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(condition)
 
                   if (document.querySelector('.conditionAttr[data-l1key="next"]').jeeValue() != '') {
-                    el.triggerEvent('click')
+                    el.click()
                   }
                   event.target.closest('.jeeDialogPrompt')._jeeDialog.close()
                 }
@@ -2684,7 +2684,7 @@ document.getElementById('div_editScenario').addEventListener('change', function(
 //
 jeeP.loadId = getUrlVars('id')
 if (is_numeric(jeeP.loadId)) {
-  document.querySelector('.scenarioDisplayCard[data-scenario_id="' + jeeP.loadId + '"]')?.triggerEvent('click')
+  document.querySelector('.scenarioDisplayCard[data-scenario_id="' + jeeP.loadId + '"]')?.click()
 }
 
 domUtils(function() {

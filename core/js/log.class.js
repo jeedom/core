@@ -223,7 +223,7 @@ jeedom.log.autoupdate = function(_params) {
 
   if (_params.callNumber > 0 && (_params.display.scrollTop + _params.display.offsetHeight + 1) < _params.display.scrollHeight) {
     if (_params.control.getAttribute('data-state') == 1) {
-      _params.control.triggerEvent('click')
+      _params.control.click()
     }
     return
   }
