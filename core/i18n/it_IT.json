@@ -3447,15 +3447,8 @@
         "Annuler": "Cancella"
     },
     "core\/js\/plugin.template.js": {
-        "Configuration du plugin": "Configurazione del plugin",
         "Date de valeur": "Date de valeur",
         "Date de collecte": "Date de collecte",
-        "Nom de la copie de l\\'équipement ?": "Nome della copia dell'attrezzatura?",
-        "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Sei sicuro di voler eliminare l'apparecchiatura",
-        "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
-        "Veuillez d\\'abord sélectionner un": "Si prega di selezionare a",
-        "Nom de l'équipement ?": "Nome dell'attrezzatura?",
-        "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Si prega di attivare l'apparecchiatura prima di testare uno dei suoi controlli",
         "Id": "Id",
         "Nom": "Nom",
         "Type": "Type",
@@ -3477,7 +3470,14 @@
         "Afficher": "Afficher",
         "Historiser": "Historiser",
         "Inverser": "Inverser",
-        "Tester": "Tester"
+        "Tester": "Tester",
+        "Configuration du plugin": "Configurazione del plugin",
+        "Nom de la copie de l\\'équipement ?": "Nome della copia dell'attrezzatura?",
+        "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Sei sicuro di voler eliminare l'apparecchiatura",
+        "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
+        "Veuillez d\\'abord sélectionner un": "Si prega di selezionare a",
+        "Nom de l'équipement ?": "Nome dell'attrezzatura?",
+        "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Si prega di attivare l'apparecchiatura prima di testare uno dei suoi controlli"
     },
     "core\/js\/log.class.js": {
         "Reprendre": "Riprendere",

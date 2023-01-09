@@ -3447,15 +3447,8 @@
         "Annuler": "Annuler"
     },
     "core\/js\/plugin.template.js": {
-        "Configuration du plugin": "Configuration du plugin",
         "Date de valeur": "Date de valeur",
         "Date de collecte": "Date de collecte",
-        "Nom de la copie de l\\'équipement ?": "Nom de la copie de l\\'équipement ?",
-        "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Êtes-vous sûr de vouloir supprimer l\\'équipement",
-        "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
-        "Veuillez d\\'abord sélectionner un": "Veuillez d\\'abord sélectionner un",
-        "Nom de l'équipement ?": "Nom de l'équipement ?",
-        "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Veuillez activer l\\'équipement avant de tester une de ses commandes",
         "Id": "Id",
         "Nom": "Nom",
         "Type": "Type",
@@ -3477,7 +3470,14 @@
         "Afficher": "Afficher",
         "Historiser": "Historiser",
         "Inverser": "Inverser",
-        "Tester": "Tester"
+        "Tester": "Tester",
+        "Configuration du plugin": "Configuration du plugin",
+        "Nom de la copie de l\\'équipement ?": "Nom de la copie de l\\'équipement ?",
+        "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Êtes-vous sûr de vouloir supprimer l\\'équipement",
+        "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
+        "Veuillez d\\'abord sélectionner un": "Veuillez d\\'abord sélectionner un",
+        "Nom de l'équipement ?": "Nom de l'équipement ?",
+        "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Veuillez activer l\\'équipement avant de tester une de ses commandes"
     },
     "core\/js\/log.class.js": {
         "Reprendre": "Reprendre",

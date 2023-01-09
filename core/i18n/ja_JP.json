@@ -3447,15 +3447,8 @@
         "Annuler": "キャンセル"
     },
     "core\/js\/plugin.template.js": {
-        "Configuration du plugin": "プラグイン構成",
         "Date de valeur": "Date de valeur",
         "Date de collecte": "Date de collecte",
-        "Nom de la copie de l\\'équipement ?": "機器のコピーの名前？",
-        "Êtes-vous sûr de vouloir supprimer l\\'équipement": "機器を削除してもよろしいですか",
-        "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
-        "Veuillez d\\'abord sélectionner un": "を選択してください",
-        "Nom de l'équipement ?": "機器の名前は？",
-        "Veuillez activer l\\'équipement avant de tester une de ses commandes": "コントロールをテストする前に、機器をアクティブにしてください",
         "Id": "Id",
         "Nom": "Nom",
         "Type": "Type",
@@ -3477,7 +3470,14 @@
         "Afficher": "Afficher",
         "Historiser": "Historiser",
         "Inverser": "Inverser",
-        "Tester": "Tester"
+        "Tester": "Tester",
+        "Configuration du plugin": "プラグイン構成",
+        "Nom de la copie de l\\'équipement ?": "機器のコピーの名前？",
+        "Êtes-vous sûr de vouloir supprimer l\\'équipement": "機器を削除してもよろしいですか",
+        "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
+        "Veuillez d\\'abord sélectionner un": "を選択してください",
+        "Nom de l'équipement ?": "機器の名前は？",
+        "Veuillez activer l\\'équipement avant de tester une de ses commandes": "コントロールをテストする前に、機器をアクティブにしてください"
     },
     "core\/js\/log.class.js": {
         "Reprendre": "履歴書",

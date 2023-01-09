@@ -3447,15 +3447,8 @@
         "Annuler": "Отменить"
     },
     "core\/js\/plugin.template.js": {
-        "Configuration du plugin": "Конфигурация плагина",
         "Date de valeur": "Date de valeur",
         "Date de collecte": "Date de collecte",
-        "Nom de la copie de l\\'équipement ?": "Nom de la copie de l\\'équipement ?",
-        "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Вы уверены, что хотите удалить оборудование",
-        "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
-        "Veuillez d\\'abord sélectionner un": "Пожалуйста, выберите сначала",
-        "Nom de l'équipement ?": "Название оборудования?",
-        "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Пожалуйста, активируйте оборудование до тестирования его первого запроса",
         "Id": "Id",
         "Nom": "Nom",
         "Type": "Type",
@@ -3477,7 +3470,14 @@
         "Afficher": "Afficher",
         "Historiser": "Historiser",
         "Inverser": "Inverser",
-        "Tester": "Tester"
+        "Tester": "Tester",
+        "Configuration du plugin": "Конфигурация плагина",
+        "Nom de la copie de l\\'équipement ?": "Nom de la copie de l\\'équipement ?",
+        "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Вы уверены, что хотите удалить оборудование",
+        "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
+        "Veuillez d\\'abord sélectionner un": "Пожалуйста, выберите сначала",
+        "Nom de l'équipement ?": "Название оборудования?",
+        "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Пожалуйста, активируйте оборудование до тестирования его первого запроса"
     },
     "core\/js\/log.class.js": {
         "Reprendre": "резюме",

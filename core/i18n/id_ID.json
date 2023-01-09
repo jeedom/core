@@ -3447,15 +3447,8 @@
         "Annuler": "Tidak jadi"
     },
     "core\/js\/plugin.template.js": {
-        "Configuration du plugin": "Konfigurasi Plugin",
         "Date de valeur": "Date de valeur",
         "Date de collecte": "Date de collecte",
-        "Nom de la copie de l\\'équipement ?": "Nom de la copie de l\\'équipement ?",
-        "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Apakah Anda yakin ingin menghapus peralatan \\ 's",
-        "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
-        "Veuillez d\\'abord sélectionner un": "Silakan \\ 's pertama memilih",
-        "Nom de l'équipement ?": "Nama Perangkat?",
-        "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Aktifkan peralatan \\ 's sebelum menguji salah satu pesanan yang",
         "Id": "Id",
         "Nom": "Nom",
         "Type": "Type",
@@ -3477,7 +3470,14 @@
         "Afficher": "Afficher",
         "Historiser": "Historiser",
         "Inverser": "Inverser",
-        "Tester": "Tester"
+        "Tester": "Tester",
+        "Configuration du plugin": "Konfigurasi Plugin",
+        "Nom de la copie de l\\'équipement ?": "Nom de la copie de l\\'équipement ?",
+        "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Apakah Anda yakin ingin menghapus peralatan \\ 's",
+        "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
+        "Veuillez d\\'abord sélectionner un": "Silakan \\ 's pertama memilih",
+        "Nom de l'équipement ?": "Nama Perangkat?",
+        "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Aktifkan peralatan \\ 's sebelum menguji salah satu pesanan yang"
     },
     "core\/js\/log.class.js": {
         "Reprendre": "Ringkasan",

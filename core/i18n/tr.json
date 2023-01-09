@@ -3447,15 +3447,8 @@
         "Annuler": "Iptal et"
     },
     "core\/js\/plugin.template.js": {
-        "Configuration du plugin": "Eklentinin ayarları",
         "Date de valeur": "Date de valeur",
         "Date de collecte": "Date de collecte",
-        "Nom de la copie de l\\'équipement ?": "Nom de la copie de l\\'équipement ?",
-        "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Cihazı silmek istemekden eminmisiniz",
-        "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
-        "Veuillez d\\'abord sélectionner un": "Once bitane seçin",
-        "Nom de l'équipement ?": "Cihazın ismi ?",
-        "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Komutasını test etmeden önce cihazı aktif hale getirin",
         "Id": "Id",
         "Nom": "Nom",
         "Type": "Type",
@@ -3477,7 +3470,14 @@
         "Afficher": "Afficher",
         "Historiser": "Historiser",
         "Inverser": "Inverser",
-        "Tester": "Tester"
+        "Tester": "Tester",
+        "Configuration du plugin": "Eklentinin ayarları",
+        "Nom de la copie de l\\'équipement ?": "Nom de la copie de l\\'équipement ?",
+        "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Cihazı silmek istemekden eminmisiniz",
+        "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
+        "Veuillez d\\'abord sélectionner un": "Once bitane seçin",
+        "Nom de l'équipement ?": "Cihazın ismi ?",
+        "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Komutasını test etmeden önce cihazı aktif hale getirin"
     },
     "core\/js\/log.class.js": {
         "Reprendre": "Tekrar başla",

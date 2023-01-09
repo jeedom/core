@@ -3447,15 +3447,8 @@
         "Annuler": "Abbrechen"
     },
     "core\/js\/plugin.template.js": {
-        "Configuration du plugin": "Plugin Konfiguration",
         "Date de valeur": "Datum der Wertstellung",
         "Date de collecte": "Datum der Abholung",
-        "Nom de la copie de l\\'équipement ?": "Name der Gerätekopie?",
-        "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Sind Sie sicher, dass Sie das Gerät löschen möchten?",
-        "Il est utilisé par ou utilise :": "Es wird verwendet von oder verwendet:",
-        "Veuillez d\\'abord sélectionner un": "Bitte wählen Sie a",
-        "Nom de l'équipement ?": "Name der Ausrüstung?",
-        "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Bitte aktivieren Sie das Gerät, bevor Sie eine der Steuerungen testen",
         "Id": "ICH WÜRDE",
         "Nom": "Nachname",
         "Type": "Nett",
@@ -3477,7 +3470,14 @@
         "Afficher": "Zum Anzeigen",
         "Historiser": "Historisiere",
         "Inverser": "Umkehren",
-        "Tester": "Prüfen"
+        "Tester": "Prüfen",
+        "Configuration du plugin": "Plugin Konfiguration",
+        "Nom de la copie de l\\'équipement ?": "Name der Gerätekopie?",
+        "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Sind Sie sicher, dass Sie das Gerät löschen möchten?",
+        "Il est utilisé par ou utilise :": "Es wird verwendet von oder verwendet:",
+        "Veuillez d\\'abord sélectionner un": "Bitte wählen Sie a",
+        "Nom de l'équipement ?": "Name der Ausrüstung?",
+        "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Bitte aktivieren Sie das Gerät, bevor Sie eine der Steuerungen testen"
     },
     "core\/js\/log.class.js": {
         "Reprendre": "Zusammenfassung",
