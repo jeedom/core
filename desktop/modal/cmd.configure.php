@@ -857,15 +857,15 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
   //modal title:
   var title = '{{Configuration commande}}'
   title += ' : ' + jeephp2js.md_cmdConfigure_cmdInfo.eqLogicHumanName
-  title += ' <span class="cmdName">[' + jeephp2js.md_cmdConfigure_cmdInfo.name + '] <em>(' + jeephp2js.md_cmdConfigure_cmdInfo.type + ')</em></span>'
-  var titleEl = jeeDialog.get('#eqLogicConfigureTab', 'title')
+  var emClass = jeephp2js.md_cmdConfigure_cmdInfo.type == 'info' ? 'info' : 'warning'
+  title += ' <span class="cmdName">[' + jeephp2js.md_cmdConfigure_cmdInfo.name + '] <em class="' + emClass + '">(' + jeephp2js.md_cmdConfigure_cmdInfo.type + ')</em></span>'
+  var titleEl = jeeDialog.get('#div_displayCmdConfigure', 'title')
   if (titleEl != null) {
     titleEl.querySelector('span.title').innerHTML = title
   } else {
     //Deprecated, some plugins may load old ui-dialog modale
     document.getElementById('div_displayCmdConfigure').closest('.ui-dialog').querySelector('.ui-dialog-title').innerHTML = title
   }
-
 
   jeeDialog.get('#cmdConfigureTab', 'title').querySelector('span.title').innerHTML = title
 

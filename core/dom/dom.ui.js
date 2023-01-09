@@ -917,17 +917,20 @@ var jeeDialog = (function()
       if (typeof _el === 'string') {
         _el = document.querySelector(_el)
       }
+      if (_el == null) return null
+      let dialog = _el.closest('div.jeeDialog')
+      if (dialog == null) return null
+
       if (_option == 'options') {
-        let dialog = _el.closest('div.jeeDialog')
-        return (dialog != null ? dialog._jeeDialog : null)
+        return (isset(dialog._jeeDialog) ? dialog._jeeDialog : null)
       } else if (_option == 'dialog') {
-        return _el.closest('div.jeeDialog')
+        return dialog
       } else if (_option == 'title') {
-        return _el.closest('div.jeeDialog')?.querySelector('div.jeeDialogTitle')
+        return dialog.querySelector('div.jeeDialogTitle')
       } else if (_option == 'content') {
-        return _el.closest('div.jeeDialog')?.querySelector('div.jeeDialogContent')
+        return dialog.querySelector('div.jeeDialogContent')
       } else if (_option == 'footer') {
-        return _el.closest('div.jeeDialog')?.querySelector('div.jeeDialogFooter')
+        return dialog.querySelector('div.jeeDialogFooter')
       }
       return null
     }
