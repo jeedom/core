@@ -24,10 +24,7 @@ if (!jeeFrontEnd.object) {
       this.getObjectList()
     },
     printObject: function(_id) {
-      var objName = $('.objectListContainer .objectDisplayCard[data-object_id="' + _id + '"]').attr('data-object_name')
-      var objIcon = $('.objectListContainer .objectDisplayCard[data-object_id="' + _id + '"]').attr('data-object_icon')
       this.loadObjectConfiguration(_id)
-      $('.objectname_resume').empty().append(objIcon + '  ' + objName)
     },
     loadObjectConfiguration: function(_id) {
       try {
@@ -50,9 +47,9 @@ if (!jeeFrontEnd.object) {
           if (isset(data.result.result.filepath)) {
             var filePath = data.result.result.filepath
             filePath = '/data/object/' + filePath.split('/data/object/')[1]
-            $('.objectImg').show().find('img').attr('src', filePath)
+            document.querySelector('.objectImg').seen().querySelector('img').src = filePath
           } else {
-            $('.objectImg').hide()
+            document.querySelector('.objectImg').unseen()
           }
           jeedomUtils.showAlert({
             message: '{{Image de fond ajoutée avec succès}}',
@@ -61,10 +58,10 @@ if (!jeeFrontEnd.object) {
         }
       })
 
-      $(".objectDisplayCard").removeClass('active')
-      $('.objectDisplayCard[data-object_id=' + _id + ']').addClass('active')
-      $('#div_conf').show()
-      $('#div_resumeObjectList').hide()
+      document.querySelectorAll('.objectDisplayCard').removeClass('active')
+      document.querySelector('.objectDisplayCard[data-object_id="' + _id + '"]').addClass('active')
+      document.getElementById('div_resumeObjectList').unseen()
+      document.getElementById('div_conf').seen()
       jeedom.object.byId({
         id: _id,
         cache: false,
@@ -76,22 +73,25 @@ if (!jeeFrontEnd.object) {
         },
         success: function(data) {
           document.querySelectorAll('.objectAttr').jeeValue('')
-          $('.objectAttr[data-l1key=father_id] option').show()
-          document.querySelectorAll('#summarytab input[type=checkbox]').jeeValue(0)
+
+          document.querySelectorAll('.objectAttr[data-l1key="father_id"] option').seen()
+          document.querySelectorAll('#summarytab input[type="checkbox"]').jeeValue(0)
           if (!isset(data.configuration['info::type'])) {
             data.configuration['info::type'] = 'room'
           }
           document.querySelectorAll('#div_conf').setJeeValues(data, '.objectAttr')
 
           if (!isset(data.configuration.hideOnOverview)) {
-            $('input[data-l2key="hideOnOverview"]').prop('checked', false)
+            document.querySelector('input[data-l2key="hideOnOverview"]').checked = false
           }
           if (!isset(data.configuration.useBackground)) {
-            $('.objectAttr[data-l1key=configuration][data-l2key=useBackground]').prop('checked', false)
+            document.querySelector('.objectAttr[data-l1key="configuration"][data-l2key="useBackground"]').checked = false
           }
           if (!isset(data.configuration.synthToAction)) {
-            $('select[data-l2key="synthToView"], select[data-l2key="synthToPlan"], select[data-l2key="synthToPlan3d"]').parent().addClass('hidden')
-            $('select[data-l2key="synthToAction"]').val('synthToDashboard')
+            document.querySelectorAll('select[data-l2key="synthToView"], select[data-l2key="synthToPlan"], select[data-l2key="synthToPlan3d"]').forEach(_select => {
+              _select.parentNode.addClass('hidden')
+            })
+            document.querySelector('select[data-l2key="synthToAction"]').value = 'synthToDashboard'
           }
 
           if (!isset(data.configuration.useCustomColor) || data.configuration.useCustomColor == "0") {
@@ -113,22 +113,22 @@ if (!jeeFrontEnd.object) {
             document.querySelectorAll('.objectAttr[data-l1key=display][data-l2key=tagColor]').jeeValue(objectBkgdColor)
             document.querySelectorAll('.objectAttr[data-l1key=display][data-l2key=tagTextColor]').jeeValue(objectTxtColor)
 
-            $('.objectAttr[data-l1key=display][data-l2key=tagColor]').click(function() {
-              $('input[data-l2key="useCustomColor"').prop('checked', true)
+            $('.objectAttr[data-l1key="display"][data-l2key="tagColor"]').click(function() {
+              document.querySelector('input[data-l2key="useCustomColor"').checked = true
             })
-            $('.objectAttr[data-l1key=display][data-l2key=tagTextColor]').click(function() {
-              $('input[data-l2key="useCustomColor"').prop('checked', true)
+            $('.objectAttr[data-l1key="display"][data-l2key="tagTextColor"]').click(function() {
+              document.querySelector('input[data-l2key="useCustomColor"').checked = true
             })
           }
 
-          $('.objectAttr[data-l1key=father_id] option[value=' + data.id + ']').hide()
-          $('.div_summary').empty()
-          $('.tabnumber').empty()
+          document.querySelector('.objectAttr[data-l1key="father_id"] option[value="' + data.id + '"]').unseen()
+          document.querySelectorAll('.div_summary').empty()
+          document.querySelectorAll('.tabnumber').empty()
 
           if (isset(data.img) && data.img != '') {
-            $('.objectImg').show().find('img').attr('src', data.img)
+            document.querySelector('.objectImg').seen().querySelector('img').src = data.img
           } else {
-            $('.objectImg').hide()
+            document.querySelector('.objectImg').unseen()
           }
 
           //set summary tab:
@@ -136,13 +136,13 @@ if (!jeeFrontEnd.object) {
             var el
             var summary = data.configuration.summary
             for (var i in summary) {
-              el = $('.type' + i)
-              if (el != undefined) {
+              el = document.querySelector('.type' + i)
+              if (el != null) {
                 for (var j in summary[i]) {
                   jeeP.addSummaryInfo('.type' + i, summary[i][j])
                 }
                 if (summary[i].length != 0) {
-                  $('.summarytabnumber' + i).append('(' + summary[i].length + ')')
+                  document.querySelector('.summarytabnumber' + i).append('(' + summary[i].length + ')')
                 }
               }
             }
@@ -156,7 +156,7 @@ if (!jeeFrontEnd.object) {
           var hash = window.location.hash
           jeedomUtils.addOrUpdateUrl('id', data.id)
           if (hash == '') {
-            $('.nav-tabs a[data-target="#objecttab"]').click()
+            document.querySelector('.nav-tabs a[data-target="#objecttab"]')?.click()
           } else {
             window.location.hash = hash
           }
@@ -196,7 +196,7 @@ if (!jeeFrontEnd.object) {
     },
     //-> eqLogics tab
     addEqlogicsInfo: function(_id, _objName, _summay) {
-      $('#eqLogicsCmds').empty()
+      document.getElementById('eqLogicsCmds').empty()
       jeedom.eqLogic.byObjectId({
         object_id: _id,
         onlyVisible: '0',
@@ -271,54 +271,55 @@ if (!jeeFrontEnd.object) {
       })
     },
     updateSummaryButton: function(_cmd, _key, _state) {
-      var cmdDiv = $('#eqlogicsTab div[data-cmdname="' + _cmd + '"]')
-      cmdDiv.find('ul input[data-value="' + _key + '"]').prop("checked", _state)
-      var txtDiv = cmdDiv.find('.buttontext')
+      var cmdDiv = document.querySelector('#eqLogicsCmds div[data-cmdname="' + _cmd + '"]')
+      if (cmdDiv == null) return //cmd is not from this object!
+      cmdDiv.querySelector('ul input[data-value="' + _key + '"]').checked = _state
+      var txtDiv = cmdDiv.querySelector('.buttontext')
       var summaryName = jeephp2js.configObjSummary[_key].name
       if (_state) {
         //add new summary:
-        cmdDiv.find('i').addClass('warning')
-        if (txtDiv.text() == '') {
-          txtDiv.text(summaryName)
+        cmdDiv.querySelector('i').addClass('warning')
+        if (txtDiv.textContent == '') {
+          txtDiv.textContent = summaryName
         } else {
-          txtDiv.text(txtDiv.text() + ' | ' + summaryName)
+          txtDiv.textContent = txtDiv.textContent + ' | ' + summaryName
         }
       } else {
         //remove summary:
         var hasSummary = false
         var newText = ''
-        txtDiv.text('')
-        cmdDiv.find('ul input').each(function() {
-          if ($(this).is(':checked')) {
+        txtDiv.textContent = ''
+        cmdDiv.querySelectorAll('ul input').forEach(_check => {
+          if (_check.checked) {
             hasSummary = true
             if (newText == '') {
-              newText = $(this).data('name')
+              newText = _check.getAttribute('data-name')
             } else {
-              newText += ' | ' + $(this).data('name')
+              newText += ' | ' + _check.getAttribute('data-name')
             }
           }
         })
 
         if (hasSummary) {
-          cmdDiv.find('i').addClass('warning')
-          txtDiv.text(newText)
+          cmdDiv.querySelector('i').addClass('warning')
+          txtDiv.textContent = newText
         } else {
-          cmdDiv.find('i').removeClass('warning')
+          cmdDiv.querySelector('i').removeClass('warning')
         }
       }
     },
     updateSummaryTabNbr: function(type) {
-      var tab = $('.summarytabnumber' + type)
-      var nbr = $('#summarytab' + type).find('.summary').length
+      var tab = document.querySelector('.summarytabnumber' + type)
+      var nbr = document.querySelector('#summarytab' + type).querySelectorAll('.summary').length
       tab.empty()
       if (nbr > 0) tab.append('(' + nbr + ')')
     },
     //-> context menu functions
     reOrderChilds: function(_cardId) {
-      $('div.objectDisplayCard[data-father_id="' + _cardId + '"]').each(function() {
-        $('div.objectDisplayCard[data-object_id="' + _cardId + '"]').after($(this))
-        var recId = $(this).attr('data-object_id')
-        if ($('div.objectDisplayCard[data-father_id="' + recId + '"]')) jeeFrontEnd.object.reOrderChilds(recId)
+      document.querySelectorAll('div.objectDisplayCard[data-father_id="' + _cardId + '"]').forEach(_card => {
+        _card.parentNode.insertBefore(_card, _card.nextSibling)
+        var recId = _card.getAttribute('data-object_id')
+        if (document.querySelector('div.objectDisplayCard[data-father_id="' + recId + '"]') != null) jeeFrontEnd.object.reOrderChilds(recId)
       })
     },
     getObjectList: function(_reorder=false) {
@@ -362,22 +363,21 @@ jeeFrontEnd.object.init()
 
 document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
-
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
-    if ($('#bt_saveObject').is(':visible')) {
-      $("#bt_saveObject").click()
+    if (document.getElementById('bt_saveObject').isVisible()) {
+      document.getElementById('bt_saveObject').click()
     }
   }
 })
 
-$('sub.itemsNumber').html('(' + $('.objectDisplayCard').length + ')')
+document.querySelector('sub.itemsNumber').innerHTML = '(' + document.querySelectorAll('.objectDisplayCard').length + ')'
 
 //searching
 $('#in_searchObject').keyup(function(event) {
-  var search = this.value
+  var search = event.target.value
   if (search == '') {
-    $('.objectDisplayCard').show()
+    document.querySelectorAll('.objectDisplayCard').seen()
     return
   }
   search = jeedomUtils.normTextLower(search)
@@ -386,21 +386,22 @@ $('#in_searchObject').keyup(function(event) {
     search = search.replace(':not(', '')
   }
 
-  $('.objectDisplayCard').hide()
+  document.querySelectorAll('.objectDisplayCard').unseen()
   var match, text
-  $('.objectDisplayCard .name').each(function() {
+  document.querySelectorAll('.objectDisplayCard .name').forEach(_name => {
     match = false
-    text = jeedomUtils.normTextLower($(this).text())
+    text = jeedomUtils.normTextLower(_name.textContent)
     if (text.includes(search)) match = true
 
     if (not) match = !match
     if (match) {
-      $(this).closest('.objectDisplayCard').show()
+      _name.closest('.objectDisplayCard').seen()
     }
   })
 })
 $('#bt_resetObjectSearch').on('click', function(event) {
-  $('#in_searchObject').val('').keyup()
+  document.getElementById('in_searchObject').value = ''
+  document.getElementById('in_searchObject').triggerEvent('keyup')
 })
 
 //Handle auto hide context menu
@@ -409,6 +410,7 @@ $('#div_pageContainer').on({
     $(this).fadeOut().trigger('contextmenu:hide')
   }
 }, '.context-menu-root')
+
 
 //context menu
 try {
@@ -662,11 +664,11 @@ $('#bt_graphObject').on('click', function(event) {
 
 $('#bt_libraryBackgroundImage').on('click', function(event) {
   jeedomUtils.chooseIcon(function(_icon) {
-    $('.objectImg').show().find('img').replaceWith(_icon)
-    $('.objectImg img').attr('width', '240px')
+    document.querySelector('.objectImg').seen().querySelector('img').replaceWith(_icon)
+    document.querySelector('.objectImg img').setAttribute('width', '240px')
     jeedom.object.uploadImage({
       id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML,
-      file: $('.objectImg img').data('filename'),
+      file: document.querySelector('.objectImg img').getAttribute('data-filename'),
       error: function(error) {
         jeedomUtils.showAlert({
           message: error.message,
@@ -697,7 +699,7 @@ $('#bt_removeBackgroundImage').off('click').on('click', function(event) {
           })
         },
         success: function() {
-          $('.objectImg').hide()
+          document.querySelector('.objectImg').unseen()
           jeedomUtils.showAlert({
             message: '{{Image de fond enlevée}}',
             level: 'success'
@@ -710,7 +712,7 @@ $('#bt_removeBackgroundImage').off('click').on('click', function(event) {
 })
 
 $('#bt_orderEqLogicByUsage').off('click').on('click', function(event) {
-  jeeDialog.confirm('{{Êtes-vous sûr de vouloir réordonner les équipements pas utilisation ?}}', function(result) {
+  jeeDialog.confirm('{{Êtes-vous sûr de vouloir réordonner les équipements par utilisation ?}}', function(result) {
     if (result) {
       jeedom.object.orderEqLogicByUsage({
         id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML,
@@ -733,37 +735,56 @@ $('#bt_orderEqLogicByUsage').off('click').on('click', function(event) {
 
 $('#bt_returnToThumbnailDisplay').on('click', function(event) {
   setTimeout(function() {
-    $('.nav li.active').removeClass('active')
-    $('a[href="#' + $('.tab-pane.active').attr('id') + '"]').closest('li').addClass('active')
+    document.querySelector('.nav li.active').removeClass('active')
+    document.querySelector('a[data-target="#' + document.querySelector('.tab-pane.active').getAttribute('id') + '"]').closest('li').addClass('active')
   }, 500)
   if (jeedomUtils.checkPageModified()) return
-  $('#div_conf').hide()
-  $('#div_resumeObjectList').show()
+  document.getElementById('div_conf').unseen()
+  document.getElementById('div_resumeObjectList').seen()
   jeedomUtils.addOrUpdateUrl('id', null, '{{Objets}} - ' + JEEDOM_PRODUCT_NAME)
 })
 
 $(".objectDisplayCard").off('click').on('click', function(event) {
+  if (event.target.closest('.objectSummaryParent') != null) return
+  let bt = event.target.closest('.objectDisplayCard')
   if (event.ctrlKey || event.metaKey) {
-    var url = '/index.php?v=d&p=object&id=' + $(this).attr('data-object_id')
+    var url = '/index.php?v=d&p=object&id=' + bt.getAttribute('data-object_id')
     window.open(url).focus()
   } else {
-    jeeP.printObject($(this).attr('data-object_id'))
+    jeeP.printObject(bt.getAttribute('data-object_id'))
+    if ((isset(event.detail) && event.detail.summaryType)) {
+      document.querySelector('a[data-target="#summarytab"]').click()
+      document.querySelector('a[data-target="#summarytab' + event.detail.summaryType + '"]').click()
+    }
   }
   return false
 })
 $('.objectDisplayCard').off('mouseup').on('mouseup', function(event) {
+  let bt = event.target.closest('.objectDisplayCard')
   if (event.which == 2) {
     event.preventDefault()
-    var id = $(this).attr('data-object_id')
+    var id = bt.getAttribute('data-object_id')
     $('.objectDisplayCard[data-object_id="' + id + '"]').trigger(jQuery.Event('click', {
       ctrlKey: true
     }))
   }
 })
 
+$('#objectPanel').on({
+  'click': function(event) {
+    event.stopPropagation()
+    var summaryType = event.target.closest('.objectSummaryParent').getAttribute('data-summary')
+    var objectId = event.target.closest('.objectDisplayCard').getAttribute('data-object_id')
+    event.target.closest('.objectDisplayCard').triggerEvent('click', {detail: {summaryType: summaryType}})
+  }
+}, '.objectSummaryParent')
+
 $('select[data-l2key="synthToAction"]').off().on('change', function(event) {
-  $('select[data-l2key="synthToView"], select[data-l2key="synthToPlan"], select[data-l2key="synthToPlan3d"]').parent().addClass('hidden')
-  $('select[data-l2key="' + $(this).val() + '"]').parent().removeClass('hidden')
+  document.querySelectorAll('select[data-l2key="synthToView"], select[data-l2key="synthToPlan"], select[data-l2key="synthToPlan3d"]').forEach(_select => {
+    _select.parentNode.addClass('hidden')
+  })
+  let select = document.querySelector('select[data-l2key="' + event.target.value + '"]')
+  if (select != null) select.parentNode.removeClass('hidden')
 })
 
 $("#bt_addObject, #bt_addObject2").on('click', function(event) {
@@ -789,9 +810,9 @@ $("#bt_addObject, #bt_addObject2").on('click', function(event) {
   })
 })
 
-$('.objectAttr[data-l1key=display][data-l2key=icon]').on('dblclick', function(event) {
+$('.objectAttr[data-l1key="display"][data-l2key="icon"]').on('dblclick', function(event) {
+  event.target.closest('.objectAttr[data-l2key="icon"]').innerHTML = ''
   jeeFrontEnd.modifyWithoutSave = true
-  this.innerHTML = ''
 })
 
 document.getElementById('bt_saveObject').addEventListener('click', function (event) {
@@ -836,9 +857,10 @@ document.getElementById('bt_saveObject').addEventListener('click', function (eve
 
 $("#bt_removeObject").on('click', function(event) {
   jeedomUtils.hideAlert()
+  let bt = event.target.closest('.objectDisplayCard')
   jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + $('.objectDisplayCard.active .name').text().trim() + '</span> ?', function(result) {
     if (result) {
-      var removeId = $('.objectDisplayCard.active').attr('data-object_id')
+      var removeId = bt.getAttribute('data-object_id')
       jeedom.object.remove({
         id: removeId,
         error: function(error) {
@@ -849,11 +871,8 @@ $("#bt_removeObject").on('click', function(event) {
         },
         success: function() {
           jeeFrontEnd.modifyWithoutSave = false
-          $('#bt_gotoDashboard').siblings('ul').find('li').each(function() {
-            var href = $(this).find('a').attr('href')
-            if (href.includes('dashboard&object_id=' + removeId)) {
-              $(this).remove()
-            }
+          document.getElementById('bt_gotoDashboard').querySelectorAll(':scope li a').forEach(_link => {
+            if (_link.href.includes(removeId)) _link.parentNode.remove()
           })
           jeedomUtils.loadPage('index.php?v=d&p=object&removeSuccessFull=1')
         }
@@ -864,54 +883,48 @@ $("#bt_removeObject").on('click', function(event) {
 })
 
 $('#bt_chooseIcon').on('click', function(event) {
-  var _icon = false
-  var icon = false
-  var color = false
-  if ($('div[data-l2key="icon"] > i').length) {
-    color = '';
-    var class_icon = $('div[data-l2key="icon"] > i').attr('class')
-    class_icon = class_icon.replace(' ', '.').split(' ')
-    icon = '.' + class_icon[0]
-    if (class_icon[1]) {
-      color = class_icon[1]
-    }
+  var _icon = document.querySelector('div[data-l2key="icon"] > i')
+  if (_icon != null) {
+    _icon = _icon.getAttribute('class')
+  } else {
+    _icon = false
   }
   jeedomUtils.chooseIcon(function(_icon) {
+    document.querySelector('div[data-l2key="icon"]').innerHTML = _icon
     jeeFrontEnd.modifyWithoutSave = true
-    $('.objectAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon)
-  }, {
-    icon: icon,
-    color: color
-  })
+  }, {icon: _icon})
 })
 
 $('#div_pageContainer').off('change', '.objectAttr').on('change', '.objectAttr:visible', function(event) {
   jeeFrontEnd.modifyWithoutSave = true
-});
+})
 
 $('.addSummary').on('click', function(event) {
-  var type = $(this).attr('data-type')
+  var type = event.target.closest('.addSummary').getAttribute('data-type')
   jeeP.addSummaryInfo('.type' + type)
   jeeFrontEnd.modifyWithoutSave = true
 })
 
 $('.bt_checkAll').on('click', function(event) {
-  $(this).closest('tr').find('input[type="checkbox"]').each(function() {
-    $(this).prop("checked", true)
+  event.target.closest('.bt_checkAll').closest('tr').querySelectorAll('input[type="checkbox"]').forEach(_check => {
+    _check.checked = true
   })
+  jeeFrontEnd.modifyWithoutSave = true
 })
 
 $('.bt_checkNone').on('click', function(event) {
-  $(this).closest('tr').find('input[type="checkbox"]').each(function() {
-    $(this).prop("checked", false)
+  event.target.closest('.bt_checkNone').closest('tr').querySelectorAll('input[type="checkbox"]').forEach(_check => {
+    _check.checked = false
   })
+  jeeFrontEnd.modifyWithoutSave = true
 })
 
 //cmd info modal autoselect object:
 $('#div_pageContainer').on({
   'click': function(event) {
-    var el = this.closest('.summary').querySelector('.summaryAttr[data-l1key="cmd"]')
-    var type = this.closest('.div_summary').dataset.type
+    let bt = event.target.closest('.listCmdInfo')
+    var el = bt.closest('.summary').querySelector('.summaryAttr[data-l1key="cmd"]')
+    var type = bt.closest('.div_summary').dataset.type
     jeedom.cmd.getSelectModal({
       object: {
         id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML
@@ -925,17 +938,18 @@ $('#div_pageContainer').on({
       jeeP.updateSummaryButton(result.human, type, true)
       jeeFrontEnd.modifyWithoutSave = true
     })
-    $('body').trigger('mod_insertCmdValue_Visible')
   }
 }, '.listCmdInfo')
 
 $('#div_pageContainer').on({
   'click': function(event) {
-    var cmd = $(this).closest('.summary').find('input[data-l1key="cmd"]').val()
-    var type = $(this).closest('.div_summary').data('type')
-    $(this).closest('.summary').remove()
+    let bt = event.target.closest('.bt_removeSummary')
+    var cmd = bt.closest('.summary').querySelector('input[data-l1key="cmd"]').values
+    var type = bt.closest('.div_summary').dataset.type
+    bt.closest('.summary').remove()
     jeeP.updateSummaryTabNbr(type)
     jeeP.updateSummaryButton(cmd, type, false)
+    jeeFrontEnd.modifyWithoutSave = true
   }
 }, '.bt_removeSummary')
 
@@ -950,35 +964,36 @@ $('.bt_showObjectSummary').off('click').on('click', function(event) {
 
 //eqLogics tab searching
 $('#in_searchCmds').keyup(function(event) {
-  var search = this.value
+  var search = event.target.value
   if (search == '') {
-    $('#eqLogicsCmds .panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
+    document.querySelectorAll('#eqLogicsCmds .panel-collapse.in').removeClass('in')
+    document.querySelectorAll('#eqLogicsCmds .form-group[data-cmdname]').seen()
     return
   }
   search = jeedomUtils.normTextLower(search)
-  $('#eqLogicsCmds .panel-collapse').attr('data-show', 0)
+  document.querySelectorAll('#eqLogicsCmds .panel-collapse.in').removeClass('in')
+  document.querySelectorAll('#eqLogicsCmds .form-group[data-cmdname]').unseen()
+  document.querySelectorAll('#eqLogicsCmds .panel-collapse').forEach(_panel => { _panel.setAttribute('data-show', '0') })
   var text
-  $('#eqLogicsCmds .form-group').each(function() {
-    text = jeedomUtils.normTextLower($(this).attr('data-cmdname'))
+  document.querySelectorAll('#eqLogicsCmds .form-group[data-cmdname]').forEach(_eqLogic => {
+    text = jeedomUtils.normTextLower(_eqLogic.getAttribute('data-cmdname'))
     if (text.indexOf(search) >= 0) {
-      $(this).closest('.panel-collapse').attr('data-show', 1)
+      _eqLogic.seen()
+      _eqLogic.closest('.panel-collapse').setAttribute('data-show', '1')
     }
   })
-  $('#eqLogicsCmds .panel-collapse[data-show=1]').collapse('show')
-  $('#eqLogicsCmds .panel-collapse[data-show=0]').collapse('hide')
+  document.querySelectorAll('#eqLogicsCmds .panel-collapse[data-show="1"]').addClass('in')
+  document.querySelectorAll('#eqLogicsCmds .panel-collapse[data-show="0"]').removeClass('in')
 })
 $('#bt_openAll').off('click').on('click', function(event) {
-  $(".accordion-toggle[aria-expanded='false']").each(function() {
-    $(this).click()
-  })
+  document.querySelectorAll('#eqLogicsCmds .panel-collapse').forEach(_panel => { _panel.addClass('in') })
 })
 $('#bt_closeAll').off('click').on('click', function(event) {
-  $(".accordion-toggle[aria-expanded='true']").each(function() {
-    $(this).click()
-  })
+  document.querySelectorAll('#eqLogicsCmds .panel-collapse').forEach(_panel => { _panel.removeClass('in') })
 })
 $('#bt_resetCmdSearch').on('click', function(event) {
-  $('#in_searchCmds').val('').keyup()
+  document.getElementById('in_searchCmds').value = ''
+  document.getElementById('in_searchCmds').triggerEvent('keyup')
 })
 
 
@@ -986,8 +1001,9 @@ $('#bt_resetCmdSearch').on('click', function(event) {
 $('#eqlogicsTab').on({
   'click': function(event){
     if (event.target.type == 'checkbox') return
-    var checkbox = $(this).find('input[type="checkbox"]')
-    checkbox.prop("checked", !checkbox.prop("checked")).change()
+    var checkbox = event.target.querySelector('input[type="checkbox"]')
+    checkbox.checked = !checkbox.checked
+    checkbox.triggerEvent('change')
     event.stopPropagation()
   }
 }, 'ul.dropdown-menu a')
@@ -995,25 +1011,25 @@ $('#eqlogicsTab').on({
 
 $('#eqlogicsTab').on({
   'change': function(event) {
-    var type = $(this).data('value')
-    var cmd = $(this).closest('.form-group').data('cmdname')
-    var state = $(this).is(':checked')
+    var type = event.target.getAttribute('data-value')
+    var cmd = event.target.closest('.form-group').getAttribute('data-cmdname')
+    var state = event.target.checked
     jeeP.updateSummaryButton(cmd, type, state)
     jeeFrontEnd.modifyWithoutSave = true
 
-    var el = $('.type' + type)
+    var el = document.querySelector('.type' + type)
     var summary = {
       cmd: cmd,
       enable: "1",
       invert: "0"
     }
-    if (el != undefined) {
+    if (el != null) {
       if (state) {
         jeeP.addSummaryInfo('.type' + type, summary)
       } else {
-        el.find('input[data-l1key="cmd"]').each(function() {
-          if ($(this).val() == cmd) {
-            $(this).closest('.summary').remove()
+        el.querySelectorAll('input[data-l1key="cmd"]').forEach(_cmd => {
+          if (_cmd.value == cmd) {
+            _cmd.closest('.summary').remove()
           }
         })
       }
@@ -1022,9 +1038,11 @@ $('#eqlogicsTab').on({
   }
 }, 'ul.dropdown-menu input[type="checkbox"]')
 
+
 if (is_numeric(jeephp2js.selectId)) {
-  if ($('.objectDisplayCard[data-object_id=' + jeephp2js.selectId + ']').length != 0) {
-    $('.objectDisplayCard[data-object_id=' + jeephp2js.selectId + ']').click()
+  let object = document.querySelector('.objectDisplayCard[data-object_id="' + jeephp2js.selectId + '"]')
+  if (object != null) {
+    object.click()
   }
 }
 
