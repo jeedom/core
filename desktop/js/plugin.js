@@ -26,25 +26,25 @@ if (!jeeFrontEnd.plugin) {
   jeeFrontEnd.plugin = {
     init: function() {
       window.jeeP = this
+      this.modal = null
+      this.dom_container = null
+      document.querySelector('sub.itemsNumber').innerHTML = '(' + document.querySelectorAll('.pluginDisplayCard').length + ')'
     },
     displayPlugin: function(_pluginId) {
       jeedomUtils.hideAlert()
-      if ($('#md_modal').is(':visible')) {
-        var $container = $('#md_modal #div_confPlugin')
-        var dom_container = document.querySelector('#md_modal #div_confPlugin')
-        $('#md_modal #bt_returnToThumbnailDisplay').hide()
-        $('#md_modal #div_resumePluginList').hide()
-        $('#md_modal .li_plugin').removeClass('active')
-        $('#md_modal .li_plugin[data-plugin_id=' + _pluginId + ']').addClass('active')
-        $('#md_modal #div_confPlugin').show()
+      var self = this
+      //Is plugin page displayed inside modal from _pluginId page or Core plugin management page:
+      this.modal = jeeDialog.get('#div_confPlugin', 'dialog')
+      if (this.modal != null) {
+        this.dom_container = this.modal.querySelector('#div_confPlugin')
+        document.getElementById('bt_returnToThumbnailDisplay').unseen()
+        document.getElementById('div_resumePluginList').unseen()
+        this.dom_container.seen()
       } else {
-        var $container = $('#div_confPlugin')
-        var dom_container = document.getElementById('div_confPlugin')
-        $('#bt_returnToThumbnailDisplay').show()
-        $('#div_resumePluginList').hide()
-        $('.li_plugin').removeClass('active')
-        $('.li_plugin[data-plugin_id=' + _pluginId + ']').addClass('active')
-        $('#div_confPlugin').show()
+        this.dom_container = document.getElementById('div_pageContainer').querySelector('#div_confPlugin')
+        document.getElementById('bt_returnToThumbnailDisplay').seen()
+        document.getElementById('div_resumePluginList').unseen()
+        this.dom_container.seen()
       }
       domUtils.showLoading()
       jeedom.plugin.get({
@@ -56,118 +56,120 @@ if (!jeeFrontEnd.plugin) {
           })
         },
         success: function(data) {
-          $container.find('#span_plugin_id').html(data.id)
-          $container.find('#span_plugin_name').html(data.name)
+          self.dom_container.querySelector('#span_plugin_id').innerHTML = data.id
+          self.dom_container.querySelector('#span_plugin_name').innerHTML = data.name
 
           if (isset(data.update) && isset(data.update.localVersion)) {
             var localVer = data.update.localVersion
             if (localVer.length > 20) localVer = localVer.substring(0, 20) + '...'
-            $container.find('#span_plugin_install_date').html(localVer)
+            self.dom_container.querySelector('#span_plugin_install_date').innerHTML = localVer
           } else {
-            $container.find('#span_plugin_install_date').html('')
+            self.dom_container.querySelector('#span_plugin_install_date').innerHTML = ''
           }
 
-          $container.find('#span_plugin_license').html(data.license)
+          self.dom_container.querySelector('#span_plugin_license').innerHTML = data.license
           if (data.installation.trim() == '' || data.installation.trim() == 'Aucune') {
-            $container.find('#span_plugin_installation').closest('.panel').hide()
+            self.dom_container.querySelector('#span_plugin_installation').closest('.panel').unseen()
           } else {
-            $container.find('#span_plugin_installation').html(data.installation).closest('.panel').show()
+            self.dom_container.querySelector('#span_plugin_installation').innerHTML = data.installation
+            self.dom_container.closest('.panel').seen()
           }
 
           if (isset(data.update) && isset(data.update.configuration) && isset(data.update.configuration.version)) {
-            $container.find('#span_plugin_install_version').html(data.update.configuration.version)
+            self.dom_container.querySelector('#span_plugin_install_version').innerHTML = data.update.configuration.version
           } else {
-            $container.find('#span_plugin_install_version').html('')
+            self.dom_container.querySelector('#span_plugin_install_version').innerHTML = ''
           }
 
           if (isset(data.author)) {
-            $container.find('#span_plugin_author').html('<a href="https://market.jeedom.com/index.php?v=d&p=market&author=' + data.author + '">' + data.author + '</a>')
+            self.dom_container.querySelector('#span_plugin_author').innerHTML = '<a href="https://market.jeedom.com/index.php?v=d&p=market&author=' + data.author + '">' + data.author + '</a>'
           } else {
-            $container.find('#span_plugin_author').html('')
+            self.dom_container.querySelector('#span_plugin_author').innerHTML = ''
           }
 
           if (isset(data.category) && isset(jeephp2js.pluginCategories[data.category])) {
-            $container.find('#span_plugin_category').html(jeephp2js.pluginCategories[data.category].name)
+            self.dom_container.querySelector('#span_plugin_category').innerHTML = jeephp2js.pluginCategories[data.category].name
           } else {
-            $container.find('#span_plugin_category').html('')
+            self.dom_container.querySelector('#span_plugin_category').innerHTML = ''
           }
 
           if (isset(data.source)) {
-            $container.find('#span_plugin_source').html(data.source)
+            self.dom_container.querySelector('#span_plugin_source').innerHTML = data.source
           } else {
-            $container.find('#span_plugin_source').html('')
+            self.dom_container.querySelector('#span_plugin_source').innerHTML = ''
           }
 
-          $container.find('#div_state .openPluginPage').attr("data-plugin_id", data.id)
+          self.dom_container.querySelector('#div_state .openPluginPage').setAttribute('data-plugin_id', data.id)
 
           if (data.checkVersion != -1) {
             if (data.require <= jeeFrontEnd.jeedomVersion) {
-              $container.find('#span_plugin_require').html('<span class="label label-success">' + data.require + '</span>')
+              self.dom_container.querySelector('#span_plugin_require').innerHTML = '<span class="label label-success">' + data.require + '</span>'
             } else {
-              $container.find('#span_plugin_require').html('<span class="label label-warning">' + data.require + '</span>')
+              self.dom_container.querySelector('#span_plugin_require').innerHTML = '<span class="label label-warning">' + data.require + '</span>'
             }
           } else {
-            $container.find('#span_plugin_require').html('<span class="label label-danger">' + data.require + '</span>')
+            self.dom_container.querySelector('#span_plugin_require').innerHTML = '<span class="label label-danger">' + data.require + '</span>'
           }
 
           //dependencies and daemon divs:
-          var $divPluginDependancy = $container.find('#div_plugin_dependancy')
-          var $divPluginDeamon = $container.find('#div_plugin_deamon')
-          $divPluginDependancy.closest('.panel').parent().addClass('col-md-6')
-          $divPluginDeamon.closest('.panel').parent().addClass('col-md-6')
+          var divPluginDependancy = self.dom_container.querySelector('#div_plugin_dependancy')
+          var divPluginDeamon = self.dom_container.querySelector('#div_plugin_deamon')
+          divPluginDependancy.closest('.panel').parentNode.addClass('col-md-6')
+          divPluginDeamon.closest('.panel').parentNode.addClass('col-md-6')
           if (data.hasDependency == 0 || data.activate != 1) {
-            $divPluginDependancy.closest('.panel').hide()
-            $divPluginDeamon.closest('.panel').parent().removeClass('col-md-6')
+            divPluginDependancy.closest('.panel').unseen()
+            divPluginDeamon.closest('.panel').parentNode.removeClass('col-md-6')
           } else {
-            $divPluginDependancy.load('index.php?v=d&modal=plugin.dependancy&plugin_id=' + data.id).closest('.panel').show()
+            divPluginDependancy.load('index.php?v=d&modal=plugin.dependancy&plugin_id=' + data.id, function(_div) {
+              _div.closest('.panel').seen()
+            })
           }
 
           if (data.hasOwnDeamon == 0 || data.activate != 1) {
-            $divPluginDeamon.closest('.panel').hide()
-            $divPluginDependancy.closest('.panel').parent().removeClass('col-md-6')
+            divPluginDeamon.closest('.panel').unseen()
+            divPluginDependancy.closest('.panel').parentNode.removeClass('col-md-6')
           } else {
-            $divPluginDeamon.load('index.php?v=d&modal=plugin.deamon&plugin_id=' + data.id).closest('.panel').show()
+            divPluginDeamon.load('index.php?v=d&modal=plugin.deamon&plugin_id=' + data.id, function(_div) {
+              _div.closest('.panel').seen()
+            })
           }
 
           if ((data.hasDependency == 0 || data.activate != 1) && (data.hasOwnDeamon == 0 || data.activate != 1)) {
-            $divPluginDependancy.closest('.panel').parent().hide()
-            $divPluginDeamon.closest('.panel').parent().hide()
+            divPluginDependancy.closest('.panel').parentNode.unseen()
+            divPluginDeamon.closest('.panel').parentNode.unseen()
           } else {
-            $divPluginDependancy.closest('.panel').parent().show()
-            $divPluginDeamon.closest('.panel').parent().show()
+            divPluginDependancy.closest('.panel').parentNode.seen()
+            divPluginDeamon.closest('.panel').parentNode.seen()
           }
 
           //top right buttons:
-          var $spanRightButton = $container.find('#span_right_button')
-
-
-          $spanRightButton.empty().append('<a class="btn btn-sm roundedLeft bt_refreshPluginInfo"><i class="fas fa-sync"></i> {{Rafraichir}}</a>')
+          var spanRightButton = self.dom_container.querySelector('#span_right_button')
+          spanRightButton.empty().insertAdjacentHTML('beforeend', '<a class="btn btn-sm roundedLeft bt_refreshPluginInfo"><i class="fas fa-sync"></i> {{Rafraichir}}</a>')
           if(jeedom.theme.mbState == 0) {
           if (data.update.configuration && data.update.configuration.version == 'beta') {
             if (isset(data.documentation_beta) && data.documentation_beta != '') {
-              $spanRightButton.append('<a class="btn btn-primary btn-sm" target="_blank" href="' + data.documentation_beta + '"><i class="fas fa-book"></i> {{Documentation}}</a>')
+              spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.documentation_beta + '"><i class="fas fa-book"></i> {{Documentation}}</a>')
             }
             if (isset(data.changelog_beta) && data.changelog_beta != '') {
-              $spanRightButton.append('<a class="btn btn-primary btn-sm" target="_blank" href="' + data.changelog_beta + '"><i class="fas fa-book"></i> {{Changelog}}</a>')
+              spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.changelog_beta + '"><i class="fas fa-book"></i> {{Changelog}}</a>')
             }
           } else {
             if (isset(data.documentation) && data.documentation != '') {
-              $spanRightButton.append('<a class="btn btn-primary btn-sm" target="_blank" href="' + data.documentation + '"><i class="fas fa-book"></i> {{Documentation}}</a>')
+              spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.documentation + '"><i class="fas fa-book"></i> {{Documentation}}</a>')
             }
             if (isset(data.changelog) && data.changelog != '') {
-              $spanRightButton.append('<a class="btn btn-primary btn-sm" target="_blank" href="' + data.changelog + '"><i class="fas fa-book"></i> {{Changelog}}</a>')
+              spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.changelog + '"><i class="fas fa-book"></i> {{Changelog}}</a>')
             }
           }
 
           if (isset(data.info.display) && data.info.display != '') {
-            $spanRightButton.append('<a class="btn btn-primary btn-sm" target="_blank" href="' + data.info.display + '"><i class="fas fa-book"></i> {{Détails}}</a>')
+            spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.info.display + '"><i class="fas fa-book"></i> {{Détails}}</a>')
           }
         }
-          $spanRightButton.append('<a class="btn btn-danger btn-sm removePlugin roundedRight" data-market_logicalId="' + data.id + '"><i class="fas fa-trash"></i> {{Supprimer}}</a>');
+          spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-danger btn-sm removePlugin roundedRight" data-market_logicalId="' + data.id + '"><i class="fas fa-trash"></i> {{Supprimer}}</a>');
 
-          $container.find('#div_configPanel').hide()
-
-          $container.find('#div_plugin_panel').empty()
+          self.dom_container.querySelector('#div_configPanel').unseen()
+          self.dom_container.querySelector('#div_plugin_panel').empty()
           if (isset(data.display) && data.display != '') {
             var config_panel_html = '<div class="form-group">'
             config_panel_html += '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6 control-label">{{Afficher le panneau desktop}}</label>'
@@ -175,8 +177,8 @@ if (!jeeFrontEnd.plugin) {
             config_panel_html += '<input type="checkbox" class="configKey tooltips" data-l1key="displayDesktopPanel" />'
             config_panel_html += '</div>'
             config_panel_html += '</div>'
-            $container.find('#div_configPanel').show()
-            $container.find('#div_plugin_panel').append(config_panel_html)
+            self.dom_container.querySelector('#div_configPanel').seen()
+            self.dom_container.querySelector('#div_plugin_panel').insertAdjacentHTML('beforeend', config_panel_html)
           }
 
           if (isset(data.mobile) && data.mobile != '') {
@@ -186,11 +188,11 @@ if (!jeeFrontEnd.plugin) {
             config_panel_html += '<input type="checkbox" class="configKey tooltips" data-l1key="displayMobilePanel" />'
             config_panel_html += '</div>'
             config_panel_html += '</div>'
-            $container.find('#div_configPanel').show()
-            $container.find('#div_plugin_panel').append(config_panel_html)
+            self.dom_container.querySelector('#div_configPanel').seen()
+            self.dom_container.querySelector('#div_plugin_panel').insertAdjacentHTML('beforeend', config_panel_html)
           }
 
-          $container.find('#div_plugin_functionality').empty()
+          self.dom_container.querySelector('#div_plugin_functionality').empty()
           count = 0
           var config_panel_html = '<div class="row">'
           config_panel_html += '<div class="col-sm-6">'
@@ -220,19 +222,19 @@ if (!jeeFrontEnd.plugin) {
           }
           config_panel_html += '</div>'
           config_panel_html += '</div>'
-          $container.find('#div_plugin_functionality').append(config_panel_html)
+          self.dom_container.querySelector('#div_plugin_functionality').insertAdjacentHTML('beforeend', config_panel_html)
 
-          $container.find('#div_plugin_toggleState').empty()
+          self.dom_container.querySelector('#div_plugin_toggleState').empty()
           if (data.checkVersion != -1) {
             var html = '<form class="form-horizontal"><fieldset>'
             html += '<div class="form-group">'
             html += '<label class="col-sm-2 control-label">{{Statut}}</label>'
             html += '<div class="col-sm-4">'
             if (data.activate == 1) {
-              $container.find('#div_plugin_toggleState').closest('.panel').removeClass('panel-default panel-danger').addClass('panel-success')
+              self.dom_container.querySelector('#div_plugin_toggleState').closest('.panel').removeClass('panel-default', 'panel-danger').addClass('panel-success')
               html += '<span class="label label-success">{{Actif}}</span>'
             } else {
-              $container.find('#div_plugin_toggleState').closest('.panel').removeClass('panel-default panel-success').addClass('panel-danger')
+              self.dom_container.querySelector('#div_plugin_toggleState').closest('.panel').removeClass('panel-default', 'panel-success').addClass('panel-danger')
               html += '<span class="label label-danger">{{Inactif}}</span>'
             }
             html += '</div>'
@@ -246,10 +248,10 @@ if (!jeeFrontEnd.plugin) {
             html += '</div>'
             html += '</div>'
             html += '</fieldset></form>'
-            $container.find('#div_plugin_toggleState').html(html)
+            self.dom_container.querySelector('#div_plugin_toggleState').insertAdjacentHTML('beforeend', html)
           } else {
-            $container.find('#div_plugin_toggleState').closest('.panel').removeClass('panel-default panel-success').addClass('panel-danger')
-            $container.find('#div_plugin_toggleState').html('{{Votre version de}} ' + JEEDOM_PRODUCT_NAME + ' {{ne permet pas d\'activer ce plugin}}')
+            self.dom_container.querySelector('#div_plugin_toggleState').closest('.panel').removeClass('panel-default', 'panel-success').addClass('panel-danger')
+            self.dom_container.querySelector('#div_plugin_toggleState').insertAdjacentHTML('beforeend', '{{Votre version de}} ' + JEEDOM_PRODUCT_NAME + ' {{ne permet pas d\'activer ce plugin}}')
           }
           var log_conf = ''
           for (var i in data.logs) {
@@ -291,24 +293,23 @@ if (!jeeFrontEnd.plugin) {
           log_conf += '</div>'
           log_conf += '</form>'
 
-          $container.find('#div_plugin_log').empty()
-          $container.find('#div_plugin_log').append(log_conf)
+          self.dom_container.querySelector('#div_plugin_log').empty().insertAdjacentHTML('beforeend', log_conf)
 
-          var $divPluginConfiguration = $container.find('#div_plugin_configuration')
-          var dom_divPluginConfiguration = dom_container.querySelector('#div_plugin_configuration')
-          $divPluginConfiguration.empty()
+          var divPluginConfiguration = self.dom_container.querySelector('#div_plugin_configuration')
+          var dom_divPluginConfiguration = self.dom_container.querySelector('#div_plugin_configuration')
+          divPluginConfiguration.empty()
           if (data.checkVersion != -1) {
             if (data.configurationPath != '' && data.activate == 1) {
-              $divPluginConfiguration.load('index.php?v=d&plugin=' + data.id + '&configure=1', function() {
-                if ($divPluginConfiguration.html().trim() == '') {
-                  $divPluginConfiguration.closest('.panel').hide()
+              divPluginConfiguration.load('index.php?v=d&plugin=' + data.id + '&configure=1', function() {
+                if (divPluginConfiguration.innerHTML.trim() == '') {
+                  divPluginConfiguration.closest('.panel').unseen()
                   return
                 } else {
-                  $divPluginConfiguration.closest('.panel').show()
+                  divPluginConfiguration.closest('.panel').seen()
                 }
                 jeedom.config.load({
                   configuration: dom_divPluginConfiguration.getJeeValues('.configKey')[0],
-                  plugin: $container.find('#span_plugin_id').text(),
+                  plugin: self.dom_container.querySelector('#span_plugin_id').innerHTML,
                   error: function(error) {
                     jeedomUtils.showAlert({
                       message: error.message,
@@ -326,8 +327,8 @@ if (!jeeFrontEnd.plugin) {
               dom_divPluginConfiguration.closest('.panel').unseen()
             }
             jeedom.config.load({
-              configuration: dom_container.querySelector('#div_plugin_panel').getJeeValues('.configKey')[0],
-              plugin: dom_container.querySelector('#span_plugin_id').innerHTML,
+              configuration: self.dom_container.querySelector('#div_plugin_panel').getJeeValues('.configKey')[0],
+              plugin: self.dom_container.querySelector('#span_plugin_id').innerHTML,
               error: function(error) {
                 jeedomUtils.showAlert({
                   message: error.message,
@@ -335,13 +336,13 @@ if (!jeeFrontEnd.plugin) {
                 })
               },
               success: function(data) {
-                dom_container.querySelector('#div_plugin_panel').setJeeValues(data, '.configKey')
+                self.dom_container.querySelector('#div_plugin_panel').setJeeValues(data, '.configKey')
                 jeeFrontEnd.modifyWithoutSave = false
               }
             })
             jeedom.config.load({
-              configuration: dom_container.querySelector('#div_plugin_functionality').getJeeValues('.configKey')[0],
-              plugin: dom_container.querySelector('#span_plugin_id').innerHTML,
+              configuration: self.dom_container.querySelector('#div_plugin_functionality').getJeeValues('.configKey')[0],
+              plugin: self.dom_container.querySelector('#span_plugin_id').innerHTML,
               error: function(error) {
                 jeedomUtils.showAlert({
                   message: error.message,
@@ -349,12 +350,12 @@ if (!jeeFrontEnd.plugin) {
                 })
               },
               success: function(data) {
-                dom_container.querySelector('#div_plugin_functionality').setJeeValues(data, '.configKey')
+                self.dom_container.querySelector('#div_plugin_functionality').setJeeValues(data, '.configKey')
                 jeeFrontEnd.modifyWithoutSave = false
               }
             })
             jeedom.config.load({
-              configuration: dom_container.querySelector('#div_plugin_log').getJeeValues('.configKey')[0],
+              configuration: self.dom_container.querySelector('#div_plugin_log').getJeeValues('.configKey')[0],
               error: function(error) {
                 jeedomUtils.showAlert({
                   message: error.message,
@@ -362,17 +363,18 @@ if (!jeeFrontEnd.plugin) {
                 })
               },
               success: function(data) {
-                dom_container.querySelector('#div_plugin_log').setJeeValues(data, '.configKey')
+                self.dom_container.querySelector('#div_plugin_log').setJeeValues(data, '.configKey')
                 jeeFrontEnd.modifyWithoutSave = false
               }
             })
           } else {
-            dom_container.querySelector('#div_plugin_configuration').closest('.alert').unseen()
+            self.dom_container.querySelector('#div_plugin_configuration').closest('.alert').unseen()
           }
-          try {dom_container.querySelector('#div_confPlugin').seen()} catch(e) {}
+          self.dom_container.seen()
           jeeFrontEnd.modifyWithoutSave = false
-          if (!$('#md_modal').is(':visible')) {
-            jeedomUtils.addOrUpdateUrl('id', $container.find('#span_plugin_id').text(), data.name + ' - ' + JEEDOM_PRODUCT_NAME)
+
+          if (this.modal == null) {
+            jeedomUtils.addOrUpdateUrl('id', self.dom_container.querySelector('#span_plugin_id').textContent, data.name + ' - ' + JEEDOM_PRODUCT_NAME)
           }
           setTimeout(function() {
             jeedomUtils.initTooltips(document.getElementById("div_confPlugin"))
@@ -406,8 +408,9 @@ if (!jeeFrontEnd.plugin) {
           if (typeof _param.success == 'function') {
             _param.success(0)
           }
-          if ($('#div_plugin_configuration .saveParam[data-l1key=relaunchDeamon]').html() != undefined) {
-            _param.relaunchDeamon = document.querySelector('#div_plugin_configuration .saveParam[data-l1key=relaunchDeamon]').jeeValue()
+          let relaunchDeamon = document.querySelector('#div_plugin_configuration .saveParam[data-l1key="relaunchDeamon"]')
+          if (relaunchDeamon != null) {
+            _param.relaunchDeamon = relaunchDeamon.jeeValue()
           }
         }
       })
@@ -417,14 +420,11 @@ if (!jeeFrontEnd.plugin) {
 
 jeeFrontEnd.plugin.init()
 
-$('sub.itemsNumber').html('(' + $('.pluginDisplayCard').length + ')')
-
 document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
-
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
-    $("#bt_savePluginConfig").click()
+    jeeFrontEnd.plugin.savePluginConfig()
   }
 })
 
@@ -703,17 +703,18 @@ $('#div_configLog').on({
 
 //is plugin id in url to go to configuration:
 if (typeof(jeephp2js.selPluginId) !== "undefined" && jeephp2js.selPluginId != -1) {
-  if ($('#md_modal').is(':visible')) {
-    var $container = $('#md_modal #div_resumePluginList')
+  let modal = jeeDialog.get('#div_confPlugin', 'dialog')
+  let dom_container = null
+  if (modal != null) {
+    dom_container = modal.querySelector('#div_resumePluginList')
   } else {
-    var $container = $('#div_resumePluginList')
+    dom_container = document.getElementById('div_pageContainer').querySelector('#div_resumePluginList')
   }
-  if ($container.find('.pluginDisplayCard[data-plugin_id=' + jeephp2js.selPluginId + ']').length != 0) {
-    $container.find('.pluginDisplayCard[data-plugin_id=' + jeephp2js.selPluginId + ']').click()
-  } else {
-    $container.find('.pluginDisplayCard').first().click()
+  let plugin = dom_container.querySelector('.pluginDisplayCard[data-plugin_id="' + jeephp2js.selPluginId + '"]')
+  if (plugin != null) {
+    plugin.click()
+    jeedomUtils.initTooltips()
   }
-  jeedomUtils.initTooltips()
 }
 
 //Register events on top of page container:

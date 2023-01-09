@@ -923,11 +923,11 @@ var jeeDialog = (function()
       } else if (_option == 'dialog') {
         return _el.closest('div.jeeDialog')
       } else if (_option == 'title') {
-        return _el.closest('div.jeeDialog').querySelector('div.jeeDialogTitle')
+        return _el.closest('div.jeeDialog')?.querySelector('div.jeeDialogTitle')
       } else if (_option == 'content') {
-        return _el.closest('div.jeeDialog').querySelector('div.jeeDialogContent')
+        return _el.closest('div.jeeDialog')?.querySelector('div.jeeDialogContent')
       } else if (_option == 'footer') {
-        return _el.closest('div.jeeDialog').querySelector('div.jeeDialogFooter')
+        return _el.closest('div.jeeDialog')?.querySelector('div.jeeDialogFooter')
       }
       return null
     }

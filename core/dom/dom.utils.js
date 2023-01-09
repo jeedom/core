@@ -437,7 +437,7 @@ Element.prototype.load = function(_path, _callback) {
       self.html(rawHtml, false, function() {
         domUtils.DOMloading --
         if (typeof _callback === 'function') {
-          _callback()
+          _callback(self)
         }
       })
     }
