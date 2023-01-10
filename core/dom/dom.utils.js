@@ -828,6 +828,12 @@ function isset() {
   return !0
 }
 
+function getBool(val) {
+  if (val === undefined) return false
+  var num = +val
+  return !isNaN(num) ? !!num : !!String(val).toLowerCase().replace(!!0,'')
+}
+
 //Prefer [array].includes()
 function in_array(a, b, d) {
   let c = ""
