@@ -490,10 +490,12 @@ sendVarToJS([
   }
 
   //check some values:
-  var nbColumn = document.querySelector('input[data-l2key="layout::dashboard::table::nbColumn"]').value
-  if (nbColumn == '') document.querySelector('input[data-l2key="layout::dashboard::table::nbColumn"]').value = 1
-  var nbLine = document.querySelector('input[data-l2key="layout::dashboard::table::nbLine"]').value
-  if (nbLine == '') document.querySelector('input[data-l2key="layout::dashboard::table::nbLine"]').value = 1
+  if (document.querySelector('input[data-l2key="layout::dashboard"]') != null) { //Can be unavailable!
+    var nbColumn = document.querySelector('input[data-l2key="layout::dashboard::table::nbColumn"]').value
+    if (nbColumn == '') document.querySelector('input[data-l2key="layout::dashboard::table::nbColumn"]').value = 1
+    var nbLine = document.querySelector('input[data-l2key="layout::dashboard::table::nbLine"]').value
+    if (nbLine == '') document.querySelector('input[data-l2key="layout::dashboard::table::nbLine"]').value = 1
+  }
 
   setTableLayoutSortable()
   jeedomUtils.initSpinners()
