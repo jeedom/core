@@ -644,27 +644,29 @@ domUtils.unRegisterEvents = function() {
 }
 
 EventTarget.prototype.registerEvent = function(_type, _listener, _options) {
+  //To be removed, removeEventListener need same EventTarget, callback, capture setting
   if (typeof _listener !== 'function') return
   domUtils.registeredEvents.push({
     element: this,
     type: _type,
     id: _listener.name || '',
-    callback: _listener
+    callback: _listener,
+    options: _options
   })
   this.addEventListener(_type, _listener, _options)
   return this
 }
 
 EventTarget.prototype.unRegisterEvent = function(_type, _id) {
-  var self = this
-  let listeners = domUtils.registeredEvents.filter(function(listener) {
-    return ( (isset(_type)? listener.type == _type : true) && (isset(_id)? listener.id == _id : true) && listener.element == self )
+  var that = this
+  var listeners = domUtils.registeredEvents.filter(function(listener) {
+    return ( (isset(_type)? listener.type == _type : true) && (isset(_id)? listener.id == _id : true) && listener.element == that )
   })
-  for (let listener of listeners) {
-    self.removeEventListener(listener.type, listener.callback, false)
+  for (var listener of listeners) {
+    var result = that.removeEventListener(listener.type, listener.callback, listener.options)
     domUtils.registeredEvents = domUtils.registeredEvents.filter(ev => !listeners.includes(ev))
   }
-  return self
+  return that
 }
 
 EventTarget.prototype.getRegisteredEvent = function(_type, _id) {
