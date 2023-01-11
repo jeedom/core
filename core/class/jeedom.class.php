@@ -1445,15 +1445,9 @@ class jeedom {
 				$sourceEq = eqLogic::byId($_sourceId);
 				$targetEq = eqLogic::byId($_targetId);
 				if (!is_object($sourceEq) || !is_object($targetEq)) continue;
-
-				//replace equipment where used:
-				foreach ($_eqlogics as $_sourceId => $_targetId) {
-					$sourceEq = eqLogic::byId($_sourceId);
-					$targetEq = eqLogic::byId($_targetId);
-					if (!is_object($sourceEq) || !is_object($targetEq)) continue;
-					jeedom::replaceTag(array('eqLogic'.$_sourceId => 'eqLogic'.$_targetId));
-					$return['eqlogics'] += 1;
-				}
+              
+              	//replace equipment where used:
+              	jeedom::replaceTag(array('eqLogic'.$_sourceId => 'eqLogic'.$_targetId));
 
 				//Migrate plan cmd config for eqLogic:
 				$planEqlogics = plan::byLinkTypeLinkId('eqLogic', $sourceEq->getId());

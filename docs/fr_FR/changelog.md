@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.3
 
+## 4.3.13
+
+- Bugfix sur **Outils / Remplacer**.
+
 ## 4.3.12
 
 - Optimisation sur les historiques.
