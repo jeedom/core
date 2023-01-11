@@ -103,8 +103,8 @@ if (!jeeFrontEnd.md_history) {
     },
     resizeHighChartModal: function() {
       if (!jeedom.history.chart[this.__el__]) return
-      let hDecay = 40
-      if (document.querySelector('#bt_toggleOptions i').hasClass('fa-arrow-down')) hDecay = 0
+      let hDecay = 35
+      if (document.querySelector('#bt_toggleOptions i').hasClass('fa-arrow-down')) hDecay = 5
       jeedom.history.chart[this.__el__].chart.setSize(
         this.modalContent.offsetWidth,
         this.modalContent.offsetHeight - hDecay
