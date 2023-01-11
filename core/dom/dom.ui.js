@@ -1846,11 +1846,11 @@ var jeeCtxMenu = function(_options)
       }
     }
 
-    ctxInstance.options.events.show.apply(ctxInstance, [ctxInstance])
+    if (typeof ctxInstance.options.events.show === 'function') ctxInstance.options.events.show.apply(ctxInstance, [ctxInstance])
     setPosition(ctxInstance.ctxMenu, _event) //Will show
   }
   ctxInstance.hide = function(_event) {
-    ctxInstance.options.events.hide.apply(ctxInstance, [ctxInstance])
+    if (typeof ctxInstance.options.events.hide === 'function') ctxInstance.options.events.hide.apply(ctxInstance, [ctxInstance])
     if (typeof ctxInstance.options.build === 'function') {
       this.ctxMenu.empty().unseen()
     } else {

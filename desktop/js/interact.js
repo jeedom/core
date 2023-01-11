@@ -243,7 +243,6 @@ $('#bt_closeAll').off('click').on('click', function(event) {
 
 //contextMenu:
 try {
-    $.contextMenu('destroy', $('.nav.nav-tabs'))
     jeedom.interact.all({
       error: function(error) {
         jeedomUtils.showAlert({
@@ -302,14 +301,14 @@ try {
         }
 
         if (Object.entries(contextmenuitems).length > 0 && contextmenuitems.constructor === Object) {
-          $('.nav.nav-tabs').contextMenu({
-            selector: 'li',
+          new jeeCtxMenu({
+            selector: '.nav.nav-tabs > li',
             autoHide: true,
             zIndex: 9999,
             className: 'interact-context-menu',
             callback: function(key, options, event) {
               if (!jeedomUtils.checkPageModified()) {
-                if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
+                if (event.ctrlKey || event.metaKey || event.which == 2) {
                   var url = 'index.php?v=d&p=interact&id=' + options.commands[key].id
                   if (window.location.hash != '') {
                     url += window.location.hash

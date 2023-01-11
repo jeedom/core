@@ -289,7 +289,6 @@ $('#bt_resetWidgetsSearch').off('click').on('click', function() {
 
 //context menu
 try {
-    $.contextMenu('destroy', $('.nav.nav-tabs'))
     jeedom.widgets.all({
       error: function(error) {
         jeedomUtils.showAlert({
@@ -332,14 +331,14 @@ try {
           }
         }
 
-        $('.nav.nav-tabs').contextMenu({
-          selector: 'li',
+        new jeeCtxMenu({
+          selector: '.nav.nav-tabs > li',
           autoHide: true,
           zIndex: 9999,
           className: 'widget-context-menu',
           callback: function(key, options, event) {
             if (!jeedomUtils.checkPageModified()) {
-              if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
+              if (event.ctrlKey || event.metaKey || event.which == 2) {
                 window.open('index.php?v=d&p=widgets&id=' + options.commands[key].id).focus()
               } else {
                 jeeP.printWidget(options.commands[key].id)

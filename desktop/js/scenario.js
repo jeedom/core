@@ -1671,14 +1671,6 @@ document.getElementById('in_searchInsideScenario').addEventListener('keyup', fun
 
 /*Events delegations
 */
-document.getElementById('div_pageContainer').addEventListener('mouseleave', function(event) {
-  if (event.target.matches('.context-menu-root')) { //Handle auto hide context menu
-    setTimeout(function() {
-      event.target.triggerEvent('contextmenu:hide')
-    }, 250)
-    return
-  }
-}, {capture: true})
 
 
 //_________________Root page events:
@@ -2694,7 +2686,6 @@ domUtils(function() {
 
 //tabs context menu
 try {
-    $.contextMenu('destroy', $('.nav.nav-tabs'))
     jeedom.scenario.allOrderedByGroupObjectName({
       asGroup: 1,
       error: function(error) {
@@ -2727,14 +2718,14 @@ try {
         }
 
         if (Object.entries(contextmenuitems).length > 0 && contextmenuitems.constructor === Object) {
-          $.contextMenu({
+          new jeeCtxMenu({
             selector: '.nav.nav-tabs li',
             appendTo: 'div#div_pageContainer',
             zIndex: 9999,
             className: 'scenarioTab-context-menu',
             callback: function(key, options, event) {
               if (!jeedomUtils.checkPageModified()) {
-                if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
+                if (event.ctrlKey || event.metaKey || event.which == 2) {
                   var url = 'index.php?v=d&p=scenario&id=' + options.commands[key].id
                   if (window.location.hash != '') {
                     url += window.location.hash
@@ -2755,21 +2746,22 @@ try {
 
 //general context menu
 try {
-    $.contextMenu({
+  new jeeCtxMenu({
     selector: "#accordionScenario .scenarioDisplayCard",
     appendTo: 'div#div_pageContainer',
     className: 'scenario-context-menu',
-    build: function($trigger) {
+    build: function(trigger) {
       var scGroups = []
       Object.keys(jeephp2js.scenarioListGroup).forEach(function(key) {
         scGroups.push(jeephp2js.scenarioListGroup[key].group)
       })
 
-      var scId = $trigger.attr('data-scenario_id')
-      var isActive = !$trigger.hasClass('inactive')
+      var scId = trigger.getAttribute('data-scenario_id')
+      var scName = trigger.querySelector('.name strong').innerHTML
+      var isActive = !trigger.hasClass('inactive')
 
       var contextmenuitems = {}
-      contextmenuitems['scId'] = {'name': 'id: ' + scId, 'id': 'scId', 'disabled': true}
+      contextmenuitems['scId'] = {'name': scName + '(id: ' + scId + ')', 'id': 'scId', 'disabled': true}
       if (isActive) {
         contextmenuitems['disable'] = {'name': '{{Rendre inactif}}', 'id': 'disable', 'icon': 'fas fa-toggle-on'}
       } else {
