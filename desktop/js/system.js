@@ -26,11 +26,11 @@ if (!jeeFrontEnd.system) {
 
 jeeFrontEnd.system.init()
 
-$('ul.bs-sidenav li a').each(function() {
+$('ul.bs-sidenav li a').each(function(event) {
   $(this).prop('title', $(this).attr('data-command'))
 })
 
-$('.bt_systemCommand').off('click').on('click', function() {
+$('.bt_systemCommand').off('click').on('click', function(event) {
   var command = $(this).attr('data-command')
   $('#pre_commandResult').empty()
   if ($(this).parent().hasClass('list-group-item-danger')) {
@@ -56,7 +56,7 @@ $('.bt_systemCommand').off('click').on('click', function() {
   }
 })
 
-$('#ul_listSystemHistory').off('click', '.bt_systemCommand').on('click', '.bt_systemCommand', function() {
+$('#ul_listSystemHistory').off('click', '.bt_systemCommand').on('click', '.bt_systemCommand', function(event) {
   var command = $(this).attr('data-command')
   $('#pre_commandResult').empty()
   $('#div_commandResult').empty()
@@ -70,7 +70,7 @@ $('#ul_listSystemHistory').off('click', '.bt_systemCommand').on('click', '.bt_sy
   })
 })
 
-$('#bt_validateSpecifiCommand').off('click').on('click', function() {
+$('#bt_validateSpecifiCommand').off('click').on('click', function(event) {
   var command = document.getElementById('in_specificCommand').value
   $('#pre_commandResult').empty()
   jeedom.ssh({

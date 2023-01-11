@@ -97,7 +97,7 @@ jeeFrontEnd.replace.init()
 jeedomUtils.initTooltips()
 
 //searching:
-$('#in_searchByName').on('keyup', function() {
+$('#in_searchByName').on('keyup', function(event) {
   try {
     var search = this.value
     var searchID = search
@@ -134,7 +134,7 @@ $('#in_searchByName').on('keyup', function() {
     console.error(error)
   }
 })
-$('#bt_resetSearchName').on('click', function() {
+$('#bt_resetSearchName').on('click', function(event) {
   $('#in_searchByName').val('').keyup()
 })
 
@@ -143,12 +143,12 @@ $('#bt_resetSearchName').on('click', function() {
 $('#objectFilter').on('click', function(event) {
   event.stopPropagation()
 })
-$('#objectFilterNone').on('click', function() {
+$('#objectFilterNone').on('click', function(event) {
   $('#objectFilter .objectFilterKey').each(function() {
     $(this).prop('checked', false)
   })
 })
-$('#objectFilterAll').on('click', function() {
+$('#objectFilterAll').on('click', function(event) {
   $('#objectFilter .objectFilterKey').each(function() {
     $(this).prop("checked", true)
   })
@@ -184,12 +184,12 @@ $('#objectFilter li a').on('mousedown', function(event) {
 $('#pluginFilter').on('click', function(event) {
   event.stopPropagation()
 })
-$('#pluginFilterNone').on('click', function() {
+$('#pluginFilterNone').on('click', function(event) {
   $('#pluginFilter .pluginFilterKey').each(function() {
     $(this).prop('checked', false)
   })
 })
-$('#pluginFilterAll').on('click', function() {
+$('#pluginFilterAll').on('click', function(event) {
   $('#pluginFilter .pluginFilterKey').each(function() {
     $(this).prop("checked", true)
   })
@@ -318,7 +318,7 @@ $('#eqSource').on({
   }
 }, 'ul.eqLogic > .replacer > select')
 
-$('#bt_clearReplace').on('click', function() {
+$('#bt_clearReplace').on('click', function(event) {
   $('#objectFilter .objectFilterKey').each(function() {
     $(this).prop("checked", true)
   })
@@ -336,7 +336,7 @@ $('#bt_clearReplace').on('click', function() {
   jeeP.sourcesEqContainer.empty()
 })
 
-$('#bt_applyFilters').on('click', function() {
+$('#bt_applyFilters').on('click', function(event) {
   jeeP.filteredObjects = new Array()
   var key = null
   $('#objectFilter .objectFilterKey').each(function() {
@@ -393,7 +393,7 @@ $('#bt_applyFilters').on('click', function() {
   })
 })
 
-$('#bt_replace').on('click', function() {
+$('#bt_replace').on('click', function(event) {
   jeeDialog.confirm({
     message: "<b>{{Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !}}</b>" + "<br>" +  "{{Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?}}",
     callback: function(result) {

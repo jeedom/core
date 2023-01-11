@@ -248,7 +248,7 @@ document.registerEvent('keydown', function(event) {
 $('sub.itemsNumber').html('(' + $('.widgetsDisplayCard').length + ')')
 
 //searching
-$('#in_searchWidgets').keyup(function() {
+$('#in_searchWidgets').keyup(function(event) {
   var search = this.value
   if (search == '') {
     $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
@@ -274,16 +274,16 @@ $('#in_searchWidgets').keyup(function() {
       $(this).closest('.panel-collapse').attr('data-show', 1)
     }
   })
-  $('.panel-collapse[data-show=1]').collapse('show')
-  $('.panel-collapse[data-show=0]').collapse('hide')
+  $('.panel-collapse[data-show="1"]').collapse('show')
+  $('.panel-collapse[data-show="0"]').collapse('hide')
 })
-$('#bt_openAll').off('click').on('click', function() {
-  $(".accordion-toggle[aria-expanded='false']").click()
+$('#bt_openAll').off('click').on('click', function(event) {
+  $('.accordion-toggle[aria-expanded="false"]').click()
 })
-$('#bt_closeAll').off('click').on('click', function() {
-  $(".accordion-toggle[aria-expanded='true']").click()
+$('#bt_closeAll').off('click').on('click', function(event) {
+  $('.accordion-toggle[aria-expanded="true"]').click()
 })
-$('#bt_resetWidgetsSearch').off('click').on('click', function() {
+$('#bt_resetWidgetsSearch').off('click').on('click', function(event) {
   $('#in_searchWidgets').val('').keyup()
 })
 
@@ -351,25 +351,25 @@ try {
     })
   } catch (err) { }
 
-$('#bt_chooseIcon').on('click', function() {
+$('#bt_chooseIcon').on('click', function(event) {
   var _icon = false
   if ($('div[data-l2key="icon"] > i').length) {
     _icon = $('div[data-l2key="icon"] > i').attr('class')
     _icon = '.' + _icon.replace(' ', '.')
   }
   jeedomUtils.chooseIcon(function(_icon) {
-    $('.widgetsAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon)
+    $('.widgetsAttr[data-l1key="display"][data-l2key="icon"]').empty().append(_icon)
   }, {
     icon: _icon
   })
   jeeFrontEnd.modifyWithoutSave = true
 })
 
-$('#bt_editCode').off('click').on('click', function() {
+$('#bt_editCode').off('click').on('click', function(event) {
   jeedomUtils.loadPage('index.php?v=d&p=editor&type=widget')
 })
 
-$('#bt_replaceWidget').off('click').on('click', function() {
+$('#bt_replaceWidget').off('click').on('click', function(event) {
   jeeDialog.dialog({
     id: 'jee_modal2',
     title: "{{Remplacement de widget}}",
@@ -379,7 +379,7 @@ $('#bt_replaceWidget').off('click').on('click', function() {
   })
 })
 
-$('#bt_applyToCmd').off('click').on('click', function() {
+$('#bt_applyToCmd').off('click').on('click', function(event) {
   //store usedBy:
   var checkedId = []
   $('#div_usedBy .cmdAdvanceConfigure').each(function() {
@@ -487,11 +487,11 @@ $('#bt_applyToCmd').off('click').on('click', function() {
   })
 })
 
-$('.widgetsAttr[data-l1key=display][data-l2key=icon]').off('dblclick').on('dblclick', function() {
-  document.querySelectorAll('.widgetsAttr[data-l1key=display][data-l2key=icon]').jeeValue('')
+$('.widgetsAttr[data-l1key="display"][data-l2key="icon"]').off('dblclick').on('dblclick', function(event) {
+  document.querySelectorAll('.widgetsAttr[data-l1key="display"][data-l2key="icon"]').jeeValue('')
 })
 
-$('.widgetsAttr[data-l1key=type]').off('change').on('change', function() {
+$('.widgetsAttr[data-l1key=type]').off('change').on('change', function(event) {
   $('#div_templateReplace').empty()
   $('#div_templateTest').empty()
   $('#div_usedBy').empty()
@@ -499,7 +499,7 @@ $('.widgetsAttr[data-l1key=type]').off('change').on('change', function() {
   $('.selectWidgetSubType[data-type="' + this.jeeValue() + '"]').show().addClass('widgetsAttr').change()
 })
 
-$('.selectWidgetSubType').off('change').on('change', function() {
+$('.selectWidgetSubType').off('change').on('change', function(event) {
   $('#div_templateReplace').empty()
   $('#div_templateTest').empty()
   $('#div_usedBy').empty()
@@ -508,17 +508,17 @@ $('.selectWidgetSubType').off('change').on('change', function() {
   $('.selectWidgetTemplate[data-type="' + type + '"][data-subtype="' + this.jeeValue() + '"]').show().addClass('widgetsAttr').change()
 })
 
-$('#div_templateReplace').off('click', '.chooseIcon').on('click', '.chooseIcon', function() {
+$('#div_templateReplace').off('click', '.chooseIcon').on('click', '.chooseIcon', function(event) {
   var bt = this
   jeedomUtils.chooseIcon(function(_icon) {
-    bt.closest('.form-group').querySelector('.widgetsAttr[data-l1key=replace]').jeeValue(_icon)
+    bt.closest('.form-group').querySelector('.widgetsAttr[data-l1key="replace"]').jeeValue(_icon)
   }, {
     img: true
   })
   jeeFrontEnd.modifyWithoutSave = true
 })
 
-$('#div_templateTest').off('click', '.chooseIcon').on('click', '.chooseIcon', function() {
+$('#div_templateTest').off('click', '.chooseIcon').on('click', '.chooseIcon', function(event) {
   var bt = this
   jeedomUtils.chooseIcon(function(_icon) {
     bt.closest('.input-group').querySelector('.testAttr').jeeValue(_icon)
@@ -528,11 +528,11 @@ $('#div_templateTest').off('click', '.chooseIcon').on('click', '.chooseIcon', fu
   jeeFrontEnd.modifyWithoutSave = true
 })
 
-$('#div_pageContainer').off('change', '.widgetsAttr').on('change', '.widgetsAttr:visible', function() {
+$('#div_pageContainer').off('change', '.widgetsAttr').on('change', '.widgetsAttr:visible', function(event) {
   jeeFrontEnd.modifyWithoutSave = true
 })
 
-$('#bt_returnToThumbnailDisplay').on('click', function() {
+$('#bt_returnToThumbnailDisplay').on('click', function(event) {
   setTimeout(function() {
     $('.nav li.active').removeClass('active')
     $('a[href="#' + $('.tab-pane.active').attr('id') + '"]').closest('li').addClass('active')
@@ -547,7 +547,7 @@ $('#bt_widgetsAddTest').off('click').on('click', function(event) {
   jeeP.addTest({})
 })
 
-$('#div_templateTest').off('click', '.bt_removeTest').on('click', '.bt_removeTest', function() {
+$('#div_templateTest').off('click', '.bt_removeTest').on('click', '.bt_removeTest', function(event) {
   $(this).closest('.test').remove()
   jeeFrontEnd.modifyWithoutSave = true
 })
@@ -578,7 +578,7 @@ $("#bt_addWidgets").off('click').on('click', function(event) {
   })
 })
 
-$('#div_usedBy').off('click', '.cmdAdvanceConfigure').on('click', '.cmdAdvanceConfigure', function() {
+$('#div_usedBy').off('click', '.cmdAdvanceConfigure').on('click', '.cmdAdvanceConfigure', function(event) {
   jeeDialog.dialog({
     id: 'jee_modal2',
     title: '{{Configuration de la commande}}',
@@ -605,8 +605,8 @@ $('.widgetsDisplayCard').off('mouseup').on('mouseup', function(event) {
 })
 
 if (is_numeric(getUrlVars('id'))) {
-  if ($('.widgetsDisplayCard[data-widgets_id=' + getUrlVars('id') + ']').length != 0) {
-    $('.widgetsDisplayCard[data-widgets_id=' + getUrlVars('id') + ']').click()
+  if ($('.widgetsDisplayCard[data-widgets_id="' + getUrlVars('id') + '"]').length != 0) {
+    $('.widgetsDisplayCard[data-widgets_id="' + getUrlVars('id') + '"]').click()
   } else {
     $('.widgetsDisplayCard').first().click()
   }
@@ -636,7 +636,7 @@ $('#bt_removeWidgets').on('click', function(event) {
   jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer le widget}} <span style="font-weight: bold ;">' + $('input[data-l1key="name"]').val() + '</span> ?', function(result) {
     if (result) {
       jeedom.widgets.remove({
-        id: document.querySelector('.widgetsAttr[data-l1key=id]').jeeValue(),
+        id: document.querySelector('.widgetsAttr[data-l1key="id"]').jeeValue(),
         error: function(error) {
           jeedomUtils.showAlert({
             message: error.message,

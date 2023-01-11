@@ -189,7 +189,7 @@ if (!jeeFrontEnd.timeline) {
 jeeFrontEnd.timeline.init()
 
 //searching
-$('#in_searchTimeline').keyup(function() {
+$('#in_searchTimeline').keyup(function(event) {
   var search = this.value
   if (search == '') {
     $('#timelineContainer > ul > li').show()
@@ -219,11 +219,11 @@ $('#in_searchTimeline').keyup(function() {
     }
   })
 })
-$('#bt_resetTimelineSearch').on('click', function() {
+$('#bt_resetTimelineSearch').on('click', function(event) {
   $('#in_searchTimeline').val('').keyup()
 })
 
-$('#bt_openCmdHistoryConfigure').on('click', function() {
+$('#bt_openCmdHistoryConfigure').on('click', function(event) {
   jeeDialog.dialog({
     id: 'jee_modal',
     title: "{{Configuration de l'historique des commandes}}",
@@ -231,11 +231,11 @@ $('#bt_openCmdHistoryConfigure').on('click', function() {
   })
 })
 
-$('#sel_timelineFolder').off('change').on('change', function() {
+$('#sel_timelineFolder').off('change').on('change', function(event) {
   jeeP.displayTimeline()
 })
 
-$('#bt_removeTimelineEvent').on('click', function() {
+$('#bt_removeTimelineEvent').on('click', function(event) {
   jeedom.timeline.deleteAll({
     error: function(error) {
       jeedomUtils.showAlert({
@@ -253,12 +253,12 @@ $('#bt_removeTimelineEvent').on('click', function() {
   })
 })
 
-$('#bt_tabTimeline').on('click', function() {
+$('#bt_tabTimeline').on('click', function(event) {
   jeedomUtils.hideAlert()
   jeeP.displayTimeline()
 })
 
-$('#timelineContainer ul').on('click', '.bt_scenarioLog', function() {
+$('#timelineContainer ul').on('click', '.bt_scenarioLog', function(event) {
   jeeDialog.dialog({
     id: 'jee_modal',
     title: "{{Log d'exécution du scénario}}",
@@ -266,11 +266,11 @@ $('#timelineContainer ul').on('click', '.bt_scenarioLog', function() {
   })
 })
 
-$('#timelineContainer ul').on('click', '.bt_gotoScenario', function() {
+$('#timelineContainer ul').on('click', '.bt_gotoScenario', function(event) {
   jeedomUtils.loadPage('index.php?v=d&p=scenario&id=' + $(this).closest('.tml-scenario').attr('data-id'))
 })
 
-$('#timelineContainer ul').on('click', '.bt_historicCmd', function() {
+$('#timelineContainer ul').on('click', '.bt_historicCmd', function(event) {
   jeeDialog.dialog({
     id: 'jee_modal2',
     title: "{{Historique}}",
@@ -278,7 +278,7 @@ $('#timelineContainer ul').on('click', '.bt_historicCmd', function() {
   })
 })
 
-$('#timelineContainer ul').on('click', '.bt_configureCmd', function() {
+$('#timelineContainer ul').on('click', '.bt_configureCmd', function(event) {
   jeeDialog.dialog({
     id: 'jee_modal2',
     title: '{{Configuration de la commande}}',
@@ -286,20 +286,20 @@ $('#timelineContainer ul').on('click', '.bt_configureCmd', function() {
   })
 })
 
-$('#bt_refreshTimeline').on('click', function() {
+$('#bt_refreshTimeline').on('click', function(event) {
   jeeP.loadStart = 0
   jeeP.loadOffset = 35
   jeeP.displayTimeline()
 })
 
-$('#timelineBottom a.bt_loadMore').on('click', function() {
+$('#timelineBottom a.bt_loadMore').on('click', function(event) {
   var more = parseInt($(this).attr('data-load'))
   jeeP.loadStart = jeeP.loadStart + jeeP.loadOffset + 1
   jeeP.loadOffset = more
   jeeP.displayTimelineSegment(jeeP.loadStart, jeeP.loadOffset)
 })
 
-document.getElementById('div_mainContainer').registerEvent('scroll', function (event) {
+document.getElementById('div_mainContainer').registerEvent('scroll', function(event) {
   if (jeeP == undefined || jeeP.isScrolling) return
   let container = document.getElementById('div_mainContainer')
   if (container.scrollTop >= container.scrollHeight - window.innerHeight) {

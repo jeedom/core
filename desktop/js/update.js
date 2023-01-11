@@ -491,13 +491,13 @@ if (jeephp2js.isUpdating == '1') {
 }
 
 
-$('.bt_refreshOsPackageUpdate').off('click').on('click', function() {
+$('.bt_refreshOsPackageUpdate').off('click').on('click', function(event) {
   if (jeeP.osUpdateChecked == 0 || $(this).attr('data-forceRefresh') == "1") {
     jeeP.printOsUpdate($(this).attr('data-forceRefresh'))
   }
 })
 
-$('.bt_OsPackageUpdate').off('click').on('click',function(){
+$('.bt_OsPackageUpdate').off('click').on('click',function(event) {
   if($(this).attr('disabled')){
     return;
   }
@@ -529,7 +529,7 @@ $('.bt_OsPackageUpdate').off('click').on('click',function(){
   })
 });
 
-$('#bt_updateJeedom').off('click').on('click', function() {
+$('#bt_updateJeedom').off('click').on('click', function(event) {
   jeeDialog.dialog({
     id: 'md_update',
     title: "{{Options de mise à jour}}",
@@ -581,7 +581,7 @@ $('#bt_updateJeedom').off('click').on('click', function() {
   })
 })
 
-$('.updateOption[data-l1key=force]').off('click').on('click', function() {
+$('.updateOption[data-l1key="force"]').off('click').on('click', function(event) {
   let mdSpec = document.getElementById('md_specifyUpdate')
   if (this.jeeValue() == 1) {
     mdSpec.querySelector('.updateOption[data-l1key="backup::before"]').jeeValue(0);
@@ -592,7 +592,7 @@ $('.updateOption[data-l1key=force]').off('click').on('click', function() {
   }
 })
 
-$('#bt_checkAllUpdate').off('click').on('click', function() {
+$('#bt_checkAllUpdate').off('click').on('click', function(event) {
   if ($('a[data-target="#log"]').parent().hasClass('active')) $('a[data-target="#coreplugin"]').trigger('click')
   jeeP.checkAllUpdate()
 })
@@ -680,7 +680,7 @@ $('#table_update').on({
   }
 }, '.checkUpdate')
 
-$('#bt_saveUpdate').on('click', function() {
+$('#bt_saveUpdate').on('click', function(event) {
   jeedom.update.saves({
     updates: document.querySelectorAll('tbody tr').getJeeValues('.updateAttr'),
     error: function(error) {
@@ -695,7 +695,7 @@ $('#bt_saveUpdate').on('click', function() {
   })
 })
 
-$('body').off('click', '#bt_changelogCore').on('click', '#bt_changelogCore', function() {
+$('body').off('click', '#bt_changelogCore').on('click', '#bt_changelogCore', function(event) {
   jeedom.getDocumentationUrl({
     page: 'changelog',
     theme: $('body').attr('data-theme'),

@@ -114,7 +114,7 @@ jeeFrontEnd.types.init()
 jeeP.setQueryButtons()
 
 //searching:
-$('#in_searchTypes').on('keyup', function() {
+$('#in_searchTypes').on('keyup', function(event) {
   try {
     var search = this.value
     var searchID = search
@@ -154,24 +154,24 @@ $('#in_searchTypes').on('keyup', function() {
         }
       }
     })
-    $('.panel-collapse[data-show=1]').collapse('show')
-    $('.panel-collapse[data-show=0]').collapse('hide')
+    $('.panel-collapse[data-show="1"]').collapse('show')
+    $('.panel-collapse[data-show="0"]').collapse('hide')
   } catch (error) {
     console.error(error)
   }
 })
-$('#bt_resetypeSearch').on('click', function() {
+$('#bt_resetypeSearch').on('click', function(event) {
   $('#in_searchTypes').val('').keyup()
   $('.cb_selEqLogic').prop("checked", false)
 })
 $('#bt_openAll').off('click').on('click', function(event) {
-  $(".accordion-toggle[aria-expanded='false']").click()
+  $('.accordion-toggle[aria-expanded="false"]').click()
   if (event.ctrlKey || event.metaKey) {
     $('ul.eqLogicCmds').show()
   }
 })
 $('#bt_closeAll').off('click').on('click', function(event) {
-  $(".accordion-toggle[aria-expanded='true']").click()
+  $('.accordion-toggle[aria-expanded="true"]').click()
   if (event.ctrlKey || event.metaKey) {
     $('ul.eqLogicCmds').hide()
   }
@@ -408,7 +408,7 @@ $('.bt_resetCmdsTypes').on('click', function(event) {
 })
 
 //Auto apply
-$('.bt_queryCmdsTypes').off('click').on('click', function() {
+$('.bt_queryCmdsTypes').off('click').on('click', function(event) {
   var genFamilyId = $(this).closest('div.eqlogicSortable').attr('data-id')
   var genFamily = jeeP.gen_families[genFamilyId]
 
@@ -625,7 +625,7 @@ $("#bt_saveGenericTypes").off('click').on('click', function(event) {
   })
 })
 
-$('#bt_listGenericTypes').off('click').on('click', function() {
+$('#bt_listGenericTypes').off('click').on('click', function(event) {
   jeeDialog.dialog({
     id: 'md_applyCmdsTypes',
     title: "{{Liste des Types Génériques (Core et Plugins)}}",

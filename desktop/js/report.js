@@ -16,7 +16,7 @@
 
 "use strict"
 
-$('.li_type').on('click', function() {
+$('.li_type').on('click', function(event) {
   var currentType = document.querySelector('.li_type.active').getAttribute('data-type')
   var newType = this.getAttribute('data-type')
   document.querySelectorAll('.li_type').removeClass('active')
@@ -29,7 +29,7 @@ $('.li_type').on('click', function() {
   }
 })
 
-$('.li_reportType').on('click', function() {
+$('.li_reportType').on('click', function(event) {
   document.querySelectorAll('.li_reportType').removeClass('active')
   this.addClass('active')
   getReportList(this.getAttribute('data-type'), this.getAttribute('data-id'))
@@ -56,7 +56,7 @@ function getReportList(_type, _id) {
   })
 }
 
-$('#ul_report').on('click', '.li_report', function() {
+$('#ul_report').on('click', '.li_report', function(event) {
   document.querySelectorAll('.li_report').removeClass('active')
   this.addClass('active')
   getReport(this.getAttribute('data-type'), this.getAttribute('data-id'), this.getAttribute('data-report'))
@@ -93,7 +93,7 @@ function getReport(_type, _id, _report) {
 }
 
 
-$('#bt_download').on('click', function() {
+$('#bt_download').on('click', function(event) {
   var type = document.querySelector('#div_reportForm .reportAttr[data-l1key=type]').jeeValue()
   var id = document.querySelector('#div_reportForm .reportAttr[data-l1key=id]').jeeValue()
   var filename = document.querySelector('#div_reportForm .reportAttr[data-l1key=filename]').jeeValue()
@@ -101,7 +101,7 @@ $('#bt_download').on('click', function() {
   window.open('core/php/downloadFile.php?pathfile=data/report/' + type + '/' + id + '/' + filename + '.' + extension, "_blank", null)
 })
 
-$('#bt_remove').on('click', function() {
+$('#bt_remove').on('click', function(event) {
   var filename = document.querySelector('#div_reportForm .reportAttr[data-l1key=filename]').jeeValue()
   var extension = document.querySelector('#div_reportForm .reportAttr[data-l1key=extension]').jeeValue()
   var report = filename + '.' + extension
@@ -123,7 +123,7 @@ $('#bt_remove').on('click', function() {
   })
 })
 
-$('#bt_removeAll').on('click', function() {
+$('#bt_removeAll').on('click', function(event) {
   jeedom.report.removeAll({
     type: document.querySelector('#div_reportForm .reportAttr[data-l1key=type]').jeeValue(),
     id: document.querySelector('#div_reportForm .reportAttr[data-l1key=id]').jeeValue(),
