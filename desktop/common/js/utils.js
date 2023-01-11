@@ -1559,11 +1559,12 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
 
 jeedomUtils.getOpenedModal = function() {
   var _return = false
-  var modals = ['md_modal', 'md_modal2', 'md_modal3']
-  modals.forEach(function(_modal) {
-    if ($('.ui-dialog[aria-describedby="' + _modal + '"]').is(':visible') == true) {
-      _return = _modal
-    }
+  document.querySelectorAll('div.jeeDialog').forEach(_dialog => {
+    if (_dialog.isVisible()) _return = true
+  })
+  //Deprecated 4.4:
+  document.querySelectorAll('div.ui-dialog.ui-widget').forEach(_dialog => {
+    if (_dialog.isVisible()) _return = true
   })
   return _return
 }
