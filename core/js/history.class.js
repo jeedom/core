@@ -167,8 +167,7 @@ jeedom.history.modalchangePoint = function(event, _this, _params) {
   var deviceInfo = getDeviceType()
   if (deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') return
 
-  if (document.getElementById('md_modal1')?.isVisible()) return
-  if (document.getElementById('md_modal2')?.isVisible()) return
+  if (event.target.closest('div.jeeDialog') != null) return
   if (jeedom.history.chart[_this.series.chart._jeeId].comparing) return
 
   if (isset(_params.cmd.display.groupingType) && _params.cmd.display.groupingType != '') {
@@ -179,7 +178,10 @@ jeedom.history.modalchangePoint = function(event, _this, _params) {
   var id = _this.series.userOptions.id
   var datetime = Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', _this.x)
   var value = _this.y
-  jeeDialog.prompt("{{Edition de la série :}} <b>" + _this.series.name + "</b> {{et du point de}} <b>" + datetime + "</b> ({{valeur :}} <b>" + value + "</b>) ? {{Ne rien mettre pour supprimer la valeur}}", function(result) {
+  jeeDialog.prompt({
+    title: "{{Edition d'historique}}",
+    message: "<b>" + _this.series.name + "</b><br> {{date :}} <b>" + datetime + "</b><br>{{valeur :}} <b>" + value + "</b><br><i>{{Ne rien mettre pour supprimer la valeur}}</i>"
+    }, function(result) {
     if (result !== null) {
       jeedom.history.changePoint({
         cmd_id: id,

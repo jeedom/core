@@ -137,11 +137,16 @@ div.jeeDialog.jeeDialogPrompt {
 div.jeeDialogTitle {
   min-height: 20px;
   margin: 5px;
-}
-div.jeeDialogTitle {
   font-size: 14px;
   font-weight: 500;
   line-height: 21px;
+}
+div.jeeDialogTitle span.title {
+  display: inline-block;
+  max-width: calc(100% - 120px);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 div.jeeDialog > div.jeeDialogTitle button {
   float: right;
@@ -247,12 +252,7 @@ div.jeeDialog.jeeDialogMain > div.jeeDialogTitle {
   cursor: move;
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > span.title {
-  display: inline-block;
-  max-width: calc(100% - 150px);
   cursor: move !important;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > button.btClose {
   font-size: 26px !important;
