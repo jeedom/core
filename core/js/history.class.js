@@ -1224,12 +1224,12 @@ register legend context menu
 @jeedom.history.initChart
 */
 jeedom.history.initLegendContextMenu = function(_chartId) {
-  $.contextMenu({
+  new jeeCtxMenu({
     selector: "div.chartContainer .highcharts-legend-item",
     position: function(opt, x, y) {
       //legend bottom graph, open menu upside if possible:
-      var menuHeight = opt.$menu[0].clientHeight
-      var menuWidth = opt.$menu[0].clientWidth
+      var menuHeight = opt.ctxMenu.clientHeight
+      var menuWidth = opt.ctxMenu.clientWidth
       var winHeight = window.innerHeight
       var winWidth = window.innerWidth
 
@@ -1242,16 +1242,19 @@ jeedom.history.initLegendContextMenu = function(_chartId) {
       if ((x + menuWidth + 20) > winWidth) {
         newLeft = x - (menuWidth + 20)
       }
-      opt.$menu.css({top: newTop, left: newLeft})
+      Object.assign(opt.ctxMenu.style, {
+        top: newTop + 'px',
+        left: newLeft + 'px'
+      })
     },
-    build: function($trigger) {
-      var __ctxel__ = $trigger[0].parentNode.closest('div.chartContainer').getAttribute('id')
+    build: function(trigger) {
+      var __ctxel__ = trigger.parentNode.closest('div.chartContainer').getAttribute('id')
       var chart = jeedom.history.chart[__ctxel__].chart
       if (!chart) return false
       if (jeedom.history.chart[chart._jeeId].type == 'pie') return false
       if (jeedom.history.chart[chart._jeeId].comparing) return false
 
-      var serieId = $trigger.attr('class').split('highcharts-series-')[1].split(' ')[0]
+      var serieId = trigger.getAttribute('class').split('highcharts-series-')[1].split(' ')[0]
       var cmdId = chart.series[serieId].userOptions.id
       var axis = chart.get(cmdId)
       var contextmenuitems = {}

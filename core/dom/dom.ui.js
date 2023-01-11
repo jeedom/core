@@ -1767,13 +1767,13 @@ var jeeCtxMenu = function(_options)
     selector: false,
     appendTo: 'body',
     items: false,
-    build: false, //Dynamic function building called at show
     className: '',
     autoHide: true,
     zIndex: 12000,
     isDisable: false,
-    position: false, //fn called on setPosition
     callback: false, //Default item callback
+    build: false, //Dynamic function building called at show
+    position: false, //fn called on setPosition
     events: {
       show: function() {}, //Beforte show
       hide: function() {}, //Before hide
