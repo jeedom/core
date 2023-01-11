@@ -120,9 +120,13 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   jeedomUtils.closeJeeDialogs()
   jeedom.cmd.resetUpdateFunction()
 
+  //Deprecated jQuery contextMenu
   $.contextMenu('destroy')
   document.querySelectorAll('.context-menu-root').remove()
 
+  jeedomUtils.jeeCtxMenuDestroy()
+
+  //Deprecated jQuery UI dialogs
   try {
     $(".ui-dialog-content").dialog("close")
   } catch (e) { }
@@ -582,7 +586,7 @@ jeedomUtils.transitionJeedomBackground = function(_path) {
 
 
 //Jeedom UI__
-jeedomUtils.initJeedomModals = function() {
+jeedomUtils.initJeedomModals = function() { //Deprecated jQuery UI dilaog/bootbox
   $.fn.modal.Constructor.prototype.enforceFocus = function() { }
 
   //Deprecated bootbox, keep for plugins
@@ -887,7 +891,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
     }
 
     //display cron modal construction:
-    if (event.target.parentNode != null && (event.target.parentNode.matches('.jeeHelper[data-helper=cron]') || event.target.matches('.jeeHelper[data-helper=cron]'))) {
+    if (event.target.parentNode != null && (event.target.parentNode.matches('.jeeHelper[data-helper="cron"]') || event.target.matches('.jeeHelper[data-helper="cron"]'))) {
       event.stopPropagation()
       var input = event.target.closest('div').querySelector('input')
       if (input) {
@@ -1151,6 +1155,16 @@ jeedomUtils.initSpinners = function() {
     icons: {
       down: "ui-icon-triangle-1-s",
       up: "ui-icon-triangle-1-n"
+    }
+  })
+}
+
+jeedomUtils.jeeCtxMenuDestroy = function() {
+  document.querySelectorAll('div.jeeCtxMenu').forEach(_ctx =>  {
+    if (isset(_ctx._jeeCtxMenu)) {
+      _ctx._jeeCtxMenu.destroy()
+    } else {
+      _ctx.remove()
     }
   })
 }
@@ -1622,37 +1636,39 @@ jeedomUtils.getElementType = function(_el) {
       thisType += '[data-l2key="' + _el.getAttribute("data-l2key") + '"]'
     }
   }
-
   return thisType
 }
 jeedomUtils.setCheckContextMenu = function(_callback) {
   let ctxSelector = 'input[type="checkbox"].checkContext, input[type="radio"].checkContext'
-  $.contextMenu('destroy', ctxSelector)
-  document.querySelector('.contextmenu-checkbox')?.remove()
-  jeedomUtils.checkContextMenu = $.contextMenu({
+  try {
+    document.querySelector('.contextmenu-checkbox')._jeeCtxMenu.destroy()
+    document.querySelector('.contextmenu-checkbox')?.remove()
+  } catch(e) { }
+
+  jeedomUtils.checkContextMenu = new jeeCtxMenu({
     selector: ctxSelector,
-    appendTo: 'div#div_pageContainer',
+    appendTo: 'body',
     className: 'contextmenu-checkbox',
     zIndex: 9999,
     items: {
       all: {
         name: "{{Sélectionner tout}}",
         callback: function(key, opt) {
-          let thisType = jeedomUtils.getElementType(opt.$trigger[0])
+          let thisType = jeedomUtils.getElementType(opt.trigger)
           jeedomUtils.setCheckboxStateByType(thisType, 1, _callback)
         }
       },
       none: {
         name: "{{Désélectionner tout}}",
         callback: function(key, opt) {
-          let thisType = jeedomUtils.getElementType(opt.$trigger[0])
+          let thisType = jeedomUtils.getElementType(opt.trigger)
           jeedomUtils.setCheckboxStateByType(thisType, 0, _callback)
         }
       },
       invert: {
         name: "{{Inverser la sélection}}",
         callback: function(key, opt) {
-          let thisType = jeedomUtils.getElementType(opt.$trigger[0])
+          let thisType = jeedomUtils.getElementType(opt.trigger)
           jeedomUtils.setCheckboxStateByType(thisType, -1, _callback)
         }
       }
