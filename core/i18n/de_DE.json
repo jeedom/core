@@ -3076,10 +3076,10 @@
         "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "Der Import von Widgets erfolgt im JSON-Format von zuvor exportierten Widgets"
     },
     "desktop\/js\/profils.js": {
+        "Opération effectuée": "Operation durchgeführt",
         "Les deux mots de passe ne sont pas identiques": "Die beiden Passwörter sind nicht identisch",
         "Sauvegarde effectuée": "Sicherung abgeschlossen",
-        "Authentification 2 étapes": "2-stufige Authentifizierung",
-        "Opération effectuée": "Operation durchgeführt"
+        "Authentification 2 étapes": "2-stufige Authentifizierung"
     },
     "desktop\/js\/administration.js": {
         "Somme": "Summe",

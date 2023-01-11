@@ -3076,10 +3076,10 @@
         "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "L'import de widgets se fait au format json à partir de widgets précedemment exporté"
     },
     "desktop\/js\/profils.js": {
+        "Opération effectuée": "Operasi dilakukan",
         "Les deux mots de passe ne sont pas identiques": "Kedua password tidak identik",
         "Sauvegarde effectuée": "Backup dibuat",
-        "Authentification 2 étapes": "Otentikasi langkah 2",
-        "Opération effectuée": "Operasi dilakukan"
+        "Authentification 2 étapes": "Otentikasi langkah 2"
     },
     "desktop\/js\/administration.js": {
         "Somme": "Jumlah",

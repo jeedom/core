@@ -3076,10 +3076,10 @@
         "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "ウィジェットのインポートは、以前にエクスポートされたウィジェットからjson形式で行われます。"
     },
     "desktop\/js\/profils.js": {
+        "Opération effectuée": "実行された操作",
         "Les deux mots de passe ne sont pas identiques": "2つのパスワードは同一ではありません",
         "Sauvegarde effectuée": "バックアップ完了",
-        "Authentification 2 étapes": "2段階認証",
-        "Opération effectuée": "実行された操作"
+        "Authentification 2 étapes": "2段階認証"
     },
     "desktop\/js\/administration.js": {
         "Somme": "サム",
