@@ -505,7 +505,7 @@
         "Graphique de fond de tuile, paramètres de widget et optionnels.": "Gráfico de fundo lado a lado, widget e configurações opcionais",
         "Graphique de fond": "Gráfico de fundo",
         "Information": "Informação",
-        "Aucune": "Nenhum",
+        "Aucune": "Nenhuma",
         "Couleur": "Cor",
         "Période": "Período",
         "Mois": "Mês",
@@ -670,7 +670,7 @@
         "Type": "Tipo",
         "Aucun": "Nenhum",
         "Catégorie": "Categoria",
-        "Aucune": "Nenhum",
+        "Aucune": "Nenhuma",
         "Général": "Geral",
         "Scénario": "Cenário",
         "Etape 4 : Demande de support": "Passo 4: Pedido de Suporte",
@@ -1027,7 +1027,7 @@
         "Date de collecte": "Data de coleta",
         "Graphique de fond": "Gráfico de fundo",
         "Information": "Informação",
-        "Aucune": "Nenhum",
+        "Aucune": "Nenhuma",
         "Couleur": "Cor",
         "Période": "Período",
         "Mois": "Mês",
@@ -1593,7 +1593,7 @@
         "Continuer la mise à jour en cas d'erreur.": "Continue a atualização em caso de erro",
         "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur 'Aucune'.": "A opção a seguir pode ser modificada apenas a pedido do suporte, caso contrário, DEVE ser configurada como 'Nenhuma'",
         "Mise à jour à réappliquer": "Atualização para reaplicar",
-        "Aucune": "Nenhum"
+        "Aucune": "Nenhuma"
     },
     "desktop\/php\/view.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -4890,7 +4890,7 @@
         "Hauteur (px)": "Altura (px)",
         "Délai": "Atraso",
         "Option(s)": "Opção(s)",
-        "Aucune": "Nenhum",
+        "Aucune": "Nenhuma",
         "Aucun": "Nenhum",
         "Principale": "Principal"
     },
