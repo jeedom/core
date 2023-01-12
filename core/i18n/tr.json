@@ -3018,8 +3018,8 @@
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Etkileşimi kaldırmak istediğinizden emin misiniz"
     },
     "desktop\/js\/timeline.js": {
-        "Configuration de l'historique des commandes": "Komut geçmişini yapılandırma",
         "Ev ements de la timeline supprim  avec succ ": "Ev ements de la timeline supprim  avec succ",
+        "Configuration de l'historique des commandes": "Komut geçmişini yapılandırma",
         "Log d'exécution du scénario": "Senaryonun çalışma logu",
         "Historique": "Geçmiş",
         "Configuration de la commande": "Komutanın ayarları"
@@ -3183,9 +3183,9 @@
         "Vue d'ensemble des objets": "Vue d'ensemble des objets"
     },
     "desktop\/js\/system.js": {
+        "Commande :": "Komuta :",
         "Êtes-vous sûr de vouloir éxécuter cette commande :": "Etes-vous sûr de vouloir exécuter cette commande :",
-        "Celle-ci est classé en dangereuse": "Celle-ci est classé en dangereuse",
-        "Commande :": "Komuta :"
+        "Celle-ci est classé en dangereuse": "Celle-ci est classé en dangereuse"
     },
     "desktop\/js\/backup.js": {
         "L\\'opération est réussie": "Operasyon başarıldı",

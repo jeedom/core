@@ -3018,8 +3018,8 @@
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Möchten Sie die Interaktion wirklich löschen?"
     },
     "desktop\/js\/timeline.js": {
-        "Configuration de l'historique des commandes": "Die Konfigurations-Chronik der Befehle",
         "Ev ements de la timeline supprim  avec succ ": "Timeline-Ereignisse erfolgreich gelöscht",
+        "Configuration de l'historique des commandes": "Die Konfigurations-Chronik der Befehle",
         "Log d'exécution du scénario": "Ausführungs Protokoll des Szenarios",
         "Historique": "Chronik",
         "Configuration de la commande": "Befehl Konfiguration"
@@ -3183,9 +3183,9 @@
         "Vue d'ensemble des objets": "Objektübersicht"
     },
     "desktop\/js\/system.js": {
+        "Commande :": "Bestellung:",
         "Êtes-vous sûr de vouloir éxécuter cette commande :": "Sind Sie sicher, dass Sie diesen Befehl ausführen möchten:",
-        "Celle-ci est classé en dangereuse": "Es wird als gefährlich eingestuft",
-        "Commande :": "Bestellung:"
+        "Celle-ci est classé en dangereuse": "Es wird als gefährlich eingestuft"
     },
     "desktop\/js\/backup.js": {
         "L\\'opération est réussie": "Die Operation ist erfolgreich",

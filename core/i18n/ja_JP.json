@@ -3018,8 +3018,8 @@
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "インタラクションを削除してもよろしいですか"
     },
     "desktop\/js\/timeline.js": {
-        "Configuration de l'historique des commandes": "歴史Configurationフォームのコントロール",
         "Ev ements de la timeline supprim  avec succ ": "Ev ements de la timeline supprim  avec succ",
+        "Configuration de l'historique des commandes": "歴史Configurationフォームのコントロール",
         "Log d'exécution du scénario": "スクリプトの実行をログに記録します",
         "Historique": "歴史的",
         "Configuration de la commande": "設定された制御"
@@ -3183,9 +3183,9 @@
         "Vue d'ensemble des objets": "Vue d'ensemble des objets"
     },
     "desktop\/js\/system.js": {
+        "Commande :": "注文：",
         "Êtes-vous sûr de vouloir éxécuter cette commande :": "このコマンドを実行してよろしいですか：",
-        "Celle-ci est classé en dangereuse": "危険に分類されます",
-        "Commande :": "注文："
+        "Celle-ci est classé en dangereuse": "危険に分類されます"
     },
     "desktop\/js\/backup.js": {
         "L\\'opération est réussie": "操作は成功しました",
