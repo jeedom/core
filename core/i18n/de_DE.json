@@ -3144,11 +3144,11 @@
         "Vous ne pouvez pas remplacer un équipement par lui même.": "Sie können die Ausrüstung nicht selbst ersetzen",
         "Cet équipement remplace déjà un autre équipement.": "Dieses Gerät ersetzt bereits ein anderes Gerät",
         "Vous ne pouvez pas remplacer un équipement par un équipement de même nom.": "Sie können Ausrüstung nicht durch Ausrüstung mit demselben Namen ersetzen",
-        "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "Es wird dringend empfohlen, vor der Verwendung dieses Tools eine Systemsicherung zu erstellen!",
-        "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Sind Sie sicher, dass Sie diese Ausrüstung und Befehle ersetzen möchten?",
         "Aucun équipement à remplacer ou copier": "Keine Ausrüstung zum Ersetzen oder Kopieren",
         "Aucune commande à remplacer ou copier": "Keine Befehle zum Ersetzen oder Kopieren",
-        "Remplacement effectué": "Ersatz gemacht"
+        "Remplacement effectué": "Ersatz gemacht",
+        "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "Es wird dringend empfohlen, vor der Verwendung dieses Tools eine Systemsicherung zu erstellen!",
+        "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Sind Sie sicher, dass Sie diese Ausrüstung und Befehle ersetzen möchten?"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Supprimée le": "Gelöscht am",
