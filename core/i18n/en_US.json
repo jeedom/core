@@ -92,7 +92,7 @@
     },
     "mobile\/html\/scenariolog.html": {
         "Vider": "Clear",
-        "Pause": "Break",
+        "Pause": "Pause",
         "Rechercher": "Search"
     },
     "mobile\/html\/history.html": {
@@ -193,7 +193,7 @@
         "Supprimer tous": "Delete all",
         "Supprimer": "Delete",
         "Vider": "Clear",
-        "Pause": "Break",
+        "Pause": "Pause",
         "Rechercher": "Search"
     },
     "desktop\/modal\/scenario.human.insert.php": {
@@ -296,7 +296,7 @@
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Log brut": "Raw log",
         "Rechercher": "Search",
-        "Pause": "Break",
+        "Pause": "Pause",
         "Télécharger": "Download",
         "Vider": "Clear",
         "Log vidé avec succès": "Log successfully cleared"
@@ -426,7 +426,7 @@
     },
     "desktop\/modal\/action.insert.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Pause": "Break",
+        "Pause": "Pause",
         "Variable": "Variable",
         "Supprimer une variable": "Delete a variable",
         "Scénario": "Scenario",
@@ -525,7 +525,7 @@
         "Ajouter": "Add",
         "Nom": "Name",
         "Valeur": "Value",
-        "Action": "Stock",
+        "Action": "Action",
         "Disposition": "Layout",
         "Mise en forme de la tuile par défaut ou en mode tableau.": "Formatting the tile by default or in table mode",
         "Mise en forme générale": "General formatting",
@@ -843,7 +843,7 @@
         "Configuration": "Configuration",
         "Log brut": "Raw log",
         "Rechercher": "Search",
-        "Pause": "Break",
+        "Pause": "Pause",
         "Télécharger": "Download",
         "Vider": "Clear",
         "Supprimer": "Delete",
@@ -2736,7 +2736,7 @@
         "Êtes-vous sûr de vouloir supprimer :": "Are you sure you want to delete:"
     },
     "desktop\/js\/log.js": {
-        "Pause": "Break",
+        "Pause": "Pause",
         "Êtes-vous sûr de vouloir vider tous les logs ?": "Are you sure you want to empty all logs?",
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Are you sure you want to delete all logs?"
     },
@@ -3482,7 +3482,7 @@
     },
     "core\/js\/log.class.js": {
         "Reprendre": "Resume",
-        "Pause": "Break"
+        "Pause": "Pause"
     },
     "core\/js\/jeedom.class.js": {
         "Erreur de connexion": "Connexion error",
@@ -3720,7 +3720,7 @@
         "Titre": "Title",
         "Power": "Power",
         "Chaine": "Chain",
-        "Pause": "Break",
+        "Pause": "Pause",
         "Lecture": "Play",
         "Stop": "Stop",
         "Suivant": "Next",
@@ -4517,7 +4517,7 @@
         "Changement de l\\'icone du scénario :": "Change of scenario icon:",
         "[Wait] Condition valide par dépassement de temps :": "[Wait] Condition valid on timeout:",
         "[Wait] Condition valide :": "[Wait] Valid condition:",
-        "Pause de": "Break of",
+        "Pause de": "Pause of",
         "seconde(s)": "second (s)",
         "Action stop": "Stop action",
         "à": "To",
