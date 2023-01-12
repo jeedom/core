@@ -2708,9 +2708,9 @@
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
-        "Rechercher": "検索",
         "Apache non securisé": "Apache non securisé",
         "Apache sécurisé": "Apache sécurisé",
+        "Rechercher": "検索",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "左側の注文をクリックするか、下にカスタム注文を入力してください",
         "OK": "[OK]を"
     },

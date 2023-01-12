@@ -2708,9 +2708,9 @@
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Rechercher": "поиск",
         "Apache non securisé": "Apache non securisé",
         "Apache sécurisé": "Apache sécurisé",
+        "Rechercher": "поиск",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Нажмите на заказ слева или введите заказ ниже",
         "OK": "хорошо"
     },

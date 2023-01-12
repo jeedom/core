@@ -2708,9 +2708,9 @@
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Rechercher": "Buscar",
         "Apache non securisé": "Apache no es seguro",
         "Apache sécurisé": "Apache seguro",
+        "Rechercher": "Buscar",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Haz clic en un comando a la izquierda o escribe un comando personalizado a continuación",
         "OK": "Bueno"
     },
