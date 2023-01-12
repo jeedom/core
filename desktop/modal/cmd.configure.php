@@ -1423,12 +1423,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
   $('#bt_cmdConfigureShowHistory').off('click').on('click', function() {
     jeeDialog.dialog({
       id: 'md_cmdHistory',
-      width: '800px',
-      height: '500px',
-      top: '15vh',
-      retainPosition: true,
       title: "{{Historique}}",
-      zIndex: 1030,
       contentUrl: 'index.php?v=d&modal=cmd.history&id=' + jeephp2js.md_cmdConfigure_cmdInfo.id
     })
   })

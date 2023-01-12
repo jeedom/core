@@ -48,7 +48,10 @@ domUtils.DOMReady = function() {
   domUtils.hideLoading()
   for (var i = 0; i < domUtils.registeredFuncs.length; i++) {
     let f = domUtils.registeredFuncs.shift()
-    f.apply(this)
+    try {
+      f.apply(this)
+    } catch(e) { }
+
   }
 }
 

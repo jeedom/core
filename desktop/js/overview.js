@@ -248,12 +248,6 @@ jeeP.modalContent.addEventListener('click', function(event) {
     }
     jeeDialog.dialog({
       id: 'md_cmdHistory',
-      width: '800px',
-      height: '500px',
-      top: '15vh',
-      retainPosition: true,
-      zIndex: 1021,
-      backdrop: false,
       title: '{{Historique}}',
       contentUrl: 'index.php?v=d&modal=cmd.history&id=' + cmdIds
     })

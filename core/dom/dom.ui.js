@@ -1330,6 +1330,26 @@ var jeeDialog = (function()
 
     /*________________DIALOGS
     */
+    var specialDialogOptions = {
+      md_cmdHistory: {
+        width: '800px',
+        height: '500px',
+        top: '15vh',
+        retainPosition: true,
+        zIndex: 1030,
+        backdrop: false,
+      },
+      jee_modal2: {
+        width:'75vw',
+        top: '7vh',
+        zIndex: 1021,
+      },
+      jee_modal3: {
+        width:'60vw',
+        top: '5vh',
+        zIndex: 1022,
+      }
+    }
     exports.dialog = function(_options) {
       //Require _options.id to construct and initialize a container:
       if (!isset(_options)) _options = {}
@@ -1388,18 +1408,13 @@ var jeeDialog = (function()
           onResize: false
         })
 
-        if (_options.id == 'jee_modal2') {
-          if (!isset(_options.zIndex)) _options.zIndex = 1021
-          if (!isset(_options.width)) _options.width = '75vw'
-          if (!isset(_options.top)) _options.top = "7vh"
-        } else if (_options.id == 'jee_modal3') {
-          if (!isset(_options.zIndex)) _options.zIndex = 1022
-          if (!isset(_options.width)) _options.width = '60vw'
-          if (!isset(_options.top)) _options.top = "5vh"
-        }
-
         _options = domUtils.extend(defaultOptions, _options)
         _options.isMainDialog = true
+
+        //Check special init values:
+        if (_options.id in specialDialogOptions) {
+          _options = domUtils.extend(_options, specialDialogOptions[_options.id])
+        }
 
         if (Object.keys(_options.buttons).length > 0) {
           _options.setFooter = true
