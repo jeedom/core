@@ -1444,12 +1444,7 @@ var jeeDialog = (function()
           },
           close: function() {
             this.dialog._jeeDialog.options.beforeClose()
-
-            //Remove all events:
-            let content = this.dialog.querySelector('div.jeeDialogContent')
-            content.empty()
-            content.replaceWith(content.cloneNode(true))
-
+            this.dialog.querySelector('div.jeeDialogContent').empty()
             this.dialog.unseen()
             this.dialog._jeeDialog.options.onClose()
             cleanBackdrop()
