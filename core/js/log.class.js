@@ -282,9 +282,9 @@ jeedom.log.autoupdate = function(_params) {
         } else {
           log = jeedom.log.stringColorReplace(log)
         }
-        _params.display.html(log)
-      } else {
         _params.display.innerHTML = log
+      } else {
+        _params.display.textContent = log
       }
 
       if (_params.once != 1) {
@@ -310,20 +310,23 @@ jeedom.log.autoupdate = function(_params) {
 
 //Standard log replacement:
 jeedom.log.colorReplacement = {
-  'WARNING:': '<span class="warning">WARNING</span>:',
-  'Erreur': '<span class="danger">Erreur</span>',
-  'OK': '<strong>OK</strong>',
-  '[INFO]': '<span class="label label-xs label-info">INFO</span>',
-  '[DEBUG]': '<span class="label label-xs label-success">DEBUG</span>',
-  '[WARNING]': '<span class="label label-xs label-warning">WARNING</span>',
-  '[ALERT]': '<span class="label label-xs label-warning">ALERT</span>',
-  '[ERROR]': '<span class="label label-xs label-danger">ERROR</span>',
-
+  'WARNING:': '--startspan-- class="warning"--partendspan--WARNING--endspan--:',
+  'Erreur': '--startspan-- class="danger"--partendspan--Erreur--endspan--',
+  'OK': '--startstrong--OK--endstrong--',
+  '[INFO]': '--startspan-- class="label label-xs label-info"--partendspan--INFO--endspan--',
+  '[DEBUG]': '--startspan-- class="label label-xs label-success"--partendspan--DEBUG--endspan--',
+  '[WARNING]': '--startspan-- class="label label-xs label-warning"--partendspan--WARNING--endspan--',
+  '[ALERT]': '--startspan-- class="label label-xs label-warning"--partendspan--ALERT--endspan--',
+  '[ERROR]': '--startspan-- class="label label-xs label-danger"--partendspan--ERROR--endspan--',
 }
 jeedom.log.stringColorReplace = function(_str) {
   for (var re in jeedom.log.colorReplacement) {
     _str = _str.split(re).join(jeedom.log.colorReplacement[re])
   }
+  //Avoid html code:
+  _str = _str.replace(/</g, "&lt;").replace(/>/g, "&gt;")
+  //Set back replaced badges to html:
+  _str = _str.replace(/--startspan--/g, "<span").replace(/--partendspan--/g, ">").replace(/--endspan--/g, "</span>").replace(/--startstrong--/g, "<strong>").replace(/--endstrong--/g, "</strong>")
   return _str
 }
 
@@ -354,3 +357,4 @@ jeedom.log.scenarioColorReplace = function(_str) {
   }
   return _str
 }
+
