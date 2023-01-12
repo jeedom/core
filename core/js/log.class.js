@@ -310,14 +310,14 @@ jeedom.log.autoupdate = function(_params) {
 
 //Standard log replacement:
 jeedom.log.colorReplacement = {
-  'WARNING:': '--startspan-- class="warning"--partendspan--WARNING--endspan--:',
-  'Erreur': '--startspan-- class="danger"--partendspan--Erreur--endspan--',
-  'OK': '--startstrong--OK--endstrong--',
-  '[INFO]': '--startspan-- class="label label-xs label-info"--partendspan--INFO--endspan--',
-  '[DEBUG]': '--startspan-- class="label label-xs label-success"--partendspan--DEBUG--endspan--',
-  '[WARNING]': '--startspan-- class="label label-xs label-warning"--partendspan--WARNING--endspan--',
-  '[ALERT]': '--startspan-- class="label label-xs label-warning"--partendspan--ALERT--endspan--',
-  '[ERROR]': '--startspan-- class="label label-xs label-danger"--partendspan--ERROR--endspan--',
+  'WARNING:': '--startTg--span class="warning"--endTg--WARNING--startTg--/span--endTg--:',
+  'Erreur': '--startTg--span class="danger"--endTg--Erreur--startTg--/span--endTg--',
+  'OK': '--startTg--strong--endTg--OK--startTg--/strong--endTg--',
+  '[INFO]': '--startTg--span class="label label-xs label-info"--endTg--INFO--startTg--/span--endTg--',
+  '[DEBUG]': '--startTg--span class="label label-xs label-success"--endTg--DEBUG--startTg--/span--endTg--',
+  '[WARNING]': '--startTg--span class="label label-xs label-warning"--endTg--WARNING--startTg--/span--endTg--',
+  '[ALERT]': '--startTg--span class="label label-xs label-warning"--endTg--ALERT--startTg--/span--endTg--',
+  '[ERROR]': '--startTg--span class="label label-xs label-danger"--endTg--ERROR--startTg--/span--endTg--',
 }
 jeedom.log.stringColorReplace = function(_str) {
   for (var re in jeedom.log.colorReplacement) {
@@ -326,7 +326,7 @@ jeedom.log.stringColorReplace = function(_str) {
   //Avoid html code:
   _str = _str.replace(/</g, "&lt;").replace(/>/g, "&gt;")
   //Set back replaced badges to html:
-  _str = _str.replace(/--startspan--/g, "<span").replace(/--partendspan--/g, ">").replace(/--endspan--/g, "</span>").replace(/--startstrong--/g, "<strong>").replace(/--endstrong--/g, "</strong>")
+  _str = _str.replace(/--endTg--/g, ">").replace(/--startTg--/g, "<")
   return _str
 }
 
