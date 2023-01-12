@@ -33,9 +33,11 @@ $sysCmdsSudo = array (
 <div id="div_rowSystemCommand" class="row row-overflow">
   <div class="col-lg-2 col-md-3 col-sm-4" style="overflow: hidden auto;">
     <div class="bs-sidebar">
-      <ul class="nav nav-list bs-sidenav list-group" id='ul_listSystemHistory'></ul>
-      <ul class="nav nav-list bs-sidenav list-group">
-        <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%" /></li>
+      <ul id="ul_userListCmdHistory" class="nav nav-list bs-sidenav list-group"></ul>
+      <ul id="ul_systemListCmd" class="nav nav-list bs-sidenav list-group">
+        <li class="filter">
+          <input class="filter form-control input-sm" placeholder="{{Rechercher}}"/>
+        </li>
         <?php
           $list = '';
           foreach ($sysCmds as $cmd) {
