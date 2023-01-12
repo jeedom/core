@@ -197,10 +197,10 @@ jeedom.log.autoupdate = function(_params) {
       if (this.getAttribute('data-state') == 1) {
         this.setAttribute('data-state', 0)
         this.removeClass('btn-warning').addClass('btn-success')
-        this.html('<i class="fa fa-play"></i><span class="hidden-768"> {{Reprendre}}</span>')
+        this.innerHTML = '<i class="fa fa-play"></i><span class="hidden-768"> {{Reprendre}}</span>'
       } else {
         this.removeClass('btn-success').addClass('btn-warning')
-        this.html('<i class="fa fa-pause"></i><span class="hidden-768"> {{Pause}}</span>')
+        this.innerHTML = '<i class="fa fa-pause"></i><span class="hidden-768"> {{Pause}}</span>'
         this.setAttribute('data-state', 1)
         _params.display.scrollTop = _params.display.offsetHeight + 200000
         _params.once = 0
