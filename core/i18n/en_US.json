@@ -2146,7 +2146,7 @@
         "Supprimer tout": "Delete all",
         "Identification": "Identification",
         "Date dernière utilisation": "Last used date",
-        "Action": "Stock",
+        "Action": "Action",
         "Supprimer": "Delete"
     },
     "desktop\/php\/modaldisplay.php": {
@@ -3076,10 +3076,10 @@
         "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "The import of widgets is done in json format from widgets previously exported"
     },
     "desktop\/js\/profils.js": {
+        "Opération effectuée": "Operation performed",
         "Les deux mots de passe ne sont pas identiques": "The two passwords are not identical",
         "Sauvegarde effectuée": "Backup completed",
-        "Authentification 2 étapes": "2-step authentication",
-        "Opération effectuée": "Operation performed"
+        "Authentification 2 étapes": "2-step authentication"
     },
     "desktop\/js\/administration.js": {
         "Somme": "Sum",
