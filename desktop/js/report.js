@@ -22,7 +22,6 @@ if (!jeeFrontEnd.report) {
       window.jeeP = this
     },
     getReportList: function(_type, _id) {
-      console.log('getReportList:', _type, _id)
       jeedom.report.list({
         type: _type,
         id: _id,
@@ -43,7 +42,6 @@ if (!jeeFrontEnd.report) {
       })
     },
     getReport: function(_type, _id, _report) {
-      console.log('getReport:', _type, _id, _report)
       jeedom.report.get({
         type: _type,
         id: _id,
