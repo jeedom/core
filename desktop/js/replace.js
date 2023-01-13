@@ -443,7 +443,6 @@ $('#eqSource').on({
     if (event.target.tagName.toUpperCase() == 'INPUT') return
     //cmd cliked inside li:
     if (event.target.hasClass('cmd')) {
-      event.target.querySelector('.configureCmd').click()
       return false
     }
 
