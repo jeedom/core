@@ -129,7 +129,7 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 			</div>
 		</div>
 
-		<div id="md_specifyUpdate" class="hidden">
+		<div id="md_specifyUpdate-template" class="hidden">
 			<form class="form-horizontal">
 				<fieldset>
 					<div class="alert alert-warning">

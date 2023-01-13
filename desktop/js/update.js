@@ -154,6 +154,7 @@ if (!jeeFrontEnd.update) {
 
           //create a second <pre> for cleaned text to avoid change event infinite loop:
           document.getElementById('div_log').insertAdjacentHTML('beforeend', jeeP.newLogClean)
+          document.getElementById('pre_updateInfo').addClass('hidden')
           jeeP._pre_updateInfo_clean = document.getElementById('pre_updateInfo_clean')
           jeeP._pre_updateInfo_clean.seen()
           jeeP.createUpdateObserver()
@@ -490,7 +491,8 @@ if (!jeeFrontEnd.update) {
         callback: function() {
           var contentEl = jeeDialog.get('#md_update', 'content')
           if (contentEl.querySelector('#md_specifyUpdate') == null) {
-            var newContent = document.getElementById('md_specifyUpdate').cloneNode(true)
+            var newContent = document.getElementById('md_specifyUpdate-template').cloneNode(true)
+            newContent.setAttribute('id', 'md_specifyUpdate')
             contentEl.appendChild(newContent)
           }
 
