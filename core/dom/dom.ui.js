@@ -1342,6 +1342,9 @@ var jeeDialog = (function()
         zIndex: 1030,
         backdrop: false,
       },
+      mod_selectIcon: {
+        zIndex: 1025
+      },
       jee_modal2: {
         width:'75vw',
         top: '7vh',
