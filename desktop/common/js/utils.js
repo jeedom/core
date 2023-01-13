@@ -341,6 +341,7 @@ document.addEventListener('DOMContentLoaded', function() {
 })
 
 jeedomUtils.showAlert = function(_options) {
+  //if (getUrlVars('report') == 1) return
   var options = init(_options, {})
   options.title = init(options.title, '')
   options.message = init(options.message, '')

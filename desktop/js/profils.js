@@ -23,7 +23,7 @@ if (!jeeFrontEnd.profils) {
       /* Not used, also loaded as modal!
       window.jeeP = this
       */
-      this.tableDevices = document.getElementById('tableDevices')
+      this.tableDevices = document.querySelector('#securitytab #tableDevices')
       if (this.tableDevices != null) { //Not modal!
         jeedomUtils.initTableSorter()
         this.tableDevices.config.widgetOptions.resizable_widths = ['', '180px', '180px', '80px']

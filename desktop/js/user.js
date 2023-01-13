@@ -49,8 +49,8 @@ if (!jeeFrontEnd.user) {
           })
         },
         success: function(data) {
-          var table = document.getElementById('table_user').querySelector('tbody')
-          table.empty()
+          var table = document.getElementById('table_user')
+          table.querySelector('tbody').empty()
           var fragment = document.createDocumentFragment()
           var disable, userTR, node
           for (var i in data) {
@@ -124,21 +124,41 @@ if (!jeeFrontEnd.user) {
             newRow.innerHTML = userTR
             newRow.setJeeValues(data[i], '.userAttr')
           }
-          document.querySelector('#table_user tbody').appendChild(fragment)
+          table.querySelector('tbody').appendChild(fragment)
 
-          var $tableDevices = $('#tableDevices')
           jeedomUtils.initTableSorter()
-          $tableDevices[0].config.widgetOptions.resizable_widths = ['', '250px', '180px', '180px', '80px']
-          $tableDevices.trigger('applyWidgets')
-            .trigger('resizableReset')
-            .trigger('sorton', [
-              [
-                [3, 1]
-              ]
-            ])
+          var tableDevices = document.getElementById('tableDevices')
+
+          tableDevices.config.widgetOptions.resizable_widths = ['', '250px', '180px', '180px', '80px']
+          tableDevices.triggerEvent('resizableReset')
+          setTimeout(() => {
+            tableDevices.querySelector('thead tr').children[3].triggerEvent('sort')
+            tableDevices.querySelector('thead tr').children[3].triggerEvent('sort')
+          }, 200)
 
           jeeFrontEnd.modifyWithoutSave = false
           domUtils.hideLoading()
+        }
+      })
+    },
+    saveUser: function() {
+      var users = document.getElementById('table_user').querySelectorAll('tbody tr').getJeeValues('.userAttr')
+      if (!jeeP.checkUsersLogins(users)) return
+      jeedom.user.save({
+        users: users,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function() {
+          jeeP.printUsers()
+          jeedomUtils.showAlert({
+            message: '{{Sauvegarde effectuée}}',
+            level: 'success'
+          })
+          jeeFrontEnd.modifyWithoutSave = false
         }
       })
     },
@@ -152,22 +172,20 @@ document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
-    $('#bt_saveUser').click()
+    jeeP.saveUser()
   }
 })
 
-
 $('#div_administration').on({
   'change': function(event) {
-    if ($(this).val() != 'restrict') {
-      $(this).closest('tr').find('a.bt_manage_restrict_rights').addClass('disabled')
+    let me = event.target.closest('select')
+    if (me.value != 'restrict') {
+      me.closest('tr').querySelector('a.bt_manage_restrict_rights')?.addClass('disabled')
     } else {
-      $(this).closest('tr').find('a.bt_manage_restrict_rights').removeClass('disabled')
+      me.closest('tr').querySelector('a.bt_manage_restrict_rights')?.removeClass('disabled')
     }
-
   }
 }, 'select[data-l1key="profils"]')
-
 
 $("#bt_addUser").on('click', function(event) {
   jeedomUtils.hideAlert()
@@ -207,35 +225,16 @@ $("#bt_addUser").on('click', function(event) {
 })
 
 $("#bt_saveUser").on('click', function(event) {
-  var users = document.getElementById('table_user').querySelectorAll('tbody tr').getJeeValues('.userAttr')
-
-  if (!jeeP.checkUsersLogins(users)) return
-
-  jeedom.user.save({
-    users: users,
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function() {
-      jeeP.printUsers()
-      jeedomUtils.showAlert({
-        message: '{{Sauvegarde effectuée}}',
-        level: 'success'
-      })
-      jeeFrontEnd.modifyWithoutSave = false
-    }
-  })
+  jeeP.saveUser()
 })
 
 $("#table_user").on('click', ".bt_del_user", function(event) {
+  let me = event.target.closest('.bt_del_user')
   jeedomUtils.hideAlert();
   var user = {
-    id: this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
+    id: me.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
   }
-  var userName = this.closest('tr').querySelector('input[data-l1key="login"]').value
+  var userName = me.closest('tr').querySelector('input[data-l1key="login"]').value
   jeeDialog.confirm('{{Vous allez supprimer l\'utilisateur :}}' + ' ' + userName, function(result) {
     if (result) {
       jeedom.user.remove({
@@ -260,9 +259,10 @@ $("#table_user").on('click', ".bt_del_user", function(event) {
 
 $("#table_user").on('click', ".bt_change_mdp_user", function(event) {
   jeedomUtils.hideAlert()
+  let me = event.target.closest('.bt_change_mdp_user')
   var user = {
-    id: this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML,
-    login: this.closest('tr').querySelector('input[data-l1key="login"]').value
+    id: me.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML,
+    login: me.closest('tr').querySelector('input[data-l1key="login"]').value
   }
   jeeDialog.prompt("{{Quel est le nouveau mot de passe ?}}", function(result) {
     if (result !== null) {
@@ -290,8 +290,9 @@ $("#table_user").on('click', ".bt_change_mdp_user", function(event) {
 
 $("#table_user").on('click', ".bt_changeHash", function(event) {
   jeedomUtils.hideAlert()
+  let me = event.target.closest('.bt_changeHash')
   var user = {
-    id: this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
+    id: me.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
   }
   jeeDialog.confirm("{{Êtes-vous sûr de vouloir changer la clef API de l\'utilisateur ?}}", function(result) {
     if (result) {
@@ -327,7 +328,7 @@ $('#div_pageContainer').off('change', '.configKey').on('change', '.configKey:vis
 
 $('#bt_supportAccess').on('click', function(event) {
   jeedom.user.supportAccess({
-    enable: $(this).attr('data-enable'),
+    enable: event.target.getAttribute('data-enable'),
     error: function(error) {
       jeedomUtils.showAlert({
         message: error.message,
@@ -341,9 +342,10 @@ $('#bt_supportAccess').on('click', function(event) {
   })
 })
 
-$('#table_user').off('change','.userAttr[data-l1key="options"][data-l2key="api::mode"]').on('change','.userAttr[data-l1key="options"][data-l2key="api::mode"]', function(event) {
-  var tr = this.closest('tr')
-  if (this.value == 'disable') {
+$('#table_user').on('change', '.userAttr[data-l1key="options"][data-l2key="api::mode"]', function(event) {
+  let me = event.target.closest('[data-l2key="api::mode"]')
+  var tr = me.closest('tr')
+  if (me.value == 'disable') {
     tr.querySelector('.userAttr[data-l1key="hash"]').unseen()
   } else {
     tr.querySelector('.userAttr[data-l1key="hash"]').seen()
@@ -351,24 +353,27 @@ $('#table_user').off('change','.userAttr[data-l1key="options"][data-l2key="api::
 })
 
 $('#table_user').on('click', '.bt_manage_restrict_rights', function(event) {
+  let me = event.target.closest('.bt_manage_restrict_rights')
   jeeDialog.dialog({
     id: 'jee_modal',
     title: "{{Gestion des droits (Utilisateur limité)}}",
-    contentUrl: 'index.php?v=d&modal=user.rights&id=' + this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
+    contentUrl: 'index.php?v=d&modal=user.rights&id=' + me.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
   })
 })
 
 $('#table_user').on('click', '.bt_manage_profils', function(event) {
+  let me = event.target.closest('.bt_manage_profils')
   jeeDialog.dialog({
     id: 'jee_modal',
     title: "{{Gestion du profils}}",
-    contentUrl: 'index.php?v=d&p=profils&ajax=1&user_id=' + this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
+    contentUrl: 'index.php?v=d&p=profils&ajax=1&user_id=' + me.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
   })
 })
 
 $('#table_user').on('click', '.bt_disableTwoFactorAuthentification', function(event) {
+  let me = event.target.closest('.bt_disableTwoFactorAuthentification')
   jeedom.user.removeTwoFactorCode({
-    id: this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML,
+    id: me.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML,
     error: function(error) {
       jeedomUtils.showAlert({
         message: error.message,
@@ -382,21 +387,22 @@ $('#table_user').on('click', '.bt_disableTwoFactorAuthentification', function(ev
 })
 
 $('#table_user').on('click', '.bt_copy_user_rights', function(event) {
-  let from = this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
+  let me = event.target.closest('.bt_copy_user_rights')
+  let from = me.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
   let select_list = []
-  $('#table_user tbody tr').each(function() {
-    if (this.querySelector('.userAttr[data-l1key="login"]').value == 'internal_report') {
-      return;
+  document.querySelectorAll('table_user tbody tr').forEach(_tr => {
+    if (_tr.querySelector('.userAttr[data-l1key="login"]').value == 'internal_report') {
+      return
     }
-    if (this.querySelector('.userAttr[data-l1key="profils"]').value != 'restrict') {
-      return;
+    if (_tr.querySelector('.userAttr[data-l1key="profils"]').value != 'restrict') {
+      return
     }
-    if (this.querySelector('.userAttr[data-l1key="id"]').innerHTML == from) {
-      return;
+    if (_tr.querySelector('.userAttr[data-l1key="id"]').innerHTML == from) {
+      return
     }
     select_list.push({
-      value: this.querySelector('.userAttr[data-l1key="id"]').innerHTML,
-      text: this.querySelector('.userAttr[data-l1key="login"]').value
+      value: _tr.querySelector('.userAttr[data-l1key="id"]').innerHTML,
+      text: _tr.querySelector('.userAttr[data-l1key="login"]').value
     })
   })
   if (select_list.length == 0) {
@@ -407,7 +413,7 @@ $('#table_user').on('click', '.bt_copy_user_rights', function(event) {
     return
   }
   jeeDialog.prompt({
-    title: "{{Vous voulez copier les droit de }}<strong> " + this.closest('tr').querySelector('.userAttr[data-l1key="login"]').value + "</strong> {{vers}} ?",
+    title: "{{Vous voulez copier les droit de }}<strong> " + me.closest('tr').querySelector('.userAttr[data-l1key="login"]').value + "</strong> {{vers}} ?",
     value: select_list[0].value,
     inputType: 'select',
     inputOptions: select_list,
@@ -433,10 +439,8 @@ $('#table_user').on('click', '.bt_copy_user_rights', function(event) {
   });
 })
 
-
-
 $('.bt_deleteSession').on('click', function(event) {
-  var id = $(this).closest('tr').attr('data-id')
+  var id = event.target.closest('tr').getAttribute('data-id')
   jeedom.user.deleteSession({
     id: id,
     error: function(error) {
@@ -452,8 +456,8 @@ $('.bt_deleteSession').on('click', function(event) {
 })
 
 $('.bt_removeRegisterDevice').on('click', function(event) {
-  var key = $(this).closest('tr').attr('data-key')
-  var user_id = $(this).closest('tr').attr('data-user_id')
+  var key = event.target.closest('tr').getAttribute('data-key')
+  var user_id = event.target.closest('tr').getAttribute('data-user_id')
   jeedom.user.removeRegisterDevice({
     key: key,
     user_id: user_id,
