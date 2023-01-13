@@ -478,9 +478,9 @@ class network {
 		return json_decode(shell_exec(system::getCmdSudo() . "ip -j a"), true);
 	}
 
-	public static function cron5() {
+	public static function cron10() {
 		if (config::byKey('dns::token') != '' && config::byKey('market::allowDNS') == 1) {
-			sleep(rand(0, 15));
+			sleep(rand(0, 240));
 			if (!network::test('external')) {
 				sleep(rand(20, 60));
 				if (!network::test('external')) {

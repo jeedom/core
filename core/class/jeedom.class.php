@@ -952,13 +952,6 @@ class jeedom {
 
 	public static function cron5() {
 		try {
-			network::cron5();
-		} catch (Exception $e) {
-			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
-		} catch (Error $e) {
-			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
-		}
-		try {
 			foreach ((update::listRepo()) as $name => $repo) {
 				$class = 'repo_' . $name;
 				if (class_exists($class) && method_exists($class, 'cron5') && config::byKey($name . '::enable') == 1) {
@@ -978,6 +971,13 @@ class jeedom {
 	}
 
 	public static function cron10() {
+		try {
+			network::cron10();
+		} catch (Exception $e) {
+			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
+		} catch (Error $e) {
+			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
+		}
 		try {
 			foreach ((update::listRepo()) as $name => $repo) {
 				$class = 'repo_' . $name;
@@ -1445,15 +1445,9 @@ class jeedom {
 				$sourceEq = eqLogic::byId($_sourceId);
 				$targetEq = eqLogic::byId($_targetId);
 				if (!is_object($sourceEq) || !is_object($targetEq)) continue;
-
-				//replace equipment where used:
-				foreach ($_eqlogics as $_sourceId => $_targetId) {
-					$sourceEq = eqLogic::byId($_sourceId);
-					$targetEq = eqLogic::byId($_targetId);
-					if (!is_object($sourceEq) || !is_object($targetEq)) continue;
-					jeedom::replaceTag(array('eqLogic'.$_sourceId => 'eqLogic'.$_targetId));
-					$return['eqlogics'] += 1;
-				}
+              
+              	//replace equipment where used:
+              	jeedom::replaceTag(array('eqLogic'.$_sourceId => 'eqLogic'.$_targetId));
 
 				//Migrate plan cmd config for eqLogic:
 				$planEqlogics = plan::byLinkTypeLinkId('eqLogic', $sourceEq->getId());
