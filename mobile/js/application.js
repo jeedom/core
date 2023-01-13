@@ -574,7 +574,20 @@ jeedomUtils.initApplication = function(_reinit) {
 		}
 	      } else {
 		   if (redirect != '') {
-                      jeedomUtils.loadPage(redirect, 'Plugin', '', redirect)
+                           jeedom.plugin.get({
+                                  id : redirect,
+                                  async:false,
+                                  error: function (error) {
+                                  alert('Erreur sur affichage du panel');
+                                },
+                               success: function (data) {
+                                  if(data.mobile == 'panel'){
+                                    jeedomUtils.loadPage('panel', 'Plugin', '', redirect)
+                                  }else{
+                                    jeedomUtils.loadPage(redirect, 'Plugin', '', redirect)
+                                  }
+                                }
+                            })
                    }else{
                       jeedomUtils.loadPage('home', '{{Accueil}}') 
                   }
