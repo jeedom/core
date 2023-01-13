@@ -29,17 +29,17 @@ if (!jeeFrontEnd.types) {
     },
     setFamiliesNumber: function() {
       var ul
-      $('span.spanNumber').each(function() {
-        ul = $(this).closest('.eqlogicSortable').find('ul.eqLogicSortable')
-        $(this).text(' (' + ul.find('li.eqLogic').length + ')')
+      document.querySelectorAll('span.spanNumber').forEach(_span => {
+        ul = _span.closest('.eqlogicSortable').querySelector('ul.eqLogicSortable')
+        _span.textContent = ' (' + ul.querySelectorAll('li.eqLogic').length + ')'
       })
     },
     setQueryButtons: function() {
-      $('div.eqlogicSortable').each(function() {
-        if (!Object.keys(jeeP.gen_families).includes($(this).attr('data-id'))) {
-          $(this).find('.bt_queryCmdsTypes').addClass('hidden')
+      document.querySelectorAll('div.eqlogicSortable').forEach(_sort => {
+        if (!Object.keys(jeeP.gen_families).includes(_sort.getAttribute('data-id'))) {
+          _sort.querySelector('.bt_queryCmdsTypes')?.addClass('hidden')
         } else {
-          $(this).find('.bt_queryCmdsTypes').removeClass('hidden')
+          _sort.querySelector('.bt_queryCmdsTypes')?.removeClass('hidden')
         }
 
       })
@@ -88,24 +88,227 @@ if (!jeeFrontEnd.types) {
       return 0;
     },
     //Modal apply:
+    queryCmdsTypes: function(_butAuto) {
+      var genFamilyId = _butAuto.closest('div.eqlogicSortable').getAttribute('data-id')
+      var genFamily = jeeP.gen_families[genFamilyId]
+
+      //Get selected eqLogics and all their cmd data:
+      var queryEqIds = {}
+      queryEqIds[(_butAuto.closest('li.eqLogic ').getAttribute('data-id'))] = {'cmds': []}
+      _butAuto.closest('ul.eqLogicSortable').querySelectorAll('.ui-sortable-handle').forEach(_handle => {
+        if (_handle.querySelector('.cb_selEqLogic').checked) {
+          queryEqIds[_handle.getAttribute('data-id')] = {'cmds': []}
+        }
+      })
+      var cmd
+      for (var _id in queryEqIds) {
+        document.querySelectorAll('li.eqLogic[data-id="' + _id + '"] li.cmd').forEach(_cmd => {
+          cmd = {}
+          cmd['id'] = _cmd.getAttribute('data-id')
+          cmd['name'] = _cmd.getAttribute('data-name').toLowerCase().trim()
+          cmd['type'] = _cmd.getAttribute('data-type')
+          cmd['subtype'] = _cmd.getAttribute('data-subtype')
+          cmd['generic'] = _cmd.getAttribute('data-generic')
+          cmd['genericName'] = _cmd.querySelector('.genericType').textContent.replace(genFamily + jeephp2js.typeStringSep, '')
+          cmd['queryGeneric'] = ''
+          cmd['queryGenericName'] = ''
+          cmd['possibilities'] = []
+          queryEqIds[_id].cmds.push(cmd)
+        })
+      }
+
+      //Iterate for each generic in this family, each eqLogic selected, each eqLogic commands:
+      var thisGen, thisCmd
+      Object.keys(jeeP.genericsByFamily[genFamily]).forEach(key => {
+        thisGen = jeeP.genericsByFamily[genFamily][key]
+        for (var _id in queryEqIds) {
+          for (var _cmd in queryEqIds[_id].cmds) {
+            thisCmd = queryEqIds[_id].cmds[_cmd]
+            if (thisGen.type.toLowerCase() != thisCmd.type.toLowerCase()) continue
+            if (thisGen.subtype.length > 0 && !thisGen.subtype.includes(thisCmd.subtype)) continue
+            thisCmd.possibilities.push(thisGen)
+          }
+        }
+      })
+
+      //Find something in possibilities ...
+      var thisPoss, match
+      for (var _id in queryEqIds) {
+        for (var _cmd in queryEqIds[_id].cmds) {
+          thisCmd = queryEqIds[_id].cmds[_cmd]
+          if (thisCmd.possibilities.length == 0) continue
+          if (thisCmd.possibilities.length == 1) {
+            thisCmd.queryGeneric = thisCmd.possibilities[0].genkey
+            thisCmd.queryGenericName = thisCmd.possibilities[0].name
+            continue
+          }
+          for (var poss in thisCmd.possibilities) {
+            thisPoss = thisCmd.possibilities[poss]
+            match = false
+
+            if (thisPoss.shortName == thisCmd.name)
+              match = true
+            else if (thisPoss.shortName.endsWith(thisCmd.name))
+              match = true
+            else if (thisPoss.subtype.length == 1 && thisPoss.subtype[0] == 'slider' && thisCmd.name.includes('position'))
+              match = true
+            else if (thisPoss.subtype.length == 1 && thisPoss.subtype[0] == 'slider' && thisCmd.name.includes('lumino'))
+              match = true
+            else if (thisPoss.subtype.length == 1 && thisPoss.subtype[0] == 'slider' && thisCmd.name.includes('intensi'))
+              match = true
+            else if (thisPoss.shortName.includes(thisCmd.name))
+              match = true
+            else if (jeeP.levenshteinDistance(thisPoss.shortName, thisCmd.name) < (thisCmd.name.length / 2) +1)
+              match = true
+
+            if (match) {
+              thisCmd.queryGeneric = thisPoss.genkey
+              thisCmd.queryGenericName = thisPoss.name
+              break
+            }
+          }
+        }
+      }
+
+      //_______________modal
+      jeeDialog.dialog({
+        id: 'md_applyCmdsTypes',
+        title: "{{Types Génériques automatiques}} (" + genFamily + ")",
+        width: 'calc(80% - 200px)',
+        buttons: {
+          confirm: {
+            label: '<i class="fa fa-check"></i> {{Appliquer}}',
+            className: 'success',
+            callback: {
+              click: function(event) {
+                jeeFrontEnd.types.applyModalGeneric()
+              }
+            }
+          },
+          cancel: {
+            className: 'hidden'
+          }
+        },
+        onClose: function() {
+          jeeDialog.get('#md_applyCmdsTypes').destroy()
+        },
+      })
+
+      var container = document.querySelector('#md_applyCmdsTypes .jeeDialogContent')
+      container.setAttribute('data-generic', genFamilyId)
+      var inner = '<br/>'
+      var eqName, cmdName, thisCmd, thisClass, select
+      for (var _id in queryEqIds) {
+        inner += '<div class="queryEq" data-id="' + _id + '">'
+        eqName = document.querySelector('li.eqLogic[data-id="' + _id + '"]').getAttribute('data-name')
+        inner += '<div class="center biggerText">' + eqName + '</div>'
+        for (var _cmd in queryEqIds[_id].cmds) {
+          thisCmd = queryEqIds[_id].cmds[_cmd]
+          cmdName = document.querySelector('li.cmd[data-id="' + thisCmd.id + '"]').getAttribute('data-name')
+          thisClass = thisCmd.type == 'info' ? 'alert-info' : 'alert-warning'
+
+          inner += '<div class="form-group queryCmd" data-id="' + thisCmd.id + '">'
+          inner += '<label class="col-xs-2">' + cmdName + '</label>'
+          inner += '<span class="col-xs-3 ' + thisClass + '">' + thisCmd.genericName + '</span>'
+
+          select = jeeP.getSelectCmd(genFamily, thisCmd.type, thisCmd.subtype)
+          select = select.replace('<option value="' + thisCmd.queryGeneric + '">', '<option selected value="' + thisCmd.queryGeneric + '">')
+
+          inner += '<div class="col-xs-6">' + select + '</div>'
+          inner += '<div class="col-xs-1"><input type="checkbox" class="cb_selCmd" checked/></div>'
+          inner += '</div>'
+        }
+        inner += '</div>'
+      }
+
+      container.empty().insertAdjacentHTML('beforeend', inner)
+
+    },
     applyModalGeneric: function() {
-      var container = $('#md_applyCmdsTypes .jeeDialogContent')
-      var genFamilyId = container.attr('data-generic')
-      var queryEq, genericName
-      container.find('.queryCmd').each(function() {
-        queryEq = $(this)
-        if ($(this).find('.cb_selCmd').is(':checked')) {
-          genericName = $(this).find('.modalCmdGenericSelect option:selected').text()
-          if (genericName != '{{Aucun}}') genericName = genFamilyId + jeephp2js.typeStringSep + genericName
-          $('div.eqlogicSortable[data-id="' + genFamilyId + '"] li.cmd[data-id="' + $(this).attr('data-id') + '"]').attr({
-            'data-changed': '1',
-            'data-generic': $(this).find('.modalCmdGenericSelect').val()
-          }).find('span.genericType').text(genericName)
+      var container = document.querySelector('#md_applyCmdsTypes .jeeDialogContent')
+      var genFamilyId = container.getAttribute('data-generic')
+      var cmd, select, genericName
+      container.querySelectorAll('.queryCmd').forEach(_queryCmd => {
+        if (_queryCmd.querySelector('.cb_selCmd').checked) {
+          select = _queryCmd.querySelector('.modalCmdGenericSelect')
+          genericName = select.options[select.selectedIndex].text
+          if (genericName != '{{Aucun}}') {
+            genericName = genFamilyId + jeephp2js.typeStringSep + genericName
+          }
+          cmd = document.querySelector('div.eqlogicSortable[data-id="' + genFamilyId + '"] li.cmd[data-id="' + _queryCmd.getAttribute('data-id') + '"]')
+          cmd.setAttribute('data-changed', '1')
+          cmd.setAttribute('data-generic', select.value)
+          cmd.querySelector('span.genericType').textContent = genericName
           jeeFrontEnd.modifyWithoutSave = true
         }
       })
       jeeDialog.get('#md_applyCmdsTypes').close()
-    }
+    },
+    //Save:
+    saveGenericTypes: function() {
+      var eqLogics = []
+      var eqGeneric
+      document.querySelectorAll('.eqlogicSortable').forEach(_listEqlogic => {
+        eqGeneric = _listEqlogic.getAttribute('data-id')
+        if (eqGeneric == 'none') {
+          eqGeneric = null
+        }
+        _listEqlogic.querySelectorAll('li.eqLogic').forEach(_eqlogic => {
+          if (_eqlogic.getAttribute('data-changed') == '0') return true
+          eqLogics.push({
+            id : _eqlogic.getAttribute('data-id'),
+            generic_type : eqGeneric
+          })
+        })
+      })
+
+      if (eqLogics.length > 0) {
+        jeedom.eqLogic.setGenericType({
+          eqLogics: eqLogics,
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+            return false
+          }
+        })
+      }
+
+      //save cmds:
+      var cmds = []
+      document.querySelectorAll('li.cmd').forEach(_cmd => {
+        if (_cmd.getAttribute('data-changed') == '0') return true
+        cmds.push({
+          id : _cmd.getAttribute('data-id'),
+          generic_type : _cmd.getAttribute('data-generic')
+        })
+      })
+
+      if (cmds.length > 0) {
+        jeedom.cmd.multiSave({
+          cmds: cmds,
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+            return false
+          }
+        })
+      }
+
+      //back to work!
+      document.querySelectorAll('li.eqLogic, li.cmd').forEach(_el => {
+        _el.setAttribute('data-changed', '0')
+      })
+      jeeFrontEnd.modifyWithoutSave = false
+
+      jeedomUtils.showAlert({
+        message: '{{Types Génériques sauvegardés}}' + ' (equipment: ' + eqLogics.length + ' | command: ' + cmds.length + ')',
+        level: 'success'
+      })
+    },
   }
 }
 
@@ -120,60 +323,61 @@ $('#in_searchTypes').on('keyup', function(event) {
     var searchID = search
     if (isNaN(search)) searchID = false
 
-    $('.panel-collapse').attr('data-show', 0)
-    $('.eqLogic').show()
-    $('.eqLogicCmds').hide()
+    document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.addClass('in').setAttribute('data-show', 0) })
+    document.querySelectorAll('.eqLogic').seen()
+    document.querySelectorAll('.eqLogicCmds').unseen()
 
     if (search == '') {
-      $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
+      document.querySelectorAll('.panel-collapse.in').removeClass('in')
       return
     }
 
     search = jeedomUtils.normTextLower(search)
     var eqLogic, eqParent, eqId
     var eqName, type, category, cmdName
-    $('.eqLogic').each(function() {
-      eqLogic = $(this)
-      eqParent = eqLogic.parents('.panel.panel-default').first()
+    document.querySelectorAll('.eqLogic').forEach(_eqlogic => {
+      eqParent = _eqlogic.closest('.panel.panel-default')
       if (searchID) {
-        eqId = eqLogic.attr('data-id')
+        eqId = _eqlogic.getAttribute('data-id')
         if (eqId != searchID) {
-          eqLogic.hide()
+          _eqlogic.unseen()
         } else {
-          eqLogic.parents('.panel-collapse').attr('data-show', 1)
+          _eqlogic.closest('.panel-collapse').setAttribute('data-show', '1')
           return
         }
       } else {
-        eqName = jeedomUtils.normTextLower(eqLogic.attr('data-name'))
-        type = jeedomUtils.normTextLower(eqLogic.attr('data-type'))
-        category = jeedomUtils.normTextLower(eqLogic.attr('data-translate-category'))
-        if (eqName.indexOf(search) < 0 && type.indexOf(search) < 0 && category.indexOf(search) < 0) {
-          eqLogic.hide()
+        eqName = jeedomUtils.normTextLower(_eqlogic.getAttribute('data-name'))
+        type = jeedomUtils.normTextLower(_eqlogic.getAttribute('data-type'))
+        category = jeedomUtils.normTextLower(_eqlogic.getAttribute('data-translate-category'))
+        if (!eqName.includes(search) && !type.includes(search) && !category.includes(search)) {
+          _eqlogic.unseen()
         } else {
-          eqLogic.parents('.panel-collapse').attr('data-show', 1)
+          _eqlogic.closest('.panel-collapse').setAttribute('data-show', '1')
         }
       }
     })
-    $('.panel-collapse[data-show="1"]').collapse('show')
-    $('.panel-collapse[data-show="0"]').collapse('hide')
+    document.querySelectorAll('.panel-collapse[data-show="1"]').addClass('in')
+    document.querySelectorAll('.panel-collapse[data-show="0"]').removeClass('in')
   } catch (error) {
     console.error(error)
   }
 })
 $('#bt_resetypeSearch').on('click', function(event) {
-  $('#in_searchTypes').val('').keyup()
-  $('.cb_selEqLogic').prop("checked", false)
+  let input = document.getElementById('in_searchTypes')
+  input.value = ''
+  input.triggerEvent('keyup')
+  document.querySelectorAll('.cb_selEqLogic').forEach(_check => { _check.checkd = false })
 })
 $('#bt_openAll').off('click').on('click', function(event) {
-  $('.accordion-toggle[aria-expanded="false"]').click()
+  document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.addClass('in') })
   if (event.ctrlKey || event.metaKey) {
-    $('ul.eqLogicCmds').show()
+    document.querySelectorAll('ul.eqLogicCmds').seen()
   }
 })
 $('#bt_closeAll').off('click').on('click', function(event) {
-  $('.accordion-toggle[aria-expanded="true"]').click()
+  document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.removeClass('in') })
   if (event.ctrlKey || event.metaKey) {
-    $('ul.eqLogicCmds').hide()
+    document.querySelectorAll('ul.eqLogicCmds').unseen()
   }
 })
 
@@ -306,15 +510,15 @@ new jeeCtxMenu({
     return {
       callback: function(key, options) {
         if (options.commands[key].id == 'delete_me') {
-          $('li.cmd[data-id="' + cmdId + '"] .genericType').text('None')
-          $('li.cmd[data-id="' + cmdId + '"]').attr('data-generic', '')
+          document.querySelector('li.cmd[data-id="' + cmdId + '"] .genericType').textContent = 'None'
+          document.querySelector('li.cmd[data-id="' + cmdId + '"]').setAttribute('data-generic', '')
         } else {
-          //var text = options.commands[key].id.split('::')[0] + jeephp2js.typeStringSep + options.commands[key].$node[0].innerText
+          //var text = options.commands[key].id.split('::')[0] + jeephp2js.typeStringSep + options.commands[key].node.innerText
           var text = options.commands[key].id.split('::')[0] + jeephp2js.typeStringSep + options.commands[key].name
-          $('li.cmd[data-id="' + cmdId + '"] .genericType').text(text)
-          $('li.cmd[data-id="' + cmdId + '"]').attr('data-generic', options.commands[key].id.split('::')[1])
+          document.querySelector('li.cmd[data-id="' + cmdId + '"] .genericType').textContent = text
+          document.querySelector('li.cmd[data-id="' + cmdId + '"]').setAttribute('data-generic', options.commands[key].id.split('::')[1])
         }
-        $('li.cmd[data-id="' + cmdId + '"]').attr('data-changed', '1')
+        document.querySelector('li.cmd[data-id="' + cmdId + '"]').setAttribute('data-changed', '1')
         jeeFrontEnd.modifyWithoutSave = true
       },
       items: contextmenuitems
@@ -356,10 +560,10 @@ new jeeCtxMenu({
         var dataGeneric = options.commands[key].id
         if (dataGeneric == 'none') dataGeneric = ''
         for (var idx in eqIds) {
-          $('li.eqLogic[data-id="' + eqIds[idx] + '"]').attr({
-            'data-generic': dataGeneric,
-            'data-changed': '1'
-          }).appendTo($('#gen_' + dataGeneric + ' ul.eqLogicSortable'))
+          let eqlogic = document.querySelector('li.eqLogic[data-id="' + eqIds[idx] + '"]')
+          eqlogic.setAttribute('data-generic', dataGeneric)
+          eqlogic.setAttribute('data-changed', '1')
+          document.querySelector('#gen_' + dataGeneric + ' ul.eqLogicSortable').appendChild(eqlogic)
         }
         jeeP.setFamiliesNumber()
         jeeP.setQueryButtons()
@@ -375,254 +579,54 @@ new jeeCtxMenu({
   }
 })
 
-
-
-
 //UI:
 $('.eqLogicSortable > li.eqLogic').on('click', function(event) {
   if (event.target.tagName.toUpperCase() == 'I') return
   //checkbox clicked:
   if (event.target.tagName.toUpperCase() == 'INPUT') return
 
-  if (!$(event.target).hasClass('eqLogic')) {
+  if (!event.target.hasClass('eqLogic')) {
     event.stopPropagation()
     return false
   }
 
-  var $el = $(this).find('ul.eqLogicCmds')
-  if ($el.is(':visible')) {
-    $el.hide()
+  var el = event.target.closest('.eqLogicSortable > li.eqLogic').querySelector('ul.eqLogicCmds')
+  if (el.isVisible()) {
+    el.unseen()
   } else {
-    $el.show()
+    el.seen()
   }
 })
 
 $('.bt_resetCmdsTypes').on('click', function(event) {
-  $(this).closest('li.eqLogic').find('ul.eqLogicCmds li.cmd').each(function() {
-    $(this).attr({
-      'data-generic': '',
-      'data-changed': '1'
-    }).find('.genericType').text('None')
+  let me = event.target.closest('.bt_resetCmdsType')
+  me.closest('li.eqLogic').querySelectorAll('ul.eqLogicCmds li.cmd').forEach(_cmd => {
+    _cmd.setAttribute('data-generic', '')
+    _cmd.setAttribute('data-changed', '1')
+    _cmd.querySelector('.genericType').textContent = 'None'
   })
   jeeFrontEnd.modifyWithoutSave = true
 })
 
 //Auto apply
 $('.bt_queryCmdsTypes').off('click').on('click', function(event) {
-  var genFamilyId = $(this).closest('div.eqlogicSortable').attr('data-id')
-  var genFamily = jeeP.gen_families[genFamilyId]
-
-  //Get selected eqLogics and all their cmd data:
-  var queryEqIds = {}
-  queryEqIds[($(this).closest('li.eqLogic ').attr('data-id'))] = {'cmds': []}
-  $(this).closest('ul.eqLogicSortable').find('.ui-sortable-handle').each(function() {
-    if ($(this).find('.cb_selEqLogic').prop('checked') == true) {
-      queryEqIds[$(this).attr('data-id')] = {'cmds': []}
-    }
-  })
-  var cmd
-  for (var _id in queryEqIds) {
-    $('li.eqLogic[data-id="' + _id + '"] li.cmd').each(function() {
-      cmd = {}
-      cmd['id'] = $(this).attr('data-id')
-      cmd['name'] = $(this).attr('data-name').toLowerCase().trim()
-      cmd['type'] = $(this).attr('data-type')
-      cmd['subtype'] = $(this).attr('data-subtype')
-      cmd['generic'] = $(this).attr('data-generic')
-      cmd['genericName'] = $(this).find('.genericType').text().replace(genFamily + jeephp2js.typeStringSep, '')
-      cmd['queryGeneric'] = ''
-      cmd['queryGenericName'] = ''
-      cmd['possibilities'] = []
-      queryEqIds[_id].cmds.push(cmd)
-    })
-  }
-
-  //Iterate for each generic in this family, each eqLogic selected, each eqLogic commands:
-  var thisGen, thisCmd
-  Object.keys(jeeP.genericsByFamily[genFamily]).forEach(key => {
-    thisGen = jeeP.genericsByFamily[genFamily][key]
-    for (var _id in queryEqIds) {
-      for (var _cmd in queryEqIds[_id].cmds) {
-        thisCmd = queryEqIds[_id].cmds[_cmd]
-        if (thisGen.type.toLowerCase() != thisCmd.type.toLowerCase()) continue
-        if (thisGen.subtype.length > 0 && !thisGen.subtype.includes(thisCmd.subtype)) continue
-        thisCmd.possibilities.push(thisGen)
-      }
-    }
-  })
-
-  //Find something in possibilities ...
-  var thisPoss, match
-  for (var _id in queryEqIds) {
-    for (var _cmd in queryEqIds[_id].cmds) {
-      thisCmd = queryEqIds[_id].cmds[_cmd]
-      if (thisCmd.possibilities.length == 0) continue
-      if (thisCmd.possibilities.length == 1) {
-        thisCmd.queryGeneric = thisCmd.possibilities[0].genkey
-        thisCmd.queryGenericName = thisCmd.possibilities[0].name
-        continue
-      }
-      for (var poss in thisCmd.possibilities) {
-        thisPoss = thisCmd.possibilities[poss]
-        match = false
-
-        if (thisPoss.shortName == thisCmd.name)
-          match = true
-        else if (thisPoss.shortName.endsWith(thisCmd.name))
-          match = true
-        else if (thisPoss.subtype.length == 1 && thisPoss.subtype[0] == 'slider' && thisCmd.name.includes('position'))
-          match = true
-        else if (thisPoss.subtype.length == 1 && thisPoss.subtype[0] == 'slider' && thisCmd.name.includes('lumino'))
-          match = true
-        else if (thisPoss.subtype.length == 1 && thisPoss.subtype[0] == 'slider' && thisCmd.name.includes('intensi'))
-          match = true
-        else if (thisPoss.shortName.includes(thisCmd.name))
-          match = true
-        else if (jeeP.levenshteinDistance(thisPoss.shortName, thisCmd.name) < (thisCmd.name.length / 2) +1)
-          match = true
-
-        if (match) {
-          thisCmd.queryGeneric = thisPoss.genkey
-          thisCmd.queryGenericName = thisPoss.name
-          break
-        }
-      }
-    }
-  }
-
-  //_______________modal
-  jeeDialog.dialog({
-    id: 'md_applyCmdsTypes',
-    title: "{{Types Génériques automatiques}} (" + genFamily + ")",
-    width: 'calc(80% - 200px)',
-    buttons: {
-      confirm: {
-        label: '<i class="fa fa-check"></i> {{Appliquer}}',
-        className: 'success',
-        callback: {
-          click: function(event) {
-            jeeFrontEnd.types.applyModalGeneric()
-          }
-        }
-      },
-      cancel: {
-        className: 'hidden'
-      }
-    },
-    onClose: function() {
-      jeeDialog.get('#md_applyCmdsTypes').destroy()
-    },
-  })
-
-  var container = $('#md_applyCmdsTypes .jeeDialogContent')
-  container.attr('data-generic', genFamilyId)
-  var inner = '<br/>'
-  var eqName, cmdName, thisCmd, thisClass, select
-  for (var _id in queryEqIds) {
-    inner += '<div class="queryEq" data-id="' + _id + '">'
-    eqName = $('li.eqLogic[data-id="' + _id + '"]').attr('data-name')
-    inner += '<div class="center biggerText">' + eqName + '</div>'
-    for (var _cmd in queryEqIds[_id].cmds) {
-      thisCmd = queryEqIds[_id].cmds[_cmd]
-      cmdName = $('li.cmd[data-id="' + thisCmd.id + '"]').attr('data-name')
-      thisClass = thisCmd.type == 'info' ? 'alert-info' : 'alert-warning'
-
-      inner += '<div class="form-group queryCmd" data-id="' + thisCmd.id + '">'
-      inner += '<label class="col-xs-2">' + cmdName + '</label>'
-      inner += '<span class="col-xs-3 ' + thisClass + '">' + thisCmd.genericName + '</span>'
-
-      select = jeeP.getSelectCmd(genFamily, thisCmd.type, thisCmd.subtype)
-      select = select.replace('<option value="' + thisCmd.queryGeneric + '">', '<option selected value="' + thisCmd.queryGeneric + '">')
-
-      inner += '<div class="col-xs-6">' + select + '</div>'
-      inner += '<div class="col-xs-1"><input type="checkbox" class="cb_selCmd" checked/></div>'
-      inner += '</div>'
-    }
-    inner += '</div>'
-  }
-
-  container.empty().append(inner)
+  let me = event.target.closest('.bt_queryCmdsTypes')
+  jeeP.queryCmdsTypes(me)
 })
 
 $('#md_applyCmdsTypes').on({
   'click': function(event) {
-    var state = $(this).prop('checked')
+    var state = event.target.checked
     if (event.ctrlKey) {
-      $(this).closest('.queryEq').find('.cb_selCmd').each(function(){
-        $(this).prop('checked', state)
+      event.target.closest('.queryEq').querySelectorAll('.cb_selCmd').forEach(_selCmd => {
+        _selCmd.checked = state
       })
     }
   }
 }, '.cb_selCmd')
 
 $("#bt_saveGenericTypes").off('click').on('click', function(event) {
-  //save eqLogics:
-  var eqLogics = []
-  var eqGeneric, eqId
-  $('.eqlogicSortable').each(function() {
-    eqGeneric = $(this).attr('data-id')
-    if (eqGeneric == 'none') {
-      eqGeneric = null
-    }
-    $(this).find('li.eqLogic').each(function() {
-      if ($(this).attr('data-changed') == '0') return true
-      eqId = $(this).attr('data-id')
-      eqLogics.push({
-        id : eqId,
-        generic_type : eqGeneric
-      })
-    })
-  })
-
-  if (eqLogics.length > 0) {
-    jeedom.eqLogic.setGenericType({
-      eqLogics: eqLogics,
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-        return false
-      }
-    })
-  }
-
-  //save cmds:
-  var cmds = []
-  var cmdGeneric, cmdId
-  $('li.cmd').each(function() {
-    if ($(this).attr('data-changed') == '0') return true
-    cmdGeneric = $(this).attr('data-generic')
-    cmdId = $(this).attr('data-id')
-    cmds.push({
-      id : cmdId,
-      generic_type : cmdGeneric
-    })
-  })
-
-  if (cmds.length > 0) {
-    jeedom.cmd.multiSave({
-      cmds: cmds,
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-        return false
-      }
-    })
-  }
-
-  //back to work!
-  $('li.eqLogic, li.cmd').each(function() {
-    $(this).attr('data-changed', '0')
-  })
-  jeeFrontEnd.modifyWithoutSave = false
-
-  jeedomUtils.showAlert({
-    message: '{{Types Génériques sauvegardés}}' + ' (equipment: ' + eqLogics.length + ' | command: ' + cmds.length + ')',
-    level: 'success'
-  })
+  jeeP.saveGenericTypes()
 })
 
 $('#bt_listGenericTypes').off('click').on('click', function(event) {
@@ -635,7 +639,7 @@ $('#bt_listGenericTypes').off('click').on('click', function(event) {
     },
   })
 
-  var container = $('#md_applyCmdsTypes .jeeDialogContent')
+  var container = document.querySelector('#md_applyCmdsTypes .jeeDialogContent')
   var inner = '<table class="table table-bordered table-condensed">'
   inner += '<td>{{Générique}}</td><td>{{Nom}}</td><td>{{Type}}</td><td>{{Sous type}}</td>'
 
@@ -675,7 +679,7 @@ $('#bt_listGenericTypes').off('click').on('click', function(event) {
     }
   }
   inner += '</table><br/>'
-  container.empty().append(inner)
+  container.empty().insertAdjacentHTML('beforeend', inner)
 })
 
 //Register events on top of page container:
