@@ -1,20 +1,20 @@
 # A personalização avançada
 **Configurações → Sistema → Personalização avançada**
 
-Aqui você pode gerenciar funções **** e regras **** aplicado em desktop ou celular.
+Aqui você pode gerenciar funções **javascript** e regras **CSS** aplicado em desktop ou celular.
 
-> ****
+> **Atenção**
 >
 > O uso de regras CSS inadequadas pode interromper a exibição do seu Jeedom. Funções js usadas incorretamente podem causar danos significativos a vários componentes de sua instalação. Lembre-se de gerar e terceirizar um backup antes de usar essas funções.
 
 Esta função usa um modo particular do editor de arquivos Core com dois locais:
 
-- desktop / personalizado : Pode conter os dois arquivos ****  **CSS customizado** que será carregado pelo Core na versão Desktop.
-- móvel / personalizado : Pode conter os dois arquivos ****  **CSS customizado** que será carregado pelo Core na versão Mobile.
+- desktop / personalizado : Pode conter os dois arquivos **custom.js** e **CSS customizado** que será carregado pelo Core na versão Desktop.
+- móvel / personalizado : Pode conter os dois arquivos **custom.js** e **CSS customizado** que será carregado pelo Core na versão Mobile.
 
-Na barra de menu do editor de arquivos Core, um botão ****  **Desativado** diz se o Core deve carregá-los ou não. Esta opção também está disponível em **Configurações → Sistema → Configuração** Guia Interface.
+Na barra de menu do editor de arquivos Core, um botão **Habilitado** Onde **Desativado** diz se o Core deve carregá-los ou não. Esta opção também está disponível em **Configurações → Sistema → Configuração** Guia Interface.
 
-> ****
+> **Observação**
 >
 > Quando esta página é lançada, a estrutura em árvore é criada automaticamente, assim como os 4 arquivos com um comentário na 1ª linha incluindo a versão do Core que os criou.
 
@@ -22,7 +22,7 @@ Na barra de menu do editor de arquivos Core, um botão ****  **Desativado** diz 
 
 [CSS: Folhas de estilo em cascata](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
-[](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 [Dicas para personalizar a interface](https://kiboost.github.io/jeedom_docs/jeedomV4Tips/Interface/)
 
