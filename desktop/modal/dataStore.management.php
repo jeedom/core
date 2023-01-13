@@ -145,11 +145,7 @@ if (!jeeFrontEnd.md_datastore) {
   jeeM.tableDataStore.config.widgetOptions.resizable_widths = ['150px', '150px', '', '90px']
   jeeM.tableDataStore.triggerEvent('applyWidgets')
   jeeM.tableDataStore.triggerEvent('resizableReset')
-  jeeM.tableDataStore.triggerEvent('sorton', [
-      [
-        [0, 0]
-      ]
-    ])
+  jeeM.tableDataStore.querySelector('thead tr').children[0].triggerEvent('sort')
 
   $(jeeM.tableDataStore).on({
     'click': function(event) {
