@@ -58,7 +58,7 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 			</span>
 		</div>
 		<br /><br />
-		<div class="col-sm-12 progressbarContainer hidden">
+		<div id="progressbarContainer" class="col-sm-12 hidden">
 			<div class="progress" style="width:100%;height:22px;margin-top: 12px;">
 				<div class="progress-bar progress-bar-striped" id="div_progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;font-size:18px;">
 					N/A
