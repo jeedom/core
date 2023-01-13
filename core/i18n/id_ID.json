@@ -85,7 +85,8 @@
         "Démons": "Démons",
         "Message": "Message",
         "Accueil": "Rumah",
-        "Vue": "Vue"
+        "Vue": "Vue",
+        "Dashboard": "Dashboard"
     },
     "mobile\/js\/scenario.js": {
         "Aucun": "Tak ada"
@@ -2727,11 +2728,11 @@
         "Supprimer": "Menghapus",
         "Vérifier": "Memeriksa",
         "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)",
+        "Options de mise à jour": "Options de mise à jour",
         "Êtes-vous sûr de vouloir mettre à jour les packages de type": "Êtes-vous sûr de vouloir mettre à jour les packages de type",
         "Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes": "Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes",
         "Mise à jour lancée avec succès.": "Mise à jour lancée avec succès",
         "Log de mise à jour": "Log de mise à jour",
-        "Options de mise à jour": "Options de mise à jour",
         "Êtes-vous sûr de vouloir mettre à jour :": "Êtes-vous sûr de vouloir mettre à jour :",
         "Êtes-vous sûr de vouloir supprimer :": "Êtes-vous sûr de vouloir supprimer :"
     },
