@@ -3034,7 +3034,9 @@ div.eqLogic-widget.editingMode .panelLink {
   #scenariotab {
     min-height: 80vh;
   }
-
+  div.tab-pane:focus-visible {
+    outline: none !important;
+  }
   .tab-content .tab-content,
   .tab-content pre {
     background-color: rgba(0,0,0,0)!important;
@@ -3248,8 +3250,6 @@ div.eqLogic-widget.editingMode .panelLink {
     transition-duration: 500ms;
     transition-property: background-color;
   }
-
-
 
   table.table-condensed tbody tr,
   table.table-condensed tbody td {
