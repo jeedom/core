@@ -982,13 +982,6 @@ class jeedom {
 
 	public static function cron5() {
 		try {
-			network::cron5();
-		} catch (Exception $e) {
-			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
-		} catch (Error $e) {
-			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
-		}
-		try {
 			foreach ((update::listRepo()) as $name => $repo) {
 				$class = 'repo_' . $name;
 				if (class_exists($class) && method_exists($class, 'cron5') && config::byKey($name . '::enable') == 1) {
@@ -1008,6 +1001,13 @@ class jeedom {
 	}
 
 	public static function cron10() {
+		try {
+			network::cron10();
+		} catch (Exception $e) {
+			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
+		} catch (Error $e) {
+			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
+		}
 		try {
 			foreach ((update::listRepo()) as $name => $repo) {
 				$class = 'repo_' . $name;
