@@ -93,7 +93,7 @@ Hier haben Sie die Schaltflächen :
 - **Spalte hinzufügen** : Fügen Sie der Tabelle eine Spalte hinzu.
 - **Zeile hinzufügen** : Fügen Sie der Tabelle eine Zeile hinzu.
 
-> **Notiz**
+> ****
 >
 > Es ist möglich, die Zeilen durch Ziehen und Ablegen neu zu organisieren, nicht jedoch die Spalten.
 

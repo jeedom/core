@@ -49,7 +49,7 @@ Zeigt die auf Ihrem Jeedom aktiven Browsersitzungen mit Benutzerinformationen, d
 Listen Sie die Geräte (Computer, Mobiltelefone usw.) auf, die ihre Authentifizierung auf Ihrem Jeedom registriert haben.
 Sie können sehen, welcher Benutzer, seine IP, wann und die Registrierung für dieses Gerät löschen.
 
-> **Notiz**
+> ****
 >
 > Der gleiche Benutzer hat möglicherweise verschiedene Geräte registriert. Zum Beispiel sein Desktop-Computer, Laptop, Handy usw.
 

@@ -157,7 +157,7 @@ Zunächst sind oben rechts einige Schaltflächen verfügbar :
 >
 > In einer Grafik bringt Sie ein Doppelklick auf ein Element zu seiner Konfiguration.
 
-> **Notiz**
+> ****
 >
 > Abhängig von der Art der Bestellung können sich die angezeigten Informationen / Aktionen ändern.
 
@@ -184,7 +184,7 @@ Sie haben auch drei andere orangefarbene Knöpfe darunter :
 - **Dieser Befehl ersetzt den Befehl** : Befehl durch aktuellen Befehl ersetzen.
 - **Ersetzen Sie diesen Befehl durch den Befehl** : Ersetzen Sie umgekehrt den Befehl durch einen anderen Befehl.
 
-> **Notiz**
+> ****
 >
 > Diese Art von Aktion ersetzt Befehle überall in Jeedom (Szenario, Interaktion, Befehl, Ausrüstung…).).
 
@@ -202,7 +202,7 @@ Unten finden Sie eine Liste der verschiedenen Geräte, Befehle, Szenarien oder I
 
 - ****
     - **** : Aktivieren Sie das Kontrollkästchen, um die Werte dieses Befehls zu protokollieren. (Siehe **Analyse → Geschichte**)
-    - **Glättungsmodus** : Modus von **** oder d'**** Hier können Sie auswählen, wie die Daten archiviert werden sollen. Standardmäßig ist dies ein ****. Es ist auch möglich, die zu wählen ****, der ****,  ****. **** Lassen Sie uns Jeedom mitteilen, dass für diesen Befehl keine Archivierung durchgeführt werden soll (sowohl während der ersten 5 Minuten als auch während der Archivierungsaufgabe)). Diese Option ist gefährlich, weil Jeedom alles behält : Es werden also viel mehr Daten gespeichert.
+    - **Glättungsmodus** : Modus von **** oder d'**** Hier können Sie auswählen, wie die Daten archiviert werden sollen. Standardmäßig ist dies ein ****. Es ist auch möglich, die zu wählen ****,  ****,  ****. **** Lassen Sie uns Jeedom mitteilen, dass für diesen Befehl keine Archivierung durchgeführt werden soll (sowohl während der ersten 5 Minuten als auch während der Archivierungsaufgabe)). Diese Option ist gefährlich, weil Jeedom alles behält : Es werden also viel mehr Daten gespeichert.
     - **Verlauf löschen, wenn älter als** : Sagen wir Jeedom, dass alle Daten gelöscht werden sollen, die älter als ein bestimmter Zeitraum sind. Es kann praktisch sein, keine Daten zu speichern, wenn dies nicht erforderlich ist, und daher die Menge der von Jeedom aufgezeichneten Informationen zu begrenzen.
 
 - **Werteverwaltung**
@@ -212,7 +212,7 @@ Unten finden Sie eine Liste der verschiedenen Geräte, Befehle, Szenarien oder I
 
 - ****
     - **Management der Wiederholung von Werten** : Wenn der Befehl automatisch um den doppelten Wert in Folge erhöht wird, berücksichtigt Jeedom den zweiten Aufstieg nicht (vermeidet das mehrfache Auslösen eines Szenarios, es sei denn, der Befehl ist vom binären Typ). Sie können die Wiederholung des Wertes erzwingen oder ihn vollständig verbieten.
-    - **URL drücken** : Ermöglicht das Hinzufügen einer URL, die im Falle einer Aktualisierung der Bestellung aufgerufen werden soll. Sie können die folgenden Tags verwenden : ``#value#"für den Wert der Bestellung"#cmd_name#`für den Namen des Befehls`#cmd_id#"für die eindeutige Kennung der Bestellung"#humanname#`für den vollständigen Namen des Befehls (z : ``#[Salder de bain][Hydrometrie][Humidité]#`),`#eq_name#`für den Namen des Geräts.
+    - **URL drücken** : Ermöglicht das Hinzufügen einer URL, die im Falle einer Aktualisierung der Bestellung aufgerufen werden soll. Sie können die folgenden Tags verwenden : ``#value#"für den Wert der Bestellung"#cmd_name#`für den Namen des Befehls`#cmd_id#"für die eindeutige Kennung der Bestellung"#humanname#`für den vollständigen Namen des Befehls (z : ``#[Sal de bain][Hydrometrie][Humidité]#`),`#eq_name#`für den Namen des Geräts.
 
 #### Für einen Aktionsbefehl :
 
@@ -226,7 +226,7 @@ Unten finden Sie eine Liste der verschiedenen Geräte, Befehle, Szenarien oder I
 
 Ermöglicht das Definieren einer Alarmstufe (****  ****) abhängig von bestimmten Bedingungen. Wenn beispielsweise 30 Minuten lang &quot;Wert&gt; 8&quot; angezeigt wird, kann das Gerät in Alarmbereitschaft versetzt werden ****.
 
-> **Notiz**
+> ****
 >
 > Auf der Seite **→ Einstellungen → Systemkonfiguration : **, Sie können einen Nachrichtentypbefehl konfigurieren, mit dem Jeedom Sie benachrichtigen kann, wenn der Warn- oder Gefahrenschwellenwert erreicht ist.
 
