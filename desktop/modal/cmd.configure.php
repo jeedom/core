@@ -1407,7 +1407,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
   })
 
   $('#cmd_information').on({
-    'click': function(event) {
+    'dblclick': function(event) {
       $(this).empty()
     }
   }, '.cmdAttr[data-l1key=display][data-l2key=icon]')

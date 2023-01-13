@@ -443,9 +443,10 @@ sendVarToJS([
     $(this).closest('.divIconSel').addClass('iconSelected')
   })
 
-  $('.div_imageGallery').on('dblclick', '.divIconSel', function() {
+  $('.div_imageGallery').on('dblclick', '.divIconSel', function(event) {
     $('.divIconSel').removeClass('iconSelected')
     $(this).closest('.divIconSel').addClass('iconSelected')
+    document.getElementById('mod_selectIcon').querySelector('button[data-type="confirm"]').click()
   })
 
   setTimeout(function() {
