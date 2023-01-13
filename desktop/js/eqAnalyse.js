@@ -20,8 +20,6 @@ if (!jeeFrontEnd.eqAnalyse) {
   jeeFrontEnd.eqAnalyse = {
     init: function() {
       window.jeeP = this
-      this.$alertListContainer = $('div.alertListContainer')
-      this.$tableDeadCmd = $('#table_deadCmd')
     },
     getRemoveCmd: function(_id) {
       for (var i in jeephp2js.removeHistory) {
@@ -68,16 +66,15 @@ if (!jeeFrontEnd.eqAnalyse) {
               tr += '</tr>'
             }
           }
-          jeeFrontEnd.eqAnalyse.$tableDeadCmd.find('tbody').empty().append(tr)
-          jeeFrontEnd.eqAnalyse.$tableDeadCmd[0].config.widgetOptions.resizable_widths = ['180px', '', '', '180px']
-          jeeFrontEnd.eqAnalyse.$tableDeadCmd.trigger('update')
-            .trigger('applyWidgets')
-            .trigger('resizableReset')
-            .trigger('sorton', [
-              [
-                [0, 0]
-              ]
-            ])
+          let tableDeadCmd = document.getElementById('table_deadCmd')
+          tableDeadCmd.querySelector('tbody').empty().insertAdjacentHTML('beforeend', tr)
+          tableDeadCmd.config.widgetOptions.resizable_widths = ['180px', '', '', '180px']
+          tableDeadCmd.triggerEvent('update')
+          tableDeadCmd.triggerEvent('applyWidgets')
+          tableDeadCmd.triggerEvent('resizableReset')
+          setTimeout(() => {
+            tableDeadCmd.querySelector('thead tr').children[0].triggerEvent('sort')
+          }, 200)
         }
       })
     },
@@ -122,14 +119,14 @@ $("#tab_deadCmd").off("click").on("click", function() {
   jeeP.displayDeadCmd()
 })
 
-jeeP.$alertListContainer.packery({
+$('div.alertListContainer').packery({
   itemSelector: "#alertEqlogic .eqLogic-widget"
 })
 
 $('.alerts, .batteries').on('click', function(event) {
   setTimeout(function() {
     jeedomUtils.positionEqLogic()
-    jeeP.$alertListContainer.packery({
+    $('div.alertListContainer').packery({
       itemSelector: "#alertEqlogic .eqLogic-widget"
     })
   }, 10)

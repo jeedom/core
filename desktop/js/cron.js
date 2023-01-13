@@ -20,18 +20,16 @@ if (!jeeFrontEnd.cron) {
   jeeFrontEnd.cron = {
     init: function() {
       window.jeeP = this
-      this.$tableCron = $('#table_cron')
+      this.tableCron = document.getElementById('table_cron')
       this.printCron()
       this.printListener()
       jeedomUtils.initTableSorter(false)
-      this.$tableCron[0].config.widgetOptions.resizable_widths = ['50px', '65px', '52px', '100px', '80px', '', '', '', '115px', '148px', '120px', '60px', '90px']
-      this.$tableCron.trigger('applyWidgets')
-        .trigger('resizableReset')
-        .trigger('sorton', [
-          [
-            [0, 0]
-          ]
-        ])
+      this.tableCron.config.widgetOptions.resizable_widths = ['50px', '65px', '52px', '100px', '80px', '', '', '', '115px', '148px', '120px', '60px', '90px']
+      this.tableCron.triggerEvent('applyWidgets')
+      this.tableCron.triggerEvent('resizableReset')
+      setTimeout(() => {
+        jeeFrontEnd.cron.tableCron.querySelector('thead tr').children[0].triggerEvent('sort')
+      }, 200)
 
       this.getDeamonState()
     },
@@ -48,7 +46,7 @@ if (!jeeFrontEnd.cron) {
             newRow.setJeeValues(data[i], '.cronAttr')
             table.appendChild(newRow)
           }
-          jeeP.$tableCron.trigger("update")
+          jeeP.tableCron.triggerEvent("update")
           jeeFrontEnd.modifyWithoutSave = false
           setTimeout(function() {
             jeeFrontEnd.modifyWithoutSave = false
@@ -170,7 +168,7 @@ if (!jeeFrontEnd.cron) {
     },
     //-> Daemons
     getDeamonState: function() {
-      $('#table_deamon tbody').empty()
+      document.querySelector('#table_deamon tbody').empty()
       jeedom.plugin.all({
         activateOnly: true,
         error: function(error) {
@@ -217,7 +215,7 @@ if (!jeeFrontEnd.cron) {
                 }
                 html += '</td>'
                 html += '</tr>'
-                document.getElementById('table_deamon tbody').html(html, true)
+                document.getElementById('table_deamon').querySelector('tbody').insertAdjacentHTML('beforeend', html)
               }
             })
           }
@@ -248,7 +246,7 @@ $("#bt_addCron").on('click', function() {
   newRow.innerHTML = jeeP.addCron({})
   newRow.setJeeValues({}, '.cronAttr')
   table.appendChild(newRow)
-  jeeP.$tableCron.trigger("update")
+  jeeP.tableCron.triggerEvent("update")
   jeeFrontEnd.modifyWithoutSave = true
 })
 
@@ -291,13 +289,13 @@ $("#bt_changeCronState").on('click', function() {
   })
 })
 
-jeeP.$tableCron.on({
+$(jeeP.tableCron).on({
   'click': function(event) {
     event.target.closest('tr').remove()
   }
 }, '.remove')
 
-jeeP.$tableCron.on({
+$(jeeP.tableCron).on({
   'click': function(event) {
     jeedom.cron.setState({
       state: 'stop',
@@ -315,7 +313,7 @@ jeeP.$tableCron.on({
   }
 }, '.stop')
 
-jeeP.$tableCron.on({
+$(jeeP.tableCron).on({
   'click': function(event) {
     jeedom.cron.setState({
       state: 'start',
@@ -333,7 +331,7 @@ jeeP.$tableCron.on({
   }
 }, '.start')
 
-jeeP.$tableCron.on({
+$(jeeP.tableCron).on({
   'click': function(event) {
     jeeDialog.dialog({
       id: 'jee_modal',
@@ -343,7 +341,7 @@ jeeP.$tableCron.on({
   }
 }, '.display')
 
-jeeP.$tableCron.on({
+$(jeeP.tableCron).on({
   'change': function(event) {
     if (event.target.jeeValue() == 1) {
       event.target.closest('tr').querySelector('.cronAttr[data-l1key=deamonSleepTime]').seen()

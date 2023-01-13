@@ -18,10 +18,22 @@
 
 if (!jeeFrontEnd.profils) {
   jeeFrontEnd.profils = {
+    tableDevices: null,
     init: function() {
-      /* Not used, loaded as modal!
+      /* Not used, also loaded as modal!
       window.jeeP = this
       */
+      this.tableDevices = document.getElementById('tableDevices')
+      if (this.tableDevices != null) { //Not modal!
+        jeedomUtils.initTableSorter()
+        this.tableDevices.config.widgetOptions.resizable_widths = ['', '180px', '180px', '80px']
+        this.tableDevices.triggerEvent('applyWidgets')
+        this.tableDevices.triggerEvent('resizableReset')
+        setTimeout(() => {
+          jeeFrontEnd.profils.tableDevices.querySelector('thead tr').children[2].triggerEvent('sort')
+          jeeFrontEnd.profils.tableDevices.querySelector('thead tr').children[2].triggerEvent('sort')
+        }, 200)
+      }
     },
   }
 }
@@ -34,16 +46,6 @@ document.registerEvent('keydown', function(event) {
     document.getElementById("bt_saveProfils").click()
   }
 })
-
-jeedomUtils.initTableSorter()
-$('#tableDevices')[0].config.widgetOptions.resizable_widths = ['', '180px', '180px', '80px']
-$('#tableDevices').trigger('applyWidgets')
-  .trigger('resizableReset')
-  .trigger('sorton', [
-    [
-      [2, 1]
-    ]
-  ])
 
 jeedom.user.get({
   id: jeephp2js.profils_user_id,

@@ -150,7 +150,7 @@ if (!jeeFrontEnd.update) {
           setTimeout(() => {
             table.querySelector('thead tr').children[0].triggerEvent('sort')
             table.querySelector('thead tr').children[0].triggerEvent('sort')
-          })
+          }, 200)
 
           //create a second <pre> for cleaned text to avoid change event infinite loop:
           document.getElementById('div_log').insertAdjacentHTML('beforeend', jeeP.newLogClean)

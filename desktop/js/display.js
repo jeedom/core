@@ -19,11 +19,11 @@
 if (!jeeFrontEnd.display) {
   jeeFrontEnd.display = {
     actionMode: null,
-    $tableRemoveHistory: null,
+    tableRemoveHistory: null,
     init: function() {
       window.jeeP = this
       this.actionMode = null
-      this.$tableRemoveHistory = $('#table_removeHistory')
+      this.tableRemoveHistory = document.getElementById('table_removeHistory')
 
       var checkContextMenuCallback = function(_el) {
         _el.trigger('change')
@@ -32,15 +32,16 @@ if (!jeeFrontEnd.display) {
     },
     setRemoveHistoryTable: function() {
       jeedomUtils.initTableSorter()
-      this.$tableRemoveHistory[0].config.widgetOptions.resizable_widths = ['180px', '160px', '80px', '']
-      this.$tableRemoveHistory.trigger('applyWidgets')
-        .trigger('resizableReset')
-        .trigger('sorton', [
-          [
-            [0, 1]
-          ]
-        ])
-      this.$tableRemoveHistory.trigger("update")
+      this.tableRemoveHistory.config.widgetOptions.resizable_widths = ['180px', '160px', '80px', '']
+      this.tableRemoveHistory.triggerEvent('applyWidgets')
+      this.tableRemoveHistory.triggerEvent('resizableReset')
+      setTimeout(() => {
+        this.tableRemoveHistory.querySelector('thead tr').children[0].triggerEvent('sort')
+        this.tableRemoveHistory.querySelector('thead tr').children[0].triggerEvent('sort')
+      }, 200)
+
+
+      this.tableRemoveHistory.triggerEvent("update")
     },
     setEqActions: function() {
       var found = false
