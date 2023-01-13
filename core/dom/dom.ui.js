@@ -117,7 +117,7 @@ Element.prototype.removeClass = function(_className /*, _className... */) {
   }
 
   let args = Array.prototype.slice.call(arguments)
-  if (args[0].includes(' ')) args = args[0].split(' ')
+  if (args.length > 0 && args[0].includes(' ')) args = args[0].split(' ')
   this.classList.remove(...args)
   return this
 }
