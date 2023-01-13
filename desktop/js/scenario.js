@@ -2667,12 +2667,6 @@ document.getElementById('scenariotab').addEventListener('focusout', function(eve
 })
 
 
-
-//modifyWithoutSave
-document.getElementById('div_editScenario').addEventListener('change', function(event) {
-  jeeFrontEnd.modifyWithoutSave = true
-})
-
 //
 jeeP.loadId = getUrlVars('id')
 if (is_numeric(jeeP.loadId)) {
