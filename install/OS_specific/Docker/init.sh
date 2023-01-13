@@ -27,7 +27,7 @@ else
 		sed -i "s/#USERNAME#/jeedom/g" /var/www/html/core/config/common.config.php
 		sed -i "s/#PORT#/3306/g" /var/www/html/core/config/common.config.php
 		sed -i "s/#HOST#/localhost/g" /var/www/html/core/config/common.config.php
-		/root/install.sh -s 10mariadb
+		/root/install.sh -s 10
 		/root/install.sh -s 11
 	fi
 fi
