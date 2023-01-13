@@ -381,7 +381,7 @@ if (count($market->getImg('screenshot')) > 0) {
 		jeeDialog.dialog({
 	        id: 'jee_modal',
 	        title: "{{Market}}",
-	        contentUrl: 'index.php?v=d&modal=update.list&type=plugin&repo=market&author=' + encodeURI(this.getAttribute('data-author')
+	        contentUrl: 'index.php?v=d&modal=update.list&type=plugin&repo=market&author=' + encodeURI(this.getAttribute('data-author'))
 	    })
 	})
 </script>
