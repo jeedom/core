@@ -53,11 +53,11 @@ sendVarToJS([
 if (!jeeFrontEnd.md_datastore) {
   jeeFrontEnd.md_datastore = {
     init: function() {
-      this.$tableDataStore = $('#table_dataStore')
+      this.tableDataStore = document.getElementById('table_dataStore')
       this.modal = document.getElementById('table_dataStore').closest('div.jeeDialogMain')
       if (this.modal != null) {
         jeeDialog.get(this.modal).options.onResize = function(event) {
-          self.$tableDataStore.trigger("update")
+          self.tableDataStore.triggerEvent("update")
         }
       }
     },
@@ -111,7 +111,6 @@ if (!jeeFrontEnd.md_datastore) {
       return thisTr
     },
     refreshDataStoreMangementTable: function() {
-      self = this
       jeedom.dataStore.all({
         type: jeephp2js.md_dataStoreManagement_type,
         usedBy: 1,
@@ -123,13 +122,13 @@ if (!jeeFrontEnd.md_datastore) {
           })
         },
         success: function(data) {
-          self.$tableDataStore.find('tbody').empty()
+          jeeFrontEnd.md_datastore.tableDataStore.querySelector('tbody').empty()
           var tr = ''
           for (var i in data) {
-            tr += self.getDatastoreTr(data[i])
+            tr += jeeFrontEnd.md_datastore.getDatastoreTr(data[i])
           }
-          self.$tableDataStore.find('tbody').append(tr)
-          self.$tableDataStore.trigger("update")
+          jeeFrontEnd.md_datastore.tableDataStore.querySelector('tbody').innerHTML = tr
+          jeeFrontEnd.md_datastore.tableDataStore.triggerEvent("update")
         }
       })
     },
@@ -143,16 +142,16 @@ if (!jeeFrontEnd.md_datastore) {
 
   jeedomUtils.initTableSorter()
   jeeM.refreshDataStoreMangementTable()
-  jeeM.$tableDataStore[0].config.widgetOptions.resizable_widths = ['150px', '150px', '', '90px']
-  jeeM.$tableDataStore.trigger('applyWidgets')
-    .trigger('resizableReset')
-    .trigger('sorton', [
+  jeeM.tableDataStore.config.widgetOptions.resizable_widths = ['150px', '150px', '', '90px']
+  jeeM.tableDataStore.triggerEvent('applyWidgets')
+  jeeM.tableDataStore.triggerEvent('resizableReset')
+  jeeM.tableDataStore.triggerEvent('sorton', [
       [
         [0, 0]
       ]
     ])
 
-  jeeM.$tableDataStore.on({
+  $(jeeM.tableDataStore).on({
     'click': function(event) {
       var tr = this.closest('tr')
       if (tr.getAttribute('data-datastore_id') == '') {
@@ -184,7 +183,7 @@ if (!jeeFrontEnd.md_datastore) {
     }
   }, '.bt_removeDataStore')
 
-  jeeM.$tableDataStore.on({
+  $(jeeM.tableDataStore).on({
     'click': function(event) {
       var tr = this.closest('tr');
       jeedom.dataStore.save({
@@ -212,7 +211,7 @@ if (!jeeFrontEnd.md_datastore) {
     }
   }, '.bt_saveDataStore')
 
-  jeeM.$tableDataStore.on({
+  $(jeeM.tableDataStore).on({
     'click': function(event) {
       var trId = this.closest('tr').getAttribute('data-dataStore_id')
       jeeDialog.dialog({
@@ -225,8 +224,8 @@ if (!jeeFrontEnd.md_datastore) {
 
   $('#bt_dataStoreManagementAdd').on('click', function() {
     var tr = jeeM.getDatastoreTr()
-    jeeM.$tableDataStore.find('tbody').prepend(tr)
-    jeeM.$tableDataStore.trigger("update")
+    jeeM.tableDataStore.querySelector('tbody').insertAdjacentHTML('afterbegin', tr)
+    jeeM.tableDataStore.triggerEvent("update")
   })
 
   $('#bt_dataStoreManagementRefresh').off('click').on('click', function() {
