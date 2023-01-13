@@ -9,6 +9,6 @@ It is quite simple. It shows you the date and time of the message, the plugin th
 
 At the top, there is a selector to filter messages on a particular plugin and on the far right a button to empty all messages.
 
-> **Tip**
+> ****
 >
 > When you have an error in the message center, first try to delete the message then see if the error returns before contacting support. Sometimes it is just due to a network connection problem.

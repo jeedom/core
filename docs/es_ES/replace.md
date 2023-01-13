@@ -13,7 +13,7 @@ Puede mostrar solo ciertos equipos para una mayor legibilidad, filtrando por obj
 
 ## Options
 
-> **Observación**
+> ****
 >
 > Si ninguna de estas opciones está marcada, el reemplazo equivale a usar la función *Reemplace este comando con el comando* en configuración avanzada.
 
@@ -21,7 +21,7 @@ Puede mostrar solo ciertos equipos para una mayor legibilidad, filtrando por obj
 Para cada equipo, se copiará desde el origen al destino (lista no exhaustiva) :
 	* El objeto padre,
 	* Las categorias,
-	* Los propietarios *activo* y *visible*,
+	* Los propietarios **  **,
 	* Comentarios y etiquetas,
 	* Orden (Tablero),
 	* El ancho y la altura (panel de mosaico),
@@ -29,11 +29,11 @@ Para cada equipo, se copiará desde el origen al destino (lista no exhaustiva) :
 	* Parámetros opcionales,
 	* La configuración de visualización de la tabla,
 	* el tipo genérico,
-	* La propiedad *se acabó el tiempo*
-	* La configuración *autorefrescar*,
+	* La propiedad **
+	* La configuración **,
 	* Alertas de batería y comunicación,
 
-El equipo de origen también será reemplazado por el equipo de destino en el **Diseño** y los **Puntos de vista**.
+El equipo de origen también será reemplazado por el equipo de destino en el **** y los ****.
 
 
 *Este equipo también será reemplazado por el equipo de destino en Diseños y Vistas.*
@@ -42,17 +42,17 @@ El equipo de origen también será reemplazado por el equipo de destino en el **
 
 - **Copie la configuración del comando fuente** :
 Para cada pedido, se copiará desde el origen al destino (lista no exhaustiva) :
-	* La propiedad *visible*,
+	* La propiedad **,
 	* Orden (Tablero),
 	* L'historisation,
 	* Los widgets Dashboard y Mobile utilizados,
 	* El tipo genérico,
 	* Parámetros opcionales,
-	* Las configuraciones *JeedomPreExecCmd* y *jeedomPostExecCmd* (acción),
+	* Las configuraciones **  *jeedomPostExecCmd* (acción),
 	* Configuraciones de acción de valor (información),
 	* Icono,
-	* La activación y el directorio en *Línea de tiempo*,
-	* Las configuraciones de *cálculo* y *ronda*,
+	* La activación y el directorio en **,
+	* Las configuraciones de **  **,
 	* La configuración de influxDB,
 	* La configuración del valor de repetición,
 	* Alertas,
@@ -65,7 +65,7 @@ Para cada pedido, se copiará desde el origen al destino (lista no exhaustiva) :
 
 ## Remplacements
 
-El botón **Filtrar** En la parte superior derecha te permite visualizar todo el equipamiento, siguiendo los filtros por objeto y por plugin.
+El botón **** En la parte superior derecha te permite visualizar todo el equipamiento, siguiendo los filtros por objeto y por plugin.
 
 Para cada equipo :
 
@@ -74,6 +74,6 @@ Para cada equipo :
 - Haga clic en su nombre para ver sus comandos e indique qué comandos los reemplazan. Al elegir un equipo, la herramienta rellena previamente estas opciones si encuentra un pedido del mismo tipo y el mismo nombre en el equipo de destino.
 
 
-> **Observación**
+> ****
 >
 > Cuando indica un dispositivo de destino en un dispositivo de origen, este dispositivo de destino está deshabilitado en la lista.

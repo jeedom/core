@@ -9,7 +9,7 @@ Encontrará, a la izquierda, los parámetros y botones de acción. A la derecha 
 
 ## Sauvegardes
 
-- **Copias de seguridad** : Le permite iniciar una copia de seguridad de forma manual e inmediata (útil si desea realizar un cambio crítico. Esto te permitirá volver). También tiene un botón para iniciar una copia de seguridad sin enviar el archivo a la nube (requiere una suscripción, consulte a continuación). Enviar una copia de seguridad a la nube puede llevar un tiempo. Por lo tanto, esta opción evita la pérdida excesiva de tiempo.
+- **** : Le permite iniciar una copia de seguridad de forma manual e inmediata (útil si desea realizar un cambio crítico. Esto te permitirá volver). También tiene un botón para iniciar una copia de seguridad sin enviar el archivo a la nube (requiere una suscripción, consulte a continuación). Enviar una copia de seguridad a la nube puede llevar un tiempo. Por lo tanto, esta opción evita la pérdida excesiva de tiempo.
 
 - **Ubicación de respaldo** : Indica la carpeta en la que Jeedom copia las copias de seguridad. Se recomienda no cambiarlo. Si está en un camino relativo, su origen es donde está instalado Jeedom.
 
@@ -47,7 +47,7 @@ Encontrará, a la izquierda, los parámetros y botones de acción. A la derecha 
 
 - **Restaurar copia de seguridad** : Comienza a restaurar la copia de seguridad de samba seleccionada anteriormente.
 
-> **IMPORTANTE**
+> ****
 >
 > Las copias de seguridad de Jeedom deben guardarse absolutamente en una carpeta solo para él ! Eliminará todo lo que no sea una copia de seguridad de la carpeta.
 
@@ -58,15 +58,15 @@ Durante una copia de seguridad, Jeedom realizará una copia de seguridad de todo
 
 A nivel de protocolo, solo la Z-Wave (OpenZwave) es un poco diferente porque no es posible guardar las inclusiones. Estos se incluyen directamente en el controlador, por lo que debe mantener el mismo controlador para encontrar sus módulos Zwave.
 
-> **Nota**
+> ****
 >
 > El sistema en el que está instalado Jeedom no está respaldado. Si ha cambiado la configuración de este sistema (incluso a través de SSH), depende de usted encontrar una manera de recuperarlos si tiene alguna inquietud. Del mismo modo, las dependencias tampoco lo son, por lo que deberá reinstalarlas después de una restauración
 
 # Copia de seguridad en la nube
 
-La copia de seguridad en la nube le permite a Jeedom enviar sus copias de seguridad directamente al mercado. Esto le permite restaurarlos fácilmente y asegurarse de no perderlos. The Market conserva las últimas 6 copias de seguridad. Para suscribirte solo ve a tu página **perfil** en el mercado, luego en la pestaña **mis copias de seguridad**. Puede, desde esta página, recuperar una copia de seguridad o comprar una suscripción (durante 1, 3, 6 o 12 meses).
+La copia de seguridad en la nube le permite a Jeedom enviar sus copias de seguridad directamente al mercado. Esto le permite restaurarlos fácilmente y asegurarse de no perderlos. The Market conserva las últimas 6 copias de seguridad. Para suscribirte solo ve a tu página **** en el mercado, luego en la pestaña **mis copias de seguridad**. Puede, desde esta página, recuperar una copia de seguridad o comprar una suscripción (durante 1, 3, 6 o 12 meses).
 
-> **Consejo**
+> ****
 >
 > Puede personalizar el nombre de los archivos de copia de seguridad desde la pestaña **Mis jeedoms**, evitando sin embargo los personajes exóticos.
 

@@ -9,7 +9,7 @@ Você encontrará, à esquerda, os parâmetros e botões de ação. À direita e
 
 ## Sauvegardes
 
-- **Backups** : Permite iniciar um backup manual e imediatamente (útil se você quiser fazer uma alteração crítica. Isso permitirá que você volte). Você também tem um botão para iniciar um backup sem enviar o arquivo para a nuvem (requer uma assinatura, veja abaixo). O envio de um backup para a nuvem pode demorar um pouco. Esta opção evita, portanto, perda excessiva de tempo.
+- **** : Permite iniciar um backup manual e imediatamente (útil se você quiser fazer uma alteração crítica. Isso permitirá que você volte). Você também tem um botão para iniciar um backup sem enviar o arquivo para a nuvem (requer uma assinatura, veja abaixo). O envio de um backup para a nuvem pode demorar um pouco. Esta opção evita, portanto, perda excessiva de tempo.
 
 - **Backups Local** : Indica a pasta na qual o Jeedom copia os backups. Recomenda-se não alterá-lo. Se você estiver em um caminho relativo, sua origem é onde o Jeedom está instalado.
 
@@ -47,7 +47,7 @@ Você encontrará, à esquerda, os parâmetros e botões de ação. À direita e
 
 - **Restaurar backup** : Inicia a restauração do backup samba selecionado acima.
 
-> **IMPORTANTE**
+> ****
 >
 > Os backups do Jeedom devem ser salvos absolutamente em uma pasta apenas para ele ! Ele excluirá tudo o que não for um backup jeedom da pasta.
 
@@ -58,15 +58,15 @@ Durante um backup, o Jeedom fará backup de todos os seus arquivos e do banco de
 
 No nível do protocolo, apenas o Z-Wave (OpenZwave) é um pouco diferente porque não é possível salvar as inclusões. Eles estão diretamente incluídos no controlador, portanto, você deve manter o mesmo controlador para encontrar seus módulos Zwave.
 
-> **Observação**
+> ****
 >
 > Não é feito backup do sistema no qual o Jeedom está instalado. Se você alterou as configurações deste sistema (inclusive via SSH), cabe a você encontrar uma maneira de recuperá-las se tiver alguma dúvida. Da mesma forma, os anexos também não são, então você terá que reinstalá-los após uma restauração
 
 # Backup em nuvem
 
-O backup na nuvem permite que a Jeedom envie seus backups diretamente ao mercado. Isso permite que você os restaure facilmente e certifique-se de não perdê-los. O Market mantém os últimos 6 backups. Para se inscrever basta ir à sua página **perfil** no mercado e depois na guia **meus backups**. Você pode, nesta página, recuperar um backup ou comprar uma assinatura (por 1, 3, 6 ou 12 meses).
+O backup na nuvem permite que a Jeedom envie seus backups diretamente ao mercado. Isso permite que você os restaure facilmente e certifique-se de não perdê-los. O Market mantém os últimos 6 backups. Para se inscrever basta ir à sua página **** no mercado e depois na guia **meus backups**. Você pode, nesta página, recuperar um backup ou comprar uma assinatura (por 1, 3, 6 ou 12 meses).
 
-> **Gorjeta**
+> ****
 >
 > Você pode personalizar o nome dos arquivos de backup na guia **Minhas jeedoms**, evitando no entanto os personagens exóticos.
 

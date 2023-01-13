@@ -5,14 +5,14 @@ El sistema de interacción en Jeedom le permite realizar acciones desde texto o 
 
 Estas órdenes pueden ser obtenidas por :
 
-- SMS : enviar un SMS para iniciar comandos (acción) o hacer una pregunta (información).
-- Gato : Telegrama, Slack, etc.
-- Vocal : dicta una frase con Siri, Google Now, SARAH, etc. Para iniciar comandos (acción) o hacer una pregunta (información).
-- HTTP : lanzar una URL HTTP que contenga el texto (ej. Tasker, Slack) para iniciar comandos (acción) o hacer una pregunta (información).
+-  : enviar un SMS para iniciar comandos (acción) o hacer una pregunta (información).
+-  : Telegrama, Slack, etc.
+-  : dicta una frase con Siri, Google Now, SARAH, etc. Para iniciar comandos (acción) o hacer una pregunta (información).
+-  : lanzar una URL HTTP que contenga el texto (ej. Tasker, Slack) para iniciar comandos (acción) o hacer una pregunta (información).
 
 El valor de las interacciones radica en la integración simplificada en otros sistemas como teléfonos inteligentes, tabletas, otras cajas de automatización del hogar, etc.
 
-> **Consejo**
+> ****
 >
 > Puede abrir una interacción haciendo :
 > - Haga clic en uno de ellos.
@@ -30,11 +30,11 @@ Una vez en la configuración de una interacción, tiene un menú contextual con 
 
 En la parte superior de la página, hay 3 botones :
 
-- **Agregar** : Le permite crear nuevas interacciones.
+- **** : Le permite crear nuevas interacciones.
 - **Regenerado** : Recréer toutes les interactions (peut être très long &gt; 5mn).
-- **Prueba** : Abre un diálogo para escribir y probar una oración.
+- **** : Abre un diálogo para escribir y probar una oración.
 
-> **Consejo**
+> ****
 >
 > Si tiene una interacción que genera las oraciones para las luces, por ejemplo, y agrega un nuevo módulo de control de luz, tendrá que regenerar todas las interacciones o ir a la interacción en cuestión y guardarla nuevamente para crear las oraciones de este nuevo módulo.
 
@@ -50,18 +50,18 @@ También podemos definir un comando para ejecutar si, por ejemplo, la interacci�
 
 La página de configuración consta de varias pestañas y botones :
 
-- **Oraciones** : Muestra el número de oraciones de la interacción (un clic en ellas te muestra).
-- **Salvar** : Grabar la interacción actual.
-- **Eliminar** : Eliminar interacción actual.
-- **Duplicar** : Duplica la interacción actual.
+- **** : Muestra el número de oraciones de la interacción (un clic en ellas te muestra).
+- **** : Grabar la interacción actual.
+- **** : Eliminar interacción actual.
+- **** : Duplica la interacción actual.
 
 ### Pestaña General
 
-- **Apellido** : Nombre de interacción (puede estar vacío, el nombre reemplaza el texto de solicitud en la lista de interacción).
-- **Banda** : Grupo de interacción, esto permite organizarlos (puede estar vacío, por lo tanto estará en el grupo "ninguno").
-- **Activo** : Habilita o deshabilita la interacción.
-- **Solicitud** : La oración modelo generadora (requerida).
-- **Sinónimo** : Permite definir sinónimos en los nombres de los comandos.
+- **** : Nombre de interacción (puede estar vacío, el nombre reemplaza el texto de solicitud en la lista de interacción).
+- **** : Grupo de interacción, esto permite organizarlos (puede estar vacío, por lo tanto estará en el grupo "ninguno").
+- **** : Habilita o deshabilita la interacción.
+- **** : La oración modelo generadora (requerida).
+- **** : Permite definir sinónimos en los nombres de los comandos.
 - **Respuesta** : La respuesta para proporcionar.
 - **Espere antes de responder)** : Agregue un retraso de X segundos antes de generar la respuesta. Permite, por ejemplo, esperar el regreso del estado de una lámpara antes de ser respondido.
 - **Conversión binaria** : Convierte valores binarios en abiertos / cerrados, por ejemplo (solo para comandos de tipo de información binaria).
@@ -83,7 +83,7 @@ La página de configuración consta de varias pestañas y botones :
 
 #### Exemples
 
-> **Nota**
+> ****
 >
 > Las capturas de pantalla pueden ser diferentes en vista de los desarrollos.
 
@@ -103,7 +103,7 @@ Podemos imaginar hacer lo mismo con varias acciones para encender varias lámpar
 
 En los 2 ejemplos anteriores, la oración modelo es idéntica pero las acciones que resultan de ella cambian de acuerdo con lo que está configurado en la parte "Acción", por lo tanto, ya con una simple interacción con una sola oración podemos imaginar acciones combinadas entre varios comandos y diversos escenarios (también podemos activar escenarios en la parte de acción de las interacciones).
 
-> **Consejo**
+> ****
 >
 > Para agregar un escenario, cree una nueva acción, escriba &quot;escenario&quot; sin acento, presione la tecla de tabulación en su teclado para que aparezca el selector de escenario.
 
@@ -111,7 +111,7 @@ En los 2 ejemplos anteriores, la oración modelo es idéntica pero las acciones 
 
 Aquí veremos todo el interés y todo el poder de las interacciones, con una oración modelo podremos generar oraciones para un grupo completo de comandos.
 
-Reanudaremos lo que se hizo anteriormente, eliminaremos las acciones que hemos agregado y, en lugar de la oración fija, en &quot;Solicitud&quot;, usaremos las etiquetas **\#commande\#** y **\#equipement\#**. Por lo tanto, Jeedom reemplazará estas etiquetas con el nombre de los comandos y el nombre del equipo (podemos ver la importancia de tener nombres de comando / equipo consistentes).
+Reanudaremos lo que se hizo anteriormente, eliminaremos las acciones que hemos agregado y, en lugar de la oración fija, en &quot;Solicitud&quot;, usaremos las etiquetas **#commande#**  **#equipement#**. Por lo tanto, Jeedom reemplazará estas etiquetas con el nombre de los comandos y el nombre del equipo (podemos ver la importancia de tener nombres de comando / equipo consistentes).
 
 ![interact006](../images/interact006.png)
 
@@ -127,7 +127,7 @@ Por lo tanto, en sinónimos, indicaremos el nombre del comando y los sinónimos 
 
 ![interact008](../images/interact008.png)
 
-Podemos ver aquí una sintaxis algo nueva para sinónimos. Un nombre de comando puede tener varios sinónimos, aquí "on" tiene el sinónimo "encender" y "encender"". La sintaxis es por lo tanto "*Nombre de la orden*" ***=*** "*sinónimo 1*"***,*** "*sinónimo 2*" (podemos poner tantos sinónimos como queramos). Luego, para agregar sinónimos para otro nombre de comando, simplemente agregue una barra vertical después del último sinónimo "*\|*" después de lo cual puede nombrar nuevamente el comando que tendrá sinónimos en la primera parte, etc.
+Podemos ver aquí una sintaxis algo nueva para sinónimos. Un nombre de comando puede tener varios sinónimos, aquí "on" tiene el sinónimo "encender" y "encender"". La sintaxis es por lo tanto "*Nombre de la orden*" ***=*** "*sinónimo 1*"***,*** "*sinónimo 2*" (podemos poner tantos sinónimos como queramos). Luego, para agregar sinónimos para otro nombre de comando, simplemente agregue una barra vertical después del último sinónimo "*|*" después de lo cual puede nombrar nuevamente el comando que tendrá sinónimos en la primera parte, etc.
 
 Ya es mejor, pero aún le falta el comando &quot;en&quot; &quot;entrada&quot; la &quot;l&quot; y para otros la &quot;la&quot; o &quot;le&quot; o &quot;a&quot;, etc. Podríamos cambiar el nombre del equipo para agregarlo, sería una solución, de lo contrario, podemos usar las variaciones en la solicitud. Esto consiste en enumerar una serie de palabras posibles en un lugar de la oración, por lo tanto, Jeedom generará oraciones con estas variaciones.
 
@@ -145,7 +145,7 @@ Por lo tanto, se vuelve importante construir bien sus oraciones y sinónimos mod
 
 Hasta ahora, como respuesta a una interacción, teníamos una oración simple que no decía mucho, excepto que algo sucedió. La idea sería que Jeedom nos diga qué hizo con un poco más de precisión. Aquí es donde entra el campo de respuesta, donde podremos personalizar el retorno de acuerdo con el comando ejecutado.
 
-Para hacer esto, nuevamente usaremos la etiqueta Jeedom. Para nuestras luces, podemos usar una frase del estilo : Encendí#equipement\# (ver captura de pantalla a continuación).
+Para hacer esto, nuevamente usaremos la etiqueta Jeedom. Para nuestras luces, podemos usar una frase del estilo : Encendí#equipement# (ver captura de pantalla a continuación).
 
 ![interact011](../images/interact011.png)
 
@@ -159,11 +159,11 @@ Las conversiones binarias se aplican a los comandos de tipo de información cuyo
 
 ![interact013](../images/interact013.png)
 
-Como podemos ver aquí, he mantenido casi la misma estructura para la solicitud (es voluntario enfocarse en los detalles). Por supuesto, adapté los sinónimos para tener algo coherente. Sin embargo, para la respuesta, es **imperativo** para poner solo#valeur\# que representa el 0 o 1 que Jeedom reemplazará con la siguiente conversión binaria.
+Como podemos ver aquí, he mantenido casi la misma estructura para la solicitud (es voluntario enfocarse en los detalles). Por supuesto, adapté los sinónimos para tener algo coherente. Sin embargo, para la respuesta, es **imperativo** para poner solo#valeur# que representa el 0 o 1 que Jeedom reemplazará con la siguiente conversión binaria.
 
 El campo **Conversión binaria** debe contener 2 respuestas : primero la respuesta si el valor del comando es 0, luego una barra vertical "\|" separación y finalmente la respuesta si el comando vale 1. Aquí las respuestas son simplemente no y sí, pero podríamos poner una oración un poco más larga.
 
-> **Advertencia**
+> ****
 >
 > Las etiquetas no funcionan en conversiones binarias.
 
@@ -171,13 +171,13 @@ El campo **Conversión binaria** debe contener 2 respuestas : primero la respues
 
 El campo "Usuarios autorizados" te permite autorizar solo a determinadas personas a ejecutar el comando, puedes poner varios perfiles separándolos con un "\|".
 
-Ejemplo : personne1\|personne2
+ : personne1|personne2
 
 Podemos imaginar que una alarma puede ser activada o desactivada por un niño o un vecino que vendría a regar las plantas en su ausencia.
 
 ### Exclusión de expresiones regulares
 
-Es posible crear [Expresión regular](https://fr.wikipedia.org/wiki/Expression_rationnelle) exclusión, si una oración generada coincide con esta expresión regular, se eliminará. El interés es poder eliminar los falsos positivos, es decir, una oración generada por Jeedom que activa algo que no corresponde a lo que queremos o que interferiría con otra interacción que tendría una oración similar.
+Es posible crear [](https://fr.wikipedia.org/wiki/Expression_rationnelle) exclusión, si una oración generada coincide con esta expresión regular, se eliminará. El interés es poder eliminar los falsos positivos, es decir, una oración generada por Jeedom que activa algo que no corresponde a lo que queremos o que interferiría con otra interacción que tendría una oración similar.
 
 Tenemos 2 lugares para aplicar un Regexp :
 - En la interacción misma en el campo "Exclusión de expresiones regulares"".
@@ -204,7 +204,7 @@ Si traducimos esta expresión en una oración, daría "busque la palabra Julie q
 
 Es una versión extremadamente simple de expresiones regulares, pero ya es muy complicada de entender. Me tomó un tiempo entender cómo funciona. Como un ejemplo un poco más complejo, una expresión regular para verificar una URL :
 
-/\^(https?:\\ / \\ /)?(\ [\\ da-z \\ .- \] +) \\. (\ [az \\. \] {2,6}) (\ [\\ / \\ w \\ .- \] \*)\*\\ /?\ $ /
+/^(https?:\\ / \\ /)?(\ [\\ da-z \\ .- \] +) \\. (\ [az \\. \] {2,6}) (\ [\\ / \\ w \\ .- \] \*)*\\ /?\ $ /
 
 Una vez que puedes escribir esto, entiendes las expresiones regulares.
 
@@ -238,15 +238,15 @@ En este ejemplo, vemos una oración simple que devolverá una respuesta con 3 te
 
 - Entonces la pregunta es "¿hay alguien en la sala?"
 - La respuesta será "no, no hay nadie en la habitación" o "sí, hay alguien en la habitación""
-- El comando que responde a eso es "\#\[Chambre de julie\]\[FGMS-001-2\]\[Présence\]\#"
+- El comando que responde a eso es "\#[Chambre de julie][FGMS-001-2][Présence]#"
 
 ![interact017](../images/interact017.png)
 
-Este ejemplo se dirige específicamente a equipos específicos que permiten una respuesta personalizada. Entonces podríamos imaginar reemplazar la respuesta del ejemplo con "no, no hay nadie en la sala *julio*\|si hay alguien en la sala *julio*"
+Este ejemplo se dirige específicamente a equipos específicos que permiten una respuesta personalizada. Entonces podríamos imaginar reemplazar la respuesta del ejemplo con "no, no hay nadie en la sala **|si hay alguien en la sala **"
 
 #### Evolution
 
-- Entonces la pregunta es "\#commande\# \[en la \|en el\] \#objet\#"
+- Entonces la pregunta es "\#commande# \[en la \|en el\] \#objet#"
 - La respuesta será "no, no hay nadie en la habitación" o "sí, hay alguien en la habitación""
 - No hay ningún comando que responda a eso en la parte Acción, ya que es una interacción de múltiples comandos
 - Al agregar una expresión regular, podemos limpiar los comandos que no queremos ver para que solo tengamos las oraciones en los comandos de "Presencia"".
@@ -265,8 +265,8 @@ Aquí un ejemplo genérico que se utiliza para conocer la temperatura, la humeda
 
 ![interact019](../images/interact019.png)
 
-- Entonces podemos ver que una oración genérica como &quot;¿Cuál es la temperatura en la sala de estar&quot; o &quot;¿Cuál es el brillo de la habitación?&quot; Se puede convertir en : "Cuál es la \|l \\ '\] \#commande\# objeto "(el uso de \ [palabra1 \| word2 \] le permite decir esta posibilidad o aquella para generar todas las variantes posibles de la oración con word1 o word2). Al generar Jeedom generará todas las combinaciones posibles de oraciones con todos los comandos existentes (dependiendo de los filtros) reemplazando \#commande\# por el nombre del comando y \#objet\# por el nombre del objeto.
-- La respuesta será "21 ° C" o "200 lux". Solo pon : \#valeur\# \#unite\# (la unidad se completará en la configuración de cada comando para el que queremos tener uno)
+- Entonces podemos ver que una oración genérica como &quot;¿Cuál es la temperatura en la sala de estar&quot; o &quot;¿Cuál es el brillo de la habitación?&quot; Se puede convertir en : "Cuál es la \|l \\ '\] \#commande# objeto "(el uso de \ [palabra1 \| word2 \] le permite decir esta posibilidad o aquella para generar todas las variantes posibles de la oración con word1 o word2). Al generar Jeedom generará todas las combinaciones posibles de oraciones con todos los comandos existentes (dependiendo de los filtros) reemplazando \#commande# por el nombre del comando y \#objet# por el nombre del objeto.
+- La respuesta será "21 ° C" o "200 lux". Solo pon : #valeur# #unite# (la unidad se completará en la configuración de cada comando para el que queremos tener uno)
 - Por lo tanto, este ejemplo genera una oración para todos los comandos de tipo de información digital que tienen una unidad, por lo que podemos desmarcar las unidades en el filtro derecho limitado al tipo que nos interesa.
 
 #### Evolution
@@ -281,11 +281,11 @@ También podemos agregar un filtro Regexp para eliminar algunos comandos. Usando
 
 Entonces podemos ver una expresión regular :
 
-**(batterie\|latence\|pression\|vitesse\|consommation)**
+**(batterie|latence|pression|vitesse|consommation)**
 
 Esto le permite eliminar todos los comandos que tienen una de estas palabras en su oración
 
-> **Nota**
+> ****
 >
 > La expresión regular aquí es una versión simplificada para un uso fácil. Por lo tanto, podemos usar expresiones tradicionales o expresiones simplificadas como en este ejemplo.
 
@@ -297,9 +297,9 @@ Es posible controlar una lámpara como un porcentaje (dimmer) o un termostato co
 
 ![interact022](../images/interact022.png)
 
-Como podemos ver, aquí está en la solicitud la etiqueta **\#consigne\#** (puede poner lo que quiera) que se incluye en el control de la unidad para aplicar el valor deseado. Para hacer esto, tenemos 3 partes : \* Solicitud : en el que creamos una etiqueta que representará el valor que se enviará a la interacción. \* Respuesta : reutilizamos la etiqueta para la respuesta para asegurarnos de que Jeedom entendió correctamente la solicitud. \* Valores : ponemos una acción sobre la lámpara que queremos conducir y en el valor le pasamos nuestra etiqueta *consigna*.
+Como podemos ver, aquí está en la solicitud la etiqueta **#consigne#** (puede poner lo que quiera) que se incluye en el control de la unidad para aplicar el valor deseado. Para hacer esto, tenemos 3 partes : *  : en el que creamos una etiqueta que representará el valor que se enviará a la interacción. \* Respuesta : reutilizamos la etiqueta para la respuesta para asegurarnos de que Jeedom entendió correctamente la solicitud. \*  : ponemos una acción sobre la lámpara que queremos conducir y en el valor le pasamos nuestra etiqueta **.
 
-> **Nota**
+> ****
 >
 > Podemos usar cualquier etiqueta, excepto las que ya usa Jeedom, puede haber varias para controlar, por ejemplo, varios comandos. Tenga en cuenta también que todas las etiquetas se pasan a los escenarios iniciados por la interacción (sin embargo, es necesario que el escenario esté en "Ejecutar en primer plano"").
 
@@ -309,13 +309,13 @@ Es posible que queramos controlar todos los comandos de tipo cursor con una sola
 
 ![interact033](../images/interact033.png)
 
-En esta interacción, no tenemos comando en la parte de acción, dejamos que Jeedom genere a partir de etiquetas la lista de oraciones. Podemos ver la etiqueta **\#slider\#**. Es imprescindible utilizar esta etiqueta para obtener instrucciones en un comando de interacción múltiple, puede que no sea la última palabra de la oración. También podemos ver en el ejemplo que podemos usar en la respuesta una etiqueta que no es parte de la solicitud. La mayoría de las etiquetas disponibles en los escenarios también están disponibles en las interacciones y, por lo tanto, se pueden usar en una respuesta.
+En esta interacción, no tenemos comando en la parte de acción, dejamos que Jeedom genere a partir de etiquetas la lista de oraciones. Podemos ver la etiqueta **#slider#**. Es imprescindible utilizar esta etiqueta para obtener instrucciones en un comando de interacción múltiple, puede que no sea la última palabra de la oración. También podemos ver en el ejemplo que podemos usar en la respuesta una etiqueta que no es parte de la solicitud. La mayoría de las etiquetas disponibles en los escenarios también están disponibles en las interacciones y, por lo tanto, se pueden usar en una respuesta.
 
 Resultado de la interacción :
 
 ![interact034](../images/interact034.png)
 
-Podemos ver que la etiqueta **\#equipement\#** que no se utiliza en la solicitud se completa bien en la respuesta.
+Podemos ver que la etiqueta **#equipement#** que no se utiliza en la solicitud se completa bien en la respuesta.
 
 ### Controla el color de una tira de LED
 
@@ -346,10 +346,10 @@ Por lo tanto, este ejemplo permite lanzar el escenario que está vinculado en la
 
 ### Programando una acción con interacciones
 
-Las interacciones hacen muchas cosas en particular. Puedes programar una acción dinámicamente. Ejemplo : "Enciende el calor a las 22 para las 2:50 p.m". Nada podría ser más simple, solo usa las etiquetas \#time\# (si se define un tiempo específico) o \#duration\# (para en X tiempo, ejemplo en 1 hora) :
+Las interacciones hacen muchas cosas en particular. Puedes programar una acción dinámicamente.  : "Enciende el calor a las 22 para las 2:50 p.m". Nada podría ser más simple, solo usa las etiquetas \#time# (si se define un tiempo específico) o \#duration# (para en X tiempo, ejemplo en 1 hora) :
 
 ![interact23](../images/interact23.JPG)
 
-> **Nota**
+> ****
 >
-> Notará en la respuesta la etiqueta \#value\# esto contiene, en el caso de una interacción programada, el tiempo efectivo de programación
+> Notará en la respuesta la etiqueta \#value# esto contiene, en el caso de una interacción programada, el tiempo efectivo de programación
