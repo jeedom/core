@@ -620,7 +620,7 @@ jeeDialog.dialog({
       callback: {
         click: function(event) {
           jeedom.history.chart[jeeP.__el__].comparing = true
-          document.querySelectorAll('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').forEach(_check => { _ckeck.checked = true})
+          document.querySelectorAll('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').forEach(_check => { _check.checked = true})
           document.getElementById('bt_compare').removeClass('btn-success').addClass('btn-danger')
           jeedom.history.chart[jeeP.__el__].chart.xAxis[1].update({
             visible: true
@@ -659,7 +659,7 @@ $('#bt_compare').off().on('click', function(event) {
   let bt = event.target.closest('#bt_compare')
   if (!jeedom.history.chart[jeeP.__el__].comparing) { //Go comparing:
     if (jeeP.__lastId__ == null) return
-    bt.getAttribute('data-cmdId', jeeP.__lastId__)
+    bt.setAttribute('data-cmdId', jeeP.__lastId__)
     jeeDialog.get('#md_historyCompare').show()
   } else { //Stop comparing:
     jeeP.clearGraph()
