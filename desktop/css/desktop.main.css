@@ -118,6 +118,12 @@ Desktop
   .cross {
     text-decoration: line-through;
   }
+  .fontweightnormal {
+    font-weight: 400;
+  }
+  .fontweightbold {
+    font-weight: 700;
+  }
 
   h1,h2,h3,h4,h5,h6,
   h3 a:visited {
