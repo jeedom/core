@@ -547,6 +547,11 @@ jeedomUtils.initApplication = function(_reinit) {
 		}
 	      } else if (redirect == 'view') {
 		jeedomUtils.loadPage('view', '{{Vue}}', getUrlVars('view_id'));
+	      } else if (redirect == 'dashboard') {
+		 jeedomUtils.loadPage('equipment', '{{Dashboard}}',getUrlVars('object_id'));
+	      }
+              else if (redirect == 'plan') {
+               window.location.href = 'index.php?v=d&p=plan&fullscreen=1&plan_id='+getUrlVars('plan_id');
 	      } else if (isset(jeeFrontEnd.userProfils) && jeeFrontEnd.userProfils != null && isset(jeeFrontEnd.userProfils.homePageMobile) && jeeFrontEnd.userProfils.homePageMobile != 'home') {
 		let res = jeeFrontEnd.userProfils.homePageMobile.split("::")
 		if (res[0] == 'core') {
@@ -568,7 +573,11 @@ jeedomUtils.initApplication = function(_reinit) {
 		  jeedomUtils.loadPage(res[1], 'Plugin', '', res[0])
 		}
 	      } else {
-		  jeedomUtils.loadPage('home', '{{Accueil}}')
+		   if (redirect != '') {
+                      jeedomUtils.loadPage(redirect, 'Plugin', '', redirect)
+                   }else{
+                      jeedomUtils.loadPage('home', '{{Accueil}}') 
+                  }
 	      }
 
             if (APP_MODE) {
