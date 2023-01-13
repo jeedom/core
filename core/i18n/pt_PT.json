@@ -85,7 +85,8 @@
         "Démons": "Demônios",
         "Message": "Mensagem",
         "Accueil": "Início",
-        "Vue": "Visto"
+        "Vue": "Visto",
+        "Dashboard": "Dashboard"
     },
     "mobile\/js\/scenario.js": {
         "Aucun": "Nenhum"
@@ -2727,11 +2728,11 @@
         "Supprimer": "Excluir",
         "Vérifier": "Verificar",
         "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "A atualização parece estar bloqueada (nenhuma alteração nos últimos 10 minutos. Verifique o registo)",
+        "Options de mise à jour": "Opções de atualização",
         "Êtes-vous sûr de vouloir mettre à jour les packages de type": "Tem certeza de que deseja atualizar os pacotes do tipo",
         "Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes": "Tenha cuidado, esta operação é sempre arriscada e pode levar várias dezenas de minutos",
         "Mise à jour lancée avec succès.": "Atualização iniciada com sucesso",
         "Log de mise à jour": "Atualizar registro",
-        "Options de mise à jour": "Opções de atualização",
         "Êtes-vous sûr de vouloir mettre à jour :": "Tem certeza que deseja atualizar:",
         "Êtes-vous sûr de vouloir supprimer :": "Tem certeza de que deseja excluir:"
     },

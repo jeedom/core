@@ -85,7 +85,8 @@
         "Démons": "Demons",
         "Message": "Message",
         "Accueil": "Home",
-        "Vue": "Seen"
+        "Vue": "Seen",
+        "Dashboard": "Dashboard"
     },
     "mobile\/js\/scenario.js": {
         "Aucun": "None"
@@ -2727,11 +2728,11 @@
         "Supprimer": "Delete",
         "Vérifier": "Check",
         "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "The update seems to be blocked (no change for 10min. Check the log)",
+        "Options de mise à jour": "Update Options",
         "Êtes-vous sûr de vouloir mettre à jour les packages de type": "Are you sure you want to update packages of type",
         "Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes": "Be careful, this operation is always risky and can take several tens of minutes",
         "Mise à jour lancée avec succès.": "Update launched successfully",
         "Log de mise à jour": "Update Log",
-        "Options de mise à jour": "Update Options",
         "Êtes-vous sûr de vouloir mettre à jour :": "Are you sure you want to update:",
         "Êtes-vous sûr de vouloir supprimer :": "Are you sure you want to delete:"
     },
