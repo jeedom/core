@@ -97,6 +97,7 @@ Document.prototype.emptyById = function(_id) {
 Element.prototype.addClass = function(_className /*, _className... */) {
   if (_className == '') return this
   let args = Array.prototype.slice.call(arguments)
+  if (args[0].includes(' ')) args = args[0].split(' ')
   this.classList.add(...args)
   return this
 }
@@ -114,7 +115,9 @@ Element.prototype.removeClass = function(_className /*, _className... */) {
     this.classList = ''
     return this
   }
+
   let args = Array.prototype.slice.call(arguments)
+  if (args[0].includes(' ')) args = args[0].split(' ')
   this.classList.remove(...args)
   return this
 }
