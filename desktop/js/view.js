@@ -158,14 +158,14 @@ window.registerEvent("resize", function view(event) {
   jeedomUtils.positionEqLogic()
 })
 
-$('#div_pageContainer').on('click', '.bt_gotoViewZone', function() {
+$('#div_pageContainer').on('click', '.bt_gotoViewZone', function(event) {
   var ptop = $('.div_displayViewContainer').scrollTop() + $('.lg_viewZone[data-zone_id=' + $(this).attr('data-zone_id') + ']').offset().top - 60
   $('.div_displayViewContainer').animate({
     scrollTop: ptop
   }, 500)
 })
 
-$('#bt_editViewWidgetOrder').off('click').on('click', function() {
+$('#bt_editViewWidgetOrder').off('click').on('click', function(event) {
   if (this.getAttribute('data-mode') == '1') {
     document.getElementById('md_dashEdit')?.remove()
     jeedomUtils.hideAlert()
@@ -267,7 +267,7 @@ if (jeephp2js.view_id != '') {
   })
 }
 
-$('.bt_displayView').on('click', function() {
+$('.bt_displayView').on('click', function(event) {
   if ($(this).attr('data-display') == 1) {
     $(this).closest('.row').find('.div_displayViewList').hide()
     $(this).closest('.row').find('.div_displayViewContainer').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-12 col-md-12 col-sm-12')

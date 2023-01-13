@@ -2708,9 +2708,9 @@
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
-        "Rechercher": "Arayın",
         "Apache non securisé": "Apache non securisé",
         "Apache sécurisé": "Apache sécurisé",
+        "Rechercher": "Arayın",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous",
         "OK": "Tamam"
     },
@@ -2969,6 +2969,14 @@
     "desktop\/js\/plan.js": {
         "Nom du design ?": "Disaynın ismi ?",
         "Veuillez indiquer le code ?": "Pin i girin",
+        "Paramètres d\\'affichage": "Ekran ayarları",
+        "Configuration du composant": "Configuration du composant",
+        "Configuration avancée": "Gelişmiş ayarlar",
+        "Valider": "Onaylayın",
+        "Annuler": "Iptal et",
+        "Supprimer": "Sil",
+        "Dupliquer": "Kopyala",
+        "Verrouiller": "Kilitle",
         "Designs": "Tasarımlar",
         "Edition": "Düzenleme",
         "Plein écran": "Tam ekran",
@@ -2984,6 +2992,7 @@
         "Ajouter une zone": "Bölge ekleyin",
         "Ajouter un résumé": "Özet ekle",
         "Affichage": "Gösterim",
+        "Aucune": "Aucune",
         "Aimanter à la grille": "Izgaraya mıknatısla",
         "Masquer surbrillance des éléments": "Vurgulanan elemanlari gizle",
         "Supprimer le design": "Disaynı sil",
@@ -2993,15 +3002,7 @@
         "Nom la copie du design ?": "Disaynın kopyasının adı ne ?",
         "Configurer le design": "Disaynı ayarlayın",
         "Configuration du design": "Disaynın ayarları",
-        "Sauvegarder": "Kaydet",
-        "Paramètres d\\'affichage": "Ekran ayarları",
-        "Configuration du composant": "Configuration du composant",
-        "Configuration avancée": "Gelişmiş ayarlar",
-        "Valider": "Onaylayın",
-        "Annuler": "Iptal et",
-        "Supprimer": "Sil",
-        "Dupliquer": "Kopyala",
-        "Verrouiller": "Kilitle"
+        "Sauvegarder": "Kaydet"
     },
     "desktop\/js\/interact.js": {
         "Action": "Eylem",
@@ -3017,8 +3018,8 @@
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Etkileşimi kaldırmak istediğinizden emin misiniz"
     },
     "desktop\/js\/timeline.js": {
-        "Configuration de l'historique des commandes": "Komut geçmişini yapılandırma",
         "Ev ements de la timeline supprim  avec succ ": "Ev ements de la timeline supprim  avec succ",
+        "Configuration de l'historique des commandes": "Komut geçmişini yapılandırma",
         "Log d'exécution du scénario": "Senaryonun çalışma logu",
         "Historique": "Geçmiş",
         "Configuration de la commande": "Komutanın ayarları"
@@ -3075,10 +3076,10 @@
         "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "L'import de widgets se fait au format json à partir de widgets précedemment exporté"
     },
     "desktop\/js\/profils.js": {
+        "Opération effectuée": "Operasyon uygulandı",
         "Les deux mots de passe ne sont pas identiques": "Şifreleriniz aynı değil",
         "Sauvegarde effectuée": "Yedekleme gerçekleştirildi",
-        "Authentification 2 étapes": "2 aşamalı kimlik dogrulama",
-        "Opération effectuée": "Operasyon uygulandı"
+        "Authentification 2 étapes": "2 aşamalı kimlik dogrulama"
     },
     "desktop\/js\/administration.js": {
         "Somme": "Toplam",
@@ -3143,11 +3144,11 @@
         "Vous ne pouvez pas remplacer un équipement par lui même.": "Vous ne pouvez pas remplacer un équipement par lui même",
         "Cet équipement remplace déjà un autre équipement.": "Cet équipement remplace déjà un autre équipement",
         "Vous ne pouvez pas remplacer un équipement par un équipement de même nom.": "Vous ne pouvez pas remplacer un équipement par un équipement de même nom",
-        "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
-        "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?",
         "Aucun équipement à remplacer ou copier": "Aucun équipement à remplacer ou copier",
         "Aucune commande à remplacer ou copier": "Aucune commande à remplacer ou copier",
-        "Remplacement effectué": "Remplacement effectué"
+        "Remplacement effectué": "Remplacement effectué",
+        "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
+        "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Supprimée le": "Supprimée le",
@@ -3182,9 +3183,9 @@
         "Vue d'ensemble des objets": "Vue d'ensemble des objets"
     },
     "desktop\/js\/system.js": {
+        "Commande :": "Komuta :",
         "Êtes-vous sûr de vouloir éxécuter cette commande :": "Etes-vous sûr de vouloir exécuter cette commande :",
-        "Celle-ci est classé en dangereuse": "Celle-ci est classé en dangereuse",
-        "Commande :": "Komuta :"
+        "Celle-ci est classé en dangereuse": "Celle-ci est classé en dangereuse"
     },
     "desktop\/js\/backup.js": {
         "L\\'opération est réussie": "Operasyon başarıldı",
@@ -3524,8 +3525,8 @@
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "Değer başarıyla düzenlendi",
         "Impossible de modifier une valeur sur une courbe avec groupement": "Impossible de modifier une valeur sur une courbe avec groupement",
-        "Edition de la série :": "Serinin düzeblenmesi :",
-        "et du point de": "ve noktadan",
+        "Edition d'historique": "Edition d'historique",
+        "date :": "date :",
         "valeur :": "değer :",
         "Ne rien mettre pour supprimer la valeur": "Değeri silmek için hiç birşey koymayın",
         "Il n\\'existe encore aucun historique pour cette commande :": "Bu komuta yada sipariş için hiçbir geçmiş bulunmamaktadır :",

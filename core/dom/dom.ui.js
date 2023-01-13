@@ -441,8 +441,6 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
       ArrowDown 40
       Delete 46
     */
-    //console.log('keyup', event, 'key:', event.key, 'code:', event.keyCode)
-    //console.log('selection:', event.target.selectionStart, event.target.selectionEnd)
 
     if (event.ctrlKey || event.altKey || event.metaKey) return
 
@@ -570,7 +568,6 @@ var jeeDialog = (function()
     let exports = {
       _description: 'Jeedom dialog function handling modals and alert messages. /core/dom/dom.ui.js'
     }
-    let self = this
 
     /*________________TOAST
     */
@@ -1333,6 +1330,26 @@ var jeeDialog = (function()
 
     /*________________DIALOGS
     */
+    var specialDialogOptions = {
+      md_cmdHistory: {
+        width: '800px',
+        height: '500px',
+        top: '15vh',
+        retainPosition: true,
+        zIndex: 1030,
+        backdrop: false,
+      },
+      jee_modal2: {
+        width:'75vw',
+        top: '7vh',
+        zIndex: 1021,
+      },
+      jee_modal3: {
+        width:'60vw',
+        top: '5vh',
+        zIndex: 1022,
+      }
+    }
     exports.dialog = function(_options) {
       //Require _options.id to construct and initialize a container:
       if (!isset(_options)) _options = {}
@@ -1391,18 +1408,13 @@ var jeeDialog = (function()
           onResize: false
         })
 
-        if (_options.id == 'jee_modal2') {
-          if (!isset(_options.zIndex)) _options.zIndex = 1021
-          if (!isset(_options.width)) _options.width = '75vw'
-          if (!isset(_options.top)) _options.top = "7vh"
-        } else if (_options.id == 'jee_modal3') {
-          if (!isset(_options.zIndex)) _options.zIndex = 1022
-          if (!isset(_options.width)) _options.width = '60vw'
-          if (!isset(_options.top)) _options.top = "5vh"
-        }
-
         _options = domUtils.extend(defaultOptions, _options)
         _options.isMainDialog = true
+
+        //Check special init values:
+        if (_options.id in specialDialogOptions) {
+          _options = domUtils.extend(_options, specialDialogOptions[_options.id])
+        }
 
         if (Object.keys(_options.buttons).length > 0) {
           _options.setFooter = true
@@ -1577,75 +1589,334 @@ var jeeDialog = (function()
     return exports
 })()
 
-var jeeCtxMenu = (function()
+
+/* jeeCtxMenu()
+Core lib for context menus
+*/
+var jeeCtxMenu = function(_options)
 {
-  'use strict'
-  let exports = {
-    _description: 'Jeedom Core contextual menu lib. /core/dom/dom.ui.js'
+  var ctxInstance = { //Always initialize with new jeeCtxMenu({}) or this won't be unique per menu!
+    realTrigger: null
   }
-  let self = this
 
-  function setPosition(_ctxMenu, event) {
-    //Manage opening outside screen:
-    let bRect = document.body.getBoundingClientRect()
-    let cRect = _ctxMenu.getBoundingClientRect()
+  function setPosition(_ctxMenu, _event) {
+    //Set main menu (must be built with items!) in DOM position to get calculated BoundingRect:
+    Object.assign(_ctxMenu.style, {
+      opacity: 0,
+      height: null,
+      display: null
+    })
 
-    _ctxMenu.style.top = event.clientX + 'px'
-    _ctxMenu.style.left = event.clientY + 'px'
+    //Is there use positionning:
+    if (ctxInstance.options.position) {
+      ctxInstance.options.position.apply(ctxInstance, [ctxInstance, _event.clientX, _event.clientY])
+      _ctxMenu.style.opacity = 1
+    } else {
+      //Keep mouse hover menu to avoid setting click event to close:
+      var bRect = document.body.getBoundingClientRect()
+      var cRect = _ctxMenu.getBoundingClientRect()
+      var newLeft = _event.clientX - 10
+      var newTop = _event.clientY - 10
+
+      //Outside right:
+      if (newLeft > (bRect.width - cRect.width)) {
+        newLeft = bRect.width - cRect.width
+      }
+      //Outside bottom:
+      if (newTop > (bRect.height - cRect.height)) {
+        newTop = bRect.height - cRect.height
+      }
+      //Too much height:
+      if (cRect.height > (bRect.height - 50)) {
+        _ctxMenu.style.height = (bRect.height - 50) + 'px'
+        newTop = 40
+      }
+      Object.assign(_ctxMenu.style, {
+        left: newLeft + 'px',
+        top: newTop + 'px',
+        opacity: 1
+      })
+    }
   }
 
   function _build(_params) {
-    if (_params.build != false) {
-      return
+    ctxInstance.options.commands = []
+    ctxInstance.options.inputs = {}
+    ctxInstance.ctxMenu.empty()
+    Object.keys(_params.items).forEach((_key) => {
+      _buildItem(ctxInstance.ctxMenu, _key, _params.items[_key], _params.callback)
+    })
+  }
+
+  function _buildItem(_itemContainer, _key, _item, _callback) {
+    var itemDiv, itemContDiv
+    //Set new menu item:
+    itemDiv = document.createElement('div')
+    itemDiv.addClass('ctxItem')
+    if (isset(_item.className)) itemDiv.addClass(_item.className)
+    if (_item.icon != undefined) {
+      _item.isHtmlName = true
+      _item.name = '<i class="' + _item.icon + '"></i> ' + _item.name
+    }
+    if (_item.isHtmlName) {
+      itemDiv.innerHTML = _item.name
+    } else {
+      itemDiv.textContent = _item.name
+    }
+
+    //Is item a sperator:
+    let isSep = new RegExp("^[-]+$").test(_item) // item: '-----'
+    if (!isSep && isset(_item.type) && _item.type == 'cm_separator') isSep = true
+
+    if (!isSep) {
+      //Reference for dynamic scanning at show()
+      _item.menuItem = itemDiv
+      ctxInstance.options.commands[_key] = _item
+    }
+
+    if (isset(_item.items)) {
+      itemDiv.addClass('ctxSubMenu')
+      itemContDiv = document.createElement('div')
+      itemContDiv.addClass('ctxSubMenuContainer')
+      itemContDiv.style.display = 'none'
+      itemDiv = _itemContainer.appendChild(itemDiv)
+      itemDiv.appendChild(itemContDiv)
+      Object.keys(_item.items).forEach((_key) => {
+        _buildItem(itemContDiv, _key, _item.items[_key], _callback)
+      })
+      //Events:
+      itemDiv.addEventListener('mouseenter', function(event) {
+        let subContainer = event.target.querySelector('div.ctxSubMenuContainer')
+
+        //Reset and 'show' subContainer to get computed rect:
+        Object.assign(subContainer.style, {
+          opacity: 0,
+          height: null,
+          display: null
+        })
+
+        let bRect = document.body.getBoundingClientRect()
+        let tRect = event.target.getBoundingClientRect()
+        let sRect = subContainer.getBoundingClientRect()
+
+        let newLeft = tRect.x + tRect.width - 15
+        let newTop = tRect.y
+
+        //Outside right:
+        if (newLeft >= (bRect.width - sRect.width)) {
+          newLeft = tRect.x - sRect.width + 5
+        }
+        //Outside bottom:
+        if (newTop > (bRect.height - sRect.height)) {
+          newTop = bRect.height - sRect.height - 10
+        }
+        //Too much height:
+        if (sRect.height > (bRect.height - 50)) {
+          subContainer.style.height = (bRect.height - 50) + 'px'
+          newTop = 40
+        }
+
+        Object.assign(subContainer.style, {
+          left: newLeft + 'px',
+          top: newTop + 'px',
+          opacity: 1
+        })
+      })
+      itemDiv.addEventListener('mouseleave', function(event) {
+        var subContainer = event.target.querySelector('div.ctxSubMenuContainer')
+        subContainer.style.display = 'none'
+      })
+    } else if (isSep) {
+      itemDiv.addClass('ctxSeparator')
+      _itemContainer.appendChild(itemDiv)
+    } else {
+      if (isset(_item.type) && (_item.type == 'checkbox' || _item.type == 'radio')) {
+        itemDiv.addClass('ctxInput')
+        var label = document.createElement('label')
+        var span = document.createElement('span')
+        if (_item.isHtmlName) {
+          span.innerHTML = _item.name
+        } else {
+          span.textContent = _item.name
+        }
+        var input = document.createElement('input')
+        input.type = _item.type
+        if (isset(_item.radio)) input.name = _item.radio
+        if (isset(_item.selected)) input.checked = _item.selected
+        if (isset(_item.value)) input.value = _item.value
+        label.appendChild(input)
+        label.appendChild(span)
+
+        itemDiv.innerHTML = ''
+        itemDiv.appendChild(label)
+
+        ctxInstance.options.inputs[_key] = _item
+        ctxInstance.options.inputs[_key].node = input
+      }
+      //Events
+      itemDiv.addEventListener('mouseup', function(event) { //Context menu item click:
+        if (event.target.hasClass('disabled')) return
+        setTimeout(() => { //Wait for mouseup firing default click
+          let then = true
+          event.realTrigger = ctxInstance.realTrigger
+          ctxInstance.options.trigger = ctxInstance.realTrigger
+          if (isset(_item.callback)) { //Per item global
+            then = _item.callback.apply(ctxInstance.realTrigger, [_key, ctxInstance.options, event])
+          } else if (isset(_item.events) && isset(_item.events.click)) { //Input click callback
+            then = _item.events.click.apply(input, [_key, event])
+          } else if (ctxInstance.options.callback) { //Default global callback
+            then = ctxInstance.options.callback.apply(ctxInstance.realTrigger, [_key, ctxInstance.options, event])
+          } else if (_callback) { //Dynamic build global
+            then = _callback.apply(ctxInstance.realTrigger, [_key, ctxInstance.options, event])
+          }
+          if (then != false) {
+            ctxInstance.hide(event)
+          }
+        })
+      })
+      _itemContainer.appendChild(itemDiv)
     }
   }
 
-  exports.init = function(_options) {
-    var defaultOptions = {
-      id: 'jee_ctxMenu',
-      selector: '',
-      appendTo: '',
-      zIndex: 1100,
-      build: false,
-      className: '',
-      trigger: 'right',
-      autoHide: true,
-      callback: function(key, options, event) {}, //Default item callback
-      events: {
-        preShow: false, //Beforte show
-        show: false, //Shown
-        hide: false, //Before hide
-        activated: false,
-      },
+  var defaultOptions = {
+    selector: false,
+    appendTo: 'body',
+    items: false,
+    className: '',
+    autoHide: true,
+    zIndex: 12000,
+    isDisable: false,
+    callback: false, //Default item callback
+    build: false, //Dynamic function building called at show
+    position: false, //fn called on setPosition
+    events: {
+      show: function() {}, //Beforte show
+      hide: function() {}, //Before hide
+    },
+  }
+
+  //Merge defaults and submitted options:
+  _options = domUtils.extend(defaultOptions, _options)
+  if (!_options.selector) return null
+
+  var ctxMenuContainer = document.createElement('div')
+  ctxMenuContainer.addClass('jeeCtxMenu')
+  if (_options.className != '') ctxMenuContainer.addClass(_options.className)
+  ctxMenuContainer.style.display = 'none'
+  ctxMenuContainer.style.zIndex = _options.zIndex
+  document.querySelector(_options.appendTo)?.appendChild(ctxMenuContainer)
+
+  ctxInstance.options = _options
+  ctxInstance.ctxMenu = ctxMenuContainer
+
+  ctxInstance.hideAll = function() {
+    document.querySelectorAll('div.jeeCtxMenu').forEach(_ctx =>  {
+      if (isset(_ctx._jeeCtxMenu)) {
+        _ctx._jeeCtxMenu.ctxMenu.unseen()
+      }
+    })
+  }
+  ctxInstance.enable = function() {
+    this.isDisable = false
+  }
+  ctxInstance.disable = function() {
+    this.isDisable = true
+  }
+  ctxInstance.setInputValues = function(opt, data) { //Set data inputs values according to opt element data-x attributes
+    var datasetDomStringMAp = opt.dataset
+    for (var _key in data) {
+      if (isset(ctxInstance.options.inputs[_key])) {
+        ctxInstance.options.inputs[_key].node.jeeValue(datasetDomStringMAp[_key])
+      }
+    }
+  }
+  ctxInstance.getInputValues = function(opt, data) { //Store data values as data-x attributes on opt element
+    Object.keys(ctxInstance.options.inputs).forEach((_key) => {
+      opt.setAttribute('data-' + _key, ctxInstance.options.inputs[_key].node.jeeValue())
+    })
+  }
+  ctxInstance.show = function(_event) {
+    if (typeof ctxInstance.options.build === 'function') { //Dynamic build
+      var _args = ctxInstance.options.build(ctxInstance.realTrigger)
+      if (!isset(_args)) _args = {}
+      if (!isset(_args.items)) _args.items = false
+      if (!isset(_args.callback)) _args.callback = false
+      _build(_args)
     }
 
-    //Merge defaults and submitted options:
-    _options = domUtils.extend(defaultOptions, _options)
-
-    ctxMenuContainer = document.createElement('div')
-    ctxMenuContainer.setAttribute('id', _options.id)
-    ctxMenuContainer.addClass('jeeCtxMenu')
-    ctxMenuContainer.style.display = 'none'
-    // appendTo document.body.appendChild(ctxMenuContainer)
-
-    ctxMenuContainer._jeeCtxMenu = {
-      options: _options,
-      ctxMenu: ctxMenuContainer,
-      show: function(event) {
-        setPosition(this.ctxMenu, event.target)
-        this.ctxMenu.seen()
-      },
-      hide: function() {
-        this.ctxMenu.unseen()
-      },
-      destroy: function() {
-        this.ctxMenu.remove()
+    //Update disabled items:
+    var _item, _key
+    for (_key in ctxInstance.options.commands) {
+      _item = ctxInstance.options.commands[_key]
+      var itemDisabled = (typeof _item.disabled === 'function') ? _item.disabled.apply(ctxInstance.realTrigger, [_item.id, ctxInstance]) : _item.disabled
+      if (itemDisabled === true) {
+        _item.menuItem.addClass('disabled')
+      } else {
+        _item.menuItem.removeClass('disabled')
       }
     }
 
-    //Items events listeners
-
+    if (typeof ctxInstance.options.events.show === 'function') ctxInstance.options.events.show.apply(ctxInstance, [ctxInstance])
+    setPosition(ctxInstance.ctxMenu, _event) //Will show
+  }
+  ctxInstance.hide = function(_event) {
+    if (typeof ctxInstance.options.events.hide === 'function') ctxInstance.options.events.hide.apply(ctxInstance, [ctxInstance])
+    if (typeof ctxInstance.options.build === 'function') {
+      this.ctxMenu.empty().unseen()
+    } else {
+      this.ctxMenu.unseen()
+    }
+  }
+  ctxInstance.destroy = function() {
+    document.querySelector(ctxInstance.options.appendTo)?.unRegisterEvent('contextmenu')
+    //document.body.unRegisterEvent('mousedown', 'closeContexts')
+    this.ctxMenu.remove()
   }
 
-    return exports
-})()
+  ctxMenuContainer._jeeCtxMenu = ctxInstance //Usable outside scope
+
+  /* Events
+  */
+  document.querySelector(ctxInstance.options.appendTo)?.registerEvent('contextmenu', function(event) {
+    ctxInstance.hideAll()
+    if (event.target.matches(ctxInstance.options.selector + ', ' + ctxInstance.options.selector + ' *') || event.target.closest(ctxInstance.options.selector) != null ) {
+      event.preventDefault()
+      if (ctxInstance.isDisable) return
+      event.stopImmediatePropagation()
+      event.stopPropagation()
+      ctxInstance.realTrigger = event.target.closest(ctxInstance.options.selector) //Store real element triggering context menu for subsequent calls
+      event.realTrigger = ctxInstance.realTrigger
+      ctxInstance.show(event)
+      return
+    }
+  }, {capture: true, bubble: true})
+
+  /* Main context menu should always open under mouse to allways trigger mouseleave
+  let doesExist = domUtils.registeredEvents.filter(l => l.id == 'closeContexts').length > 0
+  if (!doesExist) { //Only one event when multiple context menus
+    document.body.registerEvent('mousedown', function closeContexts(event) {
+      if (event.target.closest('div.ctxItem') != null) return //Avoid closing itself before item click!
+      ctxInstance.hideAll()
+    })
+  }
+  */
+
+  if (_options.autoHide) {
+    ctxMenuContainer.registerEvent('mouseleave', function(event) {
+      setTimeout(function() {
+        if (!event.target.closest('div.jeeCtxMenu').isVisible()) return //May be closed by click, avoir twice hide
+        ctxInstance.hide(event)
+      }, 100)
+
+    })
+  }
+
+  if (_options.items) {
+    _build({
+      items: _options.items
+    })
+  }
+
+  return ctxInstance
+}
+

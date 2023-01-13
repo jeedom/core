@@ -686,8 +686,9 @@ domUtils(function() {
           }
         }
         if (Object.entries(contextmenuitems).length > 0 && contextmenuitems.constructor === Object) {
-          $('.nav.nav-tabs').contextMenu({
-            selector: 'li',
+          new jeeCtxMenu({
+            appendTo: 'div#div_pageContainer',
+            selector: '.nav.nav-tabs > li',
             autoHide: true,
             zIndex: 9999,
             className: 'eq-context-menu',
@@ -702,7 +703,7 @@ domUtils(function() {
                   }
                 }
                 jeedomUtils.hideAlert()
-                if (event.ctrlKey || event.originalEvent.which == 2) {
+                if (event.ctrlKey || event.which == 2) {
                   var type = document.body.getAttribute('data-page')
                   var url = 'index.php?v=d&m=' + type + '&p=' + type + '&id=' + options.commands[key].id
                   if (tabObj) url += tab

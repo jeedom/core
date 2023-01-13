@@ -2708,9 +2708,9 @@
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
-        "Rechercher": "検索",
         "Apache non securisé": "Apache non securisé",
         "Apache sécurisé": "Apache sécurisé",
+        "Rechercher": "検索",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "左側の注文をクリックするか、下にカスタム注文を入力してください",
         "OK": "[OK]を"
     },
@@ -2969,6 +2969,14 @@
     "desktop\/js\/plan.js": {
         "Nom du design ?": "デザインの名前？",
         "Veuillez indiquer le code ?": "コードを指定してください？",
+        "Paramètres d\\'affichage": "ディスプレイ設定",
+        "Configuration du composant": "コンポーネント構成",
+        "Configuration avancée": "高度な構成",
+        "Valider": "検証",
+        "Annuler": "キャンセル",
+        "Supprimer": "取り除きます",
+        "Dupliquer": "重複",
+        "Verrouiller": "ロック",
         "Designs": "デザイン",
         "Edition": "版",
         "Plein écran": "全画面",
@@ -2984,6 +2992,7 @@
         "Ajouter une zone": "ゾーンを追加する",
         "Ajouter un résumé": "要約を追加",
         "Affichage": "観覧",
+        "Aucune": "Aucune",
         "Aimanter à la grille": "グリッド上の磁石",
         "Masquer surbrillance des éléments": "アイテムのハイライトを非表示",
         "Supprimer le design": "デザインを削除",
@@ -2993,15 +3002,7 @@
         "Nom la copie du design ?": "デザインのコピーに名前を付けますか？",
         "Configurer le design": "設計を構成する",
         "Configuration du design": "設計構成",
-        "Sauvegarder": "セーブ",
-        "Paramètres d\\'affichage": "ディスプレイ設定",
-        "Configuration du composant": "コンポーネント構成",
-        "Configuration avancée": "高度な構成",
-        "Valider": "検証",
-        "Annuler": "キャンセル",
-        "Supprimer": "取り除きます",
-        "Dupliquer": "重複",
-        "Verrouiller": "ロック"
+        "Sauvegarder": "セーブ"
     },
     "desktop\/js\/interact.js": {
         "Action": "アクション",
@@ -3017,8 +3018,8 @@
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "インタラクションを削除してもよろしいですか"
     },
     "desktop\/js\/timeline.js": {
-        "Configuration de l'historique des commandes": "歴史Configurationフォームのコントロール",
         "Ev ements de la timeline supprim  avec succ ": "Ev ements de la timeline supprim  avec succ",
+        "Configuration de l'historique des commandes": "歴史Configurationフォームのコントロール",
         "Log d'exécution du scénario": "スクリプトの実行をログに記録します",
         "Historique": "歴史的",
         "Configuration de la commande": "設定された制御"
@@ -3075,10 +3076,10 @@
         "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "ウィジェットのインポートは、以前にエクスポートされたウィジェットからjson形式で行われます。"
     },
     "desktop\/js\/profils.js": {
+        "Opération effectuée": "実行された操作",
         "Les deux mots de passe ne sont pas identiques": "2つのパスワードは同一ではありません",
         "Sauvegarde effectuée": "バックアップ完了",
-        "Authentification 2 étapes": "2段階認証",
-        "Opération effectuée": "実行された操作"
+        "Authentification 2 étapes": "2段階認証"
     },
     "desktop\/js\/administration.js": {
         "Somme": "サム",
@@ -3143,11 +3144,11 @@
         "Vous ne pouvez pas remplacer un équipement par lui même.": "Vous ne pouvez pas remplacer un équipement par lui même",
         "Cet équipement remplace déjà un autre équipement.": "Cet équipement remplace déjà un autre équipement",
         "Vous ne pouvez pas remplacer un équipement par un équipement de même nom.": "Vous ne pouvez pas remplacer un équipement par un équipement de même nom",
-        "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
-        "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?",
         "Aucun équipement à remplacer ou copier": "Aucun équipement à remplacer ou copier",
         "Aucune commande à remplacer ou copier": "Aucune commande à remplacer ou copier",
-        "Remplacement effectué": "Remplacement effectué"
+        "Remplacement effectué": "Remplacement effectué",
+        "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
+        "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Supprimée le": "Supprimée le",
@@ -3182,9 +3183,9 @@
         "Vue d'ensemble des objets": "Vue d'ensemble des objets"
     },
     "desktop\/js\/system.js": {
+        "Commande :": "注文：",
         "Êtes-vous sûr de vouloir éxécuter cette commande :": "このコマンドを実行してよろしいですか：",
-        "Celle-ci est classé en dangereuse": "危険に分類されます",
-        "Commande :": "注文："
+        "Celle-ci est classé en dangereuse": "危険に分類されます"
     },
     "desktop\/js\/backup.js": {
         "L\\'opération est réussie": "操作は成功しました",
@@ -3524,8 +3525,8 @@
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "値が正常に編集されています",
         "Impossible de modifier une valeur sur une courbe avec groupement": "Impossible de modifier une valeur sur une courbe avec groupement",
-        "Edition de la série :": "シリーズ版：",
-        "et du point de": "とのポイント",
+        "Edition d'historique": "Edition d'historique",
+        "date :": "date :",
         "valeur :": "値：",
         "Ne rien mettre pour supprimer la valeur": "値を削除するには何も入れないでください",
         "Il n\\'existe encore aucun historique pour cette commande :": "それ\\「sのこのコマンドのまだ歴史：",

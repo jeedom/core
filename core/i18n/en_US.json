@@ -92,7 +92,7 @@
     },
     "mobile\/html\/scenariolog.html": {
         "Vider": "Clear",
-        "Pause": "Break",
+        "Pause": "Pause",
         "Rechercher": "Search"
     },
     "mobile\/html\/history.html": {
@@ -193,7 +193,7 @@
         "Supprimer tous": "Delete all",
         "Supprimer": "Delete",
         "Vider": "Clear",
-        "Pause": "Break",
+        "Pause": "Pause",
         "Rechercher": "Search"
     },
     "desktop\/modal\/scenario.human.insert.php": {
@@ -296,7 +296,7 @@
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Log brut": "Raw log",
         "Rechercher": "Search",
-        "Pause": "Break",
+        "Pause": "Pause",
         "Télécharger": "Download",
         "Vider": "Clear",
         "Log vidé avec succès": "Log successfully cleared"
@@ -426,7 +426,7 @@
     },
     "desktop\/modal\/action.insert.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Pause": "Break",
+        "Pause": "Pause",
         "Variable": "Variable",
         "Supprimer une variable": "Delete a variable",
         "Scénario": "Scenario",
@@ -525,7 +525,7 @@
         "Ajouter": "Add",
         "Nom": "Name",
         "Valeur": "Value",
-        "Action": "Stock",
+        "Action": "Action",
         "Disposition": "Layout",
         "Mise en forme de la tuile par défaut ou en mode tableau.": "Formatting the tile by default or in table mode",
         "Mise en forme générale": "General formatting",
@@ -843,7 +843,7 @@
         "Configuration": "Configuration",
         "Log brut": "Raw log",
         "Rechercher": "Search",
-        "Pause": "Break",
+        "Pause": "Pause",
         "Télécharger": "Download",
         "Vider": "Clear",
         "Supprimer": "Delete",
@@ -2146,7 +2146,7 @@
         "Supprimer tout": "Delete all",
         "Identification": "Identification",
         "Date dernière utilisation": "Last used date",
-        "Action": "Stock",
+        "Action": "Action",
         "Supprimer": "Delete"
     },
     "desktop\/php\/modaldisplay.php": {
@@ -2708,9 +2708,9 @@
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Rechercher": "Search",
         "Apache non securisé": "Apache not secure",
         "Apache sécurisé": "Secure apache",
+        "Rechercher": "Search",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Click on a command on the left or type a custom command below",
         "OK": "Okay"
     },
@@ -2736,7 +2736,7 @@
         "Êtes-vous sûr de vouloir supprimer :": "Are you sure you want to delete:"
     },
     "desktop\/js\/log.js": {
-        "Pause": "Break",
+        "Pause": "Pause",
         "Êtes-vous sûr de vouloir vider tous les logs ?": "Are you sure you want to empty all logs?",
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Are you sure you want to delete all logs?"
     },
@@ -2969,6 +2969,14 @@
     "desktop\/js\/plan.js": {
         "Nom du design ?": "New design name ?",
         "Veuillez indiquer le code ?": "Please indicate the code?",
+        "Paramètres d\\'affichage": "Display settings",
+        "Configuration du composant": "Component configuration",
+        "Configuration avancée": "Advanced configuration",
+        "Valider": "Validate",
+        "Annuler": "Cancel",
+        "Supprimer": "Delete",
+        "Dupliquer": "Duplicate",
+        "Verrouiller": "Lock",
         "Designs": "Designs",
         "Edition": "Editing",
         "Plein écran": "Full screen",
@@ -2984,6 +2992,7 @@
         "Ajouter une zone": "Add zone",
         "Ajouter un résumé": "Add summary",
         "Affichage": "Display",
+        "Aucune": "None",
         "Aimanter à la grille": "Snap on grid",
         "Masquer surbrillance des éléments": "Hide item highlighting",
         "Supprimer le design": "Delete design",
@@ -2993,15 +3002,7 @@
         "Nom la copie du design ?": "Name the copy of the design?",
         "Configurer le design": "Design configuration",
         "Configuration du design": "Design configuration",
-        "Sauvegarder": "Save",
-        "Paramètres d\\'affichage": "Display settings",
-        "Configuration du composant": "Component configuration",
-        "Configuration avancée": "Advanced configuration",
-        "Valider": "Validate",
-        "Annuler": "Cancel",
-        "Supprimer": "Delete",
-        "Dupliquer": "Duplicate",
-        "Verrouiller": "Lock"
+        "Sauvegarder": "Save"
     },
     "desktop\/js\/interact.js": {
         "Action": "Stock",
@@ -3017,8 +3018,8 @@
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Are you sure you want to delete the interaction"
     },
     "desktop\/js\/timeline.js": {
-        "Configuration de l'historique des commandes": "Commands history setup",
         "Ev ements de la timeline supprim  avec succ ": "Timeline events successfully deleted",
+        "Configuration de l'historique des commandes": "Commands history setup",
         "Log d'exécution du scénario": "Scenario execution log",
         "Historique": "History",
         "Configuration de la commande": "Command setup"
@@ -3075,10 +3076,10 @@
         "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "The import of widgets is done in json format from widgets previously exported"
     },
     "desktop\/js\/profils.js": {
+        "Opération effectuée": "Operation performed",
         "Les deux mots de passe ne sont pas identiques": "The two passwords are not identical",
         "Sauvegarde effectuée": "Backup completed",
-        "Authentification 2 étapes": "2-step authentication",
-        "Opération effectuée": "Operation performed"
+        "Authentification 2 étapes": "2-step authentication"
     },
     "desktop\/js\/administration.js": {
         "Somme": "Sum",
@@ -3143,11 +3144,11 @@
         "Vous ne pouvez pas remplacer un équipement par lui même.": "You cannot replace equipment by itself",
         "Cet équipement remplace déjà un autre équipement.": "This equipment already replaces another equipment",
         "Vous ne pouvez pas remplacer un équipement par un équipement de même nom.": "You cannot replace equipment with equipment of the same name",
-        "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "It is strongly advised to make a system backup before using this tool!",
-        "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Are you sure you want to Replace these equipments and commands?",
         "Aucun équipement à remplacer ou copier": "No equipment to replace or copy",
         "Aucune commande à remplacer ou copier": "No commands to replace or copy",
-        "Remplacement effectué": "Replacement done"
+        "Remplacement effectué": "Replacement done",
+        "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "It is strongly advised to make a system backup before using this tool!",
+        "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Are you sure you want to Replace these equipments and commands?"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Supprimée le": "Deleted on",
@@ -3182,9 +3183,9 @@
         "Vue d'ensemble des objets": "Overview of objects"
     },
     "desktop\/js\/system.js": {
+        "Commande :": "Command: ",
         "Êtes-vous sûr de vouloir éxécuter cette commande :": "Are you sure you want to run this command:",
-        "Celle-ci est classé en dangereuse": "This one is classified as dangerous",
-        "Commande :": "Command: "
+        "Celle-ci est classé en dangereuse": "This one is classified as dangerous"
     },
     "desktop\/js\/backup.js": {
         "L\\'opération est réussie": "The operation is successful",
@@ -3481,7 +3482,7 @@
     },
     "core\/js\/log.class.js": {
         "Reprendre": "Resume",
-        "Pause": "Break"
+        "Pause": "Pause"
     },
     "core\/js\/jeedom.class.js": {
         "Erreur de connexion": "Connexion error",
@@ -3524,8 +3525,8 @@
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "The value was successfully edited",
         "Impossible de modifier une valeur sur une courbe avec groupement": "Unable to modify a value on a curve with grouping",
-        "Edition de la série :": "Edit series:",
-        "et du point de": "and the point of",
+        "Edition d'historique": "History editing",
+        "date :": "date :",
         "valeur :": "value:",
         "Ne rien mettre pour supprimer la valeur": "Leave empty to remove value",
         "Il n\\'existe encore aucun historique pour cette commande :": "No history available for this command:",
@@ -3640,7 +3641,7 @@
         "Enregistrement caméra": "Camera recording",
         "Snapshot caméra": "Camera snapshot",
         "Mode Etat": "State Mode",
-        "Mode": "Fashion",
+        "Mode": "Mode",
         "Changer Mode": "Change Mode",
         "Sirène Etat": "Siren State",
         "Sirène Bouton Off": "Siren Button OFF",
@@ -3719,7 +3720,7 @@
         "Titre": "Title",
         "Power": "Power",
         "Chaine": "Chain",
-        "Pause": "Break",
+        "Pause": "Pause",
         "Lecture": "Play",
         "Stop": "Stop",
         "Suivant": "Next",
@@ -4516,7 +4517,7 @@
         "Changement de l\\'icone du scénario :": "Change of scenario icon:",
         "[Wait] Condition valide par dépassement de temps :": "[Wait] Condition valid on timeout:",
         "[Wait] Condition valide :": "[Wait] Valid condition:",
-        "Pause de": "Break of",
+        "Pause de": "Pause of",
         "seconde(s)": "second (s)",
         "Action stop": "Stop action",
         "à": "To",

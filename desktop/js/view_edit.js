@@ -312,10 +312,9 @@ jeeFrontEnd.view_edit.init()
 
 document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
-
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
-    $('#bt_saveView').click()
+    document.getElementById('bt_saveView').click()
   }
 })
 
@@ -344,13 +343,13 @@ $("#ul_view").sortable({
   }
 }).sortable("enable")
 
-$('#bt_chooseIcon').on('click', function() {
+$('#bt_chooseIcon').on('click', function(event) {
   jeedomUtils.chooseIcon(function(_icon) {
-    $('.viewAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon)
+    $('.viewAttr[data-l1key="display"][data-l2key="icon"]').empty().append(_icon)
   })
 })
 
-$('.viewAttr[data-l1key=display][data-l2key=icon]').on('dblclick', function() {
+$('.viewAttr[data-l1key="display"][data-l2key="icon"]').on('dblclick', function(event) {
   this.innerHTML = ''
 })
 
@@ -393,7 +392,7 @@ $(".li_view").on('click', function(event) {
   return false
 })
 
-$('#bt_viewResult').on('click', function() {
+$('#bt_viewResult').on('click', function(event) {
   jeeP.saveView(true)
 })
 
@@ -483,7 +482,7 @@ $('#div_pageContainer').on({
 
 
 /*****************************viewZone****************************************/
-$('#bt_addviewZone').on('click', function() {
+$('#bt_addviewZone').on('click', function(event) {
   let content = '<input class="promptAttr" data-l1key="name" autocomplete="off" type="text" placeholder="{{Nom}}">'
   content += '<select class="promptAttr" data-l1key="type" id="sel_addEditviewZoneType">'
   content += '<option value="widget">{{Equipement}}</option>'
@@ -566,15 +565,15 @@ $('#div_viewZones').on({
   }
 }, '.bt_removeViewData')
 
-$('#div_pageContainer').off('change', '.viewZoneAttr').on('change', '.viewZoneAttr:visible', function() {
+$('#div_pageContainer').off('change', '.viewZoneAttr').on('change', '.viewZoneAttr:visible', function(event) {
   jeeFrontEnd.modifyWithoutSave = true
 })
 
-$('#div_pageContainer').off('change', '.viewZoneAttr').on('change', '.viewDataAttr:visible', function() {
+$('#div_pageContainer').off('change', '.viewZoneAttr').on('change', '.viewDataAttr:visible', function(event) {
   jeeFrontEnd.modifyWithoutSave = true
 })
 
-$('#div_viewZones').on('click', '.bt_addViewTable', function() {
+$('#div_viewZones').on('click', '.bt_addViewTable', function(event) {
   var table = $(this).closest('.viewZone').find('table.div_viewData')
   if ($(this).attr('data-type') == 'line') {
     var line = '<tr class="viewData">'
@@ -608,7 +607,7 @@ $('#div_viewZones').on('click', '.bt_addViewTable', function() {
   }
 })
 
-$('#div_viewZones').on('click', '.bt_removeAddViewTable', function() {
+$('#div_viewZones').on('click', '.bt_removeAddViewTable', function(event) {
   if ($(this).attr('data-type') == 'line') {
     $(this).closest('tr').remove()
   } else if ($(this).attr('data-type') == 'col') {
@@ -616,7 +615,7 @@ $('#div_viewZones').on('click', '.bt_removeAddViewTable', function() {
   }
 })
 
-$('#div_viewZones').on('click', '.bt_listEquipementInfo', function() {
+$('#div_viewZones').on('click', '.bt_listEquipementInfo', function(event) {
   var el = this
   jeedom.cmd.getSelectModal({}, function(result) {
     el.closest('td').querySelector('input.viewDataAttr[data-l1key="configuration"]').insertAtCursor(result.human)
@@ -644,7 +643,7 @@ $('#div_viewZones').on({
   'change': function(event) {
     this.style.backgroundColor = this.jeeValue()
   }
-}, '.viewDataAttr[data-l1key=configuration][data-l2key=graphColor]')
+}, '.viewDataAttr[data-l1key="configuration"][data-l2key="graphColor"]')
 
 $('#div_viewZones').on({
   'click': function(event) {

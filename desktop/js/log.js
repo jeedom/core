@@ -66,7 +66,6 @@ document.getElementById('in_searchLogFilter')?.addEventListener('keyup', functio
 */
 //div_pageContainer events delegation:
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  console.log('>>> click', event)
   if (event.target.matches('#brutlogcheck')) {
     event.target.setAttribute('autoswitch', 0)
     let elPreGlobalLog = document.getElementById('pre_globallog')

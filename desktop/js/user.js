@@ -317,15 +317,15 @@ $("#table_user").on('click', ".bt_changeHash", function(event) {
   })
 })
 
-$('#div_pageContainer').off('change', '.userAttr').on('change', '.userAttr:visible', function() {
+$('#div_pageContainer').off('change', '.userAttr').on('change', '.userAttr:visible', function(event) {
   jeeFrontEnd.modifyWithoutSave = true
 })
 
-$('#div_pageContainer').off('change', '.configKey').on('change', '.configKey:visible', function() {
+$('#div_pageContainer').off('change', '.configKey').on('change', '.configKey:visible', function(event) {
   jeeFrontEnd.modifyWithoutSave = true
 })
 
-$('#bt_supportAccess').on('click', function() {
+$('#bt_supportAccess').on('click', function(event) {
   jeedom.user.supportAccess({
     enable: $(this).attr('data-enable'),
     error: function(error) {
@@ -341,16 +341,16 @@ $('#bt_supportAccess').on('click', function() {
   })
 })
 
-$('#table_user').off('change','.userAttr[data-l1key=options][data-l2key="api::mode"]').on('change','.userAttr[data-l1key=options][data-l2key="api::mode"]',function() {
+$('#table_user').off('change','.userAttr[data-l1key="options"][data-l2key="api::mode"]').on('change','.userAttr[data-l1key="options"][data-l2key="api::mode"]', function(event) {
   var tr = this.closest('tr')
   if (this.value == 'disable') {
-    tr.querySelector('.userAttr[data-l1key=hash]').unseen()
+    tr.querySelector('.userAttr[data-l1key="hash"]').unseen()
   } else {
-    tr.querySelector('.userAttr[data-l1key=hash]').seen()
+    tr.querySelector('.userAttr[data-l1key="hash"]').seen()
   }
 })
 
-$('#table_user').on('click', '.bt_manage_restrict_rights', function() {
+$('#table_user').on('click', '.bt_manage_restrict_rights', function(event) {
   jeeDialog.dialog({
     id: 'jee_modal',
     title: "{{Gestion des droits (Utilisateur limité)}}",
@@ -358,7 +358,7 @@ $('#table_user').on('click', '.bt_manage_restrict_rights', function() {
   })
 })
 
-$('#table_user').on('click', '.bt_manage_profils', function() {
+$('#table_user').on('click', '.bt_manage_profils', function(event) {
   jeeDialog.dialog({
     id: 'jee_modal',
     title: "{{Gestion du profils}}",
@@ -366,7 +366,7 @@ $('#table_user').on('click', '.bt_manage_profils', function() {
   })
 })
 
-$('#table_user').on('click', '.bt_disableTwoFactorAuthentification', function() {
+$('#table_user').on('click', '.bt_disableTwoFactorAuthentification', function(event) {
   jeedom.user.removeTwoFactorCode({
     id: this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML,
     error: function(error) {
@@ -381,7 +381,7 @@ $('#table_user').on('click', '.bt_disableTwoFactorAuthentification', function() 
   })
 })
 
-$('#table_user').on('click', '.bt_copy_user_rights', function() {
+$('#table_user').on('click', '.bt_copy_user_rights', function(event) {
   let from = this.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
   let select_list = []
   $('#table_user tbody tr').each(function() {
@@ -435,7 +435,7 @@ $('#table_user').on('click', '.bt_copy_user_rights', function() {
 
 
 
-$('.bt_deleteSession').on('click', function() {
+$('.bt_deleteSession').on('click', function(event) {
   var id = $(this).closest('tr').attr('data-id')
   jeedom.user.deleteSession({
     id: id,
@@ -451,7 +451,7 @@ $('.bt_deleteSession').on('click', function() {
   })
 })
 
-$('.bt_removeRegisterDevice').on('click', function() {
+$('.bt_removeRegisterDevice').on('click', function(event) {
   var key = $(this).closest('tr').attr('data-key')
   var user_id = $(this).closest('tr').attr('data-user_id')
   jeedom.user.removeRegisterDevice({
@@ -469,7 +469,7 @@ $('.bt_removeRegisterDevice').on('click', function() {
   })
 })
 
-$('#bt_removeAllRegisterDevice').on('click', function() {
+$('#bt_removeAllRegisterDevice').on('click', function(event) {
   jeedom.user.removeRegisterDevice({
     error: function(error) {
       jeedomUtils.showAlert({

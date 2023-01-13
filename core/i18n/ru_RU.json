@@ -2708,9 +2708,9 @@
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Rechercher": "поиск",
         "Apache non securisé": "Apache non securisé",
         "Apache sécurisé": "Apache sécurisé",
+        "Rechercher": "поиск",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Нажмите на заказ слева или введите заказ ниже",
         "OK": "хорошо"
     },
@@ -2969,6 +2969,14 @@
     "desktop\/js\/plan.js": {
         "Nom du design ?": "Название дизайна ?",
         "Veuillez indiquer le code ?": "Пожалуйста, укажите код?",
+        "Paramètres d\\'affichage": "Параметры отображения",
+        "Configuration du composant": "Конфигурация компонента",
+        "Configuration avancée": "Расширенные настройки",
+        "Valider": "Validate",
+        "Annuler": "Отменить",
+        "Supprimer": "удаление",
+        "Dupliquer": "дубликат",
+        "Verrouiller": "Блокировка",
         "Designs": "конструкции",
         "Edition": "издание",
         "Plein écran": "Полноэкранный режим",
@@ -2984,6 +2992,7 @@
         "Ajouter une zone": "Добавить зону",
         "Ajouter un résumé": "Добавить содержание",
         "Affichage": "Отображение",
+        "Aucune": "Aucune",
         "Aimanter à la grille": "Привязать к сетке",
         "Masquer surbrillance des éléments": "Скрыть выделенные элементы",
         "Supprimer le design": "Удалить дизайн",
@@ -2993,15 +3002,7 @@
         "Nom la copie du design ?": "Назовите копию дизайна?",
         "Configurer le design": "Настроить дизайн",
         "Configuration du design": "Настройки дизайна",
-        "Sauvegarder": "Сохранить",
-        "Paramètres d\\'affichage": "Параметры отображения",
-        "Configuration du composant": "Конфигурация компонента",
-        "Configuration avancée": "Расширенные настройки",
-        "Valider": "Validate",
-        "Annuler": "Отменить",
-        "Supprimer": "удаление",
-        "Dupliquer": "дубликат",
-        "Verrouiller": "Блокировка"
+        "Sauvegarder": "Сохранить"
     },
     "desktop\/js\/interact.js": {
         "Action": "Действие",
@@ -3017,8 +3018,8 @@
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Вы уверены, что хотите удалить взаимодействие \\ «ы"
     },
     "desktop\/js\/timeline.js": {
-        "Configuration de l'historique des commandes": "управления История конфигурации",
         "Ev ements de la timeline supprim  avec succ ": "Ev ements de la timeline supprim  avec succ",
+        "Configuration de l'historique des commandes": "управления История конфигурации",
         "Log d'exécution du scénario": "Журнал запуска скрипта",
         "Historique": "История",
         "Configuration de la commande": "управляющий набор"
@@ -3075,10 +3076,10 @@
         "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "L'import de widgets se fait au format json à partir de widgets précedemment exporté"
     },
     "desktop\/js\/profils.js": {
+        "Opération effectuée": "Операция выполнена",
         "Les deux mots de passe ne sont pas identiques": "Два пароля не идентичны",
         "Sauvegarde effectuée": "Резервное копирование завершено",
-        "Authentification 2 étapes": "Двухэтапная аутентификация",
-        "Opération effectuée": "Операция выполнена"
+        "Authentification 2 étapes": "Двухэтапная аутентификация"
     },
     "desktop\/js\/administration.js": {
         "Somme": "сумма",
@@ -3143,11 +3144,11 @@
         "Vous ne pouvez pas remplacer un équipement par lui même.": "Vous ne pouvez pas remplacer un équipement par lui même",
         "Cet équipement remplace déjà un autre équipement.": "Cet équipement remplace déjà un autre équipement",
         "Vous ne pouvez pas remplacer un équipement par un équipement de même nom.": "Vous ne pouvez pas remplacer un équipement par un équipement de même nom",
-        "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
-        "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?",
         "Aucun équipement à remplacer ou copier": "Aucun équipement à remplacer ou copier",
         "Aucune commande à remplacer ou copier": "Aucune commande à remplacer ou copier",
-        "Remplacement effectué": "Remplacement effectué"
+        "Remplacement effectué": "Remplacement effectué",
+        "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
+        "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Supprimée le": "Supprimée le",
@@ -3182,9 +3183,9 @@
         "Vue d'ensemble des objets": "Vue d'ensemble des objets"
     },
     "desktop\/js\/system.js": {
+        "Commande :": "команда:",
         "Êtes-vous sûr de vouloir éxécuter cette commande :": "Etes-vous sûr de vouloir exécuter cette commande :",
-        "Celle-ci est classé en dangereuse": "Celle-ci est classé en dangereuse",
-        "Commande :": "команда:"
+        "Celle-ci est classé en dangereuse": "Celle-ci est classé en dangereuse"
     },
     "desktop\/js\/backup.js": {
         "L\\'opération est réussie": "Операция прошла успешно",
@@ -3524,8 +3525,8 @@
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "Значение было успешно изменено",
         "Impossible de modifier une valeur sur une courbe avec groupement": "Impossible de modifier une valeur sur une courbe avec groupement",
-        "Edition de la série :": "Серия издания:",
-        "et du point de": "и точка",
+        "Edition d'historique": "Edition d'historique",
+        "date :": "date :",
         "valeur :": "значение:",
         "Ne rien mettre pour supprimer la valeur": "Ничего не вводите, чтобы удалить значение",
         "Il n\\'existe encore aucun historique pour cette commande :": "Пока нет истории для этой команды:",

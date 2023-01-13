@@ -2708,9 +2708,9 @@
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Rechercher": "Pesquisar",
         "Apache non securisé": "Apache inseguro",
         "Apache sécurisé": "Apache seguro",
+        "Rechercher": "Pesquisar",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Clique num comando à esquerda ou digite um comando personalizado abaixo",
         "OK": "Ok"
     },
@@ -2969,6 +2969,14 @@
     "desktop\/js\/plan.js": {
         "Nom du design ?": "Nome do design ?",
         "Veuillez indiquer le code ?": "Indique o código ?",
+        "Paramètres d\\'affichage": "Configurações da tela",
+        "Configuration du composant": "Configuração de componentes",
+        "Configuration avancée": "Configuração avançada",
+        "Valider": "Validar",
+        "Annuler": "Cancelar",
+        "Supprimer": "Retirar",
+        "Dupliquer": "Duplicar",
+        "Verrouiller": "Trancar",
         "Designs": "Desenhos",
         "Edition": "Edição",
         "Plein écran": "Ecrã completo",
@@ -2984,6 +2992,7 @@
         "Ajouter une zone": "Adicionar uma Zona",
         "Ajouter un résumé": "Adicionar resumo",
         "Affichage": "Mostrar",
+        "Aucune": "Nenhum",
         "Aimanter à la grille": "Alinhar à grelha",
         "Masquer surbrillance des éléments": "Esconder itens realçados",
         "Supprimer le design": "Excluir o design",
@@ -2993,15 +3002,7 @@
         "Nom la copie du design ?": "Tem certeza de que deseja excluir este design ?",
         "Configurer le design": "Configurar o design",
         "Configuration du design": "Configuração do design",
-        "Sauvegarder": "Guardar",
-        "Paramètres d\\'affichage": "Configurações da tela",
-        "Configuration du composant": "Configuração de componentes",
-        "Configuration avancée": "Configuração avançada",
-        "Valider": "Validar",
-        "Annuler": "Cancelar",
-        "Supprimer": "Retirar",
-        "Dupliquer": "Duplicar",
-        "Verrouiller": "Trancar"
+        "Sauvegarder": "Guardar"
     },
     "desktop\/js\/interact.js": {
         "Action": "Ação",
@@ -3017,8 +3018,8 @@
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Tem certeza de que deseja excluir a interação"
     },
     "desktop\/js\/timeline.js": {
-        "Configuration de l'historique des commandes": "Configuração do histórico de comandos",
         "Ev ements de la timeline supprim  avec succ ": "Eventos da linha do tempo excluídos com sucesso",
+        "Configuration de l'historique des commandes": "Configuração do histórico de comandos",
         "Log d'exécution du scénario": "Registo de execução do cenário",
         "Historique": "Histórico",
         "Configuration de la commande": "Configuração do comando"
@@ -3075,10 +3076,10 @@
         "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "A importação de widgets é feita no formato json a partir de widgets exportados anteriormente"
     },
     "desktop\/js\/profils.js": {
+        "Opération effectuée": "Operação realizada",
         "Les deux mots de passe ne sont pas identiques": "As duas senhas não são idênticas",
         "Sauvegarde effectuée": "Backup feito",
-        "Authentification 2 étapes": "Autenticação em passos 2",
-        "Opération effectuée": "Operação realizada"
+        "Authentification 2 étapes": "Autenticação em passos 2"
     },
     "desktop\/js\/administration.js": {
         "Somme": "Soma",
@@ -3143,11 +3144,11 @@
         "Vous ne pouvez pas remplacer un équipement par lui même.": "Você não pode substituir o equipamento sozinho",
         "Cet équipement remplace déjà un autre équipement.": "Este equipamento já substitui outro equipamento",
         "Vous ne pouvez pas remplacer un équipement par un équipement de même nom.": "Você não pode substituir equipamentos por equipamentos de mesmo nome",
-        "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "É altamente recomendável fazer um backup do sistema antes de usar esta ferramenta!",
-        "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Tem certeza de que deseja Substituir este equipamento e comandos?",
         "Aucun équipement à remplacer ou copier": "Nenhum equipamento para substituir ou copiar",
         "Aucune commande à remplacer ou copier": "Nenhum comando para substituir ou copiar",
-        "Remplacement effectué": "Substituição feita"
+        "Remplacement effectué": "Substituição feita",
+        "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "É altamente recomendável fazer um backup do sistema antes de usar esta ferramenta!",
+        "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Tem certeza de que deseja Substituir este equipamento e comandos?"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Supprimée le": "Excluído em",
@@ -3182,9 +3183,9 @@
         "Vue d'ensemble des objets": "Vista geral dos objetos"
     },
     "desktop\/js\/system.js": {
+        "Commande :": "Comando:",
         "Êtes-vous sûr de vouloir éxécuter cette commande :": "Tem certeza de que deseja executar este comando:",
-        "Celle-ci est classé en dangereuse": "Isso é classificado como perigoso",
-        "Commande :": "Comando:"
+        "Celle-ci est classé en dangereuse": "Isso é classificado como perigoso"
     },
     "desktop\/js\/backup.js": {
         "L\\'opération est réussie": "A operação foi bem-sucedida",
@@ -3524,8 +3525,8 @@
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "O valor foi editado com sucesso",
         "Impossible de modifier une valeur sur une courbe avec groupement": "Não é possível modificar um valor numa curva com agrupamento",
-        "Edition de la série :": "Edição da série:",
-        "et du point de": "e do ponto de",
+        "Edition d'historique": "Edição do histórico",
+        "date :": "data :",
         "valeur :": "valor:",
         "Ne rien mettre pour supprimer la valeur": "Não coloque nada para remover o valor",
         "Il n\\'existe encore aucun historique pour cette commande :": "Não existe histórico para este comando:",

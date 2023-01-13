@@ -2708,9 +2708,9 @@
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
-        "Rechercher": "Ricercare",
         "Apache non securisé": "Apache non securisé",
         "Apache sécurisé": "Apache sécurisé",
+        "Rechercher": "Ricercare",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Fai clic su un ordine a sinistra o digita un ordine personalizzato di seguito",
         "OK": "Bene"
     },
@@ -2969,6 +2969,14 @@
     "desktop\/js\/plan.js": {
         "Nom du design ?": "Nome del design?",
         "Veuillez indiquer le code ?": "Si prega di indicare il codice?",
+        "Paramètres d\\'affichage": "Impostazioni di visualizzazione",
+        "Configuration du composant": "Configurazione del componente",
+        "Configuration avancée": "Configurazione avanzata",
+        "Valider": "Convalidare",
+        "Annuler": "Cancella",
+        "Supprimer": "Rimuovere",
+        "Dupliquer": "Duplicato",
+        "Verrouiller": "Blocco",
         "Designs": "Disegni",
         "Edition": "Edizione",
         "Plein écran": "Schermo intero",
@@ -2984,6 +2992,7 @@
         "Ajouter une zone": "Aggiungi una zona",
         "Ajouter un résumé": "Aggiungi riepilogo",
         "Affichage": "Mostra",
+        "Aucune": "Aucune",
         "Aimanter à la grille": "Magnete sulla griglia",
         "Masquer surbrillance des éléments": "Nascondi evidenziazione elemento",
         "Supprimer le design": "Elimina design",
@@ -2993,15 +3002,7 @@
         "Nom la copie du design ?": "Denominare la copia del disegno?",
         "Configurer le design": "Configura il design",
         "Configuration du design": "Configurazione del progetto",
-        "Sauvegarder": "Salva",
-        "Paramètres d\\'affichage": "Impostazioni di visualizzazione",
-        "Configuration du composant": "Configurazione del componente",
-        "Configuration avancée": "Configurazione avanzata",
-        "Valider": "Convalidare",
-        "Annuler": "Cancella",
-        "Supprimer": "Rimuovere",
-        "Dupliquer": "Duplicato",
-        "Verrouiller": "Blocco"
+        "Sauvegarder": "Salva"
     },
     "desktop\/js\/interact.js": {
         "Action": "Azione",
@@ -3017,8 +3018,8 @@
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Sei sicuro di voler eliminare l\\'interazione"
     },
     "desktop\/js\/timeline.js": {
-        "Configuration de l'historique des commandes": "Controlli di configurazione Storia",
         "Ev ements de la timeline supprim  avec succ ": "Ev ements de la timeline supprim  avec succ",
+        "Configuration de l'historique des commandes": "Controlli di configurazione Storia",
         "Log d'exécution du scénario": "Registro di esecuzione della scena",
         "Historique": "Storico",
         "Configuration de la commande": "Impostazione comando"
@@ -3075,10 +3076,10 @@
         "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "L'importazione di widget viene eseguita in formato json da widget precedentemente esportati"
     },
     "desktop\/js\/profils.js": {
+        "Opération effectuée": "Operazione eseguita",
         "Les deux mots de passe ne sont pas identiques": "Le due password non sono identiche",
         "Sauvegarde effectuée": "Backup completato",
-        "Authentification 2 étapes": "Autenticazione in 2 passaggi",
-        "Opération effectuée": "Operazione eseguita"
+        "Authentification 2 étapes": "Autenticazione in 2 passaggi"
     },
     "desktop\/js\/administration.js": {
         "Somme": "Somma",
@@ -3143,11 +3144,11 @@
         "Vous ne pouvez pas remplacer un équipement par lui même.": "Vous ne pouvez pas remplacer un équipement par lui même",
         "Cet équipement remplace déjà un autre équipement.": "Cet équipement remplace déjà un autre équipement",
         "Vous ne pouvez pas remplacer un équipement par un équipement de même nom.": "Vous ne pouvez pas remplacer un équipement par un équipement de même nom",
-        "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
-        "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?",
         "Aucun équipement à remplacer ou copier": "Aucun équipement à remplacer ou copier",
         "Aucune commande à remplacer ou copier": "Aucune commande à remplacer ou copier",
-        "Remplacement effectué": "Remplacement effectué"
+        "Remplacement effectué": "Remplacement effectué",
+        "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
+        "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Supprimée le": "Supprimée le",
@@ -3182,9 +3183,9 @@
         "Vue d'ensemble des objets": "Vue d'ensemble des objets"
     },
     "desktop\/js\/system.js": {
+        "Commande :": "Comando:",
         "Êtes-vous sûr de vouloir éxécuter cette commande :": "Sei sicuro di voler eseguire questo comando:",
-        "Celle-ci est classé en dangereuse": "È classificato come pericoloso",
-        "Commande :": "Comando:"
+        "Celle-ci est classé en dangereuse": "È classificato come pericoloso"
     },
     "desktop\/js\/backup.js": {
         "L\\'opération est réussie": "L'operazione è andata a buon fine",
@@ -3524,8 +3525,8 @@
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "Il valore è stato modificato con successo",
         "Impossible de modifier une valeur sur une courbe avec groupement": "Impossible de modifier une valeur sur une courbe avec groupement",
-        "Edition de la série :": "Modifica serie:",
-        "et du point de": "e al punto di",
+        "Edition d'historique": "Edition d'historique",
+        "date :": "date :",
         "valeur :": "valore :",
         "Ne rien mettre pour supprimer la valeur": "Lascia vuoto per usare il valore predefinito",
         "Il n\\'existe encore aucun historique pour cette commande :": "Non esiste alcuna storia per questo comando:",

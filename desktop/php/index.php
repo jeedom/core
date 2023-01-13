@@ -204,7 +204,7 @@ function setTheme() {
 	//Cron helper:
 	include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
 	include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
-	//ContextMenu
+	//ContextMenu, deprecated 4.4
 	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'css');
 	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'js');
 

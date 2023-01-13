@@ -404,20 +404,12 @@ $('#bt_resetObjectSearch').on('click', function(event) {
   document.getElementById('in_searchObject').triggerEvent('keyup')
 })
 
-//Handle auto hide context menu
-$('#div_pageContainer').on({
-  'mouseleave': function(event) {
-    $(this).fadeOut().trigger('contextmenu:hide')
-  }
-}, '.context-menu-root')
-
-
 //context menu
 try {
-  $.contextMenu({
+  new jeeCtxMenu({
     selector: '.nav.nav-tabs',
-    appendTo: 'body',
-    build: function($trigger) {
+    appendTo: 'div#div_pageContainer',
+    build: function(trigger) {
       var thisObjectId = $('span.objectAttr[data-l1key="id"]').text()
       var contextmenuitems = {}
       var idx = 0
@@ -434,7 +426,7 @@ try {
       }
       return {
         callback: function(key, options, event) {
-          if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
+          if (event.ctrlKey || event.metaKey || event.which == 2) {
             var url = 'index.php?v=d&p=object&id=' + options.commands[key].id
             if (window.location.hash != '') {
               url += window.location.hash
@@ -452,17 +444,18 @@ try {
 
 //general context menu
 try {
-  $.contextMenu({
+  new jeeCtxMenu({
     selector: "#objectPanel .objectDisplayCard",
     appendTo: 'div#div_pageContainer',
-    build: function($trigger) {
-      var thisObjectId = $trigger.attr('data-object_id')
-      var thisFatherId = $trigger.attr('data-father_id')
-      var isActive = !$trigger.hasClass('inactive')
+    build: function(trigger) {
+      var thisObjectId = trigger.getAttribute('data-object_id')
+      var thisFatherId = trigger.getAttribute('data-father_id')
+      var thisName = trigger.getAttribute('data-object_name')
+      var isActive = !trigger.hasClass('inactive')
 
       //id, visible:
       var contextmenuitems = {}
-      contextmenuitems['thisObjectId'] = {'name': 'id: ' + thisObjectId, 'id': 'thisObjectId', 'disabled': true}
+      contextmenuitems['thisObjectId'] = {'name': thisName + ' (id: ' + thisObjectId + ')', 'id': 'thisObjectId', 'disabled': true}
       if (isActive) {
         contextmenuitems['hide'] = {'name': '{{Rendre invisible}}', 'id': 'hide', 'icon': 'fas fa-toggle-on'}
       } else {
@@ -639,6 +632,7 @@ try {
             }
             thisObjectFromList.hideOnDashboard = "0"
           }
+
           jeedom.object.save({
             object : object,
             error: function(error) {
@@ -646,6 +640,7 @@ try {
             },
             success: function(data) {}
           })
+
           return true
         },
         items: contextmenuitems

@@ -101,6 +101,7 @@ if (!jeeFrontEnd.plan) {
       })
     },
     fullScreen: function(_mode) {
+      _mode = getBool(_mode)
       if (_mode) {
         document.body.addClass('fullscreen')
       } else {
@@ -596,6 +597,10 @@ if (!jeeFrontEnd.plan) {
         jeeFrontEnd.planEditOption.state = true
         jeeP.pageContainer.dataset.planEditState = true
 
+        editItems.forEach(item => {
+          item.setAttribute('data-lock', '0')
+        })
+
         jeedomUtils.disableTooltips()
         this.planContainer.addClass('editingMode')
         jeedom.cmd.disableExecute = true
@@ -654,23 +659,23 @@ if (!jeeFrontEnd.plan) {
             jeeP.savePlan(false, false)
           },
         })
-        try {
-          $editItems.contextMenu(true)
-        } catch (e) {}
+
+        jeeP.elementContexMenu.enable()
       } else { //Leave Edit mode
+        jeeP.elementContexMenu.disable()
         jeeFrontEnd.planEditOption.state = false
         jeeP.pageContainer.dataset.planEditState = false
         jeedom.cmd.disableExecute = false
         this.planContainer.removeClass('editingMode')
+        editItems.forEach(item => {
+          item.removeAttribute('data-lock')
+        })
         try {
           jeedomUtils.enableTooltips()
           $editItems.draggable('destroy').removeClass('editingMode')
           $('.plan-link-widget, .view-link-widget, .graph-widget, .div_displayObject >.eqLogic-widget, .scenario-widget, .text-widget, .image-widget, .zone-widget, .summary-widget').resizable("destroy")
         } catch (e) {}
         document.getElementById('div_grid').unseen()
-        try {
-          $editItems.contextMenu(false)
-        } catch (e) {}
       }
     },
     //save
@@ -738,403 +743,24 @@ jeeFrontEnd.plan.postInit()
 
 //Context menu:
 if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
-  //Handle auto hide context menu
-  document.getElementById('div_pageContainer').addEventListener('mouseleave', function(event) {
-    if (event.target.matches('.context-menu-root')) { //Handle auto hide context menu
-      setTimeout(function() {
-        event.target.triggerEvent('contextmenu:hide')
-      }, 250)
-      return
-    }
-  }, {capture: true})
-
-  //Global context menu
-  jeeP.contextMenu = $.contextMenu({
-    selector: '#div_pageContainer',
-    appendTo: 'div#div_pageContainer',
-    zIndex: 9999,
-    events: {
-      show: function(opt) {
-        $.contextMenu.setInputValues(opt, this.data())
-      },
-      hide: function(opt) {
-        $.contextMenu.getInputValues(opt, this.data())
-      }
-    },
-    items: {
-      fold1: {
-        name: "{{Designs}}",
-        icon: 'far fa-image',
-        items: jeeP.planHeaderContextMenu
-      },
-      edit: {
-        name: "{{Edition}}",
-        icon: 'fas fa-pencil-alt',
-        callback: function(key, opt) {
-          jeeFrontEnd.planEditOption.state = !jeeFrontEnd.planEditOption.state
-          this.data('jeeFrontEnd.planEditOption.state', jeeFrontEnd.planEditOption.state)
-          jeeP.initEditOption(jeeFrontEnd.planEditOption.state)
-        }
-      },
-      fullscreen: {
-        name: "{{Plein écran}}",
-        icon: 'fas fa-desktop',
-        callback: function(key, opt) {
-          if (this.data('fullscreen') == undefined) {
-            this.data('fullscreen', 1)
-          }
-          jeeP.fullScreen(this.data('fullscreen'))
-          this.data('fullscreen', !this.data('fullscreen'))
-        }
-      },
-      sep1: "---------",
-      addGraph: {
-        name: "{{Ajouter Graphique}}",
-        icon: 'fas fa-chart-line',
-        disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
-        },
-        callback: function(key, opt) {
-          jeeP.addObject({
-            link_type: 'graph',
-            link_id: Math.round(Math.random() * 99999999) + 9999
-          })
-        }
-      },
-      addText: {
-        name: "{{Ajouter texte/html}}",
-        icon: 'fas fa-align-center',
-        disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
-        },
-        callback: function(key, opt) {
-          jeeP.addObject({
-            link_type: 'text',
-            link_id: Math.round(Math.random() * 99999999) + 9999,
-            display: {
-              text: 'Texte à insérer ici'
-            }
-          })
-        }
-      },
-      addScenario: {
-        name: "{{Ajouter scénario}}",
-        icon: 'fas fa-plus-circle',
-        disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
-        },
-        callback: function(key, opt) {
-          jeedom.scenario.getSelectModal({}, function(data) {
-            jeeP.addObject({
-              link_type: 'scenario',
-              link_id: data.id
-            })
-          })
-        }
-      },
-      fold4: {
-        name: "{{Ajouter un lien}}",
-        icon: 'fas fa-link',
-        disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
-        },
-        items: {
-          addViewLink: {
-            name: "{{Vers une vue}}",
-            icon: 'fas fa-link',
-            disabled: function(key, opt) {
-              return !this.data('jeeFrontEnd.planEditOption.state')
-            },
-            callback: function(key, opt) {
-              jeeP.addObject({
-                link_type: 'view',
-                link_id: -(Math.round(Math.random() * 99999999) + 9999),
-                display: {
-                  name: 'A configurer'
-                }
-              })
-            }
-          },
-          addPlanLink: {
-            name: "{{Vers un design}}",
-            icon: 'fas fa-link',
-            disabled: function(key, opt) {
-              return !this.data('jeeFrontEnd.planEditOption.state')
-            },
-            callback: function(key, opt) {
-              jeeP.addObject({
-                link_type: 'plan',
-                link_id: -(Math.round(Math.random() * 99999999) + 9999),
-                display: {
-                  name: 'A configurer'
-                }
-              })
-            }
-          },
-        }
-      },
-      addEqLogic: {
-        name: "{{Ajouter équipement}}",
-        icon: 'fas fa-plus-circle',
-        disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
-        },
-        callback: function(key, opt) {
-          jeedom.eqLogic.getSelectModal({}, function(data) {
-            jeeP.addObject({
-              link_type: 'eqLogic',
-              link_id: data.id
-            })
-          })
-        }
-      },
-      addCommand: {
-        name: "{{Ajouter commande}}",
-        icon: 'fas fa-plus-circle',
-        disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
-        },
-        callback: function(key, opt) {
-          jeedom.cmd.getSelectModal({}, function(data) {
-            jeeP.addObject({
-              link_type: 'cmd',
-              link_id: data.cmd.id
-            })
-          })
-        }
-      },
-      addImage: {
-        name: "{{Ajouter une image/caméra}}",
-        icon: 'fas fa-plus-circle',
-        disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
-        },
-        callback: function(key, opt) {
-          jeeP.addObject({
-            link_type: 'image',
-            link_id: Math.round(Math.random() * 99999999) + 9999
-          })
-        }
-      },
-      addZone: {
-        name: "{{Ajouter une zone}}",
-        icon: 'fas fa-plus-circle',
-        disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
-        },
-        callback: function(key, opt) {
-          jeeP.addObject({
-            link_type: 'zone',
-            link_id: Math.round(Math.random() * 99999999) + 9999
-          })
-        }
-      },
-      addSummary: {
-        name: "{{Ajouter un résumé}}",
-        icon: 'fas fa-plus-circle',
-        disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
-        },
-        callback: function(key, opt) {
-          jeeP.addObject({
-            link_type: 'summary',
-            link_id: -1
-          })
-        }
-      },
-      sep2: "---------",
-      fold2: {
-        name: "{{Affichage}}",
-        icon: 'fas fa-th',
-        disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
-        },
-        items: {
-          grid_none: {
-            name: "Aucune",
-            type: 'radio',
-            radio: 'radio',
-            value: '0',
-            selected: true,
-            events: {
-              click: function(e) {
-                jeeFrontEnd.planEditOption.gridSize = false
-                jeeP.initEditOption(1)
-              }
-            }
-          },
-          grid_10x10: {
-            name: "10x10",
-            type: 'radio',
-            radio: 'radio',
-            value: '10',
-            events: {
-              click: function(e) {
-                jeeFrontEnd.planEditOption.gridSize = [10, 10]
-                jeeP.initEditOption(1)
-              }
-            }
-          },
-          grid_15x15: {
-            name: "15x15",
-            type: 'radio',
-            radio: 'radio',
-            value: '15',
-            events: {
-              click: function(e) {
-                jeeFrontEnd.planEditOption.gridSize = [15, 15]
-                jeeP.initEditOption(1)
-              }
-            }
-          },
-          grid_20x20: {
-            name: "20x20",
-            type: 'radio',
-            radio: 'radio',
-            value: '20',
-            events: {
-              click: function(e) {
-                jeeFrontEnd.planEditOption.gridSize = [20, 20]
-                jeeP.initEditOption(1)
-              }
-            }
-          },
-          sep4: "---------",
-          snapGrid: {
-            name: "{{Aimanter à la grille}}",
-            type: 'checkbox',
-            radio: 'radio',
-            selected: jeeFrontEnd.planEditOption.grid,
-            events: {
-              click: function(e) {
-                jeeFrontEnd.planEditOption.grid = this.jeeValue()
-                jeeP.initEditOption(1)
-              }
-            }
-          },
-          highlightWidget: {
-            name: "{{Masquer surbrillance des éléments}}",
-            type: 'checkbox',
-            radio: 'radio',
-            selected: jeeFrontEnd.planEditOption.highlight,
-            events: {
-              click: function(e) {
-                jeeFrontEnd.planEditOption.highlight = (this.jeeValue() == 1) ? false : true
-                jeeP.initEditOption(1)
-              }
-            }
-          },
-        }
-      },
-      removePlan: {
-        name: "{{Supprimer le design}}",
-        icon: 'fas fa-trash',
-        disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
-        },
-        callback: function(key, opt) {
-          jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer ce design ?}}', function(result) {
-            if (result) {
-              jeedom.plan.removeHeader({
-                id: jeephp2js.planHeader_id,
-                error: function(error) {
-                  jeedomUtils.showAlert({
-                    message: error.message,
-                    level: 'danger'
-                  })
-                },
-                success: function() {
-                  jeedomUtils.showAlert({
-                    message: 'Design supprimé',
-                    level: 'success'
-                  })
-                  window.location.reload()
-                },
-              })
-            }
-          })
-        }
-      },
-      addPlan: {
-        name: "{{Creer un design}}",
-        icon: 'fas fa-plus-circle',
-        disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
-        },
-        callback: function(key, opt) {
-          jeeP.createNewDesign()
-        }
-      },
-      duplicatePlan: {
-        name: "{{Dupliquer le design}}",
-        icon: 'far fa-copy',
-        disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
-        },
-        callback: function(key, opt) {
-          jeeDialog.prompt("{{Nom la copie du design ?}}", function(result) {
-            if (result !== null) {
-              jeeP.savePlan(false, false)
-              jeedom.plan.copyHeader({
-                name: result,
-                id: jeephp2js.planHeader_id,
-                error: function(error) {
-                  jeedomUtils.showAlert({
-                    message: error.message,
-                    level: 'danger'
-                  })
-                },
-                success: function(data) {
-                  jeephp2js.planHeader_id = data.id
-                  jeedomUtils.loadPage('index.php?v=d&p=plan&plan_id=' + data.id)
-                },
-              })
-            }
-          })
-        }
-      },
-      configurePlan: {
-        name: "{{Configurer le design}}",
-        icon: 'fas fa-cogs',
-        disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
-        },
-        callback: function(key, opt) {
-          jeeP.savePlan(false, false)
-          jeeDialog.dialog({
-            id: 'jee_modal',
-            title: '{{Configuration du design}}',
-            contentUrl: 'index.php?v=d&modal=planHeader.configure&planHeader_id=' + jeephp2js.planHeader_id
-          })
-        }
-      },
-      sep3: "---------",
-      save: {
-        name: "{{Sauvegarder}}",
-        icon: 'fas fa-save',
-        callback: function(key, opt) {
-          jeeP.savePlan()
-        }
-      },
-    }
-  })
-
   //Object context menu
-  $.contextMenu({
+
+  jeeP.elementContexMenu = new jeeCtxMenu({
     selector: '.div_displayObject > .eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.text-widget,.view-link-widget,.graph-widget,.image-widget,.zone-widget,.summary-widget',
     zIndex: 9999,
     appendTo: 'div#div_pageContainer',
+    isDisable: true,
     events: {
       show: function(opt) {
-        $.contextMenu.setInputValues(opt, this.data())
+        opt.setInputValues(opt.realTrigger, opt.realTrigger.dataset)
         if (jeeFrontEnd.planEditOption.highlight) {
-          $(this).removeClass('editingMode').addClass('contextMenu_select')
+          this.ctxMenu.removeClass('editingMode').addClass('contextMenu_select')
         }
       },
       hide: function(opt) {
-        $.contextMenu.getInputValues(opt, this.data())
+        opt.getInputValues(opt.realTrigger, opt.realTrigger.dataset)
         if (jeeFrontEnd.planEditOption.highlight) {
-          $(this).removeClass('contextMenu_select').addClass('editingMode')
+          this.ctxMenu.removeClass('contextMenu_select').addClass('editingMode')
         }
       }
     },
@@ -1147,7 +773,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
           jeeDialog.dialog({
             id: 'jee_modal',
             title: '{{Configuration du composant}}',
-            contentUrl: 'index.php?v=d&modal=plan.configure&id=' + opt.$trigger[0].getAttribute('data-plan_id')
+            contentUrl: 'index.php?v=d&modal=plan.configure&id=' + this.getAttribute('data-plan_id')
           })
         }
       },
@@ -1223,7 +849,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         callback: function(key, opt) {
           jeeP.savePlan(false, false)
           jeedom.plan.remove({
-            id: $(this).attr('data-plan_id'),
+            id: this.getAttribute('data-plan_id'),
             error: function(error) {
               jeedomUtils.showAlert({
                 message: error.message,
@@ -1264,14 +890,392 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Verrouiller}}",
         type: 'checkbox',
         events: {
-          click: function(opt) {
+          click: function(key, opt) {
             if (this.jeeValue() == 1) {
-              opt.handleObj.data.$trigger.addClass('locked')
+              opt.realTrigger.addClass('locked')
             } else {
-              opt.handleObj.data.$trigger.removeClass('locked')
+              opt.realTrigger.removeClass('locked')
             }
-            $('.context-menu-root').hide()
+            return true
           }
+        }
+      },
+    }
+  })
+
+
+  //Global context menu
+  jeeP.globalContextMenu = new jeeCtxMenu({
+    selector: '#div_pageContainer',
+    appendTo: 'div#div_pageContainer',
+    zIndex: 9999,
+    events: {
+      show: function(opt) {
+        opt.setInputValues(opt.ctxMenu, this.ctxMenu.dataset)
+      },
+      hide: function(opt) {
+        opt.getInputValues(opt.ctxMenu, this.ctxMenu.dataset)
+      }
+    },
+    items: {
+      fold1: {
+        name: "{{Designs}}",
+        icon: 'far fa-image',
+        items: jeeP.planHeaderContextMenu
+      },
+      edit: {
+        name: "{{Edition}}",
+        icon: 'fas fa-pencil-alt',
+        callback: function(key, opt) {
+          jeeFrontEnd.planEditOption.state = !jeeFrontEnd.planEditOption.state
+          this.setAttribute('data-jeeFrontEnd.planEditOption.state', jeeFrontEnd.planEditOption.state)
+          jeeP.initEditOption(jeeFrontEnd.planEditOption.state)
+        }
+      },
+      fullscreen: {
+        name: "{{Plein écran}}",
+        icon: 'fas fa-desktop',
+        callback: function(key, opt) {
+          if (this.getAttribute('data-fullscreen') == null) {
+            this.setAttribute('data-fullscreen', 1)
+          }
+          jeeP.fullScreen(this.getAttribute('data-fullscreen'))
+          this.setAttribute('data-fullscreen', !this.getAttribute('data-fullscreen'))
+        }
+      },
+      sep1: "---------",
+      addGraph: {
+        name: "{{Ajouter Graphique}}",
+        icon: 'fas fa-chart-line',
+        disabled: function(key, opt) {
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
+        },
+        callback: function(key, opt) {
+          jeeP.addObject({
+            link_type: 'graph',
+            link_id: Math.round(Math.random() * 99999999) + 9999
+          })
+        }
+      },
+      addText: {
+        name: "{{Ajouter texte/html}}",
+        icon: 'fas fa-align-center',
+        disabled: function(key, opt) {
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
+        },
+        callback: function(key, opt) {
+          jeeP.addObject({
+            link_type: 'text',
+            link_id: Math.round(Math.random() * 99999999) + 9999,
+            display: {
+              text: 'Texte à insérer ici'
+            }
+          })
+        }
+      },
+      addScenario: {
+        name: "{{Ajouter scénario}}",
+        icon: 'fas fa-plus-circle',
+        disabled: function(key, opt) {
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
+        },
+        callback: function(key, opt) {
+          jeedom.scenario.getSelectModal({}, function(data) {
+            jeeP.addObject({
+              link_type: 'scenario',
+              link_id: data.id
+            })
+          })
+        }
+      },
+      fold4: {
+        name: "{{Ajouter un lien}}",
+        icon: 'fas fa-link',
+        disabled: function(key, opt) {
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
+        },
+        items: {
+          addViewLink: {
+            name: "{{Vers une vue}}",
+            icon: 'fas fa-link',
+            disabled: function(key, opt) {
+              return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
+            },
+            callback: function(key, opt) {
+              jeeP.addObject({
+                link_type: 'view',
+                link_id: -(Math.round(Math.random() * 99999999) + 9999),
+                display: {
+                  name: 'A configurer'
+                }
+              })
+            }
+          },
+          addPlanLink: {
+            name: "{{Vers un design}}",
+            icon: 'fas fa-link',
+            disabled: function(key, opt) {
+              return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
+            },
+            callback: function(key, opt) {
+              jeeP.addObject({
+                link_type: 'plan',
+                link_id: -(Math.round(Math.random() * 99999999) + 9999),
+                display: {
+                  name: 'A configurer'
+                }
+              })
+            }
+          },
+        }
+      },
+      addEqLogic: {
+        name: "{{Ajouter équipement}}",
+        icon: 'fas fa-plus-circle',
+        disabled: function(key, opt) {
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
+        },
+        callback: function(key, opt) {
+          jeedom.eqLogic.getSelectModal({}, function(data) {
+            jeeP.addObject({
+              link_type: 'eqLogic',
+              link_id: data.id
+            })
+          })
+        }
+      },
+      addCommand: {
+        name: "{{Ajouter commande}}",
+        icon: 'fas fa-plus-circle',
+        disabled: function(key, opt) {
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
+        },
+        callback: function(key, opt) {
+          jeedom.cmd.getSelectModal({}, function(data) {
+            jeeP.addObject({
+              link_type: 'cmd',
+              link_id: data.cmd.id
+            })
+          })
+        }
+      },
+      addImage: {
+        name: "{{Ajouter une image/caméra}}",
+        icon: 'fas fa-plus-circle',
+        disabled: function(key, opt) {
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
+        },
+        callback: function(key, opt) {
+          jeeP.addObject({
+            link_type: 'image',
+            link_id: Math.round(Math.random() * 99999999) + 9999
+          })
+        }
+      },
+      addZone: {
+        name: "{{Ajouter une zone}}",
+        icon: 'fas fa-plus-circle',
+        disabled: function(key, opt) {
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
+        },
+        callback: function(key, opt) {
+          jeeP.addObject({
+            link_type: 'zone',
+            link_id: Math.round(Math.random() * 99999999) + 9999
+          })
+        }
+      },
+      addSummary: {
+        name: "{{Ajouter un résumé}}",
+        icon: 'fas fa-plus-circle',
+        disabled: function(key, opt) {
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
+        },
+        callback: function(key, opt) {
+          jeeP.addObject({
+            link_type: 'summary',
+            link_id: -1
+          })
+        }
+      },
+      sep2: "---------",
+      fold2: {
+        name: "{{Affichage}}",
+        icon: 'fas fa-th',
+        disabled: function(key, opt) {
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
+        },
+        items: {
+          grid_none: {
+            name: "{{Aucune}}",
+            type: 'radio',
+            radio: 'radio',
+            value: '0',
+            selected: true,
+            events: {
+              click: function(e) {
+                jeeFrontEnd.planEditOption.gridSize = false
+                jeeP.initEditOption(1)
+                return false
+              }
+            }
+          },
+          grid_10x10: {
+            name: "10x10",
+            type: 'radio',
+            radio: 'radio',
+            value: '10',
+            events: {
+              click: function(e) {
+                jeeFrontEnd.planEditOption.gridSize = [10, 10]
+                jeeP.initEditOption(1)
+                return false
+              }
+            }
+          },
+          grid_15x15: {
+            name: "15x15",
+            type: 'radio',
+            radio: 'radio',
+            value: '15',
+            events: {
+              click: function(e) {
+                jeeFrontEnd.planEditOption.gridSize = [15, 15]
+                jeeP.initEditOption(1)
+                return false
+              }
+            }
+          },
+          grid_20x20: {
+            name: "20x20",
+            type: 'radio',
+            radio: 'radio',
+            value: '20',
+            events: {
+              click: function(e) {
+                jeeFrontEnd.planEditOption.gridSize = [20, 20]
+                jeeP.initEditOption(1)
+                return false
+              }
+            }
+          },
+          sep4: "---------",
+          snapGrid: {
+            name: "{{Aimanter à la grille}}",
+            type: 'checkbox',
+            radio: 'radio',
+            selected: jeeFrontEnd.planEditOption.grid,
+            events: {
+              click: function(e) {
+                jeeFrontEnd.planEditOption.grid = this.jeeValue()
+                jeeP.initEditOption(1)
+                return false
+              }
+            }
+          },
+          highlightWidget: {
+            name: "{{Masquer surbrillance des éléments}}",
+            type: 'checkbox',
+            radio: 'radio',
+            selected: jeeFrontEnd.planEditOption.highlight,
+            events: {
+              click: function(e) {
+                jeeFrontEnd.planEditOption.highlight = (this.jeeValue() == 1) ? false : true
+                jeeP.initEditOption(1)
+                return false
+              }
+            }
+          },
+        }
+      },
+      removePlan: {
+        name: "{{Supprimer le design}}",
+        icon: 'fas fa-trash',
+        disabled: function(key, opt) {
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
+        },
+        callback: function(key, opt) {
+          jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer ce design ?}}', function(result) {
+            if (result) {
+              jeedom.plan.removeHeader({
+                id: jeephp2js.planHeader_id,
+                error: function(error) {
+                  jeedomUtils.showAlert({
+                    message: error.message,
+                    level: 'danger'
+                  })
+                },
+                success: function() {
+                  jeedomUtils.showAlert({
+                    message: 'Design supprimé',
+                    level: 'success'
+                  })
+                  window.location.reload()
+                },
+              })
+            }
+          })
+        }
+      },
+      addPlan: {
+        name: "{{Creer un design}}",
+        icon: 'fas fa-plus-circle',
+        disabled: function(key, opt) {
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
+        },
+        callback: function(key, opt) {
+          jeeP.createNewDesign()
+        }
+      },
+      duplicatePlan: {
+        name: "{{Dupliquer le design}}",
+        icon: 'far fa-copy',
+        disabled: function(key, opt) {
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
+        },
+        callback: function(key, opt) {
+          jeeDialog.prompt("{{Nom la copie du design ?}}", function(result) {
+            if (result !== null) {
+              jeeP.savePlan(false, false)
+              jeedom.plan.copyHeader({
+                name: result,
+                id: jeephp2js.planHeader_id,
+                error: function(error) {
+                  jeedomUtils.showAlert({
+                    message: error.message,
+                    level: 'danger'
+                  })
+                },
+                success: function(data) {
+                  jeephp2js.planHeader_id = data.id
+                  jeedomUtils.loadPage('index.php?v=d&p=plan&plan_id=' + data.id)
+                },
+              })
+            }
+          })
+        }
+      },
+      configurePlan: {
+        name: "{{Configurer le design}}",
+        icon: 'fas fa-cogs',
+        disabled: function(key, opt) {
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
+        },
+        callback: function(key, opt) {
+          jeeP.savePlan(false, false)
+          jeeDialog.dialog({
+            id: 'jee_modal',
+            title: '{{Configuration du design}}',
+            contentUrl: 'index.php?v=d&modal=planHeader.configure&planHeader_id=' + jeephp2js.planHeader_id
+          })
+        }
+      },
+      sep3: "---------",
+      save: {
+        name: "{{Sauvegarder}}",
+        icon: 'fas fa-save',
+        callback: function(key, opt) {
+          jeeP.savePlan()
         }
       },
     }

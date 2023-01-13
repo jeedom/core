@@ -3,7 +3,7 @@ dom UI @Jeedom 2023
 Desktop
 */
 
-/*jeeComplete */
+/* _________________jeeComplete */
 ul.jeeComplete {
   position: absolute;
   list-style-type: none;
@@ -23,7 +23,7 @@ ul.jeeComplete > li.jeeCompleteItem.active {
   background-color: var(--sc-formTxt-color);
 }
 
-/* jeeToast */
+/* _________________jeeToast */
 #jeeToastContainer, div.jeeToastContainer {
   position: absolute;
   width: 30%;
@@ -103,7 +103,7 @@ div.jeeToastContainer > div.jeeToast.toast-danger {
 }
 
 
-/* jeeDialog */
+/* _________________jeeDialog */
 #jeeDialogBackdrop {
   position: absolute;
   top: 0;
@@ -137,11 +137,16 @@ div.jeeDialog.jeeDialogPrompt {
 div.jeeDialogTitle {
   min-height: 20px;
   margin: 5px;
-}
-div.jeeDialogTitle {
   font-size: 14px;
   font-weight: 500;
   line-height: 21px;
+}
+div.jeeDialogTitle span.title {
+  display: inline-block;
+  max-width: calc(100% - 120px);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 div.jeeDialog > div.jeeDialogTitle button {
   float: right;
@@ -247,12 +252,7 @@ div.jeeDialog.jeeDialogMain > div.jeeDialogTitle {
   cursor: move;
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > span.title {
-  display: inline-block;
-  max-width: calc(100% - 150px);
   cursor: move !important;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > button.btClose {
   font-size: 26px !important;
@@ -414,6 +414,91 @@ div.jeeDialog.jeeDialogMain > div.resizer.top-left {
   z-index: 91;
 }
 
+/* _________________jeeCtxMenu*/
+div.jeeCtxMenu,
+div.jeeCtxMenu div.ctxSubMenuContainer {
+  position: fixed;
+  min-height: 20px;
+  min-width: 100px;
+  color: var(--txt-color);
+  background-color: var(--bg-modal-color);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 6px 2px;
+  color: var(--linkHoverLight-color);
+  z-index: 12000 !important;
+  border-radius: var(--border-radius);
+  padding: 5px 0;
+  overflow: visible;
+  overflow-y: auto;
+}
+div.jeeCtxMenu:hover {
+ box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+}
+div.jeeCtxMenu div.ctxItem {
+  position: relative;
+  color: var(--txt-color);
+  padding: 2px 35px 2px 15px;
+  cursor: pointer !important;
+}
+div.jeeCtxMenu div.ctxItem * {
+  cursor: pointer !important;
+}
+div.jeeCtxMenu div.ctxItem:hover {
+  background: var(--btnEq-default-color)
+}
+div.jeeCtxMenu div.ctxItem.disabled {
+  color: var(--placeholder-color);
+  cursor: default;
+  font-style: italic;
+}
+div.jeeCtxMenu div.ctxSubMenu::after {
+  border-left-color: var(--txt-color) !important;
+  font-size: 22px !important;
+  position: absolute;
+  top: 50%;
+  right: .5em;
+  z-index: 1;
+  content: '';
+  border-color: transparent transparent transparent var(--linkHoverLight-color);
+  border-style: solid;
+  border-width: .25em 0 .25em .25em;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+div.jeeCtxMenu div.ctxSubMenu > div.ctxItem:hover {
+  background: var(--btnEq-default-color)
+}
+div.jeeCtxMenu div.ctxSeparator {
+  padding:0;
+  margin:.35em 0;
+}
+div.jeeCtxMenu div.ctxInput > label > * {
+ vertical-align: top;
+  font-weight: 400;
+}
+div.jeeCtxMenu div.ctxInput > label > input[type=checkbox],
+div.jeeCtxMenu div.ctxInput > label > input[type=radio] {
+ position: relative;
+ top: .12em;
+ margin-right: .4em;
+}
+div.jeeCtxMenu div.ctxInput > label {
+ margin: 0;
+}
+div.jeeCtxMenu div.ctxInput > label,
+div.jeeCtxMenu div.ctxInput > label > input[type=text],
+div.jeeCtxMenu div.ctxInput > label > select,
+div.jeeCtxMenu div.ctxInput > label > textarea {
+ display: block;
+ width: 100%;
+ box-sizing: border-box;
+}
+
+div.jeeCtxMenu div.ctxItem.inlineItem {
+  display: inline-flex;
+  padding: 5px;
+}
 
 /* ________________________________________MEDIA QUERIES */
 @media screen and (max-width: 768px) {

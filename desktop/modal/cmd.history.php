@@ -54,8 +54,6 @@ if (!jeeFrontEnd.md_history) {
       self = this
       document.getElementById('div_modalGraph').style.position = 'relative'
       document.getElementById('div_modalGraph').style.width = '100%'
-
-      this.$pageContainer = $('#md_history')
       delete jeedom.history.chart[this.__el__]
       document.getElementById(this.__el__).empty()
 
@@ -103,8 +101,8 @@ if (!jeeFrontEnd.md_history) {
     },
     resizeHighChartModal: function() {
       if (!jeedom.history.chart[this.__el__]) return
-      let hDecay = 40
-      if (document.querySelector('#bt_toggleOptions i').hasClass('fa-arrow-down')) hDecay = 0
+      let hDecay = 35
+      if (document.querySelector('#bt_toggleOptions i').hasClass('fa-arrow-down')) hDecay = 5
       jeedom.history.chart[this.__el__].chart.setSize(
         this.modalContent.offsetWidth,
         this.modalContent.offsetHeight - hDecay
@@ -153,23 +151,20 @@ if (!jeeFrontEnd.md_history) {
     }
   })
 
-  jeeM.$pageContainer.on({
-    'click': function(event) {
-      let url = 'index.php?v=d&modal=cmd.history&id='
-      url += jeephp2js.md_history_cmdId + '&startDate=' + document.getElementById('in_startDate').value + '&endDate=' + document.getElementById('in_endDate').value
-      jeeDialog.dialog({
-        id: 'md_cmdHistory',
-        title: "{{Historique}}",
-        contentUrl: url
-      })
-    }
-  }, '#bt_validChangeDate')
+  document.getElementById('bt_validChangeDate').addEventListener('click', function(event) {
+    let url = 'index.php?v=d&modal=cmd.history&id='
+    url += jeephp2js.md_history_cmdId + '&startDate=' + document.getElementById('in_startDate').value + '&endDate=' + document.getElementById('in_endDate').value
+    jeeDialog.dialog({
+      id: 'md_cmdHistory',
+      title: "{{Historique}}",
+      contentUrl: url
+    })
+  })
 
-  jeeM.$pageContainer.on({
-    'click': function(event) {
-      jeedomUtils.loadPage('index.php?v=d&p=history&cmd_id=' + jeephp2js.md_history_cmdId + '&startDate=' + $('#in_startDate').val() + '&endDate=' + $('#in_endDate').val())
-    }
-  }, '#bt_openInHistory')
-
+  document.getElementById('bt_openInHistory').addEventListener('click', function(event) {
+    let url = 'index.php?v=d&p=history&cmd_id=' + jeephp2js.md_history_cmdId
+    url += '&startDate=' + document.getElementById('in_startDate').value + '&endDate=' + document.getElementById('in_endDate').value
+    jeedomUtils.loadPage(url)
+  })
 })()
 </script>

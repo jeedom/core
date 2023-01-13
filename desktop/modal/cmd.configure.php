@@ -341,7 +341,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
       <br />
       <form class="form-horizontal">
         <fieldset>
-          <?php if (($cmd->getType() == 'info' && ($cmd->getSubType() == 'numeric' || $cmd->getSubType() == 'binary')) || ($cmd->getType() == 'action' && ($cmd->getSubType() == 'slider'))) {
+          <?php if (($cmd->getType() == 'info') || ($cmd->getType() == 'action' && ($cmd->getSubType() == 'slider'))) {
           ?>
             <legend><i class="fas fa-table"></i> {{Calcul et arrondi}}</legend>
             <div class="form-group">
@@ -1423,12 +1423,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
   $('#bt_cmdConfigureShowHistory').off('click').on('click', function() {
     jeeDialog.dialog({
       id: 'md_cmdHistory',
-      width: '800px',
-      height: '500px',
-      top: '15vh',
-      retainPosition: true,
       title: "{{Historique}}",
-      zIndex: 1030,
       contentUrl: 'index.php?v=d&modal=cmd.history&id=' + jeephp2js.md_cmdConfigure_cmdInfo.id
     })
   })

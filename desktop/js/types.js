@@ -114,7 +114,7 @@ jeeFrontEnd.types.init()
 jeeP.setQueryButtons()
 
 //searching:
-$('#in_searchTypes').on('keyup', function() {
+$('#in_searchTypes').on('keyup', function(event) {
   try {
     var search = this.value
     var searchID = search
@@ -154,24 +154,24 @@ $('#in_searchTypes').on('keyup', function() {
         }
       }
     })
-    $('.panel-collapse[data-show=1]').collapse('show')
-    $('.panel-collapse[data-show=0]').collapse('hide')
+    $('.panel-collapse[data-show="1"]').collapse('show')
+    $('.panel-collapse[data-show="0"]').collapse('hide')
   } catch (error) {
     console.error(error)
   }
 })
-$('#bt_resetypeSearch').on('click', function() {
+$('#bt_resetypeSearch').on('click', function(event) {
   $('#in_searchTypes').val('').keyup()
   $('.cb_selEqLogic').prop("checked", false)
 })
 $('#bt_openAll').off('click').on('click', function(event) {
-  $(".accordion-toggle[aria-expanded='false']").click()
+  $('.accordion-toggle[aria-expanded="false"]').click()
   if (event.ctrlKey || event.metaKey) {
     $('ul.eqLogicCmds').show()
   }
 })
 $('#bt_closeAll').off('click').on('click', function(event) {
-  $(".accordion-toggle[aria-expanded='true']").click()
+  $('.accordion-toggle[aria-expanded="true"]').click()
   if (event.ctrlKey || event.metaKey) {
     $('ul.eqLogicCmds').hide()
   }
@@ -248,62 +248,6 @@ $('.eqLogicSortable').sortable({
   }
 }).disableSelection()
 
-
-//Handle auto hide context menu
-$('#div_pageContainer').on({
-  'mouseleave': function(event) {
-    $(this).fadeOut().trigger('contextmenu:hide')
-  }
-}, '.context-menu-root')
-
-//Contextmenu Equipments:
-$.contextMenu({
-  selector: "li.eqLogic",
-  appendTo: 'div#div_pageContainer',
-  build: function($trigger) {
-    $trigger.addClass('hover')
-    var eqGeneric = $trigger.closest('.eqlogicSortable').attr('data-id')
-    var eqIds = [$trigger.attr('data-id')]
-    $trigger.closest('ul.eqLogicSortable').find('.ui-sortable-handle').each(function() {
-      if ($(this).find('.cb_selEqLogic').prop('checked') == true) {
-        eqIds.push($(this).attr('data-id'))
-      }
-    })
-    eqIds = [...new Set(eqIds)]
-
-    var contextmenuitems = {}
-    contextmenuitems['none'] = {'name': '{{Aucun}}', 'id': 'none'}
-    for (var group in jeeP.gen_families) {
-      contextmenuitems[group] = {
-        'name': jeeP.gen_families[group],
-        'id': group
-      }
-    }
-
-    return {
-      callback: function(key, options) {
-        var dataGeneric = options.commands[key].id
-        if (dataGeneric == 'none') dataGeneric = ''
-        for (var idx in eqIds) {
-          $('li.eqLogic[data-id="' + eqIds[idx] + '"]').attr({
-            'data-generic': dataGeneric,
-            'data-changed': '1'
-          }).appendTo($('#gen_' + dataGeneric + ' ul.eqLogicSortable'))
-        }
-        jeeP.setFamiliesNumber()
-        jeeP.setQueryButtons()
-        jeeFrontEnd.modifyWithoutSave = true
-      },
-      items: contextmenuitems
-    }
-  },
-  events: {
-    hide: function(event) {
-      $('li.eqLogic.hover').removeClass('hover')
-    }
-  }
-})
-
 //Contextmenu commands:
 Object.keys(jeeP.genericsByFamily).forEach(key => {
   Object.keys(jeeP.generics).forEach(genkey => {
@@ -318,15 +262,15 @@ Object.keys(jeeP.genericsByFamily).forEach(key => {
     }
   })
 })
-$.contextMenu({
+new jeeCtxMenu({
   selector: "li.cmd",
   appendTo: 'div#div_pageContainer',
-  build: function($trigger) {
-    $trigger.addClass('hover')
-    var eqGeneric = $trigger.closest('.eqlogicSortable').attr('data-id')
-    var cmdId = $trigger.attr('data-id')
-    var cmdType = $trigger.attr('data-type')
-    var cmdSubType = $trigger.attr('data-subType')
+  build: function(trigger) {
+    trigger.addClass('hover')
+    var eqGeneric = trigger.closest('.eqlogicSortable').getAttribute('data-id')
+    var cmdId = trigger.getAttribute('data-id')
+    var cmdType = trigger.getAttribute('data-type')
+    var cmdSubType = trigger.getAttribute('data-subType')
 
     var contextmenuitems = {}
     contextmenuitems['deleteme'] = {'name': '{{Supprimer}}', 'id': 'delete_me'}
@@ -378,10 +322,60 @@ $.contextMenu({
   },
   events: {
     hide: function(event) {
-      $('li.cmd.hover').removeClass('hover')
+      document.querySelectorAll('li.cmd.hover').removeClass('hover')
     }
   }
 })
+
+//Contextmenu Equipments:
+new jeeCtxMenu({
+  selector: "li.eqLogic",
+  appendTo: 'div#div_pageContainer',
+  build: function(trigger) {
+    trigger.addClass('hover')
+    var eqGeneric = trigger.closest('.eqlogicSortable').getAttribute('data-id')
+    var eqIds = [trigger.getAttribute('data-id')]
+    trigger.closest('ul.eqLogicSortable').querySelectorAll('.ui-sortable-handle').forEach( _hdl => {
+      if (_hdl.querySelector('.cb_selEqLogic').checked == true) {
+        eqIds.push(_hdl.getAttribute('data-id'))
+      }
+    })
+    eqIds = [...new Set(eqIds)]
+
+    var contextmenuitems = {}
+    contextmenuitems['none'] = {'name': '{{Aucun}}', 'id': 'none'}
+    for (var group in jeeP.gen_families) {
+      contextmenuitems[group] = {
+        'name': jeeP.gen_families[group],
+        'id': group
+      }
+    }
+
+    return {
+      callback: function(key, options) {
+        var dataGeneric = options.commands[key].id
+        if (dataGeneric == 'none') dataGeneric = ''
+        for (var idx in eqIds) {
+          $('li.eqLogic[data-id="' + eqIds[idx] + '"]').attr({
+            'data-generic': dataGeneric,
+            'data-changed': '1'
+          }).appendTo($('#gen_' + dataGeneric + ' ul.eqLogicSortable'))
+        }
+        jeeP.setFamiliesNumber()
+        jeeP.setQueryButtons()
+        jeeFrontEnd.modifyWithoutSave = true
+      },
+      items: contextmenuitems
+    }
+  },
+  events: {
+    hide: function(event) {
+      document.querySelectorAll('li.eqLogic.hover').removeClass('hover')
+    }
+  }
+})
+
+
 
 
 //UI:
@@ -414,7 +408,7 @@ $('.bt_resetCmdsTypes').on('click', function(event) {
 })
 
 //Auto apply
-$('.bt_queryCmdsTypes').off('click').on('click', function() {
+$('.bt_queryCmdsTypes').off('click').on('click', function(event) {
   var genFamilyId = $(this).closest('div.eqlogicSortable').attr('data-id')
   var genFamily = jeeP.gen_families[genFamilyId]
 
@@ -631,7 +625,7 @@ $("#bt_saveGenericTypes").off('click').on('click', function(event) {
   })
 })
 
-$('#bt_listGenericTypes').off('click').on('click', function() {
+$('#bt_listGenericTypes').off('click').on('click', function(event) {
   jeeDialog.dialog({
     id: 'md_applyCmdsTypes',
     title: "{{Liste des Types Génériques (Core et Plugins)}}",
