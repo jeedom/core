@@ -3,7 +3,7 @@
 
 ## Timeline
 
-La página Línea de tiempo le permite mostrar eventos cronológicamente, como cambios de orden *información*, disparadores de comando *Valores*, y ejecuciones de escenarios.
+La página Línea de tiempo le permite mostrar eventos cronológicamente, como cambios de orden *información*, disparadores de comando *valores*, y ejecuciones de escenarios.
 
 Para verlos, primero debe activar el seguimiento en la línea de tiempo de los comandos o escenarios deseados, luego ocurren estos eventos.
 

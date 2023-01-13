@@ -66,7 +66,7 @@ Diese Möglichkeit kann sowohl mit Standard-Widgets als auch mit benutzerdefinie
 
 Dazu müssen 2 Voraussetzungen berücksichtigt werden :
 
-- Das **2 Aktions- / Fehlerbefehle** muss mit einer Bestellung verknüpft sein **info / binär** Hier wird der aktuelle Status des Geräts gespeichert.
+- Die **2 Aktions- / Fehlerbefehle** muss mit einer Bestellung verknüpft sein **info / binär** Hier wird der aktuelle Status des Geräts gespeichert.
 
 >**Beispiel**      
 >![ToggleLink-Widget](./images/widgets5.png)
@@ -97,7 +97,7 @@ Dazu müssen 2 Voraussetzungen berücksichtigt werden :
 `` ''
 
 >**Trick**      
->Solange der standardisierte Name lesbar bleibt, kann beispielsweise die Benennung angepasst werden *open_volet* Wo *shutter_close*, *2. März* und *Haltestelle_2*, etc.
+>Solange der standardisierte Name lesbar bleibt, kann beispielsweise die Benennung angepasst werden *open_volet* Woher *shutter_close*, *walk_2* und *Haltestelle_2*, etc.
 
 ## Benutzerdefinierte Widgets
 
@@ -106,7 +106,7 @@ Die Widgets-Seite, auf die über das Menü zugegriffen werden kann **Extras → 
 Es gibt zwei Arten von benutzerdefinierten Widgets :
 
 - Widgets *Kern* vorlagenbasiert. Diese Widgets werden vom Jeedom Core verwaltet und daher vom Entwicklungsteam überwacht. Ihre Kompatibilität ist mit zukünftigen Entwicklungen von Jeedom gewährleistet.
-- Widgets *Dritte* basierend auf Benutzercode. Im Gegensatz zu Core-Widgets hat das Jeedom-Entwicklungsteam keine Kontrolle über den in diese Widgets eingefügten Code. Die Kompatibilität mit zukünftigen Entwicklungen kann nicht garantiert werden. Diese Widgets müssen daher vom Benutzer gepflegt werden.
+- Widgets *Dritter* basierend auf Benutzercode. Im Gegensatz zu Core-Widgets hat das Jeedom-Entwicklungsteam keine Kontrolle über den in diese Widgets eingefügten Code. Die Kompatibilität mit zukünftigen Entwicklungen kann nicht garantiert werden. Diese Widgets müssen daher vom Benutzer gepflegt werden.
 
 ### Gestion
 
@@ -115,7 +115,7 @@ Es gibt zwei Arten von benutzerdefinierten Widgets :
 Sie haben vier Möglichkeiten :
 - **Hinzufügen** : Ermöglicht das Hinzufügen eines Widgets *Kern*.
 - **Importieren** : Ermöglicht das Importieren eines Widgets als zuvor exportierte JSON-Datei.
-- **Codiert** : Rufen Sie die Widget-Bearbeitungsseite auf *Dritte*.
+- **Codiert** : Rufen Sie die Widget-Bearbeitungsseite auf *Dritter*.
 - **Ersatz** : Öffnet ein Fenster, in dem Sie ein Widget auf allen Geräten, die es verwenden, durch ein anderes ersetzen können.
 
 ### Meine Widgets
@@ -146,9 +146,9 @@ Sobald Sie sich auf der Konfigurationsseite eines Widgets befinden, können Sie 
 Einmal auf der Seite **Extras → Widgets** Sie müssen auf die Schaltfläche klicken "**Hinzufügen**" und geben Sie Ihrem neuen Widget einen Namen.
 
 Nächste :
-- Sie wählen, ob es für eine Typreihenfolge gilt **Aktie** Wo **Information**.
+- Sie wählen, ob es für eine Typreihenfolge gilt **Lager** Woher **Information**.
 - Abhängig von der vorherigen Auswahl müssen Sie **Wählen Sie den Subtyp** der Bestellung.
-- Endlich **Die Vorlage** unter denen, die gemäß den vorherigen Auswahlmöglichkeiten verfügbar sein werden.
+- Zu guter Letzt **Die Vorlage** unter denen, die gemäß den vorherigen Auswahlmöglichkeiten verfügbar sein werden.
 - Sobald die Vorlage ausgewählt wurde, zeigt Jeedom die Konfigurationsoptionen dafür unten an.
 
 ### Die Vorlagen
@@ -161,12 +161,12 @@ Abhängig von der Art des Widgets können Sie die Symbole im Allgemeinen anpasse
 
 Es gibt zwei Arten von Vorlagen :
 
-- Das "**einfach**" : als Symbol / Bild für die "**Wir**" und ein Symbol / Bild für die "**Aus**".
-- Das "**Multistate**" : Dies ermöglicht es beispielsweise, ein Bild zu definieren, wenn der Befehl den Wert hat "**XX**" und ein anderer so größer als "**JJ**" oder wenn weniger als "**ZZ**". Funktioniert auch für Textwerte, ein Bild, wenn der Wert ist "**alles**", ein anderer wenn "**plumpsen**" Und so weiter...
+- Die "**einfach**" : als Symbol / Bild für die "**WIR**" und ein Symbol / Bild für die "**AUS**".
+- Die "**Multistate**" : Dies ermöglicht es beispielsweise, ein Bild zu definieren, wenn der Befehl den Wert hat "**XX**" und ein anderer so größer als "**JJ**" oder wenn weniger als "**ZZ**". Funktioniert auch für Textwerte, ein Bild, wenn der Wert ist "**alles**", ein anderer wenn "**plumpsen**" Und so weiter...
 
 #### Remplacement
 
-Dies nennt man eine einfache Vorlage, hier muss man nur sagen, dass die "**Wir**" passt zu einem solchen Symbol / Bild *(mit der Auswahltaste)*, das "**Aus**" zu solchen anderen Symbolen / Bildern usw...      
+Dies nennt man eine einfache Vorlage, hier muss man nur sagen, dass die "**WIR**" passt zu einem solchen Symbol / Bild *(mit der Auswahltaste)*, der "**AUS**" zu solchen anderen Symbolen / Bildern usw...      
 
 Die Kiste **Zeit-Widget**, Wenn verfügbar, wird die Dauer seit der letzten Statusänderung unter dem Widget angezeigt.
 
@@ -174,11 +174,11 @@ Bei Vorlagen mit Bildern können Sie die Breite des Widgets je nach Unterstützu
 
 >**Trick**     
 >Für fortgeschrittene Benutzer ist es möglich, Tags in die Ersatzwerte einzufügen und ihren Wert in der erweiterten Konfiguration des Befehls anzugeben.    
->Wenn zum Beispiel in **Desktop-Breite** Sie setzen als Wert `#largeur_desktop#`` (**Achten Sie darauf, die** ``#`` **autour**) puis dans la configuratiwir avancée d'une commande, onglund affichage → "**Paramètres optionnels widget**" vous ajoutez das paramètre ``largeur_desktop`` (**sans les** ``#`) und gib ihm den Wert "**90**", Dieses benutzerdefinierte Widget für diesen Befehl ist 90 Pixel breit. Auf diese Weise können Sie die Größe des Widgets an jede Bestellung anpassen, ohne jedes Mal ein bestimmtes Widget erstellen zu müssen.
+>Wenn zum Beispiel in **Desktop-Breite** Sie setzen als Wert `#largeur_desktop#`` (**Achten Sie darauf, die** ``#`` **autour**) puis dans la configuratiwir avancée d'une commande, onglund affichage → "**Paramètres optionnels widget**" vous ajoutez der paramètre ``largeur_desktop`` (**sans les** ``#`) und gib ihm den Wert "**90**", Dieses benutzerdefinierte Widget für diesen Befehl ist 90 Pixel breit. Auf diese Weise können Sie die Größe des Widgets an jede Bestellung anpassen, ohne jedes Mal ein bestimmtes Widget erstellen zu müssen.
 
 #### Test
 
-Dies wird als mehrstufige Vorlagen bezeichnet *(mehrere Staaten)*. Anstatt ein Bild für die "**Wir** und / oder für die "**Aus** Wie im vorherigen Fall weisen Sie ein Symbol entsprechend der Validierung einer Bedingung zu *(test)*. Wenn dies zutrifft, zeigt das Widget das betreffende Symbol / Bild an.
+Dies wird als mehrstufige Vorlagen bezeichnet *(mehrere Staaten)*. Anstatt ein Bild für die "**WIR** und / oder für die "**AUS** Wie im vorherigen Fall weisen Sie ein Symbol entsprechend der Validierung einer Bedingung zu *(test)*. Wenn dies zutrifft, zeigt das Widget das betreffende Symbol / Bild an.
 
 Nach wie vor können je nach dem in Jeedom aktiven Thema und der Box unterschiedliche Bilder ausgewählt werden **Zeit-Widget** Zeigt die Dauer seit der letzten Zustandsänderung an.
 
@@ -188,13 +188,13 @@ Die Tests sind in der Form : ``#value# == 1`,`#value#`wird automatisch durch den
 - ``#value# >= 1 && #value# <= 5``
 - ``#value# == 'toto'``
 
->**HINWEIS**     
+>**Notiz**     
 >Es ist wichtig, die Apostrophe zu zeigen (**'**) um den Text herum zu vergleichen, ob der Wert Text ist *(info / andere)*.
 
->**HINWEIS**     
+>**Notiz**     
 >Für fortgeschrittene Benutzer ist es auch möglich, Javascript-Funktionen wie `zu verwenden#value#.match ("^ plop") `, hier testen wir, ob der Text mit` plop` beginnt.
 
->**HINWEIS**     
+>**Notiz**     
 >Sie können den Wert des Befehls im Widget anzeigen, indem Sie `angeben#value#`im HTML-Code des Tests. Um das Gerät anzuzeigen, fügen Sie `hinzu#unite#``.
 
 ## Code-Widget

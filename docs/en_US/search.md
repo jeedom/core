@@ -82,7 +82,7 @@ The engine will display in the tables below :
 
 - The **Scenario** having this Id.
 - The **design** having this Id.
-- The **seen** having this Id.
+- The **view** having this Id.
 - L'**interaction** having this Id.
 - L'**equipment** having this Id.
 - The **ordered** having this Id.

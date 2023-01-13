@@ -26,7 +26,7 @@ A configuração da exibição do objeto é feita em **Ferramentas → Objetos**
 - Se a imagem de plano de fundo deve ser usada apenas na página Resumo ou também em segundo plano uma vez no objeto.
 - Os elementos de seus resumos, na guia *Resumo*.
 
-> **Dica**
+> **Gorjeta**
 >
 > A ordem de exibição dos objetos é a de *Resumo Automation*, que você pode reordenar (Análise → Resumo da automação residencial).
 
@@ -42,7 +42,7 @@ Para cada objeto, você pode clicar em :
 - Em um elemento de resumo para exibir os elementos deste objeto, deste tipo. Eles são exibidos em um modal, sem alterar a página, e permitem fechar rapidamente um obturador, acender uma luz, etc. O tamanho do modal se adapta ao equipamento que ele deve exibir, mas você pode movê-lo. Mesmo com o modal de resumos aberto, você pode clicar em outros resumos.
 
 
-> **Dica**
+> **Gorjeta**
 >
 > Ctrl Clique ou Clique Central no objeto ou um elemento de resumo abre outra guia do seu navegador.
 

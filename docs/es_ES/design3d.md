@@ -83,7 +83,7 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 
 #### Puerta / ventana
 
-- Estado : Estado de puerta / ventana, 1 cerrado y 0 abierto
+- Expresar : Estado de puerta / ventana, 1 cerrado y 0 abierto
 - Rotation
 	- Habilitar : activa la rotación de la puerta / ventana al abrir
 	- Apertura : lo mejor es probar para que coincida con su puerta / ventana
@@ -99,7 +99,7 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 
 #### Volet
 
-- Estado : estado del obturador, 0 abierto otro valor cerrado
+- Expresar : estado del obturador, 0 abierto otro valor cerrado
 - Ocultar cuando el obturador está abierto
 	- Habilitar : ocultar el elemento si el obturador está abierto
 - Couleur

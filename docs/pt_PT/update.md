@@ -34,7 +34,7 @@ Depois de clicar nele, você obtém essas opções diferentes :
 >
 > Antes de uma atualização, por padrão, o Jeedom fará um backup. No caso de um problema ao aplicar uma atualização, o Jeedom restaurará automaticamente o backup feito pouco antes. Esse princípio é válido apenas para atualizações do Jeedom e não para atualizações de plugins.
 
-> **Dica**
+> **Gorjeta**
 >
 > Você pode forçar uma atualização do Jeedom, mesmo que ele não ofereça um.
 
@@ -52,23 +52,23 @@ Os plug-ins têm um crachá ao lado do nome, especificando sua versão, de cor v
 Em cada linha, você pode usar as seguintes funções:
 
 - **Reinstalar** : Forçar reassentamento.
-- **Deletar** : Permite desinstalá-lo.
+- **Retirar** : Permite desinstalá-lo.
 - **Verificar** : Consulte a fonte de atualizações para descobrir se uma nova atualização está disponível.
 - **Atualizar** : Permite atualizar o elemento (se houver uma atualização).
-- **Registro de alterações** : Permite acesso à lista de alterações na atualização.
+- **Log de alterações** : Permite acesso à lista de alterações na atualização.
 
 > **Importante**
 >
 > Se o registro de alterações estiver vazio, mas você ainda tiver uma atualização, isso significa que a documentação foi atualizada. Portanto, não é necessário solicitar mudanças ao desenvolvedor, pois não há necessariamente. (geralmente é uma atualização da tradução, documentação).
 > O desenvolvedor do plugin também pode, em alguns casos, fazer correções simples, o que não requer necessariamente a atualização do registro de alterações.
 
-> **Dica**
+> **Gorjeta**
 >
 > Quando você inicia uma atualização, uma barra de progresso aparece acima da tabela. Evite outras manipulações durante a atualização.
 
 ## Guia SO/Pacote
 
-> **Importante**
+> **IMPORTANTE**
 >
 > Esta guia é reservada para usuários avançados e apenas para usuários avançados, a menor ação ruim aqui pode QUEBRAR seu Jeedom (sem a possibilidade de recorrer ao suporte)
 
@@ -92,7 +92,7 @@ Uma vez conectado, este é o comando para executar :
 Os possíveis parâmetros são :
 
 - **moda** : `force ', para iniciar uma atualização no modo forçado (ignora erros).
-- **Versão** : Rastreamento de número da versão, para reaplicar as alterações desta versão.
+- **versão** : Rastreamento de número da versão, para reaplicar as alterações desta versão.
 
 Aqui está um exemplo de sintaxe para fazer uma atualização forçada reaplicando as alterações desde o 4.0.04 :
 

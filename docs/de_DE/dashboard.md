@@ -19,7 +19,7 @@ Dieser Bericht wird (im Gegensatz zu Ansichten und Designs) von Jeedom selbst er
 - 9 : Gerätekachel.
 - 10 : Widget bestellen.
 
-> **Tipp**
+> **Spitze**
 >
 > Die Anzeigereihenfolge der Objekte im Dashboard ist die in **Analyse → Zusammenfassung der Hausautomation**. Sie können diese Reihenfolge auf dieser Seite durch Ziehen und Ablegen ändern.
 
@@ -37,7 +37,7 @@ Wenn Sie die Maus über eine Bestellung bewegen, wird unten links auf der Kachel
 
 Außerdem können Sie auf den Titel der Kachel (den Namen des Geräts) klicken, um die Konfigurationsseite dieses Geräts direkt zu öffnen.
 
-> **Tipp**
+> **Spitze**
 >
 > Über das Menü können Sie direkt zu einem einzelnen Objekt in Ihrer Hausautomation wechseln **Home → Dashboard → Objektname**.
 > Auf diese Weise haben Sie nur die Ausrüstung, die Sie interessiert, und können die Seite schneller laden.
@@ -66,7 +66,7 @@ Auf jedem Objekt rechts neben seinem Namen und seiner Zusammenfassung können Si
 
 ## Jeedom Menüleiste
 
-> **Tipp**
+> **Spitze**
 >
 > - Klicken Sie auf die Uhr (Menüleiste) : Öffnen Sie die Timeline.
 > - Klicken Sie auf den Namen des Jeedom (Menüleiste)) : Öffnet Einstellungen → System → Konfiguration.

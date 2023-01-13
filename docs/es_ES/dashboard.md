@@ -51,7 +51,7 @@ Además, puede hacer clic en el título del mosaico (el nombre del equipo) para 
 
 - Un clic en un pedido de tipo de información muestra el historial del pedido (si es histórico).
 - Un comando Ctrl + clic en un tipo de información muestra el historial de todos los comandos (históricos) para este mosaico.
-- Un clic en la información *tiempo* de un comando de acción muestra el historial del comando (si está historizado).
+- Un clic en la información *hora* de un comando de acción muestra el historial del comando (si está historizado).
 
 
 ## Modo de edición

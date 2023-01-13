@@ -86,7 +86,7 @@ En un bloque de código :
 
 ### Análisis / resumen de domótica
 - Ctrl Haga clic en el icono *Abrir* (recherche) : Abra todos los objetos y equipos.
-- Ctrl Haga clic en el icono *Cerca* (recherche) : Cierra todos los objetos y equipos.
+- Ctrl Haga clic en el icono *Cerrar* (recherche) : Cierra todos los objetos y equipos.
 
 ### Análisis / Historia
 Si se muestran varias curvas :

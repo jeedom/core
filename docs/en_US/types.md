@@ -38,7 +38,7 @@ On each device, you have two buttons :
 
 - **Reset types** : This function removes Generic Types from all equipment commands.
 
-> **Attention**
+> **Warning**
 >
 > No changes are made before saving, with the button at the top right of the page.
 
@@ -121,7 +121,7 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 
 | **Electricity (id: Electricity)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| Power | Electric power | Information | numeric
+| POWER | Electric power | Information | numeric
 | CONSUMPTION | Power consumption | Information | numeric
 | VOLTAGE | Tension | Information | numeric
 | REBOOT | Restart | Stock | other
@@ -145,7 +145,7 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 | **Generic (id: Generic)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | DEPTH | Depth | Information | numeric
-| DISTANCE | DISTANCE | Information | numeric
+| DISTANCE | Distance | Information | numeric
 | BUTTON | Button | Information | binary, numeric
 | GENERIC_INFO |  Generic | Information |
 | GENERIC_ACTION |  Generic | Stock | other
@@ -172,7 +172,7 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 
 | **Multimedia (id: Multimedia)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| Volume | Volume | Information | numeric
+| VOLUME | Volume | Information | numeric
 | MEDIA_STATUS | Status | Information | string
 | MEDIA_ALBUM | Album | Information | string
 | MEDIA_ARTIST | Artist | Information | string
@@ -182,7 +182,7 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 | MEDIA_STATE | State | Information | binary
 | SET_VOLUME | Volume | Stock | slider
 | SET_CHANNEL | Chain | Stock | other slider
-| MEDIA_PAUSE | Pause | Stock | other
+| MEDIA_PAUSE | Break | Stock | other
 | MEDIA_RESUME | Reading | Stock | other
 | MEDIA_STOP | Stop | Stock | other
 | MEDIA_NEXT | Next | Stock | other
@@ -231,7 +231,7 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 | LOCK_STATE | State lock | Information | binary
 | BARRIER_STATE | Portal (opening) State | Information | binary
 | GARAGE_STATE | Garage (opening) State | Information | binary
-| OPENING | Gate | Information | binary
+| OPENING | Door | Information | binary
 | OPENING_WINDOW | Window | Information | binary
 | LOCK_OPEN | Lock Button Open | Stock | other
 | LOCK_CLOSE | Lock Button Close | Stock | other
@@ -258,7 +258,7 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 | ALARM_MODE | Alarm Mode | Information | string
 | ALARM_ENABLE_STATE | Alarm Status activated | Information | binary
 | FLOOD | Flood | Information | binary
-| SABOTAGE | SABOTAGE | Information | binary
+| SABOTAGE | Sabotage | Information | binary
 | SHOCK | Shock | Information | binary, numeric
 | SIREN_OFF | Siren Button Off | Stock | other
 | SIREN_ON | Siren Button On | Stock | other
@@ -288,7 +288,7 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 | FAN_SPEED_STATE | Fan speed Status | Information | numeric
 | ROTATION_STATE | State Rotation | Information | numeric
 | FAN_SPEED | Fan speed | Stock | slider
-| SPIN | SPIN | Stock | slider
+| SPIN | Spin | Stock | slider
 
 | **Pane (id: Shutter)** | | | |
 |:--------|:----------------|:--------:|:---------:|

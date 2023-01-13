@@ -34,7 +34,7 @@ In dieser Tabelle finden wir :
 - **Letzte Dauer** : Letzte Ausführungszeit der Aufgabe (ein Daemon wird immer bei 0 sein, keine Sorge, andere Aufgaben können bei 0 sein).
 - **Status** : Aktueller Status der Aufgabe (zur Erinnerung: Eine Daemon-Aufgabe wird immer "ausgeführt"").
 
-- **Aktie** :
+- **Lager** :
     - **Details** : Sehen Sie sich den Cron im Detail an (wie in der Basis gespeichert)).
     - **Start / Stopp** : Starten oder stoppen Sie die Aufgabe (abhängig von ihrem Status).
     - **Streichung** : Aufgabe löschen.

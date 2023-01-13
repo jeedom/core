@@ -38,7 +38,7 @@ For each object, next to its label, two buttons are available.
 
 On each equipment we find :
 
-- A **check box** to select the equipment (you can select several). If at least one device is selected, you have action buttons that appear in the upper left to **to delete**, to return **visible**/**invisible**,  **asset**/**Idle** selected equipment.
+- A **check box** to select the equipment (you can select several). If at least one device is selected, you have action buttons that appear in the upper left to **remove**, to return **visible**/**invisible**,  **asset**/**idle** selected equipment.
 - L'**id** equipment.
 - The **kind** equipment : Identifier of the plugin to which it belongs.
 - The **name** equipment.
@@ -63,14 +63,14 @@ The window of **Advanced equipment configuration** allows to modify it. First, a
 - **Connections** : Allows to display the links of the equipment with the objects, commands, scenarios, variables, interactions… in graphic form (in this one, a double click on an element will take you to its configuration).
 - **Log** : displays the events of the equipment in question.
 - **To safeguard** : Save the modifications made on the equipment.
-- **To delete** : Remove equipment.
+- **Remove** : Remove equipment.
 
 ### Information tab
 
 Tab **Information** contains general information about the equipment and its controls :
 
-- **Id** : Unique identifier in the Jeedom database.
-- **Name** : Name of equipment.
+- **ID** : Unique identifier in the Jeedom database.
+- **Last name** : Name of equipment.
 - **Logical ID** : Logical identifier of the equipment (can be empty).
 - **Object ID** : Unique identifier of the parent object (can be empty).
 - **Creation date** : Equipment creation date.
@@ -96,7 +96,7 @@ In the tab **Display**, you will be able to configure certain tile display behav
 
 ### Optional parameters on the tile
 
-Below, there are optional display parameters that can be applied to the equipment. These parameters are composed of a name and a value. Just click on **To add** to apply one
+Below, there are optional display parameters that can be applied to the equipment. These parameters are composed of a name and a value. Just click on **Add** to apply one
 new. For equipment, only the value **style** is currently used, it allows to insert CSS code on the equipment in question.
 
 > **Tip**
@@ -106,7 +106,7 @@ new. For equipment, only the value **style** is currently used, it allows to ins
 ### Layout tab
 
 This part allows you to choose between the standard layout of the commands (side by side in the widget), or in table mode. Nothing to set in default mode. Here are the options available in mode
-**Picture** :
+**Board** :
 - **Number of lines**
 - **Number of columns**
 - **Center in boxes** : Check the box to center commands in cells.
@@ -165,13 +165,13 @@ First, at the top right, some buttons available :
 
 Tab **Information** contains general information about the command :
 
-- **Id** : Unique identifier in the database.
+- **ID** : Unique identifier in the database.
 - **Logical ID** : Logical identifier of the command (can be empty).
-- **Name** : Name of the command.
+- **Last name** : Name of the command.
 - **Kind** : Type of command (action or info).
 - **Subtype** : Command subtype (binary, digital, etc.)).
 - **Direct url** : Provides the URL to access this equipment. (right click, copy the link address) The URL will launch the command for a **stock** and return the information for a **information**.
-- **Unity** : Control unit.
+- **Unit** : Control unit.
 - **Command triggering an update** : Gives the identifier of another command which, if this other command changes, will force the update of the displayed command.
 - **Visible** : Check this box to make the command visible.
 - **Follow in the timeline** : Check this box to make this command visible in the timeline when it is used. You can specify a specific timeline in the field that appears if the option is checked.
@@ -202,7 +202,7 @@ Below, you will find the list of the different equipment, commands, scenarios or
 
 - **Historical**
     - **Historize** : Check the box to have the values of this command logged. (See **Analysis → History**)
-    - **Smoothing mode** : Mode of **smoothing** or d'**archiving** allows you to choose how to archive the data. By default, this is a **mean**. It is also possible to choose the **maximum**, the **minimum**, Where **None**. **None** lets tell Jeedom that it should not perform archiving on this command (both during the first 5 mins period and with the archiving task). This option is dangerous because Jeedom keeps everything : so there will be a lot more data kept.
+    - **Smoothing mode** : Mode of **smoothing** or d'**archiving** allows you to choose how to archive the data. By default, this is a **medium**. It is also possible to choose the **maximum**, the **minimum**, Where **none**. **none** lets tell Jeedom that it should not perform archiving on this command (both during the first 5 mins period and with the archiving task). This option is dangerous because Jeedom keeps everything : so there will be a lot more data kept.
     - **Purge history if older than** : Lets tell Jeedom to delete all data older than a certain period. May be practical not to keep data if it is not necessary and therefore limit the amount of information recorded by Jeedom.
 
 - **Values management**

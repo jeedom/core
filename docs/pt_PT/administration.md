@@ -65,9 +65,9 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 
 ### Personnalisation
 
-- **Permitir** : Ative o uso das opções abaixo.
+- **Habilitar** : Ative o uso das opções abaixo.
 - **Transparência** : Exibe blocos do painel e algum conteúdo com transparência. 1 : totalmente opaco, 0 : totalmente transparente.
-- **Redondo** : Exibe elementos da interface com ângulos arredondados. 0 : sem arredondamento, 1 : arredondamento máximo.
+- **Volta** : Exibe elementos da interface com ângulos arredondados. 0 : sem arredondamento, 1 : arredondamento máximo.
 - **Desativar sombras** : Desativa sombras de blocos no painel, menus e certos elementos da interface.
 
 
@@ -103,11 +103,11 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
     - **Conecte-se** : Digite o login do proxy,
     - **Senha** : Digite a senha.
 
-> **Dica**
+> **Gorjeta**
 >
 > Se você estiver em HTTPS, a porta é 443 (padrão) e em HTTP, a porta é 80 (padrão)). Para usar HTTPS de fora, um plug-in letsencrypt agora está disponível no mercado.
 
-> **Dica**
+> **Gorjeta**
 >
 > Para descobrir se você precisa definir um valor no campo **Complemento**, veja, quando você faz login no Jeedom no seu navegador da Internet, se precisar adicionar / Jeedom (ou qualquer outra coisa) após o IP.
 
@@ -219,9 +219,9 @@ Configurar gráficos de link. Esses links permitem ver, na forma de gráfico, as
 
 Essa guia permite definir parâmetros globais relativos às interações que você encontrará em Ferramentas → Interações.
 
-> **Dica**
+> **Gorjeta**
 >
-> Para ativar o log de interação, vá para a guia Configurações → Sistema → Configuração : Logs e verifique **Depurar** na lista inferior. Atenção : os logs serão muito detalhados !
+> Para ativar o log de interação, vá para a guia Configurações → Sistema → Configuração : Logs e verifique **Depurar** na lista inferior. Aviso : os logs serão muito detalhados !
 
 ### Geral
 
@@ -241,16 +241,16 @@ Aqui você tem três parâmetros :
 
 -   O **interações contextuais** permitem encadear várias solicitações sem repetir tudo, por exemplo :
     - *Jeedom mantendo o contexto :*
-        - *Você* : Quanto ele está na sala ?
+        - *Vocês* : Quanto ele está na sala ?
         - *Jeedom* : Temperatura 25.2 ° C
-        - *Você* : e na sala de estar ?
+        - *Vocês* : e na sala de estar ?
         - *Jeedom* : Temperatura 27.2 ° C
     - *Faça duas perguntas em uma :*
-        - *Você* : Como é no quarto e na sala de estar ?
+        - *Vocês* : Como é no quarto e na sala de estar ?
         - *Jeedom* : Temperatura 23.6 ° C, Temperatura 27.2 ° C
 -   Interações de tipo **Avise-me** permita que a Jeedom avise se um pedido excede / cai ou vale algum valor.
-    - *Você* : Notifique-me se a temperatura da sala exceder 25 ° C ?
-    - *Jeedom* : OK (*Assim que a temperatura da sala exceder 25 ° C, Jeedom dirá, uma vez*)
+    - *Vocês* : Notifique-me se a temperatura da sala exceder 25 ° C ?
+    - *Jeedom* : Certo (*Assim que a temperatura da sala exceder 25 ° C, Jeedom dirá, uma vez*)
 
 > **Observação**
 >
@@ -325,7 +325,7 @@ Depósito usado para conectar o Jeedom ao Github.
 
 #### Market
 
-Depósito usado para conectar o Jeedom ao mercado, é altamente recomendável usar esse depósito. Atenção : qualquer solicitação de suporte poderá ser recusada se você usar um depósito diferente deste.
+Depósito usado para conectar o Jeedom ao mercado, é altamente recomendável usar esse depósito. Aviso : qualquer solicitação de suporte poderá ser recusada se você usar um depósito diferente deste.
 
 - **Endereço** : Endereço du Mercado.(https://www.Jeedom.com/market).
 - **Nome de Usuário** : Seu nome de usuário no mercado.

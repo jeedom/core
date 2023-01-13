@@ -14,7 +14,7 @@ En la parte superior derecha, tienes :
 
 - **Deshabilitar sistema cron** : un botón para desactivar o reactivar todas las tareas (si las desactiva todas, nada funcionará en su Jeedom).
 - **Fresco** : Actualiza la tabla de tareas.
-- **Para agregar** : Agregar un trabajo cron manualmente.
+- **Agregar** : Agregar un trabajo cron manualmente.
 - **Para salvaguardar** : Guarda tus cambios.
 
 A continuación, tiene la tabla de todas las tareas existentes (atención, algunas tareas pueden iniciar subtareas, por lo que se recomienda no modificar nunca la información en esta página)).

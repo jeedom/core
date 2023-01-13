@@ -47,8 +47,8 @@ basta usar o [Jeedom DNS](https://jeedom.github.io/documentation/howto/pt_PT/mis
 ### Como se conectar no SSH ?
 Aqui está um [documentação](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "Windows : Putty". O "hostname" sendo o ip do seu Jeedom, os identificadores sendo :
 
-- Nome de usuário : "root ", senha : "Mjeedom96"
-- Nome de usuário : "jeedom ", senha : "Mjeedom96"
+- Nome do usuário : "root ", senha : "Mjeedom96"
+- Nome do usuário : "jeedom ", senha : "Mjeedom96"
 - Ou o que você coloca na instalação se estiver em DIY
 
 Observe que quando você escreve a senha, não verá nada escrito na tela, isso é normal.
@@ -142,7 +142,7 @@ Ou consulte o log : /var/log/mysql/error.log
 
 ### Os botões Desligar / Reiniciar não funcionam
 Em uma instalação DIY é normal. No SSH, você deve fazer o comando visudo e, no final do arquivo, adicionar : www-data ALL = (ALL)
-NOPASSWD: TUDO.
+NOPASSWD: TODOS.
 
 `` `{.bash}
 serviço sudo reinício apache2

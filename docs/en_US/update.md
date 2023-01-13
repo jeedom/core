@@ -52,7 +52,7 @@ The plugins have a badge next to their name, specifying their version, green in 
 On each line, you can use the following functions:
 
 - **Reinstate** : Force resettlement.
-- **To delete** : Allows you to uninstall it.
+- **Remove** : Allows you to uninstall it.
 - **Check** : Query source for updates to find out if a new update is available.
 - **Update** : Allows you to update the element (if it has an update).
 - **Changelog** : Allows access to the list of changes in the update.
@@ -68,7 +68,7 @@ On each line, you can use the following functions:
 
 ## OS/Package tab
 
-> **Important**
+> **IMPORTANT**
 >
 > This tab is reserved for advanced users and only for advanced users, the slightest bad action here can BREAK your Jeedom (without the possibility of resorting to support)
 
@@ -92,7 +92,7 @@ Once connected, this is the command to perform :
 The possible parameters are :
 
 - **fashion** : `force`, to launch an update in forced mode (ignores errors).
-- **Version** : Version number tracking, to re-apply changes from this version.
+- **version** : Version number tracking, to re-apply changes from this version.
 
 Here is an example of syntax to make a forced update by reapplying the changes since 4.0.04 :
 

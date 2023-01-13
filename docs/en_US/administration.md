@@ -221,7 +221,7 @@ This tab allows you to set global parameters concerning the interactions that yo
 
 > **Tip**
 >
-> To activate the interaction log, go to the Settings → System → Configuration tab : Logs, then check **Debug** in the bottom list. Attention : the logs will then be very verbose !
+> To activate the interaction log, go to the Settings → System → Configuration tab : Logs, then check **Debug** in the bottom list. Warning : the logs will then be very verbose !
 
 ### Main
 
@@ -250,7 +250,7 @@ Here you have three parameters :
         - *Jeedom* : Temperature 23.6 ° C, Temperature 27.2 ° C
 -   Type interactions **Warn me** allow to ask Jeedom to warn you if a command exceeds / falls or is worth a certain value.
     - *You* : Notify me if the living room temperature exceeds 25 ° C ?
-    - *Jeedom* : OK (*As soon as the living room temperature exceeds 25 ° C, Jeedom will tell you, once*)
+    - *Jeedom* : Okay (*As soon as the living room temperature exceeds 25 ° C, Jeedom will tell you, once*)
 
 > **Note**
 >
@@ -325,7 +325,7 @@ Deposit used to connect Jeedom to Github.
 
 #### Market
 
-Deposit used to connect Jeedom to the market, it is strongly advised to use this deposit. Attention : any request for support may be refused if you use a deposit other than this one.
+Deposit used to connect Jeedom to the market, it is strongly advised to use this deposit. Warning : any request for support may be refused if you use a deposit other than this one.
 
 - **Address** : Address du Market.(https://www.Jeedom.com/market).
 - **Username** : Your Username on the Market.

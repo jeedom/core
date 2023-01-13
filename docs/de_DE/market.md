@@ -12,7 +12,7 @@ Hier können Sie verschiedene Parameter Ihres Profils anpassen :
 
 - **Profil**
     - **Anmeldung** : Ihr Login auf dem Markt kann nicht geändert werden.
-    - **Nachname** : Ihr Name (diese Informationen sind nur nützlich, um E-Mails angenehmer zu gestalten).
+    - **Familienname, Nachname** : Ihr Name (diese Informationen sind nur nützlich, um E-Mails angenehmer zu gestalten).
     - **Vorname** : Ihr Vorname (diese Informationen sind nur nützlich, um E-Mails angenehmer zu gestalten).
     - **Benutzername im Forum** : Dein Benutzername im Forum.
     - **Email** : Ihre E-Mail.
@@ -37,7 +37,7 @@ Für die Profis :
 - **Aktivieren Sie den Zugriff auf Beta-Plugins** : Aktiviert den Zugriff auf Betas-Plugins (beachten Sie, dass Sie dadurch nicht auf den Support zugreifen können).
     - **Zusammenfassung** Hier finden Sie eine Zusammenfassung Ihrer verschiedenen Rechte und Dienste.
 
-> **Tipp**
+> **Spitze**
 >
 > Vergiss nicht zu sparen.
 
@@ -49,13 +49,13 @@ Für die Profis :
 - **Installationsschlüssel**
     - **Anzahl der Installationsschlüssel** : Zeigt die Anzahl der Jeedom-Installationen an, die derzeit mit Ihrem Konto verknüpft sind, sowie das autorisierte Limit.
 
-> **Tipp**
+> **Spitze**
 >
 > Es ist möglich, dass der Markt Sie manchmal auffordert, Ihre Installationsschlüssel zurückzusetzen. Dies ist normal. Befolgen Sie einfach die Anforderungen.
 
 - **Meine Jeedoms** : Hier sind alle Ihre Jeedoms aufgelistet
-    - **Nachname** : Der Name, den Sie Ihrem Jeedom geben möchten (finden Sie im Sicherungsnamen, wenn Sie über ein Cloud-Sicherungsabonnement verfügen).
-    - **Bundesland** : Sehen wir uns den Zustand des fraglichen Jeedom an.
+    - **Familienname, Nachname** : Der Name, den Sie Ihrem Jeedom geben möchten (finden Sie im Sicherungsnamen, wenn Sie über ein Cloud-Sicherungsabonnement verfügen).
+    - **Zustand** : Sehen wir uns den Zustand des fraglichen Jeedom an.
     - **Lokale / Remote-IP** : IP oder Adresse dieses Jeedom, konfigurieren Sie in Jeedom. Wenn Sie nichts eingeben, ist dies die letzte bekannte IP.
     - **DNS** : Ermöglicht das Anpassen des Namens Ihres DNS.
     - **URLs** : Listen Sie die verschiedenen Jeedom-Zugriffs-URLs auf.
@@ -66,7 +66,7 @@ Für die Profis :
     - **Hardware** : Jeedom Hardware-Name.
     - **Ausführung** : Jeedom Version installiert.
 
-> **Tipp**
+> **Spitze**
 >
 > Vergiss nicht zu sparen.
 

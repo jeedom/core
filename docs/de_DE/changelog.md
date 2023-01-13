@@ -44,7 +44,7 @@
 > **Widgets**
 >
 > Kern-Widgets wurden in reinem js/css neu geschrieben. Sie müssen das Dashboard bearbeiten *(Bearbeiten Sie dann die Schaltfläche ⁝ auf den Kacheln)* und nutzen Sie die Möglichkeit *Zeilenumbruch danach* bei bestimmten Befehlen, um denselben visuellen Aspekt zu finden.
-> Alle Core-Widgets unterstützen jetzt die Anzeige *Zeit*, durch Hinzufügen eines optionalen Parameters *Zeit* / *Dauer* Wo *Datum*.
+> Alle Core-Widgets unterstützen jetzt die Anzeige *Zeit*, durch Hinzufügen eines optionalen Parameters *Zeit* / *Dauer* Woher *Datum*.
 
 > **Dialogboxen**
 >
@@ -130,8 +130,8 @@
 - **Werkzeuge / Ersetzen** : Neues Tool zum Ersetzen von Ausrüstung und Befehlen.
 - **Analyse / Zeitleiste** : Ein Suchfeld hinzugefügt, um die Anzeige zu filtern.
 - **Benutzer** : Eine Schaltfläche hinzugefügt, um die Rechte eines eingeschränkten Benutzers auf einen anderen zu kopieren.
-- **Bericht** : Möglichkeit, über die Gesundheit von Jeedom zu berichten.
-- **Bericht** : Möglichkeit, über alarmierte Geräte zu berichten.
+- **Prüfbericht** : Möglichkeit, über die Gesundheit von Jeedom zu berichten.
+- **Prüfbericht** : Möglichkeit, über alarmierte Geräte zu berichten.
 - **Aktualisieren** : Möglichkeit, von Jeedom die OS / PIP2 / PIP3 / NodeJS-Pakete zu sehen, die aktualisiert werden können, und das Update zu starten (Vorsicht, riskante Funktion und in Beta).
 - **Alarmbefehl** : Option hinzugefügt, um eine Nachricht im Falle des Endes des Alarms zu erhalten.
 - **Plugins** : Möglichkeit, die Installation von Abhängigkeiten per Plugin zu deaktivieren.
@@ -274,7 +274,7 @@ Blogeintrag [hier](https://blog.jeedom.com/6739-jeedom-4-3/)
 
 ### 4.2 : Neuigkeiten / Verbesserungen
 
-- **Synthese** : Möglichkeit zum Konfigurieren von Objekten für a *Entwurf* oder ein *gesehen* seit der Synthese.
+- **Synthese** : Möglichkeit zum Konfigurieren von Objekten für a *Design* oder ein *Ansicht* seit der Synthese.
 - **Armaturenbrett** : Im Gerätekonfigurationsfenster (Bearbeitungsmodus) können Sie jetzt mobile Widgets und generische Typen konfigurieren.
 - **Widgets** : Internationalisierung von Widgets von Drittanbietern (Benutzercode). sehen [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.2).
 - **Analyse / Geschichte** : Möglichkeit, eine Historie über einen bestimmten Zeitraum zu vergleichen.
@@ -288,7 +288,7 @@ Blogeintrag [hier](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **Zusammenfassungen** : Es ist möglich, die Zahl rechts neben dem Symbol niemals oder nur dann anzuzeigen, wenn sie positiv ist.
 - **Zusammenfassungen** : Die Änderung des Zusammenfassungsparameters in der Konfiguration und für Objekte ist jetzt sichtbar, ohne auf eine Änderung des Zusammenfassungswerts zu warten.
 - **Zusammenfassungen** : Konfiguration ist jetzt möglich [Aktionen zu Zusammenfassungen](/de_DE/concept/summary#Actions an résumés) (Strg + Klick auf eine Zusammenfassung) dank der virtuellen.
-- **Bericht** : Vorschau von PDF-Dateien.
+- **Prüfbericht** : Vorschau von PDF-Dateien.
 - **Gerätearten** : [Neue Seite](/de_DE/core/4.2/types) **Werkzeuge → Gerätetypen** Ermöglicht die Zuweisung von generischen Typen zu Geräten und Befehlen mit Unterstützung für Typen, die für installierte Plugins bestimmt sind (siehe [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.2)).
 - **Auswahl der Abbildungen** : Neues globales Fenster für die Auswahl der Abbildungen *(Symbole, Bilder, Hintergründe)*.
 - **Tabellenanzeige** : Hinzufügen einer Schaltfläche rechts von der Suche auf den Seiten *Objekte* *Szenarien* *Interaktionen* *Widgets* und *Plugins* in den Tabellenmodus wechseln. Dies wird durch ein Cookie oder in gespeichert **Einstellungen → System → Konfiguration / Schnittstelle, Optionen**. Die Plugins können diese neue Funktion des Core nutzen. sehen [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.2).
@@ -301,7 +301,7 @@ Blogeintrag [hier](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **Szenario** : Unterstützung für generische Typen in Szenarien hinzugefügt.
 	- Abzug : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0``
 	- WENN ``genericType(LIGHT_STATE,#[Salon]#) > 0``
-	- Aktie ``genericType``
+	- Lager ``genericType``
 - **Objekte** : Plugins können jetzt bestimmte objektspezifische Parameter anfordern.
 - **Benutzer** : Plugins können jetzt bestimmte benutzerspezifische Parameter anfordern.
 - **Benutzer** : Möglichkeit zum Verwalten der Profile verschiedener Jeedom-Benutzer auf der Benutzerverwaltungsseite.
@@ -442,7 +442,7 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - **Szenario** : Funktionen *Statistik (), Durchschnitt (), Max (), Min (), Trend (), Dauer()* : Bugfix über den Zeitraum *gestern*, und jetzt akzeptieren *Tag* (für 1 Tag).
 - **Szenario** : Möglichkeit, das automatische Angebotssystem zu deaktivieren (Einstellungen → System → Konfiguration : Equipements).
 - **Szenario** : Anzeigen a *Warnung* wenn kein Trigger konfiguriert ist.
-- **Szenario** : Bugfix von *auswählen* auf Block kopieren / einfügen.
+- **Szenario** : Bugfix von *wählen* auf Block kopieren / einfügen.
 - **Szenario** : Kopieren / Einfügen eines Blocks zwischen verschiedenen Szenarien.
 - **Szenario** : Die Funktionen zum Rückgängigmachen / Wiederherstellen sind jetzt als Schaltflächen verfügbar (neben der Schaltfläche zum Erstellen von Blöcken)).
 - **Szenario** :  Hinzufügung von "Historischer Export" (exportHistory)
@@ -452,10 +452,10 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - **Analyse / Geschichte** : Die Optionen *Gruppierung, Typ, Variation, Treppe* sind nur mit einer einzigen angezeigten Kurve aktiv.
 - **Analyse / Geschichte** : Wir können jetzt die Option verwenden *Bereich* mit der Option *Treppe*.
 - **Analyse / Protokolle** : Neue Monospace-Schriftart für Protokolle.
-- **Gesehen** : Möglichkeit, Szenarien zu setzen.
-- **Gesehen** : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
-- **Gesehen** : Bearbeitungsmodus: Die Geräteaktualisierungssymbole werden durch ein Symbol ersetzt, das dank eines neuen vereinfachten Modals den Zugriff auf ihre Konfiguration ermöglicht.
-- **Gesehen** : Die Anzeigereihenfolge ist jetzt unabhängig von der im Dashboard.
+- **Sicht** : Möglichkeit, Szenarien zu setzen.
+- **Sicht** : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
+- **Sicht** : Bearbeitungsmodus: Die Geräteaktualisierungssymbole werden durch ein Symbol ersetzt, das dank eines neuen vereinfachten Modals den Zugriff auf ihre Konfiguration ermöglicht.
+- **Sicht** : Die Anzeigereihenfolge ist jetzt unabhängig von der im Dashboard.
 - **Zeitleiste** : Trennung von Verlaufs- und Zeitleisten-Seiten.
 - **Zeitleiste** : Integration der Timeline in die DB aus Zuverlässigkeitsgründen.
 - **Zeitleiste** : Verwaltung mehrerer Zeitleisten.
@@ -467,8 +467,8 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - **Zusammenfassung der Hausautomation** : Möglichkeit, mehrere Geräte von einem Objekt zum anderen zu bewegen.
 - **Zusammenfassung der Hausautomation** : Möglichkeit, alle Geräte eines Objekts auszuwählen.
 - **Task-Engine** : Auf der Registerkarte *Dämon*, deaktivierte Plugins werden nicht mehr angezeigt.
-- **Bericht** : Die Verwendung von *Chrom* wenn verfügbar.
-- **Bericht** : Möglichkeit zum Exportieren von Zeitleisten.
+- **Prüfbericht** : Die Verwendung von *Chrom* wenn verfügbar.
+- **Prüfbericht** : Möglichkeit zum Exportieren von Zeitleisten.
 - **Aufbau** : Tab *Information* ist jetzt in der Registerkarte *Allgemein*.
 - **Aufbau** : Tab *Aufträge* ist jetzt in der Registerkarte *Ausrüstung*.
 - **Fenster zur erweiterten Gerätekonfiguration** : Dynamische Änderung der Schalttafelkonfiguration.
@@ -509,7 +509,7 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - Zahlreiche Leistungsoptimierungen für Desktop / Mobile.
 
 ### 4.1 : Changements
-- Die Funktion **Szenario-> getHumanName()** der PHP-Szenario-Klasse wird nicht mehr zurückgegeben *[Objekt] [Gruppe] [Name]* aber *[Gruppe] [Objekt] [Name]*.
+- Die Funktion **Szenario-> getHumanName()** der PHP-Szenario-Klasse wird nicht mehr zurückgegeben *[Objekt] [Gruppe] [Name]* sondern *[Gruppe] [Objekt] [Name]*.
 - Die Funktion **Szenario-> byString()** muss nun mit der Struktur aufgerufen werden *[Gruppe] [Objekt] [Name]*.
 - Funktionen **network-> getInterfaceIp () network-> getInterfaceMac () network-> getInterfaces()** wurden ersetzt durch **network-> getInterfacesInfo()**
 
@@ -669,10 +669,10 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - Zusammenfassung der Hausautomation : Hinzufügen von Geräten und Bestell-IDs zum Anzeigen und Suchen.
 - Zusammenfassung der Hausautomation : CSV-Export des übergeordneten Objekts, der ID, der Ausrüstung und ihrer ID, des Befehls.
 - Zusammenfassung der Hausautomation : Möglichkeit, einen oder mehrere Befehle sichtbar zu machen oder nicht.<br/><br/>
-- Entwurf : Möglichkeit zur Angabe der Reihenfolge (Position) des *Entwürfe* und *3D-Designs* (Bearbeiten, Design konfigurieren).
-- Entwurf : Hinzufügen eines benutzerdefinierten CSS-Felds zu den Elementen des *Entwurf*.
-- Entwurf : Die Anzeigeoptionen im Design der erweiterten Konfiguration wurden in den Anzeigeparametern aus dem verschoben *Entwurf*. Dies, um die Schnittstelle zu vereinfachen und verschiedene Parameter durch zu ermöglichen *Entwurf*.
-- Entwurf : Verschieben und Ändern der Größe von Komponenten *Entwurf* berücksichtigt ihre Größe mit oder ohne Magnetisierung.<br/><br/>
+- Design : Möglichkeit zur Angabe der Reihenfolge (Position) des *Entwürfe* und *3D-Designs* (Bearbeiten, Design konfigurieren).
+- Design : Hinzufügen eines benutzerdefinierten CSS-Felds zu den Elementen des *Design*.
+- Design : Die Anzeigeoptionen im Design der erweiterten Konfiguration wurden in den Anzeigeparametern aus dem verschoben *Design*. Dies, um die Schnittstelle zu vereinfachen und verschiedene Parameter durch zu ermöglichen *Design*.
+- Design : Verschieben und Ändern der Größe von Komponenten *Design* berücksichtigt ihre Größe mit oder ohne Magnetisierung.<br/><br/>
 - Hinzufügen eines Massenkonfigurationssystems (wird auf der Seite Ausrüstung verwendet, um Kommunikationswarnungen darauf zu konfigurieren)
 
 ### 4.0 : Autres

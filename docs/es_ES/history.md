@@ -39,9 +39,9 @@ Si muestra un gráfico a través de la página del historial, tiene acceso a var
 
 - **Período** : El período de visualización, incluidos los datos históricos entre estas dos fechas. Por defecto, dependiendo de la configuración *Período de visualización de los gráficos por defecto* dentro *Configuración → Sistema → Configuración / Equipo*.
 - **Grupo** : Ofrece varias opciones de agrupación (Suma por hora, etc.).
-- **Tipo de visualización** : Mostrar en *Línea*, *Área*, Dónde *Cerrada*. Opción guardada en el pedido y utilizada desde el Tablero.
+- **Tipo de visualización** : Mostrar en *Línea*, *Área*, Donde *Varilla*. Opción guardada en el pedido y utilizada desde el Tablero.
 - **Variación** : Muestra la diferencia de valor del punto anterior. Opción guardada en el pedido y utilizada desde el Tablero.
-- **Escalera** : Muestra la curva como una escalera o una pantalla continua. Opción guardada en el pedido y utilizada desde el Tablero.
+- **Escaleras** : Muestra la curva como una escalera o una pantalla continua. Opción guardada en el pedido y utilizada desde el Tablero.
 - **Comparar** : Compara la curva entre diferentes períodos.
 
 > **Consejo**
@@ -69,9 +69,9 @@ También puede mostrar los gráficos en las vistas (veremos aquí las opciones d
 
 Una vez que se activan los datos, puede elegir :
 - **Color** : El color de la curva.
-- **Tipo** : El tipo de gráfico (área, línea o columna).
-- **Escalera** : Como puede colocar varias curvas (datos) en el mismo gráfico, es posible distinguir las escalas (derecha o izquierda).
-- **Escalera** : Muestra la curva como una escalera o una pantalla continua.
+- **Amable** : El tipo de gráfico (área, línea o columna).
+- **Escala** : Como puede colocar varias curvas (datos) en el mismo gráfico, es posible distinguir las escalas (derecha o izquierda).
+- **Escaleras** : Muestra la curva como una escalera o una pantalla continua.
 - **Pila** : Apila los valores de las curvas (ver abajo el resultado).
 - **Variación** : Muestra la diferencia de valor del punto anterior.
 

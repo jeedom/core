@@ -28,8 +28,8 @@ En el menú (clic derecho), encontramos las siguientes acciones :
 - **Añadir imagen / cámara** : Le permite agregar una imagen o una transmisión desde una cámara.
 - **Agregar área** : Permite agregar una zona transparente en la que se puede hacer clic que podrá ejecutar una serie de acciones durante un clic (dependiendo o no del estado de otro comando)).
 - **Agregar resumen** : Agrega información de un objeto o resumen general.
-- **Monitor**
-    - **Ninguna** : No muestra ninguna cuadrícula.
+- **Mostrar**
+    - **Ninguno** : No muestra ninguna cuadrícula.
     - **10x10** : Muestra una cuadrícula de 10 por 10.
     - **15x15** : Muestra una cuadrícula de 15 por 15.
     - **20x20** : Muestra una cuadrícula de 20 por 20.
@@ -57,7 +57,7 @@ Encontrado aquí :
     - **Color de fondo** : Diseño de color de fondo.
     - **Código de acceso** : Código de acceso a su diseño (si está vacío, no se requiere código).
     - **Icono** : Un icono para ello (aparece en el menú de opciones de diseño).
-    - **Imagen**
+    - **Fotografía**
         - **Enviar a** : Le permite agregar una imagen de fondo al diseño.
         - **Eliminar imagen** : Eliminar imagen.
 - **Tallas**
@@ -99,7 +99,7 @@ Le permite bloquear el elemento para que ya no se pueda mover o cambiar de tama�
 - **Mostrar selector de período** : Muestra el selector de período en la esquina superior izquierda.
 - **Mostrar barra de desplazamiento** : Muestra la barra de desplazamiento.
 - **Fondo transparente** : Hace el fondo transparente.
-- **Borde** : Le permite agregar un borde, tenga cuidado, la sintaxis es HTML (tenga cuidado, debe usar la sintaxis CSS, por ejemplo : sólido 1px negro).
+- **Frontera** : Le permite agregar un borde, tenga cuidado, la sintaxis es HTML (tenga cuidado, debe usar la sintaxis CSS, por ejemplo : sólido 1px negro).
 
 ### Configuración avanzada
 
@@ -113,10 +113,10 @@ Le permite elegir los comandos para graficar.
 - **Color de fondo** : le permite cambiar el color de fondo o hacerlo transparente, no olvide cambiar &quot;Predeterminado&quot; a NO.
 - **Color del texto** : le permite cambiar el color de los iconos y textos (tenga cuidado de establecer Predeterminado en No)..
 - **Alrededor de los ángulos** : permite redondear los ángulos (no olvides poner%, ex 50%).
-- **Borde** : le permite agregar un borde, tenga cuidado con la sintaxis HTML (debe usar la sintaxis CSS, por ejemplo : sólido 1px negro).
+- **Frontera** : le permite agregar un borde, tenga cuidado con la sintaxis HTML (debe usar la sintaxis CSS, por ejemplo : sólido 1px negro).
 - **Tamaño de fuente** : le permite cambiar el tamaño de fuente (ex 50%, debe poner el signo%).
 - **Alineación de texto** : le permite elegir la alineación del texto (izquierda / derecha / centrado).
-- **Audaz** : texto en negrita.
+- **Atrevido** : texto en negrita.
 - **Texto** : Texto en código HTML que estará en el elemento.
 
 > **Importante**
@@ -139,7 +139,7 @@ Le permite elegir los comandos para graficar.
 - **Borde (sintaxis CSS de atención, ej : sólido 1px negro)** : Le permite agregar un borde, tenga cuidado con la sintaxis es HTML.
 - **Tamaño de fuente (ex 50%, debe poner el signo%)** : Le permite cambiar el tamaño de fuente.
 - **Alineación de texto** : Le permite elegir la alineación del texto (izquierda / derecha / centrado).
-- **Audaz** : Texto en negrita.
+- **Atrevido** : Texto en negrita.
 
 ## Equipement
 
@@ -150,7 +150,7 @@ Le permite elegir los comandos para graficar.
 - **Color de fondo** : Le permite elegir un color de fondo personalizado, mostrar el equipo con un fondo transparente o usar el color predeterminado.
 - **Color del texto** : Le permite elegir un color de fondo personalizado o usar el color predeterminado.
 - **Redondeado** : Valor en píxeles del redondeo de los ángulos del mosaico del equipo.
-- **Borde** : Definición CSS de un borde de mosaico de equipo. Ex : 1px negro sólido.
+- **Frontera** : Definición CSS de un borde de mosaico de equipo. Ex : 1px negro sólido.
 - **Opacidad** : Opacidad del mosaico del equipo, entre 0 y 1. Atención : se debe definir un color de fondo.
 - **CSS personalizado** : Reglas CSS para aplicar en el equipo.
 - **Aplicar CSS personalizado en** : Selector de CSS en el que aplicar CSS personalizado.
@@ -179,7 +179,7 @@ Muestra la ventana de configuración avanzada del equipo (ver documentación **R
 ### Configuraciones de pantalla específicas
 
 - **Para mostrar** : Define lo que desea mostrar, imagen fija o transmisión desde una cámara.
-- **Imagen** : Enviar la imagen en cuestión (si ha elegido una imagen).
+- **Fotografía** : Enviar la imagen en cuestión (si ha elegido una imagen).
 - **Cámara** : Cámara para mostrar (si elige cámara).
 
 ## Zone
@@ -219,7 +219,7 @@ En este modo, al pasar el mouse por encima o al hacer clic en el área Jeedom, s
 - **Redondee los ángulos (no olvide poner%, ex 50%)** : Permite redondear los ángulos, no olvides poner el%.
 - **Borde (sintaxis CSS de atención, ej : sólido 1px negro)** : Le permite agregar un borde, tenga cuidado con la sintaxis es HTML.
 - **Tamaño de fuente (ex 50%, debe poner el signo%)** : Le permite cambiar el tamaño de fuente.
-- **Audaz** : Texto en negrita.
+- **Atrevido** : Texto en negrita.
 
 ## FAQ
 

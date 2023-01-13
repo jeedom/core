@@ -66,7 +66,7 @@ Esta posibilidad se puede utilizar tanto con widgets predeterminados como con wi
 
 Para hacerlo, es necesario tener en cuenta 2 requisitos previos :
 
-- Los **2 comandos de acción / falla** debe estar vinculado a un pedido **info / binario** que almacenará el estado actual del dispositivo.
+- Él **2 comandos de acción / falla** debe estar vinculado a un pedido **info / binario** que almacenará el estado actual del dispositivo.
 
 >**Ejemplo**      
 >![Widget de ToggleLink](./images/widgets5.png)
@@ -97,7 +97,7 @@ Para hacerlo, es necesario tener en cuenta 2 requisitos previos :
 `` ''
 
 >**Truco**      
->Siempre que el nombre estandarizado siga siendo legible, es posible adaptar el nombre, por ejemplo *open_volet* Dónde *shutter_close*, *2 de Marzo* y *parada_2*, etc..
+>Siempre que el nombre estandarizado siga siendo legible, es posible adaptar el nombre, por ejemplo *open_volet* Donde *shutter_close*, *2 de Marzo* y *parada_2*, etc..
 
 ## Widgets personalizados
 
@@ -105,7 +105,7 @@ La página de Widgets, accesible desde el menú **Herramientas → Widgets**, le
 
 Hay dos tipos de widgets personalizados :
 
-- Widgets *Centro* basado en plantillas. Estos widgets son administrados por Jeedom Core y, por lo tanto, monitoreados por el equipo de desarrollo. Su compatibilidad está asegurada con futuras evoluciones de Jeedom.
+- Widgets *Núcleo* basado en plantillas. Estos widgets son administrados por Jeedom Core y, por lo tanto, monitoreados por el equipo de desarrollo. Su compatibilidad está asegurada con futuras evoluciones de Jeedom.
 - Widgets *Tercero* basado en el código de usuario. A diferencia de los widgets Core, el equipo de desarrollo de Jeedom no tiene control sobre el código insertado en estos widgets, su compatibilidad con desarrollos futuros no está garantizada. Por lo tanto, el usuario debe mantener estos widgets.
 
 ### Gestion
@@ -113,7 +113,7 @@ Hay dos tipos de widgets personalizados :
 ![Widgets](./images/widgets.png)
 
 Tienes cuatro opciones :
-- **Para agregar** : Le permite agregar un widget *Centro*.
+- **Agregar** : Le permite agregar un widget *Núcleo*.
 - **Importar** : Le permite importar un widget como un archivo json previamente exportado.
 - **Codificado** : Accede a la página de edición del widget *Tercero*.
 - **Reemplazo** : Abre una ventana que le permite reemplazar un widget por otro en todos los dispositivos que lo usan.
@@ -143,12 +143,12 @@ Una vez en la página de configuración de un widget, se puede acceder a un men�
 
 ### Crear un widget
 
-Una vez en la página **Herramientas → Widgets** tienes que hacer clic en el botón "**Para agregar**" y dale un nombre a tu nuevo widget.
+Una vez en la página **Herramientas → Widgets** tienes que hacer clic en el botón "**Agregar**" y dale un nombre a tu nuevo widget.
 
 Próximo :
-- Tú eliges si se aplica a una orden de tipo **Valores** Dónde **Información**.
+- Tú eliges si se aplica a una orden de tipo **Valores** Donde **Información**.
 - Dependiendo de la elección anterior, deberá **elige el subtipo** De la orden.
-- Finalmente **la plantilla** entre los que estarán disponibles según las opciones anteriores.
+- Por fin **la plantilla** entre los que estarán disponibles según las opciones anteriores.
 - Una vez que se ha elegido la plantilla, Jeedom muestra las opciones de configuración para ella a continuación.
 
 ### Las plantillas
@@ -161,12 +161,12 @@ Dependiendo del tipo de widget, generalmente puede personalizar los íconos, pon
 
 Hay dos tipos de plantillas :
 
-- Los "**simple**" : como un icono / imagen para el "**Nosotros**" y un icono / imagen para el "**Apagado**".
-- Los "**multiestado**" : Esto permite definir, por ejemplo, una imagen si el comando tiene el valor "**XX**" y otro tan grande que "**AA**" o si menos de "**ZZ**". También funciona para valores de texto, una imagen si el valor es "**toto**", otro si "**plaf**" y así enseguida...
+- Él "**simple**" : como un icono / imagen para el "**NOSOTROS**" y un icono / imagen para el "**APAGADO**".
+- Él "**multiestado**" : Esto permite definir, por ejemplo, una imagen si el comando tiene el valor "**XX**" y otro tan grande que "**AA**" o si menos de "**ZZ**". También funciona para valores de texto, una imagen si el valor es "**toto**", otro si "**plaf**" y así enseguida...
 
 #### Remplacement
 
-Esto se llama una plantilla simple, aquí solo tiene que decir que el "**Nosotros**" coincide con ese icono / imagen *(usando el botón elegir)*, la "**Apagado**" a otro icono / imagen, etc...      
+Esto se llama una plantilla simple, aquí solo tiene que decir que el "**NOSOTROS**" coincide con ese icono / imagen *(usando el botón elegir)*, la "**APAGADO**" a otro icono / imagen, etc...      
 
 La caja **Widget de tiempo**, si está disponible, muestra la duración desde el último cambio de estado en el widget.
 
@@ -178,7 +178,7 @@ Para las plantillas que usan imágenes, puede configurar el ancho del widget en 
 
 #### Test
 
-Esto se llama plantillas multiestado *(varios estados)*. En lugar de poner una imagen para el "**Nosotros** y / o para el "**Apagado** como en el caso anterior, se le asignará un icono según la validación de una condición *(test)*. Si esto es cierto, el widget mostrará el icono / imagen en cuestión.
+Esto se llama plantillas multiestado *(varios estados)*. En lugar de poner una imagen para el "**NOSOTROS** y / o para el "**APAGADO** como en el caso anterior, se le asignará un icono según la validación de una condición *(test)*. Si esto es cierto, el widget mostrará el icono / imagen en cuestión.
 
 Como antes, se pueden seleccionar diferentes imágenes según el tema activo en Jeedom y el cuadro **Widget de tiempo** muestra la duración desde el último cambio de estado.
 
@@ -188,13 +188,13 @@ Las pruebas están en forma : ''#value# == 1`, `#value#`será reemplazado autom�
 - ''#value# >= 1 && #value# <= 5''
 - ''#value# == 'toto'''
 
->**NOTA**     
+>**Nota**     
 >Es imprescindible mostrar los apóstrofos (**'**) alrededor del texto para comparar si el valor es texto *(info / otro)*.
 
->**NOTA**     
+>**Nota**     
 >Para usuarios avanzados, también es posible utilizar funciones javascript como `#value#.match ("^ plop") `, aquí probamos si el texto comienza con` plop`.
 
->**NOTA**     
+>**Nota**     
 >Es posible mostrar el valor del comando en el widget especificando `#value#`en el código HTML de la prueba. Para mostrar la unidad, agregue `#unite#''.
 
 ## Widget de código

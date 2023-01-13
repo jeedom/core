@@ -34,7 +34,7 @@ Nesta tabela, encontramos :
 - **Última duração** : Último tempo de execução da tarefa (um daemon sempre estará em 0s, não se preocupe, outras tarefas podem estar em 0s).
 - **Status** : Status atual da tarefa (como lembrete, uma tarefa daemon é sempre "executada"").
 
-- **Ações** :
+- **Estoque** :
     - **Detalhes** : Veja o cron em detalhes (como armazenado na base).
     - **Iniciar / Parar** : Iniciar ou parar a tarefa (dependendo do status).
     - **Eliminação** : Excluir tarefa.

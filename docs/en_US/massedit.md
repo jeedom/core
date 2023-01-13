@@ -3,7 +3,7 @@
 
 This tool allows you to edit a large number of equipment, commands, objects, or scenarios. It is completely generic, and automatically uses the schema and structure of the Jeedom database. It thus supports plugins and the configuration of their equipment.
 
-> **Attention**
+> **Warning**
 >
 > If this tool is quite easy to use, it is intended for advanced users. Indeed, it is in fact very simple to change any parameter on dozens of devices or hundreds of commands and therefore to make certain functions inoperative, see even the Core.
 

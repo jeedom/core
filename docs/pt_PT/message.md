@@ -9,6 +9,6 @@ O centro de mensagens reúne todas as mensagens importantes que você deve consu
 
 No topo, há um seletor para filtrar mensagens em um plug-in específico e, à direita, um botão para esvaziar todas as mensagens.
 
-> **Dica**
+> **Gorjeta**
 >
 > Quando houver um erro no centro de mensagens, primeiro tente excluir a mensagem e verifique se o erro retorna antes de entrar em contato com o suporte. Às vezes, é apenas devido a um problema de conexão de rede.

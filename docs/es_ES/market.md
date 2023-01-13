@@ -55,7 +55,7 @@ Para los profesionales :
 
 - **Mis jeedoms** : Aquí es donde se enumeran todos tus Jeedoms
     - **Apellido** : El nombre que desea darle a su Jeedom (se puede encontrar en el nombre de la copia de seguridad si tiene la suscripción de copia de seguridad en la nube).
-    - **Estado** : Veamos el estado de la libertad en cuestión.
+    - **Expresar** : Veamos el estado de la libertad en cuestión.
     - **IP local / remota** : IP o dirección de este Jeedom, configúrelo en Jeedom, si no pone nada será la última IP conocida.
     - **DNS** : Le permite personalizar el nombre de su DNS.
     - **URL** : Enumere las diferentes URL de acceso de Jeedom.

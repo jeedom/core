@@ -3,7 +3,7 @@
 
 ## Timeline
 
-Auf der Seite Zeitleiste können Sie Ereignisse wie Auftragsänderungen chronologisch anzeigen *Information*, Befehl wird ausgelöst *Lager*, und Szenarioausführungen.
+Auf der Seite Zeitleiste können Sie Ereignisse wie Auftragsänderungen chronologisch anzeigen *Information*, Befehl wird ausgelöst *Aktie*, und Szenarioausführungen.
 
 Um sie anzuzeigen, müssen Sie zuerst die Verfolgung der gewünschten Befehle oder Szenarien auf der Zeitachse aktivieren. Anschließend treten diese Ereignisse auf.
 

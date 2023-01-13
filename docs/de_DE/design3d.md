@@ -4,7 +4,7 @@
 Auf dieser Seite können Sie eine 3D-Ansicht Ihres Hauses erstellen, die abhängig vom Status der verschiedenen Informationen in Ihrer Hausautomation reagieren kann.
 
 
-> **Tipp**
+> **Spitze**
 >
 > Dank des Untermenüs ist es möglich, direkt zu einem 3D-Design zu wechseln.
 
@@ -45,7 +45,7 @@ Klicken Sie auf der Ebene &quot;3D-Modell&quot; auf die Schaltfläche &quot;Send
 >
 > Sie müssen eine Zip-Datei haben.
 
-> **Tipp**
+> **Spitze**
 >
 > Nachdem die Datei importiert wurde (sie kann je nach Größe der Datei sehr lang sein), müssen Sie die Seite aktualisieren, um das Ergebnis anzuzeigen (F5).
 
@@ -83,7 +83,7 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 
 #### Tür / Fenster
 
-- Bundesland : Tür- / Fensterstatus, 1 geschlossen und 0 offen
+- Zustand : Tür- / Fensterstatus, 1 geschlossen und 0 offen
 - Rotation
 	- Ermöglichen : Aktiviert die Drehung der Tür / des Fensters beim Öffnen
 	- Öffnung : Am besten testen Sie, ob es zu Ihrer Tür / Ihrem Fenster passt
@@ -99,7 +99,7 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 
 #### Volet
 
-- Bundesland : Verschlussstatus, 0 offen anderer Wert geschlossen
+- Zustand : Verschlussstatus, 0 offen anderer Wert geschlossen
 - Ausblenden, wenn der Verschluss geöffnet ist
 	- Ermöglichen : Blenden Sie das Element aus, wenn der Verschluss geöffnet ist
 - Couleur
@@ -109,6 +109,6 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 
 Wenn die Bedingung gültig ist, können Sie dem Element die ausgewählte Farbe geben. Sie können so viele Farben / Bedingungen festlegen, wie Sie möchten.
 
-> **Tipp**
+> **Spitze**
 >
 > Die Bedingungen werden in der Reihenfolge ausgewertet, die erste, die wahr ist, wird genommen, die folgenden werden daher nicht bewertet

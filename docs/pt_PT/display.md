@@ -26,11 +26,11 @@ Para cada objeto, próximo ao seu rótulo, dois botões estão disponíveis.
 - O primeiro é usado para abrir a página de configuração do objeto em uma nova guia.
 - O segundo fornece algumas informações sobre o objeto,
 
-> **Dica**
+> **Gorjeta**
 >
 > A cor do plano de fundo dos quadros do objeto depende da cor escolhida na configuração do objeto.
 
-> **Dica**
+> **Gorjeta**
 >
 > Com um clique e soltar nos objetos ou equipamentos, você pode alterar a ordem deles ou até atribuí-los a outro objeto. É da ordem estabelecida nesta página que a exibição do Painel é calculada.
 
@@ -38,7 +38,7 @@ Para cada objeto, próximo ao seu rótulo, dois botões estão disponíveis.
 
 Em cada equipamento encontramos :
 
-- UMA **caixa de seleção** para selecionar o equipamento (você pode selecionar vários). Se pelo menos um dispositivo estiver selecionado, você terá botões de ação que aparecem no canto superior esquerdo para **deletar**, para retornar **visível**/**invisível**,  **de ativos**/**Parado** equipamento selecionado.
+- UMA **caixa de seleção** para selecionar o equipamento (você pode selecionar vários). Se pelo menos um dispositivo estiver selecionado, você terá botões de ação que aparecem no canto superior esquerdo para **retirar**, para retornar **visível**/**invisível**,  **de ativos**/**parado** equipamento selecionado.
 - L'**Eu iria** equipamento.
 - A **Gentil** equipamento : Identificador do plug-in ao qual ele pertence.
 - A **nome** equipamento.
@@ -53,7 +53,7 @@ Se o plug-in do equipamento estiver desativado, os dois ícones à direita não 
 
 ## Configuração avançada de equipamentos
 
-> **Dica**
+> **Gorjeta**
 >
 > É possível acessar (se o plugin o suportar) diretamente a esta janela a partir da página de configuração do equipamento, clicando no botão de configuração avançada
 
@@ -63,18 +63,18 @@ A janela de **Configuração avançada de equipamentos** permite modificá-lo. P
 - **Conexões** : Permite exibir os links do equipamento com os objetos, comandos, cenários, variáveis, interações ... em forma gráfica (neste, um clique duplo em um elemento o levará à sua configuração).
 - **Registro** : exibe os eventos do equipamento em questão.
 - **Para salvaguardar** : Salve as modificações feitas no equipamento.
-- **Deletar** : Remova o equipamento.
+- **Retirar** : Remova o equipamento.
 
 ### Guia Informações
 
 Aba **Em formação** contém informações gerais sobre o equipamento e seus controles :
 
-- **Eu iria** : Identificador exclusivo no banco de dados Jeedom.
-- **Nome** : Nome de equipamentos.
+- **EU IRIA** : Identificador exclusivo no banco de dados Jeedom.
+- **Sobrenome** : Nome de equipamentos.
 - **ID lógico** : Identificador lógico do equipamento (pode estar vazio).
 - **Object ID** : Identificador exclusivo do objeto pai (pode estar vazio).
 - **Data de criação** : Data de criação do equipamento.
-- **Permitir** : Marque a caixa para ativar o equipamento (não esqueça de salvar).
+- **Habilitar** : Marque a caixa para ativar o equipamento (não esqueça de salvar).
 - **Visível** : Marque a caixa para tornar o equipamento visível (não esqueça de salvar).
 - **Gentil** : Identificador do plug-in pelo qual ele foi criado.
 - **Tentativa fracassada** : Número de falhas consecutivas de tentativas de comunicação com o equipamento.
@@ -86,7 +86,7 @@ Abaixo você encontrará uma tabela com a lista de comandos do equipamento com, 
 
 ### Guia Exibir
 
-Na aba **Exibição**, você poderá configurar certos comportamentos de exibição de bloco no painel ou no celular.
+Na aba **Tela**, você poderá configurar certos comportamentos de exibição de bloco no painel ou no celular.
 
 #### Widget
 
@@ -99,14 +99,14 @@ Na aba **Exibição**, você poderá configurar certos comportamentos de exibiç
 Abaixo, há parâmetros opcionais de exibição que podem ser aplicados ao equipamento. Esses parâmetros são compostos de um nome e um valor. Basta clicar em **Adicionar** aplicar um
 novo. Para equipamentos, apenas o valor **estilo** atualmente utilizado, permite inserir código CSS no equipamento em questão.
 
-> **Dica**
+> **Gorjeta**
 >
 > Não se esqueça de salvar após qualquer modificação.
 
 ### Guia Layout
 
 Esta parte permite escolher entre o layout padrão dos comandos (lado a lado no widget) ou no modo de tabela. Nada para definir no modo padrão. Aqui estão as opções disponíveis no modo
-**Foto** :
+**Placa** :
 - **Número de linhas**
 - **Número de Colunas**
 - **Centro nas caixas** : Marque a caixa para centralizar os pedidos nas caixas.
@@ -114,11 +114,11 @@ Esta parte permite escolher entre o layout padrão dos comandos (lado a lado no 
 - **Estilo de tabela (CSS)** : Permite definir apenas o estilo da tabela.
 
 Abaixo para cada caixa, o **Configuração detalhada** permite que você
-isto :
+esta :
 - **Caixa de texto** : Adicione texto além do comando (ou sozinho, se não houver comando na caixa).
 - **Estilo do caso (CSS)** : Modifique o estilo CSS específico da caixa (observe que ele substitui e substitui o CSS geral das caixas).
 
-> **Dica**
+> **Gorjeta**
 >
 > Em uma caixa da tabela, se você deseja colocar 2 comandos um abaixo do outro, não se esqueça de adicionar uma quebra de linha após o primeiro no **Configuração avançada** disso.
 
@@ -134,7 +134,7 @@ Abaixo, você também pode definir os limites de alerta de bateria específicos 
 
 Você também pode gerenciar o tempo limite, em minutos, do equipamento. Por exemplo, 30 informa ao jeedom que se o equipamento não se comunicar por 30 minutos, ele deve ser colocado em alerta.
 
-> **Dica**
+> **Gorjeta**
 >
 > Os parâmetros globais estão em **Configurações → Sistema → Configuração : Histórico** Onde **Equipamento**
 
@@ -153,7 +153,7 @@ Primeiro, no canto superior direito, alguns botões disponíveis :
 -  **Aplicar** : Permite que a mesma configuração seja aplicada a vários comandos.
 - **Para salvaguardar** : Salve as modificações feitas no equipamento.
 
-> **Dica**
+> **Gorjeta**
 >
 > Em um gráfico, um clique duplo em um elemento leva você à sua configuração.
 
@@ -165,9 +165,9 @@ Primeiro, no canto superior direito, alguns botões disponíveis :
 
 Aba **Em formação** contém informações gerais sobre o pedido :
 
-- **Eu iria** : Identificador exclusivo no banco de dados.
+- **EU IRIA** : Identificador exclusivo no banco de dados.
 - **ID lógico** : Identificador lógico do comando (pode estar vazio).
-- **Nome** : Nome do comando.
+- **Sobrenome** : Nome do comando.
 - **Gentil** : Tipo de comando (ação ou informação).
 - **Subtipo** : Subtipo de comando (binário, digital etc.)).
 - **URL direta** : Fornece a URL para acessar este equipamento. (clique com o botão direito do mouse, copie o endereço do link) O URL iniciará o comando para um **estoque** e retorne as informações para um **em formação**.
@@ -201,8 +201,8 @@ Abaixo, você encontrará a lista dos diferentes equipamentos, comandos, cenári
 - **Ação em valor, se** : Vamos fazer algum tipo de mini cenários. Você pode, por exemplo, dizer que, se o valor vale mais de 50 por 3 minutos, você deve executar essa ação. Isso permite, por exemplo, apagar uma luz X minutos depois de acender.
 
 - **Histórico**
-    - **Historizar** : Marque a caixa para ter os valores deste comando registrados. (Veja **Análise → História**)
-    - **Suavização moda** : Modo de **suavização** ou d'**arquivamento** permite escolher como arquivar os dados. Por padrão, este é um **significa**. Também é possível escolher o **máximo**, a **mínimo**, Onde **Nenhum**. **Nenhum** vamos dizer ao Jeedom que ele não deve executar o arquivamento neste comando (durante o primeiro período de 5 minutos e com a tarefa de arquivamento). Essa opção é perigosa porque o Jeedom mantém tudo : portanto, haverá muito mais dados mantidos.
+    - **Historicizar** : Marque a caixa para ter os valores deste comando registrados. (Veja **Análise → História**)
+    - **Suavização moda** : Modo de **alisamento** ou d'**arquivamento** permite escolher como arquivar os dados. Por padrão, este é um **médio**. Também é possível escolher o **máximo**, a **mínimo**, Onde **Nenhum**. **Nenhum** vamos dizer ao Jeedom que ele não deve executar o arquivamento neste comando (durante o primeiro período de 5 minutos e com a tarefa de arquivamento). Essa opção é perigosa porque o Jeedom mantém tudo : portanto, haverá muito mais dados mantidos.
     - **Limpar histórico se tiver mais de** : Vamos dizer ao Jeedom para excluir todos os dados anteriores a um determinado período. Pode ser prático não manter dados se não for necessário e, portanto, limitar a quantidade de informações registradas pela Jeedom.
 
 - **Gerenciando valores**
@@ -210,7 +210,7 @@ Abaixo, você encontrará a lista dos diferentes equipamentos, comandos, cenári
     - **Valor de feedback estado** : Retorna o comando para esse valor após um certo tempo.
     - **Duração antes do retorno do status (min)** : Tempo antes de retornar ao valor acima.
 
-- **Outros**
+- **Outras**
     - **Gestão de valores repetidos** : Em automático, se o comando subir duas vezes o mesmo valor em uma linha, o Jeedom não levará em consideração a segunda subida (evita desencadear um cenário várias vezes, a menos que o comando seja do tipo binário). Você pode forçar a repetição do valor ou proibi-lo completamente.
     - **URL impulso** : Permite adicionar um URL para chamar em caso de atualização do pedido. Você pode usar as seguintes tags : ``#value#`para o valor do pedido '#cmd_name#`para o nome do comando,`#cmd_id#`para o identificador exclusivo da ordem,`#humanname#`para o nome completo do comando (ex : ``#[Sala de bain][Hydrometrie][Humidité]#`),`#eq_name#`para o nome do equipamento.
 
@@ -219,7 +219,7 @@ Abaixo, você encontrará a lista dos diferentes equipamentos, comandos, cenári
 -  **Tipo genérico** : Permite configurar o tipo genérico do comando (o Jeedom tenta encontrá-lo sozinho no modo automático). Esta informação é usada pelo aplicativo móvel.
 - **Confirmar a ação** : Marque esta caixa para que o Jeedom solicite confirmação quando a ação for iniciada a partir da interface deste comando.
 - **Código de acesso** : Permite definir um código que o Jeedom solicitará quando a ação for iniciada a partir da interface deste comando.
-- **Ação antes de executar o comando** : Adicionar comandos **antes da** cada execução da ordem.
+- **Ação antes de executar o comando** : Adicionar comandos **antes de** cada execução da ordem.
 - **Ação após a execução da ordem** : Adicionar comandos **depois** cada execução da ordem.
 
 ### Guia Alertas
@@ -238,10 +238,10 @@ Nesta parte, você poderá configurar determinados comportamentos de exibição 
 - **Visível** : Marque para tornar o comando visível.
 - **Mostrar nome** : Marque para tornar o nome do comando visível, dependendo do contexto.
 - **Imprimir o nome eo ícone** : Marque para tornar o ícone visível, além do nome do comando.
-- **Envoltório forçado antes Widget** : Carraça **antes do widget** Onde **após o widget** adicionar uma quebra de linha antes ou depois do widget (para forçar, por exemplo, uma exibição em coluna dos diferentes comandos do equipamento em vez das linhas padrão)
+- **Envoltório forçado antes Widget** : Marcação **antes do widget** Onde **após o widget** adicionar uma quebra de linha antes ou depois do widget (para forçar, por exemplo, uma exibição em coluna dos diferentes comandos do equipamento em vez das linhas padrão)
 
 Abaixo, existem parâmetros de exibição opcionais que podem ser passados para o widget. Esses parâmetros dependem do widget em questão, portanto, é necessário examinar o arquivo no Market para conhecê-los.
 
-> **Dica**
+> **Gorjeta**
 >
 > Não se esqueça de salvar após qualquer modificação.

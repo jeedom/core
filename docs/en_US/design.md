@@ -57,7 +57,7 @@ Found here :
     - **Background color** : Design background color.
     - **Access code** : Access code to your design (if empty, no code is required).
     - **Icon** : An icon for it (appears in the design choice menu).
-    - **Image**
+    - **Picture**
         - **Send** : Allows you to add a background image to the design.
         - **Delete image** : Delete image.
 - **Sizes**
@@ -151,7 +151,7 @@ Allows you to choose the commands to grapher.
 - **Text color** : Lets you choose a custom background color, or use the default color.
 - **Rounded** : Value in pixels of the rounding of the angles of the equipment tile.
 - **Border** : CSS definition of an equipment tile border. Ex : 1px solid black.
-- **Opacity** : Opacity of the equipment tile, between 0 and 1. Attention : a background color must be defined.
+- **Opacity** : Opacity of the equipment tile, between 0 and 1. Warning : a background color must be defined.
 - **Custom CSS** : CSS rules to apply on the equipment.
 - **Apply custom css on** : CSS selector on which to apply custom CSS.
 
@@ -179,7 +179,7 @@ Displays the advanced equipment configuration window (see documentation **Home a
 ### Specific display settings
 
 - **To display** : Defines what you want to display, still image or stream from a camera.
-- **Image** : Send the image in question (if you have chosen an image).
+- **Picture** : Send the image in question (if you have chosen an image).
 - **Camera** : Camera to display (if you chose camera).
 
 ## Zone

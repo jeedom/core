@@ -33,7 +33,7 @@ Für jedes Gerät wird von der Quelle zum Ziel kopiert (nicht erschöpfende List
 	* Die Konfiguration *automatische Aktualisierung*,
 	* Batterie- und Kommunikationswarnungen,
 
-Das Quellgerät wird auch durch das Zielgerät auf dem ersetzt **Entwurf** und die **Ansichten**.
+Das Quellgerät wird auch durch das Zielgerät auf dem ersetzt **Design** und die **Ansichten**.
 
 
 *Diese Ausrüstung wird auch durch die Zielausrüstung auf Designs und Ansichten ersetzt.*
