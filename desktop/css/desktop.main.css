@@ -783,7 +783,7 @@ Desktop
   .div_object legend .objectDashLegend > a > i{
     padding-right: 10px;
   }
-  
+
 /* Legend panel */
 body[data-page="panel"] #div_pageContainer legend {
   background-color: rgba(var(--bg-color), var(--opacity)) !important;
@@ -813,7 +813,9 @@ div.div_viewZone legend.lg_viewZone {
   padding: unset !important;
   margin: 5px !important;
 }
-
+div.eqLogicZone {
+  user-select: none;
+}
 /* ____________________DASHBOARD */
   body[data-coloredcats="0"] div.eqLogic-widget .widget-name,
   body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name {

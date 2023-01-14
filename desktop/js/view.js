@@ -20,51 +20,37 @@ if (!jeeFrontEnd.view) {
   jeeFrontEnd.view = {
     init: function() {
       window.jeeP = this
+      jeedomUI.isEditing = false
+      jeedomUI.setEqSignals()
+      jeedomUI.setHistoryModalHandler()
     },
     fullScreen: function(_mode) {
+      _mode = getBool(_mode)
       if (_mode) {
-        $('header').hide()
-        $('footer').hide()
-        $('#div_mainContainer').css('margin-top', '-50px')
-        $('#backgroundforJeedom').css({
-          'margin-top': '-50px',
-          'height': '100%'
-        })
-        $('#wrap').css('margin-bottom', '0px')
-        $('.div_displayView').height($('html').height() - 5)
-        $('.div_displayViewContainer').height($('html').height() - 5)
-        $('.bt_hideFullScreen').hide()
+        document.body.addClass('fullscreen')
+        document.querySelectorAll('.bt_hideFullScreen').unseen()
       } else {
-        $('header').show()
-        $('footer').show()
-        $('#div_mainContainer').css('margin-top', '0px')
-        $('#backgroundforJeedom').css({
-          'margin-top': '0px',
-          'height': 'calc(100% - 50px)'
-        })
-        $('#wrap').css('margin-bottom', '15px')
-        $('.div_displayView').height($('body').height())
-        $('.div_displayViewContainer').height($('body').height())
-        $('.bt_hideFullScreen').show()
+        document.body.removeClass('fullscreen')
+        document.querySelectorAll('.bt_hideFullScreen').seen()
       }
     },
     editWidgetMode: function(_mode, _save) {
       if (!isset(_mode)) {
-        if ($('#bt_editViewWidgetOrder').attr('data-mode') != undefined && $('#bt_editViewWidgetOrder').attr('data-mode') == 1) {
+        if (document.getElementById('bt_editViewWidgetOrder').getAttribute('data-mode') == '1') {
           this.editWidgetMode(0, false)
           this.editWidgetMode(1, false)
         }
         return
       }
-      var divEquipements = $('.div_displayView')
+      var divEquipements = document.querySelector('div.div_displayView')
       if (_mode == 0 || _mode == '0') { //Exit edit mode:
         jeeFrontEnd.modifyWithoutSave = false
         jeedomUI.isEditing = false
         jeedom.cmd.disableExecute = false
 
-        divEquipements.find('.editingMode.allowResize').resizable('destroy')
-        divEquipements.find('.editingMode').draggable('disable').removeClass('editingMode', '').removeAttr('data-editId')
-        divEquipements.find('.cmd.editOptions').remove()
+        $(divEquipements).find('.editingMode.allowResize').resizable('destroy')
+        $(divEquipements).find('.editingMode').draggable('disable').removeClass('editingMode', '').removeAttr('data-editId')
+        divEquipements.querySelectorAll('.cmd.editOptions').remove()
 
         if (!isset(_save) || _save) {
           document.getElementById('md_dashEdit')?.remove()
@@ -75,36 +61,36 @@ if (!jeeFrontEnd.view) {
       } else { //Enter edit mode!
         jeedomUI.isEditing = true
         jeedom.cmd.disableExecute = true
-        $('.eqLogic-widget, .scenario-widget').addClass('editingMode')
+        document.querySelectorAll('.eqLogic-widget, .scenario-widget').addClass('editingMode')
 
         //show orders:
         var value
-        $('.jeedomAlreadyPosition.ui-draggable').each(function() {
-          value = $(this).attr('data-vieworder')
-          if ($(this).find(".counterReorderJeedom").length) {
-            $(this).find(".counterReorderJeedom").text(value)
+        divEquipements.querySelectorAll('.jeedomAlreadyPosition.ui-draggable').forEach(_draggable => {
+          value = _draggable.getAttribute('data-vieworder')
+          if (_draggable.querySelector(".counterReorderJeedom") != null) {
+            _draggable.querySelector(".counterReorderJeedom").textContent = value
           } else {
-            $(this).prepend('<span class="counterReorderJeedom pull-left">' + value + '</span>')
+            _draggable.insertAdjacentHTML('afterbegin', '<span class="counterReorderJeedom pull-left">' + value + '</span>')
           }
         })
 
         //set unique id whatever we have:
-        divEquipements.find('.eqLogic-widget, .scenario-widget').each(function(index) {
-          $(this).addClass('editingMode')
-            .attr('data-editId', index)
-            .append('<span class="cmd editOptions cursor"></span>')
+        divEquipements.querySelectorAll('.eqLogic-widget, .scenario-widget').forEach((_div, _idx) => {
+          _div.addClass('editingMode')
+          _div.setAttribute('data-editId', _idx)
+          _div.insertAdjacentHTML('beforeend', '<span class="cmd editOptions cursor"></span>')
         })
 
         //set draggables:
-        divEquipements.find('.editingMode').draggable({
+        $(divEquipements).find('.editingMode').draggable({
           disabled: false,
           distance: 10,
           start: function(event, ui) {
             jeeFrontEnd.modifyWithoutSave = true
             jeedomUI.draggingId = $(this).attr('data-editId')
             jeedomUI.orders = {}
-            $(this).parent().find('.ui-draggable').each(function(i, itemElem) {
-              jeedomUI.orders[jeedomUI.draggingId] = parseInt($(this).attr('data-vieworder'))
+            this.parentNode.querySelectorAll('.ui-draggable').forEach((_draggable, _idx) => {
+              jeedomUI.orders[jeedomUI.draggingId] = parseInt(_draggable.getAttribute('data-vieworder'))
             })
           }
         })
@@ -144,36 +130,26 @@ if (!jeeFrontEnd.view) {
 
 jeeFrontEnd.view.init()
 
-setTimeout(function() {
-  $('input', 'textarea', 'select').click(function() {
-    $(this).focus()
-  })
-}, 750)
-
-jeedomUI.isEditing = false
-jeedomUI.setEqSignals()
-jeedomUI.setHistoryModalHandler()
 window.registerEvent("resize", function view(event) {
   if (event.isTrigger) return
   jeedomUtils.positionEqLogic()
 })
 
 $('#div_pageContainer').on('click', '.bt_gotoViewZone', function(event) {
-  var ptop = $('.div_displayViewContainer').scrollTop() + $('.lg_viewZone[data-zone_id=' + $(this).attr('data-zone_id') + ']').offset().top - 60
-  $('.div_displayViewContainer').animate({
-    scrollTop: ptop
-  }, 500)
+  let me = event.target.closest('.bt_gotoViewZone')
+  let zoneId = me.getAttribute('data-zone_id')
+  document.querySelector('.lg_viewZone[data-zone_id="' + zoneId + '"]').scrollIntoView()
 })
 
 $('#bt_editViewWidgetOrder').off('click').on('click', function(event) {
-  if (this.getAttribute('data-mode') == '1') {
+  if (event.target.getAttribute('data-mode') == '1') {
     document.getElementById('md_dashEdit')?.remove()
     jeedomUtils.hideAlert()
-    this.setAttribute('data-mode', 0)
+    event.target.setAttribute('data-mode', 0)
     document.querySelectorAll('.counterReorderJeedom').remove()
     jeeP.editWidgetMode(0)
   } else {
-    this.setAttribute('data-mode', 1)
+    event.target.setAttribute('data-mode', 1)
     jeeP.editWidgetMode(1)
   }
 })
@@ -201,13 +177,13 @@ if (jeephp2js.view_id != '') {
         for (var i in html.raw.viewZone) {
           summary += '<li style="padding:0px 0px"><a style="padding:2px 20px" class="cursor bt_gotoViewZone" data-zone_id="' + html.raw.viewZone[i].id + '">' + html.raw.viewZone[i].name + '</a></li>'
         }
-        $('#ul_viewSummary').empty().append(summary)
+        document.getElementById('ul_viewSummary').empty().insertAdjacentHTML('beforeend', summary)
       } catch (err) {
         console.log(err)
       }
 
       try {
-        $('.div_displayView').last().empty().html(html.html)
+        document.querySelector('.div_displayView').empty().html(html.html)
       } catch (err) {
         console.log(err)
       }
@@ -215,10 +191,8 @@ if (jeephp2js.view_id != '') {
       setTimeout(function() {
         jeedomUtils.initReportMode()
         jeedomUtils.positionEqLogic()
-        $('.eqLogicZone').disableSelection()
-        $('input', 'textarea', 'select').click(function() {
-          $(this).focus()
-        })
+
+        //$('input', 'textarea', 'select').click(function() { $(this).focus() })
 
         $('.eqLogicZone').each(function() {
           var container = $(this).packery({isLayoutInstant: true})
@@ -237,7 +211,7 @@ if (jeephp2js.view_id != '') {
         })
 
         if (isset(html.raw) && isset(html.raw.configuration) && isset(html.raw.configuration.displayObjectName) && html.raw.configuration.displayObjectName == 1) {
-          $('.eqLogic-widget, .scenario-widget').addClass('displayObjectName')
+          document.querySelectorAll('.eqLogic-widget, .scenario-widget').addClass('displayObjectName')
         }
         if (getUrlVars('fullscreen') == 1) {
           jeeP.fullScreen(true)
@@ -245,20 +219,20 @@ if (jeephp2js.view_id != '') {
       }, 10)
 
       //draw graphs:
-      $('.chartToDraw').each(function() {
-        $(this).find('.viewZoneData').each(function() {
-          var cmdId = $(this).attr('data-cmdid')
-          var el = $(this).attr('data-el')
-          var options = json_decode($(this).attr('data-option').replace(/'/g, '"'))
-          var height = $(this).attr('data-height')
+      document.querySelectorAll('.chartToDraw').forEach(_chart => {
+        _chart.querySelectorAll('.viewZoneData').forEach(_zone => {
+          var cmdId = _zone.getAttribute('data-cmdid')
+          var el = _zone.getAttribute('data-el')
+          var options = json_decode(_zone.getAttribute('data-option').replace(/'/g, '"'))
+          var height = _zone.getAttribute('data-height')
           jeedom.history.drawChart({
             cmd_id: cmdId,
             el: el,
             height: height != '' ? height : null,
-            dateRange: $(this).attr('data-daterange'),
+            dateRange: _zone.getAttribute('data-daterange'),
             option: options,
             success: function(data) {
-              $('.chartToDraw > .viewZoneData[data-cmdid="' + cmdId + '"]').remove()
+              document.querySelectorAll('.chartToDraw > .viewZoneData[data-cmdid="' + cmdId + '"]').remove()
             }
           })
         })
@@ -268,24 +242,25 @@ if (jeephp2js.view_id != '') {
 }
 
 $('.bt_displayView').on('click', function(event) {
-  if ($(this).attr('data-display') == 1) {
-    $(this).closest('.row').find('.div_displayViewList').hide()
-    $(this).closest('.row').find('.div_displayViewContainer').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-12 col-md-12 col-sm-12')
+  let me = event.target.closest('.bt_displayView')
+  if (me.getAttribute('data-display') == '1') {
+    me.closest('.row').querySelector('.div_displayViewList').unseen()
+    me.closest('.row').querySelector('.div_displayViewContainer').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-12 col-md-12 col-sm-12')
     $('.eqLogicZone').each(function() {
       $(this).packery({isLayoutInstant: true})
     });
-    $(this).attr('data-display', 0)
+    me.setAttribute('data-display', '0')
   } else {
-    $(this).closest('.row').find('.div_displayViewList').show();
-    $(this).closest('.row').find('.div_displayViewContainer').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-10 col-md-9 col-sm-8')
+    me.closest('.row').querySelector('.div_displayViewList').seen()
+    me.closest('.row').querySelector('.div_displayViewContainer').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-10 col-md-9 col-sm-8')
     $('.eqLogicZone').packery({isLayoutInstant: true})
-    $(this).attr('data-display', 1)
+    me.setAttribute('data-display', '1')
   }
 })
 
 $('#div_pageContainer').on({
   'click': function(event) {
-    var eqId = this.closest('.eqLogic-widget').getAttribute('data-eqlogic_id')
+    var eqId = event.target.closest('.eqLogic-widget').getAttribute('data-eqlogic_id')
     jeeDialog.dialog({
       id: 'md_dashEdit',
       width: '600px',
