@@ -2869,7 +2869,8 @@
         "Graphique": "Graphique",
         "Tableau": "Tableau",
         "Ajouter\/Editer viewZone": "Ajouter\/Editer viewZone",
-        "Le nom de la viewZone ne peut être vide": "Название Viewzone не может быть пустым"
+        "Le nom de la viewZone ne peut être vide": "Название Viewzone не может быть пустым",
+        "Supprimer cette zone": "Supprimer cette zone"
     },
     "desktop\/js\/display.js": {
         "Configuration de l'objet": "Конфигурация объекта",

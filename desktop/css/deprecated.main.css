@@ -4,117 +4,117 @@ Desktop
 */
 
 /* jQuery autocomplete */
-.ui-autocomplete .ui-menu-item-wrapper,
-.ui-autocomplete .ui-menu-item-wrapper .ui-state-active {
-  cursor: pointer;
-  color: var(--txt-color);
-  background-color: var(--form-bg-color);
-  padding: 2px 5px;
-  border: none;
-}
-.ui-autocomplete .ui-menu-item-wrapper:hover {
-  color: var(--linkHoverLight-color);
-  background-color: var(--sc-formTxt-color);
-  border: none;
-}
-.ui-autocomplete.ui-front {
-  z-index: 5000;
-}
+  .ui-autocomplete .ui-menu-item-wrapper,
+  .ui-autocomplete .ui-menu-item-wrapper .ui-state-active {
+    cursor: pointer;
+    color: var(--txt-color);
+    background-color: var(--form-bg-color);
+    padding: 2px 5px;
+    border: none;
+  }
+  .ui-autocomplete .ui-menu-item-wrapper:hover {
+    color: var(--linkHoverLight-color);
+    background-color: var(--sc-formTxt-color);
+    border: none;
+  }
+  .ui-autocomplete.ui-front {
+    z-index: 5000;
+  }
 
 /* bootbox */
-.bootbox.modal {
-  z-index: 9000;
-}
-.bootbox.modal.bootboxScInput {
-  z-index: 1010;
-}
+  .bootbox.modal {
+    z-index: 9000;
+  }
+  .bootbox.modal.bootboxScInput {
+    z-index: 1010;
+  }
 
 /* boostrap modal */
-.modal-footer .btn.bootbox-accept,
-.ui-dialog-buttonpane .ui-dialog-buttonset .ui-button {
-  color: var(--linkHoverLight-color) !important;
-  background-color: var(--al-success-color)!important;
-  border: none!important;
-}
-.modal-footer .btn.bootbox-cancel {
-  background-color: var(--al-warning-color)!important;
-}
+  .modal-footer .btn.bootbox-accept,
+  .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button {
+    color: var(--linkHoverLight-color) !important;
+    background-color: var(--al-success-color)!important;
+    border: none!important;
+  }
+  .modal-footer .btn.bootbox-cancel {
+    background-color: var(--al-warning-color)!important;
+  }
 
-.modal-header {
-  border-bottom-width: 0 !important;
-}
-.modal-dialog {
-  top: 80px;
-  background-color: rgb(var(--panel-bg-color)) !important;
-  box-shadow: 0 0 6px 2px rgba(0,0,0,0.15) !important;
-}
-.modal-content {
-  background: transparent;
-}
-.modal-footer {
-  border-top-color: rgb(var(--bg-color))!important
-}
-.modal-footer .btn-default {
-  height: 32px;
-}
-.modal-footer button[data-bb-handler=cancel],
-.modal-footer a.btn[data-dismiss] {
-  background-color: var(--al-warning-color)!important;
-}
-.modal-footer button[data-bb-handler=confirm] {
-  background-color: var(--al-success-color)!important;
-}
-h4.modal-title {
-  font-size: 14px;
-}
+  .modal-header {
+    border-bottom-width: 0 !important;
+  }
+  .modal-dialog {
+    top: 80px;
+    background-color: rgb(var(--panel-bg-color)) !important;
+    box-shadow: 0 0 6px 2px rgba(0,0,0,0.15) !important;
+  }
+  .modal-content {
+    background: transparent;
+  }
+  .modal-footer {
+    border-top-color: rgb(var(--bg-color))!important
+  }
+  .modal-footer .btn-default {
+    height: 32px;
+  }
+  .modal-footer button[data-bb-handler=cancel],
+  .modal-footer a.btn[data-dismiss] {
+    background-color: var(--al-warning-color)!important;
+  }
+  .modal-footer button[data-bb-handler=confirm] {
+    background-color: var(--al-success-color)!important;
+  }
+  h4.modal-title {
+    font-size: 14px;
+  }
 
-.close {
-  color: var(--link-color) !important;
-  opacity: 1;
-  border: none;
-}
-.close:hover {
-  opacity: 0.75;
-}
+  .close {
+    color: var(--link-color) !important;
+    opacity: 1;
+    border: none;
+  }
+  .close:hover {
+    opacity: 0.75;
+  }
 
-.modal-backdrop {
-  z-index: 90 !important;
-  background: var(--el-defaultColor) !important;
-  opacity: 0.6 !important;
-  backdrop-filter: blur(2px);
-}
+  .modal-backdrop {
+    z-index: 90 !important;
+    background: var(--el-defaultColor) !important;
+    opacity: 0.6 !important;
+    backdrop-filter: blur(2px);
+  }
 
-.bootbox.modal, .modal-dialog, .modal-content, .modal-body, .modal-footer {
-  border-radius: var(--border-radius) !important;
-}
+  .bootbox.modal, .modal-dialog, .modal-content, .modal-body, .modal-footer {
+    border-radius: var(--border-radius) !important;
+  }
 
 /* Old ui-dialog overview summary */
-div.ui-dialog[aria-describedby="md_overviewSummary"] {
-  box-shadow: none !important;
-  border: 1px solid rgba(var(--contrast-color), 0.15) !important;
-}
-div.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar {
-  line-height: 12px;
-  background: rgba(var(--defaultBkg-color), 0.95) !important;
-}
-div.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar .ui-dialog-title {
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--link-color) !important;
-}
-div.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar .ui-dialog-title:before {
-  content: '';
-}
-.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar-close {
-  margin-top: -27px;
-  margin-right: -5px;
-}
-.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar-close:before {
-  color: var(--link-color) !important;
-}
-#md_overviewSummary {
-  background: rgba(var(--defaultBkg-color), 0.8) !important;
-}
+  div.ui-dialog[aria-describedby="md_overviewSummary"] {
+    box-shadow: none !important;
+    border: 1px solid rgba(var(--contrast-color), 0.15) !important;
+  }
+  div.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar {
+    line-height: 12px;
+    background: rgba(var(--defaultBkg-color), 0.95) !important;
+  }
+  div.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar .ui-dialog-title {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--link-color) !important;
+  }
+  div.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar .ui-dialog-title:before {
+    content: '';
+  }
+  .ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar-close {
+    margin-top: -27px;
+    margin-right: -5px;
+  }
+  .ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar-close:before {
+    color: var(--link-color) !important;
+  }
+  #md_overviewSummary {
+    background: rgba(var(--defaultBkg-color), 0.8) !important;
+  }
 
 /* Old jQuery UI dialog */
 
@@ -238,6 +238,66 @@ div.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar .ui-dia
   }
   .ui-dialog-titlebar {
     border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+  }
+
+/* Old jQuery contextmenu */
+  .context-menu-root,
+  .context-menu-list {
+    z-index: 9999 !important;
+    box-shadow: none;
+  }
+  .context-menu-root .context-menu-layer {
+    z-index: 5000 !important;
+  }
+  .context-menu-list {
+    z-index: 12000 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: var(--bg-modal-color) !important;
+  }
+  .context-menu-root .context-menu-separator {
+    border-bottom: 1px solid rgb(var(--bg-color)) !important;
+  }
+  .context-menu-root .context-menu-item {
+    color: var(--txt-color) !important;
+    background: var(--bg-modal-color) !important;
+  }
+  .context-menu-root .context-menu-item i {
+    color: var(--txt-color) !important;
+    top: 7px;
+  }
+  .context-menu-root .context-menu-item span {
+    font-weight: normal !important;
+  }
+  .context-menu-root .context-menu-disabled {
+    color: var(--placeholder-color) !important;
+    cursor: default !important;
+  }
+  .context-menu-root .context-menu-item:not(.context-menu-disabled) span,
+  .context-menu-root .context-menu-disabled.cursor {
+    cursor: pointer !important;
+  }
+  .context-menu-root .context-menu-item:not(.context-menu-disabled)::before {
+    color: var(--txt-color) !important;
+  }
+  .context-menu-root .context-menu-submenu::after {
+    border-left-color: var(--txt-color) !important;
+    font-size: 22px !important;
+  }
+  .context-menu-root .context-menu-item:not(.context-menu-disabled):hover {
+    background: var(--btnEq-default-color) !important;
+  }
+  .context-menu-root .context-menu-disabled,
+  .context-menu-root .context-menu-disabled::before {
+    color: var(--placeholder-color) !important;
+    font-style: italic;
+  }
+  .context-menu-root .context-menu-disabled::after {
+    border-left-color: var(--el-defaultColor) !important;
+  }
+  .context-menu-root .context-menu-item.inlineItem {
+    display: inline-flex;
+    padding: 5px;
   }
 
 /* ________________________________________TABLE REFLOW FLEX */

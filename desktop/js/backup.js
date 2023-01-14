@@ -213,10 +213,11 @@ $(".bt_backupJeedom").on('click', function(event) {
 })
 
 $("#bt_restoreJeedom").on('click', function(event) {
-  var el = event.target.closest('#bt_restoreJeedom')
+  var el = event.target
   jeeDialog.confirm({
     title:  '<span class="danger">{{IMPORTANT la restauration d\'un backup est une opération risquée et n\'est à utiliser qu\'en dernier recours}}.</span>',
-    message: '{{Êtes-vous sûr de vouloir restaurer}} ' + JEEDOM_PRODUCT_NAME + ' {{avec la sauvegarde}} :<br><b>' + document.getElementById('sel_restoreBackup').value + '</b> ? <br> {{Une fois lancée cette opération ne peut être annulée.}}',
+    message: '{{Êtes-vous sûr de vouloir restaurer}} ' + JEEDOM_PRODUCT_NAME + ' {{avec la sauvegarde}} :<br><b>' + document.getElementById('sel_restoreBackup').value + '</b> ? <br> {{Une fois lancée cette opération ne peut être annulée.}}'
+    },
     function(result) {
       if (result) {
         jeedomUtils.hideAlert()
@@ -235,7 +236,7 @@ $("#bt_restoreJeedom").on('click', function(event) {
         })
       }
     }
-  })
+  )
 })
 
 $("#bt_removeBackup").on('click', function(event) {

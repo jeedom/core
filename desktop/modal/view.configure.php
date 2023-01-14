@@ -76,21 +76,15 @@ $('.viewAttr[data-l1key=display][data-l2key=icon]').on('dblclick', function() {
 })
 
 $('#bt_chooseIcon').on('click', function() {
-  var _icon = false
-  var icon = false
-  var color = false
-  if ( $('div[data-l2key="icon"] > i').length ) {
-    color = '';
-    class_icon = $('div[data-l2key="icon"] > i').attr('class')
-    class_icon = class_icon.replace(' ', '.').split(' ')
-    icon = '.'+class_icon[0]
-    if (class_icon[1]) {
-      color = class_icon[1]
-    }
+  var _icon = document.querySelector('div.viewAttr[data-l2key="icon"] > i')
+  if (_icon != null) {
+    _icon = _icon.getAttribute('class')
+  } else {
+    _icon = false
   }
   jeedomUtils.chooseIcon(function(_icon) {
-    $('.viewAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon)
-  },{icon:icon,color:color})
+    document.querySelector('.viewAttr[data-l1key="display"][data-l2key="icon"]').innerHTML = _icon
+  }, {icon: _icon})
 })
 
 $('#bt_uploadImage').fileupload({

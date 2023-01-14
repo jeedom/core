@@ -2869,7 +2869,8 @@
         "Graphique": "Chart",
         "Tableau": "Table",
         "Ajouter\/Editer viewZone": "Add\/Edit viewZone",
-        "Le nom de la viewZone ne peut être vide": "ViewZone name cannot be empty"
+        "Le nom de la viewZone ne peut être vide": "ViewZone name cannot be empty",
+        "Supprimer cette zone": "Delete this area"
     },
     "desktop\/js\/display.js": {
         "Configuration de l'objet": "Object configuration",

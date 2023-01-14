@@ -2869,7 +2869,8 @@
         "Graphique": "Diagramm",
         "Tableau": "Tisch",
         "Ajouter\/Editer viewZone": "ViewZone hinzufügen\/bearbeiten",
-        "Le nom de la viewZone ne peut être vide": "Der Name der ViewZone darf nicht leer sein"
+        "Le nom de la viewZone ne peut être vide": "Der Name der ViewZone darf nicht leer sein",
+        "Supprimer cette zone": "Löschen Sie diesen Bereich"
     },
     "desktop\/js\/display.js": {
         "Configuration de l'objet": "Objektkonfiguration",
