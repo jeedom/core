@@ -86,7 +86,7 @@
         "Message": "Nachricht",
         "Accueil": "Mein Haus",
         "Vue": "Gesehen",
-        "Dashboard": "Armaturenbrett"
+        "Dashboard": "Dashboard"
     },
     "mobile\/js\/scenario.js": {
         "Aucun": "Nein"
@@ -1199,7 +1199,7 @@
     },
     "desktop\/modal\/widget.replace.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Dashboard": "Armaturenbrett",
+        "Dashboard": "Instrumententafel",
         "Je veux remplacer": "Ich möchte ersetzen",
         "Par": "Durch",
         "Remplacer": "Ersetzen",
@@ -1425,7 +1425,7 @@
         "Toggle navigation": "Schalter Steuerung",
         "Accueil": "Mein Haus",
         "Synthèse": "Synthese",
-        "Dashboard": "Armaturenbrett",
+        "Dashboard": "Instrumententafel",
         "Vue": "Aussicht",
         "Design": "Entwurf",
         "Design 3D": "3D-Design",
@@ -2098,7 +2098,7 @@
     },
     "desktop\/php\/profils.php": {
         "Error 401 Unauthorized": "Fehler 401 Nicht autorisiert",
-        "Dashboard": "Armaturenbrett",
+        "Dashboard": "Instrumententafel",
         "Synthèse": "Synthese",
         "Vue": "Aussicht",
         "Design": "Entwurf",
@@ -2524,7 +2524,7 @@
     },
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Dashboard": "Armaturenbrett",
+        "Dashboard": "Instrumententafel",
         "Vue": "Aussicht",
         "Design": "Entwurf",
         "Design 3D": "3D-Design",
