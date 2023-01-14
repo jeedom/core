@@ -1463,6 +1463,8 @@ class scenarioExpression {
 					$source = 'scenario';
 					if (isset($options['source']) && is_string($options['source'])) {
 						$source = $options['source'];
+					} elseif ($scenario !== null) {
+						$source = 'Scenario ' . $scenario->getHumanName();
 					}
 					message::add($source, $options['message']);
 					$this->setLog($scenario, __('Ajout du message suivant dans le centre de message :', __FILE__) . ' ' . $options['message']);
