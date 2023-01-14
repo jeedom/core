@@ -36,10 +36,7 @@ if (!jeeFrontEnd.widgets) {
       }
       document.querySelector('sub.itemsNumber').innerHTML = '(' + document.querySelectorAll('.widgetsDisplayCard').length + ')'
       if (is_numeric(getUrlVars('id'))) {
-        let card = document.querySelector('.widgetsDisplayCard[data-widgets_id="' + getUrlVars('id') + '"]')
-        if (card != null) {
-          jeeP.printWidget(card.getAttribute('data-widgets_id'))
-        }
+        jeeP.printWidget(getUrlVars('id'))
       }
     },
     loadTemplateConfiguration: function(_template, _data) {

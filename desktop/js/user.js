@@ -20,6 +20,7 @@ if (!jeeFrontEnd.user) {
   jeeFrontEnd.user = {
     init: function() {
       window.jeeP = this
+      jeeP.printUsers()
     },
     checkUsersLogins: function(_users) {
       _users = _users.map(a => a.login)
@@ -166,7 +167,6 @@ if (!jeeFrontEnd.user) {
 }
 
 jeeFrontEnd.user.init()
-jeeP.printUsers()
 
 document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return

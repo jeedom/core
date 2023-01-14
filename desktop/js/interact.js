@@ -21,6 +21,10 @@ if (!jeeFrontEnd.interact) {
     init: function() {
       window.jeeP = this
       this.actionOptions = []
+      if (is_numeric(getUrlVars('id'))) {
+        this.printInteract(getUrlVars('id'))
+      }
+
     },
     printInteract: function(_id) {
       jeedomUtils.hideAlert()
@@ -627,13 +631,6 @@ $('#div_conf').on({
   }
 }, '.bt_removeAction')
 
-
-if (is_numeric(getUrlVars('id'))) {
-  let interact = document.querySelector('.interactDisplayCard[data-interact_id="' + getUrlVars('id') + '"]')
-  if (interact != null) {
-    interact.click()
-  }
-}
 
 //Register events on top of page container:
 

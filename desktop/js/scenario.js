@@ -48,6 +48,11 @@ if (!jeeFrontEnd.scenario) {
       this.$divScenario = $('#div_editScenario')
       this.dom_divScenario= document.getElementById('div_editScenario')
       window.jeeP = this
+
+      jeeP.loadId = getUrlVars('id')
+      if (is_numeric(jeeP.loadId)) {
+        this.printScenario(jeeP.loadId)
+      }
     },
     postInit: function() {
       //autocomplete timeline input:
@@ -2666,12 +2671,6 @@ document.getElementById('scenariotab').addEventListener('focusout', function(eve
   }
 })
 
-
-//
-jeeP.loadId = getUrlVars('id')
-if (is_numeric(jeeP.loadId)) {
-  document.querySelector('.scenarioDisplayCard[data-scenario_id="' + jeeP.loadId + '"]')?.click()
-}
 
 domUtils(function() {
   jeeFrontEnd.scenario.postInit()

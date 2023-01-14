@@ -22,6 +22,9 @@ if (!jeeFrontEnd.object) {
     init: function() {
       window.jeeP = this
       this.getObjectList()
+      if (is_numeric(jeephp2js.selectId)) {
+        this.printObject(jeephp2js.selectId)
+      }
     },
     printObject: function(_id) {
       this.loadObjectConfiguration(_id)
@@ -1034,12 +1037,7 @@ $('#eqlogicsTab').on({
 }, 'ul.dropdown-menu input[type="checkbox"]')
 
 
-if (is_numeric(jeephp2js.selectId)) {
-  let object = document.querySelector('.objectDisplayCard[data-object_id="' + jeephp2js.selectId + '"]')
-  if (object != null) {
-    object.click()
-  }
-}
+
 
 //Register events on top of page container:
 
