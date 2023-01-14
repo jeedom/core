@@ -1929,66 +1929,6 @@ div.eqLogic-widget.editingMode .panelLink {
     width:  98%;
   }
 
-  /* context menus */
-  .context-menu-root,
-  .context-menu-list {
-    z-index: 9999 !important;
-    box-shadow: none;
-  }
-  .context-menu-root .context-menu-layer {
-    z-index: 5000 !important;
-  }
-  .context-menu-list {
-    z-index: 12000 !important;
-    padding: 0 !important;
-    border: none !important;
-    background: var(--bg-modal-color) !important;
-  }
-  .context-menu-root .context-menu-separator {
-    border-bottom: 1px solid rgb(var(--bg-color)) !important;
-  }
-  .context-menu-root .context-menu-item {
-    color: var(--txt-color) !important;
-    background: var(--bg-modal-color) !important;
-  }
-  .context-menu-root .context-menu-item i {
-    color: var(--txt-color) !important;
-    top: 7px;
-  }
-  .context-menu-root .context-menu-item span {
-    font-weight: normal !important;
-  }
-  .context-menu-root .context-menu-disabled {
-    color: var(--placeholder-color) !important;
-    cursor: default !important;
-  }
-  .context-menu-root .context-menu-item:not(.context-menu-disabled) span,
-  .context-menu-root .context-menu-disabled.cursor {
-    cursor: pointer !important;
-  }
-  .context-menu-root .context-menu-item:not(.context-menu-disabled)::before {
-    color: var(--txt-color) !important;
-  }
-  .context-menu-root .context-menu-submenu::after {
-    border-left-color: var(--txt-color) !important;
-    font-size: 22px !important;
-  }
-  .context-menu-root .context-menu-item:not(.context-menu-disabled):hover {
-    background: var(--btnEq-default-color) !important;
-  }
-  .context-menu-root .context-menu-disabled,
-  .context-menu-root .context-menu-disabled::before {
-    color: var(--placeholder-color) !important;
-    font-style: italic;
-  }
-  .context-menu-root .context-menu-disabled::after {
-    border-left-color: var(--el-defaultColor) !important;
-  }
-  .context-menu-root .context-menu-item.inlineItem {
-    display: inline-flex;
-    padding: 5px;
-  }
-
 /* __________________displayAsTable */
   /* top button container for pages and plugins */
   div[class*="ListContainer"].containerAsTable,
