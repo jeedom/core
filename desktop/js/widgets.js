@@ -34,12 +34,15 @@ if (!jeeFrontEnd.widgets) {
           'name': '{{Time widget}}'
         }
       }
-    },
-    capitalizeFirstLetter: function(string) {
-      return string.charAt(0).toUpperCase() + string.slice(1)
+      document.querySelector('sub.itemsNumber').innerHTML = '(' + document.querySelectorAll('.widgetsDisplayCard').length + ')'
+      if (is_numeric(getUrlVars('id'))) {
+        let card = document.querySelector('.widgetsDisplayCard[data-widgets_id="' + getUrlVars('id') + '"]')
+        if (card != null) {
+          jeeP.printWidget(card.getAttribute('data-widgets_id'))
+        }
+      }
     },
     loadTemplateConfiguration: function(_template, _data) {
-      $('.selectWidgetTemplate').off('change')
       jeedom.widgets.getTemplateConfiguration({
         template: _template,
         error: function(error) {
@@ -49,16 +52,16 @@ if (!jeeFrontEnd.widgets) {
           })
         },
         success: function(data) {
-          $('#div_templateReplace').empty()
+          document.getElementById('div_templateReplace').empty()
           if (typeof data.replace != 'undefined' && data.replace.length > 0) {
-            $('.type_replace').show()
+            document.querySelectorAll('.type_replace').seen()
             var replace = ''
             for (var i in data.replace) {
               replace += '<div class="form-group">'
               if (jeeP.widget_parameters_opt[data.replace[i]]) {
                 replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-4 control-label">' + jeeP.widget_parameters_opt[data.replace[i]].name + '</label>'
               } else {
-                replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-4 control-label">' + jeeP.capitalizeFirstLetter(data.replace[i].replace("icon_", "").replace("img_", "").replace("_", " ")) + '</label>'
+                replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-4 control-label">' + data.replace[i].replace("icon_", "").replace("img_", "").replace("_", " ") + '</label>'
               }
               replace += '<div class="col-lg-6 col-md-8 col-sm-8 col-xs-8">'
               replace += '<div class="input-group">'
@@ -73,7 +76,7 @@ if (!jeeFrontEnd.widgets) {
               } else {
                 replace += '<input class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_' + data.replace[i] + '_#"/>'
               }
-              if (data.replace[i].indexOf('icon_') != -1 || data.replace[i].indexOf('img_') != -1) {
+              if (data.replace[i].includes('icon_') || data.replace[i].includes('img_')) {
                 replace += '<span class="input-group-btn">'
                 replace += '<a class="btn chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>'
                 replace += '</span>'
@@ -82,9 +85,9 @@ if (!jeeFrontEnd.widgets) {
               replace += '</div>'
               replace += '</div>'
             }
-            $('#div_templateReplace').append(replace)
+            document.getElementById('div_templateReplace').html(replace, true)
           } else {
-            $('.type_replace').hide()
+            document.querySelectorAll('.type_replace').unseen()
           }
 
           if (typeof _data != 'undefined') {
@@ -93,25 +96,19 @@ if (!jeeFrontEnd.widgets) {
             }, '.widgetsAttr')
           }
           if (data.test) {
-            $('.type_test').show()
+            document.querySelectorAll('.type_test').seen()
           } else {
-            $('.type_test').hide()
+            document.querySelectorAll('.type_test').unseen()
           }
-          $('.selectWidgetTemplate').on('change', function() {
-            if (this.jeeValue() == '' || !this.hasClass('widgetsAttr')) return
-              let type = document.querySelector('.widgetsAttr[data-l1key="type"]').jeeValue()
-              let subtype = document.querySelector('.widgetsAttr[data-l1key="subtype"]').jeeValue()
-            jeeP.loadTemplateConfiguration('cmd.' + type + '.' + subtype + '.' + this.jeeValue())
-          })
           jeeFrontEnd.modifyWithoutSave = true
         }
       })
     },
     printWidget: function(_id) {
       jeedomUtils.hideAlert()
-      $('#div_conf').show()
-      $('#div_widgetsList').hide()
-      $('#div_templateTest').empty()
+      document.getElementById('div_conf').seen()
+      document.getElementById('div_widgetsList').unseen()
+      document.getElementById('div_templateTest').empty()
 
       jeedom.widgets.byId({
         id: _id,
@@ -123,8 +120,7 @@ if (!jeeFrontEnd.widgets) {
           })
         },
         success: function(data) {
-          $('a[href="#widgetstab"]').click()
-          $('.selectWidgetTemplate').off('change')
+          document.querySelector('a[data-target="#widgetstab"]').click()
           document.querySelectorAll('.widgetsAttr').jeeValue('')
           document.querySelectorAll('.widgetsAttr[data-l1key="type"]').jeeValue('info')
 
@@ -142,7 +138,7 @@ if (!jeeFrontEnd.widgets) {
           for (var i in data.usedBy) {
             usedBy += '<span class="label label-info cursor cmdAdvanceConfigure" data-cmd_id="' + i + '">' + data.usedBy[i] + '</span> '
           }
-          $('#div_usedBy').empty().append(usedBy)
+          document.getElementById('div_usedBy').empty().insertAdjacentHTML('beforeend', usedBy)
           var template = 'cmd.'
           if (data.type && data.type !== null) {
             template += data.type + '.'
@@ -172,13 +168,15 @@ if (!jeeFrontEnd.widgets) {
               })
             },
             success: function(data) {
-              $('#div_widgetPreview').empty().html(data.html)
-              $('#div_widgetPreview .eqLogic-widget').css('position', 'relative')
+              let previewEL = document.getElementById('div_widgetPreview')
+              previewEL.empty().html(data.html)
+              if (previewEL.querySelector('div.eqLogic-widget') != null) previewEL.querySelector('div.eqLogic-widget').style.position = 'relative'
             }
           })
+          jeeFrontEnd.modifyWithoutSave = false
           setTimeout(function() {
             jeeFrontEnd.modifyWithoutSave = false
-          }, 1000)
+          }, 500)
         }
       })
     },
@@ -216,8 +214,11 @@ if (!jeeFrontEnd.widgets) {
 
       div += '</div>'
       div += '</div>'
-      $('#div_templateTest').append(div)
-      document.getElementById('div_templateTest').querySelectorAll('.test').last().setJeeValues(_test, '.testAttr')
+
+      let replaceDiv = document.getElementById('div_templateTest')
+      replaceDiv.insertAdjacentHTML('beforeend', div)
+      replaceDiv.querySelectorAll('.test').last().setJeeValues(_test, '.testAttr')
+
     },
     downloadObjectAsJson: function(exportObj, exportName) {
       var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj))
@@ -228,7 +229,24 @@ if (!jeeFrontEnd.widgets) {
       document.body.appendChild(downloadAnchorNode) // required for firefox
       downloadAnchorNode.click()
       downloadAnchorNode.remove()
-    }
+    },
+    saveWidget: function() {
+      var widgets = document.getElementById('div_conf').getJeeValues('.widgetsAttr')[0]
+      widgets.test = document.querySelectorAll('#div_templateTest .test').getJeeValues('.testAttr')
+      jeedom.widgets.save({
+        widgets: widgets,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          jeeFrontEnd.modifyWithoutSave = false
+          window.location = 'index.php?v=d&p=widgets&id=' + data.id + '&saveSuccessFull=1'
+        }
+      })
+    },
   }
 }
 
@@ -239,20 +257,16 @@ document.registerEvent('keydown', function(event) {
 
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
-    if ($('#bt_saveWidgets').is(':visible')) {
-      $("#bt_saveWidgets").click()
-    }
+    jeeP.saveWidget()
   }
 })
 
-$('sub.itemsNumber').html('(' + $('.widgetsDisplayCard').length + ')')
-
 //searching
 $('#in_searchWidgets').keyup(function(event) {
-  var search = this.value
+  var search = event.target.value
   if (search == '') {
-    $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
-    $('.widgetsDisplayCard').show()
+    document.querySelectorAll('.panel-collapse.in').removeClass('in')
+    document.querySelectorAll('.widgetsDisplayCard').seen()
     return
   }
   search = jeedomUtils.normTextLower(search)
@@ -260,32 +274,35 @@ $('#in_searchWidgets').keyup(function(event) {
   if (not) {
     search = search.replace(':not(', '')
   }
-  $('.widgetsDisplayCard').hide()
-  $('.panel-collapse').attr('data-show', 0)
+  document.querySelectorAll('.panel-collapse.in').removeClass('in')
+  document.querySelectorAll('.widgetsDisplayCard').unseen()
+  document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.addClass('in').setAttribute('data-show', 0) })
   var match, text
-  $('.widgetsDisplayCard .search').each(function() {
+  document.querySelectorAll('.widgetsDisplayCard .search').forEach(_search => {
     match = false
-    text = jeedomUtils.normTextLower($(this).text())
+    text = jeedomUtils.normTextLower(_search.textContent)
     if (text.includes(search)) match = true
 
     if (not) match = !match
     if (match) {
-      $(this).closest('.widgetsDisplayCard').show()
-      $(this).closest('.panel-collapse').attr('data-show', 1)
+      _search.closest('.widgetsDisplayCard').seen()
+      _search.closest('.panel-collapse').setAttribute('data-show', 1)
     }
   })
-  $('.panel-collapse[data-show="1"]').collapse('show')
-  $('.panel-collapse[data-show="0"]').collapse('hide')
-})
-$('#bt_openAll').off('click').on('click', function(event) {
-  $('.accordion-toggle[aria-expanded="false"]').click()
-})
-$('#bt_closeAll').off('click').on('click', function(event) {
-  $('.accordion-toggle[aria-expanded="true"]').click()
+  document.querySelectorAll('.panel-collapse[data-show="1"]').addClass('in')
+  document.querySelectorAll('.panel-collapse[data-show="0"]').removeClass('in')
 })
 $('#bt_resetWidgetsSearch').off('click').on('click', function(event) {
-  $('#in_searchWidgets').val('').keyup()
+  document.getElementById('in_searchWidgets').value = ''
+  document.getElementById('in_searchWidgets').triggerEvent('keyup')
 })
+$('#bt_openAll').off('click').on('click', function(event) {
+  document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.addClass('in') })
+})
+$('#bt_closeAll').off('click').on('click', function(event) {
+  document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.removeClass('in') })
+})
+
 
 //context menu
 try {
@@ -352,17 +369,16 @@ try {
   } catch (err) { }
 
 $('#bt_chooseIcon').on('click', function(event) {
-  var _icon = false
-  if ($('div[data-l2key="icon"] > i').length) {
-    _icon = $('div[data-l2key="icon"] > i').attr('class')
-    _icon = '.' + _icon.replace(' ', '.')
+  var _icon = document.querySelector('div[data-l2key="icon"] > i')
+  if (_icon != null) {
+    _icon = _icon.getAttribute('class')
+  } else {
+    _icon = false
   }
   jeedomUtils.chooseIcon(function(_icon) {
-    $('.widgetsAttr[data-l1key="display"][data-l2key="icon"]').empty().append(_icon)
-  }, {
-    icon: _icon
-  })
-  jeeFrontEnd.modifyWithoutSave = true
+    document.querySelector('div[data-l2key="icon"]').innerHTML = _icon
+    jeeFrontEnd.modifyWithoutSave = true
+  }, {icon: _icon})
 })
 
 $('#bt_editCode').off('click').on('click', function(event) {
@@ -382,8 +398,8 @@ $('#bt_replaceWidget').off('click').on('click', function(event) {
 $('#bt_applyToCmd').off('click').on('click', function(event) {
   //store usedBy:
   var checkedId = []
-  $('#div_usedBy .cmdAdvanceConfigure').each(function() {
-    checkedId.push($(this).data('cmd_id'))
+  document.querySelectorAll('div_usedBy .cmdAdvanceConfigure').forEach(_cmd => {
+    checkedId.push(_cmd.getAttribute('data-cmd_id'))
   })
 
   let type = document.querySelector('.widgetsAttr[data-l1key="type"]').jeeValue()
@@ -395,20 +411,22 @@ $('#bt_applyToCmd').off('click').on('click', function(event) {
     callback: function() {
       jeedomUtils.initTableSorter()
 
-      $('#table_cmdConfigureSelectMultiple tbody tr').each(function(index) {
-        if (checkedId.includes($(this).data('cmd_id'))) {
-          $(this).find('.selectMultipleApplyCmd').prop('checked', true)
+      document.querySelectorAll('#table_cmdConfigureSelectMultiple tbody tr').forEach(_tr => {
+        if (checkedId.includes(_tr.getAttribute('data-cmd_id'))) {
+          _tr.querySelector('.selectMultipleApplyCmd').checked = true
         }
       })
 
-      $('#bt_cmdConfigureSelectMultipleAlertToogle').off('click').on('click', function() {
-        $('#table_cmdConfigureSelectMultiple tbody tr input.selectMultipleApplyCmd:visible').each(function() {
-          $(this).prop('checked', !$(this).prop('checked'))
-          $(this).attr('data-state', 1)
+      document.getElementById('bt_cmdConfigureSelectMultipleAlertToogle').addEventListener('click', function(event) {
+        document.querySelectorAll('#table_cmdConfigureSelectMultiple tbody tr input.selectMultipleApplyCmd').forEach(_input => {
+          if (_input.isVisible()) {
+            _input.checked = !_input.checked
+            _input.setAttribute('data-state', '1')
+          }
         })
       })
 
-      $('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function() {
+      document.getElementById('bt_cmdConfigureSelectMultipleAlertApply').addEventListener('click', function(event) {
         var widgets = document.querySelectorAll('.widgets').getJeeValues('.widgetsAttr')[0]
         widgets.test = document.querySelectorAll('#div_templateTest .test').getJeeValues('.testAttr')
         jeedom.widgets.save({
@@ -434,23 +452,23 @@ $('#bt_applyToCmd').off('click').on('click', function(event) {
               }
             }
 
-            $('#table_cmdConfigureSelectMultiple tbody tr').each(function() {
-              var thisId = $(this).data('cmd_id')
-              if ($(this).find('.selectMultipleApplyCmd').prop('checked')) {
+            document.querySelectorAll('#table_cmdConfigureSelectMultiple tbody tr').forEach(_tr => {
+              var thisId = _tr.getAttribute('data-cmd_id')
+              if (_tr.querySelector('.selectMultipleApplyCmd').checked) {
                 if (!checkedId.includes(thisId)) {
                   //show in usedBy
-                  var thisObject = $(this).find('td').eq(1).html()
-                  var thisEq = $(this).find('td').eq(2).html()
-                  var thisName = $(this).find('td').eq(3).html()
+                  var thisObject = _tr.childNodes[1].textContent
+                  var thisEq = _tr.childNodes[2].textContent
+                  var thisName = _tr.childNodes[3].textContent
                   var cmdHumanName = '[' + thisObject + '][' + thisEq + '][' + thisName + ']'
                   var newSpan = '<span class="label label-info cursor cmdAdvanceConfigure" data-cmd_id="' + thisId + '">' + cmdHumanName + '</span>'
-                  $('#div_usedBy').append(newSpan)
+                  document.getElementById('div_usedBy').insertAdjacentHTML('beforeend', newSpan)
                 }
                 cmd.id = thisId
                 jeedom.cmd.save({
                   cmd: cmd,
                   error: function(error) {
-                    $('#md_cmdConfigureSelectMultipleAlert').showAlert({
+                    jeedomUtils.showAlert({
                       message: error.message,
                       level: 'danger'
                     })
@@ -464,19 +482,19 @@ $('#bt_applyToCmd').off('click').on('click', function(event) {
                   jeedom.cmd.save({
                     cmd: cmdDefault,
                     error: function(error) {
-                      $('#md_cmdConfigureSelectMultipleAlert').showAlert({
+                      jeedomUtils.showAlert({
                         message: error.message,
                         level: 'danger'
                       })
                     },
                     success: function(data) {
-                      $('#div_usedBy .cmdAdvanceConfigure[data-cmd_id="' + data.id + '"]').remove()
+                      document.querySelector('#div_usedBy .cmdAdvanceConfigure[data-cmd_id="' + data.id + '"]')?.remove()
                     }
                   })
                 }
               }
             })
-            $('#md_cmdConfigureSelectMultipleAlert').showAlert({
+            jeedomUtils.showAlert({
               message: "{{Modification(s) appliquée(s) avec succès}}",
               level: 'success'
             })
@@ -491,25 +509,25 @@ $('.widgetsAttr[data-l1key="display"][data-l2key="icon"]').off('dblclick').on('d
   document.querySelectorAll('.widgetsAttr[data-l1key="display"][data-l2key="icon"]').jeeValue('')
 })
 
-$('.widgetsAttr[data-l1key=type]').off('change').on('change', function(event) {
-  $('#div_templateReplace').empty()
-  $('#div_templateTest').empty()
-  $('#div_usedBy').empty()
-  $('.selectWidgetSubType').hide().removeClass('widgetsAttr')
-  $('.selectWidgetSubType[data-type="' + this.jeeValue() + '"]').show().addClass('widgetsAttr').change()
+$('.widgetsAttr[data-l1key="type"]').off('change').on('change', function(event) {
+  document.getElementById('div_templateReplace').empty()
+  document.getElementById('div_templateTest').empty()
+  document.getElementById('div_usedBy').empty()
+  document.querySelectorAll('.selectWidgetSubType').unseen().removeClass('widgetsAttr')
+  document.querySelector('.selectWidgetSubType[data-type="' + event.target.jeeValue() + '"]')?.seen().addClass('widgetsAttr').triggerEvent('change')
 })
 
 $('.selectWidgetSubType').off('change').on('change', function(event) {
-  $('#div_templateReplace').empty()
-  $('#div_templateTest').empty()
-  $('#div_usedBy').empty()
-  $('.selectWidgetTemplate').hide().removeClass('widgetsAttr')
+  document.getElementById('div_templateReplace').empty()
+  document.getElementById('div_templateTest').empty()
+  document.getElementById('div_usedBy').empty()
+  document.querySelectorAll('.selectWidgetTemplate').unseen().removeClass('widgetsAttr')
   let type = document.querySelector('.widgetsAttr[data-l1key="type"]').jeeValue()
-  $('.selectWidgetTemplate[data-type="' + type + '"][data-subtype="' + this.jeeValue() + '"]').show().addClass('widgetsAttr').change()
+  document.querySelector('.selectWidgetTemplate[data-type="' + type + '"][data-subtype="' + event.target.jeeValue() + '"]')?.seen().addClass('widgetsAttr').triggerEvent('change')
 })
 
 $('#div_templateReplace').off('click', '.chooseIcon').on('click', '.chooseIcon', function(event) {
-  var bt = this
+  var bt = event.target.closest('.chooseIcon')
   jeedomUtils.chooseIcon(function(_icon) {
     bt.closest('.form-group').querySelector('.widgetsAttr[data-l1key="replace"]').jeeValue(_icon)
   }, {
@@ -519,7 +537,7 @@ $('#div_templateReplace').off('click', '.chooseIcon').on('click', '.chooseIcon',
 })
 
 $('#div_templateTest').off('click', '.chooseIcon').on('click', '.chooseIcon', function(event) {
-  var bt = this
+  var bt = event.target.closest('.chooseIcon')
   jeedomUtils.chooseIcon(function(_icon) {
     bt.closest('.input-group').querySelector('.testAttr').jeeValue(_icon)
   }, {
@@ -528,18 +546,25 @@ $('#div_templateTest').off('click', '.chooseIcon').on('click', '.chooseIcon', fu
   jeeFrontEnd.modifyWithoutSave = true
 })
 
+$('#div_pageContainer').on('change', '.selectWidgetTemplate', function(event) {
+  if (event.target.jeeValue() == '' || !event.target.hasClass('widgetsAttr')) return
+    let type = document.querySelector('.widgetsAttr[data-l1key="type"]').jeeValue()
+    let subtype = document.querySelector('.widgetsAttr[data-l1key="subtype"]').jeeValue()
+  jeeP.loadTemplateConfiguration('cmd.' + type + '.' + subtype + '.' + event.target.jeeValue())
+})
+
 $('#div_pageContainer').off('change', '.widgetsAttr').on('change', '.widgetsAttr:visible', function(event) {
   jeeFrontEnd.modifyWithoutSave = true
 })
 
 $('#bt_returnToThumbnailDisplay').on('click', function(event) {
   setTimeout(function() {
-    $('.nav li.active').removeClass('active')
-    $('a[href="#' + $('.tab-pane.active').attr('id') + '"]').closest('li').addClass('active')
+    document.querySelector('.nav li.active').removeClass('active')
+    document.querySelector('a[data-target="#' + document.querySelector('.tab-pane.active').getAttribute('id') + '"]').closest('li').addClass('active')
   }, 500)
   if (jeedomUtils.checkPageModified()) return
-  $('#div_conf').hide()
-  $('#div_widgetsList').show()
+  document.getElementById('div_conf').unseen()
+  document.getElementById('div_widgetsList').seen()
   jeedomUtils.addOrUpdateUrl('id', null, '{{Widgets}} - ' + JEEDOM_PRODUCT_NAME)
 })
 
@@ -548,7 +573,8 @@ $('#bt_widgetsAddTest').off('click').on('click', function(event) {
 })
 
 $('#div_templateTest').off('click', '.bt_removeTest').on('click', '.bt_removeTest', function(event) {
-  $(this).closest('.test').remove()
+  let me = event.target.closest('.bt_removeTest')
+  me.closest('.test').remove()
   jeeFrontEnd.modifyWithoutSave = true
 })
 
@@ -579,61 +605,42 @@ $("#bt_addWidgets").off('click').on('click', function(event) {
 })
 
 $('#div_usedBy').off('click', '.cmdAdvanceConfigure').on('click', '.cmdAdvanceConfigure', function(event) {
+  let me = event.target.closest('.cmdAdvanceConfigure')
   jeeDialog.dialog({
     id: 'jee_modal2',
     title: '{{Configuration de la commande}}',
-    contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + this.getAttribute('data-cmd_id')
+    contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + me.getAttribute('data-cmd_id')
   })
 })
 
 $(".widgetsDisplayCard").off('click').on('click', function(event) {
+  let me = event.target.closest('.widgetsDisplayCard')
   if (event.ctrlKey || event.metaKey) {
-    var url = '/index.php?v=d&p=widgets&id=' + $(this).attr('data-widgets_id')
+    var url = '/index.php?v=d&p=widgets&id=' + me.getAttribute('data-widgets_id')
     window.open(url).focus()
   } else {
-    jeeP.printWidget($(this).attr('data-widgets_id'))
+    jeeP.printWidget(me.getAttribute('data-widgets_id'))
   }
 })
 $('.widgetsDisplayCard').off('mouseup').on('mouseup', function(event) {
+  let me = event.target.closest('.widgetsDisplayCard')
   if (event.which == 2) {
     event.preventDefault()
-    var id = $(this).attr('data-widgets_id')
+    var id = me.getAttribute('data-widgets_id')
     $('.widgetsDisplayCard[data-widgets_id="' + id + '"]').trigger(jQuery.Event('click', {
       ctrlKey: true
     }))
   }
 })
 
-if (is_numeric(getUrlVars('id'))) {
-  if ($('.widgetsDisplayCard[data-widgets_id="' + getUrlVars('id') + '"]').length != 0) {
-    $('.widgetsDisplayCard[data-widgets_id="' + getUrlVars('id') + '"]').click()
-  } else {
-    $('.widgetsDisplayCard').first().click()
-  }
-}
-
 $("#bt_saveWidgets").on('click', function(event) {
-  var widgets = document.getElementById('div_conf').getJeeValues('.widgetsAttr')[0]
-  widgets.test = document.querySelectorAll('#div_templateTest .test').getJeeValues('.testAttr')
-
-  jeedom.widgets.save({
-    widgets: widgets,
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      jeeFrontEnd.modifyWithoutSave = false
-      window.location = 'index.php?v=d&p=widgets&id=' + data.id + '&saveSuccessFull=1'
-    }
-  })
+  jeeP.saveWidget()
   return false
 })
 
 $('#bt_removeWidgets').on('click', function(event) {
-  jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer le widget}} <span style="font-weight: bold ;">' + $('input[data-l1key="name"]').val() + '</span> ?', function(result) {
+  let name = document.querySelector('input[data-l1key="name"]').value
+  jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer le widget}} <span style="font-weight: bold ;">' + name + '</span> ?', function(result) {
     if (result) {
       jeedom.widgets.remove({
         id: document.querySelector('.widgetsAttr[data-l1key="id"]').jeeValue(),
@@ -665,13 +672,14 @@ $("#bt_exportWidgets").on('click', function(event) {
   return false
 })
 
+//import/export:
 $("#bt_mainImportWidgets").off('click').on('click', function(event) {
-  $('#uploadFile').click()
+  document.getElementById('uploadFile').click()
   event.stopPropagation()
 })
 
 $("#uploadFile").change(function(event) {
-  $('#div_alert').hide()
+  jeedomUtils.hideAlert()
   var uploadedFile = event.target.files[0]
   if (uploadedFile.type !== "application/json") {
     jeedomUtils.showAlert({
@@ -740,7 +748,7 @@ $("#uploadFile").change(function(event) {
 })
 
 $("#bt_importWidgets").change(function(event) {
-  $('#div_alert').hide()
+  jeedomUtils.hideAlert()
   var uploadedFile = event.target.files[0]
   if (uploadedFile.type !== "application/json") {
     jeedomUtils.showAlert({
@@ -752,7 +760,6 @@ $("#bt_importWidgets").change(function(event) {
   if (uploadedFile) {
     var readFile = new FileReader()
     readFile.readAsText(uploadedFile)
-
     readFile.onload = function(e) {
       var objectData = JSON.parse(e.target.result)
       if (!isset(objectData.jeedomCoreVersion)) {

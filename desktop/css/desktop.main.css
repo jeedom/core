@@ -1381,7 +1381,9 @@ div.eqLogicZone {
   #div_widgetPreview {
     text-align: left;
   }
-
+  #div_templateReplace label {
+    text-transform: capitalize
+  }
   .progress {
     background-color: var(--sc-form-color);
   }
