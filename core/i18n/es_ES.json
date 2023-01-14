@@ -2869,7 +2869,8 @@
         "Graphique": "Gráfico",
         "Tableau": "Mesa",
         "Ajouter\/Editer viewZone": "Añadir\/Editar viewZone",
-        "Le nom de la viewZone ne peut être vide": "El nombre de la Viewzone no puede estar vació"
+        "Le nom de la viewZone ne peut être vide": "El nombre de la Viewzone no puede estar vació",
+        "Supprimer cette zone": "Eliminar esta área"
     },
     "desktop\/js\/display.js": {
         "Configuration de l'objet": "Configuración del objeto",
