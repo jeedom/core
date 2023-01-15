@@ -399,13 +399,14 @@ sendVarToJS([
     document.querySelectorAll('.iconSel i').removeClass('icon_green', 'icon_blue', 'icon_orange', 'icon_red', 'icon_yellow').addClass(this.value)
   })
 
-  $('#bt_uploadImg').fileupload({
-    add: function(e, data) {
-      let currentPath = $('#bt_uploadImg').attr('data-path')
+  new jeeFileUploader({
+    fileInput: document.getElementById('bt_uploadImg'),
+    add: function(event, data) {
+      let currentPath = document.getElementById('bt_uploadImg').getAttribute('data-path')
       data.url = 'core/ajax/jeedom.ajax.php?action=uploadImageIcon&filepath=' + currentPath
       data.submit()
     },
-    done: function(e, data) {
+    done: function(event, data) {
       if (data.result.state != 'ok') {
         jeedomUtils.showAlert({
           message: data.result.result,

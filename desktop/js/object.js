@@ -31,11 +31,10 @@ if (!jeeFrontEnd.object) {
     },
     loadObjectConfiguration: function(_id) {
       try {
-        $('#bt_uploadImage').fileupload('destroy')
-        $('#bt_uploadImage').parent().html('<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">')
+        jeeFrontEnd.object.bckUploader.destroy()
       } catch (error) {}
-
-      $('#bt_uploadImage').fileupload({
+      jeeFrontEnd.object.bckUploader = new jeeFileUploader({
+        fileInput: document.getElementById('bt_uploadImage'),
         replaceFileInput: false,
         url: 'core/ajax/object.ajax.php?action=uploadImage&id=' + _id,
         dataType: 'json',

@@ -40,6 +40,28 @@ if (!jeeFrontEnd.backup) {
           jeeFrontEnd.modifyWithoutSave = false
         }
       })
+
+
+      new jeeFileUploader({
+        fileInput: document.getElementById('bt_uploadBackup'),
+        dataType: 'json',
+        replaceFileInput: false,
+        done: function(e, data) {
+          if (data.state != 'ok') {
+            jeedomUtils.showAlert({
+              message: data.result.result,
+              level: 'danger'
+            })
+            return
+          }
+          jeeFrontEnd.backup.updateListBackup()
+          jeedomUtils.showAlert({
+            message: '{{Fichier(s) ajouté(s) avec succès}}',
+            level: 'success'
+          })
+        }
+      })
+
     },
     getJeedomLog: function(_autoUpdate, _log) {
       domUtils.ajax({
@@ -243,7 +265,6 @@ $("#bt_removeBackup").on('click', function(event) {
   var el = event.target.closest('#bt_removeBackup')
   jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer la sauvegarde}} :<br><b>' + document.getElementById('sel_restoreBackup').value + '</b> ?', function(result) {
     if (result) {
-      el.querySelector('.fa-sync').seen()
       jeedom.backup.remove({
         backup: document.getElementById('sel_restoreBackup').value,
         error: function(error) {
@@ -266,25 +287,6 @@ $("#bt_removeBackup").on('click', function(event) {
 
 $('#bt_downloadBackup').on('click', function(event) {
   window.open('core/php/downloadFile.php?pathfile=' + document.getElementById('sel_restoreBackup').value, "_blank", null)
-})
-
-$('#bt_uploadBackup').fileupload({
-  dataType: 'json',
-  replaceFileInput: false,
-  done: function(e, data) {
-    if (data.result.state != 'ok') {
-      jeedomUtils.showAlert({
-        message: data.result.result,
-        level: 'danger'
-      })
-      return
-    }
-    jeeFrontEnd.backup.updateListBackup()
-    jeedomUtils.showAlert({
-      message: '{{Fichier(s) ajouté(s) avec succès}}',
-      level: 'success'
-    })
-  }
 })
 
 $(".bt_uploadCloudBackup").on('click', function(event) {
