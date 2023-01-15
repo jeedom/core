@@ -44,7 +44,7 @@ Auf dieser Registerkarte finden Sie die Parameter für die Anpassung der Anzeige
 - **Vertikale Zentrierung von Fliesen** : Zentriert den Inhalt der Kacheln vertikal.
 - **Bunte Widget-Symbole** : Einfärben von Widget-Symbolen basierend auf ihrem Status. Veränderbar durch Szenario, ** ('Symbolfärbung').
 - **Farbige Kategorien** : Einfärbung des Titels der Kacheln nach Kategorie.
-- ** : eine Standardspalte** : Anzeige von Kacheln in voller Breite auf Mobilgeräten
+- **Handy, Mobiltelefon : eine Standardspalte** : Anzeige von Kacheln in voller Breite auf Mobilgeräten
 
 
 ### Hintergrundbilder
@@ -76,7 +76,7 @@ Auf dieser Registerkarte finden Sie die Parameter für die Anpassung der Anzeige
 
 Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfigurieren, da sonst viele Plugins möglicherweise nicht funktionieren. Es gibt zwei Möglichkeiten, auf Jeedom zuzugreifen : L'**Interner Zugriff** (aus dem gleichen lokalen Netzwerk wie Jeedom) und l'**Externer Zugriff** (aus einem anderen Netzwerk, insbesondere aus dem Internet).
 
-> ****
+> **Wichtig**
 >
 > Dieser Teil ist nur dazu da, Jeedom seine Umgebung zu erklären :
 > Durch Ändern des Ports oder der IP auf dieser Registerkarte wird der Port oder die IP von Jeedom nicht geändert. Dazu müssen Sie eine Verbindung in SSH herstellen und die Datei / etc / network / interfaces für IP und die Dateien etc / apache2 / sites-available / default und etc / apache2 / sites-available / default\_ssl (für HTTPS) bearbeiten).
@@ -103,11 +103,11 @@ Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfi
     - **** : Geben Sie den Proxy-Login ein,
     - **Passwort** : Geben Sie das Passwort ein.
 
-> ****
+> **Spitze**
 >
 > Wenn Sie sich in HTTPS befinden, ist der Port 443 (Standard) und in HTTP ist der Port 80 (Standard)). Um HTTPS von außen nutzen zu können, ist jetzt ein Letsencrypt-Plugin auf dem Markt erhältlich.
 
-> ****
+> **Spitze**
 >
 > Um herauszufinden, ob Sie einen Wert im Feld festlegen müssen **Ergänzen**, Schauen Sie, wenn Sie sich in Ihrem Internetbrowser bei Jeedom anmelden, ob Sie / Jeedom (oder was auch immer) nach der IP hinzufügen müssen.
 
@@ -116,9 +116,9 @@ Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfi
 - **Proxy-Markt** : Ermöglicht den Fernzugriff auf Ihr Jeedom, ohne dass ein DNS oder eine feste IP erforderlich ist oder die Ports Ihrer Internetbox geöffnet werden müssen.
     - **Verwenden von Jeedom DNS** : Aktiviert Jeedom DNS (beachten Sie, dass hierfür mindestens ein Service Pack erforderlich ist).
     - **DNS Status** : DNS-HTTP-Status.
-    - **** : Ermöglicht das Stoppen und Neustarten des Jeedom-DNS-Dienstes.
+    - **Verwaltung** : Ermöglicht das Stoppen und Neustarten des Jeedom-DNS-Dienstes.
 
-> ****
+> **Wichtig**
 >
 > Wenn Sie das Jeedom DNS nicht zum Laufen bringen können, überprüfen Sie die Konfiguration der Firewall und des Kindersicherungsfilters Ihrer Internetbox (auf der Livebox benötigen Sie beispielsweise die Firewall auf mittlerer Ebene).
 - **Lebensdauer der Sitzungen (Stunde)** : Während der Lebensdauer von PHP-Sitzungen wird nicht empfohlen, diesen Parameter zu berühren.
@@ -183,10 +183,10 @@ Viele Bestellungen können protokolliert werden. So erhalten Sie unter Analyse �
 - **Schwellenwert Berechnung Trend nach oben** : Gleiches gilt für den Aufstieg.
 - **Standard Anzeigezeitraum der Grafiken** : Zeitraum, der standardmäßig verwendet wird, wenn Sie den Verlauf einer Bestellung anzeigen möchten. Je kürzer der Zeitraum, desto schneller zeigt Jeedom das angeforderte Diagramm an.
 
-> ****
+> **Notiz**
 >
 > Der erste Parameter **Zeige Statistiken über Widgets** ist möglich, aber standardmäßig deaktiviert, da dadurch die Anzeigezeit des Dashboards erheblich verlängert wird. Wenn Sie diese Option aktivieren, stützt sich Jeedom standardmäßig auf Daten der letzten 24 Stunden, um diese Statistiken zu berechnen.
-> Die Trendberechnungsmethode basiert auf der Berechnung der kleinsten Quadrate (siehe [](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) für das Detail).
+> Die Trendberechnungsmethode basiert auf der Berechnung der kleinsten Quadrate (siehe [hier](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) für das Detail).
 
 ### Push
 
@@ -219,9 +219,9 @@ Linkgrafiken konfigurieren. Über diese Links können Sie in Form eines Diagramm
 
 Auf dieser Registerkarte können Sie globale Parameter für die Interaktionen festlegen, die Sie unter Extras → Interaktionen finden.
 
-> ****
+> **Spitze**
 >
-> Um das Interaktionsprotokoll zu aktivieren, gehen Sie zur Registerkarte Einstellungen → System → Konfiguration : Protokolle, dann überprüfen **** in der unteren Liste.  : Die Protokolle sind dann sehr ausführlich !
+> Um das Interaktionsprotokoll zu aktivieren, gehen Sie zur Registerkarte Einstellungen → System → Konfiguration : Protokolle, dann überprüfen **** in der unteren Liste. Warnung : Die Protokolle sind dann sehr ausführlich !
 
 ### Allgemein
 
@@ -237,9 +237,9 @@ Hier haben Sie drei Parameter :
 
 ### Automatische Interaktion, kontextuelle & Warnung
 
--    **automatische Interaktionen** Erlaube Jeedom, zu versuchen, eine Interaktionsanforderung zu verstehen, auch wenn keine definiert ist. Er wird dann nach einem Objektnamen und / oder einer Ausrüstung suchen und / oder versuchen, so gut wie möglich zu reagieren.
+-   Die **automatische Interaktionen** Erlaube Jeedom, zu versuchen, eine Interaktionsanforderung zu verstehen, auch wenn keine definiert ist. Er wird dann nach einem Objektnamen und / oder einer Ausrüstung suchen und / oder versuchen, so gut wie möglich zu reagieren.
 
--    **kontextuelle Interaktionen** Sie können beispielsweise mehrere Anforderungen verketten, ohne alles zu wiederholen :
+-   Die **kontextuelle Interaktionen** Sie können beispielsweise mehrere Anforderungen verketten, ohne alles zu wiederholen :
     - *Jeedom hält den Kontext :*
         - ** : Wie viel ist er im Raum ?
         - ** : Temperatur 25.2 ° C.
@@ -252,7 +252,7 @@ Hier haben Sie drei Parameter :
     - ** : Benachrichtigen Sie mich, wenn die Wohnzimmertemperatur 25 ° C überschreitet ?
     - ** :  (*Sobald die Wohnzimmertemperatur 25 ° C überschreitet, wird Jeedom es Ihnen einmal mitteilen*)
 
-> ****
+> **Notiz**
 >
 > Standardmäßig antwortet Jeedom Ihnen auf demselben Kanal wie dem, den Sie verwendet haben, um Sie zu benachrichtigen. Wenn es keinen findet, wird der auf dieser Registerkarte angegebene Standardbefehl verwendet : **Standardretouren**.
 
@@ -325,7 +325,7 @@ Kaution verwendet, um Jeedom mit Github zu verbinden.
 
 #### Market
 
-Einzahlung, die verwendet wird, um Jeedom mit dem Markt zu verbinden. Es wird dringend empfohlen, diese Einzahlung zu verwenden.  : Jede Anfrage nach Unterstützung kann abgelehnt werden, wenn Sie eine andere Anzahlung als diese verwenden.
+Einzahlung, die verwendet wird, um Jeedom mit dem Markt zu verbinden. Es wird dringend empfohlen, diese Einzahlung zu verwenden. Warnung : Jede Anfrage nach Unterstützung kann abgelehnt werden, wenn Sie eine andere Anzahlung als diese verwenden.
 
 - **** :  du .(https://www.Jeedom.com/market).
 - **Benutzername** : Ihr Benutzername auf dem Markt.
@@ -344,27 +344,27 @@ Einzahlung, die es ermöglicht, automatisch ein Backup von Jeedom auf einer Samb
 - **\ [Backup \] Freigabe** : Pfad zum Teilen (achten Sie darauf, auf der Freigabeebene anzuhalten).
 - **\ [Backup \] Pfad** : Pfad in der Freigabe (relativ zu setzen), muss dieser vorhanden sein.
 
-> ****
+> **Notiz**
 >
 > Wenn der Pfad zu Ihrem Samba-Sicherungsordner lautet :
 > \\\\ 192.168.0.1 \\ Backups \\ Hausautomation \\ Jeedom Dann IP = 192.168.0.1, Sharing = //192.168.0.1 / Backups, Path = Home Automation / Jeedom
 
-> ****
+> **Notiz**
 >
 > Wenn Sie die Samba-Freigabe wie oben beschrieben validieren, wird im Abschnitt Einstellungen → System → Sicherungen von Jeedom eine neue Form der Sicherung angezeigt. Durch Aktivieren sendet Jeedom es beim nächsten Backup automatisch. Ein Test ist durch manuelle Sicherung möglich.
 
-> ****
+> **Wichtig**
 >
 > Möglicherweise müssen Sie das smbclient-Paket installieren, damit das Repository funktioniert.
 
-> ****
+> **Wichtig**
 >
 > Das Samba-Protokoll hat mehrere Versionen, die Version 1 ist in Bezug auf die Sicherheit gefährdet und auf einigen NAS können Sie den Client zwingen, die Verbindung mit Version 2 oder Version 3 herzustellen. Also, wenn Sie einen Fehler haben *Protokollaushandlung fehlgeschlagen: * Es besteht eine gute Chance, dass auf der NAS-Seite die Einschränkung besteht. Sie müssen dann die Datei / etc / samba / smb auf Ihrem Jeedom-Betriebssystem ändern.conf und füge diese beiden Zeilen hinzu :
 > Client-Max-Protokoll = SMB3
 > Client-Min-Protokoll = SMB2
 > Der Jeedom-Seite smbclient verwendet dann v2, wobei v3 und indem SMB3 auf beide nur SMB3 gesetzt wird. Es liegt also an Ihnen, sich an die Einschränkungen des NAS oder eines anderen Samba-Servers anzupassen
 
-> ****
+> **Wichtig**
 >
 > Jeedom muss der einzige sein, der in diesen Ordner schreibt, und er muss standardmäßig leer sein (d. H. Vor der Konfiguration und dem Senden der ersten Sicherung darf der Ordner keine Datei oder keinen Ordner enthalten).
 
@@ -404,7 +404,7 @@ Für jeden Plugin-API-Schlüssel können Sie Kernmethoden (allgemein) verbieten,
 
 ## Onglet &gt;;\._OS/DB
 
-> ****
+> **Wichtig**
 >
 > Diese Registerkarte ist Experten vorbehalten.
 > Wenn Sie Jeedom mit einer dieser beiden Lösungen ändern, kann der Support Ihnen nicht weiterhelfen.

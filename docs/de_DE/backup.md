@@ -47,7 +47,7 @@ Links finden Sie die Parameter und Aktionsschaltflächen. Auf der rechten Seite 
 
 - **Backup wiederherstellen** : Startet die Wiederherstellung des oben ausgewählten Samba-Backups.
 
-> ****
+> **WICHTIG**
 >
 > Jeedom-Backups müssen unbedingt nur für ihn in einem Ordner gespeichert werden ! Es wird alles, was kein Jeedom-Backup ist, aus dem Ordner gelöscht.
 
@@ -58,7 +58,7 @@ Während einer Sicherung sichert Jeedom alle seine Dateien und die Datenbank. Di
 
 Auf Protokollebene unterscheidet sich nur die Z-Wave (OpenZwave) ein wenig, da die Einschlüsse nicht gespeichert werden können. Diese sind direkt im Controller enthalten, daher müssen Sie denselben Controller behalten, um seine Zwave-Module zu finden.
 
-> ****
+> **Notiz**
 >
 > Das System, auf dem Jeedom installiert ist, wird nicht gesichert. Wenn Sie die Einstellungen für dieses System geändert haben (auch über SSH), müssen Sie einen Weg finden, diese bei Problemen wiederherzustellen. Ebenso sind die Nebengebäude nicht vorhanden, sodass Sie sie nach einer Restaurierung neu installieren müssen
 
@@ -66,7 +66,7 @@ Auf Protokollebene unterscheidet sich nur die Z-Wave (OpenZwave) ein wenig, da d
 
 Mit Cloud-Backups kann Jeedom Ihre Backups direkt an den Markt senden. Auf diese Weise können Sie sie einfach wiederherstellen und sicherstellen, dass Sie sie nicht verlieren. Der Markt behält die letzten 6 Backups. Um sich anzumelden, gehen Sie einfach auf Ihre Seite **** auf dem Markt, dann in der Registerkarte **meine Backups**. Auf dieser Seite können Sie ein Backup abrufen oder ein Abonnement kaufen (für 1, 3, 6 oder 12 Monate)).
 
-> ****
+> **Spitze**
 >
 > Sie können den Namen der Sicherungsdateien auf der Registerkarte anpassen **Meine Jeedoms**, Vermeiden Sie jedoch die exotischen Charaktere.
 

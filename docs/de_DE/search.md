@@ -13,12 +13,12 @@ Wählen Sie ein Gerät mit dem Symbol rechts neben dem Feld aus.
 
 Der Motor wird in den folgenden Tabellen angezeigt :
 
--  **Szenarien** mit diesem Gerät.
--  **** Anzeige dieser Ausrüstung.
--  **** Anzeige dieser Ausrüstung.
--  **** mit diesem Gerät.
+- Die **Szenarien** mit diesem Gerät.
+- Die **** Anzeige dieser Ausrüstung.
+- Die **** Anzeige dieser Ausrüstung.
+- Die **** mit diesem Gerät.
 - Die anderen **** mit diesem Gerät.
--  **** mit diesem Gerät.
+- Die **** mit diesem Gerät.
 
 ## Auf Bestellung
 
@@ -26,11 +26,11 @@ Wählen Sie eine Bestellung mit dem Symbol rechts neben dem Feld.
 
 Der Motor wird in den folgenden Tabellen angezeigt :
 
--  **Szenarien** mit diesem Befehl.
--  **** Anzeige dieses Befehls.
--  **** Anzeige dieses Befehls.
--  **** mit diesem Befehl.
--  **** mit diesem Befehl.
+- Die **Szenarien** mit diesem Befehl.
+- Die **** Anzeige dieses Befehls.
+- Die **** Anzeige dieses Befehls.
+- Die **** mit diesem Befehl.
+- Die **** mit diesem Befehl.
 - Die anderen **** mit diesem Befehl.
 
 ## Nach Variablen
@@ -39,10 +39,10 @@ Wählen Sie eine Variable aus der Dropdown-Liste.
 
 Der Motor wird in den folgenden Tabellen angezeigt :
 
--  **Szenarien** mit dieser Variablen.
--  **** mit dieser Variablen.
--  **** mit dieser Variablen.
--  **** mit dieser Variablen.
+- Die **Szenarien** mit dieser Variablen.
+- Die **** mit dieser Variablen.
+- Die **** mit dieser Variablen.
+- Die **** mit dieser Variablen.
 
 ## Per Plugin
 
@@ -50,12 +50,12 @@ Wählen Sie ein Plugin aus der Dropdown-Liste.
 
 Der Motor wird in den folgenden Tabellen angezeigt :
 
--  **Szenarien** mit diesem Plugin.
--  **** Anzeige dieses Plugins.
--  **** Anzeige dieses Plugins.
--  **** mit diesem Plugin.
--  **** mit diesem Plugin.
--  **** mit diesem Plugin.
+- Die **Szenarien** mit diesem Plugin.
+- Die **** Anzeige dieses Plugins.
+- Die **** Anzeige dieses Plugins.
+- Die **** mit diesem Plugin.
+- Die **** mit diesem Plugin.
+- Die **** mit diesem Plugin.
 
 ## Durch Wort
 
@@ -63,15 +63,15 @@ Geben Sie eine Zeichenfolge in das Suchfeld ein. Validieren mit ** oder mit der 
 
 Der Motor wird in den folgenden Tabellen angezeigt :
 
--  **Szenarien** mit dieser Zeichenfolge.
+- Die **Szenarien** mit dieser Zeichenfolge.
 	Suchen Sie in Ausdrücken, Kommentaren und Codeblöcken.
--  **** mit dieser Zeichenfolge.
+- Die **** mit dieser Zeichenfolge.
 	Suche in Feldern **.
--  **** mit dieser Zeichenfolge.
+- Die **** mit dieser Zeichenfolge.
 	Suche in Feldern **, **, **, **, **.
--  **** mit dieser Zeichenfolge.
+- Die **** mit dieser Zeichenfolge.
 	Suche in Feldern **, **, **, *generischer_typ*, .
--  **** mit dieser Zeichenfolge.
+- Die **** mit dieser Zeichenfolge.
 	Notizen Textsuche.
 
 ## Nach ID
@@ -80,13 +80,13 @@ Geben Sie im Suchfeld eine Nummer ein, die einer gesuchten ID entspricht. Validi
 
 Der Motor wird in den folgenden Tabellen angezeigt :
 
--  **Szenario** mit dieser ID.
--  **** mit dieser ID.
+- Der **Szenario** mit dieser ID.
+- Der **** mit dieser ID.
 -  **** mit dieser ID.
 - L'**** mit dieser ID.
 - L'**** mit dieser ID.
--  **** mit dieser ID.
--  **** mit dieser ID.
+-  **bestellt** mit dieser ID.
+-  **Hinweis** mit dieser ID.
 
 ## Ergebnisse
 

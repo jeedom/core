@@ -6,7 +6,7 @@ Es ist nicht so leistungsfähig wie die Designs, ermöglicht jedoch in wenigen M
 
 {% include lightbox.html src="images/doc-view_01.jpg" data="View" title="View" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
-> ****
+> **Spitze**
 >
 > Sie können die Standardansicht in Ihrem Profil auswählen, wenn Sie auf das Ansichtsmenü klicken.
 
@@ -20,13 +20,13 @@ Auf einer Ansicht finden wir :
 - Der Bleistift auf der rechten Seite zum Bearbeiten der Reihenfolge und Größe des Geräts auf die gleiche Weise wie das Dashboard.
 - Ein Knopf *Komplette Ausgabe* So können Sie die Zonen und Elemente der Ansicht bearbeiten.
 
-> ****
+> **Spitze**
 >
 > Sie können diese Option in Ihrem Profil so ändern, dass die Liste der Ansichten standardmäßig angezeigt wird.
 
 ## Hinzufügen / Bearbeiten einer Ansicht
 
-Das Prinzip ist ganz einfach : Eine Ansicht besteht aus Bereichen. Jede Zone ist vom Typ **, **  **. Abhängig von diesem Typ können Sie Grafiken, Geräte oder Befehle hinzufügen.
+Das Prinzip ist ganz einfach : Eine Ansicht besteht aus Bereichen. Jede Zone ist vom Typ *Diagramm*, *Widget* Woher *Planke*. Abhängig von diesem Typ können Sie Grafiken, Geräte oder Befehle hinzufügen.
 
 - Auf der linken Seite finden Sie die Liste der Ansichten sowie eine Schaltfläche zum Erstellen.
 - Über eine Schaltfläche oben rechts können Sie die aktuelle Ansicht (Konfiguration) bearbeiten).
@@ -35,16 +35,16 @@ Das Prinzip ist ganz einfach : Eine Ansicht besteht aus Bereichen. Jede Zone ist
 - Eine Schaltfläche zum Speichern dieser Ansicht.
 - Eine Schaltfläche zum Löschen dieser Ansicht.
 
-> ****
+> **Spitze**
 >
 > Sie können die Reihenfolge der Zonen durch Ziehen und Ablegen verschieben.
 
 In jeder Zone haben Sie die folgenden allgemeinen Optionen :
 
-- **** : Definiert die Breite des Bereichs (nur im Desktop-Modus). 1 für die Breite von 1/12 des Navigators, 12 für die Gesamtbreite.
+- **Breite** : Definiert die Breite des Bereichs (nur im Desktop-Modus). 1 für die Breite von 1/12 des Navigators, 12 für die Gesamtbreite.
 - Eine Schaltfläche zum Hinzufügen eines Elements zu dieser Zone, abhängig vom Zonentyp (siehe unten)).
-- **** : Ermöglicht das Ändern des Namens der Zone.
-- **** : Löschen Sie die Zone.
+- **Bearbeiten** : Ermöglicht das Ändern des Namens der Zone.
+- **Entfernen** : Löschen Sie die Zone.
 
 ### Gerätetypzone
 
@@ -52,11 +52,11 @@ In einer Zone für Gerätetypen können Sie Geräte hinzufügen :
 
 - **Ausrüstung hinzufügen** : Ermöglicht das Hinzufügen / Ändern von Geräten, die im Bereich angezeigt werden sollen.
 
-> ****
+> **Spitze**
 >
 > Sie können ein Gerät direkt löschen, indem Sie auf den Papierkorb links davon klicken.
 
-> ****
+> **Spitze**
 >
 > Es ist möglich, die Reihenfolge der Kacheln im Bereich durch Ziehen und Ablegen zu ändern.
 
@@ -70,19 +70,19 @@ In einem Grafikbereich können Sie Ihrer Ansicht Grafiken hinzufügen. Die folge
 
 Wenn Sie die Taste drücken **Kurve hinzufügen**, Jeedom zeigt die Liste der historischen Befehle an und Sie können den hinzuzufügenden auswählen. Sobald Sie fertig sind, haben Sie Zugriff auf die folgenden Optionen :
 
-- **** : Befehl aus Diagramm entfernen.
-- **** : Name des zu zeichnenden Befehls.
-- **** : Farbe der Kurve.
-- **** : Art der Kurve.
-- **** : Ermöglicht die Gruppierung von Daten (maximaler Typ pro Tag).
-- **** : Skalieren (rechts oder links) der Kurve.
-- **** : Zeigt die Treppenkurve an.
-- **** : Stapelt die Kurve mit den anderen Kurventypen.
-- **** : Zeichnen Sie nur Variationen mit dem vorherigen Wert.
+- **Mülleimer** : Befehl aus Diagramm entfernen.
+- **Familienname, Nachname** : Name des zu zeichnenden Befehls.
+- **Farbe** : Farbe der Kurve.
+- **Nett** : Art der Kurve.
+- **Gruppe** : Ermöglicht die Gruppierung von Daten (maximaler Typ pro Tag).
+- **Skala** : Skalieren (rechts oder links) der Kurve.
+- **Treppe** : Zeigt die Treppenkurve an.
+- **Stapel** : Stapelt die Kurve mit den anderen Kurventypen.
+- **Variation** : Zeichnen Sie nur Variationen mit dem vorherigen Wert.
 
 {% include lightbox.html src="images/doc-view_02.jpg" data="View" title="Pie Graph" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
-> ****
+> **Spitze**
 >
 > Sie können die Reihenfolge der Grafiken im Bereich durch Ziehen und Ablegen ändern.
 
@@ -93,7 +93,7 @@ Hier haben Sie die Schaltflächen :
 - **Spalte hinzufügen** : Fügen Sie der Tabelle eine Spalte hinzu.
 - **Zeile hinzufügen** : Fügen Sie der Tabelle eine Zeile hinzu.
 
-> ****
+> **Notiz**
 >
 > Es ist möglich, die Zeilen durch Ziehen und Ablegen neu zu organisieren, nicht jedoch die Spalten.
 

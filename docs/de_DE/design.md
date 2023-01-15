@@ -4,11 +4,11 @@
 Auf dieser Seite können Sie die Anzeige Ihrer gesamten Hausautomation auf sehr feine Weise konfigurieren.
 Es braucht Zeit, aber seine einzige Grenze ist Ihre Vorstellungskraft.
 
-> ****
+> **Spitze**
 >
 > Dank des Untermenüs ist es möglich, direkt zu einem Entwurf zu gelangen.
 
-> ****
+> **Wichtig**
 >
 > Alle Aktionen werden ausgeführt, indem Sie mit der rechten Maustaste auf diese Seite klicken. Achten Sie darauf, dass dies im Design gut funktioniert. Beim Erstellen müssen Sie dies in der Mitte der Seite tun (um sicherzugehen, dass Sie sich im Design befinden).
 
@@ -28,7 +28,7 @@ Im Menü (Rechtsklick) finden wir folgende Aktionen :
 - **Bild / Kamera hinzufügen** : Ermöglicht das Hinzufügen eines Bildes oder eines Streams von einer Kamera.
 - **Bereich hinzufügen** : Ermöglicht das Hinzufügen einer anklickbaren transparenten Zone, die während eines Klicks eine Reihe von Aktionen ausführen kann (abhängig vom Status eines anderen Befehls oder nicht).
 - **Zusammenfassung hinzufügen** : Fügt Informationen aus einem Objekt oder einer allgemeinen Zusammenfassung hinzu.
-- ****
+- **Anzeige**
     - **** : Zeigt kein Raster an.
     - **** : Zeigt ein 10 x 10-Raster an.
     - **** : Zeigt ein Raster von 15 mal 15 an.
@@ -40,9 +40,9 @@ Im Menü (Rechtsklick) finden wir folgende Aktionen :
 - **Erstellen Sie ein Design** : Ermöglicht das Hinzufügen eines neuen Designs.
 - **Doppeltes Design** : Dupliziert das aktuelle Design.
 - **Konfigurieren Sie das Design** : Zugriff auf die Konfiguration des Designs.
-- **** : Speichern Sie das Design (beachten Sie, dass bei bestimmten Aktionen auch automatische Sicherungen durchgeführt werden).
+- **Zu schützen** : Speichern Sie das Design (beachten Sie, dass bei bestimmten Aktionen auch automatische Sicherungen durchgeführt werden).
 
-> ****
+> **Wichtig**
 >
 > Die Konfiguration der Designelemente erfolgt durch Klicken.
 
@@ -51,7 +51,7 @@ Im Menü (Rechtsklick) finden wir folgende Aktionen :
 Hier gefunden :
 
 - **General**
-    - **** : Der Name Ihres Designs.
+    - **Familienname, Nachname** : Der Name Ihres Designs.
     - **** : Die Position des Designs im Menü. Ermöglicht die Bestellung der Designs.
     - **Transparenter Hintergrund** : Macht den Hintergrund transparent. Achtung Wenn das Kontrollkästchen aktiviert ist, wird die Hintergrundfarbe nicht verwendet.
     - **Hintergrundfarbe** : Design Hintergrundfarbe.
@@ -65,13 +65,13 @@ Hier gefunden :
 
 ## Allgemeine Konfiguration der Elemente
 
-> ****
+> **Notiz**
 >
 > Je nach Art des Elements können sich die Optionen ändern.
 
 ### Allgemeine Anzeigeeinstellungen
 
-- **** : Ermöglicht die Auswahl der Tiefenstufe
+- **Tiefe** : Ermöglicht die Auswahl der Tiefenstufe
 - **X-Position (%)** : Horizontale Koordinate des Elements.
 - **Y-Position (%)** : Vertikale Koordinate des Elements.
 - **Breite (px)** : Elementbreite in Pixel.
@@ -119,7 +119,7 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 - **** : fetter Text.
 - **** : Text im HTML-Code, der sich im Element befindet.
 
-> ****
+> **Wichtig**
 >
 > Wenn Sie HTML-Code (insbesondere Javascript) einfügen, überprüfen Sie diesen sorgfältig, da dies möglich ist, wenn ein Fehler vorliegt oder wenn eine Jeedom-Komponente überschrieben wird, das Design vollständig abstürzt und nur gelöscht werden muss direkt in die Datenbank.
 
@@ -131,7 +131,7 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 
 ### Spezifische Anzeigeeinstellungen
 
-- **** : Name des Links (angezeigter Text).
+- **Familienname, Nachname** : Name des Links (angezeigter Text).
 - **** : Link zum betreffenden Design oder zur betreffenden Ansicht.
 - **Hintergrundfarbe** : Mit dieser Option können Sie die Hintergrundfarbe ändern oder transparent machen. Vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu ändern.
 - **Textfarbe** : Mit dieser Option können Sie die Farbe von Symbolen und Texten ändern (achten Sie darauf, die Standardeinstellung auf Nein zu setzen).
@@ -151,7 +151,7 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 - **Textfarbe** : Hier können Sie eine benutzerdefinierte Hintergrundfarbe auswählen oder die Standardfarbe verwenden.
 - **** : Wert in Pixel der Rundung der Winkel der Gerätekachel.
 - **** : CSS-Definition einer Gerätekachelgrenze.  : 1px festes Schwarz.
-- **** : Deckkraft der Gerätekachel zwischen 0 und 1.  : Es muss eine Hintergrundfarbe definiert werden.
+- **** : Deckkraft der Gerätekachel zwischen 0 und 1. Warnung : Es muss eine Hintergrundfarbe definiert werden.
 - **Benutzerdefiniertes CSS** : CSS-Regeln für das Gerät.
 - **Wenden Sie benutzerdefiniertes CSS auf an** : CSS-Auswahl, auf die benutzerdefiniertes CSS angewendet werden soll.
 
@@ -178,7 +178,7 @@ Zeigt das Fenster zur erweiterten Gerätekonfiguration an (siehe Dokumentation *
 
 ### Spezifische Anzeigeeinstellungen
 
-- **** : Definiert, was Sie anzeigen, Standbilder erstellen oder von einer Kamera streamen möchten.
+- **Zum Anzeigen** : Definiert, was Sie anzeigen, Standbilder erstellen oder von einer Kamera streamen möchten.
 - **** : Senden Sie das betreffende Bild (wenn Sie ein Bild ausgewählt haben).
 - **Kamera** : Zu zeigende Kamera (wenn Sie Kamera gewählt haben).
 

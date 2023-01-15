@@ -1,7 +1,7 @@
 # Gerätearten
 **Werkzeuge → Gerätetypen**
 
-Die Sensoren und Aktoren in Jeedom werden von Plugins verwaltet, die Geräte mit Befehlen erstellen ** (Sensor) oder ** (Antrieb). Dadurch ist es dann möglich, Aktionen basierend auf der Änderung bestimmter Sensoren auszulösen, wie z.B. das Einschalten eines Lichts bei Bewegungserkennung. Aber der Jeedom Core und Plugins wie **, **, *Google-Smarthome*, *Alexa-Smarthome* etc., weiß nicht was das für ein Gerät ist : Eine Steckdose, ein Licht, ein Rollladen usw.
+Die Sensoren und Aktoren in Jeedom werden von Plugins verwaltet, die Geräte mit Befehlen erstellen *Information* (Sensor) oder *Lager* (Antrieb). Dadurch ist es dann möglich, Aktionen basierend auf der Änderung bestimmter Sensoren auszulösen, wie z.B. das Einschalten eines Lichts bei Bewegungserkennung. Aber der Jeedom Core und Plugins wie *Handy, Mobiltelefon*, *Heimatbrücke*, *Google-Smarthome*, *Alexa-Smarthome* etc., weiß nicht was das für ein Gerät ist : Eine Steckdose, ein Licht, ein Rollladen usw.
 
 Um dieses Problem zu lösen, insbesondere bei Sprachassistenten (*Mach das Zimmerlicht an*), Core stellte die . vor **Generische Typen**, von diesen Plugins verwendet.
 
@@ -17,18 +17,18 @@ Diese Seite ermöglicht eine direktere und einfachere Konfiguration dieser Gener
 
 Diese Seite bietet Lagerung nach Gerätetyp : Steckdose, Licht, Shutter, Thermostat, Kamera usw. Zunächst werden die meisten Ihrer Geräte klassifiziert in **Geräte ohne Typ**. Um ihnen einen Typ zuzuweisen, können Sie sie entweder auf einen anderen Typ verschieben oder mit der rechten Maustaste auf das Gerät klicken, um es direkt zu verschieben. Der Ausrüstungstyp ist an sich nicht wirklich nützlich, am wichtigsten sind die Auftragstypen. Sie können also eine Ausrüstung ohne Typ haben oder einen Typ, der nicht unbedingt seinen Befehlen entspricht. Sie können natürlich verschiedene Steuerungstypen innerhalb derselben Ausrüstung mischen. Im Moment ist es eher ein Speicher, eine logische Organisation, die vielleicht in zukünftigen Versionen dienen wird.
 
-> ****
+> **Spitze**
 >
 > - Wenn du Ausrüstung im Spiel bewegst **Geräte ohne Typ**, Jeedom schlägt vor, generische Typen aus seinen Bestellungen zu entfernen.
 > - Sie können mehrere Ausrüstungsgegenstände gleichzeitig bewegen, indem Sie die Kontrollkästchen links davon aktivieren.
 
 ## Befehlstyp
 
-Sobald ein Ausrüstungsgegenstand richtig positioniert ist **, wenn Sie darauf klicken, gelangen Sie zur Liste der Bestellungen, die anders gefärbt sind, wenn es a . ist ** (Blau) oder a ** (Orange).
+Sobald ein Ausrüstungsgegenstand richtig positioniert ist *Nett*, wenn Sie darauf klicken, gelangen Sie zur Liste der Bestellungen, die anders gefärbt sind, wenn es a . ist *Information* (Blau) oder a *Lager* (Orange).
 
 Durch Rechtsklick auf einen Auftrag können Sie ihm dann einen generischen Typ entsprechend den Spezifikationen dieses Auftrags zuweisen (Info-/Aktionstyp, Numerisch, Binärer Untertyp usw).
 
-> ****
+> **Spitze**
 >
 > - Das Kontextmenü der Befehle zeigt den Gerätetyp in Fettdruck an, ermöglicht aber dennoch die Zuweisung eines beliebigen generischen Typs eines beliebigen Gerätetyps.
 
@@ -38,7 +38,7 @@ Auf jedem Gerät haben Sie zwei Tasten :
 
 - **Reset-Typen** : Diese Funktion entfernt generische Typen aus allen Ausrüstungsbefehlen.
 
-> ****
+> **Warnung**
 >
 > Vor dem Speichern werden keine Änderungen vorgenommen, mit der Schaltfläche oben rechts auf der Seite.
 
@@ -50,15 +50,15 @@ In v4.2 hat der Core die generischen Typen in die Szenarien integriert. So könn
 
 Sie können ein Szenario über Sensoren auslösen. Wenn Sie beispielsweise Bewegungsmelder im Haus haben, können Sie ein Alarmszenario erstellen, bei dem jeder Melder auslöst : ``#[Wohnzimmer][Move Salon][Presence]# == 1`,`#[Cuisine][Move Cuisine][Presence]# == 1` usw.. In einem solchen Szenario benötigen Sie daher alle Ihre Bewegungsmelder, und wenn Sie einen hinzufügen, müssen Sie ihn zu den Auslösern hinzufügen. Logik.
 
-Generische Typen ermöglichen die Verwendung eines einzigen Triggers : ``#genericType(PRESENCE)# == . Hier wird kein Objekt angezeigt, so dass die kleinste Bewegung im ganzen Haus das Szenario auslöst. Wenn Sie einen neuen Melder im Haus hinzufügen, müssen Sie das Szenario (die Szenarien) nicht bearbeiten).
+Generische Typen ermöglichen die Verwendung eines einzigen Triggers : ``#genericType(PRESENCE)# == 1`. Hier wird kein Objekt angezeigt, so dass die kleinste Bewegung im ganzen Haus das Szenario auslöst. Wenn Sie einen neuen Melder im Haus hinzufügen, müssen Sie das Szenario (die Szenarien) nicht bearbeiten).
 
-Hier ein Auslöser beim Einschalten eines Lichts im Wohnzimmer : ``#genericType(,#[Wohnzimmer]#)# > 
+Hier ein Auslöser beim Einschalten eines Lichts im Wohnzimmer : ``#genericType(LIGHT_STATE,#[Wohnzimmer]#)# > 0`
 
 #### Expression
 
 Wenn Sie in einem Szenario wissen möchten, ob im Wohnzimmer Licht brennt, können Sie dies tun :
 
-WENN `#[Wohnzimmer][Lumiere Canapé][]# == 1 ODER #[Wohnzimmer][Lumiere Salon][]# == 1 ODER #[Wohnzimmer][Lumiere Angle][]# == 
+WENN `#[Wohnzimmer][Lumiere Canapé][Zustand]# == 1 ODER #[Wohnzimmer][Lumiere Salon][Zustand]# == 1 ODER #[Wohnzimmer][Lumiere Angle][Zustand]# == 1`
 
 Oder einfacher : IF `genericType (LIGHT_STATE .),#[Wohnzimmer]#) > 0` oder wenn ein oder mehrere Licht(e) im Wohnzimmer leuchten.
 
@@ -70,9 +70,9 @@ Wenn Sie morgen ein Licht in Ihrem Wohnzimmer hinzufügen, müssen Sie Ihre Szen
 Wenn Sie alle Lichter im Wohnzimmer einschalten möchten, können Sie eine Lichtaktion erstellen:
 
 `` ``
-#[Wohnzimmer][Lumiere Canapé][]#
-#[Wohnzimmer][Lumiere Salon][]#
-#[Wohnzimmer][Lumiere Angle][]#
+#[Wohnzimmer][Lumiere Canapé][Wir]#
+#[Wohnzimmer][Lumiere Salon][Wir]#
+#[Wohnzimmer][Lumiere Angle][Wir]#
 `` ``
 
 Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon`. Wenn Sie morgen ein Licht in Ihrem Wohnzimmer hinzufügen, müssen Sie Ihre Szenarien nicht retuschieren !
@@ -80,223 +80,223 @@ Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon
 
 ## Liste der generischen Kerntypen
 
-> ****
+> **Spitze**
 >
-> - Sie finden diese Liste direkt in Jeedom, auf derselben Seite, mit dem Button **** oben rechts.
+> - Sie finden diese Liste direkt in Jeedom, auf derselben Seite, mit dem Button **Auflistung** oben rechts.
 
 | **Andere (id: Other)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  | Status-Timer |  | numeric
-| TIMER_STATUS | Timer-Status (Pause oder nicht)) |  | binär, numerisch
-|  |  |  | slider
-|  | Pause-Timer |  | other
-|  | Timer fortsetzen |  | other
+| TIMER | Status-Timer | Information | numeric
+| TIMER_STATUS | Timer-Status (Pause oder nicht)) | Information | binär, numerisch
+| SET_TIMER | Timer | Lager | slider
+| TIMER_PAUSE | Pause-Timer | Lager | other
+| TIMER_RESUME | Timer fortsetzen | Lager | other
 
-| **: Battery)** | | | |
+| **Batterie (id: Battery)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  |  |  | numeric
-| BATTERIE_LADEN | Aufladen des Akkus |  | binary
+| BATTERIE | Batterie | Information | numeric
+| BATTERIE_LADEN | Aufladen des Akkus | Information | binary
 
 | **Kamera (id: Camera)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| KAMERA_URL | Kamera-URL |  | string
-|  | Aufnahmestatus der Kamera |  | binary
-| KAMERA_AUF | Kamerabewegung nach oben |  | other
-| KAMERA RUNTER | Kamerabewegung nach unten |  | other
-| KAMERA_LEFT | Kamerabewegung nach links |  | other
-| KAMERA_RECHTS | Kamerabewegung nach rechts |  | other
-| KAMERA_ZOOM | Kamera nach vorne zoomen |  | other
-| KAMERA_DEZOOM | Kamerarückseite zoomen |  | other
-| KAMERA_STOP | Kamera stoppen |  | other
-|  | Kameravoreinstellung |  | other
-| KAMERA_AUFNAHME | Kameraaufnahme |  |
-| KAMERA_AUFNAHME | Schnappschuss-Kamera |  |
+| KAMERA_URL | Kamera-URL | Information | string
+| CAMERA_RECORD_STATE | Aufnahmestatus der Kamera | Information | binary
+| KAMERA_AUF | Kamerabewegung nach oben | Lager | other
+| KAMERA RUNTER | Kamerabewegung nach unten | Lager | other
+| KAMERA_LEFT | Kamerabewegung nach links | Lager | other
+| KAMERA_RECHTS | Kamerabewegung nach rechts | Lager | other
+| KAMERA_ZOOM | Kamera nach vorne zoomen | Lager | other
+| KAMERA_DEZOOM | Kamerarückseite zoomen | Lager | other
+| KAMERA_STOP | Kamera stoppen | Lager | other
+| CAMERA_PRESET | Kameravoreinstellung | Lager | other
+| KAMERA_AUFNAHME | Kameraaufnahme | Lager |
+| KAMERA_AUFNAHME | Schnappschuss-Kamera | Lager |
 
 | **Heizung (id: Heating)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| HEIZZUSTAND | Status der Pilotdrahtheizung |  | binary
-| AUFHEIZEN | Taste Steuerdrahtheizung EIN |  | other
-| HEIZUNG_AUS | Taste Pilotdrahtheizung AUS |  | other
-| HEIZUNG_OTHER | Heizsteuerdraht Taste |  | other
+| HEIZZUSTAND | Status der Pilotdrahtheizung | Information | binary
+| AUFHEIZEN | Taste Steuerdrahtheizung EIN | Lager | other
+| HEIZUNG_AUS | Taste Pilotdrahtheizung AUS | Lager | other
+| HEIZUNG_OTHER | Heizsteuerdraht Taste | Lager | other
 
 | **Strom (id: Electricity)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  | Elektrische Energie |  | numeric
-|  | Energieverbrauch |  | numeric
-|  |  |  | numeric
-|  | Neu starten |  | other
+| ENERGIE | Elektrische Energie | Information | numeric
+| VERBRAUCH | Energieverbrauch | Information | numeric
+| STROMSPANNUNG | Spannung | Information | numeric
+| NEUSTART | Neu starten | Lager | other
 
 | **Umgebung (id: Environment)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  | TEMPERATUR |  | numeric
-| LUFTQUALITÄT | Luftqualität |  | numeric
-|  |  |  | numeric
-|  | GEGENWART |  | binary
-|  | Rauchmelder |  | binary
-|  |  |  | numeric
-|  |  |  | numeric
-|  | ) |  | numeric
-|  | ) |  | numeric
-|  | Ton (dB) |  | numeric
-|  |  |  | numeric
-| WASSERLECK | Wasserleck |  |
-| FILTER_CLEAN_STATUS | Filterstatus |  | binary
+| TEMPERATUR | TEMPERATUR | Information | numeric
+| LUFTQUALITÄT | Luftqualität | Information | numeric
+| HELLIGKEIT | Helligkeit | Information | numeric
+| GEGENWART | GEGENWART | Information | binary
+| RAUCH | Rauchmelder | Information | binary
+| FEUCHTIGKEIT | Feuchtigkeit | Information | numeric
+| UV | UV | Information | numeric
+| CO2 | CO2 (ppm) | Information | numeric
+| CO | CO (ppm) | Information | numeric
+| LÄRM | Ton (dB) | Information | numeric
+| DRUCK | Druck | Information | numeric
+| WASSERLECK | Wasserleck | Information |
+| FILTER_CLEAN_STATUS | Filterstatus | Information | binary
 
 | **Generisch (id: Generic)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  |  |  | numeric
-|  |  |  | numeric
-|  |  |  | binär, numerisch
-| ALLGEMEINE_INFO |  Generisch |  |
-|  |  Generisch |  | other
+| TIEFE | Tiefe | Information | numeric
+| DISTANZ | Distanz | Information | numeric
+| KNOPF | Knopf | Information | binär, numerisch
+| ALLGEMEINE_INFO |  Generisch | Information |
+| GENERIC_ACTION |  Generisch | Lager | other
 
 | **Licht (id: Light)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  | Lichtzustand |  | binär, numerisch
-| LICHT_HELLIGKEIT | Lichthelligkeit |  | numeric
-| HELLE FARBE | Helle Farbe |  | string
-|  | Lichtzustand (Binär) |  | binary
-|  | Lichttemperatur Farbe |  | numeric
-|  | Licht umschalten |  | other
-| LICHT AN | Lichttaste Ein |  | other
-| LICHT AUS | Lichttaste aus |  | other
-|  | Lichtschieber |  | slider
-|  | Helle Farbe |  | color
-|  | Lichtmodus |  | other
-|  | Lichttemperatur Farbe |  |
+| LIGHT_STATE | Lichtzustand | Information | binär, numerisch
+| LICHT_HELLIGKEIT | Lichthelligkeit | Information | numeric
+| HELLE FARBE | Helle Farbe | Information | string
+| LIGHT_STATE_BOOL | Lichtzustand (Binär) | Information | binary
+| LIGHT_COLOR_TEMP | Lichttemperatur Farbe | Information | numeric
+| LIGHT_TOGGLE | Licht umschalten | Lager | other
+| LICHT AN | Lichttaste Ein | Lager | other
+| LICHT AUS | Lichttaste aus | Lager | other
+| LIGHT_SLIDER | Lichtschieber | Lager | slider
+| LIGHT_SET_COLOR | Helle Farbe | Lager | color
+| LIGHT_MODE | Lichtmodus | Lager | other
+| LIGHT_SET_COLOR_TEMP | Lichttemperatur Farbe | Lager |
 
 | **Modus (id: Mode)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| MODE_STATUS | Statusmodus |  | string
-|  | Modus ändern |  | other
+| MODE_STATUS | Statusmodus | Information | string
+| MODE_SET_STATE | Modus ändern | Lager | other
 
 | **Multimedia (id: Multimedia)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  |  |  | numeric
-| MEDIEN_STATUS |  |  | string
-|  |  |  | string
-| MEDIEN_KÜNSTLER |  |  | string
-| MEDIEN_TITEL |  |  | string
-| MEDIEN_MACHT |  |  | string
-|  |  |  | numerisch, Zeichenfolge
-| MEDIEN_STATUS |  |  | binary
-|  |  |  | slider
-|  |  |  | anderer Schieberegler
-| MEDIEN_PAUSE |  |  | other
-|  |  |  | other
-| MEDIEN_STOP |  |  | other
-| MEDIEN_NÄCHSTES |  |  | other
-| MEDIEN_VORHER | Vorherige |  | other
-| MEDIEN_EIN |  |  | other
-| MEDIEN_AUS |  |  | other
-| MEDIEN_STUMM |  |  | other
-|  | Keine Stummschaltung |  | other
+| VOLUMEN | Volumen | Information | numeric
+| MEDIEN_STATUS | Status | Information | string
+| MEDIA_ALBUM | Album | Information | string
+| MEDIEN_KÜNSTLER | Künstler | Information | string
+| MEDIEN_TITEL | Titel | Information | string
+| MEDIEN_MACHT | Leistung | Information | string
+| KANAL | Kette | Information | numerisch, Zeichenfolge
+| MEDIEN_STATUS | Zustand | Information | binary
+| SET_VOLUME | Volumen | Lager | slider
+| SET_CHANNEL | Kette | Lager | anderer Schieberegler
+| MEDIEN_PAUSE | Brechen | Lager | other
+| MEDIA_RESUME | Lektüre | Lager | other
+| MEDIEN_STOP | Stoppen | Lager | other
+| MEDIEN_NÄCHSTES | Nächste | Lager | other
+| MEDIEN_VORHER | Vorherige | Lager | other
+| MEDIEN_EIN | Wir | Lager | other
+| MEDIEN_AUS | Aus | Lager | other
+| MEDIEN_STUMM | Stumm | Lager | other
+| MEDIA_UNMUTE | Keine Stummschaltung | Lager | other
 
 | **Wetter (id: Weather)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  | Wetter Temperatur |  | numeric
-|  | Wetterbedingung d + 1 max d + 2 |  | numeric
-| WINDGESCHWINDIGKEIT | Windgeschwindigkeit) |  | numeric
-| REGEN_TOTAL | Regen (Akkumulation)) |  | numeric
-| REGEN_AKTUELL | Regen (mm / h) |  | numeric
-|  | Wetterbedingung (id) d + 4 |  | numeric
-|  | Wetterbedingungen d + 4 |  | string
-|  | Wetter Max Temperatur d + 4 |  | numeric
-|  | Wettertemperatur min d + 4 |  | numeric
-|  | Wetterbedingung (id) d + 3 |  | numeric
-|  | Wetterbedingung d + 3 |  | string
-|  | Wetter Max Temperatur d + 3 |  | numeric
-|  | Wetter Temperatur min d + 3 |  | numeric
-|  | Wetterbedingung (id) d + 2 |  | numeric
-|  | Wetterbedingungen d + 2 |  | string
-|  | Wetter Temperatur min d + 2 |  | numeric
-| WETTER_FEUCHTE | Wetter Luftfeuchtigkeit |  | numeric
-|  | Wetterbedingung (id) d + 1 |  | numeric
-|  | Wetterbedingung d + 1 |  | string
-|  | Wetter Max Temperatur d + 1 |  | numeric
-|  | Wetter Temperatur min d + 1 |  | numeric
-|  | Wetterbedingungen (id) |  | numeric
-| WETTERLAGE | Wetterlage |  | string
-| X | Wetter Höchsttemperatur |  | numeric
-|  | Wetter Temperatur min |  | numeric
-| WEATHER_SONNENAUFGANG | Sonnenuntergang Wetter |  | numeric
-|  | Sonnenaufgang Wetter |  | numeric
-|  | Windrichtung Wetter |  | numeric
-|  | Wetter mit Windgeschwindigkeit |  | numeric
-| WETTER_DRUCK | Wetterdruck |  | numeric
-| WINDRICHTUNG | Windrichtung) |  | numeric
+| WEATHER_TEMPERATURE | Wetter Temperatur | Information | numeric
+| WEATHER_TEMPERATURE_MAX_2 | Wetterbedingung d + 1 max d + 2 | Information | numeric
+| WINDGESCHWINDIGKEIT | Windgeschwindigkeit) | Information | numeric
+| REGEN_TOTAL | Regen (Akkumulation)) | Information | numeric
+| REGEN_AKTUELL | Regen (mm / h) | Information | numeric
+| WEATHER_CONDITION_ID_4 | Wetterbedingung (id) d + 4 | Information | numeric
+| WEATHER_CONDITION_4 | Wetterbedingungen d + 4 | Information | string
+| WEATHER_TEMPERATURE_MAX_4 | Wetter Max Temperatur d + 4 | Information | numeric
+| WEATHER_TEMPERATURE_MIN_4 | Wettertemperatur min d + 4 | Information | numeric
+| WEATHER_CONDITION_ID_3 | Wetterbedingung (id) d + 3 | Information | numeric
+| WEATHER_CONDITION_3 | Wetterbedingung d + 3 | Information | string
+| WEATHER_TEMPERATURE_MAX_3 | Wetter Max Temperatur d + 3 | Information | numeric
+| WEATHER_TEMPERATURE_MIN_3 | Wetter Temperatur min d + 3 | Information | numeric
+| WEATHER_CONDITION_ID_2 | Wetterbedingung (id) d + 2 | Information | numeric
+| WEATHER_CONDITION_2 | Wetterbedingungen d + 2 | Information | string
+| WEATHER_TEMPERATURE_MIN_2 | Wetter Temperatur min d + 2 | Information | numeric
+| WETTER_FEUCHTE | Wetter Luftfeuchtigkeit | Information | numeric
+| WEATHER_CONDITION_ID_1 | Wetterbedingung (id) d + 1 | Information | numeric
+| WEATHER_CONDITION_1 | Wetterbedingung d + 1 | Information | string
+| WEATHER_TEMPERATURE_MAX_1 | Wetter Max Temperatur d + 1 | Information | numeric
+| WEATHER_TEMPERATURE_MIN_1 | Wetter Temperatur min d + 1 | Information | numeric
+| WEATHER_CONDITION_ID | Wetterbedingungen (id) | Information | numeric
+| WETTERLAGE | Wetterlage | Information | string
+| WEATHER_TEMPERATURE_MAX | Wetter Höchsttemperatur | Information | numeric
+| WEATHER_TEMPERATURE_MIN | Wetter Temperatur min | Information | numeric
+| WEATHER_SONNENAUFGANG | Sonnenuntergang Wetter | Information | numeric
+| WEATHER_SUNSET | Sonnenaufgang Wetter | Information | numeric
+| WEATHER_WIND_DIRECTION | Windrichtung Wetter | Information | numeric
+| WEATHER_WIND_SPEED | Wetter mit Windgeschwindigkeit | Information | numeric
+| WETTER_DRUCK | Wetterdruck | Information | numeric
+| WINDRICHTUNG | Windrichtung) | Information | numeric
 
 | **Eröffnung (id: Opening)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  | Zustandssperre |  | binary
-|  | Portal (Öffnen) Status |  | binary
-| GARAGE_STAAT | Garage (Eröffnung) Zustand |  | binary
-|  |  |  | binary
-|  | Fenster |  | binary
-|  | Sperrtaste öffnen |  | other
-|  | Sperrtaste Schließen |  | other
-|  | Tor- oder Garagenöffnungstaste |  | other
-|  | Tor- oder Garagenschließtaster |  | other
-|  | Tor- oder Garagentaste umschalten |  | other
+| LOCK_STATE | Zustandssperre | Information | binary
+| BARRIER_STATE | Portal (Öffnen) Status | Information | binary
+| GARAGE_STAAT | Garage (Eröffnung) Zustand | Information | binary
+| ÖFFNUNG | Tür | Information | binary
+| OPENING_WINDOW | Fenster | Information | binary
+| LOCK_OPEN | Sperrtaste öffnen | Lager | other
+| LOCK_CLOSE | Sperrtaste Schließen | Lager | other
+| GB_OPEN | Tor- oder Garagenöffnungstaste | Lager | other
+| GB_CLOSE | Tor- oder Garagenschließtaster | Lager | other
+| GB_TOGGLE | Tor- oder Garagentaste umschalten | Lager | other
 
 | **Buchse (id: Outlet)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| ENERGIE_STATE | Zustandssteckdose |  | numerisch, binär
-| ENERGIE_EIN | Auf Knopfleiste |  | other
-| ENERGIE_AUS | Steckdosentaste Aus |  | other
-|  | Schieberbuchse |  |
+| ENERGIE_STATE | Zustandssteckdose | Information | numerisch, binär
+| ENERGIE_EIN | Auf Knopfleiste | Lager | other
+| ENERGIE_AUS | Steckdosentaste Aus | Lager | other
+| ENERGY_SLIDER | Schieberbuchse | Lager |
 
 | **Roboter (id: Robot)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  | Staatliche Basis |  | binary
-|  | Zurück zur basis |  | other
+| DOCK_STATE | Staatliche Basis | Information | binary
+| DOCK | Zurück zur basis | Lager | other
 
 | **Sicherheit (id: Security)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  | Meerjungfrauenstaat |  | binary
-| ALARM_ZUSTAND | Alarmstatus |  | binär, string
-| ALARM_MODUS | Alarmmodus |  | string
-|  | Alarmstatus aktiviert |  | binary
-|  |  |  | binary
-|  |  |  | binary
-|  |  |  | binär, numerisch
-| SIRENE_AUS | Sirenentaste aus |  | other
-| SIRENE_EIN | Sirenenknopf Ein |  | other
-| ALARM_SCHARF | Bewaffneter Alarm |  | other
-| ALARM_FREIGEGEBEN | Alarm ausgelöst |  | other
-|  | Alarmmodus |  | other
+| SIREN_STATE | Meerjungfrauenstaat | Information | binary
+| ALARM_ZUSTAND | Alarmstatus | Information | binär, string
+| ALARM_MODUS | Alarmmodus | Information | string
+| ALARM_ENABLE_STATE | Alarmstatus aktiviert | Information | binary
+| FLUT | Flut | Information | binary
+| SABOTAGE | Sabotage | Information | binary
+| SCHOCK | Schock | Information | binär, numerisch
+| SIRENE_AUS | Sirenentaste aus | Lager | other
+| SIRENE_EIN | Sirenenknopf Ein | Lager | other
+| ALARM_SCHARF | Bewaffneter Alarm | Lager | other
+| ALARM_FREIGEGEBEN | Alarm ausgelöst | Lager | other
+| ALARM_SET_MODE | Alarmmodus | Lager | other
 
-| **: Thermostat)** | | | |
+| **Thermostat (id: Thermostat)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| THERMOSTAT_ZUSTAND | Thermostatstatus (BINÄR) (nur für Plugin-Thermostat) |  |
-| THERMOSTAT_TEMPERATUR | Raumtemperaturregler |  | numeric
-|  | Sollwertthermostat |  | numeric
-| THERMOSTAT_MODUS | Thermostat-Modus (nur für Plugin-Thermostat)) |  | string
-| THERMOSTAT_SPERRE | Sperrthermostat (nur für Plugin-Thermostat)) |  | binary
-| THERMOSTAT_TEMPERATUR_AUSSEN | Außentemperatur-Thermostat (nur für Plugin-Thermostat)) |  | numeric
-|  | Thermostatstatus (MENSCH) (nur für Plugin-Thermostat) |  | string
-| THERMOSTAT_FEUCHTE | Raumfeuchtigkeitsthermostat |  | numeric
-|  | Luftfeuchtigkeit einstellen |  | slider
-|  | Sollwertthermostat |  | slider
-|  | Thermostat-Modus (nur für Plugin-Thermostat)) |  | other
-|  | Sperrthermostat (nur für Plugin-Thermostat)) |  | other
-|  | Thermostat entsperren (nur für Plugin-Thermostat)) |  | other
-|  | Luftfeuchtigkeit einstellen |  | slider
+| THERMOSTAT_ZUSTAND | Thermostatstatus (BINÄR) (nur für Plugin-Thermostat) | Information |
+| THERMOSTAT_TEMPERATUR | Raumtemperaturregler | Information | numeric
+| THERMOSTAT_SETPOINT | Sollwertthermostat | Information | numeric
+| THERMOSTAT_MODUS | Thermostat-Modus (nur für Plugin-Thermostat)) | Information | string
+| THERMOSTAT_SPERRE | Sperrthermostat (nur für Plugin-Thermostat)) | Information | binary
+| THERMOSTAT_TEMPERATUR_AUSSEN | Außentemperatur-Thermostat (nur für Plugin-Thermostat)) | Information | numeric
+| THERMOSTAT_STATE_NAME | Thermostatstatus (MENSCH) (nur für Plugin-Thermostat) | Information | string
+| THERMOSTAT_FEUCHTE | Raumfeuchtigkeitsthermostat | Information | numeric
+| HUMIDITY_SETPOINT | Luftfeuchtigkeit einstellen | Information | slider
+| THERMOSTAT_SET_SETPOINT | Sollwertthermostat | Lager | slider
+| THERMOSTAT_SET_MODE | Thermostat-Modus (nur für Plugin-Thermostat)) | Lager | other
+| THERMOSTAT_SET_LOCK | Sperrthermostat (nur für Plugin-Thermostat)) | Lager | other
+| THERMOSTAT_SET_UNLOCK | Thermostat entsperren (nur für Plugin-Thermostat)) | Lager | other
+| HUMIDITY_SET_SETPOINT | Luftfeuchtigkeit einstellen | Lager | slider
 
 | **Lüfter (id: Fan)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  | Lüftergeschwindigkeit Status |  | numeric
-| ROTATION_STATUS | Zustandsrotation |  | numeric
-| LÜFTERGESCHWINDIGKEIT | Lüftergeschwindigkeit |  | slider
-|  |  |  | slider
+| FAN_SPEED_STATE | Lüftergeschwindigkeit Status | Information | numeric
+| ROTATION_STATUS | Zustandsrotation | Information | numeric
+| LÜFTERGESCHWINDIGKEIT | Lüftergeschwindigkeit | Lager | slider
+| DREHEN | Drehen | Lager | slider
 
 | **Bereich (id: Shutter)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  | Statusbereich |  | binär, numerisch
-|  | Bereich BSO-Status |  | binär, numerisch
-|  | Schaltfläche „Fenster nach oben“ |  | other
-|  | Schaltfläche „Fenster nach unten“ |  | other
-|  | Stopptaste Auslöser |  |
-|  | Bereich mit Schieberegler |  | slider
-|  | Schaltfläche BSO-Fenster nach oben |  | other
-|  | Schaltfläche BSO-Fenster nach unten |  | other
+| FLAP_STATE | Statusbereich | Information | binär, numerisch
+| FLAP_BSO_STATE | Bereich BSO-Status | Information | binär, numerisch
+| FLAP_UP | Schaltfläche „Fenster nach oben“ | Lager | other
+| FLAP_DOWN | Schaltfläche „Fenster nach unten“ | Lager | other
+| FLAP_STOP | Stopptaste Auslöser | Lager |
+| FLAP_SLIDER | Bereich mit Schieberegler | Lager | slider
+| FLAP_BSO_UP | Schaltfläche BSO-Fenster nach oben | Lager | other
+| FLAP_BSO_DOWN | Schaltfläche BSO-Fenster nach unten | Lager | other

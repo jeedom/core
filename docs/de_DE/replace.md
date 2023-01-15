@@ -21,7 +21,7 @@ Sie können zur besseren Lesbarkeit nur bestimmte Geräte anzeigen, nach Objekt 
 Für jedes Gerät wird von der Quelle zum Ziel kopiert (nicht erschöpfende Liste) :
 	* Das übergeordnete Objekt,
 	* Die Kategorien,
-	* Eigenschaften **  **,
+	* Eigenschaften ** und **,
 	* Kommentare und Tags,
 	* Bestellung (Dashboard),
 	* Breite und Höhe (Kachel-Dashboard),
@@ -33,7 +33,7 @@ Für jedes Gerät wird von der Quelle zum Ziel kopiert (nicht erschöpfende List
 	* Die Konfiguration **,
 	* Batterie- und Kommunikationswarnungen,
 
-Das Quellgerät wird auch durch das Zielgerät auf dem ersetzt **** und die ****.
+Das Quellgerät wird auch durch das Zielgerät auf dem ersetzt **** und die **Ansichten**.
 
 
 *Diese Ausrüstung wird auch durch die Zielausrüstung auf Designs und Ansichten ersetzt.*
@@ -48,11 +48,11 @@ Für jede Bestellung wird von der Quelle zum Ziel kopiert (nicht erschöpfende L
 	* Die verwendeten Dashboard- und Mobile-Widgets,
 	* Der generische Typ,
 	* Optionale Parameter,
-	* Die Konfigurationen **  *jeedomPostExecCmd* (Aktion),
+	* Die Konfigurationen ** und *jeedomPostExecCmd* (Aktion),
 	* Value Action Konfigurationen (info),
 	* Symbol,
-	* Die Aktivierung und das Verzeichnis in **,
-	* Die Konfigurationen von **  **,
+	* Die Aktivierung und das Verzeichnis in *Zeitleiste*,
+	* Die Konfigurationen von ** und **,
 	* Die influxDB-Konfiguration,
 	* Die Wiederholungswertkonfiguration,
 	* Warnungen,

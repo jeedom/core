@@ -1,7 +1,7 @@
 # Objets
 **Werkzeuge → Objekte**
 
- **** Mit dieser Option können Sie die Baumstruktur Ihrer Hausautomation definieren.
+Die **** Mit dieser Option können Sie die Baumstruktur Ihrer Hausautomation definieren.
 
 Alle von Ihnen erstellten Geräte müssen zu einem Objekt gehören und sind daher leichter zu identifizieren. Wir sagen dann, dass das Objekt das ist **** Ausrüstung.
 
@@ -12,7 +12,7 @@ Um der Personalisierung freie Wahl zu lassen, können Sie diese Objekte nach Ihr
 ## Gestion
 
 Sie haben zwei Möglichkeiten :
-- **** : Erstellen Sie ein neues Objekt.
+- **Hinzufügen** : Erstellen Sie ein neues Objekt.
 - **Übersicht** : Zeigt die Liste der erstellten Objekte und deren Konfiguration an.
 
 ## Übersicht
@@ -32,7 +32,7 @@ In der Übersicht können Sie alle Objekte in Jeedom sowie deren Konfiguration a
 
 Sobald Sie ein Objekt erstellt haben, wird es in diesem Teil angezeigt.
 
-> ****
+> **Spitze**
 >
 > Sie können ein Objekt öffnen, indem Sie dies tun :
 > - Klicken Sie auf eine davon.
@@ -60,28 +60,28 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 - **** : Aktivieren Sie dieses Kontrollkästchen, um dieses Objekt sichtbar zu machen.
 - **Im Dashboard ausblenden** : Aktivieren Sie dieses Kontrollkästchen, um das Objekt im Dashboard auszublenden. Es wird weiterhin in der Liste gespeichert, sodass es angezeigt werden kann, jedoch nur explizit.
 - **Zusammenfassung ausblenden** : Aktivieren Sie dieses Kontrollkästchen, um das Objekt in der Zusammenfassung auszublenden'. Es wird weiterhin in der Liste gespeichert, sodass es angezeigt werden kann, jedoch nur explizit.
-- **Aktion aus der Synthese** : Hier können Sie eine Ansicht oder ein Design angeben, zu dem Sie wechseln möchten, wenn Sie in der Zusammenfassung auf das Objekt klicken. * : *.
+- **Aktion aus der Synthese** : Hier können Sie eine Ansicht oder ein Design angeben, zu dem Sie wechseln möchten, wenn Sie in der Zusammenfassung auf das Objekt klicken. * : Armaturenbrett*.
 
-####  :
+#### Anzeige :
 
 - **Symbol** : Ermöglicht die Auswahl eines Symbols für Ihr Objekt.
 - **Benutzerdefinierte Farben** : Aktiviert die Berücksichtigung der beiden folgenden benutzerdefinierten Farbparameter.
 - **Tag Farbe** : Ermöglicht die Auswahl der Farbe des Objekts und der daran angeschlossenen Ausrüstung.
 - **Tag-Textfarbe** : Hier können Sie die Farbe des Textes des Objekts auswählen. Dieser Text wird über dem **Tag Farbe**. Sie wählen eine Farbe, um den Text lesbar zu machen.
-- **Nur bei Synthese** : Ermöglicht das Einfügen eines Bildes für die Synthese, ohne dass es als Hintergrundbild verwendet wird, insbesondere auf der Seite ** dieses Objekts.
+- **Nur bei Synthese** : Ermöglicht das Einfügen eines Bildes für die Synthese, ohne dass es als Hintergrundbild verwendet wird, insbesondere auf der Seite *Armaturenbrett* dieses Objekts.
 - **** : Sie haben die Möglichkeit, ein Bild hochzuladen oder zu löschen. Im JPEG-Format ist dieses Bild das Hintergrundbild des Objekts, wenn Sie es im Dashboard anzeigen. Es wird auch für das Vorschaubild des Stücks über die Synthese verwendet.
 
-> ****
+> **Spitze**
 >
 > Sie können die Anzeigereihenfolge von Objekten im Dashboard ändern. Wählen Sie in der Übersicht (oder in der Zusammenfassung der Hausautomation) Ihr Objekt mit der Maus per Drag & Drop aus, um ihm einen neuen Platz zu geben.
 
-> ****
+> **Spitze**
 >
 > Sie können eine Grafik sehen, die alle Elemente von Jeedom darstellt, die an dieses Objekt angehängt sind, indem Sie auf die Schaltfläche klicken ****, oben rechts.
 
-> ****
+> **Spitze**
 >
-> Wenn ein Gerät erstellt wird und kein übergeordnetes Gerät definiert wurde, wird es als übergeordnetes Element verwendet : ****.
+> Wenn ein Gerät erstellt wird und kein übergeordnetes Gerät definiert wurde, wird es als übergeordnetes Element verwendet : **Keiner**.
 
 ## Zusammenfassungs-Tabs
 

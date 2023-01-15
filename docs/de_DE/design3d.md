@@ -4,19 +4,19 @@
 Auf dieser Seite können Sie eine 3D-Ansicht Ihres Hauses erstellen, die abhängig vom Status der verschiedenen Informationen in Ihrer Hausautomation reagieren kann.
 
 
-> ****
+> **Spitze**
 >
 > Dank des Untermenüs ist es möglich, direkt zu einem 3D-Design zu wechseln.
 
 ## 3D-Modell importieren
 
-> ****
+> **WICHTIG**
 >
 > Sie können Ihr 3D-Modell nicht direkt in Jeedom erstellen. Dies muss mit Software von Drittanbietern erfolgen. Nous recommandons le très bon SweetHome3d (http://www.sweethome3d.com/fr/).
 
 Sobald Ihr 3D-Modell erstellt wurde, muss es im OBJ-Format exportiert werden. Wenn Sie SweetHome3d verwenden, erfolgt dies über das Menü "3D-Ansicht" und dann über "In OBJ-Format exportieren"". Nehmen Sie dann alle generierten Dateien und fügen Sie sie in eine Zip-Datei ein (aufgrund der Texturen können viele Dateien vorhanden sein).
 
-> ****
+> **WICHTIG**
 >
 > Die Dateien müssen sich im Stammverzeichnis der Zip-Datei befinden und dürfen sich nicht in einem Unterordner befinden.
 
@@ -45,14 +45,14 @@ Klicken Sie auf der Ebene &quot;3D-Modell&quot; auf die Schaltfläche &quot;Send
 >
 > Sie müssen eine Zip-Datei haben.
 
-> ****
+> **Spitze**
 >
 > Nachdem die Datei importiert wurde (sie kann je nach Größe der Datei sehr lang sein), müssen Sie die Seite aktualisieren, um das Ergebnis anzuzeigen (F5).
 
 
 ## Konfiguration von Elementen
 
-> ****
+> **WICHTIG**
 >
 > Die Konfiguration kann nur im Bearbeitungsmodus erfolgen.
 
@@ -64,7 +64,7 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 
 ### Licht
 
--  : Die Lichtstatussteuerung kann binär (0 oder 1), digital (0 bis 100%) oder farbig sein
+- Status : Die Lichtstatussteuerung kann binär (0 oder 1), digital (0 bis 100%) oder farbig sein
 -  : Lampenleistung (bitte beachten Sie, dass dies möglicherweise nicht die Realität widerspiegelt))
 
 ### Texte
@@ -83,7 +83,7 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 
 #### Tür / Fenster
 
--  : Tür- / Fensterstatus, 1 geschlossen und 0 offen
+- Zustand : Tür- / Fensterstatus, 1 geschlossen und 0 offen
 - Rotation
 	-  : Aktiviert die Drehung der Tür / des Fensters beim Öffnen
 	-  : Am besten testen Sie, ob es zu Ihrer Tür / Ihrem Fenster passt
@@ -99,7 +99,7 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 
 #### Volet
 
--  : Verschlussstatus, 0 offen anderer Wert geschlossen
+- Zustand : Verschlussstatus, 0 offen anderer Wert geschlossen
 - Ausblenden, wenn der Verschluss geöffnet ist
 	-  : Blenden Sie das Element aus, wenn der Verschluss geöffnet ist
 - Couleur
@@ -109,6 +109,6 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 
 Wenn die Bedingung gültig ist, können Sie dem Element die ausgewählte Farbe geben. Sie können so viele Farben / Bedingungen festlegen, wie Sie möchten.
 
-> ****
+> **Spitze**
 >
 > Die Bedingungen werden in der Reihenfolge ausgewertet, die erste, die wahr ist, wird genommen, die folgenden werden daher nicht bewertet

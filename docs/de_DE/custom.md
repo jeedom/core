@@ -3,16 +3,16 @@
 
 Hier können Sie Funktionen verwalten **** und Regeln **** auf Desktop oder Handy angewendet.
 
-> ****
+> **Warnung**
 >
 > Die Verwendung unangemessener CSS-Regeln kann die Anzeige Ihres Jeedoms beeinträchtigen. Falsch verwendete js-Funktionen können zu erheblichen Schäden an verschiedenen Komponenten Ihrer Installation führen. Denken Sie daran, ein Backup zu erstellen und auszulagern, bevor Sie diese Funktionen verwenden.
 
 Diese Funktion verwendet einen bestimmten Modus des Core-Dateieditors mit zwei Speicherorten:
 
-- Desktop / Benutzerdefiniert : Kann beide Dateien enthalten ****  **Benutzerdefinierte CSS** die vom Core in der Desktop-Version geladen wird.
-- mobil / benutzerdefiniert : Kann beide Dateien enthalten ****  **Benutzerdefinierte CSS** die vom Core in der mobilen Version geladen werden.
+- Desktop / Benutzerdefiniert : Kann beide Dateien enthalten **** und **Benutzerdefinierte CSS** die vom Core in der Desktop-Version geladen wird.
+- mobil / benutzerdefiniert : Kann beide Dateien enthalten **** und **Benutzerdefinierte CSS** die vom Core in der mobilen Version geladen werden.
 
-In der Menüleiste des Core-Dateieditors befindet sich eine Schaltfläche ****  **Deaktiviert** sagt dir, ob der Core sie laden soll oder nicht. Diese Option ist auch verfügbar in **Einstellungen → System → Konfiguration** Registerkarte Schnittstelle.
+In der Menüleiste des Core-Dateieditors befindet sich eine Schaltfläche **** Woher **Deaktiviert** sagt dir, ob der Core sie laden soll oder nicht. Diese Option ist auch verfügbar in **Einstellungen → System → Konfiguration** Registerkarte Schnittstelle.
 
 > ****
 >

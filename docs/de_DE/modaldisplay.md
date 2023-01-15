@@ -1,6 +1,6 @@
 # ModalDisplay
 
-Die Seite **** ist ein einfacher Container zum Laden des Inhalts eines Fensters (**  **) volle Seite.
+Die Seite **** ist ein einfacher Container zum Laden des Inhalts eines Fensters (** Woher **) volle Seite.
 
 Es wird insbesondere in den folgenden Fällen verwendet:
 - Analysemenü : Strg Klicken / Klicken Sie auf Mitte *Echtzeit*

@@ -13,11 +13,11 @@ Die Datenarchivierung ermöglicht es Jeedom, die im Speicher gehaltene Datenmeng
 
 Die Archivierung beginnt nachts und komprimiert die tagsüber wiederhergestellten Daten. Standardmäßig ruft Jeedom alle älteren Daten von 2 Stunden ab und erstellt 1-Stunden-Pakete daraus (entweder ein Durchschnitt, ein Minimum oder ein Maximum, abhängig von den Einstellungen). Hier haben wir also zwei Parameter, einen für die Paketgröße und einen anderen, um zu wissen, wann dies zu tun ist (standardmäßig sind dies 1-Stunden-Pakete mit Daten, die älter als 2 Stunden sind).
 
-> ****
+> **Spitze**
 >
 > Wenn Sie gut gefolgt sind, sollten Sie nur in den letzten 2 Stunden eine hohe Präzision haben. Wenn ich mich jedoch um 17 Uhr verbinde, habe ich eine Präzision für die letzten 17 Stunden.  ? Um unnötigen Ressourcenverbrauch zu vermeiden, findet die Archivierungsaufgabe nur einmal am Tag abends statt.
 
-> ****
+> **Wichtig**
 >
 > Dieses Archivierungsprinzip gilt natürlich nur für digitale Bestellungen. Bei binären Bestellungen speichert Jeedom nur die Daten der Zustandsänderung.
 
@@ -38,13 +38,13 @@ Ab Core v4.2 ist es auch möglich, eine Kurve am unteren Rand der Kachel eines G
 Wenn Sie ein Diagramm über die Verlaufsseite anzeigen, haben Sie über dem Diagramm Zugriff auf mehrere Anzeigeoptionen :
 
 - **Zeit** : Der Anzeigezeitraum einschließlich historischer Daten zwischen diesen beiden Daten. Standardmäßig abhängig von der Einstellung *Standard Anzeigezeitraum der Grafiken*  *Einstellungen → System → Konfiguration / Ausstattung*.
-- **** : Bietet verschiedene Gruppierungsoptionen (Summe pro Stunde usw.).).
-- **Anzeigetyp** : Anzeige in **, **,  **. Option in der Bestellung gespeichert und über das Dashboard verwendet.
-- **** : Zeigt die Wertdifferenz zum vorherigen Punkt an. Option in der Bestellung gespeichert und über das Dashboard verwendet.
-- **** : Zeigt die Kurve als Treppe oder kontinuierliche Anzeige an. Option in der Bestellung gespeichert und über das Dashboard verwendet.
+- **Gruppe** : Bietet verschiedene Gruppierungsoptionen (Summe pro Stunde usw.).).
+- **Anzeigetyp** : Anzeige in **, **, Woher **. Option in der Bestellung gespeichert und über das Dashboard verwendet.
+- **Variation** : Zeigt die Wertdifferenz zum vorherigen Punkt an. Option in der Bestellung gespeichert und über das Dashboard verwendet.
+- **Treppe** : Zeigt die Kurve als Treppe oder kontinuierliche Anzeige an. Option in der Bestellung gespeichert und über das Dashboard verwendet.
 - **** : Vergleichen Sie die Kurve zwischen verschiedenen Perioden.
 
-> ****
+> **Spitze**
 >
 > Um Handhabungsfehler zu vermeiden, sind diese in den Befehlen gespeicherten Optionen nur aktiv, wenn eine einzelne Kurve angezeigt wird.
 > 
@@ -68,12 +68,12 @@ Unter den Kurven können Sie auch das Kontextmenü jeder Legende verwenden, um e
 Sie können die Diagramme auch in den Ansichten anzeigen (wir sehen hier die Konfigurationsoptionen und nicht, wie es geht, dafür müssen Sie zur Dokumentation der Ansichten oder Entwürfe in Funktion gehen). Hier sind die Optionen :
 
 Sobald eine Daten aktiviert sind, können Sie auswählen :
-- **** : Die Farbe der Kurve.
-- **** : Der Diagrammtyp (Bereich, Linie oder Spalte)).
-- **** : Da Sie mehrere Kurven (Daten) in ein Diagramm einfügen können, können Sie die Skalen (rechts oder links) unterscheiden).
-- **** : Zeigt die Kurve als Treppe oder kontinuierliche Anzeige an.
-- **** : Stapeln Sie die Werte der Kurven (siehe unten für das Ergebnis).
-- **** : Zeigt die Wertdifferenz zum vorherigen Punkt an.
+- **Farbe** : Die Farbe der Kurve.
+- **Nett** : Der Diagrammtyp (Bereich, Linie oder Spalte)).
+- **Skala** : Da Sie mehrere Kurven (Daten) in ein Diagramm einfügen können, können Sie die Skalen (rechts oder links) unterscheiden).
+- **Treppe** : Zeigt die Kurve als Treppe oder kontinuierliche Anzeige an.
+- **Stapel** : Stapeln Sie die Werte der Kurven (siehe unten für das Ergebnis).
+- **Variation** : Zeigt die Wertdifferenz zum vorherigen Punkt an.
 
 ### Option auf der Verlaufsseite
 
@@ -87,7 +87,7 @@ Ermöglicht die Anzeige einer Kurve gemäß einer Berechnung mit mehreren Befehl
 
 Sie haben auch Zugriff auf eine Verwaltung von Berechnungsformeln, die es Ihnen ermöglicht, diese zu speichern, um sie einfacher wieder anzuzeigen.
 
-> ****
+> **Spitze**
 >
 > Wenn Sie Berechnungen gespeichert haben, stehen diese links in . zur Verfügung **Meine Berechnungen**.
 
@@ -95,7 +95,7 @@ Sie haben auch Zugriff auf eine Verwaltung von Berechnungsformeln, die es Ihnen 
 
 Vor allen Daten, die angezeigt werden können, finden Sie zwei Symbole :
 
-- **** : Ermöglicht das Löschen der aufgezeichneten Daten. Beim Klicken fragt Jeedom, ob die Daten vor einem bestimmten Datum oder alle Daten gelöscht werden sollen.
+- **Mülleimer** : Ermöglicht das Löschen der aufgezeichneten Daten. Beim Klicken fragt Jeedom, ob die Daten vor einem bestimmten Datum oder alle Daten gelöscht werden sollen.
 - **Pfeil** : Aktiviert den CSV-Export historischer Daten.
 
 ### Inkonsistente Wertentfernung

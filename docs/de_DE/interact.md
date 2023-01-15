@@ -12,7 +12,7 @@ Diese Bestellungen erhalten Sie von :
 
 Der Wert von Interaktionen liegt in der vereinfachten Integration in andere Systeme wie Smartphones, Tablets, andere Hausautomationsboxen usw.
 
-> ****
+> **Spitze**
 >
 > Sie können eine Interaktion öffnen, indem Sie dies tun :
 > - Klicken Sie auf eine davon.
@@ -30,11 +30,11 @@ Sobald Sie eine Interaktion konfiguriert haben, haben Sie ein Kontextmenü mit d
 
 Am oberen Rand der Seite befinden sich 3 Schaltflächen :
 
-- **** : Ermöglicht das Erstellen neuer Interaktionen.
+- **Hinzufügen** : Ermöglicht das Erstellen neuer Interaktionen.
 - **Regenerat** : Recréer toutes les interactions (peut être très long &gt; 5mn).
 - **** : Öffnen Sie einen Dialog, um einen Satz zu schreiben und zu testen.
 
-> ****
+> **Spitze**
 >
 > Wenn Sie eine Interaktion haben, die beispielsweise die Sätze für Lichter generiert, und Sie ein neues Lichtsteuermodul hinzufügen, müssen Sie entweder alle Interaktionen neu generieren oder zur betreffenden Interaktion gehen und sie erneut erstellen, um sie zu erstellen die Sätze dieses neuen Moduls.
 
@@ -52,14 +52,14 @@ Die Konfigurationsseite besteht aus mehreren Registerkarten und Schaltflächen :
 
 - **** : Zeigt die Anzahl der Sätze der Interaktion an (ein Klick darauf zeigt Sie).
 - **** : Notieren Sie die aktuelle Interaktion.
-- **** : Aktuelle Interaktion löschen.
+- **Entfernen** : Aktuelle Interaktion löschen.
 - **** : Dupliziert die aktuelle Interaktion.
 
 ### Registerkarte &quot;Allgemein&quot;
 
-- **** : Interaktionsname (kann leer sein, der Name ersetzt den Anforderungstext in der Interaktionsliste).
+- **Familienname, Nachname** : Interaktionsname (kann leer sein, der Name ersetzt den Anforderungstext in der Interaktionsliste).
 - **** : Interaktionsgruppe, dies ermöglicht es, sie zu organisieren (kann leer sein, wird daher in der Gruppe "keine" sein").
-- **** : Aktiviert oder deaktiviert die Interaktion.
+- **Anlage** : Aktiviert oder deaktiviert die Interaktion.
 - **** : Der generierende Modellsatz (erforderlich).
 - **** : Ermöglicht das Definieren von Synonymen für die Namen der Befehle.
 - **Antwort** : Die Antwort zu geben.
@@ -83,7 +83,7 @@ Verwenden Sie diese Option, wenn Sie einen oder mehrere bestimmte Befehle als Zi
 
 #### Exemples
 
-> ****
+> **Notiz**
 >
 > Die Screenshots können im Hinblick auf Entwicklungen unterschiedlich sein.
 
@@ -103,7 +103,7 @@ Wir können uns sehr gut vorstellen, dasselbe mit mehreren Aktionen zu tun, um m
 
 In den beiden obigen Beispielen ist der Modellsatz identisch, aber die daraus resultierenden Aktionen ändern sich entsprechend der Konfiguration im Teil "Aktion". Daher können wir uns bereits mit einer einfachen Interaktion mit einem einzelnen Satz Aktionen vorstellen, die zwischen diesen kombiniert werden verschiedene Befehle und verschiedene Szenarien (wir können auch Szenarien im Aktionsteil von Interaktionen auslösen).
 
-> ****
+> **Spitze**
 >
 > Um ein Szenario hinzuzufügen, erstellen Sie eine neue Aktion, schreiben Sie &quot;Szenario&quot; ohne Akzent und drücken Sie die Tabulatortaste auf Ihrer Tastatur, um die Szenarioauswahl aufzurufen.
 
@@ -111,7 +111,7 @@ In den beiden obigen Beispielen ist der Modellsatz identisch, aber die daraus re
 
 Hier sehen wir das ganze Interesse und die ganze Kraft von Interaktionen. Mit einem Modellsatz können wir Sätze für eine ganze Gruppe von Befehlen generieren.
 
-Wir werden das oben Gesagte fortsetzen, die Aktionen löschen, die wir hinzugefügt haben, und anstelle des festen Satzes in &quot;Anfrage&quot; die Tags verwenden **\.#commande\.#**  **\.#equipement\.#**. Jeedom wird diese Tags daher durch den Namen der Befehle und den Namen des Geräts ersetzen (wir können sehen, wie wichtig es ist, konsistente Befehls- / Gerätenamen zu haben).
+Wir werden das oben Gesagte fortsetzen, die Aktionen löschen, die wir hinzugefügt haben, und anstelle des festen Satzes in &quot;Anfrage&quot; die Tags verwenden **\.#commande\.#** und **\.#equipement\.#**. Jeedom wird diese Tags daher durch den Namen der Befehle und den Namen des Geräts ersetzen (wir können sehen, wie wichtig es ist, konsistente Befehls- / Gerätenamen zu haben).
 
 ![interact006](../images/interact006.png)
 
@@ -171,7 +171,7 @@ Das Feld **Binäre Konvertierung** muss 2 Antworten enthalten : zuerst die Antwo
 
 Im Feld "Autorisierte Benutzer" können Sie nur bestimmte Personen zur Ausführung des Befehls autorisieren. Sie können mehrere Profile erstellen, indem Sie sie durch ein "\" trennen|".
 
- : personne1\.|personne2
+Beispiel : personne1\.|personne2
 
 Wir können uns vorstellen, dass ein Alarm von einem Kind oder einem Nachbarn aktiviert oder deaktiviert werden kann, der in Ihrer Abwesenheit kommen würde, um die Pflanzen zu gießen.
 
@@ -285,7 +285,7 @@ Wir können also einen regulären Ausdruck sehen :
 
 Auf diese Weise können Sie alle Befehle löschen, deren Satz eines dieser Wörter enthält
 
-> ****
+> **Notiz**
 >
 > Der reguläre Ausdruck hier ist eine vereinfachte Version zur einfachen Verwendung. Wir können daher entweder traditionelle Ausdrücke oder vereinfachte Ausdrücke wie in diesem Beispiel verwenden.
 
@@ -297,9 +297,9 @@ Es ist möglich, eine Lampe als Prozentsatz (Dimmer) oder einen Thermostat mit d
 
 ![interact022](../images/interact022.png)
 
-Wie wir sehen können, gibt es hier in der Anfrage das Tag **\.#consigne\.#** (Sie können eingeben, was Sie möchten), was in der Antriebssteuerung enthalten ist, um den gewünschten Wert anzuwenden. Dazu haben wir 3 Teile : \.*  : in dem wir ein Tag erstellen, das den Wert darstellt, der an die Interaktion gesendet wird. \* Antwort : Wir verwenden das Tag für die Antwort erneut, um sicherzustellen, dass Jeedom die Anfrage richtig verstanden hat. \*  : Wir setzen eine Aktion auf die Lampe, die wir fahren möchten, und geben in dem Wert, den wir geben, unser Etikett an **.
+Wie wir sehen können, gibt es hier in der Anfrage das Tag **\.#consigne\.#** (Sie können eingeben, was Sie möchten), was in der Antriebssteuerung enthalten ist, um den gewünschten Wert anzuwenden. Dazu haben wir 3 Teile : \.*  : in dem wir ein Tag erstellen, das den Wert darstellt, der an die Interaktion gesendet wird. \* Antwort : Wir verwenden das Tag für die Antwort erneut, um sicherzustellen, dass Jeedom die Anfrage richtig verstanden hat. \* Lager : Wir setzen eine Aktion auf die Lampe, die wir fahren möchten, und geben in dem Wert, den wir geben, unser Etikett an **.
 
-> ****
+> **Notiz**
 >
 > Wir können jedes Tag verwenden, außer denjenigen, die bereits von Jeedom verwendet werden. Es können mehrere verwendet werden, um beispielsweise mehrere Befehle zu steuern. Beachten Sie auch, dass alle Tags an die von der Interaktion gestarteten Szenarien übergeben werden (es ist jedoch erforderlich, dass sich das Szenario unter "Im Vordergrund ausführen" befindet").
 
@@ -346,10 +346,10 @@ Dieses Beispiel ermöglicht es daher, das Szenario zu starten, das im Aktionstei
 
 ### Programmieren einer Aktion mit Interaktionen
 
-Interaktionen machen insbesondere viele Dinge. Sie können eine Aktion dynamisch programmieren.  : "Schaltet die Heizung um 22 Uhr für 14.50 Uhr ein". Nichts könnte einfacher sein, verwenden Sie einfach die Tags \#time\.# (wenn eine bestimmte Zeit definiert ist) oder \#duration\.# (für in X-Zeit, Beispiel in 1 Stunde) :
+Interaktionen machen insbesondere viele Dinge. Sie können eine Aktion dynamisch programmieren. Beispiel : "Schaltet die Heizung um 22 Uhr für 14.50 Uhr ein". Nichts könnte einfacher sein, verwenden Sie einfach die Tags \#time\.# (wenn eine bestimmte Zeit definiert ist) oder \#duration\.# (für in X-Zeit, Beispiel in 1 Stunde) :
 
 ![interact23](../images/interact23.JPG)
 
-> ****
+> **Notiz**
 >
 > Sie werden in der Antwort das Tag \ bemerken#value\.# Dies enthält im Falle einer programmierten Interaktion die effektive Programmierzeit

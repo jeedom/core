@@ -15,11 +15,11 @@ Este relatório (diferente das visualizações e designs) é gerado automaticame
 - 5 : Nome do seu Jeedom, atalho para configuração.
 - 6 : Modo de edição (reordenar / redimensionar blocos).
 - 7 : Filtrar por categorias.
-- 8 :  : Ícone, nome e resumo e seus equipamentos.
+- 8 : Objeto : Ícone, nome e resumo e seus equipamentos.
 - 9 : Ladrilho para equipamento.
 - 10 : Widget de pedidos.
 
-> ****
+> **Gorjeta**
 >
 > A ordem de exibição dos objetos no Painel é visível em **Análise → Resumo da automação residencial**. Você pode modificar esta ordem nesta página arrastando e soltando.
 
@@ -37,7 +37,7 @@ Movendo o mouse sobre um pedido, um marcador colorido aparece na parte inferior 
 
 Além disso, você pode clicar no título do ladrilho (o nome do equipamento) para abrir diretamente a página de configuração deste equipamento.
 
-> ****
+> **Gorjeta**
 >
 > É possível ir diretamente para um único objeto na sua automação residencial, através do menu **Página inicial → Painel de controle → Nome do objeto**.
 > Isso permite que você tenha apenas o equipamento que lhe interessa e carregue a página mais rapidamente.
@@ -51,7 +51,7 @@ Além disso, você pode clicar no título do ladrilho (o nome do equipamento) pa
 
 - Um clique em um pedido de tipo de informação exibe o histórico do pedido (se for histórico).
 - Um Ctrl + Clique em um comando de tipo de informação exibe o histórico de todos os comandos (históricos) desse bloco.
-- Um clique na informação ** de um comando de ação exibe o histórico do comando (se for historizado).
+- Um clique na informação *Tempo* de um comando de ação exibe o histórico do comando (se for historizado).
 
 
 ## Modo de edição
@@ -66,7 +66,7 @@ Em cada objeto, à direita de seu nome e resumo, dois ícones permitem que você
 
 ## Barra de menus do Jeedom
 
-> ****
+> **Gorjeta**
 >
 > - Clique no relógio (barra de menus) : Abra a linha do tempo.
 > - Clique no nome do Jeedom (barra de menus) : Abre Configurações → Sistema → Configuração.
