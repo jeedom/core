@@ -3849,7 +3849,7 @@
         "L\\'objet n\\'existe pas :": "Object does not exist:",
         "Vue inconnu. Vérifiez l\\'ID": "Unknown view. Check the ID",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No files found. Check the PHP setting (post size limit)",
-        "Extension du fichier non valide (autorisé .jpg .png .gif) :": "Invalid file extension (allowed .jpg .png .gif):",
+        "Extension du fichier non valide (autorisé .jpg .png .gif .svg .webp) :": "Invalid file extension (allowed .jpg .png .gif .svg .webp):",
         "Le fichier est trop gros (maximum 5Mo)": "The file is too large (maximum 5MB)",
         "Impossible de sauvegarder l\\'image": "Unable to save image",
         "Aucune méthode correspondante à :": "No method corresponding to:"
@@ -3876,7 +3876,7 @@
         "inconnu": "unknown",
         "Vous ne pouvez éditer ce type d\\'extension :": "You cannot edit this type of extension:",
         "Impossible de créer le fichier, vérifiez les droits": "Unable to create file, check rights",
-        "Extension du fichier non valide (autorisé .jpg .png .gif) :": "Invalid file extension (authorized .jpg .png .gif):",
+        "Extension du fichier non valide (autorisé .jpg .png .gif .jpeg .svg .webp) :": "Invalid file extension (allowed .jpg .png .gif .jpeg .svg .webp):",
         "Le fichier est trop gros (maximum 5Mo)": "The file is too large (maximum 5MB)",
         "Impossible de sauvegarder l\\'image": "Unable to save image",
         "Fichier introuvable, impossible de le supprimer": "File not found, cannot be deleted",
@@ -4891,7 +4891,6 @@
         "Largeur (px)": "Width (px)",
         "Hauteur (px)": "Height (px)",
         "Délai": "Delay",
-        "Option(s)": "Option",
         "Aucune": "None",
         "Aucun": "None",
         "Principale": "Main"

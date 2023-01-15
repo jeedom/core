@@ -3849,7 +3849,7 @@
         "L\\'objet n\\'existe pas :": "L\\'objet n\\'existe pas :",
         "Vue inconnu. Vérifiez l\\'ID": "不明なビュー。 IDを確認してください",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "ファイルが見つかりません。 PHPの設定を確認します（投稿のサイズ制限）",
-        "Extension du fichier non valide (autorisé .jpg .png .gif) :": "Extension du fichier non valide (autorisé .jpg .png .gif) :",
+        "Extension du fichier non valide (autorisé .jpg .png .gif .svg .webp) :": "Extension du fichier non valide (autorisé .jpg .png .gif .svg .webp) :",
         "Le fichier est trop gros (maximum 5Mo)": "ファイルが大きすぎます（最大5MB）",
         "Impossible de sauvegarder l\\'image": "画像を保存できません",
         "Aucune méthode correspondante à :": "以下に対応するメソッドはありません："
@@ -3876,7 +3876,7 @@
         "inconnu": "inconnu",
         "Vous ne pouvez éditer ce type d\\'extension :": "Vous ne pouvez éditer ce type d\\'extension :",
         "Impossible de créer le fichier, vérifiez les droits": "Impossible de créer le fichier, vérifiez les droits",
-        "Extension du fichier non valide (autorisé .jpg .png .gif) :": "Extension du fichier non valide (autorisé .jpg .png .gif) :",
+        "Extension du fichier non valide (autorisé .jpg .png .gif .jpeg .svg .webp) :": "Extension du fichier non valide (autorisé .jpg .png .gif .jpeg .svg .webp) :",
         "Le fichier est trop gros (maximum 5Mo)": "ファイルが大きすぎます（最大5MB）",
         "Impossible de sauvegarder l\\'image": "画像を保存できません",
         "Fichier introuvable, impossible de le supprimer": "Fichier introuvable, impossible de le supprimer",
@@ -4891,7 +4891,6 @@
         "Largeur (px)": "幅（ピクセル）",
         "Hauteur (px)": "高さ（px）",
         "Délai": "お知らせ",
-        "Option(s)": "オプション（複数可）",
         "Aucune": "Aucune",
         "Aucun": "Aucun",
         "Principale": "Principale"

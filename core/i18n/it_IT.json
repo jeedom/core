@@ -3849,7 +3849,7 @@
         "L\\'objet n\\'existe pas :": "L\\'objet n\\'existe pas :",
         "Vue inconnu. Vérifiez l\\'ID": "Vista sconosciuta Controlla l'ID",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Nessun file trovato. Controlla l'impostazione PHP (limite dimensione post)",
-        "Extension du fichier non valide (autorisé .jpg .png .gif) :": "Extension du fichier non valide (autorisé .jpg .png .gif) :",
+        "Extension du fichier non valide (autorisé .jpg .png .gif .svg .webp) :": "Extension du fichier non valide (autorisé .jpg .png .gif .svg .webp) :",
         "Le fichier est trop gros (maximum 5Mo)": "Il file è troppo grande (massimo 5 MB)",
         "Impossible de sauvegarder l\\'image": "Impossibile salvare l'immagine",
         "Aucune méthode correspondante à :": "Nessun metodo corrispondente a:"
@@ -3876,7 +3876,7 @@
         "inconnu": "inconnu",
         "Vous ne pouvez éditer ce type d\\'extension :": "Vous ne pouvez éditer ce type d\\'extension :",
         "Impossible de créer le fichier, vérifiez les droits": "Impossible de créer le fichier, vérifiez les droits",
-        "Extension du fichier non valide (autorisé .jpg .png .gif) :": "Extension du fichier non valide (autorisé .jpg .png .gif) :",
+        "Extension du fichier non valide (autorisé .jpg .png .gif .jpeg .svg .webp) :": "Extension du fichier non valide (autorisé .jpg .png .gif .jpeg .svg .webp) :",
         "Le fichier est trop gros (maximum 5Mo)": "Il file è troppo grande (massimo 5 MB)",
         "Impossible de sauvegarder l\\'image": "Impossibile salvare l'immagine",
         "Fichier introuvable, impossible de le supprimer": "Fichier introuvable, impossible de le supprimer",
@@ -4891,7 +4891,6 @@
         "Largeur (px)": "Larghezza (px)",
         "Hauteur (px)": "Altezza (px)",
         "Délai": "Preavviso",
-        "Option(s)": "Opzione (s)",
         "Aucune": "Aucune",
         "Aucun": "Aucun",
         "Principale": "Principale"

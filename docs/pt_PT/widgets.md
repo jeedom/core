@@ -162,7 +162,7 @@ Dependendo do tipo de widget, geralmente você pode personalizar os ícones, col
 Existem dois tipos de modelo :
 
 - O "**simples**" : como um ícone / imagem para o "**NÓS**" e um ícone / imagem para o "**DESLIGADO**".
-- O "**multiestado**" : Isso torna possível definir, por exemplo, uma imagem se o comando tiver o valor "**XX**" e outro tão maior que "**AA**" ou se menos que "**ZZ**". Também funciona para valores de texto, uma imagem se o valor for "**totó**", outro se "**plop**" E assim por diante...
+- O "**multiestado**" : Isso torna possível definir, por exemplo, uma imagem se o comando tiver o valor "**XX**" e outro tão maior que "**AA**" ou se menos que "**ZZ**". Também funciona para valores de texto, uma imagem se o valor for "**toto**", outro se "**plop**" E assim por diante...
 
 #### Remplacement
 

@@ -3849,7 +3849,7 @@
         "L\\'objet n\\'existe pas :": "Objekt existiert nicht:",
         "Vue inconnu. Vérifiez l\\'ID": "Unbekannte Ansicht. Überprüfen Sie die ID",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Keine Dateien gefunden. Überprüfen Sie die PHP-Einstellung (Postgrößenbeschränkung)",
-        "Extension du fichier non valide (autorisé .jpg .png .gif) :": "Ungültige Dateierweiterung (erlaubt .jpg .png .gif):",
+        "Extension du fichier non valide (autorisé .jpg .png .gif .svg .webp) :": "Ungültige Dateierweiterung (erlaubt .jpg .png .gif .svg .webp):",
         "Le fichier est trop gros (maximum 5Mo)": "Die Datei ist zu groß (maximal 5 MB)",
         "Impossible de sauvegarder l\\'image": "Bild kann nicht gespeichert werden",
         "Aucune méthode correspondante à :": "Keine Methode entsprechend:"
@@ -3876,7 +3876,7 @@
         "inconnu": "Unbekannt",
         "Vous ne pouvez éditer ce type d\\'extension :": "Sie können diese Art von Erweiterung nicht bearbeiten:",
         "Impossible de créer le fichier, vérifiez les droits": "Datei kann nicht erstellt werden, Rechte überprüfen",
-        "Extension du fichier non valide (autorisé .jpg .png .gif) :": "Ungültige Dateierweiterung (autorisierte .jpg .png .gif):",
+        "Extension du fichier non valide (autorisé .jpg .png .gif .jpeg .svg .webp) :": "Ungültige Dateierweiterung (erlaubt .jpg .png .gif .jpeg .svg .webp):",
         "Le fichier est trop gros (maximum 5Mo)": "Die Datei ist zu groß (maximal 5 MB)",
         "Impossible de sauvegarder l\\'image": "Bild kann nicht gespeichert werden",
         "Fichier introuvable, impossible de le supprimer": "Datei nicht gefunden, kann nicht gelöscht werden",
@@ -4891,7 +4891,6 @@
         "Largeur (px)": "Breite (px)",
         "Hauteur (px)": "Höhe (px)",
         "Délai": "Bekanntmachung",
-        "Option(s)": "Option (en)",
         "Aucune": "Irgendein",
         "Aucun": "Nein",
         "Principale": "Hauptsächlich"
