@@ -3159,7 +3159,6 @@
         "Configuration en masse": "Configuration en masse"
     },
     "desktop\/js\/object.js": {
-        "Envoyer": "Kirim",
         "Image de fond ajoutée avec succès": "Image de fond ajoutée avec succès",
         "Commande": "Pesanan",
         "Activer": "Mengaktifkan",
@@ -3190,6 +3189,7 @@
         "Celle-ci est classé en dangereuse": "Celle-ci est classé en dangereuse"
     },
     "desktop\/js\/backup.js": {
+        "Fichier(s) ajouté(s) avec succès": "File (s) ditambahkan (s) berhasil",
         "L\\'opération est réussie": "Operasi L \\' berhasil",
         "L\\'opération a échoué": "Operasi L \\' gagal",
         "Sauvegarde réussie": "Menyimpan sukses",
@@ -3201,7 +3201,6 @@
         "Une fois lancée cette opération ne peut être annulée.": "Une fois lancée cette opération ne peut être annulée",
         "Êtes-vous sûr de vouloir supprimer la sauvegarde": "Apakah Anda yakin ingin menghapus cadangan",
         "Sauvegarde supprimée avec succès": "Backup berhasil dihapus",
-        "Fichier(s) ajouté(s) avec succès": "File (s) ditambahkan (s) berhasil",
         "Êtes-vous sûr de vouloir envoyer une sauvegarde de": "Etes-vous sûr de vouloir envoyer une sauvegarde de",
         "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "sur le cloud ? Une fois lancée cette opération ne peut être annulée",
         "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud": "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud",
@@ -4897,7 +4896,9 @@
     },
     "core\/dom\/dom.ui.js": {
         "OK": "OK",
-        "Annuler": "Annuler"
+        "Annuler": "Annuler",
+        "Vous ne pouvez uploader qu\\'un seul fichier.": "Vous ne pouvez uploader qu\\'un seul fichier",
+        "Taille de fichier trop importante.": "Taille de fichier trop importante"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",

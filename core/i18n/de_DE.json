@@ -3159,7 +3159,6 @@
         "Configuration en masse": "Massenkonfiguration"
     },
     "desktop\/js\/object.js": {
-        "Envoyer": "Senden",
         "Image de fond ajoutée avec succès": "Hintergrundbild erfolgreich hinzugefügt",
         "Commande": "Befehl",
         "Activer": "Aktivieren",
@@ -3190,6 +3189,7 @@
         "Celle-ci est classé en dangereuse": "Es wird als gefährlich eingestuft"
     },
     "desktop\/js\/backup.js": {
+        "Fichier(s) ajouté(s) avec succès": "Datei (en) erfolgreich hinzugefügt",
         "L\\'opération est réussie": "Die Operation ist erfolgreich",
         "L\\'opération a échoué": "Operation fehlgeschlagen",
         "Sauvegarde réussie": "Speichern erfolgreich",
@@ -3201,7 +3201,6 @@
         "Une fois lancée cette opération ne peut être annulée.": "Nach dem Start kann dieser Vorgang nicht abgebrochen werden",
         "Êtes-vous sûr de vouloir supprimer la sauvegarde": "Sind Sie sicher, dass Sie die Sicherung löschen möchten?",
         "Sauvegarde supprimée avec succès": "Backup erfolgreich gelöscht",
-        "Fichier(s) ajouté(s) avec succès": "Datei (en) erfolgreich hinzugefügt",
         "Êtes-vous sûr de vouloir envoyer une sauvegarde de": "Sind Sie sicher, dass Sie ein Backup von senden möchten?",
         "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "auf der Wolke? Nach dem Start kann dieser Vorgang nicht abgebrochen werden",
         "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud": "Sind Sie sicher, dass Sie Cloud-Backups repatriieren möchten?",
@@ -4897,7 +4896,9 @@
     },
     "core\/dom\/dom.ui.js": {
         "OK": "Okay",
-        "Annuler": "Stornieren"
+        "Annuler": "Stornieren",
+        "Vous ne pouvez uploader qu\\'un seul fichier.": "Sie können nur eine Datei hochladen",
+        "Taille de fichier trop importante.": "Dateigröße zu groß"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Sie sind nicht berechtigt, diese Aktion auszuführen, IP:",

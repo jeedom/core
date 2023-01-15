@@ -3159,7 +3159,6 @@
         "Configuration en masse": "Configuration en masse"
     },
     "desktop\/js\/object.js": {
-        "Envoyer": "Gönder",
         "Image de fond ajoutée avec succès": "Image de fond ajoutée avec succès",
         "Commande": "Komuta",
         "Activer": "Etkinleştir",
@@ -3190,6 +3189,7 @@
         "Celle-ci est classé en dangereuse": "Celle-ci est classé en dangereuse"
     },
     "desktop\/js\/backup.js": {
+        "Fichier(s) ajouté(s) avec succès": "Dosya(lar) başarıyla eklendi(ler)",
         "L\\'opération est réussie": "Operasyon başarıldı",
         "L\\'opération a échoué": "Operasyon başarılamadı",
         "Sauvegarde réussie": "Kayıt başarılı",
@@ -3201,7 +3201,6 @@
         "Une fois lancée cette opération ne peut être annulée.": "Bu işlem başlandıktan sonra iptal edilemez",
         "Êtes-vous sûr de vouloir supprimer la sauvegarde": "Kaydı silmek istediğinizden eminmisiniz",
         "Sauvegarde supprimée avec succès": "Kayıt başarıyla silindi",
-        "Fichier(s) ajouté(s) avec succès": "Dosya(lar) başarıyla eklendi(ler)",
         "Êtes-vous sûr de vouloir envoyer une sauvegarde de": "Etes-vous sûr de vouloir envoyer une sauvegarde de",
         "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "sur le cloud ? Une fois lancée cette opération ne peut être annulée",
         "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud": "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud",
@@ -4897,7 +4896,9 @@
     },
     "core\/dom\/dom.ui.js": {
         "OK": "OK",
-        "Annuler": "Annuler"
+        "Annuler": "Annuler",
+        "Vous ne pouvez uploader qu\\'un seul fichier.": "Vous ne pouvez uploader qu\\'un seul fichier",
+        "Taille de fichier trop importante.": "Taille de fichier trop importante"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",

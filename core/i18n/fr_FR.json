@@ -3159,7 +3159,6 @@
         "Configuration en masse": "Configuration en masse"
     },
     "desktop\/js\/object.js": {
-        "Envoyer": "Envoyer",
         "Image de fond ajoutée avec succès": "Image de fond ajoutée avec succès",
         "Commande": "Commande",
         "Activer": "Activer",
@@ -3190,6 +3189,7 @@
         "Celle-ci est classé en dangereuse": "Celle-ci est classé en dangereuse"
     },
     "desktop\/js\/backup.js": {
+        "Fichier(s) ajouté(s) avec succès": "Fichier(s) ajouté(s) avec succès",
         "L\\'opération est réussie": "L\\'opération est réussie",
         "L\\'opération a échoué": "L\\'opération a échoué",
         "Sauvegarde réussie": "Sauvegarde réussie",
@@ -3201,7 +3201,6 @@
         "Une fois lancée cette opération ne peut être annulée.": "Une fois lancée cette opération ne peut être annulée.",
         "Êtes-vous sûr de vouloir supprimer la sauvegarde": "Êtes-vous sûr de vouloir supprimer la sauvegarde",
         "Sauvegarde supprimée avec succès": "Sauvegarde supprimée avec succès",
-        "Fichier(s) ajouté(s) avec succès": "Fichier(s) ajouté(s) avec succès",
         "Êtes-vous sûr de vouloir envoyer une sauvegarde de": "Êtes-vous sûr de vouloir envoyer une sauvegarde de",
         "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "sur le cloud ? Une fois lancée cette opération ne peut être annulée",
         "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud": "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud",
@@ -4897,7 +4896,9 @@
     },
     "core\/dom\/dom.ui.js": {
         "OK": "OK",
-        "Annuler": "Annuler"
+        "Annuler": "Annuler",
+        "Vous ne pouvez uploader qu\\'un seul fichier.": "Vous ne pouvez uploader qu\\'un seul fichier.",
+        "Taille de fichier trop importante.": "Taille de fichier trop importante."
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",

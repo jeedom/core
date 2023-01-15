@@ -3159,7 +3159,6 @@
         "Configuration en masse": "マス構成"
     },
     "desktop\/js\/object.js": {
-        "Envoyer": "送ります",
         "Image de fond ajoutée avec succès": "Image de fond ajoutée avec succès",
         "Commande": "オーダー",
         "Activer": "アクティブ",
@@ -3190,6 +3189,7 @@
         "Celle-ci est classé en dangereuse": "危険に分類されます"
     },
     "desktop\/js\/backup.js": {
+        "Fichier(s) ajouté(s) avec succès": "ファイルが正常に追加されました",
         "L\\'opération est réussie": "操作は成功しました",
         "L\\'opération a échoué": "操作に失敗しました",
         "Sauvegarde réussie": "成功したバックアップ",
@@ -3201,7 +3201,6 @@
         "Une fois lancée cette opération ne peut être annulée.": "一度起動すると、この操作はキャンセルできません。",
         "Êtes-vous sûr de vouloir supprimer la sauvegarde": "バックアップを削除してもよろしいですか",
         "Sauvegarde supprimée avec succès": "バックアップが削除されました",
-        "Fichier(s) ajouté(s) avec succès": "ファイルが正常に追加されました",
         "Êtes-vous sûr de vouloir envoyer une sauvegarde de": "のバックアップを送信してもよろしいですか",
         "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "クラウド上で？一度起動すると、この操作はキャンセルできません。",
         "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud": "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud",
@@ -4897,7 +4896,9 @@
     },
     "core\/dom\/dom.ui.js": {
         "OK": "OK",
-        "Annuler": "Annuler"
+        "Annuler": "Annuler",
+        "Vous ne pouvez uploader qu\\'un seul fichier.": "Vous ne pouvez uploader qu\\'un seul fichier",
+        "Taille de fichier trop importante.": "Taille de fichier trop importante"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",
