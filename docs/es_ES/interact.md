@@ -30,7 +30,7 @@ Una vez en la configuración de una interacción, tiene un menú contextual con 
 
 En la parte superior de la página, hay 3 botones :
 
-- **Agregar** : Le permite crear nuevas interacciones.
+- **Para agregar** : Le permite crear nuevas interacciones.
 - **Regenerado** : Recréer toutes les interactions (peut être très long &gt; 5mn).
 - **Prueba** : Abre un diálogo para escribir y probar una oración.
 
@@ -51,8 +51,8 @@ También podemos definir un comando para ejecutar si, por ejemplo, la interacci�
 La página de configuración consta de varias pestañas y botones :
 
 - **Oraciones** : Muestra el número de oraciones de la interacción (un clic en ellas te muestra).
-- **Salvar** : Grabar la interacción actual.
-- **Eliminar** : Eliminar interacción actual.
+- **Para registrarse** : Grabar la interacción actual.
+- **Borrar** : Eliminar interacción actual.
 - **Duplicar** : Duplica la interacción actual.
 
 ### Pestaña General

@@ -30,7 +30,7 @@ Once on the configuration of an interaction, you have a contextual menu with the
 
 At the top of the page, there are 3 buttons :
 
-- **Add** : Allows you to create new interactions.
+- **To add** : Allows you to create new interactions.
 - **Regenerate** : Recréer toutes les interactions (peut être très long &gt; 5mn).
 - **Test** : Open a dialog to write and test a sentence.
 
@@ -51,8 +51,8 @@ We can also define a command to execute if for example the interaction is not li
 The configuration page consists of several tabs and buttons :
 
 - **Sentences** : Displays the number of sentences of the interaction (a click on them shows you).
-- **Save** : Record the current interaction.
-- **Remove** : Delete current interaction.
+- **To register** : Record the current interaction.
+- **To delete** : Delete current interaction.
 - **Duplicate** : Duplicates the current interaction.
 
 ### General tab

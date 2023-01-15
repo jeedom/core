@@ -26,7 +26,7 @@ On a View, we find :
 
 ## Adding / Editing a view
 
-The principle is quite simple : a View is made up of areas. Each zone is of type *chart*, *widget* Where *board*. Depending on this type, you can add graphics, equipment, or commands to it.
+The principle is quite simple : a View is made up of areas. Each zone is of type *chart*, *widget* Where *picture*. Depending on this type, you can add graphics, equipment, or commands to it.
 
 - On the left of the page we find the list of Views as well as a creation button.
 - A button at the top right allows you to edit the Current View (Configuration).
@@ -41,10 +41,10 @@ The principle is quite simple : a View is made up of areas. Each zone is of type
 
 On each zone you have the following general options :
 
-- **Width** : Defines the width of the area (in desktop mode only). 1 for the width of 1/12 of the navigator, 12 for the total width.
+- **Lenght** : Defines the width of the area (in desktop mode only). 1 for the width of 1/12 of the navigator, 12 for the total width.
 - A button allowing to add an element to this zone, depending on the type of zone (see below).
 - **Edit** : Allows you to change the name of the zone.
-- **Remove** : Delete the zone.
+- **To delete** : Delete the zone.
 
 ### Equipment type zone
 
@@ -75,7 +75,7 @@ When you press the button **Add curve**, Jeedom displays the list of historical 
 - **Color** : Color of the curve.
 - **Kind** : Type of curve.
 - **Group** : Allows grouping of data (maximum type per day).
-- **Scale** : Scale (right or left) of the curve.
+- **Ladder** : Scale (right or left) of the curve.
 - **Stairs** : Displays the staircase curve.
 - **Stack** : Stacks the curve with the other type curves.
 - **Variation** : Only draw variations with the previous value.

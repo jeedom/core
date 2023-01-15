@@ -86,7 +86,7 @@ In einem Codeblock :
 
 ### Analyse / Zusammenfassung der Hausautomation
 - Strg Klicken Sie auf das Symbol *Offen* (recherche) : Öffnen Sie alle Gegenstände und Geräte.
-- Strg Klicken Sie auf das Symbol *Schließen* (recherche) : Schließt alle Objekte und Geräte.
+- Strg Klicken Sie auf das Symbol *Nah dran* (recherche) : Schließt alle Objekte und Geräte.
 
 ### Analyse / Geschichte
 Wenn mehrere Kurven angezeigt werden :

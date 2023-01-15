@@ -23,7 +23,7 @@ Na página você tem três botões :
 - **Data da última conexão** : Data do último login do usuário. Observe que esta é a data real da conexão; portanto, se você salvar seu computador, a data da conexão não será atualizada sempre que você retornar.
 - **Direitos** : Modificar direitos de usuário.
 - **Senha** : Permite alterar a senha do usuário.
-- **Retirar** : Remover usuário.
+- **Deletar** : Remover usuário.
 - **Regenerar chave de API** : Regenerar chave de API do usuário.
 - **Gerenciar direitos** : Permite gerenciar com precisão os direitos do usuário (observe que o perfil deve estar em "usuário limitado"").
 

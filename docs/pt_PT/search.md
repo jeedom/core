@@ -3,7 +3,7 @@
 
 Jeedom oferece um mecanismo de busca interno.
 
-![Pesquisa](./images/search_intro.gif)
+![Pesquisar](./images/search_intro.gif)
 
 Você pode fazer pesquisas de diferentes tipos :
 
@@ -68,9 +68,9 @@ O mecanismo será exibido nas tabelas abaixo :
 - O **interações** usando esta string.
 	Pesquisar nos campos *Solicitar*.
 - O **equipamento** usando esta string.
-	Pesquisar nos campos *nome*, *ID lógico*, *eqType*, *Como? 'Ou' O que*, *Tag*.
+	Pesquisar nos campos *nome*, *logicId*, *eqType*, *Como? 'Ou' O que*, *Tag*.
 - O **ordens** usando esta string.
-	Pesquisar nos campos *nome*, *ID lógico*, *eqType*, *tipo_genérico*, .
+	Pesquisar nos campos *nome*, *logicId*, *eqType*, *tipo_genérico*, .
 - O **notas** usando esta string.
 	Pesquisa de texto do Notes.
 
@@ -82,10 +82,10 @@ O mecanismo será exibido nas tabelas abaixo :
 
 - A **Cenas** tendo este id.
 - A **Projeto** tendo este id.
-- O **visualizar** tendo este id.
+- O **visto** tendo este id.
 - L'**interação** tendo este id.
 - L'**equipamento** tendo este id.
-- O **ordenou** tendo este id.
+- O **ordenado** tendo este id.
 - O **Nota** tendo este id.
 
 ## Resultados

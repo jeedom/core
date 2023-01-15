@@ -53,7 +53,7 @@ Vohere l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& typ
 Vohere l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = message & category = \#CATEGORY\#&message=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = message & category=#CATEGORY#&message=#MESSAGE#)
 
 - **category** : message category to add to message center.
-- **message** : message in question, be careful to think about encoding the message (space becomes% 20, =% 3D…). You can use a tool, [here](https://meyerweb.com/eric/tools/dencoder/).
+- **Message** : message in question, be careful to think about encoding the message (space becomes% 20, =% 3D…). You can use a tool, [here](https://meyerweb.com/eric/tools/dencoder/).
 
 ## Objet
 
@@ -84,4 +84,4 @@ Returns all objects, equipment, commands (and their value if they are info) in j
 Vohere l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = variable & name=#NAME#&value=)*VALUE*
 
 - **name** : name of the variable whose value is desired (reading the value).
-- **value** \[optional\] : if "value" is specified then the variable will take this value (writing a value).
+- **VALUE** \[optional\] : if "value" is specified then the variable will take this value (writing a value).

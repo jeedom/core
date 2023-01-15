@@ -3,7 +3,7 @@
 
 Auf dieser Seite können Sie die verschiedenen Elemente, die in Ihrem Jeedom konfiguriert sind, auf einer einzigen Seite zusammenfassen. Es bietet auch Zugriff auf Funktionen zum Organisieren von Geräten und Steuerungen, auf deren erweiterte Konfiguration und zum Anzeigen von Konfigurationsmöglichkeiten.
 
-{% include lightbox.html src="images/doc-display_01.jpg" data="Display" title="Display" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+{% include lightbox.html src="images/.doc-display_01.jpg" data="Display" title="Display" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 ## Informations
 
@@ -26,11 +26,11 @@ Für jedes Objekt stehen neben seiner Beschriftung zwei Schaltflächen zur Verf�
 - Die erste wird verwendet, um die Objektkonfigurationsseite in einer neuen Registerkarte zu öffnen.
 - Die zweite enthält einige Informationen zum Objekt,
 
-> **Spitze**
+> **Tipp**
 >
 > Die Hintergrundfarbe der Objektrahmen hängt von der Farbe ab, die in der Konfiguration des Objekts ausgewählt wurde.
 
-> **Spitze**
+> **Tipp**
 >
 > Mit einem Klick auf die Objekte oder Geräte können Sie deren Reihenfolge ändern oder sie sogar einem anderen Objekt zuweisen. Aus der auf dieser Seite festgelegten Reihenfolge wird die Anzeige des Dashboards berechnet.
 
@@ -38,10 +38,10 @@ Für jedes Objekt stehen neben seiner Beschriftung zwei Schaltflächen zur Verf�
 
 Auf jeder Ausrüstung finden wir :
 
-- EIN **Kontrollkästchen** um das Gerät auszuwählen (Sie können mehrere auswählen). Wenn mindestens ein Gerät ausgewählt ist, haben Sie Aktionsschaltflächen, die oben links zu angezeigt werden **Löschen**, zurückgeben **sichtbar**/**unsichtbar**,  **Anlage**/**Leerlauf** ausgewählte Ausrüstung.
+- EIN **Kontrollkästchen** um das Gerät auszuwählen (Sie können mehrere auswählen). Wenn mindestens ein Gerät ausgewählt ist, haben Sie Aktionsschaltflächen, die oben links zu angezeigt werden **löschen**, zurückgeben **sichtbar**/.**unsichtbar**,  **Anlage**/.**Leerlauf** ausgewählte Ausrüstung.
 - L'**Ich würde** Ausrüstung.
-- Der **nett** Ausrüstung : Kennung des Plugins, zu dem es gehört.
-- Der **Name** Ausrüstung.
+- Das **nett** Ausrüstung : Kennung des Plugins, zu dem es gehört.
+- Das **Name** Ausrüstung.
 - **Leerlauf** (kleines Kreuz) : Bedeutet, dass das Gerät inaktiv ist (wenn es nicht vorhanden ist, ist das Gerät aktiv).
 - **Unsichtbar** (gekreuztes Auge) : Bedeutet, dass das Gerät unsichtbar ist (wenn es nicht vorhanden ist, ist das Gerät sichtbar).
 
@@ -53,7 +53,7 @@ Wenn das Geräte-Plugin deaktiviert ist, werden die beiden Symbole rechts nicht 
 
 ## Erweiterte Gerätekonfiguration
 
-> **Spitze**
+> **Tipp**
 >
 > Sie können (sofern das Plugin dies unterstützt) direkt von der Gerätekonfigurationsseite auf dieses Fenster zugreifen, indem Sie auf die Schaltfläche Erweiterte Konfiguration klicken
 
@@ -63,14 +63,14 @@ Das Fenster von **Erweiterte Gerätekonfiguration** erlaubt es zu ändern. Zunä
 - **Verbindungen** : Ermöglicht die Anzeige der Verknüpfungen des Geräts mit den Objekten, Befehlen, Szenarien, Variablen, Interaktionen usw. in grafischer Form (in diesem Fall führt ein Doppelklick auf ein Element zu seiner Konfiguration).
 - **Protokoll** : Zeigt die Ereignisse des betreffenden Geräts an.
 - **Zu schützen** : Speichern Sie die am Gerät vorgenommenen Änderungen.
-- **Entfernen** : Ausrüstung entfernen.
+- **Löschen** : Ausrüstung entfernen.
 
 ### Registerkarte Informationen
 
 Tab **Information** enthält allgemeine Informationen über das Gerät und seine Bedienelemente :
 
-- **ICH WÜRDE** : Eindeutige Kennung in der Jeedom-Datenbank.
-- **Familienname, Nachname** : Name der Ausrüstung.
+- **Ich würde** : Eindeutige Kennung in der Jeedom-Datenbank.
+- **Name** : Name der Ausrüstung.
 - **Logische ID** : Logische Kennung des Geräts (kann leer sein).
 - **Objekt-ID** : Eindeutige Kennung des übergeordneten Objekts (kann leer sein).
 - **Erstellungsdatum** : Erstellungsdatum der Ausrüstung.
@@ -99,14 +99,14 @@ In der Registerkarte **Anzeige**, Sie können bestimmte Verhaltensweisen bei der
 Unten finden Sie optionale Anzeigeparameter, die auf das Gerät angewendet werden können. Diese Parameter bestehen aus einem Namen und einem Wert. Klicken Sie einfach auf **Hinzufügen** einen anwenden
 wieder. Für Geräte nur den Wert **Stil** Wird derzeit verwendet, kann CSS-Code in das betreffende Gerät eingefügt werden.
 
-> **Spitze**
+> **Tipp**
 >
 > Vergessen Sie nicht, nach jeder Änderung zu speichern.
 
 ### Registerkarte Layout
 
 In diesem Teil können Sie zwischen dem Standardlayout der Befehle (nebeneinander im Widget) oder im Tabellenmodus wählen. Im Standardmodus ist nichts einzustellen. Hier sind die im Modus verfügbaren Optionen
-**Planke** :
+**Bild** :
 - **Anzahl der Zeilen**
 - **Anzahl der Spalten**
 - **In Kisten zentrieren** : Aktivieren Sie das Kontrollkästchen, um die Bestellungen in den Kontrollkästchen zu zentrieren.
@@ -114,11 +114,11 @@ In diesem Teil können Sie zwischen dem Standardlayout der Befehle (nebeneinande
 - **Tabellenstil (CSS)** : Hier können Sie nur den Stil der Tabelle definieren.
 
 Unten für jede Box die **detaillierte Konfiguration** erlaubt dir
-Dieser :
+Dies :
 - **Boxtext** : Fügen Sie zusätzlich zum Befehl Text hinzu (oder ganz alleine, wenn das Feld keinen Befehl enthält).
 - **Fallstil (CSS)** : Ändern Sie den spezifischen CSS-Stil der Box (beachten Sie, dass das allgemeine CSS der Boxen überschrieben und ersetzt wird).
 
-> **Spitze**
+> **Tipp**
 >
 > Wenn Sie in einem Feld in der Tabelle zwei Befehle untereinander setzen möchten, vergessen Sie nicht, nach dem ersten in der Tabelle einen Zeilenumbruch hinzuzufügen **Erweiterte Konfiguration** davon.
 
@@ -134,9 +134,9 @@ Im Folgenden können Sie auch die spezifischen Batteriewarnschwellen für dieses
 
 Sie können das Zeitlimit der Ausrüstung auch in Minuten verwalten. Zum Beispiel sagt 30 jeedom, dass wenn das Gerät 30 Minuten lang nicht kommuniziert hat, es in Alarmbereitschaft versetzt werden muss.
 
-> **Spitze**
+> **Tipp**
 >
-> Die globalen Parameter sind in **→ Einstellungen → Systemkonfiguration : Protokolle** Woher **Ausrüstung**
+> Die globalen Parameter sind in **→ Einstellungen → Systemkonfiguration : Protokolle** Wo **Ausrüstung**
 
 ### Registerkarte &quot;Kommentar&quot;
 
@@ -153,7 +153,7 @@ Zunächst sind oben rechts einige Schaltflächen verfügbar :
 -  **Bewerben Sie sich bei** : Ermöglicht die Anwendung derselben Konfiguration auf mehrere Befehle.
 - **Zu schützen** : Speichern Sie die am Gerät vorgenommenen Änderungen.
 
-> **Spitze**
+> **Tipp**
 >
 > In einer Grafik bringt Sie ein Doppelklick auf ein Element zu seiner Konfiguration.
 
@@ -165,12 +165,12 @@ Zunächst sind oben rechts einige Schaltflächen verfügbar :
 
 Tab **Information** enthält allgemeine Informationen zur Bestellung :
 
-- **ICH WÜRDE** : Eindeutiger Bezeichner in der Datenbank.
+- **Ich würde** : Eindeutiger Bezeichner in der Datenbank.
 - **Logische ID** : Logische Kennung des Befehls (kann leer sein).
-- **Familienname, Nachname** : Name der Bestellung.
+- **Name** : Name der Bestellung.
 - **Nett** : Art des Befehls (Aktion oder Info).
 - **Untertyp** : Befehlssubtyp (binär, digital usw.)).
-- **Direkte URL** : Gibt die URL für den Zugriff auf dieses Gerät an. (Rechtsklick, kopiere die Linkadresse) Die URL startet den Befehl für a **Aktie** und geben Sie die Informationen für a zurück **Information**.
+- **Direkte URL** : Gibt die URL für den Zugriff auf dieses Gerät an. (Rechtsklick, kopiere die Linkadresse) Die URL startet den Befehl für a **Lager** und geben Sie die Informationen für a zurück **Information**.
 - **Einheit** : Steuereinheit.
 - **Befehl, der ein Update auslöst** : Gibt die Kennung eines anderen Befehls an, der bei Änderung dieses anderen Befehls die Aktualisierung des angezeigten Befehls erzwingt.
 - **Sichtbar** : Aktivieren Sie dieses Kontrollkästchen, um den Befehl sichtbar zu machen.
@@ -202,7 +202,7 @@ Unten finden Sie eine Liste der verschiedenen Geräte, Befehle, Szenarien oder I
 
 - **Historisch**
     - **Historisiere** : Aktivieren Sie das Kontrollkästchen, um die Werte dieses Befehls zu protokollieren. (Siehe **Analyse → Geschichte**)
-    - **Glättungsmodus** : Modus von **Glättung** oder d'**Archivierung** Hier können Sie auswählen, wie die Daten archiviert werden sollen. Standardmäßig ist dies ein **Mittel**. Es ist auch möglich, die zu wählen **maximal**, der **Minimum**, Woher **keiner**. **keiner** Lassen Sie uns Jeedom mitteilen, dass für diesen Befehl keine Archivierung durchgeführt werden soll (sowohl während der ersten 5 Minuten als auch während der Archivierungsaufgabe)). Diese Option ist gefährlich, weil Jeedom alles behält : Es werden also viel mehr Daten gespeichert.
+    - **Glättungsmodus** : Modus von **Glättung** oder d'**Archivierung** Hier können Sie auswählen, wie die Daten archiviert werden sollen. Standardmäßig ist dies ein **bedeuten**. Es ist auch möglich, die zu wählen **maximal**, das **Minimum**, Wo **Keiner**. **Keiner** Lassen Sie uns Jeedom mitteilen, dass für diesen Befehl keine Archivierung durchgeführt werden soll (sowohl während der ersten 5 Minuten als auch während der Archivierungsaufgabe)). Diese Option ist gefährlich, weil Jeedom alles behält : Es werden also viel mehr Daten gespeichert.
     - **Verlauf löschen, wenn älter als** : Sagen wir Jeedom, dass alle Daten gelöscht werden sollen, die älter als ein bestimmter Zeitraum sind. Es kann praktisch sein, keine Daten zu speichern, wenn dies nicht erforderlich ist, und daher die Menge der von Jeedom aufgezeichneten Informationen zu begrenzen.
 
 - **Werteverwaltung**
@@ -212,7 +212,7 @@ Unten finden Sie eine Liste der verschiedenen Geräte, Befehle, Szenarien oder I
 
 - **Andere**
     - **Management der Wiederholung von Werten** : Wenn der Befehl automatisch um den doppelten Wert in Folge erhöht wird, berücksichtigt Jeedom den zweiten Aufstieg nicht (vermeidet das mehrfache Auslösen eines Szenarios, es sei denn, der Befehl ist vom binären Typ). Sie können die Wiederholung des Wertes erzwingen oder ihn vollständig verbieten.
-    - **URL drücken** : Ermöglicht das Hinzufügen einer URL, die im Falle einer Aktualisierung der Bestellung aufgerufen werden soll. Sie können die folgenden Tags verwenden : ``#value#"für den Wert der Bestellung"#cmd_name#`für den Namen des Befehls`#cmd_id#"für die eindeutige Kennung der Bestellung"#humanname#`für den vollständigen Namen des Befehls (z : ``#[Salder de bain][Hydrometrie][Humidité]#`),`#eq_name#`für den Namen des Geräts.
+    - **URL drücken** : Ermöglicht das Hinzufügen einer URL, die im Falle einer Aktualisierung der Bestellung aufgerufen werden soll. Sie können die folgenden Tags verwenden : ``#value#"für den Wert der Bestellung"#cmd_name#`für den Namen des Befehls`#cmd_id#"für die eindeutige Kennung der Bestellung"#humanname#`für den vollständigen Namen des Befehls (z : ``#[Saldas de bain][Hydrometrie][Humidité]#`),`#eq_name#`für den Namen des Geräts.
 
 #### Für einen Aktionsbefehl :
 
@@ -224,7 +224,7 @@ Unten finden Sie eine Liste der verschiedenen Geräte, Befehle, Szenarien oder I
 
 ### Registerkarte &quot;Warnungen&quot;
 
-Ermöglicht das Definieren einer Alarmstufe (**Warnung** Woher **Achtung**) abhängig von bestimmten Bedingungen. Wenn beispielsweise 30 Minuten lang &quot;Wert&gt; 8&quot; angezeigt wird, kann das Gerät in Alarmbereitschaft versetzt werden **Warnung**.
+Ermöglicht das Definieren einer Alarmstufe (**Warnung** Wo **Achtung**) abhängig von bestimmten Bedingungen. Wenn beispielsweise 30 Minuten lang &quot;Wert&gt; 8&quot; angezeigt wird, kann das Gerät in Alarmbereitschaft versetzt werden **Warnung**.
 
 > **Notiz**
 >
@@ -238,10 +238,10 @@ In diesem Teil können Sie bestimmte Widget-Anzeigeverhalten im Dashboard, in An
 - **Sichtbar** : Überprüfen Sie, ob der Befehl sichtbar ist.
 - **Name anzeigen** : Aktivieren Sie diese Option, um den Namen des Befehls je nach Kontext sichtbar zu machen.
 - **Anzeigename und Symbol** : Aktivieren Sie das Kontrollkästchen, um das Symbol zusätzlich zum Befehlsnamen sichtbar zu machen.
-- **Umbrochene Zeile vor dem Widget** : Tick **vor dem Widget** Woher **nach dem Widget** Hinzufügen eines Zeilenumbruchs vor oder nach dem Widget (um beispielsweise eine Spaltenanzeige der verschiedenen Befehle des Geräts anstelle von Standardzeilen zu erzwingen)
+- **Umbrochene Zeile vor dem Widget** : Tick **vor dem Widget** Wo **nach dem Widget** Hinzufügen eines Zeilenumbruchs vor oder nach dem Widget (um beispielsweise eine Spaltenanzeige der verschiedenen Befehle des Geräts anstelle von Standardzeilen zu erzwingen)
 
 Unten finden Sie optionale Anzeigeparameter, die an das Widget übergeben werden können. Diese Parameter hängen vom jeweiligen Widget ab. Sie müssen sich daher die Datei auf dem Markt ansehen, um sie zu kennen.
 
-> **Spitze**
+> **Tipp**
 >
 > Vergessen Sie nicht, nach jeder Änderung zu speichern.

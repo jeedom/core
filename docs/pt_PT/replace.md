@@ -52,7 +52,7 @@ Para cada pedido, será copiado da origem para o destino (lista não exaustiva) 
 	* Configurações de ação de valor (informações),
 	* ícone,
 	* A ativação e o diretório em *Linha do tempo*,
-	* As configurações de *Cálculo* e *volta*,
+	* As configurações de *Cálculo* e *redondo*,
 	* A configuração do influxDB,
 	* A configuração do valor de repetição,
 	* Alertas,

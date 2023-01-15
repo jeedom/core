@@ -1,7 +1,7 @@
 # Objets
 **Tools → Objects**
 
-The **objects** allow you to define the tree structure of your home automation.
+The **Objects** allow you to define the tree structure of your home automation.
 
 All the equipment you create must belong to an object and are therefore more easily identifiable. We then say that the object is the **relative** equipment.
 
@@ -12,7 +12,7 @@ To give free choice to personalization, you can name these objects as you wish. 
 ## Gestion
 
 You have two options :
-- **Add** : Create a new object.
+- **To add** : Create a new object.
 - **Overview** : Displays the list of objects created and their configuration.
 
 ## Overview
@@ -69,7 +69,7 @@ Here are the different characteristics to configure an object :
 - **Tag color** : Allows you to choose the color of the object and the equipment attached to it.
 - **Tag text color** : Allows you to choose the color of the text of the object. This text will be over the **Tag color**. You choose a color to make the text readable.
 - **Only on synthesis** : Allows you to put an image for the Synthesis without it being used as a background image, especially on the page *Dashboard* of this object.
-- **Picture** : You have the option to upload an image or delete it. In jpeg format this image will be the background image of the object when you display it on the Dashboard. It will also be used for the thumbnail of the piece on the Synthesis.
+- **Image** : You have the option to upload an image or delete it. In jpeg format this image will be the background image of the object when you display it on the Dashboard. It will also be used for the thumbnail of the piece on the Synthesis.
 
 > **Tip**
 >

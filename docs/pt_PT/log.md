@@ -3,7 +3,7 @@
 
 Logs são arquivos de log, permitindo que você siga o que está acontecendo em sua automação residencial. Na maioria dos casos, os logs serão usados apenas para depuração e solução de problemas pela equipe de suporte.
 
-> **Gorjeta**
+> **Dica**
 >
 > Quando a página é aberta, o primeiro log disponível é exibido.
 
@@ -15,10 +15,10 @@ A página Logs é bastante simples :
 - **Pausar / retomar** : Pausar / retomar a atualização em tempo real do log atual.
 - **Baixar** : Faça o download do log atual.
 - **Vazio** : Limpe o log atual.
-- **Retirar** : Excluir o log atual. Se o Jeedom precisar, ele será recriado automaticamente.
+- **Deletar** : Excluir o log atual. Se o Jeedom precisar, ele será recriado automaticamente.
 - **Excluir todos os logs** : Excluir todos os logs presentes.
 
-> **Gorjeta**
+> **Dica**
 >
 > Observe que o log http.erro não pode ser excluído. É essencial que se você o excluir (na linha de comando, por exemplo), ele não será recriado, você deverá reiniciar o sistema.
 

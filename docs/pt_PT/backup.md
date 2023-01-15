@@ -66,7 +66,7 @@ No nível do protocolo, apenas o Z-Wave (OpenZwave) é um pouco diferente porque
 
 O backup na nuvem permite que a Jeedom envie seus backups diretamente ao mercado. Isso permite que você os restaure facilmente e certifique-se de não perdê-los. O Market mantém os últimos 6 backups. Para se inscrever basta ir à sua página **perfil** no mercado e depois na guia **meus backups**. Você pode, nesta página, recuperar um backup ou comprar uma assinatura (por 1, 3, 6 ou 12 meses).
 
-> **Gorjeta**
+> **Dica**
 >
 > Você pode personalizar o nome dos arquivos de backup na guia **Minhas jeedoms**, evitando no entanto os personagens exóticos.
 

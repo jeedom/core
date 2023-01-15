@@ -86,7 +86,7 @@ In a Code block :
 
 ### Home automation analysis / summary
 - Ctrl Click on icon *Open* (recherche) : Open all objects and equipment.
-- Ctrl Click on icon *To close* (recherche) : Closes all objects and equipment.
+- Ctrl Click on icon *Close* (recherche) : Closes all objects and equipment.
 
 ### Analysis / History
 If several curves are displayed :

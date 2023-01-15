@@ -24,7 +24,7 @@ Esta página ofrece almacenamiento por tipo de equipo : Enchufe, luz, obturador,
 
 ## Tipo de comando
 
-Una vez que un elemento de equipo se coloca en la posición correcta *Amable*, Pulsando sobre él accedes a la lista de sus pedidos, coloreados de diferente color si es un *Información* (Azul) o un *Valores* (Orange).
+Una vez que un elemento de equipo se coloca en la posición correcta *Tipo*, Pulsando sobre él accedes a la lista de sus pedidos, coloreados de diferente color si es un *Información* (Azul) o un *Valores* (Orange).
 
 Al hacer clic con el botón derecho en un pedido, puede asignarle un Tipo genérico correspondiente a las especificaciones de este pedido (Tipo de información / acción, Numérico, Subtipo binario, etc).
 
@@ -58,7 +58,7 @@ Aquí, un disparador al encender una luz en la sala de estar : ''#genericType(LU
 
 Si, en un escenario, desea saber si hay una luz encendida en la sala de estar, puede hacer :
 
-SI `#[Salón][Lumiere Canapé][Expresar]# == 1 O #[Salón][Lumiere Salon][Expresar]# == 1 O #[Salón][Lumiere Angle][Expresar]# == 1`
+SI `#[Salón][Lumiere Canapé][Estado]# == 1 O #[Salón][Lumiere Salon][Estado]# == 1 O #[Salón][Lumiere Angle][Estado]# == 1`
 
 O mas simplemente : IF `genericType (LIGHT_STATE,#[Salón]#) > 0` o si una o más luces están encendidas en la sala de estar.
 
@@ -121,7 +121,7 @@ O más simplemente, cree una acción `genericType` con` LIGHT_ON` en` Salon`. Si
 
 | **Electricidad (id: Electricity)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| PODER | Energia electrica | Información | numeric
+| Energía | Energia electrica | Información | numeric
 | CONSUMO | El consumo de energía | Información | numeric
 | VOLTAJE | Tensión | Información | numeric
 | REINICIAR | Reiniciar | Valores | other
@@ -145,7 +145,7 @@ O más simplemente, cree una acción `genericType` con` LIGHT_ON` en` Salon`. Si
 | **Genérico (id: Generic)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | PROFUNDIDAD | Profundidad | Información | numeric
-| DISTANCIA | Distancia | Información | numeric
+| DISTANCIA | DISTANCIA | Información | numeric
 | BOTÓN | Botón | Información | binario, numérico
 | INFORMACIÓN_GENÉRICA |  Genérico | Información |
 | ACCIÓN_GENÉRICA |  Genérico | Valores | other
@@ -172,24 +172,24 @@ O más simplemente, cree una acción `genericType` con` LIGHT_ON` en` Salon`. Si
 
 | **Multimedia (id: Multimedia)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| VOLUMEN | Volumen | Información | numeric
+| Volumen | Volumen | Información | numeric
 | MEDIO_ESTADO | Estado | Información | string
 | MEDIA_ALBUM | Álbum | Información | string
 | ARTISTA_MEDIA | Artista | Información | string
 | MEDIO_TITLE | Título | Información | string
-| MEDIA_POWER | Poder | Información | string
+| MEDIA_POWER | Energía | Información | string
 | CANAL | Cadena | Información | numérico, cadena
-| MEDIO_ESTADO | Expresar | Información | binary
+| MEDIO_ESTADO | Estado | Información | binary
 | SET_VOLUMEN | Volumen | Valores | slider
 | SET_CHANNEL | Cadena | Valores | otro control deslizante
-| MEDIOS_PAUSA | Romper | Valores | other
-| MEDIOS_RESUME | Leer | Valores | other
-| MEDIA_STOP | Parada | Valores | other
+| MEDIOS_PAUSA | Pausa | Valores | other
+| MEDIOS_RESUME | Lectura | Valores | other
+| MEDIA_STOP | Deténgase | Valores | other
 | MEDIOS_SIGUIENTE | Próximo | Valores | other
 | MEDIOS_ANTERIORES | Anterior | Valores | other
 | MEDIA_ON | Nosotros | Valores | other
 | MEDIOS_DESACTIVADOS | Apagado | Valores | other
-| MEDIOS_MUTE | Silenciar | Valores | other
+| MEDIOS_MUTE | Silencio | Valores | other
 | MEDIA_UNMUTE | Sin silencio | Valores | other
 
 | **Clima (id: Weather)** | | | |
@@ -258,8 +258,8 @@ O más simplemente, cree una acción `genericType` con` LIGHT_ON` en` Salon`. Si
 | MODO_ALARMA | Modo de alarma | Información | string
 | ALARMA_ENABLE_ESTADO | Estado de alarma activado | Información | binary
 | INUNDACIÓN | Inundación | Información | binary
-| SABOTAJE | Sabotaje | Información | binary
-| CONMOCIÓN | Conmoción | Información | binario, numérico
+| SABOTAJE | SABOTAJE | Información | binary
+| CHOQUE | Choque | Información | binario, numérico
 | SIREN_OFF | Botón de sirena apagado | Valores | other
 | SIREN_EN | Botón de sirena encendido | Valores | other
 | ALARMA_ARMADO | Alarma armada | Valores | other
@@ -288,7 +288,7 @@ O más simplemente, cree una acción `genericType` con` LIGHT_ON` en` Salon`. Si
 | FAN_SPEED_STATE | Estado de la velocidad del ventilador | Información | numeric
 | ROTACIÓN_ESTADO | Rotación de estado | Información | numeric
 | VELOCIDAD DEL VENTILADOR | Velocidad del ventilador | Valores | slider
-| GIRAR | Girar | Valores | slider
+| GIRAR | GIRAR | Valores | slider
 
 | **Panel (id: Shutter)** | | | |
 |:--------|:----------------|:--------:|:---------:|

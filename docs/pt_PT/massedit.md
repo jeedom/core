@@ -3,7 +3,7 @@
 
 Esta ferramenta permite que você edite um grande número de equipamentos, comandos, objetos ou cenários. É completamente genérico e usa automaticamente o esquema e a estrutura do banco de dados Jeedom. Assim, ele suporta plug-ins e a configuração de seus equipamentos.
 
-> **Aviso**
+> **Atenção**
 >
 > Se esta ferramenta for muito fácil de usar, ela se destina a usuários avançados. Na verdade, é de fato muito simples alterar qualquer parâmetro em dezenas de dispositivos ou centenas de comandos e, portanto, tornar certas funções inoperantes, veja até mesmo o Core.
 

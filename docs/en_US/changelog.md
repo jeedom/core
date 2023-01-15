@@ -29,7 +29,7 @@
 
 ### 4.4 : Autre
 
-- **Core** : Start of development in pure js, without jQuery. See [doc-dev](https://doc.jeedom.com/en_US/dev/core4.4).
+- **Core** : Start of development in pure js, without jQuery. See [doc dev](https://doc.jeedom.com/en_US/dev/core4.4).
 - **Core** : More detailed listing of USB devices.
 - **Lib** : Update Highchart v9.3.2 to v10.3.2 (The module *solid gauge* no longer imported).
 
@@ -274,7 +274,7 @@ Blog post [here](https://blog.jeedom.com/6739-jeedom-4-3/)
 
 ### 4.2 : News / Improvements
 
-- **Synthesis** : Possibility of configuring objects to go to a *design* or a *view* since the synthesis.
+- **Synthesis** : Possibility of configuring objects to go to a *design* or a *seen* since the synthesis.
 - **Dashboard** : The device configuration window (edit mode) now allows you to configure mobile widgets and generic types.
 - **Widgets** : Internationalization of third-party Widgets (user code). see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.2).
 - **Analysis / History** : Possibility to compare a history over a given period.
@@ -405,7 +405,7 @@ The plugins must respect the recommendations on the tree structure of folders an
 - Bugfix of colored summaries on synthesis.
 - Bugfix on scenario comments with json.
 - Bugfix on summary updates on Dashboard mode previews.
-- Bugfix of elements *picture* on a design.
+- Bugfix of elements *image* on a design.
 - Added grouping options by time for charts on views.
 - Conservation of the Synthesis context when clicking on the summaries.
 - Centering of Synthesis images.
@@ -452,10 +452,10 @@ The plugins must respect the recommendations on the tree structure of folders an
 - **Analysis / History** : The options *grouping, type, variation, staircase* are active only with a single displayed curve.
 - **Analysis / History** : We can now use the option *Area* with the option *Stairs*.
 - **Analysis / Logs** : New monospace type font for logs.
-- **View** : Possibility to put scenarios.
-- **View** : Edit mode now inserting the moved tile.
-- **View** : Edit mode: the equipment refresh icons are replaced by an icon allowing access to their configuration, thanks to a new simplified modal.
-- **View** : The display order is now independent of that on the Dashboard.
+- **Seen** : Possibility to put scenarios.
+- **Seen** : Edit mode now inserting the moved tile.
+- **Seen** : Edit mode: the equipment refresh icons are replaced by an icon allowing access to their configuration, thanks to a new simplified modal.
+- **Seen** : The display order is now independent of that on the Dashboard.
 - **Timeline** : Separation of History and Timeline pages.
 - **Timeline** : Integration of the Timeline in DB for reliability reasons.
 - **Timeline** : Management of multiple timelines.

@@ -97,7 +97,7 @@ Para isso, é necessário levar em consideração 2 pré-requisitos :
 `` ''
 
 >**Truque**      
->Desde que o nome padronizado permaneça legível, é possível adaptar a nomenclatura, por exemplo *open_volet* Onde *shutter_close*, *andar_2* e *stop_2*, etc.
+>Desde que o nome padronizado permaneça legível, é possível adaptar a nomenclatura, por exemplo *open_volet* Onde *shutter_close*, *caminhada_2* e *parada_2*, etc.
 
 ## Widgets personalizados
 
@@ -146,7 +146,7 @@ Uma vez na página de configuração de um widget, um menu de contexto é acess�
 Uma vez na página **Ferramentas → Widgets** você tem que clicar no botão "**Adicionar**" e dê um nome ao seu novo widget.
 
 Próximo :
-- Você escolhe se isso se aplica a um pedido de tipo **Estoque** Onde **Em formação**.
+- Você escolhe se isso se aplica a um pedido de tipo **Ações** Onde **Em formação**.
 - Dependendo da escolha anterior, você terá que **escolha o subtipo** da ordem.
 - Finalmente **o modelo** entre aqueles que estarão disponíveis de acordo com as escolhas anteriores.
 - Uma vez que o modelo foi escolhido, Jeedom exibe as opções de configuração para ele abaixo.
@@ -161,12 +161,12 @@ Dependendo do tipo de widget, geralmente você pode personalizar os ícones, col
 
 Existem dois tipos de modelo :
 
-- O "**simples**" : como um ícone / imagem para o "**NÓS**" e um ícone / imagem para o "**DESLIGADO**".
+- O "**simples**" : como um ícone / imagem para o "**Nós**" e um ícone / imagem para o "**Desligado**".
 - O "**multiestado**" : Isso torna possível definir, por exemplo, uma imagem se o comando tiver o valor "**XX**" e outro tão maior que "**AA**" ou se menos que "**ZZ**". Também funciona para valores de texto, uma imagem se o valor for "**toto**", outro se "**plop**" E assim por diante...
 
 #### Remplacement
 
-Isso é chamado de modelo simples, aqui você só precisa dizer que o "**NÓS**" corresponde a tal ícone / imagem *(usando o botão de escolha)*, a "**DESLIGADO**" para esse outro ícone / imagem, etc...      
+Isso é chamado de modelo simples, aqui você só precisa dizer que o "**Nós**" corresponde a tal ícone / imagem *(usando o botão de escolha)*, a "**Desligado**" para esse outro ícone / imagem, etc...      
 
 A Caixa **Widget de tempo**, se disponível, exibe a duração desde a última mudança de estado no widget.
 
@@ -178,23 +178,23 @@ Para modelos usando imagens, você pode configurar a largura do widget em pixels
 
 #### Test
 
-Isso é chamado de modelos de vários estados *(vários estados)*. Em vez de colocar uma imagem para o "**NÓS** e / ou para o "**DESLIGADO** como no caso anterior, você atribuirá um ícone de acordo com a validação de uma condição *(test)*. Se isso for verdade, o widget exibirá o ícone / imagem em questão.
+Isso é chamado de modelos de vários estados *(vários estados)*. Em vez de colocar uma imagem para o "**Nós** e / ou para o "**Desligado** como no caso anterior, você atribuirá um ícone de acordo com a validação de uma condição *(test)*. Se isso for verdade, o widget exibirá o ícone / imagem em questão.
 
 Como antes, diferentes imagens podem ser selecionadas dependendo do tema ativo no Jeedom e na caixa **Widget de tempo** mostra a duração desde a última mudança de estado.
 
-Os testes estão no formato : ``#value# == 1`,`#value#`será automaticamente substituído pelo valor atual do comando. Você também pode fazer, por exemplo :
+Os testes estão no formato : ``#value# == 1`, `#value#`será automaticamente substituído pelo valor atual do comando. Você também pode fazer, por exemplo :
 
 - ``#value# > 1`
 - ``#value# >= 1 && #value# <= 5``
 - ``#value# == 'toto'``
 
->**Observação**     
+>**NOTA**     
 >É essencial mostrar os apóstrofos (**'**) em torno do texto para comparar se o valor é texto *(info / outro)*.
 
->**Observação**     
+>**NOTA**     
 >Para usuários avançados, também é possível usar funções javascript, como `#value#.match ("^ plop") `, aqui testamos se o texto começa com` plop`.
 
->**Observação**     
+>**NOTA**     
 >É possível exibir o valor do comando no widget especificando `#value#`no código HTML do teste. Para exibir a unidade, adicione `#unite#``.
 
 ## Widget de código

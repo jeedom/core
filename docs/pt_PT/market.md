@@ -15,7 +15,7 @@ Isso é dividido em várias partes :
     - **Sobrenome** : Seu nome (essas informações são úteis apenas para tornar os e-mails mais agradáveis).
     - **Primeiro nome** : Seu primeiro nome (essas informações são úteis apenas para tornar os e-mails mais agradáveis).
     - **Nome de usuário no fórum** : Seu nome de usuário no fórum.
-    - **O email** : Seu email.
+    - **E-mail** : Seu email.
     - **Linguagem** : Seu idioma.
     - **Senha e Confirmar senha** : Permite alterar sua senha.
 
@@ -32,12 +32,12 @@ Para os profissionais :
 - **Desenvolvedor** : termos de uso para desenvolvedores.
     - **Bilhetes**
 - **Número de bilhetes** : Número de ingressos para o mês atual e seu limite.
-- **Apoio, suporte** : Botão para enviar uma solicitação de suporte (também acessível pelo ponto de exclamação no canto superior direito do Market ou no seu Jeedom).
+- **Apoiar** : Botão para enviar uma solicitação de suporte (também acessível pelo ponto de exclamação no canto superior direito do Market ou no seu Jeedom).
     - **Acesso a betas**
 - **Ativar acesso a plugins beta** : Habilita o acesso a plugins betas (observe que isso impedirá que você acesse o suporte).
     - **Resumo** Aqui você encontrará um resumo dos seus diferentes direitos e serviços.
 
-> **Gorjeta**
+> **Dica**
 >
 > Não esqueça de salvar.
 
@@ -49,7 +49,7 @@ Para os profissionais :
 - **Key instalação**
     - **Número de chaves de instalação** : Exibe o número de instalações Jeedom atualmente vinculadas à sua conta, bem como o limite autorizado.
 
-> **Gorjeta**
+> **Dica**
 >
 > É possível que o Market às vezes peça para você redefinir suas chaves de instalação, isso é normal, basta seguir o que é solicitado.
 
@@ -66,7 +66,7 @@ Para os profissionais :
     - **Hardware** : Nome do hardware Jeedom.
     - **Versão** : Versão Jeedom instalada.
 
-> **Gorjeta**
+> **Dica**
 >
 > Não esqueça de salvar.
 
