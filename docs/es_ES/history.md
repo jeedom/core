@@ -3,7 +3,7 @@
 
 Parte importante en el software : la parte de la historización, un verdadero recuerdo de ella. En Jeedom es posible registrar cualquier comando de tipo de información (binario o digital). Esto te permitirá, por ejemplo, registrar una curva de temperatura, consumos, aperturas de una puerta, etc.
 
-![](./images/history.gif)
+![Histórico](./images/history.gif)
 
 ### Principio de historización
 
@@ -13,11 +13,11 @@ El archivo de datos permite a Jeedom reducir la cantidad de datos almacenados en
 
 El archivado es una tarea que comienza de noche y compacta los datos recuperados durante el día. De forma predeterminada, Jeedom recupera todos los datos anteriores de 2 horas y crea paquetes de 1 hora (ya sea un promedio, un mínimo o un máximo dependiendo de la configuración). Así que aquí tenemos dos parámetros, uno para el tamaño del paquete y otro para saber cuándo hacerlo (por defecto, estos son paquetes de 1 hora con datos que tienen más de 2 horas de antigüedad).
 
-> ****
+> **Consejo**
 >
-> Si ha seguido bien, debe tener una alta precisión solo en las últimas 2 horas. Sin embargo, cuando me conecto a las 5 p.m., tengo precisión en las últimas 17 horas.  ? De hecho, para evitar consumir recursos innecesariamente, la tarea de archivo se lleva a cabo solo una vez al día, por la noche.
+> Si ha seguido bien, debe tener una alta precisión solo en las últimas 2 horas. Sin embargo, cuando me conecto a las 5 p.m., tengo precisión en las últimas 17 horas. Por qué ? De hecho, para evitar consumir recursos innecesariamente, la tarea de archivo se lleva a cabo solo una vez al día, por la noche.
 
-> ****
+> **Importante**
 >
 > Por supuesto, este principio de archivo solo se aplica a los pedidos digitales. En órdenes de tipo binario, Jeedom solo mantiene las fechas de cambio de estado.
 
@@ -37,14 +37,14 @@ Desde Core v4.2 también es posible mostrar una curva en la parte inferior del m
 
 Si muestra un gráfico a través de la página del historial, tiene acceso a varias opciones de visualización, arriba del gráfico :
 
-- **Período** : El período de visualización, incluidos los datos históricos entre estas dos fechas. Por defecto, dependiendo de la configuración *Período de visualización de los gráficos por defecto*  *Configuración → Sistema → Configuración / Equipo*.
-- **** : Ofrece varias opciones de agrupación (Suma por hora, etc.).
-- **Tipo de visualización** : Mostrar en **, **,  **. Opción guardada en el pedido y utilizada desde el Tablero.
-- **** : Muestra la diferencia de valor del punto anterior. Opción guardada en el pedido y utilizada desde el Tablero.
-- **** : Muestra la curva como una escalera o una pantalla continua. Opción guardada en el pedido y utilizada desde el Tablero.
-- **** : Compara la curva entre diferentes períodos.
+- **Período** : El período de visualización, incluidos los datos históricos entre estas dos fechas. Por defecto, dependiendo de la configuración *Período de visualización de los gráficos por defecto* dentro *Configuración → Sistema → Configuración / Equipo*.
+- **Grupo** : Ofrece varias opciones de agrupación (Suma por hora, etc.).
+- **Tipo de visualización** : Mostrar en *Línea*, *Área*, Donde *Varilla*. Opción guardada en el pedido y utilizada desde el Tablero.
+- **Variación** : Muestra la diferencia de valor del punto anterior. Opción guardada en el pedido y utilizada desde el Tablero.
+- **Escaleras** : Muestra la curva como una escalera o una pantalla continua. Opción guardada en el pedido y utilizada desde el Tablero.
+- **Comparar** : Compara la curva entre diferentes períodos.
 
-> ****
+> **Consejo**
 >
 > Para evitar cualquier error de manejo, estas opciones guardadas en los comandos solo están activas cuando se muestra una sola curva.
 > 
@@ -52,7 +52,7 @@ En la parte superior donde se muestran las curvas, también hay varias opciones 
 
 A la izquierda:
 
-- **** : Un área de acceso directo que le permite ajustar el zoom horizontal a la duración deseada, si los datos están cargados.
+- **Zoom** : Un área de acceso directo que le permite ajustar el zoom horizontal a la duración deseada, si los datos están cargados.
 
 Sobre la derecha:
 
@@ -68,12 +68,12 @@ Debajo de las curvas, también puede usar el menú contextual en cada leyenda pa
 También puede mostrar los gráficos en las vistas (veremos aquí las opciones de configuración y no cómo hacerlo, para eso debe ir a la documentación de las vistas o diseños en función). Estas son las opciones :
 
 Una vez que se activan los datos, puede elegir :
-- **** : El color de la curva.
-- **** : El tipo de gráfico (área, línea o columna).
-- **** : Como puede colocar varias curvas (datos) en el mismo gráfico, es posible distinguir las escalas (derecha o izquierda).
-- **** : Muestra la curva como una escalera o una pantalla continua.
-- **** : Apila los valores de las curvas (ver abajo el resultado).
-- **** : Muestra la diferencia de valor del punto anterior.
+- **Color** : El color de la curva.
+- **Amable** : El tipo de gráfico (área, línea o columna).
+- **Escala** : Como puede colocar varias curvas (datos) en el mismo gráfico, es posible distinguir las escalas (derecha o izquierda).
+- **Escaleras** : Muestra la curva como una escalera o una pantalla continua.
+- **Pila** : Apila los valores de las curvas (ver abajo el resultado).
+- **Variación** : Muestra la diferencia de valor del punto anterior.
 
 ### Opción en la página del historial
 
@@ -87,7 +87,7 @@ Permite mostrar una curva de acuerdo con un cálculo en varios comandos (puede h
 
 También tiene acceso a una gestión de fórmulas de cálculo que le permite guardarlas para volver a mostrarlas más fácilmente.
 
-> ****
+> **Consejo**
 >
 > Cuando haya guardado los cálculos, estos estarán disponibles a la izquierda en **Mis calculos**.
 
@@ -95,7 +95,7 @@ También tiene acceso a una gestión de fórmulas de cálculo que le permite gua
 
 Frente a cada dato que se puede mostrar, encontrará dos íconos :
 
-- **** : Le permite eliminar los datos grabados; Al hacer clic, Jeedom pregunta si eliminar los datos antes de una fecha determinada o todos los datos.
+- **Bote de basura** : Le permite eliminar los datos grabados; Al hacer clic, Jeedom pregunta si eliminar los datos antes de una fecha determinada o todos los datos.
 - **Flecha** : Permite la exportación CSV de datos históricos.
 
 ### Eliminación de valor inconsistente

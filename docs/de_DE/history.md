@@ -3,7 +3,7 @@
 
 Wichtiger Teil in der Software : der Historisierungsteil, eine wahre Erinnerung daran. In Jeedom ist es möglich, jeden Informationstypbefehl (binär oder digital) zu protokollieren). So können Sie beispielsweise einen Temperaturverlauf, Verbräuche, Türöffnungen etc. protokollieren.
 
-![](./images/history.gif)
+![Historisch](./images/history.gif)
 
 ### Prinzip der Historisierung
 
@@ -15,7 +15,7 @@ Die Archivierung beginnt nachts und komprimiert die tagsüber wiederhergestellte
 
 > **Spitze**
 >
-> Wenn Sie gut gefolgt sind, sollten Sie nur in den letzten 2 Stunden eine hohe Präzision haben. Wenn ich mich jedoch um 17 Uhr verbinde, habe ich eine Präzision für die letzten 17 Stunden.  ? Um unnötigen Ressourcenverbrauch zu vermeiden, findet die Archivierungsaufgabe nur einmal am Tag abends statt.
+> Wenn Sie gut gefolgt sind, sollten Sie nur in den letzten 2 Stunden eine hohe Präzision haben. Wenn ich mich jedoch um 17 Uhr verbinde, habe ich eine Präzision für die letzten 17 Stunden. Warum ? Um unnötigen Ressourcenverbrauch zu vermeiden, findet die Archivierungsaufgabe nur einmal am Tag abends statt.
 
 > **Wichtig**
 >
@@ -37,12 +37,12 @@ Ab Core v4.2 ist es auch möglich, eine Kurve am unteren Rand der Kachel eines G
 
 Wenn Sie ein Diagramm über die Verlaufsseite anzeigen, haben Sie über dem Diagramm Zugriff auf mehrere Anzeigeoptionen :
 
-- **Zeit** : Der Anzeigezeitraum einschließlich historischer Daten zwischen diesen beiden Daten. Standardmäßig abhängig von der Einstellung *Standard Anzeigezeitraum der Grafiken*  *Einstellungen → System → Konfiguration / Ausstattung*.
+- **Zeit** : Der Anzeigezeitraum einschließlich historischer Daten zwischen diesen beiden Daten. Standardmäßig abhängig von der Einstellung *Standard Anzeigezeitraum der Grafiken* in *Einstellungen → System → Konfiguration / Ausstattung*.
 - **Gruppe** : Bietet verschiedene Gruppierungsoptionen (Summe pro Stunde usw.).).
-- **Anzeigetyp** : Anzeige in **, **, Woher **. Option in der Bestellung gespeichert und über das Dashboard verwendet.
+- **Anzeigetyp** : Anzeige in *Linie*, *Bereich*, Woher *Stange*. Option in der Bestellung gespeichert und über das Dashboard verwendet.
 - **Variation** : Zeigt die Wertdifferenz zum vorherigen Punkt an. Option in der Bestellung gespeichert und über das Dashboard verwendet.
 - **Treppe** : Zeigt die Kurve als Treppe oder kontinuierliche Anzeige an. Option in der Bestellung gespeichert und über das Dashboard verwendet.
-- **** : Vergleichen Sie die Kurve zwischen verschiedenen Perioden.
+- **Vergleichen Sie** : Vergleichen Sie die Kurve zwischen verschiedenen Perioden.
 
 > **Spitze**
 >
@@ -52,7 +52,7 @@ Im oberen Teil, wo die Kurven angezeigt werden, gibt es auch mehrere Optionen :
 
 Auf der Linken:
 
-- **** : Ein Shortcut-Bereich, mit dem Sie den horizontalen Zoom auf die gewünschte Dauer einstellen können, wenn die Daten geladen sind.
+- **Zoomen** : Ein Shortcut-Bereich, mit dem Sie den horizontalen Zoom auf die gewünschte Dauer einstellen können, wenn die Daten geladen sind.
 
 Auf der rechten Seite:
 

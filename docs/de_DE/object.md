@@ -1,13 +1,13 @@
 # Objets
 **Werkzeuge → Objekte**
 
-Die **** Mit dieser Option können Sie die Baumstruktur Ihrer Hausautomation definieren.
+Die **Objekte** Mit dieser Option können Sie die Baumstruktur Ihrer Hausautomation definieren.
 
-Alle von Ihnen erstellten Geräte müssen zu einem Objekt gehören und sind daher leichter zu identifizieren. Wir sagen dann, dass das Objekt das ist **** Ausrüstung.
+Alle von Ihnen erstellten Geräte müssen zu einem Objekt gehören und sind daher leichter zu identifizieren. Wir sagen dann, dass das Objekt das ist **relativ** Ausrüstung.
 
 Um der Personalisierung freie Wahl zu lassen, können Sie diese Objekte nach Ihren Wünschen benennen. Normalerweise definieren wir die verschiedenen Teile seines Hauses, wie den Namen der Räume (dies ist auch die empfohlene Konfiguration).
 
-![](./images/object_intro.gif)
+![Objekte](./images/object_intro.gif)
 
 ## Gestion
 
@@ -19,11 +19,11 @@ Sie haben zwei Möglichkeiten :
 
 In der Übersicht können Sie alle Objekte in Jeedom sowie deren Konfiguration anzeigen :
 
-- **** : Objekt-ID.
-- **** : Objektname.
+- **ICH WÜRDE** : Objekt-ID.
+- **Objekt** : Objektname.
 - **Vater** : Name des übergeordneten Objekts.
-- **** : Objektsichtbarkeit.
-- **** : Gibt an, ob das Objekt im Dashboard ausgeblendet ist.
+- **Sichtbar** : Objektsichtbarkeit.
+- **Maske** : Gibt an, ob das Objekt im Dashboard ausgeblendet ist.
 - **Zusammenfassung definiert** : Gibt die Anzahl der Bestellungen pro Zusammenfassung an. Was blau ist, wird in der globalen Zusammenfassung berücksichtigt.
 - **Versteckte Dashboard-Zusammenfassung** : Zeigt versteckte Zusammenfassungen im Dashboard an.
 - **Versteckte mobile Zusammenfassung** : Versteckte Zusammenfassungen auf dem Handy anzeigen.
@@ -57,10 +57,10 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 
 - **Objektname** : Der Name Ihres Objekts.
 - **Übergeordnetes Objekt** : Gibt das übergeordnete Objekt des aktuellen Objekts an. Dadurch kann eine Hierarchie zwischen den Objekten definiert werden. Zum Beispiel : Das Wohnzimmer ist mit der Wohnung verbunden. Ein Objekt kann nur ein übergeordnetes Objekt haben, aber mehrere Objekte können dasselbe übergeordnete Objekt haben.
-- **** : Aktivieren Sie dieses Kontrollkästchen, um dieses Objekt sichtbar zu machen.
+- **Sichtbar** : Aktivieren Sie dieses Kontrollkästchen, um dieses Objekt sichtbar zu machen.
 - **Im Dashboard ausblenden** : Aktivieren Sie dieses Kontrollkästchen, um das Objekt im Dashboard auszublenden. Es wird weiterhin in der Liste gespeichert, sodass es angezeigt werden kann, jedoch nur explizit.
 - **Zusammenfassung ausblenden** : Aktivieren Sie dieses Kontrollkästchen, um das Objekt in der Zusammenfassung auszublenden'. Es wird weiterhin in der Liste gespeichert, sodass es angezeigt werden kann, jedoch nur explizit.
-- **Aktion aus der Synthese** : Hier können Sie eine Ansicht oder ein Design angeben, zu dem Sie wechseln möchten, wenn Sie in der Zusammenfassung auf das Objekt klicken. * : Armaturenbrett*.
+- **Aktion aus der Synthese** : Hier können Sie eine Ansicht oder ein Design angeben, zu dem Sie wechseln möchten, wenn Sie in der Zusammenfassung auf das Objekt klicken. *Defekt : Armaturenbrett*.
 
 #### Anzeige :
 
@@ -69,7 +69,7 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 - **Tag Farbe** : Ermöglicht die Auswahl der Farbe des Objekts und der daran angeschlossenen Ausrüstung.
 - **Tag-Textfarbe** : Hier können Sie die Farbe des Textes des Objekts auswählen. Dieser Text wird über dem **Tag Farbe**. Sie wählen eine Farbe, um den Text lesbar zu machen.
 - **Nur bei Synthese** : Ermöglicht das Einfügen eines Bildes für die Synthese, ohne dass es als Hintergrundbild verwendet wird, insbesondere auf der Seite *Armaturenbrett* dieses Objekts.
-- **** : Sie haben die Möglichkeit, ein Bild hochzuladen oder zu löschen. Im JPEG-Format ist dieses Bild das Hintergrundbild des Objekts, wenn Sie es im Dashboard anzeigen. Es wird auch für das Vorschaubild des Stücks über die Synthese verwendet.
+- **Bild** : Sie haben die Möglichkeit, ein Bild hochzuladen oder zu löschen. Im JPEG-Format ist dieses Bild das Hintergrundbild des Objekts, wenn Sie es im Dashboard anzeigen. Es wird auch für das Vorschaubild des Stücks über die Synthese verwendet.
 
 > **Spitze**
 >
@@ -77,7 +77,7 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 
 > **Spitze**
 >
-> Sie können eine Grafik sehen, die alle Elemente von Jeedom darstellt, die an dieses Objekt angehängt sind, indem Sie auf die Schaltfläche klicken ****, oben rechts.
+> Sie können eine Grafik sehen, die alle Elemente von Jeedom darstellt, die an dieses Objekt angehängt sind, indem Sie auf die Schaltfläche klicken **Verbindungen**, oben rechts.
 
 > **Spitze**
 >

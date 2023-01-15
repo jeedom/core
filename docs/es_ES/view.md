@@ -6,7 +6,7 @@ No es tan potente como los diseños, pero permite en pocos minutos tener una pan
 
 {% include lightbox.html src="images/doc-view_01.jpg" data="View" title="View" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
-> ****
+> **Consejo**
 >
 > Puede elegir la vista predeterminada en su perfil al hacer clic en el menú de vista.
 
@@ -20,13 +20,13 @@ En una vista, encontramos :
 - El lápiz a la derecha para editar el orden y el tamaño del equipo, de la misma manera que el Tablero.
 - Un botón *Edición completada* permitiendo editar las zonas y elementos de la Vista.
 
-> ****
+> **Consejo**
 >
 > Puede, en su perfil, modificar esta opción para que la lista de Vistas sea visible por defecto.
 
 ## Agregar / Editar una vista
 
-El principio es bastante simple : una vista está compuesta de áreas. Cada zona es de tipo **, **  **. Dependiendo de este tipo, puede agregarle gráficos, equipos o comandos.
+El principio es bastante simple : una vista está compuesta de áreas. Cada zona es de tipo *gráfico*, *artilugio* Donde *junta*. Dependiendo de este tipo, puede agregarle gráficos, equipos o comandos.
 
 - A la izquierda de la página encontramos la lista de Vistas, así como un botón de creación.
 - Un botón en la parte superior derecha le permite editar la Vista actual (Configuración).
@@ -35,16 +35,16 @@ El principio es bastante simple : una vista está compuesta de áreas. Cada zona
 - Un botón que permite guardar esta Vista.
 - Un botón que permite eliminar esta Vista.
 
-> ****
+> **Consejo**
 >
 > Puede mover el orden de las zonas arrastrando y soltando.
 
 En cada zona tienes las siguientes opciones generales :
 
-- **** : Define el ancho del área (solo en modo escritorio). 1 para el ancho de 1/12 del navegador, 12 para el ancho total.
+- **Ancho** : Define el ancho del área (solo en modo escritorio). 1 para el ancho de 1/12 del navegador, 12 para el ancho total.
 - Un botón que permite agregar un elemento a esta zona, dependiendo del tipo de zona (ver abajo).
-- **** : Le permite cambiar el nombre de la zona.
-- **** : Eliminar la zona.
+- **Editar** : Le permite cambiar el nombre de la zona.
+- **Eliminar** : Eliminar la zona.
 
 ### Zona de tipo de equipo
 
@@ -52,11 +52,11 @@ Una zona de tipo de equipo le permite agregar equipo :
 
 - **Agregar dispositivo** : Le permite agregar / modificar equipos para mostrar en el área.
 
-> ****
+> **Consejo**
 >
 > Puede eliminar un elemento del equipo directamente haciendo clic en el bote de basura a la izquierda.
 
-> ****
+> **Consejo**
 >
 > Es posible cambiar el orden de los mosaicos en el área arrastrando y soltando.
 
@@ -70,19 +70,19 @@ Un área de tipo gráfico le permite agregar gráficos a su vista, tiene las sig
 
 Cuando presionas el botón **Agregar curva**, Jeedom muestra la lista de pedidos históricos y puede elegir el que desea agregar. Una vez hecho esto, tiene acceso a las siguientes opciones :
 
-- **** : Eliminar comando del gráfico.
-- **** : Nombre del comando para dibujar.
-- **** : Color de la curva.
-- **** : Tipo de curva.
-- **** : Permite la agrupación de datos (tipo máximo por día).
-- **** : Escala (derecha o izquierda) de la curva.
-- **** : Muestra la curva de la escalera.
-- **** : Apila la curva con las curvas de otro tipo.
-- **** : Solo dibuja variaciones con el valor anterior.
+- **Bote de basura** : Eliminar comando del gráfico.
+- **Apellido** : Nombre del comando para dibujar.
+- **Color** : Color de la curva.
+- **Amable** : Tipo de curva.
+- **Grupo** : Permite la agrupación de datos (tipo máximo por día).
+- **Escala** : Escala (derecha o izquierda) de la curva.
+- **Escaleras** : Muestra la curva de la escalera.
+- **Pila** : Apila la curva con las curvas de otro tipo.
+- **Variación** : Solo dibuja variaciones con el valor anterior.
 
 {% include lightbox.html src="images/doc-view_02.jpg" data="View" title="Pie Graph" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
-> ****
+> **Consejo**
 >
 > Puede cambiar el orden de los gráficos en el área arrastrando y soltando.
 
@@ -93,7 +93,7 @@ Aqui tienes los botones :
 - **Agregar columna** : Agregar una columna a la tabla.
 - **Agregar línea** : Agregar una fila a la tabla.
 
-> ****
+> **Nota**
 >
 > Es posible reorganizar las filas arrastrando y soltando, pero no las columnas.
 

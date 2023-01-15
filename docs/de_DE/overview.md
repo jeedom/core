@@ -15,8 +15,8 @@ Auf jedem Objekt werden sein Hintergrundbild und seine Zusammenfassungen angezei
 
 Abhängig von der Art der Zusammenfassung (Schlüssel), sichtbar in **Einstellungen → System → Konfiguration / Zusammenfassungen** :
 - Oben links : Der Name des Objekts.
-- Oben rechts : Temperatur (**) und Feuchtigkeit (**).
-- Unter dem Titel :  (**) und Bewegung (**), grün oder rot gefärbt, je nachdem, ob Warnungen / Bewegungen ausgeführt werden.
+- Oben rechts : Temperatur (*Temperatur*) und Feuchtigkeit (*Feuchtigkeit*).
+- Unter dem Titel : Alarm (*Sicherheit*) und Bewegung (*Bewegung*), grün oder rot gefärbt, je nachdem, ob Warnungen / Bewegungen ausgeführt werden.
 - Unten : Alle anderen Fachzusammenfassungen.
 
 Die Konfiguration der Anzeige des Objekts erfolgt in **Werkzeuge → Objekte** :

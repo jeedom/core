@@ -5,10 +5,10 @@ Mit dem Interaktionssystem in Jeedom können Sie Aktionen über Text- oder Sprac
 
 Diese Bestellungen erhalten Sie von :
 
--  : Senden Sie eine SMS, um Befehle zu starten (Aktion) oder stellen Sie eine Frage (Info)).
--  : Telegramm, Slack usw.
--  : diktieren Sie eine Phrase mit Siri, Google Now, SARAH usw. Befehle starten (Aktion) oder eine Frage stellen (Info).
--  : Starten Sie eine HTTP-URL, die den Text enthält (z. Tasker, Slack), um Befehle zu starten (Aktion) oder eine Frage zu stellen (Info).
+- SMS : Senden Sie eine SMS, um Befehle zu starten (Aktion) oder stellen Sie eine Frage (Info)).
+- Katze : Telegramm, Slack usw.
+- Vokal : diktieren Sie eine Phrase mit Siri, Google Now, SARAH usw. Befehle starten (Aktion) oder eine Frage stellen (Info).
+- HTTP : Starten Sie eine HTTP-URL, die den Text enthält (z. Tasker, Slack), um Befehle zu starten (Aktion) oder eine Frage zu stellen (Info).
 
 Der Wert von Interaktionen liegt in der vereinfachten Integration in andere Systeme wie Smartphones, Tablets, andere Hausautomationsboxen usw.
 
@@ -32,7 +32,7 @@ Am oberen Rand der Seite befinden sich 3 Schaltflächen :
 
 - **Hinzufügen** : Ermöglicht das Erstellen neuer Interaktionen.
 - **Regenerat** : Recréer toutes les interactions (peut être très long &gt; 5mn).
-- **** : Öffnen Sie einen Dialog, um einen Satz zu schreiben und zu testen.
+- **Prüfen** : Öffnen Sie einen Dialog, um einen Satz zu schreiben und zu testen.
 
 > **Spitze**
 >
@@ -50,18 +50,18 @@ Wir können auch einen auszuführenden Befehl definieren, wenn beispielsweise di
 
 Die Konfigurationsseite besteht aus mehreren Registerkarten und Schaltflächen :
 
-- **** : Zeigt die Anzahl der Sätze der Interaktion an (ein Klick darauf zeigt Sie).
-- **** : Notieren Sie die aktuelle Interaktion.
+- **Sätze** : Zeigt die Anzahl der Sätze der Interaktion an (ein Klick darauf zeigt Sie).
+- **Speichern** : Notieren Sie die aktuelle Interaktion.
 - **Entfernen** : Aktuelle Interaktion löschen.
-- **** : Dupliziert die aktuelle Interaktion.
+- **Duplikat** : Dupliziert die aktuelle Interaktion.
 
 ### Registerkarte &quot;Allgemein&quot;
 
 - **Familienname, Nachname** : Interaktionsname (kann leer sein, der Name ersetzt den Anforderungstext in der Interaktionsliste).
-- **** : Interaktionsgruppe, dies ermöglicht es, sie zu organisieren (kann leer sein, wird daher in der Gruppe "keine" sein").
+- **Band** : Interaktionsgruppe, dies ermöglicht es, sie zu organisieren (kann leer sein, wird daher in der Gruppe "keine" sein").
 - **Anlage** : Aktiviert oder deaktiviert die Interaktion.
-- **** : Der generierende Modellsatz (erforderlich).
-- **** : Ermöglicht das Definieren von Synonymen für die Namen der Befehle.
+- **Anfrage** : Der generierende Modellsatz (erforderlich).
+- **Gleichbedeutend** : Ermöglicht das Definieren von Synonymen für die Namen der Befehle.
 - **Antwort** : Die Antwort zu geben.
 - **Warten Sie, bevor Sie antworten (s)** : Fügen Sie eine Verzögerung von X Sekunden hinzu, bevor Sie die Antwort generieren. So können Sie beispielsweise auf die Rückkehr eines Lampenstatus warten, bevor Sie beantwortet werden.
 - **Binäre Konvertierung** : Konvertiert beispielsweise Binärwerte in Öffnen / Schließen (nur für Befehle vom Typ Binärinfo)).
@@ -163,7 +163,7 @@ Wie wir hier sehen können, habe ich für die Anfrage fast die gleiche Struktur 
 
 Das Feld **Binäre Konvertierung** muss 2 Antworten enthalten : zuerst die Antwort, wenn der Wert des Befehls 0 ist, dann ein vertikaler Balken "\|" Trennung und schließlich die Antwort, wenn der Befehl 1 wert ist. Hier sind die Antworten einfach nein und ja, aber wir könnten einen etwas längeren Satz setzen.
 
-> ****
+> **Warnung**
 >
 > Tags funktionieren nicht in binären Konvertierungen.
 
@@ -177,7 +177,7 @@ Wir können uns vorstellen, dass ein Alarm von einem Kind oder einem Nachbarn ak
 
 ### Regexp-Ausschluss
 
-Es ist möglich zu erstellen [](https://fr.wikipedia.org/wiki/Expression_rationnelle) Ausschluss: Wenn ein generierter Satz mit diesem regulären Ausdruck übereinstimmt, wird er gelöscht. Das Interesse besteht darin, falsch positive Ergebnisse entfernen zu können, dh einen von Jeedom erzeugten Satz, der etwas aktiviert, das nicht dem entspricht, was wir wollen, oder das eine andere Interaktion stören würde, die einen ähnlichen Satz hätte.
+Es ist möglich zu erstellen [Regexp](https://fr.wikipedia.org/wiki/Expression_rationnelle) Ausschluss: Wenn ein generierter Satz mit diesem regulären Ausdruck übereinstimmt, wird er gelöscht. Das Interesse besteht darin, falsch positive Ergebnisse entfernen zu können, dh einen von Jeedom erzeugten Satz, der etwas aktiviert, das nicht dem entspricht, was wir wollen, oder das eine andere Interaktion stören würde, die einen ähnlichen Satz hätte.
 
 Wir haben 2 Stellen, an denen Sie einen Regexp anwenden können :
 - In der Interaktion selbst im Feld "Regexp-Ausschluss"".
@@ -242,7 +242,7 @@ In diesem Beispiel sehen wir einen einfachen Satz, der eine Antwort mit 3 versch
 
 ![interact017](../images/interact017.png)
 
-Dieses Beispiel zielt speziell auf bestimmte Geräte ab, die eine personalisierte Antwort ermöglichen. Wir könnten uns also vorstellen, die Antwort des Beispiels durch "Nein, es ist niemand im Raum" zu ersetzen **\.|Ja, da ist jemand im Raum **"
+Dieses Beispiel zielt speziell auf bestimmte Geräte ab, die eine personalisierte Antwort ermöglichen. Wir könnten uns also vorstellen, die Antwort des Beispiels durch "Nein, es ist niemand im Raum" zu ersetzen *Julia*\.|Ja, da ist jemand im Raum *Julia*"
 
 #### Evolution
 
@@ -297,7 +297,7 @@ Es ist möglich, eine Lampe als Prozentsatz (Dimmer) oder einen Thermostat mit d
 
 ![interact022](../images/interact022.png)
 
-Wie wir sehen können, gibt es hier in der Anfrage das Tag **\.#consigne\.#** (Sie können eingeben, was Sie möchten), was in der Antriebssteuerung enthalten ist, um den gewünschten Wert anzuwenden. Dazu haben wir 3 Teile : \.*  : in dem wir ein Tag erstellen, das den Wert darstellt, der an die Interaktion gesendet wird. \* Antwort : Wir verwenden das Tag für die Antwort erneut, um sicherzustellen, dass Jeedom die Anfrage richtig verstanden hat. \* Lager : Wir setzen eine Aktion auf die Lampe, die wir fahren möchten, und geben in dem Wert, den wir geben, unser Etikett an **.
+Wie wir sehen können, gibt es hier in der Anfrage das Tag **\.#consigne\.#** (Sie können eingeben, was Sie möchten), was in der Antriebssteuerung enthalten ist, um den gewünschten Wert anzuwenden. Dazu haben wir 3 Teile : \.* Anfrage : in dem wir ein Tag erstellen, das den Wert darstellt, der an die Interaktion gesendet wird. \* Antwort : Wir verwenden das Tag für die Antwort erneut, um sicherzustellen, dass Jeedom die Anfrage richtig verstanden hat. \* Lager : Wir setzen eine Aktion auf die Lampe, die wir fahren möchten, und geben in dem Wert, den wir geben, unser Etikett an *Reihenfolge*.
 
 > **Notiz**
 >

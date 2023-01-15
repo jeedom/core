@@ -20,7 +20,7 @@ Sobald Ihr 3D-Modell erstellt wurde, muss es im OBJ-Format exportiert werden. We
 >
 > Die Dateien müssen sich im Stammverzeichnis der Zip-Datei befinden und dürfen sich nicht in einem Unterordner befinden.
 
-> ****
+> **WARNUNG**
 >
 > Ein 3D-Modell ist ziemlich beeindruckend (dies kann mehrere hundert Mo darstellen). Je größer es ist, desto länger ist die Renderzeit in Jeedom.
 
@@ -37,11 +37,11 @@ Sie können von diesem Bildschirm aus :
 
 Klicken Sie auf der Ebene &quot;3D-Modell&quot; auf die Schaltfläche &quot;Senden&quot; und wählen Sie Ihre Zip-Datei aus
 
-> ****
+> **WARNUNG**
 >
 > Jeedom autorisiert den Import einer Datei mit maximal 150 Monaten !
 
-> ****
+> **WARNUNG**
 >
 > Sie müssen eine Zip-Datei haben.
 
@@ -65,11 +65,11 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 ### Licht
 
 - Status : Die Lichtstatussteuerung kann binär (0 oder 1), digital (0 bis 100%) oder farbig sein
--  : Lampenleistung (bitte beachten Sie, dass dies möglicherweise nicht die Realität widerspiegelt))
+- Mächtig : Lampenleistung (bitte beachten Sie, dass dies möglicherweise nicht die Realität widerspiegelt))
 
 ### Texte
 
--  : anzuzeigender Text (Sie können dort Befehle eingeben, der Text wird bei Änderung automatisch aktualisiert)
+- Text : anzuzeigender Text (Sie können dort Befehle eingeben, der Text wird bei Änderung automatisch aktualisiert)
 - Textgröße
 - Textfarbe
 - Texttransparenz : von 0 (unsichtbar) bis 1 (sichtbar))
@@ -85,14 +85,14 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 
 - Zustand : Tür- / Fensterstatus, 1 geschlossen und 0 offen
 - Rotation
-	-  : Aktiviert die Drehung der Tür / des Fensters beim Öffnen
-	-  : Am besten testen Sie, ob es zu Ihrer Tür / Ihrem Fenster passt
+	- Ermöglichen : Aktiviert die Drehung der Tür / des Fensters beim Öffnen
+	- Öffnung : Am besten testen Sie, ob es zu Ihrer Tür / Ihrem Fenster passt
 - Translation
-	-  : aktiviert die Übersetzung beim Öffnen (Schiebetür- / Fenstertyp))
-	-  : Richtung, in die sich die Tür / das Fenster bewegen soll (Sie haben oben / unten / rechts / links)
+	- Ermöglichen : aktiviert die Übersetzung beim Öffnen (Schiebetür- / Fenstertyp))
+	- Bedeutung : Richtung, in die sich die Tür / das Fenster bewegen soll (Sie haben oben / unten / rechts / links)
 	- Wiederholung : Standardmäßig bewegt sich die Tür / das Fenster einmal in der angegebenen Richtung, aber Sie können diesen Wert erhöhen
 - Verstecken, wenn die Tür / das Fenster geöffnet ist
-	-  : Blendet das Element aus, wenn die Tür / das Fenster geöffnet ist
+	- Ermöglichen : Blendet das Element aus, wenn die Tür / das Fenster geöffnet ist
 - Couleur
 	- Farbe öffnen : Wenn Sie das Kontrollkästchen aktivieren, nimmt das Element diese Farbe an, wenn die Tür / das Fenster geöffnet ist
 	- Farbe geschlossen : Wenn Sie das Kontrollkästchen aktivieren, nimmt das Element diese Farbe an, wenn die Tür / das Fenster geschlossen ist
@@ -101,7 +101,7 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 
 - Zustand : Verschlussstatus, 0 offen anderer Wert geschlossen
 - Ausblenden, wenn der Verschluss geöffnet ist
-	-  : Blenden Sie das Element aus, wenn der Verschluss geöffnet ist
+	- Ermöglichen : Blenden Sie das Element aus, wenn der Verschluss geöffnet ist
 - Couleur
 	- Farbe geschlossen : Wenn diese Option aktiviert ist, nimmt das Element diese Farbe an, wenn der Verschluss geschlossen ist
 

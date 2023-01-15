@@ -4,23 +4,23 @@
 This page allows you to create a 3D view of your home that can react depending on the state of the various information in your home automation.
 
 
-> ****
+> **Tip**
 >
 > It is possible to go directly to a 3D design thanks to the submenu.
 
 ## Importing the 3D model
 
-> ****
+> **IMPORTANT**
 >
 > You cannot create your 3D model directly in Jeedom, it must be done using third-party software. Nous recommandons le très bon SweetHome3d (http://www.sweethome3d.com/fr/).
 
 Once your 3D model has been created, it must be exported in OBJ format. If you use SweetHome3d this is done from the "3D View" menu then "Export to OBJ format". Then take all the generated files and put them in a zip file (there can be a lot of files due to the textures).
 
-> ****
+> **IMPORTANT**
 >
 > The files must be at the root of the zip and not in a sub-folder.
 
-> ****
+> **WARNING**
 >
 > A 3D model is quite imposing (this can represent several hundred Mo). The larger it is, the longer the rendering time in Jeedom.
 
@@ -37,22 +37,22 @@ You can from this screen :
 
 Click on the &quot;send&quot; button at the &quot;3D Model&quot; level and select your zip file
 
-> ****
+> **WARNING**
 >
 > Jeedom authorizes the import of a file of 150mo maximum !
 
-> ****
+> **WARNING**
 >
 > You must have a zip file.
 
-> ****
+> **Tip**
 >
 > Once the file has been imported (it can be quite long depending on the size of the file), you need to refresh the page to see the result (F5).
 
 
 ## Configuration of elements
 
-> ****
+> **IMPORTANT**
 >
 > Configuration can only be done in edit mode.
 
@@ -64,12 +64,12 @@ To configure an element on the 3D design, double click on the element you want t
 
 ### Light
 
--  : Light status control can be binary (0 or 1), digital (0 to 100%) or color
--  : bulb power (please note this may not reflect reality))
+- Status : Light status control can be binary (0 or 1), digital (0 to 100%) or color
+- Powerful : bulb power (please note this may not reflect reality))
 
 ### Texte
 
--  : text to display (you can put commands there, the text will be automatically updated on change thereof)
+- Text : text to display (you can put commands there, the text will be automatically updated on change thereof)
 - Text size
 - Text color
 - Text transparency : from 0 (invisible) to 1 (visible)
@@ -83,25 +83,25 @@ To configure an element on the 3D design, double click on the element you want t
 
 #### Door / Window
 
--  : Door / Window status, 1 closed and 0 open
+- State : Door / Window status, 1 closed and 0 open
 - Rotation
-	-  : activates the rotation of the Door / Window when opening
-	-  : the best is to test so that it matches your Door / Window
+	- Enable : activates the rotation of the Door / Window when opening
+	- Opening : the best is to test so that it matches your Door / Window
 - Translation
-	-  : activates translation when opening (sliding door / window type))
-	-  : direction in which the Door / Window should move (you have up / down / right / left)
+	- Enable : activates translation when opening (sliding door / window type))
+	- Meaning : direction in which the Door / Window should move (you have up / down / right / left)
 	- Repeat : by default the Door / Window moves once its dimension in the given direction but you can increase this value
 - Hide when the Door / Window is open
-	-  : Hides the element if the Door / Window is open
+	- Enable : Hides the element if the Door / Window is open
 - Couleur
 	- Open color : if tick the element will take this color if the Door / Window is open
 	- Color closed : if tick the element will take this color if the Door / Window is closed
 
 #### Volet
 
--  : shutter status, 0 open other value closed
+- State : shutter status, 0 open other value closed
 - Hide when the shutter is open
-	-  : hide the element if the shutter is open
+	- Enable : hide the element if the shutter is open
 - Couleur
 	- Color closed : if tick the element will take this color if the shutter is closed
 
@@ -109,6 +109,6 @@ To configure an element on the 3D design, double click on the element you want t
 
 If the condition is valid, allows to give the chosen color to the element. You can put as many colors / conditions as you want.
 
-> ****
+> **Tip**
 >
 > The conditions are evaluated in order, the first one which is true will be taken, the following ones will therefore not be evaluated

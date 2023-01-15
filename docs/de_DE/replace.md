@@ -13,7 +13,7 @@ Sie können zur besseren Lesbarkeit nur bestimmte Geräte anzeigen, nach Objekt 
 
 ## Options
 
-> ****
+> **Anmerkung**
 >
 > Wenn keine dieser Optionen aktiviert ist, läuft die Ersetzung auf die Verwendung der Funktion hinaus *Ersetzen Sie diesen Befehl durch den Befehl* in erweiterter Konfiguration.
 
@@ -21,7 +21,7 @@ Sie können zur besseren Lesbarkeit nur bestimmte Geräte anzeigen, nach Objekt 
 Für jedes Gerät wird von der Quelle zum Ziel kopiert (nicht erschöpfende Liste) :
 	* Das übergeordnete Objekt,
 	* Die Kategorien,
-	* Eigenschaften ** und **,
+	* Eigenschaften *Anlage* und *sichtbar*,
 	* Kommentare und Tags,
 	* Bestellung (Dashboard),
 	* Breite und Höhe (Kachel-Dashboard),
@@ -29,11 +29,11 @@ Für jedes Gerät wird von der Quelle zum Ziel kopiert (nicht erschöpfende List
 	* Optionale Parameter,
 	* Die Konfiguration der Tabellenanzeige,
 	* der generische Typ,
-	* Die Eigenschaft **
-	* Die Konfiguration **,
+	* Die Eigenschaft *Auszeit*
+	* Die Konfiguration *automatische Aktualisierung*,
 	* Batterie- und Kommunikationswarnungen,
 
-Das Quellgerät wird auch durch das Zielgerät auf dem ersetzt **** und die **Ansichten**.
+Das Quellgerät wird auch durch das Zielgerät auf dem ersetzt **Design** und die **Ansichten**.
 
 
 *Diese Ausrüstung wird auch durch die Zielausrüstung auf Designs und Ansichten ersetzt.*
@@ -42,17 +42,17 @@ Das Quellgerät wird auch durch das Zielgerät auf dem ersetzt **** und die **An
 
 - **Kopieren Sie die Konfiguration aus dem Quellbefehl** :
 Für jede Bestellung wird von der Quelle zum Ziel kopiert (nicht erschöpfende Liste) :
-	* Die Eigenschaft **,
+	* Die Eigenschaft *sichtbar*,
 	* Bestellung (Dashboard),
 	* L'historisation,
 	* Die verwendeten Dashboard- und Mobile-Widgets,
 	* Der generische Typ,
 	* Optionale Parameter,
-	* Die Konfigurationen ** und *jeedomPostExecCmd* (Aktion),
+	* Die Konfigurationen *jeedomPreExecCmd* und *jeedomPostExecCmd* (Aktion),
 	* Value Action Konfigurationen (info),
 	* Symbol,
 	* Die Aktivierung und das Verzeichnis in *Zeitleiste*,
-	* Die Konfigurationen von ** und **,
+	* Die Konfigurationen von *Berechnung* und *runden*,
 	* Die influxDB-Konfiguration,
 	* Die Wiederholungswertkonfiguration,
 	* Warnungen,
@@ -65,7 +65,7 @@ Für jede Bestellung wird von der Quelle zum Ziel kopiert (nicht erschöpfende L
 
 ## Remplacements
 
-Die Taste **** Oben rechts können Sie alle Geräte anzeigen, indem Sie den Filtern nach Objekt und Plugin folgen.
+Die Taste **Filter** Oben rechts können Sie alle Geräte anzeigen, indem Sie den Filtern nach Objekt und Plugin folgen.
 
 Für jedes Gerät :
 
@@ -74,6 +74,6 @@ Für jedes Gerät :
 - Klicken Sie auf seinen Namen, um seine Befehle anzuzeigen, und geben Sie an, welche Befehle sie ersetzen. Bei der Auswahl eines Geräts füllt das Tool diese Auswahlmöglichkeiten vorab aus, wenn es auf dem Zielgerät einen Befehl desselben Typs und desselben Namens findet.
 
 
-> ****
+> **Anmerkung**
 >
 > Wenn Sie auf einem Quellgerät ein Zielgerät angeben, wird dieses Zielgerät in der Liste deaktiviert.

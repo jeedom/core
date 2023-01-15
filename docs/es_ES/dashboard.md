@@ -15,11 +15,11 @@ Este informe (a diferencia de las vistas y los diseños) es autogenerado por Jee
 - 5 : Nombre de su Jeedom, acceso directo a la configuración.
 - 6 : Modo de edición (reordenar / redimensionar mosaicos).
 - 7 : Filtrar por categorias.
-- 8 :  : Icono, nombre y resumen, y su equipo.
+- 8 : Objeto : Icono, nombre y resumen, y su equipo.
 - 9 : Equipo de azulejos.
 - 10 : Solicitar widget.
 
-> ****
+> **Consejo**
 >
 > El orden de visualización de los objetos en el Tablero es el visible en **Análisis → Resumen de domótica**. Puede modificar este orden en esta página arrastrando y soltando.
 
@@ -37,7 +37,7 @@ Al mover el mouse sobre un pedido, aparece un marcador de color en la parte infe
 
 Además, puede hacer clic en el título del mosaico (el nombre del equipo) para abrir directamente la página de configuración de este equipo.
 
-> ****
+> **Consejo**
 >
 > Es posible ir directamente a un solo objeto en su domótica, a través del menú **Inicio → Panel de control → Nombre del objeto**.
 > Esto le permite tener solo el equipo que le interesa y cargar la página más rápido.
@@ -51,7 +51,7 @@ Además, puede hacer clic en el título del mosaico (el nombre del equipo) para 
 
 - Un clic en un pedido de tipo de información muestra el historial del pedido (si es histórico).
 - Un comando Ctrl + clic en un tipo de información muestra el historial de todos los comandos (históricos) para este mosaico.
-- Un clic en la información ** de un comando de acción muestra el historial del comando (si está historizado).
+- Un clic en la información *hora* de un comando de acción muestra el historial del comando (si está historizado).
 
 
 ## Modo de edición
@@ -66,7 +66,7 @@ En cada objeto, a la derecha de su nombre y resumen, dos iconos le permiten alin
 
 ## Barra de menú Jeedom
 
-> ****
+> **Consejo**
 >
 > - Haga clic en el reloj (barra de menú) : Abre la línea de tiempo.
 > - Haga clic en el nombre de Jeedom (barra de menú) : Abre Configuración → Sistema → Configuración.

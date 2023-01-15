@@ -11,10 +11,10 @@ Die Seite Protokolle ist recht einfach :
 Links eine Liste der verfügbaren Protokolle mit einem Suchfeld zum Filtern des Namens der Protokolle.
 Oben rechts 5 Tasten :
 
-- **** : Ermöglicht das Filtern der Anzeige des aktuellen Protokolls.
+- **Forschen** : Ermöglicht das Filtern der Anzeige des aktuellen Protokolls.
 - **Pause / Resume** : Unterbrechen / Fortsetzen der Echtzeitaktualisierung des aktuellen Protokolls.
 - **Download** : Laden Sie das aktuelle Protokoll herunter.
-- **** : Löschen Sie das aktuelle Protokoll.
+- **Leer** : Löschen Sie das aktuelle Protokoll.
 - **Entfernen** : Löschen Sie das aktuelle Protokoll. Wenn Jeedom es braucht, wird es automatisch neu erstellt.
 - **Löschen Sie alle Protokolle** : Löschen Sie alle vorhandenen Protokolle.
 
