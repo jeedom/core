@@ -158,7 +158,7 @@ Sie müssen jetzt verwenden:
 
  [Doc-Entwickler](https:doc.jeedom.com/de_DE/devcore4.3).
 
-Blogeintrag [hier](https:blog.jeedom.com6739-jeedom-4-3)
+Blogeintrag [](https:blog.jeedom.com6739-jeedom-4-3)
 
 # Änderungsprotokoll Jeedom V4.2
 
@@ -297,7 +297,7 @@ Blogeintrag [hier](https:blog.jeedom.com6739-jeedom-4-3)
 - **Plugins / Management** : Anzeige der Plugin-Kategorie und ein Link zum direkten Öffnen der Seite, ohne das Plugins-Menü aufzurufen.
 - **Szenario** : Code-Fallback-Funktion (*Code falten*) in dem *Codeblöcke*. Tastenkombinationen Strg + Y und Strg + I.
 - **Szenario** : Bugfix kopieren / einfügen und rückgängig machen / wiederholen (vollständiges Umschreiben)).
-- **Szenario** : Berechnungsfunktionen hinzufügen ``averageTemporal(commande,période)`` & ``averageTemporalBetween(commande,start,end)`` Damit kann der nach der Duration über den Zeitraum gewichtete Durchschnitt ermittelt werden.
+- **Szenario** : Berechnungsfunktionen hinzufügen ``averageTemporal(commande,période)``  ``averageTemporalBetween(commande,start,end)`` Damit kann der nach der Duration über den Zeitraum gewichtete Durchschnitt ermittelt werden.
 - **Szenario** : Unterstützung für generische Typen in Szenarien hinzugefügt.
 	- Abzug : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0``
 	-  ``genericType(LIGHT_STATE,#[Salon]#) > 0``
@@ -341,7 +341,7 @@ Wir haben eine Bestätigung des Cloud-Backup-Passworts hinzugefügt, um Eingabef
 
 - Um die Sicherheit der Jeedom-Lösung deutlich zu erhöhen, wurde das Dateizugriffssystem geändert. Bevor bestimmte Dateien an bestimmten Orten verboten wurden. Ab v4.2, Dateien sind explizit nach Typ und Speicherort erlaubt.
 - Änderung auf API-Ebene, zuvor "tolerant", wenn Sie mit dem Core-Key-Anzeige-Plugin angekommen sind XXXXX. Dies ist nicht mehr der Fall, Sie müssen mit dem dem Plugin entsprechenden Schlüssel anreisen.
-- In der http-API könnten Sie einen Plugin-Namen im Typ angeben, dies ist nicht mehr möglich. Der dem Typ der Anfrage entsprechende Typ (szenario, eqLogic, cmd usw.) muss dem Plugin entsprechen. Zum Beispiel für das virtuelle Plugin, das Sie hatten ``type=virtual`` in der URL muss jetzt ersetzt werden durch ``plugin=virtual&type=event``.
+- In der http-API könnten Sie einen Plugin-Namen im Typ angeben, dies ist nicht mehr möglich. Der dem Typ der Anfrage entsprechende Typ (szenario, eqLogic, cmd usw.) muss dem Plugin entsprechen. Zum Beispiel für das virtuelle Plugin, das Sie hatten ``type=virtual`` in der URL muss jetzt ersetzt werden durch ``plugin=virtualtype=event``.
 - Verstärkung der Sitzungen : Wechseln Sie zu sha256 mit 64 Zeichen im strikten Modus.
 
 Das Jeedom-Team ist sich bewusst, dass diese Änderungen Auswirkungen haben und für Sie peinlich sein können, aber wir können keine Kompromisse bei der Sicherheit eingehen.
@@ -688,7 +688,7 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 ### 4.0 : Changements
 
 - Entfernen Sie Font Awesome 4, um nur Font Awesome 5 beizubehalten.
-- Das Widget-Plugin ist nicht mit dieser Version von Jeedom kompatibel und wird nicht mehr unterstützt (da die Funktionen intern im Kern übernommen wurden). Mehr Informationen [hier](https:www.Jeedom.comblog4368-les-widgets-en-v4).
+- Das Widget-Plugin ist nicht mit dieser Version von Jeedom kompatibel und wird nicht mehr unterstützt (da die Funktionen intern im Kern übernommen wurden). Mehr Informationen [](https:www.Jeedom.comblog4368-les-widgets-en-v4).
 
 >****
 >

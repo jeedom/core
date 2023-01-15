@@ -78,7 +78,7 @@ Auf dieser Registerkarte können Sie die verfügbaren Updates für das Betriebss
 
 Während oder nach einem Update können Sie auf dieser Registerkarte das Protokoll dieses Updates in Echtzeit lesen.
 
-> **Notiz**
+> ****
 >
 > Dieses Protokoll endet normalerweise mit *[UPDATE ERFOLG BEENDEN]*. Es kann einige Fehlerzeilen in dieser Art von Protokoll geben. Sofern nach dem Update kein echtes Problem auftritt, ist es jedoch nicht immer erforderlich, den Support zu kontaktieren.
 

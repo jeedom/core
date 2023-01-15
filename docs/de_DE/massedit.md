@@ -24,7 +24,7 @@ Das Teil ** ermöglicht es Ihnen, Parameter dieser Elemente zu ändern.
 - Im Spiel **, wählen **Szenario**.
 - Klicken Sie auf die Schaltfläche **** einen Filter hinzufügen.
 - Wählen Sie in diesem Filter die Spalte **, und markieren Sie den Namen der Gruppe, die Sie umbenennen möchten.
-- Klicken Sie auf die Schaltfläche *Prüfen* um die Szenarien dieser Gruppe anzuzeigen.
+- Klicken Sie auf die Schaltfläche ** um die Szenarien dieser Gruppe anzuzeigen.
 - Im Spiel **, Spalte auswählen **, dann geben Sie den gewünschten Namen in den Wert ein.
 - Klicke auf **Ausführen** oben rechts.
 
@@ -33,6 +33,6 @@ Das Teil ** ermöglicht es Ihnen, Parameter dieser Elemente zu ändern.
 - Im Spiel **, wählen ****.
 - Klicken Sie auf die Schaltfläche **** einen Filter hinzufügen.
 - Wählen Sie in diesem Filter die Spalte *Objekt Identifikation*, und als Wert die ID des betreffenden Objekts (sichtbar unter Tools / Objects, Overview).
-- Klicken Sie auf die Schaltfläche *Prüfen* um die Szenarien dieser Gruppe anzuzeigen.
+- Klicken Sie auf die Schaltfläche ** um die Szenarien dieser Gruppe anzuzeigen.
 - Im Spiel **, Spalte auswählen **, dann geben Sie den Wert 0 ein.
 - Klicke auf **Ausführen** oben rechts.

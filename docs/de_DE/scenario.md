@@ -140,7 +140,7 @@ Rechts neben diesem Blocktyp stehen drei Schaltflächen zur Auswahl eines zu tes
 - **Suchen Sie ein Szenario** : Ermöglicht die Suche nach einem zu testenden Szenario.
 - **Suche nach Ausrüstung** : Gleiches gilt für die Ausrüstung.
 
-> **Notiz**
+> ****
 >
 > Bei Blöcken vom Typ If / Then / Andernfalls können kreisförmige Pfeile links neben dem Bedingungsfeld die Wiederholung von Aktionen aktivieren oder nicht, wenn die Auswertung der Bedingung das gleiche Ergebnis wie bei der vorherigen Auswertung ergibt.
 > IF-Ausdruck != 0 entspricht IF-Ausdruck und IF-Ausdruck == 0 entspricht IF-nicht-Ausdruck
@@ -236,7 +236,7 @@ Es gibt bestimmte Auslöser (außer denen, die durch Befehle bereitgestellt werd
 - ``#variable(nom_variable)#`` : Ändern des Wertes der Variablen name_name.
 - ``#GenericType (GENERIC, #[Object]#)#`` : Änderung eines Infobefehls vom Typ Generic GENERIC im Objektobjekt.
 
-Sie können ein Szenario auch über die beschriebene HTTP-API auslösen [hier](https:/./.doc.jeedom.com/de_DE/core/.4.1/.api_http).
+Sie können ein Szenario auch über die beschriebene HTTP-API auslösen [](https:/./.doc.jeedom.com/de_DE/core/.4.1/.api_http).
 
 ### Vergleichsoperatoren und Verknüpfungen zwischen Bedingungen
 
@@ -253,7 +253,7 @@ Sie können eines der folgenden Symbole für Vergleiche unter Bedingungen verwen
 
 Sie können jeden Vergleich mit den folgenden Operatoren kombinieren :
 
-- ``&&`` : . Es ist auch möglich zu verwenden : ``ET`` /. ``et`` /. ``AND`` /. ``and`` funktioniert aber möglicherweise nicht gut mit einigen PHP-Funktionen.
+- ```` : . Es ist auch möglich zu verwenden : ``ET`` /. ``et`` /. ``AND`` /. ``and`` funktioniert aber möglicherweise nicht gut mit einigen PHP-Funktionen.
 - ``||`` : . Es ist auch möglich zu verwenden : ``OU`` /. ``ou`` /. ``OR`` /. ``or`` funktioniert aber möglicherweise nicht gut mit einigen PHP-Funktionen.
 - ``xor``  : oder exklusiv. Es ist auch möglich zu verwenden : ``XOR`` /. ``^`` funktioniert aber möglicherweise nicht gut mit einigen PHP-Funktionen.
 
@@ -263,7 +263,7 @@ Ein Tag wird während der Ausführung des Szenarios durch seinen Wert ersetzt. S
 
 > ****
 >
-> Verwenden Sie die Funktion Date (), um die führenden Nullen anzuzeigen. Siehe [hier](https:/./.www.php.net/.manual/.fr/.datetime.format.php).
+> Verwenden Sie die Funktion Date (), um die führenden Nullen anzuzeigen. Siehe [](https:/./.www.php.net/.manual/.fr/.datetime.format.php).
 
 - ``#seconde#`` : Aktuelle Sekunde (ohne führende Nullen, z : 6 für 08:07:06).
 - ``#hour#`` : Aktuelle Zeit im 24h-Format (ohne führende Nullen).  : 8 für 08:07:06 oder 17 für 17:15.
@@ -301,17 +301,17 @@ Sie haben auch die folgenden zusätzlichen Tags, wenn Ihr Szenario durch eine In
 
 Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 
-- ``average(commande,période)`` & ``averageBetween(commande,start,end)`` : Geben Sie den Durchschnitt der Bestellung über den Zeitraum an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s``  [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``average(commande,période)``  ``averageBetween(commande,start,end)`` : Geben Sie den Durchschnitt der Bestellung über den Zeitraum an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s``  [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
-- ``averageTemporal(commande,période)`` & ``averageTemporalBetween(commande,start,end)`` : Geben Sie den Durchschnitt der Werte der Bestellung gewichtet nach ihrer Existenzdauer über den Zeitraum (Periode=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s``  [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``averageTemporal(commande,période)``  ``averageTemporalBetween(commande,start,end)`` : Geben Sie den Durchschnitt der Werte der Bestellung gewichtet nach ihrer Existenzdauer über den Zeitraum (Periode=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s``  [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
-- ``min(commande,période)`` & ``minBetween(commande,start,end)`` : Geben Sie die Mindestbestellmenge über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s``  [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``min(commande,période)``  ``minBetween(commande,start,end)`` : Geben Sie die Mindestbestellmenge über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s``  [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
-- ``max(commande,période)`` & ``maxBetween(commande,start,end)`` : Geben Sie das Maximum der Bestellung über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s``  [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``max(commande,période)``  ``maxBetween(commande,start,end)`` : Geben Sie das Maximum der Bestellung über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s``  [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
-- ``duration(commande, valeur, période)`` & ``durationbetween(commande,valeur,start,end)`` : Geben Sie die Dauer in Minuten an, während der das Gerät über den Zeitraum (Zeitraum) den gewählten Wert hatte=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s``  [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``duration(commande, valeur, période)``  ``durationbetween(commande,valeur,start,end)`` : Geben Sie die Dauer in Minuten an, während der das Gerät über den Zeitraum (Zeitraum) den gewählten Wert hatte=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s``  [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
-- ``statistics(commande,calcul,période)`` & ``statisticsBetween(commande,calcul,start,end)`` : Geben Sie das Ergebnis verschiedener statistischer Berechnungen (Summe, Anzahl, Standard, Varianz, Durchschnitt, Min, Max) über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s``  [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``statistics(commande,calcul,période)``  ``statisticsBetween(commande,calcul,start,end)`` : Geben Sie das Ergebnis verschiedener statistischer Berechnungen (Summe, Anzahl, Standard, Varianz, Durchschnitt, Min, Max) über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s``  [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
 - ``tendance(commande,période,seuil)`` : Gibt den Trend der Bestellung über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
@@ -330,7 +330,7 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 - ``age(commande)`` : Gibt das Alter des Befehlswerts in Sekunden an (``collecDate``)
     -1 : Der Befehl existiert nicht oder ist nicht vom Typ info.
 
-- ``stateChanges(commande,[valeur], période)`` & ``stateChangesBetween(commande, [valeur], start, end)`` : Gibt die Anzahl der Zustandsänderungen (in Richtung eines bestimmten Wertes, falls angegeben, oder, falls nicht angegeben, im Vergleich zum aktuellen Wert) über den Zeitraum (Periode=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s``  [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``stateChanges(commande,[valeur], période)``  ``stateChangesBetween(commande, [valeur], start, end)`` : Gibt die Anzahl der Zustandsänderungen (in Richtung eines bestimmten Wertes, falls angegeben, oder, falls nicht angegeben, im Vergleich zum aktuellen Wert) über den Zeitraum (Periode=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s``  [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
 - ``lastBetween(commande,start,end)`` : Gibt den letzten für das Gerät aufgezeichneten Wert zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s``  [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
@@ -349,11 +349,11 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 - ``lastScenarioExecution(scenario)`` : Gibt die Dauer in Sekunden seit dem letzten Start des Szenarios an.
     0 : Das Szenario existiert nicht
 
-- ``collectDate(cmd,[format])`` : Gibt das Datum der letzten Datenerfassung für den als Parameter platzierten Befehl zurück. Der zweite optionale Parameter wird verwendet, um das Rückgabeformat anzugeben (Details [hier](https:/./.www.php.net/.manual/.fr/.datetime.format.php)).
+- ``collectDate(cmd,[format])`` : Gibt das Datum der letzten Datenerfassung für den als Parameter platzierten Befehl zurück. Der zweite optionale Parameter wird verwendet, um das Rückgabeformat anzugeben (Details [](https:/./.www.php.net/.manual/.fr/.datetime.format.php)).
     -1 : Der Befehl konnte nicht gefunden werden,
     -2 : Der Befehl ist nicht vom Typ info.
 
-- ``valueDate(cmd,[format])`` : Gibt das Datum des letzten bekannten Werts für den als Parameter platzierten Befehl zurück. Der zweite optionale Parameter wird verwendet, um das Rückgabeformat anzugeben (Details [hier](https:/./.www.php.net/.manual/.fr/.datetime.format.php)).
+- ``valueDate(cmd,[format])`` : Gibt das Datum des letzten bekannten Werts für den als Parameter platzierten Befehl zurück. Der zweite optionale Parameter wird verwendet, um das Rückgabeformat anzugeben (Details [](https:/./.www.php.net/.manual/.fr/.datetime.format.php)).
     -1 : Der Befehl konnte nicht gefunden werden,
     -2 : Der Befehl ist nicht vom Typ info.
 
@@ -368,7 +368,7 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 
 - ``name(type,commande)`` : Wird verwendet, um den Namen der Bestellung, Ausrüstung oder des Objekts abzurufen.  : cmd, eqLogic oder Objekt.
 
-- ``lastCommunication(equipment,[format])`` : Gibt das Datum der letzten Kommunikation für das als Parameter angegebene Gerät zurück, der 2. optionale Parameter dient zur Angabe des Rückgabeformats (Details [hier](https:/./.www.php.net/.manual/.fr/.datetime.format.php)). Eine Rückgabe von -1 bedeutet, dass das Gerät nicht gefunden werden kann.
+- ``lastCommunication(equipment,[format])`` : Gibt das Datum der letzten Kommunikation für das als Parameter angegebene Gerät zurück, der 2. optionale Parameter dient zur Angabe des Rückgabeformats (Details [](https:/./.www.php.net/.manual/.fr/.datetime.format.php)). Eine Rückgabe von -1 bedeutet, dass das Gerät nicht gefunden werden kann.
 
 - ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Gibt eine relativ zu einem Wert im Intervall color_start / color_end berechnete Farbe zurück. Der Wert muss zwischen min_value und max_value liegen.
 

@@ -162,19 +162,19 @@ Abhängig von der Art des Widgets können Sie die Symbole im Allgemeinen anpasse
 Es gibt zwei Arten von Vorlagen :
 
 -  "****" : als Symbol / Bild für die "****" und ein Symbol / Bild für die "****".
--  "**Multistate**" : Dies ermöglicht es beispielsweise, ein Bild zu definieren, wenn der Befehl den Wert hat "**XX**" und ein anderer so größer als "**JJ**" oder wenn weniger als "**ZZ**". Funktioniert auch für Textwerte, ein Bild, wenn der Wert ist "**alles**", ein anderer wenn "**plumpsen**" Und so weiter...
+-  "****" : Dies ermöglicht es beispielsweise, ein Bild zu definieren, wenn der Befehl den Wert hat "**XX**" und ein anderer so größer als "****" oder wenn weniger als "****". Funktioniert auch für Textwerte, ein Bild, wenn der Wert ist "****", ein anderer wenn "****" Und so weiter...
 
 #### Remplacement
 
-Dies nennt man eine einfache Vorlage, hier muss man nur sagen, dass die "****" passt zu einem solchen Symbol / Bild *(mit der Auswahltaste)*, der "****" zu solchen anderen Symbolen / Bildern usw...      
+Dies nennt man eine einfache Vorlage, hier muss man nur sagen, dass die "****" passt zu einem solchen Symbol / Bild *(mit der Auswahltaste)*,  "****" zu solchen anderen Symbolen / Bildern usw...      
 
 Die Kiste **Zeit-Widget**, Wenn verfügbar, wird die Dauer seit der letzten Statusänderung unter dem Widget angezeigt.
 
-Bei Vorlagen mit Bildern können Sie die Breite des Widgets je nach Unterstützung in Pixel konfigurieren (**Desktop-Breite** & **Bewegliche Breite**). Je nach aktivem Thema Jeedom können auch verschiedene Bilder ausgewählt werden *(hell oder dunkel)*.
+Bei Vorlagen mit Bildern können Sie die Breite des Widgets je nach Unterstützung in Pixel konfigurieren (**Desktop-Breite**  **Bewegliche Breite**). Je nach aktivem Thema Jeedom können auch verschiedene Bilder ausgewählt werden *(hell oder dunkel)*.
 
 >****     
 >Für fortgeschrittene Benutzer ist es möglich, Tags in die Ersatzwerte einzufügen und ihren Wert in der erweiterten Konfiguration des Befehls anzugeben.    
->Wenn zum Beispiel in **Desktop-Breite** Sie setzen als Wert `#largeur_desktop#`` (**Achten Sie darauf, die** ``#`` **autour**) puis dans la configurati avancée d'une commande, ongl affichage → "**Paramètres optionnels widget**" vous ajoutez der paramètre ``largeur_desktop`` (**sans les** ``#`) und gib ihm den Wert "**90**", Dieses benutzerdefinierte Widget für diesen Befehl ist 90 Pixel breit. Auf diese Weise können Sie die Größe des Widgets an jede Bestellung anpassen, ohne jedes Mal ein bestimmtes Widget erstellen zu müssen.
+>Wenn zum Beispiel in **Desktop-Breite** Sie setzen als Wert `#largeur_desktop#`` (**Achten Sie darauf, die** ``#`` **autour**) puis dans la configurati avancée d'une commande, ongl affichage → "**Paramètres optionnels widget**" vous ajoutez  paramètre ``largeur_desktop`` (**sans les** ``#`) und gib ihm den Wert "**90**", Dieses benutzerdefinierte Widget für diesen Befehl ist 90 Pixel breit. Auf diese Weise können Sie die Größe des Widgets an jede Bestellung anpassen, ohne jedes Mal ein bestimmtes Widget erstellen zu müssen.
 
 #### Test
 
@@ -184,17 +184,17 @@ Nach wie vor können je nach dem in Jeedom aktiven Thema und der Box unterschied
 
 Die Tests sind in der Form : ``#value# == 1`,`#value#`wird automatisch durch den aktuellen Wert des Befehls ersetzt. Sie können zum Beispiel auch tun :
 
-- ``#value# > 1`
-- ``#value# >= 1 && #value# <= 5``
+- ``#value# > 
+- ``#value# >=  #value# <= 5``
 - ``#value# == 'toto'``
 
->**Notiz**     
+>****     
 >Es ist wichtig, die Apostrophe zu zeigen (**'**) um den Text herum zu vergleichen, ob der Wert Text ist *(info / andere)*.
 
->**Notiz**     
+>****     
 >Für fortgeschrittene Benutzer ist es auch möglich, Javascript-Funktionen wie `zu verwenden#value#.match ("^ plop") `, hier testen wir, ob der Text mit` plop` beginnt.
 
->**Notiz**     
+>****     
 >Sie können den Wert des Befehls im Widget anzeigen, indem Sie `angeben#value#`im HTML-Code des Tests. Um das Gerät anzuzeigen, fügen Sie `hinzu#unite#``.
 
 ## Code-Widget
@@ -213,7 +213,7 @@ Im Codemodus haben Sie Zugriff auf verschiedene Tags für Bestellungen. Hier ist
 - **#uid#** : eindeutige Kennung für diese Generation des Widgets (wenn es mehrmals den gleichen Befehl gibt, bei Entwürfen:  Nur diese Kennung ist wirklich eindeutig)
 - **#valueDate#** : Datum des Bestellwertes
 - **#collectDate#** : Datum der Auftragserfassung
-- **#alertLevel#** : Alarmstufe (siehe [hier](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) für die Liste)
+- **#alertLevel#** : Alarmstufe (siehe [](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) für die Liste)
 - **#hide_history#** : ob der Verlauf (max, min, Durchschnitt, Trend) ausgeblendet werden soll oder nicht. Wie für die #hide_name# Es ist leer oder versteckt und kann daher direkt in einer Klasse verwendet werden. WICHTIG Wenn dieses Tag nicht in Ihrem Widget gefunden wird, dann die Tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue#  #tendance# wird nicht durch Jeedom ersetzt.
 - **#minHistoryValue#** : Mindestwert über den Zeitraum (Zeitraum, den der Benutzer in der Jeedom-Konfiguration definiert hat)
 - **#averageHistoryValue#** : Durchschnittswert über den Zeitraum (Zeitraum, der vom Benutzer in der Jeedom-Konfiguration definiert wurde)
@@ -257,4 +257,4 @@ Jeedom.cmd.update ['#id#']({Anzeigewert:'#state#',valueDate:'#valueDate#',collec
 
 ### Exemples
 
- Sie werden finden [hier](https://github.com/Jeedom/core/tree/V4-stable/core/template) Beispiele für Widgets (in Dashboard- und mobilen Ordnern)
+ Sie werden finden [](https://github.com/Jeedom/core/tree/V4-stable/core/template) Beispiele für Widgets (in Dashboard- und mobilen Ordnern)
