@@ -1599,7 +1599,7 @@ var jeeDialog = (function()
 })()
 
 
-/* jeeCtxMenu()
+/* new jeeCtxMenu({})
 Core lib for context menus
 */
 var jeeCtxMenu = function(_options)
@@ -1929,6 +1929,10 @@ var jeeCtxMenu = function(_options)
   return ctxInstance
 }
 
+
+/* new jeeFileUploader({})
+Core lib for input upload file
+*/
 var jeeFileUploader = function(_options) {
   var defaultOptions = {
     fileInput: false,
