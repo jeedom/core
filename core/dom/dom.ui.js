@@ -1343,6 +1343,9 @@ var jeeDialog = (function()
         backdrop: false,
       },
       mod_selectIcon: {
+        width: '95vw',
+        height: '90vh',
+        top: '5vh',
         zIndex: 1025
       },
       jee_modal2: {
@@ -1926,3 +1929,87 @@ var jeeCtxMenu = function(_options)
   return ctxInstance
 }
 
+var jeeFileUploader = function(_options) {
+  var defaultOptions = {
+    fileInput: false,
+    replaceFileInput: false,
+    singleFileUploads: true,
+    limitMultiFileUploads: undefined,
+    limitUploadFileSize: undefined,
+    url: '',
+    dataType: 'json',
+    done: false,
+  }
+
+  //Merge defaults and submitted options:
+  _options = domUtils.extend(defaultOptions, _options)
+  if (!_options.fileInput) {
+    console.warn('jeeFileUploader: no fileInput provided.')
+    return null
+  }
+  if (!_options.url) {
+    let dataurl = _options.fileInput.getAttribute('data-url')
+    if (dataurl != null) {
+      _options.url = dataurl
+    } else {
+      console.warn('jeeFileUploader: no url provided.')
+      return null
+    }
+  }
+
+  var displayLimit = null
+  if (_options.limitUploadFileSize != undefined) {
+    displayLimit = domUtils.octetsToHumanSize(_options.limitUploadFileSize)
+  }
+
+  //Event:
+  _options.fileInput.registerEvent('change', function jeeFileUpload(event) {
+    var data = new FormData()
+    if (_options.singleFileUploads) {
+      if (event.target.files.length > 1) {
+        jeeDialog.alert('{{Vous ne pouvez uploader qu\'un seul fichier.}}')
+        return false
+      }
+      if (_options.limitUploadFileSize != undefined) {
+        if (event.target.files[0].size > _options.limitUploadFileSize) {
+          jeeDialog.alert('{{Taille de fichier trop importante.}} (' + displayLimit + ')')
+          return false
+        }
+      }
+      data.append('file', event.target.files[0])
+    } else {
+      let files = event.target.files
+      for (let i = 0; i < files.length; i++) {
+        if (_options.limitMultiFileUploads != undefined && i > _options.limitMultiFileUploads) break
+        let file = files.item(i)
+        if (_options.limitUploadFileSize != undefined) {
+          if (file.size > _options.limitUploadFileSize) {
+            jeeDialog.alert('{{Taille de fichier trop importante.}} (' + displayLimit + ')')
+            return false
+          }
+        }
+        data.append('file-' + i, file)
+      }
+    }
+    domUtils.ajax({
+      url: _options.url,
+      async: true,
+      dataType: 'json',
+      type: 'POST',
+      data: data,
+      processData: false,
+      error: function() {
+        console.warn('jeeFileUploader: ajax error.')
+      },
+      success: function(data) {
+        if (_options.done) _options.done.apply(_options.fileInput, [event, {result: data}])
+      },
+    })
+  })
+
+  _options.destroy = function() {
+    this.fileInput.unRegisterEvent('change', 'jeeFileUpload')
+  }
+
+  return _options
+}
