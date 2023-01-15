@@ -22,8 +22,8 @@ if (!jeeFrontEnd.object) {
     init: function() {
       window.jeeP = this
       this.getObjectList()
-      if (is_numeric(jeephp2js.selectId)) {
-        this.printObject(jeephp2js.selectId)
+      if (is_numeric(getUrlVars('id'))) {
+        this.printObject(getUrlVars('id'))
       }
     },
     printObject: function(_id) {
@@ -62,7 +62,7 @@ if (!jeeFrontEnd.object) {
       })
 
       document.querySelectorAll('.objectDisplayCard').removeClass('active')
-      document.querySelector('.objectDisplayCard[data-object_id="' + _id + '"]').addClass('active')
+      document.querySelector('.objectDisplayCard[data-object_id="' + _id + '"]')?.addClass('active')
       document.getElementById('div_resumeObjectList').unseen()
       document.getElementById('div_conf').seen()
       jeedom.object.byId({
