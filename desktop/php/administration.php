@@ -499,7 +499,7 @@ user::isBan();
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
 								<span class="btn btn-default btn-file btn-xs">
-									<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" data-page="dashboard">
+									<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" accept="image/*" data-page="dashboard">
 								</span>
 								<a class="btn btn-warning btn-xs bt_removeBackgroundImage" data-page="dashboard"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
 							</div>
@@ -510,7 +510,7 @@ user::isBan();
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
 								<span class="btn btn-default btn-file btn-xs">
-									<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" data-page="analysis">
+									<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" accept="image/*" data-page="analysis">
 								</span>
 								<a class="btn btn-warning btn-xs bt_removeBackgroundImage" data-page="analysis"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
 							</div>
@@ -521,7 +521,7 @@ user::isBan();
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
 								<span class="btn btn-default btn-file btn-xs">
-									<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" data-page="tools">
+									<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" accept="image/*" data-page="tools">
 								</span>
 								<a class="btn btn-warning btn-xs bt_removeBackgroundImage" data-page="tools"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
 							</div>
