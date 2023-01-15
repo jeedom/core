@@ -3,7 +3,7 @@ Hier finden Sie eine Dokumentation zu API-Methoden.
 Hier sind zunächst die Spezifikationen (JSON RPC 2.0) :
 <http://www.jsonrpc.org/specification>
 
-Der Zugriff auf die API erfolgt über die URL : *URL\_JEEDOM*/core/api/jeeApi.php
+Der Zugriff auf die API erfolgt über die URL : **
 
 Hier ist ein Beispiel für die Konfiguration eines Json-Objekts, das im Hauptteil einer Anfrage eines HTTP-Agenten verwendet werden kann:
 `` json
@@ -75,7 +75,7 @@ Gibt die Liste der Änderungen seit dem im Parameter übergebenen Datum / Uhrzei
 
 Json-Einstellungen :
 
--   int datetime
+-   
 
 JSON Plugin API
 ===============
@@ -221,7 +221,7 @@ eqLogic::byTypeAndId
 Gibt eine Gerätetabelle gemäß den Parametern zurück.
 
 Die Rückgabe erfolgt vom Formulararray (&#39;eqType1&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒)
-Array (….)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒ Array (….))….,id1 ⇒
+Array (….)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒ Array (….))….,
 Array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒ Array (….)), id2 ⇒ Array (&#39; id&#39;⇒…, &#39;cmds&#39; ⇒
 array(…​.))..)
 
@@ -284,7 +284,7 @@ Gibt alle Bestellungen zurück, die zum angegebenen Gerät gehören
 
 Die Einstellungen:
 
--   int eqLogic\_id
+-   
 
 cmd::execCmd
 ------------
@@ -357,9 +357,9 @@ Die Einstellungen:
 
 -   String-Subtyp
 
--   int eqLogic\_id
+-   
 
--   int isHistorized = 0
+-   
 
 -   String-Einheit = ''
 
@@ -373,7 +373,7 @@ Die Einstellungen:
 
 -   intvalue=null
 
--   int isVisible = 1
+-   
 
 -   Array-Alarm
 
@@ -511,7 +511,7 @@ Die Einstellungen:
 
 -   Zeichenfolgentyp : Art des gespeicherten Werts (für Szenarien ist es Szenario)
 
--   id linkId : -1 für das globale (Wert für die Standardszenarien oder die Szenario-ID)
+-    : -1 für das globale (Wert für die Standardszenarien oder die Szenario-ID)
 
 -   String-Schlüssel : Wertname
 
@@ -525,7 +525,7 @@ Die Einstellungen:
 -   Zeichenfolgentyp : Art des gespeicherten Werts (für Szenarien
     Es ist ein Szenario)
 
--   id linkId : -1 für global (Wert für Standardszenarien,
+-    : -1 für global (Wert für Standardszenarien,
     oder die Szenario-ID)
 
 -   String-Schlüssel : Wertname
@@ -789,13 +789,13 @@ JSON-API-Beispiele
 =================
 
 Hier ist ein Beispiel für die Verwendung der API. Für das folgende Beispiel
-ich benutze [diese PHP-Klasse](https://github.com/jeedom/core/blob/release/core/class/jsonrpcClient.class.php)
+ [diese PHP-Klasse](https://github.com/jeedom/core/blob/release/core/class/jsonrpcClient.class.php)
 Dies vereinfacht die Verwendung der API.
 
 Abrufen der Objektliste :
 
 `` `{.php}
-$jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
+$ = new jsonrpcClient('#URL_JEEDOM#', #API_KEY#);
 if ($ jsonrpc-&gt; sendrequest ( ‚jeeObject::all ', Array())){
     print_r ($ jsonrpc-&gt; getResult ());
 }else{
@@ -806,7 +806,7 @@ if ($ jsonrpc-&gt; sendrequest ( ‚jeeObject::all ', Array())){
 Ausführung eines Auftrags (mit der Option eines Titels und einer Nachricht)
 
 `` `{.php}
-$jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
+$ = new jsonrpcClient('#URL_JEEDOM#', #API_KEY#);
 if ($ jsonrpc-&gt; sendrequest ( ‚cmd::execCmd ', array (' id' => #cmd_id#, 'options '=> array (' title '=>' Cuckoo ',' message '=>' Es funktioniert')))){
     Echo &#39;OK&#39;;
 }else{

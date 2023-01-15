@@ -4,7 +4,7 @@
 Esta página informa sobre todas as tarefas do aplicativo Jeedom em execução no servidor.
 Esta página deve ser usada com conhecimento ou a pedido de suporte técnico.
 
-> **Importante**
+> ****
 >
 > Em caso de uso indevido nesta página, qualquer solicitação de suporte poderá ser recusada.
 
@@ -14,30 +14,30 @@ No canto superior direito, você tem :
 
 - **Desativar o sistema cron** : um botão para desativar ou reativar todas as tarefas (se você desativá-las todas, nada será funcional no seu Jeedom).
 - **Legal** : Atualiza a tabela de tarefas.
-- **Adicionar** : Adicionar um trabalho cron manualmente.
-- **Para salvaguardar** : Salve suas alterações.
+- **** : Adicionar um trabalho cron manualmente.
+- **** : Salve suas alterações.
 
 Abaixo, você tem a tabela de todas as tarefas existentes (atenção, algumas tarefas podem iniciar subtarefas, portanto, é altamente recomendável nunca modificar as informações nesta página).
 
 Nesta tabela, encontramos :
 
-- **\#** : ID da tarefa, útil para vincular um processo em execução ao que ele realmente faz.
-- **De ativos** : Indica se a tarefa está ativa (pode ser iniciada pelo Jeedom) ou não.
-- **PID** : Indica o ID do processo atual.
+- **#** : ID da tarefa, útil para vincular um processo em execução ao que ele realmente faz.
+- **** : Indica se a tarefa está ativa (pode ser iniciada pelo Jeedom) ou não.
+- **** : Indica o ID do processo atual.
 - **Demônio** : Se esta caixa for "sim", a tarefa deve sempre estar em andamento. Além disso, você encontra a frequência do daemon, é aconselhável nunca modificar esse valor e, especialmente, nunca diminuí-lo.
-- **Único** : Se for "sim", a tarefa será iniciada uma vez e será excluída automaticamente.
-- **Classe** : Classe PHP chamada para executar a tarefa (pode estar vazia).
-- **Função** : Função PHP chamada na classe chamada (ou não, se a classe estiver vazia).
-- **Programação** : Programação da tarefa no formato CRON.
-- **Tempo esgotado** : Tempo máximo de execução da tarefa. Se a tarefa for um daemon, ela será automaticamente interrompida e reiniciada no final do tempo limite.
+- **** : Se for "sim", a tarefa será iniciada uma vez e será excluída automaticamente.
+- **** : Classe PHP chamada para executar a tarefa (pode estar vazia).
+- **** : Função PHP chamada na classe chamada (ou não, se a classe estiver vazia).
+- **** : Programação da tarefa no formato CRON.
+- **** : Tempo máximo de execução da tarefa. Se a tarefa for um daemon, ela será automaticamente interrompida e reiniciada no final do tempo limite.
 - **último lançamento** : Data do último lançamento da tarefa.
 - **Última duração** : Último tempo de execução da tarefa (um daemon sempre estará em 0s, não se preocupe, outras tarefas podem estar em 0s).
-- **Status** : Status atual da tarefa (como lembrete, uma tarefa daemon é sempre "executada"").
+- **** : Status atual da tarefa (como lembrete, uma tarefa daemon é sempre "executada"").
 
-- **Ações** :
+- **** :
     - **Detalhes** : Veja o cron em detalhes (como armazenado na base).
     - **Iniciar / Parar** : Iniciar ou parar a tarefa (dependendo do status).
-    - **Eliminação** : Excluir tarefa.
+    - **** : Excluir tarefa.
 
 
 ## Guia Ouvinte
