@@ -29,7 +29,7 @@ Define certos comportamentos da interface
 
 - **Autenticação em duas etapas** : permite configurar a autenticação em 2 etapas (como lembrete, é um código que muda a cada X segundos que é exibido em um aplicativo móvel, digite *autenticador google*). Observe que a autenticação dupla só será solicitada para conexões externas. Para conexões locais, o código não será solicitado.
 
-  **Importante** se durante a configuração da autenticação dupla tiver um erro, é necessário verificar se o Jeedom (veja na página de saúde) e o seu telefone estão bem ao mesmo tempo (1 min de diferença é suficiente para que não funcione).
+  **** se durante a configuração da autenticação dupla tiver um erro, é necessário verificar se o Jeedom (veja na página de saúde) e o seu telefone estão bem ao mesmo tempo (1 min de diferença é suficiente para que não funcione).
 
 - **Senha** : Permite alterar sua senha (não esqueça de redigitá-la abaixo).
 
