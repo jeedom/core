@@ -1938,22 +1938,24 @@ var jeeFileUploader = function(_options) {
     limitUploadFileSize: undefined,
     url: '',
     dataType: 'json',
+    add: false,
     done: false,
   }
-
-  //Merge defaults and submitted options:
-  _options = domUtils.extend(defaultOptions, _options)
   if (!_options.fileInput) {
     console.warn('jeeFileUploader: no fileInput provided.')
     return null
   }
+
+  //Merge defaults and submitted options:
+  if (!isset(_options.singleFileUploads) && _options.fileInput.getAttribute('multiple') == 'multiple') {
+    _options.singleFileUploads = false
+  }
+  _options = domUtils.extend(defaultOptions, _options)
+
   if (!_options.url) {
     let dataurl = _options.fileInput.getAttribute('data-url')
     if (dataurl != null) {
       _options.url = dataurl
-    } else {
-      console.warn('jeeFileUploader: no url provided.')
-      return null
     }
   }
 
@@ -1976,10 +1978,15 @@ var jeeFileUploader = function(_options) {
           return false
         }
       }
+
       data.append('file', event.target.files[0])
+      if (typeof _options.add === 'function') {
+        _options.add.apply(_options.fileInput, [event, data])
+      }
     } else {
       let files = event.target.files
       for (let i = 0; i < files.length; i++) {
+
         if (_options.limitMultiFileUploads != undefined && i > _options.limitMultiFileUploads) break
         let file = files.item(i)
         if (_options.limitUploadFileSize != undefined) {
@@ -1988,15 +1995,46 @@ var jeeFileUploader = function(_options) {
             return false
           }
         }
-        data.append('file-' + i, file)
+
+        if (typeof _options.add === 'function') {
+          let addData = new FormData()
+          data.append('file', file)
+          _options.data = data
+          _options.add.apply(_options.fileInput, [event, _options])
+        } else {
+          data.append('file-' + i, file)
+        }
       }
     }
+
+    if (!_options.add) {
+      domUtils.ajax({
+        url: _options.url,
+        async: true,
+        dataType: 'json',
+        type: 'POST',
+        data: data,
+        processData: false,
+        error: function() {
+          console.warn('jeeFileUploader: ajax error.')
+        },
+        success: function(data) {
+          if (_options.done) _options.done.apply(_options.fileInput, [event, {result: data}])
+        },
+      })
+    }
+  })
+
+  _options.destroy = function() {
+    this.fileInput.unRegisterEvent('change', 'jeeFileUpload')
+  }
+  _options.submit = function() {
     domUtils.ajax({
       url: _options.url,
       async: true,
       dataType: 'json',
       type: 'POST',
-      data: data,
+      data: _options.data,
       processData: false,
       error: function() {
         console.warn('jeeFileUploader: ajax error.')
@@ -2005,10 +2043,6 @@ var jeeFileUploader = function(_options) {
         if (_options.done) _options.done.apply(_options.fileInput, [event, {result: data}])
       },
     })
-  })
-
-  _options.destroy = function() {
-    this.fileInput.unRegisterEvent('change', 'jeeFileUpload')
   }
 
   return _options

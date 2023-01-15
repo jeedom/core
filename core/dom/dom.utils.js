@@ -520,15 +520,20 @@ domUtils.ajax = function(_params) {
   _params.success = (typeof _params.success === 'function') ? _params.success : function() {return arguments}
   _params.complete = (typeof _params.complete === 'function') ? _params.complete : function() { }
   _params.onError = (typeof _params.error === 'function') ? _params.error : null
-  _params.timeoutRetry = _params.timeoutRetry || 0
+  _params.timeoutRetry = isset(_params.timeoutRetry) ? _params.timeoutRetry : 0
+  _params.processData = isset(_params.processData) ? _params.processData : true
 
   domUtils.countAjax(0, _params.global)
 
   let isGet = _params.type.toLowerCase() == 'get' ? true : false
   let isJson = _params.dataType.toLowerCase() == 'json' ? true : false
 
-  if (isset(_params.data) && isJson) {
-    var data = domUtils.getUrlString(_params.data)
+  var sendData = _params.data
+  var postHeaders = new Headers()
+  if (isset(_params.data) && isJson && _params.processData === true) {
+    sendData = domUtils.getUrlString(_params.data)
+    sendData = new URLSearchParams(sendData)
+    postHeaders = {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"}
   }
 
   if (_params.async === false) { //Synchronous request:
@@ -552,8 +557,8 @@ domUtils.ajax = function(_params) {
     }
     fetch(url, {
       method: _params.type,
-      body: isGet ? null : new URLSearchParams(data),
-      headers: isGet ? new Headers() : {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"},
+      body: isGet ? null : sendData,
+      headers: isGet ? new Headers() : postHeaders,
       redirect: 'follow',
       referrerPolicy: 'no-referrer',
       mode: 'cors',
@@ -698,7 +703,14 @@ NodeList.prototype.triggerEvent = function(_eventName, _params) {
   return this
 }
 
+domUtils.octetsToHumanSize = function(_size) {
+  _size = Math.abs(parseInt(_size, 10))
+  var def = [[1, 'octets'], [1024, 'Ko'], [1024*1024, 'Mo'], [1024*1024*1024, 'Go'], [1024*1024*1024*1024, 'To']]
+  for (var i=0; i < def.length; i++) {
+    if (_size < def[i][0]) return (_size / def[i-1][0]).toFixed(2) +' '+ def[i-1][1]
+  }
 
+}
 
 //Global functions
 function isElement_jQuery(_element) {
