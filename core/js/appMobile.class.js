@@ -37,6 +37,6 @@ jeedom.appMobile.notifee = function (title, body, time) {
   });
 }
 
-jeedom.appMobile.modal = function () {
-  jeedom.appMobile.postToApp('modal', {});
+jeedom.appMobile.modal = function (_options) {
+  jeedom.appMobile.postToApp('modal', {_options});
 }
