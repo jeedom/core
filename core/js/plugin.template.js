@@ -384,7 +384,10 @@ $('.eqLogicAction[data-action="save"]').off('click').on('click', function(event)
       eqLogics.push(eqLogic)
     }
   })
-  let thisEqType = event.target.getAttribute('data-eqLogic_type')
+  let thisEqType = null
+  if(event.target){
+    thisEqType = event.target.getAttribute('data-eqLogic_type')
+  }
   jeedom.eqLogic.save({
     type: thisEqType != null ? thisEqType : eqType,
     id: null,
