@@ -560,7 +560,9 @@ $('div.pluginDisplayCard').off('mouseup').on('mouseup', function(event) {
 $('#bt_returnToThumbnailDisplay').last().on('click', function(event) {
   setTimeout(function() {
     document.querySelectorAll('.nav li.active').removeClass('active')
-    document.querySelector('a[href="#' + document.querySelector('.tab-pane.active').getAttribute('id') + '"]').closest('li').addClass('active')
+    let tab, active = document.querySelector('.tab-pane.active')
+    if (active) tab = document.querySelector('a[href="#' + active.getAttribute('id') + '"]')
+    if (tab) tab.closest('li').addClass('active')
   }, 500)
   if (jeedomUtils.checkPageModified()) return
   document.getElementById('div_resumePluginList')?.seen()
@@ -569,7 +571,7 @@ $('#bt_returnToThumbnailDisplay').last().on('click', function(event) {
 })
 
 $('body').off('click', '.bt_refreshPluginInfo').on('click', '.bt_refreshPluginInfo', function(event) {
-  document.querySelectorAll('.pluginDisplayCard[data-plugin_id="' + document.getElementById('span_plugin_id').textContent + '"]').click()
+  document.querySelector('.pluginDisplayCard[data-plugin_id="' + document.getElementById('span_plugin_id').textContent + '"]').click()
 })
 
 $('#span_right_button').on({
