@@ -38,5 +38,10 @@ jeedom.appMobile.notifee = function (title, body, time) {
 }
 
 jeedom.appMobile.modal = function (_options) {
-  jeedom.appMobile.postToApp('modal', {_options});
+  /**
+   *
+   * @example  _options = { 'type' : 'WebviewApp', 'uri' : '/core/php/panel.php' }
+   *   type : 'WebviewApp' for internalLink or 'urlwww' for externalLink
+ */
+  jeedom.appMobile.postToApp('modal', _options);
 }
