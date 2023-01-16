@@ -621,7 +621,7 @@ jeedom.getCronSelectModal = function(_options, _callback) {
             var args = {}
             args.cron = {}
             args.value = mod_insertCron.getValue()
-            if (args.value.trim() != '' && 'function' === typeof (_callback)) {
+            if (args.value != undefined && args.value.trim() != '' && 'function' === typeof (_callback)) {
               _callback(args)
             }
             document.getElementById('mod_insertCronValue')._jeeDialog.destroy()

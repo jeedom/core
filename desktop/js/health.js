@@ -29,25 +29,26 @@ jeeFrontEnd.health.init()
 /*Events delegations
 */
 document.getElementById('accordionHealth').addEventListener('click', event => {
-  if (event.target.matches('.bt_configurationPlugin')) {
+  var _target = null
+  if (_target = event.target.closest('.bt_configurationPlugin')) {
     jeeDialog.dialog({
       id: 'jee_modal',
       title: "{{Configuration du plugin}}",
-      contentUrl: 'index.php?v=d&p=plugin&ajax=1&id=' + event.target.getAttribute('data-pluginid')
+      contentUrl: 'index.php?v=d&p=plugin&ajax=1&id=' + _target.getAttribute('data-pluginid')
     })
     return
   }
 
-  if (event.target.matches('.bt_healthSpecific')) {
+  if (_target = event.target.closest('.bt_healthSpecific')) {
     jeeDialog.dialog({
       id: 'jee_modal',
-      title: "{{Santé}} " + event.target.getAttribute('data-pluginname'),
-      contentUrl: 'index.php?v=d&plugin=' + event.target.getAttribute('data-pluginid') + '&modal=health'
+      title: "{{Santé}} " + _target.getAttribute('data-pluginname'),
+      contentUrl: 'index.php?v=d&plugin=' + _target.getAttribute('data-pluginid') + '&modal=health'
     })
     return
   }
 
-  if (event.target.matches('#bt_benchmarkJeedom')) {
+  if (_target = event.target.closest('#bt_benchmarkJeedom')) {
     jeeDialog.dialog({
       id: 'jee_modal',
       title: "{{Jeedom benchmark}}",
@@ -56,10 +57,8 @@ document.getElementById('accordionHealth').addEventListener('click', event => {
     return
   }
 
-  if (event.target.matches('.panel-title')) {
-    if (!event.target.matches('a.accordion-toggle') && !event.target.hasClass('pull-right')) {
-      event.target.querySelector('a.accordion-toggle').click()
-    }
+  if (_target = event.target.closest('.panel-title')) {
+    _target.querySelector('a.accordion-toggle').click()
     return
   }
 })

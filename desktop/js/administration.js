@@ -887,8 +887,8 @@ $('#config').on({
 }, '.configKey[data-l1key="log::engine"]')
 
 $('.bt_addActionOnMessage').on('click', function() {
-  let me = event.target.closest('.bt_addActionOnMessage')
-  jeeP.addActionOnMessage({}, me.getAttribute('data-channel'))
+  let _target = event.target.closest('.bt_addActionOnMessage')
+  jeeP.addActionOnMessage({}, _target.getAttribute('data-channel'))
   jeeFrontEnd.modifyWithoutSave = true
 })
 
@@ -901,11 +901,11 @@ $('#config').on({
 
 $('#config').on({
   'focusout': function(event) {
-    let me = event.target.closest('.cmdAction.expressionAttr[data-l1key="cmd"]')
-    var expression = me.closest('.actionOnMessage').getJeeValues('.expressionAttr')
+    let _target = event.target.closest('.cmdAction.expressionAttr[data-l1key="cmd"]')
+    var expression = _target.closest('.actionOnMessage').getJeeValues('.expressionAttr')
     if (expression[0] && expression[0].options) {
-      jeedom.cmd.displayActionOption(me.value, init(expression[0].options), function(html) {
-        me.closest('.actionOnMessage').querySelector('.actionOptions').html(html)
+      jeedom.cmd.displayActionOption(_target.value, init(expression[0].options), function(html) {
+        _target.closest('.actionOnMessage').querySelector('.actionOptions').html(html)
         jeedomUtils.taAutosize()
       })
     }
@@ -1234,11 +1234,11 @@ $('#bt_removeBanIp').on('click', function() {
 
 /**************************UPDATES / MARKET***********************************/
 $('#config').off('change', '.enableRepository').on('change', '.enableRepository', function(event) {
-  let me = event.target.closest('.enableRepository')
-  if (me.checked) {
-    document.querySelectorAll('.repositoryConfiguration' + me.getAttribute('data-repo')).seen()
+  let _target = event.target.closest('.enableRepository')
+  if (_target.checked) {
+    document.querySelectorAll('.repositoryConfiguration' + _target.getAttribute('data-repo')).seen()
   } else {
-    document.querySelectorAll('.repositoryConfiguration' + me.getAttribute('data-repo')).unseen()
+    document.querySelectorAll('.repositoryConfiguration' + _target.getAttribute('data-repo')).unseen()
   }
 })
 
@@ -1331,15 +1331,15 @@ $("#bt_flushWidgetCache").on('click', function(event) {
 /**************************API***********************************/
 $(".bt_regenerate_api").on('click', function(event) {
   jeedomUtils.hideAlert()
-  var me = event.target.closest('.bt_regenerate_api')
-  jeeDialog.confirm('{{Êtes-vous sûr de vouloir réinitialiser la clé API de}}' + ' ' + me.getAttribute('data-plugin') + ' ?', function(result) {
+  var _target = event.target.closest('.bt_regenerate_api')
+  jeeDialog.confirm('{{Êtes-vous sûr de vouloir réinitialiser la clé API de}}' + ' ' + _target.getAttribute('data-plugin') + ' ?', function(result) {
     if (result) {
       domUtils.ajax({
         type: "POST",
         url: "core/ajax/config.ajax.php",
         data: {
           action: "genApiKey",
-          plugin: me.getAttribute('data-plugin'),
+          plugin: _target.getAttribute('data-plugin'),
         },
         dataType: 'json',
         error: function(request, status, error) {
@@ -1353,7 +1353,7 @@ $(".bt_regenerate_api").on('click', function(event) {
             })
             return
           }
-          me.closest('.input-group').querySelectorAll('.span_apikey').jeeValue(data.result)
+          _target.closest('.input-group').querySelectorAll('.span_apikey').jeeValue(data.result)
         }
       })
     }

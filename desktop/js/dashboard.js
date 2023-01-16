@@ -27,6 +27,21 @@ if (!jeeFrontEnd.dashboard) {
       this.url_tag = getUrlVars('tag')
       if (!this.url_tag) this.url_tag = 'all'
       this.url_summary = getUrlVars('summary')
+
+      if (this.url_summary != '') {
+        document.querySelectorAll('#bt_displayObject, #bt_editDashboardWidgetOrder').forEach(function(element) {
+          element.parentNode.remove()
+        })
+        document.querySelectorAll('div.div_object').forEach(function(div_object) {
+          var objId = div_object.getAttribute('data-object_id')
+          jeeFrontEnd.dashboard.getObjectHtmlFromSummary(objId)
+        })
+      } else {
+        document.querySelectorAll('div.div_object').forEach(function(div_object) {
+          var objId = div_object.getAttribute('data-object_id')
+          jeeFrontEnd.dashboard.getObjectHtml(objId)
+        })
+      }
     },
     postInit: function() {
       jeedomUI.isEditing = false
@@ -62,12 +77,18 @@ if (!jeeFrontEnd.dashboard) {
         } else {
           eqCats = ''
         }
-        if (catFound) eqLogic.seen()
+        if (catFound) {
+          eqLogic.seen()
+          eqLogic.closest('.div_object').seen()
+        }
         else eqLogic.unseen()
       })
 
       if (cats.includes('scenario')) {
-        document.querySelectorAll('div.scenario-widget').seen()
+        document.querySelectorAll('div.scenario-widget').forEach(_sc => {
+          _sc.seen()
+          _sc.closest('.div_object').seen()
+        })
       } else {
         document.querySelectorAll('div.scenario-widget').unseen()
       }
@@ -248,6 +269,7 @@ if (!jeeFrontEnd.dashboard) {
                 //is last ajax:
                 if (nbEqs == 0) {
                   jeedomUtils.positionEqLogic()
+                  domUtils.hideLoading()
                   $(dom_divDisplayEq).packery({isLayoutInstant: true})
                   if (Array.from(dom_divDisplayEq.querySelectorAll('div.eqLogic-widget, div.scenario-widget')).filter(item => item.isVisible()).length == 0) {
                     dom_divDisplayEq.closest('.div_object').remove()
@@ -285,14 +307,15 @@ if (!jeeFrontEnd.dashboard) {
             dom_divDisplayEq.html(html)
             //$(dom_divDisplayEq).html(html)
           } catch (err) {
-            console.log(err)
+            console.warn(err)
           }
           if (typeof jeeP == 'undefined') {
             return
           }
-          if (self.url_summary != '') {
+          if (self.url_summary != false) {
             if (Array.from(dom_divDisplayEq.querySelectorAll('div.eqLogic-widget, div.scenario-widget')).filter(item => item.isVisible()).length == 0) {
               dom_divDisplayEq.closest('.div_object').remove()
+              domUtils.hideLoading()
               return
             }
           }
@@ -321,6 +344,7 @@ if (!jeeFrontEnd.dashboard) {
           document.querySelectorAll('div.eqLogic-widget, div.scenario-widget').forEach(function(element, idx) {
             element.setAttribute('data-order', idx + 1)
           })
+          domUtils.hideLoading()
           jeedomUtils.initTooltips()
 
           pckryContainer.on('dragItemPositioned', function() {
@@ -340,33 +364,16 @@ if (!jeeFrontEnd.dashboard) {
         })
       }
 
-      $('.div_object[data-father_id=' + _object_id + ']').each(function() {
-        $(this).parent().show({
-          effect: 'drop',
-          queue: false
-        }).find('.div_displayEquipement').packery()
-        jeeP.displayChildObject(this.getAttribute('data-object_id'), true)
+      document.querySelectorAll('.div_object[data-father_id="' + _object_id + '"]').forEach(_id => {
+        _id.seen()
+        $(_id.querySelector('.div_displayEquipement')).packery()
+        jeeP.displayChildObject(_id.getAttribute('data-object_id'))
       })
     },
   }
 }
 
 jeeFrontEnd.dashboard.init()
-
-if (jeeP.url_summary != '') {
-  document.querySelectorAll('#bt_displayObject, #bt_editDashboardWidgetOrder').forEach(function(element) {
-    element.parentNode.remove()
-  })
-  document.querySelectorAll('div.div_object').forEach(function(div_object) {
-    var objId = div_object.getAttribute('data-object_id')
-    jeeFrontEnd.dashboard.getObjectHtmlFromSummary(objId)
-  })
-} else {
-  document.querySelectorAll('div.div_object').forEach(function(div_object) {
-    var objId = div_object.getAttribute('data-object_id')
-    jeeFrontEnd.dashboard.getObjectHtml(objId)
-  })
-}
 
 if (typeof jeephp2js.rootObjectId != 'undefined') {
   jeedom.object.getImgPath({
@@ -375,6 +382,8 @@ if (typeof jeephp2js.rootObjectId != 'undefined') {
       jeedomUtils.setBackgroundImage(_path)
     }
   })
+  let lia = document.querySelector('#dashOverviewPrev a[data-object_id="' + jeephp2js.rootObjectId + '"]')
+  if (lia) lia.parentNode.addClass('active')
 }
 
 jeeP.postInit()
@@ -440,12 +449,16 @@ document.getElementById('in_searchDashboard')?.addEventListener('keyup', functio
   })
   $('.div_displayEquipement').packery()
 })
-
+document.getElementById('bt_resetDashboardSearch')?.addEventListener('keyup', function(event) {
+  if (jeedomUI.isEditing) return
+  document.querySelectorAll('#categoryfilter li .catFilterKey').forEach(cat => { cat.checkd = true})
+  document.querySelectorAll('#dashTopBar button.dropdown-toggle').removeClass('warning')
+  document.getElementById('in_searchDashboard').jeeValue('').triggerEvent('keyup')
+})
 //Edit mode:
 document.getElementById('bt_editDashboardWidgetOrder')?.addEventListener('click', function(event) {
-  var bt = event.target.matches('#bt_editDashboardWidgetOrder') ? event.target : event.target.parentNode
-  if (bt.getAttribute('data-mode') == 1) {
-    bt.setAttribute('data-mode', 0)
+  if (event.target.getAttribute('data-mode') == 1) {
+    event.target.setAttribute('data-mode', 0)
     jeedomUtils.hideAlert()
     jeeFrontEnd.modifyWithoutSave = false
     jeedomUtils.enableTooltips()
@@ -454,7 +467,7 @@ document.getElementById('bt_editDashboardWidgetOrder')?.addEventListener('click'
     jeeP.editWidgetMode(0)
     $('.div_displayEquipement').packery()
   } else {
-    bt.setAttribute('data-mode', 1)
+    event.target.setAttribute('data-mode', 1)
     jeedomUtils.disableTooltips()
     document.querySelectorAll('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').seen()
     jeeP.editWidgetMode(1)
@@ -463,8 +476,9 @@ document.getElementById('bt_editDashboardWidgetOrder')?.addEventListener('click'
 
 //div_pageContainer events delegation:
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  if (event.target.matches('.editOptions')) { //Edit mode tile icon
-    var eqId = event.target.closest('div.eqLogic-widget').getAttribute('data-eqlogic_id')
+  var _target = null
+  if (_target = event.target.closest('.editOptions')) { //Edit mode tile icon
+    var eqId = _target.closest('div.eqLogic-widget').getAttribute('data-eqlogic_id')
     jeeDialog.dialog({
       id: 'md_dashEdit',
       width: '600px',
@@ -492,8 +506,8 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
-  if (event.target.matches('.bt_editDashboardTilesAutoResizeUp')) { //Edit mode resize up button
-    var id_object = event.target.getAttribute('data-obecjtid')
+  if (_target = event.target.closest('.bt_editDashboardTilesAutoResizeUp')) { //Edit mode resize up button
+    var id_object = _target.getAttribute('data-obecjtid')
     var objectContainer = document.querySelector('#div_ob' + id_object + '.div_displayEquipement')
     var arHeights = []
     objectContainer.querySelectorAll('div.eqLogic-widget, div.scenario-widget').forEach(function(element) {
@@ -507,8 +521,8 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
-  if (event.target.matches('.bt_editDashboardTilesAutoResizeDown')) { //Edit mode resize down button
-    var id_object = event.target.getAttribute('data-obecjtid')
+  if (_target = event.target.closest('.bt_editDashboardTilesAutoResizeDown')) { //Edit mode resize down button
+    var id_object = _target.getAttribute('data-obecjtid')
     var objectContainer = document.querySelector('#div_ob' + id_object + '.div_displayEquipement')
     var arHeights = []
     objectContainer.querySelectorAll('div.eqLogic-widget, div.scenario-widget').forEach(function(element) {
@@ -522,28 +536,19 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
-  if (event.target.matches('#bt_resetDashboardSearch, #bt_resetDashboardSearch > i')) {
-    if (jeedomUI.isEditing) return
-    document.querySelectorAll('#categoryfilter li .catFilterKey').forEach(cat => { cat.checkd = true})
-    document.querySelectorAll('#dashTopBar button.dropdown-toggle').removeClass('warning')
-    document.getElementById('in_searchDashboard').jeeValue('').triggerEvent('keyup')
-    return
-  }
-
-  if (event.target.matches('#bt_overview, #bt_overview > i')) { //bt_overview arrow:
-    var bt = document.getElementById('bt_overview')
-    if (bt.getAttribute('data-state') == '0') {
-      bt.setAttribute('data-state', '1')
+  if (_target = event.target.closest('#bt_overview')) { //bt_overview arrow:
+    if (_target.getAttribute('data-state') == '0') {
+      _target.setAttribute('data-state', '1')
     } else {
-      bt.setAttribute('data-state', '0')
+      _target.setAttribute('data-state', '0')
       document.getElementById('dashOverviewPrev').unseen()
     }
     clearTimeout(jeeP.btOverviewTimer)
     return
   }
 
-  if (event.target.matches('.objectPreview, .objectPreview .name')) { //
-    var url = 'index.php?v=d&p=dashboard&object_id=' + event.target.closest('.objectPreview').getAttribute('data-object_id') + '&childs=0&btover=1'
+  if (_target = event.target.closest('.objectPreview')) { //
+    var url = 'index.php?v=d&p=dashboard&object_id=' + _target.getAttribute('data-object_id') + '&childs=0&btover=1'
     if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
       window.open(url).focus()
     } else {
@@ -552,9 +557,9 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
-  if (event.target.matches('.li_object, .li_object span, .li_object i')) { //Dashboard mode list:
-    var object_id = event.target.closest('a')?.getAttribute('data-object_id')
-    if (document.querySelector('.div_object[data-object_id="' + object_id + '"]') != null) {
+  if (_target = event.target.closest('.li_object')) { //Dashboard mode list:
+    var object_id = _target.querySelector('a[data-object_id]')?.getAttribute('data-object_id')
+    if (document.querySelector('.div_object[data-object_id="' + object_id + '"]') != null && getUrlVars('summary') === false) { //Object already there as child
       jeedom.object.getImgPath({
         id: object_id,
         success: function(_path) {
@@ -562,13 +567,12 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
         }
       })
       document.querySelectorAll('#dashOverviewPrev .li_object').removeClass('active')
-      event.target.addClass('active')
+      _target.addClass('active')
       jeeP.displayChildObject(object_id, false)
       jeedomUtils.addOrUpdateUrl('object_id', object_id)
       return
-    }
-    if (event.target.closest('a') != null) {
-      jeedomUtils.loadPage(event.target.closest('a').getAttribute('data-href'))
+    } else  if (_target.querySelector('a[data-object_id]') != null) {
+      jeedomUtils.loadPage(_target.querySelector('a[data-object_id]').getAttribute('data-href'))
       return
     }
     return
@@ -595,18 +599,19 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 }, {buble: true})
 
 document.getElementById('div_pageContainer').addEventListener('mouseenter', function(event) {
-  if (event.target.matches('#bt_overview') || event.target.parentNode.matches('#bt_overview')) { //bt_overview arrow:
+  var _target = null
+  if (_target = event.target.closest('#bt_overview')) { //bt_overview arrow:
     event.stopImmediatePropagation()
     event.stopPropagation()
     if (jeedomUI.isEditing) return
       if (document.getElementById('dashOverviewPrev').isVisible()) return
     jeeP.btOverviewTimer = setTimeout(function() {
-    document.getElementById('dashOverviewPrev').seen()
+      document.getElementById('dashOverviewPrev').seen()
     }, 300)
     return
   }
 
-  if (event.target.matches('.objectPreview')) { //Show summary in overview preview tiles
+  if (_target = event.target.closest('.objectPreview')) { //Show summary in overview preview tiles
     document.querySelectorAll('#dashOverviewPrevSummaries > .objectSummaryContainer').unseen()
     var width = window.outerWidth
     var position = event.target.getBoundingClientRect()
@@ -620,7 +625,7 @@ document.getElementById('div_pageContainer').addEventListener('mouseenter', func
       css.left = position.left + 'px'
       css.right = 'unset'
     }
-    var summary = document.querySelector('.objectSummaryContainer.objectSummary' + event.target.getAttribute('data-object_id'))
+    var summary = document.querySelector('.objectSummaryContainer.objectSummary' + _target.getAttribute('data-object_id'))
     summary.seen()
     Object.assign(summary.style, css)
     return
@@ -628,7 +633,8 @@ document.getElementById('div_pageContainer').addEventListener('mouseenter', func
 }, {capture: true})
 
 document.getElementById('div_pageContainer').addEventListener('mouseleave', function(event) {
-  if (event.target.matches('#bt_overview') || event.target.parentNode.matches('#bt_overview')) { //bt_overview arrow:
+  var _target = null
+  if (_target = event.target.closest('#bt_overview')) { //bt_overview arrow:
     clearTimeout(jeeP.btOverviewTimer)
     event.stopImmediatePropagation()
     event.stopPropagation()
@@ -645,10 +651,11 @@ document.getElementById('div_pageContainer').addEventListener('mouseleave', func
 }, {capture: true})
 
 document.getElementById('div_pageContainer').addEventListener('mouseup', function(event) {
-  if (event.target.matches('.objectPreview, .objectPreview .name')) {
+  var _target = null
+  if (_target = event.target.closest('.objectPreview')) {
     if (event.which == 2) {
       event.preventDefault()
-      var id = event.target.closest('.objectPreview').getAttribute('data-object_id')
+      var id = _target.getAttribute('data-object_id')
       document.querySelector('.objectPreview[data-object_id="' + id + '"] .name').triggerEvent('click', {detail: {ctrlKey: true}})
     }
     return
@@ -669,7 +676,7 @@ document.getElementById('div_pageContainer').addEventListener('mouseup', functio
       }
     }
     setTimeout(function() { jeeP.filterByCategory() }, 1)
-
+    return
   }
 })
 
@@ -693,7 +700,7 @@ document.getElementById('div_pageContainer').addEventListener('mousedown', funct
     } else {
       checkbox.checked = !checkbox.checked
     }
-    jeeP.filterByCategory()
+    setTimeout(function() { jeeP.filterByCategory() }, 1)
   }
 })
 

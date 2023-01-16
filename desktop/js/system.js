@@ -74,10 +74,9 @@ document.getElementById('in_specificCommand')?.addEventListener('keyup', functio
 /*Events delegations
 */
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  console.log('>>click', event)
-  if (event.target.matches('#ul_userListCmdHistory .bt_systemCommand')) {
-    let me = event.target.closest('#ul_userListCmdHistory .bt_systemCommand')
-    var command = me.getAttribute('data-command')
+  var _target = null
+  if (_target = event.target.closest('#ul_userListCmdHistory .bt_systemCommand')) {
+    var command = _target.getAttribute('data-command')
     document.getElementById('pre_commandResult').empty()
     jeedom.ssh({
       command: command,
@@ -90,11 +89,10 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
-  if (event.target.matches('#ul_systemListCmd .bt_systemCommand')) {
-    let me = event.target.closest('#ul_systemListCmd .bt_systemCommand')
-    var command = me.getAttribute('data-command')
+  if (_target = event.target.closest('#ul_systemListCmd .bt_systemCommand')) {
+    var command = _target.getAttribute('data-command')
     document.getElementById('pre_commandResult').empty()
-    if (me.parentNode.hasClass('list-group-item-danger')) {
+    if (_target.parentNode.hasClass('list-group-item-danger')) {
       jeeDialog.confirm('{{Êtes-vous sûr de vouloir éxécuter cette commande :}} <strong>' + command + '</strong> ? {{Celle-ci est classé en dangereuse}}', function(result) {
         if (result) {
           jeedom.ssh({
