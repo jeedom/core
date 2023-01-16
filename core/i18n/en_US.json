@@ -3154,9 +3154,9 @@
     },
     "desktop\/js\/eqAnalyse.js": {
         "Supprimée le": "Deleted on",
+        "Configuration en masse": "Mass configuration",
         "Configuration de la commande": "Order Setup",
-        "Configuration de l'équipement": "Equipment configuration",
-        "Configuration en masse": "Mass configuration"
+        "Configuration de l'équipement": "Equipment configuration"
     },
     "desktop\/js\/object.js": {
         "Image de fond ajoutée avec succès": "Background image successfully added",
