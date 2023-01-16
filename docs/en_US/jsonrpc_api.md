@@ -3,7 +3,7 @@ Here is documentation on API methods.
 First here are the specifications (JSON RPC 2.0) :
 <http://www.jsonrpc.org/specification>
 
-Access to the API is via the url : **
+Access to the API is via the url : *URL\_JEEDOM*/core/api/jeeApi.php
 
 Here is an example of configuring a Json object that can be used in the body of a request made by an HTTP agent:
 `` json
@@ -46,11 +46,11 @@ Returns a configuration value.
 
 Json settings :
 
--    : configuration value key to return
+-   string key : configuration value key to return
 
--    : (optional), configuration value plugin
+-   string plugin : (optional), configuration value plugin
 
--    : (optional), value to return if the key does not exist
+-   string default : (optional), value to return if the key does not exist
 
 config::save
 ------------
@@ -59,11 +59,11 @@ Saves a configuration value
 
 Json settings :
 
--    : value to record
+-   string value : value to record
 
--    : configuration value key to save
+-   string key : configuration value key to save
 
--    : (optional), plugin of the configuration value to save
+-   string plugin : (optional), plugin of the configuration value to save
 
 JSON Event API
 ==============
@@ -75,7 +75,7 @@ Returns the list of changes since the datetime passed in parameter (must be in m
 
 Json settings :
 
--   
+-   int datetime
 
 JSON Plugin API
 ===============
@@ -111,7 +111,7 @@ Returns an object with all its equipment and for each equipment all its commands
 
 Json settings :
 
--   
+-   int id
 
 jeeObject::byId
 ------------
@@ -120,7 +120,7 @@ Returns the specified object
 
 Settings:
 
--   
+-   int id
 
 jeeObject::fullById
 ----------------
@@ -138,7 +138,7 @@ Settings:
 
 -   string name
 
--   
+-   int father\_id = null
 
 -   int isVisible = 0
 
@@ -158,7 +158,7 @@ Returns the global summary for the key passed in parameter
 
 Settings:
 
--    : (optional), key of the desired summary, if empty then Jeedom returns the summary for all the keys
+-   string key : (optional), key of the desired summary, if empty then Jeedom returns the summary for all the keys
 
 summary::byId
 -------------
@@ -167,9 +167,9 @@ Returns the summary for the object id
 
 Settings:
 
--    : object id
+-   int id : object id
 
--    : (optional), key of the desired summary, if empty then Jeedom returns the summary for all the keys
+-   string key : (optional), key of the desired summary, if empty then Jeedom returns the summary for all the keys
 
 JSON EqLogic API
 ================
@@ -186,7 +186,7 @@ Returns a device and its commands as well as their states (for info type command
 
 Settings:
 
--   
+-   int id
 
 eqLogic::byId
 -------------
@@ -195,7 +195,7 @@ Returns the specified equipment
 
 Settings:
 
--   
+-   int id
 
 eqLogic::byType
 ---------------
@@ -213,7 +213,7 @@ Returns all equipment belonging to the specified object
 
 Settings:
 
--   
+-   int object\_id
 
 eqLogic::byTypeAndId
 --------------------
@@ -221,7 +221,7 @@ eqLogic::byTypeAndId
 Returns an equipment table according to the parameters.
 
 The return will be of the form array (&#39;eqType1&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds&#39; ⇒
-array (….)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds&#39; ⇒ array (….))….,
+array (….)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds&#39; ⇒ array (….))….,id1 ⇒
 array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒ array (….)), id2 ⇒ array (&#39; id&#39;⇒…, &#39;cmds&#39; ⇒
 array(…​.))..)
 
@@ -275,7 +275,7 @@ Returns the specified command
 
 Settings:
 
--   
+-   int id
 
 cmd::byEqLogicId
 ----------------
@@ -284,7 +284,7 @@ Returns all commands belonging to the specified equipment
 
 Settings:
 
--   
+-   int eqLogic\_id
 
 cmd::execCmd
 ------------
@@ -293,7 +293,7 @@ Execute the specified command
 
 Settings:
 
--    : command id or id array if you want to execute multiple commands at once
+-   int id : command id or id array if you want to execute multiple commands at once
 
 -   \ [options \] List of command options (depends on the type and subtype of the command)
 
@@ -304,11 +304,11 @@ Returns the statistics on the order (only works on info and historical orders)
 
 Settings:
 
--   
+-   int id
 
--    : start date of statistics calculation
+-   string startTime : start date of statistics calculation
 
--    : end date of statistics calculation
+-   string endTime : end date of statistics calculation
 
 cmd::getTendance
 ----------------
@@ -317,11 +317,11 @@ Returns the trend on the order (only works on info and historical orders)
 
 Settings:
 
--   
+-   int id
 
--    : trend calculation start date
+-   string startTime : trend calculation start date
 
--    : trend calculation end date
+-   string endTime : trend calculation end date
 
 cmd::getHistory
 ---------------
@@ -330,11 +330,11 @@ Returns the order history (only works on info and historical orders)
 
 Settings:
 
--   
+-   int id
 
--    : history start date
+-   string startTime : history start date
 
--    : history end date
+-   string endTime : history end date
 
 cmd::save
 ---------
@@ -355,25 +355,25 @@ Settings:
 
 -   thong type
 
--   
+-   string subType
 
--   
+-   int eqLogic\_id
 
--   
+-   int isHistorized = 0
 
 -   string unit = ''
 
 -   array config
 
--   
+-   array template
 
--   
+-   array display
 
--   
+-   array html
 
 -   intvalue=null
 
--   
+-   int isVisible = 1
 
 -   array-alert
 
@@ -384,9 +384,9 @@ Allows you to send a value to a command
 
 Settings:
 
--   
+-   int id
 
--    : valeur
+-   string value : valeur
 
 -   datetime string : (optional) datetime value
 
@@ -405,7 +405,7 @@ Returns the specified scenario
 
 Settings:
 
--   
+-   int id
 
 scenario::export
 ----------------
@@ -414,7 +414,7 @@ Returns the export of the scenario as well as the *human name* from the script
 
 Settings:
 
--   
+-   int id
 
 scenario::import
 ----------------
@@ -423,11 +423,11 @@ Allows you to import a scenario.
 
 Settings:
 
--    : id of the scenario in which to import (empty if creation)
+-   int id : id of the scenario in which to import (empty if creation)
 
--    : *human name* of the scenario (empty if creation)
+-   string humanName : *human name* of the scenario (empty if creation)
 
--    : scenario (from the export scenario field::export)
+-   array import : scenario (from the export scenario field::export)
 
 scenario::changeState
 ---------------------
@@ -436,7 +436,7 @@ Changes the state of the specified scenario.
 
 Settings:
 
--   
+-   int id
 
 -   string state: \ [Run, stop, enable, disable \]
 
@@ -450,11 +450,11 @@ Allows you to retrieve a log
 
 Settings:
 
--    : name of the log to retrieve
+-   string log : name of the log to retrieve
 
--    : line number on which to start reading
+-   string start : line number on which to start reading
 
--    : number of lines to recover
+-   string nbLine : number of lines to recover
 
 log::add
 --------
@@ -463,13 +463,13 @@ Allows to write in a log
 
 Settings:
 
--    : name of the log to retrieve
+-   string log : name of the log to retrieve
 
 -   thong type : log type (debug, info, warning, error)
 
 -   message string : text message to write
 
--    : logicalId of the generated message
+-   string logicalId : logicalId of the generated message
 
 
 log::list
@@ -488,7 +488,7 @@ Empty a log
 
 Settings:
 
--    : name of the log to empty
+-   string log : name of the log to empty
 
 log::remove
 -----------
@@ -497,7 +497,7 @@ Allows you to delete a log
 
 Settings:
 
--    : log name to delete
+-   string log : log name to delete
 
 JSON datastore API (variable)
 =============================
@@ -511,9 +511,9 @@ Settings:
 
 -   thong type : type of stored value (for scenarios it is scenario)
 
--    : -1 for the global (value for the default scenarios, or the scenario id)
+-   id linkId : -1 for the global (value for the default scenarios, or the scenario id)
 
--    : value name
+-   string key : value name
 
 datastore::save
 ---------------
@@ -525,10 +525,10 @@ Settings:
 -   thong type : type of stored value (for scenarios
     it's scenario)
 
--    : -1 for global (value for default scenarios,
+-   id linkId : -1 for global (value for default scenarios,
     or the scenario id)
 
--    : value name
+-   string key : value name
 
 -   mixed value : value to record
 
@@ -553,7 +553,7 @@ Settings:
 
 -   thong action : action
 
--    : logicalId
+-   string logicalId : logicalId
 
 message::removeAll
 ------------------
@@ -572,7 +572,7 @@ Settings:
 
 -   query (request phrase)
 
--    : Command ID to use to respond,
+-   int reply\_cmd = NULL : Command ID to use to respond,
     if not specify then Jeedom returns the answer to you in the json
 
 interactQuery::all
@@ -695,7 +695,7 @@ Settings:
 
 -   int plugin\_id (optional) : plugin id
 -   string logicalId (optional) : plugin name (logical name)
--    : 1 for automatic, 0 for manual
+-   int mode : 1 for automatic, 0 for manual
 
 JSON update API
 ===============
@@ -759,7 +759,7 @@ Returns all the elements of the requested folder
 
 Settings:
 
--    : folder name
+-   string folder : folder name
 
 JSON User API
 =================
@@ -782,20 +782,20 @@ Settings:
 
 -   string password
 
--   string profile: ]
+-   string profile: \[admin,user,restrict\]
 
 
 JSON API Examples
 =================
 
 Here is an example of using the API. For the example below
- [this php class](https://github.com/jeedom/core/blob/release/core/class/jsonrpcClient.class.php)
+I use [this php class](https://github.com/jeedom/core/blob/release/core/class/jsonrpcClient.class.php)
 which simplifies the use of the API.
 
 Retrieving the list of objects :
 
 `` `{.php}
-$ = new jsonrpcClient('#URL_JEEDOM#', #API_KEY#);
+$jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
 if ($ jsonrpc-&gt; sendRequest ( &#39;jeeObject::all ', array())){
     print_r ($ jsonrpc-&gt; getResult ());
 }else{
@@ -806,7 +806,7 @@ if ($ jsonrpc-&gt; sendRequest ( &#39;jeeObject::all ', array())){
 Execution of an order (with the option of a title and a message)
 
 `` `{.php}
-$ = new jsonrpcClient('#URL_JEEDOM#', #API_KEY#);
+$jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
 if ($ jsonrpc-&gt; sendRequest ( &#39;cmd::execCmd ', array (' id' => #cmd_id#, 'options '=> array (' title '=>' Cuckoo ',' message '=>' It works')))){
     echo &#39;OK&#39;;
 }else{

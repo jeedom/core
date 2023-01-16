@@ -3,7 +3,7 @@ Aquí hay documentación sobre métodos API.
 Primero, aquí están las especificaciones (JSON RPC 2.0) :
 <http://www.jsonrpc.org/specification>
 
-El acceso a la API es a través de la url : **
+El acceso a la API es a través de la url : *URL\_JEEDOM*/core/api/jeeApi.php
 
 A continuación, se muestra un ejemplo de cómo configurar un objeto Json que se puede utilizar en el cuerpo de una solicitud realizada por un agente HTTP:
 json
@@ -284,7 +284,7 @@ Devuelve todos los pedidos que pertenecen al equipo especificado
 
 Configuraciones:
 
--   
+-   int eqLogic\_id
 
 cmd::execCmd
 ------------
@@ -357,9 +357,9 @@ Configuraciones:
 
 -   subtipo de cadena
 
--   
+-   int eqLogic\_id
 
--   
+-   int isHistorized = 0
 
 -   unidad de cuerda = ''
 
@@ -789,13 +789,13 @@ Ejemplos de API JSON
 =================
 
 Aquí hay un ejemplo del uso de la API. Para el siguiente ejemplo
- [esta clase de php](https://github.com/jeedom/core/blob/release/core/class/jsonrpcClient.class.php)
+yo suelo [esta clase de php](https://github.com/jeedom/core/blob/release/core/class/jsonrpcClient.class.php)
 lo que simplifica el uso de la API.
 
 Recuperando la lista de objetos :
 
 `` `{.php}
-$ = new jsonrpcClient('#URL_JEEDOM#', #API_KEY#);
+$jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
 if ($ jsonrpc-&gt; sendRequest ( &#39;jeeObject::todo ', matriz())){
     print_r ($ jsonrpc-&gt; getResult ());
 }else{
@@ -806,7 +806,7 @@ if ($ jsonrpc-&gt; sendRequest ( &#39;jeeObject::todo ', matriz())){
 Ejecución de una orden (con la opción de un título y un mensaje)
 
 `` `{.php}
-$ = new jsonrpcClient('#URL_JEEDOM#', #API_KEY#);
+$jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
 if ($ jsonrpc-&gt; sendRequest ( &#39;cmd::execCmd ', array (' id' => #cmd_id#, 'opciones '=> array (' title '=>' Cuckoo ',' message '=>' Funciona')))){
     echo &#39;OK&#39;;
 }else{
