@@ -257,8 +257,9 @@ jeeP.modalContent.addEventListener('click', function(event) {
 
 //div_pageContainer events delegation:
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  if (event.target.matches('.objectPreview .name')) {
-    var url = 'index.php?v=d&p=dashboard&object_id=' + event.target.closest('.objectPreview').getAttribute('data-object_id')
+  var _target = null
+  if (_target = event.target.closest('.objectPreview .name')) {
+    var url = 'index.php?v=d&p=dashboard&object_id=' + _target.closest('.objectPreview').getAttribute('data-object_id') + '&btover=1'
     if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
       window.open(url).focus()
     } else {
@@ -267,35 +268,36 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
-  if (event.target.matches('.objectPreview') || event.target.parentNode.hasClass('resume')) {
-    var url = event.target.getAttribute('data-url') || event.target.closest('.objectPreview').getAttribute('data-url')
-    if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
-      window.open(url).focus()
-    } else {
-      jeedomUtils.loadPage(url)
-    }
-    return
-  }
-
-  if (event.target.matches('.objectSummaryParent > i, .objectSummaryParent > sup, .objectSummaryParent > sup > span')) {
+  if (_target = event.target.closest('.objectSummaryParent')) {
     //action summary:
     if (event.ctrlKey) return
 
     event.stopPropagation()
     event.preventDefault()
     var objectId = event.target.closest('.objectPreview').getAttribute('data-object_id')
-    var summaryType = event.target.closest('.objectSummaryParent').getAttribute('data-summary')
-    var icon = event.target.closest('.objectSummaryParent').querySelector('i')?.outerHTML
+    var summaryType = _target.getAttribute('data-summary')
+
+    var icon = _target.querySelector('i') //?.outerHTML
     if (icon) {
-      var title = icon + ' ' +  event.target.closest('.objectPreview').querySelector('.topPreview .name').textContent
+      var title = icon.outerHTML + ' ' +  _target.closest('.objectPreview').querySelector('.topPreview .name').textContent
     } else {
-      var title = event.target.closest('.objectPreview').querySelector('.topPreview .name').textContent
+      var title = _target.closest('.objectPreview').querySelector('.name').textContent
     }
     jeeP.getSummaryHtml(objectId, summaryType, title)
     return
   }
 
-  if (event.target.matches('.objectPreview .bt_config, .objectPreview .bt_config i')) {
+  if (_target = event.target.closest('.objectPreview')) {
+    var url = _target.getAttribute('data-url')
+    if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
+      window.open(url).focus()
+    } else {
+      jeedomUtils.loadPage(url)
+    }
+    return
+  }
+
+  if (_target = event.target.closest('.objectPreview .bt_config')) {
     var objectId = event.target.closest('.objectPreview').getAttribute('data-object_id')
     var url = 'index.php?v=d&p=object&id=' + objectId + '#summarytab'
     jeedomUtils.loadPage(url)
@@ -304,7 +306,8 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 })
 
 document.getElementById('div_pageContainer').addEventListener('mouseup', function(event) {
-  if (event.target.matches('.objectPreview .name')) {
+  var _target = null
+  if (_target = event.target.closest('.objectPreview .name')) {
     if (event.which == 2) {
       event.preventDefault()
       var id = event.target.closest('.objectPreview').getAttribute('data-object_id')
@@ -313,7 +316,16 @@ document.getElementById('div_pageContainer').addEventListener('mouseup', functio
     return
   }
 
-  if (event.target.matches('.objectPreview') || event.target.parentNode.hasClass('resume')) {
+  if (_target = event.target.closest('.objectSummaryParent')) {
+    if (event.which == 2) {
+      var id = _target.getAttribute('data-object_id')
+      var url = 'index.php?v=d&p=dashboard&summary=' + _target.getAttribute('data-summary') + '&object_id=' + id + '&childs=0'
+      window.open(url).focus()
+      return
+    }
+  }
+
+  if (_target = event.target.closest('.objectPreview')) {
     if (event.which == 2) {
       if (event.target.hasClass('topPreview') || event.target.hasClass('name')) return
       event.preventDefault()
@@ -321,16 +333,6 @@ document.getElementById('div_pageContainer').addEventListener('mouseup', functio
       document.querySelector('.objectPreview[data-object_id="' + id + '"]').triggerEvent('click', {detail: {ctrlKey: true}})
     }
     return
-  }
-
-  if (event.target.matches('.objectSummaryParent > i, .objectSummaryParent > sup, .objectSummaryParent > sup > span')) {
-    if (event.which == 2) {
-      var target = event.target.closest('.objectSummaryParent')
-      var id = event.target.closest('.objectPreview').getAttribute('data-object_id')
-      var url = 'index.php?v=d&p=dashboard&summary=' + target.getAttribute('data-summary') + '&object_id=' + id + '&childs=0'
-      window.open(url).focus()
-      return
-    }
   }
 })
 

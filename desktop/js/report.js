@@ -129,12 +129,12 @@ document.getElementById('bt_removeAll')?.addEventListener('click', function(even
 /*Events delegations
 */
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  if (event.target.closest('.li_type') != null) {
-    let me = event.target.closest('.li_type')
+  var _target = null
+  if (_target = event.target.closest('.li_type')) {
     var currentType = document.querySelector('.li_type.active').getAttribute('data-type')
-    var newType = me.getAttribute('data-type')
+    var newType = _target.getAttribute('data-type')
     document.querySelectorAll('.li_type').removeClass('active')
-    me.addClass('active')
+    _target.addClass('active')
     document.querySelectorAll('.reportType').unseen()
     document.querySelector('.reportType.' + newType).seen()
     if (newType != currentType) {
@@ -144,19 +144,17 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
-  if (event.target.closest('.li_reportType') != null) {
-    let me = event.target.closest('.li_reportType')
+  if (_target = event.target.closest('.li_reportType')) {
     document.querySelectorAll('.li_reportType').removeClass('active')
-    me.addClass('active')
-    jeeP.getReportList(me.getAttribute('data-type'), me.getAttribute('data-id'))
+    _target.addClass('active')
+    jeeP.getReportList(_target.getAttribute('data-type'), _target.getAttribute('data-id'))
     return
   }
 
-  if (event.target.closest('.li_report') != null) {
-    let me = event.target.closest('.li_report')
+  if (_target = event.target.closest('.li_report')) {
     document.querySelectorAll('.li_report').removeClass('active')
-    me.addClass('active')
-    jeeP.getReport(me.getAttribute('data-type'), me.getAttribute('data-id'), me.getAttribute('data-report'))
+    _target.addClass('active')
+    jeeP.getReport(_target.getAttribute('data-type'), _target.getAttribute('data-id'), _target.getAttribute('data-report'))
     return
   }
 }, {capture: false, bubble: false})

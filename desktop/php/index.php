@@ -192,6 +192,7 @@ function setTheme() {
 	include_file('3rdparty', 'jquery.ui-touch-punch/jquery.ui.touch-punch.min', 'js');
 	include_file('3rdparty', 'bootbox/bootbox.min', 'js'); //Deprecated, keep for plugins
 
+	//Deprecated 4.4, keep for plugins
 	include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
 	include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
 	include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');

@@ -222,7 +222,7 @@ document.getElementById('bt_saveBackup')?.addEventListener('click', function(eve
 })
 
 document.getElementById('bt_restoreJeedom')?.addEventListener('click', function(event) {
-  var el = event.target
+  var _target = event.target
   var msg = '{{Êtes-vous sûr de vouloir restaurer}} ' + JEEDOM_PRODUCT_NAME + ' {{avec la sauvegarde}} :<br><b>' + document.getElementById('sel_restoreBackup').value + ' </b> ?'
   msg += '<br> <span class="warning">{{IMPORTANT la restauration d\'un backup est une opération risquée et n\'est à utiliser qu\'en dernier recours}}'
   msg += '<br>{{Une fois lancée cette opération ne peut être annulée.}}</span>'
@@ -233,7 +233,7 @@ document.getElementById('bt_restoreJeedom')?.addEventListener('click', function(
     function(result) {
       if (result) {
         jeedomUtils.hideAlert()
-        el.querySelector('.fa-sync').seen()
+        _target.querySelector('.fa-sync').seen()
         jeedom.backup.restoreLocal({
           backup: document.getElementById('sel_restoreBackup').value,
           error: function(error) {
@@ -252,7 +252,6 @@ document.getElementById('bt_restoreJeedom')?.addEventListener('click', function(
 })
 
 document.getElementById('bt_removeBackup')?.addEventListener('click', function(event) {
-  var el = event.target.closest('#bt_removeBackup')
   jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer la sauvegarde}} :<br><b>' + document.getElementById('sel_restoreBackup').value + '</b> ?', function(result) {
     if (result) {
       jeedom.backup.remove({
@@ -282,12 +281,12 @@ document.getElementById('bt_downloadBackup')?.addEventListener('click', function
 /*Events delegations
 */
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  var me = null
-  if (me = event.target.closest('.bt_backupJeedom')) {
+  var _target = null
+  if (_target = event.target.closest('.bt_backupJeedom')) {
     jeeDialog.confirm('{{Êtes-vous sûr de vouloir faire une sauvegarde de}} ' + JEEDOM_PRODUCT_NAME + ' {{? Une fois lancée cette opération ne peut être annulée}}', function(result) {
       if (result) {
         jeedomUtils.hideAlert()
-        me.querySelector('.fa-sync').seen()
+        _target.querySelector('.fa-sync').seen()
         jeedom.backup.backup({
           error: function(error) {
             jeedomUtils.showAlert({
@@ -304,10 +303,10 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
-  if (me = event.target.closest('.bt_uploadCloudBackup')) {
+  if (_target = event.target.closest('.bt_uploadCloudBackup')) {
     jeeDialog.confirm('{{Êtes-vous sûr de vouloir envoyer une sauvegarde de}} ' + JEEDOM_PRODUCT_NAME + ' {{sur le cloud ? Une fois lancée cette opération ne peut être annulée}}', function(result) {
       if (result) {
-        me.querySelector('.fa-sync').seen()
+        _target.querySelector('.fa-sync').seen()
         jeedom.backup.uploadCloud({
           backup: document.getElementById('sel_restoreBackup').value,
           error: function(error) {
@@ -325,13 +324,13 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
-  if (me = event.target.closest('.bt_restoreRepoBackup')) {
-    jeeDialog.confirm('{{Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud}} :<br><b>' + me.closest('.repo').querySelector('.sel_restoreCloudBackup').value + '</b> ?', function(result) {
+  if (_target = event.target.closest('.bt_restoreRepoBackup')) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud}} :<br><b>' + _target.closest('.repo').querySelector('.sel_restoreCloudBackup').value + '</b> ?', function(result) {
       if (result) {
-        me.querySelector('.fa-sync').seen()
+        _target.querySelector('.fa-sync').seen()
         jeedom.backup.restoreCloud({
-          backup: me.closest('.repo').querySelector('.sel_restoreCloudBackup').value,
-          repo: me.getAttribute('data-repo'),
+          backup: _target.closest('.repo').querySelector('.sel_restoreCloudBackup').value,
+          repo: _target.getAttribute('data-repo'),
           error: function(error) {
             jeedomUtils.showAlert({
               message: error.message,
