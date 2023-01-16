@@ -156,34 +156,28 @@ if (!jeeFrontEnd.database) {
 
 jeeFrontEnd.database.init()
 
+
+//Register events on top of page container:
 window.registerEvent("resize", function db(event) {
   var tHeight = document.getElementById('dbCommands').offsetHeight  + document.getElementById('jeedomMenuBar').offsetHeight + 10
   document.getElementById('div_commandResult').style.height = (window.innerHeight - tHeight) + 'px'
 })
 window.triggerEvent('resize')
 
-$('.bt_dbCommand').off('click').on('click', function(event) {
-  var command = event.target.getAttribute('data-command')
-  jeeP.dbExecuteCommand(command, false)
-})
 
-$('#ul_listSqlHistory').off('click', '.bt_dbCommand').on('click', '.bt_dbCommand', function() {
-  var command = event.target.getAttribute('data-command')
-  jeeP.dbExecuteCommand(command, false)
-})
-
-$('#bt_validateSpecificCommand').off('click').on('click', function() {
+//Manage events outside parents delegations:
+document.getElementById('bt_validateSpecificCommand')?.addEventListener('click', function(event) {
   var command = document.getElementById('in_specificCommand').value
   jeeP.dbExecuteCommand(command, true)
 })
-$('#in_specificCommand').keypress(function(event) {
-  if (event.which == 13) {
-    document.getElementById('bt_validateSpecificCommand').click()
-  }
+
+document.getElementById('in_specificCommand')?.addEventListener('keypress', function(event) {
+  var command = document.getElementById('in_specificCommand').value
+  jeeP.dbExecuteCommand(command, true)
 })
 
-//*************************SQL constructor**************************
-$('#sqlOperation').off('change').on('change', function(event) {
+//SQL constructor
+document.getElementById('sqlOperation')?.addEventListener('change', function(event) {
   var operation = event.target.value
   switch (operation) {
     case 'SELECT':
@@ -228,7 +222,7 @@ $('#sqlOperation').off('change').on('change', function(event) {
   window.triggerEvent('resize')
 })
 
-$('#sqlTable').off('change').on('change', function(event) {
+document.getElementById('sqlTable')?.addEventListener('change', function(event) {
   var selectedTable = event.target.closest('#sqlTable').value
   var options = ''
   for (var col in jeephp2js.tableList[selectedTable]) {
@@ -242,7 +236,7 @@ $('#sqlTable').off('change').on('change', function(event) {
   window.triggerEvent('resize')
 })
 
-$('#checksqlwhere').off('change').on('change', function(event) {
+document.getElementById('checksqlwhere')?.addEventListener('change', function(event) {
   if (!event.target.closest('#checksqlwhere').checked) {
     document.querySelectorAll('#sqlWhere, #sqlLike, #sqlLikeValue').addClass('disabled')
   } else {
@@ -250,22 +244,34 @@ $('#checksqlwhere').off('change').on('change', function(event) {
   }
 })
 
-$('#bt_writeDynamicCommand').off('click').on('click', function(event) {
+document.getElementById('bt_writeDynamicCommand')?.addEventListener('click', function(event) {
   var sqlString = jeeP.constructSQLstring()
   document.getElementById('in_specificCommand').value = sqlString
 })
 
-$('#bt_execDynamicCommand').off('click').on('click', function(event) {
+document.getElementById('bt_execDynamicCommand')?.addEventListener('click', function(event) {
   var sqlString = jeeP.constructSQLstring()
   document.getElementById('in_specificCommand').value = sqlString
   jeeP.dbExecuteCommand(sqlString, true)
 })
 
-//Register events on top of page container:
-
-//Manage events outside parents delegations:
-
-//Specials
 
 /*Events delegations
 */
+document.getElementById('ul_listSqlRequest')?.addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.bt_dbCommand')) {
+    var command = event.target.getAttribute('data-command')
+    jeeP.dbExecuteCommand(command, false)
+    return
+  }
+})
+
+document.getElementById('ul_listSqlHistory')?.addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.bt_dbCommand')) {
+    var command = event.target.getAttribute('data-command')
+    jeeP.dbExecuteCommand(command, false)
+    return
+  }
+})
