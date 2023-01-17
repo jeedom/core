@@ -23,13 +23,13 @@ $synthToActions = array(
 	<div id="div_resumeObjectList" class="col-xs-12">
 		<legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
 		<div class="objectListContainer <?php echo (jeedom::getThemeConfig()['theme_displayAsTable'] == 1) ? ' containerAsTable' : ''; ?>">
-			<div class="cursor logoPrimary" id="bt_addObject2">
+			<div id="bt_addObject" class="cursor logoPrimary">
 				<div class="center">
 					<i class="fas fa-plus-circle"></i>
 				</div>
 				<span class="txtColor">{{Ajouter}}</span>
 			</div>
-			<div class="cursor bt_showObjectSummary logoSecondary">
+			<div id="bt_showObjectSummary" class="cursor logoSecondary">
 				<div class="center">
 					<i class="fas fa-list"></i>
 				</div>

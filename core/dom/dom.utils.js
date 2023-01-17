@@ -413,7 +413,7 @@ Element.prototype.html = function(_htmlString, _append, _callback) {
   domUtils.loadScript(this.querySelectorAll('script'), 0, function() {
     domUtils.DOMloading --
     if (typeof _callback === 'function') {
-      return _callback(self)
+      return _callback.apply(self)
     } else {
       return self
     }

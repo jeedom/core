@@ -25,6 +25,7 @@ if (!jeeFrontEnd.object) {
       if (is_numeric(getUrlVars('id'))) {
         this.printObject(getUrlVars('id'))
       }
+      document.querySelector('sub.itemsNumber').innerHTML = '(' + document.querySelectorAll('.objectDisplayCard').length + ')'
     },
     printObject: function(_id) {
       this.loadObjectConfiguration(_id)
@@ -357,54 +358,49 @@ if (!jeeFrontEnd.object) {
           }
         }
       })
-    }
+    },
+    saveObject: function() {
+      var object = document.querySelectorAll('.object').getJeeValues('.objectAttr')[0]
+      if (!isset(object.configuration)) {
+        object.configuration = {}
+      }
+      if (!isset(object.configuration.summary)) {
+        object.configuration.summary = {}
+      }
+
+      var type, summaries, data
+      document.querySelectorAll('#summarytab .div_summary').forEach(function(divSummary) {
+        type = divSummary.getAttribute('data-type')
+        object.configuration.summary[type] = []
+        summaries = {}
+        divSummary.querySelectorAll('#summarytab .summary').forEach(function(summary) {
+          data = summary.getJeeValues('.summaryAttr')[0]
+          object.configuration.summary[type].push(data)
+        })
+      })
+
+      jeedom.object.save({
+        object: object,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          jeeFrontEnd.modifyWithoutSave = false
+          var url = 'index.php?v=d&p=object&id=' + data.id + '&saveSuccessFull=1'
+          if (window.location.hash != '') {
+            url += window.location.hash
+          }
+          jeedomUtils.loadPage(url)
+        }
+      })
+    },
   }
 }
 
 jeeFrontEnd.object.init()
-
-document.registerEvent('keydown', function(event) {
-  if (jeedomUtils.getOpenedModal()) return
-  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
-    event.preventDefault()
-    if (document.getElementById('bt_saveObject').isVisible()) {
-      document.getElementById('bt_saveObject').click()
-    }
-  }
-})
-
-document.querySelector('sub.itemsNumber').innerHTML = '(' + document.querySelectorAll('.objectDisplayCard').length + ')'
-
-//searching
-$('#in_searchObject').keyup(function(event) {
-  var search = event.target.value
-  if (search == '') {
-    document.querySelectorAll('.objectDisplayCard').seen()
-    return
-  }
-  search = jeedomUtils.normTextLower(search)
-  var not = search.startsWith(":not(")
-  if (not) {
-    search = search.replace(':not(', '')
-  }
-
-  document.querySelectorAll('.objectDisplayCard').unseen()
-  var match, text
-  document.querySelectorAll('.objectDisplayCard .name').forEach(_name => {
-    match = false
-    text = jeedomUtils.normTextLower(_name.textContent)
-    if (text.includes(search)) match = true
-
-    if (not) match = !match
-    if (match) {
-      _name.closest('.objectDisplayCard').seen()
-    }
-  })
-})
-$('#bt_resetObjectSearch').on('click', function(event) {
-  document.getElementById('in_searchObject').value = ''
-  document.getElementById('in_searchObject').triggerEvent('keyup')
-})
 
 //context menu
 try {
@@ -651,6 +647,81 @@ try {
   })
 } catch (err) {}
 
+//searching
+document.getElementById('in_searchObject')?.addEventListener('keyup', function(event) {
+  var search = event.target.value
+  if (search == '') {
+    document.querySelectorAll('.objectDisplayCard').seen()
+    return
+  }
+  search = jeedomUtils.normTextLower(search)
+  var not = search.startsWith(":not(")
+  if (not) {
+    search = search.replace(':not(', '')
+  }
+
+  document.querySelectorAll('.objectDisplayCard').unseen()
+  var match, text
+  document.querySelectorAll('.objectDisplayCard .name').forEach(_name => {
+    match = false
+    text = jeedomUtils.normTextLower(_name.textContent)
+    if (text.includes(search)) match = true
+
+    if (not) match = !match
+    if (match) {
+      _name.closest('.objectDisplayCard').seen()
+    }
+  })
+})
+document.getElementById('bt_resetObjectSearch')?.addEventListener('click', function(event) {
+  document.getElementById('in_searchObject').value = ''
+  document.getElementById('in_searchObject').triggerEvent('keyup')
+})
+
+//eqLogics tab searching
+document.getElementById('in_searchCmds')?.addEventListener('keyup', function(event) {
+  var search = event.target.value
+  if (search == '') {
+    document.querySelectorAll('#eqLogicsCmds .panel-collapse.in').removeClass('in')
+    document.querySelectorAll('#eqLogicsCmds .form-group[data-cmdname]').seen()
+    return
+  }
+  search = jeedomUtils.normTextLower(search)
+  document.querySelectorAll('#eqLogicsCmds .panel-collapse.in').removeClass('in')
+  document.querySelectorAll('#eqLogicsCmds .form-group[data-cmdname]').unseen()
+  document.querySelectorAll('#eqLogicsCmds .panel-collapse').forEach(_panel => { _panel.setAttribute('data-show', '0') })
+  var text
+  document.querySelectorAll('#eqLogicsCmds .form-group[data-cmdname]').forEach(_eqLogic => {
+    text = jeedomUtils.normTextLower(_eqLogic.getAttribute('data-cmdname'))
+    if (text.indexOf(search) >= 0) {
+      _eqLogic.seen()
+      _eqLogic.closest('.panel-collapse').setAttribute('data-show', '1')
+    }
+  })
+  document.querySelectorAll('#eqLogicsCmds .panel-collapse[data-show="1"]').addClass('in')
+  document.querySelectorAll('#eqLogicsCmds .panel-collapse[data-show="0"]').removeClass('in')
+})
+document.getElementById('bt_openAll')?.addEventListener('click', function(event) {
+  document.querySelectorAll('#eqLogicsCmds .panel-collapse').forEach(_panel => { _panel.addClass('in') })
+})
+document.getElementById('bt_closeAll')?.addEventListener('click', function(event) {
+  document.querySelectorAll('#eqLogicsCmds .panel-collapse').forEach(_panel => { _panel.removeClass('in') })
+})
+document.getElementById('bt_resetCmdSearch')?.addEventListener('click', function(event) {
+  document.getElementById('in_searchCmds').value = ''
+  document.getElementById('in_searchCmds').triggerEvent('keyup')
+})
+
+
+
+
+
+
+
+
+
+
+
 $('#bt_graphObject').on('click', function(event) {
   jeeDialog.dialog({
     id: 'jee_modal',
@@ -730,42 +801,9 @@ $('#bt_orderEqLogicByUsage').off('click').on('click', function(event) {
   })
 })
 
-$('#bt_returnToThumbnailDisplay').on('click', function(event) {
-  setTimeout(function() {
-    document.querySelector('.nav li.active').removeClass('active')
-    document.querySelector('a[data-target="#' + document.querySelector('.tab-pane.active').getAttribute('id') + '"]').closest('li').addClass('active')
-  }, 500)
-  if (jeedomUtils.checkPageModified()) return
-  document.getElementById('div_conf').unseen()
-  document.getElementById('div_resumeObjectList').seen()
-  jeedomUtils.addOrUpdateUrl('id', null, '{{Objets}} - ' + JEEDOM_PRODUCT_NAME)
-})
 
-$(".objectDisplayCard").off('click').on('click', function(event) {
-  if (event.target.closest('.objectSummaryParent') != null) return
-  let bt = event.target.closest('.objectDisplayCard')
-  if (event.ctrlKey || event.metaKey) {
-    var url = '/index.php?v=d&p=object&id=' + bt.getAttribute('data-object_id')
-    window.open(url).focus()
-  } else {
-    jeeP.printObject(bt.getAttribute('data-object_id'))
-    if ((isset(event.detail) && event.detail.summaryType)) {
-      document.querySelector('a[data-target="#summarytab"]').click()
-      document.querySelector('a[data-target="#summarytab' + event.detail.summaryType + '"]').click()
-    }
-  }
-  return false
-})
-$('.objectDisplayCard').off('mouseup').on('mouseup', function(event) {
-  let bt = event.target.closest('.objectDisplayCard')
-  if (event.which == 2) {
-    event.preventDefault()
-    var id = bt.getAttribute('data-object_id')
-    $('.objectDisplayCard[data-object_id="' + id + '"]').trigger(jQuery.Event('click', {
-      ctrlKey: true
-    }))
-  }
-})
+
+
 
 $('#objectPanel').on({
   'click': function(event) {
@@ -784,72 +822,11 @@ $('select[data-l2key="synthToAction"]').off().on('change', function(event) {
   if (select != null) select.parentNode.removeClass('hidden')
 })
 
-$("#bt_addObject, #bt_addObject2").on('click', function(event) {
-  jeeDialog.prompt("{{Nom du nouvel objet}} ?", function(result) {
-    if (result !== null) {
-      jeedom.object.save({
-        object: {
-          name: result,
-          isVisible: 1
-        },
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          jeeFrontEnd.modifyWithoutSave = false
-          jeedomUtils.loadPage('index.php?v=d&p=object&id=' + data.id + '&saveSuccessFull=1')
-        }
-      })
-    }
-  })
-})
+
 
 $('.objectAttr[data-l1key="display"][data-l2key="icon"]').on('dblclick', function(event) {
   event.target.closest('.objectAttr[data-l2key="icon"]').innerHTML = ''
   jeeFrontEnd.modifyWithoutSave = true
-})
-
-document.getElementById('bt_saveObject').addEventListener('click', function (event) {
-  var object = document.querySelectorAll('.object').getJeeValues('.objectAttr')[0]
-  if (!isset(object.configuration)) {
-    object.configuration = {}
-  }
-  if (!isset(object.configuration.summary)) {
-    object.configuration.summary = {}
-  }
-
-  var type, summaries, data
-  document.querySelectorAll('#summarytab .div_summary').forEach(function(divSummary) {
-    type = divSummary.getAttribute('data-type')
-    object.configuration.summary[type] = []
-    summaries = {}
-    divSummary.querySelectorAll('#summarytab .summary').forEach(function(summary) {
-      data = summary.getJeeValues('.summaryAttr')[0]
-      object.configuration.summary[type].push(data)
-    })
-  })
-
-  jeedom.object.save({
-    object: object,
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      jeeFrontEnd.modifyWithoutSave = false
-      var url = 'index.php?v=d&p=object&id=' + data.id + '&saveSuccessFull=1'
-      if (window.location.hash != '') {
-        url += window.location.hash
-      }
-      jeedomUtils.loadPage(url)
-    }
-  })
-  return false
 })
 
 $("#bt_removeObject").on('click', function(event) {
@@ -951,47 +928,6 @@ $('#div_pageContainer').on({
 }, '.bt_removeSummary')
 
 //populate summary tab:
-$('.bt_showObjectSummary').off('click').on('click', function(event) {
-  jeeDialog.dialog({
-    id: 'jee_modal',
-    title: "{{Vue d'ensemble des objets}}",
-    contentUrl: 'index.php?v=d&modal=object.summary'
-  })
-})
-
-//eqLogics tab searching
-$('#in_searchCmds').keyup(function(event) {
-  var search = event.target.value
-  if (search == '') {
-    document.querySelectorAll('#eqLogicsCmds .panel-collapse.in').removeClass('in')
-    document.querySelectorAll('#eqLogicsCmds .form-group[data-cmdname]').seen()
-    return
-  }
-  search = jeedomUtils.normTextLower(search)
-  document.querySelectorAll('#eqLogicsCmds .panel-collapse.in').removeClass('in')
-  document.querySelectorAll('#eqLogicsCmds .form-group[data-cmdname]').unseen()
-  document.querySelectorAll('#eqLogicsCmds .panel-collapse').forEach(_panel => { _panel.setAttribute('data-show', '0') })
-  var text
-  document.querySelectorAll('#eqLogicsCmds .form-group[data-cmdname]').forEach(_eqLogic => {
-    text = jeedomUtils.normTextLower(_eqLogic.getAttribute('data-cmdname'))
-    if (text.indexOf(search) >= 0) {
-      _eqLogic.seen()
-      _eqLogic.closest('.panel-collapse').setAttribute('data-show', '1')
-    }
-  })
-  document.querySelectorAll('#eqLogicsCmds .panel-collapse[data-show="1"]').addClass('in')
-  document.querySelectorAll('#eqLogicsCmds .panel-collapse[data-show="0"]').removeClass('in')
-})
-$('#bt_openAll').off('click').on('click', function(event) {
-  document.querySelectorAll('#eqLogicsCmds .panel-collapse').forEach(_panel => { _panel.addClass('in') })
-})
-$('#bt_closeAll').off('click').on('click', function(event) {
-  document.querySelectorAll('#eqLogicsCmds .panel-collapse').forEach(_panel => { _panel.removeClass('in') })
-})
-$('#bt_resetCmdSearch').on('click', function(event) {
-  document.getElementById('in_searchCmds').value = ''
-  document.getElementById('in_searchCmds').triggerEvent('keyup')
-})
 
 
 //sync eqLogic cmd -> summaryInfo
@@ -1039,6 +975,14 @@ $('#eqlogicsTab').on({
 
 
 //Register events on top of page container:
+document.registerEvent('keydown', function(event) {
+  if (jeedomUtils.getOpenedModal()) return
+  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+    event.preventDefault()
+    jeeP.saveObject()
+  }
+})
+
 
 //Manage events outside parents delegations:
 
@@ -1046,3 +990,92 @@ $('#eqlogicsTab').on({
 
 /*Events delegations
 */
+//ThumbnailDisplay
+document.getElementById('div_resumeObjectList').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#bt_addObject')) {
+    jeeDialog.prompt("{{Nom du nouvel objet}} ?", function(result) {
+      if (result !== null) {
+        jeedom.object.save({
+          object: {
+            name: result,
+            isVisible: 1
+          },
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function(data) {
+            jeeFrontEnd.modifyWithoutSave = false
+            jeedomUtils.loadPage('index.php?v=d&p=object&id=' + data.id + '&saveSuccessFull=1')
+          }
+        })
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_showObjectSummary')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Vue d'ensemble des objets}}",
+      contentUrl: 'index.php?v=d&modal=object.summary'
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.objectDisplayCard')) {
+    if (_target.closest('.objectSummaryParent') != null) return
+    if (event.ctrlKey || event.metaKey) {
+      var url = '/index.php?v=d&p=object&id=' + _target.getAttribute('data-object_id')
+      window.open(url).focus()
+    } else {
+      jeeP.printObject(_target.getAttribute('data-object_id'))
+      if ((isset(event.detail) && event.detail.summaryType)) {
+        document.querySelector('a[data-target="#summarytab"]').click()
+        document.querySelector('a[data-target="#summarytab' + event.detail.summaryType + '"]').click()
+      }
+    }
+    return
+  }
+})
+
+document.getElementById('div_resumeObjectList').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.objectDisplayCard')) {
+    if (event.which == 2) {
+      event.preventDefault()
+      var id = _target.getAttribute('data-object_id')
+      $('.objectDisplayCard[data-object_id="' + id + '"]').trigger(jQuery.Event('click', {
+        ctrlKey: true
+      }))
+    }
+    return
+  }
+})
+
+
+//Object
+document.getElementById('div_conf').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#bt_returnToThumbnailDisplay')) {
+    setTimeout(function() {
+      document.querySelector('.nav li.active').removeClass('active')
+      document.querySelector('a[data-target="#' + document.querySelector('.tab-pane.active').getAttribute('id') + '"]').closest('li').addClass('active')
+    }, 500)
+    if (jeedomUtils.checkPageModified()) return
+    document.getElementById('div_conf').unseen()
+    document.getElementById('div_resumeObjectList').seen()
+    jeedomUtils.addOrUpdateUrl('id', null, '{{Objets}} - ' + JEEDOM_PRODUCT_NAME)
+    return
+  }
+
+  if (_target = event.target.closest('#bt_saveObject')) {
+    jeeP.saveObject()
+    return
+  }
+})
+
+
