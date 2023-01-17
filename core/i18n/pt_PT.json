@@ -2903,15 +2903,15 @@
     },
     "desktop\/js\/history.js": {
         "Historique supprimé avec succès": "Histórico excluído com sucesso",
+        "Période de comparaison": "Período de comparação",
+        "Comparer": "Comparar",
+        "jours avec": "dias com",
+        "jours il y a": "dias atrás",
         "Mes Calculs": "Os meus cálculos",
         "Configuration des formules de calcul": "A configurar as fórmulas",
         "Configuration de l'historique des commandes": "Configuração do histórico dos comandos",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Por favor indicar a data  (A-m-d H:m:s) antes da qual quer remover o histórico de",
-        "Laissez vide pour tout supprimer": "Deixe em branco para deletar tudo",
-        "Période de comparaison": "Período de comparação",
-        "Comparer": "Comparar",
-        "jours avec": "dias com",
-        "jours il y a": "dias atrás"
+        "Laissez vide pour tout supprimer": "Deixe em branco para deletar tudo"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Remova este filtro",

@@ -2903,15 +2903,15 @@
     },
     "desktop\/js\/history.js": {
         "Historique supprimé avec succès": "Chronik erfolgreich gelöscht",
+        "Période de comparaison": "Vergleichszeitraum",
+        "Comparer": "Vergleichen",
+        "jours avec": "Tage mit",
+        "jours il y a": "Vor Tagen",
         "Mes Calculs": "Meine Berechnungen",
         "Configuration des formules de calcul": "Konfiguration von Berechnungsformeln",
         "Configuration de l'historique des commandes": "Die Konfigurations-Chronik der Befehle",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Bitte geben sie das Datum der Chronik an(J-M-T H:M:S), welche gelöscht werden soll",
-        "Laissez vide pour tout supprimer": "Leer lassen, um alle zu löschen",
-        "Période de comparaison": "Vergleichszeitraum",
-        "Comparer": "Vergleichen",
-        "jours avec": "Tage mit",
-        "jours il y a": "Vor Tagen"
+        "Laissez vide pour tout supprimer": "Leer lassen, um alle zu löschen"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Diesen Filter entfernen",

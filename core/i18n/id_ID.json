@@ -2903,15 +2903,15 @@
     },
     "desktop\/js\/history.js": {
         "Historique supprimé avec succès": "Sejarah berhasil dihapus",
+        "Période de comparaison": "Période de comparaison",
+        "Comparer": "Comparer",
+        "jours avec": "jours avec",
+        "jours il y a": "jours il y a",
         "Mes Calculs": "Mes Calculs",
         "Configuration des formules de calcul": "Konfigurasi rumus",
         "Configuration de l'historique des commandes": "Kontrol Sejarah Konfigurasi",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Harap menunjukkan tanggal (Y-m d H: m: s) sebelum yang ia harus menghapus sejarah \\ 's",
-        "Laissez vide pour tout supprimer": "Laissez vide pour tout supprimer",
-        "Période de comparaison": "Période de comparaison",
-        "Comparer": "Comparer",
-        "jours avec": "jours avec",
-        "jours il y a": "jours il y a"
+        "Laissez vide pour tout supprimer": "Laissez vide pour tout supprimer"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Supprimer ce filtre",
