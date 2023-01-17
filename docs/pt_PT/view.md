@@ -6,7 +6,7 @@ Não é tão poderoso quanto os designs, mas permite em poucos minutos uma exibi
 
 {% include lightbox.html src="images/doc-view_01.jpg" data="View" title="View" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
-> ****
+> **Dica**
 >
 > Você pode escolher a visualização padrão no seu perfil ao clicar no menu de visualização.
 
@@ -20,13 +20,13 @@ Em uma visualização, encontramos :
 - O lápis à direita para editar a ordem e o tamanho do equipamento, da mesma maneira que o Dashboard.
 - Um botão *Edição completa* permitindo editar as zonas e elementos da Visualização.
 
-> ****
+> **Dica**
 >
 > Você pode, em seu perfil, modificar esta opção para que a lista de Visualizações fique visível por padrão.
 
 ## Adicionando / Editando uma visualização
 
-O princípio é bastante simples : uma vista é composta de áreas. Cada zona é do tipo **, **  **. Dependendo desse tipo, você pode adicionar gráficos, equipamentos ou comandos a ele.
+O princípio é bastante simples : uma vista é composta de áreas. Cada zona é do tipo *gráfico*, *ferramenta* Onde *foto*. Dependendo desse tipo, você pode adicionar gráficos, equipamentos ou comandos a ele.
 
 - À esquerda da página, encontramos a lista de visualizações e um botão de criação.
 - Um botão no canto superior direito permite editar a Visualização Atual (Configuração).
@@ -35,16 +35,16 @@ O princípio é bastante simples : uma vista é composta de áreas. Cada zona é
 - Um botão que permite salvar esta visualização.
 - Um botão que permite excluir esta visualização.
 
-> ****
+> **Dica**
 >
 > Você pode mover a ordem das zonas arrastando e soltando.
 
 Em cada zona, você tem as seguintes opções gerais :
 
-- **** : Define a largura da área (somente no modo área de trabalho). 1 para a largura de 1/12 do navegador, 12 para a largura total.
+- **Comprimento** : Define a largura da área (somente no modo área de trabalho). 1 para a largura de 1/12 do navegador, 12 para a largura total.
 - Um botão que permite adicionar um elemento a esta zona, dependendo do tipo de zona (veja abaixo).
-- **** : Permite alterar o nome da zona.
-- **** : Excluir a zona.
+- **Editar** : Permite alterar o nome da zona.
+- **Deletar** : Excluir a zona.
 
 ### Zona de tipo de equipamento
 
@@ -52,11 +52,11 @@ Uma zona de tipo de equipamento permite que você adicione equipamentos :
 
 - **Adicionar equipamento** : Permite adicionar / modificar equipamentos a serem exibidos na área.
 
-> ****
+> **Dica**
 >
 > Você pode excluir um item de equipamento diretamente clicando na lata de lixo à esquerda dele.
 
-> ****
+> **Dica**
 >
 > É possível alterar a ordem das peças na área arrastando e soltando.
 
@@ -70,19 +70,19 @@ Uma área do tipo gráfico permite adicionar gráficos à sua visualização, e 
 
 Quando você pressiona o botão **Adicionar curva**, O Jeedom exibe a lista de comandos históricos e você pode escolher o que deseja adicionar. Depois de concluído, você terá acesso às seguintes opções :
 
-- **** : Remover comando do gráfico.
-- **** : Nome do comando para desenhar.
-- **** : Cor da curva.
-- **** : Tipo de curva.
-- **** : Permite agrupar dados (tipo máximo por dia).
-- **** : Escala (direita ou esquerda) da curva.
-- **** : Exibe a curva da escada.
-- **** : Empilha a curva com as outras curvas de tipo.
-- **** : Desenhar apenas variações com o valor anterior.
+- **Cesto de lixo** : Remover comando do gráfico.
+- **Sobrenome** : Nome do comando para desenhar.
+- **Cor** : Cor da curva.
+- **Gentil** : Tipo de curva.
+- **Grupo** : Permite agrupar dados (tipo máximo por dia).
+- **Escada** : Escala (direita ou esquerda) da curva.
+- **Escadas** : Exibe a curva da escada.
+- **Pilha** : Empilha a curva com as outras curvas de tipo.
+- **Variação** : Desenhar apenas variações com o valor anterior.
 
 {% include lightbox.html src="images/doc-view_02.jpg" data="View" title="Pie Graph" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
-> ****
+> **Dica**
 >
 > Você pode alterar a ordem dos gráficos na área, arrastando e soltando.
 
@@ -93,7 +93,7 @@ Aqui você tem os botões :
 - **Adicionar coluna** : Adicione uma coluna à tabela.
 - **Adicionar linha** : Adicione uma linha à tabela.
 
-> ****
+> **Observação**
 >
 > É possível reorganizar as linhas arrastando e soltando, mas não as colunas.
 

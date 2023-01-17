@@ -2,7 +2,7 @@
 **Settings → System → Update Center**
 
 
- **Update Center** allows you to update all of Jeedom&#39;s functionality, including the core software and its plugins.
+The **Update Center** allows you to update all of Jeedom&#39;s functionality, including the core software and its plugins.
 Other extension management functions are available (delete, reinstall, check, etc.).
 
 
@@ -16,7 +16,7 @@ At the opening of the page, if this verification is more than two hours old, Jee
 You can also use the button **Check for updates** To do it manually.
 If you want to perform a manual check, you can press the button "Check for updates".
 
-The button **** is to be used when you change the options in the table below, to specify not to update certain plugins if necessary.
+The button **To safeguard** is to be used when you change the options in the table below, to specify not to update certain plugins if necessary.
 
 ## Update the Core
 
@@ -28,13 +28,13 @@ Once you click on it, you get these different options :
 - **Update the Core** : Allows you to include the Jeedom kernel (the Core) in the update.
 
 - **Forced mode** : Perform the update in forced mode, that is to say that, even if there is an error, Jeedom will continue and will not restore the backup. (This mode disables saving !).
-- **Update to reapply** : Allows you to re-apply an update. ( : Not all updates can be re-applied.)
+- **Update to reapply** : Allows you to re-apply an update. (NB : Not all updates can be re-applied.)
 
-> ****
+> **Important**
 >
 > Before an update, by default, Jeedom will make a backup. In the event of a problem when applying an update, Jeedom will automatically restore the backup made just before. This principle is only valid for Jeedom updates and not for plugin updates.
 
-> ****
+> **Tip**
 >
 > You can force an update of Jeedom, even if it does not offer one.
 
@@ -42,33 +42,33 @@ Once you click on it, you get these different options :
 
 The table contains the versions of the Core and installed plugins.
 
-The plugins have a badge next to their name, specifying their version, green in color **, or orange in ** Or other.
+The plugins have a badge next to their name, specifying their version, green in color *steady*, or orange in *beta* Or other.
 
-- **** : OK or NOK.
-- **** : Name and origin of the plugin
-- **** : Indicates the precise version of the Core or plugin.
-- **** : Check this box if you do not want this plugin to be updated during the global update (Button **Update**).
+- **Status** : OK or NOK.
+- **Last name** : Name and origin of the plugin
+- **Version** : Indicates the precise version of the Core or plugin.
+- **Options** : Check this box if you do not want this plugin to be updated during the global update (Button **Update**).
 
 On each line, you can use the following functions:
 
 - **Reinstate** : Force resettlement.
-- **** : Allows you to uninstall it.
+- **To delete** : Allows you to uninstall it.
 - **Check** : Query source for updates to find out if a new update is available.
 - **Update** : Allows you to update the element (if it has an update).
-- **** : Allows access to the list of changes in the update.
+- **Changelog** : Allows access to the list of changes in the update.
 
-> ****
+> **Important**
 >
 > If the changelog is empty but you still have an update, it means that the documentation has been updated. It is therefore not necessary to ask the developer for changes, since there are not necessarily any. (it is often an update of the translation, documentation).
 > The plugin developer can also in some cases make simple bugfixes, which do not necessarily require updating the changelog.
 
-> ****
+> **Tip**
 >
 > When you launch an update, a progress bar appears above the table. Avoid other manipulations during the update.
 
 ## OS/Package tab
 
-> ****
+> **Important**
 >
 > This tab is reserved for advanced users and only for advanced users, the slightest bad action here can BREAK your Jeedom (without the possibility of resorting to support)
 
@@ -78,9 +78,9 @@ This tab allows you to see the updates available for the os (apt), python packag
 
 During or after an update, this tab allows you to read the log of this update in real time.
 
-> ****
+> **Note**
 >
-> This log normally ends with *]*. There may be some error lines in this type of log, however, unless there is a real problem after update, it is not always necessary to contact support for this.
+> This log normally ends with *[END UPDATE SUCCESS]*. There may be some error lines in this type of log, however, unless there is a real problem after update, it is not always necessary to contact support for this.
 
 ## Command line update
 
@@ -91,8 +91,8 @@ Once connected, this is the command to perform :
 
 The possible parameters are :
 
-- **** : `force`, to launch an update in forced mode (ignores errors).
-- **** : Version number tracking, to re-apply changes from this version.
+- **fashion** : `force`, to launch an update in forced mode (ignores errors).
+- **Version** : Version number tracking, to re-apply changes from this version.
 
 Here is an example of syntax to make a forced update by reapplying the changes since 4.0.04 :
 

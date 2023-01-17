@@ -15,11 +15,11 @@ Dieser Bericht wird (im Gegensatz zu Ansichten und Designs) von Jeedom selbst er
 - 5 : Name Ihres Jeedom, Verknüpfung zur Konfiguration.
 - 6 : Bearbeitungsmodus (Kacheln neu anordnen / in der Größe ändern).
 - 7 : Nach Kategorien filtern.
-- 8 :  : Symbol, Name und Zusammenfassung sowie deren Ausstattung.
+- 8 : Objekt : Symbol, Name und Zusammenfassung sowie deren Ausstattung.
 - 9 : Gerätekachel.
 - 10 : Widget bestellen.
 
-> ****
+> **Tipp**
 >
 > Die Anzeigereihenfolge der Objekte im Dashboard ist die in **Analyse → Zusammenfassung der Hausautomation**. Sie können diese Reihenfolge auf dieser Seite durch Ziehen und Ablegen ändern.
 
@@ -37,7 +37,7 @@ Wenn Sie die Maus über eine Bestellung bewegen, wird unten links auf der Kachel
 
 Außerdem können Sie auf den Titel der Kachel (den Namen des Geräts) klicken, um die Konfigurationsseite dieses Geräts direkt zu öffnen.
 
-> ****
+> **Tipp**
 >
 > Über das Menü können Sie direkt zu einem einzelnen Objekt in Ihrer Hausautomation wechseln **Home → Dashboard → Objektname**.
 > Auf diese Weise haben Sie nur die Ausrüstung, die Sie interessiert, und können die Seite schneller laden.
@@ -51,7 +51,7 @@ Außerdem können Sie auf den Titel der Kachel (den Namen des Geräts) klicken, 
 
 - Ein Klick auf eine Bestellung vom Informationstyp zeigt den Verlauf der Bestellung an (sofern er historisch ist).
 - Ein Strg + Klicken auf einen Befehl vom Typ Information zeigt den Verlauf aller Befehle (historisch) für diese Kachel an.
-- Ein Klick auf die Informationen ** eines Aktionsbefehls zeigt den Verlauf des Befehls an (falls er historisiert ist).
+- Ein Klick auf die Informationen *Zeit* eines Aktionsbefehls zeigt den Verlauf des Befehls an (falls er historisiert ist).
 
 
 ## Bearbeitungsmodus
@@ -66,7 +66,7 @@ Auf jedem Objekt rechts neben seinem Namen und seiner Zusammenfassung können Si
 
 ## Jeedom Menüleiste
 
-> ****
+> **Tipp**
 >
 > - Klicken Sie auf die Uhr (Menüleiste) : Öffnen Sie die Timeline.
 > - Klicken Sie auf den Namen des Jeedom (Menüleiste)) : Öffnet Einstellungen → System → Konfiguration.

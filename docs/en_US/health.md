@@ -4,7 +4,7 @@
 The Jeedom Health page allows you to have a quick overview of the health status of your Jeedom.
 It also indicates (if plugins use it) the state of health by plugin.
 
-> ****
+> **Note**
 >
 > Click on the icon at the top right to access the benchmark of your Jeedom.
 
@@ -22,10 +22,10 @@ On the right you find the icons :
 -   Display of the plugin configuration page.
 -   Overall state of the plugin.
 
-> ****
+> **Note**
 >
 > Icons may vary depending on plugin.
 
-> ****
+> **Note**
 >
 > Generally when the line is green, everything is fine and when it is red, there is a problem.

@@ -3,7 +3,7 @@ Aqui está a documentação sobre métodos de API.
 Primeiro, aqui estão as especificações (JSON RPC 2.0) :
 <http://www.jsonrpc.org/specification>
 
-O acesso à API é via URL : **
+O acesso à API é via URL : *URL\_JEEDOM*/core/api/jeeApi.php
 
 Aqui está um exemplo de configuração de um objeto Json que pode ser usado no corpo de uma solicitação feita por um agente HTTP:
 `` json
@@ -75,7 +75,7 @@ Retorna a lista de alterações desde a data / hora passada no parâmetro (deve 
 
 Configurações Json :
 
--   
+-   int datetime
 
 API de plug-in JSON
 ===============
@@ -221,7 +221,7 @@ eqLogic::byTypeAndId
 Retorna uma tabela de equipamentos de acordo com os parâmetros.
 
 O retorno será da matriz do formulário ('eqType1' ⇒ matriz ('id'⇒…,' cmds '⇒
-matriz (….)), 'eqType2' ⇒ matriz ('id'⇒…,' cmds '⇒ matriz (….))….,
+matriz (….)), 'eqType2' ⇒ matriz ('id'⇒…,' cmds '⇒ matriz (….))….,id1 ⇒
 array ('id'⇒…,' cmds '⇒ array (….)), id2 ⇒ array (' id'⇒…, 'cmds' ⇒
 array(…​.))..)
 
@@ -260,7 +260,7 @@ Configurações:
 
 -   categoria de matriz
 
-
+API JSON Cmd
 ============
 
 cmd::all
@@ -284,7 +284,7 @@ Retorna todos os pedidos pertencentes ao equipamento especificado
 
 Configurações:
 
--   
+-   int eqLogic\_id
 
 cmd::execCmd
 ------------
@@ -306,9 +306,9 @@ Configurações:
 
 -   id int
 
--    : data de início do cálculo das estatísticas
+-   string startTime : data de início do cálculo das estatísticas
 
--    : data final do cálculo das estatísticas
+-   string endTime : data final do cálculo das estatísticas
 
 cmd::getTendance
 ----------------
@@ -319,9 +319,9 @@ Configurações:
 
 -   id int
 
--    : data de início do cálculo de tendência
+-   string startTime : data de início do cálculo de tendência
 
--    : data de término do cálculo de tendência
+-   string endTime : data de término do cálculo de tendência
 
 cmd::getHistory
 ---------------
@@ -332,9 +332,9 @@ Configurações:
 
 -   id int
 
--    : data de início do histórico
+-   string startTime : data de início do histórico
 
--    : data final do histórico
+-   string endTime : data final do histórico
 
 cmd::save
 ---------
@@ -357,7 +357,7 @@ Configurações:
 
 -   subtipo de string
 
--   
+-   int eqLogic\_id
 
 -   int éHistórico = 0
 
@@ -425,7 +425,7 @@ Configurações:
 
 -   id int : ID do cenário no qual importar (vazio se a criação)
 
--    : *nome humano* do cenário (vazio se a criação)
+-   string humanName : *nome humano* do cenário (vazio se a criação)
 
 -   importação de matriz : cenário (do campo cenário de exportação::export)
 
@@ -454,7 +454,7 @@ Configurações:
 
 -   início da corda : número da linha na qual começar a ler
 
--    : número de linhas para recuperar
+-   string nbLine : número de linhas para recuperar
 
 log::add
 --------
@@ -789,13 +789,13 @@ Exemplos de API JSON
 =================
 
 Aqui está um exemplo de uso da API. Para o exemplo abaixo
- [esta classe php](https://github.com/jeedom/core/blob/release/core/class/jsonrpcClient.class.php)
+eu uso [esta classe php](https://github.com/jeedom/core/blob/release/core/class/jsonrpcClient.class.php)
 o que simplifica o uso da API.
 
 Recuperando a lista de objetos :
 
 `` `{.php}
-$ = new jsonrpcClient('#URL_JEEDOM#', #API_KEY#);
+$jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
 if ($ jsonrpc-> sendRequest ('jeeObject::tudo ', matriz())){
     print_r ($ jsonrpc-> getResult ());
 }else{
@@ -806,7 +806,7 @@ if ($ jsonrpc-> sendRequest ('jeeObject::tudo ', matriz())){
 Execução de uma ordem (com a opção de um título e uma mensagem)
 
 `` `{.php}
-$ = new jsonrpcClient('#URL_JEEDOM#', #API_KEY#);
+$jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
 if ($ jsonrpc-> sendRequest ('cmd::execCmd ', array (' id' => #cmd_id#, 'options '=> array (' title '=>' Cuckoo ',' message '=>' Funciona')))){
     eco 'OK';
 }else{
