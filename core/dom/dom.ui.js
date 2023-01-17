@@ -1847,6 +1847,7 @@ var jeeCtxMenu = function(_options)
   ctxInstance.show = function(_event) {
     if (typeof ctxInstance.options.build === 'function') { //Dynamic build
       var _args = ctxInstance.options.build(ctxInstance.realTrigger)
+      if (_args === false) return false
       if (!isset(_args)) _args = {}
       if (!isset(_args.items)) _args.items = false
       if (!isset(_args.callback)) _args.callback = false
