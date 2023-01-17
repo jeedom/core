@@ -2873,12 +2873,12 @@
         "Supprimer cette zone": "Supprimer cette zone"
     },
     "desktop\/js\/display.js": {
-        "Configuration de l'objet": "Configuration de l'objet",
-        "Configuration de l'équipement": "Configuration de l'équipement",
-        "Configuration de la commande": "Configuration de la commande",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Êtes-vous sûr de vouloir supprimer tous ces équipements ?",
         "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?",
-        "Historique vidé avec succès": "Historique vidé avec succès"
+        "Historique vidé avec succès": "Historique vidé avec succès",
+        "Configuration de l'objet": "Configuration de l'objet",
+        "Configuration de l'équipement": "Configuration de l'équipement",
+        "Configuration de la commande": "Configuration de la commande"
     },
     "desktop\/js\/overview.js": {
         "Historique": "Historique"

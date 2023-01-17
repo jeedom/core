@@ -2873,12 +2873,12 @@
         "Supprimer cette zone": "Supprimer cette zone"
     },
     "desktop\/js\/display.js": {
-        "Configuration de l'objet": "Nesnenin ayarları",
-        "Configuration de l'équipement": "Cihazın ayarları",
-        "Configuration de la commande": "Komutanın ayarları",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Etes-vous sûr de vouloir supprimer tous ces équipements ?",
         "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?",
-        "Historique vidé avec succès": "Historique vidé avec succès"
+        "Historique vidé avec succès": "Historique vidé avec succès",
+        "Configuration de l'objet": "Nesnenin ayarları",
+        "Configuration de l'équipement": "Cihazın ayarları",
+        "Configuration de la commande": "Komutanın ayarları"
     },
     "desktop\/js\/overview.js": {
         "Historique": "Geçmiş"
