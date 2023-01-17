@@ -1,6 +1,5 @@
 <?php
-include_file('3rdparty', 'animate/animate', 'css');
-include_file('3rdparty', 'animate/animate', 'js');
+
 ?>
 
 <div id="wrap">
@@ -102,30 +101,33 @@ include_file('3rdparty', 'animate/animate', 'js');
 </div>
 
 <?php
-if (config::byKey('product_connection_BG')) {
-	echo "<style>";
-	echo "body {";
-	echo "background-image: url(" . config::byKey('product_connection_BG') . ") !important;";
-	echo "background-position: center !important;";
-	echo "background-repeat: no-repeat !important;";
-	echo "background-size: cover !important;";
-	echo "}";
-	echo "</style>";
-} elseif (config::byKey('product_connection_color')) {
-	echo "<style>";
-	echo "body { background:" . config::byKey('product_connection_color') . " !important;}";
-	echo "</style>";
-}
-if (config::byKey('product_btn_login_color')) {
-	echo "<style>";
-	echo "#bt_login_validate { background:" . config::byKey('product_connection_color') . " !important; border-color:" . config::byKey('product_connection_color') . " !important; }";
-	echo "</style>";
-}
-if (stristr(config::byKey('product_name'), 'Jeedom') == false) {
-	echo "<style>";
-	echo ".btn_help { display:none; }";
-	echo "</style>";
-}
-include_file('desktop', 'connection', 'css');
-include_file('desktop', 'connection', 'js');
+	if (config::byKey('product_connection_BG')) {
+		echo "<style>";
+		echo "body {";
+		echo "background-image: url(" . config::byKey('product_connection_BG') . ") !important;";
+		echo "background-position: center !important;";
+		echo "background-repeat: no-repeat !important;";
+		echo "background-size: cover !important;";
+		echo "}";
+		echo "</style>";
+	} elseif (config::byKey('product_connection_color')) {
+		echo "<style>";
+		echo "body { background:" . config::byKey('product_connection_color') . " !important;}";
+		echo "</style>";
+	}
+	if (config::byKey('product_btn_login_color')) {
+		echo "<style>";
+		echo "#bt_login_validate { background:" . config::byKey('product_connection_color') . " !important; border-color:" . config::byKey('product_connection_color') . " !important; }";
+		echo "</style>";
+	}
+	if (stristr(config::byKey('product_name'), 'Jeedom') == false) {
+		echo "<style>";
+		echo ".btn_help { display:none; }";
+		echo "</style>";
+	}
+
+	include_file('3rdparty', 'animate/animate', 'css');
+	include_file('3rdparty', 'animate/animate', 'js');
+	include_file('desktop', 'connection', 'css');
+	include_file('desktop', 'connection', 'js');
 ?>
