@@ -39,8 +39,8 @@ jeedom.appMobile.notifee = function (title, body, time) {
 
 jeedom.appMobile.modal = function (_options) {
   /**
-   *
-   * @example  _options = { 'type' : 'WebviewApp', 'uri' : '/core/php/panel.php' }
+   * default sizeModal : 100
+   * @example  _options = { 'type' : 'WebviewApp', 'uri' : '/plugins/mobile/core/php/menuForPanel.php' , 'sizeModal' : 50 }
    *   type : 'WebviewApp' for internalLink or 'urlwww' for externalLink
  */
   jeedom.appMobile.postToApp('modal', _options);
