@@ -21,6 +21,19 @@ if (!jeeFrontEnd.user) {
     init: function() {
       window.jeeP = this
       jeeP.printUsers()
+
+      jeedomUtils.initTableSorter()
+      var tableDevices = document.getElementById('tableDevices')
+
+      tableDevices.config.widgetOptions.resizable_widths = ['', '250px', '180px', '180px', '80px']
+      tableDevices.triggerEvent('resizableReset')
+      setTimeout(() => {
+        tableDevices.querySelector('thead tr').children[3].triggerEvent('sort')
+        tableDevices.querySelector('thead tr').children[3].triggerEvent('sort')
+      }, 200)
+
+      jeeFrontEnd.modifyWithoutSave = false
+      domUtils.hideLoading()
     },
     checkUsersLogins: function(_users) {
       _users = _users.map(a => a.login)
@@ -50,11 +63,11 @@ if (!jeeFrontEnd.user) {
           })
         },
         success: function(data) {
-          let table = document.getElementById('table_user')
-          table.querySelector('tbody').empty()
-          let disable, userTR, node
-          for (let i in data) {
-            let newRow = table.querySelector('tbody').insertRow(i)
+          var table = document.getElementById('table_user')
+          table.tBodies[0].empty()
+          var disable, userTR, node
+          for (var i in data) {
+            let newRow = table.tBodies[0].insertRow(i)
             disable = ''
             if (data[i].login == 'internal_report' || data[i].login == 'jeedom_support') {
               disable = 'disabled'
@@ -103,18 +116,19 @@ if (!jeeFrontEnd.user) {
               userTR += '<span class="input-group-btn">'
 
               if (jeeFrontEnd.ldapEnable != '1') {
-                userTR += '<a class="btn btn-xs btn-danger pull-right bt_del_user roundedRight"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>'
-                userTR += '<a class="btn btn-xs btn-warning pull-right bt_change_mdp_user"><i class="fas fa-pencil-alt"></i> {{Mot de passe}}</a>'
+                userTR += '<a class="btn btn-xs btn-danger pull-right bt_del_user roundedRight"><i class="far fa-trash-alt"></i><span class="hidden-1280"> {{Supprimer}}</span></a>'
+                userTR += '<a class="btn btn-xs btn-warning pull-right bt_change_mdp_user"><i class="fas fa-pencil-alt"></i><span class="hidden-1280"> {{Mot de passe}}</span></a>'
               }
-              userTR += '<a class="cursor bt_changeHash btn btn-warning btn-xs pull-right" title="{{Renouveler la clef API}}"><i class="fas fa-sync"></i> {{Régénérer API}}</a>'
+              userTR += '<a class="cursor bt_changeHash btn btn-warning btn-xs pull-right" title="{{Renouveler la clef API}}"><i class="fas fa-sync"></i><span class="hidden-1280"> {{Régénérer API}}</span></a>'
               if (data[i].profils == 'restrict') {
-                userTR += '<a class="btn btn-xs btn-default pull-right bt_copy_user_rights"><i class="fas fa-copy"></i> {{Copier les droits}}</a>'
+                userTR += '<a class="btn btn-xs btn-default pull-right bt_copy_user_rights"><i class="fas fa-copy"></i><span class="hidden-1280"> {{Copier les droits}}</span></a>'
               }
-              userTR += '<a class="btn btn-xs btn-warning pull-right bt_manage_restrict_rights"><i class="fas fa-align-right"></i> {{Droits}}</a>'
+
+              userTR += '<a class="btn btn-xs btn-warning pull-right bt_manage_restrict_rights"><i class="fas fa-align-right"></i><span class="hidden-1280"> {{Droits}}</span></a>'
               if (data[i].profils != 'restrict') {
                 userTR = userTR.replace('bt_manage_restrict_rights', 'bt_manage_restrict_rights disabled')
               }
-              userTR += '<a class="btn btn-xs btn-default pull-right bt_manage_profils roundedLeft"><i class="fas fa-briefcase"></i> {{Profils}}</a>'
+              userTR += '<a class="btn btn-xs btn-default pull-right bt_manage_profils roundedLeft"><i class="fas fa-briefcase"></i><span class="hidden-1280"> {{Profils}}</span></a>'
 
               userTR += '</span></div>'
             }
@@ -124,22 +138,13 @@ if (!jeeFrontEnd.user) {
             newRow.innerHTML = userTR
             newRow.setJeeValues(data[i], '.userAttr')
           }
-          jeedomUtils.initTableSorter()
-          let tableDevices = document.getElementById('tableDevices')
-          tableDevices.config.widgetOptions.resizable_widths = ['', '250px', '180px', '180px', '80px']
-          tableDevices.triggerEvent('resizableReset')
-          setTimeout(() => {
-            tableDevices.querySelector('thead tr').children[3].triggerEvent('sort')
-            tableDevices.querySelector('thead tr').children[3].triggerEvent('sort')
-          }, 200)
 
           jeeFrontEnd.modifyWithoutSave = false
-          domUtils.hideLoading()
         }
       })
     },
     saveUser: function() {
-      let users = document.getElementById('table_user').querySelectorAll('tbody tr').getJeeValues('.userAttr')
+      var users = document.getElementById('table_user').querySelectorAll('tbody tr').getJeeValues('.userAttr')
       if (!jeeP.checkUsersLogins(users)) return
       jeedom.user.save({
         users: users,
@@ -163,14 +168,6 @@ if (!jeeFrontEnd.user) {
 }
 
 jeeFrontEnd.user.init()
-
-document.registerEvent('keydown', function(event) {
-  if (jeedomUtils.getOpenedModal()) return
-  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
-    event.preventDefault()
-    jeeP.saveUser()
-  }
-})
 
 $('#div_administration').on({
   'change': function(event) {
@@ -227,10 +224,10 @@ $("#bt_saveUser").on('click', function(event) {
 $("#table_user").on('click', ".bt_del_user", function(event) {
   let me = event.target.closest('.bt_del_user')
   jeedomUtils.hideAlert();
-  let user = {
+  var user = {
     id: me.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
   }
-  let userName = me.closest('tr').querySelector('input[data-l1key="login"]').value
+  var userName = me.closest('tr').querySelector('input[data-l1key="login"]').value
   jeeDialog.confirm('{{Vous allez supprimer l\'utilisateur :}}' + ' ' + userName, function(result) {
     if (result) {
       jeedom.user.remove({
@@ -256,7 +253,7 @@ $("#table_user").on('click', ".bt_del_user", function(event) {
 $("#table_user").on('click', ".bt_change_mdp_user", function(event) {
   jeedomUtils.hideAlert()
   let me = event.target.closest('.bt_change_mdp_user')
-  let user = {
+  var user = {
     id: me.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML,
     login: me.closest('tr').querySelector('input[data-l1key="login"]').value
   }
@@ -287,7 +284,7 @@ $("#table_user").on('click', ".bt_change_mdp_user", function(event) {
 $("#table_user").on('click', ".bt_changeHash", function(event) {
   jeedomUtils.hideAlert()
   let me = event.target.closest('.bt_changeHash')
-  let user = {
+  var user = {
     id: me.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
   }
   jeeDialog.confirm("{{Êtes-vous sûr de vouloir changer la clef API de l\'utilisateur ?}}", function(result) {
@@ -340,7 +337,7 @@ $('#bt_supportAccess').on('click', function(event) {
 
 $('#table_user').on('change', '.userAttr[data-l1key="options"][data-l2key="api::mode"]', function(event) {
   let me = event.target.closest('[data-l2key="api::mode"]')
-  let tr = me.closest('tr')
+  var tr = me.closest('tr')
   if (me.value == 'disable') {
     tr.querySelector('.userAttr[data-l1key="hash"]').unseen()
   } else {
@@ -436,8 +433,9 @@ $('#table_user').on('click', '.bt_copy_user_rights', function(event) {
 })
 
 $('.bt_deleteSession').on('click', function(event) {
+  var id = event.target.closest('tr').getAttribute('data-id')
   jeedom.user.deleteSession({
-    id: event.target.closest('tr').getAttribute('data-id'),
+    id: id,
     error: function(error) {
       jeedomUtils.showAlert({
         message: error.message,
@@ -451,9 +449,11 @@ $('.bt_deleteSession').on('click', function(event) {
 })
 
 $('.bt_removeRegisterDevice').on('click', function(event) {
+  var key = event.target.closest('tr').getAttribute('data-key')
+  var user_id = event.target.closest('tr').getAttribute('data-user_id')
   jeedom.user.removeRegisterDevice({
-    key: event.target.closest('tr').getAttribute('data-key'),
-    user_id: event.target.closest('tr').getAttribute('data-user_id'),
+    key: key,
+    user_id: user_id,
     error: function(error) {
       jeedomUtils.showAlert({
         message: error.message,
@@ -482,6 +482,13 @@ $('#bt_removeAllRegisterDevice').on('click', function(event) {
 })
 
 //Register events on top of page container:
+document.registerEvent('keydown', function(event) {
+  if (jeedomUtils.getOpenedModal()) return
+  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+    event.preventDefault()
+    jeeP.saveUser()
+  }
+})
 
 //Manage events outside parents delegations:
 
