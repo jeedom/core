@@ -222,6 +222,7 @@ jeedomUI.isEditing = false
 jeedomUI.setEqSignals()
 
 document.querySelectorAll('.resume')?.seen()
+
 jeeFrontEnd.overview.postInit()
 
 //Init Packery:

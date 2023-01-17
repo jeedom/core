@@ -64,7 +64,7 @@ $date = array(
 </div>
 
 <div id="pageContainer" class="row row-overflow">
-	<div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar" style="height: calc(100vh - 110px);">
+	<div id="sidebar" class="col-lg-3 col-md-4 col-sm-5 bs-sidebar" style="height: calc(100vh - 110px);">
 		<ul class="nav nav-list bs-sidenav">
 			<li>
 				<i class="fas fa-square-root-alt"></i> {{Historique calculé}}
@@ -144,7 +144,7 @@ $date = array(
 </div>
 
 <!--Compare Modal -->
-<div id="md_getCompareRange" class="hidden" style="overflow-x: hidden;">
+<div id="md_getCompareRange-template" class="hidden" style="overflow-x: hidden;">
 	<form class="form-horizontal">
 		<fieldset>
 			<div class="form-group">

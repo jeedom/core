@@ -2873,12 +2873,12 @@
         "Supprimer cette zone": "Excluir esta área"
     },
     "desktop\/js\/display.js": {
-        "Configuration de l'objet": "Configuração do objeto",
-        "Configuration de l'équipement": "Configuração do equipamento",
-        "Configuration de la commande": "Configuração do comando",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Tem certeza de que deseja excluir todos estes equipamentos?",
         "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Tem certeza que deseja apagar o histórico de exclusões?",
-        "Historique vidé avec succès": "Histórico apagado com sucesso"
+        "Historique vidé avec succès": "Histórico apagado com sucesso",
+        "Configuration de l'objet": "Configuração do objeto",
+        "Configuration de l'équipement": "Configuração do equipamento",
+        "Configuration de la commande": "Configuração do comando"
     },
     "desktop\/js\/overview.js": {
         "Historique": "Histórico"

@@ -2873,12 +2873,12 @@
         "Supprimer cette zone": "Löschen Sie diesen Bereich"
     },
     "desktop\/js\/display.js": {
-        "Configuration de l'objet": "Objektkonfiguration",
-        "Configuration de l'équipement": "Gerätekonfiguration",
-        "Configuration de la commande": "Befehl Konfiguration",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Möchten Sie wirklich alle diese Geräte löschen?",
         "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Möchten Sie den Löschverlauf wirklich löschen?",
-        "Historique vidé avec succès": "Die Geschichte wurde erfolgreich geleert"
+        "Historique vidé avec succès": "Die Geschichte wurde erfolgreich geleert",
+        "Configuration de l'objet": "Objektkonfiguration",
+        "Configuration de l'équipement": "Gerätekonfiguration",
+        "Configuration de la commande": "Befehl Konfiguration"
     },
     "desktop\/js\/overview.js": {
         "Historique": "Chronik"

@@ -2873,12 +2873,12 @@
         "Supprimer cette zone": "Supprimer cette zone"
     },
     "desktop\/js\/display.js": {
-        "Configuration de l'objet": "Конфигурация объекта",
-        "Configuration de l'équipement": "Конфигурация оборудования",
-        "Configuration de la commande": "управляющий набор",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Вы уверены, что хотите удалить все это оборудование?",
         "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?",
-        "Historique vidé avec succès": "История успешно опустошена"
+        "Historique vidé avec succès": "История успешно опустошена",
+        "Configuration de l'objet": "Конфигурация объекта",
+        "Configuration de l'équipement": "Конфигурация оборудования",
+        "Configuration de la commande": "управляющий набор"
     },
     "desktop\/js\/overview.js": {
         "Historique": "История"

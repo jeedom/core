@@ -2873,12 +2873,12 @@
         "Supprimer cette zone": "Supprimer cette zone"
     },
     "desktop\/js\/display.js": {
-        "Configuration de l'objet": "オブジェクト構成",
-        "Configuration de l'équipement": "機器構成",
-        "Configuration de la commande": "設定された制御",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "この機器をすべて削除してもよろしいですか？",
         "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?",
-        "Historique vidé avec succès": "履歴が空になりました"
+        "Historique vidé avec succès": "履歴が空になりました",
+        "Configuration de l'objet": "オブジェクト構成",
+        "Configuration de l'équipement": "機器構成",
+        "Configuration de la commande": "設定された制御"
     },
     "desktop\/js\/overview.js": {
         "Historique": "歴史的"
