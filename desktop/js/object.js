@@ -775,7 +775,18 @@ document.getElementById('div_resumeObjectList').addEventListener('click', functi
     return
   }
 
-  if (_target = event.target.closest('#objectPanel')) {
+  if (_target = event.target.closest('#objectPanel .objectSummaryParent')) {
+    event.stopPropagation()
+    var summaryType = _target.closest('.objectSummaryParent').getAttribute('data-summary')
+    var objectId = _target.closest('.objectDisplayCard').getAttribute('data-object_id')
+    event.target.closest('.objectDisplayCard').triggerEvent('click', {detail: {summaryType: summaryType}})
+    return
+  }
+})
+
+document.getElementById('div_resumeObjectList').addEventListener('mousedown', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#objectPanel .objectSummaryParent')) { //Open object summary config on summmary click
     event.stopPropagation()
     var summaryType = _target.closest('.objectSummaryParent').getAttribute('data-summary')
     var objectId = _target.closest('.objectDisplayCard').getAttribute('data-object_id')
