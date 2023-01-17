@@ -3172,16 +3172,16 @@
         "Rendre visible sur le Dashboard": "Make visible on the Dashboard",
         "Objet parent": "Parent object",
         "Positionner après": "Position after",
+        "Nom du nouvel objet": "Name of the new object",
+        "Vue d'ensemble des objets": "Overview of objects",
+        "Objets": "Objects",
         "Graphique des liens": "Links chart",
+        "Êtes-vous sûr de vouloir supprimer l\\'objet": "Are you sure you want to delete the object",
         "Image de fond appliquée avec succès": "Background image successfully applied",
         "Êtes-vous sûr de vouloir enlever l\\'image de fond de cet objet ?": "Are you sure you want to remove the background image from this object?",
         "Image de fond enlevée": "Background image removed",
         "Êtes-vous sûr de vouloir réordonner les équipements par utilisation ?": "Are you sure you want to reorder equipment by use?",
-        "Equipements réoordonnés avec succes": "Equipment successfully reordered",
-        "Êtes-vous sûr de vouloir supprimer l\\'objet": "Are you sure you want to delete the object",
-        "Nom du nouvel objet": "Name of the new object",
-        "Vue d'ensemble des objets": "Overview of objects",
-        "Objets": "Objects"
+        "Equipements réoordonnés avec succes": "Equipment successfully reordered"
     },
     "desktop\/js\/system.js": {
         "Commande :": "Command: ",

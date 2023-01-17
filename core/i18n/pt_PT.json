@@ -3172,16 +3172,16 @@
         "Rendre visible sur le Dashboard": "Tornar visível no painel",
         "Objet parent": "Objeto pai",
         "Positionner après": "Posição após",
+        "Nom du nouvel objet": "Nome do novo objeto",
+        "Vue d'ensemble des objets": "Vista geral dos objetos",
+        "Objets": "Objetos",
         "Graphique des liens": "Gráfico das ligações",
+        "Êtes-vous sûr de vouloir supprimer l\\'objet": "Tem certeza de que deseja excluir o objeto",
         "Image de fond appliquée avec succès": "Imagem de fundo aplicada com sucesso",
         "Êtes-vous sûr de vouloir enlever l\\'image de fond de cet objet ?": "Tem certeza de que deseja remover a imagem de fundo deste objeto?",
         "Image de fond enlevée": "Imagem de fundo removida",
         "Êtes-vous sûr de vouloir réordonner les équipements par utilisation ?": "Tem certeza de que deseja reordenar o equipamento por uso?",
-        "Equipements réoordonnés avec succes": "Equipamento reordenado com sucesso",
-        "Êtes-vous sûr de vouloir supprimer l\\'objet": "Tem certeza de que deseja excluir o objeto",
-        "Nom du nouvel objet": "Nome do novo objeto",
-        "Vue d'ensemble des objets": "Vista geral dos objetos",
-        "Objets": "Objetos"
+        "Equipements réoordonnés avec succes": "Equipamento reordenado com sucesso"
     },
     "desktop\/js\/system.js": {
         "Commande :": "Comando:",
