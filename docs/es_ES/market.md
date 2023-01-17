@@ -10,13 +10,13 @@ Esto se divide en varias partes :
 
 Aquí es donde podrá ajustar diferentes parámetros de su perfil :
 
-- **Perfil**
-    - **Acceso** : Su inicio de sesión en el mercado, no se puede cambiar.
-    - **Apellido** : Su nombre (esta información solo es útil para hacer que los correos electrónicos sean más agradables).
+- ****
+    - **** : Su inicio de sesión en el mercado, no se puede cambiar.
+    - **** : Su nombre (esta información solo es útil para hacer que los correos electrónicos sean más agradables).
     - **Primer nombre** : Su nombre (esta información solo es útil para hacer que los correos electrónicos sean más agradables).
     - **Nombre de usuario en el foro** : Tu nombre de usuario en el foro.
-    - **Correo electrónico** : Su email.
-    - **Lengua** : Tu idioma.
+    - **** : Su email.
+    - **** : Tu idioma.
     - **Contraseña &amp;&amp; Confirmar contraseña** : Le permite cambiar su contraseña.
 
 Para desarrolladores :
@@ -27,46 +27,46 @@ Para desarrolladores :
 Para los profesionales :
 - **Cuenta de correo electrónico del instalador** : Su correo electrónico de contacto profesional.
 - **Soporte de solicitudes de destinatario** : saber quién recibirá los correos electrónicos de soporte (cliente final, instalador o ambos).
-    - **TOS**
-- **Usuario** : Condiciones generales de uso (tenga cuidado de leerlas porque lo comprometen).
+    - ****
+- **** : Condiciones generales de uso (tenga cuidado de leerlas porque lo comprometen).
 - **Revelador** : condiciones de uso para desarrolladores.
-    - **Entradas**
+    - ****
 - **Numero de entradas** : Número de boletos para el mes actual y su límite.
-- **Apoyo** : Botón para enviar una solicitud de soporte (también accesible mediante el signo de exclamación en la esquina superior derecha del Market o en su Jeedom).
+- **** : Botón para enviar una solicitud de soporte (también accesible mediante el signo de exclamación en la esquina superior derecha del Market o en su Jeedom).
     - **Acceso a betas**
 - **Habilitar el acceso a complementos beta** : Permite el acceso a los complementos de betas (tenga en cuenta que esto le impedirá acceder al soporte).
     - **Resumen** Aquí encontrará un resumen de sus diferentes derechos y servicios.
 
-> **Consejo**
+> ****
 >
 > No olvides guardar.
 
 ## Mis jeedoms
 
-- **Nivel**
-    - **Jeedom** : Su nivel de paquete de servicio.
+- ****
+    - **** : Su nivel de paquete de servicio.
     - **Ingrese un número de paquete de servicio** : Le permite ingresar su número de paquete de servicio (se puede encontrar en el correo electrónico enviado por Jeedom durante su pedido).
 - **Clave de instalación**
     - **Número de llaves de instalación** : Muestra el número de instalaciones de Jeedom actualmente vinculadas a su cuenta, así como el límite autorizado.
 
-> **Consejo**
+> ****
 >
 > Es posible que Market a veces le pida que restablezca sus claves de instalación, esto es normal, solo siga lo que se solicita.
 
 - **Mis jeedoms** : Aquí es donde se enumeran todos tus Jeedoms
-    - **Apellido** : El nombre que desea darle a su Jeedom (se puede encontrar en el nombre de la copia de seguridad si tiene la suscripción de copia de seguridad en la nube).
-    - **Estado** : Veamos el estado de la libertad en cuestión.
+    - **** : El nombre que desea darle a su Jeedom (se puede encontrar en el nombre de la copia de seguridad si tiene la suscripción de copia de seguridad en la nube).
+    - **** : Veamos el estado de la libertad en cuestión.
     - **IP local / remota** : IP o dirección de este Jeedom, configúrelo en Jeedom, si no pone nada será la última IP conocida.
-    - **DNS** : Le permite personalizar el nombre de su DNS.
-    - **URL** : Enumere las diferentes URL de acceso de Jeedom.
+    - **** : Le permite personalizar el nombre de su DNS.
+    - **** : Enumere las diferentes URL de acceso de Jeedom.
     - **Servidor DNS** : Le informa el servidor DNS al que está conectado.
     - **Estado DNS** : Le permite ver el estado del DNS.
     - **Fecha de creación** : Fecha de creación de este Jeedom en su cuenta de Market (como recordatorio, esto se hace automáticamente cuando lo vincula al Market).
     - **última actualización** : Última comunicación de Jeedom con el mercado.
-    - **Hardware** : Nombre de hardware Jeedom.
-    - **Versión** : Versión Jeedom instalada.
+    - **** : Nombre de hardware Jeedom.
+    - **** : Versión Jeedom instalada.
 
-> **Consejo**
+> ****
 >
 > No olvides guardar.
 
@@ -82,7 +82,7 @@ En esta pestaña puede consultar su saldo de SMS / Llamadas (utilizable con el c
 
 Aquí encontrará todas sus compras y puede solicitar la devolución de la factura o recibo por correo electrónico.
 
-> **Importante**
+> ****
 >
 > Si compra un complemento oficial, recibirá una factura. Sin embargo, para un complemento de terceros es un recibo, para la factura debe solicitar al desarrollador.
 

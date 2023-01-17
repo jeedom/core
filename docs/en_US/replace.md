@@ -13,7 +13,7 @@ You can display only certain equipment for more readability, filtering by object
 
 ## Options
 
-> **Remark**
+> ****
 >
 > If none of these options is checked, the replacement amounts to using the function *Replace this command with the command* in advanced configuration.
 
@@ -21,7 +21,7 @@ You can display only certain equipment for more readability, filtering by object
 For each piece of equipment, will be copied from the source to the target (non-exhaustive list) :
 	* The parent object,
 	* The categories,
-	* Properties *asset* and *visible*,
+	* Properties **  **,
 	* Comments and tags,
 	* Order (Dashboard),
 	* The Width and Height (Tile Dashboard),
@@ -29,11 +29,11 @@ For each piece of equipment, will be copied from the source to the target (non-e
 	* Optional parameters,
 	* The table display configuration,
 	* the Generic Type,
-	* The property *timeout*
-	* The configuration *autorefresh*,
+	* The property **
+	* The configuration **,
 	* Battery and communication alerts,
 
-The source equipment will also be replaced by the target equipment on the **Design** and the **Views**.
+The source equipment will also be replaced by the target equipment on the **** and the ****.
 
 
 *This equipment will also be replaced by the target equipment on Designs and Views.*
@@ -42,17 +42,17 @@ The source equipment will also be replaced by the target equipment on the **Desi
 
 - **Copy configuration from source command** :
 For each order, will be copied from the source to the target (non-exhaustive list) :
-	* The property *visible*,
+	* The property **,
 	* Order (Dashboard),
 	* L'historisation,
 	* The Dashboard and Mobile widgets used,
 	* The Generic Type,
 	* Optional parameters,
-	* The configurations *jeedomPreExecCmd* and *jeedomPostExecCmd* (action),
+	* The configurations **  *),
 	* Value Action configurations (info),
 	* Icon,
-	* The activation and the directory in *Timeline*,
-	* The configurations of *calculation* and *round*,
+	* The activation and the directory in **,
+	* The configurations of **  **,
 	* The influxDB configuration,
 	* The repeat value configuration,
 	* Alerts,
@@ -65,7 +65,7 @@ For each order, will be copied from the source to the target (non-exhaustive lis
 
 ## Remplacements
 
-The button **Filter** At the top right allows you to display all the equipment, following the filters by object and by plugin.
+The button **** At the top right allows you to display all the equipment, following the filters by object and by plugin.
 
 For each equipment :
 
@@ -74,6 +74,6 @@ For each equipment :
 - Click on its name to see its commands, and indicate which commands replace them. When choosing a device, the tool pre-fills these choices if it finds a command of the same type and same name on the target device.
 
 
-> **Remark**
+> ****
 >
 > When you indicate a target device on a source device, this target device is disabled in the list.
