@@ -52,10 +52,9 @@ if (!jeeFrontEnd.user) {
         success: function(data) {
           let table = document.getElementById('table_user')
           table.querySelector('tbody').empty()
-          let fragment = document.createDocumentFragment()
           let disable, userTR, node
           for (let i in data) {
-            let newRow = table.insertRow(i)
+            let newRow = table.querySelector('tbody').insertRow(i)
             disable = ''
             if (data[i].login == 'internal_report' || data[i].login == 'jeedom_support') {
               disable = 'disabled'
@@ -125,11 +124,8 @@ if (!jeeFrontEnd.user) {
             newRow.innerHTML = userTR
             newRow.setJeeValues(data[i], '.userAttr')
           }
-          table.querySelector('tbody').appendChild(fragment)
-
           jeedomUtils.initTableSorter()
           let tableDevices = document.getElementById('tableDevices')
-
           tableDevices.config.widgetOptions.resizable_widths = ['', '250px', '180px', '180px', '80px']
           tableDevices.triggerEvent('resizableReset')
           setTimeout(() => {
