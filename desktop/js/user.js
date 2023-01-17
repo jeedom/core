@@ -143,7 +143,7 @@ if (!jeeFrontEnd.user) {
       })
     },
     saveUser: function() {
-      var users = document.getElementById('table_user').querySelectorAll('tbody tr').getJeeValues('.userAttr')
+      let users = document.getElementById('table_user').querySelectorAll('tbody tr').getJeeValues('.userAttr')
       if (!jeeP.checkUsersLogins(users)) return
       jeedom.user.save({
         users: users,
@@ -231,10 +231,10 @@ $("#bt_saveUser").on('click', function(event) {
 $("#table_user").on('click', ".bt_del_user", function(event) {
   let me = event.target.closest('.bt_del_user')
   jeedomUtils.hideAlert();
-  var user = {
+  let user = {
     id: me.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
   }
-  var userName = me.closest('tr').querySelector('input[data-l1key="login"]').value
+  let userName = me.closest('tr').querySelector('input[data-l1key="login"]').value
   jeeDialog.confirm('{{Vous allez supprimer l\'utilisateur :}}' + ' ' + userName, function(result) {
     if (result) {
       jeedom.user.remove({
@@ -260,7 +260,7 @@ $("#table_user").on('click', ".bt_del_user", function(event) {
 $("#table_user").on('click', ".bt_change_mdp_user", function(event) {
   jeedomUtils.hideAlert()
   let me = event.target.closest('.bt_change_mdp_user')
-  var user = {
+  let user = {
     id: me.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML,
     login: me.closest('tr').querySelector('input[data-l1key="login"]').value
   }
@@ -291,7 +291,7 @@ $("#table_user").on('click', ".bt_change_mdp_user", function(event) {
 $("#table_user").on('click', ".bt_changeHash", function(event) {
   jeedomUtils.hideAlert()
   let me = event.target.closest('.bt_changeHash')
-  var user = {
+  let user = {
     id: me.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
   }
   jeeDialog.confirm("{{Êtes-vous sûr de vouloir changer la clef API de l\'utilisateur ?}}", function(result) {
@@ -344,7 +344,7 @@ $('#bt_supportAccess').on('click', function(event) {
 
 $('#table_user').on('change', '.userAttr[data-l1key="options"][data-l2key="api::mode"]', function(event) {
   let me = event.target.closest('[data-l2key="api::mode"]')
-  var tr = me.closest('tr')
+  let tr = me.closest('tr')
   if (me.value == 'disable') {
     tr.querySelector('.userAttr[data-l1key="hash"]').unseen()
   } else {
@@ -440,9 +440,8 @@ $('#table_user').on('click', '.bt_copy_user_rights', function(event) {
 })
 
 $('.bt_deleteSession').on('click', function(event) {
-  var id = event.target.closest('tr').getAttribute('data-id')
   jeedom.user.deleteSession({
-    id: id,
+    id: event.target.closest('tr').getAttribute('data-id'),
     error: function(error) {
       jeedomUtils.showAlert({
         message: error.message,
@@ -456,11 +455,9 @@ $('.bt_deleteSession').on('click', function(event) {
 })
 
 $('.bt_removeRegisterDevice').on('click', function(event) {
-  var key = event.target.closest('tr').getAttribute('data-key')
-  var user_id = event.target.closest('tr').getAttribute('data-user_id')
   jeedom.user.removeRegisterDevice({
-    key: key,
-    user_id: user_id,
+    key: event.target.closest('tr').getAttribute('data-key'),
+    user_id: event.target.closest('tr').getAttribute('data-user_id'),
     error: function(error) {
       jeedomUtils.showAlert({
         message: error.message,
