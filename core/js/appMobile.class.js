@@ -30,6 +30,10 @@ jeedom.appMobile.vibration = function (type = "impactMedium") {
 }
 
 jeedom.appMobile.notifee = function (title, body, time) {
+   /**
+   * time : display time for inapp notification, in ms
+   * 
+ */
   jeedom.appMobile.postToApp('notifee', {
     body: body,
     time: time,
@@ -39,7 +43,7 @@ jeedom.appMobile.notifee = function (title, body, time) {
 
 jeedom.appMobile.modal = function (_options) {
   /**
-   * default sizeModal : 100
+   * default sizeModal : 100 (optionnal)
    * @example  _options = { 'type' : 'WebviewApp', 'uri' : '/plugins/mobile/core/php/menuForPanel.php' , 'sizeModal' : 50 }
    *   type : 'WebviewApp' for internalLink or 'urlwww' for externalLink
  */
