@@ -713,267 +713,6 @@ document.getElementById('bt_resetCmdSearch')?.addEventListener('click', function
 })
 
 
-
-
-
-
-
-
-
-
-
-$('#bt_graphObject').on('click', function(event) {
-  jeeDialog.dialog({
-    id: 'jee_modal',
-    title: "{{Graphique des liens}}",
-    contentUrl: 'index.php?v=d&modal=graph.link&filter_type=object&filter_id=' + document.querySelector('.objectAttr[data-l1key="id"]').innerHTML
-  })
-})
-
-$('#bt_libraryBackgroundImage').on('click', function(event) {
-  jeedomUtils.chooseIcon(function(_icon) {
-    document.querySelector('.objectImg').seen().querySelector('img').replaceWith(_icon)
-    document.querySelector('.objectImg img').setAttribute('width', '240px')
-    jeedom.object.uploadImage({
-      id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML,
-      file: document.querySelector('.objectImg img').getAttribute('data-filename'),
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function(data) {
-        jeedomUtils.showAlert({
-          message: '{{Image de fond appliquée avec succès}}',
-          level: 'success'
-        })
-      }
-    })
-  }, {
-    object_id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML
-  })
-})
-
-$('#bt_removeBackgroundImage').off('click').on('click', function(event) {
-  jeeDialog.confirm('{{Êtes-vous sûr de vouloir enlever l\'image de fond de cet objet ?}}', function(result) {
-    if (result) {
-      jeedom.object.removeImage({
-        id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML,
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function() {
-          document.querySelector('.objectImg').unseen()
-          jeedomUtils.showAlert({
-            message: '{{Image de fond enlevée}}',
-            level: 'success'
-          })
-        },
-      })
-    }
-  })
-  return false
-})
-
-$('#bt_orderEqLogicByUsage').off('click').on('click', function(event) {
-  jeeDialog.confirm('{{Êtes-vous sûr de vouloir réordonner les équipements par utilisation ?}}', function(result) {
-    if (result) {
-      jeedom.object.orderEqLogicByUsage({
-        id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML,
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function() {
-          jeedomUtils.showAlert({
-            message: '{{Equipements réoordonnés avec succes}}',
-            level: 'success'
-          })
-        },
-      })
-    }
-  })
-})
-
-
-
-
-
-$('#objectPanel').on({
-  'click': function(event) {
-    event.stopPropagation()
-    var summaryType = event.target.closest('.objectSummaryParent').getAttribute('data-summary')
-    var objectId = event.target.closest('.objectDisplayCard').getAttribute('data-object_id')
-    event.target.closest('.objectDisplayCard').triggerEvent('click', {detail: {summaryType: summaryType}})
-  }
-}, '.objectSummaryParent')
-
-$('select[data-l2key="synthToAction"]').off().on('change', function(event) {
-  document.querySelectorAll('select[data-l2key="synthToView"], select[data-l2key="synthToPlan"], select[data-l2key="synthToPlan3d"]').forEach(_select => {
-    _select.parentNode.addClass('hidden')
-  })
-  let select = document.querySelector('select[data-l2key="' + event.target.value + '"]')
-  if (select != null) select.parentNode.removeClass('hidden')
-})
-
-
-
-$('.objectAttr[data-l1key="display"][data-l2key="icon"]').on('dblclick', function(event) {
-  event.target.closest('.objectAttr[data-l2key="icon"]').innerHTML = ''
-  jeeFrontEnd.modifyWithoutSave = true
-})
-
-$("#bt_removeObject").on('click', function(event) {
-  jeedomUtils.hideAlert()
-  let bt = event.target.closest('.objectDisplayCard')
-  jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + $('.objectDisplayCard.active .name').text().trim() + '</span> ?', function(result) {
-    if (result) {
-      var removeId = bt.getAttribute('data-object_id')
-      jeedom.object.remove({
-        id: removeId,
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function() {
-          jeeFrontEnd.modifyWithoutSave = false
-          document.getElementById('bt_gotoDashboard').querySelectorAll(':scope li a').forEach(_link => {
-            if (_link.href.includes(removeId)) _link.parentNode.remove()
-          })
-          jeedomUtils.loadPage('index.php?v=d&p=object&removeSuccessFull=1')
-        }
-      })
-    }
-  })
-  return false
-})
-
-$('#bt_chooseIcon').on('click', function(event) {
-  var _icon = document.querySelector('div[data-l2key="icon"] > i')
-  if (_icon != null) {
-    _icon = _icon.getAttribute('class')
-  } else {
-    _icon = false
-  }
-  jeedomUtils.chooseIcon(function(_icon) {
-    document.querySelector('div[data-l2key="icon"]').innerHTML = _icon
-    jeeFrontEnd.modifyWithoutSave = true
-  }, {icon: _icon})
-})
-
-$('#div_pageContainer').off('change', '.objectAttr').on('change', '.objectAttr:visible', function(event) {
-  jeeFrontEnd.modifyWithoutSave = true
-})
-
-$('.addSummary').on('click', function(event) {
-  var type = event.target.closest('.addSummary').getAttribute('data-type')
-  jeeP.addSummaryInfo('.type' + type)
-  jeeFrontEnd.modifyWithoutSave = true
-})
-
-$('.bt_checkAll').on('click', function(event) {
-  event.target.closest('.bt_checkAll').closest('tr').querySelectorAll('input[type="checkbox"]').forEach(_check => {
-    _check.checked = true
-  })
-  jeeFrontEnd.modifyWithoutSave = true
-})
-
-$('.bt_checkNone').on('click', function(event) {
-  event.target.closest('.bt_checkNone').closest('tr').querySelectorAll('input[type="checkbox"]').forEach(_check => {
-    _check.checked = false
-  })
-  jeeFrontEnd.modifyWithoutSave = true
-})
-
-//cmd info modal autoselect object:
-$('#div_pageContainer').on({
-  'click': function(event) {
-    let bt = event.target.closest('.listCmdInfo')
-    var el = bt.closest('.summary').querySelector('.summaryAttr[data-l1key="cmd"]')
-    var type = bt.closest('.div_summary').dataset.type
-    jeedom.cmd.getSelectModal({
-      object: {
-        id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML
-      },
-      cmd: {
-        type: 'info'
-      }
-    }, function(result) {
-      el.jeeValue(result.human)
-      jeeP.updateSummaryTabNbr(type)
-      jeeP.updateSummaryButton(result.human, type, true)
-      jeeFrontEnd.modifyWithoutSave = true
-    })
-  }
-}, '.listCmdInfo')
-
-$('#div_pageContainer').on({
-  'click': function(event) {
-    let bt = event.target.closest('.bt_removeSummary')
-    var cmd = bt.closest('.summary').querySelector('input[data-l1key="cmd"]').values
-    var type = bt.closest('.div_summary').dataset.type
-    bt.closest('.summary').remove()
-    jeeP.updateSummaryTabNbr(type)
-    jeeP.updateSummaryButton(cmd, type, false)
-    jeeFrontEnd.modifyWithoutSave = true
-  }
-}, '.bt_removeSummary')
-
-//populate summary tab:
-
-
-//sync eqLogic cmd -> summaryInfo
-$('#eqlogicsTab').on({
-  'click': function(event){
-    if (event.target.type == 'checkbox') return
-    var checkbox = event.target.querySelector('input[type="checkbox"]')
-    checkbox.checked = !checkbox.checked
-    checkbox.triggerEvent('change')
-    event.stopPropagation()
-  }
-}, 'ul.dropdown-menu a')
-
-
-$('#eqlogicsTab').on({
-  'change': function(event) {
-    var type = event.target.getAttribute('data-value')
-    var cmd = event.target.closest('.form-group').getAttribute('data-cmdname')
-    var state = event.target.checked
-    jeeP.updateSummaryButton(cmd, type, state)
-    jeeFrontEnd.modifyWithoutSave = true
-
-    var el = document.querySelector('.type' + type)
-    var summary = {
-      cmd: cmd,
-      enable: "1",
-      invert: "0"
-    }
-    if (el != null) {
-      if (state) {
-        jeeP.addSummaryInfo('.type' + type, summary)
-      } else {
-        el.querySelectorAll('input[data-l1key="cmd"]').forEach(_cmd => {
-          if (_cmd.value == cmd) {
-            _cmd.closest('.summary').remove()
-          }
-        })
-      }
-      jeeP.updateSummaryTabNbr(type)
-    }
-  }
-}, 'ul.dropdown-menu input[type="checkbox"]')
-
-
-
-
 //Register events on top of page container:
 document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
@@ -982,11 +721,6 @@ document.registerEvent('keydown', function(event) {
     jeeP.saveObject()
   }
 })
-
-
-//Manage events outside parents delegations:
-
-//Specials
 
 /*Events delegations
 */
@@ -1040,6 +774,14 @@ document.getElementById('div_resumeObjectList').addEventListener('click', functi
     }
     return
   }
+
+  if (_target = event.target.closest('#objectPanel')) {
+    event.stopPropagation()
+    var summaryType = _target.closest('.objectSummaryParent').getAttribute('data-summary')
+    var objectId = _target.closest('.objectDisplayCard').getAttribute('data-object_id')
+    event.target.closest('.objectDisplayCard').triggerEvent('click', {detail: {summaryType: summaryType}})
+    return
+  }
 })
 
 document.getElementById('div_resumeObjectList').addEventListener('click', function(event) {
@@ -1072,10 +814,251 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
     return
   }
 
+  if (_target = event.target.closest('#bt_graphObject')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Graphique des liens}}",
+      contentUrl: 'index.php?v=d&modal=graph.link&filter_type=object&filter_id=' + document.querySelector('.objectAttr[data-l1key="id"]').innerHTML
+    })
+    return
+  }
+
   if (_target = event.target.closest('#bt_saveObject')) {
     jeeP.saveObject()
     return
   }
+
+  if (_target = event.target.closest('#bt_removeObject')) {
+    jeedomUtils.hideAlert()
+    let name = document.querySelector('input[data-l1key="name"]').value.trim()
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + name + '</span> ?', function(result) {
+      if (result) {
+        var removeId = _target.getAttribute('data-object_id')
+        jeedom.object.remove({
+          id: removeId,
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function() {
+            jeeFrontEnd.modifyWithoutSave = false
+            document.getElementById('bt_gotoDashboard').querySelectorAll(':scope li a').forEach(_link => {
+              if (_link.href.includes(removeId)) _link.parentNode.remove()
+            })
+            jeedomUtils.loadPage('index.php?v=d&p=object&removeSuccessFull=1')
+          }
+        })
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_chooseIcon')) {
+    var _icon = document.querySelector('div[data-l2key="icon"] > i')
+    if (_icon != null) {
+      _icon = _icon.getAttribute('class')
+    } else {
+      _icon = false
+    }
+    jeedomUtils.chooseIcon(function(_icon) {
+      document.querySelector('div[data-l2key="icon"]').innerHTML = _icon
+      jeeFrontEnd.modifyWithoutSave = true
+    }, {icon: _icon})
+    return
+  }
+
+  if (_target = event.target.closest('#bt_libraryBackgroundImage')) {
+    jeedomUtils.chooseIcon(function(_icon) {
+      document.querySelector('.objectImg').seen().querySelector('img').replaceWith(_icon)
+      document.querySelector('.objectImg img').setAttribute('width', '240px')
+      jeedom.object.uploadImage({
+        id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML,
+        file: document.querySelector('.objectImg img').getAttribute('data-filename'),
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          jeedomUtils.showAlert({
+            message: '{{Image de fond appliquée avec succès}}',
+            level: 'success'
+          })
+        }
+      })
+    }, {
+      object_id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_removeBackgroundImage')) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir enlever l\'image de fond de cet objet ?}}', function(result) {
+      if (result) {
+        jeedom.object.removeImage({
+          id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML,
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function() {
+            document.querySelector('.objectImg').unseen()
+            jeedomUtils.showAlert({
+              message: '{{Image de fond enlevée}}',
+              level: 'success'
+            })
+          },
+        })
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_orderEqLogicByUsage')) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir réordonner les équipements par utilisation ?}}', function(result) {
+      if (result) {
+        jeedom.object.orderEqLogicByUsage({
+          id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML,
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function() {
+            jeedomUtils.showAlert({
+              message: '{{Equipements réoordonnés avec succes}}',
+              level: 'success'
+            })
+          },
+        })
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.bt_checkAll')) {
+    _target.closest('tr').querySelectorAll('input[type="checkbox"]').forEach(_check => {
+      _check.checked = true
+    })
+    jeeFrontEnd.modifyWithoutSave = true
+    return
+  }
+
+  if (_target = event.target.closest('.bt_checkNone')) {
+    _target.closest('tr').querySelectorAll('input[type="checkbox"]').forEach(_check => {
+      _check.checked = false
+    })
+    jeeFrontEnd.modifyWithoutSave = true
+    return
+  }
+
+  if (_target = event.target.closest('.addSummary')) {
+    var type = _target.getAttribute('data-type')
+    jeeP.addSummaryInfo('.type' + type)
+    jeeFrontEnd.modifyWithoutSave = true
+    return
+  }
+
+  if (_target = event.target.closest('.listCmdInfo')) {
+    var el = _target.closest('.summary').querySelector('.summaryAttr[data-l1key="cmd"]')
+    var type = _target.closest('.div_summary').dataset.type
+    jeedom.cmd.getSelectModal({
+      object: {
+        id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML
+      },
+      cmd: {
+        type: 'info'
+      }
+    }, function(result) {
+      el.jeeValue(result.human)
+      jeeP.updateSummaryTabNbr(type)
+      jeeP.updateSummaryButton(result.human, type, true)
+      jeeFrontEnd.modifyWithoutSave = true
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.bt_removeSummary')) {
+    var cmd = _target.closest('.summary').querySelector('input[data-l1key="cmd"]').values
+    var type = _target.closest('.div_summary').dataset.type
+    _target.closest('.summary').remove()
+    jeeP.updateSummaryTabNbr(type)
+    jeeP.updateSummaryButton(cmd, type, false)
+    jeeFrontEnd.modifyWithoutSave = true
+    return
+  }
+
+  if (_target = event.target.closest('ul.dropdown-menu a')) {
+    if (event.target.type == 'checkbox') return
+    var checkbox = _target.querySelector('input[type="checkbox"]')
+    checkbox.checked = !checkbox.checked
+    checkbox.triggerEvent('change')
+    event.stopPropagation()
+    return
+  }
 })
+
+document.getElementById('div_conf').addEventListener('dblclick', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.objectAttr[data-l1key="display"][data-l2key="icon"]')) {
+    _target.closest('.objectAttr[data-l2key="icon"]').innerHTML = ''
+    jeeFrontEnd.modifyWithoutSave = true
+    return
+  }
+})
+
+document.getElementById('div_conf').addEventListener('change', function(event) {
+  var _target = null
+  if (_target = event.target.closest('select[data-l2key="synthToAction"]')) {
+    document.querySelectorAll('select[data-l2key="synthToView"], select[data-l2key="synthToPlan"], select[data-l2key="synthToPlan3d"]').forEach(_select => {
+      _select.parentNode.addClass('hidden')
+    })
+    let select = document.querySelector('select[data-l2key="' + _target.value + '"]')
+    if (select != null) select.parentNode.removeClass('hidden')
+    return
+  }
+
+  if (_target = event.target.closest('ul.dropdown-menu input[type="checkbox"]')) {
+    var type = _target.getAttribute('data-value')
+    var cmd = _target.closest('.form-group').getAttribute('data-cmdname')
+    var state = _target.checked
+    jeeP.updateSummaryButton(cmd, type, state)
+    jeeFrontEnd.modifyWithoutSave = true
+
+    var el = document.querySelector('.type' + type)
+    var summary = {
+      cmd: cmd,
+      enable: "1",
+      invert: "0"
+    }
+    if (el != null) {
+      if (state) {
+        jeeP.addSummaryInfo('.type' + type, summary)
+      } else {
+        el.querySelectorAll('input[data-l1key="cmd"]').forEach(_cmd => {
+          if (_cmd.value == cmd) {
+            _cmd.closest('.summary').remove()
+          }
+        })
+      }
+      jeeP.updateSummaryTabNbr(type)
+    }
+    return
+  }
+
+  if (_target = event.target.closest('.objectAttr')) {
+    jeeFrontEnd.modifyWithoutSave = true
+    return
+  }
+})
+
+
+
 
 
