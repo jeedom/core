@@ -3009,15 +3009,15 @@
     "desktop\/js\/interact.js": {
         "Action": "Action",
         "Sélectionner un mot-clé": "Sélectionner un mot-clé",
-        "Liste des interactions": "Liste des interactions",
-        "Interactions": "Interactions",
-        "Nom": "Nom",
-        "Tester les interactions": "Tester les interactions",
-        "Sauvegarde réussie avec succès": "Sauvegarde réussie avec succès",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?",
         "Toutes les interactions ont été régénérées": "Toutes les interactions ont été régénérées",
+        "Tester les interactions": "Tester les interactions",
         "Demande": "Demande",
-        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Êtes-vous sûr de vouloir supprimer l\\'interaction"
+        "Interactions": "Interactions",
+        "Nom": "Nom",
+        "Sauvegarde réussie avec succès": "Sauvegarde réussie avec succès",
+        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Êtes-vous sûr de vouloir supprimer l\\'interaction",
+        "Liste des interactions": "Liste des interactions"
     },
     "desktop\/js\/timeline.js": {
         "Ev ements de la timeline supprim  avec succ ": "Ev ements de la timeline supprim  avec succ ",

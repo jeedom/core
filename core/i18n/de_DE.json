@@ -3009,15 +3009,15 @@
     "desktop\/js\/interact.js": {
         "Action": "Aktion",
         "Sélectionner un mot-clé": "Schlüsselwort auswählen",
-        "Liste des interactions": "Liste der Interaktionen",
-        "Interactions": "Interaktion",
-        "Nom": "Name",
-        "Tester les interactions": "Interaktionen testen",
-        "Sauvegarde réussie avec succès": "Backup erfolgreich erfolgreich",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "Sind Sie sicher, dass Sie alle Interaktionen neu generieren möchten (dies kann sehr lange dauern)?",
         "Toutes les interactions ont été régénérées": "Alle Wechselwirkungen wurden regeneriert",
+        "Tester les interactions": "Interaktionen testen",
         "Demande": "Anforderung",
-        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Möchten Sie die Interaktion wirklich löschen?"
+        "Interactions": "Interaktion",
+        "Nom": "Name",
+        "Sauvegarde réussie avec succès": "Backup erfolgreich erfolgreich",
+        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Möchten Sie die Interaktion wirklich löschen?",
+        "Liste des interactions": "Liste der Interaktionen"
     },
     "desktop\/js\/timeline.js": {
         "Ev ements de la timeline supprim  avec succ ": "Timeline-Ereignisse erfolgreich gelöscht",

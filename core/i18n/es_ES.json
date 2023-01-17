@@ -3009,15 +3009,15 @@
     "desktop\/js\/interact.js": {
         "Action": "Acción",
         "Sélectionner un mot-clé": "Seleccionar una palabra clave",
-        "Liste des interactions": "Lista de Interacciones",
-        "Interactions": "Interacciones",
-        "Nom": "Apellido",
-        "Tester les interactions": "Probar las interacciones",
-        "Sauvegarde réussie avec succès": "Backup generado con éxito",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "¿Estás seguro de que deseas regenerar todas las interacciones (esto puede ser muy largo)?",
         "Toutes les interactions ont été régénérées": "Todas las interacciones han sido regeneradas",
+        "Tester les interactions": "Probar las interacciones",
         "Demande": "Demanda",
-        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "¿Está seguro de que desea eliminar la interacción?"
+        "Interactions": "Interacciones",
+        "Nom": "Apellido",
+        "Sauvegarde réussie avec succès": "Backup generado con éxito",
+        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "¿Está seguro de que desea eliminar la interacción?",
+        "Liste des interactions": "Lista de Interacciones"
     },
     "desktop\/js\/timeline.js": {
         "Ev ements de la timeline supprim  avec succ ": "Eventos de la línea de tiempo eliminados con éxito",

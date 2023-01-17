@@ -3009,15 +3009,15 @@
     "desktop\/js\/interact.js": {
         "Action": "Tindakan",
         "Sélectionner un mot-clé": "Pilih kata kunci",
-        "Liste des interactions": "Daftar interaksi",
-        "Interactions": "Interaksi",
-        "Nom": "Nom",
-        "Tester les interactions": "Interaksi uji",
-        "Sauvegarde réussie avec succès": "Backup sukses berhasil",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?",
         "Toutes les interactions ont été régénérées": "Toutes les interactions ont été régénérées",
+        "Tester les interactions": "Interaksi uji",
         "Demande": "Demande",
-        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Apakah Anda yakin ingin menghapus \\ 's interaksi"
+        "Interactions": "Interaksi",
+        "Nom": "Nom",
+        "Sauvegarde réussie avec succès": "Backup sukses berhasil",
+        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Apakah Anda yakin ingin menghapus \\ 's interaksi",
+        "Liste des interactions": "Daftar interaksi"
     },
     "desktop\/js\/timeline.js": {
         "Ev ements de la timeline supprim  avec succ ": "Ev ements de la timeline supprim  avec succ",

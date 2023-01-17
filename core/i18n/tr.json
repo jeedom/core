@@ -3009,15 +3009,15 @@
     "desktop\/js\/interact.js": {
         "Action": "Eylem",
         "Sélectionner un mot-clé": "Anahtar kelime seçin",
-        "Liste des interactions": "Etkileşimlerin listesi",
-        "Interactions": "Etkileşim",
-        "Nom": "Nom",
-        "Tester les interactions": "Etkileşimi test et",
-        "Sauvegarde réussie avec succès": "Kayıt başarıyla sonuçlandı",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?",
         "Toutes les interactions ont été régénérées": "Toutes les interactions ont été régénérées",
+        "Tester les interactions": "Etkileşimi test et",
         "Demande": "Demande",
-        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Etkileşimi kaldırmak istediğinizden emin misiniz"
+        "Interactions": "Etkileşim",
+        "Nom": "Nom",
+        "Sauvegarde réussie avec succès": "Kayıt başarıyla sonuçlandı",
+        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Etkileşimi kaldırmak istediğinizden emin misiniz",
+        "Liste des interactions": "Etkileşimlerin listesi"
     },
     "desktop\/js\/timeline.js": {
         "Ev ements de la timeline supprim  avec succ ": "Ev ements de la timeline supprim  avec succ",

@@ -3009,15 +3009,15 @@
     "desktop\/js\/interact.js": {
         "Action": "アクション",
         "Sélectionner un mot-clé": "キーワードを選択",
-        "Liste des interactions": "相互作用のリスト",
-        "Interactions": "相互作用",
-        "Nom": "Nom",
-        "Tester les interactions": "相互作用をテストする",
-        "Sauvegarde réussie avec succès": "バックアップが成功しました",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "すべてのインタラクションを再生成してもよろしいですか（これは非常に長くなる可能性があります）？",
         "Toutes les interactions ont été régénérées": "すべてのインタラクションが再生成されました",
+        "Tester les interactions": "相互作用をテストする",
         "Demande": "Demande",
-        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "インタラクションを削除してもよろしいですか"
+        "Interactions": "相互作用",
+        "Nom": "Nom",
+        "Sauvegarde réussie avec succès": "バックアップが成功しました",
+        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "インタラクションを削除してもよろしいですか",
+        "Liste des interactions": "相互作用のリスト"
     },
     "desktop\/js\/timeline.js": {
         "Ev ements de la timeline supprim  avec succ ": "Ev ements de la timeline supprim  avec succ",

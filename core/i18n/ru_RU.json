@@ -3009,15 +3009,15 @@
     "desktop\/js\/interact.js": {
         "Action": "Действие",
         "Sélectionner un mot-clé": "Выберите ключевое слово",
-        "Liste des interactions": "Список взаимодействий",
-        "Interactions": "Взаимодействие",
-        "Nom": "Nom",
-        "Tester les interactions": "Тестовые взаимодействия",
-        "Sauvegarde réussie avec succès": "Успешное резервное копирование успешно",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?",
         "Toutes les interactions ont été régénérées": "Toutes les interactions ont été régénérées",
+        "Tester les interactions": "Тестовые взаимодействия",
         "Demande": "Demande",
-        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Вы уверены, что хотите удалить взаимодействие \\ «ы"
+        "Interactions": "Взаимодействие",
+        "Nom": "Nom",
+        "Sauvegarde réussie avec succès": "Успешное резервное копирование успешно",
+        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Вы уверены, что хотите удалить взаимодействие \\ «ы",
+        "Liste des interactions": "Список взаимодействий"
     },
     "desktop\/js\/timeline.js": {
         "Ev ements de la timeline supprim  avec succ ": "Ev ements de la timeline supprim  avec succ",
