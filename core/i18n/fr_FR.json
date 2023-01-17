@@ -2915,9 +2915,9 @@
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Supprimer ce filtre",
-        "Configuration de la commande": "Configuration de la commande",
         "L'import d'édition en masse se fait au format json.": "L'import d'édition en masse se fait au format json.",
-        "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier."
+        "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier.",
+        "Configuration de la commande": "Configuration de la commande"
     },
     "desktop\/js\/database.js": {
         "Commande :": "Commande :",
@@ -3178,10 +3178,10 @@
         "Image de fond enlevée": "Image de fond enlevée",
         "Êtes-vous sûr de vouloir réordonner les équipements par utilisation ?": "Êtes-vous sûr de vouloir réordonner les équipements par utilisation ?",
         "Equipements réoordonnés avec succes": "Equipements réoordonnés avec succes",
-        "Objets": "Objets",
-        "Nom du nouvel objet": "Nom du nouvel objet",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "Êtes-vous sûr de vouloir supprimer l\\'objet",
-        "Vue d'ensemble des objets": "Vue d'ensemble des objets"
+        "Nom du nouvel objet": "Nom du nouvel objet",
+        "Vue d'ensemble des objets": "Vue d'ensemble des objets",
+        "Objets": "Objets"
     },
     "desktop\/js\/system.js": {
         "Commande :": "Commande :",

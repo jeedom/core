@@ -2915,9 +2915,9 @@
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Diesen Filter entfernen",
-        "Configuration de la commande": "Befehlskonfiguration",
         "L'import d'édition en masse se fait au format json.": "Der Masseneditionsimport erfolgt im JSON-Format",
-        "Problème lors de la lecture du fichier.": "Problem beim Lesen der Datei"
+        "Problème lors de la lecture du fichier.": "Problem beim Lesen der Datei",
+        "Configuration de la commande": "Befehlskonfiguration"
     },
     "desktop\/js\/database.js": {
         "Commande :": "Bestellung:",
@@ -3178,10 +3178,10 @@
         "Image de fond enlevée": "Hintergrundbild entfernt",
         "Êtes-vous sûr de vouloir réordonner les équipements par utilisation ?": "Sind Sie sicher, dass Sie Geräte nach Gebrauch nachbestellen möchten?",
         "Equipements réoordonnés avec succes": "Gerät erfolgreich nachbestellt",
-        "Objets": "Objekte",
-        "Nom du nouvel objet": "Name des neuen Objekts",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "Möchten Sie das Objekt wirklich löschen?",
-        "Vue d'ensemble des objets": "Objektübersicht"
+        "Nom du nouvel objet": "Name des neuen Objekts",
+        "Vue d'ensemble des objets": "Objektübersicht",
+        "Objets": "Objekte"
     },
     "desktop\/js\/system.js": {
         "Commande :": "Bestellung:",
