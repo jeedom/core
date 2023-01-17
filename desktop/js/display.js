@@ -71,7 +71,7 @@ if (!jeeFrontEnd.display) {
 jeeFrontEnd.display.init()
 
 //searching
-$('#in_search').on('keyup', function(event) {
+document.getElementById('in_search').addEventListener('keyup', function(event) {
   try {
     var search = event.target.value
     var searchID = search
@@ -149,17 +149,17 @@ $('#in_search').on('keyup', function(event) {
     console.error(error)
   }
 })
-$('#bt_resetdisplaySearch').on('click', function(event) {
+document.getElementById('bt_resetdisplaySearch').addEventListener('click', function(event) {
   document.getElementById('in_search').value = ''
   document.getElementById('in_search').triggerEvent('keyup')
 })
-$('#bt_openAll').off('click').on('click', function(event) {
+document.getElementById('bt_openAll').addEventListener('click', function(event) {
   document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.addClass('in') })
   if (event.ctrlKey || event.metaKey) {
     document.querySelectorAll('.cmdSortable').seen()
   }
 })
-$('#bt_closeAll').off('click').on('click', function(event) {
+document.getElementById('bt_closeAll').addEventListener('click', function(event) {
   document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.removeClass('in') })
   if (event.ctrlKey || event.metaKey) {
     document.querySelectorAll('.cmdSortable').unseen()
@@ -167,7 +167,7 @@ $('#bt_closeAll').off('click').on('click', function(event) {
 })
 
 //Sorting:
-$('#accordionObject').sortable({
+$(document.getElementById('accordionObject')).sortable({
   cursor: "move",
   items: ".objectSortable",
   stop: function(event, ui) {
@@ -187,7 +187,7 @@ $('#accordionObject').sortable({
   }
 }).disableSelection()
 
-$('.eqLogicSortable').sortable({
+$(document.querySelectorAll('.eqLogicSortable')).sortable({
   cursor: "move",
   connectWith: ".eqLogicSortable",
   start: function(event, info) {
@@ -203,26 +203,26 @@ $('.eqLogicSortable').sortable({
     })
   },
   stop: function(event, info) {
-    console.log('stop:', this, event, info)
     //set appended eqlogics:
     try {
-      let me = info.item[0]
+      var me = info.item[0] //Back to htmlelement
       me.querySelectorAll('li.eqLogic').forEach(_eqlogic => {
         me.parentNode.appendChild(_eqlogic)
       })
     } catch (error) {
-      console.log('eqLogic sorting error:' + error)
+      console.warn('eqLogic sorting error:' + error)
+      return
     }
     //set object order:
     var eqLogics = []
-    var object = info.item.closest('.objectSortable')
-    var objectId = object.find('.panel-heading').attr('data-id')
+    var object = me.closest('.objectSortable')
+    var objectId = object.querySelector('.panel-heading').getAttribute('data-id')
     var order = 1
     var eqLogic
-    object.find('.eqLogic').each(function() {
+    object.querySelectorAll('.eqLogic').forEach(_eq => {
       eqLogic = {}
       eqLogic.object_id = objectId
-      eqLogic.id = this.getAttribute('data-id')
+      eqLogic.id = _eq.getAttribute('data-id')
       eqLogic.order = order
       eqLogics.push(eqLogic)
       order++
@@ -237,20 +237,20 @@ $('.eqLogicSortable').sortable({
         $(".eqLogicSortable").sortable("cancel")
       }
     })
-    $(event.originalEvent.target).click()
   }
 }).disableSelection()
 
-$('.cmdSortable').sortable({
+$(document.querySelectorAll('.cmdSortable')).sortable({
   cursor: "move",
   stop: function(event, info) {
+    var me = info.item[0] //Back to htmlelement
     var cmds = []
-    var eqLogic = info.item.closest('.eqLogic')
+    var eqLogic = me.closest('.eqLogic')
     var order = 1
     var cmd
-    eqLogic.find('.cmd').each(function() {
+    eqLogic.querySelectorAll('.cmd').forEach(_cmd => {
       cmd = {}
-      cmd.id = this.getAttribute('data-id')
+      cmd.id = _cmd.getAttribute('data-id')
       cmd.order = order
       cmds.push(cmd)
       order++
@@ -267,118 +267,58 @@ $('.cmdSortable').sortable({
   }
 }).disableSelection()
 
-//Modals:
-$('.configureObject').off('click').on('click', function(event) {
-  let me = event.target.closest('.configureObject')
-  jeeDialog.dialog({
-    id: 'jee_modal',
-    title: "{{Configuration de l'objet}}",
-    contentUrl: 'index.php?v=d&modal=object.configure&object_id=' + me.closest('.panel-heading').getAttribute('data-id')
-  })
-})
+/*Events delegations
+*/
+document.getElementById('div_pageContainer').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('[aria-controls="historytab"]')) {
+    document.querySelector('div.eqActions').unseen()
+    jeeP.setRemoveHistoryTable()
+    return
+  }
 
-$('.configureEqLogic').off('click').on('click', function(event) {
-  let me = event.target.closest('.configureEqLogic')
-  jeeDialog.dialog({
-    id: 'jee_modal',
-    title: "{{Configuration de l'équipement}}",
-    contentUrl: 'index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + me.closest('.eqLogic').getAttribute('data-id')
-  })
-})
+  if (_target = event.target.closest('[aria-controls="displaytab"]')) {
+    if (jeeP.actionMode) document.querySelector('div.eqActions').seen()
+    return
+  }
 
-$('.configureCmd').off('click').on('click', function(event) {
-  let me = event.target.closest('.configureCmd')
-  jeeDialog.dialog({
-    id: 'jee_modal2',
-    title: '{{Configuration de la commande}}',
-    contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + me.closest('.cmd').getAttribute('data-id')
-  })
-})
-
-
-//events:
-$('.bt_exportcsv').on('click', function(event) {
-  let me = event.target.closest('.bt_exportcsv')
-  var fullFile = ''
-  var eqParent, cmd
-  document.querySelectorAll('.eqLogic').forEach(_eqlogic => {
-    eqParent = _eqlogic.closest('.panel.panel-default')
-    eqParent = eqParent.querySelector('a.accordion-toggle').textContent
-    fullFile += eqParent + ',' + _eqlogic.getAttribute('data-id') + ',' + _eqlogic.getAttribute('data-name') + ',' + _eqlogic.getAttribute('data-type') + "\n"
-    _eqlogic.querySelectorAll('.cmd').forEach(_cmd => {
-      fullFile += "\t\t" + _cmd.getAttribute('data-id') + ',' + _cmd.getAttribute('data-name') + "\n"
+  if (_target = event.target.closest('#bt_removeEqlogic')) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer tous ces équipements ?}}', function(result) {
+      if (result) {
+        var eqLogics = []
+        document.querySelectorAll('.cb_selEqLogic').forEach(_cb => {
+          if (_cb.checked) {
+            eqLogics.push(_cb.closest('.eqLogic').getAttribute('data-id'))
+          }
+        })
+        jeedom.eqLogic.removes({
+          eqLogics: eqLogics,
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function() {
+            jeedomUtils.loadPage('index.php?v=d&p=display')
+          }
+        })
+      }
     })
-  })
-  me.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(fullFile)
-})
-
-$('.eqLogicSortable > li.eqLogic').on('click', function(event) {
-  if (event.target.tagName.toUpperCase() == 'I') return
-  if (event.target.tagName.toUpperCase() == 'INPUT') return
-  if (event.target.hasClass('cmd')) return
-
-  let me = event.target.closest('li.eqLogic')
-  var el = me.querySelector('ul.cmdSortable')
-  if (el.isVisible()) {
-    el.unseen()
-  } else {
-    el.seen()
+    return
   }
-})
 
-$('#cb_actifDisplay').on('change', function(event) {
-  if (event.target.checked) {
-    document.querySelectorAll('.eqLogic[data-enable="0"]').seen()
-  } else {
-    document.querySelectorAll('.eqLogic[data-enable="0"]').unseen()
-  }
-})
-
-$('[aria-controls="historytab"]').on('click', function(event) {
-  document.querySelector('div.eqActions').unseen()
-  jeeP.setRemoveHistoryTable()
-})
-
-$('[aria-controls="displaytab"]').on('click', function(event) {
-  if (jeeP.actionMode) document.querySelector('div.eqActions').seen()
-})
-
-$('.cb_selEqLogic').on('change', function(event) {
-  jeeP.setEqActions()
-})
-
-$('.cb_selCmd').on('change', function(event) {
-  var found = false
-  for (var _cb of document.querySelectorAll('.cb_selCmd')) {
-    if (_cb.checked) {
-      found = true
-      break
-    }
-  }
-  if (found) {
-    jeeP.actionMode = 'cmd'
-    document.querySelectorAll('.eqActions').seen()
-    document.querySelectorAll('.cb_selEqLogic').unseen()
-    document.querySelectorAll('.bt_setIsVisible').seen()
-  } else {
-    jeeP.actionMode = null
-    document.querySelectorAll('.cb_selEqLogic').seen()
-    document.querySelectorAll('.eqActions').unseen()
-    document.querySelectorAll('.bt_setIsVisible').unseen()
-  }
-})
-
-$('#bt_removeEqlogic').on('click', function(event) {
-  jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer tous ces équipements ?}}', function(result) {
-    if (result) {
+  if (_target = event.target.closest('.bt_setIsVisible')) {
+    if (jeeP.actionMode == 'eqLogic') {
       var eqLogics = []
       document.querySelectorAll('.cb_selEqLogic').forEach(_cb => {
         if (_cb.checked) {
           eqLogics.push(_cb.closest('.eqLogic').getAttribute('data-id'))
         }
       })
-      jeedom.eqLogic.removes({
+      jeedom.eqLogic.setIsVisibles({
         eqLogics: eqLogics,
+        isVisible: event.target.getAttribute('data-value'),
         error: function(error) {
           jeedomUtils.showAlert({
             message: error.message,
@@ -390,104 +330,168 @@ $('#bt_removeEqlogic').on('click', function(event) {
         }
       })
     }
-  })
-})
 
-$('.bt_setIsVisible').on('click', function(event) {
-  if (jeeP.actionMode == 'eqLogic') {
-    var eqLogics = []
-    document.querySelectorAll('.cb_selEqLogic').forEach(_cb => {
-      if (_cb.checked) {
-        eqLogics.push(_cb.closest('.eqLogic').getAttribute('data-id'))
-      }
-    })
-    jeedom.eqLogic.setIsVisibles({
-      eqLogics: eqLogics,
-      isVisible: event.target.getAttribute('data-value'),
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function() {
-        jeedomUtils.loadPage('index.php?v=d&p=display')
-      }
-    })
-  }
-
-  if (jeeP.actionMode == 'cmd') {
-    var cmds = []
-    document.querySelectorAll('.cb_selCmd').forEach(_cb => {
-      if (_cb.checked) {
-        eqLogics.push(_cb.closest('.cmd').getAttribute('data-id'))
-      }
-    })
-    jeedom.cmd.setIsVisibles({
-      cmds: cmds,
-      isVisible: event.target.getAttribute('data-value'),
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function() {
-        jeedomUtils.loadPage('index.php?v=d&p=display')
-      }
-    })
-  }
-})
-
-$('.bt_setIsEnable').on('click', function(event) {
-  var eqLogics = []
-  document.querySelectorAll('.cb_selEqLogic').forEach(_cb => {
-    if (_cb.checked) {
-      eqLogics.push(_cb.closest('.eqLogic').getAttribute('data-id'))
-    }
-  })
-  jeedom.eqLogic.setIsEnables({
-    eqLogics: eqLogics,
-    isEnable: event.target.getAttribute('data-value'),
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
+    if (jeeP.actionMode == 'cmd') {
+      var cmds = []
+      document.querySelectorAll('.cb_selCmd').forEach(_cb => {
+        if (_cb.checked) {
+          eqLogics.push(_cb.closest('.cmd').getAttribute('data-id'))
+        }
       })
-    },
-    success: function() {
-      jeedomUtils.loadPage('index.php?v=d&p=display')
-    }
-  })
-})
-
-$('#bt_emptyRemoveHistory').on('click', function(event) {
-  jeeDialog.confirm('{{Êtes-vous sûr de vouloir vider l\'historique de suppression ?}}', function(result) {
-    if (result) {
-      jeedom.emptyRemoveHistory({
+      jeedom.cmd.setIsVisibles({
+        cmds: cmds,
+        isVisible: event.target.getAttribute('data-value'),
         error: function(error) {
           jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
-        success: function(data) {
-          document.getElementById('table_removeHistory').tBodies[0].empty()
-          jeedomUtils.showAlert({
-            message: '{{Historique vidé avec succès}}',
-            level: 'success'
-          })
+        success: function() {
+          jeedomUtils.loadPage('index.php?v=d&p=display')
         }
       })
     }
-  })
+    return
+  }
+
+  if (_target = event.target.closest('.bt_setIsEnable')) {
+    var eqLogics = []
+    document.querySelectorAll('.cb_selEqLogic').forEach(_cb => {
+      if (_cb.checked) {
+        eqLogics.push(_cb.closest('.eqLogic').getAttribute('data-id'))
+      }
+    })
+    jeedom.eqLogic.setIsEnables({
+      eqLogics: eqLogics,
+      isEnable: event.target.getAttribute('data-value'),
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function() {
+        jeedomUtils.loadPage('index.php?v=d&p=display')
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_emptyRemoveHistory')) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir vider l\'historique de suppression ?}}', function(result) {
+      if (result) {
+        jeedom.emptyRemoveHistory({
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function(data) {
+            document.getElementById('table_removeHistory').tBodies[0].empty()
+            jeedomUtils.showAlert({
+              message: '{{Historique vidé avec succès}}',
+              level: 'success'
+            })
+          }
+        })
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.configureObject')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Configuration de l'objet}}",
+      contentUrl: 'index.php?v=d&modal=object.configure&object_id=' + _target.closest('.panel-heading').getAttribute('data-id')
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.configureEqLogic')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Configuration de l'équipement}}",
+      contentUrl: 'index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + _target.closest('.eqLogic').getAttribute('data-id')
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.configureCmd')) {
+    jeeDialog.dialog({
+      id: 'jee_modal2',
+      title: '{{Configuration de la commande}}',
+      contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + _target.closest('.cmd').getAttribute('data-id')
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.bt_exportcsv')) {
+    var fullFile = ''
+    var eqParent, cmd
+    document.querySelectorAll('.eqLogic').forEach(_eqlogic => {
+      eqParent = _eqlogic.closest('.panel.panel-default')
+      eqParent = eqParent.querySelector('a.accordion-toggle').textContent
+      fullFile += eqParent + ',' + _eqlogic.getAttribute('data-id') + ',' + _eqlogic.getAttribute('data-name') + ',' + _eqlogic.getAttribute('data-type') + "\n"
+      _eqlogic.querySelectorAll('.cmd').forEach(_cmd => {
+        fullFile += "\t\t" + _cmd.getAttribute('data-id') + ',' + _cmd.getAttribute('data-name') + "\n"
+      })
+    })
+    _target.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(fullFile)
+    return
+  }
+
+  if (_target = event.target.closest('.eqLogicSortable > li.eqLogic')) {
+    if (_target.tagName.toUpperCase() == 'I') return
+    if (_target.tagName.toUpperCase() == 'INPUT') return
+    if (_target.hasClass('cmd')) return
+    var el = _target.querySelector('ul.cmdSortable')
+    if (el.isVisible()) {
+      el.unseen()
+    } else {
+      el.seen()
+    }
+    return
+  }
 })
 
-//Register events on top of page container:
+document.getElementById('div_pageContainer').addEventListener('change', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#cb_actifDisplay')) {
+    if (_target.checked) {
+      document.querySelectorAll('.eqLogic[data-enable="0"]').seen()
+    } else {
+      document.querySelectorAll('.eqLogic[data-enable="0"]').unseen()
+    }
+    return
+  }
 
-//Manage events outside parents delegations:
+  if (_target = event.target.closest('.cb_selEqLogic')) {
+    jeeP.setEqActions()
+    return
+  }
 
-//Specials
-
-/*Events delegations
-*/
+  if (_target = event.target.closest('.cb_selCmd')) {
+    var found = false
+    for (var _cb of document.querySelectorAll('.cb_selCmd')) {
+      if (_cb.checked) {
+        found = true
+        break
+      }
+    }
+    if (found) {
+      jeeP.actionMode = 'cmd'
+      document.querySelectorAll('.eqActions').seen()
+      document.querySelectorAll('.cb_selEqLogic').unseen()
+      document.querySelectorAll('.bt_setIsVisible').seen()
+    } else {
+      jeeP.actionMode = null
+      document.querySelectorAll('.cb_selEqLogic').seen()
+      document.querySelectorAll('.eqActions').unseen()
+      document.querySelectorAll('.bt_setIsVisible').unseen()
+    }
+    return
+  }
+})
