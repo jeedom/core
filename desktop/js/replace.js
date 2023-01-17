@@ -224,7 +224,7 @@ if (!jeeFrontEnd.replace) {
         var options = '<option value=""></option>'
         var _cmd = jeephp2js.listCommands.filter(o => o.id == _cmd.getAttribute('data-id'))[0]
         optionsCmds.forEach(function(optionsCmd) {
-          if (_cmd.name.toLowerCase() == optionsCmd.name.toLowerCase() && _cmd.type == optionsCmd.type) {
+          if (_cmd.name.toLowerCase().trim() == optionsCmd.name.toLowerCase().trim() && _cmd.type == optionsCmd.type) {
             options += '<option selected value="' + optionsCmd.id + '">' + optionsCmd.name + '</option>'
           } else {
             options += '<option value="' + optionsCmd.id + '">' + optionsCmd.name + '</option>'
