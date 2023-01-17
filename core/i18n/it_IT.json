@@ -3825,11 +3825,14 @@
     },
     "core\/ajax\/user.ajax.php": {
         "Connexion de l\\'utilisateur par REMOTE_USER :": "Accesso utente tramite REMOTE_USER:",
+        "Double authentification requise": "Double authentification requise",
+        "Mot de passe ou nom d\\'utilisateur incorrect')": "Mot de passe ou nom d\\'utilisateur incorrect')",
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir ajouter un utilisateur": "È necessario disattivare l'autenticazione LDAP per aggiungere un utente",
         "Utilisateur invalide": "Utilisateur invalide",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir supprimer un utilisateur": "È necessario disattivare l'autenticazione LDAP per poter eliminare un utente",
         "Vous ne pouvez pas supprimer le compte avec lequel vous êtes connecté": "Non è possibile eliminare l'account con il quale si è connessi",
+        "User ID inconnu": "User ID inconnu",
         "Utilisateur non trouvé :": "Utente non trovato:",
         "Aucune méthode correspondante à :": "Nessun metodo corrispondente a:"
     },
