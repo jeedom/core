@@ -27,6 +27,7 @@ if (!jeeFrontEnd.replace) {
       jeephp2js.listObjects.push({ id: null, name: '{{Aucun}}' })
       jeedomUtils.initTooltips()
     },
+    //Filtering:
     applyFilter: function() {
       jeeP.filteredObjects = new Array()
       var key = null
@@ -100,6 +101,13 @@ if (!jeeFrontEnd.replace) {
 
       jeeP.sourcesEqContainer.empty()
     },
+    getHumanName: function(_eqLogicId) {
+      var parentId = jeephp2js.listEqlogics.filter(e => e.id == _eqLogicId)[0].object_id
+      var parentName = jeephp2js.listObjects.filter(o => o.id == parentId)[0].name
+      var humanName = '[' + parentName + '][' + jeephp2js.listEqlogics.filter(e => e.id == _eqLogicId)[0].name + ']'
+      return humanName
+    },
+    //Replacer syncyhing:
     getEqlogicSelect: function(reset=false) {
       if (!this.filteredEqlogics) return ''
 
@@ -153,6 +161,7 @@ if (!jeeFrontEnd.replace) {
         }
       })
     },
+    //Selection:
     selectReplacerEqlogic: function(_selectEl) {
       //get source and target eqLogics Ids:
       var thisEq = _selectEl.closest('ul.eqLogic')
@@ -223,9 +232,8 @@ if (!jeeFrontEnd.replace) {
         cmdSelect.insertAdjacentHTML('beforeend', options)
       })
     },
-    doReplace: function() {
-      jeedomUtils.hideAlert()
-
+    //Get job done!
+    doReplace: async function() {
       var opt_mode = document.getElementById('opt_mode').value
       var opt_copyEqProperties = document.getElementById('opt_copyEqProperties').checked
       var opt_hideEqs = document.getElementById('opt_hideEqs').checked
@@ -233,8 +241,11 @@ if (!jeeFrontEnd.replace) {
       var opt_removeHistory = document.getElementById('opt_removeHistory').checked
       var opt_copyHistory = document.getElementById('opt_copyHistory').checked
 
+      //Used for check and later parts sent:
       var replaceEqs = {}
       var replaceCmds = {}
+      //Get all eqs and their cmds to send eq one by one:
+      var replace = {}
 
       document.querySelectorAll('#eqSource ul.eqLogic').forEach(_eglogic => {
         if (_eglogic.querySelector('input.cb_selEqLogic').checked) {
@@ -243,16 +254,28 @@ if (!jeeFrontEnd.replace) {
 
           if (targetEqId != '') {
             replaceEqs[sourceEqId] = targetEqId
+
+            replace[sourceEqId] = {
+              target: targetEqId,
+              cmds: {}
+            }
+
             _eglogic.querySelectorAll('li.cmd').forEach(_cmd => {
+              var cmdId = _cmd.getAttribute('data-id')
               var replaceId = _cmd.querySelector('select').value
               if (replaceId != '') {
-                replaceCmds[_cmd.getAttribute('data-id')] = replaceId
+                replaceCmds[cmdId] = replaceId
+
+                Object.assign(replace[sourceEqId].cmds, {
+                  [cmdId]: replaceId
+                })
               }
             })
           }
         }
       })
 
+      //Is there something to replace ?
       if (opt_copyEqProperties && Object.keys(replaceEqs).length === 0) {
         jeedomUtils.showAlert({
           message: '{{Aucun équipement à remplacer ou copier}}',
@@ -269,27 +292,54 @@ if (!jeeFrontEnd.replace) {
         return true
       }
 
-      jeedom.massReplace({
-        options: {
-          mode: opt_mode,
-          copyEqProperties: opt_copyEqProperties,
-          hideEqs: opt_hideEqs,
-          copyCmdProperties: opt_copyCmdProperties,
-          removeCmdHistory: opt_removeHistory,
-          copyCmdHistory: opt_copyHistory
-        },
-        eqlogics: replaceEqs,
-        cmds: replaceCmds,
-        error: function(error) {
-          jeedomUtils.showAlert({message: error.message, level: 'danger'})
-        },
-        success: function(data) {
-          jeedomUtils.showAlert({
-            message: '{{Remplacement effectué}}' + ' : eqLogics: ' + data.eqlogics + ' | commands: ' + data.cmds,
-            level: 'success'
+      var requestLength = Object.keys(replaceEqs).length
+      var requestDone = 0
+      document.getElementById('progressbar').style.width = '0.5%'
+      document.getElementById('progresscontainer').removeClass('hidden').scrollIntoView(false)
+
+      for (const sourceEqId of Object.keys(replace)) {
+        replaceEqs = {[sourceEqId]: replace[sourceEqId].target}
+        replaceCmds = replace[sourceEqId].cmds
+
+        //UI:
+        var text = '  ' + jeeP.getHumanName(sourceEqId) + ' -> ' + jeeP.getHumanName(replace[sourceEqId].target) + '...';
+        document.getElementById('progresslog').textContent = text
+
+        var promise = new Promise((resolve, reject) => {
+          jeedom.massReplace({
+            options: {
+              mode: opt_mode,
+              copyEqProperties: opt_copyEqProperties,
+              hideEqs: opt_hideEqs,
+              copyCmdProperties: opt_copyCmdProperties,
+              removeCmdHistory: opt_removeHistory,
+              copyCmdHistory: opt_copyHistory
+            },
+            eqlogics: replaceEqs,
+            cmds: replaceCmds,
+            error: function(error) {
+              jeedomUtils.showAlert({message: error.message, level: 'danger'})
+              document.getElementById('progresscontainer').addClass('hidden')
+              reject(error)
+            },
+            success: function(data) {
+              requestDone += 1
+              document.getElementById('progressbar').style.width = (requestDone * 100 / requestLength) + '%'
+              if (requestDone == requestLength) {
+                jeedomUtils.showAlert({
+                  message: '{{Remplacement effectué}}',
+                  level: 'success'
+                })
+                setTimeout(() => {
+                  document.getElementById('progresscontainer').addClass('hidden')
+                }, 3000)
+              }
+              resolve(true)
+            }
           })
-        }
-      })
+        })
+        var result = await promise
+      }
     },
   }
 }
@@ -362,6 +412,7 @@ document.getElementById('accordionFilter').addEventListener('click', function(ev
   }
 
   if (_target = event.target.closest('#bt_clearReplace')) {
+    document.getElementById('progresscontainer').addClass('hidden')
     jeeP.resetFilter()
     return
   }

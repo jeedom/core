@@ -167,6 +167,13 @@ sendVarToJS([
       </div>
     </div>
 
+    <div class="panel-group">
+      <div id="progresscontainer" class="hidden">
+        <div id="progressbar" class="progress-bar" style="float:none; height: 25px;"></div>
+        <div><i class="fas fa-sync fa-spin"></i><span id="progresslog"></span></div>
+      </div>
+    </div>
+
     <div class="panel-group" id="accordionReplace">
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -178,9 +185,9 @@ sendVarToJS([
             <div class="panel-body">
 
               <div class="input-group" style="margin-bottom:5px;display: inline-table;">
-                <input class="form-control rounded" placeholder="{{Rechercher}}" id="in_searchByName"/>
+                <input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchByName"/>
                 <div class="input-group-btn">
-                  <a id="bt_resetSearchName" class="btn" style="width:30px"><i class="fas fa-times"></i></a>
+                  <a id="bt_resetSearchName" class="btn roundedRight" style="width:30px;"><i class="fas fa-times"></i></a>
                 </div>
               </div>
               <div style="text-align: center;">{{Source}} <i class="far fa-arrow-alt-circle-right"></i> {{Cible}}</div>
