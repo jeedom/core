@@ -222,9 +222,7 @@ document.getElementById('in_searchTimeline')?.addEventListener('keyup', function
 
 //Manage events outside parents delegations:
 document.getElementById('bt_resetTimelineSearch').addEventListener('click', function(event) {
-  let input = document.getElementById('in_searchTimeline')
-  input.value = ''
-  input.triggerEvent('keyup')
+  document.getElementById('in_searchTimeline').jeeValue('').triggerEvent('keyup')
 })
 
 document.getElementById('bt_refreshTimeline').addEventListener('click', function(event) {

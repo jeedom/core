@@ -338,8 +338,7 @@ document.getElementById('in_searchInteract')?.addEventListener('keyup', function
   document.querySelectorAll('.panel-collapse[data-show="0"]').removeClass('in')
 })
 document.getElementById('bt_resetInteractSearch')?.addEventListener('click', function(event) {
-  document.getElementById('in_searchInteract').value = ''
-  document.getElementById('in_searchInteract').triggerEvent('keyup')
+  document.getElementById('in_searchInteract').jeeValue('').triggerEvent('keyup')
 })
 document.getElementById('bt_openAll')?.addEventListener('click', function(event) {
   document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.addClass('in') })

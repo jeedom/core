@@ -150,8 +150,7 @@ document.getElementById('in_search').addEventListener('keyup', function(event) {
   }
 })
 document.getElementById('bt_resetdisplaySearch').addEventListener('click', function(event) {
-  document.getElementById('in_search').value = ''
-  document.getElementById('in_search').triggerEvent('keyup')
+  document.getElementById('in_search').jeeValue('').triggerEvent('keyup')
 })
 document.getElementById('bt_openAll').addEventListener('click', function(event) {
   document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.addClass('in') })

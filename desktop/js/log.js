@@ -167,14 +167,12 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('#bt_resetLogFilterSearch')) {
-    document.getElementById('in_searchLogFilter').value = ''
-    document.getElementById('in_searchLogFilter').triggerEvent('keyup')
+    document.getElementById('in_searchLogFilter').jeeValue('').triggerEvent('keyup')
     return
   }
 
   if (_target = event.target.closest('#bt_resetGlobalLogSearch')) {
-    document.getElementById('in_searchGlobalLog').value = ''
-    document.getElementById('in_searchGlobalLog').triggerEvent('keyup')
+    document.getElementById('in_searchGlobalLog').jeeValue('').triggerEvent('keyup')
     return
   }
 })

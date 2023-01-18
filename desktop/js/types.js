@@ -363,9 +363,7 @@ $('#in_searchTypes').on('keyup', function(event) {
   }
 })
 $('#bt_resetypeSearch').on('click', function(event) {
-  let input = document.getElementById('in_searchTypes')
-  input.value = ''
-  input.triggerEvent('keyup')
+  document.getElementById('in_searchTypes').jeeValue('').triggerEvent('keyup')
   document.querySelectorAll('.cb_selEqLogic').forEach(_check => { _check.checkd = false })
 })
 $('#bt_openAll').off('click').on('click', function(event) {

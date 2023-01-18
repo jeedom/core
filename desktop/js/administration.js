@@ -40,9 +40,7 @@ if (!jeeFrontEnd.administration) {
       document.querySelectorAll('#searchResult a[role="searchTabLink"]').forEach(_search => {
         _search.addEventListener('click', function(event) {
           let tabId = event.target.closest('a').getAttribute('data-target')
-          let input = document.getElementById('in_searchConfig')
-          input.value = ''
-          input.triggerEvent('keyup')
+          document.getElementById('in_searchConfig').jeeValue('').triggerEvent('keyup')
           document.querySelector('a[data-target="' + tabId + '"]').triggerEvent('click')
         })
       })
@@ -567,9 +565,7 @@ document.getElementById('in_searchConfig').addEventListener('keyup', function(ev
   jeedomUtils.initTooltips()
 })
 document.getElementById('bt_resetConfigSearch').addEventListener('click', function(event) {
-  let input = document.getElementById('in_searchConfig')
-  input.value = ''
-  input.triggerEvent('keyup')
+  document.getElementById('in_searchConfig').jeeValue('').triggerEvent('keyup')
   jeedomUtils.dateTimePickerInit()
 })
 

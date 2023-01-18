@@ -131,8 +131,7 @@ document.getElementById('in_search')?.addEventListener('keyup', function(event) 
   })
 })
 document.getElementById('bt_resetSearch')?.addEventListener('click', function(event) {
-  document.getElementById('in_search').value = ''
-  document.getElementById('in_search').triggerEvent('keyup')
+  document.getElementById('in_search').jeeValue('').triggerEvent('keyup')
 })
 
 

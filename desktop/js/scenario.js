@@ -95,8 +95,7 @@ if (!jeeFrontEnd.scenario) {
           document.getElementById('bt_scenarioTab').click()
           document.getElementById('bt_resetInsideScenarioSearch').click()
           setTimeout(function() {
-            document.getElementById('in_searchInsideScenario').value = jeephp2js.initSearch
-            document.getElementById('in_searchInsideScenario').triggerEvent('keyup').focus()
+            document.getElementById('in_searchInsideScenario').jeeValue('').triggerEvent('keyup').focus()
           }, 1000)
         }, 200)
       }
@@ -1998,8 +1997,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
         searchField.unseen()
         _target.setAttribute('data-state', '0')
       } else {
-        searchField.value = ''
-        searchField.triggerEvent('keyup')
+        searchField.jeeValue('').triggerEvent('keyup')
       }
     }
     return

@@ -290,8 +290,7 @@ $('#in_searchWidgets').keyup(function(event) {
   document.querySelectorAll('.panel-collapse[data-show="0"]').removeClass('in')
 })
 $('#bt_resetWidgetsSearch').off('click').on('click', function(event) {
-  document.getElementById('in_searchWidgets').value = ''
-  document.getElementById('in_searchWidgets').triggerEvent('keyup')
+  document.getElementById('in_searchWidgets').jeeValue('').triggerEvent('keyup')
 })
 $('#bt_openAll').off('click').on('click', function(event) {
   document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.addClass('in') })

@@ -591,8 +591,7 @@ document.getElementById('sidebar').addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('#bt_resetSearch')) {
-    document.getElementById('in_searchHistory').value = ''
-    document.getElementById('in_searchHistory').triggerEvent('keyup')
+    document.getElementById('in_searchHistory').jeeValue('').triggerEvent('keyup')
     return
   }
 

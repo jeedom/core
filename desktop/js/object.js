@@ -674,8 +674,7 @@ document.getElementById('in_searchObject')?.addEventListener('keyup', function(e
   })
 })
 document.getElementById('bt_resetObjectSearch')?.addEventListener('click', function(event) {
-  document.getElementById('in_searchObject').value = ''
-  document.getElementById('in_searchObject').triggerEvent('keyup')
+  document.getElementById('in_searchObject').jeeValue('').triggerEvent('keyup')
 })
 
 //eqLogics tab searching
@@ -708,8 +707,7 @@ document.getElementById('bt_closeAll')?.addEventListener('click', function(event
   document.querySelectorAll('#eqLogicsCmds .panel-collapse').forEach(_panel => { _panel.removeClass('in') })
 })
 document.getElementById('bt_resetCmdSearch')?.addEventListener('click', function(event) {
-  document.getElementById('in_searchCmds').value = ''
-  document.getElementById('in_searchCmds').triggerEvent('keyup')
+  document.getElementById('in_searchCmds').jeeValue('').triggerEvent('keyup')
 })
 
 
