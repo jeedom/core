@@ -3474,12 +3474,12 @@
         "Historiser": "Historiser",
         "Inverser": "Inverser",
         "Tester": "Tester",
-        "Configuration du plugin": "プラグイン構成",
+        "Nom de l'équipement ?": "機器の名前は？",
         "Nom de la copie de l\\'équipement ?": "機器のコピーの名前？",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "機器を削除してもよろしいですか",
         "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
         "Veuillez d\\'abord sélectionner un": "を選択してください",
-        "Nom de l'équipement ?": "機器の名前は？",
+        "Configuration du plugin": "プラグイン構成",
         "Veuillez activer l\\'équipement avant de tester une de ses commandes": "コントロールをテストする前に、機器をアクティブにしてください"
     },
     "core\/js\/log.class.js": {

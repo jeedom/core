@@ -3474,12 +3474,12 @@
         "Historiser": "Historize",
         "Inverser": "Invert",
         "Tester": "Test",
-        "Configuration du plugin": "Plugin configuration",
+        "Nom de l'équipement ?": "Equipment name?",
         "Nom de la copie de l\\'équipement ?": "Name of equipment copy?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Are you sure you want to delete the equipment",
         "Il est utilisé par ou utilise :": "It is used by or uses:",
         "Veuillez d\\'abord sélectionner un": "Please first select a",
-        "Nom de l'équipement ?": "Equipment name?",
+        "Configuration du plugin": "Plugin configuration",
         "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Please activate the equipment before testing any of its commands"
     },
     "core\/js\/log.class.js": {

@@ -3474,12 +3474,12 @@
         "Historiser": "Historisiere",
         "Inverser": "Umkehren",
         "Tester": "Prüfen",
-        "Configuration du plugin": "Plugin Konfiguration",
+        "Nom de l'équipement ?": "Name der Ausrüstung?",
         "Nom de la copie de l\\'équipement ?": "Name der Gerätekopie?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Sind Sie sicher, dass Sie das Gerät löschen möchten?",
         "Il est utilisé par ou utilise :": "Es wird verwendet von oder verwendet:",
         "Veuillez d\\'abord sélectionner un": "Bitte wählen Sie a",
-        "Nom de l'équipement ?": "Name der Ausrüstung?",
+        "Configuration du plugin": "Plugin Konfiguration",
         "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Bitte aktivieren Sie das Gerät, bevor Sie eine der Steuerungen testen"
     },
     "core\/js\/log.class.js": {

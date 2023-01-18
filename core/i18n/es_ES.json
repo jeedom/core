@@ -3474,12 +3474,12 @@
         "Historiser": "Historizar",
         "Inverser": "Reverso",
         "Tester": "Prueba",
-        "Configuration du plugin": "Configuración del complemento",
+        "Nom de l'équipement ?": "¿Nombre del dispositivo?",
         "Nom de la copie de l\\'équipement ?": "Nombre de la copia del equipo?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "¿Está seguro de que desea eliminar el equipo?",
         "Il est utilisé par ou utilise :": "Es utilizado por o utiliza:",
         "Veuillez d\\'abord sélectionner un": "Primero seleccione un",
-        "Nom de l'équipement ?": "¿Nombre del dispositivo?",
+        "Configuration du plugin": "Configuración del complemento",
         "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Por favor, active el dispositivo antes de probar uno de sus comandos"
     },
     "core\/js\/log.class.js": {

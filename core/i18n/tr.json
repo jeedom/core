@@ -3474,12 +3474,12 @@
         "Historiser": "Historiser",
         "Inverser": "Inverser",
         "Tester": "Tester",
-        "Configuration du plugin": "Eklentinin ayarları",
+        "Nom de l'équipement ?": "Cihazın ismi ?",
         "Nom de la copie de l\\'équipement ?": "Nom de la copie de l\\'équipement ?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Cihazı silmek istemekden eminmisiniz",
         "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
         "Veuillez d\\'abord sélectionner un": "Once bitane seçin",
-        "Nom de l'équipement ?": "Cihazın ismi ?",
+        "Configuration du plugin": "Eklentinin ayarları",
         "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Komutasını test etmeden önce cihazı aktif hale getirin"
     },
     "core\/js\/log.class.js": {

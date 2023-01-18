@@ -3474,12 +3474,12 @@
         "Historiser": "Historiser",
         "Inverser": "Inverser",
         "Tester": "Tester",
-        "Configuration du plugin": "Konfigurasi Plugin",
+        "Nom de l'équipement ?": "Nama Perangkat?",
         "Nom de la copie de l\\'équipement ?": "Nom de la copie de l\\'équipement ?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Apakah Anda yakin ingin menghapus peralatan \\ 's",
         "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
         "Veuillez d\\'abord sélectionner un": "Silakan \\ 's pertama memilih",
-        "Nom de l'équipement ?": "Nama Perangkat?",
+        "Configuration du plugin": "Konfigurasi Plugin",
         "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Aktifkan peralatan \\ 's sebelum menguji salah satu pesanan yang"
     },
     "core\/js\/log.class.js": {
