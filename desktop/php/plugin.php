@@ -115,7 +115,7 @@ $plugins_list = plugin::listPlugin(false, true);
       <div class="col-md-6 col-sm-12">
         <div class="panel panel-default" id="div_state">
           <div class="panel-heading">
-            <h3 class="panel-title"><i class="fas fa-circle-notch"></i> {{Etat}} <a class="btn btn-info btn-xs pull-right openPluginPage"><i class="fas fa-share"></i> {{Ouvrir}}</a></h3>
+            <h3 class="panel-title"><i class="fas fa-circle-notch"></i> {{Etat}} <a class="btn btn-info btn-xs pull-right bt_openPluginPage"><i class="fas fa-share"></i> {{Ouvrir}}</a></h3>
           </div>
           <div class="panel-body">
             <div id="div_plugin_toggleState"></div>
