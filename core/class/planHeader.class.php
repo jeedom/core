@@ -116,6 +116,10 @@ class planHeader {
 		}
 	}
 
+	public function refresh() {
+		DB::refresh($this);
+	}
+
 	public function save() {
 		DB::save($this);
 	}

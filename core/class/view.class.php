@@ -89,6 +89,10 @@ class view {
 		}
 	}
 
+	public function refresh() {
+		DB::refresh($this);
+	}
+
 	public function save() {
 		return DB::save($this);
 	}
