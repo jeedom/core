@@ -927,12 +927,14 @@ jeedomUtils.initPage = function() {
   jeedomUtils.initHelp()
   jeedomUtils.initTextArea()
 
+  /*
   $('.nav-tabs a').on('click', function(event) {
     if (event.delegateTarget.getAttribute('data-action') == 'returnToThumbnailDisplay') {
       event.preventDefault()
       event.stopPropagation()
     }
   })
+  */
 
   setTimeout(function() {
     jeedomUtils.initTooltips()
