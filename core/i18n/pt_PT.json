@@ -2034,7 +2034,6 @@
     "desktop\/php\/replace.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Sauvegarde Système": "Backup do sistema",
-        "Reset": "Redefinir",
         "Remplacer": "Substituir",
         "Filtres": "Filtros",
         "Filtre par objet": "Filtrar por objeto",
@@ -2044,6 +2043,7 @@
         "Filtre par plugin": "Filtrar por plug-in",
         "Plugins": "Plug-ins",
         "Filtrer": "Filtro",
+        "Reset": "Redefinir",
         "Options": "Opções",
         "Mode": "Moda",
         "Remplace l’équipement et ses commandes (scénarios, etc.) ou copie seulement les propriétés souhaitées.": "Substitui o equipamento e seus comandos (cenários, etc.) ou copia apenas as propriedades desejadas",
@@ -2183,7 +2183,7 @@
         "Ajouter": "Adicionar",
         "Importer": "Importar",
         "Code": "Código",
-        "Remplacement": "Substituir",
+        "Remplacement": "Substituição",
         "Mes widgets": "Os meus widgets",
         "Rechercher | nom | :not(nom": "Pesquisa | nome | :not(nome",
         "Appliquer à": "Aplicar a",
@@ -3149,6 +3149,7 @@
         "Aucun équipement à remplacer ou copier": "Nenhum equipamento para substituir ou copiar",
         "Aucune commande à remplacer ou copier": "Nenhum comando para substituir ou copiar",
         "Remplacement effectué": "Substituição feita",
+        "Remplacement": "Substituição",
         "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "É altamente recomendável fazer um backup do sistema antes de usar esta ferramenta!",
         "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Tem certeza de que deseja Substituir este equipamento e comandos?"
     },

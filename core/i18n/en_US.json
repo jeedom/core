@@ -2034,7 +2034,6 @@
     "desktop\/php\/replace.php": {
         "401 - Accès non autorisé": "401 - Unauthorized Access",
         "Sauvegarde Système": "System Backup",
-        "Reset": "Reset",
         "Remplacer": "Replace",
         "Filtres": "Filters",
         "Filtre par objet": "Filter by object",
@@ -2044,6 +2043,7 @@
         "Filtre par plugin": "Filter by plugin",
         "Plugins": "Plugins",
         "Filtrer": "Filter",
+        "Reset": "Reset",
         "Options": "Options",
         "Mode": "Mode",
         "Remplace l’équipement et ses commandes (scénarios, etc.) ou copie seulement les propriétés souhaitées.": "Replaces the equipment and its commands (scenarios, etc.) or copies only the desired properties",
@@ -3149,6 +3149,7 @@
         "Aucun équipement à remplacer ou copier": "No equipment to replace or copy",
         "Aucune commande à remplacer ou copier": "No commands to replace or copy",
         "Remplacement effectué": "Replacement done",
+        "Remplacement": "Replacement",
         "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "It is strongly advised to make a system backup before using this tool!",
         "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Are you sure you want to Replace these equipments and commands?"
     },
