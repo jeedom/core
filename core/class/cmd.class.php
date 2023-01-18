@@ -839,7 +839,7 @@ class cmd {
 		return $return;
 	}
 
-	public static function getSelectOptionsByTypeAndSubtype($_type=false, $_subtype=false, $_version='dashboard', $_availWidgets = false) {
+	public static function getSelectOptionsByTypeAndSubtype($_type = false, $_subtype = false, $_version = 'dashboard', $_availWidgets = false) {
 		if ($_type === false || $_subtype === false) {
 			throw new Exception(__('Type ou sous-type de commande invalide', __FILE__));
 		}
@@ -1264,7 +1264,11 @@ class cmd {
 		if (!$_availWidgets) {
 			$_availWidgets = self::availableWidget($_version);
 		}
-		$display = '<option value="default">' . __('Défaut', __FILE__) . '</option>';
+		if ($this->getTemplate($_version) == 'default') {
+			$this->setTemplate($_version, 'core::default');
+			$this->save(true);
+		}
+		$display = '<option value="core::default">' . __('Défaut', __FILE__) . '</option>';
 		return $display .= self::getSelectOptionsByTypeAndSubtype($this->getType(), $this->getSubType(), $_version, $_availWidgets);
 	}
 
@@ -1339,7 +1343,7 @@ class cmd {
 		$replace = null;
 		$widget_template = $JEEDOM_INTERNAL_CONFIG['cmd']['widgets'];
 		$widget_name = ($_widgetName == '') ? $this->getTemplate($_version, config::byKey('widget::default::cmd::' . $this->getType() . '::' . $this->getSubType())) : $_widgetName;
-		if ($widget_name == 'default') {
+		if ($widget_name == 'default' || $widget_name == 'core::default') {
 			$widget_name = config::byKey('widget::default::cmd::' . $this->getType() . '::' . $this->getSubType());
 		}
 
