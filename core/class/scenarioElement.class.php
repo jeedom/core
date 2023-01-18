@@ -21,7 +21,7 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class scenarioElement {
 	/*     * *************************Attributs****************************** */
-	
+
 	private $id;
 	private $name;
 	private $type;
@@ -29,9 +29,9 @@ class scenarioElement {
 	private $order = 0;
 	private $_changed = false;
 	private $_subelement;
-	
+
 	/*     * ***********************Méthodes statiques*************************** */
-	
+
 	public static function byId($_id) {
 		$values = array(
 			'id' => $_id,
@@ -41,7 +41,7 @@ class scenarioElement {
 		WHERE id=:id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
+
 	public static function saveAjaxElement($element_ajax) {
 		if (isset($element_ajax['id']) && $element_ajax['id'] != '') {
 			$element_db = scenarioElement::byId($element_ajax['id']);
@@ -71,7 +71,7 @@ class scenarioElement {
 			$subElement_db->save();
 			$subElement_order++;
 			$enable_subElement[$subElement_db->getId()] = true;
-			
+
 			$expression_list = $subElement_db->getExpression();
 			$expression_order = 0;
 			$enable_expression = array();
@@ -111,21 +111,25 @@ class scenarioElement {
 		}
 		return $element_db->getId();
 	}
-	
+
 	/*     * *********************Méthodes d'instance************************* */
-	
+
+	public function refresh() {
+		DB::refresh($this);
+	}
+
 	public function save() {
 		DB::save($this);
 		return true;
 	}
-	
+
 	public function remove() {
-		foreach(($this->getSubElement()) as $subelement) {
+		foreach (($this->getSubElement()) as $subelement) {
 			$subelement->remove();
 		}
 		DB::remove($this);
 	}
-	
+
 	public function execute(&$_scenario = null) {
 		if ($_scenario != null && !$_scenario->getDo()) {
 			return;
@@ -142,11 +146,11 @@ class scenarioElement {
 				$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['invalidExpr']['txt'] . $result);
 				$expresssion_str = '';
 				if ($this->getSubElement('if')->getSubtype() == 'condition' && is_array($this->getSubElement('if')->getExpression())) {
-					foreach(($this->getSubElement('if')->getExpression()) as $expression) {
+					foreach (($this->getSubElement('if')->getExpression()) as $expression) {
 						$expresssion_str = $expression->getExpression();
 					}
 				}
-				message::add('scenario', __('Expression non valide', __FILE__) . '  [' . $expresssion_str . '] ' . __('trouvée dans le scénario :', __FILE__) . ' ' . $_scenario->getHumanName().__(', résultat : ',__FILE__).$result, '', 'invalidExprScenarioElement::' . $this->getId());
+				message::add('scenario', __('Expression non valide', __FILE__) . '  [' . $expresssion_str . '] ' . __('trouvée dans le scénario :', __FILE__) . ' ' . $_scenario->getHumanName() . __(', résultat : ', __FILE__) . $result, '', 'invalidExprScenarioElement::' . $this->getId());
 				return;
 			}
 			if ($result) {
@@ -174,7 +178,6 @@ class scenarioElement {
 				}
 			}
 			return $this->getSubElement('else')->execute($_scenario);
-			
 		} else if ($this->getType() == 'action') {
 			if ($this->getSubElement('action')->getOptions('enable', 1) == 0) {
 				return true;
@@ -210,9 +213,9 @@ class scenarioElement {
 				$cmd = __DIR__ . '/../../core/php/jeeScenario.php ';
 				$cmd .= ' scenario_id=' . $_scenario->getId();
 				$cmd .= ' scenarioElement_id=' . $this->getId();
-				$cmd .= ' tags=\'' . json_encode($_scenario->getTags()).'\'';
+				$cmd .= ' tags=\'' . json_encode($_scenario->getTags()) . '\'';
 				$cmd .= ' >> ' . log::getPathToLog('scenario_element_execution') . ' 2>&1 &';
-				$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['task']['txt'] . $this->getId() . $GLOBALS['JEEDOM_SCLOG_TEXT']['sheduleNow']['txt'] );
+				$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['task']['txt'] . $this->getId() . $GLOBALS['JEEDOM_SCLOG_TEXT']['sheduleNow']['txt']);
 				system::php($cmd);
 			} else {
 				$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenarioElement_id":' . $this->getId() . ',');
@@ -274,7 +277,7 @@ class scenarioElement {
 			return true;
 		}
 	}
-	
+
 	public function getSubElement($_type = '') {
 		if ($_type != '') {
 			if (isset($this->_subelement[$_type]) && is_object($this->_subelement[$_type])) {
@@ -290,7 +293,7 @@ class scenarioElement {
 			return $this->_subelement[-1];
 		}
 	}
-	
+
 	public function getAjaxElement($_mode = 'ajax') {
 		$return = utils::o2a($this);
 		if ($_mode == 'array') {
@@ -308,7 +311,7 @@ class scenarioElement {
 			}
 		}
 		$return['subElements'] = array();
-		foreach(($this->getSubElement()) as $subElement) {
+		foreach (($this->getSubElement()) as $subElement) {
 			$subElement_ajax = utils::o2a($subElement);
 			if ($_mode == 'array') {
 				if (isset($subElement_ajax['id'])) {
@@ -325,7 +328,7 @@ class scenarioElement {
 				}
 			}
 			$subElement_ajax['expressions'] = array();
-			foreach(($subElement->getExpression()) as $expression) {
+			foreach (($subElement->getExpression()) as $expression) {
 				$expression_ajax = utils::o2a($expression);
 				if ($_mode == 'array') {
 					if (isset($expression_ajax['id'])) {
@@ -368,14 +371,14 @@ class scenarioElement {
 		}
 		return $return;
 	}
-	
+
 	public function getAllId() {
 		$return = array(
 			'element' => array($this->getId()),
 			'subelement' => array(),
 			'expression' => array(),
 		);
-		foreach(($this->getSubElement()) as $subelement) {
+		foreach (($this->getSubElement()) as $subelement) {
 			$result = $subelement->getAllId();
 			$return['element'] = array_merge($return['element'], $result['element']);
 			$return['subelement'] = array_merge($return['subelement'], $result['subelement']);
@@ -383,57 +386,57 @@ class scenarioElement {
 		}
 		return $return;
 	}
-	
+
 	public function resetRepeatIfStatus() {
-		foreach(($this->getSubElement()) as $subElement) {
+		foreach (($this->getSubElement()) as $subElement) {
 			if ($subElement->getType() == 'if') {
 				$subElement->setOptions('previousState', -1);
 				$subElement->save();
 			}
-			foreach(($subElement->getExpression()) as $expression) {
+			foreach (($subElement->getExpression()) as $expression) {
 				$expression->resetRepeatIfStatus();
 			}
 		}
 	}
-	
+
 	public function export() {
 		$return = '';
-		foreach(($this->getSubElement()) as $subElement) {
+		foreach (($this->getSubElement()) as $subElement) {
 			$return .= "\n";
 			switch ($subElement->getType()) {
 				case 'if':
-				$return .= __('SI', __FILE__);
-				break;
+					$return .= __('SI', __FILE__);
+					break;
 				case 'then':
-				$return .= __('ALORS', __FILE__);
-				break;
+					$return .= __('ALORS', __FILE__);
+					break;
 				case 'else':
-				$return .= __('SINON', __FILE__);
-				break;
+					$return .= __('SINON', __FILE__);
+					break;
 				case 'for':
-				$return .= __('POUR', __FILE__);
-				break;
+					$return .= __('POUR', __FILE__);
+					break;
 				case 'do':
-				$return .= __('FAIRE', __FILE__);
-				break;
+					$return .= __('FAIRE', __FILE__);
+					break;
 				case 'code':
-				$return .= __('CODE', __FILE__);
-				break;
+					$return .= __('CODE', __FILE__);
+					break;
 				case 'action':
-				$return .= __('ACTION', __FILE__);
-				break;
+					$return .= __('ACTION', __FILE__);
+					break;
 				case 'in':
-				$return .= __('DANS', __FILE__);
-				break;
+					$return .= __('DANS', __FILE__);
+					break;
 				case 'at':
-				$return .= __('A', __FILE__);
-				break;
+					$return .= __('A', __FILE__);
+					break;
 				default:
-				$return .= $subElement->getType();
-				break;
+					$return .= $subElement->getType();
+					break;
 			}
 
-			foreach(($subElement->getExpression()) as $expression) {
+			foreach (($subElement->getExpression()) as $expression) {
 				$export = $expression->export();
 				if ($expression->getType() != 'condition' && trim($export) != '') {
 					$return .= "\n";
@@ -445,12 +448,12 @@ class scenarioElement {
 		}
 		return $return;
 	}
-				
+
 	public function copy() {
 		$elementCopy = clone $this;
 		$elementCopy->setId('');
 		$elementCopy->save();
-		foreach(($this->getSubElement()) as $subelement) {
+		foreach (($this->getSubElement()) as $subelement) {
 			$subelement->copy($elementCopy->getId());
 		}
 		return $elementCopy->getId();
@@ -475,7 +478,7 @@ class scenarioElement {
 	}
 
 	public function setId($_id) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
+		$this->_changed = utils::attrChanged($this->_changed, $this->id, $_id);
 		$this->id = $_id;
 		return $this;
 	}
@@ -485,7 +488,7 @@ class scenarioElement {
 	}
 
 	public function setName($_name) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
+		$this->_changed = utils::attrChanged($this->_changed, $this->name, $_name);
 		$this->name = $_name;
 		return $this;
 	}
@@ -495,7 +498,7 @@ class scenarioElement {
 	}
 
 	public function setType($_type) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
+		$this->_changed = utils::attrChanged($this->_changed, $this->type, $_type);
 		$this->type = $_type;
 		return $this;
 	}
@@ -506,8 +509,8 @@ class scenarioElement {
 
 	public function setOptions($_key, $_value) {
 		$options =  utils::setJsonAttr($this->options, $_key, $_value);
-		$this->_changed = utils::attrChanged($this->_changed,$this->options,$options);
-		$this->options =$options;
+		$this->_changed = utils::attrChanged($this->_changed, $this->options, $options);
+		$this->options = $options;
 		return $this;
 	}
 
@@ -516,7 +519,7 @@ class scenarioElement {
 	}
 
 	public function setOrder($_order) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->order,$_order);
+		$this->_changed = utils::attrChanged($this->_changed, $this->order, $_order);
 		$this->order = $_order;
 		return $this;
 	}
@@ -529,6 +532,4 @@ class scenarioElement {
 		$this->_changed = $_changed;
 		return $this;
 	}
-
 }
-			

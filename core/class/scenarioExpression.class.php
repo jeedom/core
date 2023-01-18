@@ -1926,6 +1926,10 @@ class scenarioExpression {
 		}
 	}
 
+	public function refresh() {
+		DB::refresh($this);
+	}
+
 	public function save() {
 		$this->checkBackground();
 		DB::save($this);
