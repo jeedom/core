@@ -1,5 +1,10 @@
 # Changelog Jeedom V4.3
 
+## 4.3.15
+
+- Interdiction de la traduction de Jeedom par les navigateurs (évite les erreur type marché.repo.php non trouvé)
+- Optimisation de la fonction de remplacement 
+
 ## 4.3.14
 
 - reduction de la charge sur les DNS
