@@ -1036,10 +1036,10 @@ class cmd {
 			$this->setDisplay('generic_type', null);
 		}
 		if ($this->getTemplate('dashboard', '') == '') {
-			$this->setTemplate('dashboard', 'default');
+			$this->setTemplate('dashboard', 'core::default');
 		}
 		if ($this->getTemplate('mobile', '') == '') {
-			$this->setTemplate('mobile', 'default');
+			$this->setTemplate('mobile', 'core::default');
 		}
 		if ($this->getType() == 'action' && $this->getIsHistorized() == 1) {
 			$this->setIsHistorized(0);
