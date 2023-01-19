@@ -449,13 +449,14 @@ document.getElementById('in_searchDashboard')?.addEventListener('keyup', functio
   })
   $('.div_displayEquipement').packery()
 })
-document.getElementById('bt_resetDashboardSearch')?.addEventListener('keyup', function(event) {
+document.getElementById('bt_resetDashboardSearch')?.addEventListener('click', function(event) {
   if (jeedomUI.isEditing) return
   document.querySelectorAll('#categoryfilter li .catFilterKey').forEach(cat => { cat.checkd = true})
   document.querySelectorAll('#dashTopBar button.dropdown-toggle').removeClass('warning')
   document.getElementById('in_searchDashboard').jeeValue('').triggerEvent('keyup')
 })
-//Edit mode:
+
+//Manage events outside parents delegations:
 document.getElementById('bt_editDashboardWidgetOrder')?.addEventListener('click', function(event) {
   if (event.target.getAttribute('data-mode') == 1) {
     event.target.setAttribute('data-mode', 0)
@@ -474,7 +475,8 @@ document.getElementById('bt_editDashboardWidgetOrder')?.addEventListener('click'
   }
 })
 
-//div_pageContainer events delegation:
+/*Events delegations
+*/
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
   var _target = null
   if (_target = event.target.closest('.editOptions')) { //Edit mode tile icon
