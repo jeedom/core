@@ -35,6 +35,37 @@ if (!jeeFrontEnd.profils) {
         }, 200)
       }
     },
+    removeRegisterDevice: function(_key, _userId) {
+      if (!isset(_userId)) _userId = ''
+      jeedom.user.removeRegisterDevice({
+        key: _key,
+        user_id: _userId,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          jeeFrontEnd.modifyWithoutSave = false
+          window.location.reload()
+        }
+      })
+    },
+    deleteSession: function(_id) {
+      jeedom.user.deleteSession({
+        id: _id,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          window.location.reload()
+        }
+      })
+    },
   }
 }
 
@@ -200,37 +231,12 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   var _target = null
   if (jeephp2js.profils_user_id == -1) {
     if (_target = event.target.closest('.bt_removeRegisterDevice')) {
-      var key = _target.closest('tr').getAttribute('data-key')
-      jeedom.user.removeRegisterDevice({
-        key: key,
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          jeeFrontEnd.modifyWithoutSave = false
-          window.location.reload()
-        }
-      })
+      jeeFrontEnd.profils.removeRegisterDevice(_target.closest('tr').getAttribute('data-key'))
       return
     }
 
     if (_target = event.target.closest('.bt_deleteSession')) {
-      var id = _target.closest('tr').getAttribute('data-id')
-      jeedom.user.deleteSession({
-        id: id,
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          window.location.reload()
-        }
-      })
+      jeeFrontEnd.profils.deleteSession(_target.closest('tr').getAttribute('data-id'))
       return
     }
   }

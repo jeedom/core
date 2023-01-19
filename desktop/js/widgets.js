@@ -18,6 +18,7 @@
 
 if (!jeeFrontEnd.widgets) {
   jeeFrontEnd.widgets = {
+    isLoadging: false, //Avoid triggering multiple time input changes
     init: function() {
       window.jeeP = this
       this.widget_parameters_opt = {
@@ -102,6 +103,8 @@ if (!jeeFrontEnd.widgets) {
       })
     },
     printWidget: function(_id) {
+      jeeFrontEnd.widgets.isLoadging = true
+
       jeedomUtils.hideAlert()
       document.getElementById('div_conf').seen()
       document.getElementById('div_widgetsList').unseen()
@@ -115,12 +118,14 @@ if (!jeeFrontEnd.widgets) {
             message: error.message,
             level: 'danger'
           })
+          jeeFrontEnd.widgets.isLoadging = false
         },
         success: function(data) {
           document.querySelector('a[data-target="#widgetstab"]').click()
+
+          //Ensure no resiliant data for next save:
           document.querySelectorAll('.widgetsAttr').jeeValue('')
           document.querySelectorAll('.widgetsAttr[data-l1key="type"]').jeeValue('info')
-
           document.querySelector('.widgetsAttr[data-l1key="subtype"]').jeeValue(
             document.querySelector('.widgetsAttr[data-l1key="subtype"]').selectedIndex = 0
           )
@@ -131,6 +136,7 @@ if (!jeeFrontEnd.widgets) {
               jeeP.addTest(data.test[i])
             }
           }
+
           var usedBy = ''
           for (var i in data.usedBy) {
             usedBy += '<span class="label label-info cursor cmdAdvanceConfigure" data-cmd_id="' + i + '">' + data.usedBy[i] + '</span> '
@@ -154,7 +160,6 @@ if (!jeeFrontEnd.widgets) {
           }
           jeeP.loadTemplateConfiguration(template, data)
           jeedomUtils.addOrUpdateUrl('id', data.id)
-          jeeFrontEnd.modifyWithoutSave = false
           jeedom.widgets.getPreview({
             id: data.id,
             cache: false,
@@ -174,6 +179,7 @@ if (!jeeFrontEnd.widgets) {
           setTimeout(function() {
             jeeFrontEnd.modifyWithoutSave = false
           }, 500)
+          jeeFrontEnd.widgets.isLoadging = false
         }
       })
     },
@@ -227,6 +233,115 @@ if (!jeeFrontEnd.widgets) {
       downloadAnchorNode.click()
       downloadAnchorNode.remove()
     },
+    applyToCmd: function() {
+      //store usedBy:
+      var checkedId = []
+      document.querySelectorAll('div_usedBy .cmdAdvanceConfigure').forEach(_cmd => {
+        checkedId.push(_cmd.getAttribute('data-cmd_id'))
+      })
+
+      let type = document.querySelector('.widgetsAttr[data-l1key="type"]').jeeValue()
+      let subtype = document.querySelector('.widgetsAttr[data-l1key="subtype"]').jeeValue()
+      jeeDialog.dialog({
+        id: 'jee_modal',
+        title: "{{Appliquer ce widget à}}",
+        contentUrl: 'index.php?v=d&modal=cmd.selectMultiple&type=' + type + '&subtype=' + subtype,
+        callback: function() {
+          jeedomUtils.initTableSorter()
+
+          document.querySelectorAll('#table_cmdConfigureSelectMultiple tbody tr').forEach(_tr => {
+            if (checkedId.includes(_tr.getAttribute('data-cmd_id'))) {
+              _tr.querySelector('.selectMultipleApplyCmd').checked = true
+            }
+          })
+
+          document.getElementById('bt_cmdConfigureSelectMultipleAlertToogle').addEventListener('click', function(event) {
+            document.querySelectorAll('#table_cmdConfigureSelectMultiple tbody tr input.selectMultipleApplyCmd').forEach(_input => {
+              if (_input.isVisible()) {
+                _input.checked = !_input.checked
+                _input.setAttribute('data-state', '1')
+              }
+            })
+          })
+
+          document.getElementById('bt_cmdConfigureSelectMultipleAlertApply').addEventListener('click', function(event) {
+            var widgets = document.querySelectorAll('.widgets').getJeeValues('.widgetsAttr')[0]
+            widgets.test = document.querySelectorAll('#div_templateTest .test').getJeeValues('.testAttr')
+            jeedom.widgets.save({
+              widgets: widgets,
+              error: function(error) {
+                jeedomUtils.showAlert({
+                  message: error.message,
+                  level: 'danger'
+                })
+              },
+              success: function(data) {
+                jeeFrontEnd.modifyWithoutSave = false
+                var cmd = {
+                  template: {
+                    dashboard: 'custom::' + document.querySelector('.widgetsAttr[data-l1key="name"]').jeeValue(),
+                    mobile: 'custom::' + document.querySelector('.widgetsAttr[data-l1key="name"]').jeeValue()
+                  }
+                }
+                var cmdDefault = {
+                  template: {
+                    dashboard: 'default',
+                    mobile: 'default'
+                  }
+                }
+
+                document.querySelectorAll('#table_cmdConfigureSelectMultiple tbody tr').forEach(_tr => {
+                  var thisId = _tr.getAttribute('data-cmd_id')
+                  if (_tr.querySelector('.selectMultipleApplyCmd').checked) {
+                    if (!checkedId.includes(thisId)) {
+                      //show in usedBy
+                      var thisObject = _tr.childNodes[1].textContent
+                      var thisEq = _tr.childNodes[2].textContent
+                      var thisName = _tr.childNodes[3].textContent
+                      var cmdHumanName = '[' + thisObject + '][' + thisEq + '][' + thisName + ']'
+                      var newSpan = '<span class="label label-info cursor cmdAdvanceConfigure" data-cmd_id="' + thisId + '">' + cmdHumanName + '</span>'
+                      document.getElementById('div_usedBy').insertAdjacentHTML('beforeend', newSpan)
+                    }
+                    cmd.id = thisId
+                    jeedom.cmd.save({
+                      cmd: cmd,
+                      error: function(error) {
+                        jeedomUtils.showAlert({
+                          message: error.message,
+                          level: 'danger'
+                        })
+                      },
+                      success: function() { }
+                    })
+
+                  } else {
+                    if (checkedId.includes(thisId)) {
+                      cmdDefault.id = thisId
+                      jeedom.cmd.save({
+                        cmd: cmdDefault,
+                        error: function(error) {
+                          jeedomUtils.showAlert({
+                            message: error.message,
+                            level: 'danger'
+                          })
+                        },
+                        success: function(data) {
+                          document.querySelector('#div_usedBy .cmdAdvanceConfigure[data-cmd_id="' + data.id + '"]')?.remove()
+                        }
+                      })
+                    }
+                  }
+                })
+                jeedomUtils.showAlert({
+                  message: "{{Modification(s) appliquée(s) avec succès}}",
+                  level: 'success'
+                })
+              }
+            })
+          })
+        }
+      })
+    },
     saveWidget: function() {
       var widgets = document.getElementById('div_conf').getJeeValues('.widgetsAttr')[0]
       widgets.test = document.querySelectorAll('#div_templateTest .test').getJeeValues('.testAttr')
@@ -249,17 +364,10 @@ if (!jeeFrontEnd.widgets) {
 
 jeeFrontEnd.widgets.init()
 
-document.registerEvent('keydown', function(event) {
-  if (jeedomUtils.getOpenedModal()) return
 
-  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
-    event.preventDefault()
-    jeeP.saveWidget()
-  }
-})
 
 //searching
-$('#in_searchWidgets').keyup(function(event) {
+document.getElementById('in_searchWidgets')?.addEventListener('keyup', function(event) {
   var search = event.target.value
   if (search == '') {
     document.querySelectorAll('.panel-collapse.in').removeClass('in')
@@ -289,13 +397,13 @@ $('#in_searchWidgets').keyup(function(event) {
   document.querySelectorAll('.panel-collapse[data-show="1"]').addClass('in')
   document.querySelectorAll('.panel-collapse[data-show="0"]').removeClass('in')
 })
-$('#bt_resetWidgetsSearch').off('click').on('click', function(event) {
-  document.getElementById('in_searchWidgets').jeeValue('').triggerEvent('keyup')
+document.getElementById('bt_resetWidgetsSearch')?.addEventListener('click', function(event) {
+  document.getElementById('in_searchWidgets').jeeValue('')
 })
-$('#bt_openAll').off('click').on('click', function(event) {
+document.getElementById('bt_openAll')?.addEventListener('click', function(event) {
   document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.addClass('in') })
 })
-$('#bt_closeAll').off('click').on('click', function(event) {
+document.getElementById('bt_closeAll')?.addEventListener('click', function(event) {
   document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.removeClass('in') })
 })
 
@@ -364,328 +472,23 @@ try {
     })
   } catch (err) { }
 
-$('#bt_chooseIcon').on('click', function(event) {
-  var _icon = document.querySelector('div[data-l2key="icon"] > i')
-  if (_icon != null) {
-    _icon = _icon.getAttribute('class')
-  } else {
-    _icon = false
-  }
-  jeedomUtils.chooseIcon(function(_icon) {
-    document.querySelector('div[data-l2key="icon"]').innerHTML = _icon
-    jeeFrontEnd.modifyWithoutSave = true
-  }, {icon: _icon})
-})
 
-$('#bt_editCode').off('click').on('click', function(event) {
-  jeedomUtils.loadPage('index.php?v=d&p=editor&type=widget')
-})
-
-$('#bt_replaceWidget').off('click').on('click', function(event) {
-  jeeDialog.dialog({
-    id: 'jee_modal2',
-    title: "{{Remplacement de widget}}",
-    width: 800,
-    height: 500,
-    contentUrl: 'index.php?v=d&modal=widget.replace'
-  })
-})
-
-$('#bt_applyToCmd').off('click').on('click', function(event) {
-  //store usedBy:
-  var checkedId = []
-  document.querySelectorAll('div_usedBy .cmdAdvanceConfigure').forEach(_cmd => {
-    checkedId.push(_cmd.getAttribute('data-cmd_id'))
-  })
-
-  let type = document.querySelector('.widgetsAttr[data-l1key="type"]').jeeValue()
-  let subtype = document.querySelector('.widgetsAttr[data-l1key="subtype"]').jeeValue()
-  jeeDialog.dialog({
-    id: 'jee_modal',
-    title: "{{Appliquer ce widget à}}",
-    contentUrl: 'index.php?v=d&modal=cmd.selectMultiple&type=' + type + '&subtype=' + subtype,
-    callback: function() {
-      jeedomUtils.initTableSorter()
-
-      document.querySelectorAll('#table_cmdConfigureSelectMultiple tbody tr').forEach(_tr => {
-        if (checkedId.includes(_tr.getAttribute('data-cmd_id'))) {
-          _tr.querySelector('.selectMultipleApplyCmd').checked = true
-        }
-      })
-
-      document.getElementById('bt_cmdConfigureSelectMultipleAlertToogle').addEventListener('click', function(event) {
-        document.querySelectorAll('#table_cmdConfigureSelectMultiple tbody tr input.selectMultipleApplyCmd').forEach(_input => {
-          if (_input.isVisible()) {
-            _input.checked = !_input.checked
-            _input.setAttribute('data-state', '1')
-          }
-        })
-      })
-
-      document.getElementById('bt_cmdConfigureSelectMultipleAlertApply').addEventListener('click', function(event) {
-        var widgets = document.querySelectorAll('.widgets').getJeeValues('.widgetsAttr')[0]
-        widgets.test = document.querySelectorAll('#div_templateTest .test').getJeeValues('.testAttr')
-        jeedom.widgets.save({
-          widgets: widgets,
-          error: function(error) {
-            jeedomUtils.showAlert({
-              message: error.message,
-              level: 'danger'
-            })
-          },
-          success: function(data) {
-            jeeFrontEnd.modifyWithoutSave = false
-            var cmd = {
-              template: {
-                dashboard: 'custom::' + document.querySelector('.widgetsAttr[data-l1key="name"]').jeeValue(),
-                mobile: 'custom::' + document.querySelector('.widgetsAttr[data-l1key="name"]').jeeValue()
-              }
-            }
-            var cmdDefault = {
-              template: {
-                dashboard: 'default',
-                mobile: 'default'
-              }
-            }
-
-            document.querySelectorAll('#table_cmdConfigureSelectMultiple tbody tr').forEach(_tr => {
-              var thisId = _tr.getAttribute('data-cmd_id')
-              if (_tr.querySelector('.selectMultipleApplyCmd').checked) {
-                if (!checkedId.includes(thisId)) {
-                  //show in usedBy
-                  var thisObject = _tr.childNodes[1].textContent
-                  var thisEq = _tr.childNodes[2].textContent
-                  var thisName = _tr.childNodes[3].textContent
-                  var cmdHumanName = '[' + thisObject + '][' + thisEq + '][' + thisName + ']'
-                  var newSpan = '<span class="label label-info cursor cmdAdvanceConfigure" data-cmd_id="' + thisId + '">' + cmdHumanName + '</span>'
-                  document.getElementById('div_usedBy').insertAdjacentHTML('beforeend', newSpan)
-                }
-                cmd.id = thisId
-                jeedom.cmd.save({
-                  cmd: cmd,
-                  error: function(error) {
-                    jeedomUtils.showAlert({
-                      message: error.message,
-                      level: 'danger'
-                    })
-                  },
-                  success: function() { }
-                })
-
-              } else {
-                if (checkedId.includes(thisId)) {
-                  cmdDefault.id = thisId
-                  jeedom.cmd.save({
-                    cmd: cmdDefault,
-                    error: function(error) {
-                      jeedomUtils.showAlert({
-                        message: error.message,
-                        level: 'danger'
-                      })
-                    },
-                    success: function(data) {
-                      document.querySelector('#div_usedBy .cmdAdvanceConfigure[data-cmd_id="' + data.id + '"]')?.remove()
-                    }
-                  })
-                }
-              }
-            })
-            jeedomUtils.showAlert({
-              message: "{{Modification(s) appliquée(s) avec succès}}",
-              level: 'success'
-            })
-          }
-        })
-      })
-    }
-  })
-})
-
-$('.widgetsAttr[data-l1key="display"][data-l2key="icon"]').off('dblclick').on('dblclick', function(event) {
-  document.querySelectorAll('.widgetsAttr[data-l1key="display"][data-l2key="icon"]').jeeValue('')
-})
-
-$('.widgetsAttr[data-l1key="type"]').off('change').on('change', function(event) {
-  document.getElementById('div_templateReplace').empty()
-  document.getElementById('div_templateTest').empty()
-  document.getElementById('div_usedBy').empty()
-  document.querySelectorAll('.selectWidgetSubType').unseen().removeClass('widgetsAttr')
-  document.querySelector('.selectWidgetSubType[data-type="' + event.target.jeeValue() + '"]')?.seen().addClass('widgetsAttr').triggerEvent('change')
-})
-
-$('.selectWidgetSubType').off('change').on('change', function(event) {
-  document.getElementById('div_templateReplace').empty()
-  document.getElementById('div_templateTest').empty()
-  document.getElementById('div_usedBy').empty()
-  document.querySelectorAll('.selectWidgetTemplate').unseen().removeClass('widgetsAttr')
-  let type = document.querySelector('.widgetsAttr[data-l1key="type"]').jeeValue()
-  document.querySelector('.selectWidgetTemplate[data-type="' + type + '"][data-subtype="' + event.target.jeeValue() + '"]')?.seen().addClass('widgetsAttr').triggerEvent('change')
-})
-
-$('#div_templateReplace').off('click', '.chooseIcon').on('click', '.chooseIcon', function(event) {
-  var bt = event.target.closest('.chooseIcon')
-  jeedomUtils.chooseIcon(function(_icon) {
-    bt.closest('.form-group').querySelector('.widgetsAttr[data-l1key="replace"]').jeeValue(_icon)
-  }, {
-    img: true
-  })
-  jeeFrontEnd.modifyWithoutSave = true
-})
-
-$('#div_templateTest').off('click', '.chooseIcon').on('click', '.chooseIcon', function(event) {
-  var bt = event.target.closest('.chooseIcon')
-  jeedomUtils.chooseIcon(function(_icon) {
-    bt.closest('.input-group').querySelector('.testAttr').jeeValue(_icon)
-  }, {
-    img: true
-  })
-  jeeFrontEnd.modifyWithoutSave = true
-})
-
-$('#div_pageContainer').on('change', '.selectWidgetTemplate', function(event) {
-  if (event.target.jeeValue() == '' || !event.target.hasClass('widgetsAttr')) return
-    let type = document.querySelector('.widgetsAttr[data-l1key="type"]').jeeValue()
-    let subtype = document.querySelector('.widgetsAttr[data-l1key="subtype"]').jeeValue()
-  jeeP.loadTemplateConfiguration('cmd.' + type + '.' + subtype + '.' + event.target.jeeValue())
-})
-
-$('#div_pageContainer').off('change', '.widgetsAttr').on('change', '.widgetsAttr:visible', function(event) {
-  jeeFrontEnd.modifyWithoutSave = true
-})
-
-$('#bt_returnToThumbnailDisplay').on('click', function(event) {
-  setTimeout(function() {
-    document.querySelector('.nav li.active').removeClass('active')
-    document.querySelector('a[data-target="#' + document.querySelector('.tab-pane.active').getAttribute('id') + '"]').closest('li').addClass('active')
-  }, 500)
-  if (jeedomUtils.checkPageModified()) return
-  document.getElementById('div_conf').unseen()
-  document.getElementById('div_widgetsList').seen()
-  jeedomUtils.addOrUpdateUrl('id', null, '{{Widgets}} - ' + JEEDOM_PRODUCT_NAME)
-})
-
-$('#bt_widgetsAddTest').off('click').on('click', function(event) {
-  jeeP.addTest({})
-})
-
-$('#div_templateTest').off('click', '.bt_removeTest').on('click', '.bt_removeTest', function(event) {
-  let me = event.target.closest('.bt_removeTest')
-  me.closest('.test').remove()
-  jeeFrontEnd.modifyWithoutSave = true
-})
-
-$("#bt_addWidgets").off('click').on('click', function(event) {
-  jeeDialog.prompt("{{Nom du widget}} ?", function(result) {
-    if (result !== null) {
-      jeedom.widgets.save({
-        widgets: {
-          name: result
-        },
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          jeeFrontEnd.modifyWithoutSave = false
-          jeedomUtils.loadPage('index.php?v=d&p=widgets&id=' + data.id + '&saveSuccessFull=1')
-          jeedomUtils.showAlert({
-            message: '{{Sauvegarde effectuée avec succès}}',
-            level: 'success'
-          })
-        }
-      })
-    }
-  })
-})
-
-$('#div_usedBy').off('click', '.cmdAdvanceConfigure').on('click', '.cmdAdvanceConfigure', function(event) {
-  let me = event.target.closest('.cmdAdvanceConfigure')
-  jeeDialog.dialog({
-    id: 'jee_modal2',
-    title: '{{Configuration de la commande}}',
-    contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + me.getAttribute('data-cmd_id')
-  })
-})
-
-$(".widgetsDisplayCard").off('click').on('click', function(event) {
-  let me = event.target.closest('.widgetsDisplayCard')
-  if (event.ctrlKey || event.metaKey) {
-    var url = '/index.php?v=d&p=widgets&id=' + me.getAttribute('data-widgets_id')
-    window.open(url).focus()
-  } else {
-    jeeP.printWidget(me.getAttribute('data-widgets_id'))
-  }
-})
-$('.widgetsDisplayCard').off('mouseup').on('mouseup', function(event) {
-  let me = event.target.closest('.widgetsDisplayCard')
-  if (event.which == 2) {
+//Register events on top of page container:
+document.registerEvent('keydown', function(event) {
+  if (jeedomUtils.getOpenedModal()) return
+  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
-    var id = me.getAttribute('data-widgets_id')
-    $('.widgetsDisplayCard[data-widgets_id="' + id + '"]').trigger(jQuery.Event('click', {
-      ctrlKey: true
-    }))
+    jeeP.saveWidget()
   }
 })
 
-$("#bt_saveWidgets").on('click', function(event) {
-  jeeP.saveWidget()
-  return false
-})
 
-$('#bt_removeWidgets').on('click', function(event) {
-  let name = document.querySelector('input[data-l1key="name"]').value
-  jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer le widget}} <span style="font-weight: bold ;">' + name + '</span> ?', function(result) {
-    if (result) {
-      jeedom.widgets.remove({
-        id: document.querySelector('.widgetsAttr[data-l1key="id"]').jeeValue(),
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          jeeFrontEnd.modifyWithoutSave = false
-          window.location = 'index.php?v=d&p=widgets&removeSuccessFull=1'
-        }
-      })
-    }
-  })
-})
-
-$("#bt_exportWidgets").on('click', function(event) {
-  var widgets = document.getElementById('div_conf').getJeeValues('.widgetsAttr')[0]
-  widgets.test = document.querySelectorAll('#div_templateTest .test').getJeeValues('.testAttr')
-  widgets.id = ""
-  jeedom.version({
-    success: function(version) {
-      widgets.jeedomCoreVersion = version
-      jeeP.downloadObjectAsJson(widgets, widgets.name)
-    }
-  })
-  return false
-})
-
-//import/export:
-$("#bt_mainImportWidgets").off('click').on('click', function(event) {
-  document.getElementById('uploadFile').click()
-  event.stopPropagation()
-})
-
-$("#uploadFile").change(function(event) {
-  jeedomUtils.hideAlert()
-  var uploadedFile = event.target.files[0]
-  if (uploadedFile.type !== "application/json") {
-    jeedomUtils.showAlert({
-      message: "{{L'import de widget se fait au format json à partir d'un widget précédemment exporté.}}",
-      level: 'danger'
-    })
-    return false
-  }
-
-  if (uploadedFile) {
+/*Events delegations
+*/
+//ThumbnailDisplay
+document.getElementById('div_widgetsList').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#bt_addWidgets')) {
     jeeDialog.prompt("{{Nom du widget}} ?", function(result) {
       if (result !== null) {
         jeedom.widgets.save({
@@ -699,96 +502,336 @@ $("#uploadFile").change(function(event) {
             })
           },
           success: function(data) {
-            var readFile = new FileReader()
-            readFile.readAsText(uploadedFile)
-            readFile.onload = function(e) {
-              var objectData = JSON.parse(e.target.result)
-              if (!isset(objectData.jeedomCoreVersion)) {
-                jeedomUtils.showAlert({
-                  message: "{{Fichier json non compatible.}}",
-                  level: 'danger'
-                })
-                return false
-              }
-              objectData.id = data.id
-              objectData.name = data.name
-              if (isset(objectData.test)) {
-                for (var i in objectData.test) {
-                  jeeP.addTest(objectData.test[i])
-                }
-              }
-              jeedom.widgets.save({
-                widgets: objectData,
-                error: function(error) {
-                  jeedomUtils.showAlert({
-                    message: error.message,
-                    level: 'danger'
-                  })
-                },
-                success: function(data) {
-                  jeedomUtils.loadPage('index.php?v=d&p=widgets&id=' + objectData.id + '&saveSuccessFull=1')
-                }
-              })
-            }
+            jeeFrontEnd.modifyWithoutSave = false
+            jeedomUtils.loadPage('index.php?v=d&p=widgets&id=' + data.id + '&saveSuccessFull=1')
+            jeedomUtils.showAlert({
+              message: '{{Sauvegarde effectuée avec succès}}',
+              level: 'success'
+            })
           }
         })
       }
     })
-  } else {
-    jeedomUtils.showAlert({
-      message: "{{Problème lors de la lecture du fichier.}}",
-      level: 'danger'
-    })
-    return false
+    return
   }
-})
 
-$("#bt_importWidgets").change(function(event) {
-  jeedomUtils.hideAlert()
-  var uploadedFile = event.target.files[0]
-  if (uploadedFile.type !== "application/json") {
-    jeedomUtils.showAlert({
-      message: "{{L'import de widgets se fait au format json à partir de widgets précedemment exporté.}}",
-      level: 'danger'
-    })
-    return false
+  if (_target = event.target.closest('#bt_mainImportWidgets')) {
+    document.getElementById('uploadFile').click()
+    event.stopPropagation()
+    return
   }
-  if (uploadedFile) {
-    var readFile = new FileReader()
-    readFile.readAsText(uploadedFile)
-    readFile.onload = function(e) {
-      var objectData = JSON.parse(e.target.result)
-      if (!isset(objectData.jeedomCoreVersion)) {
-        jeedomUtils.showAlert({
-          message: "{{Fichier json non compatible.}}",
-          level: 'danger'
-        })
-        return false
-      }
 
-      objectData.id = document.querySelector('.widgetsAttr[data-l1key=id]').jeeValue()
-      objectData.name = document.querySelector('.widgetsAttr[data-l1key=name]').jeeValue()
-      if (isset(objectData.test)) {
-        for (var i in objectData.test) {
-          jeeP.addTest(objectData.test[i])
-        }
-      }
-      jeeP.loadTemplateConfiguration('cmd.' + objectData.type + '.' + objectData.subtype + '.' + objectData.template, objectData)
+  if (_target = event.target.closest('#bt_editCode')) {
+    jeedomUtils.loadPage('index.php?v=d&p=editor&type=widget')
+    return
+  }
+
+  if (_target = event.target.closest('#bt_replaceWidget')) {
+    jeeDialog.dialog({
+      id: 'jee_modal2',
+      title: "{{Remplacement de widget}}",
+      width: 800,
+      height: 500,
+      contentUrl: 'index.php?v=d&modal=widget.replace'
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.widgetsDisplayCard')) {
+    if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
+      var url = '/index.php?v=d&p=widgets&id=' + _target.getAttribute('data-widgets_id')
+      window.open(url).focus()
+    } else {
+      jeeP.printWidget(_target.getAttribute('data-widgets_id'))
     }
-  } else {
-    jeedomUtils.showAlert({
-      message: "{{Problème lors de la lecture du fichier.}}",
-      level: 'danger'
-    })
-    return false
+    return
   }
 })
 
-//Register events on top of page container:
+document.getElementById('div_widgetsList').addEventListener('mouseup', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.widgetsDisplayCard')) {
+    if (event.which == 2) {
+      event.preventDefault()
+      var id = _target.getAttribute('data-widgets_id')
+      document.querySelector('.widgetsDisplayCard[data-widgets_id="' + id + '"] .name').triggerEvent('click', {detail: {ctrlKey: true}})
+    }
+    return
+  }
+})
 
-//Manage events outside parents delegations:
+document.getElementById('div_widgetsList').addEventListener('change', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#uploadFile')) {
+    jeedomUtils.hideAlert()
+    var uploadedFile = event.target.files[0]
+    if (uploadedFile.type !== "application/json") {
+      jeedomUtils.showAlert({
+        message: "{{L'import de widget se fait au format json à partir d'un widget précédemment exporté.}}",
+        level: 'danger'
+      })
+      return false
+    }
 
-//Specials
+    if (uploadedFile) {
+      jeeDialog.prompt("{{Nom du widget}} ?", function(result) {
+        if (result !== null) {
+          jeedom.widgets.save({
+            widgets: {
+              name: result
+            },
+            error: function(error) {
+              jeedomUtils.showAlert({
+                message: error.message,
+                level: 'danger'
+              })
+            },
+            success: function(data) {
+              var readFile = new FileReader()
+              readFile.readAsText(uploadedFile)
+              readFile.onload = function(e) {
+                var objectData = JSON.parse(e.target.result)
+                if (!isset(objectData.jeedomCoreVersion)) {
+                  jeedomUtils.showAlert({
+                    message: "{{Fichier json non compatible.}}",
+                    level: 'danger'
+                  })
+                  return false
+                }
+                objectData.id = data.id
+                objectData.name = data.name
+                if (isset(objectData.test)) {
+                  for (var i in objectData.test) {
+                    jeeP.addTest(objectData.test[i])
+                  }
+                }
+                jeedom.widgets.save({
+                  widgets: objectData,
+                  error: function(error) {
+                    jeedomUtils.showAlert({
+                      message: error.message,
+                      level: 'danger'
+                    })
+                  },
+                  success: function(data) {
+                    jeedomUtils.loadPage('index.php?v=d&p=widgets&id=' + objectData.id + '&saveSuccessFull=1')
+                  }
+                })
+              }
+            }
+          })
+        }
+      })
+    } else {
+      jeedomUtils.showAlert({
+        message: "{{Problème lors de la lecture du fichier.}}",
+        level: 'danger'
+      })
+      return false
+    }
+    return
+  }
+})
 
-/*Events delegations
-*/
+
+//Widget
+document.getElementById('div_conf').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#bt_returnToThumbnailDisplay')) {
+    setTimeout(function() {
+      document.querySelector('.nav li.active').removeClass('active')
+      document.querySelector('a[data-target="#' + document.querySelector('.tab-pane.active').getAttribute('id') + '"]').closest('li').addClass('active')
+    }, 500)
+    if (jeedomUtils.checkPageModified()) return
+    document.getElementById('div_conf').unseen()
+    document.getElementById('div_widgetsList').seen()
+    jeedomUtils.addOrUpdateUrl('id', null, '{{Widgets}} - ' + JEEDOM_PRODUCT_NAME)
+    return
+  }
+
+  if (_target = event.target.closest('#bt_applyToCmd')) {
+    jeeFrontEnd.widgets.applyToCmd()
+    return
+  }
+
+  if (_target = event.target.closest('#bt_exportWidgets')) {
+    var widgets = document.getElementById('div_conf').getJeeValues('.widgetsAttr')[0]
+    widgets.test = document.querySelectorAll('#div_templateTest .test').getJeeValues('.testAttr')
+    widgets.id = ""
+    jeedom.version({
+      success: function(version) {
+        widgets.jeedomCoreVersion = version
+        jeeP.downloadObjectAsJson(widgets, widgets.name)
+      }
+    })
+    return false
+    return
+  }
+
+  if (_target = event.target.closest('#bt_saveWidgets')) {
+    jeeP.saveWidget()
+    return
+  }
+
+  if (_target = event.target.closest('#bt_removeWidgets')) {
+    let name = document.querySelector('input[data-l1key="name"]').value
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer le widget}} <span style="font-weight: bold ;">' + name + '</span> ?', function(result) {
+      if (result) {
+        jeedom.widgets.remove({
+          id: document.querySelector('.widgetsAttr[data-l1key="id"]').jeeValue(),
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function(data) {
+            jeeFrontEnd.modifyWithoutSave = false
+            window.location = 'index.php?v=d&p=widgets&removeSuccessFull=1'
+          }
+        })
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_chooseIcon')) {
+    var _icon = document.querySelector('div[data-l2key="icon"] > i')
+    if (_icon != null) {
+      _icon = _icon.getAttribute('class')
+    } else {
+      _icon = false
+    }
+    jeedomUtils.chooseIcon(function(_icon) {
+      document.querySelector('div[data-l2key="icon"]').innerHTML = _icon
+      jeeFrontEnd.modifyWithoutSave = true
+    }, {icon: _icon})
+    return
+  }
+
+  if (_target = event.target.closest('#div_templateReplace .chooseIcon')) {
+    jeedomUtils.chooseIcon(function(_icon) {
+      _target.closest('.form-group').querySelector('.widgetsAttr[data-l1key="replace"]').jeeValue(_icon)
+    }, {
+      img: true
+    })
+    jeeFrontEnd.modifyWithoutSave = true
+    return
+  }
+
+  if (_target = event.target.closest('#div_templateTest .chooseIcon')) {
+    jeedomUtils.chooseIcon(function(_icon) {
+      _target.closest('.input-group').querySelector('.testAttr').jeeValue(_icon)
+    }, {
+      img: true
+    })
+    jeeFrontEnd.modifyWithoutSave = true
+    return
+  }
+
+  if (_target = event.target.closest('#bt_widgetsAddTest')) {
+    jeeP.addTest({})
+    jeeFrontEnd.modifyWithoutSave = true
+    return
+  }
+
+  if (_target = event.target.closest('#div_templateTest .bt_removeTest')) {
+    _target.closest('.test').remove()
+    jeeFrontEnd.modifyWithoutSave = true
+    return
+  }
+
+  if (_target = event.target.closest('.cmdAdvanceConfigure')) {
+    jeeDialog.dialog({
+      id: 'jee_modal2',
+      title: '{{Configuration de la commande}}',
+      contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + _target.getAttribute('data-cmd_id')
+    })
+    return
+  }
+})
+
+document.getElementById('div_conf').addEventListener('dblclick', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.widgetsAttr[data-l1key="display"][data-l2key="icon"]')) {
+    _target.innerHTML = ''
+    jeeFrontEnd.modifyWithoutSave = true
+    return
+  }
+})
+
+document.getElementById('div_conf').addEventListener('change', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.widgetsAttr')) {
+    jeeFrontEnd.modifyWithoutSave = true
+  }
+
+  if (_target = event.target.closest('#bt_importWidgets')) {
+    jeedomUtils.hideAlert()
+    var uploadedFile = _target.files[0]
+    if (uploadedFile.type !== "application/json") {
+      jeedomUtils.showAlert({
+        message: "{{L'import de widgets se fait au format json à partir de widgets précedemment exporté.}}",
+        level: 'danger'
+      })
+      return false
+    }
+    if (uploadedFile) {
+      var readFile = new FileReader()
+      readFile.readAsText(uploadedFile)
+      readFile.onload = function(e) {
+        var objectData = JSON.parse(e.target.result)
+        if (!isset(objectData.jeedomCoreVersion)) {
+          jeedomUtils.showAlert({
+            message: "{{Fichier json non compatible.}}",
+            level: 'danger'
+          })
+          return false
+        }
+
+        objectData.id = document.querySelector('.widgetsAttr[data-l1key=id]').jeeValue()
+        objectData.name = document.querySelector('.widgetsAttr[data-l1key=name]').jeeValue()
+        if (isset(objectData.test)) {
+          for (var i in objectData.test) {
+            jeeP.addTest(objectData.test[i])
+          }
+        }
+        jeeP.loadTemplateConfiguration('cmd.' + objectData.type + '.' + objectData.subtype + '.' + objectData.template, objectData)
+      }
+    } else {
+      jeedomUtils.showAlert({
+        message: "{{Problème lors de la lecture du fichier.}}",
+        level: 'danger'
+      })
+      return false
+    }
+    return
+  }
+
+  if (_target = event.target.closest('.selectWidgetTemplate')) {
+    if (jeeP.isLoadging) return
+    let type = document.querySelector('.widgetsAttr[data-l1key="type"]').jeeValue()
+    let subtype = document.querySelector('.widgetsAttr[data-l1key="subtype"]').jeeValue()
+    jeeP.loadTemplateConfiguration('cmd.' + type + '.' + subtype + '.' + _target.value)
+    return
+  }
+
+  if (_target = event.target.closest('.widgetsAttr[data-l1key="type"]')) {
+    document.getElementById('div_templateReplace').empty()
+    document.getElementById('div_templateTest').empty()
+    document.getElementById('div_usedBy').empty()
+    document.querySelectorAll('.selectWidgetSubType').unseen().removeClass('widgetsAttr')
+    document.querySelector('.selectWidgetSubType[data-type="' + event.target.jeeValue() + '"]')?.seen().addClass('widgetsAttr').triggerEvent('change')
+    return
+  }
+
+  if (_target = event.target.closest('.selectWidgetSubType')) {
+    document.getElementById('div_templateReplace').empty()
+    document.getElementById('div_templateTest').empty()
+    document.getElementById('div_usedBy').empty()
+    document.querySelectorAll('.selectWidgetTemplate').unseen().removeClass('widgetsAttr')
+    let type = document.querySelector('.widgetsAttr[data-l1key="type"]').jeeValue()
+    document.querySelector('.selectWidgetTemplate[data-type="' + type + '"][data-subtype="' + event.target.jeeValue() + '"]')?.seen().addClass('widgetsAttr').triggerEvent('change')
+    return
+  }
+})

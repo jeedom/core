@@ -59,9 +59,9 @@ function jeedom_displayGenFamily($_family, $_familyId='') {
 
 		$object = $eqLogic->getObject();
 		if (is_object($object)) {
-			$objName = $object->getName();
+			$objName = '<span class="eqName">' . $object->getName() . '</span>';
 		} else {
-			$objName = '{{Aucun}}';
+			$objName = '<span class="eqName">{{Aucun}}</span>';
 		}
 
 		$div .= $eqLogic->getHumanName(). ' (' . $objName .' / '.$eqLogic->getEqType_name() . ')';

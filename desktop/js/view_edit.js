@@ -354,15 +354,9 @@ if (!jeeFrontEnd.view_edit) {
 
 jeeFrontEnd.view_edit.init()
 
-document.registerEvent('keydown', function(event) {
-  if (jeedomUtils.getOpenedModal()) return
-  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
-    event.preventDefault()
-    jeeP.saveView()
-  }
-})
 
-$("#ul_view").sortable({
+//sortable
+$(document.getElementById('ul_view')).sortable({
   axis: "y",
   cursor: "move",
   items: ".li_view",
@@ -387,72 +381,7 @@ $("#ul_view").sortable({
   }
 }).sortable("enable")
 
-$(".li_view").on('click', function(event) {
-  let viewId = event.target.closest('.li_view').getAttribute('data-view_id')
-  jeeFrontEnd.view_edit.printView(viewId)
-  return false
-})
-
-$('#bt_viewResult').on('click', function(event) {
-  jeeP.saveView(true)
-})
-
-$("#bt_addView").on('click', function(event) {
-  jeeDialog.prompt("{{Nom de la vue ?}}", function(result) {
-    if (result !== null) {
-      jeedom.view.save({
-        id: '',
-        view: {
-          name: result
-        },
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          jeedomUtils.loadPage('index.php?v=d&p=view_edit&view_id=' + data.id)
-        }
-      })
-    }
-  })
-})
-
-$("#bt_editView").on('click', function(event) {
-  jeeDialog.dialog({
-    id: 'jee_modal',
-    title: "{{Configuration de la vue}}",
-    contentUrl: 'index.php?v=d&modal=view.configure&view_id=' + document.querySelector('.li_view.active').getAttribute('data-view_id')
-  })
-})
-
-$('#bt_saveView').on('click', function(event) {
-  jeeP.saveView()
-})
-
-$("#bt_removeView").on('click', function(event) {
-  jeedomUtils.hideAlert()
-  jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer la vue}} <span style="font-weight: bold ;">' + $(".li_view.active a").text() + '</span> ?', function(result) {
-    if (result) {
-      jeedom.view.remove({
-        id: $(".li_view.active").attr('data-view_id'),
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function() {
-          jeeFrontEnd.modifyWithoutSave = false
-          jeedomUtils.loadPage('index.php?v=d&p=view_edit')
-        }
-      })
-    }
-  })
-})
-
-$('#div_viewZones').sortable({
+$(document.getElementById('div_viewZones')).sortable({
   axis: "y",
   distance: 5,
   cursor: "move",
@@ -461,70 +390,145 @@ $('#div_viewZones').sortable({
   forcePlaceholderSize: true
 })
 
-$('#div_pageContainer').on({
-  'change': function(event) {
-    let me = event.target.closest('#table_addViewData .enable')
-    var selectTr = me.closest('tr')
-    if (me.jeeValue() == 1) {
-      selectTr.querySelectorAll('div.option').seen()
-    } else {
-      selectTr.querySelectorAll('div.option').unseen()
-    }
+
+//Register events on top of page container:
+document.registerEvent('keydown', function(event) {
+  if (jeedomUtils.getOpenedModal()) return
+  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+    event.preventDefault()
+    jeeP.saveView()
   }
-}, '#table_addViewData .enable')
-
-
-/*****************************viewZone****************************************/
-$('#bt_addviewZone').on('click', function(event) {
-  let content = '<input class="promptAttr" data-l1key="name" autocomplete="off" type="text" placeholder="{{Nom}}">'
-  content += '<select class="promptAttr" data-l1key="type" id="sel_addEditviewZoneType">'
-  content += '<option value="widget">{{Equipement}}</option>'
-  content += '<option value="graph">{{Graphique}}</option>'
-  content += '<option value="table">{{Tableau}}</option>'
-  content += '</select>'
-
-  jeeDialog.prompt({
-    title: "{{Ajouter/Editer viewZone}}",
-    message: content,
-    inputType: false,
-    callback: function(result) {
-      if (result) {
-        if (result.name == '') {
-          jeedomUtils.showAlert({
-            message: '{{Le nom de la viewZone ne peut être vide}}',
-            level: 'warning'
-          })
-          return
-        }
-        var viewZone = {
-          name: result.name,
-          emplacement: '',
-          type: result.type
-        }
-        jeeP.addEditviewZone(viewZone)
-        jeeFrontEnd.modifyWithoutSave = true
-      }
-    }
-  })
 })
 
-$('#div_pageContainer').on({
-  'click': function(event) {
-    let name = event.target.closest('div.viewZone').querySelector('.viewZoneAttr[data-l1key="name"]').innerHTML
+
+/*Events delegations
+*/
+document.getElementById('div_pageContainer').addEventListener('click', function(event) {
+  var _target = null
+  //General ->
+  if (_target = event.target.closest('#bt_viewResult')) {
+    jeeP.saveView(true)
+    return
+  }
+
+  if (_target = event.target.closest('#bt_addView')) {
+    jeeDialog.prompt("{{Nom de la vue ?}}", function(result) {
+      if (result !== null) {
+        jeedom.view.save({
+          id: '',
+          view: {
+            name: result
+          },
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function(data) {
+            jeedomUtils.loadPage('index.php?v=d&p=view_edit&view_id=' + data.id)
+          }
+        })
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_editView')) {
+    let id = document.querySelector('.li_view.active').getAttribute('data-view_id')
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Configuration de la vue}}",
+      contentUrl: 'index.php?v=d&modal=view.configure&view_id=' + id
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_saveView')) {
+    jeeP.saveView()
+    return
+  }
+
+  if (_target = event.target.closest('#bt_removeView')) {
+    let text = document.querySelector('.li_view.active a').textContent
+    let id = document.querySelector('.li_view.active').getAttribute('data-view_id')
+    jeedomUtils.hideAlert()
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer la vue}} <span style="font-weight: bold;">' + text + '</span> ?', function(result) {
+      if (result) {
+        jeedom.view.remove({
+          id: id,
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function() {
+            jeeFrontEnd.modifyWithoutSave = false
+            jeedomUtils.loadPage('index.php?v=d&p=view_edit')
+          }
+        })
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.li_view')) {
+    if (jeedomUtils.checkPageModified()) return
+    jeeFrontEnd.view_edit.printView(_target.getAttribute('data-view_id'))
+    return
+  }
+
+  //ViewZone ->
+  if (_target = event.target.closest('#bt_addviewZone')) {
+    let content = '<input class="promptAttr" data-l1key="name" autocomplete="off" type="text" placeholder="{{Nom}}">'
+    content += '<select class="promptAttr" data-l1key="type" id="sel_addEditviewZoneType">'
+    content += '<option value="widget">{{Equipement}}</option>'
+    content += '<option value="graph">{{Graphique}}</option>'
+    content += '<option value="table">{{Tableau}}</option>'
+    content += '</select>'
+
+    jeeDialog.prompt({
+      title: "{{Ajouter/Editer viewZone}}",
+      message: content,
+      inputType: false,
+      callback: function(result) {
+        if (result) {
+          if (result.name == '') {
+            jeedomUtils.showAlert({
+              message: '{{Le nom de la viewZone ne peut être vide}}',
+              level: 'warning'
+            })
+            return
+          }
+          var viewZone = {
+            name: result.name,
+            emplacement: '',
+            type: result.type
+          }
+          jeeP.addEditviewZone(viewZone)
+          jeeFrontEnd.modifyWithoutSave = true
+        }
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.bt_removeviewZone')) {
+    let name = _target.closest('div.viewZone').querySelector('.viewZoneAttr[data-l1key="name"]').innerHTML
     jeeDialog.confirm('{{Supprimer cette zone}} : <b>' + name + '</b> ?', function(result) {
       if (result !== null) {
         event.target.closest('.viewZone').remove()
         jeeFrontEnd.modifyWithoutSave = true
       }
     })
+    return
   }
-}, '.bt_removeviewZone')
 
-$('#div_pageContainer').on({
-  'click': function(event) {
-    let id = event.target.closest('div.viewZone').getAttribute('id')
-    let name = event.target.closest('div.viewZone').querySelector('.viewZoneAttr[data-l1key="name"]').textContent
-    let type = event.target.closest('div.viewZone').querySelector('.viewZoneAttr[data-l1key="type"]').value
+  if (_target = event.target.closest('.bt_editviewZone')) {
+    let id = _target.closest('div.viewZone').getAttribute('id')
+    let name = _target.closest('div.viewZone').querySelector('.viewZoneAttr[data-l1key="name"]').textContent
+    let type = _target.closest('div.viewZone').querySelector('.viewZoneAttr[data-l1key="type"]').value
     let content = '<input class="promptAttr" data-l1key="name" autocomplete="off" type="text" placeholder="{{Nom}}" value="' + name.replaceAll('"',"'") + '">'
     content += '<input class="promptAttr" data-l1key="emplacement" type="text" value="' + id + '" style="display:none;">'
     content += '<select class="promptAttr" data-l1key="type" id="sel_addEditviewZoneType">'
@@ -555,142 +559,134 @@ $('#div_pageContainer').on({
         }
       }
     })
+    return
   }
-}, '.bt_editviewZone')
 
-
-/*****************************DATA****************************************/
-$('#div_viewZones').on({
-  'click': function(event) {
-    event.target.closest('tr').remove()
+  //Data ->
+  if (_target = event.target.closest('#div_viewZones .bt_removeViewData')) {
+    _target.closest('tr').remove()
     jeeFrontEnd.modifyWithoutSave = true
+    return
   }
-}, '.bt_removeViewData')
 
-$('#div_pageContainer').off('change', '.viewZoneAttr').on('change', '.viewZoneAttr:visible', function(event) {
-  jeeFrontEnd.modifyWithoutSave = true
-})
+  if (_target = event.target.closest('#div_viewZones .bt_addViewTable')) {
+    var table = _target.closest('.viewZone').querySelector('table.div_viewData')
+    if (_target.getAttribute('data-type') == 'line') {
+      var line = '<tr class="viewData">'
+      line += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="line"><i class="far fa-trash-alt"></a></td>'
+      for (var i = 0; i < table.tBodies[0].children[0].children.length - 1; i++) {
+        line += '<td>'
+        line += '<div class="input-group">'
+        line += '<input class="form-control viewDataAttr roundedLeft" data-l1key="configuration" />'
+        line += '<span class="input-group-btn">'
+        line += '<a class="btn btn-default bt_listEquipementInfo roundedRight"><i class="fas fa-list-alt"></i></a>'
+        line += '</span>'
+        line += '</div>'
+        line += '</td>'
+      }
+      line += '</tr>'
+      table.tBodies[0].insertAdjacentHTML('beforeend', line)
 
-$('#div_pageContainer').off('change', '.viewZoneAttr').on('change', '.viewDataAttr:visible', function(event) {
-  jeeFrontEnd.modifyWithoutSave = true
-})
-
-$('#div_viewZones').on('click', '.bt_addViewTable', function(event) {
-  let me = event.target.closest('.bt_addViewTable')
-  var table = me.closest('.viewZone').querySelector('table.div_viewData')
-  if (me.getAttribute('data-type') == 'line') {
-    var line = '<tr class="viewData">'
-    line += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="line"><i class="far fa-trash-alt"></a></td>'
-    for (var i = 0; i < table.tBodies[0].children[0].children.length - 1; i++) {
-      line += '<td>'
-      line += '<div class="input-group">'
-      line += '<input class="form-control viewDataAttr roundedLeft" data-l1key="configuration" />'
-      line += '<span class="input-group-btn">'
-      line += '<a class="btn btn-default bt_listEquipementInfo roundedRight"><i class="fas fa-list-alt"></i></a>'
-      line += '</span>'
-      line += '</div>'
-      line += '</td>'
+    } else if (_target.getAttribute('data-type') == 'col') {
+      table.tHead.childNodes[0].insertAdjacentHTML('beforeend', '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col"><i class="far fa-trash-alt"></a></td>')
+      table.tBodies[0].childNodes.forEach(_tr => {
+        var col = '<td>'
+        col += '<div class="input-group">'
+        col += '<input class="form-control viewDataAttr roundedLeft" data-l1key="configuration" />'
+        col += '<span class="input-group-btn">'
+        col += '<a class="btn btn-default bt_listEquipementInfo roundedRight"><i class="fas fa-list-alt"></i></a>'
+        col += '</span>'
+        col += '</div>'
+        col += '</td>'
+        _tr.insertAdjacentHTML('beforeend', col)
+      })
     }
-    line += '</tr>'
-    table.tBodies[0].insertAdjacentHTML('beforeend', line)
-
-  } else if (me.getAttribute('data-type') == 'col') {
-    table.tHead.childNodes[0].insertAdjacentHTML('beforeend', '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col"><i class="far fa-trash-alt"></a></td>')
-    table.tBodies[0].childNodes.forEach(_tr => {
-      var col = '<td>'
-      col += '<div class="input-group">'
-      col += '<input class="form-control viewDataAttr roundedLeft" data-l1key="configuration" />'
-      col += '<span class="input-group-btn">'
-      col += '<a class="btn btn-default bt_listEquipementInfo roundedRight"><i class="fas fa-list-alt"></i></a>'
-      col += '</span>'
-      col += '</div>'
-      col += '</td>'
-      _tr.insertAdjacentHTML('beforeend', col)
-    })
+    jeeFrontEnd.modifyWithoutSave = true
+    return
   }
-  jeeFrontEnd.modifyWithoutSave = true
-})
 
-$('#div_viewZones').on('click', '.bt_removeAddViewTable', function(event) {
-  let me = event.target.closest('.bt_removeAddViewTable')
-  if (me.getAttribute('data-type') == 'line') {
-    me.closest('tr').remove()
-  } else if (me.getAttribute('data-type') == 'col') {
-    let table = me.closest('table')
-    let tdIdx = me.closest('td').cellIndex
-    table.tHead.childNodes[0].deleteCell(tdIdx)
-    table.tBodies[0].childNodes.forEach(_tr => {
-      _tr.deleteCell(tdIdx)
-    })
+  if (_target = event.target.closest('#div_viewZones .bt_removeAddViewTable')) {
+    if (_target.getAttribute('data-type') == 'line') {
+      _target.closest('tr').remove()
+    } else if (_target.getAttribute('data-type') == 'col') {
+      let table = _target.closest('table')
+      let tdIdx = _target.closest('td').cellIndex
+      table.tHead.childNodes[0].deleteCell(tdIdx)
+      table.tBodies[0].childNodes.forEach(_tr => {
+        _tr.deleteCell(tdIdx)
+      })
+    }
+    jeeFrontEnd.modifyWithoutSave = true
+    return
   }
-  jeeFrontEnd.modifyWithoutSave = true
-})
 
-$('#div_viewZones').on('click', '.bt_listEquipementInfo', function(event) {
-  let me = event.target.closest('.bt_listEquipementInfo')
-  jeedom.cmd.getSelectModal({}, function(result) {
-    me.closest('td').querySelector('input.viewDataAttr[data-l1key="configuration"]').insertAtCursor(result.human)
-  })
-})
+  if (_target = event.target.closest('#div_viewZones .bt_listEquipementInfo')) {
+    jeedom.cmd.getSelectModal({}, function(result) {
+      _target.closest('td').querySelector('input.viewDataAttr[data-l1key="configuration"]').insertAtCursor(result.human)
+    })
+    return
+  }
 
-$('#div_viewZones').on({
-  'click': function(event) {
-    let me = event.target.closest('.bt_addViewGraph')
+  if (_target = event.target.closest('#div_viewZones .bt_addViewGraph')) {
     jeedom.cmd.getSelectModal({
       cmd: {
         isHistorized: 1
       }
     }, function(result) {
-      me.closest('.viewZone').querySelector('.div_viewData tbody').appendChild(jeeP.addGraphService({
+      _target.closest('.viewZone').querySelector('.div_viewData tbody').appendChild(jeeP.addGraphService({
         name: result.human.replace(/\#/g, ''),
         link_id: result.cmd.id,
         type: 'cmd'
       }))
     })
     jeeFrontEnd.modifyWithoutSave = true
+    return
   }
-}, '.bt_addViewGraph')
 
-$('#div_viewZones').on({
-  'change': function(event) {
-    event.target.style.backgroundColor = event.target.jeeValue()
-    jeeFrontEnd.modifyWithoutSave = true
-  }
-}, '.viewDataAttr[data-l1key="configuration"][data-l2key="graphColor"]')
-
-$('#div_viewZones').on({
-  'click': function(event) {
-    let me = event.target.closest('.bt_addViewWidget')
+  if (_target = event.target.closest('#div_viewZones .bt_addViewWidget')) {
     jeedom.eqLogic.getSelectModal({}, function(result) {
-      me.closest('.viewZone').querySelector('.div_viewData tbody').appendChild(jeeP.addWidgetService({
+      _target.closest('.viewZone').querySelector('.div_viewData tbody').appendChild(jeeP.addWidgetService({
         name: result.human.replace('#', '').replace('#', ''),
         link_id: result.id,
         type: 'eqLogic'
       }))
       jeeFrontEnd.modifyWithoutSave = true
     })
+    return
   }
-}, '.bt_addViewWidget')
 
-$('#div_viewZones').on({
-  'click': function(event) {
-    let me = event.target.closest('.bt_addViewScenario')
+  if (_target = event.target.closest('#div_viewZones .bt_addViewScenario')) {
     jeedom.scenario.getSelectModal({}, function(result) {
-      me.closest('.viewZone').querySelector('.div_viewData tbody').appendChild(jeeP.addWidgetService({
+      _target.closest('.viewZone').querySelector('.div_viewData tbody').appendChild(jeeP.addWidgetService({
         name: result.human.replace('#', '').replace('#', ''),
         link_id: result.id,
         type: 'scenario'
       }))
       jeeFrontEnd.modifyWithoutSave = true
     })
+    return
   }
-}, '.bt_addViewScenario')
+})
 
-//Register events on top of page container:
+document.getElementById('div_pageContainer').addEventListener('change', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.viewZoneAttr')) {
+    if (_target.isVisible()) jeeFrontEnd.modifyWithoutSave = true
+  }
 
-//Manage events outside parents delegations:
+  if (_target = event.target.closest('#table_addViewData .enable')) {
+    if (_target.jeeValue() == 1) {
+      _target.closest('tr').querySelectorAll('div.option').seen()
+    } else {
+      _target.closest('tr').querySelectorAll('div.option').unseen()
+    }
+    return
+  }
 
-//Specials
+  if (_target = event.target.closest('.viewDataAttr[data-l1key="configuration"][data-l2key="graphColor"]')) {
+    _target.style.backgroundColor = event.target.jeeValue()
+    jeeFrontEnd.modifyWithoutSave = true
+    return
+  }
+})
 
-/*Events delegations
-*/

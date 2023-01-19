@@ -77,7 +77,7 @@ if ($_SESSION['user']->getOptions('displayViewByDefault') == 1 && init('report')
 }
 ?>
 <legend class="no-bordered center">
-	<i class='far fa-image cursor pull-left bt_displayView reportModeHidden hidden-768' data-display='<?php echo $_SESSION['user']->getOptions('displayViewByDefault') ?>' title="{{Afficher/Masquer les vues}}"></i>
+	<i id="bt_displayView" class='far fa-image cursor pull-left reportModeHidden hidden-768' data-display='<?php echo $_SESSION['user']->getOptions('displayViewByDefault') ?>' title="{{Afficher/Masquer les vues}}"></i>
 	<?php
 	if (init('noControl') == '') {
 		if (is_object($view) && isConnect('admin')) { ?>

@@ -44,7 +44,7 @@ sendVarToJS('jeeFrontEnd.ldapEnable', config::byKey('ldap::enable'));
 
 <form class="form-horizontal">
 	<legend>{{Session(s) active(s)}}</legend>
-	<table class="table table-condensed table-bordered">
+	<table id="tableSessions" class="table table-condensed table-bordered">
 		<thead>
 			<tr>
 				<th>{{ID}}</th>
@@ -85,7 +85,7 @@ sendVarToJS('jeeFrontEnd.ldapEnable', config::byKey('ldap::enable'));
 	</table>
 </form>
 
-<form class="form-horizontal">
+<form id="div_Devices" class="form-horizontal">
 	<legend>{{Périphérique(s) enregistré(s)}} <a class="btn btn-xs btn-danger pull-right" id="bt_removeAllRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer tout}}</a></legend>
 	<table id="tableDevices" class="table table-bordered table-condensed tablesorter">
 		<thead>
