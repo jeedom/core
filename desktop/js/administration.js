@@ -41,7 +41,7 @@ if (!jeeFrontEnd.administration) {
         _search.addEventListener('click', function(event) {
           let tabId = event.target.closest('a').getAttribute('data-target')
           document.getElementById('in_searchConfig').jeeValue('').triggerEvent('keyup')
-          document.querySelector('a[data-target="' + tabId + '"]').triggerEvent('click')
+          document.querySelector('a[data-target="' + tabId + '"]')?.triggerEvent('click')
         })
       })
     },
@@ -409,8 +409,8 @@ if (!jeeFrontEnd.administration) {
       },
       success: function(data) {
         document.getElementById('config').setJeeValues(data, '.configKey')
-        document.querySelector('.configKey[data-l1key="market::allowDNS"]').triggerEvent('change')
-        document.querySelector('.configKey[data-l1key="ldap:enable"]').triggerEvent('change')
+        //document.querySelector('.configKey[data-l1key="market::allowDNS"]').triggerEvent('change')
+        //document.querySelector('.configKey[data-l1key="ldap:enable"]').triggerEvent('change')
         jeeP.loadActionOnMessage()
 
         if (jeedom.theme['interface::background::dashboard'] != '/data/backgrounds/config_dashboard.jpg') document.querySelector('a.bt_removeBackgroundImage[data-page="dashboard"]').addClass('disabled')
@@ -942,7 +942,7 @@ document.getElementById('logtab').addEventListener('change', function(event) {
   if (_target = event.target.closest('.configKey[data-l1key="log::engine"]')) {
     if (_target.value == '') return
     let element = document.querySelector('.logEngine.' + _target.value)
-    if (element !== null) element.seen()
+    if (element != null) element.seen()
     return
   }
 })
@@ -1326,7 +1326,7 @@ document.getElementById('cachetab').addEventListener('change', function(event) {
     document.querySelectorAll('.cacheEngine').unseen()
     if (_target.value == '') return
     let element = document.querySelector('.cacheEngine.' + _target.value)
-    if (element !== null) element.seen()
+    if (element != null) element.seen()
     return
   }
 })
