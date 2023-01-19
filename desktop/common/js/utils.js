@@ -260,6 +260,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if (event.target.closest('.ui-dialog-content')?.innerHTML !== undefined) {
       return
     }
+    if (event.target.closest('.jeeDialog')?.innerHTML !== undefined) {
+      return
+    }
+
     if (jeeFrontEnd.PREVIOUS_PAGE == null) {
       window.history.replaceState('', '', 'index.php?' + window.location.href.split("index.php?")[1])
       jeeFrontEnd.PREVIOUS_PAGE = 'index.php?' + window.location.href.split("index.php?")[1]
