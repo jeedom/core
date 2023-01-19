@@ -19,7 +19,7 @@
 	if ('#message_disable#' == '1') {
 		document.querySelector('.expressionAttr[data-l1key="options"][data-l2key="message"][data-uid="#uid#"]').parentNode.unseen()
 	}
-	$('.listCmdMessage[data-uid=#uid#]').on('click', function() {
+	document.querySelector('.listCmdMessage[data-uid=#uid#]').addEventListener('click', function() {
 		if ('#message_cmd_subtype#' != '') {
 			jeedom.cmd.getSelectModal({cmd: {type: '#message_cmd_type#',subType : '#message_cmd_subtype#'}}, function(result) {
 				document.querySelector('.expressionAttr[data-l1key="options"][data-l2key=message][data-uid="#uid#"]').insertAtCursor(result.human)
@@ -31,7 +31,7 @@
 		}
 	});
 	if ('#title_possibility_list#' != '') {
-		$('.expressionAttr[data-l1key="options"][data-l2key="title"][data-uid="#uid#"]').autocomplete({
+		document.querySelector('.expressionAttr[data-l1key="options"][data-l2key="title"][data-uid="#uid#"]').jeeComplete({
 			source: json_decode('#title_possibility_list#'),
 			close: function (event, ui) {
 				this.triggerEvent('focusout')
@@ -45,7 +45,7 @@
 	} else {
 		document.querySelector('.colorChooser[data-uid="#uid#"]').unseen()
 	}
-	$('.colorChooser[data-uid=#uid#]').on('change', function () {
+	document.querySelector('.colorChooser[data-uid=#uid#]').addEventListener('change', function () {
 		document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="title"]').value = this.value
 	})
 </script>

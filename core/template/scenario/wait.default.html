@@ -11,7 +11,7 @@
   <input value="#timeout#" class="expressionAttr form-control input-sm roundedRight" data-l1key="options" data-l2key="timeout" data-cmd_id="#id#" data-uid="#uid#"/>
 </div>
 <script>
-  $('.listCmdInfo[data-uid=#uid#]').off('click').on('click', function () {
+  document.querySelector('.listCmdInfo[data-uid=#uid#]').addEventListener('click', function () {
     jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function (result) {
       document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="condition"]').insertAtCursor(result.human)
     })

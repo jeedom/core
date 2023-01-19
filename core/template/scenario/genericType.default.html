@@ -35,18 +35,18 @@
       }
     })
 
-  $('.listGenericTypeInfo[data-uid="#uid#"]').off('click').on('click', function () {
+  document.querySelector('.listGenericTypeInfo[data-uid="#uid#"]').addEventListener('click', function () {
     jeedom.config.getGenericTypeModal({type: 'info', object: false}, function (result) {
       document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="type"]').value = result.id
     })
   })
-  $('.listGenericTypeAction[data-uid="#uid#"]').off('click').on('click', function () {
+  document.querySelector('.listGenericTypeAction[data-uid="#uid#"]').addEventListener('click', function () {
     jeedom.config.getGenericTypeModal({type: 'action', object: false}, function (result) {
       document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="type"]').value = result.id
     })
   })
 
-  $('.listCmdInfo[data-uid="#uid#"]').off('click').on('click', function () {
+  document.querySelector('.listCmdInfo[data-uid="#uid#"]').addEventListener('click', function () {
     jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function (result) {
       document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="value"]').insertAtCursor(result.human)
     })

@@ -147,7 +147,7 @@
     }
   })
 
-  $('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="type"]').change(function() {
+  document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="type"]').addEventListener('change', function() {
     this.closest('select').removeClass('roundedRight')
     document.querySelectorAll('.type[data-uid="#uid#"]').unseen()
     try { document.querySelector('span.' + this.value + '[data-uid="#uid#"]').style.display = 'table-cell'} catch (e) { }
@@ -157,7 +157,7 @@
     }
   })
 
-  $('.listCmdMessage[data-uid="#uid#"]').off('click').on('click', function() {
+  document.querySelector('.listCmdMessage[data-uid="#uid#"]').addEventListener('click', function() {
     jeedom.cmd.getSelectModal({cmd: {type: 'action',subType : 'message'}}, function(result) {
       document.querySelector('.expressionAttr[data-l1key="options"][data-l2key="cmd"][data-uid="#uid#"]').insertAtCursor(result.human)
     })
