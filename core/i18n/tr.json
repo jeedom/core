@@ -2729,12 +2729,12 @@
         "Vérifier": "Kontrol et",
         "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)",
         "Options de mise à jour": "Options de mise à jour",
+        "Êtes-vous sûr de vouloir mettre à jour :": "Êtes-vous sûr de vouloir mettre à jour :",
+        "Êtes-vous sûr de vouloir supprimer :": "Êtes-vous sûr de vouloir supprimer :",
         "Êtes-vous sûr de vouloir mettre à jour les packages de type": "Êtes-vous sûr de vouloir mettre à jour les packages de type",
         "Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes": "Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes",
         "Mise à jour lancée avec succès.": "Mise à jour lancée avec succès",
-        "Log de mise à jour": "Log de mise à jour",
-        "Êtes-vous sûr de vouloir mettre à jour :": "Êtes-vous sûr de vouloir mettre à jour :",
-        "Êtes-vous sûr de vouloir supprimer :": "Êtes-vous sûr de vouloir supprimer :"
+        "Log de mise à jour": "Log de mise à jour"
     },
     "desktop\/js\/log.js": {
         "Pause": "Durdur",
@@ -3064,17 +3064,17 @@
         "Choisir": "Seç",
         "Test": "Test, denetleme",
         "Résultat si test ok": "Résultat si test ok",
-        "Remplacement de widget": "Remplacement de widget",
         "Appliquer ce widget à": "Appliquer ce widget à",
         "Modification(s) appliquée(s) avec succès": "Değişiklik (ler) başarıyla uygulandı",
-        "Widgets": "Widget'lar",
         "Nom du widget": "Nom du widget",
         "Sauvegarde effectuée avec succès": "Kayıt başarıyla sonuçlandı",
-        "Configuration de la commande": "Komutanın ayarları",
-        "Êtes-vous sûr de vouloir supprimer le widget": "Êtes-vous sûr de vouloir supprimer le widget",
+        "Remplacement de widget": "Remplacement de widget",
         "L'import de widget se fait au format json à partir d'un widget précédemment exporté.": "L'import de widget se fait au format json à partir d'un widget précédemment exporté",
         "Fichier json non compatible.": "Fichier json non compatible",
         "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier",
+        "Widgets": "Widget'lar",
+        "Êtes-vous sûr de vouloir supprimer le widget": "Êtes-vous sûr de vouloir supprimer le widget",
+        "Configuration de la commande": "Komutanın ayarları",
         "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "L'import de widgets se fait au format json à partir de widgets précedemment exporté"
     },
     "desktop\/js\/profils.js": {
@@ -3128,18 +3128,18 @@
     },
     "desktop\/js\/types.js": {
         "Aucun": "Aucun",
+        "Liste des Types Génériques (Core et Plugins)": "Liste des Types Génériques (Core et Plugins)",
+        "Générique": "Générique",
+        "Nom": "Nom",
+        "Type": "Type",
+        "Sous type": "Sous type",
         "Types Génériques automatiques": "Types Génériques automatiques",
         "Appliquer": "Appliquer",
         "Types Génériques sauvegardés": "Types Génériques sauvegardés",
         "Supprimer les types generiques sur les commandes ?": "Supprimer les types generiques sur les commandes ?",
         "Oui": "Oui",
         "Non": "Non",
-        "Supprimer": "Supprimer",
-        "Liste des Types Génériques (Core et Plugins)": "Liste des Types Génériques (Core et Plugins)",
-        "Générique": "Générique",
-        "Nom": "Nom",
-        "Type": "Type",
-        "Sous type": "Sous type"
+        "Supprimer": "Supprimer"
     },
     "desktop\/js\/replace.js": {
         "Aucun": "Aucun",

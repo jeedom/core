@@ -26,8 +26,8 @@
 - **Administração** : Capacidade de definir widgets de comando padrão.
 - Um menu contextual foi adicionado em diferentes lugares ao nível das caixas de seleção para selecionar todas, nenhuma ou inverter a seleção *(consulte [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.4))*.
 - **Painel** : possibilidade na página de configuração do objeto para pedir jeedom para reordenar o equipamento de acordo com seu uso
-- **Tema** : possibilidade de escolher o tema diretamente do url (adicionando &theme=Dark ou &theme=Light)
-- **Relatório** : possibilidade de escolher o tema durante um relatório em uma página jeedom
+- **Tema** : Possibilidade de escolher o tema diretamente do url (adicionando &theme=Dark ou &theme=Light).
+- **Relatório** : Possibilidade de escolher o tema durante um relatório em uma página jeedom.
 
 ### 4.4 : Autre
 
