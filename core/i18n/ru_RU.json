@@ -4895,6 +4895,10 @@
         "Largeur (px)": "Ширина (ПВ)",
         "Hauteur (px)": "Высота (пикселей)",
         "Délai": "Délai",
+        "Thèmes": "Thèmes",
+        "Défaut": "Défaut",
+        "Clair": "Clair",
+        "Sombre": "Sombre",
         "Aucune": "Aucune",
         "Aucun": "Aucun",
         "Principale": "Principale"

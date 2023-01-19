@@ -26,6 +26,8 @@
 - **Administration** : Ability to set default command widgets.
 - A contextual menu has been added in different places at the level of the checkboxes to select them all, none, or invert the selection *(see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.4))*.
 - **Dashboard** : possibility on the object configuration page to ask jeedom to reorder the equipment according to their use
+- **Theme** : possibility to choose the theme directly from the url (by adding &theme=Dark or &theme=Light)
+- **Report** : possibility to choose the theme during a report on a jeedom page
 
 ### 4.4 : Autre
 

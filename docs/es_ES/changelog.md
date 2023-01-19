@@ -26,6 +26,8 @@
 - **Administración** : Capacidad para establecer widgets de comando predeterminados.
 - Se ha añadido un menú contextual en diferentes lugares al nivel de los checkboxes para seleccionarlos todos, ninguno, o invertir la selección *(ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.4))*.
 - **Tablero** : posibilidad en la página de configuración del objeto de pedirle a jeedom que reordene el equipo de acuerdo con su uso
+- **Temática** : posibilidad de elegir el tema directamente desde la url (agregando &theme=Dark o &theme=Light)
+- **Relación** : posibilidad de elegir el tema durante un informe en una página de jeedom
 
 ### 4.4 : Autre
 
