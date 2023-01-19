@@ -757,7 +757,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 
 
   //Cmd-->
-  if (_target = event.target.closest('.cmd .cmdAction[data-action="add"]')) {
+  if (_target = event.target.closest('.cmdAction[data-action="add"]')) {
     if (typeof addCmdToTable === 'function') {
       addCmdToTable()
     } else {
@@ -868,15 +868,14 @@ document.getElementById('div_pageContainer').addEventListener('change', function
 
   if (_target = event.target.closest('.cmd .cmdAttr')) {
     if (_target.isVisible()) jeeFrontEnd.modifyWithoutSave = true
-    return
   }
 
-  if (_target = event.target.closest('.cmd .cmdAttr[data-l1key="type"]')) {
+  if (_target = event.target.closest('.cmd select.cmdAttr[data-l1key="type"]')) {
     jeedom.cmd.changeType(_target.closest('.cmd'))
     return
   }
 
-  if (_target = event.target.closest('.cmd .cmdAttr[data-l1key="subType"]')) {
+  if (_target = event.target.closest('.cmd select.cmdAttr[data-l1key="subType"]')) {
     jeedom.cmd.changeSubType(_target.closest('.cmd'))
     return
   }
