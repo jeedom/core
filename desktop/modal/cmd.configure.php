@@ -38,7 +38,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 ?>
 
-<div style="display: none;" id="md_displayCmdConfigure" data-modalType="md_cmdConfigure"></div>
+<div style="display: none;" id="md_displayCmdConfigure" data-modalType="md_displayCmdConfigure"></div>
 <div class="input-group pull-right" style="display:inline-flex">
   <span class="input-group-btn">
     <a class="btn btn-default roundedLeft btn-sm" id="bt_cmdConfigureTest"><i class="fas fa-rss"></i> {{Tester}}
@@ -451,7 +451,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               });
 
               $('#bt_addActionCheckCmd').off('click').on('click', function() {
-                addActionCmd({}, 'actionCheckCmd', '{{Action}}');
+                jeeFrontEnd.md_displayCmdConfigure.addActionCmd({}, 'actionCheckCmd', '{{Action}}');
               });
             </script>
           </fieldset>
@@ -480,7 +480,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 forcePlaceholderSize: true
               });
               $('#bt_addActionPreExecCmd').off('click').on('click', function() {
-                addActionCmd({}, 'actionPreExecCmd', '{{Action}}');
+                jeeFrontEnd.md_displayCmdConfigure.addActionCmd({}, 'actionPreExecCmd', '{{Action}}');
               });
             </script>
           </fieldset>
@@ -506,7 +506,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 forcePlaceholderSize: true
               });
               $('#bt_addActionPostExecCmd').off('click').on('click', function() {
-                addActionCmd({}, 'actionPostExecCmd', '{{Action}}');
+                jeeFrontEnd.md_displayCmdConfigure.addActionCmd({}, 'actionPostExecCmd', '{{Action}}');
               });
             </script>
           </fieldset>
@@ -842,38 +842,151 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     <?php }
     ?>
   </div>
-
 </div>
 
 <script>
-  if (document.body.getAttribute('data-page') == "widgets") {
-    document.querySelector('a[href="#cmd_display"]').click()
-  }
-  if (jeephp2js.md_cmdConfigure_cmdInfo.type == 'info') {
-    document.getElementById('bt_cmdConfigureTest').remove()
-    document.getElementById('bt_cmdConfigureGraph').remove()
-  }
+if (!jeeFrontEnd.md_displayCmdConfigure) {
+  jeeFrontEnd.md_displayCmdConfigure = {
+    init: function(_cmdIds) {
+      if (document.body.getAttribute('data-page') == "widgets") {
+        document.querySelector('a[href="#cmd_display"]').click()
+      }
+      if (jeephp2js.md_cmdConfigure_cmdInfo.type == 'info') {
+        document.getElementById('bt_cmdConfigureTest').remove()
+        document.getElementById('bt_cmdConfigureGraph').remove()
+      }
+      this.setModal()
+    },
+    postInit: function() {
+      this.setInputsDefault()
+      this.setActions()
+    },
+    setModal: function() {
+      //modal title:
+      var title = '{{Configuration commande}}'
+      title += ' : ' + jeephp2js.md_cmdConfigure_cmdInfo.eqLogicHumanName
+      var emClass = jeephp2js.md_cmdConfigure_cmdInfo.type == 'info' ? 'info' : 'warning'
+      title += ' <span class="cmdName">[' + jeephp2js.md_cmdConfigure_cmdInfo.name + '] <em class="' + emClass + '">(' + jeephp2js.md_cmdConfigure_cmdInfo.type + ')</em></span>'
+      var titleEl = jeeDialog.get('#div_displayCmdConfigure', 'title')
+      if (titleEl != null) {
+        titleEl.querySelector('span.title').innerHTML = title
+      } else {
+        //Deprecated, some plugins may load old ui-dialog modale
+        document.getElementById('div_displayCmdConfigure').closest('.ui-dialog').querySelector('.ui-dialog-title').innerHTML = title
+      }
 
-  //modal title:
-  var title = '{{Configuration commande}}'
-  title += ' : ' + jeephp2js.md_cmdConfigure_cmdInfo.eqLogicHumanName
-  var emClass = jeephp2js.md_cmdConfigure_cmdInfo.type == 'info' ? 'info' : 'warning'
-  title += ' <span class="cmdName">[' + jeephp2js.md_cmdConfigure_cmdInfo.name + '] <em class="' + emClass + '">(' + jeephp2js.md_cmdConfigure_cmdInfo.type + ')</em></span>'
-  var titleEl = jeeDialog.get('#div_displayCmdConfigure', 'title')
-  if (titleEl != null) {
-    titleEl.querySelector('span.title').innerHTML = title
-  } else {
-    //Deprecated, some plugins may load old ui-dialog modale
-    document.getElementById('div_displayCmdConfigure').closest('.ui-dialog').querySelector('.ui-dialog-title').innerHTML = title
-  }
+      jeeDialog.get('#cmdConfigureTab', 'title').querySelector('span.title').innerHTML = title
+    },
+    setInputsDefault: function() {
+      let content = jeeDialog.get('#div_displayCmdConfigure', 'content')
+      content.querySelectorAll('select').forEach(_select => {
+        if (_select.selectedIndex == -1) {
+          let defaultOpt = Array.from(_select.options).filter(o => o.value == '')
+          if (defaultOpt.length > 0) {
+            _select.value = ''
+          } else {
+            _select.selectedIndex = 0
+          }
+          _select.triggerEvent('change')
+        }
+      })
+    },
+    displayWidgetHelp: function(_widgetName) {
 
-  jeeDialog.get('#cmdConfigureTab', 'title').querySelector('span.title').innerHTML = title
+    },
+    synchModalToCmd: function() {
+
+    },
+    syncModalToScenario: function() {
+
+    },
+    setActions: function() {
+      var config = jeephp2js.md_cmdConfigure_cmdInfo.configuration
+      if (isset(config.actionCheckCmd) && Array.isArray(config.actionCheckCmd) && config.actionCheckCmd.length != null) {
+        for (var i in config.actionCheckCmd) {
+          this.addActionCmd(config.actionCheckCmd[i], 'actionCheckCmd', '{{Action}}')
+        }
+      }
+
+      if (isset(config.jeedomPreExecCmd) && Array.isArray(config.jeedomPreExecCmd) && config.jeedomPreExecCmd.length != null) {
+        for (var i in config.jeedomPreExecCmd) {
+          this.addActionCmd(config.jeedomPreExecCmd[i], 'actionPreExecCmd', '{{Action}}')
+        }
+      }
+
+      if (isset(config.jeedomPostExecCmd) && Array.isArray(config.jeedomPostExecCmd) && config.jeedomPostExecCmd.length != null) {
+        for (var i in config.jeedomPostExecCmd) {
+          this.addActionCmd(config.jeedomPostExecCmd[i], 'actionPostExecCmd', '{{Action}}')
+        }
+      }
+      jeedomUtils.taAutosize()
+    },
+    addActionCmd: function(_action, _type, _name) {
+      if (!isset(_action)) {
+        _action = {}
+      }
+      if (!isset(_action.options)) {
+        _action.options = {}
+      }
+      var div = '<div class="expression ' + _type + '">'
+      div += '<input class="expressionAttr" data-l1key="type" style="display : none;" value="action">'
+      div += '<div class="form-group ">'
+      div += '<div class="col-sm-1">'
+      div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'action}}" />'
+      div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}" />'
+      div += '</div>'
+      div += '<div class="col-sm-4">'
+      div += '<div class="input-group">'
+      div += '<span class="input-group-btn">'
+      div += '<a class="btn btn-default btn-sm bt_removeAction roundedLeft" data-type="' + _type + '"><i class="fas fa-minus-circle"></i></a>'
+      div += '</span>'
+      div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" data-type="' + _type + '" />'
+      div += '<span class="input-group-btn">'
+      div += '<a class="btn  btn-default btn-sm listAction" data-type="' + _type + '" title="{{Sélectionner un mot-clé}}"><i class="fa fa-tasks"></i></a>'
+      div += '<a class="btn btn-default btn-sm listCmd roundedRight" data-type="' + _type + '"><i class="fas fa-list-alt"></i></a>'
+      div += '</span>'
+      div += '</div>'
+      div += '</div>'
+      div += '<div class="col-sm-7 actionOptions">'
+      div += jeedom.cmd.displayActionOption(init(_action.cmd, ''), _action.options)
+      div += '</div>'
+
+      let newDiv = document.createElement('div')
+      newDiv.html(div)
+      newDiv.setJeeValues(_action, '.expressionAttr')
+      document.querySelector('#div_' + _type).appendChild(newDiv)
+      newDiv.replaceWith(...newDiv.childNodes)
+
+      jeedom.scenario.setAutoComplete({
+        parent: $('#div_' + _type),
+        type: 'cmd'
+      })
+    },
+  }
+}
+
+(function() {// Self Isolation!
+
+  var jeeM = jeeFrontEnd.md_displayCmdConfigure
+  jeeM.init()
+
+  console.log('jeephp2js:', jeephp2js)
+
+  //jeeM.postInit()
+
+  //...
+
+})()
+
 
   //widgets default if empty:
+
+  /*
   var dashWidget = $('select[data-l2key="dashboard"]')
   if (dashWidget.val() == null) dashWidget.val($('select[data-l2key="dashboard"] option:first').val())
   var mobileWidget = $('select[data-l2key="mobile"]')
   if (mobileWidget.val() == null) mobileWidget.val($('select[data-l2key="mobile"] option:first').val())
+  */
 
   //format update linked cmds:
   var spanValues = $('#cmd_information .cmdAttr[data-l1key="value"]')
@@ -972,9 +1085,11 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     $('#table_widgetParametersCmd tbody').append(tr)
   })
 
+  /*
   if (jeephp2js.md_cmdConfigure_cmdInfo.configuration && (!jeephp2js.md_cmdConfigure_cmdInfo.configuration.repeatEventManagement || jeephp2js.md_cmdConfigure_cmdInfo.configuration.repeatEventManagement == 'auto')) {
     jeephp2js.md_cmdConfigure_cmdInfo.configuration.repeatEventManagement = 'never'
   }
+  */
   document.getElementById('div_displayCmdConfigure').setJeeValues(jeephp2js.md_cmdConfigure_cmdInfo, '.cmdAttr')
 
   $('#bt_cmdConfigureRawObject').off('click').on('click', function() {
@@ -1160,26 +1275,6 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     })
   })
 
-
-  if (isset(jeephp2js.md_cmdConfigure_cmdInfo.configuration.actionCheckCmd) && Array.isArray(jeephp2js.md_cmdConfigure_cmdInfo.configuration.actionCheckCmd) && jeephp2js.md_cmdConfigure_cmdInfo.configuration.actionCheckCmd.length != null) {
-    for (var i in jeephp2js.md_cmdConfigure_cmdInfo.configuration.actionCheckCmd) {
-      addActionCmd(jeephp2js.md_cmdConfigure_cmdInfo.configuration.actionCheckCmd[i], 'actionCheckCmd', '{{Action}}')
-    }
-  }
-
-  if (isset(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPreExecCmd) && Array.isArray(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPreExecCmd) && jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPreExecCmd.length != null) {
-    for (var i in jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPreExecCmd) {
-      addActionCmd(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPreExecCmd[i], 'actionPreExecCmd', '{{Action}}')
-    }
-  }
-
-  if (isset(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPostExecCmd) && Array.isArray(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPostExecCmd) && jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPostExecCmd.length != null) {
-    for (var i in jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPostExecCmd) {
-      addActionCmd(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPostExecCmd[i], 'actionPostExecCmd', '{{Action}}')
-    }
-  }
-  jeedomUtils.taAutosize()
-
   $('#bt_cmdConfigureSave').on('click', function(event) {
     var cmd = document.getElementById('div_displayCmdConfigure').getJeeValues('.cmdAttr')[0]
     if (!isset(cmd.display)) {
@@ -1288,48 +1383,6 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
       })
     }
   }, '.cmdAction.expressionAttr[data-l1key="cmd"]')
-
-  function addActionCmd(_action, _type, _name) {
-    if (!isset(_action)) {
-      _action = {}
-    }
-    if (!isset(_action.options)) {
-      _action.options = {}
-    }
-    var div = '<div class="expression ' + _type + '">'
-    div += '<input class="expressionAttr" data-l1key="type" style="display : none;" value="action">'
-    div += '<div class="form-group ">'
-    div += '<div class="col-sm-1">'
-    div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'action}}" />'
-    div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}" />'
-    div += '</div>'
-    div += '<div class="col-sm-4">'
-    div += '<div class="input-group">'
-    div += '<span class="input-group-btn">'
-    div += '<a class="btn btn-default btn-sm bt_removeAction roundedLeft" data-type="' + _type + '"><i class="fas fa-minus-circle"></i></a>'
-    div += '</span>'
-    div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" data-type="' + _type + '" />'
-    div += '<span class="input-group-btn">'
-    div += '<a class="btn  btn-default btn-sm listAction" data-type="' + _type + '" title="{{Sélectionner un mot-clé}}"><i class="fa fa-tasks"></i></a>'
-    div += '<a class="btn btn-default btn-sm listCmd roundedRight" data-type="' + _type + '"><i class="fas fa-list-alt"></i></a>'
-    div += '</span>'
-    div += '</div>'
-    div += '</div>'
-    div += '<div class="col-sm-7 actionOptions">'
-    div += jeedom.cmd.displayActionOption(init(_action.cmd, ''), _action.options)
-    div += '</div>'
-
-    let newDiv = document.createElement('div')
-    newDiv.html(div)
-    newDiv.setJeeValues(_action, '.expressionAttr')
-    document.querySelector('#div_' + _type).appendChild(newDiv)
-    newDiv.replaceWith(...newDiv.childNodes)
-
-    jeedom.scenario.setAutoComplete({
-      parent: $('#div_' + _type),
-      type: 'cmd'
-    })
-  }
 
   $('#bt_cmdConfigureSaveOn').on('click', function() {
     var cmd = document.getElementById('div_displayCmdConfigure').getJeeValues('.cmdAttr')[0]
@@ -1442,4 +1495,8 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
       cmd.empty().append(_options.display_value + ' ' + _options.unit + ' {{le}} ' + _options.valueDate);
     });
   })
+
+
+
+  jeeFrontEnd.md_displayCmdConfigure.postInit()
 </script>

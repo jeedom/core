@@ -149,37 +149,32 @@ if (!isConnect()) {
 </div>
 
 <script>
-var select = $('#mod_actionValue_sel')
-select.html(select.find('option').sort(function(x, y) {
-  return $(x).text() > $(y).text() ? 1 : -1
-}))
-select.prop("selectedIndex", 0).trigger("change")
-
-$('#mod_actionValue_sel').on('change',function() {
-  var value = this.value
-  if (value == 'alert') value = 'alert2'
-  $('.mod_actionValue_selDescription').hide()
-  $('.mod_actionValue_selDescription.'+value).show()
-})
-
-function mod_insertAction() {}
-
-mod_insertAction.options = {}
-
-mod_insertAction.setOptions = function(_options) {
-  mod_insertAction.options = _options;
-  if (init(_options.scenario, false) == false) {
-    $('#mod_actionValue_sel option').each(function(index) {
-      if (jeedom.scenario.autoCompleteActionScOnly.includes(this.value)) {
-        $(this).hide()
-      }
-    })
-  } else {
-    $('#mod_actionValue_sel option').show()
+(function() {
+  window.mod_insertAction = function() {}
+  mod_insertAction.options = {}
+  mod_insertAction.setOptions = function(_options) {
+    mod_insertAction.options = _options
+    if (init(_options.scenario, false) == false) {
+      document.querySelectorAll('#mod_actionValue_sel option').forEach(_opt => {
+        if (jeedom.scenario.autoCompleteActionScOnly.includes(_opt.value)) {
+          _opt.unseen()
+        }
+      })
+    } else {
+      document.querySelectorAll('#mod_actionValue_sel option').seen()
+    }
   }
-}
+  mod_insertAction.getValue = function() {
+    return document.getElementById('mod_actionValue_sel').value
+  }
 
-mod_insertAction.getValue = function() {
-  return document.getElementById('mod_actionValue_sel').value
-}
+  document.getElementById('mod_actionValue_sel').sortOptions()
+
+  document.getElementById('mod_actionValue_sel').addEventListener('change', function(event) {
+    var value = event.target.value
+    if (value == 'alert') value = 'alert2'
+    document.querySelectorAll('.mod_actionValue_selDescription').unseen()
+    document.querySelector('.mod_actionValue_selDescription.' + value).seen()
+  })
+})()
 </script>
