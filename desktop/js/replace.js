@@ -307,6 +307,7 @@ if (!jeeFrontEnd.replace) {
 
         var promise = new Promise((resolve, reject) => {
           jeedom.massReplace({
+            global: false,
             options: {
               mode: opt_mode,
               copyEqProperties: opt_copyEqProperties,
@@ -325,21 +326,20 @@ if (!jeeFrontEnd.replace) {
             success: function(data) {
               requestDone += 1
               document.getElementById('progressbar').style.width = (requestDone * 100 / requestLength) + '%'
-              if (requestDone == requestLength) {
-                jeedomUtils.showAlert({
-                  message: '{{Remplacement effectué}}',
-                  level: 'success'
-                })
-                setTimeout(() => {
-                  document.getElementById('progresscontainer').addClass('hidden')
-                }, 3000)
-              }
               resolve(true)
             }
           })
         })
         var result = await promise
       }
+
+      jeedomUtils.showAlert({
+        message: '{{Remplacement effectué}}',
+        level: 'success'
+      })
+      setTimeout(() => {
+        document.getElementById('progresscontainer').addClass('hidden')
+      }, 2500)
     },
   }
 }
