@@ -814,10 +814,13 @@
         "Retour à la ligne forcé après le widget": "Erzwungene Zeilenumbruch nach dem Widget",
         "Paramètres optionnels widget": "Optionale Widget Parameter",
         "Configuration commande": "Steuerungskonfiguration",
+        "Pas de description des paramètres optionnels sur ce Widget.": "Keine Beschreibung der optionalen Parameter in diesem Widget",
         "Décocher pour désactiver l\\'action": "Auswählen, um die Aktion zu deaktivieren",
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Überprüfen Sie, ob der Befehl parallel zu den anderen Aktionen ausgeführt wird",
         "Sélectionner un mot-clé": "Schlüsselwort auswählen",
-        "Pas de description des paramètres optionnels sur ce Widget.": "Keine Beschreibung der optionalen Parameter in diesem Widget",
+        "Sélection multiple de commandes": "Mehrere Befehle zur Auswahl",
+        "Modification(s) appliquée(s) avec succès": "Modifikation(en) erfolgreich angewendet",
+        "Sauvegarde réussie": "Speichern erfolgreich",
         "Graphique des liens": "Grafik-Links",
         "Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\\'InfluxDB": "Sind Sie sicher, dass Sie alle Informationen für diesen Befehl aus InfluxDB entfernen möchten?",
         "Action envoyée avec succés": "Aktion erfolgreich gesendet",
@@ -833,11 +836,7 @@
         "Remplacement réalisé avec succès": "Ersetzen wurde erfolgreich abgeschlossen",
         "Êtes-vous sûr de vouloir remplacer l\\'ID": "Sind Sie sicher, dass Sie die ID ersetzen möchten?",
         "ID de commande à remplacer ?": "Befehls ID ersetzen?",
-        "Êtes-vous sûr de vouloir remplacer la commande": "Sind Sie sicher, dass Sie die Bestellung ersetzen möchten?",
-        "Sauvegarde réussie": "Speichern erfolgreich",
-        "Sélection multiple de commandes": "Mehrere Befehle zur Auswahl",
-        "Modification(s) appliquée(s) avec succès": "Modifikation(en) erfolgreich angewendet",
-        "Logs": "Protokolle"
+        "Êtes-vous sûr de vouloir remplacer la commande": "Sind Sie sicher, dass Sie die Bestellung ersetzen möchten?"
     },
     "desktop\/modal\/log.display.php": {
         "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel.": "Bitte beachten Sie, dass Ihre Protokollstufe (Ereignis) niedriger als die Informationen ist, sodass Sie keine Echtzeit sehen können",

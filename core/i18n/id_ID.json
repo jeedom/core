@@ -814,10 +814,13 @@
         "Retour à la ligne forcé après le widget": "Retour à la ligne forcé après le widget",
         "Paramètres optionnels widget": "Pengaturan opsional widget",
         "Configuration commande": "Configuration commande",
+        "Pas de description des paramètres optionnels sur ce Widget.": "Pas de description des paramètres optionnels sur ce Widget",
         "Décocher pour désactiver l\\'action": "Hapus tanda centang untuk menonaktifkan \\ Aksi",
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Periksa perintah \\ 's berjalan secara paralel tindakan lain",
         "Sélectionner un mot-clé": "Pilih kata kunci",
-        "Pas de description des paramètres optionnels sur ce Widget.": "Pas de description des paramètres optionnels sur ce Widget",
+        "Sélection multiple de commandes": "Memilih beberapa kontrol",
+        "Modification(s) appliquée(s) avec succès": "Modifikasi (s) diterapkan (s) berhasil",
+        "Sauvegarde réussie": "Menyimpan sukses",
         "Graphique des liens": "Link grafis",
         "Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\\'InfluxDB": "Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\\'InfluxDB",
         "Action envoyée avec succés": "Action envoyée avec succés",
@@ -833,11 +836,7 @@
         "Remplacement réalisé avec succès": "Mengganti berhasil",
         "Êtes-vous sûr de vouloir remplacer l\\'ID": "Apakah Anda yakin Anda ingin mengganti \\ 's ID",
         "ID de commande à remplacer ?": "ID Pesanan untuk menggantikan?",
-        "Êtes-vous sûr de vouloir remplacer la commande": "Êtes-vous sûr de vouloir remplacer la commande",
-        "Sauvegarde réussie": "Menyimpan sukses",
-        "Sélection multiple de commandes": "Memilih beberapa kontrol",
-        "Modification(s) appliquée(s) avec succès": "Modifikasi (s) diterapkan (s) berhasil",
-        "Logs": "Logs"
+        "Êtes-vous sûr de vouloir remplacer la commande": "Êtes-vous sûr de vouloir remplacer la commande"
     },
     "desktop\/modal\/log.display.php": {
         "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel.": "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel",

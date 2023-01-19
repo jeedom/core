@@ -814,10 +814,13 @@
         "Retour à la ligne forcé après le widget": "Retour à la ligne forcé après le widget",
         "Paramètres optionnels widget": "İsteğe bağlı widget ayarları",
         "Configuration commande": "Configuration commande",
+        "Pas de description des paramètres optionnels sur ce Widget.": "Pas de description des paramètres optionnels sur ce Widget",
         "Décocher pour désactiver l\\'action": "\\ Eylem devre dışı bırakmak için işaretini kaldırın",
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Komut \\ 'ın paralel diğer eylemler çalışan olup olmadığını kontrol edin",
         "Sélectionner un mot-clé": "Anahtar kelime seçin",
-        "Pas de description des paramètres optionnels sur ce Widget.": "Pas de description des paramètres optionnels sur ce Widget",
+        "Sélection multiple de commandes": "Çoklu komuta seçimi",
+        "Modification(s) appliquée(s) avec succès": "Değişiklik (ler) başarıyla uygulandı",
+        "Sauvegarde réussie": "Kayıt başarılı",
         "Graphique des liens": "Linkler grafiği",
         "Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\\'InfluxDB": "Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\\'InfluxDB",
         "Action envoyée avec succés": "Action envoyée avec succés",
@@ -833,11 +836,7 @@
         "Remplacement réalisé avec succès": "Başarıyla değiştirildi",
         "Êtes-vous sûr de vouloir remplacer l\\'ID": "Eğer \\ 'ın kimliğini değiştirmek istediğinizden emin misiniz",
         "ID de commande à remplacer ?": "Kimlik al yerine?",
-        "Êtes-vous sûr de vouloir remplacer la commande": "Êtes-vous sûr de vouloir remplacer la commande",
-        "Sauvegarde réussie": "Kayıt başarılı",
-        "Sélection multiple de commandes": "Çoklu komuta seçimi",
-        "Modification(s) appliquée(s) avec succès": "Değişiklik (ler) başarıyla uygulandı",
-        "Logs": "Loglar"
+        "Êtes-vous sûr de vouloir remplacer la commande": "Êtes-vous sûr de vouloir remplacer la commande"
     },
     "desktop\/modal\/log.display.php": {
         "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel.": "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel",

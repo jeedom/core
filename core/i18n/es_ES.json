@@ -814,10 +814,13 @@
         "Retour à la ligne forcé après le widget": "Nueva línea forzada después del widget",
         "Paramètres optionnels widget": "Parámetros opcionales widget",
         "Configuration commande": "Configuración comando",
+        "Pas de description des paramètres optionnels sur ce Widget.": "No hay descripción de los parámetros opcionales de este widget",
         "Décocher pour désactiver l\\'action": "Desactive la casilla para desactivar Acción",
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Compruebe si la ejecución del comando \\'s en otras acciones paralelas",
         "Sélectionner un mot-clé": "Seleccionar una palabra clave",
-        "Pas de description des paramètres optionnels sur ce Widget.": "No hay descripción de los parámetros opcionales de este widget",
+        "Sélection multiple de commandes": "Selección múltiple de comandos",
+        "Modification(s) appliquée(s) avec succès": "Modificación(es) aplicada(os) con éxito",
+        "Sauvegarde réussie": "Copia de seguridad realizada con éxito",
         "Graphique des liens": "Gráfico de enlaces",
         "Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\\'InfluxDB": "¿Está seguro de que desea eliminar toda la información de este comando de InfluxDB?",
         "Action envoyée avec succés": "Acción enviada con éxito",
@@ -833,11 +836,7 @@
         "Remplacement réalisé avec succès": "Sustitución completada con éxito",
         "Êtes-vous sûr de vouloir remplacer l\\'ID": "¿Está seguro de que desea reemplazar la identificación?",
         "ID de commande à remplacer ?": "ID del pedido para reemplazar?",
-        "Êtes-vous sûr de vouloir remplacer la commande": "¿Estás seguro de que deseas reemplazar el pedido?",
-        "Sauvegarde réussie": "Copia de seguridad realizada con éxito",
-        "Sélection multiple de commandes": "Selección múltiple de comandos",
-        "Modification(s) appliquée(s) avec succès": "Modificación(es) aplicada(os) con éxito",
-        "Logs": "Registros"
+        "Êtes-vous sûr de vouloir remplacer la commande": "¿Estás seguro de que deseas reemplazar el pedido?"
     },
     "desktop\/modal\/log.display.php": {
         "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel.": "Tenga en cuenta que su nivel de registro (evento) es inferior a la información, por lo que no puede ver en tiempo real",

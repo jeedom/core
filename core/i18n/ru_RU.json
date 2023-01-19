@@ -814,10 +814,13 @@
         "Retour à la ligne forcé après le widget": "Retour à la ligne forcé après le widget",
         "Paramètres optionnels widget": "Дополнительные параметры виджета",
         "Configuration commande": "Configuration commande",
+        "Pas de description des paramètres optionnels sur ce Widget.": "Pas de description des paramètres optionnels sur ce Widget",
         "Décocher pour désactiver l\\'action": "Снимите флажок, чтобы отключить \\ Action",
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Проверьте, команда \\ «ы работает параллельно другие действия",
         "Sélectionner un mot-clé": "Выберите ключевое слово",
-        "Pas de description des paramètres optionnels sur ce Widget.": "Pas de description des paramètres optionnels sur ce Widget",
+        "Sélection multiple de commandes": "Выбор пакета команд",
+        "Modification(s) appliquée(s) avec succès": "Модификация (s) применяется (ы) успешно",
+        "Sauvegarde réussie": "Удачная резервная копия",
         "Graphique des liens": "Графические ссылки",
         "Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\\'InfluxDB": "Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\\'InfluxDB",
         "Action envoyée avec succés": "Action envoyée avec succés",
@@ -833,11 +836,7 @@
         "Remplacement réalisé avec succès": "Замена успешно",
         "Êtes-vous sûr de vouloir remplacer l\\'ID": "Вы уверены, что хотите заменить идентификатор",
         "ID de commande à remplacer ?": "ID заказа заменить?",
-        "Êtes-vous sûr de vouloir remplacer la commande": "Êtes-vous sûr de vouloir remplacer la commande",
-        "Sauvegarde réussie": "Удачная резервная копия",
-        "Sélection multiple de commandes": "Выбор пакета команд",
-        "Modification(s) appliquée(s) avec succès": "Модификация (s) применяется (ы) успешно",
-        "Logs": "Журналы"
+        "Êtes-vous sûr de vouloir remplacer la commande": "Êtes-vous sûr de vouloir remplacer la commande"
     },
     "desktop\/modal\/log.display.php": {
         "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel.": "Обратите внимание, что ваш уровень журнала (события) ниже, чем информация, поэтому вы не можете видеть в режиме реального времени",

@@ -814,10 +814,13 @@
         "Retour à la ligne forcé après le widget": "Retour à la ligne forcé après le widget",
         "Paramètres optionnels widget": "Impostazioni widget opzionali",
         "Configuration commande": "Configuration commande",
+        "Pas de description des paramètres optionnels sur ce Widget.": "Pas de description des paramètres optionnels sur ce Widget",
         "Décocher pour désactiver l\\'action": "Deselezionare per disabilitare \\ azione",
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Controllare l'esecuzione del comando \\ 's in parallelo altre azioni",
         "Sélectionner un mot-clé": "Seleziona una parola chiave",
-        "Pas de description des paramètres optionnels sur ce Widget.": "Pas de description des paramètres optionnels sur ce Widget",
+        "Sélection multiple de commandes": "Selezione multipla comandi",
+        "Modification(s) appliquée(s) avec succès": "Modifiche applicate con successo",
+        "Sauvegarde réussie": "Backup completato correttamente",
         "Graphique des liens": "Link grafici",
         "Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\\'InfluxDB": "Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\\'InfluxDB",
         "Action envoyée avec succés": "Action envoyée avec succés",
@@ -833,11 +836,7 @@
         "Remplacement réalisé avec succès": "Sostituzione con successo",
         "Êtes-vous sûr de vouloir remplacer l\\'ID": "Sei sicuro che si desidera sostituire \\ 's ID",
         "ID de commande à remplacer ?": "ID ordine per sostituire?",
-        "Êtes-vous sûr de vouloir remplacer la commande": "Êtes-vous sûr de vouloir remplacer la commande",
-        "Sauvegarde réussie": "Backup completato correttamente",
-        "Sélection multiple de commandes": "Selezione multipla comandi",
-        "Modification(s) appliquée(s) avec succès": "Modifiche applicate con successo",
-        "Logs": "Logs"
+        "Êtes-vous sûr de vouloir remplacer la commande": "Êtes-vous sûr de vouloir remplacer la commande"
     },
     "desktop\/modal\/log.display.php": {
         "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel.": "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel",
