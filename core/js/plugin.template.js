@@ -385,12 +385,12 @@ if (!jeeFrontEnd.pluginTemplate) {
       }
     },
     removeEqLogic: function() {
-      var eqLogicValue = document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue()
-      let thisEqType = this.getAttribute('data-eqLogic_type')
-      let textEqtype = thisEqType || eqType
-      if (eqLogicValue != undefined) {
+      var eqLogicId = document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue()
+      if (eqLogicId != undefined) {
+        let thisEqType = document.querySelector('.eqLogicDisplayCard[data-eqlogic_id="' + eqLogicId + '"]')?.getAttribute('data-eqLogic_type')
+        let textEqtype = thisEqType || eqType
         jeedom.eqLogic.getUseBeforeRemove({
-          id: eqLogicValue,
+          id: eqLogicId,
           error: function(error) {
             jeedomUtils.showAlert({
               message: error.message,
@@ -415,7 +415,7 @@ if (!jeeFrontEnd.pluginTemplate) {
               if (result) {
                 jeedom.eqLogic.remove({
                   type: thisEqType || eqType,
-                  id: eqLogicValue,
+                  id: eqLogicId,
                   error: function(error) {
                     jeedomUtils.showAlert({
                       message: error.message,
