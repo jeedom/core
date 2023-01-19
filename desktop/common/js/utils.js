@@ -927,6 +927,10 @@ jeedomUtils.initPage = function() {
   jeedomUtils.initHelp()
   jeedomUtils.initTextArea()
 
+  if (getUrlVars('theme') !== false) {
+    jeedomUtils.changeTheme(getUrlVars('theme'))
+  }
+
   /*
   $('.nav-tabs a').on('click', function(event) {
     if (event.delegateTarget.getAttribute('data-action') == 'returnToThumbnailDisplay') {
