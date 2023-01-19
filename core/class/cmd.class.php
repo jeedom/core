@@ -866,7 +866,7 @@ class cmd {
 					return strcmp($a['name'], $b['name']);
 				});
 				foreach ($type as $key => $widget) {
-					if ($widget['name'] == 'default') {
+					if ($widget['name'] == 'default' || $widget['name'] == 'core::default') {
 						continue;
 					}
 					if ($key == 0) {
@@ -2856,7 +2856,7 @@ class cmd {
 	}
 
 	public function setTemplate($_key, $_value) {
-		if (($_key == 'dashboard' || $_key == 'mobile') && $_value != 'default' && strpos($_value, '::') === false) {
+		if (($_key == 'dashboard' || $_key == 'mobile') && strpos($_value, '::') === false) {
 			$_value = 'core::' . $_value;
 		}
 		if ($this->getTemplate($_key) !== $_value) {
