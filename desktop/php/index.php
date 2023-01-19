@@ -134,10 +134,11 @@ function setTheme() {
 
 ?>
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" translate="no" class="notranslate">
 
 <head>
 	<meta charset="utf-8">
+	<meta name="google" content="notranslate" />
 	<title><?php echo $title; ?></title>
 	<link rel="shortcut icon" href="<?php echo $configs['product_icon'] ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
