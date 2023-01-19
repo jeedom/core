@@ -214,6 +214,22 @@ Element.prototype.closestAll = function(_selector) {
   return parents
 }
 
+HTMLSelectElement.prototype.sortOptions = function(_text) {
+  if (!isset(_text)) _text = true
+  var optionsAr = Array.from(this.options)
+  optionsAr.sort(function(a, b) {
+    if (_text) {
+      return a.textContent > b.textContent ? 1 : -1
+    } else {
+      return a.value > b.value ? 1 : -1
+    }
+  })
+  for (let opt of optionsAr) {
+    this.appendChild(opt)
+  }
+  this.selectedIndex = 0
+  return this
+}
 
 /* Widgets
 */
