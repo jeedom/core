@@ -957,7 +957,7 @@ if (!jeeFrontEnd.md_displayCmdConfigure) {
       var cmdTr = document.querySelector('#div_pageContainer tr[data-cmd_id="' + cmdId + '"]')
       if (cmdTr) {
         cmdTr.querySelector('input.cmdAttr[data-l1key="isVisible"]').checked = document.querySelector('#div_displayCmdConfigure input.cmdAttr[data-l1key="isVisible"').checked
-        cmdTr.find('.cmdAttr[data-l1key="display"][data-l2key="icon"]').innerHTML = document.querySelector('#div_displayCmdConfigure .cmdAttr[data-l1key="display"][data-l2key="icon"]').innerHTML
+        cmdTr.querySelector('.cmdAttr[data-l1key="display"][data-l2key="icon"]').innerHTML = document.querySelector('#div_displayCmdConfigure .cmdAttr[data-l1key="display"][data-l2key="icon"]').innerHTML
       }
     },
     syncModalToScenario: function() {
@@ -1030,8 +1030,11 @@ if (!jeeFrontEnd.md_displayCmdConfigure) {
       var cmd = document.getElementById('div_displayCmdConfigure').getJeeValues('.cmdAttr')[0]
       if (!isset(cmd.display)) cmd.display = {}
       if (!isset(cmd.display.parameters)) cmd.display.parameters = {}
-      document.getElementById('#table_widgetParametersCmd').tBodies[0].children.forEach(_tr => {
-        cmd.display.parameters[_tr.querySelector('.key').jeeValue()] = _tr.querySelector('.value').jeeValue()
+
+      document.querySelector('#cmd_display #table_widgetParametersCmd').tBodies[0].childNodes.forEach(_tr => {
+        if (_tr.nodeType != 3) {
+          cmd.display.parameters[_tr.querySelector('.key').jeeValue()] = _tr.querySelector('.value').jeeValue()
+        }
       })
       cmd = {
         display: cmd.display,
@@ -1067,7 +1070,7 @@ if (!jeeFrontEnd.md_displayCmdConfigure) {
           })
 
           document.getElementById('#bt_cmdConfigureSelectMultipleAlertApply').addEventListener('click', function(event) {
-            document.getElementById('#table_cmdConfigureSelectMultiple').tBodies[0].children.forEach(_tr => {
+            document.getElementById('#table_cmdConfigureSelectMultiple').tBodies[0].querySelectorAll('tr').forEach(_tr => {
               if (_tr.querySelector('.selectMultipleApplyCmd').checked) {
                 cmd.id = _tr.getAttribute('data-cmd_id')
                 jeedom.cmd.save({
@@ -1090,13 +1093,15 @@ if (!jeeFrontEnd.md_displayCmdConfigure) {
         },
       })
     },
-    cmdSave: function() {
+    cmdSave: function(event) {
       var cmd = document.getElementById('div_displayCmdConfigure').getJeeValues('.cmdAttr')[0]
       if (!isset(cmd.display)) cmd.display = {}
       if (!isset(cmd.display.parameters)) cmd.display.parameters = {}
 
-      document.getElementById('table_widgetParametersCmd').tBodies[0].children.forEach(_tr => {
-        cmd.display.parameters[_tr.querySelector('.key').jeeValue()] = _tr.querySelector('.value').jeeValue()
+      document.querySelector('#cmd_display #table_widgetParametersCmd').tBodies[0].childNodes.forEach(_tr => {
+        if (_tr.nodeType != 3) {
+          cmd.display.parameters[_tr.querySelector('.key').jeeValue()] = _tr.querySelector('.value').jeeValue()
+        }
       })
 
       try { var checkCmdParameter = document.getElementById('div_jeedomCheckCmdCmdOption').getJeeValues('.expressionAttr')[0] } catch(e) {}
@@ -1166,7 +1171,7 @@ if (!jeeFrontEnd.md_displayCmdConfigure) {
   })
 
   document.getElementById('bt_cmdConfigureSave')?.addEventListener('click', function(event) {
-    jeeFrontEnd.md_displayCmdConfigure.cmdSave()
+    jeeFrontEnd.md_displayCmdConfigure.cmdSave(event)
   })
 
   document.getElementById('cmdConfigureTab')?.addEventListener('click', function(event) {
