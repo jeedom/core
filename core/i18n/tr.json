@@ -353,8 +353,9 @@
         "SQL": "SQL",
         "Action": "Eylem",
         "Corriger": "Corriger",
-        "Êtes-vous sûr de vouloir corriger toute les tables ?": "Êtes-vous sûr de vouloir corriger toute les tables ?",
+        "Êtes-vous sûr de vouloir corriger toutes les tables ?": "Êtes-vous sûr de vouloir corriger toutes les tables ?",
         "Êtes-vous sûr de vouloir corriger la table": "Etes-vous sûr de vouloir corriger la table",
+        "Correction de la base de données": "Correction de la base de données",
         "Vérification base de données": "Vérification base de données"
     },
     "desktop\/modal\/dataStore.management.php": {

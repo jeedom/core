@@ -353,8 +353,9 @@
         "SQL": "SQL",
         "Action": "Действие",
         "Corriger": "правильный",
-        "Êtes-vous sûr de vouloir corriger toute les tables ?": "Êtes-vous sûr de vouloir corriger toute les tables ?",
+        "Êtes-vous sûr de vouloir corriger toutes les tables ?": "Êtes-vous sûr de vouloir corriger toutes les tables ?",
         "Êtes-vous sûr de vouloir corriger la table": "Вы уверены, что хотите исправить таблицу",
+        "Correction de la base de données": "Correction de la base de données",
         "Vérification base de données": "Проверка базы данных"
     },
     "desktop\/modal\/dataStore.management.php": {

@@ -353,8 +353,9 @@
         "SQL": "SQL",
         "Action": "Aktion",
         "Corriger": "Richtig",
-        "Êtes-vous sûr de vouloir corriger toute les tables ?": "Möchten Sie wirklich alle Tabellen korrigieren?",
+        "Êtes-vous sûr de vouloir corriger toutes les tables ?": "Möchten Sie wirklich alle Tabellen korrigieren?",
         "Êtes-vous sûr de vouloir corriger la table": "Sind Sie sicher, dass Sie die Tabelle korrigieren möchten?",
+        "Correction de la base de données": "Datenbank reparieren",
         "Vérification base de données": "Datenbanküberprüfung"
     },
     "desktop\/modal\/dataStore.management.php": {

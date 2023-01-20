@@ -353,8 +353,9 @@
         "SQL": "Sql",
         "Action": "Acción",
         "Corriger": "Corregir",
-        "Êtes-vous sûr de vouloir corriger toute les tables ?": "¿Estás seguro de que quieres corregir todas las tablas?",
+        "Êtes-vous sûr de vouloir corriger toutes les tables ?": "¿Está seguro de que desea corregir todas las tablas?",
         "Êtes-vous sûr de vouloir corriger la table": "¿Estás seguro de que quieres corregir la tabla?",
+        "Correction de la base de données": "Fijar base de datos",
         "Vérification base de données": "Verificación de la base de datos"
     },
     "desktop\/modal\/dataStore.management.php": {
