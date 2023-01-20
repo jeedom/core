@@ -54,7 +54,7 @@ if (!jeeFrontEnd.md_datastore) {
   jeeFrontEnd.md_datastore = {
     init: function() {
       this.tableDataStore = document.getElementById('table_dataStore')
-      this.modal = document.getElementById('table_dataStore').closest('div.jeeDialogMain')
+      this.modal = this.tableDataStore.closest('div.jeeDialogMain')
       if (this.modal != null) {
         jeeDialog.get(this.modal).options.onResize = function(event) {
           jeeFrontEnd.md_datastore.tableDataStore.triggerEvent("update")

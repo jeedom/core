@@ -195,148 +195,171 @@ include_file('3rdparty', 'jquery.tablesorter/_jeedom/pager-custom-constrols', 'j
 </table>
 
 <script>
-  var $tableCmdConfigureHistory = $("#table_cmdConfigureHistory")
-
-  $('#bt_cmdConfigureCmdHistoryApply').on('click', function() {
-    var cmds = []
-    $tableCmdConfigureHistory.find('tbody tr[data-right=x]').each(function() {
-      if (this.getAttribute('data-change') == '1') {
-        cmds.push(this.getJeeValues('.cmdAttr')[0])
+if (!jeeFrontEnd.md_cmdConfigureHistory) {
+  jeeFrontEnd.md_cmdConfigureHistory = {
+    init: function() {
+      this.tableConfig = document.getElementById('table_cmdConfigureHistory')
+      this.modal = this.tableConfig.closest('div.jeeDialogMain')
+      if (this.modal != null) {
+        jeeDialog.get(this.modal).options.onResize = function(event) {
+          jeeFrontEnd.md_cmdConfigureHistory.tableConfig.triggerEvent("update")
+        }
       }
-    })
 
-    jeedom.cmd.multiSave({
-      cmds: cmds,
-      error: function(error) {
-        $('#md_cmdConfigureHistory').showAlert({
-          message: error.message,
-          level: 'danger'
+      this.setConfigTable()
+      jeeFrontEnd.md_cmdConfigureHistory.tableConfig.triggerEvent("update")
+
+      if (jeephp2js.md_cmdConfigureHistory_numCmds < 500) jeedomUtils.initTooltips(this.tableConfig)
+      if (jeephp2js.md_cmdConfigureHistory_numCmds < 1500) jeedom.timeline.autocompleteFolder()
+    },
+    setConfigTable: function() {
+      var $tableCmdConfigureHistory = $("#table_cmdConfigureHistory")
+
+      jeedomUtils.initTableSorter()
+      $tableCmdConfigureHistory[0].config.widgetOptions.resizable_widths = ['', '120px', '115px', '130px', '160px', '120px', '120px', '130px', '95px']
+      $tableCmdConfigureHistory[0].config.checkboxVisible = true
+      $tableCmdConfigureHistory.trigger('resizableReset')
+      $tableCmdConfigureHistory.width('100%')
+      $.tablesorter.addParser({
+          id: 'purges',
+          is: function() {
+            return false
+          },
+          format: function(s) {
+            if (s == '') return 100000
+            if (s == '-1 day') return 1
+            if (s == '-7 days') return 7
+            if (s == '-1 month') return 30
+            if (s == '-3 month') return 90
+            if (s == '-6 month') return 180
+            if (s == '-1 year') return 365
+            if (s == '-2 years') return 730
+            if (s == '-3 years') return 1095
+          },
+          type: 'numeric',
         })
-      },
-      success: function(data) {
-        $tableCmdConfigureHistory.trigger("update")
-        $('#md_cmdConfigureHistory').showAlert({
-          message: '{{Modifications sauvegardées avec succès}}',
-          level: 'success'
+
+      // initialize pager:
+      var $pager = $('.pager')
+      $.tablesorter.customPagerControls({
+        table: $tableCmdConfigureHistory, // point at correct table (string or jQuery object)
+        pager: $pager, // pager wrapper (string or jQuery object)
+        pageSize: '.left a', // container for page sizes
+        currentPage: '.right a', // container for page selectors
+        ends: 2, // number of pages to show of either end
+        aroundCurrent: 1, // number of pages surrounding the current page
+        link: '<a href="#">{page}</a>', // page element; use {page} to include the page number
+        currentClass: 'current', // current page class name
+        adjacentSpacer: '<span> | </span>', // spacer for page numbers next to each other
+        distanceSpacer: '<span> &#133; <span>', // spacer for page numbers away from each other (ellipsis = &#133;)
+        addKeyboard: true, // use left,right,up,down,pageUp,pageDown,home, or end to change current page
+        pageKeyStep: 10, // page step to use for pageUp and pageDown
+      })
+      $tableCmdConfigureHistory.tablesorterPager({
+        container: $pager,
+        size: 15,
+        savePages: false,
+        page: 0,
+        pageReset: 0,
+        removeRows: false,
+        countChildRows: false,
+        output: 'showing: {startRow} to {endRow} ({filteredRows})'
+      })
+
+      document.getElementById('smoothSelectAll').addEventListener('change', function(event) {
+        event.stopPropagation()
+        event.preventDefault()
+        var value = event.target.value
+        var cells = Array.from(document.querySelectorAll('#table_cmdConfigureHistory select.cmdAttr[data-l2key="historizeMode"]')).filter(c => c.isVisible() && c.disabled == false )
+        cells.forEach(_cell => {
+          _cell.value = value
+          _cell.closest('tr').setAttribute('data-change', '1')
         })
-      }
-    })
-  })
-
-  $('.bt_configureHistoryAdvanceCmdConfiguration').off('click').on('click', function() {
-    jeeDialog.dialog({
-      id: 'jee_modal2',
-      title: '{{Configuration de la commande}}',
-      contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + this.getAttribute('data-id')
-    })
-  })
-
-  $(".bt_configureHistoryExportData").on('click', function() {
-    window.open('core/php/export.php?type=cmdHistory&id=' + $(this).attr('data-id'), "_blank", null)
-  })
-
-  $('.cmdAttr').on('change click', function() {
-    $(this).closest('tr').attr('data-change', '1')
-  })
-
-  $('select[data-l2key="historyPurge"]').on('change', function() {
-    $tableCmdConfigureHistory.trigger('updateCell', [$(this).parent()])
-  })
-
-  function setTableParser() {
-    $.tablesorter.addParser({
-      id: 'purges',
-      is: function() {
-        return false
-      },
-      format: function(s) {
-        if (s == '') return 100000
-        if (s == '-1 day') return 1
-        if (s == '-7 days') return 7
-        if (s == '-1 month') return 30
-        if (s == '-3 month') return 90
-        if (s == '-6 month') return 180
-        if (s == '-1 year') return 365
-        if (s == '-2 years') return 730
-        if (s == '-3 years') return 1095
-      },
-      type: 'numeric',
-    })
-
-    $('#smoothSelectAll').on('change', function(event) {
-      event.stopPropagation()
-      event.preventDefault()
-      var value = $(this).val()
-      $('.cmdAttr[data-l2key="historizeMode"]:visible:not([disabled])').each(function() {
-        $(this).val(value)
-        $(this).closest('tr').attr('data-change', '1')
       })
-      return false
-    })
 
-    $('#purgeSelectAll').on('change', function(event) {
-      event.stopPropagation()
-      event.preventDefault()
-      var value = $(this).val()
-      $('.cmdAttr[data-l2key="historyPurge"]:visible:not([disabled])').each(function() {
-        $(this).val(value)
-        $(this).closest('tr').attr('data-change', '1')
+      document.getElementById('purgeSelectAll').addEventListener('change', function(event) {
+        event.stopPropagation()
+        event.preventDefault()
+        var value = event.target.value
+        var cells = Array.from(document.querySelectorAll('#table_cmdConfigureHistory select.cmdAttr[data-l2key="historyPurge"]')).filter(c => c.isVisible() && c.disabled == false )
+        cells.forEach(_cell => {
+          _cell.value = value
+          _cell.closest('tr').setAttribute('data-change', '1')
+        })
       })
-      return false
-    })
+    },
+    saveConfig: function(event) {
+      var cmds = []
+      this.tableConfig.tBodies[0].querySelectorAll('tr[data-right=x]').forEach(_tr => {
+        if (_tr.getAttribute('data-change') == '1') {
+          cmds.push(_tr.getJeeValues('.cmdAttr')[0])
+        }
+      })
 
-
-    $('#table_cmdConfigureHistory input[data-l2key="timeline::folder"]:not([disabled])').each(function() {
-      if ($(this).val() == '') {
-        $(this).attr('placeholder', '{{Dossier}}')
-      }
-    })
-
+      jeedom.cmd.multiSave({
+        cmds: cmds,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_cmdConfigureHistory', 'content'),
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          $tableCmdConfigureHistory.trigger("update")
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_cmdConfigureHistory', 'content'),
+            message: '{{Modifications sauvegardées avec succès}}',
+            level: 'success'
+          })
+        }
+      })
+    },
   }
+}
 
-  jeedomUtils.initTableSorter()
-  $tableCmdConfigureHistory[0].config.widgetOptions.resizable_widths = ['', '120px', '115px', '130px', '160px', '120px', '120px', '130px', '95px']
-  $tableCmdConfigureHistory[0].config.checkboxVisible = true
-  $tableCmdConfigureHistory.trigger('resizableReset')
-  $tableCmdConfigureHistory.width('100%')
-  setTableParser()
+(function() {// Self Isolation!
+  var jeeM = jeeFrontEnd.md_cmdConfigureHistory
+  jeeM.init()
 
-  // initialize pager:
-  var $pager = $('.pager')
-  $.tablesorter.customPagerControls({
-    table: $tableCmdConfigureHistory, // point at correct table (string or jQuery object)
-    pager: $pager, // pager wrapper (string or jQuery object)
-    pageSize: '.left a', // container for page sizes
-    currentPage: '.right a', // container for page selectors
-    ends: 2, // number of pages to show of either end
-    aroundCurrent: 1, // number of pages surrounding the current page
-    link: '<a href="#">{page}</a>', // page element; use {page} to include the page number
-    currentClass: 'current', // current page class name
-    adjacentSpacer: '<span> | </span>', // spacer for page numbers next to each other
-    distanceSpacer: '<span> &#133; <span>', // spacer for page numbers away from each other (ellipsis = &#133;)
-    addKeyboard: true, // use left,right,up,down,pageUp,pageDown,home, or end to change current page
-    pageKeyStep: 10, // page step to use for pageUp and pageDown
-  })
-  $tableCmdConfigureHistory.tablesorterPager({
-    container: $pager,
-    size: 15,
-    savePages: false,
-    page: 0,
-    pageReset: 0,
-    removeRows: false,
-    countChildRows: false,
-    output: 'showing: {startRow} to {endRow} ({filteredRows})'
+  //Manage events outside parents delegations:
+  document.getElementById('bt_cmdConfigureCmdHistoryApply ')?.addEventListener('click', function(event) {
+    jeeFrontEnd.md_cmdConfigureHistory.saveConfig(event)
   })
 
+  /*Events delegations
+  */
+  document.getElementById('table_cmdConfigureHistory')?.addEventListener('click', function(event) {
+    var _target = null
+    if (_target = event.target.closest('.bt_configureHistoryAdvanceCmdConfiguration')) {
+      jeeDialog.dialog({
+        id: 'jee_modal2',
+        title: '{{Configuration de la commande}}',
+        contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + _target.getAttribute('data-id')
+      })
+      return
+    }
 
-  if (jeephp2js.md_cmdConfigureHistory_numCmds < 500) {
-    jeedomUtils.initTooltips($tableCmdConfigureHistory)
-  }
+    if (_target = event.target.closest('.bt_configureHistoryExportData')) {
+      window.open('core/php/export.php?type=cmdHistory&id=' + _target.getAttribute('data-id'), "_blank", null)
+      return
+    }
 
-  if (jeephp2js.md_cmdConfigureHistory_numCmds < 1500) {
-    jeedom.timeline.autocompleteFolder()
-  }
-  setTimeout(function() {
-    $tableCmdConfigureHistory.closest('.ui-dialog').resize()
-  }, 500)
+    if (_target = event.target.closest('.cmdAttr')) {
+      _target.closest('tr').setAttribute('data-change', '1')
+    }
+  })
+
+  document.getElementById('table_cmdConfigureHistory')?.addEventListener('change', function(event) {
+    var _target = null
+    if (_target = event.target.closest('.cmdAttr')) {
+      _target.closest('tr').setAttribute('data-change', '1')
+    }
+
+    if (_target = event.target.closest('select[data-l2key="historyPurge"]')) {
+      $(jeeFrontEnd.md_cmdConfigureHistory.tableConfig).trigger('updateCell', _target.parentNode)
+      return
+    }
+  })
+})()
 </script>
