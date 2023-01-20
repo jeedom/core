@@ -931,8 +931,7 @@
         "Action": "Action",
         "Configuration de la commande": "Command setup",
         "Exporter la commande": "Export the command",
-        "Modifications sauvegardées avec succès": "Changes successfully saved",
-        "Dossier": "Folder"
+        "Modifications sauvegardées avec succès": "Changes successfully saved"
     },
     "desktop\/modal\/scenario.jsonEdit.php": {
         "Aucun scénario ne correspondant à :": "No scenario corresponding to:",

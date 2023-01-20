@@ -931,8 +931,7 @@
         "Action": "アクション",
         "Configuration de la commande": "設定された制御",
         "Exporter la commande": "注文をエクスポートする",
-        "Modifications sauvegardées avec succès": "変更が保存されました",
-        "Dossier": "記録"
+        "Modifications sauvegardées avec succès": "変更が保存されました"
     },
     "desktop\/modal\/scenario.jsonEdit.php": {
         "Aucun scénario ne correspondant à :": "以下に対応するシナリオはありません：",

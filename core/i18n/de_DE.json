@@ -931,8 +931,7 @@
         "Action": "Aktion",
         "Configuration de la commande": "Befehl Konfiguration",
         "Exporter la commande": "Exportieren Sie die Bestellung",
-        "Modifications sauvegardées avec succès": "Änderungen erfolgreich gespeichert",
-        "Dossier": "Rekord"
+        "Modifications sauvegardées avec succès": "Änderungen erfolgreich gespeichert"
     },
     "desktop\/modal\/scenario.jsonEdit.php": {
         "Aucun scénario ne correspondant à :": "Kein Szenario entsprechend:",
