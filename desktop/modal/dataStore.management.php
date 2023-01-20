@@ -57,7 +57,7 @@ if (!jeeFrontEnd.md_datastore) {
       this.modal = document.getElementById('table_dataStore').closest('div.jeeDialogMain')
       if (this.modal != null) {
         jeeDialog.get(this.modal).options.onResize = function(event) {
-          self.tableDataStore.triggerEvent("update")
+          jeeFrontEnd.md_datastore.tableDataStore.triggerEvent("update")
         }
       }
     },
@@ -147,9 +147,22 @@ if (!jeeFrontEnd.md_datastore) {
   jeeM.tableDataStore.triggerEvent('resizableReset')
   jeeM.tableDataStore.querySelector('thead tr').children[0].triggerEvent('sort')
 
-  $(jeeM.tableDataStore).on({
-    'click': function(event) {
-      var tr = this.closest('tr')
+  //Manage events outside parents delegations:
+  document.getElementById('bt_dataStoreManagementAdd')?.addEventListener('click', function(event) {
+    var tr = jeeM.getDatastoreTr()
+    jeeM.tableDataStore.querySelector('tbody').insertAdjacentHTML('afterbegin', tr)
+    jeeM.tableDataStore.triggerEvent("update")
+  })
+
+  document.getElementById('bt_dataStoreManagementRefresh')?.addEventListener('click', function(event) {
+    jeeM.refreshDataStoreMangementTable()
+  })
+  /*Events delegations
+  */
+  document.getElementById('table_dataStore')?.addEventListener('click', function(event) {
+    var _target = null
+    if (_target = event.target.closest('.bt_removeDataStore')) {
+      var tr = _target.closest('tr')
       if (tr.getAttribute('data-datastore_id') == '') {
         tr.remove()
         return
@@ -176,12 +189,11 @@ if (!jeeFrontEnd.md_datastore) {
           })
         }
       })
+      return
     }
-  }, '.bt_removeDataStore')
 
-  $(jeeM.tableDataStore).on({
-    'click': function(event) {
-      var tr = this.closest('tr');
+    if (_target = event.target.closest('.bt_saveDataStore')) {
+      var tr = _target.closest('tr');
       jeedom.dataStore.save({
         id: tr.getAttribute('data-dataStore_id'),
         value: tr.querySelector('.value').value,
@@ -204,28 +216,18 @@ if (!jeeFrontEnd.md_datastore) {
           jeeM.refreshDataStoreMangementTable()
         }
       })
+      return
     }
-  }, '.bt_saveDataStore')
 
-  $(jeeM.tableDataStore).on({
-    'click': function(event) {
-      var trId = this.closest('tr').getAttribute('data-dataStore_id')
+    if (_target = event.target.closest('.bt_graphDataStore')) {
+      var trId = _target.closest('tr').getAttribute('data-dataStore_id')
       jeeDialog.dialog({
         id: 'jee_modal2',
         title: '{{Graphique de lien(s)}}',
         contentUrl: 'index.php?v=d&modal=graph.link&filter_type=dataStore&filter_id=' + trId
       })
+      return
     }
-  }, '.bt_graphDataStore')
-
-  $('#bt_dataStoreManagementAdd').on('click', function() {
-    var tr = jeeM.getDatastoreTr()
-    jeeM.tableDataStore.querySelector('tbody').insertAdjacentHTML('afterbegin', tr)
-    jeeM.tableDataStore.triggerEvent("update")
-  })
-
-  $('#bt_dataStoreManagementRefresh').off('click').on('click', function() {
-    jeeM.refreshDataStoreMangementTable();
   })
 })()
 </script>

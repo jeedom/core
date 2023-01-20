@@ -128,7 +128,7 @@ if (!jeeFrontEnd.md_history) {
   }
 }
 
-(function() {
+(function() {// Self Isolation!
   jeedomUtils.hideAlert()
   var jeeM = jeeFrontEnd.md_history
   jeeM.init(jeephp2js.md_history_cmdId)

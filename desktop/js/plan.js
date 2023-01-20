@@ -245,6 +245,9 @@ if (!jeeFrontEnd.plan) {
       })
     },
     displayObject: function(_plan, _html, _noRender) { //Construct element node and seperated inline style to inject in dom (_noRender bool)
+      //Deleted or inactive equipment
+      if (_html == '') return
+
       _plan = init(_plan, {})
       _plan.position = init(_plan.position, {})
       _plan.css = init(_plan.css, {})

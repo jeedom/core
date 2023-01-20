@@ -38,7 +38,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 ?>
 
-<div style="display: none;" id="md_displayCmdConfigure" data-modalType="md_cmdConfigure"></div>
+<div style="display: none;" id="md_displayCmdConfigure" data-modalType="md_displayCmdConfigure"></div>
 <div class="input-group pull-right" style="display:inline-flex">
   <span class="input-group-btn">
     <a class="btn btn-default roundedLeft btn-sm" id="bt_cmdConfigureTest"><i class="fas fa-rss"></i> {{Tester}}
@@ -240,7 +240,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                   <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="interact::auto::disable" />
                 </div>
               </div>
-              <div class="iconeGeneric form-group">
+              <div class="displayIconParent form-group">
                 <label class="col-xs-4 control-label">{{Icône}}</label>
                 <div class="col-xs-4">
                   <span class="cmdAttr label cursor" data-l1key="display" data-l2key="icon" style="font-size : 1.5em!important;"></span>
@@ -451,7 +451,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               });
 
               $('#bt_addActionCheckCmd').off('click').on('click', function() {
-                addActionCmd({}, 'actionCheckCmd', '{{Action}}');
+                jeeFrontEnd.md_displayCmdConfigure.addActionCmd({}, 'actionCheckCmd', '{{Action}}');
               });
             </script>
           </fieldset>
@@ -480,7 +480,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 forcePlaceholderSize: true
               });
               $('#bt_addActionPreExecCmd').off('click').on('click', function() {
-                addActionCmd({}, 'actionPreExecCmd', '{{Action}}');
+                jeeFrontEnd.md_displayCmdConfigure.addActionCmd({}, 'actionPreExecCmd', '{{Action}}');
               });
             </script>
           </fieldset>
@@ -506,7 +506,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 forcePlaceholderSize: true
               });
               $('#bt_addActionPostExecCmd').off('click').on('click', function() {
-                addActionCmd({}, 'actionPostExecCmd', '{{Action}}');
+                jeeFrontEnd.md_displayCmdConfigure.addActionCmd({}, 'actionPostExecCmd', '{{Action}}');
               });
             </script>
           </fieldset>
@@ -727,7 +727,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                   ?>
                 </td>
                 <td style="width: 1px;">
-                  <a class="btn btn-default btn-xs" id="bt_cmdConfigureSaveOn"><i class="fas fa-arrow-alt-circle-down"></i> {{Appliquer à}}</a>
+                  <a class="btn btn-default btn-xs" id="bt_cmdConfigureApplyTo"><i class="fas fa-arrow-alt-circle-down"></i> {{Appliquer à}}</a>
                 </td>
               </tr>
             <?php }
@@ -842,150 +842,319 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     <?php }
     ?>
   </div>
-
 </div>
 
 <script>
-  if (document.body.getAttribute('data-page') == "widgets") {
-    document.querySelector('a[href="#cmd_display"]').click()
-  }
-  if (jeephp2js.md_cmdConfigure_cmdInfo.type == 'info') {
-    document.getElementById('bt_cmdConfigureTest').remove()
-    document.getElementById('bt_cmdConfigureGraph').remove()
-  }
+if (!jeeFrontEnd.md_displayCmdConfigure) {
+  jeeFrontEnd.md_displayCmdConfigure = {
+    init: function(_cmdIds) {
+      if (document.body.getAttribute('data-page') == "widgets") {
+        document.querySelector('a[href="#cmd_display"]').click()
+      }
+      if (jeephp2js.md_cmdConfigure_cmdInfo.type == 'info') {
+        document.getElementById('bt_cmdConfigureTest').remove()
+        document.getElementById('bt_cmdConfigureGraph').remove()
+      }
+      this.setModal()
 
-  //modal title:
-  var title = '{{Configuration commande}}'
-  title += ' : ' + jeephp2js.md_cmdConfigure_cmdInfo.eqLogicHumanName
-  var emClass = jeephp2js.md_cmdConfigure_cmdInfo.type == 'info' ? 'info' : 'warning'
-  title += ' <span class="cmdName">[' + jeephp2js.md_cmdConfigure_cmdInfo.name + '] <em class="' + emClass + '">(' + jeephp2js.md_cmdConfigure_cmdInfo.type + ')</em></span>'
-  var titleEl = jeeDialog.get('#div_displayCmdConfigure', 'title')
-  if (titleEl != null) {
-    titleEl.querySelector('span.title').innerHTML = title
-  } else {
-    //Deprecated, some plugins may load old ui-dialog modale
-    document.getElementById('div_displayCmdConfigure').closest('.ui-dialog').querySelector('.ui-dialog-title').innerHTML = title
-  }
+      document.getElementById('div_displayCmdConfigure').setJeeValues(jeephp2js.md_cmdConfigure_cmdInfo, '.cmdAttr')
 
-  jeeDialog.get('#cmdConfigureTab', 'title').querySelector('span.title').innerHTML = title
-
-  //widgets default if empty:
-  var dashWidget = $('select[data-l2key="dashboard"]')
-  if (dashWidget.val() == null) dashWidget.val($('select[data-l2key="dashboard"] option:first').val())
-  var mobileWidget = $('select[data-l2key="mobile"]')
-  if (mobileWidget.val() == null) mobileWidget.val($('select[data-l2key="mobile"] option:first').val())
-
-  //format update linked cmds:
-  var spanValues = $('#cmd_information .cmdAttr[data-l1key="value"]')
-  var values = spanValues.html()
-  spanValues.hide()
-  if (values != '') {
-    var arrValues = values.split('#')
-    var spans = ''
-    var span
-    arrValues.forEach(function(thisValue) {
-      if (thisValue != '' && !thisValue.includes('#')) {
-        jeedom.cmd.getHumanCmdName({
-          id: thisValue,
-          error: function(error) {
-            jeedomUtils.showAlert({
-              message: error.message,
-              level: 'danger'
+      //format update linked cmds:
+      //id1#id2#id3
+      var spanValues = document.querySelector('#cmd_information .cmdAttr[data-l1key="value"]')
+      var cmdIds = spanValues.textContent
+      spanValues.unseen()
+      if (cmdIds.length > 0) {
+        var arrValues = cmdIds.split('#')
+        var spans = ''
+        var span
+        arrValues.forEach(thisValue => {
+          if (thisValue != '' && !thisValue.includes('#')) {
+            jeedom.cmd.getHumanCmdName({
+              id: thisValue,
+              error: function(error) {
+                jeedomUtils.showAlert({
+                  message: error.message,
+                  level: 'danger'
+                })
+              },
+              success: function(data) {
+                var span = '<span class="label label-primary">' + data + '</span><br>'
+                spanValues.parentNode.insertAdjacentHTML('beforeend', span)
+              }
             })
-          },
-          success: function(data) {
-            var span = '<span class="label label-primary">' + data + '</span><br>'
-            spanValues.parent().prepend(span)
+          } else {
+            if (thisValue != '') {
+              span = '<span class="label label-primary">#' + thisValue + '#</span><br>'
+              spanValues.parentNode.insertAdjacentHTML('beforeend', span)
+            }
           }
         })
+      }
+
+      //Set cmd values badges
+      document.querySelectorAll('#cmd_information .cmdConfigure_cmdValue').forEach(_cmd => {
+        jeedom.cmd.addUpdateFunction(_cmd.getAttribute('data-cmd_id'), function(_options) {
+          let cmd = document.querySelector('.cmdConfigure_cmdValue[data-cmd_id=' + _options.cmd_id + ']')
+          cmd.setAttribute('title', '{{Date de collecte}} : ' + _options.collectDate)
+          cmd.empty().innerHTML = _options.display_value + ' ' + _options.unit + ' {{le}} ' + _options.valueDate
+          jeedomUtils.initTooltips()
+        })
+      })
+
+      jeeFrontEnd.md_displayCmdConfigure.displayWidgetHelp(document.querySelector('#cmd_display select[data-l1key="template"][data-l2key="dashboard"]').value)
+    },
+    postInit: function() {
+      this.setInputsDefault()
+      this.setActions()
+      jeedom.timeline.autocompleteFolder()
+    },
+    setModal: function() {
+      //modal title:
+      var title = '{{Configuration commande}}'
+      title += ' : ' + jeephp2js.md_cmdConfigure_cmdInfo.eqLogicHumanName
+      var emClass = jeephp2js.md_cmdConfigure_cmdInfo.type == 'info' ? 'info' : 'warning'
+      title += ' <span class="cmdName">[' + jeephp2js.md_cmdConfigure_cmdInfo.name + '] <em class="' + emClass + '">(' + jeephp2js.md_cmdConfigure_cmdInfo.type + ')</em></span>'
+      var titleEl = jeeDialog.get('#div_displayCmdConfigure', 'title')
+      if (titleEl != null) {
+        titleEl.querySelector('span.title').innerHTML = title
       } else {
-        if (thisValue != '') {
-          span = '<span class="label label-primary">#' + thisValue + '#</span><br>'
-          spanValues.parent().prepend(span)
+        //Deprecated, some plugins may load old ui-dialog modale
+        document.getElementById('div_displayCmdConfigure').closest('.ui-dialog').querySelector('.ui-dialog-title').innerHTML = title
+      }
+
+      jeeDialog.get('#cmdConfigureTab', 'title').querySelector('span.title').innerHTML = title
+    },
+    setInputsDefault: function() {
+      let content = jeeDialog.get('#div_displayCmdConfigure', 'content')
+      content.querySelectorAll('select').forEach(_select => {
+        if (_select.selectedIndex == -1) {
+          let defaultOpt = Array.from(_select.options).filter(o => o.value == '')
+          if (defaultOpt.length > 0) {
+            _select.value = ''
+          } else {
+            _select.selectedIndex = 0
+          }
+          _select.triggerEvent('change')
+        }
+      })
+    },
+    displayWidgetHelp: function(_widgetName) {
+      jeedom.cmd.getWidgetHelp({
+        id: document.querySelector('#cmd_information span[data-l1key="id"]').textContent,
+        version: 'dashboard',
+        widgetName: _widgetName,
+        error: function(error) {
+          document.getElementById('optionalParamHelp').empty().textContent = '{{Pas de description des paramètres optionnels sur ce Widget.}}'
+        },
+        success: function(data) {
+          document.getElementById('optionalParamHelp').empty().innerHTML = data.html
+        }
+      })
+    },
+    synchModalToCmd: function() {
+      var cmdId = document.querySelector('#div_displayCmdConfigure .cmdAttr[data-l1key="id"]').textContent
+      var cmdTr = document.querySelector('#div_pageContainer tr[data-cmd_id="' + cmdId + '"]')
+      if (cmdTr) {
+        cmdTr.querySelector('input.cmdAttr[data-l1key="isVisible"]').checked = document.querySelector('#div_displayCmdConfigure input.cmdAttr[data-l1key="isVisible"').checked
+        cmdTr.querySelector('.cmdAttr[data-l1key="display"][data-l2key="icon"]').innerHTML = document.querySelector('#div_displayCmdConfigure .cmdAttr[data-l1key="display"][data-l2key="icon"]').innerHTML
+      }
+    },
+    syncModalToScenario: function() {
+      if (getUrlVars('p') != 'scenario') return
+      jeeFrontEnd.scenario.updateDefinedActions(true)
+    },
+    setActions: function() {
+      var config = jeephp2js.md_cmdConfigure_cmdInfo.configuration
+      if (isset(config.actionCheckCmd) && Array.isArray(config.actionCheckCmd) && config.actionCheckCmd.length != null) {
+        for (var i in config.actionCheckCmd) {
+          this.addActionCmd(config.actionCheckCmd[i], 'actionCheckCmd', '{{Action}}')
         }
       }
-    })
-  }
 
-  jeedom.timeline.autocompleteFolder()
-
-  displayWidgetHelp($('#cmd_display select[data-l1key="template"][data-l2key="dashboard"]').val())
-
-  $('#cmd_display select[data-l1key="template"][data-l2key="dashboard"]').off('change').on('change', function() {
-    displayWidgetHelp($(this).val())
-  })
-
-  function displayWidgetHelp(widgetName) {
-    jeedom.cmd.getWidgetHelp({
-      id: $('#cmd_information span[data-l1key="id"]').text(),
-      version: 'dashboard',
-      widgetName: widgetName,
-      error: function(error) {
-        $('#optionalParamHelp').empty().text('{{Pas de description des paramètres optionnels sur ce Widget.}}')
-      },
-      success: function(data) {
-        $('#optionalParamHelp').empty().html(data.html)
+      if (isset(config.jeedomPreExecCmd) && Array.isArray(config.jeedomPreExecCmd) && config.jeedomPreExecCmd.length != null) {
+        for (var i in config.jeedomPreExecCmd) {
+          this.addActionCmd(config.jeedomPreExecCmd[i], 'actionPreExecCmd', '{{Action}}')
+        }
       }
-    })
-  }
 
-  $('.cmdAttr[data-l2key="timeline::enable"]').off('change').on('change', function() {
-    if (this.jeeValue() == 1) {
-      $('.cmdAttr[data-l2key="timeline::folder"]').show()
-    } else {
-      $('.cmdAttr[data-l2key="timeline::folder"]').hide()
-    }
-  })
-
-  $('.cmdAttr[data-l2key="influx::enable"]').off('change').on('change', function() {
-    if (this.jeeValue() == 1) {
-      $('.selInflux').show()
-    } else {
-      $('.selInflux').hide()
-    }
-  })
-
-  $('#cmdConfigureTab').off('click').on('click', function() {
-    setTimeout(function() {
+      if (isset(config.jeedomPostExecCmd) && Array.isArray(config.jeedomPostExecCmd) && config.jeedomPostExecCmd.length != null) {
+        for (var i in config.jeedomPostExecCmd) {
+          this.addActionCmd(config.jeedomPostExecCmd[i], 'actionPostExecCmd', '{{Action}}')
+        }
+      }
       jeedomUtils.taAutosize()
-    }, 100)
-  })
+    },
+    addActionCmd: function(_action, _type, _name) {
+      if (!isset(_action)) {
+        _action = {}
+      }
+      if (!isset(_action.options)) {
+        _action.options = {}
+      }
+      var div = '<div class="expression ' + _type + '">'
+      div += '<input class="expressionAttr" data-l1key="type" style="display : none;" value="action">'
+      div += '<div class="form-group ">'
+      div += '<div class="col-sm-1">'
+      div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'action}}" />'
+      div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}" />'
+      div += '</div>'
+      div += '<div class="col-sm-4">'
+      div += '<div class="input-group">'
+      div += '<span class="input-group-btn">'
+      div += '<a class="btn btn-default btn-sm bt_removeAction roundedLeft" data-type="' + _type + '"><i class="fas fa-minus-circle"></i></a>'
+      div += '</span>'
+      div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" data-type="' + _type + '" />'
+      div += '<span class="input-group-btn">'
+      div += '<a class="btn  btn-default btn-sm listAction" data-type="' + _type + '" title="{{Sélectionner un mot-clé}}"><i class="fa fa-tasks"></i></a>'
+      div += '<a class="btn btn-default btn-sm listCmd roundedRight" data-type="' + _type + '"><i class="fas fa-list-alt"></i></a>'
+      div += '</span>'
+      div += '</div>'
+      div += '</div>'
+      div += '<div class="col-sm-7 actionOptions">'
+      div += jeedom.cmd.displayActionOption(init(_action.cmd, ''), _action.options)
+      div += '</div>'
 
-  $('#table_widgetParametersCmd').on({
-    'click': function(event) {
-      $(this).closest('tr').remove()
-    }
-  }, '.removeWidgetParameter')
+      let newDiv = document.createElement('div')
+      newDiv.html(div)
+      newDiv.setJeeValues(_action, '.expressionAttr')
+      document.querySelector('#div_' + _type).appendChild(newDiv)
+      newDiv.replaceWith(...newDiv.childNodes)
 
-  $('#bt_addWidgetParametersCmd').off().on('click', function() {
-    var tr = '<tr>'
-    tr += '<td>'
-    tr += '<input class="form-control key" />'
-    tr += '</td>'
-    tr += '<td>'
-    tr += '<input class="form-control value" />'
-    tr += '</td>'
-    tr += '<td>'
-    tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i> Supprimer</a>'
-    tr += '</td>'
-    tr += '</tr>'
-    $('#table_widgetParametersCmd tbody').append(tr)
-  })
+      jeedom.scenario.setAutoComplete({
+        parent: $('#div_' + _type),
+        type: 'cmd'
+      })
+    },
+    applySelectMultiple: function() {
+      var cmd = document.getElementById('div_displayCmdConfigure').getJeeValues('.cmdAttr')[0]
+      if (!isset(cmd.display)) cmd.display = {}
+      if (!isset(cmd.display.parameters)) cmd.display.parameters = {}
 
-  if (jeephp2js.md_cmdConfigure_cmdInfo.configuration && (!jeephp2js.md_cmdConfigure_cmdInfo.configuration.repeatEventManagement || jeephp2js.md_cmdConfigure_cmdInfo.configuration.repeatEventManagement == 'auto')) {
-    jeephp2js.md_cmdConfigure_cmdInfo.configuration.repeatEventManagement = 'never'
+      document.querySelector('#cmd_display #table_widgetParametersCmd').tBodies[0].childNodes.forEach(_tr => {
+        if (_tr.nodeType != 3) {
+          cmd.display.parameters[_tr.querySelector('.key').jeeValue()] = _tr.querySelector('.value').jeeValue()
+        }
+      })
+      cmd = {
+        display: cmd.display,
+        template: cmd.template
+      }
+      jeeDialog.dialog({
+        id: 'md_cmdConfigureSelectMultiple',
+        title: "{{Sélection multiple de commandes}}",
+        width: (window.innerWidth - 150) < 1200 ? (window.innerWidth - 50) : 1200,
+        height: (window.innerHeight - 150),
+        zIndex: 1030,
+        contentUrl: 'index.php?v=d&modal=cmd.selectMultiple&cmd_id=' + jeephp2js.md_cmdConfigure_cmdInfo.id,
+        callback: function() {
+          jeedomUtils.initTableSorter()
+
+          document.getElementById('bt_cmdConfigureSelectMultipleAlertToogle').addEventListener('click', function(event) {
+            var state = false
+            if (this.getAttribute('data-state') == 0) {
+              state = true
+              this.setAttribute('data-state', 1)
+              this.querySelector('i').classList = 'far fa-check-circle'
+              document.querySelectorAll('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd').forEach( (element) => {
+                if (element.isVisible()) element.jeeValue(1)
+              })
+            } else {
+              state = false
+              this.setAttribute('data-state', 0)
+              this.querySelector('i').classList = 'far fa-circle'
+              document.querySelectorAll('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd').forEach( (element) => {
+                if (element.isVisible()) element.jeeValue(0)
+              })
+            }
+          })
+
+          document.getElementById('#bt_cmdConfigureSelectMultipleAlertApply').addEventListener('click', function(event) {
+            document.getElementById('#table_cmdConfigureSelectMultiple').tBodies[0].querySelectorAll('tr').forEach(_tr => {
+              if (_tr.querySelector('.selectMultipleApplyCmd').checked) {
+                cmd.id = _tr.getAttribute('data-cmd_id')
+                jeedom.cmd.save({
+                  cmd: cmd,
+                  error: function(error) {
+                    jeedomUtils.showAlert({
+                      message: error.message,
+                      level: 'danger'
+                    })
+                  },
+                  success: function() {}
+                })
+              }
+            })
+            jeedomUtils.showAlert({
+              message: "{{Modification(s) appliquée(s) avec succès}}",
+              level: 'success'
+            })
+          })
+        },
+      })
+    },
+    cmdSave: function(event) {
+      var cmd = document.getElementById('div_displayCmdConfigure').getJeeValues('.cmdAttr')[0]
+      if (!isset(cmd.display)) cmd.display = {}
+      if (!isset(cmd.display.parameters)) cmd.display.parameters = {}
+
+      document.querySelector('#cmd_display #table_widgetParametersCmd').tBodies[0].childNodes.forEach(_tr => {
+        if (_tr.nodeType != 3) {
+          cmd.display.parameters[_tr.querySelector('.key').jeeValue()] = _tr.querySelector('.value').jeeValue()
+        }
+      })
+
+      try { var checkCmdParameter = document.getElementById('div_jeedomCheckCmdCmdOption').getJeeValues('.expressionAttr')[0] } catch(e) {}
+      if (isset(checkCmdParameter) && isset(checkCmdParameter.options)) {
+        cmd.configuration.jeedomCheckCmdCmdActionOption = checkCmdParameter.options
+      }
+      cmd.configuration.actionCheckCmd = {}
+      cmd.configuration.actionCheckCmd = document.querySelectorAll('#div_actionCheckCmd .actionCheckCmd').getJeeValues('.expressionAttr')
+      cmd.configuration.jeedomPreExecCmd = document.querySelectorAll('#div_actionPreExecCmd .actionPreExecCmd').getJeeValues('.expressionAttr')
+      cmd.configuration.jeedomPostExecCmd = document.querySelectorAll('#div_actionPostExecCmd .actionPostExecCmd').getJeeValues('.expressionAttr')
+      jeedom.cmd.save({
+        cmd: cmd,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function() {
+          modifyWithoutSave = false
+          jeedomUtils.showAlert({
+            attachTo: event.ctrlKey ? null : jeeDialog.get('#div_displayCmdConfigure', 'content'),
+            message: '{{Sauvegarde réussie}}',
+            level: 'success'
+          })
+          jeeFrontEnd.md_displayCmdConfigure.synchModalToCmd()
+          jeeFrontEnd.md_displayCmdConfigure.syncModalToScenario()
+          if (event.ctrlKey) {
+            setTimeout(function() {
+              jeeDialog.get('#jee_modal').close()
+            }, 200)
+          }
+        }
+      })
+    },
   }
-  document.getElementById('div_displayCmdConfigure').setJeeValues(jeephp2js.md_cmdConfigure_cmdInfo, '.cmdAttr')
+}
 
-  $('#bt_cmdConfigureRawObject').off('click').on('click', function() {
-    jeeDialog.dialog({
-      id: 'jee_modal3',
-      title: "{{Informations}}",
-      contentUrl: 'index.php?v=d&modal=object.display&class=cmd&id=' + jeephp2js.md_cmdConfigure_cmdInfo.id
+(function() {// Self Isolation!
+  var jeeM = jeeFrontEnd.md_displayCmdConfigure
+  jeeM.init()
+
+
+  //Manage events outside parents delegations:
+  document.getElementById('bt_cmdConfigureTest')?.addEventListener('click', function(event) {
+    jeedom.cmd.test({
+      id: jeephp2js.md_cmdConfigure_cmdInfo.id,
+      alert: '#md_displayCmdConfigure'
     })
   })
 
-  $('#bt_cmdConfigureGraph').on('click', function() {
+  document.getElementById('bt_cmdConfigureGraph')?.addEventListener('click', function(event) {
     jeeDialog.dialog({
       id: 'jee_modal3',
       title: "{{Graphique des liens}}",
@@ -993,136 +1162,198 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     })
   })
 
-  $('#bt_influxDelete').off('click').on('click', function() {
-    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\'InfluxDB}}', function(result) {
-      if (result) {
-        jeedom.cmd.dropInflux({
-          cmd_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
-          error: function(error) {
-            $('#md_displayCmdConfigure').showAlert({
-              message: error.message,
-              level: 'danger'
-            })
-          },
-          success: function(data) {
-            $('#md_displayCmdConfigure').showAlert({
-              message: '{{Action envoyée avec succés}}',
-              level: 'success'
-            })
-          }
-        })
-      }
+  document.getElementById('bt_cmdConfigureRawObject')?.addEventListener('click', function(event) {
+    jeeDialog.dialog({
+      id: 'jee_modal3',
+      title: "{{Informations}}",
+      contentUrl: 'index.php?v=d&modal=object.display&class=cmd&id=' + jeephp2js.md_cmdConfigure_cmdInfo.id
     })
   })
 
-  $('#bt_influxHistory').off('click').on('click', function() {
-    jeeDialog.confirm('{{Êtes-vous sûr de vouloir envoyer tout l\'historique de cette commande à InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute.}}', function(result) {
-      if (result) {
-        jeedom.cmd.historyInflux({
-          cmd_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
-          error: function(error) {
-            $('#md_displayCmdConfigure').showAlert({
-              message: error.message,
-              level: 'danger'
-            })
-          },
-          success: function(data) {
-            $('#md_displayCmdConfigure').showAlert({
-              message: '{{Programmation envoyée avec succés}}',
-              level: 'success'
-            })
-          }
-        })
-      }
-    })
+  document.getElementById('bt_cmdConfigureSave')?.addEventListener('click', function(event) {
+    jeeFrontEnd.md_displayCmdConfigure.cmdSave(event)
   })
 
-  $('#bt_cmdConfigureCopyHistory').off('click').on('click', function() {
-    jeedom.cmd.getSelectModal({
-      cmd: {
-        type: 'info',
-        subType: jeephp2js.md_cmdConfigure_cmdInfo.subType
-      }
-    }, function(result) {
-      var target_id = result.cmd.id
-      var name = result.human
-      jeeDialog.confirm('{{Êtes-vous sûr de vouloir copier l\'historique de}} <strong>' + jeephp2js.md_cmdConfigure_cmdInfo.name + '</strong> {{vers}} <strong>' + name + '</strong> ? {{Il est conseillé de vider l\'historique de la commande}} : <strong>' + name + '</strong> {{avant la copie}}', function(result) {
+  document.getElementById('cmdConfigureTab')?.addEventListener('click', function(event) {
+    setTimeout(function() {
+      jeedomUtils.taAutosize()
+    }, 100)
+  })
+
+  /*Events delegations
+  */
+  //cmd_information
+  document.getElementById('cmd_information')?.addEventListener('click', function(event) {
+    var _target = null
+    if (_target = event.target.closest('#bt_cmdConfigureChooseIcon')) {
+      var displayIconParent = _target.closest('.displayIconParent')
+      jeedomUtils.chooseIcon(function(_icon) {
+        displayIconParent.querySelector('.cmdAttr[data-l1key="display"][data-l2key="icon"]').empty().innerHTML = _icon
+      })
+      return
+    }
+
+    if (_target = event.target.closest('#bt_influxDelete')) {
+      jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\'InfluxDB}}', function(result) {
         if (result) {
-          jeedom.history.copyHistoryToCmd({
-            source_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
-            target_id: target_id,
+          jeedom.cmd.dropInflux({
+            cmd_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
             error: function(error) {
-              $('#md_displayCmdConfigure').showAlert({
+              jeedomUtils.showAlert({
                 message: error.message,
                 level: 'danger'
               })
             },
             success: function(data) {
-              $('#md_displayCmdConfigure').showAlert({
-                message: '{{Historique copié avec succès}}',
+              jeedomUtils.showAlert({
+                message: '{{Action envoyée avec succés}}',
                 level: 'success'
               })
             }
           })
         }
       })
-    })
-  })
+      return
+    }
 
-  $('#bt_cmdConfigureReplaceMeBy').off('click').on('click', function() {
-    jeedom.cmd.getSelectModal({
-      cmd: {
-        type: jeephp2js.md_cmdConfigure_cmdInfo.type,
-        subType: jeephp2js.md_cmdConfigure_cmdInfo.subType
-      }
-    }, function(result) {
-      var target_id = result.cmd.id
-      var name = result.human
-      jeeDialog.confirm('{{Êtes-vous sûr de vouloir remplacer}} <strong>' + jeephp2js.md_cmdConfigure_cmdInfoString + '</strong> {{par}} : <br/><strong>' + name + '</strong> ?', function(result) {
+    if (_target = event.target.closest('#bt_influxHistory')) {
+      jeeDialog.confirm('{{Êtes-vous sûr de vouloir envoyer tout l\'historique de cette commande à InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute.}}', function(result) {
         if (result) {
-          jeedom.cmd.replaceCmd({
-            source_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
-            target_id: target_id,
+          jeedom.cmd.historyInflux({
+            cmd_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
             error: function(error) {
-              $('#md_displayCmdConfigure').showAlert({
+              jeedomUtils.showAlert({
                 message: error.message,
                 level: 'danger'
               })
             },
             success: function(data) {
-              $('#md_displayCmdConfigure').showAlert({
-                message: '{{Remplacement réalisé avec succès}}',
+              jeedomUtils.showAlert({
+                message: '{{Programmation envoyée avec succés}}',
                 level: 'success'
               })
             }
           })
         }
       })
-    })
-  })
+      return
+    }
 
-  $('#bt_cmdConfigureReplaceByMe').off('click').on('click', function() {
-    jeedom.cmd.getSelectModal({
-      cmd: {
-        type: jeephp2js.md_cmdConfigure_cmdInfo.type,
-        subType: jeephp2js.md_cmdConfigure_cmdInfo.subType
-      }
-    }, function(result) {
-      var target_id = result.cmd.id
-      var name = result.human
-      jeeDialog.confirm('{{Êtes-vous sûr de vouloir remplacer l\'ID}} <strong>' + name + '</strong> {{par}} : <br/><strong>' + jeephp2js.md_cmdConfigure_cmdInfoString + '</strong> ?', function(result) {
+    if (_target = event.target.closest('#bt_cmdConfigureCopyHistory')) {
+      jeedom.cmd.getSelectModal({
+        cmd: {
+          type: 'info',
+          subType: jeephp2js.md_cmdConfigure_cmdInfo.subType
+        }
+      }, function(result) {
+        var target_id = result.cmd.id
+        var name = result.human
+        jeeDialog.confirm('{{Êtes-vous sûr de vouloir copier l\'historique de}} <strong>' + jeephp2js.md_cmdConfigure_cmdInfo.name + '</strong> {{vers}} <strong>' + name + '</strong> ? {{Il est conseillé de vider l\'historique de la commande}} : <strong>' + name + '</strong> {{avant la copie}}', function(result) {
+          if (result) {
+            jeedom.history.copyHistoryToCmd({
+              source_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
+              target_id: target_id,
+              error: function(error) {
+                jeedomUtils.showAlert({
+                  message: error.message,
+                  level: 'danger'
+                })
+              },
+              success: function(data) {
+                jeedomUtils.showAlert({
+                  message: '{{Historique copié avec succès}}',
+                  level: 'success'
+                })
+              }
+            })
+          }
+        })
+      })
+      return
+    }
+
+    if (_target = event.target.closest('#bt_cmdConfigureReplaceMeBy')) {
+      jeedom.cmd.getSelectModal({
+        cmd: {
+          type: jeephp2js.md_cmdConfigure_cmdInfo.type,
+          subType: jeephp2js.md_cmdConfigure_cmdInfo.subType
+        }
+      }, function(result) {
+        var target_id = result.cmd.id
+        var name = result.human
+        jeeDialog.confirm('{{Êtes-vous sûr de vouloir remplacer}} <strong>' + jeephp2js.md_cmdConfigure_cmdInfoString + '</strong> {{par}} : <br/><strong>' + name + '</strong> ?', function(result) {
+          if (result) {
+            jeedom.cmd.replaceCmd({
+              source_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
+              target_id: target_id,
+              error: function(error) {
+                jeedomUtils.showAlert({
+                  message: error.message,
+                  level: 'danger'
+                })
+              },
+              success: function(data) {
+                jeedomUtils.showAlert({
+                  message: '{{Remplacement réalisé avec succès}}',
+                  level: 'success'
+                })
+              }
+            })
+          }
+        })
+      })
+      return
+    }
+
+    if (_target = event.target.closest('#bt_cmdConfigureReplaceByMe')) {
+      jeedom.cmd.getSelectModal({
+        cmd: {
+          type: jeephp2js.md_cmdConfigure_cmdInfo.type,
+          subType: jeephp2js.md_cmdConfigure_cmdInfo.subType
+        }
+      }, function(result) {
+        var target_id = result.cmd.id
+        var name = result.human
+        jeeDialog.confirm('{{Êtes-vous sûr de vouloir remplacer l\'ID}} <strong>' + name + '</strong> {{par}} : <br/><strong>' + jeephp2js.md_cmdConfigure_cmdInfoString + '</strong> ?', function(result) {
+          if (result) {
+            jeedom.cmd.replaceCmd({
+              source_id: target_id,
+              target_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
+              error: function(error) {
+                jeedomUtils.showAlert({
+                  message: error.message,
+                  level: 'danger'
+                })
+              },
+              success: function(data) {
+                jeedomUtils.showAlert({
+                  message: '{{Remplacement réalisé avec succès}}',
+                  level: 'success'
+                })
+              }
+            })
+          }
+        })
+      })
+      return
+    }
+
+    if (_target = event.target.closest('#bt_cmdConfigureReplaceIdByMe')) {
+      var target_id = prompt("{{ID de commande à remplacer ?}}")
+      if (target_id == null) return
+      jeeDialog.confirm('{{Êtes-vous sûr de vouloir remplacer la commande}} id : <strong>' + target_id + '</strong> {{par}} : <br/><strong>' + jeephp2js.md_cmdConfigure_cmdInfoString + '</strong> ?', function(result) {
         if (result) {
           jeedom.cmd.replaceCmd({
             source_id: target_id,
             target_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
             error: function(error) {
-              $('#md_displayCmdConfigure').showAlert({
+              jeedomUtils.showAlert({
                 message: error.message,
                 level: 'danger'
               })
             },
             success: function(data) {
-              $('#md_displayCmdConfigure').showAlert({
+              jeedomUtils.showAlert({
                 message: '{{Remplacement réalisé avec succès}}',
                 level: 'success'
               })
@@ -1130,125 +1361,60 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           })
         }
       })
-    })
-  })
-
-  $('#bt_cmdConfigureReplaceIdByMe').off('click').on('click', function() {
-    var target_id = prompt("{{ID de commande à remplacer ?}}")
-    if (target_id == null) {
       return
     }
-    jeeDialog.confirm('{{Êtes-vous sûr de vouloir remplacer la commande}} id : <strong>' + target_id + '</strong> {{par}} : <br/><strong>' + jeephp2js.md_cmdConfigure_cmdInfoString + '</strong> ?', function(result) {
-      if (result) {
-        jeedom.cmd.replaceCmd({
-          source_id: target_id,
-          target_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
-          error: function(error) {
-            $('#md_displayCmdConfigure').showAlert({
-              message: error.message,
-              level: 'danger'
-            })
-          },
-          success: function(data) {
-            $('#md_displayCmdConfigure').showAlert({
-              message: '{{Remplacement réalisé avec succès}}',
-              level: 'success'
-            })
-          }
-        })
+
+    if (_target = event.target.closest('#bt_cmdConfigureShowHistory')) {
+      jeeDialog.dialog({
+        id: 'md_cmdHistory',
+        title: "{{Historique}}",
+        contentUrl: 'index.php?v=d&modal=cmd.history&id=' + jeephp2js.md_cmdConfigure_cmdInfo.id
+      })
+      return
+    }
+  })
+
+  document.getElementById('cmd_information')?.addEventListener('dblclick', function(event) {
+    var _target = null
+    if (_target = event.target.closest('.cmdAttr[data-l1key="display"][data-l2key="icon"]')) {
+      _target.innerHTML = ''
+      return
+    }
+  })
+
+  document.getElementById('cmd_information')?.addEventListener('change', function(event) {
+    var _target = null
+    if (_target = event.target.closest('.cmdAttr[data-l2key="timeline::enable"]')) {
+      if (this.jeeValue() == 1) {
+        document.querySelectorAll('.cmdAttr[data-l2key="timeline::folder"]').seen()
+      } else {
+        document.querySelectorAll('.cmdAttr[data-l2key="timeline::folder"]').unseen()
       }
-    })
+      return
+    }
+
+    if (_target = event.target.closest('.cmdAttr[data-l2key="influx::enable"]')) {
+      if (_target.jeeValue() == 1) {
+        document.querySelectorAll('.selInflux').seen()
+      } else {
+        document.querySelectorAll('.selInflux').unseen()
+      }
+      return
+    }
   })
 
 
-  if (isset(jeephp2js.md_cmdConfigure_cmdInfo.configuration.actionCheckCmd) && Array.isArray(jeephp2js.md_cmdConfigure_cmdInfo.configuration.actionCheckCmd) && jeephp2js.md_cmdConfigure_cmdInfo.configuration.actionCheckCmd.length != null) {
-    for (var i in jeephp2js.md_cmdConfigure_cmdInfo.configuration.actionCheckCmd) {
-      addActionCmd(jeephp2js.md_cmdConfigure_cmdInfo.configuration.actionCheckCmd[i], 'actionCheckCmd', '{{Action}}')
+  //cmd_configuration
+  document.getElementById('cmd_configuration')?.addEventListener('click', function(event) {
+    var _target = null
+    if (_target = event.target.closest('.bt_removeAction')) {
+      _target.closest('.' + _target.getAttribute('data-type')).remove()
+      return
     }
-  }
 
-  if (isset(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPreExecCmd) && Array.isArray(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPreExecCmd) && jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPreExecCmd.length != null) {
-    for (var i in jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPreExecCmd) {
-      addActionCmd(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPreExecCmd[i], 'actionPreExecCmd', '{{Action}}')
-    }
-  }
-
-  if (isset(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPostExecCmd) && Array.isArray(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPostExecCmd) && jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPostExecCmd.length != null) {
-    for (var i in jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPostExecCmd) {
-      addActionCmd(jeephp2js.md_cmdConfigure_cmdInfo.configuration.jeedomPostExecCmd[i], 'actionPostExecCmd', '{{Action}}')
-    }
-  }
-  jeedomUtils.taAutosize()
-
-  $('#bt_cmdConfigureSave').on('click', function(event) {
-    var cmd = document.getElementById('div_displayCmdConfigure').getJeeValues('.cmdAttr')[0]
-    if (!isset(cmd.display)) {
-      cmd.display = {}
-    }
-    if (!isset(cmd.display.parameters)) {
-      cmd.display.parameters = {}
-    }
-    $('#table_widgetParametersCmd tbody tr').each(function() {
-      cmd.display.parameters[this.querySelector('.key').jeeValue()] = this.querySelector('.value').jeeValue()
-    })
-    try {var checkCmdParameter = document.getElementById('div_jeedomCheckCmdCmdOption').getJeeValues('.expressionAttr')[0]} catch(e) {}
-    if (isset(checkCmdParameter) && isset(checkCmdParameter.options)) {
-      cmd.configuration.jeedomCheckCmdCmdActionOption = checkCmdParameter.options
-    }
-    cmd.configuration.actionCheckCmd = {};
-    cmd.configuration.actionCheckCmd = document.querySelectorAll('#div_actionCheckCmd .actionCheckCmd').getJeeValues('.expressionAttr')
-    cmd.configuration.jeedomPreExecCmd = document.querySelectorAll('#div_actionPreExecCmd .actionPreExecCmd').getJeeValues('.expressionAttr')
-    cmd.configuration.jeedomPostExecCmd = document.querySelectorAll('#div_actionPostExecCmd .actionPostExecCmd').getJeeValues('.expressionAttr')
-    jeedom.cmd.save({
-      cmd: cmd,
-      error: function(error) {
-        $('#md_displayCmdConfigure').showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function() {
-        modifyWithoutSave = false
-        $('#md_displayCmdConfigure').showAlert({
-          message: '{{Sauvegarde réussie}}',
-          level: 'success'
-        })
-        synchModalToCmd()
-        syncModalToScenario()
-        if (event.ctrlKey) {
-          setTimeout(function() {
-            jeeDialog.get('#jee_modal').close()
-          }, 500)
-        }
-      }
-    })
-  })
-
-  function synchModalToCmd() {
-    var cmdId = $('#div_displayCmdConfigure .cmdAttr[data-l1key="id"]').text()
-    var $cmdTr = $('#div_pageContainer tr[data-cmd_id="' + cmdId + '"]')
-    if ($cmdTr) {
-      $cmdTr.find('input.cmdAttr[data-l1key="isVisible"]').prop('checked', $('#div_displayCmdConfigure input.cmdAttr[data-l1key="isVisible"').prop('checked'))
-      $cmdTr.find('.cmdAttr[data-l1key=display][data-l2key=icon]').html($('#div_displayCmdConfigure .cmdAttr[data-l1key=display][data-l2key=icon]').html())
-    }
-  }
-
-  function syncModalToScenario() {
-    if (getUrlVars('p') != 'scenario') return
-    jeeFrontEnd.scenario.updateDefinedActions(true)
-  }
-
-  $('#cmd_configuration').on({
-    'click': function(event) {
-      var type = $(this).attr('data-type')
-      $(this).closest('.' + type).remove()
-    }
-  }, '.bt_removeAction')
-
-  $('#cmd_configuration').on({
-    'click': function(event) {
-      var type = this.getAttribute('data-type')
-      var el = this.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
+    if (_target = event.target.closest('.listCmd')) {
+      var type = _target.getAttribute('data-type')
+      var el = _target.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
       jeedom.cmd.getSelectModal({
         cmd: {
           type: 'action'
@@ -1256,190 +1422,89 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
       }, function(result) {
         el.jeeValue(result.human)
         jeedom.cmd.displayActionOption(result.human, '', function(html) {
-          $(el).closest('.' + type).find('.actionOptions').html(html)
+          el.closest('.' + type).querySelector('.actionOptions').html(html)
           jeedomUtils.taAutosize()
         })
       })
+      return
     }
-  }, '.listCmd')
 
-  $('#cmd_configuration').on({
-    'click': function(event) {
-      var type = this.getAttribute('data-type')
-      var el = this.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
+    if (_target = event.target.closest('.listAction')) {
+      var type = _target.getAttribute('data-type')
+      var el = _target.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
       jeedom.getSelectActionModal({}, function(result) {
         el.jeeValue(result.human)
         jeedom.cmd.displayActionOption(result.human, '', function(html) {
-          $(el).closest('.' + type).find('.actionOptions').html(html)
+          el.closest('.' + type).querySelector('.actionOptions').html(html)
           jeedomUtils.taAutosize()
         })
       })
+      return
     }
-  }, '.listAction')
+  })
 
-  $('#cmd_configuration').on({
-    'focusout': function(event) {
-      var type = this.getAttribute('data-type')
-      var expression = this.closest('.' + type).getJeeValues('.expressionAttr')
+  document.getElementById('cmd_configuration')?.addEventListener('focusout', function(event) {
+    var _target = null
+    if (_target = event.target.closest('.cmdAction.expressionAttr[data-l1key="cmd"]')) {
+      var type = _target.getAttribute('data-type')
+      var expression = _target.closest('.' + type).getJeeValues('.expressionAttr')
       var el = this
-      jeedom.cmd.displayActionOption(this.jeeValue(), init(expression[0].options), function(html) {
-        $(el).closest('.' + type).find('.actionOptions').html(html)
+      jeedom.cmd.displayActionOption(_target.jeeValue(), init(expression[0].options), function(html) {
+        _target.closest('.' + type).querySelector('.actionOptions').html(html)
         jeedomUtils.taAutosize()
       })
+      return
     }
-  }, '.cmdAction.expressionAttr[data-l1key="cmd"]')
-
-  function addActionCmd(_action, _type, _name) {
-    if (!isset(_action)) {
-      _action = {}
-    }
-    if (!isset(_action.options)) {
-      _action.options = {}
-    }
-    var div = '<div class="expression ' + _type + '">'
-    div += '<input class="expressionAttr" data-l1key="type" style="display : none;" value="action">'
-    div += '<div class="form-group ">'
-    div += '<div class="col-sm-1">'
-    div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'action}}" />'
-    div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}" />'
-    div += '</div>'
-    div += '<div class="col-sm-4">'
-    div += '<div class="input-group">'
-    div += '<span class="input-group-btn">'
-    div += '<a class="btn btn-default btn-sm bt_removeAction roundedLeft" data-type="' + _type + '"><i class="fas fa-minus-circle"></i></a>'
-    div += '</span>'
-    div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" data-type="' + _type + '" />'
-    div += '<span class="input-group-btn">'
-    div += '<a class="btn  btn-default btn-sm listAction" data-type="' + _type + '" title="{{Sélectionner un mot-clé}}"><i class="fa fa-tasks"></i></a>'
-    div += '<a class="btn btn-default btn-sm listCmd roundedRight" data-type="' + _type + '"><i class="fas fa-list-alt"></i></a>'
-    div += '</span>'
-    div += '</div>'
-    div += '</div>'
-    div += '<div class="col-sm-7 actionOptions">'
-    div += jeedom.cmd.displayActionOption(init(_action.cmd, ''), _action.options)
-    div += '</div>'
-
-    let newDiv = document.createElement('div')
-    newDiv.html(div)
-    newDiv.setJeeValues(_action, '.expressionAttr')
-    document.querySelector('#div_' + _type).appendChild(newDiv)
-    newDiv.replaceWith(...newDiv.childNodes)
-
-    jeedom.scenario.setAutoComplete({
-      parent: $('#div_' + _type),
-      type: 'cmd'
-    })
-  }
-
-  $('#bt_cmdConfigureSaveOn').on('click', function() {
-    var cmd = document.getElementById('div_displayCmdConfigure').getJeeValues('.cmdAttr')[0]
-    if (!isset(cmd.display)) {
-      cmd.display = {}
-    }
-    if (!isset(cmd.display.parameters)) {
-      cmd.display.parameters = {}
-    }
-    $('#table_widgetParametersCmd tbody tr').each(function() {
-      cmd.display.parameters[this.querySelector('.key').jeeValue()] = this.querySelector('.value').jeeValue()
-    })
-    cmd = {
-      display: cmd.display,
-      template: cmd.template
-    }
-    jeeDialog.dialog({
-      id: 'md_cmdConfigureSelectMultiple',
-      title: "{{Sélection multiple de commandes}}",
-      width: (window.innerWidth - 150) < 1200 ? (window.innerWidth - 50) : 1200,
-      height: (window.innerHeight - 150),
-      zIndex: 1030,
-      contentUrl: 'index.php?v=d&modal=cmd.selectMultiple&cmd_id=' + jeephp2js.md_cmdConfigure_cmdInfo.id,
-      callback: function() {
-        jeedomUtils.initTableSorter()
-        $('#bt_cmdConfigureSelectMultipleAlertToogle').off('click').on('click', function() {
-          var state = false
-          if (this.getAttribute('data-state') == 0) {
-            state = true
-            this.setAttribute('data-state', 1)
-            this.querySelector('i').classList = 'far fa-check-circle'
-            document.querySelectorAll('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd').forEach( (element) => {
-              if (element.isVisible()) element.jeeValue(1)
-            })
-          } else {
-            state = false
-            this.setAttribute('data-state', 0)
-            this.querySelector('i').classList = 'far fa-circle'
-            document.querySelectorAll('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd').forEach( (element) => {
-              if (element.isVisible()) element.jeeValue(0)
-            })
-          }
-        })
-
-        $('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function() {
-          $('#table_cmdConfigureSelectMultiple tbody tr').each(function() {
-            if ($(this).find('.selectMultipleApplyCmd').prop('checked')) {
-              cmd.id = $(this).attr('data-cmd_id')
-              jeedom.cmd.save({
-                cmd: cmd,
-                error: function(error) {
-                  jeedomUtils.showAlert({
-                    message: error.message,
-                    level: 'danger'
-                  })
-                },
-                success: function() {}
-              })
-            }
-          })
-          jeedomUtils.showAlert({
-            message: "{{Modification(s) appliquée(s) avec succès}}",
-            level: 'success'
-          })
-        })
-      },
-    })
   })
 
-  $('#bt_cmdConfigureChooseIcon').on('click', function() {
-    var iconeGeneric = $(this).closest('.iconeGeneric')
-    jeedomUtils.chooseIcon(function(_icon) {
-      iconeGeneric.find('.cmdAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon)
-    })
-  })
-
-  $('#cmd_information').on({
-    'dblclick': function(event) {
-      $(this).empty()
+  //cmd_alert
+  /*
+  document.getElementById('cmd_alert')?.addEventListener('click', function(event) {
+    var _target = null
+    if (_target = event.target.closest('#nothing')) {
+      return
     }
-  }, '.cmdAttr[data-l1key=display][data-l2key=icon]')
+  })
+  */
 
-  $('#bt_cmdConfigureLogRealTime').off('click').on('click', function() {
-    jeeDialog.dialog({
-      id: 'jee_modal3',
-      title: "{{Logs}}",
-      contentUrl: 'index.php?v=d&modal=log.display&log=event&search=' + jeephp2js.md_cmdConfigure_cmdInfoSearchString
-    })
+  //cmd_display
+  document.getElementById('cmd_display')?.addEventListener('click', function(event) {
+    var _target = null
+    if (_target = event.target.closest('#bt_addWidgetParametersCmd')) {
+      var tr = '<tr>'
+      tr += '<td>'
+      tr += '<input class="form-control key" />'
+      tr += '</td>'
+      tr += '<td>'
+      tr += '<input class="form-control value" />'
+      tr += '</td>'
+      tr += '<td>'
+      tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i> Supprimer</a>'
+      tr += '</td>'
+      tr += '</tr>'
+      document.getElementById('table_widgetParametersCmd').tBodies[0].insertAdjacentHTML('beforeend', tr)
+      return
+    }
+
+    if (_target = event.target.closest('.removeWidgetParameter')) {
+      _target.closest('tr').remove()
+      return
+    }
+
+    if (_target = event.target.closest('#bt_cmdConfigureApplyTo')) {
+      jeeFrontEnd.md_displayCmdConfigure.applySelectMultiple()
+      return
+    }
   })
 
-  $('#bt_cmdConfigureShowHistory').off('click').on('click', function() {
-    jeeDialog.dialog({
-      id: 'md_cmdHistory',
-      title: "{{Historique}}",
-      contentUrl: 'index.php?v=d&modal=cmd.history&id=' + jeephp2js.md_cmdConfigure_cmdInfo.id
-    })
+  document.getElementById('cmd_display')?.addEventListener('change', function(event) {
+    var _target = null
+    if (_target = event.target.closest('select[data-l1key="template"][data-l2key="dashboard"]')) {
+      jeeFrontEnd.md_displayCmdConfigure.displayWidgetHelp(_target.value)
+      return
+    }
   })
 
-  $('#bt_cmdConfigureTest').off('click').on('click', function() {
-    jeedom.cmd.test({
-      id: jeephp2js.md_cmdConfigure_cmdInfo.id,
-      alert: '#md_displayCmdConfigure'
-    })
-  })
-
-  $('.cmdConfigure_cmdValue').each(function() {
-    jeedom.cmd.addUpdateFunction($(this).attr('data-cmd_id'), function(_options) {
-      let cmd = $('.cmdConfigure_cmdValue[data-cmd_id=' + _options.cmd_id + ']')
-      cmd.attr('title', '{{Date de collecte}} : ' + _options.collectDate)
-      cmd.empty().append(_options.display_value + ' ' + _options.unit + ' {{le}} ' + _options.valueDate);
-    });
-  })
+  jeeM.postInit()
+})()
 </script>

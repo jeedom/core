@@ -1,4 +1,5 @@
-<div class="input-group input-group-sm" style="width: 100%">
+<div data-template="genericType">
+  <div class="input-group input-group-sm" style="width: 100%">
   <span class="input-group-addon roundedLeft" style="width: 100px">{{Type}}</span>
   <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="type" placeholder="{{Type}}" value="#type#" data-uid="#uid#"/>
   <span class="input-group-btn">
@@ -10,15 +11,15 @@
   <select class="expressionAttr form-control input-sm roundedRight" data-l1key="options" data-l2key="object" data-cmd_id="#id#" data-uid="#uid#">
     
   </select>
+  </div>
+  <div class="input-group input-group-sm" style="width: 100%">
+    <span class="input-group-addon" style="width: 100px">{{Valeur}}</span>
+    <input class="expressionAttr form-control input-sm autoCompleteCondition" data-l1key="options" data-l2key="value" placeholder="{{Valeur}}" value="#value#" data-uid="#uid#"/>
+    <span class="input-group-btn">
+      <button class="btn btn-default listCmdInfo roundedRight" type="button" tooltip="{{Sélectionner la commande}}" data-uid="#uid#"><i class="fas fa-list-alt"></i></button>
+    </span>
+  </div>
 </div>
-<div class="input-group input-group-sm" style="width: 100%">
-  <span class="input-group-addon" style="width: 100px">{{Valeur}}</span>
-  <input class="expressionAttr form-control input-sm autoCompleteCondition" data-l1key="options" data-l2key="value" placeholder="{{Valeur}}" value="#value#" data-uid="#uid#"/>
-  <span class="input-group-btn">
-    <button class="btn btn-default listCmdInfo roundedRight" type="button" tooltip="{{Sélectionner la commande}}" data-uid="#uid#"><i class="fas fa-list-alt"></i></button>
-  </span>
-</div>
-
 <script>
   jeedom.object.getUISelectList({
       none: 0,

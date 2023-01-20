@@ -815,6 +815,12 @@
         "Paramètres optionnels widget": "オプションの設定ウィジェット",
         "Configuration commande": "Configuration commande",
         "Pas de description des paramètres optionnels sur ce Widget.": "Pas de description des paramètres optionnels sur ce Widget",
+        "Décocher pour désactiver l\\'action": "\\アクションを無効にするにはチェックを外し",
+        "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "コマンド\\「sが並列他のアクションで実行しているかどうかを確認",
+        "Sélectionner un mot-clé": "キーワードを選択",
+        "Sélection multiple de commandes": "複数のコントロールを選択します",
+        "Modification(s) appliquée(s) avec succès": "変更（複数可）に成功（S）を適用しました",
+        "Sauvegarde réussie": "成功したバックアップ",
         "Graphique des liens": "グラフィックリンク",
         "Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\\'InfluxDB": "Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\\'InfluxDB",
         "Action envoyée avec succés": "Action envoyée avec succés",
@@ -830,14 +836,7 @@
         "Remplacement réalisé avec succès": "首尾よく交換",
         "Êtes-vous sûr de vouloir remplacer l\\'ID": "IDを置き換えてもよろしいですか",
         "ID de commande à remplacer ?": "交換するためのID？",
-        "Êtes-vous sûr de vouloir remplacer la commande": "Êtes-vous sûr de vouloir remplacer la commande",
-        "Sauvegarde réussie": "成功したバックアップ",
-        "Décocher pour désactiver l\\'action": "\\アクションを無効にするにはチェックを外し",
-        "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "コマンド\\「sが並列他のアクションで実行しているかどうかを確認",
-        "Sélectionner un mot-clé": "キーワードを選択",
-        "Sélection multiple de commandes": "複数のコントロールを選択します",
-        "Modification(s) appliquée(s) avec succès": "変更（複数可）に成功（S）を適用しました",
-        "Logs": "ログ"
+        "Êtes-vous sûr de vouloir remplacer la commande": "Êtes-vous sûr de vouloir remplacer la commande"
     },
     "desktop\/modal\/log.display.php": {
         "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel.": "ログレベル（イベント）はinfoよりも低いため、リアルタイムで表示することはできません。",

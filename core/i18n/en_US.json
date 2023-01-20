@@ -815,6 +815,12 @@
         "Paramètres optionnels widget": "Optional widget parameters",
         "Configuration commande": "Command configuration",
         "Pas de description des paramètres optionnels sur ce Widget.": "No description of the optional parameters on this Widget",
+        "Décocher pour désactiver l\\'action": "Uncheck to disable the action",
+        "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Check for the command to run in parallel with the other actions",
+        "Sélectionner un mot-clé": "Select a keyword",
+        "Sélection multiple de commandes": "Multiple command selection",
+        "Modification(s) appliquée(s) avec succès": "Change(s) successfully applied",
+        "Sauvegarde réussie": "Successfully saved",
         "Graphique des liens": "Links chart",
         "Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\\'InfluxDB": "Are you sure you want to remove all info for this command from InfluxDB",
         "Action envoyée avec succés": "Action sent successfully",
@@ -830,14 +836,7 @@
         "Remplacement réalisé avec succès": "Successfully replaced",
         "Êtes-vous sûr de vouloir remplacer l\\'ID": "Are you sure you want to replace the ID",
         "ID de commande à remplacer ?": "Command ID to replace?",
-        "Êtes-vous sûr de vouloir remplacer la commande": "Are you sure you want to replace the command",
-        "Sauvegarde réussie": "Successfully saved",
-        "Décocher pour désactiver l\\'action": "Uncheck to disable the action",
-        "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Check for the command to run in parallel with the other actions",
-        "Sélectionner un mot-clé": "Select a keyword",
-        "Sélection multiple de commandes": "Multiple command selection",
-        "Modification(s) appliquée(s) avec succès": "Change(s) successfully applied",
-        "Logs": "Logs"
+        "Êtes-vous sûr de vouloir remplacer la commande": "Are you sure you want to replace the command"
     },
     "desktop\/modal\/log.display.php": {
         "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel.": "Please note your log level (event) is lower than info, so you cannot see real time",

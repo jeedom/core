@@ -278,18 +278,23 @@ jeedom.init = function() {
 
 jeedom.getPageType = function(_modal) {
   if (isset(_modal) && _modal == true) {
-    var modal = Array.prototype.slice.call(document.querySelectorAll('.ui-dialog')).filter(item => item.isVisible())
-    if (modal.length > 0) {
-      var modalType = modal[0].querySelector('div[data-modalType]')?.getAttribute('data-modalType')
-      if (modalType != undefined) return modalType
+    let modalType = undefined
+    let modals = Array.prototype.slice.call(document.querySelectorAll('.jeeDialogMain')).filter(item => item.isVisible())
+    if (modals.length == 1) {
+      modalType = modals[0].querySelector('div[data-modalType]')?.getAttribute('data-modalType')
+    } else if (modals.length > 1) {
+      let prevMod = 0
+      modals.forEach(_mod => {
+        if (_mod.style.zIndex > prevMod) {
+          prevMod = _mod.style.zIndex
+          modalType = _mod.querySelector('div[data-modalType]')?.getAttribute('data-modalType')
+        }
+      })
     }
+    return modalType
   }
-  var dataPage = document.body.getAttribute('data-page')
-  if (dataPage == '') {
-    return 'unknown'
-  } else {
-    return dataPage
-  }
+
+  return document.body.getAttribute('data-page')
 }
 
 jeedom.MESSAGE_NUMBER
