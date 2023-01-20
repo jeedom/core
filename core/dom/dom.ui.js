@@ -1461,6 +1461,8 @@ var jeeDialog = (function()
               if (!_options.fullScreen) this.dialog.setAttribute('data-maximize', '0')
               setPosition(this.dialog, _options)
             }
+            document.querySelectorAll('div.jeeDialog.jeeDialogMain').removeClass('active')
+            this.dialog.addClass('active')
             this.dialog.seen()
           },
           hide: function() {
@@ -1472,6 +1474,7 @@ var jeeDialog = (function()
             this.dialog.querySelector('div.jeeDialogContent').empty()
             this.dialog.unseen()
             this.dialog._jeeDialog.options.onClose()
+            this.dialog.removeClass('active')
             cleanBackdrop()
           },
           destroy: function() {
@@ -1479,6 +1482,11 @@ var jeeDialog = (function()
             cleanBackdrop()
           }
         }
+
+        dialogContainer.addEventListener('mousedown', function(event) {
+          document.querySelectorAll('div.jeeDialog.jeeDialogMain').removeClass('active')
+          event.target.closest('div.jeeDialog.jeeDialogMain').addClass('active')
+        })
 
         //____Set Moveable
         var nextLeft, nextTop, initialLeft, initialTop

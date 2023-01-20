@@ -287,9 +287,13 @@ div.jeeDialog.jeeDialogMain[data-maximize="1"] {
   width: 100% !important;
   top: 50px !important;
   left:0 !important;
-  z-index: 1200 !important;
+  z-index: 1100 !important;
   max-height: unset;
   max-width: unset;
+}
+
+div.jeeDialog.jeeDialogMain.active {
+  z-index: 1110 !important;
 }
 
 #jeeMinimizeTray {
