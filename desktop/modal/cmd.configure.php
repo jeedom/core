@@ -1181,7 +1181,7 @@ if (!jeeFrontEnd.md_displayCmdConfigure) {
 
   /*Events delegations
   */
-  //cmd_information
+  //cmd information tab
   document.getElementById('cmd_information')?.addEventListener('click', function(event) {
     var _target = null
     if (_target = event.target.closest('#bt_cmdConfigureChooseIcon')) {
@@ -1403,7 +1403,7 @@ if (!jeeFrontEnd.md_displayCmdConfigure) {
   })
 
 
-  //cmd_configuration
+  //cmd configuration tab
   document.getElementById('cmd_configuration')?.addEventListener('click', function(event) {
     var _target = null
     if (_target = event.target.closest('.bt_removeAction')) {
@@ -1456,7 +1456,7 @@ if (!jeeFrontEnd.md_displayCmdConfigure) {
     }
   })
 
-  //cmd_alert
+  //cmd alert tab
   /*
   document.getElementById('cmd_alert')?.addEventListener('click', function(event) {
     var _target = null
@@ -1466,7 +1466,7 @@ if (!jeeFrontEnd.md_displayCmdConfigure) {
   })
   */
 
-  //cmd_display
+  //cmd display tab
   document.getElementById('cmd_display')?.addEventListener('click', function(event) {
     var _target = null
     if (_target = event.target.closest('#bt_addWidgetParametersCmd')) {
