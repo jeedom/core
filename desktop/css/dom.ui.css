@@ -132,7 +132,7 @@ div.jeeDialog.jeeDialogAlert,
 div.jeeDialog.jeeDialogConfirm,
 div.jeeDialog.jeeDialogPrompt {
   width: 600px;
-  z-index: 1030;
+  z-index: 1200;
 }
 div.jeeDialogTitle {
   min-height: 20px;
