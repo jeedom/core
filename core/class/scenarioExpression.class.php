@@ -1658,6 +1658,7 @@ class scenarioExpression {
 						$dataStore->setValue($value);
 						$dataStore->save();
 					}
+					event::add('scenario::ask', array('scenario_id' => $scenario->getId(), 'variable' => $options['variable'], 'value' => $value));
 					$this->setLog($scenario, __('Réponse', __FILE__) . ' ' . $value);
 					return;
 				} elseif ($this->getExpression() == 'jeedom_poweroff') {
