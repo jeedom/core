@@ -19,7 +19,7 @@ if (!isConnect()) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
-<table class="table table-condensed" id="table_mod_insertCmdValue_valueEqLogicToMessage">
+<table id="table_mod_insertCmdValue_valueEqLogicToMessage" class="table table-condensed">
   <thead>
     <tr>
       <th style="width: 150px;">{{Objet}}</th>

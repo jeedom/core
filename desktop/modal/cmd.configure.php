@@ -37,813 +37,812 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
 $cmd_widgetMobile = cmd::availableWidget('mobile');
 $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 ?>
+<div id="md_displayCmdConfigure" data-modalType="md_displayCmdConfigure">
+  <div class="input-group pull-right" style="display:inline-flex">
+    <span class="input-group-btn">
+      <a class="btn btn-default roundedLeft btn-sm" id="bt_cmdConfigureTest"><i class="fas fa-rss"></i> {{Tester}}
+      </a><a class="btn btn-default btn-sm" id="bt_cmdConfigureGraph"><i class="fas fa-object-group"></i> {{Liens}}
+      </a><a class="btn btn-default btn-sm" id="bt_cmdConfigureRawObject"><i class="fas fa-info"></i> {{Informations}}
+      </a><a class="btn btn-success btn-sm roundedRight" id="bt_cmdConfigureSave"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+    </span>
+  </div>
+  <div role="tabpanel">
+    <ul class="nav nav-tabs" role="tablist" id="cmdConfigureTab">
+      <li role="presentation" class="active"><a href="#cmd_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-info-circle"></i> {{Informations}}</a></li>
+      <li role="presentation"><a href="#cmd_configuration" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-wrench"></i> {{Configuration}}</a></li>
+      <?php if ($cmd->getType() == 'info') { ?>
+        <li role="presentation"><a href="#cmd_alert" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> {{Alertes}}</a></li>
+      <?php }
+      ?>
+      <?php if ($cmd->widgetPossibility('custom')) {
+      ?>
+        <li role="presentation"><a href="#cmd_display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-desktop"></i> {{Affichage}}</a></li>
+      <?php }
+      ?>
+    </ul>
 
-<div style="display: none;" id="md_displayCmdConfigure" data-modalType="md_displayCmdConfigure"></div>
-<div class="input-group pull-right" style="display:inline-flex">
-  <span class="input-group-btn">
-    <a class="btn btn-default roundedLeft btn-sm" id="bt_cmdConfigureTest"><i class="fas fa-rss"></i> {{Tester}}
-    </a><a class="btn btn-default btn-sm" id="bt_cmdConfigureGraph"><i class="fas fa-object-group"></i> {{Liens}}
-    </a><a class="btn btn-default btn-sm" id="bt_cmdConfigureRawObject"><i class="fas fa-info"></i> {{Informations}}
-    </a><a class="btn btn-success btn-sm roundedRight" id="bt_cmdConfigureSave"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
-  </span>
-</div>
-<div role="tabpanel">
-  <ul class="nav nav-tabs" role="tablist" id="cmdConfigureTab">
-    <li role="presentation" class="active"><a href="#cmd_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-info-circle"></i> {{Informations}}</a></li>
-    <li role="presentation"><a href="#cmd_configuration" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-wrench"></i> {{Configuration}}</a></li>
-    <?php if ($cmd->getType() == 'info') { ?>
-      <li role="presentation"><a href="#cmd_alert" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> {{Alertes}}</a></li>
-    <?php }
-    ?>
-    <?php if ($cmd->widgetPossibility('custom')) {
-    ?>
-      <li role="presentation"><a href="#cmd_display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-desktop"></i> {{Affichage}}</a></li>
-    <?php }
-    ?>
-  </ul>
+    <div class="tab-content" id="div_displayCmdConfigure" style="overflow-x:hidden">
 
-  <div class="tab-content" id="div_displayCmdConfigure" style="overflow-x:hidden">
-
-    <!--Information Tab -->
-    <div role="tabpanel" class="tab-pane active" id="cmd_information">
-      <br />
-      <div class="row">
-        <div class="col-sm-6">
-          <form class="form-horizontal">
-            <fieldset>
-              <legend><i class="fas fa-list-alt"></i> {{Général}}</legend>
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{ID}}</label>
-                <div class="col-xs-8">
-                  <span class="cmdAttr label label-primary" data-l1key="id"></span>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{Logical ID}}</label>
-                <div class="col-xs-8">
-                  <span class="cmdAttr label label-primary" data-l1key="logicalId"></span>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{Nom}}</label>
-                <div class="col-xs-8">
-                  <span class="cmdAttr label label-primary" data-l1key="name"></span>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{Type}}</label>
-                <div class="col-xs-8">
-                  <span class="cmdAttr label label-primary" data-l1key="type"></span>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{Sous-type}}</label>
-                <div class="col-xs-8">
-                  <span class="cmdAttr label label-primary" data-l1key="subType"></span>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{Commande mise à jour}}</label>
-                <div class="col-xs-8">
-                  <span class="cmdAttr" data-l1key="value"></span>
-                </div>
-              </div>
-              <?php if ($cmd->getType() == 'action' && $cmd->getSubtype() == 'select') {
-              ?>
+      <!--Information Tab -->
+      <div role="tabpanel" class="tab-pane active" id="cmd_information">
+        <br />
+        <div class="row">
+          <div class="col-sm-6">
+            <form class="form-horizontal">
+              <fieldset>
+                <legend><i class="fas fa-list-alt"></i> {{Général}}</legend>
                 <div class="form-group">
-                  <label class="col-xs-4 control-label">{{Valeurs possibles}}</label>
+                  <label class="col-xs-4 control-label">{{ID}}</label>
+                  <div class="col-xs-8">
+                    <span class="cmdAttr label label-primary" data-l1key="id"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Logical ID}}</label>
+                  <div class="col-xs-8">
+                    <span class="cmdAttr label label-primary" data-l1key="logicalId"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Nom}}</label>
+                  <div class="col-xs-8">
+                    <span class="cmdAttr label label-primary" data-l1key="name"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Type}}</label>
+                  <div class="col-xs-8">
+                    <span class="cmdAttr label label-primary" data-l1key="type"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Sous-type}}</label>
+                  <div class="col-xs-8">
+                    <span class="cmdAttr label label-primary" data-l1key="subType"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Commande mise à jour}}</label>
+                  <div class="col-xs-8">
+                    <span class="cmdAttr" data-l1key="value"></span>
+                  </div>
+                </div>
+                <?php if ($cmd->getType() == 'action' && $cmd->getSubtype() == 'select') {
+                ?>
+                  <div class="form-group">
+                    <label class="col-xs-4 control-label">{{Valeurs possibles}}</label>
+                    <div class="col-xs-8">
+                      <?php
+                      $elements = explode(';', $cmd->getConfiguration('listValue', ''));
+                      foreach ($elements as $element) {
+                        $coupleArray = explode('|', $element);
+                        echo $coupleArray[1] . ' => ' . $coupleArray[0] . '<br/>';
+                      }
+                      ?>
+                    </div>
+                  </div>
+                <?php } ?>
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Dernière exécution par}}</label>
+                  <div class="col-xs-8">
+                    <span class="cmdAttr label label-primary" data-l1key="cache" data-l2key="lastExecutionUser"></span>
+                  </div>
+                </div>
+                <?php if ($cmd->getType() == 'info') {
+                  $value = $cmd->execCmd();
+                ?>
+                  <div class="form-group">
+                    <label class="col-xs-4 control-label">{{Etat}}</label>
+                    <div class="col-xs-8">
+                      <?php
+                      if ($value !== '') {
+                      ?>
+                        <span class="label label-primary" style="max-width: 100%;"><?php echo '<span class="cmdConfigure_cmdValue" data-cmd_id="' . $cmd->getid() . '" title="{{Date de collecte}} : ' .  $cmd->getCollectDate() . '">' . $value . ' ' . $cmd->getUnite() . ' {{le}} ' . $cmd->getValueDate() . '<span>'; ?></span>
+                      <?php } else { ?>
+                        <span class="label label-primary" style="max-width: 100%;"><?php echo '<span class="cmdConfigure_cmdValue" data-cmd_id="' . $cmd->getid() . '">{{Inconnu}}<span>'; ?></span>
+                      <?php } ?>
+                    </div>
+                  </div>
+                <?php } ?>
+              </fieldset>
+            </form>
+          </div>
+          <div class="col-sm-6">
+            <form class="form-horizontal">
+              <fieldset>
+                <br />
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{URL directe}}</label>
                   <div class="col-xs-8">
                     <?php
-                    $elements = explode(';', $cmd->getConfiguration('listValue', ''));
-                    foreach ($elements as $element) {
-                      $coupleArray = explode('|', $element);
-                      echo $coupleArray[1] . ' => ' . $coupleArray[0] . '<br/>';
-                    }
+                    echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fas fa-external-link-alt"></i> URL</a>';
                     ?>
                   </div>
                 </div>
-              <?php } ?>
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{Dernière exécution par}}</label>
-                <div class="col-xs-8">
-                  <span class="cmdAttr label label-primary" data-l1key="cache" data-l2key="lastExecutionUser"></span>
-                </div>
-              </div>
-              <?php if ($cmd->getType() == 'info') {
-                $value = $cmd->execCmd();
-              ?>
                 <div class="form-group">
-                  <label class="col-xs-4 control-label">{{Etat}}</label>
-                  <div class="col-xs-8">
-                    <?php
-                    if ($value !== '') {
-                    ?>
-                      <span class="label label-primary" style="max-width: 100%;"><?php echo '<span class="cmdConfigure_cmdValue" data-cmd_id="' . $cmd->getid() . '" title="{{Date de collecte}} : ' .  $cmd->getCollectDate() . '">' . $value . ' ' . $cmd->getUnite() . ' {{le}} ' . $cmd->getValueDate() . '<span>'; ?></span>
-                    <?php } else { ?>
-                      <span class="label label-primary" style="max-width: 100%;"><?php echo '<span class="cmdConfigure_cmdValue" data-cmd_id="' . $cmd->getid() . '">{{Inconnu}}<span>'; ?></span>
-                    <?php } ?>
-                  </div>
-                </div>
-              <?php } ?>
-            </fieldset>
-          </form>
-        </div>
-        <div class="col-sm-6">
-          <form class="form-horizontal">
-            <fieldset>
-              <br />
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{URL directe}}</label>
-                <div class="col-xs-8">
-                  <?php
-                  echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fas fa-external-link-alt"></i> URL</a>';
-                  ?>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{Unité}}</label>
-                <div class="col-xs-4">
-                  <span class="cmdAttr label label-primary" data-l1key="unite"></span>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{Visible}}</label>
-                <div class="col-xs-4">
-                  <input type="checkbox" class="cmdAttr" data-l1key="isVisible" />
-                </div>
-              </div>
-              <?php if ($cmd->getType() == 'info' && $cmd->getSubtype() == 'numeric') { ?>
-                <div class="form-group">
-                  <label class="col-xs-4 control-label">{{Valeur minimum}}
-                    <sup><i class="fas fa-question-circle" title="{{défaut}} : 0"></i></sup>
-                  </label>
-                  <div class="col-xs-2">
-                    <input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="minValue" />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-xs-4 control-label">{{Valeur maximum}}
-                    <sup><i class="fas fa-question-circle" title="{{défaut}} : 100"></i></sup>
-                  </label>
-                  <div class="col-xs-2">
-                    <input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="maxValue" />
-                  </div>
-                </div>
-              <?php } ?>
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{Suivre dans la timeline}}</label>
-                <div class="col-xs-1">
-                  <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" />
-                </div>
-                <div class="col-xs-7">
-                  <input class="cmdAttr" data-l1key="configuration" data-l2key="timeline::folder" placeholder="{{Dossier}}" style="display:none;">
-                </div>
-              </div>
-              <?php if ($cmd->getType() == 'info') { ?>
-                <div class="form-group">
-                  <label class="col-xs-4 control-label">{{Envoyer à InfluxDB}}</label>
-                  <div class="col-xs-1">
-                    <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="influx::enable" />
-                  </div>
-                  <div class="col-xs-7"></div>
-                </div>
-                <div class="form-group selInflux" style="display:none;">
-                  <label class="col-xs-4 control-label">{{Nom personnalisé Commande}}</label>
-                  <div class="col-xs-8">
-                    <input class="cmdAttr" data-l1key="configuration" data-l2key="influx::namecmd" placeholder="{{Facultatif}}">
-                  </div>
-                </div>
-                <div class="form-group selInflux" style="display:none;">
-                  <label class="col-xs-4 control-label">{{Nom personnalisé Équipement}}</label>
-                  <div class="col-xs-8">
-                    <input class="cmdAttr" data-l1key="configuration" data-l2key="influx::nameEq" placeholder="{{Facultatif}}">
-                  </div>
-                </div>
-                <div class="form-group selInflux" style="display:none;">
-                  <label class="col-xs-4 control-label">{{Nom personnalisé Valeur}}</label>
-                  <div class="col-xs-8">
-                    <input class="cmdAttr" data-l1key="configuration" data-l2key="influx::nameVal" placeholder="{{Facultatif}}">
-                  </div>
-                </div>
-                <div class="form-group selInflux" style="display:none;">
-                  <label class="col-xs-4 control-label">{{Actions}}</label>
-                  <div class="col-xs-8">
-                    <a class="btn btn-default btn-sm" id="bt_influxDelete"><i class="fas fa-trash"></i> {{Supprimer}}</a>
-                    <a class="btn btn-default btn-sm" id="bt_influxHistory"><i class="fas fas fa-history"></i> {{Envoyer Historique}}</a>
-                  </div>
-                  <br /><br />
-                </div>
-              <?php } ?>
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{Interdire dans les interactions automatiques}}</label>
-                <div class="col-xs-4">
-                  <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="interact::auto::disable" />
-                </div>
-              </div>
-              <div class="displayIconParent form-group">
-                <label class="col-xs-4 control-label">{{Icône}}</label>
-                <div class="col-xs-4">
-                  <span class="cmdAttr label cursor" data-l1key="display" data-l2key="icon" style="font-size : 1.5em!important;"></span>
-                  <a class="btn btn-default btn-sm" id="bt_cmdConfigureChooseIcon"><i class="fas fa-icons"></i> {{Icône}}</a>
-                </div>
-              </div>
-              <?php if ($cmd->getIsHistorized() == 1) { ?>
-                <div class="form-group">
-                  <label class="col-xs-4 control-label">{{Historique}}</label>
+                  <label class="col-xs-4 control-label">{{Unité}}</label>
                   <div class="col-xs-4">
-                    <a class="btn btn-default btn-sm" id="bt_cmdConfigureShowHistory"><i class="fas fa-history"></i> {{Voir}}</a>
+                    <span class="cmdAttr label label-primary" data-l1key="unite"></span>
                   </div>
                 </div>
-              <?php } ?>
-            </fieldset>
-          </form>
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Visible}}</label>
+                  <div class="col-xs-4">
+                    <input type="checkbox" class="cmdAttr" data-l1key="isVisible" />
+                  </div>
+                </div>
+                <?php if ($cmd->getType() == 'info' && $cmd->getSubtype() == 'numeric') { ?>
+                  <div class="form-group">
+                    <label class="col-xs-4 control-label">{{Valeur minimum}}
+                      <sup><i class="fas fa-question-circle" title="{{défaut}} : 0"></i></sup>
+                    </label>
+                    <div class="col-xs-2">
+                      <input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="minValue" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-xs-4 control-label">{{Valeur maximum}}
+                      <sup><i class="fas fa-question-circle" title="{{défaut}} : 100"></i></sup>
+                    </label>
+                    <div class="col-xs-2">
+                      <input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="maxValue" />
+                    </div>
+                  </div>
+                <?php } ?>
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Suivre dans la timeline}}</label>
+                  <div class="col-xs-1">
+                    <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" />
+                  </div>
+                  <div class="col-xs-7">
+                    <input class="cmdAttr" data-l1key="configuration" data-l2key="timeline::folder" placeholder="{{Dossier}}" style="display:none;">
+                  </div>
+                </div>
+                <?php if ($cmd->getType() == 'info') { ?>
+                  <div class="form-group">
+                    <label class="col-xs-4 control-label">{{Envoyer à InfluxDB}}</label>
+                    <div class="col-xs-1">
+                      <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="influx::enable" />
+                    </div>
+                    <div class="col-xs-7"></div>
+                  </div>
+                  <div class="form-group selInflux" style="display:none;">
+                    <label class="col-xs-4 control-label">{{Nom personnalisé Commande}}</label>
+                    <div class="col-xs-8">
+                      <input class="cmdAttr" data-l1key="configuration" data-l2key="influx::namecmd" placeholder="{{Facultatif}}">
+                    </div>
+                  </div>
+                  <div class="form-group selInflux" style="display:none;">
+                    <label class="col-xs-4 control-label">{{Nom personnalisé Équipement}}</label>
+                    <div class="col-xs-8">
+                      <input class="cmdAttr" data-l1key="configuration" data-l2key="influx::nameEq" placeholder="{{Facultatif}}">
+                    </div>
+                  </div>
+                  <div class="form-group selInflux" style="display:none;">
+                    <label class="col-xs-4 control-label">{{Nom personnalisé Valeur}}</label>
+                    <div class="col-xs-8">
+                      <input class="cmdAttr" data-l1key="configuration" data-l2key="influx::nameVal" placeholder="{{Facultatif}}">
+                    </div>
+                  </div>
+                  <div class="form-group selInflux" style="display:none;">
+                    <label class="col-xs-4 control-label">{{Actions}}</label>
+                    <div class="col-xs-8">
+                      <a class="btn btn-default btn-sm" id="bt_influxDelete"><i class="fas fa-trash"></i> {{Supprimer}}</a>
+                      <a class="btn btn-default btn-sm" id="bt_influxHistory"><i class="fas fas fa-history"></i> {{Envoyer Historique}}</a>
+                    </div>
+                    <br /><br />
+                  </div>
+                <?php } ?>
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Interdire dans les interactions automatiques}}</label>
+                  <div class="col-xs-4">
+                    <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="interact::auto::disable" />
+                  </div>
+                </div>
+                <div class="displayIconParent form-group">
+                  <label class="col-xs-4 control-label">{{Icône}}</label>
+                  <div class="col-xs-4">
+                    <span class="cmdAttr label cursor" data-l1key="display" data-l2key="icon" style="font-size : 1.5em!important;"></span>
+                    <a class="btn btn-default btn-sm" id="bt_cmdConfigureChooseIcon"><i class="fas fa-icons"></i> {{Icône}}</a>
+                  </div>
+                </div>
+                <?php if ($cmd->getIsHistorized() == 1) { ?>
+                  <div class="form-group">
+                    <label class="col-xs-4 control-label">{{Historique}}</label>
+                    <div class="col-xs-4">
+                      <a class="btn btn-default btn-sm" id="bt_cmdConfigureShowHistory"><i class="fas fa-history"></i> {{Voir}}</a>
+                    </div>
+                  </div>
+                <?php } ?>
+              </fieldset>
+            </form>
+          </div>
         </div>
-      </div>
 
-      <form class="form-horizontal">
-        <fieldset id="fd_cmdUsedBy">
-          <legend><i class="fas fa-search"></i> {{Utilisé par}}</legend>
-          <div class="input-group pull-right">
-            <a class="btn btn-xs btn-warning roundedLeft" id="bt_cmdConfigureReplaceIdByMe"><i class="fas fa-upload" aria-hidden="true"></i> {{Cette commande remplace l'ID}}
-            </a><a class="btn btn-xs btn-warning" id="bt_cmdConfigureReplaceByMe"><i class="fas fa-upload" aria-hidden="true"></i> {{Cette commande remplace la commande}}
-            </a><a class="btn btn-xs btn-warning roundedRight" id="bt_cmdConfigureReplaceMeBy"><i class="fas fa-download" aria-hidden="true"></i> {{Remplacer cette commande par la commande}}</a>
-          </div><br />
-          <?php
-          $usedBy = $cmd->getUsedBy();
-          ?>
-          <div class="form-group">
-            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Equipement}}</label>
-            <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-              <?php
-              foreach ($usedBy['eqLogic'] as $usedByEqLogic) {
-                if ($usedByEqLogic->getIsEnable() != 1) {
-                  echo '<a href="' . $usedByEqLogic->getLinkToConfiguration() . '" class="btn btn-xs btn-info">' . $usedByEqLogic->getHumanName() . '</a><br/>';
-                } else {
-                  echo '<a href="' . $usedByEqLogic->getLinkToConfiguration() . '" class="btn btn-xs btn-primary">' . $usedByEqLogic->getHumanName() . '</a><br/>';
-                }
-              }
-              ?>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commandes}}</label>
-            <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-              <?php
-              foreach ($usedBy['cmd'] as $usedByCmd) {
-                echo '<a href="' . $usedByCmd->getEqLogic()->getLinkToConfiguration() . '" class="btn btn-xs btn-primary">' . $usedByCmd->getHumanName() . '</a><br/>';
-              }
-              ?>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Scénario}}</label>
-            <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-              <?php
-              foreach ($usedBy['scenario'] as $usedByScenario) {
-                if ($usedByScenario->getIsActive() != 1) {
-                  echo '<a href="' . $usedByScenario->getLinkToConfiguration() . '&search=' . urlencode($cmd->getHumanName()) . '" class="btn btn-xs btn-info">' . $usedByScenario->getHumanName() . '</a><br/>';
-                } else {
-                  echo '<a href="' . $usedByScenario->getLinkToConfiguration() . '&search=' . urlencode($cmd->getHumanName()) . '" class="btn btn-xs btn-primary">' . $usedByScenario->getHumanName() . '</a><br/>';
-                }
-              }
-              ?>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Résumés}}</label>
-            <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-              <?php
-              foreach ($usedBy['object'] as $usedByObject) {
-                echo '<a href="index.php?v=d&p=object&id=' . $usedByObject->getId() . '" class="btn btn-xs btn-primary">' . $usedByObject->getHumanName(false, true) . '</a><br/>';
-              }
-              ?>
-            </div>
-          </div>
-
-          <?php foreach ($usedBy['plugin'] as $key => $values) { ?>
+        <form class="form-horizontal">
+          <fieldset id="fd_cmdUsedBy">
+            <legend><i class="fas fa-search"></i> {{Utilisé par}}</legend>
+            <div class="input-group pull-right">
+              <a class="btn btn-xs btn-warning roundedLeft" id="bt_cmdConfigureReplaceIdByMe"><i class="fas fa-upload" aria-hidden="true"></i> {{Cette commande remplace l'ID}}
+              </a><a class="btn btn-xs btn-warning" id="bt_cmdConfigureReplaceByMe"><i class="fas fa-upload" aria-hidden="true"></i> {{Cette commande remplace la commande}}
+              </a><a class="btn btn-xs btn-warning roundedRight" id="bt_cmdConfigureReplaceMeBy"><i class="fas fa-download" aria-hidden="true"></i> {{Remplacer cette commande par la commande}}</a>
+            </div><br />
+            <?php
+            $usedBy = $cmd->getUsedBy();
+            ?>
             <div class="form-group">
-              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Plugin}} <?php echo $key; ?></label>
+              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Equipement}}</label>
               <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
                 <?php
-                foreach ($values as $value) {
-                  echo '<span class="btn btn-xs btn-info">' . $value->getName() . '</span><br/>';
+                foreach ($usedBy['eqLogic'] as $usedByEqLogic) {
+                  if ($usedByEqLogic->getIsEnable() != 1) {
+                    echo '<a href="' . $usedByEqLogic->getLinkToConfiguration() . '" class="btn btn-xs btn-info">' . $usedByEqLogic->getHumanName() . '</a><br/>';
+                  } else {
+                    echo '<a href="' . $usedByEqLogic->getLinkToConfiguration() . '" class="btn btn-xs btn-primary">' . $usedByEqLogic->getHumanName() . '</a><br/>';
+                  }
                 }
                 ?>
               </div>
             </div>
-          <?php } ?>
-        </fieldset>
-      </form>
-    </div>
-
-    <!--Configuration Tab -->
-    <div role="tabpanel" class="tab-pane" id="cmd_configuration">
-      <br />
-      <form class="form-horizontal">
-        <fieldset>
-          <?php if (($cmd->getType() == 'info') || ($cmd->getType() == 'action' && ($cmd->getSubType() == 'slider'))) {
-          ?>
-            <legend><i class="fas fa-table"></i> {{Calcul et arrondi}}</legend>
             <div class="form-group">
-              <label class="col-md-3 col-sm-3 control-label">{{Formule de calcul}}
-                <sup><i class="fas fa-question-circle" title="#value# = {{valeur de la commande}}"></i></sup>
-              </label>
-              <div class="col-sm-6">
-                <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="calculValueOffset" />
-              </div>
-            </div>
-            <?php if ($cmd->getSubType() == 'numeric') { ?>
-              <div class="form-group">
-                <label class="col-md-3 col-sm-3 control-label">{{Arrondi}}
-                  <sup><i class="fas fa-question-circle" title="{{Nombre de décimales}}"></i></sup>
-                </label>
-                <div class="col-sm-6">
-                  <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" />
-                </div>
-              </div>
-            <?php }
-            ?>
-          <?php }
-          ?>
-        </fieldset>
-      </form>
-      <form class="form-horizontal">
-        <fieldset>
-          <legend><i class="fas fa-building"></i> {{Type générique}}</legend>
-          <div class="form-group">
-            <label class="col-md-3 col-sm-3 control-label">{{Valeur}}</label>
-            <div class="col-sm-6">
-              <select class="cmdAttr form-control" data-l1key="generic_type">
+              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commandes}}</label>
+              <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
                 <?php
-                echo $cmd->getGenericTypeSelectOptions();
+                foreach ($usedBy['cmd'] as $usedByCmd) {
+                  echo '<a href="' . $usedByCmd->getEqLogic()->getLinkToConfiguration() . '" class="btn btn-xs btn-primary">' . $usedByCmd->getHumanName() . '</a><br/>';
+                }
                 ?>
-              </select>
-            </div>
-          </div>
-        </fieldset>
-      </form>
-      <?php if ($cmd->getType() == 'action') { ?>
-        <form class="form-horizontal">
-          <fieldset>
-            <legend><i class="fas fa-exclamation-triangle"></i> {{Restriction de l'action}}</legend>
-            <div class="form-group">
-              <label class="col-md-3 col-sm-3 control-label">{{Confirmer l'action}}</label>
-              <div class="col-sm-6">
-                <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="actionConfirm" />
               </div>
             </div>
             <div class="form-group">
-              <label class="col-md-3 col-sm-3 control-label">{{Code d'accès}}</label>
-              <div class="col-sm-6">
-                <input class="cmdAttr form-control inputPassword" data-l1key="configuration" data-l2key="actionCodeAccess" />
+              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Scénario}}</label>
+              <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+                <?php
+                foreach ($usedBy['scenario'] as $usedByScenario) {
+                  if ($usedByScenario->getIsActive() != 1) {
+                    echo '<a href="' . $usedByScenario->getLinkToConfiguration() . '&search=' . urlencode($cmd->getHumanName()) . '" class="btn btn-xs btn-info">' . $usedByScenario->getHumanName() . '</a><br/>';
+                  } else {
+                    echo '<a href="' . $usedByScenario->getLinkToConfiguration() . '&search=' . urlencode($cmd->getHumanName()) . '" class="btn btn-xs btn-primary">' . $usedByScenario->getHumanName() . '</a><br/>';
+                  }
+                }
+                ?>
               </div>
             </div>
-          </fieldset>
-        </form>
-      <?php }
-      ?>
-      <?php if ($cmd->getType() == 'info') {
-      ?>
-        <form class="form-horizontal">
-          <fieldset>
-            <legend><i class="fas fa-sign-out-alt"></i> {{Action sur valeur}}</legend>
             <div class="form-group">
-              <label class="col-md-3 col-sm-3 col-xs-12 control-label">{{Action sur valeur, si}}</label>
-              <div class="col-sm-2 col-xs-3">
-                <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdOperator">
-                  <option value="==">{{égal}}</option>
-                  <?php if ($cmd->getSubType() == 'numeric') { ?>
-                    <option value=">">{{supérieur}}</option>
-                    <option value="<">{{inférieur}}</option>
-                  <?php }
-                  if ($cmd->getSubType() != 'binary') { ?>
-                    <option value="!=">{{différent}}</option>
-                  <?php } ?>
-                </select>
-              </div>
-              <div class="col-sm-2 col-xs-3">
-                <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTest" />
-              </div>
-              <label class="col-sm-2 col-xs-3 control-label">{{pendant plus de}}
-                <sup><i class="fas fa-question-circle" title="{{durée en minutes (laisser vide pour une action immédiate)}}"></i></sup>
-              </label>
-              <div class="col-sm-2 col-xs-3">
-                <input type="number" class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTime" />
+              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Résumés}}</label>
+              <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+                <?php
+                foreach ($usedBy['object'] as $usedByObject) {
+                  echo '<a href="index.php?v=d&p=object&id=' . $usedByObject->getId() . '" class="btn btn-xs btn-primary">' . $usedByObject->getHumanName(false, true) . '</a><br/>';
+                }
+                ?>
               </div>
             </div>
 
-            <div class="form-group">
-              <label class="col-md-3 col-sm-3 control-label">{{Action}}</label>
-              <div class="col-sm-6">
-                <a class="btn btn-xs" id="bt_addActionCheckCmd"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
-              </div>
-            </div>
-            <div id="div_actionCheckCmd"></div>
-
-            <script type="text/javascript">
-              $("#div_actionCheckCmd").sortable({
-                axis: "y",
-                cursor: "move",
-                items: ".actionCheckCmd",
-                placeholder: "ui-state-highlight",
-                tolerance: "intersect",
-                forcePlaceholderSize: true
-              });
-
-              $('#bt_addActionCheckCmd').off('click').on('click', function() {
-                jeeFrontEnd.md_displayCmdConfigure.addActionCmd({}, 'actionCheckCmd', '{{Action}}');
-              });
-            </script>
-          </fieldset>
-        </form>
-      <?php }
-      ?>
-      <?php if ($cmd->getType() == 'action') {
-      ?>
-        <form class="form-horizontal">
-          <fieldset>
-            <legend><i class="fas fa-sign-out-alt"></i> {{Action avant exécution de la commande}}</legend>
-            <div class="form-group">
-              <label class="col-md-3 col-sm-3 control-label">{{Action}}</label>
-              <div class="col-sm-6">
-                <a class="btn btn-xs" id="bt_addActionPreExecCmd"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
-              </div>
-            </div>
-            <div id="div_actionPreExecCmd"></div>
-            <script type="text/javascript">
-              $("#div_actionPreExecCmd").sortable({
-                axis: "y",
-                cursor: "move",
-                items: ".actionPreExecCmd",
-                placeholder: "ui-state-highlight",
-                tolerance: "intersect",
-                forcePlaceholderSize: true
-              });
-              $('#bt_addActionPreExecCmd').off('click').on('click', function() {
-                jeeFrontEnd.md_displayCmdConfigure.addActionCmd({}, 'actionPreExecCmd', '{{Action}}');
-              });
-            </script>
-          </fieldset>
-        </form>
-        <form class="form-horizontal">
-          <fieldset>
-            <legend><i class="fas fa-sign-out-alt"></i> {{Action après exécution de la commande}}</legend>
-            <div class="form-group">
-              <label class="col-md-3 col-sm-3 control-label">{{Action}}</label>
-              <div class="col-sm-6">
-                <a class="btn btn-xs" id="bt_addActionPostExecCmd"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
-              </div>
-            </div>
-            <div id="div_actionPostExecCmd"></div>
-
-            <script type="text/javascript">
-              $("#div_actionPostExecCmd").sortable({
-                axis: "y",
-                cursor: "move",
-                items: ".actionPostExecCmd",
-                placeholder: "ui-state-highlight",
-                tolerance: "intersect",
-                forcePlaceholderSize: true
-              });
-              $('#bt_addActionPostExecCmd').off('click').on('click', function() {
-                jeeFrontEnd.md_displayCmdConfigure.addActionCmd({}, 'actionPostExecCmd', '{{Action}}');
-              });
-            </script>
-          </fieldset>
-        </form>
-      <?php } ?>
-
-      <?php if ($cmd->getType() == 'info' && $JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['visible']) {
-      ?>
-        <form class="form-horizontal">
-          <fieldset>
-            <legend><i class="far fa-chart-bar"></i> {{Historique}}</legend>
-            <div class="form-group">
-              <label class="col-md-3 col-sm-3 control-label">{{Historiser}}</label>
-              <div class="col-sm-6">
-                <input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />
-                <?php if ($cmd->getIsHistorized() == 1) { ?>
-                  <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureCopyHistory"><i class="fas fa-clone"></i> {{Copier historique de cette commande sur une autre commande}}</a>
-                <?php } ?>
-              </div>
-            </div>
-            <?php if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth']) { ?>
+            <?php foreach ($usedBy['plugin'] as $key => $values) { ?>
               <div class="form-group">
-                <label class="col-md-3 col-sm-3 control-label">{{Mode de lissage}}</label>
-                <div class="col-sm-6">
-                  <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
-                    <option value="avg">{{Moyenne}}</option>
-                    <option value="min">{{Minimum}}</option>
-                    <option value="max">{{Maximum}}</option>
-                    <option value="none">{{Aucun}}</option>
-                  </select>
-                </div>
-              </div>
-            <?php }
-            ?>
-            <div class="form-group">
-              <label class="col-md-3 col-sm-3 control-label">{{Purger historique}}
-                <sup><i class="fas fa-question-circle" title="{{si plus vieux que}}"></i></sup>
-              </label>
-              <div class="col-sm-6">
-                <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyPurge">
-                  <option value="-1 day">{{1 jour}}</option>
-                  <option value="-7 days">{{7 jours}}</option>
-                  <option value="-1 month">{{1 mois}}</option>
-                  <option value="-3 month">{{3 mois}}</option>
-                  <option value="-6 month">{{6 mois}}</option>
-                  <option value="-1 year">{{1 an}}</option>
-                  <option value="-2 years">{{2 ans}}</option>
-                  <option value="-3 years">{{3 ans}}</option>
-                  <option value="" selected>{{Jamais}}</option>
-                </select>
-              </div>
-            </div>
-          </fieldset>
-        </form>
-      <?php }
-      if ($cmd->getType() == 'info') { ?>
-        <form class="form-horizontal">
-          <fieldset>
-            <legend><i class="fas fa-thermometer-three-quarters"></i> {{Gestion des valeurs}}</legend>
-            <div class="form-group">
-              <label class="col-md-3 col-sm-3 control-label">{{Valeurs interdites}}
-                <sup><i class="fas fa-question-circle" title="{{séparées par un point-virgule}}"></i></sup>
-              </label>
-              <div class="col-sm-6">
-                <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="denyValues" />
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-md-3 col-sm-3 control-label">{{Valeur retour d'état}}</label>
-              <div class="col-sm-6">
-                <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="returnStateValue" />
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-md-3 col-sm-3 control-label">{{Durée avant retour d'état}}
-                <sup><i class="fas fa-question-circle" title="{{en minutes}}"></i></sup>
-              </label>
-              <div class="col-sm-6">
-                <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="returnStateTime" />
-              </div>
-            </div>
-
-            <?php if ($cmd->getSubType() == 'binary') { ?>
-              <div class="form-group">
-                <label class="col-md-3 col-sm-3 control-label">{{Inverser les valeurs binaires}}
-                  <sup><i class="fas fa-question-circle" title="{{Contrairement à l'option <b>inverser</b> sur la ligne d'une commande qui n'inverse que lors de l'affichage, cette option inverse la valeur binaire reçue sur la commande (en base)}}"></i></sup>
-                </label>
-                <div class="col-sm-6">
-                  <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="invertBinary" />
+                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Plugin}} <?php echo $key; ?></label>
+                <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+                  <?php
+                  foreach ($values as $value) {
+                    echo '<span class="btn btn-xs btn-info">' . $value->getName() . '</span><br/>';
+                  }
+                  ?>
                 </div>
               </div>
             <?php } ?>
           </fieldset>
         </form>
+      </div>
+
+      <!--Configuration Tab -->
+      <div role="tabpanel" class="tab-pane" id="cmd_configuration">
+        <br />
         <form class="form-horizontal">
           <fieldset>
-            <legend><i class="fas fa-plus"></i> {{Autres}}</legend>
+            <?php if (($cmd->getType() == 'info') || ($cmd->getType() == 'action' && ($cmd->getSubType() == 'slider'))) {
+            ?>
+              <legend><i class="fas fa-table"></i> {{Calcul et arrondi}}</legend>
+              <div class="form-group">
+                <label class="col-md-3 col-sm-3 control-label">{{Formule de calcul}}
+                  <sup><i class="fas fa-question-circle" title="#value# = {{valeur de la commande}}"></i></sup>
+                </label>
+                <div class="col-sm-6">
+                  <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="calculValueOffset" />
+                </div>
+              </div>
+              <?php if ($cmd->getSubType() == 'numeric') { ?>
+                <div class="form-group">
+                  <label class="col-md-3 col-sm-3 control-label">{{Arrondi}}
+                    <sup><i class="fas fa-question-circle" title="{{Nombre de décimales}}"></i></sup>
+                  </label>
+                  <div class="col-sm-6">
+                    <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" />
+                  </div>
+                </div>
+              <?php }
+              ?>
+            <?php }
+            ?>
+          </fieldset>
+        </form>
+        <form class="form-horizontal">
+          <fieldset>
+            <legend><i class="fas fa-building"></i> {{Type générique}}</legend>
             <div class="form-group">
-              <label class="col-md-3 col-sm-3 control-label">{{Répéter les valeurs identiques}}</label>
+              <label class="col-md-3 col-sm-3 control-label">{{Valeur}}</label>
               <div class="col-sm-6">
-                <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="repeatEventManagement">
-                  <option value="never">{{Non}}</option>
-                  <option value="always">{{Oui}}</option>
+                <select class="cmdAttr form-control" data-l1key="generic_type">
+                  <?php
+                  echo $cmd->getGenericTypeSelectOptions();
+                  ?>
                 </select>
               </div>
             </div>
-            <div class="form-group">
-              <label class="col-md-3 col-sm-3 control-label">{{Push URL}}</label>
-              <div class="col-sm-6">
-                <input class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="jeedomPushUrl" title="{{URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}" />
-              </div>
-            </div>
           </fieldset>
         </form>
+        <?php if ($cmd->getType() == 'action') { ?>
+          <form class="form-horizontal">
+            <fieldset>
+              <legend><i class="fas fa-exclamation-triangle"></i> {{Restriction de l'action}}</legend>
+              <div class="form-group">
+                <label class="col-md-3 col-sm-3 control-label">{{Confirmer l'action}}</label>
+                <div class="col-sm-6">
+                  <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="actionConfirm" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 col-sm-3 control-label">{{Code d'accès}}</label>
+                <div class="col-sm-6">
+                  <input class="cmdAttr form-control inputPassword" data-l1key="configuration" data-l2key="actionCodeAccess" />
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        <?php }
+        ?>
+        <?php if ($cmd->getType() == 'info') {
+        ?>
+          <form class="form-horizontal">
+            <fieldset>
+              <legend><i class="fas fa-sign-out-alt"></i> {{Action sur valeur}}</legend>
+              <div class="form-group">
+                <label class="col-md-3 col-sm-3 col-xs-12 control-label">{{Action sur valeur, si}}</label>
+                <div class="col-sm-2 col-xs-3">
+                  <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdOperator">
+                    <option value="==">{{égal}}</option>
+                    <?php if ($cmd->getSubType() == 'numeric') { ?>
+                      <option value=">">{{supérieur}}</option>
+                      <option value="<">{{inférieur}}</option>
+                    <?php }
+                    if ($cmd->getSubType() != 'binary') { ?>
+                      <option value="!=">{{différent}}</option>
+                    <?php } ?>
+                  </select>
+                </div>
+                <div class="col-sm-2 col-xs-3">
+                  <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTest" />
+                </div>
+                <label class="col-sm-2 col-xs-3 control-label">{{pendant plus de}}
+                  <sup><i class="fas fa-question-circle" title="{{durée en minutes (laisser vide pour une action immédiate)}}"></i></sup>
+                </label>
+                <div class="col-sm-2 col-xs-3">
+                  <input type="number" class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTime" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-3 col-sm-3 control-label">{{Action}}</label>
+                <div class="col-sm-6">
+                  <a class="btn btn-xs" id="bt_addActionCheckCmd"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
+                </div>
+              </div>
+              <div id="div_actionCheckCmd"></div>
+
+              <script type="text/javascript">
+                $("#div_actionCheckCmd").sortable({
+                  axis: "y",
+                  cursor: "move",
+                  items: ".actionCheckCmd",
+                  placeholder: "ui-state-highlight",
+                  tolerance: "intersect",
+                  forcePlaceholderSize: true
+                });
+
+                $('#bt_addActionCheckCmd').off('click').on('click', function() {
+                  jeeFrontEnd.md_displayCmdConfigure.addActionCmd({}, 'actionCheckCmd', '{{Action}}');
+                });
+              </script>
+            </fieldset>
+          </form>
+        <?php }
+        ?>
+        <?php if ($cmd->getType() == 'action') {
+        ?>
+          <form class="form-horizontal">
+            <fieldset>
+              <legend><i class="fas fa-sign-out-alt"></i> {{Action avant exécution de la commande}}</legend>
+              <div class="form-group">
+                <label class="col-md-3 col-sm-3 control-label">{{Action}}</label>
+                <div class="col-sm-6">
+                  <a class="btn btn-xs" id="bt_addActionPreExecCmd"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
+                </div>
+              </div>
+              <div id="div_actionPreExecCmd"></div>
+              <script type="text/javascript">
+                $("#div_actionPreExecCmd").sortable({
+                  axis: "y",
+                  cursor: "move",
+                  items: ".actionPreExecCmd",
+                  placeholder: "ui-state-highlight",
+                  tolerance: "intersect",
+                  forcePlaceholderSize: true
+                });
+                $('#bt_addActionPreExecCmd').off('click').on('click', function() {
+                  jeeFrontEnd.md_displayCmdConfigure.addActionCmd({}, 'actionPreExecCmd', '{{Action}}');
+                });
+              </script>
+            </fieldset>
+          </form>
+          <form class="form-horizontal">
+            <fieldset>
+              <legend><i class="fas fa-sign-out-alt"></i> {{Action après exécution de la commande}}</legend>
+              <div class="form-group">
+                <label class="col-md-3 col-sm-3 control-label">{{Action}}</label>
+                <div class="col-sm-6">
+                  <a class="btn btn-xs" id="bt_addActionPostExecCmd"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
+                </div>
+              </div>
+              <div id="div_actionPostExecCmd"></div>
+
+              <script type="text/javascript">
+                $("#div_actionPostExecCmd").sortable({
+                  axis: "y",
+                  cursor: "move",
+                  items: ".actionPostExecCmd",
+                  placeholder: "ui-state-highlight",
+                  tolerance: "intersect",
+                  forcePlaceholderSize: true
+                });
+                $('#bt_addActionPostExecCmd').off('click').on('click', function() {
+                  jeeFrontEnd.md_displayCmdConfigure.addActionCmd({}, 'actionPostExecCmd', '{{Action}}');
+                });
+              </script>
+            </fieldset>
+          </form>
+        <?php } ?>
+
+        <?php if ($cmd->getType() == 'info' && $JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['visible']) {
+        ?>
+          <form class="form-horizontal">
+            <fieldset>
+              <legend><i class="far fa-chart-bar"></i> {{Historique}}</legend>
+              <div class="form-group">
+                <label class="col-md-3 col-sm-3 control-label">{{Historiser}}</label>
+                <div class="col-sm-6">
+                  <input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />
+                  <?php if ($cmd->getIsHistorized() == 1) { ?>
+                    <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureCopyHistory"><i class="fas fa-clone"></i> {{Copier historique de cette commande sur une autre commande}}</a>
+                  <?php } ?>
+                </div>
+              </div>
+              <?php if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth']) { ?>
+                <div class="form-group">
+                  <label class="col-md-3 col-sm-3 control-label">{{Mode de lissage}}</label>
+                  <div class="col-sm-6">
+                    <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
+                      <option value="avg">{{Moyenne}}</option>
+                      <option value="min">{{Minimum}}</option>
+                      <option value="max">{{Maximum}}</option>
+                      <option value="none">{{Aucun}}</option>
+                    </select>
+                  </div>
+                </div>
+              <?php }
+              ?>
+              <div class="form-group">
+                <label class="col-md-3 col-sm-3 control-label">{{Purger historique}}
+                  <sup><i class="fas fa-question-circle" title="{{si plus vieux que}}"></i></sup>
+                </label>
+                <div class="col-sm-6">
+                  <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyPurge">
+                    <option value="-1 day">{{1 jour}}</option>
+                    <option value="-7 days">{{7 jours}}</option>
+                    <option value="-1 month">{{1 mois}}</option>
+                    <option value="-3 month">{{3 mois}}</option>
+                    <option value="-6 month">{{6 mois}}</option>
+                    <option value="-1 year">{{1 an}}</option>
+                    <option value="-2 years">{{2 ans}}</option>
+                    <option value="-3 years">{{3 ans}}</option>
+                    <option value="" selected>{{Jamais}}</option>
+                  </select>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        <?php }
+        if ($cmd->getType() == 'info') { ?>
+          <form class="form-horizontal">
+            <fieldset>
+              <legend><i class="fas fa-thermometer-three-quarters"></i> {{Gestion des valeurs}}</legend>
+              <div class="form-group">
+                <label class="col-md-3 col-sm-3 control-label">{{Valeurs interdites}}
+                  <sup><i class="fas fa-question-circle" title="{{séparées par un point-virgule}}"></i></sup>
+                </label>
+                <div class="col-sm-6">
+                  <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="denyValues" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 col-sm-3 control-label">{{Valeur retour d'état}}</label>
+                <div class="col-sm-6">
+                  <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="returnStateValue" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 col-sm-3 control-label">{{Durée avant retour d'état}}
+                  <sup><i class="fas fa-question-circle" title="{{en minutes}}"></i></sup>
+                </label>
+                <div class="col-sm-6">
+                  <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="returnStateTime" />
+                </div>
+              </div>
+
+              <?php if ($cmd->getSubType() == 'binary') { ?>
+                <div class="form-group">
+                  <label class="col-md-3 col-sm-3 control-label">{{Inverser les valeurs binaires}}
+                    <sup><i class="fas fa-question-circle" title="{{Contrairement à l'option <b>inverser</b> sur la ligne d'une commande qui n'inverse que lors de l'affichage, cette option inverse la valeur binaire reçue sur la commande (en base)}}"></i></sup>
+                  </label>
+                  <div class="col-sm-6">
+                    <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="invertBinary" />
+                  </div>
+                </div>
+              <?php } ?>
+            </fieldset>
+          </form>
+          <form class="form-horizontal">
+            <fieldset>
+              <legend><i class="fas fa-plus"></i> {{Autres}}</legend>
+              <div class="form-group">
+                <label class="col-md-3 col-sm-3 control-label">{{Répéter les valeurs identiques}}</label>
+                <div class="col-sm-6">
+                  <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="repeatEventManagement">
+                    <option value="never">{{Non}}</option>
+                    <option value="always">{{Oui}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 col-sm-3 control-label">{{Push URL}}</label>
+                <div class="col-sm-6">
+                  <input class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="jeedomPushUrl" title="{{URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}" />
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        <?php }
+        ?>
+      </div>
+      <?php if ($cmd->getType() == 'info') {
+      ?>
+
+        <!--Warning Tab -->
+        <div role="tabpanel" class="tab-pane" id="cmd_alert">
+          <br />
+          <?php
+          $form = '';
+          foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
+            if (!$value['check']) {
+              continue;
+            }
+            $form .= '<form class="form-horizontal">';
+            $form .= '<fieldset>';
+            $form .= '<legend>';
+            if ($value['name'] == 'Warning') {
+              $form .= '<i class="fas fa-exclamation"></i>';
+            } else if ($value['name'] == 'Danger') {
+              $form .= '<i class="fas fa-exclamation-triangle"></i>';
+            }
+            $form .= '{{Niveau}} ' . $value['name'] . '</legend>';
+            $form .= '<div class="form-group">';
+            $form .= '<label class="col-md-2 col-sm-3 control-label">{{En}} ' . $value['name'] . ' {{si}} ';
+            $form .= '<sup><i class="fas fa-question-circle" title="#value# = {{valeur de la commande}}"></i></sup></label>';
+            $form .= '<div class="col-sm-6">';
+            $form .= '<input class="cmdAttr form-control" data-l1key="alert" data-l2key="' . $level . 'if" />';
+            $form .= '</div>';
+            $form .= '</div>';
+            $form .= '<div class="form-group">';
+            $form .= '<label class="col-md-2 col-sm-3 control-label">{{Pendant plus de}} ';
+            $form .= '<sup><i class="fas fa-question-circle" title="{{durée en minutes (laisser vide pour une action immédiate)}}"></i></sup></label>';
+
+            $form .= '<div class="col-sm-6">';
+            $form .= '<input type="number" class="cmdAttr form-control" data-l1key="alert" data-l2key="' . $level . 'during" />';
+            $form .= '</div>';
+            $form .= '</div>';
+            $form .= '</fieldset>';
+            $form .= '</form>';
+          }
+          echo $form;
+          ?>
+          <form class="form-horizontal">
+            <fieldset>
+              <legend><i class="fas fa-plus"></i> {{Autres}}</legend>
+              <div class="form-group">
+                <label class="col-md-2 col-sm-3 control-label">{{M'alerter au retour à la normal}}</label>
+                <div class="col-sm-6">
+                  <input type="checkbox" class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="alert::messageReturnBack" />
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
       <?php }
       ?>
-    </div>
-    <?php if ($cmd->getType() == 'info') {
-    ?>
 
-      <!--Warning Tab -->
-      <div role="tabpanel" class="tab-pane" id="cmd_alert">
-        <br />
-        <?php
-        $form = '';
-        foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
-          if (!$value['check']) {
-            continue;
-          }
-          $form .= '<form class="form-horizontal">';
-          $form .= '<fieldset>';
-          $form .= '<legend>';
-          if ($value['name'] == 'Warning') {
-            $form .= '<i class="fas fa-exclamation"></i>';
-          } else if ($value['name'] == 'Danger') {
-            $form .= '<i class="fas fa-exclamation-triangle"></i>';
-          }
-          $form .= '{{Niveau}} ' . $value['name'] . '</legend>';
-          $form .= '<div class="form-group">';
-          $form .= '<label class="col-md-2 col-sm-3 control-label">{{En}} ' . $value['name'] . ' {{si}} ';
-          $form .= '<sup><i class="fas fa-question-circle" title="#value# = {{valeur de la commande}}"></i></sup></label>';
-          $form .= '<div class="col-sm-6">';
-          $form .= '<input class="cmdAttr form-control" data-l1key="alert" data-l2key="' . $level . 'if" />';
-          $form .= '</div>';
-          $form .= '</div>';
-          $form .= '<div class="form-group">';
-          $form .= '<label class="col-md-2 col-sm-3 control-label">{{Pendant plus de}} ';
-          $form .= '<sup><i class="fas fa-question-circle" title="{{durée en minutes (laisser vide pour une action immédiate)}}"></i></sup></label>';
-
-          $form .= '<div class="col-sm-6">';
-          $form .= '<input type="number" class="cmdAttr form-control" data-l1key="alert" data-l2key="' . $level . 'during" />';
-          $form .= '</div>';
-          $form .= '</div>';
-          $form .= '</fieldset>';
-          $form .= '</form>';
-        }
-        echo $form;
-        ?>
-        <form class="form-horizontal">
-          <fieldset>
-            <legend><i class="fas fa-plus"></i> {{Autres}}</legend>
-            <div class="form-group">
-              <label class="col-md-2 col-sm-3 control-label">{{M'alerter au retour à la normal}}</label>
-              <div class="col-sm-6">
-                <input type="checkbox" class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="alert::messageReturnBack" />
-              </div>
-            </div>
-          </fieldset>
-        </form>
-      </div>
-    <?php }
-    ?>
-
-    <!--Display Tab if supported -->
-    <?php if ($cmd->widgetPossibility('custom')) {
-    ?>
-      <div role="tabpanel" class="tab-pane" id="cmd_display">
-        <br />
-        <legend><i class="fas fa-tint"></i> {{Widget}}</legend>
-        <table class="table table-bordered table-condensed">
-          <thead>
-            <tr>
-              <th style="width:30%;"></th>
-              <?php
-              $display = '';
-              foreach ($configEqDisplayType as $key => $value) {
-                $display .= '<th>' . $value['name'] . '</th>';
-              }
-              echo $display;
-              ?>
-            </tr>
-          </thead>
-          <tbody>
-            <?php if ($cmd->widgetPossibility('custom::widget')) {
-            ?>
+      <!--Display Tab if supported -->
+      <?php if ($cmd->widgetPossibility('custom')) {
+      ?>
+        <div role="tabpanel" class="tab-pane" id="cmd_display">
+          <br />
+          <legend><i class="fas fa-tint"></i> {{Widget}}</legend>
+          <table class="table table-bordered table-condensed">
+            <thead>
               <tr>
-                <td>{{Widget}}</td>
-                <td>
-                  <?php if ($cmd->widgetPossibility('custom::widget::dashboard')) {
-                  ?>
-                    <select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">
-                      <?php
-                      echo $cmd->getWidgetsSelectOptions('dashboard', $cmd_widgetDashboard);
-                      ?>
-                    </select>
-                  <?php }
-                  ?>
-                </td>
-                <td>
-                  <?php if ($cmd->widgetPossibility('custom::widget::mobile')) {
-                  ?>
-                    <select class="form-control cmdAttr" data-l1key="template" data-l2key="mobile">
-                      <?php
-                      echo $cmd->getWidgetsSelectOptions('mobile', $cmd_widgetMobile);
-                      ?>
-                    </select>
-                  <?php }
-                  ?>
-                </td>
-                <td style="width: 1px;">
-                  <a class="btn btn-default btn-xs" id="bt_cmdConfigureApplyTo"><i class="fas fa-arrow-alt-circle-down"></i> {{Appliquer à}}</a>
-                </td>
-              </tr>
-            <?php }
-            ?>
-            <?php if ($cmd->widgetPossibility('custom::displayName')) {
-            ?>
-              <tr>
-                <td>{{Afficher le nom}}</td>
+                <th style="width:30%;"></th>
                 <?php
                 $display = '';
                 foreach ($configEqDisplayType as $key => $value) {
-                  $display .= '<td>';
-                  if ($cmd->widgetPossibility('custom::displayName::' . $key)) {
-                    $display .= '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showNameOn' . $key . '" checked />';
-                  }
-                  $display .= '</td>';
+                  $display .= '<th>' . $value['name'] . '</th>';
                 }
                 echo $display;
                 ?>
-              </tr>
-            <?php }
-            ?>
-            <?php if ($cmd->widgetPossibility('custom::displayIconAndName')) {
-            ?>
-              <tr>
-                <td>{{Afficher le nom ET l'icône}}</td>
-                <?php
-                $display = '';
-                foreach ($configEqDisplayType as $key => $value) {
-                  $display .= '<td>';
-                  if ($cmd->widgetPossibility('custom::displayIconAndName::' . $key)) {
-                    $display .= '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showIconAndName' . $key . '" />';
-                  }
-                  $display .= '</td>';
-                }
-                echo $display;
-                ?>
-              </tr>
-            <?php }
-            ?>
-            <?php if (config::byKey('displayStatsWidget') == 1 && $cmd->getType() == 'info' && $cmd->getSubType() != 'string' && $cmd->widgetPossibility('custom::displayStats')) { ?>
-              <tr>
-                <td>{{Afficher les statistiques}}</td>
-                <?php
-                $display = '';
-                foreach ($configEqDisplayType as $key => $value) {
-                  $display .= '<td>';
-                  if ($cmd->widgetPossibility('custom::displayStats::' . $key)) {
-                    $display .= '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showStatsOn' . $key . '" checked />';
-                  }
-                  $display .= '</td>';
-                }
-                echo $display;
-                ?>
-              </tr>
-            <?php
-            }
-            ?>
-            <tr>
-              <td>{{Retour à la ligne forcé avant le widget}}</td>
-              <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineBefore" /></td>
-            </tr>
-            <tr>
-              <td>{{Retour à la ligne forcé après le widget}}</td>
-              <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineAfter" /></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <?php if ($cmd->widgetPossibility('custom::optionalParameters')) {
-        ?>
-          <legend><i class="fas fa-pencil-ruler"></i> {{Paramètres optionnels widget}}
-            <a class="btn btn-xs pull-right" id="bt_addWidgetParametersCmd" style="position:relative;right:5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
-          </legend>
-
-          <div id="optionalParamHelp"></div>
-
-          <table class="table table-bordered table-condensed" id="table_widgetParametersCmd">
-            <thead class="table table-bordered">
-              <tr>
-                <th style="width: 20%">Nom</th>
-                <th style="width: 80%">Valeur</th>
-                <th style="width: 1px">Action</th>
               </tr>
             </thead>
             <tbody>
+              <?php if ($cmd->widgetPossibility('custom::widget')) {
+              ?>
+                <tr>
+                  <td>{{Widget}}</td>
+                  <td>
+                    <?php if ($cmd->widgetPossibility('custom::widget::dashboard')) {
+                    ?>
+                      <select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">
+                        <?php
+                        echo $cmd->getWidgetsSelectOptions('dashboard', $cmd_widgetDashboard);
+                        ?>
+                      </select>
+                    <?php }
+                    ?>
+                  </td>
+                  <td>
+                    <?php if ($cmd->widgetPossibility('custom::widget::mobile')) {
+                    ?>
+                      <select class="form-control cmdAttr" data-l1key="template" data-l2key="mobile">
+                        <?php
+                        echo $cmd->getWidgetsSelectOptions('mobile', $cmd_widgetMobile);
+                        ?>
+                      </select>
+                    <?php }
+                    ?>
+                  </td>
+                  <td style="width: 1px;">
+                    <a class="btn btn-default btn-xs" id="bt_cmdConfigureApplyTo"><i class="fas fa-arrow-alt-circle-down"></i> {{Appliquer à}}</a>
+                  </td>
+                </tr>
+              <?php }
+              ?>
+              <?php if ($cmd->widgetPossibility('custom::displayName')) {
+              ?>
+                <tr>
+                  <td>{{Afficher le nom}}</td>
+                  <?php
+                  $display = '';
+                  foreach ($configEqDisplayType as $key => $value) {
+                    $display .= '<td>';
+                    if ($cmd->widgetPossibility('custom::displayName::' . $key)) {
+                      $display .= '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showNameOn' . $key . '" checked />';
+                    }
+                    $display .= '</td>';
+                  }
+                  echo $display;
+                  ?>
+                </tr>
+              <?php }
+              ?>
+              <?php if ($cmd->widgetPossibility('custom::displayIconAndName')) {
+              ?>
+                <tr>
+                  <td>{{Afficher le nom ET l'icône}}</td>
+                  <?php
+                  $display = '';
+                  foreach ($configEqDisplayType as $key => $value) {
+                    $display .= '<td>';
+                    if ($cmd->widgetPossibility('custom::displayIconAndName::' . $key)) {
+                      $display .= '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showIconAndName' . $key . '" />';
+                    }
+                    $display .= '</td>';
+                  }
+                  echo $display;
+                  ?>
+                </tr>
+              <?php }
+              ?>
+              <?php if (config::byKey('displayStatsWidget') == 1 && $cmd->getType() == 'info' && $cmd->getSubType() != 'string' && $cmd->widgetPossibility('custom::displayStats')) { ?>
+                <tr>
+                  <td>{{Afficher les statistiques}}</td>
+                  <?php
+                  $display = '';
+                  foreach ($configEqDisplayType as $key => $value) {
+                    $display .= '<td>';
+                    if ($cmd->widgetPossibility('custom::displayStats::' . $key)) {
+                      $display .= '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showStatsOn' . $key . '" checked />';
+                    }
+                    $display .= '</td>';
+                  }
+                  echo $display;
+                  ?>
+                </tr>
               <?php
-              if ($cmd->getDisplay('parameters') != '') {
-                $tr = '';
-                foreach (($cmd->getDisplay('parameters')) as $key => $value) {
-                  $tr .= '<tr>';
-                  $tr .= '<td>';
-                  $tr .= '<input class="form-control key" value="' . $key . '" />';
-                  $tr .= '</td>';
-                  $tr .= '<td>';
-                  $tr .= '<input class="form-control value" value="' . $value . '" />';
-                  $tr .= '</td>';
-                  $tr .= '<td>';
-                  $tr .= '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i> Supprimer</a>';
-                  $tr .= '</td>';
-                  $tr .= '</tr>';
-                }
-                echo $tr;
               }
               ?>
+              <tr>
+                <td>{{Retour à la ligne forcé avant le widget}}</td>
+                <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineBefore" /></td>
+              </tr>
+              <tr>
+                <td>{{Retour à la ligne forcé après le widget}}</td>
+                <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineAfter" /></td>
+              </tr>
             </tbody>
           </table>
-        <?php
-        }
-        ?>
-      </div>
-    <?php }
-    ?>
+
+          <?php if ($cmd->widgetPossibility('custom::optionalParameters')) {
+          ?>
+            <legend><i class="fas fa-pencil-ruler"></i> {{Paramètres optionnels widget}}
+              <a class="btn btn-xs pull-right" id="bt_addWidgetParametersCmd" style="position:relative;right:5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
+            </legend>
+
+            <div id="optionalParamHelp"></div>
+
+            <table class="table table-bordered table-condensed" id="table_widgetParametersCmd">
+              <thead class="table table-bordered">
+                <tr>
+                  <th style="width: 20%">Nom</th>
+                  <th style="width: 80%">Valeur</th>
+                  <th style="width: 1px">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                if ($cmd->getDisplay('parameters') != '') {
+                  $tr = '';
+                  foreach (($cmd->getDisplay('parameters')) as $key => $value) {
+                    $tr .= '<tr>';
+                    $tr .= '<td>';
+                    $tr .= '<input class="form-control key" value="' . $key . '" />';
+                    $tr .= '</td>';
+                    $tr .= '<td>';
+                    $tr .= '<input class="form-control value" value="' . $value . '" />';
+                    $tr .= '</td>';
+                    $tr .= '<td>';
+                    $tr .= '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i> Supprimer</a>';
+                    $tr .= '</td>';
+                    $tr .= '</tr>';
+                  }
+                  echo $tr;
+                }
+                ?>
+              </tbody>
+            </table>
+          <?php
+          }
+          ?>
+        </div>
+      <?php }
+      ?>
+    </div>
   </div>
 </div>
-
 <script>
 if (!jeeFrontEnd.md_displayCmdConfigure) {
   jeeFrontEnd.md_displayCmdConfigure = {
