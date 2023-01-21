@@ -149,7 +149,7 @@ if (!isConnect()) {
 </div>
 
 <script>
-(function() {
+(function() {// Self Isolation!
   if (window.mod_insertAction == undefined) {
     window.mod_insertAction = function() {}
     mod_insertAction.options = {}

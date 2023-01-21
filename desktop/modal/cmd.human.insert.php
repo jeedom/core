@@ -41,7 +41,7 @@ if (!isConnect()) {
 </table>
 
 <script>
-(function() {
+(function() {// Self Isolation!
   if (window.mod_insertCmd == undefined) {
     window.mod_insertCmd = function() {}
     mod_insertCmd.options = {}

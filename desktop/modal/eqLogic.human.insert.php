@@ -42,7 +42,7 @@ if (!isConnect()) {
 </table>
 
 <script>
-(function() {
+(function() {// Self Isolation!
   if (window.mod_insertEqLogic == undefined) {
     window.mod_insertEqLogic = function() {}
     mod_insertEqLogic.options = {}

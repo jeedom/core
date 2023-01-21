@@ -98,7 +98,7 @@ $displayNone = (isset($_GET['none'])) ? $_GET['none'] : true;
 </table>
 
 <script>
-(function() {
+(function() {// Self Isolation!
   if (window.mod_insertGenericType == undefined) {
     window.mod_insertGenericType = function() {}
   }

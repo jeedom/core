@@ -34,7 +34,7 @@ if (!isConnect()) {
 </form>
 
 <script>
-(function() {
+(function() {// Self Isolation!
   if (window.mod_insertCron == undefined) {
     window.mod_insertCron = function() {}
   }

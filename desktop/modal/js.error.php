@@ -40,39 +40,50 @@ if (!isConnect()) {
 </div>
 
 <script>
-function refreshJsError() {
-  var tr = ''
-  for (var i in jeedomUtils.JS_ERROR) {
-    tr += '<tr>';
-    tr += '<td>';
-    if (jeedomUtils.JS_ERROR[i].filename) {
-      tr += jeedomUtils.JS_ERROR[i].filename
-    }
-    tr += '</td>'
-    tr += '<td>'
-    if (jeedomUtils.JS_ERROR[i].lineno) {
-      tr += jeedomUtils.JS_ERROR[i].lineno
-    }
-    tr += '</td>'
-    tr += '<td>'
-    if (jeedomUtils.JS_ERROR[i].message) {
-      tr += jeedomUtils.JS_ERROR[i].message
-    }
-    tr += '</td>'
-    tr += '</tr>'
+if (!jeeFrontEnd.md_jsError) {
+  jeeFrontEnd.md_jsError = {
+    init: function() {
+      this.refreshJsError()
+    },
+    refreshJsError: function() {
+      var tr = ''
+      for (var i in jeedomUtils.JS_ERROR) {
+        tr += '<tr>';
+        tr += '<td>';
+        if (jeedomUtils.JS_ERROR[i].filename) {
+          tr += jeedomUtils.JS_ERROR[i].filename
+        }
+        tr += '</td>'
+        tr += '<td>'
+        if (jeedomUtils.JS_ERROR[i].lineno) {
+          tr += jeedomUtils.JS_ERROR[i].lineno
+        }
+        tr += '</td>'
+        tr += '<td>'
+        if (jeedomUtils.JS_ERROR[i].message) {
+          tr += jeedomUtils.JS_ERROR[i].message
+        }
+        tr += '</td>'
+        tr += '</tr>'
+      }
+      document.getElementById('table_jsError tbody').empty().insertAdjacentHTML('beforeend', tr)
+    },
   }
-  $('#table_jsError tbody').empty().append(tr)
 }
 
-refreshJsError()
+(function() {// Self Isolation!
+  var jeeM = jeeFrontEnd.md_jsError
+  jeeM.init()
 
-$('#bt_refreshJSError').on('click',function() {
-  refreshJsError()
-})
+  document.getElementById('bt_refreshJSError').addEventListener('click',function() {
+    jeeM.refreshJsError()
+  })
 
-$('#bt_clearJSError').on('click',function() {
-  jeedomUtils.JS_ERROR = []
-  $('#bt_jsErrorModal').hide()
-  refreshJsError()
-})
+  document.getElementById('bt_clearJSError').addEventListener('click',function() {
+    jeedomUtils.JS_ERROR = []
+    document.getElementById('bt_jsErrorModal').unseen()
+    jeeM.refreshJsError()
+  })
+
+})()
 </script>

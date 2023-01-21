@@ -31,7 +31,7 @@ sendVarToJS([
 </div>
 
 <script>
-(function() {
+(function() {// Self Isolation!
   var graph = Viva.Graph.graph()
   jeedom.getGraphData({
     filter_type : '<?php echo init('filter_type', '') ?>',

@@ -28,7 +28,7 @@ sendVarToJS([
 ]);
 ?>
 
-<div id="md_displayEqLogicConfigure" data-modalType="md_eqLogicConfigure">
+<div id="md_eqLogicConfigure" data-modalType="md_eqLogicConfigure">
   <div class="input-group pull-right" style="display:inline-flex">
     <span class="input-group-btn">
       <a class="btn btn-default roundedLeft btn-sm" id="bt_eqLogicConfigureLogRealTime"><i class="far fa-file"></i> {{Logs}}
@@ -474,8 +474,8 @@ sendVarToJS([
 
 <script>
 
-if (!jeeFrontEnd.md_displayEqLogicConfigure) {
-  jeeFrontEnd.md_displayEqLogicConfigure = {
+if (!jeeFrontEnd.md_eqLogicConfigure) {
+  jeeFrontEnd.md_eqLogicConfigure = {
     init: function(_cmdIds) {
       if (document.body.getAttribute('data-page') == "eqAnalyse") {
         document.querySelector('#eqLogicConfigureTab > li > a[href="#eqLogic_alert"]').click()
@@ -496,10 +496,10 @@ if (!jeeFrontEnd.md_displayEqLogicConfigure) {
       document.querySelector('select[data-l2key="layout::dashboard"]').triggerEvent('change')
 
       //Dynamic values:
-      document.querySelectorAll('#md_displayEqLogicConfigure .eqLogicConfigure_cmdValue').forEach(_cmd => {
+      document.querySelectorAll('#md_eqLogicConfigure .eqLogicConfigure_cmdValue').forEach(_cmd => {
         jeedom.cmd.addUpdateFunction(_cmd.getAttribute('data-cmd_id'), function(_options) {
           _options.value = String(_options.value).replace(/<[^>]*>?/gm, '')
-          let cmd = document.querySelector('#md_displayEqLogicConfigure .eqLogicConfigure_cmdValue[data-cmd_id="' + _options.cmd_id + '"]')
+          let cmd = document.querySelector('#md_eqLogicConfigure .eqLogicConfigure_cmdValue[data-cmd_id="' + _options.cmd_id + '"]')
           let title = '{{Date de valeur}} : ' + _options.valueDate + '<br>{{Date de collecte}} : ' + _options.collectDate
           if (_options.value.length > 50) {
             title += '<br>{{Valeur}} : ' + _options.value
@@ -514,7 +514,7 @@ if (!jeeFrontEnd.md_displayEqLogicConfigure) {
         })
       })
 
-      jeeFrontEnd.md_displayEqLogicConfigure.setTableLayoutSortable()
+      jeeFrontEnd.md_eqLogicConfigure.setTableLayoutSortable()
       jeedomUtils.initSpinners()
     },
     setModal: function() {
@@ -550,8 +550,8 @@ if (!jeeFrontEnd.md_displayEqLogicConfigure) {
       return newTd
     },
     applyTableLayout: function() {
-      var nbColumn = document.querySelector('#md_displayEqLogicConfigure input[data-l2key="layout::dashboard::table::nbColumn"]').value
-      var nbRow = document.querySelector('#md_displayEqLogicConfigure input[data-l2key="layout::dashboard::table::nbLine"]').value
+      var nbColumn = document.querySelector('#md_eqLogicConfigure input[data-l2key="layout::dashboard::table::nbColumn"]').value
+      var nbRow = document.querySelector('#md_eqLogicConfigure input[data-l2key="layout::dashboard::table::nbLine"]').value
 
       var tableLayout = document.getElementById('tableCmdLayoutConfiguration')
       var tableRowCount = tableLayout.querySelectorAll('tr').length
@@ -567,7 +567,7 @@ if (!jeeFrontEnd.md_displayEqLogicConfigure) {
         for (i = 1; i <= nbRow; i++) {
           var newTr = document.createElement('tr')
           for (j = 1; j <= nbColumn; j++) {
-            newTd = jeeFrontEnd.md_displayEqLogicConfigure.getNewLayoutTd(i, j)
+            newTd = jeeFrontEnd.md_eqLogicConfigure.getNewLayoutTd(i, j)
             newTr.insertAdjacentHTML('beforeend', newTd)
           }
           newTableLayout.tBodies[0].appendChild(newTr)
@@ -603,7 +603,7 @@ if (!jeeFrontEnd.md_displayEqLogicConfigure) {
         //replace by new table:
         tableLayout.replaceWith(newTableLayout)
         document.querySelectorAll('#tableCmdLayoutConfiguration td').forEach(td => { td.style.width = 100 / nbColumn + '%' })
-        jeeFrontEnd.md_displayEqLogicConfigure.setTableLayoutSortable()
+        jeeFrontEnd.md_eqLogicConfigure.setTableLayoutSortable()
       }
     },
     eqlogicSave: function(event) {
@@ -651,7 +651,7 @@ if (!jeeFrontEnd.md_displayEqLogicConfigure) {
               })
             },
             success: function() {
-              jeeFrontEnd.md_displayEqLogicConfigure.synchModalToEq()
+              jeeFrontEnd.md_eqLogicConfigure.synchModalToEq()
               if (event.ctrlKey || event.metaKey) {
                 setTimeout(function() {
                   jeeDialog.get('#md_modal').close()
@@ -679,7 +679,7 @@ if (!jeeFrontEnd.md_displayEqLogicConfigure) {
 }
 
 (function() {// Self Isolation!
-  var jeeM = jeeFrontEnd.md_displayEqLogicConfigure
+  var jeeM = jeeFrontEnd.md_eqLogicConfigure
   jeeM.init()
 
   //Manage events outside parents delegations:
@@ -705,7 +705,7 @@ if (!jeeFrontEnd.md_displayEqLogicConfigure) {
     })
   })
   document.getElementById('bt_eqLogicConfigureSave')?.addEventListener('click', function(event) {
-    jeeFrontEnd.md_displayEqLogicConfigure.eqlogicSave(event)
+    jeeFrontEnd.md_eqLogicConfigure.eqlogicSave(event)
   })
   document.getElementById('bt_eqLogicConfigureRemove')?.addEventListener('click', function(event) {
     jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer cet équipement ?}}', function(result) {
@@ -807,7 +807,7 @@ if (!jeeFrontEnd.md_displayEqLogicConfigure) {
   document.getElementById('eqLogic_layout')?.addEventListener('click', function(event) {
     var _target = null
     if (_target = event.target.closest('#bt_eqLogicLayoutApply')) {
-      jeeFrontEnd.md_displayEqLogicConfigure.applyTableLayout()
+      jeeFrontEnd.md_eqLogicConfigure.applyTableLayout()
       return
     }
   })

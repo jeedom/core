@@ -37,6 +37,7 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
 $cmd_widgetMobile = cmd::availableWidget('mobile');
 $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 ?>
+
 <div id="md_displayCmdConfigure" data-modalType="md_displayCmdConfigure">
   <div class="input-group pull-right" style="display:inline-flex">
     <span class="input-group-btn">
@@ -843,6 +844,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     </div>
   </div>
 </div>
+
 <script>
 if (!jeeFrontEnd.md_displayCmdConfigure) {
   jeeFrontEnd.md_displayCmdConfigure = {

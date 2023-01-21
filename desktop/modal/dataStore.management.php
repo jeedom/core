@@ -24,32 +24,29 @@ sendVarToJS([
 ]);
 ?>
 
-<div style="display: none;" id="div_dataStoreManagementAlert" data-modalType="md_datastore"></div>
-
-<div class="input-group">
-  <div class="input-group-btn">
-    <a id="bt_dataStoreManagementAdd" class="btn btn-sm btn-success roundedRight pull-right"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
-    <a id="bt_dataStoreManagementRefresh" class="btn btn-sm roundedLeft pull-right"><i class="fas fa-sync-alt"></i> {{Rafraichir}}</a>
+<div id="md_datastore" data-modalType="md_datastore">
+  <div class="input-group">
+    <div class="input-group-btn">
+      <a id="bt_dataStoreManagementAdd" class="btn btn-sm btn-success roundedRight pull-right"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
+      <a id="bt_dataStoreManagementRefresh" class="btn btn-sm roundedLeft pull-right"><i class="fas fa-sync-alt"></i> {{Rafraichir}}</a>
+    </div>
   </div>
+
+  <table id="table_dataStore" class="table table-condensed table-bordered tablesorter stickyHead" style="width:100%; min-width:100%">
+    <thead>
+      <tr>
+        <th data-sorter="input">{{Nom}}</th>
+        <th data-sorter="input">{{Valeur}}</th>
+        <th>{{Utilisée dans}}</th>
+        <th data-sorter="false" data-filter="false">{{Action}}</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
 </div>
 
-<table id="table_dataStore" class="table table-condensed table-bordered tablesorter stickyHead" style="width:100%; min-width:100%">
-  <thead>
-    <tr>
-      <th data-sorter="input">{{Nom}}</th>
-      <th data-sorter="input">{{Valeur}}</th>
-      <th>{{Utilisée dans}}</th>
-      <th data-sorter="false" data-filter="false">{{Action}}</th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-
 <script>
-"use strict"
-
 if (!jeeFrontEnd.md_datastore) {
   jeeFrontEnd.md_datastore = {
     init: function() {
@@ -135,7 +132,7 @@ if (!jeeFrontEnd.md_datastore) {
   }
 }
 
-(function() {
+(function() {// Self Isolation!
   jeedomUtils.hideAlert()
   var jeeM = jeeFrontEnd.md_datastore
   jeeM.init()

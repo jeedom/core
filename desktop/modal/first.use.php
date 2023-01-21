@@ -107,7 +107,7 @@ sendVarToJS([
 </div>
 
 <script>
-(function() {
+(function() {// Self Isolation!
   	if (jeephp2js.md_firstuse_showDoc == "1") {
   		document.querySelector('#md_firstuse #divDoc').seen()
   	}

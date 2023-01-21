@@ -87,7 +87,7 @@ if (!jeeFrontEnd.md_expressionTest) {
   }
 }
 
-(function() {
+(function() {// Self Isolation!
   var jeeM = jeeFrontEnd.md_expressionTest
   jeeM.init()
 

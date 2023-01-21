@@ -42,7 +42,7 @@ if (!isConnect()) {
 </table>
 
 <script>
-(function() {
+(function() {// Self Isolation!
   if (window.mod_insertDataStore == undefined) {
     window.mod_insertDataStore = function() {}
     mod_insertDataStore.setOptions = function(_options) {}

@@ -43,7 +43,7 @@ if (!isConnect()) {
 	</table>
 </div>
 <script>
-(function() {
+(function() {// Self Isolation!
 	jeedom.config.load({
 		configuration: 'calculHistory',
 		convertToHumanReadable : true,
