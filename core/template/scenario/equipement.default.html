@@ -14,7 +14,7 @@
 </div>
 <script>
   document.querySelector('.listEquipementInfo[data-uid="#uid#"]').addEventListener('click', function() {
-    jeedom.eqLogic.getSelectModal({cmd: {type: 'info'}}, function(result) {
+    jeedom.eqLogic.getSelectModal({}, function(result) {
       document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="eqLogic"]').value = result.human
     })
   })

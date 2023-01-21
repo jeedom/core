@@ -34,58 +34,61 @@ if (!isConnect()) {
           <?php echo jeeObject::getUISelectList(); ?>
         </select>
       </td>
-      <td class="mod_insertEqLogicValue_eqLogic"></td>
+      <td class="mod_insertEqLogicValue_eqLogic">
+        <select class="form-control"></select>
+      </td>
     </tr>
   </tbody>
 </table>
 
 <script>
-  function mod_insertEqLogic() {}
+(function() {
+  if (window.mod_insertEqLogic == undefined) {
+    window.mod_insertEqLogic = function() {}
+    mod_insertEqLogic.options = {}
+    mod_insertEqLogic.options.eqLogic = {}
+    mod_insertEqLogic.options.object = {}
+  }
 
-  mod_insertEqLogic.options = {}
-  mod_insertEqLogic.options.eqLogic = {}
-  mod_insertEqLogic.options.object = {}
+  mod_insertEqLogic.selectObject = document.querySelector('#table_mod_insertEqLogicValue_valueEqLogicToMessage td.mod_insertEqLogicValue_object > select')
+  mod_insertEqLogic.selectEqlogic = document.querySelector('#table_mod_insertEqLogicValue_valueEqLogicToMessage td.mod_insertEqLogicValue_eqLogic > select')
 
-  $('#table_mod_insertEqLogicValue_valueEqLogicToMessage').on({
-    'change': function(event) {
-      var _select = document.getElementById('table_mod_insertEqLogicValue_valueEqLogicToMessage')?.querySelector('td.mod_insertEqLogicValue_object select')
-      mod_insertEqLogic.changeObjectEqLogic(_select, mod_insertEqLogic.options)
-    }
-  }, 'td.mod_insertEqLogicValue_object select')
+  mod_insertEqLogic.selectObject.addEventListener('change', function(event) {
+    mod_insertEqLogic.changeObjectEqLogic(event.target, mod_insertEqLogic.options)
+  })
+
+  mod_insertEqLogic.selectEqlogic.addEventListener('change', function(event) {
+    mod_insertEqLogic.options.eqLogic = {id: event.target.value}
+  })
 
   mod_insertEqLogic.setOptions = function(_options) {
     mod_insertEqLogic.options = _options
     var _select = document.getElementById('table_mod_insertEqLogicValue_valueEqLogicToMessage')?.querySelector('td.mod_insertEqLogicValue_object select')
-    if (!isset(mod_insertEqLogic.options.eqLogic)) {
-      mod_insertEqLogic.options.eqLogic = {}
-    }
-    if (!isset(mod_insertEqLogic.options.object)) {
-      mod_insertEqLogic.options.object = {}
-    }
+    if (!isset(mod_insertEqLogic.options.eqLogic)) mod_insertEqLogic.options.eqLogic = {}
+    if (!isset(mod_insertEqLogic.options.object)) mod_insertEqLogic.options.object = {}
     if (isset(mod_insertEqLogic.options.object.id)) {
-      _select.jeeValue(mod_insertEqLogic.options.object.id)
+      mod_insertEqLogic.selectObject.jeeValue(mod_insertEqLogic.options.object.id)
     }
-    mod_insertEqLogic.changeObjectEqLogic(_select, mod_insertEqLogic.options)
+    mod_insertEqLogic.changeObjectEqLogic(mod_insertEqLogic.selectObject)
   }
 
   mod_insertEqLogic.getValue = function() {
     let _selectObject = document.querySelector('#table_mod_insertEqLogicValue_valueEqLogicToMessage tbody tr').querySelector('.mod_insertEqLogicValue_object select')
     let _selectEq = document.querySelector('#table_mod_insertEqLogicValue_valueEqLogicToMessage tbody tr').querySelector('.mod_insertEqLogicValue_eqLogic select')
-    var object_name = _selectObject.selectedOptions[0].text.trim()
-    var equipement_name = _selectEq.selectedOptions[0].text.trim()
-    if (equipement_name == undefined) {
+    if (_selectEq.selectedOptions.length == 0) {
       return ''
     }
-    return '#[' + object_name + '][' + equipement_name + ']#'
+    return '#[' + _selectObject.selectedOptions[0].text.trim() + '][' + _selectEq.selectedOptions[0].text.trim() + ']#'
   }
 
   mod_insertEqLogic.getId = function() {
-    return document.querySelector('.mod_insertEqLogicValue_eqLogic select').value
+    return document.querySelector('.mod_insertEqLogicValue_eqLogic select').value || null
   }
 
-  mod_insertEqLogic.changeObjectEqLogic = function(_select) {
+  mod_insertEqLogic.changeObjectEqLogic = function() {
+    mod_insertEqLogic.options.object = {id: mod_insertEqLogic.selectObject.value}
     jeedom.object.getEqLogic({
-      id: (_select.value == '' ? -1 : _select.value),
+      id: (mod_insertEqLogic.selectObject.value == '' ? -1 : mod_insertEqLogic.selectObject.value),
       orderByName: true,
       error: function(error) {
         jeedomUtils.showAlert({
@@ -94,19 +97,19 @@ if (!isConnect()) {
         })
       },
       success: function(eqLogics) {
-        _select.closest('tr').querySelector('.mod_insertEqLogicValue_eqLogic').empty()
-        var selectEqLogic = '<select class="form-control">'
+        mod_insertEqLogic.selectEqlogic.empty()
+        var selectEqLogic = ''
         for (var i in eqLogics) {
           if (init(mod_insertEqLogic.options.eqLogic.eqType_name, 'all') == 'all' || eqLogics[i].eqType_name == mod_insertEqLogic.options.eqLogic.eqType_name) {
             selectEqLogic += '<option value="' + eqLogics[i].id + '">' + eqLogics[i].name + '</option>'
           }
         }
-        selectEqLogic += '</select>'
-        _select.closest('tr').querySelector('.mod_insertEqLogicValue_eqLogic').insertAdjacentHTML('beforeend', selectEqLogic)
+        mod_insertEqLogic.selectEqlogic.insertAdjacentHTML('beforeend', selectEqLogic)
+        if (isset(mod_insertEqLogic.options.eqLogic.id)) {
+          mod_insertEqLogic.selectEqlogic.jeeValue(mod_insertEqLogic.options.eqLogic.id)
+        }
       }
     })
   }
-
-  var _select = document.getElementById('table_mod_insertEqLogicValue_valueEqLogicToMessage')?.querySelector('td.mod_insertEqLogicValue_object select')
-  mod_insertEqLogic.changeObjectEqLogic(_select, mod_insertEqLogic.options)
+})()
 </script>
