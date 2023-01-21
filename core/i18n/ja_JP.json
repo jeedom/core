@@ -876,14 +876,14 @@
         "Icônes rouges": "Icônes rouges",
         "Icônes vertes": "Icônes vertes",
         "Rechercher": "検索",
+        "Clic droit sur un dossier pour ouvrir le menu contextuel": "Clic droit sur un dossier pour ouvrir le menu contextuel",
         "Ajouter": "Ajouter",
         "Nouveau": "Nouveau",
         "Renommer": "Renommer",
         "Supprimer": "取り除きます",
         "Etes-vous sûr de vouloir supprimer le dossier": "Etes-vous sûr de vouloir supprimer le dossier",
         "Attention : le contenu du dossier sera définitivement supprimé lors de l'opération.": "Attention : le contenu du dossier sera définitivement supprimé lors de l'opération",
-        "Êtes-vous sûr de vouloir supprimer cette image": "この画像を削除してもよろしいですか？",
-        "Clic droit sur un dossier pour ouvrir le menu contextuel": "Clic droit sur un dossier pour ouvrir le menu contextuel"
+        "Êtes-vous sûr de vouloir supprimer cette image": "この画像を削除してもよろしいですか？"
     },
     "desktop\/modal\/update.send.php": {
         "Le dépôt est inactif :": "デポジットは無効です：",
@@ -1218,7 +1218,7 @@
         "Documentation": "ドキュメンテーション",
         "Ne plus afficher": "Ne plus afficher",
         "Configuration de votre": "あなたの設定",
-        "Sauvegarde réussie": "成功したバックアップ"
+        "Option enregistrée": "Option enregistrée"
     },
     "desktop\/modal\/interact.test.php": {
         "401 - Accès non autorisé": "401-不正アクセス",

@@ -876,14 +876,14 @@
         "Icônes rouges": "Icônes rouges",
         "Icônes vertes": "Icônes vertes",
         "Rechercher": "Pencarian",
+        "Clic droit sur un dossier pour ouvrir le menu contextuel": "Clic droit sur un dossier pour ouvrir le menu contextuel",
         "Ajouter": "Ajouter",
         "Nouveau": "Nouveau",
         "Renommer": "Renommer",
         "Supprimer": "Menghapus",
         "Etes-vous sûr de vouloir supprimer le dossier": "Etes-vous sûr de vouloir supprimer le dossier",
         "Attention : le contenu du dossier sera définitivement supprimé lors de l'opération.": "Attention : le contenu du dossier sera définitivement supprimé lors de l'opération",
-        "Êtes-vous sûr de vouloir supprimer cette image": "Êtes-vous sûr de vouloir supprimer cette image",
-        "Clic droit sur un dossier pour ouvrir le menu contextuel": "Clic droit sur un dossier pour ouvrir le menu contextuel"
+        "Êtes-vous sûr de vouloir supprimer cette image": "Êtes-vous sûr de vouloir supprimer cette image"
     },
     "desktop\/modal\/update.send.php": {
         "Le dépôt est inactif :": "Le dépôt est inactif :",
@@ -1218,7 +1218,7 @@
         "Documentation": "Dokumentasi",
         "Ne plus afficher": "Ne plus afficher",
         "Configuration de votre": "Configuration de votre",
-        "Sauvegarde réussie": "Menyimpan sukses"
+        "Option enregistrée": "Option enregistrée"
     },
     "desktop\/modal\/interact.test.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",

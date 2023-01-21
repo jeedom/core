@@ -876,14 +876,14 @@
         "Icônes rouges": "Ícones vermelhos",
         "Icônes vertes": "Ícones verdes",
         "Rechercher": "Pesquisar",
+        "Clic droit sur un dossier pour ouvrir le menu contextuel": "Clique com o botão direito em uma pasta para abrir o menu de contexto",
         "Ajouter": "Adicionar",
         "Nouveau": "Novo",
         "Renommer": "Renomear",
         "Supprimer": "Excluir",
         "Etes-vous sûr de vouloir supprimer le dossier": "Tem certeza de que deseja excluir a pasta",
         "Attention : le contenu du dossier sera définitivement supprimé lors de l'opération.": "Atenção: o conteúdo da pasta será excluído permanentemente durante a operação",
-        "Êtes-vous sûr de vouloir supprimer cette image": "Tem certeza de que deseja excluir esta imagem",
-        "Clic droit sur un dossier pour ouvrir le menu contextuel": "Clique com o botão direito em uma pasta para abrir o menu de contexto"
+        "Êtes-vous sûr de vouloir supprimer cette image": "Tem certeza de que deseja excluir esta imagem"
     },
     "desktop\/modal\/update.send.php": {
         "Le dépôt est inactif :": "O depósito está inativo:",
@@ -1218,7 +1218,7 @@
         "Documentation": "Documentação",
         "Ne plus afficher": "Não exibir mais",
         "Configuration de votre": "Configuração do seu",
-        "Sauvegarde réussie": "Backup bem-sucedido"
+        "Option enregistrée": "Opção registrada"
     },
     "desktop\/modal\/interact.test.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
