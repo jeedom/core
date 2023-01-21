@@ -484,7 +484,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     jeeDialog.dialog({
       id: 'md_dashEdit',
       width: '600px',
-      height: '500px',
+      height: '650px',
       top: '15vh',
       buttons: {
         confirm: {
@@ -492,7 +492,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
           className: 'success',
           callback: {
             click: function(event) {
-              editSaveEqlogic()
+              jeeFrontEnd.md_eqlogicDashEdit.eqlogicSave()
             }
           }
         },

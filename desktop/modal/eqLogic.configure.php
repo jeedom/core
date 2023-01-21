@@ -636,6 +636,11 @@ if (!jeeFrontEnd.md_displayEqLogicConfigure) {
             cmds.push(cmd)
             order++
           })
+
+          for (cmd of cmds) {
+            delete jeedom.cmd.update[cmd.id]
+          }
+
           jeedom.cmd.setOrder({
             version: 'dashboard',
             cmds: cmds,

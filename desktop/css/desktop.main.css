@@ -4354,6 +4354,7 @@ div.eqLogic-widget.editingMode .panelLink {
 
 /* ____________________DIALOGS */
   #div_displayEqLogicConfigure #commands div.optionalParamHelp,
+  #md_eqlogicDashEdit #commands div.optionalParamHelp,
   #div_displayCmdConfigure #optionalParamHelp {
     padding-left: 10px;
     line-height: 16px;
