@@ -150,8 +150,11 @@ if (!isConnect()) {
 
 <script>
 (function() {
-  window.mod_insertAction = function() {}
-  mod_insertAction.options = {}
+  if (window.mod_insertAction == undefined) {
+    window.mod_insertAction = function() {}
+    mod_insertAction.options = {}
+  }
+
   mod_insertAction.setOptions = function(_options) {
     mod_insertAction.options = _options
     if (init(_options.scenario, false) == false) {

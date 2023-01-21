@@ -42,11 +42,13 @@ if (!isConnect()) {
 
 <script>
 (function() {
-  window.mod_insertCmd = function() {}
-  mod_insertCmd.options = {}
-  mod_insertCmd.options.cmd = {}
-  mod_insertCmd.options.eqLogic = {}
-  mod_insertCmd.options.object = {}
+  if (window.mod_insertCmd == undefined) {
+    window.mod_insertCmd = function() {}
+    mod_insertCmd.options = {}
+    mod_insertCmd.options.cmd = {}
+    mod_insertCmd.options.eqLogic = {}
+    mod_insertCmd.options.object = {}
+  }
 
   mod_insertCmd.setOptions = function(_options) {
     mod_insertCmd.options = _options

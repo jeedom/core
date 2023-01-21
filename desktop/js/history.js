@@ -597,6 +597,7 @@ document.getElementById('sidebar').addEventListener('click', function(event) {
 
   if (_target = event.target.closest('.displayObject')) {
     let list = document.querySelector('.cmdList[data-object_id="' + _target.getAttribute('data-object_id') + '"]')
+    if (!list) return
     if (list.isVisible()) {
       _target.querySelector('i.fas').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right')
       list.unseen()

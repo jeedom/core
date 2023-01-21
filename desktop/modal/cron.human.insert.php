@@ -35,7 +35,10 @@ if (!isConnect()) {
 
 <script>
 (function() {
-  window.mod_insertCron = function() {}
+  if (window.mod_insertCron == undefined) {
+    window.mod_insertCron = function() {}
+  }
+
   mod_insertCron.getValue = function() {
     return document.getElementById('mod_cron_span_cronResult').value
   }

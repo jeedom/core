@@ -43,8 +43,11 @@ if (!isConnect()) {
 
 <script>
 (function() {
-  window.mod_insertDataStore = function() {}
-  mod_insertDataStore.setOptions = function(_options) {}
+  if (window.mod_insertDataStore == undefined) {
+    window.mod_insertDataStore = function() {}
+    mod_insertDataStore.setOptions = function(_options) {}
+  }
+
   mod_insertDataStore.getValue = function() {
     let variable = document.querySelector('#table_mod_insertDataSotreValue .mod_insertDataStoreValue_name > select')?.selectedOptions
     if (!variable || variable.length == 0) {
