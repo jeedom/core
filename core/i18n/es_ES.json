@@ -1209,15 +1209,15 @@
     },
     "desktop\/modal\/first.use.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Configuration de votre": "Configuración de su",
         "Bienvenue dans": "Bienvenido a",
-        ", et merci d'avoir choisi cette solution pour votre habitat connecté.": "y gracias por elegir esta solución para su hogar conectado",
+        ", merci d'avoir choisi cette solution pour votre habitat connecté.": ", gracias por elegir esta solución para su hogar conectado",
         "Voici 4 guides pour bien débuter avec": "Aquí hay 4 guías para comenzar",
         "Guide de démarrage": "Guía de inicio",
         "Concept": "Concepto",
         "Documentation de démarrage": "Documentación de inicio",
         "Documentation": "Documentación",
         "Ne plus afficher": "No mostrar",
+        "Configuration de votre": "Configuración de su",
         "Sauvegarde réussie": "Copia de seguridad realizada con éxito"
     },
     "desktop\/modal\/interact.test.php": {
