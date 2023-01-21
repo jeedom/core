@@ -45,6 +45,7 @@ if (!isConnect('admin')) {
   document.getElementById('bt_executeInteractOk').addEventListener('click',function() {
     if (document.getElementById('in_testInteractQuery').value == '') {
       jeedomUtils.showAlert({
+        attachTo: jeeDialog.get('#md_interactTest', 'content'),
         message: '{{La demande ne peut être vide}}',
         level: 'danger'
       })
@@ -54,6 +55,7 @@ if (!isConnect('admin')) {
       query: document.getElementById('in_testInteractQuery').value,
       error: function(error) {
         jeedomUtils.showAlert({
+          attachTo: jeeDialog.get('#md_interactTest', 'content'),
           message: error.message,
           level: 'danger'
         })

@@ -91,7 +91,11 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
       page: 'changelog',
       theme: document.body.getAttribute('data-theme'),
       error: function(error) {
-        jeedomUtils.showAlert({message: error.message, level: 'danger'})
+        jeedomUtils.showAlert({
+          attachTo: jeeDialog.get('#md_about', 'content'),
+          message: error.message,
+          level: 'danger'
+        })
       },
       success: function(url) {
         window.open(url,'_blank')
@@ -104,7 +108,11 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
       page: 'faq',
       theme: document.body.getAttribute('data-theme'),
       error: function(error) {
-        jeedomUtils.showAlert({message: error.message, level: 'danger'})
+        jeedomUtils.showAlert({
+          attachTo: jeeDialog.get('#md_about', 'content'),
+          message: error.message,
+          level: 'danger'
+        })
       },
       success: function(url) {
         window.open(url,'_blank')

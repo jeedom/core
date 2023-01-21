@@ -37,7 +37,11 @@ sendVarToJS([
     filter_type : '<?php echo init('filter_type', '') ?>',
     filter_id : '<?php echo init('filter_id', '') ?>',
     error: function(error) {
-      jeedomUtils.showAlert({message: error.message, level: 'danger'})
+      jeedomUtils.showAlert({
+        attachTo: jeeDialog.get('#md_graphLink', 'content'),
+        message: error.message,
+        level: 'danger'
+      })
     },
     success : function(data) {
       for (var i in data.node) {

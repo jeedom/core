@@ -875,6 +875,7 @@ if (!jeeFrontEnd.md_displayCmdConfigure) {
               id: thisValue,
               error: function(error) {
                 jeedomUtils.showAlert({
+                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
                   message: error.message,
                   level: 'danger'
                 })
@@ -1078,6 +1079,7 @@ if (!jeeFrontEnd.md_displayCmdConfigure) {
                   cmd: cmd,
                   error: function(error) {
                     jeedomUtils.showAlert({
+                      attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
                       message: error.message,
                       level: 'danger'
                     })
@@ -1087,6 +1089,7 @@ if (!jeeFrontEnd.md_displayCmdConfigure) {
               }
             })
             jeedomUtils.showAlert({
+              attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
               message: "{{Modification(s) appliquée(s) avec succès}}",
               level: 'success'
             })
@@ -1201,12 +1204,14 @@ if (!jeeFrontEnd.md_displayCmdConfigure) {
             cmd_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
             error: function(error) {
               jeedomUtils.showAlert({
+                attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
                 message: error.message,
                 level: 'danger'
               })
             },
             success: function(data) {
               jeedomUtils.showAlert({
+                attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
                 message: '{{Action envoyée avec succés}}',
                 level: 'success'
               })
@@ -1224,12 +1229,14 @@ if (!jeeFrontEnd.md_displayCmdConfigure) {
             cmd_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
             error: function(error) {
               jeedomUtils.showAlert({
+                attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
                 message: error.message,
                 level: 'danger'
               })
             },
             success: function(data) {
               jeedomUtils.showAlert({
+                attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
                 message: '{{Programmation envoyée avec succés}}',
                 level: 'success'
               })
@@ -1256,12 +1263,14 @@ if (!jeeFrontEnd.md_displayCmdConfigure) {
               target_id: target_id,
               error: function(error) {
                 jeedomUtils.showAlert({
+                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
                   message: error.message,
                   level: 'danger'
                 })
               },
               success: function(data) {
                 jeedomUtils.showAlert({
+                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
                   message: '{{Historique copié avec succès}}',
                   level: 'success'
                 })
@@ -1289,12 +1298,14 @@ if (!jeeFrontEnd.md_displayCmdConfigure) {
               target_id: target_id,
               error: function(error) {
                 jeedomUtils.showAlert({
+                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
                   message: error.message,
                   level: 'danger'
                 })
               },
               success: function(data) {
                 jeedomUtils.showAlert({
+                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
                   message: '{{Remplacement réalisé avec succès}}',
                   level: 'success'
                 })
@@ -1322,12 +1333,14 @@ if (!jeeFrontEnd.md_displayCmdConfigure) {
               target_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
               error: function(error) {
                 jeedomUtils.showAlert({
+                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
                   message: error.message,
                   level: 'danger'
                 })
               },
               success: function(data) {
                 jeedomUtils.showAlert({
+                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
                   message: '{{Remplacement réalisé avec succès}}',
                   level: 'success'
                 })
@@ -1349,12 +1362,14 @@ if (!jeeFrontEnd.md_displayCmdConfigure) {
             target_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
             error: function(error) {
               jeedomUtils.showAlert({
+                attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
                 message: error.message,
                 level: 'danger'
               })
             },
             success: function(data) {
               jeedomUtils.showAlert({
+                attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
                 message: '{{Remplacement réalisé avec succès}}',
                 level: 'success'
               })

@@ -82,73 +82,88 @@ if ($selectPlugin != '') {
 </div>
 
 <script>
-  "use strict"
+(function() {// Self Isolation!
 
   jeedomUtils.hideAlert()
   jeedomUtils.initTableSorter()
-  $('#table_message')[0].config.widgetOptions.resizable_widths = ['50px', '140px', '20%', '', '90px', '120px']
-  $('#table_message').trigger('applyWidgets')
-    .trigger('resizableReset')
-    .trigger('update')
 
-  $("#sel_plugin").on('change', function(event) {
-    jeeDialog.get(event.target).options.retainPosition = true
-    jeeDialog.dialog({
-      id: 'jee_modal',
-      title: "{{Centre de Messages}}",
-      contentUrl: 'index.php?v=d&modal=message.display&selectPlugin=' + encodeURI(document.getElementById('sel_plugin').jeeValue())
-    })
-    jeeDialog.get(event.target).options.retainPosition = false
-  })
+  let table = document.querySelector('#md_messageDisplay #table_message')
 
-  $("#bt_clearMessage").on('click', function(event) {
-    jeedom.message.clear({
-      plugin: document.getElementById('sel_plugin').jeeValue(),
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function() {
-        document.querySelector("#table_message tbody").empty()
-        jeedom.refreshMessageNumber()
-      }
-    })
-  })
+  table.config.widgetOptions.resizable_widths = ['50px', '140px', '20%', '', '90px', '120px']
+  table.triggerEvent('applyWidgets')
+  table.triggerEvent('resizableReset')
+  table.triggerEvent('update')
 
-  $('#bt_refreshMessage').on('click', function(event) {
-    jeeDialog.get(event.target).options.retainPosition = true
-    jeeDialog.dialog({
-      id: 'jee_modal',
-      title: "{{Centre de Messages}}",
-      contentUrl: 'index.php?v=d&modal=message.display'
-    })
-    jeeDialog.get(event.target).options.retainPosition = false
-  })
-
-  $('#table_message').on({
-    'click': function(event) {
-      var tr = $(this).closest('tr')
-      jeedom.message.remove({
-        id: tr.attr('data-message_id'),
+  /*Events delegations
+  */
+  document.getElementById('md_messageDisplay').addEventListener('click', function(event) {
+    var _target = null
+    if (_target = event.target.closest('#bt_clearMessage')) {
+      jeedom.message.clear({
+        plugin: document.getElementById('sel_plugin').jeeValue(),
         error: function(error) {
           jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_messageDisplay', 'content'),
             message: error.message,
             level: 'danger'
           })
         },
         success: function() {
-          tr.remove();
-          $("#table_message").trigger("update")
+          document.querySelector("#table_message tbody").empty()
           jeedom.refreshMessageNumber()
         }
       })
+      return
     }
-  }, '.removeMessage')
+
+    if (_target = event.target.closest('#bt_refreshMessage')) {
+      jeeDialog.get(event.target).options.retainPosition = true
+      jeeDialog.dialog({
+        id: 'jee_modal',
+        title: "{{Centre de Messages}}",
+        contentUrl: 'index.php?v=d&modal=message.display'
+      })
+      jeeDialog.get(event.target).options.retainPosition = false
+      return
+    }
+
+    if (_target = event.target.closest('.removeMessage')) {
+      var tr = _target.closest('tr')
+      jeedom.message.remove({
+        id: _target.closest('tr').getAttribute('data-message_id'),
+        error: function(error) {
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_messageDisplay', 'content'),
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function() {
+          _target.closest('tr').remove()
+          document.getElementById("table_message").triggerEvent('update')
+          jeedom.refreshMessageNumber()
+        }
+      })
+      return
+    }
+  })
+
+  document.getElementById('md_messageDisplay').addEventListener('change', function(event) {
+    var _target = null
+    if (_target = event.target.closest('#sel_plugin')) {
+      jeeDialog.get(_target).options.retainPosition = true
+      jeeDialog.dialog({
+        id: 'jee_modal',
+        title: "{{Centre de Messages}}",
+        contentUrl: 'index.php?v=d&modal=message.display&selectPlugin=' + encodeURI(document.getElementById('sel_plugin').jeeValue())
+      })
+      jeeDialog.get(_target).options.retainPosition = false
+      return
+    }
+  })
 
   jeeDialog.get('#table_message').options.onResize = function(event) {
-    $('#table_message').trigger("update")
+    document.querySelector('#md_messageDisplay #table_message').triggerEvent("update")
   }
-
+})()
 </script>

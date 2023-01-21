@@ -22,29 +22,30 @@ $id = init('id', '');
 sendVarToJs('jeephp2js.md_noteManagemer_noteId', $id);
 ?>
 
-<div style="display: none;" id="div_noteManagerAlert" data-modalType="md_noteManager"></div>
-<div class="row row-overflow">
-  <div id="div_notes" class="col-lg-2 col-md-3 col-sm-4" style="overflow-y:auto;overflow-x:hidden;">
-    <div class="bs-sidebar">
-      <ul class="nav nav-list bs-sidenav list-group" id="ul_noteList">
+<div id="md_noteManager" data-modalType="md_noteManager">
+  <div class="row row-overflow">
+    <div id="div_notes" class="col-lg-2 col-md-3 col-sm-4" style="overflow-y:auto;overflow-x:hidden;">
+      <div class="bs-sidebar">
+        <ul class="nav nav-list bs-sidenav list-group" id="ul_noteList">
 
-      </ul>
+        </ul>
+      </div>
     </div>
-  </div>
-  <div class="col-lg-10 col-md-9 col-sm-8" style="overflow:hidden;">
-    <div class="input-group pull-right" style="display:inline-flex">
-      <span class="input-group-btn">
-        <a class="btn btn-sm roundedLeft" id="bt_noteManagerAdd"><i class="fas fa-plus-circle"></i> {{Ajouter}}
-        </a><a class="btn btn-success btn-sm" id="bt_noteManagerSave"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
-        </a><a class="btn btn-danger btn-sm roundedRight" id="bt_noteManagerRemove"><i class="fas fa-trash"></i> {{Supprimer}}</a>
-      </span>
-    </div>
-    <br/><br/>
-    <div id="div_noteManagerDisplay">
-      <input class="noteAttr form-control" data-l1key="id" style="display:none;" disabled/>
-      <input class="noteAttr form-control" data-l1key="name" placeholder="{{Titre}}"/>
-      <br/>
-      <textarea class="noteAttr form-control ta_autosize" data-l1key="text" placeholder="{{Texte}}"></textarea>
+    <div class="col-lg-10 col-md-9 col-sm-8" style="overflow:hidden;">
+      <div class="input-group pull-right" style="display:inline-flex">
+        <span class="input-group-btn">
+          <a class="btn btn-sm roundedLeft" id="bt_noteManagerAdd"><i class="fas fa-plus-circle"></i> {{Ajouter}}
+          </a><a class="btn btn-success btn-sm" id="bt_noteManagerSave"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
+          </a><a class="btn btn-danger btn-sm roundedRight" id="bt_noteManagerRemove"><i class="fas fa-trash"></i> {{Supprimer}}</a>
+        </span>
+      </div>
+      <br/><br/>
+      <div id="div_noteManagerDisplay">
+        <input class="noteAttr form-control" data-l1key="id" style="display:none;" disabled/>
+        <input class="noteAttr form-control" data-l1key="name" placeholder="{{Titre}}"/>
+        <br/>
+        <textarea class="noteAttr form-control ta_autosize" data-l1key="text" placeholder="{{Texte}}"></textarea>
+      </div>
     </div>
   </div>
 </div>
@@ -53,12 +54,21 @@ sendVarToJs('jeephp2js.md_noteManagemer_noteId', $id);
 if (!jeeFrontEnd.md_noteManager) {
   jeeFrontEnd.md_noteManager = {
     init: function() {
+      jeedomUtils.hideAlert()
       this.updateNoteList()
+      jeedomUtils.taAutosize()
+
+      if (jeephp2js.md_noteManagemer_noteId != '') {
+        this.displayNote(jeephp2js.md_noteManagemer_noteId)
+      }
     },
     updateNoteList: function() {
       jeedom.note.all({
         error: function(error) {
-          $('#div_noteManagerAlert').showAlert({message: error.message, level: 'danger'})
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_noteManager', 'content'),
+            message: error.message,
+            level: 'danger'})
         },
         success: function(notes) {
           var note = document.getElementById('div_noteManagerDisplay').getJeeValues('.noteAttr')[0]
@@ -66,79 +76,104 @@ if (!jeeFrontEnd.md_noteManager) {
           for (var i in notes) {
             ul += '<li class="cursor li_noteDisplay" data-id="' + notes[i].id + '"><a>' + notes[i].name + '</a></li>'
           }
-          $('#ul_noteList').empty().append(ul)
+          document.getElementById('ul_noteList').empty().insertAdjacentHTML('beforeend', ul)
           if (note.id != '') {
-            $('.li_noteDisplay[data-id=' + note.id + ']').addClass('active')
+            document.querySelector('.li_noteDisplay[data-id="' + note.id + '"]').addClass('active')
           }
+        }
+      })
+    },
+    displayNote: function(_noteId) {
+      document.querySelectorAll('.li_noteDisplay').removeClass('active')
+      document.querySelector('.li_noteDisplay[data-id="' + _noteId + '"]')?.addClass('active')
+      jeedom.note.byId({
+        id : _noteId,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_noteManager', 'content'),
+            message: error.message,
+            level: 'danger'
+            )
+        },
+        success: function(note) {
+          document.querySelectorAll('#div_noteManagerDisplay .noteAttr').jeeValue('')
+          document.getElementById('div_noteManagerDisplay').setJeeValues(note, '.noteAttr')
+          jeedomUtils.taAutosize()
         }
       })
     },
   }
 }
 
-(function() {
-  jeedomUtils.hideAlert()
+(function() {// Self Isolation!
   var jeeM = jeeFrontEnd.md_noteManager
   jeeM.init()
 
-  jeedomUtils.taAutosize()
-  if (jeephp2js.md_noteManagemer_noteId != '') {
-    setTimeout(function(){
-      $('li.li_noteDisplay[data-id="' + jeephp2js.md_noteManagemer_noteId + '"]').trigger('click')
-    }, 500)
-  }
 
-  $('#bt_noteManagerAdd').on('click',function() {
-    document.querySelectorAll('#div_noteManagerDisplay .noteAttr').jeeValue('')
-    document.querySelector('#ul_noteList li.active').removeClass('active')
-  })
+  /*Events delegations
+  */
+  document.getElementById('md_noteManager').addEventListener('click', function(event) {
+    var _target = null
+    if (_target = event.target.closest('#bt_noteManagerAdd')) {
+      document.querySelectorAll('#div_noteManagerDisplay .noteAttr').jeeValue('')
+      document.querySelector('#ul_noteList li.active').removeClass('active')
+      return
+    }
 
-  $('#ul_noteList').on('click','.li_noteDisplay',function() {
-    $('.li_noteDisplay').removeClass('active')
-    $(this).addClass('active')
-    jeedom.note.byId({
-      id : $(this).attr('data-id'),
-      error: function(error) {
-        $('#div_noteManagerAlert').showAlert({message: error.message, level: 'danger'})
-      },
-      success: function(note) {
-        document.querySelectorAll('#div_noteManagerDisplay .noteAttr').jeeValue('')
-        document.getElementById('div_noteManagerDisplay').setJeeValues(note, '.noteAttr')
-        jeedomUtils.taAutosize()
-      }
-    })
-  })
+    if (_target = event.target.closest('.li_noteDisplay')) {
+      jeeM.displayNote(_target.getAttribute('data-id'))
+      return
+    }
 
-  $('#bt_noteManagerSave').on('click',function() {
-    var note = document.getElementById('div_noteManagerDisplay').getJeeValues('.noteAttr')[0]
-    jeedom.note.save({
-      note : note,
-      error: function(error) {
-        $('#div_noteManagerAlert').showAlert({message: error.message, level: 'danger'})
-      },
-      success: function(note) {
-        $('#div_noteManagerAlert').showAlert({message: '{{Note sauvegardée avec succès}}', level: 'success'})
-        document.getElementById('div_noteManagerDisplay').setJeeValues(note, '.noteAttr')
-        jeeM.updateNoteList()
-      }
-    })
-  })
-
-  $('#bt_noteManagerRemove').on('click',function() {
-    var note = document.getElementById('div_noteManagerDisplay').getJeeValues('.noteAttr')[0]
-    var r = confirm('{{Voulez-vous vraiment supprimer la note :}}' + ' ' + note.name + ' ?')
-    if (r == true) {
-      jeedom.note.remove({
-        id : note.id,
+    if (_target = event.target.closest('#bt_noteManagerSave')) {
+      var note = document.getElementById('div_noteManagerDisplay').getJeeValues('.noteAttr')[0]
+      jeedom.note.save({
+        note : note,
         error: function(error) {
-          $('#div_noteManagerAlert').showAlert({message: error.message, level: 'danger'})
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_noteManager', 'content'),
+            message: error.message,
+            level: 'danger'
+          })
         },
-        success: function(notes) {
-          $('#div_noteManagerAlert').showAlert({message: '{{Note supprimée avec succès}}', level: 'success'})
-          document.querySelectorAll('#div_noteManagerDisplay .noteAttr').jeeValue('')
+        success: function(note) {
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_noteManager', 'content'),
+            message: '{{Note sauvegardée avec succès}}',
+            level: 'success'
+          })
+          document.getElementById('div_noteManagerDisplay').setJeeValues(note, '.noteAttr')
           jeeM.updateNoteList()
         }
       })
+      return
+    }
+
+    if (_target = event.target.closest('#bt_noteManagerRemove')) {
+      var note = document.getElementById('div_noteManagerDisplay').getJeeValues('.noteAttr')[0]
+      var r = confirm('{{Voulez-vous vraiment supprimer la note :}}' + ' ' + note.name + ' ?')
+      if (r == true) {
+        jeedom.note.remove({
+          id : note.id,
+          error: function(error) {
+            jeedomUtils.showAlert({
+              attachTo: jeeDialog.get('#md_noteManager', 'content'),
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function(notes) {
+            jeedomUtils.showAlert({
+              attachTo: jeeDialog.get('#md_noteManager', 'content'),
+              message: '{{Note supprimée avec succès}}',
+              level: 'success'
+            })
+            document.querySelectorAll('#div_noteManagerDisplay .noteAttr').jeeValue('')
+            jeeM.updateNoteList()
+          }
+        })
+      }
+      return
     }
   })
 })()

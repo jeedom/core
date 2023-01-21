@@ -53,11 +53,33 @@ if ($class == 'eqLogic') {
 
 ?>
 
-<form class="form-horizontal">
-  <fieldset>
-    <?php
-    if (count($otherInfo) > 0) {
-      foreach ($otherInfo as $key => $value) {
+<div id="md_objectDisplay" data-modalType="md_objectDisplay">
+  <form class="form-horizontal">
+    <fieldset>
+      <?php
+      if (count($otherInfo) > 0) {
+        foreach ($otherInfo as $key => $value) {
+          $div = '<div class="form-group">';
+          $div .= '<label class="col-sm-2 control-label">' . $key . '</label>';
+          $div .= '<div class="col-sm-10">';
+          if (is_array($value)) {
+            $div .= '<textarea class="form-control ta_autosize" rows="3" disabled>';
+            $div .= json_encode($value);
+            $div .= '</textarea>';
+          } else if (strpos($value, "\n")) {
+            $div .= '<pre disabled>';
+            $div .= $value;
+            $div .= '</pre>';
+          } else {
+            $div .= '<input class="form-control" disabled value="' . $value . '" />';
+          }
+          $div .= '</div>';
+          $div .= '</div>';
+        }
+        $div .= '<hr/>';
+        echo $div;
+      }
+      foreach ($array as $key => $value) {
         $div = '<div class="form-group">';
         $div .= '<label class="col-sm-2 control-label">' . $key . '</label>';
         $div .= '<div class="col-sm-10">';
@@ -74,32 +96,12 @@ if ($class == 'eqLogic') {
         }
         $div .= '</div>';
         $div .= '</div>';
+        echo $div;
       }
-      $div .= '<hr/>';
-      echo $div;
-    }
-    foreach ($array as $key => $value) {
-      $div = '<div class="form-group">';
-      $div .= '<label class="col-sm-2 control-label">' . $key . '</label>';
-      $div .= '<div class="col-sm-10">';
-      if (is_array($value)) {
-        $div .= '<textarea class="form-control ta_autosize" rows="3" disabled>';
-        $div .= json_encode($value);
-        $div .= '</textarea>';
-      } else if (strpos($value, "\n")) {
-        $div .= '<pre disabled>';
-        $div .= $value;
-        $div .= '</pre>';
-      } else {
-        $div .= '<input class="form-control" disabled value="' . $value . '" />';
-      }
-      $div .= '</div>';
-      $div .= '</div>';
-      echo $div;
-    }
-    ?>
-  </fieldset>
-</form>
+      ?>
+    </fieldset>
+  </form>
+</div>
 
 <script>
   jeedomUtils.taAutosize()

@@ -109,7 +109,11 @@ $result = DB::compareDatabase($database);
           jeedom.dbcorrectTable({
             table : _target.dataset.table,
             error : function(error) {
-              jeedomUtils.showAlert({message: error.message, level: 'danger'})
+              jeedomUtils.showAlert({
+                attachTo: jeeDialog.get('#md_dbCheck', 'content'),
+                message: error.message,
+                level: 'danger'
+              })
             },
             success : function() {
               jeeDialog.dialog({

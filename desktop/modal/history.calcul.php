@@ -48,7 +48,11 @@ if (!isConnect()) {
 		configuration: 'calculHistory',
 		convertToHumanReadable : true,
 		error: function(error) {
-			jeedomUtils.showAlert({message: error.message, level: 'danger'})
+			jeedomUtils.showAlert({
+				attachTo: jeeDialog.get('#md_historyCalcul', 'content'),
+				message: error.message,
+				level: 'danger'
+			})
 		},
 		success: function(data) {
 			for (var i in data) {
@@ -69,10 +73,18 @@ if (!isConnect()) {
 		jeedom.config.save({
 			configuration: {'calculHistory' : calculHistory},
 			error: function(error) {
-				jeedomUtils.showAlert({message: error.message, level: 'danger'})
+				jeedomUtils.showAlert({
+					attachTo: jeeDialog.get('#md_historyCalcul', 'content'),
+					message: error.message,
+					level: 'danger'
+				})
 			},
 			success: function() {
-				jeedomUtils.showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'})
+				jeedomUtils.showAlert({
+					attachTo: jeeDialog.get('#md_historyCalcul', 'content'),
+					message: '{{Sauvegarde effectuée}}',
+					level: 'success'
+				})
 			}
 		})
 	    return

@@ -144,7 +144,7 @@ sendVarToJS([
 			},
 			success: function() {
 				jeedomUtils.showAlert({
-					message: '{{Sauvegarde réussie}}',
+					message: '{{Option enregistrée}}',
 					level: 'success'
 				})
 			}

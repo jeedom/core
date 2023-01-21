@@ -57,7 +57,11 @@ if (!jeeFrontEnd.md_expressionTest) {
     testExpression: function() {
       let expression = document.getElementById('in_testExpression').value
       if (expression == '') {
-        jeedomUtils.showAlert({message: '{{L\'expression de test ne peut être vide}}', level: 'danger'})
+        jeedomUtils.showAlert({
+          attachTo: jeeDialog.get('#md_expressionTest', 'content'),
+          message: '{{L\'expression de test ne peut être vide}}',
+          level: 'danger'
+        })
         return
       }
 
@@ -68,7 +72,11 @@ if (!jeeFrontEnd.md_expressionTest) {
       jeedom.scenario.testExpression({
         expression: expression,
         error: function(error) {
-          jeedomUtils.showAlert({message: error.message, level: 'danger'});
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_expressionTest', 'content'),
+            message: error.message,
+            level: 'danger'
+          });
         },
         success: function(data) {
           let divResult = document.getElementById('div_expressionTestResult')
