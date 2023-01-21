@@ -493,7 +493,7 @@ if (!jeeFrontEnd.md_eqLogicConfigure) {
       }
     },
     postInit: function() {
-      document.querySelector('select[data-l2key="layout::dashboard"]').triggerEvent('change')
+      document.querySelector('select[data-l2key="layout::dashboard"]')?.triggerEvent('change')
 
       //Dynamic values:
       document.querySelectorAll('#md_eqLogicConfigure .eqLogicConfigure_cmdValue').forEach(_cmd => {
