@@ -4726,6 +4726,15 @@ div.eqLogic-widget.editingMode .panelLink {
   #brutlogcheck[autoswitch="1"]:checked + #brutlogicon {
     display: inline-block;
   }
+  #md_scenarioLog {
+    height: 100%;
+    overflow: hidden;
+  }
+  #pre_scenariolog {
+    width: 100%;
+    height: calc(100% - 30px);
+    overflow: auto;
+  }
   #pre_globallog,
   #pre_scenariolog,
   #pre_eventlog,

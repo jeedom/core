@@ -43,6 +43,7 @@ sendVarToJS([
 <div id="div_summaryAction" data-modalType="md_summaryAction"></div>
 
 <script>
+(function() {// Self Isolation!
   var divSummaryAction = jeeDialog.get('#md_summaryAction', 'content').querySelector('#div_summaryAction')
 
   //remove commands prior to DOM injection:
@@ -76,5 +77,5 @@ sendVarToJS([
   if (mouseY < 55) mouseY = 55 //Prevent over menu
   modal.style.left = mouseX - (modal.offsetWidth / 2) + 'px'
   modal.style.top = mouseY + 'px'
-
+})()
 </script>

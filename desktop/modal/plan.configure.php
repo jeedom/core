@@ -451,7 +451,6 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
 </div>
 
 <script>
-  console.log('md_planConfigure')
 if (!jeeFrontEnd.md_planConfigure) {
   jeeFrontEnd.md_planConfigure = {
     plan_configure_plan: null,
