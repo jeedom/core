@@ -340,8 +340,8 @@
         "Supprimer l'image": "画像を削除します",
         "Afficher le nom des objets sur les widgets": "ウィジェット上のオブジェクトの名前を表示する",
         "Image ajoutée": "画像を追加しました",
-        "Image supprimée": "削除された画像",
-        "Vue sauvegardé": "保存されたビュー"
+        "Vue sauvegardé": "保存されたビュー",
+        "Image supprimée": "削除された画像"
     },
     "desktop\/modal\/db.check.php": {
         "401 - Accès non autorisé": "401-不正アクセス",

@@ -340,8 +340,8 @@
         "Supprimer l'image": "Fotoğrafı sil",
         "Afficher le nom des objets sur les widgets": "Afficher le nom des objets sur les widgets",
         "Image ajoutée": "Image ajoutée",
-        "Image supprimée": "Fotoğraf silindi",
-        "Vue sauvegardé": "Vue sauvegardé"
+        "Vue sauvegardé": "Vue sauvegardé",
+        "Image supprimée": "Fotoğraf silindi"
     },
     "desktop\/modal\/db.check.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",

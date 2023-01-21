@@ -340,8 +340,8 @@
         "Supprimer l'image": "Borrar la imagen",
         "Afficher le nom des objets sur les widgets": "Mostrar el nombre de los objetos en widgets",
         "Image ajoutée": "Imagen agregada",
-        "Image supprimée": "Imagen suprimida",
-        "Vue sauvegardé": "Vista guardada"
+        "Vue sauvegardé": "Vista guardada",
+        "Image supprimée": "Imagen suprimida"
     },
     "desktop\/modal\/db.check.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",

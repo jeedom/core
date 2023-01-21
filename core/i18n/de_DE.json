@@ -340,8 +340,8 @@
         "Supprimer l'image": "Bild löschen",
         "Afficher le nom des objets sur les widgets": "Zeigen Sie den Namen von Objekten in Widgets an",
         "Image ajoutée": "Bild hinzugefügt",
-        "Image supprimée": "Bild gelöscht",
-        "Vue sauvegardé": "Gespeicherte Ansicht"
+        "Vue sauvegardé": "Gespeicherte Ansicht",
+        "Image supprimée": "Bild gelöscht"
     },
     "desktop\/modal\/db.check.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",

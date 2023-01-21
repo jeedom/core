@@ -340,8 +340,8 @@
         "Supprimer l'image": "Удалить изображение",
         "Afficher le nom des objets sur les widgets": "Отображать названия объектов на виджетах",
         "Image ajoutée": "Изображение добавлено",
-        "Image supprimée": "Удаленное изображение",
-        "Vue sauvegardé": "Сохраненный вид"
+        "Vue sauvegardé": "Сохраненный вид",
+        "Image supprimée": "Удаленное изображение"
     },
     "desktop\/modal\/db.check.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
