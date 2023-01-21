@@ -1209,15 +1209,15 @@
     },
     "desktop\/modal\/first.use.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
-        "Configuration de votre": "あなたの設定",
         "Bienvenue dans": "へようこそ",
-        ", et merci d'avoir choisi cette solution pour votre habitat connecté.": ", et merci d'avoir choisi cette solution pour votre habitat connecté",
+        ", merci d'avoir choisi cette solution pour votre habitat connecté.": ", merci d'avoir choisi cette solution pour votre habitat connecté",
         "Voici 4 guides pour bien débuter avec": "Voici 4 guides pour bien débuter avec",
         "Guide de démarrage": "入門ガイド",
         "Concept": "Concept",
         "Documentation de démarrage": "はじめにドキュメント",
         "Documentation": "ドキュメンテーション",
         "Ne plus afficher": "Ne plus afficher",
+        "Configuration de votre": "あなたの設定",
         "Sauvegarde réussie": "成功したバックアップ"
     },
     "desktop\/modal\/interact.test.php": {

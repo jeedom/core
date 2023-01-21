@@ -1209,15 +1209,15 @@
     },
     "desktop\/modal\/first.use.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Configuration de votre": "Configuration of your",
         "Bienvenue dans": "Welcome in",
-        ", et merci d'avoir choisi cette solution pour votre habitat connecté.": ", and thank you for choosing this solution for your connected home",
+        ", merci d'avoir choisi cette solution pour votre habitat connecté.": ", thank you for choosing this solution for your connected home",
         "Voici 4 guides pour bien débuter avec": "Here are 4 guides to get started with",
         "Guide de démarrage": "Getting started guide",
         "Concept": "Concept",
         "Documentation de démarrage": "Getting started documentation",
         "Documentation": "Documentation",
         "Ne plus afficher": "Do not display anymore",
+        "Configuration de votre": "Configuration of your",
         "Sauvegarde réussie": "Successful backup"
     },
     "desktop\/modal\/interact.test.php": {
