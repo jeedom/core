@@ -1178,8 +1178,12 @@
         "Télécharger": "Descargar",
         "Paramètres du scénario": "Parámetros del escenario",
         "Appliquer": "Aplicar",
+        "Template ajouté avec succès": "Plantilla añadido correctamente",
+        "Création du template réussie": "Creación exitosa de plantillas",
+        "Vous devez d\\'abord sélectionner un template": "Primero debe seleccionar una plantilla",
+        "Suppression du template réussie": "Eliminación de plantilla exitosa",
         "Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel.": "¿Seguro que quieres aplicar esta plantilla? Esto sobrescribirá su escenario actual",
-        "Template ajouté avec succès": "Plantilla añadido correctamente"
+        "Template appliqué avec succès.": "Plantilla aplicada con éxito"
     },
     "desktop\/modal\/update.add.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",

@@ -1178,8 +1178,12 @@
         "Télécharger": "Download",
         "Paramètres du scénario": "Scenario settings",
         "Appliquer": "Apply",
+        "Template ajouté avec succès": "Template successfully added",
+        "Création du template réussie": "Successful template creation",
+        "Vous devez d\\'abord sélectionner un template": "You must first select a template",
+        "Suppression du template réussie": "Template deletion successful",
         "Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel.": "Are you sure you want to apply this template? This will overwrite your current scenario",
-        "Template ajouté avec succès": "Template successfully added"
+        "Template appliqué avec succès.": "Template successfully applied"
     },
     "desktop\/modal\/update.add.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
