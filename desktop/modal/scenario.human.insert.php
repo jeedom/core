@@ -33,9 +33,11 @@ if (!isConnect()) {
   </select>
 </center>
 <script>
-  function mod_insertScenario() {}
-
-  mod_insertScenario.setOptions = function(_options) {}
+(function() {// Self Isolation!
+  if (window.mod_insertScenario == undefined) {
+    window.mod_insertScenario = function() {}
+    mod_insertScenario.setOptions = function(_options) {}
+  }
 
   mod_insertScenario.getId = function() {
     return document.getElementById('mod_insertScenariocValue_value').selectedOptions[0].getAttribute('data-scenario_id')
@@ -44,4 +46,5 @@ if (!isConnect()) {
   mod_insertScenario.getValue = function() {
     return document.getElementById('mod_insertScenariocValue_value').value
   }
+})()
 </script>

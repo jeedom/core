@@ -1484,6 +1484,7 @@ var jeeDialog = (function()
         }
 
         dialogContainer.addEventListener('mousedown', function(event) {
+          if (event.defaultPrevented) return
           document.querySelectorAll('div.jeeDialog.jeeDialogMain').removeClass('active')
           event.target.closest('div.jeeDialog.jeeDialogMain').addClass('active')
         })

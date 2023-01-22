@@ -93,7 +93,7 @@ if (!jeeFrontEnd.md_noteManager) {
             attachTo: jeeDialog.get('#md_noteManager', 'content'),
             message: error.message,
             level: 'danger'
-            )
+            })
         },
         success: function(note) {
           document.querySelectorAll('#div_noteManagerDisplay .noteAttr').jeeValue('')

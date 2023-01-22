@@ -281,7 +281,6 @@ if (!jeeFrontEnd.md_iconSelector) {
       return _string.charAt(0).toUpperCase() + _string.slice(1)
     },
     printFileFolder: function(_path, jstreeId, callback) {
-      console.log('printFileFolder:', _path, jstreeId, callback)
       jeedomUtils.hideAlert()
       jeedom.getFileFolder({
         type: 'files',
@@ -409,7 +408,6 @@ if (!jeeFrontEnd.md_iconSelector) {
     if (event.target.hasClass('jstree-anchor')) {
       var node = event.target.closest('li')
       var tree = $.jstree.reference(node)
-      console.log('tree:', tree)
       tree.select_node(node)
       return
     }
@@ -470,7 +468,6 @@ if (!jeeFrontEnd.md_iconSelector) {
   })
 
   $('.div_treeFolder').off('click').on('select_node.jstree', function(node, selected) {
-    console.log('--select_node.jstree', node, selected)
     $('#in_searchIconSelector').val('')
     if (selected.node.a_attr['data-path'] != undefined) {
       var path = selected.node.a_attr['data-path']
@@ -514,7 +511,6 @@ if (!jeeFrontEnd.md_iconSelector) {
   })
 
   $('.div_treeFolder').on("rename_node.jstree", function(event, data) {
-    console.log('--rename_node.jstree', event, data)
     if (data.text !== data.old) {
       var newPath = data.node.a_attr['data-path'].replace('/' + data.old + '/', '/' + data.text + '/')
       jeedom.renameFolder({

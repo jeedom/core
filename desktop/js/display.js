@@ -36,8 +36,7 @@ if (!jeeFrontEnd.display) {
       this.tableRemoveHistory.triggerEvent('applyWidgets')
       this.tableRemoveHistory.triggerEvent('resizableReset')
       setTimeout(() => {
-        this.tableRemoveHistory.querySelector('thead tr').children[0].triggerEvent('sort')
-        this.tableRemoveHistory.querySelector('thead tr').children[0].triggerEvent('sort')
+        this.tableRemoveHistory.querySelector('thead tr').children[0].triggerEvent('sort').triggerEvent('sort')
       }, 200)
       this.tableRemoveHistory.triggerEvent("update")
     },
