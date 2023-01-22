@@ -87,10 +87,14 @@ $dependancy_info = $plugin->dependancy_info();
 <script>
 if (!jeeFrontEnd.md_pluginDependancy) {
   jeeFrontEnd.md_pluginDependancy = {
+    timeout_refreshDepInfo: null,
     init: function() {
       this.refreshDependancyInfo()
     },
     refreshDependancyInfo: function() {
+      clearTimeout(jeeFrontEnd.md_pluginDependancy.timeout_refreshDepInfo)
+      //No longer shown ?
+      if (document.getElementById('md_pluginDependancy') == null) return
       var nok = false
       jeedom.plugin.getDependancyInfo({
         id: plugin_id,
@@ -135,7 +139,7 @@ if (!jeeFrontEnd.md_pluginDependancy) {
             document.getElementById("div_plugin_dependancy").closest('.panel').removeClass('panel-danger panel-info').addClass('panel-success')
           }
           if (nok) {
-            setTimeout(refreshDependancyInfo, 5000)
+            setTimeout(jeeFrontEnd.md_pluginDependancy.refreshDependancyInfo, 5000)
           }
         }
       })
@@ -168,7 +172,7 @@ if (!jeeFrontEnd.md_pluginDependancy) {
     }
 
     if (_target = event.target.closest('.bt_changeAutoModeDependancy')) {
-      clearTimeout(timeout_refreshDeamonInfo)
+      clearTimeout(jeeFrontEnd.md_pluginDependancy.timeout_refreshDepInfo)
       var mode = _target.getAttribute('data-mode')
       jeedom.plugin.dependancyChangeAutoMode({
         id: plugin_id,
@@ -180,11 +184,11 @@ if (!jeeFrontEnd.md_pluginDependancy) {
             level: 'danger'
           })
           jeeFrontEnd.md_pluginDependancy.refreshDependancyInfo()
-          timeout_refreshDeamonInfo = setTimeout(refreshDependancyInfo, 5000)
+          jeeFrontEnd.md_pluginDependancy.timeout_refreshDepInfo = setTimeout(jeeFrontEnd.md_pluginDependancy.refreshDependancyInfo, 5000)
         },
         success: function() {
           jeeFrontEnd.md_pluginDependancy.refreshDependancyInfo()
-          timeout_refreshDeamonInfo = setTimeout(refreshDependancyInfo, 5000)
+          jeeFrontEnd.md_pluginDependancy.timeout_refreshDepInfo = setTimeout(jeeFrontEnd.md_pluginDependancy.refreshDependancyInfo, 5000)
         }
       })
       return

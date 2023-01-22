@@ -138,7 +138,7 @@ class planHeader {
 		}
 		$size = $this->getImage('size');
 		$filename = 'planHeader' . $this->getId() . '-' . $this->getImage('sha512') . '.' . $this->getImage('type');
-		$div = '<div style="';
+		$div = '<div id="planHeaderImage" style="';
 		$div .= 'z-index: 997;';
 		$div .= 'background: url(data/plan/' . $filename . ');';
 		$div .= 'background-size: ' . $this->getConfiguration('desktopSizeX') . 'px ' . $this->getConfiguration('desktopSizeY') . 'px;';

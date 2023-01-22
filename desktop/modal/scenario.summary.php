@@ -20,51 +20,60 @@ if (!isConnect()) {
 }
 ?>
 
-<div id="div_alertScenarioSummary" data-modalType="md_scenarioSummary"></div>
-<div class="input-group pull-right" style="display:inline-flex">
-  <span class="input-group-btn">
-    <a class="btn btn-xs roundedLeft" id="bt_refreshSummaryScenario"><i class="fas fa-sync"></i> {{Rafraîchir}}
-    </a><a class="btn btn-success btn-xs roundedRight" id="bt_saveSummaryScenario"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
-  </span>
-</div>
-<br/><br/>
-<table id="table_scenarioSummary" class="table table-bordered table-condensed tablesorter stickyHead">
-  <thead>
-    <tr>
-      <th>{{ID}}</th>
-      <th>{{Scénario}}</th>
-      <th>{{Statut}}</th>
-      <th>{{Dernier lancement}}</th>
-      <th data-sorter="checkbox" data-filter="false">{{Actif}}</th>
-      <th data-sorter="checkbox" data-filter="false">{{Visible}}</th>
-      <th data-sorter="checkbox" data-filter="false">{{Multi}}</th>
-      <th data-sorter="checkbox" data-filter="false">{{Sync}}</th>
-      <th data-sorter="select-text">{{Log}}</th>
-      <th data-sorter="checkbox" data-filter="false">{{Timeline}}</th>
-      <th data-sorter="false" data-filter="false">{{Actions}}</th>
-    </tr>
-  </thead>
-  <tbody id="tbody_scenarioSummary">
+<div id="md_scenarioSummary" data-modalType="md_scenarioSummary">
+  <div class="input-group pull-right" style="display:inline-flex">
+    <span class="input-group-btn">
+      <a class="btn btn-xs roundedLeft" id="bt_refreshSummaryScenario"><i class="fas fa-sync"></i> {{Rafraîchir}}
+      </a><a class="btn btn-success btn-xs roundedRight" id="bt_saveSummaryScenario"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+    </span>
+  </div>
+  <br/><br/>
+  <table id="table_scenarioSummary" class="table table-bordered table-condensed tablesorter stickyHead">
+    <thead>
+      <tr>
+        <th>{{ID}}</th>
+        <th>{{Scénario}}</th>
+        <th>{{Statut}}</th>
+        <th>{{Dernier lancement}}</th>
+        <th data-sorter="checkbox" data-filter="false">{{Actif}}</th>
+        <th data-sorter="checkbox" data-filter="false">{{Visible}}</th>
+        <th data-sorter="checkbox" data-filter="false">{{Multi}}</th>
+        <th data-sorter="checkbox" data-filter="false">{{Sync}}</th>
+        <th data-sorter="select-text">{{Log}}</th>
+        <th data-sorter="checkbox" data-filter="false">{{Timeline}}</th>
+        <th data-sorter="false" data-filter="false">{{Actions}}</th>
+      </tr>
+    </thead>
+    <tbody id="tbody_scenarioSummary">
 
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>
 
 <script>
 if (!jeeFrontEnd.md_scenarioSummary) {
   jeeFrontEnd.md_scenarioSummary = {
     init: function() {
-      this.$tableScSummary = $('#table_scenarioSummary')
+      jeedomUtils.initTableSorter()
+      this.tableScSummary = document.getElementById('table_scenarioSummary')
       this.refreshScenarioSummary()
-      this.$tableScSummary[0].config.widgetOptions.resizable_widths = ['40px', '', '70px', '170px', '62px', '80px', '70px', '70px', '90px', '155px', '85px']
-      this.$tableScSummary.trigger('applyWidgets')
-        .trigger('resizableReset')
-        .trigger('sorton', [[[3,1]]])
+      this.tableScSummary.config.widgetOptions.resizable_widths = ['40px', '', '70px', '170px', '62px', '80px', '70px', '70px', '90px', '155px', '85px']
+      this.tableScSummary.triggerEvent('applyWidgets')
+      this.tableScSummary.triggerEvent('resizableReset')
+      this.tableScSummary.querySelector('thead tr').children[3].triggerEvent('sort').triggerEvent('sort')
+
+      this.modal = this.tableScSummary.closest('div.jeeDialogMain')
+      if (this.modal != null) {
+        jeeDialog.get(this.modal).options.onResize = function(event) {
+          jeeFrontEnd.md_scenarioSummary.tableScSummary.triggerEvent("update")
+        }
+      }
     },
     synchModaleToPage: function() {
-      $('#table_scenarioSummary tbody .scenario').each(function() {
-        var scId = $(this).attr('data-id')
-        var scPage = $('#scenarioThumbnailDisplay div.scenarioDisplayCard[data-scenario_id="'+scId+'"]')
-        if ($(this).find('input[data-l1key="isActive"]').is(':checked')) {
+      document.querySelectorAll('#table_scenarioSummary tbody .scenario').forEach(_sc => {
+        var scId = _sc.getAttribute('data-id')
+        var scPage = document.querySelector('#scenarioThumbnailDisplay div.scenarioDisplayCard[data-scenario_id="' + scId + '"]')
+        if (_sc.querySelector('input[data-l1key="isActive"]').checked) {
           scPage.removeClass('inactive')
         } else {
           scPage.addClass('inactive')
@@ -73,12 +82,15 @@ if (!jeeFrontEnd.md_scenarioSummary) {
     },
     refreshScenarioSummary: function() {
       document.emptyById('tbody_scenarioSummary')
-      self = this
       jeedom.scenario.allOrderedByGroupObjectName({
         nocache: true,
         asTag: true,
         error: function (error) {
-          $('#div_alertScenarioSummary').showAlert({message: error.message, level: 'danger'})
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_scenarioSummary', 'content'),
+            message: error.message,
+            level: 'danger'
+          })
         },
         success : function(data) {
           var table = []
@@ -151,100 +163,121 @@ if (!jeeFrontEnd.md_scenarioSummary) {
           }
 
           document.getElementById('table_scenarioSummary').querySelector('tbody').append(...table)
-          self.$tableScSummary.trigger("update")
+          jeeFrontEnd.md_scenarioSummary.tableScSummary.triggerEvent('update')
 
           jeedom.timeline.autocompleteFolder()
-
-          $('#table_scenarioSummary .bt_summaryRemoveScenario').on('click', function(event) {
-            jeedomUtils.hideAlert()
-            var id = $(this).closest('tr').attr('data-id')
-            var name = $(this).closest('tr').find('span[data-l1key="humanName"]').text()
-            jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer le scénario}} <span style="font-weight: bold ;">' + name + '</span> ?', function(result) {
-              if (result) {
-                jeedom.scenario.remove({
-                  id: id,
-                  error: function(error) {
-                    $('#div_alertScenarioSummary').showAlert({message: error.message, level: 'danger'})
-                  },
-                  success: function() {
-                    $('#table_scenarioSummary tr[data-id="'+id+'"]').remove()
-                    $('.scenarioDisplayCard[data-scenario_id="'+id+'"]').remove()
-                  }
-                })
-              }
-            })
-            return false
-          })
-
-          $('.bt_summaryViewLog').off().on('click', function() {
-            jeeDialog.dialog({
-              id: 'jee_modal2',
-              title: "{{Log d'exécution du scénario}}",
-              contentUrl: 'index.php?v=d&modal=scenario.log.execution&scenario_id=' + this.closest('tr').getAttribute('data-id')
-            })
-          })
-
-          $('.bt_summaryStopScenario').off().on('click', function() {
-            var tr = $(this).closest('tr')
-            jeedom.scenario.changeState({
-              id: tr.attr('data-id'),
-              state: 'stop',
-              error: function (error) {
-                $('#div_alertScenarioSummary').showAlert({message: error.message, level: 'danger'})
-              },
-              success:function(){
-                self.refreshScenarioSummary()
-              }
-            })
-          })
-
-          $('.bt_summaryLaunchScenario').off().on('click', function() {
-            var tr = $(this).closest('tr')
-            jeedom.scenario.changeState({
-              id: tr.attr('data-id'),
-              state: 'start',
-              error: function (error) {
-                $('#div_alertScenarioSummary').showAlert({message: error.message, level: 'danger'})
-              },
-              success:function(){
-                self.refreshScenarioSummary()
-              }
-            })
-          })
-
-          $('.bt_summaryGotoScenario').off().on('click', function() {
-            var tr = $(this).closest('tr')
-            window.location.href = 'index.php?v=d&p=scenario&id='+tr.attr('data-id')
-          })
-
-          setTimeout(function() {
-            self.$tableScSummary.closest('.ui-dialog').resize()
-          }, 500)
         }
       })
     },
   }
 }
 
+(function() {// Self Isolation!
 
-jeedomUtils.initTableSorter()
-jeeFrontEnd.md_scenarioSummary.init()
+  jeeFrontEnd.md_scenarioSummary.init()
 
-$('#bt_refreshSummaryScenario').off().on('click', function() {
-  jeeFrontEnd.md_scenarioSummary.refreshScenarioSummary()
-})
 
-$('#bt_saveSummaryScenario').off().on('click', function() {
-  var scenarios = document.querySelector('#table_scenarioSummary tbody .scenario').getJeeValues('.scenarioAttr')
-  jeedom.scenario.saveAll({
-    scenarios : scenarios,
-    error: function(error) {
-      $('#div_alertScenarioSummary').showAlert({message: error.message, level: 'danger'})
-    },
-    success : function(data) {
-      jeeFrontEnd.md_scenarioSummary.synchModaleToPage()
-      jeeFrontEnd.md_scenarioSummary.refreshScenarioSummary()
+  //Manage events outside parents delegations:
+  document.getElementById('bt_refreshSummaryScenario')?.addEventListener('click', function(event) {
+    jeeFrontEnd.md_scenarioSummary.refreshScenarioSummary()
+  })
+
+  document.getElementById('bt_saveSummaryScenario')?.addEventListener('click', function(event) {
+    var scenarios = document.querySelector('#table_scenarioSummary tbody .scenario').getJeeValues('.scenarioAttr')
+    jeedom.scenario.saveAll({
+      scenarios : scenarios,
+      error: function(error) {
+        jeedomUtils.showAlert({
+          attachTo: jeeDialog.get('#md_scenarioSummary', 'content'),
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success : function(data) {
+        jeeFrontEnd.md_scenarioSummary.synchModaleToPage()
+        jeeFrontEnd.md_scenarioSummary.refreshScenarioSummary()
+      }
+    })
+  })
+  /*Events delegations
+  */
+  document.getElementById('md_scenarioSummary')?.addEventListener('click', function(event) {
+    var _target = null
+    if (_target = event.target.closest('.bt_summaryRemoveScenario')) {
+      jeedomUtils.hideAlert()
+      var id = _target.closest('tr').attr('data-id')
+      var name = _target.closest('tr').querySelector('span[data-l1key="humanName"]').textContent
+      jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer le scénario}} <span style="font-weight: bold ;">' + name + '</span> ?', function(result) {
+        if (result) {
+          jeedom.scenario.remove({
+            id: id,
+            error: function(error) {
+              jeedomUtils.showAlert({
+                attachTo: jeeDialog.get('#md_scenarioSummary', 'content'),
+                message: error.message,
+                level: 'danger'
+              })
+            },
+            success: function() {
+              document.querySelector('#table_scenarioSummary tr[data-id="' + id + '"]').remove()
+              document.querySelector('.scenarioDisplayCard[data-scenario_id="' + id + '"]').remove()
+            }
+          })
+        }
+      })
+      return
+    }
+
+    if (_target = event.target.closest('.bt_summaryViewLog')) {
+      jeeDialog.dialog({
+        id: 'jee_modal2',
+        title: "{{Log d'exécution du scénario}}",
+        contentUrl: 'index.php?v=d&modal=scenario.log.execution&scenario_id=' + _target.closest('tr').getAttribute('data-id')
+      })
+      return
+    }
+
+    if (_target = event.target.closest('.bt_summaryStopScenario')) {
+      jeedom.scenario.changeState({
+        id: _target.closest('tr').getAttribute('data-id'),
+        state: 'stop',
+        error: function (error) {
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_scenarioSummary', 'content'),
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success:function(){
+          jeeFrontEnd.md_scenarioSummary.refreshScenarioSummary()
+        }
+      })
+      return
+    }
+
+    if (_target = event.target.closest('.bt_summaryLaunchScenario')) {
+      jeedom.scenario.changeState({
+        id: _target.closest('tr').attr('data-id'),
+        state: 'start',
+        error: function (error) {
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_scenarioSummary', 'content'),
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success:function() {
+          jeeFrontEnd.md_scenarioSummary.refreshScenarioSummary()
+        }
+      })
+      return
+    }
+
+    if (_target = event.target.closest('.bt_summaryGotoScenario')) {
+      window.location.href = 'index.php?v=d&p=scenario&id=' + _target.closest('tr').getAttribute('data-id')
+      return
     }
   })
-})
+
+})()
 </script>

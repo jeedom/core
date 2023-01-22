@@ -149,8 +149,7 @@ if (!jeeFrontEnd.update) {
           table.config.widgetOptions.resizable_widths = ['95px', '', '', '', '', '', '']
           table.triggerEvent('applyWidgets')
           setTimeout(() => {
-            table.querySelector('thead tr').children[0].triggerEvent('sort')
-            table.querySelector('thead tr').children[0].triggerEvent('sort')
+            table.querySelector('thead tr').children[0].triggerEvent('sort').triggerEvent('sort')
           }, 200)
 
           //create a second <pre> for cleaned text to avoid change event infinite loop:

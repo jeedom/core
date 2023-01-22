@@ -30,8 +30,7 @@ if (!jeeFrontEnd.profils) {
         this.tableDevices.triggerEvent('applyWidgets')
         this.tableDevices.triggerEvent('resizableReset')
         setTimeout(() => {
-          jeeFrontEnd.profils.tableDevices.querySelector('thead tr').children[2].triggerEvent('sort')
-          jeeFrontEnd.profils.tableDevices.querySelector('thead tr').children[2].triggerEvent('sort')
+          jeeFrontEnd.profils.tableDevices.querySelector('thead tr').children[2].triggerEvent('sort').triggerEvent('sort')
         }, 200)
       }
     },

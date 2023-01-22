@@ -28,8 +28,7 @@ if (!jeeFrontEnd.user) {
       tableDevices.config.widgetOptions.resizable_widths = ['', '250px', '180px', '180px', '80px']
       tableDevices.triggerEvent('resizableReset')
       setTimeout(() => {
-        tableDevices.querySelector('thead tr').children[3].triggerEvent('sort')
-        tableDevices.querySelector('thead tr').children[3].triggerEvent('sort')
+        tableDevices.querySelector('thead tr').children[3].triggerEvent('sort').triggerEvent('sort')
       }, 200)
 
       jeeFrontEnd.modifyWithoutSave = false

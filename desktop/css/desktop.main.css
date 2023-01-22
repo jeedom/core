@@ -3302,7 +3302,7 @@ div.eqLogic-widget.editingMode .panelLink {
   .CodeMirror-foldgutter-open,
   .CodeMirror-foldgutter-folded {
     cursor: pointer;
-    transform: scale(1.6) translate(-1.5px,0) !important;
+    transform: scale(2.5) translate(1px, -1px) !important;
   }
 
   /* hihgly special */
