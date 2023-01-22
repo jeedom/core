@@ -1750,13 +1750,13 @@ class cmd {
 			$value = 0;
 		}
 		$display_value = $value;
-		if (method_exists($this, 'formatValueWidget')) {
-			$display_value = $this->formatValueWidget($value);
-		}
 		if ($this->getSubType() == 'numeric') {
 			$valueInfo = self::autoValueArray($value, $this->getConfiguration('historizeRound', 99), $this->getUnite());
 			$display_value = $valueInfo[0];
 			$unit = $valueInfo[1];
+		}
+		if (method_exists($this, 'formatValueWidget')) {
+			$display_value = $this->formatValueWidget($display_value);
 		}
 		if ($repeat && $this->getConfiguration('repeatEventManagement', 'never') == 'never') {
 			$this->addHistoryValue($value, $this->getCollectDate());
