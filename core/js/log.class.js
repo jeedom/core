@@ -17,7 +17,7 @@
 jeedom.log = function() {};
 jeedom.log.timeout = null
 jeedom.log.currentAutoupdate = []
-jeedom.log.coloredThreshold = 200000
+jeedom.log.coloredThreshold = 300000
 
 jeedom.log.list = function(_params) {
   var paramsRequired = [];
@@ -154,18 +154,10 @@ jeedom.log.clear = function(_params) {
 }
 
 jeedom.log.autoupdate = function(_params) {
-  if (!isset(_params.once)) {
-    _params['once'] = 0
-  }
-  if (!isset(_params.callNumber)) {
-    _params.callNumber = 0
-  }
-  if (!isset(_params.log)) {
-    return
-  }
-  if (!isset(_params.display)) {
-    return
-  }
+  if (!isset(_params.once)) _params['once'] = 0
+  if (!isset(_params.callNumber)) _params.callNumber = 0
+  if (!isset(_params.log)) return
+  if (!isset(_params.display)) return
 
   //Deprecated use with jQuery objects by plugins:
   if (_params.callNumber == 0) {
@@ -299,11 +291,11 @@ jeedom.log.autoupdate = function(_params) {
     },
     error: function() {
       if (jeedom.log.timeout !== null) {
-        clearTimeout(jeedom.log.timeout);
+        clearTimeout(jeedom.log.timeout)
       }
       jeedom.log.timeout = setTimeout(function() {
         jeedom.log.autoupdate(_params)
-      }, 1000);
+      }, 1000)
     },
   });
 }

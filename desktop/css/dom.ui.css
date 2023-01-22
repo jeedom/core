@@ -170,6 +170,10 @@ div.jeeDialogContent {
   margin: 5px;
   font-size: 13px;
 }
+div.jeeDialogContent div[id^="md_"] {
+  width: 100%;
+  height: 100%;
+}
 div.jeeDialog.jeeDialogAlert > div.jeeDialogContent,
 div.jeeDialog.jeeDialogConfirm > div.jeeDialogContent,
 div.jeeDialog.jeeDialogPrompt > div.jeeDialogContent {

@@ -51,7 +51,15 @@ if (!jeeFrontEnd.scenario) {
 
       jeeP.loadId = getUrlVars('id')
       if (is_numeric(jeeP.loadId)) {
-        this.printScenario(jeeP.loadId)
+        this.printScenario(jeeP.loadId, function() {
+          if (jeephp2js.initSearch != 0) {
+            document.getElementById('bt_scenarioTab').click()
+            document.getElementById('bt_resetInsideScenarioSearch').click()
+            setTimeout(function() {
+              document.getElementById('in_searchInsideScenario').jeeValue(jeephp2js.initSearch).triggerEvent('keyup').focus()
+            }, 200)
+          }
+        })
       }
     },
     postInit: function() {
@@ -89,16 +97,6 @@ if (!jeeFrontEnd.scenario) {
 
       document.querySelector('sub.itemsNumber').innerHTML = '(' + document.querySelectorAll('.scenarioDisplayCard').length + ')'
       this.setSortables()
-
-      if (jeephp2js.initSearch != 0) {
-        setTimeout(function() {
-          document.getElementById('bt_scenarioTab').click()
-          document.getElementById('bt_resetInsideScenarioSearch').click()
-          setTimeout(function() {
-            document.getElementById('in_searchInsideScenario').jeeValue('').triggerEvent('keyup').focus()
-          }, 1000)
-        }, 200)
-      }
     },
     checkNoTriggeringMode: function() {
       if (document.querySelectorAll('div.scheduleDisplay .schedule').length > 0 ||
@@ -339,7 +337,7 @@ if (!jeeFrontEnd.scenario) {
       }
       document.querySelector('.defined_actions').insertAdjacentHTML('beforeend', htmlActions)
     },
-    printScenario: function(_id) {
+    printScenario: function(_id, _callback) {
       jeedomUtils.hideAlert()
       domUtils.showLoading()
       document.getElementById('scenarioThumbnailDisplay').unseen()
@@ -494,6 +492,10 @@ if (!jeeFrontEnd.scenario) {
             jeedom.scenario.setAutoComplete()
             jeeP.resetUndo()
             jeeFrontEnd.modifyWithoutSave = false
+
+            if (isset(_callback) && typeof _callback === 'function') {
+              _callback()
+            }
           })
 
           document.getElementById('humanNameTag').innerHTML = data.humanNameTag

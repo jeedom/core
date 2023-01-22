@@ -146,7 +146,11 @@ new jeeFileUploader({
   url: 'core/ajax/update.ajax.php?action=preUploadFile',
   done: function(e, data) {
     if (data.result.state != 'ok') {
-      jeedomUtils.showAlert({message: data.result.result, level: 'danger'})
+      jeedomUtils.showAlert({
+        attachTo: jeeDialog.get('#md_updateAdd', 'content'),
+        message: data.result.result,
+        level: 'danger'
+      })
       return
     }
     document.querySelector('.updateAttr[data-l1key="configuration"][data-l2key="' + document.getElementById('bt_uploadPlugin').getAttribute('data-key') + '"]').jeeValue(data.result.result)
