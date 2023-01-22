@@ -75,7 +75,9 @@ try {
 	echo "[PROGRESS][5]\n";
 	try {
 		echo "Check rights...";
-		jeedom::cleanFileSystemRight();
+		if(method_exists('jeedom','cleanFileSystemRight')){
+			jeedom::cleanFileSystemRight();
+		}
 		echo "OK\n";
 	} catch (Exception $e) {
 		echo '***ERROR***' . $e->getMessage();
