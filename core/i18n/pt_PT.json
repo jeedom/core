@@ -1178,8 +1178,12 @@
         "Télécharger": "Transferir",
         "Paramètres du scénario": "Parâmetros do cenário",
         "Appliquer": "Aplicar",
+        "Template ajouté avec succès": "Modelo adicionado com sucesso",
+        "Création du template réussie": "Criação de modelo bem-sucedida",
+        "Vous devez d\\'abord sélectionner un template": "Você deve primeiro selecionar um modelo",
+        "Suppression du template réussie": "Exclusão de modelo bem-sucedida",
         "Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel.": "Tem certeza de que deseja aplicar este modelo? Isso substituirá o seu cenário atual",
-        "Template ajouté avec succès": "Modelo adicionado com sucesso"
+        "Template appliqué avec succès.": "Modelo aplicado com sucesso"
     },
     "desktop\/modal\/update.add.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",

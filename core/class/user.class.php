@@ -547,8 +547,8 @@ class user {
 	}
 
 	public function setOptions($_key, $_value) {
-		if ($_key == 'registerDevice' && count($_value) > 10) {
-			$_value = array_slice($_value, -10, 10);
+		if ($_key == 'registerDevice' && count($_value) > 20) {
+			$_value = array_slice($_value, 0, 20);
 		}
 		$options = utils::setJsonAttr($this->options, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed, $this->options, $options);
