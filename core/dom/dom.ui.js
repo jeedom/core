@@ -276,6 +276,53 @@ domUtils.createWidgetSlider = function(_options) {
   } catch(error) { }
 }
 
+/*Components
+*/
+if (typeof jQuery !== 'function') {
+  document.addEventListener('DOMContentLoaded', function() {
+    document.body.addEventListener('click', function(event) {
+      var _target = null
+      if (_target = event.target.closest('a.accordion-toggle')) {
+        event.preventDefault()
+        let panelGroup = _target.closest('div.panel-group')
+        if (!panelGroup) return
+        let panel = panelGroup.querySelector(':scope div.panel-collapse')
+        if (!panel) return
+        if (panel.hasClass('in')) {
+          panel.removeClass('in')
+        } else {
+          panel.addClass('in')
+        }
+        return
+      }
+
+      if (_target = event.target.closest('a[role="tab"]')) {
+        event.preventDefault()
+        let tabList = _target.closest('[role="tablist"]')
+        if (!tabList) return
+        let contentContainer = tabList.nextElementSibling
+        if (!contentContainer || !contentContainer.hasClass('tab-content')) return
+        let contentRef = _target.getAttribute('data-target')
+        if (!contentRef) contentRef = _target.getAttribute('href')
+        if (!contentRef) return
+        let tab = document.querySelector(contentRef)
+        if (!tab) return
+        contentContainer.querySelectorAll('li[role="presentation"].active').removeClass('active')
+        _target.closest('li[role="presentation"]').addClass('active')
+        contentContainer.querySelectorAll('div[role="tabpanel"].active').removeClass('active')
+        tab.addClass('active')
+
+        /*TODO: check tabs inside this tab and set first active
+        contentContainer.querySelectorAll('[role="tablist"]').forEach(_list => {
+          _list.querySelector('li').addClass('active')
+          _list.parentNode.querySelector('div.tab-content')?.querySelector('div[role="tabpanel"]')?.addClass('active')
+        })
+        */
+        return
+      }
+    })
+  })
+}
 
 /*Autocomplete inputs
   If several inputs share same autocomplete (same options), set un id on call options so they all share same container.

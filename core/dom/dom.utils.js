@@ -714,6 +714,7 @@ domUtils.octetsToHumanSize = function(_size) {
 
 //Global functions
 function isElement_jQuery(_element) {
+  if (typeof jQuery !== 'function') return false
   return (_element instanceof jQuery && _element.length)
 }
 

@@ -130,7 +130,7 @@ jeedom.changes = function() {
 jeedom.init = function() {
   jeedom.datetime = jeeFrontEnd.serverDatetime
   jeedom.display.version = 'desktop'
-  if ($.mobile) {
+  if (typeof jQuery === 'function' && $.mobile) {
     jeedom.display.version = 'mobile'
   }
   var cssComputedStyle = getComputedStyle(document.documentElement)
