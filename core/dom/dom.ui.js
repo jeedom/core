@@ -278,8 +278,9 @@ domUtils.createWidgetSlider = function(_options) {
 
 /*Components
 */
-if (typeof jQuery !== 'function') {
-  document.addEventListener('DOMContentLoaded', function() {
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof jQuery !== 'function') {
     document.body.addEventListener('click', function(event) {
       var _target = null
       if (_target = event.target.closest('a.accordion-toggle')) {
@@ -336,8 +337,8 @@ if (typeof jQuery !== 'function') {
         return
       }
     })
-  })
-}
+  }
+})
 
 /*Autocomplete inputs
   If several inputs share same autocomplete (same options), set un id on call options so they all share same container.
