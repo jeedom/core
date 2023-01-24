@@ -1313,7 +1313,7 @@ jeedomUtils.addOrUpdateUrl = function(_param, _value, _title) {
 //Global UI functions__
 jeedomUtils.userDeviceType = 'mobile'
 jeedomUtils.setJeedomMenu = function() {
-  document.getElementById('jeedomMenuBar')?.addEventListener('mousedown', function(event) {
+  document.getElementById('jeedomMenuBar')?.addEventListener('click', function(event) {
     var _target = null
     if (_target = event.target.closest('a')) {
       if (_target.hasClass('noOnePageLoad')) return
