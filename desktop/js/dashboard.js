@@ -205,7 +205,6 @@ if (!jeeFrontEnd.dashboard) {
               jeeFrontEnd.modifyWithoutSave = true
             },
             resize: function(event, ui) {
-              console.log('ui:', ui)
               jeedomUtils.positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
               Packery.data(ui.element[0].closest('.div_displayEquipement')).layout()
             },
@@ -360,7 +359,6 @@ if (!jeeFrontEnd.dashboard) {
       })
     },
     displayChildObject: function(_object_id, _recursion) {
-      console.log('displayChildObject:', _object_id, _recursion)
       if (_recursion === false) {
         document.querySelectorAll('.div_object').forEach(function(div_object, idx) {
           if (div_object.getAttribute('data-object_id') == _object_id) {
