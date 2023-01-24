@@ -15,7 +15,6 @@
  */
 
 document.body.setAttribute('data-type', 'plugin')
-document.querySelector('.nav-tabs a:not(.eqLogicAction)')?.click()
 
 if (!jeeFrontEnd.pluginTemplate) {
   jeeFrontEnd.pluginTemplate = {
@@ -79,7 +78,7 @@ if (!jeeFrontEnd.pluginTemplate) {
       }
       document.querySelectorAll('.eqLogicDisplayCard.active').removeClass('active')
       document.querySelector('.eqLogicDisplayCard[data-eqlogic_id="' + _eqlogicId + '"]').addClass('active')
-      document.querySelector('.nav-tabs a:not(.eqLogicAction)')?.click()
+
       domUtils.showLoading()
       jeedom.eqLogic.print({
         type: _type != null ? _type : eqType,
@@ -154,6 +153,8 @@ if (!jeeFrontEnd.pluginTemplate) {
           setTimeout(function() {
             jeeFrontEnd.modifyWithoutSave = false
           }, 1000)
+
+          if (window.location.hash == '') document.querySelector('.nav-tabs a:not(.eqLogicAction)')?.click()
         }
       })
     },

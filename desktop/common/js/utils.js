@@ -259,21 +259,20 @@ document.addEventListener('DOMContentLoaded', function() {
   //custom jQuery event can't use pur js event listener
   if (typeof jQuery === 'function') {
     $('body').on('shown.bs.tab', '.nav-tabs a', function(event) {
-      if (event.target.getAttribute('data-target') == '' && event.target.getAttribute('href') == '') {
-        return
-      }
-      if (event.target.closest('.ui-dialog-content')?.innerHTML !== undefined) {
-        return
-      }
-      if (event.target.closest('.jeeDialog')?.innerHTML !== undefined) {
-        return
-      }
+      if (event.target.getAttribute('data-target') == '' && event.target.getAttribute('href') == '') return
+      if (event.target.closest('.ui-dialog-content')?.innerHTML !== undefined) return
+      if (event.target.closest('.jeeDialog')?.innerHTML !== undefined) return
 
       if (jeeFrontEnd.PREVIOUS_PAGE == null) {
         window.history.replaceState('', '', 'index.php?' + window.location.href.split("index.php?")[1])
         jeeFrontEnd.PREVIOUS_PAGE = 'index.php?' + window.location.href.split("index.php?")[1]
       }
-      window.location.hash = event.target.getAttribute('data-target') || event.target.getAttribute('href')
+      var hash = event.target.getAttribute('data-target') || event.target.getAttribute('href')
+      if (hash) {
+        window.location.hash = hash
+      } else {
+        history.replaceState(null, null, ' ')
+      }
     })
   }
 
@@ -1330,10 +1329,8 @@ jeedomUtils.setJeedomMenu = function() {
       event.stopPropagation()
       jeedomUtils.loadPage(_target.getAttribute('href'))
     }
-  })
 
-  //one submenu opened at a time in mobile:
-  document.getElementById('jeedomMenuBar')?.addEventListener('click', event => {
+    //one submenu opened at a time in mobile:
     if (event.target.matches('.navbar-nav > li > input')) {
       var checked = event.target.checked
       document.querySelectorAll('#jeedomMenuBar .navbar-nav li > input').forEach(input => {
