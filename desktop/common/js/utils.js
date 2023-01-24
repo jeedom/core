@@ -259,21 +259,20 @@ document.addEventListener('DOMContentLoaded', function() {
   //custom jQuery event can't use pur js event listener
   if (typeof jQuery === 'function') {
     $('body').on('shown.bs.tab', '.nav-tabs a', function(event) {
-      if (event.target.getAttribute('data-target') == '' && event.target.getAttribute('href') == '') {
-        return
-      }
-      if (event.target.closest('.ui-dialog-content')?.innerHTML !== undefined) {
-        return
-      }
-      if (event.target.closest('.jeeDialog')?.innerHTML !== undefined) {
-        return
-      }
+      if (event.target.getAttribute('data-target') == '' && event.target.getAttribute('href') == '') return
+      if (event.target.closest('.ui-dialog-content')?.innerHTML !== undefined) return
+      if (event.target.closest('.jeeDialog')?.innerHTML !== undefined) return
 
       if (jeeFrontEnd.PREVIOUS_PAGE == null) {
         window.history.replaceState('', '', 'index.php?' + window.location.href.split("index.php?")[1])
         jeeFrontEnd.PREVIOUS_PAGE = 'index.php?' + window.location.href.split("index.php?")[1]
       }
-      window.location.hash = event.target.getAttribute('data-target') || event.target.getAttribute('href')
+      var hash = event.target.getAttribute('data-target') || event.target.getAttribute('href')
+      if (hash) {
+        window.location.hash = hash
+      } else {
+        history.replaceState(null, null, ' ')
+      }
     })
   }
 
