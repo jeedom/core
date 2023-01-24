@@ -1,4 +1,5 @@
 <?php
+$loadJquery = true;
 if (init('rescue', 0) == 1 && !in_array(init('p'), array('custom', 'backup', 'cron', 'connection', 'log', 'database', 'editor', 'system'))) {
 	$_GET['p'] = 'system';
 }
@@ -167,8 +168,9 @@ function setTheme() {
 	include_file('3rdparty', 'roboto/roboto', 'css');
 	include_file('3rdparty', 'camingocode/camingocode', 'css');
 	include_file('3rdparty', 'text-security/text-security-disc', 'css');
-	include_file('3rdparty', 'jquery/jquery.min', 'js');
-	include_file('3rdparty', 'jquery.utils/jquery.utils', 'js');
+
+	if ($loadJquery) include_file('3rdparty', 'jquery/jquery.min', 'js');
+	if ($loadJquery) include_file('3rdparty', 'jquery.utils/jquery.utils', 'js');
 
 	include_file('core', 'jeedom', 'class.js');
 	?>
@@ -187,35 +189,40 @@ function setTheme() {
 	include_file('core', 'core', 'js');
 	include_file('core', 'js.inc', 'php');
 
-	include_file('3rdparty', 'bootstrap/bootstrap.min', 'js');
-	include_file('3rdparty', 'jquery.ui/jquery-ui.min', 'js'); //ui-dialog, replaced by jeeDialog.dialog()
-	include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
-	include_file('3rdparty', 'jquery.ui-touch-punch/jquery.ui.touch-punch.min', 'js');
-	include_file('3rdparty', 'bootbox/bootbox.min', 'js'); //Deprecated, keep for plugins
+	include_file('desktop', 'bootstrap', 'css');
+	if ($loadJquery) {
+		include_file('3rdparty', 'bootstrap/bootstrap.min', 'js');
 
-	//Deprecated 4.4, keep for plugins
-	include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
-	include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
-	include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
+		//ui-dialog replaced by jeeDialog, still sortable and resizable
+		include_file('3rdparty', 'jquery.ui/jquery-ui.min', 'js');
+		include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
+		include_file('3rdparty', 'jquery.ui-touch-punch/jquery.ui.touch-punch.min', 'js');
 
-	//Table column sorter:
-	include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap.min', 'css');
-	include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
-	include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
-	include_file('3rdparty', 'jquery.tablesorter/parsers/parser-input-select.min', 'js');
-	//Cron helper:
-	include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
-	include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
-	//ContextMenu, deprecated 4.4
-	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'css');
-	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'js');
+		//Deprecated 4.4, keep for plugins
+		include_file('3rdparty', 'bootbox/bootbox.min', 'js');
+		include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
+		include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
+		include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
+		include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'css');
+		include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'js');
+		include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js');
 
-	include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
-	include_file('3rdparty', 'jquery.packery/jquery.packery', 'js'); //$less with draggability lib
-	include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js'); //Deprecated 4.4, keep for plugins
-	//include_file('3rdparty', 'jwerty/jwerty', 'js');
+		//Table column sorter:
+		include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap.min', 'css');
+		include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
+		include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
+		include_file('3rdparty', 'jquery.tablesorter/parsers/parser-input-select.min', 'js');
+		//Cron helper:
+		include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
+		include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
+
+		include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
+    }
 
 	//jQuery less libs:
+    include_file('3rdparty', 'packery/packery.pkgd', 'js');
+    include_file('3rdparty', 'packery/draggabilly.pkgd', 'js');
+
 	include_file('3rdparty', 'codemirror/lib/codemirror', 'js');
 	include_file('3rdparty', 'codemirror/lib/codemirror', 'css');
 	include_file('3rdparty', 'codemirror/addon/edit/matchbrackets', 'js');
@@ -249,7 +256,6 @@ function setTheme() {
 	include_file('3rdparty', 'flatpickr/l10n/es', 'js');
 
 	//set theme before loading utils:
-	include_file('desktop', 'bootstrap', 'css');
 	include_file('desktop', 'coreWidgets', 'css');
 	include_file('desktop', 'desktop.main', 'css');
 	setTheme();

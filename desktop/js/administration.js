@@ -964,14 +964,16 @@ document.getElementById('logtab').addEventListener('focusout', function(event) {
 
 /**************************SUMMARIES***********************************/
 //Set sortable:
-$(document.getElementById('table_objectSummary')).sortable({
-  axis: "y",
-  cursor: "move",
-  items: ".objectSummary",
-  placeholder: "ui-state-highlight",
-  tolerance: "intersect",
-  forcePlaceholderSize: true
-})
+if (typeof jQuery === 'function') {
+  $(document.getElementById('table_objectSummary')).sortable({
+    axis: "y",
+    cursor: "move",
+    items: ".objectSummary",
+    placeholder: "ui-state-highlight",
+    tolerance: "intersect",
+    forcePlaceholderSize: true
+  })
+}
 
 /*Events delegations
 */

@@ -307,17 +307,32 @@ if (typeof jQuery !== 'function') {
         if (!contentRef) return
         let tab = document.querySelector(contentRef)
         if (!tab) return
-        contentContainer.querySelectorAll('li[role="presentation"].active').removeClass('active')
+        //Update current tab level:
+        tabList.querySelectorAll('li[role="presentation"].active').removeClass('active')
         _target.closest('li[role="presentation"]').addClass('active')
+
         contentContainer.querySelectorAll('div[role="tabpanel"].active').removeClass('active')
         tab.addClass('active')
 
-        /*TODO: check tabs inside this tab and set first active
-        contentContainer.querySelectorAll('[role="tablist"]').forEach(_list => {
-          _list.querySelector('li').addClass('active')
-          _list.parentNode.querySelector('div.tab-content')?.querySelector('div[role="tabpanel"]')?.addClass('active')
+        //Update tabs inside current tab:
+        tab.querySelectorAll('[role="tablist"]').forEach(_list => {
+          let active = _list.querySelector('li.active')
+          if (active == null) {
+            _list.querySelector('a[role="tab"]').click()
+          } else {
+            active.querySelector('a[role="tab"]').click()
+          }
         })
-        */
+
+        if (_target.getAttribute('data-target') == '' && event.target.getAttribute('href') == '') return
+        if (_target.closest('.ui-dialog-content') != null) return
+        if (_target.closest('.jeeDialog') != null) return
+
+        if (jeeFrontEnd.PREVIOUS_PAGE == null) {
+          window.history.replaceState('', '', 'index.php?' + window.location.href.split("index.php?")[1])
+          jeeFrontEnd.PREVIOUS_PAGE = 'index.php?' + window.location.href.split("index.php?")[1]
+        }
+        window.location.hash = _target.getAttribute('data-target') || _target.getAttribute('href')
         return
       }
     })
