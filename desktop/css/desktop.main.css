@@ -1030,16 +1030,6 @@ div.eqLogicZone {
   }
 
   /* eqlogic dragging */
-  .eqLogic-widget.is-dragging,
-  .eqLogic-widget.is-positioning-post-drag {
-    background: #EA0 !important;
-    z-index: 2 !important; /* keep dragged item on top */
-  }
-  .eqLogic-widget.ui-draggable-dragging,
-  .eqLogic-widget.is-positioning-post-drag {
-    background: #C90 !important;
-    z-index: 2 !important;
-  }
   .packery-drop-placeholder {
     outline: 3px dashed hsla(0, 0%, 0%, 0.5) !important;
     outline-offset: -6px !important;

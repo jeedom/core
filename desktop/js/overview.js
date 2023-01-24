@@ -38,7 +38,7 @@ if (!jeeFrontEnd.overview) {
       domUtils.hideLoading()
       self = this
       this.modal._jeeDialog.options.onResize = function(event) {
-        $(self.modalContent).packery()
+        Packery.data(self.modalContent).layout()
       }
     },
     createSummaryObserver: function() {
@@ -98,9 +98,11 @@ if (!jeeFrontEnd.overview) {
           })
         },
         success: function(data) {
+          self.modalContent.empty()
           try {
-            $(self.modalContent).empty().packery('destroy')
+            Packery.data(self.modalContent).destroy()
           } catch (e) {}
+
 
           jeeP.modal.querySelector('div.jeeDialogTitle > span.title').innerHTML = _title
           jeeP.modal._jeeDialog.show()
@@ -164,7 +166,7 @@ if (!jeeFrontEnd.overview) {
                   let mRect = jeeP.modal.getBoundingClientRect()
                   jeeP.modal.style.left = (bRect.width / 2) - (mRect.width / 2) + "px"
 
-                  $(self.modalContent).packery({
+                  new Packery(self.modalContent, {
                     gutter: parseInt(jeedom.theme['widget::margin']) * 2,
                     isLayoutInstant: true
                   })
@@ -194,13 +196,6 @@ jeeDialog.dialog({
   width: 500,
   height: 200,
   retainPosition: true,
-  open: function() {
-    //catch infos updates by main mutationobserver (jeedomUtils.loadPage disconnect/reconnect it):
-    if (jeedomUtils.OBSERVER) {
-      var summaryModal = document.getElementById('summaryEqlogics')
-      jeedomUtils.OBSERVER.observe(summaryModal, jeedomUtils.observerConfig)
-    }
-  }
 })
 
 jeeFrontEnd.overview.init()
@@ -226,7 +221,7 @@ document.querySelectorAll('.resume')?.seen()
 jeeFrontEnd.overview.postInit()
 
 //Init Packery:
-$(jeeP.modalContent).packery()
+new Packery(jeeP.modalContent)
 
 //summary modal events:
 jeeP.modalContent.addEventListener('click', function(event) {
@@ -247,6 +242,7 @@ jeeP.modalContent.addEventListener('click', function(event) {
     } else {
       var cmdIds = event.target.closest('.history[data-cmd_id]').getAttribute('data-cmd_id')
     }
+    jeeFrontEnd.overview.modalContent.empty()
     jeeDialog.dialog({
       id: 'md_cmdHistory',
       title: '{{Historique}}',
@@ -336,4 +332,3 @@ document.getElementById('div_pageContainer').addEventListener('mouseup', functio
     return
   }
 })
-

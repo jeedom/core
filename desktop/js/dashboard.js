@@ -19,7 +19,7 @@
 if (!jeeFrontEnd.dashboard) {
   jeeFrontEnd.dashboard = {
     btOverviewTimer: null,
-    $divPreview: null,
+    draggables: [],
     init: function() {
       window.jeeP = this
       this.url_category = getUrlVars('category')
@@ -55,7 +55,7 @@ if (!jeeFrontEnd.dashboard) {
       })
       document.querySelectorAll('div.div_object, div.eqLogic-widget, div.scenario-widget').seen()
       document.querySelectorAll('#dashTopBar button.dropdown-toggle').removeClass('warning')
-      $('div.div_displayEquipement').packery()
+      //$('div.div_displayEquipement').packery()
     },
     filterByCategory: function() {
       //get defined categories:
@@ -108,7 +108,7 @@ if (!jeeFrontEnd.dashboard) {
         document.querySelector('#dashTopBar button.dropdown-toggle').addClass('warning')
       }
 
-      $('#div_displayObject div.div_displayEquipement').packery()
+      //$('#div_displayObject div.div_displayEquipement').packery()
     },
     editWidgetMode: function(_mode, _save) {
       if (document.getElementById('bt_editDashboardWidgetOrder') == null) return
@@ -119,7 +119,7 @@ if (!jeeFrontEnd.dashboard) {
         }
         return
       }
-      var divEquipements = $('div.div_displayEquipement')
+
       if (_mode == 0) { //Exit edit mode:
         document.querySelectorAll('.widget-name a.reportModeHidden, .scenario-widget .widget-name a').removeClass('disabled')
         jeedom.cmd.disableExecute = false
@@ -131,9 +131,16 @@ if (!jeeFrontEnd.dashboard) {
           })
         }
 
-        divEquipements.find('.editingMode.allowResize').resizable('destroy')
-        divEquipements.find('.editingMode').draggable('disable').removeClass('editingMode', '').removeAttr('data-editId')
-        divEquipements.find('.cmd.editOptions').remove()
+        jeeFrontEnd.dashboard.draggables.forEach(draggie => {
+          draggie.disable()
+        })
+
+        if (typeof jQuery === 'function') $('div.div_displayEquipement').find('.editingMode.allowResize').resizable('destroy')
+
+        document.querySelectorAll('.editingMode').forEach(_edit => {
+          _edit.removeClass('editingMode').removeAttribute('data-editId')
+        })
+        document.querySelectorAll('.cmd.editOptions').remove()
 
         document.querySelectorAll('#div_displayObject .row').forEach(function(row) {
           row.style = null
@@ -149,6 +156,29 @@ if (!jeeFrontEnd.dashboard) {
         jeedom.cmd.disableExecute = true
         this.resetCategoryFilter()
         document.querySelectorAll('#dashTopBar .btn:not(#bt_editDashboardWidgetOrder)').addClass('disabled')
+
+        //set draggables:
+        if (jeeFrontEnd.dashboard.draggables.length == 0) {
+          //No draggies set yet:
+          document.querySelectorAll('div.div_displayEquipement').forEach(_divObject => {
+            var pckry = Packery.data(_divObject)
+            pckry.getItemElements().forEach(function(itemElem, idx) {
+              itemElem.setAttribute('data-order', idx + 1)
+              var draggie = new Draggabilly(itemElem)
+              jeeFrontEnd.dashboard.draggables.push(draggie)
+              pckry.bindDraggabillyEvents(draggie)
+              draggie.on('dragEnd', function(event, draggedItem) {
+                jeeFrontEnd.modifyWithoutSave = true
+                jeedomUI.draggingId = draggedItem.target.closest('.allowLayout').getAttribute('data-editId')
+                jeedomUI.orderItems(pckry)
+              })
+            })
+          })
+        } else {
+          jeeFrontEnd.dashboard.draggables.forEach(draggie => {
+            draggie.enable()
+          })
+        }
 
         //show orders:
         var value
@@ -168,46 +198,36 @@ if (!jeeFrontEnd.dashboard) {
           element.insertAdjacentHTML('beforeend', '<span class="cmd editOptions cursor"></span>')
         })
 
-        //set draggables:
-        divEquipements.find('.editingMode').draggable({
-          disabled: false,
-          distance: 10,
-          start: function(event, ui) {
-            jeeFrontEnd.modifyWithoutSave = true
-            jeedomUI.draggingId = $(this).attr('data-editId')
-            jeedomUI.orders = {}
-            $(this).parent().find('.ui-draggable').each(function(i, itemElem) {
-              jeedomUI.orders[jeedomUI.draggingId] = parseInt($(this).attr('data-order'))
-            })
-          }
-        })
         //set resizables:
-        divEquipements.find('div.eqLogic-widget.allowResize').resizable({
-          start: function(event, ui) {
-            jeeFrontEnd.modifyWithoutSave = true
-          },
-          resize: function(event, ui) {
-            jeedomUtils.positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
-            ui.element.closest('.div_displayEquipement').packery()
-          },
-          stop: function(event, ui) {
-            jeedomUtils.positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
-            ui.element.closest('.div_displayEquipement').packery()
-          }
-        })
-        divEquipements.find('div.scenario-widget.allowResize').resizable({
-          start: function(event, ui) {
-            jeeFrontEnd.modifyWithoutSave = true
-          },
-          resize: function(event, ui) {
-            jeedomUtils.positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
-            ui.element.closest('.div_displayEquipement').packery()
-          },
-          stop: function(event, ui) {
-            jeedomUtils.positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
-            ui.element.closest('.div_displayEquipement').packery()
-          }
-        })
+        if (typeof jQuery === 'function') {
+          $('div.div_displayEquipement').find('div.eqLogic-widget.allowResize').resizable({
+            start: function(event, ui) {
+              jeeFrontEnd.modifyWithoutSave = true
+            },
+            resize: function(event, ui) {
+              console.log('ui:', ui)
+              jeedomUtils.positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
+              Packery.data(ui.element[0].closest('.div_displayEquipement')).layout()
+            },
+            stop: function(event, ui) {
+              jeedomUtils.positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
+              Packery.data(ui.element[0].closest('.div_displayEquipement')).layout()
+            }
+          })
+          $('div.div_displayEquipement').find('div.scenario-widget.allowResize').resizable({
+            start: function(event, ui) {
+              jeeFrontEnd.modifyWithoutSave = true
+            },
+            resize: function(event, ui) {
+              jeedomUtils.positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
+              Packery.data(ui.element[0].closest('.div_displayEquipement')).layout()
+            },
+            stop: function(event, ui) {
+              jeedomUtils.positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
+              Packery.data(ui.element[0].closest('.div_displayEquipement')).layout()
+            }
+          })
+        }
 
         document.getElementById('dashTopBar').addClass('editing')
         document.getElementById('in_searchDashboard').addClass('editing').value = "{{Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder}}"
@@ -270,7 +290,8 @@ if (!jeeFrontEnd.dashboard) {
                 if (nbEqs == 0) {
                   jeedomUtils.positionEqLogic()
                   domUtils.hideLoading()
-                  $(dom_divDisplayEq).packery({isLayoutInstant: true})
+                  new Packery(dom_divDisplayEq, {isLayoutInstant: true})
+
                   if (Array.from(dom_divDisplayEq.querySelectorAll('div.eqLogic-widget, div.scenario-widget')).filter(item => item.isVisible()).length == 0) {
                     dom_divDisplayEq.closest('.div_object').remove()
                     return
@@ -305,7 +326,6 @@ if (!jeeFrontEnd.dashboard) {
               return
             }
             dom_divDisplayEq.html(html)
-            //$(dom_divDisplayEq).html(html)
           } catch (err) {
             console.warn(err)
           }
@@ -321,11 +341,7 @@ if (!jeeFrontEnd.dashboard) {
           }
 
           jeedomUtils.positionEqLogic()
-          let pckryContainer = $(dom_divDisplayEq).packery({isLayoutInstant: true})
-          let packData = $(dom_divDisplayEq).data('packery')
-          if (isset(packData) && packData.items.length == 1) {
-            $(dom_divDisplayEq).packery('destroy').packery({isLayoutInstant: true})
-          }
+          new Packery(dom_divDisplayEq, {})
 
           //synch category filter:
           if (self.url_category != 'all') {
@@ -338,22 +354,13 @@ if (!jeeFrontEnd.dashboard) {
             this.filterByCategory()
           }
 
-          let itemElems = pckryContainer.find('div.eqLogic-widget, div.scenario-widget')
-          pckryContainer.packery('bindUIDraggableEvents', itemElems)
-
-          document.querySelectorAll('div.eqLogic-widget, div.scenario-widget').forEach(function(element, idx) {
-            element.setAttribute('data-order', idx + 1)
-          })
           domUtils.hideLoading()
           jeedomUtils.initTooltips()
-
-          pckryContainer.on('dragItemPositioned', function() {
-            jeedomUI.orderItems(pckryContainer)
-          })
         }
       })
     },
     displayChildObject: function(_object_id, _recursion) {
+      console.log('displayChildObject:', _object_id, _recursion)
       if (_recursion === false) {
         document.querySelectorAll('.div_object').forEach(function(div_object, idx) {
           if (div_object.getAttribute('data-object_id') == _object_id) {
@@ -366,7 +373,9 @@ if (!jeeFrontEnd.dashboard) {
 
       document.querySelectorAll('.div_object[data-father_id="' + _object_id + '"]').forEach(_id => {
         _id.seen()
-        $(_id.querySelector('.div_displayEquipement')).packery()
+        document.querySelectorAll('div.div_displayEquipement').forEach(_divObject => {
+          Packery.data(_divObject).layout()
+        })
         jeeP.displayChildObject(_id.getAttribute('data-object_id'))
       })
     },
@@ -395,7 +404,7 @@ document.getElementById('in_searchDashboard')?.addEventListener('keyup', functio
   document.querySelectorAll('.div_object:not(.hideByObjectSel)').seen()
   if (search == '') {
     document.querySelectorAll('div.eqLogic-widget, div.scenario-widget').seen()
-    $('div.div_displayEquipement').packery()
+    document.querySelectorAll('div.div_displayEquipement').forEach(_div => { Packery.data(_div).layout() })
     return
   }
 
@@ -447,7 +456,7 @@ document.getElementById('in_searchDashboard')?.addEventListener('keyup', functio
     var visibles = [...element.querySelectorAll('div.eqLogic-widget, div.scenario-widget')].filter(el => el.isVisible())
     if (visibles.length == 0) element.closest('.div_object').unseen()
   })
-  $('.div_displayEquipement').packery()
+  document.querySelectorAll('div.div_displayEquipement').forEach(_div => { Packery.data(_div).layout() })
 })
 document.getElementById('bt_resetDashboardSearch')?.addEventListener('click', function(event) {
   if (jeedomUI.isEditing) return
@@ -466,7 +475,7 @@ document.getElementById('bt_editDashboardWidgetOrder')?.addEventListener('click'
     document.querySelectorAll('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').unseen()
     document.querySelectorAll('.counterReorderJeedom').remove()
     jeeP.editWidgetMode(0)
-    $('.div_displayEquipement').packery()
+    document.querySelectorAll('div.div_displayEquipement').forEach(_div => { Packery.data(_div).layout() })
   } else {
     event.target.setAttribute('data-mode', 1)
     jeedomUtils.disableTooltips()
@@ -519,7 +528,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     objectContainer.querySelectorAll('div.eqLogic-widget, div.scenario-widget').forEach(function(element) {
       element.style.height = maxHeight + 'px'
     })
-    $(objectContainer).packery()
+    Packery.data(objectContainer).layout()
     return
   }
 
@@ -534,7 +543,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     objectContainer.querySelectorAll('div.eqLogic-widget, div.scenario-widget').forEach(function(element) {
       element.style.height = minHeight + 'px'
     })
-    $(objectContainer).packery()
+    Packery.data(objectContainer).layout()
     return
   }
 

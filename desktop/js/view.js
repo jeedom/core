@@ -18,6 +18,7 @@
 
 if (!jeeFrontEnd.view) {
   jeeFrontEnd.view = {
+    draggables: [],
     init: function() {
       window.jeeP = this
       jeedomUI.isEditing = false
@@ -52,35 +53,24 @@ if (!jeeFrontEnd.view) {
             }
             document.getElementById('ul_viewSummary').empty().insertAdjacentHTML('beforeend', summary)
           } catch (err) {
-            console.log(err)
+            console.warn(err)
           }
 
           try {
             document.querySelector('.div_displayView').empty().html(html.html)
           } catch (err) {
-            console.log(err)
+            console.warn(err)
           }
 
           setTimeout(function() {
             jeedomUtils.initReportMode()
             jeedomUtils.positionEqLogic()
 
-            //$('input', 'textarea', 'select').click(function() { $(this).focus() })
-
-            $('.eqLogicZone').each(function() {
-              var container = $(this).packery({isLayoutInstant: true})
-              var itemElems = container.find('.eqLogic-widget, .scenario-widget').draggable()
-              container.packery('bindUIDraggableEvents', itemElems)
-
-              //set vieworder for editMode:
-              $(itemElems).each(function(i, itemElem) {
-                $(itemElem).attr('data-vieworder', i + 1)
+            document.querySelectorAll('div.eqLogicZone').forEach(_zone => {
+              var pckry = new Packery(_zone, {isLayoutInstant: true})
+              pckry.getItemElements().forEach(function(itemElem, idx) {
+                itemElem.setAttribute('data-vieworder', idx + 1)
               })
-              container.on('dragItemPositioned', function() {
-                jeedomUI.orderItems(container, 'data-vieworder')
-              })
-
-              itemElems.draggable('disable')
             })
 
             if (isset(html.raw) && isset(html.raw.configuration) && isset(html.raw.configuration.displayObjectName) && html.raw.configuration.displayObjectName == 1) {
@@ -137,9 +127,15 @@ if (!jeeFrontEnd.view) {
         jeedomUI.isEditing = false
         jeedom.cmd.disableExecute = false
 
-        $(divEquipements).find('.editingMode.allowResize').resizable('destroy')
-        $(divEquipements).find('.editingMode').draggable('disable').removeClass('editingMode', '').removeAttr('data-editId')
-        divEquipements.querySelectorAll('.cmd.editOptions').remove()
+        jeeFrontEnd.view.draggables.forEach(draggie => {
+          draggie.disable()
+        })
+
+        if (typeof jQuery === 'function') $('div.div_displayView').find('.editingMode.allowResize').resizable('destroy')
+        document.querySelectorAll('.editingMode').forEach(_edit => {
+          _edit.removeClass('editingMode').removeAttribute('data-editId')
+        })
+        document.querySelectorAll('.cmd.editOptions').remove()
 
         if (!isset(_save) || _save) {
           document.getElementById('md_dashEdit')?.remove()
@@ -152,9 +148,32 @@ if (!jeeFrontEnd.view) {
         jeedom.cmd.disableExecute = true
         document.querySelectorAll('.eqLogic-widget, .scenario-widget').addClass('editingMode')
 
+        //set draggables:
+        if (jeeFrontEnd.view.draggables.length == 0) {
+          //No draggies set yet:
+          document.querySelectorAll('div.eqLogicZone').forEach(_divObject => {
+            var pckry = Packery.data(_divObject)
+            pckry.getItemElements().forEach(function(itemElem, idx) {
+              itemElem.setAttribute('data-vieworder', idx + 1)
+              var draggie = new Draggabilly(itemElem)
+              jeeFrontEnd.view.draggables.push(draggie)
+              pckry.bindDraggabillyEvents(draggie)
+              draggie.on('dragEnd', function(event, draggedItem) {
+                jeeFrontEnd.modifyWithoutSave = true
+                jeedomUI.draggingId = draggedItem.target.closest('.allowLayout').getAttribute('data-editId')
+                jeedomUI.orderItems(pckry, 'data-vieworder')
+              })
+            })
+          })
+        } else {
+          jeeFrontEnd.view.draggables.forEach(draggie => {
+            draggie.enable()
+          })
+        }
+
         //show orders:
         var value
-        divEquipements.querySelectorAll('.jeedomAlreadyPosition.ui-draggable').forEach(_draggable => {
+        divEquipements.querySelectorAll('.jeedomAlreadyPosition').forEach(_draggable => {
           value = _draggable.getAttribute('data-vieworder')
           if (_draggable.querySelector(".counterReorderJeedom") != null) {
             _draggable.querySelector(".counterReorderJeedom").textContent = value
@@ -170,48 +189,37 @@ if (!jeeFrontEnd.view) {
           _div.insertAdjacentHTML('beforeend', '<span class="cmd editOptions cursor"></span>')
         })
 
-        //set draggables:
-        $(divEquipements).find('.editingMode').draggable({
-          disabled: false,
-          distance: 10,
-          start: function(event, ui) {
-            jeeFrontEnd.modifyWithoutSave = true
-            jeedomUI.draggingId = $(this).attr('data-editId')
-            jeedomUI.orders = {}
-            this.parentNode.querySelectorAll('.ui-draggable').forEach((_draggable, _idx) => {
-              jeedomUI.orders[jeedomUI.draggingId] = parseInt(_draggable.getAttribute('data-vieworder'))
-            })
-          }
-        })
         //set resizables:
-        $('.eqLogicZone .eqLogic-widget.allowResize').resizable({
-          grid: [2, 2],
-          start: function(event, ui) {
-            jeeFrontEnd.modifyWithoutSave = true
-          },
-          resize: function(event, ui) {
-            jeedomUtils.positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
-            ui.element.closest('.eqLogicZone').packery()
-          },
-          stop: function(event, ui) {
-            jeedomUtils.positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
-            ui.element.closest('.eqLogicZone').packery()
-          }
-        })
-        $('.eqLogicZone .scenario-widget.allowResize').resizable({
-          grid: [2, 2],
-          start: function(event, ui) {
-            jeeFrontEnd.modifyWithoutSave = true
-          },
-          resize: function(event, ui) {
-            jeedomUtils.positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
-            ui.element.closest('.eqLogicZone').packery()
-          },
-          stop: function(event, ui) {
-            jeedomUtils.positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
-            ui.element.closest('.eqLogicZone').packery()
-          }
-        })
+        if (typeof jQuery === 'function') {
+          $('.eqLogicZone .eqLogic-widget.allowResize').resizable({
+            grid: [2, 2],
+            start: function(event, ui) {
+              jeeFrontEnd.modifyWithoutSave = true
+            },
+            resize: function(event, ui) {
+              jeedomUtils.positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
+              Packery.data(ui.element[0].closest('.eqLogicZone')).layout()
+            },
+            stop: function(event, ui) {
+              jeedomUtils.positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
+              Packery.data(ui.element[0].closest('.eqLogicZone')).layout()
+            }
+          })
+          $('.eqLogicZone .scenario-widget.allowResize').resizable({
+            grid: [2, 2],
+            start: function(event, ui) {
+              jeeFrontEnd.modifyWithoutSave = true
+            },
+            resize: function(event, ui) {
+              jeedomUtils.positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
+              Packery.data(ui.element[0].closest('.eqLogicZone')).layout()
+            },
+            stop: function(event, ui) {
+              jeedomUtils.positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
+              Packery.data(ui.element[0].closest('.eqLogicZone')).layout()
+            }
+          })
+        }
       }
     },
   }
@@ -247,14 +255,23 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     if (_target.getAttribute('data-display') == '1') {
       _target.closest('.row').querySelector('.div_displayViewList').unseen()
       _target.closest('.row').querySelector('.div_displayViewContainer').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-12 col-md-12 col-sm-12')
+      document.querySelectorAll('div.eqLogicZone').forEach(_divObject => {
+        Packery.data(_divObject).layout()
+      })
+      /*
       $('.eqLogicZone').each(function() {
         $(this).packery({isLayoutInstant: true})
       })
+      */
       _target.setAttribute('data-display', '0')
     } else {
       _target.closest('.row').querySelector('.div_displayViewList').seen()
       _target.closest('.row').querySelector('.div_displayViewContainer').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-10 col-md-9 col-sm-8')
-      $('.eqLogicZone').packery({isLayoutInstant: true})
+
+      document.querySelectorAll('div.eqLogicZone').forEach(_divObject => {
+        Packery.data(_divObject).layout()
+      })
+      //$('.eqLogicZone').packery({isLayoutInstant: true})
       _target.setAttribute('data-display', '1')
     }
     return

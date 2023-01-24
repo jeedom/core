@@ -35,7 +35,7 @@ if (!jeeFrontEnd.eqAnalyse) {
       }
 
       jeedomUtils.initTableSorter()
-      $('div.alertListContainer').packery({itemSelector: "#alertEqlogic .eqLogic-widget"})
+      new Packery(document.querySelector('div.alertListContainer'), { itemSelector: "#alertEqlogic .eqLogic-widget" }).layout()
       this.eqlogicsEls = document.querySelectorAll('div.batteryListContainer > div.eqLogic-widget')
     },
     getRemoveCmd: function(_id) {
@@ -157,17 +157,10 @@ document.getElementById('bt_massConfigureEqLogic')?.addEventListener('click', fu
 */
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
   var _target = null
-  if (_target = event.target.closest('#tab_batteries')) {
-    setTimeout(function() {
-      jeedomUtils.positionEqLogic()
-      $('div.alertListContainer').packery({itemSelector: "#alertEqlogic .eqLogic-widget"})
-    }, 10)
-    return
-  }
   if (_target = event.target.closest('#tab_alerts')) {
     setTimeout(function() {
       jeedomUtils.positionEqLogic()
-      $('div.alertListContainer').packery({itemSelector: "#alertEqlogic .eqLogic-widget"})
+      Packery.data(document.querySelector('div.alertListContainer')).layout()
     }, 10)
     return
   }
