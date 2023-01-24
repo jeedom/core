@@ -1742,16 +1742,16 @@ class cmd {
 		$this->setValueDate(($repeat) ? $this->getValueDate() : $this->getCollectDate());
 		$eqLogic->setStatus(array('lastCommunication' => $this->getCollectDate(), 'timeout' => 0));
 		$unit = $this->getUnite();
-		if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
-			$value = ($value == 1) ? 0 : 1;
-		} else if ($this->getSubType() == 'numeric' && trim($value) === '') {
-			$value = 0;
-		} else if ($this->getSubType() == 'binary' && trim($value) === '') {
-			$value = 0;
-		}
 		$display_value = $value;
+		if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
+			$display_value = ($display_value == 1) ? 0 : 1;
+		} else if ($this->getSubType() == 'numeric' && trim($value) === '') {
+			$display_value = 0;
+		} else if ($this->getSubType() == 'binary' && trim($value) === '') {
+			$display_value = 0;
+		}
 		if ($this->getSubType() == 'numeric') {
-			$valueInfo = self::autoValueArray($value, $this->getConfiguration('historizeRound', 99), $this->getUnite());
+			$valueInfo = self::autoValueArray($display_value, $this->getConfiguration('historizeRound', 99), $this->getUnite());
 			$display_value = $valueInfo[0];
 			$unit = $valueInfo[1];
 		}
