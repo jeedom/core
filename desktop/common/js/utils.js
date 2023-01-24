@@ -1330,10 +1330,8 @@ jeedomUtils.setJeedomMenu = function() {
       event.stopPropagation()
       jeedomUtils.loadPage(_target.getAttribute('href'))
     }
-  })
 
-  //one submenu opened at a time in mobile:
-  document.getElementById('jeedomMenuBar')?.addEventListener('click', event => {
+    //one submenu opened at a time in mobile:
     if (event.target.matches('.navbar-nav > li > input')) {
       var checked = event.target.checked
       document.querySelectorAll('#jeedomMenuBar .navbar-nav li > input').forEach(input => {
