@@ -24,7 +24,7 @@ if (!jeedomUI) {
     /*
     @dashboard
     @view
-    draggable call to reorder/insert drag
+    draggabilly call to reorder/insert drag
     */
     orderItems: function(_pckryInstance, _orderAttr='data-order') {
       var _draggingOrder = parseInt(jeedomUI.orders[jeedomUI.draggingId])

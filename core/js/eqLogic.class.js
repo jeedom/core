@@ -446,8 +446,8 @@ jeedom.eqLogic.refreshValue = function(_params) {
                 object_div.html(result[i].html, true)
               }
               jeedomUtils.positionEqLogic(result[i].id)
-              let pckryContainer = $(object_div).packery('destroy').packery({ isLayoutInstant: true })
-              pckryContainer.packery('bindUIDraggableEvents', pckryContainer.find('div.eqLogic-widget'))
+              Packery.data(object_div).destroy()
+              new Packery(object_div, {isLayoutInstant: true})
 
               document.querySelectorAll('div.eqLogic-widget').forEach(function(element, idx) {
                 element.setAttribute('data-order', idx + 1)
