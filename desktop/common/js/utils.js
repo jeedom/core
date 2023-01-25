@@ -472,7 +472,13 @@ jeedomUtils.checkThemechange = function() {
   var themeCss = 'core/themes/' + jeedom.theme.jeedom_theme_alternate + '/desktop/' + jeedom.theme.jeedom_theme_alternate + '.css'
   var currentTime = parseInt((new Date()).getHours() * 100 + (new Date()).getMinutes())
 
-  if (parseInt(jeedom.theme.theme_start_day_hour.replace(':', '')) < currentTime && parseInt(jeedom.theme.theme_end_day_hour.replace(':', '')) > currentTime) {
+  //if (parseInt(jeedom.theme.theme_start_day_hour.replace(':', '')) < currentTime && parseInt(jeedom.theme.theme_end_day_hour.replace(':', '')) > currentTime) {
+  if (
+    (parseInt(jeedom.theme.theme_start_day_hour.replace(':','')) < currentTime
+    && parseInt(jeedom.theme.theme_end_day_hour.replace(':','')) > currentTime)
+    || typeof jeedom.theme.theme_changeAccordingTime == 'undefined'
+    || jeedom.theme.theme_changeAccordingTime == 0
+  ) {
     theme = jeedom.theme.jeedom_theme_main
     themeCss = 'core/themes/' + jeedom.theme.jeedom_theme_main + '/desktop/' + jeedom.theme.jeedom_theme_main + '.css'
   }
