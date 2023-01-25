@@ -1690,8 +1690,7 @@ var jeeDialog = (function()
 /* new jeeCtxMenu({})
 Core lib for context menus
 */
-var jeeCtxMenu = function(_options)
-{
+var jeeCtxMenu = function(_options) {
   var ctxInstance = { //Always initialize with new jeeCtxMenu({}) or this won't be unique per menu!
     realTrigger: null
   }
@@ -2136,6 +2135,134 @@ var jeeFileUploader = function(_options) {
         if (_options.done) _options.done.apply(_options.fileInput, [event, {result: data}])
       },
     })
+  }
+
+  return _options
+}
+
+
+/* new jeeResize(selector, {})
+Core lib for resizeable elements
+*/
+var jeeResize = function(_selector, _options) {
+  var elements = document.querySelectorAll(_selector)
+  if (elements.length == 0) {
+    console.warn('jeeResize: no elements found. selector:', _selector)
+    return null
+  }
+
+  var defaultOptions = {
+    cancel: false,
+    state: true,
+    containment: false,
+    handles: ['top', 'top-right', 'right', 'bottom-right', 'bottom', 'bottom-left', 'left', 'top-left'],
+    start: false,
+    resize: false,
+    stop: false
+  }
+  _options = domUtils.extend(defaultOptions, _options)
+
+  var currentRszr = {}
+
+  elements.forEach(elResize => {
+    elResize._jeeResize = {}
+    elResize._jeeResize.options = _options
+    elResize._jeeResize.element = elResize
+    elResize._jeeResize.destroy = function() {
+      elResize.querySelectorAll('.jeeresizer').forEach(_rszr => {
+        _rszr.remove()
+      })
+    }
+
+    _options.handles.forEach(handle => {
+      var div = document.createElement('div')
+      div.addClass('jeeresizer', handle)
+      div.setAttribute('data-resize', handle)
+      elResize.appendChild(div)
+      div.addEventListener('pointerdown', resizeStart, false)
+    })
+  })
+
+  var initialLeft, initialTop, initialWidth, initialHeight
+  function resizeStart(event) {
+    event.preventDefault()
+    event.stopPropagation()
+    event.stopImmediatePropagation()
+    currentRszr = event.target.parentNode._jeeResize
+
+    if (currentRszr.options.cancel !== false && event.target.parentNode.hasClass(currentRszr.options.cancel)) return false
+    if (currentRszr.options.containment !== false) {
+      currentRszr.containmentRect = currentRszr.options.containment.getBoundingClientRect()
+    } else {
+      currentRszr.containmentRect = document.body.getBoundingClientRect()
+    }
+
+    currentRszr.rszElement = this
+    currentRszr.resizer = this.getAttribute('data-resize')
+
+    let bRect = event.target.parentNode.getBoundingClientRect()
+    initialLeft = bRect.left
+    initialTop = bRect.top
+    initialWidth = bRect.width
+    initialHeight = bRect.height
+    document.body.addEventListener('pointerup', resizeEnd, false)
+    document.body.addEventListener('pointermove', resizing, false)
+    if (currentRszr.options.start) {
+      currentRszr.options.start.apply(currentRszr.rszElement, [event, currentRszr.element])
+    }
+  }
+  function resizing(event) {
+    var element = currentRszr.rszElement.parentNode
+
+    if (currentRszr.resizer.includes('left')) {
+      let minLeft = currentRszr.containmentRect.left
+      let maxLeft = currentRszr.containmentRect.right
+      let left = event.clientX
+      if (left >= minLeft && left <= maxLeft) {
+        element.style.left = left - currentRszr.containmentRect.left + 'px'
+        let width = initialWidth + (initialLeft - event.clientX)
+        width = width <= currentRszr.containmentRect.width ? width : currentRszr.containmentRect.width
+        element.style.width = width + 'px'
+      }
+    }
+
+    if (currentRszr.resizer.includes('top')) {
+      let minTop = currentRszr.containmentRect.top
+      let maxTop = currentRszr.containmentRect.bottom
+      let top = event.clientY
+      if (top >= minTop && top <= maxTop) {
+        element.style.top = top - currentRszr.containmentRect.top + 'px'
+        let height = initialHeight + (initialTop - event.clientY)
+        height = height <= currentRszr.containmentRect.height ? height : currentRszr.containmentRect.height
+        element.style.height = height + 'px'
+      }
+    }
+
+    if (currentRszr.resizer.includes('right')) {
+      let maxWidth = currentRszr.containmentRect.width - element.offsetLeft
+      let width = event.clientX - initialLeft
+      if (width <= maxWidth) {
+        element.style.width = width + 'px'
+      }
+    }
+
+    if (currentRszr.resizer.includes('bottom')) {
+      let maxHeight = currentRszr.containmentRect.height - element.offsetTop
+      let height = event.clientY - initialTop
+      if (height <= maxHeight) {
+        element.style.height = height + 'px'
+      }
+    }
+    if (currentRszr.options.resize) {
+      currentRszr.options.resize.apply(currentRszr.rszElement, [event, currentRszr.element])
+    }
+  }
+  function resizeEnd(event) {
+    document.body.removeEventListener('pointerup', resizeEnd, false)
+    document.body.removeEventListener('pointermove', resizing, false)
+    if (currentRszr.options.end) {
+      currentRszr.options.end.apply(currentRszr.rszElement, [event, currentRszr.element])
+    }
   }
 
   return _options

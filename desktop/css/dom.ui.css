@@ -355,71 +355,80 @@ div.jeeDialog {
   z-index: 1020;
 }
 
-div.jeeDialog.jeeDialogMain > div.resizer {
+div.jeeDialog.jeeDialogMain > div.resizer,
+div.jeeresizer {
   display: block;
   position: absolute;
   background: transparent;
-  z-index: 90;
+  z-index: 250;
 }
-div.jeeDialog.jeeDialogMain > div.resizer.top {
+div.jeeDialog.jeeDialogMain > div.resizer.top,
+div.jeeresizer.top {
   top: 0;
   left: 0;
   width: 100%;
   height: 7px;
   cursor: n-resize;
 }
-div.jeeDialog.jeeDialogMain > div.resizer.top-right {
+div.jeeDialog.jeeDialogMain > div.resizer.top-right,
+div.jeeresizer.top-right {
   top: 0;
   right: 0;
   width: 7px;
   height: 7px;
   cursor: ne-resize;
-  z-index: 91;
+  z-index: 260;
 }
-div.jeeDialog.jeeDialogMain > div.resizer.right {
+div.jeeDialog.jeeDialogMain > div.resizer.right,
+div.jeeresizer.right {
   top: 0;
   right: 0;
   width: 7px;
   height: 100%;
   cursor: e-resize;
 }
-div.jeeDialog.jeeDialogMain > div.resizer.bottom-right {
+div.jeeDialog.jeeDialogMain > div.resizer.bottom-right,
+div.jeeresizer.bottom-right {
   bottom: 0;
   right: 0;
   width: 7px;
   height: 7px;
   cursor: se-resize;
-  z-index: 91;
+  z-index: 260;
 }
-div.jeeDialog.jeeDialogMain > div.resizer.bottom {
+div.jeeDialog.jeeDialogMain > div.resizer.bottom,
+div.jeeresizer.bottom {
   bottom: 0;
   left: 0;
   width: 100%;
   height: 7px;
   cursor: s-resize;
 }
-div.jeeDialog.jeeDialogMain > div.resizer.bottom-left {
+div.jeeDialog.jeeDialogMain > div.resizer.bottom-left,
+div.jeeresizer.bottom-left {
   bottom: 0;
   left: 0;
   width: 7px;
   height: 7px;
   cursor: sw-resize;
-  z-index: 91;
+  z-index: 260;
 }
-div.jeeDialog.jeeDialogMain > div.resizer.left {
+div.jeeDialog.jeeDialogMain > div.resizer.left,
+div.jeeresizer.left {
   top: 0;
   left: 0;
   width: 7px;
   height: 100%;
   cursor: w-resize;
 }
-div.jeeDialog.jeeDialogMain > div.resizer.top-left {
+div.jeeDialog.jeeDialogMain > div.resizer.top-left,
+div.jeeresizer.top-left {
   top: 0;
   left: 0;
   width: 7px;
   height: 7px;
   cursor: nw-resize;
-  z-index: 91;
+  z-index: 260;
 }
 
 /* _________________jeeCtxMenu*/
