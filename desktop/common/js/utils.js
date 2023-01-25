@@ -1834,8 +1834,3 @@ function getOpenedModal() {
 //Introduced in v4.3 -> obsolete 4.5 ?
 var jeedom_langage = jeeFrontEnd.language
 var userProfils = jeeFrontEnd.userProfils
-
-
-/*Migration purpose
-*/
-//var jq2 = jQuery.noConflict()

@@ -712,7 +712,8 @@ domUtils.octetsToHumanSize = function(_size) {
 
 }
 
-//Global functions
+/*Global window functions
+*/
 function isElement_jQuery(_element) {
   if (typeof jQuery !== 'function') return false
   return (_element instanceof jQuery && _element.length)
@@ -730,6 +731,26 @@ function init(_value, _default) {
     return _default
   }
   return _value
+}
+
+function isset() {
+  let a = arguments,
+    b = a.length,
+    d = 0
+  if (0 === b)
+    throw Error("Empty isset")
+  for (; d !== b;) {
+    if (void 0 === a[d] || null === a[d])
+      return !1
+    d++
+  }
+  return !0
+}
+
+function getNearestMultiple(_value, _factor, _method) {
+  if (!_factor) return _value
+  _method = _method || 'round'
+  return Math[_method](_value/_factor) * _factor
 }
 
 function json_decode(a) {
@@ -832,19 +853,7 @@ function json_encode(a) {
   }
 }
 
-function isset() {
-  let a = arguments,
-    b = a.length,
-    d = 0
-  if (0 === b)
-    throw Error("Empty isset")
-  for (; d !== b;) {
-    if (void 0 === a[d] || null === a[d])
-      return !1
-    d++
-  }
-  return !0
-}
+
 
 function getBool(val) {
   if (val === undefined) return false
