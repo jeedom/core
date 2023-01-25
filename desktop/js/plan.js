@@ -23,6 +23,8 @@ if (!jeeFrontEnd.plan) {
     planHeaderContextMenu: {},
     resizeObservers: [],
     cssStyleString: '',
+    draggables: [],
+    isFullScreen: false,
     clickedOpen: false,
     init: function() {
       window.jeeP = this
@@ -104,8 +106,10 @@ if (!jeeFrontEnd.plan) {
       _mode = getBool(_mode)
       if (_mode) {
         document.body.addClass('fullscreen')
+        jeeFrontEnd.plan.isFullScreen = true
       } else {
         document.body.removeClass('fullscreen')
+        jeeFrontEnd.plan.isFullScreen = false
       }
     },
     addObject: function(_plan) {
@@ -287,7 +291,7 @@ if (!jeeFrontEnd.plan) {
       style['top'] = init(_plan.position.top, '10') + 'px'
       style['left'] = init(_plan.position.left, '10') + 'px'
       if (init(_plan.css.zoom, 1) != 1) {
-        style['transform'] = 'scale(' + init(_plan.css.zoom, 1) + ')'
+        style['scale'] = init(_plan.css.zoom, 1)
       }
       style['transform-origin'] = '0 0'
 
@@ -526,69 +530,6 @@ if (!jeeFrontEnd.plan) {
         jeeFrontEnd.plan.resizeObservers.push(obs)
       })
     },
-    //Constrain dragging inside design area, supporting zoom:
-    dragClick: {
-      x: 0,
-      y: 0
-    },
-    dragStartPos: {
-      top: 0,
-      left: 0
-    },
-    dragStep: false,
-    minLeft: 0,
-    maxLeft: 0,
-    maxTop: 0,
-    isDragLocked: false,
-    zoomScale: 1,
-    draggableStartFix: function(event, ui) {
-      jeeP.isDragLocked = false
-      if (event.target.hasClass('locked')) {
-        jeeP.isDragLocked = true
-        document.body.style.cursor = "default"
-        return false
-      }
-      jeeP.zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
-      if (jeeFrontEnd.planEditOption.grid == 1) {
-        jeeP.dragStep = jeeFrontEnd.planEditOption.gridSize[0]
-      } else {
-        jeeP.dragStep = false
-      }
-
-      jeeP.dragClick.x = event.clientX
-      jeeP.dragClick.y = event.clientY
-      jeeP.dragStartPos = ui.originalPosition
-
-      var containerWidth = jeeFrontEnd.plan.planContainer.offsetWidth
-      var containerHeight = jeeFrontEnd.plan.planContainer.offsetHeight
-
-      var clientWidth = ui.helper[0].offsetWidth
-      var clientHeight = ui.helper[0].offsetHeight
-
-      jeeP.maxLeft = containerWidth + jeeP.minLeft - (clientWidth * jeeP.zoomScale)
-      jeeP.maxTop = containerHeight - (clientHeight * jeeP.zoomScale)
-    },
-    draggableDragFix: function(event, ui) {
-      if (jeeP.isDragLocked == true) return false
-      var newLeft = event.clientX - jeeP.dragClick.x + jeeP.dragStartPos.left
-      var newTop = event.clientY - jeeP.dragClick.y + jeeP.dragStartPos.top
-
-      if (newLeft < jeeP.minLeft) newLeft = jeeP.minLeft
-      if (newLeft > jeeP.maxLeft) newLeft = jeeP.maxLeft
-
-      if (newTop < 0) newTop = 0
-      if (newTop > jeeP.maxTop) newTop = jeeP.maxTop
-
-      if (jeeP.dragStep) {
-        newLeft = (Math.round(newLeft / jeeP.dragStep) * jeeP.dragStep)
-        newTop = (Math.round(newTop / jeeP.dragStep) * jeeP.dragStep)
-      }
-
-      ui.position = {
-        left: newLeft,
-        top: newTop
-      }
-    },
     //Edit mode:
     initEditOption: function(_state) {
       var editSelector = '.plan-link-widget, .view-link-widget, .graph-widget, .div_displayObject >.eqLogic-widget'
@@ -608,16 +549,60 @@ if (!jeeFrontEnd.plan) {
         this.planContainer.addClass('editingMode')
         jeedom.cmd.disableExecute = true
 
-        //drag item:
-        $editItems.draggable({
-          cancel: '.locked',
-          containment: 'parent',
-          cursor: 'move',
-          start: this.draggableStartFix,
-          drag: this.draggableDragFix,
-          stop: function(event, ui) {
-            jeeP.savePlan(false, false)
-          }
+        //Set draggies:
+        editItems.forEach(item => {
+          var draggie = new Draggabilly(item, {
+            containment: '.div_displayObject',
+          })
+          jeeFrontEnd.plan.draggables.push(draggie)
+          draggie.on('dragStart', function(event, pointer) {
+            //Is locked:
+            if (this.element.hasClass('locked')) this.dragEnd()
+
+            this.zoomScale = parseFloat(this.element.getAttribute('data-zoom'))
+            if (this.zoomScale != 1) {
+              this.options.containment = false
+            }
+            //this.containementBrect = document.querySelector(this.options.containment).getBoundingClientRect()
+
+            if (jeeFrontEnd.planEditOption.grid == 1) {
+              this.dragStep = jeeFrontEnd.planEditOption.gridSize[0] / this.zoomScale
+              this.element.style.left = getNearestMultiple(this.element.offsetLeft, this.dragStep) + 'px'
+              this.element.style.top = getNearestMultiple(this.element.offsetTop, this.dragStep) + 'px'
+              this.options.grid = [this.dragStep, this.dragStep]
+            } else {
+              this.dragStep = false
+              this.options.grid = undefined
+            }
+          })
+          draggie.on('dragMove', function(event, pointer) {
+            return
+            /*
+            if (this.zoomScale != 1) {
+              var matrix = window.getComputedStyle(this.element).getPropertyValue('transform')
+              var matrixValues = matrix.match(/matrix.*\((.+)\)/)[1].split(', ')
+              var tx = matrixValues[4]
+              var ty = matrixValues[5]
+              var txFactor = tx * this.zoomScale
+              var tyFactor = ty * this.zoomScale
+              var deltaX = this.element.offsetLeft - (tx * this.zoomScale)
+              if ((this.element.offsetLeft + txFactor) < 0) this.dragEnd()
+              if ((this.element.offsetTop + tyFactor) < 0) this.dragEnd()
+
+              var realWidth = this.element.clientWidth * this.zoomScale
+              var realRight = this.element.getBoundingClientRect().left + realWidth
+              //console.log('dragMove realRight:', realRight, 'realWidth:', realWidth, this.containementBrect)
+
+              //Test ok, not solution--
+              if (realRight >= this.containementBrect.right) {
+                this.dragEnd()
+              }
+            }
+            */
+          })
+          draggie.on('dragEnd', function(event, pointer) {
+            //jeeP.savePlan(false, false)
+          })
         })
 
         if (jeeFrontEnd.planEditOption.highlight) {
@@ -632,16 +617,21 @@ if (!jeeFrontEnd.plan) {
           document.getElementById('div_grid').unseen()
         }
 
-        //resize item:
-        $('.plan-link-widget, .view-link-widget, .graph-widget, .div_displayObject >.eqLogic-widget, .scenario-widget, .text-widget, .image-widget, .zone-widget, .summary-widget').resizable({
-          cancel: '.locked',
-          handles: 'n,e,s,w,se,sw,nw,ne',
-          containment: $('.div_displayObject'),
-          start: function(event, ui) {
-            if (this.getAttribute('data-zoom') != '1') {
-              $(this).resizable("option", "containment", null)
+        //Set Resezing:
+        let selector = '.plan-link-widget, .view-link-widget, .graph-widget, .div_displayObject >.eqLogic-widget, .scenario-widget, .text-widget, .image-widget, .zone-widget, .summary-widget'
+        new jeeResize(selector, {
+          cancel: 'locked',
+          containment: document.querySelector('.div_displayObject'),
+          start: function(event, element) {
+            this.zoomScale = parseFloat(element.getAttribute('data-zoom'))
+
+            if (this.zoomScale != 1) {
+              element._jeeResize.options.containment = false
+            } else {
+              element._jeeResize.options.containment = document.querySelector('.div_displayObject')
             }
-            this.zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
+
+            //Handle snap:
             if (jeeFrontEnd.planEditOption.grid == 1) {
               this.dragStep = jeeFrontEnd.planEditOption.gridSize[0]
               this.dragStep = this.dragStep / this.zoomScale
@@ -649,22 +639,33 @@ if (!jeeFrontEnd.plan) {
               this.dragStep = false
             }
           },
-          resize: function(event, ui) {
-            if (this.dragStep) {
-              var newWidth = (Math.round(ui.size.width / this.dragStep) * this.dragStep)
-              var newHeight = (Math.round(ui.size.height / this.dragStep) * this.dragStep)
-              ui.element.width(newWidth)
-              ui.element.height(newHeight)
+          resize: function(event, element) {
+            if (this.zoomScale != 1) {
+              if (!jeeFrontEnd.plan.isFullScreen && this.hasClass('top')) {
+                element.style.top = element.offsetTop - 50 + 'px'
+              }
+              if (this.hasClass('left')) {
+                element.style.left = element.offsetLeft - jeeFrontEnd.plan.planContainer.getBoundingClientRect().left + 'px'
+              }
             }
-            ui.element.find('.camera').trigger('resize')
+            //Handle snap:
+            if (this.dragStep) {
+              element.style.width = getNearestMultiple(element.offsetWidth,  this.dragStep) + 'px'
+              element.style.height = getNearestMultiple(element.offsetHeight,  this.dragStep) + 'px'
+              element.style.top = getNearestMultiple(element.offsetTop,  this.dragStep) + 'px'
+              element.style.left = getNearestMultiple(element.offsetLeft,  this.dragStep) + 'px'
+            }
+
+            element.querySelector('.camera')?.triggerEvent('resize')
           },
           stop: function(event, ui) {
-            jeeP.savePlan(false, false)
+            //jeeP.savePlan(false, false)
           },
         })
 
         jeeP.elementContexMenu.enable()
       } else { //Leave Edit mode
+        jeeP.savePlan(false, false)
         jeeP.elementContexMenu.disable()
         jeeFrontEnd.planEditOption.state = false
         jeeP.pageContainer.dataset.planEditState = false
@@ -672,11 +673,20 @@ if (!jeeFrontEnd.plan) {
         this.planContainer.removeClass('editingMode')
         editItems.forEach(item => {
           item.removeAttribute('data-lock')
+          item.removeClass('editingMode')
+          if (item._jeeResize) item._jeeResize.destroy()
         })
+        jeeFrontEnd.plan.draggables.forEach(draggie => {
+          let left = draggie.element.style.left
+          let top = draggie.element.style.top
+          draggie.destroy()
+          draggie.element.style.left = left
+          draggie.element.style.top = top
+        })
+        jeeFrontEnd.plan.draggables = []
         try {
           jeedomUtils.enableTooltips()
-          $editItems.draggable('destroy').removeClass('editingMode')
-          $('.plan-link-widget, .view-link-widget, .graph-widget, .div_displayObject >.eqLogic-widget, .scenario-widget, .text-widget, .image-widget, .zone-widget, .summary-widget').resizable("destroy")
+          //$editItems.draggable('destroy')
         } catch (e) {}
         document.getElementById('div_grid').unseen()
       }

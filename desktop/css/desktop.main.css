@@ -878,6 +878,11 @@ div.eqLogicZone {
   .scenario-widget {
     max-width: 75%;
   }
+  body[data-page="plan"] .eqLogic-widget,
+  body[data-page="plan"] .scenario-widget {
+    max-width: unset;
+  }
+
   .scenario-widget .iconCmd {
     margin-top: 7px;
   }
