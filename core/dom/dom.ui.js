@@ -2188,17 +2188,23 @@ var jeeResize = function(_selector, _options) {
     event.preventDefault()
     event.stopPropagation()
     event.stopImmediatePropagation()
-    currentRszr = event.target.parentNode._jeeResize
 
+    currentRszr = event.target.parentNode._jeeResize
+    currentRszr.rszElement = this
+    currentRszr.resizer = this.getAttribute('data-resize')
     if (currentRszr.options.cancel !== false && event.target.parentNode.hasClass(currentRszr.options.cancel)) return false
-    if (currentRszr.options.containment !== false) {
+
+    var next
+    if (currentRszr.options.start) {
+      next = currentRszr.options.start.apply(currentRszr.rszElement, [event, currentRszr.element])
+    }
+    if (next === false) return
+
+    if (event.target.parentNode._jeeResize.options.containment !== false) {
       currentRszr.containmentRect = currentRszr.options.containment.getBoundingClientRect()
     } else {
       currentRszr.containmentRect = document.body.getBoundingClientRect()
     }
-
-    currentRszr.rszElement = this
-    currentRszr.resizer = this.getAttribute('data-resize')
 
     let bRect = event.target.parentNode.getBoundingClientRect()
     initialLeft = bRect.left
@@ -2207,11 +2213,10 @@ var jeeResize = function(_selector, _options) {
     initialHeight = bRect.height
     document.body.addEventListener('pointerup', resizeEnd, false)
     document.body.addEventListener('pointermove', resizing, false)
-    if (currentRszr.options.start) {
-      currentRszr.options.start.apply(currentRszr.rszElement, [event, currentRszr.element])
-    }
+
   }
   function resizing(event) {
+
     var element = currentRszr.rszElement.parentNode
 
     if (currentRszr.resizer.includes('left')) {
