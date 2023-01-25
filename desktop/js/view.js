@@ -244,11 +244,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       document.querySelectorAll('div.eqLogicZone').forEach(_divObject => {
         Packery.data(_divObject).layout()
       })
-      /*
-      $('.eqLogicZone').each(function() {
-        $(this).packery({isLayoutInstant: true})
-      })
-      */
+
       _target.setAttribute('data-display', '0')
     } else {
       _target.closest('.row').querySelector('.div_displayViewList').seen()
@@ -257,7 +253,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       document.querySelectorAll('div.eqLogicZone').forEach(_divObject => {
         Packery.data(_divObject).layout()
       })
-      //$('.eqLogicZone').packery({isLayoutInstant: true})
+
       _target.setAttribute('data-display', '1')
     }
     return
