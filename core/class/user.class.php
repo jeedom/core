@@ -551,7 +551,7 @@ class user {
 			uasort($_value, function ($a, $b) {
 				return strtotime($a['datetime']) - strtotime($b['datetime']);
 			});
-			$_value = array_slice($_value, 0, 20);
+			$_value = array_slice($_value, -20, 20);
 		}
 		$options = utils::setJsonAttr($this->options, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed, $this->options, $options);
