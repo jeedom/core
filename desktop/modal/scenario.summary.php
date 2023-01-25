@@ -87,7 +87,7 @@ if (!jeeFrontEnd.md_scenarioSummary) {
         asTag: true,
         error: function (error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_scenarioSummary', 'content'),
+            attachTo: jeeDialog.get('#md_scenarioSummary', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -188,7 +188,7 @@ if (!jeeFrontEnd.md_scenarioSummary) {
       scenarios : scenarios,
       error: function(error) {
         jeedomUtils.showAlert({
-          attachTo: jeeDialog.get('#md_scenarioSummary', 'content'),
+          attachTo: jeeDialog.get('#md_scenarioSummary', 'dialog'),
           message: error.message,
           level: 'danger'
         })
@@ -213,7 +213,7 @@ if (!jeeFrontEnd.md_scenarioSummary) {
             id: id,
             error: function(error) {
               jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_scenarioSummary', 'content'),
+                attachTo: jeeDialog.get('#md_scenarioSummary', 'dialog'),
                 message: error.message,
                 level: 'danger'
               })
@@ -243,7 +243,7 @@ if (!jeeFrontEnd.md_scenarioSummary) {
         state: 'stop',
         error: function (error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_scenarioSummary', 'content'),
+            attachTo: jeeDialog.get('#md_scenarioSummary', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -261,7 +261,7 @@ if (!jeeFrontEnd.md_scenarioSummary) {
         state: 'start',
         error: function (error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_scenarioSummary', 'content'),
+            attachTo: jeeDialog.get('#md_scenarioSummary', 'dialog'),
             message: error.message,
             level: 'danger'
           })

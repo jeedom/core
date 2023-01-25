@@ -38,7 +38,7 @@ sendVarToJS([
     filter_id : '<?php echo init('filter_id', '') ?>',
     error: function(error) {
       jeedomUtils.showAlert({
-        attachTo: jeeDialog.get('#md_graphLink', 'content'),
+        attachTo: jeeDialog.get('#md_graphLink', 'dialog'),
         message: error.message,
         level: 'danger'
       })

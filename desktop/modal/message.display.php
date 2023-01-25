@@ -103,7 +103,7 @@ if ($selectPlugin != '') {
         plugin: document.getElementById('sel_plugin').jeeValue(),
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_messageDisplay', 'content'),
+            attachTo: jeeDialog.get('#md_messageDisplay', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -133,7 +133,7 @@ if ($selectPlugin != '') {
         id: _target.closest('tr').getAttribute('data-message_id'),
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_messageDisplay', 'content'),
+            attachTo: jeeDialog.get('#md_messageDisplay', 'dialog'),
             message: error.message,
             level: 'danger'
           })

@@ -222,7 +222,7 @@ if (!jeeFrontEnd.md_planHeaderConfigure) {
         done: function(e, data) {
           if (data.result.state != 'ok') {
             jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_planHeaderConfigure', 'content'),
+              attachTo: jeeDialog.get('#md_planHeaderConfigure', 'dialog'),
               message: data.result.result,
               level: 'danger'
             })
@@ -249,14 +249,14 @@ if (!jeeFrontEnd.md_planHeaderConfigure) {
         id : tr.attr('data-id'),
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_planHeaderConfigure', 'content'),
+            attachTo: jeeDialog.get('#md_planHeaderConfigure', 'dialog'),
             message: error.message,
             level: 'danger'
           })
         },
         success: function() {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_planHeaderConfigure', 'content'),
+            attachTo: jeeDialog.get('#md_planHeaderConfigure', 'dialog'),
             message: '{{Composant supprimée}}',
             level: 'success'
           })
@@ -293,14 +293,14 @@ if (!jeeFrontEnd.md_planHeaderConfigure) {
         planHeader_id: jeephp2js.md_planHeaderConfigure_Id,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_planHeaderConfigure', 'content'),
+            attachTo: jeeDialog.get('#md_planHeaderConfigure', 'dialog'),
             message: error.message,
             level: 'danger'
           });
         },
         success: function() {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_planHeaderConfigure', 'content'),
+            attachTo: jeeDialog.get('#md_planHeaderConfigure', 'dialog'),
             message: '{{Image supprimée}}',
             level: 'success'
           })
@@ -316,14 +316,14 @@ if (!jeeFrontEnd.md_planHeaderConfigure) {
         planHeader: document.getElementById('div_planHeaderConfigure').getJeeValues('.planHeaderAttr')[0],
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_planHeaderConfigure', 'content'),
+            attachTo: jeeDialog.get('#md_planHeaderConfigure', 'dialog'),
             message: error.message,
             level: 'danger'
           })
         },
         success: function() {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_planHeaderConfigure', 'content'),
+            attachTo: jeeDialog.get('#md_planHeaderConfigure', 'dialog'),
             message: '{{Design sauvegardé}}',
             level: 'success'
           })

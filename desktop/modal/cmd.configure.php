@@ -875,7 +875,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 id: thisValue,
                 error: function(error) {
                   jeedomUtils.showAlert({
-                    attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
+                    attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
                     message: error.message,
                     level: 'danger'
                   })
@@ -1079,7 +1079,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                     cmd: cmd,
                     error: function(error) {
                       jeedomUtils.showAlert({
-                        attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
+                        attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
                         message: error.message,
                         level: 'danger'
                       })
@@ -1089,7 +1089,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 }
               })
               jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
+                attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
                 message: "{{Modification(s) appliquée(s) avec succès}}",
                 level: 'success'
               })
@@ -1122,7 +1122,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           cmd: cmd,
           error: function(error) {
             jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
+              attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
               message: error.message,
               level: 'danger'
             })
@@ -1206,14 +1206,14 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               cmd_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
               error: function(error) {
                 jeedomUtils.showAlert({
-                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
+                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
                   message: error.message,
                   level: 'danger'
                 })
               },
               success: function(data) {
                 jeedomUtils.showAlert({
-                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
+                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
                   message: '{{Action envoyée avec succés}}',
                   level: 'success'
                 })
@@ -1231,14 +1231,14 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               cmd_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
               error: function(error) {
                 jeedomUtils.showAlert({
-                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
+                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
                   message: error.message,
                   level: 'danger'
                 })
               },
               success: function(data) {
                 jeedomUtils.showAlert({
-                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
+                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
                   message: '{{Programmation envoyée avec succés}}',
                   level: 'success'
                 })
@@ -1265,14 +1265,14 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 target_id: target_id,
                 error: function(error) {
                   jeedomUtils.showAlert({
-                    attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
+                    attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
                     message: error.message,
                     level: 'danger'
                   })
                 },
                 success: function(data) {
                   jeedomUtils.showAlert({
-                    attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
+                    attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
                     message: '{{Historique copié avec succès}}',
                     level: 'success'
                   })
@@ -1300,14 +1300,14 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 target_id: target_id,
                 error: function(error) {
                   jeedomUtils.showAlert({
-                    attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
+                    attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
                     message: error.message,
                     level: 'danger'
                   })
                 },
                 success: function(data) {
                   jeedomUtils.showAlert({
-                    attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
+                    attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
                     message: '{{Remplacement réalisé avec succès}}',
                     level: 'success'
                   })
@@ -1335,14 +1335,14 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 target_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
                 error: function(error) {
                   jeedomUtils.showAlert({
-                    attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
+                    attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
                     message: error.message,
                     level: 'danger'
                   })
                 },
                 success: function(data) {
                   jeedomUtils.showAlert({
-                    attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
+                    attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
                     message: '{{Remplacement réalisé avec succès}}',
                     level: 'success'
                   })
@@ -1364,14 +1364,14 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               target_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
               error: function(error) {
                 jeedomUtils.showAlert({
-                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
+                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
                   message: error.message,
                   level: 'danger'
                 })
               },
               success: function(data) {
                 jeedomUtils.showAlert({
-                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'content'),
+                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
                   message: '{{Remplacement réalisé avec succès}}',
                   level: 'success'
                 })

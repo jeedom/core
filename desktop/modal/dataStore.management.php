@@ -113,7 +113,7 @@ if (!jeeFrontEnd.md_datastore) {
         usedBy: 1,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_datastore', 'content'),
+            attachTo: jeeDialog.get('#md_datastore', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -170,14 +170,14 @@ if (!jeeFrontEnd.md_datastore) {
             id: tr.getAttribute('data-dataStore_id'),
             error: function(error) {
               jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_datastore', 'content'),
+                attachTo: jeeDialog.get('#md_datastore', 'dialog'),
                 message: error.message,
                 level: 'danger'
               })
             },
             success: function(data) {
               jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_datastore', 'content'),
+                attachTo: jeeDialog.get('#md_datastore', 'dialog'),
                 message: '{{Dépôt de données supprimé}}',
                 level: 'success'
               })
@@ -199,14 +199,14 @@ if (!jeeFrontEnd.md_datastore) {
         link_id: jeephp2js.md_dataStoreManagement_linkId,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_datastore', 'content'),
+            attachTo: jeeDialog.get('#md_datastore', 'dialog'),
             message: error.message,
             level: 'danger'
           })
         },
         success: function(data) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_datastore', 'content'),
+            attachTo: jeeDialog.get('#md_datastore', 'dialog'),
             message: '{{Dépôt de données sauvegardé}}',
             level: 'success'
           })

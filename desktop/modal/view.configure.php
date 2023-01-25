@@ -88,17 +88,15 @@ if (!jeeFrontEnd.md_viewConfigure) {
         dataType: 'json',
         done: function(e, data) {
           if (data.result.state != 'ok') {
-            attachTo: jeeDialog.get('#md_viewConfigure', 'content'),
             jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_viewConfigure', 'content'),
+              attachTo: jeeDialog.get('#md_viewConfigure', 'dialog'),
               message: data.result.result,
               level: 'danger'
             })
             return
           }
-          attachTo: jeeDialog.get('#md_viewConfigure', 'content'),
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_viewConfigure', 'content'),
+            attachTo: jeeDialog.get('#md_viewConfigure', 'dialog'),
             message: '{{Image ajoutée}}',
             level: 'success'
           })
@@ -112,14 +110,14 @@ if (!jeeFrontEnd.md_viewConfigure) {
         view: view,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_viewConfigure', 'content'),
+            attachTo: jeeDialog.get('#md_viewConfigure', 'dialog'),
             message: error.message,
             level: 'danger'
            })
         },
         success: function() {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_viewConfigure', 'content'),
+            attachTo: jeeDialog.get('#md_viewConfigure', 'dialog'),
             message: '{{Vue sauvegardé}}',
             level: 'success'
           })
@@ -154,14 +152,14 @@ if (!jeeFrontEnd.md_viewConfigure) {
         id: jeephp2js.md_viewConfigure_View.id,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_viewConfigure', 'content'),
+            attachTo: jeeDialog.get('#md_viewConfigure', 'dialog'),
             message: error.message,
             level: 'danger'
            })
         },
         success: function() {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_viewConfigure', 'content'),
+            attachTo: jeeDialog.get('#md_viewConfigure', 'dialog'),
             message: '{{Image supprimée}}',
             level: 'success'
           })

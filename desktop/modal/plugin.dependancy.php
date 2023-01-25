@@ -159,7 +159,7 @@ if (!jeeFrontEnd.md_pluginDependancy) {
         id: plugin_id,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_pluginDependancy', 'content'),
+            attachTo: jeeDialog.get('#md_pluginDependancy', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -179,7 +179,7 @@ if (!jeeFrontEnd.md_pluginDependancy) {
         mode: mode,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_pluginDependancy', 'content'),
+            attachTo: jeeDialog.get('#md_pluginDependancy', 'dialog'),
             message: error.message,
             level: 'danger'
           })

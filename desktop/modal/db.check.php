@@ -110,7 +110,7 @@ $result = DB::compareDatabase($database);
             table : _target.dataset.table,
             error : function(error) {
               jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_dbCheck', 'content'),
+                attachTo: jeeDialog.get('#md_dbCheck', 'dialog'),
                 message: error.message,
                 level: 'danger'
               })

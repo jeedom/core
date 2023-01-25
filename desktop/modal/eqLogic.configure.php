@@ -620,7 +620,7 @@ if (!jeeFrontEnd.md_eqLogicConfigure) {
         type: jeephp2js.md_eqLogicConfigure_Info.eqType_name,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_eqLogicConfigure', 'content'),
+            attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -647,7 +647,7 @@ if (!jeeFrontEnd.md_eqLogicConfigure) {
             cmds: cmds,
             error: function(error) {
               jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_eqLogicConfigure', 'content'),
+                attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
                 message: error.message,
                 level: 'danger'
               })
@@ -666,7 +666,7 @@ if (!jeeFrontEnd.md_eqLogicConfigure) {
                   callback: function() {
                     document.querySelector('#eqLogicConfigureTab > li > a[href="' + tab + '"]')?.click()
                     jeedomUtils.showAlert({
-                      attachTo: jeeDialog.get('#md_eqLogicConfigure', 'content'),
+                      attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
                       message: '{{Sauvegarde réussie}}',
                       level: 'success'
                     })
@@ -718,14 +718,14 @@ if (!jeeFrontEnd.md_eqLogicConfigure) {
           type: jeephp2js.md_eqLogicConfigure_Info.eqType_name,
           error: function(error) {
             jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_eqLogicConfigure', 'content'),
+              attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
               message: error.message,
               level: 'danger'
             })
           },
           success: function(data) {
             jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_eqLogicConfigure', 'content'),
+              attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
               message: '{{Equipement supprimé avec succès}}',
               level: 'success'
             })
@@ -847,14 +847,14 @@ if (!jeeFrontEnd.md_eqLogicConfigure) {
             eqLogic: eqLogic,
             error: function(error) {
               jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_eqLogicConfigure', 'content'),
+                attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
                 message: error.message,
                 level: 'danger'
               })
             },
             success: function(data) {
               jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_eqLogicConfigure', 'content'),
+                attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
                 message: '{{Le remplacement des piles a été enregistré}}',
                 level: 'success'
               })

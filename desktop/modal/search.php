@@ -280,7 +280,7 @@ if (!jeeFrontEnd.md_search) {
         usedBy: 1,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_search', 'content'),
+            attachTo: jeeDialog.get('#md_search', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -317,7 +317,7 @@ if (!jeeFrontEnd.md_search) {
         type: _searchFor,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_search', 'content'),
+            attachTo: jeeDialog.get('#md_search', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -341,7 +341,7 @@ if (!jeeFrontEnd.md_search) {
         id: eQiD,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_search', 'content'),
+            attachTo: jeeDialog.get('#md_search', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -369,7 +369,7 @@ if (!jeeFrontEnd.md_search) {
             id: eQiD,
             error: function(error) {
               jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_search', 'content'),
+                attachTo: jeeDialog.get('#md_search', 'dialog'),
                 message: error.message,
                 level: 'danger'
               })
@@ -395,7 +395,7 @@ if (!jeeFrontEnd.md_search) {
         id: cmdId,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_search', 'content'),
+            attachTo: jeeDialog.get('#md_search', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -428,7 +428,7 @@ if (!jeeFrontEnd.md_search) {
         search: _searchFor,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_search', 'content'),
+            attachTo: jeeDialog.get('#md_search', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -458,7 +458,7 @@ if (!jeeFrontEnd.md_search) {
         search: _searchFor,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_search', 'content'),
+            attachTo: jeeDialog.get('#md_search', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -774,7 +774,7 @@ if (!jeeFrontEnd.md_search) {
         theme: document.body.getAttribute('data-theme'),
         error: function(error) {
         jeedomUtils.showAlert({
-          attachTo: jeeDialog.get('#md_search', 'content'),
+          attachTo: jeeDialog.get('#md_search', 'dialog'),
           message: error.message,
           level: 'danger'
         })

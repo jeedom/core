@@ -464,7 +464,7 @@ if (!jeeFrontEnd.md_planConfigure) {
           id: jeephp2js.md_planConfigure_Id,
           error: function(error) {
             jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_planConfigure', 'content'),
+              attachTo: jeeDialog.get('#md_planConfigure', 'dialog'),
               message: error.message,
               level: 'danger'
             })
@@ -522,7 +522,7 @@ if (!jeeFrontEnd.md_planConfigure) {
         done: function(e, data) {
           if (data.result.state != 'ok') {
             jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_planConfigure', 'content'),
+              attachTo: jeeDialog.get('#md_planConfigure', 'dialog'),
               message: data.result.result,
               level: 'danger'
             })
@@ -624,14 +624,14 @@ if (!jeeFrontEnd.md_planConfigure) {
         plans: plans,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_planConfigure', 'content'),
+            attachTo: jeeDialog.get('#md_planConfigure', 'dialog'),
             message: error.message,
             level: 'danger'
           })
         },
         success: function() {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_planConfigure', 'content'),
+            attachTo: jeeDialog.get('#md_planConfigure', 'dialog'),
             message: '{{Design sauvegardé}}',
             level: 'success'
           })
@@ -639,7 +639,7 @@ if (!jeeFrontEnd.md_planConfigure) {
             id: plans[0].id,
             error: function(error) {
               jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_planConfigure', 'content'),
+                attachTo: jeeDialog.get('#md_planConfigure', 'dialog'),
                 message: error.message,
                 level: 'danger'
               })

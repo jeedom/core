@@ -163,14 +163,14 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt ')) > 0) {
           package: el.dataset.package,
           error: function(error) {
             jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_packageCheck', 'content'),
+              attachTo: jeeDialog.get('#md_packageCheck', 'dialog'),
               message: error.message,
               level: 'danger'
             })
           },
           success: function() {
             jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_packageCheck', 'content'),
+              attachTo: jeeDialog.get('#md_packageCheck', 'dialog'),
               message: '{{Installation lancée cela peut prendre plusieurs dizaines de minutes.}}',
               level: 'success'
             })

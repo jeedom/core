@@ -118,14 +118,14 @@ document.getElementById('bt_saveMassEdit').addEventListener('click',function() {
     objects: document.querySelectorAll('#table_massEdit .editObject').getJeeValues('.editObjectAttr'),
     error: function(error) {
       jeedomUtils.showAlert({
-        attachTo: jeeDialog.get('#md_objectMassEdit', 'content'),
+        attachTo: jeeDialog.get('#md_objectMassEdit', 'dialog'),
         message: error.message,
         level: 'danger'
       })
     },
     success : function(data) {
       jeedomUtils.showAlert({
-        attachTo: jeeDialog.get('#md_objectMassEdit', 'content'),
+        attachTo: jeeDialog.get('#md_objectMassEdit', 'dialog'),
         message: '{{Modification sauvegardée avec succès}}',
         level: 'success'
       })

@@ -301,7 +301,7 @@ if (!jeeFrontEnd.md_cmdConfigureHistory) {
         cmds: cmds,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_cmdConfigureHistory', 'content'),
+            attachTo: jeeDialog.get('#md_cmdConfigureHistory', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -309,7 +309,7 @@ if (!jeeFrontEnd.md_cmdConfigureHistory) {
         success: function(data) {
           $tableCmdConfigureHistory.trigger("update")
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_cmdConfigureHistory', 'content'),
+            attachTo: jeeDialog.get('#md_cmdConfigureHistory', 'dialog'),
             message: '{{Modifications sauvegardées avec succès}}',
             level: 'success'
           })

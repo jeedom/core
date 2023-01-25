@@ -145,7 +145,7 @@ if (!jeeFrontEnd.md_objectSummary) {
             objects: objects,
             error: function(error) {
               jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_objectSummary', 'content'),
+                attachTo: jeeDialog.get('#md_objectSummary', 'dialog'),
                 message: error.message,
                 level: 'danger'
               })
@@ -174,7 +174,7 @@ if (!jeeFrontEnd.md_objectSummary) {
             id: id,
             error: function(error) {
               jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_objectSummary', 'content'),
+                attachTo: jeeDialog.get('#md_objectSummary', 'dialog'),
                 message: error.message,
                 level: 'danger'
               })
@@ -195,14 +195,14 @@ if (!jeeFrontEnd.md_objectSummary) {
         objects: document.querySelector('#table_ObjectSummary .tr_object').getJeeValues('.objectAttr'),
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_objectSummary', 'content'),
+            attachTo: jeeDialog.get('#md_objectSummary', 'dialog'),
             message: error.message,
             level: 'danger'
           })
         },
         success : function(data) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_objectSummary', 'content'),
+            attachTo: jeeDialog.get('#md_objectSummary', 'dialog'),
             message: '{{Modification sauvegardée avec succès}}',
             level: 'success'
           })

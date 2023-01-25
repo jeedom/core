@@ -212,7 +212,7 @@ if (!jeeFrontEnd.md_iconSelector) {
                     path: node.a_attr['data-path'],
                     error: function(error) {
                       jeedomUtils.showAlert({
-                        attachTo: jeeDialog.get('#md_iconSelector', 'content'),
+                        attachTo: jeeDialog.get('#md_iconSelector', 'dialog'),
                         message: error.message,
                         level: 'danger'
                       })
@@ -251,7 +251,7 @@ if (!jeeFrontEnd.md_iconSelector) {
                         path: node.a_attr['data-path'],
                         error: function(error) {
                           jeedomUtils.showAlert({
-                            attachTo: jeeDialog.get('#md_iconSelector', 'content'),
+                            attachTo: jeeDialog.get('#md_iconSelector', 'dialog'),
                             message: error.message,
                             level: 'danger'
                           })
@@ -287,7 +287,7 @@ if (!jeeFrontEnd.md_iconSelector) {
         path: _path,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_iconSelector', 'content'),
+            attachTo: jeeDialog.get('#md_iconSelector', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -428,7 +428,7 @@ if (!jeeFrontEnd.md_iconSelector) {
             filepath: filepath,
             error: function(error) {
               jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_iconSelector', 'content'),
+                attachTo: jeeDialog.get('#md_iconSelector', 'dialog'),
                 message: error.message,
                 level: 'danger'
               })
@@ -485,7 +485,7 @@ if (!jeeFrontEnd.md_iconSelector) {
           path: path,
           error: function(error) {
             jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_iconSelector', 'content'),
+              attachTo: jeeDialog.get('#md_iconSelector', 'dialog'),
               message: error.message,
               level: 'danger'
             })
@@ -518,7 +518,7 @@ if (!jeeFrontEnd.md_iconSelector) {
         dst: newPath,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_iconSelector', 'content'),
+            attachTo: jeeDialog.get('#md_iconSelector', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -543,7 +543,7 @@ if (!jeeFrontEnd.md_iconSelector) {
     done: function(event, data) {
       if (data.result.state != 'ok') {
         jeedomUtils.showAlert({
-          attachTo: jeeDialog.get('#md_iconSelector', 'content'),
+          attachTo: jeeDialog.get('#md_iconSelector', 'dialog'),
           message: data.result.result,
           level: 'danger'
         })

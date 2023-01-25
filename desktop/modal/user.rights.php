@@ -267,14 +267,14 @@ if (!jeeFrontEnd.md_userRights) {
         users: document.getElementById('div_tabUserRights').getJeeValues('.userAttr'),
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_userRights', 'content'),
+            attachTo: jeeDialog.get('#md_userRights', 'dialog'),
             message: error.message,
             level: 'danger'
           })
         },
         success: function() {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_userRights', 'content'),
+            attachTo: jeeDialog.get('#md_userRights', 'dialog'),
             message: '{{Sauvegarde effectuée}}',
             level: 'success'
           })

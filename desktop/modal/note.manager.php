@@ -66,7 +66,7 @@ if (!jeeFrontEnd.md_noteManager) {
       jeedom.note.all({
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_noteManager', 'content'),
+            attachTo: jeeDialog.get('#md_noteManager', 'dialog'),
             message: error.message,
             level: 'danger'})
         },
@@ -90,7 +90,7 @@ if (!jeeFrontEnd.md_noteManager) {
         id : _noteId,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_noteManager', 'content'),
+            attachTo: jeeDialog.get('#md_noteManager', 'dialog'),
             message: error.message,
             level: 'danger'
             })
@@ -131,14 +131,14 @@ if (!jeeFrontEnd.md_noteManager) {
         note : note,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_noteManager', 'content'),
+            attachTo: jeeDialog.get('#md_noteManager', 'dialog'),
             message: error.message,
             level: 'danger'
           })
         },
         success: function(note) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_noteManager', 'content'),
+            attachTo: jeeDialog.get('#md_noteManager', 'dialog'),
             message: '{{Note sauvegardée avec succès}}',
             level: 'success'
           })
@@ -157,14 +157,14 @@ if (!jeeFrontEnd.md_noteManager) {
           id : note.id,
           error: function(error) {
             jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_noteManager', 'content'),
+              attachTo: jeeDialog.get('#md_noteManager', 'dialog'),
               message: error.message,
               level: 'danger'
             })
           },
           success: function(notes) {
             jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_noteManager', 'content'),
+              attachTo: jeeDialog.get('#md_noteManager', 'dialog'),
               message: '{{Note supprimée avec succès}}',
               level: 'success'
             })

@@ -147,7 +147,7 @@ new jeeFileUploader({
   done: function(e, data) {
     if (data.result.state != 'ok') {
       jeedomUtils.showAlert({
-        attachTo: jeeDialog.get('#md_updateAdd', 'content'),
+        attachTo: jeeDialog.get('#md_updateAdd', 'dialog'),
         message: data.result.result,
         level: 'danger'
       })
