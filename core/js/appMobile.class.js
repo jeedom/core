@@ -44,11 +44,12 @@ jeedom.appMobile.notifee = function (title, body, time) {
 jeedom.appMobile.modal = function (_options) {
   /**
    * default sizeModal : 100 (optionnal)
-   * For type : 'qrCode' :
+   * For type : 'qrCode' or 'barreCode' :
    *      'optionText' : Optionnal Text on Modal
    *      'method' : method for API
    *      'plugin : Plugin for API
-    * @example  _options = { 'type' : 'qrCode', 'optionText':'ExampleTextOnModal', 'method':'qrcodemethod','plugin':'mobile'}
+   * @example  _options = { 'type' : 'qrCode', 'optionText':'ExampleTextOnModal', 'method':'qrcodemethod','plugin':'mobile'}
+   * @example  _options = { 'type' : 'barreCode', 'optionText':'ExampleTextOnModal', 'method':'qrcodemethod','plugin':'mobile'}
    *   type : 'WebviewApp' for internalLink or 'urlwww' for externalLink
    * @example  _options = { 'type' : 'WebviewApp', 'uri' : '/plugins/mobile/core/php/menuForPanel.php' , 'sizeModal' : 50 }
    * 
