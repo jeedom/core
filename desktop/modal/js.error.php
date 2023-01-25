@@ -66,7 +66,7 @@ if (!jeeFrontEnd.md_jsError) {
         tr += '</td>'
         tr += '</tr>'
       }
-      document.getElementById('table_jsError tbody').empty().insertAdjacentHTML('beforeend', tr)
+      document.getElementById('table_jsError').tBodies[0].empty().insertAdjacentHTML('beforeend', tr)
     },
   }
 }
