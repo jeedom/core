@@ -46,7 +46,7 @@ if (!jeedomUI) {
       //set dom positions:
       var arrKeys = Object.keys(_finalOrder)
       var firstElId = arrKeys.find(key => _finalOrder[key] === 1)
-      var firstEl = _pckryInstance.element.querySelector('.allowLayout[data-editId="' + firstElId + '"]')
+      var firstEl = _pckryInstance.element.querySelector('.editingMode[data-editId="' + firstElId + '"]')
       if (firstEl != null) {
         firstEl.parentNode.insertBefore(firstEl, firstEl.parentNode.firstChild)
       }
@@ -54,9 +54,9 @@ if (!jeedomUI) {
       var thisId, prevId, thisEl, prevEl
       for (var i = 2; i < arrKeys.length + 1; i++) {
         thisId = arrKeys.find(key => _finalOrder[key] === i)
-        thisEl = document.querySelector('.allowLayout[data-editId="' + thisId + '"]')
+        thisEl = document.querySelector('.editingMode[data-editId="' + thisId + '"]')
         prevId = arrKeys.find(key => _finalOrder[key] === i-1)
-        prevEl =  document.querySelector('.allowLayout[data-editId="' + prevId + '"]')
+        prevEl =  document.querySelector('.editingMode[data-editId="' + prevId + '"]')
         if (thisEl && prevEl) prevEl.parentNode.insertBefore(thisEl, prevEl.nextSibling)
       }
 
