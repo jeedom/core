@@ -22,6 +22,7 @@ if (!jeeFrontEnd.view) {
     init: function() {
       window.jeeP = this
       jeedomUI.isEditing = false
+      this.draggables = []
       jeedomUI.setEqSignals()
       jeedomUI.setHistoryModalHandler()
       if (jeephp2js.view_id != '') {
@@ -131,9 +132,9 @@ if (!jeeFrontEnd.view) {
           draggie.disable()
         })
 
-        if (typeof jQuery === 'function') $('div.div_displayView').find('.editingMode.allowResize').resizable('destroy')
         document.querySelectorAll('.editingMode').forEach(_edit => {
           _edit.removeClass('editingMode').removeAttribute('data-editId')
+          if (_edit._jeeResize) _edit._jeeResize.destroy()
         })
         document.querySelectorAll('.cmd.editOptions').remove()
 
@@ -160,7 +161,7 @@ if (!jeeFrontEnd.view) {
               pckry.bindDraggabillyEvents(draggie)
               draggie.on('dragEnd', function(event, draggedItem) {
                 jeeFrontEnd.modifyWithoutSave = true
-                jeedomUI.draggingId = draggedItem.target.closest('.allowLayout').getAttribute('data-editId')
+                jeedomUI.draggingId = draggedItem.target.closest('.editingMode').getAttribute('data-editId')
                 jeedomUI.orderItems(pckry, 'data-vieworder')
               })
             })
@@ -190,36 +191,21 @@ if (!jeeFrontEnd.view) {
         })
 
         //set resizables:
-        if (typeof jQuery === 'function') {
-          $('.eqLogicZone .eqLogic-widget.allowResize').resizable({
-            grid: [2, 2],
-            start: function(event, ui) {
-              jeeFrontEnd.modifyWithoutSave = true
-            },
-            resize: function(event, ui) {
-              jeedomUtils.positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
-              Packery.data(ui.element[0].closest('.eqLogicZone')).layout()
-            },
-            stop: function(event, ui) {
-              jeedomUtils.positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
-              Packery.data(ui.element[0].closest('.eqLogicZone')).layout()
-            }
-          })
-          $('.eqLogicZone .scenario-widget.allowResize').resizable({
-            grid: [2, 2],
-            start: function(event, ui) {
-              jeeFrontEnd.modifyWithoutSave = true
-            },
-            resize: function(event, ui) {
-              jeedomUtils.positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
-              Packery.data(ui.element[0].closest('.eqLogicZone')).layout()
-            },
-            stop: function(event, ui) {
-              jeedomUtils.positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
-              Packery.data(ui.element[0].closest('.eqLogicZone')).layout()
-            }
-          })
-        }
+        new jeeResize('div.eqLogic-widget, div.scenario-widget', {
+          handles: ['right', 'bottom-right', 'bottom'],
+          start: function(event, element) {
+            jeeFrontEnd.modifyWithoutSave = true
+          },
+          resize: function(event, element) {
+            if (element.hasAttribute('data-eqlogic_id')) jeedomUtils.positionEqLogic(element.getAttribute('data-eqlogic_id'), false, false)
+            if (element.hasAttribute('data-scenario_id')) jeedomUtils.positionEqLogic(element.getAttribute('data-scenario_id'), false, true)
+            Packery.data(element.closest('.eqLogicZone')).layout()
+          },
+          stop: function(event, element) {
+            jeedomUtils.positionEqLogic(element.getAttribute('data-eqlogic_id'), false)
+            Packery.data(element.closest('.eqLogicZone')).layout()
+          }
+        })
       }
     },
   }

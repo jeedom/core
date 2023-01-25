@@ -28,6 +28,8 @@ if (!jeeFrontEnd.dashboard) {
       if (!this.url_tag) this.url_tag = 'all'
       this.url_summary = getUrlVars('summary')
 
+      this.draggables = []
+
       if (this.url_summary != '') {
         document.querySelectorAll('#bt_displayObject, #bt_editDashboardWidgetOrder').forEach(function(element) {
           element.parentNode.remove()
@@ -135,10 +137,9 @@ if (!jeeFrontEnd.dashboard) {
           draggie.disable()
         })
 
-        if (typeof jQuery === 'function') $('div.div_displayEquipement').find('.editingMode.allowResize').resizable('destroy')
-
         document.querySelectorAll('.editingMode').forEach(_edit => {
           _edit.removeClass('editingMode').removeAttribute('data-editId')
+          if (_edit._jeeResize) _edit._jeeResize.destroy()
         })
         document.querySelectorAll('.cmd.editOptions').remove()
 
@@ -157,6 +158,23 @@ if (!jeeFrontEnd.dashboard) {
         this.resetCategoryFilter()
         document.querySelectorAll('#dashTopBar .btn:not(#bt_editDashboardWidgetOrder)').addClass('disabled')
 
+        //set resizables:
+        new jeeResize('div.eqLogic-widget, div.scenario-widget', {
+          handles: ['right', 'bottom-right', 'bottom'],
+          start: function(event, element) {
+            jeeFrontEnd.modifyWithoutSave = true
+          },
+          resize: function(event, element) {
+            if (element.hasAttribute('data-eqlogic_id')) jeedomUtils.positionEqLogic(element.getAttribute('data-eqlogic_id'), false, false)
+            if (element.hasAttribute('data-scenario_id')) jeedomUtils.positionEqLogic(element.getAttribute('data-scenario_id'), false, true)
+            Packery.data(element.closest('.div_displayEquipement')).layout()
+          },
+          stop: function(event, element) {
+            jeedomUtils.positionEqLogic(element.getAttribute('data-eqlogic_id'), false)
+            Packery.data(element.closest('.div_displayEquipement')).layout()
+          }
+        })
+
         //set draggables:
         if (jeeFrontEnd.dashboard.draggables.length == 0) {
           //No draggies set yet:
@@ -169,7 +187,7 @@ if (!jeeFrontEnd.dashboard) {
               pckry.bindDraggabillyEvents(draggie)
               draggie.on('dragEnd', function(event, draggedItem) {
                 jeeFrontEnd.modifyWithoutSave = true
-                jeedomUI.draggingId = draggedItem.target.closest('.allowLayout').getAttribute('data-editId')
+                jeedomUI.draggingId = draggedItem.target.closest('.editingMode').getAttribute('data-editId')
                 jeedomUI.orderItems(pckry)
               })
             })
@@ -197,36 +215,6 @@ if (!jeeFrontEnd.dashboard) {
           element.setAttribute('data-editId', index)
           element.insertAdjacentHTML('beforeend', '<span class="cmd editOptions cursor"></span>')
         })
-
-        //set resizables:
-        if (typeof jQuery === 'function') {
-          $('div.div_displayEquipement').find('div.eqLogic-widget.allowResize').resizable({
-            start: function(event, ui) {
-              jeeFrontEnd.modifyWithoutSave = true
-            },
-            resize: function(event, ui) {
-              jeedomUtils.positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
-              Packery.data(ui.element[0].closest('.div_displayEquipement')).layout()
-            },
-            stop: function(event, ui) {
-              jeedomUtils.positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
-              Packery.data(ui.element[0].closest('.div_displayEquipement')).layout()
-            }
-          })
-          $('div.div_displayEquipement').find('div.scenario-widget.allowResize').resizable({
-            start: function(event, ui) {
-              jeeFrontEnd.modifyWithoutSave = true
-            },
-            resize: function(event, ui) {
-              jeedomUtils.positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
-              Packery.data(ui.element[0].closest('.div_displayEquipement')).layout()
-            },
-            stop: function(event, ui) {
-              jeedomUtils.positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
-              Packery.data(ui.element[0].closest('.div_displayEquipement')).layout()
-            }
-          })
-        }
 
         document.getElementById('dashTopBar').addClass('editing')
         document.getElementById('in_searchDashboard').addClass('editing').value = "{{Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder}}"
