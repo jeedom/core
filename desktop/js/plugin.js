@@ -30,6 +30,23 @@ if (!jeeFrontEnd.plugin) {
       this.dom_container = null
       document.querySelector('sub.itemsNumber').innerHTML = '(' + document.querySelectorAll('.pluginDisplayCard').length + ')'
     },
+    postInit: function() {
+      //is plugin id in url to go to configuration:
+      if (typeof(jeephp2js.selPluginId) !== "undefined" && jeephp2js.selPluginId != -1) {
+        let modal = jeeDialog.get('#div_confPlugin', 'dialog')
+        let dom_container = null
+        if (modal != null) {
+          dom_container = modal.querySelector('#div_resumePluginList')
+        } else {
+          dom_container = document.getElementById('div_pageContainer').querySelector('#div_resumePluginList')
+        }
+        let plugin = dom_container.querySelector('.pluginDisplayCard[data-plugin_id="' + jeephp2js.selPluginId + '"]')
+        if (plugin != null) {
+          plugin.click()
+          jeedomUtils.initTooltips()
+        }
+      }
+    },
     displayPlugin: function(_pluginId) {
       jeedomUtils.hideAlert()
       var self = this
@@ -99,7 +116,7 @@ if (!jeeFrontEnd.plugin) {
             self.dom_container.querySelector('#span_plugin_source').innerHTML = ''
           }
 
-          self.dom_container.querySelector('#div_state .openPluginPage').setAttribute('data-plugin_id', data.id)
+          self.dom_container.querySelector('#div_state .bt_openPluginPage').setAttribute('data-plugin_id', data.id)
 
           if (data.checkVersion != -1) {
             if (data.require <= jeeFrontEnd.jeedomVersion) {
@@ -415,21 +432,39 @@ if (!jeeFrontEnd.plugin) {
         }
       })
     },
+    openPluginPage: function(_event, _aux) {
+      if (!isset(_aux)) {
+        if (_event.ctrlKey || _event.metaKey) {
+          _aux = true
+        } else {
+          _aux = false
+        }
+      }
+      if (event.target.closest('.pluginDisplayCard')?.hasClass('inactive') || event.target.closest('#div_state')?.querySelector('a.togglePlugin')?.getAttribute('data-state') == '1') {
+        jeeDialog.alert('{{Vous devez activer ce plugin pour y accéder.}}')
+        return
+      }
+
+      if (_event.target.closest('.pluginDisplayCard') != null) {
+        var pluginId = _event.target.closest('.pluginDisplayCard').getAttribute('data-plugin_id')
+      } else {
+        var pluginId = _event.target.getAttribute('data-plugin_id')
+      }
+
+      var url = '/index.php?v=d&m=' + pluginId + '&p=' + pluginId
+      if (_aux) {
+        window.open(url).focus()
+      } else {
+        jeedomUtils.loadPage(url)
+      }
+    }
   }
 }
 
 jeeFrontEnd.plugin.init()
 
-document.registerEvent('keydown', function(event) {
-  if (jeedomUtils.getOpenedModal()) return
-  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
-    event.preventDefault()
-    jeeFrontEnd.plugin.savePluginConfig()
-  }
-})
-
 //searching:
-$('#in_searchPlugin').off('keyup').on('keyup', function(event) {
+document.getElementById('in_searchPlugin')?.addEventListener('keyup', function(event) {
   var search = event.target.value
   if (search == '') {
     document.querySelectorAll('.pluginDisplayCard').seen()
@@ -446,140 +481,139 @@ $('#in_searchPlugin').off('keyup').on('keyup', function(event) {
     }
   })
 })
-$('#bt_resetPluginSearch').on('click', function(event) {
-  document.getElementById('in_searchPlugin').value == ''
-  document.getElementById('in_searchPlugin').triggerEvent('keyup')
+document.getElementById('bt_resetPluginSearch')?.addEventListener('click', function(event) {
+  document.getElementById('in_searchPlugin').jeeValue('').triggerEvent('keyup')
 })
 
-//displayAsTable or conf open plugin:
-$('div.pluginDisplayCard .bt_openPluginPage, #div_confPlugin .openPluginPage').off('click').on('click', function(event) {
-  event.stopPropagation()
-  if (event.target.closest('.pluginDisplayCard')?.hasClass('inactive') || event.target.closest('#div_state')?.querySelector('a.togglePlugin')?.getAttribute('data-state') == '1') {
-    jeeDialog.alert('{{Vous devez activer ce plugin pour y accéder.}}')
-    return false
-  }
-  if (event.target.closest('.pluginDisplayCard') != null) {
-    var pluginId = event.target.closest('.pluginDisplayCard').getAttribute('data-plugin_id')
-  } else {
-    var pluginId = event.target.getAttribute('data-plugin_id')
-  }
-  var url = '/index.php?v=d&m=' + pluginId + '&p=' + pluginId
-  if (event.ctrlKey || event.metaKey) {
-    window.open(url).focus()
-  } else {
-    jeedomUtils.loadPage(url)
-  }
-  return false
-})
-$('div.pluginDisplayCard .bt_openPluginPage, #div_confPlugin .openPluginPage').off('mouseup').on('mouseup', function(event) {
-  if (event.which == 2) {
-    event.stopPropagation()
+
+//Register events on top of page container:
+document.registerEvent('keydown', function(event) {
+  if (jeedomUtils.getOpenedModal()) return
+  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
-    if (event.target.closest('.pluginDisplayCard') != null) {
-      var pluginId = event.target.closest('.pluginDisplayCard').getAttribute('data-plugin_id')
-      $('.pluginDisplayCard[data-plugin_id="' + pluginId + '"] .bt_openPluginPage').trigger(jQuery.Event('click', {
-        ctrlKey: true,
-        pluginId: pluginId
-      }))
-    } else {
-      $('#div_confPlugin .openPluginPage').trigger(jQuery.Event('click', {
-        ctrlKey: true,
-        pluginId: pluginId
-      }))
-    }
+    jeeFrontEnd.plugin.savePluginConfig()
   }
 })
 
-//Plugin page:
-$('.pullInstall').on('click', function(event) {
-  jeedom.repo.pullInstall({
-    repo: event.target.closest('.pullInstall').getAttribute('data-repo'),
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      if (data.number > 0) {
-        jeedomUtils.reloadPagePrompt('{{De nouveaux plugins ont été installés}} (' + data.number + ').')
-      } else {
+/*Events delegations
+*/
+//Plugin list page:
+document.getElementById('div_resumePluginList')?.addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.pullInstall')) {
+    jeedom.repo.pullInstall({
+      repo: _target.getAttribute('data-repo'),
+      error: function(error) {
         jeedomUtils.showAlert({
-          message: '{{Synchronisation réussi. Aucun nouveau plugin installé.}}',
-          level: 'success'
+          message: error.message,
+          level: 'danger'
         })
+      },
+      success: function(data) {
+        if (data.number > 0) {
+          jeedomUtils.reloadPagePrompt('{{De nouveaux plugins ont été installés}} (' + data.number + ').')
+        } else {
+          jeedomUtils.showAlert({
+            message: '{{Synchronisation réussi. Aucun nouveau plugin installé.}}',
+            level: 'success'
+          })
+        }
       }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.gotoUrlStore')) {
+    window.open(_target.getAttribute('data-href'), '_blank')
+    return
+  }
+
+  if (_target = event.target.closest('.displayStore')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Market}}",
+      contentUrl: 'index.php?v=d&modal=update.list&type=plugin&repo=' + _target.getAttribute('data-repo')
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_addPluginFromOtherSource')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Ajouter un plugin}}",
+      contentUrl: 'index.php?v=d&modal=update.add'
+    })
+    return
+  }
+
+  if (_target = event.target.closest('div.pluginDisplayCard')) {
+    let pluginId = _target.getAttribute('data-plugin_id')
+    if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
+      window.open('/index.php?v=d&p=plugin&id=' + pluginId).focus()
+    } else {
+      jeeFrontEnd.plugin.displayPlugin(pluginId)
     }
-  })
-})
-
-$('.gotoUrlStore').on('click', function(event) {
-  window.open(event.target.closest('.gotoUrlStore').getAttribute('data-href'), '_blank')
-})
-
-$('.displayStore').on('click', function(event) {
-  jeeDialog.dialog({
-    id: 'jee_modal',
-    title: "{{Market}}",
-    contentUrl: 'index.php?v=d&modal=update.list&type=plugin&repo=' + event.target.closest('.displayStore').getAttribute('data-repo')
-  })
-})
-
-$('#bt_addPluginFromOtherSource').on('click', function(event) {
-  jeeDialog.dialog({
-    id: 'jee_modal',
-    title: "{{Ajouter un plugin}}",
-    contentUrl: 'index.php?v=d&modal=update.add'
-  })
-})
-
-$('.pluginDisplayCard').off('click').on('click', function(event) {
-  var pluginId = event.target.closest('.pluginDisplayCard').getAttribute('data-plugin_id')
-  if (event.ctrlKey || event.metaKey) {
-    var url = '/index.php?v=d&p=plugin&id=' + pluginId
-    window.open(url).focus()
-  } else {
-    jeeP.displayPlugin(pluginId)
+    return
   }
-  return false
-})
-$('div.pluginDisplayCard').off('mouseup').on('mouseup', function(event) {
-  event.stopPropagation()
-  event.preventDefault()
-  if (event.which == 2) {
-    event.preventDefault()
-    var pluginId = event.target.closest('.pluginDisplayCard').getAttribute('data-plugin_id')
-    $('.pluginDisplayCard[data-plugin_id="' + pluginId + '"]').trigger(jQuery.Event('click', {
-      ctrlKey: true,
-      pluginId: pluginId
-    }))
+
+  if (_target = event.target.closest('.bt_openPluginPage')) {
+    event.stopPropagation()
+    jeeFrontEnd.plugin.openPluginPage(event)
+    return
   }
 })
 
-//configuration page:
-$('#bt_returnToThumbnailDisplay').last().on('click', function(event) {
-  setTimeout(function() {
-    document.querySelectorAll('.nav li.active').removeClass('active')
-    document.querySelector('a[href="#' + document.querySelector('.tab-pane.active').getAttribute('id') + '"]').closest('li').addClass('active')
-  }, 500)
-  if (jeedomUtils.checkPageModified()) return
-  document.getElementById('div_resumePluginList')?.seen()
-  document.getElementById('div_confPlugin')?.unseen()
-  jeedomUtils.addOrUpdateUrl('id', null, '{{Gestion Plugins}} - ' + JEEDOM_PRODUCT_NAME)
+document.getElementById('div_resumePluginList')?.addEventListener('mouseup', function(event) {
+  var _target = null
+  if (_target = event.target.closest('div.pluginDisplayCard')) {
+    event.stopPropagation()
+    if (event.which == 2) {
+      event.preventDefault()
+      var pluginId = _target.getAttribute('data-plugin_id')
+      document.querySelector('.pluginDisplayCard[data-plugin_id="' + pluginId + '"]').triggerEvent('click', {detail: {ctrlKey: true}})
+    }
+    return
+  }
+
+  if (_target = event.target.closest('.bt_openPluginPage')) {
+    if (event.which == 2) {
+      event.stopPropagation()
+      event.preventDefault()
+      jeeFrontEnd.plugin.openPluginPage(event, true)
+    }
+    return
+  }
 })
 
-$('body').off('click', '.bt_refreshPluginInfo').on('click', '.bt_refreshPluginInfo', function(event) {
-  document.querySelectorAll('.pluginDisplayCard[data-plugin_id="' + document.getElementById('span_plugin_id').textContent + '"]').click()
-})
 
-$('#span_right_button').on({
-  'click': function(event) {
-    var _el = event.target.closest('.removePlugin')
+//Plugin configuration, page or modale:
+document.getElementById('div_confPlugin')?.addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#bt_returnToThumbnailDisplay')) {
+    setTimeout(function() {
+      document.querySelectorAll('.nav li.active').removeClass('active')
+      let tab, active = document.querySelector('.tab-pane.active')
+      if (active) tab = document.querySelector('a[href="#' + active.getAttribute('id') + '"]')
+      if (tab) tab.closest('li').addClass('active')
+    }, 500)
+    if (jeedomUtils.checkPageModified()) return
+    document.getElementById('div_resumePluginList')?.seen()
+    document.getElementById('div_confPlugin')?.unseen()
+    jeedomUtils.addOrUpdateUrl('id', null, '{{Gestion Plugins}} - ' + JEEDOM_PRODUCT_NAME)
+    return
+  }
+
+  if (_target = event.target.closest('.bt_refreshPluginInfo')) {
+    document.querySelector('.pluginDisplayCard[data-plugin_id="' + document.getElementById('span_plugin_id').textContent + '"]').click()
+    return
+  }
+
+  if (_target = event.target.closest('.removePlugin')) {
     jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer le plugin}} <span style="font-weight: bold ;">' + document.getElementById('span_plugin_name').textContent + '</span> ?', function(result) {
       if (result) {
         jeedomUtils.hideAlert()
         jeedom.update.remove({
-          id: _el.getAttribute('data-market_logicalId'),
+          id: event.getAttribute('data-market_logicalId'),
           error: function(error) {
             jeedomUtils.showAlert({
               message: error.message,
@@ -592,15 +626,13 @@ $('#span_right_button').on({
         })
       }
     })
+    return
   }
-}, '.removePlugin')
 
-$('#div_plugin_toggleState').on({
-  'click': function(event) {
-    var _el = event.target.closest('.togglePlugin')
+  if (_target = event.target.closest('.togglePlugin')) {
     jeedom.plugin.toggle({
-      id: _el.getAttribute('data-plugin_id'),
-      state: _el.getAttribute('data-state'),
+      id: _target.getAttribute('data-plugin_id'),
+      state: _target.getAttribute('data-state'),
       error: function(error) {
         jeedomUtils.showAlert({
           message: error.message,
@@ -613,116 +645,118 @@ $('#div_plugin_toggleState').on({
             id: 'jee_modal',
             title: '{{Configuration du plugin}}',
             height: '85%',
-            contentUrl: 'index.php?v=d&p=plugin&ajax=1&id=' + _el.getAttribute('data-plugin_id')
+            contentUrl: 'index.php?v=d&p=plugin&ajax=1&id=' + _target.getAttribute('data-plugin_id')
           })
         } else {
-          window.location.href = 'index.php?v=d&p=plugin&id=' + _el.getAttribute('data-plugin_id')
+          window.location.href = 'index.php?v=d&p=plugin&id=' + _target.getAttribute('data-plugin_id')
         }
       }
     })
+    return
   }
-}, '.togglePlugin')
 
-$("#bt_savePluginConfig").on('click', function(event) {
-  jeeFrontEnd.plugin.savePluginConfig()
-  return false
-})
+  if (_target = event.target.closest('#bt_savePluginConfig')) {
+    jeeFrontEnd.plugin.savePluginConfig()
+    return
+  }
 
-$('#div_resumePluginList').off('change', '.configKey').on('change', '.configKey:visible', function(event) {
-  jeeFrontEnd.modifyWithoutSave = true
-})
+  if (_target = event.target.closest('#bt_savePluginPanelConfig')) {
+    jeedom.config.save({
+      configuration: document.getElementById('div_plugin_panel').getJeeValues('.configKey')[0],
+      plugin: document.getElementById('span_plugin_id').textContent,
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function() {
+        jeedomUtils.showAlert({
+          message: '{{Sauvegarde de la configuration des panneaux effectuée}}',
+          level: 'success'
+        })
+        jeeFrontEnd.modifyWithoutSave = false
+      }
+    })
+    return
+  }
 
-$('#bt_savePluginPanelConfig').off('click').on('click', function(event) {
-  jeedom.config.save({
-    configuration: document.getElementById('div_plugin_panel').getJeeValues('.configKey')[0],
-    plugin: document.getElementById('span_plugin_id').textContent,
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function() {
-      jeedomUtils.showAlert({
-        message: '{{Sauvegarde de la configuration des panneaux effectuée}}',
-        level: 'success'
-      })
-      jeeFrontEnd.modifyWithoutSave = false
-    }
-  })
-})
+  if (_target = event.target.closest('#bt_savePluginFunctionalityConfig')) {
+    jeedom.config.save({
+      configuration: document.getElementById('div_plugin_functionality').getJeeValues('.configKey')[0],
+      plugin: document.getElementById('span_plugin_id').textContent,
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function() {
+        jeedomUtils.showAlert({
+          message: '{{Sauvegarde des fonctionalités effectuée}}',
+          level: 'success'
+        })
+        jeeFrontEnd.modifyWithoutSave = false
+      }
+    })
+    return
+  }
 
-$('#bt_savePluginFunctionalityConfig').off('click').on('click', function(event) {
-  jeedom.config.save({
-    configuration: document.getElementById('div_plugin_functionality').getJeeValues('.configKey')[0],
-    plugin: document.getElementById('span_plugin_id').textContent,
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function() {
-      jeedomUtils.showAlert({
-        message: '{{Sauvegarde des fonctionalités effectuée}}',
-        level: 'success'
-      })
-      jeeFrontEnd.modifyWithoutSave = false
-    }
-  })
-})
+  if (_target = event.target.closest('#bt_savePluginLogConfig')) {
+    jeedom.config.save({
+      configuration: document.getElementById('div_plugin_log').getJeeValues('.configKey')[0],
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function() {
+        jeedomUtils.showAlert({
+          message: '{{Sauvegarde de la configuration des logs effectuée}}',
+          level: 'success'
+        })
+        jeeFrontEnd.modifyWithoutSave = false
+      }
+    })
+    return
+  }
 
-$('#bt_savePluginLogConfig').off('click').on('click', function(event) {
-  jeedom.config.save({
-    configuration: document.getElementById('div_plugin_log').getJeeValues('.configKey')[0],
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function() {
-      jeedomUtils.showAlert({
-        message: '{{Sauvegarde de la configuration des logs effectuée}}',
-        level: 'success'
-      })
-      jeeFrontEnd.modifyWithoutSave = false
-    }
-  })
-})
-
-$('#div_configLog').on({
-  'click': function(event) {
+  if (_target = event.target.closest('.bt_plugin_conf_view_log')) {
     let mId = document.getElementById('jee_modal')?.isVisible() ? 'jee_modal2' : 'jee_modal'
     jeeDialog.dialog({
       id: mId,
       title: "{{Log du plugin}}" + ' ' + event.target.closest('.bt_plugin_conf_view_log').getAttribute('data-log'),
       contentUrl: 'index.php?v=d&modal=log.display&log=' + escape(event.target.closest('.bt_plugin_conf_view_log').getAttribute('data-log'))
     })
+    return
   }
-}, '.bt_plugin_conf_view_log')
 
-//is plugin id in url to go to configuration:
-if (typeof(jeephp2js.selPluginId) !== "undefined" && jeephp2js.selPluginId != -1) {
-  let modal = jeeDialog.get('#div_confPlugin', 'dialog')
-  let dom_container = null
-  if (modal != null) {
-    dom_container = modal.querySelector('#div_resumePluginList')
-  } else {
-    dom_container = document.getElementById('div_pageContainer').querySelector('#div_resumePluginList')
+  if (_target = event.target.closest('.bt_openPluginPage')) {
+    event.stopPropagation()
+    jeeFrontEnd.plugin.openPluginPage(event)
+    return
   }
-  let plugin = dom_container.querySelector('.pluginDisplayCard[data-plugin_id="' + jeephp2js.selPluginId + '"]')
-  if (plugin != null) {
-    plugin.click()
-    jeedomUtils.initTooltips()
+})
+
+document.getElementById('div_confPlugin')?.addEventListener('mouseup', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.bt_openPluginPage')) {
+    if (event.which == 2) {
+      event.stopPropagation()
+      event.preventDefault()
+      jeeFrontEnd.plugin.openPluginPage(event, true)
+    }
+    return
   }
-}
+})
 
-//Register events on top of page container:
+document.getElementById('div_confPlugin')?.addEventListener('change', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#div_resumePluginList .configKey')) {
+    if (_target.isVisible()) jeeFrontEnd.modifyWithoutSave = true
+    return
+  }
+})
 
-//Manage events outside parents delegations:
-
-//Specials
-
-/*Events delegations
-*/
+jeeFrontEnd.plugin.postInit()

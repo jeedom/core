@@ -27,11 +27,18 @@ if (!jeeFrontEnd.cron) {
       this.tableCron.config.widgetOptions.resizable_widths = ['50px', '65px', '52px', '100px', '80px', '', '', '', '115px', '148px', '120px', '60px', '90px']
       this.tableCron.triggerEvent('applyWidgets')
       this.tableCron.triggerEvent('resizableReset')
-      setTimeout(() => {
-        jeeFrontEnd.cron.tableCron.querySelector('thead tr').children[0].triggerEvent('sort')
-      }, 200)
 
       this.getDeamonState()
+
+      domUtils(function() {
+        jeeFrontEnd.cron.tableCron.querySelector('thead tr').children[0].triggerEvent('sort')
+
+        if (document.getElementById('tab_tableCron').hasClass('active')) {
+          document.querySelector('div.floatingbar').seen()
+        } else {
+          document.querySelector('div.floatingbar').unseen()
+        }
+      })
     },
     //-> Cron
     printCron: function() {
@@ -222,26 +229,34 @@ if (!jeeFrontEnd.cron) {
         }
       })
     },
+    //Save
+    saveCron: function() {
+      jeedom.cron.save({
+        crons: document.querySelectorAll('#table_cron tbody tr').getJeeValues('.cronAttr'),
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function() {
+          jeeP.printCron()
+        }
+      })
+    },
   }
 }
 
 jeeFrontEnd.cron.init()
 
-document.registerEvent('keydown', function(event) {
-  if (jeedomUtils.getOpenedModal()) return
-  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
-    event.preventDefault()
-    document.getElementById("bt_save").click()
-  }
-})
-
-$("#bt_refreshCron").on('click', function() {
+//Manage events outside parents delegations:
+document.getElementById('bt_refreshCron')?.addEventListener('click', function(event) {
   jeeP.printCron()
   jeeP.printListener()
 })
 
-$("#bt_addCron").on('click', function() {
-  var table = document.getElementById('table_cron').querySelector('tbody')
+document.getElementById('bt_addCron')?.addEventListener('click', function(event) {
+  let table = document.getElementById('table_cron').tBodies[0]
   let newRow = document.createElement("tr")
   newRow.innerHTML = jeeP.addCron({})
   newRow.setJeeValues({}, '.cronAttr')
@@ -250,26 +265,15 @@ $("#bt_addCron").on('click', function() {
   jeeFrontEnd.modifyWithoutSave = true
 })
 
-$("#bt_save").on('click', function() {
-  jeedom.cron.save({
-    crons: document.querySelectorAll('#table_cron tbody tr').getJeeValues('.cronAttr'),
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function() {
-      jeeP.printCron()
-    }
-  })
+document.getElementById('bt_save')?.addEventListener('click', function(event) {
+  jeeFrontEnd.cron.saveCron()
 })
 
-$("#bt_changeCronState").on('click', function() {
-  var el = event.target.closest('#bt_changeCronState')
+document.getElementById('bt_changeCronState')?.addEventListener('click', function(event) {
+  var _target = event.target
   jeedom.config.save({
     configuration: {
-      enableCron: el.getAttribute('data-state')
+      enableCron: _target.getAttribute('data-state')
     },
     error: function(error) {
       jeedomUtils.showAlert({
@@ -278,173 +282,203 @@ $("#bt_changeCronState").on('click', function() {
       })
     },
     success: function() {
-      if (el.getAttribute('data-state') == '1') {
-        el.removeClass('btn-success').addClass('btn-danger').setAttribute('data-state', '0')
-        el.innerHTML = '<i class="fas fa-times"></i> {{Désactiver le système cron}}'
+      if (_target.getAttribute('data-state') == '1') {
+        _target.removeClass('btn-success').addClass('btn-danger').setAttribute('data-state', '0')
+        _target.innerHTML = '<i class="fas fa-times"></i> {{Désactiver le système cron}}'
       } else {
-        el.removeClass('btn-danger').addClass('btn-success').setAttribute('data-state', '1')
-        el.innerHTML = '<i class="fas fa-check"></i> {{Activer le système cron}}</a>'
+        _target.removeClass('btn-danger').addClass('btn-success').setAttribute('data-state', '1')
+        _target.innerHTML = '<i class="fas fa-check"></i> {{Activer le système cron}}</a>'
       }
     }
   })
 })
 
-$(jeeP.tableCron).on({
-  'click': function(event) {
-    event.target.closest('tr').remove()
-  }
-}, '.remove')
-
-$(jeeP.tableCron).on({
-  'click': function(event) {
-    jeedom.cron.setState({
-      state: 'stop',
-      id: event.target.closest('tr').querySelector('span[data-l1key="id"]').innerHTML,
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function() {
-        jeeP.printCron()
-      }
-    })
-  }
-}, '.stop')
-
-$(jeeP.tableCron).on({
-  'click': function(event) {
-    jeedom.cron.setState({
-      state: 'start',
-      id: event.target.closest('tr').querySelector('span[data-l1key="id"]').innerHTML,
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function() {
-        jeeP.printCron()
-      }
-    })
-  }
-}, '.start')
-
-$(jeeP.tableCron).on({
-  'click': function(event) {
-    jeeDialog.dialog({
-      id: 'jee_modal',
-      title: "{{Détails du cron}}",
-      contentUrl: 'index.php?v=d&modal=object.display&class=cron&id=' + event.target.closest('tr').querySelector('span[data-l1key="id"]').innerHTML
-    })
-  }
-}, '.display')
-
-$(jeeP.tableCron).on({
-  'change': function(event) {
-    if (event.target.jeeValue() == 1) {
-      event.target.closest('tr').querySelector('.cronAttr[data-l1key=deamonSleepTime]').seen()
-    } else {
-      event.target.closest('tr').querySelector('.cronAttr[data-l1key=deamonSleepTime]').unseen()
-    }
-  }
-}, '.cronAttr[data-l1key=deamon]')
-
-$("#table_listener").on({
-  'click': function(event) {
-    jeeDialog.dialog({
-      id: 'jee_modal',
-      title: "{{Détails du listener}}",
-      contentUrl: 'index.php?v=d&modal=object.display&class=listener&id=' + event.target.closest('tr').querySelector('span[data-l1key="id"]').innerHTML
-    })
-  }
-}, '.display')
-
-$('#div_pageContainer').off('change', '.cronAttr').on('change', '.cronAttr:visible', function(event) {
-  jeeFrontEnd.modifyWithoutSave = true
-})
-
-$('#table_listener').off('click', '.removeListener').on('click', '.removeListener', function(event) {
-  var tr = event.target.closest('tr')
-  jeedom.listener.remove({
-    id: tr.getAttribute('id'),
-    success: function() {
-      tr.remove()
-    }
-  })
-})
-
-$('#bt_refreshDeamon').on('click', function(event) {
+document.getElementById('bt_refreshDeamon')?.addEventListener('click', function(event) {
   jeeP.getDeamonState()
 })
 
-$('#table_deamon tbody').on('click', '.bt_deamonAction', function(event) {
-  var plugin = event.target.getAttribute('data-plugin')
-  var action = event.target.getAttribute('data-action')
-  if (action == 'start') {
-    jeedom.plugin.deamonStart({
-      id: plugin,
-      forceRestart: 1,
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function() {
-        jeeP.getDeamonState()
-      }
-    })
-  } else if (action == 'stop') {
-    jeedom.plugin.deamonStop({
-      id: plugin,
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function() {
-        jeeP.getDeamonState()
-      }
-    })
-  } else if (action == 'enableAuto') {
-    jeedom.plugin.deamonChangeAutoMode({
-      id: plugin,
-      mode: 1,
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function() {
-        jeeP.getDeamonState()
-      }
-    })
-  } else if (action == 'disableAuto') {
-    jeedom.plugin.deamonChangeAutoMode({
-      id: plugin,
-      mode: 0,
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function() {
-        jeeP.getDeamonState()
-      }
-    })
+//Specials
+document.registerEvent('keydown', function(event) {
+  if (jeedomUtils.getOpenedModal()) return
+  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+    event.preventDefault()
+    jeeFrontEnd.cron.saveCron()
   }
 })
 
-//Register events on top of page container:
-
-//Manage events outside parents delegations:
-
-//Specials
-
 /*Events delegations
 */
+document.getElementById('div_pageContainer').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('ul.nav.nav-tabs')) {
+    if (document.getElementById('tab_tableCron').hasClass('active')) {
+      document.querySelector('div.floatingbar').seen()
+    } else {
+      document.querySelector('div.floatingbar').unseen()
+    }
+    return
+  }
+})
+
+document.getElementById('div_pageContainer').addEventListener('change', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.cronAttr')) {
+    jeeFrontEnd.modifyWithoutSave = true
+  }
+})
+
+
+//Table cron
+document.getElementById('table_cron')?.tBodies[0].addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.remove')) {
+    _target.closest('tr').remove()
+    return
+  }
+
+  if (_target = event.target.closest('.stop')) {
+    jeedom.cron.setState({
+      state: 'stop',
+      id: _target.closest('tr').querySelector('span[data-l1key="id"]').innerHTML,
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function() {
+        jeeP.printCron()
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.start')) {
+    jeedom.cron.setState({
+      state: 'start',
+      id: _target.closest('tr').querySelector('span[data-l1key="id"]').innerHTML,
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function() {
+        jeeP.printCron()
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.display')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Détails du cron}}",
+      contentUrl: 'index.php?v=d&modal=object.display&class=cron&id=' + _target.closest('tr').querySelector('span[data-l1key="id"]').innerHTML
+    })
+    return
+  }
+})
+
+document.getElementById('table_cron')?.tBodies[0].addEventListener('change', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.cronAttr[data-l1key="deamon"]')) {
+    if (_target.jeeValue() == 1) {
+      _target.closest('tr').querySelector('.cronAttr[data-l1key="deamonSleepTime"]').seen()
+    } else {
+      _target.closest('tr').querySelector('.cronAttr[data-l1key="deamonSleepTime"]').unseen()
+    }
+    return
+  }
+})
+
+
+
+//Table listeners
+document.getElementById('table_listener')?.tBodies[0].addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.display')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Détails du listener}}",
+      contentUrl: 'index.php?v=d&modal=object.display&class=listener&id=' + _target.closest('tr').querySelector('span[data-l1key="id"]').innerHTML
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.removeListener')) {
+    jeedom.listener.remove({
+      id: _target.getAttribute('id'),
+      success: function() {
+        tr.remove()
+      }
+    })
+    return
+  }
+})
+
+//Table daemons
+document.getElementById('table_deamon')?.tBodies[0].addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.bt_deamonAction')) {
+    var plugin = _target.getAttribute('data-plugin')
+    var action = _target.getAttribute('data-action')
+    if (action == 'start') {
+      jeedom.plugin.deamonStart({
+        id: plugin,
+        forceRestart: 1,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function() {
+          jeeP.getDeamonState()
+        }
+      })
+    } else if (action == 'stop') {
+      jeedom.plugin.deamonStop({
+        id: plugin,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function() {
+          jeeP.getDeamonState()
+        }
+      })
+    } else if (action == 'enableAuto') {
+      jeedom.plugin.deamonChangeAutoMode({
+        id: plugin,
+        mode: 1,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function() {
+          jeeP.getDeamonState()
+        }
+      })
+    } else if (action == 'disableAuto') {
+      jeedom.plugin.deamonChangeAutoMode({
+        id: plugin,
+        mode: 0,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function() {
+          jeeP.getDeamonState()
+        }
+      })
+    }
+    return
+  }
+})

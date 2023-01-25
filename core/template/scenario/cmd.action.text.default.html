@@ -1,7 +1,9 @@
-<textarea class="message expressionAttr form-control ta_autosize" data-l1key="options" data-l2key="text" rows="1" style="resize:vertical;display: inline-block; width: 90%;" placeholder="{{Message}}" data-cmd_id="#id#" data-uid="#uid#">#text#</textarea>
-<a class="btn btn-default btn-sm listCmdInfo cursor" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block;"><i class="fas fa-list-alt"></i></a>
+<div data-template="cmd.action.text">
+    <textarea class="message expressionAttr form-control ta_autosize" data-l1key="options" data-l2key="text" rows="1" style="resize:vertical;display: inline-block; width: 90%;" placeholder="{{Message}}" data-cmd_id="#id#" data-uid="#uid#">#text#</textarea>
+    <a class="btn btn-default btn-sm listCmdInfo cursor" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block;"><i class="fas fa-list-alt"></i></a>
+</div>
 <script>
-    $('.listCmdInfo[data-uid="#uid#"]').off('click').on('click', function() {
+    document.querySelector('.listCmdInfo[data-uid="#uid#"]').addEventListener('click', function() {
         jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
             document.querySelector('.expressionAttr[data-l1key="options"][data-l2key="message"][data-uid="#uid#"]').insertAtCursor(result.human)
         })

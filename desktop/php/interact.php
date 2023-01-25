@@ -65,19 +65,19 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 	<div id="interactThumbnailDisplay" class="col-xs-12">
 		<legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
 		<div class="interactListContainer <?php echo (jeedom::getThemeConfig()['theme_displayAsTable'] == 1) ? ' containerAsTable' : ''; ?>">
-			<div class="cursor logoPrimary" id="bt_addInteract2">
+			<div class="cursor logoPrimary" id="bt_addInteract">
 				<div class="center">
 					<i class="fas fa-plus-circle"></i>
 				</div>
 				<span class="txtColor">{{Ajouter}}</span>
 			</div>
-			<div class="cursor logoSecondary" id="bt_regenerateInteract2">
+			<div class="cursor logoSecondary" id="bt_regenerateInteract">
 				<div class="center">
 					<i class="fas fa-sync"></i>
 				</div>
 				<span class="txtColor">{{Regénérer}}</span>
 			</div>
-			<div class="cursor logoSecondary" id="bt_testInteract2">
+			<div class="cursor logoSecondary" id="bt_testInteract">
 				<div class="center">
 					<i class="fas fa-comment"></i>
 				</div>

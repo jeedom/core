@@ -17,7 +17,7 @@
 - **Dashboard** : In table layout, possibility to insert HTML attributes *(colspan/rowspan in particular)* for each cell.
 - **Equipment** : Ability to disable the widget templates of plugins that use them to return to the Jeedom default display *(device configuration window)*.
 - **Equipment** : Equipment made inactive automatically disappears from all pages. Reactivated equipment reappears on the dashboard if the parent object is already present.
-- **Equipment** : Equipment made invisible automatically disappears from the dashboard. The redisplayed equipment reappears on the dashboard if the parent object is already present.
+- **Equipment** : Equipment made invisible automatically disappears from the dashboard. The re-displayed equipment reappears on the dashboard if the parent object is already present.
 - **Analysis > Devices > Devices on alert** : Devices that go into alert automatically appear and those that come out of an alert automatically disappear.
 - **Object** : Deleting or creating a summary results in the update of the global summary and the subject.
 - **Tools > Replace** : This tool now offers a mode *To copy*, allowing to copy the configurations of equipment and commands, without replacing them in the scenarios and others.
@@ -26,6 +26,8 @@
 - **Administration** : Ability to set default command widgets.
 - A contextual menu has been added in different places at the level of the checkboxes to select them all, none, or invert the selection *(see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.4))*.
 - **Dashboard** : possibility on the object configuration page to ask jeedom to reorder the equipment according to their use
+- **Theme** : Possibility to choose the theme directly from the url (by adding &theme=Dark or &theme=Light).
+- **Report** : Possibility to choose the theme during a report on a jeedom page.
 
 ### 4.4 : Autre
 

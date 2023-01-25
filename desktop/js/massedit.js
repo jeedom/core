@@ -27,6 +27,7 @@ if (!jeeFrontEnd.massedit) {
       this._filterType_ = document.getElementById('sel_FilterByType').value
       this._editIds_ = []
       this.setEdit()
+      document.querySelectorAll('.selectEditKey').triggerEvent('change')
     },
     resetUI: function() {
       document.getElementById('filter').empty()
@@ -228,166 +229,133 @@ if (!jeeFrontEnd.massedit) {
       downloadAnchorNode.click()
       downloadAnchorNode.remove()
     },
+    importfilter: function(_fileHdl) {
+      if (_fileHdl.type !== "application/json") {
+        jeedomUtils.showAlert({
+          message: "{{L'import d'édition en masse se fait au format json.}}",
+          level: 'danger'
+        })
+        return false
+      }
+      if (_fileHdl) {
+        var readFile = new FileReader()
+        readFile.readAsText(_fileHdl)
+        readFile.onload = function(e) {
+          var massEditData = JSON.parse(e.target.result)
+          var newFilter
+          try {
+            //type:
+            document.getElementById('sel_FilterByType').value = massEditData.type
+            document.getElementById('sel_FilterByType').triggerEvent('change')
+
+            //filters:
+            for (var idx in massEditData.filters) {
+              newFilter = jeeP.addFilter()
+              //key:
+              newFilter.querySelector('.selectFilterKey').value = massEditData.filters[idx].key
+              newFilter.querySelector('.selectFilterKey').triggerEvent('change')
+
+              //value:
+              var select = newFilter.querySelector('.selectFilterValue')
+              var option = Array.from(select.options).filter(op => op.textContent == massEditData.filters[idx].value)[0]
+              select.value = option.value
+              select.triggerEvent('change')
+
+              //jValue:
+              if (massEditData.filters[idx].jValue != false) {
+                select = newFilter.querySelector('.selectFilterJValue')
+                select.removeAttribute('disabled')
+                option = Array.from(select.options).filter(op => op.textContent == massEditData.filters[idx].jValue)[0]
+                select.value = option.value
+              }
+            }
+
+            //edits:
+            for (var idx in massEditData.edits) {
+              document.querySelector('.selectEditKey').value = massEditData.edits[idx].key
+              document.querySelector('.selectEditKey').triggerEvent('change')
+              document.querySelector('.selectEditValue').value = massEditData.edits[idx].value
+              if (massEditData.edits[idx].jValue != false) {
+                document.querySelector('.inputEditJValue').removeAttribute('disabled')
+                document.querySelector('.inputEditJValue').value = massEditData.edits[idx].jValue
+              }
+            }
+
+          } catch (error) {
+            console.warn(error)
+          }
+        }
+      } else {
+        jeedomUtils.showAlert({
+          message: "{{Problème lors de la lecture du fichier.}}",
+          level: 'danger'
+        })
+        return false
+      }
+    },
+    execMassEdit: function() {
+      var filters = jeeP.getFilters()
+      var edits = jeeP.getEdits()
+
+      //get ids of modifying items to clean spaces in json string later.
+      var sqlCmd = jeeP.getTestSQLstring(filters)
+      jeeP.dbExecuteCommand(sqlCmd, 2)
+
+      //exec user edition:
+      sqlCmd = jeeP.getExecSQLstring(filters, edits)
+      document.getElementById('execSQL').empty().insertAdjacentHTML('beforeend', sqlCmd + '<br>' + 'Editing items: ' + jeeP._editIds_.length)
+      jeeP.dbExecuteCommand(sqlCmd, 1)
+
+      //clean spaces:
+      //may integrate later json_search in searchconfiguration functions
+      if (sqlCmd.includes('JSON_REPLACE') && jeeP._editIds_.length > 0) {
+        sqlCmd = jeeP.getCleaningSpaceSQLstring(edits)
+        jeeP.dbExecuteCommand(sqlCmd, 1)
+      }
+
+      jeeP._editIds_ = []
+    },
   }
 }
 
 jeeFrontEnd.massedit.init()
 
 jeeFrontEnd.massedit.postInit()
-document.querySelectorAll('.selectEditKey').triggerEvent('change')
 
-//change filter type:
-$('#sel_FilterByType').off('change').on('change', function(event) {
-  jeeP.resetUI()
-  jeeP._filterType_ = event.target.value
-  jeeP.setEdit()
-  document.querySelectorAll('.selectEditKey').triggerEvent('change')
-})
 
-//add filter:
-$('#bt_addFilter').off('click').on('click', function(event) {
-  jeeP.addFilter()
-  document.getElementById('testResult').empty().unseen()
-  document.getElementById('testSQL').empty()
-})
+/*Events delegations
+*/
+document.getElementById('div_pageContainer').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#bt_addFilter')) {
+    jeeP.addFilter()
+    document.getElementById('testResult').empty().unseen()
+    document.getElementById('testSQL').empty()
+    return
+  }
 
-//remove filter:
-$('body').on({
-  'click': function(event) {
-    event.target.closest('div.form-group').remove()
+  if (_target = event.target.closest('#bt_testFilter')) {
+    var filters = jeeP.getFilters()
+    var sqlCmd = jeeP.getTestSQLstring(filters)
+    document.getElementById('testSQL').empty().append(sqlCmd)
+    jeeP.dbExecuteCommand(sqlCmd, 0)
+    return
+  }
+
+  if (_target = event.target.closest('a.bt_removeFilter')) {
+    _target.closest('div.form-group').remove()
     document.getElementById('testResult').empty().unseen()
     if (document.querySelectorAll('#filter > div.filter').length == 0) {
       document.getElementById('bt_testFilter').addClass('disabled')
     }
+    return
   }
-}, 'a.bt_removeFilter')
 
-//change filter key:
-$('body').on({
-  'change': function(event) {
-    var key = event.target.value
-    var selectValues = event.target.closest('div.form-group').querySelector('select.selectFilterValue')
-    var selectJValues = event.target.closest('div.form-group').querySelector('select.selectFilterJValue')
-    selectValues.empty()
-    selectJValues.empty()
-
-    //set possible values for key
-    var newOption
-    if (typeof jeephp2js.typePossibilities[jeeP._filterType_][key][0] != 'undefined') {
-      selectJValues.disabled = true
-      jeephp2js.typePossibilities[jeeP._filterType_][key].forEach(function(item, index) {
-        newOption = document.createElement('option')
-        newOption.text = item
-        newOption.value = index
-        selectValues.appendChild(newOption)
-      })
-    } else {
-      selectJValues.removeAttribute('disabled')
-      var values = Object.keys(jeephp2js.typePossibilities[jeeP._filterType_][key])
-      values.forEach((value, index) => {
-        newOption = document.createElement('option')
-        newOption.text = value
-        newOption.value = index
-        selectValues.appendChild(newOption)
-      })
-      selectValues.triggerEvent('change')
-    }
-
-  }
-}, 'select.selectFilterKey')
-
-//change filter value:
-$('body').on({
-  'change': function(event) {
-    document.getElementById('testSQL').empty()
-    document.getElementById('testResult').empty().unseen()
-
-    var selectKey = event.target.closest('div.form-group').querySelector('select.selectFilterKey')
-    var key = selectKey.value
-    var value = event.target.selectedOptions[0].text
-    var selectJValues = event.target.closest('div.form-group').querySelector('select.selectFilterJValue')
-    selectJValues.empty()
-
-    //does have json value ?
-    if (selectJValues.disabled) return false
-
-    //set json values for filter:
-    var newOption
-    var jValues = Object.keys(jeephp2js.typePossibilities[jeeP._filterType_][key][value])
-    jValues.forEach((jValue, index) => {
-      newOption = document.createElement('option')
-      newOption.text = jeephp2js.typePossibilities[jeeP._filterType_][key][value][index]
-      newOption.value = index
-      selectJValues.appendChild(newOption)
-    })
-  }
-}, 'select.selectFilterValue')
-
-//change edit key:
-$('body').on({
-  'change': function(event) {
-    var value = event.target.value
-    event.target.closest('div.form-group').querySelector('input.selectEditValue').value = ''
-    var editValueId = event.target.closest('div.form-group').querySelector('input.selectEditValue').getAttribute('list')
-    var inputJValue = event.target.closest('div.form-group').querySelector('input.inputEditJValue')
-    inputJValue.value = ''
-
-    //set possible values for key if necessary
-    var inputValues = event.target.closest('div.form-group').querySelector('#' + editValueId)
-    inputValues.empty()
-    var key = event.target.value
-    var newOption
-    if (typeof jeephp2js.typePossibilities[jeeP._filterType_][key][0] != 'undefined') {
-      inputJValue.disabled = true
-    } else {
-      inputJValue.removeAttribute('disabled')
-      var values = Object.keys(jeephp2js.typePossibilities[jeeP._filterType_][key])
-      values.forEach((value, index) => {
-        newOption = document.createElement('option')
-        newOption.text = value
-        newOption.value = value
-        inputValues.appendChild(newOption)
-      })
-      inputValues.triggerEvent('change')
-    }
-  }
-}, 'select.selectEditKey')
-
-//change edit value:
-$('body').on({
-  'change': function(event) {
-    var key = event.target.closest('div.form-group').querySelector('select.selectEditKey').value
-    var value = event.target.closest('div.form-group').querySelector('input.selectEditValue').value
-    if (!isset(jeephp2js.typePossibilities[jeeP._filterType_][key][value])) {
-      return false
-    }
-
-    var inputJValue = event.target.closest('div.form-group').querySelector('input.inputEditJValue')
-    inputJValue.value = ''
-    //set possible json values for value:
-    var editJValueId = inputJValue.getAttribute('list')
-    var inputJValues = event.target.closest('div.form-group').querySelector('#' + editJValueId)
-    inputJValues.empty()
-
-    var jValues = jeephp2js.typePossibilities[jeeP._filterType_][key][value]
-    if (!jValues || typeof jValues == 'string') return false
-    var newOption
-    jValues.forEach((jValue, index) => {
-      newOption = document.createElement('option')
-      newOption.text = jValue
-      newOption.value = jValue
-      inputJValues.appendChild(newOption)
-    })
-  }
-}, 'input.selectEditValue')
-
-//open test items:
-$('body').on({
-  'click': function(event) {
+  if (_target = event.target.closest('.testSqlDiv')) {
     event.preventDefault()
     event.stopPropagation()
     event.stopImmediatePropagation()
-    var thisId = event.target.getAttribute('data-id')
+    var thisId = _target.getAttribute('data-id')
     jeedom[jeeP._filterType_]['byId']({
       id: thisId,
       error: function(error) {
@@ -424,115 +392,149 @@ $('body').on({
         }
       }
     })
+    return
   }
-}, '.testSqlDiv')
 
-
-//page buttons:
-$('#bt_exportFilter').off('click').on('click', function(event) {
-  var filters = jeeP.getFilters()
-  var edits = jeeP.getEdits()
-  var jsonData = {
-    'type': jeeP._filterType_,
-    'filters': filters,
-    'edits': edits
-  }
-  jeeP.downloadObjectAsJson(jsonData, 'jeedom_massEdit_' + new Date().toISOString().slice(0, 10))
-})
-
-$("#bt_importFilter").change(function(event) {
-  var uploadedFile = event.target.files[0]
-  if (uploadedFile.type !== "application/json") {
-    jeedomUtils.showAlert({
-      message: "{{L'import d'édition en masse se fait au format json.}}",
-      level: 'danger'
-    })
-    return false
-  }
-  if (uploadedFile) {
-    var readFile = new FileReader()
-    readFile.readAsText(uploadedFile)
-    readFile.onload = function(e) {
-      var massEditData = JSON.parse(e.target.result)
-      var newFilter
-      try {
-        //type:
-        document.getElementById('sel_FilterByType').value = massEditData.type
-        document.getElementById('sel_FilterByType').triggerEvent('change')
-
-        //filters:
-        for (var idx in massEditData.filters) {
-          newFilter = jeeP.addFilter()
-          newFilter.querySelector('.selectFilterKey').value = massEditData.filters[idx].key
-          newFilter.querySelector('.selectFilterKey').triggerEvent('change')
-
-          newFilter.querySelector('.selectFilterValue option:contains(' + massEditData.filters[idx].value + ')').selected = true
-          newFilter.querySelector('.selectFilterValue').triggerEvent('change')
-          if (massEditData.filters[idx].jValue != false) {
-            newFilter.querySelector('.selectFilterJValue').removeAttribute('disabled')
-            newFilter.querySelector('.selectFilterJValue option:contains(' + massEditData.filters[idx].jValue + ')').selected = true
-          }
-        }
-
-        //edits:
-        for (var idx in massEditData.edits) {
-          document.querySelector('.selectEditKey').value = massEditData.edits[idx].key
-          document.querySelector('.selectEditKey').triggerEvent('change')
-          document.querySelector('.selectEditValue').value = massEditData.edits[idx].value
-          if (massEditData.edits[idx].jValue != false) {
-            document.querySelector('.inputEditJValue').removeAttribute('disabled')
-            document.querySelector('.inputEditJValue').value = massEditData.edits[idx].jValue
-          }
-        }
-
-      } catch (error) {
-        console.error(error)
-      }
+  if (_target = event.target.closest('#bt_exportFilter')) {
+    var filters = jeeP.getFilters()
+    var edits = jeeP.getEdits()
+    var jsonData = {
+      'type': jeeP._filterType_,
+      'filters': filters,
+      'edits': edits
     }
-  } else {
-    jeedomUtils.showAlert({
-      message: "{{Problème lors de la lecture du fichier.}}",
-      level: 'danger'
+    jeeP.downloadObjectAsJson(jsonData, 'jeedom_massEdit_' + new Date().toISOString().slice(0, 10))
+    return
+  }
+
+  if (_target = event.target.closest('#bt_execMassEdit')) {
+    jeeP.execMassEdit()
+    return
+  }
+})
+
+document.getElementById('div_pageContainer').addEventListener('change', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#sel_FilterByType')) {
+    jeeP.resetUI()
+    jeeP._filterType_ = _target.value
+    jeeP.setEdit()
+    document.querySelectorAll('.selectEditKey').triggerEvent('change')
+    return
+  }
+
+  if (_target = event.target.closest('select.selectFilterKey')) {
+    var key = _target.value
+    var selectValues = _target.closest('div.form-group').querySelector('select.selectFilterValue')
+    var selectJValues = _target.closest('div.form-group').querySelector('select.selectFilterJValue')
+    selectValues.empty()
+    selectJValues.empty()
+
+    //set possible values for key
+    var newOption
+    if (typeof jeephp2js.typePossibilities[jeeP._filterType_][key][0] != 'undefined') {
+      selectJValues.disabled = true
+      jeephp2js.typePossibilities[jeeP._filterType_][key].forEach(function(item, index) {
+        newOption = document.createElement('option')
+        newOption.text = item
+        newOption.value = index
+        selectValues.appendChild(newOption)
+      })
+    } else {
+      selectJValues.removeAttribute('disabled')
+      var values = Object.keys(jeephp2js.typePossibilities[jeeP._filterType_][key])
+      values.forEach((value, index) => {
+        newOption = document.createElement('option')
+        newOption.text = value
+        newOption.value = index
+        selectValues.appendChild(newOption)
+      })
+      selectValues.triggerEvent('change')
+    }
+    return
+  }
+
+  if (_target = event.target.closest('select.selectFilterValue')) {
+    document.getElementById('testSQL').empty()
+    document.getElementById('testResult').empty().unseen()
+
+    var selectKey = _target.closest('div.form-group').querySelector('select.selectFilterKey')
+    var key = selectKey.value
+    var value = _target.selectedOptions[0] ? _target.selectedOptions[0].text : ''
+    var selectJValues = _target.closest('div.form-group').querySelector('select.selectFilterJValue')
+    selectJValues.empty()
+
+    //does have json value ?
+    if (selectJValues.disabled) return false
+
+    //set json values for filter:
+    var newOption
+    var jValues = value in jeephp2js.typePossibilities[jeeP._filterType_][key] ? Object.keys(jeephp2js.typePossibilities[jeeP._filterType_][key][value]) : []
+    jValues.forEach((jValue, index) => {
+      newOption = document.createElement('option')
+      newOption.text = jeephp2js.typePossibilities[jeeP._filterType_][key][value][index]
+      newOption.value = index
+      selectJValues.appendChild(newOption)
     })
-    return false
-  }
-})
-
-$('#bt_testFilter').off('click').on('click', function() {
-  var filters = jeeP.getFilters()
-  var sqlCmd = jeeP.getTestSQLstring(filters)
-  document.getElementById('testSQL').empty().append(sqlCmd)
-  jeeP.dbExecuteCommand(sqlCmd, 0)
-})
-
-$('#bt_execMassEdit').off('click').on('click', function() {
-  var filters = jeeP.getFilters()
-  var edits = jeeP.getEdits()
-
-  //get ids of modifying items to clean spaces in json string later.
-  var sqlCmd = jeeP.getTestSQLstring(filters)
-  jeeP.dbExecuteCommand(sqlCmd, 2)
-
-  //exec user edition:
-  sqlCmd = jeeP.getExecSQLstring(filters, edits)
-  document.getElementById('execSQL').empty().insertAdjacentHTML('beforeend', sqlCmd + '<br>' + 'Editing items: ' + jeeP._editIds_.length)
-  jeeP.dbExecuteCommand(sqlCmd, 1)
-
-  //clean spaces:
-  //may integrate later json_search in searchconfiguration functions
-  if (sqlCmd.includes('JSON_REPLACE') && jeeP._editIds_.length > 0) {
-    sqlCmd = jeeP.getCleaningSpaceSQLstring(edits)
-    jeeP.dbExecuteCommand(sqlCmd, 1)
+    return
   }
 
-  jeeP._editIds_ = []
+  if (_target = event.target.closest('select.selectEditKey')) {
+    var value = _target.value
+    _target.closest('div.form-group').querySelector('input.selectEditValue').value = ''
+    var editValueId = _target.closest('div.form-group').querySelector('input.selectEditValue').getAttribute('list')
+    var inputJValue = _target.closest('div.form-group').querySelector('input.inputEditJValue')
+    inputJValue.value = ''
+
+    //set possible values for key if necessary
+    var inputValues = _target.closest('div.form-group').querySelector('#' + editValueId)
+    inputValues.empty()
+    var key = _target.value
+    var newOption
+    if (typeof jeephp2js.typePossibilities[jeeP._filterType_][key][0] != 'undefined') {
+      inputJValue.disabled = true
+    } else {
+      inputJValue.removeAttribute('disabled')
+      var values = Object.keys(jeephp2js.typePossibilities[jeeP._filterType_][key])
+      values.forEach((value, index) => {
+        newOption = document.createElement('option')
+        newOption.text = value
+        newOption.value = value
+        inputValues.appendChild(newOption)
+      })
+      inputValues.triggerEvent('change')
+    }
+    return
+  }
+
+  if (_target = event.target.closest('select.selectEditValue')) {
+    var key = _target.closest('div.form-group').querySelector('select.selectEditKey').value
+    var value = _target.closest('div.form-group').querySelector('input.selectEditValue').value
+    if (!isset(jeephp2js.typePossibilities[jeeP._filterType_][key][value])) {
+      return false
+    }
+
+    var inputJValue = _target.closest('div.form-group').querySelector('input.inputEditJValue')
+    inputJValue.value = ''
+    //set possible json values for value:
+    var editJValueId = inputJValue.getAttribute('list')
+    var inputJValues = _target.closest('div.form-group').querySelector('#' + editJValueId)
+    inputJValues.empty()
+
+    var jValues = jeephp2js.typePossibilities[jeeP._filterType_][key][value]
+    if (!jValues || typeof jValues == 'string') return false
+    var newOption
+    jValues.forEach((jValue, index) => {
+      newOption = document.createElement('option')
+      newOption.text = jValue
+      newOption.value = jValue
+      inputJValues.appendChild(newOption)
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_importFilter')) {
+    jeeP.importfilter(_target.files[0])
+    return
+  }
 })
-
-//Register events on top of page container:
-
-//Manage events outside parents delegations:
-
-//Specials
-
-/*Events delegations
-*/

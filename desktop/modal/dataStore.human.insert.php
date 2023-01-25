@@ -20,7 +20,7 @@ if (!isConnect()) {
 }
 ?>
 
-<table class="table table-condensed table-bordered" id="table_mod_insertDataSotreValue">
+<table id="table_mod_insertDataSotreValue" class="table table-condensed table-bordered">
   <thead>
     <tr>
       <th style="width: 150px;">{{Nom}}</th>
@@ -42,18 +42,22 @@ if (!isConnect()) {
 </table>
 
 <script>
-  function mod_insertDataStore() {}
-  mod_insertDataStore.setOptions = function(_options) {}
+(function() {// Self Isolation!
+  if (window.mod_insertDataStore == undefined) {
+    window.mod_insertDataStore = function() {}
+    mod_insertDataStore.setOptions = function(_options) {}
+  }
 
   mod_insertDataStore.getValue = function() {
-    var variable_name = $('#table_mod_insertDataSotreValue tbody tr:first .mod_insertDataStoreValue_name select option:selected').html()
-    if (variable_name == undefined) {
+    let variable = document.querySelector('#table_mod_insertDataSotreValue .mod_insertDataStoreValue_name > select')?.selectedOptions
+    if (!variable || variable.length == 0) {
       return ''
     }
-    return '#variable(' + variable_name + ')#'
+    return '#variable(' + variable[0].text + ')#'
   }
 
   mod_insertDataStore.getId = function() {
     return document.querySelector('#table_mod_insertDataSotreValue tbody tr').querySelector('.mod_insertDataStoreValue_name select').jeeValue()
   }
+})()
 </script>

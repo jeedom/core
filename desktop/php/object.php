@@ -23,13 +23,13 @@ $synthToActions = array(
 	<div id="div_resumeObjectList" class="col-xs-12">
 		<legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
 		<div class="objectListContainer <?php echo (jeedom::getThemeConfig()['theme_displayAsTable'] == 1) ? ' containerAsTable' : ''; ?>">
-			<div class="cursor logoPrimary" id="bt_addObject2">
+			<div id="bt_addObject" class="cursor logoPrimary">
 				<div class="center">
 					<i class="fas fa-plus-circle"></i>
 				</div>
 				<span class="txtColor">{{Ajouter}}</span>
 			</div>
-			<div class="cursor bt_showObjectSummary logoSecondary">
+			<div id="bt_showObjectSummary" class="cursor logoSecondary">
 				<div class="center">
 					<i class="fas fa-list"></i>
 				</div>
@@ -278,7 +278,7 @@ $synthToActions = array(
 							<div class="form-group">
 								<div class="col-sm-7 col-sm-offset-3">
 									<span class="btn btn-default btn-file">
-										<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
+										<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input id="bt_uploadImage" type="file" name="file" accept="image/*">
 									</span>
 									<a class="btn btn-default" id="bt_libraryBackgroundImage"><i class="fas fa-photo-video"></i> {{Bibliotheque d'image}}</a>
 								</div>

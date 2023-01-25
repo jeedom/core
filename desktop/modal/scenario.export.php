@@ -24,16 +24,18 @@ if (!is_object($scenario)) {
 }
 ?>
 
+<div id="md_scenarioExport" data-modalType="md_scenarioExport">
 <a class="btn btn-success pull-right bt_downloadScenario"><i class="fa fa-download"></i> {{Télécharger}}</a>
 <a class="btn btn-success pull-right bt_copyScenario"><i class="fa fa-copy"></i> {{Copier}}</a>
 <br><br>
 <?php
 echo '<textarea id="scExport" style="height:calc(100% - 40px);width:100%">' . $scenario->export() . '</textarea>';
 ?>
+</div>
 
 <script>
-$('.bt_downloadScenario').on('click', function() {
-  var content = $('#scExport').text()
+document.querySelector('#md_scenarioExport .bt_downloadScenario').addEventListener('click', function(event) {
+  var content = document.getElementById('scExport').textContent
   content = content.replace(/\n/g, "\r\n")
 
   dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(content)
@@ -46,9 +48,9 @@ $('.bt_downloadScenario').on('click', function() {
   downloadAnchorNode.remove()
 })
 
-$('.bt_copyScenario').on('click', function() {
-  $('#scExport').select()
+document.querySelector('#md_scenarioExport .bt_copyScenario').addEventListener('click', function(event) {
+  document.getElementById('scExport').triggerEvent('select')
   document.execCommand("copy")
-  $('#scExport').blur()
+  document.getElementById('scExport').blur()
 })
 </script>

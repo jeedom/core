@@ -30,10 +30,40 @@ if (!jeeFrontEnd.profils) {
         this.tableDevices.triggerEvent('applyWidgets')
         this.tableDevices.triggerEvent('resizableReset')
         setTimeout(() => {
-          jeeFrontEnd.profils.tableDevices.querySelector('thead tr').children[2].triggerEvent('sort')
-          jeeFrontEnd.profils.tableDevices.querySelector('thead tr').children[2].triggerEvent('sort')
+          jeeFrontEnd.profils.tableDevices.querySelector('thead tr').children[2].triggerEvent('sort').triggerEvent('sort')
         }, 200)
       }
+    },
+    removeRegisterDevice: function(_key, _userId) {
+      if (!isset(_userId)) _userId = ''
+      jeedom.user.removeRegisterDevice({
+        key: _key,
+        user_id: _userId,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          jeeFrontEnd.modifyWithoutSave = false
+          window.location.reload()
+        }
+      })
+    },
+    deleteSession: function(_id) {
+      jeedom.user.deleteSession({
+        id: _id,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          window.location.reload()
+        }
+      })
     },
   }
 }
@@ -197,44 +227,20 @@ document.getElementById('bt_configureTwoFactorAuthentification')?.addEventListen
 /*Events delegations
 */
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
+  var _target = null
   if (jeephp2js.profils_user_id == -1) {
-    if (event.target.closest('.bt_removeRegisterDevice') != null) {
-      var key = event.target.closest('tr').getAttribute('data-key')
-      jeedom.user.removeRegisterDevice({
-        key: key,
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          jeeFrontEnd.modifyWithoutSave = false
-          window.location.reload()
-        }
-      })
+    if (_target = event.target.closest('.bt_removeRegisterDevice')) {
+      jeeFrontEnd.profils.removeRegisterDevice(_target.closest('tr').getAttribute('data-key'))
       return
     }
 
-    if (event.target.closest('.bt_deleteSession') != null) {
-      var id = event.target.closest('tr').getAttribute('data-id')
-      jeedom.user.deleteSession({
-        id: id,
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          window.location.reload()
-        }
-      })
+    if (_target = event.target.closest('.bt_deleteSession')) {
+      jeeFrontEnd.profils.deleteSession(_target.closest('tr').getAttribute('data-id'))
       return
     }
   }
 
-  if (event.target.closest('.bt_selectWarnMeCmd') != null) {
+  if (_target = event.target.closest('.bt_selectWarnMeCmd')) {
     jeedom.cmd.getSelectModal({
       cmd: {
         type: 'action',

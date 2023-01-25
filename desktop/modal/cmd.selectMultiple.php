@@ -29,63 +29,64 @@ if (!is_array($listeCmds) || count($listeCmds) == 0) {
 }
 ?>
 
-<div style="display: none;" id="md_cmdConfigureSelectMultipleAlert" data-modalType="md_cmdConfigureSelectMultiple"></div>
-<div class="input-group pull-right">
-  <a class="btn btn-default roundedLeft" id="bt_cmdConfigureSelectMultipleAlertToogle" data-state="0"><i class="far fa-circle"></i> {{Inverser}}
-  </a><a class="btn btn-success roundedRight" id="bt_cmdConfigureSelectMultipleAlertApply"><i class="fas fa-check"></i> {{Valider}}</a>
+<div id="md_cmdConfigureSelectMultiple" data-modalType="md_cmdConfigureSelectMultiple">
+  <div class="input-group pull-right">
+    <a class="btn btn-default roundedLeft" id="bt_cmdConfigureSelectMultipleAlertToogle" data-state="0"><i class="far fa-circle"></i> {{Inverser}}
+    </a><a class="btn btn-success roundedRight" id="bt_cmdConfigureSelectMultipleAlertApply"><i class="fas fa-check"></i> {{Valider}}</a>
+  </div>
+  <br />
+  <table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureSelectMultiple" style="width:100% !important;">
+    <thead>
+      <tr>
+        <th data-sorter="false" data-filter="false"></th>
+        <th>{{Objet}}</th>
+        <th>{{Plugin}}</th>
+        <th>{{Equipement}}</th>
+        <th>{{Nom}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+      foreach ($listeCmds as $listCmd) {
+        $eqLogic = $listCmd->getEqLogic();
+        $object = null;
+        if (is_object($eqLogic)) {
+          $object = $eqLogic->getObject();
+        }
+        $tr = '';
+        $tr .= '<tr data-cmd_id="' . $listCmd->getId() . '">';
+        $tr .= '<td>';
+        if (is_object($cmd) && $listCmd->getId() == $cmd->getId()) {
+          $tr .= '<input type="checkbox" class="selectMultipleApplyCmd" checked/>';
+        } else {
+          $tr .= '<input type="checkbox" class="selectMultipleApplyCmd" />';
+        }
+        $tr .= '</td>';
+        $tr .= '<td>';
+        if (is_object($object)) {
+          $tr .= $object->getName();
+        }
+        $tr .= '</td>';
+        $tr .= '<td>';
+        if (is_object($eqLogic)) {
+          $tr .= $eqLogic->getEqType_name();
+        }
+        $tr .= '</td>';
+        $tr .= '<td>';
+        if (is_object($eqLogic)) {
+          $tr .= $eqLogic->getName();
+        }
+        $tr .= '</td>';
+        $tr .= '<td>';
+        $tr .= $listCmd->getName();
+        $tr .= '</td>';
+        $tr .= '</tr>';
+        echo $tr;
+      }
+      ?>
+    </tbody>
+  </table>
 </div>
-<br />
-<table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureSelectMultiple" style="width:100% !important;">
-  <thead>
-    <tr>
-      <th data-sorter="false" data-filter="false"></th>
-      <th>{{Objet}}</th>
-      <th>{{Plugin}}</th>
-      <th>{{Equipement}}</th>
-      <th>{{Nom}}</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-    foreach ($listeCmds as $listCmd) {
-      $eqLogic = $listCmd->getEqLogic();
-      $object = null;
-      if (is_object($eqLogic)) {
-        $object = $eqLogic->getObject();
-      }
-      $tr = '';
-      $tr .= '<tr data-cmd_id="' . $listCmd->getId() . '">';
-      $tr .= '<td>';
-      if (is_object($cmd) && $listCmd->getId() == $cmd->getId()) {
-        $tr .= '<input type="checkbox" class="selectMultipleApplyCmd" checked/>';
-      } else {
-        $tr .= '<input type="checkbox" class="selectMultipleApplyCmd" />';
-      }
-      $tr .= '</td>';
-      $tr .= '<td>';
-      if (is_object($object)) {
-        $tr .= $object->getName();
-      }
-      $tr .= '</td>';
-      $tr .= '<td>';
-      if (is_object($eqLogic)) {
-        $tr .= $eqLogic->getEqType_name();
-      }
-      $tr .= '</td>';
-      $tr .= '<td>';
-      if (is_object($eqLogic)) {
-        $tr .= $eqLogic->getName();
-      }
-      $tr .= '</td>';
-      $tr .= '<td>';
-      $tr .= $listCmd->getName();
-      $tr .= '</td>';
-      $tr .= '</tr>';
-      echo $tr;
-    }
-    ?>
-  </tbody>
-</table>
 
 <script>
   jeeDialog.get('#md_cmdConfigureSelectMultipleAlert').options.onResize = function(event) {

@@ -48,6 +48,19 @@ if (!jeeFrontEnd.scenario) {
       this.$divScenario = $('#div_editScenario')
       this.dom_divScenario= document.getElementById('div_editScenario')
       window.jeeP = this
+
+      jeeP.loadId = getUrlVars('id')
+      if (is_numeric(jeeP.loadId)) {
+        this.printScenario(jeeP.loadId, function() {
+          if (jeephp2js.initSearch != 0) {
+            document.getElementById('bt_scenarioTab').click()
+            document.getElementById('bt_resetInsideScenarioSearch').click()
+            setTimeout(function() {
+              document.getElementById('in_searchInsideScenario').jeeValue(jeephp2js.initSearch).triggerEvent('keyup').focus()
+            }, 200)
+          }
+        })
+      }
     },
     postInit: function() {
       //autocomplete timeline input:
@@ -84,17 +97,6 @@ if (!jeeFrontEnd.scenario) {
 
       document.querySelector('sub.itemsNumber').innerHTML = '(' + document.querySelectorAll('.scenarioDisplayCard').length + ')'
       this.setSortables()
-
-      if (jeephp2js.initSearch != 0) {
-        setTimeout(function() {
-          document.getElementById('bt_scenarioTab').click()
-          document.getElementById('bt_resetInsideScenarioSearch').click()
-          setTimeout(function() {
-            document.getElementById('in_searchInsideScenario').value = jeephp2js.initSearch
-            document.getElementById('in_searchInsideScenario').triggerEvent('keyup').focus()
-          }, 1000)
-        }, 200)
-      }
     },
     checkNoTriggeringMode: function() {
       if (document.querySelectorAll('div.scheduleDisplay .schedule').length > 0 ||
@@ -335,9 +337,10 @@ if (!jeeFrontEnd.scenario) {
       }
       document.querySelector('.defined_actions').insertAdjacentHTML('beforeend', htmlActions)
     },
-    printScenario: function(_id) {
+    printScenario: function(_id, _callback) {
       jeedomUtils.hideAlert()
       domUtils.showLoading()
+      document.getElementById('scenarioThumbnailDisplay').unseen()
       document.getElementById('emptyModeWarning').unseen()
       jeedom.scenario.update[_id] = function(_options) {
         if (_options.scenario_id = !jeeP.dom_divScenario.getJeeValues('.scenarioAttr')[0]['id']) {
@@ -489,6 +492,10 @@ if (!jeeFrontEnd.scenario) {
             jeedom.scenario.setAutoComplete()
             jeeP.resetUndo()
             jeeFrontEnd.modifyWithoutSave = false
+
+            if (isset(_callback) && typeof _callback === 'function') {
+              _callback()
+            }
           })
 
           document.getElementById('humanNameTag').innerHTML = data.humanNameTag
@@ -1667,19 +1674,14 @@ document.getElementById('in_searchInsideScenario').addEventListener('keyup', fun
 })
 
 
-
-
 /*Events delegations
 */
-
 
 //_________________Root page events:
 document.getElementById('in_searchScenario').addEventListener('keyup', function(event) {
   var search = this.value
   if (search == '') {
-    document.querySelectorAll('.accordion-toggle[aria-expanded="true"]').forEach(function(accordion) {
-      accordion.click()
-    })
+    document.querySelectorAll('.panel-collapse.in').removeClass('in')
     document.querySelectorAll('.scenarioDisplayCard').seen()
     return
   }
@@ -1706,38 +1708,39 @@ document.getElementById('in_searchScenario').addEventListener('keyup', function(
     }
 
   })
-  $('.panel-collapse[data-show=1]').collapse('show')
-  $('.panel-collapse[data-show=0]').collapse('hide')
+  document.querySelectorAll('.panel-collapse[data-show="1"]').addClass('in')
+  document.querySelectorAll('.panel-collapse[data-show="0"]').removeClass('in')
 })
 
 document.getElementById('scenarioThumbnailDisplay').addEventListener('click', function(event) {
+  var _target = null
   if (!event.target.matches('a.accordion-toggle')) {
     event.preventDefault()
     event.stopImmediatePropagation()
     event.stopPropagation()
   }
 
-  if (event.target.matches('#bt_openAll, #bt_openAll i')) {
+  if (_target = event.target.closest('#bt_openAll')) {
     document.querySelectorAll('.accordion-toggle[aria-expanded="false"]').forEach(function(accordion) {
       accordion.click()
     })
     return
   }
 
-  if (event.target.matches('#bt_closeAll, #bt_closeAll i')) {
+  if (_target = event.target.closest('#bt_closeAll')) {
     document.querySelectorAll('.accordion-toggle[aria-expanded="true"]').forEach(function(accordion) {
       accordion.click()
     })
     return
   }
 
-  if (event.target.matches('#bt_resetScenarioSearch, #bt_resetScenarioSearch i')) {
+  if (_target = event.target.closest('#bt_resetScenarioSearch')) {
     document.getElementById('in_searchScenario').jeeValue('').triggerEvent('keyup')
     return
   }
 
-  if (event.target.matches('#accordionScenario .bt_ViewLog, #accordionScenario .bt_ViewLog i')) {
-    var id = event.target.closest('.scenarioDisplayCard').getAttribute('data-scenario_id')
+  if (_target = event.target.closest('#accordionScenario .bt_ViewLog')) {
+    var id = _target.closest('.scenarioDisplayCard').getAttribute('data-scenario_id')
     jeeDialog.dialog({
       id: 'jee_modal2',
       title: "{{Log d'exécution du scénario}}",
@@ -1746,8 +1749,8 @@ document.getElementById('scenarioThumbnailDisplay').addEventListener('click', fu
     return
   }
 
-  if (event.target.matches('#accordionScenario .scenarioDisplayCard') || event.target.closest('.scenarioDisplayCard') != null) {
-    var id = event.target.getAttribute('data-scenario_id') || event.target.closest('.scenarioDisplayCard').getAttribute('data-scenario_id')
+  if (_target = event.target.closest('.scenarioDisplayCard')) {
+    var id = _target.getAttribute('data-scenario_id')
     if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
       var url = '/index.php?v=d&p=scenario&id=' + id
       window.open(url).focus()
@@ -1760,10 +1763,11 @@ document.getElementById('scenarioThumbnailDisplay').addEventListener('click', fu
 })
 
 document.getElementById('scenarioThumbnailDisplay').addEventListener('mouseup', function(event) {
-  if (event.target.matches('#accordionScenario .scenarioDisplayCard') || event.target.closest('.scenarioDisplayCard') != null) {
+  var _target = null
+  if (_target = event.target.closest('.scenarioDisplayCard')) {
     if (event.which == 2) {
       event.preventDefault()
-      var id = event.target.getAttribute('data-scenario_id') || event.target.closest('.scenarioDisplayCard').getAttribute('data-scenario_id')
+      var id = _target.getAttribute('data-scenario_id')
       document.querySelector('.scenarioDisplayCard[data-scenario_id="' + id + '"]').triggerEvent('click', {detail: {ctrlKey: true}})
     }
   return
@@ -1771,11 +1775,10 @@ document.getElementById('scenarioThumbnailDisplay').addEventListener('mouseup', 
 })
 
 
-
-
 //_________________Floating bar events:
 document.getElementById('div_editScenario').querySelector('div.floatingbar').addEventListener('click', function(event) {
-  if (event.target.matches('#bt_logScenario, #bt_logScenario *')) {
+  var _target = null
+  if (_target = event.target.closest('#bt_logScenario')) {
     jeeDialog.dialog({
       id: 'jee_modal',
       title: "{{Log d'exécution du scénario}}",
@@ -1784,7 +1787,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
     return
   }
 
-  if (event.target.matches('#bt_copyScenario, #bt_copyScenario *')) {
+  if (_target = event.target.closest('#bt_copyScenario')) {
     jeeDialog.prompt("{{Nom du scénario}} ?", function(result) {
       if (result !== null) {
         jeedom.scenario.copy({
@@ -1805,7 +1808,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
     return
   }
 
-  if (event.target.matches('#bt_graphScenario, #bt_graphScenario *')) {
+  if (_target = event.target.closest('#bt_graphScenario')) {
     jeeDialog.dialog({
       id: 'jee_modal',
       title: "{{Graphique de lien(s)}}",
@@ -1814,7 +1817,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
     return
   }
 
-  if (event.target.matches('#bt_editJsonScenario, #bt_editJsonScenario *')) {
+  if (_target = event.target.closest('#bt_editJsonScenario')) {
     jeeDialog.dialog({
       id: 'jee_modal',
       title: "{{Edition texte scénarios}}",
@@ -1823,7 +1826,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
     return
   }
 
-  if (event.target.matches('#bt_exportScenario, #bt_exportScenario *')) {
+  if (_target = event.target.closest('#bt_exportScenario')) {
     jeeDialog.dialog({
       id: 'jee_modal',
       title: "{{Export du scénario}}",
@@ -1832,7 +1835,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
     return
   }
 
-  if (event.target.matches('#bt_templateScenario, #bt_templateScenario *')) {
+  if (_target = event.target.closest('#bt_templateScenario')) {
     jeeDialog.dialog({
       id: 'jee_modal',
       title: "{{Template de scénario}}",
@@ -1841,7 +1844,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
     return
   }
 
-  if (event.target.matches('#bt_runScenario, #bt_runScenario *')) {
+  if (_target = event.target.closest('#bt_runScenario')) {
     jeedomUtils.hideAlert()
     var scenario_id = document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()
     var logmode = $('button[data-l2key="logmode"]').attr('value')
@@ -1892,7 +1895,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
     return
   }
 
-  if (event.target.matches('#bt_stopScenario, #bt_stopScenario *')) {
+  if (_target = event.target.closest('#bt_stopScenario')) {
     jeedom.scenario.changeState({
       id: document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue(),
       state: 'stop',
@@ -1912,13 +1915,13 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
     return
   }
 
-  if (event.target.matches('#bt_saveScenario, #bt_saveScenario *')) {
+  if (_target = event.target.closest('#bt_saveScenario')) {
     jeeP.saveScenario()
     jeeP.clipboard = null
     return
   }
 
-  if (event.target.matches('#bt_delScenario, #bt_delScenario *')) {
+  if (_target = event.target.closest('#bt_delScenario')) {
     jeedomUtils.hideAlert()
     jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer le scénario}} <span style="font-weight: bold ;">' + document.querySelector('.scenarioAttr[data-l1key="name"]').jeeValue() + '</span> ?', function(result) {
       if (result) {
@@ -1941,7 +1944,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
     return
   }
 
-  if (event.target.matches('#bt_addScenarioElement, #bt_addScenarioElement *')) {
+  if (_target = event.target.closest('#bt_addScenarioElement')) {
     if (!window.location.href.includes('#scenariotab')) document.getElementById('bt_scenarioTab').click()
     jeeP.addElementSave = {
       expression: false,
@@ -1971,15 +1974,14 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
     return
   }
 
-  if (event.target.matches('#bt_resetInsideScenarioSearch, #bt_resetInsideScenarioSearch *')) {
-    var btn = document.getElementById('bt_resetInsideScenarioSearch')
-    if (btn.hasClass('disabled')) return
+  if (_target = event.target.closest('#bt_resetInsideScenarioSearch')) {
+    if (_target.hasClass('disabled')) return
     var searchField = document.getElementById('in_searchInsideScenario')
-    if (btn.getAttribute('data-state') == '0') {
+    if (_target.getAttribute('data-state') == '0') {
       //show search:
       searchField.seen()
-      btn.querySelectorAll('i').removeClass('fa-search').addClass('fa-times')
-      btn.setAttribute('data-state', '1')
+      _target.querySelectorAll('i').removeClass('fa-search').addClass('fa-times')
+      _target.setAttribute('data-state', '1')
       //open code blocks for later search:
       document.querySelectorAll('#div_scenarioElement div.elementCODE.elementCollapse').forEach(_code =>  {
         _code.removeClass('elementCollapse')
@@ -1993,25 +1995,25 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
         document.querySelectorAll('i.fa-eye-slash').forEach(_bt => {
           _bt.closest('.element').addClass('elementCollapse')
         })
-        btn.querySelector('i').removeClass('fa-times').addClass('fa-search')
+        _target.querySelector('i').removeClass('fa-times').addClass('fa-search')
         searchField.unseen()
-        btn.setAttribute('data-state', '0')
+        _target.setAttribute('data-state', '0')
       } else {
-        searchField.value = ''
-        searchField.triggerEvent('keyup')
+        searchField.jeeValue('').triggerEvent('keyup')
       }
     }
     return
   }
 
-  if (event.target.matches('#bt_undo, #bt_undo i')) {
+  if (_target = event.target.closest('#bt_undo')) {
     if (!jeedomUtils.getOpenedModal()) {
       jeeP.undo()
       jeeP.PREV_FOCUS = null
     }
     return
   }
-  if (event.target.matches('#bt_redo, #bt_redo i')) {
+
+  if (_target = event.target.closest('#bt_redo')) {
     if (!jeedomUtils.getOpenedModal()) {
       jeeP.redo()
       jeeP.PREV_FOCUS = null
@@ -2021,12 +2023,11 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
 })
 
 
-
-
 //_________________General tab events:
 document.getElementById('generaltab').addEventListener('click', function(event) {
-  if (event.target.matches('.scenarioAttr[data-l2key="timeline::enable"]')) {
-    if (event.target.checked) {
+  var _target = null
+  if (_target = event.target.closest('.scenarioAttr[data-l2key="timeline::enable"]')) {
+    if (_target.checked) {
       document.querySelector('.scenarioAttr[data-l2key="timeline::folder"]').seen()
     } else {
       document.querySelector('.scenarioAttr[data-l2key="timeline::folder"]').unseen()
@@ -2034,20 +2035,20 @@ document.getElementById('generaltab').addEventListener('click', function(event) 
     return
   }
 
-  if (event.target.matches('.scenario_link')) {
+  if (_target = event.target.closest('.scenario_link')) {
     jeedomUtils.hideAlert()
     if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
       var url = '/index.php?v=d&p=scenario&id=' + event.target.getAttribute('data-scenario_id')
       window.open(url).focus()
     } else {
       document.getElementById('scenarioThumbnailDisplay').unseen()
-      jeeP.printScenario(event.target.getAttribute('data-scenario_id'))
+      jeeP.printScenario(_target.getAttribute('data-scenario_id'))
     }
   }
 
-  if (event.target.matches('.action_link')) {
+  if (_target = event.target.closest('.action_link')) {
     jeedomUtils.hideAlert()
-    var cmdId = event.target.getAttribute('data-cmd_id')
+    var cmdId = _target.getAttribute('data-cmd_id')
     jeeDialog.dialog({
       id: 'jee_modal2',
       title: '{{Configuration de la commande}}',
@@ -2056,7 +2057,7 @@ document.getElementById('generaltab').addEventListener('click', function(event) 
     return
   }
 
-  if (event.target.matches('#bt_chooseIcon, #bt_chooseIcon i')) {
+  if (_target = event.target.closest('#bt_chooseIcon')) {
     jeedomUtils.hideAlert()
     var _icon = false
     if (document.querySelector('div[data-l2key="icon"] > i') != null) {
@@ -2072,63 +2073,60 @@ document.getElementById('generaltab').addEventListener('click', function(event) 
     return
   }
 
-  if (event.target.matches('#bt_addTrigger, #bt_addTrigger i')) {
+  if (_target = event.target.closest('#bt_addTrigger')) {
     jeeP.addTrigger('')
     jeeP.checkNoTriggeringMode()
     jeedomUtils.initTooltips()
     return
   }
 
-  if (event.target.matches('#bt_addSchedule, #bt_addSchedule i')) {
+  if (_target = event.target.closest('#bt_addSchedule')) {
     jeeP.addSchedule('')
     jeeP.checkNoTriggeringMode()
     jeedomUtils.initTooltips()
     return
   }
 
-  if (event.target.matches('.bt_removeTrigger, .bt_removeTrigger i')) {
-    event.target.closest('.trigger').remove()
+  if (_target = event.target.closest('.bt_removeTrigger')) {
+    _target.closest('.trigger').remove()
     jeeP.checkNoTriggeringMode()
     return
   }
 
-  if (event.target.matches('.bt_removeSchedule, .bt_removeSchedule i')) {
-    event.target.closest('.schedule').remove()
+  if (_target = event.target.closest('.bt_removeSchedule')) {
+    _target.closest('.schedule').remove()
     jeeP.checkNoTriggeringMode()
     return
   }
 
-  if (event.target.matches('.bt_selectTrigger, .bt_selectTrigger i')) {
-    var el = event.target
+  if (_target = event.target.closest('.bt_selectTrigger')) {
     jeedom.cmd.getSelectModal({
       cmd: {
         type: 'info'
       }
     }, function(result) {
-      el.closest('.trigger').querySelector('.scenarioAttr[data-l1key="trigger"]').jeeValue(result.human)
+      _target.closest('.trigger').querySelector('.scenarioAttr[data-l1key="trigger"]').jeeValue(result.human)
     })
     return
   }
 
-  if (event.target.matches('.bt_selectDataStoreTrigger, .bt_selectDataStoreTrigger i')) {
-    var el = event.target
+  if (_target = event.target.closest('.bt_selectDataStoreTrigger')) {
     jeedom.dataStore.getSelectModal({
       cmd: {
         type: 'info'
       }
     }, function(result) {
-      el.closest('.trigger').querySelector('.scenarioAttr[data-l1key="trigger"]').jeeValue(result.human)
+      _target.closest('.trigger').querySelector('.scenarioAttr[data-l1key="trigger"]').jeeValue(result.human)
     })
     return
   }
 
-  if (event.target.matches('.bt_selectGenericTrigger, .bt_selectGenericTrigger i')) {
-    var el = event.target
+  if (_target = event.target.closest('.bt_selectGenericTrigger')) {
     jeedom.config.getGenericTypeModal({
       type: 'info',
       object: true
     }, function(result) {
-      el.closest('.trigger').querySelector('.scenarioAttr[data-l1key="trigger"]').jeeValue('#' + result.human + '#')
+      _target.closest('.trigger').querySelector('.scenarioAttr[data-l1key="trigger"]').jeeValue('#' + result.human + '#')
     })
     return
   }
@@ -2153,10 +2151,10 @@ document.getElementById('generaltab').addEventListener('dblclick', function(even
 })
 
 
-
 //_________________Scenario tab events:
 document.getElementById('scenariotab').addEventListener('click', function(event) {
-  if (event.target.matches('#bt_addElementSave, #bt_addElementSave *')) { //Ok button from new block modal
+  var _target = null
+  if (_target = event.target.closest('#bt_addElementSave')) { //Ok button from new block modal
     jeeP.setUndoStack()
     jeeFrontEnd.modifyWithoutSave = true
     if (jeeP.addElementSave.expression) {
@@ -2196,14 +2194,14 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     return
   }
 
-  if (event.target.matches('#bt_cancelElementSave, #bt_cancelElementSave *')) {
+  if (_target = event.target.closest('#bt_cancelElementSave')) {
     jeeDialog.modal(document.getElementById('md_addElement'))._jeeDialog.hide()
   }
 
-  if (event.target.matches('input:not([type="checkbox"]).expressionAttr, textarea.expressionAttr')) { //ctrl-click input popup
-    jeeP.PREV_FOCUS = event.target //Place new block next
+  if (_target = event.target.closest('input:not([type="checkbox"]).expressionAttr, textarea.expressionAttr')) { //ctrl-click input popup
+    jeeP.PREV_FOCUS = _target //Place new block next
     if (event.ctrlKey) {
-      var selfInput = event.target
+      var selfInput = _target
       jeeDialog.prompt({
         title: '{{Edition}}',
         width: '80%',
@@ -2229,55 +2227,54 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     }
   }
 
-  if (event.target.matches('button.bt_selectJeeDialogCmdExpression, button.bt_selectJeeDialogCmdExpression i')) { //ctrl-click input popup getSelectModal
-    var expression = event.target.closest('.jeeDialogPrompt').querySelector('.promptAttr')
+  if (_target = event.target.closest('button.bt_selectJeeDialogCmdExpression')) { //ctrl-click input popup getSelectModal
+    var expression = _target.closest('.jeeDialogPrompt').querySelector('.promptAttr')
     jeedom.cmd.getSelectModal({}, function(result) {
       expression.insertAtCursor(result.human)
     })
     return
   }
 
-  if (event.target.matches('.bt_removeElement, .bt_removeElement *')) {
-    var button = event.target
+  if (_target = event.target.closest('.bt_removeElement')) {
     if (event.ctrlKey || event.metaKey) {
-      if (button.closest('.expression') != null) {
+      if (_target.closest('.expression') != null) {
         jeeP.setUndoStack()
-        button.closest('.expression').remove()
+        _target.closest('.expression').remove()
       } else {
         jeeP.setUndoStack()
-        button.closest('.element').remove()
+        _target.closest('.element').remove()
       }
     } else {
       jeeDialog.confirm("{{Êtes-vous sûr de vouloir supprimer ce bloc ?}}", function(result) {
         if (result) {
-          if (button.closest('.expression') != null) {
+          if (_target.closest('.expression') != null) {
             jeeP.setUndoStack()
-            button.closest('.expression').remove()
+            _target.closest('.expression').remove()
           } else {
             jeeP.setUndoStack()
-            button.closest('.element').remove()
+            _target.closest('.element').remove()
           }
         }
       })
     }
     jeeFrontEnd.modifyWithoutSave = true
     jeeP.PREV_FOCUS = null
-    domUtils.syncJeecompletes()
+    domUtils.syncJeeCompletes()
     return
   }
 
-  if (event.target.matches('.bt_addAction, .bt_addAction *')) {
+  if (_target = event.target.closest('.bt_addAction')) {
     jeeP.setUndoStack()
-    event.target.closest('.subElement').querySelector(':scope > .expressions').insertAdjacentHTML('beforeend', jeeP.addExpression( {type: 'action'} ))
+    _target.closest('.subElement').querySelector(':scope > .expressions').insertAdjacentHTML('beforeend', jeeP.addExpression( {type: 'action'} ))
     jeedom.scenario.setAutoComplete()
     jeeP.updateSortable()
     jeedomUtils.initTooltips()
     return
   }
 
-  if (event.target.matches('.bt_showElse, .bt_showElse *')) {
-    let icon = event.target.querySelector(':scope > i') || event.target
-    let elElse = event.target.closest('.element').querySelector(':scope > .subElementELSE')
+  if (_target = event.target.closest('.bt_showElse')) {
+    let icon = _target.querySelector(':scope > i') || event.target
+    let elElse = _target.closest('.element').querySelector(':scope > .subElementELSE')
     if (icon == null) return
     if (icon.hasClass('fa-sort-down')) {
       icon.removeClass('fa-sort-down').addClass('fa-sort-up')
@@ -2296,26 +2293,25 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     return
   }
 
-  if (event.target.matches('.bt_collapse, .bt_collapse *')) {
-    var changeThis = event.target.closest('.bt_collapse') || event.target
-    var open = changeThis.querySelector(':scope > i').hasClass('fa-eye') ? true : false
+  if (_target = event.target.closest('.bt_collapse')) {
+    var open = _target.querySelector(':scope > i').hasClass('fa-eye') ? true : false
 
     if (event.ctrlKey || event.metaKey) {
-      changeThese = changeThis.closest('.expressions')?.querySelectorAll('.bt_collapse') || document.querySelectorAll('.bt_collapse')
+      changeThese = _target.closest('.expressions')?.querySelectorAll('.bt_collapse') || document.querySelectorAll('.bt_collapse')
     } else {
-      var changeThese = [changeThis]
+      var changeThese = [_target]
     }
 
-    for (changeThis of changeThese) {
-      var icon = changeThis.querySelector(':scope > i')
+    for (_target of changeThese) {
+      var icon = _target.querySelector(':scope > i')
       if (open) { // -> Collapse!
         icon.removeClass('fa-eye').addClass('fa-eye-slash')
-        changeThis.closest('.element').addClass('elementCollapse')
-        changeThis.setAttribute('value', 1)
-        changeThis.setAttribute('title', "{{Afficher ce bloc.<br>Ctrl+click: tous.}}")
+        _target.closest('.element').addClass('elementCollapse')
+        _target.setAttribute('value', 1)
+        _target.setAttribute('title', "{{Afficher ce bloc.<br>Ctrl+click: tous.}}")
         //update action, comment and code blocPreview:
         var txt, _el, id
-        changeThis.closest('.element').querySelectorAll('.blocPreview').forEach(function(_blocPreview) {
+        _target.closest('.element').querySelectorAll('.blocPreview').forEach(function(_blocPreview) {
           txt = '<i>Unfound</i>'
           _el = _blocPreview.closest('.element')
           if (_el.hasClass('elementACTION')) {
@@ -2337,9 +2333,9 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
         })
       } else { // -> Uncollapse!
         icon.addClass('fa-eye').removeClass('fa-eye-slash')
-        changeThis.closest('.element').removeClass('elementCollapse')
-        changeThis.setAttribute('value', 0)
-        changeThis.setAttribute('title', "{{Masquer ce bloc.<br>Ctrl+click: tous.}}")
+        _target.closest('.element').removeClass('elementCollapse')
+        _target.setAttribute('value', 0)
+        _target.setAttribute('title', "{{Masquer ce bloc.<br>Ctrl+click: tous.}}")
         jeeP.setEditors()
       }
     }
@@ -2347,16 +2343,15 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     return
   }
 
-  if (event.target.matches('.bt_removeExpression, .bt_removeExpression *')) {
+  if (_target = event.target.closest('.bt_removeExpression')) {
     jeeP.setUndoStack()
-    event.target.closest('.expression').remove()
+    _target.closest('.expression').remove()
     jeeP.updateSortable()
     return
   }
 
-  if (event.target.matches('.bt_selectCmdExpression, .bt_selectCmdExpression *')) {
-    var el = event.target.closest('.bt_selectCmdExpression') || event.target
-    var expression = event.target.closest('.expression')
+  if (_target = event.target.closest('.bt_selectCmdExpression')) {
+    var expression = _target.closest('.expression')
     var type = 'info'
     if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
       type = 'action'
@@ -2378,7 +2373,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
       }
 
       if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'condition') {
-        var condType = el.closest('.subElement')
+        var condType = _target.closest('.subElement')
         if (!condType.hasClass('subElementIF') && !condType.hasClass('subElementFOR')) {
           expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
           return
@@ -2423,7 +2418,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
                   expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(condition)
 
                   if (document.querySelector('.conditionAttr[data-l1key="next"]').jeeValue() != '') {
-                    el.click()
+                    _target.click()
                   }
                   event.target.closest('.jeeDialogPrompt')._jeeDialog.close()
                 }
@@ -2436,8 +2431,8 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     return
   }
 
-  if (event.target.matches('.bt_selectOtherActionExpression, .bt_selectOtherActionExpression *')) {
-    var expression = event.target.closest('.expression')
+  if (_target = event.target.closest('.bt_selectOtherActionExpression')) {
+    var expression = _target.closest('.expression')
     jeedom.getSelectActionModal({
       scenario: true
     }, function(result) {
@@ -2451,8 +2446,8 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     return
   }
 
-  if (event.target.matches('.bt_selectScenarioExpression, .bt_selectScenarioExpression *')) {
-    var expression = event.target.closest('.expression')
+  if (_target = event.target.closest('.bt_selectScenarioExpression')) {
+    var expression = _target.closest('.expression')
     jeedom.scenario.getSelectModal({}, function(result) {
       if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
         expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(result.human)
@@ -2464,16 +2459,16 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     return
   }
 
-  if (event.target.matches('.bt_selectGenericExpression, .bt_selectGenericExpression *')) {
-    var expression = event.target.closest('.expression')
+  if (_target = event.target.closest('.bt_selectGenericExpression')) {
+    var expression = _target.closest('.expression')
     jeedom.config.getGenericTypeModal({type: 'info', object: true}, function(result) {
       expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
     })
     return
   }
 
-  if (event.target.matches('.bt_selectEqLogicExpression, .bt_selectEqLogicExpression *')) {
-    var expression = event.target.closest('.expression')
+  if (_target = event.target.closest('.bt_selectEqLogicExpression')) {
+    var expression = _target.closest('.expression')
     jeedom.eqLogic.getSelectModal({}, function(result) {
       if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
         expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(result.human)
@@ -2485,27 +2480,25 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     return
   }
 
-  if (event.target.matches('.subElementAttr[data-l2key="allowRepeatCondition"], .subElementAttr[data-l2key="allowRepeatCondition"] *')) {
-    var el = event.target.closest('.subElementAttr') || event.target
-    if (el.getAttribute('value') == '0') {
-      el.setAttribute('value', '1')
-      el.html('<span><i class="fas fa-ban text-danger"></i></span>')
+  if (_target = event.target.closest('.subElementAttr[data-l2key="allowRepeatCondition"]')) {
+    if (_target.getAttribute('value') == '0') {
+      _target.setAttribute('value', '1')
+      _target.html('<span><i class="fas fa-ban text-danger"></i></span>')
     } else {
-      el.setAttribute('value', '0')
-      el.html('<span><i class="fas fa-sync"></span>')
+      _target.setAttribute('value', '0')
+      _target.html('<span><i class="fas fa-sync"></span>')
     }
     return
   }
 
-  if (event.target.matches('.fromSubElement, .fromSubElement *')) {
-    var el = event.target.closest('.fromSubElement') || event.target
+  if (_target = event.target.closest('.fromSubElement')) {
     jeeP.setUndoStack()
 
-    var elementDiv = el.closest('.subElement').querySelector('.expressions')
+    var elementDiv = _target.closest('.subElement').querySelector('.expressions')
     var newEL = domUtils.parseHTML(jeeP.addExpression({
       type: 'element',
       element: {
-        type: el.getAttribute('data-type')
+        type: _target.getAttribute('data-type')
       }
     }))
     elementDiv.appendChild(newEL)
@@ -2524,9 +2517,8 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
   }
 
   //COPY - PASTE
-  if (event.target.matches('i.bt_copyElement')) {
-    var clickedBloc = event.target.closest('.element')
-
+  if (_target = event.target.closest('i.bt_copyElement')) {
+    var clickedBloc = _target.closest('.element')
     jeeP.clipboard = jeeP.getElement(clickedBloc)
 
     //delete all id in properties to make it unique later:
@@ -2543,13 +2535,13 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     return
   }
 
-  if (event.target.matches('i.bt_pasteElement')) {
+  if (_target = event.target.closest('i.bt_pasteElement')) {
     if (localStorage.getItem('jeedomScCopy')) {
       jeeP.clipboard = JSON.parse(localStorage.getItem('jeedomScCopy'))
     } else {
       return false
     }
-    var clickedBloc = event.target.closest('.element')
+    var clickedBloc = _target.closest('.element')
 
     jeeP.setUndoStack()
     jeeP.actionOptions = []
@@ -2631,17 +2623,19 @@ document.getElementById('scenariotab').addEventListener('change', function(event
 })
 
 document.getElementById('scenariotab').addEventListener('mouseenter', function(event) {
-  if (event.target.matches('button.dropdown-toggle, button.dropdown-toggle *')) {
+  var _target = null
+  if (_target = event.target.closest('button.dropdown-toggle')) {
     if (event.clientY > window.innerHeight - 220) {
-      event.target.closest('div.dropdown').addClass('dropup')
+      _target.closest('div.dropdown').addClass('dropup')
     } else {
-      event.target.closest('div.dropdown').removeClass('dropup')
+      _target.closest('div.dropdown').removeClass('dropup')
     }
   }
 }, {capture: true})
 
 document.getElementById('scenariotab').addEventListener('mouseout', function(event) {
-  if (event.target.matches('button.dropdown-toggle, button.dropdown-toggle *')) {
+  var _target = null
+  if (_target = event.target.closest('button.dropdown-toggle')) {
     if (event.clientY > window.innerHeight - 220) {
       event.target.closest('div.dropdown').addClass('dropup')
     } else {
@@ -2651,27 +2645,21 @@ document.getElementById('scenariotab').addEventListener('mouseout', function(eve
 })
 
 document.getElementById('scenariotab').addEventListener('focusout', function(event) {
-  if (event.target.matches('.expression .expressionAttr[data-l1key="expression"]')) {
-    if (event.target.getAttribute('prevalue') == event.target.value) return
-    var el = event.target
-    if (el.closest('.expression').querySelector('.expressionAttr[data-l1key="type"]').value == 'action') {
-      var expression = el.closest('.expression').getJeeValues('.expressionAttr')
-      jeedom.cmd.displayActionOption(el.value, init(expression[0].options), function(html) {
-        el.closest('.expression').querySelector('.expressionOptions').html(html)
+  var _target = null
+  if (_target = event.target.closest('.expression .expressionAttr[data-l1key="expression"]')) {
+    if (_target.getAttribute('prevalue') == _target.value) return
+    if (_target.closest('.expression').querySelector('.expressionAttr[data-l1key="type"]').value == 'action') {
+      var expression = _target.closest('.expression').getJeeValues('.expressionAttr')
+      jeedom.cmd.displayActionOption(_target.value, init(expression[0].options), function(html) {
+        _target.closest('.expression').querySelector('.expressionOptions').html(html)
         jeedomUtils.taAutosize()
         jeedomUtils.initTooltips()
-        el.setAttribute('prevalue', el.value)
+        _target.setAttribute('prevalue', _target.value)
       })
     }
   }
 })
 
-
-//
-jeeP.loadId = getUrlVars('id')
-if (is_numeric(jeeP.loadId)) {
-  document.querySelector('.scenarioDisplayCard[data-scenario_id="' + jeeP.loadId + '"]')?.click()
-}
 
 domUtils(function() {
   jeeFrontEnd.scenario.postInit()

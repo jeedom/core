@@ -1,4 +1,4 @@
-<div class="input-group input-group-sm" style="width: 100%">
+<div class="input-group input-group-sm" data-template="equipement" style="width: 100%">
   <span class="input-group-addon roundedLeft">{{Equipement}}</span>
   <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="eqLogic" data-option_id="#id#" data-uid="#uid#" value="#eqLogic#"/>
   <span class="input-group-btn">
@@ -13,11 +13,11 @@
   </select>
 </div>
 <script>
-  $('.listEquipementInfo[data-uid="#uid#"]').off('click').on('click', function() {
-    jeedom.eqLogic.getSelectModal({cmd: {type: 'info'}}, function(result) {
+  document.querySelector('.listEquipementInfo[data-uid="#uid#"]').addEventListener('click', function() {
+    jeedom.eqLogic.getSelectModal({}, function(result) {
       document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="eqLogic"]').value = result.human
-    });
-  });
+    })
+  })
   if ('#action#' != '' && document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="action"] option[value="#action#"]')?.innerHTML != '') {
     document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="action"]').value = '#action#'
   }

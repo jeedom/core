@@ -20,6 +20,23 @@ if (!jeeFrontEnd.eqAnalyse) {
   jeeFrontEnd.eqAnalyse = {
     init: function() {
       window.jeeP = this
+      document.querySelectorAll('.alertListContainer .jeedomAlreadyPosition').removeClass('jeedomAlreadyPosition')
+      //tabs icons colors:
+      if (document.querySelectorAll('div.batteryListContainer div.eqLogic-widget.critical').length) {
+        document.querySelector('a[data-target="#battery"] > i').addClass('danger')
+      } else if (document.querySelectorAll('div.batteryListContainer div.eqLogic-widget.warning').length) {
+        document.querySelector('a[data-target="#battery"] > i').addClass('warning')
+      } else {
+        document.querySelector('a[data-target="#battery"] > i').addClass('success')
+      }
+
+      if (document.querySelectorAll('div.alertListContainer div.eqLogic-widget').length) {
+        document.querySelector('a[data-target="#alertEqlogic"] > i').addClass('warning')
+      }
+
+      jeedomUtils.initTableSorter()
+      new Packery(document.querySelector('div.alertListContainer'), { itemSelector: "#alertEqlogic .eqLogic-widget" }).layout()
+      this.eqlogicsEls = document.querySelectorAll('div.batteryListContainer > div.eqLogic-widget')
     },
     getRemoveCmd: function(_id) {
       for (var i in jeephp2js.removeHistory) {
@@ -67,7 +84,7 @@ if (!jeeFrontEnd.eqAnalyse) {
             }
           }
           let tableDeadCmd = document.getElementById('table_deadCmd')
-          tableDeadCmd.querySelector('tbody').empty().insertAdjacentHTML('beforeend', tr)
+          tableDeadCmd.tBodies[0].empty().insertAdjacentHTML('beforeend', tr)
           tableDeadCmd.config.widgetOptions.resizable_widths = ['180px', '', '', '180px']
           tableDeadCmd.triggerEvent('update')
           tableDeadCmd.triggerEvent('applyWidgets')
@@ -83,66 +100,8 @@ if (!jeeFrontEnd.eqAnalyse) {
 
 jeeFrontEnd.eqAnalyse.init()
 
-$('.alertListContainer .jeedomAlreadyPosition').removeClass('jeedomAlreadyPosition')
-
-//tabs icons colors:
-if ($('div.batteryListContainer div.eqLogic-widget.critical').length) {
-  $('a[href="#battery"] > i').addClass('danger')
-} else if ($('div.batteryListContainer div.eqLogic-widget.warning').length) {
-  $('a[href="#battery"] > i').addClass('warning')
-} else {
-  $('a[href="#battery"] > i').addClass('success')
-}
-
-if ($('div.alertListContainer div.eqLogic-widget').length) {
-  $('a[href="#alertEqlogic"] > i').addClass('warning')
-}
-
-jeedomUtils.initTableSorter()
-window.registerEvent("resize", function eqAnalyse(event) {
-  if (document.querySelector('#ul_tabBatteryAlert li.alerts').hasClass('active')) {
-    jeedomUtils.positionEqLogic()
-  }
-})
-
-//update tablesorter on tab click:
-$("#tab_actionCmd").off("click").on("click", function() {
-  $('#table_Action').trigger('update')
-})
-$("#tab_alertCmd").off("click").on("click", function() {
-  $('#table_Alert').trigger('update')
-})
-$("#tab_pushCmd").off("click").on("click", function() {
-  $('#table_Push').trigger('update')
-})
-$("#tab_deadCmd").off("click").on("click", function() {
-  jeeP.displayDeadCmd()
-})
-
-$('div.alertListContainer').packery({
-  itemSelector: "#alertEqlogic .eqLogic-widget"
-})
-
-$('.alerts, .batteries').on('click', function(event) {
-  setTimeout(function() {
-    jeedomUtils.positionEqLogic()
-    $('div.alertListContainer').packery({
-      itemSelector: "#alertEqlogic .eqLogic-widget"
-    })
-  }, 10)
-})
-
-$('.cmdAction[data-action=configure]').on('click', function(event) {
-  jeeDialog.dialog({
-    id: 'jee_modal2',
-    title: '{{Configuration de la commande}}',
-    contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + this.getAttribute('data-cmd_id')
-  })
-})
-
 //searching
-jeeP.eqlogicsEls = document.querySelectorAll('div.batteryListContainer > div.eqLogic-widget')
-$('#in_search').off('keyup').on('keyup', function(event) {
+document.getElementById('in_search')?.addEventListener('keyup', function(event) {
   if (jeeP.eqlogicsEls.length == 0) {
     return
   }
@@ -171,20 +130,21 @@ $('#in_search').off('keyup').on('keyup', function(event) {
     }
   })
 })
-$('#bt_resetSearch').on('click', function(event) {
-  document.getElementById('in_search').value = ''
-  document.getElementById('in_search').triggerEvent('keyup')
+document.getElementById('bt_resetSearch')?.addEventListener('click', function(event) {
+  document.getElementById('in_search').jeeValue('').triggerEvent('keyup')
 })
 
-$('.batteryTime').off('click').on('click', function(event) {
-  jeeDialog.dialog({
-    id: 'jee_modal',
-    title: "{{Configuration de l'équipement}}",
-    contentUrl: 'index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + event.target.closest('div.eqLogic').getAttribute('data-eqlogic_id')
-  })
+
+//Register events on top of page container:
+window.registerEvent("resize", function eqAnalyse(event) {
+  if (document.getElementById('tab_alerts').hasClass('active')) {
+    jeedomUtils.positionEqLogic()
+  }
 })
 
-$('#bt_massConfigureEqLogic').off('click').on('click', function() {
+
+//Manage events outside parents delegations:
+document.getElementById('bt_massConfigureEqLogic')?.addEventListener('click', function(event) {
   jeeDialog.dialog({
     id: 'jee_modal',
     title: "{{Configuration en masse}}",
@@ -192,11 +152,50 @@ $('#bt_massConfigureEqLogic').off('click').on('click', function() {
   })
 })
 
-//Register events on top of page container:
-
-//Manage events outside parents delegations:
-
-//Specials
 
 /*Events delegations
 */
+document.getElementById('div_pageContainer').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#tab_alerts')) {
+    setTimeout(function() {
+      jeedomUtils.positionEqLogic()
+      Packery.data(document.querySelector('div.alertListContainer')).layout()
+    }, 10)
+    return
+  }
+  if (_target = event.target.closest('#tab_actionCmd')) {
+    document.getElementById('table_Action').triggerEvent('update')
+    return
+  }
+  if (_target = event.target.closest('#tab_alertCmd')) {
+    document.getElementById('table_Alert').triggerEvent('update')
+    return
+  }
+  if (_target = event.target.closest('#tab_pushCmd')) {
+    document.getElementById('table_Push').triggerEvent('update')
+    return
+  }
+  if (_target = event.target.closest('#tab_deadCmd')) {
+    jeeP.displayDeadCmd()
+    return
+  }
+
+  if (_target = event.target.closest('.cmdAction[data-action="configure"]')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: '{{Configuration de la commande}}',
+      contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + _target.getAttribute('data-cmd_id')
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.batteryTime')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Configuration de l'équipement}}",
+      contentUrl: 'index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + _target.closest('div.eqLogic').getAttribute('data-eqlogic_id')
+    })
+    return
+  }
+})

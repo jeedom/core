@@ -245,6 +245,9 @@ if (!jeeFrontEnd.plan) {
       })
     },
     displayObject: function(_plan, _html, _noRender) { //Construct element node and seperated inline style to inject in dom (_noRender bool)
+      //Deleted or inactive equipment
+      if (_html == '') return
+
       _plan = init(_plan, {})
       _plan.position = init(_plan.position, {})
       _plan.css = init(_plan.css, {})
@@ -1301,20 +1304,21 @@ document.body.registerEvent('click', function (event) {
 
 //div_pageContainer events delegation:
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  if (event.target.matches('#bt_createNewDesign')) {
+  var _target = null
+  if (_target = event.target.closest('#bt_createNewDesign')) {
     jeeP.createNewDesign()
     return
   }
 
-  if (event.target.matches('.view-link-widget, .view-link-widget a')) {
-    var link = event.target.querySelector('a') || event.target
+  if (_target = event.target.closest('.view-link-widget')) {
+    var link = _target.querySelector('a')
     link.click()
     return
   }
 
-  if (event.target.matches('.plan-link-widget, .plan-link-widget a')) {
+  if (_target = event.target.closest('.plan-link-widget')) {
     if (!jeeFrontEnd.planEditOption.state) {
-      var linkId = event.target.getAttribute('data-link_id') || event.target.parentNode.getAttribute('data-link_id')
+      var linkId = _target.getAttribute('data-link_id')
       if (linkId == undefined) return
       jeephp2js.planHeader_id = linkId
       jeeFrontEnd.planEditOption = {
@@ -1329,25 +1333,24 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
-  if (event.target.matches('.zone-widget:not(.zoneEqLogic)')) {
-    var el = event.target
+  if (_target = event.target.closest('.zone-widget:not(.zoneEqLogic)')) {
     if (!jeeFrontEnd.planEditOption.state) {
-      el.insertAdjacentHTML('beforeend', '<center class="loading"><i class="fas fa-spinner fa-spin fa-4x"></i></center>')
+      _target.insertAdjacentHTML('beforeend', '<center class="loading"><i class="fas fa-spinner fa-spin fa-4x"></i></center>')
       jeedom.plan.execute({
-        id: el.getAttribute('data-plan_id'),
+        id: _target.getAttribute('data-plan_id'),
         error: function(error) {
           jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
-          el.empty().insertAdjacentHTML('beforeend', '<center class="loading"><i class="fas fa-times fa-4x"></i></center>')
+          _target.empty().insertAdjacentHTML('beforeend', '<center class="loading"><i class="fas fa-times fa-4x"></i></center>')
           setTimeout(function() {
-            el.empty()
+            _target.empty()
             jeeP.clickedOpen = false
           }, 3000)
         },
         success: function() {
-          el.empty()
+          _target.empty()
           jeeP.clickedOpen = false
         },
       })
@@ -1355,19 +1358,21 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
-  if (event.target.matches('.zone-widget.zoneEqLogic.zoneEqLogicOnClic')) {
+  if (_target = event.target.closest('.zone-widget.zoneEqLogic.zoneEqLogicOnClic')) {
     if (!jeeFrontEnd.planEditOption.state && !jeeP.clickedOpen) {
     jeeP.clickedOpen = true
-    var el = event.target
     jeedom.eqLogic.toHtml({
-      id: el.getAttribute('data-eqLogic_id'),
+      id: _target.getAttribute('data-eqLogic_id'),
       version: 'dashboard',
       global: false,
       success: function(data) {
-        let html = $(data.html).css('position', 'absolute')
-        html.attr("style", html.attr("style") + "; " + el.attr('data-position'))
-        $(el).empty().append(html)
-        jeedomUtils.positionEqLogic(el.getAttribute('data-eqLogic_id'), false)
+        var newEq = document.createElement('div')
+        newEq.html(data.html)
+        _target.empty().appendChild(newEq.childNodes[0])
+        newEq = _target.querySelector('div[data-eqlogic_id="' + data.id + '"]')
+        newEq.style = _target.getAttribute('data-position')
+        newEq.style.position = 'absolute'
+        jeedomUtils.positionEqLogic(_target.getAttribute('data-eqLogic_id'), false)
       }
     })
   }

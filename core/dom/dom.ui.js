@@ -214,6 +214,22 @@ Element.prototype.closestAll = function(_selector) {
   return parents
 }
 
+HTMLSelectElement.prototype.sortOptions = function(_text) {
+  if (!isset(_text)) _text = true
+  var optionsAr = Array.from(this.options)
+  optionsAr.sort(function(a, b) {
+    if (_text) {
+      return a.textContent > b.textContent ? 1 : -1
+    } else {
+      return a.value > b.value ? 1 : -1
+    }
+  })
+  for (let opt of optionsAr) {
+    this.appendChild(opt)
+  }
+  this.selectedIndex = 0
+  return this
+}
 
 /* Widgets
 */
@@ -260,6 +276,69 @@ domUtils.createWidgetSlider = function(_options) {
   } catch(error) { }
 }
 
+/*Components
+*/
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof jQuery !== 'function') {
+    document.body.addEventListener('click', function(event) {
+      var _target = null
+      if (_target = event.target.closest('a.accordion-toggle')) {
+        event.preventDefault()
+        let panelGroup = _target.closest('div.panel-group')
+        if (!panelGroup) return
+        let panel = panelGroup.querySelector(':scope div.panel-collapse')
+        if (!panel) return
+        if (panel.hasClass('in')) {
+          panel.removeClass('in')
+        } else {
+          panel.addClass('in')
+        }
+        return
+      }
+
+      if (_target = event.target.closest('a[role="tab"]')) {
+        event.preventDefault()
+        let tabList = _target.closest('[role="tablist"]')
+        if (!tabList) return
+        let contentContainer = tabList.nextElementSibling
+        if (!contentContainer || !contentContainer.hasClass('tab-content')) return
+        let contentRef = _target.getAttribute('data-target')
+        if (!contentRef) contentRef = _target.getAttribute('href')
+        if (!contentRef) return
+        let tab = document.querySelector(contentRef)
+        if (!tab) return
+        //Update current tab level:
+        tabList.querySelectorAll('li[role="presentation"].active').removeClass('active')
+        _target.closest('li[role="presentation"]').addClass('active')
+
+        contentContainer.querySelectorAll('div[role="tabpanel"].active').removeClass('active')
+        tab.addClass('active')
+
+        //Update tabs inside current tab:
+        tab.querySelectorAll('[role="tablist"]').forEach(_list => {
+          let active = _list.querySelector('li.active')
+          if (active == null) {
+            _list.querySelector('a[role="tab"]').click()
+          } else {
+            active.querySelector('a[role="tab"]').click()
+          }
+        })
+
+        if (_target.getAttribute('data-target') == '' && event.target.getAttribute('href') == '') return
+        if (_target.closest('.ui-dialog-content') != null) return
+        if (_target.closest('.jeeDialog') != null) return
+
+        if (jeeFrontEnd.PREVIOUS_PAGE == null) {
+          window.history.replaceState('', '', 'index.php?' + window.location.href.split("index.php?")[1])
+          jeeFrontEnd.PREVIOUS_PAGE = 'index.php?' + window.location.href.split("index.php?")[1]
+        }
+        window.location.hash = _target.getAttribute('data-target') || _target.getAttribute('href')
+        return
+      }
+    })
+  }
+})
 
 /*Autocomplete inputs
   If several inputs share same autocomplete (same options), set un id on call options so they all share same container.
@@ -1343,6 +1422,9 @@ var jeeDialog = (function()
         backdrop: false,
       },
       mod_selectIcon: {
+        width: '95vw',
+        height: '90vh',
+        top: '5vh',
         zIndex: 1025
       },
       jee_modal2: {
@@ -1442,6 +1524,8 @@ var jeeDialog = (function()
               if (!_options.fullScreen) this.dialog.setAttribute('data-maximize', '0')
               setPosition(this.dialog, _options)
             }
+            document.querySelectorAll('div.jeeDialog.jeeDialogMain').removeClass('active')
+            this.dialog.addClass('active')
             this.dialog.seen()
           },
           hide: function() {
@@ -1453,6 +1537,7 @@ var jeeDialog = (function()
             this.dialog.querySelector('div.jeeDialogContent').empty()
             this.dialog.unseen()
             this.dialog._jeeDialog.options.onClose()
+            this.dialog.removeClass('active')
             cleanBackdrop()
           },
           destroy: function() {
@@ -1460,6 +1545,12 @@ var jeeDialog = (function()
             cleanBackdrop()
           }
         }
+
+        dialogContainer.addEventListener('mousedown', function(event) {
+          if (event.defaultPrevented) return
+          document.querySelectorAll('div.jeeDialog.jeeDialogMain').removeClass('active')
+          event.target.closest('div.jeeDialog.jeeDialogMain').addClass('active')
+        })
 
         //____Set Moveable
         var nextLeft, nextTop, initialLeft, initialTop
@@ -1596,11 +1687,10 @@ var jeeDialog = (function()
 })()
 
 
-/* jeeCtxMenu()
+/* new jeeCtxMenu({})
 Core lib for context menus
 */
-var jeeCtxMenu = function(_options)
-{
+var jeeCtxMenu = function(_options) {
   var ctxInstance = { //Always initialize with new jeeCtxMenu({}) or this won't be unique per menu!
     realTrigger: null
   }
@@ -1844,6 +1934,7 @@ var jeeCtxMenu = function(_options)
   ctxInstance.show = function(_event) {
     if (typeof ctxInstance.options.build === 'function') { //Dynamic build
       var _args = ctxInstance.options.build(ctxInstance.realTrigger)
+      if (_args === false) return false
       if (!isset(_args)) _args = {}
       if (!isset(_args.items)) _args.items = false
       if (!isset(_args.callback)) _args.callback = false
@@ -1926,3 +2017,253 @@ var jeeCtxMenu = function(_options)
   return ctxInstance
 }
 
+
+/* new jeeFileUploader({})
+Core lib for input upload file
+*/
+var jeeFileUploader = function(_options) {
+  var defaultOptions = {
+    fileInput: false,
+    replaceFileInput: false,
+    singleFileUploads: true,
+    limitMultiFileUploads: undefined,
+    limitUploadFileSize: undefined,
+    url: '',
+    dataType: 'json',
+    add: false,
+    done: false,
+  }
+  if (!_options.fileInput) {
+    console.warn('jeeFileUploader: no fileInput provided.')
+    return null
+  }
+
+  //Merge defaults and submitted options:
+  if (!isset(_options.singleFileUploads) && _options.fileInput.getAttribute('multiple') == 'multiple') {
+    _options.singleFileUploads = false
+  }
+  _options = domUtils.extend(defaultOptions, _options)
+
+  if (!_options.url) {
+    let dataurl = _options.fileInput.getAttribute('data-url')
+    if (dataurl != null) {
+      _options.url = dataurl
+    }
+  }
+
+  var displayLimit = null
+  if (_options.limitUploadFileSize != undefined) {
+    displayLimit = domUtils.octetsToHumanSize(_options.limitUploadFileSize)
+  }
+
+  //Event:
+  _options.fileInput.registerEvent('change', function jeeFileUpload(event) {
+    var data = new FormData()
+    if (_options.singleFileUploads) {
+      if (event.target.files.length > 1) {
+        jeeDialog.alert('{{Vous ne pouvez uploader qu\'un seul fichier.}}')
+        return false
+      }
+      if (_options.limitUploadFileSize != undefined) {
+        if (event.target.files[0].size > _options.limitUploadFileSize) {
+          jeeDialog.alert('{{Taille de fichier trop importante.}} (' + displayLimit + ')')
+          return false
+        }
+      }
+
+      data.append('file', event.target.files[0])
+      if (typeof _options.add === 'function') {
+        _options.add.apply(_options.fileInput, [event, data])
+      }
+    } else {
+      let files = event.target.files
+      for (let i = 0; i < files.length; i++) {
+
+        if (_options.limitMultiFileUploads != undefined && i > _options.limitMultiFileUploads) break
+        let file = files.item(i)
+        if (_options.limitUploadFileSize != undefined) {
+          if (file.size > _options.limitUploadFileSize) {
+            jeeDialog.alert('{{Taille de fichier trop importante.}} (' + displayLimit + ')')
+            return false
+          }
+        }
+
+        if (typeof _options.add === 'function') {
+          let addData = new FormData()
+          data.append('file', file)
+          _options.data = data
+          _options.add.apply(_options.fileInput, [event, _options])
+        } else {
+          data.append('file-' + i, file)
+        }
+      }
+    }
+
+    if (!_options.add) {
+      domUtils.ajax({
+        url: _options.url,
+        async: true,
+        dataType: 'json',
+        type: 'POST',
+        data: data,
+        processData: false,
+        error: function() {
+          console.warn('jeeFileUploader: ajax error.')
+        },
+        success: function(data) {
+          if (_options.done) _options.done.apply(_options.fileInput, [event, {result: data}])
+        },
+      })
+    }
+  })
+
+  _options.destroy = function() {
+    this.fileInput.unRegisterEvent('change', 'jeeFileUpload')
+  }
+  _options.submit = function() {
+    domUtils.ajax({
+      url: _options.url,
+      async: true,
+      dataType: 'json',
+      type: 'POST',
+      data: _options.data,
+      processData: false,
+      error: function() {
+        console.warn('jeeFileUploader: ajax error.')
+      },
+      success: function(data) {
+        if (_options.done) _options.done.apply(_options.fileInput, [event, {result: data}])
+      },
+    })
+  }
+
+  return _options
+}
+
+
+/* new jeeResize(selector, {})
+Core lib for resizeable elements
+*/
+var jeeResize = function(_selector, _options) {
+  var elements = document.querySelectorAll(_selector)
+  if (elements.length == 0) {
+    console.warn('jeeResize: no elements found. selector:', _selector)
+    return null
+  }
+
+  var defaultOptions = {
+    cancel: false,
+    state: true,
+    containment: false,
+    handles: ['top', 'top-right', 'right', 'bottom-right', 'bottom', 'bottom-left', 'left', 'top-left'],
+    start: false,
+    resize: false,
+    stop: false
+  }
+  _options = domUtils.extend(defaultOptions, _options)
+
+  var currentRszr = {}
+
+  elements.forEach(elResize => {
+    elResize._jeeResize = {}
+    elResize._jeeResize.options = _options
+    elResize._jeeResize.element = elResize
+    elResize._jeeResize.destroy = function() {
+      elResize.querySelectorAll('.jeeresizer').forEach(_rszr => {
+        _rszr.remove()
+      })
+    }
+
+    _options.handles.forEach(handle => {
+      var div = document.createElement('div')
+      div.addClass('jeeresizer', handle)
+      div.setAttribute('data-resize', handle)
+      elResize.appendChild(div)
+      div.addEventListener('pointerdown', resizeStart, false)
+    })
+  })
+
+  var initialLeft, initialTop, initialWidth, initialHeight
+  function resizeStart(event) {
+    event.preventDefault()
+    event.stopPropagation()
+    event.stopImmediatePropagation()
+    currentRszr = event.target.parentNode._jeeResize
+
+    if (currentRszr.options.cancel !== false && event.target.parentNode.hasClass(currentRszr.options.cancel)) return false
+    if (currentRszr.options.containment !== false) {
+      currentRszr.containmentRect = currentRszr.options.containment.getBoundingClientRect()
+    } else {
+      currentRszr.containmentRect = document.body.getBoundingClientRect()
+    }
+
+    currentRszr.rszElement = this
+    currentRszr.resizer = this.getAttribute('data-resize')
+
+    let bRect = event.target.parentNode.getBoundingClientRect()
+    initialLeft = bRect.left
+    initialTop = bRect.top
+    initialWidth = bRect.width
+    initialHeight = bRect.height
+    document.body.addEventListener('pointerup', resizeEnd, false)
+    document.body.addEventListener('pointermove', resizing, false)
+    if (currentRszr.options.start) {
+      currentRszr.options.start.apply(currentRszr.rszElement, [event, currentRszr.element])
+    }
+  }
+  function resizing(event) {
+    var element = currentRszr.rszElement.parentNode
+
+    if (currentRszr.resizer.includes('left')) {
+      let minLeft = currentRszr.containmentRect.left
+      let maxLeft = currentRszr.containmentRect.right
+      let left = event.clientX
+      if (left >= minLeft && left <= maxLeft) {
+        element.style.left = left - currentRszr.containmentRect.left + 'px'
+        let width = initialWidth + (initialLeft - event.clientX)
+        width = width <= currentRszr.containmentRect.width ? width : currentRszr.containmentRect.width
+        element.style.width = width + 'px'
+      }
+    }
+
+    if (currentRszr.resizer.includes('top')) {
+      let minTop = currentRszr.containmentRect.top
+      let maxTop = currentRszr.containmentRect.bottom
+      let top = event.clientY
+      if (top >= minTop && top <= maxTop) {
+        element.style.top = top - currentRszr.containmentRect.top + 'px'
+        let height = initialHeight + (initialTop - event.clientY)
+        height = height <= currentRszr.containmentRect.height ? height : currentRszr.containmentRect.height
+        element.style.height = height + 'px'
+      }
+    }
+
+    if (currentRszr.resizer.includes('right')) {
+      let maxWidth = currentRszr.containmentRect.width - element.offsetLeft
+      let width = event.clientX - initialLeft
+      if (width <= maxWidth) {
+        element.style.width = width + 'px'
+      }
+    }
+
+    if (currentRszr.resizer.includes('bottom')) {
+      let maxHeight = currentRszr.containmentRect.height - element.offsetTop
+      let height = event.clientY - initialTop
+      if (height <= maxHeight) {
+        element.style.height = height + 'px'
+      }
+    }
+    if (currentRszr.options.resize) {
+      currentRszr.options.resize.apply(currentRszr.rszElement, [event, currentRszr.element])
+    }
+  }
+  function resizeEnd(event) {
+    document.body.removeEventListener('pointerup', resizeEnd, false)
+    document.body.removeEventListener('pointermove', resizing, false)
+    if (currentRszr.options.end) {
+      currentRszr.options.end.apply(currentRszr.rszElement, [event, currentRszr.element])
+    }
+  }
+
+  return _options
+}

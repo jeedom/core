@@ -49,10 +49,10 @@ try {
 			}
 			$user = user::connect(init('username'), init('password'));
 			if (is_object($user) && network::getUserLocation() != 'internal' && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '' && init('twoFactorCode') == '') {
-				throw new Exception('Double authentification requise', -32012);
+				throw new Exception(__('Double authentification requise', __FILE__), -32012);
 			}
 			if (!login(init('username'), init('password'), init('twoFactorCode'))) {
-				throw new Exception('Mot de passe ou nom d\'utilisateur incorrect');
+				throw new Exception(__('Mot de passe ou nom d\'utilisateur incorrect'), __FILE__);
 			}
 		}
 
@@ -83,7 +83,7 @@ try {
 
 	if (init('action') == 'getApikey') {
 		if (!login(init('username'), init('password'), init('twoFactorCode'))) {
-			throw new Exception('Mot de passe ou nom d\'utilisateur incorrect');
+			throw new Exception(__('Mot de passe ou nom d\'utilisateur incorrect'), __FILE__);
 		}
 		ajax::success($_SESSION['user']->getHash());
 	}
@@ -206,7 +206,7 @@ try {
 		}
 		$user = user::byId(init('id'));
 		if (!is_object($user)) {
-			throw new Exception('User ID inconnu');
+			throw new Exception(__('User ID inconnu', __FILE__));
 		}
 		$user->remove();
 		ajax::success();
@@ -216,7 +216,7 @@ try {
 		unautorizedInDemo();
 		$user_json = jeedom::fromHumanReadable(json_decode(init('profils'), true));
 		if (isset($user_json['id']) && $user_json['id'] != $_SESSION['user']->getId()) {
-			throw new Exception('401 - Accès non autorisé');
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		@session_start();
 		$_SESSION['user']->refresh();

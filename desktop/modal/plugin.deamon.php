@@ -31,220 +31,245 @@ if (count($deamon_info) == 0) {
 $refresh = array();
 ?>
 
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>{{Nom}}</th>
-      <th>{{Statut}}</th>
-      <th>{{Configuration}}</th>
-      <th>{{(Re)Démarrer}}</th>
-      <th>{{Arrêter}}</th>
-      <th>{{Gestion automatique}}</th>
-      <th>{{Dernier lancement}}</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>{{Local}}</td>
-      <td class="deamonState">
-        <?php
-        $refresh[0] = 0;
-        switch ($deamon_info['state']) {
-          case 'ok':
-            echo '<span class="label label-success">{{OK}}</span>';
-            break;
-          case 'nok':
-            echo '<span class="label label-danger">{{NOK}}</span>';
-            break;
-          default:
-            echo '<span class="label label-warning">' . $deamon_info['state'] . '</span>';
-            break;
-        }
-        ?>
-      </td>
-      <td class="deamonLaunchable">
-        <?php
-        if (!isset($deamon_info['launchable_message'])) {
-          $deamon_info['launchable_message'] = '';
-        }
-        if (!isset($deamon_info['auto'])) {
-          $deamon_info['auto'] = 1;
-        }
-        switch ($deamon_info['launchable']) {
-          case 'ok':
-            echo '<span class="label label-success">{{OK}}</span>';
-            break;
-          case 'nok':
-            echo '<span class="label label-danger">{{NOK}}</span> ' . $deamon_info['launchable_message'];
-            break;
-          default:
-            echo '<span class="label label-warning">' . $deamon_info['launchable'] . '</span>';
-            break;
-        }
-        ?>
-      </td>
-      <td>
-        <a class="btn btn-success btn-sm bt_startDeamon" style="position:relative;top:-5px;"><i class="fas fa-play"></i></a>
-      </td>
-      <td>
-        <a class="btn btn-danger btn-sm bt_stopDeamon" style="position:relative;top:-5px;"><i class="fas fa-stop"></i></a>
-      </td>
-      <td>
-        <?php if ($deamon_info['auto'] == 1) { ?>
-          <a class="btn btn-danger btn-sm bt_changeAutoMode" data-mode="0" style="position:relative;top:-5px;"><i class="fas fa-times"></i> {{Désactiver}}</a>
-        <?php } else { ?>
-          <a class="btn btn-success btn-sm bt_changeAutoMode" data-mode="1" style="position:relative;top:-5px;"><i class="fas fa-magic"></i> {{Activer}}</a>
-        <?php }
-        ?>
-      </td>
-      <td class="td_lastLaunchDeamon">
-        <?php
-        if (isset($deamon_info['last_launch'])) {
-          echo $deamon_info['last_launch'];
-        }
-        ?>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
+<div id="md_pluginDaemon" data-modalType="md_pluginDaemon">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>{{Nom}}</th>
+        <th>{{Statut}}</th>
+        <th>{{Configuration}}</th>
+        <th>{{(Re)Démarrer}}</th>
+        <th>{{Arrêter}}</th>
+        <th>{{Gestion automatique}}</th>
+        <th>{{Dernier lancement}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{Local}}</td>
+        <td class="deamonState">
+          <?php
+          $refresh[0] = 0;
+          switch ($deamon_info['state']) {
+            case 'ok':
+              echo '<span class="label label-success">{{OK}}</span>';
+              break;
+            case 'nok':
+              echo '<span class="label label-danger">{{NOK}}</span>';
+              break;
+            default:
+              echo '<span class="label label-warning">' . $deamon_info['state'] . '</span>';
+              break;
+          }
+          ?>
+        </td>
+        <td class="deamonLaunchable">
+          <?php
+          if (!isset($deamon_info['launchable_message'])) {
+            $deamon_info['launchable_message'] = '';
+          }
+          if (!isset($deamon_info['auto'])) {
+            $deamon_info['auto'] = 1;
+          }
+          switch ($deamon_info['launchable']) {
+            case 'ok':
+              echo '<span class="label label-success">{{OK}}</span>';
+              break;
+            case 'nok':
+              echo '<span class="label label-danger">{{NOK}}</span> ' . $deamon_info['launchable_message'];
+              break;
+            default:
+              echo '<span class="label label-warning">' . $deamon_info['launchable'] . '</span>';
+              break;
+          }
+          ?>
+        </td>
+        <td>
+          <a class="btn btn-success btn-sm bt_startDeamon" style="position:relative;top:-5px;"><i class="fas fa-play"></i></a>
+        </td>
+        <td>
+          <a class="btn btn-danger btn-sm bt_stopDeamon" style="position:relative;top:-5px;"><i class="fas fa-stop"></i></a>
+        </td>
+        <td>
+          <?php if ($deamon_info['auto'] == 1) { ?>
+            <a class="btn btn-danger btn-sm bt_changeAutoMode" data-mode="0" style="position:relative;top:-5px;"><i class="fas fa-times"></i> {{Désactiver}}</a>
+          <?php } else { ?>
+            <a class="btn btn-success btn-sm bt_changeAutoMode" data-mode="1" style="position:relative;top:-5px;"><i class="fas fa-magic"></i> {{Activer}}</a>
+          <?php }
+          ?>
+        </td>
+        <td class="td_lastLaunchDeamon">
+          <?php
+          if (isset($deamon_info['last_launch'])) {
+            echo $deamon_info['last_launch'];
+          }
+          ?>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <?php sendVarToJs('refresh_deamon_info', $refresh); ?>
 
 <script>
-  var timeout_refreshDeamonInfo = null
-
-  function refreshDeamonInfo() {
-    var in_progress = true
-    var nok = false
-    jeedom.plugin.getDeamonInfo({
-      id: plugin_id,
-      success: function(data) {
-        switch (data.state) {
-          case 'ok':
-            if (data.auto == 1) {
-              $('.bt_stopDeamon').show()
-            }
-            $('.deamonState').empty().append('<span class="label label-success">{{OK}}</span>')
-            break
-          case 'nok':
-            if (data.auto == 1) {
-              nok = true
-            }
-            $('.bt_stopDeamon').hide()
-            $('.deamonState').empty().append('<span class="label label-danger">{{NOK}}</span>')
-            break;
-          default:
-            $('.deamonState').empty().append('<span class="label label-warning">' + data.state + '</span>')
-        }
-        switch (data.launchable) {
-          case 'ok':
-            $('.bt_startDeamon').show()
-            if (data.auto == 1 && data.state == 'ok') {
-              $('.bt_stopDeamon').show()
-            }
-            $('.deamonLaunchable').empty().append('<span class="label label-success">{{OK}}</span>')
-            break
-          case 'nok':
-            if (data.auto == 1) {
-              nok = true
-            }
-            $('.bt_startDeamon').hide()
-            $('.bt_stopDeamon').hide()
-            $('.deamonLaunchable').empty().append('<span class="label label-danger">{{NOK}}</span> ' + data.launchable_message)
-            break
-          default:
-            $('.deamonLaunchable').empty().append('<span class="label label-warning">' + data.state + '</span>')
-        }
-        $('.td_lastLaunchDeamon').empty().append(data.last_launch)
-        if (data.auto == 1) {
-          $('.bt_stopDeamon').hide();
-          $('.bt_changeAutoMode').removeClass('btn-success').addClass('btn-danger')
-          $('.bt_changeAutoMode').attr('data-mode', 0)
-          $('.bt_changeAutoMode').html('<i class="fas fa-times"></i> {{Désactiver}}')
-        } else {
-          if (data.launchable == 'ok' && data.state == 'ok') {
-            $('.bt_stopDeamon').show()
+if (!jeeFrontEnd.md_pluginDaemon) {
+  jeeFrontEnd.md_pluginDaemon = {
+    timeout_refreshDeamonInfo: null,
+    init: function() {
+      this.refreshDeamonInfo()
+    },
+    refreshDeamonInfo: function() {
+      clearTimeout(jeeFrontEnd.md_pluginDaemon.timeout_refreshDeamonInfo)
+      //No longer shown ?
+      if (document.getElementById('md_pluginDaemon') == null) return
+      var in_progress = true
+      var nok = false
+      jeedom.plugin.getDeamonInfo({
+        id: plugin_id,
+        success: function(data) {
+          switch (data.state) {
+            case 'ok':
+              if (data.auto == 1) {
+                document.querySelector('#md_pluginDaemon .bt_stopDeamon').seen()
+              }
+              document.querySelector('#md_pluginDaemon .deamonState').empty().insertAdjacentHTML('beforeend', '<span class="label label-success">{{OK}}</span>')
+              break
+            case 'nok':
+              if (data.auto == 1) {
+                nok = true
+              }
+              document.querySelector('#md_pluginDaemon .bt_stopDeamon').unseen()
+              document.querySelector('#md_pluginDaemon .deamonState').empty().insertAdjacentHTML('beforeend', '<span class="label label-danger">{{NOK}}</span>')
+              break;
+            default:
+              document.querySelector('#md_pluginDaemon .deamonState').empty().insertAdjacentHTML('beforeend', '<span class="label label-warning">' + data.state + '</span>')
           }
-          $('.bt_changeAutoMode').removeClass('btn-danger').addClass('btn-success')
-          $('.bt_changeAutoMode').attr('data-mode', 1)
-          $('.bt_changeAutoMode').html('<i class="fas fa-magic"></i> {{Activer}}')
-        }
-        if (!nok) {
-          $("#div_plugin_deamon").closest('.panel').removeClass('panel-danger').addClass('panel-success')
-        } else {
-          $("#div_plugin_deamon").closest('.panel').removeClass('panel-success').addClass('panel-danger')
-        }
+          switch (data.launchable) {
+            case 'ok':
+              document.querySelector('#md_pluginDaemon .bt_startDeamon').seen()
+              if (data.auto == 1 && data.state == 'ok') {
+                document.querySelector('.bt_stopDeamon').seen()
+              }
+              document.querySelector('#md_pluginDaemon .deamonLaunchable').empty().insertAdjacentHTML('beforeend', '<span class="label label-success">{{OK}}</span>')
+              break
+            case 'nok':
+              if (data.auto == 1) {
+                nok = true
+              }
+              document.querySelector('#md_pluginDaemon .bt_startDeamon').unseen()
+              document.querySelector('#md_pluginDaemon .bt_stopDeamon').unseen()
+              document.querySelector('#md_pluginDaemon .deamonLaunchable').empty().insertAdjacentHTML('beforeend', '<span class="label label-danger">{{NOK}}</span> ' + data.launchable_message)
+              break
+            default:
+              document.querySelector('#md_pluginDaemon .deamonLaunchable').empty().insertAdjacentHTML('beforeend', '<span class="label label-warning">' + data.state + '</span>')
+          }
+          document.querySelector('#md_pluginDaemon .td_lastLaunchDeamon').empty().append(data.last_launch)
+          if (data.auto == 1) {
+            document.querySelector('#md_pluginDaemon .bt_stopDeamon').unseen()
+            document.querySelector('#md_pluginDaemon .bt_changeAutoMode').removeClass('btn-success').addClass('btn-danger')
+            document.querySelector('#md_pluginDaemon .bt_changeAutoMode').setAttribute('data-mode', 0)
+            document.querySelector('#md_pluginDaemon .bt_changeAutoMode').innerHTML = '<i class="fas fa-times"></i> {{Désactiver}}'
+          } else {
+            if (data.launchable == 'ok' && data.state == 'ok') {
+              document.querySelector('#md_pluginDaemon .bt_stopDeamon').seen()
+            }
+            document.querySelector('#md_pluginDaemon .bt_changeAutoMode').removeClass('btn-danger').addClass('btn-success')
+            document.querySelector('#md_pluginDaemon .bt_changeAutoMode').setAttribute('data-mode', 1)
+            document.querySelector('#md_pluginDaemon .bt_changeAutoMode').innerHTML = '<i class="fas fa-magic"></i> {{Activer}}'
+          }
+          if (!nok) {
+            document.getElementById('div_plugin_deamon').closest('.panel').removeClass('panel-danger').addClass('panel-success')
+          } else {
+            document.getElementById('div_plugin_deamon').closest('.panel').removeClass('panel-success').addClass('panel-danger')
+          }
 
-        if ($("#div_plugin_deamon").is(':visible')) {
-          timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000)
+          if (document.getElementById('div_plugin_deamon').isVisible()) {
+            jeeFrontEnd.md_pluginDaemon.timeout_refreshDeamonInfo = setTimeout(jeeFrontEnd.md_pluginDaemon.refreshDeamonInfo, 5000)
+          }
         }
-      }
-    })
+      })
+    },
   }
-  refreshDeamonInfo()
+}
+(function() {// Self Isolation!
+  var jeeM = jeeFrontEnd.md_pluginDaemon
+  jeeM.init()
 
-  $('.bt_startDeamon').on('click', function() {
-    clearTimeout(timeout_refreshDeamonInfo)
-    jeeFrontEnd.plugin.savePluginConfig({
-      relaunchDeamon: false,
-      success: function() {
-        jeedom.plugin.deamonStart({
-          id: plugin_id,
-          forceRestart: 1,
-          error: function(error) {
-            jeedomUtils.showAlert({
-              message: error.message,
-              level: 'danger'
-            })
-            refreshDeamonInfo()
-            timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000)
-          },
-          success: function() {
-            refreshDeamonInfo()
-            timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000)
-          }
-        })
-      }
-    })
+  /*Events delegations
+  */
+  document.getElementById('md_pluginDaemon').addEventListener('click', function(event) {
+    var _target = null
+    if (_target = event.target.closest('.bt_startDeamon')) {
+      clearTimeout(jeeFrontEnd.md_pluginDaemon.timeout_refreshDeamonInfo)
+      jeeFrontEnd.plugin.savePluginConfig({
+        relaunchDeamon: false,
+        success: function() {
+          jeedom.plugin.deamonStart({
+            id: plugin_id,
+            forceRestart: 1,
+            error: function(error) {
+              jeedomUtils.showAlert({
+                attachTo: jeeDialog.get('#md_pluginDaemon', 'content'),
+                message: error.message,
+                level: 'danger'
+              })
+              jeeFrontEnd.md_pluginDaemon.refreshDeamonInfo()
+              jeeFrontEnd.md_pluginDaemon.timeout_refreshDeamonInfo = setTimeout(jeeFrontEnd.md_pluginDaemon.refreshDeamonInfo, 5000)
+            },
+            success: function() {
+              jeeFrontEnd.md_pluginDaemon.refreshDeamonInfo()
+              jeeFrontEnd.md_pluginDaemon.timeout_refreshDeamonInfo = setTimeout(jeeFrontEnd.md_pluginDaemon.refreshDeamonInfo, 5000)
+            }
+          })
+        }
+      })
+      return
+    }
+
+    if (_target = event.target.closest('.bt_stopDeamon')) {
+      clearTimeout(jeeFrontEnd.md_pluginDaemon.timeout_refreshDeamonInfo)
+      jeedom.plugin.deamonStop({
+        id: plugin_id,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_pluginDaemon', 'content'),
+            message: error.message,
+            level: 'danger'
+          })
+          jeeFrontEnd.md_pluginDaemon.refreshDeamonInfo()
+          jeeFrontEnd.md_pluginDaemon.timeout_refreshDeamonInfo = setTimeout(jeeFrontEnd.md_pluginDaemon.refreshDeamonInfo, 5000)
+        },
+        success: function() {
+          jeeFrontEnd.md_pluginDaemon.refreshDeamonInfo()
+          jeeFrontEnd.md_pluginDaemon.timeout_refreshDeamonInfo = setTimeout(jeeFrontEnd.md_pluginDaemon.refreshDeamonInfo, 5000)
+        }
+      })
+      return
+    }
+
+    if (_target = event.target.closest('.bt_changeAutoMode')) {
+      clearTimeout(jeeFrontEnd.md_pluginDaemon.timeout_refreshDeamonInfo)
+      var mode = _target.getAttribute('data-mode')
+      jeedom.plugin.deamonChangeAutoMode({
+        id: plugin_id,
+        mode: mode,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_pluginDaemon', 'content'),
+            message: error.message,
+            level: 'danger'
+          })
+          jeeFrontEnd.md_pluginDaemon.refreshDeamonInfo()
+          jeeFrontEnd.md_pluginDaemon.timeout_refreshDeamonInfo = setTimeout(jeeFrontEnd.md_pluginDaemon.refreshDeamonInfo, 5000)
+        },
+        success: function() {
+          jeeFrontEnd.md_pluginDaemon.refreshDeamonInfo()
+          jeeFrontEnd.md_pluginDaemon.timeout_refreshDeamonInfo = setTimeout(jeeFrontEnd.md_pluginDaemon.refreshDeamonInfo, 5000)
+        }
+      })
+      return
+    }
   })
 
-  $('.bt_stopDeamon').on('click', function() {
-    clearTimeout(timeout_refreshDeamonInfo)
-    jeedom.plugin.deamonStop({
-      id: plugin_id,
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-        refreshDeamonInfo()
-        timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000)
-      },
-      success: function() {
-        refreshDeamonInfo()
-        timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000)
-      }
-    })
-  })
-
-  $('.bt_changeAutoMode').on('click', function() {
-    clearTimeout(timeout_refreshDeamonInfo)
-    var mode = $(this).attr('data-mode')
-    jeedom.plugin.deamonChangeAutoMode({
-      id: plugin_id,
-      mode: mode,
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-        refreshDeamonInfo()
-        timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000)
-      },
-      success: function() {
-        refreshDeamonInfo()
-        timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000)
-      }
-    })
-  })
+})()
 </script>

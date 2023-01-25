@@ -340,8 +340,8 @@
         "Supprimer l'image": "画像を削除します",
         "Afficher le nom des objets sur les widgets": "ウィジェット上のオブジェクトの名前を表示する",
         "Image ajoutée": "画像を追加しました",
-        "Image supprimée": "削除された画像",
-        "Vue sauvegardé": "保存されたビュー"
+        "Vue sauvegardé": "保存されたビュー",
+        "Image supprimée": "削除された画像"
     },
     "desktop\/modal\/db.check.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
@@ -353,8 +353,9 @@
         "SQL": "SQL",
         "Action": "アクション",
         "Corriger": "正しいです",
-        "Êtes-vous sûr de vouloir corriger toute les tables ?": "Êtes-vous sûr de vouloir corriger toute les tables ?",
+        "Êtes-vous sûr de vouloir corriger toutes les tables ?": "Êtes-vous sûr de vouloir corriger toutes les tables ?",
         "Êtes-vous sûr de vouloir corriger la table": "テーブルを修正してもよろしいですか",
+        "Correction de la base de données": "Correction de la base de données",
         "Vérification base de données": "データベース検証"
     },
     "desktop\/modal\/dataStore.management.php": {
@@ -815,6 +816,12 @@
         "Paramètres optionnels widget": "オプションの設定ウィジェット",
         "Configuration commande": "Configuration commande",
         "Pas de description des paramètres optionnels sur ce Widget.": "Pas de description des paramètres optionnels sur ce Widget",
+        "Décocher pour désactiver l\\'action": "\\アクションを無効にするにはチェックを外し",
+        "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "コマンド\\「sが並列他のアクションで実行しているかどうかを確認",
+        "Sélectionner un mot-clé": "キーワードを選択",
+        "Sélection multiple de commandes": "複数のコントロールを選択します",
+        "Modification(s) appliquée(s) avec succès": "変更（複数可）に成功（S）を適用しました",
+        "Sauvegarde réussie": "成功したバックアップ",
         "Graphique des liens": "グラフィックリンク",
         "Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\\'InfluxDB": "Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\\'InfluxDB",
         "Action envoyée avec succés": "Action envoyée avec succés",
@@ -830,14 +837,7 @@
         "Remplacement réalisé avec succès": "首尾よく交換",
         "Êtes-vous sûr de vouloir remplacer l\\'ID": "IDを置き換えてもよろしいですか",
         "ID de commande à remplacer ?": "交換するためのID？",
-        "Êtes-vous sûr de vouloir remplacer la commande": "Êtes-vous sûr de vouloir remplacer la commande",
-        "Sauvegarde réussie": "成功したバックアップ",
-        "Décocher pour désactiver l\\'action": "\\アクションを無効にするにはチェックを外し",
-        "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "コマンド\\「sが並列他のアクションで実行しているかどうかを確認",
-        "Sélectionner un mot-clé": "キーワードを選択",
-        "Sélection multiple de commandes": "複数のコントロールを選択します",
-        "Modification(s) appliquée(s) avec succès": "変更（複数可）に成功（S）を適用しました",
-        "Logs": "ログ"
+        "Êtes-vous sûr de vouloir remplacer la commande": "Êtes-vous sûr de vouloir remplacer la commande"
     },
     "desktop\/modal\/log.display.php": {
         "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel.": "ログレベル（イベント）はinfoよりも低いため、リアルタイムで表示することはできません。",
@@ -876,14 +876,14 @@
         "Icônes rouges": "Icônes rouges",
         "Icônes vertes": "Icônes vertes",
         "Rechercher": "検索",
+        "Clic droit sur un dossier pour ouvrir le menu contextuel": "Clic droit sur un dossier pour ouvrir le menu contextuel",
         "Ajouter": "Ajouter",
         "Nouveau": "Nouveau",
         "Renommer": "Renommer",
         "Supprimer": "取り除きます",
         "Etes-vous sûr de vouloir supprimer le dossier": "Etes-vous sûr de vouloir supprimer le dossier",
         "Attention : le contenu du dossier sera définitivement supprimé lors de l'opération.": "Attention : le contenu du dossier sera définitivement supprimé lors de l'opération",
-        "Êtes-vous sûr de vouloir supprimer cette image": "この画像を削除してもよろしいですか？",
-        "Clic droit sur un dossier pour ouvrir le menu contextuel": "Clic droit sur un dossier pour ouvrir le menu contextuel"
+        "Êtes-vous sûr de vouloir supprimer cette image": "この画像を削除してもよろしいですか？"
     },
     "desktop\/modal\/update.send.php": {
         "Le dépôt est inactif :": "デポジットは無効です：",
@@ -932,8 +932,7 @@
         "Action": "アクション",
         "Configuration de la commande": "設定された制御",
         "Exporter la commande": "注文をエクスポートする",
-        "Modifications sauvegardées avec succès": "変更が保存されました",
-        "Dossier": "記録"
+        "Modifications sauvegardées avec succès": "変更が保存されました"
     },
     "desktop\/modal\/scenario.jsonEdit.php": {
         "Aucun scénario ne correspondant à :": "以下に対応するシナリオはありません：",
@@ -1066,12 +1065,12 @@
         "Changement de pile": "バッテリー交換",
         "Attention si": "Attention si",
         "Configuration de l'équipement": "Configuration de l'équipement",
-        "Configuration de la commande": "Configuration de la commande",
+        "Sauvegarde réussie": "成功したバックアップ",
         "Graphique des liens": "グラフィックリンク",
         "Informations brutes": "生の情報",
-        "Sauvegarde réussie": "成功したバックアップ",
         "Êtes-vous sûr de vouloir supprimer cet équipement ?": "この機器を削除してもよろしいですか？",
         "Equipement supprimé avec succès": "Equipement supprimé avec succès",
+        "Configuration de la commande": "Configuration de la commande",
         "Confirmer le remplacement des piles ? Cette action enregistrera le dernier de changement de piles à la date d'aujourd'hui.": "Confirmer le remplacement des piles ? Cette action enregistrera le dernier de changement de piles à la date d'aujourd'hui",
         "Le remplacement des piles a été enregistré": "Le remplacement des piles a été enregistré"
     },
@@ -1179,8 +1178,12 @@
         "Télécharger": "ダウンロード",
         "Paramètres du scénario": "シナリオ設定",
         "Appliquer": "適用します",
+        "Template ajouté avec succès": "テンプレートが正常に追加されました",
+        "Création du template réussie": "Création du template réussie",
+        "Vous devez d\\'abord sélectionner un template": "Vous devez d\\'abord sélectionner un template",
+        "Suppression du template réussie": "Suppression du template réussie",
         "Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel.": "Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel",
-        "Template ajouté avec succès": "テンプレートが正常に追加されました"
+        "Template appliqué avec succès.": "Template appliqué avec succès"
     },
     "desktop\/modal\/update.add.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
@@ -1210,16 +1213,16 @@
     },
     "desktop\/modal\/first.use.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
-        "Configuration de votre": "あなたの設定",
         "Bienvenue dans": "へようこそ",
-        ", et merci d'avoir choisi cette solution pour votre habitat connecté.": ", et merci d'avoir choisi cette solution pour votre habitat connecté",
+        ", merci d'avoir choisi cette solution pour votre habitat connecté.": ", merci d'avoir choisi cette solution pour votre habitat connecté",
         "Voici 4 guides pour bien débuter avec": "Voici 4 guides pour bien débuter avec",
         "Guide de démarrage": "入門ガイド",
         "Concept": "Concept",
         "Documentation de démarrage": "はじめにドキュメント",
         "Documentation": "ドキュメンテーション",
         "Ne plus afficher": "Ne plus afficher",
-        "Sauvegarde réussie": "成功したバックアップ"
+        "Configuration de votre": "あなたの設定",
+        "Option enregistrée": "Option enregistrée"
     },
     "desktop\/modal\/interact.test.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
@@ -2034,7 +2037,6 @@
     "desktop\/php\/replace.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
         "Sauvegarde Système": "Sauvegarde Système",
-        "Reset": "Reset",
         "Remplacer": "Remplacer",
         "Filtres": "Filtres",
         "Filtre par objet": "Filtre par objet",
@@ -2044,6 +2046,7 @@
         "Filtre par plugin": "Filtre par plugin",
         "Plugins": "Plugins",
         "Filtrer": "Filtrer",
+        "Reset": "Reset",
         "Options": "Options",
         "Mode": "Mode",
         "Remplace l’équipement et ses commandes (scénarios, etc.) ou copie seulement les propriétés souhaitées.": "Remplace l’équipement et ses commandes (scénarios, etc.) ou copie seulement les propriétés souhaitées",
@@ -2729,12 +2732,12 @@
         "Vérifier": "チェック",
         "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)",
         "Options de mise à jour": "Options de mise à jour",
+        "Êtes-vous sûr de vouloir mettre à jour :": "Êtes-vous sûr de vouloir mettre à jour :",
+        "Êtes-vous sûr de vouloir supprimer :": "Êtes-vous sûr de vouloir supprimer :",
         "Êtes-vous sûr de vouloir mettre à jour les packages de type": "Êtes-vous sûr de vouloir mettre à jour les packages de type",
         "Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes": "Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes",
         "Mise à jour lancée avec succès.": "Mise à jour lancée avec succès",
-        "Log de mise à jour": "Log de mise à jour",
-        "Êtes-vous sûr de vouloir mettre à jour :": "Êtes-vous sûr de vouloir mettre à jour :",
-        "Êtes-vous sûr de vouloir supprimer :": "Êtes-vous sûr de vouloir supprimer :"
+        "Log de mise à jour": "Log de mise à jour"
     },
     "desktop\/js\/log.js": {
         "Pause": "休止",
@@ -2873,12 +2876,12 @@
         "Supprimer cette zone": "Supprimer cette zone"
     },
     "desktop\/js\/display.js": {
-        "Configuration de l'objet": "オブジェクト構成",
-        "Configuration de l'équipement": "機器構成",
-        "Configuration de la commande": "設定された制御",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "この機器をすべて削除してもよろしいですか？",
         "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?",
-        "Historique vidé avec succès": "履歴が空になりました"
+        "Historique vidé avec succès": "履歴が空になりました",
+        "Configuration de l'objet": "オブジェクト構成",
+        "Configuration de l'équipement": "機器構成",
+        "Configuration de la commande": "設定された制御"
     },
     "desktop\/js\/overview.js": {
         "Historique": "歴史的"
@@ -2903,21 +2906,21 @@
     },
     "desktop\/js\/history.js": {
         "Historique supprimé avec succès": "歴史は正常に削除しました",
+        "Période de comparaison": "Période de comparaison",
+        "Comparer": "Comparer",
+        "jours avec": "jours avec",
+        "jours il y a": "jours il y a",
         "Mes Calculs": "Mes Calculs",
         "Configuration des formules de calcul": "式の設定",
         "Configuration de l'historique des commandes": "歴史Configurationフォームのコントロール",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "彼は\\「sの歴史を削除する必要がある前に、日付（S：M Y-するM d H）を記入してください",
-        "Laissez vide pour tout supprimer": "Laissez vide pour tout supprimer",
-        "Période de comparaison": "Période de comparaison",
-        "Comparer": "Comparer",
-        "jours avec": "jours avec",
-        "jours il y a": "jours il y a"
+        "Laissez vide pour tout supprimer": "Laissez vide pour tout supprimer"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Supprimer ce filtre",
-        "Configuration de la commande": "Configuration de la commande",
         "L'import d'édition en masse se fait au format json.": "L'import d'édition en masse se fait au format json",
-        "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier"
+        "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier",
+        "Configuration de la commande": "Configuration de la commande"
     },
     "desktop\/js\/database.js": {
         "Commande :": "注文：",
@@ -3009,15 +3012,15 @@
     "desktop\/js\/interact.js": {
         "Action": "アクション",
         "Sélectionner un mot-clé": "キーワードを選択",
-        "Liste des interactions": "相互作用のリスト",
-        "Interactions": "相互作用",
-        "Nom": "Nom",
-        "Tester les interactions": "相互作用をテストする",
-        "Sauvegarde réussie avec succès": "バックアップが成功しました",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "すべてのインタラクションを再生成してもよろしいですか（これは非常に長くなる可能性があります）？",
         "Toutes les interactions ont été régénérées": "すべてのインタラクションが再生成されました",
+        "Tester les interactions": "相互作用をテストする",
         "Demande": "Demande",
-        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "インタラクションを削除してもよろしいですか"
+        "Interactions": "相互作用",
+        "Nom": "Nom",
+        "Sauvegarde réussie avec succès": "バックアップが成功しました",
+        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "インタラクションを削除してもよろしいですか",
+        "Liste des interactions": "相互作用のリスト"
     },
     "desktop\/js\/timeline.js": {
         "Ev ements de la timeline supprim  avec succ ": "Ev ements de la timeline supprim  avec succ",
@@ -3064,17 +3067,17 @@
         "Choisir": "選択",
         "Test": "テスト",
         "Résultat si test ok": "Résultat si test ok",
-        "Remplacement de widget": "ウィジェットの交換",
         "Appliquer ce widget à": "Appliquer ce widget à",
         "Modification(s) appliquée(s) avec succès": "変更（複数可）に成功（S）を適用しました",
-        "Widgets": "ウィジェット",
         "Nom du widget": "Nom du widget",
         "Sauvegarde effectuée avec succès": "バックアップが正常に完了",
-        "Configuration de la commande": "設定された制御",
-        "Êtes-vous sûr de vouloir supprimer le widget": "Êtes-vous sûr de vouloir supprimer le widget",
+        "Remplacement de widget": "ウィジェットの交換",
         "L'import de widget se fait au format json à partir d'un widget précédemment exporté.": "L'import de widget se fait au format json à partir d'un widget précédemment exporté",
         "Fichier json non compatible.": "JSONファイルに互換性がありません。",
         "Problème lors de la lecture du fichier.": "ファイルの読み取りに問題があります。",
+        "Widgets": "ウィジェット",
+        "Êtes-vous sûr de vouloir supprimer le widget": "Êtes-vous sûr de vouloir supprimer le widget",
+        "Configuration de la commande": "設定された制御",
         "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "ウィジェットのインポートは、以前にエクスポートされたウィジェットからjson形式で行われます。"
     },
     "desktop\/js\/profils.js": {
@@ -3099,8 +3102,8 @@
         "Cache nettoyé": "清掃キャッシュ",
         "Sauvegarde réussie": "成功したバックアップ",
         "Commande réalisée avec succès": "成功裏に実施し運用",
-        "Cookie de thème supprimé": "Cookie de thème supprimé",
         "Image enregistrée et configurée": "Image enregistrée et configurée",
+        "Cookie de thème supprimé": "Cookie de thème supprimé",
         "Êtes-vous sûr de vouloir supprimer cette image de fond ?": "Êtes-vous sûr de vouloir supprimer cette image de fond ?",
         "Image supprimée": "Image supprimée",
         "Evènements de la timeline supprimés avec succès": "Evènements de la timeline supprimés avec succès",
@@ -3128,18 +3131,18 @@
     },
     "desktop\/js\/types.js": {
         "Aucun": "Aucun",
+        "Liste des Types Génériques (Core et Plugins)": "Liste des Types Génériques (Core et Plugins)",
+        "Générique": "Générique",
+        "Nom": "Nom",
+        "Type": "Type",
+        "Sous type": "Sous type",
         "Types Génériques automatiques": "Types Génériques automatiques",
         "Appliquer": "Appliquer",
         "Types Génériques sauvegardés": "Types Génériques sauvegardés",
         "Supprimer les types generiques sur les commandes ?": "Supprimer les types generiques sur les commandes ?",
         "Oui": "Oui",
         "Non": "Non",
-        "Supprimer": "Supprimer",
-        "Liste des Types Génériques (Core et Plugins)": "Liste des Types Génériques (Core et Plugins)",
-        "Générique": "Générique",
-        "Nom": "Nom",
-        "Type": "Type",
-        "Sous type": "Sous type"
+        "Supprimer": "Supprimer"
     },
     "desktop\/js\/replace.js": {
         "Aucun": "Aucun",
@@ -3149,17 +3152,17 @@
         "Aucun équipement à remplacer ou copier": "Aucun équipement à remplacer ou copier",
         "Aucune commande à remplacer ou copier": "Aucune commande à remplacer ou copier",
         "Remplacement effectué": "Remplacement effectué",
+        "Remplacement": "Remplacement",
         "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
         "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Supprimée le": "Supprimée le",
+        "Configuration en masse": "マス構成",
         "Configuration de la commande": "Configuration de la commande",
-        "Configuration de l'équipement": "機器構成",
-        "Configuration en masse": "マス構成"
+        "Configuration de l'équipement": "機器構成"
     },
     "desktop\/js\/object.js": {
-        "Envoyer": "送ります",
         "Image de fond ajoutée avec succès": "Image de fond ajoutée avec succès",
         "Commande": "オーダー",
         "Activer": "アクティブ",
@@ -3173,16 +3176,16 @@
         "Rendre visible sur le Dashboard": "Rendre visible sur le Dashboard",
         "Objet parent": "Objet parent",
         "Positionner après": "Positionner après",
+        "Nom du nouvel objet": "Nom du nouvel objet",
+        "Vue d'ensemble des objets": "Vue d'ensemble des objets",
+        "Objets": "オブジェクト",
         "Graphique des liens": "グラフィックリンク",
+        "Êtes-vous sûr de vouloir supprimer l\\'objet": "オブジェクトを削除してもよろしいですか",
         "Image de fond appliquée avec succès": "Image de fond appliquée avec succès",
         "Êtes-vous sûr de vouloir enlever l\\'image de fond de cet objet ?": "Êtes-vous sûr de vouloir enlever l\\'image de fond de cet objet ?",
         "Image de fond enlevée": "Image de fond enlevée",
         "Êtes-vous sûr de vouloir réordonner les équipements par utilisation ?": "Êtes-vous sûr de vouloir réordonner les équipements par utilisation ?",
-        "Equipements réoordonnés avec succes": "Equipements réoordonnés avec succes",
-        "Objets": "オブジェクト",
-        "Nom du nouvel objet": "Nom du nouvel objet",
-        "Êtes-vous sûr de vouloir supprimer l\\'objet": "オブジェクトを削除してもよろしいですか",
-        "Vue d'ensemble des objets": "Vue d'ensemble des objets"
+        "Equipements réoordonnés avec succes": "Equipements réoordonnés avec succes"
     },
     "desktop\/js\/system.js": {
         "Commande :": "注文：",
@@ -3190,18 +3193,19 @@
         "Celle-ci est classé en dangereuse": "危険に分類されます"
     },
     "desktop\/js\/backup.js": {
+        "Fichier(s) ajouté(s) avec succès": "ファイルが正常に追加されました",
         "L\\'opération est réussie": "操作は成功しました",
         "L\\'opération a échoué": "操作に失敗しました",
         "Sauvegarde réussie": "成功したバックアップ",
-        "Êtes-vous sûr de vouloir faire une sauvegarde de": "のバックアップを作成してもよろしいですか",
-        "? Une fois lancée cette opération ne peut être annulée": "？一度起動すると、この操作はキャンセルできません。",
-        "IMPORTANT la restauration d\\'un backup est une opération risquée et n\\'est à utiliser qu\\'en dernier recours": "IMPORTANT la restauration d\\'un backup est une opération risquée et n\\'est à utiliser qu\\'en dernier recours",
         "Êtes-vous sûr de vouloir restaurer": "復元してもよろしいですか",
         "avec la sauvegarde": "バックアップあり",
+        "IMPORTANT la restauration d\\'un backup est une opération risquée et n\\'est à utiliser qu\\'en dernier recours": "IMPORTANT la restauration d\\'un backup est une opération risquée et n\\'est à utiliser qu\\'en dernier recours",
         "Une fois lancée cette opération ne peut être annulée.": "一度起動すると、この操作はキャンセルできません。",
+        "Restauration de ": "Restauration de",
         "Êtes-vous sûr de vouloir supprimer la sauvegarde": "バックアップを削除してもよろしいですか",
         "Sauvegarde supprimée avec succès": "バックアップが削除されました",
-        "Fichier(s) ajouté(s) avec succès": "ファイルが正常に追加されました",
+        "Êtes-vous sûr de vouloir faire une sauvegarde de": "のバックアップを作成してもよろしいですか",
+        "? Une fois lancée cette opération ne peut être annulée": "？一度起動すると、この操作はキャンセルできません。",
         "Êtes-vous sûr de vouloir envoyer une sauvegarde de": "のバックアップを送信してもよろしいですか",
         "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "クラウド上で？一度起動すると、この操作はキャンセルできません。",
         "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud": "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud",
@@ -3474,12 +3478,12 @@
         "Historiser": "Historiser",
         "Inverser": "Inverser",
         "Tester": "Tester",
-        "Configuration du plugin": "プラグイン構成",
+        "Nom de l'équipement ?": "機器の名前は？",
         "Nom de la copie de l\\'équipement ?": "機器のコピーの名前？",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "機器を削除してもよろしいですか",
         "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
         "Veuillez d\\'abord sélectionner un": "を選択してください",
-        "Nom de l'équipement ?": "機器の名前は？",
+        "Configuration du plugin": "プラグイン構成",
         "Veuillez activer l\\'équipement avant de tester une de ses commandes": "コントロールをテストする前に、機器をアクティブにしてください"
     },
     "core\/js\/log.class.js": {
@@ -3825,11 +3829,14 @@
     },
     "core\/ajax\/user.ajax.php": {
         "Connexion de l\\'utilisateur par REMOTE_USER :": "REMOTE_USERによるユーザーログイン：",
+        "Double authentification requise": "Double authentification requise",
+        "Mot de passe ou nom d\\'utilisateur incorrect')": "Mot de passe ou nom d\\'utilisateur incorrect')",
         "401 - Accès non autorisé": "401-不正アクセス",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir ajouter un utilisateur": "ユーザーを追加するには、LDAP認証を無効にする必要があります",
         "Utilisateur invalide": "Utilisateur invalide",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir supprimer un utilisateur": "ユーザーを削除できるようにするには、LDAP認証を無効にする必要があります",
         "Vous ne pouvez pas supprimer le compte avec lequel vous êtes connecté": "接続しているアカウントは削除できません",
+        "User ID inconnu": "User ID inconnu",
         "Utilisateur non trouvé :": "ユーザーが見つかりません：",
         "Aucune méthode correspondante à :": "以下に対応するメソッドはありません："
     },
@@ -3849,7 +3856,7 @@
         "L\\'objet n\\'existe pas :": "L\\'objet n\\'existe pas :",
         "Vue inconnu. Vérifiez l\\'ID": "不明なビュー。 IDを確認してください",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "ファイルが見つかりません。 PHPの設定を確認します（投稿のサイズ制限）",
-        "Extension du fichier non valide (autorisé .jpg .png .gif) :": "Extension du fichier non valide (autorisé .jpg .png .gif) :",
+        "Extension du fichier non valide (autorisé .jpg .png .gif .svg .webp) :": "Extension du fichier non valide (autorisé .jpg .png .gif .svg .webp) :",
         "Le fichier est trop gros (maximum 5Mo)": "ファイルが大きすぎます（最大5MB）",
         "Impossible de sauvegarder l\\'image": "画像を保存できません",
         "Aucune méthode correspondante à :": "以下に対応するメソッドはありません："
@@ -3876,7 +3883,7 @@
         "inconnu": "inconnu",
         "Vous ne pouvez éditer ce type d\\'extension :": "Vous ne pouvez éditer ce type d\\'extension :",
         "Impossible de créer le fichier, vérifiez les droits": "Impossible de créer le fichier, vérifiez les droits",
-        "Extension du fichier non valide (autorisé .jpg .png .gif) :": "Extension du fichier non valide (autorisé .jpg .png .gif) :",
+        "Extension du fichier non valide (autorisé .jpg .png .gif .jpeg .svg .webp) :": "Extension du fichier non valide (autorisé .jpg .png .gif .jpeg .svg .webp) :",
         "Le fichier est trop gros (maximum 5Mo)": "ファイルが大きすぎます（最大5MB）",
         "Impossible de sauvegarder l\\'image": "画像を保存できません",
         "Fichier introuvable, impossible de le supprimer": "Fichier introuvable, impossible de le supprimer",
@@ -4891,14 +4898,19 @@
         "Largeur (px)": "幅（ピクセル）",
         "Hauteur (px)": "高さ（px）",
         "Délai": "お知らせ",
-        "Option(s)": "オプション（複数可）",
+        "Thèmes": "Thèmes",
+        "Défaut": "Défaut",
+        "Clair": "Clair",
+        "Sombre": "Sombre",
         "Aucune": "Aucune",
         "Aucun": "Aucun",
         "Principale": "Principale"
     },
     "core\/dom\/dom.ui.js": {
         "OK": "OK",
-        "Annuler": "Annuler"
+        "Annuler": "Annuler",
+        "Vous ne pouvez uploader qu\\'un seul fichier.": "Vous ne pouvez uploader qu\\'un seul fichier",
+        "Taille de fichier trop importante.": "Taille de fichier trop importante"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",

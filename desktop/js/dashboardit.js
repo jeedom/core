@@ -33,23 +33,15 @@ if (!jeeFrontEnd.dashboardit) {
         },
         success: function(html) {
           try {
-            document.querySelector('div.div_displayEquipement').html(html).addClass('posEqWidthRef')
+            document.querySelector('div.div_displayEquipement').html(html, false, function() {
+              this.addClass('posEqWidthRef')
+              this.style.userSelect = 'none'
+              jeedomUtils.positionEqLogic()
+              new Packery(this)
+            })
           } catch (err) {
-            console.log(err)
+            console.warn(err)
           }
-          setTimeout(function() {
-            jeedomUtils.positionEqLogic()
-            $('.div_displayEquipement').packery().disableSelection()
-            $("input").click(function() {
-              $(this).focus()
-            })
-            $("textarea").click(function() {
-              $(this).focus()
-            })
-            $("select").click(function() {
-              $(this).focus()
-            })
-          }, 10)
         }
       })
     }
@@ -57,14 +49,6 @@ if (!jeeFrontEnd.dashboardit) {
 }
 
 jeeFrontEnd.dashboardit.init()
-
-$('#div_treeObject').off('click').on('select_node.jstree', function(node, selected) {
-  if (selected.node.a_attr['data-object_id'] != undefined) {
-    var object_id = selected.node.a_attr['data-object_id']
-    $('.div_displayEquipement').parent().empty().append('<legend>' + selected.node.a_attr['data-name'] + '</legend><div class="div_displayEquipement"></div>')
-    jeeP.getObjectHtml(object_id)
-  }
-})
 
 $("#div_treeObject").jstree({
   "search": {
@@ -74,8 +58,22 @@ $("#div_treeObject").jstree({
   "plugins": ["search"]
 })
 
-$('#in_searchObject').keyup(function() {
-  $('#div_treeObject').jstree(true).search($('#in_searchObject').val())
+document.getElementById('div_treeObject').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('li.jstree-node')) {
+    if (event.target.hasClass('jstree-ocl')) return
+    let object_id = _target.querySelector('a').getAttribute('data-object_id')
+    let name = _target.querySelector('a').getAttribute('data-name')
+    let parent = document.querySelector('div.div_displayEquipement').parentNode
+    parent.empty()
+    parent.insertAdjacentHTML('afterbegin', '<legend>' + name + '</legend><div class="div_displayEquipement"></div>')
+    jeeP.getObjectHtml(object_id)
+    return
+  }
+})
+
+document.getElementById('in_searchObject').addEventListener('keyup', function(event) {
+  $('#div_treeObject').jstree(true).search(document.getElementById('in_searchObject').value)
 })
 
 //Resize responsive tiles:

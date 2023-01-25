@@ -101,8 +101,10 @@ if (!jeeFrontEnd.md_history) {
     },
     resizeHighChartModal: function() {
       if (!jeedom.history.chart[this.__el__]) return
-      let hDecay = 35
-      if (document.querySelector('#bt_toggleOptions i').hasClass('fa-arrow-down')) hDecay = 5
+      let hDecay = this.loadIds.length == 1 ? 40 : 35
+
+      //Top options visible ?
+      if (document.querySelector('#bt_toggleOptions i').hasClass('fa-arrow-down')) hDecay -= 30
       jeedom.history.chart[this.__el__].chart.setSize(
         this.modalContent.offsetWidth,
         this.modalContent.offsetHeight - hDecay
@@ -126,7 +128,7 @@ if (!jeeFrontEnd.md_history) {
   }
 }
 
-(function() {
+(function() {// Self Isolation!
   jeedomUtils.hideAlert()
   var jeeM = jeeFrontEnd.md_history
   jeeM.init(jeephp2js.md_history_cmdId)

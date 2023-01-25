@@ -17,15 +17,17 @@
 - **Dashboard** : En disposition tableau, possibilité d'insérer des attributs HTML *(colspan/rowspan notamment)* pour chaque cellule.
 - **Equipements** : Possibilité de désactiver les templates de widget des plugins qui en utilisent pour revenir à l'affichage par défaut Jeedom *(fenêtre de configuration de l'équipement)*.
 - **Equipements** : Les équipements rendus inactifs disparaissent automatiquement de toutes les pages. Les équipements réactivés réapparaissent sur le dashboard si l'objet parent est déjà présent.
-- **Equipements** : Les équipements rendus non visibles disparaissent automatiquement du dashboard. Les équipements réaffichés réapparaissent sur le dashboard si l'objet parent est déjà présent.
+- **Equipements** : Les équipements rendus non visibles disparaissent automatiquement du dashboard. Les équipements ré-affichés réapparaissent sur le dashboard si l'objet parent est déjà présent.
 - **Analyse > Equipements > Equipements en alerte** : Les équipements qui passent en alerte apparaissent automatiquement et ceux qui sortent d'une alerte disparaissent automatiquement.
-- **Objet** : La suppression ou la création d'un résumé entraine l'update du résumé global et de l'objet.
+- **Objet** : La suppression ou la création d'un résumé entraîne l'update du résumé global et de l'objet.
 - **Outils > Remplacer** : Cet outil propose maintenant un mode *Copier*, permettant de copier les configurations d'équipements et de commandes, sans les remplacer dans les scénarios et autres.
-- **Timeline** : La Timeline charge maintenant les 35 premiers événements. En bas de page, plusieurs boutons permettent de charger dynamiquement les évènements suivant.
+- **Timeline** : La Timeline charge maintenant les 35 premiers événements. En bas de page, plusieurs boutons permettent de charger dynamiquement les événements suivant.
 - **Administration** : Possibilité de différencier les actions sur erreur ou sur alerte de commande.
 - **Administration** : Possibilité de paramétrer les widgets par défaut des commandes.
 - Un menu contextuel a été ajouté à différents endroits au niveau des cases à cocher pour les sélectionner toutes, aucunes, ou inverser la sélection *(voir [Doc dev](https://doc.jeedom.com/fr_FR/dev/core4.4))*.
-- **Dashboard** : possibilité sur la page de configuration des objets de demander a jeedom de reordonner les équipements en fonction de leur utilisation
+- **Dashboard** : possibilité sur la page de configuration des objets de demander à Jeedom de réordonner les équipements en fonction de leur utilisation
+- **Thème** : Possibilité de choisir le thème directement depuis l'url (en ajoutant &theme=Dark ou &theme=Light).
+- **Rapport** : Possibilité de choisir le thème lors d'un rapport sur une page Jeedom.
 
 ### 4.4 : Autre
 

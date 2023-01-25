@@ -222,9 +222,7 @@ document.getElementById('in_searchTimeline')?.addEventListener('keyup', function
 
 //Manage events outside parents delegations:
 document.getElementById('bt_resetTimelineSearch').addEventListener('click', function(event) {
-  let input = document.getElementById('in_searchTimeline')
-  input.value = ''
-  input.triggerEvent('keyup')
+  document.getElementById('in_searchTimeline').jeeValue('').triggerEvent('keyup')
 })
 
 document.getElementById('bt_refreshTimeline').addEventListener('click', function(event) {
@@ -278,47 +276,44 @@ document.getElementById('div_mainContainer').registerEvent('scroll', function(ev
 /*Events delegations
 */
 document.getElementById('events').addEventListener('click', function(event) {
-  if (event.target.closest('.bt_scenarioLog') != null) {
-    let me = event.target.closest('.bt_scenarioLog')
+  var _target = null
+  if (_target = event.target.closest('.bt_scenarioLog')) {
     jeeDialog.dialog({
       id: 'jee_modal',
       title: "{{Log d'exécution du scénario}}",
-      contentUrl: 'index.php?v=d&modal=scenario.log.execution&scenario_id=' + me.closest('.tml-scenario').getAttribute('data-id')
+      contentUrl: 'index.php?v=d&modal=scenario.log.execution&scenario_id=' + _target.closest('.tml-scenario').getAttribute('data-id')
     })
     return
   }
 
-  if (event.target.closest('.bt_gotoScenario') != null) {
-    let me = event.target.closest('.bt_gotoScenario')
-    jeedomUtils.loadPage('index.php?v=d&p=scenario&id=' + me.closest('.tml-scenario').getAttribute('data-id'))
+  if (_target = event.target.closest('.bt_gotoScenario')) {
+    jeedomUtils.loadPage('index.php?v=d&p=scenario&id=' + _target.closest('.tml-scenario').getAttribute('data-id'))
     return
   }
 
-  if (event.target.closest('.bt_historicCmd') != null) {
-    let me = event.target.closest('.bt_historicCmd')
+  if (_target = event.target.closest('.bt_historicCmd')) {
     jeeDialog.dialog({
       id: 'md_cmdHistory',
       title: "{{Historique}}",
-      contentUrl: 'index.php?v=d&modal=cmd.history&id=' + me.closest('.tml-cmd').getAttribute('data-id')
+      contentUrl: 'index.php?v=d&modal=cmd.history&id=' + _target.closest('.tml-cmd').getAttribute('data-id')
     })
     return
   }
 
-  if (event.target.closest('.bt_configureCmd') != null) {
-    let me = event.target.closest('.bt_configureCmd')
+  if (_target = event.target.closest('.bt_configureCmd')) {
     jeeDialog.dialog({
-      id: 'jee_modal2',
+      id: 'jee_modal',
       title: '{{Configuration de la commande}}',
-      contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + me.closest('.tml-cmd').getAttribute('data-id')
+      contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + _target.closest('.tml-cmd').getAttribute('data-id')
     })
     return
   }
 })
 
 document.getElementById('timelineBottom').addEventListener('click', function(event) {
-  if (event.target.closest('a.bt_loadMore') != null) {
-    let me = event.target.closest('a.bt_loadMore')
-    var more = parseInt(me.getAttribute('data-load'))
+  var _target = null
+  if (_target = event.target.closest('a.bt_loadMore')) {
+    var more = parseInt(_target.getAttribute('data-load'))
     jeeP.loadStart = jeeP.loadStart + jeeP.loadOffset + 1
     jeeP.loadOffset = more
     jeeP.displayTimelineSegment(jeeP.loadStart, jeeP.loadOffset)

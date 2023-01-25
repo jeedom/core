@@ -24,7 +24,7 @@ if (!isConnect('admin')) {
     </div>
 
     <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active"><a data-target="#cron" role="tab" data-toggle="tab"><i class="fas fa-clock"></i> {{Cron}}</a></li>
+      <li id="tab_tableCron" role="presentation" class="active"><a data-target="#cron" role="tab" data-toggle="tab"><i class="fas fa-clock"></i> {{Cron}}</a></li>
       <li role="presentation"><a data-target="#listener" role="tab" data-toggle="tab"><i class="fas fa-assistive-listening-systems"></i> {{Listener}}</a></li>
       <li role="presentation"><a data-target="#deamon" role="tab" data-toggle="tab"><i class="fas fa-bug"></i> {{Démon}}</a></li>
     </ul>

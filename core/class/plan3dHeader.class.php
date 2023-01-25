@@ -68,6 +68,10 @@ class plan3dHeader {
 
 	/*     * *********************Méthodes d'instance************************* */
 
+	public function refresh() {
+		DB::refresh($this);
+	}
+
 	public function preSave() {
 		if (trim($this->getName()) == '') {
 			throw new Exception(__('Le nom du l\'objet ne peut pas être vide', __FILE__));

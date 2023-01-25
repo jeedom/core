@@ -1463,6 +1463,8 @@ class scenarioExpression {
 					$source = 'scenario';
 					if (isset($options['source']) && is_string($options['source'])) {
 						$source = $options['source'];
+					} elseif ($scenario !== null) {
+						$source = 'Scenario ' . $scenario->getHumanName();
 					}
 					message::add($source, $options['message']);
 					$this->setLog($scenario, __('Ajout du message suivant dans le centre de message :', __FILE__) . ' ' . $options['message']);
@@ -1689,6 +1691,7 @@ class scenarioExpression {
 						$dataStore->setValue($value);
 						$dataStore->save();
 					}
+					event::add('scenario::ask', array('scenario_id' => $scenario->getId(), 'variable' => $options['variable'], 'value' => $value));
 					$this->setLog($scenario, __('Réponse', __FILE__) . ' ' . $value);
 					return;
 				} elseif ($this->getExpression() == 'jeedom_poweroff') {
@@ -1796,6 +1799,9 @@ class scenarioExpression {
 							break;
 						case 'eqAnalyse':
 							$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=eqAnalyse&report=1';
+							if (isset($_parameters['theme']) && $_parameters['theme'] != '') {
+								$url .= '&theme=' . $_parameters['theme'];
+							}
 							$this->setLog($scenario, __('Génération du rapport', __FILE__) . ' ' . $url);
 							$cmd_parameters['files'] = array(report::generate($url, 'other', 'eqAnalyse', $options['export_type'], $options));
 							$cmd_parameters['title'] = '[' . config::byKey('name') . ']' . ' ' . __('Rapport équipement du', __FILE__) . ' ' . date('Y-m-d H:i:s');
@@ -1803,6 +1809,9 @@ class scenarioExpression {
 							break;
 						case 'eqAnalyseAlert':
 							$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=eqAnalyse&report=1';
+							if (isset($_parameters['theme']) && $_parameters['theme'] != '') {
+								$url .= '&theme=' . $_parameters['theme'];
+							}
 							$this->setLog($scenario, __('Génération du rapport', __FILE__) . ' ' . $url);
 							$options['tab'] = 'alertEqlogic';
 							$cmd_parameters['files'] = array(report::generate($url, 'other', 'eqAnalyse', $options['export_type'], $options));
@@ -1811,6 +1820,9 @@ class scenarioExpression {
 							break;
 						case 'health':
 							$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=health&report=1';
+							if (isset($_parameters['theme']) && $_parameters['theme'] != '') {
+								$url .= '&theme=' . $_parameters['theme'];
+							}
 							$this->setLog($scenario, __('Génération du rapport', __FILE__) . ' ' . $url);
 							$cmd_parameters['files'] = array(report::generate($url, 'other', 'health', $options['export_type'], $options));
 							$cmd_parameters['title'] = '[' . config::byKey('name') . ']' . ' ' . __('Rapport équipement du', __FILE__) . ' ' . date('Y-m-d H:i:s');
@@ -1818,6 +1830,9 @@ class scenarioExpression {
 							break;
 						case 'timeline':
 							$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=timeline&report=1&timeline=' . $options['timeline'];
+							if (isset($_parameters['theme']) && $_parameters['theme'] != '') {
+								$url .= '&theme=' . $_parameters['theme'];
+							}
 							$this->setLog($scenario, __('Génération du rapport timeline', __FILE__) . ' ' . $options['timeline']);
 							$cmd_parameters['files'] = array(report::generate($url, 'other', 'timeline', $options['export_type'], $options));
 							$cmd_parameters['title'] = '[' . config::byKey('name') . ']' . ' ' . __('Rapport', __FILE__) . ' ' . $options['timeline'] . ' ' . __('du', __FILE__) . ' ' . date('Y-m-d H:i:s');
@@ -1921,6 +1936,10 @@ class scenarioExpression {
 		} catch (Error $e) {
 			$this->setLog($scenario, $message . $e->getMessage());
 		}
+	}
+
+	public function refresh() {
+		DB::refresh($this);
 	}
 
 	public function save() {

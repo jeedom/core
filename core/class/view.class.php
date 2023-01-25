@@ -74,6 +74,9 @@ class view {
 		$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=view';
 		$url .= '&view_id=' . $this->getId();
 		$url .= '&report=1';
+		if (isset($_parameters['theme']) && $_parameters['theme'] != '') {
+			$url .= '&theme=' . $_parameters['theme'];
+		}
 		if (isset($_parameters['arg']) && trim($_parameters['arg']) != '') {
 			$url .= '&' . $_parameters['arg'];
 		}
@@ -87,6 +90,10 @@ class view {
 		if (trim($this->getName()) == '') {
 			throw new Exception(__('Le nom de la vue ne peut pas être vide', __FILE__));
 		}
+	}
+
+	public function refresh() {
+		DB::refresh($this);
 	}
 
 	public function save() {

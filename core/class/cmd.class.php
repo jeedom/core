@@ -839,7 +839,7 @@ class cmd {
 		return $return;
 	}
 
-	public static function getSelectOptionsByTypeAndSubtype($_type=false, $_subtype=false, $_version='dashboard', $_availWidgets = false) {
+	public static function getSelectOptionsByTypeAndSubtype($_type = false, $_subtype = false, $_version = 'dashboard', $_availWidgets = false) {
 		if ($_type === false || $_subtype === false) {
 			throw new Exception(__('Type ou sous-type de commande invalide', __FILE__));
 		}
@@ -866,7 +866,7 @@ class cmd {
 					return strcmp($a['name'], $b['name']);
 				});
 				foreach ($type as $key => $widget) {
-					if ($widget['name'] == 'default') {
+					if ($widget['name'] == 'default' || $widget['name'] == 'core::default') {
 						continue;
 					}
 					if ($key == 0) {
@@ -1036,10 +1036,10 @@ class cmd {
 			$this->setDisplay('generic_type', null);
 		}
 		if ($this->getTemplate('dashboard', '') == '') {
-			$this->setTemplate('dashboard', 'default');
+			$this->setTemplate('dashboard', 'core::default');
 		}
 		if ($this->getTemplate('mobile', '') == '') {
-			$this->setTemplate('mobile', 'default');
+			$this->setTemplate('mobile', 'core::default');
 		}
 		if ($this->getType() == 'action' && $this->getIsHistorized() == 1) {
 			$this->setIsHistorized(0);
@@ -1264,7 +1264,11 @@ class cmd {
 		if (!$_availWidgets) {
 			$_availWidgets = self::availableWidget($_version);
 		}
-		$display = '<option value="default">' . __('Défaut', __FILE__) . '</option>';
+		if ($this->getTemplate($_version) == 'default') {
+			$this->setTemplate($_version, 'core::default');
+			$this->save(true);
+		}
+		$display = '<option value="core::default">' . __('Défaut', __FILE__) . '</option>';
 		return $display .= self::getSelectOptionsByTypeAndSubtype($this->getType(), $this->getSubType(), $_version, $_availWidgets);
 	}
 
@@ -1339,7 +1343,7 @@ class cmd {
 		$replace = null;
 		$widget_template = $JEEDOM_INTERNAL_CONFIG['cmd']['widgets'];
 		$widget_name = ($_widgetName == '') ? $this->getTemplate($_version, config::byKey('widget::default::cmd::' . $this->getType() . '::' . $this->getSubType())) : $_widgetName;
-		if ($widget_name == 'default') {
+		if ($widget_name == 'default' || $widget_name == 'core::default') {
 			$widget_name = config::byKey('widget::default::cmd::' . $this->getType() . '::' . $this->getSubType());
 		}
 
@@ -1737,21 +1741,22 @@ class cmd {
 		$this->setCache('collectDate', $this->getCollectDate());
 		$this->setValueDate(($repeat) ? $this->getValueDate() : $this->getCollectDate());
 		$eqLogic->setStatus(array('lastCommunication' => $this->getCollectDate(), 'timeout' => 0));
-		$display_value = $value;
 		$unit = $this->getUnite();
-		if (method_exists($this, 'formatValueWidget')) {
-			$display_value = $this->formatValueWidget($value);
-		} else if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
-			$display_value = ($value == 1) ? 0 : 1;
+		$display_value = $value;
+		if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
+			$display_value = ($display_value == 1) ? 0 : 1;
 		} else if ($this->getSubType() == 'numeric' && trim($value) === '') {
 			$display_value = 0;
 		} else if ($this->getSubType() == 'binary' && trim($value) === '') {
 			$display_value = 0;
 		}
 		if ($this->getSubType() == 'numeric') {
-			$valueInfo = self::autoValueArray($value, $this->getConfiguration('historizeRound', 99), $this->getUnite());
+			$valueInfo = self::autoValueArray($display_value, $this->getConfiguration('historizeRound', 99), $this->getUnite());
 			$display_value = $valueInfo[0];
 			$unit = $valueInfo[1];
+		}
+		if (method_exists($this, 'formatValueWidget')) {
+			$display_value = $this->formatValueWidget($display_value);
 		}
 		if ($repeat && $this->getConfiguration('repeatEventManagement', 'never') == 'never') {
 			$this->addHistoryValue($value, $this->getCollectDate());
@@ -2852,7 +2857,7 @@ class cmd {
 	}
 
 	public function setTemplate($_key, $_value) {
-		if (($_key == 'dashboard' || $_key == 'mobile') && $_value != 'default' && strpos($_value, '::') === false) {
+		if (($_key == 'dashboard' || $_key == 'mobile') && strpos($_value, '::') === false) {
 			$_value = 'core::' . $_value;
 		}
 		if ($this->getTemplate($_key) !== $_value) {

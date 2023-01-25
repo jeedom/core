@@ -1,4 +1,4 @@
-<div class="input-group input-group-sm" style="width: 100%">
+<div class="input-group input-group-sm" data-template="message" style="width: 100%">
   <span class="input-group-addon roundedLeft" style="width: 100px">{{Message}}</span>
   <textarea class="message expressionAttr form-control ta_autosize" data-l1key="options" data-l2key="message" rows="1" style="resize:vertical;" placeholder="{{Message}}" data-cmd_id="#id#" data-uid="#uid#">#message#</textarea>
   <span class="input-group-addon hasBtn roundedRight">
@@ -7,7 +7,7 @@
 </div>
 
 <script>
-  $('.listCmdInfo[data-uid=#uid#]').off('click').on('click', function() {
+  document.querySelector('.listCmdInfo[data-uid=#uid#]').addEventListener('click', function() {
     jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
       document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="message"]').insertAtCursor(result.human)
     })

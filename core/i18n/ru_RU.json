@@ -340,8 +340,8 @@
         "Supprimer l'image": "Удалить изображение",
         "Afficher le nom des objets sur les widgets": "Отображать названия объектов на виджетах",
         "Image ajoutée": "Изображение добавлено",
-        "Image supprimée": "Удаленное изображение",
-        "Vue sauvegardé": "Сохраненный вид"
+        "Vue sauvegardé": "Сохраненный вид",
+        "Image supprimée": "Удаленное изображение"
     },
     "desktop\/modal\/db.check.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -353,8 +353,9 @@
         "SQL": "SQL",
         "Action": "Действие",
         "Corriger": "правильный",
-        "Êtes-vous sûr de vouloir corriger toute les tables ?": "Êtes-vous sûr de vouloir corriger toute les tables ?",
+        "Êtes-vous sûr de vouloir corriger toutes les tables ?": "Êtes-vous sûr de vouloir corriger toutes les tables ?",
         "Êtes-vous sûr de vouloir corriger la table": "Вы уверены, что хотите исправить таблицу",
+        "Correction de la base de données": "Correction de la base de données",
         "Vérification base de données": "Проверка базы данных"
     },
     "desktop\/modal\/dataStore.management.php": {
@@ -815,6 +816,12 @@
         "Paramètres optionnels widget": "Дополнительные параметры виджета",
         "Configuration commande": "Configuration commande",
         "Pas de description des paramètres optionnels sur ce Widget.": "Pas de description des paramètres optionnels sur ce Widget",
+        "Décocher pour désactiver l\\'action": "Снимите флажок, чтобы отключить \\ Action",
+        "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Проверьте, команда \\ «ы работает параллельно другие действия",
+        "Sélectionner un mot-clé": "Выберите ключевое слово",
+        "Sélection multiple de commandes": "Выбор пакета команд",
+        "Modification(s) appliquée(s) avec succès": "Модификация (s) применяется (ы) успешно",
+        "Sauvegarde réussie": "Удачная резервная копия",
         "Graphique des liens": "Графические ссылки",
         "Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\\'InfluxDB": "Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\\'InfluxDB",
         "Action envoyée avec succés": "Action envoyée avec succés",
@@ -830,14 +837,7 @@
         "Remplacement réalisé avec succès": "Замена успешно",
         "Êtes-vous sûr de vouloir remplacer l\\'ID": "Вы уверены, что хотите заменить идентификатор",
         "ID de commande à remplacer ?": "ID заказа заменить?",
-        "Êtes-vous sûr de vouloir remplacer la commande": "Êtes-vous sûr de vouloir remplacer la commande",
-        "Sauvegarde réussie": "Удачная резервная копия",
-        "Décocher pour désactiver l\\'action": "Снимите флажок, чтобы отключить \\ Action",
-        "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Проверьте, команда \\ «ы работает параллельно другие действия",
-        "Sélectionner un mot-clé": "Выберите ключевое слово",
-        "Sélection multiple de commandes": "Выбор пакета команд",
-        "Modification(s) appliquée(s) avec succès": "Модификация (s) применяется (ы) успешно",
-        "Logs": "Журналы"
+        "Êtes-vous sûr de vouloir remplacer la commande": "Êtes-vous sûr de vouloir remplacer la commande"
     },
     "desktop\/modal\/log.display.php": {
         "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel.": "Обратите внимание, что ваш уровень журнала (события) ниже, чем информация, поэтому вы не можете видеть в режиме реального времени",
@@ -876,14 +876,14 @@
         "Icônes rouges": "Icônes rouges",
         "Icônes vertes": "Icônes vertes",
         "Rechercher": "поиск",
+        "Clic droit sur un dossier pour ouvrir le menu contextuel": "Clic droit sur un dossier pour ouvrir le menu contextuel",
         "Ajouter": "Ajouter",
         "Nouveau": "Nouveau",
         "Renommer": "Renommer",
         "Supprimer": "удаление",
         "Etes-vous sûr de vouloir supprimer le dossier": "Etes-vous sûr de vouloir supprimer le dossier",
         "Attention : le contenu du dossier sera définitivement supprimé lors de l'opération.": "Attention : le contenu du dossier sera définitivement supprimé lors de l'opération",
-        "Êtes-vous sûr de vouloir supprimer cette image": "Вы уверены, что хотите удалить это изображение?",
-        "Clic droit sur un dossier pour ouvrir le menu contextuel": "Clic droit sur un dossier pour ouvrir le menu contextuel"
+        "Êtes-vous sûr de vouloir supprimer cette image": "Вы уверены, что хотите удалить это изображение?"
     },
     "desktop\/modal\/update.send.php": {
         "Le dépôt est inactif :": "Депозит неактивен:",
@@ -932,8 +932,7 @@
         "Action": "Действие",
         "Configuration de la commande": "управляющий набор",
         "Exporter la commande": "Экспортировать заказ",
-        "Modifications sauvegardées avec succès": "Изменения успешно сохранены",
-        "Dossier": "запись"
+        "Modifications sauvegardées avec succès": "Изменения успешно сохранены"
     },
     "desktop\/modal\/scenario.jsonEdit.php": {
         "Aucun scénario ne correspondant à :": "Нет сценария, соответствующего:",
@@ -1066,12 +1065,12 @@
         "Changement de pile": "Замена батареи",
         "Attention si": "Attention si",
         "Configuration de l'équipement": "Configuration de l'équipement",
-        "Configuration de la commande": "Configuration de la commande",
+        "Sauvegarde réussie": "Удачная резервная копия",
         "Graphique des liens": "Графические ссылки",
         "Informations brutes": "Сырая информация",
-        "Sauvegarde réussie": "Удачная резервная копия",
         "Êtes-vous sûr de vouloir supprimer cet équipement ?": "Вы уверены, что хотите удалить это оборудование?",
         "Equipement supprimé avec succès": "Equipement supprimé avec succès",
+        "Configuration de la commande": "Configuration de la commande",
         "Confirmer le remplacement des piles ? Cette action enregistrera le dernier de changement de piles à la date d'aujourd'hui.": "Confirmer le remplacement des piles ? Cette action enregistrera le dernier de changement de piles à la date d'aujourd'hui",
         "Le remplacement des piles a été enregistré": "Le remplacement des piles a été enregistré"
     },
@@ -1179,8 +1178,12 @@
         "Télécharger": "скачать",
         "Paramètres du scénario": "Настройки сценария",
         "Appliquer": "применять",
+        "Template ajouté avec succès": "Шаблон успешно добавлен",
+        "Création du template réussie": "Création du template réussie",
+        "Vous devez d\\'abord sélectionner un template": "Vous devez d\\'abord sélectionner un template",
+        "Suppression du template réussie": "Suppression du template réussie",
         "Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel.": "Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel",
-        "Template ajouté avec succès": "Шаблон успешно добавлен"
+        "Template appliqué avec succès.": "Template appliqué avec succès"
     },
     "desktop\/modal\/update.add.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -1210,16 +1213,16 @@
     },
     "desktop\/modal\/first.use.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Configuration de votre": "Конфигурация вашего",
         "Bienvenue dans": "Добро пожаловать в",
-        ", et merci d'avoir choisi cette solution pour votre habitat connecté.": ", et merci d'avoir choisi cette solution pour votre habitat connecté",
+        ", merci d'avoir choisi cette solution pour votre habitat connecté.": ", merci d'avoir choisi cette solution pour votre habitat connecté",
         "Voici 4 guides pour bien débuter avec": "Voici 4 guides pour bien débuter avec",
         "Guide de démarrage": "Руководство по началу работы",
         "Concept": "Concept",
         "Documentation de démarrage": "Начало работы с документацией",
         "Documentation": "документация",
         "Ne plus afficher": "Ne plus afficher",
-        "Sauvegarde réussie": "Удачная резервная копия"
+        "Configuration de votre": "Конфигурация вашего",
+        "Option enregistrée": "Option enregistrée"
     },
     "desktop\/modal\/interact.test.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -2034,7 +2037,6 @@
     "desktop\/php\/replace.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
         "Sauvegarde Système": "Sauvegarde Système",
-        "Reset": "Reset",
         "Remplacer": "Remplacer",
         "Filtres": "Filtres",
         "Filtre par objet": "Filtre par objet",
@@ -2044,6 +2046,7 @@
         "Filtre par plugin": "Filtre par plugin",
         "Plugins": "Plugins",
         "Filtrer": "Filtrer",
+        "Reset": "Reset",
         "Options": "Options",
         "Mode": "Mode",
         "Remplace l’équipement et ses commandes (scénarios, etc.) ou copie seulement les propriétés souhaitées.": "Remplace l’équipement et ses commandes (scénarios, etc.) ou copie seulement les propriétés souhaitées",
@@ -2729,12 +2732,12 @@
         "Vérifier": "Проверить",
         "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)",
         "Options de mise à jour": "Options de mise à jour",
+        "Êtes-vous sûr de vouloir mettre à jour :": "Êtes-vous sûr de vouloir mettre à jour :",
+        "Êtes-vous sûr de vouloir supprimer :": "Êtes-vous sûr de vouloir supprimer :",
         "Êtes-vous sûr de vouloir mettre à jour les packages de type": "Êtes-vous sûr de vouloir mettre à jour les packages de type",
         "Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes": "Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes",
         "Mise à jour lancée avec succès.": "Mise à jour lancée avec succès",
-        "Log de mise à jour": "Log de mise à jour",
-        "Êtes-vous sûr de vouloir mettre à jour :": "Êtes-vous sûr de vouloir mettre à jour :",
-        "Êtes-vous sûr de vouloir supprimer :": "Êtes-vous sûr de vouloir supprimer :"
+        "Log de mise à jour": "Log de mise à jour"
     },
     "desktop\/js\/log.js": {
         "Pause": "Пауза",
@@ -2873,12 +2876,12 @@
         "Supprimer cette zone": "Supprimer cette zone"
     },
     "desktop\/js\/display.js": {
-        "Configuration de l'objet": "Конфигурация объекта",
-        "Configuration de l'équipement": "Конфигурация оборудования",
-        "Configuration de la commande": "управляющий набор",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Вы уверены, что хотите удалить все это оборудование?",
         "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?",
-        "Historique vidé avec succès": "История успешно опустошена"
+        "Historique vidé avec succès": "История успешно опустошена",
+        "Configuration de l'objet": "Конфигурация объекта",
+        "Configuration de l'équipement": "Конфигурация оборудования",
+        "Configuration de la commande": "управляющий набор"
     },
     "desktop\/js\/overview.js": {
         "Historique": "История"
@@ -2903,21 +2906,21 @@
     },
     "desktop\/js\/history.js": {
         "Historique supprimé avec succès": "История успешно удалена",
+        "Période de comparaison": "Période de comparaison",
+        "Comparer": "Comparer",
+        "jours avec": "jours avec",
+        "jours il y a": "jours il y a",
         "Mes Calculs": "Mes Calculs",
         "Configuration des formules de calcul": "Настройка формул",
         "Configuration de l'historique des commandes": "управления История конфигурации",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Просьба указать дату (Y-м д ч: м: с), перед которым он должен удалить историю \\ «s",
-        "Laissez vide pour tout supprimer": "Laissez vide pour tout supprimer",
-        "Période de comparaison": "Période de comparaison",
-        "Comparer": "Comparer",
-        "jours avec": "jours avec",
-        "jours il y a": "jours il y a"
+        "Laissez vide pour tout supprimer": "Laissez vide pour tout supprimer"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Supprimer ce filtre",
-        "Configuration de la commande": "Configuration de la commande",
         "L'import d'édition en masse se fait au format json.": "L'import d'édition en masse se fait au format json",
-        "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier"
+        "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier",
+        "Configuration de la commande": "Configuration de la commande"
     },
     "desktop\/js\/database.js": {
         "Commande :": "команда:",
@@ -3009,15 +3012,15 @@
     "desktop\/js\/interact.js": {
         "Action": "Действие",
         "Sélectionner un mot-clé": "Выберите ключевое слово",
-        "Liste des interactions": "Список взаимодействий",
-        "Interactions": "Взаимодействие",
-        "Nom": "Nom",
-        "Tester les interactions": "Тестовые взаимодействия",
-        "Sauvegarde réussie avec succès": "Успешное резервное копирование успешно",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?",
         "Toutes les interactions ont été régénérées": "Toutes les interactions ont été régénérées",
+        "Tester les interactions": "Тестовые взаимодействия",
         "Demande": "Demande",
-        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Вы уверены, что хотите удалить взаимодействие \\ «ы"
+        "Interactions": "Взаимодействие",
+        "Nom": "Nom",
+        "Sauvegarde réussie avec succès": "Успешное резервное копирование успешно",
+        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Вы уверены, что хотите удалить взаимодействие \\ «ы",
+        "Liste des interactions": "Список взаимодействий"
     },
     "desktop\/js\/timeline.js": {
         "Ev ements de la timeline supprim  avec succ ": "Ev ements de la timeline supprim  avec succ",
@@ -3064,17 +3067,17 @@
         "Choisir": "Выбрать",
         "Test": "тест",
         "Résultat si test ok": "Résultat si test ok",
-        "Remplacement de widget": "Remplacement de widget",
         "Appliquer ce widget à": "Appliquer ce widget à",
         "Modification(s) appliquée(s) avec succès": "Модификация (s) применяется (ы) успешно",
-        "Widgets": "Widgets",
         "Nom du widget": "Nom du widget",
         "Sauvegarde effectuée avec succès": "Резервное копирование завершено успешно",
-        "Configuration de la commande": "управляющий набор",
-        "Êtes-vous sûr de vouloir supprimer le widget": "Êtes-vous sûr de vouloir supprimer le widget",
+        "Remplacement de widget": "Remplacement de widget",
         "L'import de widget se fait au format json à partir d'un widget précédemment exporté.": "L'import de widget se fait au format json à partir d'un widget précédemment exporté",
         "Fichier json non compatible.": "Fichier json non compatible",
         "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier",
+        "Widgets": "Widgets",
+        "Êtes-vous sûr de vouloir supprimer le widget": "Êtes-vous sûr de vouloir supprimer le widget",
+        "Configuration de la commande": "управляющий набор",
         "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "L'import de widgets se fait au format json à partir de widgets précedemment exporté"
     },
     "desktop\/js\/profils.js": {
@@ -3099,8 +3102,8 @@
         "Cache nettoyé": "очистить кэш",
         "Sauvegarde réussie": "Удачная резервная копия",
         "Commande réalisée avec succès": "Команда выполнена успешно",
-        "Cookie de thème supprimé": "Cookie de thème supprimé",
         "Image enregistrée et configurée": "Image enregistrée et configurée",
+        "Cookie de thème supprimé": "Cookie de thème supprimé",
         "Êtes-vous sûr de vouloir supprimer cette image de fond ?": "Êtes-vous sûr de vouloir supprimer cette image de fond ?",
         "Image supprimée": "Image supprimée",
         "Evènements de la timeline supprimés avec succès": "Evènements de la timeline supprimés avec succès",
@@ -3128,18 +3131,18 @@
     },
     "desktop\/js\/types.js": {
         "Aucun": "Aucun",
+        "Liste des Types Génériques (Core et Plugins)": "Liste des Types Génériques (Core et Plugins)",
+        "Générique": "Générique",
+        "Nom": "Nom",
+        "Type": "Type",
+        "Sous type": "Sous type",
         "Types Génériques automatiques": "Types Génériques automatiques",
         "Appliquer": "Appliquer",
         "Types Génériques sauvegardés": "Types Génériques sauvegardés",
         "Supprimer les types generiques sur les commandes ?": "Supprimer les types generiques sur les commandes ?",
         "Oui": "Oui",
         "Non": "Non",
-        "Supprimer": "Supprimer",
-        "Liste des Types Génériques (Core et Plugins)": "Liste des Types Génériques (Core et Plugins)",
-        "Générique": "Générique",
-        "Nom": "Nom",
-        "Type": "Type",
-        "Sous type": "Sous type"
+        "Supprimer": "Supprimer"
     },
     "desktop\/js\/replace.js": {
         "Aucun": "Aucun",
@@ -3149,17 +3152,17 @@
         "Aucun équipement à remplacer ou copier": "Aucun équipement à remplacer ou copier",
         "Aucune commande à remplacer ou copier": "Aucune commande à remplacer ou copier",
         "Remplacement effectué": "Remplacement effectué",
+        "Remplacement": "Remplacement",
         "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
         "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Supprimée le": "Supprimée le",
+        "Configuration en masse": "Configuration en masse",
         "Configuration de la commande": "Configuration de la commande",
-        "Configuration de l'équipement": "Конфигурация оборудования",
-        "Configuration en masse": "Configuration en masse"
+        "Configuration de l'équipement": "Конфигурация оборудования"
     },
     "desktop\/js\/object.js": {
-        "Envoyer": "Отправить",
         "Image de fond ajoutée avec succès": "Image de fond ajoutée avec succès",
         "Commande": "Команда",
         "Activer": "активировать",
@@ -3173,16 +3176,16 @@
         "Rendre visible sur le Dashboard": "Rendre visible sur le Dashboard",
         "Objet parent": "Objet parent",
         "Positionner après": "Positionner après",
+        "Nom du nouvel objet": "Nom du nouvel objet",
+        "Vue d'ensemble des objets": "Vue d'ensemble des objets",
+        "Objets": "Объекты",
         "Graphique des liens": "Графические ссылки",
+        "Êtes-vous sûr de vouloir supprimer l\\'objet": "Вы уверены, что хотите удалить этот объект",
         "Image de fond appliquée avec succès": "Image de fond appliquée avec succès",
         "Êtes-vous sûr de vouloir enlever l\\'image de fond de cet objet ?": "Êtes-vous sûr de vouloir enlever l\\'image de fond de cet objet ?",
         "Image de fond enlevée": "Image de fond enlevée",
         "Êtes-vous sûr de vouloir réordonner les équipements par utilisation ?": "Êtes-vous sûr de vouloir réordonner les équipements par utilisation ?",
-        "Equipements réoordonnés avec succes": "Equipements réoordonnés avec succes",
-        "Objets": "Объекты",
-        "Nom du nouvel objet": "Nom du nouvel objet",
-        "Êtes-vous sûr de vouloir supprimer l\\'objet": "Вы уверены, что хотите удалить этот объект",
-        "Vue d'ensemble des objets": "Vue d'ensemble des objets"
+        "Equipements réoordonnés avec succes": "Equipements réoordonnés avec succes"
     },
     "desktop\/js\/system.js": {
         "Commande :": "команда:",
@@ -3190,18 +3193,19 @@
         "Celle-ci est classé en dangereuse": "Celle-ci est classé en dangereuse"
     },
     "desktop\/js\/backup.js": {
+        "Fichier(s) ajouté(s) avec succès": "Файл (ы) добавлен (ы) успешно",
         "L\\'opération est réussie": "Операция прошла успешно",
         "L\\'opération a échoué": "Операция не удалась",
         "Sauvegarde réussie": "Удачная резервная копия",
-        "Êtes-vous sûr de vouloir faire une sauvegarde de": "Etes-vous sûr de vouloir faire une sauvegarde de",
-        "? Une fois lancée cette opération ne peut être annulée": "? Une fois lancée cette opération ne peut être annulée",
-        "IMPORTANT la restauration d\\'un backup est une opération risquée et n\\'est à utiliser qu\\'en dernier recours": "IMPORTANT la restauration d\\'un backup est une opération risquée et n\\'est à utiliser qu\\'en dernier recours",
         "Êtes-vous sûr de vouloir restaurer": "Etes-vous sûr de vouloir restaurer",
         "avec la sauvegarde": "avec la sauvegarde",
+        "IMPORTANT la restauration d\\'un backup est une opération risquée et n\\'est à utiliser qu\\'en dernier recours": "IMPORTANT la restauration d\\'un backup est une opération risquée et n\\'est à utiliser qu\\'en dernier recours",
         "Une fois lancée cette opération ne peut être annulée.": "Une fois lancée cette opération ne peut être annulée",
+        "Restauration de ": "Restauration de",
         "Êtes-vous sûr de vouloir supprimer la sauvegarde": "Вы уверены, что хотите удалить резервную копию",
         "Sauvegarde supprimée avec succès": "Резервная копия успешно удалена",
-        "Fichier(s) ajouté(s) avec succès": "Файл (ы) добавлен (ы) успешно",
+        "Êtes-vous sûr de vouloir faire une sauvegarde de": "Etes-vous sûr de vouloir faire une sauvegarde de",
+        "? Une fois lancée cette opération ne peut être annulée": "? Une fois lancée cette opération ne peut être annulée",
         "Êtes-vous sûr de vouloir envoyer une sauvegarde de": "Etes-vous sûr de vouloir envoyer une sauvegarde de",
         "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "sur le cloud ? Une fois lancée cette opération ne peut être annulée",
         "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud": "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud",
@@ -3474,12 +3478,12 @@
         "Historiser": "Historiser",
         "Inverser": "Inverser",
         "Tester": "Tester",
-        "Configuration du plugin": "Конфигурация плагина",
+        "Nom de l'équipement ?": "Название оборудования?",
         "Nom de la copie de l\\'équipement ?": "Nom de la copie de l\\'équipement ?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Вы уверены, что хотите удалить оборудование",
         "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
         "Veuillez d\\'abord sélectionner un": "Пожалуйста, выберите сначала",
-        "Nom de l'équipement ?": "Название оборудования?",
+        "Configuration du plugin": "Конфигурация плагина",
         "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Пожалуйста, активируйте оборудование до тестирования его первого запроса"
     },
     "core\/js\/log.class.js": {
@@ -3825,11 +3829,14 @@
     },
     "core\/ajax\/user.ajax.php": {
         "Connexion de l\\'utilisateur par REMOTE_USER :": "Connexion de l\\'utilisateur par REMOTE_USER :",
+        "Double authentification requise": "Double authentification requise",
+        "Mot de passe ou nom d\\'utilisateur incorrect')": "Mot de passe ou nom d\\'utilisateur incorrect')",
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir ajouter un utilisateur": "Vous devez désactiver l\\'authentification LDAP pour pouvoir ajouter un utilisateur",
         "Utilisateur invalide": "Utilisateur invalide",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir supprimer un utilisateur": "Vous devez désactiver l\\'authentification LDAP pour pouvoir supprimer un utilisateur",
         "Vous ne pouvez pas supprimer le compte avec lequel vous êtes connecté": "Vous ne pouvez pas supprimer le compte avec lequel vous êtes connecté",
+        "User ID inconnu": "User ID inconnu",
         "Utilisateur non trouvé :": "Utilisateur non trouvé :",
         "Aucune méthode correspondante à :": "Aucune methode correspondante à :"
     },
@@ -3849,7 +3856,7 @@
         "L\\'objet n\\'existe pas :": "L\\'objet n\\'existe pas :",
         "Vue inconnu. Vérifiez l\\'ID": "Vue inconnu. Vérifiez l\\'ID",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)",
-        "Extension du fichier non valide (autorisé .jpg .png .gif) :": "Extension du fichier non valide (autorisé .jpg .png .gif) :",
+        "Extension du fichier non valide (autorisé .jpg .png .gif .svg .webp) :": "Extension du fichier non valide (autorisé .jpg .png .gif .svg .webp) :",
         "Le fichier est trop gros (maximum 5Mo)": "Le fichier est trop gros (maximum 5Mo)",
         "Impossible de sauvegarder l\\'image": "Impossible de sauvegarder l\\'image",
         "Aucune méthode correspondante à :": "Aucune methode correspondante à :"
@@ -3876,7 +3883,7 @@
         "inconnu": "inconnu",
         "Vous ne pouvez éditer ce type d\\'extension :": "Vous ne pouvez éditer ce type d\\'extension :",
         "Impossible de créer le fichier, vérifiez les droits": "Impossible de créer le fichier, vérifiez les droits",
-        "Extension du fichier non valide (autorisé .jpg .png .gif) :": "Extension du fichier non valide (autorisé .jpg .png .gif) :",
+        "Extension du fichier non valide (autorisé .jpg .png .gif .jpeg .svg .webp) :": "Extension du fichier non valide (autorisé .jpg .png .gif .jpeg .svg .webp) :",
         "Le fichier est trop gros (maximum 5Mo)": "Le fichier est trop gros (maximum 5Mo)",
         "Impossible de sauvegarder l\\'image": "Impossible de sauvegarder l\\'image",
         "Fichier introuvable, impossible de le supprimer": "Fichier introuvable, impossible de le supprimer",
@@ -4891,14 +4898,19 @@
         "Largeur (px)": "Ширина (ПВ)",
         "Hauteur (px)": "Высота (пикселей)",
         "Délai": "Délai",
-        "Option(s)": "Option(s)",
+        "Thèmes": "Thèmes",
+        "Défaut": "Défaut",
+        "Clair": "Clair",
+        "Sombre": "Sombre",
         "Aucune": "Aucune",
         "Aucun": "Aucun",
         "Principale": "Principale"
     },
     "core\/dom\/dom.ui.js": {
         "OK": "OK",
-        "Annuler": "Annuler"
+        "Annuler": "Annuler",
+        "Vous ne pouvez uploader qu\\'un seul fichier.": "Vous ne pouvez uploader qu\\'un seul fichier",
+        "Taille de fichier trop importante.": "Taille de fichier trop importante"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",

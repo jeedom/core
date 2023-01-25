@@ -589,6 +589,9 @@ class plugin {
 		$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=' . $this->getDisplay();
 		$url .= '&m=' . $this->getId();
 		$url .= '&report=1';
+		if (isset($_parameters['theme']) && $_parameters['theme'] != '') {
+			$url .= '&theme=' . $_parameters['theme'];
+		}
 		if (isset($_parameters['arg']) && trim($_parameters['arg']) != '') {
 			$url .= '&' . $_parameters['arg'];
 		}

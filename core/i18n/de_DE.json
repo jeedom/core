@@ -340,8 +340,8 @@
         "Supprimer l'image": "Bild löschen",
         "Afficher le nom des objets sur les widgets": "Zeigen Sie den Namen von Objekten in Widgets an",
         "Image ajoutée": "Bild hinzugefügt",
-        "Image supprimée": "Bild gelöscht",
-        "Vue sauvegardé": "Gespeicherte Ansicht"
+        "Vue sauvegardé": "Gespeicherte Ansicht",
+        "Image supprimée": "Bild gelöscht"
     },
     "desktop\/modal\/db.check.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -353,8 +353,9 @@
         "SQL": "SQL",
         "Action": "Aktion",
         "Corriger": "Richtig",
-        "Êtes-vous sûr de vouloir corriger toute les tables ?": "Möchten Sie wirklich alle Tabellen korrigieren?",
+        "Êtes-vous sûr de vouloir corriger toutes les tables ?": "Möchten Sie wirklich alle Tabellen korrigieren?",
         "Êtes-vous sûr de vouloir corriger la table": "Sind Sie sicher, dass Sie die Tabelle korrigieren möchten?",
+        "Correction de la base de données": "Datenbank reparieren",
         "Vérification base de données": "Datenbanküberprüfung"
     },
     "desktop\/modal\/dataStore.management.php": {
@@ -815,6 +816,12 @@
         "Paramètres optionnels widget": "Optionale Widget Parameter",
         "Configuration commande": "Steuerungskonfiguration",
         "Pas de description des paramètres optionnels sur ce Widget.": "Keine Beschreibung der optionalen Parameter in diesem Widget",
+        "Décocher pour désactiver l\\'action": "Auswählen, um die Aktion zu deaktivieren",
+        "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Überprüfen Sie, ob der Befehl parallel zu den anderen Aktionen ausgeführt wird",
+        "Sélectionner un mot-clé": "Schlüsselwort auswählen",
+        "Sélection multiple de commandes": "Mehrere Befehle zur Auswahl",
+        "Modification(s) appliquée(s) avec succès": "Modifikation(en) erfolgreich angewendet",
+        "Sauvegarde réussie": "Speichern erfolgreich",
         "Graphique des liens": "Grafik-Links",
         "Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\\'InfluxDB": "Sind Sie sicher, dass Sie alle Informationen für diesen Befehl aus InfluxDB entfernen möchten?",
         "Action envoyée avec succés": "Aktion erfolgreich gesendet",
@@ -830,14 +837,7 @@
         "Remplacement réalisé avec succès": "Ersetzen wurde erfolgreich abgeschlossen",
         "Êtes-vous sûr de vouloir remplacer l\\'ID": "Sind Sie sicher, dass Sie die ID ersetzen möchten?",
         "ID de commande à remplacer ?": "Befehls ID ersetzen?",
-        "Êtes-vous sûr de vouloir remplacer la commande": "Sind Sie sicher, dass Sie die Bestellung ersetzen möchten?",
-        "Sauvegarde réussie": "Speichern erfolgreich",
-        "Décocher pour désactiver l\\'action": "Auswählen, um die Aktion zu deaktivieren",
-        "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Überprüfen Sie, ob der Befehl parallel zu den anderen Aktionen ausgeführt wird",
-        "Sélectionner un mot-clé": "Schlüsselwort auswählen",
-        "Sélection multiple de commandes": "Mehrere Befehle zur Auswahl",
-        "Modification(s) appliquée(s) avec succès": "Modifikation(en) erfolgreich angewendet",
-        "Logs": "Protokolle"
+        "Êtes-vous sûr de vouloir remplacer la commande": "Sind Sie sicher, dass Sie die Bestellung ersetzen möchten?"
     },
     "desktop\/modal\/log.display.php": {
         "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel.": "Bitte beachten Sie, dass Ihre Protokollstufe (Ereignis) niedriger als die Informationen ist, sodass Sie keine Echtzeit sehen können",
@@ -876,14 +876,14 @@
         "Icônes rouges": "Rote Symbole",
         "Icônes vertes": "Grüne Symbole",
         "Rechercher": "Suchen nach",
+        "Clic droit sur un dossier pour ouvrir le menu contextuel": "Klicken Sie mit der rechten Maustaste auf einen Ordner, um das Kontextmenü zu öffnen",
         "Ajouter": "Hinzufügen",
         "Nouveau": "Neu",
         "Renommer": "Umbenennen",
         "Supprimer": "Entfernen",
         "Etes-vous sûr de vouloir supprimer le dossier": "Möchten Sie den Ordner wirklich löschen?",
         "Attention : le contenu du dossier sera définitivement supprimé lors de l'opération.": "Achtung: Der Inhalt des Ordners wird während des Vorgangs dauerhaft gelöscht",
-        "Êtes-vous sûr de vouloir supprimer cette image": "Möchten Sie dieses Bild wirklich löschen?",
-        "Clic droit sur un dossier pour ouvrir le menu contextuel": "Klicken Sie mit der rechten Maustaste auf einen Ordner, um das Kontextmenü zu öffnen"
+        "Êtes-vous sûr de vouloir supprimer cette image": "Möchten Sie dieses Bild wirklich löschen?"
     },
     "desktop\/modal\/update.send.php": {
         "Le dépôt est inactif :": "Die Anzahlung ist inaktiv:",
@@ -932,8 +932,7 @@
         "Action": "Aktion",
         "Configuration de la commande": "Befehl Konfiguration",
         "Exporter la commande": "Exportieren Sie die Bestellung",
-        "Modifications sauvegardées avec succès": "Änderungen erfolgreich gespeichert",
-        "Dossier": "Rekord"
+        "Modifications sauvegardées avec succès": "Änderungen erfolgreich gespeichert"
     },
     "desktop\/modal\/scenario.jsonEdit.php": {
         "Aucun scénario ne correspondant à :": "Kein Szenario entsprechend:",
@@ -1066,12 +1065,12 @@
         "Changement de pile": "Batteriewechsel",
         "Attention si": "Seien Sie vorsichtig, wenn",
         "Configuration de l'équipement": "Gerätekonfiguration",
-        "Configuration de la commande": "Bestellung einrichten",
+        "Sauvegarde réussie": "Speichern erfolgreich",
         "Graphique des liens": "Grafik-Links",
         "Informations brutes": "Rohdaten",
-        "Sauvegarde réussie": "Speichern erfolgreich",
         "Êtes-vous sûr de vouloir supprimer cet équipement ?": "Möchten Sie dieses Gerät wirklich löschen?",
         "Equipement supprimé avec succès": "Ausrüstung erfolgreich gelöscht",
+        "Configuration de la commande": "Bestellung einrichten",
         "Confirmer le remplacement des piles ? Cette action enregistrera le dernier de changement de piles à la date d'aujourd'hui.": "Batteriewechsel bestätigen? Diese Aktion zeichnet den letzten Batteriewechsel am heutigen Datum auf",
         "Le remplacement des piles a été enregistré": "Der Batteriewechsel wurde aufgezeichnet"
     },
@@ -1179,8 +1178,12 @@
         "Télécharger": "Download",
         "Paramètres du scénario": "Szenarioeinstellungen",
         "Appliquer": "Anwenden",
+        "Template ajouté avec succès": "Vorlage erfolgreich hinzugefügt",
+        "Création du template réussie": "Erfolgreiche Vorlagenerstellung",
+        "Vous devez d\\'abord sélectionner un template": "Sie müssen zunächst eine Vorlage auswählen",
+        "Suppression du template réussie": "Vorlagenlöschung erfolgreich",
         "Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel.": "Möchten Sie diese Vorlage wirklich anwenden? Dadurch wird Ihr aktuelles Szenario überschrieben",
-        "Template ajouté avec succès": "Vorlage erfolgreich hinzugefügt"
+        "Template appliqué avec succès.": "Vorlage erfolgreich angewendet"
     },
     "desktop\/modal\/update.add.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -1210,16 +1213,16 @@
     },
     "desktop\/modal\/first.use.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Configuration de votre": "Konfiguration Ihres",
         "Bienvenue dans": "Willkommen bei",
-        ", et merci d'avoir choisi cette solution pour votre habitat connecté.": "und vielen Dank, dass Sie sich für diese Lösung für Ihr vernetztes Zuhause entschieden haben",
+        ", merci d'avoir choisi cette solution pour votre habitat connecté.": ", vielen Dank, dass Sie sich für diese Lösung für Ihr vernetztes Zuhause entschieden haben",
         "Voici 4 guides pour bien débuter avec": "Hier sind 4 Anleitungen, mit denen Sie beginnen können",
         "Guide de démarrage": "Erste Schritte Anleitung",
         "Concept": "Konzept",
         "Documentation de démarrage": "Erste Schritte Dokumentation",
         "Documentation": "Dokumentation",
         "Ne plus afficher": "Nicht mehr anzeigen",
-        "Sauvegarde réussie": "Speichern erfolgreich"
+        "Configuration de votre": "Konfiguration Ihres",
+        "Option enregistrée": "Registrierte Option"
     },
     "desktop\/modal\/interact.test.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -2034,7 +2037,6 @@
     "desktop\/php\/replace.php": {
         "401 - Accès non autorisé": "401 – Unbefugter Zugriff",
         "Sauvegarde Système": "Systemsicherung",
-        "Reset": "Zurücksetzen",
         "Remplacer": "Ersetzen",
         "Filtres": "Filter",
         "Filtre par objet": "Nach Objekt filtern",
@@ -2044,6 +2046,7 @@
         "Filtre par plugin": "Nach Plugin filtern",
         "Plugins": "Plugins",
         "Filtrer": "Filter",
+        "Reset": "Zurücksetzen",
         "Options": "Optionen",
         "Mode": "Mode",
         "Remplace l’équipement et ses commandes (scénarios, etc.) ou copie seulement les propriétés souhaitées.": "Ersetzt die Ausrüstung und ihre Befehle (Szenarien usw.) oder kopiert nur die gewünschten Eigenschaften",
@@ -2729,12 +2732,12 @@
         "Vérifier": "überprüfen",
         "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "Das Update scheint blockiert zu sein (keine Änderung für 10 Minuten. Überprüfen Sie das Protokoll)",
         "Options de mise à jour": "Update-Optionen",
+        "Êtes-vous sûr de vouloir mettre à jour :": "Möchten Sie wirklich aktualisieren:",
+        "Êtes-vous sûr de vouloir supprimer :": "Sind Sie sicher, dass Sie löschen möchten:",
         "Êtes-vous sûr de vouloir mettre à jour les packages de type": "Sind Sie sicher, dass Sie Pakete vom Typ aktualisieren möchten",
         "Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes": "Seien Sie vorsichtig, dieser Vorgang ist immer riskant und kann mehrere zehn Minuten dauern",
         "Mise à jour lancée avec succès.": "Update erfolgreich gestartet",
-        "Log de mise à jour": "Protokoll aktualisieren",
-        "Êtes-vous sûr de vouloir mettre à jour :": "Möchten Sie wirklich aktualisieren:",
-        "Êtes-vous sûr de vouloir supprimer :": "Sind Sie sicher, dass Sie löschen möchten:"
+        "Log de mise à jour": "Protokoll aktualisieren"
     },
     "desktop\/js\/log.js": {
         "Pause": "Unterbrechung",
@@ -2873,12 +2876,12 @@
         "Supprimer cette zone": "Löschen Sie diesen Bereich"
     },
     "desktop\/js\/display.js": {
-        "Configuration de l'objet": "Objektkonfiguration",
-        "Configuration de l'équipement": "Gerätekonfiguration",
-        "Configuration de la commande": "Befehl Konfiguration",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Möchten Sie wirklich alle diese Geräte löschen?",
         "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Möchten Sie den Löschverlauf wirklich löschen?",
-        "Historique vidé avec succès": "Die Geschichte wurde erfolgreich geleert"
+        "Historique vidé avec succès": "Die Geschichte wurde erfolgreich geleert",
+        "Configuration de l'objet": "Objektkonfiguration",
+        "Configuration de l'équipement": "Gerätekonfiguration",
+        "Configuration de la commande": "Befehl Konfiguration"
     },
     "desktop\/js\/overview.js": {
         "Historique": "Chronik"
@@ -2903,21 +2906,21 @@
     },
     "desktop\/js\/history.js": {
         "Historique supprimé avec succès": "Chronik erfolgreich gelöscht",
+        "Période de comparaison": "Vergleichszeitraum",
+        "Comparer": "Vergleichen",
+        "jours avec": "Tage mit",
+        "jours il y a": "Vor Tagen",
         "Mes Calculs": "Meine Berechnungen",
         "Configuration des formules de calcul": "Konfiguration von Berechnungsformeln",
         "Configuration de l'historique des commandes": "Die Konfigurations-Chronik der Befehle",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Bitte geben sie das Datum der Chronik an(J-M-T H:M:S), welche gelöscht werden soll",
-        "Laissez vide pour tout supprimer": "Leer lassen, um alle zu löschen",
-        "Période de comparaison": "Vergleichszeitraum",
-        "Comparer": "Vergleichen",
-        "jours avec": "Tage mit",
-        "jours il y a": "Vor Tagen"
+        "Laissez vide pour tout supprimer": "Leer lassen, um alle zu löschen"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Diesen Filter entfernen",
-        "Configuration de la commande": "Befehlskonfiguration",
         "L'import d'édition en masse se fait au format json.": "Der Masseneditionsimport erfolgt im JSON-Format",
-        "Problème lors de la lecture du fichier.": "Problem beim Lesen der Datei"
+        "Problème lors de la lecture du fichier.": "Problem beim Lesen der Datei",
+        "Configuration de la commande": "Befehlskonfiguration"
     },
     "desktop\/js\/database.js": {
         "Commande :": "Bestellung:",
@@ -3009,15 +3012,15 @@
     "desktop\/js\/interact.js": {
         "Action": "Aktion",
         "Sélectionner un mot-clé": "Schlüsselwort auswählen",
-        "Liste des interactions": "Liste der Interaktionen",
-        "Interactions": "Interaktion",
-        "Nom": "Name",
-        "Tester les interactions": "Interaktionen testen",
-        "Sauvegarde réussie avec succès": "Backup erfolgreich erfolgreich",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "Sind Sie sicher, dass Sie alle Interaktionen neu generieren möchten (dies kann sehr lange dauern)?",
         "Toutes les interactions ont été régénérées": "Alle Wechselwirkungen wurden regeneriert",
+        "Tester les interactions": "Interaktionen testen",
         "Demande": "Anforderung",
-        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Möchten Sie die Interaktion wirklich löschen?"
+        "Interactions": "Interaktion",
+        "Nom": "Name",
+        "Sauvegarde réussie avec succès": "Backup erfolgreich erfolgreich",
+        "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Möchten Sie die Interaktion wirklich löschen?",
+        "Liste des interactions": "Liste der Interaktionen"
     },
     "desktop\/js\/timeline.js": {
         "Ev ements de la timeline supprim  avec succ ": "Timeline-Ereignisse erfolgreich gelöscht",
@@ -3064,17 +3067,17 @@
         "Choisir": "Wählen",
         "Test": "Prüfung",
         "Résultat si test ok": "Ergebnis wenn Test ok",
-        "Remplacement de widget": "Widget-Ersatz",
         "Appliquer ce widget à": "Wenden Sie dieses Widget auf an",
         "Modification(s) appliquée(s) avec succès": "Modifikation(en) erfolgreich angewendet",
-        "Widgets": "Widgets",
         "Nom du widget": "Widget Name",
         "Sauvegarde effectuée avec succès": "Speichern erfolgreich abgeschlossen",
-        "Configuration de la commande": "Befehl Konfiguration",
-        "Êtes-vous sûr de vouloir supprimer le widget": "Möchten Sie das Widget wirklich entfernen?",
+        "Remplacement de widget": "Widget-Ersatz",
         "L'import de widget se fait au format json à partir d'un widget précédemment exporté.": "Der Widget-Import erfolgt im json-Format aus einem zuvor exportierten Widget",
         "Fichier json non compatible.": "Json-Datei nicht kompatibel",
         "Problème lors de la lecture du fichier.": "Problem beim Lesen der Datei",
+        "Widgets": "Widgets",
+        "Êtes-vous sûr de vouloir supprimer le widget": "Möchten Sie das Widget wirklich entfernen?",
+        "Configuration de la commande": "Befehl Konfiguration",
         "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "Der Import von Widgets erfolgt im JSON-Format von zuvor exportierten Widgets"
     },
     "desktop\/js\/profils.js": {
@@ -3099,8 +3102,8 @@
         "Cache nettoyé": "Cache gereinigt",
         "Sauvegarde réussie": "Speichern erfolgreich",
         "Commande réalisée avec succès": "Befehl erfolgreich durchgeführt",
-        "Cookie de thème supprimé": "Themen-Cookie gelöscht",
         "Image enregistrée et configurée": "Gespeichertes und konfiguriertes Bild",
+        "Cookie de thème supprimé": "Themen-Cookie gelöscht",
         "Êtes-vous sûr de vouloir supprimer cette image de fond ?": "Möchten Sie dieses Hintergrundbild wirklich entfernen?",
         "Image supprimée": "Bild gelöscht",
         "Evènements de la timeline supprimés avec succès": "Timeline-Ereignisse erfolgreich gelöscht",
@@ -3128,18 +3131,18 @@
     },
     "desktop\/js\/types.js": {
         "Aucun": "Nein",
+        "Liste des Types Génériques (Core et Plugins)": "Liste der generischen Typen (Kern und Plugins)",
+        "Générique": "Generisch",
+        "Nom": "Name",
+        "Type": "Typ",
+        "Sous type": "Untertyp",
         "Types Génériques automatiques": "Automatische generische Typen",
         "Appliquer": "Anwenden",
         "Types Génériques sauvegardés": "Generische Typen gespeichert",
         "Supprimer les types generiques sur les commandes ?": "Generische Typen aus Bestellungen entfernen?",
         "Oui": "Jawohl",
         "Non": "Nein",
-        "Supprimer": "Löschen",
-        "Liste des Types Génériques (Core et Plugins)": "Liste der generischen Typen (Kern und Plugins)",
-        "Générique": "Generisch",
-        "Nom": "Name",
-        "Type": "Typ",
-        "Sous type": "Untertyp"
+        "Supprimer": "Löschen"
     },
     "desktop\/js\/replace.js": {
         "Aucun": "Nein",
@@ -3149,17 +3152,17 @@
         "Aucun équipement à remplacer ou copier": "Keine Ausrüstung zum Ersetzen oder Kopieren",
         "Aucune commande à remplacer ou copier": "Keine Befehle zum Ersetzen oder Kopieren",
         "Remplacement effectué": "Ersatz gemacht",
+        "Remplacement": "Ersatz",
         "Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "Es wird dringend empfohlen, vor der Verwendung dieses Tools eine Systemsicherung zu erstellen!",
         "Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?": "Sind Sie sicher, dass Sie diese Ausrüstung und Befehle ersetzen möchten?"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Supprimée le": "Gelöscht am",
+        "Configuration en masse": "Massenkonfiguration",
         "Configuration de la commande": "Bestellung einrichten",
-        "Configuration de l'équipement": "Gerätekonfiguration",
-        "Configuration en masse": "Massenkonfiguration"
+        "Configuration de l'équipement": "Gerätekonfiguration"
     },
     "desktop\/js\/object.js": {
-        "Envoyer": "Senden",
         "Image de fond ajoutée avec succès": "Hintergrundbild erfolgreich hinzugefügt",
         "Commande": "Befehl",
         "Activer": "Aktivieren",
@@ -3173,16 +3176,16 @@
         "Rendre visible sur le Dashboard": "Auf dem Dashboard sichtbar machen",
         "Objet parent": "übergeordnetes Objekt",
         "Positionner après": "Stelle danach",
+        "Nom du nouvel objet": "Name des neuen Objekts",
+        "Vue d'ensemble des objets": "Objektübersicht",
+        "Objets": "Objekte",
         "Graphique des liens": "Grafik-Links",
+        "Êtes-vous sûr de vouloir supprimer l\\'objet": "Möchten Sie das Objekt wirklich löschen?",
         "Image de fond appliquée avec succès": "Hintergrundbild erfolgreich angewendet",
         "Êtes-vous sûr de vouloir enlever l\\'image de fond de cet objet ?": "Möchten Sie das Hintergrundbild wirklich von diesem Objekt entfernen?",
         "Image de fond enlevée": "Hintergrundbild entfernt",
         "Êtes-vous sûr de vouloir réordonner les équipements par utilisation ?": "Sind Sie sicher, dass Sie Geräte nach Gebrauch nachbestellen möchten?",
-        "Equipements réoordonnés avec succes": "Gerät erfolgreich nachbestellt",
-        "Objets": "Objekte",
-        "Nom du nouvel objet": "Name des neuen Objekts",
-        "Êtes-vous sûr de vouloir supprimer l\\'objet": "Möchten Sie das Objekt wirklich löschen?",
-        "Vue d'ensemble des objets": "Objektübersicht"
+        "Equipements réoordonnés avec succes": "Gerät erfolgreich nachbestellt"
     },
     "desktop\/js\/system.js": {
         "Commande :": "Bestellung:",
@@ -3190,18 +3193,19 @@
         "Celle-ci est classé en dangereuse": "Es wird als gefährlich eingestuft"
     },
     "desktop\/js\/backup.js": {
+        "Fichier(s) ajouté(s) avec succès": "Datei (en) erfolgreich hinzugefügt",
         "L\\'opération est réussie": "Die Operation ist erfolgreich",
         "L\\'opération a échoué": "Operation fehlgeschlagen",
         "Sauvegarde réussie": "Speichern erfolgreich",
-        "Êtes-vous sûr de vouloir faire une sauvegarde de": "Sind Sie sicher, dass Sie ein Backup von erstellen möchten?",
-        "? Une fois lancée cette opération ne peut être annulée": "? Nach dem Start kann dieser Vorgang nicht abgebrochen werden",
-        "IMPORTANT la restauration d\\'un backup est une opération risquée et n\\'est à utiliser qu\\'en dernier recours": "WICHTIG Das Wiederherstellen einer Sicherung ist ein riskanter Vorgang und sollte nur als letzter Ausweg verwendet werden",
         "Êtes-vous sûr de vouloir restaurer": "Sind Sie sicher, dass Sie wiederherstellen möchten?",
         "avec la sauvegarde": "mit Backup",
+        "IMPORTANT la restauration d\\'un backup est une opération risquée et n\\'est à utiliser qu\\'en dernier recours": "WICHTIG Das Wiederherstellen einer Sicherung ist ein riskanter Vorgang und sollte nur als letzter Ausweg verwendet werden",
         "Une fois lancée cette opération ne peut être annulée.": "Nach dem Start kann dieser Vorgang nicht abgebrochen werden",
+        "Restauration de ": "Restauration de",
         "Êtes-vous sûr de vouloir supprimer la sauvegarde": "Sind Sie sicher, dass Sie die Sicherung löschen möchten?",
         "Sauvegarde supprimée avec succès": "Backup erfolgreich gelöscht",
-        "Fichier(s) ajouté(s) avec succès": "Datei (en) erfolgreich hinzugefügt",
+        "Êtes-vous sûr de vouloir faire une sauvegarde de": "Sind Sie sicher, dass Sie ein Backup von erstellen möchten?",
+        "? Une fois lancée cette opération ne peut être annulée": "? Nach dem Start kann dieser Vorgang nicht abgebrochen werden",
         "Êtes-vous sûr de vouloir envoyer une sauvegarde de": "Sind Sie sicher, dass Sie ein Backup von senden möchten?",
         "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "auf der Wolke? Nach dem Start kann dieser Vorgang nicht abgebrochen werden",
         "Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud": "Sind Sie sicher, dass Sie Cloud-Backups repatriieren möchten?",
@@ -3474,12 +3478,12 @@
         "Historiser": "Historisiere",
         "Inverser": "Umkehren",
         "Tester": "Prüfen",
-        "Configuration du plugin": "Plugin Konfiguration",
+        "Nom de l'équipement ?": "Name der Ausrüstung?",
         "Nom de la copie de l\\'équipement ?": "Name der Gerätekopie?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Sind Sie sicher, dass Sie das Gerät löschen möchten?",
         "Il est utilisé par ou utilise :": "Es wird verwendet von oder verwendet:",
         "Veuillez d\\'abord sélectionner un": "Bitte wählen Sie a",
-        "Nom de l'équipement ?": "Name der Ausrüstung?",
+        "Configuration du plugin": "Plugin Konfiguration",
         "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Bitte aktivieren Sie das Gerät, bevor Sie eine der Steuerungen testen"
     },
     "core\/js\/log.class.js": {
@@ -3825,11 +3829,14 @@
     },
     "core\/ajax\/user.ajax.php": {
         "Connexion de l\\'utilisateur par REMOTE_USER :": "Benutzeranmeldung mit REMOTE_USER:",
+        "Double authentification requise": "Double authentification requise",
+        "Mot de passe ou nom d\\'utilisateur incorrect')": "Mot de passe ou nom d\\'utilisateur incorrect')",
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir ajouter un utilisateur": "Sie müssen die LDAP-Authentifizierung deaktivieren, um einen Benutzer hinzuzufügen",
         "Utilisateur invalide": "Ungültiger Benutzer",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir supprimer un utilisateur": "Sie müssen die LDAP-Authentifizierung deaktivieren, um einen Benutzer löschen zu können",
         "Vous ne pouvez pas supprimer le compte avec lequel vous êtes connecté": "Sie können das Konto, mit dem Sie verbunden sind, nicht löschen",
+        "User ID inconnu": "User ID inconnu",
         "Utilisateur non trouvé :": "Benutzer nicht gefunden:",
         "Aucune méthode correspondante à :": "Keine Methode entsprechend:"
     },
@@ -3849,7 +3856,7 @@
         "L\\'objet n\\'existe pas :": "Objekt existiert nicht:",
         "Vue inconnu. Vérifiez l\\'ID": "Unbekannte Ansicht. Überprüfen Sie die ID",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Keine Dateien gefunden. Überprüfen Sie die PHP-Einstellung (Postgrößenbeschränkung)",
-        "Extension du fichier non valide (autorisé .jpg .png .gif) :": "Ungültige Dateierweiterung (erlaubt .jpg .png .gif):",
+        "Extension du fichier non valide (autorisé .jpg .png .gif .svg .webp) :": "Ungültige Dateierweiterung (erlaubt .jpg .png .gif .svg .webp):",
         "Le fichier est trop gros (maximum 5Mo)": "Die Datei ist zu groß (maximal 5 MB)",
         "Impossible de sauvegarder l\\'image": "Bild kann nicht gespeichert werden",
         "Aucune méthode correspondante à :": "Keine Methode entsprechend:"
@@ -3876,7 +3883,7 @@
         "inconnu": "Unbekannt",
         "Vous ne pouvez éditer ce type d\\'extension :": "Sie können diese Art von Erweiterung nicht bearbeiten:",
         "Impossible de créer le fichier, vérifiez les droits": "Datei kann nicht erstellt werden, Rechte überprüfen",
-        "Extension du fichier non valide (autorisé .jpg .png .gif) :": "Ungültige Dateierweiterung (autorisierte .jpg .png .gif):",
+        "Extension du fichier non valide (autorisé .jpg .png .gif .jpeg .svg .webp) :": "Ungültige Dateierweiterung (erlaubt .jpg .png .gif .jpeg .svg .webp):",
         "Le fichier est trop gros (maximum 5Mo)": "Die Datei ist zu groß (maximal 5 MB)",
         "Impossible de sauvegarder l\\'image": "Bild kann nicht gespeichert werden",
         "Fichier introuvable, impossible de le supprimer": "Datei nicht gefunden, kann nicht gelöscht werden",
@@ -4891,14 +4898,19 @@
         "Largeur (px)": "Breite (px)",
         "Hauteur (px)": "Höhe (px)",
         "Délai": "Bekanntmachung",
-        "Option(s)": "Option (en)",
+        "Thèmes": "Themen",
+        "Défaut": "Fehler",
+        "Clair": "Klar",
+        "Sombre": "Dunkel",
         "Aucune": "Irgendein",
         "Aucun": "Nein",
         "Principale": "Hauptsächlich"
     },
     "core\/dom\/dom.ui.js": {
         "OK": "Okay",
-        "Annuler": "Stornieren"
+        "Annuler": "Stornieren",
+        "Vous ne pouvez uploader qu\\'un seul fichier.": "Sie können nur eine Datei hochladen",
+        "Taille de fichier trop importante.": "Dateigröße zu groß"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Sie sind nicht berechtigt, diese Aktion auszuführen, IP:",

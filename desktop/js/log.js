@@ -66,8 +66,9 @@ document.getElementById('in_searchLogFilter')?.addEventListener('keyup', functio
 */
 //div_pageContainer events delegation:
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  if (event.target.matches('#brutlogcheck')) {
-    event.target.setAttribute('autoswitch', 0)
+  var _target = null
+  if (_target = event.target.closest('#brutlogcheck')) {
+    _target.setAttribute('autoswitch', 0)
     let elPreGlobalLog = document.getElementById('pre_globallog')
     var scroll = elPreGlobalLog.scrollTop
     jeedom.log.autoupdate({
@@ -81,17 +82,16 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
-  if (event.target.matches('.li_log, .li_log *')) {
-    let bt = event.target.closest('.li_log')
+  if (_target = event.target.closest('.li_log')) {
     document.getElementById('pre_globallog').empty()
     document.querySelectorAll('.li_log').removeClass('active')
-    bt.addClass('active')
+    _target.addClass('active')
     jeeP.btGlobalLogStopStart.removeClass('btn-success')
       .addClass('btn-warning')
       .html('<i class="fas fa-pause"></i><span class="hidden-768"> {{Pause}}</span>')
       .setAttribute('data-state', '1')
     jeedom.log.autoupdate({
-      log: bt.getAttribute('data-log'),
+      log: _target.getAttribute('data-log'),
       display: document.getElementById('pre_globallog'),
       search: document.getElementById('in_searchGlobalLog'),
       control: jeeP.btGlobalLogStopStart
@@ -99,12 +99,12 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
-  if (event.target.matches('#bt_downloadLog, #bt_downloadLog *')) {
+  if (_target = event.target.closest('#bt_downloadLog')) {
     window.open('core/php/downloadFile.php?pathfile=log/' + document.querySelector('.li_log.active').getAttribute('data-log'), "_blank", null)
     return
   }
 
-  if (event.target.matches('#bt_clearLog, #bt_clearLog *')) {
+  if (_target = event.target.closest('#bt_clearLog')) {
     jeedom.log.clear({
       log: document.querySelector('.li_log.active').getAttribute('data-log'),
       success: function(data) {
@@ -118,7 +118,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
-  if (event.target.matches('#bt_clearAllLog, #bt_clearAllLog *')) {
+  if (_target = event.target.closest('#bt_clearAllLog')) {
     jeeDialog.confirm("{{Êtes-vous sûr de vouloir vider tous les logs ?}}", function(result) {
       if (result) {
         jeedom.log.clearAll({
@@ -137,7 +137,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
-  if (event.target.matches('#bt_removeLog, #bt_removeLog *')) {
+  if (_target = event.target.closest('#bt_removeLog')) {
     jeedom.log.remove({
       log: document.querySelector('.li_log.active').getAttribute('data-log'),
       success: function(data) {
@@ -147,7 +147,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
-  if (event.target.matches('#bt_removeAllLog, #bt_removeAllLog *')) {
+  if (_target = event.target.closest('#bt_removeAllLog')) {
     jeeDialog.confirm("{{Êtes-vous sûr de vouloir supprimer tous les logs ?}}", function(result) {
       if (result) {
         jeedom.log.removeAll({
@@ -166,14 +166,13 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
-  if (event.target.matches('#bt_resetLogFilterSearch, #bt_resetLogFilterSearch *')) {
-    document.getElementById('in_searchLogFilter').value = ''
-    document.getElementById('in_searchLogFilter').triggerEvent('keyup')
+  if (_target = event.target.closest('#bt_resetLogFilterSearch')) {
+    document.getElementById('in_searchLogFilter').jeeValue('').triggerEvent('keyup')
     return
   }
-  if (event.target.matches('#bt_resetGlobalLogSearch, #bt_resetGlobalLogSearch *')) {
-    document.getElementById('in_searchGlobalLog').value = ''
-    document.getElementById('in_searchGlobalLog').triggerEvent('keyup')
+
+  if (_target = event.target.closest('#bt_resetGlobalLogSearch')) {
+    document.getElementById('in_searchGlobalLog').jeeValue('').triggerEvent('keyup')
     return
   }
 })

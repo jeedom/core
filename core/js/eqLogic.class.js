@@ -350,10 +350,6 @@ jeedom.eqLogic.buildSelectCmd = function(_params) {
 }
 
 jeedom.eqLogic.getSelectModal = function(_options, callback) {
-  if (!isset(_options)) {
-    _options = {}
-  }
-
   document.getElementById('mod_insertEqLogicValue')?.remove()
   document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertEqLogicValue"></div>')
   jeeDialog.dialog({
@@ -363,7 +359,7 @@ jeedom.eqLogic.getSelectModal = function(_options, callback) {
     width: 800,
     top: '20vh',
     contentUrl: 'index.php?v=d&modal=eqLogic.human.insert',
-    callback: function() { mod_insertEqLogic.setOptions(_options) },
+    callback: function() { if (_options) mod_insertEqLogic.setOptions(_options) },
     buttons: {
       confirm: {
         label: '{{Valider}}',

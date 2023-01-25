@@ -60,7 +60,7 @@ sort($selm);
 $select['mobile'] = implode('',$selm);
 ?>
 
-<div id="form_widgetReplace" data-modalType="md_widgetReplace">
+<div id="md_widgetReplace" data-modalType="md_widgetReplace">
   <div style="display: none;" id="md_widgetReplaceAlert"></div>
   <legend><i class="fas fa-desktop"></i> {{Dashboard}}</legend>
   <form class="form-horizontal">
@@ -119,29 +119,38 @@ $select['mobile'] = implode('',$selm);
 </div>
 
 <script>
-$('.bt_replaceWidget').off('click').on('click',function() {
-  var version = $(this).attr('data-version')
-  var opt1 = $('.widgetReplaceAttr'+version+'[data-l1key=replace] option:selected')
-  var opt2 = $('.widgetReplaceAttr'+version+'[data-l1key=by] option:selected')
-  if (opt1.attr('data-type') != opt2.attr('data-type')) {
-    $('#md_widgetReplaceAlert').showAlert({message: '{{Le type de la commande à replacer doit etre le meme que le type de la commande remplacante}}', level: 'danger'})
-    return
-  }
-  if (opt1.attr('data-subtype') != opt2.attr('data-subtype')) {
-    $('#md_widgetReplaceAlert').showAlert({message: '{{Le sous-type de la commande à replacer doit etre le meme que le sous-type de la commande remplacante}}', level: 'danger'})
-    return
-  }
-  var info = document.getElementById('form_widgetReplace').getJeeValues('.widgetReplaceAttr'+version)[0]
-  jeedom.widgets.replacement({
-    version : version,
-    replace : info.replace,
-    by : info.by,
-    error: function(error) {
-      $('#md_widgetReplaceAlert').showAlert({message: error.message, level: 'danger'})
-    },
-    success : function(data) {
-      $('#md_widgetReplaceAlert').showAlert({message: '{{Remplacement réalisé avec succès. Nombre de widget remplacé :}} '+data, level: 'success'})
+/*Events delegations
+*/
+document.getElementById('md_widgetReplace').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.bt_replaceWidget')) {
+    var version = _target.getAttribute('data-version')
+    var opt1 = document.querySelector('#md_widgetReplace .widgetReplaceAttr' + version + '[data-l1key="replace"]').selectedOptions[0]
+    var opt2 = document.querySelector('#md_widgetReplace .widgetReplaceAttr' + version + '[data-l1key="by"]').selectedOptions[0]
+
+    if (opt1.getAttribute('data-type') != opt2.getAttribute('data-type')) {
+      jeedomUtils.showAlert({message: '{{Le type de la commande à replacer doit etre le meme que le type de la commande remplacante}}', level: 'danger'})
+      return
     }
-  })
+    if (opt1.getAttribute('data-subtype') != opt2.getAttribute('data-subtype')) {
+      jeedomUtils.showAlert({message: '{{Le sous-type de la commande à replacer doit etre le meme que le sous-type de la commande remplacante}}', level: 'danger'})
+      return
+    }
+    var info = document.getElementById('md_widgetReplace').getJeeValues('.widgetReplaceAttr' + version)[0]
+
+    jeedom.widgets.replacement({
+      version : version,
+      replace : info.replace,
+      by : info.by,
+      error: function(error) {
+        jeedomUtils.showAlert({message: error.message, level: 'danger'})
+      },
+      success : function(data) {
+        jeedomUtils.showAlert({message: '{{Remplacement réalisé avec succès. Nombre de widget remplacé :}} '+data, level: 'success'})
+      }
+    })
+    return
+  }
 })
+
 </script>

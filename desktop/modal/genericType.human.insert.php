@@ -25,7 +25,7 @@ $displayNone = (isset($_GET['none'])) ? $_GET['none'] : true;
 
 ?>
 
-<table class="table table-condensed table-bordered" id="table_mod_insertGenericType">
+<table id="table_mod_insertGenericType" class="table table-condensed table-bordered">
   <thead>
     <tr>
       <th>{{Type Générique}} <?php if ($typeFilter != 'all') { echo "($typeFilter)"; } ?></th>
@@ -98,25 +98,28 @@ $displayNone = (isset($_GET['none'])) ? $_GET['none'] : true;
 </table>
 
 <script>
-  function mod_insertGenericType() {}
+(function() {// Self Isolation!
+  if (window.mod_insertGenericType == undefined) {
+    window.mod_insertGenericType = function() {}
+  }
   mod_insertGenericType.setOptions = function(_options) {}
-
   mod_insertGenericType.getValue = function() {
-    var genericType_name = $('#table_mod_insertGenericType tbody td.mod_insertGenericType_name select option:selected').val()
-    if (genericType_name == undefined) {
+    var genericType = document.querySelector('#table_mod_insertGenericType tbody td.mod_insertGenericType_name select')?.selectedOptions
+    if (!genericType || genericType.length == 0) {
       return ''
     }
-    var selected = $('#table_mod_insertGenericType tbody td.mod_insertGenericType_object select option:selected')
-    if (selected.html() == undefined) {
-      return 'genericType(' + genericType_name + ')'
+    var genericObject = document.querySelector('#table_mod_insertGenericType tbody td.mod_insertGenericType_object select')?.selectedOptions
+    if (!genericObject || genericObject.length == 0) {
+      return 'genericType(' + genericType[0].text + ')'
     }
-    if (selected.val() == '-1') {
-      return 'genericType(' + genericType_name + ')'
+    if (genericObject[0].text == '-1') {
+      return 'genericType(' + genericType[0].text + ')'
     }
-    return 'genericType(' + genericType_name + ',#[' + selected.html() + ']#)'
+    return 'genericType(' + genericType[0].text + ',#[' + genericObject[0].text + ']#)'
   }
 
   mod_insertGenericType.getId = function() {
-    return $('#table_mod_insertGenericType tbody td.mod_insertGenericType_name select option:selected').val()
+    return document.querySelector('#table_mod_insertGenericType tbody td.mod_insertGenericType_name select').value || null
   }
+})()
 </script>

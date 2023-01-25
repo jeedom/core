@@ -26,6 +26,8 @@
 - **Verwaltung** : Möglichkeit, Standardbefehls-Widgets festzulegen.
 - Ein Kontextmenü wurde an verschiedenen Stellen auf der Ebene der Kontrollkästchen hinzugefügt, um alle oder keine auszuwählen oder die Auswahl umzukehren *(siehe [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.4))*.
 - **Armaturenbrett** : Möglichkeit auf der Objektkonfigurationsseite, jeedom zu bitten, die Ausrüstung entsprechend ihrer Verwendung neu zu ordnen
+- **Thema** : Möglichkeit, das Thema direkt aus der URL auszuwählen (durch Hinzufügen von &theme=Dark oder &theme=Light).
+- **Bericht** : Möglichkeit, das Thema während eines Berichts auf einer Jeedom-Seite zu wählen.
 
 ### 4.4 : Autre
 

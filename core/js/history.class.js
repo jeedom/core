@@ -1251,6 +1251,7 @@ jeedom.history.initLegendContextMenu = function(_chartId) {
     },
     build: function(trigger) {
       var __ctxel__ = trigger.parentNode.closest('div.chartContainer').getAttribute('id')
+      if (isset(jeeFrontEnd.history) && isset(jeeFrontEnd.history.__ctxel__) && jeedom.history.chart[jeeFrontEnd.history.__ctxel__].comparing) return false
       var chart = jeedom.history.chart[__ctxel__].chart
       if (!chart) return false
       if (jeedom.history.chart[chart._jeeId].type == 'pie') return false

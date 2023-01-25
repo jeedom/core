@@ -21,7 +21,6 @@ sendVarToJS([
   <div class="input-group">
       <span class="input-group-btn">
           <a href="index.php?v=d&p=backup" class="btn btn-success btn-sm roundedLeft"><i class="fas fa-save"></i> {{Sauvegarde Système}}
-          </a><a class="btn btn-info btn-sm" id="bt_clearReplace"><i class="fas fa-times"></i> {{Reset}}
           </a><a class="btn btn-danger btn-sm roundedRight" id="bt_replace"><i class="fas fa-random"></i> {{Remplacer}}</a>
       </span>
   </div>
@@ -85,6 +84,10 @@ sendVarToJS([
 
               <div class="col-lg-1 col-md-2 col-xs-3">
                 <a class="btn btn-success" id="bt_applyFilters"><i class="fas fa-filter"></i> {{Filtrer}}</a>
+              </div>
+
+              <div class="col-lg-1 col-md-2 col-xs-3">
+                <a class="btn btn-info" id="bt_clearReplace"><i class="fas fa-times"></i> {{Reset}}</a>
               </div>
 
             </div>
@@ -164,6 +167,13 @@ sendVarToJS([
       </div>
     </div>
 
+    <div class="panel-group">
+      <div id="progresscontainer" class="hidden">
+        <div id="progressbar" class="progress-bar" style="float:none; height: 25px;"></div>
+        <div><i class="fas fa-sync fa-spin"></i><span id="progresslog"></span></div>
+      </div>
+    </div>
+
     <div class="panel-group" id="accordionReplace">
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -175,9 +185,9 @@ sendVarToJS([
             <div class="panel-body">
 
               <div class="input-group" style="margin-bottom:5px;display: inline-table;">
-                <input class="form-control rounded" placeholder="{{Rechercher}}" id="in_searchByName"/>
+                <input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchByName"/>
                 <div class="input-group-btn">
-                  <a id="bt_resetSearchName" class="btn" style="width:30px"><i class="fas fa-times"></i></a>
+                  <a id="bt_resetSearchName" class="btn roundedRight" style="width:30px;"><i class="fas fa-times"></i></a>
                 </div>
               </div>
               <div style="text-align: center;">{{Source}} <i class="far fa-arrow-alt-circle-right"></i> {{Cible}}</div>

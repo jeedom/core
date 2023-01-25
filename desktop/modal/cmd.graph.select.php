@@ -121,9 +121,10 @@ if (!isConnect()) {
 </table>
 
 <script>
+(function() {// Self Isolation!
   var $tableViewData = $('#table_addViewData')
   jeedomUtils.initTableSorter()
   $tableViewData[0].config.widgetOptions.resizable_widths = ['50px', '150px', '', '740px']
-  $tableViewData.trigger('applyWidgets')
-    .trigger('resizableReset')
+  $tableViewData.trigger('applyWidgets').trigger('resizableReset')
+})()
 </script>

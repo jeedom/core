@@ -30,6 +30,7 @@ if (!jeeFrontEnd.update) {
       this.prevUpdateText = ''
       this.newLogClean = '<pre id="pre_updateInfo_clean" style="display:none;"><i>{{Aucune mise à jour en cours.}}</i></pre>'
       this._UpdateObserver_ = null
+      this.printUpdate()
     },
     checkAllUpdate: function() {
       jeedomUtils.hideAlert()
@@ -148,8 +149,7 @@ if (!jeeFrontEnd.update) {
           table.config.widgetOptions.resizable_widths = ['95px', '', '', '', '', '', '']
           table.triggerEvent('applyWidgets')
           setTimeout(() => {
-            table.querySelector('thead tr').children[0].triggerEvent('sort')
-            table.querySelector('thead tr').children[0].triggerEvent('sort')
+            table.querySelector('thead tr').children[0].triggerEvent('sort').triggerEvent('sort')
           }, 200)
 
           //create a second <pre> for cleaned text to avoid change event infinite loop:
@@ -551,8 +551,6 @@ if (!jeeFrontEnd.update) {
 
 jeeFrontEnd.update.init()
 
-jeeP.printUpdate()
-
 if (jeephp2js.isUpdating == '1') {
   jeedomUtils.hideAlert()
   jeeP.progress = 7
@@ -562,74 +560,36 @@ if (jeephp2js.isUpdating == '1') {
   jeeP.getJeedomLog(1, 'update')
 }
 
-
-$('.bt_refreshOsPackageUpdate').off('click').on('click', function(event) {
-  let me = event.target.closest('.bt_refreshOsPackageUpdate')
-  if (jeeP.osUpdateChecked == 0 || me.getAttribute('data-forceRefresh') == "1") {
-    jeeP.printOsUpdate(me.getAttribute('data-forceRefresh'))
-  }
-})
-
-$('.bt_OsPackageUpdate').off('click').on('click',function(event) {
-  let me = event.target.closest('.bt_OsPackageUpdate')
-  if (me.getAttribute('disabled')) {
+/*Events delegations
+*/
+document.getElementById('div_pageContainer').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#bt_checkAllUpdate')) {
+    if (!document.querySelector('a[data-target="#coreplugin"]').hasClass('active')) document.querySelector('a[data-target="#coreplugin"]').click()
+    jeeP.checkAllUpdate()
     return
   }
-  let type = me.getAttribute('data-type');
-  jeeDialog.confirm('{{Êtes-vous sûr de vouloir mettre à jour les packages de type}}' + ' : ' + type + ' ? {{Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes}}.', function(result) {
-    if (!result) {
-      return
-    }
-    jeedom.systemUpgradablePackage({
-      type : type,
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function(data) {
-        jeedomUtils.showAlert({
-          message: '{{Mise à jour lancée avec succès.}}',
-          level: 'success'
-        })
-        jeeDialog.dialog({
-          id: 'jee_modal',
-          title: "{{Log de mise à jour}}",
-          contentUrl: 'index.php?v=d&modal=log.display&log=packages'
-        })
-      }
-    })
-  })
-})
 
-$('#bt_updateJeedom').off('click').on('click', function(event) {
-  jeeP.getUpdateModal()
-})
-
-$('#bt_checkAllUpdate').off('click').on('click', function(event) {
-  if (!document.querySelector('a[data-target="#coreplugin"]').hasClass('active')) document.querySelector('a[data-target="#coreplugin"]').click()
-  jeeP.checkAllUpdate()
-})
-
-$('#table_update').on({
-  'click': function(event) {
-    event.target._tippy.show()
-    setTimeout(()=>{event.target._tippy.hide()}, 1500)
-    if (event.target.checked) {
-      event.target.closest('tr').querySelector('a.btn.update').addClass('disabled')
-    } else {
-      event.target.closest('tr').querySelector('a.btn.update').removeClass('disabled')
-    }
+  if (_target = event.target.closest('#bt_updateJeedom')) {
+    jeeP.getUpdateModal()
+    return
   }
-}, 'input[data-l2key="doNotUpdate"]')
 
-$('#table_update').on({
-  'click': function(event) {
-    let me = event.target.closest('.update')
-    if (me.hasClass('disabled')) return
-    var id = me.closest('tr').getAttribute('data-id')
-    var logicalId = me.closest('tr').getAttribute('data-logicalid')
+  if (_target = event.target.closest('#table_update input[data-l2key="doNotUpdate"]')) {
+    _target._tippy.show()
+    setTimeout(()=>{_target._tippy.hide()}, 1500)
+    if (_target.checked) {
+      _target.closest('tr').querySelector('a.btn.update').addClass('disabled')
+    } else {
+      _target.closest('tr').querySelector('a.btn.update').removeClass('disabled')
+    }
+    return
+  }
+
+  if (_target = event.target.closest('#table_update .update')) {
+    if (_target.hasClass('disabled')) return
+    var id = _target.closest('tr').getAttribute('data-id')
+    var logicalId = _target.closest('tr').getAttribute('data-logicalid')
     jeeDialog.confirm('{{Êtes-vous sûr de vouloir mettre à jour :}}' + ' ' + logicalId + ' ?', function(result) {
       if (result) {
         jeeP.progress = -1;
@@ -651,14 +611,12 @@ $('#table_update').on({
         })
       }
     })
+    return
   }
-}, '.update')
 
-$('#table_update').on({
-  'click': function(event) {
-    let me = event.target.closest('.remove')
-    var id = me.closest('tr').getAttribute('data-id');
-    var logicalId = me.closest('tr').getAttribute('data-logicalid')
+  if (_target = event.target.closest('#table_update .remove')) {
+    var id = _target.closest('tr').getAttribute('data-id');
+    var logicalId = _target.closest('tr').getAttribute('data-logicalid')
     jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer :}}' + ' ' + logicalId + ' ?', function(result) {
       if (result) {
         jeedomUtils.hideAlert();
@@ -676,13 +634,11 @@ $('#table_update').on({
         })
       }
     })
+    return
   }
-}, '.remove')
 
-$('#table_update').on({
-  'click': function(event) {
-    let me = event.target.closest('.remove')
-    var id = me.closest('tr').getAttribute('data-id')
+  if (_target = event.target.closest('#table_update .checkUpdate')) {
+    var id = _target.closest('tr').getAttribute('data-id')
     jeedomUtils.hideAlert()
     jeedom.update.check({
       id: id,
@@ -696,45 +652,79 @@ $('#table_update').on({
         jeeP.printUpdate()
       }
     })
+    return
   }
-}, '.checkUpdate')
 
-$('#bt_saveUpdate').on('click', function(event) {
-  jeedom.update.saves({
-    updates: document.querySelectorAll('tbody tr').getJeeValues('.updateAttr'),
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      jeedomUtils.loadPage('index.php?v=d&p=update&saveSuccessFull=1')
+  if (_target = event.target.closest('#bt_saveUpdate')) {
+    jeedom.update.saves({
+      updates: document.querySelectorAll('#table_update tbody tr').getJeeValues('.updateAttr'),
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(data) {
+        jeedomUtils.loadPage('index.php?v=d&p=update&saveSuccessFull=1')
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_changelogCore')) {
+    jeedom.getDocumentationUrl({
+      page: 'changelog',
+      theme: document.body.getAttribute('data-theme'),
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(url) {
+        window.open(url, '_blank')
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.bt_refreshOsPackageUpdate')) {
+    if (jeeP.osUpdateChecked == 0 || _target.getAttribute('data-forceRefresh') == "1") {
+      jeeP.printOsUpdate(_target.getAttribute('data-forceRefresh'))
     }
-  })
-})
+    return
+  }
 
-$('body').off('click', '#bt_changelogCore').on('click', '#bt_changelogCore', function(event) {
-  jeedom.getDocumentationUrl({
-    page: 'changelog',
-    theme: document.body.getAttribute('data-theme'),
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(url) {
-      window.open(url, '_blank')
+  if (_target = event.target.closest('.bt_OsPackageUpdate')) {
+    if (_target.getAttribute('disabled')) {
+      return
     }
-  })
+    let type = _target.getAttribute('data-type');
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir mettre à jour les packages de type}}' + ' : ' + type + ' ? {{Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes}}.', function(result) {
+      if (!result) {
+        return
+      }
+      jeedom.systemUpgradablePackage({
+        type : type,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          jeedomUtils.showAlert({
+            message: '{{Mise à jour lancée avec succès.}}',
+            level: 'success'
+          })
+          jeeDialog.dialog({
+            id: 'jee_modal',
+            title: "{{Log de mise à jour}}",
+            contentUrl: 'index.php?v=d&modal=log.display&log=packages'
+          })
+        }
+      })
+    })
+    return
+  }
 })
-
-//Register events on top of page container:
-
-//Manage events outside parents delegations:
-
-//Specials
-
-/*Events delegations
-*/

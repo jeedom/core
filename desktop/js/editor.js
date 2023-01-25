@@ -263,8 +263,8 @@ var options = {
             var elfinderInstance = $('#elfinder').elfinder(options).elfinder('instance')
             var fileUrl = elfinderInstance.url(self.file.hash)
             fileUrl = fileUrl.replace('/core/php/../../', '')
-            var $modal = $(textarea).closest('.ui-front')
-            $modal.find('.elfinder-dialog-title').html(fileUrl)
+            var modal = textarea.closest('.ui-front')
+            modal.querySelector('.elfinder-dialog-title').innerHTML = fileUrl
 
             this.myCodeMirror = CodeMirror.fromTextArea(textarea, {
               styleActiveLine: true,
@@ -304,10 +304,11 @@ var options = {
               self.myCodeMirror.setOption('smartIndent', false)
             }
 
-            $(".cm-s-default").style('height', '100%', 'important')
+            document.querySelector(".cm-s-default").style.setProperty("height", "100%", "important")
             editor.setOption('theme', 'monokai')
 
-            $modal.width('75%').css('left', '15%')
+            modal.style.width = '75%'
+            modal.style.left = '15%'
 
             //expand on resize modal:
             $('.elfinder-dialog-edit').resize(function() {

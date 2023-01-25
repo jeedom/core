@@ -573,7 +573,7 @@ jeedomUtils.initApplication = function(_reinit) {
 		  jeedomUtils.loadPage(res[1], 'Plugin', '', res[0])
 		}
 	      } else {
-		   if (redirect != '') {
+		   if (redirect != '' && APP_MODE == true) {
                            jeedom.plugin.get({
                                   id : redirect,
                                   async:false,

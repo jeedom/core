@@ -32,12 +32,12 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 		</div>
 
 		<ul class="nav nav-tabs reportModeHidden" role="tablist" id="ul_tabBatteryAlert">
-			<li role="presentation" class="active batteries"><a data-target="#battery" aria-controls="battery" role="tab" data-toggle="tab"><i class="fas fa-battery-full"></i> <span class="hidden-992">{{Batteries}}</span></a></li>
-			<li role="presentation" class="alerts"><a data-target="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> <span class="hidden-992">{{Equipements en alerte}}</span></a></li>
-			<li role="presentation" id="tab_actionCmd"><a data-target="#actionCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> <span class="hidden-992">{{Actions définies}}</span></a></li>
-			<li role="presentation" id="tab_alertCmd"><a data-target="#alertCmd" aria-controls="alertCmd" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> <span class="hidden-992">{{Alertes définies}}</span></a></li>
-			<li role="presentation" id="tab_pushCmd"><a data-target="#pushCmd" aria-controls="pushCmd" role="tab" data-toggle="tab"><i class="fas fa-upload"></i> <span class="hidden-992">{{Push définis}}</span></a></li>
-			<li role="presentation" id="tab_deadCmd"><a data-target="#deadCmd" aria-controls="deadCmd" role="tab" data-toggle="tab"><i class="fab fa-snapchat-ghost"></i> <span class="hidden-992">{{Commandes orphelines}}</span></a></li>
+			<li id="tab_batteries" role="presentation" class="active"><a data-target="#battery" aria-controls="battery" role="tab" data-toggle="tab"><i class="fas fa-battery-full"></i> <span class="hidden-992">{{Batteries}}</span></a></li>
+			<li id="tab_alerts" role="presentation"><a data-target="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> <span class="hidden-992">{{Equipements en alerte}}</span></a></li>
+			<li id="tab_actionCmd" role="presentation"><a data-target="#actionCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> <span class="hidden-992">{{Actions définies}}</span></a></li>
+			<li id="tab_alertCmd" role="presentation"><a data-target="#alertCmd" aria-controls="alertCmd" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> <span class="hidden-992">{{Alertes définies}}</span></a></li>
+			<li id="tab_pushCmd" role="presentation"><a data-target="#pushCmd" aria-controls="pushCmd" role="tab" data-toggle="tab"><i class="fas fa-upload"></i> <span class="hidden-992">{{Push définis}}</span></a></li>
+			<li id="tab_deadCmd" role="presentation"><a data-target="#deadCmd" aria-controls="deadCmd" role="tab" data-toggle="tab"><i class="fab fa-snapchat-ghost"></i> <span class="hidden-992">{{Commandes orphelines}}</span></a></li>
 		</ul>
 
 		<div class="tab-content">

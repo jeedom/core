@@ -29,104 +29,159 @@ sendVarToJS([
 ]);
 
 ?>
-<div id="div_alertViewConfigure" data-modalType="md_viewConfigure"></div>
-
-<div id="div_viewConfigure">
-  <form class="form-horizontal">
-    <fieldset>
-      <legend><i class="fas fa-cog"></i> {{Général}}<a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigureView'><i class="fas fa-check"></i> {{Sauvegarder}}</a></legend>
-      <input type="text"  class="viewAttr form-control" data-l1key="id" style="display: none;"/>
-      <div class="form-group">
-        <label class="col-lg-4 control-label">{{Nom}}</label>
-        <div class="col-lg-2">
-          <input class="viewAttr form-control" data-l1key="name" />
+<div id="md_viewConfigure" data-modalType="md_viewConfigure">
+  <div id="div_viewConfigure">
+    <form class="form-horizontal">
+      <fieldset>
+        <legend><i class="fas fa-cog"></i> {{Général}}<a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigureView'><i class="fas fa-check"></i> {{Sauvegarder}}</a></legend>
+        <input type="text"  class="viewAttr form-control" data-l1key="id" style="display: none;"/>
+        <div class="form-group">
+          <label class="col-lg-4 control-label">{{Nom}}</label>
+          <div class="col-lg-2">
+            <input class="viewAttr form-control" data-l1key="name" />
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label class="col-lg-4 control-label">{{Icône}}</label>
-        <div class="col-lg-2">
-          <div class="viewAttr" data-l1key="display" data-l2key="icon" ></div>
+        <div class="form-group">
+          <label class="col-lg-4 control-label">{{Icône}}</label>
+          <div class="col-lg-2">
+            <div class="viewAttr" data-l1key="display" data-l2key="icon" ></div>
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
+            <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
+          </div>
         </div>
-        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
-          <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
+        <div class="form-group">
+          <label class="col-lg-4 control-label">{{Image (marche uniquement avec le thème Jeedom)}}</label>
+          <div class="col-lg-8">
+            <span class="btn btn-default btn-file">
+              <i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
+            </span>
+            <a class="btn btn-danger" id="bt_removeBackgroundImage"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label class="col-lg-4 control-label">{{Image (marche uniquement avec le thème Jeedom)}}</label>
-        <div class="col-lg-8">
-          <span class="btn btn-default btn-file">
-            <i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
-          </span>
-          <a class="btn btn-danger" id="bt_removeBackgroundImage"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
+        <div class="form-group">
+          <label class="col-lg-4 control-label">{{Afficher le nom des objets sur les widgets}}</label>
+          <div class="col-lg-2">
+            <input type="checkbox" class="viewAttr form-control" data-l1key="configuration" data-l2key="displayObjectName" />
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label class="col-lg-4 control-label">{{Afficher le nom des objets sur les widgets}}</label>
-        <div class="col-lg-2">
-          <input type="checkbox" class="viewAttr form-control" data-l1key="configuration" data-l2key="displayObjectName" />
-        </div>
-      </div>
-    </fieldset>
-  </form>
+      </fieldset>
+    </form>
+  </div>
 </div>
 
 <script>
-$('.viewAttr[data-l1key=display][data-l2key=icon]').on('dblclick', function() {
-  document.querySelector('.viewAttr[data-l1key=display][data-l2key=icon]').jeeValue('')
-})
+if (!jeeFrontEnd.md_viewConfigure) {
+  jeeFrontEnd.md_viewConfigure = {
+    init: function() {
+      if (isset(jeephp2js.md_viewConfigure_Id) && jeephp2js.md_viewConfigure_Id != '') {
+        document.getElementById('div_viewConfigure').setJeeValues(jeephp2js.md_viewConfigure_View, '.viewAttr')
+      }
 
-$('#bt_chooseIcon').on('click', function() {
-  var _icon = document.querySelector('div.viewAttr[data-l2key="icon"] > i')
-  if (_icon != null) {
-    _icon = _icon.getAttribute('class')
-  } else {
-    _icon = false
+      this.setFileUpload()
+    },
+    setFileUpload: function() {
+      new jeeFileUploader({
+        fileInput: document.getElementById('bt_uploadImage'),
+        replaceFileInput: false,
+        url: 'core/ajax/view.ajax.php?action=uploadImage&id=' + jeephp2js.md_viewConfigure_View.id,
+        dataType: 'json',
+        done: function(e, data) {
+          if (data.result.state != 'ok') {
+            attachTo: jeeDialog.get('#md_viewConfigure', 'content'),
+            jeedomUtils.showAlert({
+              attachTo: jeeDialog.get('#md_viewConfigure', 'content'),
+              message: data.result.result,
+              level: 'danger'
+            })
+            return
+          }
+          attachTo: jeeDialog.get('#md_viewConfigure', 'content'),
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_viewConfigure', 'content'),
+            message: '{{Image ajoutée}}',
+            level: 'success'
+          })
+        }
+      })
+    },
+    save: function() {
+      var view = document.getElementById('div_viewConfigure').getJeeValues('.viewAttr')[0]
+      jeedom.view.save({
+        id : jeephp2js.md_viewConfigure_View.id,
+        view: view,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_viewConfigure', 'content'),
+            message: error.message,
+            level: 'danger'
+           })
+        },
+        success: function() {
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_viewConfigure', 'content'),
+            message: '{{Vue sauvegardé}}',
+            level: 'success'
+          })
+        },
+      })
+    },
   }
-  jeedomUtils.chooseIcon(function(_icon) {
-    document.querySelector('.viewAttr[data-l1key="display"][data-l2key="icon"]').innerHTML = _icon
-  }, {icon: _icon})
-})
+}
+(function() {// Self Isolation!
+  var jeeM = jeeFrontEnd.md_viewConfigure
+  jeeM.init()
 
-$('#bt_uploadImage').fileupload({
-  replaceFileInput: false,
-  url: 'core/ajax/view.ajax.php?action=uploadImage&id=' + jeephp2js.md_viewConfigure_View.id,
-  dataType: 'json',
-  done: function(e, data) {
-    if (data.result.state != 'ok') {
-      $('#div_alertViewConfigure').showAlert({message: data.result.result, level: 'danger'})
+  /*Events delegations
+  */
+  document.getElementById('md_viewConfigure').addEventListener('click', function(event) {
+    var _target = null
+    if (_target = event.target.closest('#bt_chooseIcon')) {
+      var _icon = document.querySelector('div.viewAttr[data-l2key="icon"] > i')
+      if (_icon != null) {
+        _icon = _icon.getAttribute('class')
+      } else {
+        _icon = false
+      }
+      jeedomUtils.chooseIcon(function(_icon) {
+        document.querySelector('.viewAttr[data-l1key="display"][data-l2key="icon"]').innerHTML = _icon
+      }, {icon: _icon})
       return
     }
-    $('#div_alertViewConfigure').showAlert({message: '{{Image ajoutée}}', level: 'success'})
-  }
-})
 
-$('#bt_removeBackgroundImage').off('click').on('click', function() {
-  jeedom.view.removeImage({
-    id: jeephp2js.md_viewConfigure_View.id,
-    error: function(error) {
-      $('#div_alertViewConfigure').showAlert({message: error.message, level: 'danger'})
-    },
-    success: function() {
-      $('#div_alertViewConfigure').showAlert({message: '{{Image supprimée}}', level: 'success'})
-    },
+    if (_target = event.target.closest('#bt_removeBackgroundImage')) {
+      jeedom.view.removeImage({
+        id: jeephp2js.md_viewConfigure_View.id,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_viewConfigure', 'content'),
+            message: error.message,
+            level: 'danger'
+           })
+        },
+        success: function() {
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_viewConfigure', 'content'),
+            message: '{{Image supprimée}}',
+            level: 'success'
+          })
+        },
+      })
+      return
+    }
+
+    if (_target = event.target.closest('#bt_saveConfigureView')) {
+      jeeFrontEnd.md_viewConfigure.save()
+      return
+    }
   })
-})
 
-$('#bt_saveConfigureView').on('click', function() {
-  var view = document.getElementById('div_viewConfigure').getJeeValues('.viewAttr')[0]
-  jeedom.view.save({
-    id : jeephp2js.md_viewConfigure_View.id,
-    view: view,
-    error: function(error) {
-      $('#div_alertViewConfigure').showAlert({message: error.message, level: 'danger'})
-    },
-    success: function() {
-      $('#div_alertViewConfigure').showAlert({message: '{{Vue sauvegardé}}', level: 'success'})
-    },
+  document.getElementById('md_viewConfigure').addEventListener('dblclick', function(event) {
+    var _target = null
+    if (_target = event.target.closest('.viewAttr[data-l1key="display"][data-l2key="icon"]')) {
+      _target.innerHTML = ''
+    }
   })
-})
 
-if (isset(jeephp2js.md_viewConfigure_Id) && jeephp2js.md_viewConfigure_Id != '') {
-  document.getElementById('div_viewConfigure').setJeeValues(jeephp2js.md_viewConfigure_View, '.viewAttr')
-}
+})()
 </script>

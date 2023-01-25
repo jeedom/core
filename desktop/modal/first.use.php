@@ -1,4 +1,5 @@
 <?php
+
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -18,34 +19,35 @@
 if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-?>
-<?php
-$find_jeeasy = false;
+
+$pluginJeeEasy = false;
 try {
-	$plugin = plugin::byId('jeeasy');
-	$find_jeeasy = true;
+	$pluginJeeEasy = plugin::byId('jeeasy');
+} catch (Exception $e) { }
+
+$showDoc = false;
+if (config::byKey('doc::base_url', 'core') != '') {
+	$showDoc = true;
+}
+
+$showButton = false;
+if (config::byKey('jeedom::firstUse') == 1) {
+	$showButton = true;
+}
+
+sendVarToJS([
+  'jeephp2js.md_firstuse_pluginJeeEasy' => $pluginJeeEasy,
+  'jeephp2js.md_firstuse_showDoc' => $showDoc,
+  'jeephp2js.md_firstuse_showButton' => $showButton
+]);
+
+
 ?>
-	<script>
-		$(document).ready(function() {
-			jeeDialog.dialog({
-				id: 'md_firstConfig',
-				title: "{{Configuration de votre}} <?php echo config::byKey('product_name'); ?>",
-				fullScreen: true,
-				onClose: function() {
-			      jeeDialog.get('#md_firstConfig').destroy()
-			    },
-				contentUrl: 'index.php?v=d&plugin=jeeasy&modal=wizard',
-				callback: function() {
-			      jeeDialog.get('#md_firstConfig', 'title').querySelector('button.btClose').remove()
-			    }
-			})
-		})
-	</script>
-<?php
-} catch (Exception $e) {
-?>
+
+
+<div id="md_firstuse" data-modalType="md_firstuse">
 	<center>
-		{{Bienvenue dans}} <?php echo config::byKey('product_name'); ?> {{, et merci d'avoir choisi cette solution pour votre habitat connecté.}}<br />
+		{{Bienvenue dans}} <?php echo config::byKey('product_name'); ?> {{, merci d'avoir choisi cette solution pour votre habitat connecté.}}<br />
 		{{Voici 4 guides pour bien débuter avec}} <?php echo config::byKey('product_name'); ?> :
 	</center>
 	<br/><br/><br/>
@@ -59,7 +61,7 @@ try {
 				</a>
 			</center>
 		</div>
-		<?php if (config::byKey('doc::base_url', 'core') != '') { ?>
+		<div id="divDoc" style="display: none;">
 			<div class="col-xs-3">
 				<center>
 					<a href="<?php echo config::byKey('doc::base_url', 'core'); ?>/fr_FR/concept/" target="_blank">
@@ -85,7 +87,7 @@ try {
 					</a>
 				</center>
 			</div>
-		<?php } ?>
+		</div>
 	</div>
 
 	<br><br><br>
@@ -96,37 +98,57 @@ try {
 		<a class="badge cursor" href="https://market.jeedom.com/" target="_blank">Market</a>
 	</center>
 
-	<?php
-	if (config::byKey('jeedom::firstUse') == 1) {
-		$divButton = '<br><br>';
-		$divButton .= '<div class="row">';
-		$divButton .= '<div class="col-xs-12">';
-		$divButton .= '<a class="btn btn-default btn-xs pull-right" id="bt_doNotDisplayFirstUse"><i class="fas fa-eye-slash"></i> {{Ne plus afficher}}</a>';
-		$divButton .= '</div>';
-		$divButton .= '</div>';
-		echo $divButton;
-	}
-	?>
+	<div id="divButton" style="display: none;">
+		<br><br>
+		<div class="row">
+			<a class="btn btn-default btn-xs pull-right" id="bt_doNotDisplayFirstUse"><i class="fas fa-eye-slash"></i> {{Ne plus afficher}}</a>
+		</div>
+	</div>
+</div>
 
-	<script>
-		$('#bt_doNotDisplayFirstUse').on('click', function() {
-			jeedom.config.save({
-				configuration: {
-					'jeedom::firstUse': 0
-				},
-				error: function(error) {
-					jeedomUtils.showAlert({
-						message: error.message,
-						level: 'danger'
-					})
-				},
-				success: function() {
-					jeedomUtils.showAlert({
-						message: '{{Sauvegarde réussie}}',
-						level: 'success'
-					})
-				}
-			})
+<script>
+(function() {// Self Isolation!
+  	if (jeephp2js.md_firstuse_showDoc == "1") {
+  		document.querySelector('#md_firstuse #divDoc').seen()
+  	}
+
+  	if (jeephp2js.md_firstuse_showButton == "1") {
+  		document.querySelector('#md_firstuse #divButton').seen()
+  	}
+
+  	if (jeephp2js.md_firstuse_pluginJeeEasy != "") {
+		jeeDialog.dialog({
+			id: 'md_firstConfig',
+			title: "{{Configuration de votre}} <?php echo config::byKey('product_name'); ?>",
+			fullScreen: true,
+			onClose: function() {
+		    	jeeDialog.get('#md_firstConfig').destroy()
+		    },
+			contentUrl: 'index.php?v=d&plugin=jeeasy&modal=wizard',
+			callback: function() {
+		    	jeeDialog.get('#md_firstConfig', 'title').querySelector('button.btClose').remove()
+		    }
 		})
-	</script>
-<?php } ?>
+	}
+
+	document.getElementById('bt_doNotDisplayFirstUse')?.addEventListener('click', function() {
+		jeedom.config.save({
+			configuration: {
+				'jeedom::firstUse': 0
+			},
+			error: function(error) {
+				jeedomUtils.showAlert({
+					message: error.message,
+					level: 'danger'
+				})
+			},
+			success: function() {
+				jeedomUtils.showAlert({
+					message: '{{Option enregistrée}}',
+					level: 'success'
+				})
+			}
+		})
+	})
+})()
+</script>

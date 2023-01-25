@@ -1,4 +1,5 @@
 <?php
+$loadJquery = true;
 if (init('rescue', 0) == 1 && !in_array(init('p'), array('custom', 'backup', 'cron', 'connection', 'log', 'database', 'editor', 'system'))) {
 	$_GET['p'] = 'system';
 }
@@ -147,10 +148,11 @@ function setTheme() {
 
 ?>
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" translate="no" class="notranslate">
 
 <head>
 	<meta charset="utf-8">
+	<meta name="google" content="notranslate" />
 	<title><?php echo $title; ?></title>
 	<link rel="shortcut icon" href="<?php echo $configs['product_icon'] ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -166,8 +168,9 @@ function setTheme() {
 	include_file('3rdparty', 'roboto/roboto', 'css');
 	include_file('3rdparty', 'camingocode/camingocode', 'css');
 	include_file('3rdparty', 'text-security/text-security-disc', 'css');
-	include_file('3rdparty', 'jquery/jquery.min', 'js');
-	include_file('3rdparty', 'jquery.utils/jquery.utils', 'js');
+
+	if ($loadJquery) include_file('3rdparty', 'jquery/jquery.min', 'js');
+	if ($loadJquery) include_file('3rdparty', 'jquery.utils/jquery.utils', 'js');
 
 	include_file('core', 'jeedom', 'class.js');
 	?>
@@ -186,34 +189,40 @@ function setTheme() {
 	include_file('core', 'core', 'js');
 	include_file('core', 'js.inc', 'php');
 
-	include_file('3rdparty', 'bootstrap/bootstrap.min', 'js');
-	include_file('3rdparty', 'jquery.ui/jquery-ui.min', 'js'); //ui-dialog, replaced by jeeDialog.dialog()
-	include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
-	include_file('3rdparty', 'jquery.ui-touch-punch/jquery.ui.touch-punch.min', 'js');
-	include_file('3rdparty', 'bootbox/bootbox.min', 'js'); //Deprecated, keep for plugins
+	include_file('desktop', 'bootstrap', 'css');
+	if ($loadJquery) {
+		include_file('3rdparty', 'bootstrap/bootstrap.min', 'js');
 
-	include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
-	include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
-	include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
+		//ui-dialog replaced by jeeDialog, still sortable and resizable
+		include_file('3rdparty', 'jquery.ui/jquery-ui.min', 'js');
+		include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
+		include_file('3rdparty', 'jquery.ui-touch-punch/jquery.ui.touch-punch.min', 'js');
 
-	//Table column sorter:
-	include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap.min', 'css');
-	include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
-	include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
-	include_file('3rdparty', 'jquery.tablesorter/parsers/parser-input-select.min', 'js');
-	//Cron helper:
-	include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
-	include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
-	//ContextMenu, deprecated 4.4
-	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'css');
-	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'js');
+		//Deprecated 4.4, keep for plugins
+		include_file('3rdparty', 'bootbox/bootbox.min', 'js');
+		include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
+		include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
+		include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
+		include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'css');
+		include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'js');
+		include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js');
 
-	include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
-	include_file('3rdparty', 'jquery.packery/jquery.packery', 'js'); //$less with draggability lib
-	include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js'); //Deprecated 4.4, keep for plugins
-	//include_file('3rdparty', 'jwerty/jwerty', 'js');
+		//Table column sorter:
+		include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap.min', 'css');
+		include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
+		include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
+		include_file('3rdparty', 'jquery.tablesorter/parsers/parser-input-select.min', 'js');
+		//Cron helper:
+		include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
+		include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
+
+		include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
+    }
 
 	//jQuery less libs:
+    include_file('3rdparty', 'packery/packery.pkgd', 'js');
+    include_file('3rdparty', 'packery/draggabilly.pkgd', 'js');
+
 	include_file('3rdparty', 'codemirror/lib/codemirror', 'js');
 	include_file('3rdparty', 'codemirror/lib/codemirror', 'css');
 	include_file('3rdparty', 'codemirror/addon/edit/matchbrackets', 'js');
@@ -247,7 +256,6 @@ function setTheme() {
 	include_file('3rdparty', 'flatpickr/l10n/es', 'js');
 
 	//set theme before loading utils:
-	include_file('desktop', 'bootstrap', 'css');
 	include_file('desktop', 'coreWidgets', 'css');
 	include_file('desktop', 'desktop.main', 'css');
 	setTheme();
@@ -288,7 +296,7 @@ function setTheme() {
 		sendVarToJS([
 			'jeeFrontEnd.userProfils' => $_SESSION['user']->getOptions(),
 			'user_id' => $_SESSION['user']->getId(),
- 			'user_isAdmin' => isConnect('admin'),
+			'user_isAdmin' => isConnect('admin'),
 			'user_login' => $_SESSION['user']->getLogin(),
 			'jeeFrontEnd.jeedom_firstUse' => $configs['jeedom::firstUse']
 		]);
@@ -345,9 +353,9 @@ function setTheme() {
 									</li>
 
 									<li>
-										<a id="bt_gotoView" class="<?php if (count($allUserViews) > 0) echo 'submenu';?>">
+										<a id="bt_gotoView" class="<?php if (count($allUserViews) > 0) echo 'submenu'; ?>">
 											<i class="far fa-image"></i> {{Vue}}
-											<?php if (count($allUserViews) > 0) echo '<label class="drop-icon" for="drop-view"><i class="fas fa-chevron-down fa-2x"></i></label>';?>
+											<?php if (count($allUserViews) > 0) echo '<label class="drop-icon" for="drop-view"><i class="fas fa-chevron-down fa-2x"></i></label>'; ?>
 										</a>
 										<input type="checkbox" id="drop-view">
 										<?php
@@ -362,9 +370,9 @@ function setTheme() {
 									</li>
 
 									<li>
-										<a id="bt_gotoPlan" class="<?php if (count($allPlanHeaderViews) > 0) echo 'submenu';?>">
+										<a id="bt_gotoPlan" class="<?php if (count($allPlanHeaderViews) > 0) echo 'submenu'; ?>">
 											<i class="fas fa-paint-brush"></i> {{Design}}
-											<?php if (count($allPlanHeaderViews) > 0) echo '<label class="drop-icon" for="drop-design"><i class="fas fa-chevron-down fa-2x"></i></label>';?>
+											<?php if (count($allPlanHeaderViews) > 0) echo '<label class="drop-icon" for="drop-design"><i class="fas fa-chevron-down fa-2x"></i></label>'; ?>
 										</a>
 										<input type="checkbox" id="drop-design">
 										<?php
@@ -379,9 +387,9 @@ function setTheme() {
 									</li>
 
 									<li>
-										<a id="bt_gotoPlan3d" class="<?php if (count($allPlan3dHeaderViews) > 0) echo 'submenu';?>">
+										<a id="bt_gotoPlan3d" class="<?php if (count($allPlan3dHeaderViews) > 0) echo 'submenu'; ?>">
 											<i class="fas fa-cubes"></i> {{Design 3D}}
-											<?php if (count($allPlan3dHeaderViews) > 0) echo '<label class="drop-icon" for="drop-design3d"><i class="fas fa-chevron-down fa-2x"></i></label>';?>
+											<?php if (count($allPlan3dHeaderViews) > 0) echo '<label class="drop-icon" for="drop-design3d"><i class="fas fa-chevron-down fa-2x"></i></label>'; ?>
 										</a>
 										<input type="checkbox" id="drop-design3d">
 										<?php
@@ -504,16 +512,17 @@ function setTheme() {
 									<li><a href="index.php?v=m" class="noOnePageLoad"><i class="fas fa-mobile"></i> {{Version mobile}}</a></li>
 									<li class="divider"></li>
 									<?php if (isConnect('admin')) { ?>
-									<?php $mbState = config::byKey('mbState');
-											if ($mbState == 0) { ?>
-										<li>
-											<?php if (isset($plugin) && is_object($plugin) && $plugin->getIssue() != '') { ?>
-												<a target="_blank" href="<?php echo $plugin->getIssue() ?>"><i class="fas fa-exclamation-circle"></i> {{Rapport de bug}}</a>
-											<?php } else { ?>
-												<a class="bt_reportBug"><i class="fas fa-exclamation-circle"></i> {{Demande de support}}</a>
-											<?php } ?>
-										</li>
-									<?php }} ?>
+										<?php $mbState = config::byKey('mbState');
+										if ($mbState == 0) { ?>
+											<li>
+												<?php if (isset($plugin) && is_object($plugin) && $plugin->getIssue() != '') { ?>
+													<a target="_blank" href="<?php echo $plugin->getIssue() ?>"><i class="fas fa-exclamation-circle"></i> {{Rapport de bug}}</a>
+												<?php } else { ?>
+													<a class="bt_reportBug"><i class="fas fa-exclamation-circle"></i> {{Demande de support}}</a>
+												<?php } ?>
+											</li>
+									<?php }
+									} ?>
 									<li><a href="index.php?v=d&logout=1" class="noOnePageLoad"><i class="fas fa-sign-out-alt"></i> {{Se déconnecter}}</a></li>
 									<li><a><i class="fas fa-user"></i> <?php echo $_SESSION['user']->getLogin(); ?></a></li>
 									<?php
@@ -560,11 +569,12 @@ function setTheme() {
 							<?php
 							$mbState = config::byKey('mbState');
 							if ($mbState == 0) {
-							if (config::byKey('doc::base_url', 'core') != '') { ?>
-								<li class="hidden-sm">
-									<a id="bt_getHelpPage" class="cursor" data-plugin="<?php echo init('m'); ?>" data-page="<?php echo init('p'); ?>" title="{{Aide sur la page en cours}}"><i class="fas fa-question-circle"></i></a>
-								</li>
-							<?php }} ?>
+								if (config::byKey('doc::base_url', 'core') != '') { ?>
+									<li class="hidden-sm">
+										<a id="bt_getHelpPage" class="cursor" data-plugin="<?php echo init('m'); ?>" data-page="<?php echo init('p'); ?>" title="{{Aide sur la page en cours}}"><i class="fas fa-question-circle"></i></a>
+									</li>
+							<?php }
+							} ?>
 						</ul>
 					</nav>
 					<div id="summaryGlobalMain"><?php echo jeeObject::getGlobalHtmlSummary(); ?></div>
@@ -639,4 +649,5 @@ function setTheme() {
 	<div id="md_modal3"></div>
 
 </body>
+
 </html>

@@ -16,13 +16,6 @@
 
 "use strict"
 
-jeephp2js.listObjects.push(
-  {
-    id: null,
-    name: '{{Aucun}}'
-  }
-)
-
 if (!jeeFrontEnd.replace) {
   jeeFrontEnd.replace = {
     init: function() {
@@ -31,7 +24,10 @@ if (!jeeFrontEnd.replace) {
       this.filteredObjects = null
       this.filteredEqlogics = null
       this.replacerEqList = null
+      jeephp2js.listObjects.push({ id: null, name: '{{Aucun}}' })
+      jeedomUtils.initTooltips()
     },
+    //Filtering:
     applyFilter: function() {
       jeeP.filteredObjects = new Array()
       var key = null
@@ -65,7 +61,7 @@ if (!jeeFrontEnd.replace) {
         parentName = jeephp2js.listObjects.filter(o => o.id == eqlogic.object_id)[0].name
         eqDiv = '<ul class="eqLogic cursor" data-id="' + eqlogic.id + '" data-name="' + eqlogic.name + '" data-parent="' + parentName + '">'
         eqDiv += '<input type="checkbox" class="cb_selEqLogic" />'
-        eqDiv += '<span>[' + parentName + '][' + eqlogic.name + '] (' + eqlogic.id + ' | ' + eqlogic.eqType_name + ')</span>'
+        eqDiv += '<span class="eqName">[' + parentName + '][' + eqlogic.name + '] (' + eqlogic.id + ' | ' + eqlogic.eqType_name + ')</span>'
 
         eqDiv += '<div class="replacer"><i class="far fa-arrow-alt-circle-right"></i> ' + selectReplaceEqlogics + '</div>'
 
@@ -105,10 +101,17 @@ if (!jeeFrontEnd.replace) {
 
       jeeP.sourcesEqContainer.empty()
     },
+    getHumanName: function(_eqLogicId) {
+      var parentId = jeephp2js.listEqlogics.filter(e => e.id == _eqLogicId)[0].object_id
+      var parentName = jeephp2js.listObjects.filter(o => o.id == parentId)[0].name
+      var humanName = '[' + parentName + '][' + jeephp2js.listEqlogics.filter(e => e.id == _eqLogicId)[0].name + ']'
+      return humanName
+    },
+    //Replacer syncyhing:
     getEqlogicSelect: function(reset=false) {
       if (!this.filteredEqlogics) return ''
 
-      var select = '<select>'
+      var select = '<select class="selectEqReplace">'
       select += '<option value=""></option>'
       var parentName
       this.filteredObjects.forEach(function(_id) {
@@ -125,9 +128,7 @@ if (!jeeFrontEnd.replace) {
       return select
     },
     resetEqlogicSelect: function(eqlogicId=-1) {
-      let select = document.querySelector('#eqSource ul.eqLogic[data-id="' + eqlogicId + '"] div.replacer select')
-      select.value = ''
-      select.triggerEvent('keyup')
+      document.querySelector('#eqSource ul.eqLogic[data-id="' + eqlogicId + '"] select.selectEqReplace').jeeValue('')
     },
     resetCmdSelects: function(eqlogicId=-1) {
       document.querySelectorAll('#eqSource ul.eqLogic[data-id="' + eqlogicId + '"] li.cmd').forEach( _cmd => {
@@ -135,31 +136,32 @@ if (!jeeFrontEnd.replace) {
       })
     },
     synchEqlogicsReplacers: function() {
-      var eqReplacers = document.querySelectorAll('#eqSource ul.eqLogic > div.replacer select')
+      //Get all selected target eqlogics:
+      var eqReplacers = document.querySelectorAll('#eqSource select.selectEqReplace')
       jeeP.replacerEqList = new Array()
       eqReplacers.forEach(_select => {
-        jeeP.replacerEqList.push(_select.value)
+        if (_select.value != '') jeeP.replacerEqList.push(_select.value)
       })
 
+      //Check each eqlogic to synch state and select:
+      var thisId
       document.querySelectorAll('#eqSource ul.eqLogic').forEach( _ul => {
-        var thisId = _ul.getAttribute('data-id')
-        if (jeeP.replacerEqList.includes(thisId)) {
-          jeeP.disableEqlogic(thisId)
+        thisId = _ul.getAttribute('data-id')
+        if (jeeP.replacerEqList.includes(thisId)) { //Already selected as target replacement
+          //Disable it in all other selects:
+          document.getElementById('eqSource').querySelectorAll('select.selectEqReplace option[value="' + thisId + '"]').forEach(_opt => { _opt.disabled = true })
+          //Make eqlogic disable, closed, unchecked:
+          _ul.addClass('disabled').querySelector('input.cb_selEqLogic').checked = false
+          _ul.querySelector(':scope > ul').unseen()
+          //Reset its commands:
+          jeeP.resetEqlogicSelect(thisId)
         } else {
-          jeeP.enableEqlogic(thisId)
+          document.getElementById('eqSource').querySelectorAll('select.selectEqReplace option[value="' + thisId + '"]').forEach(_opt => { _opt.disabled = false })
+          _ul.removeClass('disabled')
         }
       })
     },
-    enableEqlogic: function(eqlogicId=-1) {
-      document.querySelector('#eqSource ul.eqLogic[data-id="' + eqlogicId + '"]')?.removeClass('disabled')
-    },
-    disableEqlogic: function(eqlogicId=-1) {
-      var eqEl = document.querySelector('#eqSource ul.eqLogic[data-id="' + eqlogicId + '"]')
-      eqEl.querySelector('input.cb_selEqLogic').checked = false
-      eqEl.querySelector('ul').unseen()
-      this.resetEqlogicSelect(eqEl.getAttribute('data-id'))
-      eqEl.addClass('disabled')
-    },
+    //Selection:
     selectReplacerEqlogic: function(_selectEl) {
       //get source and target eqLogics Ids:
       var thisEq = _selectEl.closest('ul.eqLogic')
@@ -176,8 +178,7 @@ if (!jeeFrontEnd.replace) {
       //Do not replace itself!
       if (sourceEqId == targetEqId) {
         jeedomUtils.showAlert({level: 'warning', message: "{{Vous ne pouvez pas remplacer un équipement par lui même.}}"})
-        _selectEl.value = ''
-        _selectEl.triggerEvent('keyup')
+        _selectEl.jeeValue('')
         jeeP.resetCmdSelects(sourceEqId)
         jeeP.synchEqlogicsReplacers()
         return false
@@ -186,8 +187,7 @@ if (!jeeFrontEnd.replace) {
       //Is ever replacing by this eqLogic:
       if (_selectEl.value != '' && is_array(jeeP.replacerEqList) && jeeP.replacerEqList.includes(targetEqId)) {
         jeedomUtils.showAlert({level: 'warning', message: "{{Cet équipement remplace déjà un autre équipement.}}"})
-        _selectEl.value = ''
-        _selectEl.triggerEvent('keyup')
+        _selectEl.jeeValue('')
         jeeP.resetCmdSelects(sourceEqId)
         jeeP.synchEqlogicsReplacers()
         return false
@@ -196,8 +196,7 @@ if (!jeeFrontEnd.replace) {
       //Same name will throw error when in same object:
       if (sourceEqName == targetEqName) {
         jeedomUtils.showAlert({level: 'warning', message: "{{Vous ne pouvez pas remplacer un équipement par un équipement de même nom.}}"})
-        _selectEl.value = ''
-        _selectEl.triggerEvent('keyup')
+        _selectEl.jeeValue('')
         jeeP.resetCmdSelects(sourceEqId)
         jeeP.synchEqlogicsReplacers()
         return false
@@ -224,7 +223,7 @@ if (!jeeFrontEnd.replace) {
         var options = '<option value=""></option>'
         var _cmd = jeephp2js.listCommands.filter(o => o.id == _cmd.getAttribute('data-id'))[0]
         optionsCmds.forEach(function(optionsCmd) {
-          if (_cmd.name.toLowerCase() == optionsCmd.name.toLowerCase() && _cmd.type == optionsCmd.type) {
+          if (_cmd.name.toLowerCase().trim() == optionsCmd.name.toLowerCase().trim() && _cmd.type == optionsCmd.type) {
             options += '<option selected value="' + optionsCmd.id + '">' + optionsCmd.name + '</option>'
           } else {
             options += '<option value="' + optionsCmd.id + '">' + optionsCmd.name + '</option>'
@@ -233,9 +232,8 @@ if (!jeeFrontEnd.replace) {
         cmdSelect.insertAdjacentHTML('beforeend', options)
       })
     },
-    doReplace: function() {
-      jeedomUtils.hideAlert()
-
+    //Get job done!
+    doReplace: async function() {
       var opt_mode = document.getElementById('opt_mode').value
       var opt_copyEqProperties = document.getElementById('opt_copyEqProperties').checked
       var opt_hideEqs = document.getElementById('opt_hideEqs').checked
@@ -243,8 +241,11 @@ if (!jeeFrontEnd.replace) {
       var opt_removeHistory = document.getElementById('opt_removeHistory').checked
       var opt_copyHistory = document.getElementById('opt_copyHistory').checked
 
+      //Used for check and later parts sent:
       var replaceEqs = {}
       var replaceCmds = {}
+      //Get all eqs and their cmds to send eq one by one:
+      var replace = {}
 
       document.querySelectorAll('#eqSource ul.eqLogic').forEach(_eglogic => {
         if (_eglogic.querySelector('input.cb_selEqLogic').checked) {
@@ -253,16 +254,28 @@ if (!jeeFrontEnd.replace) {
 
           if (targetEqId != '') {
             replaceEqs[sourceEqId] = targetEqId
+
+            replace[sourceEqId] = {
+              target: targetEqId,
+              cmds: {}
+            }
+
             _eglogic.querySelectorAll('li.cmd').forEach(_cmd => {
+              var cmdId = _cmd.getAttribute('data-id')
               var replaceId = _cmd.querySelector('select').value
               if (replaceId != '') {
-                replaceCmds[_cmd.getAttribute('data-id')] = replaceId
+                replaceCmds[cmdId] = replaceId
+
+                Object.assign(replace[sourceEqId].cmds, {
+                  [cmdId]: replaceId
+                })
               }
             })
           }
         }
       })
 
+      //Is there something to replace ?
       if (opt_copyEqProperties && Object.keys(replaceEqs).length === 0) {
         jeedomUtils.showAlert({
           message: '{{Aucun équipement à remplacer ou copier}}',
@@ -279,37 +292,63 @@ if (!jeeFrontEnd.replace) {
         return true
       }
 
-      jeedom.massReplace({
-        options: {
-          mode: opt_mode,
-          copyEqProperties: opt_copyEqProperties,
-          hideEqs: opt_hideEqs,
-          copyCmdProperties: opt_copyCmdProperties,
-          removeCmdHistory: opt_removeHistory,
-          copyCmdHistory: opt_copyHistory
-        },
-        eqlogics: replaceEqs,
-        cmds: replaceCmds,
-        error: function(error) {
-          jeedomUtils.showAlert({message: error.message, level: 'danger'})
-        },
-        success: function(data) {
-          jeedomUtils.showAlert({
-            message: '{{Remplacement effectué}}' + ' : eqLogics: ' + data.eqlogics + ' | commands: ' + data.cmds,
-            level: 'success'
+      var requestLength = Object.keys(replaceEqs).length
+      var requestDone = 0
+      document.getElementById('progressbar').style.width = '0.5%'
+      document.getElementById('progresscontainer').removeClass('hidden').scrollIntoView(false)
+
+      for (const sourceEqId of Object.keys(replace)) {
+        replaceEqs = {[sourceEqId]: replace[sourceEqId].target}
+        replaceCmds = replace[sourceEqId].cmds
+
+        //UI:
+        var text = '  ' + jeeP.getHumanName(sourceEqId) + ' -> ' + jeeP.getHumanName(replace[sourceEqId].target) + '...';
+        document.getElementById('progresslog').textContent = text
+
+        var promise = new Promise((resolve, reject) => {
+          jeedom.massReplace({
+            global: false,
+            options: {
+              mode: opt_mode,
+              copyEqProperties: opt_copyEqProperties,
+              hideEqs: opt_hideEqs,
+              copyCmdProperties: opt_copyCmdProperties,
+              removeCmdHistory: opt_removeHistory,
+              copyCmdHistory: opt_copyHistory
+            },
+            eqlogics: replaceEqs,
+            cmds: replaceCmds,
+            error: function(error) {
+              jeedomUtils.showAlert({message: error.message, level: 'danger'})
+              document.getElementById('progresscontainer').addClass('hidden')
+              reject(error)
+            },
+            success: function(data) {
+              requestDone += 1
+              document.getElementById('progressbar').style.width = (requestDone * 100 / requestLength) + '%'
+              resolve(true)
+            }
           })
-        }
+        })
+        var result = await promise
+      }
+
+      jeedomUtils.showAlert({
+        message: '{{Remplacement effectué}}',
+        level: 'success'
       })
+      setTimeout(() => {
+        document.getElementById('progresscontainer').addClass('hidden')
+      }, 2500)
     },
   }
 }
 
 jeeFrontEnd.replace.init()
 
-jeedomUtils.initTooltips()
 
 //searching:
-$('#in_searchByName').on('keyup', function(event) {
+document.getElementById('in_searchByName')?.addEventListener('keyup', function(event) {
   try {
     var search = event.target.value
     var searchID = search
@@ -342,136 +381,17 @@ $('#in_searchByName').on('keyup', function(event) {
       }
     })
   } catch (error) {
-    console.error(error)
+    console.warn(error)
   }
 })
-$('#bt_resetSearchName').on('click', function(event) {
-  let input = document.getElementById('in_searchByName')
-  input.value = ''
-  input.triggerEvent('keyup')
+document.getElementById('bt_resetSearchName')?.addEventListener('click', function(event) {
+  document.getElementById('in_searchByName').jeeValue('').triggerEvent('keyup')
 })
 
-//Filters:
-//-> object
-$('#objectFilter').on('click', function(event) {
-  event.stopPropagation()
-})
-$('#objectFilterNone').on('click', function(event) {
-  document.querySelectorAll('#objectFilter input.objectFilterKey').forEach(_filter => {
-    _filter.checked = false
-  })
-})
-$('#objectFilterAll').on('click', function(event) {
-  document.querySelectorAll('#objectFilter input.objectFilterKey').forEach(_filter => {
-    _filter.checked = true
-  })
-})
-$('#objectFilter input.objectFilterKey').off('mouseup').on('mouseup', function(event) {
-  event.preventDefault()
-  event.stopPropagation()
-  var checkbox = event.target.closest('input.objectFilterKey')
-  if (event.which == 2) {
-    document.querySelectorAll('#objectFilter input.objectFilterKey').forEach(_filter => { _filter.checked = false })
-    checkbox.checked = true
-  } else {
-    checkbox.checked = !checkbox.checked
-  }
-})
-$('#objectFilter li a').on('mousedown', function(event) {
-  event.preventDefault()
-  var checkbox = event.target.querySelector('input.objectFilterKey') || event.target.closest('input.objectFilterKey')
-  if (checkbox == null) return
-  if (event.which == 2 || event.ctrlKey) {
-    if (document.querySelectorAll('input.objectFilterKey:checked').length == 1 && checkbox.checked) {
-      document.querySelectorAll('#objectFilter li input.objectFilterKey').forEach(_key => { _key.checked = true })
-    } else {
-      document.querySelectorAll('#objectFilter li input.objectFilterKey').forEach(_key => { _key.checked = false })
-      checkbox.checked = true
-    }
-  } else {
-    checkbox.checked = !checkbox.checked
-  }
-})
-//-> plugin
-$('#pluginFilter').on('click', function(event) {
-  event.stopPropagation()
-})
-$('#pluginFilterNone').on('click', function(event) {
-  document.querySelectorAll('#pluginFilter input.pluginFilterKey').forEach(_filter => {
-    _filter.checked = false
-  })
-})
-$('#pluginFilterAll').on('click', function(event) {
-  document.querySelectorAll('#pluginFilter input.pluginFilterKey').forEach(_filter => {
-    _filter.checked = true
-  })
-})
-$('#pluginFilter input.pluginFilterKey').off('mouseup').on('mouseup', function(event) {
-  event.preventDefault()
-  event.stopPropagation()
-  var checkbox = event.target.closest('input.pluginFilterKey')
-  if (event.which == 2) {
-    document.querySelectorAll('#pluginFilter input.pluginFilterKey').forEach(_filter => { _filter.checked = false })
-    checkbox.checked = true
-  } else {
-    checkbox.checked = !checkbox.checked
-  }
-})
-$('#pluginFilter li a').on('mousedown', function(event) {
-  event.preventDefault()
-  var checkbox = event.target.querySelector('input.pluginFilterKey') || event.target.closest('input.pluginFilterKey')
-  if (checkbox == null) return
-  if (event.which == 2 || event.ctrlKey) {
-    if (document.querySelectorAll('input.pluginFilterKey:checked').length == 1 && checkbox.checked) {
-      document.querySelectorAll('#pluginFilter li input.pluginFilterKey').forEach(_key => { _key.checked = true })
-    } else {
-      document.querySelectorAll('#pluginFilter li input.pluginFilterKey').forEach(_key => { _key.checked = false })
-      checkbox.checked = true
-    }
-  } else {
-    checkbox.checked = !checkbox.checked
-  }
-})
-
-//UI
-$('#eqSource').on({
-  'click': function(event) {
-    if (event.target.tagName.toUpperCase() == 'I') return
-    if (event.target.tagName.toUpperCase() == 'SELECT') return
-    if (event.target.tagName.toUpperCase() == 'OPTION') return
-    //checkbox clicked:
-    if (event.target.tagName.toUpperCase() == 'INPUT') return
-    //cmd cliked inside li:
-    if (event.target.hasClass('cmd')) {
-      return false
-    }
-
-    var el = event.target.closest('ul.eqLogic').querySelector('ul')
-    if (el.isVisible()) {
-      el.unseen()
-    } else {
-      el.seen()
-    }
-  }
-}, 'ul.eqLogic')
-
-$('#eqSource').on({
-  'change': function(event) {
-    let me = event.target.closest('ul.eqLogic > .replacer > select')
-    jeeP.selectReplacerEqlogic(me)
-  }
-}, 'ul.eqLogic > .replacer > select')
-
-$('#bt_clearReplace').on('click', function(event) {
-  jeeP.resetFilter()
-})
-
-$('#bt_applyFilters').on('click', function(event) {
-  jeeP.applyFilter()
-})
-
-$('#bt_replace').on('click', function(event) {
+//Manage events outside parents delegations:
+document.getElementById('bt_replace').addEventListener('click', function(event) {
   jeeDialog.confirm({
+    title: '{{Remplacement}}',
     message: "<b>{{Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !}}</b>" + "<br>" +  "{{Êtes-vous sûr de vouloir Remplacer ces équipements et commandes ?}}",
     callback: function(result) {
       if (result) {
@@ -481,11 +401,141 @@ $('#bt_replace').on('click', function(event) {
   })
 })
 
-//Register events on top of page container:
-
-//Manage events outside parents delegations:
-
-//Specials
-
 /*Events delegations
 */
+//Filters
+document.getElementById('accordionFilter').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#bt_applyFilters')) {
+    jeeP.applyFilter()
+    return
+  }
+
+  if (_target = event.target.closest('#bt_clearReplace')) {
+    document.getElementById('progresscontainer').addClass('hidden')
+    jeeP.resetFilter()
+    return
+  }
+
+  if (_target = event.target.closest('#objectFilter')) {
+    event.stopPropagation()
+  }
+
+  if (_target = event.target.closest('#objectFilterNone')) {
+    document.querySelectorAll('#objectFilter input.objectFilterKey').forEach(_filter => {
+      _filter.checked = false
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#objectFilterAll')) {
+    document.querySelectorAll('#objectFilter input.objectFilterKey').forEach(_filter => {
+      _filter.checked = true
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#pluginFilter')) {
+    event.stopPropagation()
+  }
+
+  if (_target = event.target.closest('#pluginFilterNone')) {
+    document.querySelectorAll('#pluginFilter input.pluginFilterKey').forEach(_filter => {
+      _filter.checked = false
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#pluginFilterAll')) {
+    document.querySelectorAll('#pluginFilter input.pluginFilterKey').forEach(_filter => {
+      _filter.checked = true
+    })
+    return
+  }
+})
+
+document.getElementById('accordionFilter').addEventListener('mouseup', function(event) {
+  var _target = null
+  if (_target = event.target.closest('input.objectFilterKey')) {
+    event.preventDefault()
+    event.stopPropagation()
+    if (event.which == 2) {
+      document.querySelectorAll('#objectFilter input.objectFilterKey').forEach(_filter => { _filter.checked = false })
+      _target.checked = true
+    } else {
+      _target.checked = !_target.checked
+    }
+    return
+  }
+
+  if (_target = event.target.closest('input.pluginFilterKey')) {
+    event.preventDefault()
+    event.stopPropagation()
+    if (event.which == 2) {
+      document.querySelectorAll('#pluginFilter input.pluginFilterKey').forEach(_filter => { _filter.checked = false })
+      _target.checked = true
+    } else {
+      _target.checked = !_target.checked
+    }
+    return
+  }
+})
+
+document.getElementById('accordionFilter').addEventListener('mousedown', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#objectFilter li a')) {
+    event.preventDefault()
+    let checkbox = _target.querySelector('input.objectFilterKey')
+    if (checkbox == null) return
+    if (event.which == 2 || event.ctrlKey) {
+      if (document.querySelectorAll('input.objectFilterKey:checked').length == 1 && checkbox.checked) {
+        document.querySelectorAll('#objectFilter li input.objectFilterKey').forEach(_key => { _key.checked = true })
+      } else {
+        document.querySelectorAll('#objectFilter li input.objectFilterKey').forEach(_key => { _key.checked = false })
+        checkbox.checked = true
+      }
+    } else {
+      checkbox.checked = !checkbox.checked
+    }
+    return
+  }
+
+  if (_target = event.target.closest('#pluginFilter li a')) {
+    event.preventDefault()
+    let checkbox = _target.querySelector('input.pluginFilterKey')
+    if (checkbox == null) return
+    if (event.which == 2 || event.ctrlKey) {
+      if (document.querySelectorAll('input.pluginFilterKey:checked').length == 1 && checkbox.checked) {
+        document.querySelectorAll('#pluginFilter li input.pluginFilterKey').forEach(_key => { _key.checked = true })
+      } else {
+        document.querySelectorAll('#pluginFilter li input.pluginFilterKey').forEach(_key => { _key.checked = false })
+        checkbox.checked = true
+      }
+    } else {
+      checkbox.checked = !checkbox.checked
+    }
+    return
+  }
+})
+
+//Replacement:
+document.getElementById('eqSource').addEventListener('click', function(event) {
+  var _target = null
+  if ((_target = event.target.matches('ul.eqLogic')) || (_target = event.target.matches('.eqName'))) {
+    var el = event.target.closest('ul.eqLogic').querySelector('ul')
+    if (el.isVisible()) {
+      el.unseen()
+    } else {
+      el.seen()
+    }
+    return
+  }
+})
+
+document.getElementById('eqSource').addEventListener('mouseup', function(event) {
+  var _target = null
+  if (_target = event.target.closest('select.selectEqReplace option')) {
+    jeeP.selectReplacerEqlogic(_target.closest('select.selectEqReplace'))
+    return
+  }
+})

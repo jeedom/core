@@ -28,26 +28,30 @@ jeedomUtils.tileHeightSteps = Array.apply(null, { length: 10 }).map(function(val
 
 /*Hijack jQuery ready function, still used in plugins
 */
-jeedomUtils.$readyFn = jQuery.fn.ready
-jQuery.fn.ready = function() {
-  if (domUtils._DOMloading <= 0) {
-    jeedomUtils.$readyFn.apply(this, arguments)
-  } else {
-    setTimeout(function() {
-      jQuery.fn.ready.apply(this, arguments[1])
-    }, 100, this, arguments)
+if (typeof jQuery === 'function') {
+  jeedomUtils.$readyFn = jQuery.fn.ready
+  jQuery.fn.ready = function() {
+    if (domUtils._DOMloading <= 0) {
+      jeedomUtils.$readyFn.apply(this, arguments)
+    } else {
+      setTimeout(function() {
+        jQuery.fn.ready.apply(this, arguments[1])
+      }, 100, this, arguments)
+    }
   }
 }
 //Deprecated, keep for plugins using jQuery ajax call
 document.addEventListener('DOMContentLoaded', function() {
   jeedomUtils._elBackground = document.getElementById('backgroundforJeedom')
-  $(document)
-    .ajaxStart(function() {
-      domUtils.showLoading()
-    })
-    .ajaxStop(function() {
-      domUtils.hideLoading()
-    })
+  if (typeof jQuery === 'function') {
+    $(document)
+      .ajaxStart(function() {
+        domUtils.showLoading()
+      })
+      .ajaxStop(function() {
+        domUtils.hideLoading()
+      })
+  }
 })
 
 //js error in ! ui:
@@ -121,7 +125,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   jeedom.cmd.resetUpdateFunction()
 
   //Deprecated jQuery contextMenu
-  $.contextMenu('destroy')
+  if (typeof jQuery === 'function') $.contextMenu('destroy')
   document.querySelectorAll('.context-menu-root').remove()
 
   jeedomUtils.jeeCtxMenuDestroy()
@@ -145,7 +149,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
     } catch (e) { }
   }
 
-  if (isset(bootbox)) bootbox.hideAll()
+  if (typeof jQuery === 'function' && isset(bootbox)) bootbox.hideAll()
   jeedomUtils.hideAlert()
   jeedomUtils.datePickerDestroy()
   jeedomUtils.autocompleteDestroy()
@@ -155,7 +159,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   jeephp2js = {}
   delete window.jeeP
   prePrintEqLogic = printEqLogic = addCmdToTable = undefined
-  $('body').off('changeThemeEvent')
+  if (typeof jQuery === 'function') $('body').off('changeThemeEvent')
 
   if (_url.indexOf('#') == -1) {
     var url = _url + '&ajax=1'
@@ -174,8 +178,8 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 
   //Deprecated: Migrate to registerEvent() and delete:
   document.onkeydown = null
-  $('body').off('mouseenter mouseleave')
-  $(window).off('resize')
+  if (typeof jQuery === 'function') $('body').off('mouseenter mouseleave')
+  if (typeof jQuery === 'function') $(window).off('resize')
 
   document.getElementById('div_mainContainer').querySelectorAll('script')?.remove()
   document.querySelectorAll('script[injext]')?.remove()
@@ -253,19 +257,24 @@ document.addEventListener('DOMContentLoaded', function() {
   //browser history:
 
   //custom jQuery event can't use pur js event listener
-  $('body').on('shown.bs.tab', '.nav-tabs a', function(event) {
-    if (event.target.getAttribute('data-target') == '' && event.target.getAttribute('href') == '') {
-      return
-    }
-    if (event.target.closest('.ui-dialog-content')?.innerHTML !== undefined) {
-      return
-    }
-    if (jeeFrontEnd.PREVIOUS_PAGE == null) {
-      window.history.replaceState('', '', 'index.php?' + window.location.href.split("index.php?")[1])
-      jeeFrontEnd.PREVIOUS_PAGE = 'index.php?' + window.location.href.split("index.php?")[1]
-    }
-    window.location.hash = event.target.getAttribute('data-target') || event.target.getAttribute('href')
-  })
+  if (typeof jQuery === 'function') {
+    $('body').on('shown.bs.tab', '.nav-tabs a', function(event) {
+      if (event.target.getAttribute('data-target') == '' && event.target.getAttribute('href') == '') return
+      if (event.target.closest('.ui-dialog-content')?.innerHTML !== undefined) return
+      if (event.target.closest('.jeeDialog')?.innerHTML !== undefined) return
+
+      if (jeeFrontEnd.PREVIOUS_PAGE == null) {
+        window.history.replaceState('', '', 'index.php?' + window.location.href.split("index.php?")[1])
+        jeeFrontEnd.PREVIOUS_PAGE = 'index.php?' + window.location.href.split("index.php?")[1]
+      }
+      var hash = event.target.getAttribute('data-target') || event.target.getAttribute('href')
+      if (hash) {
+        window.location.hash = hash
+      } else {
+        history.replaceState(null, null, ' ')
+      }
+    })
+  }
 
   window.addEventListener('hashchange', function(event) {
     jeeFrontEnd.NO_POPSTAT = true
@@ -298,7 +307,6 @@ document.addEventListener('DOMContentLoaded', function() {
   jeedomUtils.setJeedomTheme()
   jeedomUtils.changeJeedomThemeAuto()
 
-  jeedomUtils.setJeedomMenu()
   jeedomUtils.initJeedomModals()
   jeedomUtils.setJeedomGlobalUI()
 
@@ -313,6 +321,8 @@ document.addEventListener('DOMContentLoaded', function() {
     jeedomUtils.initTooltips()
     document.body.triggerEvent('jeedom_page_load')
   })
+
+  jeedomUtils.setJeedomMenu()
 
   /*Move and register common scripts/css to not reload them:
     Managed on loadPage() by domUtils.loadScript() and domUtils.html()
@@ -588,107 +598,109 @@ jeedomUtils.transitionJeedomBackground = function(_path) {
 
 //Jeedom UI__
 jeedomUtils.initJeedomModals = function() { //Deprecated jQuery UI dilaog/bootbox
-  $.fn.modal.Constructor.prototype.enforceFocus = function() { }
+  if (typeof jQuery === 'function') {
+    $.fn.modal.Constructor.prototype.enforceFocus = function() { }
 
-  //Deprecated bootbox, keep for plugins
-  if (isset(jeeFrontEnd.language)) {
-    var lang = jeeFrontEnd.language.substr(0, 2)
-    var supportedLangs = ['fr', 'de', 'es']
-    if (lang != 'en' && supportedLangs.includes(lang)) {
-      bootbox.addLocale('fr', { OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Annuler' })
-      bootbox.addLocale('de', { OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Abbrechen' })
-      bootbox.addLocale('es', { OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Anular' })
-      bootbox.setLocale('fr') //needed for date format
+    //Deprecated bootbox, keep for plugins
+    if (isset(jeeFrontEnd.language)) {
+      var lang = jeeFrontEnd.language.substr(0, 2)
+      var supportedLangs = ['fr', 'de', 'es']
+      if (lang != 'en' && supportedLangs.includes(lang)) {
+        bootbox.addLocale('fr', { OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Annuler' })
+        bootbox.addLocale('de', { OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Abbrechen' })
+        bootbox.addLocale('es', { OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Anular' })
+        bootbox.setLocale('fr') //needed for date format
+      }
     }
-  }
 
-  //Deprecated bootbox, keep for plugins
-  $('body').on('show', '.modal', function() {
-    document.activeElement.blur()
-    $(this).find('.modal-body :input:visible').first().focus()
-  })
-  $('body').on('focusin', '.bootbox-input', function(event) {
-    event.stopPropagation()
-  })
-  $('.bootbox.modal').on('shown.bs.modal', function() {
-    $(this).find(".bootbox-accept").focus()
-  })
+    //Deprecated bootbox, keep for plugins
+    $('body').on('show', '.modal', function() {
+      document.activeElement.blur()
+      $(this).find('.modal-body :input:visible').first().focus()
+    })
+    $('body').on('focusin', '.bootbox-input', function(event) {
+      event.stopPropagation()
+    })
+    $('.bootbox.modal').on('shown.bs.modal', function() {
+      $(this).find(".bootbox-accept").focus()
+    })
 
-  //Deprecated jQuery UI dialog, keep for plugins
-  $('#md_modal').dialog({
-    autoOpen: false,
-    modal: true,
-    closeText: '',
-    height: (window.innerHeight - 125),
-    width: ((window.innerWidth - 50) < 1500) ? (window.innerWidth - 50) : 1500,
-    position: { my: 'center top+80', at: 'center top', of: window },
-    open: function() {
-      document.body.style.overflow = 'hidden'
-      this.closest('.ui-dialog').querySelectorAll('button, input[type="button"]')?.forEach(el => { el.blur() })
-      $(this).dialog({
-        height: (window.innerHeight - 125),
-        width: ((window.innerWidth - 50) < 1500) ? (window.innerWidth - 50) : 1500,
-        position: { my: 'center top+80', at: 'center top', of: window }
-      })
-      setTimeout(function() { jeedomUtils.initTooltips($('#md_modal')) }, 500)
-    },
-    beforeClose: function(event, ui) {
-      $(this).parent('.ui-dialog').removeClass('summaryActionMain')
-      emptyModal('md_modal')
-      $('#md_modal').off('dialogresize')
+    //Deprecated jQuery UI dialog, keep for plugins
+    $('#md_modal').dialog({
+      autoOpen: false,
+      modal: true,
+      closeText: '',
+      height: (window.innerHeight - 125),
+      width: ((window.innerWidth - 50) < 1500) ? (window.innerWidth - 50) : 1500,
+      position: { my: 'center top+80', at: 'center top', of: window },
+      open: function() {
+        document.body.style.overflow = 'hidden'
+        this.closest('.ui-dialog').querySelectorAll('button, input[type="button"]')?.forEach(el => { el.blur() })
+        $(this).dialog({
+          height: (window.innerHeight - 125),
+          width: ((window.innerWidth - 50) < 1500) ? (window.innerWidth - 50) : 1500,
+          position: { my: 'center top+80', at: 'center top', of: window }
+        })
+        setTimeout(function() { jeedomUtils.initTooltips($('#md_modal')) }, 500)
+      },
+      beforeClose: function(event, ui) {
+        $(this).parent('.ui-dialog').removeClass('summaryActionMain')
+        emptyModal('md_modal')
+        $('#md_modal').off('dialogresize')
+      }
+    })
+
+    $('#md_modal2').dialog({
+      autoOpen: false,
+      modal: true,
+      closeText: '',
+      height: (window.innerHeight - 125),
+      width: ((window.innerWidth - 150) < 1200) ? (window.innerWidth - 50) : 1200,
+      position: { my: 'center bottom-50', at: 'center bottom', of: window },
+      open: function() {
+        document.body.style.overflow = 'hidden'
+        this.closest('.ui-dialog').querySelectorAll('button, input[type="button"]')?.forEach(el => { el.blur() })
+        $(this).dialog({
+          height: (window.innerHeight - 125),
+          width: ((window.innerWidth - 150) < 1200) ? (window.innerWidth - 50) : 1200,
+          position: { my: 'center bottom-50', at: 'center bottom', of: window },
+        })
+        setTimeout(function() { jeedomUtils.initTooltips($('#md_modal2')) }, 500)
+      },
+      beforeClose: function(event, ui) {
+        emptyModal('md_modal2')
+        $('#md_modal2').off('dialogresize')
+      }
+    })
+
+    $('#md_modal3').dialog({
+      autoOpen: false,
+      modal: true,
+      closeText: '',
+      height: (window.innerHeight - 125),
+      width: ((window.innerWidth - 250) < 1000) ? (window.innerWidth - 50) : 1000,
+      position: { my: 'center bottom-50', at: 'center bottom', of: window },
+      open: function() {
+        document.body.style.overflow = 'hidden'
+        this.closest('.ui-dialog').querySelectorAll('button, input[type="button"]')?.forEach(el => { el.blur() })
+        $(this).dialog({
+          height: (window.innerHeight - 125),
+          width: ((window.innerWidth - 250) < 1000) ? (window.innerWidth - 50) : 1000,
+          position: { my: 'center bottom-50', at: 'center bottom', of: window },
+        })
+        setTimeout(function() { jeedomUtils.initTooltips($('#md_modal3')) }, 500)
+      },
+      beforeClose: function(event, ui) {
+        emptyModal('md_modal3')
+        $('#md_modal3').off('dialogresize')
+      }
+    })
+
+    function emptyModal(_id = '') {
+      if (_id == '') return
+      document.body.style.overflow = 'inherit'
+      document.getElementById(_id).empty()
     }
-  })
-
-  $('#md_modal2').dialog({
-    autoOpen: false,
-    modal: true,
-    closeText: '',
-    height: (window.innerHeight - 125),
-    width: ((window.innerWidth - 150) < 1200) ? (window.innerWidth - 50) : 1200,
-    position: { my: 'center bottom-50', at: 'center bottom', of: window },
-    open: function() {
-      document.body.style.overflow = 'hidden'
-      this.closest('.ui-dialog').querySelectorAll('button, input[type="button"]')?.forEach(el => { el.blur() })
-      $(this).dialog({
-        height: (window.innerHeight - 125),
-        width: ((window.innerWidth - 150) < 1200) ? (window.innerWidth - 50) : 1200,
-        position: { my: 'center bottom-50', at: 'center bottom', of: window },
-      })
-      setTimeout(function() { jeedomUtils.initTooltips($('#md_modal2')) }, 500)
-    },
-    beforeClose: function(event, ui) {
-      emptyModal('md_modal2')
-      $('#md_modal2').off('dialogresize')
-    }
-  })
-
-  $('#md_modal3').dialog({
-    autoOpen: false,
-    modal: true,
-    closeText: '',
-    height: (window.innerHeight - 125),
-    width: ((window.innerWidth - 250) < 1000) ? (window.innerWidth - 50) : 1000,
-    position: { my: 'center bottom-50', at: 'center bottom', of: window },
-    open: function() {
-      document.body.style.overflow = 'hidden'
-      this.closest('.ui-dialog').querySelectorAll('button, input[type="button"]')?.forEach(el => { el.blur() })
-      $(this).dialog({
-        height: (window.innerHeight - 125),
-        width: ((window.innerWidth - 250) < 1000) ? (window.innerWidth - 50) : 1000,
-        position: { my: 'center bottom-50', at: 'center bottom', of: window },
-      })
-      setTimeout(function() { jeedomUtils.initTooltips($('#md_modal3')) }, 500)
-    },
-    beforeClose: function(event, ui) {
-      emptyModal('md_modal3')
-      $('#md_modal3').off('dialogresize')
-    }
-  })
-
-  function emptyModal(_id = '') {
-    if (_id == '') return
-    document.body.style.overflow = 'inherit'
-    document.getElementById(_id).empty()
   }
 }
 
@@ -923,16 +935,22 @@ jeedomUtils.setJeedomGlobalUI = function() {
 jeedomUtils.initPage = function() {
   jeedomUtils.initTableSorter()
   jeedomUtils.initReportMode()
-  $.initTableFilter()
+  if (typeof jQuery === 'function') $.initTableFilter()
   jeedomUtils.initHelp()
   jeedomUtils.initTextArea()
 
+  if (getUrlVars('theme') !== false) {
+    jeedomUtils.changeTheme(getUrlVars('theme'))
+  }
+
+  /*
   $('.nav-tabs a').on('click', function(event) {
     if (event.delegateTarget.getAttribute('data-action') == 'returnToThumbnailDisplay') {
       event.preventDefault()
       event.stopPropagation()
     }
   })
+  */
 
   setTimeout(function() {
     jeedomUtils.initTooltips()
@@ -1043,9 +1061,11 @@ jeedomUtils.enableTooltips = function() {
 }
 
 jeedomUtils.initTextArea = function() {
-  $('body').on('change keyup keydown paste cut', 'textarea.autogrow', function() {
-    $(this).height(0).height(this.scrollHeight)
-  })
+  if (typeof jQuery === 'function') {
+    $('body').on('change keyup keydown paste cut', 'textarea.autogrow', function() {
+      $(this).height(0).height(this.scrollHeight)
+    })
+  }
 }
 
 jeedomUtils.initReportMode = function() {
@@ -1069,26 +1089,28 @@ jeedomUtils.initTableSorter = function(filter) {
   if (filter !== false) {
     widgets.push('filter')
   }
-  $('table.tablesorter').tablesorter({
-    dateFormat: "yyyy-mm-dd",
-    theme: "bootstrap",
-    widthFixed: false,
-    widgets: widgets,
-    ignoreCase: true,
-    delayInit: false,
-    resizable: false,
-    saveSort: false,
-    sortLocaleCompare: true,
-    widgetOptions: {
-      filter_ignoreCase: true,
-      resizable: true,
-      stickyHeaders_offset: $('header.navbar-fixed-top').height()
-    },
-    cssIcon: 'tablesorter-icon',
-    initialized: function(table) {
-      $(table).find('thead .tablesorter-header-inner').append('<i class="tablesorter-icon"></i>')
-    }
-  }).css('width', '')
+  if (typeof jQuery === 'function') {
+    $('table.tablesorter').tablesorter({
+      dateFormat: "yyyy-mm-dd",
+      theme: "bootstrap",
+      widthFixed: false,
+      widgets: widgets,
+      ignoreCase: true,
+      delayInit: false,
+      resizable: false,
+      saveSort: false,
+      sortLocaleCompare: true,
+      widgetOptions: {
+        filter_ignoreCase: true,
+        resizable: true,
+        stickyHeaders_offset: $('header.navbar-fixed-top').height()
+      },
+      cssIcon: 'tablesorter-icon',
+      initialized: function(table) {
+        $(table).find('thead .tablesorter-header-inner').append('<i class="tablesorter-icon"></i>')
+      }
+    }).css('width', '')
+  }
 }
 
 jeedomUtils.initHelp = function() {
@@ -1152,12 +1174,14 @@ jeedomUtils.datePickerDestroy = function() {
 }
 
 jeedomUtils.initSpinners = function() {
-  $('input[type="number"].ui-spinner').spinner({
-    icons: {
-      down: "ui-icon-triangle-1-s",
-      up: "ui-icon-triangle-1-n"
-    }
-  })
+  if (typeof jQuery === 'function') {
+    $('input[type="number"].ui-spinner').spinner({
+      icons: {
+        down: "ui-icon-triangle-1-s",
+        up: "ui-icon-triangle-1-n"
+      }
+    })
+  }
 }
 
 jeedomUtils.jeeCtxMenuDestroy = function() {
@@ -1288,38 +1312,25 @@ jeedomUtils.addOrUpdateUrl = function(_param, _value, _title) {
 //Global UI functions__
 jeedomUtils.userDeviceType = 'mobile'
 jeedomUtils.setJeedomMenu = function() {
-  $('body').on('click', 'a', function(event) {
-    if (this.hasClass('noOnePageLoad')) {
-      return
-    }
-    if (this.hasClass('fancybox-nav')) {
-      return
-    }
-    if (this.getAttribute('href') == undefined || this.getAttribute('href') == '' || this.getAttribute('href') == '#') {
-      return
-    }
-    if (this.getAttribute('href').match("^data:")) {
-      return
-    }
-    if (this.getAttribute('href').match("^http")) {
-      return
-    }
-    if (this.getAttribute('href').match("^#")) {
-      return
-    }
-    if (this.getAttribute('target') == '_blank') {
-      return
+  document.getElementById('jeedomMenuBar')?.addEventListener('click', function(event) {
+    var _target = null
+    if (_target = event.target.closest('a')) {
+      if (_target.hasClass('noOnePageLoad')) return
+      if (_target.hasClass('fancybox-nav')) return
+      if (_target.getAttribute('href') == undefined || _target.getAttribute('href') == '' || _target.getAttribute('href') == '#') return
+      if (_target.getAttribute('href').match("^data:")) return
+      if (_target.getAttribute('href').match("^http")) return
+      if (_target.getAttribute('href').match("^#")) return
+      if (_target.getAttribute('target') == '_blank') return
+
+      if (!_target.hasClass('navbar-brand')) jeedomUtils.closeJeedomMenu()
+
+      event.preventDefault()
+      event.stopPropagation()
+      jeedomUtils.loadPage(_target.getAttribute('href'))
     }
 
-    if (!this.hasClass('navbar-brand')) jeedomUtils.closeJeedomMenu()
-
-    event.preventDefault()
-    event.stopPropagation()
-    jeedomUtils.loadPage(this.getAttribute('href'))
-  })
-
-  //one submenu opened at a time in mobile:
-  document.getElementById('jeedomMenuBar')?.addEventListener('click', event => {
+    //one submenu opened at a time in mobile:
     if (event.target.matches('.navbar-nav > li > input')) {
       var checked = event.target.checked
       document.querySelectorAll('#jeedomMenuBar .navbar-nav li > input').forEach(input => {
@@ -1679,27 +1690,28 @@ jeedomUtils.setCheckContextMenu = function(_callback) {
 }
 
 //Need jQuery and jQuery UI plugin loaded:
-jQuery.fn.setCursorPosition = function(position) {
-  if (this.lengh == 0) return this
-  return $(this).setSelection(position, position)
-}
-jQuery.fn.setSelection = function(selectionStart, selectionEnd) {
-  if (this.lengh == 0) return this
-  input = this[0]
-  if (input.createTextRange) {
-    var range = input.createTextRange()
-    range.collapse(true)
-    range.moveEnd('character', selectionEnd)
-    range.moveStart('character', selectionStart)
-    range.select()
-  } else if (input.setSelectionRange) {
-    input.focus()
-    input.setSelectionRange(selectionStart, selectionEnd)
+if (typeof jQuery === 'function') {
+  jQuery.fn.setCursorPosition = function(position) {
+    if (this.lengh == 0) return this
+    return $(this).setSelection(position, position)
   }
-  return this
+  jQuery.fn.setSelection = function(selectionStart, selectionEnd) {
+    if (this.lengh == 0) return this
+    input = this[0]
+    if (input.createTextRange) {
+      var range = input.createTextRange()
+      range.collapse(true)
+      range.moveEnd('character', selectionEnd)
+      range.moveStart('character', selectionStart)
+      range.select()
+    } else if (input.setSelectionRange) {
+      input.focus()
+      input.setSelectionRange(selectionStart, selectionEnd)
+    }
+    return this
+  }
+  $.ui.dialog.prototype._focusTabbable = $.noop //avoid ui-dialog focus on inputs when opening
 }
-$.ui.dialog.prototype._focusTabbable = $.noop //avoid ui-dialog focus on inputs when opening
-
 //Deprecated functions:
 /**
  * Send message to alert about deprecated function.
@@ -1822,8 +1834,3 @@ function getOpenedModal() {
 //Introduced in v4.3 -> obsolete 4.5 ?
 var jeedom_langage = jeeFrontEnd.language
 var userProfils = jeeFrontEnd.userProfils
-
-
-/*Migration purpose
-*/
-//var jq2 = jQuery.noConflict()

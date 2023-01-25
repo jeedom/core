@@ -38,7 +38,7 @@ if (!jeeFrontEnd.overview) {
       domUtils.hideLoading()
       self = this
       this.modal._jeeDialog.options.onResize = function(event) {
-        $(self.modalContent).packery()
+        Packery.data(self.modalContent).layout()
       }
     },
     createSummaryObserver: function() {
@@ -98,9 +98,11 @@ if (!jeeFrontEnd.overview) {
           })
         },
         success: function(data) {
+          self.modalContent.empty()
           try {
-            $(self.modalContent).empty().packery('destroy')
+            Packery.data(self.modalContent).destroy()
           } catch (e) {}
+
 
           jeeP.modal.querySelector('div.jeeDialogTitle > span.title').innerHTML = _title
           jeeP.modal._jeeDialog.show()
@@ -164,7 +166,7 @@ if (!jeeFrontEnd.overview) {
                   let mRect = jeeP.modal.getBoundingClientRect()
                   jeeP.modal.style.left = (bRect.width / 2) - (mRect.width / 2) + "px"
 
-                  $(self.modalContent).packery({
+                  new Packery(self.modalContent, {
                     gutter: parseInt(jeedom.theme['widget::margin']) * 2,
                     isLayoutInstant: true
                   })
@@ -194,13 +196,6 @@ jeeDialog.dialog({
   width: 500,
   height: 200,
   retainPosition: true,
-  open: function() {
-    //catch infos updates by main mutationobserver (jeedomUtils.loadPage disconnect/reconnect it):
-    if (jeedomUtils.OBSERVER) {
-      var summaryModal = document.getElementById('summaryEqlogics')
-      jeedomUtils.OBSERVER.observe(summaryModal, jeedomUtils.observerConfig)
-    }
-  }
 })
 
 jeeFrontEnd.overview.init()
@@ -222,10 +217,11 @@ jeedomUI.isEditing = false
 jeedomUI.setEqSignals()
 
 document.querySelectorAll('.resume')?.seen()
+
 jeeFrontEnd.overview.postInit()
 
 //Init Packery:
-$(jeeP.modalContent).packery()
+new Packery(jeeP.modalContent)
 
 //summary modal events:
 jeeP.modalContent.addEventListener('click', function(event) {
@@ -246,6 +242,7 @@ jeeP.modalContent.addEventListener('click', function(event) {
     } else {
       var cmdIds = event.target.closest('.history[data-cmd_id]').getAttribute('data-cmd_id')
     }
+    jeeFrontEnd.overview.modalContent.empty()
     jeeDialog.dialog({
       id: 'md_cmdHistory',
       title: '{{Historique}}',
@@ -257,8 +254,9 @@ jeeP.modalContent.addEventListener('click', function(event) {
 
 //div_pageContainer events delegation:
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  if (event.target.matches('.objectPreview .name')) {
-    var url = 'index.php?v=d&p=dashboard&object_id=' + event.target.closest('.objectPreview').getAttribute('data-object_id')
+  var _target = null
+  if (_target = event.target.closest('.objectPreview .name')) {
+    var url = 'index.php?v=d&p=dashboard&object_id=' + _target.closest('.objectPreview').getAttribute('data-object_id') + '&btover=1'
     if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
       window.open(url).focus()
     } else {
@@ -267,35 +265,36 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
-  if (event.target.matches('.objectPreview') || event.target.parentNode.hasClass('resume')) {
-    var url = event.target.getAttribute('data-url') || event.target.closest('.objectPreview').getAttribute('data-url')
-    if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
-      window.open(url).focus()
-    } else {
-      jeedomUtils.loadPage(url)
-    }
-    return
-  }
-
-  if (event.target.matches('.objectSummaryParent > i, .objectSummaryParent > sup, .objectSummaryParent > sup > span')) {
+  if (_target = event.target.closest('.objectSummaryParent')) {
     //action summary:
     if (event.ctrlKey) return
 
     event.stopPropagation()
     event.preventDefault()
     var objectId = event.target.closest('.objectPreview').getAttribute('data-object_id')
-    var summaryType = event.target.closest('.objectSummaryParent').getAttribute('data-summary')
-    var icon = event.target.closest('.objectSummaryParent').querySelector('i')?.outerHTML
+    var summaryType = _target.getAttribute('data-summary')
+
+    var icon = _target.querySelector('i') //?.outerHTML
     if (icon) {
-      var title = icon + ' ' +  event.target.closest('.objectPreview').querySelector('.topPreview .name').textContent
+      var title = icon.outerHTML + ' ' +  _target.closest('.objectPreview').querySelector('.topPreview .name').textContent
     } else {
-      var title = event.target.closest('.objectPreview').querySelector('.topPreview .name').textContent
+      var title = _target.closest('.objectPreview').querySelector('.name').textContent
     }
     jeeP.getSummaryHtml(objectId, summaryType, title)
     return
   }
 
-  if (event.target.matches('.objectPreview .bt_config, .objectPreview .bt_config i')) {
+  if (_target = event.target.closest('.objectPreview')) {
+    var url = _target.getAttribute('data-url')
+    if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
+      window.open(url).focus()
+    } else {
+      jeedomUtils.loadPage(url)
+    }
+    return
+  }
+
+  if (_target = event.target.closest('.objectPreview .bt_config')) {
     var objectId = event.target.closest('.objectPreview').getAttribute('data-object_id')
     var url = 'index.php?v=d&p=object&id=' + objectId + '#summarytab'
     jeedomUtils.loadPage(url)
@@ -304,7 +303,8 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 })
 
 document.getElementById('div_pageContainer').addEventListener('mouseup', function(event) {
-  if (event.target.matches('.objectPreview .name')) {
+  var _target = null
+  if (_target = event.target.closest('.objectPreview .name')) {
     if (event.which == 2) {
       event.preventDefault()
       var id = event.target.closest('.objectPreview').getAttribute('data-object_id')
@@ -313,7 +313,16 @@ document.getElementById('div_pageContainer').addEventListener('mouseup', functio
     return
   }
 
-  if (event.target.matches('.objectPreview') || event.target.parentNode.hasClass('resume')) {
+  if (_target = event.target.closest('.objectSummaryParent')) {
+    if (event.which == 2) {
+      var id = _target.getAttribute('data-object_id')
+      var url = 'index.php?v=d&p=dashboard&summary=' + _target.getAttribute('data-summary') + '&object_id=' + id + '&childs=0'
+      window.open(url).focus()
+      return
+    }
+  }
+
+  if (_target = event.target.closest('.objectPreview')) {
     if (event.which == 2) {
       if (event.target.hasClass('topPreview') || event.target.hasClass('name')) return
       event.preventDefault()
@@ -322,15 +331,4 @@ document.getElementById('div_pageContainer').addEventListener('mouseup', functio
     }
     return
   }
-
-  if (event.target.matches('.objectSummaryParent > i, .objectSummaryParent > sup, .objectSummaryParent > sup > span')) {
-    if (event.which == 2) {
-      var target = event.target.closest('.objectSummaryParent')
-      var id = event.target.closest('.objectPreview').getAttribute('data-object_id')
-      var url = 'index.php?v=d&p=dashboard&summary=' + target.getAttribute('data-summary') + '&object_id=' + id + '&childs=0'
-      window.open(url).focus()
-      return
-    }
-  }
 })
-

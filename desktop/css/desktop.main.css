@@ -516,6 +516,11 @@ Desktop
     word-break: break-word;
   }
 
+  #md_graphLink,
+  #div_graphLinkRenderer {
+    width: 100%;
+    height: 100%;
+  }
   #div_graphLinkRenderer text,
   #div_graphLinkRenderer image {
     cursor: grab;
@@ -1025,16 +1030,6 @@ div.eqLogicZone {
   }
 
   /* eqlogic dragging */
-  .eqLogic-widget.is-dragging,
-  .eqLogic-widget.is-positioning-post-drag {
-    background: #EA0 !important;
-    z-index: 2 !important; /* keep dragged item on top */
-  }
-  .eqLogic-widget.ui-draggable-dragging,
-  .eqLogic-widget.is-positioning-post-drag {
-    background: #C90 !important;
-    z-index: 2 !important;
-  }
   .packery-drop-placeholder {
     outline: 3px dashed hsla(0, 0%, 0%, 0.5) !important;
     outline-offset: -6px !important;
@@ -1381,7 +1376,9 @@ div.eqLogicZone {
   #div_widgetPreview {
     text-align: left;
   }
-
+  #div_templateReplace label {
+    text-transform: capitalize
+  }
   .progress {
     background-color: var(--sc-form-color);
   }
@@ -3295,7 +3292,7 @@ div.eqLogic-widget.editingMode .panelLink {
   .CodeMirror-foldgutter-open,
   .CodeMirror-foldgutter-folded {
     cursor: pointer;
-    transform: scale(1.6) translate(-1.5px,0) !important;
+    transform: scale(2.5) translate(1px, -1px) !important;
   }
 
   /* hihgly special */
@@ -4352,6 +4349,7 @@ div.eqLogic-widget.editingMode .panelLink {
 
 /* ____________________DIALOGS */
   #div_displayEqLogicConfigure #commands div.optionalParamHelp,
+  #md_eqlogicDashEdit #commands div.optionalParamHelp,
   #div_displayCmdConfigure #optionalParamHelp {
     padding-left: 10px;
     line-height: 16px;
@@ -4717,6 +4715,15 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   #brutlogcheck[autoswitch="1"]:checked + #brutlogicon {
     display: inline-block;
+  }
+  #md_scenarioLog {
+    height: 100%;
+    overflow: hidden;
+  }
+  #pre_scenariolog {
+    width: 100%;
+    height: calc(100% - 30px);
+    overflow: auto;
   }
   #pre_globallog,
   #pre_scenariolog,

@@ -21,6 +21,12 @@ if (!jeeFrontEnd.interact) {
     init: function() {
       window.jeeP = this
       this.actionOptions = []
+      if (is_numeric(getUrlVars('id'))) {
+        this.printInteract(getUrlVars('id'))
+      }
+      document.querySelector('sub.itemsNumber').innerHTML = '(' + document.querySelectorAll('.interactDisplayCard').length + ')'
+      this.setContextMenu()
+      this.setAutoComplete()
     },
     printInteract: function(_id) {
       jeedomUtils.hideAlert()
@@ -145,6 +151,121 @@ if (!jeeFrontEnd.interact) {
         id: actionOption_id
       })
     },
+    setContextMenu: function() {
+      try {
+        jeedom.interact.all({
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function(interacts) {
+            if (interacts.length == 0) {
+              return
+            }
+            var interactGroups = []
+            for (i = 0; i < interacts.length; i++) {
+              group = interacts[i].group
+              if (group == null) continue
+              if (group == "") group = 'Aucun'
+              group = group[0].toUpperCase() + group.slice(1)
+              interactGroups.push(group)
+            }
+            interactGroups = Array.from(new Set(interactGroups))
+            interactGroups.sort()
+            var interactList = []
+            for (var i = 0; i < interactGroups.length; i++) {
+              group = interactGroups[i]
+              interactList[group] = []
+              for (var j = 0; j < interacts.length; j++) {
+                var sc = interacts[j]
+                var scGroup = sc.group
+                if (scGroup == null) continue
+                if (scGroup == "") scGroup = 'Aucun'
+                if (scGroup.toLowerCase() != group.toLowerCase()) continue
+                if (sc.name == "") sc.name = sc.query
+                interactList[group].push([sc.name, sc.id])
+              }
+            }
+            //set context menu!
+            var contextmenuitems = {}
+            var uniqId = 0
+            for (var group in interactList) {
+              var groupinteracts = interactList[group]
+              var items = {}
+              for (var index in groupinteracts) {
+                var sc = groupinteracts[index]
+                var scName = sc[0]
+                var scId = sc[1]
+                items[uniqId] = {
+                  'name': scName,
+                  'id': scId
+                }
+                uniqId++
+              }
+              contextmenuitems[group] = {
+                'name': group,
+                'items': items
+              }
+            }
+
+            if (Object.entries(contextmenuitems).length > 0 && contextmenuitems.constructor === Object) {
+              new jeeCtxMenu({
+                selector: '.nav.nav-tabs > li',
+                autoHide: true,
+                zIndex: 9999,
+                className: 'interact-context-menu',
+                callback: function(key, options, event) {
+                  if (!jeedomUtils.checkPageModified()) {
+                    if (event.ctrlKey || event.metaKey || event.which == 2) {
+                      var url = 'index.php?v=d&p=interact&id=' + options.commands[key].id
+                      if (window.location.hash != '') {
+                        url += window.location.hash
+                      }
+                      window.open(url).focus()
+                    } else {
+                      jeeP.printInteract(options.commands[key].id)
+                    }
+                  }
+                },
+                items: contextmenuitems
+              })
+            }
+          }
+        })
+      } catch (err) {}
+    },
+    setAutoComplete: function() {
+      document.querySelector('.interactAttr[data-l1key="group"]').jeeComplete({
+        source: function(request, response, url) {
+          domUtils.ajax({
+            type: 'POST',
+            url: 'core/ajax/interact.ajax.php',
+            data: {
+              action: 'autoCompleteGroup',
+              term: request.term
+            },
+            dataType: 'json',
+            global: false,
+            error: function(request, status, error) {
+              handleAjaxError(request, status, error)
+            },
+            success: function(data) {
+              if (data.state != 'ok') {
+                jeedomUtils.showAlert({
+                  message: data.result,
+                  level: 'danger'
+                })
+                return
+              }
+              response(data.result)
+            }
+          })
+        },
+        minLength: 1,
+      })
+    },
     //Get filters for save / duplicate
     getInteractFilters: function() {
       var filters = {}
@@ -183,20 +304,8 @@ if (!jeeFrontEnd.interact) {
 
 jeeFrontEnd.interact.init()
 
-document.registerEvent('keydown', function(event) {
-  if (jeedomUtils.getOpenedModal()) return
-  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
-    event.preventDefault()
-    if (document.getElementById('bt_saveInteract').isVisible()) {
-      document.getElementById('bt_saveInteract').click()
-    }
-  }
-})
-
-document.querySelector('sub.itemsNumber').html('(' + document.querySelectorAll('.interactDisplayCard').length + ')')
-
 //searching
-$('#in_searchInteract').keyup(function(event) {
+document.getElementById('in_searchInteract')?.addEventListener('keyup', function(event) {
   var search = event.target.value
   if (search == '') {
     document.querySelectorAll('.panel-collapse.in').removeClass('in')
@@ -225,154 +334,22 @@ $('#in_searchInteract').keyup(function(event) {
       _name.closest('.panel-collapse').setAttribute('data-show', 1)
     }
   })
-
   document.querySelectorAll('.panel-collapse[data-show="1"]').addClass('in')
   document.querySelectorAll('.panel-collapse[data-show="0"]').removeClass('in')
-
 })
-$('#bt_resetInteractSearch').on('click', function(event) {
-  document.getElementById('in_searchInteract').value = ''
-  document.getElementById('in_searchInteract').triggerEvent('keyup')
+document.getElementById('bt_resetInteractSearch')?.addEventListener('click', function(event) {
+  document.getElementById('in_searchInteract').jeeValue('').triggerEvent('keyup')
 })
-$('#bt_openAll').off('click').on('click', function(event) {
+document.getElementById('bt_openAll')?.addEventListener('click', function(event) {
   document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.addClass('in') })
 })
-$('#bt_closeAll').off('click').on('click', function(event) {
+document.getElementById('bt_closeAll')?.addEventListener('click', function(event) {
   document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.removeClass('in') })
 })
 
-//contextMenu:
-try {
-    jeedom.interact.all({
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function(interacts) {
-        if (interacts.length == 0) {
-          return
-        }
-        var interactGroups = []
-        for (i = 0; i < interacts.length; i++) {
-          group = interacts[i].group
-          if (group == null) continue
-          if (group == "") group = 'Aucun'
-          group = group[0].toUpperCase() + group.slice(1)
-          interactGroups.push(group)
-        }
-        interactGroups = Array.from(new Set(interactGroups))
-        interactGroups.sort()
-        var interactList = []
-        for (var i = 0; i < interactGroups.length; i++) {
-          group = interactGroups[i]
-          interactList[group] = []
-          for (var j = 0; j < interacts.length; j++) {
-            var sc = interacts[j]
-            var scGroup = sc.group
-            if (scGroup == null) continue
-            if (scGroup == "") scGroup = 'Aucun'
-            if (scGroup.toLowerCase() != group.toLowerCase()) continue
-            if (sc.name == "") sc.name = sc.query
-            interactList[group].push([sc.name, sc.id])
-          }
-        }
-        //set context menu!
-        var contextmenuitems = {}
-        var uniqId = 0
-        for (var group in interactList) {
-          var groupinteracts = interactList[group]
-          var items = {}
-          for (var index in groupinteracts) {
-            var sc = groupinteracts[index]
-            var scName = sc[0]
-            var scId = sc[1]
-            items[uniqId] = {
-              'name': scName,
-              'id': scId
-            }
-            uniqId++
-          }
-          contextmenuitems[group] = {
-            'name': group,
-            'items': items
-          }
-        }
 
-        if (Object.entries(contextmenuitems).length > 0 && contextmenuitems.constructor === Object) {
-          new jeeCtxMenu({
-            selector: '.nav.nav-tabs > li',
-            autoHide: true,
-            zIndex: 9999,
-            className: 'interact-context-menu',
-            callback: function(key, options, event) {
-              if (!jeedomUtils.checkPageModified()) {
-                if (event.ctrlKey || event.metaKey || event.which == 2) {
-                  var url = 'index.php?v=d&p=interact&id=' + options.commands[key].id
-                  if (window.location.hash != '') {
-                    url += window.location.hash
-                  }
-                  window.open(url).focus()
-                } else {
-                  jeeP.printInteract(options.commands[key].id)
-                }
-              }
-            },
-            items: contextmenuitems
-          })
-        }
-      }
-    })
-  } catch (err) {}
-
-document.querySelector('.interactAttr[data-l1key="group"]').jeeComplete({
-  source: function(request, response, url) {
-    domUtils.ajax({
-      type: 'POST',
-      url: 'core/ajax/interact.ajax.php',
-      data: {
-        action: 'autoCompleteGroup',
-        term: request.term
-      },
-      dataType: 'json',
-      global: false,
-      error: function(request, status, error) {
-        handleAjaxError(request, status, error)
-      },
-      success: function(data) {
-        if (data.state != 'ok') {
-          jeedomUtils.showAlert({
-            message: data.result,
-            level: 'danger'
-          })
-          return
-        }
-        response(data.result)
-      }
-    })
-  },
-  minLength: 1,
-})
-
-$('#bt_chooseIcon').on('click', function(event) {
-  var _icon = document.querySelector('div[data-l2key="icon"] > i')
-  if (_icon != null) {
-    _icon = _icon.getAttribute('class')
-  } else {
-    _icon = false
-  }
-  jeedomUtils.chooseIcon(function(_icon) {
-    document.querySelector('div[data-l2key="icon"]').innerHTML = _icon
-    jeeFrontEnd.modifyWithoutSave = true
-  }, {icon: _icon})
-})
-
-$('.interactAttr[data-l1key="display"][data-l2key="icon"]').on('dblclick', function(event) {
-  event.target.remove()
-})
-
-$("#div_action").sortable({
+//Set sortable:
+$(document.getElementById('div_action')).sortable({
   axis: "y",
   cursor: "move",
   items: ".action",
@@ -381,73 +358,220 @@ $("#div_action").sortable({
   forcePlaceholderSize: true
 })
 
-$('.displayInteracQuery').on('click', function(event) {
-  jeeDialog.dialog({
-    id: 'jee_modal',
-    title: "{{Liste des interactions}}",
-    contentUrl: 'index.php?v=d&modal=interact.query.display&interactDef_id=' + document.querySelector('.interactAttr[data-l1key="id"]').value
-  })
-})
-
-$('#bt_interactThumbnailDisplay').on('click', function(event) {
-  if (jeedomUtils.checkPageModified()) return
-  document.getElementById('div_conf').unseen()
-  document.getElementById('interactThumbnailDisplay').seen()
-  jeedomUtils.addOrUpdateUrl('id', null, '{{Interactions}} - ' + JEEDOM_PRODUCT_NAME)
-})
-
-$('.interactDisplayCard').off('click').on('click', function(event) {
-  if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
-    var url = '/index.php?v=d&p=interact&id=' + $(this).attr('data-interact_id')
-    window.open(url).focus()
-  } else {
-    jeeP.printInteract(event.target.closest('.interactDisplayCard').getAttribute('data-interact_id'))
-  }
-})
-$('.interactDisplayCard').off('mouseup').on('mouseup', function(event) {
-  if (event.originalEvent.which == 2) {
+//Register events on top of page container:
+document.registerEvent('keydown', function(event) {
+  if (jeedomUtils.getOpenedModal()) return
+  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
-    var id = event.target.closest('.interactDisplayCard').getAttribute('data-interact_id')
-    document.querySelector('.interactDisplayCard[data-interact_id="' + id + '"]').triggerEvent('click', {detail: {ctrlKey: true}})
+    if (document.getElementById('bt_saveInteract').isVisible()) {
+      document.getElementById('bt_saveInteract').click()
+    }
   }
 })
 
-$('#bt_duplicate').on('click', function(event) {
-  jeeDialog.prompt("{{Nom}} ?", function(result) {
-    if (result !== null) {
-      var interact = document.querySelectorAll('.interact').getJeeValues('.interactAttr')[0]
-      interact.filtres = jeeFrontEnd.interact.getInteractFilters()
-      interact.actions = {}
-      interact.actions.cmd = document.querySelectorAll('#div_action .action').getJeeValues('.expressionAttr')
-      interact.name = result
-      interact.id = ''
-      jeedom.interact.save({
-        interact: interact,
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          jeeFrontEnd.modifyWithoutSave = false
-          jeedomUtils.loadPage('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1')
-        }
-      })
+
+/*Events delegations
+*/
+//ThumbnailDisplay
+document.getElementById('interactThumbnailDisplay').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.interactDisplayCard')) {
+    if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
+      var url = '/index.php?v=d&p=interact&id=' + _target.getAttribute('data-interact_id')
+      window.open(url).focus()
+    } else {
+      jeeP.printInteract(_target.getAttribute('data-interact_id'))
     }
-  })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_regenerateInteract')) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?}}', function(result) {
+      if (result) {
+        jeedom.interact.regenerateInteract({
+          interact: {
+            query: result
+          },
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function(data) {
+            jeedomUtils.showAlert({
+              message: '{{Toutes les interactions ont été régénérées}}',
+              level: 'success'
+            })
+          }
+        })
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_testInteract')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Tester les interactions}}",
+      contentUrl: 'index.php?v=d&modal=interact.test'
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_addInteract')) {
+    jeeDialog.prompt("{{Demande}} ?", function(result) {
+      if (result !== null) {
+        jeedom.interact.save({
+          interact: {
+            query: result
+          },
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function(data) {
+            jeeFrontEnd.modifyWithoutSave = false
+            jeedomUtils.loadPage('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1')
+          }
+        })
+      }
+    })
+    return
+  }
 })
 
-$('#bt_testInteract,#bt_testInteract2').on('click', function(event) {
-  jeeDialog.dialog({
-    id: 'jee_modal',
-    title: "{{Tester les interactions}}",
-    contentUrl: 'index.php?v=d&modal=interact.test'
-  })
+document.getElementById('interactThumbnailDisplay').addEventListener('mouseup', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.interactDisplayCard')) {
+    if (event.which == 2) {
+      event.preventDefault()
+      let id = _target.getAttribute('data-interact_id')
+      document.querySelector('.interactDisplayCard[data-interact_id="' + id + '"]').triggerEvent('click', {detail: {ctrlKey: true}})
+    }
+    return
+  }
 })
 
-$('#div_conf').on({
-  'click': function(event) {
+
+//Interaction
+document.getElementById('div_conf').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#bt_interactThumbnailDisplay')) {
+    if (jeedomUtils.checkPageModified()) return
+    document.getElementById('div_conf').unseen()
+    document.getElementById('interactThumbnailDisplay').seen()
+    jeedomUtils.addOrUpdateUrl('id', null, '{{Interactions}} - ' + JEEDOM_PRODUCT_NAME)
+    return
+  }
+
+  if (_target = event.target.closest('#bt_chooseIcon')) {
+    var _icon = document.querySelector('div[data-l2key="icon"] > i')
+    if (_icon != null) {
+      _icon = _icon.getAttribute('class')
+    } else {
+      _icon = false
+    }
+    jeedomUtils.chooseIcon(function(_icon) {
+      document.querySelector('div[data-l2key="icon"]').innerHTML = _icon
+      jeeFrontEnd.modifyWithoutSave = true
+    }, {icon: _icon})
+    return
+  }
+
+  if (_target = event.target.closest('#bt_duplicate')) {
+    jeeDialog.prompt("{{Nom}} ?", function(result) {
+      if (result !== null) {
+        var interact = document.querySelectorAll('.interact').getJeeValues('.interactAttr')[0]
+        interact.filtres = jeeFrontEnd.interact.getInteractFilters()
+        interact.actions = {}
+        interact.actions.cmd = document.querySelectorAll('#div_action .action').getJeeValues('.expressionAttr')
+        interact.name = result
+        interact.id = ''
+        jeedom.interact.save({
+          interact: interact,
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function(data) {
+            jeeFrontEnd.modifyWithoutSave = false
+            jeedomUtils.loadPage('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1')
+          }
+        })
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_saveInteract')) {
+    var interact = document.querySelectorAll('.interact').getJeeValues('.interactAttr')[0]
+    interact.filtres = jeeFrontEnd.interact.getInteractFilters()
+    interact.actions = {}
+    interact.actions.cmd = document.querySelectorAll('#div_action .action').getJeeValues('.expressionAttr')
+    jeedom.interact.save({
+      interact: interact,
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(data) {
+        jeedomUtils.showAlert({
+          message: '{{Sauvegarde réussie avec succès}}',
+          level: 'success'
+        })
+        jeeFrontEnd.modifyWithoutSave = false
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_removeInteract')) {
+    jeedomUtils.hideAlert()
+    let name = document.querySelector('input[data-l1key="name"]').value
+    let id = document.querySelector('.input[data-l1key="id"]').value
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer l\'interaction}} <span style="font-weight: bold ;">' + name + '</span> ?', function(result) {
+      if (result) {
+        jeedom.interact.remove({
+          id: id,
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function() {
+            jeeFrontEnd.modifyWithoutSave = false
+            jeedomUtils.loadPage('index.php?v=d&p=interact&removeSuccessFull=1')
+          }
+        })
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_addAction')) {
+    jeeP.addAction({}, 'action', '{{Action}}')
+    jeeFrontEnd.modifyWithoutSave = true
+    return
+  }
+
+  if (_target = event.target.closest('.displayInteracQuery')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Liste des interactions}}",
+      contentUrl: 'index.php?v=d&modal=interact.query.display&interactDef_id=' + document.querySelector('.interactAttr[data-l1key="id"]').value
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.listEquipementInfoReply')) {
     jeedom.cmd.getSelectModal({
       cmd: {
         type: 'info'
@@ -455,121 +579,12 @@ $('#div_conf').on({
     }, function(result) {
       document.querySelector('.interactAttr[data-l1key="reply"]').insertAtCursor(result.human)
     })
+    return
   }
-}, '.listEquipementInfoReply')
 
-$("#bt_saveInteract").on('click', function(event) {
-  var interact = document.querySelectorAll('.interact').getJeeValues('.interactAttr')[0]
-  interact.filtres = jeeFrontEnd.interact.getInteractFilters()
-  interact.actions = {}
-  interact.actions.cmd = document.querySelectorAll('#div_action .action').getJeeValues('.expressionAttr')
-
-  jeedom.interact.save({
-    interact: interact,
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      jeedomUtils.showAlert({
-        message: '{{Sauvegarde réussie avec succès}}',
-        level: 'success'
-      })
-      jeeFrontEnd.modifyWithoutSave = false
-    }
-  })
-})
-
-$("#bt_regenerateInteract,#bt_regenerateInteract2").on('click', function(event) {
-  jeeDialog.confirm('{{Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?}}', function(result) {
-    if (result) {
-      jeedom.interact.regenerateInteract({
-        interact: {
-          query: result
-        },
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          jeedomUtils.showAlert({
-            message: '{{Toutes les interactions ont été régénérées}}',
-            level: 'success'
-          })
-        }
-      })
-    }
-  })
-})
-
-$("#bt_addInteract,#bt_addInteract2").on('click', function(event) {
-  jeeDialog.prompt("{{Demande}} ?", function(result) {
-    if (result !== null) {
-      jeedom.interact.save({
-        interact: {
-          query: result
-        },
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          jeeFrontEnd.modifyWithoutSave = false
-          jeedomUtils.loadPage('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1')
-        }
-      })
-    }
-  })
-})
-
-$("#bt_removeInteract").on('click', function(event) {
-  jeedomUtils.hideAlert()
-  jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer l\'interaction}} <span style="font-weight: bold ;">' + $('.interactDisplayCard.active .name').text() + '</span> ?', function(result) {
-    if (result) {
-      jeedom.interact.remove({
-        id: document.querySelector('.interactDisplayCard.active').getAttribute('data-interact_id'),
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function() {
-          jeeFrontEnd.modifyWithoutSave = false
-          jeedomUtils.loadPage('index.php?v=d&p=interact&removeSuccessFull=1')
-        }
-      })
-    }
-  })
-})
-
-$('#bt_addAction').off('click').on('click', function(event) {
-  jeeP.addAction({}, 'action', '{{Action}}')
-  jeeFrontEnd.modifyWithoutSave = true
-})
-
-$('#div_conf').on({
-  'focusout': function(event) {
-    var type = event.target.getAttribute('data-type')
-    var expression = event.target.closest('.' + type).getJeeValues('.expressionAttr')
-    var el = event.target
-    jeedom.cmd.displayActionOption(el.jeeValue(), init(expression[0].options), function(html) {
-      el.closest('.' + type).querySelector('.actionOptions').html(html)
-      jeedomUtils.taAutosize()
-    })
-  }
-}, '.cmdAction.expressionAttr[data-l1key="cmd"]')
-
-$('#div_conf').on({
-  'click': function(event) {
-    var type = event.target.closest('.listCmd').getAttribute('data-type')
-    var el = event.target.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
+  if (_target = event.target.closest('.listCmd')) {
+    var type = _target.getAttribute('data-type')
+    var el = _target.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
     jeedom.cmd.getSelectModal({
       cmd: {
         type: 'info'
@@ -582,13 +597,12 @@ $('#div_conf').on({
         jeedomUtils.taAutosize()
       })
     })
+    return
   }
-}, '.listCmd')
 
-$('#div_conf').on({
-  'click': function(event) {
-    var type = event.target.closest('.listAction').getAttribute('data-type')
-    var el = event.target.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
+  if (_target = event.target.closest('.listAction')) {
+    var type = _target.getAttribute('data-type')
+    var el = _target.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
     jeedom.getSelectActionModal({}, function(result) {
       el.jeeValue(result.human)
       jeeFrontEnd.modifyWithoutSave = true
@@ -597,13 +611,12 @@ $('#div_conf').on({
         jeedomUtils.taAutosize()
       })
     })
+    return
   }
-}, '.listAction')
 
-$('#div_conf').on({
-  'click': function(event) {
-    var type = event.target.closest('.listCmdAction').getAttribute('data-type')
-    var el = event.target.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
+  if (_target = event.target.closest('.listCmdAction')) {
+    var type = _target.getAttribute('data-type')
+    var el = _target.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
     jeedom.cmd.getSelectModal({
       cmd: {
         type: 'action'
@@ -616,30 +629,34 @@ $('#div_conf').on({
         jeedomUtils.taAutosize()
       })
     })
+    return
   }
-}, '.listCmdAction')
 
-$('#div_conf').on({
-  'click': function(event) {
-    var type = event.target.getAttribute('data-type')
-    event.target.closest('.' + type).remove()
+  if (_target = event.target.closest('.bt_removeAction')) {
+    var type = _target.getAttribute('data-type')
+    _target.closest('.' + type).remove()
     jeeFrontEnd.modifyWithoutSave = true
+    return
   }
-}, '.bt_removeAction')
+})
 
-
-if (is_numeric(getUrlVars('id'))) {
-  let interact = document.querySelector('.interactDisplayCard[data-interact_id="' + getUrlVars('id') + '"]')
-  if (interact != null) {
-    interact.click()
+document.getElementById('div_conf').addEventListener('dblclick', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.interactAttr[data-l1key="display"][data-l2key="icon"]')) {
+    _target.remove()
+    return
   }
-}
+})
 
-//Register events on top of page container:
-
-//Manage events outside parents delegations:
-
-//Specials
-
-/*Events delegations
-*/
+document.getElementById('div_conf').addEventListener('focusout', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.cmdAction.expressionAttr[data-l1key="cmd"]')) {
+    var type = _target.getAttribute('data-type')
+    var expression = _target.closest('.' + type).getJeeValues('.expressionAttr')
+    jeedom.cmd.displayActionOption(el.jeeValue(), init(expression[0].options), function(html) {
+      _target.closest('.' + type).querySelector('.actionOptions').html(html)
+      jeedomUtils.taAutosize()
+    })
+    return
+  }
+})
