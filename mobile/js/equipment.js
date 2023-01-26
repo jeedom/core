@@ -86,7 +86,7 @@ function initEquipment(_object_id) {
   $('body').on('orientationChanged', function(event, _orientation) {
     deviceInfo = getDeviceType()
     jeedomUtils.setTileSize('.eqLogic, .scenario')
-    $('#div_displayEquipement > .objectHtml, .div_displayEquipement .objectHtml').packery({gutter :0})
+    document.querySelectorAll('#div_displayEquipement > .objectHtml, .div_displayEquipement .objectHtml').forEach(_div => { Packery.data(_div).layout() })
   })
 
   $('#in_searchDashboard').off('keyup').on('keyup',function() {
@@ -95,7 +95,7 @@ function initEquipment(_object_id) {
     var search = this.value
     if(search == '') {
       $('div.eqLogic-widget, div.scenario-widget').show()
-      $('.objectHtml').packery()
+      document.querySelectorAll('.objectHtml').forEach(_div => { Packery.data(_div).layout() })
       return
     }
     search = jeedomUtils.normTextLower(search)
@@ -133,7 +133,7 @@ function initEquipment(_object_id) {
         $(this).hide()
       }
     })
-    $('.objectHtml').packery()
+    document.querySelectorAll('.objectHtml').forEach(_div => { Packery.data(_div).layout() })
     $('.objectHtml').each(function() {
       let count = $(this).find('.scenario-widget:visible').length + $(this).find('.eqLogic-widget:visible').length
       if (count == 0) {
@@ -202,7 +202,8 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
         jeedomUtils.setTileSize('.eqLogic, .scenario')
         jeedom.object.summaryUpdate([{object_id:_objectId}])
       }
-      $('#div_displayEquipement .objectHtml').packery({gutter :0})
+      let divObject = document.querySelector('#div_displayEquipement .objectHtml')
+      new Packery(divObject, {gutter :0})
     },
     complete: function() {
       jeedomUtils.hideLoading()
@@ -271,7 +272,10 @@ function displayEqsBySummary(_objectsAll, _objectId, _summary) {
               element.html(html.html, true)
             })
             jeedomUtils.setTileSize('.eqLogic')
-            $('.div_displayEquipement[data-objectid="'+_objectId+'"]').trigger('create').packery({gutter :0})
+
+            $('.div_displayEquipement[data-objectid="'+_objectId+'"]').trigger('create')
+            let divObject = document.querySelector('.div_displayEquipement[data-objectid="'+_objectId+'"]')
+            new Packery(divObject, {gutter :0})
           }
         })
       }
