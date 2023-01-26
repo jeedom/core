@@ -30,17 +30,20 @@ if (!isConnect()) {
       </select>
     </div>
   </div>
-  <div class="mode schedule" id="mod_cron_div_scheduleConfig"></div>
+  <div id="mod_cron_div_scheduleConfig" class="mode schedule" style="margin-left: 30%;"></div>
 </form>
 
 <script>
 (function() {// Self Isolation!
+  var modal = jeeDialog.get('#mod_insertCron', 'dialog')
+  modal.style.height = '420px'
+
   if (window.mod_insertCron == undefined) {
     window.mod_insertCron = function() {}
   }
 
   mod_insertCron.getValue = function() {
-    return document.getElementById('mod_cron_span_cronResult').value
+    return document.getElementById('mod_cron_span_cronResult').textContent
   }
 
   document.querySelector('#mod_insertCron #mod_cron_sel_scheduleMode').addEventListener('change', function(event) {
@@ -54,7 +57,7 @@ if (!isConnect()) {
       html += '<input class="form-control in_datepicker" id="mod_cron_in_dateScenarioTrigger">'
       html += '</div>'
       html += '</div>'
-      html += '<span id="mod_cron_span_cronResult" style="display: none;"></span>'
+      html += '<br><span id="mod_cron_span_cronResult" class="pull-right"></span>'
       scheduleDiv.insertAdjacentHTML('beforeend', html)
       jeedomUtils.datePickerInit('Y-m-d H:i:00')
 
@@ -72,10 +75,12 @@ if (!isConnect()) {
     } else {
       var html = ''
       html += '<div id="mod_cron_div_cronGenerator"></div>'
-      html += '<span id="mod_cron_span_cronResult" style="display: none;">* * * * *</span>'
+      html += '<br><span id="mod_cron_span_cronResult"  class="pull-right">* * * * *</span>'
       scheduleDiv.insertAdjacentHTML('beforeend', html)
 
-      $('#mod_cron_div_cronGenerator').empty().cron({
+      var generator = document.getElementById('mod_cron_div_cronGenerator')
+      generator.empty()
+      new jeeCron(generator, {
         initial: '* * * * *',
         customValues: {
           "5 Minutes" : "*/5 * * * *",
@@ -84,10 +89,11 @@ if (!isConnect()) {
           "20 Minutes" : "*/20 * * * *",
           "30 Minutes" : "*/30 * * * *",
         },
-        onChange: function() {
-          document.getElementById('mod_cron_span_cronResult').value = this.cron("value")
+        onChange: function(_value) {
+          document.getElementById('mod_cron_span_cronResult').textContent = this.value() || ''
         }
       })
+      document.querySelector('#mod_cron_div_scheduleConfig select[name="cron-period"]').triggerEvent('change')
     }
   })
 

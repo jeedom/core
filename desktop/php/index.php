@@ -247,6 +247,7 @@ function setTheme() {
 	include_file('3rdparty', 'moment/moment-with-locales.min', 'js');
 
 	//New $less libs
+	include_file('core', 'jeeCron', 'dom');
 	include_file('3rdparty', 'popper/popper.min', 'js');
 	include_file('3rdparty', 'tippy/tippy.min', 'js');
 	include_file('3rdparty', 'flatpickr/flatpickr.min', 'css');
