@@ -520,6 +520,27 @@ div.jeeCtxMenu div.ctxItem.inlineItem {
   padding: 5px;
 }
 
+/* _________________3rdparty ispin*/
+div.ispin-wrapper {
+  width: 100%;
+}
+div.ispin-wrapper button.ispin-button {
+  width: 20px !important;
+}
+div.ispin-wrapper button.ispin-button::before {
+  border-bottom-color: var(--txt-color) !important;
+  border-top-color: var(--txt-color) !important;
+  -webkit-transform: translateY(-40%) !important;
+  transform: translateY(-150%) !important;
+}
+div.ispin-wrapper button.ispin-button-inc::before {
+  --top: -5px !important;
+}
+div.ispin-wrapper button.ispin-button-dec::before {
+  --top: 8px !important;
+}
+
+
 /* ________________________________________MEDIA QUERIES */
 @media screen and (max-width: 768px) {
 

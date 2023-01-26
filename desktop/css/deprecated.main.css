@@ -300,6 +300,17 @@ Desktop
     padding: 5px;
   }
 
+  /* ui spinner */
+  .ui-spinner a.ui-spinner-button {
+    border: none;
+    opacity: 0.6;
+  }
+  .ui-spinner a.ui-spinner-button:hover {
+    opacity: 1;
+    background: var(--logo-primary-color);
+  }
+
+
 /* ________________________________________TABLE REFLOW FLEX */
 @media ( max-width: 768px ) {
   div.ui-dialog {

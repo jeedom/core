@@ -4393,14 +4393,6 @@ div.eqLogic-widget.editingMode .panelLink {
     box-shadow: none;
   }
 
-  .ui-spinner a.ui-spinner-button {
-    border: none;
-    opacity: 0.6;
-  }
-  .ui-spinner a.ui-spinner-button:hover {
-    opacity: 1;
-    background: var(--logo-primary-color);
-  }
   .ui-button-icon.ui-icon {
     background-image: var(--url-iconsLight);
     margin-left: 0;

@@ -1188,6 +1188,20 @@ jeedomUtils.initSpinners = function() {
       }
     })
   }
+
+  document.querySelectorAll('input[type="number"].ispin').forEach(_spin => {
+    new ISpin(_spin, {
+      wrapperClass: 'ispin-wrapper',
+      buttonsClass: 'ispin-button',
+      step: _spin.getAttribute('step') || 1,
+      min: _spin.getAttribute('min') || undefined,
+      max: _spin.getAttribute('max') || undefined,
+      disabled: false,
+      repeatInterval: 200,
+      wrapOverflow: false,
+      parse: Number
+    })
+  })
 }
 
 jeedomUtils.jeeCtxMenuDestroy = function() {

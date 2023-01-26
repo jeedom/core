@@ -96,7 +96,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 
                 <label class="col-sm-2 control-label">{{Hauteur}}</label>
                 <div class="col-sm-4">
-                  <input type="number" class="eqLogicAttr form-control input-sm ui-spinner" value="" data-l1key="display" data-l2key="backGraph::height" placeholder="{{Automatique}}">
+                  <input type="number" class="eqLogicAttr form-control input-sm ispin" min="0" value="" data-l1key="display" data-l2key="backGraph::height" placeholder="{{Automatique}}">
                 </div>
               </div>
 
@@ -264,11 +264,11 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                 <div class="form-group">
                   <label class="col-sm-2 control-label">{{Lignes}}</label>
                   <div class="col-sm-4">
-                    <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm ui-spinner" data-l1key="display" data-l2key="layout::dashboard::table::nbLine">
+                    <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm ispin" data-l1key="display" data-l2key="layout::dashboard::table::nbLine">
                   </div>
                   <label class="col-sm-2 control-label">{{Colonnes}}</label>
                   <div class="col-sm-4">
-                    <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm ui-spinner" data-l1key="display" data-l2key="layout::dashboard::table::nbColumn">
+                    <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm ispin" data-l1key="display" data-l2key="layout::dashboard::table::nbColumn">
                     <a class="btn btn-success btn-xs" id="bt_eqLogicLayoutApply"><i class="fas fa-sync-alt"></i></i> {{Appliquer}}</a>
                   </div>
                 </div>
