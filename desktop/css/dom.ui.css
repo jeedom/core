@@ -272,6 +272,7 @@ div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button {
   background-size: 72px 18px;
   background-repeat: no-repeat;
   overflow: hidden;
+  padding: 0;
 }
 [data-theme*="Light"] div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button {
   filter: invert(1);
