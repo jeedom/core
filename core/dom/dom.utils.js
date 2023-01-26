@@ -607,8 +607,11 @@ domUtils.ajax = function(_params) {
       } else { //Catched from fetch error
         if (error.code == 20) return //NetworkError when attempting to fetch resource.
         if (error.name == 'TypeError' && error.message.includes('NetworkError')) return //The operation was aborted.
-        if (error.name == 'TypeError && error.TypeError'){
-          error.message = error.TypeError
+        if (error.name == 'TypeError'){
+          console.warn('Error JS > TypeError > ',error)
+        }
+        if (error.name == 'ReferenceError'){
+          console.warn('Error Reference > ReferenceError > '+ error)
         }
         if (!_params.noDisplayError) {
           domUtils.handleAjaxError(_params.url, error.name, error.message, _params)
