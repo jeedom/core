@@ -406,8 +406,10 @@ if (!jeeFrontEnd.md_iconSelector) {
   document.getElementById('md_iconSelector').addEventListener('click', function(event) {
     //Capture jsTree node!!
     if (event.target.hasClass('jstree-anchor')) {
+      var selected = document.querySelector('.jstree-anchor.jstree-clicked')?.closest('li')
       var node = event.target.closest('li')
       var tree = $.jstree.reference(node)
+      if (selected) tree.deselect_node(selected)
       tree.select_node(node)
       return
     }
