@@ -278,25 +278,29 @@ domUtils.createWidgetSlider = function(_options) {
 
 /*Components
 */
-
 document.addEventListener('DOMContentLoaded', function() {
   if (typeof jQuery !== 'function') {
     document.body.addEventListener('click', function(event) {
       var _target = null
+
+      //Accordions
       if (_target = event.target.closest('a.accordion-toggle')) {
         event.preventDefault()
+        let ref = _target.getAttribute('href')
+        if (!ref) return
         let panelGroup = _target.closest('div.panel-group')
-        if (!panelGroup) return
-        let panel = panelGroup.querySelector(':scope div.panel-collapse')
-        if (!panel) return
-        if (panel.hasClass('in')) {
-          panel.removeClass('in')
+        if (!panelGroup) {
+          var panel = document.querySelector(ref)
         } else {
-          panel.addClass('in')
+          panelGroup.querySelectorAll('div.panel-collapse').removeClass('in')
+          var panel = panelGroup.querySelector(ref)
         }
+        if (!panel) return
+        panel.toggleClass('in')
         return
       }
 
+      //Tabs
       if (_target = event.target.closest('a[role="tab"]')) {
         event.preventDefault()
         let tabList = _target.closest('[role="tablist"]')
