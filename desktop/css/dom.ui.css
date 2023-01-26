@@ -267,24 +267,26 @@ div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons {
   top: 4px;
   right: 10px;
 }
+div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button {
+  background-image: url('../../core/img/win_icons.png');
+  background-size: 72px 18px;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
 [data-theme*="Light"] div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button {
   filter: invert(1);
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button.btClose {
-  background: url('../../core/img/win_icons.png') no-repeat scroll -55px 0px;
-  background-size: 72px 18px;
+  background-position: -55px 0px;
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button.btToggleMaximize {
-  background: url('../../core/img/win_icons.png') no-repeat scroll -36px 0px;
-  background-size: 72px 18px;
+  background-position: -36px 0px;
 }
 div.jeeDialog.jeeDialogMain[data-maximize="1"] > div.jeeDialogTitle > div.titleButtons button.btToggleMaximize {
-  background: url('../../core/img/win_icons.png') no-repeat scroll -18px 0px;
-  background-size: 72px 18px;
+  background-position: -18px 0px;
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button.minimize {
-  background: url('../../core/img/win_icons.png') no-repeat scroll 0 0;
-  background-size: 72px 18px;
+  background-position: 0 0;
 }
 div.jeeDialog.jeeDialogMain[data-maximize="1"] {
   height: calc(100% - 50px) !important;
