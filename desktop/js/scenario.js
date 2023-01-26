@@ -18,7 +18,6 @@
 
 if (!jeeFrontEnd.scenario) {
   jeeFrontEnd.scenario = {
-    $divScenario: null,
     dom_divScenario: null,
     tab: null,
     dataDefinedAction: null,
@@ -45,7 +44,6 @@ if (!jeeFrontEnd.scenario) {
       this.undoStack = []
       this.bt_undo = document.getElementById('bt_undo')
       this.bt_redo = document.getElementById('bt_redo')
-      this.$divScenario = $('#div_editScenario')
       this.dom_divScenario= document.getElementById('div_editScenario')
       window.jeeP = this
 
