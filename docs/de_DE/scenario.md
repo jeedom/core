@@ -455,6 +455,11 @@ Und praktische Beispiele :
 | ``convertDuration(duration(#[Chauffage][Module chaudière][Etat]#,1, first day of this month)*60)`` | Gibt die Zündzeit in Tagen / Stunden / Minuten der Übergangszeit auf Zustand 1 des Moduls seit dem 1. Tag des Monats zurück |
 
 
+### Diverse Funktionen
+
+- ``sun_elevation()`` : Gibt in ° die Höhe der Sonne an (Achtung, Sie müssen Ihre geografischen Koordinaten in der Konfiguration von jeedom eingegeben haben)
+- ``sun_azimuth()`` : Gibt in ° den Azimut der Sonne an (Achtung, Sie müssen Ihre geografischen Koordinaten in der Konfiguration von jeedom eingegeben haben)
+
 ### Spezifische Bestellungen
 
 Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die folgenden Aktionen :
