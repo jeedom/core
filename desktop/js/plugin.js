@@ -613,7 +613,7 @@ document.getElementById('div_confPlugin')?.addEventListener('click', function(ev
       if (result) {
         jeedomUtils.hideAlert()
         jeedom.update.remove({
-          id: event.getAttribute('data-market_logicalId'),
+          id: _target.getAttribute('data-market_logicalId'),
           error: function(error) {
             jeedomUtils.showAlert({
               message: error.message,
