@@ -405,8 +405,8 @@ jeedom.eqLogic.refreshValue = function(_params) {
           if (page == 'dashboard') {
             parent.parentNode.remove()
           }
-        } else if ($(parent).data('packery') != undefined) {
-          $(parent).packery()
+        } else if (Packery.data(parent) != undefined) {
+          Packery.data(parent).layout()
         }
         continue
       }
@@ -457,13 +457,16 @@ jeedom.eqLogic.refreshValue = function(_params) {
             document.querySelector('.alertListContainer').html(result[i].html, true)
             jeedomUtils.positionEqLogic(result[i].id, false)
             jeedomUtils.initTooltips()
-            $('.alertListContainer').packery('destroy').packery({ itemSelector: "#alertEqlogic .eqLogic-widget" })
+            let container = document.querySelector('.alertListContainer')
+            Packery.data(container).destroy()
+            new Packery(container, { itemSelector: "#alertEqlogic .eqLogic-widget" })
           }
         } else {
           if (page == 'eqAnalyse' && result[i].alert == '') {
             eqLogic.remove()
             if (document.querySelector('.alertListContainer').querySelectorAll('.eqLogic').length > 0) {
-              $('.alertListContainer').packery()
+              let container = document.querySelector('.alertListContainer')
+              Packery.data(container).layout()
             }
             continue
           }

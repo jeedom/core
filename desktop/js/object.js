@@ -408,7 +408,7 @@ try {
     selector: '.nav.nav-tabs',
     appendTo: 'div#div_pageContainer',
     build: function(trigger) {
-      var thisObjectId = $('span.objectAttr[data-l1key="id"]').text()
+      var thisObjectId = document.querySelector('span.objectAttr[data-l1key="id"]').textContent
       var contextmenuitems = {}
       var idx = 0
       for (var object of jeeP.objectList) {

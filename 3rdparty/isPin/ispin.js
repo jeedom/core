@@ -329,4 +329,3 @@
   return ISpin;
 
 })));
-//# sourceMappingURL=ispin.js.map

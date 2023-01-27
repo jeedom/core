@@ -89,7 +89,7 @@ if (!jeeFrontEnd.md_history) {
           dateEnd: document.getElementById('in_endDate').value,
           newGraph: false,
           showLegend: (self.loadIds.length > 1) ? true : false,
-          height: jQuery(window).height() - 270,
+          height: window.innerHeight - 270,
           success: function(data) {
             self.done -= 1
             if (self.done == 0) {
