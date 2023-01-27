@@ -572,7 +572,6 @@ domUtils(function() {
 
 //sortable
 domUtils(function() {
-  /*
   if (typeof jQuery != 'function') {
     if ($("#table_cmd").sortable("instance")) {
       $("#table_cmd").sortable({
@@ -595,20 +594,6 @@ domUtils(function() {
       })
     }
   }
-  */
-  Sortable.create(document.getElementById('table_cmd'), {
-      delay: 25,
-      delayOnTouchOnly: true,
-      touchStartThreshold: 20,
-      draggable: 'tr.cmd',
-      direction: 'vertical',
-      onEnd: function (event) {
-        console.log('onend', event)
-        jeeFrontEnd.modifyWithoutSave = true
-      },
-  })
-
-
 })
 
 /* Let's see if it break ?
