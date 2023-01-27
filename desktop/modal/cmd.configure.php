@@ -439,21 +439,6 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 </div>
               </div>
               <div id="div_actionCheckCmd"></div>
-
-              <script type="text/javascript">
-                $("#div_actionCheckCmd").sortable({
-                  axis: "y",
-                  cursor: "move",
-                  items: ".actionCheckCmd",
-                  placeholder: "ui-state-highlight",
-                  tolerance: "intersect",
-                  forcePlaceholderSize: true
-                });
-
-                $('#bt_addActionCheckCmd').off('click').on('click', function() {
-                  jeeFrontEnd.md_displayCmdConfigure.addActionCmd({}, 'actionCheckCmd', '{{Action}}');
-                });
-              </script>
             </fieldset>
           </form>
         <?php }
@@ -470,19 +455,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 </div>
               </div>
               <div id="div_actionPreExecCmd"></div>
-              <script type="text/javascript">
-                $("#div_actionPreExecCmd").sortable({
-                  axis: "y",
-                  cursor: "move",
-                  items: ".actionPreExecCmd",
-                  placeholder: "ui-state-highlight",
-                  tolerance: "intersect",
-                  forcePlaceholderSize: true
-                });
-                $('#bt_addActionPreExecCmd').off('click').on('click', function() {
-                  jeeFrontEnd.md_displayCmdConfigure.addActionCmd({}, 'actionPreExecCmd', '{{Action}}');
-                });
-              </script>
+
             </fieldset>
           </form>
           <form class="form-horizontal">
@@ -495,20 +468,6 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 </div>
               </div>
               <div id="div_actionPostExecCmd"></div>
-
-              <script type="text/javascript">
-                $("#div_actionPostExecCmd").sortable({
-                  axis: "y",
-                  cursor: "move",
-                  items: ".actionPostExecCmd",
-                  placeholder: "ui-state-highlight",
-                  tolerance: "intersect",
-                  forcePlaceholderSize: true
-                });
-                $('#bt_addActionPostExecCmd').off('click').on('click', function() {
-                  jeeFrontEnd.md_displayCmdConfigure.addActionCmd({}, 'actionPostExecCmd', '{{Action}}');
-                });
-              </script>
             </fieldset>
           </form>
         <?php } ?>
@@ -909,6 +868,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
       postInit: function() {
         this.setInputsDefault()
         this.setActions()
+        this.setSortables()
         jeedom.timeline.autocompleteFolder()
       },
       setModal: function() {
@@ -940,6 +900,36 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             _select.triggerEvent('change')
           }
         })
+      },
+      setSortables: function() {
+        if (typeof jQuery === 'function') {
+          $("#div_actionCheckCmd").sortable({
+            axis: "y",
+            cursor: "move",
+            items: ".actionCheckCmd",
+            placeholder: "ui-state-highlight",
+            tolerance: "intersect",
+            forcePlaceholderSize: true
+          })
+
+          $("#div_actionPreExecCmd").sortable({
+            axis: "y",
+            cursor: "move",
+            items: ".actionPreExecCmd",
+            placeholder: "ui-state-highlight",
+            tolerance: "intersect",
+            forcePlaceholderSize: true
+          })
+
+          $("#div_actionPostExecCmd").sortable({
+            axis: "y",
+            cursor: "move",
+            items: ".actionPostExecCmd",
+            placeholder: "ui-state-highlight",
+            tolerance: "intersect",
+            forcePlaceholderSize: true
+          })
+        }
       },
       displayWidgetHelp: function(_widgetName) {
         jeedom.cmd.getWidgetHelp({
@@ -1430,6 +1420,21 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         return
       }
 
+      if (_target = event.target.closest('#bt_addActionCheckCmd')) {
+        jeeFrontEnd.md_displayCmdConfigure.addActionCmd({}, 'actionCheckCmd', '{{Action}}')
+        return
+      }
+
+      if (_target = event.target.closest('#bt_addActionPreExecCmd')) {
+        jeeFrontEnd.md_displayCmdConfigure.addActionCmd({}, 'actionPreExecCmd', '{{Action}}')
+        return
+      }
+
+      if (_target = event.target.closest('#bt_addActionPostExecCmd')) {
+        jeeFrontEnd.md_displayCmdConfigure.addActionCmd({}, 'actionPostExecCmd', '{{Action}}')
+        return
+      }
+
       if (_target = event.target.closest('.listCmd')) {
         var type = _target.getAttribute('data-type')
         var el = _target.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
@@ -1476,14 +1481,6 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     })
 
     //cmd alert tab
-    /*
-    document.getElementById('cmd_alert')?.addEventListener('click', function(event) {
-      var _target = null
-      if (_target = event.target.closest('#nothing')) {
-        return
-      }
-    })
-    */
 
     //cmd display tab
     document.getElementById('cmd_display')?.addEventListener('click', function(event) {
