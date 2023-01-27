@@ -1024,7 +1024,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         newDiv.replaceWith(...newDiv.childNodes)
 
         jeedom.scenario.setAutoComplete({
-          parent: $('#div_' + _type),
+          parent: document.getElementById('div_' + _type),
           type: 'cmd'
         })
       },

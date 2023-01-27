@@ -119,12 +119,13 @@ sendVarToJS([
       }
       ui.append(text)
       ui.append(img)
-      $(ui).on('dblclick',function() {
+
+      ui.addEventListener('dblclick', function(event) {
         if (node.data.url != 'undefined') {
           jeedomUtils.loadPage(node.data.url)
         }
       })
-      $(ui).hover(function() {
+      ui.addEventListener('mouseover', function(event) {
         highlightRelatedNodes(node.id, true)
       }, function() {
         highlightRelatedNodes(node.id, false)
