@@ -30,7 +30,6 @@ if (!jeeFrontEnd.overview) {
       window.jeeP = this
     },
     postInit: function() {
-      //this.$summaryContainer = $('#summaryEqlogics')
       this.modal = document.getElementById('md_overviewSummary')
       this.modalContent = this.modal.querySelector('div.jeeDialogContent')
       this.checkResumeEmpty()

@@ -565,7 +565,7 @@ jeedom.history.drawChart = function(_params) {
             },
             credits: { enabled: false },
             exporting: {
-              enabled: _params.enableExport || ($.mobile) ? false : true,
+              enabled: _params.enableExport || (typeof jQuery === 'function' && $.mobile) ? false : true,
               csv: {
                   dateFormat: '%Y-%m-%d'
               },
@@ -820,7 +820,7 @@ jeedom.history.drawChart = function(_params) {
               }
             },
             exporting: {
-              enabled: _params.enableExport || ($.mobile) ? false : true,
+              enabled: _params.enableExport || (typeof jQuery === 'function' && $.mobile) ? false : true,
               csv: {
                   dateFormat: '%Y-%m-%d'
               },
