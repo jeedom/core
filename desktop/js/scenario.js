@@ -1845,7 +1845,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
   if (_target = event.target.closest('#bt_runScenario')) {
     jeedomUtils.hideAlert()
     var scenario_id = document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()
-    var logmode = document.querySelector('button[data-l2key="logmode"]').getAttribute('value')
+    var logmode = document.querySelector('select[data-l2key="logmode"]').jeeValue()
     if (event.ctrlKey || event.metaKey) {
       jeeP.saveScenario(function() {
         jeedom.scenario.changeState({
