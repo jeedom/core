@@ -70,7 +70,7 @@ if (!jeeFrontEnd.view_edit) {
           })
           jeeFrontEnd.modifyWithoutSave = false
           if (isset(_viewResult) && _viewResult) {
-            window.location.href = 'index.php?v=d&p=view&view_id=' + $(".li_view.active").attr('data-view_id')
+            window.location.href = 'index.php?v=d&p=view&view_id=' + document.querySelector(".li_view.active").getAttribute('data-view_id')
           } else {
             window.location.reload()
           }

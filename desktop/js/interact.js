@@ -109,13 +109,6 @@ if (!jeeFrontEnd.interact) {
               jeeFrontEnd.modifyWithoutSave = false
             }
           })
-
-          $('#div_pageContainer').off('change', '.interactAttr').on('change', '.interactAttr:visible', function() {
-            jeeFrontEnd.modifyWithoutSave = true
-          })
-          $('#div_pageContainer').off('mousedown', 'select option.interactAttr').on('mousedown', 'select option.interactAttr:visible', function() {
-            jeeFrontEnd.modifyWithoutSave = true
-          })
           jeeFrontEnd.modifyWithoutSave = false
         }
       })
@@ -349,7 +342,8 @@ document.getElementById('bt_closeAll')?.addEventListener('click', function(event
 
 
 //Set sortable:
-$(document.getElementById('div_action')).sortable({
+if (typeof jQuery === 'function') {
+  $(document.getElementById('div_action')).sortable({
   axis: "y",
   cursor: "move",
   items: ".action",
@@ -357,7 +351,7 @@ $(document.getElementById('div_action')).sortable({
   tolerance: "intersect",
   forcePlaceholderSize: true
 })
-
+}
 //Register events on top of page container:
 document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
@@ -372,6 +366,14 @@ document.registerEvent('keydown', function(event) {
 
 /*Events delegations
 */
+document.getElementById('div_pageContainer').addEventListener('change', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.interactAttr')) {
+    if (_target.isVisible()) jeeFrontEnd.modifyWithoutSave = true
+    return
+  }
+})
+
 //ThumbnailDisplay
 document.getElementById('interactThumbnailDisplay').addEventListener('click', function(event) {
   var _target = null
@@ -660,3 +662,4 @@ document.getElementById('div_conf').addEventListener('focusout', function(event)
     return
   }
 })
+

@@ -178,8 +178,10 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 
   //Deprecated: Migrate to registerEvent() and delete:
   document.onkeydown = null
-  if (typeof jQuery === 'function') $('body').off('mouseenter mouseleave')
-  if (typeof jQuery === 'function') $(window).off('resize')
+  if (typeof jQuery === 'function') {
+    $('body').off('mouseenter mouseleave')
+    $(window).off('resize')
+  }
 
   document.getElementById('div_mainContainer').querySelectorAll('script')?.remove()
   document.querySelectorAll('script[injext]')?.remove()

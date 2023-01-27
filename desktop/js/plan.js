@@ -203,11 +203,8 @@ if (!jeeFrontEnd.plan) {
           if (jeeP.deviceInfo.type != 'desktop') {
             document.querySelector('meta[name="viewport"]').setAttribute("content", 'width=' + domDisplayObject.offsetWidth + 'px, height=' + domDisplayObject.offsetHeight + 'px')
             jeeP.fullScreen(true)
-            $(window).on("navigate", function(event, data) {
-              var direction = data.state.direction
-              if (direction == 'back') {
-                window.location.href = 'index.php?v=m'
-              }
+            window.registerEvent('popstate', function(event) {
+              window.location.href = 'index.php?v=m'
             })
           }
 
@@ -261,13 +258,13 @@ if (!jeeFrontEnd.plan) {
       //get css selector:
       if (['eqLogic', 'scenario', 'text', 'image', 'zone', 'summary'].includes(_plan.link_type)) {
         css_selector = '.div_displayObject .' + _plan.link_type + '-widget[data-' + _plan.link_type + '_id="' + _plan.link_id + '"]'
-        $(css_selector).remove()
+        document.querySelector(css_selector)?.remove()
       } else if (['view', 'plan'].includes(_plan.link_type)) {
         css_selector = '.div_displayObject .' + _plan.link_type + '-link-widget[data-id="' + _plan.id + '"]'
-        $(css_selector).remove()
+        document.querySelector(css_selector)?.remove()
       } else if (_plan.link_type == 'cmd') {
         css_selector = '.div_displayObject > .cmd-widget[data-cmd_id="' + _plan.link_id + '"]'
-        $(css_selector).remove()
+        document.querySelector(css_selector)?.remove()
       } else if (_plan.link_type == 'graph') {
         if (jeedom.history.chart['div_designGraph' + _plan.link_id]) {
           delete jeedom.history.chart['div_designGraph' + _plan.link_id]
@@ -535,7 +532,6 @@ if (!jeeFrontEnd.plan) {
       var editSelector = '.plan-link-widget, .view-link-widget, .graph-widget, .div_displayObject >.eqLogic-widget'
       editSelector += ', .div_displayObject > .cmd-widget, .scenario-widget, .text-widget, .image-widget, .zone-widget,.summary-widget'
       var editItems = document.querySelectorAll(editSelector)
-      var $editItems = $(editSelector) //jQuery plugins!
 
       if (_state) { //Enter Edit mode
         jeeFrontEnd.planEditOption.state = true
@@ -686,7 +682,6 @@ if (!jeeFrontEnd.plan) {
         jeeFrontEnd.plan.draggables = []
         try {
           jeedomUtils.enableTooltips()
-          //$editItems.draggable('destroy')
         } catch (e) {}
         document.getElementById('div_grid').unseen()
       }
@@ -885,7 +880,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         callback: function(key, opt) {
           var info = jeeP.getElementInfo(this)
           jeedom.plan.copy({
-            id: $(this).attr('data-plan_id'),
+            id: this.getAttribute('data-plan_id'),
             version: 'dashboard',
             error: function(error) {
               jeedomUtils.showAlert({
@@ -1401,9 +1396,12 @@ document.querySelector('.div_displayObject').addEventListener('mouseenter', func
         version: 'dashboard',
         global: false,
         success: function(data) {
-          var html = $(data.html).css('position', 'absolute')
-          html.attr("style", html.attr("style") + "; " + el.getAttribute('data-position'))
-          $(el).empty().append(html)
+          el.html(data.html, true)
+          let inserted = el.childNodes[0]
+          let dPos = el.style.position
+          let dStyle = el.style
+          inserted.style = dStyle
+          inserted.style.position = 'absolute'
           jeedomUtils.positionEqLogic(el.getAttribute('data-eqLogic_id'), false)
         }
       })
@@ -1425,7 +1423,7 @@ document.querySelector('.div_displayObject').addEventListener('mouseleave', func
 
 
 //back to mobile home with three fingers on mobile:
-if (user_isAdmin == 1 && $('body').attr('data-device') == 'mobile') {
+if (user_isAdmin == 1 && document.body.getAttribute('data-device') == 'mobile') {
   document.body.registerEvent('touchstart', function (event) {
     if (event.touches.length == 3) {
       event.preventDefault()
