@@ -519,7 +519,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
 }
 
 jeedom.eqLogic.initGraphInfo = function(_eqLogicId, _doNotHighlightGraphCmd) {
-  var divGraph = document.querySelector('div.eqLogic[data-eqlogic_id="' + _eqLogicId + '"] div.eqlogicbackgraph')
+  var divGraph = document.querySelector('div.eqLogic[data-eqlogic_id="' + _eqLogicId + '"]:not(.zone-widget) div.eqlogicbackgraph')
   if (divGraph != null) {
     var cmdId = divGraph.dataset.cmdid
     if (!_doNotHighlightGraphCmd || _doNotHighlightGraphCmd === false) {
