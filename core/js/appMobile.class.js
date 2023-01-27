@@ -30,7 +30,7 @@ jeedom.appMobile.vibration = function (type = "impactMedium") {
 }
 
 jeedom.appMobile.syncBoxs = function () {
-  jeedom.appMobile.postToApp('syncBoxs')
+  jeedom.appMobile.postToApp('syncBoxs', {})
 }
 
 jeedom.appMobile.notifee = function (title, body, time) {
