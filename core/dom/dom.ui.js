@@ -314,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!tab) return
         //Update current tab level:
         tabList.querySelectorAll('li[role="presentation"].active').removeClass('active')
-        _target.closest('li[role="presentation"]').addClass('active')
+        _target.closest('li[role="presentation"]')?.addClass('active')
 
         contentContainer.querySelectorAll('div[role="tabpanel"].active').removeClass('active')
         tab.addClass('active')
