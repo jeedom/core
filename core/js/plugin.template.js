@@ -245,7 +245,7 @@ if (!jeeFrontEnd.pluginTemplate) {
         id: document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue(),
         filter: {type: 'info'},
         error: function (error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          jeedomUtils.showAlert({message: error.message, level: 'danger'})
         },
         success: function (result) {
           newRow.querySelector('.cmdAttr[data-l1key="value"]').insertAdjacentHTML('beforeend', result)
@@ -475,7 +475,7 @@ domUtils(function() {
   try {
     if (typeof Core_noEqContextMenu !== 'undefined') return false
     if (document.querySelector('.nav.nav-tabs') == null) return false
-    $.contextMenu('destroy', $('.nav.nav-tabs'))
+
     var pluginId = document.body.getAttribute('data-page') || getUrlVars('p')
     jeedom.eqLogic.byType({
       type: pluginId,
@@ -572,26 +572,43 @@ domUtils(function() {
 
 //sortable
 domUtils(function() {
-  if ($("#table_cmd").sortable("instance")) {
-    $("#table_cmd").sortable({
-      delay: 350,
-      distance: 20,
-      cursor: "move",
-      axis: 'y',
-      items: "tr.cmd",
-      appendTo: $("#table_cmd tbody"),
-      zIndex: 0,
-      forceHelperSize: true,
-      forcePlaceholderSize: true,
-      placeholder: "sortable-placeholder",
-      start: function(event, ui) {
-        ui.placeholder[0].style.setProperty('height', event.target.querySelector('tbody tr').clientHeight + 20 + 'px', 'important')
-      },
-      stop: function(event, ui) {
-        jeeFrontEnd.modifyWithoutSave = true
-      }
-    })
+  /*
+  if (typeof jQuery != 'function') {
+    if ($("#table_cmd").sortable("instance")) {
+      $("#table_cmd").sortable({
+        delay: 350,
+        distance: 20,
+        cursor: "move",
+        axis: 'y',
+        items: "tr.cmd",
+        appendTo: $("#table_cmd tbody"),
+        zIndex: 0,
+        forceHelperSize: true,
+        forcePlaceholderSize: true,
+        placeholder: "sortable-placeholder",
+        start: function(event, ui) {
+          ui.placeholder[0].style.setProperty('height', event.target.querySelector('tbody tr').clientHeight + 20 + 'px', 'important')
+        },
+        stop: function(event, ui) {
+          jeeFrontEnd.modifyWithoutSave = true
+        }
+      })
+    }
   }
+  */
+  Sortable.create(document.getElementById('table_cmd'), {
+      delay: 25,
+      delayOnTouchOnly: true,
+      touchStartThreshold: 20,
+      draggable: 'tr.cmd',
+      direction: 'vertical',
+      onEnd: function (event) {
+        console.log('onend', event)
+        jeeFrontEnd.modifyWithoutSave = true
+      },
+  })
+
+
 })
 
 /* Let's see if it break ?
