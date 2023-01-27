@@ -29,6 +29,10 @@ jeedom.appMobile.vibration = function (type = "impactMedium") {
   jeedom.appMobile.postToApp('vibration', {type: type})
 }
 
+jeedom.appMobile.syncBoxs = function () {
+  jeedom.appMobile.postToApp('syncBoxs')
+}
+
 jeedom.appMobile.notifee = function (title, body, time) {
    /**
    * time : display time for inapp notification, in ms
