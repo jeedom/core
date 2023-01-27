@@ -455,6 +455,11 @@ Et les exemples pratiques :
 | ``convertDuration(duration(#[Chauffage][Module chaudière][Etat]#,1, first day of this month)*60)`` | Renvoie le temps d'allumage en Jours/Heures/minutes du temps de passage à l'état 1 du module depuis le 1er jour du mois |
 
 
+### Les fonctions diverses
+
+- ``sun_elevation()`` : Donne en ° l'élevation du soleil (attention il faut avoir renseigné vos coordonées géographique dans la configuration de jeedom)
+- ``sun_azimuth()`` : Donne en ° l'azimuth du soleil (attention il faut avoir renseigné vos coordonées géographique dans la configuration de jeedom)
+
 ### Les commandes spécifiques
 
 En plus des commandes domotiques, vous avez accès aux actions suivantes :
