@@ -457,8 +457,8 @@ And practical examples :
 
 ### Miscellaneous functions
 
-- ``sun_elevation()`` : Gives in ° the elevation of the sun (be careful, you must have entered your geographical coordinates in the configuration of jeedom)
-- ``sun_azimuth()`` : Gives in ° the azimuth of the sun (be careful, you must have entered your geographical coordinates in the configuration of jeedom)
+- ``sun(elevation)`` : Gives in ° the elevation of the sun (be careful, you must have entered your geographical coordinates in the configuration of jeedom)
+- ``sun(azimuth)`` : Gives in ° the azimuth of the sun (be careful, you must have entered your geographical coordinates in the configuration of jeedom)
 
 ### Specific commands
 

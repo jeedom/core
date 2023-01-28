@@ -457,8 +457,8 @@ Und praktische Beispiele :
 
 ### Diverse Funktionen
 
-- ``sun_elevation()`` : Gibt in ° die Höhe der Sonne an (Achtung, Sie müssen Ihre geografischen Koordinaten in der Konfiguration von jeedom eingegeben haben)
-- ``sun_azimuth()`` : Gibt in ° den Azimut der Sonne an (Achtung, Sie müssen Ihre geografischen Koordinaten in der Konfiguration von jeedom eingegeben haben)
+- ``sun(elevation)`` : Gibt in ° die Höhe der Sonne an (Achtung, Sie müssen Ihre geografischen Koordinaten in der Konfiguration von jeedom eingegeben haben)
+- ``sun(azimuth)`` : Gibt in ° den Azimut der Sonne an (Achtung, Sie müssen Ihre geografischen Koordinaten in der Konfiguration von jeedom eingegeben haben)
 
 ### Spezifische Bestellungen
 
