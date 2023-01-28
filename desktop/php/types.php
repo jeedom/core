@@ -33,15 +33,15 @@ function jeedom_displayGenFamily($_family, $_familyId='') {
 	}
 
 	$div = '';
-	$div .= '<div class="panel panel-default eqlogicSortable" data-id="'.$_index.'">';
+	$div .= '<div class="panel panel-default eqlogicSortable" data-id="' . $_index . '">';
 	$div .= '<div class="panel-heading">';
 	$div .= '<h3 class="panel-title">';
-	$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#gen_'.$_index.'">'.$_family;
+	$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#gen_' . $_index . '">'.$_family;
 	$div .= '<span class="spanNumber"> (#num#)</span></a></h3>';
 	$div .= '</div>';
 
 	//inner panel:
-	$div .= '<div id="gen_'.$_index.'" class="panel-collapse collapse">';
+	$div .= '<div id="gen_' . $_index . '" class="panel-collapse collapse">';
 	$div .= '<div class="panel-body">';
 
 	//eqLogics ul with cmds ul inside:
@@ -55,6 +55,7 @@ function jeedom_displayGenFamily($_family, $_familyId='') {
 
       	$numEqs++;
 		$div .= '<li class="eqLogic cursor" data-id="'.$eqLogic->getId().'" data-objectId="' . $eqLogic->getObject_id() . '" data-changed="0" data-generic="' . $eqGeneric . '" data-enable="'.$eqLogic->getIsEnable().'" data-name="'.$eqLogic->getHumanName().'" data-type="'.$eqLogic->getEqType_name().'">';
+		$div .= '<i class="bt_sortable fas fa-arrows-alt-v cursor"></i> ';
 		$div .= '<input type="checkbox" class="cb_selEqLogic" /> ';
 
 		$object = $eqLogic->getObject();
