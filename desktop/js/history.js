@@ -72,7 +72,7 @@ if (!jeeFrontEnd.history) {
 
       if (currentSeries.length == 1) { //only one series in chart:
         var serieId = currentSeries[0].userOptions.id
-        var isCalcul = $('li.li_history[data-cmd_id="' + serieId + '"]').find('a.history').attr('data-calcul') === undefined ? false : true
+        var isCalcul = document.querySelector('li.li_history[data-cmd_id="' + serieId + '"] a.history').getAttribute('data-calcul') === null ? false : true
         if (isCalcul) {
           this.__lastId__ = null
           document.getElementById('cb_derive').checked = false
@@ -102,7 +102,6 @@ if (!jeeFrontEnd.history) {
           document.querySelectorAll('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').forEach((element, index) => {
             element.disabled = _disabled
           })
-
           document.getElementById('bt_compare').removeClass('disabled')
         }
       } else {
@@ -120,11 +119,11 @@ if (!jeeFrontEnd.history) {
     addChart: function(_cmd_id, _action, _options) {
       if (_action == 0) { //Remove series
         if (isset(jeedom.history.chart[this.__el__]) && isset(jeedom.history.chart[this.__el__].chart) && isset(jeedom.history.chart[this.__el__].chart.series)) {
-          $(jeedom.history.chart[this.__el__].chart.series).each(function(i, serie) {
+          jeedom.history.chart[this.__el__].chart.series.forEach(_serie => {
             try {
-              if (serie.options.id == _cmd_id) {
-                serie.yAxis.remove()
-                jeedom.history.chart[this.__el__].chart.get(serie.options.id).remove(false)
+              if (_serie.options.id == _cmd_id) {
+                _serie.yAxis.remove()
+                jeedom.history.chart[this.__el__].chart.get(_serie.options.id).remove(false)
               }
             } catch (error) {}
           })
@@ -148,10 +147,11 @@ if (!jeeFrontEnd.history) {
         compare: 0,
         success: function(data) {
           if (isset(data.error)) {
-            $('.li_history[data-cmd_id="' + _cmd_id + '"]').removeClass('active')
+            document.querySelector('.li_history[data-cmd_id="' + _cmd_id + '"]').removeClass('active')
             return
           }
           jeeP.__lastId__ = _cmd_id
+          jeeP.setChartOptions()
           jeeP.resizeDn()
         }
       })
@@ -223,7 +223,7 @@ if (!jeeFrontEnd.history) {
 
               var diffPeriod = fromEnd.diff(fromStart, 'days')
               var cdiffPeriod = toEnd.diff(toStart, 'days')
-              var text = '{{Comparer}} ' + diffPeriod + ' {{jours avec}} ' + cdiffPeriod + ' {{jours il y a}} ' + $('#sel_comparePeriod option:selected').text()
+              var text = '{{Comparer}} ' + diffPeriod + ' {{jours avec}} ' + cdiffPeriod + ' {{jours il y a}} ' + document.getElementById('sel_comparePeriod').selectedOptions[0].text
               _md.querySelector('.spanCompareDiffResult').textContent = text
               if (diffPeriod != cdiffPeriod) {
                 jeeDialog.get('#md_historyCompare').show()

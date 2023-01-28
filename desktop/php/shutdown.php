@@ -38,17 +38,20 @@ if (!isConnect('admin')) {
 	jeeDialog.confirm('{{Êtes-vous sûr de vouloir arrêter le système ?}}', function (result) {
 		if (result) {
 			jeedom.haltSystem();
-			setTimeout('reboot_jeedom(rebooti)', 10000);
-			setTimeout("$('#progressbar_reboot').width('50%');", 5000);
-			$('#progressbar_reboot').width('5%');
+			setTimeout('reboot_jeedom(rebooti)', 10000)
+			setTimeout(()=> {
+				document.getElementById('progressbar_reboot').style.width = '50%'
+			}, 5000)
+
+			document.getElementById('progressbar_reboot').style.width = '5%'
 		} else {
-			jeedomUtils.loadPage('index.php?v=d&p=dashboard');
+			jeedomUtils.loadPage('index.php?v=d&p=dashboard')
 		}
 	});
 
 	function reboot_jeedom(rebooti){
-		$('#div_reboot_jeedom_texte').empty().html('<h6>{{Votre box}} '+JEEDOM_PRODUCT_NAME+' {{est éteinte.<br /> Pour la redémarrer, débranchez-la et rebranchez-la.}}</h6>');
-		$('#progressbar_reboot').width('100%');
-		$('#progressbar_reboot').addClass('progress-bar-danger').removeClass('progress-bar-success').removeClass('active');
+		document.getElementById('div_reboot_jeedom_texte').innerHTML = '<h6>{{Votre box}} ' + JEEDOM_PRODUCT_NAME + ' {{est éteinte.<br /> Pour la redémarrer, débranchez-la et rebranchez-la.}}</h6>'
+		document.getElementById('progressbar_reboot').style.width = '100%'
+		document.getElementById('progressbar_reboot').addClass('progress-bar-danger').removeClass('progress-bar-success active')
 	}
 </script>

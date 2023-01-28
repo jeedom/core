@@ -178,8 +178,10 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 
   //Deprecated: Migrate to registerEvent() and delete:
   document.onkeydown = null
-  if (typeof jQuery === 'function') $('body').off('mouseenter mouseleave')
-  if (typeof jQuery === 'function') $(window).off('resize')
+  if (typeof jQuery === 'function') {
+    $('body').off('mouseenter mouseleave')
+    $(window).off('resize')
+  }
 
   document.getElementById('div_mainContainer').querySelectorAll('script')?.remove()
   document.querySelectorAll('script[injext]')?.remove()
@@ -905,7 +907,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
     //close all modales on outside click - deprecated 4.4
     if (event.target.matches('.ui-widget-overlay')) {
       event.stopPropagation()
-      $('.ui-dialog-content').dialog("close")
+      if (typeof jQuery === 'function') $('.ui-dialog-content').dialog("close")
       return
     }
 
@@ -1280,7 +1282,7 @@ jeedomUtils.componentToHex = function(c) {
 }
 
 jeedomUtils.rgbToHex = function(r, g, b) {
-  if ($.type(r) === 'string' && !g) {
+  if (typeof r === 'string' && !g) {
     r = r.trim()
     if (r.startsWith('rgb')) {
       r = r.replace('rgb', '')
@@ -1479,28 +1481,27 @@ jeedomUtils.getClosestInArray = function(_num, _refAr) {
   })
 }
 
+//Deprecated 4.4, obsolete 4.6
 jeedomUtils.showHelpModal = function(_name, _plugin) {
+  var url_helpWebsite
+  var url_helpSpe
   if (init(_plugin) != '' && _plugin != undefined) {
-    $('#div_helpWebsite').load('index.php?v=d&modal=help.website&page=doc_plugin_' + _plugin + '.php #primary', function() {
-      if ($('#div_helpWebsite').find('.alert.alert-danger').length > 0 || $('#div_helpWebsite').text().trim() == '') {
-        $('a[href="#div_helpSpe"]').click()
-        $('a[href="#div_helpWebsite"]').hide()
-      } else {
-        $('a[href="#div_helpWebsite"]').show().click()
-      }
-    })
-    $('#div_helpSpe').load('index.php?v=d&plugin=' + _plugin + '&modal=help.' + init(_name))
+    url_helpWebsite = 'index.php?v=d&modal=help.website&page=doc_plugin_' + _plugin + '.php #primary'
+    url_helpSpe = 'index.php?v=d&plugin=' + _plugin + '&modal=help.' + init(_name)
   } else {
-    $('#div_helpWebsite').load('index.php?v=d&modal=help.website&page=doc_' + init(_name) + '.php #primary', function() {
-      if ($('#div_helpWebsite').find('.alert.alert-danger').length > 0 || $('#div_helpWebsite').text().trim() == '') {
-        $('a[href="#div_helpSpe"]').click()
-        $('a[href="#div_helpWebsite"]').hide()
-      } else {
-        $('a[href="#div_helpWebsite"]').show().click()
-      }
-    })
-    $('#div_helpSpe').load('index.php?v=d&modal=help.' + init(_name))
+    url_helpWebsite = 'index.php?v=d&modal=help.website&page=doc_' + init(_name) + '.php #primary'
+    url_helpSpe = 'index.php?v=d&modal=help.' + init(_name)
   }
+
+  document.getElementById('div_helpWebsite').load(url_helpWebsite, function() {
+    if (document.getElementById('div_helpWebsite').querySelectorAll('.alert.alert-danger').length > 0 || document.getElementById('div_helpWebsite').textContent.trim() == '') {
+      document.querySelector('a[href="#div_helpSpe"]').click()
+      document.querySelector('a[href="#div_helpWebsite"]').unseen()
+    } else {
+      document.querySelector('a[href="#div_helpWebsite"]').seen().click()
+    }
+  })
+  document.getElementById('div_helpSpe').load(url_helpSpe)
 }
 
 jeedomUtils.reloadPagePrompt = function(_title) {
@@ -1562,7 +1563,7 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
         className: 'success',
         callback: {
           click: function(event) {
-            var icon = $('.iconSelected .iconSel').html()
+            var icon = document.getElementById('mod_selectIcon').querySelector('.iconSelected .iconSel').innerHTML
             if (icon == undefined) {
               icon = ''
             }
@@ -1603,6 +1604,7 @@ jeedomUtils.getOpenedModal = function() {
 
 //Deprecated 4.4 keep for plugins
 jeedomUtils.closeModal = function(_modals = '') {
+  if (typeof jQuery != 'function') return
   if (_modals == '') {
     _modals = ['md_modal', 'md_modal2', 'md_modal3']
   }

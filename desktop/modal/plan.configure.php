@@ -531,9 +531,9 @@ if (!jeeFrontEnd.md_planConfigure) {
           if (isset(data.result.result.filepath)) {
             var filePath = data.result.result.filepath
             filePath = '/data/plan/' + filePath.split('/data/plan/')[1]
-            $('.planImg img').attr('src', filePath).show()
+            document.querySelector('.planImg img').setAttribute('src', filePath).seen()
           } else {
-            $('.planImg img').hide()
+            document.querySelector('.planImg img').unseen()
           }
         }
       })

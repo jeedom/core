@@ -331,7 +331,7 @@ if (!jeeFrontEnd.md_search) {
     },
     searchFor_equipment: function(_searchFor, _byId=false) {
       if (!_byId) {
-        var eQiD = $('#in_searchFor_equipment').attr('data-id')
+        var eQiD = document.getElementById('in_searchFor_equipment').getAttribute('data-id')
       } else {
         var eQiD = _byId
       }
@@ -385,7 +385,7 @@ if (!jeeFrontEnd.md_search) {
     },
     searchFor_command: function(_searchFor, _byId=false) {
       if (!_byId) {
-        var cmdId = $('#in_searchFor_command').attr('data-id')
+        var cmdId = document.getElementById('in_searchFor_command').getAttribute('data-id')
       } else {
         var cmdId = _byId
       }

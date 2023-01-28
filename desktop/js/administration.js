@@ -318,7 +318,7 @@ if (!jeeFrontEnd.administration) {
           })
         },
         success: function(data) {
-          $('#span_cacheObject').html(data.count)
+          document.getElementById('span_cacheObject').innerHTML = data.count
         }
       })
     },

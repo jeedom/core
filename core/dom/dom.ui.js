@@ -281,6 +281,8 @@ domUtils.createWidgetSlider = function(_options) {
 document.addEventListener('DOMContentLoaded', function() {
   if (typeof jQuery !== 'function') {
     document.body.addEventListener('click', function(event) {
+      //Close all dropdowns
+      document.querySelectorAll('div.dropdown.open').removeClass('open')
       var _target = null
 
       //Accordions
@@ -314,7 +316,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!tab) return
         //Update current tab level:
         tabList.querySelectorAll('li[role="presentation"].active').removeClass('active')
-        _target.closest('li[role="presentation"]').addClass('active')
+        _target.closest('li[role="presentation"]')?.addClass('active')
 
         contentContainer.querySelectorAll('div[role="tabpanel"].active').removeClass('active')
         tab.addClass('active')
@@ -338,6 +340,12 @@ document.addEventListener('DOMContentLoaded', function() {
           jeeFrontEnd.PREVIOUS_PAGE = 'index.php?' + window.location.href.split("index.php?")[1]
         }
         window.location.hash = _target.getAttribute('data-target') || _target.getAttribute('href')
+        return
+      }
+
+      //DropDowns
+      if (_target = event.target.closest('button.dropdown-toggle')) {
+        _target.parentNode.toggleClass('open')
         return
       }
     })

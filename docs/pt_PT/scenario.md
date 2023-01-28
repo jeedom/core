@@ -455,6 +455,11 @@ E exemplos práticos :
 | ``convertDuration(duration(#[Chauffage][Module chaudière][Etat]#,1, first day of this month)*60)`` | Retorna o tempo de ignição em Dias / Horas / minutos do tempo de transição para o estado 1 do módulo desde o 1º dia do mês |
 
 
+### Funções diversas
+
+- ``sun_elevation()`` : Dá em ° a elevação do sol (cuidado, você deve ter inserido suas coordenadas geográficas na configuração do jeedom)
+- ``sun_azimuth()`` : Dá em ° o azimute do sol (cuidado, você deve ter inserido suas coordenadas geográficas na configuração do jeedom)
+
 ### Pedidos específicos
 
 Além dos comandos de automação residencial, você tem acesso às seguintes ações :

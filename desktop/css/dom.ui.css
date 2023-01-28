@@ -530,8 +530,8 @@ div.ispin-wrapper button.ispin-button {
 div.ispin-wrapper button.ispin-button::before {
   border-bottom-color: var(--txt-color) !important;
   border-top-color: var(--txt-color) !important;
-  -webkit-transform: translateY(-40%) !important;
-  transform: translateY(-150%) !important;
+  -webkit-transform: translateY(-200%) !important;
+  transform: translateY(-200%) !important;
 }
 div.ispin-wrapper button.ispin-button-inc::before {
   --top: -5px !important;
