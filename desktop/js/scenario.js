@@ -1719,16 +1719,12 @@ document.getElementById('scenarioThumbnailDisplay').addEventListener('click', fu
   }
 
   if (_target = event.target.closest('#bt_openAll')) {
-    document.querySelectorAll('.accordion-toggle[aria-expanded="false"]').forEach(function(accordion) {
-      accordion.click()
-    })
+    document.querySelectorAll('#accordionScenario .panel-collapse').forEach(_panel => { _panel.addClass('in') })
     return
   }
 
   if (_target = event.target.closest('#bt_closeAll')) {
-    document.querySelectorAll('.accordion-toggle[aria-expanded="true"]').forEach(function(accordion) {
-      accordion.click()
-    })
+    document.querySelectorAll('#accordionScenario .panel-collapse').forEach(_panel => { _panel.removeClass('in') })
     return
   }
 

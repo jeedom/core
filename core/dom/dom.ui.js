@@ -293,12 +293,21 @@ document.addEventListener('DOMContentLoaded', function() {
         let panelGroup = _target.closest('div.panel-group')
         if (!panelGroup) {
           var panel = document.querySelector(ref)
+          var isOpen = panel.hasClass('in')
         } else {
-          panelGroup.querySelectorAll('div.panel-collapse').removeClass('in')
           var panel = panelGroup.querySelector(ref)
+          var isOpen = panel.hasClass('in')
+          panelGroup.querySelectorAll('div.panel-collapse').removeClass('in')
         }
         if (!panel) return
-        panel.toggleClass('in')
+        if (isOpen) panel.removeClass('in')
+        else panel.addClass('in')
+        return
+      }
+
+      //Collapse
+      if (_target = event.target.closest('a[data-toggle="collapse"]')) {
+        _target.parentNode.querySelector('.collapse')?.toggleClass('in')
         return
       }
 
