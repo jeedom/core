@@ -3301,10 +3301,10 @@ div.eqLogic-widget.editingMode .panelLink {
   }
 
   /* hihgly special */
-  div[id^=__lpform_] { /*lastpass*/
+  div[id^=__lpform_],
+  div[data-lastpass-icon-root] { /*lastpass*/
     display: none;
   }
-
 
   .jstree-anchor:hover {
     box-shadow: none;
