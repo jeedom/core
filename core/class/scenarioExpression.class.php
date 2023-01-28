@@ -173,7 +173,7 @@ class scenarioExpression {
 
 	/*     * ********************Fonctions utilisées dans le calcul des conditions********************************* */
 
-	public static function sun_elevation() {
+	public static function sun($_name) {
 		$SD = new SolarData\SolarData();
 		$SD->setObserverPosition(config::byKey('info::latitude'), config::byKey('info::longitude'), config::byKey('info::altitude'));
 		$SD->setObserverDate(date('Y'), date('n'), date('j'));
@@ -181,18 +181,12 @@ class scenarioExpression {
 		$SD->setDeltaTime(67);
 		$SD->setObserverTimezone(date('Z') / 3600);
 		$SunPosition = $SD->calculate();
-		return round($SunPosition->e0°, 2);
-	}
-
-	public static function sun_azimuth() {
-		$SD = new SolarData\SolarData();
-		$SD->setObserverPosition(config::byKey('info::latitude'), config::byKey('info::longitude'), config::byKey('info::altitude'));
-		$SD->setObserverDate(date('Y'), date('n'), date('j'));
-		$SD->setObserverTime(date('G'), date('i'), date('s'));
-		$SD->setDeltaTime(67);
-		$SD->setObserverTimezone(date('Z') / 3600);
-		$SunPosition = $SD->calculate();
-		return round($SunPosition->Φ°, 2);
+		if ($_name == 'elevation') {
+			return round($SunPosition->e0°, 2);
+		}
+		if ($_name == 'azimuth') {
+			return round($SunPosition->Φ°, 2);
+		}
 	}
 
 	public static function getDatesFromPeriod($_period = '1 hour') {

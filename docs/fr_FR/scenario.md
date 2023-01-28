@@ -457,8 +457,8 @@ Et les exemples pratiques :
 
 ### Les fonctions diverses
 
-- ``sun_elevation()`` : Donne en ° l'élevation du soleil (attention il faut avoir renseigné vos coordonées géographique dans la configuration de jeedom)
-- ``sun_azimuth()`` : Donne en ° l'azimuth du soleil (attention il faut avoir renseigné vos coordonées géographique dans la configuration de jeedom)
+- ``sun(elevation)`` : Donne en ° l'élevation du soleil (attention il faut avoir renseigné vos coordonées géographique dans la configuration de jeedom)
+- ``sun(azimuth)`` : Donne en ° l'azimuth du soleil (attention il faut avoir renseigné vos coordonées géographique dans la configuration de jeedom)
 
 ### Les commandes spécifiques
 
