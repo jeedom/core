@@ -250,6 +250,7 @@ function setTheme() {
 	include_file('core', 'jeeCron', 'dom');
 	include_file('3rdparty', 'isPin/ispin', 'css');
 	include_file('3rdparty', 'isPin/ispin', 'js');
+	include_file('3rdparty', 'sortable/sortable', 'js');
 	include_file('3rdparty', 'popper/popper.min', 'js');
 	include_file('3rdparty', 'tippy/tippy.min', 'js');
 	include_file('3rdparty', 'flatpickr/flatpickr.min', 'css');

@@ -297,7 +297,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
           var panel = panelGroup.querySelector(ref)
           var isOpen = panel.hasClass('in')
-          panelGroup.querySelectorAll('div.panel-collapse').removeClass('in')
+          //panelGroup.querySelectorAll('div.panel-collapse').removeClass('in')
         }
         if (!panel) return
         if (isOpen) panel.removeClass('in')
