@@ -573,7 +573,6 @@ domUtils(function() {
 //sortable
 domUtils(function() {
   if (typeof jQuery === 'function' && $("#table_cmd").sortable("instance")) {
-    console.log('got instance!!')
     $("#table_cmd").sortable("destroy")
   }
 

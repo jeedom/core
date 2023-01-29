@@ -306,7 +306,7 @@ if (!jeeFrontEnd.scenario) {
       }
       document.querySelector('.defined_actions').insertAdjacentHTML('beforeend', htmlActions)
     },
-    //Load / Sagve:
+    //Load / Save:
     printScenario: function(_id, _callback) {
       jeedomUtils.hideAlert()
       domUtils.showLoading()
