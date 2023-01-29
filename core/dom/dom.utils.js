@@ -858,7 +858,14 @@ function json_encode(a) {
   }
 }
 
-
+function isInWindow(_el) {
+  var { top, bottom } = _el.getBoundingClientRect()
+  var vHeight = (window.innerHeight || document.documentElement.clientHeight)
+  return (
+    (top > 0 || bottom > 0) &&
+    top < vHeight
+  )
+}
 
 function getBool(val) {
   if (val === undefined) return false
