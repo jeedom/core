@@ -58,7 +58,8 @@ document.getElementById('accordionHealth').addEventListener('click', event => {
   }
 
   if (_target = event.target.closest('.panel-title')) {
-    _target.querySelector('a.accordion-toggle').click()
+    document.querySelectorAll('#accordionHealth div.panel-collapse:not([id="health_jeedom"]').removeClass('in')
+    _target.closest('div.panel').querySelector('div.panel-collapse').addClass('in')
     return
   }
 })

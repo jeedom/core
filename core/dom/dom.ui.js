@@ -283,6 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.addEventListener('click', function(event) {
       //Close all dropdowns
       document.querySelectorAll('div.dropdown.open').removeClass('open')
+      document.querySelectorAll('button.dropdown-toggle').forEach(_bt => _bt.parentNode.removeClass('open'))
       var _target = null
 
       //Accordions

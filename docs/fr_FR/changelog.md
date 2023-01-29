@@ -18,7 +18,7 @@
 - **Equipements** : Possibilité de désactiver les templates de widget des plugins qui en utilisent pour revenir à l'affichage par défaut Jeedom *(fenêtre de configuration de l'équipement)*.
 - **Equipements** : Les équipements rendus inactifs disparaissent automatiquement de toutes les pages. Les équipements réactivés réapparaissent sur le dashboard si l'objet parent est déjà présent.
 - **Equipements** : Les équipements rendus non visibles disparaissent automatiquement du dashboard. Les équipements ré-affichés réapparaissent sur le dashboard si l'objet parent est déjà présent.
-- **Analyse > Equipements > Equipements en alerte** : Les équipements qui passent en alerte apparaissent automatiquement et ceux qui sortent d'une alerte disparaissent automatiquement.
+- **Analyse > Equipements / Equipements en alerte** : Les équipements qui passent en alerte apparaissent automatiquement et ceux qui sortent d'une alerte disparaissent automatiquement.
 - **Objet** : La suppression ou la création d'un résumé entraîne l'update du résumé global et de l'objet.
 - **Outils > Remplacer** : Cet outil propose maintenant un mode *Copier*, permettant de copier les configurations d'équipements et de commandes, sans les remplacer dans les scénarios et autres.
 - **Timeline** : La Timeline charge maintenant les 35 premiers événements. En bas de page, plusieurs boutons permettent de charger dynamiquement les événements suivant.
@@ -50,10 +50,30 @@
 
 > **Boites de dialogue**
 >
-> Toutes les boites de dialogue (bootstrap, bootbox, jQuery UI) ont été migrées sur une lib interne du Core développée spécialement. Les boites de dialogue redimensionnable ont maintenant un bouton pour passer en *fullscreen*.
+> Toutes les boites de dialogue (bootstrap, bootbox, jQuery UI) ont été migré sur une lib interne du Core (jeeDialog) développée spécialement. Les boites de dialogue redimensionnable ont maintenant un bouton pour passer en *fullscreen*.
 
 
 # Changelog Jeedom V4.3
+
+## 4.3.15
+
+- Interdiction de la traduction de Jeedom par les navigateurs (évite les erreurs type marché.repo.php non trouvé).
+- Optimisation de la fonction de remplacement.
+
+## 4.3.14
+
+- Réduction de la charge sur les DNS.
+
+## 4.3.13
+
+- Bugfix sur **Outils / Remplacer**.
+
+## 4.3.12
+
+- Optimisation sur les historiques.
+- Bugfix Synthèse en mobile.
+- Bugfix widget shutter en mobile.
+- Bugfix des courbes de tuile avec info binaire.
 
 ## 4.3.11
 

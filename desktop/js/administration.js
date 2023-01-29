@@ -964,7 +964,7 @@ document.getElementById('logtab').addEventListener('focusout', function(event) {
 
 /**************************SUMMARIES***********************************/
 //Set sortable:
-let body = document.getElementById('table_objectSummary').tBodies[0]
+var body = document.getElementById('table_objectSummary').tBodies[0]
 Sortable.create(body, {
   delay: 100,
   delayOnTouchOnly: true,
