@@ -1423,10 +1423,11 @@ if (!jeeFrontEnd.scenario) {
     resetEditors: function() {
       this.editors = []
       var expression, code
-      document.querySelectorAll('.expressionAttr[data-l1key="type"][value="code"]').forEach(function(elCode) {
+      document.querySelectorAll('.expressionAttr[data-l1key="type"][value="code"]').forEach( elCode => {
         expression = elCode.closest('.expression')
         code = expression.querySelector('.expressionAttr[data-l1key="expression"]')
-        code. removeAttribute('id').show()
+        code.removeAttribute('id')
+        code.seen()
         expression.querySelectorAll('.CodeMirror.CodeMirror-wrap').remove()
       })
       this.setEditors()
