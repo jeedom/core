@@ -3139,9 +3139,6 @@
         "Types Génériques automatiques": "Automatische generische Typen",
         "Appliquer": "Anwenden",
         "Types Génériques sauvegardés": "Generische Typen gespeichert",
-        "Supprimer les types generiques sur les commandes ?": "Generische Typen aus Bestellungen entfernen?",
-        "Oui": "Jawohl",
-        "Non": "Nein",
         "Supprimer": "Löschen"
     },
     "desktop\/js\/replace.js": {

@@ -3139,9 +3139,6 @@
         "Types Génériques automatiques": "Automatic Generic Types",
         "Appliquer": "Apply",
         "Types Génériques sauvegardés": "Generic types saved",
-        "Supprimer les types generiques sur les commandes ?": "Remove generic types from commands ?",
-        "Oui": "Yes",
-        "Non": "No",
         "Supprimer": "Delete"
     },
     "desktop\/js\/replace.js": {
