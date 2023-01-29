@@ -129,18 +129,21 @@ if (!jeeFrontEnd.md_objectSummary) {
       this.setTableSortable()
     },
     setTableSortable: function() {
-      $("#table_ObjectSummary").sortable({
-        axis: "y",
-        cursor: "move",
-        items: ".tr_object",
-        placeholder: "ui-state-highlight",
-        tolerance: "intersect",
-        forcePlaceholderSize: true,
-        stop: function(event, ui) {
+      Sortable.create(document.getElementById('table_ObjectSummary').tBodies[0], {
+        delay: 100,
+        delayOnTouchOnly: true,
+        draggable: 'tr.tr_object',
+        direction: 'vertical',
+        removeCloneOnHide: true,
+        onEnd: function (event) {
+          if (event.from == event.to && event.oldIndex == event.newIndex) {
+            //Dropped at same position
+            return
+          }
           var objects = []
           document.querySelectorAll('#table_ObjectSummary .tr_object').forEach(_tr => {
             objects.push(_tr.getAttribute('data-object_id'))
-          });
+          })
           jeedom.object.setOrder({
             objects: objects,
             error: function(error) {
@@ -151,11 +154,12 @@ if (!jeeFrontEnd.md_objectSummary) {
               })
             }
           })
-        }
+        },
       })
     },
   }
 }
+
 (function() {// Self Isolation!
   var jeeM = jeeFrontEnd.md_objectSummary
   jeeM.init()

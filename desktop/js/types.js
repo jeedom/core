@@ -421,73 +421,25 @@ document.getElementById('bt_resetypeSearch')?.addEventListener('click', function
 
 
 //Sortable:
-$(document.querySelectorAll('.eqLogicSortable')).sortable({
-  cursor: "move",
-  connectWith: ".eqLogicSortable",
-  zIndex: 0,
-  delay: 250,
-  opacity: 0.5,
-  start: function(event, ui) {
-    //get checked eqlogics in this object:
-    $(this).closest('ul.eqLogicSortable').find('.ui-sortable-handle').each(function() {
-      if ($(this).find('.cb_selEqLogic').prop('checked') == true) {
-        $(this).appendTo(ui.item)
-      }
-    })
-    jeeP.sortFromGenericId = ui.item[0].closest('.eqlogicSortable').getAttribute('data-id')
-  },
-  stop: function(event, ui) {
-    var genericId = ui.item[0].closest('.eqlogicSortable').getAttribute('data-id')
+var sortLists = document.getElementById('genericsContainer').querySelectorAll('.eqLogicSortable')
+sortLists.forEach(_group => {
+  var sorty = new Sortable(_group, {
+    group: {
+      name: 'expressions',
+    },
+    delay: 100,
+    animation: 150,
+    draggable: 'li.eqLogic',
+    direction: 'vertical',
+    handle: 'i.bt_sortable',
+    multiDrag: true,
+    selectedClass: 'dragSelected',
+    multiDragKey: 'CTRL',
+    avoidImplicitDeselect: true,
+    removeCloneOnHide: true
+  })
+})
 
-    //register moved eqLogics ids:
-    var eqLogicsIds = []
-    eqLogicsIds.push(ui.item.attr('data-id'))
-    ui.item.find('li.eqLogic').each(function(index) {
-      ui.item.after($(this))
-      eqLogicsIds.push($(this).attr('data-id'))
-    })
-
-    eqLogicsIds.forEach(function(_id) {
-      document.querySelector('li.eqLogic[data-id="' + _id + '"]').setAttribute('data-generic', genericId)
-      document.querySelector('li.eqLogic[data-id="' + _id + '"]').setAttribute('data-changed', '1')
-    })
-
-    //reset types on commands ?
-    if (jeeP.sortFromGenericId != genericId && genericId == '') {
-      jeeDialog.confirm({
-        message: "{{Supprimer les types generiques sur les commandes ?}}",
-        buttons: {
-          confirm: {
-            label: '{{Oui}}',
-            className: 'success'
-          },
-          cancel: {
-            label: '{{Non}}',
-            className: 'warning'
-          }
-        },
-        callback: function(result) {
-          if (result) {
-            eqLogicsIds.forEach(function(_id) {
-              document.querySelectorAll('li.eqLogic[data-id="' + _id + '"] li.cmd').forEach(_cmd => {
-                _cmd.setAttribute('data-generic', '')
-                _cmd.setAttribute('data-changed', '1')
-                _cmd.querySelector('.genericType').textContent = 'None'
-              })
-            })
-          }
-        }
-      })
-    }
-
-    event.stopPropagation()
-    document.querySelector('.cb_selEqLogic').checked = false
-
-    jeeP.setFamiliesNumber()
-    jeeP.setQueryButtons()
-    jeeFrontEnd.modifyWithoutSave = true
-  }
-}).disableSelection()
 
 //Contextmenu commands:
 Object.keys(jeeP.genericsByFamily).forEach(key => {
@@ -636,7 +588,8 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
-  if ((_target = event.target.matches('.eqLogicSortable > li.eqLogic')) || (_target = event.target.matches('.eqLogicSortable > .eqName'))) {
+  if ((_target = event.target.matches('.eqLogicSortable > li.eqLogic')) || (_target = event.target.matches('.eqLogicSortable span.eqName'))) {
+    _target = event.target.closest('li.eqLogic')
     var el = event.target.closest('li.eqLogic').querySelector('ul.eqLogicCmds')
     if (el.isVisible()) {
       el.unseen()

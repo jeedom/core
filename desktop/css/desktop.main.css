@@ -743,8 +743,14 @@ Desktop
     list-style-type: none;
     padding-left: 0px;
     min-height: 30px !important;
-    border: 1px dashed var(--placeholder-color) !important;
   }
+  li.eqLogic.dragSelected {
+    border: 2px dashed var(--logo-primary-color);
+  }
+  li.eqLogic .bt_sortable {
+    padding: 5px 0 0;
+  }
+
   #searchResult a[role=searchTabLink] {
     display: table;
     font-size: 14px !important;
@@ -3564,8 +3570,9 @@ div.eqLogic-widget.editingMode .panelLink {
   .sortable-placeholder + .expression .element {
     background-color: var(--logo-primary-color) !important;
   }
-  .expressions .sortable.empty.ui-sortable-handle {
-    height: 25px !important;
+  .expressions:empty {
+    height: 20px;
+    padding-bottom: 20px;
   }
   .sortable-placeholderLast {
     display: inline-block;

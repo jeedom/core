@@ -119,109 +119,80 @@ if (!jeeFrontEnd.scenario) {
         }
       }
     },
-    //Scenario loading
     setSortables: function() {
-      $("#div_scenarioElement").sortable({
-        handle: '.bt_sortable',
-        cursor: 'move',
-        grid: [5, 15],
-        items: '.sortable',
-        appendTo: $('#div_scenarioElement'),
-        zIndex: 0,
-        opacity: 0.5,
-        forcePlaceholderSize: true,
-        placeholder: 'sortable-placeholder',
-        start: function(event, ui) {
-          document.querySelectorAll('.dropdown.open').removeClass('open')
-          if (ui.placeholder.parents('.expressions').find('.sortable').length < 3) {
-            ui.placeholder.parents('.expressions').find('.sortable.empty').show()
-          }
-        },
-        change: function(event, ui) {
-          if (ui.placeholder.next().length == 0) {
-            ui.placeholder.addClass('sortable-placeholderLast')
-          } else {
-            ui.placeholder.removeClass('sortable-placeholderLast')
-          }
+      var selector = '.subElementACTION > .expressions, .subElementDO > .expressions, .subElementTHEN > .expressions, .subElementELSE > .expressions'
+      var containers = document.getElementById('div_scenarioElement').querySelectorAll(selector)
+      var commonOptions = {
+          group: {
+            name: 'expressionSorting',
+          },
+          delay: 250,
+          delayOnTouchOnly: true,
+          animation: 100,
+          draggable: '.sortable',
+          handle: '.bt_sortable',
+          direction: 'vertical',
+          swapThreshold: 0.07,
+          removeCloneOnHide: true,
+          onStart: function(event) {
+            jeeFrontEnd.scenario.setUndoStack()
+            document.querySelectorAll('.dropdown.open').removeClass('open')
+            document.querySelectorAll('.subElementCODE .expressions .expression').addClass('disabled') //Prevent paste dragged element into code
+            setTimeout(() => {
+              document.querySelectorAll('div[data-tippy-root]').remove()
+            }, 100)
+          },
+          onMove: function(event, originalEvent) { //Prevent actions on root
+            if (event.dragged.hasClass('expressionACTION') && event.to.getAttribute('id') == 'root') {
+              return false
+            }
+          },
+          onEnd: function(event) {
+            document.querySelectorAll('.subElementCODE .expressions .expression').removeClass('disabled')
 
-          var getClass = true
-          if (ui.placeholder.parent().hasClass('subElement')) {
-            getClass = false
-          }
-          if (ui.helper.hasClass('expressionACTION') && ui.placeholder.parent().attr('id') == 'div_scenarioElement') {
-            getClass = false
-          }
-          var thisSub = ui.placeholder.parents('.expressions').parents('.subElement')
-          if (thisSub.hasClass('subElementCOMMENT') || thisSub.hasClass('subElementCODE')) {
-            getClass = false
-          }
-
-          if (getClass) {
-            ui.placeholder.addClass('sortable-placeholder')
-          } else {
-            ui.placeholder.removeClass('sortable-placeholder')
-          }
-        },
-        update: function(event, ui) {
-          if (ui.item.closest('.subElement').hasClass('subElementCOMMENT')) {
-            $("#div_scenarioElement").sortable('cancel')
-          }
-          if (ui.item.findAtDepth('.element', 2).length == 1 && ui.item.parent().attr('id') == 'div_scenarioElement') {
-            ui.item.replaceWith(ui.item.findAtDepth('.element', 2))
-          }
-
-          if (ui.item.hasClass('element') && ui.item.parent().attr('id') != 'div_scenarioElement') {
-            ui.item.find('.expressionAttr,.subElementAttr,.elementAttr').each(function() {
-              var value = this.jeeValue()
-              if (value != undefined && value != '') {
-                $(this).attr('data-tmp-value', value)
+            if (event.from.getAttribute('id') == 'root') {
+              if (event.to.getAttribute('id') != 'root') {
+                event.item.insertAdjacentHTML('afterbegin', '<input class="expressionAttr" data-l1key="type" style="display : none;" value="element"/>')
               }
-            })
-            var el = $(jeeP.addExpression({
-              type: 'element',
-              element: {
-                html: ui.item.wrapAll("<div/>").parent().html()
+            }
+            if (event.to.getAttribute('id') == 'root') {
+              if (event.from.getAttribute('id') != 'root') {
+                event.item.querySelector(':scope > input[data-l1key="type"]')?.remove()
               }
-            }))
-            var value
-            el.find('.expressionAttr,.subElementAttr,.elementAttr').each(function() {
-              value = $(this).attr('data-tmp-value')
-              if (value != undefined && value != '') {
-                this.jeeValue(value)
-              }
-              $(this).removeAttr('data-tmp-value')
-            })
-            ui.item.parent().replaceWith(el)
-          }
+            }
 
-          if (ui.item.hasClass('expression') && ui.item.parent().attr('id') == 'div_scenarioElement') {
-            $("#div_scenarioElement").sortable("cancel")
-          }
-          if (ui.item.closest('.subElement').hasClass('noSortable')) {
-            $("#div_scenarioElement").sortable("cancel")
-          }
-
-          jeedomUtils.initTooltips()
-          jeeP.updateSortable()
-        },
-        stop: function(event, ui) {
-          ui.item.attr('style', '')
-          jeeP.setUndoStack()
-          jeeFrontEnd.modifyWithoutSave = true
-        }
+            jeeFrontEnd.modifyWithoutSave = true
+          },
+      }
+      containers.forEach(_Sortcontainer => {
+        var sorty = new Sortable(_Sortcontainer, commonOptions)
       })
-      $("#div_scenarioElement").sortable("enable")
+      new Sortable(document.getElementById('root'), commonOptions)
     },
-    updateSortable: function() {
-      document.querySelectorAll('.element').removeClass('sortable')
-      document.querySelectorAll('#div_scenarioElement > .element').addClass('sortable')
-      document.querySelectorAll('.subElement .expressions').forEach(function(exp) {
-        if (exp.querySelectorAll(':scope > .sortable:not(.empty)').length > 0) {
-          exp.querySelectorAll(':scope > .sortable.empty')?.unseen()
-        } else {
-          exp.querySelectorAll(':scope > .sortable.empty')?.seen()
-        }
-      })
+    setRootElements: function() {
+      /*
+      Create same hierarchie for root elements to manage sortables:
+      //root -> expressions -> expression -> col-xs-12 -> element
+      */
+      var root = document.querySelector('#div_scenarioElement #root')
+      if (!root) {
+        document.getElementById('div_scenarioElement').insertAdjacentHTML('afterbegin', '<div id="root" class="expressions"></div>')
+        root = document.querySelector('#div_scenarioElement #root')
+      }
+      var rootElements = document.querySelectorAll('#div_scenarioElement > div.element')
+      if (rootElements.length > 0) {
+        rootElements.forEach(_element => {
+          var exp = document.createElement('div')
+          exp.addClass('expression sortable col-xs-12')
+          exp.insertAdjacentHTML('afterbegin', '<input class="expressionAttr" data-l1key="id" style="display : none;" value=""/>')
+          exp.insertAdjacentHTML('afterbegin', '<input class="expressionAttr" data-l1key="scenarioSubElement_id" style="display : none;" value=""/>')
+
+          exp.innerHTML = '<div class="col-xs-12 "></div>'
+          exp.childNodes[0].appendChild(_element)
+          root.appendChild(exp)
+        })
+        jeeP.setSortables()
+      }
     },
     updateElseToggle: function() {
       document.querySelectorAll('.subElementELSE').forEach(function(elElse) {
@@ -232,12 +203,12 @@ if (!jeeFrontEnd.scenario) {
         }
       })
     },
-    updateElementCollpase: function() {
-      document.querySelectorAll('.bt_collapse').forEach(function(bt) {
-        if (bt.jeeValue() == 0) {
-          bt.closest('.element').removeClass('elementCollapse')
+    updateElementCollapse: function() {
+      document.querySelectorAll('a.bt_collapse').forEach( _bt => {
+        if (_bt.getAttribute('value') == '0') {
+          _bt.closest('.element').removeClass('elementCollapse')
         } else {
-          bt.closest('.element').addClass('elementCollapse')
+          _bt.closest('.element').addClass('elementCollapse')
         }
       })
     },
@@ -335,6 +306,7 @@ if (!jeeFrontEnd.scenario) {
       }
       document.querySelector('.defined_actions').insertAdjacentHTML('beforeend', htmlActions)
     },
+    //Load / Sagve:
     printScenario: function(_id, _callback) {
       jeedomUtils.hideAlert()
       domUtils.showLoading()
@@ -460,17 +432,20 @@ if (!jeeFrontEnd.scenario) {
           }
 
           jeeP.actionOptions = []
+
+
           var elements = ''
           for (var i in data.elements) {
             elements += jeeP.addElement(data.elements[i])
           }
           document.getElementById('div_scenarioElement').insertAdjacentHTML('beforeend', elements)
+          jeeFrontEnd.scenario.setRootElements()
+
           document.querySelectorAll('.subElementAttr[data-l1key="options"][data-l2key="enable"], .expressionAttr[data-l1key="options"][data-l2key="enable"]').triggerEvent('change')
           jeeP.setScenarioActionsOptions()
           document.getElementById('div_editScenario').seen()
-          jeeP.updateSortable()
           jeedom.scenario.setAutoComplete()
-          jeeP.updateElementCollpase()
+          jeeP.updateElementCollapse()
           jeeP.updateElseToggle()
           jeedomUtils.taAutosize()
           var title = ''
@@ -502,17 +477,17 @@ if (!jeeFrontEnd.scenario) {
     },
     saveScenario: function(_callback) {
       jeedomUtils.hideAlert()
+      //Get scenarios settings:
       var scenario = this.dom_divScenario.getJeeValues('.scenarioAttr')[0]
-      if (typeof scenario.trigger == 'undefined') {
-        scenario.trigger = ''
-      }
-      if (typeof scenario.schedule == 'undefined') {
-        scenario.schedule = ''
-      }
+      if (typeof scenario.trigger == 'undefined') scenario.trigger = ''
+      if (typeof scenario.schedule == 'undefined') scenario.schedule = ''
+
+      //Get scenario elements:
       var elements = []
-      document.getElementById('div_scenarioElement').querySelectorAll(':scope > .element').forEach(function(_el) {
-        elements.push(jeeP.getElement(_el))
+      document.getElementById('root').querySelectorAll(':scope > .expression').forEach(_exp => {
+        elements.push(jeeP.getElement(_exp.querySelector('div.element')))
       })
+
       scenario.elements = elements
       jeedom.scenario.save({
         scenario: scenario,
@@ -536,6 +511,7 @@ if (!jeeFrontEnd.scenario) {
         }
       })
     },
+    //Adding:
     addTrigger: function(_trigger) {
       var div = '<div class="form-group trigger">'
       div += '<label class="col-xs-3 control-label">{{Evénement}}</label>'
@@ -569,9 +545,7 @@ if (!jeeFrontEnd.scenario) {
       document.querySelector('.scheduleMode').insertAdjacentHTML('beforeend', div)
     },
     addExpression: function(_expression) {
-      if (!isset(_expression) || !isset(_expression.type) || _expression.type == '') {
-        return ''
-      }
+      if (!isset(_expression) || !isset(_expression.type) || _expression.type == '') return ''
       var sortable = 'sortable'
       if (_expression.type == 'condition' || _expression.type == 'code') {
         sortable = 'noSortable'
@@ -662,12 +636,8 @@ if (!jeeFrontEnd.scenario) {
       return retour
     },
     addSubElement: function(_subElement) {
-      if (!isset(_subElement.type) || _subElement.type == '') {
-        return ''
-      }
-      if (!isset(_subElement.options)) {
-        _subElement.options = {}
-      }
+      if (!isset(_subElement.type) || _subElement.type == '') return ''
+      if (!isset(_subElement.options)) _subElement.options = {}
       var noSortable = ''
       if (_subElement.type == 'if' || _subElement.type == 'for' || _subElement.type == 'code') {
         noSortable = 'noSortable'
@@ -756,7 +726,6 @@ if (!jeeFrontEnd.scenario) {
           retour += this.getAddButton(_subElement.type,true)
           retour += '</div>'
           retour += '<div class="expressions">'
-          retour += '<div class="sortable empty" ></div>'
           if (isset(_subElement.expressions)) {
             for (var k in _subElement.expressions) {
               retour += this.addExpression(_subElement.expressions[k])
@@ -772,7 +741,6 @@ if (!jeeFrontEnd.scenario) {
           retour += this.getAddButton(_subElement.type)
           retour += '</div>'
           retour += '<div class="expressions">'
-          retour += '<div class="sortable empty" ></div>'
           if (isset(_subElement.expressions)) {
             for (var k in _subElement.expressions) {
               retour += this.addExpression(_subElement.expressions[k])
@@ -878,7 +846,6 @@ if (!jeeFrontEnd.scenario) {
           retour += this.getAddButton(_subElement.type)
           retour += '</div>'
           retour += '<div class="expressions">'
-          retour += '<div class="sortable empty" ></div>'
           if (isset(_subElement.expressions)) {
             for (var k in _subElement.expressions) {
               retour += this.addExpression(_subElement.expressions[k])
@@ -973,7 +940,7 @@ if (!jeeFrontEnd.scenario) {
             if (expression.type == 'element' && isset(expression.element.subElements) && isset(expression.element.subElements[0]) && isset(expression.element.subElements[0].expressions) && isset(expression.element.subElements[0].expressions[0])) {
               retour += '<div class="blocPreview">' + expression.element.subElements[0].expressions[0].expression.substring(0, 200).HTMLFormat() + '</div>'
             } else {
-              retour += '<div class="blocPreview">' + _subElement.expressions[0].expression.substring(0, 200).HTMLFormat() + '</div>'
+              try { retour += '<div class="blocPreview">' + _subElement.expressions[0].expression.substring(0, 200).HTMLFormat() + '</div>'} catch(e) { }
             }
           } else {
             retour += '<div class="blocPreview"></div>'
@@ -984,7 +951,6 @@ if (!jeeFrontEnd.scenario) {
           retour += this.getAddButton(_subElement.type)
           retour += '</div>'
           retour += '<div class="expressions">'
-          retour += '<div class="sortable empty" ></div>'
           if (isset(_subElement.expressions)) {
             for (var k in _subElement.expressions) {
               retour += this.addExpression(_subElement.expressions[k])
@@ -1004,12 +970,8 @@ if (!jeeFrontEnd.scenario) {
       return _retour
     },
     addElement: function(_element) {
-      if (!isset(_element)) {
-        return
-      }
-      if (!isset(_element.type) || _element.type == '') {
-        return ''
-      }
+      if (!isset(_element)) return
+      if (!isset(_element.type) || _element.type == '') return ''
 
       var elementClass = ''
       switch (_element.type) {
@@ -1138,9 +1100,7 @@ if (!jeeFrontEnd.scenario) {
     },
     getElement: function(dom_element) {
       var element = dom_element.getJeeValues('.elementAttr', 1)
-      if (element.length == 0) {
-        return
-      }
+      if (element.length == 0) return
       element = element[0]
       element.subElements = []
 
@@ -1321,6 +1281,7 @@ if (!jeeFrontEnd.scenario) {
         elements += this.addElement(loadStack[i])
       }
       document.getElementById('div_scenarioElement').empty().html(elements, true)
+      this.setRootElements()
       this.updateElseToggle()
       this.setScenarioActionsOptions()
     },
@@ -1328,10 +1289,10 @@ if (!jeeFrontEnd.scenario) {
       this.syncEditors()
       this.bt_undo.removeClass('disabled')
       this.bt_redo.addClass('disabled')
-      var newStack = []
 
-      document.getElementById('div_scenarioElement').querySelectorAll(':scope > .element').forEach(element => {
-        newStack.push(jeeP.getElement(element))
+      var newStack = []
+      document.getElementById('root').querySelectorAll(':scope > .expression').forEach(_exp => {
+        newStack.push(jeeP.getElement(_exp.querySelector('div.element')))
       })
 
       if (newStack == this.undoStack[state - 1]) return
@@ -1362,6 +1323,9 @@ if (!jeeFrontEnd.scenario) {
         console.warn('undo ERROR:', error)
       }
       setTimeout(function() { jeedomUtils.initTooltips() }, 500)
+      this.updateElementCollapse()
+      this.setRootElements()
+      this.setSortables()
       jeedom.scenario.setAutoComplete()
       this.resetEditors()
     },
@@ -1381,6 +1345,9 @@ if (!jeeFrontEnd.scenario) {
         console.warn('redo ERROR:', error)
       }
       setTimeout(function() { jeedomUtils.initTooltips() }, 500)
+      this.updateElementCollapse()
+      this.setRootElements()
+      this.setSortables()
       jeedom.scenario.setAutoComplete()
       this.resetEditors()
     },
@@ -1941,14 +1908,14 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
 
   if (_target = event.target.closest('#bt_addScenarioElement')) {
     if (!window.location.href.includes('#scenariotab')) document.getElementById('bt_scenarioTab').click()
+
     jeeP.addElementSave = {
       expression: false,
       insertAfter: false,
       elementDiv: null
     }
-
     //is scenario empty:
-    if (document.getElementById('div_scenarioElement').querySelectorAll(':scope > .element').length == 0) {
+    if (document.getElementById('root').querySelectorAll(':scope > .expression').length == 0) {
       jeeP.addElementSave.elementDiv = document.getElementById('div_scenarioElement')
       jeeP.addElementSave.elementDiv.querySelector('.span_noScenarioElement')?.remove()
     } else {
@@ -1964,7 +1931,6 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
         jeeP.addElementSave.elementDiv = document.getElementById('div_scenarioElement')
       }
     }
-
     jeeDialog.modal(document.getElementById('md_addElement'))._jeeDialog.show() //=> #bt_addElementSave
     return
   }
@@ -2172,14 +2138,16 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     } else {
       newEL = jeeP.addElementSave.elementDiv.appendChild(newEL.childNodes[0])
     }
+
+    jeeP.setRootElements()
     newEL.addClass('disableElement')
 
     jeeP.setEditors()
-    jeeP.updateSortable()
+    jeeP.setSortables()
     jeeP.updateElseToggle()
     jeeDialog.modal(document.getElementById('md_addElement'))._jeeDialog.hide()
-    setTimeout(function() {
-      newEL.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
+    setTimeout(() => {
+      if (!isInWindow(newEL)) newEL.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
     }, 250)
     jeedomUtils.initTooltips()
     jeedom.scenario.setAutoComplete()
@@ -2262,7 +2230,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     jeeP.setUndoStack()
     _target.closest('.subElement').querySelector(':scope > .expressions').insertAdjacentHTML('beforeend', jeeP.addExpression( {type: 'action'} ))
     jeedom.scenario.setAutoComplete()
-    jeeP.updateSortable()
+    jeeP.setSortables()
     jeedomUtils.initTooltips()
     return
   }
@@ -2341,7 +2309,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
   if (_target = event.target.closest('.bt_removeExpression')) {
     jeeP.setUndoStack()
     _target.closest('.expression').remove()
-    jeeP.updateSortable()
+    jeeP.setSortables()
     return
   }
 
@@ -2500,7 +2468,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     elementDiv.lastChild.addClass('disableElement')
 
     jeeP.setEditors()
-    jeeP.updateSortable()
+    jeeP.setSortables()
     jeeP.updateElseToggle()
     jeeFrontEnd.modifyWithoutSave = true
     jeedomUtils.initTooltips()
@@ -2573,9 +2541,9 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
       clickedBloc.remove()
     }
 
-    jeeP.updateElementCollpase()
+    jeeP.updateElementCollapse()
     jeeP.setScenarioActionsOptions()
-    jeeP.updateSortable()
+    jeeP.setSortables()
     jeedom.scenario.setAutoComplete()
     jeeP.setEditors()
     jeedomUtils.initTooltips()

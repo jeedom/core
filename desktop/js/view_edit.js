@@ -184,13 +184,14 @@ if (!jeeFrontEnd.view_edit) {
 
         document.getElementById('div_viewZones').insertAdjacentHTML('beforeend', div)
         document.querySelectorAll('#div_viewZones .viewZone').last().setJeeValues(_viewZone, '.viewZoneAttr')
-        $("#div_viewZones .viewZone:last .div_viewData tbody").sortable({
-          axis: "y",
-          cursor: "move",
-          items: ".viewData",
-          placeholder: "ui-state-highlight",
-          tolerance: "intersect",
-          forcePlaceholderSize: true
+
+        let lastView = document.getElementById('div_viewZones').querySelectorAll('.viewZone').last().querySelector('table.div_viewData')
+        Sortable.create(lastView.tBodies[0], {
+          delay: 100,
+          delayOnTouchOnly: true,
+          draggable: '.viewData',
+          direction: 'vertical',
+          removeCloneOnHide: true,
         })
       } else {
         document.getElementById(_viewZone.emplacement).querySelector('.viewZoneAttr[data-l1key="name"]').innerHTML = _viewZone.name
@@ -356,15 +357,14 @@ jeeFrontEnd.view_edit.init()
 
 
 //sortable
-$(document.getElementById('ul_view')).sortable({
-  axis: "y",
-  cursor: "move",
-  items: ".li_view",
-  placeholder: "ui-state-highlight",
-  tolerance: "intersect",
-  forcePlaceholderSize: true,
-  dropOnEmpty: true,
-  stop: function(event, ui) {
+Sortable.create(document.getElementById('ul_view'), {
+  delay: 100,
+  delayOnTouchOnly: true,
+  draggable: '.li_view',
+  direction: 'vertical',
+  handle: 'i.fa-arrows-alt-v',
+  removeCloneOnHide: true,
+  onEnd: function (event) {
     var views = []
     document.querySelectorAll('#ul_view .li_view').forEach(_li => {
       views.push(_li.getAttribute('data-view_id'))
@@ -378,18 +378,18 @@ $(document.getElementById('ul_view')).sortable({
         })
       }
     })
-  }
-}).sortable("enable")
-
-$(document.getElementById('div_viewZones')).sortable({
-  axis: "y",
-  distance: 5,
-  cursor: "move",
-  placeholder: "ui-state-highlight",
-  tolerance: "intersect",
-  forcePlaceholderSize: true
+  },
 })
 
+Sortable.create(document.getElementById('div_viewZones'), {
+  delay: 100,
+  delayOnTouchOnly: true,
+  direction: 'vertical',
+  removeCloneOnHide: true,
+  onStart: function (event) {
+    console.log('div_viewZones onStart', event, event.oldIndex)
+  },
+})
 
 //Register events on top of page container:
 document.registerEvent('keydown', function(event) {

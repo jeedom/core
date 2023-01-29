@@ -572,28 +572,24 @@ domUtils(function() {
 
 //sortable
 domUtils(function() {
-  if (typeof jQuery != 'function') {
-    if ($("#table_cmd").sortable("instance")) {
-      $("#table_cmd").sortable({
-        delay: 350,
-        distance: 20,
-        cursor: "move",
-        axis: 'y',
-        items: "tr.cmd",
-        appendTo: $("#table_cmd tbody"),
-        zIndex: 0,
-        forceHelperSize: true,
-        forcePlaceholderSize: true,
-        placeholder: "sortable-placeholder",
-        start: function(event, ui) {
-          ui.placeholder[0].style.setProperty('height', event.target.querySelector('tbody tr').clientHeight + 20 + 'px', 'important')
-        },
-        stop: function(event, ui) {
-          jeeFrontEnd.modifyWithoutSave = true
-        }
-      })
-    }
+  if (typeof jQuery === 'function' && $("#table_cmd").sortable("instance")) {
+    console.log('got instance!!')
+    $("#table_cmd").sortable("destroy")
   }
+
+  Sortable.create(document.getElementById('table_cmd').tBodies[0], {
+    delay: 100,
+    delayOnTouchOnly: true,
+    touchStartThreshold: 20,
+    draggable: 'tr.cmd',
+    direction: 'vertical',
+    onStart: function(event) {
+      console.log('sort start', event)
+    },
+    onEnd: function (event) {
+      jeeFrontEnd.modifyWithoutSave = true
+    },
+  })
 })
 
 /* Let's see if it break ?

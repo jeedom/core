@@ -513,24 +513,23 @@ if (!jeeFrontEnd.md_eqlogicDashEdit) {
       })
     },
     setCmdsSortable: function() {
-      $("#div_eqLogicCmds").sortable({
-        axis: "y",
-        cursor: "move",
-        items: "div.cmdConfig",
-        zIndex: 0,
-        tolerance: "pointer",
-        forceHelperSize: true,
-        forcePlaceholderSize: true,
-        placeholder: "sortable-cmd-placeholder",
-        start: function(event, ui) {
-          ui.placeholder[0].style.setProperty('height', ui.item[0].innerHeight, 'important')
-        }
+      Sortable.create(document.getElementById('div_eqLogicCmds'), {
+        delay: 100,
+        delayOnTouchOnly: true,
+        draggable: 'div.cmdConfig',
+        direction: 'vertical',
+        removeCloneOnHide: true,
       })
     },
     setTableLayoutSortable: function() {
-      $('#md_eqlogicDashEdit #tableCmdLayoutConfiguration tbody td .cmdLayoutContainer').sortable({
-        connectWith: '#md_eqlogicDashEdit #tableCmdLayoutConfiguration tbody td .cmdLayoutContainer',
-        items: ".cmdLayout"
+      let containers = document.querySelectorAll('#md_eqlogicDashEdit #tableCmdLayoutConfiguration tbody td .cmdLayoutContainer')
+      containers.forEach(_container => {
+        new Sortable(_container, {
+          delay: 100,
+          delayOnTouchOnly: true,
+          group: 'cmdLayoutContainer',
+          draggable: '.cmdLayout',
+        })
       })
     },
     getNewLayoutTd: function(row, col) {

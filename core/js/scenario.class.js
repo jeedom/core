@@ -598,55 +598,61 @@ jeedom.scenario.setAutoComplete = function(_params) {
 
   if (isElement_jQuery(_params.parent)) _params.parent = _params.parent[0]
 
-  _params.parent.querySelectorAll('.expression')?.forEach(_expr => {
-    if (_expr.querySelector('.expressionAttr[data-l1key="type"]').value == 'condition') {
-      _expr.querySelector('.expressionAttr[data-l1key="' + _params.type + '"]').jeeComplete({
-        id: 'scenarioConditionAutocomplete',
-        minLength: 1,
-        source: function(request, response) {
-          //return last term after last space:
-          var values = request.term.split(' ')
-          var term = values[values.length - 1]
-          if (term == '') return false //only space entered
-          response(
-            jeedom.scenario.autoCompleteCondition.filter(item => item.includes(term))
-          )
-        },
-        response: function(event, data) {
-          //remove leading # from all values:
-          data.content.forEach(_content => {
-            _content.text = _content.text.substr(1)
-            _content.value = _content.value.substr(1)
-          })
-        },
-        focus: function(event) {
-          event.preventDefault()
-          return false
-        },
-        select: function(event, data) {
-          if (data.value.substr(-1) == '#') {
-            data.value = data.value.slice(0, -1) + data.value
-          } else {
-            var values = data.value.split(' ')
-            var term = values[values.length - 1]
-            data.value = data.value.slice(0, -term.length) + data.value
-          }
-        }
-      })
-    }
 
-    if (_expr.querySelector('.expressionAttr[data-l1key="type"]').value == 'action') {
-        if (document.body.getAttribute('data-page') == 'scenario') {
-          jeedom.scenario.autoCompleteActionContext = jeedom.scenario.autoCompleteAction.concat(jeedom.scenario.autoCompleteActionScOnly)
-        } else {
-          jeedom.scenario.autoCompleteActionContext = jeedom.scenario.autoCompleteAction
-        }
-
+  _params.parent.querySelectorAll('.expression').forEach(_expr => {
+    //Empty Action block ?
+    var attrType = _expr.querySelector('.expressionAttr[data-l1key="type"]')
+    if (attrType) {
+      if (attrType.value == 'condition') {
         _expr.querySelector('.expressionAttr[data-l1key="' + _params.type + '"]').jeeComplete({
-          source: jeedom.scenario.autoCompleteActionContext,
-          id: 'scenarioActionAutocomplete',
-          forceSingle: true
+          id: 'scenarioConditionAutocomplete',
+          minLength: 1,
+          source: function(request, response) {
+            //return last term after last space:
+            var values = request.term.split(' ')
+            var term = values[values.length - 1]
+            if (term == '') return false //only space entered
+            response(
+              jeedom.scenario.autoCompleteCondition.filter(item => item.includes(term))
+            )
+          },
+          response: function(event, data) {
+            //remove leading # from all values:
+            data.content.forEach(_content => {
+              _content.text = _content.text.substr(1)
+              _content.value = _content.value.substr(1)
+            })
+          },
+          focus: function(event) {
+            event.preventDefault()
+            return false
+          },
+          select: function(event, data) {
+            if (data.value.substr(-1) == '#') {
+              data.value = data.value.slice(0, -1) + data.value
+            } else {
+              var values = data.value.split(' ')
+              var term = values[values.length - 1]
+              data.value = data.value.slice(0, -term.length) + data.value
+            }
+          }
         })
+      }
+
+      if (attrType.value == 'action') {
+          if (document.body.getAttribute('data-page') == 'scenario') {
+            jeedom.scenario.autoCompleteActionContext = jeedom.scenario.autoCompleteAction.concat(jeedom.scenario.autoCompleteActionScOnly)
+          } else {
+            jeedom.scenario.autoCompleteActionContext = jeedom.scenario.autoCompleteAction
+          }
+
+          _expr.querySelector('.expressionAttr[data-l1key="' + _params.type + '"]').jeeComplete({
+            source: jeedom.scenario.autoCompleteActionContext,
+            id: 'scenarioActionAutocomplete',
+            forceSingle: true
+          })
+      }
     }
+
   })
 }

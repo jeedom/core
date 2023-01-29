@@ -964,16 +964,15 @@ document.getElementById('logtab').addEventListener('focusout', function(event) {
 
 /**************************SUMMARIES***********************************/
 //Set sortable:
-if (typeof jQuery === 'function') {
-  $(document.getElementById('table_objectSummary')).sortable({
-    axis: "y",
-    cursor: "move",
-    items: ".objectSummary",
-    placeholder: "ui-state-highlight",
-    tolerance: "intersect",
-    forcePlaceholderSize: true
-  })
-}
+let body = document.getElementById('table_objectSummary').tBodies[0]
+Sortable.create(body, {
+  delay: 100,
+  delayOnTouchOnly: true,
+  draggable: 'tr.objectSummary',
+  direction: 'vertical',
+  removeCloneOnHide: true,
+})
+
 
 /*Events delegations
 */

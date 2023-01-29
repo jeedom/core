@@ -342,16 +342,15 @@ document.getElementById('bt_closeAll')?.addEventListener('click', function(event
 
 
 //Set sortable:
-if (typeof jQuery === 'function') {
-  $(document.getElementById('div_action')).sortable({
-  axis: "y",
-  cursor: "move",
-  items: ".action",
-  placeholder: "ui-state-highlight",
-  tolerance: "intersect",
-  forcePlaceholderSize: true
+Sortable.create(document.getElementById('div_action'), {
+  delay: 100,
+  delayOnTouchOnly: true,
+  draggable: '.action',
+  direction: 'vertical',
+  removeCloneOnHide: true,
 })
-}
+
+
 //Register events on top of page container:
 document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return

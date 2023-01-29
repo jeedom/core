@@ -1,5 +1,5 @@
 <?php
-$loadJquery = true;
+$loadJquery = false;
 if (init('rescue', 0) == 1 && !in_array(init('p'), array('custom', 'backup', 'cron', 'connection', 'log', 'database', 'editor', 'system'))) {
 	$_GET['p'] = 'system';
 }
