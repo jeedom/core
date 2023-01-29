@@ -8,7 +8,6 @@
 </div>
 <script>
   document.querySelector('.listCmdInfo[data-uid="#uid#"]').addEventListener('click', function () {
-    var el = $(this);
     jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function (result) {
       document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="color"]').value = result.human
     })

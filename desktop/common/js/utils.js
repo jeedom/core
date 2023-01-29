@@ -1261,10 +1261,15 @@ jeedomUtils.uniqId = function(_prefix) {
   return result
 }
 
-jeedomUtils.taAutosize = function() {
+jeedomUtils.taAutosize = function(_el) {
   //http://www.jacklmoore.com/autosize/
-  autosize(document.querySelectorAll('.ta_autosize'))
-  autosize.update(document.querySelectorAll('.ta_autosize'))
+  if (isset(_el)) {
+    var doOn = _el
+  } else {
+    var doOn = document.querySelectorAll('.ta_autosize')
+  }
+  autosize(doOn)
+  autosize.update(doOn)
 }
 
 jeedomUtils.hexToRgb = function(hex) {
