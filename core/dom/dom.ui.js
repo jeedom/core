@@ -1733,8 +1733,8 @@ var jeeCtxMenu = function(_options) {
       //Keep mouse hover menu to avoid setting click event to close:
       var bRect = document.body.getBoundingClientRect()
       var cRect = _ctxMenu.getBoundingClientRect()
-      var newLeft = _event.clientX - 10
-      var newTop = _event.clientY - 10
+      var newLeft = _event.clientX - 5
+      var newTop = _event.clientY - 5
 
       //Outside right:
       if (newLeft > (bRect.width - cRect.width)) {
@@ -1817,7 +1817,7 @@ var jeeCtxMenu = function(_options) {
         let tRect = event.target.getBoundingClientRect()
         let sRect = subContainer.getBoundingClientRect()
 
-        let newLeft = tRect.x + tRect.width - 15
+        let newLeft = tRect.x + tRect.width
         let newTop = tRect.y
 
         //Outside right:
