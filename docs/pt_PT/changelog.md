@@ -18,7 +18,7 @@
 - **Equipamento** : Capacidade de desativar os modelos de widget de plug-ins que os utilizam para retornar à exibição padrão do Jeedom *(janela de configuração do dispositivo)*.
 - **Equipamento** : O equipamento tornado inativo desaparece automaticamente de todas as páginas. O equipamento reativado reaparece no painel se o objeto pai já estiver presente.
 - **Equipamento** : Equipamentos tornados invisíveis desaparecem automaticamente do painel. O equipamento reexibido reaparece no painel se o objeto pai já estiver presente.
-- **Análise > Dispositivos > Dispositivos em alerta** : Dispositivos que entram em alerta aparecem automaticamente e os que saem de alerta desaparecem automaticamente.
+- **Análise > Equipamento / Equipamento em alerta** : Dispositivos que entram em alerta aparecem automaticamente e os que saem de alerta desaparecem automaticamente.
 - **Objeto** : Excluir ou criar um resumo resulta na atualização do resumo global e do assunto.
 - **Ferramentas > Substituir** : Esta ferramenta agora oferece um modo *Copiar*, permitindo copiar as configurações de equipamentos e comandos, sem substituí-los nos cenários e outros.
 - **Linha do tempo** : A linha do tempo agora carrega os primeiros 35 eventos. Na parte inferior da página, vários botões permitem que você carregue dinamicamente os seguintes eventos.
@@ -50,10 +50,30 @@
 
 > **Caixa de diálogo**
 >
-> Todas as caixas de diálogo (bootstrap, bootbox, jQuery UI) foram migradas para uma biblioteca interna Core especialmente desenvolvida. Caixas de diálogo redimensionáveis agora têm um botão para alternar *tela cheia*.
+> Todas as caixas de diálogo (bootstrap, bootbox, jQuery UI) foram migradas para uma Core lib interna (jeeDialog) especialmente desenvolvida. Caixas de diálogo redimensionáveis agora têm um botão para alternar *tela cheia*.
 
 
 # Changelog Jeedom V4.3
+
+## 4.3.15
+
+- Proibição da tradução do Jeedom pelos navegadores (evita erros do tipo market.repo.php não encontrado).
+- Otimização da função de substituição.
+
+## 4.3.14
+
+- Carga reduzida no DNS.
+
+## 4.3.13
+
+- Correção de bug em **Ferramentas / Substituir**.
+
+## 4.3.12
+
+- Otimização nos históricos.
+- Resumo da correção de bug no celular.
+- Correção de bug do widget do obturador móvel.
+- Curvas de bloco de bugfix com informações binárias.
 
 ## 4.3.11
 

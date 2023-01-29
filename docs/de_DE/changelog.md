@@ -18,7 +18,7 @@
 - **Ausrüstung** : Möglichkeit, die Widget-Vorlagen von Plugins zu deaktivieren, die sie verwenden, um zur Jeedom-Standardanzeige zurückzukehren *(Gerätekonfigurationsfenster)*.
 - **Ausrüstung** : Inaktiv gemachte Ausrüstung verschwindet automatisch von allen Seiten. Reaktivierte Ausrüstung erscheint wieder auf dem Dashboard, wenn das übergeordnete Objekt bereits vorhanden ist.
 - **Ausrüstung** : Unsichtbar gemachte Geräte verschwinden automatisch vom Dashboard. Die neu angezeigte Ausrüstung erscheint erneut auf dem Dashboard, wenn das übergeordnete Objekt bereits vorhanden ist.
-- **Analyse > Geräte > Geräte im Alarmzustand** : Geräte, die in einen Alarmzustand versetzt werden, werden automatisch angezeigt, und Geräte, die einen Alarmzustand verlassen haben, verschwinden automatisch.
+- **Analyse > Ausrüstung / Ausrüstung in Alarmbereitschaft** : Geräte, die in einen Alarmzustand versetzt werden, werden automatisch angezeigt, und Geräte, die einen Alarmzustand verlassen haben, verschwinden automatisch.
 - **Objekt** : Das Löschen oder Erstellen einer Zusammenfassung führt zur Aktualisierung der globalen Zusammenfassung und des Betreffs.
 - **Extras > Ersetzen** : Dieses Tool bietet nun einen Modus *Kopieren*, ermöglicht das Kopieren der Konfigurationen von Geräten und Befehlen, ohne sie in den Szenarien und anderen zu ersetzen.
 - **Zeitleiste** : Die Timeline lädt jetzt die ersten 35 Ereignisse. Unten auf der Seite ermöglichen mehrere Schaltflächen das dynamische Laden der folgenden Ereignisse.
@@ -50,10 +50,30 @@
 
 > **Dialogboxen**
 >
-> Alle Dialogfelder (Bootstrap, Bootbox, jQuery UI) wurden in eine speziell entwickelte Core-interne Bibliothek migriert. In der Größe anpassbare Dialoge haben jetzt eine Schaltfläche zum Wechseln *ganzer Bildschirm*.
+> Alle Dialogboxen (Bootstrap, Bootbox, jQuery UI) wurden auf eine eigens entwickelte interne Core lib (jeeDialog) migriert. In der Größe anpassbare Dialoge haben jetzt eine Schaltfläche zum Wechseln *ganzer Bildschirm*.
 
 
 # Änderungsprotokoll Jeedom V4.3
+
+## 4.3.15
+
+- Verbot der Übersetzung von Jeedom durch Browser (vermeidet market.repo-Typfehler.php nicht gefunden).
+- Optimierung der Ersetzungsfunktion.
+
+## 4.3.14
+
+- Reduzierte Last auf DNS.
+
+## 4.3.13
+
+- Bugfix an **Werkzeuge / Ersetzen**.
+
+## 4.3.12
+
+- Optimierung der Historien.
+- Bugfix-Zusammenfassung auf Mobilgeräten.
+- Bugfix für Mobile Shutter-Widget.
+- Kachelkurven mit binären Informationen behoben.
 
 ## 4.3.11
 

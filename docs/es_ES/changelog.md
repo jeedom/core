@@ -18,7 +18,7 @@
 - **Equipo** : Capacidad para deshabilitar las plantillas de widgets de los complementos que los usan para volver a la pantalla predeterminada de Jeedom *(ventana de configuración del dispositivo)*.
 - **Equipo** : El equipo inactivo desaparece automáticamente de todas las páginas. El equipo reactivado vuelve a aparecer en el tablero si el objeto principal ya está presente.
 - **Equipo** : El equipo invisible desaparece automáticamente del tablero. El equipo que se vuelve a mostrar vuelve a aparecer en el tablero si el objeto principal ya está presente.
-- **Análisis > Dispositivos > Dispositivos en alerta** : Los dispositivos que entran en alerta aparecen automáticamente y los que salen de alerta desaparecen automáticamente.
+- **Análisis > Equipos / Equipos en alerta** : Los dispositivos que entran en alerta aparecen automáticamente y los que salen de alerta desaparecen automáticamente.
 - **Objeto** : Eliminar o crear un resumen da como resultado la actualización del resumen global y el tema.
 - **Herramientas > Reemplazar** : Esta herramienta ahora ofrece un modo *Copiar*, permitiendo copiar las configuraciones de equipos y comandos, sin reemplazarlos en los escenarios y otros.
 - **Línea de tiempo** : La línea de tiempo ahora carga los primeros 35 eventos. En la parte inferior de la página, varios botones le permiten cargar dinámicamente los siguientes eventos.
@@ -50,10 +50,30 @@
 
 > **Cuadros de diálogo**
 >
-> Todos los cuadros de diálogo (bootstrap, bootbox, jQuery UI) se han migrado a una biblioteca interna Core especialmente desarrollada. Los cuadros de diálogo redimensionables ahora tienen un botón para cambiar *pantalla completa*.
+> Todos los cuadros de diálogo (bootstrap, bootbox, jQuery UI) se han migrado a una Core lib interna (jeeDialog) especialmente desarrollada. Los cuadros de diálogo redimensionables ahora tienen un botón para cambiar *pantalla completa*.
 
 
 # Registro de cambios Jeedom V4.3
+
+## 4.3.15
+
+- Prohibición de la traducción de Jeedom por parte de los navegadores (evita errores de tipo market.repo).php no encontrado).
+- Optimización de la función de reemplazo.
+
+## 4.3.14
+
+- Carga reducida en DNS.
+
+## 4.3.13
+
+- Corrección de errores en **Herramientas / Reemplazar**.
+
+## 4.3.12
+
+- Optimización en las historias.
+- Resumen de corrección de errores en dispositivos móviles.
+- Corrección de errores del widget de obturador móvil.
+- Curvas de mosaico de corrección de errores con información binaria.
 
 ## 4.3.11
 

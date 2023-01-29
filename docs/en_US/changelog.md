@@ -18,7 +18,7 @@
 - **Equipment** : Ability to disable the widget templates of plugins that use them to return to the Jeedom default display *(device configuration window)*.
 - **Equipment** : Equipment made inactive automatically disappears from all pages. Reactivated equipment reappears on the dashboard if the parent object is already present.
 - **Equipment** : Equipment made invisible automatically disappears from the dashboard. The re-displayed equipment reappears on the dashboard if the parent object is already present.
-- **Analysis > Devices > Devices on alert** : Devices that go into alert automatically appear and those that come out of an alert automatically disappear.
+- **Analysis > Equipment / Equipment on alert** : Devices that go into alert automatically appear and those that come out of an alert automatically disappear.
 - **Object** : Deleting or creating a summary results in the update of the global summary and the subject.
 - **Tools > Replace** : This tool now offers a mode *To copy*, allowing to copy the configurations of equipment and commands, without replacing them in the scenarios and others.
 - **Timeline** : The Timeline now loads the first 35 events. At the bottom of the page, several buttons allow you to dynamically load the following events.
@@ -50,10 +50,30 @@
 
 > **Dialog boxes**
 >
-> All dialog boxes (bootstrap, bootbox, jQuery UI) have been migrated to a specially developed Core internal lib. Resizable dialogs now have a button to switch to *fullscreen*.
+> All dialog boxes (bootstrap, bootbox, jQuery UI) have been migrated to an internal Core lib (jeeDialog) specially developed. Resizable dialogs now have a button to switch to *fullscreen*.
 
 
 # Changelog Jeedom V4.3
+
+## 4.3.15
+
+- Prohibition of the translation of Jeedom by browsers (avoids market.repo type errors.php not found).
+- Optimization of the replacement function.
+
+## 4.3.14
+
+- Reduced load on DNS.
+
+## 4.3.13
+
+- Bugfix on **Tools / Replace**.
+
+## 4.3.12
+
+- Optimization on the histories.
+- Bugfix Summary on mobile.
+- Mobile shutter widget bugfix.
+- Bugfix tile curves with binary info.
 
 ## 4.3.11
 
