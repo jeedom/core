@@ -34,7 +34,7 @@ if (!jeeFrontEnd.connection) {
       document.querySelector('.img-responsive').style.width = '100%'
     },
     goToIndex: function() {
-      $('.veen').animateCss('bounceOut', function() {
+      jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'bounceOut', function() {
         document.querySelectorAll('.veen').hide()
         window.location.href = 'index.php?v=d'
       })
@@ -54,7 +54,7 @@ if (!jeeFrontEnd.connection) {
             message: error.message,
             level: 'danger'
           })
-          $('.veen').animateCss('shake')
+          jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'shake')
         },
         success: function() {
           if (document.getElementById('in_login_username').value == document.getElementById('in_login_password').value) {
@@ -66,7 +66,7 @@ if (!jeeFrontEnd.connection) {
             document.querySelectorAll('.veen .login-btn button').removeClass('active')
             _event.target.addClass('active')
           } else {
-            $('.veen').animateCss('bounceOut', function() {
+            jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'bounceOut', function() {
               document.querySelectorAll('.veen').unseen()
               if (isset(jeeP.deepUrl) && jeeP.deepUrl.includes('index.php?v=d')) {
                 window.location.href = jeeP.deepUrl
@@ -98,7 +98,7 @@ if (!jeeFrontEnd.connection) {
                   message: error.message,
                   level: 'danger'
                 })
-                $('.veen').animateCss('shake')
+                jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'shake')
               },
               success: function() {
                 jeedom.config.load({
@@ -127,6 +127,32 @@ if (!jeeFrontEnd.connection) {
           level: 'danger'
         })
       }
+    },
+    animateCss: function(element, animationName, callback) {
+      console.log('animateCss:', element, animationName, callback)
+      var animationEnd = (function(el) {
+        var animations = {
+          animation: 'animationend',
+          OAnimation: 'oAnimationEnd',
+          MozAnimation: 'mozAnimationEnd',
+          WebkitAnimation: 'webkitAnimationEnd',
+        }
+
+        for (var t in animations) {
+          if (el.style[t] !== undefined) {
+            return animations[t]
+          }
+        }
+      })(document.createElement('div'))
+
+      element.addClass('animated ' + animationName)
+      element.addEventListener(animationEnd, () => {
+        element.removeClass('animated ' + animationName)
+        if (typeof callback === 'function') callback()
+      }, {
+        once: true,
+      })
+      return element
     },
   }
 }
@@ -170,7 +196,7 @@ document.getElementById('wrap')?.addEventListener('click', function(event) {
               message: error.message,
               level: 'danger'
             })
-            $('.veen').animateCss('shake')
+            jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'shake')
           },
           success: function(data) {
             jeedom.repo.test({
@@ -180,7 +206,7 @@ document.getElementById('wrap')?.addEventListener('click', function(event) {
                   message: error.message,
                   level: 'danger'
                 })
-                $('.veen').animateCss('shake')
+                jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'shake')
               },
               success: function(data) {
                 jeeFrontEnd.connection.goToIndex()
@@ -225,15 +251,15 @@ document.getElementById('wrap').addEventListener('keypress', function(event) {
 
 
 window.setTimeout(function() {
-  $('.veen').removeClass('zoomIn')
-  $('.btn_help').removeClass('bounceInUp')
+  document.querySelector('.veen').removeClass('zoomIn')
+  document.querySelector('.btn_help').removeClass('bounceInUp')
 }, 5000)
 
 window.setTimeout(function() {
   window.setInterval(function() {
-    $('.btn_help').animateCss('shake')
+    jeeFrontEnd.connection.animateCss(document.querySelector('.btn_help'), 'shake')
     window.setTimeout(function() {
-      $('.btn_help').removeClass('shake')
+      document.querySelector('.btn_help').removeClass('shake')
     }, 3000)
   }, 5000)
 }, 10000)

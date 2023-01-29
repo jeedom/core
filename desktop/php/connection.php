@@ -127,7 +127,6 @@
 	}
 
 	include_file('3rdparty', 'animate/animate', 'css');
-	include_file('3rdparty', 'animate/animate', 'js');
 	include_file('desktop', 'connection', 'css');
 	include_file('desktop', 'connection', 'js');
 ?>

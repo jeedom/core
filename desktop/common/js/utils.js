@@ -57,9 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
 //js error in ! ui:
 jeedomUtils.JS_ERROR = []
 window.addEventListener('error', function(event) {
-  if (event.filename.indexOf('3rdparty/') != -1) {
-    return
-  }
+  if (event.filename.indexOf('3rdparty/') != -1) return
   jeedomUtils.JS_ERROR.push(event)
   document.getElementById('bt_jsErrorModal')?.seen()
   domUtils.hideLoading()
