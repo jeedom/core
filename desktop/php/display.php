@@ -57,7 +57,7 @@ function jeedom_displayObjectGroup($object = -1) {
 	} else {
 		$aStyle = ' style="margin-left:5px"';
 	}
-	$div .= '<div class="panel panel-default objectSortable" ' . $aStyle . '">';
+	$div .= '<div class="panel panel-default objectSortable" ' . $aStyle . '>';
 	$div .= '<div class="panel-heading" data-id="' . $objectId . '">';
 	//custom colors panel-title:
 	if ($objecUseCustomColor == 1) {
