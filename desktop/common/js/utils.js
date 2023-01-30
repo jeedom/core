@@ -1088,6 +1088,7 @@ jeedomUtils.initReportMode = function() {
 }
 
 jeedomUtils.initTableSorter = function(filter) {
+  if (typeof jQuery !== 'function') return
   var widgets = ['uitheme', 'resizable']
   if (!filter) {
     filter = true
@@ -1095,28 +1096,27 @@ jeedomUtils.initTableSorter = function(filter) {
   if (filter !== false) {
     widgets.push('filter')
   }
-  if (typeof jQuery === 'function') {
-    $('table.tablesorter').tablesorter({
-      dateFormat: "yyyy-mm-dd",
-      theme: "bootstrap",
-      widthFixed: false,
-      widgets: widgets,
-      ignoreCase: true,
-      delayInit: false,
-      resizable: false,
-      saveSort: false,
-      sortLocaleCompare: true,
-      widgetOptions: {
-        filter_ignoreCase: true,
-        resizable: true,
-        stickyHeaders_offset: $('header.navbar-fixed-top').height()
-      },
-      cssIcon: 'tablesorter-icon',
-      initialized: function(table) {
-        $(table).find('thead .tablesorter-header-inner').append('<i class="tablesorter-icon"></i>')
-      }
-    }).css('width', '')
-  }
+
+  $('table.tablesorter').tablesorter({
+    dateFormat: "yyyy-mm-dd",
+    theme: "bootstrap",
+    widthFixed: false,
+    widgets: widgets,
+    ignoreCase: true,
+    delayInit: false,
+    resizable: false,
+    saveSort: false,
+    sortLocaleCompare: true,
+    widgetOptions: {
+      filter_ignoreCase: true,
+      resizable: true,
+      stickyHeaders_offset: $('header.navbar-fixed-top').height()
+    },
+    cssIcon: 'tablesorter-icon',
+    initialized: function(table) {
+      $(table).find('thead .tablesorter-header-inner').append('<i class="tablesorter-icon"></i>')
+    }
+  }).css('width', '')
 }
 
 jeedomUtils.initHelp = function() {
