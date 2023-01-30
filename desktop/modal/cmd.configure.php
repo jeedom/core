@@ -902,34 +902,32 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         })
       },
       setSortables: function() {
-        if (typeof jQuery === 'function') {
-          $("#div_actionCheckCmd").sortable({
-            axis: "y",
-            cursor: "move",
-            items: ".actionCheckCmd",
-            placeholder: "ui-state-highlight",
-            tolerance: "intersect",
-            forcePlaceholderSize: true
+        let containers = document.querySelectorAll('#md_displayCmdConfigure #div_actionCheckCmd, #md_displayCmdConfigure #div_actionPreExecCmd, #md_displayCmdConfigure #div_actionPostExecCmd')
+        containers.forEach(_container => {
+          new Sortable(_container, {
+            delay: 100,
+            delayOnTouchOnly: true,
+            group: 'cmdLayoutContainer',
+            draggable: '.actionCheckCmd, .actionPreExecCmd, .actionPostExecCmd',
+            direction: 'vertical',
+            onEnd: function(event) {
+              if (event.to != event.from) {
+                //Set right class for save:
+                event.item.removeClass('actionCheckCmd actionPreExecCmd actionPostExecCmd')
+                var toId = event.to.getAttribute('id')
+                if (toId == 'div_actionCheckCmd') {
+                  event.item.addClass('actionCheckCmd')
+                }
+                if (toId == 'div_actionPreExecCmd') {
+                  event.item.addClass('actionPreExecCmd')
+                }
+                if (toId == 'div_actionPostExecCmd') {
+                  event.item.addClass('actionPostExecCmd')
+                }
+              }
+            },
           })
-
-          $("#div_actionPreExecCmd").sortable({
-            axis: "y",
-            cursor: "move",
-            items: ".actionPreExecCmd",
-            placeholder: "ui-state-highlight",
-            tolerance: "intersect",
-            forcePlaceholderSize: true
-          })
-
-          $("#div_actionPostExecCmd").sortable({
-            axis: "y",
-            cursor: "move",
-            items: ".actionPostExecCmd",
-            placeholder: "ui-state-highlight",
-            tolerance: "intersect",
-            forcePlaceholderSize: true
-          })
-        }
+        })
       },
       displayWidgetHelp: function(_widgetName) {
         jeedom.cmd.getWidgetHelp({
@@ -1088,10 +1086,12 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         })
       },
       cmdSave: function(event) {
+        //Get cmd options:
         var cmd = document.getElementById('div_displayCmdConfigure').getJeeValues('.cmdAttr')[0]
         if (!isset(cmd.display)) cmd.display = {}
         if (!isset(cmd.display.parameters)) cmd.display.parameters = {}
 
+        //Get widget optionnal parameters:
         document.querySelector('#cmd_display #table_widgetParametersCmd').tBodies[0].childNodes.forEach(_tr => {
           if (_tr.nodeType != 3) {
             cmd.display.parameters[_tr.querySelector('.key').jeeValue()] = _tr.querySelector('.value').jeeValue()
@@ -1104,6 +1104,8 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         if (isset(checkCmdParameter) && isset(checkCmdParameter.options)) {
           cmd.configuration.jeedomCheckCmdCmdActionOption = checkCmdParameter.options
         }
+
+        //Get pre/post exec actions:
         cmd.configuration.actionCheckCmd = {}
         cmd.configuration.actionCheckCmd = document.querySelectorAll('#div_actionCheckCmd .actionCheckCmd').getJeeValues('.expressionAttr')
         cmd.configuration.jeedomPreExecCmd = document.querySelectorAll('#div_actionPreExecCmd .actionPreExecCmd').getJeeValues('.expressionAttr')

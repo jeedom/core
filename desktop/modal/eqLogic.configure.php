@@ -536,9 +536,14 @@ if (!jeeFrontEnd.md_eqLogicConfigure) {
       document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="isVisible"]').checked = document.querySelector('#eqLogic_information input.eqLogicAttr[data-l1key="isVisible"').checked
     },
     setTableLayoutSortable: function() {
-      $('#tableCmdLayoutConfiguration tbody td .cmdLayoutContainer').sortable({
-        connectWith: '#tableCmdLayoutConfiguration tbody td .cmdLayoutContainer',
-        items: ".cmdLayout"
+      let containers = document.querySelectorAll('#md_eqLogicConfigure #tableCmdLayoutConfiguration tbody td .cmdLayoutContainer')
+      containers.forEach(_container => {
+        new Sortable(_container, {
+          delay: 100,
+          delayOnTouchOnly: true,
+          group: 'cmdLayoutContainer',
+          draggable: '.cmdLayout',
+        })
       })
     },
     getNewLayoutTd: function(row, col) {
