@@ -165,9 +165,12 @@ if (!jeeFrontEnd.scenario) {
           },
       }
       containers.forEach(_Sortcontainer => {
-        var sorty = new Sortable(_Sortcontainer, commonOptions)
+        if (Sortable.get(_Sortcontainer)) Sortable.get(_Sortcontainer).destroy()
+        new Sortable(_Sortcontainer, commonOptions)
       })
-      new Sortable(document.getElementById('root'), commonOptions)
+      var root = document.getElementById('root')
+      if (Sortable.get(root)) Sortable.get(root).destroy()
+      new Sortable(root, commonOptions)
     },
     setRootElements: function() {
       /*

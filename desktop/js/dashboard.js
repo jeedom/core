@@ -449,29 +449,29 @@ document.getElementById('bt_resetDashboardSearch')?.addEventListener('click', fu
   document.getElementById('in_searchDashboard').jeeValue('').triggerEvent('keyup')
 })
 
-//Manage events outside parents delegations:
-document.getElementById('bt_editDashboardWidgetOrder')?.addEventListener('click', function(event) {
-  if (event.target.getAttribute('data-mode') == 1) {
-    event.target.setAttribute('data-mode', 0)
-    jeedomUtils.hideAlert()
-    jeeFrontEnd.modifyWithoutSave = false
-    jeedomUtils.enableTooltips()
-    document.querySelectorAll('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').unseen()
-    document.querySelectorAll('.counterReorderJeedom').remove()
-    jeeP.editWidgetMode(0)
-    document.querySelectorAll('div.div_displayEquipement').forEach(_div => { Packery.data(_div).layout() })
-  } else {
-    event.target.setAttribute('data-mode', 1)
-    jeedomUtils.disableTooltips()
-    document.querySelectorAll('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').seen()
-    jeeP.editWidgetMode(1)
-  }
-})
-
 /*Events delegations
 */
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
   var _target = null
+  if (_target = event.target.closest('#bt_editDashboardWidgetOrder')) {
+    if (_target.getAttribute('data-mode') == 1) {
+        _target.setAttribute('data-mode', 0)
+        jeedomUtils.hideAlert()
+        jeeFrontEnd.modifyWithoutSave = false
+        jeedomUtils.enableTooltips()
+        document.querySelectorAll('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').unseen()
+        document.querySelectorAll('.counterReorderJeedom').remove()
+        jeeP.editWidgetMode(0)
+        document.querySelectorAll('div.div_displayEquipement').forEach(_div => { Packery.data(_div).layout() })
+      } else {
+        _target.setAttribute('data-mode', 1)
+        jeedomUtils.disableTooltips()
+        document.querySelectorAll('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').seen()
+        jeeP.editWidgetMode(1)
+      }
+    return
+  }
+
   if (_target = event.target.closest('.editOptions')) { //Edit mode tile icon
     var eqId = _target.closest('div.eqLogic-widget').getAttribute('data-eqlogic_id')
     jeeDialog.dialog({
