@@ -2313,7 +2313,7 @@
         "Action": "Acción",
         "Boucle": "Bucle",
         "Dans": "Dentro de",
-        "A": "PARA",
+        "A": "POSEE",
         "Code": "Código",
         "Commentaire": "Comentario",
         "Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.": "Le permite crear condiciones en su escenario. Por ejemplo: si se activa el sensor de mi puerta, entonces encienda la luz",
@@ -3248,7 +3248,7 @@
         "DE 1 A": "DE 1 HASTA",
         "Action DANS x minutes": "Acción IN x minutos",
         "DANS": "DENTRO DE",
-        "A": "PARA",
+        "A": "POSEE",
         "FAIRE": "HACER",
         "CODE": "CODIGO",
         "COMMENTAIRE": "COMENTARIO",
@@ -3505,7 +3505,7 @@
         "Dimanche": "Domingo",
         "Lundi": "Lunes",
         "Mardi": "Martes",
-        "Mercredi": "Miercoles",
+        "Mercredi": "Miércoles",
         "Jeudi": "Jueves",
         "Vendredi": "Viernes",
         "Samedi": "Sábado",
@@ -4427,7 +4427,7 @@
         "CODE": "CODIGO",
         "ACTION": "ACCIÓN",
         "DANS": "DENTRO DE",
-        "A": "PARA"
+        "A": "POSEE"
     },
     "core\/class\/scenario.class.php": {
         "Aucun": "No",
@@ -4470,12 +4470,12 @@
         "min (vérifiez les piles)": "min (comprobar pilas)",
         "Aucun": "No",
         "L\\'équipement n\\'a pas pu être trouvé :": "No se pudo encontrar el equipo:",
-        "Le": "El",
+        "Le": "La",
         "inconnue": "Desconocido",
         "Seuil manuel défini": "Conjunto de umbral manual",
         "Pile(s) changée(s) il y a": "Batería (s) cambiada hay",
         "jours": "dias",
-        "jour": "Día",
+        "jour": "día",
         "Pas de date de changement de pile(s) renseignée": "No se ingresaron fechas de cambio de batería",
         "Piles": "Baterías",
         "La version demandée ne peut pas être vide (mobile, dashboard ou scénario)": "La versión solicitada no puede estar vacía (móvil, tablero o escenario)",
@@ -4903,7 +4903,7 @@
         "Aucun": "No",
         "Principale": "Principal"
     },
-    "core\/dom\/jeeCron.js": {
+    "core\/dom\/jeeCron\/jeeCron.js": {
         "Minutes Past the Hour": "Minutos después de la hora",
         "Time: Hour": "Hora: Hora",
         "Day of Month": "Dia del mes",

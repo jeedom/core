@@ -2313,7 +2313,7 @@
         "Action": "Action",
         "Boucle": "Loop",
         "Dans": "In",
-        "A": "At",
+        "A": "HAS",
         "Code": "Code",
         "Commentaire": "Comment",
         "Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.": "Allows you to make conditions in your scenario. For example: If my door sensor is triggered Then turn on the light",
@@ -3248,7 +3248,7 @@
         "DE 1 A": "FOR 1 TO",
         "Action DANS x minutes": "Action IN x minutes",
         "DANS": "IN",
-        "A": "AT",
+        "A": "HAS",
         "FAIRE": "DO",
         "CODE": "CODE",
         "COMMENTAIRE": "COMMENT",
@@ -4427,7 +4427,7 @@
         "CODE": "CODE",
         "ACTION": "ACTION",
         "DANS": "IN",
-        "A": "AT"
+        "A": "HAS"
     },
     "core\/class\/scenario.class.php": {
         "Aucun": "None",
@@ -4870,7 +4870,7 @@
         "Historique à exporter": "History to export",
         "Commandes": "Commands",
         "Sélectionner la commande": "Select command",
-        "De": "From",
+        "De": "Of",
         "à": "To",
         "Nom": "Name",
         "Exporter en": "Export to",
@@ -4903,7 +4903,7 @@
         "Aucun": "None",
         "Principale": "Main"
     },
-    "core\/dom\/jeeCron.js": {
+    "core\/dom\/jeeCron\/jeeCron.js": {
         "Minutes Past the Hour": "Minutes Past the Hour",
         "Time: Hour": "Time: Hour",
         "Day of Month": "Day of Month",
