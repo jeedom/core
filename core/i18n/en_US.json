@@ -2313,7 +2313,7 @@
         "Action": "Action",
         "Boucle": "Loop",
         "Dans": "In",
-        "A": "HAS",
+        "A": "At",
         "Code": "Code",
         "Commentaire": "Comment",
         "Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.": "Allows you to make conditions in your scenario. For example: If my door sensor is triggered Then turn on the light",
@@ -3248,7 +3248,7 @@
         "DE 1 A": "FOR 1 TO",
         "Action DANS x minutes": "Action IN x minutes",
         "DANS": "IN",
-        "A": "HAS",
+        "A": "AT",
         "FAIRE": "DO",
         "CODE": "CODE",
         "COMMENTAIRE": "COMMENT",
@@ -4427,7 +4427,7 @@
         "CODE": "CODE",
         "ACTION": "ACTION",
         "DANS": "IN",
-        "A": "HAS"
+        "A": "AT"
     },
     "core\/class\/scenario.class.php": {
         "Aucun": "None",
@@ -4870,7 +4870,7 @@
         "Historique à exporter": "History to export",
         "Commandes": "Commands",
         "Sélectionner la commande": "Select command",
-        "De": "Of",
+        "De": "From",
         "à": "To",
         "Nom": "Name",
         "Exporter en": "Export to",
