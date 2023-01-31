@@ -39,11 +39,15 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 		$_fn .= '.' . $_type;
 		$path = __DIR__ . '/../../' . $_folder . '/' . $_fn;
 		$type = $_type;
+	} elseif ($_folder == 'coreDOM') {
+	    $_fn .= '.' . $_type;
+		$path = __DIR__ . '/../../core/dom/' . $_fn;
+		$type = $_type;
+		$_folder = 'core/dom';
 	} else {
 		$config = array(
 			'class' => array('/class', '.class.php', 'php'),
 			'com' => array('/com', '.com.php', 'php'),
-			'dom' => array('/dom', '.js', 'js'),
 			'repo' => array('/repo', '.repo.php', 'php'),
 			'config' => array('/config', '.config.php', 'php'),
 			'modal' => array('/modal', '.php', 'php'),

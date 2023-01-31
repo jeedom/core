@@ -3215,6 +3215,7 @@ div.eqLogic-widget.editingMode .panelLink {
     padding-bottom: 2px;
   }
   table.table-condensed tbody tr > td {
+    text-align: left;
     vertical-align: middle !important;
   }
   table.table-condensed tbody td .checkbox-inline,
