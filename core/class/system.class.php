@@ -357,15 +357,17 @@ class system {
 						'version' => $datas['dependencies']['yarn']['version']
 					);
 				}
-				foreach ($datas['dependencies'] as $key => $value) {
-					self::$_installPackage[$_type][mb_strtolower($key)] = array(
-						'version' => $value['version']
-					);
-					if (isset($value['dependencies'])) {
-						foreach ($value['dependencies'] as $key2 => $value2) {
-							self::$_installPackage[$_type][mb_strtolower($key2)] = array(
-								'version' => $value2['version']
-							);
+				if (isset($datas['dependencies']) && is_array($datas['dependencies']) && count($datas['dependencies']) > 0) {
+					foreach ($datas['dependencies'] as $key => $value) {
+						self::$_installPackage[$_type][mb_strtolower($key)] = array(
+							'version' => $value['version']
+						);
+						if (isset($value['dependencies'])) {
+							foreach ($value['dependencies'] as $key2 => $value2) {
+								self::$_installPackage[$_type][mb_strtolower($key2)] = array(
+									'version' => $value2['version']
+								);
+							}
 						}
 					}
 				}

@@ -835,7 +835,7 @@ class scenario {
 			return;
 		}
 		if ($this->getConfiguration('timeDependency', 0) == 1) {
-			if (!jeedom::isDateOk() || (((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1  && date('I') == 1 && date('Gi') > 159) ) {
+			if (!jeedom::isDateOk() || (((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1  && date('I') == 1 && date('Gi') > 159)) {
 				$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenario']['txt'] . $this->getHumanName() . ' ' . __('annulé car il utilise une condition de type temporelle et que la date système n\'est pas OK (ou que l\'on est en changement d\'heure négatif)', __FILE__));
 				$this->setState('stop');
 				$this->setPID();
@@ -856,7 +856,7 @@ class scenario {
 				$timeline->setOptions(array('trigger' => $cmd->getHumanName(true)));
 				$timeline->save();
 			}
-			$_triggerValue=$cmd->execCmd();
+			$_triggerValue = $cmd->execCmd();
 		} else {
 			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('déclenché par :', __FILE__) . ' ' . $_trigger);
 			if ($this->getConfiguration('timeline::enable')) {
@@ -868,7 +868,7 @@ class scenario {
 				$timeline->setOptions(array('trigger' => ($_trigger == 'schedule') ? 'programmation' : $_trigger));
 				$timeline->save();
 			}
-			$_triggerValue='none';
+			$_triggerValue = 'none';
 		}
 		if ($this->getState() == 'in progress' && $this->getConfiguration('allowMultiInstance', 0) == 0) {
 			return;
@@ -1594,8 +1594,10 @@ class scenario {
 		addGraphLink($this, 'scenario', $use['view'], 'view', $_data, $_level, $_drill);
 		addGraphLink($this, 'scenario', $use['plan'], 'plan', $_data, $_level, $_drill);
 		addGraphLink($this, 'scenario', $use['plan3d'], 'plan3d', $_data, $_level, $_drill);
-		foreach ($usedBy['plugin'] as $key => $value) {
-			addGraphLink($this, 'eqLogic', $value, $key, $_data, $_level, $_drill);
+		if (isset($usedBy['plugin']) && is_array($usedBy['plugin']) && count($usedBy['plugin']) > 0) {
+			foreach ($usedBy['plugin'] as $key => $value) {
+				addGraphLink($this, 'eqLogic', $value, $key, $_data, $_level, $_drill);
+			}
 		}
 		addGraphLink($this, 'scenario', $usedBy['cmd'], 'cmd', $_data, $_level, $_drill);
 		addGraphLink($this, 'scenario', $usedBy['scenario'], 'scenario', $_data, $_level, $_drill);
