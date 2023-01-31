@@ -694,7 +694,7 @@ user::isBan();
 					<div class="col-sm-6">
 						<fieldset>
 							<legend>{{Gestion avancée}}</legend>
-							<table id="networkInterfacesTable" class="table table-condensed table-bordered">
+							<table id="networkInterfacesTable" class="table table-condensed">
 								<thead>
 									<tr>
 										<th>{{Interface}}</th>
@@ -1015,7 +1015,7 @@ user::isBan();
 				<form class="form-horizontal">
 					<fieldset>
 						<a id="bt_addObjectSummary" class="btn btn-sm btn-success pull-right"><i class="fas fa-plus-circle"></i> {{Ajouter un type de résumé}}</a>
-						<table class="table table-condensed table-bordered" id="table_objectSummary">
+						<table class="table table-condensed" id="table_objectSummary">
 							<thead>
 								<tr>
 									<th>{{Clé}}</th>
@@ -1511,7 +1511,7 @@ user::isBan();
 
 						<legend>{{Couleurs}}<i class="fas fa-plus-circle pull-right cursor" id="bt_addColorConvert"></i></legend>
 
-						<table class="table table-condensed table-bordered" id="table_convertColor">
+						<table class="table table-condensed" id="table_convertColor">
 							<thead>
 								<tr>
 									<th>{{Nom}}</th>
@@ -1735,7 +1735,7 @@ user::isBan();
 				<form class="form-horizontal">
 					<fieldset>
 						<legend>{{IPs bannies}} <a class="btn btn-danger btn-xs pull-right" id="bt_removeBanIp"><i class="fas fa-trash"></i> {{Supprimer}}</a></legend>
-						<table class="table table-condensed table-bordered">
+						<table class="table table-condensed">
 							<thead>
 								<tr>
 									<th>{{IP}}</th>

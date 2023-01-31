@@ -123,7 +123,7 @@ sendVarToJS([
           </div>
 
           <legend><i class="fas fa-list-alt"></i> {{Commandes}}</legend>
-          <table class="table table-bordered table-condensed">
+          <table class="table table-condensed">
             <thead>
               <tr>
                 <th class="hidden-xs">{{ID}}</th>
@@ -226,7 +226,7 @@ sendVarToJS([
           <?php }
           if ($eqLogic->getDisplay('widgetTmpl', 1) == 1 && is_array($eqLogic->widgetPossibility('parameters')) && count($eqLogic->widgetPossibility('parameters')) > 0) { ?>
             <legend><i class="fas fa-pencil-ruler"></i> {{Paramètres du template}}</legend>
-            <table class="table table-bordered table-condensed">
+            <table class="table table-condensed">
               <thead>
                 <tr>
                   <th></th>
@@ -300,7 +300,7 @@ sendVarToJS([
           if ($eqLogic->widgetPossibility('custom::optionalParameters')) {
           ?>
             <legend><i class="fas fa-code"></i> {{Paramètres optionnels}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a></legend>
-            <table class="table table-bordered table-condensed" id="table_widgetParameters">
+            <table class="table table-condensed" id="table_widgetParameters">
               <thead>
                 <tr>
                   <th>{{Nom}}</th>
@@ -388,7 +388,7 @@ sendVarToJS([
           <div class="widget_layout table" style="display: none;">
             <legend><i class="fas fa-th-large"></i> {{Mise en forme détaillée}}</legend>
             <div class="table-responsive">
-              <table class="table table-bordered table-condensed" id="tableCmdLayoutConfiguration">
+              <table class="table table-condensed" id="tableCmdLayoutConfiguration">
                 <tbody>
                   <?php
                   $table = array();
@@ -565,7 +565,7 @@ if (!jeeFrontEnd.md_eqLogicConfigure) {
       if (nbColumn != tableColumnCount || nbRow != tableRowCount) {
         //build new table:
         var newTableLayout = document.createElement('table')
-        newTableLayout.addClass('table table-bordered table-condensed')
+        newTableLayout.addClass('table table-condensed')
         newTableLayout.setAttribute('id', 'tableCmdLayoutConfiguration')
         newTableLayout.appendChild(document.createElement('tbody'))
 

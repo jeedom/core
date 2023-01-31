@@ -27,7 +27,7 @@ if (!isConnect()) {
 	</span>
 	</div>
 	<br/><br/>
-	<table class="table table-bordered" id="table_calculHisotry">
+	<table class="table table-condensed" id="table_calculHisotry">
 		<thead>
 			<tr>
 				<th style="width : 150px;">{{Nom}}</th>

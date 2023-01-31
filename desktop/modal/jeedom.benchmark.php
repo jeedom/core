@@ -21,7 +21,7 @@ if (!isConnect('admin')) {
 ?>
 
 <div id="md_jeedomBenchmark" data-modalType="md_jeedomBenchmark">
-  <table class="table table-condensed table-bordered">
+  <table class="table table-condensed">
     <thead>
       <tr>
         <th>{{Nom}}</th>

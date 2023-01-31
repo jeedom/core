@@ -3148,7 +3148,7 @@ div.eqLogic-widget.editingMode .panelLink {
     transition-property: background-color;
     transition-delay: 20ms;
   }
-  .table-condensed.table-bordered tbody tr:hover td {
+  .table-condensed tbody tr:hover td {
     background-color: rgba(var(--contrast-color), 0.1) !important;
     transition-duration: 250ms;
     transition-property: background-color;

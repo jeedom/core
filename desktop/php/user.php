@@ -26,7 +26,7 @@ sendVarToJS('jeeFrontEnd.ldapEnable', config::byKey('ldap::enable'));
 					</span>
 				</div>
 			</legend>
-			<table class="table table-condensed table-bordered" id="table_user">
+			<table class="table table-condensed" id="table_user">
 				<thead>
 					<th style="min-width: 120px;">{{Utilisateur}}</th>
 					<th style="width: 250px;">{{Actif}}</th>
@@ -44,7 +44,7 @@ sendVarToJS('jeeFrontEnd.ldapEnable', config::byKey('ldap::enable'));
 
 <form class="form-horizontal">
 	<legend>{{Session(s) active(s)}}</legend>
-	<table id="tableSessions" class="table table-condensed table-bordered">
+	<table id="tableSessions" class="table table-condensed">
 		<thead>
 			<tr>
 				<th>{{ID}}</th>

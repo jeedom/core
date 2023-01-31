@@ -321,7 +321,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 					<form class="form-horizontal">
 						<fieldset>
 							<legend><i class="fas fa-house-user"></i> {{Session(s) active(s)}}</legend>
-							<table class="table table-condensed table-bordered">
+							<table class="table table-condensed">
 								<thead>
 									<tr>
 										<th>{{ID}}</th>
@@ -357,7 +357,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 					<form class="form-horizontal">
 						<fieldset>
 							<legend><i class="fas fa-laptop-house"></i> {{Périphérique(s) enregistré(s)}} <a class="btn btn-xs btn-danger pull-right" id="bt_removeAllRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer tout}}</a></legend>
-							<table id="tableDevices" class="table table-bordered table-condensed tablesorter">
+							<table id="tableDevices" class="table table-condensed tablesorter">
 								<thead>
 									<tr>
 										<th>{{Identification}}</th>

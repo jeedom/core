@@ -23,7 +23,7 @@ if (!isConnect()) {
 <table id="table_addViewDataHidden" style="display: none;">
   <tbody></tbody>
 </table>
-<table class="table table-condensed table-bordered table-striped tablesorter" id="table_addViewData">
+<table class="table table-condensed table-striped tablesorter" id="table_addViewData">
   <thead>
     <tr>
       <th>#</th>

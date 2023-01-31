@@ -117,7 +117,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
           if ($eqLogic->getDisplay('widgetTmpl', 1) == 1 && is_array($eqLogic->widgetPossibility('parameters')) && count($eqLogic->widgetPossibility('parameters')) > 0) {
           ?>
             <label><i class="fas fa-pencil-ruler"></i> {{Paramètres du template}}</label>
-            <table class="table table-bordered table-condensed">
+            <table class="table table-condensed">
               <thead>
                 <tr>
                   <th></th>
@@ -194,7 +194,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
           ?>
             <label><i class="fas fa-code"></i> {{Paramètres optionnels}}</label>
             <a class="btn btn-success btn-xs pull-right" id="bt_addTileParameters"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
-            <table class="table table-bordered table-condensed" id="table_widgetParameters">
+            <table class="table table-condensed" id="table_widgetParameters">
               <thead>
                 <tr>
                   <th>{{Nom}}</th>
@@ -292,7 +292,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
             <div class="widget_layout table" style="display: none;">
               <label><i class="fas fa-th-large"></i> {{Mise en forme détaillée}}</label>
               <div class="table-responsive">
-                <table class="table table-bordered table-condensed table-responsive" id="tableCmdLayoutConfiguration">
+                <table class="table table-condensed table-responsive" id="tableCmdLayoutConfiguration">
                   <tbody>
                     <?php
                     $table = array();
@@ -362,7 +362,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               }
 
               $display .= '<div id="cmdConfig' . $cmd->getId() . '" class="collapse" style="margin-top: 8px;">';
-              $display .= '<table class="table table-bordered table-condensed">';
+              $display .= '<table class="table table-condensed">';
 
               //Editable name:
               $display .= '<tr><td>{{Name}}</td><td colspan="2"><input class="input-sm ' . $thisclassAttrib . '" data-l1key="name" style="width: 100%;"></td>';
@@ -551,7 +551,7 @@ if (!jeeFrontEnd.md_eqlogicDashEdit) {
       if (nbColumn != tableColumnCount || nbRow != tableRowCount) {
         //build new table:
         var newTableLayout = document.createElement('table')
-        newTableLayout.addClass('table table-bordered table-condensed')
+        newTableLayout.addClass('table table-condensed')
         newTableLayout.setAttribute('id', 'tableCmdLayoutConfiguration')
         newTableLayout.appendChild(document.createElement('tbody'))
 

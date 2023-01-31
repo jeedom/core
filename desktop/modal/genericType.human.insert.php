@@ -25,7 +25,7 @@ $displayNone = (isset($_GET['none'])) ? $_GET['none'] : true;
 
 ?>
 
-<table id="table_mod_insertGenericType" class="table table-condensed table-bordered">
+<table id="table_mod_insertGenericType" class="table table-condensed">
   <thead>
     <tr>
       <th>{{Type Générique}} <?php if ($typeFilter != 'all') { echo "($typeFilter)"; } ?></th>

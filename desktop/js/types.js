@@ -99,7 +99,7 @@ if (!jeeFrontEnd.types) {
       })
 
       var container = document.querySelector('#md_applyCmdsTypes .jeeDialogContent')
-      var inner = '<table class="table table-bordered table-condensed">'
+      var inner = '<table class="table table-condensed">'
       inner += '<td>{{Générique}}</td><td>{{Nom}}</td><td>{{Type}}</td><td>{{Sous type}}</td>'
 
       var family, familyName, generics, generic, infos, actions

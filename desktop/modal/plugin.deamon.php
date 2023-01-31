@@ -32,7 +32,7 @@ $refresh = array();
 ?>
 
 <div id="md_pluginDaemon" data-modalType="md_pluginDaemon">
-  <table class="table table-bordered">
+  <table class="table table-condensed">
     <thead>
       <tr>
         <th>{{Nom}}</th>

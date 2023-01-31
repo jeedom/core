@@ -20,7 +20,7 @@ if (!isConnect()) {
 }
 ?>
 
-<table id="table_mod_insertEqLogicValue_valueEqLogicToMessage" class="table table-condensed table-bordered">
+<table id="table_mod_insertEqLogicValue_valueEqLogicToMessage" class="table table-condensed">
   <thead>
     <tr>
       <th style="width: 150px;">{{Objet}}</th>

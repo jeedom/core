@@ -113,7 +113,7 @@ sendVarToJS([
     <div role="tabpanel" class="tab-pane" id="components">
       <form class="form-horizontal">
         <fieldset>
-          <table class="table table-condensed table-bordered">
+          <table class="table table-condensed">
             <thead>
               <tr>
                 <th>{{ID}}</th>

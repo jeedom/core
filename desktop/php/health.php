@@ -35,7 +35,7 @@ foreach ((plugin::listPlugin(true)) as $plugin) {
 		$globalhtml .= ' <div class="panel-heading">
 		<h3 class="panel-title cursor">';
 		if ($plugin->getHasDependency() == 1 || $plugin->getHasOwnDeamon() == 1 || method_exists($plugin->getId(), 'health')) {
-			$html .= '<table class="table table-condensed table-bordered">';
+			$html .= '<table class="table table-condensed">';
 			$html .= '<tbody>';
 		} else {
 			$html .= '<span class="label label-primary">{{Aucune santé spécifique}}</span>';
@@ -194,7 +194,7 @@ foreach ((plugin::listPlugin(true)) as $plugin) {
 		</div>
 		<div id="health_jeedom" class="panel-collapse collapse in" aria-expanded="true">
 			<div class="panel-body">
-				<table id="jeedomTable" class="table table-condensed table-bordered">
+				<table id="jeedomTable" class="table table-condensed">
 					<tbody>
 						<?php
 						$count = 0;
@@ -252,7 +252,7 @@ foreach ((plugin::listPlugin(true)) as $plugin) {
 		</div>
 		<div id="health_phpextension" class="panel-collapse collapse" aria-expanded="true">
 			<div class="panel-body">
-				<table id="jeedomTable" class="table table-condensed table-bordered">
+				<table id="jeedomTable" class="table table-condensed">
 					<tbody>
 						<?php
 						foreach ((get_loaded_extensions()) as $name) {

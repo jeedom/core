@@ -300,7 +300,7 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
         if ($plan->getLink_type() == 'eqLogic') {
           $eQs = '';
           $eQs .= '<legend>{{Commandes}}</legend>';
-          $eQs .= '<table class="table  table-condensed table-bordered">';
+          $eQs .= '<table class="table  table-condensed">';
           $eQs .= '<thead>';
           $eQs .= '<tr>';
           $eQs .= '<th>';

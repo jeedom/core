@@ -645,7 +645,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         <div role="tabpanel" class="tab-pane" id="cmd_display">
           <br />
           <legend><i class="fas fa-tint"></i> {{Widget}}</legend>
-          <table class="table table-bordered table-condensed">
+          <table class="table table-condensed">
             <thead>
               <tr>
                 <th style="width:30%;"></th>
@@ -764,8 +764,8 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 
             <div id="optionalParamHelp"></div>
 
-            <table class="table table-bordered table-condensed" id="table_widgetParametersCmd">
-              <thead class="table table-bordered">
+            <table class="table table-condensed" id="table_widgetParametersCmd">
+              <thead class="table">
                 <tr>
                   <th style="width: 20%">Nom</th>
                   <th style="width: 80%">Valeur</th>

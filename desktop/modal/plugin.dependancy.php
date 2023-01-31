@@ -27,7 +27,7 @@ $plugin = plugin::byId($plugin_id);
 $dependancy_info = $plugin->dependancy_info();
 ?>
 <div id="md_pluginDependancy" data-modalType="md_pluginDependancy">
-  <table class="table table-bordered">
+  <table class="table table-condensed">
     <thead>
       <tr>
         <th>{{Nom}}</th>
