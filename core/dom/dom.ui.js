@@ -1570,7 +1570,7 @@ var jeeDialog = (function()
 
       dialogContainer.parentNode.addEventListener('mousedown', function(event) {
         document.querySelectorAll('div.jeeDialog.jeeDialogMain').removeClass('active')
-        event.target.closest('div.jeeDialog.jeeDialogMain').addClass('active')
+        try { event.target.closest('div.jeeDialog.jeeDialogMain').addClass('active') } catch(e) { } //Dialog may close!
       })
 
       //____Set Moveable
