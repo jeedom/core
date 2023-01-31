@@ -22,19 +22,19 @@ if (!isConnect()) {
 
 <div id="md_objectSummary" data-modalType="md_objectSummary">
   <a class="btn btn-success pull-right btn-sm" id="bt_saveSummaryObject"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
-  <table id="table_ObjectSummary" class="table table-bordered table-condensed tablesorter stickyHead">
+  <table id="table_ObjectSummary" class="table table-condensed stickyHead">
     <thead>
       <tr>
-        <th>{{ID}}</th>
+        <th style="width:50px;">{{ID}}</th>
         <th>{{Objet}}</th>
         <th>{{Parent}}</th>
-        <th data-sorter="false" data-filter="false">{{Visible}}</th>
-        <th data-sorter="false" data-filter="false">{{Masquer}}<br>{{sur le Dashboard}}</th>
-        <th data-sorter="false" data-filter="false">{{Masquer}}<br>{{sur la Synthèse}}</th>
-        <th data-sorter="false" data-filter="false">{{Résumé Défini}} <sup><i class="fas fa-question-circle tooltips" title="{{Si grisé, alors il n'est pas remonté en résumé global}}"></i></sup></th>
-        <th data-sorter="false" data-filter="false">{{Résumé}}<br>{{Dashboard masqué}}</th>
-        <th data-sorter="false" data-filter="false">{{Résumé}}<br>{{Mobile masqué}}</th>
-        <th data-sorter="false" data-filter="false">{{Options}}</th>
+        <th style="width:80px;">{{Visible}}</th>
+        <th style="width:80px;">{{Masquer}}<br>{{sur le Dashboard}}</th>
+        <th style="width:80px;">{{Masquer}}<br>{{sur la Synthèse}}</th>
+        <th>{{Résumé Défini}} <sup><i class="fas fa-question-circle tooltips" title="{{Si grisé, alors il n'est pas remonté en résumé global}}"></i></sup></th>
+        <th>{{Résumé}}<br>{{Dashboard masqué}}</th>
+        <th>{{Résumé}}<br>{{Mobile masqué}}</th>
+        <th style="width:50px;">{{Options}}</th>
       </tr>
     </thead>
     <tbody>
@@ -125,7 +125,6 @@ if (!isConnect()) {
 if (!jeeFrontEnd.md_objectSummary) {
   jeeFrontEnd.md_objectSummary = {
     init: function() {
-      jeedomUtils.initTableSorter()
       this.setTableSortable()
     },
     setTableSortable: function() {

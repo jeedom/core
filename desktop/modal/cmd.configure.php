@@ -834,7 +834,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 id: thisValue,
                 error: function(error) {
                   jeedomUtils.showAlert({
-                    attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
+                    attachTo: jeeDialog.get('#md_displayCmdConfigure', 'dialog'),
                     message: error.message,
                     level: 'danger'
                   })
@@ -877,7 +877,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         title += ' : ' + jeephp2js.md_cmdConfigure_cmdInfo.eqLogicHumanName
         var emClass = jeephp2js.md_cmdConfigure_cmdInfo.type == 'info' ? 'info' : 'warning'
         title += ' <span class="cmdName">[' + jeephp2js.md_cmdConfigure_cmdInfo.name + '] <em class="' + emClass + '">(' + jeephp2js.md_cmdConfigure_cmdInfo.type + ')</em></span>'
-        var titleEl = jeeDialog.get('#div_displayCmdConfigure', 'title')
+        var titleEl = jeeDialog.get('#md_displayCmdConfigure', 'title')
         if (titleEl != null) {
           titleEl.querySelector('span.title').innerHTML = title
         } else {
@@ -888,7 +888,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         jeeDialog.get('#cmdConfigureTab', 'title').querySelector('span.title').innerHTML = title
       },
       setInputsDefault: function() {
-        let content = jeeDialog.get('#div_displayCmdConfigure', 'content')
+        let content = jeeDialog.get('#md_displayCmdConfigure', 'content')
         content.querySelectorAll('select').forEach(_select => {
           if (_select.selectedIndex == -1) {
             let defaultOpt = Array.from(_select.options).filter(o => o.value == '')
@@ -1004,7 +1004,6 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         div += '<div class="col-sm-7 actionOptions">'
         div += jeedom.cmd.displayActionOption(init(_action.cmd, ''), _action.options)
         div += '</div>'
-
         let newDiv = document.createElement('div')
         newDiv.html(div)
         newDiv.setJeeValues(_action, '.expressionAttr')
@@ -1067,7 +1066,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                     cmd: cmd,
                     error: function(error) {
                       jeedomUtils.showAlert({
-                        attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
+                        attachTo: jeeDialog.get('#md_displayCmdConfigure', 'dialog'),
                         message: error.message,
                         level: 'danger'
                       })
@@ -1077,7 +1076,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 }
               })
               jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
+                attachTo: jeeDialog.get('#md_displayCmdConfigure', 'dialog'),
                 message: "{{Modification(s) appliquée(s) avec succès}}",
                 level: 'success'
               })
@@ -1114,7 +1113,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           cmd: cmd,
           error: function(error) {
             jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
+              attachTo: jeeDialog.get('#md_displayCmdConfigure', 'dialog'),
               message: error.message,
               level: 'danger'
             })
@@ -1122,7 +1121,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           success: function() {
             modifyWithoutSave = false
             jeedomUtils.showAlert({
-              attachTo: event.ctrlKey ? null : jeeDialog.get('#div_displayCmdConfigure', 'content'),
+              attachTo: event.ctrlKey ? null : jeeDialog.get('#md_displayCmdConfigure', 'content'),
               message: '{{Sauvegarde réussie}}',
               level: 'success'
             })

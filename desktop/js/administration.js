@@ -85,6 +85,9 @@ if (!jeeFrontEnd.administration) {
             draggable: 'tr.objectSummary',
             direction: 'vertical',
             removeCloneOnHide: true,
+            onEnd: function(event) {
+              jeeFrontEnd.modifyWithoutSave = true
+            },
           })
           jeeFrontEnd.modifyWithoutSave = false
         }
