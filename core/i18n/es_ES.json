@@ -4903,7 +4903,7 @@
         "Aucun": "No",
         "Principale": "Principal"
     },
-    "core\/dom\/jeeCron.js": {
+    "core\/dom\/jeeCron\/jeeCron.js": {
         "Minutes Past the Hour": "Minutos después de la hora",
         "Time: Hour": "Hora: Hora",
         "Day of Month": "Dia del mes",

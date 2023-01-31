@@ -162,8 +162,8 @@ function setTheme() {
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 	<?php
-	include_file('core', 'dom.utils', 'dom');
-	include_file('core', 'dom.ui', 'dom');
+	include_file('coreDOM', 'dom.utils', 'js');
+	include_file('coreDOM', 'dom.ui', 'js');
 	include_file('core', 'icon.inc', 'php');
 	include_file('3rdparty', 'roboto/roboto', 'css');
 	include_file('3rdparty', 'camingocode/camingocode', 'css');
@@ -247,7 +247,7 @@ function setTheme() {
 	include_file('3rdparty', 'moment/moment-with-locales.min', 'js');
 
 	//New $less libs
-	include_file('core', 'jeeCron', 'dom');
+	include_file('coreDOM', 'jeeCron/jeeCron', 'js');
 	include_file('3rdparty', 'isPin/ispin', 'css');
 	include_file('3rdparty', 'isPin/ispin', 'js');
 	include_file('3rdparty', 'sortable/sortable', 'js');
