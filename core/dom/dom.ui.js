@@ -1568,8 +1568,7 @@ var jeeDialog = (function()
         }
       }
 
-      dialogContainer.addEventListener('mousedown', function(event) {
-        if (event.defaultPrevented) return
+      dialogContainer.parentNode.addEventListener('mousedown', function(event) {
         document.querySelectorAll('div.jeeDialog.jeeDialogMain').removeClass('active')
         event.target.closest('div.jeeDialog.jeeDialogMain').addClass('active')
       })
