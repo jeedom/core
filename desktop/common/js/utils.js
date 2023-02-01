@@ -1119,6 +1119,24 @@ jeedomUtils.initTableSorter = function(filter) {
   }).css('width', '')
 }
 
+jeedomUtils.initDataTables = function(_paging, _searching) {
+  if (!_paging) _paging = false
+  if (!_searching) _searching = false
+  document.querySelectorAll('table.dataTable').forEach(_table => {
+    if (_table._dataTable) {
+      _table._dataTable.destroy()
+    }
+    new DataTable(_table, {
+      columns: [
+        { select: 0, sort: "asc" }
+      ],
+      paging: _paging,
+      searchable: _searching,
+    })
+  })
+}
+
+
 jeedomUtils.initHelp = function() {
   document.querySelectorAll('.help').forEach(element => {
     if (element.getAttribute('data-help') != undefined) {

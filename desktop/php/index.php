@@ -248,6 +248,8 @@ function setTheme() {
 
 	//New $less libs
 	include_file('coreDOM', 'jeeCron/jeeCron', 'js');
+	include_file('coreDOM', 'Vanilla-DataTables/Vanilla-DataTables', 'css');
+	include_file('coreDOM', 'Vanilla-DataTables/Vanilla-DataTables', 'js');
 	include_file('3rdparty', 'isPin/ispin', 'css');
 	include_file('3rdparty', 'isPin/ispin', 'js');
 	include_file('3rdparty', 'sortable/sortable', 'js');
