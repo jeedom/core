@@ -4104,8 +4104,6 @@
     },
     "core\/repo\/market.list.repo.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Widget de type information": "Widget do tipo informação",
-        "Widget de type action": "Widget do tipo de ação",
         "Gratuit": "Gratuito",
         "Payant": "Pago",
         "Officiel": "Oficial",
@@ -4117,8 +4115,6 @@
         "Rechercher": "Pesquisar",
         "Retour": "Voltar",
         "Aucune": "Nenhum",
-        "Widget pour la version mobile": "Widget para versão móvel",
-        "Widget pour la version bureau": "Widget da versão para desktop",
         "par": "por",
         "Market": "Mercado"
     },
