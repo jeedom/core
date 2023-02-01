@@ -907,7 +907,6 @@
         "Commandes :": "Commandes : ",
         "Commandes historisées :": "Commandes historisées :",
         "Commandes timeline :": "Commandes timeline :",
-        "par page": "par page",
         "Nom": "Имя",
         "Plugin": "Плагин",
         "Type": "Тип",
@@ -2149,7 +2148,6 @@
         "Périphérique(s) enregistré(s)": "Périphérique(s) enregistré(s)",
         "Supprimer tout": "Удалить все",
         "Identification": "идентификация",
-        "Date dernière utilisation": "Дата последнего использования",
         "Action": "Действие",
         "Supprimer": "удаление"
     },
@@ -2430,6 +2428,7 @@
         "Equipement": "Оборудование",
         "Commande": "Команда",
         "Type": "Тип",
+        "Exécution": "Exécution",
         "Actions": "акции",
         "Action sur état": "Action sur état",
         "Si": "Si",
@@ -2441,6 +2440,7 @@
         "avec code": "avec code",
         "Confirmation": "Confirmation",
         "Code de confirmation de l\\'action": "Code de confirmation de l\\'action",
+        "Action": "Action",
         "sur le folder": "sur le folder",
         "Timeline active": "Timeline active",
         "Influx actif": "Influx actif",
@@ -3155,6 +3155,7 @@
     },
     "desktop\/js\/eqAnalyse.js": {
         "Supprimée le": "Supprimée le",
+        "Alertes Communications": "Alertes Communications",
         "Configuration en masse": "Configuration en masse",
         "Configuration de la commande": "Configuration de la commande",
         "Configuration de l'équipement": "Конфигурация оборудования"
@@ -4938,6 +4939,14 @@
         "De": "De",
         "A": "A",
         "minutes après l'heure": "minutes après l'heure"
+    },
+    "core\/dom\/Vanilla-DataTables\/Vanilla-DataTables.js": {
+        "Entrées par page": "Entrées par page",
+        "Aucune entrée trouvée": "Aucune entrée trouvée",
+        "Affichage": "Affichage",
+        "à": "à",
+        "de": "de",
+        "entrées": "entrées"
     },
     "core\/dom\/dom.ui.js": {
         "OK": "OK",

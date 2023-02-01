@@ -152,7 +152,7 @@
         "Nom": "Name",
         "Status": "Status",
         "Date lancement": "Date start",
-        "Action": "Action"
+        "Action": "Stock"
     },
     "mobile\/html\/notes.html": {
         "Ajouter": "Add",
@@ -188,7 +188,7 @@
         "Nom": "Name",
         "Status": "Status",
         "Date lancement": "Date start",
-        "Action": "Action"
+        "Action": "Stock"
     },
     "mobile\/html\/log.html": {
         "Supprimer tous": "Delete all",
@@ -244,7 +244,7 @@
         "Type": "Type",
         "ID du lien": "Link ID",
         "Lien": "Link",
-        "Action": "Action",
+        "Action": "Stock",
         "Lien mort ou absent": "Dead or missing link",
         "Supprimer": "Remove",
         "Configuration": "Configuration",
@@ -365,7 +365,7 @@
         "Nom": "Name",
         "Valeur": "Value",
         "Utilisée dans": "Used in",
-        "Action": "Action",
+        "Action": "Stock",
         "Êtes-vous sûr de vouloir supprimer la variable": "Are you sure you want to delete the variable",
         "Dépôt de données supprimé": "Data repository deleted",
         "Dépôt de données sauvegardé": "Data repository saved",
@@ -527,7 +527,7 @@
         "Ajouter": "Add",
         "Nom": "Name",
         "Valeur": "Value",
-        "Action": "Action",
+        "Action": "Stock",
         "Disposition": "Layout",
         "Mise en forme de la tuile par défaut ou en mode tableau.": "Formatting the tile by default or in table mode",
         "Mise en forme générale": "General formatting",
@@ -765,7 +765,7 @@
         "différent": "different",
         "pendant plus de": "for more than",
         "durée en minutes (laisser vide pour une action immédiate)": "duration in minutes (leave blank for immediate action)",
-        "Action": "Action",
+        "Action": "Stock",
         "Ajouter": "Add",
         "Action avant exécution de la commande": "Pre-execution action",
         "Action après exécution de la commande": "Post-execution action",
@@ -897,7 +897,7 @@
         "Date et heure": "Time",
         "Source": "Source",
         "Description": "Description",
-        "Action": "Action",
+        "Action": "Stock",
         "Occurrences": "Occurrences",
         "Centre de Messages": "Message Center"
     },
@@ -907,7 +907,6 @@
         "Commandes :": "Commands:",
         "Commandes historisées :": "Historized commands:",
         "Commandes timeline :": "Timeline commands:",
-        "par page": "per page",
         "Nom": "Name",
         "Plugin": "Plugin",
         "Type": "Type",
@@ -929,7 +928,7 @@
         "3 ans": "3 years",
         "Jamais": "Never",
         "Purge": "Purge",
-        "Action": "Action",
+        "Action": "Stock",
         "Configuration de la commande": "Command setup",
         "Exporter la commande": "Export the command",
         "Modifications sauvegardées avec succès": "Changes successfully saved"
@@ -1022,7 +1021,7 @@
         "ID": "ID",
         "Type": "Type",
         "Valeur": "Value",
-        "Action": "Action",
+        "Action": "Stock",
         "Date de valeur": "Value date",
         "Date de collecte": "Date of collection",
         "Graphique de fond": "Background graphic",
@@ -1094,7 +1093,7 @@
         "Nom object": "Object name",
         "Type": "Type",
         "ID du lien": "Link ID",
-        "Action": "Action",
+        "Action": "Stock",
         "Configuration": "Configuration",
         "Composant supprimée": "Component removed",
         "Configuration du composant": "Component configuration",
@@ -1342,7 +1341,7 @@
         "Macro simple": "Single macro",
         "Macro binaire": "Binary macro",
         "Widget au survol": "Hover widget",
-        "Action": "Action",
+        "Action": "Stock",
         "Equipement": "Equipment",
         "Afficher au survol": "Show on hover",
         "Afficher sur un clic": "Show on click",
@@ -1680,7 +1679,7 @@
         "Thème Mobile principal": "Main Mobile Theme",
         "Thème Mobile alternatif": "Alternative Mobile Theme",
         "Thème principal de": "Main theme from",
-        "à": "to",
+        "à": "at",
         "Supprimer le cookie de thème.": "Delete the theme cookie",
         "Cookie": "Cookies",
         "Basculer le thème en fonction de l'heure": "Toggle theme based on time",
@@ -2149,8 +2148,7 @@
         "Périphérique(s) enregistré(s)": "Registered device",
         "Supprimer tout": "Delete all",
         "Identification": "Identification",
-        "Date dernière utilisation": "Last used date",
-        "Action": "Action",
+        "Action": "Stock",
         "Supprimer": "Delete"
     },
     "desktop\/php\/modaldisplay.php": {
@@ -2310,7 +2308,7 @@
         "Description": "Description",
         "Ajouter un bloc": "Add block",
         "Si\/Alors\/Sinon": "If \/ Do \/ Else",
-        "Action": "Action",
+        "Action": "Stock",
         "Boucle": "Loop",
         "Dans": "In",
         "A": "At",
@@ -2430,6 +2428,7 @@
         "Equipement": "Equipment",
         "Commande": "Command",
         "Type": "Type",
+        "Exécution": "Execution",
         "Actions": "Actions",
         "Action sur état": "State action",
         "Si": "If",
@@ -2441,6 +2440,7 @@
         "avec code": "with code",
         "Confirmation": "Confirmation",
         "Code de confirmation de l\\'action": "Action confirmation code",
+        "Action": "Stock",
         "sur le folder": "on the folder",
         "Timeline active": "Active timeline",
         "Influx actif": "Active influx",
@@ -2478,7 +2478,7 @@
         "Déconnecter": "Log-out",
         "Périphérique(s) enregistré(s)": "Registered device",
         "Supprimer tout": "Delete all",
-        "Action": "Action",
+        "Action": "Stock",
         "Supprimer": "Delete"
     },
     "desktop\/php\/database.php": {
@@ -2523,7 +2523,7 @@
         "Nom": "Name",
         "Status": "Status",
         "Date lancement": "Date start",
-        "Action": "Action"
+        "Action": "Stock"
     },
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -2772,7 +2772,7 @@
         "Statut": "Status",
         "Actif": "Active",
         "Inactif": "Inactive",
-        "Action": "Action",
+        "Action": "Stock",
         "Désactiver": "Disable",
         "Votre version de": "Your version of",
         "ne permet pas d\\'activer ce plugin": "does not allow to activate this plugin",
@@ -3155,6 +3155,7 @@
     },
     "desktop\/js\/eqAnalyse.js": {
         "Supprimée le": "Deleted on",
+        "Alertes Communications": "Communications Alerts",
         "Configuration en masse": "Mass configuration",
         "Configuration de la commande": "Order Setup",
         "Configuration de l'équipement": "Equipment configuration"
@@ -3258,7 +3259,7 @@
         "Coller un bloc après celui-ci.<br>Ctrl+Click: remplacer ce bloc par le bloc copié.": "Paste a block after this. <br> Ctrl + Click: replace this block with the copied block",
         "Afficher\/masquer le bloc Sinon": "Show \/ hide Else block",
         "Ajouter": "Add",
-        "Action": "ACTION",
+        "Action": "Stock",
         "Bloc Si\/Alors\/Sinon": "If \/ Do \/ Else block",
         "Bloc Action": "Action Block",
         "Bloc Boucle": "Loop Block",
@@ -3749,7 +3750,7 @@
         "Info": "Information",
         "Numérique": "Numeric",
         "Binaire": "Binary",
-        "Action": "Action",
+        "Action": "Stock",
         "Défaut": "Default",
         "Curseur": "Cursor",
         "Message": "Message",
@@ -4526,7 +4527,7 @@
         "Pause de": "Pause of",
         "seconde(s)": "second (s)",
         "Action stop": "Stop action",
-        "à": "To",
+        "à": "at",
         "Ajout du message suivant dans le centre de message :": "Add the following message to the message center:",
         "Ajout de l\\'alerte :": "Adding the alert:",
         "Affichage du popup :": "Popup display:",
@@ -4747,7 +4748,7 @@
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Scenario",
-        "Action": "Action",
+        "Action": "Stock",
         "Démarrer": "Start",
         "Démarrer (sync)": "Start (sync)",
         "Arrêter": "Stop",
@@ -4786,7 +4787,7 @@
     "core\/template\/scenario\/equipement.default.html": {
         "Equipement": "Equipment",
         "Sélectionner un équipement": "Select equipment",
-        "Action": "Action",
+        "Action": "Stock",
         "Visible": "Visible",
         "Masquer": "Hide",
         "Activer": "Enable",
@@ -4871,7 +4872,7 @@
         "Commandes": "Commands",
         "Sélectionner la commande": "Select command",
         "De": "From",
-        "à": "To",
+        "à": "at",
         "Nom": "Name",
         "Exporter en": "Export to",
         "CSV": "CSV"
@@ -4938,6 +4939,14 @@
         "De": "Of",
         "A": "HAS",
         "minutes après l'heure": "minutes past the hour"
+    },
+    "core\/dom\/Vanilla-DataTables\/Vanilla-DataTables.js": {
+        "Entrées par page": "Entries per page",
+        "Aucune entrée trouvée": "No entries found",
+        "Affichage": "Display",
+        "à": "at",
+        "de": "of",
+        "entrées": "entries"
     },
     "core\/dom\/dom.ui.js": {
         "OK": "Ok",
