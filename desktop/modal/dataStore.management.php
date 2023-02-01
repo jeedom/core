@@ -32,13 +32,13 @@ sendVarToJS([
     </div>
   </div>
 
-  <table id="table_dataStore" class="table table-condensed table-bordered tablesorter stickyHead" style="width:100%; min-width:100%">
+  <table id="table_dataStore" class="table table-condensed stickyHead">
     <thead>
       <tr>
-        <th data-sorter="input">{{Nom}}</th>
-        <th data-sorter="input">{{Valeur}}</th>
+        <th data-type="input">{{Nom}}</th>
+        <th data-type="input">{{Valeur}}</th>
         <th>{{Utilisée dans}}</th>
-        <th data-sorter="false" data-filter="false">{{Action}}</th>
+        <th data-filter="false" style="width:100px;">{{Action}}</th>
       </tr>
     </thead>
     <tbody>
@@ -49,14 +49,10 @@ sendVarToJS([
 <script>
 if (!jeeFrontEnd.md_datastore) {
   jeeFrontEnd.md_datastore = {
+    vDataTable: null,
     init: function() {
       this.tableDataStore = document.getElementById('table_dataStore')
       this.modal = this.tableDataStore.closest('div.jeeDialogMain')
-      if (this.modal != null) {
-        jeeDialog.get(this.modal).options.onResize = function(event) {
-          jeeFrontEnd.md_datastore.tableDataStore.triggerEvent("update")
-        }
-      }
     },
     getDatastoreTr: function (_datastore = false) {
       var thisTr = ''
@@ -119,13 +115,22 @@ if (!jeeFrontEnd.md_datastore) {
           })
         },
         success: function(data) {
-          jeeFrontEnd.md_datastore.tableDataStore.querySelector('tbody').empty()
+          if (jeeFrontEnd.md_datastore.vDataTable) jeeFrontEnd.md_datastore.vDataTable.destroy()
+          jeeFrontEnd.md_datastore.tableDataStore.tBodies[0].empty()
           var tr = ''
           for (var i in data) {
             tr += jeeFrontEnd.md_datastore.getDatastoreTr(data[i])
           }
-          jeeFrontEnd.md_datastore.tableDataStore.querySelector('tbody').innerHTML = tr
-          jeeFrontEnd.md_datastore.tableDataStore.triggerEvent("update")
+          jeeFrontEnd.md_datastore.tableDataStore.tBodies[0].innerHTML = tr
+
+          jeeFrontEnd.md_datastore.vDataTable = new DataTable(jeeFrontEnd.md_datastore.tableDataStore, {
+            columns: [
+              { select: 0, sort: "asc" },
+              { select: [2,3], sortable: false }
+            ],
+            paging: false,
+            searchable: true,
+          })
         }
       })
     },
@@ -137,18 +142,13 @@ if (!jeeFrontEnd.md_datastore) {
   var jeeM = jeeFrontEnd.md_datastore
   jeeM.init()
 
-  jeedomUtils.initTableSorter()
   jeeM.refreshDataStoreMangementTable()
-  jeeM.tableDataStore.config.widgetOptions.resizable_widths = ['150px', '150px', '', '90px']
-  jeeM.tableDataStore.triggerEvent('applyWidgets')
-  jeeM.tableDataStore.triggerEvent('resizableReset')
-  jeeM.tableDataStore.querySelector('thead tr').children[0].triggerEvent('sort')
 
   //Manage events outside parents delegations:
   document.getElementById('bt_dataStoreManagementAdd')?.addEventListener('click', function(event) {
     var tr = jeeM.getDatastoreTr()
-    jeeM.tableDataStore.querySelector('tbody').insertAdjacentHTML('afterbegin', tr)
-    jeeM.tableDataStore.triggerEvent("update")
+    jeeM.tableDataStore.tBodies[0].insertAdjacentHTML('afterbegin', tr)
+    if (jeeFrontEnd.md_datastore.vDataTable) jeeFrontEnd.md_datastore.vDataTable.refresh()
   })
 
   document.getElementById('bt_dataStoreManagementRefresh')?.addEventListener('click', function(event) {
@@ -162,6 +162,7 @@ if (!jeeFrontEnd.md_datastore) {
       var tr = _target.closest('tr')
       if (tr.getAttribute('data-datastore_id') == '') {
         tr.remove()
+        if (jeeFrontEnd.md_datastore.vDataTable) jeeFrontEnd.md_datastore.vDataTable.refresh()
         return
       }
       jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer la variable}}' + ' : <span style="font-weight: bold ;">' + tr.querySelector('.key').value + '</span> ?', function(result) {
@@ -201,7 +202,8 @@ if (!jeeFrontEnd.md_datastore) {
           jeedomUtils.showAlert({
             attachTo: jeeDialog.get('#md_datastore', 'dialog'),
             message: error.message,
-            level: 'danger'
+            level: 'danger',
+            ttl: 1000
           })
         },
         success: function(data) {

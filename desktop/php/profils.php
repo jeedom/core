@@ -357,13 +357,13 @@ $objectOptions = jeeObject::getUISelectList(false);
 					<form class="form-horizontal">
 						<fieldset>
 							<legend><i class="fas fa-laptop-house"></i> {{Périphérique(s) enregistré(s)}} <a class="btn btn-xs btn-danger pull-right" id="bt_removeAllRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer tout}}</a></legend>
-							<table id="tableDevices" class="table table-condensed tablesorter">
+							<table id="tableDevices" class="table table-condensed">
 								<thead>
 									<tr>
 										<th>{{Identification}}</th>
-										<th>{{IP}}</th>
-										<th>{{Date dernière utilisation}}</th>
-										<th data-sorter="false" data-filter="false">{{Action}}</th>
+										<th style="width:180px;">{{IP}}</th>
+										<th data-type="date" data-format="YYYY-MM-DD hh:mm:ss" style="width:180px;">{{Date}}</th>
+										<th data-sortable="false" data-filter="false" style="width:100px;">{{Action}}</th>
 									</tr>
 								</thead>
 								<tbody>

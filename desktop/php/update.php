@@ -76,16 +76,16 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="coreplugin">
-				<table class="ui-table-reflow table table-condensed table-bordered tablesorter" id="table_update">
+				<table class="ui-table-reflow table table-condensed dataTable" id="table_update">
 					<thead>
 						<tr>
 							<th>{{Etat}}</th>
 							<th>{{Nom}}</th>
-							<th data-sorter="shortDate">{{Version installée}}</th>
-							<th data-sorter="shortDate">{{Dernière version}}</th>
-							<th data-sorter="shortDate">{{Mise à jour faite le}}</th>
-							<th data-sorter="checkbox" data-filter="false">{{Options}}</th>
-							<th data-sorter="false" data-filter="false">{{Actions}}</th>
+							<th data-type="date" data-format="YYYY-MM-DD hh:mm:ss">{{Version installée}}</th>
+							<th data-type="date" data-format="YYYY-MM-DD hh:mm:ss">{{Dernière version}}</th>
+							<th data-type="date" data-format="YYYY-MM-DD hh:mm:ss">{{Mise à jour faite le}}</th>
+							<th data-type="checkbox">{{Options}}</th>
+							<th data-sortable="false">{{Actions}}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -112,7 +112,7 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 					</span>
 				</div>
 
-				<table class="ui-table-reflow table table-condensed table-bordered tablesorter" id="table_osUpdate">
+				<table class="ui-table-reflow table table-condensed" id="table_osUpdate">
 					<thead>
 						<tr>
 							<th>{{Type}}</th>

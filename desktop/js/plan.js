@@ -806,14 +806,8 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
                   className: 'success',
                   callback: {
                     click: function(event) {
-                      var options = []
-                      document.querySelectorAll('#table_addViewData tbody tr').forEach(_tr => {
-                        if (_tr.querySelector('.enable').checked == true) {
-                          var graphData = _tr.getJeeValues('.graphDataOption')[0]
-                          graphData.link_id = _tr.getAttribute('data-link_id')
-                          options.push(graphData)
-                        }
-                      })
+                      var options = jeeFrontEnd.md_cmdGraphSelect.getOptions()
+
                       dom_el.querySelector('.graphOptions').empty().append(JSON.stringify(options))
                       jeeP.savePlan(true)
                       jeeFrontEnd.plan.setGraphResizes()
@@ -835,11 +829,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
               callback: function() {
                 document.querySelectorAll('#table_addViewData tbody tr .enable').forEach(_check => { _check.checked = false})
                 var options = json_decode(dom_el.querySelector('.graphOptions').jeeValue())
-                for (var i in options) {
-                  var tr = document.querySelector('#table_addViewData tbody tr[data-link_id="' + options[i].link_id + '"]')
-                  tr.querySelector('.enable').jeeValue(1)
-                  tr.setJeeValues(options[i], '.graphDataOption')
-                }
+                jeeFrontEnd.md_cmdGraphSelect.displayOptions(options)
               }
             })
           } else {

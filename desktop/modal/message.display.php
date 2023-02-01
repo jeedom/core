@@ -46,15 +46,15 @@ if ($selectPlugin != '') {
     </span>
   </div>
 
-  <table class="table table-condensed table-bordered tablesorter" id="table_message" style="margin-top: 5px;">
+  <table class="table table-condensed dataTable" id="table_message" style="margin-top: 5px;">
     <thead>
       <tr>
-        <th data-sorter="false" data-filter="false"></th>
-        <th>{{Date et heure}}</th>
-        <th>{{Source}}</th>
-        <th data-sorter="false" data-filter="false">{{Description}}</th>
-        <th data-sorter="false" data-filter="false">{{Action}}</th>
-        <th>{{Occurrences}}</th>
+        <th data-sortable="false" data-filter="false" style="width:30px;"></th>
+        <th data-type="date" data-format="YYYY-MM-DD hh:mm:ss" style="width:150px;">{{Date et heure}}</th>
+        <th style="width:20%;">{{Source}}</th>
+        <th data-sortable="false" data-filter="false">{{Description}}</th>
+        <th data-sortable="false" data-filter="false">{{Action}}</th>
+        <th style="width:105px;">{{Occurrences}}</th>
       </tr>
     </thead>
     <tbody>
@@ -85,14 +85,10 @@ if ($selectPlugin != '') {
 (function() {// Self Isolation!
 
   jeedomUtils.hideAlert()
-  jeedomUtils.initTableSorter()
+  jeedomUtils.initDataTables()
 
   let table = document.querySelector('#md_messageDisplay #table_message')
-
-  table.config.widgetOptions.resizable_widths = ['50px', '140px', '20%', '', '90px', '120px']
-  table.triggerEvent('applyWidgets')
-  table.triggerEvent('resizableReset')
-  table.triggerEvent('update')
+  let msgDataTable = table._dataTable
 
   /*Events delegations
   */
@@ -141,6 +137,7 @@ if ($selectPlugin != '') {
         success: function() {
           _target.closest('tr').remove()
           document.getElementById("table_message").triggerEvent('update')
+          msgDataTable.refresh()
           jeedom.refreshMessageNumber()
         }
       })

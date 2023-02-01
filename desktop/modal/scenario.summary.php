@@ -28,46 +28,43 @@ if (!isConnect()) {
     </span>
   </div>
   <br/><br/>
-  <table id="table_scenarioSummary" class="table table-bordered table-condensed tablesorter stickyHead">
+  <table id="table_scenarioSummary" class="table table-condensed dataTable stickyHead">
     <thead>
       <tr>
         <th>{{ID}}</th>
         <th>{{Scénario}}</th>
         <th>{{Statut}}</th>
-        <th>{{Dernier lancement}}</th>
-        <th data-sorter="checkbox" data-filter="false">{{Actif}}</th>
-        <th data-sorter="checkbox" data-filter="false">{{Visible}}</th>
-        <th data-sorter="checkbox" data-filter="false">{{Multi}}</th>
-        <th data-sorter="checkbox" data-filter="false">{{Sync}}</th>
-        <th data-sorter="select-text">{{Log}}</th>
-        <th data-sorter="checkbox" data-filter="false">{{Timeline}}</th>
-        <th data-sorter="false" data-filter="false">{{Actions}}</th>
+        <th data-type="date" data-format="YYYY-MM-DD hh:mm:ss">{{Dernier lancement}}</th>
+        <th data-type="checkbox" data-filter="false">{{Actif}}</th>
+        <th data-type="checkbox" data-filter="false">{{Visible}}</th>
+        <th data-type="checkbox" data-filter="false">{{Multi}}</th>
+        <th data-type="checkbox" data-filter="false">{{Sync}}</th>
+        <th data-type="select-text">{{Log}}</th>
+        <th data-type="checkbox" data-filter="false">{{Timeline}}</th>
+        <th data-sortable="false" data-filter="false" style="width:120px">{{Actions}}</th>
       </tr>
     </thead>
-    <tbody id="tbody_scenarioSummary">
-
-    </tbody>
+    <tbody id="tbody_scenarioSummary"></tbody>
   </table>
 </div>
 
 <script>
 if (!jeeFrontEnd.md_scenarioSummary) {
   jeeFrontEnd.md_scenarioSummary = {
+    scDataTable: null,
     init: function() {
-      jeedomUtils.initTableSorter()
       this.tableScSummary = document.getElementById('table_scenarioSummary')
+      jeeFrontEnd.md_scenarioSummary.scDataTable = new DataTable(this.tableScSummary, {
+        columns: [
+          { select: 3, sort: "desc" }
+        ],
+        paging: false,
+        searchable: true,
+      })
+
       this.refreshScenarioSummary()
-      this.tableScSummary.config.widgetOptions.resizable_widths = ['40px', '', '70px', '170px', '62px', '80px', '70px', '70px', '90px', '155px', '85px']
-      this.tableScSummary.triggerEvent('applyWidgets')
-      this.tableScSummary.triggerEvent('resizableReset')
-      this.tableScSummary.querySelector('thead tr').children[3].triggerEvent('sort').triggerEvent('sort')
 
       this.modal = this.tableScSummary.closest('div.jeeDialogMain')
-      if (this.modal != null) {
-        jeeDialog.get(this.modal).options.onResize = function(event) {
-          jeeFrontEnd.md_scenarioSummary.tableScSummary.triggerEvent("update")
-        }
-      }
     },
     synchModaleToPage: function() {
       document.querySelectorAll('#table_scenarioSummary tbody .scenario').forEach(_sc => {
@@ -119,7 +116,7 @@ if (!jeeFrontEnd.md_scenarioSummary) {
             }
             tr += '</td>'
             tr += '<td>'
-            tr += '<span class="scenarioAttr" data-l1key="lastLaunch"></span>'
+            tr += data[i].lastLaunch + '<span class="scenarioAttr" data-l1key="lastLaunch" style="display:none;"></span>'
             tr += '</td>'
             tr += '<td class="center">'
             tr += '<input type="checkbox" class="scenarioAttr" data-label-text="{{Actif}}" data-l1key="isActive">'
@@ -163,7 +160,8 @@ if (!jeeFrontEnd.md_scenarioSummary) {
           }
 
           document.getElementById('table_scenarioSummary').querySelector('tbody').append(...table)
-          jeeFrontEnd.md_scenarioSummary.tableScSummary.triggerEvent('update')
+          jeeFrontEnd.md_scenarioSummary.scDataTable.refresh()
+          jeeFrontEnd.md_scenarioSummary.scDataTable.columns().sort(3, 'desc')
 
           jeedom.timeline.autocompleteFolder()
         }

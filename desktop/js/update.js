@@ -20,6 +20,7 @@ if (!jeeFrontEnd.update) {
   jeeFrontEnd.update = {
     replaceLogLines: ['OK', '. OK', '.OK', 'OK .', 'OK.'],
     regExLogProgress: /\[PROGRESS\]\[(\d.*)]/gm,
+    uptDataTable: null,
     init: function() {
       window.jeeP = this
       this.hasUpdate = false
@@ -133,24 +134,21 @@ if (!jeeFrontEnd.update) {
               tr_updates.push(jeeP.addUpdate(data[i]))
             }
           }
+          if (jeeP.hasUpdate) document.querySelector('li a[data-target="#coreplugin"] i').style.color = 'var(--al-warning-color)'
 
           for (var tr of tr_updates) {
             tbody.appendChild(tr)
           }
-          tbody.triggerEvent('update')
 
-          if (jeeP.hasUpdate) document.querySelector('li a[data-target="#coreplugin"] i').style.color = 'var(--al-warning-color)'
+          jeedomUtils.initDataTables()
+          //tbody.triggerEvent('update')
 
-          $('#table_update').on('sortEnd', function(e, t) {
+          jeeFrontEnd.update.uptDataTable = document.querySelector('#table_update')._dataTable
+
+          jeeFrontEnd.update.uptDataTable.on('columns.sort', function(column, direction) {
             tbody.prepend(tbody.querySelector('tr[data-type="core"]'))
           })
-
-          let table = document.getElementById('table_update')
-          table.config.widgetOptions.resizable_widths = ['95px', '', '', '', '', '', '']
-          table.triggerEvent('applyWidgets')
-          setTimeout(() => {
-            table.querySelector('thead tr').children[0].triggerEvent('sort').triggerEvent('sort')
-          }, 200)
+          jeeFrontEnd.update.uptDataTable.columns().sort(0, 'desc')
 
           //create a second <pre> for cleaned text to avoid change event infinite loop:
           document.getElementById('div_log').insertAdjacentHTML('beforeend', jeeP.newLogClean)

@@ -19,19 +19,20 @@
 if (!jeeFrontEnd.profils) {
   jeeFrontEnd.profils = {
     tableDevices: null,
+    deviceDataTable: null,
     init: function() {
       /* Not used, also loaded as modal!
       window.jeeP = this
       */
-      this.tableDevices = document.querySelector('#securitytab #tableDevices')
+      this.tableDevices = document.getElementById('tableDevices')
       if (this.tableDevices != null) { //Not modal!
-        jeedomUtils.initTableSorter()
-        this.tableDevices.config.widgetOptions.resizable_widths = ['', '180px', '180px', '80px']
-        this.tableDevices.triggerEvent('applyWidgets')
-        this.tableDevices.triggerEvent('resizableReset')
-        setTimeout(() => {
-          jeeFrontEnd.profils.tableDevices.querySelector('thead tr').children[2].triggerEvent('sort').triggerEvent('sort')
-        }, 200)
+        this.deviceDataTable = new DataTable(this.tableDevices, {
+          columns: [
+            { select: 2, sort: "desc" }
+          ],
+          paging: false,
+          searchable: true,
+        })
       }
     },
     removeRegisterDevice: function(_key, _userId) {

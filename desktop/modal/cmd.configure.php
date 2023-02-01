@@ -1037,28 +1037,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           zIndex: 1030,
           contentUrl: 'index.php?v=d&modal=cmd.selectMultiple&cmd_id=' + jeephp2js.md_cmdConfigure_cmdInfo.id,
           callback: function() {
-            jeedomUtils.initTableSorter()
-
-            document.getElementById('bt_cmdConfigureSelectMultipleAlertToogle').addEventListener('click', function(event) {
-              var state = false
-              if (this.getAttribute('data-state') == 0) {
-                state = true
-                this.setAttribute('data-state', 1)
-                this.querySelector('i').classList = 'far fa-check-circle'
-                document.querySelectorAll('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd').forEach((element) => {
-                  if (element.isVisible()) element.jeeValue(1)
-                })
-              } else {
-                state = false
-                this.setAttribute('data-state', 0)
-                this.querySelector('i').classList = 'far fa-circle'
-                document.querySelectorAll('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd').forEach((element) => {
-                  if (element.isVisible()) element.jeeValue(0)
-                })
-              }
-            })
-
-            document.getElementById('bt_cmdConfigureSelectMultipleAlertApply').addEventListener('click', function(event) {
+            document.getElementById('bt_cmdSelectMultipleApply').addEventListener('click', function(event) {
               document.getElementById('table_cmdConfigureSelectMultiple').tBodies[0].querySelectorAll('tr').forEach(_tr => {
                 if (_tr.querySelector('.selectMultipleApplyCmd').checked) {
                   cmd.id = _tr.getAttribute('data-cmd_id')
@@ -1066,7 +1045,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                     cmd: cmd,
                     error: function(error) {
                       jeedomUtils.showAlert({
-                        attachTo: jeeDialog.get('#md_displayCmdConfigure', 'dialog'),
+                        attachTo: jeeDialog.get('#md_cmdConfigureSelectMultiple', 'dialog'),
                         message: error.message,
                         level: 'danger'
                       })
@@ -1076,7 +1055,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 }
               })
               jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_displayCmdConfigure', 'dialog'),
+                attachTo: jeeDialog.get('#md_cmdConfigureSelectMultiple', 'dialog'),
                 message: "{{Modification(s) appliquée(s) avec succès}}",
                 level: 'success'
               })

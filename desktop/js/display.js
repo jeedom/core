@@ -20,6 +20,7 @@ if (!jeeFrontEnd.display) {
   jeeFrontEnd.display = {
     actionMode: null,
     tableRemoveHistory: null,
+    dataTableRmvHist: null,
     init: function() {
       window.jeeP = this
       this.actionMode = null
@@ -135,14 +136,17 @@ if (!jeeFrontEnd.display) {
 
     },
     setRemoveHistoryTable: function() {
-      jeedomUtils.initTableSorter()
-      this.tableRemoveHistory.config.widgetOptions.resizable_widths = ['180px', '160px', '80px', '']
-      this.tableRemoveHistory.triggerEvent('applyWidgets')
-      this.tableRemoveHistory.triggerEvent('resizableReset')
-      setTimeout(() => {
-        this.tableRemoveHistory.querySelector('thead tr').children[0].triggerEvent('sort').triggerEvent('sort')
-      }, 200)
-      this.tableRemoveHistory.triggerEvent("update")
+      if (jeeFrontEnd.display.dataTableRmvHist) jeeFrontEnd.display.dataTableRmvHist.destroy()
+
+      jeeFrontEnd.display.dataTableRmvHist = new DataTable(jeeFrontEnd.display.tableRemoveHistory, {
+        columns: [
+          { select: 0, sort: "asc" }
+        ],
+        searchable: true,
+        paging: true,
+        perPage: 30,
+        perPageSelect: [10, 20, 30, 50, 100],
+      })
     },
     setEqActions: function() {
       var found = false
@@ -401,6 +405,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
           },
           success: function(data) {
             document.getElementById('table_removeHistory').tBodies[0].empty()
+            document.getElementById('table_removeHistory')._dataTable.refresh()
             jeedomUtils.showAlert({
               message: '{{Historique vidé avec succès}}',
               level: 'success'

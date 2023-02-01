@@ -74,14 +74,14 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 				</div>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="actionCmd">
-				<table class="table table-condensed tablesorter" id="table_Action">
+				<table class="table table-condensed dataTable" id="table_Action">
 					<thead>
 						<tr>
 							<th>{{Equipement}}</th>
 							<th>{{Commande}}</th>
-							<th>{{Type}}</th>
-							<th>{{Actions}}</th>
-							<th></th>
+							<th style="width:190px;">{{Type}}</th>
+							<th>{{Exécution}}</th>
+							<th style="width:80px;">{{Actions}}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -167,13 +167,13 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 				</table>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="pushCmd">
-				<table class="table table-condensed tablesorter" id="table_Push">
+				<table class="table table-condensed dataTable" id="table_Push">
 					<thead>
 						<tr>
 							<th>{{Equipement}}</th>
 							<th>{{Commande}}</th>
 							<th>{{Type}}</th>
-							<th></th>
+							<th style="width:80px;">{{Action}}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -221,12 +221,12 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 				</table>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="alertCmd">
-				<table class="table table-condensed tablesorter" id="table_Alert">
+				<table class="table table-condensed dataTable" id="table_Alert">
 					<thead>
 						<tr>
 							<th>{{Equipement}}</th>
 							<th>{{Alertes}}</th>
-							<th>{{Timeout}}</th>
+							<th style="width:180px;">{{Timeout}}</th>
 							<th>{{Seuils batterie}}</th>
 						</tr>
 					</thead>
@@ -293,13 +293,13 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 				</table>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="deadCmd">
-				<table class="table table-condensed tablesorter" id="table_deadCmd">
+				<table class="table table-condensed dataTable" id="table_deadCmd">
 					<thead>
 						<tr>
-							<th>{{Type}}</th>
+							<th style="width:180px;">{{Type}}</th>
 							<th>{{Détail}}</th>
 							<th>{{Commande}}</th>
-							<th>{{Utilisation}}</th>
+							<th style="width:180px;">{{Utilisation}}</th>
 						</tr>
 					</thead>
 					<tbody>

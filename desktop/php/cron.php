@@ -31,22 +31,22 @@ if (!isConnect('admin')) {
 
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane active" id="cron">
-        <table id="table_cron" class="ui-table-reflow table table-bordered table-condensed tablesorter">
+        <table id="table_cron" class="ui-table-reflow table table-condensed">
           <thead>
             <tr>
-              <th data-filter="false" data-resizable="false">{{ID}}</th>
-              <th data-filter="false" data-sorter="checkbox" data-resizable="false">{{Actif}}</th>
-              <th data-filter="false">{{PID}}</th>
-              <th data-filter="false" data-sorter="checkbox">{{Démon}}</th>
-              <th data-filter="false" data-sorter="checkbox">{{Unique}}</th>
-              <th data-filter="false" data-sorter="inputs">{{Classe}}</th>
-              <th data-filter="false" data-sorter="inputs">{{Fonction}}</th>
-              <th data-filter="false" data-sorter="inputs">{{Programmation}}</th>
-              <th data-filter="false" data-sorter="inputs">{{Timeout (min)}}</th>
-              <th data-filter="false">{{Dernier lancement}}</th>
-              <th data-filter="false">{{Dernière durée}}</th>
-              <th data-filter="false">{{Statut}}</th>
-              <th data-filter="false" data-sorter="false">{{Actions}}</th>
+              <th>{{ID}}</th>
+              <th data-type="checkbox">{{Actif}}</th>
+              <th data-type="number">{{PID}}</th>
+              <th data-type="checkbox">{{Démon}}</th>
+              <th data-type="checkbox">{{Unique}}</th>
+              <th data-type="input">{{Classe}}</th>
+              <th data-type="input">{{Fonction}}</th>
+              <th data-type="input">{{Programmation}}</th>
+              <th data-type="input">{{Timeout (min)}}</th>
+              <th data-type="date" data-format="YYYY-MM-DD hh:mm:ss">{{Dernier lancement}}</th>
+              <th data-type="custom">{{Dernière durée}}</th>
+              <th>{{Statut}}</th>
+              <th style="width:100px;">{{Actions}}</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -54,7 +54,7 @@ if (!isConnect('admin')) {
       </div>
 
       <div role="tabpanel" class="tab-pane" id="listener">
-        <table id="table_listener" class="ui-table-reflow table table-bordered table-condensed">
+        <table id="table_listener" class="ui-table-reflow table table-condensed">
           <thead>
             <tr>
               <th style="width: 40px;">#</th>
@@ -71,7 +71,7 @@ if (!isConnect('admin')) {
 
       <div role="tabpanel" class="tab-pane" id="deamon">
         <a id="bt_refreshDeamon" class="btn btn-sm btn-default pull-right" style="margin-top: 5px;"><i class="fas fa-sync"></i> {{Rafraîchir}}</a>
-        <table id="table_deamon" class="ui-table-reflow table table-bordered table-condensed">
+        <table id="table_deamon" class="ui-table-reflow table table-condensed">
           <thead>
             <tr>
               <th>{{Nom}}</th>
