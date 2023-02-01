@@ -136,7 +136,7 @@ if (!jeeFrontEnd.dashboard) {
         })
 
         document.querySelectorAll('.editingMode').forEach(_edit => {
-          _edit.removeClass('editingMode').removeAttribute('data-editId')
+          _edit.removeClass('editingMode').removeAttribute('data-editid')
           if (_edit._jeeResize) _edit._jeeResize.destroy()
         })
         document.querySelectorAll('.cmd.editOptions').remove()
@@ -184,8 +184,13 @@ if (!jeeFrontEnd.dashboard) {
               jeeFrontEnd.dashboard.draggables.push(draggie)
               pckry.bindDraggabillyEvents(draggie)
               draggie.on('dragEnd', function(event, draggedItem) {
+                if (event.target.nodeName == '#document') { //Dropped outside window
+                  jeedomUI.orderItems(pckry)
+                  return
+                }
                 jeeFrontEnd.modifyWithoutSave = true
-                jeedomUI.draggingId = draggedItem.target.closest('.editingMode').getAttribute('data-editId')
+                if (draggedItem.target.hasClass('packery-drop-placeholder')) return //Last item
+                jeedomUI.draggingId = draggedItem.target.closest('.editingMode').getAttribute('data-editid')
                 jeedomUI.orderItems(pckry)
               })
             })
@@ -210,7 +215,7 @@ if (!jeeFrontEnd.dashboard) {
         //set unique id whatever we have:
         document.querySelectorAll('div.eqLogic-widget, div.scenario-widget').forEach(function(element, index) {
           element.addClass('editingMode')
-          element.setAttribute('data-editId', index)
+          element.setAttribute('data-editid', index)
           element.insertAdjacentHTML('beforeend', '<span class="cmd editOptions cursor"></span>')
         })
 
