@@ -20,7 +20,8 @@ if (!jeeFrontEnd.update) {
   jeeFrontEnd.update = {
     replaceLogLines: ['OK', '. OK', '.OK', 'OK .', 'OK.'],
     regExLogProgress: /\[PROGRESS\]\[(\d.*)]/gm,
-    uptDataTable: null,
+    updtDataTable: null,
+    osDataTable: null,
     init: function() {
       window.jeeP = this
       this.hasUpdate = false
@@ -143,12 +144,12 @@ if (!jeeFrontEnd.update) {
           jeedomUtils.initDataTables()
           //tbody.triggerEvent('update')
 
-          jeeFrontEnd.update.uptDataTable = document.querySelector('#table_update')._dataTable
+          jeeFrontEnd.update.updtDataTable = document.querySelector('#table_update')._dataTable
 
-          jeeFrontEnd.update.uptDataTable.on('columns.sort', function(column, direction) {
+          jeeFrontEnd.update.updtDataTable.on('columns.sort', function(column, direction) {
             tbody.prepend(tbody.querySelector('tr[data-type="core"]'))
           })
-          jeeFrontEnd.update.uptDataTable.columns().sort(0, 'desc')
+          jeeFrontEnd.update.updtDataTable.columns().sort(0, 'desc')
 
           //create a second <pre> for cleaned text to avoid change event infinite loop:
           document.getElementById('div_log').insertAdjacentHTML('beforeend', jeeP.newLogClean)
@@ -454,7 +455,15 @@ if (!jeeFrontEnd.update) {
           for (var tr of tr_updates) {
             tbody.appendChild(tr)
           }
-          $('#table_osUpdate tbody').trigger('update')
+          var osTable = document.getElementById('table_osUpdate')
+          jeeFrontEnd.update.osDataTable = new DataTable(osTable, {
+            columns: [
+              { select: 0, sort: "asc" },
+              { select: 4, sortable: false }
+            ],
+            paging: false,
+            searchable: true,
+          })
         }
       })
     },

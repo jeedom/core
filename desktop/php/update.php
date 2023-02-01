@@ -115,11 +115,11 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 				<table class="ui-table-reflow table table-condensed" id="table_osUpdate">
 					<thead>
 						<tr>
-							<th>{{Type}}</th>
+							<th style="width:50px">{{Type}}</th>
 							<th>{{Nom}}</th>
-							<th data-sorter="shortDate">{{Version installée}}</th>
-							<th data-sorter="shortDate">{{Dernière version}}</th>
-							<th data-sorter="false" data-filter="false">{{Actions}}</th>
+							<th>{{Version installée}}</th>
+							<th>{{Dernière version}}</th>
+							<th data-sorter="false" data-filter="false" style="width:120px">{{Actions}}</th>
 						</tr>
 					</thead>
 					<tbody>
