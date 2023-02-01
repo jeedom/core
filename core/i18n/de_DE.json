@@ -152,7 +152,7 @@
         "Nom": "Name",
         "Status": "Status",
         "Date lancement": "Startdatum",
-        "Action": "Lager"
+        "Action": "Aktion"
     },
     "mobile\/html\/notes.html": {
         "Ajouter": "Addieren",
@@ -188,7 +188,7 @@
         "Nom": "Name",
         "Status": "Status",
         "Date lancement": "Startdatum",
-        "Action": "Lager"
+        "Action": "Aktion"
     },
     "mobile\/html\/log.html": {
         "Supprimer tous": "Alles löschen",
@@ -244,7 +244,7 @@
         "Type": "Typ",
         "ID du lien": "Link-ID",
         "Lien": "Link",
-        "Action": "Lager",
+        "Action": "Aktion",
         "Lien mort ou absent": "Totes oder fehlendes Glied",
         "Supprimer": "Entfernen",
         "Configuration": "Konfiguration",
@@ -261,7 +261,7 @@
         "Type": "Typ",
         "Groupement": "Gruppe",
         "Escalier": "Treppe",
-        "Action": "Lager",
+        "Action": "Aktion",
         "Sauvegarde effectuée": "Sicherung abgeschlossen",
         "Formule de calcul": "Berechnungsformel",
         "Sélectionner la commande": "Befehl auswählen",
@@ -351,7 +351,7 @@
         "Champs": "Felder",
         "Index": "Index",
         "SQL": "SQL",
-        "Action": "Lager",
+        "Action": "Aktion",
         "Corriger": "Richtig",
         "Êtes-vous sûr de vouloir corriger toutes les tables ?": "Möchten Sie wirklich alle Tabellen korrigieren?",
         "Êtes-vous sûr de vouloir corriger la table": "Sind Sie sicher, dass Sie die Tabelle korrigieren möchten?",
@@ -365,7 +365,7 @@
         "Nom": "Name",
         "Valeur": "Wert",
         "Utilisée dans": "Verwendet in",
-        "Action": "Lager",
+        "Action": "Aktion",
         "Êtes-vous sûr de vouloir supprimer la variable": "Möchten Sie die Variable wirklich löschen?",
         "Dépôt de données supprimé": "Datenrepository gelöscht",
         "Dépôt de données sauvegardé": "Datenrepository gespeichert",
@@ -527,7 +527,7 @@
         "Ajouter": "Hinzufügen",
         "Nom": "Name",
         "Valeur": "Wert",
-        "Action": "Lager",
+        "Action": "Aktion",
         "Disposition": "Bereitstellung",
         "Mise en forme de la tuile par défaut ou en mode tableau.": "Formatieren der Kachel standardmäßig oder im Tabellenmodus",
         "Mise en forme générale": "Allgemeine Formatierung",
@@ -765,7 +765,7 @@
         "différent": "unterschiedlich",
         "pendant plus de": "für mehr als",
         "durée en minutes (laisser vide pour une action immédiate)": "Dauer in Minuten (für sofortige Maßnahmen leer lassen)",
-        "Action": "Lager",
+        "Action": "Aktion",
         "Ajouter": "Hinzufügen",
         "Action avant exécution de la commande": "Aktion vor Ausführung des Befehls",
         "Action après exécution de la commande": "Aktion nach Ausführung des Befehls",
@@ -897,7 +897,7 @@
         "Date et heure": "Datum und Stunde",
         "Source": "Quelle",
         "Description": "Beschreibung",
-        "Action": "Lager",
+        "Action": "Aktion",
         "Occurrences": "Vorkommen",
         "Centre de Messages": "Nachrichtenzentrum"
     },
@@ -928,7 +928,7 @@
         "3 ans": "3 Jahre",
         "Jamais": "Noch nie",
         "Purge": "Spülen",
-        "Action": "Lager",
+        "Action": "Aktion",
         "Configuration de la commande": "Befehl Konfiguration",
         "Exporter la commande": "Exportieren Sie die Bestellung",
         "Modifications sauvegardées avec succès": "Änderungen erfolgreich gespeichert"
@@ -1021,7 +1021,7 @@
         "ID": "Identifikation",
         "Type": "Typ",
         "Valeur": "Wert",
-        "Action": "Lager",
+        "Action": "Aktion",
         "Date de valeur": "Datum der Wertstellung",
         "Date de collecte": "Datum der Abholung",
         "Graphique de fond": "Hintergrundgrafik",
@@ -1093,7 +1093,7 @@
         "Nom object": "Objekt benennen",
         "Type": "Typ",
         "ID du lien": "Link-ID",
-        "Action": "Lager",
+        "Action": "Aktion",
         "Configuration": "Konfiguration",
         "Composant supprimée": "Komponente entfernt",
         "Configuration du composant": "Komponentenkonfiguration",
@@ -1112,7 +1112,7 @@
         "Version": "Ausführung",
         "Remarque": "Bemerkung",
         "Commande": "Befehl",
-        "Action": "Lager",
+        "Action": "Aktion",
         "Incompatible avec l\\'OS": "Inkompatibel mit Betriebssystem",
         "Mise à jour": "Update",
         "oui": "Ja",
@@ -1341,7 +1341,7 @@
         "Macro simple": "Einzelne Makro",
         "Macro binaire": "Binäres Makro",
         "Widget au survol": "Hover-Widget",
-        "Action": "Lager",
+        "Action": "Aktion",
         "Equipement": "Gerät",
         "Afficher au survol": "Show auf Überführung",
         "Afficher sur un clic": "Ansicht mit einem Klick",
@@ -1679,7 +1679,7 @@
         "Thème Mobile principal": "Hauptthema für Mobilgeräte",
         "Thème Mobile alternatif": "Alternatives mobiles Thema",
         "Thème principal de": "Hauptthema von",
-        "à": "bei",
+        "à": "bis",
         "Supprimer le cookie de thème.": "Löschen Sie das Themen-Cookie",
         "Cookie": "Plätzchen",
         "Basculer le thème en fonction de l'heure": "Thema basierend auf der Zeit umschalten",
@@ -2148,7 +2148,7 @@
         "Périphérique(s) enregistré(s)": "Registrierte Geräte",
         "Supprimer tout": "Alle löschen",
         "Identification": "Identifizierung",
-        "Action": "Lager",
+        "Action": "Aktion",
         "Supprimer": "Entfernen"
     },
     "desktop\/php\/modaldisplay.php": {
@@ -2308,7 +2308,7 @@
         "Description": "Beschreibung",
         "Ajouter un bloc": "Block einfügen",
         "Si\/Alors\/Sinon": "If \/ Then \/ Oder",
-        "Action": "Lager",
+        "Action": "Aktion",
         "Boucle": "Schleife",
         "Dans": "In",
         "A": "Bis",
@@ -2478,7 +2478,7 @@
         "Déconnecter": "Trennen",
         "Périphérique(s) enregistré(s)": "Registrierte Geräte",
         "Supprimer tout": "Alle löschen",
-        "Action": "Lager",
+        "Action": "Aktion",
         "Supprimer": "Entfernen"
     },
     "desktop\/php\/database.php": {
@@ -2523,7 +2523,7 @@
         "Nom": "Name",
         "Status": "Status",
         "Date lancement": "Startdatum",
-        "Action": "Lager"
+        "Action": "Aktion"
     },
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -2772,7 +2772,7 @@
         "Statut": "Status",
         "Actif": "Aktiviert",
         "Inactif": "Inaktiv",
-        "Action": "Lager",
+        "Action": "Aktion",
         "Désactiver": "Deactivate",
         "Votre version de": "Ihre Version von",
         "ne permet pas d\\'activer ce plugin": "erlaubt nicht, dieses Plugin zu aktivieren",
@@ -3010,7 +3010,7 @@
         "Sauvegarder": "Speichern"
     },
     "desktop\/js\/interact.js": {
-        "Action": "Lager",
+        "Action": "Aktion",
         "Sélectionner un mot-clé": "Schlüsselwort auswählen",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "Sind Sie sicher, dass Sie alle Interaktionen neu generieren möchten (dies kann sehr lange dauern)?",
         "Toutes les interactions ont été régénérées": "Alle Wechselwirkungen wurden regeneriert",
@@ -3259,7 +3259,7 @@
         "Coller un bloc après celui-ci.<br>Ctrl+Click: remplacer ce bloc par le bloc copié.": "Fügen Sie danach einen Block ein. <br> Strg + Klicken: Ersetzen Sie diesen Block durch den kopierten Block",
         "Afficher\/masquer le bloc Sinon": "Block ein- \/ ausblenden Andernfalls",
         "Ajouter": "Hinzufügen",
-        "Action": "Lager",
+        "Action": "Aktion",
         "Bloc Si\/Alors\/Sinon": "Wenn \/ Dann \/ Sonst blockieren",
         "Bloc Action": "Aktionsblock",
         "Bloc Boucle": "Blockschleife",
@@ -3436,7 +3436,7 @@
         "Message pour la commande": "Nachricht zur Bestellung",
         "Message": "Nachricht",
         "Info": "Die Info",
-        "Action": "Lager",
+        "Action": "Aktion",
         "Sélectionner la commande": "Befehl auswählen",
         "Valider": "Validate",
         "Annuler": "Abbrechen"
@@ -3461,7 +3461,7 @@
         "Options": "Optionen",
         "Paramètres": "Einstellungen",
         "Etat": "Bundesland",
-        "Action": "Lager",
+        "Action": "Aktie",
         "La valeur de la commande vaut par défaut la commande": "Der Wert des Befehls ist standardmäßig der Befehl",
         "Commande": "Bestellt",
         "Valeur retour d\\'état": "Statusrückgabewert",
@@ -3750,7 +3750,7 @@
         "Info": "Die Info",
         "Numérique": "Digital",
         "Binaire": "Binär",
-        "Action": "Lager",
+        "Action": "Aktion",
         "Défaut": "Fehler",
         "Curseur": "Cursor",
         "Message": "Nachricht",
@@ -4487,7 +4487,7 @@
         "L\\'équipement cible n\\'existe pas": "Das Zielgerät existiert nicht",
         "Erreur lors de la migration d\\'équipement": "Fehler beim Migrieren von Geräten",
         "Equipement": "Gerät",
-        "Action": "Lager"
+        "Action": "Aktion"
     },
     "core\/class\/interactDef.class.php": {
         "La commande (demande) ne peut pas être vide": "Die Bestellung (Anfrage) darf nicht leer sein",
@@ -4527,7 +4527,7 @@
         "Pause de": "Pause von",
         "seconde(s)": "Sekunde (n)",
         "Action stop": "Aktion stoppen",
-        "à": "bei",
+        "à": "Zu",
         "Ajout du message suivant dans le centre de message :": "Fügen Sie dem Nachrichtenzentrum die folgende Nachricht hinzu:",
         "Ajout de l\\'alerte :": "Einfügung der Warnung:",
         "Affichage du popup :": "Popup-Anzeige:",
@@ -4748,7 +4748,7 @@
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Szenario",
-        "Action": "Lager",
+        "Action": "Aktion",
         "Démarrer": "Start",
         "Démarrer (sync)": "Starten (Synchronisieren)",
         "Arrêter": "Beenden",
@@ -4787,7 +4787,7 @@
     "core\/template\/scenario\/equipement.default.html": {
         "Equipement": "Gerät",
         "Sélectionner un équipement": "Ausrüstung auswählen",
-        "Action": "Lager",
+        "Action": "Aktion",
         "Visible": "Sichtbar",
         "Masquer": "Auszublenden",
         "Activer": "Aktivieren",
@@ -4872,7 +4872,7 @@
         "Commandes": "Befehle",
         "Sélectionner la commande": "Befehl auswählen",
         "De": "Von",
-        "à": "bei",
+        "à": "Bis",
         "Nom": "Name",
         "Exporter en": "Exportieren nach",
         "CSV": "CSV"
