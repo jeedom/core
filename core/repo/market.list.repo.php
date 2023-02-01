@@ -258,9 +258,7 @@ function buildUrl($_key, $_value) {
 
 <script>
 $(function () {
-	$("img.lazy").lazyload({
-		event: "sporty"
-	})
+	$("img.lazy").lazyload({ event: "sporty" })
 	$("img.lazy").trigger("sporty")
 })
 

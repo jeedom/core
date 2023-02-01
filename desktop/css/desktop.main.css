@@ -1959,6 +1959,11 @@ div.eqLogic-widget.editingMode .panelLink {
     color: var(--logo-primary-color);
   }
 
+  #md_marketDisplayRepo .slick-prev:before,
+  #md_marketDisplayRepo .slick-next:before {
+    color: var(--txt-color);
+  }
+
 
   .glyphicon {
     font-family: "Roboto";
