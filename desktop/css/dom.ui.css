@@ -434,6 +434,18 @@ div.jeeresizer.top-left {
   z-index: 260;
 }
 
+div.jeeDialogMain table.dataTable {
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width:100% !important;
+}
+
+table.stickyHead > thead {
+  position: sticky;
+  top: -15px;
+  z-index: 5;
+}
+
 /* _________________jeeCtxMenu*/
 div.jeeCtxMenu,
 div.jeeCtxMenu div.ctxSubMenuContainer {
