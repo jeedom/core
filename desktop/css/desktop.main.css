@@ -1888,15 +1888,78 @@ div.eqLogic-widget.editingMode .panelLink {
   }
 
   /* market */
-  div[data-market_type=plugin],
-  div[data-market_type=script] {
-    margin-top: 5px !important;
+  #marketMainContainer div.pluginContainer {
+    display: flex !important;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  #marketMainContainer div[data-market_type="plugin"] {
     background-color: var(--form-bg-color) !important;
   }
-  div[data-market_type=plugin]:hover,
-  div[data-market_type=script]:hover {
+  #marketMainContainer div[data-market_type="plugin"]:hover {
     background-color: var(--el-defaultColor) !important;
   }
+  #marketMainContainer div.marketDisplayCard {
+    position: relative;
+    height: 220px !important;
+    width: 160px;
+    margin: 2px;
+  }
+  #marketMainContainer div.marketDisplayCard .headband {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 58px;
+    height: 58px;
+  }
+
+  #marketMainContainer div.marketDisplayCard span.installCheck {
+    position: absolute;
+    right: 0;
+  }
+
+  #marketMainContainer div.marketDisplayCard img.pluginImg {
+    display: block;
+    margin-top: 10px;
+    height: 105px;
+    width: 95px;
+  }
+  #marketMainContainer div.marketDisplayCard span.pluginName {
+    display: block;
+    text-align: center;
+    word-break: break-all;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  #marketMainContainer div.marketDisplayCard span.pluginAuthor {
+    position: absolute;
+    bottom : 25px;
+    right : 12px;
+    font-size : 0.9em;
+    color: var(--txt-color);
+  }
+  #marketMainContainer div.marketDisplayCard span.pluginRating {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    font-size : 0.7em;
+  }
+  #marketMainContainer div.marketDisplayCard span.pluginCost {
+    position: absolute;
+    bottom: 5px;
+    right: 12px;
+    color: var(--logo-primary-color);
+  }
+  #marketMainContainer div.marketDisplayCard span.pluginNoCost {
+    position: absolute;
+    bottom: 5px;
+    right: 12px;
+    color: var(--logo-primary-color);
+  }
+
+
   .glyphicon {
     font-family: "Roboto";
   }
