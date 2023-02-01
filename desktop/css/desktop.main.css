@@ -1763,19 +1763,7 @@ div.eqLogic-widget.editingMode .panelLink {
     color: var(--logo-primary-color);
   }
 
-  div.cmdListContainer .tablesorter i {
-    font-size: 14px !important;
-  }
-  .tablesorter-header-inner {
-    padding: 0 0 0 0!important;
-  }
 
-  #md_modal table.tablesorter,
-  div.jeeDialogMain table.tablesorter {
-    width: 100% !important;
-    min-width: 100% !important;
-    max-width:100% !important;
-  }
 
   /* analyse equipment */
   #table_Action thead th[data-column="2"] {
@@ -3025,16 +3013,6 @@ div.eqLogic-widget.editingMode .panelLink {
   body[data-page="administration"] #div_pageContainer .tab-content .tab-content {
     height: unset !important;
   }
-  #div_mainContainer table.tablesorter > thead {
-    position: sticky;
-    top: 0;
-    z-index: 5;
-  }
-  table.tablesorter.stickyHead > thead {
-    position: sticky;
-    top: -14px;
-    z-index: 5;
-  }
 
   ul.nav.nav-tabs li,
   .nav-tabs > li > a {
@@ -3092,29 +3070,7 @@ div.eqLogic-widget.editingMode .panelLink {
     border: none !important;
   }
 
-  i.tablesorter-icon {
-    background-image: none !important;
-  }
-  th.tablesorter-header[data-sorter=false] {
-    cursor: default;
-  }
-  th.tablesorter-header select + i.tablesorter-icon {
-    top: 32px !important;
-  }
-  th.tablesorter-header select {
-    height: 22px;
-    padding: 1px 5px !important;
-    line-height: 1.5;
-  }
-  i.tablesorter-icon.glyphicon-chevron-up::before {
-    content: "\25bc" !important;
-  }
-  i.tablesorter-icon.glyphicon-chevron-down::before {
-    content: "\25b2" !important;
-  }
-  i.tablesorter-icon.bootstrap-icon-unsorted::before {
-    content: "-" !important;
-  }
+
 
   table.table,
   table.table .table {
@@ -3135,19 +3091,6 @@ div.eqLogic-widget.editingMode .panelLink {
     border-bottom: none;
   }
 
-  .tablesorter-bootstrap tfoot td,
-  .tablesorter-bootstrap tfoot th,
-  .tablesorter-bootstrap thead td,
-  .tablesorter-bootstrap thead th,
-  .tablesorter-bootstrap>tbody>tr.even>td,
-  .tablesorter-bootstrap>tbody>tr.odd>td,
-  .tablesorter-bootstrap>tbody>tr.tablesorter-hasChildRow.even:hover~tr.tablesorter-hasChildRow.even~.tablesorter-childRow.even>td,
-  .tablesorter-bootstrap>tbody>tr.tablesorter-hasChildRow.odd:hover~tr.tablesorter-hasChildRow.odd~.tablesorter-childRow.odd>td {
-    background-color: transparent!important;
-    transition-duration: 250ms;
-    transition-property: background-color;
-    transition-delay: 20ms;
-  }
   .table-condensed tbody tr:hover td {
     background-color: rgba(var(--contrast-color), 0.1) !important;
     transition-duration: 250ms;
@@ -3156,11 +3099,6 @@ div.eqLogic-widget.editingMode .panelLink {
   .table-striped>tbody>tr:nth-of-type(2n+1),
   .table > thead > tr {
     background-color: rgba(var(--panel-bg-color), var(--opacity))!important;
-  }
-
-  .tablesorter-resizable-handle {
-    z-index: 8!important;
-    margin-left: -5px;
   }
 
   #logsForms .form-group:nth-child(odd){
@@ -3188,25 +3126,6 @@ div.eqLogic-widget.editingMode .panelLink {
     color: var(--txt-color) !important;
   }
 
-  table.tablesorter th:not([data-resizable]) .tablesorter-header-inner {
-    border-right: 1px dotted var(--txt-color) !important;
-  }
-  table.tablesorter th:not([data-resizable]):last-of-type .tablesorter-header-inner {
-    border-right: none !important;
-  }
-  table.tablesorter .tablesorter-header:focus {
-    outline:none;
-  }
-  table.tablesorter thead .tablesorter-filter-row input {
-    height: 20px;
-  }
-
-  .tablesorter-filter-row {
-    background-color: var(--btn-default-color)!important;
-    transition-duration: 500ms;
-    transition-property: background-color;
-  }
-
   table.table-condensed tbody tr,
   table.table-condensed tbody td {
     height: 21px !important;
@@ -3225,13 +3144,6 @@ div.eqLogic-widget.editingMode .panelLink {
   table.table-condensed tbody td .checkbox-inline > input[type="checkbox"]:checked::after,
   table.table-condensed tbody td label.checkbox-inline input[type="checkbox"]:checked::after {
     margin-top: -4px !important;
-  }
-
-  table.tablesorter .tablesorter-pager {
-    margin: 5px 0;
-  }
-  table.tablesorter .tablesorter-pager .current {
-    color: var(--al-info-color) !important;
   }
 
   #table_packages tbody td > span.label {
@@ -3267,15 +3179,6 @@ div.eqLogic-widget.editingMode .panelLink {
 
   hr {
     border-top-color: var(--form-bg-color);
-  }
-
-  input.tablesorter-filter {
-    background-color: rgb(var(--defaultBkg-color));
-    color: var(--link-color);
-    opacity: 0.85 !important;
-  }
-  input.tablesorter-filter.disabled {
-    display: none;
   }
 
 /* ______CodeMirror */
@@ -3345,6 +3248,10 @@ div.eqLogic-widget.editingMode .panelLink {
   .vakata-contextmenu-sep, .vakata-context-separator > a {
     background: rgb(var(--bg-color)) !important;
     border-color: rgb(var(--bg-color)) !important;
+  }
+
+  #md_cmdConfigureHistory div.dt-top {
+    margin-bottom: 10px;
   }
 
 /* ____________________SCENARIO */
@@ -3559,26 +3466,9 @@ div.eqLogic-widget.editingMode .panelLink {
     resize: vertical !important;
   }
 
-  /* sortable ui */
-  #div_scenarioElement .sortable-placeholder,
-  #div_scenarioElement .ui-sortable-placeholder {
-    display: none;
-  }
-  .ui-sortable-helper {
-    z-index: 2000;
-  }
-  .sortable-placeholder + div,
-  .sortable-placeholder + .expression .element {
-    background-color: var(--logo-primary-color) !important;
-  }
   .expressions:empty {
     height: 20px;
     padding-bottom: 20px;
-  }
-  .sortable-placeholderLast {
-    display: inline-block;
-    height: 25px !important;
-    background-color: var(--logo-primary-color) !important;
   }
 
   .element legend {
@@ -3595,22 +3485,6 @@ div.eqLogic-widget.editingMode .panelLink {
   #div_scenarioElement .subElementCODE .expressions > .expression.noSortable.col-xs-12 {
     width: 100% !important;
   }
-
-/* plugin.template sortable */
-  #table_cmd tbody tr.sortable-placeholder {
-    background-color: var(--logo-primary-color) !important;
-  }
-  #table_cmd tbody tr.ui-sortable-helper {
-    background: transparent !important;
-  }
-  #table_cmd tbody tr.ui-sortable-helper input,
-  #table_cmd tbody tr.ui-sortable-helper select,
-  #table_cmd tbody tr.ui-sortable-helper textarea,
-  #table_cmd tbody tr.ui-sortable-helper > td .btn,
-  #table_cmd tbody tr.ui-sortable-helper > td span.cmdAttr {
-    opacity: 0.75 !important;
-  }
-
 
   .expressions,
   .element,
@@ -3761,7 +3635,6 @@ div.eqLogic-widget.editingMode .panelLink {
     min-height: 52px;
   }
 
-
   .element .subElementFields .input-group {
     display: inline-flex;
   }
@@ -3798,8 +3671,6 @@ div.eqLogic-widget.editingMode .panelLink {
   .element .subElementCOMMENT .expressions{
     padding-left: 0 !important;
   }
-
-
 
   .element .subElementFields {
     margin-top: 0px;
@@ -4568,7 +4439,7 @@ div.eqLogic-widget.editingMode .panelLink {
     opacity: 0.5;
   }
 
-  /* résumé */
+  /* summary */
   li.alert-info.eqLogic {
     color: var(--txt-color);
     background-color: rgb(var(--defaultBkg-color)) !important;
@@ -5006,13 +4877,6 @@ div.eqLogic-widget.editingMode .panelLink {
 
     table.ui-table-reflow thead {
       position: relative !important;
-    }
-
-    th.tablesorter-header {
-      margin: 0 !important;
-    }
-    .tablesorter-filter-row {
-      display: none;
     }
 
     .ui-table-reflow td,
