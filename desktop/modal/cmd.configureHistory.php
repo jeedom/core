@@ -31,7 +31,7 @@ sendVarToJs('jeephp2js.md_cmdConfigureHistory_numCmds', count($cmds));
 
   <table id="table_cmdConfigureHistory" class="table table-condensed stickyHead">
     <thead>
-      <tr>
+      <tr style="margin-top: 20px;">
         <th>{{Nom}}</th>
         <th>{{Plugin}}</th>
         <th>{{Type}}</th>
