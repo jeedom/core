@@ -232,7 +232,7 @@ function buildUrl($_key, $_value) {
 			$dispCard .= '</span>';
 			if ($market->getCost() > 0) {
 				$dispCard .= '<span class="pluginCost">';
-				if ($market->getPurchaseInfo() == 1) {
+				if ($market->getPurchase() == 1) {
 					$dispCard .= ' <i class="fas fa-check-circle"></i>';
 				} else	if ($market->getCertification() == 'Premium') {
 					$dispCard .= '';
