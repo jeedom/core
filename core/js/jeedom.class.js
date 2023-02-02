@@ -129,10 +129,8 @@ jeedom.changes = function() {
 
 jeedom.init = function() {
   jeedom.datetime = jeeFrontEnd.serverDatetime
-  jeedom.display.version = 'desktop'
-  if (typeof jQuery === 'function' && $.mobile) {
-    jeedom.display.version = 'mobile'
-  }
+  jeedom.display.version = document.body.dataset.uimode
+
   var cssComputedStyle = getComputedStyle(document.documentElement)
   Highcharts.setOptions({
     accessibility: {
@@ -179,7 +177,7 @@ jeedom.init = function() {
 
   document.body.addEventListener('ui::update', function(_event) {
     if (isset(_event.detail.page) && _event.detail.page != '') {
-      if ( typeof jQuery === 'function' && $.mobile) {
+      if (jeedom.display.version == 'mobile') {
         if (!PAGE_HISTORY || PAGE_HISTORY.length == 0 || !PAGE_HISTORY[PAGE_HISTORY.length - 1].page || PAGE_HISTORY[PAGE_HISTORY.length - 1].page != _event.detail.page) {
           return
         }
@@ -205,7 +203,7 @@ jeedom.init = function() {
   document.body.addEventListener('jeedom::alert', function(_event) {
     if (!isset(_event.detail.message) || _event.detail.message.trim() == '') {
       if (isset(_event.detail.page) && _event.detail.page != '') {
-        if (getUrlVars('p') == _event.detail.page || (typeof jQuery === 'function' && $.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _event.detail.page)) {
+        if (getUrlVars('p') == _event.detail.page || (jeedom.display.version == 'mobile' && isset(CURRENT_PAGE) && CURRENT_PAGE == _event.detail.page)) {
           jeedomUtils.hideAlert()
         }
       } else {
@@ -220,7 +218,7 @@ jeedom.init = function() {
         if (_event.detail.ttl) {
           options.ttl = _event.detail.ttl
         }
-        if (getUrlVars('p') == _event.detail.page || (typeof jQuery === 'function' && $.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _event.detail.page)) {
+        if (getUrlVars('p') == _event.detail.page || (jeedom.display.version == 'mobile' && isset(CURRENT_PAGE) && CURRENT_PAGE == _event.detail.page)) {
           jeedomUtils.showAlert(options)
         }
       } else {
@@ -250,7 +248,7 @@ jeedom.init = function() {
   })
 
   document.body.addEventListener('checkThemechange', function(_event) {
-    if (typeof jQuery === 'function' && $.mobile) {
+    if (jeedom.display.version == 'mobile') {
       document.getElementById('jQMnDColor').setAttribute('data-nochange', 0)
     } else {
       document.getElementById('jeedom_theme_currentcss').setAttribute('data-nochange', 0)

@@ -285,7 +285,7 @@ function setTheme() {
 	<script src="3rdparty/snap.svg/snap.svg-min.js"></script>
 </head>
 
-<body>
+<body data-uimode="desktop">
 	<div id="backgroundforJeedom">
 		<div id="top"></div>
 		<div id="bottom"></div>
