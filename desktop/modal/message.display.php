@@ -53,25 +53,20 @@ if ($selectPlugin != '') {
         <th data-type="date" data-format="YYYY-MM-DD hh:mm:ss" style="width:150px;">{{Date et heure}}</th>
         <th style="width:20%;">{{Source}}</th>
         <th data-sortable="false" data-filter="false">{{Description}}</th>
-        <th data-sortable="false" data-filter="false">{{Action}}</th>
+        <th style="width:20%;" data-sortable="false" data-filter="false">{{Action}}</th>
         <th style="width:105px;">{{Occurrences}}</th>
       </tr>
     </thead>
     <tbody>
       <?php
       $trs = '';
-      $allowedTags = '<i><a>';
       foreach ($listMessage as $message) {
         $trs .= '<tr data-message_id="' . $message->getId() . '">';
         $trs .= '<td><div class="center"><i class="far fa-trash-alt cursor removeMessage"></i></div></td>';
         $trs .= '<td class="datetime">' . $message->getDate() . '</td>';
         $trs .= '<td class="plugin">' . $message->getPlugin() . '</td>';
-        $display = html_entity_decode($message->getMessage());
-        $display = strip_tags($display, $allowedTags);
-        $trs .= '<td class="message">' . $display . '</td>';
-        $display = html_entity_decode($message->getAction());
-        $display = strip_tags($display, $allowedTags);
-        $trs .= '<td class="message_action">' . $display . '</td>';
+        $trs .= '<td class="message">' . $message->getMessage(true) . '</td>';
+        $trs .= '<td class="message_action">' . $message->getAction(true) . '</td>';
         $trs .= '<td class="occurrences" style="text-align: center">' . $message->getOccurrences() . '</td>';
         $trs .= '</tr>';
       }

@@ -41,9 +41,7 @@ try {
 		} else {
 			$messages = utils::o2a(message::byPlugin(init('plugin')));
 		}
-		foreach ($messages as &$message) {
-			$message['message'] = htmlentities($message['message']);
-		}
+		//utils::o2a use message::toArray()
 		ajax::success($messages);
 	}
 
