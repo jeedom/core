@@ -248,11 +248,7 @@ jeedom.init = function() {
   })
 
   document.body.addEventListener('checkThemechange', function(_event) {
-    if (jeedom.display.version == 'mobile') {
-      document.getElementById('jQMnDColor').setAttribute('data-nochange', 0)
-    } else {
-      document.getElementById('jeedom_theme_currentcss').setAttribute('data-nochange', 0)
-    }
+    document.getElementById('jeedom_theme_currentcss').setAttribute('data-nochange', 0)
 
     if (isset(_event.detail.theme_start_day_hour)) {
       jeedom.theme.theme_start_day_hour = _event.detail.theme_start_day_hour

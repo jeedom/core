@@ -217,15 +217,18 @@ jeedomUtils.switchTheme = function(themeConfig) {
   let theme = 'core/themes/' + themeConfig.mobile_theme_color_night + '/mobile/' + themeConfig.mobile_theme_color_night + '.css'
   let themeShadows = 'core/themes/' + themeConfig.mobile_theme_color_night + '/mobile/shadows.css'
   let themeCook = 'alternate'
+  var cssTag = document.getElementById('jeedom_theme_currentcss')
 
-  if (document.getElementById('jQMnDColor').attributes.href.value == theme) {
+  if (cssTag.attributes.href.value == theme) {
     document.body.setAttribute('data-theme', themeConfig.mobile_theme_color)
     theme = 'core/themes/' + themeConfig.mobile_theme_color + '/mobile/' + themeConfig.mobile_theme_color + '.css'
     themeShadows = 'core/themes/' + themeConfig.mobile_theme_color + '/mobile/shadows.css'
     themeCook = 'default'
-    $('#jQMnDColor').attr('href', theme).attr('data-nochange', 0)
+    cssTag.setAttribute('href', theme)
+    cssTag.setAttribute('data-nochange', 0)
   } else {
-    $('#jQMnDColor').attr('href', theme).attr('data-nochange', 1)
+    cssTag.setAttribute('href', theme)
+    cssTag.setAttribute('data-nochange', 1)
     document.body.setAttribute('data-theme', themeConfig.mobile_theme_color_night)
   }
 
@@ -254,15 +257,16 @@ jeedomUtils.triggerThemechange = function() {
   }
 }
 
-jeedomUtils.changeThemeAuto = function(_ambiantLight){
+jeedomUtils.changeThemeAuto = function(_ambiantLight) {
   if (typeof jeedom.theme == 'undefined') return
   if (typeof jeedom.theme.mobile_theme_color_night == 'undefined' || typeof jeedom.theme.mobile_theme_color == 'undefined') return
   if (jeedom.theme.mobile_theme_color == jeedom.theme.mobile_theme_color_night) return
 
+  var cssTag = document.getElementById('jeedom_theme_currentcss')
   if (jeedom.theme.mobile_theme_useAmbientLight == "1" && 'AmbientLightSensor' in window) {
     const sensor = new AmbientLightSensor()
     sensor.onreading = () => {
-      if ($('#jQMnDColor').attr('data-nochange') == 1) {
+      if (cssTag.getAttribute('data-nochange') == '1') {
         return
       }
       if (sensor.illuminance < 200 && sensor.illuminance > 50) {
@@ -274,7 +278,7 @@ jeedomUtils.changeThemeAuto = function(_ambiantLight){
         theme = jeedom.theme.mobile_theme_color_night
         themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color_night+'/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
       }
-      if ($('#jQMnDColor').attr('href') != themeCss) {
+      if (cssTag.attributes.href.value != themeCss) {
         setTimeout(function() {
           if (sensor.illuminance < 100 && sensor.illuminance > 50) {
             return
@@ -285,9 +289,9 @@ jeedomUtils.changeThemeAuto = function(_ambiantLight){
             theme = jeedom.theme.mobile_theme_color_night
             themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color_night+'/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
           }
-          if ($('#jQMnDColor').attr('href') != themeCss) {
-            $('body').attr('data-theme',theme)
-            $('#jQMnDColor').attr('href', themeCss)
+          if (cssTag.attributes.href.value != themeCss) {
+            $('body').attr('data-theme', theme)
+            cssTag.setAttribute('href', themeCss)
             jeedomUtils.setBackgroundImage(jeedomUtils.backgroundIMG)
             jeedomUtils.triggerThemechange()
           }
@@ -303,21 +307,23 @@ jeedomUtils.changeThemeAuto = function(_ambiantLight){
 }
 
 jeedomUtils.checkThemechange = function() {
-  let jQMnDColor = document.getElementById('jQMnDColor')
-  if (jQMnDColor.getAttribute('data-nochange') == 1) return
+  let cssTag = document.getElementById('jeedom_theme_currentcss')
+  if (cssTag.getAttribute('data-nochange') == '1') return
+
   let defaultTheme = jeedom.theme.mobile_theme_color
   let defaultThemeCss = 'core/themes/' + defaultTheme + '/mobile/' + defaultTheme + '.css'
-  if (jeedom.theme.theme_changeAccordingTime == "0" && defaultThemeCss == jQMnDColor.getAttribute('href')) return
+  if (jeedom.theme.theme_changeAccordingTime == "0" && defaultThemeCss == cssTag.attributes.href.value) return
+
   let theme = jeedom.theme.mobile_theme_color_night
-  let themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color_night+'/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
+  let themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color_night + '/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
   let currentTime = parseInt((new Date()).getHours()*100 + (new Date()).getMinutes())
-  if (parseInt(jeedom.theme.theme_start_day_hour.replace(':','')) <  currentTime && parseInt(jeedom.theme.theme_end_day_hour.replace(':','')) >  currentTime) {
+  if (parseInt(jeedom.theme.theme_start_day_hour.replace(':', '')) <  currentTime && parseInt(jeedom.theme.theme_end_day_hour.replace(':','')) >  currentTime) {
     theme = jeedom.theme.mobile_theme_color
     themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color+'/mobile/' + jeedom.theme.mobile_theme_color + '.css'
   }
-  if (jQMnDColor.getAttribute('href') != themeCss) {
-    document.body.setAttribute('data-theme',theme)
-    jQMnDColor.setAttribute('href', themeCss)
+  if (cssTag.attributes.href.value != themeCss) {
+    document.body.setAttribute('data-theme', theme)
+    cssTag.setAttribute('href', themeCss)
     jeedomUtils.setBackgroundImage(jeedomUtils.backgroundIMG)
     jeedomUtils.triggerThemechange()
   }
@@ -473,9 +479,9 @@ jeedomUtils.initApplication = function(_reinit) {
           themeCSS = 'core/themes/' + jeedom.theme.mobile_theme_color_night + '/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
           themeShadowCSS = 'core/themes/' + jeedom.theme.mobile_theme_color_night + '/mobile/shadows.css'
           document.body.setAttribute('data-theme', jeedom.theme.mobile_theme_color_night)
-          document.getElementById('jQMnDColor').setAttribute('data-nochange', '1')
+          document.getElementById('jeedom_theme_currentcss').setAttribute('data-nochange', '1')
         }
-        document.getElementById('jQMnDColor').href = themeCSS
+        document.getElementById('jeedom_theme_currentcss').href = themeCSS
 
         jeedomUtils.changeThemeAuto()
         jeedomUtils.checkThemechange()
