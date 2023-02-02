@@ -1,5 +1,7 @@
 # Changelog Jeedom V4.3
 
+- Correction de bugs sur les designs 3D
+
 ## 4.3.15
 
 - Interdiction de la traduction de Jeedom par les navigateurs (évite les erreur type marché.repo.php non trouvé)
