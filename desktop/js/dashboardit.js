@@ -37,7 +37,7 @@ if (!jeeFrontEnd.dashboardit) {
               this.addClass('posEqWidthRef')
               this.style.userSelect = 'none'
               jeedomUtils.positionEqLogic()
-              new Packery(this)
+              new Packery(this, {isLayoutInstant: true, transitionDuration: 0})
             })
           } catch (err) {
             console.warn(err)

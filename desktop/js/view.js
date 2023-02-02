@@ -68,7 +68,10 @@ if (!jeeFrontEnd.view) {
             jeedomUtils.positionEqLogic()
 
             document.querySelectorAll('div.eqLogicZone').forEach(_zone => {
-              var pckry = new Packery(_zone, {isLayoutInstant: true})
+              var pckry = new Packery(_zone, {
+                isLayoutInstant: true,
+                transitionDuration: 0,
+            })
               pckry.getItemElements().forEach(function(itemElem, idx) {
                 itemElem.setAttribute('data-vieworder', idx + 1)
               })
@@ -133,7 +136,7 @@ if (!jeeFrontEnd.view) {
         })
 
         document.querySelectorAll('.editingMode').forEach(_edit => {
-          _edit.removeClass('editingMode').removeAttribute('data-editId')
+          _edit.removeClass('editingMode').removeAttribute('data-editid')
           if (_edit._jeeResize) _edit._jeeResize.destroy()
         })
         document.querySelectorAll('.cmd.editOptions').remove()
@@ -160,8 +163,12 @@ if (!jeeFrontEnd.view) {
               jeeFrontEnd.view.draggables.push(draggie)
               pckry.bindDraggabillyEvents(draggie)
               draggie.on('dragEnd', function(event, draggedItem) {
+                if (event.target.nodeName == '#document' || draggedItem.target.hasClass('packery-drop-placeholder')) { //Dropped outside window
+                  pckry.layout()
+                  return
+                }
                 jeeFrontEnd.modifyWithoutSave = true
-                jeedomUI.draggingId = draggedItem.target.closest('.editingMode').getAttribute('data-editId')
+                jeedomUI.draggingId = draggedItem.target.closest('.editingMode').getAttribute('data-editid')
                 jeedomUI.orderItems(pckry, 'data-vieworder')
               })
             })
@@ -186,7 +193,7 @@ if (!jeeFrontEnd.view) {
         //set unique id whatever we have:
         divEquipements.querySelectorAll('.eqLogic-widget, .scenario-widget').forEach((_div, _idx) => {
           _div.addClass('editingMode')
-          _div.setAttribute('data-editId', _idx)
+          _div.setAttribute('data-editid', _idx)
           _div.insertAdjacentHTML('beforeend', '<span class="cmd editOptions cursor"></span>')
         })
 

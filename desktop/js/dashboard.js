@@ -184,12 +184,11 @@ if (!jeeFrontEnd.dashboard) {
               jeeFrontEnd.dashboard.draggables.push(draggie)
               pckry.bindDraggabillyEvents(draggie)
               draggie.on('dragEnd', function(event, draggedItem) {
-                if (event.target.nodeName == '#document') { //Dropped outside window
-                  jeedomUI.orderItems(pckry)
+                if (event.target.nodeName == '#document' || draggedItem.target.hasClass('packery-drop-placeholder')) { //Dropped outside window
+                  pckry.layout()
                   return
                 }
                 jeeFrontEnd.modifyWithoutSave = true
-                if (draggedItem.target.hasClass('packery-drop-placeholder')) return //Last item
                 jeedomUI.draggingId = draggedItem.target.closest('.editingMode').getAttribute('data-editid')
                 jeedomUI.orderItems(pckry)
               })
@@ -280,7 +279,7 @@ if (!jeeFrontEnd.dashboard) {
                 if (nbEqs == 0) {
                   jeedomUtils.positionEqLogic()
                   domUtils.hideLoading()
-                  new Packery(dom_divDisplayEq, {isLayoutInstant: true})
+                  new Packery(dom_divDisplayEq, {isLayoutInstant: true, transitionDuration: 0})
 
                   if (Array.from(dom_divDisplayEq.querySelectorAll('div.eqLogic-widget, div.scenario-widget')).filter(item => item.isVisible()).length == 0) {
                     dom_divDisplayEq.closest('.div_object').remove()
@@ -331,7 +330,7 @@ if (!jeeFrontEnd.dashboard) {
           }
 
           jeedomUtils.positionEqLogic()
-          new Packery(dom_divDisplayEq, {})
+          new Packery(dom_divDisplayEq, {isLayoutInstant: true, transitionDuration: 0})
 
           //synch category filter:
           if (self.url_category != 'all') {
