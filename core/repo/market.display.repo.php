@@ -42,7 +42,7 @@
 						break;
 				}
 				$urlPath = config::byKey('market::address') . '/' . $market->getImg('icon');
-				echo '<img src="' . $urlPath . '" class="img-responsive" style="height : 200px;"/>';
+				echo '<img src="' . $urlPath . '" class="img-responsive" style="height : 200px;" onerror="this.onerror=null;this.src=&quot;core/img/no-image-plugin.png&quot;;"/>';
 				?>
 			</center>
 		</div>
