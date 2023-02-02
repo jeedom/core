@@ -153,7 +153,7 @@
         "Nom": "Nombre",
         "Status": "Estado",
         "Date lancement": "Fecha lanzamiento",
-        "Action": "Valores"
+        "Action": "Acción"
     },
     "mobile\/html\/notes.html": {
         "Ajouter": "Agregar",
@@ -189,7 +189,7 @@
         "Nom": "Nombre",
         "Status": "Estado",
         "Date lancement": "Fecha lanzamiento",
-        "Action": "Valores"
+        "Action": "Acción"
     },
     "mobile\/html\/log.html": {
         "Supprimer tous": "Borrar todos",
@@ -245,7 +245,7 @@
         "Type": "Tipo",
         "ID du lien": "Identificación del enlace",
         "Lien": "Enlace",
-        "Action": "Valores",
+        "Action": "Acción",
         "Lien mort ou absent": "Enlace muerto o perdido",
         "Supprimer": "Eliminar",
         "Configuration": "Configuración ",
@@ -262,7 +262,7 @@
         "Type": "Tipo",
         "Groupement": "Agrupar",
         "Escalier": "Escalera",
-        "Action": "Valores",
+        "Action": "Acción",
         "Sauvegarde effectuée": "Guardado correctamente",
         "Formule de calcul": "Fórmula",
         "Sélectionner la commande": "Seleccione el comando",
@@ -352,7 +352,7 @@
         "Champs": "Campos",
         "Index": "índice",
         "SQL": "Sql",
-        "Action": "Valores",
+        "Action": "Acción",
         "Corriger": "Corregir",
         "Êtes-vous sûr de vouloir corriger toutes les tables ?": "¿Está seguro de que desea corregir todas las tablas?",
         "Êtes-vous sûr de vouloir corriger la table": "¿Estás seguro de que quieres corregir la tabla?",
@@ -366,7 +366,7 @@
         "Nom": "Nombre",
         "Valeur": "Valor",
         "Utilisée dans": "Usado por",
-        "Action": "Valores",
+        "Action": "Acción",
         "Êtes-vous sûr de vouloir supprimer la variable": "¿Estás seguro de que quieres eliminar la variable?",
         "Dépôt de données supprimé": "Los datos de depósito borrado",
         "Dépôt de données sauvegardé": "Depósito de datos guardados",
@@ -528,7 +528,7 @@
         "Ajouter": "Añadir",
         "Nom": "Nombre",
         "Valeur": "Valor",
-        "Action": "Valores",
+        "Action": "Acción",
         "Disposition": "Provisión",
         "Mise en forme de la tuile par défaut ou en mode tableau.": "Formatear el mosaico por defecto o en modo tabla",
         "Mise en forme générale": "Formato general",
@@ -766,7 +766,7 @@
         "différent": "diferente",
         "pendant plus de": "Por más de",
         "durée en minutes (laisser vide pour une action immédiate)": "duración en minutos (déjelo en blanco para una acción inmediata)",
-        "Action": "Valores",
+        "Action": "Acción",
         "Ajouter": "Añadir",
         "Action avant exécution de la commande": "Acción antes de la ejecución de la orden",
         "Action après exécution de la commande": "Después de ejecutar la acción de la orden",
@@ -898,7 +898,7 @@
         "Date et heure": "Fecha y hora",
         "Source": "Fuente",
         "Description": "Descripción",
-        "Action": "Valores",
+        "Action": "Acción",
         "Occurrences": "Ocurrencias",
         "Centre de Messages": "Centro de mensajes"
     },
@@ -929,7 +929,7 @@
         "3 ans": "3 años",
         "Jamais": "Nunca",
         "Purge": "Purga",
-        "Action": "Valores",
+        "Action": "Acción",
         "Configuration de la commande": "Configuración del comando",
         "Exporter la commande": "Exportar el comando",
         "Modifications sauvegardées avec succès": "Cambios guardados exitosamente"
@@ -1022,7 +1022,7 @@
         "ID": "IDENTIFICACIÓN",
         "Type": "Tipo",
         "Valeur": "Valor",
-        "Action": "Valores",
+        "Action": "Acción",
         "Date de valeur": "Fecha valor",
         "Date de collecte": "Fecha de recogida",
         "Graphique de fond": "Gráfico de fondo",
@@ -1094,7 +1094,7 @@
         "Nom object": "Nombre objeto",
         "Type": "Tipo",
         "ID du lien": "Identificación del enlace",
-        "Action": "Valores",
+        "Action": "Acción",
         "Configuration": "Configuración ",
         "Composant supprimée": "Componente eliminado",
         "Configuration du composant": "Configuración de componentes",
@@ -1113,7 +1113,7 @@
         "Version": "Versión",
         "Remarque": "Observación",
         "Commande": "Comando",
-        "Action": "Valores",
+        "Action": "Acción",
         "Incompatible avec l\\'OS": "Incompatible con OS",
         "Mise à jour": "Actualización",
         "oui": "Si",
@@ -1342,7 +1342,7 @@
         "Macro simple": "Macro individual",
         "Macro binaire": "Macro binario",
         "Widget au survol": "Resumen del Widget",
-        "Action": "Valores",
+        "Action": "Acción",
         "Equipement": "Dispositivos",
         "Afficher au survol": "Mostrar en paso elevado",
         "Afficher sur un clic": "Mostrar en un clic",
@@ -2149,7 +2149,7 @@
         "Périphérique(s) enregistré(s)": "Dispositivo (s) registrado (s)",
         "Supprimer tout": "Eliminar todo",
         "Identification": "Identificación",
-        "Action": "Valores",
+        "Action": "Acción",
         "Supprimer": "Eliminar"
     },
     "desktop\/php\/modaldisplay.php": {
@@ -2309,7 +2309,7 @@
         "Description": "Descripción",
         "Ajouter un bloc": "Agregar bloque",
         "Si\/Alors\/Sinon": "Si\/Entonces\/Sino",
-        "Action": "Valores",
+        "Action": "Acción",
         "Boucle": "Bucle",
         "Dans": "Dentro de",
         "A": "PARA",
@@ -2479,7 +2479,7 @@
         "Déconnecter": "Desconectar",
         "Périphérique(s) enregistré(s)": "Dispositivo(s) registrado(s)",
         "Supprimer tout": "Borrar todo",
-        "Action": "Valores",
+        "Action": "Acción",
         "Supprimer": "Borrar"
     },
     "desktop\/php\/database.php": {
@@ -2524,7 +2524,7 @@
         "Nom": "Nombre",
         "Status": "Estado",
         "Date lancement": "Fecha Lanzamiento",
-        "Action": "Valores"
+        "Action": "Acción"
     },
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -2773,7 +2773,7 @@
         "Statut": "Estado",
         "Actif": "Activo",
         "Inactif": "Inactivo",
-        "Action": "Valores",
+        "Action": "Acción",
         "Désactiver": "Desactivar",
         "Votre version de": "Su versión de",
         "ne permet pas d\\'activer ce plugin": "no permite activar este complemento",
@@ -3011,7 +3011,7 @@
         "Sauvegarder": "Guardar"
     },
     "desktop\/js\/interact.js": {
-        "Action": "Valores",
+        "Action": "Acción",
         "Sélectionner un mot-clé": "Seleccionar una palabra clave",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "¿Estás seguro de que deseas regenerar todas las interacciones (esto puede ser muy largo)?",
         "Toutes les interactions ont été régénérées": "Todas las interacciones han sido regeneradas",
@@ -3260,7 +3260,7 @@
         "Coller un bloc après celui-ci.<br>Ctrl+Click: remplacer ce bloc par le bloc copié.": "Pega un bloque después de esto. <br> Ctrl + Click: reemplazar este bloque con el bloque copiado",
         "Afficher\/masquer le bloc Sinon": "Mostrar\/ocultar el bloque",
         "Ajouter": "Añadir",
-        "Action": "Valores",
+        "Action": "ACCIÓN",
         "Bloc Si\/Alors\/Sinon": "Bloque Si\/Entonces\/Si no",
         "Bloc Action": "Bloque de acción",
         "Bloc Boucle": "Bloque de bucle",
@@ -3437,7 +3437,7 @@
         "Message pour la commande": "Mensaje para pedido",
         "Message": "Mensaje",
         "Info": "Información",
-        "Action": "Valores",
+        "Action": "Acción",
         "Sélectionner la commande": "Seleccione el comando",
         "Valider": "Validar",
         "Annuler": "Cancelar"
@@ -3751,7 +3751,7 @@
         "Info": "Información",
         "Numérique": "Digital",
         "Binaire": "Binario",
-        "Action": "Valores",
+        "Action": "Acción",
         "Défaut": "Por defecto",
         "Curseur": "Cursor",
         "Message": "Mensaje",
@@ -4484,7 +4484,7 @@
         "L\\'équipement cible n\\'existe pas": "El dispositivo de destino no existe",
         "Erreur lors de la migration d\\'équipement": "Error al migrar equipo",
         "Equipement": "Dispositivos",
-        "Action": "Valores"
+        "Action": "Acción"
     },
     "core\/class\/interactDef.class.php": {
         "La commande (demande) ne peut pas être vide": "El pedido (solicitud) no puede estar vacío",
@@ -4745,7 +4745,7 @@
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Escenario",
-        "Action": "Valores",
+        "Action": "Acción",
         "Démarrer": "Iniciar",
         "Démarrer (sync)": "Iniciar (sync)",
         "Arrêter": "Detener",
@@ -4784,7 +4784,7 @@
     "core\/template\/scenario\/equipement.default.html": {
         "Equipement": "Dispositivos",
         "Sélectionner un équipement": "Seleccionar dispositivo",
-        "Action": "Valores",
+        "Action": "Acción",
         "Visible": "Visible",
         "Masquer": "Ocultar",
         "Activer": "Activar",

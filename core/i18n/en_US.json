@@ -153,7 +153,7 @@
         "Nom": "Name",
         "Status": "Status",
         "Date lancement": "Date start",
-        "Action": "Stock"
+        "Action": "Action"
     },
     "mobile\/html\/notes.html": {
         "Ajouter": "Add",
@@ -189,7 +189,7 @@
         "Nom": "Name",
         "Status": "Status",
         "Date lancement": "Date start",
-        "Action": "Stock"
+        "Action": "Action"
     },
     "mobile\/html\/log.html": {
         "Supprimer tous": "Delete all",
@@ -245,7 +245,7 @@
         "Type": "Type",
         "ID du lien": "Link ID",
         "Lien": "Link",
-        "Action": "Stock",
+        "Action": "Action",
         "Lien mort ou absent": "Dead or missing link",
         "Supprimer": "Remove",
         "Configuration": "Configuration",
@@ -366,7 +366,7 @@
         "Nom": "Name",
         "Valeur": "Value",
         "Utilisée dans": "Used in",
-        "Action": "Stock",
+        "Action": "Action",
         "Êtes-vous sûr de vouloir supprimer la variable": "Are you sure you want to delete the variable",
         "Dépôt de données supprimé": "Data repository deleted",
         "Dépôt de données sauvegardé": "Data repository saved",
@@ -528,7 +528,7 @@
         "Ajouter": "Add",
         "Nom": "Name",
         "Valeur": "Value",
-        "Action": "Stock",
+        "Action": "Action",
         "Disposition": "Layout",
         "Mise en forme de la tuile par défaut ou en mode tableau.": "Formatting the tile by default or in table mode",
         "Mise en forme générale": "General formatting",
@@ -766,7 +766,7 @@
         "différent": "different",
         "pendant plus de": "for more than",
         "durée en minutes (laisser vide pour une action immédiate)": "duration in minutes (leave blank for immediate action)",
-        "Action": "Stock",
+        "Action": "Action",
         "Ajouter": "Add",
         "Action avant exécution de la commande": "Pre-execution action",
         "Action après exécution de la commande": "Post-execution action",
@@ -898,7 +898,7 @@
         "Date et heure": "Time",
         "Source": "Source",
         "Description": "Description",
-        "Action": "Stock",
+        "Action": "Action",
         "Occurrences": "Occurrences",
         "Centre de Messages": "Message Center"
     },
@@ -929,7 +929,7 @@
         "3 ans": "3 years",
         "Jamais": "Never",
         "Purge": "Purge",
-        "Action": "Stock",
+        "Action": "Action",
         "Configuration de la commande": "Command setup",
         "Exporter la commande": "Export the command",
         "Modifications sauvegardées avec succès": "Changes successfully saved"
@@ -1022,7 +1022,7 @@
         "ID": "ID",
         "Type": "Type",
         "Valeur": "Value",
-        "Action": "Stock",
+        "Action": "Action",
         "Date de valeur": "Value date",
         "Date de collecte": "Date of collection",
         "Graphique de fond": "Background graphic",
@@ -1094,7 +1094,7 @@
         "Nom object": "Object name",
         "Type": "Type",
         "ID du lien": "Link ID",
-        "Action": "Stock",
+        "Action": "Action",
         "Configuration": "Configuration",
         "Composant supprimée": "Component removed",
         "Configuration du composant": "Component configuration",
@@ -1342,7 +1342,7 @@
         "Macro simple": "Single macro",
         "Macro binaire": "Binary macro",
         "Widget au survol": "Hover widget",
-        "Action": "Stock",
+        "Action": "Action",
         "Equipement": "Equipment",
         "Afficher au survol": "Show on hover",
         "Afficher sur un clic": "Show on click",
@@ -2149,7 +2149,7 @@
         "Périphérique(s) enregistré(s)": "Registered device",
         "Supprimer tout": "Delete all",
         "Identification": "Identification",
-        "Action": "Stock",
+        "Action": "Action",
         "Supprimer": "Delete"
     },
     "desktop\/php\/modaldisplay.php": {
@@ -2309,7 +2309,7 @@
         "Description": "Description",
         "Ajouter un bloc": "Add block",
         "Si\/Alors\/Sinon": "If \/ Do \/ Else",
-        "Action": "Stock",
+        "Action": "Action",
         "Boucle": "Loop",
         "Dans": "In",
         "A": "At",
@@ -2479,7 +2479,7 @@
         "Déconnecter": "Log-out",
         "Périphérique(s) enregistré(s)": "Registered device",
         "Supprimer tout": "Delete all",
-        "Action": "Stock",
+        "Action": "Action",
         "Supprimer": "Delete"
     },
     "desktop\/php\/database.php": {
@@ -2524,7 +2524,7 @@
         "Nom": "Name",
         "Status": "Status",
         "Date lancement": "Date start",
-        "Action": "Stock"
+        "Action": "Action"
     },
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -2773,7 +2773,7 @@
         "Statut": "Status",
         "Actif": "Active",
         "Inactif": "Inactive",
-        "Action": "Stock",
+        "Action": "Action",
         "Désactiver": "Disable",
         "Votre version de": "Your version of",
         "ne permet pas d\\'activer ce plugin": "does not allow to activate this plugin",
@@ -3260,7 +3260,7 @@
         "Coller un bloc après celui-ci.<br>Ctrl+Click: remplacer ce bloc par le bloc copié.": "Paste a block after this. <br> Ctrl + Click: replace this block with the copied block",
         "Afficher\/masquer le bloc Sinon": "Show \/ hide Else block",
         "Ajouter": "Add",
-        "Action": "Stock",
+        "Action": "ACTION",
         "Bloc Si\/Alors\/Sinon": "If \/ Do \/ Else block",
         "Bloc Action": "Action Block",
         "Bloc Boucle": "Loop Block",
@@ -3751,7 +3751,7 @@
         "Info": "Information",
         "Numérique": "Numeric",
         "Binaire": "Binary",
-        "Action": "Stock",
+        "Action": "Action",
         "Défaut": "Default",
         "Curseur": "Cursor",
         "Message": "Message",
@@ -4745,7 +4745,7 @@
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Scenario",
-        "Action": "Stock",
+        "Action": "Action",
         "Démarrer": "Start",
         "Démarrer (sync)": "Start (sync)",
         "Arrêter": "Stop",
@@ -4784,7 +4784,7 @@
     "core\/template\/scenario\/equipement.default.html": {
         "Equipement": "Equipment",
         "Sélectionner un équipement": "Select equipment",
-        "Action": "Stock",
+        "Action": "Action",
         "Visible": "Visible",
         "Masquer": "Hide",
         "Activer": "Enable",
