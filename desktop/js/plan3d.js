@@ -138,9 +138,8 @@ window.registerEvent('resize', function() {
   } catch (error) { }
 }, false)
 
-window.registerEvent('dblclick', function() {
-  if (!isset(event.path)) return
-  if (!EDIT_MODE || event.path[0].nodeName != 'CANVAS') {
+window.registerEvent('dblclick', function(event) {
+  if (!EDIT_MODE || event.target.tagName != 'CANVAS') {
     return
   }
   offset = $('#div_display3d').offset()
@@ -161,8 +160,7 @@ window.registerEvent('click', handleClick3d, false)
 window.registerEvent('touchend', handleClick3d, false)
 
 function handleClick3d(event) {
-  if (!isset(event.path)) return
-  if (!event.path[0] || event.path[0].nodeName != 'CANVAS') {
+  if (event.target.tagName != 'CANVAS') {
     return
   }
   $('#md_plan3dWidget').empty()
