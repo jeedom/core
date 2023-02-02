@@ -215,8 +215,6 @@ function setTheme() {
 		//Cron helper:
 		//include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
 		//include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
-
-		include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
     }
 
 	//jQuery less libs:

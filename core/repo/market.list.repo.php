@@ -1,56 +1,60 @@
 <?php
-if (!isConnect('admin')) {
-	throw new Exception('{{401 - Accès non autorisé}}');
-}
+	if (!isConnect('admin')) {
+		throw new Exception('{{401 - Accès non autorisé}}');
+	}
 
-$type = init('type', null);
-$categorie = init('categorie', null);
-$name = init('name', null);
-$author = init('author', null);
-if ($name == 'false') {
-	$name = null;
-}
-if ($author == null && $name === null && $categorie === null && init('certification', null) === null && init('cost', null) === null && $type == 'plugin') {
-	$default = true;
-	$markets = repo_market::byFilter(array(
-		'status' => 'stable',
-		'type' => 'plugin',
-		'timeState' => 'popular',
-	));
-	$markets2 = repo_market::byFilter(array(
-		'status' => 'stable',
-		'type' => 'plugin',
-		'timeState' => 'newest',
-	));
-	$markets = array_merge($markets, $markets2);
-} else {
-	$default = false;
-	$markets = repo_market::byFilter(
-		array(
-			'status' => null,
-			'type' => $type,
-			'categorie' => $categorie,
-			'name' => $name,
-			'author' => $author,
-			'cost' => init('cost', null),
-			'timeState' => init('timeState'),
-			'certification' => init('certification', null)
-		)
-	);
-}
+	$type = init('type', null);
+	$categorie = init('categorie', null);
+	$name = init('name', null);
+	$author = init('author', null);
 
-function buildUrl($_key, $_value) {
-	$url = 'index.php?v=d&modal=update.display&';
-	foreach ($_GET as $key => $value) {
-		if ($_key != $key) {
-			$url .= $key . '=' . urlencode($value) . '&';
+	if ($name == 'false') {
+		$name = null;
+	}
+
+	if ($author == null && $name === null && $categorie === null && init('certification', null) === null && init('cost', null) === null && $type == 'plugin') {
+		$default = true;
+		$markets = repo_market::byFilter(array(
+			'status' => 'stable',
+			'type' => 'plugin',
+			'timeState' => 'popular',
+		));
+		$markets2 = repo_market::byFilter(array(
+			'status' => 'stable',
+			'type' => 'plugin',
+			'timeState' => 'newest',
+		));
+		$markets = array_merge($markets, $markets2);
+	} else {
+		$default = false;
+		$markets = repo_market::byFilter(
+			array(
+				'status' => null,
+				'type' => $type,
+				'categorie' => $categorie,
+				'name' => $name,
+				'author' => $author,
+				'cost' => init('cost', null),
+				'timeState' => init('timeState'),
+				'certification' => init('certification', null)
+			)
+		);
+	}
+
+	function buildUrl($_key, $_value) {
+		$url = 'index.php?v=d&modal=update.display&';
+		foreach ($_GET as $key => $value) {
+			if ($_key != $key) {
+				$url .= $key . '=' . urlencode($value) . '&';
+			}
 		}
+		if ($_key != '' && $_value != '') {
+			$url .= $_key . '=' . urlencode($_value);
+		}
+		return $url;
 	}
-	if ($_key != '' && $_value != '') {
-		$url .= $_key . '=' . urlencode($_value);
-	}
-	return $url;
-}
+
+	include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js')
 ?>
 
 <div id="md_marketListRepo" data-modalType="md_marketListRepo">

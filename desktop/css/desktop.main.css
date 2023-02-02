@@ -1861,10 +1861,6 @@ div.eqLogic-widget.editingMode .panelLink {
     padding: 1em;
   }
 
-  .lazy {
-    border: none !important;
-  }
-
   .div_rowZones {
     background-color: rgb(var(--bg-color)) !important;
     border-radius: var(--border-radius) !important;
