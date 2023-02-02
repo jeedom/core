@@ -84,7 +84,7 @@ function initEquipment(_object_id) {
   }
 
   $('body').on('orientationChanged', function(event, _orientation) {
-    deviceInfo = getDeviceType()
+    jeedomUtils.userDevice = getDeviceType()
     jeedomUtils.setTileSize('.eqLogic, .scenario')
     document.querySelectorAll('#div_displayEquipement > .objectHtml, .div_displayEquipement .objectHtml').forEach(_div => { Packery.data(_div).layout() })
   })

@@ -225,9 +225,8 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 */
 document.addEventListener('DOMContentLoaded', function() {
   jeedom.init()
-  jeedomUtils.userDeviceType = getDeviceType()['type']
-  jeedomUtils.userDeviceSubType = getDeviceType()['subType']
-  document.body.setAttribute('data-device', jeedomUtils.userDeviceType)
+  jeedomUtils.userDevice = getDeviceType()
+  document.body.setAttribute('data-device', jeedomUtils.userDevice.type)
   document.body.setAttribute('data-page', getUrlVars('p'))
   document.body.style.setProperty('--bkg-opacity-light', jeedom.theme['interface::background::opacitylight'])
   document.body.style.setProperty('--bkg-opacity-dark', jeedom.theme['interface::background::opacitydark'])
@@ -1354,7 +1353,6 @@ jeedomUtils.addOrUpdateUrl = function(_param, _value, _title) {
 }
 
 //Global UI functions__
-jeedomUtils.userDeviceType = 'mobile'
 jeedomUtils.setJeedomMenu = function() {
   document.getElementById('jeedomMenuBar')?.addEventListener('click', function(event) {
     var _target = null

@@ -274,7 +274,7 @@ jeedom.scenario.refreshValue = function(_params) {
       }
       var tile = domUtils.parseHTML(result)
       sc.empty().appendChild(result.childNodes)
-      if (jeedomUtils.userDeviceType == undefined) {
+      if (jeedomUtils.userDevice.type == undefined) {
         sc.triggerEvent('create')
         jeedomUtils.setTileSize('.scenario');
       }

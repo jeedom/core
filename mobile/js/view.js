@@ -67,10 +67,10 @@ function initView(_view_id) {
 
   $(window).on("resize", function(event) {
     setTimeout(function(){
-      if (deviceInfo.type == 'phone') {
-        $('.chartContainer').width((deviceInfo.width - 20))
+      if (jeedomUtils.userDevice.type == 'phone') {
+        $('.chartContainer').width((jeedomUtils.userDevice.width - 20))
       } else {
-        $('.chartContainer').width(((deviceInfo.width / 2) - 20))
+        $('.chartContainer').width(((jeedomUtils.userDevice.width / 2) - 20))
       }
       jeedomUtils.setTileSize('.eqLogic, .scenario')
       $('.eqLogicZone').packery({gutter : 0})
@@ -102,10 +102,10 @@ function displayView(html) {
   if (isset(html.raw) && isset(html.raw.configuration) && isset(html.raw.configuration.displayObjectName) && html.raw.configuration.displayObjectName == 1) {
     $('.eqLogic-widget, .scenario-widget').addClass('displayObjectName')
   }
-  if (deviceInfo.type == 'phone') {
-    $('.chartContainer').width((deviceInfo.width - 20))
+  if (jeedomUtils.userDevice.type == 'phone') {
+    $('.chartContainer').width((jeedomUtils.userDevice.width - 20))
   } else {
-    $('.chartContainer').width(((deviceInfo.width / 2) - 20))
+    $('.chartContainer').width(((jeedomUtils.userDevice.width / 2) - 20))
   }
   jeedomUtils.setTileSize('.eqLogic, .scenario')
   $('.eqLogicZone').packery({gutter : 0})

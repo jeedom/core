@@ -164,8 +164,7 @@ jeedom.history.modalchangePoint = function(event, _this, _params) {
     return
   }
 
-  var deviceInfo = getDeviceType()
-  if (deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') return
+  if (jeedomUtils.userDevice.type == 'tablet' || jeedomUtils.userDevice.type == 'phone') return
 
   if (event.target.closest('div.jeeDialog') != null) return
   if (jeedom.history.chart[_this.series.chart._jeeId].comparing) return

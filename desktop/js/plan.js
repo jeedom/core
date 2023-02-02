@@ -18,7 +18,6 @@
 
 if (!jeeFrontEnd.plan) {
   jeeFrontEnd.plan = {
-    deviceInfo: null,
     contextMenu: null,
     planHeaderContextMenu: {},
     resizeObservers: [],
@@ -28,11 +27,10 @@ if (!jeeFrontEnd.plan) {
     clickedOpen: false,
     init: function() {
       window.jeeP = this
-      this.deviceInfo = getDeviceType()
       this.pageContainer = document.getElementById('div_pageContainer')
       this.planContainer = document.querySelector('.div_displayObject')
       this.planHeaderContextMenu = {}
-      if (typeof jeeFrontEnd.planEditOption === 'undefined' || this.deviceInfo.type != 'desktop') {
+      if (typeof jeeFrontEnd.planEditOption === 'undefined' || jeedomUtils.userDevice.type != 'desktop') {
         jeeFrontEnd.planEditOption = {
           state: false,
           snap: false,
@@ -54,7 +52,7 @@ if (!jeeFrontEnd.plan) {
       }
 
       //Shortcuts:
-      if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
+      if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
         document.registerEvent('keydown', function(event) {
           if (jeedomUtils.getOpenedModal()) return
 
@@ -200,7 +198,7 @@ if (!jeeFrontEnd.plan) {
           document.getElementById('div_grid').style.width = jeeFrontEnd.plan.planContainer.offsetWidth + 'px'
           document.getElementById('div_grid').style.height = jeeFrontEnd.plan.planContainer.offsetHeight + 'px'
 
-          if (jeeP.deviceInfo.type != 'desktop') {
+          if (jeedomUtils.userDevice.type != 'desktop') {
             document.querySelector('meta[name="viewport"]').setAttribute("content", 'width=' + domDisplayObject.offsetWidth + 'px, height=' + domDisplayObject.offsetHeight + 'px')
             jeeP.fullScreen(true)
             window.registerEvent('popstate', function(event) {
@@ -750,7 +748,7 @@ jeeFrontEnd.plan.displayPlan()
 jeeFrontEnd.plan.postInit()
 
 //Context menu:
-if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
+if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
   //Object context menu
 
   jeeP.elementContexMenu = new jeeCtxMenu({
@@ -1413,7 +1411,7 @@ document.querySelector('.div_displayObject').addEventListener('mouseleave', func
 
 
 //back to mobile home with three fingers on mobile:
-if (user_isAdmin == 1 && document.body.getAttribute('data-device') == 'mobile') {
+if (user_isAdmin == 1 && jeedomUtils.userDevice.type == 'mobile') {
   document.body.registerEvent('touchstart', function (event) {
     if (event.touches.length == 3) {
       event.preventDefault()

@@ -67,7 +67,6 @@ function initScenario() {
 
       //size and pack:
       setTimeout(function() {
-        deviceInfo = getDeviceType()
         jeedomUtils.setTileSize('.scenario')
       }, 100)
     }
@@ -83,7 +82,7 @@ function initScenario() {
   }, '.toggleShowGroup')
 
   $('body').on('orientationChanged', function(event, _orientation) {
-    deviceInfo = getDeviceType()
+    jeedomUtils.userDevice = getDeviceType()
     jeedomUtils.setTileSize('.scenario')
   })
 

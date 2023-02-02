@@ -364,7 +364,6 @@ function isset() {
 var user_id
 var user_login
 var plugins
-var deviceInfo
 var defaultMobilePage = null
 
 jeedomUtils.initApplication = function(_reinit) {
@@ -425,9 +424,8 @@ jeedomUtils.initApplication = function(_reinit) {
         plugins = data.result.plugins
         jeeFrontEnd.userProfils = data.result.userProfils
         jeedom.init()
-        jeedomUtils.userDeviceType = getDeviceType()['type']
-        jeedomUtils.userDeviceSubType = getDeviceType()['subType']
-        document.body.setAttribute('data-device', jeedomUtils.userDeviceType)
+        jeedomUtils.userDevice = getDeviceType()
+        document.body.setAttribute('data-device', jeedomUtils.userDevice.type)
 
         let include = []
         if (typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' && Object.keys(jeedom.theme.css).length > 0) {
@@ -510,7 +508,6 @@ jeedomUtils.initApplication = function(_reinit) {
         $.get("core/php/icon.inc.php", function (data) {
           document.head.insertAdjacentHTML('beforeend', data)
           $.include(include, function() {
-            deviceInfo = getDeviceType()
             jeedom.object.summaryUpdate([{object_id:'global'}])
 	      //store default mobile page user preference:
 	      if (isset(jeeFrontEnd.userProfils) && jeeFrontEnd.userProfils != null && isset(jeeFrontEnd.userProfils.homePageMobile) && jeeFrontEnd.userProfils.homePageMobile != 'home') {
@@ -861,7 +858,7 @@ jeedomUtils.setTileSize = function(_filter) {
   if (typeof jeedom.theme['widget::margin'] == 'undefined') {
     jeedom.theme['widget::margin'] = 4
   }
-  let bsize = deviceInfo.bSize
+  let bsize = jeedomUtils.userDevice.bSize
 
   document.querySelectorAll(_filter)?.forEach( function(node) {
     Object.assign(node.style, {margin:"0px", padding:"0px"})

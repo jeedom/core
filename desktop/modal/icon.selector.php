@@ -135,7 +135,7 @@ if (!jeeFrontEnd.md_iconSelector) {
       this.setJsTree()
     },
     postInit: function() {
-      if (getDeviceType()['type'] == 'desktop') document.getElementById("in_searchIconSelector").focus()
+      if (jeedomUtils.userDevice.type == 'desktop') document.getElementById("in_searchIconSelector").focus()
 
       var icon = '<sup class="pull-right"><i class="fas fa-question-circle" title="{{Clic droit sur un dossier pour ouvrir le menu contextuel}}"></i></sup>'
       document.getElementById('treeFolder-img')?.insertAdjacentHTML('afterbegin', icon)
