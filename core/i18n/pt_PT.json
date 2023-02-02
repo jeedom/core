@@ -146,13 +146,14 @@
         "Date": "Data",
         "Source": "Fonte",
         "Description": "Descrição",
+        "Action": "Estoque",
         "Occurrences": "Ocorrências"
     },
     "mobile\/html\/deamon.html": {
         "Nom": "Nome",
         "Status": "Estado",
         "Date lancement": "Data de lançamento",
-        "Action": "Ação"
+        "Action": "Estoque"
     },
     "mobile\/html\/notes.html": {
         "Ajouter": "Adicionar",
@@ -188,7 +189,7 @@
         "Nom": "Nome",
         "Status": "Estado",
         "Date lancement": "Data de lançamento",
-        "Action": "Ação"
+        "Action": "Estoque"
     },
     "mobile\/html\/log.html": {
         "Supprimer tous": "Eliminar tudo",
@@ -244,7 +245,7 @@
         "Type": "Tipo",
         "ID du lien": "ID do link",
         "Lien": "Link",
-        "Action": "Ação",
+        "Action": "Estoque",
         "Lien mort ou absent": "Link morto ou ausente",
         "Supprimer": "Retirar",
         "Configuration": "Configuração",
@@ -261,7 +262,7 @@
         "Type": "Tipo",
         "Groupement": "Grupo",
         "Escalier": "Escada",
-        "Action": "Ação",
+        "Action": "Estoque",
         "Sauvegarde effectuée": "Backup feito",
         "Formule de calcul": "Fórmula de calculo",
         "Sélectionner la commande": "Selecionar o comando",
@@ -351,7 +352,7 @@
         "Champs": "Campos",
         "Index": "Índice",
         "SQL": "SQL",
-        "Action": "Ação",
+        "Action": "Estoque",
         "Corriger": "Corrigir",
         "Êtes-vous sûr de vouloir corriger toutes les tables ?": "Tem certeza de que deseja corrigir todas as tabelas?",
         "Êtes-vous sûr de vouloir corriger la table": "Tem certeza de que deseja corrigir a tabela",
@@ -365,7 +366,7 @@
         "Nom": "Nome",
         "Valeur": "Valor",
         "Utilisée dans": "Usado em",
-        "Action": "Ação",
+        "Action": "Estoque",
         "Êtes-vous sûr de vouloir supprimer la variable": "Tem certeza que deseja apagar a variável",
         "Dépôt de données supprimé": "Repositório de dados removido",
         "Dépôt de données sauvegardé": "Repositório de dados guardado",
@@ -527,7 +528,7 @@
         "Ajouter": "Adicionar",
         "Nom": "Nome",
         "Valeur": "Valor",
-        "Action": "Ação",
+        "Action": "Estoque",
         "Disposition": "Disposição",
         "Mise en forme de la tuile par défaut ou en mode tableau.": "Formatando o bloco por padrão ou no modo de tabela",
         "Mise en forme générale": "Formatação geral",
@@ -765,7 +766,7 @@
         "différent": "diferente",
         "pendant plus de": "por mais que",
         "durée en minutes (laisser vide pour une action immédiate)": "duração em minutos (deixe em branco para ação imediata)",
-        "Action": "Ação",
+        "Action": "Estoque",
         "Ajouter": "Adicionar",
         "Action avant exécution de la commande": "Ação antes de executar o comando",
         "Action après exécution de la commande": "Ação após a execução da ordem",
@@ -897,7 +898,7 @@
         "Date et heure": "Data e hora",
         "Source": "Fonte",
         "Description": "Descrição",
-        "Action": "Ação",
+        "Action": "Estoque",
         "Occurrences": "Ocorrências",
         "Centre de Messages": "Centro de mensagens"
     },
@@ -928,7 +929,7 @@
         "3 ans": "3 anos",
         "Jamais": "Nunca",
         "Purge": "Purgar",
-        "Action": "Ação",
+        "Action": "Estoque",
         "Configuration de la commande": "Configuração do comando",
         "Exporter la commande": "Exportar o comando",
         "Modifications sauvegardées avec succès": "Alterações guardadas com sucesso"
@@ -1021,7 +1022,7 @@
         "ID": "EU IRIA",
         "Type": "Tipo",
         "Valeur": "Valor",
-        "Action": "Ação",
+        "Action": "Estoque",
         "Date de valeur": "Data de validade",
         "Date de collecte": "Data de coleta",
         "Graphique de fond": "Gráfico de fundo",
@@ -1093,7 +1094,7 @@
         "Nom object": "Nome do objeto",
         "Type": "Tipo",
         "ID du lien": "ID do link",
-        "Action": "Ação",
+        "Action": "Estoque",
         "Configuration": "Configuração",
         "Composant supprimée": "Componente removido",
         "Configuration du composant": "Configuração de componentes",
@@ -1112,7 +1113,7 @@
         "Version": "Versão",
         "Remarque": "Nota",
         "Commande": "Comando",
-        "Action": "Ação",
+        "Action": "Estoque",
         "Incompatible avec l\\'OS": "Incompatível com sistema operativo",
         "Mise à jour": "Actualização",
         "oui": "Sim",
@@ -1341,7 +1342,7 @@
         "Macro simple": "Macro simples",
         "Macro binaire": "Macro binária",
         "Widget au survol": "Widget destacado",
-        "Action": "Ação",
+        "Action": "Estoque",
         "Equipement": "Equipamento",
         "Afficher au survol": "Mostrar destacado",
         "Afficher sur un clic": "Mostrar num clique",
@@ -2148,7 +2149,7 @@
         "Périphérique(s) enregistré(s)": "Dispositivo(s) registado(s)",
         "Supprimer tout": "Apagar tudo",
         "Identification": "Identificação",
-        "Action": "Ação",
+        "Action": "Estoque",
         "Supprimer": "Eliminar"
     },
     "desktop\/php\/modaldisplay.php": {
@@ -2308,7 +2309,7 @@
         "Description": "Descrição",
         "Ajouter un bloc": "Adicionar um bloco",
         "Si\/Alors\/Sinon": "Se\/Então\/Senão",
-        "Action": "Ação",
+        "Action": "Estoque",
         "Boucle": "Loop",
         "Dans": "Em",
         "A": "À(s)",
@@ -2478,7 +2479,7 @@
         "Déconnecter": "Desligar",
         "Périphérique(s) enregistré(s)": "Dispositivo(s) registado(s)",
         "Supprimer tout": "Apagar tudo",
-        "Action": "Ação",
+        "Action": "Estoque",
         "Supprimer": "Eliminar"
     },
     "desktop\/php\/database.php": {
@@ -2523,7 +2524,7 @@
         "Nom": "Nome",
         "Status": "Estado",
         "Date lancement": "Data de lançamento",
-        "Action": "Açao"
+        "Action": "Estoque"
     },
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -2772,7 +2773,7 @@
         "Statut": "Estado",
         "Actif": "Ativo",
         "Inactif": "Inativo",
-        "Action": "Ação",
+        "Action": "Estoque",
         "Désactiver": "Desativar",
         "Votre version de": "A sua versão de",
         "ne permet pas d\\'activer ce plugin": "não permite ativar este plugin",
@@ -3010,7 +3011,7 @@
         "Sauvegarder": "Guardar"
     },
     "desktop\/js\/interact.js": {
-        "Action": "Ação",
+        "Action": "Estoque",
         "Sélectionner un mot-clé": "Selecione uma password",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "Tem certeza de que deseja regenerar todas as interações (isso pode ser muito longo)?",
         "Toutes les interactions ont été régénérées": "Todas as interações foram regeneradas",
@@ -3259,7 +3260,7 @@
         "Coller un bloc après celui-ci.<br>Ctrl+Click: remplacer ce bloc par le bloc copié.": "Colar um bloco depois deste.<br>Ctrl+Click: substituir este bloco pelo bloco copiado",
         "Afficher\/masquer le bloc Sinon": "Mostrar\/ocultar o bloco Senão",
         "Ajouter": "Adicionar",
-        "Action": "AÇÃO",
+        "Action": "Estoque",
         "Bloc Si\/Alors\/Sinon": "Bloco Se\/Então\/Senão",
         "Bloc Action": "Bloco Ação",
         "Bloc Boucle": "Bloco de loop",
@@ -3436,7 +3437,7 @@
         "Message pour la commande": "Mensagem para pedido",
         "Message": "Mensagem",
         "Info": "Informações",
-        "Action": "Açao",
+        "Action": "Estoque",
         "Sélectionner la commande": "Selecione o comando",
         "Valider": "Validar",
         "Annuler": "Cancelar"
@@ -3461,7 +3462,7 @@
         "Options": "Opções",
         "Paramètres": "Definições",
         "Etat": "Estado",
-        "Action": "Ações",
+        "Action": "Estoque",
         "La valeur de la commande vaut par défaut la commande": "O valor do comando é por padrão o comando",
         "Commande": "Encomendado",
         "Valeur retour d\\'état": "Valor de retorno de status",
@@ -3750,7 +3751,7 @@
         "Info": "Informações",
         "Numérique": "Digital",
         "Binaire": "Binário",
-        "Action": "Ação",
+        "Action": "Estoque",
         "Défaut": "Predefinido",
         "Curseur": "Slider",
         "Message": "Mensagem",
@@ -4483,7 +4484,7 @@
         "L\\'équipement cible n\\'existe pas": "O dispositivo de destino não existe",
         "Erreur lors de la migration d\\'équipement": "Erro ao migrar equipamento",
         "Equipement": "Equipamento",
-        "Action": "Açao"
+        "Action": "Estoque"
     },
     "core\/class\/interactDef.class.php": {
         "La commande (demande) ne peut pas être vide": "O comando (solicitação) não pode estar vazio",
@@ -4744,7 +4745,7 @@
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Cenário",
-        "Action": "Ação",
+        "Action": "Estoque",
         "Démarrer": "Iniciar",
         "Démarrer (sync)": "Iniciar (sincronização)",
         "Arrêter": "Parar",
@@ -4783,7 +4784,7 @@
     "core\/template\/scenario\/equipement.default.html": {
         "Equipement": "Equipamento",
         "Sélectionner un équipement": "Selecione o equipamento",
-        "Action": "Ação",
+        "Action": "Estoque",
         "Visible": "Visível",
         "Masquer": "Esconder",
         "Activer": "Ativar",

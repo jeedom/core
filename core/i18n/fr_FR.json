@@ -146,6 +146,7 @@
         "Date": "Date",
         "Source": "Source",
         "Description": "Description",
+        "Action": "Action",
         "Occurrences": "Occurrences"
     },
     "mobile\/html\/deamon.html": {

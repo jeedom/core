@@ -146,6 +146,7 @@
         "Date": "Kencan",
         "Source": "Sumber",
         "Description": "Deskripsi",
+        "Action": "Action",
         "Occurrences": "Occurrences"
     },
     "mobile\/html\/deamon.html": {

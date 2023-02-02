@@ -146,6 +146,7 @@
         "Date": "Tarih",
         "Source": "Kaynak",
         "Description": "Tarif",
+        "Action": "Action",
         "Occurrences": "Olaylar"
     },
     "mobile\/html\/deamon.html": {

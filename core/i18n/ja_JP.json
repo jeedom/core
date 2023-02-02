@@ -146,6 +146,7 @@
         "Date": "日付",
         "Source": "ソース",
         "Description": "説明",
+        "Action": "Action",
         "Occurrences": "出現"
     },
     "mobile\/html\/deamon.html": {
