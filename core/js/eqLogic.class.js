@@ -464,7 +464,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
         } else {
           if (page == 'eqAnalyse' && result[i].alert == '') {
             eqLogic.remove()
-            if (document.querySelector('.alertListContainer').querySelectorAll('.eqLogic').length > 0) {
+            if (document.querySelector('.alertListContainer')?.querySelectorAll('.eqLogic').length > 0) {
               let container = document.querySelector('.alertListContainer')
               Packery.data(container).layout()
             }
