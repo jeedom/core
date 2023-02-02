@@ -42,7 +42,7 @@ sendVarToJS('market_display_info', $market_array);
 						break;
 				}
 				$urlPath = config::byKey('market::address') . '/' . $market->getImg('icon');
-				echo '<img src="' . $default_image . '" data-original="' . $urlPath . '"  class="lazy img-responsive" style="height : 200px;"/>';
+				echo '<img src="' . $urlPath . '" class="img-responsive" style="height : 200px;"/>';
 				?>
 			</center>
 		</div>
@@ -153,13 +153,14 @@ sendVarToJS('market_display_info', $market_array);
 		<div style='padding:25px;margin: 0 5px;width: calc(100% - 20px);'>
 			<div class="variable-width" style="height : 200px;">
 				<?php
-				foreach ($market->getImg('screenshot') as $screenshot) {
-					echo '<div class="item" >';
-					echo '<a class="fancybox cursor" href="' . config::byKey('market::address') . '/' . $screenshot . '" rel="group" >';
-					echo '<img data-lazy="' . config::byKey('market::address') . '/' . $screenshot . '" style="height : 200px;" />';
-					echo '</a>';
-					echo '</div>';
-				}
+					foreach ($market->getImg('screenshot') as $screenshot) {
+						$scrsht = '<div class="item" >';
+						$scrsht .= '<a class="fancybox cursor" href="' . config::byKey('market::address') . '/' . $screenshot . '" rel="group" >';
+						$scrsht .= '<img data-lazy="' . config::byKey('market::address') . '/' . $screenshot . '" style="height : 200px;" />';
+						$scrsht .= '</a>';
+						$scrsht .= '</div>';
+						echo $scrsht;
+					}
 				?>
 			</div>
 		</div>
@@ -272,9 +273,6 @@ sendVarToJS('market_display_info', $market_array);
 
 <script>
 (function() { // Self Isolation!
-	$("img.lazy").lazyload({ event: "sporty" })
-	$("img.lazy").trigger("sporty")
-	$(document).unbind('click.fb-start')
 	$(".fancybox").fancybox({ autoHeight: true })
 	$('.variable-width').slick({
 		dots: true,
