@@ -1044,6 +1044,7 @@ jeedom.history.drawChart = function(_params) {
       jeedom.history.chart[_params.el].dateEnd = data.result.dateEnd
 
       //set plotband:
+      /*
       var extremes = jeedom.history.chart[_params.el].chart.xAxis[0].getExtremes()
       if(!isset(_params.disablePlotBand) || _params.disablePlotBand == false){
         var plotband = jeedom.history.generatePlotBand(extremes.min, extremes.max)
@@ -1051,6 +1052,7 @@ jeedom.history.drawChart = function(_params) {
       for (var i in plotband) {
         jeedom.history.chart[_params.el].chart.xAxis[0].addPlotBand(plotband[i])
       }
+      */
 
       domUtils.hideLoading()
       if (typeof(init(_params.success)) == 'function') {

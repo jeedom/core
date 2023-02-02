@@ -174,6 +174,11 @@ div.jeeDialogContent div[id^="md_"] {
   width: 100%;
   height: 100%;
 }
+div.jeeDialogContent div[id^="md_"] > .input-group {
+  max-width: calc(100% - 7px); /*Chrome fix*/
+}
+
+
 div.jeeDialog.jeeDialogAlert > div.jeeDialogContent,
 div.jeeDialog.jeeDialogConfirm > div.jeeDialogContent,
 div.jeeDialog.jeeDialogPrompt > div.jeeDialogContent {
@@ -268,6 +273,7 @@ div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons {
   right: 10px;
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button {
+  background: transparent;
   background-image: url('../../core/img/win_icons.png');
   background-size: 72px 18px;
   background-repeat: no-repeat;
