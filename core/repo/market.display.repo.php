@@ -1,27 +1,27 @@
 <?php
-if (!isConnect('admin')) {
-	throw new Exception('{{401 - Accès non autorisé}}');
-}
+	if (!isConnect('admin')) {
+		throw new Exception('{{401 - Accès non autorisé}}');
+	}
 
-if (init('id') != '') {
-	$market = repo_market::byId(init('id'));
-}
-if (init('logicalId') != '' && init('type') != '') {
-	$market = repo_market::byLogicalIdAndType(init('logicalId'), init('type'));
-}
-if (!isset($market)) {
-	throw new Exception('404 not found');
-}
-include_file('3rdparty', 'slick/slick.min', 'js');
-include_file('3rdparty', 'slick/slick', 'css');
-include_file('3rdparty', 'slick/slick-theme', 'css');
-include_file('3rdparty', 'fancybox/jquery.fancybox', 'js');
-include_file('3rdparty', 'fancybox/jquery.fancybox', 'css');
+	if (init('id') != '') {
+		$market = repo_market::byId(init('id'));
+	}
+	if (init('logicalId') != '' && init('type') != '') {
+		$market = repo_market::byLogicalIdAndType(init('logicalId'), init('type'));
+	}
+	if (!isset($market)) {
+		throw new Exception('404 not found');
+	}
+	include_file('3rdparty', 'slick/slick.min', 'js');
+	include_file('3rdparty', 'slick/slick', 'css');
+	include_file('3rdparty', 'slick/slick-theme', 'css');
 
-$market_array = utils::o2a($market);
-$market_array['rating'] = $market->getRating();
-$update = update::byLogicalId($market->getLogicalId());
-sendVarToJS('market_display_info', $market_array);
+	include_file('3rdparty', 'fslightbox/fslightbox', 'js');
+
+	$market_array = utils::o2a($market);
+	$market_array['rating'] = $market->getRating();
+	$update = update::byLogicalId($market->getLogicalId());
+	sendVarToJS('market_display_info', $market_array);
 ?>
 
 <div id="md_marketDisplayRepo" data-modalType="md_marketDisplayRepo">
@@ -143,20 +143,19 @@ sendVarToJS('market_display_info', $market_array);
 		echo '<div class="alert alert-danger">{{Attention ce plugin ne semble pas être compatible avec votre système}}</div>';
 	}
 	?>
-	<div style="display: none;width : 100%" id="div_alertMarketDisplay"></div>
 
 	<?php
-	$mbState= config::byKey('mbState');
-	if ($mbState == 0) {
-	if (count($market->getImg('screenshot')) > 0) {
+		$mbState = config::byKey('mbState');
+		if ($mbState == 0) {
+		if (count($market->getImg('screenshot')) > 0) {
 	?>
-		<div style='padding:25px;margin: 0 5px;width: calc(100% - 20px);'>
+		<div style='padding: 25px;'>
 			<div class="variable-width" style="height : 200px;">
 				<?php
 					foreach ($market->getImg('screenshot') as $screenshot) {
 						$scrsht = '<div class="item" >';
-						$scrsht .= '<a class="fancybox cursor" href="' . config::byKey('market::address') . '/' . $screenshot . '" rel="group" >';
-						$scrsht .= '<img data-lazy="' . config::byKey('market::address') . '/' . $screenshot . '" style="height : 200px;" />';
+						$scrsht .= '<a class="cursor" data-type="image" data-fslightbox="gallery" href="' . config::byKey('market::address') . '/' . $screenshot . '" rel="group" >';
+						$scrsht .= '<img src="' . config::byKey('market::address') . '/' . $screenshot . '"/>';
 						$scrsht .= '</a>';
 						$scrsht .= '</div>';
 						echo $scrsht;
@@ -273,13 +272,12 @@ sendVarToJS('market_display_info', $market_array);
 
 <script>
 (function() { // Self Isolation!
-	$(".fancybox").fancybox({ autoHeight: true })
+
 	$('.variable-width').slick({
 		dots: true,
 		speed: 300,
 		accessibility: true,
 		infinite: true,
-		lazyLoad: 'ondemand',
 		slidesToShow: 3,
 		slidesToScroll: 1
 	})

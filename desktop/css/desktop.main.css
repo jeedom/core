@@ -1963,7 +1963,10 @@ div.eqLogic-widget.editingMode .panelLink {
   #md_marketDisplayRepo .slick-next:before {
     color: var(--txt-color);
   }
-
+  #md_marketDisplayRepo .slick-slide > a > img{
+    width: 300px;
+    height: auto !important;
+  }
 
   .glyphicon {
     font-family: "Roboto";
@@ -4316,10 +4319,6 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   #div_displayEqLogicConfigure .btn-info.bt_cmdConfig + .collapse {
     border-left: 1px solid var(--al-info-color);
-  }
-
-  .fancybox-skin {
-    background-color: rgb(var(--bg-color)) !important;
   }
 
   .ui-helper-clearfix {
