@@ -12,9 +12,6 @@
 	if (!isset($market)) {
 		throw new Exception('404 not found');
 	}
-	include_file('3rdparty', 'slick/slick.min', 'js');
-	include_file('3rdparty', 'slick/slick', 'css');
-	include_file('3rdparty', 'slick/slick-theme', 'css');
 
 	include_file('3rdparty', 'fslightbox/fslightbox', 'js');
 
@@ -149,20 +146,23 @@
 		if ($mbState == 0) {
 		if (count($market->getImg('screenshot')) > 0) {
 	?>
-		<div style='padding: 25px;'>
-			<div class="variable-width" style="height : 200px;">
-				<?php
-					foreach ($market->getImg('screenshot') as $screenshot) {
-						$scrsht = '<div class="item" >';
-						$scrsht .= '<a class="cursor" data-type="image" data-fslightbox="gallery" href="' . config::byKey('market::address') . '/' . $screenshot . '" rel="group" >';
-						$scrsht .= '<img src="' . config::byKey('market::address') . '/' . $screenshot . '"/>';
-						$scrsht .= '</a>';
-						$scrsht .= '</div>';
-						echo $scrsht;
-					}
-				?>
-			</div>
-		</div>
+	<section class="slider-wrapper">
+	  <button class="slide-arrow" id="slide-arrow-prev">&#8249;</button>
+	  <button class="slide-arrow" id="slide-arrow-next">&#8250;</button>
+	  <ul class="slides-container" id="slides-container">
+	  	<?php
+			foreach ($market->getImg('screenshot') as $screenshot) {
+				$scrsht = '<li class="slide" >';
+				$scrsht .= '<a class="cursor" data-type="image" data-fslightbox="gallery" href="' . config::byKey('market::address') . '/' . $screenshot . '" rel="group" >';
+				$scrsht .= '<img src="' . config::byKey('market::address') . '/' . $screenshot . '"/>';
+				$scrsht .= '</a>';
+				$scrsht .= '</li>';
+				echo $scrsht;
+			}
+		?>
+	  </ul>
+	</section>
+
 	<?php }
 	?>
 
@@ -273,13 +273,20 @@
 <script>
 (function() { // Self Isolation!
 
-	$('.variable-width').slick({
-		dots: true,
-		speed: 300,
-		accessibility: true,
-		infinite: true,
-		slidesToShow: 3,
-		slidesToScroll: 1
+	//Slide screenshot:
+	const slidesContainer = document.getElementById("slides-container")
+	const slide = document.querySelector(".slide")
+	const prevButton = document.getElementById("slide-arrow-prev")
+	const nextButton = document.getElementById("slide-arrow-next")
+
+	nextButton.addEventListener("click", (event) => {
+		const slideWidth = slide.clientWidth
+		slidesContainer.scrollLeft += slideWidth
+	})
+
+	prevButton.addEventListener("click", (event) => {
+		const slideWidth = slide.clientWidth
+		slidesContainer.scrollLeft -= slideWidth
 	})
 
 	document.getElementById('md_marketDisplayRepo').setJeeValues(market_display_info, '.marketAttr')
