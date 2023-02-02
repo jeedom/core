@@ -4104,8 +4104,6 @@
     },
     "core\/repo\/market.list.repo.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
-        "Widget de type information": "Bilgi widget'ı",
-        "Widget de type action": "İşlem türü widget'ı",
         "Gratuit": "ücretsiz",
         "Payant": "ödeme yapan",
         "Officiel": "Resmi",
@@ -4117,8 +4115,6 @@
         "Rechercher": "Arayın",
         "Retour": "Dönüş",
         "Aucune": "Hayır",
-        "Widget pour la version mobile": "Mobil sürüm için widget",
-        "Widget pour la version bureau": "Masaüstü sürümü widget'ı",
         "par": "tarafından",
         "Market": "Market"
     },

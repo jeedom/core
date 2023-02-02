@@ -4104,8 +4104,6 @@
     },
     "core\/repo\/market.list.repo.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
-        "Widget de type information": "情報ウィジェット",
-        "Widget de type action": "アクションタイプウィジェット",
         "Gratuit": "自由な",
         "Payant": "支払います",
         "Officiel": "公式",
@@ -4117,8 +4115,6 @@
         "Rechercher": "検索",
         "Retour": "リターン",
         "Aucune": "いいえ",
-        "Widget pour la version mobile": "モバイル版のウィジェット",
-        "Widget pour la version bureau": "デスクトップ版ウィジェット",
         "par": "によって",
         "Market": "Market"
     },

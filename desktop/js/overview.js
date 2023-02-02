@@ -167,7 +167,8 @@ if (!jeeFrontEnd.overview) {
 
                   new Packery(self.modalContent, {
                     gutter: parseInt(jeedom.theme['widget::margin']) * 2,
-                    isLayoutInstant: true
+                    isLayoutInstant: true,
+                    transitionDuration: 0,
                   })
 
                   //check is inside screen:

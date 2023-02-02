@@ -4104,8 +4104,6 @@
     },
     "core\/repo\/market.list.repo.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
-        "Widget de type information": "Widget de type information",
-        "Widget de type action": "Widget de type action",
         "Gratuit": "Gratis",
         "Payant": "Payant",
         "Officiel": "Resmi",
@@ -4117,8 +4115,6 @@
         "Rechercher": "Pencarian",
         "Retour": "Retour",
         "Aucune": "Tidak",
-        "Widget pour la version mobile": "Widget pour la version mobile",
-        "Widget pour la version bureau": "Widget pour la version bureau",
         "par": "oleh",
         "Market": "Market"
     },

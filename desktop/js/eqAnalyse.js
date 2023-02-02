@@ -35,7 +35,11 @@ if (!jeeFrontEnd.eqAnalyse) {
       }
 
       jeedomUtils.initDataTables()
-      new Packery(document.querySelector('div.alertListContainer'), { itemSelector: "#alertEqlogic .eqLogic-widget" }).layout()
+      new Packery(document.querySelector('div.alertListContainer'), {
+        itemSelector: "#alertEqlogic .eqLogic-widget",
+        isLayoutInstant: true,
+        transitionDuration: 0,
+        }).layout()
       this.eqlogicsEls = document.querySelectorAll('div.batteryListContainer > div.eqLogic-widget')
     },
     getRemoveCmd: function(_id) {

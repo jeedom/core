@@ -447,7 +447,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
               }
               jeedomUtils.positionEqLogic(result[i].id)
               Packery.data(object_div).destroy()
-              new Packery(object_div, {isLayoutInstant: true})
+              new Packery(object_div, {isLayoutInstant: true, transitionDuration: 0})
 
               document.querySelectorAll('div.eqLogic-widget').forEach(function(element, idx) {
                 element.setAttribute('data-order', idx + 1)
@@ -459,7 +459,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
             jeedomUtils.initTooltips()
             let container = document.querySelector('.alertListContainer')
             Packery.data(container).destroy()
-            new Packery(container, { itemSelector: "#alertEqlogic .eqLogic-widget" })
+            new Packery(container, { itemSelector: "#alertEqlogic .eqLogic-widget", isLayoutInstant: true, transitionDuration: 0 })
           }
         } else {
           if (page == 'eqAnalyse' && result[i].alert == '') {

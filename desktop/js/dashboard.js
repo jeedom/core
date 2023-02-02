@@ -136,7 +136,7 @@ if (!jeeFrontEnd.dashboard) {
         })
 
         document.querySelectorAll('.editingMode').forEach(_edit => {
-          _edit.removeClass('editingMode').removeAttribute('data-editId')
+          _edit.removeClass('editingMode').removeAttribute('data-editid')
           if (_edit._jeeResize) _edit._jeeResize.destroy()
         })
         document.querySelectorAll('.cmd.editOptions').remove()
@@ -184,8 +184,12 @@ if (!jeeFrontEnd.dashboard) {
               jeeFrontEnd.dashboard.draggables.push(draggie)
               pckry.bindDraggabillyEvents(draggie)
               draggie.on('dragEnd', function(event, draggedItem) {
+                if (event.target.nodeName == '#document' || draggedItem.target.hasClass('packery-drop-placeholder')) { //Dropped outside window
+                  pckry.layout()
+                  return
+                }
                 jeeFrontEnd.modifyWithoutSave = true
-                jeedomUI.draggingId = draggedItem.target.closest('.editingMode').getAttribute('data-editId')
+                jeedomUI.draggingId = draggedItem.target.closest('.editingMode').getAttribute('data-editid')
                 jeedomUI.orderItems(pckry)
               })
             })
@@ -210,7 +214,7 @@ if (!jeeFrontEnd.dashboard) {
         //set unique id whatever we have:
         document.querySelectorAll('div.eqLogic-widget, div.scenario-widget').forEach(function(element, index) {
           element.addClass('editingMode')
-          element.setAttribute('data-editId', index)
+          element.setAttribute('data-editid', index)
           element.insertAdjacentHTML('beforeend', '<span class="cmd editOptions cursor"></span>')
         })
 
@@ -275,7 +279,7 @@ if (!jeeFrontEnd.dashboard) {
                 if (nbEqs == 0) {
                   jeedomUtils.positionEqLogic()
                   domUtils.hideLoading()
-                  new Packery(dom_divDisplayEq, {isLayoutInstant: true})
+                  new Packery(dom_divDisplayEq, {isLayoutInstant: true, transitionDuration: 0})
 
                   if (Array.from(dom_divDisplayEq.querySelectorAll('div.eqLogic-widget, div.scenario-widget')).filter(item => item.isVisible()).length == 0) {
                     dom_divDisplayEq.closest('.div_object').remove()
@@ -326,7 +330,7 @@ if (!jeeFrontEnd.dashboard) {
           }
 
           jeedomUtils.positionEqLogic()
-          new Packery(dom_divDisplayEq, {})
+          new Packery(dom_divDisplayEq, {isLayoutInstant: true, transitionDuration: 0})
 
           //synch category filter:
           if (self.url_category != 'all') {
