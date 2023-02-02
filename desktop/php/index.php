@@ -212,6 +212,7 @@ function setTheme() {
 		include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
 		include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
 		include_file('3rdparty', 'jquery.tablesorter/parsers/parser-input-select.min', 'js');
+
 		//Cron helper:
 		//include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
 		//include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
