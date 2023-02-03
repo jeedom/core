@@ -3631,6 +3631,8 @@
         "Thermostat Température Exterieur": "Outside Temperature Thermostat",
         "Thermostat Etat (HUMAIN)": "Thermostat Status (HUMAN)",
         "Thermostat humidité ambiante": "Room humidity thermostat",
+        "Thermostat maximum consigne": "Maximum setpoint thermostat",
+        "Thermostat minimum consigne": "Minimum setpoint thermostat",
         "Humidité consigne": "Set humidity",
         "Mouvement caméra vers le haut": "Camera Move Up",
         "Caméra": "Camera",

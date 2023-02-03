@@ -3631,6 +3631,8 @@
         "Thermostat Température Exterieur": "Außentemperaturthermostat",
         "Thermostat Etat (HUMAIN)": "Thermostatstatus (MENSCH)",
         "Thermostat humidité ambiante": "Raumfeuchtigkeitsthermostat",
+        "Thermostat maximum consigne": "Thermostat mit maximalem Sollwert",
+        "Thermostat minimum consigne": "Mindestsollwertthermostat",
         "Humidité consigne": "Stellen Sie die Luftfeuchtigkeit ein",
         "Mouvement caméra vers le haut": "Kamerabewegung nach oben",
         "Caméra": "Kamera",

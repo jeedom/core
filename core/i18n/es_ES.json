@@ -3631,6 +3631,8 @@
         "Thermostat Température Exterieur": "Termostato de temperatura exterior",
         "Thermostat Etat (HUMAIN)": "Estado del termostato (HUMANOS)",
         "Thermostat humidité ambiante": "Termostato de humedad ambiental",
+        "Thermostat maximum consigne": "Termostato de consigna máxima",
+        "Thermostat minimum consigne": "Termostato de consigna mínima",
         "Humidité consigne": "Establecer humedad",
         "Mouvement caméra vers le haut": "Movimiento de la cámara hacia arriba",
         "Caméra": "Cámara",
