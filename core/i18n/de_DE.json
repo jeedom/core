@@ -1459,7 +1459,6 @@
         "Configuration": "Konfiguration",
         "Sauvegardes": "Sicherungen",
         "Centre de mise à jour": "Update Center",
-        "Restauration Image": "Bildwiederherstellung",
         "Utilisateurs": "Benutzer",
         "Moteur de tâches": "Cron-System",
         "Personnalisation avancée": "Erweiterte Anpassung",
@@ -1524,36 +1523,6 @@
         "Fonctionnalités": "Merkmale",
         "Panel": "Platte"
     },
-    "desktop\/php\/migrate.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Étape 1": "Schritt 1",
-        "Insérez une clé USB avec plus de 8Go libres": "Stecken Sie einen USB-Stick mit mehr als 8 GB frei",
-        "dans votre box Jeedom et cliquez sur": "in Ihrer Jeedom-Box und klicken Sie auf",
-        "Étape 2": "2. Schritt",
-        "Processus de sauvegarde démarré, merci de patienter...": "Sicherungsvorgang gestartet, bitte warten",
-        "Étape 3": "Schritt 3",
-        "Téléchargement de l'image Jeedom.": "Laden Sie das Jeedom-Bild herunter",
-        "Étape 4": "Schritt 4",
-        "Migration de votre box Jeedom": "Migration Ihrer Jeedom-Box",
-        "Étape 5": "Schritt 5",
-        "Finalisation": "Abschluss",
-        "Reprendre la restauration": "Setzen Sie die Wiederherstellung fort",
-        "Cliquez sur \"Reprendre\" pour reprendre la restauration.": "Klicken Sie auf \"Fortsetzen\", um die Wiederherstellung fortzusetzen",
-        "Fermer": "Schließen",
-        "Reprendre": "Zusammenfassung",
-        "Réinstallation de votre sauvegarde": "Neuinstallation Ihres Backups",
-        "Voulez-vous installer votre Backup sur cette box Jeedom ou bien repartir de zéro ?": "Möchten Sie Ihr Backup auf dieser Jeedom-Box installieren oder von vorne beginnen?",
-        "Votre sauvegarde reste à disposition sur votre box dans tous les cas.": "Ihr Backup bleibt in jedem Fall auf Ihrer Box verfügbar",
-        "Si vous choisissez de repartir \"zéro\", n'oubliez pas que les identifiants de connexion par défaut sont admin\/admin": "Wenn Sie bei \"Null\" beginnen möchten, denken Sie daran, dass die Standardanmeldeinformationen admin \/ admin sind",
-        "Zéro": "Null",
-        "Restaurer ma sauvegarde": "Stellen Sie mein Backup wieder her",
-        "Informations Importantes": "Wichtige Informationen",
-        "- Il faut une clé USB de plus de 8Go.": "- Sie benötigen einen USB-Stick mit mehr als 8 GB",
-        "- Il faut être sur le meme réseau Local que votre box Jeedom.": "- Sie müssen sich im selben lokalen Netzwerk wie Ihre Jeedom-Box befinden",
-        "- Accéder à votre Jeedom depuis son adresse interne.": "- Greifen Sie über die interne Adresse auf Ihr Jeedom zu",
-        "- Pouvoir laisser cette page ouverte au minimum 1h30.": "- Um diese Seite mindestens 1h30 geöffnet zu lassen",
-        "C'est parti": "Lass uns gehen"
-    },
     "desktop\/php\/update.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Erreur sur la vérification des mises à jour :": "Fehler beim Überprüfen auf Updates:",
@@ -1567,7 +1536,6 @@
         "Vérifier les mises à jour": "Suchen Sie nach Updates",
         "Sauvegarder": "Speichern",
         "Mettre à jour": "Update",
-        "Mettre à niveau": "Aktualisierung",
         "Core et plugins": "Core und Plugins",
         "OS\/Package": "Betriebssystem\/Paket",
         "Informations": "Information",
@@ -3975,10 +3943,6 @@
     "core\/ajax\/message.ajax.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Message inconnu. Vérifiez l\\'ID": "Unbekannte Nachricht. Überprüfen Sie die ID",
-        "Aucune méthode correspondante à :": "Keine Methode entsprechend:"
-    },
-    "core\/ajax\/migrate.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Aucune méthode correspondante à :": "Keine Methode entsprechend:"
     },
     "core\/ajax\/network.ajax.php": {

@@ -1459,7 +1459,6 @@
         "Configuration": "Configurazione",
         "Sauvegardes": "Backup",
         "Centre de mise à jour": "Centro aggiornamenti",
-        "Restauration Image": "Ripristino dell'immagine",
         "Utilisateurs": "Nome utente",
         "Moteur de tâches": "Motore attività",
         "Personnalisation avancée": "Personalizzazione avanzata",
@@ -1524,36 +1523,6 @@
         "Fonctionnalités": "Lineamenti",
         "Panel": "Pannello"
     },
-    "desktop\/php\/migrate.php": {
-        "401 - Accès non autorisé": "401 - Accesso non autorizzato",
-        "Étape 1": "Étape 1",
-        "Insérez une clé USB avec plus de 8Go libres": "Insérez une clé USB avec plus de 8Go libres",
-        "dans votre box Jeedom et cliquez sur": "dans votre box Jeedom et cliquez sur",
-        "Étape 2": "Étape 2",
-        "Processus de sauvegarde démarré, merci de patienter...": "Processus de sauvegarde démarré, merci de patienter",
-        "Étape 3": "Étape 3",
-        "Téléchargement de l'image Jeedom.": "Scarica l'immagine di Jeedom",
-        "Étape 4": "Étape 4",
-        "Migration de votre box Jeedom": "Migration de votre box Jeedom",
-        "Étape 5": "Étape 5",
-        "Finalisation": "Finalizzazione",
-        "Reprendre la restauration": "Riprendi il restauro",
-        "Cliquez sur \"Reprendre\" pour reprendre la restauration.": "Cliquez sur \"Reprendre\" pour reprendre la restauration",
-        "Fermer": "Chiudere",
-        "Reprendre": "Riprendere",
-        "Réinstallation de votre sauvegarde": "Réinstallation de votre sauvegarde",
-        "Voulez-vous installer votre Backup sur cette box Jeedom ou bien repartir de zéro ?": "Voulez-vous installer votre Backup sur cette box Jeedom ou bien repartir de zéro ?",
-        "Votre sauvegarde reste à disposition sur votre box dans tous les cas.": "Votre sauvegarde reste à disposition sur votre box dans tous les cas",
-        "Si vous choisissez de repartir \"zéro\", n'oubliez pas que les identifiants de connexion par défaut sont admin\/admin": "Si vous choisissez de repartir \"zéro\", n'oubliez pas que les identifiants de connexion par défaut sont admin\/admin",
-        "Zéro": "Zero",
-        "Restaurer ma sauvegarde": "Restaurer ma sauvegarde",
-        "Informations Importantes": "Informazioni importanti",
-        "- Il faut une clé USB de plus de 8Go.": "- Il faut une clé USB de plus de 8Go",
-        "- Il faut être sur le meme réseau Local que votre box Jeedom.": "- Il faut être sur le meme réseau Local que votre box Jeedom",
-        "- Accéder à votre Jeedom depuis son adresse interne.": "- Accedi al tuo Jeedom dal suo indirizzo interno",
-        "- Pouvoir laisser cette page ouverte au minimum 1h30.": "- Per poter lasciare questa pagina aperta almeno 1h30",
-        "C'est parti": "Andiamo"
-    },
     "desktop\/php\/update.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
         "Erreur sur la vérification des mises à jour :": "Erreur sur la vérification des mises à jour :",
@@ -1567,7 +1536,6 @@
         "Vérifier les mises à jour": "Controlla aggiornamenti",
         "Sauvegarder": "Salva",
         "Mettre à jour": "Aggiornare",
-        "Mettre à niveau": "Mettre à niveau",
         "Core et plugins": "Core e plugin",
         "OS\/Package": "OS\/Package",
         "Informations": "Informazioni",
@@ -3975,10 +3943,6 @@
     "core\/ajax\/message.ajax.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
         "Message inconnu. Vérifiez l\\'ID": "Messaggio sconosciuto. Controlla l'ID",
-        "Aucune méthode correspondante à :": "Nessun metodo corrispondente a:"
-    },
-    "core\/ajax\/migrate.ajax.php": {
-        "401 - Accès non autorisé": "401 - Accesso non autorizzato",
         "Aucune méthode correspondante à :": "Nessun metodo corrispondente a:"
     },
     "core\/ajax\/network.ajax.php": {

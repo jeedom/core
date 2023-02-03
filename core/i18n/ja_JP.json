@@ -1459,7 +1459,6 @@
         "Configuration": "コンフィギュレーション",
         "Sauvegardes": "バックアップ",
         "Centre de mise à jour": "アップデートセンター",
-        "Restauration Image": "画像の復元",
         "Utilisateurs": "ユーザー",
         "Moteur de tâches": "タスクエンジン",
         "Personnalisation avancée": "高度なカスタマイズ",
@@ -1524,36 +1523,6 @@
         "Fonctionnalités": "特長",
         "Panel": "パネル"
     },
-    "desktop\/php\/migrate.php": {
-        "401 - Accès non autorisé": "401-不正アクセス",
-        "Étape 1": "Étape 1",
-        "Insérez une clé USB avec plus de 8Go libres": "Insérez une clé USB avec plus de 8Go libres",
-        "dans votre box Jeedom et cliquez sur": "dans votre box Jeedom et cliquez sur",
-        "Étape 2": "Étape 2",
-        "Processus de sauvegarde démarré, merci de patienter...": "Processus de sauvegarde démarré, merci de patienter",
-        "Étape 3": "Étape 3",
-        "Téléchargement de l'image Jeedom.": "Jeedomイメージをダウンロードします。",
-        "Étape 4": "Étape 4",
-        "Migration de votre box Jeedom": "Migration de votre box Jeedom",
-        "Étape 5": "Étape 5",
-        "Finalisation": "ファイナライズ",
-        "Reprendre la restauration": "復元を再開",
-        "Cliquez sur \"Reprendre\" pour reprendre la restauration.": "Cliquez sur \"Reprendre\" pour reprendre la restauration",
-        "Fermer": "近いです",
-        "Reprendre": "履歴書",
-        "Réinstallation de votre sauvegarde": "Réinstallation de votre sauvegarde",
-        "Voulez-vous installer votre Backup sur cette box Jeedom ou bien repartir de zéro ?": "Voulez-vous installer votre Backup sur cette box Jeedom ou bien repartir de zéro ?",
-        "Votre sauvegarde reste à disposition sur votre box dans tous les cas.": "Votre sauvegarde reste à disposition sur votre box dans tous les cas",
-        "Si vous choisissez de repartir \"zéro\", n'oubliez pas que les identifiants de connexion par défaut sont admin\/admin": "Si vous choisissez de repartir \"zéro\", n'oubliez pas que les identifiants de connexion par défaut sont admin\/admin",
-        "Zéro": "ゼロ",
-        "Restaurer ma sauvegarde": "Restaurer ma sauvegarde",
-        "Informations Importantes": "重要な情報",
-        "- Il faut une clé USB de plus de 8Go.": "- Il faut une clé USB de plus de 8Go",
-        "- Il faut être sur le meme réseau Local que votre box Jeedom.": "- Il faut être sur le meme réseau Local que votre box Jeedom",
-        "- Accéder à votre Jeedom depuis son adresse interne.": "-内部アドレスからJeedomにアクセスします。",
-        "- Pouvoir laisser cette page ouverte au minimum 1h30.": "-このページを少なくとも1時間30分開いたままにすることができます。",
-        "C'est parti": "行こう"
-    },
     "desktop\/php\/update.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
         "Erreur sur la vérification des mises à jour :": "Erreur sur la vérification des mises à jour :",
@@ -1567,7 +1536,6 @@
         "Vérifier les mises à jour": "更新を確認する",
         "Sauvegarder": "セーブ",
         "Mettre à jour": "更新する",
-        "Mettre à niveau": "Mettre à niveau",
         "Core et plugins": "コアとプラグイン",
         "OS\/Package": "OS\/Package",
         "Informations": "情報",
@@ -3975,10 +3943,6 @@
     "core\/ajax\/message.ajax.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
         "Message inconnu. Vérifiez l\\'ID": "不明なメッセージ。 IDを確認してください",
-        "Aucune méthode correspondante à :": "以下に対応するメソッドはありません："
-    },
-    "core\/ajax\/migrate.ajax.php": {
-        "401 - Accès non autorisé": "401-不正アクセス",
         "Aucune méthode correspondante à :": "以下に対応するメソッドはありません："
     },
     "core\/ajax\/network.ajax.php": {

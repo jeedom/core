@@ -1459,7 +1459,6 @@
         "Configuration": "Configuration",
         "Sauvegardes": "Sauvegardes",
         "Centre de mise à jour": "Centre de mise à jour",
-        "Restauration Image": "Restauration Image",
         "Utilisateurs": "Utilisateurs",
         "Moteur de tâches": "Moteur de tâches",
         "Personnalisation avancée": "Personnalisation avancée",
@@ -1524,36 +1523,6 @@
         "Fonctionnalités": "Fonctionnalités",
         "Panel": "Panel"
     },
-    "desktop\/php\/migrate.php": {
-        "401 - Accès non autorisé": "401 - Accès non autorisé",
-        "Étape 1": "Étape 1",
-        "Insérez une clé USB avec plus de 8Go libres": "Insérez une clé USB avec plus de 8Go libres",
-        "dans votre box Jeedom et cliquez sur": "dans votre box Jeedom et cliquez sur",
-        "Étape 2": "Étape 2",
-        "Processus de sauvegarde démarré, merci de patienter...": "Processus de sauvegarde démarré, merci de patienter...",
-        "Étape 3": "Étape 3",
-        "Téléchargement de l'image Jeedom.": "Téléchargement de l'image Jeedom.",
-        "Étape 4": "Étape 4",
-        "Migration de votre box Jeedom": "Migration de votre box Jeedom",
-        "Étape 5": "Étape 5",
-        "Finalisation": "Finalisation",
-        "Reprendre la restauration": "Reprendre la restauration",
-        "Cliquez sur \"Reprendre\" pour reprendre la restauration.": "Cliquez sur \"Reprendre\" pour reprendre la restauration.",
-        "Fermer": "Fermer",
-        "Reprendre": "Reprendre",
-        "Réinstallation de votre sauvegarde": "Réinstallation de votre sauvegarde",
-        "Voulez-vous installer votre Backup sur cette box Jeedom ou bien repartir de zéro ?": "Voulez-vous installer votre Backup sur cette box Jeedom ou bien repartir de zéro ?",
-        "Votre sauvegarde reste à disposition sur votre box dans tous les cas.": "Votre sauvegarde reste à disposition sur votre box dans tous les cas.",
-        "Si vous choisissez de repartir \"zéro\", n'oubliez pas que les identifiants de connexion par défaut sont admin\/admin": "Si vous choisissez de repartir \"zéro\", n'oubliez pas que les identifiants de connexion par défaut sont admin\/admin",
-        "Zéro": "Zéro",
-        "Restaurer ma sauvegarde": "Restaurer ma sauvegarde",
-        "Informations Importantes": "Informations Importantes",
-        "- Il faut une clé USB de plus de 8Go.": "- Il faut une clé USB de plus de 8Go.",
-        "- Il faut être sur le meme réseau Local que votre box Jeedom.": "- Il faut être sur le meme réseau Local que votre box Jeedom.",
-        "- Accéder à votre Jeedom depuis son adresse interne.": "- Accéder à votre Jeedom depuis son adresse interne.",
-        "- Pouvoir laisser cette page ouverte au minimum 1h30.": "- Pouvoir laisser cette page ouverte au minimum 1h30.",
-        "C'est parti": "C'est parti"
-    },
     "desktop\/php\/update.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
         "Erreur sur la vérification des mises à jour :": "Erreur sur la vérification des mises à jour :",
@@ -1567,7 +1536,6 @@
         "Vérifier les mises à jour": "Vérifier les mises à jour",
         "Sauvegarder": "Sauvegarder",
         "Mettre à jour": "Mettre à jour",
-        "Mettre à niveau": "Mettre à niveau",
         "Core et plugins": "Core et plugins",
         "OS\/Package": "OS\/Package",
         "Informations": "Informations",
@@ -3975,10 +3943,6 @@
     "core\/ajax\/message.ajax.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
         "Message inconnu. Vérifiez l\\'ID": "Message inconnu. Vérifiez l\\'ID",
-        "Aucune méthode correspondante à :": "Aucune méthode correspondante à :"
-    },
-    "core\/ajax\/migrate.ajax.php": {
-        "401 - Accès non autorisé": "401 - Accès non autorisé",
         "Aucune méthode correspondante à :": "Aucune méthode correspondante à :"
     },
     "core\/ajax\/network.ajax.php": {
