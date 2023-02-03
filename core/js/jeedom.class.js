@@ -86,7 +86,11 @@ jeedom.changes = function() {
           if (['scenario::update', 'ui::update', 'jeedom::gotoplan', 'jeedom::alert', 'jeedom::alertPopup', 'jeedom::coloredIcons', 'message::refreshMessageNumber', 'update::refreshUpdateNumber', 'notify', 'checkThemechange', 'changeTheme'].includes(data.result[i].name)) {
             document.body.dispatchEvent(new CustomEvent(data.result[i].name, { detail: data.result[i].option }))
           } else {
-            if (typeof jQuery === 'function') $('body').trigger(data.result[i].name, data.result[i].option)
+            if (typeof jQuery === 'function') {
+              $('body').trigger(data.result[i].name, data.result[i].option)
+            } else {
+              document.body.dispatchEvent(new CustomEvent(data.result[i].name, { detail: data.result[i].option }))
+            }
           }
         } else {
           document.body.dispatchEvent(new CustomEvent(data.result[i].name))
