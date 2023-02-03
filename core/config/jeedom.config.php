@@ -383,6 +383,10 @@ $JEEDOM_INTERNAL_CONFIG = array(
 				'name' => __('Humidité consigne', __FILE__), 'familyid' => 'Thermostat', 'family' => __('Thermostat', __FILE__),
 				'type' => 'Info', 'subtype' => array('slider')
 			),
+			'HUMIDITY_SET_SETPOINT' => array(
+ 				'name' => __('Humidité consigne', __FILE__), 'familyid' => 'Thermostat', 'family' => __('Thermostat', __FILE__),
+ 				'type' => 'Action', 'subtype' => array('slider')
+ 			),
 			'CAMERA_UP' => array(
 				'name' => __('Mouvement caméra vers le haut', __FILE__), 'familyid' => 'Camera', 'family' => __('Caméra', __FILE__),
 				'type' => 'Action', 'subtype' => array('other')
