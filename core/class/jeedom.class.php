@@ -1164,6 +1164,7 @@ class jeedom {
 			listener::clean();
 			user::regenerateHash();
 			jeeObject::cronDaily();
+			timeline::clean(false);
 		} catch (Exception $e) {
 			log::add('jeedom', 'error', $e->getMessage());
 		} catch (Error $e) {
