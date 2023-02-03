@@ -103,7 +103,7 @@ try {
   $nb_cleaning = 0;
   foreach (cmd::all() as $cmd) {
     if(!is_object($cmd->getEqLogic())){
-      echo 'Remove cmd because no eqLogic found : '.$cmd->getHumanName()."\n";
+      echo 'Remove cmd (no corresping eqLogic found) : '.$cmd->getHumanName()."\n";
       $cmd->remove(true);
       continue;
     }

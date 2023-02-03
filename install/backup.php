@@ -30,7 +30,7 @@ try {
 	
 	try {
 		echo "Send begin backup event...";
-		jeedom::event('begin_backup', true);
+		jeedom::event('Begin_backup', true);
 		echo "OK\n";
 	} catch (Exception $e) {
 		echo '***ERROR*** ' . $e->getMessage();
@@ -70,7 +70,7 @@ try {
 		foreach (plugin::listPlugin(true) as $plugin) {
 			$plugin_id = $plugin->getId();
 			if (method_exists($plugin_id, 'backup')) {
-				echo 'Backup plugin ' . $plugin_id . '...';
+				echo 'Backing up plugin ' . $plugin_id . '...';
 				$plugin_id::backup();
 				echo "OK" . "\n";
 			}
@@ -150,7 +150,7 @@ try {
      					if(isset($plugin_exclude) === true && $plugin_exclude !== '') {
 							if (strpos($plugin_exclude, '..') === false) {
 								$excludes[]="plugins/".$plugin_id."/".$plugin_exclude;
-								echo "Plugin " . $plugin_id . " - the following subfolder will be excluded from the backup: ".$plugin_exclude."\n";
+								echo "Plugin " . $plugin_id . " - Following subfolder will be excluded from the backup: ".$plugin_exclude."\n";
 							}
 						}
 					}
@@ -241,7 +241,7 @@ try {
 		}
 		$i++;
 		if ($i > 50) {
-			echo "More than 50 backup deleted, stopping.\n";
+			echo "More than 50 backups deleted, stopping.\n";
 			break;
 		}
 	}

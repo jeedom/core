@@ -37,7 +37,7 @@ try {
 		echo $output;
 	}
 } catch (Exception $ex) {
-	echo "***ERREUR*** " . $ex->getMessage() . "\n";
+	echo "***ERROR*** " . $ex->getMessage() . "\n";
 }
 try {
 	require_once __DIR__ . '/../core/php/core.inc.php';
@@ -48,7 +48,7 @@ try {
 			system::checkAndInstall(json_decode(file_get_contents(__DIR__ . '/packages.json'), true), true);
 			echo "OK\n";
 		} catch (Exception $ex) {
-			echo "***ERREUR*** " . $ex->getMessage() . "\n";
+			echo "***ERROR*** " . $ex->getMessage() . "\n";
 		}
 	}
 
@@ -58,7 +58,7 @@ try {
 			DB::compareAndFix(json_decode(file_get_contents(__DIR__ . '/database.json'), true), 'all', true);
 			echo "OK\n";
 		} catch (Exception $ex) {
-			echo "***ERREUR*** " . $ex->getMessage() . "\n";
+			echo "***ERROR*** " . $ex->getMessage() . "\n";
 		}
 	}
 	if (config::byKey('object:summary') == '' || !is_array(config::byKey('object:summary'))) {
@@ -93,7 +93,7 @@ try {
 						$c->getNextRunDate();
 					}
 				} catch (Exception $ex) {
-					echo "Suppression de  : " . $cron->getName() . ' car il n\'y a pas de lancement prévu' . "\n";
+					echo "Deleting cron : " . $cron->getName() . ' no future launch planned' . "\n";
 					$cron->remove();
 				}
 			}
@@ -384,11 +384,11 @@ try {
 			config::save('api', config::genKey());
 		}
 		if (file_exists(__DIR__ . '/../core/nodeJS')) {
-			echo "Remove unsed nodejs folder...\n";
+			echo "Remove unused nodejs folder...\n";
 			shell_exec(system::getCmdSudo() . 'rm -rf ' . __DIR__ . '/../core/nodeJS');
 		}
 		if (file_exists(__DIR__ . '/../script/ngrok')) {
-			echo "Remove unsed ngrok folder...\n";
+			echo "Remove unused ngrok folder...\n";
 			shell_exec(system::getCmdSudo() . 'rm -rf ' . __DIR__ . '/../script/ngrok');
 		}
 		try {
