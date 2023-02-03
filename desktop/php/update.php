@@ -53,7 +53,6 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 				<a class="btn btn-info btn-sm roundedLeft" id="bt_checkAllUpdate"><i class="fas fa-sync"></i> {{Vérifier les mises à jour}}
 				</a><a class="btn btn-success btn-sm" id="bt_saveUpdate"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
 				</a><?php if ($showUpdate == true) { ?><a href="#" class="btn btn-sm btn-warning roundedRight" id="bt_updateJeedom"><i class="fas fa-check"></i> {{Mettre à jour}}
-					</a><?php } elseif ($showUpgrade == true) { ?><a class="btn btn-sm btn-danger roundedRight" href="index.php?v=d&p=migrate"><i class="fab fa-linux"></i> {{Mettre à niveau}}
 					</a><?php } ?>
 			</span>
 		</div>
