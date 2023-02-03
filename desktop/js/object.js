@@ -242,7 +242,7 @@ if (!jeeFrontEnd.object) {
               humanName = '#[' + _objName + '][' + thisEqName + '][' + thisEq.cmds[j].name + ']#'
               panel += '<form class="form-horizontal">'
               panel += '<div class="form-group" data-cmdname="' + humanName + '">'
-              panel += '<label class="col-sm-5 col-xs-6 control-label">' + humanName + '</label>'
+              panel += '<label class="col-sm-5 col-xs-5 control-label">' + humanName + '</label>'
               panel += '<div class="col-sm-2 col-xs-4">'
               panel += summarySelect
               panel += '</div>'

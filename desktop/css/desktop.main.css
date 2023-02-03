@@ -4942,6 +4942,10 @@ div.eqLogic-widget.editingMode .panelLink {
       width: calc(100vw - 340px);
       max-width: 200px !important;
     }
+
+    div.objectPreview {
+      height: 150px;
+    }
   }
 
   @media screen and (max-width: 992px) {
@@ -4976,6 +4980,10 @@ div.eqLogic-widget.editingMode .panelLink {
 
     .hidden-992 {
       display: none;
+    }
+
+    div.objectPreview {
+      height: 180px;
     }
   }
 
