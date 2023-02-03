@@ -367,9 +367,17 @@ $JEEDOM_INTERNAL_CONFIG = array(
 				'name' => __('Thermostat humidité ambiante', __FILE__), 'familyid' => 'Thermostat', 'family' => __('Thermostat', __FILE__),
 				'type' => 'Info', 'subtype' => array('numeric'), 'calcul' => 'avg'
 			),
-			'HUMIDITY_SET_SETPOINT' => array(
-				'name' => __('Humidité consigne', __FILE__), 'familyid' => 'Thermostat', 'family' => __('Thermostat', __FILE__),
+			'THERMOSTAT_SET_MAX_TEMP' => array(
+				'name' => __('Thermostat maximum consigne', __FILE__), 'familyid' => 'Thermostat', 'family' => __('Thermostat', __FILE__),
 				'type' => 'Action', 'subtype' => array('slider')
+			),
+			'THERMOSTAT_SET_MIN_TEMP' => array(
+				'name' => __('Thermostat minimum consigne', __FILE__), 'familyid' => 'Thermostat', 'family' => __('Thermostat', __FILE__),
+				'type' => 'Action', 'subtype' => array('slider')
+			),
+			'THERMOSTAT_HUMIDITY' => array(
+				'name' => __('Thermostat humidité ambiante', __FILE__), 'familyid' => 'Thermostat', 'family' => __('Thermostat', __FILE__),
+				'type' => 'Info', 'subtype' => array('numeric'), 'calcul' => 'avg'
 			),
 			'HUMIDITY_SETPOINT' => array(
 				'name' => __('Humidité consigne', __FILE__), 'familyid' => 'Thermostat', 'family' => __('Thermostat', __FILE__),
