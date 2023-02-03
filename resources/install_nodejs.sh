@@ -116,7 +116,7 @@ else
       armVer="16.15.0"
     fi
     echo "Jeedom Mini ou Raspberry 1, 2 ou zéro détecté, non supporté mais on essaye l'utilisation du paquet non-officiel ${armVer} pour armv6l"
-    wget https://unofficial-builds.nodejs.org/download/release/${armvVer}/node-v${armVer}-linux-armv6l.tar.gz
+    wget https://unofficial-builds.nodejs.org/download/release/${armVer}/node-v${armVer}-linux-armv6l.tar.gz
     tar -xvf node-v${armVer}-linux-armv6l.tar.gz
     cd node-v${armVer}-linux-armv6l
     sudo cp -f -R * /usr/local/
