@@ -19,11 +19,11 @@
 }
 
 .dt-wrapper.no-header .dt-container {
-  border-top: 1px solid #d9d9d9;
+  border-top: 1px solid var(--placeholder-color);
 }
 
 .dt-wrapper.no-footer .dt-container {
-  border-bottom: 1px solid #d9d9d9;
+  border-bottom: 1px solid var(--placeholder-color);
 }
 
 .dt-top,
@@ -84,13 +84,13 @@
 }
 
 .dt-pagination a:hover {
-  background-color: #d9d9d9;
+  background-color: var(--placeholder-color);
 }
 
 .dt-pagination .active a,
 .dt-pagination .active a:focus,
 .dt-pagination .active a:hover {
-  background-color: #d9d9d9;
+  background-color: var(--placeholder-color);
   cursor: default;
 }
 
@@ -133,13 +133,13 @@
 .dt-table > thead > tr > td {
   vertical-align: bottom;
   text-align: left;
-  border-bottom: 1px solid #d9d9d9;
+  border-bottom: 1px solid var(--placeholder-color);
 }
 
 .dt-table > tfoot > tr > th {
   vertical-align: bottom;
   text-align: left;
-  border-top: 1px solid #d9d9d9;
+  border-top: 1px solid var(--placeholder-color);
 }
 
 .dt-table th {
