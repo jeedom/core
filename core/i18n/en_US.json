@@ -2856,6 +2856,8 @@
         "Historique": "History"
     },
     "desktop\/js\/cron.js": {
+        "Activer le système cron": "Activate the cron system",
+        "Désactiver le système cron": "Disable cron system",
         "En cours": "In progress",
         "Arrêté": "Stopped",
         "Démarrage": "Start-up",
@@ -2868,8 +2870,6 @@
         "Arrêter": "Stop",
         "Activer la gestion automatique du démon": "Enable automatic daemon management",
         "Désactiver la gestion automatique du démon": "Disable automatic daemon management",
-        "Désactiver le système cron": "Disable cron system",
-        "Activer le système cron": "Activate the cron system",
         "Détails du cron": "Cron details",
         "Détails du listener": "Listener details"
     },

@@ -2856,6 +2856,8 @@
         "Historique": "История"
     },
     "desktop\/js\/cron.js": {
+        "Activer le système cron": "Активировать систему cron",
+        "Désactiver le système cron": "Отключить систему cron",
         "En cours": "В процессе",
         "Arrêté": "арестованный",
         "Démarrage": "пуск в эксплуатацию",
@@ -2868,8 +2870,6 @@
         "Arrêter": "Стоп",
         "Activer la gestion automatique du démon": "Активировать автоматическое управление демоном",
         "Désactiver la gestion automatique du démon": "Отключить автоматическое управление демонами",
-        "Désactiver le système cron": "Отключить систему cron",
-        "Activer le système cron": "Активировать систему cron",
         "Détails du cron": "Детали Cron",
         "Détails du listener": "Детали слушателя"
     },

@@ -2856,6 +2856,8 @@
         "Historique": "Geçmiş"
     },
     "desktop\/js\/cron.js": {
+        "Activer le système cron": "Cron sistemini aktifleştirin",
+        "Désactiver le système cron": "Cron sistemini dezaktive et",
         "En cours": "Sürüyor",
         "Arrêté": "Durduruldu",
         "Démarrage": "Démarrage",
@@ -2868,8 +2870,6 @@
         "Arrêter": "Durdur",
         "Activer la gestion automatique du démon": "Activer la gestion automatique du démon",
         "Désactiver la gestion automatique du démon": "Désactiver la gestion automatique du démon",
-        "Désactiver le système cron": "Cron sistemini dezaktive et",
-        "Activer le système cron": "Cron sistemini aktifleştirin",
         "Détails du cron": "Détails du cron",
         "Détails du listener": "Détails du listener"
     },

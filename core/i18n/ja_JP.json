@@ -2856,6 +2856,8 @@
         "Historique": "歴史的"
     },
     "desktop\/js\/cron.js": {
+        "Activer le système cron": "Cronシステムをアクティブにします",
+        "Désactiver le système cron": "Cronシステムを無効にする",
         "En cours": "進行中",
         "Arrêté": "逮捕",
         "Démarrage": "起動",
@@ -2868,8 +2870,6 @@
         "Arrêter": "ストップ",
         "Activer la gestion automatique du démon": "デーモンの自動管理を有効にします",
         "Désactiver la gestion automatique du démon": "自動デーモン管理を無効にする",
-        "Désactiver le système cron": "Cronシステムを無効にする",
-        "Activer le système cron": "Cronシステムをアクティブにします",
         "Détails du cron": "Cronの詳細",
         "Détails du listener": "リスナーの詳細"
     },
