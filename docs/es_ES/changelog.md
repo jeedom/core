@@ -9,7 +9,6 @@
 ### 4.4 : Noticias / Mejoras
 
 - **Histórico** : El modal de historial y la página de historial permiten usar botones *Semana, Mes, Año* para recargar dinámicamente un historial más grande.
-- **Menú Jeedom** : Un retraso de 0.25s se introdujo en la apertura de submenús.
 - **Ventana de selección de imagen** : Se agregó un menú contextual para enviar imágenes y crear, renombrar o eliminar una carpeta.
 - **Ventana de selección de iconos** : Posibilidad de agregar un parámetro `ruta` al llamar a `jeedomUtils.chooseIcon` por un complemento para mostrar solo sus iconos.
 - **Tablero** : Capacidad para mostrar varios objetos uno al lado del otro *(Ajustes → Sistema → Configuración / Interfaz)*.
@@ -19,20 +18,22 @@
 - **Equipo** : El equipo inactivo desaparece automáticamente de todas las páginas. El equipo reactivado vuelve a aparecer en el tablero si el objeto principal ya está presente.
 - **Equipo** : El equipo invisible desaparece automáticamente del tablero. El equipo que se vuelve a mostrar vuelve a aparecer en el tablero si el objeto principal ya está presente.
 - **Análisis > Equipos / Equipos en alerta** : Los dispositivos que entran en alerta aparecen automáticamente y los que salen de alerta desaparecen automáticamente.
+- **Centro de mensajes** : Los mensajes centrales sobre anomalías ahora informan una acción, por ejemplo, un enlace para abrir el escenario ofensivo, o equipo, configuración de complemento, etc.
 - **Objeto** : Eliminar o crear un resumen da como resultado la actualización del resumen global y el tema.
 - **Herramientas > Reemplazar** : Esta herramienta ahora ofrece un modo *Copiar*, permitiendo copiar las configuraciones de equipos y comandos, sin reemplazarlos en los escenarios y otros.
-- **Línea de tiempo** : La línea de tiempo ahora carga los primeros 35 eventos. En la parte inferior de la página, varios botones le permiten cargar dinámicamente los siguientes eventos.
+- **Línea de tiempo** : La línea de tiempo ahora carga los primeros 35 eventos. Los siguientes eventos se cargan en el desplazamiento en la parte inferior de la página.
 - **Administración** : Posibilidad de diferenciar acciones en caso de error o de alerta de comando.
 - **Administración** : Capacidad para establecer widgets de comando predeterminados.
-- Se ha añadido un menú contextual en diferentes lugares al nivel de los checkboxes para seleccionarlos todos, ninguno, o invertir la selección *(ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.4))*.
-- **Tablero** : posibilidad en la página de configuración del objeto de pedirle a jeedom que reordene el equipo de acuerdo con su uso
+- **Tablero** : posibilidad en la página de configuración del objeto de pedirle a jeedom que reordene el equipo de acuerdo con su uso.
 - **Temática** : Posibilidad de elegir el tema directamente desde la url (agregando &theme=Dark o &theme=Light).
 - **Relación** : Posibilidad de elegir el tema durante un informe en una página de jeedom.
+- **Menú Jeedom** : Un retraso de 0.25s se introdujo en la apertura de submenús.
 
 ### 4.4 : Autre
 
 - **Centro** : Inicio de desarrollo en js puro, sin jQuery. Ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.4).
 - **Centro** : Lista más detallada de dispositivos USB.
+- **Centro** : Se ha añadido un menú contextual en diferentes lugares al nivel de los checkboxes para seleccionarlos todos, ninguno, o invertir la selección *(ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.4))*.
 - **Liberación** : Actualizar Highchart v9.3.2 a v10.3.2 (El módulo *calibre sólido* ya no importa).
 
 ### 4.4 : Remarques

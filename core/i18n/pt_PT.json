@@ -146,7 +146,6 @@
         "Date": "Data",
         "Source": "Fonte",
         "Description": "Descrição",
-        "Action": "Estoque",
         "Occurrences": "Ocorrências"
     },
     "mobile\/html\/deamon.html": {
@@ -1151,7 +1150,7 @@
         "Visible": "Visível",
         "Multi": "Multi",
         "Sync": "Sincronizar",
-        "Log": "Registo",
+        "Log": "Registro",
         "Timeline": "Linha cronológica",
         "Actions": "Ações",
         "Erreur": "Erro",
@@ -1458,7 +1457,7 @@
         "Système": "Sistema",
         "Configuration": "Configuração",
         "Sauvegardes": "Backups",
-        "Centre de mise à jour": "Centro de atualizações",
+        "Centre de mise à jour": "Central de atualização",
         "Utilisateurs": "Utilizadores",
         "Moteur de tâches": "Motor de tarefas",
         "Personnalisation avancée": "Personalização avançada",
@@ -1480,7 +1479,7 @@
         "Editeur": "Editor",
         "Personnalisation": "Personalização",
         "Sauvegarde": "Backup",
-        "Log": "Registo",
+        "Log": "Registro",
         "est en cours de démarrage, veuillez attendre 5min et rafraîchir la page.": "está a iniciar, aguarde 5 minutos e atualize a página"
     },
     "desktop\/php\/timeline.php": {
@@ -1979,7 +1978,7 @@
         ".": ".",
         "Vérifier": "Verificar",
         "Ouvrir le log Consistency.": "Abra o registo de consistência",
-        "Log": "Registo",
+        "Log": "Registro",
         "Rétablissement des droits des dossiers et fichiers": "Restaurar direitos para pastas e arquivos",
         "Permet de réappliquer les bons droits sur les fichiers.": "Permite reaplicar os direitos corretos aos arquivos",
         "Vérification des packages système": "Verificar os pacotes do sistema",
@@ -2247,7 +2246,7 @@
         "Actif": "Ativos",
         "Visible": "Visivél",
         "Objet parent": "Objeto pai",
-        "Log": "Registo",
+        "Log": "Registro",
         "Défaut": "Predefinido",
         "Temps réel": "Tempo real",
         "Timeout": "Tempo limite",
@@ -4132,6 +4131,7 @@
         "avec les paramètres": "com parâmetros",
         "Désactivation de": "Desativação de",
         "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais": "porque não respondeu ou respondeu incorretamente durante as últimas 3 tentativas",
+        "Equipement": "Equipamento",
         "Erreur exécution de la commande": "Erro ao executar o comando",
         "Défaut": "Padrão",
         "Aucun paramètre optionnel disponible.": "Nenhum parâmetro opcional disponível",
@@ -4240,6 +4240,7 @@
         "Erreur sur la connexion au market :": "Erro ao conectar-se ao Market:",
         "Démarrage de jeedom fini avec succès": "O arranque do Jeedom terminou com sucesso",
         "De nouvelles mises à jour sont disponibles": "Novas atualizações estão disponíveis",
+        "Centre de mise à jour": "Central de atualização",
         "Vous pouvez arrêter le système": "Pode parar o sistema",
         "Vous pouvez lancer le redémarrage du système": "Pode lançar a reinicialização do sistema",
         "Aucun équipement ou commande à remplacer ou copier": "Nenhum equipamento ou controles para substituir ou copiar"
@@ -4352,6 +4353,7 @@
         "Expression non valide": "Expressão inválida",
         "trouvée dans le scénario :": "encontrado no cenário:",
         ", résultat : ": ", resultado:",
+        "Scenario": "Roteiro",
         "Non exécution des actions pour cause de répétition": "A ações não foram executadas devido à repetição",
         "La condition pour une boucle doit être numérique :": "A condição para um loop deve ser numérica:",
         "Bloc type A :": "Bloco tipo A:",
@@ -4404,6 +4406,7 @@
         "Attention": "Atenção",
         "n\\'a pas envoyé de message depuis plus de": "não enviou uma mensagem por mais de",
         "min (vérifiez les piles)": "min (verifique as pilhas)",
+        "Equipement": "Equipamento",
         "Aucun": "Nenhum",
         "L\\'équipement n\\'a pas pu être trouvé :": "Não foi possível encontrar o equipamento:",
         "Le": "O",
@@ -4421,7 +4424,6 @@
         "L\\'équipement source n\\'existe pas": "O equipamento de origem não existe",
         "L\\'équipement cible n\\'existe pas": "O dispositivo de destino não existe",
         "Erreur lors de la migration d\\'équipement": "Erro ao migrar equipamento",
-        "Equipement": "Equipamento",
         "Action": "Açao"
     },
     "core\/class\/interactDef.class.php": {
@@ -4529,6 +4531,7 @@
         "Attention le plugin": "Atenção ao plugin",
         "n\\'a pas recu de message depuis": "não recebi uma mensagem desde",
         "min": "min",
+        "Configuration": "Configuração",
         "La tâche plugin::cron n\\'arrive pas à finir à cause du plugin :": "A tarefa plugin::cron não pode ser concluída devido ao plugin:",
         "nous vous conseillons de désactiver le plugin et de contacter l\\'auteur": "aconselhamos a desativar o plugin e entrar em contato com o autor",
         "Erreur sur la fonction cron du plugin :": "Erro na função cron do plugin:",
@@ -4568,6 +4571,9 @@
         "Erreur sur la fonction deamon_stop du plugin :": "Erro na função deamon_stop do plugin:",
         "Votre version de Jeedom n\\'est pas assez récente pour activer ce plugin": "A sua versão do Jeedom não é recente o suficiente para ativar este plugin",
         "Lancement de :": "Lançamento:"
+    },
+    "core\/class\/log.class.php": {
+        "Log": "Registro"
     },
     "core\/class\/cache.class.php": {
         "Inconnu": "Desconhecido"

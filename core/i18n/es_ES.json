@@ -146,7 +146,6 @@
         "Date": "Fecha",
         "Source": "Fuente",
         "Description": "Descripción",
-        "Action": "Valores",
         "Occurrences": "Ocurrencias"
     },
     "mobile\/html\/deamon.html": {
@@ -248,7 +247,7 @@
         "Action": "Acción",
         "Lien mort ou absent": "Enlace muerto o perdido",
         "Supprimer": "Eliminar",
-        "Configuration": "Configuración ",
+        "Configuration": "Configuración",
         "Composant supprimée": "Componente eliminado",
         "Configuration du composant": "Configuración de componentes",
         "Image supprimée": "Imagen suprimida",
@@ -393,7 +392,7 @@
         "Aucun": "No",
         "Visualisation": "Visualización",
         "Visualisation et exécution": "Visualización y ejecución",
-        "Equipement": "Dispositivos",
+        "Equipement": "Equipo",
         "Droits": "Permisos",
         "Scénario": "Escenario",
         "Sauvegarde effectuée": "Guardado correctamente"
@@ -559,7 +558,7 @@
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Objet": "Objeto",
-        "Equipement": "Dispositivo"
+        "Equipement": "Equipo"
     },
     "desktop\/modal\/plan3d.configure.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -568,7 +567,7 @@
         "Supprimer": "Eliminar",
         "Nom": "Nombre",
         "Type de lien": "Tipo de enlace",
-        "Equipement": "Dispositivos",
+        "Equipement": "Equipo",
         "Lien": "Enlace",
         "Rechercher d\\'un équipement": "Buscar dispositivo",
         "Spécificité": "Especificidad",
@@ -622,7 +621,7 @@
         "Résumé Domotique": "Resumen Domótica",
         "Rechercher": "Buscar",
         "Recherche par": "Buscar por",
-        "Equipement": "Dispositivo",
+        "Equipement": "Equipo",
         "Commande": "Comando",
         "Variable": "Variable",
         "Plugin": "Enchufar",
@@ -703,7 +702,7 @@
         "Liens": "Enlaces",
         "Informations": "Información",
         "Sauvegarder": "Guardar",
-        "Configuration": "Configuración ",
+        "Configuration": "Configuración",
         "Alertes": "Alertas",
         "Affichage": "Monitor",
         "Général": "General",
@@ -743,7 +742,7 @@
         "Cette commande remplace l'ID": "Este comando reemplaza el ID",
         "Cette commande remplace la commande": "Esta orden reemplaza la orden",
         "Remplacer cette commande par la commande": "Reemplazar este comando por el comando",
-        "Equipement": "Dispositivo",
+        "Equipement": "Equipo",
         "Commandes": "Comandos",
         "Scénario": "Escenario",
         "Résumés": "Resúmenes",
@@ -842,7 +841,7 @@
     },
     "desktop\/modal\/log.display.php": {
         "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel.": "Tenga en cuenta que su nivel de registro (evento) es inferior a la información, por lo que no puede ver en tiempo real",
-        "Configuration": "Configuración ",
+        "Configuration": "Configuración",
         "Log brut": "Registro sin procesar",
         "Rechercher": "Buscar",
         "Pause": "Pausa",
@@ -1095,7 +1094,7 @@
         "Type": "Tipo",
         "ID du lien": "Identificación del enlace",
         "Action": "Acción",
-        "Configuration": "Configuración ",
+        "Configuration": "Configuración",
         "Composant supprimée": "Componente eliminado",
         "Configuration du composant": "Configuración de componentes",
         "Chargement réussi merci de recharger la page pour voir le résultat": "Cargando tuvo éxito gracias a cargar la página para ver el resultado"
@@ -1238,7 +1237,7 @@
         "Valider": "Validar",
         "Objet": "Objeto",
         "Plugin": "Enchufar",
-        "Equipement": "Dispositivos",
+        "Equipement": "Equipo",
         "Nom": "Nombre"
     },
     "desktop\/modal\/cmd.history.php": {
@@ -1343,7 +1342,7 @@
         "Macro binaire": "Macro binario",
         "Widget au survol": "Resumen del Widget",
         "Action": "Acción",
-        "Equipement": "Dispositivos",
+        "Equipement": "Equipo",
         "Afficher au survol": "Mostrar en paso elevado",
         "Afficher sur un clic": "Mostrar en un clic",
         "Position": "Posición",
@@ -1456,9 +1455,9 @@
         "Gestion des plugins": "Gestión de plugins",
         "Réglages": "Ajustes",
         "Système": "Sistema",
-        "Configuration": "Configuración ",
+        "Configuration": "Configuración",
         "Sauvegardes": "Copias de seguridad",
-        "Centre de mise à jour": "Centro de actualizaciones",
+        "Centre de mise à jour": "Centro de actualización",
         "Utilisateurs": "Usuarios",
         "Moteur de tâches": "Motor de tareas",
         "Personnalisation avancée": "Personalización avanzada",
@@ -1519,7 +1518,7 @@
         "Dépendances": "Dependencias",
         "Démon": "Demonio",
         "Installation": "Instalación",
-        "Configuration": "Configuración ",
+        "Configuration": "Configuración",
         "Fonctionnalités": "Características",
         "Panel": "Panel"
     },
@@ -2202,7 +2201,7 @@
         "Créer une vue": "Crear una vista",
         "Rechercher": "Buscar",
         "Edition": "Edición",
-        "Configuration": "Configuración ",
+        "Configuration": "Configuración",
         "Ajouter une zone": "Añadir una zona",
         "Voir le résultat": "Ver el resultado",
         "Sauvegarder": "Guardar",
@@ -2380,12 +2379,12 @@
         "Catégories": "Categorías",
         "Sans catégorie": "Sin categoría",
         "Visibles": "Visible",
-        "Equipement": "Dispositivos",
+        "Equipement": "Equipo",
         "Tous": "Todos"
     },
     "desktop\/php\/eqAnalyse.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Configuration": "Configuración ",
+        "Configuration": "Configuración",
         "Batteries": "Baterías",
         "Equipements en alerte": "Equipo en alerta",
         "Actions définies": "Las acciones de",
@@ -2394,7 +2393,7 @@
         "Commandes orphelines": "Controles huérfanos",
         "Rechercher | nom | :not(nom": "Buscar | nombre | : sin nombre",
         "Aucun équipement en Alerte.": "No hay equipos en alerta",
-        "Equipement": "Dispositivos",
+        "Equipement": "Equipo",
         "Commande": "Comando",
         "Type": "Tipo",
         "Exécution": "Ejecución",
@@ -2628,7 +2627,7 @@
         "Affichage": "Monitor",
         "Historique calculé": "Historia calculada",
         "Configuration des formules de calcul": "Configuración de fórmulas",
-        "Configuration": "Configuración ",
+        "Configuration": "Configuración",
         "Sélectionner la commande": "Seleccione el comando",
         "Afficher le graphique calculé": "Mostrar gráfico calculado",
         "Commandes": "Pedidos",
@@ -3310,7 +3309,7 @@
         "Widgets": "Widgets",
         "Gestion Plugins": "Gestión de complementos",
         "Sauvegardes": "Copias de seguridad",
-        "Configuration": "Configuración ",
+        "Configuration": "Configuración",
         "Base de données": "Base de datos",
         "Editeur en masse": "Editor de masas",
         "Moteur de tâches": "Motor de tareas",
@@ -4132,6 +4131,7 @@
         "avec les paramètres": "con parámetros",
         "Désactivation de": "Desactivación de",
         "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais": "porque no respondió o respondió incorrectamente durante los últimos 3 intentos",
+        "Equipement": "Equipo",
         "Erreur exécution de la commande": "Error de ejecución del comando",
         "Défaut": "Defecto",
         "Aucun paramètre optionnel disponible.": "No hay parámetros opcionales disponibles",
@@ -4240,6 +4240,7 @@
         "Erreur sur la connexion au market :": "Error al conectarse al mercado:",
         "Démarrage de jeedom fini avec succès": "Inicio de jeedom finalizado con éxito",
         "De nouvelles mises à jour sont disponibles": "Nuevas actualizaciones están disponibles",
+        "Centre de mise à jour": "Centro de actualización",
         "Vous pouvez arrêter le système": "Puedes parar el sistema",
         "Vous pouvez lancer le redémarrage du système": "Puedes iniciar el reinicio del sistema",
         "Aucun équipement ou commande à remplacer ou copier": "No hay equipos o controles para reemplazar o copiar"
@@ -4352,6 +4353,7 @@
         "Expression non valide": "Expresión inválida",
         "trouvée dans le scénario :": "encontrado en el escenario:",
         ", résultat : ": ", resultado:",
+        "Scenario": "Guion",
         "Non exécution des actions pour cause de répétition": "No aplicar las medidas por causa de la repetición",
         "La condition pour une boucle doit être numérique :": "La condición para un bucle debe ser numérica:",
         "Bloc type A :": "Bloque tipo A:",
@@ -4404,6 +4406,7 @@
         "Attention": "Atención",
         "n\\'a pas envoyé de message depuis plus de": "no ha enviado un mensaje por más de",
         "min (vérifiez les piles)": "min (comprobar pilas)",
+        "Equipement": "Equipo",
         "Aucun": "No",
         "L\\'équipement n\\'a pas pu être trouvé :": "No se pudo encontrar el equipo:",
         "Le": "El",
@@ -4421,7 +4424,6 @@
         "L\\'équipement source n\\'existe pas": "El equipo fuente no existe",
         "L\\'équipement cible n\\'existe pas": "El dispositivo de destino no existe",
         "Erreur lors de la migration d\\'équipement": "Error al migrar equipo",
-        "Equipement": "Dispositivos",
         "Action": "Acción"
     },
     "core\/class\/interactDef.class.php": {
@@ -4529,6 +4531,7 @@
         "Attention le plugin": "Atención el complemento",
         "n\\'a pas recu de message depuis": "no he recibido un mensaje desde",
         "min": "min",
+        "Configuration": "Configuración",
         "La tâche plugin::cron n\\'arrive pas à finir à cause du plugin :": "La tarea plugin :: cron no puede finalizar debido al complemento:",
         "nous vous conseillons de désactiver le plugin et de contacter l\\'auteur": "le recomendamos que desactive el complemento y se ponga en contacto con el autor",
         "Erreur sur la fonction cron du plugin :": "Error en la funcion cron del plugin:",
@@ -4568,6 +4571,9 @@
         "Erreur sur la fonction deamon_stop du plugin :": "Error en la función plugin deamon_stop:",
         "Votre version de Jeedom n\\'est pas assez récente pour activer ce plugin": "Su versión de Jeedom no es lo suficientemente reciente como para activar este complemento",
         "Lancement de :": "Lanzamiento de :"
+    },
+    "core\/class\/log.class.php": {
+        "Log": "Registro"
     },
     "core\/class\/cache.class.php": {
         "Inconnu": "Desconocido"
@@ -4720,7 +4726,7 @@
         "Nom": "Nombre"
     },
     "core\/template\/scenario\/equipement.default.html": {
-        "Equipement": "Dispositivos",
+        "Equipement": "Equipo",
         "Sélectionner un équipement": "Seleccionar dispositivo",
         "Action": "Acción",
         "Visible": "Visible",

@@ -146,7 +146,6 @@
         "Date": "Date",
         "Source": "Source",
         "Description": "Description",
-        "Action": "Stock",
         "Occurrences": "Occurrences"
     },
     "mobile\/html\/deamon.html": {
@@ -1458,7 +1457,7 @@
         "Système": "System",
         "Configuration": "Configuration",
         "Sauvegardes": "Backups",
-        "Centre de mise à jour": "Update center",
+        "Centre de mise à jour": "Update Center",
         "Utilisateurs": "Users",
         "Moteur de tâches": "Task engine",
         "Personnalisation avancée": "Advanced customization",
@@ -4132,6 +4131,7 @@
         "avec les paramètres": "with parameters",
         "Désactivation de": "Deactivation of",
         "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais": "because it did not respond or responded incorrectly during the last 3 attempts",
+        "Equipement": "Equipment",
         "Erreur exécution de la commande": "Command execution error",
         "Défaut": "Default",
         "Aucun paramètre optionnel disponible.": "No optional parameter available for this widget",
@@ -4240,6 +4240,7 @@
         "Erreur sur la connexion au market :": "Error connecting to the market:",
         "Démarrage de jeedom fini avec succès": "Jeedom startup successfully finished",
         "De nouvelles mises à jour sont disponibles": "New updates are available",
+        "Centre de mise à jour": "Update Center",
         "Vous pouvez arrêter le système": "You can stop the system",
         "Vous pouvez lancer le redémarrage du système": "You can restart the system",
         "Aucun équipement ou commande à remplacer ou copier": "No equipment or controls to replace or copy"
@@ -4352,6 +4353,7 @@
         "Expression non valide": "Invalid expression",
         "trouvée dans le scénario :": "found in the scenario:",
         ", résultat : ": ", result:",
+        "Scenario": "Script",
         "Non exécution des actions pour cause de répétition": "Failure to perform actions due to repetition",
         "La condition pour une boucle doit être numérique :": "The condition for a loop must be numeric:",
         "Bloc type A :": "At Block type:",
@@ -4404,6 +4406,7 @@
         "Attention": "Warning",
         "n\\'a pas envoyé de message depuis plus de": "has not sent a message for more than",
         "min (vérifiez les piles)": "min (check batteries)",
+        "Equipement": "Equipment",
         "Aucun": "None",
         "L\\'équipement n\\'a pas pu être trouvé :": "The equipment could not be found:",
         "Le": "The",
@@ -4421,7 +4424,6 @@
         "L\\'équipement source n\\'existe pas": "Source equipment does not exist",
         "L\\'équipement cible n\\'existe pas": "Target equipment does not exist",
         "Erreur lors de la migration d\\'équipement": "Error while migrating equipment",
-        "Equipement": "Equipment",
         "Action": "Stock"
     },
     "core\/class\/interactDef.class.php": {
@@ -4529,6 +4531,7 @@
         "Attention le plugin": "Warning the plugin",
         "n\\'a pas recu de message depuis": "haven't received a message since",
         "min": "min",
+        "Configuration": "Configuration",
         "La tâche plugin::cron n\\'arrive pas à finir à cause du plugin :": "The plugin :: cron task cannot finish because of the plugin:",
         "nous vous conseillons de désactiver le plugin et de contacter l\\'auteur": "we advise you to deactivate the plugin and contact the author",
         "Erreur sur la fonction cron du plugin :": "Error on the plugin's cron function:",
@@ -4568,6 +4571,9 @@
         "Erreur sur la fonction deamon_stop du plugin :": "Error on deamon_stop function of the plugin:",
         "Votre version de Jeedom n\\'est pas assez récente pour activer ce plugin": "Your version of Jeedom is not recent enough to activate this plugin",
         "Lancement de :": "Launch of:"
+    },
+    "core\/class\/log.class.php": {
+        "Log": "Log"
     },
     "core\/class\/cache.class.php": {
         "Inconnu": "Unknown"

@@ -146,7 +146,6 @@
         "Date": "Kencan",
         "Source": "Sumber",
         "Description": "Deskripsi",
-        "Action": "Action",
         "Occurrences": "Occurrences"
     },
     "mobile\/html\/deamon.html": {
@@ -4132,6 +4131,7 @@
         "avec les paramètres": "avec les paramètres",
         "Désactivation de": "Désactivation de",
         "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais": "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais",
+        "Equipement": "Equipement",
         "Erreur exécution de la commande": "Kesalahan mengeksekusi perintah",
         "Défaut": "Défaut",
         "Aucun paramètre optionnel disponible.": "Aucun paramètre optionnel disponible",
@@ -4240,6 +4240,7 @@
         "Erreur sur la connexion au market :": "Erreur sur la connexion au market :",
         "Démarrage de jeedom fini avec succès": "Jeedom Mulai selesai berhasil",
         "De nouvelles mises à jour sont disponibles": "De nouvelles mises à jour sont disponibles",
+        "Centre de mise à jour": "Centre de mise à jour",
         "Vous pouvez arrêter le système": "Vous pouvez arrêter le système",
         "Vous pouvez lancer le redémarrage du système": "Vous pouvez lancer le redémarrage du système",
         "Aucun équipement ou commande à remplacer ou copier": "Aucun équipement ou commande à remplacer ou copier"
@@ -4352,6 +4353,7 @@
         "Expression non valide": "Expression non valide",
         "trouvée dans le scénario :": "trouvée dans le scénario :",
         ", résultat : ": ", résultat :",
+        "Scenario": "Scenario",
         "Non exécution des actions pour cause de répétition": "Tidak ada kinerja saham karena pengulangan",
         "La condition pour une boucle doit être numérique :": "La condition pour une boucle doit être numérique :",
         "Bloc type A :": "Bloc type A :",
@@ -4404,6 +4406,7 @@
         "Attention": "Perhatian",
         "n\\'a pas envoyé de message depuis plus de": "n\\'a pas envoyé de message depuis plus de",
         "min (vérifiez les piles)": "min (vérifiez les piles)",
+        "Equipement": "Peralatan",
         "Aucun": "Tak ada",
         "L\\'équipement n\\'a pas pu être trouvé :": "L\\'équipement n\\'a pas pu être trouvé :",
         "Le": " ",
@@ -4421,7 +4424,6 @@
         "L\\'équipement source n\\'existe pas": "L\\'équipement source n\\'existe pas",
         "L\\'équipement cible n\\'existe pas": "L\\'équipement cible n\\'existe pas",
         "Erreur lors de la migration d\\'équipement": "Erreur lors de la migration d\\'équipement",
-        "Equipement": "Peralatan",
         "Action": "Action"
     },
     "core\/class\/interactDef.class.php": {
@@ -4529,6 +4531,7 @@
         "Attention le plugin": "Attention le plugin",
         "n\\'a pas recu de message depuis": "n\\'a pas recu de message depuis",
         "min": "min",
+        "Configuration": "Configuration",
         "La tâche plugin::cron n\\'arrive pas à finir à cause du plugin :": "La tâche plugin::cron n\\'arrive pas à finir à cause du plugin :",
         "nous vous conseillons de désactiver le plugin et de contacter l\\'auteur": "nous vous conseillons de désactiver le plugin et de contacter l\\'auteur",
         "Erreur sur la fonction cron du plugin :": "Kesalahan pada fungsi cron plugin:",
@@ -4568,6 +4571,9 @@
         "Erreur sur la fonction deamon_stop du plugin :": "Erreur sur la fonction deamon_stop du plugin :",
         "Votre version de Jeedom n\\'est pas assez récente pour activer ce plugin": "Votre version de Jeedom n\\'est pas assez récente pour activer ce plugin",
         "Lancement de :": "Peluncuran:"
+    },
+    "core\/class\/log.class.php": {
+        "Log": "Log"
     },
     "core\/class\/cache.class.php": {
         "Inconnu": "Tidak diketahui"

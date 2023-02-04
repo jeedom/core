@@ -146,7 +146,6 @@
         "Date": "Datum",
         "Source": "Quelle",
         "Description": "Beschreibung",
-        "Action": "Lager",
         "Occurrences": "Ereignisse"
     },
     "mobile\/html\/deamon.html": {
@@ -248,7 +247,7 @@
         "Action": "Aktion",
         "Lien mort ou absent": "Totes oder fehlendes Glied",
         "Supprimer": "Entfernen",
-        "Configuration": "Konfiguration",
+        "Configuration": "Aufbau",
         "Composant supprimée": "Komponente entfernt",
         "Configuration du composant": "Komponentenkonfiguration",
         "Image supprimée": "Bild gelöscht",
@@ -307,7 +306,7 @@
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Nom": "Name",
         "Statut": "Status",
-        "Configuration": "Konfiguration",
+        "Configuration": "Aufbau",
         "(Re)Démarrer": "(Re) Anfang",
         "Arrêter": "Beenden",
         "Gestion automatique": "Automatisches management",
@@ -393,7 +392,7 @@
         "Aucun": "Nein",
         "Visualisation": "Visualisierung",
         "Visualisation et exécution": "Visualisierung und Ausführung",
-        "Equipement": "Gerät",
+        "Equipement": "Ausrüstung",
         "Droits": "Rechte",
         "Scénario": "Szenario",
         "Sauvegarde effectuée": "Sicherung abgeschlossen"
@@ -559,7 +558,7 @@
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Objet": "Objekt",
-        "Equipement": "Gerät"
+        "Equipement": "Ausrüstung"
     },
     "desktop\/modal\/plan3d.configure.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -568,7 +567,7 @@
         "Supprimer": "Entfernen",
         "Nom": "Name",
         "Type de lien": "Art des Links",
-        "Equipement": "Gerät",
+        "Equipement": "Ausrüstung",
         "Lien": "Link",
         "Rechercher d\\'un équipement": "Suche nach Ausrüstung",
         "Spécificité": "Spezifität",
@@ -622,7 +621,7 @@
         "Résumé Domotique": "Übersicht Haus-Automatisierung",
         "Rechercher": "Suchen nach",
         "Recherche par": "Suche nach",
-        "Equipement": "Gerät",
+        "Equipement": "Ausrüstung",
         "Commande": "Befehl",
         "Variable": "Variable",
         "Plugin": "Plugin",
@@ -703,7 +702,7 @@
         "Liens": "Links",
         "Informations": "Information",
         "Sauvegarder": "Speichern",
-        "Configuration": "Konfiguration",
+        "Configuration": "Aufbau",
         "Alertes": "Warnungen",
         "Affichage": "Anzeige",
         "Général": "Allgemein",
@@ -743,7 +742,7 @@
         "Cette commande remplace l'ID": "Dieser Befehl ersetzt die ID",
         "Cette commande remplace la commande": "Dieser Befehl ersetzt den Befehl",
         "Remplacer cette commande par la commande": "Diesen Befehl durch den Befehl ersetzen",
-        "Equipement": "Gerät",
+        "Equipement": "Ausrüstung",
         "Commandes": "Befehle",
         "Scénario": "Szenario",
         "Résumés": "Zusammenfassungen",
@@ -842,7 +841,7 @@
     },
     "desktop\/modal\/log.display.php": {
         "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel.": "Bitte beachten Sie, dass Ihre Protokollstufe (Ereignis) niedriger als die Informationen ist, sodass Sie keine Echtzeit sehen können",
-        "Configuration": "Konfiguration",
+        "Configuration": "Aufbau",
         "Log brut": "Rohprotokoll",
         "Rechercher": "Suchen nach",
         "Pause": "Unterbrechung",
@@ -1095,7 +1094,7 @@
         "Type": "Typ",
         "ID du lien": "Link-ID",
         "Action": "Aktion",
-        "Configuration": "Konfiguration",
+        "Configuration": "Aufbau",
         "Composant supprimée": "Komponente entfernt",
         "Configuration du composant": "Komponentenkonfiguration",
         "Chargement réussi merci de recharger la page pour voir le résultat": "Laden Sie die Seite erfolgreich, um das Ergebnis zu sehen"
@@ -1194,7 +1193,7 @@
         "entraine la perte globale d’assistance par l’équipe": "führt zum Verlust der gesamten Unterstützung durch das Team",
         "Type de source": "Quelltyp",
         "Aucun": "Nein",
-        "Configuration": "Konfiguration",
+        "Configuration": "Aufbau",
         "ID logique du plugin": "Logische Plugin ID",
         "Envoyer un plugin": "Senden Sie ein Plugin",
         "Sauvegarder": "Speichern",
@@ -1238,7 +1237,7 @@
         "Valider": "Validate",
         "Objet": "Objekt",
         "Plugin": "Plugin",
-        "Equipement": "Gerät",
+        "Equipement": "Ausrüstung",
         "Nom": "Name"
     },
     "desktop\/modal\/cmd.history.php": {
@@ -1343,7 +1342,7 @@
         "Macro binaire": "Binäres Makro",
         "Widget au survol": "Hover-Widget",
         "Action": "Aktion",
-        "Equipement": "Gerät",
+        "Equipement": "Ausrüstung",
         "Afficher au survol": "Show auf Überführung",
         "Afficher sur un clic": "Ansicht mit einem Klick",
         "Position": "Position",
@@ -1456,9 +1455,9 @@
         "Gestion des plugins": "Plugin Management",
         "Réglages": "Einstellungen",
         "Système": "System",
-        "Configuration": "Konfiguration",
+        "Configuration": "Aufbau",
         "Sauvegardes": "Sicherungen",
-        "Centre de mise à jour": "Update Center",
+        "Centre de mise à jour": "Update-Center",
         "Utilisateurs": "Benutzer",
         "Moteur de tâches": "Cron-System",
         "Personnalisation avancée": "Erweiterte Anpassung",
@@ -1490,7 +1489,7 @@
         "Timelines": "Zeitleisten",
         "Rafraîchir": "Aktualisieren",
         "Supprimer": "Löschen",
-        "Configuration": "Konfiguration"
+        "Configuration": "Aufbau"
     },
     "desktop\/php\/reboot.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -1519,7 +1518,7 @@
         "Dépendances": "Nebengebäude",
         "Démon": "Dämon",
         "Installation": "Einrichtung",
-        "Configuration": "Konfiguration",
+        "Configuration": "Aufbau",
         "Fonctionnalités": "Merkmale",
         "Panel": "Platte"
     },
@@ -2202,7 +2201,7 @@
         "Créer une vue": "Erstellen Sie eine Ansicht",
         "Rechercher": "Suchen nach",
         "Edition": "Bearbeitung",
-        "Configuration": "Konfiguration",
+        "Configuration": "Aufbau",
         "Ajouter une zone": "Fügen Sie eine Zone hinzu",
         "Voir le résultat": "Siehe das Ergebnis",
         "Sauvegarder": "Speichern",
@@ -2380,12 +2379,12 @@
         "Catégories": "Kategorien",
         "Sans catégorie": "Ohne Kategorie",
         "Visibles": "Sichtbar",
-        "Equipement": "Gerät",
+        "Equipement": "Ausrüstung",
         "Tous": "Alle"
     },
     "desktop\/php\/eqAnalyse.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Configuration": "Konfiguration",
+        "Configuration": "Aufbau",
         "Batteries": "Batterien",
         "Equipements en alerte": "Ausrüstung in Alarmbereitschaft",
         "Actions définies": "Definierte Aktionen",
@@ -2394,7 +2393,7 @@
         "Commandes orphelines": "Orphan Orders",
         "Rechercher | nom | :not(nom": "Suche | Name | : nicht (Name",
         "Aucun équipement en Alerte.": "Keine Ausrüstung in Alarmbereitschaft",
-        "Equipement": "Gerät",
+        "Equipement": "Ausrüstung",
         "Commande": "Befehl",
         "Type": "Typ",
         "Exécution": "Ausführung",
@@ -2628,7 +2627,7 @@
         "Affichage": "Anzeige",
         "Historique calculé": "Berechnete Historie",
         "Configuration des formules de calcul": "Konfiguration von Berechnungsformeln",
-        "Configuration": "Konfiguration",
+        "Configuration": "Aufbau",
         "Sélectionner la commande": "Befehl auswählen",
         "Afficher le graphique calculé": "Berechnete Grafik anzeigen",
         "Commandes": "Aufträge",
@@ -3310,7 +3309,7 @@
         "Widgets": "Widgets",
         "Gestion Plugins": "Plugins-Management",
         "Sauvegardes": "Sicherungen",
-        "Configuration": "Konfiguration",
+        "Configuration": "Aufbau",
         "Base de données": "Datenbank",
         "Editeur en masse": "Masseneditor",
         "Moteur de tâches": "Task Engine",
@@ -4132,6 +4131,7 @@
         "avec les paramètres": "mit Parametern",
         "Désactivation de": "Deaktivierung von",
         "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais": "weil es in den letzten 3 Versuchen nicht oder falsch geantwortet hat",
+        "Equipement": "Ausrüstung",
         "Erreur exécution de la commande": "Befehlsausführungsfehler",
         "Défaut": "Standard",
         "Aucun paramètre optionnel disponible.": "Keine optionalen Parameter verfügbar",
@@ -4240,6 +4240,7 @@
         "Erreur sur la connexion au market :": "Fehler beim Herstellen einer Verbindung zum Markt:",
         "Démarrage de jeedom fini avec succès": "Jeedom-Start erfolgreich abgeschlossen",
         "De nouvelles mises à jour sont disponibles": "Neue updates sind verfügbar",
+        "Centre de mise à jour": "Update-Center",
         "Vous pouvez arrêter le système": "Sie können das System stoppen",
         "Vous pouvez lancer le redémarrage du système": "Sie können den Systemneustart starten",
         "Aucun équipement ou commande à remplacer ou copier": "Keine Ausrüstung oder Bedienelemente, die ersetzt oder kopiert werden müssen"
@@ -4352,6 +4353,7 @@
         "Expression non valide": "Ungültiger Ausdruck",
         "trouvée dans le scénario :": "im Szenario gefunden:",
         ", résultat : ": ", Ergebnis:",
+        "Scenario": "Skript",
         "Non exécution des actions pour cause de répétition": "Fehler beim Ausführen von Aktionen aufgrund von Wiederholungen",
         "La condition pour une boucle doit être numérique :": "Die Bedingung für eine Schleife muss numerisch sein:",
         "Bloc type A :": "Blocktyp A:",
@@ -4404,6 +4406,7 @@
         "Attention": "Achtung",
         "n\\'a pas envoyé de message depuis plus de": "hat seit mehr als keine Nachricht gesendet",
         "min (vérifiez les piles)": "min (Batterien prüfen)",
+        "Equipement": "Ausrüstung",
         "Aucun": "Nein",
         "L\\'équipement n\\'a pas pu être trouvé :": "Die Ausrüstung konnte nicht gefunden werden:",
         "Le": "Die",
@@ -4421,7 +4424,6 @@
         "L\\'équipement source n\\'existe pas": "Quellgeräte sind nicht vorhanden",
         "L\\'équipement cible n\\'existe pas": "Das Zielgerät existiert nicht",
         "Erreur lors de la migration d\\'équipement": "Fehler beim Migrieren von Geräten",
-        "Equipement": "Gerät",
         "Action": "Aktion"
     },
     "core\/class\/interactDef.class.php": {
@@ -4529,6 +4531,7 @@
         "Attention le plugin": "Achtung das Plugin",
         "n\\'a pas recu de message depuis": "seitdem keine Nachricht mehr erhalten",
         "min": "Mindest",
+        "Configuration": "Aufbau",
         "La tâche plugin::cron n\\'arrive pas à finir à cause du plugin :": "Die Plugin :: Cron-Task kann aufgrund des Plugins nicht beendet werden:",
         "nous vous conseillons de désactiver le plugin et de contacter l\\'auteur": "Wir empfehlen Ihnen, das Plugin zu deaktivieren und den Autor zu kontaktieren",
         "Erreur sur la fonction cron du plugin :": "Fehler in der Cron-Funktion des Plugins:",
@@ -4568,6 +4571,9 @@
         "Erreur sur la fonction deamon_stop du plugin :": "Fehler in der Plugin-Funktion deamon_stop:",
         "Votre version de Jeedom n\\'est pas assez récente pour activer ce plugin": "Ihre Version von Jeedom ist nicht aktuell genug, um dieses Plugin zu aktivieren",
         "Lancement de :": "Einführung von:"
+    },
+    "core\/class\/log.class.php": {
+        "Log": "Protokoll"
     },
     "core\/class\/cache.class.php": {
         "Inconnu": "Unbekannt"
@@ -4720,7 +4726,7 @@
         "Nom": "Name"
     },
     "core\/template\/scenario\/equipement.default.html": {
-        "Equipement": "Gerät",
+        "Equipement": "Ausrüstung",
         "Sélectionner un équipement": "Ausrüstung auswählen",
         "Action": "Aktion",
         "Visible": "Sichtbar",

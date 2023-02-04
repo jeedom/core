@@ -146,7 +146,6 @@
         "Date": "Data",
         "Source": "Sorgente",
         "Description": "Descrizione",
-        "Action": "Action",
         "Occurrences": "Occorrenze"
     },
     "mobile\/html\/deamon.html": {
@@ -4132,6 +4131,7 @@
         "avec les paramètres": "avec les paramètres",
         "Désactivation de": "Désactivation de",
         "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais": "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais",
+        "Equipement": "Equipement",
         "Erreur exécution de la commande": "Errore di esecuzione del comando",
         "Défaut": "Défaut",
         "Aucun paramètre optionnel disponible.": "Aucun paramètre optionnel disponible",
@@ -4240,6 +4240,7 @@
         "Erreur sur la connexion au market :": "Errore durante la connessione al mercato:",
         "Démarrage de jeedom fini avec succès": "L'avvio di Jeedom è terminato correttamente",
         "De nouvelles mises à jour sont disponibles": "De nouvelles mises à jour sont disponibles",
+        "Centre de mise à jour": "Centre de mise à jour",
         "Vous pouvez arrêter le système": "È possibile arrestare il sistema",
         "Vous pouvez lancer le redémarrage du système": "È possibile avviare il riavvio del sistema",
         "Aucun équipement ou commande à remplacer ou copier": "Aucun équipement ou commande à remplacer ou copier"
@@ -4352,6 +4353,7 @@
         "Expression non valide": "Expression non valide",
         "trouvée dans le scénario :": "trouvée dans le scénario :",
         ", résultat : ": ", résultat :",
+        "Scenario": "Scenario",
         "Non exécution des actions pour cause de répétition": "Mancata esecuzione di azioni a causa della ripetizione",
         "La condition pour une boucle doit être numérique :": "La condizione per un ciclo deve essere numerica:",
         "Bloc type A :": "Tipo di blocco A:",
@@ -4404,6 +4406,7 @@
         "Attention": "Ponere attenzione",
         "n\\'a pas envoyé de message depuis plus de": "n\\'a pas envoyé de message depuis plus de",
         "min (vérifiez les piles)": "min (vérifiez les piles)",
+        "Equipement": "Dispositivo",
         "Aucun": "Nessuno",
         "L\\'équipement n\\'a pas pu être trouvé :": "Impossibile trovare l'apparecchiatura:",
         "Le": "Il",
@@ -4421,7 +4424,6 @@
         "L\\'équipement source n\\'existe pas": "L\\'équipement source n\\'existe pas",
         "L\\'équipement cible n\\'existe pas": "L\\'équipement cible n\\'existe pas",
         "Erreur lors de la migration d\\'équipement": "Erreur lors de la migration d\\'équipement",
-        "Equipement": "Dispositivo",
         "Action": "Action"
     },
     "core\/class\/interactDef.class.php": {
@@ -4529,6 +4531,7 @@
         "Attention le plugin": "Attenzione il plugin",
         "n\\'a pas recu de message depuis": "n\\'a pas recu de message depuis",
         "min": "min",
+        "Configuration": "Configuration",
         "La tâche plugin::cron n\\'arrive pas à finir à cause du plugin :": "L'attività plugin :: cron non può terminare a causa del plugin:",
         "nous vous conseillons de désactiver le plugin et de contacter l\\'auteur": "nous vous conseillons de désactiver le plugin et de contacter l\\'auteur",
         "Erreur sur la fonction cron du plugin :": "Errore nella funzione cron del plugin:",
@@ -4568,6 +4571,9 @@
         "Erreur sur la fonction deamon_stop du plugin :": "Errore nella funzione plugin deamon_stop:",
         "Votre version de Jeedom n\\'est pas assez récente pour activer ce plugin": "La tua versione di Jeedom non è abbastanza recente per attivare questo plugin",
         "Lancement de :": "Lancio di:"
+    },
+    "core\/class\/log.class.php": {
+        "Log": "Log"
     },
     "core\/class\/cache.class.php": {
         "Inconnu": "Sconosciuto"

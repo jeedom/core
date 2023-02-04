@@ -1,4 +1,4 @@
-# Nachrichtencenter
+# Nachrichtenzentrum
 **Menüleiste**
 
 Das Nachrichtencenter fasst alle wichtigen Nachrichten zusammen, die Sie konsultieren sollten. Es befindet sich links von der Uhrzeit rechts in der Jeedom-Menüleiste.
