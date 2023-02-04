@@ -2,6 +2,7 @@
 if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
+
 ?>
 
 <div class="row row-overflow">
@@ -11,9 +12,9 @@ if (!isConnect('admin')) {
         <span class="input-group-btn">
           <?php
           if (config::byKey('enableCron') == 0) {
-            echo '<a class="btn btn-success btn-sm roundedLeft" id="bt_changeCronState" data-state="1"><i class="fas fa-check"></i> {{Activer le système cron}}';
+            echo '<a class="btn btn-success btn-sm roundedLeft" id="bt_changeCronState" data-state="0"><i class="fas fa-check"></i> {{Activer le système cron}}';
           } else {
-            echo '<a class="btn btn-danger btn-sm roundedLeft" id="bt_changeCronState" data-state="0"><i class="fas fa-times"></i> {{Désactiver le système cron}}';
+            echo '<a class="btn btn-danger btn-sm roundedLeft" id="bt_changeCronState" data-state="1"><i class="fas fa-times"></i> {{Désactiver le système cron}}';
           }
           ?>
           <a class="btn btn-sm" id="bt_refreshCron"><i class="fas fa-sync"></i> {{Rafraîchir}}

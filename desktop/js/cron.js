@@ -27,6 +27,9 @@ if (!jeeFrontEnd.cron) {
       this.printListener()
       this.getDeamonState()
 
+      //Global cron state:
+      this.switchState()
+
       domUtils(function() {
         if (document.getElementById('tab_tableCron').hasClass('active')) {
           document.querySelector('div.floatingbar').seen()
@@ -36,6 +39,19 @@ if (!jeeFrontEnd.cron) {
       })
     },
     //-> Cron
+    switchState: function(state) {
+      if (!isset(state)) state = document.getElementById('bt_changeCronState').getAttribute('data-state')
+      let button = document.getElementById('bt_changeCronState')
+      if (state == '0') {
+        button.removeClass('btn-danger').addClass('btn-success').setAttribute('data-state', '1')
+        button.innerHTML = '<i class="fas fa-check"></i> {{Activer le système cron}}</a>'
+        document.getElementById('div_pageContainer').querySelectorAll('ul[role="tablist"] > li').addClass('warning')
+      } else {
+        button.removeClass('btn-success').addClass('btn-danger').setAttribute('data-state', '0')
+        button.innerHTML = '<i class="fas fa-times"></i> {{Désactiver le système cron}}'
+        document.getElementById('div_pageContainer').querySelectorAll('ul[role="tablist"] > li').removeClass('warning')
+      }
+    },
     printCron: function() {
       jeedom.cron.all({
         success: function(data) {
@@ -290,13 +306,7 @@ document.getElementById('bt_changeCronState')?.addEventListener('click', functio
       })
     },
     success: function() {
-      if (_target.getAttribute('data-state') == '1') {
-        _target.removeClass('btn-success').addClass('btn-danger').setAttribute('data-state', '0')
-        _target.innerHTML = '<i class="fas fa-times"></i> {{Désactiver le système cron}}'
-      } else {
-        _target.removeClass('btn-danger').addClass('btn-success').setAttribute('data-state', '1')
-        _target.innerHTML = '<i class="fas fa-check"></i> {{Activer le système cron}}</a>'
-      }
+      jeeP.switchState()
     }
   })
 })

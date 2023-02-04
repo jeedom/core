@@ -16,8 +16,6 @@
 
 "use strict"
 
-console.log('jp:', jeephp2js)
-
 if (!jeeFrontEnd.scenario) {
   jeeFrontEnd.scenario = {
     dom_divScenario: null,
