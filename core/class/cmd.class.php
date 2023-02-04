@@ -1220,7 +1220,8 @@ class cmd {
 				$eqLogic->setStatus('numberTryWithoutSuccess', $numberTryWithoutSuccess);
 				if ($numberTryWithoutSuccess >= config::byKey('numberOfTryBeforeEqLogicDisable')) {
 					$message = __('Désactivation de', __FILE__) . ' <a href="' . $eqLogic->getLinkToConfiguration() . '"> ' . $eqLogic->getName() . '</a> ' . __('car il n\'a pas répondu ou mal répondu lors des 3 derniers essais', __FILE__);
-					message::add($type, $message);
+					$action = '<a href="/' . $eqLogic->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
+					message::add($type, $message, $action);
 					$eqLogic->setIsEnable(0);
 					$eqLogic->save();
 				}
@@ -2008,7 +2009,8 @@ class cmd {
 			log::add('event', 'info', $message);
 			$eqLogic = $this->getEqLogic();
 			if (config::byKey('alert::addMessageOn' . ucfirst($_level)) == 1) {
-				message::add($eqLogic->getEqType_name(), $message, '', '', true, 'alerting');
+				$action = '<a href="/' . $eqLogic->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
+				message::add($eqLogic->getEqType_name(), $message, $action, '', true, 'alerting');
 			}
 			$cmds = explode(('&&'), config::byKey('alert::' . $_level . 'Cmd'));
 			if (count($cmds) > 0 && trim(config::byKey('alert::' . $_level . 'Cmd')) != '') {
@@ -2029,7 +2031,8 @@ class cmd {
 		} elseif ($this->getConfiguration('alert::messageReturnBack') == 1) {
 			$message = __('Retour à la normal de ', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('valeur :', __FILE__) . ' ' . $_value . trim(' ' . $this->getUnite());
 			log::add('event', 'info', $message);
-			message::add($this->getEqLogic()->getEqType_name(), $message, '', '', true, 'alertingReturnBack');
+			$action = '<a href="/' . $this->getEqLogic()->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
+			message::add($this->getEqLogic()->getEqType_name(), $message, $action, '', true, 'alertingReturnBack');
 		}
 
 		if ($prevAlert != $maxAlert) {

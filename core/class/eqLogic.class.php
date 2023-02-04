@@ -360,10 +360,11 @@ class eqLogic {
 					if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) < date('Y-m-d H:i:s', strtotime('-' . $noReponseTimeLimit . ' minutes' . date('Y-m-d H:i:s')))) {
 						$message = __('Attention', __FILE__) . ' ' . $eqLogic->getHumanName();
 						$message .= ' ' . __('n\'a pas envoyé de message depuis plus de', __FILE__) . ' ' . $noReponseTimeLimit . ' ' . __('min (vérifiez les piles)', __FILE__);
+						$action = '<a href="/' . $this->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
 						$prevStatus = $eqLogic->getStatus('timeout', 0);
 						$eqLogic->setStatus('timeout', 1);
 						if (config::byKey('alert::addMessageOnTimeout') == 1 && $prevStatus == 0) {
-							message::add('core', $message, '', $logicalId);
+							message::add('core', $message, $action, $logicalId);
 						}
 						$cmds = explode(('&&'), config::byKey('alert::timeoutCmd'));
 						if (count($cmds) > 0 && trim(config::byKey('alert::timeoutCmd')) != '' && $prevStatus == 0) {
@@ -1127,15 +1128,16 @@ class eqLogic {
 				return;
 			}
 			$prevStatus = $this->getStatus('batterydanger', 0);
-			$logicalId = 'lowBattery' . $this->getId();
 			$message = 'L\'équipement ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $danger_threshold . '% de batterie (niveau danger avec ' . $_pourcent . '% de batterie)';
 			if ($this->getConfiguration('battery_type') != '') {
 				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
 			}
+			$action = '<a href="/' . $this->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
+			$logicalId = 'lowBattery' . $this->getId();
 			$this->setStatus('batterydanger', 1);
 			if ($prevStatus == 0) {
 				if (config::byKey('alert::addMessageOnBatterydanger') == 1) {
-					message::add($this->getEqType_name(), $message, '', $logicalId);
+					message::add($this->getEqType_name(), $message, $action, $logicalId);
 				}
 				$cmds = explode(('&&'), config::byKey('alert::batterydangerCmd'));
 				if (count($cmds) > 0 && trim(config::byKey('alert::batterydangerCmd')) != '') {
@@ -1155,16 +1157,17 @@ class eqLogic {
 				return;
 			}
 			$prevStatus = $this->getStatus('batterywarning', 0);
-			$logicalId = 'warningBattery' . $this->getId();
 			$message = 'L\'équipement ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $warning_threshold . '% de batterie (niveau warning avec ' . $_pourcent . '% de batterie)';
 			if ($this->getConfiguration('battery_type') != '') {
 				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
 			}
+			$action = '<a href="/' . $this->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
+			$logicalId = 'warningBattery' . $this->getId();
 			$this->setStatus('batterywarning', 1);
 			$this->setStatus('batterydanger', 0);
 			if ($prevStatus == 0) {
 				if (config::byKey('alert::addMessageOnBatterywarning') == 1) {
-					message::add($this->getEqType_name(), $message, '', $logicalId);
+					message::add($this->getEqType_name(), $message, $action, $logicalId);
 				}
 				$cmds = explode(('&&'), config::byKey('alert::batterywarningCmd'));
 				if (count($cmds) > 0 && trim(config::byKey('alert::batterywarningCmd')) != '') {

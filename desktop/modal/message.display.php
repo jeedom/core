@@ -53,7 +53,7 @@ if ($selectPlugin != '') {
         <th data-type="date" data-format="YYYY-MM-DD hh:mm:ss" style="width:150px;">{{Date et heure}}</th>
         <th style="width:20%;">{{Source}}</th>
         <th data-sortable="false" data-filter="false">{{Description}}</th>
-        <th style="width:20%;" data-sortable="false" data-filter="false">{{Action}}</th>
+        <th style="min-width:130px; width:10%;" data-sortable="false" data-filter="false">{{Action}}</th>
         <th style="width:105px;">{{Occurrences}}</th>
       </tr>
     </thead>

@@ -56,7 +56,7 @@ function getAllMessage(_plugin) {
         tbody += '<td class="datetime">' + messages[i].date + '</td>'
         tbody += '<td class="plugin">' + messages[i].plugin + '</td>'
         tbody += '<td class="message">' + messages[i].message + '</td>'
-        tbody += '<td class="message_action">' + messages[i].action + '</td>';
+        //tbody += '<td class="message_action">' + messages[i].action + '</td>';
         tbody += '<td class="occurrences">' + ( messages[i].occurrences === null ? '1' : messages[i].occurrences ) + '</td>'
         tbody += '</tr>'
       }

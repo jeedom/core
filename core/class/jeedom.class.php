@@ -1206,7 +1206,9 @@ class jeedom {
 					}
 					if ($toUpdate != '') {
 						//set $_logicalId so update function can remove such messages. Bypassed by message::save to notify different updates instead of new occurence.
-						message::add('update', __('De nouvelles mises à jour sont disponibles', __FILE__) . ' : ' . trim($toUpdate, ','), '', 'newUpdate');
+						$msg = __('De nouvelles mises à jour sont disponibles', __FILE__) . ' : ' . trim($toUpdate, ',');
+						$action = '<a href="/index.php?v=d&p=update">' . __('Centre de mise à jour', __FILE__) . '</a>';
+						message::add('update', $msg, $action, 'newUpdate');
 					}
 				}
 			}
