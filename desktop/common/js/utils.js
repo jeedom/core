@@ -1355,7 +1355,8 @@ jeedomUtils.addOrUpdateUrl = function(_param, _value, _title) {
 
 //Global UI functions__
 jeedomUtils.setJeedomMenu = function() {
-  document.getElementById('jeedomMenuBar')?.addEventListener('click', function(event) {
+  //Listener on body to catch Jeedom links for loadpage() instead of reloading url
+  document.body.addEventListener('click', function(event) {
     var _target = null
     if (_target = event.target.closest('a')) {
       if (_target.hasClass('noOnePageLoad')) return
