@@ -1558,12 +1558,13 @@
         "Pré-update": "Pré-atualização",
         "Mettre d'abord le script d'update à jour.": "Primeiro atualize o script de atualização",
         "Sauvegarder avant": "Guardar antes",
-        "Mettre à jour les plugins": "Atualizar os plugins",
-        "Mettre à jour le core": "Atualizar o core",
+        "Réalise une sauvegarde avant de lancer la mise à jour.": "Faça um backup antes de iniciar a atualização",
+        "Mettre à jour le Core": "Atualizar o core",
         "Mode forcé": "Modo forçado",
         "Continuer la mise à jour en cas d'erreur.": "Continue a atualização em caso de erro",
-        "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur 'Aucune'.": "A opção a seguir pode ser modificada apenas a pedido do suporte, caso contrário, DEVE ser configurada como 'Nenhuma'",
-        "Mise à jour à réappliquer": "Atualização para reaplicar",
+        "Mettre à jour les plugins": "Atualizar os plugins",
+        "L'option suivante n'est à utiliser que sur demande du support.": "A opção a seguir só deve ser utilizada quando solicitada pelo suporte",
+        "Script d'update à réappliquer": "Atualize o script para reaplicar",
         "Aucune": "Nenhuma"
     },
     "desktop\/php\/view.php": {

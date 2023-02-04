@@ -1558,12 +1558,13 @@
         "Pré-update": "Pre-Update",
         "Mettre d'abord le script d'update à jour.": "Aktualisieren Sie zuerst das Aktualisierungsskript",
         "Sauvegarder avant": "Vorher speichern",
-        "Mettre à jour les plugins": "Plugins aktualisieren",
-        "Mettre à jour le core": "Aktualisieren Sie den Kern",
+        "Réalise une sauvegarde avant de lancer la mise à jour.": "Erstellen Sie eine Sicherungskopie, bevor Sie das Update starten",
+        "Mettre à jour le Core": "Aktualisieren Sie den Kern",
         "Mode forcé": "Erzwungener Modus",
         "Continuer la mise à jour en cas d'erreur.": "Setzen Sie das Update im Fehlerfall fort",
-        "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur 'Aucune'.": "Die folgende Option kann nur auf Anfrage des Supports geändert werden, andernfalls MUSS sie auf \"Keine\" gesetzt werden",
-        "Mise à jour à réappliquer": "Update zur erneuten Anwendung",
+        "Mettre à jour les plugins": "Plugins aktualisieren",
+        "L'option suivante n'est à utiliser que sur demande du support.": "Die folgende Option ist nur auf Anfrage des Supports zu verwenden",
+        "Script d'update à réappliquer": "Aktualisieren Sie das Skript, um es erneut anzuwenden",
         "Aucune": "Keine"
     },
     "desktop\/php\/view.php": {

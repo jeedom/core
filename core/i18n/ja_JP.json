@@ -1558,12 +1558,13 @@
         "Pré-update": "更新前",
         "Mettre d'abord le script d'update à jour.": "最初に更新スクリプトを更新します。",
         "Sauvegarder avant": "前に保存",
-        "Mettre à jour les plugins": "プラグインを更新する",
-        "Mettre à jour le core": "コアを更新する",
+        "Réalise une sauvegarde avant de lancer la mise à jour.": "Réalise une sauvegarde avant de lancer la mise à jour",
+        "Mettre à jour le Core": "コアを更新する",
         "Mode forcé": "強制モード",
         "Continuer la mise à jour en cas d'erreur.": "エラーが発生した場合は更新を続行します。",
-        "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur 'Aucune'.": "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur 'Aucune'",
-        "Mise à jour à réappliquer": "再申請するための更新",
+        "Mettre à jour les plugins": "プラグインを更新する",
+        "L'option suivante n'est à utiliser que sur demande du support.": "L'option suivante n'est à utiliser que sur demande du support",
+        "Script d'update à réappliquer": "Script d'update à réappliquer",
         "Aucune": "いいえ"
     },
     "desktop\/php\/view.php": {

@@ -1558,12 +1558,13 @@
         "Pré-update": "Pre-update",
         "Mettre d'abord le script d'update à jour.": "First update the update script",
         "Sauvegarder avant": "Save before",
-        "Mettre à jour les plugins": "Update plugins",
-        "Mettre à jour le core": "Update the core",
+        "Réalise une sauvegarde avant de lancer la mise à jour.": "Make a backup before starting the update",
+        "Mettre à jour le Core": "Update the core",
         "Mode forcé": "Forced mode",
         "Continuer la mise à jour en cas d'erreur.": "Continue the update in case of error",
-        "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur 'Aucune'.": "The following option can only be modified at the request of the support, otherwise it MUST be set to 'None'",
-        "Mise à jour à réappliquer": "Update to reapply",
+        "Mettre à jour les plugins": "Update plugins",
+        "L'option suivante n'est à utiliser que sur demande du support.": "The following option is only to be used when requested by support",
+        "Script d'update à réappliquer": "Update script to reapply",
         "Aucune": "None"
     },
     "desktop\/php\/view.php": {

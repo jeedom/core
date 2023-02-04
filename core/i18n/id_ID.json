@@ -1558,12 +1558,13 @@
         "Pré-update": "Pré-update",
         "Mettre d'abord le script d'update à jour.": "Mettre d'abord le script d'update à jour",
         "Sauvegarder avant": "Simpan sebelum",
-        "Mettre à jour les plugins": "Plugin pembaruan",
-        "Mettre à jour le core": "Memperbarui inti",
+        "Réalise une sauvegarde avant de lancer la mise à jour.": "Réalise une sauvegarde avant de lancer la mise à jour",
+        "Mettre à jour le Core": "Memperbarui inti",
         "Mode forcé": "Modus dipaksa",
         "Continuer la mise à jour en cas d'erreur.": "Continuer la mise à jour en cas d'erreur",
-        "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur 'Aucune'.": "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur 'Aucune'",
-        "Mise à jour à réappliquer": "Update untuk mengajukan permohonan kembali",
+        "Mettre à jour les plugins": "Plugin pembaruan",
+        "L'option suivante n'est à utiliser que sur demande du support.": "L'option suivante n'est à utiliser que sur demande du support",
+        "Script d'update à réappliquer": "Script d'update à réappliquer",
         "Aucune": "Tidak"
     },
     "desktop\/php\/view.php": {
