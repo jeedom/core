@@ -158,7 +158,6 @@ if (!jeeFrontEnd.update) {
           jeeP._pre_updateInfo_clean.seen()
           jeeP.createUpdateObserver()
           jeedomUtils.setCheckContextMenu()
-          jeedomUtils.initTooltips()
         }
       })
 
@@ -492,8 +491,8 @@ if (!jeeFrontEnd.update) {
       jeeDialog.dialog({
         id: 'md_update',
         title: "{{Options de mise à jour}}",
-        width: window.innerWidth > 500 ? 480 : window.innerWidth,
-        height: window.innerHeight > 500 ? 460 : window.innerHeight - 30,
+        width: window.innerWidth > 600 ? 580 : window.innerWidth,
+        height: window.innerHeight > 500 ? 480 : window.innerHeight - 30,
         top: window.innerHeight > 500 ? 120 : 0,
         callback: function() {
           var contentEl = jeeDialog.get('#md_update', 'content')
@@ -501,6 +500,11 @@ if (!jeeFrontEnd.update) {
             var newContent = document.getElementById('md_specifyUpdate-template').cloneNode(true)
             newContent.setAttribute('id', 'md_specifyUpdate')
             contentEl.appendChild(newContent)
+            newContent.querySelectorAll('[data-title]').forEach(_tooltip => {
+              _tooltip.setAttribute('title', _tooltip.getAttribute('data-title'))
+              _tooltip.removeAttribute('data-title')
+            })
+            jeedomUtils.initTooltips(document.getElementById('md_update'))
           }
 
           contentEl.querySelector('input[data-l1key="force"]').addEventListener('click', function(event) {
@@ -515,6 +519,22 @@ if (!jeeFrontEnd.update) {
               check_backupBefore.removeAttribute('disabled')
             }
           })
+
+          contentEl.querySelector('.bt_changelogCore').addEventListener('click', function(event) {
+            jeedom.getDocumentationUrl({
+              page: 'changelog',
+              theme: document.body.getAttribute('data-theme'),
+              error: function(error) {
+                jeedomUtils.showAlert({
+                  message: error.message,
+                  level: 'danger'
+                })
+              },
+              success: function(url) {
+                window.open(url, '_blank')
+              }
+            })
+        })
         },
         onShown: function() {
           jeeDialog.get('#md_update', 'content').querySelector('#md_specifyUpdate').removeClass('hidden')
@@ -673,23 +693,6 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       },
       success: function(data) {
         jeedomUtils.loadPage('index.php?v=d&p=update&saveSuccessFull=1')
-      }
-    })
-    return
-  }
-
-  if (_target = event.target.closest('#bt_changelogCore')) {
-    jeedom.getDocumentationUrl({
-      page: 'changelog',
-      theme: document.body.getAttribute('data-theme'),
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function(url) {
-        window.open(url, '_blank')
       }
     })
     return

@@ -132,50 +132,54 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 			<form class="form-horizontal">
 				<fieldset>
 					<div class="alert alert-warning">
-						{{Avant toute mise à jour, merci de consulter le}} <span id="bt_changelogCore" class="label cursor alert-info">{{changelog}}</span> {{du Core}}.
+						{{Avant toute mise à jour, merci de consulter le}} <span id="bt_changelogCore" class="bt_changelogCore label cursor alert-info">{{changelog}}</span> {{du Core}}.
 					</div>
 
 					<div class="form-group">
+						<label>Core</label>
 						<div class="form-group">
 							<label class="col-xs-6 control-label">{{Pré-update}}
-								<sup><i class="fas fa-question-circle tooltips" title="{{Mettre d'abord le script d'update à jour.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" data-title="{{Mettre d'abord le script d'update à jour.}}"></i></sup>
 							</label>
 							<div class="col-xs-4">
 								<input type="checkbox" class="updateOption" data-l1key="preUpdate" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-xs-6 control-label">{{Sauvegarder avant}}</label>
+							<label class="col-xs-6 control-label">{{Sauvegarder avant}}
+								<sup><i class="fas fa-question-circle" data-title="{{Réalise une sauvegarde avant de lancer la mise à jour.}}"></i></sup>
+							</label>
 							<div class="col-xs-4">
 								<input type="checkbox" class="updateOption" data-l1key="backup::before" checked />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-xs-6 control-label">{{Mettre à jour les plugins}}</label>
-							<div class="col-xs-4">
-								<input type="checkbox" class="updateOption" data-l1key="plugins" checked />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-6 control-label">{{Mettre à jour le core}}</label>
+							<label class="col-xs-6 control-label">{{Mettre à jour le Core}}</label>
 							<div class="col-xs-4">
 								<input type="checkbox" class="updateOption" data-l1key="core" checked />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-xs-6 control-label">{{Mode forcé}}
-								<sup><i class="fas fa-question-circle tooltips" title="{{Continuer la mise à jour en cas d'erreur.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" data-title="{{Continuer la mise à jour en cas d'erreur.}}"></i></sup>
 							</label>
 							<div class="col-xs-4">
 								<input type="checkbox" class="updateOption" data-l1key="force" />
 							</div>
 						</div>
+						<label>Plugins</label>
+						<div class="form-group">
+							<label class="col-xs-6 control-label">{{Mettre à jour les plugins}}</label>
+							<div class="col-xs-4">
+								<input type="checkbox" class="updateOption" data-l1key="plugins" checked />
+							</div>
+						</div>
 					</div>
-					<div class="alert alert-danger">{{L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur 'Aucune'.}}</div>
+					<div class="alert alert-danger">{{L'option suivante n'est à utiliser que sur demande du support.}}</div>
 					<div class="form-group">
-						<label class="col-xs-6 control-label ">{{Mise à jour à réappliquer}}</label>
+						<label class="col-xs-6 control-label ">{{Script d'update à réappliquer}}</label>
 						<div class="col-xs-5">
-							<select id="sel_updateVersion" class="form-control updateOption" data-l1key="update::reapply">
+							<select id="sel_updateVersion" class="form-control input-sm updateOption" data-l1key="update::reapply">
 								<option value="">{{Aucune}}</option>
 									<?php
 									$updates = array();
