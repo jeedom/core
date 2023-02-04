@@ -1,4 +1,4 @@
-# Message center
+# Message Center
 **Toolbar**
 
 The message center brings together all the important messages you should consult. It is to the left of the time, on the right of the Jeedom menu bar.
