@@ -85,7 +85,8 @@ foreach ($objectList as $parent) {
 sendVarToJS([
 	'jeephp2js.initSearch' => init('search', 0),
 	'jeephp2js.scenarioListGroup' => $scenarioListGroup,
-	'jeephp2js.objectList' => $parentList
+	'jeephp2js.objectList' => $parentList,
+	'jeephp2js.globalActiveState' => config::byKey('enableScenario')
 ]);
 
 ?>

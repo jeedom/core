@@ -16,6 +16,8 @@
 
 "use strict"
 
+console.log('jp:', jeephp2js)
+
 if (!jeeFrontEnd.scenario) {
   jeeFrontEnd.scenario = {
     dom_divScenario: null,
@@ -58,6 +60,14 @@ if (!jeeFrontEnd.scenario) {
             }, 200)
           }
         })
+      }
+
+      //Global scenario state:
+      if (jeephp2js.globalActiveState == '0') {
+        document.getElementById('bt_runScenario').addClass('disabled')
+        document.getElementById('generaltab').querySelector('input[data-l1key="isActive"]').addClass('warning')
+        document.getElementById('scenarioThumbnailDisplay').querySelector('div.scenarioListContainer').addClass('warning')
+        document.getElementById('div_editScenario').querySelectorAll('ul[role="tablist"] > li').addClass('warning')
       }
     },
     postInit: function() {
@@ -1487,7 +1497,8 @@ document.getElementById('bt_addScenario').addEventListener('click', function(eve
 })
 
 document.getElementById('bt_changeAllScenarioState').addEventListener('click', function(event) {
-  if (event.target.getAttribute('data-state') == 0) {
+  var _target = event.target.closest('#bt_changeAllScenarioState')
+  if (_target.getAttribute('data-state') == '0') {
     var msg = '{{Êtes-vous sûr de vouloir désactiver les scénarios ?}}'
   } else {
     var msg = '{{Êtes-vous sûr de vouloir activer les scénarios ?}}'
@@ -1497,7 +1508,7 @@ document.getElementById('bt_changeAllScenarioState').addEventListener('click', f
     if (result) {
       jeedom.config.save({
         configuration: {
-          enableScenario: event.target.getAttribute('data-state')
+          enableScenario: _target.getAttribute('data-state')
         },
         error: function(error) {
           jeedomUtils.showAlert({
