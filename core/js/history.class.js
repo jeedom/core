@@ -121,22 +121,16 @@ jeedom.history.changePoint = function(_params) {
       jeedomUtils.showAlert({
         message: '{{La valeur a été éditée avec succès}}',
         level: 'success'
-      });
-      var serie = null;
-      for (var i in jeedom.history.chart) {
-        serie = jeedom.history.chart[i].chart.series.filter(v => v.userOptions.id == _params.cmd_id.toString())[0]
-        if (serie != null && serie != undefined) {
-          serie.remove();
-          serie = null;
-          jeedom.history.drawChart({
-            cmd_id: _params.cmd_id,
-            el: i,
-            dateRange: jeedom.history.chart[i].cmd[_params.cmd_id].dateRange,
-            dateStart: _params.dateStart,
-            dateEnd: _params.dateEnd,
-            option: jeedom.history.chart[i].cmd[_params.cmd_id].option
-          });
-        }
+      })
+
+      //changePoint() only allowed on history page:
+      if (!isset(jeeFrontEnd.history)) return
+      if (document.body.dataset.uimode != 'desktop') return
+      if (document.body.dataset.page != 'history') return
+      var shown = document.getElementById('ul_history').querySelectorAll('li.li_history.active[data-cmd_id="' + _params.cmd_id + '"]')
+      if (shown) {
+        jeeFrontEnd.history.addChart(_params.cmd_id, 0)
+        jeeFrontEnd.history.addChart(_params.cmd_id, 1)
       }
     }
   };
@@ -1392,7 +1386,6 @@ jeedom.history.chartDone = function(_chartId) {
   if (jeedom.history.chart[_chartId].doing > 0) return false
   var chart = jeedom.history.chart[_chartId].chart
   jeedom.history.chart[_chartId].doing = -1
-
   try {
     setTimeout(function() {
       if (isset(jeedom.history.chart[_chartId]) && !jeedom.history.chart[_chartId].comparing) {
@@ -1451,6 +1444,7 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
   if (!jeedom.history.chart[_chartId].yAxisScaling && jeedom.history.chart[_chartId].yAxisByUnit) {
     var unit, mathMin, mathMax
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
+      if (axis.series.length == 0) return
       unit = axis.series[0].userOptions.unite
       if (unit == '') unit = axis.userOptions.id
       if (unit != '' && !(unit in units)) {
@@ -1531,6 +1525,7 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
   if (jeedom.history.chart[_chartId].yAxisScaling && jeedom.history.chart[_chartId].yAxisByUnit) {
     var unit, mathMin, mathMax, cmin, cmax
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
+      if (axis.series.length == 0) return
       unit = axis.series[0].userOptions.unite
       if (unit == '') unit = axis.userOptions.id
       if (unit != '' && !(unit in units)) {
@@ -1567,6 +1562,7 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
       }
     })
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
+      if (axis.series.length == 0) return
       unit = axis.series[0].userOptions.unite
       if (unit == '') unit = axis.userOptions.id
       if (axis.stacking.stacksTouched == 0) {
@@ -1632,6 +1628,7 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
   if (jeedom.history.chart[_chartId].mode != 'view' && jeedom.history.chart[_chartId].mode != 'plan') {
     if (Object.keys(units).length == 0) { //no unit
       chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
+        if (axis.series.length == 0) return
         var seriesColor = axis.series[0].color
         axis.update({
           visible: true,
