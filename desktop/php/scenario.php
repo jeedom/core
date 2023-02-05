@@ -99,6 +99,10 @@ sendVarToJS([
 				<div class="center"><i class="fas fa-plus-circle"></i></div>
 				<span class="txtColor">{{Ajouter}}</span>
 			</div>
+			<div class="cursor logoSecondary" id="bt_showScenarioSummary">
+				<div class="center"><i class="fas fa-list"></i></div>
+				<span class="txtColor">{{Vue d'ensemble}}</span>
+			</div>
 			<div class="cursor warning" id="bt_clearAllLogs">
 				<div class="center"><i class="far fa-trash-alt"></i></div>
 				<span class="txtColor">{{Supprimer les logs}}</span>
@@ -114,10 +118,6 @@ sendVarToJS([
 					<span class="txtColor">{{Désactiver moteur de scénarios}}</span>
 				</div>
 			<?php } ?>
-			<div class="cursor logoSecondary" id="bt_showScenarioSummary">
-				<div class="center"><i class="fas fa-list"></i></div>
-				<span class="txtColor">{{Vue d'ensemble}}</span>
-			</div>
 		</div>
 
 		<legend><i class="icon jeedom-clap_cinema"></i> {{Mes scénarios}} <sub class="itemsNumber"></sub></legend>

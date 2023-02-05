@@ -188,10 +188,11 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 									}
 									usort($updates, 'version_compare');
 									$updates = array_reverse($updates);
+									$options = '';
 									foreach ($updates as $value) {
-										//if ($value < 4.0) continue;
-										echo '<option value="' . $value . '">' . $value . '</option>';
+										$options .= '<option value="' . $value . '">' . $value . '</option>';
 									}
+									echo $options;
 								?>
 							</select>
 						</div>
