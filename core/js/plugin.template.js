@@ -581,10 +581,9 @@ domUtils(function() {
     delayOnTouchOnly: true,
     touchStartThreshold: 20,
     draggable: 'tr.cmd',
+    filter: 'a, input, textarea',
+    preventOnFilter: false,
     direction: 'vertical',
-    onStart: function(event) {
-      console.log('sort start', event)
-    },
     onEnd: function (event) {
       jeeFrontEnd.modifyWithoutSave = true
     },
