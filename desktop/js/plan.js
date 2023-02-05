@@ -30,6 +30,7 @@ if (!jeeFrontEnd.plan) {
       this.pageContainer = document.getElementById('div_pageContainer')
       this.planContainer = document.querySelector('.div_displayObject')
       this.planHeaderContextMenu = {}
+      jeedomUtils.userDevice = getDeviceType()
       if (typeof jeeFrontEnd.planEditOption === 'undefined' || jeedomUtils.userDevice.type != 'desktop') {
         jeeFrontEnd.planEditOption = {
           state: false,

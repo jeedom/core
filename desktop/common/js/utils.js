@@ -109,6 +109,8 @@ jeedomUtils.checkPageModified = function() {
 var prePrintEqLogic = undefined
 var printEqLogic = undefined
 var addCmdToTable = undefined
+jeedomUtils.userDevice = getDeviceType()
+
 //OnePage design PageLoader -------------------------------------
 jeedomUtils.loadPage = function(_url, _noPushHistory) {
   jeeFrontEnd.PREVIOUS_LOCATION = window.location.href
@@ -226,7 +228,6 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 */
 document.addEventListener('DOMContentLoaded', function() {
   jeedom.init()
-  jeedomUtils.userDevice = getDeviceType()
   document.body.setAttribute('data-device', jeedomUtils.userDevice.type)
   document.body.setAttribute('data-page', getUrlVars('p'))
   document.body.style.setProperty('--bkg-opacity-light', jeedom.theme['interface::background::opacitylight'])
