@@ -26,6 +26,7 @@ if (!jeeFrontEnd.history) {
     init: function() {
       window.jeeP = this
       this.pageContainer = document.getElementById('pageContainer')
+      this.setHistoryOptions(false)
       document.getElementById('in_searchHistory').value = ''
       moment.locale(jeeFrontEnd.language.substring(0, 2))
       jeedomUtils.datePickerInit()
@@ -77,9 +78,7 @@ if (!jeeFrontEnd.history) {
           this.__lastId__ = null
           document.getElementById('cb_derive').checked = false
           document.getElementById('cb_step').checked = false
-          document.querySelectorAll('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').forEach((element, index) => {
-            element.disabled = _disabled
-          })
+          this.setHistoryOptions(false)
           document.getElementById('bt_compare').addClass('disabled')
         } else {
           this.__lastId__ = currentSeries[currentSeries.length - 1].userOptions.id
@@ -99,9 +98,7 @@ if (!jeeFrontEnd.history) {
           document.getElementById('sel_chartType').value = type
           document.getElementById('cb_derive').checked = currentSeries[0].userOptions.derive
           document.getElementById('cb_step').checked = currentSeries[0].userOptions.step
-          document.querySelectorAll('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').forEach((element, index) => {
-            element.disabled = _disabled
-          })
+          this.setHistoryOptions(true)
           document.getElementById('bt_compare').removeClass('disabled')
         }
       } else {
@@ -110,9 +107,7 @@ if (!jeeFrontEnd.history) {
         document.getElementById('sel_chartType').selectedIndex = 0
         document.getElementById('cb_derive').checked = false
         document.getElementById('cb_step').checked = false
-        document.querySelectorAll('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').forEach((element, index) => {
-          element.disabled = _disabled
-        })
+        this.setHistoryOptions(false)
         jeedom.history.chart[this.__el__].comparing ? document.getElementById('bt_compare').removeClass('disabled') : document.getElementById('bt_compare').addClass('disabled')
       }
     },
@@ -128,6 +123,8 @@ if (!jeeFrontEnd.history) {
             } catch (error) {}
           })
         }
+        jeeP.__lastId__ = null
+        this.setChartOptions()
         jeedom.history.chart[this.__el__].doing = 0
         jeedom.history.chartDone(this.__el__)
         return
