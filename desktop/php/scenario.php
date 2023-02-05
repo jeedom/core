@@ -106,12 +106,12 @@ sendVarToJS([
 			<?php if (config::byKey('enableScenario') == 0) { ?>
 				<div class="cursor success" id="bt_changeAllScenarioState" data-state="1">
 					<div class="center"><i class="fas fa-check"></i></div>
-					<span class="txtColor">{{Activer scénarios}}</span>
+					<span class="txtColor">{{Activer moteur de scénarios}}</span>
 				</div>
 			<?php } else { ?>
 				<div class="cursor danger" id="bt_changeAllScenarioState" data-state="0">
 					<div class="center"><i class="fas fa-times"></i></div>
-					<span class="txtColor">{{Désactiver scénarios}}</span>
+					<span class="txtColor">{{Désactiver moteur de scénarios}}</span>
 				</div>
 			<?php } ?>
 			<div class="cursor logoSecondary" id="bt_showScenarioSummary">
