@@ -234,7 +234,6 @@ Desktop
     min-height: 50px;
     height: 50px;
     z-index: 100;
-    outline: 3px solid rgb(var(--bg-color));
   }
   #jeedomMenuBar:hover {
     z-index: 50000;

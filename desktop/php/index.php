@@ -316,7 +316,7 @@ function setTheme() {
 		}
 	?>
 		<?php if (init('rescue', 0) == 0) { ?>
-			<header id="jeedomMenuBar" class="navbar navbar-fixed-top navbar-default reportModeHidden">
+			<header id="jeedomMenuBar" class="navbar navbar-fixed-top navbar-default reportModeHidden shadowed">
 				<div class="container-fluid">
 					<div class="navbar-header">
 						<a class="navbar-brand" href="<?php echo $homeLink; ?>"><img id="homeLogoImg" src="<?php echo $homeLogoSrc; ?>" onclick="domUtils.showLoading()" height="30px"></a>
