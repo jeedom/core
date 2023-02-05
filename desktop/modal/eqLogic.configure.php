@@ -543,6 +543,8 @@ if (!jeeFrontEnd.md_eqLogicConfigure) {
           delayOnTouchOnly: true,
           group: 'cmdLayoutContainer',
           draggable: '.cmdLayout',
+          filter: 'a, input, textarea',
+          preventOnFilter: false,
         })
       })
     },

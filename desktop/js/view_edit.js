@@ -190,6 +190,8 @@ if (!jeeFrontEnd.view_edit) {
           delay: 100,
           delayOnTouchOnly: true,
           draggable: '.viewData',
+          filter: 'a, input, textarea',
+          preventOnFilter: false,
           direction: 'vertical',
           removeCloneOnHide: true,
         })

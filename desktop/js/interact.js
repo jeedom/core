@@ -346,6 +346,8 @@ Sortable.create(document.getElementById('div_action'), {
   delay: 100,
   delayOnTouchOnly: true,
   draggable: '.action',
+  filter: 'a, input, textarea',
+  preventOnFilter: false,
   direction: 'vertical',
   removeCloneOnHide: true,
 })

@@ -909,6 +909,8 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             delayOnTouchOnly: true,
             group: 'cmdLayoutContainer',
             draggable: '.actionCheckCmd, .actionPreExecCmd, .actionPostExecCmd',
+            filter: 'a, input, textarea',
+            preventOnFilter: false,
             direction: 'vertical',
             onEnd: function(event) {
               if (event.to != event.from) {

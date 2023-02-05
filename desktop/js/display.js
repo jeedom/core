@@ -38,6 +38,8 @@ if (!jeeFrontEnd.display) {
         delay: 100,
         delayOnTouchOnly: true,
         draggable: '.objectSortable',
+        filter: 'a, input, textarea',
+        preventOnFilter: false,
         direction: 'vertical',
         removeCloneOnHide: true,
         onEnd: function(event) {
@@ -107,6 +109,8 @@ if (!jeeFrontEnd.display) {
           delay: 100,
           delayOnTouchOnly: true,
           draggable: '.cmd',
+          filter: 'a, input, textarea',
+          preventOnFilter: false,
           direction: 'vertical',
           removeCloneOnHide: true,
           onEnd: function(event) {

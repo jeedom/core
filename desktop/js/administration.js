@@ -83,6 +83,8 @@ if (!jeeFrontEnd.administration) {
             delay: 100,
             delayOnTouchOnly: true,
             draggable: 'tr.objectSummary',
+            filter: 'a, input, textarea',
+            preventOnFilter: false,
             direction: 'vertical',
             removeCloneOnHide: true,
             onEnd: function(event) {

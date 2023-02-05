@@ -517,6 +517,8 @@ if (!jeeFrontEnd.md_eqlogicDashEdit) {
         delay: 100,
         delayOnTouchOnly: true,
         draggable: 'div.cmdConfig',
+        filter: 'a, input, textarea',
+        preventOnFilter: false,
         direction: 'vertical',
         removeCloneOnHide: true,
       })
@@ -529,6 +531,8 @@ if (!jeeFrontEnd.md_eqlogicDashEdit) {
           delayOnTouchOnly: true,
           group: 'cmdLayoutContainer',
           draggable: '.cmdLayout',
+          filter: 'a, input, textarea',
+          preventOnFilter: false,
         })
       })
     },
