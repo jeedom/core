@@ -289,20 +289,25 @@ document.addEventListener('DOMContentLoaded', function() {
       //Accordions
       if (_target = event.target.closest('a.accordion-toggle')) {
         event.preventDefault()
+
         let ref = _target.getAttribute('href')
         if (!ref) return
         let panelGroup = _target.closest('div.panel-group')
         if (!panelGroup) {
           var panel = document.querySelector(ref)
-          var isOpen = panel.hasClass('in')
         } else {
           var panel = panelGroup.querySelector(ref)
-          var isOpen = panel.hasClass('in')
-          //panelGroup.querySelectorAll('div.panel-collapse').removeClass('in')
         }
         if (!panel) return
-        if (isOpen) panel.removeClass('in')
-        else panel.addClass('in')
+        var isOpen = panel.hasClass('in')
+
+        //Close all if has parent declared:
+        var parentRef = _target.getAttribute('data-parent')
+        if (parentRef && parentRef != '') {
+          _target.closest(parentRef)?.querySelectorAll('div.panel-collapse').removeClass('in')
+        }
+
+        isOpen ? panel.removeClass('in') : panel.addClass('in')
         return
       }
 
