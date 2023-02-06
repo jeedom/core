@@ -126,7 +126,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   jeedom.cmd.resetUpdateFunction()
 
   //Deprecated jQuery contextMenu
-  if (typeof jQuery === 'function') $.contextMenu('destroy')
+  if (typeof jQuery === 'function' && typeof $.contextMenu === 'function') $.contextMenu('destroy')
   document.querySelectorAll('.context-menu-root').remove()
 
   jeedomUtils.jeeCtxMenuDestroy()
@@ -150,7 +150,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
     } catch (e) { }
   }
 
-  if (typeof jQuery === 'function' && isset(bootbox)) bootbox.hideAll()
+  if (typeof jQuery === 'function' && typeof bootbox === 'object') bootbox.hideAll()
   jeedomUtils.hideAlert()
   jeedomUtils.datePickerDestroy()
   jeedomUtils.autocompleteDestroy()
@@ -606,109 +606,110 @@ jeedomUtils.transitionJeedomBackground = function(_path) {
 
 //Jeedom UI__
 jeedomUtils.initJeedomModals = function() { //Deprecated jQuery UI dilaog/bootbox
-  if (typeof jQuery === 'function') {
-    $.fn.modal.Constructor.prototype.enforceFocus = function() { }
+  if (typeof jQuery !== 'function') return
+  if (typeof $.fn.modal !== 'function') return
 
-    //Deprecated bootbox, keep for plugins
-    if (isset(jeeFrontEnd.language)) {
-      var lang = jeeFrontEnd.language.substr(0, 2)
-      var supportedLangs = ['fr', 'de', 'es']
-      if (lang != 'en' && supportedLangs.includes(lang)) {
-        bootbox.addLocale('fr', { OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Annuler' })
-        bootbox.addLocale('de', { OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Abbrechen' })
-        bootbox.addLocale('es', { OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Anular' })
-        bootbox.setLocale('fr') //needed for date format
-      }
+  $.fn.modal.Constructor.prototype.enforceFocus = function() { }
+
+  //Deprecated bootbox, keep for plugins
+  if (isset(jeeFrontEnd.language)) {
+    var lang = jeeFrontEnd.language.substr(0, 2)
+    var supportedLangs = ['fr', 'de', 'es']
+    if (lang != 'en' && supportedLangs.includes(lang)) {
+      bootbox.addLocale('fr', { OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Annuler' })
+      bootbox.addLocale('de', { OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Abbrechen' })
+      bootbox.addLocale('es', { OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Anular' })
+      bootbox.setLocale('fr') //needed for date format
     }
+  }
 
-    //Deprecated bootbox, keep for plugins
-    $('body').on('show', '.modal', function() {
-      document.activeElement.blur()
-      $(this).find('.modal-body :input:visible').first().focus()
-    })
-    $('body').on('focusin', '.bootbox-input', function(event) {
-      event.stopPropagation()
-    })
-    $('.bootbox.modal').on('shown.bs.modal', function() {
-      $(this).find(".bootbox-accept").focus()
-    })
+  //Deprecated bootbox, keep for plugins
+  $('body').on('show', '.modal', function() {
+    document.activeElement.blur()
+    $(this).find('.modal-body :input:visible').first().focus()
+  })
+  $('body').on('focusin', '.bootbox-input', function(event) {
+    event.stopPropagation()
+  })
+  $('.bootbox.modal').on('shown.bs.modal', function() {
+    $(this).find(".bootbox-accept").focus()
+  })
 
-    //Deprecated jQuery UI dialog, keep for plugins
-    $('#md_modal').dialog({
-      autoOpen: false,
-      modal: true,
-      closeText: '',
-      height: (window.innerHeight - 125),
-      width: ((window.innerWidth - 50) < 1500) ? (window.innerWidth - 50) : 1500,
-      position: { my: 'center top+80', at: 'center top', of: window },
-      open: function() {
-        document.body.style.overflow = 'hidden'
-        this.closest('.ui-dialog').querySelectorAll('button, input[type="button"]')?.forEach(el => { el.blur() })
-        $(this).dialog({
-          height: (window.innerHeight - 125),
-          width: ((window.innerWidth - 50) < 1500) ? (window.innerWidth - 50) : 1500,
-          position: { my: 'center top+80', at: 'center top', of: window }
-        })
-        setTimeout(function() { jeedomUtils.initTooltips($('#md_modal')) }, 500)
-      },
-      beforeClose: function(event, ui) {
-        $(this).parent('.ui-dialog').removeClass('summaryActionMain')
-        emptyModal('md_modal')
-        $('#md_modal').off('dialogresize')
-      }
-    })
-
-    $('#md_modal2').dialog({
-      autoOpen: false,
-      modal: true,
-      closeText: '',
-      height: (window.innerHeight - 125),
-      width: ((window.innerWidth - 150) < 1200) ? (window.innerWidth - 50) : 1200,
-      position: { my: 'center bottom-50', at: 'center bottom', of: window },
-      open: function() {
-        document.body.style.overflow = 'hidden'
-        this.closest('.ui-dialog').querySelectorAll('button, input[type="button"]')?.forEach(el => { el.blur() })
-        $(this).dialog({
-          height: (window.innerHeight - 125),
-          width: ((window.innerWidth - 150) < 1200) ? (window.innerWidth - 50) : 1200,
-          position: { my: 'center bottom-50', at: 'center bottom', of: window },
-        })
-        setTimeout(function() { jeedomUtils.initTooltips($('#md_modal2')) }, 500)
-      },
-      beforeClose: function(event, ui) {
-        emptyModal('md_modal2')
-        $('#md_modal2').off('dialogresize')
-      }
-    })
-
-    $('#md_modal3').dialog({
-      autoOpen: false,
-      modal: true,
-      closeText: '',
-      height: (window.innerHeight - 125),
-      width: ((window.innerWidth - 250) < 1000) ? (window.innerWidth - 50) : 1000,
-      position: { my: 'center bottom-50', at: 'center bottom', of: window },
-      open: function() {
-        document.body.style.overflow = 'hidden'
-        this.closest('.ui-dialog').querySelectorAll('button, input[type="button"]')?.forEach(el => { el.blur() })
-        $(this).dialog({
-          height: (window.innerHeight - 125),
-          width: ((window.innerWidth - 250) < 1000) ? (window.innerWidth - 50) : 1000,
-          position: { my: 'center bottom-50', at: 'center bottom', of: window },
-        })
-        setTimeout(function() { jeedomUtils.initTooltips($('#md_modal3')) }, 500)
-      },
-      beforeClose: function(event, ui) {
-        emptyModal('md_modal3')
-        $('#md_modal3').off('dialogresize')
-      }
-    })
-
-    function emptyModal(_id = '') {
-      if (_id == '') return
-      document.body.style.overflow = 'inherit'
-      document.getElementById(_id).empty()
+  //Deprecated jQuery UI dialog, keep for plugins
+  $('#md_modal').dialog({
+    autoOpen: false,
+    modal: true,
+    closeText: '',
+    height: (window.innerHeight - 125),
+    width: ((window.innerWidth - 50) < 1500) ? (window.innerWidth - 50) : 1500,
+    position: { my: 'center top+80', at: 'center top', of: window },
+    open: function() {
+      document.body.style.overflow = 'hidden'
+      this.closest('.ui-dialog').querySelectorAll('button, input[type="button"]')?.forEach(el => { el.blur() })
+      $(this).dialog({
+        height: (window.innerHeight - 125),
+        width: ((window.innerWidth - 50) < 1500) ? (window.innerWidth - 50) : 1500,
+        position: { my: 'center top+80', at: 'center top', of: window }
+      })
+      setTimeout(function() { jeedomUtils.initTooltips($('#md_modal')) }, 500)
+    },
+    beforeClose: function(event, ui) {
+      $(this).parent('.ui-dialog').removeClass('summaryActionMain')
+      emptyModal('md_modal')
+      $('#md_modal').off('dialogresize')
     }
+  })
+
+  $('#md_modal2').dialog({
+    autoOpen: false,
+    modal: true,
+    closeText: '',
+    height: (window.innerHeight - 125),
+    width: ((window.innerWidth - 150) < 1200) ? (window.innerWidth - 50) : 1200,
+    position: { my: 'center bottom-50', at: 'center bottom', of: window },
+    open: function() {
+      document.body.style.overflow = 'hidden'
+      this.closest('.ui-dialog').querySelectorAll('button, input[type="button"]')?.forEach(el => { el.blur() })
+      $(this).dialog({
+        height: (window.innerHeight - 125),
+        width: ((window.innerWidth - 150) < 1200) ? (window.innerWidth - 50) : 1200,
+        position: { my: 'center bottom-50', at: 'center bottom', of: window },
+      })
+      setTimeout(function() { jeedomUtils.initTooltips($('#md_modal2')) }, 500)
+    },
+    beforeClose: function(event, ui) {
+      emptyModal('md_modal2')
+      $('#md_modal2').off('dialogresize')
+    }
+  })
+
+  $('#md_modal3').dialog({
+    autoOpen: false,
+    modal: true,
+    closeText: '',
+    height: (window.innerHeight - 125),
+    width: ((window.innerWidth - 250) < 1000) ? (window.innerWidth - 50) : 1000,
+    position: { my: 'center bottom-50', at: 'center bottom', of: window },
+    open: function() {
+      document.body.style.overflow = 'hidden'
+      this.closest('.ui-dialog').querySelectorAll('button, input[type="button"]')?.forEach(el => { el.blur() })
+      $(this).dialog({
+        height: (window.innerHeight - 125),
+        width: ((window.innerWidth - 250) < 1000) ? (window.innerWidth - 50) : 1000,
+        position: { my: 'center bottom-50', at: 'center bottom', of: window },
+      })
+      setTimeout(function() { jeedomUtils.initTooltips($('#md_modal3')) }, 500)
+    },
+    beforeClose: function(event, ui) {
+      emptyModal('md_modal3')
+      $('#md_modal3').off('dialogresize')
+    }
+  })
+
+  function emptyModal(_id = '') {
+    if (_id == '') return
+    document.body.style.overflow = 'inherit'
+    document.getElementById(_id).empty()
   }
 }
 
@@ -947,7 +948,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
 jeedomUtils.initPage = function() {
   jeedomUtils.initTableSorter()
   jeedomUtils.initReportMode()
-  if (typeof jQuery === 'function') $.initTableFilter()
+  if (typeof jQuery === 'function' && typeof $.initTableFilter === 'function') $.initTableFilter()
   jeedomUtils.initHelp()
   jeedomUtils.initTextArea()
 
@@ -1095,6 +1096,7 @@ jeedomUtils.initReportMode = function() {
 
 jeedomUtils.initTableSorter = function(filter) {
   if (typeof jQuery !== 'function') return
+  if (typeof $.tablesorter !== 'function') return
   var widgets = ['uitheme', 'resizable']
   if (!filter) {
     filter = true
