@@ -19,20 +19,21 @@ window.registerEvent('click', function(event) {
   }
 })
 if (getUrlVars('fullscreen') == '1') {
-  $('#div_colPlan3d').removeClass('col-lg-10').addClass('col-lg-12')
-  $('#div_colMenu').remove()
+  document.getElementById('div_colPlan3d').classList.remove('col-lg-10');
+  document.getElementById('div_colPlan3d').classList.add('col-lg-12');
+  document.getElementById('div_colMenu').style.display='none';
   $('header').hide()
   $('footer').hide()
   $('#div_mainContainer').css('margin-top', '-50px')
   $('#wrap').css('margin-bottom', '0px')
-  $('#div_colPlan3d').height($('html').height())
+  document.getElementById('div_colPlan3d').style.width = window.innerHeight
 } else {
-  $('#div_colPlan3d').height($('html').height() - 50)
+  document.getElementById('div_colPlan3d').style.width = window.innerHeight - 50
 }
 
 var container, scene, camera, renderer, controls
-var SCREEN_WIDTH = $('#div_display3d').width()
-var SCREEN_HEIGHT = $('#div_display3d').height()
+var SCREEN_WIDTH = document.getElementById('div_display3d').style.width
+var SCREEN_HEIGHT = document.getElementById('div_display3d').style.height
 var JEEDOM_OBJECT = []
 var CMDS = {}
 var raycaster = new THREE.Raycaster()
@@ -125,9 +126,9 @@ document.body.registerEvent('cmd::update', function(_event) {
 
 window.registerEvent('resize', function() {
   if (getUrlVars('fullscreen') == '1') {
-    $('#div_colPlan3d').height($('html').height())
+    document.getElementById('div_colPlan3d').style.width = window.innerHeight
   } else {
-    $('#div_colPlan3d').style('height', '')
+    document.getElementById('div_colPlan3d').style.width = 'auto'
   }
   SCREEN_WIDTH = $('#div_display3d').width()
   SCREEN_HEIGHT = $('#div_display3d').height()
