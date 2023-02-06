@@ -77,7 +77,7 @@ if (!jeeFrontEnd.pluginTemplate) {
         document.querySelectorAll('.eqLogic').seen()
       }
       document.querySelectorAll('.eqLogicDisplayCard.active').removeClass('active')
-      document.querySelector('.eqLogicDisplayCard[data-eqlogic_id="' + _eqlogicId + '"]').addClass('active')
+      document.querySelector('.eqLogicDisplayCard[data-eqlogic_id="' + _eqlogicId + '"]')?.addClass('active')
 
       domUtils.showLoading()
       jeedom.eqLogic.print({
