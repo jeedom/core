@@ -29,6 +29,10 @@ sendVarToJS([
 	'root' => init('root', ''),
 ]);
 
+include_file('3rdparty', 'jquery/jquery.min', 'js');
+include_file('3rdparty', 'jquery.ui/jquery-ui.min', 'js');
+
+
 //Core CodeMirror:
 include_file('3rdparty', 'codemirror/lib/codemirror', 'js');
 include_file('3rdparty', 'codemirror/lib/codemirror', 'css');
