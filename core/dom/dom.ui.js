@@ -1562,6 +1562,7 @@ var jeeDialog = (function()
         close: function() {
           this.dialog._jeeDialog.options.beforeClose()
           this.dialog.querySelector('div.jeeDialogContent').empty()
+          jeeDialog.clearToasts()
           this.dialog.unseen()
           this.dialog._jeeDialog.options.onClose()
           this.dialog.removeClass('active')
