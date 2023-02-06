@@ -94,7 +94,7 @@
     "mobile\/html\/scenariolog.html": {
         "Vider": "Clear",
         "Pause": "Pause",
-        "Rechercher": "Search"
+        "Rechercher": "To research"
     },
     "mobile\/html\/history.html": {
         "Début": "Start",
@@ -140,7 +140,7 @@
     },
     "mobile\/html\/index.html": {
         "Accueil": "Home",
-        "Rechercher": "Search"
+        "Rechercher": "To research"
     },
     "mobile\/html\/message.html": {
         "Date": "Date",
@@ -195,7 +195,7 @@
         "Supprimer": "Delete",
         "Vider": "Clear",
         "Pause": "Pause",
-        "Rechercher": "Search"
+        "Rechercher": "To research"
     },
     "desktop\/modal\/scenario.human.insert.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access"
@@ -296,7 +296,7 @@
         "Aucun scénario ne correspondant à :": "No scenario corresponding to:",
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Log brut": "Raw log",
-        "Rechercher": "Search",
+        "Rechercher": "To research",
         "Pause": "Pause",
         "Télécharger": "Download",
         "Vider": "Clear",
@@ -619,7 +619,7 @@
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Aide": "Help",
         "Résumé Domotique": "Domotic overview",
-        "Rechercher": "Search",
+        "Rechercher": "To research",
         "Recherche par": "Search by",
         "Equipement": "Equipment",
         "Commande": "Command",
@@ -843,7 +843,7 @@
         "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel.": "Please note your log level (event) is lower than info, so you cannot see real time",
         "Configuration": "Configuration",
         "Log brut": "Raw log",
-        "Rechercher": "Search",
+        "Rechercher": "To research",
         "Pause": "Pause",
         "Télécharger": "Download",
         "Vider": "Clear",
@@ -875,7 +875,7 @@
         "Icônes oranges": "Orange icons",
         "Icônes rouges": "Red icons",
         "Icônes vertes": "Green icons",
-        "Rechercher": "Search",
+        "Rechercher": "To research",
         "Clic droit sur un dossier pour ouvrir le menu contextuel": "Right click on a folder to open the context menu",
         "Ajouter": "Upload",
         "Nouveau": "New",
@@ -1503,7 +1503,7 @@
         "Synchroniser": "Synchronize",
         "Plugins": "Plugins",
         "Mes plugins": "My plugins",
-        "Rechercher": "Search",
+        "Rechercher": "To research",
         "Etat": "State",
         "Ouvrir": "Open",
         "Catégorie": "Category",
@@ -1574,14 +1574,14 @@
         "Vous n\\'avez pas le droit d\\'accéder à cette vue.": "You do not have permission to access this view",
         "Aucune vue n\\'existe, cliquez <a href=\"index.php?v=d&p=view_edit\">ici<\/a> pour en créer une.": "No view exists, click <a href=\"index.php?v=d&p=view_edit\">here<\/a> to create one",
         "Ajouter une vue": "Add a view",
-        "Rechercher": "Search",
+        "Rechercher": "To research",
         "Afficher\/Masquer les vues": "Show \/ Hide Views",
         "Edition complète": "Full Edition",
         "Mode édition": "Edit mode"
     },
     "desktop\/php\/administration.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Rechercher": "Search",
+        "Rechercher": "To research",
         "Sauvegarder": "Save",
         "Général": "General",
         "Interface": "Interface",
@@ -2031,13 +2031,13 @@
         "Copier l'historique de la commande source": "Copy source command history",
         "Copie l'historique de la commande source sur la commande cible.": "Copy history of source command to target command",
         "Remplacements": "Replacements",
-        "Rechercher": "Search",
+        "Rechercher": "To research",
         "Source": "Source",
         "Cible": "Target"
     },
     "desktop\/php\/dashboardit.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Rechercher": "Search"
+        "Rechercher": "To research"
     },
     "desktop\/php\/dashboard.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -2059,7 +2059,7 @@
     "desktop\/php\/log.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Log brut": "Raw log",
-        "Rechercher": "Search",
+        "Rechercher": "To research",
         "Pause": "Pause",
         "Télécharger": "Download",
         "Vider": "Clear",
@@ -2183,7 +2183,7 @@
         "Design": "Design",
         "Plugin": "Plugin",
         "Autre": "Other",
-        "Rechercher": "Search",
+        "Rechercher": "To research",
         "Analyse Equipements": "Equipment Analysis",
         "Santé": "Health",
         "Timeline": "Timeline",
@@ -2201,7 +2201,7 @@
     "desktop\/php\/view_edit.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Créer une vue": "Create a view",
-        "Rechercher": "Search",
+        "Rechercher": "To research",
         "Edition": "Editing",
         "Configuration": "Configuration",
         "Ajouter une zone": "Add a zone",
@@ -2231,7 +2231,7 @@
         "Edition texte": "Text editing",
         "Exporter": "Export",
         "Template": "Template",
-        "Rechercher": "Search",
+        "Rechercher": "To research",
         "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.<br>Ctrl+click pour sauvegarder, executer et ouvrir le log": "Please save before testing. This may not be successful. <br> Ctrl + click to save, execute and open the log",
         "Exécuter": "Execute",
         "Arrêter": "Stop",
@@ -2453,7 +2453,7 @@
     },
     "desktop\/php\/database.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Rechercher": "Search",
+        "Rechercher": "To research",
         "Tables": "Tables",
         "Taille": "Size",
         "Select Variables": "Select Variables",
@@ -2634,7 +2634,7 @@
         "Afficher le graphique calculé": "Show calculated graph",
         "Commandes": "Commands",
         "Configuration de l'historique des commandes": "Configure command history",
-        "Rechercher": "Search",
+        "Rechercher": "To research",
         "Vider le champ de recherche": "Clear search field",
         "Supprimer tout ou partie de cet historique.": "Delete all or part of this history",
         "Exporter cet historique.": "Export this history",
@@ -2684,7 +2684,7 @@
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Apache non securisé": "Apache not secure",
         "Apache sécurisé": "Secure apache",
-        "Rechercher": "Search",
+        "Rechercher": "To research",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Click on a command on the left or type a custom command below",
         "OK": "Okay"
     },
@@ -4052,7 +4052,7 @@
         "Partenaire": "Partner",
         "Legacy": "Legacy",
         "Top et nouveautés": "Top and new",
-        "Rechercher": "Search",
+        "Rechercher": "To research",
         "Retour": "Return",
         "Aucune": "None",
         "par": "by",
@@ -4884,7 +4884,7 @@
         "minutes après l'heure": "minutes past the hour"
     },
     "core\/dom\/Vanilla-DataTables\/Vanilla-DataTables.js": {
-        "Search": "Search",
+        "Rechercher": "To research",
         "Entrées par page": "Entries per page",
         "Aucune entrée trouvée": "No entries found",
         "Affichage": "Display",

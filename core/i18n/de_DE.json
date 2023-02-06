@@ -94,7 +94,7 @@
     "mobile\/html\/scenariolog.html": {
         "Vider": "Leer",
         "Pause": "Unterbrechung",
-        "Rechercher": "Suchen nach"
+        "Rechercher": "Forschen"
     },
     "mobile\/html\/history.html": {
         "Début": "Anfang",
@@ -140,7 +140,7 @@
     },
     "mobile\/html\/index.html": {
         "Accueil": "Herzlich Willkommen",
-        "Rechercher": "Suchen nach"
+        "Rechercher": "Forschen"
     },
     "mobile\/html\/message.html": {
         "Date": "Datum",
@@ -195,7 +195,7 @@
         "Supprimer": "Entfernen",
         "Vider": "Leer",
         "Pause": "Unterbrechung",
-        "Rechercher": "Suchen nach"
+        "Rechercher": "Forschen"
     },
     "desktop\/modal\/scenario.human.insert.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff"
@@ -296,7 +296,7 @@
         "Aucun scénario ne correspondant à :": "Kein Szenario entsprechend:",
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Log brut": "Rohprotokoll",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Pause": "Unterbrechung",
         "Télécharger": "Download",
         "Vider": "Leer",
@@ -619,7 +619,7 @@
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Aide": "Hilfe",
         "Résumé Domotique": "Übersicht Haus-Automatisierung",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Recherche par": "Suche nach",
         "Equipement": "Gerät",
         "Commande": "Befehl",
@@ -843,7 +843,7 @@
         "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel.": "Bitte beachten Sie, dass Ihre Protokollstufe (Ereignis) niedriger als die Informationen ist, sodass Sie keine Echtzeit sehen können",
         "Configuration": "Konfiguration",
         "Log brut": "Rohprotokoll",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Pause": "Unterbrechung",
         "Télécharger": "Download",
         "Vider": "Leer",
@@ -875,7 +875,7 @@
         "Icônes oranges": "Orange Symbole",
         "Icônes rouges": "Rote Symbole",
         "Icônes vertes": "Grüne Symbole",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Clic droit sur un dossier pour ouvrir le menu contextuel": "Klicken Sie mit der rechten Maustaste auf einen Ordner, um das Kontextmenü zu öffnen",
         "Ajouter": "Hinzufügen",
         "Nouveau": "Neu",
@@ -1503,7 +1503,7 @@
         "Synchroniser": "Synchronisieren",
         "Plugins": "Plugins",
         "Mes plugins": "Meine Plugins",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Etat": "Zustand",
         "Ouvrir": "Öffnen",
         "Catégorie": "Kategorie",
@@ -1574,14 +1574,14 @@
         "Vous n\\'avez pas le droit d\\'accéder à cette vue.": "Sie sind nicht berechtigt, auf diese Ansicht zuzugreifen",
         "Aucune vue n\\'existe, cliquez <a href=\"index.php?v=d&p=view_edit\">ici<\/a> pour en créer une.": "Es ist keine Ansicht vorhanden. Klicken Sie <a href=\"index.php?v=d&p=view_edit\">hier<\/a> , um eine zu erstellen",
         "Ajouter une vue": "Fügen Sie eine Ansicht hinzu",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Afficher\/Masquer les vues": "Ansichten ein- \/ ausblenden",
         "Edition complète": "Komplette Ausgabe",
         "Mode édition": "Bearbeitungsmodus"
     },
     "desktop\/php\/administration.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Sauvegarder": "Speichern",
         "Général": "Allgemein",
         "Interface": "Schnittstelle",
@@ -2037,7 +2037,7 @@
     },
     "desktop\/php\/dashboardit.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Rechercher": "Suchen nach"
+        "Rechercher": "Forschen"
     },
     "desktop\/php\/dashboard.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -2059,7 +2059,7 @@
     "desktop\/php\/log.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Log brut": "Rohprotokoll",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Pause": "Unterbrechung",
         "Télécharger": "Download",
         "Vider": "Leer",
@@ -2183,7 +2183,7 @@
         "Design": "Entwurf",
         "Plugin": "Plugin",
         "Autre": "Andere",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Analyse Equipements": "Geräteanalyse",
         "Santé": "Die Gesundheit",
         "Timeline": "Zeitleiste",
@@ -2201,7 +2201,7 @@
     "desktop\/php\/view_edit.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Créer une vue": "Erstellen Sie eine Ansicht",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Edition": "Bearbeitung",
         "Configuration": "Konfiguration",
         "Ajouter une zone": "Fügen Sie eine Zone hinzu",
@@ -2231,7 +2231,7 @@
         "Edition texte": "Textbearbeitung",
         "Exporter": "Export",
         "Template": "Schablone",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.<br>Ctrl+click pour sauvegarder, executer et ouvrir le log": "Bitte vor dem Testen speichern. Dies ist möglicherweise nicht erfolgreich. <br> Strg + Klicken, um das Protokoll zu speichern, auszuführen und zu öffnen",
         "Exécuter": "Ausführen",
         "Arrêter": "Beenden",
@@ -2453,7 +2453,7 @@
     },
     "desktop\/php\/database.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Tables": "Tische",
         "Taille": "Größe",
         "Select Variables": "Wählen Sie Variablen",
@@ -2634,7 +2634,7 @@
         "Afficher le graphique calculé": "Berechnete Grafik anzeigen",
         "Commandes": "Aufträge",
         "Configuration de l'historique des commandes": "Bestellhistorie konfigurieren",
-        "Rechercher": "Suchen",
+        "Rechercher": "Forschen",
         "Vider le champ de recherche": "Löschen Sie das Suchfeld",
         "Supprimer tout ou partie de cet historique.": "Löschen Sie diesen Verlauf ganz oder teilweise",
         "Exporter cet historique.": "Exportieren Sie diesen Verlauf",
@@ -2684,7 +2684,7 @@
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Apache non securisé": "Apache nicht sicher",
         "Apache sécurisé": "Sicherer Apache",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Klicken Sie links auf eine Bestellung oder geben Sie unten eine benutzerdefinierte Bestellung ein",
         "OK": "Ok"
     },
@@ -4052,7 +4052,7 @@
         "Partenaire": "Partner",
         "Legacy": "Vermächtnis",
         "Top et nouveautés": "Top und neu",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Retour": "Rückkehr",
         "Aucune": "Keine",
         "par": "Von",
@@ -4884,7 +4884,7 @@
         "minutes après l'heure": "Minuten nach der vollen Stunde"
     },
     "core\/dom\/Vanilla-DataTables\/Vanilla-DataTables.js": {
-        "Search": "Suchen",
+        "Rechercher": "Forschen",
         "Entrées par page": "Einträge pro Seite",
         "Aucune entrée trouvée": "Keine Einträge gefunden",
         "Affichage": "Anzeige",
