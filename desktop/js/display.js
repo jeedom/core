@@ -408,8 +408,8 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
             })
           },
           success: function(data) {
-            document.getElementById('table_removeHistory').tBodies[0].empty()
-            document.getElementById('table_removeHistory')._dataTable.refresh()
+            jeeFrontEnd.display.dataTableRmvHist.table.rows = []
+            jeeFrontEnd.display.dataTableRmvHist.destroy()
             jeedomUtils.showAlert({
               message: '{{Historique vidé avec succès}}',
               level: 'success'
