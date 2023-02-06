@@ -1240,19 +1240,6 @@ user::isBan();
 					</fieldset>
 				</form>
 
-				<legend>{{Expressions}}</legend>
-				<form class="form-horizontal">
-					<fieldset>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Quote automatique}}
-								<sup><i class="fas fa-question-circle warning" tooltip="{{Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)}}."></i></sup>
-							</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="checkbox" class="configKey form-control" data-l1key="expression::autoQuote">
-							</div>
-						</div>
-					</fieldset>
-				</form>
 				<legend>{{Régorganisation automatique des tuiles}}</legend>
 				<form class="form-horizontal">
 					<fieldset>
@@ -1272,6 +1259,28 @@ user::isBan();
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Poids consultation historique}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<input type="number" class="configKey form-control" data-l1key="autoreorder::weight_history">
+							</div>
+						</div>
+					</fieldset>
+				</form>
+
+				<legend>{{Spécial}}</legend>
+				<form class="form-horizontal">
+					<fieldset>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Quote automatique}}
+								<sup><i class="fas fa-question-circle warning" tooltip="{{Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)}}."></i></sup>
+							</label>
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+								<input type="checkbox" class="configKey form-control" data-l1key="expression::autoQuote">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Core js (dev)}}
+								<sup><i class="fas fa-question-circle warning" tooltip="{{Ne charge pas jQuery / Boostrap et leurs librairies (Attention : Les plugins installés doivent supporter ce mode.)}}."></i></sup>
+							</label>
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+								<input type="checkbox" class="configKey form-control" data-l1key="core::jqueryless">
 							</div>
 						</div>
 					</fieldset>

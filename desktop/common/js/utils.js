@@ -344,10 +344,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   //flatpickr theme:
   var flatpickrDarkCss = document.querySelector('head > link[rel="stylesheet"][href*="3rdparty/flatpickr/flatpickr.dark.css"]')
-  if (document.body.getAttribute('data-theme').endsWith('Dark')) {
-    flatpickrDarkCss.disabled = false
-  } else {
-    flatpickrDarkCss.disabled= true
+  if (flatpickrDarkCss) {
+    if (document.body.getAttribute('data-theme').endsWith('Dark')) {
+      flatpickrDarkCss.disabled = false
+    } else {
+      flatpickrDarkCss.disabled = true
+    }
   }
 })
 

@@ -1,5 +1,4 @@
 <?php
-$loadJquery = true;
 if (init('rescue', 0) == 1 && !in_array(init('p'), array('custom', 'backup', 'cron', 'connection', 'log', 'database', 'editor', 'system'))) {
 	$_GET['p'] = 'system';
 }
@@ -146,7 +145,10 @@ function setTheme() {
 	}
 }
 
+$loadJquery = true;
+if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 ?>
+
 <!DOCTYPE html>
 <html lang="en-US" translate="no" class="notranslate">
 
