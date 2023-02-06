@@ -777,6 +777,10 @@ jeedomUtils.setJeedomGlobalUI = function() {
       event.stopPropagation()
       return
     }
+    if (event.altKey) {
+      jeedomUtils.loadPage('index.php?v=d&p=dashboardit')
+      return
+    }
     jeedomUtils.loadPage('index.php?v=d&p=dashboard')
   })
 
