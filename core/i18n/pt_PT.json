@@ -4884,6 +4884,7 @@
         "minutes après l'heure": "minutos depois da hora"
     },
     "core\/dom\/Vanilla-DataTables\/Vanilla-DataTables.js": {
+        "Search": "Procurar",
         "Entrées par page": "Entradas por página",
         "Aucune entrée trouvée": "Nenhuma entrada encontrada",
         "Affichage": "Tela",

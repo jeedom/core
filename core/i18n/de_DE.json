@@ -4884,6 +4884,7 @@
         "minutes après l'heure": "Minuten nach der vollen Stunde"
     },
     "core\/dom\/Vanilla-DataTables\/Vanilla-DataTables.js": {
+        "Search": "Suchen",
         "Entrées par page": "Einträge pro Seite",
         "Aucune entrée trouvée": "Keine Einträge gefunden",
         "Affichage": "Anzeige",
