@@ -843,7 +843,7 @@
         "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel.": "Observe que seu nível de registo(evento) é menor que info, por isso não não pode ver em tempo real",
         "Configuration": "Configuração",
         "Log brut": "Registo em bruto",
-        "Rechercher": "Pesquisar",
+        "Rechercher": "Pesquisa",
         "Pause": "Pausa",
         "Télécharger": "Descarregar",
         "Vider": "Apagar",
@@ -2201,7 +2201,7 @@
     "desktop\/php\/view_edit.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Créer une vue": "Criar exibição",
-        "Rechercher": "Pesquisar",
+        "Rechercher": "Pesquisa",
         "Edition": "Editando",
         "Configuration": "Configuração",
         "Ajouter une zone": "Adicionar Zona",
