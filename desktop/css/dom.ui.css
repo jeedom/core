@@ -559,6 +559,34 @@ div.ispin-wrapper button.ispin-button-dec::before {
 }
 
 
+/* _________________3rdparty tree.js */
+div.tj_container span.tj_description.selected {
+  background: var(--btn-default-color) !important;
+}
+div.tj_container .tj_description.selected .tj_icon > i.cursor,
+div.tj_container .tj_description.selected .tj_mod_icon > i.cursor {
+  color: var(--linkHoverLight-color) !important;
+}
+div.tj_container .tj_container span.tj_description.selected {
+  background: var(--btn-default-color) !important;
+  color: var(--linkHoverLight-color) !important;
+}
+div.tj_container .tj_description {
+  cursor: pointer !important;
+}
+div.tj_container span.tj_description:hover {
+  background: var(--placeholder-color) !important;
+}
+div.tj_container span.tj_description:hover,
+div.tj_container span.tj_description:hover i {
+  color: var(--linkHoverLight-color) !important;
+}
+div.tj_container li span.tj_description.tj_leaf {
+  margin-left: 0;
+}
+
+
+
 /* ________________________________________MEDIA QUERIES */
 @media screen and (max-width: 768px) {
 
