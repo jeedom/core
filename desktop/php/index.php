@@ -218,6 +218,9 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 		//Cron helper:
 		//include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
 		//include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
+
+		//Deprecated Core css
+		include_file('desktop', 'deprecated.main', 'css');
     }
 
 	//jQuery less libs:
