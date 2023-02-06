@@ -1417,7 +1417,16 @@ div.eqLogicZone {
   }
 
   #mod_selectIcon .imgContainer {
-    padding-top: 20px;
+    padding-top: 10px;
+  }
+
+  #mod_selectIcon #treeFunctions {
+    padding: 2px 0 0 30px;
+    font-size: 16px;
+  }
+  #mod_selectIcon #treeFunctions > span > i {
+    padding: 5px;
+    cursor: pointer;
   }
 
   #mod_selectIcon .div_treeFolder {
@@ -1426,11 +1435,11 @@ div.eqLogicZone {
   }
 
   #mod_selectIcon .div_imageGallery {
-    height:100%;
-    width:calc(100% - 180px);
+    height: 100%;
+    width: calc(100% - 180px);
     margin-left: 180px;
-    display:flex;
-    flex-wrap:wrap;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   #mod_selectIcon .iconSel {
