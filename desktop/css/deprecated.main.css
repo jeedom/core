@@ -408,6 +408,45 @@ Desktop
     display: none;
   }
 
+  /* jstree */
+  body[data-theme="core2019_Dark"] i.jstree-icon {
+    filter: invert(1);
+  }
+
+  .jstree-anchor:hover {
+    box-shadow: none;
+  }
+  .jstree-default .jstree-clicked {
+    background-color: transparent !important;
+    border-right: 2.5px solid var(--logo-primary-color);
+    box-shadow: none;
+    font-weight: bold;
+  }
+  .jstree li a {
+    width: 90% !important;
+  }
+  .jstree li a:hover {
+    background-color: var(--form-bg-color);
+  }
+  .vakata-context {
+    background: var(--form-bg-color) !important;
+    box-shadow: unset !important;
+    z-index: 9999;
+    border: none !important;
+  }
+  .vakata-context > li > a {
+    color: var(--txt-color) !important;
+    text-shadow: unset !important;
+  }
+  .vakata-context-hover > a {
+    background: var(--btnEq-default-color) !important;
+    box-shadow: unset !important;
+  }
+  .vakata-contextmenu-sep, .vakata-context-separator > a {
+    background: rgb(var(--bg-color)) !important;
+    border-color: rgb(var(--bg-color)) !important;
+  }
+
 /* ________________________________________TABLE REFLOW FLEX */
 @media ( max-width: 768px ) {
   div.ui-dialog {
