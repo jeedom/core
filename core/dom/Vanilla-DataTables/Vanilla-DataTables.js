@@ -81,7 +81,7 @@
 
         // Customise the display text
         labels: {
-            placeholder: "{{Search}}...", // The search input placeholder
+            placeholder: "{{Rechercher}}...", // The search input placeholder
             perPage: "{select} <span> {{Entrées par page}} </span>", // per-page dropdown label
             noRows: "{{Aucune entrée trouvée}}", // Message shown when there are no search results
             info: "{{Affichage}} : {start} {{à}} {end} {{de}} {rows} {{entrées}}" //
