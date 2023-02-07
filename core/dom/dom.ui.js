@@ -82,16 +82,6 @@ NodeList.prototype.empty = function() {
   }
   return this
 }
-Document.prototype.emptyById = function(_id) {
-  if (_id == '') return
-  if (!(_id instanceof Element)) {
-    var _id = document.getElementById(_id)
-  }
-  if (_id) {
-    return _id.empty()
-  }
-  return null
-}
 
 //CSS Class manipulation
 Element.prototype.addClass = function(_className /*, _className... */) {

@@ -81,7 +81,7 @@ if (!jeeFrontEnd.md_scenarioLog) {
           message: '{{Log vidé avec succès}}',
           level: 'success'
         })
-        document.emptyById('pre_logScenarioDisplay')
+        document.getElementById('pre_logScenarioDisplay').empty()
       }
     })
   })
