@@ -246,7 +246,7 @@ if (!jeeFrontEnd.md_planHeaderConfigure) {
     if (_target = event.target.closest('.bt_removePlanComposant')) {
       var tr = _target.closest('tr')
       jeedom.plan.remove({
-        id : tr.attr('data-id'),
+        id : tr.getAttribute('data-id'),
         error: function(error) {
           jeedomUtils.showAlert({
             attachTo: jeeDialog.get('#md_planHeaderConfigure', 'dialog'),
