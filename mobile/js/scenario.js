@@ -11,7 +11,7 @@ function initScenario() {
       $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(htmls) {
-      document.emptyById('div_displayScenario')
+      document.getElementById('div_displayScenario').empty()
       //get groups
       var scenarioGroups = []
       var group

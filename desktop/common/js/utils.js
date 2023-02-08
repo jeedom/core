@@ -185,7 +185,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   }
 
   document.getElementById('div_mainContainer').querySelectorAll('script')?.remove()
-  document.querySelectorAll('script[injext]')?.remove()
+  document.body.querySelectorAll('script[injext]')?.remove()
 
   //AJAX LOAD URL INTO PAGE CONTAINER:
   document.getElementById('div_pageContainer').load(url, function() {

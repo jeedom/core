@@ -78,7 +78,7 @@ if (!jeeFrontEnd.md_scenarioSummary) {
       })
     },
     refreshScenarioSummary: function() {
-      document.emptyById('tbody_scenarioSummary')
+      document.getElementById('tbody_scenarioSummary').empty()
       jeedom.scenario.allOrderedByGroupObjectName({
         nocache: true,
         asTag: true,

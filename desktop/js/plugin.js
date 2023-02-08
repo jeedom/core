@@ -89,7 +89,7 @@ if (!jeeFrontEnd.plugin) {
             self.dom_container.querySelector('#span_plugin_installation').closest('.panel').unseen()
           } else {
             self.dom_container.querySelector('#span_plugin_installation').innerHTML = data.installation
-            self.dom_container.closest('.panel').seen()
+            self.dom_container.querySelector('#span_plugin_installation').closest('.panel').seen()
           }
 
           if (isset(data.update) && isset(data.update.configuration) && isset(data.update.configuration.version)) {
