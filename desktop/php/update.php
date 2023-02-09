@@ -136,7 +136,7 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 					</div>
 
 					<div class="form-group">
-						<label>Core</label>
+						<label><i class="fas fa-home"></i> Core</label>
 						<div class="form-group">
 							<label class="col-xs-6 control-label">{{Pré-update}}
 								<sup><i class="fas fa-question-circle" data-title="{{Mettre d'abord le script d'update à jour.}}"></i></sup>
@@ -167,36 +167,38 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 								<input type="checkbox" class="updateOption" data-l1key="force" />
 							</div>
 						</div>
-						<label>Plugins</label>
+						<label><i class="fas fa-tasks"></i> Plugins</label>
 						<div class="form-group">
 							<label class="col-xs-6 control-label">{{Mettre à jour les plugins}}</label>
 							<div class="col-xs-4">
 								<input type="checkbox" class="updateOption" data-l1key="plugins" checked />
 							</div>
 						</div>
-					</div>
-					<div class="alert alert-danger">{{L'option suivante n'est à utiliser que sur demande du support.}}</div>
-					<div class="form-group">
-						<label class="col-xs-6 control-label ">{{Script d'update à réappliquer}}</label>
-						<div class="col-xs-5">
-							<select id="sel_updateVersion" class="form-control input-sm updateOption" data-l1key="update::reapply">
-								<option value="">{{Aucune}}</option>
-									<?php
-									$updates = array();
-									foreach ((update::listCoreUpdate()) as $udpate) {
-										$updates[str_replace(array('.php', '.sql'), '', $udpate)] = str_replace(array('.php', '.sql'), '', $udpate);
-									}
-									usort($updates, 'version_compare');
-									$updates = array_reverse($updates);
-									$options = '';
-									foreach ($updates as $value) {
-										$options .= '<option value="' . $value . '">' . $value . '</option>';
-									}
-									echo $options;
-								?>
-							</select>
+						<hr class="hrPrimary">
+						<label><i class="fas fa-exclamation-circle"></i> Support</label>
+						<div class="alert alert-danger"><i class="fas fa-exclamation-triangle"></i> {{A n'utiliser que sur demande du support.}}</div>
+						<div class="form-group">
+							<label class="col-xs-6 control-label warning"><i class="fas fa-exclamation-triangle"></i> {{Script d'update à réappliquer}}</label>
+							<div class="col-xs-5">
+								<select id="sel_updateVersion" class="form-control input-sm updateOption" data-l1key="update::reapply">
+									<option value="">{{Aucune}}</option>
+										<?php
+										$updates = array();
+										foreach ((update::listCoreUpdate()) as $udpate) {
+											$updates[str_replace(array('.php', '.sql'), '', $udpate)] = str_replace(array('.php', '.sql'), '', $udpate);
+										}
+										usort($updates, 'version_compare');
+										$updates = array_reverse($updates);
+										$options = '';
+										foreach ($updates as $value) {
+											$options .= '<option value="' . $value . '">' . $value . '</option>';
+										}
+										echo $options;
+									?>
+								</select>
+							</div>
 						</div>
-					</div>
+
 				</fieldset>
 			</form>
 		</div>

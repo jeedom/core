@@ -1529,6 +1529,9 @@ var jeeDialog = (function()
       var dialog = setDialog(_options)
       dialogContainer.append(...dialog.children)
       dialogContainer.addClass('jeeDialog', 'jeeDialogMain')
+      if (_options.setFooter === true) {
+        dialogContainer.addClass('hasfooter')
+      }
 
       //Register element _jeeDialog object:
       dialogContainer._jeeDialog = {

@@ -343,6 +343,9 @@ div.jeeDialog.jeeDialogMain > div.jeeDialogContent {
   padding: 15px 0;
   overflow: auto;
 }
+div.jeeDialog.jeeDialogMain.hasfooter > div.jeeDialogContent {
+  height: calc(100% - 80px);
+}
 div.jeeDialog.jeeDialogMain > div.jeeDialogContent .floatingbar {
   right: 40px;
   top: 10px;
