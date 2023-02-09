@@ -101,7 +101,7 @@ if (!jeeFrontEnd.pluginTemplate) {
           if (!isset(data.category.opening)) try { document.querySelector('input[data-l2key="opening"]').checked = false } catch (e) { }
 
           if (typeof printEqLogic === 'function') {
-            setTimeout(() => { printEqLogic(data) })
+            printEqLogic(data)
           }
           document.querySelectorAll('.cmd').remove()
           for (var i in data.cmd) {
