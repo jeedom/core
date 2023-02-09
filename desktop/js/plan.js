@@ -547,19 +547,23 @@ if (!jeeFrontEnd.plan) {
         //Set draggies:
         editItems.forEach(item => {
           var draggie = new Draggabilly(item, {
-            containment: '.div_displayObject',
+            containment: 'div.div_displayObject',
           })
           jeeFrontEnd.plan.draggables.push(draggie)
+
           draggie.on('dragStart', function(event, pointer) {
+
             //Is locked:
             if (this.element.hasClass('locked')) this.dragEnd()
 
+            //Handle zoom:
+            this.containementBrect = document.querySelector('div.div_displayObject').getBoundingClientRect()
             this.zoomScale = parseFloat(this.element.getAttribute('data-zoom'))
             if (this.zoomScale != 1) {
               this.options.containment = false
             }
-            //this.containementBrect = document.querySelector(this.options.containment).getBoundingClientRect()
 
+            //Handle grid snap
             if (jeeFrontEnd.planEditOption.grid == 1) {
               this.dragStep = jeeFrontEnd.planEditOption.gridSize[0] / this.zoomScale
               this.element.style.left = getNearestMultiple(this.element.offsetLeft, this.dragStep) + 'px'
@@ -570,8 +574,32 @@ if (!jeeFrontEnd.plan) {
               this.options.grid = undefined
             }
           })
-          draggie.on('dragMove', function(event, pointer) {
-            return
+
+          draggie.on('dragMove', function(event, pointer, moveVector) {
+            //Handle zoom move / containement:
+            if (this.zoomScale != 1) {
+
+              //Fix zoomed move:
+              this.dragPoint.x = moveVector.x / this.zoomScale
+              this.dragPoint.y = moveVector.y / this.zoomScale
+
+              //Check zoomed containement:
+              /*Doesn't work
+              var eRect = this.element.getBoundingClientRect()
+              console.log('eRect:',eRect)
+
+              console.log('position:', this.position)
+              console.log(this.dragPoint)
+
+              if (eRect.left < this.containementBrect.left) {
+                console.log('>>>>>>> OUT LEFT')
+                this.setPosition(this.position.x + this.dragPoint.x, this.position.y + this.dragPoint.y)
+                this.pointerDone()
+                this.dragEnd()
+              }
+              */
+            }
+
             /*
             if (this.zoomScale != 1) {
               var matrix = window.getComputedStyle(this.element).getPropertyValue('transform')
@@ -586,7 +614,8 @@ if (!jeeFrontEnd.plan) {
 
               var realWidth = this.element.clientWidth * this.zoomScale
               var realRight = this.element.getBoundingClientRect().left + realWidth
-              //console.log('dragMove realRight:', realRight, 'realWidth:', realWidth, this.containementBrect)
+
+              console.log('dragMove realRight:', realRight, 'realWidth:', realWidth, this.containementBrect)
 
               //Test ok, not solution--
               if (realRight >= this.containementBrect.right) {
@@ -594,7 +623,9 @@ if (!jeeFrontEnd.plan) {
               }
             }
             */
+
           })
+
           draggie.on('dragEnd', function(event, pointer) {
             //jeeP.savePlan(false, false)
           })
@@ -612,7 +643,7 @@ if (!jeeFrontEnd.plan) {
           document.getElementById('div_grid').unseen()
         }
 
-        //Set Resezing:
+        //Set Resizing:
         let selector = '.plan-link-widget, .view-link-widget, .graph-widget, .div_displayObject >.eqLogic-widget, .scenario-widget, .text-widget, .image-widget, .zone-widget, .summary-widget'
         new jeeResize(selector, {
           cancel: 'locked',
