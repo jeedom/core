@@ -1565,7 +1565,7 @@
         "Mode forcé": "強制モード",
         "Continuer la mise à jour en cas d'erreur.": "エラーが発生した場合は更新を続行します。",
         "Mettre à jour les plugins": "プラグインを更新する",
-        "L'option suivante n'est à utiliser que sur demande du support.": "L'option suivante n'est à utiliser que sur demande du support",
+        "A n'utiliser que sur demande du support.": "A n'utiliser que sur demande du support",
         "Script d'update à réappliquer": "Script d'update à réappliquer",
         "Aucune": "いいえ"
     },

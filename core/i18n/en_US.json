@@ -1565,7 +1565,7 @@
         "Mode forcé": "Forced mode",
         "Continuer la mise à jour en cas d'erreur.": "Continue the update in case of error",
         "Mettre à jour les plugins": "Update plugins",
-        "L'option suivante n'est à utiliser que sur demande du support.": "The following option is only to be used when requested by support",
+        "A n'utiliser que sur demande du support.": "To be used only on request of support",
         "Script d'update à réappliquer": "Update script to reapply",
         "Aucune": "None"
     },
