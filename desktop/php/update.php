@@ -138,40 +138,44 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 					<div class="form-group">
 						<label><i class="fas fa-home"></i> Core</label>
 						<div class="form-group">
-							<label class="col-xs-6 control-label">{{Pré-update}}
+							<label class="col-xs-6 control-label"> {{Pré-update}}
 								<sup><i class="fas fa-question-circle" data-title="{{Mettre d'abord le script d'update à jour.}}"></i></sup>
 							</label>
 							<div class="col-xs-4">
-								<input type="checkbox" class="updateOption" data-l1key="preUpdate" />
+								<input type="checkbox" class="updateOption" data-l1key="preUpdate" /><i class="fas fa-retweet"></i>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-xs-6 control-label">{{Sauvegarder avant}}
+							<label class="col-xs-6 control-label"> {{Sauvegarder avant}}
 								<sup><i class="fas fa-question-circle" data-title="{{Réalise une sauvegarde avant de lancer la mise à jour.}}"></i></sup>
 							</label>
 							<div class="col-xs-4">
-								<input type="checkbox" class="updateOption" data-l1key="backup::before" checked />
+								<input type="checkbox" class="updateOption" data-l1key="backup::before" checked /><i class="fas fa-save"></i>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-xs-6 control-label">{{Mettre à jour le Core}}</label>
+							<label class="col-xs-6 control-label"> {{Mettre à jour le Core}}
+								<sup><i class="fas fa-question-circle" data-title="{{Même sans mise à jour signalée, la Core sera mis à jour.}}"></i></sup>
+							</label>
 							<div class="col-xs-4">
-								<input type="checkbox" class="updateOption" data-l1key="core" checked />
+								<input type="checkbox" class="updateOption" data-l1key="core" checked /><i class="fas fa-pen-alt"></i>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-xs-6 control-label">{{Mode forcé}}
+							<label class="col-xs-6 control-label"> {{Mode forcé}}
 								<sup><i class="fas fa-question-circle" data-title="{{Continuer la mise à jour en cas d'erreur.}}"></i></sup>
 							</label>
 							<div class="col-xs-4">
-								<input type="checkbox" class="updateOption" data-l1key="force" />
+								<input type="checkbox" class="updateOption" data-l1key="force" /><i class="fas fa-user-injured"></i>
 							</div>
 						</div>
 						<label><i class="fas fa-tasks"></i> Plugins</label>
 						<div class="form-group">
-							<label class="col-xs-6 control-label">{{Mettre à jour les plugins}}</label>
+							<label class="col-xs-6 control-label"> {{Mettre à jour les plugins}}
+								<sup><i class="fas fa-question-circle" data-title="{{Tous les plugins ayant une mise à jour disponible seront mise à jour après le Core.}}"></i></sup>
+							</label>
 							<div class="col-xs-4">
-								<input type="checkbox" class="updateOption" data-l1key="plugins" checked />
+								<input type="checkbox" class="updateOption" data-l1key="plugins" checked /><i class="fas fa-pen-alt"></i>
 							</div>
 						</div>
 						<hr class="hrPrimary">
