@@ -18,6 +18,7 @@ document.body.setAttribute('data-type', 'plugin')
 
 if (!jeeFrontEnd.pluginTemplate) {
   jeeFrontEnd.pluginTemplate = {
+    cmdSortable: null,
     init: function() {
       window.jeeP = this
       window.addCmdToTableDefault = this.addCmdToTableDefault
@@ -576,7 +577,7 @@ domUtils(function() {
     $("#table_cmd").sortable("destroy")
   }
 
-  Sortable.create(document.getElementById('table_cmd').tBodies[0], {
+  jeeFrontEnd.pluginTemplate.cmdSortable = Sortable.create(document.getElementById('table_cmd').tBodies[0], {
     delay: 100,
     delayOnTouchOnly: true,
     touchStartThreshold: 20,
@@ -588,6 +589,7 @@ domUtils(function() {
       jeeFrontEnd.modifyWithoutSave = true
     },
   })
+  document.getElementById('table_cmd')._sortable = jeeFrontEnd.pluginTemplate.cmdSortable
 })
 
 
