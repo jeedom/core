@@ -1562,9 +1562,11 @@
         "Sauvegarder avant": "Save before",
         "Réalise une sauvegarde avant de lancer la mise à jour.": "Make a backup before starting the update",
         "Mettre à jour le Core": "Update the core",
+        "Même sans mise à jour signalée, la Core sera mis à jour.": "Even without a reported update, the Core will be updated",
         "Mode forcé": "Forced mode",
         "Continuer la mise à jour en cas d'erreur.": "Continue the update in case of error",
         "Mettre à jour les plugins": "Update plugins",
+        "Tous les plugins ayant une mise à jour disponible seront mise à jour après le Core.": "All plugins with an available update will be updated after the Core",
         "A n'utiliser que sur demande du support.": "To be used only on request of support",
         "Script d'update à réappliquer": "Update script to reapply",
         "Aucune": "None"

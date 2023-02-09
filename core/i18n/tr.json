@@ -1562,9 +1562,11 @@
         "Sauvegarder avant": "önce kaydet",
         "Réalise une sauvegarde avant de lancer la mise à jour.": "Réalise une sauvegarde avant de lancer la mise à jour",
         "Mettre à jour le Core": "çekirdek güncelleme",
+        "Même sans mise à jour signalée, la Core sera mis à jour.": "Même sans mise à jour signalée, la Core sera mis à jour",
         "Mode forcé": "Zorlama modu",
         "Continuer la mise à jour en cas d'erreur.": "Continuer la mise à jour en cas d'erreur",
         "Mettre à jour les plugins": "Güncelleme eklentileri",
+        "Tous les plugins ayant une mise à jour disponible seront mise à jour après le Core.": "Tous les plugins ayant une mise à jour disponible seront mise à jour après le Core",
         "A n'utiliser que sur demande du support.": "A n'utiliser que sur demande du support",
         "Script d'update à réappliquer": "Script d'update à réappliquer",
         "Aucune": "Hayır"

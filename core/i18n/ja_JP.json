@@ -1562,9 +1562,11 @@
         "Sauvegarder avant": "前に保存",
         "Réalise une sauvegarde avant de lancer la mise à jour.": "Réalise une sauvegarde avant de lancer la mise à jour",
         "Mettre à jour le Core": "コアを更新する",
+        "Même sans mise à jour signalée, la Core sera mis à jour.": "Même sans mise à jour signalée, la Core sera mis à jour",
         "Mode forcé": "強制モード",
         "Continuer la mise à jour en cas d'erreur.": "エラーが発生した場合は更新を続行します。",
         "Mettre à jour les plugins": "プラグインを更新する",
+        "Tous les plugins ayant une mise à jour disponible seront mise à jour après le Core.": "Tous les plugins ayant une mise à jour disponible seront mise à jour après le Core",
         "A n'utiliser que sur demande du support.": "A n'utiliser que sur demande du support",
         "Script d'update à réappliquer": "Script d'update à réappliquer",
         "Aucune": "いいえ"
