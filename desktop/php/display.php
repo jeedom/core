@@ -64,10 +64,10 @@ function jeedom_displayObjectGroup($object = -1) {
 	if ($objecUseCustomColor == 1) {
 		$aStyle = 'style="color:' . $object->getDisplay('tagTextColor') . '!important"';
 		$div .= '<h3 class="panel-title" style="background-color:' . $object->getDisplay('tagColor') . '; width:calc(100% - 50px);display: inline-block;">';
-		$div .= '<a ' . $aStyle . 'class="accordion-toggle" data-toggle="collapse" data-parent="' . $objectFatherId . '" aria-expanded="false" href="#config_' . $_index . '" style="color:' . $object->getDisplay('tagTextColor') . '!important">' . $objectIcon . ' ' . $objectName;
+		$div .= '<a ' . $aStyle . 'class="accordion-toggle" data-toggle="collapse" aria-expanded="false" href="#config_' . $_index . '" style="color:' . $object->getDisplay('tagTextColor') . '!important">' . $objectIcon . ' ' . $objectName;
 	} else {
 		$div .= '<h3 class="panel-title" style="width:calc(100% - 50px);display: inline-block;">';
-		$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="' . $objectFatherId . '" aria-expanded="false" href="#config_' . $_index . '">' . $objectIcon . ' ' . $objectName;
+		$div .= '<a class="accordion-toggle" data-toggle="collapse" aria-expanded="false" href="#config_' . $_index . '">' . $objectIcon . ' ' . $objectName;
 	}
 	$div .= '</a></h3>';
 	//second panel-title trick for functions on the right:
