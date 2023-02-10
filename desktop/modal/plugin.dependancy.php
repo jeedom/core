@@ -66,13 +66,13 @@ $dependancy_info = $plugin->dependancy_info();
           ?>
         </td>
         <td>
-          <a class="btn btn-warning btn-sm launchInstallPluginDependancy" style="position:relative;top:-5px;"><i class="fas fa-bicycle"></i> {{Relancer}}</a>
+          <a class="btn btn-warning btn-xs launchInstallPluginDependancy"><i class="fas fa-bicycle"></i> {{Relancer}}</a>
         </td>
         <td>
           <?php if ($dependancy_info['auto'] == 1) { ?>
-            <a class="btn btn-danger btn-sm bt_changeAutoModeDependancy" data-mode="0" style="position:relative;top:-5px;"><i class="fas fa-times"></i> {{Désactiver}}</a>
+            <a class="btn btn-danger btn-xs bt_changeAutoModeDependancy" data-mode="0"><i class="fas fa-times"></i> {{Désactiver}}</a>
           <?php } else { ?>
-            <a class="btn btn-success btn-sm bt_changeAutoModeDependancy" data-mode="1" style="position:relative;top:-5px;"><i class="fas fa-magic"></i> {{Activer}}</a>
+            <a class="btn btn-success btn-xs bt_changeAutoModeDependancy" data-mode="1"><i class="fas fa-magic"></i> {{Activer}}</a>
           <?php }
           ?>
         </td>

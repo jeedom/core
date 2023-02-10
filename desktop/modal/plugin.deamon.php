@@ -85,16 +85,16 @@ $refresh = array();
           ?>
         </td>
         <td>
-          <a class="btn btn-success btn-sm bt_startDeamon" style="position:relative;top:-5px;"><i class="fas fa-play"></i></a>
+          <a class="btn btn-success btn-xs bt_startDeamon"><i class="fas fa-play"></i></a>
         </td>
         <td>
-          <a class="btn btn-danger btn-sm bt_stopDeamon" style="position:relative;top:-5px;"><i class="fas fa-stop"></i></a>
+          <a class="btn btn-danger btn-xs bt_stopDeamon"><i class="fas fa-stop"></i></a>
         </td>
         <td>
           <?php if ($deamon_info['auto'] == 1) { ?>
-            <a class="btn btn-danger btn-sm bt_changeAutoMode" data-mode="0" style="position:relative;top:-5px;"><i class="fas fa-times"></i> {{Désactiver}}</a>
+            <a class="btn btn-danger btn-xs bt_changeAutoMode" data-mode="0"><i class="fas fa-times"></i> {{Désactiver}}</a>
           <?php } else { ?>
-            <a class="btn btn-success btn-sm bt_changeAutoMode" data-mode="1" style="position:relative;top:-5px;"><i class="fas fa-magic"></i> {{Activer}}</a>
+            <a class="btn btn-success btn-xs bt_changeAutoMode" data-mode="1"><i class="fas fa-magic"></i> {{Activer}}</a>
           <?php }
           ?>
         </td>
