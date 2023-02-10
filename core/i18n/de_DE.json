@@ -1496,7 +1496,7 @@
     "desktop\/php\/reboot.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Redémarrage": "Wiederaufnahme",
-        "Merci de patienter...": "Bitte warten"
+        "Merci de patienter...": "Warten Sie mal"
     },
     "desktop\/php\/plugin.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -2331,6 +2331,8 @@
     },
     "desktop\/php\/shutdown.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "Extinction": "Aussterben",
+        "Merci de patienter...": "Warten Sie mal",
         "Êtes-vous sûr de vouloir arrêter le système ?": "Möchten Sie das System wirklich stoppen?",
         "Votre box": "Deine Box",
         "est éteinte.<br \/> Pour la redémarrer, débranchez-la et rebranchez-la.": "ist aus. <br \/> Um es neu zu starten, ziehen Sie den Stecker heraus und schließen Sie es wieder an"

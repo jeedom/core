@@ -2331,6 +2331,8 @@
     },
     "desktop\/php\/shutdown.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
+        "Extinction": "Extinction",
+        "Merci de patienter...": "Please wait",
         "Êtes-vous sûr de vouloir arrêter le système ?": "Are you sure you want to shutdown the system?",
         "Votre box": "Your box",
         "est éteinte.<br \/> Pour la redémarrer, débranchez-la et rebranchez-la.": "is off. <br \/> To restart it, unplug it and plug it back in"
