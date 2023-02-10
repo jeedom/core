@@ -177,7 +177,10 @@ div.jeeDialogContent div[id^="md_"] {
 div.jeeDialogContent div[id^="md_"] > .input-group {
   max-width: calc(100% - 7px); /*Chrome fix*/
 }
-
+div.jeeDialogContent .form-group { /*Chrome fix*/
+  margin-left: 0;
+  margin-right: 0;
+}
 
 div.jeeDialog.jeeDialogAlert > div.jeeDialogContent,
 div.jeeDialog.jeeDialogConfirm > div.jeeDialogContent,
