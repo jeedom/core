@@ -546,7 +546,8 @@ div.jeeCtxMenu div.ctxItem.inlineItem {
 
 /* _________________3rdparty ispin*/
 div.ispin-wrapper {
-  width: 100%;
+  padding-right: 30px;
+  background: var(--form-bg-color);
 }
 div.ispin-wrapper button.ispin-button {
   width: 20px !important;
