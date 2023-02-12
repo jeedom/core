@@ -269,7 +269,7 @@ domUtils.createWidgetSlider = function(_options) {
 /*Components
 */
 document.addEventListener('DOMContentLoaded', function() {
-  if (typeof jQuery !== 'function') {
+  if (document.head.querySelectorAll('script[src*="bootstrap.min.js"]').length == 0) {
     document.body.addEventListener('click', function(event) {
       //Close all dropdowns
       document.querySelectorAll('div.dropdown.open').removeClass('open')
