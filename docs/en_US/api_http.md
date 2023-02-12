@@ -84,4 +84,4 @@ Returns all objects, equipment, commands (and their value if they are info) in j
 Vohere l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = variable & name=#NAME#&value=)*VALUE*
 
 - **name** : name of the variable whose value is desired (reading the value).
-- **VALUE** \[optional\] : if "value" is specified then the variable will take this value (writing a value).
+- **value** \[optional\] : if "value" is specified then the variable will take this value (writing a value).

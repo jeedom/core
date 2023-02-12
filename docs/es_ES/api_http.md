@@ -84,4 +84,4 @@ Devuelve todos los objetos, equipos, comandos (y su valor si son información) e
 Voaquí l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = variable & name=#NAME#&value=)*VALOR*
 
 - **nombre** : nombre de la variable cuyo valor se desea (lectura del valor).
-- **VALOR** \ [Opcional \] : si se especifica "valor", la variable tomará este valor (escribir un valor).
+- **valor** \ [Opcional \] : si se especifica "valor", la variable tomará este valor (escribir un valor).
