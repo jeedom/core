@@ -1145,13 +1145,13 @@
         "[name]": "[name]",
         "*name*": "*name*",
         " name*": " name*",
-        " value.": " value.",
-        " value?": " value?",
-        "value ": "value ",
-        " value]": " value]",
-        "[value]": "[value]",
-        "*value*": "*value*",
-        " value*": " value*"
+        " value.": " VALUE.",
+        " value?": " VALUE?",
+        "value ": "VALUE ",
+        " value]": " VALUE]",
+        "[value]": "[VALUE]",
+        "*value*": "*VALUE*",
+        " value*": " VALUE*"
     },
     "backup.md": {
         "Réglages → Système → Sauvegardes": "Settings → System → Backups",
