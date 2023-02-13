@@ -819,7 +819,8 @@ var jeeDialog = (function()
     return _options
   }
 
-  function setDialog(_params) {
+  function setDialog(_container) {
+    var _params = _container._jeeDialog.options
     let defaultParams = {
       setTitle: true,
       setContent: true,
@@ -904,10 +905,21 @@ var jeeDialog = (function()
           button[1].className = _params.buttons[button[0]].className
           button[1].callback = _params.buttons[button[0]].callback || _params.defaultButtons[button[0]].callback
         }
-        exports.addButton(button, dialogFooter)
+
+        var buttonEL = exports.addButton(button, dialogFooter)
+        if (buttonEL.getAttribute('data-type') == 'confirm') {
+          _container.addEventListener('keypress', function(event) {
+            if (event.which != 13) return
+            if (event.target.getAttribute('data-type') == 'confirm') return //Avoid double call with button focused
+            buttonEL.click()
+          })
+        }
+
       }
     }
-    return template
+
+    _container.append(...template.children)
+    return _container
   }
 
   exports.addButton = function(_button, _footer) {
@@ -922,7 +934,7 @@ var jeeDialog = (function()
       }
     }
     _footer.appendChild(button)
-    return true
+    return button
   }
 
   function setPosition(_dialog, _params) {
@@ -1092,8 +1104,7 @@ var jeeDialog = (function()
     }
 
     //Build dialog:
-    var dialog = setDialog(_options)
-    dialogContainer.append(...dialog.children)
+    var dialog = setDialog(dialogContainer)
 
     //Inject dialog:
     if (_options.backdrop) {
@@ -1188,8 +1199,7 @@ var jeeDialog = (function()
     }
 
     //Build dialog:
-    var dialog = setDialog(_options)
-    dialogContainer.append(...dialog.children)
+    var dialog = setDialog(dialogContainer)
 
     //Inject dialog:
     if (_options.backdrop) {
@@ -1293,8 +1303,7 @@ var jeeDialog = (function()
     }
 
     //Build dialog:
-    var dialog = setDialog(_options)
-    dialogContainer.append(...dialog.children)
+    var dialog = setDialog(dialogContainer)
 
     let dialogContent = dialogContainer.querySelector('div.jeeDialogContent')
     if (_options.inputType) { //Can provide input and such as message!
@@ -1525,14 +1534,6 @@ var jeeDialog = (function()
         _options.setFooter = true
       }
 
-      //Build dialog:
-      var dialog = setDialog(_options)
-      dialogContainer.append(...dialog.children)
-      dialogContainer.addClass('jeeDialog', 'jeeDialogMain')
-      if (_options.setFooter === true) {
-        dialogContainer.addClass('hasfooter')
-      }
-
       //Register element _jeeDialog object:
       dialogContainer._jeeDialog = {
         options: _options,
@@ -1565,6 +1566,13 @@ var jeeDialog = (function()
           this.dialog.remove()
           cleanBackdrop()
         }
+      }
+
+      //Build dialog:
+      var dialog = setDialog(dialogContainer)
+      dialogContainer.addClass('jeeDialog', 'jeeDialogMain')
+      if (_options.setFooter === true) {
+        dialogContainer.addClass('hasfooter')
       }
 
       dialogContainer.parentNode.addEventListener('mousedown', function(event) {
