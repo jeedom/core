@@ -692,7 +692,9 @@ if (!jeeFrontEnd.plan) {
         jeeP.elementContexMenu.enable()
       } else { //Leave Edit mode
         jeeP.savePlan(false, false)
-        jeeP.elementContexMenu.disable()
+        if (jeeP.elementContexMenu) {
+          jeeP.elementContexMenu.disable()
+        }
         jeeFrontEnd.planEditOption.state = false
         jeeP.pageContainer.dataset.planEditState = false
         jeedom.cmd.disableExecute = false
