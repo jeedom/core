@@ -41,6 +41,46 @@ try {
     )
   );
   
+  $nb_cleaning = 0;
+  foreach (cmd::all() as $cmd) {
+    if (!is_object($cmd->getEqLogic())) {
+      echo 'Remove cmd (no corresponding eqLogic found) : '.$cmd->getHumanName()."\n";
+      $cmd->remove(true);
+      continue;
+    }
+    echo 'Cleaning cmd : '.$cmd->getHumanName()."\n";
+    $displays = $cmd->getDisplay();
+    foreach ($displays as $key => $value) {
+      if ($value === '') {
+        $cmd->setDisplay($key, null);
+        $nb_cleaning++;
+        continue;
+      }
+      if (is_array($value) && count($value) == 0) {
+        $cmd->setDisplay($key, null);
+        continue;
+      }
+      if (in_array($key,$cmdClean['display'])) {
+        $cmd->setDisplay($key, null);
+        $nb_cleaning++;
+        continue;
+      }
+    }
+
+    $configurations = $cmd->getConfiguration();
+    foreach ($configurations as $key => $value) {
+      if($value === ''){
+        $cmd->setConfiguration($key, null);
+        continue;
+      }
+      if(is_array($value) && count($value) == 0){
+        $cmd->setConfiguration($key, null);
+        continue;
+      }
+    }
+    $cmd->save(true);
+  }
+
   $eqLogicClean = array(
     'display' => array(
       'showObjectNameOnview',
@@ -99,47 +139,6 @@ try {
       'border-radiusmobile',
     )
   );
-  
-  $nb_cleaning = 0;
-  foreach (cmd::all() as $cmd) {
-    if (!is_object($cmd->getEqLogic())) {
-      echo 'Remove cmd (no corresponding eqLogic found) : '.$cmd->getHumanName()."\n";
-      $cmd->remove(true);
-      continue;
-    }
-    echo 'Cleaning cmd : '.$cmd->getHumanName()."\n";
-    $displays = $cmd->getDisplay();
-    foreach ($displays as $key => $value) {
-      if ($value === '') {
-        $cmd->setDisplay($key, null);
-        $nb_cleaning++;
-        continue;
-      }
-      if (is_array($value) && count($value) == 0) {
-        $cmd->setDisplay($key, null);
-        continue;
-      }
-      if (in_array($key,$cmdClean['display'])) {
-        $cmd->setDisplay($key, null);
-        $nb_cleaning++;
-        continue;
-      }
-    }
-    
-    $configurations = $cmd->getConfiguration();
-    foreach ($configurations as $key => $value) {
-      if($value === ''){
-        $cmd->setConfiguration($key, null);
-        continue;
-      }
-      if(is_array($value) && count($value) == 0){
-        $cmd->setConfiguration($key, null);
-        continue;
-      }
-    }
-    $cmd->save(true);
-  }
-  
   foreach (eqLogic::all() as $eqLogic) {
     echo 'Cleaning eqLogic : '.$eqLogic->getHumanName()."\n";
     $displays = $eqLogic->getDisplay();
@@ -223,7 +222,14 @@ try {
       $user->setOptions($key, null);
     }
   }
-  
+
+  $configCoreClean = array(
+    'update::updating'
+  );
+  foreach ($configCoreClean as $key) {
+    echo 'Cleaning config : Core ' . $key."\n";
+    config::remove($key, 'core');
+  }
   
 } catch (Exception $e) {
   echo "\nError : ";
