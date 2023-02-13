@@ -748,7 +748,7 @@ class scenario {
 				return true;
 			} elseif (strpos($trigger, $_event) !== false && jeedom::evaluateExpression($trigger)) {
 				return true;
-			} elseif (strpos($trigger, 'genericType') !== false && jeedom::evaluateExpression($trigger)) {
+			} elseif (strpos($trigger, 'genericType') !== false && jeedom::evaluateExpression($trigger) !== false) {
 				return true;
 			}
 		}
