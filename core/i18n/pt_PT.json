@@ -1562,10 +1562,12 @@
         "Sauvegarder avant": "Guardar antes",
         "Réalise une sauvegarde avant de lancer la mise à jour.": "Faça um backup antes de iniciar a atualização",
         "Mettre à jour le Core": "Atualizar o core",
+        "Même sans mise à jour signalée, la Core sera mis à jour.": "Mesmo sem atualização informada, o Core será atualizado",
         "Mode forcé": "Modo forçado",
         "Continuer la mise à jour en cas d'erreur.": "Continue a atualização em caso de erro",
         "Mettre à jour les plugins": "Atualizar os plugins",
-        "L'option suivante n'est à utiliser que sur demande du support.": "A opção a seguir só deve ser utilizada quando solicitada pelo suporte",
+        "Tous les plugins ayant une mise à jour disponible seront mise à jour après le Core.": "Todos os plugins com uma atualização disponível serão atualizados após o Core",
+        "A n'utiliser que sur demande du support.": "Para ser usado apenas mediante solicitação de suporte",
         "Script d'update à réappliquer": "Atualize o script para reaplicar",
         "Aucune": "Nenhuma"
     },
@@ -2329,6 +2331,8 @@
     },
     "desktop\/php\/shutdown.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
+        "Extinction": "Extinção",
+        "Merci de patienter...": "Por favor, aguarde",
         "Êtes-vous sûr de vouloir arrêter le système ?": "Tem certeza de que deseja encerrar o sistema?",
         "Votre box": "A sua box",
         "est éteinte.<br \/> Pour la redémarrer, débranchez-la et rebranchez-la.": "está desligada.<br \/> Para a reiniciar, desconecte-a e conecte-a novamente"

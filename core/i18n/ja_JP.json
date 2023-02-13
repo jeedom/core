@@ -1562,10 +1562,12 @@
         "Sauvegarder avant": "前に保存",
         "Réalise une sauvegarde avant de lancer la mise à jour.": "Réalise une sauvegarde avant de lancer la mise à jour",
         "Mettre à jour le Core": "コアを更新する",
+        "Même sans mise à jour signalée, la Core sera mis à jour.": "Même sans mise à jour signalée, la Core sera mis à jour",
         "Mode forcé": "強制モード",
         "Continuer la mise à jour en cas d'erreur.": "エラーが発生した場合は更新を続行します。",
         "Mettre à jour les plugins": "プラグインを更新する",
-        "L'option suivante n'est à utiliser que sur demande du support.": "L'option suivante n'est à utiliser que sur demande du support",
+        "Tous les plugins ayant une mise à jour disponible seront mise à jour après le Core.": "Tous les plugins ayant une mise à jour disponible seront mise à jour après le Core",
+        "A n'utiliser que sur demande du support.": "A n'utiliser que sur demande du support",
         "Script d'update à réappliquer": "Script d'update à réappliquer",
         "Aucune": "いいえ"
     },
@@ -2329,6 +2331,8 @@
     },
     "desktop\/php\/shutdown.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
+        "Extinction": "Extinction",
+        "Merci de patienter...": "Merci de patienter",
         "Êtes-vous sûr de vouloir arrêter le système ?": "システムを停止してもよろしいですか？",
         "Votre box": "あなたの箱",
         "est éteinte.<br \/> Pour la redémarrer, débranchez-la et rebranchez-la.": "オフです。 <br \/>再起動するには、プラグを抜き、再度差し込みます。"

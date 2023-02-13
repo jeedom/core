@@ -294,3 +294,133 @@ Theme ElFinder File Editor 2021 @Jeedom
     border-top: 4px solid rgb(35,35,35) !important;
     padding: 0;
   }
+
+  /* Old Core jQuery */
+  .ui-dialog #div_graph {
+    height: unset;
+  }
+
+  #md_modal {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    width: calc(100% - 30px) !important;
+  }
+  #div_confPlugin {
+    height: auto !important;
+  }
+
+  .ui-widget {
+    font-size: 14px;
+  }
+
+  .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button {
+    color: var(--linkHoverLight-color) !important;
+    background-color: var(--al-success-color)!important;
+    border: none!important;
+  }
+  .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button:first-child {
+    background-color: var(--al-warning-color)!important;
+  }
+
+  .ui-dialog {
+    background-color: rgb(var(--defaultBkg-color));
+    box-shadow: 0 0 6px 2px rgba(0,0,0,0.15) !important;
+  }
+  .ui-dialog .ui-dialog-titlebar {
+    border-bottom: none !important;
+    background-color: rgb(var(--contrast-color)) !important;
+    padding: 0 5px;
+  }
+  .ui-dialog .ui-dialog-title {
+    color: rgb(var(--bg-color)) !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    font-size: 16px;
+    font-weight: normal;
+    cursor: move !important;
+  }
+  .ui-dialog .ui-dialog-title:before {
+    content: '\f105\00a0\00a0';
+    font-family: "Font Awesome 5 Free";
+    font-weight: 700;
+  }
+
+  .ui-dialog, .ui-dialog-content {
+    box-sizing: content-box !important;
+  }
+
+  .ui-state-active .ui-icon,
+  .ui-widget-header .ui-icon {
+    background-image: var(--url-iconsDark)!important;
+  }
+  .ui-dialog-content {
+    padding: 13px !important;
+    padding-right: 13px !important;
+  }
+  .ui-dialog-content > div:not(.alert):not(.jqAlert) {
+    background: transparent !important;
+  }
+  .ui-widget-content:not(.slider){
+    color: var(--txt-color) !important;
+    background: transparent !important;
+    border: none!important;
+  }
+  .jqAlert {
+    padding: 5px 30px;
+    margin-bottom: 5px;
+  }
+
+  .ui-dialog .ui-dialog-buttonpane {
+    margin: 0;
+  }
+  .ui-dialog .ui-dialog-content,
+  .ui-dialog .ui-dialog-buttonpane {
+    background-color: var(--bg-modal-color) !important;
+  }
+
+  .ui-resizable-handle.ui-icon {
+    background-image: none !important;
+    background-color: transparent !important;
+  }
+  .ui-button:hover {
+    opacity: 0.65;
+  }
+
+  button.ui-dialog-titlebar-close::before {
+    font-family: "Font Awesome 5 Free";
+    font-size: 16px !important;
+    font-weight: 700;
+    content: "\f00d";
+    color: rgb(var(--bg-color)) !important;
+    padding-right: 12px;
+    line-height: 10px;
+    vertical-align: top;
+  }
+  button.ui-dialog-titlebar-close {
+    position: absolute;
+    top: 30px !important;
+    font-size: 14px !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+  }
+  button.ui-dialog-titlebar-close:hover {
+    opacity: 0.75 !important;
+  }
+  .ui-dialog:not(.elfinder-dialog) .ui-icon-closethick {
+    display:none !important;
+  }
+
+  .ui-dialog {
+    border-radius: var(--border-radius) !important;
+  }
+  .ui-dialog-titlebar {
+    border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+  }
+
+  .ui-dialog .ui-resizable-se {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    right: 3px;
+    bottom: 3px;
+  }

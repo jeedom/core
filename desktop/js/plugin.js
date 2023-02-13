@@ -288,7 +288,7 @@ if (!jeeFrontEnd.plugin) {
             log_conf += '<label class="col-sm-3 control-label">{{Logs}}</label>'
             log_conf += '<div class="col-sm-9">'
             for (var j in data.logs[i].log) {
-              log_conf += '<a class="btn btn-info bt_plugin_conf_view_log" data-slaveId="' + data.logs[i].id + '" data-log="' + data.logs[i].log[j] + '"><i class="fas fa-paperclip"></i>  ' + data.logs[i].log[j].charAt(0).toUpperCase() + data.logs[i].log[j].slice(1) + '</a> '
+              log_conf += '<a class="btn btn-info btn-sm bt_plugin_conf_view_log" data-slaveId="' + data.logs[i].id + '" data-log="' + data.logs[i].log[j] + '"><i class="fas fa-paperclip"></i>  ' + data.logs[i].log[j].charAt(0).toUpperCase() + data.logs[i].log[j].slice(1) + '</a> '
             }
             log_conf += '</div>'
             log_conf += '</div>'
@@ -299,7 +299,7 @@ if (!jeeFrontEnd.plugin) {
           log_conf += '<div class="form-group">'
           log_conf += '<label class="col-sm-3 control-label">{{Heartbeat (min)}}</label>'
           log_conf += '<div class="col-sm-2">'
-          log_conf += '<input class="configKey form-control" data-l1key="heartbeat::delay::' + data.id + '" />'
+          log_conf += '<input class="configKey form-control input-sm" data-l1key="heartbeat::delay::' + data.id + '" />'
           log_conf += '</div>'
           if (data.hasOwnDeamon) {
             log_conf += '<label class="col-sm-3 control-label">{{Redémarrer démon}}</label>'

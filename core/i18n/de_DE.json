@@ -1562,10 +1562,12 @@
         "Sauvegarder avant": "Vorher speichern",
         "Réalise une sauvegarde avant de lancer la mise à jour.": "Erstellen Sie eine Sicherungskopie, bevor Sie das Update starten",
         "Mettre à jour le Core": "Aktualisieren Sie den Kern",
+        "Même sans mise à jour signalée, la Core sera mis à jour.": "Auch ohne gemeldetes Update wird der Core aktualisiert",
         "Mode forcé": "Erzwungener Modus",
         "Continuer la mise à jour en cas d'erreur.": "Setzen Sie das Update im Fehlerfall fort",
         "Mettre à jour les plugins": "Plugins aktualisieren",
-        "L'option suivante n'est à utiliser que sur demande du support.": "Die folgende Option ist nur auf Anfrage des Supports zu verwenden",
+        "Tous les plugins ayant une mise à jour disponible seront mise à jour après le Core.": "Alle Plugins mit einem verfügbaren Update werden nach dem Core aktualisiert",
+        "A n'utiliser que sur demande du support.": "Nur auf Anfrage des Supports zu verwenden",
         "Script d'update à réappliquer": "Aktualisieren Sie das Skript, um es erneut anzuwenden",
         "Aucune": "Keine"
     },
@@ -2329,6 +2331,8 @@
     },
     "desktop\/php\/shutdown.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "Extinction": "Aussterben",
+        "Merci de patienter...": "Warten Sie mal",
         "Êtes-vous sûr de vouloir arrêter le système ?": "Möchten Sie das System wirklich stoppen?",
         "Votre box": "Deine Box",
         "est éteinte.<br \/> Pour la redémarrer, débranchez-la et rebranchez-la.": "ist aus. <br \/> Um es neu zu starten, ziehen Sie den Stecker heraus und schließen Sie es wieder an"

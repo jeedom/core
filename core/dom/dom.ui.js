@@ -269,7 +269,7 @@ domUtils.createWidgetSlider = function(_options) {
 /*Components
 */
 document.addEventListener('DOMContentLoaded', function() {
-  if (typeof jQuery !== 'function') {
+  if (document.head.querySelectorAll('script[src*="bootstrap.min.js"]').length == 0) {
     document.body.addEventListener('click', function(event) {
       //Close all dropdowns
       document.querySelectorAll('div.dropdown.open').removeClass('open')
@@ -1529,6 +1529,9 @@ var jeeDialog = (function()
       var dialog = setDialog(_options)
       dialogContainer.append(...dialog.children)
       dialogContainer.addClass('jeeDialog', 'jeeDialogMain')
+      if (_options.setFooter === true) {
+        dialogContainer.addClass('hasfooter')
+      }
 
       //Register element _jeeDialog object:
       dialogContainer._jeeDialog = {

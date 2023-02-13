@@ -1562,10 +1562,12 @@
         "Sauvegarder avant": "Guardar antes",
         "Réalise une sauvegarde avant de lancer la mise à jour.": "Realice una copia de seguridad antes de iniciar la actualización",
         "Mettre à jour le Core": "Actualizar el core",
+        "Même sans mise à jour signalée, la Core sera mis à jour.": "Incluso sin una actualización informada, el Core se actualizará",
         "Mode forcé": "Modo forzado",
         "Continuer la mise à jour en cas d'erreur.": "Continuar la actualización en caso de error",
         "Mettre à jour les plugins": "Actualizar los plugins",
-        "L'option suivante n'est à utiliser que sur demande du support.": "La siguiente opción solo debe usarse cuando lo solicite el soporte",
+        "Tous les plugins ayant une mise à jour disponible seront mise à jour après le Core.": "Todos los complementos con una actualización disponible se actualizarán después del Core",
+        "A n'utiliser que sur demande du support.": "Para ser utilizado sólo a petición de apoyo",
         "Script d'update à réappliquer": "Actualizar secuencia de comandos para volver a aplicar",
         "Aucune": "Ninguna"
     },
@@ -2329,6 +2331,8 @@
     },
     "desktop\/php\/shutdown.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Extinction": "Extinción",
+        "Merci de patienter...": "Espere por favor",
         "Êtes-vous sûr de vouloir arrêter le système ?": "¿Estás seguro de que quieres detener el sistema?",
         "Votre box": "Su controlador",
         "est éteinte.<br \/> Pour la redémarrer, débranchez-la et rebranchez-la.": "está apagado <br \/> Para reiniciarlo, desenchúfelo y vuelva a enchufarlo"

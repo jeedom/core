@@ -1066,7 +1066,7 @@ jeedom.history.initChart = function(_chartId, _options) {
   var thisId = _chartId
   jeedom.history.chart[thisId].comparing = false
   jeedom.history.chart[thisId].zoom = false
-  jeedom.history.chart[thisId].mode = jeedom.getPageType(true)
+  jeedom.history.chart[thisId].mode = jeedom.getPageType()
 
   jeedom.history.default = {
     yAxisVisible: true,

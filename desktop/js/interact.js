@@ -538,7 +538,7 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
   if (_target = event.target.closest('#bt_removeInteract')) {
     jeedomUtils.hideAlert()
     let name = document.querySelector('input[data-l1key="name"]').value
-    let id = document.querySelector('.input[data-l1key="id"]').value
+    let id = document.querySelector('input[data-l1key="id"]').value
     jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer l\'interaction}} <span style="font-weight: bold ;">' + name + '</span> ?', function(result) {
       if (result) {
         jeedom.interact.remove({

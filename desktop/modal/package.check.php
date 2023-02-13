@@ -151,7 +151,7 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt ')) > 0) {
   })
 
   document.querySelector('#md_packageCheck .bt_correctPackage').addEventListener('click', function(event) {
-    var el = event.target
+    var el = event.target.closest('.bt_correctPackage')
     if (el.dataset.package == 'all') {
       var text = '{{Êtes-vous sûr de vouloir installer tous les packages non optionnels ?}}'
     } else {

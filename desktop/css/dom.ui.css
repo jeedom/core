@@ -177,7 +177,10 @@ div.jeeDialogContent div[id^="md_"] {
 div.jeeDialogContent div[id^="md_"] > .input-group {
   max-width: calc(100% - 7px); /*Chrome fix*/
 }
-
+div.jeeDialogContent .form-group { /*Chrome fix*/
+  margin-left: 0;
+  margin-right: 0;
+}
 
 div.jeeDialog.jeeDialogAlert > div.jeeDialogContent,
 div.jeeDialog.jeeDialogConfirm > div.jeeDialogContent,
@@ -342,6 +345,9 @@ div.jeeDialog.jeeDialogMain > div.jeeDialogContent {
   width: calc(100% - 10px);
   padding: 15px 0;
   overflow: auto;
+}
+div.jeeDialog.jeeDialogMain.hasfooter > div.jeeDialogContent {
+  height: calc(100% - 80px);
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogContent .floatingbar {
   right: 40px;
@@ -540,7 +546,8 @@ div.jeeCtxMenu div.ctxItem.inlineItem {
 
 /* _________________3rdparty ispin*/
 div.ispin-wrapper {
-  width: 100%;
+  padding-right: 30px;
+  background: var(--form-bg-color);
 }
 div.ispin-wrapper button.ispin-button {
   width: 20px !important;

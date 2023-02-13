@@ -225,33 +225,39 @@ In code mode you have access to different tags for orders, here is a list (not n
 When a new value Jeedom will search in the page if the command is there and in Jeedom.cmd.update if there is an update function. If yes it calls it with a single argument which is an object in the form :
 
 `` ''
-{display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
+{display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'}
 `` ''
 
 Here is a simple example of javascript code to put in your widget :
 
 `` ''
 <script>
-    Jeedom.cmd.update ['#id#'] = function (_options){
-      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Collect date : '+ _options.collectDate)
-      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
+    jeedom.cmd.addUpdateFunction('#id#', function (_options) {
+      if (is_object(cmd = document.querySelector('.cmd[data-cmd_id="#id#"]'))) {
+        cmd.setAttribute('title', '{{Value date}}: ' + _options.valueDate + '<br>{{Collect date}}: ' + _options.collectDate)
+        cmd.querySelector('.value').innerHTML = _options.display_value
+        cmd.querySelector('.unit').innerHTML = _options.unit
+      }
     }
-    Jeedom.cmd.update ['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+    jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
 </script>
 `` ''
 
 Here are two important things :
 
 `` ''
-Jeedom.cmd.update ['#id#'] = function (_options){
-  $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Collect date : '+ _options.collectDate)
-  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
+jeedom.cmd.addUpdateFunction('#id#', function (_options) {
+  if (is_object(cmd = document.querySelector('.cmd[data-cmd_id="#id#"]'))) {
+    cmd.setAttribute('title', '{{Value date}}: ' + _options.valueDate + '<br>{{Collect date}}: ' + _options.collectDate)
+    cmd.querySelector('.value').innerHTML = _options.display_value
+    cmd.querySelector('.unit').innerHTML = _options.unit
+  }
 }
 `` ''
 The function is called during an update of the widget. It then updates the html code of the widget_template.
 
 `` ''
-Jeedom.cmd.update ['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
 `` ''
  The call to this function for the initialization of the widget.
 

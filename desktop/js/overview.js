@@ -77,7 +77,7 @@ if (!jeeFrontEnd.overview) {
         if (visibles.length == 0) {
           button = '<span class="bt_config"><i class="fas fa-cogs"></i></span>'
           element.querySelector('.bt_config')?.remove()
-          element.querySelector('.topPreview').insertAdjacentHTML('beforeend', button)
+          element.querySelector('.topPreview')?.insertAdjacentHTML('beforeend', button)
         }
       })
     },
