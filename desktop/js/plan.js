@@ -200,7 +200,7 @@ if (!jeeFrontEnd.plan) {
           document.getElementById('div_grid').style.height = jeeFrontEnd.plan.planContainer.offsetHeight + 'px'
 
           if (jeedomUtils.userDevice.type != 'desktop') {
-            document.querySelector('meta[name="viewport"]').setAttribute("content", 'width=' + domDisplayObject.offsetWidth + 'px, height=' + domDisplayObject.offsetHeight + 'px')
+            document.querySelector('meta[name="viewport"]').setAttribute("content", 'width=' + jeeFrontEnd.plan.planContainer.offsetWidth + 'px, height=' + jeeFrontEnd.plan.planContainer.offsetHeight + 'px')
             jeeP.fullScreen(true)
             window.registerEvent('popstate', function(event) {
               window.location.href = 'index.php?v=m'
