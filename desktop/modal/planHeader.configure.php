@@ -327,7 +327,6 @@ if (!jeeFrontEnd.md_planHeaderConfigure) {
             message: '{{Design sauvegardé}}',
             level: 'success'
           })
-          document.getElementById('div_pageContainer').setAttribute('data-jeeFrontEnd.planEditOption.state', false)
           jeedomUtils.loadPage('index.php?v=d&p=plan&plan_id=' + jeephp2js.md_planHeaderConfigure_Id)
         }
       })
