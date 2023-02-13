@@ -1331,6 +1331,10 @@ document.body.registerEvent('click', function (event) {
 
 //div_pageContainer events delegation:
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
+  if (jeeFrontEnd.planEditOption.state === true) {
+    event.preventDefault()
+    return
+  }
   var _target = null
   if (_target = event.target.closest('#bt_createNewDesign')) {
     jeeP.createNewDesign()

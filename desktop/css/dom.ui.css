@@ -383,7 +383,7 @@ div.jeeresizer.top {
   left: 0;
   width: 100%;
   height: 7px;
-  cursor: n-resize;
+  cursor: n-resize !important;
 }
 div.jeeDialog.jeeDialogMain > div.resizer.top-right,
 div.jeeresizer.top-right {
@@ -391,7 +391,7 @@ div.jeeresizer.top-right {
   right: 0;
   width: 7px;
   height: 7px;
-  cursor: ne-resize;
+  cursor: ne-resize !important;
   z-index: 260;
 }
 div.jeeDialog.jeeDialogMain > div.resizer.right,
@@ -400,7 +400,7 @@ div.jeeresizer.right {
   right: 0;
   width: 7px;
   height: 100%;
-  cursor: e-resize;
+  cursor: e-resize !important;
 }
 div.jeeDialog.jeeDialogMain > div.resizer.bottom-right,
 div.jeeresizer.bottom-right {
@@ -408,7 +408,7 @@ div.jeeresizer.bottom-right {
   right: 0;
   width: 7px;
   height: 7px;
-  cursor: se-resize;
+  cursor: se-resize !important;
   z-index: 260;
 }
 div.jeeDialog.jeeDialogMain > div.resizer.bottom,
@@ -417,7 +417,7 @@ div.jeeresizer.bottom {
   left: 0;
   width: 100%;
   height: 7px;
-  cursor: s-resize;
+  cursor: s-resize !important;
 }
 div.jeeDialog.jeeDialogMain > div.resizer.bottom-left,
 div.jeeresizer.bottom-left {
@@ -425,7 +425,7 @@ div.jeeresizer.bottom-left {
   left: 0;
   width: 7px;
   height: 7px;
-  cursor: sw-resize;
+  cursor: sw-resize !important;
   z-index: 260;
 }
 div.jeeDialog.jeeDialogMain > div.resizer.left,
@@ -434,7 +434,7 @@ div.jeeresizer.left {
   left: 0;
   width: 7px;
   height: 100%;
-  cursor: w-resize;
+  cursor: w-resize !important;
 }
 div.jeeDialog.jeeDialogMain > div.resizer.top-left,
 div.jeeresizer.top-left {
@@ -442,7 +442,7 @@ div.jeeresizer.top-left {
   left: 0;
   width: 7px;
   height: 7px;
-  cursor: nw-resize;
+  cursor: nw-resize !important;
   z-index: 260;
 }
 
