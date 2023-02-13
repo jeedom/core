@@ -531,7 +531,7 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 									<?php }
 									} ?>
 									<li><a href="index.php?v=d&logout=1" class="noOnePageLoad"><i class="fas fa-sign-out-alt"></i> {{Se déconnecter}}</a></li>
-									<li><a><i class="fas fa-user"></i> <?php echo $_SESSION['user']->getLogin(); ?></a></li>
+									<li class="nocursor"><a class="disabled"><i class="fas fa-user"></i> <?php echo $_SESSION['user']->getLogin(); ?></a></li>
 									<?php
 									if ($mbState == 0) { ?>
 										<li><a id="bt_jeedomAbout"><i class="fas fa-info-circle"></i> {{Version}} <?php echo jeedom::version(); ?></a></li>
