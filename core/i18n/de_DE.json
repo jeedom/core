@@ -1272,6 +1272,7 @@
     },
     "desktop\/modal\/plan.configure.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "Impossible de trouver le design": "Das Design kann nicht gefunden werden",
         "Général": "Allgemein",
         "Sauvegarder": "Speichern",
         "Profondeur": "Tiefe",

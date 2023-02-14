@@ -1272,6 +1272,7 @@
     },
     "desktop\/modal\/plan.configure.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "Impossible de trouver le design": "Impossible de trouver le design",
         "Général": "Général",
         "Sauvegarder": "Sauvegarder",
         "Profondeur": "Profondeur",

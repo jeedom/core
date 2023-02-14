@@ -1272,6 +1272,7 @@
     },
     "desktop\/modal\/plan.configure.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
+        "Impossible de trouver le design": "Impossible de trouver le design",
         "Général": "コモン",
         "Sauvegarder": "セーブ",
         "Profondeur": "深さ",
