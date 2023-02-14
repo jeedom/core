@@ -92,7 +92,7 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
           </span>
         </div>
       </div>
-      <div class="form-group link_type link_image">
+      <div class="form-group link_type link_image display_mode display_mode_image">
         <div class="col-lg-4"></div>
         <div class="col-lg-4 planImg">
           <img src="core/img/no_image.gif" width="240px" height="auto"/>
