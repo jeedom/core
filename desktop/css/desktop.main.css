@@ -3122,6 +3122,7 @@ div.eqLogic-widget.editingMode .panelLink {
     position: absolute;
     top: 55px;
     right: 15px;
+    text-align: right;
     z-index: 100;
   }
   .row-overflow .floatingbar {
@@ -4913,6 +4914,17 @@ div.eqLogic-widget.editingMode .panelLink {
 
     div.objectPreview {
       height: 150px;
+    }
+
+    .label-sm {
+      padding: 3px 4px;
+      margin: 1px;
+    }
+    .input-group {
+      margin-bottom: 5px;
+    }
+    ul.nav.nav-tabs a > i {
+      display: block;
     }
   }
 

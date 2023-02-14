@@ -84,8 +84,8 @@ $synthToActions = array(
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
 			<li role="presentation" class="active"><a data-target="#objecttab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Objet}} (ID : <span class="objectAttr" data-l1key="id"></span>)</a></a></li>
-			<li role="presentation"><a data-target="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i><span class="hidden-768"> {{Résumé}}</span></a></li>
-			<li role="presentation"><a data-target="#eqlogicsTab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-th-list"></i></i><span class="hidden-768"> {{Résumé par équipements}}</span></a></li>
+			<li role="presentation"><a data-target="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Résumé}}</a></li>
+			<li role="presentation"><a data-target="#eqlogicsTab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-th-list"></i></i> {{Résumé par équipements}}</a></li>
 		</ul>
 
 		<div class="tab-content">

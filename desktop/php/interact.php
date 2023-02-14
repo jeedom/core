@@ -170,7 +170,7 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 col-xs-2 control-label">{{Icône}}</label>
-							<div class="col-sm-1 col-xs-1">
+							<div class="col-sm-2 col-xs-2">
 								<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
 							</div>
 							<div class="col-sm-1 col-xs-1">
