@@ -251,20 +251,24 @@ if ($config) {
 	echo '<pre id="pre_installLog" style="margin:15px;"></pre>';
 	?>
 			<script>
-				function loadLog(){
-					$( "#pre_installLog" ).load( "setup.php?log=1&key=<?php echo $tmp_key ?>", function(data) {
-						if(data.indexOf('[END INSTALL SUCCESS]') > 0){
-							$('#div_alertMessage').removeClass('alert-warning').addClass('alert-success').html('<center style="font-size:1.2em;"><i class="fas fa-check"></i> Jeedom successfully install. Login is <strong>admin</strong>, password is <strong>admin</strong>. Click <a href="../index.php">here</a> for connection</center>');
-							return;
+				function loadLog() {
+					document.getElementById('pre_installLog').load("setup.php?log=1&key=<?php echo $tmp_key ?>", function(data) {
+						if (data.indexOf('[END INSTALL SUCCESS]') > 0) {
+							document.getElementById('div_alertMessage').removeClass('alert-warning').addClass('alert-success')
+							document.getElementById('div_alertMessage').innerHTML = '<center style="font-size:1.2em;"><i class="fas fa-check"></i> Jeedom successfully install. Login is <strong>admin</strong>, password is <strong>admin</strong>. Click <a href="../index.php">here</a> for connection</center>'
+							return
 						}
-						if(data.indexOf('[END INSTALL ERROR]') > 0){
-							$('#div_alertMessage').removeClass('alert-warning').addClass('alert-danger').html('<center style="font-size:1.2em;"><i class="fas fa-times"></i> Error on installation, please read the log.</center>');
-							return;
+						if (data.indexOf('[END INSTALL ERROR]') > 0) {
+							document.getElementById('div_alertMessage').removeClass('alert-warning').addClass('alert-danger')
+							document.getElementById('div_alertMessage').innerHTML = '<center style="font-size:1.2em;"><i class="fas fa-times"></i> Error on installation, please read the log.</center>'
+							return
 						}
-						setTimeout(function(){ loadLog(); }, 1000);
-					});
+						setTimeout(() => {
+							loadLog()
+						}, 1000)
+					})
 				}
-				loadLog();
+				loadLog()
 			</script>
 			<?php
 }
