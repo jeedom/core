@@ -1489,7 +1489,7 @@ var jeeDialog = (function()
         id: 'jee_modal',
         show: true,
         retainPosition: false,
-        fullScreen: false,
+        fullScreen: document.body.getAttribute('data-device') == 'phone' ? true : false,
         contentUrl: '',
         zIndex: 1019,
         width: '90vw',
@@ -1542,7 +1542,11 @@ var jeeDialog = (function()
           setBackDrop(_options, true)
           this.dialog._jeeDialog.options.onShown()
           if (!_options.retainPosition || this.dialog.style.width == '') {
-            if (!_options.fullScreen) this.dialog.setAttribute('data-maximize', '0')
+            if (!_options.fullScreen) {
+              this.dialog.setAttribute('data-maximize', '0')
+            } else {
+              this.dialog.setAttribute('data-maximize', '1')
+            }
             setPosition(this.dialog, _options)
           }
           document.querySelectorAll('div.jeeDialog.jeeDialogMain').removeClass('active')
