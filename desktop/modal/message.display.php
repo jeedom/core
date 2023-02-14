@@ -153,9 +153,5 @@ if ($selectPlugin != '') {
       return
     }
   })
-
-  jeeDialog.get('#table_message').options.onResize = function(event) {
-    document.querySelector('#md_messageDisplay #table_message').triggerEvent("update")
-  }
 })()
 </script>
