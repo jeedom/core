@@ -36,7 +36,6 @@ foreach ((plugin::listPlugin()) as $pluginList) {
 }
 $objectOptions = jeeObject::getUISelectList(false);
 ?>
-<div style="display: none;" id="div_alertProfils"></div>
 <div class="row row-overflow" id="div_userProfils">
 	<div class="hasfloatingbar col-xs-12">
 		<div class="floatingbar">

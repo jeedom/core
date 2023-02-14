@@ -3,7 +3,6 @@
 ?>
 
 <div id="wrap">
-	<div style="display: none;width : 100%" id="div_alert"></div>
 	<div class="bodyLogin">
 		<div class="veen animated zoomIn">
 			<div class="login-btn splits">

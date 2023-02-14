@@ -7,8 +7,6 @@ $date = array(
   'end' => init('endDate', date('Y-m-d')),
 );
 ?>
-<div id="div_alertHistory"></div>
-
 <div id="div_historyOptions" class="row">
 	<br>
 	<div class="col-lg-3 col-sm-4 col-xs-12">

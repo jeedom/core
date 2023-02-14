@@ -205,9 +205,6 @@ jeedom.cmd.execute = function(_params) {
 }
 
 jeedom.cmd.test = function(_params) {
-  if (typeof _params.alert == 'undefined') {
-    _params.alert = '#div_alert'
-  }
   var paramsRequired = ['id']
   var paramsSpecifics = {
     global: false,

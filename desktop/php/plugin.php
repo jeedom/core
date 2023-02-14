@@ -11,8 +11,6 @@ sendVarToJS([
 $plugins_list = plugin::listPlugin(false, true);
 ?>
 
-<div id='div_alertPluginConfiguration'></div>
-
 <div class="row row-overflow">
   <div class="col-xs-12" id="div_resumePluginList" <?php if (init('id', '-1') != -1) echo 'style="display:none;"'?>>
     <legend><i class="fas fa-cog"></i> {{Gestion}}</legend>

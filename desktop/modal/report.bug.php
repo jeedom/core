@@ -46,7 +46,6 @@ if (!$first) {
 }
 ?>
 <div id="md_reportBug" data-modalType="md_reportBug">
-  <div id='div_alertReportBug'></div>
   <form class="form-horizontal" role="form" id="form_reportBug">
     <div class="panel panel-success">
       <div class="panel-heading">
@@ -172,7 +171,7 @@ if (!jeeFrontEnd.md_reportBug) {
         },
         dataType: 'json',
         error: function(request, status, error) {
-          handleAjaxError(request, status, error, document.getElementById('div_alertReportBug'))
+          handleAjaxError(request, status, error, document.getElementById('md_reportBug'))
         },
         success: function(data) {
           if (data.state != 'ok') {
