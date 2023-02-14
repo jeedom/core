@@ -1586,6 +1586,7 @@ var jeeDialog = (function()
       var divTitle = dialogContainer.querySelector('div.jeeDialogTitle')
       if (divTitle) {
         divTitle.addEventListener('mousedown', dragStart, false)
+        divTitle.addEventListener('touchstart', dragStart, false)
         var onMove, moveDone
         function dragStart(event) {
           if (event.target.matches('button')) return
@@ -1593,10 +1594,14 @@ var jeeDialog = (function()
           if (dialogContainer.getAttribute('data-maximize') == '1') return
           bodyRect = document.body.getBoundingClientRect()
           let bRect = dialogContainer.getBoundingClientRect()
-          initialLeft = event.clientX - bRect.left
-          initialTop = event.clientY - bRect.top
+          initialLeft = event.clientX || event.targetTouches[0].pageX
+          initialLeft -= bRect.left
+          initialTop = event.clientY || event.targetTouches[0].pageY
+          initialTop -= bRect.top
           document.body.addEventListener('mouseup', dragEnd, false)
+          document.body.addEventListener('touchend', dragEnd, false)
           document.body.addEventListener('mousemove', dragging, false)
+          document.body.addEventListener('touchmove', dragging, false)
           onMove = dialogContainer._jeeDialog.options.onMove
           if (onMove) {
             moveDone = null
@@ -1605,8 +1610,11 @@ var jeeDialog = (function()
         function dragging(event) {
           event.preventDefault()
           let modalRect = dialogContainer.getBoundingClientRect()
-          nextLeft = event.clientX - initialLeft
-          nextTop = event.clientY - initialTop
+          nextLeft = event.clientX || event.targetTouches[0].pageX
+          nextLeft -= initialLeft
+          nextTop = event.clientY || event.targetTouches[0].pageY
+          nextTop -= initialTop
+
           if (nextTop <= 0) {
             nextTop = 0
           }
@@ -1628,7 +1636,9 @@ var jeeDialog = (function()
         }
         function dragEnd(event) {
           document.body.removeEventListener('mouseup', dragEnd, false)
+          document.body.removeEventListener('touchend', dragEnd, false)
           document.body.removeEventListener('mousemove', dragging, false)
+          document.body.removeEventListener('touchmove', dragging, false)
         }
 
         //____Set Resizeable
@@ -1640,6 +1650,7 @@ var jeeDialog = (function()
           div.setAttribute('data-resize', handle)
           dialogContainer.appendChild(div)
           div.addEventListener('mousedown', resizeStart, false)
+          div.addEventListener('touchstart', resizeStart, false)
         })
         //Set onResize event:
         var onResize, resizeDone
@@ -1654,29 +1665,33 @@ var jeeDialog = (function()
           initialWidth = bRect.width
           initialHeight = bRect.height
           document.body.addEventListener('mouseup', resizeEnd, false)
+          document.body.addEventListener('touchend', resizeEnd, false)
           document.body.addEventListener('mousemove', resizing, false)
+          document.body.addEventListener('touchmove', resizing, false)
           onResize = dialogContainer._jeeDialog.options.onResize
           if (onResize) {
             resizeDone = null
           }
         }
         function resizing(event) {
+          let clientX = event.clientX || event.targetTouches[0].pageX
+          let clientY = event.clientY || event.targetTouches[0].pageY
           if (resizer.includes('top')) {
-            dialogContainer.style.top = event.clientY + 'px'
-            let height = initialHeight + (initialTop - event.clientY)
+            dialogContainer.style.top = clientY + 'px'
+            let height = initialHeight + (initialTop - clientY)
             if (height > 200) dialogContainer.style.height = height + 'px'
           }
           if (resizer.includes('right')) {
-            let width = event.clientX - initialLeft
+            let width = clientX - initialLeft
             if (width > 350) dialogContainer.style.width = width + 'px'
           }
           if (resizer.includes('bottom')) {
-            let height = dialogContainer.style.height = event.clientY - initialTop
+            let height = dialogContainer.style.height = clientY - initialTop
             if (height > 200) dialogContainer.style.height = height + 'px'
           }
           if (resizer.includes('left')) {
-            dialogContainer.style.left = event.clientX + 'px'
-            let width = initialWidth + (initialLeft - event.clientX)
+            dialogContainer.style.left = clientX + 'px'
+            let width = initialWidth + (initialLeft - clientX)
             if (width > 350) dialogContainer.style.width = width + 'px'
           }
           if (onResize) {
@@ -1686,7 +1701,9 @@ var jeeDialog = (function()
         }
         function resizeEnd(event) {
           document.body.removeEventListener('mouseup', resizeEnd, false)
+          document.body.removeEventListener('touchend', resizeEnd, false)
           document.body.removeEventListener('mousemove', resizing, false)
+          document.body.removeEventListener('touchmove', resizing, false)
         }
       }
     } else {
@@ -2208,6 +2225,7 @@ var jeeResize = function(_selector, _options) {
       div.setAttribute('data-resize', handle)
       elResize.appendChild(div)
       div.addEventListener('pointerdown', resizeStart, false)
+      div.addEventListener('touchstart', resizeStart, false)
     })
   })
 
@@ -2240,20 +2258,22 @@ var jeeResize = function(_selector, _options) {
     initialWidth = bRect.width
     initialHeight = bRect.height
     document.body.addEventListener('pointerup', resizeEnd, false)
+    document.body.addEventListener('touchend', resizeEnd, false)
     document.body.addEventListener('pointermove', resizing, false)
-
+    document.body.addEventListener('touchmove', resizing, false)
   }
   function resizing(event) {
-
+    var clientX = event.clientX || event.targetTouches[0].pageX
+    var clientY = event.clientY || event.targetTouches[0].pageY
     var element = currentRszr.rszElement.parentNode
 
     if (currentRszr.resizer.includes('left')) {
       let minLeft = currentRszr.containmentRect.left
       let maxLeft = currentRszr.containmentRect.right
-      let left = event.clientX
+      let left = clientX
       if (left >= minLeft && left <= maxLeft) {
         element.style.left = left - currentRszr.containmentRect.left + 'px'
-        let width = initialWidth + (initialLeft - event.clientX)
+        let width = initialWidth + (initialLeft - clientX)
         width = width <= currentRszr.containmentRect.width ? width : currentRszr.containmentRect.width
         element.style.width = width + 'px'
       }
@@ -2262,10 +2282,10 @@ var jeeResize = function(_selector, _options) {
     if (currentRszr.resizer.includes('top')) {
       let minTop = currentRszr.containmentRect.top
       let maxTop = currentRszr.containmentRect.bottom
-      let top = event.clientY
+      let top = clientY
       if (top >= minTop && top <= maxTop) {
         element.style.top = top - currentRszr.containmentRect.top + 'px'
-        let height = initialHeight + (initialTop - event.clientY)
+        let height = initialHeight + (initialTop - clientY)
         height = height <= currentRszr.containmentRect.height ? height : currentRszr.containmentRect.height
         element.style.height = height + 'px'
       }
@@ -2273,7 +2293,7 @@ var jeeResize = function(_selector, _options) {
 
     if (currentRszr.resizer.includes('right')) {
       let maxWidth = currentRszr.containmentRect.width - element.offsetLeft
-      let width = event.clientX - initialLeft
+      let width = clientX - initialLeft
       if (width <= maxWidth) {
         element.style.width = width + 'px'
       }
@@ -2281,7 +2301,7 @@ var jeeResize = function(_selector, _options) {
 
     if (currentRszr.resizer.includes('bottom')) {
       let maxHeight = currentRszr.containmentRect.height - element.offsetTop
-      let height = event.clientY - initialTop
+      let height = clientY - initialTop
       if (height <= maxHeight) {
         element.style.height = height + 'px'
       }
@@ -2292,7 +2312,9 @@ var jeeResize = function(_selector, _options) {
   }
   function resizeEnd(event) {
     document.body.removeEventListener('pointerup', resizeEnd, false)
+    document.body.removeEventListener('touchend', resizeEnd, false)
     document.body.removeEventListener('pointermove', resizing, false)
+    document.body.removeEventListener('touchmove', resizing, false)
     if (currentRszr.options.end) {
       currentRszr.options.end.apply(currentRszr.rszElement, [event, currentRszr.element])
     }
