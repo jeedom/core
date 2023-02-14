@@ -20,7 +20,7 @@ if (!isConnect('admin')) {
 }
 $plan = plan::byId(init('id'));
 if (!is_object($plan)) {
-  throw new Exception('Impossible de trouver le design');
+  throw new Exception('{{Impossible de trouver le design}}');
 }
 $link = $plan->getLink();
 sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
