@@ -373,6 +373,25 @@ domUtils.loadScript = function(_scripts, _idx, _callback) {
   }
 }
 
+
+//Use new html document to load scripts
+domUtils.DOMparseHTML = function(_htmlString) {
+  var dom = new DOMParser()
+  var html = dom.parseFromString(_htmlString, 'text/html')
+  var node = html.body.childNodes[0]
+
+  //Make scrips not just strings...
+  document.body.appendChild(node)
+  if (html.body.childNodes.length > 0) {
+    for (var i=1; i<html.body.childNodes.length; i++) {
+      node.appendChild(html.body.childNodes[i])
+    }
+  }
+  domUtils.loadScript(node.querySelectorAll('script'), 0)
+
+  return node
+}
+
 //Scripts with src won't load until inserted in DOM
 domUtils.parseHTML = function(_htmlString) {
   let newEl = document.createElement('template')
