@@ -1446,6 +1446,7 @@ class cmd {
 				if (config::byKey('active', 'widget') == 1) {
 					$template = getTemplate('core', $_version, $template_name, 'widget');
 				}
+				$template = getTemplate('core', $_version, $template_name, $this->getEqType());
 				if ($template == '') {
 					foreach (plugin::listPlugin(true) as $plugin) {
 						$template = getTemplate('core', $_version, $template_name, $plugin->getId());
