@@ -4939,6 +4939,11 @@ div.eqLogic-widget.editingMode .panelLink {
       right: 0;
       text-align: right !important;
     }
+    .input-group,
+    .input-group-btn,
+    .bs-sidenav {
+      max-width: calc(100vw - 12px);
+    }
 
     #summaryGlobalMain {
       right: 115px;
@@ -4988,6 +4993,8 @@ div.eqLogic-widget.editingMode .panelLink {
     table.ui-table-reflow thead {
       position: relative !important;
     }
+
+
 
     .ui-table-reflow td,
     .ui-table-reflow th {

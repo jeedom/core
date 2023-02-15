@@ -161,7 +161,7 @@ if (!jeeFrontEnd.plugin) {
 
           //top right buttons:
           var spanRightButton = self.dom_container.querySelector('#span_right_button')
-          spanRightButton.empty().insertAdjacentHTML('beforeend', '<a class="btn btn-sm roundedLeft bt_refreshPluginInfo"><i class="fas fa-sync"></i> {{Rafraichir}}</a>')
+          spanRightButton.empty().insertAdjacentHTML('beforeend', '<a class="btn btn-sm roundedLeft bt_refreshPluginInfo"><i class="fas fa-sync"></i><span class="hidden-768" {{Rafraichir}}</span></a>')
           if(jeedom.theme.mbState == 0) {
           if (data.update.configuration && data.update.configuration.version == 'beta') {
             if (isset(data.documentation_beta) && data.documentation_beta != '') {
@@ -245,8 +245,8 @@ if (!jeeFrontEnd.plugin) {
           if (data.checkVersion != -1) {
             var html = '<form class="form-horizontal"><fieldset>'
             html += '<div class="form-group">'
-            html += '<label class="col-sm-2 control-label">{{Statut}}</label>'
-            html += '<div class="col-sm-4">'
+            html += '<label class="col-sm-2 col-xs-6 control-label">{{Statut}}</label>'
+            html += '<div class="col-sm-4 col-xs-6">'
             if (data.activate == 1) {
               self.dom_container.querySelector('#div_plugin_toggleState').closest('.panel').removeClass('panel-default', 'panel-danger').addClass('panel-success')
               html += '<span class="label label-success">{{Actif}}</span>'
@@ -255,8 +255,8 @@ if (!jeeFrontEnd.plugin) {
               html += '<span class="label label-danger">{{Inactif}}</span>'
             }
             html += '</div>'
-            html += '<label class="col-sm-2 control-label">{{Action}}</label>'
-            html += '<div class="col-sm-4">'
+            html += '<label class="col-sm-2 col-xs-6 control-label">{{Action}}</label>'
+            html += '<div class="col-sm-4 col-xs-6">'
             if (data.activate == 1) {
               html += '<a class="btn btn-danger btn-xs togglePlugin" data-state="0" data-plugin_id="' + data.id + '" style="position:relative;top:-2px;"><i class="fas fa-times"></i> {{Désactiver}}</a>'
             } else {
