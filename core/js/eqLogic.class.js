@@ -395,10 +395,11 @@ jeedom.eqLogic.refreshValue = function(_params) {
   var sends = {}
   var eqLogic = null
   var page = document.body.getAttribute('data-page')
+
   for (var i in _params) {
     eqLogic = document.querySelector('.eqLogic[data-eqLogic_id="' + _params[i].eqLogic_id + '"]')
     if (eqLogic != null) {
-      if (_params[i].visible == 0 && page == 'dashboard' || _params[i].enable == 0) {
+      if ((page == 'dashboard' && _params[i].visible == '0') || _params[i].enable == '0') { //Remove it
         let parent = eqLogic.parentNode
         eqLogic.remove()
         if (parent.querySelectorAll('.eqLogic').length == 0) {
@@ -410,6 +411,8 @@ jeedom.eqLogic.refreshValue = function(_params) {
         }
         continue
       }
+    } else {
+      if ((page == 'dashboard' && _params[i].visible == '0') || _params[i].enable == '0') continue
     }
 
     eqLogics[_params[i].eqLogic_id] = {
@@ -419,6 +422,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
       version: ((version = eqLogic?.getAttribute('data-version')) != undefined) ? version : 'dashboard'
     }
   }
+
   if (Object.keys(eqLogics).length == 0) {
     return
   }
