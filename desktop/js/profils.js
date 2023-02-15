@@ -24,7 +24,7 @@ if (!jeeFrontEnd.profils) {
       /* Not used, also loaded as modal!
       window.jeeP = this
       */
-      this.tableDevices = document.getElementById('tableDevices')
+      this.tableDevices = document.getElementById('securitytab')?.querySelector('#tableDevices')
       if (this.tableDevices != null) { //Not modal!
         this.deviceDataTable = new DataTable(this.tableDevices, {
           columns: [
@@ -240,7 +240,10 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       return
     }
   }
+})
 
+document.getElementById('interfacetab').addEventListener('click', function(event) {
+  var _target = null
   if (_target = event.target.closest('.bt_selectWarnMeCmd')) {
     jeedom.cmd.getSelectModal({
       cmd: {
@@ -249,6 +252,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       }
     }, function(result) {
       document.querySelector('.userAttr[data-l1key="options"][data-l2key="notification::cmd"]').jeeValue(result.human)
+      jeeFrontEnd.modifyWithoutSave = true
     })
     return
   }
