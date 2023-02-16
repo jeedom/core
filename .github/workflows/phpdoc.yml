@@ -1,0 +1,36 @@
+name: PHP Doc Generator
+
+on:
+  push:
+    branches: [ V4-stable, alpha ]
+  pull_request:
+    branches: [ V4-stable ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+        fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+
+    - name: PHP Code Style Fixer
+      # https://github.com/marketplace/actions/php-code-style-fixer-php-cs-fixer
+      uses: StephaneBour/actions-php-cs-fixer@8.0-bdossantos
+      with:
+        dir: '.'
+
+    - name: PhpDocumentor
+      # https://github.com/gpupo/actions-phpDocumentor
+      uses: gpupo/actions-phpDocumentor@1.2
+      with:
+        dir: '.'
+
+    - name: Deploy
+      # https://github.com/marketplace/actions/github-pages-action
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./phpdocs
