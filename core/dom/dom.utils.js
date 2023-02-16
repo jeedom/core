@@ -374,7 +374,7 @@ domUtils.loadScript = function(_scripts, _idx, _callback) {
 }
 
 
-//Use new html document to load scripts
+//Use new html document to load scripts synch/ordered
 domUtils.DOMparseHTML = function(_htmlString) {
   var dom = new DOMParser()
   var html = dom.parseFromString(_htmlString, 'text/html')
