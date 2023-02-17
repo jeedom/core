@@ -155,7 +155,7 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		unautorizedInDemo();
-		$users = json_decode(init('users'), true);
+		$users = jeedom::fromHumanReadable(json_decode(init('users'), true));
 		$user = null;
 		foreach ($users as &$user_json) {
 			if (isset($user_json['id'])) {

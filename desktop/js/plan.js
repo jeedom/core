@@ -274,8 +274,7 @@ if (!jeeFrontEnd.plan) {
           _html = _html.replace('class="graph-widget"', 'class="graph-widget transparent"')
         }
       }
-
-      var node = domUtils.parseHTML(_html).childNodes[0]
+      var node = domUtils.DOMparseHTML(_html)
       node.setAttribute('data-plan_id', _plan.id)
       node.setAttribute('data-zoom', init(_plan.css.zoom, 1))
       node.addClass('jeedomAlreadyPosition', 'noResize')

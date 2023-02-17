@@ -522,19 +522,19 @@ jeedom.eqLogic.refreshValue = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.eqLogic.initGraphInfo = function(_eqLogicId, _doNotHighlightGraphCmd) {
-  var divGraph = document.querySelector('div.eqLogic[data-eqlogic_id="' + _eqLogicId + '"]:not(.zone-widget) div.eqlogicbackgraph')
+jeedom.eqLogic.initGraphInfo = function(_eqLogicUid, _doNotHighlightGraphCmd) {
+  var divGraph = document.querySelector('div.eqLogic[data-eqlogic_uid="' + _eqLogicUid + '"]:not(.zone-widget) div.eqlogicbackgraph')
   if (divGraph != null) {
     var cmdId = divGraph.dataset.cmdid
     if (!_doNotHighlightGraphCmd || _doNotHighlightGraphCmd === false) {
-      document.querySelector('div.eqLogic[data-eqlogic_id="' + _eqLogicId + '"] div.cmd-widget[data-cmd_id="' + cmdId + '"] .cmdName')?.insertAdjacentHTML('afterbegin', '<span class="graphInfoCmd">• </span>')
+      document.querySelector('div.eqLogic[data-eqlogic_uid="' + _eqLogicUid + '"] div.cmd-widget[data-cmd_id="' + cmdId + '"] .cmdName')?.insertAdjacentHTML('afterbegin', '<span class="graphInfoCmd">• </span>')
     }
-    jeedom.eqLogic.drawGraphInfo(cmdId)
+    jeedom.eqLogic.drawGraphInfo(_eqLogicUid, cmdId)
   }
 }
 
-jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
-  var drawEqEl = document.querySelector('.eqlogicbackgraph[data-cmdid="' + _cmdId + '"]')
+jeedom.eqLogic.drawGraphInfo = function(_eqLogicUid, _cmdId) {
+  var drawEqEl = document.querySelector('div.eqLogic[data-eqlogic_uid="' + _eqLogicUid + '"] .eqlogicbackgraph[data-cmdid="' + _cmdId + '"]')
   if (drawEqEl == null) return
   drawEqEl.empty()
   if (drawEqEl.length == 0) return false

@@ -717,6 +717,7 @@ class eqLogic {
 		}
 		$translate_category = trim($translate_category, ',');
 		$name_display = $this->getName();
+		$uid = 'eqLogic' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER;
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
@@ -729,7 +730,7 @@ class eqLogic {
 			'#object_name#' => (is_object($this->getObject())) ? $this->getObject()->getName() : __('Aucun', __FILE__),
 			'#height#' => $this->getDisplay('height', 'auto'),
 			'#width#' => $this->getDisplay('width', 'auto'),
-			'#uid#' => 'eqLogic' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER,
+			'#uid#' => $uid,
 			'#refresh_id#' => '',
 			'#version#' => $_version,
 			'#alert_name#' => '',
@@ -824,7 +825,7 @@ class eqLogic {
 		//History graph:
 		if ($this->getDisplay('backGraph::info', 0) != 0 && is_object(cmd::byId($this->getDisplay('backGraph::info')))) {
 			$doNotHighlightGraphCmd = (config::byKey('interface::advance::doNotHighlightGraphCmd') == 1) ? 'true' : 'false';
-			$replace['#divGraphInfo#'] = '<div class="eqlogicbackgraph" data-cmdid="' . $this->getDisplay('backGraph::info') . '" data-format="' . $this->getDisplay('backGraph::format', 'day') . '" data-type="' . $this->getDisplay('backGraph::type', 'areaspline') . '" data-color="' . $this->getDisplay('backGraph::color', '#4572A7') . '"></div><script>jeedom.eqLogic.initGraphInfo(' . $this->getId() . ',' . $doNotHighlightGraphCmd . ')</script>';
+			$replace['#divGraphInfo#'] = '<div class="eqlogicbackgraph" data-cmdid="' . $this->getDisplay('backGraph::info') . '" data-format="' . $this->getDisplay('backGraph::format', 'day') . '" data-type="' . $this->getDisplay('backGraph::type', 'areaspline') . '" data-color="' . $this->getDisplay('backGraph::color', '#4572A7') . '"></div><script>jeedom.eqLogic.initGraphInfo("' . $uid . '", ' . $doNotHighlightGraphCmd . ')</script>';
 			$height = $this->getDisplay('backGraph::height', '0');
 			if ($height != '0') {
 				$replace['#isVerticalAlign#'] = 0;

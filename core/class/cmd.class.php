@@ -1396,6 +1396,8 @@ class cmd {
 			} else {
 				$replace = array();
 			}
+
+
 			$replace['#test#'] = '';
 			if (isset($template_conf['test']) && is_array($template_conf['test']) && count($template_conf['test']) > 0) {
 				$i = 0;
@@ -1416,12 +1418,14 @@ class cmd {
 
 					//ltrim avoid js variable starting with # error
 					if ($_version == 'dashboard') {
+						$replace['#test#'] .= 'var cmdjs = isElement_jQuery(cmd) ? cmd[0] : cmd'. "\n";
 						$replace['#test#'] .= 'if (' . ltrim($test['operation'], '#') . ') {' . "\n";
-						$replace['#test#'] .= 'cmd.setAttribute("data-state", ' . $i . ')' . "\n";
+						$replace['#test#'] .= 'cmdjs.setAttribute("data-state", ' . $i . ')' . "\n";
 						$replace['#test#'] .= 'state = jeedom.widgets.getThemeImg("' . $test['state_light'] . '", "' . $test['state_dark'] . '")' . "\n";
 						$replace['#test#'] .= "}\n";
 
-						$replace['#change_theme#'] .= 'if (cmd.getAttribute("data-state") == ' . $i . ') {' . "\n";
+						$replace['#change_theme#'] .= 'var cmdjs = isElement_jQuery(cmd) ? cmd[0] : cmd'. "\n";
+						$replace['#change_theme#'] .= 'if (cmdjs.getAttribute("data-state") == ' . $i . ') {' . "\n";
 						$replace['#change_theme#'] .= 'state = jeedom.widgets.getThemeImg("' . $test['state_light'] . '", "' . $test['state_dark'] . '")' . "\n";
 						$replace['#change_theme#'] .= "}\n";
 					} else {  //Deprecated, keep for mobile during transition
@@ -1446,6 +1450,7 @@ class cmd {
 				if (config::byKey('active', 'widget') == 1) {
 					$template = getTemplate('core', $_version, $template_name, 'widget');
 				}
+				$template = getTemplate('core', $_version, $template_name, $this->getEqType());
 				if ($template == '') {
 					foreach (plugin::listPlugin(true) as $plugin) {
 						$template = getTemplate('core', $_version, $template_name, $plugin->getId());

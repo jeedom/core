@@ -289,9 +289,8 @@ jeedom.getPageType = function(_modal) {
         }
       })
     }
-    return modalType
+    if (modalType != undefined) return modalType
   }
-
   return document.body.getAttribute('data-page')
 }
 
