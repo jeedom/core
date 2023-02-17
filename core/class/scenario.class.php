@@ -376,6 +376,7 @@ class scenario {
 				$scenario->stop();
 				$scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['stopTimeout']['txt'] . $scenario->getTimeout() . 's');
 				$scenario->persistLog();
+				log::add('scenario', 'info', $scenario->getHumanName() . ' ' . $GLOBALS['JEEDOM_SCLOG_TEXT']['stopTimeout']['txt'] . $scenario->getTimeout() . 's');
 			}
 		}
 	}
@@ -608,7 +609,7 @@ class scenario {
 	}
 	/**
 	 *
-	 * @param type $_input
+	 * @param string $_input
 	 * @return type
 	 */
 	public static function fromHumanReadable($_input) {
@@ -756,9 +757,9 @@ class scenario {
 	}
 	/**
 	 *
-	 * @param type $_trigger
-	 * @param type $_message
-	 * @param type $_forceSyncMode
+	 * @param string $_trigger
+	 * @param string $_message
+	 * @param boolean $_forceSyncMode
 	 * @return boolean
 	 */
 	public function launch($_trigger = '', $_message = '', $_forceSyncMode = false) {
@@ -814,8 +815,8 @@ class scenario {
 	}
 	/**
 	 *
-	 * @param type $_trigger
-	 * @param type $_message
+	 * @param string $_trigger
+	 * @param string $_message
 	 * @return type
 	 */
 	public function execute($_trigger = '', $_message = '') {
