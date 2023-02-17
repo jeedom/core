@@ -20,7 +20,7 @@
 */
 var domUtils = function() {
   if (typeof arguments[0] == 'function') {
-    if (domUtils._ajaxCalling <= 0 && domUtils._DOMloading <= 0) {
+    if (domUtils._DOMloading <= 0) {
       arguments[0].apply(this)
       return
     }
@@ -29,9 +29,7 @@ var domUtils = function() {
 }
 Object.assign(domUtils, {
   __description: 'DOM related Jeedom functions.',
-  ajaxCalling: 1,
-  _ajaxCalling: 0,
-  DOMloading: 1,
+  DOMloading: 0,
   _DOMloading: 0,
   loadingTimeout: null,
   ajaxSettings: {
@@ -56,38 +54,26 @@ domUtils.DOMReady = function() {
   }
 }
 
-Object.defineProperty(domUtils, 'ajaxCalling', {
-  enumerable: true,
-  get: function() {
-    return this._ajaxCalling
-  },
-  set: function(number) {
-    this._ajaxCalling = number < 0 ? 0 : number
-    if (number <= 0 && domUtils._DOMloading <= 0) {
-      domUtils.DOMReady()
-    }
-  }
-})
 Object.defineProperty(domUtils, 'DOMloading', {
   enumerable: true,
   get: function() {
     return this._DOMloading
   },
   set: function(number) {
+    if (number === 0) domUtils.showLoading()
     setTimeout(() => {
       this._DOMloading = number < 0 ? 0 : number
-      if (number <= 0 && domUtils._ajaxCalling <= 0) {
+      if (number <= 0) {
         domUtils.DOMReady()
       }
-    }, 250)
+    }, 200)
   }
 })
 
 document.addEventListener('DOMContentLoaded', function() {
   setTimeout(function() { //document.readyState still interactive
     domUtils.DOMloading = domUtils._DOMloading || 0
-    domUtils.ajaxCalling = domUtils._ajaxCalling || 0
-  }, 150)
+  }, 200)
 })
 
 /* Extension Functions
@@ -379,7 +365,6 @@ domUtils.loadScript = function(_scripts, _idx, _callback) {
 
 //Use new html document to load scripts synch/ordered
 domUtils.DOMparseHTML = function(_htmlString) {
-  domUtils.DOMloading ++
   var frag = document.createRange().createContextualFragment(_htmlString)
   var node = null
   var nodeChilds = []
@@ -391,21 +376,20 @@ domUtils.DOMparseHTML = function(_htmlString) {
     }
   })
   if (!node) {
-    domUtils.DOMloading --
     return null
   }
 
   //Make scrips not just strings...
-  document.body.appendChild(node)
+  domUtils.DOMloading += 1
   if (nodeChilds.length > 0) {
-    for (var child of nodeChilds) {
-      node.appendChild(child)
-    }
+    node.append(...nodeChilds)
   }
   if (node.querySelectorAll('script').length > 0) {
-    domUtils.loadScript(node.querySelectorAll('script'), 0)
+    domUtils.loadScript(node.querySelectorAll('script'), 0, () => {
+      domUtils.DOMloading -= 1
+    })
   }
-  domUtils.DOMloading --
+
   return node
 }
 
@@ -427,7 +411,7 @@ domUtils.parseHTML = function(_htmlString) {
 Element.prototype.html = function(_htmlString, _append, _callback) {
   if (!isset(_htmlString)) return this.innerHTML
   if (!isset(_append) || _append === false) this.empty()
-  domUtils.DOMloading ++
+  domUtils.DOMloading += 1
   let template = document.createElement('template')
   template.innerHTML = _htmlString
 
@@ -447,7 +431,7 @@ Element.prototype.html = function(_htmlString, _append, _callback) {
 
   let self = this
   domUtils.loadScript(this.querySelectorAll('script'), 0, function() {
-    domUtils.DOMloading --
+    domUtils.DOMloading -= 1
     if (typeof _callback === 'function') {
       return _callback.apply(self)
     } else {
@@ -459,7 +443,7 @@ Element.prototype.html = function(_htmlString, _append, _callback) {
 
 Element.prototype.load = function(_path, _callback) {
   let self = this
-  domUtils.DOMloading ++
+  domUtils.DOMloading += 1
   domUtils.ajax({
     url: _path,
     async: domUtils.ajaxSettings.async,
@@ -474,7 +458,7 @@ Element.prototype.load = function(_path, _callback) {
     },
     success: function(rawHtml) {
       self.html(rawHtml, false, function() {
-        domUtils.DOMloading --
+        domUtils.DOMloading -= 1
         if (typeof _callback === 'function') {
           _callback(self)
         }
@@ -504,16 +488,6 @@ domUtils.handleAjaxError = function(_request, _status, _error, _params) {
 domUtils.ajaxSetup = function(_params) {
   for (const key in _params) {
     domUtils.ajaxSettings[key] = _params[key]
-  }
-}
-
-domUtils.countAjax = function(_type, _global) {
-  if (_global === false) return
-  if (_type == 0) {
-    domUtils.ajaxCalling ++
-    if (domUtils.ajaxCalling == 1) domUtils.showLoading()
-  } else {
-    domUtils.ajaxCalling --
   }
 }
 
@@ -559,7 +533,7 @@ domUtils.ajax = function(_params) {
   _params.timeoutRetry = isset(_params.timeoutRetry) ? _params.timeoutRetry : 0
   _params.processData = isset(_params.processData) ? _params.processData : true
 
-  domUtils.countAjax(0, _params.global)
+  if (_params.global) domUtils.DOMloading += 1
 
   let isGet = _params.type.toLowerCase() == 'get' ? true : false
   let isJson = _params.dataType.toLowerCase() == 'json' ? true : false
@@ -577,10 +551,10 @@ domUtils.ajax = function(_params) {
     request.open(_params.type, _params.url, false)
     request.send(new URLSearchParams(_params.data))
     if (request.status === 200) { //Answer ok
-      domUtils.countAjax(1, _params.global)
+      if (_params.global) domUtils.DOMloading -= 1
       isJson ? _params.success(JSON.parse(request.responseText)) : _params.success(request.responseText)
     } else { //Weird thing happened
-      domUtils.countAjax(1, _params.global)
+      if (_params.global) domUtils.DOMloading -= 1
       domUtils.handleAjaxError(response, response.status, response.statusText)
       if (_params.onError) _params.onError(error)
       _params.onError('', '', error)
@@ -604,7 +578,7 @@ domUtils.ajax = function(_params) {
     })
     .then( response => {
       if (!response.ok) {
-        domUtils.countAjax(1, _params.global)
+        if (_params.global) domUtils.DOMloading -= 1
         throw response
       }
       if (isJson) {
@@ -617,12 +591,12 @@ domUtils.ajax = function(_params) {
     .then( obj => {
       return _params.success(obj)
     }).then(async function() {
-      domUtils.countAjax(1, _params.global)
+      if (_params.global) domUtils.DOMloading -= 1
       _params.complete()
       return
     })
     .catch( error => {
-      domUtils.countAjax(1, _params.global)
+      if (_params.global) domUtils.DOMloading -= 1
       if (typeof error.text === 'function') { //Catched from fetch return
         error.text().then(errorMessage => {
           if ((error.status == 504 || error.status == 500 || (error.status == 502 && error.headers.get('server') == 'openresty'))) { //Gateway Timeout or Internal Server Error

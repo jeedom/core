@@ -110,6 +110,7 @@ jeedomUtils.userDevice = getDeviceType()
 
 //OnePage design PageLoader -------------------------------------
 jeedomUtils.loadPage = function(_url, _noPushHistory) {
+  domUtils.DOMloading = 0
   jeeFrontEnd.PREVIOUS_LOCATION = window.location.href
   if (jeedomUtils.checkPageModified()) return
   if (jeedomUtils.JS_ERROR.length > 0) {
