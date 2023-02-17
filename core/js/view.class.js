@@ -91,7 +91,7 @@ jeedom.view.handleViewAjax = function(_params) {
     viewZone = _params.view.viewZone[i];
     if (colIdx == 0) result.html += '<div class="col-xs-12 div_rowZones">';
     div_class = 'div_viewZone ';
-    if (jeedom.display.version == 'mobile') {
+    if (jeedom.display.version != 'mobile') {
       div_class += ' col-xs-12 col-sm-' + init(viewZone.configuration.zoneCol, 12);
     }
     if (viewZone.type == 'table') {
