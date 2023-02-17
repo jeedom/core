@@ -30,7 +30,9 @@ var domUtils = function() {
 Object.assign(domUtils, {
   __description: 'DOM related Jeedom functions.',
   ajaxCalling: 1,
+  _ajaxCalling: 0,
   DOMloading: 1,
+  _DOMloading: 0,
   loadingTimeout: null,
   ajaxSettings: {
     async: true,
@@ -51,7 +53,6 @@ domUtils.DOMReady = function() {
     try {
       f.apply(this)
     } catch(e) { }
-
   }
 }
 
@@ -73,10 +74,12 @@ Object.defineProperty(domUtils, 'DOMloading', {
     return this._DOMloading
   },
   set: function(number) {
-    this._DOMloading = number < 0 ? 0 : number
-    if (number <= 0 && domUtils._ajaxCalling <= 0) {
-      domUtils.DOMReady()
-    }
+    setTimeout(() => {
+      this._DOMloading = number < 0 ? 0 : number
+      if (number <= 0 && domUtils._ajaxCalling <= 0) {
+        domUtils.DOMReady()
+      }
+    }, 250)
   }
 })
 
@@ -84,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
   setTimeout(function() { //document.readyState still interactive
     domUtils.DOMloading = domUtils._DOMloading || 0
     domUtils.ajaxCalling = domUtils._ajaxCalling || 0
-  }, 100)
+  }, 150)
 })
 
 /* Extension Functions
