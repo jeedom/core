@@ -974,7 +974,7 @@ if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
       },
       sep1: "---------",
       addGraph: {
-        name: "{{Ajouter Graphique}}",
+        name: "{{Ajouter un Graphique}}",
         icon: 'fas fa-chart-line',
         disabled: function(key, opt) {
           return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
@@ -987,7 +987,7 @@ if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
         }
       },
       addText: {
-        name: "{{Ajouter texte/html}}",
+        name: "{{Ajouter du texte/html}}",
         icon: 'fas fa-align-center',
         disabled: function(key, opt) {
           return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
@@ -1003,7 +1003,7 @@ if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
         }
       },
       addScenario: {
-        name: "{{Ajouter scénario}}",
+        name: "{{Ajouter un scénario}}",
         icon: 'fas fa-plus-circle',
         disabled: function(key, opt) {
           return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
@@ -1059,7 +1059,7 @@ if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
         }
       },
       addEqLogic: {
-        name: "{{Ajouter équipement}}",
+        name: "{{Ajouter un équipement}}",
         icon: 'fas fa-plus-circle',
         disabled: function(key, opt) {
           return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
@@ -1074,7 +1074,7 @@ if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
         }
       },
       addCommand: {
-        name: "{{Ajouter commande}}",
+        name: "{{Ajouter un commande}}",
         icon: 'fas fa-plus-circle',
         disabled: function(key, opt) {
           return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
