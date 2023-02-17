@@ -965,11 +965,13 @@ if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Plein écran}}",
         icon: 'fas fa-desktop',
         callback: function(key, opt) {
-          if (this.getAttribute('data-fullscreen') == null) {
-            this.setAttribute('data-fullscreen', 1)
+          if (this.getAttribute('data-fullscreen') == null || this.getAttribute('data-fullscreen') == 'false') {
+            this.setAttribute('data-fullscreen', 'true')
+            jeeP.fullScreen(true)
+          } else {
+            this.setAttribute('data-fullscreen', 'false')
+            jeeP.fullScreen(false)
           }
-          jeeP.fullScreen(this.getAttribute('data-fullscreen'))
-          this.setAttribute('data-fullscreen', !this.getAttribute('data-fullscreen'))
         }
       },
       sep1: "---------",
