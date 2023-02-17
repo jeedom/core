@@ -1552,6 +1552,9 @@ var jeeDialog = (function()
           document.querySelectorAll('div.jeeDialog.jeeDialogMain').removeClass('active')
           this.dialog.addClass('active')
           this.dialog.seen()
+          setTimeout(function() {
+            dialogContainer.querySelector('button[data-type="confirm"]')?.focus()
+          })
         },
         hide: function() {
           this.dialog.unseen()
