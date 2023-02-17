@@ -177,8 +177,10 @@ if (!jeeFrontEnd.scenario) {
         new Sortable(_Sortcontainer, commonOptions)
       })
       var root = document.getElementById('root')
-      if (Sortable.get(root)) Sortable.get(root).destroy()
-      new Sortable(root, commonOptions)
+      if (root) {
+        if (Sortable.get(root)) Sortable.get(root).destroy()
+        new Sortable(root, commonOptions)
+      }
     },
     setRootElements: function() {
       /*
