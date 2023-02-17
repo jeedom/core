@@ -1263,7 +1263,16 @@ if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
           return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
         },
         callback: function(key, opt) {
-          jeeDialog.prompt("{{Nom la copie du design ?}}", function(result) {
+          let name = "";
+          for(let i in jeephp2js.planHeader){
+            if(jeephp2js.planHeader[i].id == jeephp2js.planHeader_id){
+              name = jeephp2js.planHeader[i].name+ " copie";
+            }
+          }
+          jeeDialog.prompt({
+            title : "{{Nom la copie du design ?}}",
+            value : name,
+          }, function(result) {
             if (result !== null) {
               jeeP.savePlan(false, false)
               jeedom.plan.copyHeader({

@@ -354,7 +354,7 @@ if (!jeeFrontEnd.pluginTemplate) {
       var id = document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue()
       if (id != undefined && id != '') {
         jeeDialog.prompt({
-          value: name,
+          value: name+' copie',
           title: '{{Nom de la copie de l\'équipement ?}}',
           callback: function(result) {
             if (result !== null) {
