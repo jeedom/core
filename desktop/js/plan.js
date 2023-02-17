@@ -1341,7 +1341,7 @@ document.body.registerEvent('click', function (event) {
 
 //div_pageContainer events delegation:
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  if (jeeFrontEnd.planEditOption.state === true) {
+  if (jeeFrontEnd.planEditOption.state === true && event.target.closest('div.jeeCtxMenu') == null) {
     event.preventDefault()
     return
   }
