@@ -1247,7 +1247,7 @@ if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
         }
       },
       addPlan: {
-        name: "{{Creer un design}}",
+        name: "{{Créer un design}}",
         icon: 'fas fa-plus-circle',
         disabled: function(key, opt) {
           return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
