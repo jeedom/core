@@ -376,19 +376,33 @@ domUtils.loadScript = function(_scripts, _idx, _callback) {
 
 //Use new html document to load scripts synch/ordered
 domUtils.DOMparseHTML = function(_htmlString) {
-  var dom = new DOMParser()
-  var html = dom.parseFromString(_htmlString, 'text/html')
-  var node = html.body.childNodes[0]
+  domUtils.DOMloading ++
+  var frag = document.createRange().createContextualFragment(_htmlString)
+  var node = null
+  var nodeChilds = []
+  frag.childNodes.forEach(_child => {
+    if (!node && _child.tagName != undefined && _child.tagName !== 'SCRIPT') {
+      node = _child
+    } else {
+      nodeChilds.push(_child)
+    }
+  })
+  if (!node) {
+    domUtils.DOMloading --
+    return null
+  }
 
   //Make scrips not just strings...
   document.body.appendChild(node)
-  if (html.body.childNodes.length > 0) {
-    for (var i=1; i<html.body.childNodes.length; i++) {
-      node.appendChild(html.body.childNodes[i])
+  if (nodeChilds.length > 0) {
+    for (var child of nodeChilds) {
+      node.appendChild(child)
     }
   }
-  domUtils.loadScript(node.querySelectorAll('script'), 0)
-
+  if (node.querySelectorAll('script').length > 0) {
+    domUtils.loadScript(node.querySelectorAll('script'), 0)
+  }
+  domUtils.DOMloading --
   return node
 }
 
