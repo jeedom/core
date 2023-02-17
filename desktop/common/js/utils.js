@@ -31,7 +31,6 @@ jeedomUtils.tileHeightSteps = Array.apply(null, { length: 10 }).map(function(val
 if (typeof jQuery === 'function') {
   jeedomUtils.$readyFn = jQuery.fn.ready
   jQuery.fn.ready = function() {
-    console.log('jQuery.fn.ready:', domUtils._DOMloading, this, arguments)
     if (domUtils._DOMloading <= 0) {
       jeedomUtils.$readyFn.apply(this, arguments)
     } else {

@@ -60,7 +60,6 @@ Object.defineProperty(domUtils, 'DOMloading', {
     return this._DOMloading
   },
   set: function(number) {
-    console.log('this._DOMloading:', this._DOMloading, ' -> ', number)
     if (number === 1) domUtils.showLoading()
     this._DOMloading = number < 0 ? 0 : number
     if (this._DOMloading <= 0) {
@@ -328,8 +327,8 @@ domUtils.loadScript = function(_scripts, _idx, _callback) {
     }
     return
   }
-  let script = document.createElement('script')
-  script.type = (_scripts[_idx].type) ? _scripts[_idx].type : "text/javascript"
+  var script = document.createElement('script')
+  script.type = _scripts[_idx].type || "text/javascript"
   Array.prototype.forEach.call(_scripts[_idx].attributes, function(attr) {
     script.setAttribute(attr.nodeName, attr.nodeValue)
   })
@@ -341,12 +340,12 @@ domUtils.loadScript = function(_scripts, _idx, _callback) {
         _scripts[_idx].remove()
         domUtils.loadScript(_scripts, _idx + 1, _callback)
       } else {
+        domUtils.headInjexted.push(_scripts[_idx].src)
+        _scripts[_idx].remove()
         script.onload = function() {
           domUtils.loadScript(_scripts, _idx + 1, _callback)
         }
-        _scripts[_idx].remove()
-        document.head.appendChild(script)
-        domUtils.headInjexted.push(_scripts[_idx].src)
+        document.head.append(script)
       }
     } else {
       script.onload = function() {
@@ -357,7 +356,7 @@ domUtils.loadScript = function(_scripts, _idx, _callback) {
   } else {
     script.text = _scripts[_idx].text
     _scripts[_idx].replaceWith(script)
-    domUtils.loadScript(_scripts,_idx + 1, _callback)
+    domUtils.loadScript(_scripts, _idx + 1, _callback)
   }
 }
 
@@ -378,17 +377,10 @@ domUtils.DOMparseHTML = function(_htmlString) {
     return null
   }
 
-  //Make scrips not just strings...
   if (nodeChilds.length > 0) {
     node.append(...nodeChilds)
   }
-  if (node.querySelectorAll('script').length > 0) {
-    domUtils.DOMloading += 1
-    domUtils.loadScript(node.querySelectorAll('script'), 0, () => {
-      console.log('<<<<<<< DOMparseHTML loadScript done', domUtils._DOMloading)
-      domUtils.DOMloading -= 1
-    })
-  }
+
   return node
 }
 
@@ -397,12 +389,14 @@ domUtils.parseHTML = function(_htmlString) {
   let newEl = document.createElement('template')
   newEl.innerHTML = _htmlString
 
+  domUtils.DOMloading += 1
   newEl.content.querySelectorAll('script').forEach(function(element) {
     let script = document.createElement('script')
     script.setAttribute('injext', '1')
     element.src != '' ? script.src = element.src : script.text = element.text
     element.replaceWith(script)
   })
+  domUtils.DOMloading -= 1
 
   return newEl.content
 }
@@ -426,7 +420,7 @@ Element.prototype.html = function(_htmlString, _append, _callback) {
       }
     }
   })
-  this.appendChild(template.content)
+  this.append(template.content)
 
   let self = this
   if (this.querySelectorAll('script').length > 0) {
