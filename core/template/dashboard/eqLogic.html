@@ -17,6 +17,7 @@
   </div>
   #divGraphInfo#
   <script>
+    $(document).ready(function () { console.log('>> eqlogic template ready', "#uid#") })
     if ('#panelLink#' == '') {
       document.querySelector('.eqLogic[data-eqLogic_uid="#uid#"] .panelLink')?.remove()
     }

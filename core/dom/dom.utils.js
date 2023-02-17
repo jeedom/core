@@ -60,13 +60,12 @@ Object.defineProperty(domUtils, 'DOMloading', {
     return this._DOMloading
   },
   set: function(number) {
-    if (number === 0) domUtils.showLoading()
-    setTimeout(() => {
-      this._DOMloading = number < 0 ? 0 : number
-      if (number <= 0) {
-        domUtils.DOMReady()
-      }
-    }, 200)
+    console.log('this._DOMloading:', this._DOMloading, ' -> ', number)
+    if (number === 1) domUtils.showLoading()
+    this._DOMloading = number < 0 ? 0 : number
+    if (this._DOMloading <= 0) {
+      domUtils.DOMReady()
+    }
   }
 })
 
@@ -380,16 +379,16 @@ domUtils.DOMparseHTML = function(_htmlString) {
   }
 
   //Make scrips not just strings...
-  domUtils.DOMloading += 1
   if (nodeChilds.length > 0) {
     node.append(...nodeChilds)
   }
   if (node.querySelectorAll('script').length > 0) {
+    domUtils.DOMloading += 1
     domUtils.loadScript(node.querySelectorAll('script'), 0, () => {
+      console.log('<<<<<<< DOMparseHTML loadScript done', domUtils._DOMloading)
       domUtils.DOMloading -= 1
     })
   }
-
   return node
 }
 
@@ -430,15 +429,19 @@ Element.prototype.html = function(_htmlString, _append, _callback) {
   this.appendChild(template.content)
 
   let self = this
-  domUtils.loadScript(this.querySelectorAll('script'), 0, function() {
+  if (this.querySelectorAll('script').length > 0) {
+    domUtils.loadScript(this.querySelectorAll('script'), 0, function() {
+      domUtils.DOMloading -= 1
+      if (typeof _callback === 'function') {
+        return _callback.apply(self)
+      } else {
+        return self
+      }
+    }, document.head)
+  } else {
     domUtils.DOMloading -= 1
-    if (typeof _callback === 'function') {
-      return _callback.apply(self)
-    } else {
-      return self
-    }
-  }, document.head)
-  return self
+    return self
+  }
 }
 
 Element.prototype.load = function(_path, _callback) {

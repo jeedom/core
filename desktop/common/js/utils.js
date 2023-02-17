@@ -31,9 +31,13 @@ jeedomUtils.tileHeightSteps = Array.apply(null, { length: 10 }).map(function(val
 if (typeof jQuery === 'function') {
   jeedomUtils.$readyFn = jQuery.fn.ready
   jQuery.fn.ready = function() {
-    //console.log('jQuery.fn.ready:', domUtils._DOMloading)
+    console.log('jQuery.fn.ready:', domUtils._DOMloading, this, arguments)
     if (domUtils._DOMloading <= 0) {
       jeedomUtils.$readyFn.apply(this, arguments)
+    } else {
+      setTimeout(function() {
+        jQuery.fn.ready.apply(this, arguments[1])
+      }, 250, this, arguments)
     }
   }
 }
@@ -110,7 +114,6 @@ jeedomUtils.userDevice = getDeviceType()
 
 //OnePage design PageLoader -------------------------------------
 jeedomUtils.loadPage = function(_url, _noPushHistory) {
-  domUtils.DOMloading = 0
   jeeFrontEnd.PREVIOUS_LOCATION = window.location.href
   if (jeedomUtils.checkPageModified()) return
   if (jeedomUtils.JS_ERROR.length > 0) {
@@ -186,6 +189,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   document.body.querySelectorAll('script[injext]')?.remove()
 
   //AJAX LOAD URL INTO PAGE CONTAINER:
+  domUtils.DOMloading += 1
   document.getElementById('div_pageContainer').load(url, function() {
     document.body.setAttribute('data-page', getUrlVars('p') || '')
     document.getElementById('bt_getHelpPage').setAttribute('data-page', getUrlVars('p'))
@@ -217,6 +221,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
       modifyWithoutSave = false
       jeeFrontEnd.modifyWithoutSave = false
     }, 250)
+    domUtils.DOMloading -= 1
   })
 
   return

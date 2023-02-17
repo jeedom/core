@@ -26,7 +26,7 @@ domUtils.showLoading = function() {
   domUtils.loadingTimeout = setTimeout(() => {
     if (!document.getElementById('div_jeedomLoading')?.isHidden()) {
       domUtils.hideLoading()
-      domUtils.DOMloading --
+      domUtils.DOMloading = 0
       if (jeedomUtils) jeedomUtils.showAlert({level: 'danger', message: 'Operation Timeout: Something has gone wrong!'})
     }
   }, 20 * 1000)
