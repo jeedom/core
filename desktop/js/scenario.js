@@ -1766,7 +1766,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
   if (_target = event.target.closest('#bt_copyScenario')) {
     jeeDialog.prompt({
       title : "{{Nom du scénario}} ?",
-      value : document.querySelector('.scenarioAttr[data-l1key="name"]').jeeValue()+' copie'
+      value : document.querySelector('.scenarioAttr[data-l1key="name"]').jeeValue() + ' {{copie}}'
     }, function(result) {
       if (result !== null) {
         jeedom.scenario.copy({

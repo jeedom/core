@@ -1074,7 +1074,7 @@ if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
         }
       },
       addCommand: {
-        name: "{{Ajouter un commande}}",
+        name: "{{Ajouter une commande}}",
         icon: 'fas fa-plus-circle',
         disabled: function(key, opt) {
           return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
@@ -1270,7 +1270,7 @@ if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
             }
           }
           jeeDialog.prompt({
-            title : "{{Nom la copie du design ?}}",
+            title : "{{Nom de la copie du design ?}}",
             value : name,
           }, function(result) {
             if (result !== null) {
