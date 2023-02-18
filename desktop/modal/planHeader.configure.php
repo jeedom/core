@@ -89,7 +89,7 @@ sendVarToJS([
                 </span>
                 <span class="objectImg">
                   <a class="btn btn-sm btn-danger" id="bt_removeBackgroundImage" style="position:absolute;bottom:0;"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
-                  <img src="" height="160px" />
+                  <img src="" height="160px" style="min-height: 60px;"/>
                 </span>
               </div>
             </div>
