@@ -434,7 +434,11 @@ Element.prototype.html = function(_htmlString, _append, _callback) {
     }, document.head)
   } else {
     domUtils.DOMloading -= 1
-    return self
+    if (typeof _callback === 'function') {
+      return _callback.apply(self)
+    } else {
+      return self
+    }
   }
 }
 
