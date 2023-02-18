@@ -930,7 +930,9 @@ var jeeDialog = (function()
     button.classList = 'button ' + _button[1].className
     if (isset(_button[1].callback)) {
       for (var [key, value] of Object.entries(_button[1].callback)) {
-        button.addEventListener(key, value)
+        button.addEventListener(key, function(event) {
+          value.apply(this, [event, this.getAttribute('data-type')])
+        })
       }
     }
     _footer.appendChild(button)
@@ -1251,10 +1253,10 @@ var jeeDialog = (function()
           callback: {
             click: function(event) {
               var dialog = event.target.closest('div.jeeDialog')
-              dialog._jeeDialog.close(dialog)
               if (typeof _callback === 'function') {
                 _callback(null)
               }
+              dialog._jeeDialog.close(dialog)
             }
           }
         },
@@ -1264,13 +1266,14 @@ var jeeDialog = (function()
           callback: {
             click: function(event) {
               var dialog = event.target.closest('div.jeeDialog')
-              dialog._jeeDialog.close(dialog)
               if (typeof _callback === 'function') {
                 var data = event.target.closest('div.jeeDialog').querySelector('div.jeeDialogContent').getJeeValues('.promptAttr')[0]
+                var key = event.target.closest('button').getAttribute('data-type')
                 if (Object.keys(data).length == 1) data = data.result
-                  if (data == '') data = null
-                _callback(data)
+                if (data == '') data = null
+                _callback.apply(this, [data, key])
               }
+              dialog._jeeDialog.close(dialog)
             }
           }
         }

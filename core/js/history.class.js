@@ -109,6 +109,7 @@ jeedom.history.generatePlotBand = function(_startTime, _endTime) {
 }
 
 jeedom.history.changePoint = function(_params) {
+  console.log('changePoint:', _params)
   var paramsRequired = ['cmd_id', 'datetime', 'value', 'oldValue'];
   var paramsSpecifics = {
     error: function(error) {
@@ -118,15 +119,15 @@ jeedom.history.changePoint = function(_params) {
       });
     },
     success: function(result) {
-      jeedomUtils.showAlert({
-        message: '{{La valeur a été éditée avec succès}}',
-        level: 'success'
-      })
-
       //changePoint() only allowed on history page:
       if (!isset(jeeFrontEnd.history)) return
       if (document.body.dataset.uimode != 'desktop') return
       if (document.body.dataset.page != 'history') return
+
+      jeedomUtils.showAlert({
+        message: '{{La valeur a été éditée avec succès}}',
+        level: 'success'
+      })
       var shown = document.getElementById('ul_history').querySelectorAll('li.li_history.active[data-cmd_id="' + _params.cmd_id + '"]')
       if (shown) {
         jeeFrontEnd.history.addChart(_params.cmd_id, 0)
@@ -157,9 +158,7 @@ jeedom.history.modalchangePoint = function(event, _this, _params) {
   if (jeedom.history.chart[_this.series.chart._jeeId].mode == 'view' || jeedom.history.chart[_this.series.chart._jeeId].mode == 'plan') {
     return
   }
-
   if (jeedomUtils.userDevice.type == 'tablet' || jeedomUtils.userDevice.type == 'phone') return
-
   if (event.target.closest('div.jeeDialog') != null) return
   if (jeedom.history.chart[_this.series.chart._jeeId].comparing) return
 
@@ -174,8 +173,9 @@ jeedom.history.modalchangePoint = function(event, _this, _params) {
   jeeDialog.prompt({
     title: "{{Edition d'historique}}",
     message: "<b>" + _this.series.name + "</b><br> {{date :}} <b>" + datetime + "</b><br>{{valeur :}} <b>" + value + "</b><br><i>{{Ne rien mettre pour supprimer la valeur}}</i>"
-    }, function(result) {
-    if (result !== null) {
+    }, function(result, key) {
+    if (key == 'confirm') {
+      if (result === null) result = '' //Will remove history point
       jeedom.history.changePoint({
         cmd_id: id,
         datetime: datetime,
