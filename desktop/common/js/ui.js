@@ -68,7 +68,9 @@ if (!jeedomUI) {
           itemElem.setAttribute(_orderAttr, i + 1)
           itemElem.style.transform = null
           if (jeedomUI.isEditing) {
+            try { //In case template isn't contained in a single div !
             itemElem.querySelector('.counterReorderJeedom').textContent = (i + 1).toString()
+            } catch(error) { }
           } else {
             itemElem.insertAdjacentHTML('afterbegin', '<span class="counterReorderJeedom pull-left">' + (i + 1).toString() + '</span>')
           }
