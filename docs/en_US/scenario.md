@@ -368,7 +368,7 @@ Several functions are available for the equipment :
 
 - ``name(type,commande)`` : Used to retrieve the name of the command, equipment or object. Kind : cmd, eqLogic or object.
 
-- ``lastCommunication(equipment,[format])`` : Returns the date of the last communication for the device given as a parameter, the 2nd optional parameter is used to specify the return format (details [here](https://www.php.net/manual/fr/datetime.format.php)). A return of -1 means that the equipment cannot be found.
+- ``lastCommunication(equipment,[format])`` : Returns the date of the last information feedback for the equipment given in parameter, the 2nd optional parameter is used to specify the return format (details [here](https://www.php.net/manual/fr/datetime.format.php)). A return of -1 means that the equipment cannot be found. The date of last information is calculated in relation to the information type order and their date of collection.
 
 - ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Returns a color calculated relative to a value in the interval color_start / color_end. The value must be between min_value and max_value.
 
