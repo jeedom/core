@@ -162,15 +162,16 @@ if (!jeeFrontEnd.view) {
               var draggie = new Draggabilly(itemElem)
               jeeFrontEnd.view.draggables.push(draggie)
               pckry.bindDraggabillyEvents(draggie)
-              draggie.on('dragEnd', function(event, draggedItem) {
-                if (event.target.nodeName == '#document' || draggedItem.target.hasClass('packery-drop-placeholder')) { //Dropped outside window
-                  pckry.layout()
-                  return
-                }
-                jeeFrontEnd.modifyWithoutSave = true
+
+              draggie.on('dragStart', function(event, draggedItem) {
                 jeedomUI.draggingId = draggedItem.target.closest('.editingMode').getAttribute('data-editid')
+              })
+
+              draggie.on('dragEnd', function(event, draggedItem) {
+                jeeFrontEnd.modifyWithoutSave = true
                 jeedomUI.orderItems(pckry, 'data-vieworder')
               })
+
             })
           })
         } else {
