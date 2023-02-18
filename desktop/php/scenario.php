@@ -18,7 +18,7 @@ if (is_array($scenarioListGroup)) {
 //get all scenarios without group:
 $scenarioNoGroup = scenario::all(null);
 if (count($scenarioNoGroup) > 0) {
-	$scenarios['{{Aucun}}'] = scenario::all(null);
+	$scenarios['{{Aucun}}'] = $scenarioNoGroup;
 	$hasScenario = true;
 }
 
