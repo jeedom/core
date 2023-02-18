@@ -124,6 +124,7 @@ if (!jeeFrontEnd.plan) {
         },
         success: function(data) {
           jeeP.displayObject(data.plan, data.html, false)
+          jeeFrontEnd.modifyWithoutSave = true
         }
       })
     },
@@ -211,6 +212,7 @@ if (!jeeFrontEnd.plan) {
           var selector = '.eqLogic-widget, .div_displayObject > .cmd-widget, .scenario-widget'
           selector += ',.plan-link-widget, .view-link-widget, .graph-widget, .text-widget, .image-widget, .zone-widget, .summary-widget'
           document.querySelectorAll(selector).remove()
+          jeeFrontEnd.modifyWithoutSave = false
           jeedom.plan.byPlanHeader({
             id: jeephp2js.planHeader_id,
             error: function(error) {
@@ -239,6 +241,7 @@ if (!jeeFrontEnd.plan) {
               jeedomUtils.initReportMode()
               window.scrollTo({top: 0, behavior: "smooth"})
               jeeFrontEnd.plan.setGraphResizes()
+              jeeFrontEnd.modifyWithoutSave = false
             }
           })
         },
@@ -626,6 +629,7 @@ if (!jeeFrontEnd.plan) {
           })
 
           draggie.on('dragEnd', function(event, pointer) {
+            jeeFrontEnd.modifyWithoutSave = true
             //jeeP.savePlan(false, false)
           })
         })
@@ -684,6 +688,7 @@ if (!jeeFrontEnd.plan) {
             element.querySelector('.camera')?.triggerEvent('resize')
           },
           stop: function(event, ui) {
+            jeeFrontEnd.modifyWithoutSave = true
             //jeeP.savePlan(false, false)
           },
         })
@@ -768,6 +773,7 @@ if (!jeeFrontEnd.plan) {
             jeeP.displayPlan()
           }
           domUtils.hideLoading()
+          jeeFrontEnd.modifyWithoutSave = false
         },
       })
     },
