@@ -256,6 +256,7 @@ if (!jeedomUI) {
       document.getElementById('div_pageContainer').unRegisterEvent('click', 'historyModalHandler')
       document.getElementById('div_pageContainer').registerEvent('click', function historyModalHandler(event) {
         if (jeedomUI.isEditing) return false
+          if (document.body.getAttribute('data-page') == 'plan' && jeeFrontEnd.planEditOption.state) return false
         if (event.target.closest('.history[data-cmd_id]') == null) return false
         event.stopImmediatePropagation()
         event.stopPropagation()
