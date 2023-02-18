@@ -577,7 +577,9 @@ domUtils(function() {
     $("#table_cmd").sortable("destroy")
   }
 
-  jeeFrontEnd.pluginTemplate.cmdSortable = Sortable.create(document.getElementById('table_cmd').tBodies[0], {
+  var tableCmd = document.getElementById('table_cmd')
+  if (!tableCmd) return
+  jeeFrontEnd.pluginTemplate.cmdSortable = Sortable.create(tableCmd.tBodies[0], {
     delay: 100,
     delayOnTouchOnly: true,
     touchStartThreshold: 20,
@@ -589,7 +591,7 @@ domUtils(function() {
       jeeFrontEnd.modifyWithoutSave = true
     },
   })
-  document.getElementById('table_cmd')._sortable = jeeFrontEnd.pluginTemplate.cmdSortable
+  tableCmd._sortable = jeeFrontEnd.pluginTemplate.cmdSortable
 })
 
 
