@@ -194,7 +194,7 @@ if (!jeeFrontEnd.update) {
       var tr = '<tr>'
       tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass + '" data-l1key="status"></span></td>'
       tr += '<td>'
-      tr += '<span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name"></span>'
+      tr += '<span class="hidden-1280"><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : </span><span class="updateAttr label label-info" data-l1key="name"></span>'
       tr += '<span class="hidden">' + _update.name + '</span><span class="updateAttr hidden" data-l1key="id"></span>'
       if (_update.configuration && _update.configuration.version) {
           var updClass;
@@ -209,7 +209,7 @@ if (!jeeFrontEnd.update) {
               default:
                   updClass = 'label-danger';
           }
-          tr += ' <span class="label ' + updClass + '">' + _update.configuration.version + '</span>'
+          tr += ' <span class="label ' + updClass + ' hidden-992">' + _update.configuration.version + '</span>'
       }
 
       if (_update.localVersion !== null && _update.localVersion.length > 19) _update.localVersion = _update.localVersion.substring(0, 16) + '...'
@@ -224,8 +224,8 @@ if (!jeeFrontEnd.update) {
       tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="updateDate">' + _update.updateDate + '</span></td>'
       tr += '<td>'
       if (_update.type != 'core') {
-        tr += '<input id="' + _update.name + '" type="checkbox" class="updateAttr checkContext" data-l1key="configuration" data-l2key="doNotUpdate" title="{{Sauvegarder pour conserver les modifications}}">'
-        tr += '<label class="cursor fontweightnormal hidden-1280" for="' + _update.name + '">{{Ne pas mettre à jour}}</label>'
+        tr += '<i class="fas fa-pencil-ruler" title="{{Ne pas mettre à jour}}"></i> <input id="' + _update.name + '" type="checkbox" class="updateAttr checkContext warning" data-l1key="configuration" data-l2key="doNotUpdate" title="{{Sauvegarder pour conserver les modifications}}">'
+        tr += '<label class="cursor fontweightnormal hidden-1280" for="' + _update.name + '"></label>'
       }
       tr += '</td>'
       tr += '<td>'
