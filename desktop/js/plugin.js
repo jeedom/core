@@ -311,22 +311,20 @@ if (!jeeFrontEnd.plugin) {
           log_conf += '</form>'
 
           self.dom_container.querySelector('#div_plugin_log').empty().insertAdjacentHTML('beforeend', log_conf)
-
-          var divPluginConfiguration = self.dom_container.querySelector('#div_plugin_configuration')
           var dom_divPluginConfiguration = self.dom_container.querySelector('#div_plugin_configuration')
-          divPluginConfiguration.empty()
+          dom_divPluginConfiguration.empty()
           if (data.checkVersion != -1) {
-            if (data.configurationPath != '' && data.activate == 1) {
-              divPluginConfiguration.load('index.php?v=d&plugin=' + data.id + '&configure=1', function() {
-                if (divPluginConfiguration.innerHTML.trim() == '') {
-                  divPluginConfiguration.closest('.panel').unseen()
+            if (data.configurationPath != '' && data.activate == '1') {
+              dom_divPluginConfiguration.load('index.php?v=d&plugin=' + data.id + '&configure=1', function() {
+                if (dom_divPluginConfiguration.innerHTML.trim() == '') {
+                  dom_divPluginConfiguration.closest('.panel').unseen()
                   return
                 } else {
-                  divPluginConfiguration.closest('.panel').seen()
+                  dom_divPluginConfiguration.closest('.panel').seen()
                 }
                 jeedom.config.load({
                   configuration: dom_divPluginConfiguration.getJeeValues('.configKey')[0],
-                  plugin: self.dom_container.querySelector('#span_plugin_id').innerHTML,
+                  plugin: data.id,
                   error: function(error) {
                     jeedomUtils.showAlert({
                       message: error.message,
@@ -343,9 +341,10 @@ if (!jeeFrontEnd.plugin) {
             } else {
               dom_divPluginConfiguration.closest('.panel').unseen()
             }
+
             jeedom.config.load({
               configuration: self.dom_container.querySelector('#div_plugin_panel').getJeeValues('.configKey')[0],
-              plugin: self.dom_container.querySelector('#span_plugin_id').innerHTML,
+              plugin: data.id,
               error: function(error) {
                 jeedomUtils.showAlert({
                   message: error.message,
@@ -357,9 +356,10 @@ if (!jeeFrontEnd.plugin) {
                 jeeFrontEnd.modifyWithoutSave = false
               }
             })
+
             jeedom.config.load({
               configuration: self.dom_container.querySelector('#div_plugin_functionality').getJeeValues('.configKey')[0],
-              plugin: self.dom_container.querySelector('#span_plugin_id').innerHTML,
+              plugin: data.id,
               error: function(error) {
                 jeedomUtils.showAlert({
                   message: error.message,
@@ -371,6 +371,7 @@ if (!jeeFrontEnd.plugin) {
                 jeeFrontEnd.modifyWithoutSave = false
               }
             })
+
             jeedom.config.load({
               configuration: self.dom_container.querySelector('#div_plugin_log').getJeeValues('.configKey')[0],
               error: function(error) {
