@@ -872,11 +872,14 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
 
   if (_target = event.target.closest('#bt_libraryBackgroundImage')) {
     jeedomUtils.chooseIcon(function(_icon) {
-      document.querySelector('.objectImg').seen().querySelector('img').replaceWith(_icon)
-      document.querySelector('.objectImg img').setAttribute('width', '240px')
+      let objectImg = document.querySelector('#objecttab .objectImg')
+      if (!objectImg) return
+      objectImg.seen().querySelector('img').remove()
+      objectImg.insertAdjacentHTML('beforeend', _icon)
+      objectImg.querySelector('img')?.setAttribute('width', '240px')
       jeedom.object.uploadImage({
         id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML,
-        file: document.querySelector('.objectImg img').getAttribute('data-filename'),
+        file: objectImg.querySelector('img').getAttribute('data-filename'),
         error: function(error) {
           jeedomUtils.showAlert({
             message: error.message,
