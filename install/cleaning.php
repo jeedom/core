@@ -187,9 +187,12 @@ try {
         continue;
       }
     }
+    if ($eqLogic->getObject_id() == -1) {
+      $eqLogic->setObject_id(null);
+    }
     $eqLogic->save(true);
   }
-  
+
   // history:
   $sql = 'select cmd_id from history group by cmd_id';
   $results1 = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
