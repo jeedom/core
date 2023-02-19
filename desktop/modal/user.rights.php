@@ -260,7 +260,7 @@ if (!jeeFrontEnd.md_userRights) {
   jeeFrontEnd.md_userRights = {
     init: function() {
       document.getElementById('div_tabUserRights').setJeeValues(jeephp2js.md_userRights_rights, '.userAttr')
-      jeedomUtils.initDataTables(false, true)
+      jeedomUtils.initDataTables(false, true, '#md_userRights')
     },
     save: function() {
       jeedom.user.save({

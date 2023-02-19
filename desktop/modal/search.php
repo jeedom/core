@@ -234,12 +234,7 @@ if (!jeeFrontEnd.md_search) {
         this.tableNoteSearch
       ]
 
-      jeedomUtils.initDataTables()
-      /*
-      this.tableStore.forEach(_table => {
-        _table.tHead.rows[0].cells[0].removeClass('dt-sorter')
-      })
-      */
+      jeedomUtils.initDataTables(false, false, '#md_search')
       this.modalOptions = jeeDialog.get('#table_ScenarioSearch')
 
       jeedomUtils.initTooltips()

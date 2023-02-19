@@ -110,7 +110,7 @@ sendVarToJs('jeephp2js.md_objectMassEdit_type',$type);
 </div>
 
 <script>
-jeedomUtils.initDataTables(false, true)
+jeedomUtils.initDataTables(false, true, '#md_objectMassEdit')
 
 document.getElementById('bt_saveMassEdit').addEventListener('click',function() {
   jeedom.massEditSave({
