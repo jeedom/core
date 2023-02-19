@@ -872,7 +872,8 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
 
   if (_target = event.target.closest('#bt_libraryBackgroundImage')) {
     jeedomUtils.chooseIcon(function(_icon) {
-      document.querySelector('.objectImg').seen().querySelector('img').replaceWith(_icon)
+      document.querySelector('.objectImg img').remove()
+      document.querySelector('.objectImg').seen().appendChild(_icon)
       document.querySelector('.objectImg img').setAttribute('width', '240px')
       jeedom.object.uploadImage({
         id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML,
