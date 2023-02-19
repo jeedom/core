@@ -1596,7 +1596,7 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
         className: 'success',
         callback: {
           click: function(event) {
-            var icon = document.getElementById('mod_selectIcon').querySelector('.iconSelected .iconSel').innerHTML
+            var icon = document.getElementById('mod_selectIcon').querySelector('.iconSelected .iconSel .img-responsive')
             if (icon == undefined) {
               icon = ''
             }
