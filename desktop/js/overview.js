@@ -35,9 +35,8 @@ if (!jeeFrontEnd.overview) {
       this.checkResumeEmpty()
       this.createSummaryObserver()
       domUtils.hideLoading()
-      self = this
       this.modal._jeeDialog.options.onResize = function(event) {
-        Packery.data(self.modalContent).layout()
+        Packery.data(jeeFrontEnd.overview.modalContent).layout()
       }
     },
     createSummaryObserver: function() {
@@ -236,7 +235,6 @@ jeeP.modalContent.addEventListener('click', function(event) {
     } else {
       var cmdIds = event.target.closest('.history[data-cmd_id]').getAttribute('data-cmd_id')
     }
-    jeeFrontEnd.overview.modalContent.empty()
     jeeDialog.dialog({
       id: 'md_cmdHistory',
       title: '{{Historique}}',
