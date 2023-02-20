@@ -1131,10 +1131,10 @@ jeedomUtils.initTableSorter = function(filter) {
   }).css('width', '')
 }
 
-jeedomUtils.initDataTables = function(_paging, _searching, _selector) {
+jeedomUtils.initDataTables = function(_selector, _paging, _searching) {
+  if (!isset(_selector)) _selector = 'body'
   if (!_paging) _paging = false
   if (!_searching) _searching = false
-  if (!isset(_selector)) _selector = 'body'
   document.querySelector(_selector).querySelectorAll('table.dataTable').forEach(_table => {
     if (_table._dataTable) {
       _table._dataTable.destroy()

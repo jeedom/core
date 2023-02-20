@@ -234,7 +234,7 @@ if (!jeeFrontEnd.md_search) {
         this.tableNoteSearch
       ]
 
-      jeedomUtils.initDataTables(false, false, '#md_search')
+      jeedomUtils.initDataTables('#md_search', false, false)
       this.modalOptions = jeeDialog.get('#table_ScenarioSearch')
 
       jeedomUtils.initTooltips()

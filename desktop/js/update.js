@@ -142,7 +142,6 @@ if (!jeeFrontEnd.update) {
           }
 
           jeedomUtils.initDataTables()
-          //tbody.triggerEvent('update')
 
           jeeFrontEnd.update.updtDataTable = document.querySelector('#table_update')._dataTable
 
